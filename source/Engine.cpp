@@ -1193,10 +1193,9 @@ list<ShipEvent> &Engine::Events()
 void Engine::Draw() const
 {
 	Point motionBlur = centerVelocity;
-	int baseBlur = Preferences::Has("Render motion blur") ? 1 : 0;
+	double baseBlur = Preferences::Has("Render motion blur") ? 1. : 0.;
 
 	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
-
 	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
 		motionBlur *= baseBlur + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
