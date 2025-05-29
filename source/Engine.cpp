@@ -294,7 +294,7 @@ Engine::Engine(PlayerInfo &player)
 				system->Position() - player.GetSystem()->Position());
 
 	GameData::SetHaze(player.GetSystem()->Haze(), true);
-	GameData::SetBackgroundPosition(center);
+	GameData::SetBackgroundPosition(camera.Center());
 }
 
 
@@ -1556,7 +1556,7 @@ void Engine::EnterSystem()
 	// different position relative to what it was when the player landed.
 	SystemEntry entry = player.GetSystemEntry();
 	if(entry == SystemEntry::WORMHOLE || entry == SystemEntry::JUMP)
-		GameData::SetBackgroundPosition(center);
+		GameData::SetBackgroundPosition(camera.Center());
 
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
