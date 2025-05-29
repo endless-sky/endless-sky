@@ -3364,8 +3364,18 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist() && !ship.IsYours();
 	// If this ship is injured and can repair those injuries while cloaked,
 	// then it should cloak while under threat.
-	bool canRecoverShieldsCloaked = (attributes.Get("cloaked regen multiplier") = -1) ? 0 : (attributes.Get("cloaking shield delay") ? attributes.Get("shield generation") : (attributes.Get("delayed shield generation") || attributes.Get("shield generation")));
-	bool canRecoverHullCloaked = (attributes.Get("cloaked repair multiplier") = -1) ? 0 : (attributes.Get("cloaking repair delay") ? attributes.Get("hull repair rate") : (attributes.Get("delayed hull repair") || attributes.Get("hull repair rate")));
+	bool canRecoverShieldsCloaked = false;
+	bool canRecoverHullCloaked = false;
+	if (attributes.Get("cloaked regen multiplier") > -1)
+		if (attributes.Get("shield generation") > 0)
+			canRecoverShieldsCloaked = true;
+		else if (attributes.Get("cloaking shield delay") < 1 && attributes.Get("delayed shield generation") > 0)
+			canRecoverShieldsCloaked = true;
+	if (attributes.Get("cloaked repair multiplier") > -1)
+		if (attributes.Get("hull repair rate") > 0)
+			canRecoverHullCloaked = true;
+		else if (attributes.Get("cloaking repair delay") < 1 && attributes.Get("delayed hull repair") > 0)
+			canRecoverHullCloaked = true;
 	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
 			&& ((ship.Shields() < 1. && canRecoverShieldsCloaked)
 			|| (ship.Hull() < 1. && canRecoverHullCloaked));
