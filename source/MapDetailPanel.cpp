@@ -716,6 +716,10 @@ void MapDetailPanel::DrawInfo()
 {
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &profitable = *GameData::Colors().Get("profitable");
+	const Color &profitableSelected = *GameData::Colors().Get("profitable selected");
+	const Color &unprofitable = *GameData::Colors().Get("unprofitable");
+	const Color &unprofitableSelected = *GameData::Colors().Get("unprofitable selected");
 
 	const Color &back = *GameData::Colors().Get("map side panel background");
 
@@ -822,7 +826,7 @@ void MapDetailPanel::DrawInfo()
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
 			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
-		const Color &color = isSelected ? medium : dim;
+		Color color = isSelected ? medium : dim;
 
 		font.Draw(commodity.name, uiPoint, color);
 
@@ -844,7 +848,12 @@ void MapDetailPanel::DrawInfo()
 				if(Preferences::Has("Show parenthesis"))
 					price += "(";
 				if(value > 0)
+				{
 					price += '+';
+					color = isSelected ? profitableSelected : profitable;
+				}
+				else if(value < 0)
+					color = isSelected ? unprofitableSelected : unprofitable;
 				price += to_string(value);
 				if(Preferences::Has("Show parenthesis"))
 					price += ")";
@@ -857,7 +866,7 @@ void MapDetailPanel::DrawInfo()
 		font.Draw({price, alignRight}, uiPoint, color);
 
 		if(isSelected)
-			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
+			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, medium);
 
 		uiPoint.Y() += 20.;
 	}
