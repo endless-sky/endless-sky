@@ -2287,7 +2287,7 @@ mission "Ka'het: Voice From The Past 5"
 					goto capitalist
 			`	"Oh. Fascinating." He seems quite pleased by your reply. "Well, in that case, I could try calling Kumkapi again to see if they have something you could help them with. I have a lot to catch up with, but I will try to get back to you as soon as I hear from them."`
 			`	You wait for Gavriil for nearly an hour, but he doesn't show up again. Just before leaving, you notice he sent you a communication on your datapad. "<first>," it reads, "I won't be able to meet up with you again today. I apologize for the impoliteness, but there is just too much I need to catch up with in order to keep the project on target.`
-			`	"Nevertheless, I was able to get in contact with the test range, and they seemed happy to get more help. I won't be able to come with you this time, but if follow the same indications I gave you last time you should have no problems finding them.`
+			`	"Nevertheless, I was able to get in contact with the test range, and they seemed happy to get more help. I won't be able to come with you this time, but if you follow the same indications I gave you last time you should have no problems finding them.`
 			`	"Farewell, Captain, and may the Embers guide you back soon."`
 				accept
 			label capitalist
