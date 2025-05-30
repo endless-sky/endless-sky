@@ -2027,10 +2027,10 @@ void Engine::FillCollisionSets()
 void Engine::SpawnFleets()
 {
 	// If the player has a pending boarding mission, spawn its NPCs.
-	if(player.ActiveBoardingMission())
+	if(player.ActiveInFlightMission())
 	{
-		Place(player.ActiveBoardingMission()->NPCs(), player.FlagshipPtr());
-		player.ClearActiveBoardingMission();
+		Place(player.ActiveInFlightMission()->NPCs(), player.FlagshipPtr());
+		player.ClearActiveInFlightMission();
 	}
 
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
