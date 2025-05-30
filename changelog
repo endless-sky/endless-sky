@@ -1,8 +1,8 @@
-Versino 0.10.13
+Version 0.10.13
   * Big changes:
     * Quarg
     * Pausing (@ThrawnCA, @TomGoodIdea, @Zarkonnen, @TheGiraffe3, @Amazinite)
-    * OpenGL frag and vert shader code is now defined in data files, isntead of within the compiled binary, and so can be customized without recompilation. (@tibetiroka)
+    * OpenGL frag and vert shader code is now defined in data files, instead of within the compiled binary, and so can be customized without recompilation. (@tibetiroka)
     * NPC ships can now be given travel instructions to pass through particular systems, visit particular planets, and land on a particular destination. (@mOctave, @tehhowch)
     * Ammunition restocking. (@Amazinite)
     * Added a continuation of the Patir Mystery missions. (@beccabunny)
@@ -146,7 +146,7 @@ Versino 0.10.13
         * Pug Gridfire Turret:
           * Firing energy: 800 -> 400
           * Firing heat: 400 -> 200
-          * Remvoed firing force.
+          * Removed firing force.
           * Shield damage: 600 -> 300
           * Hull damage: 600 -> 300
       * Reduced the price of the Combat Drone hull from 83000 to 63000 credits. (@LixiChronikouOriou)
@@ -166,11 +166,11 @@ Versino 0.10.13
       * Made some adjustments to wording in the Timothy Radrickson missions. (@SpearDane)
       * Avgi and Successor afterburner effects will now "zoom" with the scale of the associated engine points. (@Daeridanii1)
       * Quarg governments now use a named color for the map key color. (@Quantumshark)
-      * Organised all outfits using series. (@Daeridanii1)
+      * Organized all outfits using series. (@Daeridanii1)
       * The Unfettered Hai no longer provide a hyperdrive when selling them a jump drive if the player already has multiple drives. (@Hurleveur)
       * Vara K'chrai no longer offers services other than refueling prior to acquiring the translation device. (@TheGiraffe3)
       * Baianus' description now compares it to Enceladus, instead of Titan. (@TheGiraffe3)
-      * Removed a workaround for a bug in escort pathfinding so the jump range of Postverta is now permanently rduced after Ssil Vida is first actiavted, instead of only while the station is active. (@alextd)
+      * Removed a workaround for a bug in escort pathfinding so the jump range of Postverta is now permanently rduced after Ssil Vida is first activated, instead of only while the station is active. (@alextd)
       * Tweaked the description of Setar Fort. (@Cherrio01, @ravenshining)
       * The flare sprites for the `Z-3600 "Beam" Amat Torch` no longer have a reduced scale. (@Koranir)
       * Various improvements to the Hai legacy missions. (@Hurleveur)
@@ -200,7 +200,7 @@ Versino 0.10.13
       * Outfit and ship sale lists can be given condition sets and location filters to determine where they appear. (@Amazinite)
       * Plugins can now be loaded from zip files. (@tibetiroka, @TomGoodIdea)
       * Missions can be given a "complete at" location filter, allowing them to be completed at any matching location. (@UnorderedSigh)
-      * Added autoconditions for checking what day ofthe week it is. (@Amazinite)
+      * Added autoconditions for checking what day of the week it is. (@Amazinite)
       * Turret hardpoints can now define "blindspots"; angles that they cannot aim towards. (@TomGoodIdea, @RisingLeaf, @tibetiroka, @petervdmeer)
       * Missions can now customize the color of their names in the mission panel. (@Amazinite)
       * Location filters can now check if a planet or system has been visited by the player. (@Amazinite, @TomGoodIdea)
