@@ -1139,8 +1139,8 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	for(const auto &it : systems)
 	{
 		const System &other = it.second;
-		// Skip systems that have no name or that are inaccessible.
-		if(!link->IsValid() || it.first.empty() || other.TrueName().empty() || other.Inaccessible())
+		// Skip systems that are invalid or inaccessible.
+		if(!other.IsValid() || other.Inaccessible())
 			continue;
 
 		if(&other != this && other.Position().Distance(position) <= distance)
