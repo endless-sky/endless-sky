@@ -399,6 +399,18 @@
 			"inherits": "release"
 		},
 		{
+			"name": "linux-armv7-debug",
+			"displayName": "Debug",
+			"configurePreset": "linux-armv7",
+			"inherits": "debug"
+		},
+		{
+			"name": "linux-armv7-release",
+			"displayName": "Release",
+			"configurePreset": "linux-armv7",
+			"inherits": "release"
+		},
+		{
 			"name": "macos-debug",
 			"displayName": "Debug",
 			"configurePreset": "macos",
