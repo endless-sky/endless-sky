@@ -3366,18 +3366,18 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	// then it should cloak while under threat.
 	bool canRecoverShieldsCloaked = false;
 	bool canRecoverHullCloaked = false;
-	if(attributes.Get("cloaked regen multiplier") > -1)
+	if(attributes.Get("cloaked regen multiplier") > -1.)
 	{
-		if(attributes.Get("shield generation") > 0)
+		if(attributes.Get("shield generation") > 0.)
 			canRecoverShieldsCloaked = true;
-		else if(attributes.Get("cloaking shield delay") < 1 && attributes.Get("delayed shield generation") > 0)
+		else if(attributes.Get("cloaking shield delay") < 1. && attributes.Get("delayed shield generation") > 0.)
 			canRecoverShieldsCloaked = true;
 	}
-	if(attributes.Get("cloaked repair multiplier") > -1)
+	if(attributes.Get("cloaked repair multiplier") > -1.)
 	{
-		if(attributes.Get("hull repair rate") > 0)
+		if(attributes.Get("hull repair rate") > 0.)
 			canRecoverHullCloaked = true;
-		else if(attributes.Get("cloaking repair delay") < 1 && attributes.Get("delayed hull repair") > 0)
+		else if(attributes.Get("cloaking repair delay") < 1. && attributes.Get("delayed hull repair") > 0.)
 			canRecoverHullCloaked = true;
 	}
 	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
