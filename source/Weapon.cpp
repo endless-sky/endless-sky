@@ -93,19 +93,16 @@ void Weapon::LoadWeapon(const DataNode &node)
 			}
 			for(const DataNode &grand : child)
 			{
-				for(int j = 0; j < grand.Size(); ++j)
-				{
-					const string &token = grand.Token(j);
+				const string &grandKey = grand.Token(0);
 
-					if(token == "blindspot")
-						blindspot = true;
-					else if(token == "throttle control")
-						throttleControl = true;
-					else if(token == "leading")
-						leading = true;
-					else
-						grand.PrintTrace("Skipping unknown homing attribute:");
-				}
+				if(grandKey == "blindspot")
+					blindspot = true;
+				else if(grandKey == "throttle control")
+					throttleControl = true;
+				else if(grandKey == "leading")
+					leading = true;
+				else
+					child.PrintTrace("Skipping unknown homing attribute:");
 			}
 		}
 		else if(child.Size() < 2)
