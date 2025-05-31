@@ -240,6 +240,7 @@ Version 0.10.13
     * Limited the minimum starfield zoom to 0.15 and added an option to not zoom the starfield with the view zoom. (@Amazinite, @TomGoodIdea)
     * Animated the starfield in the background of the main menu. (@Amazinite)
     * Extended jump effects can now function independently of motion blur. (@Anarchist2)
+    * Added a warning for when a player ship has engines that require heat to function but may be too cold to use them. (@Anarchist2)
   * Under the hood:
     * Added a plaintext description for the fleet jump command. (@thewierdnut)
     * Condition expression parsing is now performed with an abstract syntax tree. (@petervdmeer, @TomGoodIdea)
@@ -277,6 +278,7 @@ Version 0.10.13
     * An external pkgconf will now only be used when it is necessary. (@TomGoodIdea)
     * Added a test to ensure OpenGL shader code conformance. (@tibetiroka)
     * Added some unit testing for Account::AddMortgage. (@mixx99)
+    * The game is built in CI/CD by calling CMake commands directly, instead of using the lukka/run-cmake Action. (@tibetiroka)
 
 Version 0.10.12
   * Bug fixes:
