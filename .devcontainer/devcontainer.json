@@ -1,0 +1,5 @@
+{
+	"name": "Endless Sky",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "es-container"
+}
