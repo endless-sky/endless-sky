@@ -81,7 +81,7 @@ jobs:
       with:
         vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
     - run: |
-        echo 'connect-timeout = 10' > ~/.curlrc
+        echo 'connect-timeout = 5' > ~/.curlrc
         cmake --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
         cmake --build build --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
         ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
@@ -144,7 +144,6 @@ jobs:
       with:
         vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
     - run: |
-        echo 'connect-timeout = 10' > %APPDATA%\\.curlrc
         cmake --preset mingw-ci
         cmake --build build --preset mingw-ci
         ctest --preset mingw-ci
@@ -187,7 +186,6 @@ jobs:
       with:
         vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
     - run: |
-        echo 'connect-timeout = 10' > %APPDATA%\\.curlrc
         cmake --preset clang-cl-ci
         cmake --build build --preset clang-cl-ci
         ctest --preset clang-cl-ci
@@ -222,7 +220,7 @@ jobs:
       with:
         vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
     - run: |
-        echo 'connect-timeout = 10' > ~/.curlrc
+        echo 'connect-timeout = 5' > ~/.curlrc
         cmake --preset macos-ci
         cmake --build build --preset macos-ci
         ctest --preset macos-ci
@@ -258,7 +256,7 @@ jobs:
       with:
         vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
     - run: |
-        echo 'connect-timeout = 10' > ~/.curlrc
+        echo 'connect-timeout = 5' > ~/.curlrc
         cmake --preset macos-arm-ci
         cmake --build build --preset macos-arm-ci
         ctest --preset macos-arm-ci

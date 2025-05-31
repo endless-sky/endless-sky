@@ -45,7 +45,7 @@ jobs:
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
       - run: |
-          echo 'connect-timeout = 10' > ~/.curlrc
+          echo 'connect-timeout = 5' > ~/.curlrc
           cmake --preset linux-release
           cmake --build build --preset linux-ci-release
       - name: Package Application
@@ -83,7 +83,6 @@ jobs:
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
       - run: |
-          echo 'connect-timeout = 10' > %APPDATA%\\.curlrc
           cmake --preset mingw-release
           cmake --build build --preset mingw-ci-release
       - name: Package Application
@@ -122,7 +121,7 @@ jobs:
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
       - run: |
-          echo 'connect-timeout = 10' > ~/.curlrc
+          echo 'connect-timeout = 5' > ~/.curlrc
           cmake --preset macos-release
           cmake --build build --preset macos-ci-release
       - name: Package Application
