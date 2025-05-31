@@ -36,7 +36,7 @@ class ShipyardPanel : public ShopPanel {
 public:
 	explicit ShipyardPanel(PlayerInfo &player, Sale<Ship> stock);
 
-	void Step() override;
+	virtual void Step() override;
 
 
 protected:
