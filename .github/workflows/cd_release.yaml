@@ -30,6 +30,7 @@ jobs:
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
       - run: |
+          echo 'connect-timeout = 10' > ~/.curlrc
           cmake --preset linux-release
           cmake --build build --preset linux-ci-release
       - name: Package Application
@@ -58,6 +59,7 @@ jobs:
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
       - run: |
+          echo 'connect-timeout = 10' > %APPDATA%\\.curlrc
           cmake --preset mingw-release
           cmake --build build --preset mingw-ci-release
       - name: Package Application
@@ -98,6 +100,7 @@ jobs:
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
       - run: |
+          echo 'connect-timeout = 10' > %APPDATA%\\.curlrc
           cmake --preset mingw32-release
           cmake --build build --preset mingw32-ci-release
       - name: Package Application
@@ -144,6 +147,7 @@ jobs:
           mv "build/release/Endless Sky.app" "Endless Sky.app.arm"
           rm -rf build/release
       - run: |
+          echo 'connect-timeout = 10' > ~/.curlrc
           cmake --preset macos-release
           cmake --build build --preset macos-ci-release
       - name: Create universal binary
