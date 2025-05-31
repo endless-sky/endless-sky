@@ -153,7 +153,7 @@ help "outfitter"
 	`Here, you can buy new equipment for your ship. Your ship has a limited amount of "outfit space," and most outfits use up some of that space.`
 	`Some types of outfits have other requirements as well. For example, only some of your outfit space can be used for engines or weapons; this is your ship's "engine capacity" and "weapon capacity." Guns and missile launchers also require a free "gun port," and turrets require a free "turret mount." Also, missiles can only be bought if you have the right launcher installed.`
 	`Use your scroll wheel or click and drag, to scroll the view.`
-	`As in the trading and shipyard panels, you can hold down Shift, Control, or Alt to buy, sell or move 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
+	`As in the trading and shipyard panels, you can hold down Shift, Control, or Alt to buy, sell, or move 5, 20, or 500 of an outfit at once, or multiple keys for larger amounts.`
 	`You can also press F to search the outfitter for a specific item.`
 
 help "shipyard"
@@ -184,7 +184,7 @@ help "uninstalling and storage"
 help "outfitter with multiple ships"
 	`You can manage outfits on multiple ships at the same time. Ctrl+click a ship icon to add it to your selection. You can also use Shift+click to select a range of ships.`
 	`When you have more than one ship selected, you can install or remove outfits from all of those ships at once. Additionally, all selected ships with the currently selected outfit installed are marked with a pointer next to their sidebar icon.`
-	`Escorts can be saved into control groups by pressing Control+number key. All selected escorts will then be bound to that number key, selecting the group when pressed.`
+	`Escorts can be saved into control groups by pressing a number key while holding Control. All selected escorts will then be bound to that number key, and can be selected again at any time by pressing it.`
 	`Ship group management can be done while flying around or while in the shipyard, outfitter, or player info panel.`
 
 help "stranded"
