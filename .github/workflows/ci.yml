@@ -80,11 +80,10 @@ jobs:
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
-        buildPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
-        testPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+    - run: |
+        cmake --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        cmake --build build --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
     - name: Run Benchmarks
       run: ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci-benchmark' || 'linux-gles-ci-benchmark' }}
 
