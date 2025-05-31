@@ -1,11 +1,12 @@
 Version 0.10.13
   * Big changes:
     * Revamped the Quarg with new artwork, ships, outfits, descriptions, and balance changes more appropriate for their tier level. (@1010todd, @Arachi-Lover, @Azure3141, @Brick63, @Quantumshark, @JimmyFiryh, @Saugia)
-    * Pausing (@TomGoodIdea, @Zarkonnen, @TheGiraffe3, @Amazinite)
+    * Added a command for pausing time in the game without pulling up a menu, allowing you to send commands to your escorts without the stress of combat. The default key is 'P'. (@TomGoodIdea, @Zarkonnen, @TheGiraffe3, @Amazinite)
+    * Added sound effects to various interactions with the UI. (@tibetiroka)
     * OpenGL frag and vert shader code is now defined in data files, instead of within the compiled binary, and so can be customized without recompilation. (@tibetiroka)
     * NPC ships can now be given travel instructions to pass through particular systems, visit particular planets, and land on a particular destination. (@mOctave, @tehhowch)
-    * Ammunition restocking. (@Amazinite)
-    * Added a continuation of the Patir Mystery missions. (@beccabunny)
+    * Almost all secondary weapons in the game can now have their ammo restocked at any outfitter. If you have a weapon or ammo capacity outfit, then ammo for those outfits will automatically be for sale at any outfitter you enter. (@Amazinite)
+    * Added a continuation of the Patir Mystery storyline, further investigating the mystery of the Ka'sei with the help of the Remnant. (@beccabunny)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@4t4r1, @alexrovw, @Anarchist2, @bene-dictator, @Just-Existing, @luzpaz, @mOctave, @palant, @Quantumshark, @reticent-rem, @TheGiraffe3, @ThrawnCA, @tjubutsi, @warp-core, @Wedge009, @Zitchas)
@@ -14,7 +15,7 @@ Version 0.10.13
       * Added a missing passenger requirement to "Remnant: Cognizance 21". (@TheGiraffe3)
       * The "Argosy Hijacking" mission will no longer offer during the Pug invasion. (@TheGiraffe3, @aradapilot)
       * Removed a duplicate log entry in "Boarding Ka'het". (@TheGiraffe3)
-      * Adjusted orbits in the system "Kella-Uoasa" to prevent overlap. (@TheGiraffe3)
+      * Adjusted orbits in the system "Kella-Uoasa" to prevent objects from overlapping. (@TheGiraffe3)
       * Fixed offer conditions and added "invisible" and "non-blocking" to "Damselflyman Abilities". (@TheGiraffe3)
       * Various fixes to Gegno content. (@Saugia)
       * "FW Embassy 1B" will now acknowledge the player's possession of a Star Queen (and Luxury Accommodations) and explain why the ambassadors still want their own ship. (@TheGiraffe3, @reticent-rem, @JimmyFiryh)
@@ -29,7 +30,6 @@ Version 0.10.13
       * Fixed overlapping star orbits in the "Li-7" system. (@TheGiraffe3)
       * Some Delta V and Lovelace shipment jobs can no longer be offered from Pirate worlds. (@reticent-rem)
       * Fixed issues in conditions and follow up questions in "Successors: First Contact 1" and "Successors: First Contact 3". (@pythonmcpi)
-      * Remnant ships are now restricted from entering the Nenia system until after the samples have been returned. (@ziproot)
       * Fixed incorrect syntax for adding a condition and log entry in "Incipias: Help The Stranded 1". (@pythonmcpi)
       * Prevented a potential soft-lock in the FW Pirates missions. (@mOctave, @Kokiak-attack)
       * Fixed some incorrect system fleet assignments in the "pug flee" event. (@LixiChronikouOriou)
@@ -39,7 +39,7 @@ Version 0.10.13
       * Updated the Venta's gun hardpoint definitions to make the weapon layout symmetrical. (@Arachi-Lover)
       * Fixed incomplete destination location filters in "Superstitious Hai" jobs 3 and 9. (@reticent-rem)
     * Engine bugs:
-      * Fixed the debug mode pause key being erroneously changes. (@warp-core)
+      * Fixed the debug mode pause key being erroneously changed. (@warp-core)
       * Fixed a misplaced bracket in combat AI decision making. (@warp-core)
       * Jobs attempting to fail themselves in their "offer" or "accept" triggers will now work correctly. (@warp-core)
       * Made outfit info display text for some cloaking related attributes more consistent and fit inside the outfit info pane. (@TheGiraffe3, @reticent-rem)
@@ -56,7 +56,7 @@ Version 0.10.13
       * Fixed an issue where it was not possible to unbind a control set to the same key as the main menu control. (@TomGoodIdea)
       * Sounds are now played from in front of the listener instead of behind in surround sound configurations. (@dseomn)
       * Fixed issues where TextAreas were too wide when a scroll bar was present. (@TomGoodIdea)
-      * Fixed an issue with the CategoryList class. (@Amazinite)
+      * Fixed an issue categories in the CategoryList class could desync their precedence values when updated but a second data definition. (@Amazinite)
       * The "jump fuel" attribute will now be cleared when replacing it with "hyperdrive fuel" and "jump drive fuel", so it no longer appears in the outfit info display. (@TomGoodIdea)
       * The "add" keyword will now result in an error when it is used with children of a "news" node that do not support adding. (@petervdmeer)
       * Fixed an issue where the fleet cargo cache was not being updated when a ship is automatically unparked. (@TomGoodIdea)
@@ -64,9 +64,10 @@ Version 0.10.13
       * Fixed an issue where switching from one map panel mode to another would erroneously resume paused sounds. (@warp-core)
       * Fixed an issue where map labels weren't always updated when the planet's data changes. (@TomGoodIdea)
       * Messages about not being able to land on gas giants and brown dwarves now refer to "this" object in particular, instead of that type of object in general. (@petervdmeer)
-      * Fixed an issue when calculating starfield bounds with the "fancy" parallax setting. (@palant)
+      * Fixed an issue when calculating starfield bounds with the "fancy" parallax setting, preventing stars from popping in and out of view away from the edges of the screen. (@palant)
       * Fixed an incorrect parameter passed to OpenGL in the starfield rendering code. (@palant)
-      * The AI will no longer try to cloak in inappropriate circumstances. (@Quantumshark)
+      * The AI will no longer try to cloak to repair themselves when they are not able to repair while cloaked. (@Quantumshark)
+      * Priority mission filtering will now be applied to all offer locations on a planet. (@Amazinite, @TomGoodIdea)
   * Game content:
     * New content:
       * Added various new human news messages. (@petervdmeer)
@@ -89,13 +90,13 @@ Version 0.10.13
       * Added an "education" attribute and some related jobs to certain planets in human space. (@TheGiraffe3)
       * Added some new jobs to human space: hovercraft racer transport, fare-dodging passengers, cold aid, passengers to the Quarg, and cargo to Lagrange. (@TheGiraffe3, @dorbarker, @tibetiroka)
       * Added new types of Successor Multimodal Armor. (@Daeridanii1)
-      * Lines in outfit and ship descriptions can now have condition sets to determine when they are visible. (@Amazinite)
       * Greatly expanded the descriptions of Wanderer and Remnant licenses. (@Arachi-Lover)
       * Added two new human ships, along with the Heavy Blaster, to select pirate locations, to give representation to older human history. (@bene-dictator, @Quantumshark, @Saugia)
     * Mission changes:
       * Made the Coalition intros easier to find by increasing offer chances and using less restrictive offer location filters. (@Arachi-Lover)
       * Added an option to show the Arachi cartoonist the player's own Leviathan if they have one. (@JimmyFiryh)
       * Various jobs in human space will no longer offer when the player does not have landing access to the destination. (@ziproot)
+      * Various improvements to the Hai legacy missions. (@Hurleveur)
       * The "Expanding Business" and "Nanachi" mission chains no longer require Hai Reveal. (@TheGiraffe3)
       * Various Coalition and Remnant missions now check for the presence of particular attributes, instead of particular outfits, on the player's ship. (@SomeTroglodyte)
       * The names of pirate jobs will now be colored red. (@reticent-rem)
@@ -105,11 +106,11 @@ Version 0.10.13
     * Sounds:
       * Added a unique sound for the Sjeja Lance. (@Saugia)
     * Balance:
-      * Reduced the non-combat utility of the Autumn Leaf. (@reticent-rem)
+      * Reduced the non-combat utility of the Autumn Leaf to better differentiate it from the Summer Leaf. (@reticent-rem)
         * Bunks: 16 -> 13
         * Cargo space: 45 -> 35
         * Fuel capacity: 1000 -> 800
-      * Reduced the scales of fleet battles throughout the Free Worlds story. (@Saugia)
+      * Reduced the size of fleet battles throughout the Free Worlds story. (@Saugia)
       * Removed some Outfits Expansions from Carriers that were made unnecessary by other recent changes to the ship. (@reticent-rem)
       * Reduced the size of the Pug fleet in "FWC Pug 1". (@Quantumshark)
         * Removed one Maboro, two Enfoltas, and four Zibrukas.
@@ -118,10 +119,10 @@ Version 0.10.13
         * Thrusting, reverse thrusting, and turning heat: 0.3 -> 0.6
         * Thrust and reverse thrust: 9 -> 7.5
         * Turn: 270 -> 240
-      * The Aberrant now take overheat damage. (@TheGiraffe3)
+      * The Aberrant now take damage while overheated. (@TheGiraffe3)
       * Reduced the amount of ion and scramble damage dealt by Heliarch weapons. (@Arachi-Lover)
-        * Ion Hail Turret reduced by one sixteenth.
-        * Ion Rain Gun reduced by three eights.
+        * Ion Hail Turret reduced by 6.25% (0.32 -> 0.3 per projectile).
+        * Ion Rain Gun reduced by 37.5% (0.32 -> 0.2 per projectile).
       * Added Unfettered Hai raids to their space and nearby Hai systems. (@Hurleveur)
       * Improved the energy capacity of and added heat generation to the Sheragi EM batteries. (@Azure3141)
         * Small EM Battery:
@@ -134,7 +135,7 @@ Version 0.10.13
         * Removed "Steering (Stellar Class)".
         * Added "Steering (Planetary Class)" and "Thruster (Lunar Class)".
       * Reduced the turn rate of the Javelin Turret from 216 to 156 degrees per second. (@LixiChronikouOriou)
-      * Adjusted the Pug Arfecta and some of its outfits to make put it more in line with the new Quarg ships. (@Quantumshark)
+      * Adjusted the Pug Arfecta and some of its outfits to put it more in line with the new Quarg ships. (@Quantumshark)
         * Pug Arfecta:
           * Energy generation: 200 -> 90
           * Shield generation and energy: 32 -> 24
@@ -148,46 +149,48 @@ Version 0.10.13
           * Removed firing force.
           * Shield damage: 600 -> 300
           * Hull damage: 600 -> 300
-      * Reduced the price of the Combat Drone hull from 83000 to 63000 credits. (@LixiChronikouOriou)
+      * Reduced the price of the Combat Drone hull from 83,000 to 63,000 credits. (@LixiChronikouOriou)
       * Nerve Gas is no longer sold by the "Pirate Basics" outfitter. (@LixiChronikouOriou)
-      * Adjusted some pirate variant stats for more uniqueness. (@Saugia, @Quantumshark, @TheGirafffe3)
+      * Adjusted some pirate variant stats to better distinguish them from other ships. (@Saugia, @Quantumshark, @TheGirafffe3)
         * Nighthawk: increased bunks at the cost of outfit space.
         * Cutthroat: increased health and speed at the cost of weapon capacity.
         * Valkyrie: increased cargo space and weapon capacity.
         * Additionally, ship explosions have been updated for all variants.
-      * Differentiated the different sources of cloaking. (@Amazinite, @Zitchas, @ziproot)
+        * Note that these ships are not currently available and will be made available in a future release.
+      * Rebalanced cloaking devices from different sources to distinguish them from one another. (@Amazinite, @Zitchas, @ziproot)
+        * The Cloaking Device from the main campaign prevents shield or hull repair while cloaked.
         * The Sasamuta is unable to restore shields or repair hull while cloaked.
-        * The Cloaking Device also prevents shield or hull repair while cloaked.
         * Archons can communicate (send hails), perform scans, and will not collide with hostile projectiles while cloaked.
         * The Embershade can use weapons while cloaked, and doing so will slightly decloak it.
         * Remnant ships' shields become fully permeable (they will not block any damage), they can communicate, and the Penguin can perform scans, while cloaked.
-      * Removed license requirements from various ammunition outfits: `"Nettle" KKV`, "Star Tail Cell", "EMP Torpedo", "Teciimach Torpedo", and "High Velocity Spike". (@Arachi-Lover)
+      * Removed license requirements from various ammunition outfits so that they can be purchased if you have access to the related weapon for that ammo. (@Arachi-Lover)
+        * `"Nettle" KKV`, "Star Tail Cell", "EMP Torpedo", "Teciimach Torpedo", and "High Velocity Spike".
+      * Reduced the mass of the Modified Dromedary hull from 4,732 to 2,366. (@Arachi-Lover)
     * Other:
       * The Deep River NPC in "Wanderers: Unfettered Diplomacy 1A" now carries a cargo of food. (@TheGiraffe3)
       * Moved various "ships" to new categories: Unclassified, Unclassified Minor, and Game Mechanics. (@Zitchas)
       * Made some adjustments to wording in the Timothy Radrickson missions. (@SpearDane)
       * Avgi and Successor afterburner effects will now "zoom" with the scale of the associated engine points. (@Daeridanii1)
       * Quarg governments now use a named color for the map key color. (@Quantumshark)
-      * Organized all outfits using series. (@Daeridanii1)
+      * Organized all outfits using the "series" mechanic, meaning that outfits are no longer strictly sorted by alphabetical order. The order chosen now puts related outfits close to one another in the outfitter. (@Daeridanii1)
       * The Unfettered Hai no longer provide a hyperdrive when selling them a jump drive if the player already has multiple drives. (@Hurleveur)
       * Vara K'chrai no longer offers services other than refueling prior to acquiring the translation device. (@TheGiraffe3)
       * Baianus' description now compares it to Enceladus, instead of Titan. (@TheGiraffe3)
       * Removed a workaround for a bug in escort pathfinding so the jump range of Postverta is now permanently rduced after Ssil Vida is first activated, instead of only while the station is active. (@alextd)
       * Tweaked the description of Setar Fort. (@Cherrio01, @ravenshining)
       * The flare sprites for the `Z-3600 "Beam" Amat Torch` no longer have a reduced scale. (@Koranir)
-      * Various improvements to the Hai legacy missions. (@Hurleveur)
+      * Remnant ships are now restricted from entering the Nenia system until after the samples have been returned. (@ziproot)
       * Made some improvements to wording in the "Moving House" missions. (@danaris)
       * Updated the description of "FW Pug 1" to remove potential spoilers. (@Just-Existing)
       * The "Local Map" outfit now also reveals minables. (@TheGiraffe3)
       * Tweaked the description of Covert while the Republic are occopying the region. (@mOctave)
-      * Reduced the mass of the Modified Dromedary hull from 4732 to 2366. (@Arachi-Lover)
   * Game mechanics:
     * New mechanics:
       * Afterburner effects can now be made to scale with engine zoom. (@TomGoodIdea)
       * Minables can now have live effects. (@TomGoodIdea)
       * Ship turret hardpoint definitions can now provide "turret turn multipliers". (@TomGoodIdea)
       * News messages can now include global and player substitutions. (@warp-core)
-      * Added a "variant map name" property to ships that allows displaying a different name in the sihpyard map, to differentiate variants with the same base. (@warp-core)
+      * Added a "variant map name" property to ships that allows displaying a different name in the shipyard map, to differentiate variants with the same base. (@warp-core)
       * Created a "map minables" outfit attribute that allows maps to reveal minables. (@comnom)
       * Engine flare sprites will now gradually scale up over a short time. (@Koranir)
       * Missions can now define an "offer precedence" property that controls the order in which they will be offered when many are available. (@Amazinite)
@@ -204,6 +207,7 @@ Version 0.10.13
       * Missions can be given a "complete at" location filter, allowing them to be completed at any matching location. (@UnorderedSigh)
       * Added autoconditions for checking what day of the week it is. (@Amazinite)
       * Turret hardpoints can now define "blindspots"; angles that they cannot aim towards. (@TomGoodIdea, @RisingLeaf, @tibetiroka, @petervdmeer)
+      * Lines in outfit and ship descriptions can now have condition sets to determine when they are visible. (@Amazinite)
       * Missions can now customize the color of their names in the mission panel. (@Amazinite)
       * Location filters can now check if a planet or system has been visited by the player. (@Amazinite, @TomGoodIdea)
       * Added attributes for multiplying shield generation and hull repair rates while cloaked. (@Amazinite)
@@ -216,19 +220,17 @@ Version 0.10.13
       * Conversations within NPC triggers can now destroy the associated NPC with their endpoints. (@warp-core)
       * The actual rates of tracking weapons being locked on will now more closely match the expected rates. (@Quantumshark)
       * A planet can now be assigned an empty outfitter or shipyard. (@Amazinite)
-      * Priority mission filtering will now be applied to all offer locations on a planet. (@Amazinite, @TomGoodIdea)
   * User interface:
     * The "hud" interface can now control whether messages populate the box from the bottom up or from the top down. (@TomGoodIdea)
     * The player info panel now shows the sums of salary and tribute incomes. (@TomGoodIdea)
-    * Input dialogs now support copy and paste. (@SomeTroglodyte)
     * Double clicking a ship in the shipyard or outfitter sidebar will now select/deselect all other ships with the same model name and outfit configuration. (@TomGoodIdea, @nickshanks)
     * The message log can now be filtered to hide some less important entries. (@TomGoodIdea)
     * Added variants of interface elements containing text that supports text wrapping. (@TomGoodIdea)
     * Added support for color gradients in LineShader. (@Koranir)
-    * Text input fields in the conversation panel now support cut, copy, and paste; dialogs clipboard functionality now also supports cut. (@TomGoodIdea)
+    * Text input fields in the conversation panel now support cut, copy, and paste; dialogs clipboard functionality now also supports cut. (@TomGoodIdea, @SomeTroglodyte)
     * The boarding panel will display a reason when trying to plunder something that can't be plundered. (@TomGoodIdea)
-    * The outfit info pane now uses the "unselected" background sprite. (@JimmyFiryh)
-    * Weapons can now define sounds that will be played when attempting to fire without proper ammo. (@TomGoodIdea)
+    * The outfit info pane in the outfitter now uses the "unselected" background sprite. (@JimmyFiryh)
+    * Weapons can now define sounds that will be played when attempting to fire without having enough ammo. (@TomGoodIdea)
     * The "Deadline blink by distance" preference will now be on by default. (@Koranir)
     * Added the ability to control turret aiming with the mouse. (@Koranir)
     * The map key now lists commodity prices and outfitter and shipyard catalog sizes from highest to lowest. (@TheGiraffe3)
@@ -237,7 +239,6 @@ Version 0.10.13
     * Dialogs will now resize themselves dynamically, allowing them to respond to changes in window size. (@TomGoodIdea)
     * Limited the minimum starfield zoom to 0.15 and added an option to not zoom the starfield with the view zoom. (@Amazinite, @TomGoodIdea)
     * Animated the starfield in the background of the main menu. (@Amazinite)
-    * Added sound effects to various interactions with the UI. (@tibetiroka)
     * Extended jump effects can now function independently of motion blur. (@Anarchist2)
   * Under the hood:
     * Added a plaintext description for the fleet jump command. (@thewierdnut)
