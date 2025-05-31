@@ -76,7 +76,7 @@ mission "Hai Reveal: Secret Leaks: R/S"
 	landing
 	invisible
 	source
-		government "Republic" "Syndicate"
+		government "Republic" "Deep" "Syndicate"
 		attributes "spaceport"
 	to offer
 		has "hr: secret leaks"
@@ -226,7 +226,7 @@ mission "Hai Reveal: Navy News Report"
 	landing
 	invisible
 	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+		government "Republic" "Deep" "Syndicate" "Free Worlds" "Neutral"
 		attributes "spaceport"
 	to offer
 		has "event: hr: friend arrives"
