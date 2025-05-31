@@ -47,7 +47,6 @@ jobs:
       - run: |
           cmake --preset linux-release
           cmake --build build --preset linux-ci-release
-        working-directory: endless-sky
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
@@ -85,7 +84,6 @@ jobs:
       - run: |
           cmake --preset mingw-release
           cmake --build build --preset mingw-ci-release
-        working-directory: endless-sky
       - name: Package Application
         run: |
           cmake --install build/release
@@ -124,7 +122,6 @@ jobs:
       - run: |
           cmake --preset macos-release
           cmake --build build --preset macos-ci-release
-        working-directory: endless-sky
       - name: Package Application
         run: |
           cmake --install build/release

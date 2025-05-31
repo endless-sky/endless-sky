@@ -32,7 +32,6 @@ jobs:
       - run: |
           cmake --preset linux-release
           cmake --build build --preset linux-ci-release
-        working-directory: endless-sky
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
@@ -61,7 +60,6 @@ jobs:
       - run: |
           cmake --preset mingw-release
           cmake --build build --preset mingw-ci-release
-        working-directory: endless-sky
       - name: Package Application
         run: |
           cmake --install build/release
@@ -102,7 +100,6 @@ jobs:
       - run: |
           cmake --preset mingw32-release
           cmake --build build --preset mingw32-ci-release
-        working-directory: endless-sky
       - name: Package Application
         run: |
           cmake --install build/release
@@ -142,7 +139,6 @@ jobs:
       - run: |
           cmake --preset macos-arm-release
           cmake --build build --preset macos-arm-ci-release
-        working-directory: endless-sky
       - name: Prepare for x64 app bundle
         run: |
           mv "build/release/Endless Sky.app" "Endless Sky.app.arm"
@@ -150,7 +146,6 @@ jobs:
       - run: |
           cmake --preset macos-release
           cmake --build build --preset macos-ci-release
-        working-directory: endless-sky
       - name: Create universal binary
         run: |
           mv "build/release/Endless Sky.app" "Endless Sky.app.x64"

@@ -147,7 +147,6 @@ jobs:
         cmake --preset mingw-ci
         cmake --build build --preset mingw-ci
         ctest --preset mingw-ci
-      working-directory: endless-sky
     - name: Run Benchmarks
       run: ctest --preset mingw-ci-benchmark
     - name: Upload binary
@@ -190,7 +189,6 @@ jobs:
         cmake --preset clang-cl-ci
         cmake --build build --preset clang-cl-ci
         ctest --preset clang-cl-ci
-      working-directory: endless-sky
     - name: Run Benchmarks
       run: ctest --preset clang-cl-ci-benchmark
 
@@ -225,7 +223,6 @@ jobs:
         cmake --preset macos-ci
         cmake --build build --preset macos-ci
         ctest --preset macos-ci
-      working-directory: endless-sky
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
 
@@ -261,7 +258,6 @@ jobs:
         cmake --preset macos-arm-ci
         cmake --build build --preset macos-arm-ci
         ctest --preset macos-arm-ci
-      working-directory: endless-sky
     - name: Run Benchmarks
       run: ctest --preset macos-arm-ci-benchmark
 
