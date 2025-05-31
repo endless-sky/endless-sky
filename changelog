@@ -39,7 +39,7 @@ Version 0.10.13
       * Updated the Venta's gun hardpoint definitions to make the weapon layout symmetrical. (@Arachi-Lover)
       * Fixed incomplete destination location filters in "Superstitious Hai" jobs 3 and 9. (@reticent-rem)
     * Engine bugs:
-      * Fixed the debug mode pause key being erroneously changed. (@warp-core)
+      * Corrected the debug mode pause control. (@warp-core)
       * Fixed a misplaced bracket in combat AI decision making. (@warp-core)
       * Jobs attempting to fail themselves in their "offer" or "accept" triggers will now work correctly. (@warp-core)
       * Made outfit info display text for some cloaking related attributes more consistent and fit inside the outfit info pane. (@TheGiraffe3, @reticent-rem)
