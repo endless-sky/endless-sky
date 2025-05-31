@@ -29,10 +29,10 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'linux-release'
-          buildPreset: 'linux-ci-release'
+      - run: |
+          cmake --preset linux-release
+          cmake --build build --preset linux-ci-release
+        working-directory: endless-sky
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
@@ -58,10 +58,10 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'mingw-release'
-          buildPreset: 'mingw-ci-release'
+      - run: |
+          cmake --preset mingw-release
+          cmake --build build --preset mingw-ci-release
+        working-directory: endless-sky
       - name: Package Application
         run: |
           cmake --install build/release
@@ -99,10 +99,10 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'mingw32-release'
-          buildPreset: 'mingw32-ci-release'
+      - run: |
+          cmake --preset mingw32-release
+          cmake --build build --preset mingw32-ci-release
+        working-directory: endless-sky
       - name: Package Application
         run: |
           cmake --install build/release
@@ -139,18 +139,18 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'macos-arm-release'
-          buildPreset: 'macos-arm-ci-release'
+      - run: |
+          cmake --preset macos-arm-release
+          cmake --build build --preset macos-arm-ci-release
+        working-directory: endless-sky
       - name: Prepare for x64 app bundle
         run: |
           mv "build/release/Endless Sky.app" "Endless Sky.app.arm"
           rm -rf build/release
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'macos-release'
-          buildPreset: 'macos-ci-release'
+      - run: |
+          cmake --preset macos-release
+          cmake --build build --preset macos-ci-release
+        working-directory: endless-sky
       - name: Create universal binary
         run: |
           mv "build/release/Endless Sky.app" "Endless Sky.app.x64"

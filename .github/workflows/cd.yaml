@@ -44,10 +44,10 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'linux-release'
-          buildPreset: 'linux-ci-release'
+      - run: |
+          cmake --preset linux-release
+          cmake --build build --preset linux-ci-release
+        working-directory: endless-sky
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
@@ -82,10 +82,10 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'mingw-release'
-          buildPreset: 'mingw-ci-release'
+      - run: |
+          cmake --preset mingw-release
+          cmake --build build --preset mingw-ci-release
+        working-directory: endless-sky
       - name: Package Application
         run: |
           cmake --install build/release
@@ -121,10 +121,10 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'macos-release'
-          buildPreset: 'macos-ci-release'
+      - run: |
+          cmake --preset macos-release
+          cmake --build build --preset macos-ci-release
+        working-directory: endless-sky
       - name: Package Application
         run: |
           cmake --install build/release
