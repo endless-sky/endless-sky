@@ -1,6 +1,6 @@
 Version 0.10.13
   * Big changes:
-    * Revamped the Quarg with new artwork, ships, outfits, descriptions,, and balance changes more appropriate for their tier level. (@1010todd, @Arachi-Lover, @Azure3141, @Brick63, @Quantumshark, @Saugia) 
+    * Revamped the Quarg with new artwork, ships, outfits, descriptions, and balance changes more appropriate for their tier level. (@1010todd, @Arachi-Lover, @Azure3141, @Brick63, @Quantumshark, @Saugia) 
     * Pausing (@TomGoodIdea, @Zarkonnen, @TheGiraffe3, @Amazinite)
     * OpenGL frag and vert shader code is now defined in data files, instead of within the compiled binary, and so can be customized without recompilation. (@tibetiroka)
     * NPC ships can now be given travel instructions to pass through particular systems, visit particular planets, and land on a particular destination. (@mOctave, @tehhowch)
