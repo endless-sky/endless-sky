@@ -247,33 +247,6 @@ namespace {
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 3000.;
 
-	const double CAMERA_VELOCITY_TRACKING = 0.1;
-	const double CAMERA_POSITION_CENTERING = 0.01;
-
-	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity,
-		const Point &baseCenter, const Point &baseVelocity, const double influence, const bool killVelocity)
-	{
-		if(Preferences::CameraAcceleration() == Preferences::CameraAccel::OFF)
-			return make_pair(baseCenter, baseVelocity);
-
-		double cameraAccelMultiplier = Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 1.;
-
-		// Flip the velocity offset if cameraAccelMultiplier is negative to simplify logic.
-		const Point absoluteOldCenterVelocity = baseVelocity.Lerp(oldCenterVelocity, cameraAccelMultiplier);
-
-		const Point newAbsVelocity = absoluteOldCenterVelocity.Lerp(baseVelocity, CAMERA_VELOCITY_TRACKING);
-
-		Point newCenter = (oldCenter + newAbsVelocity).Lerp(baseCenter, CAMERA_POSITION_CENTERING);
-
-		// Flip the velocity back over the baseVelocity
-		Point newVelocity = baseVelocity.Lerp(newAbsVelocity, cameraAccelMultiplier);
-
-		newCenter = newCenter.Lerp(baseCenter, pow(influence, .5));
-		newVelocity = killVelocity ? baseVelocity : newVelocity.Lerp(baseVelocity, pow(influence, .5));
-
-		return make_pair(newCenter, newVelocity);
-	}
-
 	const Color &GetGunsightColor(const Ship &ship)
 	{
 		if(ship.IsYours())
@@ -1171,7 +1144,7 @@ void Engine::Step(bool isActive)
 				for(const Hardpoint &hardpoint : ship->Weapons())
 					if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.IsHoming())
 					{
-						Point gunsightStart = ship->Position() - center + (ship->Facing().Rotate(hardpoint.GetPoint()));
+						Point gunsightStart = ship->Position() - camera.Center() + (ship->Facing().Rotate(hardpoint.GetPoint()));
 						Angle gunsightAngle = hardpoint.GetAngle() + ship->Facing();
 						double gunsightRange = hardpoint.GetOutfit()->Range();
 						double gunsightSpread = gunsightRange * tan(hardpoint.GetOutfit()->Inaccuracy() * PI / 180);
