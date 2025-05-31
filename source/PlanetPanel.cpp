@@ -38,9 +38,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
+#include "Shop.h"
 #include "SpaceportPanel.h"
 #include "System.h"
 #include "TaskQueue.h"
+#include "TextArea.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -60,9 +62,12 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
 
-	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(480);
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetColor(*GameData::Colors().Get("bright"));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetRect(ui.GetBox("content"));
+	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
@@ -99,6 +104,27 @@ void PlanetPanel::Step()
 	{
 		TakeOffIfReady();
 		return;
+	}
+
+	// Determine which shops are conditionally available.
+	// This needs to wait until the first Step call instead of being
+	// done in the constructor because the constructor is created
+	// before all of the player's landing logic is completed, which
+	// can cause certain conditions to return unexpected results.
+	// TODO: Determine stock on the fly after condition entries can be subscribed to.
+	if(!initializedShops)
+	{
+		initializedShops = true;
+		for(const Shop<Ship> *shop : planet.Shipyards())
+		{
+			hasShipyard = true;
+			shipyardStock.Add(shop->Stock());
+		}
+		for(const Shop<Outfit> *shop : planet.Outfitters())
+		{
+			hasOutfitter = true;
+			outfitterStock.Add(shop->Stock());
+		}
 	}
 
 	// Handle missions for locations that aren't handled separately,
@@ -145,23 +171,19 @@ void PlanetPanel::Draw()
 			info.SetString("port name", port.Name());
 		}
 
-		if(planet.HasShipyard())
+		if(hasShipyard)
 			info.SetCondition("has shipyard");
 
-		if(planet.HasOutfitter())
+		if(hasOutfitter)
 			info.SetCondition("has outfitter");
 	}
 
 	ui.Draw(info, this);
 
+	// The description text needs to be updated because player conditions can be changed
+	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
-	{
-		Rectangle box = ui.GetBox("content");
-		if(box.Width() != text.WrapWidth())
-			text.SetWrapWidth(box.Width());
-		text.Wrap(planet.Description().ToString(player.Conditions()));
-		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
-	}
+		description->SetText(planet.Description().ToString());
 }
 
 
@@ -175,6 +197,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 
+	UI::UISound sound = UI::UISound::NORMAL;
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
@@ -182,7 +205,10 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return true;
 	}
 	else if(key == 'l')
+	{
+		sound = UI::UISound::NONE;
 		selectedPanel = nullptr;
+	}
 	else if(key == 't' && hasAccess
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
@@ -201,14 +227,16 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
-	else if(key == 's' && hasAccess && planet.HasShipyard())
+	else if(key == 's' && hasAccess && hasShipyard)
 	{
-		GetUI()->Push(new ShipyardPanel(player));
+		UI::PlaySound(UI::UISound::NORMAL);
+		GetUI()->Push(new ShipyardPanel(player, shipyardStock));
 		return true;
 	}
-	else if(key == 'o' && hasAccess && planet.HasOutfitter())
+	else if(key == 'o' && hasAccess && hasOutfitter)
 	{
-		GetUI()->Push(new OutfitterPanel(player));
+		UI::PlaySound(UI::UISound::NORMAL);
+		GetUI()->Push(new OutfitterPanel(player, outfitterStock));
 		return true;
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
@@ -228,11 +256,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(command.Has(Command::INFO))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
 	else if(command.Has(Command::MESSAGE_LOG))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
@@ -243,6 +273,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	// planet UI panel. So, we need to pop the old selected panel:
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
+
+	UI::PlaySound(sound);
+
+	if(selectedPanel)
+		RemoveChild(description.get());
+	else if(oldPanel)
+		AddChild(description);
 
 	return true;
 }
@@ -416,7 +453,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		if(outfitsToSell > 0)
 		{
 			out << "\n- ";
-			out << (planet.HasOutfitter() ? "store " : "sell ") << outfitsToSell << " outfit";
+			out << (hasOutfitter ? "store " : "sell ") << outfitsToSell << " outfit";
 			out << (outfitsToSell > 1 ? "s" : "");
 			out << " that none of your ships can hold.";
 			if(!uniquesToSell.empty())

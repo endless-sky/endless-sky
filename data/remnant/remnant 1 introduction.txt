@@ -153,10 +153,8 @@ mission "Remnant: Lost in Ember Waste: Trigger"
 	to offer
 		has "remnant: blood test pure"
 		not "license: Remnant"
-		not "outfit: Quantum Keystone"
-		not "outfit: Quantum Key Stone"
-		not "outfit: Jump Drive"
-		not "outfit: Shield Beetle Pendant"
+		not "ship attribute: quantum keystone"
+		not "ship attribute: jump drive"
 	on offer
 		event "remnant: lost in ember waste" 14
 		fail
@@ -171,10 +169,8 @@ mission "Remnant: Lost in Ember Waste"
 	to offer
 		has "event: remnant: lost in ember waste"
 		not "license: Remnant"
-		not "outfit: Quantum Keystone"
-		not "outfit: Quantum Key Stone"
-		not "outfit: Jump Drive"
-		not "outfit: Shield Beetle Pendant"
+		not "ship attribute: quantum keystone"
+		not "ship attribute: jump drive"
 	on offer
 		outfit "Quantum Key Stone" 1
 		log `Became stuck in the Ember Waste, but was given a Quantum Key Stone by an old woman who claims to have once been stuck in Republic space under similar circumstances.`
@@ -2187,7 +2183,7 @@ conversation "taely cultural data"
 	`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists, that would likely be where to go."`
 		accept
 	label data
-	`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." She stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, Captain <last>. I suppose that makes things rather straight forward."`
+	`	"Excellent! According to a friend of mine who is versed in history from the war, there were rumors that a grand library was being built in the Deep to house all of human knowledge. If it exists..." She stops when she notices you nodding with a knowing expression. "You have already been there? Well, you certainly get around, Captain <last>. I suppose that makes things rather straightforward."`
 	`	"I actually already have a copy of the library's data in my ship," you respond.`
 	`	"Oh, that's even better," Taely trills. "Go ahead and get it."`
 	`	You return to your ship to get the data chip, but when you glance out the cockpit you notice that the spaceport is more animated than usual. Remnant look to be running to their ships as fast as they can when you notice that Taely is halfway up the side of your ship securing a refueling hose and charging cable. As you reach for the commlink she scrambles up to the bridge windows and quickly rattles off a series of signs at you. All you can make out is "Keep it hot, incoming!" Before you can frame a reply she has raced across your wing and leapt to the Albatross parked next to you.`

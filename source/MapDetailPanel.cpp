@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Angle.h"
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "CoreStartData.h"
@@ -47,11 +48,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "TextArea.h"
 #include "Trade.h"
 #include "text/Truncate.h"
 #include "UI.h"
 #include "Wormhole.h"
-#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -95,6 +96,7 @@ double MapDetailPanel::planetPanelHeight = 0.;
 MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system, bool fromMission)
 	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system, fromMission)
 {
+	InitTextArea();
 }
 
 
@@ -102,8 +104,12 @@ MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system, bool fr
 MapDetailPanel::MapDetailPanel(const MapPanel &panel, bool isStars)
 	: MapPanel(panel), isStars(isStars)
 {
+	Audio::Pause();
+
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = isStars ? -8 : player.MapColoring();
+
+	InitTextArea();
 }
 
 
@@ -498,6 +504,23 @@ bool MapDetailPanel::RClick(int x, int y)
 
 
 
+void MapDetailPanel::InitTextArea()
+{
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetColor(*GameData::Colors().Get("medium"));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	descriptionXOffset = mapInterface->GetValue("description x offset");
+	int descriptionWidth = mapInterface->GetValue("description width");
+	description->SetRect(Rectangle::FromCorner(
+		Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 20),
+		Point(descriptionWidth - 20, mapInterface->GetValue("description height"))
+	));
+}
+
+
+
 void MapDetailPanel::GeneratePlanetCards(const System &system)
 {
 	set<const Planet *> shown;
@@ -839,23 +862,27 @@ void MapDetailPanel::DrawInfo()
 		uiPoint.Y() += 20.;
 	}
 
-	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor(player.Conditions())
+	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor()
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
-		static const int X_OFFSET = 240;
-		static const int WIDTH = 500;
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - X_OFFSET - .5f * panelSprite->Width(),
+		Point pos(Screen::Right() - descriptionXOffset - .5f * panelSprite->Width(),
 			Screen::Top() + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
-		WrappedText text(font);
-		text.SetAlignment(Alignment::JUSTIFIED);
-		text.SetWrapWidth(WIDTH - 20);
-		text.Wrap(selectedPlanet->Description().ToString(player.Conditions()));
-		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
+		description->SetText(selectedPlanet->Description().ToString());
+		if(!descriptionVisible)
+		{
+			AddChild(description);
+			descriptionVisible = true;
+		}
 
 		selectedSystemOffset = -150;
+	}
+	else
+	{
+		RemoveChild(description.get());
+		descriptionVisible = false;
 	}
 }
 

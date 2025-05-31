@@ -33,7 +33,7 @@ namespace {
 	// whether it should be lost on this try.
 	inline bool Check(double probability, double base)
 	{
-		return (Random::Real() < base * pow(probability, .2));
+		return (Random::Real() < base * probability);
 	}
 
 	// Returns if the missile is confused or not.
@@ -73,7 +73,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 
-	// Set an intial confusion turn direction.
+	// Set an initial confusion turn direction.
 	if(weapon->Homing())
 		confusionDirection = Random::Int(2) ? -1 : 1;
 }
@@ -103,7 +103,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 
-	// Set an intial confusion turn direction.
+	// Set an initial confusion turn direction.
 	if(weapon->Homing())
 		confusionDirection = Random::Int(2) ? -1 : 1;
 }
@@ -378,13 +378,18 @@ void Projectile::BreakTarget()
 // guided missiles.
 void Projectile::CheckLock(const Ship &target)
 {
-	double base = hasLock ? 1. : .15;
+	static const double RELOCK_RATE = .3;
+	double base = hasLock ? 1. : RELOCK_RATE;
 	hasLock = false;
 
 	// For each tracking type, calculate the probability twice every second that a
 	// lock will be lost.
 	if(weapon->Tracking())
-		hasLock |= Check(weapon->Tracking(), base);
+	{
+		double lockChance = (weapon ->Tracking());
+		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
+		hasLock |= Check(probability, base);
+	}
 
 	// Optical tracking is about 1.5% for an average interceptor (250 mass),
 	// about 50% for an average medium warship (1000 mass),
@@ -402,7 +407,8 @@ void Projectile::CheckLock(const Ship &target)
 		}
 		double targetMass = target.Mass();
 		double weight = targetMass * targetMass * targetMass / 1e9;
-		double probability = weapon->OpticalTracking() * weight / ((1. + weight) * (1. + opticalJamming));
+		double lockChance = weapon->OpticalTracking() * weight / ((1. + weight) * (1. + opticalJamming));
+		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
 
@@ -417,7 +423,8 @@ void Projectile::CheckLock(const Ship &target)
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
+		double lockChance = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
+		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
 
@@ -436,7 +443,8 @@ void Projectile::CheckLock(const Ship &target)
 			double rangeFraction = min(1., distance / jammingRange);
 			radarJamming = (1. - rangeFraction) * radarJamming;
 		}
-		double probability = weapon->RadarTracking() / (1. + radarJamming);
+		double lockChance = weapon->RadarTracking() / (1. + radarJamming);
+		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
 }

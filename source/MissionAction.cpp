@@ -71,12 +71,13 @@ MissionAction::MissionDialog::MissionDialog(const string &text):
 
 
 
-MissionAction::MissionDialog::MissionDialog(const DataNode &node)
+MissionAction::MissionDialog::MissionDialog(const DataNode &node, const ConditionsStore *playerConditions)
 {
+	const string &key = node.Token(0);
 	// Handle anonymous phrases
 	//    phrase
 	//       ...
-	if(node.Size() == 1 && node.Token(0) == "phrase")
+	if(node.Size() == 1 && key == "phrase")
 	{
 		dialogPhrase = ExclusiveItem<Phrase>(Phrase(node));
 		// Anonymous phrases do not support "to display"
@@ -85,7 +86,7 @@ MissionAction::MissionDialog::MissionDialog(const DataNode &node)
 
 	// Handle named phrases
 	//    phrase "A Phrase Name"
-	if(node.Size() == 2 && node.Token(0) == "phrase")
+	if(node.Size() == 2 && key == "phrase")
 		dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
 
 	// Handle regular dialog text
@@ -94,7 +95,7 @@ MissionAction::MissionDialog::MissionDialog(const DataNode &node)
 	{
 		if(node.Size() > 1)
 			node.PrintTrace("Ignoring extra tokens.");
-		dialogText = node.Token(0);
+		dialogText = key;
 
 		// Prevent a corner case that breaks assumptions. Dialog text cannot be empty (that indicates a phrase).
 		if(dialogText.empty())
@@ -107,21 +108,23 @@ MissionAction::MissionDialog::MissionDialog(const DataNode &node)
 		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
 			node.PrintTrace("Ignoring unrecognized dialog token");
 		else
-			condition.Load(child);
+			condition.Load(child, playerConditions);
 	}
 }
 
 
 
 // Construct and Load() at the same time.
-MissionAction::MissionAction(const DataNode &node)
+MissionAction::MissionAction(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node);
+	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
-void MissionAction::Load(const DataNode &node)
+void MissionAction::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
@@ -129,21 +132,22 @@ void MissionAction::Load(const DataNode &node)
 		system = node.Token(2);
 
 	for(const DataNode &child : node)
-		LoadSingle(child);
+		LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
 
-	// Collapse pure-text dialog (no conditions or phrases). This is necessary to handle saved missions.
+	// Collapse pure-text dialog (no phrases). This is necessary to handle saved missions.
 	// It is also an optimization for the most common case in game data files.
-	dialogText = CollapseDialog(nullptr, nullptr);
+	dialogText = CollapseDialog(nullptr);
 	if(!dialogText.empty())
 		dialog.clear();
 }
 
 
 
-void MissionAction::LoadSingle(const DataNode &child)
+void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	const string &key = child.Token(0);
-	bool hasValue = (child.Size() >= 2);
+	bool hasValue = child.Size() >= 2;
 
 	if(key == "dialog")
 	{
@@ -154,10 +158,10 @@ void MissionAction::LoadSingle(const DataNode &child)
 			dialog.emplace_back(child.Token(1));
 		// Parse embedded child dialog
 		for(const auto &grand : child)
-			dialog.emplace_back(grand);
+			dialog.emplace_back(grand, playerConditions);
 	}
 	else if(key == "conversation" && child.HasChildren())
-		conversation = ExclusiveItem<Conversation>(Conversation(child));
+		conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
 	else if(key == "conversation" && hasValue)
 		conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
 	else if(key == "require" && hasValue)
@@ -177,14 +181,14 @@ void MissionAction::LoadSingle(const DataNode &child)
 	else if(key == "system")
 	{
 		if(system.empty() && child.HasChildren())
-			systemFilter.Load(child);
+			systemFilter.Load(child, visitedSystems, visitedPlanets);
 		else
 			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 	}
 	else if(key == "can trigger after failure")
 		runsWhenFailed = true;
 	else
-		action.LoadSingle(child);
+		action.LoadSingle(child, playerConditions);
 }
 
 
@@ -382,7 +386,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	else if(!dialogText.empty() && ui)
 	{
 		map<string, string> subs;
-		GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
+		GameData::GetTextReplacements().Substitutions(subs);
 		player.AddPlayerSubstitutions(subs);
 		string text = Format::Replace(dialogText, subs);
 
@@ -405,7 +409,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 
 
 // Convert this validated template into a populated action.
-MissionAction MissionAction::Instantiate(const ConditionsStore &store, map<string, string> &subs, const System *origin,
+MissionAction MissionAction::Instantiate(map<string, string> &subs, const System *origin,
 	int jumps, int64_t payload) const
 {
 	MissionAction result;
@@ -421,7 +425,7 @@ MissionAction MissionAction::Instantiate(const ConditionsStore &store, map<strin
 	result.action = action.Instantiate(subs, jumps, payload);
 
 	// Create any associated dialog text from phrases, or use the directly specified text.
-	result.dialogText = CollapseDialog(&store, &subs);
+	result.dialogText = CollapseDialog(&subs);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
@@ -445,16 +449,15 @@ int64_t MissionAction::Payment() const noexcept
 
 
 
-string MissionAction::CollapseDialog(const ConditionsStore *store, const map<string, string> *subs) const
+string MissionAction::CollapseDialog(const map<string, string> *subs) const
 {
-	// No store or subs means we're determining whether the dialog is pure text.
+	// No subs means we're determining whether the dialog is pure text.
 	// This is done at load time.
-	bool loadTimeScan = !store || !subs;
 
 	// Result is already cached for dialogs that are pure text at Load() time.
 	if(!dialogText.empty())
 	{
-		if(loadTimeScan)
+		if(!subs)
 			return dialogText;
 		else
 			return Format::Replace(Phrase::ExpandPhrases(dialogText), *subs);
@@ -465,11 +468,11 @@ string MissionAction::CollapseDialog(const ConditionsStore *store, const map<str
 	{
 		// When checking for a pure-text dialog, reject a dialog with conditions or phrases,
 		// An empty string return value tells the caller that this dialog isn't pure text.
-		if(loadTimeScan && (!item.condition.IsEmpty() || item.dialogText.empty()))
+		if(!subs && (!item.condition.IsEmpty() || item.dialogText.empty()))
 			return string();
 
 		// Skip text that is disabled.
-		if(!item.condition.IsEmpty() && !item.condition.Test(*store))
+		if(!item.condition.IsEmpty() && !item.condition.Test())
 			continue;
 
 		// Evaluate the phrase if we have one, otherwise copy the prepared text.
@@ -482,10 +485,10 @@ string MissionAction::CollapseDialog(const ConditionsStore *store, const map<str
 			content = item.dialogPhrase->Get();
 
 		// Expand any ${phrases} and <substitutions>
-		if(!loadTimeScan)
+		if(subs)
 			content = Format::Replace(Phrase::ExpandPhrases(content), *subs);
 
-		// Concatenated lines should start with a tab and be preceeded by end-of-line.
+		// Concatenated lines should start with a tab and be preceded by end-of-line.
 		if(!resultText.empty())
 		{
 			resultText += '\n';

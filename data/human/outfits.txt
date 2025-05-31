@@ -317,6 +317,8 @@ outfit "Cloaking Device"
 	"cloak" .01
 	"cloaking energy" 1
 	"cloaking fuel" .2
+	"cloaked regen multiplier" -1
+	"cloaked repair multiplier" -1
 	"unique" 1
 	"unplunderable" 1
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
@@ -528,6 +530,7 @@ outfit "Local Map"
 	cost 1000
 	thumbnail "outfit/map"
 	"map" 12
+	"map minable" 1
 	description "This data chip contains complete information on the twelve star systems closest to this one: planets, ports, governments, trade prices, available services, etc. You can get all the same information just by exploring those systems yourself, but having a map can save you from making wrong turns if you are trying to travel through new territory to reach a certain system quickly."
 
 

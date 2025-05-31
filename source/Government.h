@@ -52,7 +52,8 @@ public:
 	Government();
 
 	// Load a government's definition from a file.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
 
 	// Get the display name of this government.
 	const std::string &GetName() const;
@@ -127,7 +128,7 @@ public:
 	int Fines(const Outfit *outfit) const;
 	int Fines(const Ship *ship) const;
 	// Check if given ship has illegal outfits or cargo.
-	bool FinesContents(const Ship *ship, const PlayerInfo &player) const;
+	bool FinesContents(const Ship *ship) const;
 
 	// Get or set the player's reputation with this government.
 	double Reputation() const;

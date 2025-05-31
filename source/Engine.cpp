@@ -69,6 +69,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "SystemEntry.h"
 #include "test/Test.h"
+#include "UI.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "Wormhole.h"
@@ -243,33 +244,6 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 3000.;
-
-	const double CAMERA_VELOCITY_TRACKING = 0.1;
-	const double CAMERA_POSITION_CENTERING = 0.01;
-
-	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity,
-		const Point &baseCenter, const Point &baseVelocity, const double influence, const bool killVelocity)
-	{
-		if(Preferences::CameraAcceleration() == Preferences::CameraAccel::OFF)
-			return make_pair(baseCenter, baseVelocity);
-
-		double cameraAccelMultiplier = Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 1.;
-
-		// Flip the velocity offset if cameraAccelMultiplier is negative to simplify logic.
-		const Point absoluteOldCenterVelocity = baseVelocity.Lerp(oldCenterVelocity, cameraAccelMultiplier);
-
-		const Point newAbsVelocity = absoluteOldCenterVelocity.Lerp(baseVelocity, CAMERA_VELOCITY_TRACKING);
-
-		Point newCenter = (oldCenter + newAbsVelocity).Lerp(baseCenter, CAMERA_POSITION_CENTERING);
-
-		// Flip the velocity back over the baseVelocity
-		Point newVelocity = baseVelocity.Lerp(newAbsVelocity, cameraAccelMultiplier);
-
-		newCenter = newCenter.Lerp(baseCenter, pow(influence, .5));
-		newVelocity = killVelocity ? baseVelocity : newVelocity.Lerp(baseVelocity, pow(influence, .5));
-
-		return make_pair(newCenter, newVelocity);
-	}
 }
 
 
@@ -293,12 +267,12 @@ Engine::Engine(PlayerInfo &player)
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
 	if(object)
-		center = object->Position();
+		camera.SnapTo(object->Position());
 
 	// Now we know the player's current position. Draw the planets.
 	draw[currentCalcBuffer].Clear(step, zoom);
-	draw[currentCalcBuffer].SetCenter(center);
-	radar[currentCalcBuffer].SetCenter(center);
+	draw[currentCalcBuffer].SetCenter(camera.Center());
+	radar[currentCalcBuffer].SetCenter(camera.Center());
 	const Ship *flagship = player.Flagship();
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.HasSprite())
@@ -420,8 +394,7 @@ void Engine::Place()
 	// that all special ships have been repositioned.
 	ships.splice(ships.end(), newShips);
 
-	center = flagship->Center();
-	centerVelocity = flagship->Velocity();
+	camera.SnapTo(flagship->Center());
 
 	player.SetPlanet(nullptr);
 }
@@ -441,8 +414,8 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 		map<string, map<Ship *, int>> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
-			// Skip ships that have been destroyed.
-			if(ship->IsDestroyed() || ship->IsDisabled())
+			// Skip ships that have been destroyed, have landed, or are disabled.
+			if(ship->LandedOrDestroyed() || ship->IsDisabled())
 				continue;
 
 			// Redo the loading up of fighters.
@@ -462,8 +435,8 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 		shared_ptr<Ship> npcFlagship;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
-			// Skip ships that have been destroyed.
-			if(ship->IsDestroyed())
+			// Skip ships that have been destroyed or permanently landed.
+			if(ship->LandedOrDestroyed())
 				continue;
 
 			// Avoid the exploit where the player can wear down an NPC's
@@ -529,21 +502,11 @@ void Engine::Step(bool isActive)
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
 	if(object)
-	{
-		center = object->Position();
-		centerVelocity = Point();
-	}
+		camera.SnapTo(object->Position());
 	else if(flagship)
 	{
 		if(isActive && !timePaused)
-		{
-			const auto [newCenter, newCenterVelocity] = NewCenter(center, centerVelocity,
-				flagship->Center(), flagship->Velocity(), hyperspacePercentage,
-				flagship->IsHyperspacing());
-
-			center = newCenter;
-			centerVelocity = newCenterVelocity;
-		}
+			camera.MoveTo(flagship->Center(), hyperspacePercentage);
 
 		if(doEnterLabels)
 		{
@@ -587,7 +550,7 @@ void Engine::Step(bool isActive)
 	}
 
 	wasActive = isActive;
-	Audio::Update(center);
+	Audio::Update(camera.Center());
 
 	// Update the zoom value now that the calculation thread is paused.
 	if(nextZoom)
@@ -617,6 +580,9 @@ void Engine::Step(bool isActive)
 			// Update the current zoom modifier if the flagship is landing or taking off.
 			nextZoom.modifier = Preferences::Has("Landing zoom") ? 1. + pow(1. - flagship->Zoom(), 2) : 1.;
 		}
+
+		// Step the background to account for the current velocity and zoom.
+		GameData::StepBackground(timePaused ? Point() : camera.Velocity(), zoom);
 	}
 
 	outlines.clear();
@@ -627,7 +593,7 @@ void Engine::Step(bool isActive)
 			if(ship->IsParked() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
 				continue;
 
-			outlines.emplace_back(ship->GetSprite(), (ship->Position() - center) * zoom, ship->Unit() * zoom,
+			outlines.emplace_back(ship->GetSprite(), (ship->Position() - camera.Center()) * zoom, ship->Unit() * zoom,
 				ship->GetFrame(), Color::Multiply(ship->Cloaking(), cloakColor));
 		}
 
@@ -635,7 +601,7 @@ void Engine::Step(bool isActive)
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
 		outlines.emplace_back(flagship->GetSprite(),
-			(flagship->Center() - center) * zoom,
+			(flagship->Center() - camera.Center()) * zoom,
 			flagship->Unit() * zoom * flagship->Scale(),
 			flagship->GetFrame(),
 			*GameData::Colors().Get("flagship highlight"));
@@ -726,6 +692,7 @@ void Engine::Step(bool isActive)
 
 	statuses.clear();
 	missileLabels.clear();
+	turretOverlays.clear();
 	if(isActive)
 	{
 		// Create the status overlays.
@@ -734,14 +701,40 @@ void Engine::Step(bool isActive)
 		if(Preferences::Has("Show missile overlays"))
 			for(const Projectile &projectile : projectiles)
 			{
-				Point pos = projectile.Position() - center;
+				Point pos = projectile.Position() - camera.Center();
 				if(projectile.MissileStrength() && projectile.GetGovernment()->IsEnemy()
 						&& (pos.Length() < max(Screen::Width(), Screen::Height()) * .5 / zoom))
 					missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
 			}
+		// Create overlays for flagship turrets with blindspots.
+		if(flagship && Preferences::GetTurretOverlays() != Preferences::TurretOverlays::OFF)
+			for(const Hardpoint &hardpoint : flagship->Weapons())
+				if(!hardpoint.GetBaseAttributes().blindspots.empty())
+				{
+					bool isBlind = hardpoint.IsBlind();
+					if(Preferences::GetTurretOverlays() == Preferences::TurretOverlays::BLINDSPOTS_ONLY && !isBlind)
+						continue;
+					// TODO: once Apple Clang adds support for C++20 aggregate initialization,
+					// this can be removed.
+#ifdef __APPLE__
+					turretOverlays.push_back({
+#else
+					turretOverlays.emplace_back(
+#endif
+						(flagship->Position() - camera.Center()
+							+ flagship->Zoom() * flagship->Facing().Rotate(hardpoint.GetPoint()))
+							* static_cast<double>(zoom),
+						(flagship->Facing() + hardpoint.GetAngle()).Unit(),
+						flagship->Zoom() * static_cast<double>(zoom),
+						isBlind
+#ifdef __APPLE__
+					}
+#endif
+					);
+				}
 		// Update the planet label positions.
 		for(PlanetLabel &label : labels)
-			label.Update(center, zoom);
+			label.Update(camera.Center(), zoom, labels, *player.GetSystem());
 	}
 
 	if(flagship && flagship->IsOverheated())
@@ -800,7 +793,7 @@ void Engine::Step(bool isActive)
 		info.SetString("destination", name);
 
 		targets.push_back({
-			object->Position() - center,
+			object->Position() - camera.Center(),
 			object->Facing(),
 			object->Radius(),
 			GetPlanetTargetPointerColor(*object->GetPlanet()),
@@ -846,7 +839,7 @@ void Engine::Step(bool isActive)
 			0);
 		info.SetString("target name", targetAsteroid->DisplayName() + " " + targetAsteroid->Noun());
 
-		targetVector = targetAsteroid->Position() - center;
+		targetVector = targetAsteroid->Position() - camera.Center();
 
 		if(flagship->Attributes().Get("tactical scan power") || flagship->Attributes().Get("strategic scan power"))
 		{
@@ -891,13 +884,13 @@ void Engine::Step(bool isActive)
 			// of the width and the height of the sprite.
 			double size = (target->Width() + target->Height()) * .35;
 			targets.push_back({
-				target->Position() - center,
+				target->Position() - camera.Center(),
 				Angle(45.) + target->Facing(),
 				size,
 				GetShipTargetPointerColor(targetType),
 				4});
 
-			targetVector = target->Position() - center;
+			targetVector = target->Position() - camera.Center();
 
 			double targetRange = target->Position().Distance(flagship->Position());
 			// Finds the range of the scan collections.
@@ -1001,7 +994,7 @@ void Engine::Step(bool isActive)
 		&& (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
 	{
 		double width = max(target->Width(), target->Height());
-		Point pos = target->Position() - center;
+		Point pos = target->Position() - camera.Center();
 		const bool outfitInRange = pos.LengthSquared() <= (flagship->Attributes().Get("outfit scan power") * 10000);
 		const Status::Type outfitOverlayType = outfitInRange ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), 0.,
@@ -1057,7 +1050,7 @@ void Engine::Step(bool isActive)
 		{
 			double size = (ship->Width() + ship->Height()) * .35;
 			targets.push_back({
-				ship->Position() - center,
+				ship->Position() - camera.Center(),
 				Angle(45.) + ship->Facing(),
 				size,
 				*GameData::Colors().Get("ship target pointer player"),
@@ -1078,7 +1071,7 @@ void Engine::Step(bool isActive)
 			bool scanComplete = true;
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())
 			{
-				Point offset = minable->Position() - center;
+				Point offset = minable->Position() - camera.Center();
 				// Use the squared length, as we used the squared scan range.
 				bool inRange = offset.LengthSquared() <= scanRangeMetric;
 
@@ -1112,7 +1105,7 @@ void Engine::Step(bool isActive)
 	const auto targetAsteroidPtr = flagship ? flagship->GetTargetAsteroid() : nullptr;
 	if(targetAsteroidPtr && !flagship->IsHyperspacing())
 		targets.push_back({
-			targetAsteroidPtr->Position() - center,
+			targetAsteroidPtr->Position() - camera.Center(),
 			targetAsteroidPtr->Facing(),
 			.8 * targetAsteroidPtr->Radius(),
 			GetMinablePointerColor(true),
@@ -1161,15 +1154,19 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	Point motionBlur = Preferences::Has("Render motion blur") ? centerVelocity : Point();
+	Point motionBlur = camera.Velocity();
+	double baseBlur = Preferences::Has("Render motion blur") ? 1. : 0.;
 
 	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
 	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
-		motionBlur *= 1. + pow(hyperspacePercentage *
+		motionBlur *= baseBlur + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
+	else
+		motionBlur *= baseBlur;
 
-	GameData::Background().Draw(center, motionBlur, zoom,
+	GameData::Background().Draw(motionBlur,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
+
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -1228,6 +1225,18 @@ void Engine::Draw() const
 			continue;
 		Point size(outline.sprite->Width(), outline.sprite->Height());
 		OutlineShader::Draw(outline.sprite, outline.position, size, outline.color, outline.unit, outline.frame);
+	}
+
+	// Draw turret overlays.
+	if(!turretOverlays.empty())
+	{
+		const Color &blindspot = *GameData::Colors().Get("overlay turret blindspot");
+		const Color &normal = *GameData::Colors().Get("overlay turret");
+		PointerShader::Bind();
+		for(const TurretOverlay &it : turretOverlays)
+			PointerShader::Add(it.position, it.angle, 8 * it.scale, 24 * it.scale, 24 * it.scale,
+				it.isBlind ? blindspot : normal);
+		PointerShader::Unbind();
 	}
 
 	if(flash)
@@ -1352,10 +1361,10 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	uiClickBox = Rectangle::WithCorners(from, to);
 	if(isRadarClick)
 		clickBox = Rectangle::WithCorners(
-			(from - radarCenter) / RADAR_SCALE + center,
-			(to - radarCenter) / RADAR_SCALE + center);
+			(from - radarCenter) / RADAR_SCALE + camera.Center(),
+			(to - radarCenter) / RADAR_SCALE + camera.Center());
 	else
-		clickBox = Rectangle::WithCorners(from / zoom + center, to / zoom + center);
+		clickBox = Rectangle::WithCorners(from / zoom + camera.Center(), to / zoom + camera.Center());
 }
 
 
@@ -1485,18 +1494,17 @@ void Engine::EnterSystem()
 	// Place five seconds worth of fleets and weather events. Check for
 	// undefined fleets by not trying to create anything with no
 	// government set.
-	ConditionsStore &conditions = player.Conditions();
 	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
 			if(fleetMultiplier ? fleet.Get()->GetGovernment() && Random::Int(fleet.Period() / fleetMultiplier) < 60
-				&& fleet.CanTrigger(conditions) : false)
+				&& fleet.CanTrigger() : false)
 				fleet.Get()->Place(*system, newShips);
 
-		auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
+		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
-			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.CanTrigger(conditions))
+			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.CanTrigger())
 			{
 				const Hazard *weather = hazard.Get();
 				int hazardLifetime = weather->RandomDuration();
@@ -1538,7 +1546,7 @@ void Engine::EnterSystem()
 
 	emptySoundsTimer.clear();
 
-	center = flagship->Center();
+	camera.SnapTo(flagship->Center(), true);
 
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
@@ -1586,27 +1594,18 @@ void Engine::CalculateStep()
 		CalculateUnpaused(flagship, playerSystem);
 
 	// Draw the objects. Start by figuring out where the view should be centered:
-	Point newCenter = center;
-	Point newCenterVelocity;
-	if(flagship)
+	Camera newCamera = camera;
+	if(flagship && !timePaused)
 	{
-		if(!timePaused)
-		{
-			bool isHyperspacing = flagship->IsHyperspacing();
-			if(isHyperspacing)
-				hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
-			const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
-				flagship->Center(), flagship->Velocity(), hyperspacePercentage,
-				isHyperspacing);
-			newCenter = newCameraCenter;
-			newCenterVelocity = newCameraVelocity;
-		}
+		if(flagship->IsHyperspacing())
+			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
 		else
-			newCenterVelocity = flagship->Velocity();
+			hyperspacePercentage = 0.;
+		newCamera.MoveTo(flagship->Center(), hyperspacePercentage);
 	}
-	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
-	batchDraw[currentCalcBuffer].SetCenter(newCenter);
-	radar[currentCalcBuffer].SetCenter(newCenter);
+	draw[currentCalcBuffer].SetCenter(newCamera.Center(), newCamera.Velocity());
+	batchDraw[currentCalcBuffer].SetCenter(newCamera.Center());
+	radar[currentCalcBuffer].SetCenter(newCamera.Center());
 
 	// Populate the radar.
 	FillRadar();
@@ -1622,7 +1621,7 @@ void Engine::CalculateStep()
 				draw[currentCalcBuffer].Add(object);
 		}
 	// Draw the asteroids and minables.
-	asteroids.Draw(draw[currentCalcBuffer], newCenter, zoom);
+	asteroids.Draw(draw[currentCalcBuffer], newCamera.Center(), zoom);
 	// Draw the flotsam.
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		draw[currentCalcBuffer].Add(*it);
@@ -1634,6 +1633,8 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				DrawShipSprites(*ship);
+				if(timePaused)
+					continue;
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
@@ -1655,8 +1656,9 @@ void Engine::CalculateStep()
 		}
 
 	if(flagship && showFlagship)
-	{
 		DrawShipSprites(*flagship);
+	if(!timePaused && flagship && showFlagship)
+	{
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().FlareSounds())
@@ -1795,7 +1797,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 
 	// Step the weather.
 	for(Weather &weather : activeWeather)
-		weather.Step(newVisuals, flagship ? flagship->Position() : center);
+		weather.Step(newVisuals, flagship ? flagship->Position() : camera.Center());
 	Prune(activeWeather);
 
 	// Move the visuals.
@@ -1872,11 +1874,11 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Move(newVisuals, newFlotsam);
 	if(ship->IsDisabled() && !wasDisabled)
 		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
-	// Bail out if the ship just died.
+	// Ships which are dead or landed should report that event.
 	if(ship->ShouldBeRemoved())
 	{
-		// Make sure this ship's destruction was recorded, even if it died from
-		// self-destruct.
+		// Make sure this ship's destruction or landing was recorded, even if
+		// it died from self-destruct.
 		if(ship->IsDestroyed())
 		{
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
@@ -1888,6 +1890,8 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			if(ship->IsYours())
 				player.DeselectShip(ship.get());
 		}
+		else if(ship->HasLanded() && ship->IsSpecial())
+			eventQueue.emplace_back(nullptr, ship, ShipEvent::LAND);
 		return;
 	}
 
@@ -1979,18 +1983,17 @@ void Engine::FillCollisionSets()
 void Engine::SpawnFleets()
 {
 	// If the player has a pending boarding mission, spawn its NPCs.
-	if(player.ActiveBoardingMission())
+	if(player.ActiveInFlightMission())
 	{
-		Place(player.ActiveBoardingMission()->NPCs(), player.FlagshipPtr());
-		player.ClearActiveBoardingMission();
+		Place(player.ActiveInFlightMission()->NPCs(), player.FlagshipPtr());
+		player.ClearActiveInFlightMission();
 	}
 
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
-	ConditionsStore &conditions = player.Conditions();
 	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(fleetMultiplier ? !Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger(conditions) : false)
+		if(fleetMultiplier ? !Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger() : false)
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
@@ -2063,10 +2066,9 @@ void Engine::SpawnPersons()
 // Generate weather from the current system's hazards.
 void Engine::GenerateWeather()
 {
-	ConditionsStore &conditions = player.Conditions();
-	auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
+	auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 	{
-		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.CanTrigger(conditions))
+		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.CanTrigger())
 		{
 			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a duration and strength of the
@@ -2224,7 +2226,7 @@ void Engine::HandleMouseClicks()
 			{
 				// If the player clicked to land on a planet,
 				// do so unless already landing elsewhere.
-				Point position = object.Position() - center;
+				Point position = object.Position() - camera.Center();
 				const Planet *planet = object.GetPlanet();
 				if(planet->IsAccessible(flagship) && (clickPoint - position).Length() < object.Radius())
 				{
@@ -2240,7 +2242,10 @@ void Engine::HandleMouseClicks()
 						}
 					}
 					else
+					{
+						UI::PlaySound(UI::UISound::TARGET);
 						flagship->SetTargetStellar(&object);
+					}
 
 					clickedPlanet = true;
 				}
@@ -2270,6 +2275,7 @@ void Engine::HandleMouseClicks()
 	bool clickedAsteroid = false;
 	if(clickTarget)
 	{
+		UI::PlaySound(UI::UISound::TARGET);
 		if(isRightClick)
 			ai.IssueShipTarget(clickTarget);
 		else
@@ -2307,7 +2313,10 @@ void Engine::HandleMouseClicks()
 		}
 	}
 	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
-		ai.IssueMoveTarget(clickPoint + center, playerSystem);
+	{
+		UI::PlaySound(UI::UISound::TARGET);
+		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
+	}
 
 	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
@@ -3002,6 +3011,6 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 	if(it->IsYours())
 		cloak *= 0.6;
 
-	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
+	statuses.emplace_back(it->Position() - camera.Center(), it->Shields(), it->Hull(),
 		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha * (1. - cloak));
 }
