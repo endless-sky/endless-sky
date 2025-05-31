@@ -80,7 +80,7 @@
           <li>Gameplay can now be paused without opening the main menu, while still being able to select ships and issue orders.</li>
           <li>The starfield in the background of the main menu is now animated.</li>
         </ul>
-        <p>And, lastly, new and changes game mechanics:</p>
+        <p>And, lastly, new and changed game mechanics:</p>
         <ul>
           <li>Missions can be offered when entering a system.</li>
           <li>Missions can have an "offer precedence" property to control the order in which they appear when multiple are available at once.</li>
