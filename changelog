@@ -210,7 +210,7 @@ Version 0.10.13
       * Blast damage now affects minables. (@TomGoodIdea)
       * Improved the AI's ability to use afterburners in combat. (@comnom)
       * Infrared projectile tracking no longer retains a 5% chance to keep a lock on a target with zero heat. (@Quantumshark)
-      * Rescaled optical projectiel tracking to account for across-the-board changes to ship masses. (@Quantumshark)
+      * Rescaled optical projectile tracking to account for across-the-board changes to ship masses. (@Quantumshark)
       * Conversations within NPC triggers can now destroy the associated NPC with their endpoints. (@warp-core)
       * The actual rates of tracking weapons being locked on will now more closely match the expected rates. (@Quantumshark)
       * A planet can now be assigned an empty outfitter or shipyard. (@Amazinite)
