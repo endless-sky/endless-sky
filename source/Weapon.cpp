@@ -82,14 +82,16 @@ void Weapon::LoadWeapon(const DataNode &node)
 				child.PrintTrace("Warning: Deprecated use of \"homing\" followed by a value."
 					" Define individual homing attributes instead:");
 				int value = child.Value(1);
-				if(value == 0)
-					homing = false;
-				if(value == 1)
-					blindspot = true;
 				if(value >= 3)
+				{
 					throttleControl = true;
-				if(value >= 4)
-					leading = true;
+					if(value >= 4)
+						leading = true;
+				}
+				else if(value == 1)
+					blindspot = true;
+				else if(value == 0)
+					homing = false;
 			}
 			for(const DataNode &grand : child)
 			{
