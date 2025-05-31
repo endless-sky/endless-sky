@@ -42,7 +42,7 @@ class OutfitterPanel : public ShopPanel {
 public:
 	explicit OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock);
 
-	void Step() override;
+	virtual void Step() override;
 
 
 protected:
