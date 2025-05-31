@@ -1323,8 +1323,10 @@ vector<string> Ship::FlightCheck() const
 	double reverseThrust = attributes.Get("reverse thrust");
 	double afterburner = attributes.Get("afterburner thrust");
 	double thrustEnergy = attributes.Get("thrusting energy");
+	double thrustHeat = attributes.Get("thrusting heat");
 	double turn = attributes.Get("turn");
 	double turnEnergy = attributes.Get("turning energy");
+	double turnHeat = attributes.Get("turning heat");
 	double hyperDrive = navigation.HasHyperdrive();
 	double jumpDrive = navigation.HasJumpDrive();
 
@@ -1345,6 +1347,8 @@ vector<string> Ship::FlightCheck() const
 	{
 		if(RequiredCrew() > attributes.Get("bunks"))
 			checks.emplace_back("insufficient bunks?");
+		if(IdleHeat() <= 0. && (thrustHeat < 0. || turnHeat < 0.))
+			checks.emplace_back("insufficient heat?");
 		if(!thrust && !reverseThrust)
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
