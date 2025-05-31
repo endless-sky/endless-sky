@@ -1,6 +1,6 @@
 Version 0.10.13
   * Big changes:
-    * Quarg
+    * Revamped the Quarg with new artwork, ships, outfits, descriptions,, and balance changes more appropriate for their tier level. (@1010todd, @Arachi-Lover, @Azure3141, @Brick63, @Quantumshark, @Saugia) 
     * Pausing (@TomGoodIdea, @Zarkonnen, @TheGiraffe3, @Amazinite)
     * OpenGL frag and vert shader code is now defined in data files, instead of within the compiled binary, and so can be customized without recompilation. (@tibetiroka)
     * NPC ships can now be given travel instructions to pass through particular systems, visit particular planets, and land on a particular destination. (@mOctave, @tehhowch)
@@ -91,8 +91,7 @@ Version 0.10.13
       * Added new types of Successor Multimodal Armor. (@Daeridanii1)
       * Lines in outfit and ship descriptions can now have condition sets to determine when they are visible. (@Amazinite)
       * Greatly expanded the descriptions of Wanderer and Remnant licenses. (@Arachi-Lover)
-      * Added new pre-Republic ships and an outfit for pirates in the far north. (@Saugia, and some other people)
-        * @Saugia, describe.
+      * Added two new human ships, along with the Heavy Blaster, to select pirate locations, to give representation to older human history. (@bene-dictator, @Quantumshark, @Saugia)
     * Mission changes:
       * Made the Coalition intros easier to find by increasing offer chances and using less restrictive offer location filters. (@Arachi-Lover)
       * Added an option to show the Arachi cartoonist the player's own Leviathan if they have one. (@JimmyFiryh)
@@ -151,8 +150,11 @@ Version 0.10.13
           * Hull damage: 600 -> 300
       * Reduced the price of the Combat Drone hull from 83000 to 63000 credits. (@LixiChronikouOriou)
       * Nerve Gas is no longer sold by the "Pirate Basics" outfitter. (@LixiChronikouOriou)
-      * Adjusted some pirate ships. (@Saugia, @Quantumshark, @TheGirafffe3)
-        * Fill this out, @Saugia.
+      * Adjusted some pirate variant stats for more uniqueness. (@Saugia, @Quantumshark, @TheGirafffe3)
+        * Nighthawk: increased bunks at the cost of outfit space.
+        * Cutthroat: increased health and speed at the cost of weapon capacity.
+        * Valkyrie: increased cargo space and weapon capacity.
+        * Additionally, ship explosions have been updated for all variants.
       * Differentiated the different sources of cloaking. (@Amazinite, @Zitchas, @ziproot)
         * The Sasamuta is unable to restore shields or repair hull while cloaked.
         * The Cloaking Device also prevents shield or hull repair while cloaked.
