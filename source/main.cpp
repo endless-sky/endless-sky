@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "test/Test.h"
 #include "test/TestContext.h"
 #include "UI.h"
+#include "UniverseObjects.h"
 
 #include <chrono>
 #include <iostream>
@@ -87,6 +88,8 @@ int main(int argc, char *argv[])
 		InitConsole();
 #endif
 	PlayerInfo player;
+	UniverseObjects universe;
+	GameData::SetUniverse(universe);
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
