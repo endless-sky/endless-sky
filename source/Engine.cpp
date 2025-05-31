@@ -294,6 +294,7 @@ Engine::Engine(PlayerInfo &player)
 				system->Position() - player.GetSystem()->Position());
 
 	GameData::SetHaze(player.GetSystem()->Haze(), true);
+	GameData::SetBackgroundPosition(camera.Center());
 }
 
 
@@ -1547,6 +1548,15 @@ void Engine::EnterSystem()
 	emptySoundsTimer.clear();
 
 	camera.SnapTo(flagship->Center(), true);
+
+	// If the player entered a system by wormhole or jump drive, center the background
+	// on the player's position. This is not done when entering a system by hyperdrive
+	// so that there is a seamless transition between systems, and entry by taking off
+	// from a planet is also excluded as to prevent the background from snapping to a
+	// different position relative to what it was when the player landed.
+	SystemEntry entry = player.GetSystemEntry();
+	if(entry == SystemEntry::WORMHOLE || entry == SystemEntry::JUMP)
+		GameData::SetBackgroundPosition(camera.Center());
 
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
