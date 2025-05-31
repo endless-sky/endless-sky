@@ -84,7 +84,7 @@
         <ul>
           <li>Missions can be offered when entering a system.</li>
           <li>Missions can have an "offer precedence" property to control the order in which they appear when multiple are available at once.</li>
-          <li>Turret hardpoints can define "blindspots"; angles an installed weapon can't turn towards, and multipliers applied to installed turrets.</li>
+          <li>Turret hardpoints can define "blindspots"; angles an installed weapon can't turn towards, and multipliers applied to the turning speed of installed turrets.</li>
           <li>New swizzles can be defined in data files and offer more flexibility in the color combinations they can take.</li>
         </ul>
         <p>You can find out more in the changelog.</p>
