@@ -80,11 +80,11 @@ jobs:
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
-        buildPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
-        testPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+    - run: |
+        echo 'connect-timeout = 5' > ~/.curlrc
+        cmake --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        cmake --build build --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
     - name: Run Benchmarks
       run: ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci-benchmark' || 'linux-gles-ci-benchmark' }}
 
@@ -143,11 +143,10 @@ jobs:
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'mingw-ci'
-        buildPreset: 'mingw-ci'
-        testPreset: 'mingw-ci'
+    - run: |
+        cmake --preset mingw-ci
+        cmake --build build --preset mingw-ci
+        ctest --preset mingw-ci
     - name: Run Benchmarks
       run: ctest --preset mingw-ci-benchmark
     - name: Upload binary
@@ -186,11 +185,10 @@ jobs:
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'clang-cl-ci'
-        buildPreset: 'clang-cl-ci'
-        testPreset: 'clang-cl-ci'
+    - run: |
+        cmake --preset clang-cl-ci
+        cmake --build build --preset clang-cl-ci
+        ctest --preset clang-cl-ci
     - name: Run Benchmarks
       run: ctest --preset clang-cl-ci-benchmark
 
@@ -221,11 +219,11 @@ jobs:
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'macos-ci'
-        buildPreset: 'macos-ci'
-        testPreset: 'macos-ci'
+    - run: |
+        echo 'connect-timeout = 5' > ~/.curlrc
+        cmake --preset macos-ci
+        cmake --build build --preset macos-ci
+        ctest --preset macos-ci
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
 
@@ -257,11 +255,11 @@ jobs:
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'macos-arm-ci'
-        buildPreset: 'macos-arm-ci'
-        testPreset: 'macos-arm-ci'
+    - run: |
+        echo 'connect-timeout = 5' > ~/.curlrc
+        cmake --preset macos-arm-ci
+        cmake --build build --preset macos-arm-ci
+        ctest --preset macos-arm-ci
     - name: Run Benchmarks
       run: ctest --preset macos-arm-ci-benchmark
 

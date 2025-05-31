@@ -100,8 +100,8 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	xSpeed = mainMenuUi->GetValue("x speed");
 	ySpeed = mainMenuUi->GetValue("y speed");
 	yAmplitude = mainMenuUi->GetValue("y amplitude");
-	// Start the animation wave at a random point.
-	animation = Random::Real() * 360.;
+	returnPos = GameData::GetBackgroundPosition();
+	GameData::SetBackgroundPosition(Point());
 
 	// When the player is in the menu, pause the game sounds.
 	Audio::Pause();
@@ -112,6 +112,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 MenuPanel::~MenuPanel()
 {
 	Audio::Resume();
+	GameData::SetBackgroundPosition(returnPos);
 }
 
 
