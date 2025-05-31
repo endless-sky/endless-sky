@@ -79,6 +79,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			// compatibility.
 			if(child.Size() == 2)
 			{
+				child.PrintTrace("Warning: Deprecated use of \"homing\" followed by a value."
+					" Define individual homing attributes instead:");
 				int value = child.Value(1);
 				if(value == 0)
 					homing = false;
