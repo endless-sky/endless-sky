@@ -28,6 +28,7 @@ Developers
   roadrunner56
   Saugia
   tibetiroka
+  TomGoodIdea
   warp-core
   W1zrad
   Zitchas
@@ -83,12 +84,15 @@ Editors & Proofreaders
   Janaszar
   LocalGod79
   MCOfficer
+  mOctave
   Moonbeam
   RecursiveParadox
+  reticent-rem
   roadrunner56
   Tadrix
   temtemy
   Terin
+  TheGiraffe3
   tibetiroka
   W1zrad
   Zearth Goh aka TheMarksman
