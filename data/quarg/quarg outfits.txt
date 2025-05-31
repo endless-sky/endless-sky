@@ -511,7 +511,9 @@ outfit "ribault guided"
 		"lifetime" 30
 		"fade out" 7
 		"turn" 5
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"tracking" .6
 		"acceleration" 1
 		"drag" .1

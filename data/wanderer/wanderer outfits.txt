@@ -261,7 +261,9 @@ outfit "Thunderhead Launcher"
 		"acceleration" 1.1
 		"drag" .1
 		"turn" 2
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"infrared tracking" .9
 		"radar tracking" .6
 		"missile strength" 12
@@ -291,7 +293,9 @@ outfit "Thunderhead"
 		"acceleration" 1.4
 		"drag" .1
 		"turn" 3
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"optical tracking" .9
 		"radar tracking" .6
 		"shield damage" 110

@@ -1613,7 +1613,9 @@ outfit "Fuel Removal"
 		"safe"
 		"no damage scaling"
 		"range override" 10000000
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"tracking" 1
 		"acceleration" 1.5
 		"drag" 0.2
@@ -1770,7 +1772,9 @@ outfit "Ka'het Machinery"
 		"safe"
 		"no damage scaling"
 		"range override" 1000000
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"tracking" 1
 		"acceleration" 1.5
 		"drag" 0.2
