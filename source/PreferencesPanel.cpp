@@ -64,6 +64,7 @@ namespace {
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
+	const string TURRET_OVERLAYS = "Turret overlays";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
@@ -152,7 +153,7 @@ PreferencesPanel::~PreferencesPanel()
 void PreferencesPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	Information info;
 
@@ -269,7 +270,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
 	{
-		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
+		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
 	}
 	else
@@ -299,7 +300,18 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
-			editing = selected = index;
+		{
+			if(zones[index].Value().Has(Command::MENU))
+				GetUI()->Push(new Dialog([this, index]()
+					{
+						this->editing = this->selected = index;
+					},
+					"Rebinding this key will change the keypress you need to access this menu. "
+					"You really shouldn't rebind this unless needed.",
+					Truncate::NONE, true, true));
+			else
+				editing = selected = index;
+		}
 
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
@@ -703,7 +715,9 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
+		"Fixed starfield zoom",
 		BACKGROUND_PARALLAX,
+		"Animate main menu background",
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
@@ -717,6 +731,7 @@ void PreferencesPanel::DrawSettings()
 		STATUS_OVERLAYS_ENEMY,
 		STATUS_OVERLAYS_NEUTRAL,
 		"Show missile overlays",
+		TURRET_OVERLAYS,
 		"Show asteroid scanner overlay",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
@@ -856,6 +871,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 			isOn = text != "off" && text != "--";
+		}
+		else if(setting == TURRET_OVERLAYS)
+		{
+			text = Preferences::TurretOverlaysSetting();
+			isOn = text != "off";
 		}
 		else if(setting == CLOAK_OUTLINE)
 		{
@@ -1220,6 +1240,12 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
+	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+	{
+		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+		return;
+	}
+
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	GetUI()->Pop(this);
@@ -1283,6 +1309,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
 	else if(str == STATUS_OVERLAYS_NEUTRAL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
+	else if(str == TURRET_OVERLAYS)
+		Preferences::ToggleTurretOverlays();
 	else if(str == AUTO_AIM_SETTING)
 		Preferences::ToggleAutoAim();
 	else if(str == AUTO_FIRE_SETTING)

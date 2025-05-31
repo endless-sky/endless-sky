@@ -399,6 +399,9 @@ tip "hull protection:"
 tip "hull repair multiplier:"
 	`Modifies the amount of hull strength repaired per second by the given factor.`
 
+tip "cloaked repair multiplier:"
+	`Modifies the amount of hull strength repaired per second by the given factor while a cloaking device is active.`
+
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
 
@@ -644,6 +647,9 @@ tip "delayed shield generation:"
 
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
+
+tip "cloaked regen multiplier:"
+	`Modifies the amount of shield points recharged per second by the given factor while a cloaking device is active.`
 
 tip "high shield permeability:"
 	`This percentage of all incoming damage bypasses shields and applies directly to the hull when at full shields.`
@@ -1219,6 +1225,9 @@ tip "no steering!"
 tip "insufficient bunks?"
 	`This ship does not have enough bunks for its crew. It could become unresponsive at random times.`
 
+tip "insufficient heat?"
+	`This ship is too cold to use some of its engines while idle. Its movement may be hindered if it does not have another way of generating heat.`
+
 tip "afterburner only?"
 	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`
 
@@ -1406,8 +1415,14 @@ tip "Draw background haze"
 tip "Draw starfield"
 	`Draw the background starfield when in flight.`
 
+tip "Fixed starfield zoom"
+	`Draw the background starfield with a fixed zoom level instead of changing with the view zoom level.`
+
 tip "Parallax background"
 	`Add parallax to objects in the background (haze and starfield). If set to fancy, create three layers of parallax. If set to fast, create one layer of parallax.`
+
+tip "Animate main menu background"
+	`Animate the background stars and haze in the main menu.`
 
 tip "Show hyperspace flash"
 	`Create a white flash when hyperspacing between systems.`
@@ -1441,6 +1456,9 @@ tip "   Show neutral overlays"
 
 tip "Show missile overlays"
 	`Display an overlay on hostile missiles. The overlay indicates the danger of the missiles, with more powerful missiles relative to your flagship's HP being indicated more intensely.`
+
+tip "Turret overlays"
+	`Display overlays on your flagship's turrets with blindspots. Setting this to "blindspots only" shows the overlays only when the blindspots are blocking the turrets' fire.`
 
 tip "Show asteroid scanner overlay"
 	`If an asteroid scanner is installed on your flagship, display an overlay for nearby asteroids.`

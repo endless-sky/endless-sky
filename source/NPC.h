@@ -29,7 +29,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <memory>
 #include <string>
+#include <vector>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Government;
@@ -75,9 +77,11 @@ public:
 	~NPC() noexcept = default;
 
 	// Construct and Load() at the same time.
-	explicit NPC(const DataNode &node);
+	explicit NPC(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
@@ -106,11 +110,13 @@ public:
 	// Determine if the NPC is in a failed state. A failed state is irrecoverable, except for
 	// NPCs which would despawn upon the player's next landing.
 	bool HasFailed() const;
+	// Determine if the NPC needs to land in order for successful mission completion.
+	bool SucceedsOnLanding() const;
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
 	NPC Instantiate(const PlayerInfo &player, std::map<std::string, std::string> &subs, const System *origin,
-			const System *destination, int jumps, int64_t payload) const;
+			const Planet *destinationPlanet, int jumps, int64_t payload) const;
 
 
 private:
@@ -132,7 +138,20 @@ private:
 	// Start out in a location matching this filter, or in a particular system:
 	LocationFilter location;
 	const System *system = nullptr;
+	const System *destination = nullptr;
 	bool isAtDestination = false;
+
+	// NPCs may have been given waypoints, stopovers, or a destination.
+	std::vector<const System *> waypoints;
+	std::vector<const Planet *> stopovers;
+	const Planet *finalDestination = nullptr;
+	bool missingWaypoint = false;
+	bool missingStopover = false;
+	bool missingDestination = false;
+	std::list<LocationFilter> waypointFilters;
+	std::list<LocationFilter> stopoverFilters;
+	LocationFilter destinationFilter;
+
 	// Start out landed on this planet.
 	const Planet *planet = nullptr;
 

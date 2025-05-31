@@ -71,15 +71,17 @@ public:
 	ConditionSet &operator=(const ConditionSet &&other) noexcept;
 	ConditionSet &operator=(const ConditionSet &other);
 
+	// Construct an empty set with a pointer to a ConditionsStore.
+	explicit ConditionSet(const ConditionsStore *conditions);
 	// Construct and Load() at the same time.
-	explicit ConditionSet(const DataNode &node);
+	explicit ConditionSet(const DataNode &node, const ConditionsStore *conditions);
 
 	// Construct a terminal with a literal value.
-	explicit ConditionSet(int64_t newLiteral);
+	explicit ConditionSet(int64_t newLiteral, const ConditionsStore *conditions);
 
 	// Load a set of conditions from the children of this node. Prints a
 	// warning if the conditions cannot be parsed from the node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *conditions);
 	// Save a set of conditions.
 	void Save(DataWriter &out) const;
 	void SaveChild(int childNr, DataWriter &out) const;
@@ -94,11 +96,11 @@ public:
 	// Check if this condition set contains valid data.
 	bool IsValid() const;
 
-	// Check if the given condition values satisfy this set of expressions.
-	bool Test(const ConditionsStore &conditions) const;
+	// Check if the player's conditions satisfy this set of expressions.
+	bool Test() const;
 
 	// Evaluate this expression into a numerical value. (The value can also be used as boolean.)
-	int64_t Evaluate(const ConditionsStore &conditionsStore) const;
+	int64_t Evaluate() const;
 
 	/// Parse the remainder of a node into this expression.
 	bool ParseNode(const DataNode &node, int &tokenNr);
@@ -159,6 +161,9 @@ private:
 
 
 private:
+	// A pointer to the ConditionsStore that this set is evaluating.
+	const ConditionsStore *conditions = nullptr;
+
 	/// Sets of condition tests can contain nested sets of tests. Each set is
 	/// combined using the expression operator that determines how the nested
 	/// sets are to be combined.
