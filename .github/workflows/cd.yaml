@@ -13,6 +13,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  actions: read
+
 jobs:
 
   cd_appimage_x64:
@@ -43,12 +47,14 @@ jobs:
         run: ./utils/cd_update_versions.sh
       - uses: lukka/get-cmake@latest
       - uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
-      - run: |
+      - name: Run CMake
+        run: |
           cmake --preset linux-release
           cmake --build build --preset linux-ci-release
         env:
