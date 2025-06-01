@@ -66,7 +66,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetRect(ui.GetBox("content"));
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -180,6 +179,7 @@ void PlanetPanel::Draw()
 
 	ui.Draw(info, this);
 
+	description->SetRect(ui.GetBox("content"));
 	// The description text needs to be updated because player conditions can be changed
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)

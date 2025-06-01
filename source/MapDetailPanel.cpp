@@ -512,11 +512,7 @@ void MapDetailPanel::InitTextArea()
 	description->SetAlignment(Alignment::JUSTIFIED);
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	descriptionXOffset = mapInterface->GetValue("description x offset");
-	int descriptionWidth = mapInterface->GetValue("description width");
-	description->SetRect(Rectangle::FromCorner(
-		Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 20),
-		Point(descriptionWidth - 20, mapInterface->GetValue("description height"))
-	));
+	descriptionWidth = mapInterface->GetValue("description width");
 }
 
 
@@ -870,6 +866,10 @@ void MapDetailPanel::DrawInfo()
 			Screen::Top() + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
+		description->SetRect(Rectangle::FromCorner(
+			Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 20),
+			Point(descriptionWidth - 20, mapInterface->GetValue("description height"))
+		));
 		description->SetText(selectedPlanet->Description().ToString());
 		if(!descriptionVisible)
 		{

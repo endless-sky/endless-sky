@@ -235,7 +235,7 @@ void TextArea::Invalidate()
 {
 	bufferIsValid = false;
 	textIsValid = false;
-	scrollable = scroll.Scrollable();
+	scrollable = false;
 }
 
 
