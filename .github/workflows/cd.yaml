@@ -35,9 +35,11 @@ jobs:
           sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2
       - name: Find cache keys
         run: |
-          echo "RESTORE_KEYS<<EOF" >> "$GITHUB_ENV"
-          git log --pretty=format:'${{ runner.os }}-cd-sccache-%H' -n 10 >> "$GITHUB_ENV"
-          echo "EOF" >> "$GITHUB_ENV"
+          {
+            echo "RESTORE_KEYS<<EOF"
+            git log --pretty=format:'${{ runner.os }}-cd-sccache-%H' -n 10
+            echo "EOF"
+          } >> "$GITHUB_ENV"
       - name: Print cache keys
         run: echo "$RESTORE_KEYS"
       - name: Setup ccache
