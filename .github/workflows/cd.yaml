@@ -37,15 +37,13 @@ jobs:
       - name: Find cache keys
         run: |
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
-          git log --pretty=format:'${{ runner.os }}-cd-ccache-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 10 | tail -n+2 >> restore_keys.txt
           echo -e '\nEOF' >> restore_keys.txt
           tee -a "$GITHUB_ENV" < restore_keys.txt
-      - name: Print cache keys
-        run: echo "$RESTORE_KEYS"
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2.18
         with:
-          key: ${{ runner.os }}-cd-ccache-${{ github.sha }}
+          key: ${{ runner.os }}-cd-${{ github.sha }}
           restore-keys: ${{ env.RESTORE_KEYS }}
           evict-old-files: '2d'
           create-symlink: 'true'
