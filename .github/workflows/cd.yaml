@@ -36,9 +36,9 @@ jobs:
       - name: Find cache keys
         run: |
           {
-            echo 'RESTORE_KEYS<<$'
+            echo 'RESTORE_KEYS<<EOF'
             git log --pretty=format:'${{ runner.os }}-cd-sccache-%H' -n 10 | tail -n+2
-            echo '$'
+            echo 'EOF'
           } >> "$GITHUB_ENV"
       - name: Print cache keys
         run: echo "$RESTORE_KEYS"
