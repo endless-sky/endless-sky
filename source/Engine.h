@@ -177,7 +177,6 @@ private:
 
 	class Gunsight {
 	public:
-		const std::shared_ptr<Ship> &ship;
 		Angle angle;
 		Point start;
 		double range;
@@ -267,7 +266,6 @@ private:
 	std::vector<Target> targets;
 	Point targetVector;
 	Point targetUnit;
-	std::vector<Gunsight> gunsights;
 	const Swizzle *targetSwizzle = nullptr;
 	// Represents the state of the currently targeted ship when it was last seen,
 	// so the target display does not show updates to its state the player should not be aware of.
@@ -278,6 +276,7 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
+	std::vector<Gunsight> gunsights;
 	std::vector<TurretOverlay> turretOverlays;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;

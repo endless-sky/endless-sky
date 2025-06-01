@@ -1126,18 +1126,17 @@ void Engine::Step(bool isActive)
 		});
 
 	gunsights.clear();
-	if(flagship && (flagship->Attributes().Get("gunsight") || flagship->Attributes().Get("gunsight scan power")))
+	if(flagship && keyHeld.Has(Command::GUNSIGHT))
 	{
 		for(shared_ptr<Ship> &ship : ships)
 		{
-			double gunsightRange = 100. * sqrt(flagship->Attributes().Get("gunsight scan power"));
-			bool isValidTarget = ship->GetSystem() == flagship->GetSystem() && !ship->IsDestroyed() && !ship->IsDisabled()
-				&& ship->IsTargetable() && !ship->Attributes().Get("inscrutable");
-			bool withinRange = ship->Position().Distance(flagship->Position()) < gunsightRange;
-			bool playerHasTarget = ship->IsYours() && (ship->GetTargetShip() || ship->GetTargetAsteroid());
+			if(ship->GetSystem() != flagship->GetSystem() || ship->IsDestroyed() || ship->IsDisabled()
+				|| !ship->IsTargetable() || ship->Attributes().Get("inscrutable"))
+				continue;
+
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
 
-			if(isValidTarget && (playerHasTarget || (withinRange && isYourTarget)))
+			if(ship == flagship || isYourTarget)
 			{
 				const Color &gunsightColor = GetGunsightColor(*ship);
 
@@ -1150,7 +1149,6 @@ void Engine::Step(bool isActive)
 						double gunsightSpread = gunsightRange * tan(hardpoint.GetOutfit()->Inaccuracy() * PI / 180);
 
 						gunsights.push_back({
-							ship,
 							gunsightAngle,
 							gunsightStart,
 							gunsightRange,
@@ -1234,8 +1232,8 @@ void Engine::Draw() const
 		Point end2 = gunsight.start + gunsight.angle.Rotate(Point(-gunsight.spread, -gunsight.range));
 		Point width = gunsight.angle.Rotate(Point(1., 0.));
 
-		LineShader::DrawGradient(gunsight.start * zoom, end1 * zoom, width.Length(), gunsight.color, Color(0, 0, 0, 0));
-		LineShader::DrawGradient(gunsight.start * zoom, end2 * zoom, width.Length(), gunsight.color, Color(0, 0, 0, 0));
+		LineShader::DrawGradient(gunsight.start * zoom, end1 * zoom, 1., gunsight.color, Color(0, 0, 0, 0));
+		LineShader::DrawGradient(gunsight.start * zoom, end2 * zoom, 1., gunsight.color, Color(0, 0, 0, 0));
 	}
 
 	for(const auto &it : statuses)
@@ -2205,7 +2203,8 @@ void Engine::HandleKeyboardInputs()
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD | Command::AIM_TURRET_HOLD);
+		Command::GUNSIGHT | maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD |
+		Command::AIM_TURRET_HOLD);
 
 	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
 	// navigable destinations in the system.

@@ -1323,6 +1323,9 @@ tip "Select nearest asteroid"
 
 tip "Scan selected ship"
 	`Scan the selected ship, if you have outfit or cargo scanners installed.`
+	
+tip "Show gunsights"
+	`Shows the range, spread, and pointing direction of your ship's turrets and guns.`
 
 tip "Fire primary weapon"
 	`Fire all of your flagship's primary weapons. The "automatic firing" setting will fire only those weapons that are within your target's range.`
