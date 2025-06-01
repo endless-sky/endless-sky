@@ -85,25 +85,41 @@ jobs:
       - uses: actions/checkout@v4
         with:
           show-progress: false
-      - name: Setup cached directories
-        uses: actions/cache@v4
+          fetch-depth: '10'
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          tee -a "$GITHUB_ENV" < restore_keys.txt
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1.2.18
         with:
-          path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
-          key: ${{ runner.os }}-cd-sccache-${{ github.ref }}
-          restore-keys: |
-            ${{ runner.os }}-cd-sccache-refs/heads/master
-      - name: Setup sccache
-        uses: Mozilla-Actions/sccache-action@v0.0.5
+          key: ${{ runner.os }}-cd-${{ github.sha }}
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          evict-old-files: '2d'
+          create-symlink: 'true'
+          append-timestamp: 'false'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-      - run: |
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      - name: Run CMake
+        run: |
           cmake --preset mingw-release
           cmake --build build --preset mingw-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
           cmake --install build/release
