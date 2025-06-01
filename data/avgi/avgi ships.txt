@@ -1277,7 +1277,7 @@ ship "Prismaios"
 		"cargo space" 36
 		"outfit space" 360
 		"weapon capacity" 120
-		"engine capacity" 96
+		"engine capacity" 105
 		"anchor point" 1
 		weapon
 			"blast radius" 240
@@ -1708,7 +1708,7 @@ ship "Refraktos"
 		"cargo space" 60
 		"outfit space" 516
 		"weapon capacity" 150
-		"engine capacity" 168
+		"engine capacity" 180
 		"anchor point" 1
 		weapon
 			"blast radius" 420
@@ -1827,18 +1827,17 @@ ship "Difraktos"
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank"
-		"Diffuse Deflector"
+		"Specular Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
 		"Concealment Lamina"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 
-		`Z-666 "Zap" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"R-180 RCS Thrusters"
-		"R-360 RCS Thrusters"
+		"R-360 RCS Thrusters" 2
 		"Hyperdrive"
 
 	engine 0 141

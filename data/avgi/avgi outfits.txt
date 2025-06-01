@@ -133,7 +133,7 @@ outfit "Multispectral Scanner"
 	thumbnail "outfit/multispectral scanner"
 	"mass" 6
 	"outfit space" -12
-	"tactical scan power" 180
+	"tactical scan power" 144
 	"energy consumption" 0.45
 	"heat generation" 1.8
 	description "The Multispectral Scanner is a veritable suite of instruments, including an active scanning phased array radar, a combined infrared/optical/ultraviolet telescope, an array of semiconductor gamma detectors, and a bundle of neutron-detecting helium-3 tubes. With this plethora of instruments, distant ships can be detected, ranged, and tracked, despite any attempts to hide."
@@ -449,7 +449,7 @@ outfit "Inductive Extractor"
 	"engine capacity" -6
 	"energy generation" 1.5
 	"heat generation" 1.5
-	"thrust" -12
+	"thrust" -30
 	"thrusting energy" -24
 	"thrusting heat" 6
 	"magnetic nozzle" -1
@@ -538,7 +538,6 @@ outfit "R-720 RCS Thrusters"
 	description "This large set of 'teakettle' style reaction control thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."
 
 
-# Flare sprite temporarily scaled down due to visual impairment concerns.
 outfit `Z-3600 "Beam" Amat Torch`
 	category "Engines"
 	series "Engines"
@@ -554,7 +553,6 @@ outfit `Z-3600 "Beam" Amat Torch`
 	"thrusting fuel" 0.3
 	"drag reduction" 9
 	"flare sprite" "effect/avgi flare/antimatter"
-		"scale" 0.25
 		"frame rate" 15
 	"flare sound" "fusion torch"
 	"turn" 6000

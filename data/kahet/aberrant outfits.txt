@@ -113,6 +113,67 @@ outfit "Nucleolysis Beam"
 	description "In practice, this beam can deplete a ship's deuterium fuel while causing the very matter of its hull to decay."
 
 
+outfit "Savager Beam"
+	category "Guns"
+	cost 1900000
+	thumbnail "outfit/nucleolysis beam"
+	"flotsam sprite" "effect/flotsam nucleolysis beam"
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
+	"flotsam chance" 0.1
+	"gun ports" -1
+	"unplunderable" 1
+	weapon
+		sprite "projectile/nucleolysis"
+			"frame rate" 15
+		sound "nucleolysis"
+		"hit effect" "acuit hit"
+		"inaccuracy" .2
+		"velocity" 420
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 4.2
+		"firing heat" 1.5
+		"shield damage" 0.8
+		"hull damage" 1.6
+		"heat damage" -9.1
+		"fuel damage" 1.66
+		"corrosion damage" 0.015
+	description "This beam weapon creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant products have a higher energy state than the original nucleus, the beam cools its target, defying conventional thermodynamics."
+	description "In practice, this beam can deplete a ship's deuterium fuel while causing the very matter of its hull to decay."
+
+
+outfit "Grabbager Beam"
+	category "Guns"
+	cost 1900000
+	thumbnail "outfit/nucleolysis beam"
+	"flotsam sprite" "effect/flotsam nucleolysis beam"
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
+	"flotsam chance" 0.1
+	"gun ports" -1
+	"unplunderable" 1
+	weapon
+		sprite "projectile/nucleolysis"
+			"frame rate" 15
+		sound "nucleolysis"
+		"hit effect" "acuit hit"
+		"inaccuracy" .2
+		"velocity" 420
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 4.2
+		"firing heat" 1.5
+		"shield damage" 0.8
+		"hull damage" 1.6
+		"heat damage" -9.1
+		"fuel damage" 1.66
+		"corrosion damage" 0.015
+	description "This beam weapon creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant products have a higher energy state than the original nucleus, the beam cools its target, defying conventional thermodynamics."
+	description "In practice, this beam can deplete a ship's deuterium fuel while causing the very matter of its hull to decay."
+
 outfit "Telescopic Antimissile"
 	category "Turrets"
 	series "Anti-Missile"
@@ -183,10 +244,9 @@ outfit "Anomalous Mass"
 	thumbnail "outfit/anomalous mass"
 	"flotsam sprite" "effect/flotsam anomalous mass"
 	"flotsam chance" 0.4
-	"mass" 2.718
+	"mass" -4
 	"outfit space" -4
-	"heat generation" 1.4
+	"heat generation" 0.4
 	"drag" 0.04
-	"inertia reduction" 0.04
 	"unplunderable" 1
 	description "Found with widely varying properties in different mechanisms of an Aberration, this mass of glassy, fleshy material is characterized by the very difficulty of classifying its composition. Webs of anomalous material embedded in the mass seem not to be composed of atomic matter as the Avgi know it, but by something entirely different, which resists any attempts to probe its makeup. This is thought to enable many of the Aberrants' more baffling abilities, for lack of any other explanation."
