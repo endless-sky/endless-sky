@@ -37,7 +37,7 @@ jobs:
       - name: Find cache keys
         run: |
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
-          git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 10 | tail -n+2 >> restore_keys.txt
+          git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 10 >> restore_keys.txt
           echo -e '\nEOF' >> restore_keys.txt
           cat restore_keys.txt >> "$GITHUB_ENV"
           echo "CACHE_HASH=$(git log --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
@@ -90,10 +90,11 @@ jobs:
       - name: Find cache keys
         run: |
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
-          git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 10 | tail -n+2 >> restore_keys.txt
+          git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 10 >> restore_keys.txt
           echo -e '\nEOF' >> restore_keys.txt
           cat restore_keys.txt >> "$GITHUB_ENV"
           echo "CACHE_HASH=$(git log --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+        shell: bash
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2.18
         with:
