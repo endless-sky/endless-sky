@@ -1230,7 +1230,6 @@ void Engine::Draw() const
 	{
 		Point end1 = gunsight.start + gunsight.angle.Rotate(Point(gunsight.spread, -gunsight.range));
 		Point end2 = gunsight.start + gunsight.angle.Rotate(Point(-gunsight.spread, -gunsight.range));
-		Point width = gunsight.angle.Rotate(Point(1., 0.));
 
 		LineShader::DrawGradient(gunsight.start * zoom, end1 * zoom, 1., gunsight.color, Color(0, 0, 0, 0));
 		LineShader::DrawGradient(gunsight.start * zoom, end2 * zoom, 1., gunsight.color, Color(0, 0, 0, 0));
