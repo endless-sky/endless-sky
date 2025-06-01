@@ -36,10 +36,10 @@ jobs:
       - name: Find cache keys
         run: |
           {
-            echo "RESTORE_KEYS<<$"
+            echo 'RESTORE_KEYS<<$'
             git log --pretty=format:'${{ runner.os }}-cd-sccache-%H' -n 10 | tail -n+2
-            echo "$"
-          } >> $GITHUB_ENV
+            echo '$'
+          } >> "$GITHUB_ENV"
       - name: Print cache keys
         run: echo ${{ env.RESTORE_KEYS }}
       - name: Setup ccache
