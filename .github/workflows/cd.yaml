@@ -58,7 +58,7 @@ jobs:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Run CMake
         run: |
-          rm build
+          rm -rf build
           cmake --preset linux-release
           cmake --build build --preset linux-ci-release
         env:
