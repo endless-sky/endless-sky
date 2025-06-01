@@ -74,14 +74,14 @@ jobs:
     - name: Find cache keys
       run: |
         echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
-        git log --pretty=format:'${{ runner.os }}-${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+        git log --pretty=format:'${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
         echo -e '\nEOF' >> restore_keys.txt
         cat restore_keys.txt >> "$GITHUB_ENV"
         echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
     - name: Setup ccache
       uses: hendrikmuhs/ccache-action@v1
       with:
-        key: ${{ runner.os }}-${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}-ci-${{ env.CACHE_HASH }}
+        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-${{ env.CACHE_HASH }}
         restore-keys: ${{ env.RESTORE_KEYS }}
         evict-old-files: '2d'
         append-timestamp: 'false'
@@ -147,6 +147,7 @@ jobs:
         echo -e '\nEOF' >> restore_keys.txt
         cat restore_keys.txt >> "$GITHUB_ENV"
         echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+      shell: bash
     - name: Setup ccache
       uses: hendrikmuhs/ccache-action@v1
       with:
@@ -205,6 +206,7 @@ jobs:
         echo -e '\nEOF' >> restore_keys.txt
         cat restore_keys.txt >> "$GITHUB_ENV"
         echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+      shell: bash
     - name: Setup ccache
       uses: hendrikmuhs/ccache-action@v1
       with:

@@ -176,7 +176,6 @@ jobs:
     runs-on: macos-13
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT: Endless-Sky-${{ inputs.release_version }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -214,7 +213,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.OUTPUT }}.dmg
+          name: macos-artifact-x64
           path: build/release/Endless Sky.app
 
 
@@ -223,7 +222,6 @@ jobs:
     runs-on: macos-13
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT: Endless-Sky-${{ inputs.release_version }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -261,7 +259,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.OUTPUT }}.dmg
+          name: macos-artifact-arm
           path: build/release/Endless Sky.app
 
 
