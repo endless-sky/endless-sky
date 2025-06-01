@@ -34,12 +34,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2
       - name: Find cache keys
-        run: echo "RESTORE_KEYS=$(git log --pretty=format:'${{ runner.os }}-cd-sccache-%H' -n 10 | tr '\n' '\n')" >> $GITHUB_ENV
+        run: echo "RESTORE_KEYS=$(git log --pretty=format:'${{ runner.os }}-cd-sccache-%H' -n 10 | tail -n+2 | tr '\n' '\n')" >> $GITHUB_ENV
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2.18
         with:
           key: ${{ runner.os }}-cd-ccache-${{ github.sha }}
-          restore-keys: ${{ env.RESTORE_KEYS }}
+          restore-keys: "${{ env.RESTORE_KEYS }}"
           evict-old-files: '2d'
           create-symlink: 'true'
           append-timestamp: 'false'
