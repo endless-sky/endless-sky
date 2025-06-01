@@ -329,17 +329,11 @@ jobs:
         path: endless-sky
 
 
-  deploy_steam:
-    name: Deploy Steam
-    needs: [release_steam_linux, release_windows_x64, release_macos]
+  steam_data:
+    name: Steam Data Depot
     runs-on: ubuntu-latest
-    # environment: steam
     env:
       data: steam-data-depot
-      linux: steam-linux-x64
-      win32: steam-win32
-      win64: steam-win64
-      macos: steam-macos
     steps:
     - uses: actions/checkout@v4
       with:
@@ -359,19 +353,3 @@ jobs:
           images/
           shaders/
           sounds/
-    # - uses: game-ci/steam-deploy@v1
-    #   with:
-    #     appId: 404410
-    #     buildDescription: canary-${{ github.sha }}
-    #     username: ${{ secrets.STEAM_DEPLOY_UN }}
-    #     password: ${{ secrets.STEAM_DEPLOY_PW }}
-    #     configVdf: ${{ secrets.STEAM_DEPLOY_VDF }}
-    #     ssfnFileName: ${{ secrets.STEAM_DEPLOY_SSFN_NAME }}
-    #     ssfnFileContents: ${{ secrets.STEAM_DEPLOY_SSFN }}
-    #     rootPath: ''
-    #     depot1Path: ${{ env.data }}
-    #     depot3Path: ${{ env.win32 }}
-    #     depot4Path: ${{ env.win64 }}
-    #     depot5Path: ${{ env.macos }}
-    #     depot7Path: ${{ env.linux }}
-    #     releaseBranch: canary
