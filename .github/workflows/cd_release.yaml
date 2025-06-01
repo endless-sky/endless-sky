@@ -83,6 +83,7 @@ jobs:
           git log --pretty=format:'${{ runner.os }}-cd-%H' -n 10 | tail -n+2 >> restore_keys.txt
           echo -e '\nEOF' >> restore_keys.txt
           cat restore_keys.txt >> "$GITHUB_ENV"
+        shell: bash
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1
         with:
@@ -104,6 +105,8 @@ jobs:
         run: |
           cmake --preset mingw-release
           cmake --build build --preset mingw-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
           cmake --install build/release
@@ -135,6 +138,11 @@ jobs:
       - name: Add Mingw to PATH
         run: |
           echo (Join-Path C: mingw32 bin) >> $env:GITHUB_PATH
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
@@ -143,6 +151,8 @@ jobs:
         run: |
           cmake --preset mingw32-release
           cmake --build build --preset mingw32-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
           cmake --install build/release
@@ -199,6 +209,8 @@ jobs:
         run: |
           cmake --preset macos-release
           cmake --build build --preset macos-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -244,6 +256,8 @@ jobs:
         run: |
           cmake --preset macos-arm-release
           cmake --build build --preset macos-arm-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
