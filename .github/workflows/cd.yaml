@@ -25,6 +25,8 @@ jobs:
     env:
       OUTPUT: Endless_Sky-continuous-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CMAKE_C_COMPILER_LAUNCHER: ccache
+      CMAKE_CXX_COMPILER_LAUNCHER: ccache
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,19 +36,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2
       - name: Find cache keys
-        run: echo "RESTORE_KEYS=$(git log --pretty=format:'${{ runner.os }}-cd-sccache-%H' -n 50 | tr '\n' '\n')" >> $GITHUB_ENV
+        run: echo "RESTORE_KEYS=$(git log --pretty=format:'${{ runner.os }}-cd-ccache-%H' -n 50 | awk 1 ORS='\\n')" >> $GITHUB_ENV
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2.18
         with:
-          key: ${{ runner.os }}-cd-sccache-${{ github.sha }}
+          key: ${{ runner.os }}-cd-ccache-${{ github.sha }}
           restore-keys: ${{ env.RESTORE_KEYS }}
           evict-old-files: '2d'
-          create-symlink: 'true'
           append-timestamp: 'false'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
       - uses: lukka/get-cmake@latest
-      - uses: TAServers/vcpkg-cache@v3
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
         id: vcpkg-cache
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
