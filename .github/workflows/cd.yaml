@@ -25,8 +25,6 @@ jobs:
     env:
       OUTPUT: Endless_Sky-continuous-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      CMAKE_C_COMPILER_LAUNCHER: ccache
-      CMAKE_CXX_COMPILER_LAUNCHER: ccache
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,6 +41,7 @@ jobs:
           key: ${{ runner.os }}-cd-ccache-${{ github.sha }}
           restore-keys: ${{ env.RESTORE_KEYS }}
           evict-old-files: '2d'
+          create-symlink: 'true'
           append-timestamp: 'false'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
@@ -59,6 +58,7 @@ jobs:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Run CMake
         run: |
+          rm build
           cmake --preset linux-release
           cmake --build build --preset linux-ci-release
         env:
