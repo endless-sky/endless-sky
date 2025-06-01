@@ -38,7 +38,7 @@ jobs:
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
           git log --pretty=format:'${{ runner.os }}-cd-sccache-%H' -n 10 >> restore_keys.txt
           echo -e '\nEOF' >> restore_keys.txt
-          tee "$GITHUB_ENV" < restore_keys.txt
+          tee -a "$GITHUB_ENV" < restore_keys.txt
       - name: Print cache keys
         run: echo "$RESTORE_KEYS"
       - name: Setup ccache
