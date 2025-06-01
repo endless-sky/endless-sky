@@ -41,7 +41,7 @@ jobs:
             echo '$'
           } >> "$GITHUB_ENV"
       - name: Print cache keys
-        run: echo ${{ env.RESTORE_KEYS }}
+        run: cat "$GITHUB_ENV"
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2.18
         with:
