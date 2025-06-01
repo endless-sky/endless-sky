@@ -4963,7 +4963,7 @@ planet Saska-Aa-Noorr
 
 planet "Sebarep Atarkis"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa25
+	landscape land/nasa37
 	description `Some recent event, natural or artificial, disrupted the rings around Sebarep Atarkis to the point of their complete instability. Now, hundreds of ringroids fall into the planet's atmosphere each day, tracing fiery paths in the planet's skies. This has measurably increased the temperature in the equatorial region, directly below the rings, and new storms and wind patterns are generated chaotically in the wake of their passage.`
 	description `	While you know it is extraordinarily unlikely due to the sheer size of the planet, you can't help but wonder what would happen if a ringroid were to fall directly upon your ship as you lurk under the clouds.`
 
