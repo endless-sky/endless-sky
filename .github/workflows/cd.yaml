@@ -39,7 +39,7 @@ jobs:
         uses: hendrikmuhs/ccache-action@v1.2.18
         with:
           key: ${{ runner.os }}-cd-ccache-${{ github.sha }}
-          restore-keys: "${{ env.RESTORE_KEYS }}"
+          restore-keys: ${{ env.RESTORE_KEYS }}
           evict-old-files: '2d'
           create-symlink: 'true'
           append-timestamp: 'false'
