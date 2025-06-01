@@ -39,11 +39,12 @@ jobs:
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
           git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 10 | tail -n+2 >> restore_keys.txt
           echo -e '\nEOF' >> restore_keys.txt
-          tee -a "$GITHUB_ENV" < restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2.18
         with:
-          key: ${{ runner.os }}-cd-${{ github.sha }}
+          key: ${{ runner.os }}-cd-${{ env.CACHE_HASH }}
           restore-keys: ${{ env.RESTORE_KEYS }}
           evict-old-files: '2d'
           create-symlink: 'true'
@@ -91,11 +92,12 @@ jobs:
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
           git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 10 | tail -n+2 >> restore_keys.txt
           echo -e '\nEOF' >> restore_keys.txt
-          tee -a "$GITHUB_ENV" < restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2.18
         with:
-          key: ${{ runner.os }}-cd-${{ github.sha }}
+          key: ${{ runner.os }}-cd-${{ env.CACHE_HASH }}
           restore-keys: ${{ env.RESTORE_KEYS }}
           evict-old-files: '2d'
           create-symlink: 'true'
