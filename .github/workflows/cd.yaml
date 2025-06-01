@@ -183,6 +183,8 @@ jobs:
     name: Upload
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs:
       - cd_appimage_x64
       - cd_windows_x64
