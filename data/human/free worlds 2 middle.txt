@@ -1676,11 +1676,11 @@ event "pirate use jousting cutthroat"
 	fleet "Large Southern Pirate"
 		add variant 2
 			"Cutthroat" 2
-			"Cutthroat (Jousting)"
+			"Cutthroat"
 		add variant 1
 			"Modified Argosy (Blaster)"
 			"Fury (Gatling)"
-			"Cutthroat (Jousting)"
+			"Cutthroat"
 
 
 
