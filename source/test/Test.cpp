@@ -447,6 +447,9 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 	// All processing was done just before this step started.
 	context.branchesSinceGameStep.clear();
 
+	const ConditionsStore *playerConditions = &player.Conditions();
+	const set<const System *> *visitedSystems = &player.VisitedSystems();
+	const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
 	while(context.callstack.back().step < steps.size() && !continueGameLoop)
 	{
 		const TestStep &stepToRun = steps[context.callstack.back().step];
@@ -499,7 +502,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				{
 					// Lookup the data and inject it in the game or into the environment.
 					const TestData *testData = GameData::TestDataSets().Get(stepToRun.nameOrLabel);
-					if(!testData->Inject(&player.Conditions()))
+					if(!testData->Inject(playerConditions, visitedSystems, visitedPlanets))
 						Fail(context, player, "injecting data failed");
 				}
 				++(context.callstack.back().step);

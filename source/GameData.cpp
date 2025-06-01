@@ -577,9 +577,9 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 
 
 // Apply the given change to the universe.
-void GameData::Change(const DataNode &node, const ConditionsStore *playerConditions)
+void GameData::Change(const DataNode &node, const PlayerInfo &player)
 {
-	objects.Change(node, playerConditions);
+	objects.Change(node, player);
 }
 
 
@@ -918,6 +918,20 @@ const StarField &GameData::Background()
 void GameData::StepBackground(const Point &vel, double zoom)
 {
 	background.Step(vel, zoom);
+}
+
+
+
+const Point &GameData::GetBackgroundPosition()
+{
+	return background.Position();
+}
+
+
+
+void GameData::SetBackgroundPosition(const Point &position)
+{
+	background.SetPosition(position);
 }
 
 

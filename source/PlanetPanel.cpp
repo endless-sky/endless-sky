@@ -197,6 +197,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 
+	UI::UISound sound = UI::UISound::NORMAL;
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
@@ -204,7 +205,10 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return true;
 	}
 	else if(key == 'l')
+	{
+		sound = UI::UISound::NONE;
 		selectedPanel = nullptr;
+	}
 	else if(key == 't' && hasAccess
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
@@ -225,11 +229,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new ShipyardPanel(player, shipyardStock));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && hasOutfitter)
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new OutfitterPanel(player, outfitterStock));
 		return true;
 	}
@@ -250,11 +256,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(command.Has(Command::INFO))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
 	else if(command.Has(Command::MESSAGE_LOG))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
@@ -265,6 +273,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	// planet UI panel. So, we need to pop the old selected panel:
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
+
+	UI::PlaySound(sound);
 
 	if(selectedPanel)
 		RemoveChild(description.get());

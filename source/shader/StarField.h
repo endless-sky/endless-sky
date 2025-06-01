@@ -39,6 +39,8 @@ class StarField {
 public:
 	void Init(int stars, int width);
 	void FinishLoading();
+	const Point &Position() const;
+	void SetPosition(const Point &position);
 	void SetHaze(const Sprite *sprite, bool allowAnimation);
 
 	void Step(Point vel, double zoom = 1.);
