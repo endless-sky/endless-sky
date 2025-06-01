@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           show-progress: false
-          fetch-depth: '10'
+          fetch-depth: '11'
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -37,17 +37,16 @@ jobs:
       - name: Find cache keys
         run: |
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
-          git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 10 | tail -n+2 >> restore_keys.txt
+          git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 11 | tail -n+3 >> restore_keys.txt
           echo -e '\nEOF' >> restore_keys.txt
           cat restore_keys.txt >> "$GITHUB_ENV"
-          echo "CACHE_HASH=$(git log --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --pretty=format:'%H' -n 2 | tail -n+2)" >> "$GITHUB_ENV"
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2.18
         with:
           key: ${{ runner.os }}-cd-${{ env.CACHE_HASH }}
           restore-keys: ${{ env.RESTORE_KEYS }}
           evict-old-files: '2d'
-          create-symlink: 'true'
           append-timestamp: 'false'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
@@ -90,10 +89,10 @@ jobs:
       - name: Find cache keys
         run: |
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
-          git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 10 | tail -n+2 >> restore_keys.txt
+          git log --pretty=format:'ccache-${{ runner.os }}-cd-%H-' -n 11 | tail -n+3 >> restore_keys.txt
           echo -e '\nEOF' >> restore_keys.txt
           cat restore_keys.txt >> "$GITHUB_ENV"
-          echo "CACHE_HASH=$(git log --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --pretty=format:'%H' -n 2 | tail -n+2)" >> "$GITHUB_ENV"
         shell: bash
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2.18
@@ -101,7 +100,6 @@ jobs:
           key: ${{ runner.os }}-cd-${{ env.CACHE_HASH }}
           restore-keys: ${{ env.RESTORE_KEYS }}
           evict-old-files: '2d'
-          create-symlink: 'true'
           append-timestamp: 'false'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
