@@ -2789,7 +2789,7 @@ planet Jentuthro
 
 planet Jupiter
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa12
+	landscape land/nasa32
 	description `Once called the King of the Solar System, Jupiter is just as impressive even considering the variety of gas giants in the galaxy. Its famous Great Red Spot is still well-known by most of humanity, and you make sure to steer clear of it while taking in the rich yellows and browns of the planet's atmosphere.`
 	description `	From your vantage point, deep below the furthest excursions of human probes, you can see the glint of a few sensor balloons and floating deuterium collectors high above you.`
 	government Uninhabited
@@ -3093,7 +3093,7 @@ planet "Laki Nemparu"
 
 planet "Lenz's Loop"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa28
+	landscape land/nasa17
 	description `Lenz's Loop takes its name from the powerful magnetic field produced by its metallic hydrogen core. As one of the most powerful natural sources of magnetism known to humanity, it is named for Emil Lenz and his discoveries about the interactions between magnetism and electric currents.`
 	description `	While your ship's shielding fortunately keeps it safe from the dangerously strong magnetic field, captured charged particles from Kochab's frequent flares are channeled into the atmosphere near the poles, where it would be exceedingly dangerous for you to venture.`
 	government Uninhabited
@@ -4963,7 +4963,7 @@ planet Saska-Aa-Noorr
 
 planet "Sebarep Atarkis"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/clouds_04
+	landscape land/nasa25
 	description `Some recent event, natural or artificial, disrupted the rings around Sebarep Atarkis to the point of their complete instability. Now, hundreds of ringroids fall into the planet's atmosphere each day, tracing fiery paths in the planet's skies. This has measurably increased the temperature in the equatorial region, directly below the rings, and new storms and wind patterns are generated chaotically in the wake of their passage.`
 	description `	While you know it is extraordinarily unlikely due to the sheer size of the planet, you can't help but wonder what would happen if a ringroid were to fall directly upon your ship as you lurk under the clouds.`
 
@@ -6291,7 +6291,7 @@ planet Viso
 
 planet "Vivid Aether"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/nasa34
 	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which were what initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down small vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
 	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper down, the atmosphere is barren and lifeless.`
 	government Uninhabited
@@ -6492,7 +6492,7 @@ planet "Wyvern Station"
 
 planet Xerolophos
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/nasa19
 	description `Although formerly classified as a "Hot Jupiter," Xerolophos does not present all the characteristics of one: it is very far from the system star - so distant that it isn't even tidally locked to it. Its temperature, instead, is unusually high even for a Hot Jupiter, with the core internally heating up the atmosphere much more than expected.`
 	description `	While it's possible that Xerolophos might have migrated here long ago, the Remnant haven't been able to explain the extreme temperatures of the planet even after years of studies and dispatching dozens of probes.`
 	government Uninhabited
