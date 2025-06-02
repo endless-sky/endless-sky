@@ -94,7 +94,7 @@ mission "Successors: First Contact Exploration: Mosaa-Oa-Vyret"
 				not "Successors: First Contact 2: done"
 			and
 				has "Successors: First Contact 2: done"
-				random < 10
+				random < 5
 	on offer
 		conversation
 			`Near to your landing pad in the spaceport here, you see a large circular pool with several Successors milling about in it. Some relax against the edges while others appear deep in conversation; one trio of individuals is followed by a small salamander-like animal that swims behind them and plays between and around their arms, making soft splashing noises as it jumps in and out of the water.`
@@ -107,7 +107,7 @@ mission "Successors: Buskers"
 		not attributes "crime" "quiet" "uninhabited"
 	to offer
 		has "known to the successors"
-		random < 40
+		random < 5
 	on offer
 		conversation
 			`While waiting in the spaceport for the <ship> to be refueled, you notice that a small crowd of Successors is gathering around one of the pools of water that surround the starship hangars. Many are moving excitedly towards the commotion or, having already made it there, undulate strangely in the water.`
@@ -149,7 +149,7 @@ mission "Successors: Graffiti"
 		not attributes "uninhabited"
 	to offer
 		has "known to the successors"
-		random < 15
+		random < 5
 	on offer
 		conversation
 			`Shortly after you disembark the <ship> for the spaceport on <origin>, you hear a quiet but noticeable clattering from behind you near where your ship is being refueled.`
@@ -202,4 +202,151 @@ mission "Successors: Graffiti"
 				decline
 			label fooled
 			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script placed alongside a rather crude depiction of your face. The translation device struggles to interpret the non-standard glyphs, but it eventually resolves the text as "'Erjn'-Fool! No quills, no brain!" The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
+				decline
+
+mission "Successors: Stage Play"
+	minor
+	source
+		attributes "successor"
+		not attributes "crime" "quiet" "uninhabited" "station"
+	to offer
+		has "trusted by the successors"
+		random < 5
+	on offer
+		conversation
+			branch "myiara system"
+				has "flagship system: Myiara-Nnesa"
+			`Walking through the spaceport, you notice several posters have been put up to advertise some sort of performance, each one showing an outstretched Successor standing atop a brilliant blue sphere that swirls with octopoid forms. "Deathless Myiara," reads the title.`
+				goto decide
+			label "myiara system"
+			`Walking through the spaceport, you notice several posters have been put up to advertise some sort of performance, each one showing an outstretched Successor standing atop a brilliant blue sphere that swirls with octopoid forms. "Deathless Myiara," reads the title, the last word echoing the name of this star system.`
+			label decide
+			`	As you look at the poster, a passing Successor takes notice and greets you, splaying their arms in the traditional manner. "The honored alien!" they say. "Doth the play arouse tonight thy interest? 'Tis a good company that puts it on."`
+			choice
+				`	"Why not? Can you show me where it is?"`
+				`	"I'm not that interested in theater."`
+					decline
+			`	"Thou wouldst surely be a well-treated guest," the Successor says. "Follow me, and we shan't be late."`
+			`	They lead you to one of the smaller transport gates at the spaceport, where a compact train snakes away from the city and into a remarkably pristine countryside. Eventually your guide leads you off the train; the station overlooks a large coastal depression where thousands of other Successors have gathered on semicircular benches around a central tank situated at the edge of the sea. Several of the benches have been built up into small but richly adorned boxes where, presumably, the wealthiest members of the audience can enjoy the show in privacy.`
+			`	You sit down, and after several minutes one Successor gives a brief introduction. It begins with thanking the local House for funding the event, continues into naming and introducing each of the lead actors, and finishes with a curious ritual in which each of the actors is given a small decorative token by the show's organizer. The actors thread these onto long strings that they carry - several of them already have highly-adorned strings that they loop several times over their bodies.`
+			`	"Myiara! How long we've been unseeing of thy tender face among our number! Return, and grace us so," cries a player within the tank, their voice amplified for the audience. Several others gyre around them, each wearing detailed, colorful masks, each one echoing "Myiara!" as the first speaker continues. Still more players enter from apertures in the tank's bottom, swimming up to the surface, where they pop into the air with acrobatic elegance before landing on the tank's clear top.`
+			`	"The Myiaran sort will never know their kind again," one says, their outfit and skin alike changing color to a rich blue. "For nobly we are not, nor never will..."`
+			choice
+				`	(Pay attention.)`
+					goto attentive
+				`	(Let your mind wander.)`
+					goto bored
+				`	(Leave early.)`
+			`	You stay until the first intermission - still an uncomfortably long wait, and as far as you can tell, the story is nowhere near complete at that point. The performance was distinctly alien, with masks, acrobatics, and a stunning moment midway through the first act where one of the characters conjured up a storm to afflict another. Huge globs of water, suspended in clear spheres, were lifted behind the stage by some sort of repulsor mechanism.`
+			`	The train silently arrives after only a few minutes of waiting and takes you back to the spaceport without issue.`
+				decline
+			label attentive
+			`	"Irja, go and spread thine arms! Listen for our heart's yearning call, their voice, if thine ears can but hear at all what little flutt'rings a mortal life doth make..."`
+			`	The play turns out to be remarkably long, and immensely complex. The plot follows both mortal Successors, on the dry stage, and the gods in the water beneath them. Myiara Raaja was the adoptive child of one of the gods, eternally youthful in their immortal realm, but who ran away to the mortal world while the gods slumbered. There, they lived a long and full life before eventually dying and leaving behind their only child, Myiara Sera. The awakened gods, lamenting the loss of their child, dispatch their messenger Irja to retrieve the elder Myiara from the world above, but Irja, blinded by joy, mistakes the younger Myiara Sera for Myiara Raaja. In a desperate show of wit, Myiara Sera manages to poison Irja with a draught of eternal sleep, smearing it on a fine cloak that the god cannot resist, thinking it to be a reunion gift from their long-lost child.`
+			`	To maintain their freedom, Myiara Sera descends into the immortal world, tearfully poisoning each of the gods one-by-one in a similar fashion, eventually leaving them as they began - slumbering, caught in the slow gyration of the undersea currents. By the epilogue, Myiara Sera has two children themself, one who remains forever with the gods, coaxing them into ever-deeper dreamful sleep, the other who lives on in the mortal world and gives rise to a family of heroes, each of whom have their own plays and other cultural products.`
+			`	"This one shall linger, unmaligned, insensate, in the sepulchre'f of the deep. And all the weeping masses 'bove, below shall in their memory keep, and render off'rings...`
+			`	The production of the performance is strikingly alien - each of the actors wears a complex mask of their character that articulates with their face beneath it. The masks of the mortal characters are straightforward, if expressive, but those of the gods are enormous and dramatic. Many have long, ribbony parts that never settle in the currents of the tank, constantly swirling around the heads of the actors.`
+			`	Characters jump between the mortal and immortal realms by acrobatic leaps between the water-filled tank and its mostly-dry top surface. When particular moments are meant to be highlighted, enormous splashes of water erupt from behind the stage, and during others, long strands of the writhing Successor metal rise from around it, forming forests, ocean waves, and terrible storms out of their gleaming lengths.`
+			`	"Myiara younger, elder, younger still, who each shakes us from our rest to let us feel it sour again in the oceans of our blood..."`
+			`	By the time it's over, you are thoroughly exhausted from the experience. The train arrives after only a few minutes of waiting and you, packed in along with many other Successors, make your way back to the spaceport, finally arriving late in the night.`
+				decline
+			label bored
+			`	The play turns out to be remarkably long, and inscrutably complex. The plot seems to follow both mortal Successors, on the dry stage, and the gods in the water beneath them. One character named Myiara was beloved by the gods, and another one, seemingly misidentified, takes on the extensive process of one-by-one poisoning each of the gods so that their secret isn't found out. Eventually they have their own children, one of whom remains in the realm of the gods, and the other who returns to the world of the living.`
+			`	The production itself is eye-catching - the actors wear impressive masks that articulate with their faces, heightening the emotions they intend to portray. At particular moments in the story, enormous splashes of water erupt from behind the stage, and during others, long strands of metal are coaxed upwards into suspended shapes, forming scenes of storms and forests above the players' heads.`
+			`	By the time it's over, you are thoroughly exhausted from the experience. The train arrives after only a few minutes of waiting and you, packed in along with many other Successors, make your way back to the spaceport, finally arriving late in the night.`
+				decline
+
+mission "Successors: Sosrue"
+	minor
+	source
+		attributes "successor"
+		not attributes "crime" "quiet" "uninhabited"
+	to offer
+		has "trusted by the successors"
+		random < 5
+	on offer
+		conversation
+			`Soon after you disembark your ship, you spot two Successors eyeing you from across the spaceport; the younger one pulls at the arms of the larger one several times until eventually the two of them move over to you. The larger one splays their arms in greeting. "My child wanted me to ask of thee, alien - in thy travels, hast thou met a Sosrue?`
+			choice
+				`	"A what?"`
+					goto what
+				`	"Maybe, but I wouldn't know it by that name if I had."`
+					goto name
+				`	"I don't have time for this."`
+			`	The adult affects what might be a disappointed shade of red, but nonetheless collects their child and leaves you alone to your business.`
+				decline
+			label what
+			`	The child bursts into speech. "Beware the Sosrue, cloaked in black, its teeth and claws!" before their parent interrupts them.`
+			label name
+			`	"I'm sorry," says the adult. "It's a monster, from a children's poem. This little's favorite. So tell my child and I, also - hast thou, among the wider breadth of stars, met some creature long of arm, discerning of ear, and many of tooth, that dwells in every manner of the stellar deep?" Their skin runs with thin golden lines as they say this, shivering with each syllable.`
+			choice
+				`	"No, but I've met some interesting aliens."`
+					goto truth
+				`	"I once wrestled one deep in a nebula."`
+					goto play
+				`	"That's an awfully dark story for a child."`
+			`	The child undulates gently, burbling with strange laughter. "'Tis not real," says their parent. "Why would my child be afeared by it?"`
+			`	With this, the two Successors glide back into the spaceport, chatting with each other as they go.`
+				decline
+			label truth
+			`	The child wriggles gently as if laughing, turning a pastel shade of pink. "So serious, thou art," their parent says. "Perhaps thy alien companions did all the Sosrue-seeing before thou came. They must be witty ones to have escaped with their lives!"`
+			`	With this, the two depart back into the spaceport, clearly having fulfilled whatever impulse toward amusement they came to you for.`
+				decline
+			label play
+			`	"Thy wounds!" the child cries, "and by this, half thy arms have been divorced from thee!" They wiggle happily, and their parent continues, the golden lines from before bursting into splashes of color all over their body. "Thou must have been a witty one to have escaped this. No doubt thy foe remains in wait, now knowing of thy might. Thou must be twice as clever should you ever meet again!"`
+			`	With this final comment, the parent once again splays their arms to you and the two Successors glide back into the spaceport, the child murmuring more of the poem as they go.`
+				decline
+
+mission "Successors: Derelict Station Toy"
+	minor
+	landing
+	source
+		attributes "successor"
+		attributes "station"
+		government "Uninhabited"
+	to offer
+		has "known to the successors"
+		random < 5
+	on offer
+		conversation
+			`Although the spaceport here is as quiet and lifeless as always, when you disembark for a moment, you spy a strange, colorful object lying a short distance away in the gloom. It's hard to tell what exactly it is at first glance, but upon closer inspection, it appears to be a small metal model of a Kvelqde shuttle, painted in bright and oily-looking colors. A tiny, well-worn propeller emerges from its rear.`
+			choice
+				`	(Leave it be.)`
+					goto leave
+				`	(Take it.)`
+					goto take
+				`	(Stomp on it.)`
+			`	The toy proves remarkably durable - your assault on it does little more than scuff its paint, while you are forced to limp back to the <ship> with a bruised foot.`
+				decline
+			label leave
+			`	You return to your ship, catching one last glimpse of the improbable pinprick of color against the dark and foreboding station walls.`
+				decline
+			label take
+			`	You drop the toy shortly after picking it up when a sharp edge on the propeller slices through your hand. You hurry back to your ship while clutching the stinging wound.`
+				decline
+
+mission "Successors: Pet Commemoration"
+	minor
+	source
+		attributes "successor"
+		not attributes "uninhabited" "quiet"
+	to offer
+		has "known to the successors"
+		random < 5
+	on offer
+		conversation
+			`A screen on one of the walls displays a commemorative message - a picture of a small salamander-like creature cradled in a Successor's arms, with some text below it:`
+			`	"Mirja-Mirja, the most loyal of friends and gentlest of animals. Such stuff as dreams are made on."`
+				decline
+
+mission "Successors: Armor Reconfiguration"
+	minor
+	source
+		government "House Aqrabe" "House Chydiyi"
+	to offer
+		has "known to the successors"
+		random < 5
+	on offer
+		conversation
+			`As you look around the spaceport here, a High Houses warship comes in for a landing, proceeding into a smaller outfitting bay off to the side that is only partially visible to civilian viewers. Enormous mechanical arms fold down from the top of the bay, first calibrating themselves against the vessel's shape and position before starting to scan over the warship's armor closely enough that it looks like they are almost touching. The metal writhes as the arms pass over it - goopy, liquid-looking protrusions form and collapse in their wake, splashing into themselves like raindrops into water, dewy and soft. Once the rippling stops, the texture of the hull looks somehow changed: a little rougher, perhaps, or maybe a slightly different shade of gray. The ship takes off not long after.`
 				decline

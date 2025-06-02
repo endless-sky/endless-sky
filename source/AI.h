@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <vector>
 
@@ -33,6 +34,7 @@ class Body;
 class Flotsam;
 class Government;
 class Minable;
+class Planet;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
@@ -63,7 +65,7 @@ template <class Type>
 	void IssueMoveTarget(const Point &target, const System *moveToSystem);
 
 	// Commands issued via the keyboard (mostly, to the flagship).
-	void UpdateKeys(PlayerInfo &player, Command &clickCommands);
+	void UpdateKeys(PlayerInfo &player, const Command &clickCommands);
 
 	// Allow the AI to track any events it is interested in.
 	void UpdateEvents(const std::list<ShipEvent> &events);
@@ -74,13 +76,15 @@ template <class Type>
 	void ClearOrders();
 	// Issue AI commands to all ships for one game step.
 	void Step(Command &activeCommands);
+	// Process commands for the player only, called by Step in non-paused mode.
+	void MovePlayer(Ship &ship, Command &activeCommands);
 
 	// Set the mouse position for turning the player's flagship.
 	void SetMousePosition(Point position);
 
 	// Get the in-system strength of each government's allies and enemies.
-	int64_t AllyStrength(const Government *government);
-	int64_t EnemyStrength(const Government *government);
+	int64_t AllyStrength(const Government *government) const;
+	int64_t EnemyStrength(const Government *government) const;
 
 	// Find nearest landing location.
 	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
@@ -102,6 +106,7 @@ private:
 	bool FollowOrders(Ship &ship, Command &command);
 	void MoveInFormation(Ship &ship, Command &command);
 	void MoveIndependent(Ship &ship, Command &command) const;
+	void MoveWithParent(Ship &ship, Command &command, const Ship &parent);
 	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
 	static bool CanRefuel(const Ship &ship, const StellarObject *target);
@@ -117,31 +122,31 @@ private:
 	// "precision" is an optional argument corresponding to a value of the dot product of the current and target facing
 	// vectors above which no turning should be attempting, to reduce constant, minute corrections.
 	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
-	static bool MoveToPlanet(Ship &ship, Command &command);
-	static bool MoveTo(Ship &ship, Command &command, const Point &targetPosition,
-		const Point &targetVelocity, double radius, double slow);
-	static bool Stop(Ship &ship, Command &command, double maxSpeed = 0., const Point direction = Point());
-	static void PrepareForHyperspace(Ship &ship, Command &command);
-	static void CircleAround(Ship &ship, Command &command, const Body &target);
-	static void Swarm(Ship &ship, Command &command, const Body &target);
-	static void KeepStation(Ship &ship, Command &command, const Body &target);
-	static void Attack(Ship &ship, Command &command, const Ship &target);
-	static void AimToAttack(Ship &ship, Command &command, const Body &target);
-	static void MoveToAttack(Ship &ship, Command &command, const Body &target);
-	static void PickUp(Ship &ship, Command &command, const Body &target);
+	static bool MoveToPlanet(const Ship &ship, Command &command, double cruiseSpeed = 0.);
+	static bool MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
+		const Point &targetVelocity, double radius, double slow, double cruiseSpeed = 0.);
+	static bool Stop(const Ship &ship, Command &command, double maxSpeed = 0., const Point &direction = Point());
+	static void PrepareForHyperspace(const Ship &ship, Command &command);
+	static void CircleAround(const Ship &ship, Command &command, const Body &target);
+	static void Swarm(const Ship &ship, Command &command, const Body &target);
+	static void KeepStation(const Ship &ship, Command &command, const Body &target);
+	static void Attack(const Ship &ship, Command &command, const Ship &target);
+	static void AimToAttack(const Ship &ship, Command &command, const Body &target);
+	static void MoveToAttack(const Ship &ship, Command &command, const Body &target);
+	static void PickUp(const Ship &ship, Command &command, const Body &target);
 	// Special decisions a ship might make.
-	static bool ShouldUseAfterburner(Ship &ship);
+	static bool ShouldUseAfterburner(const Ship &ship);
 	// Special personality behaviors.
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
-	bool DoCloak(Ship &ship, Command &command);
+	bool DoCloak(const Ship &ship, Command &command) const;
 	void DoPatrol(Ship &ship, Command &command) const;
 	// Prevent ships from stacking on each other when many are moving in sync.
-	void DoScatter(Ship &ship, Command &command);
-	bool DoSecretive(Ship &ship, Command &command);
+	void DoScatter(const Ship &ship, Command &command) const;
+	bool DoSecretive(Ship &ship, Command &command) const;
 
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
@@ -151,7 +156,8 @@ private:
 	static Point TargetAim(const Ship &ship);
 	static Point TargetAim(const Ship &ship, const Body &target);
 	// Aim the given ship's turrets.
-	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
+	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false,
+			const std::optional<Point> &targetOverride = std::nullopt) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
 	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
@@ -161,8 +167,6 @@ private:
 	// target's relative position and velocity and the velocity of the
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
-
-	void MovePlayer(Ship &ship, Command &activeCommands);
 
 	// True if found asteroid.
 	bool TargetMinable(Ship &ship) const;
@@ -185,10 +189,13 @@ private:
 		// Hold active is the same command as hold position, but it is given when a ship
 		// actively needs to move back to the position it was holding.
 		static const int HOLD_ACTIVE = 0x001;
+		// Travel orders
 		static const int MOVE_TO = 0x002;
+		static const int TRAVEL_TO = 0x003;
+		static const int LAND_ON = 0x004;
 		// HARVEST is related to MINE and is for picking up flotsam after
 		// ATTACK.
-		static const int HARVEST = 0x003;
+		static const int HARVEST = 0x005;
 		static const int KEEP_STATION = 0x100;
 		static const int GATHER = 0x101;
 		static const int ATTACK = 0x102;
@@ -205,6 +212,7 @@ private:
 		std::weak_ptr<Minable> targetAsteroid;
 		Point point;
 		const System *targetSystem = nullptr;
+		const Planet *targetPlanet = nullptr;
 	};
 
 
@@ -212,6 +220,8 @@ private:
 	void IssueOrders(const Orders &newOrders, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
+	// Mission NPC blocks may define specific travel plans.
+	void IssueNPCOrders(Ship &ship, const Planet *destination);
 
 
 private:
@@ -228,7 +238,7 @@ private:
 
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
-	// Position of the cursor, for when the player is using mouse turning.
+	// Position of the cursor, for when the player is using mouse turning or manual turret aiming.
 	Point mousePosition;
 	// General firing command for ships. This is a data member to avoid
 	// thrashing the heap, since we can reuse the storage for
@@ -243,8 +253,8 @@ private:
 	// The minimum speed before landing will consider non-landable objects.
 	const float MIN_LANDING_VELOCITY = 80.;
 
-	// Current orders for the player's ships. Because this map only applies to
-	// player ships, which are never deleted except when landed, it can use
+	// Current orders for the player's ships or NPCs. Because this map only applies
+	// to special ships, which are never deleted except when landed, it can use
 	// ordinary pointers instead of weak pointers.
 	std::map<const Ship *, Orders> orders;
 
