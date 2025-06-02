@@ -1945,6 +1945,7 @@ interface "map buttons (small screen)" bottom right
 interface "map"
 	value "max zoom" 2
 	value "min zoom" -2
+	value "small screen width" 1300
 
 	anchor top
 	string "route error"
