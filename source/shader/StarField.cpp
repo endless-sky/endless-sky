@@ -112,7 +112,7 @@ void StarField::FinishLoading()
 	fixedZoom = constants->GetValue("fixed zoom");
 	velocityReducer = constants->GetValue("velocity reducer");
 
-	minZoom = constants->GetValue("minimum zoom");
+	minZoom = max(0., constants->GetValue("minimum zoom"));
 	zoomClamp = constants->GetValue("start clamping zoom");
 	clampSlope = max(0., (zoomClamp - minZoom) / zoomClamp);
 }
