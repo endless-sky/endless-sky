@@ -4779,7 +4779,7 @@ bool Ship::DoLandingLogic()
 				SetTargetSystem(nullptr);
 				landingPlanet = nullptr;
 			}
-			else if(isSpecial && !isYours)
+			else if(!isSpecial || personality.IsFleeing() || !stopovers.empty() || destinationPlanet)
 			{
 				bool escortsLanded = true;
 				for(const auto &it : escorts)
@@ -4793,20 +4793,27 @@ bool Ship::DoLandingLogic()
 				}
 				if(escortsLanded)
 				{
-					// This mission NPC has a directive to land on at least one specific planet.
-					// If this is one of them, this ship may land on a "destination" (permanently),
-					// or have a "stopover."
-					if(AllStopoversVisited() && destinationPlanet == landingPlanet)
+					if (!stopovers.empty() || destinationPlanet)
+					{
+						// This mission NPC has a directive to land on at least one specific planet.
+						// If this is one of them, this ship may land on a "destination" (permanently),
+						// or have a "stopover."
+						if(AllStopoversVisited() && destinationPlanet == landingPlanet)
+						{
+							MarkForRemoval();
+							LandForever();
+							return true;
+						}
+						else if(!stopovers.empty())
+						{
+							auto it = stopovers.find(landingPlanet);
+							if(it != stopovers.end())
+								it->second = true;
+						}
+					}
+					else
 					{
 						MarkForRemoval();
-						LandForever();
-					return true;
-					}
-					else if(!stopovers.empty())
-					{
-						auto it = stopovers.find(landingPlanet);
-						if(it != stopovers.end())
-							it->second = true;
 					}
 				}
 				return true;
