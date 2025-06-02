@@ -4793,7 +4793,7 @@ bool Ship::DoLandingLogic()
 				}
 				if(escortsLanded)
 				{
-					if (!stopovers.empty() || destinationPlanet)
+					if(!stopovers.empty() || destinationPlanet)
 					{
 						// This mission NPC has a directive to land on at least one specific planet.
 						// If this is one of them, this ship may land on a "destination" (permanently),
