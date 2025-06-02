@@ -1716,7 +1716,6 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 	int type = it->second.type;
 	const bool hasTravelOrder = type == Orders::MOVE_TO || type == Orders::TRAVEL_TO || type == Orders::LAND_ON;
 
-
 	// Ships without an (alive) parent don't follow orders.
 	shared_ptr<Ship> parent = ship.GetParent();
 	if(!parent)
@@ -1736,7 +1735,6 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		ship.SetTargetFlotsam(nullptr);
 		return false;
 	}
-
 
 	shared_ptr<Ship> target = it->second.target.lock();
 	shared_ptr<Minable> targetAsteroid = it->second.targetAsteroid.lock();

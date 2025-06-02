@@ -347,7 +347,6 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			ship->SetDestination(finalDestination);
 	}
 
-
 	// NPCs given the "land" or "outrun" completion conditions should also have a destination.
 	if(!finalDestination && !missingDestination && destinationFilter.IsEmpty())
 	{

@@ -3959,6 +3959,7 @@ void Ship::EraseWaypoint(const System *system)
 }
 
 
+
 // Mining target.
 void Ship::SetTargetAsteroid(const shared_ptr<Minable> &asteroid)
 {
@@ -5410,6 +5411,8 @@ void Ship::Jettison(shared_ptr<Flotsam> toJettison)
 		++bayIndex;
 	}
 }
+
+
 
 void Ship::ResetStopovers()
 {
