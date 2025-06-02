@@ -114,6 +114,7 @@ void StarField::FinishLoading()
 
 	minZoom = constants->GetValue("minimum zoom");
 	zoomClamp = constants->GetValue("start clamping zoom");
+	clampSlope = max(0., (zoomClamp - minZoom) / zoomClamp);
 }
 
 
@@ -168,7 +169,7 @@ void StarField::Step(Point vel, double zoom)
 		// (default 0.15) for the starfield's zoom. 0.25 is the vanilla minimum zoom, so
 		// this only applies when the "main view" interface has been modified to allow
 		// lower zoom values.
-		baseZoom = (zoomClamp - minZoom) / zoomClamp * zoom + minZoom;
+		baseZoom = clampSlope * zoom + minZoom;
 		// Reduce the movement of the background by the same adjustment as the zoom
 		// so that the background doesn't appear like it's moving way quicker than
 		// the player is.
