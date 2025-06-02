@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
+class DistanceMap;
 class Outfit;
 class Planet;
 class RaidFleet;
@@ -98,7 +99,7 @@ public:
 	void FinishTransaction();
 
 	// Apply the given changes and store them in the player's saved game file.
-	void AddChanges(std::list<DataNode> &changes);
+	void AddChanges(std::list<DataNode> &changes, bool instantChanges = false);
 	// Add an event that will happen at the given date.
 	void AddEvent(GameEvent event, const Date &date);
 
@@ -218,6 +219,16 @@ public:
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
 	bool HasAvailableEnteringMissions() const;
+
+	// Determine how many days left the player has for each mission with a deadline, for
+	// the purpose of determining how frequently the MapPanel should blink the mission
+	// marker.
+	void CalculateRemainingDeadlines();
+	// The number of days left before this mission's deadline has elapsed, or,
+	// if the "Deadline blink by distance" preference is true, before the player
+	// doesn't have enough days left to complete the mission before the deadline
+	// will elapse. Returns 0 if the give mission doesn't have a deadline.
+	int RemainingDeadline(const Mission &mission) const;
 
 	enum SortType {ABC, PAY, SPEED, CONVENIENT};
 	const SortType GetAvailableSortType() const;
@@ -362,6 +373,8 @@ private:
 
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
+	// Add a mission that was just accepted to the cached remaining deadlines.
+	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
@@ -444,6 +457,11 @@ private:
 	// This pointer to the most recently accepted boarding/assisting/entering mission
 	// enables its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeInFlightMission = nullptr;
+	// For each active mission with a deadline, calculate how many days the player
+	// has left to compelete the mission. The number of days remaining is reduced
+	// by the number of days of travel it will take to complete the mission if the
+	// "Deadline blink by distance" preference is true.
+	std::map<const Mission *, int> remainingDeadlines;
 	// How to sort availableJobs
 	bool availableSortAsc = true;
 	SortType availableSortType;
