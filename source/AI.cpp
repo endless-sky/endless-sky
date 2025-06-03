@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "UI.h"
 #include "Weapon.h"
 #include "Wormhole.h"
 
@@ -944,6 +945,12 @@ void AI::Step(Command &activeCommands)
 				continue;
 			}
 		}
+		// Update any orders NPCs may have been given by their associated mission.
+		else if(it->IsSpecial() && !it->IsYours() && it->HasTravelDirective())
+		{
+			const Planet *destination = it->AllStopoversVisited() ? it->GetDestinationPlanet() : nullptr;
+			IssueNPCOrders(*it, destination);
+		}
 
 		// This ship may have updated its target ship.
 		double targetDistance = numeric_limits<double>::infinity();
@@ -1707,14 +1714,16 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		return false;
 
 	int type = it->second.type;
+	const bool hasTravelOrder = type == Orders::MOVE_TO || type == Orders::TRAVEL_TO || type == Orders::LAND_ON;
+
 
 	// Ships without an (alive) parent don't follow orders.
 	shared_ptr<Ship> parent = ship.GetParent();
 	if(!parent)
 		return false;
 	// If your parent is jumping or absent, that overrides your orders unless
-	// your orders are to hold position.
-	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && type != Orders::MOVE_TO)
+	// your orders are to hold position, or a travel directive.
+	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && !hasTravelOrder)
 	{
 		if(parent->GetSystem() != ship.GetSystem())
 			return false;
@@ -1728,8 +1737,16 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		return false;
 	}
 
+
 	shared_ptr<Ship> target = it->second.target.lock();
 	shared_ptr<Minable> targetAsteroid = it->second.targetAsteroid.lock();
+	if(type == Orders::LAND_ON && it->second.targetPlanet)
+	{
+		// LAND_ON would not be issued unless the planet was in this system.
+		ship.SetTargetStellar(ship.GetSystem()->FindStellar(it->second.targetPlanet));
+		it->second.type = Orders::LAND_ON;
+		MoveIndependent(ship, command);
+	}
 	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
 	{
 		// The desired position is in a different system. Find the best
@@ -2037,7 +2054,9 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		if(!shouldStay && ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->HasSprite()
+		// Ships should land on their destination planet if they are free to
+		// move about, or have a travel directive indicating they should land.
+		if(!(shouldStay && ship.Attributes().Get("fuel capacity")) && ship.GetTargetStellar()->HasSprite()
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
@@ -2112,9 +2131,10 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		// If the ship has no destination or the destination is unreachable, route to the parent's system.
 		if(!ship.GetTargetStellar() && (!ship.GetTargetSystem() || !ship.JumpNavigation().JumpFuel(ship.GetTargetSystem())))
 		{
-			// Route to the parent ship's system and check whether
-			// the ship should land (refuel or wormhole) or jump.
-			SelectRoute(ship, parent.GetSystem());
+			// Route to the destination (either the parent ship's system or a system
+			// marked by the NPC's mission definition) by landing or jumping.
+			const System *destinationSystem = ship.GetDestinationSystem();
+			SelectRoute(ship, destinationSystem ? destinationSystem : parent.GetSystem());
 		}
 
 		// Perform the action that this ship previously decided on.
@@ -3342,9 +3362,27 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	// If cloaking costs nothing, and no one has asked you for help, cloak at will.
 	// Player ships should never cloak automatically if they are not in danger.
 	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist() && !ship.IsYours();
-	// If this ship is injured / repairing, it should cloak while under threat.
+	// If this ship is injured and can repair those injuries while cloaked,
+	// then it should cloak while under threat.
+	bool canRecoverShieldsCloaked = false;
+	bool canRecoverHullCloaked = false;
+	if(attributes.Get("cloaked regen multiplier") > -1.)
+	{
+		if(attributes.Get("shield generation") > 0.)
+			canRecoverShieldsCloaked = true;
+		else if(attributes.Get("cloaking shield delay") < 1. && attributes.Get("delayed shield generation") > 0.)
+			canRecoverShieldsCloaked = true;
+	}
+	if(attributes.Get("cloaked repair multiplier") > -1.)
+	{
+		if(attributes.Get("hull repair rate") > 0.)
+			canRecoverHullCloaked = true;
+		else if(attributes.Get("cloaking repair delay") < 1. && attributes.Get("delayed hull repair") > 0.)
+			canRecoverHullCloaked = true;
+	}
 	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
-			&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
+			&& ((ship.Shields() < 1. && canRecoverShieldsCloaked)
+			|| (ship.Hull() < 1. && canRecoverHullCloaked));
 	if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
 	{
 		command |= Command::CLOAK;
@@ -4226,7 +4264,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			Messages::Add(message, Messages::Importance::Info);
 
 			if(Preferences::GetNotificationSetting() == Preferences::NotificationSetting::BOTH)
-				Audio::Play(Audio::Get("fail"), SoundCategory::ALERT);
+				UI::PlaySound(UI::UISound::FAILURE);
 		}
 		// If any destination was found, find the corresponding stellar object
 		// and set it as your ship's target planet.
@@ -4268,6 +4306,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		// If no ship was found, look for nearby asteroids.
 		if(!found)
 			TargetMinable(ship);
+		else
+			UI::PlaySound(UI::UISound::TARGET);
 	}
 	else if(activeCommands.Has(Command::TARGET))
 	{
@@ -4294,6 +4334,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		}
 		if(selectNext)
 			ship.SetTargetShip(shared_ptr<Ship>());
+		else
+			UI::PlaySound(UI::UISound::TARGET);
 	}
 	else if(activeCommands.Has(Command::BOARD))
 	{
@@ -4395,6 +4437,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				if(it == options.begin())
 					it = options.end();
 				ship.SetTargetShip((--it)->first->shared_from_this());
+				UI::PlaySound(UI::UISound::TARGET);
 			}
 		}
 	}
@@ -4443,7 +4486,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		if(target)
 			message.clear();
 		else if(!message.empty())
-			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::FAILURE);
 
 		Messages::Importance messageImportance = Messages::Importance::High;
 
@@ -4466,7 +4509,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				message = "The authorities on this " + next->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 				messageImportance = Messages::Importance::Highest;
-				Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(next != target)
 				message = "Switching landing targets. Now landing on " + next->DisplayName() + ".";
@@ -4506,14 +4549,14 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			{
 				message = "There are no planets in this system that you can land on.";
 				messageImportance = Messages::Importance::Highest;
-				Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(!target->GetPlanet()->CanLand())
 			{
 				message = "The authorities on this " + target->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 				messageImportance = Messages::Importance::Highest;
-				Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(!types.empty())
 			{
@@ -4725,25 +4768,25 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		{
 			Messages::Add("You do not have a hyperdrive installed.", Messages::Importance::Highest);
 			autoPilot.Clear();
-			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(!ship.JumpNavigation().JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.", Messages::Importance::Highest);
 			autoPilot.Clear();
-			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.", Messages::Importance::Highest);
 			autoPilot.Clear();
-			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(ship.IsLanding())
 		{
 			Messages::Add("You cannot jump while landing.", Messages::Importance::Highest);
 			autoPilot.Clear(Command::JUMP);
-			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else
 		{
@@ -5078,4 +5121,59 @@ void AI::UpdateOrders(const Ship &ship)
 		// Ensure the system reference is maintained.
 		order.targetSystem = ship.GetSystem();
 	}
+}
+
+
+
+// Mission NPC blocks may define specific travel plans.
+void AI::IssueNPCOrders(Ship &ship, const Planet *destination)
+{
+	Orders newOrders;
+	const System *targetSystem = ship.GetDestinationSystem();
+	const map<const Planet *, bool> &stopovers = ship.GetStopovers();
+	const System *from = ship.GetSystem();
+	if(targetSystem)
+	{
+		RoutePlan routePlan(ship, *targetSystem, nullptr);
+		if(!routePlan.HasRoute())
+			ship.EraseWaypoint(targetSystem);
+		else
+		{
+			newOrders.type = Orders::TRAVEL_TO;
+			newOrders.targetSystem = targetSystem;
+			if(from == targetSystem)
+			{
+				// Travel to the next waypoint, if it exists.
+				ship.SetTargetStellar(nullptr);
+				const System *nextSystem = ship.NextWaypoint();
+				if(nextSystem)
+					newOrders.targetSystem = nextSystem;
+				else
+					newOrders.targetSystem = nullptr;
+			}
+		}
+	}
+
+	// If one of the planets in this system is a destination or stopover, it
+	// supercedes the order to travel to the next waypoint (unless already visited).
+	if(destination && destination->IsInSystem(from))
+	{
+		newOrders.type = Orders::LAND_ON;
+		newOrders.targetPlanet = destination;
+	}
+
+	for(const auto &it : stopovers)
+		if(!it.second && it.first->IsInSystem(from))
+		{
+			newOrders.type = Orders::LAND_ON;
+			newOrders.targetPlanet = it.first;
+			break;
+		}
+
+	// Update the NPC's orders.
+	Orders &existing = orders[&ship];
+	if(!newOrders.targetSystem && newOrders.type != Orders::LAND_ON)
+		orders.erase(&ship);
+	else
+		existing = newOrders;
 }
