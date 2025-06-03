@@ -215,7 +215,7 @@ namespace {
 	// of jamming.
 	double CalculateJamChance(double scrambling)
 	{
-		return scrambling ? 1. - pow(std::numbers::e, -1. * (scrambling / 100.)) : 1.;
+		return scrambling ? 1. - pow(2., -1. * (scrambling / 70.)) : 1.;
 	}
 }
 
