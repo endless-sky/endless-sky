@@ -213,9 +213,9 @@ namespace {
 	// of 60 (i.e. the ion cannon) will approximately have an 9.5% of jamming its
 	// target, while seven of those same weapons will have just over a 50% chance
 	// of jamming.
-	double CalculateFiringChance(double scrambling)
+	double CalculateJamChance(double scrambling)
 	{
-		return scrambling ? pow(std::numbers::e, -1. * (scrambling / 100.)) : 1.;
+		return scrambling ? 1. - pow(std::numbers::e, -1. * (scrambling / 100.)) : 1.;
 	}
 }
 
@@ -2087,7 +2087,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	tractorBeamRange = 0.;
 	tractorFlotsam.clear();
 
-	double firingChance = CalculateFiringChance(scrambling);
+	double jamChance = CalculateJamChance(scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2104,7 +2104,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 				tractorBeamRange = max(tractorBeamRange, weapon->Velocity() + weaponRadius);
 			else if(firingCommands.HasFire(i))
 			{
-				armament.Fire(i, *this, projectiles, visuals, Random::Real() > firingChance);
+				armament.Fire(i, *this, projectiles, visuals, Random::Real() < jamChance);
 				if(cloak)
 				{
 					double cloakingFiring = attributes.Get("cloaked firing");
@@ -2150,14 +2150,14 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct(Ship::ActionType::FIRE))
 		return false;
 
-	double firingChance = CalculateFiringChance(scrambling);
+	double jamChance = CalculateJamChance(scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
 		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
-			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() > firingChance))
+			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
 
@@ -2189,7 +2189,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 			return pullVector;
 	}
 
-	double firingChance = CalculateFiringChance(scrambling);
+	double jamChance = CalculateJamChance(scrambling);
 
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	const vector<Hardpoint> &hardpoints = armament.Get();
@@ -2197,7 +2197,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
 		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
-			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() > firingChance))
+			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
 				// Heavier flotsam are harder to pull.
@@ -3306,7 +3306,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| ((damage.Heat() || damage.Burn()) && isOverheated)
 				|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
 				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
-				|| (damage.Scrambling() && CalculateFiringChance(scrambling) > 0.1)
+				|| (damage.Scrambling() && CalculateJamChance(scrambling) > 0.1)
 				|| (damage.Slowing() && slowness > 10.)
 				|| (damage.Disruption() && disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
