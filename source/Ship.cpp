@@ -212,9 +212,11 @@ namespace {
 	// The scale is such that a weapon with a scrambling damage of 6 and a reload
 	// of 60 (i.e. the ion cannon) will approximately have an 9.5% of jamming its
 	// target, while seven of those same weapons will have a 50% chance of jamming.
+	// Very small amounts of scrambling are ignored, to prevent weapons from jamming
+	// well after combat has ended.
 	double CalculateJamChance(double scrambling)
 	{
-		return scrambling ? 1. - pow(2., -1. * (scrambling / 70.)) : 1.;
+		return scrambling > .1 ? 1. - pow(2., -1. * (scrambling / 70.)) : 0.;
 	}
 }
 
