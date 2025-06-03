@@ -643,18 +643,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeLabels.emplace_back("homing type:");
 		attributeValues.emplace_back(outfit.Leading() ? "leading" : "direct");
 		attributesHeight += 20;
-		if(outfit.HasBlindspot())
-		{
-			attributeLabels.emplace_back("Cannot track targets behind it.");
-			attributeValues.emplace_back(" ");
-			attributesHeight += 20;
-		}
-		if(outfit.ThrottleControl())
-		{
-			attributeLabels.emplace_back("Can control thrust.");
-			attributeValues.emplace_back(" ");
-			attributesHeight += 20;
-		}
 	}
 	static const vector<string> PERCENT_NAMES = {
 		"tracking:",
@@ -678,6 +666,18 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.push_back(Format::Number(percent) + "%");
 			attributesHeight += 20;
 		}
+	if(outfit.ThrottleControl())
+	{
+		attributeLabels.emplace_back("Projectiles can control thrust.");
+		attributeValues.emplace_back(" ");
+		attributesHeight += 20;
+	}
+	if(outfit.HasBlindspot())
+	{
+		attributeLabels.emplace_back("Cannot track targets behind it.");
+		attributeValues.emplace_back(" ");
+		attributesHeight += 20;
+	}
 
 	// Pad the table.
 	attributeLabels.emplace_back();
