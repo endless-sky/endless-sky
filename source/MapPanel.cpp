@@ -378,8 +378,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	bool isSmallScreen = Screen::Width() < mapInterface->GetValue("small screen width");
-	const Interface *mapButtonUi = GameData::Interfaces().Get(isSmallScreen
+	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1300
 		? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
 
