@@ -415,8 +415,8 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 		map<string, map<Ship *, int>> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
-			// Skip ships that have been destroyed, have landed, or are disabled.
-			if(ship->LandedOrDestroyed() || ship->IsDisabled())
+			// Skip ships that have been destroyed.
+			if(ship->IsDestroyed() || ship->IsDisabled())
 				continue;
 
 			// Redo the loading up of fighters.
@@ -436,8 +436,8 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 		shared_ptr<Ship> npcFlagship;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
-			// Skip ships that have been destroyed or permanently landed.
-			if(ship->LandedOrDestroyed())
+			// Skip ships that have been destroyed.
+			if(ship->IsDestroyed())
 				continue;
 
 			// Avoid the exploit where the player can wear down an NPC's
@@ -1884,11 +1884,11 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Move(newVisuals, newFlotsam);
 	if(ship->IsDisabled() && !wasDisabled)
 		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
-	// Ships which are dead or landed should report that event.
+	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
-		// Make sure this ship's destruction or landing was recorded, even if
-		// it died from self-destruct.
+		// Make sure this ship's destruction was recorded, even if it died from
+		// self-destruct.
 		if(ship->IsDestroyed())
 		{
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
@@ -1900,8 +1900,6 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			if(ship->IsYours())
 				player.DeselectShip(ship.get());
 		}
-		else if(ship->HasLanded() && ship->IsSpecial())
-			eventQueue.emplace_back(nullptr, ship, ShipEvent::LAND);
 		return;
 	}
 
