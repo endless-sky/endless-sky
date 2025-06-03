@@ -4815,9 +4815,9 @@ bool Ship::DoLandingLogic()
 					else
 					{
 						MarkForRemoval();
+						return true;
 					}
 				}
-				return true;
 			}
 
 			SetTargetAsteroid(nullptr);
