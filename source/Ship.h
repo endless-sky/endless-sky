@@ -277,6 +277,11 @@ public:
 	// If the ship is landed, get the planet it has landed on.
 	const Planet *GetPlanet() const;
 
+	// Get a "scale" value, ranging from 0.2 to 2.0, based on the distance this
+	// ship is from the center of its system.
+	// Used for ramscoop and solar energy collection calculations.
+	double SolarDistanceScale() const;
+
 	// Check the status of this ship.
 	bool IsCapturable() const;
 	bool IsTargetable() const;
