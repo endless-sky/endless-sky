@@ -219,7 +219,7 @@ Version 0.10.13
       * Plugins can now be loaded from zip files. (@tibetiroka, @TomGoodIdea)
       * Missions can be given a "complete at" location filter, allowing them to be completed at any matching location. (@UnorderedSigh)
       * Added autoconditions for checking what day of the week it is. (@Amazinite)
-      * Turret hardpoints can now define "blindspots"; angles that they cannot aim towards. (@TomGoodIdea, @RisingLeaf, @tibetiroka, @petervdmeer)
+      * Turret hardpoints can now define "blindspots"; angles that they cannot fire towards. (@TomGoodIdea, @RisingLeaf, @tibetiroka, @petervdmeer)
       * Lines in outfit and ship descriptions can now have condition sets to determine when they are visible. (@Amazinite)
       * Missions can now customize the color of their names in the mission panel. (@Amazinite)
       * Location filters can now check if a planet or system has been visited by the player. (@Amazinite, @TomGoodIdea)
