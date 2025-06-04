@@ -336,6 +336,7 @@ contributed to Endless Sky:
   LukeMarlin
   lumbar527
   luzpaz
+  M68HC060
   macfreek
   Mach565
   MageKing17
