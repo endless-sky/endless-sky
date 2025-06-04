@@ -133,7 +133,7 @@ Replace `<preset>` with one of the following presets:
 
 - Windows: `clang-cl` (builds with Clang for Windows), `mingw` (builds with MinGW), `mingw32` (builds with x86 MinGW)
 - MacOS: `macos` or `macos-arm` (builds with the default compiler, for x64 and ARM64 respectively)
-- Linux: `linux` (builds with the default compiler), `linux-gles` (compiles with GLES instead of OpenGL support)
+- Linux: `linux` (builds with the default compiler), `linux-gles` (compiles with GLES instead of OpenGL support), `linux-armv7` (provides better support for 32-bit ARM systems)
 
 You can list all of available presets with `cmake --list-presets`.
 

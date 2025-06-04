@@ -64,7 +64,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.13
+project("Endless Sky" VERSION 0.10.14
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -173,6 +173,8 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+elseif(ES_LINK_LIBATOMIC)
+	target_link_libraries(ExternalLibraries INTERFACE pthread atomic)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 endif()
