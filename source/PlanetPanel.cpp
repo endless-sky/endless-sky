@@ -55,8 +55,7 @@ using namespace std;
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
-	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get(Screen::Width() < 1280 ? "planet (small screen)" : "planet"))
+	planet(*player.GetPlanet()), system(*player.GetSystem())
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
@@ -67,7 +66,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetRect(ui.GetBox("content"));
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -179,12 +177,17 @@ void PlanetPanel::Draw()
 			info.SetCondition("has outfitter");
 	}
 
-	ui.Draw(info, this);
+	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	ui->Draw(info, this);
 
 	// The description text needs to be updated because player conditions can be changed
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
+	{
+		Rectangle box = ui->GetBox("content");
+		description->SetRect(ui->GetBox("content"));
 		description->SetText(planet.Description().ToString());
+	}
 }
 
 
@@ -257,7 +260,6 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(command.Has(Command::INFO))
 	{
-		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
