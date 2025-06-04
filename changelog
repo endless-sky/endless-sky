@@ -1,6 +1,19 @@
+Version 0.10.13.1
+  * Bug fixes:
+    * Engine bugs:
+      * Removed NPC travel instructions, fixing issues with some mission NPCs not starting in the correct system and other ships persisting or being removed on landing when they should do the opposite. (@Amazinite)
+      * Invalid systems will not be included in the "neighbors" lists of other systems. (@Amazinite)
+      * Slightly increased the screen width below which the "small screen" map panel button layout is used to avoid overlaps with other elements. (@Amazinite)
+  * Game content:
+    * Other:
+      * "FW Bounty 1" now includes its destination in its description. (@Anarchist2)
+  * CI/CD and development environment:
+    * Caching in CI/CD now only relies on actions/cache. (@tibetiroka)
+    * Added a CMake preset for armv7. (@M68HC060, @TomGoodIdea)
+
 Version 0.10.13
   * Big changes:
-    * Revamped the Quarg with new artwork, ships, outfits, descriptions, and balance changes more appropriate for their tier level. (@1010todd, @Arachi-Lover, @Azure3141, @Brick63, @Quantumshark, @JimmyFiryh, @Saugia)
+    * Revamped the Quarg with new artwork, ships, outfits, descriptions, and balance changes more appropriate for their tier level. (@1010todd, @Arachi-Lover, @Azure3141, @Brick63, @JimmyFiryh, @Karirawri, @Quantumshark, @Saugia)
     * Added a command for pausing time in the game without pulling up a menu, allowing you to send commands to your escorts without the stress of combat. The default key is 'P'. (@TomGoodIdea, @Zarkonnen, @TheGiraffe3, @Amazinite)
     * Added sound effects to various interactions with the UI. (@tibetiroka)
     * OpenGL fragment and vertex shader code is now defined in data files, instead of within the compiled binary, and so can be customized without recompilation. (@tibetiroka)
@@ -206,7 +219,7 @@ Version 0.10.13
       * Plugins can now be loaded from zip files. (@tibetiroka, @TomGoodIdea)
       * Missions can be given a "complete at" location filter, allowing them to be completed at any matching location. (@UnorderedSigh)
       * Added autoconditions for checking what day of the week it is. (@Amazinite)
-      * Turret hardpoints can now define "blindspots"; angles that they cannot aim towards. (@TomGoodIdea, @RisingLeaf, @tibetiroka, @petervdmeer)
+      * Turret hardpoints can now define "blindspots"; angles that they cannot fire towards. (@TomGoodIdea, @RisingLeaf, @tibetiroka, @petervdmeer)
       * Lines in outfit and ship descriptions can now have condition sets to determine when they are visible. (@Amazinite)
       * Missions can now customize the color of their names in the mission panel. (@Amazinite)
       * Location filters can now check if a planet or system has been visited by the player. (@Amazinite, @TomGoodIdea)
