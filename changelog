@@ -1,8 +1,7 @@
 Version 0.10.13.1
-  * Breaking changes:
-    * Support for NPC travel instructions has been removed. (@Amazinite)
   * Bug fixes:
     * Engine bugs:
+      * Removed NPC travel instructions, fixing issues with some mission NPCs not starting in the correct system and other ships persisting or being removed on landing when they should do the opposite. (@Amazinite)
       * Invalid systems will not be included in the "neighbors" lists of other systems. (@Amazinite)
       * Slightly increased the screen width below which the "small screen" map panel button layout is used to avoid overlaps with other elements. (@Amazinite)
   * Game content:
