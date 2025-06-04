@@ -247,7 +247,7 @@ planet Anitlos
 
 planet Antamesa
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa31
+	landscape land/nasa24
 	description `The planet’s tempest winds thrum beneath vibrant emerald and velvet auroras that flare like curtains aflame. Derelict stations sprawl across its skies, a single flank of each bristling with empty missile tubes. A handful remain semi-intact, casting warm, rosy halos against the swirling clouds, launchers still baring skyward at forgotten foes.`
 	government Uninhabited
 	security 0
@@ -474,7 +474,7 @@ planet Bailey
 
 planet Baliesa
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa26
+	landscape land/nasa33
 	description `One of the smallest "Hot Jupiters" known, Baliesa is a calm, undemanding gas giant. Occasional storms form near the terminator line between the night and day side, but soon split in smaller and smaller vortexes until they disappear. The violet-tinted skies of the upper atmosphere leave space to a bright pink-colored haze below, hampering visual navigation but otherwise not causing any trouble.`
 	government Uninhabited
 	security 0
@@ -1708,7 +1708,7 @@ planet "Factory of Eblumab"
 
 planet Faliete
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa14
+	landscape land/nasa36
 	description `Veiled behind roiling storms, the silhouette of an enormous structure is suspended within the planet’s upper clouds. Automated drones swarm the complex like moths to a flame, carrying raw components to mysterious ends. Occasionally, the factory disgorges vast slabs of smoky glass and metallic alloy. They glint in the dim light as they flutter downwards, fracturing into ever-smaller mosaics of scrap as they descend.`
 	description `	By the time these expansive sheets reach the lower atmosphere, they are little more than incandescent fragments, casting a constant, shimmering glow across the sky.`
 	government Uninhabited
@@ -4393,7 +4393,7 @@ planet Passaritus
 
 planet Pathera
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa24
+	landscape land/nasa14
 	description `The planet’s upper bands contain an unusually high concentration of rainbow-hued micrometeoroids, leaving ghostly trails in their wake. Rising thermal columns glow in a delicate pink as they carry some of the debris upwards.`
 	government Uninhabited
 	security 0
