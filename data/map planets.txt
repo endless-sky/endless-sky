@@ -3405,7 +3405,7 @@ planet Melenci
 
 planet Meligara
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa22
+	landscape land/nasa41
 	description `Of the three gas giants that orbit around Ritilas, Meligara is by far the closest to the lavender wormholes. The small distance made it inevitable for the two to influence each other: the gas giant has no major moon, and even its ring visibly tend to incline and become elliptical when the wormhole is at its closest.`
 	description `	Its thick clouds make it nearly impossible to navigate through the lower atmosphere, echoing strange readings in every direction.`
 	government Uninhabited
