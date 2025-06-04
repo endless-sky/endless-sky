@@ -1,3 +1,17 @@
+Version 0.10.13.1
+  * Breaking changes:
+    * Support for NPC travel instructions has been removed. (@Amazinite)
+  * Bug fixes:
+    * Engine bugs:
+      * Invalid systems will not be included in the "neighbors" lists of other systems. (@Amazinite)
+      * Slightly increased the screen width below which the "small screen" map panel button layout is used to avoid overlaps with other elements. (@Amazinite)
+  * Game content:
+    * Other:
+      * "FW Bounty 1" now includes its destination in its description. (@Anarchist2)
+  * CI/CD and development environment:
+    * Caching in CI/CD now only relies on actions/cache. (@tibetiroka)
+    * Added a CMake preset for armv7. (@M68HC060, @TomGoodIdea)
+
 Version 0.10.13
   * Big changes:
     * Revamped the Quarg with new artwork, ships, outfits, descriptions, and balance changes more appropriate for their tier level. (@1010todd, @Arachi-Lover, @Azure3141, @Brick63, @JimmyFiryh, @Karirawri, @Quantumshark, @Saugia)
