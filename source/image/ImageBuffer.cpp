@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 
-#include "../File.h"
+#include "../Files.h"
 #include "ImageFileData.h"
 #include "../Logger.h"
 
@@ -271,10 +271,15 @@ bool ImageBuffer::Read(const ImageFileData &data, int frame)
 
 
 namespace {
+	void ReadPNGInput(png_structp pngStruct, png_bytep outBytes, png_size_t byteCountToRead)
+	{
+		static_cast<iostream *>(png_get_io_ptr(pngStruct))->read(reinterpret_cast<char *>(outBytes), byteCountToRead);
+	}
+
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
 		// Open the file, and make sure it really is a PNG.
-		File file(path.string());
+		shared_ptr<iostream> file = Files::Open(path.string());
 		if(!file)
 			return false;
 
@@ -296,26 +301,7 @@ namespace {
 			return false;
 		}
 
-		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
-		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
-
-		// Not using SDLRW_ops directly here, because of preprocessor conflicts with libjpeg on windows.
-		struct MemBuffer {
-			std::string data;
-			size_t pos;
-		} pngData {
-			Files::Read(file),
-			0
-		};
-		png_set_read_fn(png, &pngData, [](png_struct* png, png_bytep data, size_t length) {
-         MemBuffer* p = reinterpret_cast<MemBuffer*>(png_get_io_ptr(png));
-			if (length + p->pos > p->data.size())
-         {
-            png_error(png, "EOF hit when reading bytes from png file");
-         }
-			memcpy(data, p->data.data() + p->pos, length);
-			p->pos += length;
-      });
+		png_set_read_fn(png, file.get(), ReadPNGInput);
 		png_set_sig_bytes(png, 0);
 
 		png_read_info(png, info);
@@ -390,8 +376,8 @@ namespace {
 
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
-		File file(path.string());
-		if(!file)
+		string data = Files::Read(path);
+		if(data.empty())
 			return false;
 
 		jpeg_decompress_struct cinfo;
@@ -402,8 +388,7 @@ namespace {
 		jpeg_create_decompress(&cinfo);
 #pragma GCC diagnostic pop
 
-		std::string jpg_data = Files::Read(file);
-		jpeg_mem_src(&cinfo, reinterpret_cast<unsigned char*>(&jpg_data[0]), jpg_data.size());
+		jpeg_mem_src(&cinfo, reinterpret_cast<const unsigned char *>(data.data()), data.size());
 		jpeg_read_header(&cinfo, true);
 		cinfo.out_color_space = JCS_EXT_RGBA;
 
@@ -453,11 +438,9 @@ namespace {
 
 	bool ReadKTX(const filesystem::path &path, ImageBuffer &buffer)
 	{
-		File file(path);
-		if(!file)
+		std::string ktx_data = Files::Read(path);
+		if(ktx_data.empty())
 			return false;
-
-		std::string ktx_data = Files::Read(file);
 
 		KtxFile ktx(ktx_data);
 		if (!ktx.Valid())

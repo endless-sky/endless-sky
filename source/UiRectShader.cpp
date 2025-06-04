@@ -87,7 +87,7 @@ void UiRectShader::Init(const Color& border1, const Color& border2, const Color&
 		"  }\n"
 		"}\n";
 
-	shader = Shader(vertexCode, fragmentCode.c_str());
+	shader.Load(vertexCode, fragmentCode.c_str());
 	scaleI = shader.Uniform("scale");
 	centerI = shader.Uniform("center");
 	sizeI = shader.Uniform("size");

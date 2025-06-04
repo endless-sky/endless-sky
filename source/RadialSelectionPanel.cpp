@@ -418,7 +418,7 @@ void RadialSelectionPanel::Draw()
 		float height = font.Height();
 		float posx = m_position.X() + (m_labelPos.X() - width / 2.0);
 		float posy = m_position.Y() + (m_labelPos.Y() - height/ 2.0);
-		FillShader::Fill(m_labelPos, {width, height}, Color(0, .5));
+		FillShader::Fill(m_labelPos + m_position, {width, height}, Color(0, .5));
 		font.DrawAliased(m_options[m_selected_idx].description, posx, posy, *colorBright);
 	}
 	

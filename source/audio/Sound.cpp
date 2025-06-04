@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Sound.h"
 
-#include "../File.h"
+#include "../Files.h"
 
 #include <SDL2/SDL_rwops.h>
 #include "../Files.h"
@@ -23,8 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <AL/al.h>
 
 #include <cstdint>
-#include <cstdio>
-#include <vector>
 
 
 #pragma GCC diagnostic push
@@ -44,12 +42,11 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(File &in, uint32_t &frequency);
-	uint32_t Read4(File &in);
-	uint16_t Read2(File &in);
+	uint32_t ReadHeader(shared_ptr<iostream> in, uint32_t &frequency);
+	uint32_t Read4(const shared_ptr<iostream> in);
+	uint16_t Read2(const shared_ptr<iostream> in);
 
-	// Read an mp3 file
-	bool ReadMP3(File& in, vector<char>& data, uint32_t &frequency);
+	bool ReadMP3(const shared_ptr<iostream>& in, vector<char>& data, uint32_t& frequency);
 }
 
 
@@ -62,27 +59,24 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 	bool isFast = isLooped ? path.stem().string().ends_with("@3x~") : path.stem().string().ends_with("@3x");
 	unsigned &buf = isFast ? buffer3x : buffer;
 
+	shared_ptr<iostream> in = Files::Open(path);
+	if(!in)
+		return false;
 	uint32_t frequency = 0;
 	vector<char> data;
 
 	if(path.extension() == ".wav")
 	{
-		File in(path);
-		if(!in)
-			return false;
 		uint32_t bytes = ReadHeader(in, frequency);
 		if(!bytes)
 			return false;
 
 		data.resize(bytes);
-		if(SDL_RWread(in, &data[0], 1, bytes) != bytes)
+		in->read(data.data(), bytes);
 			return false;
 	}
 	else if(path.extension() == ".mp3")
 	{
-		File in(path);
-		if(!in)
-			return false;
 		if(!ReadMP3(in, data, frequency))
 			return false;
 	}
@@ -132,7 +126,7 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(File &in, uint32_t &frequency)
+	uint32_t ReadHeader(shared_ptr<iostream> in, uint32_t &frequency)
 	{
 		uint32_t chunkID = Read4(in);
 		if(chunkID != 0x46464952) // "RIFF" in big endian.
@@ -165,7 +159,7 @@ namespace {
 
 				// Skip any further bytes in this chunk.
 				if(subchunkSize > 16)
-					SDL_RWseek(in, subchunkSize - 16, RW_SEEK_CUR);
+					in->seekg(subchunkSize - 16, ios::cur);
 
 				if(audioFormat != 1)
 					return 0;
@@ -185,16 +179,17 @@ namespace {
 				return subchunkSize;
 			}
 			else
-				SDL_RWseek(in, subchunkSize, RW_SEEK_CUR);
+				in->seekg(subchunkSize, ios::cur);
 		}
 	}
 
 
 
-	uint32_t Read4(File &in)
+	uint32_t Read4(const shared_ptr<iostream> in)
 	{
 		unsigned char data[4];
-		if(SDL_RWread(in, data, 1, 4) != 4)
+		in->read(reinterpret_cast<char *>(data), 4);
+		if(in->gcount() != 4)
 			return 0;
 		uint32_t result = 0;
 		for(int i = 0; i < 4; ++i)
@@ -204,10 +199,11 @@ namespace {
 
 
 
-	uint16_t Read2(File &in)
+	uint16_t Read2(const shared_ptr<iostream> in)
 	{
 		unsigned char data[2];
-		if(SDL_RWread(in, data, 1, 2) != 2)
+		in->read(reinterpret_cast<char *>(data), 2);
+		if(in->gcount() != 2)
 			return 0;
 		uint16_t result = 0;
 		for(int i = 0; i < 2; ++i)
@@ -217,7 +213,7 @@ namespace {
 
 
 
-	bool ReadMP3(File& in, vector<char>& data, uint32_t& frequency)
+	bool ReadMP3(const shared_ptr<iostream>& in, vector<char>& data, uint32_t& frequency)
 	{
 		mp3dec_t mp3d;
 		mp3dec_init(&mp3d);

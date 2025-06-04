@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipyardPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
 #include "Color.h"
@@ -37,7 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -53,17 +53,14 @@ namespace {
 
 
 
-ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, false), modifier(0)
+ShipyardPanel::ShipyardPanel(PlayerInfo &player, Sale<Ship> stock)
+	: ShopPanel(player, false), modifier(0), shipyard(stock)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);
 
 	for(pair<const string, vector<string>> &it : catalog)
 		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
-
-	if(player.GetPlanet())
-		shipyard = player.GetPlanet()->Shipyard();
 }
 
 
@@ -140,7 +137,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 		if(shipSprite)
 		{
 			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
-			const int swizzle = selectedShip->CustomSwizzle() >= 0
+			const Swizzle *swizzle = selectedShip->CustomSwizzle()
 				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
 		}

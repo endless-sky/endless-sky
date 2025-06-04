@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Color.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "DelaunayTriangulation.h"
 #include "GameData.h"
@@ -416,6 +417,34 @@ Point UI::GetMouse()
 	int y = 0;
 	SDL_GetMouseState(&x, &y);
 	return Screen::TopLeft() + Point(x, y) * (100. / Screen::Zoom());
+}
+
+
+
+void UI::PlaySound(UISound sound)
+{
+	string name;
+	switch(sound)
+	{
+		case UISound::NORMAL:
+			name = "ui/click";
+			break;
+		case UISound::SOFT:
+			name = "ui/click soft";
+			break;
+		case UISound::SOFT_BUZZ:
+			name = "ui/buzz soft";
+			break;
+		case UISound::TARGET:
+			name = "ui/target";
+			break;
+		case UISound::FAILURE:
+			name = "ui/fail";
+			break;
+		default:
+			return;
+	}
+	Audio::Play(Audio::Get(name), SoundCategory::UI);
 }
 
 

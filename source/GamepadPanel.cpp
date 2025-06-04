@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Command.h"
 #include "GameData.h"
 #include "Information.h"

@@ -18,8 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GamePad.h"
 #include "GamepadCursor.h"
 #include "Rectangle.h"
-#include "text/alignment.hpp"
-#include "CategoryTypes.h"
+#include "text/Alignment.h"
+#include "CategoryList.h"
+#include "CategoryType.h"
 #include "Color.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -45,7 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -148,10 +149,29 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
-	// If the player has acquired a second ship for the first time, explain to
-	// them how to reorder the ships in their fleet.
-	if(player.Ships().size() > 1)
-		DoHelp("multiple ships");
+	if(!checkedHelp && GetUI()->IsTop(this) && player.Ships().size() > 1)
+	{
+		if(DoHelp("multiple ships"))
+		{
+			// Nothing to do here, just don't want to execute the other branch.
+		}
+		else if(!Preferences::Has("help: shop with multiple ships"))
+		{
+			set<string> modelNames;
+			for(const auto &it : player.Ships())
+			{
+				if(!CanShowInSidebar(*it, player.GetPlanet()))
+					continue;
+				if(modelNames.contains(it->DisplayModelName()))
+				{
+					DoHelp("shop with multiple ships");
+					break;
+				}
+				modelNames.insert(it->DisplayModelName());
+			}
+		}
+		checkedHelp = true;
+	}
 }
 
 
@@ -194,7 +214,7 @@ void ShopPanel::Draw()
 		}
 		else
 		{
-			int swizzle = dragShip->CustomSwizzle() >= 0
+			const Swizzle *swizzle = dragShip->CustomSwizzle()
 				? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
 		}
@@ -220,7 +240,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 	const Sprite *thumbnail = ship.Thumbnail();
 	const Sprite *sprite = ship.GetSprite();
-	int swizzle = ship.CustomSwizzle() >= 0 ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+	const Swizzle *swizzle = ship.CustomSwizzle() ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 	if(thumbnail)
 		SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
 	else if(sprite)
@@ -336,6 +356,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(!isOutfitter)
 			player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
+		UI::PlaySound(UI::UISound::NORMAL);
 	}
 	else if(command.Has(Command::HELP))
 	{
@@ -343,6 +364,20 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			if(isOutfitter)
 				DoHelp("outfitter with multiple ships", true);
+
+			set<string> modelNames;
+			for(const auto &it : player.Ships())
+			{
+				if(!CanShowInSidebar(*it, player.GetPlanet()))
+					continue;
+				if(modelNames.contains(it->DisplayModelName()))
+				{
+					DoHelp("shop with multiple ships", true);
+					break;
+				}
+				modelNames.insert(it->DisplayModelName());
+			}
+
 			DoHelp("multiple ships", true);
 		}
 		if(isOutfitter)
@@ -644,6 +679,7 @@ bool ShopPanel::ControllerButtonDown(SDL_GameControllerButton button)
 bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
+	// Handle clicks on the buttons.
 	char button = CheckButton(x, y);
 	if(button)
 		return DoKey(button);
@@ -711,49 +747,18 @@ bool ShopPanel::Click(int x, int y, int clicks)
 	for(const ClickZone<const Ship *> &zone : shipZones)
 		if(zone.Contains(clickPoint))
 		{
-			if(clicks > 1)
-			{
-				bool foundSelectedShip = false;
-				// select all contiguous ships that are the same type as the
-				// ship that was double-clicked.
-				std::set<Ship*> playerShipsToSelect;
-				for(const shared_ptr<Ship> &ship : player.Ships())
+			lastShipClickTime = SDL_GetTicks();
+			const Ship *clickedShip = zone.Value();
+			for(const shared_ptr<Ship> &ship : player.Ships())
+				if(ship.get() == clickedShip)
 				{
-					// Skip any ships that are "absent" for whatever reason.
-					if(!CanShowInSidebar(*ship, player.GetPlanet()))
-						continue;
-					if(ship.get() == zone.Value())
-					{
-						foundSelectedShip = true;
-						SideSelect(ship.get());
-					}
-					if(ship->TrueModelName() == zone.Value()->TrueModelName())
-						playerShipsToSelect.insert(ship.get());
-					else if(!foundSelectedShip) // not the correct range
-						playerShipsToSelect.clear();
-					else
-						break; // we hit the end of the correct range.
+					dragShip = ship.get();
+					dragPoint.Set(x, y);
+					SideSelect(dragShip, clicks);
+					break;
 				}
-				if(foundSelectedShip)
-				{
-					playerShips = playerShipsToSelect;
-					return true;
-				}
-			}
-			else
-			{
-				lastShipClickTime = SDL_GetTicks();
 
-				// Is the ship that was clicked one of the player's?
-				for(const shared_ptr<Ship> &ship : player.Ships())
-					if(ship.get() == zone.Value())
-					{
-						dragShip = ship.get();
-						dragPoint.Set(x, y);
-						SideSelect(dragShip);
-						return true;
-					}
-			}
+			return true;
 		}
 
 
@@ -921,7 +926,7 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 	if((owned && onlyOwned) || player.Stock(outfit) > 0)
 		return 0;
 
-	const Sale<Outfit> &available = player.GetPlanet()->Outfitter();
+	const Sale<Outfit> &available = player.GetPlanet()->OutfitterStock();
 
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())
@@ -1043,7 +1048,7 @@ void ShopPanel::DrawShipsSidebar()
 			}
 			else
 			{
-				int swizzle = ship->CustomSwizzle() >= 0 ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+				const Swizzle *swizzle = ship->CustomSwizzle() ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 				SpriteShader::Draw(sprite, point, scale, swizzle);
 			}
 		}
@@ -1514,14 +1519,13 @@ void ShopPanel::SideSelect(int count)
 
 
 
-void ShopPanel::SideSelect(Ship *ship)
+void ShopPanel::SideSelect(Ship *ship, int clicks)
 {
 	bool shift = (SDL_GetModState() & KMOD_SHIFT);
 	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
 
 	if(shift)
 	{
-		lastShipClickTime = -1;
 		bool on = false;
 		const Planet *here = player.GetPlanet();
 		for(const shared_ptr<Ship> &other : player.Ships())
@@ -1542,21 +1546,68 @@ void ShopPanel::SideSelect(Ship *ship)
 	else if(!control)
 	{
 		// playerShips.clear(); // deferred until we know if it was a long click
+		if(clicks > 1)
+		{
+			lastShipClickTime = -1;
+			for(const shared_ptr<Ship> &it : player.Ships())
+			{
+				if(!CanShowInSidebar(*it, player.GetPlanet()))
+					continue;
+				if(it.get() != ship && it->Imitates(*ship))
+					playerShips.insert(it.get());
+			}
+		}
 	}
-	else if(playerShips.contains(ship))
+	else
 	{
-		lastShipClickTime = -1;
-		playerShips.erase(ship);
-		if(playerShip == ship)
-			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
-		CheckSelection();
-		return;
+		if(clicks > 1)
+		{
+			lastShipClickTime = -1;
+			vector<Ship *> similarShips;
+			// If the ship isn't selected now, it was selected at the beginning of the whole "double click" action,
+			// because the first click was handled normally.
+			bool unselect = !playerShips.contains(ship);
+			for(const shared_ptr<Ship> &it : player.Ships())
+			{
+				if(!CanShowInSidebar(*it, player.GetPlanet()))
+					continue;
+				if(it.get() != ship && it->Imitates(*ship))
+				{
+					similarShips.push_back(it.get());
+					unselect &= playerShips.contains(it.get());
+				}
+			}
+			for(Ship *it : similarShips)
+			{
+				if(unselect)
+					playerShips.erase(it);
+				else
+					playerShips.insert(it);
+			}
+			if(unselect && find(similarShips.begin(), similarShips.end(), playerShip) != similarShips.end())
+			{
+				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+				CheckSelection();
+				return;
+			}
+		}
+		else if(playerShips.contains(ship))
+		{
+			lastShipClickTime = -1;
+			playerShips.erase(ship);
+			if(playerShip == ship)
+				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+			CheckSelection();
+			return;
+		}
 	}
 
 	playerShip = ship;
 	if (playerShips.count(playerShip))
+	{
 		// Already here. remove it if this turns out to be a long click
 		shipToRemoveIfLongClick = ship;
+	}
 	else
 	{
 		playerShips.insert(playerShip);

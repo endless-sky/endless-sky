@@ -27,7 +27,7 @@ using namespace std;
 
 
 
-Shader::Shader(const char *vertex, const char *fragment)
+void Shader::Load(const char *vertex, const char *fragment)
 {
 	GLuint vertexShader = Compile(vertex, GL_VERTEX_SHADER);
 	GLuint fragmentShader = Compile(fragment, GL_FRAGMENT_SHADER);

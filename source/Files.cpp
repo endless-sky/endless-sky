@@ -15,29 +15,27 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Files.h"
 
-#include "File.h"
 #include "Logger.h"
+#include "ZipFile.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_rwops.h>
 
-#if defined _WIN32
-#define STRICT
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#else
-#include <dirent.h>
-#endif
-
 #include <algorithm>
+#include <fstream>
 #include <iostream>
+#include <map>
 #include <mutex>
+#include <sstream>
 #include <stdexcept>
 #include <memory>
 
 #ifdef __ANDROID__
 #include "AndroidAsset.h"
+#include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <dirent.h>
 #include <unistd.h>
 #endif
 
@@ -55,7 +53,7 @@ namespace {
 	filesystem::path globalPluginPath;
 	filesystem::path testPath;
 
-	File errorLog;
+	shared_ptr<iostream> errorLog;
 
 	// Open the given folder in a separate window.
 	void OpenFolder(const filesystem::path &path)
@@ -75,7 +73,34 @@ namespace {
 #endif
 	}
 
+	/// The open zip files per thread. Since ZLIB doesn't support multithreaded access on the same zip handle,
+	/// each file is opened multiple times on demand.
+	thread_local map<filesystem::path, shared_ptr<ZipFile>> OPEN_ZIP_FILES;
 
+	shared_ptr<ZipFile> GetZipFile(const filesystem::path &filePath)
+	{
+		/// Check if this zip is already open on this thread.
+		for(auto &[zipPath, file] : OPEN_ZIP_FILES)
+			if(Files::IsParent(zipPath, filePath))
+				return file;
+
+		/// If not, open the zip file.
+		filesystem::path zipPath = filePath;
+		while(!exists(zipPath))
+		{
+			if(!zipPath.has_parent_path() || zipPath.parent_path() == zipPath)
+				return {};
+			zipPath = zipPath.parent_path();
+		}
+		if(zipPath.extension() == ".zip" && is_regular_file(zipPath))
+		{
+			/// Limit the number of open zip files to one per thread to avoid having too many files open.
+			OPEN_ZIP_FILES.clear();
+			return OPEN_ZIP_FILES.emplace(zipPath, make_shared<ZipFile>(zipPath)).first->second;
+		}
+
+		return {};
+	}
 
 	void CheckBug_96()
 	{
@@ -230,15 +255,11 @@ void Files::Init(const char * const *argv)
 #if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
 		// Special case, for Linux: the resource files are not in the same place as
 		// the executable, but are under the same prefix (/usr or /usr/local).
-		static const filesystem::path LOCAL_PATH = "/usr/local/";
-		static const filesystem::path STANDARD_PATH = "/usr/";
+		// When used as an iterator, a trailing / will create an empty item at
+		// the end, so parent paths do not include it.
+		static const filesystem::path LOCAL_PATH = "/usr/local";
+		static const filesystem::path STANDARD_PATH = "/usr";
 		static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
-
-		const auto IsParent = [](const auto parent, const auto child) -> bool {
-			if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))
-				return false;
-			return equal(parent.begin(), parent.end(), child.begin());
-		};
 
 		if(IsParent(LOCAL_PATH, resources))
 			resources = LOCAL_PATH / RESOURCE_PATH;
@@ -255,10 +276,10 @@ void Files::Init(const char * const *argv)
 			throw runtime_error("Unable to find the resource directories!");
 		resources = resources.parent_path();
 	}
-	dataPath = resources / "data/";
-	imagePath = resources / "images/";
-	soundPath = resources / "sounds/";
-	globalPluginPath = resources / "plugins/";
+	dataPath = resources / "data";
+	imagePath = resources / "images";
+	soundPath = resources / "sounds";
+	globalPluginPath = resources / "plugins";
 
 	if(config.empty())
 	{
@@ -292,12 +313,12 @@ void Files::Init(const char * const *argv)
 
 	config = filesystem::canonical(config);
 
-	savePath = config / "saves/";
+	savePath = config / "saves";
 	CreateFolder(savePath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	userPluginPath = config / "plugins/";
+	userPluginPath = config / "plugins";
 	CreateFolder(userPluginPath);
 
 	// Check that all the directories exist.
@@ -380,23 +401,38 @@ vector<filesystem::path> Files::List(const filesystem::path &directory)
 
 	if(!Exists(directory) || !is_directory(directory))
 	{
-#if defined __ANDROID__
-		// try the asset system instead
-		AndroidAsset aa;
-		for (std::string entry: aa.DirectoryList(directory))
+		// Check if the requested file is in a known zip.
+		shared_ptr<ZipFile> zip = GetZipFile(directory);
+		if(zip)
 		{
-			// Asset api doesn't have a stat or entry properties. the only
-			// way to tell if its a folder is to fail to open it. Depending
-			// on how slow this is, it may be worth checking for a file
-			// extension instead.
-			if (File(directory / entry))
+			list = zip->ListFiles(directory, false, false);
+			sort(list.begin(), list.end());
+		}
+#if defined __ANDROID__
+		else
+		{
+				
+			// try the asset system instead
+			AndroidAsset aa;
+			for (std::string entry: aa.DirectoryList(directory))
 			{
-				list.push_back(directory / entry);
+				// Asset api doesn't have a stat or entry properties. the only
+				// way to tell if its a folder is to fail to open it. Depending
+				// on how slow this is, it may be worth checking for a file
+				// extension instead.
+				SDL_RWops* f = SDL_RWFromFile((directory / entry).c_str(), "rb");
+				bool is_file = f != nullptr;
+				if (f) SDL_RWclose(f);
+				if (is_file)
+				{
+					list.push_back(directory / entry);
+				}
 			}
 		}
 #endif
 		return list;
 	}
+
 
 	for(const auto &entry : filesystem::directory_iterator(directory))
 		if(entry.is_regular_file())
@@ -416,18 +452,31 @@ vector<filesystem::path> Files::ListDirectories(const filesystem::path &director
 
 	if(!Exists(directory) || !is_directory(directory))
 	{
-#if defined __ANDROID__
-		// try the asset system
-		AndroidAsset aa;
-		for (std::string entry: aa.DirectoryList(directory))
+		// Check if the requested file is in a known zip.
+		shared_ptr<ZipFile> zip = GetZipFile(directory);
+		if(zip)
 		{
-			// Asset api doesn't have a stat or entry properties. the only
-			// way to tell if its a folder is to fail to open it. Depending
-			// on how slow this is, it may be worth checking for a file
-			// extension instead.
-			if (!File(directory / entry))
+			list = zip->ListFiles(directory, false, true);
+			sort(list.begin(), list.end());
+		}
+#if defined __ANDROID__
+		else
+		{
+			// try the asset system
+			AndroidAsset aa;
+			for (std::string entry: aa.DirectoryList(directory))
 			{
-				list.push_back(directory / entry);
+				// Asset api doesn't have a stat or entry properties. the only
+				// way to tell if its a folder is to fail to open it. Depending
+				// on how slow this is, it may be worth checking for a file
+				// extension instead.
+				SDL_RWops* f = SDL_RWFromFile((directory / entry).c_str(), "rb");
+				bool is_file = f != nullptr;
+				if (f) SDL_RWclose(f);
+				if (!is_file)
+				{
+					list.push_back(directory / entry);
+				}
 			}
 		}
 #endif
@@ -449,35 +498,50 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 	vector<filesystem::path> list;
 	if(!Exists(directory) || !is_directory(directory))
 	{
-#if defined __ANDROID__
-		// try the asset system. We don't want to instantiate more than one
-		// AndroidAsset object, so don't recurse.
-		vector<std::filesystem::path> directories;
-		directories.push_back(directory);
-		AndroidAsset aa;
-		while (!directories.empty())
+		// Check if the requested file is in a known zip.
+		shared_ptr<ZipFile> zip = GetZipFile(directory);
+		if(zip)
 		{
-			auto path = directories.back();
-			directories.pop_back();
-			for (std::string entry: aa.DirectoryList(path))
+			list = zip->ListFiles(directory, true, false);
+			sort(list.begin(), list.end());
+		}
+#if defined __ANDROID__
+		else
+		{
+			// try the asset system. We don't want to instantiate more than one
+			// AndroidAsset object, so don't recurse.
+			vector<std::filesystem::path> directories;
+			directories.push_back(directory);
+			AndroidAsset aa;
+			while (!directories.empty())
 			{
-				// Asset api doesn't have a stat or entry properties. the only
-				// way to tell if its a folder is to fail to open it. Depending
-				// on how slow this is, it may be worth checking for a file
-				// extension instead.
-				if (File(path / entry))
+				auto path = directories.back();
+				directories.pop_back();
+				for (std::string entry: aa.DirectoryList(path))
 				{
-					list.push_back(path / entry);
-				}
-				else
-				{
-					directories.push_back(path / entry);
+					// Asset api doesn't have a stat or entry properties. the only
+					// way to tell if its a folder is to fail to open it. Depending
+					// on how slow this is, it may be worth checking for a file
+					// extension instead.
+					SDL_RWops* f = SDL_RWFromFile((path / entry).c_str(), "rb");
+					bool is_file = f != nullptr;
+					if (f) SDL_RWclose(f);
+					SDL_Log("got %s from SDL_RWFromFile(%s) ", is_file ? "true " : "false", (path / entry).c_str());
+					if (is_file)
+					{
+						list.push_back(path / entry);
+					}
+					else
+					{
+						directories.push_back(path / entry);
+					}
 				}
 			}
 		}
 #endif
 		return list;
 	}
+
 	for(const auto &entry : filesystem::recursive_directory_iterator(directory))
 		if(entry.is_regular_file())
 			list.emplace_back(entry);
@@ -490,16 +554,18 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 
 bool Files::Exists(const filesystem::path &filePath)
 {
-	if (exists(filePath))
-	{
+	if(exists(filePath))
 		return true;
-	}
+
+	shared_ptr<ZipFile> zip = GetZipFile(filePath);
+	if(zip)
+		return zip->Exists(filePath);
 #ifdef __ANDROID__
 	else
 	{
 		// only works for normal files, not assets, so just try to open the
 		// file to see if it exists.
-		SDL_RWops* f = SDL_RWFromFile(filePath.c_str(), "r");
+		SDL_RWops* f = SDL_RWFromFile(filePath.c_str(), "rb");
 		bool exists = f != nullptr;
 		if (f) SDL_RWclose(f);
 		if (!exists)
@@ -515,12 +581,9 @@ bool Files::Exists(const filesystem::path &filePath)
 
 
 
-time_t Files::Timestamp(const filesystem::path &filePath)
+filesystem::file_time_type Files::Timestamp(const filesystem::path &filePath)
 {
-	auto time = last_write_time(filePath);
-	auto systemTime = time_point_cast<chrono::system_clock::duration>(time - chrono::file_clock::now()
-			+ chrono::system_clock::now());
-	return chrono::system_clock::to_time_t(systemTime);
+	return last_write_time(filePath);
 }
 
 
@@ -567,67 +630,77 @@ string Files::Name(const filesystem::path &path)
 
 
 
-struct SDL_RWops *Files::Open(const filesystem::path &path, bool write)
+bool Files::IsParent(const filesystem::path &parent, const filesystem::path &child)
 {
-	return SDL_RWFromFile(path.c_str(), write ? "wb" : "rb");
+	if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))
+		return false;
+	return equal(parent.begin(), parent.end(), child.begin());
 }
 
 
 
-void Files::Close(struct SDL_RWops * ops)
+shared_ptr<iostream> Files::Open(const filesystem::path &path, bool write)
 {
-	SDL_RWclose(ops);
+	if(!exists(path) && !write)
+	{
+		// Writing to a zip is not supported.
+		shared_ptr<ZipFile> zip = GetZipFile(path);
+		if(zip)
+			return shared_ptr<iostream>(new stringstream(zip->ReadFile(path), ios::in | ios::binary));
+
+		// Attempt to use SDL_RWops, which read from assets if possible
+		SDL_RWops* ops = SDL_RWFromFile(path.c_str(), "rb");
+		if (ops)
+		{
+			std::string data;
+			char buffer[4096];
+			size_t size = 0;
+			while ((size = SDL_RWread(ops, buffer, 1, sizeof(buffer))))
+			{
+				data.append(buffer, buffer + size);
+			}
+			SDL_RWclose(ops);
+			return shared_ptr<iostream>(new stringstream(data, ios::in | ios::binary));
+		}
+		return {};
+	}
+
+	if(write)
+		return shared_ptr<iostream>{new fstream{path, ios::out | ios::binary}};
+	return shared_ptr<iostream>{new fstream{path, ios::in | ios::binary}};
 }
 
 
 
 string Files::Read(const filesystem::path &path)
 {
-	File file(path);
-	return Read(file);
+	return Read(Open(path));
 }
 
 
 
-string Files::Read(struct SDL_RWops *file)
+string Files::Read(shared_ptr<iostream> file)
 {
-	string result;
 	if(!file)
-		return result;
-
-	// Find the remaining number of bytes in the file.
-	size_t start = SDL_RWtell(file);
-	size_t size = SDL_RWseek(file, 0, RW_SEEK_END)  - start;
-	// Reserve one extra byte because DataFile appends a '\n' to the end of each
-	// file it reads, and that's the most common use of this function.
-	result.reserve(size + 1);
-	result.resize(size);
-	SDL_RWseek(file, start, SEEK_SET);
-
-	// Read the file data.
-	size_t bytes = SDL_RWread(file, &result[0], 1, result.size());
-	if(bytes != result.size())
-		throw runtime_error("Error reading file!");
-
-	return result;
+		return "";
+	return string{istreambuf_iterator<char>{*file}, {}};
 }
 
 
 
 void Files::Write(const filesystem::path &path, const string &data)
 {
-	File file(path, true);
-	Write(file, data);
+	Write(Open(path, true), data);
 }
 
 
 
-void Files::Write(struct SDL_RWops *file, const string &data)
+void Files::Write(shared_ptr<iostream> file, const string &data)
 {
 	if(!file)
 		return;
-
-	SDL_RWwrite(file, data.data(), 1, data.size());
+	*file << data;
+	file->flush();
 }
 
 
@@ -665,7 +738,7 @@ void Files::LogErrorToFile(const string &message)
 {
 	if(!errorLog)
 	{
-		errorLog = File(config / "errors.txt", true);
+		errorLog = Open(config / "errors.txt", true);
 		if(!errorLog)
 		{
 			cerr << "Unable to create \"errors.txt\" " << (config.empty()
@@ -674,14 +747,9 @@ void Files::LogErrorToFile(const string &message)
 		}
 	}
 
-#if defined __ANDROID__
-	// On android, this can be read with logcat | grep SDL. We don't want to do
-	// it for other operating systems though, cause we can read errors.txt
-	// directly
-	SDL_Log("%s", message.c_str());
-#endif
 
-	SDL_RWwrite(errorLog, (message + '\n').c_str(), 1, message.size() + 1);
+	Write(errorLog, message);
+	*errorLog << endl;
 }
 
 

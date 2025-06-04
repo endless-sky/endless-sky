@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
-#include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Engine.h"
@@ -66,6 +65,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <mmsystem.h>
+
+#ifdef PlaySound
+#undef PlaySound
+#endif
 #endif
 
 
@@ -75,7 +78,7 @@ void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
 	const string &testToRun, bool debugMode);
-Conversation LoadConversation();
+Conversation LoadConversation(const PlayerInfo &player);
 void PrintTestsTable();
 int EventFilter(void* userdata, SDL_Event* event);
 #ifdef _WIN32
@@ -92,6 +95,7 @@ int main(int argc, char *argv[])
 	if(argc > 1)
 		InitConsole();
 #endif
+	PlayerInfo player;
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -125,7 +129,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		else if(arg == "-t" || arg == "--talk")
-			conversation = LoadConversation();
+			conversation = LoadConversation(player);
 		else if(arg == "-d" || arg == "--debug")
 			debugMode = true;
 		else if(arg == "-p" || arg == "--parse-save")
@@ -159,7 +163,7 @@ int main(int argc, char *argv[])
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
-		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
+		auto dataFuture = GameData::BeginLoad(queue, player, isConsoleOnly, debugMode,
 			isConsoleOnly || checkAssets || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
@@ -175,7 +179,7 @@ int main(int argc, char *argv[])
 
 		if(printData)
 		{
-			PrintData::Print(argv);
+			PrintData::Print(argv, player);
 			return 0;
 		}
 		if(printTests)
@@ -184,7 +188,6 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 
-		PlayerInfo player;
 		if(loadOnly || checkAssets)
 		{
 			if(checkAssets)
@@ -354,7 +357,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	int cursorTime = 0;
 	int frameRate = 60;
 	FrameTimer timer(frameRate);
-	bool isPaused = false;
+	bool isDebugPaused = false;
 	bool isFastForward = false;
 
 	// If fast forwarding, keep track of whether the current frame should be drawn.
@@ -370,7 +373,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 	const bool isHeadless = (testContext.CurrentTest() && !debugMode);
 
-	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isPaused,
+	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isDebugPaused,
 			&isFastForward]
 	{
 		SDL_Event event;
@@ -383,7 +386,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				cursorTime = 0;
 
 			// Touch debugging hooks
-//#define TOUCH_DEBUGGING
+#define TOUCH_DEBUGGING
 #ifdef TOUCH_DEBUGGING
 			if(event.type == SDL_MOUSEBUTTONDOWN)
 			{
@@ -432,10 +435,10 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			// the set of fingers for polling, and generate gesture events.
 			TouchScreen::Handle(event);
 
-			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_9)
+			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{
-				isPaused = !isPaused;
-				if(isPaused)
+				isDebugPaused = !isDebugPaused;
+				if(isDebugPaused)
 					Audio::Pause();
 				else
 					Audio::Resume();
@@ -447,6 +450,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// User pressed the Menu key.
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
+				UI::PlaySound(UI::UISound::NORMAL);
 			}
 			else if(event.type == SDL_CONTROLLERBUTTONDOWN && menuPanels.IsEmpty()
 					&& (Command::FromButton(event.cbutton.button).Has(Command::MENU))
@@ -539,7 +543,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				isFastForward = false;
 
 			// Tell all the panels to step forward, then draw them.
-			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+			((!isDebugPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 
 			// Caps lock slows the frame rate in debug mode.
 			// Slowing eases in and out over a couple of frames.
@@ -572,7 +576,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
-			if(isFastForward)
+
+			MainPanel *mainPanel = static_cast<MainPanel *>(gamePanels.Root().get());
+			if(mainPanel && mainPanel->GetEngine().IsPaused())
+				SpriteShader::Draw(SpriteSet::Get("ui/paused"), Screen::TopLeft() + Point(10., 10.));
+			else if(isFastForward)
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
 			GameWindow::Step();
@@ -677,7 +685,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.12" << endl;
+	cerr << "Endless Sky ver. 0.10.13" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -688,14 +696,15 @@ void PrintVersion()
 
 
 
-Conversation LoadConversation()
+Conversation LoadConversation(const PlayerInfo &player)
 {
+	const ConditionsStore *conditions = &player.Conditions();
 	Conversation conversation;
 	DataFile file(cin);
 	for(const DataNode &node : file)
 		if(node.Token(0) == "conversation")
 		{
-			conversation.Load(node);
+			conversation.Load(node, conditions);
 			break;
 		}
 

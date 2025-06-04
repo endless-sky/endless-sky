@@ -15,14 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "alignment.hpp"
-#include "../Animate.h"
-#include "DisplayText.h"
+#include "Alignment.h"
 #include "../Point.h"
-#include "truncate.hpp"
+#include "Truncate.h"
 
 #include <string>
 #include <vector>
+
+#include "../Animate.h"
 
 class Color;
 class Font;

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "../Point.h"
 #include "Shader.h"
 
 #include "../opengl.h"
@@ -22,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Body;
-class Point;
+class Interface;
 class Sprite;
 class System;
 
@@ -37,9 +38,13 @@ class System;
 class StarField {
 public:
 	void Init(int stars, int width);
+	void FinishLoading();
+	const Point &Position() const;
+	void SetPosition(const Point &position);
 	void SetHaze(const Sprite *sprite, bool allowAnimation);
 
-	void Draw(const Point &pos, const Point &vel, double zoom = 1., const System *system = nullptr) const;
+	void Step(Point vel, double zoom = 1.);
+	void Draw(const Point &blur, const System *system = nullptr) const;
 
 
 private:
@@ -52,12 +57,19 @@ private:
 	int tileCols;
 	std::vector<int> tileIndex;
 
+	// Constants from an Interface that modify the starfield's behavior.
+	double fixedZoom = 1.;
+	double velocityReducer = 1.;
+
+	Point pos;
+	double baseZoom = 1.;
+
 	// Track the haze sprite, so we can animate the transition between different hazes.
 	const Sprite *lastSprite;
 	mutable double transparency = 0.;
 	std::vector<Body> haze[2];
 
-	Shader shader;
+	const Shader *shader;
 	GLuint vao;
 	GLuint vbo;
 

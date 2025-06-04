@@ -37,13 +37,15 @@ target_sources(EndlessSkyLib PRIVATE
 	BoardingPanel.h
 	Body.cpp
 	Body.h
+	Camera.cpp
+	Camera.h
 	CaptureOdds.cpp
 	CaptureOdds.h
 	CargoHold.cpp
 	CargoHold.h
 	CategoryList.cpp
 	CategoryList.h
-	CategoryTypes.h
+	CategoryType.h
 	ClickZone.h
 	Collision.cpp
 	Collision.h
@@ -56,6 +58,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Command.h
 	ConditionAssignments.cpp
 	ConditionAssignments.h
+	ConditionEntry.cpp
+	ConditionEntry.h
 	ConditionSet.cpp
 	ConditionSet.h
 	ConditionsStore.cpp
@@ -103,8 +107,6 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.h
 	ExclusiveItem.h
 	FighterHitHelper.h
-	File.cpp
-	File.h
 	Files.cpp
 	Files.h
 	FireCommand.cpp
@@ -161,7 +163,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Interface.h
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
-	JumpTypes.h
+	JumpType.h
 	Logger.cpp
 	Logger.h
 	LoadPanel.cpp
@@ -194,6 +196,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Messages.h
 	Minable.cpp
 	Minable.h
+	MinableDamageDealt.h
 	Mission.cpp
 	Mission.h
 	MissionAction.cpp
@@ -278,6 +281,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Set.h
 	Ship.cpp
 	Ship.h
+	Shop.h
 	ShipEvent.cpp
 	ShipEvent.h
 	ShipInfoDisplay.cpp
@@ -304,6 +308,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StellarObject.h
 	StringInterner.cpp
 	StringInterner.h
+	Swizzle.cpp
+	Swizzle.h
 	System.cpp
 	System.h
 	SystemEntry.h
@@ -337,6 +343,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Wormhole.cpp
 	Wormhole.h
 	WormholeStrategy.h
+	ZipFile.cpp
+	ZipFile.h
 	ZoomGesture.cpp
 	ZoomGesture.h
 	opengl.cpp
@@ -402,6 +410,9 @@ target_sources(EndlessSkyLib PRIVATE
 	test/TestContext.h
 	test/TestData.cpp
 	test/TestData.h
+	text/Alignment.h
+	text/Clipboard.cpp
+	text/Clipboard.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp
@@ -410,13 +421,12 @@ target_sources(EndlessSkyLib PRIVATE
 	text/FontSet.h
 	text/Format.cpp
 	text/Format.h
+	text/Layout.h
 	text/Table.cpp
 	text/Table.h
+	text/Truncate.h
 	text/Utf8.cpp
 	text/Utf8.h
 	text/WrappedText.cpp
 	text/WrappedText.h
-	text/alignment.hpp
-	text/layout.hpp
-	text/truncate.hpp
 )

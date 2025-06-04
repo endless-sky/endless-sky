@@ -16,6 +16,8 @@
 
 outfit "Speck Round"
 	category "Ammunition"
+	series "Ammunition"
+	index 07010
 	cost 6
 	thumbnail "outfit/speck round"
 	"mass" 0.003
@@ -25,19 +27,21 @@ outfit "Speck Round"
 
 outfit "Speck Magazine"
 	category "Ammunition"
+	series "Ammunition"
+	index 07011
 	cost 12000
 	thumbnail "outfit/speck magazine"
 	"mass" 2.4
 	"outfit space" -6
 	"speck capacity" 1200
-	"ammo" "Speck Round"
+	ammo "Speck Round"
 	description "While Speckle Coilguns carry a considerable amount of ammunition in their internal magazines, for longer expeditions or for resupply operations the Avgi use these compact ammunition storages."
 
 
 outfit "Speckle Coilgun"
-	series "Avgi: Kinetics"
-	index 10
 	category "Guns"
+	series "Guns"
+	index 07010
 	cost 32000
 	thumbnail "outfit/speckle coilgun"
 	"mass" 6.3
@@ -48,7 +52,7 @@ outfit "Speckle Coilgun"
 	"speck capacity" 900
 	weapon
 		"sound" "speckle"
-		"ammo" "Speck Round"
+		ammo "Speck Round"
 		"fire effect" "speckle fire"
 		"inaccuracy" 0.9
 		"velocity" 30
@@ -63,12 +67,13 @@ outfit "Speckle Coilgun"
 		"submunition" "Speck"
 	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed primarily for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
 	description "	Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off its mass driver rounds with relative ease."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 	
 
 outfit "Speckle Turret"
-	series "Avgi: Kinetics"
-	index 20
 	category "Turrets"
+	series "Turrets"
+	index 07020
 	cost 90000
 	thumbnail "outfit/speckle turret"
 	"mass" 16.8
@@ -79,7 +84,7 @@ outfit "Speckle Turret"
 	"speck capacity" 2400
 	weapon
 		"sound" "speckle"
-		"ammo" "Speck Round" 2
+		ammo "Speck Round" 2
 		"hardpoint sprite" "hardpoint/speckle turret"
 		"hardpoint offset" 9
 		"fire effect" "speckle fire"
@@ -100,6 +105,7 @@ outfit "Speckle Turret"
 			"offset" 3 0
 	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it a versatile option for mid-ranged combat."
 	description "	Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer-ranged weapons used by the Avgi, but the sheer firepower it can put out can make it deadly to close targets."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 
 outfit "Speck"
@@ -132,12 +138,26 @@ effect "speck impact"
 	"random angle" 30
 	"velocity scale" -.06
 
+outfitter "Speck Round Restock"
+	to sell
+		or
+			has "outfit: Speckle Coilgun"
+			has "outfit: Speckle Turret"
+			has "outfit: Speck Magazine"
+	location
+		attributes "outfitter"
+	stock
+		"Speck Round"
+
+
 
 # Energy Weapons:
 
 
 outfit "Optical Lasing Generator"
 	category "Systems"
+	series "Special Systems"
+	index 07010
 	cost 1200000
 	thumbnail "outfit/optical lasing generator"
 	"mass" 30
@@ -148,9 +168,9 @@ outfit "Optical Lasing Generator"
 
 
 outfit "Green Optical Laser"
-	series "Avgi: Beams"
-	index 10
 	category "Turrets"
+	series "Anti-Missile"
+	index 07010
 	cost 90000
 	thumbnail "outfit/green optical laser"
 	"mass" 6
@@ -201,9 +221,9 @@ effect "green laser scattering"
 
 
 outfit "Blue Optical Laser"
-	series "Avgi: Beams"
-	index 20
 	category "Turrets"
+	series "Turrets"
+	index 07010
 	licenses
 		"Twilight Guard"
 	cost 120000
@@ -282,9 +302,9 @@ effect "laser ejecta"
 
 
 outfit "Ultrarelativistic Electron Beam"
-	series "Avgi: Beams"
-	index 30
 	category "Guns"
+	series "Guns"
+	index 07020
 	cost 3000000
 	thumbnail "outfit/unknown"
 	"mass" 90
@@ -354,9 +374,9 @@ effect "electron flare"
 
 
 outfit "External Launch Rail"
-	series "Avgi: Missiles"s
-	index 10
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 07010
 	licenses
 		"Avgi Atomics"
 	cost 90000
@@ -390,9 +410,9 @@ outfit "External Launch Rail"
 
 
 outfit "External Launch Tube"
-	series "Avgi: Missiles"
-	index 20
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 07020
 	licenses
 		"Twilight Guard"
 	cost 450000
@@ -428,9 +448,9 @@ outfit "External Launch Tube"
 
 outfit "Medium VLS"
 	"display name" "Vertical Launch Array (36)"
-	series "Avgi: Missiles"
-	index 30
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 07030
 	licenses
 		"Twilight Guard"
 	cost 240000
@@ -466,14 +486,13 @@ outfit "Medium VLS"
 		"submunition" "Nettle Active"
 	description "This large vertical launch system is made up of 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
 	description "	Vertical launch systems such as this one are capable of rapidly launching multiple missiles in parallel, but take up quite a bit of space."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 
 outfit `"Nettle" KKV`
-	series "Avgi: Missiles"
-	index 40
 	category "Ammunition"
-	licenses
-		"Twilight Guard"
+	series "Ammunition"
+	index 07020
 	cost 450
 	thumbnail "outfit/nettle kkv"
 	"mass" 0.15
@@ -483,9 +502,9 @@ outfit `"Nettle" KKV`
 
 
 outfit "Nettle Magazine"
-	series "Avgi: Missiles"
-	index 50
 	category "Ammunition"
+	series "Ammunition"
+	index 07021
 	licenses
 		"Twilight Guard"
 	cost 60000
@@ -553,10 +572,21 @@ effect "fleck impact"
 	"random velocity" 3
 	"velocity scale" -.12
 
+outfitter "Nettle Restock"
+	to sell
+		or
+			has "outfit: Medium VLS"
+			has "outfit: Nettle Magazine"
+	location
+		attributes "outfitter"
+	stock
+		`"Nettle" KKV`
+
+
 outfit `"Orchid" Nuclear Missile`
-	series "Avgi: Missiles"
-	index 60
 	category "Ammunition"
+	series "Ammunition"
+	index 07030
 	licenses
 		"Avgi Atomics"
 	cost 300000
@@ -569,9 +599,9 @@ outfit `"Orchid" Nuclear Missile`
 
 
 outfit "Orchid Magazine"
-	series "Avgi: Missiles"
-	index 70
 	category "Ammunition"
+	series "Ammunition"
+	index 07031
 	licenses
 		"Avgi Atomics"
 	cost 150000
@@ -711,9 +741,9 @@ outfit "Orchid Divert Stage Expended"
 
 
 outfit `"Ophrys" Nuclear Torpedo`
-	series "Avgi: Missiles"
-	index 80
 	category "Ammunition"
+	series "Ammunition"
+	index 07040
 	licenses
 		"Avgi Atomics"
 	cost 90000
@@ -726,9 +756,9 @@ outfit `"Ophrys" Nuclear Torpedo`
 
 
 outfit "Ophrys Stockpile"
-	series "Avgi: Missiles"
-	index 90
 	category "Ammunition"
+	series "Ammunition"
+	index 07041
 	licenses
 		"Avgi Atomics"
 	cost 210000

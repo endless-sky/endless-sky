@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "HailPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Dialog.h"
 #include "shader/DrawList.h"
@@ -50,6 +50,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 {
 	Audio::Pause();
 	SetInterruptible(false);
+	UI::PlaySound(UI::UISound::SOFT);
 
 	const Government *gov = ship->GetGovernment();
 	if(!ship->Name().empty())
@@ -138,6 +139,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 {
 	Audio::Pause();
 	SetInterruptible(false);
+	UI::PlaySound(UI::UISound::SOFT);
 
 	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
 	if(planet)
@@ -309,6 +311,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(bribeCallback && bribed)
 			bribeCallback(bribed);
 		GetUI()->Pop(this);
+		UI::PlaySound(UI::UISound::SOFT);
 		return true;
 	}
 	else if(key == 't' && hasLanguage && planet)
@@ -328,6 +331,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				Truncate::NONE, true, false));
 		else
 			SetMessage(planet->DemandTribute(player));
+		UI::PlaySound(UI::UISound::NORMAL);
 		return true;
 	}
 	else if(key == 'h' && hasLanguage && ship && canAssistPlayer)
@@ -367,6 +371,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			else
 				SetMessage("You don't seem to be in need of repairs or fuel assistance.");
 		}
+		UI::PlaySound(UI::UISound::NORMAL);
 		return true;
 	}
 	else if((key == 'b' || key == 'o') && hasLanguage)
@@ -411,6 +416,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		}
 		else
 			SetMessage("I do not want your money.");
+		UI::PlaySound(UI::UISound::NORMAL);
 		return true;
 	}
 

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "audio/Audio.h"
+#include "Color.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "CrashState.h"
@@ -103,7 +104,7 @@ void GameLoadingPanel::Step()
 void GameLoadingPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	GameData::DrawMenuBackground(this);
 

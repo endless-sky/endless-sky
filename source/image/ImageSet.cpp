@@ -198,13 +198,14 @@ void ImageSet::Load() noexcept(false)
 	// to be in separate locations on the disk. Create masks if needed.
 	for(size_t i = 0; i < frames; ++i)
 	{
+		const string fileName = "\"" + name + "\" frame #" + to_string(i);
 		if(!buffer[0].Read(paths[0][i], i))
-			Logger::LogError("Failed to read image data for \"" + name + "\" frame #" + to_string(i));
+			Logger::LogError("Failed to read image data for " + fileName);
 		else if(makeMasks)
 		{
-			masks[i].Create(buffer[0], i);
+			masks[i].Create(buffer[0], i, fileName);
 			if(!masks[i].IsLoaded())
-				Logger::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
+				Logger::LogError("Failed to create collision mask for " + fileName);
 		}
 	}
 
@@ -219,7 +220,7 @@ void ImageSet::Load() noexcept(false)
 	FillSwizzleMasks(paths[3], paths[0].size());
 
 
-	auto LoadSprites = [&](vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier) {
+	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier) {
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
 			if(!buffer.Read(toLoad[i], i))
 			{
@@ -236,11 +237,7 @@ void ImageSet::Load() noexcept(false)
 
 	// Warn about a "high-profile" image that will be blurry due to rendering at 50% scale.
 	bool willBlur = (buffer[0].Width() & 1) || (buffer[0].Height() & 1);
-	if(willBlur && (
-			(name.length() > 5 && !name.compare(0, 5, "ship/"))
-			|| (name.length() > 7 && !name.compare(0, 7, "outfit/"))
-			|| (name.length() > 10 && !name.compare(0, 10, "thumbnail/"))
-	))
+	if(willBlur && (name.starts_with("ship/") || name.starts_with("outfit/") || name.starts_with("thumbnail/")))
 		Logger::LogError("Warning: image \"" + name + "\" will be blurry since width and/or height are not even ("
 			+ to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").");
 }

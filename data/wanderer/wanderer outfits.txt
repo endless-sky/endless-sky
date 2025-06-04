@@ -13,6 +13,8 @@
 
 outfit "Sunbeam"
 	category "Guns"
+	series "Guns"
+	index 09020
 	licenses
 		"Wanderer Outfits"
 	cost 1390000
@@ -49,6 +51,8 @@ effect "sunbeam impact"
 
 outfit "Sunbeam Turret"
 	category "Turrets"
+	series "Turrets"
+	index 09020
 	licenses
 		"Wanderer Outfits"
 	cost 1970000
@@ -79,6 +83,8 @@ outfit "Sunbeam Turret"
 
 outfit "Dual Sunbeam Turret"
 	category "Turrets"
+	series "Turrets"
+	index 09030
 	licenses
 		"Wanderer Outfits"
 	cost 3720000
@@ -109,6 +115,8 @@ outfit "Dual Sunbeam Turret"
 
 outfit "Moonbeam"
 	category "Guns"
+	series "Guns"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 760000
@@ -153,6 +161,8 @@ effect "moonbeam impact"
 
 outfit "Moonbeam Turret"
 	category "Turrets"
+	series "Turrets"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 1730000
@@ -186,6 +196,8 @@ outfit "Moonbeam Turret"
 
 outfit "Wanderer Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 850000
@@ -217,6 +229,8 @@ effect "wanderer anti-missile"
 
 outfit "Thunderhead Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 450000
@@ -252,9 +266,12 @@ outfit "Thunderhead Launcher"
 		"radar tracking" .6
 		"missile strength" 12
 	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 09010
 	cost 1800
 	thumbnail "outfit/thunderhead"
 	mass .3
@@ -284,6 +301,8 @@ outfit "Thunderhead"
 
 outfit "Thunderhead Storage Array"
 	category "Ammunition"
+	series "Ammunition"
+	index 09011
 	licenses
 		"Wanderer Outfits"
 	cost 36000
@@ -294,8 +313,20 @@ outfit "Thunderhead Storage Array"
 	ammo "Thunderhead Missile"
 	description "The Thunderhead Storage Array is used to store extra ammunition for Thunderhead Launchers."
 
+outfitter "Thunderhead Missile Restock"
+	to sell
+		or
+			has "outfit: Thunderhead Launcher"
+			has "outfit: Thunderhead Storage Array"
+	location
+		attributes "outfitter"
+	stock
+		"Thunderhead Missile"
+
 outfit "Small Biochemical Cell"
 	category "Power"
+	series "Generators"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 230000
@@ -309,6 +340,8 @@ outfit "Small Biochemical Cell"
 
 outfit "Large Biochemical Cell"
 	category "Power"
+	series "Generators"
+	index 09020
 	licenses
 		"Wanderer Outfits"
 	cost 940000
@@ -322,6 +355,8 @@ outfit "Large Biochemical Cell"
 
 outfit "Red Sun Reactor"
 	category "Power"
+	series "Generators"
+	index 09030
 	licenses
 		"Wanderer Outfits"
 	cost 3800000
@@ -335,6 +370,8 @@ outfit "Red Sun Reactor"
 
 outfit "Yellow Sun Reactor"
 	category "Power"
+	series "Generators"
+	index 09040
 	licenses
 		"Wanderer Outfits"
 	cost 7500000
@@ -348,6 +385,8 @@ outfit "Yellow Sun Reactor"
 
 outfit "White Sun Reactor"
 	category "Power"
+	series "Generators"
+	index 09050
 	licenses
 		"Wanderer Outfits"
 	cost 13900000
@@ -361,6 +400,8 @@ outfit "White Sun Reactor"
 
 outfit "Blue Sun Reactor"
 	category "Power"
+	series "Generators"
+	index 09060
 	licenses
 		"Wanderer Outfits"
 	cost 21500000
@@ -375,6 +416,8 @@ outfit "Blue Sun Reactor"
 
 outfit "Bright Cloud Shielding"
 	category "Systems"
+	series "Shields"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 220000
@@ -387,6 +430,8 @@ outfit "Bright Cloud Shielding"
 
 outfit "Dark Storm Shielding"
 	category "Systems"
+	series "Shields"
+	index 09020
 	licenses
 		"Wanderer Outfits"
 	cost 800000
@@ -399,6 +444,8 @@ outfit "Dark Storm Shielding"
 
 outfit "Wanderer Ramscoop"
 	category "Systems"
+	series "Ramscoops"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 460000
@@ -411,6 +458,8 @@ outfit "Wanderer Ramscoop"
 
 outfit "Wanderer Heat Sink"
 	category "Systems"
+	series "Cooling"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	cost 94000
@@ -423,6 +472,8 @@ outfit "Wanderer Heat Sink"
 
 outfit "Type 1 Radiant Thruster"
 	category "Engines"
+	series "Engines"
+	index 09011
 	licenses
 		"Wanderer Outfits"
 	"cost" 135000
@@ -441,6 +492,8 @@ outfit "Type 1 Radiant Thruster"
 
 outfit "Type 2 Radiant Thruster"
 	category "Engines"
+	series "Engines"
+	index 09021
 	licenses
 		"Wanderer Outfits"
 	"cost" 390000
@@ -459,6 +512,8 @@ outfit "Type 2 Radiant Thruster"
 
 outfit "Type 3 Radiant Thruster"
 	category "Engines"
+	series "Engines"
+	index 09031
 	licenses
 		"Wanderer Outfits"
 	"cost" 750000
@@ -477,6 +532,8 @@ outfit "Type 3 Radiant Thruster"
 
 outfit "Type 4 Radiant Thruster"
 	category "Engines"
+	series "Engines"
+	index 09041
 	licenses
 		"Wanderer Outfits"
 	"cost" 1370000
@@ -495,6 +552,8 @@ outfit "Type 4 Radiant Thruster"
 
 outfit "Type 1 Radiant Steering"
 	category "Engines"
+	series "Engines"
+	index 09010
 	licenses
 		"Wanderer Outfits"
 	"cost" 115000
@@ -513,6 +572,8 @@ outfit "Type 1 Radiant Steering"
 
 outfit "Type 2 Radiant Steering"
 	category "Engines"
+	series "Engines"
+	index 09020
 	licenses
 		"Wanderer Outfits"
 	"cost" 325000
@@ -531,6 +592,8 @@ outfit "Type 2 Radiant Steering"
 
 outfit "Type 3 Radiant Steering"
 	category "Engines"
+	series "Engines"
+	index 09030
 	licenses
 		"Wanderer Outfits"
 	"cost" 590000
@@ -549,6 +612,8 @@ outfit "Type 3 Radiant Steering"
 
 outfit "Type 4 Radiant Steering"
 	category "Engines"
+	series "Engines"
+	index 09040
 	licenses
 		"Wanderer Outfits"
 	"cost" 1100000
@@ -567,15 +632,21 @@ outfit "Type 4 Radiant Steering"
 
 outfit "Wanderer Outfits License"
 	category "Licenses"
+	series "Licenses"
+	index 09010
 	thumbnail "outfit/wanderer outfits license"
-	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
+	description "This oddly shaped dish holds a collection of perfectly preserved seeds of one Sentinel Skirtgrass, a sensitive yet robust species the Wanderers use during their initial terraforming efforts to gauge how well a world is responding to their methods. Each seed carries a built-in generational limit, ensuring the grass disappears after a few lifecycles so that it doesn't compete with native flora. These seeds symbolize the beginning of both terraforming and goodwill, granting their owner the right to acquire Wanderer outfits."
 
 outfit "Wanderer License"
 	category "Licenses"
+	series "Licenses"
+	index 09020
 	thumbnail "outfit/wanderer license"
-	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
+	description "Intact within an amber shell, this leafy branch of the Noble Watchwood - rumored to come from the Wanderers' original home planet - symbolizes their pride and joy, the total revitalization of a planet. While unmatched in size and formidable to behold, the tree is quite fragile to even the slightest alterations in climate, so the growth of one such specimen to maturity is seen as a sign of a healed ecosystem. As a symbol of peace akin to Earth's olive branch, it grants its bearer the right to purchase non-military Wanderer ships."
 
 outfit "Wanderer Military License"
 	category "Licenses"
+	series "Licenses"
+	index 09030
 	thumbnail "outfit/wanderer military license"
-	description "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."
+	description "The history of the Wanderers is not without hardship and failure. Immortalized in a bronze mold, this withered branch recalls the time the Wanderers could not save a world, for skilled as they may be, they cannot stop destruction when it is actively sought after by others mightier than them. The fall of the Noble Watchwood, their cherished emblem, now stands as a solemn vow: when peace fails, they too must prepare to fight. To stand and fight with the Wanderers, this license grants access to their greatest warships."

@@ -75,6 +75,9 @@ execute_process(COMMAND git describe --tags
 set(ENDLESS_SKY_VERSION "${version}-${mobile_version}")
 add_definitions(-DENDLESS_SKY_VERSION="${ENDLESS_SKY_VERSION}")
 
+# This forces vanilla file api
+add_definitions(-DUSE_FILE32API=1)
+
 add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Account.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/AI.cpp
@@ -90,20 +93,22 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Bitset.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/BoardingPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Body.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Camera.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CaptureOdds.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CargoHold.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CategoryList.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/CrashState.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Collision.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CollisionSet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Color.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Command.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/ConditionEntry.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ConditionSet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ConditionAssignments.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ConditionsStore.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Conversation.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ConversationPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/CoreStartData.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/CrashState.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/DamageProfile.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/DataFile.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/DataNode.cpp
@@ -121,7 +126,6 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Engine.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/EscortDisplay.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/EsUuid.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/File.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Files.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/shader/FillShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FireCommand.cpp
@@ -241,12 +245,14 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/StartConditionsPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StellarObject.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StringInterner.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Swizzle.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/System.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TaskQueue.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/test/Test.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/test/TestContext.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/test/TestData.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TouchScreen.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/text/Clipboard.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/text/DisplayText.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/text/Font.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/text/FontSet.cpp
@@ -266,7 +272,11 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Weapon.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Weather.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Wormhole.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/ZipFile.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ZoomGesture.cpp
+
+   ${CMAKE_SOURCE_DIR}/src/minizip/ioapi.c
+   ${CMAKE_SOURCE_DIR}/src/minizip/unzip.c
 )
 
 target_link_libraries(main

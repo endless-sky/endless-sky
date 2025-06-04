@@ -45,7 +45,7 @@ void Music::Init(const vector<filesystem::path> &sources)
 	for(const auto &source : sources)
 	{
 		// Find all the sound files that this resource source provides.
-		filesystem::path root = source / "sounds/";
+		filesystem::path root = source / "sounds";
 		vector<filesystem::path> files = Files::RecursiveList(root);
 
 		for(const auto &path : files)
@@ -83,11 +83,6 @@ Music::~Music()
 	}
 	condition.notify_all();
 	thread.join();
-
-	// If the decode thread has not yet taken possession of the next file, it is
-	// our job to close it.
-	if(nextFile)
-		SDL_RWclose(nextFile);
 }
 
 
@@ -108,7 +103,7 @@ void Music::SetSource(const string &name)
 	// Inform the decoding thread that it should switch to decoding a new file.
 	unique_lock<mutex> lock(decodeMutex);
 	if(path.empty())
-		nextFile = nullptr;
+		nextFile.reset();
 	else
 		nextFile = Files::Open(path);
 	hasNewFile = true;
@@ -170,7 +165,7 @@ void Music::Decode()
 	while(true)
 	{
 		// First, wait until a new file has been specified or we're done.
-		SDL_RWops *file = nullptr;
+		shared_ptr<iostream> file;
 		while(!file)
 		{
 			unique_lock<mutex> lock(decodeMutex);
@@ -183,7 +178,7 @@ void Music::Decode()
 
 			// The new file now belongs to us, and it's our job to close it.
 			file = nextFile;
-			nextFile = nullptr;
+			nextFile.reset();
 			hasNewFile = false;
 		}
 
@@ -218,16 +213,19 @@ void Music::Decode()
 				memcpy(&input.front(), stream.next_frame, remainder);
 
 			// Now, read a chunk of data from the file.
-			size_t read = SDL_RWread(file, &input.front() + remainder, 1, INPUT_CHUNK - remainder);
+			file->read(reinterpret_cast<char *>(input.data() + remainder), INPUT_CHUNK - remainder);
 			// If you get the end of the file, loop around to the beginning.
-			if(!read)
-				SDL_RWseek(file, 0, RW_SEEK_SET);
+			if(file->eof())
+			{
+				file->clear();
+				file->seekg(0, ios::beg);
+			}
 			// If there is nothing to decode, return to the top of this loop.
-			if(!(read + remainder))
+			if(!remainder && file->eof())
 				continue;
 
 			// Hand the input to the stream decoder.
-			mad_stream_buffer(&stream, &input.front(), read + remainder);
+			mad_stream_buffer(&stream, &input.front(), INPUT_CHUNK);
 
 			// Loop through the decoded result for that input block.
 			while(true)
@@ -283,6 +281,5 @@ void Music::Decode()
 		mad_synth_finish(&synth);
 		mad_frame_finish(&frame);
 		mad_stream_finish(&stream);
-		SDL_RWclose(file);
 	}
 }

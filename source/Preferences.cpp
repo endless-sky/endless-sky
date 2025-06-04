@@ -53,8 +53,6 @@ namespace {
 	const vector<string> NOTIF_OPTIONS = {"off", "message", "both"};
 	int notifOptionsIndex = 1;
 
-	const double ZOOM_MAX = 2.0;
-	const double ZOOM_MIN = .0625;
 	const double ZOOM_INTERVAL = 1.25;
 	double viewZoom = 1.0;
 	constexpr double VOLUME_SCALE = .25;
@@ -149,6 +147,9 @@ namespace {
 		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
 	};
 
+	const vector<string> TURRET_OVERLAYS_SETTINGS = {"off", "always on", "blindspots only"};
+	int turretOverlaysIndex = 2;
+
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
 
@@ -194,12 +195,14 @@ void Preferences::Load()
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
+	settings["Animate main menu background"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
 	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
+	settings["Deadline blink by distance"] = true;
 	settings["Show buttons on map"] = false;
 #ifdef __ANDROID__
 	settings["fullscreen"] = true;
@@ -224,56 +227,60 @@ void Preferences::Load()
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
 	{
-		if(node.Token(0) == "window size" && node.Size() >= 3)
+		const string &key = node.Token(0);
+		bool hasValue = node.Size() >= 2;
+		if(key == "window size" && node.Size() >= 3)
 			Screen::SetRaw(node.Value(1), node.Value(2));
-		else if(node.Token(0) == "zoom" && node.Size() >= 2)
+		else if(key == "zoom" && hasValue)
 			Screen::SetZoom(node.Value(1));
-		else if(VOLUME_SETTINGS.contains(node.Token(0)) && node.Size() >= 2)
-			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(node.Token(0)));
-		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
+		else if(VOLUME_SETTINGS.contains(key) && hasValue)
+			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(key));
+		else if(key == "scroll speed" && hasValue)
 			scrollSpeed = node.Value(1);
-		else if(node.Token(0) == "boarding target")
+		else if(key == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Flotsam collection")
+		else if(key == "Flotsam collection")
 			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
-		else if(node.Token(0) == "view zoom")
-			viewZoom = max(ZOOM_MIN, min(node.Value(1), ZOOM_MAX));
-		else if(node.Token(0) == "vsync")
+		else if(key == "view zoom")
+			viewZoom = max(MinViewZoom(), min(node.Value(1), MaxViewZoom()));
+		else if(key == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
-		else if(node.Token(0) == "camera acceleration")
+		else if(key == "camera acceleration")
 			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Show all status overlays")
+		else if(key == "Show all status overlays")
 			statusOverlaySettings[OverlayType::ALL].SetState(node.Value(1));
-		else if(node.Token(0) == "Show flagship overlay")
+		else if(key == "Show flagship overlay")
 			statusOverlaySettings[OverlayType::FLAGSHIP].SetState(node.Value(1));
-		else if(node.Token(0) == "Show escort overlays")
+		else if(key == "Show escort overlays")
 			statusOverlaySettings[OverlayType::ESCORT].SetState(node.Value(1));
-		else if(node.Token(0) == "Show enemy overlays")
+		else if(key == "Show enemy overlays")
 			statusOverlaySettings[OverlayType::ENEMY].SetState(node.Value(1));
-		else if(node.Token(0) == "Show neutral overlays")
+		else if(key == "Show neutral overlays")
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
-		else if(node.Token(0) == "Automatic aiming")
+		else if(key == "Turret overlays")
+			turretOverlaysIndex = clamp<int>(node.Value(1), 0, TURRET_OVERLAYS_SETTINGS.size() - 1);
+		else if(key == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Automatic firing")
+		else if(key == "Automatic firing")
 			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Parallax background")
+		else if(key == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Extended jump effects")
+		else if(key == "Extended jump effects")
 			extendedJumpEffectIndex = max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
-		else if(node.Token(0) == "fullscreen")
+		else if(key == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
-		else if(node.Token(0) == "date format")
+		else if(key == "date format")
 			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
-		else if(node.Token(0) == "alert indicator")
+		else if(key == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
-		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
+		else if(key == "previous saves" && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
-		else if(node.Token(0) == "alt-mouse turning")
-			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
-		else if(node.Token(0) == "notification settings")
+		else if(key == "alt-mouse turning")
+			settings["Control ship with mouse"] = (!hasValue || node.Value(1));
+		else if(key == "notification settings")
 			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
 		else
-			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
+			settings[key] = (node.Size() == 1 || node.Value(1));
 	}
 
 	// For people updating from a version before the visual red alert indicator,
@@ -338,6 +345,7 @@ void Preferences::Save()
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
 	out.Write("Show enemy overlays", statusOverlaySettings[OverlayType::ENEMY].ToInt());
 	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
+	out.Write("Turret overlays", turretOverlaysIndex);
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Automatic firing", autoFireIndex);
 	out.Write("Parallax background", parallaxIndex);
@@ -474,15 +482,15 @@ bool Preferences::ZoomViewOut()
 bool Preferences::ZoomView(double amount)
 {
 	viewZoom *= amount;
-	if(viewZoom < ZOOM_MIN)
+	if(viewZoom < MinViewZoom())
 	{
-		viewZoom = ZOOM_MIN;
+		viewZoom = MinViewZoom();
 		Preferences::Save();
 		return false;
 	}
-	if(viewZoom > ZOOM_MAX)
+	if(viewZoom > MaxViewZoom())
 	{
-		viewZoom = ZOOM_MAX;
+		viewZoom = MaxViewZoom();
 		Preferences::Save();
 		return false;
 	}
@@ -494,14 +502,25 @@ bool Preferences::ZoomView(double amount)
 
 double Preferences::MinViewZoom()
 {
-	return ZOOM_MIN;
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? 1. : zooms.front();
 }
 
 
 
 double Preferences::MaxViewZoom()
 {
-	return ZOOM_MAX;
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? 1. : zooms.back();
+}
+
+
+
+const vector<double> &Preferences::Zooms()
+{
+	static vector<double> DEFAULT_ZOOMS{1.};
+	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
+	return zooms.empty() ? DEFAULT_ZOOMS : zooms;
 }
 
 
@@ -670,6 +689,27 @@ const string &Preferences::StatusOverlaysSetting(Preferences::OverlayType type)
 			return DISABLED.ToString();
 	}
 	return statusOverlaySettings[type].ToString();
+}
+
+
+
+void Preferences::ToggleTurretOverlays()
+{
+	turretOverlaysIndex = (turretOverlaysIndex + 1) % TURRET_OVERLAYS_SETTINGS.size();
+}
+
+
+
+Preferences::TurretOverlays Preferences::GetTurretOverlays()
+{
+	return static_cast<TurretOverlays>(turretOverlaysIndex);
+}
+
+
+
+const string &Preferences::TurretOverlaysSetting()
+{
+	return TURRET_OVERLAYS_SETTINGS[turretOverlaysIndex];
 }
 
 
