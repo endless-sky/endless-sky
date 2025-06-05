@@ -251,7 +251,6 @@ void Files::Init(const char * const *argv)
 			resources = filesystem::canonical(resources);
 #endif
 
-		SDL_Log("canonical path = %s", resources.c_str());
 #if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
 		// Special case, for Linux: the resource files are not in the same place as
 		// the executable, but are under the same prefix (/usr or /usr/local).
@@ -526,7 +525,6 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 					SDL_RWops* f = SDL_RWFromFile((path / entry).c_str(), "rb");
 					bool is_file = f != nullptr;
 					if (f) SDL_RWclose(f);
-					SDL_Log("got %s from SDL_RWFromFile(%s) ", is_file ? "true " : "false", (path / entry).c_str());
 					if (is_file)
 					{
 						list.push_back(path / entry);

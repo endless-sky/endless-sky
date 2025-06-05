@@ -2576,6 +2576,7 @@ interface "main buttons" bottom right
 		"Show main menu"
 		"Toggle fast-forward"
 		"Stop"
+		"Pause"
 		"View player info"
 		"Land on planet / station"
 		"Board selected ship"
