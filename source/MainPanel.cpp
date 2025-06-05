@@ -263,6 +263,24 @@ void MainPanel::Draw()
 				info.SetCondition("can cloak");
 			if (player.Flagship()->Attributes().Get("asteroid scan power"))
 				info.SetCondition("can scan asteroids");
+			if (player.Flagship()->Attributes().Get("afterburner thrust"))
+				info.SetCondition("can afterburner");
+			if (player.Flagship()->Attributes().Get("reverse thrust"))
+				info.SetCondition("can reverse");
+			if (player.Flagship()->Attributes().Get("jump drive") || player.Flagship()->Attributes().Get("hyperdrive"))
+				info.SetCondition("can jump");
+
+			if (player.GetSystem())
+			{
+				for (auto& object: player.GetSystem()->Objects())
+				{
+					if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()) && object.IsVisible(player.Flagship()->Position()))
+					{
+						info.SetCondition("can land");
+						break;
+					}
+				}
+			}
 
 			bool hasSecondaryWeapon = false;
 			for (auto& outfit: player.Flagship()->Outfits())
