@@ -2570,13 +2570,13 @@ interface "main buttons" bottom right
 	radial
 		center -240 -30
 		radius 22
-		selection_angles -1.5 1.1
+		selection_angles -1.5 1.5
 		selection_radius 175
 
 		"Show main menu"
 		"Toggle fast-forward"
-		"Stop"
 		"Pause"
+		"Stop Ship"
 		"View player info"
 		"Land on planet / station"
 		"Board selected ship"
