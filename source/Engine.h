@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "shader/BatchDrawList.h"
+#include "Camera.h"
 #include "CollisionSet.h"
 #include "Color.h"
 #include "Command.h"
@@ -249,9 +250,8 @@ private:
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
 
-	// Viewport position and velocity.
-	Point center;
-	Point centerVelocity;
+	// Viewport camera.
+	Camera camera;
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;

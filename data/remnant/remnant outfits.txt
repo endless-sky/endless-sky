@@ -225,8 +225,6 @@ outfit "EMP Torpedo"
 	category "Ammunition"
 	series "Ammunition"
 	index 03010
-	licenses
-		Remnant
 	cost 4400
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
@@ -315,8 +313,6 @@ outfit "Teciimach Canister"
 	category "Ammunition"
 	series "Ammunition"
 	index 03020
-	licenses
-		Remnant
 	cost 35500
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
