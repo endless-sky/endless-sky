@@ -440,7 +440,7 @@ string Font::TruncateEndsOrMiddle(
 				workingChars = nextChars;
 				workingWidth = nextWidth;
 			}
-			low = nextChars + (nextChars == low ? 1 : 0);
+			low = nextChars + (nextChars == low);
 		}
 		else
 		{
