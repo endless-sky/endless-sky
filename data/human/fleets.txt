@@ -3531,3 +3531,364 @@ fleet "Human Wormhole Guards"
 		"Frigate (Mark II)"
 	variant 5
 		"Rainmaker (Mark II Old Weapons)"
+
+fleet "Large Heimdall Pirates (Warpless)"
+	government "Pirate Heimdall"
+	names "pirate"
+	cargo 0
+	personality
+		confusion 5
+		disables heroic opportunistic quiet waiting lingering
+	variant 3
+		"Marauder Leviathan (Heimdall) (Warpless)"
+		"Aerie (Heimdall) (Warpless)" 2
+		"Dagger (Heimdall)" 4
+	variant 3
+		"Marauder Leviathan (Heimdall) (Warpless)"
+		"Aerie (Heimdall) (Warpless)" 2
+		"Dagger (Heimdall)" 4
+
+fleet "Small Priate Miners"
+	government "Pirate"
+	names "pirate"
+	cargo 0
+	personality
+		confusion 30
+		coward disables timid harvests mining
+	variant 12
+		"Scrapper (Miner)"
+	variant 4
+		"Scrapper (Miner)" 2
+	variant 7
+		"Scrapper (Miner)" 2
+		"Sparrow"
+	variant 8
+		"Scrapper (Miner)" 2
+		"Fury"
+	variant 6
+		"Scrapper (Miner)" 2
+		"Berserker"
+	variant 3
+		"Scrapper (Miner)" 3
+		"Sparrow" 2
+	variant 4
+		"Scrapper (Miner) 3"
+		"Fury" 2
+	variant 7
+		"Sunder (Pirate)"
+		"Mining Drone" 2
+		"Fury" 2
+	variant 5
+		"Sunder (Pirate)"
+		"Mining Drone" 2
+		"Berserker" 2
+	variant 1
+		"Sunder (Pirate)"
+		"Mining Drone" 2
+		"Berserker"
+	variant 2
+		"Sunder (Pirate)"
+		"Mining Drone" 2
+		"Fury"
+	variant 1
+		"Sunder (Pirate)"
+		"Mining Drone" 2
+
+# These are small ships without warp drives that go between two inhabitted planets, to make it all feel more alive!
+
+fleet "Small Priate Traffic"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		confusion 40
+		coward disables timid appeasing
+	variant 10
+		"Scrapper (Pirate Traffic) (Shuttle)"
+	variant 10
+		"Scrapper (Pirate Traffic) (Cargo)"
+	variant 6
+		"Shuttle (Pirate Traffic)"
+	variant 4
+		"Star Barge (Pirate Traffic)"
+	variant 4
+		"Heavy Shuttle (Pirate Traffic)"
+	variant 2
+		"Heavy Shuttle (Pirate Traffic)"
+		"Sparrow (Gatling)" 2
+
+# This is a weird hack to get this to work, it would be nice to get official support for this so we don't need MORE fleets with just, like, one changed attribute
+
+fleet "Small Northern Merchants (Corrupt)"
+	government "Merchant (Corrupt)"
+	names "civilian"
+	cargo 3
+	personality
+		confusion 40
+		timid frugal fleeing entering secretive
+	variant 50
+		"Heavy Shuttle"
+	variant 40
+		"Heavy Shuttle" 2
+	variant 20
+		"Freighter"
+		"Heavy Shuttle" 4
+	variant 6
+		"Freighter"
+		"Berserker" 2
+	variant 3
+		"Freighter"
+		"Berserker (Afterburner)" 2
+	variant 3
+		"Freighter"
+		"Berserker (Strike)" 2
+	variant 5
+		"Freighter (Fancy)"
+		"Heavy Shuttle" 2
+		"Berserker" 2
+	variant 5
+		"Freighter (Proton)"
+		"Heavy Shuttle" 2
+		"Berserker" 2
+	variant 10
+		"Freighter" 3
+		"Sparrow" 3
+	variant 10
+		"Blackbird"
+	variant 3
+		"Mule"
+		"Dagger"
+	variant 3
+		"Mule (Heavy)"
+		"Dagger"
+	variant 2
+		"Bounder"
+	variant 4
+		"Hauler II"
+		"Berserker" 2
+	variant 3
+		"Hauler"
+		"Sparrow" 2
+	variant 2
+		"Hauler II"
+		"Hauler"
+		"Berserker (Afterburner)" 2
+	variant 10
+		"Scout"
+	variant 5
+		"Scout (Speedy)"
+	variant 1
+		"Scrapper"
+
+fleet "Large Northern Merchants (Corrupt)"
+	government "Merchant (Corrupt)"
+	names "civilian"
+	cargo 4
+	personality
+		confusion 30
+		timid frugal fleeing entering secretive
+	variant 20
+		"Freighter" 2
+		"Firebird"
+	variant 6
+		"Freighter" 2
+		"Berserker" 2
+	variant 3
+		"Freighter" 2
+		"Berserker (Afterburner)" 2
+	variant 3
+		"Freighter" 2
+		"Berserker (Strike)" 2
+	variant 10
+		"Freighter" 2
+		"Firebird (Plasma)"
+	variant 10
+		"Freighter" 2
+		"Firebird (Laser)"
+	variant 10
+		"Freighter" 2
+		"Firebird (Missile)"
+	variant 10
+		"Freighter" 3
+		"Firebird"
+	variant 2
+		"Freighter" 3
+		"Firebird (Plasma)"
+		"Sparrow" 2
+	variant 2
+		"Freighter" 3
+		"Firebird (Laser)"
+		"Sparrow" 2
+	variant 2
+		"Freighter" 3
+		"Firebird (Missile)"
+		"Sparrow" 2
+	variant 6
+		"Freighter" 4
+		"Leviathan"
+		"Headhunter (Particle)" 2
+	variant 6
+		"Freighter" 4
+		"Leviathan (Heavy)"
+		"Berserker (Afterburner)" 3
+	variant 6
+		"Freighter" 4
+		"Leviathan (Laser)"
+		"Berserker (Afterburner)" 3
+	variant 30
+		"Behemoth"
+		"Berserker (Afterburner)" 2
+	variant 10
+		"Behemoth (Speedy)"
+		"Berserker (Afterburner)" 2
+	variant 10
+		"Behemoth (Proton)"
+		"Berserker (Afterburner)" 2
+	variant 10
+		"Behemoth"
+		"Berserker (Strike)" 3
+	variant 10
+		"Behemoth" 2
+		"Firebird"
+	variant 4
+		"Behemoth"
+		"Headhunter" 2
+	variant 2
+		"Behemoth"
+		"Headhunter (Particle)" 2
+	variant 4
+		"Blackbird"
+		"Sparrow" 3
+	variant 2
+		"Bulk Freighter"
+		"Headhunter" 2
+	variant 1
+		"Bulk Freighter"
+		"Headhunter (Particle)" 2
+	variant 5
+		"Bulk Freighter"
+		"Sparrow" 4
+	variant 2
+		"Bulk Freighter (Heavy)"
+		"Sparrow" 4
+	variant 1
+		"Bulk Freighter (Heavy)"
+		"Berserker" 4
+	variant 1
+		"Bulk Freighter (Heavy)"
+		"Berserker (Afterburner)" 2
+	variant 2
+		"Bulk Freighter (Blaster)"
+		"Sparrow" 4
+	variant 1
+		"Bulk Freighter (Long Haul)"
+		"Scout" 4
+	variant 10
+		"Behemoth" 2
+		"Firebird" 1
+	variant 10
+		"Freighter" 4
+		"Sparrow" 3
+		"Firebird" 1
+	variant 3
+		"Freighter (Fancy)" 4
+		"Sparrow" 3
+		"Firebird (Plasma)" 1
+	variant 3
+		"Freighter (Proton)" 4
+		"Sparrow" 3
+		"Firebird (Plasma)" 1
+	variant 2
+		"Arrow"
+	variant 1
+		"Hogshead"
+		"Firebird"
+	variant 1
+		"Hogshead"
+		"Firebird (Plasma)"
+	variant 8
+		"Hauler III"
+		"Hauler II"
+		"Headhunter" 2
+	variant 6
+		"Hauler II"
+		"Hauler" 3
+		"Headhunter (Particle)" 2
+	variant 4
+		"Hauler III" 2
+		"Firebird (Missile)" 1
+		"Firebird (Plasma)" 1
+	variant 4
+		"Hauler III"
+		"Hauler II"
+		"Headhunter" 3
+	variant 1
+		"Scout" 3
+	variant 1
+		"Scout (Speedy)" 3
+	variant 2
+		"Container Transport"
+		"Headhunter" 2
+	variant 1
+		"Container Transport"
+		"Headhunter (Particle)" 2
+	variant 5
+		"Container Transport"
+		"Sparrow" 4
+	variant 2
+		"Container Transport (Heavy)"
+		"Sparrow" 4
+	variant 1
+		"Container Transport (Heavy)"
+		"Berserker" 3
+	variant 1
+		"Container Transport (Heavy)"
+		"Berserker (Afterburner)" 3
+	variant 2
+		"Container Transport (Blaster)"
+		"Sparrow" 4
+
+fleet "Human Miners (Corrupt)"
+	government "Merchant (Corrupt)"
+	names "civilian"
+	cargo 0
+	personality
+		confusion 20
+		timid frugal mining harvests secretive getaway
+	variant 12
+		"Sparrow"
+	variant 7
+		"Sparrow (Miner)"
+	variant 1
+		"Fury"
+	variant 6
+		"Fury (Miner A)"
+	variant 3
+		"Fury (Miner B)"
+	variant 1
+		"Hawk"
+	variant 6
+		"Hawk (Miner A)"
+	variant 3
+		"Hawk (Miner B)"
+	variant 1
+		"Headhunter"
+	variant 3
+		"Headhunter (Miner A)"
+	variant 2
+		"Headhunter (Miner B)"
+	variant 5
+		"Sunder"
+		"Mining Drone" 2
+	variant 5
+		"Sunder (Heavy)"
+		"Mining Drone" 2
+	variant 5
+		"Marauder Raven (Heimdall) (Warpless)" 3
+		"Aerie (Heimdall) (Warpless)" 2
+		"Dagger (Heimdall)" 4
+	variant 4
+		"Aerie (Heimdall) (Warpless)" 3
+		"Dagger (Heimdall)" 6
+	variant 2
+		"Marauder Leviathan (Heimdall) (Warpless)" 2

@@ -644,6 +644,21 @@ ship "Berserker" "Berserker (CCOR)"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
+ship Berserker "Berserker (Gatling)"
+	outfits
+		"Bullet Boxes"
+		"Cargo Expansion"
+		"D23-QP Shield Generator"
+		"Gatling Gun" 4
+		"Gatling Gun Ammo" 13500
+		"Greyhound Plasma Steering"
+		"Greyhound Plasma Thruster"
+		Hyperdrive
+		"KP-6 Photovoltaic Panel" 2
+		"Small Radar Jammer"
+		Supercapacitor
+		"nGVF-BB Fuel Cell"
+
 
 
 ship "Blackbird" "Blackbird (Prisoner Transport)"
@@ -2391,6 +2406,21 @@ ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 		"Chipmunk Plasma Steering"
 		"Hyperdrive"
 
+ship "Heavy Shuttle" "Heavy Shuttle (Pirate Traffic)"
+	outfits
+		Brig
+		"Bunk Room" 3
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"LP036a Battery Pack"
+		"Laser Rifle"
+		"Meteor Missile" 29
+		"Meteor Missile Box"
+		"Meteor Missile Pod" 2
+		"Outfits Expansion"
+		"Small Radar Jammer"
+		"nGVF-AA Fuel Cell"
+
 
 
 ship "Lance" "Lance (Gatling)"
@@ -3321,6 +3351,44 @@ ship "Scrapper" "Scrapper (Mod Blaster)"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 
+ship Scrapper "Scrapper (Miner)"
+	outfits
+		"Mining Laser"
+
+		"Asteroid Scanner"
+		"Cargo Expansion"
+		Hyperdrive
+		"KP-6 Photovoltaic Panel" 4
+		"LP072a Battery Pack"
+		"Small Radar Jammer"
+
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+
+ship Scrapper "Scrapper (Pirate Traffic) (Cargo)"
+	outfits
+		"Cargo Expansion" 3
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"KP-6 Photovoltaic Array"
+		"LP036a Battery Pack"
+		"Meteor Missile" 7
+		"Meteor Missile Pod"
+
+
+
+ship Shuttle "Shuttle (Pirate Traffic)"
+	outfits
+		"Bunk Room" 2
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"Laser Rifle"
+		"Meteor Missile" 7
+		"Meteor Missile Pod"
+		"Small Bunk Room"
+		"nGVF-AA Fuel Cell"
+
+
 
 
 ship "Skein" "Skein (Sidewinder)"
@@ -3497,6 +3565,17 @@ ship "Star Barge" "Star Barge (Miner)"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		"Hyperdrive"
+
+ship "Star Barge" "Star Barge (Pirate Traffic)"
+	outfits
+		"Anti-Missile Turret"
+		"Cargo Expansion" 2
+		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma Thruster"
+		"LP036a Battery Pack"
+		"Laser Rifle"
+		"Small Radar Jammer"
+		"nGVF-AA Fuel Cell"
 
 
 

@@ -367,3 +367,15 @@ effect "airstream 2"
 	"random angle" 15
 	"random spin" 180
 	"velocity scale" 0
+
+
+
+hazard "hungry hole"
+	"constant strength"
+	"range" 600
+	"environmental effect" "hungry hole ambient"
+	weapon
+		"relative heat damage" 0.001
+
+effect "hungry hole ambient"
+	"sound" "hungry hole"

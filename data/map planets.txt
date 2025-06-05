@@ -6591,3 +6591,63 @@ planet Zydee
 	landscape land/enceladus_1
 	description `Although this moon initially seems barren and lifeless, there is evidence that the nearby Gegno Scin have recently attempted to set up an outpost here. Several partially-constructed buildings and landing zones are scattered about the surface, but none of them show any signs of activity, likely due to recent warfare with the Gegno Vi. Despite this, a small number of satellites actively orbit Zydee, likely providing important tactical information such as the volume of system traffic.`
 
+planet "Midas Station"
+	attributes frontier north "north pirate" pirate
+	landscape land/loc2
+	description `The original founders of Midas Station have long since been forgotten to time. While the citizens of the paradise worlds believe pirate space is nothing more than backstabbing chaos, Midas Station stands in defiance of this idea. Despite not being run by any government or corperation, the orbital refinery has stayed in opperation for decades. The entire workfore is volunteers, taking a small cut of any refined goods to keep the station running.`
+	description `	The hallways are tight and claustrophobic, hissing machinery and rumbling droans echo through the dimly lit corridors. Despite the huge, deafening climate control units hanging down above you, the temprature inside is enough to make you break a sweat.`
+	spaceport `The spaceport walls are grimy and worn, leaving little room to maneuver a ship inside the cramped hangar. Beneath the grated floor, humming conveyor belts pump a stream of crushed ore towards the station's core, occasionally kicking up small pebbles at passerby. The centeral refinery itself radiates a sinister orange glow, water dripping out of leaky pipes and vaporizing on contact.`
+	spaceport `	Overlooking it all is a large balcony, bustling with activity. It's here that patient miners await their refined goods, large bricks of questionably pure metals and packaged plates rolled out on conveyor belts akin to a baggage claim, branded with names and weights. Huge overhead gantrys swing by scarily close to the floor, having little space to move, depositing shipments on small self-propelled wagons.`
+	"required reputation" -10
+	bribe 0.1
+	security 0
+	tribute 200
+		threshold 2000
+		fleet "Large Northern Pirates" 5
+		fleet "Small Northern Pirates" 10
+		fleet "Priate Miners" 5
+
+planet "Rhyac"
+	attributes frozen fishing "ice giant" pirate
+	landscape land/snow9
+	description `Rhyac teeters at the end of the habitable zone, sparsely populated by only two kinds of people. The desperate in need of hiding, and those who hunger for a challenge. The planet is almost entirely covered in a frozen ocean, with tiny islands no bigger than a small earth city. Fluffy, dense clouds loom overhead, the few rays of light passing through refracting off small patches of mirror-like ice in a sparkly shimmer.`
+	description `	Ice fishing is a big business on Rhyac, as most of the land is a jet black volcanic rock, cold and infertile. The locals glide across the frozen ocean on hovercraft, using large harpoon cannons to skewer the gigantic worm-like whales that skirt beneath the ice surface. Most of the inhabitants live in small shacks or hidden bunkers along the equator, with the true population being unknown.`
+	spaceport `Rhyac’s only public space port sits atop the planet’s largest island, nestled around the base of a long dormant volcano. The humid air blows a thin layer of ice across the cold steel landing pads, coating the surface not even an hour after a ship comes in for landing. The few ships owned by the locals here are draped in heavy black tarps that bellow with passing gusts of ice.`
+	spaceport `	The main hangar sits nestled inside the shattered remains of an ancient human city ship, catwalks and storefronts bolted along the walls and ceiling of the massive metal structure. A warm orange glow drapes across the room, radiating from heat lamps and low-energy lights. The ramshackle market stalls and bars all huddle around geothermal generators that dot the hangar, spreading a steamy haze across the floors like a fog machine as they melt the condensation around them.`
+	"required reputation" -10
+   	bribe 0.1
+	security 0
+	tribute 200
+		threshold 2000
+		fleet "Large Northern Pirates" 10
+		fleet "Small Northern Pirates" 15
+
+planet "Dot"
+	attributes uninhabited
+	landscape land/canyon05a
+	description `While space is limited in the northern pirate kingdom, and Dot is just as inhabitable as any other moon, not a soul has ever set foot on the surface of this dwarf planet with plans on staying. With days as dark as night and a thin atmosphere of near pure nitrogen, the planet has little to offer. Without any strategic importance or valuable materials, Dot is seldom visited by any party.`
+	description `	The surface of the planet is unremarkable, save for occasional asteroid impacts or debree from combat overhead. It's believed Dot was flung out of its orbit by a rogue planet long ago, now slowly drifting away from Hatysa until it leaves the system and is cast into eternal darkness between the stars.`
+	government Uninhabited
+	security 0
+
+planet "Masquerade"
+	attributes frontier north "north pirate" pirate
+	landscape land/templand1
+	description `From orbit, Masquerade looks entirely uninhabbitable. The ozone layer is too thin to block most incoming radiation, leaving the surface nearly dead and incredibly radioactive. However, the planet is home to towering mountains that flank vein-like canyons all across the planet's surface. These sheir cliffs condense Masquerade's humid air into thick, fluffy clouds that hover below the peaks. It's under these clouds that life can thrive, mostly shielded from the harmful gamma radiation above.`
+	description `	In stark contrast to the surface, the land beneath the clouds is a thick and florishing jungle. Almost each valey has a running stream, the air rarely ever dropping below 90% humidity. While cloud cover is frequent, there are periodic dry spells that have forced life to adapt to the sudden radiation bombardment. The huge, towering trees have flaking bark they frequently shed, with leaves so thin the radiation passes right through them. What little animal life there is consist primarily of insects, most with the ability to quickly burrow underground should the sun ever bear down on them.
+	spaceport `Masquerade's landing pads consist of thick concrete structures that poke out from above the treetops. Huge reinforced beams let ships land atop these towers while facilities all nest inside behind layers of lead shielding, all while an array of rusty cranes swing platforms of goods to and from docked ships above.`
+	spaceport `	Most major settlements are positioned far away from the spaceports themselves, as the frequent passage of starships leaves deadly holes in the cloud cover above. To traverse these long distances, the locals use huge trucks the size of a house to plow across muddy scars cut between the trees, the ground too soft to build any rails or roads atop. The cities themselves tightly hug the walls of the canyon, burried deep within the thick stone with tunnels that can stretch killometers long. Lofty catwalks and bridges dance between sturdy stone towers while farmers wizz by on well-worn ontricopters, carrying all sorts of humid crops like rices and beans.`
+	"required reputation" -10
+	bribe 0.1
+	security 0
+	tribute 200
+		threshold 2000
+		fleet "Large Northern Pirates" 5
+		fleet "Small Northern Pirates" 10
+
+planet "Nemo"
+	attributes uninhabited
+	landscape land/station50
+	description `The air smells strongly of placeholder.`
+	government Uninhabited
+	security 0

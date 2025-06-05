@@ -3295,7 +3295,7 @@ system "Al Dhanab"
 
 system "Al Hurr"
 	hidden
-	pos -432 -491
+	pos -424.445 -426.778
 	government Uninhabited
 	arrival 1715
 	habitable 1715
@@ -4372,13 +4372,14 @@ system Alkaid
 			period 42.0132
 
 system Almaaz
-	pos -349 -538
+	pos -359.666 -508.666
 	government Pirate
-	attributes "giant star" "north" "notable star"
-	arrival 5000
-	habitable 5600
-	belt 2873
-	haze _menu/haze-brown
+	attributes "north"
+	arrival 2600
+	habitable 2530
+	belt 1873
+	"jump range" 65
+	haze _menu/haze-browner
 	link Hatysa
 	link Mintaka
 	link Unagi
@@ -4404,8 +4405,16 @@ system Almaaz
 	fleet "Large Northern Pirates" 600
 	fleet "Old Northern Pirates" 4000
 	fleet "Large Republic" 4000
+	fleet "Large Heimdall Pirates (Warpless)" 1500
+	fleet "Small Republic" 3000
+	fleet "Small Priate Miners" 1600
+	fleet "Small Northern Merchants" 16000
+	fleet "Small Northern Merchants (Corrupt)" 12000
+	fleet "Human Miners (Corrupt)" 14000
+	fleet "Large Northern Merchants (Corrupt)" 16000
 	object
 		sprite star/f-giant
+			scale 1.5
 		period 10
 	object
 		sprite planet/rock10-b
@@ -4417,8 +4426,44 @@ system Almaaz
 		period 338.371
 	object Freedom
 		sprite planet/cloud2
-		distance 4530.93
+			scale 1.5
+		distance 2254.774
 		period 1630.22
+		object
+			sprite planet/rock0-b
+			distance 310.732
+			period 120
+	object
+		sprite planet/gas2
+			scale 3
+		distance 5204.615
+		period 2260
+		object
+			sprite planet/rock11
+				scale 1.1
+			distance 1085.476
+			period 80.21
+		object
+			sprite planet/rock10
+				scale 0.5
+			distance 1242.162
+			period 95.124
+		object
+			sprite planet/rock2
+				scale 0.35
+				rewind
+			distance 1369.211
+			period 128.532
+		object
+			sprite planet/ice2
+				scale 1.3
+			distance 1598.506
+			period 182.314
+		object
+			sprite planet/io-b
+				rewind
+			distance 1825
+			period 266.124
 
 system Almach
 	pos -7 232
@@ -4621,13 +4666,14 @@ system Alnasl
 		period 1225.46
 
 system Alnilam
-	pos -487 -513
+	pos -482.408 -537
 	government Pirate
 	attributes "north"
 	arrival 1715
-	habitable 1715
+	habitable 1915
+	"jump range" 94
 	belt 1099
-	haze _menu/haze-33
+	haze _menu/haze-brown
 	link Hatysa
 	asteroids "small rock" 1 2.166
 	asteroids "medium rock" 30 1.6245
@@ -4651,7 +4697,9 @@ system Alnilam
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 700
 	fleet "Old Northern Pirates" 5000
-	fleet "Large Republic" 10000
+	fleet "Small Republic" 8000
+	fleet "Small Northern Merchants (Corrupt)" 12000
+	fleet "Small Priate Traffic" 400
 	object
 		sprite star/f5
 		period 10
@@ -4671,14 +4719,35 @@ system Alnilam
 			sprite planet/luna
 			distance 305
 			period 17.2841
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/desert1
+		distance 224.69
+		period 32.531
+	object
+		sprite planet/gas10
+			scale 1.7
+		distance 1282.434
+		period 290.312
+		object
+			sprite planet/miranda-b
+			distance 280.151
+			period 10.588
+		object Masquerade
+			sprite planet/desert1-b
+				scale 0.65
+			distance 432.44
+			period 17.284
 	object Zenith
 		sprite planet/ocean7
-		distance 1776.59
+		distance 1996.912
 		period 723.283
 		object
 			sprite planet/ice8
 			distance 136
-			period 16.5247
+			period 16.525
 	object
 		sprite planet/gas2
 		distance 2758.68
@@ -4686,19 +4755,19 @@ system Alnilam
 		object
 			sprite planet/dust1-b
 			distance 200
-			period 12.5708
+			period 12.571
 		object
 			sprite planet/lava0-b
 			distance 330
-			period 26.6433
+			period 26.643
 		object
 			sprite planet/dust7
 			distance 440
-			period 41.0201
+			period 41.02
 		object
 			sprite planet/desert4
 			distance 575
-			period 61.2801
+			period 61.28
 
 system Alnitak
 	pos -331 -412
@@ -6799,14 +6868,15 @@ system Arculus
 		period 3113.44
 
 system Arneb
-	pos -523 -580
+	pos -277.962 -515.111
 	government Pirate
 	attributes "north"
 	arrival 1715
 	habitable 1715
+	"jump range" 100
 	belt 1947
-	haze _menu/haze-none
-	link Hatysa
+	haze _menu/haze-browner
+	link Unagi
 	asteroids "large rock" 1 5.3055
 	asteroids "small metal" 2 5.2245
 	asteroids "medium metal" 9 4.7385
@@ -6824,7 +6894,10 @@ system Arneb
 	fleet "Small Northern Pirates" 400
 	fleet "Large Northern Pirates" 500
 	fleet "Old Northern Pirates" 6000
-	fleet "Large Republic" 15000
+	fleet "Small Priate Miners" 1600
+	fleet "Small Republic" 8000
+	fleet "Small Northern Merchants (Corrupt)" 8000
+	fleet "Large Northern Merchants (Corrupt)" 12000
 	object
 		sprite star/f5
 		period 10
@@ -7518,7 +7591,7 @@ system Axiom
 			period 195.437
 
 system Aya'k'k
-	pos -434.245 -616.57
+	pos -434.245 -613.903
 	government Wanderer
 	arrival 500
 	habitable 490
@@ -19460,47 +19533,52 @@ system Hassaleh
 		period 1565.49
 
 system Hatysa
-	pos -474 -542
+	pos -432.963 -507.333
 	government Pirate
 	attributes "north"
 	arrival 525
 	habitable 525
 	belt 1163
-	haze _menu/haze-33
+	haze _menu/haze-browner
 	link Almaaz
 	link Alnilam
-	link Arneb
+	link Temp3
+	link Temp1
 	asteroids "small rock" 19 0.858
 	asteroids "large rock" 3 1.0296
 	asteroids "small metal" 13 1.0153
 	asteroids "medium metal" 102 1.3585
 	asteroids "large metal" 14 1.9448
 	minables copper 27 2.2074
-	minables iron 4 2.54657
-	minables neodymium 9 2.45903
-	trade Clothing 298
-	trade Electronics 774
-	trade Equipment 552
-	trade Food 157
-	trade "Heavy Metals" 1211
-	trade Industrial 702
-	trade "Luxury Goods" 990
-	trade Medical 863
-	trade Metal 546
-	trade Plastic 330
+	minables iron 13 2.54657
+	trade Clothing 263
+	trade Electronics 851
+	trade Equipment 501
+	trade Food 236
+	trade "Heavy Metals" 1122
+	trade Industrial 734
+	trade "Luxury Goods" 1093
+	trade Medical 824
+	trade Metal 503
+	trade Plastic 318
 	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
-	fleet "Large Republic" 15000
 	fleet "Old Northern Pirates" 6000
 	fleet "Derelict Pirate" 30000
+	fleet "Small Priate Miners" 1500
+	fleet "Small Priate Traffic" 400
+	fleet "Large Northern Pirates" 900
+	fleet "Small Republic" 8000
+	fleet "Small Northern Merchants (Corrupt)" 14000
+	fleet "Human Miners (Corrupt)" 9000
 	object
 		sprite star/k0
-		distance 5.29989
-		period 12.3742
+		distance 5.3
+		period 12.374
 	object
 		sprite star/m-dwarf
-		distance 74.1985
-		period 12.3742
+		distance 74.199
+		period 12.374
 		offset 180
 	object
 		sprite planet/rock2
@@ -19510,15 +19588,23 @@ system Hatysa
 			sprite planet/dust2
 			distance 174
 			period 21.949
-	object
+	object Rhyac
 		sprite planet/ocean4
 		distance 897.418
 		period 469.323
+	object "Midas Station"
+		sprite planet/station18
+		distance 1096.44
+		period 320.69
 	object
 		sprite planet/gas11-b
 		distance 1294.67
-		period 813.240
+		period 813.24
 	object
+		sprite planet/rock19
+		distance 1841.09
+		period 1582.59
+	object Dot
 		sprite planet/io-b
 		distance 2814.92
 		period 2607.23
@@ -40385,14 +40471,17 @@ system Umbral
 			period 71.3804
 
 system Unagi
-	pos -306 -578
+	pos -318.74 -561.26
 	government Pirate
 	attributes "north"
 	arrival 500
+	"jump range" 69
 	habitable 320
 	belt 1960
 	haze _menu/haze-brown
 	link Almaaz
+	link Arneb
+	link "Temp 4"
 	asteroids "large rock" 1 3.102
 	asteroids "small metal" 2 2.772
 	asteroids "medium metal" 1 3.267
@@ -40409,16 +40498,20 @@ system Unagi
 	trade Medical 797
 	trade Metal 479
 	trade Plastic 364
-	fleet "Small Northern Pirates" 1500
-	fleet "Large Northern Pirates" 3000
+	fleet "Small Northern Pirates" 800
+	fleet "Large Northern Pirates" 1000
 	fleet "Derelict Pirate" 10000
+	fleet "Small Republic" 8000
+	fleet "Large Republic" 16000
+	fleet "Small Northern Merchants (Corrupt)" 8000
+	fleet "Large Northern Merchants (Corrupt)" 12000
 	object
 		sprite star/m0
 		period 10
 	object
 		sprite planet/lava3-b
 		distance 144.41
-		period 38.8043
+		period 38.804
 	object
 		sprite planet/rock6
 		distance 430.25
@@ -40434,11 +40527,11 @@ system Unagi
 		object
 			sprite planet/rock7-b
 			distance 293
-			period 13.4563
+			period 13.456
 		object
 			sprite planet/rhea
 			distance 388
-			period 20.5056
+			period 20.506
 
 system Unukalhai
 	pos -710 405
@@ -43618,3 +43711,171 @@ system Zubeneschamali
 		sprite planet/dust3
 		distance 2218.25
 		period 1182.00
+
+system Iniquus
+	pos -390.667 -569.704
+	government Uninhabited
+	attributes "black hole" "notable star"
+	arrival 4000
+	habitable 100000
+	belt 3000
+	"jump range" 60
+	haze _menu/haze-blue-er
+	fleet "Small Northern Pirates" 1500
+	fleet "Large Northern Pirates" 3000
+	hazard "Black Hole Accretion Disk" 4
+	hazard "Black Hole Event Horizon" 4
+	hazard "Black Hole Gravity" 8
+	hazard "hungry hole" 1
+	object
+		sprite star/black-hole-core
+	object
+		sprite star/debree-belt/debree-belt
+			"frame rate" 1
+			"random start frame"
+	object
+		sprite star/coolstar/coolstar
+			scale 2.65
+			"frame rate" 10
+	object
+		sprite star/a-supergiant
+		distance 520
+		offset 300
+	object
+		sprite planet/station19s
+		distance 2500
+		period 0.223
+		offset 69
+
+system Temp1
+	pos -387.648 -457.444
+	government Uninhabited
+	attributes "north"
+	haze _menu/haze-browner
+	link Hatysa
+
+system Temp3
+	pos -458.167 -457.296
+	government Uninhabited
+	attributes "north"
+	habitable 10000
+	belt 1724 3
+	belt 2393 7
+	haze _menu/haze-browner
+	link Hatysa
+	asteroids "small rock" 6 4.409
+	asteroids "medium rock" 43 5.651
+	asteroids "large rock" 6 3.974
+	asteroids "small metal" 1 5.092
+	asteroids "medium metal" 3 4.844
+	asteroids "large metal" 2 4.657
+	minables tungsten 22 3.939
+	minables lead 43 2.683
+	fleet "Small Northern Pirates" 4000
+	fleet "Small Republic" 8000
+	fleet "Small Priate Miners" 6000
+	fleet "Human Miners (Corrupt)" 12000
+	fleet "Large Northern Pirates" 12000
+	object
+		sprite star/k-supergiant
+			scale 0.6
+		distance 300
+		period 10
+	object
+		sprite planet/gas1-hot
+			scale 1.7
+		distance 1381.148
+		period 263.523
+		object
+			sprite planet/rock0-b
+			distance 228
+			period 130.138
+		object
+			sprite planet/rock0
+				scale 0.5
+			distance 365.292
+			period 276.702
+		object
+			sprite planet/desert10-b
+				scale 0.4
+			distance 464.101
+			period 416.302
+	object
+		sprite planet/rock10-b
+			scale 1.4
+		distance 2713.06
+		period 635.972
+		object
+			sprite planet/lava5-b
+			distance 251
+			period 104.071
+	object
+		sprite planet/rock11
+		distance 3163.848
+		period 868.366
+	object
+		sprite planet/gas11-b
+		distance 4365
+		period 1719.611
+		object
+			sprite planet/dust7-b
+			distance 269
+			period 166.774
+	object
+		sprite star/k-giant
+		distance 300
+		period 10
+		offset 180
+
+system "Temp 4"
+	pos -332.389 -624.185
+	government Uninhabited
+	attributes "north" "notable star"
+	arrival 2600
+	habitable 320
+	belt 650 30
+	"jump range" 82
+	haze _menu/haze-browner
+	link Unagi
+	asteroids "small rock" 50 0.5
+	asteroids "large metal" 15 0.5
+	minables neodymium 9 0.25
+	minables iron 15 0.25
+	minables lead 10 0.25
+	fleet "Small Priate Miners" 12000
+	fleet "Human Miners (Corrupt)" 16000
+	fleet "Small Northern Pirates" 10000
+	fleet "Small Republic" 18000
+	fleet "Large Northern Pirates" 30000
+	object
+		sprite planet/browndwarf-l-rouge
+			scale 0.2
+			"frame rate" 1
+		period 50
+	object
+		sprite planet/gas8
+		distance 1252.643
+		period 900
+		object
+			sprite planet/dust3
+			distance 368.447
+			period 178.088
+	object
+		sprite planet/lava5
+			scale 0.75
+		distance 151.595
+		period 1550.757
+	object
+		sprite planet/rock17-b
+		distance 1759.003
+		period 2172.386
+	object
+		sprite planet/dust4-b
+		distance 2639.402
+		period 8549.755
+	object Nemo
+		sprite planet/station19s
+			scale 0.3
+		distance 187.946
+		period 1550.76
+		offset 140
