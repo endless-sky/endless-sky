@@ -31,6 +31,7 @@ class DataNode;
 class DataWriter;
 class Mission;
 class Outfit;
+class Planet;
 class PlayerInfo;
 class System;
 class UI;
@@ -45,10 +46,13 @@ class MissionAction {
 public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
-	MissionAction(const DataNode &node, const ConditionsStore *playerConditions);
+	MissionAction(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
-	void Load(const DataNode &node, const ConditionsStore *playerConditions);
-	void LoadSingle(const DataNode &node, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
+	void LoadSingle(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
@@ -61,7 +65,7 @@ public:
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should
 	// take place in a system that does not match the specified LocationFilter.
-	// It can also not be done if the mission is failed, and teh trigger doesn't support it.
+	// It can also not be done if the mission is failed, and the trigger doesn't support it.
 	bool CanBeDone(const PlayerInfo &player, bool isFailed, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
 	// Check if this action requires this ship to exist in order to ever be completed.
 	bool RequiresGiftedShip(const std::string &shipId) const;

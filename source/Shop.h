@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class ConditionsStore;
 class Planet;
+class System;
 
 
 
@@ -35,9 +36,11 @@ template <class Item>
 class Shop {
 public:
 	Shop();
-	Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions);
+	Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
-	void Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
 	// This shop's name.
 	const std::string &Name() const;
@@ -67,15 +70,17 @@ Shop<Item>::Shop()
 
 
 template <class Item>
-Shop<Item>::Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions)
+Shop<Item>::Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
+	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
 {
-	Load(node, items, playerConditions);
+	Load(node, items, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
 template <class Item>
-void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions)
+void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
+	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
 {
 	name = node.Token(1);
 	// If an event or second definition updates this shop, clear the stock
@@ -115,7 +120,7 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 					child.PrintTrace("Warning: Removing full location filter; partial removal is not supported:");
 			}
 			else
-				location.Load(child);
+				location.Load(child, visitedSystems, visitedPlanets);
 		}
 		else if(key == "stock")
 		{

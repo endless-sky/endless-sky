@@ -1259,7 +1259,6 @@ government "Ka'het"
 	
 	"player reputation" -1
 
-# A government used to cause infighting between fleets that both appear to be the Ka'het government.
 government "Ka'het (Infighting)"
 	"display name" "Ka'het"
 	swizzle 0
@@ -1285,6 +1284,23 @@ government "Ka'sei"
 		board 0
 		capture 0
 	"player reputation" 1
+
+government "Ka'sei (12.2)"
+	# Used only by the Patir Mystery mission in question
+	"display name" "Ka'sei"
+	swizzle 0
+	language "Ka'het"
+	
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+	"player reputation" 10
+	"friendly hail" "friendly ka'het"
+	"friendly disabled hail" "friendly disabled ka'het"
+	"hostile hail" "hostile ka'het"
+	"hostile disabled hail" "hostile disabled ka'het"
 
 color "governments: Korath Exiles" .8 .5 .1
 
@@ -1417,6 +1433,17 @@ government "Lunarium (Hidden)"
 		"Quarg" .01
 		"Heliarch" -.01
 		"Pirate" -.01
+
+government "Magic Asteroid"
+	"display name" "???"
+	swizzle 0
+	language "Magic Asteroid"
+	
+	"attitude toward"
+		"Ka'sei (12.2)" -.01
+		"Uninhabited" -.01
+
+	"player reputation" 10
 
 government "Marauder"
 	swizzle 6

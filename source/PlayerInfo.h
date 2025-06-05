@@ -69,7 +69,7 @@ public:
 	// Don't allow copying this class.
 	PlayerInfo(const PlayerInfo &) = delete;
 	PlayerInfo &operator=(const PlayerInfo &) = delete;
-	PlayerInfo(PlayerInfo &&) = default;
+	PlayerInfo(PlayerInfo &&) = delete;
 	PlayerInfo &operator=(PlayerInfo &&) = default;
 	~PlayerInfo() noexcept = default;
 
@@ -217,6 +217,7 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
+	bool HasAvailableEnteringMissions() const;
 
 	enum SortType {ABC, PAY, SPEED, CONVENIENT};
 	const SortType GetAvailableSortType() const;
@@ -229,20 +230,25 @@ public:
 	void ToggleSortSeparatePossible();
 	void SortAvailable();
 
-	const Mission *ActiveBoardingMission() const;
+	const Mission *ActiveInFlightMission() const;
 	void UpdateMissionNPCs();
 	void AcceptJob(const Mission &mission, UI *ui);
 	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
+	void CreateEnteringMissions();
+	Mission *EnteringMission();
 	// Return true if the given ship is capturable only because it's the source
 	// of a boarding mission which allows it to be.
 	bool CaptureOverriden(const std::shared_ptr<Ship> &ship) const;
-	void ClearActiveBoardingMission();
+	void ClearActiveInFlightMission();
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
 	// show that message.
 	void HandleBlockedMissions(Mission::Location location, UI *ui);
+	// Display the blocked message for the first available entering mission,
+	// then remove it from the available entering missions list.
+	void HandleBlockedEnteringMissions(UI *ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
 	// Basic callback for handling forced departure from a planet.
@@ -280,6 +286,8 @@ public:
 	// Mark a system and its planets as unvisited, even if visited previously.
 	void Unvisit(const System &system);
 	void Unvisit(const Planet &planet);
+	const std::set<const System *> &VisitedSystems() const;
+	const std::set<const Planet *> &VisitedPlanets() const;
 
 	// Check whether the player has visited the <mapSize> systems around the current one.
 	bool HasMapped(int mapSize, bool mapMinables) const;
@@ -365,6 +373,8 @@ private:
 	// Set the flagship (on departure or during flight).
 	void SetFlagship(Ship &other);
 
+	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip);
+
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 
@@ -417,16 +427,23 @@ private:
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
+	// This list is populated upon entering a system, and isn't saved since
+	// you can't save in space.
+	std::list<Mission> availableEnteringMissions;
+	// This list is populated upon boarding a ship, and isn't saved since
+	// you can't save in space. As of right now, only one boarding mission
+	// can be offered at a time, so this list will only ever contain one or
+	// zero missions.
+	std::list<Mission> availableBoardingMissions;
 	// If any mission component is not fully defined, the mission is deactivated
 	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
 	std::list<Mission> inactiveMissions;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
-	std::list<Mission> boardingMissions;
-	// This pointer to the most recently accepted boarding mission enables
-	// its NPCs to be placed before the player lands, and is then cleared.
-	Mission *activeBoardingMission = nullptr;
+	// This pointer to the most recently accepted boarding/assisting/entering mission
+	// enables its NPCs to be placed before the player lands, and is then cleared.
+	Mission *activeInFlightMission = nullptr;
 	// How to sort availableJobs
 	bool availableSortAsc = true;
 	SortType availableSortType;
