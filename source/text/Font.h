@@ -73,9 +73,8 @@ private:
 	std::string TruncateFront(const std::string &str, int &width) const;
 	std::string TruncateMiddle(const std::string &str, int &width) const;
 
-	std::string TruncateEndsOrMiddle(
-		const std::string &str, int &width,
-		std::function<std::string(const std::string&, int)> getResultString) const;
+	std::string TruncateEndsOrMiddle(const std::string &str, int &width,
+		std::function<std::string(const std::string &, int)> getResultString) const;
 
 private:
 	const Shader *shader;
