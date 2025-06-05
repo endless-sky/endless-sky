@@ -282,7 +282,8 @@ outfit "EMP Torpedo Bay"
 		"acceleration" .7
 		"drag" .1
 		"turn" 2
-		"homing" 3
+		"homing"
+			"throttle control"
 		"infrared tracking" .7
 		"radar tracking" .8
 		"trigger radius" 50
@@ -372,7 +373,8 @@ outfit "Teciimach Bay"
 		"acceleration" .7
 		"drag" .1
 		"turn" 2.5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"infrared tracking" .8
 		"radar tracking" .9
 		"trigger radius" 50
@@ -427,7 +429,8 @@ outfit "Teciimach Pod"
 		"acceleration" .7
 		"drag" .1
 		"turn" 2.5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"infrared tracking" .8
 		"radar tracking" .9
 		"trigger radius" 50

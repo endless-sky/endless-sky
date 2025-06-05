@@ -103,7 +103,9 @@ outfit "Pug Seeker"
 		"acceleration" 1.3
 		"drag" .1
 		"turn" 4
-		"homing" 5
+		"homing"
+			"leading"
+			"throttle control"
 		"tracking" .5
 		"shield damage" 24
 		"hull damage" 13

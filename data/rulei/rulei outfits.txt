@@ -32,7 +32,7 @@ outfit "Fate Sealer"
 		"firing energy" 800
 		"firing heat" 400
 		"turn" 180
-		"homing" 2
+		"homing"
 		"infrared tracking" 1
 		"radar tracking" 1
 		"optical tracking" 1
@@ -76,7 +76,7 @@ outfit "Fate Divider"
 		"firing energy" 800
 		"firing heat" 400
 		"turn" 180
-		"homing" 2
+		"homing"
 		"infrared tracking" 1
 		"radar tracking" 1
 		"optical tracking" 1

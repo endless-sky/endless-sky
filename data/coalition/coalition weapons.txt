@@ -117,7 +117,7 @@ outfit "Finisher Pod"
 		"acceleration" .8
 		"drag" .1
 		"turn" 0.1
-		"homing" 2
+		"homing"
 		"radar tracking" .8
 		"missile strength" 50
 		"submunition" "Active Finisher" 1
@@ -159,7 +159,7 @@ outfit "Finisher Maegrolain"
 		"acceleration" .8
 		"drag" .1
 		"turn" 0.1
-		"homing" 2
+		"homing"
 		"radar tracking" .8
 		"missile strength" 50
 		"submunition" "Active Finisher" 1
@@ -178,7 +178,9 @@ outfit "Active Finisher"
 		"acceleration" 1
 		"drag" .1
 		"turn" 2
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"radar tracking" .8
 		"optical tracking" .5
 		"missile strength" 50
