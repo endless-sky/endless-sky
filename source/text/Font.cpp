@@ -465,7 +465,8 @@ string Font::TruncateBack(const string &str, int &width) const
 string Font::TruncateFront(const string &str, int &width) const
 {
 	return TruncateEndsOrMiddle(str, width,
-		[](const string &str, int charCount) {
+		[](const string &str, int charCount)
+		{
 			return "..." + str.substr(str.size() - charCount);
 		});
 }
