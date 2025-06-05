@@ -414,9 +414,8 @@ string Font::TruncateText(const DisplayText &text, int &width) const
 }
 
 
-string Font::TruncateEndsOrMiddle(
-	const string &str, int &width,
-	std::function<std::string(const std::string&, int)> getResultString) const
+string Font::TruncateEndsOrMiddle(const string &str, int &width,
+	function<string(const string &, int)> getResultString) const
 {
 	int firstWidth = WidthRawString(str.c_str());
 	if(firstWidth <= width)
