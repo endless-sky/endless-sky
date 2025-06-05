@@ -443,9 +443,7 @@ string Font::TruncateEndsOrMiddle(const string &str, int &width,
 			low = nextChars + (nextChars == low);
 		}
 		else
-		{
 			high = nextChars - 1;
-		}
 	}
 	width = workingWidth;
 	return getResultString(str, workingChars);
