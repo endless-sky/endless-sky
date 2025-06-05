@@ -430,7 +430,8 @@ string Font::TruncateEndsOrMiddle(const string &str, int &width,
 	int low = 0, high = str.size() - 1;
 	while(low <= high)
 	{
-		int nextChars = (low + high) / 2; // Think "how many chars to take from both ends, omitting in the middle"
+		// Think "how many chars to take from both ends, omitting in the middle".
+		int nextChars = (low + high) / 2;
 		int nextWidth = WidthRawString(getResultString(str, nextChars).c_str());
 		if(nextWidth <= width)
 		{
