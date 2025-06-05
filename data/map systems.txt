@@ -12464,7 +12464,7 @@ system Delia
 		distance 748.5
 		period 370.040
 	object Faliete
-		sprite planet/gas12-b
+		sprite planet/gas10-b
 		distance 2258.66
 		period 1939.71
 		object
