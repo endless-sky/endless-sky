@@ -42,6 +42,19 @@ public class ESActivity extends SDLActivity
         };
     }
 
+    // Delete a folder recursively
+    void deleteFolder(File path)
+    {
+        if (path.isDirectory())
+        {
+            for (File child: path.listFiles())
+            {
+                deleteFolder(child);
+            }
+        }
+        path.delete();
+    }
+
     // Call to save a file using an intent
     protected void saveFile(String filename, byte[] content)
     {
@@ -267,9 +280,13 @@ public class ESActivity extends SDLActivity
                         else
                         {
                             // The unzipped path has the correct structure.
-                            // Strip off the tmp_tag
+                            // Delete the old plugin if it exists, and move the
+                            // temp folder there instead.
+                            File newDir = new File(unzip_path + zipfilename);
+                            if (newDir.exists())
+                                deleteFolder(newDir);
                             File oldDir = new File(unzipped_path);
-                            oldDir.renameTo(new File(unzip_path + zipfilename));
+                            oldDir.renameTo(newDir);
                         }
                     }
                     Log.e("SDL-Debug", "Unzip finished");
