@@ -1436,11 +1436,12 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
-	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
-	{
-		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
-		return;
-	}
+	// Ignore this error on android, since we hardcode the back button for this.
+	// if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+	// {
+	// 	GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+	// 	return;
+	// }
 
 	Command::SaveSettings(Files::Config() / "keys.txt");
 

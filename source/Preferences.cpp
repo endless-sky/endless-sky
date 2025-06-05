@@ -242,7 +242,7 @@ void Preferences::Load()
 		else if(key == "Flotsam collection")
 			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
 		else if(key == "view zoom")
-			viewZoom = max(MinViewZoom(), min(node.Value(1), MaxViewZoom()));
+			viewZoom = node.Value(1);
 		else if(key == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(key == "camera acceleration")

@@ -140,6 +140,17 @@ void Interface::Load(const DataNode &node)
 				if(it == points.end())
 					points[te->Text()].SetBounds(*te);
 			}
+			else if(key == "wrapped label" || key == "wrapped string"
+					|| key == "wrapped button" || key == "wrapped dynamic button")
+			{
+				TextElement* te = new WrappedTextElement(child, anchor);
+				elements.push_back(te);
+				// If we already have a value of the same name, let it take
+				// precedence.
+				auto it = points.find(te->Text());
+				if(it == points.end())
+					points[te->Text()].SetBounds(*te);
+			}
 			else if(key == "bar" || key == "ring")
 				elements.push_back(new BarElement(child, anchor));
 			else if(key == "pointer")
@@ -705,6 +716,25 @@ void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel, const 
 		else if(!(command == Command::NONE))
 			panel->AddZone(bounds, command);
 	}
+}
+
+
+
+// Members of the WrappedElement class:
+
+// Constructor.
+Interface::WrappedTextElement::WrappedTextElement(const DataNode &node, const Point &globalAnchor)
+	: TextElement(node, globalAnchor)
+{
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+
+	FinishLoadingColors();
+
+	// Initialize the WrappedText.
+	text.SetAlignment(textAlignment);
+	text.SetTruncate(truncate);
+	text.SetWrapWidth(Bounds().Width());
 }
 
 
