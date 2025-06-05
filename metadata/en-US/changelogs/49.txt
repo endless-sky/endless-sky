@@ -1,0 +1,3 @@
+* Update to 0.10.13.1
+* Add pause button
+* Add more conditionals for plugins to use
