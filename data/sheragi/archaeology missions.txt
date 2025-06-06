@@ -364,6 +364,24 @@ mission "Sad Archie"
 
 
 
+mission "Rim Archaeology Reminder"
+	landing
+	non-blocking
+	name "Foster's Assistance?"
+	description "Head to <destination> and see if Albert Foster can help uncover Zug's mystery."
+	source
+		not planet "Vinci"
+	destination "Vinci"
+	to offer
+		not "archaeology before TMBR"
+		has "Deep Archaeology 5: done"
+	on offer
+		conversation
+			`As your ship settles down on <origin>, you recall the visions of an alien civilization you experienced while in Ildaria, and how the terrain you saw resembled the landscape of Zug. Perhaps Foster can help you investigate further.` 
+				accept
+
+
+
 mission "Rim Archaeology 1"
 	landing
 	name "Archaeology on <planet>"
@@ -371,8 +389,13 @@ mission "Rim Archaeology 1"
 	source "Vinci"
 	destination "Zug"
 	passengers 1
+	blocked `You consider telling Albert Foster about your findings on Zug, but realize that you don't have a bunk free to take him there! Return when you have free space.`
 	to offer
 		has "Sad Archie: done"
+		has "Deep Archaeology 5: done"
+		or
+			has "archaeology before TMBR"
+			has "Rim Archaeology Reminder: offered"
 	
 	on offer
 		conversation
@@ -383,10 +406,10 @@ mission "Rim Archaeology 1"
 					defer
 			branch recent
 				not "archaeology before TMBR"
-			`	Foster seems glad to see you. "It's been a while, <first>. Has something caught your eye recently?"`
+			`	Foster seems glad to see you. "It's been a while, <first>. Something catch your eye recently?"`
 				goto interest
 			label recent
-			`	Foster is slightly surprised by your arrival. "Sorry to say, but I haven't made any progress with the Deep since we last talked. Unless you have something else you want to tell me about?"`
+			`	Foster is slightly surprised by your arrival. "My apologies, but I haven't made any progress in the Deep since we last talked. Unless you have something else for me?"`
 			label interest
 			`	You do your best to pique his interest without saying anything that will make him think you're crazy, but he's clearly not buying it. "I'm sorry," he says, "but I'm not mounting an expedition just because you have a 'hunch.' So unless you're willing to tell me the source of your information, I'm not interested." He turns his attention back to the data pad that he was reading before you walked into his office.`
 			choice
