@@ -247,7 +247,7 @@ void Preferences::Load()
 			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
 		else if(key == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
-		else if(key == "minimap display")
+		else if(key == "Show mini-map")
 			minimapDisplayIndex = max<int>(0, min<int>(node.Value(1), MINIMAP_DISPLAY_SETTING.size() - 1));
 		else if(key == "previous saves" && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
@@ -319,7 +319,7 @@ void Preferences::Save()
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
-	out.Write("minimap display", minimapDisplayIndex);
+	out.Write("Show mini-map", minimapDisplayIndex);
 	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)

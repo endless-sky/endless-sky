@@ -1472,7 +1472,7 @@ tip "Rotate flagship in HUD"
 tip "Show planet labels"
 	`Display an overlay on nearby landable planets and stations.`
 
-tip "Mini-map display"
+tip "Show mini-map"
 	`Control the display of a mini-map of nearby systems. If set to "when jumping", the mini-map only appears when initiating a hyperspace jump. If set to "always on", then it is always present when in flight.`
 
 tip "Clickable radar display"
