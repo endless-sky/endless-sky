@@ -81,7 +81,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
-	const string MINIMAP_DISPLAY = "Mini-map display";
+	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 
 	// How many pages of controls and settings there are.
