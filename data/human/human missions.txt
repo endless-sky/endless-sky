@@ -974,7 +974,6 @@ mission "There Might Be Riots part 2"
 	passengers 8
 	to offer
 		has "There Might Be Riots 1: done"
-		has "Deep Archaeology 5: done"
 		random < 30
 	
 	on offer
