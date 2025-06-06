@@ -1150,7 +1150,7 @@ mission "There Might Be Riots part 3B"
 		personality heroic nemesis
 		fleet
 			variant
-				"Combat Drone" 15
+				"Combat Drone" 5
 	npc
 		government "Team Red"
 		personality waiting heroic
@@ -1162,7 +1162,7 @@ mission "There Might Be Riots part 3B"
 		personality waiting heroic
 		fleet
 			variant
-				"Combat Drone" 35
+				"Combat Drone" 25
 	
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
