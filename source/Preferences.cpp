@@ -164,6 +164,9 @@ namespace {
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
+	const vector<string> MINIMAP_DISPLAY_SETTING = {"off", "when jumping", "always on"};
+	int minimapDisplayIndex = 1;
+
 	int previousSaveCount = 3;
 }
 
@@ -245,6 +248,8 @@ void Preferences::Load()
 			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
 		else if(key == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
+		else if(key == "minimap display")
+			minimapDisplayIndex = max<int>(0, min<int>(node.Value(1), MINIMAP_DISPLAY_SETTING.size() - 1));
 		else if(key == "previous saves" && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(key == "alt-mouse turning")
@@ -315,6 +320,7 @@ void Preferences::Save()
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
+	out.Write("minimap display", minimapDisplayIndex);
 	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)
@@ -806,4 +812,26 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 int Preferences::GetPreviousSaveCount()
 {
 	return previousSaveCount;
+}
+
+
+
+void Preferences::ToggleMinimapDisplay()
+{
+	if(++minimapDisplayIndex >= static_cast<int>(MINIMAP_DISPLAY_SETTING.size()))
+		minimapDisplayIndex = 0;
+}
+
+
+
+Preferences::MinimapDisplay Preferences::GetMinimapDisplay()
+{
+	return static_cast<MinimapDisplay>(minimapDisplayIndex);
+}
+
+
+
+const std::string &Preferences::MinimapSetting()
+{
+	return MINIMAP_DISPLAY_SETTING[minimapDisplayIndex];
 }

@@ -82,7 +82,7 @@ public:
 	// escort/storage tooltips, and the non-routable system warning.
 	void FinishDrawing(const std::string &buttonCondition);
 
-	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
+	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const draw[2], int step);
 
 	// Map panels allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
