@@ -212,6 +212,7 @@ color "map route error shadow" 0. 0. 0. 1.
 
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
+color "wormholes: beyond Patir" .19 .27 .69
 
 # Color of warning message when users enable or disable plugins via in-game UI.
 color "plugin reload required" .75 .1 .1 0.
@@ -260,9 +261,9 @@ interface "menu background"
 
 interface "main menu"
 	# Background animation:
-	value "x speed" -.5
-	value "y speed" .1
-	value "y amplitude" 2.
+	value "x speed" -.4
+	value "y speed" .02
+	value "y amplitude" .6
 
 	# Credits:
 	sprite "_menu/side panel"

@@ -100,8 +100,8 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	xSpeed = mainMenuUi->GetValue("x speed");
 	ySpeed = mainMenuUi->GetValue("y speed");
 	yAmplitude = mainMenuUi->GetValue("y amplitude");
-	// Start the animation wave at a random point.
-	animation = Random::Real() * 360.;
+	returnPos = GameData::GetBackgroundPosition();
+	GameData::SetBackgroundPosition(Point());
 
 	// When the player is in the menu, pause the game sounds.
 	Audio::Pause();
@@ -112,6 +112,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 MenuPanel::~MenuPanel()
 {
 	Audio::Resume();
+	GameData::SetBackgroundPosition(returnPos);
 }
 
 
@@ -187,6 +188,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		gamePanels.CanSave(true);
 		GetUI()->PopThrough(this);
+		return true;
 	}
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());
@@ -200,7 +202,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
 	else if(key == 'q')
+	{
 		GetUI()->Quit();
+		return true;
+	}
 	else if(key == ' ')
 		scrollingPaused = !scrollingPaused;
 	else if(key == SDLK_DOWN)
@@ -210,6 +215,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else
 		return false;
 
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 

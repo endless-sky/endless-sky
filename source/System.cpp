@@ -514,13 +514,13 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 
 	// Some systems in the game may be considered inaccessible. If this system is inaccessible,
 	// then it shouldn't have accessible links or jump neighbors.
-	if(inaccessible)
+	if(!IsValid() || inaccessible)
 		return;
 
 	// If linked systems are inaccessible, then they shouldn't be a part of the accessible links
 	// set that gets used for navigation and other purposes.
 	for(const System *link : links)
-		if(!link->Inaccessible())
+		if(link->IsValid() && !link->Inaccessible())
 			accessibleLinks.insert(link);
 
 	// Neighbors are cached for each system for the purpose of quicker
@@ -1139,8 +1139,8 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	for(const auto &it : systems)
 	{
 		const System &other = it.second;
-		// Skip systems that have no name or that are inaccessible.
-		if(it.first.empty() || other.TrueName().empty() || other.Inaccessible())
+		// Skip systems that are invalid or inaccessible.
+		if(!other.IsValid() || other.Inaccessible())
 			continue;
 
 		if(&other != this && other.Position().Distance(position) <= distance)

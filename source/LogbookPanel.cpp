@@ -165,17 +165,21 @@ void LogbookPanel::Draw()
 
 bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
+
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
 		Drag(0., (Screen::Height() - 100.) * direction);
+		sound = UI::UISound::NONE;
 	}
 	else if(key == SDLK_HOME || key == SDLK_END)
 	{
 		double direction = (key == SDLK_HOME) - (key == SDLK_END);
 		Drag(0., maxScroll * direction);
+		sound = UI::UISound::NONE;
 	}
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
@@ -234,7 +238,10 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			categoryScroll = max(categoryScroll, 0.);
 		}
 	}
+	else
+		sound = UI::UISound::NONE;
 
+	UI::PlaySound(sound);
 	return true;
 }
 
@@ -255,6 +262,7 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 			// If selecting a different year, select the first month in that
 			// year.
 			Update(false);
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 	}
 	else if(x > WIDTH)
@@ -272,6 +280,7 @@ bool LogbookPanel::Drag(double dx, double dy)
 	else
 		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));
 
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 
