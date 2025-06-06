@@ -377,7 +377,7 @@ mission "Rim Archaeology Reminder"
 		has "Deep Archaeology 5: done"
 	on offer
 		conversation
-			`As your ship settles down on <origin>, you recall the visions of an alien civilization you experienced while in Ildaria, and how the terrain you saw resembled the landscape of Zug. Perhaps Foster can help you investigate further.` 
+			`As your ship settles down on <origin>, you recall the visions of an alien civilization you experienced while in Ildaria, and how the terrain you saw resembled the landscape of Zug. Perhaps Foster can help you investigate further.`
 				accept
 
 
