@@ -52,7 +52,7 @@ public:
 	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
 
 	virtual void Step() override;
-	
+
 	void Draw() override;
 
 
