@@ -164,7 +164,7 @@ help "shipyard"
 	`You can also press F to search the shipyard for a specific ship.`
 
 help "cargo management"
-	`Sometimes you may want to buy outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits or perhaps you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons.`
+	`Sometimes you may want to buy outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits, or perhaps you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons.`
 	`You can use the following keyboard shortcuts or the buttons to move outfits around:`
 	`- "B" to buy and install outfits`
 	`- "S" to sell outfits from cargo, planetary storage, or your ship (in that order)`
