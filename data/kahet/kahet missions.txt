@@ -2040,7 +2040,7 @@ mission "Ka'het: Voice From The Past 0"
 	landing
 	invisible
 	to offer
-		has "event: remnant: cognizance calm"
+		has "event: patir mystery timer"
 	to complete
 		never
 	npc assist save
