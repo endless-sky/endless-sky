@@ -33,4 +33,9 @@ RUN \
 ENV CMAKE_CXX_COMPILER_LAUNCHER=ccache
 ENV CMAKE_BUILD_PARALLEL_LEVEL=32
 
+# Utilities
+RUN \
+	apt-get update; \
+	apt-get install -y --no-install-recommends gnupg2
+
 CMD /bin/bash

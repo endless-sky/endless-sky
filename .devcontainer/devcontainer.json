@@ -1,5 +1,6 @@
 {
 	"name": "Endless Sky",
 	"dockerComposeFile": "docker-compose.yml",
-	"service": "es-container"
+	"service": "es-container",
+	"workspaceFolder": "${localWorkspaceFolder}"
 }
