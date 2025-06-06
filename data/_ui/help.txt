@@ -160,7 +160,7 @@ help "shipyard"
 	`Here, you can buy new ships.`
 	`Use your scroll wheel or click and drag, to scroll the view.`
 	`As in the trading and outfitter panels, you can hold down Shift, Control, or Alt to buy 5, 20, or 500 ships at once, or multiple keys for larger amounts.`
-	`You can use the shortcuts B to Buy, S to Sell the ship and outfits and R to sell the ship and retain the outfits if the planet has an outfitter.`
+	`You can use the shortcuts B to Buy, S to Sell the ship and outfits, and R to sell the ship and retain the outfits if the planet has an outfitter.`
 	`You can also press F to search the shipyard for a specific ship.`
 
 help "cargo management"
