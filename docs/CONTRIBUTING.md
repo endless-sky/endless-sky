@@ -72,3 +72,23 @@ If you have opened a new feature pull request during a stable release developmen
 ### Reviewing a pull request
 
 Reviewing pull requests is an important part of maintaining Endless Sky and the main way that new content is added to the game. Your feedback helps contributors improve their work and ensures that new content is the best it can be. For more information, see the [wiki page](https://github.com/endless-sky/endless-sky/wiki/ReviewingPRs).
+
+### Acceptable licenses
+
+By contributing code or written content to the game, you accept that your works are being published under the [GPLv3.0 license](https://www.gnu.org/licenses/).
+
+All artwork, sounds, and other non-written assets contributed to the game must fall under a copyright license that follows the [Debian Free Software Guidelines](https://www.debian.org/social_contract#guidelines) and be listed in the [copyright](https://github.com/endless-sky/endless-sky/blob/master/copyright) file .
+
+Common artwork licenses that are allowed include:
+* Anything in the public domain. (e.g. works published by NASA or other government agencies, or licensed under the CC0 public domain license.)
+* Any attribution (BY) Creative Commons license version 3.0 and later, which may also be share-alike (SA). (e.g. CC-BY-3.0, CC-BY-SA-4.0)
+
+Common artwork licenses that are disallowed include:
+* Creative Commons licenses older than version 3.0. (e.g. CC-BY-2.0)
+* Any non-commerical (NC) or no derivative works (ND) creative commons licenses. (e.g. CC-BY-NC-3.0)
+* Most proprietary licenses, including licenses used by many image hosting websites such as Pexels, Pixabay, and Unsplash.
+	* Note that many image hosting websites used to license images under the CC0 Public Domain license, but have since moved to using non-free proprietary licenses which limit derivative and/or commerical uses. For such websites, using older images may be acceptable. Confirm that the page that you sourced the image from clearly lists the license that the image was published under.
+
+For more reading on free licenses, see the following pages:
+* [The DFSG and Software Licenses](https://wiki.debian.org/DFSGLicenses)
+* [Debian License Information](https://www.debian.org/legal/licenses/)
