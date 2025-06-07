@@ -123,8 +123,8 @@ jobs:
         with:
           name: steam-win64-depot
           path: |
-            ./build/release/Release/Endless Sky.exe
-            ./build/release/Release/*.dll
+            ./build/mingw-ci-release/Release/Endless Sky.exe
+            ./build/mingw-ci-release/Release/*.dll
 
 
   release_windows_x86:
@@ -171,8 +171,8 @@ jobs:
         with:
           name: steam-win32-depot
           path: |
-            ./install/release/Release/Endless Sky.exe
-            ./install/release/Release/*.dll
+            ./build/mingw32-ci-release/Release/Endless Sky.exe
+            ./build/mingw32-ci-release/Release/*.dll
 
 
   release_macos_x64:
