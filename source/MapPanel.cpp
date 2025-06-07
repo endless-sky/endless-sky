@@ -182,52 +182,15 @@ namespace {
 		return false;
 	}
 
-	pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, const int step)
+	pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, int step)
 	{
 		bool blink = false;
 		int daysLeft = 1;
 		if(mission.Deadline())
 		{
-			daysLeft = mission.Deadline() - player.GetDate() + 1;
-			if(daysLeft > 0)
-			{
-				if(Preferences::Has("Deadline blink by distance"))
-				{
-					DistanceMap distance(player, player.GetSystem());
-					if(distance.HasRoute(*mission.Destination()->GetSystem()))
-					{
-						set<const System *> toVisit;
-						for(const Planet *stopover : mission.Stopovers())
-						{
-							if(distance.HasRoute(*stopover->GetSystem()))
-								toVisit.insert(stopover->GetSystem());
-							--daysLeft;
-						}
-						for(const System *waypoint : mission.Waypoints())
-							if(distance.HasRoute(*waypoint))
-								toVisit.insert(waypoint);
-
-						int systemCount = toVisit.size();
-						for(int i = 0; i < systemCount; ++i)
-						{
-							const System *closest;
-							int minimalDist = numeric_limits<int>::max();
-							for(const System *sys : toVisit)
-								if(distance.Days(*sys) < minimalDist)
-								{
-									closest = sys;
-									minimalDist = distance.Days(*sys);
-								}
-							daysLeft -= distance.Days(*closest);
-							distance = DistanceMap(player, closest);
-							toVisit.erase(closest);
-						}
-						daysLeft -= distance.Days(*mission.Destination()->GetSystem());
-					}
-				}
-				int blinkFactor = min(6, max(1, daysLeft));
-				blink = (step % (10 * blinkFactor) > 5 * blinkFactor);
-			}
+			daysLeft = player.RemainingDeadline(mission);
+			int blinkFactor = min(6, max(1, daysLeft));
+			blink = (step % (10 * blinkFactor) > 5 * blinkFactor);
 		}
 		return pair<bool, bool>(blink, daysLeft > 0);
 	}
@@ -293,6 +256,13 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	double playerRange = player.Flagship() ? player.Flagship()->JumpNavigation().JumpRange() : 0.;
 	if(systemRange || playerRange)
 		playerJumpDistance = systemRange ? systemRange : playerRange;
+
+	// Recalculate any mission deadlines if the player is landed in case
+	// changes to the player's flagship have changed the deadline calculations.
+	// If the player is not landed, then the deadlines will have already been
+	// recalculated on the day change.
+	if(player.GetPlanet())
+		player.CalculateRemainingDeadlines();
 
 	CenterOnSystem(selectedSystem, true);
 }
