@@ -358,7 +358,7 @@ mission "Sad Archie"
 			branch tmbr
 				has "Deep Archaeology 5: done"
 			action
-				set "archaeology before TMBR"
+				set "archaeology after TMBR"
 			label tmbr
 			`On a whim, as you're landing on Zug you pull up a geological map of the planet and find that the geography you dreamt of while drifting in the Ildaria system was surprisingly close to the real thing. There's even a massive basalt outcropping right where you saw a lava flow burying a city. There's no way your ship's sensors can tell what's underneath it, though.`
 
@@ -373,7 +373,7 @@ mission "Rim Archaeology Reminder"
 		not planet "Vinci"
 	destination "Vinci"
 	to offer
-		not "archaeology before TMBR"
+		has "archaeology after TMBR"
 		has "Deep Archaeology 5: done"
 	on offer
 		conversation
@@ -394,7 +394,7 @@ mission "Rim Archaeology 1"
 		has "Sad Archie: done"
 		has "Deep Archaeology 5: done"
 		or
-			has "archaeology before TMBR"
+			not "archaeology after TMBR"
 			has "Rim Archaeology Reminder: offered"
 	
 	on offer
@@ -405,7 +405,7 @@ mission "Rim Archaeology 1"
 				`	(Not right now.)`
 					defer
 			branch recent
-				not "archaeology before TMBR"
+				has "archaeology after TMBR"
 			`	Foster seems glad to see you. "It's been a while, <first>. Something catch your eye recently?"`
 				goto interest
 			label recent
