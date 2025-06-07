@@ -211,14 +211,12 @@ jobs:
         env:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Zip artifact
-        run: |
-          cd build/release
-          7z a macos-artifact-x64.zip "Endless Sky.app"
+        run: 7z a macos-artifact-x64.zip "./build/release/*"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: macos-artifact-x64
-          path: build/release/macos-artifact-x64.zip
+          path: macos-artifact-x64.zip
 
 
   release_macos_arm:
@@ -261,14 +259,12 @@ jobs:
         env:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Zip artiface
-        run: |
-          cd build/release
-          7z a macos-artifact-arm.zip "Endless Sky.app"
+        run: 7z a macos-artifact-arm.zip "./build/release/*"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: macos-artifact-arm
-          path: build/release/macos-artifact-arm.zip
+          path: macos-artifact-arm.zip
 
 
   release_macos:
