@@ -444,13 +444,21 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 	}
 
 	// Draw a warning if the selected system is not routable.
-
 	if(selectedSystem != &playerSystem && !distance.HasRoute(*selectedSystem))
 	{
+		static const string NO_SHIP = "You do not have a flagship to jump with!";
+		static const string NO_DRIVE = "You do not have a drive installed to be able to jump!";
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
-		const string &message = player.CanView(*selectedSystem) ? UNAVAILABLE : UNKNOWN;
-		info.SetString("route error", message);
+		const Ship *flagship = player.Flagship();
+		if(!flagship)
+			info.SetString("route error", NO_SHIP);
+		else if(!flagship->HasDrive())
+			info.SetString("route error", NO_DRIVE);
+		else if(player.CanView(*selectedSystem))
+			info.SetString("route error", UNAVAILABLE);
+		else
+			info.SetString("route error", UNKNOWN);
 	}
 
 	mapInterface->Draw(info, this);

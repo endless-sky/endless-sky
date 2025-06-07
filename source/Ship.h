@@ -300,6 +300,8 @@ public:
 	double CloakingSpeed() const;
 	// If this ship should be immune to the next damage caused.
 	bool Phases(Projectile &projectile) const;
+	// Check if this ship has any jump capabilities.
+	bool HasDrive() const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.

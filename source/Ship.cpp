@@ -2353,6 +2353,13 @@ double Ship::Cloaking() const
 
 
 
+bool Ship::HasDrive() const
+{
+	return navigation.HasHyperdrive() || navigation.HasJumpDrive();
+}
+
+
+
 bool Ship::IsEnteringHyperspace() const
 {
 	return hyperspaceSystem;
