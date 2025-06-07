@@ -260,7 +260,7 @@ jobs:
           cmake --build build --preset macos-arm-ci-release
         env:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
-      - name: Zip artiface
+      - name: Zip artifact
         run: |
           cd build/release
           7z a macos-artifact-arm.zip "Endless Sky.app"
@@ -283,10 +283,10 @@ jobs:
         with:
           name: macos-artifact-x64
           path: x64/macos-artifact-x64.zip
-      - name: Extract x64 artiface
+      - name: Extract x64 artifact
         run: |
           cd x64
-          7z x macos-artiface-x64.zip
+          7z x macos-artifact-x64.zip
       - uses: actions/download-artifact@v4
         with:
           name: macos-artifact-arm
