@@ -112,7 +112,7 @@ jobs:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
-          cpack --config build\mingw-release\Release\CPackConfig.cmake
+          cpack --config build\release\CPackConfig.cmake
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -160,7 +160,7 @@ jobs:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
-          cpack --config build\mingw32-release\Release\CPackConfig.cmake
+          cpack --config build\release\CPackConfig.cmake
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
