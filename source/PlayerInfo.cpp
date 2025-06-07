@@ -4245,7 +4245,7 @@ void PlayerInfo::CalculateRemainingDeadline(const Mission &mission, DistanceMap 
 	// If at any point a location can't be reached, it is ignored instead of treating
 	// it as if it has an infinite distance.
 	if(daysLeft > 0 && Preferences::Has("Deadline blink by distance")
-			&& here.HasRoute(*mission.Destination()->GetSystem()))
+		&& here.HasRoute(*mission.Destination()->GetSystem()))
 	{
 		set<const System *> toVisit;
 		for(const Planet *stopover : mission.Stopovers())

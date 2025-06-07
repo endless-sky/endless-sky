@@ -77,7 +77,7 @@ private:
 
 private:
 	PlayerInfo &player;
-	// Determine if the player's mission deadlines need recached when
+	// Determine if the player's mission deadlines need to be recached when
 	// this panel is closed due to the deadline blink preference changing.
 	bool recacheDeadlines = false;
 
