@@ -290,7 +290,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: macos-artifact-arm
-          path: arm/Endless Sky.app
+          path: arm/macos-artifact-arm.zip
       - name: Extract arm artifact
         run: |
           cd arm
