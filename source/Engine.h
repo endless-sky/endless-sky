@@ -175,6 +175,15 @@ private:
 		double modifier = 1.;
 	};
 
+	class Gunsight {
+	public:
+		Angle angle;
+		Point start;
+		double range;
+		double spread;
+		const Color &color;
+	};
+
 
 private:
 	void EnterSystem();
@@ -267,6 +276,7 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
+	std::vector<Gunsight> gunsights;
 	std::vector<TurretOverlay> turretOverlays;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
