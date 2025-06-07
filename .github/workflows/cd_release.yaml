@@ -263,7 +263,7 @@ jobs:
       - name: Zip artiface
         run: |
           cd build/release
-          7z a macos-artifact-arm "Endless Sky.app"
+          7z a macos-artifact-arm.zip "Endless Sky.app"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
