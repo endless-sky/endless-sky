@@ -124,6 +124,8 @@ void MenuPanel::Step()
 		GameData::StepBackground(Point(xSpeed, yAmplitude * sin(animation * TO_RAD)));
 		animation += ySpeed;
 	}
+	else
+		GameData::StepBackground(Point());
 	if(GetUI()->IsTop(this) && !scrollingPaused)
 	{
 		scroll += scrollSpeed;
