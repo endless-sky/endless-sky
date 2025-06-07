@@ -365,16 +365,6 @@ Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Iaz Poolar (under the same license).
 
-Files: images/portrait/*
-Copyright: Various
-License: Depends
-Comment:
- Taken from unsplash.com and added to the game after June 2017. If the pictures were
- uploaded to unsplash.com before June 2017, they were donated and placed in the public
- domain. If the pictures were uploaded to unsplash.com on or after June 2017, they are
- subject to the Unsplash License. If they were also uploaded after February 2018, they
- are subject to additional restrictions.
-
 Files:
  images/outfit/quarg*
  images/hardpoint/quarg*
