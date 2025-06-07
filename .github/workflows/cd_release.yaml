@@ -70,13 +70,16 @@ jobs:
     name: Windows x64
     runs-on: windows-2025
     env:
-      OUTPUT: EndlessSky-win64-${{ inputs.release_version }}.zip
+      OUTPUT: EndlessSky-${{ inputs.release_version }}-win64.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
           show-progress: false
           fetch-depth: '10'
+      - name: Install dependencies
+        run: |
+          choco install nsis.portable
       - name: Find cache keys
         run: |
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
@@ -109,8 +112,7 @@ jobs:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
-          cmake --install build/release
-          7z a ${{ env.OUTPUT }} "./install/release/*"
+          cpack --config build\mingw-release\CPackConfig.cmake
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -129,12 +131,15 @@ jobs:
     name: Windows x86
     runs-on: windows-2025
     env:
-      OUTPUT: EndlessSky-win32-${{ inputs.release_version }}.zip
+      OUTPUT: EndlessSky-${{ inputs.release_version }}-win32.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
           show-progress: false
+      - name: Install dependencies
+        run: |
+          choco install nsis.portable
       - name: Add Mingw to PATH
         run: |
           echo (Join-Path C: mingw32 bin) >> $env:GITHUB_PATH
@@ -155,8 +160,7 @@ jobs:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
-          cmake --install build/release
-          7z a ${{ env.OUTPUT }} "./install/release/*"
+          cpack --config build\mingw32-release\CPackConfig.cmake
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
