@@ -33,7 +33,7 @@ If you are not comfortable with losing complete creative freedom over your work,
 
 By contributing code or written content to the game, you accept that your works are being published under the [GPLv3.0 license](https://www.gnu.org/licenses/).
 
-All artwork, sounds, and other non-written assets contributed to the game must fall under a copyright license that follows the [Debian Free Software Guidelines](https://www.debian.org/social_contract#guidelines) and be listed in the [copyright](https://github.com/endless-sky/endless-sky/blob/master/copyright) file.
+All artwork, sounds, and other non-written assets contributed to the game must fall under a copyright license that follows the [Debian Free Software Guidelines](https://www.debian.org/social_contract#guidelines) and the work must be listed in the [copyright](https://github.com/endless-sky/endless-sky/blob/master/copyright) file along with the license it is published under.
 
 Common artwork licenses that are allowed include:
 * Anything in the public domain. (e.g. works published by NASA or other government agencies, or licensed under the CC0 public domain license.)
