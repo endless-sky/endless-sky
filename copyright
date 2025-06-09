@@ -1328,7 +1328,7 @@ Comment:
  "published date" earlier than January 9, 2019 have the CC0 license.
 
 Files:
- images/land/station5.jpg
+ images/land/station5*
 Copyright: Damien Jemison
 License: CC-BY-SA-3.0
 Comment: Taken from https://commons.wikimedia.org/wiki/File:Preamplifier_at_the_National_Ignition_Facility.jpg
