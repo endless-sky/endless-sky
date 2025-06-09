@@ -104,7 +104,8 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
-	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
+	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard")),
+	fleetCollapsed(collapsed.count("#fleet"))
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -322,6 +323,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		if(!isOutfitter)
 			player.UpdateCargoCapacities();
+
+		if(fleetCollapsed)
+			collapsed.insert("#fleet");
+		else
+			collapsed.erase("#fleet");
+		
 		GetUI()->Pop(this);
 		UI::PlaySound(UI::UISound::NORMAL);
 	}
@@ -516,6 +523,21 @@ bool ShopPanel::Click(int x, int y, int clicks)
 		return true;
 
 	const Point clickPoint(x, y);
+
+	// ── Fleet‑sidebar collapse / expand ───────────────────────────────
+	if(fleetArrowZone.Contains(clickPoint))
+	{
+		fleetCollapsed = !fleetCollapsed;
+
+		// While collapsed keep the sidebar scrolled to the top.
+		if(fleetCollapsed)
+		{
+			sidebarScroll.Set(0.);
+			sidebarScroll.SetMaxValue(0.);
+		}
+
+		return true;                     // click handled
+	}
 
 	// Check for clicks in the category labels.
 	for(const ClickZone<string> &zone : categoryZones)
@@ -766,6 +788,15 @@ void ShopPanel::DrawShipsSidebar()
 		Point(1, Screen::Height()),
 		*GameData::Colors().Get("shop side panel background"));
 
+	// Draw the arrow.
+	const Sprite *arrow = SpriteSet::Get(fleetCollapsed ? "ui/expanded" : "ui/collapsed");
+	Point arrowPos(Screen::Right() - SIDEBAR_WIDTH + 20,
+				Screen::Top()     + 20 - sidebarScroll.AnimatedValue());
+	SpriteShader::Draw(arrow, arrowPos);
+
+	// Remember its hit‑box so Click() can test it.
+	fleetArrowZone = Rectangle(arrowPos - Point(18., 18.), Point(36., 36.));
+
 	// Draw this string, centered in the side panel:
 	static const string YOURS = "Your Ships:";
 	Point yoursPoint(Screen::Right() - SIDEBAR_WIDTH, Screen::Top() + 10 - sidebarScroll.AnimatedValue());
@@ -780,86 +811,97 @@ void ShopPanel::DrawShipsSidebar()
 	int shipsHere = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		shipsHere += CanShowInSidebar(*ship, here);
-	if(shipsHere < 4)
-		point.X() += .5 * ICON_TILE * (4 - shipsHere);
-
-	// Check whether flight check tooltips should be shown.
-	const auto flightChecks = player.FlightCheck();
-	Point mouse = UI::GetMouse();
-	warningType.clear();
-	shipName.clear();
-	shipZones.clear();
-
-	static const Color selected(.8f, 1.f);
-	static const Color unselected(.4f, 1.f);
-	for(const shared_ptr<Ship> &ship : player.Ships())
+	
+	// Skip the icon grid when collapsed
+	if(!fleetCollapsed)
 	{
-		// Skip any ships that are "absent" for whatever reason.
-		if(!CanShowInSidebar(*ship, here))
-			continue;
+		if(shipsHere < 4)
+			point.X() += .5 * ICON_TILE * (4 - shipsHere);
 
-		if(point.X() > Screen::Right())
+		// Check whether flight check tooltips should be shown.
+		const auto flightChecks = player.FlightCheck();
+		Point mouse = UI::GetMouse();
+		warningType.clear();
+		shipName.clear();
+		shipZones.clear();
+
+		static const Color selected(.8f, 1.f);
+		static const Color unselected(.4f, 1.f);
+		for(const shared_ptr<Ship> &ship : player.Ships())
 		{
-			point.X() -= ICON_TILE * ICON_COLS;
-			point.Y() += ICON_TILE;
-		}
+			// Skip any ships that are "absent" for whatever reason.
+			if(!CanShowInSidebar(*ship, here))
+				continue;
 
-		bool isSelected = playerShips.contains(ship.get());
-		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
-		SpriteShader::Draw(background, point);
-		// If this is one of the selected ships, check if the currently hovered
-		// button (if any) applies to it. If so, brighten the background.
-		if(isSelected && ShouldHighlight(ship.get()))
+			if(point.X() > Screen::Right())
+			{
+				point.X() -= ICON_TILE * ICON_COLS;
+				point.Y() += ICON_TILE;
+			}
+
+			bool isSelected = playerShips.contains(ship.get());
+			const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 			SpriteShader::Draw(background, point);
+			// If this is one of the selected ships, check if the currently hovered
+			// button (if any) applies to it. If so, brighten the background.
+			if(isSelected && ShouldHighlight(ship.get()))
+				SpriteShader::Draw(background, point);
 
-		const Sprite *sprite = ship->GetSprite();
-		if(sprite)
-		{
-			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-			if(Preferences::Has(SHIP_OUTLINES))
+			const Sprite *sprite = ship->GetSprite();
+			if(sprite)
 			{
-				Point size(sprite->Width() * scale, sprite->Height() * scale);
-				OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+				float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+				if(Preferences::Has(SHIP_OUTLINES))
+				{
+					Point size(sprite->Width() * scale, sprite->Height() * scale);
+					OutlineShader::Draw(sprite, point, size, isSelected ? selected : unselected);
+				}
+				else
+				{
+					const Swizzle *swizzle = ship->CustomSwizzle() ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+					SpriteShader::Draw(sprite, point, scale, swizzle);
+				}
 			}
-			else
+
+			shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+
+			if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 			{
-				const Swizzle *swizzle = ship->CustomSwizzle() ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-				SpriteShader::Draw(sprite, point, scale, swizzle);
+				shipName = ship->Name() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
+				hoverPoint = shipZones.back().TopLeft();
 			}
+
+			const auto checkIt = flightChecks.find(ship);
+			if(checkIt != flightChecks.end())
+			{
+				const string &check = (*checkIt).second.front();
+				const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
+				SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
+				if(shipZones.back().Contains(mouse))
+					warningType = check;
+			}
+
+			if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
+				PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
+					Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
+
+			if(ship->IsParked())
+			{
+				static const Point CORNER = .35 * Point(ICON_TILE, ICON_TILE);
+				FillShader::Fill(point + CORNER, Point(6., 6.), dark);
+				FillShader::Fill(point + CORNER, Point(4., 4.), isSelected ? bright : medium);
+			}
+
+			point.X() += ICON_TILE;
 		}
-
-		shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
-
-		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
-		{
-			shipName = ship->Name() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
-			hoverPoint = shipZones.back().TopLeft();
-		}
-
-		const auto checkIt = flightChecks.find(ship);
-		if(checkIt != flightChecks.end())
-		{
-			const string &check = (*checkIt).second.front();
-			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
-			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
-			if(shipZones.back().Contains(mouse))
-				warningType = check;
-		}
-
-		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
-			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
-				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
-
-		if(ship->IsParked())
-		{
-			static const Point CORNER = .35 * Point(ICON_TILE, ICON_TILE);
-			FillShader::Fill(point + CORNER, Point(6., 6.), dark);
-			FillShader::Fill(point + CORNER, Point(4., 4.), isSelected ? bright : medium);
-		}
-
-		point.X() += ICON_TILE;
+		point.Y() += ICON_TILE;
 	}
-	point.Y() += ICON_TILE;
+	else 
+	{
+		// Make sure the scrollbar disappears while the list is hidden.
+		sidebarScroll.Set(0.);
+		sidebarScroll.SetMaxValue(0.);
+	}
 
 	if(playerShip)
 	{

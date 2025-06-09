@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
+#include "Rectangle.h"
 
 #include <map>
 #include <set>
@@ -185,6 +186,7 @@ protected:
 	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	std::set<std::string> &collapsed;
+	bool fleetCollapsed = false;
 
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
@@ -217,6 +219,8 @@ private:
 
 private:
 	bool delayedAutoScroll = false;
+
+	Rectangle fleetArrowZone;
 
 	Point hoverPoint;
 	std::string shipName;
