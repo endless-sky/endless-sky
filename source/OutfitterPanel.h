@@ -46,24 +46,28 @@ public:
 
 
 protected:
-	virtual int TileSize() const override;
-	virtual int VisibilityCheckboxesSize() const override;
-	virtual bool HasItem(const std::string &name) const override;
-	virtual void DrawItem(const std::string &name, const Point &point) override;
-	virtual int DividerOffset() const override;
-	virtual int DetailWidth() const override;
-	virtual double DrawDetails(const Point &center) override;
-	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
-	virtual void Buy(bool onlyOwned = false) override;
-	virtual bool CanSell(bool toStorage = false) const override;
-	virtual void Sell(bool toStorage = false) override;
-	virtual void FailSell(bool toStorage = false) const override;
-	virtual bool ShouldHighlight(const Ship *ship) override;
-	virtual void DrawKey() override;
-	virtual void ToggleForSale() override;
-	virtual void ToggleStorage() override;
-	virtual void ToggleCargo() override;
-	virtual int FindItem(const std::string &text) const override;
+	int TileSize() const override;
+	int VisibilityCheckboxesSize() const override;
+	bool HasItem(const std::string &name) const override;
+	void DrawItem(const std::string &name, const Point &point) override;
+	double ButtonPanelHeight() const override;
+	double DrawDetails(const Point &center) override;
+	TransactionResult CanBuyToCargo() const override;
+	void BuyIntoCargo() override;
+	TransactionResult CanDoBuyButton() const override;
+	void DoBuyButton() override;
+	TransactionResult CanUninstall(ShopPanel::UninstallAction action) const override;
+	void Sell(bool storeOutfits) override;
+	TransactionResult CanInstall() const override;
+	void Install() override;
+	void Uninstall() override;
+	bool CanMoveToCargoFromStorage() const override;
+	void MoveToCargoFromStorage() override;
+	void RetainInStorage() override;
+	bool ShouldHighlight(const Ship *ship) override;
+	void DrawKey() override;
+	void DrawButtons() override;
+	int FindItem(const std::string &text) const override;
 
 
 private:

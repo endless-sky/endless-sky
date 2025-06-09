@@ -71,6 +71,7 @@ protected:
 	};
 
 
+
 protected:
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
@@ -84,11 +85,19 @@ protected:
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual double DrawDetails(const Point &center) = 0;
-	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
-	virtual void Buy(bool onlyOwned = false) = 0;
-	virtual bool CanSell(bool toStorage = false) const = 0;
-	virtual void Sell(bool toStorage = false) = 0;
-	virtual void FailSell(bool toStorage = false) const;
+	virtual void DrawButtons() = 0;
+	virtual TransactionResult CanBuyToCargo() const;
+	virtual void BuyIntoCargo();
+	virtual TransactionResult CanDoBuyButton() const;
+	virtual void DoBuyButton();
+	virtual TransactionResult CanUninstall(UninstallAction action) const;
+	virtual void Sell(bool storeOutfits) = 0;
+	virtual TransactionResult CanInstall() const;
+	virtual void Install();
+	virtual void Uninstall();
+	virtual bool CanMoveToCargoFromStorage() const;
+	virtual void MoveToCargoFromStorage();
+	virtual void RetainInStorage();
 	virtual bool CanSellMultiple() const;
 	virtual bool IsAlreadyOwned() const;
 	virtual bool ShouldHighlight(const Ship *ship);
@@ -110,6 +119,9 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
+	void DrawButton(const std::string &name, const Point &center, const Point &buttonSize, bool isActive,
+		bool hovering, char keyCode);
+	char CheckButton(int x, int y);
 	void CheckSelection();
 
 
@@ -179,6 +191,7 @@ protected:
 	double previousX = 0.;
 
 	std::vector<Zone> zones;
+	std::vector<ClickZone<char>> buttonZones;
 	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
