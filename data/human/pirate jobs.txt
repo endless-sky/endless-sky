@@ -2926,7 +2926,7 @@ mission "Raid on Merchants (North)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A merchant fleet has been spotted within two to three jumps of the <system> system. Join in destroying them and return to <planet> by <day> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted within two to four jumps of the <system> system in Republic space. Join in destroying them and return to <planet> by <day> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2943,9 +2943,10 @@ mission "Raid on Merchants (North)"
 		government "Merchant"
 		personality heroic staying target
 		system
-			distance 2 3
-			neighbor
-				not government "Pirate"
+			distance 2 4
+			not government "Pirate"
+			not near "Volax" 3
+			not near "Ultima Thule" 2
 		fleet "Small Northern Merchants" 2
 		fleet "Large Northern Merchants"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
@@ -2961,7 +2962,7 @@ mission "Raid on Merchants (Core)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A merchant fleet has been spotted within two jumps of the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted within two jumps of the <system> system in Syndicate space. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2979,6 +2980,8 @@ mission "Raid on Merchants (Core)"
 		government "Merchant"
 		system
 			distance 1 2
+			not government "Pirate"
+			not "Atik"
 		fleet "Small Core Merchants" 2
 		fleet "Large Core Merchants"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
@@ -3256,7 +3259,7 @@ mission "Cargo Theft (North)"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description `A merchant convoy has been spotted within two to three jumps of the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
+	description `A merchant convoy has been spotted within four jumps of the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
 	to offer
 		random < 15
 		"combat rating" > 3000
@@ -3268,8 +3271,10 @@ mission "Cargo Theft (North)"
 		government "Merchant"
 		personality staying heroic target
 		system
+			distance 1 4
 			not government "Pirate"
-			distance 2 3
+			not near "Gorvi" 1
+			not near "Sumar" 1
 		fleet
 			names "civilian"
 			variant
@@ -3308,8 +3313,9 @@ mission "Cargo Theft (Core)"
 		government "Merchant"
 		personality staying heroic target
 		system
-			not government "Pirate"
 			distance 1 2
+			not government "Pirate"
+			not "Atik"
 		fleet
 			names "civilian"
 			variant
@@ -3351,8 +3357,7 @@ mission "Cargo Theft (South)"
 		personality staying heroic target
 		system
 			distance 1 2
-			neighbor
-				not government "Pirate"
+			not government "Pirate"
 		fleet
 			names "civilian"
 			variant
