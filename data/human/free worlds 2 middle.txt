@@ -334,6 +334,21 @@ mission "FW Southern Recon 1B: Alnasl Hint 2"
 
 
 
+mission "fw electron beam patch"
+	landing
+	invisible
+	non-blocking
+	to offer
+		not "fw provided electron beam"
+		or
+			has "FW Southern Recon 1B: done"
+			has "FW Southern Recon 1B (Turret): done"
+	on offer
+		set "fw provided electron beam"
+		fail
+
+
+
 mission "FW Southern Battle 1"
 	name "Escort Battle Fleet"
 	description "Travel to <planet> to gather a fleet of experimental new warships, and escort them back to Trinket."
