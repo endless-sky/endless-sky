@@ -718,6 +718,7 @@ outfit `"Baellie" Atomic Engines`
 	"turning heat" 1.28
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"flare sound" "atomic tiny"
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
@@ -877,6 +878,7 @@ outfit `"Basrem" Atomic Steering`
 	"turning heat" 1.5
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"steering flare sound" "atomic tiny"
 	description "Hai atomic engines are too expensive to buy for most humans. All but the smallest of the engines are worth more than many of the most common ships flown in human space."
 
