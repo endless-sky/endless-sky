@@ -3680,25 +3680,47 @@ void PlayerInfo::RegisterDerivedConditions()
 		return round((1. - safeChance) * 1000.); });
 
 	// Special conditions for cargo and passenger space.
-	// If boarding a ship, missions should not consider the space available
-	// in the player's entire fleet. The only fleet parameter offered to a
-	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
 	conditions["cargo space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
-		if(flagship && !availableBoardingMissions.empty())
-			return flagship->Cargo().Free();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
 				retVal += ship->Attributes().Get("cargo space");
 		return retVal; });
 	conditions["passenger space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
-		if(flagship && !availableBoardingMissions.empty())
-			return flagship->Cargo().BunksFree();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
 				retVal += ship->Attributes().Get("bunks") - ship->RequiredCrew();
 		return retVal; });
+	conditions["cargo space free"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
+				retVal += ship->Cargo().Free();
+		return retVal; });
+	conditions["passenger space free"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
+				retVal += ship->Cargo().BunksFree();
+		return retVal; });
+
+	conditions["flagship: cargo space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		if(!flagship)
+			return 0;
+		return flagship->Attributes().Get("cargo space"); });
+	conditions["flagship: passenger space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		if(!flagship)
+			return 0;
+		return flagship->Attributes().Get("bunks") - flagship->RequiredCrew(); });
+	conditions["flagship: cargo space free"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		if(!flagship)
+			return 0;
+		return flagship->Cargo().Free(); });
+	conditions["flagship: passenger space free"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		if(!flagship)
+			return 0;
+		return flagship->Cargo().BunksFree(); });
 
 	// The number of active, present ships the player has of the given category
 	// (e.g. Heavy Warships).
