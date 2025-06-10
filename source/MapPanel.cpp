@@ -453,7 +453,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		const Ship *flagship = player.Flagship();
 		if(!flagship)
 			info.SetString("route error", NO_SHIP);
-		else if(!flagship->HasDrive())
+		else if(!flagship->JumpNavigation().HasAnyDrive())
 			info.SetString("route error", NO_DRIVE);
 		else if(player.CanView(*selectedSystem))
 			info.SetString("route error", UNAVAILABLE);
