@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AsteroidField.h"
 
+#include "AsteroidBelt.h"
 #include "Collision.h"
 #include "CollisionType.h"
 #include "shader/DrawList.h"
@@ -67,7 +68,8 @@ void AsteroidField::Add(const string &name, int count, double energy)
 
 
 
-void AsteroidField::Add(const Minable *minable, int count, double energy, const WeightedList<double> &belts)
+void AsteroidField::Add(const Minable *minable, int count, double energy,
+	const WeightedList<AsteroidBelt> &belts, int belt)
 {
 	// Double check that the given asteroid is defined.
 	if(!minable || !minable->GetMask().IsLoaded())
@@ -77,7 +79,7 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, const 
 	for(int i = 0; i < count; ++i)
 	{
 		minables.emplace_back(new Minable(*minable));
-		minables.back()->Place(energy, belts.Get());
+		minables.back()->Place(energy, !belt ? belts.Get() : belts.Get(belt - 1));
 	}
 }
 
