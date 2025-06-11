@@ -2558,6 +2558,8 @@ void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 	{
 		subs["<ship>"] = flag->Name();
 		subs["<model>"] = flag->DisplayModelName();
+		subs["<flagship>"] = flag->Name();
+		subs["<flagship model>"] = flag->DisplayModelName();
 	}
 
 	subs["<system>"] = GetSystem()->DisplayName();
@@ -4309,6 +4311,8 @@ void PlayerInfo::StepMissions(UI *ui)
 	{
 		substitutions["<ship>"] = flag->Name();
 		substitutions["<model>"] = flag->DisplayModelName();
+		substitutions["<flagship>"] = flag->Name();
+		substitutions["<flagship model>"] = flag->DisplayModelName();
 	}
 
 	auto mit = missions.begin();
