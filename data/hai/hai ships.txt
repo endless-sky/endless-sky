@@ -1022,20 +1022,20 @@ ship "Sea Scorpion"
 		"Tracker Storage Pod" 4
 		"Value Detector" 2
 
-	engine -28.5 68.5
-	engine 28.5 68.5
-	"steering engine" -28.5 68.5
+	engine -23.5 68.5
+	engine 23.5 68.5
+	"steering engine" -23.5 68.5
 		zoom 0.4
 		right
-	"steering engine" 28.5 68.5
+	"steering engine" 23.5 68.5
 		zoom 0.4
 		left
-	"steering engine" 64.5 23.5
-		zoom 0.55
+	"steering engine" 29.5 61
+		zoom 0.5
 		angle -90
 		right
-	"steering engine" -64.5 23.5
-		zoom 0.55
+	"steering engine" -29.5 61
+		zoom 0.5
 		angle 90
 		left
 	gun -13 -77.5
