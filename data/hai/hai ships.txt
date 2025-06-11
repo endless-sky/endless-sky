@@ -1031,11 +1031,11 @@ ship "Sea Scorpion"
 		zoom 0.4
 		left
 	"steering engine" 29.5 61
-		zoom 0.5
+		zoom 0.55
 		angle -90
 		right
 	"steering engine" -29.5 61
-		zoom 0.5
+		zoom 0.55
 		angle 90
 		left
 	gun -13 -77.5
