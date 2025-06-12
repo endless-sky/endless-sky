@@ -460,6 +460,8 @@ void PlayerInfo::Load(const filesystem::path &path)
 	ApplyChanges();
 	// Ensure the player is in a valid state after loading & applying changes.
 	ValidateLoad();
+	// Cache the remaining number of days for all deadline missions.
+	CalculateRemainingDeadlines();
 
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
@@ -600,7 +602,7 @@ void PlayerInfo::FinishTransaction()
 
 
 // Apply the given set of changes to the game data.
-void PlayerInfo::AddChanges(list<DataNode> &changes)
+void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 {
 	bool changedSystems = false;
 	for(const DataNode &change : changes)
@@ -623,6 +625,10 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 				if(!neighbor->Hidden() || system->Links().contains(neighbor))
 					seen.insert(neighbor);
 		}
+		// Update the deadline calculations for missions in case the system
+		// changes resulted in a change in DistanceMap calculations.
+		if(instantChanges)
+			CalculateRemainingDeadlines();
 	}
 
 	// Only move the changes into my list if they are not already there.
@@ -635,13 +641,13 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 // Add an event that will happen at the given date.
 void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 {
-	// Check if the event should be applied directly.
+	// Check if the event should be applied right now or scheduled for later.
 	if(date <= this->date)
 	{
 		GameEvent eventCopy = event;
 		list<DataNode> eventChanges = {eventCopy.Apply(*this)};
 		if(!eventChanges.empty())
-			AddChanges(eventChanges);
+			AddChanges(eventChanges, true);
 	}
 	else
 	{
@@ -797,6 +803,12 @@ void PlayerInfo::AdvanceDate(int amount)
 	// Reset the reload counters for all your ships.
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->GetArmament().ReloadAll();
+
+	// Recalculate how many days you have left for deadline missions.
+	// We need to fully recalculate the number of days remaining instead of
+	// just reducing the cached values by 1 because the player may have
+	// explored new systems that change the DistanceMap calculations.
+	CalculateRemainingDeadlines();
 }
 
 
@@ -1610,8 +1622,9 @@ void PlayerInfo::Land(UI *ui)
 				const bool alreadyLanded = ship->GetPlanet() == planet;
 				if(alreadyLanded || planet->CanLand(*ship) || (clearance && planet->IsAccessible(ship.get())))
 				{
-					ship->Recharge(canUseServices ? planet->GetPort().GetRecharges() : Port::RechargeType::None,
-						planet->GetPort().HasService(Port::ServicesType::HireCrew));
+					const Port &port = planet->GetPort();
+					ship->Recharge(canUseServices ? port.GetRecharges() : Port::RechargeType::None,
+						port.HasService(Port::ServicesType::HireCrew));
 					if(!ship->GetPlanet())
 						ship->SetPlanet(planet);
 				}
@@ -1620,12 +1633,18 @@ void PlayerInfo::Land(UI *ui)
 				else
 				{
 					const StellarObject *landingObject = AI::FindLandingLocation(*ship);
-					const bool foundSpaceport = landingObject;
 					if(!landingObject)
 						landingObject = AI::FindLandingLocation(*ship, false);
 					if(landingObject)
-						ship->SetPlanet(landingObject->GetPlanet());
-					ship->Recharge(foundSpaceport);
+					{
+						const Planet *landingPlanet = landingObject->GetPlanet();
+						const Port &port = landingPlanet->GetPort();
+						ship->Recharge(landingPlanet->CanUseServices() ? port.GetRecharges() : Port::RechargeType::None,
+							port.HasService(Port::ServicesType::HireCrew));
+						ship->SetPlanet(planet);
+					}
+					else
+						ship->Recharge(Port::RechargeType::None, false);
 				}
 			}
 			else
@@ -2088,6 +2107,24 @@ bool PlayerInfo::HasAvailableEnteringMissions() const
 
 
 
+void PlayerInfo::CalculateRemainingDeadlines()
+{
+	remainingDeadlines.clear();
+	DistanceMap here(*this, system);
+	for(const Mission &mission : missions)
+		CalculateRemainingDeadline(mission, here);
+}
+
+
+
+int PlayerInfo::RemainingDeadline(const Mission &mission) const
+{
+	auto it = remainingDeadlines.find(&mission);
+	return it == remainingDeadlines.end() ? 0 : it->second;
+}
+
+
+
 const PlayerInfo::SortType PlayerInfo::GetAvailableSortType() const
 {
 	return availableSortType;
@@ -2373,6 +2410,11 @@ void PlayerInfo::MissionCallback(int response)
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
+		if(mission.Deadline())
+		{
+			DistanceMap here(*this, system);
+			CalculateRemainingDeadline(mission, here);
+		}
 		if(planet)
 		{
 			cargo.AddMissionCargo(&mission);
@@ -2523,6 +2565,8 @@ void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 	{
 		subs["<ship>"] = flag->Name();
 		subs["<model>"] = flag->DisplayModelName();
+		subs["<flagship>"] = flag->Name();
+		subs["<flagship model>"] = flag->DisplayModelName();
 	}
 
 	subs["<system>"] = GetSystem()->DisplayName();
@@ -4201,6 +4245,55 @@ void PlayerInfo::SortAvailable()
 
 
 
+void PlayerInfo::CalculateRemainingDeadline(const Mission &mission, DistanceMap &here)
+{
+	if(!mission.Deadline())
+		return;
+
+	int daysLeft = mission.Deadline() - GetDate() + 1;
+	// If at any point a location can't be reached, it is ignored instead of treating
+	// it as if it has an infinite distance.
+	if(daysLeft > 0 && Preferences::Has("Deadline blink by distance")
+		&& here.HasRoute(*mission.Destination()->GetSystem()))
+	{
+		set<const System *> toVisit;
+		for(const Planet *stopover : mission.Stopovers())
+		{
+			if(here.HasRoute(*stopover->GetSystem()))
+				toVisit.insert(stopover->GetSystem());
+			// Stopovers require you to land on a planet, which takes an extra day.
+			--daysLeft;
+		}
+		for(const System *waypoint : mission.Waypoints())
+			if(here.HasRoute(*waypoint))
+				toVisit.insert(waypoint);
+
+		// This is a traveling salesman problem. Estimate the minimum number
+		// of days that it would take to reach every point of interest by
+		// traveling to the next closest location after each step.
+		DistanceMap distance = here;
+		int systemCount = toVisit.size();
+		for(int i = 0; i < systemCount; ++i)
+		{
+			const System *closest;
+			int minimalDist = numeric_limits<int>::max();
+			for(const System *sys : toVisit)
+				if(distance.Days(*sys) < minimalDist)
+				{
+					closest = sys;
+					minimalDist = distance.Days(*sys);
+				}
+			daysLeft -= distance.Days(*closest);
+			distance = DistanceMap(*this, closest);
+			toVisit.erase(closest);
+		}
+		daysLeft -= distance.Days(*mission.Destination()->GetSystem());
+	}
+	remainingDeadlines[&mission] = daysLeft;
+}
+
+
+
 // Updates each mission upon landing, to perform landing actions (Stopover,
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
 void PlayerInfo::StepMissions(UI *ui)
@@ -4225,6 +4318,8 @@ void PlayerInfo::StepMissions(UI *ui)
 	{
 		substitutions["<ship>"] = flag->Name();
 		substitutions["<model>"] = flag->DisplayModelName();
+		substitutions["<flagship>"] = flag->Name();
+		substitutions["<flagship model>"] = flag->DisplayModelName();
 	}
 
 	auto mit = missions.begin();

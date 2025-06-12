@@ -30,7 +30,7 @@ void TextReplacements::Load(const DataNode &node, const ConditionsStore *playerC
 	// Check for reserved keys. Only some hardcoded replacement keys are
 	// reserved, as these ones are done on the fly after all other replacements
 	// have been done.
-	const set<string> reserved = {"<first>", "<last>", "<ship>", "<model>"};
+	const set<string> reserved = {"<first>", "<last>", "<ship>", "<model>", "<flagship>", "<flagship model>"};
 
 	for(const DataNode &child : node)
 	{
