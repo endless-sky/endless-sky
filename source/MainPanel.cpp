@@ -106,6 +106,18 @@ void MainPanel::Step()
 		isActive = false;
 	}
 
+	// Offer the next available entering mission.
+	if(isActive && player.HasAvailableEnteringMissions() && player.Flagship())
+	{
+		Mission *mission = player.EnteringMission();
+		if(mission)
+			mission->Do(Mission::OFFER, player, GetUI());
+		else
+			player.HandleBlockedEnteringMissions(GetUI());
+		// Determine if a Dialog or ConversationPanel is being drawn next frame.
+		isActive = (GetUI()->Top().get() == this);
+	}
+
 	// Display any relevant help/tutorial messages.
 	if(isActive)
 		isActive = !ShowHelp(false);
@@ -222,8 +234,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(command.Has(Command::AMMO))
 	{
 		Preferences::ToggleAmmoUsage();
-		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + "."
-			, Messages::Importance::High);
+		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".",
+			Messages::Importance::High);
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
@@ -686,6 +698,11 @@ void MainPanel::StepEvents(bool &isActive)
 				}
 			}
 		}
+
+		// Handle jump events from the player's flagship. This means we should check
+		// for entering missions that can be offered.
+		if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
+			player.CreateEnteringMissions();
 
 		// Remove the fully-handled event.
 		eventQueue.pop_front();

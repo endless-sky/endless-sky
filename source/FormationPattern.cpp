@@ -150,19 +150,25 @@ void FormationPattern::Load(const DataNode &node)
 	}
 
 	for(const DataNode &child : node)
-		if(child.Token(0) == "flippable" && child.Size() >= 2)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "flippable" && hasValue)
+		{
 			for(int i = 1; i < child.Size(); ++i)
 			{
-				if(child.Token(i) == "x")
+				const string &value = child.Token(i);
+				if(value == "x")
 					flippableX = true;
-				else if(child.Token(i) == "y")
+				else if(value == "y")
 					flippableY = true;
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
-		else if(child.Token(0) == "rotatable" && child.Size() >= 2)
+		}
+		else if(key == "rotatable" && hasValue)
 			rotatable = child.Value(1);
-		else if(child.Token(0) == "position" && child.Size() >= 3)
+		else if(key == "position" && child.Size() >= 3)
 		{
 			Line &line = lines.emplace_back();
 			// A point is a line with just 1 position on it.
@@ -172,6 +178,7 @@ void FormationPattern::Load(const DataNode &node)
 			line.endOrAnchor = line.start;
 			// Also allow positions to have a repeat section, for single points only
 			for(const DataNode &grand : child)
+			{
 				if(grand.Token(0) == "repeat" && grand.Size() >= 3)
 				{
 					LineRepeat &repeat = line.repeats.emplace_back();
@@ -179,27 +186,31 @@ void FormationPattern::Load(const DataNode &node)
 				}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
 		}
-		else if(child.Token(0) == "line" || child.Token(0) == "arc")
+		else if(key == "line" || key == "arc")
 		{
 			Line &line = lines.emplace_back();
 
-			if(child.Token(0) == "arc")
+			if(key == "arc")
 				line.isArc = true;
 
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "start" && grand.Size() >= 3)
+				const string &grandKey = grand.Token(0);
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "start" && grand.Size() >= 3)
 					line.start.Set(grand.Value(1), grand.Value(2));
-				else if(grand.Token(0) == "end" && grand.Size() >= 3 && !line.isArc)
+				else if(grandKey == "end" && grand.Size() >= 3 && !line.isArc)
 					line.endOrAnchor.Set(grand.Value(1), grand.Value(2));
-				else if(grand.Token(0) == "anchor" && grand.Size() >= 3 && line.isArc)
+				else if(grandKey == "anchor" && grand.Size() >= 3 && line.isArc)
 					line.endOrAnchor.Set(grand.Value(1), grand.Value(2));
-				else if(grand.Token(0) == "angle" && grand.Size() >= 2 && line.isArc)
+				else if(grandKey == "angle" && grandHasValue && line.isArc)
 					line.angle = grand.Value(1);
-				else if(grand.Token(0) == "positions" && grand.Size() >= 2)
+				else if(grandKey == "positions" && grandHasValue)
 					line.positions = static_cast<int>(grand.Value(1) + 0.5);
-				else if(grand.Token(0) == "skip")
+				else if(grandKey == "skip")
+				{
 					for(int i = 1; i < grand.Size(); ++i)
 					{
 						if(grand.Token(i) == "first")
@@ -209,22 +220,27 @@ void FormationPattern::Load(const DataNode &node)
 						else
 							grand.PrintTrace("Skipping unrecognized attribute:");
 					}
-				else if(grand.Token(0) == "repeat")
+				}
+				else if(grandKey == "repeat")
 				{
 					LineRepeat &repeat = line.repeats.emplace_back();
-					for(const DataNode &grandGrand : grand)
-						if(grandGrand.Token(0) == "start" && grandGrand.Size() >= 3)
-							repeat.repeatStart.Set(grandGrand.Value(1), grandGrand.Value(2));
-						else if(grandGrand.Token(0) == "end" && grandGrand.Size() >= 3 && !line.isArc)
-							repeat.repeatEndOrAnchor.Set(grandGrand.Value(1), grandGrand.Value(2));
-						else if(grandGrand.Token(0) == "anchor" && grandGrand.Size() >= 3 && line.isArc)
-							repeat.repeatEndOrAnchor.Set(grandGrand.Value(1), grandGrand.Value(2));
-						else if(grandGrand.Token(0) == "angle" && grandGrand.Size() >= 2 && line.isArc)
-							repeat.repeatAngle = grandGrand.Value(1);
-						else if(grandGrand.Token(0) == "positions" && grandGrand.Size() >= 2)
-							repeat.repeatPositions = static_cast<int>(grandGrand.Value(1) + 0.5);
+					for(const DataNode &great : grand)
+					{
+						const string &greatKey = great.Token(0);
+						bool greatHasValue = great.Size() >= 2;
+						if(greatKey == "start" && great.Size() >= 3)
+							repeat.repeatStart.Set(great.Value(1), great.Value(2));
+						else if(greatKey == "end" && great.Size() >= 3 && !line.isArc)
+							repeat.repeatEndOrAnchor.Set(great.Value(1), great.Value(2));
+						else if(greatKey == "anchor" && great.Size() >= 3 && line.isArc)
+							repeat.repeatEndOrAnchor.Set(great.Value(1), great.Value(2));
+						else if(greatKey == "angle" && greatHasValue && line.isArc)
+							repeat.repeatAngle = great.Value(1);
+						else if(greatKey == "positions" && greatHasValue)
+							repeat.repeatPositions = static_cast<int>(great.Value(1) + 0.5);
 						else
-							grandGrand.PrintTrace("Skipping unrecognized attribute:");
+							great.PrintTrace("Skipping unrecognized attribute:");
+					}
 				}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
@@ -232,6 +248,7 @@ void FormationPattern::Load(const DataNode &node)
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
+	}
 }
 
 

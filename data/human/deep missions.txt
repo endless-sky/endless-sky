@@ -1045,6 +1045,8 @@ mission "Deep: Project Hawking"
 	to offer
 		random < 40
 		has "Deep: Mystery Cubes 4: done"
+		not "Deep: TMBR 0: active"
+		not "Deep: TMBR 1: active"
 		or
 			not "chosen sides"
 			has "main plot completed"

@@ -73,7 +73,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 
-	// Set an intial confusion turn direction.
+	// Set an initial confusion turn direction.
 	if(weapon->Homing())
 		confusionDirection = Random::Int(2) ? -1 : 1;
 }
@@ -103,7 +103,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
 
-	// Set an intial confusion turn direction.
+	// Set an initial confusion turn direction.
 	if(weapon->Homing())
 		confusionDirection = Random::Int(2) ? -1 : 1;
 }

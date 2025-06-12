@@ -169,8 +169,6 @@ outfit "Star Tail Cell"
 	thumbnail "outfit/star tail cell"
 	"mass" .1
 	"star tail capacity" -1
-	licenses
-		"Hicemus Conflict"
 	description "The Star Tail needs an extreme amount of energy that the Incipias are not able to create in a short amount of time. To accommodate this, the Star Tail Cell contains an energy-rich substance that releases its energy when fired. One of these cells holds enough energy to fire exactly one shot."
 
 outfit "Star Tail Storage"
@@ -184,6 +182,17 @@ outfit "Star Tail Storage"
 		"Hicemus Conflict"
 	description "Because Star Tail Cells are highly volatile, they need a robust storage system. This radial design is able to withstand minor explosions by using a variant of a shield that can be deployed temporarily."
 	description "	One layer of this easily expandable system is already shipped with the gun itself. To increase storage space, more layers are simply stacked on top."
+
+outfitter "Star Tail Cell Restock"
+	to sell
+		or
+			has "outfit: Star Tail"
+			has "outfit: Star Tail Storage"
+	location
+		attributes "outfitter"
+	stock
+		"Star Tail Cell"
+
 
 outfit "Horizon Grappler"
 	category "Turrets"

@@ -1819,6 +1819,7 @@ mission "Superstitious Hai [3]"
 	destination
 		government "Hai"
 		attributes "retirement"
+		distance 4 8
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1998,6 +1999,7 @@ mission "Superstitious Hai [9]"
 	destination
 		government "Hai"
 		attributes "retirement"
+		distance 4 8
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete

@@ -20,24 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Figure out the day of the week of the given date.
-	int WeekdayNumberOffset(int day, int month, int year)
-	{
-		// Zeller's congruence.
-		if(month < 3)
-		{
-			--year;
-			month += 12;
-		}
-		return (day + (13 * (month + 1)) / 5 + year + year / 4 + 6 * (year / 100) + year / 400) % 7;
-	}
-
-	const string &Weekday(int day, int month, int year)
-	{
-		static const string DAY[] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
-		return DAY[WeekdayNumberOffset(day, month, year)];
-	}
-
 	// Convert an integer to a string where single-digit integers have a leading zero.
 	string ZeroPad(int i)
 	{
@@ -84,15 +66,14 @@ const string &Date::ToString() const
 		static const string MONTH[] = {
 				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-		const string &weekdayStr = Weekday(day, month, year);
 		const string &monthStr = MONTH[month - 1];
 
 		if(dateFormat == Preferences::DateFormat::YMD)
 			str = to_string(year) + "-" + ZeroPad(month) + "-" + ZeroPad(day);
 		else if(dateFormat == Preferences::DateFormat::MDY)
-			str = weekdayStr + " " + monthStr + " " + to_string(day) + ", " + to_string(year);
+			str = Weekday() + " " + monthStr + " " + to_string(day) + ", " + to_string(year);
 		else if(dateFormat == Preferences::DateFormat::DMY)
-			str = weekdayStr + ", " + to_string(day) + " " + monthStr + " " + to_string(year);
+			str = Weekday() + ", " + to_string(day) + " " + monthStr + " " + to_string(year);
 	}
 
 	return str;
@@ -362,16 +343,25 @@ int Date::Year() const
 
 
 
-// Get the current day of the week as a number. Sunday is 1, Saturday is 7.
-int Date::WeekdayNumber() const
+int Date::WeekdayNumberOffset() const
 {
-	// WeekdayNumberOffset gives values in the range [0, 6], starting from Saturday.
-	// Add 6 to get values in the range [6, 12].
-	// Modulo 7 to get [0, 6]. Monday through Friday moving from [8, 12] to [1, 5].
-	// Add 1 for [1, 7].
-	int result = WeekdayNumberOffset(Day(), Month(), Year());
-	result += 6;
-	result %= 7;
-	result += 1;
-	return result;
+	int day = Day();
+	int month = Month();
+	int year = Year();
+
+	// Zeller's congruence.
+	if(month < 3)
+	{
+		--year;
+		month += 12;
+	}
+	return (day + (13 * (month + 1)) / 5 + year + year / 4 + 6 * (year / 100) + year / 400) % 7;
+}
+
+
+
+const string &Date::Weekday() const
+{
+	static const string DAY[] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
+	return DAY[WeekdayNumberOffset()];
 }

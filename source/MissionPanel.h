@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 
 class Color;
+class Interface;
 class Mission;
 class PlayerInfo;
 class TextArea;
@@ -81,6 +82,8 @@ private:
 	void CycleInvolvedSystems(const Mission &mission);
 
 private:
+	const Interface *missionInterface;
+
 	const std::list<Mission> &available;
 	const std::list<Mission> &accepted;
 	int cycleInvolvedIndex = 0;

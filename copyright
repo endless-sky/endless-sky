@@ -1569,6 +1569,13 @@ Comment:
  February 2018, so it is subject to an additional restriction
  limiting the sale of unaltered copies.
 
+Files:
+ images/land/station60*
+Copyright: Adrien Olichon
+License: CC0
+Comment:
+ Taken from https://www.pexels.com/photo/building-interior-2817472/. Cropped and edited.
+
 Files: images/land/lava11*
 Copyright: National Archives and Records Administration
 License: public-domain
@@ -1863,7 +1870,25 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
 
 Files:
+ images/effect/asteroid?adult?flare*
+ images/effect/asteroid?adult?2?flare*
+ images/effect/asteroid?adult?3?flare*
+ images/effect/asteroid?adult?4?flare*
+ images/effect/asteroid?adult?5?flare*
+ images/effect/asteroid?medium?flare*
+ images/effect/asteroid?young?flare*
+ images/effect/asteroid?young?2?flare*
+ images/effect/asteroid?young?3?flare*
+ images/effect/asteroid?young?4?flare*
+ images/effect/asteroid?am?circle?defense*
+ images/effect/asteroid?am?fire*
+ images/effect/asteroid?circle?trail*
+ images/effect/asteroid?glow*
+ images/effect/asteroid?laser*
+ images/effect/asteroid?projectile?print*
+ images/effect/asteroid?projectile?static*
  images/hardpoint/javelin?turret*
+ images/hardpoint/asteroid?am?circle*
  images/planet/station1*
  images/planet/station2*
  images/planet/station3*
@@ -1879,6 +1904,9 @@ Files:
  images/planet/station16*
  images/planet/station17*
  images/planet/station-bunrodea*
+ images/planet/station-chanai*
+ images/planet/penrose-machine*
+ images/planet/base*
  images/ship/maeri'het*
  images/ship/subsidurial*
  images/ship/telis'het*
@@ -1931,6 +1959,7 @@ Files:
  images/outfit/ka'het?reserve?accumulator*
  images/outfit/ka'het?nullifier*
  images/outfit/ka'het?mhd?deployer*
+ images/outfit/ka'het?taser*
  images/outfit/mouthparts*
  images/outfit/excavator*
  images/outfit/fuel?pod*
@@ -1999,6 +2028,14 @@ Files:
  images/outfit/jamfruit?pod*
  images/outfit/anomalous?mass*
  images/outfit/decoy?plating*
+ images/outfit/asteroid?weapon?1*
+ images/outfit/asteroid?weapon?2*
+ images/outfit/asteroid?weapon?3*
+ images/outfit/asteroid?weapon?4*
+ images/outfit/asteroid?weapon?5*
+ images/outfit/asteroid?weapon?6*
+ images/outfit/asteroid?weapon?7*
+ images/outfit/asteroid?weapon?8*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -2013,9 +2050,15 @@ Files:
  images/projectile/annihilator*
  images/projectile/ravager?beam*
  images/projectile/mhd*
+ images/projectile/asteroid?missile*
+ images/projectile/asteroid?twin?projectile*
+ images/projectile/asteroid?weapon?circle*
+ images/projectile/asteroid?weapon?live*
+ images/projectile/asteroid?weapon?swarm*
  images/scene/ringworld?debris*
  images/scene/remnant?station*
  images/scene/asteroid?scene*
+ images/scene/lab?scene*
  images/planet/debris0*
  images/planet/debris1*
  images/planet/desert11*
@@ -2096,6 +2139,20 @@ Files:
  images/ship/bluejacket*
  images/ship/pollen*
  images/ship/windjammer*
+ images/_menu/haze-ghila*
+ images/_menu/haze-lathia*
+ images/_menu/haze-maithi*
+ images/_menu/haze-mitera*
+ images/_menu/haze-sarifa*
+ images/_menu/haze-chanai*
+ images/map/big?black?hole*
+ images/map/black?hole?3*
+ images/map/black?hole?4*
+ images/map/black?hole?5*
+ images/map/black?hole?6*
+ images/map/black?hole?corona*
+ images/map/black?hole?star*
+ images/map/black-hole-still*
  images/effect/flotsam?pollen?particle*
  images/effect/flotsam?jamfruit?pod*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
@@ -2104,6 +2161,7 @@ License: CC-BY-SA-4.0
 Files:
  images/effect/remnant?afterburner/remnant?afterburner*
  images/effect/mhd?spark*
+ images/effect/jd?detainer*
  images/land/nasa9*
  images/hardpoint/annihilator?turret*
  images/hardpoint/hai?ionic?turret*
@@ -2205,6 +2263,17 @@ Files:
  images/ship/pug?enfolta*
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
+ images/ship/asteroid?adult*
+ images/ship/asteroid?adult?2*
+ images/ship/asteroid?adult?3*
+ images/ship/asteroid?adult?4*
+ images/ship/asteroid?adult?5*
+ images/ship/asteroid?medium*
+ images/ship/asteroid?young*
+ images/ship/asteroid?young?2*
+ images/ship/asteroid?young?3*
+ images/ship/asteroid?young?4*
+ images/ship/remnant?satellite*
  images/thumbnail/hai?sea?scorpion*
  images/thumbnail/hai?anomalocaris*
  images/thumbnail/ibis*
@@ -2863,6 +2932,12 @@ Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
 
 Files:
+ images/ui/patir?cluster*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA (public domain)
+
+Files:
  images/star/a-dwarf*
  images/star/a-giant*
  images/star/a-supergiant*
@@ -2948,6 +3023,7 @@ Files:
  images/outfit/fusion?cannon*
  images/outfit/nuke*
  images/planet/pontes*
+ images/planet/wormhole?blue*
  images/projectile/fire-lance*
  images/projectile/fusion?gun?bolt*
  images/projectile/blaze-pike*
@@ -2970,10 +3046,33 @@ Files:
  images/star/coal-black-hole*
  images/star/neutron*
  images/star/small-black-hole*
+ images/star/big?black?hole?core*
+ images/star/big?black?hole*
+ images/star/black?hole?3?core*
+ images/star/black?hole?3*
+ images/star/black?hole?4?core*
+ images/star/black?hole?4*
+ images/star/black?hole?5?core*
+ images/star/black?hole?5*
+ images/star/black?hole?6?core*
+ images/star/black?hole?6*
+ images/star/black?hole?corona?core*
+ images/star/black?hole?corona*
+ images/star/black-hole-still-core*
+ images/star/black-hole-still*
+ images/star/black?hole?star?core*
+ images/star/black?hole?star*
  images/star/twilight-black-hole*
  images/thumbnail/battleship*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
+
+Files:
+ images/star/patir*
+ images/star/patir?core*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA (public domain); picture taken by the James Webb Space Telescope (https://www.flickr.com/photos/nasawebbtelescope/54451311621/in/album-72177720323168468)
 
 Files:
  images/outfit/small?photovoltaic*
@@ -3110,6 +3209,8 @@ Comment: Derived from works by Evan Fluharty (under the same license).
 Files:
  images/outfit/gat?turret?hardpoint*
  images/outfit/gat?turret*
+ images/ship/jackal*
+ images/thumbnail/jackal*
 Copyright: bene-dictator <benstaples8068@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license), detailed by Saugia.
@@ -3325,6 +3426,7 @@ Files:
  images/ship/hauler?vi*
  images/ship/heavy?gust*
  images/ship/mining?drone*
+ images/ship/monitor*
  images/ship/mule*
  images/ship/squall*
  images/ship/sunder*
@@ -3338,6 +3440,7 @@ Files:
  images/thumbnail/hauler?vi*
  images/thumbnail/heavy?gust*
  images/thumbnail/mining?drone*
+ images/thumbnail/monitor*
  images/thumbnail/mule*
  images/thumbnail/squall*
  images/thumbnail/sunder*
@@ -3381,6 +3484,7 @@ Files:
  sounds/korath?launch?external*
  sounds/*incip?plasma*
  sounds/locust?blaster*
+ sounds/magic*
  sounds/mandible?cannon*
  sounds/plasma?discharger*
  sounds/remnant?afterburner*
@@ -3737,6 +3841,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/outfit/anti-materiel?gun*
  images/outfit/cloud?piercer*
+ images/outfit/heavy?blaster*
  images/ship/quarg?guivre*
  images/ship/quarg?hydra*
  images/ship/quarg?lindwyrm*

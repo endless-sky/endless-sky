@@ -70,14 +70,16 @@ namespace {
 
 
 // Construct and Load() at the same time.
-NPC::NPC(const DataNode &node, const ConditionsStore *playerConditions)
+NPC::NPC(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node, playerConditions);
+	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
-void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.
@@ -119,9 +121,12 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "system")
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(key == "system")
 		{
-			if(child.Size() >= 2)
+			if(hasValue)
 			{
 				if(child.Token(1) == "destination")
 					isAtDestination = true;
@@ -129,32 +134,31 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					system = GameData::Systems().Get(child.Token(1));
 			}
 			else
-				location.Load(child);
+				location.Load(child, visitedSystems, visitedPlanets);
 		}
-		else if(child.Token(0) == "uuid" && child.Size() >= 2)
+		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
-		else if(child.Token(0) == "planet" && child.Size() >= 2)
+		else if(key == "planet" && hasValue)
 			planet = GameData::Planets().Get(child.Token(1));
-		else if(child.Token(0) == "succeed" && child.Size() >= 2)
+		else if(key == "succeed" && hasValue)
 			succeedIf = child.Value(1);
-		else if(child.Token(0) == "fail" && child.Size() >= 2)
+		else if(key == "fail" && hasValue)
 			failIf = child.Value(1);
-		else if(child.Token(0) == "evade")
+		else if(key == "evade")
 			mustEvade = true;
-		else if(child.Token(0) == "accompany")
+		else if(key == "accompany")
 			mustAccompany = true;
-		else if(child.Token(0) == "government" && child.Size() >= 2)
+		else if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
-		else if(child.Token(0) == "personality")
+		else if(key == "personality")
 			personality.Load(child);
-		else if(child.Token(0) == "cargo settings" && child.HasChildren())
+		else if(key == "cargo settings" && child.HasChildren())
 		{
 			cargo.Load(child);
 			overrideFleetCargo = true;
 		}
-		else if(child.Token(0) == "dialog")
+		else if(key == "dialog")
 		{
-			bool hasValue = (child.Size() > 1);
 			// Dialog text may be supplied from a stock named phrase, a
 			// private unnamed phrase, or directly specified.
 			if(hasValue && child.Token(1) == "phrase")
@@ -175,11 +179,11 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			else
 				Dialog::ParseTextNode(child, 1, dialogText);
 		}
-		else if(child.Token(0) == "conversation" && child.HasChildren())
+		else if(key == "conversation" && child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
-		else if(child.Token(0) == "conversation" && child.Size() > 1)
+		else if(key == "conversation" && hasValue)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
-		else if(child.Token(0) == "to" && child.Size() >= 2)
+		else if(key == "to" && hasValue)
 		{
 			if(child.Token(1) == "spawn")
 				toSpawn.Load(child, playerConditions);
@@ -188,7 +192,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(child.Token(0) == "on" && child.Size() >= 2)
+		else if(key == "on" && hasValue)
 		{
 			static const map<string, Trigger> trigger = {
 				{"assist", Trigger::ASSIST},
@@ -204,22 +208,22 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				npcActions[it->second].Load(child, playerConditions);
+				npcActions[it->second].Load(child, playerConditions, visitedSystems, visitedPlanets);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(child.Token(0) == "ship")
+		else if(key == "ship")
 		{
 			if(child.HasChildren() && child.Size() == 2)
 			{
 				// Loading an NPC from a save file, or an entire ship specification.
 				// The latter may result in references to non-instantiated outfits.
-				ships.emplace_back(make_shared<Ship>(child));
+				ships.emplace_back(make_shared<Ship>(child, playerConditions));
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						shipEvents[ships.back().get()] = grand.Value(1);
 			}
-			else if(child.Size() >= 2)
+			else if(hasValue)
 			{
 				// Loading a ship managed by GameData, i.e. "base models" and variants.
 				stockShips.push_back(GameData::Ships().Get(child.Token(1)));
@@ -235,12 +239,12 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				child.PrintTrace(message);
 			}
 		}
-		else if(child.Token(0) == "fleet")
+		else if(key == "fleet")
 		{
 			if(child.HasChildren())
 			{
 				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)));
-				if(child.Size() >= 2)
+				if(hasValue)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.
 					size_t numAdded = child.Value(1);
@@ -248,7 +252,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 						fleets.push_back(fleets.back());
 				}
 			}
-			else if(child.Size() >= 2)
+			else if(hasValue)
 			{
 				auto fleet = ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1)));
 				if(child.Size() >= 3 && child.Value(2) > 1.)

@@ -44,12 +44,10 @@ public:
 	explicit ConditionsStore(const DataNode &node);
 	explicit ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
 	explicit ConditionsStore(const std::map<std::string, int64_t> &initialConditions);
-	/// A destructor is required to remove ConditionEntries in the correct order.
-	~ConditionsStore();
 
 	ConditionsStore(const ConditionsStore &) = delete;
 	ConditionsStore &operator=(const ConditionsStore &) = delete;
-	ConditionsStore(ConditionsStore &&) = default;
+	ConditionsStore(ConditionsStore &&) = delete;
 	ConditionsStore &operator=(ConditionsStore &&) = default;
 
 	// Serialization support for this class.
@@ -68,9 +66,6 @@ public:
 
 	/// Direct access to a specific condition (using the ConditionEntry as proxy).
 	ConditionEntry &operator[](const std::string &name);
-
-	/// Helper to completely remove all data and linked condition-providers from the store.
-	void Clear();
 
 	// Helper for testing; check how many primary conditions are registered.
 	int64_t PrimariesSize() const;

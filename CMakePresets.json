@@ -28,7 +28,7 @@
 			},
 			"cacheVariables": {
 				"CMAKE_BUILD_TYPE": "Release",
-				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+				"CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
 				"CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
 				"ES_USE_VCPKG": "ON",
 				"ES_USE_SYSTEM_LIBRARIES": "OFF"
@@ -84,6 +84,20 @@
 			"cacheVariables": {
 				"VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
 				"ES_GLES": "ON"
+			},
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Linux"
+			}
+		},
+		{
+			"name": "linux-armv7",
+			"displayName": "Linux armv7",
+			"description": "Builds with the default host compiler on Linux for armv7 systems",
+			"inherits": "base",
+			"cacheVariables": {
+				"ES_LINK_LIBATOMIC": "ON"
 			},
 			"condition": {
 				"type": "equals",
@@ -274,7 +288,7 @@
 			"description": "Builds for Linux like an official release",
 			"inherits": "release",
 			"cacheVariables": {
-				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+				"CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
 				"VCPKG_HOST_TRIPLET": "linux64-release",
 				"VCPKG_TARGET_TRIPLET": "linux64-release"
 			}
@@ -286,7 +300,7 @@
 			"inherits": "release",
 			"cacheVariables": {
 				"ES_CREATE_BUNDLE": "ON",
-				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+				"CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
 				"VCPKG_HOST_TRIPLET": "macos64-release",
 				"VCPKG_TARGET_TRIPLET": "macos64-release",
 				"CMAKE_OSX_ARCHITECTURES": "x86_64",
@@ -304,7 +318,7 @@
 			},
 			"cacheVariables": {
 				"ES_CREATE_BUNDLE": "ON",
-				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+				"CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
 				"VCPKG_HOST_TRIPLET": "macos-arm64-release",
 				"VCPKG_TARGET_TRIPLET": "macos-arm64-release",
 				"CMAKE_OSX_ARCHITECTURES": "arm64",
@@ -318,7 +332,7 @@
 			"inherits": "release",
 			"cacheVariables": {
 				"ES_CREATE_BUNDLE": "ON",
-				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
+				"CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
 				"CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
 				"VCPKG_HOST_TRIPLET": "win64-release",
@@ -382,6 +396,18 @@
 			"name": "linux-gles-release",
 			"displayName": "Release",
 			"configurePreset": "linux-gles",
+			"inherits": "release"
+		},
+		{
+			"name": "linux-armv7-debug",
+			"displayName": "Debug",
+			"configurePreset": "linux-armv7",
+			"inherits": "debug"
+		},
+		{
+			"name": "linux-armv7-release",
+			"displayName": "Release",
+			"configurePreset": "linux-armv7",
 			"inherits": "release"
 		},
 		{

@@ -38,7 +38,7 @@ using namespace std;
 namespace {
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
-		// Maps are not transferrable; they represent the player's spatial awareness.
+		// Maps are not transferable; they represent the player's spatial awareness.
 		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{
@@ -147,7 +147,7 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	isEmpty = false;
 
 	const string &key = child.Token(0);
-	bool hasValue = (child.Size() >= 2);
+	bool hasValue = child.Size() >= 2;
 
 	if(key == "remove" && child.Size() >= 3 && child.Token(1) == "log")
 	{
@@ -198,7 +198,7 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		for(const DataNode &grand : child)
 		{
 			const string &grandKey = grand.Token(0);
-			bool grandHasValue = (grand.Size() > 1);
+			bool grandHasValue = grand.Size() >= 2;
 			if(grandKey == "term" && grandHasValue)
 				debtEntry.term = max<int>(1, grand.Value(1));
 			else if(grandKey == "interest" && grandHasValue)

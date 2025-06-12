@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "Visual.h"
 
+#include <algorithm>
 #include <cmath>
 #include <map>
 
@@ -191,7 +192,19 @@ bool Hardpoint::CanAim(const Ship &ship) const
 // Check if this weapon is ready to fire.
 bool Hardpoint::IsReady() const
 {
-	return outfit && burstReload <= 0. && burstCount;
+	return outfit && burstReload <= 0. && burstCount && !IsBlind();
+}
+
+
+
+// Check if this weapon can't fire because of its blindspots.
+bool Hardpoint::IsBlind() const
+{
+	return any_of(baseAttributes.blindspots.begin(), baseAttributes.blindspots.end(),
+		[this](pair<Angle, Angle> blindspot)
+		{
+			return angle.IsInRange(blindspot.first + baseAngle, blindspot.second + baseAngle);
+		});
 }
 
 

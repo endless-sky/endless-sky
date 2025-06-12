@@ -60,6 +60,55 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.13.1" date="2025-6-4" type="development" urgency="low">
+      <description>
+        <p>This is a patch for the recent unstable release, mainly reverting a feature that introduced some major bugs to mission NPCs.</p>
+        <p>Here are the fixes and improvements included here:</p>
+        <ul>
+          <li>Removed NPC travel instructions. This fixes issues with some ships sometimes behaving incorrectly, and some mission NPCs starting in the wrong system.</li>
+          <li>Invalid systems will no longer be included in the "neighbors" lists of other systems.</li>
+          <li>Fixed overlaps of some elements on the map panel at particular resolutions.</li>
+          <li>"FW Bounty 1" now includes its destination in its description.</li>
+          <li>Caching in CI/CD now only relies on actions/cache.</li>
+          <li>Added a CMake preset for armv7.</li>
+        </ul>
+        <p>You can also find these items in the changelog.</p>
+        <p>A special thanks to the 5 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.13.1/changelog</url>
+    </release>
+    <release version="0.10.13" date="2025-5-31" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>There's lots of new content. Some notable additions and changes are:</p>
+        <ul>
+          <li>Major revamp of Quarg outfits and many new ships.</li>
+          <li>A continuation of the Patir Mystery mission chain.</li>
+          <li>Two old ships and an old outfit rarely used by some human pirates.</li>
+          <li>Numerous new jobs, culture conversations, and some short mission chains.</li>
+          <li>The Coalition intros are easier to find.</li>
+          <li>Many large battles throughout the Free Worlds story now involve smaller fleets on both sides.</li>
+          <li>Different sources of cloaking now offer some different benefits and drawbacks.</li>
+          <li>Ammunition for installed weapons can now be restocked at any outfitter.</li>
+        </ul>
+        <p>There have also been changes to the user interface:</p>
+        <ul>
+          <li>There are now sounds when interacting with buttons or pressing some keys.</li>
+          <li>Gameplay can now be paused without opening the main menu, while still being able to select ships and issue orders.</li>
+          <li>The starfield in the background of the main menu is now animated.</li>
+        </ul>
+        <p>And, lastly, new and changed game mechanics:</p>
+        <ul>
+          <li>Missions can be offered when entering a system.</li>
+          <li>Missions can have an "offer precedence" property to control the order in which they appear when multiple are available at once.</li>
+          <li>Turret hardpoints can define "blindspots"; angles an installed weapon can't turn towards, and multipliers applied to the turning speed of installed turrets.</li>
+          <li>New swizzles can be defined in data files and offer more flexibility in the color combinations they can take.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 59 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.13/changelog</url>
+    </release>
     <release version="0.10.12" date="2025-2-22">
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>

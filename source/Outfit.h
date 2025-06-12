@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 
 #include "Dictionary.h"
+#include "Paragraphs.h"
 
 #include <map>
 #include <string>
@@ -25,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Body;
+class ConditionsStore;
 class DataNode;
 class Effect;
 class Sound;
@@ -51,7 +53,7 @@ public:
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	bool IsDefined() const;
 
 	const std::string &TrueName() const;
@@ -61,7 +63,7 @@ public:
 	const std::string &Category() const;
 	const std::string &Series() const;
 	const int Index() const;
-	const std::string &Description() const;
+	std::string Description() const;
 	int64_t Cost() const;
 	double Mass() const;
 	// Get the licenses needed to buy or operate this ship.
@@ -124,8 +126,8 @@ private:
 	// The series that this outfit is a part of and its index within that series.
 	// Used for sorting within shops.
 	std::string series;
-	int index;
-	std::string description;
+	int index = 0;
+	Paragraphs description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
 	double mass = 0.;

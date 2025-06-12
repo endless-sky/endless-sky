@@ -52,8 +52,8 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
-
-		if(key == "recharges" && (child.HasChildren() || child.Size() >= 2))
+		bool hasValue = child.Size() >= 2;
+		if(key == "recharges" && (child.HasChildren() || hasValue))
 		{
 			auto setRecharge = [&](const DataNode &valueNode, const string &value) noexcept -> void {
 				if(value == "all")
@@ -74,7 +74,7 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			for(const DataNode &grand : child)
 				setRecharge(grand, grand.Token(0));
 		}
-		else if(key == "services" && (child.HasChildren() || child.Size() >= 2))
+		else if(key == "services" && (child.HasChildren() || hasValue))
 		{
 			auto setServices = [&](const DataNode &valueNode, const string &value) noexcept -> void {
 				if(value == "all")
@@ -99,7 +99,7 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		}
 		else if(key == "news")
 			hasNews = true;
-		else if(key == "description" && child.Size() >= 2)
+		else if(key == "description" && hasValue)
 		{
 			description.Load(child, playerConditions);
 

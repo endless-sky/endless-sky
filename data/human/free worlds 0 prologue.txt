@@ -1038,7 +1038,7 @@ mission "FW Escort Second Chance"
 mission "FW Bounty 1"
 	minor
 	name "Free Worlds Bounty Hunting"
-	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny" who have been harassing merchants in Free Worlds space. They were last seen attacking freighters in the Seginus system.`
+	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny" who have been harassing merchants in Free Worlds space. They were last seen attacking freighters in the Seginus system. After defeating them, return to <destination>.`
 	source
 		government "Free Worlds"
 	to offer

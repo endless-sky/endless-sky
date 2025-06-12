@@ -71,7 +71,8 @@ void CargoHold::Load(const DataNode &node)
 	// Cargo is stored as name / amount pairs in two lists: commodities and outfits.
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "commodities")
+		const string &key = child.Token(0);
+		if(key == "commodities")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
@@ -80,7 +81,7 @@ void CargoHold::Load(const DataNode &node)
 					commodities[grand.Token(0)] += tons;
 				}
 		}
-		else if(child.Token(0) == "outfits")
+		else if(key == "outfits")
 		{
 			for(const DataNode &grand : child)
 			{

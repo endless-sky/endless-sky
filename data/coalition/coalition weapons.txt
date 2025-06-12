@@ -122,6 +122,7 @@ outfit "Finisher Pod"
 		"missile strength" 50
 		"submunition" "Active Finisher" 1
 	description `Finisher Torpedoes are one of the Heliarchs' most dreaded weapons. In fact, in one way or another most of their other weapons merely exist to hold a ship in place for long enough for a barrage of Finishers to destroy it.`
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Finisher Maegrolain"
 	category "Secondary Weapons"
@@ -163,6 +164,7 @@ outfit "Finisher Maegrolain"
 		"missile strength" 50
 		"submunition" "Active Finisher" 1
 	description `Baptized with the Saryd word for "furious thunderstorm," this enormous launcher is not meant for prolonged fights nor for use by lighter craft, but for delivering a few quick, devastating bursts of Finisher Torpedoes. It has much greater damage potential than its smaller counterpart.`
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Active Finisher"
 	weapon
@@ -246,6 +248,18 @@ effect "finisher fragment"
 	"random spin" 1
 	"random velocity" 10
 	"velocity scale" -.1
+
+outfitter "Finisher Torpedo Restock"
+	to sell
+		or
+			has "outfit: Finisher Pod"
+			has "outfit: Finisher Maegrolain"
+			has "outfit: Finisher Storage Tube"
+	location
+		attributes "outfitter"
+	stock
+		"Finisher Torpedo"
+
 
 
 outfit "Heliarch Attractor"

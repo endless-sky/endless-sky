@@ -48,7 +48,7 @@ SCENARIO( "Creating a CategoryList" , "[CategoryList][Creation]" ) {
 
 		WHEN( "sorted contents are given to the list without precedence" ) {
 			list.Load(AsDataNode("category test\n\tfirst\n\tsecond\n\tthird"));
-			sorted.push_back("first"); // Precedence = 0, as that is the default precedence of the first added cateogry.
+			sorted.push_back("first"); // Precedence = 0, as that is the default precedence of the first added category.
 			sorted.push_back("second"); // Precedence = 1, as each new category uses the last used precedence + 1.
 			sorted.push_back("third"); // Precedence = 2
 

@@ -129,43 +129,46 @@ void Test::TestStep::LoadInput(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "key")
+		const string &key = child.Token(0);
+		if(key == "key")
 		{
 			for(int i = 1; i < child.Size(); ++i)
 				inputKeys.insert(child.Token(i));
 
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "shift")
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "shift")
 					modKeys |= KMOD_SHIFT;
-				else if(grand.Token(0) == "alt")
+				else if(grandKey == "alt")
 					modKeys |= KMOD_ALT;
-				else if(grand.Token(0) == "control")
+				else if(grandKey == "control")
 					modKeys |= KMOD_CTRL;
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
-		else if(child.Token(0) == "pointer")
+		else if(key == "pointer")
 		{
 			for(const DataNode &grand : child)
 			{
+				const string &grandKey = grand.Token(0);
 				static const string BAD_AXIS_INPUT = "Error: Pointer axis input without coordinate:";
-				if(grand.Token(0) == "X")
+				if(grandKey == "X")
 				{
 					if(grand.Size() < 2)
 						grand.PrintTrace(BAD_AXIS_INPUT);
 					else
 						XValue = grand.Value(1);
 				}
-				else if(grand.Token(0) == "Y")
+				else if(grandKey == "Y")
 				{
 					if(grand.Size() < 2)
 						grand.PrintTrace(BAD_AXIS_INPUT);
 					else
 						YValue = grand.Value(1);
 				}
-				else if(grand.Token(0) == "click")
+				else if(grandKey == "click")
 					for(int i = 1; i < grand.Size(); ++i)
 					{
 						if(grand.Token(i) == "left")
@@ -181,7 +184,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
-		else if(child.Token(0) == "command")
+		else if(key == "command")
 			command.Load(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -288,9 +291,11 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 			case TestStep::Type::NAVIGATE:
 				for(const DataNode &grand : child)
 				{
-					if(grand.Token(0) == "travel" && grand.Size() >= 2)
+					const string &grandKey = grand.Token(0);
+					bool grandHasValue = grand.Size() >= 2;
+					if(grandKey == "travel" && grandHasValue)
 						step.travelPlan.push_back(GameData::Systems().Get(grand.Token(1)));
-					else if(grand.Token(0) == "travel destination" && grand.Size() >= 2)
+					else if(grandKey == "travel destination" && grandHasValue)
 						step.travelDestination = GameData::Planets().Get(grand.Token(1));
 					else
 					{
@@ -352,7 +357,8 @@ void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "status" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		if(key == "status" && child.Size() >= 2)
 		{
 			const string &statusText = child.Token(1);
 			auto it = find_if(STATUS_TO_TEXT.begin(), STATUS_TO_TEXT.end(),
@@ -373,9 +379,9 @@ void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				child.PrintTrace("Error: Unsupported status (" + ExpectedOptions(STATUS_TO_TEXT) + "):");
 			}
 		}
-		else if(child.Token(0) == "sequence")
+		else if(key == "sequence")
 			LoadSequence(child, playerConditions);
-		else if(child.Token(0) == "description")
+		else if(key == "description")
 		{
 			// Provides a human friendly description of the test, but it is not used internally.
 		}
@@ -441,6 +447,9 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 	// All processing was done just before this step started.
 	context.branchesSinceGameStep.clear();
 
+	const ConditionsStore *playerConditions = &player.Conditions();
+	const set<const System *> *visitedSystems = &player.VisitedSystems();
+	const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
 	while(context.callstack.back().step < steps.size() && !continueGameLoop)
 	{
 		const TestStep &stepToRun = steps[context.callstack.back().step];
@@ -493,7 +502,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				{
 					// Lookup the data and inject it in the game or into the environment.
 					const TestData *testData = GameData::TestDataSets().Get(stepToRun.nameOrLabel);
-					if(!testData->Inject(&player.Conditions()))
+					if(!testData->Inject(playerConditions, visitedSystems, visitedPlanets))
 						Fail(context, player, "injecting data failed");
 				}
 				++(context.callstack.back().step);

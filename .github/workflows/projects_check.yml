@@ -119,3 +119,17 @@ jobs:
       run: pip install --break-system-packages regex
     - name: Run style checker
       run: python ./utils/check_content_style.py
+
+
+  check_shaders:
+    name: Shader Compatibility
+    needs: changed
+    if: ${{ needs.changed.outputs.shaders == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - run: sudo apt-get install -y --no-install-recommends glslang-tools
+    - run: utils/check_shaders.sh
+

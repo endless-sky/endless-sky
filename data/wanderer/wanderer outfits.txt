@@ -266,6 +266,7 @@ outfit "Thunderhead Launcher"
 		"radar tracking" .6
 		"missile strength" 12
 	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
@@ -311,6 +312,16 @@ outfit "Thunderhead Storage Array"
 	"thunderhead capacity" 20
 	ammo "Thunderhead Missile"
 	description "The Thunderhead Storage Array is used to store extra ammunition for Thunderhead Launchers."
+
+outfitter "Thunderhead Missile Restock"
+	to sell
+		or
+			has "outfit: Thunderhead Launcher"
+			has "outfit: Thunderhead Storage Array"
+	location
+		attributes "outfitter"
+	stock
+		"Thunderhead Missile"
 
 outfit "Small Biochemical Cell"
 	category "Power"
@@ -624,18 +635,18 @@ outfit "Wanderer Outfits License"
 	series "Licenses"
 	index 09010
 	thumbnail "outfit/wanderer outfits license"
-	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
+	description "This oddly shaped dish holds a collection of perfectly preserved seeds of one Sentinel Skirtgrass, a sensitive yet robust species the Wanderers use during their initial terraforming efforts to gauge how well a world is responding to their methods. Each seed carries a built-in generational limit, ensuring the grass disappears after a few lifecycles so that it doesn't compete with native flora. These seeds symbolize the beginning of both terraforming and goodwill, granting their owner the right to acquire Wanderer outfits."
 
 outfit "Wanderer License"
 	category "Licenses"
 	series "Licenses"
 	index 09020
 	thumbnail "outfit/wanderer license"
-	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
+	description "Intact within an amber shell, this leafy branch of the Noble Watchwood - rumored to come from the Wanderers' original home planet - symbolizes their pride and joy, the total revitalization of a planet. While unmatched in size and formidable to behold, the tree is quite fragile to even the slightest alterations in climate, so the growth of one such specimen to maturity is seen as a sign of a healed ecosystem. As a symbol of peace akin to Earth's olive branch, it grants its bearer the right to purchase non-military Wanderer ships."
 
 outfit "Wanderer Military License"
 	category "Licenses"
 	series "Licenses"
 	index 09030
 	thumbnail "outfit/wanderer military license"
-	description "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."
+	description "The history of the Wanderers is not without hardship and failure. Immortalized in a bronze mold, this withered branch recalls the time the Wanderers could not save a world, for skilled as they may be, they cannot stop destruction when it is actively sought after by others mightier than them. The fall of the Noble Watchwood, their cherished emblem, now stands as a solemn vow: when peace fails, they too must prepare to fight. To stand and fight with the Wanderers, this license grants access to their greatest warships."

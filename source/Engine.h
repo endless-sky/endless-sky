@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "shader/BatchDrawList.h"
+#include "Camera.h"
 #include "CollisionSet.h"
 #include "Color.h"
 #include "Command.h"
@@ -105,7 +106,7 @@ public:
 private:
 	class Outline {
 	public:
-		constexpr Outline(const Sprite *sprite, const Point &position, const Point &unit,
+		Outline(const Sprite *sprite, const Point &position, const Point &unit,
 			const float frame, const Color &color)
 			: sprite(sprite), position(position), unit(unit), frame(frame), color(color)
 		{
@@ -153,6 +154,14 @@ private:
 		Type type;
 		float alpha;
 		double angle;
+	};
+
+	class TurretOverlay {
+	public:
+		Point position;
+		Point angle;
+		double scale;
+		bool isBlind;
 	};
 
 	class Zoom {
@@ -241,9 +250,8 @@ private:
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
 
-	// Viewport position and velocity.
-	Point center;
-	Point centerVelocity;
+	// Viewport camera.
+	Camera camera;
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
@@ -259,6 +267,7 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
+	std::vector<TurretOverlay> turretOverlays;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};

@@ -58,11 +58,12 @@ void Sale<Item>::LoadSingle(const DataNode &child, const Set<Item> &items, bool 
 		child.PrintTrace("Error: Cannot \"add\" or \"remove\" inside a \"stock\" node:");
 		return;
 	}
-	if(remove && child.Size() == 1)
+	bool hasValue = child.Size() >= 2;
+	if(remove && !hasValue)
 		this->clear();
-	else if(remove && child.Size() >= 2)
+	else if(remove && hasValue)
 		this->erase(items.Get(child.Token(1)));
-	else if(add && child.Size() >= 2)
+	else if(add && hasValue)
 		this->insert(items.Get(child.Token(1)));
 	else
 		this->insert(items.Get(token));

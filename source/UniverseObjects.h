@@ -82,7 +82,7 @@ public:
 	void FinishLoading();
 
 	// Apply the given change to the universe.
-	void Change(const DataNode &node, const ConditionsStore *playerConditions);
+	void Change(const DataNode &node, const PlayerInfo &player);
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
 	void UpdateSystems();

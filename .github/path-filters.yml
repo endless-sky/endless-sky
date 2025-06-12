@@ -11,6 +11,10 @@ unit_tests:
   - 'tests/unit/**/*.hpp'
   - 'tests/unit/**/*.cpp'
 
+shaders:
+  - 'shaders/**'
+  - 'utils/check_shaders.sh'
+
 integration_tests:
   - 'tests/integration/config/plugins/integration-tests/**'
 

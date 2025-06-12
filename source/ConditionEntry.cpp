@@ -21,28 +21,8 @@ using namespace std;
 
 
 ConditionEntry::ConditionEntry(const string &name)
-	: name(name), value(0), provider(nullptr)
+	: name(name), value(0), providingEntry(nullptr)
 {
-}
-
-
-
-ConditionEntry::~ConditionEntry()
-{
-	Clear();
-}
-
-
-
-void ConditionEntry::Clear()
-{
-	// Remove the provider, if this is the main condition that created it.
-	if(provider && ((provider->mainEntry == nullptr) || provider->mainEntry == this))
-		delete provider;
-	provider = nullptr;
-
-	// Reset the value to the default.
-	value = 0;
 }
 
 
@@ -57,8 +37,8 @@ const string &ConditionEntry::Name() const
 const string ConditionEntry::NameWithoutPrefix() const
 {
 	// If we have a provider, and that provider has a main-entry, then we have prefix.
-	if(provider && provider->mainEntry)
-		return name.substr(provider->mainEntry->name.length());
+	if(providingEntry)
+		return name.substr(providingEntry->name.length());
 
 	// If we have no prefix, then return the name without prefix.
 	return name;
@@ -66,33 +46,46 @@ const string ConditionEntry::NameWithoutPrefix() const
 
 
 
-ConditionEntry::DerivedProvider::DerivedProvider(ConditionEntry *mainEntry)
-	: mainEntry(mainEntry)
-{
-}
-
-
-
 ConditionEntry::operator int64_t() const
 {
-	if(!provider)
-		return value;
+	// Prefixed provider; use the other function to get the value.
+	if(providingEntry)
+		return providingEntry->getFunction(*this);
 
-	return provider->getFunction(*this);
+	// Named provider; use the local getFunction to get the value.
+	if(getFunction)
+		return getFunction(*this);
+
+	// This is not a provider, just return the value.
+	return value;
 }
 
 
 
 ConditionEntry &ConditionEntry::operator=(int64_t val)
 {
-	if(!provider)
+	// Set through prefixed provider, notify if the function is read/write.
+	if(providingEntry)
+	{
+		if(providingEntry->setFunction)
+		{
+			providingEntry->setFunction(*this, val);
+			NotifyUpdate(val);
+		}
+	}
+	// Set through named provider, notify if the function is read/write.
+	else if(getFunction)
+	{
+		if(setFunction)
+		{
+			setFunction(*this, val);
+			NotifyUpdate(val);
+		}
+	}
+	// Set value directly.
+	else
 	{
 		value = val;
-		NotifyUpdate(val);
-	}
-	else if(provider->setFunction)
-	{
-		provider->setFunction(*this, val);
 		NotifyUpdate(val);
 	}
 	return *this;
@@ -134,9 +127,8 @@ ConditionEntry &ConditionEntry::operator-=(int64_t val)
 
 void ConditionEntry::ProvidePrefixed(function<int64_t(const ConditionEntry &)> getFunction)
 {
-	if(!provider)
-		provider = new DerivedProvider(this);
-	provider->getFunction = std::move(getFunction);
+	this->getFunction = std::move(getFunction);
+	this->providingEntry = this;
 }
 
 
@@ -145,16 +137,15 @@ void ConditionEntry::ProvidePrefixed(function<int64_t(const ConditionEntry &)> g
 	function<void(ConditionEntry &, int64_t)> setFunction)
 {
 	ProvidePrefixed(getFunction);
-	provider->setFunction = std::move(setFunction);
+	this->setFunction = std::move(setFunction);
 }
 
 
 
 void ConditionEntry::ProvideNamed(function<int64_t(const ConditionEntry &)> getFunction)
 {
-	if(!provider)
-		provider = new DerivedProvider(nullptr);
-	provider->getFunction = std::move(getFunction);
+	this->getFunction = std::move(getFunction);
+	this->providingEntry = nullptr;
 }
 
 
@@ -163,7 +154,7 @@ void ConditionEntry::ProvideNamed(function<int64_t(const ConditionEntry &)> getF
 	function<void(ConditionEntry &, int64_t)> setFunction)
 {
 	ProvideNamed(getFunction);
-	provider->setFunction = std::move(setFunction);
+	this->setFunction = std::move(setFunction);
 }
 
 

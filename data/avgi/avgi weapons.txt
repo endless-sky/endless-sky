@@ -34,7 +34,7 @@ outfit "Speck Magazine"
 	"mass" 2.4
 	"outfit space" -6
 	"speck capacity" 1200
-	"ammo" "Speck Round"
+	ammo "Speck Round"
 	description "While Speckle Coilguns carry a considerable amount of ammunition in their internal magazines, for longer expeditions or for resupply operations the Avgi use these compact ammunition storages."
 
 
@@ -52,7 +52,7 @@ outfit "Speckle Coilgun"
 	"speck capacity" 900
 	weapon
 		"sound" "speckle"
-		"ammo" "Speck Round"
+		ammo "Speck Round"
 		"fire effect" "speckle fire"
 		"inaccuracy" 0.9
 		"velocity" 30
@@ -67,6 +67,7 @@ outfit "Speckle Coilgun"
 		"submunition" "Speck"
 	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed primarily for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
 	description "	Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off its mass driver rounds with relative ease."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 	
 
 outfit "Speckle Turret"
@@ -83,7 +84,7 @@ outfit "Speckle Turret"
 	"speck capacity" 2400
 	weapon
 		"sound" "speckle"
-		"ammo" "Speck Round" 2
+		ammo "Speck Round" 2
 		"hardpoint sprite" "hardpoint/speckle turret"
 		"hardpoint offset" 9
 		"fire effect" "speckle fire"
@@ -104,6 +105,7 @@ outfit "Speckle Turret"
 			"offset" 3 0
 	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it a versatile option for mid-ranged combat."
 	description "	Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer-ranged weapons used by the Avgi, but the sheer firepower it can put out can make it deadly to close targets."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 
 outfit "Speck"
@@ -135,6 +137,18 @@ effect "speck impact"
 	"lifetime" 9
 	"random angle" 30
 	"velocity scale" -.06
+
+outfitter "Speck Round Restock"
+	to sell
+		or
+			has "outfit: Speckle Coilgun"
+			has "outfit: Speckle Turret"
+			has "outfit: Speck Magazine"
+	location
+		attributes "outfitter"
+	stock
+		"Speck Round"
+
 
 
 # Energy Weapons:
@@ -472,14 +486,13 @@ outfit "Medium VLS"
 		"submunition" "Nettle Active"
 	description "This large vertical launch system is made up of 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
 	description "	Vertical launch systems such as this one are capable of rapidly launching multiple missiles in parallel, but take up quite a bit of space."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 
 outfit `"Nettle" KKV`
 	category "Ammunition"
 	series "Ammunition"
 	index 07020
-	licenses
-		"Twilight Guard"
 	cost 450
 	thumbnail "outfit/nettle kkv"
 	"mass" 0.15
@@ -558,6 +571,17 @@ effect "fleck impact"
 	"random spin" 30
 	"random velocity" 3
 	"velocity scale" -.12
+
+outfitter "Nettle Restock"
+	to sell
+		or
+			has "outfit: Medium VLS"
+			has "outfit: Nettle Magazine"
+	location
+		attributes "outfitter"
+	stock
+		`"Nettle" KKV`
+
 
 outfit `"Orchid" Nuclear Missile`
 	category "Ammunition"

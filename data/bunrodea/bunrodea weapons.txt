@@ -236,6 +236,7 @@ outfit "Swarm Pod"
 		"missile strength" 8
 		"stream"
 	description "The Swarm Pod proved to be an effective weapon in early conflicts with the Korath by overpowering early Korath anti-missile defenses. But just as the Bunrodea developed technology to combat Korath weaponry, the Korath did the same, prompting them to create their own rapid-fire anti-missile turret that limited the usefulness of the Swarm Pod against some Korath targets."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "swarm flare"
 	sprite "effect/swarm"
@@ -253,6 +254,16 @@ effect "swarm impact"
 	"random angle" 2
 	"random spin" 10
 	"velocity scale" -.05
+
+outfitter "Swarm Missile Restock"
+	to sell
+		or
+			has "outfit: Swarm Pod"
+			has "outfit: Swarm Clip"
+	location
+		attributes "outfitter"
+	stock
+		"Swarm Missile"
 
 
 outfit "Buzzer Anti-Missile"

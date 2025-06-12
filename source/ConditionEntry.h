@@ -32,15 +32,15 @@ class ConditionEntry {
 	friend ConditionsStore;
 
 public:
-	ConditionEntry(const std::string &name);
-	~ConditionEntry();
+	explicit ConditionEntry(const std::string &name);
 
 	// Prevent copying of ConditionEntries. We cannot safely copy the references to the provider, since we depend on the
 	// conditionsStore to set prefix providers.
-	ConditionEntry(ConditionEntry &) = delete;
+	ConditionEntry(const ConditionEntry &) = delete;
 	ConditionEntry &operator=(const ConditionEntry &) = delete;
-
-	void Clear();
+	// Also prevent moving, the provider uses a pointer to the entry, so the entry should stay where it is.
+	ConditionEntry(ConditionEntry &&) = delete;
+	ConditionEntry &operator=(ConditionEntry &&) = delete;
 
 	const std::string &Name() const;
 	const std::string NameWithoutPrefix() const;
@@ -67,39 +67,19 @@ public:
 	void ProvideNamed(std::function<int64_t(const ConditionEntry &)> getFunction,
 		std::function<void(ConditionEntry &, int64_t)> setFunction);
 
-
 	/// Notify all subscribed listeners that the value of the condition changed.
 	void NotifyUpdate(uint64_t value);
 
 
 private:
-	// Helper class for DerivedProviders, the (lambda) functions that provide access to the derived conditions are
-	// registered in this class.
-	class DerivedProvider {
-		friend ConditionEntry;
-
-	public:
-		/// Sets up a derived provider
-		///
-		/// @param mainEntry is nullptr for named providers, and the prefixed entry for prefix providers.
-		DerivedProvider(ConditionEntry *mainEntry);
-
-
-	public:
-		/// Get function to get the value of the ConditionEntry. GetFunctions are required for any derived provider.
-		std::function<int64_t(const ConditionEntry &)> getFunction;
-
-		/// Lambda function to set the value for a condition entry.
-		std::function<void(ConditionEntry &, int64_t)> setFunction;
-
-		/// Toplevel entry for prefixed providers, nullptr for named (non-prefixed) providers.
-		ConditionEntry *mainEntry;
-	};
-
-
-private:
 	std::string name; ///< Name of this entry, set during construction of the entry object.
 	int64_t value = 0; ///< Value of this condition, in case of direct access.
-	DerivedProvider *provider = nullptr; ///< Provider, if this is a named or prefixed derived condition.
 
+	/// Get function to get the value of the ConditionEntry. GetFunctions are required for any derived provider.
+	std::function<int64_t(const ConditionEntry &)> getFunction;
+	/// Lambda function to set the value for a condition entry.
+	std::function<void(ConditionEntry &, int64_t)> setFunction;
+
+	/// conditionEntry that provides the prefixed condition, or nullptr if this is a regular or named condition.
+	const ConditionEntry *providingEntry = nullptr;
 };
