@@ -62,8 +62,14 @@ public:
 	int Month() const;
 	int Year() const;
 
-	// Get the current day of the week as a number. Sunday is 1, Saturday is 7.
-	int WeekdayNumber() const;
+	// Figure out the day of the week of the given date. Uses Zeller's congruence, meaning that
+	// 0 is Saturday and 6 is Friday.
+	int WeekdayNumberOffset() const;
+
+
+private:
+	// Get the abbreviation of the current weekday (e.g. Sun for Sunday, Mon for Monday, etc.).
+	const std::string &Weekday() const;
 
 
 private:

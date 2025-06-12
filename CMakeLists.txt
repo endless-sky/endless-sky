@@ -30,7 +30,7 @@ set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 if(ES_USE_VCPKG)
 	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
 		CACHE STRING "Vcpkg toolchain file")
-	# No need to bootstrap vcpkg if the toolchain file is explictly provided.
+	# No need to bootstrap vcpkg if the toolchain file is explicitly provided.
 	if(CMAKE_TOOLCHAIN_FILE STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake")
 		include(utils/vcpkg_bootstrap.cmake)
 		x_vcpkg_bootstrap()
@@ -61,7 +61,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.13
+project("Endless Sky" VERSION 0.10.14
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -90,14 +90,19 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 
 # Find the zip-reading component of zlib.
 find_package(ZLIB REQUIRED)
-find_package(PkgConfig REQUIRED PkgConfig PkgConf)
 
 # Minizip has a different target name in vcpkg.
 if(ES_USE_VCPKG)
 	find_package(unofficial-minizip CONFIG REQUIRED)
 	set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
 else()
-	pkg_check_modules(MINIZIP REQUIRED minizip)
+	if(CMAKE_VERSION VERSION_LESS 3.31)
+		find_package(PkgConfig REQUIRED PkgConfig PkgConf)
+		pkg_check_modules(MINIZIP REQUIRED minizip)
+	else()
+		cmake_pkg_config(EXTRACT minizip REQUIRED)
+		set(MINIZIP_LIBRARIES "minizip")
+	endif()
 endif()
 
 # Find the MinGW runtime DLLs.
@@ -149,6 +154,8 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+elseif(ES_LINK_LIBATOMIC)
+	target_link_libraries(ExternalLibraries INTERFACE pthread atomic)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 endif()
@@ -323,3 +330,9 @@ elseif(UNIX)
 	install(FILES changelog DESTINATION share/doc/endless-sky)
 	install(FILES license.txt DESTINATION share/doc/endless-sky)
 endif()
+
+# Create symlink to compile_commands.json from build/ so it's LSP-discoverable.
+execute_process(
+	COMMAND ${CMAKE_COMMAND} -E create_symlink
+	${CMAKE_BINARY_DIR}/compile_commands.json
+	${CMAKE_CURRENT_SOURCE_DIR}/build/compile_commands.json)
