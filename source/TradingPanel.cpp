@@ -68,7 +68,7 @@ TradingPanel::~TradingPanel()
 {
 	if(profit)
 	{
-		string message = "You sold " + Format::CargoString(tonsSold, "cargo ");
+		string message = "You sold " + Format::CargoString(commoditiesSold + outfitTonsSold, "cargo ");
 
 		if(profit < 0)
 			message += "at a loss of " + Format::CreditString(-profit) + ".";
@@ -76,6 +76,28 @@ TradingPanel::~TradingPanel()
 			message += "for a total profit of " + Format::CreditString(profit) + ".";
 
 		Messages::Add(message, Messages::Importance::High);
+	}
+}
+
+
+
+void TradingPanel::SetInitialCommodities(const map<string, int> &initial)
+{
+	this->initial = initial;
+}
+
+
+
+void TradingPanel::CalculateCommoditiesSold(const map<string, int> &current)
+{
+	commoditiesSold = 0;
+	for(auto it : initial)
+	{
+		auto cit = current.find(it.first);
+		if(cit == current.end())
+			commoditiesSold += it.second;
+		else if(cit->second < it.second)
+			commoditiesSold += it.second - cit->second;
 	}
 }
 
@@ -248,7 +270,6 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 			int64_t basis = player.GetBasis(commodity, -amount);
 			profit += amount * price + basis;
-			tonsSold += amount;
 
 			GameData::AddPurchase(system, commodity, -amount);
 			player.AdjustBasis(commodity, basis);
@@ -265,7 +286,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 			int64_t value = player.FleetDepreciation().Value(outfit, day, amount);
 			profit += value;
-			tonsSold += static_cast<int>(amount * outfit->Mass());
+			outfitTonsSold += static_cast<int>(amount * outfit->Mass());
 
 			player.AddStock(outfit, amount);
 			player.Accounts().AddCredits(value);
@@ -331,7 +352,6 @@ void TradingPanel::Buy(int64_t amount)
 		int64_t basis = player.GetBasis(type, amount);
 		player.AdjustBasis(type, basis);
 		profit += -amount * price + basis;
-		tonsSold += -amount;
 	}
 	amount = player.Cargo().Add(type, amount);
 	player.Accounts().AddCredits(-amount * price);

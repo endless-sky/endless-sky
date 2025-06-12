@@ -101,8 +101,10 @@ void MainPanel::Step()
 	// will call this object's OnCallback() function;
 	if(isActive && player.GetPlanet() && !player.GetPlanet()->IsWormhole())
 	{
-		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
+		PlanetPanel *planetPanel = new PlanetPanel(player, bind(&MainPanel::OnCallback, this));
+		GetUI()->Push(planetPanel);
 		player.Land(GetUI());
+		planetPanel->FinishLanding();
 		isActive = false;
 	}
 

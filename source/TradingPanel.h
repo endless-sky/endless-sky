@@ -17,6 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include <map>
+#include <string>
+
 class PlayerInfo;
 class System;
 
@@ -30,6 +33,14 @@ class TradingPanel : public Panel {
 public:
 	explicit TradingPanel(PlayerInfo &player);
 	~TradingPanel();
+
+	// Set the initial commodities that the player has with them. This must be
+	// called after the player has pooled their cargo from their fleet.
+	void SetInitialCommodities(const std::map<std::string, int> &initial);
+	// Determine how many commodities the player sold from their initial cargo.
+	// This must be called before the player's pooled cargo is moved back
+	// onto their fleet.
+	void CalculateCommoditiesSold(const std::map<std::string, int> &current);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -55,6 +66,12 @@ private:
 	bool sellOutfits = false;
 
 	// Keep track of how much we sold and how much profit was made.
-	int tonsSold = 0;
+	int commoditiesSold = 0;
+	int outfitTonsSold = 0;
 	int64_t profit = 0;
+	// The initial number of tons of each commodity that the player had when
+	// they landed. This is compared against how many of each commodity the
+	// player has when they depart to determine how many tons of commodities
+	// were sold for profit/loss.
+	std::map<std::string, int> initial;
 };
