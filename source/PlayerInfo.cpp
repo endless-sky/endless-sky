@@ -1622,8 +1622,9 @@ void PlayerInfo::Land(UI *ui)
 				const bool alreadyLanded = ship->GetPlanet() == planet;
 				if(alreadyLanded || planet->CanLand(*ship) || (clearance && planet->IsAccessible(ship.get())))
 				{
-					ship->Recharge(canUseServices ? planet->GetPort().GetRecharges() : Port::RechargeType::None,
-						planet->GetPort().HasService(Port::ServicesType::HireCrew));
+					const Port &port = planet->GetPort();
+					ship->Recharge(canUseServices ? port.GetRecharges() : Port::RechargeType::None,
+						port.HasService(Port::ServicesType::HireCrew));
 					if(!ship->GetPlanet())
 						ship->SetPlanet(planet);
 				}
@@ -1632,12 +1633,18 @@ void PlayerInfo::Land(UI *ui)
 				else
 				{
 					const StellarObject *landingObject = AI::FindLandingLocation(*ship);
-					const bool foundSpaceport = landingObject;
 					if(!landingObject)
 						landingObject = AI::FindLandingLocation(*ship, false);
 					if(landingObject)
-						ship->SetPlanet(landingObject->GetPlanet());
-					ship->Recharge(foundSpaceport);
+					{
+						const Planet *landingPlanet = landingObject->GetPlanet();
+						const Port &port = landingPlanet->GetPort();
+						ship->Recharge(landingPlanet->CanUseServices() ? port.GetRecharges() : Port::RechargeType::None,
+							port.HasService(Port::ServicesType::HireCrew));
+						ship->SetPlanet(planet);
+					}
+					else
+						ship->Recharge(Port::RechargeType::None, false);
 				}
 			}
 			else
