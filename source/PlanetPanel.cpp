@@ -370,7 +370,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	absentCannotFly.clear();
 
 	// Update the trading panel with the player's final commodity count
-	// before it gets distributed out to fleet.
+	// before it gets distributed out to the fleet.
 	trading->CalculateCommoditiesSold(player.Cargo().Commodities());
 
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
