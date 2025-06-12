@@ -91,7 +91,7 @@ void TradingPanel::SetInitialCommodities(const map<string, int> &initial)
 void TradingPanel::CalculateCommoditiesSold(const map<string, int> &current)
 {
 	commoditiesSold = 0;
-	for(auto it : initial)
+	for(const auto &it : initial)
 	{
 		auto cit = current.find(it.first);
 		if(cit == current.end())
