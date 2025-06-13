@@ -82,6 +82,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 
 	// How many pages of controls and settings there are.
@@ -737,7 +738,7 @@ void PreferencesPanel::DrawSettings()
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
 		"Show planet labels",
-		"Show mini-map",
+		MINIMAP_DISPLAY,
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
@@ -990,6 +991,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == MINIMAP_DISPLAY)
+		{
+			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
+			text = Preferences::MinimapSetting();
 		}
 		else
 			text = isOn ? "on" : "off";
@@ -1344,6 +1350,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleNotificationSetting();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
+	else if(str == MINIMAP_DISPLAY)
+		Preferences::ToggleMinimapDisplay();
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));
