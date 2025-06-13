@@ -184,7 +184,6 @@ void PlanetPanel::Draw()
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
 	{
-		Rectangle box = ui->GetBox("content");
 		description->SetRect(ui->GetBox("content"));
 		description->SetText(planet.Description().ToString());
 	}
