@@ -224,6 +224,8 @@ public:
 	// the purpose of determining how frequently the MapPanel should blink the mission
 	// marker.
 	void CalculateRemainingDeadlines();
+	// Add a mission that was just accepted to the cached remaining deadlines.
+	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
 	// The number of days left before this mission's deadline has elapsed, or,
 	// if the "Deadline blink by distance" preference is true, before the player
 	// doesn't have enough days left to complete the mission before the deadline
@@ -361,9 +363,6 @@ public:
 	std::set<std::string> &Collapsed(const std::string &name);
 	// Should help dialogs relating to carriers be displayed?
 	bool DisplayCarrierHelp() const;
-
-	// Add a mission that was just accepted to the cached remaining deadlines.
-	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
 
 
 private:
