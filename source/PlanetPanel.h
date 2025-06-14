@@ -33,6 +33,7 @@ class Ship;
 class SpaceportPanel;
 class System;
 class TextArea;
+class TradingPanel;
 
 
 
@@ -43,6 +44,11 @@ class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
 	virtual ~PlanetPanel() override;
+
+	// This panel is constructed before the player has finished all
+	// of their landing logic. This is called after the landing logic
+	// has concluded to finish initializing this panel.
+	void FinishLanding();
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -71,13 +77,12 @@ private:
 
 	// Whether this planet has a shipyard or outfitter
 	// and the items that are for sale in each shop.
-	bool initializedShops = false;
 	bool hasShipyard = false;
 	bool hasOutfitter = false;
 	Sale<Ship> shipyardStock;
 	Sale<Outfit> outfitterStock;
 
-	std::shared_ptr<Panel> trading;
+	std::shared_ptr<TradingPanel> trading;
 	std::shared_ptr<Panel> bank;
 	std::shared_ptr<SpaceportPanel> spaceport;
 	std::shared_ptr<Panel> hiring;
