@@ -2208,7 +2208,13 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			it->Do(Mission::ACCEPT, *this, ui);
 			if(it->IsFailed())
 				RemoveMission(Mission::Trigger::FAIL, *it, ui);
-			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
+			if(mission.Deadline())
+			{
+				DistanceMap here(*this, system);
+				CalculateRemainingDeadline(mission, here);
+			}
+			// Might not have cargo anymore, so some jobs can be sorted to end.
+			SortAvailable();
 			break;
 		}
 }
