@@ -63,6 +63,12 @@ public:
 		int64_t maintenanceCosts = 0;
 		int64_t assetsReturns = 0;
 	};
+	enum SortType {
+		ABC,
+		PAY,
+		SPEED,
+		CONVENIENT
+	};
 
 
 public:
@@ -232,7 +238,6 @@ public:
 	// will elapse. Returns 0 if the give mission doesn't have a deadline.
 	int RemainingDeadline(const Mission &mission) const;
 
-	enum SortType {ABC, PAY, SPEED, CONVENIENT};
 	const SortType GetAvailableSortType() const;
 	void NextAvailableSortType();
 	const bool ShouldSortAscending() const;
