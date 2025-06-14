@@ -190,8 +190,11 @@ namespace {
 		{"high shield permeability", 3},
 		{"low shield permeability", 3},
 		{"cloaked shield permeability", 3},
+		{"cloaked regen multiplier", 3},
+		{"cloaked repair multiplier", 3},
 		{"acceleration multiplier", 3},
 		{"turn multiplier", 3},
+		{"turret turn multiplier", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},
@@ -228,14 +231,15 @@ namespace {
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
 		{"minable", "This item is mined from asteroids."},
+		{"map minables", "This map reveals minables."},
 		{"atrocity", "This outfit is considered an atrocity."},
 		{"unique", "This item is unique."},
-		{"cloaked afterburner", "You may use your afterburner when cloaked."},
-		{"cloaked boarding", "You may board even when cloaked."},
-		{"cloaked communication", "You may make hails when cloaked."},
-		{"cloaked deployment", "You may deploy drones and fighters without revealing your location."},
-		{"cloaked pickup", "You may pickup items with this cloak."},
-		{"cloaked scanning", "You may scan other ships when cloaked."}
+		{"cloaked afterburner", "You may use afterburners while cloaked."},
+		{"cloaked boarding", "You may board while cloaked."},
+		{"cloaked communication", "You may make hails while cloaked."},
+		{"cloaked deployment", "You may deploy from bays while cloaked."},
+		{"cloaked pickup", "You may pick up flotsam while cloaked."},
+		{"cloaked scanning", "You may scan other ships while cloaked."}
 	};
 
 	bool IsNotRequirement(const string &label)

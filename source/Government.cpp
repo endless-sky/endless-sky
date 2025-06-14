@@ -99,7 +99,8 @@ Government::Government()
 
 
 // Load a government's definition from a file.
-void Government::Load(const DataNode &node)
+void Government::Load(const DataNode &node, const set<const System *> *visitedSystems,
+	const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() >= 2)
 	{
@@ -266,11 +267,12 @@ void Government::Load(const DataNode &node)
 		else if(key == "custom penalties for")
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "remove" && grand.Size() >= 2)
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "remove" && grand.Size() >= 2)
 					customPenalties[GameData::Governments().Get(grand.Token(1))->id].clear();
 				else
 				{
-					auto &pens = customPenalties[GameData::Governments().Get(grand.Token(0))->id];
+					auto &pens = customPenalties[GameData::Governments().Get(grandKey)->id];
 					PenaltyHelper(grand, pens);
 				}
 			}
@@ -282,30 +284,35 @@ void Government::Load(const DataNode &node)
 				illegalShips.clear();
 			}
 			for(const DataNode &grand : child)
-				if(grand.Size() >= 2)
+			{
+				if(grand.Size() < 2)
 				{
-					if(grand.Token(0) == "remove")
-					{
-						if(grand.Size() >= 3 && grand.Token(1) == "ship")
-						{
-							if(!illegalShips.erase(grand.Token(2)))
-								grand.PrintTrace("Invalid remove, ship not found in existing illegals:");
-						}
-						else if(!illegalOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
-							grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
-					}
-					else if(grand.Token(0) == "ignore")
-					{
-						if(grand.Size() >= 3 && grand.Token(1) == "ship")
-							illegalShips[grand.Token(2)] = 0;
-						else
-							illegalOutfits[GameData::Outfits().Get(grand.Token(1))] = 0;
-					}
-					else if(grand.Size() >= 3 && grand.Token(0) == "ship")
-						illegalShips[grand.Token(1)] = grand.Value(2);
-					else
-						illegalOutfits[GameData::Outfits().Get(grand.Token(0))] = grand.Value(1);
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
 				}
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "remove")
+				{
+					if(grand.Token(1) == "ship" && grand.Size() >= 3)
+					{
+						if(!illegalShips.erase(grand.Token(2)))
+							grand.PrintTrace("Invalid remove, ship not found in existing illegals:");
+					}
+					else if(!illegalOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
+						grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
+				}
+				else if(grandKey == "ignore")
+				{
+					if(grand.Token(1) == "ship" && grand.Size() >= 3)
+						illegalShips[grand.Token(2)] = 0;
+					else
+						illegalOutfits[GameData::Outfits().Get(grand.Token(1))] = 0;
+				}
+				else if(grandKey == "ship" && grand.Size() >= 3)
+					illegalShips[grand.Token(1)] = grand.Value(2);
+				else
+					illegalOutfits[GameData::Outfits().Get(grandKey)] = grand.Value(1);
+			}
 		}
 		else if(key == "atrocities")
 		{
@@ -315,41 +322,41 @@ void Government::Load(const DataNode &node)
 				atrocityShips.clear();
 			}
 			for(const DataNode &grand : child)
-				if(grand.Size() >= 2)
+			{
+				const string &grandKey = grand.Token(0);
+				if(grand.Size() == 1)
+					atrocityOutfits[GameData::Outfits().Get(grandKey)] = true;
+				else if(grandKey == "remove")
 				{
-					if(grand.Token(0) == "remove")
+					if(grand.Token(1) == "ship" && grand.Size() >= 3)
 					{
-						if(grand.Size() >= 3 && grand.Token(1) == "ship")
-						{
-							if(!atrocityShips.erase(grand.Token(2)))
-								grand.PrintTrace("Invalid remove, ship not found in existing atrocities:");
-						}
-						else if(!atrocityOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
-							grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
+						if(!atrocityShips.erase(grand.Token(2)))
+							grand.PrintTrace("Invalid remove, ship not found in existing atrocities:");
 					}
-					else if(grand.Token(0) == "ignore")
-					{
-						if(grand.Size() >= 3 && grand.Token(1) == "ship")
-							atrocityShips[grand.Token(2)] = false;
-						else
-							atrocityOutfits[GameData::Outfits().Get(grand.Token(1))] = false;
-					}
-					else if(grand.Token(0) == "ship")
-						atrocityShips[grand.Token(1)] = true;
+					else if(!atrocityOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
+						grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
 				}
-				else
-					atrocityOutfits[GameData::Outfits().Get(grand.Token(0))] = true;
+				else if(grandKey == "ignore")
+				{
+					if(grand.Token(1) == "ship" && grand.Size() >= 3)
+						atrocityShips[grand.Token(2)] = false;
+					else
+						atrocityOutfits[GameData::Outfits().Get(grand.Token(1))] = false;
+				}
+				else if(grandKey == "ship")
+					atrocityShips[grand.Token(1)] = true;
+			}
 		}
 		else if(key == "enforces" && child.HasChildren())
-			enforcementZones.emplace_back(child);
+			enforcementZones.emplace_back(child, visitedSystems, visitedPlanets);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
 		else if(key == "travel restrictions" && child.HasChildren())
 		{
 			if(add)
-				travelRestrictions.Load(child);
+				travelRestrictions.Load(child, visitedSystems, visitedPlanets);
 			else
-				travelRestrictions = LocationFilter(child);
+				travelRestrictions = LocationFilter(child, visitedSystems, visitedPlanets);
 		}
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
@@ -375,7 +382,7 @@ void Government::Load(const DataNode &node)
 		else if(key == "display name")
 			displayName = child.Token(valueIndex);
 		else if(key == "swizzle")
-			swizzle = child.Value(valueIndex);
+			swizzle = GameData::Swizzles().Get(child.Token(valueIndex));
 		else if(key == "color")
 		{
 			if(child.Size() >= 3 + valueIndex)
@@ -438,7 +445,7 @@ const string &Government::GetTrueName() const
 
 
 // Get the color swizzle to use for ships of this government.
-int Government::GetSwizzle() const
+const Swizzle *Government::GetSwizzle() const
 {
 	return swizzle;
 }
@@ -699,13 +706,13 @@ int Government::Fines(const Ship *ship) const
 
 
 
-bool Government::FinesContents(const Ship *ship, const PlayerInfo &player) const
+bool Government::FinesContents(const Ship *ship) const
 {
 	for(auto &it : ship->Outfits())
 		if(this->Fines(it.first) || this->Condemns(it.first))
 			return true;
 
-	return ship->Cargo().IllegalCargoFine(this, player);
+	return ship->Cargo().IllegalCargoFine(this);
 }
 
 

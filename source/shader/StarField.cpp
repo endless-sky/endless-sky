@@ -18,8 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Angle.h"
 #include "../Body.h"
 #include "DrawList.h"
+#include "../GameData.h"
+#include "../Interface.h"
 #include "../pi.h"
-#include "../Point.h"
 #include "../Preferences.h"
 #include "../Random.h"
 #include "../Screen.h"
@@ -105,6 +106,29 @@ void StarField::Init(int stars, int width)
 
 
 
+void StarField::FinishLoading()
+{
+	const Interface *constants = GameData::Interfaces().Get("starfield");
+	fixedZoom = constants->GetValue("fixed zoom");
+	velocityReducer = constants->GetValue("velocity reducer");
+}
+
+
+
+const Point &StarField::Position() const
+{
+	return pos;
+}
+
+
+
+void StarField::SetPosition(const Point &position)
+{
+	pos = position;
+}
+
+
+
 void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	// If no sprite is given, set the default one.
@@ -125,11 +149,38 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
-void StarField::Draw(const Point &pos, const Point &vel, double zoom, const System *system) const
+void StarField::Step(Point vel, double zoom)
+{
+	if(Preferences::Has("Fixed starfield zoom"))
+	{
+		baseZoom = fixedZoom;
+		vel /= velocityReducer;
+	}
+	else if(zoom < .25)
+	{
+		// When the player's view zoom gets too small, the starfield begins to take up
+		// an extreme amount of system resources, and the tiling becomes very obvious.
+		// If the view zoom gets below 0.25, start zooming the starfield at a different
+		// rate, and don't go below 0.15 for the starfield's zoom.
+		// 0.25 is the vanilla minimum zoom, so this only applies when the "main view"
+		// interface has been modified to allow lower zoom values.
+		baseZoom = .4 * zoom + .15;
+		// Reduce the movement of the background by the same adjustment as the zoom
+		// so that the background doesn't appear like it's moving way quicker than
+		// the player is.
+		vel /= baseZoom / zoom;
+	}
+	else
+		baseZoom = zoom;
+
+	pos += vel;
+}
+
+
+
+void StarField::Draw(const Point &blur, const System *system) const
 {
 	double density = system ? system->StarfieldDensity() : 1.;
-
-	double baseZoom = zoom;
 
 	// Check preferences for the parallax quality.
 	const auto parallaxSetting = Preferences::GetBackgroundParallax();
@@ -138,9 +189,10 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 						parallaxSetting == Preferences::BackgroundParallax::FAST);
 
 	// Draw the starfield unless it is disabled in the preferences.
+	double zoom = baseZoom;
 	if(Preferences::Has("Draw starfield") && density > 0.)
 	{
-		glUseProgram(shader.Object());
+		glUseProgram(shader->Object());
 		glBindVertexArray(vao);
 
 		for(int pass = 1; pass <= layers; pass++)
@@ -149,8 +201,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			if(isParallax)
 				zoom = baseZoom * STAR_ZOOM * pow(pass, 0.2);
 
-			float length = vel.Length();
-			Point unit = length ? vel.Unit() : Point(1., 0.);
+			float length = blur.Length();
+			Point unit = length ? blur.Unit() : Point(1., 0.);
 			// Don't zoom the stars at the same rate as the field; otherwise, at the
 			// farthest out zoom they are too small to draw well.
 			unit /= pow(zoom, .75);
@@ -162,26 +214,26 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			GLfloat rotate[4] = {
 				static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
 				static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
-			glUniformMatrix2fv(rotateI, pass, false, rotate);
+			glUniformMatrix2fv(rotateI, 1, false, rotate);
 
 			glUniform1f(elongationI, length * zoom);
 			glUniform1f(brightnessI, min(1., pow(zoom, .5)));
 
 			// Stars this far beyond the border may still overlap the screen.
-			double borderX = fabs(vel.X()) + 1.;
-			double borderY = fabs(vel.Y()) + 1.;
+			double borderX = fabs(blur.X()) + 1.;
+			double borderY = fabs(blur.Y()) + 1.;
 			// Find the absolute bounds of the star field we must draw.
-			int minX = pos.X() + (Screen::Left() - borderX) / zoom;
-			int minY = pos.Y() + (Screen::Top() - borderY) / zoom;
-			int maxX = pos.X() + (Screen::Right() + borderX) / zoom;
-			int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom;
+			float shove = pow(-5., pass);
+			int minX = pos.X() + (Screen::Left() - borderX) / zoom - shove;
+			int minY = pos.Y() + (Screen::Top() - borderY) / zoom - shove;
+			int maxX = pos.X() + (Screen::Right() + borderX) / zoom - shove;
+			int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom - shove;
 			// Round down to the start of the nearest tile.
 			minX &= ~(TILE_SIZE - 1l);
 			minY &= ~(TILE_SIZE - 1l);
 
 			for(int gy = minY; gy < maxY; gy += TILE_SIZE)
 			{
-				float shove = pow(-5., pass);
 				for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 				{
 					Point off = Point(gx + shove, gy + shove) - pos;
@@ -219,14 +271,11 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 	else
 		transparency = 0.;
 
-	// Set zoom to a higher level than stars to avoid premature culling.
-	zoom = min(.25, zoom / 1.4);
-
 	// Any object within this range must be drawn. Some haze sprites may repeat
 	// more than once if the view covers a very large area.
 	Point size = Point(1., 1.) * haze[0].front().Radius();
-	Point topLeft = pos + (Screen::TopLeft() - size) / zoom;
-	Point bottomRight = pos + (Screen::BottomRight() + size) / zoom;
+	Point topLeft = pos + Screen::TopLeft() / zoom - size;
+	Point bottomRight = pos + Screen::BottomRight() / zoom + size;
 	if(transparency > 0.)
 		AddHaze(drawList, haze[1], topLeft, bottomRight, 1 - transparency);
 	AddHaze(drawList, haze[0], topLeft, bottomRight, transparency);
@@ -238,40 +287,9 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 
 void StarField::SetUpGraphics()
 {
-	static const char *vertexCode =
-		"// vertex starfield shader\n"
-		"uniform mat2 rotate;\n"
-		"uniform vec2 translate;\n"
-		"uniform vec2 scale;\n"
-		"uniform float elongation;\n"
-		"uniform float brightness;\n"
-
-		"in vec2 offset;\n"
-		"in float size;\n"
-		"in float corner;\n"
-		"out float fragmentAlpha;\n"
-		"out vec2 coord;\n"
-
-		"void main() {\n"
-		"  fragmentAlpha = brightness * (4. / (4. + elongation)) * size * .2 + .05;\n"
-		"  coord = vec2(sin(corner), cos(corner));\n"
-		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
-		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment starfield shader\n"
-		"precision mediump float;\n"
-		"in float fragmentAlpha;\n"
-		"in vec2 coord;\n"
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));\n"
-		"  finalColor = vec4(1, 1, 1, 1) * alpha;\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
+	shader = GameData::Shaders().Get("starfield");
+	if(!shader->Object())
+		throw std::runtime_error("Could not find starfield shader!");
 
 	// make and bind the VAO
 	glGenVertexArrays(1, &vao);
@@ -281,15 +299,15 @@ void StarField::SetUpGraphics()
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	offsetI = shader.Attrib("offset");
-	sizeI = shader.Attrib("size");
-	cornerI = shader.Attrib("corner");
+	offsetI = shader->Attrib("offset");
+	sizeI = shader->Attrib("size");
+	cornerI = shader->Attrib("corner");
 
-	scaleI = shader.Uniform("scale");
-	rotateI = shader.Uniform("rotate");
-	elongationI = shader.Uniform("elongation");
-	translateI = shader.Uniform("translate");
-	brightnessI = shader.Uniform("brightness");
+	scaleI = shader->Uniform("scale");
+	rotateI = shader->Uniform("rotate");
+	elongationI = shader->Uniform("elongation");
+	translateI = shader->Uniform("translate");
+	brightnessI = shader->Uniform("brightness");
 }
 
 
@@ -351,7 +369,7 @@ void StarField::MakeStars(int stars, int width)
 	tileIndex.pop_back();
 	partial_sum(tileIndex.begin(), tileIndex.end(), tileIndex.begin());
 
-	// Each star consists of five vertices, each with four data elements.
+	// Each star consists of six vertices, each with four data elements.
 	vector<GLfloat> data(6 * 4 * stars, 0.f);
 	for(auto it = temp.begin(); it != temp.end(); )
 	{
