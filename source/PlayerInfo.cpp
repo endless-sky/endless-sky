@@ -2208,11 +2208,6 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			it->Do(Mission::ACCEPT, *this, ui);
 			if(it->IsFailed())
 				RemoveMission(Mission::Trigger::FAIL, *it, ui);
-			if(mission.Deadline())
-			{
-				DistanceMap here(*this, system);
-				CalculateRemainingDeadline(mission, here);
-			}
 			// Might not have cargo anymore, so some jobs can be sorted to end.
 			SortAvailable();
 			break;
@@ -2409,11 +2404,6 @@ void PlayerInfo::MissionCallback(int response)
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
-		if(mission.Deadline())
-		{
-			DistanceMap here(*this, system);
-			CalculateRemainingDeadline(mission, here);
-		}
 		if(planet)
 		{
 			cargo.AddMissionCargo(&mission);

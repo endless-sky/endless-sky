@@ -362,6 +362,9 @@ public:
 	// Should help dialogs relating to carriers be displayed?
 	bool DisplayCarrierHelp() const;
 
+	// Add a mission that was just accepted to the cached remaining deadlines.
+	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
+
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.
@@ -373,8 +376,6 @@ private:
 
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
-	// Add a mission that was just accepted to the cached remaining deadlines.
-	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
