@@ -414,6 +414,40 @@ string Font::TruncateText(const DisplayText &text, int &width) const
 }
 
 
+
+string Font::TruncateBack(const string &str, int &width) const
+{
+	return TruncateEndsOrMiddle(str, width,
+		[](const string &str, int charCount)
+		{
+			return str.substr(0, charCount) + "...";
+		});
+}
+
+
+
+string Font::TruncateFront(const string &str, int &width) const
+{
+	return TruncateEndsOrMiddle(str, width,
+		[](const string &str, int charCount)
+		{
+			return "..." + str.substr(str.size() - charCount);
+		});
+}
+
+
+
+string Font::TruncateMiddle(const string &str, int &width) const
+{
+	return TruncateEndsOrMiddle(str, width,
+		[](const string &str, int charCount)
+		{
+			return str.substr(0, (charCount + 1) / 2) + "..." + str.substr(str.size() - charCount / 2);
+		});
+}
+
+
+
 string Font::TruncateEndsOrMiddle(const string &str, int &width,
 	function<string(const string &, int)> getResultString) const
 {
@@ -447,37 +481,4 @@ string Font::TruncateEndsOrMiddle(const string &str, int &width,
 	}
 	width = workingWidth;
 	return getResultString(str, workingChars);
-}
-
-
-
-string Font::TruncateBack(const string &str, int &width) const
-{
-	return TruncateEndsOrMiddle(str, width,
-		[](const string &str, int charCount)
-		{
-			return str.substr(0, charCount) + "...";
-		});
-}
-
-
-
-string Font::TruncateFront(const string &str, int &width) const
-{
-	return TruncateEndsOrMiddle(str, width,
-		[](const string &str, int charCount)
-		{
-			return "..." + str.substr(str.size() - charCount);
-		});
-}
-
-
-
-string Font::TruncateMiddle(const string &str, int &width) const
-{
-	return TruncateEndsOrMiddle(str, width,
-		[](const string &str, int charCount)
-		{
-			return str.substr(0, (charCount + 1) / 2) + "..." + str.substr(str.size() - charCount / 2);
-		});
 }
