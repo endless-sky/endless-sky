@@ -2537,7 +2537,7 @@ mission "Terraforming Field Trip 1"
 					defer
 				`	(No.)`
 					decline
-			`	The poster includes small writing with contact instructions for inquiries about the terraforming process and Tundra's climate. Once you get through to a person on the other side, there is initially reluctance to put you through to anyone involved with the terraforming directly, but after verifying that you worked with them to get the process started, you are connected to Amy.`
+			`	The poster includes small writing with contact instructions for inquiries about the terraforming process and Tundra's climate. The person you reach first is initially reluctant to put you through to anyone directly involved with the terraforming, but after verifying that you worked with them to get the process started, you are connected to Amy.`
 			`	"I've met aliens with an approach to terraforming that matches your theories from when you were at the Academy of Planetary Sciences," you say. She seems interested in learning more and agrees to meet you in the spaceport bar.`
 			`	Once she arrives, you tell her about the Wanderers: that the work of their civilization is to repair worlds left in ruin by their previous inhabitants. You explain their view that those worlds have their own identities that they must collaborate with in order for terraforming to be successful.`
 			`	She has a slew of questions ranging from how the Wanderers determine a planet's identity to how often asteroids are used in their work. Unfortunately, you are not able to offer much information about the specific details of how the Wanderers go about their terraforming work. Disappointed, but not defeated, Amy asks with renewed eagerness, "Could you take me to visit these aliens?"`
@@ -2585,8 +2585,8 @@ mission "Terraforming Field Trip 2"
 	on offer
 		conversation
 			`It is not long before Iriket arrives. You introduce Amy to her, and explain why you have brought her here. "I would be [glad, honored] to answer any questions about our work," she agrees.`
-			`	What follows is an extensive discussion about how the Wanderers go about planning the terraforming process for a world. Topics range from the earliest considerations as to what the goal for each planet should be to the role of their artificial minds in helping to monitor and guide the process in the long term. Your translator has some difficulty with the more technical aspects of the discussion, which leads Iriket to rephrase some things many times. Throughout it all, Amy is taking copious notes. Iriket also explains some of what they have been doing to improve the climate on this world.`
-			`	"The gases [released, produced] by the factories will help the atmosphere retain more heat, which will in turn begin to melt the glaciers and return water to the [ecosystem, environment]. Over time, this will [mix, interact] with the abundant ash, helping to [restore, rejuvenate] the soils all over this world. In time, it will become [fruitful, bountiful] again."`
+			`	What follows is an extensive discussion about how the Wanderers go about planning the terraforming process for a world. Topics range from the earliest considerations as to what the goal for each planet should be to the role of their artificial minds in helping to monitor and guide the process in the long term. Your translator has some difficulty with the more technical aspects of the discussion, which leads Iriket to rephrase some things many times. Throughout it all, Amy is taking copious notes.`
+			`	Iriket also explains some of what they have been doing to improve the climate on this world. "The gases [released, produced] by the factories will help the atmosphere retain more heat, which will in turn begin to melt the glaciers and return water to the [ecosystem, environment]. Over time, this will [mix, interact] with the abundant ash, helping to [restore, rejuvenate] the soils all over this world. In time, it will become [fruitful, bountiful] again."`
 			`	"Won't that take hundreds or thousands of years?" Amy asks.`
 			`	"Indeed," says Iriket. "But, to attempt to [accelerate, advance] the process by more [direct?] means would [harm, deteriorate] the product. While some worlds may [benefit from, require] a more [extreme, radical] change to begin their restoration, we do not believe it is [necessary, appropriate] here. It is [important, our goal] that a world at the conclusion of our work not only be [pristine, healthy] in that moment, but that it be [sustainable?] without additional [intervention, support]."`
 			`	Eventually, Amy asks, "Are there any worlds where you have completed your work that I could see?" Iriket suggests <destination>, and asks you to take them there.`
@@ -2609,7 +2609,7 @@ mission "Terraforming Field Trip 3"
 			`	Amy also explains about her recent experimental terraforming. "We believe the planet used to be temperate, or even tropical millions of years ago. We used an asteroid impact to trigger a supervolcano that was close to eruption. The greenhouse gases from the eruption have already begun to warm the climate."`
 			`	Iriket thinks for a moment before responding. "Using the planet's [features, assets] to restore more habitable conditions is an [admirable?] approach." The approval buoys Amy, but she is somewhat deflated by what comes next. "However, an asteroid would not be our [preferred, first] approach."`
 			`	As you conclude your sightseeing, Tema'a Iriket says your next stop should be <planet>, where she will provide Amy with more detailed records of their terraforming activities than she can provide orally.`
-			`	Once Iriket has returned to her bunk, Amy turns to you. "I wonder what my professor would say about 'anthropomorphizing planets' if he saw this," she gestures towards the images of <origin> on the monitors, "and you told him they believe planets have their own identities, too."`
+			`	Once Iriket has returned to her bunk, Amy turns to you and says, "I wonder if any of this would change my professor's mind about the merits of 'anthropomorphizing planets'," before heading to her bunk, too.`
 				accept
 	on complete
 		dialog "When you arrive on <planet>, Tema'a Iriket tells you to meet her in the spaceport in a few hours before heading off to prepare the data for Amy."
@@ -2618,7 +2618,7 @@ mission "Terraforming Field Trip 3"
 
 mission "Terraforming Field Trip 4"
 	name "Field Trip"
-	description "Return Amy to <destination> following her trip to meet the Wanderers and learn about how they go about terraforming."
+	description "Return Amy to <destination> after her trip to meet the Wanderers and learn about how they go about terraforming."
 	source "Vara K'chrai"
 	destination "Tundra"
 	passengers 1
@@ -2632,14 +2632,14 @@ mission "Terraforming Field Trip 4"
 			`	Amy returns to her bunk, beginning to organize the notes she has made on this trip. It seems it's time to return her to <planet>.`
 				accept
 	on complete
-		log `Took Amy on a "field trip" to Wanderer space to learn about their approach to terraforming. Tema'a Iriket provided great insight and showed Amy both their ongoing and complete work, as well as providing an extensive library of Wanderer records that should keep Amy busy for a very long time.`
+		log `Took Amy on a "field trip" to Wanderer space to learn about their approach to terraforming. Tema'a Iriket provided great insight and showed Amy both the Wanderers' ongoing and complete work, as well as providing an extensive library of records that should keep Amy busy for a very long time.`
 		conversation
 			`Most of Amy's time on the return journey was spent with the Wanderer data. Even still, she claims to have barely scratched the surface of what the Wanderers have done.`
 			choice
 				`	"I'll leave you to your work here."`
 					goto done
 				`	"What did you think of the Wanderers?"`
-			`	"Terraforming for the sake of improving ecosystems, providing a place for future inhabitants, whoever they may be, is very different to most of what I saw in the Paradise Worlds," she explains. "Many of the people there are only interested in terraforming for the economic opportunities for themselves, and they have little regard for anything that doesn't directly increase the planet's value for themselves or their clients. Even the garden or 'natural' areas are artificial; forcing the whims and desires of the rich onto nature.`
+			`	"Terraforming for the sake of improving ecosystems, providing a place for future inhabitants, whoever they may be, is very different to most of what I saw in the Paradise Worlds," she replies. "Many of the people there are only interested in terraforming for the economic opportunities for themselves, and they have little regard for anything that doesn't directly increase the planet's value for themselves or their clients. Even the gardens or 'natural' areas are artificial; they force the whims and desires of the rich onto nature.`
 			`	"I've heard about a project in the Free Worlds working on affordable terraforming as well. Perhaps we should look into working with them. The Republic might not be too happy about that, though."`
 			choice
 				`	"I'm glad you had a good time."`
