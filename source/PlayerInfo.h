@@ -406,6 +406,8 @@ private:
 	// Handle the daily salaries and payments.
 	void DoAccounting();
 
+	bool HasClearance() const;
+
 
 private:
 	std::string firstName;

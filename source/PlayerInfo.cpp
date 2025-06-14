@@ -106,15 +106,6 @@ namespace {
 		return SystemEntry::TAKE_OFF;
 	}
 
-	bool HasClearance(const PlayerInfo &player, const Planet *planet)
-	{
-		auto CheckClearance = [&planet](const Mission &mission) -> bool
-		{
-			return mission.HasClearance(planet);
-		};
-		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
-	}
-
 	// Sort the given list of missions in the order they should be offered.
 	void SortMissions(list<Mission> &missions, bool hasPriorityMissions, unsigned nonBlockingMissions)
 	{
@@ -1037,7 +1028,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	{
 		bool clearance = false;
 		if(planet)
-			clearance = planet->CanLand() || HasClearance(*this, planet);
+			clearance = planet->CanLand() || HasClearance();
 		for(const shared_ptr<Ship> &it : ships)
 		{
 			if(it->IsParked())
@@ -1549,7 +1540,7 @@ void PlayerInfo::Land(UI *ui)
 
 	// Ships that are landed with you on the planet should fully recharge.
 	// Those in remote systems restore what they can without landing.
-	bool clearance = HasClearance(*this, planet);
+	bool clearance = HasClearance();
 	const bool canUseServices = planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
@@ -4884,4 +4875,14 @@ void PlayerInfo::DoAccounting()
 	string message = accounts.Step(assets, Salaries(), balance.maintenanceCosts);
 	if(!message.empty())
 		Messages::Add(message, Messages::Importance::High, true);
+}
+
+
+
+bool PlayerInfo::HasClearance() const
+{
+	return any_of(missions.begin(), missions.end(),
+		[this](const Mission &mission) -> bool {
+			return mission.HasClearance(planet);
+		});
 }
