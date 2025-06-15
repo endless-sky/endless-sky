@@ -726,6 +726,7 @@ void PreferencesPanel::DrawControls()
 		Command::CLOAK,
 		Command::MOUSE_TURNING_HOLD,
 		Command::AIM_TURRET_HOLD,
+		Command::STOP,
 		Command::NONE,
 		Command::NONE,
 		Command::MENU,
