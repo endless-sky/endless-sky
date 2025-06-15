@@ -475,7 +475,7 @@ planet Bailey
 planet Baliesa
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa33
-	description `One of the smallest "Hot Jupiters" known, Baliesa is a calm, undemanding gas giant. Occasional storms form near the terminator line between the night and day side, but soon split in smaller and smaller vortexes until they disappear. The violet-tinted skies of the upper atmosphere leave space to a bright pink-colored haze below, hampering visual navigation but otherwise not causing any trouble.`
+	description `One of the smallest "Hot Jupiters" known, Baliesa is a calm, undemanding gas giant. Occasional storms form near the terminator line between the night and day side, but soon split into smaller and smaller vortexes until they disappear. The violet-tinted skies of the upper atmosphere leave space to a bright pink-colored haze below, hampering visual navigation but otherwise not causing any trouble.`
 	government Uninhabited
 	security 0
 
@@ -3406,7 +3406,7 @@ planet Melenci
 planet Meligara
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa41
-	description `Of the three gas giants that orbit around Ritilas, Meligara is by far the closest to the lavender wormholes. The small distance made it inevitable for the two to influence each other: the gas giant has no major moon, and even its ring visibly tend to incline and become elliptical when the wormhole is at its closest.`
+	description `Of the three gas giants that orbit around Ritilas, Meligara is by far the closest to the lavender wormholes. The small distance made it inevitable for the two to influence each other: the gas giant has no major moon, and even its ring visibly tends to incline and become elliptical when the wormhole is at its closest.`
 	description `	Its thick clouds make it nearly impossible to navigate through the lower atmosphere, echoing strange readings in every direction.`
 	government Uninhabited
 	security 0
