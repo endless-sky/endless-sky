@@ -72,6 +72,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			canCollideAsteroids = false;
 		else if(key == "no minable collisions")
 			canCollideMinables = false;
+		else if(key == "triggers nuke alert")
+			triggersNukeAlert = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")

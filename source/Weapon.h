@@ -222,6 +222,8 @@ public:
 	// Return the ranges at which the weapon's damage dropoff begins and ends.
 	const std::pair<double, double> &DropoffRanges() const;
 
+	bool TriggersNukeAlert() const;
+
 
 protected:
 	// Legacy support: allow turret outfits with no turn rate to specify a
@@ -377,6 +379,8 @@ private:
 	mutable bool calculatedDamage = true;
 	mutable bool doesDamage = false;
 	mutable double totalLifetime = -1.;
+
+	bool triggersNukeAlert = false;
 };
 
 
@@ -488,3 +492,5 @@ inline bool Weapon::ConsumesDisruption() const { return FiringDisruption() < 0.;
 inline bool Weapon::ConsumesSlowing() const { return FiringSlowing() < 0.; }
 
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
+
+inline bool Weapon::TriggersNukeAlert() const { return triggersNukeAlert; }
