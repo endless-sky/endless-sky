@@ -1681,7 +1681,7 @@ event "pirates use cutthroat"
 			"Fury (Gatling)"
 			"Cutthroat"
 
-# For older saves with jousting variant.
+# For save files which have the "Pirate Use Jousting Cutthroat" mission active prior to its removal in v0.10.14.
 event "pirate use jousting cutthroat"
 
 
