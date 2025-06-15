@@ -292,6 +292,21 @@ elseif(WIN32)
 	install(FILES copyright DESTINATION .)
 	install(FILES changelog DESTINATION .)
 	install(FILES license.txt DESTINATION .)
+
+	# NSIS installer configuration.
+	set(CPACK_PACKAGE_VENDOR "Endless Sky")
+	set(CPACK_PACKAGE_INSTALL_DIRECTORY "Endless Sky")
+	set(CPACK_GENERATOR "NSIS")
+	set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/license.txt")
+	set(CPACK_NSIS_MENU_LINKS
+		"Endless Sky.exe" "Endless Sky"
+		"https://github.com/endless-sky/endless-sky/wiki/PlayersManual" "Player's Manual")
+	set(CPACK_NSIS_MUI_ICON "${CMAKE_CURRENT_SOURCE_DIR}/icons/WinApp.ico")
+	set(CPACK_NSIS_INSTALLED_ICON_NAME "Endless Sky.exe")
+	set(CPACK_NSIS_EXTRA_PREINSTALL_COMMANDS
+		# Clear the previous contents of the installation directory to prevent data conflicts.
+		"RMDir /r $INSTDIR")
+	include(CPack)
 elseif(UNIX)
 	# Install the binary.
 	install(TARGETS EndlessSky CONFIGURATIONS Release RUNTIME DESTINATION games)
