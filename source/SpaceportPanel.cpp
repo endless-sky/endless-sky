@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
+#include "Screen.h"
 #include "TextArea.h"
 #include "UI.h"
 
@@ -32,7 +33,7 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(PlayerInfo &player)
-	: player(player), port(player.GetPlanet()->GetPort()), ui(*GameData::Interfaces().Get("spaceport"))
+	: player(player), port(player.GetPlanet()->GetPort())
 {
 	SetTrapAllEvents(false);
 
@@ -40,14 +41,8 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetRect(ui.GetBox("content"));
 	AddChild(description);
 
-	// Query the news interface to find out the wrap width.
-	// TODO: Allow Interface to handle wrapped text directly.
-	const Interface *newsUi = GameData::Interfaces().Get("news");
-	portraitWidth = newsUi->GetBox("message portrait").Width();
-	normalWidth = newsUi->GetBox("message").Width();
 	newsMessage.SetFont(FontSet::Get(14));
 }
 
@@ -59,6 +54,12 @@ void SpaceportPanel::UpdateNews()
 	if(!news)
 		return;
 	hasNews = true;
+
+	// Query the news interface to find out the wrap width.
+	// TODO: Allow Interface to handle wrapped text directly.
+	const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "news (small screen)" : "news");
+	portraitWidth = newsUi->GetBox("message portrait").Width();
+	normalWidth = newsUi->GetBox("message").Width();
 
 	// Randomly pick which portrait, if any, is to be shown. Depending on if
 	// this news has a portrait, different interface information gets filled in.
@@ -99,13 +100,17 @@ void SpaceportPanel::Draw()
 	if(player.IsDead())
 		return;
 
+	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ?
+		"spaceport (small screen)" : "spaceport");
+	description->SetRect(ui->GetBox("content"));
 	// The description text needs to be updated, because player conditions can be changed
 	// in the meantime, for example if the player accepts a mission on the Job Board.
 	description->SetText(port.Description().ToString());
 
 	if(hasNews)
 	{
-		const Interface *newsUi = GameData::Interfaces().Get("news");
+		const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ?
+			"news (small screen)" : "news");
 		newsUi->Draw(newsInfo);
 		// Depending on if the news has a portrait, the interface box that
 		// gets filled in changes.
