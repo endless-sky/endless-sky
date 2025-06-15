@@ -195,14 +195,25 @@ mission "Wanderers: Diplomacy"
 	on offer
 		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). She has now been assigned by the Hai to be their diplomat to the Wanderers, and to serve as a translator as well.`
 		conversation
+			branch "hai start"
+				has "hai space start"
 			`As you are approaching Hai-home, you contact the Hai government and ask if they would be willing to provide an ambassador to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a private government hangar, where a diplomat meets you. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago." To the best of your knowledge, the Republic has never mentioned the Hai or publicly acknowledged receiving an envoy from them.`
 			choice
 				`	"Wait, the human Republic knows that the Hai exist? I had heard nothing but vague rumors of your existence before I found the wormhole."`
+					goto republic
 				`	"I'm pleased to meet you. Are you willing to travel with me?"`
 					goto travel
 			
+			label "hai start"
+			`As you are approaching Hai-home, you contact the Hai government and ask if they would be willing to provide an ambassador to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a private government hangar, where a diplomat meets you. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago."`
+			choice
+				`	"I'm pleased to meet you. Are you willing to travel with me?"`
+					goto travel
+			
+			label republic
 			`	She laughs, in the Hai manner: a rapid chittering sound. "Yes, the humans and the Hai both worried that too many humans would emigrate all at once if they knew of our peaceful lands. So we agreed that the Hai would be a secret, always here for the adventurous to discover, but difficult to find, so that the human immigration would be slow enough for us to gradually adjust to it."`
 			`	"Are you the translator who will travel with me?" you ask.`
+			
 			label travel
 			`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery gray - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
 			choice
