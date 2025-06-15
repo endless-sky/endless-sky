@@ -2441,6 +2441,15 @@ interface "message log"
 		from 300 0 left
 		color medium
 
+	visible
+	active
+	uirect
+		center 704 -80 bottom left
+		dimensions 172 40
+	button "View message log" "Close"
+		center 704 -80 bottom left
+		dimensions 172 40
+
 
 
 interface "hail panel"
