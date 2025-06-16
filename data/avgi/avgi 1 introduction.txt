@@ -183,7 +183,15 @@ mission "Avgi: Thread Activity 1"
 		system Whirlwind
 		ship "Akoustiki" "Solid Rain"
 		conversation
-			``
+			`At first glance, the ship appears derelict, with no sign of any active systems and minimal thermal emissions. But as you dock with it, `
+
+			`	As you poke your head inside, you feel a cold, hard object pressed against the side of your head. "Warning. Think fast, Captain."`
+			choice
+				`	"Whoa, calm down."`	
+				`	(Try the cool karate move again.)`
+					to display
+						has "FW Katya 1: declined"
+
 
 
 
@@ -199,10 +207,12 @@ mission "Avgi: Thread Activity 1"
 			`	No, our parents always told us the planet dwellers weren't our friends`
 			`	Dissonance station instead`
 
+ 
+
 				depart
 
 
-mission "Avgi: Thread Activity 2"
+mission "Avgi: Thread Activity 2A"
 	landing
 	name "Placeholder"
 	description "Placeholder"
@@ -213,21 +223,31 @@ mission "Avgi: Thread Activity 2"
 		has "Avgi: Intro Reminder: done"
 	on offer
 		conversation
-			`	As you land on Peripheria, Prasinos asks to see you. She introduces you to Lait. Stuff is happening in Thread.`
+			`	Take Ercu and Corsa back to Peripheria.`
 			accept
 
 	on enter "Thread"
 		conversation
 			`	Lait points out some stuff in the system. Notes that the asteroid miners probably have hideouts everywhere.`
 
-	npc assist
-		government "Avgi"
-		personality derelict mute pacifist target
-		system Whirlwind
-		ship "Akoustiki" "Solid Rain"
+mission "Avgi: Thread Activity 2B"
+	landing
+	name "Placeholder"
+	description "Placeholder"
+	source "Outpost Tekis"
+	destination "Peripheria"
+	passengers 3
+	to offer
+		has "Avgi: Intro Reminder: done"
+	on offer
 		conversation
-			`Talk to Ercu and Corsa Here`
-				depart
+			`	Take Ercu and Corsa back to Outpost Enka.`
+			accept
+
+	on enter "Thread"
+		conversation
+			`	Lait points out some stuff in the system. Notes that the asteroid miners probably have hideouts everywhere.`
+
 
 
 
@@ -270,6 +290,11 @@ mission "Avgi: Aviskir Extraction 1"
 		has "Avgi: Amathil Contact 2: done"
 	on offer
 		conversation
+			`	"The Consonance relinquished its claim to represent us when they fled into the night and abandoned us to the mercy of the Aberrant" he growls out.`
+
+
+
+
 			`	Make contact with the Aviskir government with some Consonance documents and seals. Extract a VIP nuclear weapons scientist from Aviskir. She is already occupied with another project and refuses to leave`
 			accept
 
@@ -277,8 +302,8 @@ mission "Avgi: Aviskir Extraction 2"
 	landing
 	name "Placeholder"
 	description "Placeholder"
-	source "Peripheria"
-	destination "Aviskir"
+	source "Aviskir"
+	destination "Peripheria"
 	to offer
 		has "Avgi: Aviskir Extraction 1: done"
 	on offer
@@ -351,6 +376,13 @@ mission "Avgi: Aviskir Repatriation"
 
 
 
+
+mission where you pick up human hyperspace relays from a syndie world
+
+
+place a few at the outer limits to link up the systems
+
+then you go place them at various systems to connect ensemble to arche, to test if the shrangled toud interferes
 
 
 

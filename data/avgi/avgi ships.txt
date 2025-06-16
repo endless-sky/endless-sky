@@ -1375,8 +1375,7 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Speckle Turret" 2
 		"Speck Round" 4800
 		"External Launch Tube" 2
-		"Orchid Magazine" 2
-		`"Orchid" Nuclear Missile` 18
+		`"Orchid" Nuclear Missile` 12
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1388,7 +1387,7 @@ ship "Prismaios" "Prismaios (Atomic)"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	gun
@@ -1510,12 +1509,13 @@ ship "Interferos" "Interferos (KKV)"
 
 ship "Interferos" "Interferos (Atomic)"
 	outfits
+		"Green Optical Laser"
 		"External Launch Tube" 4
-		"Orchid Magazine" 3
-		`"Orchid" Nuclear Missile` 33
+		`"Orchid" Nuclear Missile` 24
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
+		"Optical Lasing Generator"
 		"Magnetic Scoop"
 		
 		`Z-333 "Spark" Fusion Torch`
@@ -1529,7 +1529,9 @@ ship "Interferos" "Interferos (Atomic)"
 	gun "External Launch Tube"
 	gun "External Launch Tube"
 	gun "External Launch Tube"
-
+	turret
+	turret
+	turret "Green Optical Laser"
 
 # Medium Warships
 
@@ -1562,18 +1564,15 @@ ship "Diaspersi"
 			"hit force" 2400
 	outfits
 		"Green Optical Laser" 2
-		"Speckle Turret"
-		"Speck Round" 2400
-		"Medium VLS"
-		"Nettle Magazine" 6
-		`"Nettle" KKV` 648
+		"Medium VLS" 2
+		`"Nettle" KKV` 432
 		
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner" 4
 		"Concealment Lamina"
-		"Deuterium Slush Tank"
+		"Deuterium Slush Tank" 3
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 36
 		
@@ -1611,7 +1610,7 @@ ship "Diaspersi"
 	turret 0 -12 "Medium VLS"
 	turret -9 9 "Green Optical Laser"
 	turret 9 9 "Green Optical Laser"
-	turret 0 51 "Speckle Turret"
+	turret 0 51 "Medium VLS"
 	bay "Fighter" 0 -63
 		"launch effect" "avgi external"
 		over
@@ -1658,15 +1657,14 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Speckle Turret"
 		"Speck Round" 2400
 		"External Launch Tube" 2
-		"Orchid Magazine" 2
-		`"Orchid" Nuclear Missile` 18
+		`"Orchid" Nuclear Missile` 12
 		"Ophrys Stockpile" 3
 		`"Ophrys" Nuclear Torpedo` 36
 		
-		"Ultracapacitor Cell" 3
+		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner" 3
 		"Concealment Lamina"
 		"Deuterium Slush Tank"
 		"Magnetic Scoop"
@@ -1822,14 +1820,13 @@ ship "Difraktos"
 		"Speckle Turret" 4
 		"Speck Round" 9600
 		"Medium VLS" 2
-		"Nettle Magazine" 2
-		`"Nettle" KKV` 576
+		`"Nettle" KKV` 432
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank"
 		"Specular Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner" 3
 		"Concealment Lamina"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
@@ -1905,22 +1902,20 @@ ship "Difraktos" "Difraktos (KKV)"
 		"Speckle Turret" 2
 		"Speck Round" 4800
 		"Medium VLS" 4
-		"Nettle Magazine" 2
-		`"Nettle" KKV` 1008
+		`"Nettle" KKV` 864
 
-		"Ultracapacitor Cell" 2
+		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner" 3
 		"Concealment Lamina"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 		
-		`Z-666 "Zap" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"R-180 RCS Thrusters"
-		"R-360 RCS Thrusters"
+		"R-360 RCS Thrusters" 2
 		"Hyperdrive"
 
 	turret "Speckle Turret"
@@ -1939,22 +1934,20 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Speckle Turret" 2
 		"Speck Round" 9600
 		"External Launch Tube" 4
-		"Orchid Magazine" 6
-		`"Orchid" Nuclear Missile` 42
+		`"Orchid" Nuclear Missile` 24
 
 		"Ultracapacitor Bank"
-		"Diffuse Deflector"
+		"Specular Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner" 3
 		"Concealment Lamina"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 
-		`Z-666 "Zap" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"R-180 RCS Thrusters"
-		"R-360 RCS Thrusters"
+		"R-360 RCS Thrusters" 2
 		"Hyperdrive"
 
 	gun
@@ -2007,14 +2000,14 @@ ship "Atenuatia"
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
 		"Medium VLS" 2
-		"Nettle Magazine" 3
-		`"Nettle" KKV` 648
+		`"Nettle" KKV` 432
 		
 		"Ultracapacitor Bank" 3
 		"Specular Deflector"
 		"Optical Lasing Generator" 3
-		"Magnetic Scoop"
 		"Multispectral Scanner" 6
+		"Deuterium Slush Tank" 3
+		"Magnetic Scoop"
 		"Optical Laser Rifle" 90
 		
 		`Z-666 "Zap" Fusion Torch`

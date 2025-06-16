@@ -133,7 +133,6 @@ outfitter "Avgi Propulsion"
 outfitter "Avgi Torches"
 	`Z-333 "Spark" Fusion Torch`
 	`Z-666 "Zap" Fusion Torch`
-	`Z-999 "Arc" Fusion Torch`
 	"R-360 RCS Thrusters"
 	"R-720 RCS Thrusters"
 	"Inductive Extractor"
@@ -158,7 +157,6 @@ outfitter "Avgi Twilight Guard"
 	"Speck Magazine"
 	"Medium VLS"
 	`"Nettle" KKV`
-	"Nettle Magazine"
 	"Optical Lasing Generator"
 	"Green Optical Laser"
 	"Blue Optical Laser"
@@ -169,7 +167,6 @@ outfitter "Avgi Atomics"
 	`"Ophrys" Nuclear Torpedo`
 	"Ophrys Stockpile"
 	`"Orchid" Nuclear Missile`
-	"Orchid Magazine"
 
 outfitter "Avgi Dissonance Smuggling"
 	"Speckle Coilgun"

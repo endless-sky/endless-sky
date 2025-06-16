@@ -1073,7 +1073,7 @@ mission "Avgi: Atomics Testing 2"
 		log "Minor People" "Yinmn" `Yinmn is a security specialist working to keep nuclear materials secure and out of the wrong hands. He is apparently quite successful at this.`
 		conversation
 			`	You drop off Aliza near the same place you met her, in the main concourse. It's rather more full than last time, with a veritable crowd moving through the room, probably fresh off a transport ship. Aliza seems to spot someone she recognizes. Waving, she drags you over to a dark blue Avgi in dark, steel gray clothing.`
-			`	"This is my colleague, Yinmn," she says. And this is Captain <first> <last>.`
+			`	"This is my colleague, Yinmn," she says. "And this is Captain <first> <last>."`
 			`	"Greetings. Hey there. I work in the accounting section for Ergastirio. And you're of course Captain <last>, the alien everyone's been talking about."`
 			choice
 				`	"Huh, what do you do there?"`
@@ -1087,7 +1087,7 @@ mission "Avgi: Atomics Testing 2"
 			`	"Explanation. I account for nuclear materials, not credits. We have to make sure every last drop of fissiles that could be used to make a bomb is kept secure. Not only for security reasons, but because it's extremely valuable out here in the Outer Limits. Not many of the heavier elements out here, sadly, and we've been having issues with shortages lately. It only takes a few kilos to make a bomb, but we do go through a lot of them..."`
 
 			label dissonance
-			`	Aliza chimes in. "And a lot of people, especially the Dissonance, would like to get their hands on some of our stockpile of fissile materials. We do quite a bit of mining, and have an impressive amount of breeder reactors running on fusion neutrons, so the amount of material being circulated at any given moment is quite high. Yinmn could tell you a lot of stories about the piracy that goes on with that supply chain."`
+			`	Aliza chimes in. "And a lot of people, especially certain elements in the Dissonance, would like to get their hands on some of our stockpile of fissile materials. We do quite a bit of mining, and have an impressive amount of breeder reactors running on fusion neutrons, so the amount of material being circulated at any given moment is quite high. Yinmn could tell you a lot of stories about the piracy that goes on with that supply chain."`
 			`	Yinmn taps his arms together. "Heh, but we'd be here for days, amusement. I'll just leave it at this: our convoys are often trailed by 'merchants' apparently making supply runs to secure facilities. Those are the worst, not the members of the Dissonance themselves, but the ones who hide their sympathies and feign loyalty to the Consonance."`
 			choice
 				`	"Wait, so do they have nukes too?"`

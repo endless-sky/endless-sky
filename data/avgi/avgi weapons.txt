@@ -236,11 +236,9 @@ outfit "Blue Optical Laser"
 	weapon
 		"hardpoint sprite" "hardpoint/blue optical laser"
 		"hardpoint offset" 3
-		sprite "projectile/blue optical laser"
 			"frame rate" 3
 		"sound" "optical laser"
 		"fire effect" "blue laser glare"
-		"fire effect" "blue laser flicker" 60
 		"hit effect" "laser ejecta" 6
 		"hit effect" "blue laser reflection" 60
 		"hit effect" "blue laser scattering"
@@ -266,14 +264,6 @@ effect "blue laser glare"
 		"rewind"
 	"lifetime" 1
 	"absolute angle" 0
-
-effect "blue laser flicker"
-	sprite "effect/skylance impact"
-		"no repeat"
-		"frame rate" 20
-		"scale" 0.125
-	"random lifetime" 1
-	"random velocity" 90
 
 effect "blue laser reflection"
 	sprite "effect/skylance impact"
@@ -301,12 +291,12 @@ outfit "Ultraviolet Excimer Laser"
 	cost 120000
 	thumbnail "outfit/uv optical laser"
 	"mass" 45
-	"outfit space" -90
-	"weapon capacity" -60
+	"outfit space" -60
+	"weapon capacity" -30
 	"engine capacity" -30
 	"thrusting heat" 24
 	"turret mounts" -1
-	"magnetic nozzle" -1
+	"magnetic nozzle" -2
 	weapon
 		"hardpoint sprite" "hardpoint/blue optical laser"
 		"hardpoint offset" 3
@@ -314,7 +304,6 @@ outfit "Ultraviolet Excimer Laser"
 			"frame rate" 3
 		"sound" "optical laser"
 		"fire effect" "uv laser glare"
-		"fire effect" "uv laser flicker" 60
 		"hit effect" "laser ejecta" 6
 		"hit effect" "laser explosion"
 		"hit effect" "uv laser reflection" 60
@@ -326,7 +315,7 @@ outfit "Ultraviolet Excimer Laser"
 		"turret turn" 0.9
 		"firing energy" 24
 		"firing heat" 18
-		"firing fuel" 0.09
+		"firing fuel" 0.15
 		"shield damage" 24
 		"hull damage" 18
 		"heat damage" 18
@@ -339,17 +328,8 @@ effect "uv laser glare"
 		"frame rate" 3
 		"random start frame"
 		"rewind"
-		scale 3
 	"lifetime" 0
 	"absolute angle" 0
-
-effect "uv laser flicker"
-	sprite "effect/skylance impact"
-		"start frame" 2
-		"no repeat"
-		"scale" 0.125
-	"random lifetime" 1
-	"random velocity" 180
 
 effect "uv laser reflection"
 	sprite "effect/skylance impact"
@@ -444,16 +424,17 @@ outfit "UREB Turret"
 	"weapon capacity" -72
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/ureb turret"
+		"hardpoint offset" 21
 		sound "slicer"
 		"fire effect" "electron flare"
-		"firing energy" 360
-		"firing heat" 600
-		"firing scramble" 3
+		"firing energy" 30
+		"firing heat" 60
 		"turret turn" 0.3
-		"reload" 30
-		"burst reload" 15
-		"burst count" 3
-		"inaccuracy" 4.5
+		"reload" 6
+		"burst reload" 3
+		"burst count" 30
+		"inaccuracy" 3
 			"narrow"
 		"velocity override" 240
 		"piercing" 0.15
@@ -470,10 +451,10 @@ outfit "GeV Electron Bunch"
 		"random velocity" -210
 		"lifetime" 9
 		"random lifetime" 3
-		"inaccuracy" 1.8
-		"shield damage" 1.8
-		"hull damage" 2.4
-		"scrambling damage" 0.036
+		"inaccuracy" 0.6
+		"shield damage" 0.3
+		"hull damage" 0.36
+		"scrambling damage" 0.003
 		"piercing" 0.15
 		"penetration count" 3
 
@@ -758,7 +739,7 @@ outfit "Orchid Active"
 		"die effect" "missile death"
 		"lifetime" 15
 		"drag" 3
-		"turn" 15
+		"turn" 3
 		"homing" 2
 		"radar tracking" 0.9
 		"submunition" "Orchid Boost"
