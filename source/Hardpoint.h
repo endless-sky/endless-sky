@@ -55,7 +55,7 @@ public:
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
 	Hardpoint(const Point &point, const BaseAttributes &attributes,
-		bool isTurret, bool isUnder, const Outfit *outfit = nullptr);
+		bool isTurret, bool isUnder, const Outfit *outfit = nullptr, int group = 0);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -112,7 +112,7 @@ public:
 
 	// Install a weapon here (assuming it is empty). This is only for
 	// Armament to call internally.
-	void Install(const Outfit *outfit);
+	void Install(const Outfit *outfit, int newGroup = -1);
 	// Reload this weapon.
 	void Reload();
 	// Uninstall the outfit from this port (if it has one).
@@ -120,6 +120,9 @@ public:
 
 	// Get the attributes that can be used as a parameter of the constructor when cloning this.
 	const BaseAttributes &GetBaseAttributes() const;
+
+	void SetGroup(int group);
+	int GetGroup() const;
 
 
 private:
@@ -163,4 +166,7 @@ private:
 	int burstCount = 0;
 	bool isFiring = false;
 	bool wasFiring = false;
+
+	// A weapon group that can be assigned by the player.
+	int group;
 };

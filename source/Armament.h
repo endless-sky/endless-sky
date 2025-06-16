@@ -44,9 +44,9 @@ class Armament {
 public:
 	// Add a gun or turret hard-point.
 	void AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes,
-		bool isUnder, const Outfit *outfit = nullptr);
+		bool isUnder, const Outfit *outfit = nullptr, int group = 0);
 	void AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes,
-		bool isUnder, const Outfit *outfit = nullptr);
+		bool isUnder, const Outfit *outfit = nullptr, int group = 0);
 	// This must be called after all the outfit data is loaded. If you add more
 	// of a given weapon than there are slots for it, the extras will not fire.
 	// But, the "gun ports" attribute should keep that from happening. To
@@ -60,6 +60,7 @@ public:
 	// Uninstall all weapons (because the weapon outfits have potentially changed).
 	void UninstallAll();
 
+	void SetHardpointGroup(unsigned index, int group);
 	// Swap the weapons in the given two hardpoints.
 	void Swap(unsigned first, unsigned second);
 
