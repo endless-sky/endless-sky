@@ -259,6 +259,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(command.Has(Command::INFO))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
