@@ -64,6 +64,10 @@ private:
 	Point pos;
 	double baseZoom = 1.;
 
+	double minZoom = .15;
+	double zoomClamp = .25;
+	double clampSlope;
+
 	// Track the haze sprite, so we can animate the transition between different hazes.
 	const Sprite *lastSprite;
 	mutable double transparency = 0.;
