@@ -1429,10 +1429,10 @@ interface "planet"
 	button l
 		center 0 -140
 		dimensions 720 360
-
+	
 	box "content"
 		from -240 80 to 240 355
-
+	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 340 90
@@ -1523,10 +1523,10 @@ interface "planet (small screen)"
 	button l
 		center -60 -140
 		dimensions 720 360
-
+	
 	box "content"
 		from -300 80 to 180 320
-
+	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 280 90
@@ -1536,7 +1536,7 @@ interface "planet (small screen)"
 		size 18
 		align right
 		pad 10 0
-
+	
 	visible if "has outfitter"
 	sprite "ui/planet dialog button"
 		center 280 150
@@ -1546,7 +1546,7 @@ interface "planet (small screen)"
 		size 18
 		align right
 		pad 10 0
-
+	
 	visible if "has job board"
 	sprite "ui/planet dialog button"
 		center -400 150
@@ -1565,7 +1565,7 @@ interface "planet (small screen)"
 		size 18
 		align right
 		pad 10 0
-
+	
 	visible if "has trade"
 	sprite "ui/planet dialog button"
 		center -400 90
@@ -1575,7 +1575,7 @@ interface "planet (small screen)"
 		size 18
 		align left
 		pad 10 0
-
+	
 	visible if "has bank"
 	sprite "ui/planet dialog button"
 		center -400 210
@@ -1585,7 +1585,7 @@ interface "planet (small screen)"
 		size 18
 		align left
 		pad 10 0
-
+	
 	visible if "has port"
 	sprite "ui/planet dialog button"
 		center -400 270
@@ -1596,7 +1596,7 @@ interface "planet (small screen)"
 		align left
 		pad 10 0
 	visible
-
+	
 	active if "has ship"
 	sprite "ui/planet dialog button"
 		center 280 270
@@ -1784,7 +1784,7 @@ interface "hiring"
 	line
 		center 0 95
 		dimensions 480 1
-
+	
 	label "bunks"
 		center -230 110
 		align left
@@ -1877,11 +1877,11 @@ interface "hiring (small screen)"
 		center 170 85
 		color "bright"
 		align right
-
+	
 	line
 		center -60 95
 		dimensions 480 1
-
+	
 	label "bunks"
 		center -290 110
 		align left
@@ -1891,7 +1891,7 @@ interface "hiring (small screen)"
 	string "fleet bunks"
 		center 50 110
 		align right
-
+	
 	label "required crew"
 		center -290 130
 		align left
@@ -1904,7 +1904,7 @@ interface "hiring (small screen)"
 	string "salary required"
 		center 170 130
 		align right
-
+	
 	label "extra crew"
 		center -290 150
 		align left
@@ -1914,27 +1914,27 @@ interface "hiring (small screen)"
 	string "salary extra"
 		center 170 150
 		align right
-
+	
 	active if "can hire"
 	sprite "ui/dialog cancel"
 		center 140 355
 	button h "_Hire"
 		center 140 355
 		dimensions 80 40
-
+	
 	active if "can fire"
 	sprite "ui/dialog cancel"
 		center 60 355
 	button f "_Fire"
 		center 60 355
 		dimensions 80 40
-
+	
 	active
 	string "modifier"
 		from -65 150
 		color "dim"
 		align left
-
+	
 	label "passenger space"
 		center -290 180
 		align left
@@ -1944,14 +1944,14 @@ interface "hiring (small screen)"
 	string "fleet unused"
 		center 50 180
 		align right
-
+	
 	label "passengers"
 		center -290 200
 		align left
 	string "passengers"
 		center 50 200
 		align right
-
+	
 	label "(Extra crew for your flagship increases your odds of capturing ships,"
 		center -60 290
 	label "and once you capture a ship you need crew members to serve on it.)"
@@ -1962,18 +1962,18 @@ interface "hiring (small screen)"
 interface "trade"
 	box "content"
 		from -240 80 to 250 355
-
+	
 	line
 		center 0 95
 		dimensions 480 1
-
+	
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 100 355
 	button u "B_uy All"
 		center 100 355
 		dimensions 70 30
-
+	
 	sprite "ui/wide button"
 		center 190 355
 	
@@ -1994,27 +1994,27 @@ interface "trade"
 interface "trade (small screen)"
 	box "content"
 		from -310 80 to 190 355
-
+	
 	line
 		center -60 95
 		dimensions 480 1
-
+	
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 40 355
 	button u "B_uy All"
 		center 40 355
 		dimensions 70 30
-
+	
 	sprite "ui/wide button"
 		center 130 355
-
+	
 	active if "can sell"
 	visible if "!can sell outfits"
 	button e "S_ell All"
 		center 130 355
 		dimensions 90 30
-
+	
 	active if "can sell outfits"
 	visible if "can sell outfits"
 	button e "S_ell Outfits"
@@ -2026,11 +2026,11 @@ interface "trade (small screen)"
 interface "bank"
 	box "content"
 		from -250 78 to 250 355
-
+	
 	line
 		center 0 95
 		dimensions 480 1
-
+	
 	active if "can pay"
 	sprite "ui/dialog cancel"
 		center 200 355
@@ -2043,11 +2043,11 @@ interface "bank"
 interface "bank (small screen)"
 	box "content"
 		from -310 78 to 190 355
-
+	
 	line
 		center -60 95
 		dimensions 480 1
-
+	
 	active if "can pay"
 	sprite "ui/dialog cancel"
 		center 140 355
