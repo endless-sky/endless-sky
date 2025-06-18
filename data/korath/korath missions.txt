@@ -576,3 +576,17 @@ mission "Efreti: Distress Call 8"
 			`	You approach one of the Quarg in the spaceport and request assistance with the data chip. It stops and acknowledges you, but doesn't speak. It pauses for a few moments after you make your request, but then holds out its hand. Taking the data chip, it slots it into a communicator of some sort, slowly nods to itself, and hands it back to you.`
 			`	You return to your ship and try plugging the chip into your systems again, which now displays two files: one in the Korath language, and one in your own. You open the file in your language, and it reads: "The <EDC-ship> is a ship of grief, bringing great pain in memories that sing for generations. Love is a void in the souls of many. Know all that <first> <last> is a true Efret by heart, if not by skin. The <EDC-ship> is theirs, to save lives and keep memories."`
 			`	You carefully store the chip in a safe place.`
+
+mission "Exile: Boarding Worldship Korath"
+	boarding
+	minor
+	source
+		government "Korath" "Korath (Civilian)"
+		category "Superheavy"
+		not outfits "Microbot Grinder"
+	destination "Earth"
+	on offer
+		conversation
+			`Docking with this ship provides you with a front-row seat in witnessing its sheer scale. Your sensors struggle with their task, as they were never intended for such a massive vessel, but you can estimate from the readings that there are tens of thousands of lifeforms aboard. You assume many of these life signs are flora, such as the confused mass of tree-like vegetation you can see in the colossal domes atop the craft, but even the immense domes and long towers couldn't account for the sheer number of living beings your computers are outputting.`
+			`	As you continue the scan of this massive vessel, you find that this ship is piloted by many hundreds, and carries thousands more. Given how many Korath inhabit the ship, attempting a capture would be suicidal. And with how hugely constructed the vessel is, the Korath must find it quite valuable.`
+				decline
