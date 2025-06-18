@@ -210,11 +210,15 @@ jobs:
           cmake --build build --preset macos-ci-release
         env:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      - name: Zip artifact
+        run: |
+          cd build/release
+          7z a macos-artifact-x64.zip "Endless Sky.app"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: macos-artifact-x64
-          path: build/release/Endless Sky.app
+          path: build/release/macos-artifact-x64.zip
 
 
   release_macos_arm:
@@ -256,11 +260,15 @@ jobs:
           cmake --build build --preset macos-arm-ci-release
         env:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      - name: Zip artifact
+        run: |
+          cd build/release
+          7z a macos-artifact-arm.zip "Endless Sky.app"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: macos-artifact-arm
-          path: build/release/Endless Sky.app
+          path: build/release/macos-artifact-arm.zip
 
 
   release_macos:
@@ -274,11 +282,19 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: macos-artifact-x64
-          path: x64/Endless Sky.app
+          path: x64/macos-artifact-x64.zip
+      - name: Extract x64 artifact
+        run: |
+          cd x64
+          7z x macos-artifact-x64.zip
       - uses: actions/download-artifact@v4
         with:
           name: macos-artifact-arm
-          path: arm/Endless Sky.app
+          path: arm/macos-artifact-arm.zip
+      - name: Extract arm artifact
+        run: |
+          cd arm
+          7z x macos-artifact-arm.zip
       - name: Create universal binary
         run: |
           cp -r "arm/Endless Sky.app" "Endless Sky.app"
