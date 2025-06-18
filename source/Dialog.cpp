@@ -428,6 +428,23 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 
+bool Dialog::FingerDown(int x, int y, int fid)
+{
+	// Consume fingerdown event, so that we process the tap on a finger up
+	// instead. This is so that we don't inadverntently leak a finger up event
+	// to a controlling panel when we close on a click event.
+	return true;
+}
+
+
+
+bool Dialog::FingerUp(int x, int y, int fid)
+{
+	return Click(x, y, 1);
+}
+
+
+
 // Common code from all three constructors:
 void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {

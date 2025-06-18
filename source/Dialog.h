@@ -96,7 +96,8 @@ protected:
 	// button is highlighted and the enter key to select it.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, int clicks) override;
-
+	virtual bool FingerDown(int x, int y, int fid) override;
+	virtual bool FingerUp(int x, int y, int fid) override;
 
 private:
 	// Common code from all three constructors:
