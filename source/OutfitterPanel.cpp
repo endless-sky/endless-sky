@@ -48,6 +48,12 @@ namespace {
 	// Label for the description field of the detail pane.
 	const string DESCRIPTION = "description";
 
+	// Button size/placement info:
+	constexpr double BUTTON_ROW_START_PAD = 4.;
+	constexpr double BUTTON_ROW_PAD = 6.;
+	constexpr double BUTTON_COL_PAD = 6.;
+	constexpr double BUTTON_WIDTH = 75.;
+
 	// Determine the refillable ammunition a particular ship consumes or stores.
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
 	{
