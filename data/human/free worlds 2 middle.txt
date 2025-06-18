@@ -1663,25 +1663,26 @@ mission "FW Bloodsea 1.2A"
 
 
 
-mission "Pirate Use Jousting Cutthroat"
+mission "Pirates Use Cutthroat"
 	landing
 	invisible
 	to offer
 		has "fw bloodsea done"
 	on offer
-		event "pirate use jousting cutthroat"
+		event "pirates use cutthroat"
 		fail
 
-event "pirate use jousting cutthroat"
+event "pirates use cutthroat"
 	fleet "Large Southern Pirate"
 		add variant 2
-			"Cutthroat" 2
-			"Cutthroat (Jousting)"
+			"Cutthroat" 3
 		add variant 1
 			"Modified Argosy (Blaster)"
 			"Fury (Gatling)"
-			"Cutthroat (Jousting)"
+			"Cutthroat"
 
+# For save files which have the "Pirate Use Jousting Cutthroat" mission active prior to its removal in v0.10.14.
+event "pirate use jousting cutthroat"
 
 
 
