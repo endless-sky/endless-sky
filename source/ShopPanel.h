@@ -71,7 +71,6 @@ protected:
 	};
 
 
-
 protected:
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
@@ -85,19 +84,11 @@ protected:
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
 	virtual double DrawDetails(const Point &center) = 0;
-	virtual void DrawButtons() = 0;
-	virtual TransactionResult CanBuyToCargo() const;
-	virtual void BuyIntoCargo();
-	virtual TransactionResult CanDoBuyButton() const;
-	virtual void DoBuyButton();
-	virtual TransactionResult CanUninstall(UninstallAction action) const;
-	virtual void Sell(bool storeOutfits) = 0;
-	virtual TransactionResult CanInstall() const;
-	virtual void Install();
-	virtual void Uninstall();
-	virtual bool CanMoveToCargoFromStorage() const;
-	virtual void MoveToCargoFromStorage();
-	virtual void RetainInStorage();
+	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
+	virtual void Buy(bool onlyOwned = false) = 0;
+	virtual bool CanSell(bool toStorage = false) const = 0;
+	virtual void Sell(bool toStorage = false) = 0;
+	virtual void FailSell(bool toStorage = false) const;
 	virtual bool CanSellMultiple() const;
 	virtual bool IsAlreadyOwned() const;
 	virtual bool ShouldHighlight(const Ship *ship);
@@ -121,7 +112,6 @@ protected:
 
 	void DrawButton(const std::string &name, const Point &center, const Point &buttonSize, bool isActive,
 		bool hovering, char keyCode);
-	char CheckButton(int x, int y);
 	void CheckSelection();
 
 

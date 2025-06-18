@@ -425,7 +425,7 @@ void ShipyardPanel::DrawButtons()
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
 	ShopPanel::DrawButton("_Sell", sellCenter, Point(60, 30),
 		static_cast<bool>(playerShip), hoverButton == 's', 's');
-	
+
 	// TODO: Add button for sell but retain outfits.
 
 	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
