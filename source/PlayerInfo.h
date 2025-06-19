@@ -63,6 +63,12 @@ public:
 		int64_t maintenanceCosts = 0;
 		int64_t assetsReturns = 0;
 	};
+	enum SortType {
+		ABC,
+		PAY,
+		SPEED,
+		CONVENIENT
+	};
 
 
 public:
@@ -226,13 +232,14 @@ public:
 	// the purpose of determining how frequently the MapPanel should blink the mission
 	// marker.
 	void CalculateRemainingDeadlines();
+	// Add a mission that was just accepted to the cached remaining deadlines.
+	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
 	// The number of days left before this mission's deadline has elapsed, or,
 	// if the "Deadline blink by distance" preference is true, before the player
 	// doesn't have enough days left to complete the mission before the deadline
 	// will elapse. Returns 0 if the give mission doesn't have a deadline.
 	int RemainingDeadline(const Mission &mission) const;
 
-	enum SortType {ABC, PAY, SPEED, CONVENIENT};
 	const SortType GetAvailableSortType() const;
 	void NextAvailableSortType();
 	const bool ShouldSortAscending() const;
@@ -375,8 +382,6 @@ private:
 
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
-	// Add a mission that was just accepted to the cached remaining deadlines.
-	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
@@ -402,6 +407,8 @@ private:
 	bool CanBeSaved() const;
 	// Handle the daily salaries and payments.
 	void DoAccounting();
+
+	bool HasClearance() const;
 
 
 private:

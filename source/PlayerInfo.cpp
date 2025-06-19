@@ -106,15 +106,6 @@ namespace {
 		return SystemEntry::TAKE_OFF;
 	}
 
-	bool HasClearance(const PlayerInfo &player, const Planet *planet)
-	{
-		auto CheckClearance = [&planet](const Mission &mission) -> bool
-		{
-			return mission.HasClearance(planet);
-		};
-		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
-	}
-
 	// Sort the given list of missions in the order they should be offered.
 	void SortMissions(list<Mission> &missions, bool hasPriorityMissions, unsigned nonBlockingMissions)
 	{
@@ -933,57 +924,6 @@ Account &PlayerInfo::Accounts()
 
 
 
-// Handle the daily salaries and payments.
-void PlayerInfo::DoAccounting()
-{
-	// Check what salaries and tribute the player receives.
-	int64_t salariesIncome = accounts.SalariesIncomeTotal();
-	int64_t tributeIncome = GetTributeTotal();
-	FleetBalance balance = MaintenanceAndReturns();
-	if(salariesIncome || tributeIncome || balance.assetsReturns)
-	{
-		string message = "You receive ";
-		if(salariesIncome)
-		{
-			message += Format::CreditString(salariesIncome) + " salary";
-			if(tributeIncome)
-			{
-				if(balance.assetsReturns)
-					message += ", ";
-				else
-					message += " and ";
-			}
-		}
-		if(tributeIncome)
-			message += Format::CreditString(tributeIncome) + " in tribute";
-		if(balance.assetsReturns)
-		{
-			if(salariesIncome && tributeIncome)
-				message += ",";
-			if(salariesIncome || tributeIncome)
-				message += " and ";
-			message += Format::CreditString(balance.assetsReturns) + " based on outfits and ships";
-		}
-		message += ".";
-		Messages::Add(message, Messages::Importance::High, true);
-		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
-	}
-
-	// For accounting, keep track of the player's net worth. This is for
-	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
-	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
-
-	// Have the player pay salaries, mortgages, etc. and print a message that
-	// summarizes the payments that were made.
-	string message = accounts.Step(assets, Salaries(), balance.maintenanceCosts);
-	if(!message.empty())
-		Messages::Add(message, Messages::Importance::High, true);
-}
-
-
-
 // Calculate how much the player pays in daily salaries.
 int64_t PlayerInfo::Salaries() const
 {
@@ -1095,7 +1035,7 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 	{
 		bool clearance = false;
 		if(planet)
-			clearance = planet->CanLand() || HasClearance(*this, planet);
+			clearance = planet->CanLand() || HasClearance();
 		for(const shared_ptr<Ship> &it : ships)
 		{
 			if(it->IsParked())
@@ -1115,39 +1055,6 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 
 	static const shared_ptr<Ship> empty;
 	return (flagship && flagship->IsYours()) ? flagship : empty;
-}
-
-
-
-// Set the flagship (on departure or during flight).
-void PlayerInfo::SetFlagship(Ship &other)
-{
-	// Remove active data in the old flagship.
-	if(flagship && flagship.get() != &other)
-		flagship->ClearTargetsAndOrders();
-
-	// Set the new flagship pointer.
-	flagship = other.shared_from_this();
-
-	// Make sure your ships all know who the flagship is.
-	for(const shared_ptr<Ship> &ship : ships)
-	{
-		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked());
-		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
-	}
-
-	// Move the flagship to the beginning to the list of ships.
-	MoveFlagshipBegin(ships, flagship);
-
-	// Make sure your flagship is not included in the escort selection.
-	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
-	{
-		shared_ptr<Ship> ship = it->lock();
-		if(!ship || ship == flagship)
-			it = selectedShips.erase(it);
-		else
-			++it;
-	}
 }
 
 
@@ -1571,6 +1478,27 @@ int64_t PlayerInfo::GetBasis(const string &commodity, int tons) const
 
 
 
+// Call this after missions update, if leaving the outfitter, shipyard, or
+// hiring panel, or after backing out of a take-off warning.
+// Updates the information on how much space is available.
+void PlayerInfo::UpdateCargoCapacities()
+{
+	int size = 0;
+	int bunks = 0;
+	flagship = FlagshipPtr();
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetPlanet() == planet && !ship->IsParked())
+		{
+			size += ship->Attributes().Get("cargo space");
+			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
+			bunks += ship->Attributes().Get("bunks") - crew;
+		}
+	cargo.SetSize(size);
+	cargo.SetBunks(bunks);
+}
+
+
+
 // Switch cargo from being stored in ships to being stored here. Also recharge
 // ships, check for mission completion, and apply fines for contraband.
 void PlayerInfo::Land(UI *ui)
@@ -1619,7 +1547,7 @@ void PlayerInfo::Land(UI *ui)
 
 	// Ships that are landed with you on the planet should fully recharge.
 	// Those in remote systems restore what they can without landing.
-	bool clearance = HasClearance(*this, planet);
+	bool clearance = HasClearance();
 	const bool canUseServices = planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && !ship->IsDisabled())
@@ -1629,8 +1557,9 @@ void PlayerInfo::Land(UI *ui)
 				const bool alreadyLanded = ship->GetPlanet() == planet;
 				if(alreadyLanded || planet->CanLand(*ship) || (clearance && planet->IsAccessible(ship.get())))
 				{
-					ship->Recharge(canUseServices ? planet->GetPort().GetRecharges() : Port::RechargeType::None,
-						planet->GetPort().HasService(Port::ServicesType::HireCrew));
+					const Port &port = planet->GetPort();
+					ship->Recharge(canUseServices ? port.GetRecharges() : Port::RechargeType::None,
+						port.HasService(Port::ServicesType::HireCrew));
 					if(!ship->GetPlanet())
 						ship->SetPlanet(planet);
 				}
@@ -1639,12 +1568,18 @@ void PlayerInfo::Land(UI *ui)
 				else
 				{
 					const StellarObject *landingObject = AI::FindLandingLocation(*ship);
-					const bool foundSpaceport = landingObject;
 					if(!landingObject)
 						landingObject = AI::FindLandingLocation(*ship, false);
 					if(landingObject)
-						ship->SetPlanet(landingObject->GetPlanet());
-					ship->Recharge(foundSpaceport);
+					{
+						const Planet *landingPlanet = landingObject->GetPlanet();
+						const Port &port = landingPlanet->GetPort();
+						ship->Recharge(landingPlanet->CanUseServices() ? port.GetRecharges() : Port::RechargeType::None,
+							port.HasService(Port::ServicesType::HireCrew));
+						ship->SetPlanet(planet);
+					}
+					else
+						ship->Recharge(Port::RechargeType::None, false);
 				}
 			}
 			else
@@ -1988,16 +1923,16 @@ const CargoHold &PlayerInfo::DistributeCargo()
 
 
 
-void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
+double PlayerInfo::GetPlayTime() const noexcept
 {
-	playTime += timeVal.count() * .000000001;
+	return playTime;
 }
 
 
 
-double PlayerInfo::GetPlayTime() const noexcept
+void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
 {
-	return playTime;
+	playTime += timeVal.count() * .000000001;
 }
 
 
@@ -2063,27 +1998,6 @@ bool PlayerInfo::HasLogs() const
 
 
 
-// Call this after missions update, if leaving the outfitter, shipyard, or
-// hiring panel, or after backing out of a take-off warning.
-// Updates the information on how much space is available.
-void PlayerInfo::UpdateCargoCapacities()
-{
-	int size = 0;
-	int bunks = 0;
-	flagship = FlagshipPtr();
-	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetPlanet() == planet && !ship->IsParked())
-		{
-			size += ship->Attributes().Get("cargo space");
-			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
-			bunks += ship->Attributes().Get("bunks") - crew;
-		}
-	cargo.SetSize(size);
-	cargo.SetBunks(bunks);
-}
-
-
-
 // Get the list of active missions.
 const list<Mission> &PlayerInfo::Missions() const
 {
@@ -2113,6 +2027,55 @@ void PlayerInfo::CalculateRemainingDeadlines()
 	DistanceMap here(*this, system);
 	for(const Mission &mission : missions)
 		CalculateRemainingDeadline(mission, here);
+}
+
+
+
+void PlayerInfo::CalculateRemainingDeadline(const Mission &mission, DistanceMap &here)
+{
+	if(!mission.Deadline())
+		return;
+
+	int daysLeft = mission.Deadline() - GetDate() + 1;
+	// If at any point a location can't be reached, it is ignored instead of treating
+	// it as if it has an infinite distance.
+	if(daysLeft > 0 && Preferences::Has("Deadline blink by distance")
+		&& here.HasRoute(*mission.Destination()->GetSystem()))
+	{
+		set<const System *> toVisit;
+		for(const Planet *stopover : mission.Stopovers())
+		{
+			if(here.HasRoute(*stopover->GetSystem()))
+				toVisit.insert(stopover->GetSystem());
+			// Stopovers require you to land on a planet, which takes an extra day.
+			--daysLeft;
+		}
+		for(const System *waypoint : mission.Waypoints())
+			if(here.HasRoute(*waypoint))
+				toVisit.insert(waypoint);
+
+		// This is a traveling salesman problem. Estimate the minimum number
+		// of days that it would take to reach every point of interest by
+		// traveling to the next closest location after each step.
+		DistanceMap distance = here;
+		int systemCount = toVisit.size();
+		for(int i = 0; i < systemCount; ++i)
+		{
+			const System *closest;
+			int minimalDist = numeric_limits<int>::max();
+			for(const System *sys : toVisit)
+				if(distance.Days(*sys) < minimalDist)
+				{
+					closest = sys;
+					minimalDist = distance.Days(*sys);
+				}
+			daysLeft -= distance.Days(*closest);
+			distance = DistanceMap(*this, closest);
+			toVisit.erase(closest);
+		}
+		daysLeft -= distance.Days(*mission.Destination()->GetSystem());
+	}
+	remainingDeadlines[&mission] = daysLeft;
 }
 
 
@@ -2185,6 +2148,127 @@ void PlayerInfo::ToggleSortSeparatePossible()
 
 
 
+void PlayerInfo::SortAvailable()
+{
+	// Destinations: planets OR system. Only counting them, so the type doesn't matter.
+	set<const void *> destinations;
+	if(availableSortType == CONVENIENT)
+	{
+		for(const Mission &mission : Missions())
+		{
+			if(mission.IsVisible())
+			{
+				destinations.insert(mission.Destination());
+				destinations.insert(mission.Destination()->GetSystem());
+
+				for(const Planet *stopover : mission.Stopovers())
+				{
+					destinations.insert(stopover);
+					destinations.insert(stopover->GetSystem());
+				}
+
+				for(const System *waypoint : mission.Waypoints())
+					destinations.insert(waypoint);
+			}
+		}
+	}
+	availableJobs.sort([&](const Mission &lhs, const Mission &rhs) {
+		// First, separate rush orders with deadlines, if wanted
+		if(sortSeparateDeadline)
+		{
+			// availableSortAsc instead of true, to counter the reverse below
+			if(!lhs.Deadline() && rhs.Deadline())
+				return availableSortAsc;
+			if(lhs.Deadline() && !rhs.Deadline())
+				return !availableSortAsc;
+		}
+		// Then, separate greyed-out jobs you can't accept
+		if(sortSeparatePossible)
+		{
+			if(lhs.CanAccept(*this) && !rhs.CanAccept(*this))
+				return availableSortAsc;
+			if(!lhs.CanAccept(*this) && rhs.CanAccept(*this))
+				return !availableSortAsc;
+		}
+		// Sort by desired type:
+		switch(availableSortType)
+		{
+			case CONVENIENT:
+			{
+				// Sorting by "convenience" means you already have a mission to a
+				// planet. Missions at the same planet are sorted higher.
+				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means 1+1 = 2)
+				const int lConvenient = destinations.count(lhs.Destination()) + destinations.count(lhs.Destination()->GetSystem());
+				const int rConvenient = destinations.count(rhs.Destination()) + destinations.count(rhs.Destination()->GetSystem());
+				if(lConvenient < rConvenient)
+					return true;
+				if(lConvenient > rConvenient)
+					return false;
+			}
+			// Tiebreaker for equal CONVENIENT is SPEED.
+			case SPEED:
+			{
+				// A higher "Speed" means the mission takes less time, i.e. fewer
+				// jumps.
+				const int lJumps = lhs.ExpectedJumps();
+				const int rJumps = rhs.ExpectedJumps();
+
+				if(lJumps == rJumps)
+				{
+					// SPEED compares equal - follow through to tiebreaker 'case PAY' below
+				}
+				else if(lJumps > 0 && rJumps > 0)
+				{
+					// Lower values are better, so this '>' is not '<' as expected
+					return lJumps > rJumps;
+				}
+				else
+				{
+					// Negative values indicate indeterminable mission paths.
+					// e.g. through a wormhole, meaning lower values are worse.
+
+					// A value of 0 indicates the mission destination is the
+					// source, implying the actual path is complicated; consider
+					// that slow, but not as bad as an indeterminable path.
+
+					// Positive values are 'greater' because at least the number
+					// of jumps is known. (Comparing two positive values is already
+					// handled above, so the actual positive value doesn't matter.)
+
+					// Compare the value when at least one value is not positive.
+					return lJumps < rJumps;
+				}
+			}
+			// Tiebreaker for equal SPEED is PAY.
+			case PAY:
+			{
+				const int64_t lPay = lhs.DisplayedPayment();
+				const int64_t rPay = rhs.DisplayedPayment();
+				if(lPay < rPay)
+					return true;
+				else if(lPay > rPay)
+					return false;
+			}
+			// Tiebreaker for equal PAY is ABC.
+			case ABC:
+			{
+				if(lhs.Name() < rhs.Name())
+					return true;
+				else if(lhs.Name() > rhs.Name())
+					return false;
+			}
+			// Tiebreaker fallback to keep sorting consistent is unique UUID:
+			default:
+				return lhs.UUID() < rhs.UUID();
+		}
+	});
+
+	if(!availableSortAsc)
+		availableJobs.reverse();
+}
+
+
+
 // Return a pointer to the mission that was most recently accepted while in-flight.
 const Mission *PlayerInfo::ActiveInFlightMission() const
 {
@@ -2215,7 +2299,8 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			it->Do(Mission::ACCEPT, *this, ui);
 			if(it->IsFailed())
 				RemoveMission(Mission::Trigger::FAIL, *it, ui);
-			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
+			// Might not have cargo anymore, so some jobs can be sorted to end.
+			SortAvailable();
 			break;
 		}
 }
@@ -2410,11 +2495,6 @@ void PlayerInfo::MissionCallback(int response)
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
-		if(mission.Deadline())
-		{
-			DistanceMap here(*this, system);
-			CalculateRemainingDeadline(mission, here);
-		}
 		if(planet)
 		{
 			cargo.AddMissionCargo(&mission);
@@ -3206,19 +3286,19 @@ const pair<const System *, Point> &PlayerInfo::GetEscortDestination() const
 
 
 
-// Determine if a system and nonzero position were specified.
-bool PlayerInfo::HasEscortDestination() const
-{
-	return interstellarEscortDestination.first && interstellarEscortDestination.second;
-}
-
-
-
 // Set (or clear) the stored escort travel destination.
 void PlayerInfo::SetEscortDestination(const System *system, Point pos)
 {
 	interstellarEscortDestination.first = system;
 	interstellarEscortDestination.second = pos;
+}
+
+
+
+// Determine if a system and nonzero position were specified.
+bool PlayerInfo::HasEscortDestination() const
+{
+	return interstellarEscortDestination.first && interstellarEscortDestination.second;
 }
 
 
@@ -3259,6 +3339,13 @@ void PlayerInfo::SetMapZoom(int level)
 set<string> &PlayerInfo::Collapsed(const string &name)
 {
 	return collapsed[name];
+}
+
+
+
+bool PlayerInfo::DisplayCarrierHelp() const
+{
+	return displayCarrierHelp;
 }
 
 
@@ -4124,176 +4211,6 @@ void PlayerInfo::CreateMissions()
 
 
 
-void PlayerInfo::SortAvailable()
-{
-	// Destinations: planets OR system. Only counting them, so the type doesn't matter.
-	set<const void *> destinations;
-	if(availableSortType == CONVENIENT)
-	{
-		for(const Mission &mission : Missions())
-		{
-			if(mission.IsVisible())
-			{
-				destinations.insert(mission.Destination());
-				destinations.insert(mission.Destination()->GetSystem());
-
-				for(const Planet *stopover : mission.Stopovers())
-				{
-					destinations.insert(stopover);
-					destinations.insert(stopover->GetSystem());
-				}
-
-				for(const System *waypoint : mission.Waypoints())
-					destinations.insert(waypoint);
-			}
-		}
-	}
-	availableJobs.sort([&](const Mission &lhs, const Mission &rhs) {
-		// First, separate rush orders with deadlines, if wanted
-		if(sortSeparateDeadline)
-		{
-			// availableSortAsc instead of true, to counter the reverse below
-			if(!lhs.Deadline() && rhs.Deadline())
-				return availableSortAsc;
-			if(lhs.Deadline() && !rhs.Deadline())
-				return !availableSortAsc;
-		}
-		// Then, separate greyed-out jobs you can't accept
-		if(sortSeparatePossible)
-		{
-			if(lhs.CanAccept(*this) && !rhs.CanAccept(*this))
-				return availableSortAsc;
-			if(!lhs.CanAccept(*this) && rhs.CanAccept(*this))
-				return !availableSortAsc;
-		}
-		// Sort by desired type:
-		switch(availableSortType)
-		{
-			case CONVENIENT:
-			{
-				// Sorting by "convenience" means you already have a mission to a
-				// planet. Missions at the same planet are sorted higher.
-				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means 1+1 = 2)
-				const int lConvenient = destinations.count(lhs.Destination()) + destinations.count(lhs.Destination()->GetSystem());
-				const int rConvenient = destinations.count(rhs.Destination()) + destinations.count(rhs.Destination()->GetSystem());
-				if(lConvenient < rConvenient)
-					return true;
-				if(lConvenient > rConvenient)
-					return false;
-			}
-			// Tiebreaker for equal CONVENIENT is SPEED.
-			case SPEED:
-			{
-				// A higher "Speed" means the mission takes less time, i.e. fewer
-				// jumps.
-				const int lJumps = lhs.ExpectedJumps();
-				const int rJumps = rhs.ExpectedJumps();
-
-				if(lJumps == rJumps)
-				{
-					// SPEED compares equal - follow through to tiebreaker 'case PAY' below
-				}
-				else if(lJumps > 0 && rJumps > 0)
-				{
-					// Lower values are better, so this '>' is not '<' as expected
-					return lJumps > rJumps;
-				}
-				else
-				{
-					// Negative values indicate indeterminable mission paths.
-					// e.g. through a wormhole, meaning lower values are worse.
-
-					// A value of 0 indicates the mission destination is the
-					// source, implying the actual path is complicated; consider
-					// that slow, but not as bad as an indeterminable path.
-
-					// Positive values are 'greater' because at least the number
-					// of jumps is known. (Comparing two positive values is already
-					// handled above, so the actual positive value doesn't matter.)
-
-					// Compare the value when at least one value is not positive.
-					return lJumps < rJumps;
-				}
-			}
-			// Tiebreaker for equal SPEED is PAY.
-			case PAY:
-			{
-				const int64_t lPay = lhs.DisplayedPayment();
-				const int64_t rPay = rhs.DisplayedPayment();
-				if(lPay < rPay)
-					return true;
-				else if(lPay > rPay)
-					return false;
-			}
-			// Tiebreaker for equal PAY is ABC.
-			case ABC:
-			{
-				if(lhs.Name() < rhs.Name())
-					return true;
-				else if(lhs.Name() > rhs.Name())
-					return false;
-			}
-			// Tiebreaker fallback to keep sorting consistent is unique UUID:
-			default:
-				return lhs.UUID() < rhs.UUID();
-		}
-	});
-
-	if(!availableSortAsc)
-		availableJobs.reverse();
-}
-
-
-
-void PlayerInfo::CalculateRemainingDeadline(const Mission &mission, DistanceMap &here)
-{
-	if(!mission.Deadline())
-		return;
-
-	int daysLeft = mission.Deadline() - GetDate() + 1;
-	// If at any point a location can't be reached, it is ignored instead of treating
-	// it as if it has an infinite distance.
-	if(daysLeft > 0 && Preferences::Has("Deadline blink by distance")
-		&& here.HasRoute(*mission.Destination()->GetSystem()))
-	{
-		set<const System *> toVisit;
-		for(const Planet *stopover : mission.Stopovers())
-		{
-			if(here.HasRoute(*stopover->GetSystem()))
-				toVisit.insert(stopover->GetSystem());
-			// Stopovers require you to land on a planet, which takes an extra day.
-			--daysLeft;
-		}
-		for(const System *waypoint : mission.Waypoints())
-			if(here.HasRoute(*waypoint))
-				toVisit.insert(waypoint);
-
-		// This is a traveling salesman problem. Estimate the minimum number
-		// of days that it would take to reach every point of interest by
-		// traveling to the next closest location after each step.
-		DistanceMap distance = here;
-		int systemCount = toVisit.size();
-		for(int i = 0; i < systemCount; ++i)
-		{
-			const System *closest;
-			int minimalDist = numeric_limits<int>::max();
-			for(const System *sys : toVisit)
-				if(distance.Days(*sys) < minimalDist)
-				{
-					closest = sys;
-					minimalDist = distance.Days(*sys);
-				}
-			daysLeft -= distance.Days(*closest);
-			distance = DistanceMap(*this, closest);
-			toVisit.erase(closest);
-		}
-		daysLeft -= distance.Days(*mission.Destination()->GetSystem());
-	}
-	remainingDeadlines[&mission] = daysLeft;
-}
-
-
-
 // Updates each mission upon landing, to perform landing actions (Stopover,
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
 void PlayerInfo::StepMissions(UI *ui)
@@ -4809,6 +4726,39 @@ void PlayerInfo::Fine(UI *ui)
 
 
 
+// Set the flagship (on departure or during flight).
+void PlayerInfo::SetFlagship(Ship &other)
+{
+	// Remove active data in the old flagship.
+	if(flagship && flagship.get() != &other)
+		flagship->ClearTargetsAndOrders();
+
+	// Set the new flagship pointer.
+	flagship = other.shared_from_this();
+
+	// Make sure your ships all know who the flagship is.
+	for(const shared_ptr<Ship> &ship : ships)
+	{
+		bool shouldFollowFlagship = (ship != flagship && !ship->IsParked());
+		ship->SetParent(shouldFollowFlagship ? flagship : shared_ptr<Ship>());
+	}
+
+	// Move the flagship to the beginning to the list of ships.
+	MoveFlagshipBegin(ships, flagship);
+
+	// Make sure your flagship is not included in the escort selection.
+	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
+	{
+		shared_ptr<Ship> ship = it->lock();
+		if(!ship || ship == flagship)
+			it = selectedShips.erase(it);
+		else
+			++it;
+	}
+}
+
+
+
 void PlayerInfo::HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip)
 {
 	if(Preferences::Has("Automatically unpark flagship") && newFirstShip != oldFirstShip
@@ -4841,11 +4791,6 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 			*first = false;
 		}
 	}
-}
-
-bool PlayerInfo::DisplayCarrierHelp() const
-{
-	return displayCarrierHelp;
 }
 
 
@@ -4886,4 +4831,65 @@ void PlayerInfo::ForgetGiftedShip(const Ship &oldShip, bool failsMissions)
 bool PlayerInfo::CanBeSaved() const
 {
 	return (!isDead && planet && system && !firstName.empty() && !lastName.empty());
+}
+
+
+
+// Handle the daily salaries and payments.
+void PlayerInfo::DoAccounting()
+{
+	// Check what salaries and tribute the player receives.
+	int64_t salariesIncome = accounts.SalariesIncomeTotal();
+	int64_t tributeIncome = GetTributeTotal();
+	FleetBalance balance = MaintenanceAndReturns();
+	if(salariesIncome || tributeIncome || balance.assetsReturns)
+	{
+		string message = "You receive ";
+		if(salariesIncome)
+		{
+			message += Format::CreditString(salariesIncome) + " salary";
+			if(tributeIncome)
+			{
+				if(balance.assetsReturns)
+					message += ", ";
+				else
+					message += " and ";
+			}
+		}
+		if(tributeIncome)
+			message += Format::CreditString(tributeIncome) + " in tribute";
+		if(balance.assetsReturns)
+		{
+			if(salariesIncome && tributeIncome)
+				message += ",";
+			if(salariesIncome || tributeIncome)
+				message += " and ";
+			message += Format::CreditString(balance.assetsReturns) + " based on outfits and ships";
+		}
+		message += ".";
+		Messages::Add(message, Messages::Importance::High, true);
+		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
+	}
+
+	// For accounting, keep track of the player's net worth. This is for
+	// calculation of yearly income to determine maximum mortgage amounts.
+	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	for(const shared_ptr<Ship> &ship : ships)
+		assets += ship->Cargo().Value(system);
+
+	// Have the player pay salaries, mortgages, etc. and print a message that
+	// summarizes the payments that were made.
+	string message = accounts.Step(assets, Salaries(), balance.maintenanceCosts);
+	if(!message.empty())
+		Messages::Add(message, Messages::Importance::High, true);
+}
+
+
+
+bool PlayerInfo::HasClearance() const
+{
+	return any_of(missions.begin(), missions.end(),
+		[this](const Mission &mission) -> bool {
+			return mission.HasClearance(planet);
+		});
 }
