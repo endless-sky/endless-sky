@@ -397,54 +397,71 @@ void ShipyardPanel::SellShip(bool toStorage)
 // TODO: Future code for after PR #10743
 // void ShipyardPanel::DrawButtons()
 // {
-// 	// The last 70 pixels on the end of the side panel are for the buttons:
-// 	Point buttonSize(SIDEBAR_WIDTH, ButtonPanelHeight());
-// 	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
+// 	// There will be two rows of buttons:
+// 	//  [    Buy    ] [    Sell    ] [ Sell Hull ] 
+// 	//                               [   Leave   ]
+// 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+// 	const double rowBaseY = Screen::BottomRight().Y() - 1.5 * rowOffsetY - BUTTON_ROW_START_PAD;
+// 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+// 	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
+// 	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
+
+// 	// Draw the button panel (shop side panel footer).
+// 	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
+// 	FillShader::Fill(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize,
 // 		*GameData::Colors().Get("shop side panel background"));
 // 	FillShader::Fill(
 // 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
 // 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
+// 	// Set up font size and colors for the credits.
 // 	const Font &font = FontSet::Get(14);
 // 	const Color &bright = *GameData::Colors().Get("bright");
 // 	const Color &dim = *GameData::Colors().Get("medium");
 
+// 	// Draw the row for credits display.
 // 	const Point creditsPoint(
 // 		Screen::Right() - SIDEBAR_WIDTH + 10,
-// 		Screen::Bottom() - 65);
+// 		Screen::Bottom() - ButtonPanelHeight() + 5);
 // 	font.Draw("You have:", creditsPoint, dim);
-
-// 	const auto credits = Format::CreditString(player.Accounts().Credits());
+// 	const string &credits = Format::CreditString(player.Accounts().Credits());
 // 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
 // 	// Clear the buttonZones, they will be populated again as buttons are drawn.
 // 	buttonZones.clear();
 
-// 	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
-// 	ShopPanel::DrawButton("_Buy", buyCenter, Point(60, 30),
+// 	// Row 1
+// 	ShopPanel::DrawButton("_Buy", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize,
 // 		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
-
-// 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-// 	ShopPanel::DrawButton("_Sell", sellCenter, Point(60, 30),
-// 		static_cast<bool>(playerShip), hoverButton == 's', 's');
-
-// 	// TODO: Add button for sell but retain outfits.
-
-// 	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-// 	ShopPanel::DrawButton("_Leave", leaveCenter, Point(70, 30),
+// 	ShopPanel::DrawButton("_Sell", Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize,
+// 		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
+// 	ShopPanel::DrawButton("Sell H_ull", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize,
+// 		static_cast<bool>(playerShips.size()), hoverButton == 'r', 'r');
+// 	// Row 2
+// 	ShopPanel::DrawButton("_Leave", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize,
 // 		true, hoverButton == 'l', 'l');
 
+// 	// Draw the Modifier hover text that appears below the buttons when a modifier
+// 	// is being applied.
 // 	int modifier = Modifier();
 // 	if(modifier > 1)
 // 	{
 // 		string mod = "x " + to_string(modifier);
 // 		int modWidth = font.Width(mod);
-// 		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
+// 		font.Draw(mod, Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0)
+// 		+ Point(-.5 * modWidth, 10.), dim);
 // 	}
 
+// 	// Draw tooltips for the button being hovered over:
+// 	string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
+// 	if(!tooltip.empty())
+// 		// Note: there is an offset between the cursor and tooltips in this case so that other
+// 		// buttons can be seen as the mouse moves around.
+// 		DrawTooltip(tooltip, hoverPoint + Point(-40, -60), dim, *GameData::Colors().Get("tooltip background"));
+
 // 	// Draw the tooltip for your full number of credits.
-// 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
-// 	if(creditsBox.Contains(ShopPanel::hoverPoint))
+// 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 30));
+// 	if(creditsBox.Contains(hoverPoint))
 // 		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
 // 	else if(ShopPanel::hoverCount)
 // 		--ShopPanel::hoverCount;
@@ -455,7 +472,6 @@ void ShipyardPanel::SellShip(bool toStorage)
 // 		DrawTooltip(text, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
 // 	}
 // }
-
 
 
 int ShipyardPanel::FindItem(const string &text) const

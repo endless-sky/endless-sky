@@ -1127,7 +1127,6 @@ const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
 // }
 
 
-
 int OutfitterPanel::FindItem(const string &text) const
 {
 	int bestIndex = 9999;
