@@ -211,7 +211,6 @@ mission "Wanderers: Diplomacy"
 			
 			`	She laughs, in the Hai manner: a rapid chittering sound. "Yes, the humans and the Hai both worried that too many humans would emigrate all at once if they knew of our peaceful lands. So we agreed that the Hai would be a secret, always here for the adventurous to discover, but difficult to find, so that the human immigration would be slow enough for us to gradually adjust to it."`
 			`	"Are you the translator who will travel with me?" you ask.`
-			
 			label travel
 			`	"Yes," she says. "If these aliens will provide a place for me, I mean to live with them permanently, an ambassador between their people and ours. I am old, and in need of a great novelty like this to make my life interesting once more." You note that the fur on her face, especially on the snout, has turned from brown to silvery gray - a sign of age in terrestrial creatures, and perhaps in the Hai as well.`
 			choice
