@@ -1208,7 +1208,7 @@ tip "tractor beam:"
 	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
 
 tip "prospecting efficiency:"
-	`A measure of this weapon's prospecting capability when mining. Weapons with a higher prospecting efficiency will result in higher yields. Some minable objects are tougher than others, and are therefore less suseptible to having their yields increased.`
+	`A measure of this weapon's prospecting capability when mining. Weapons with a higher prospecting efficiency will result in higher yields. Some minable objects are tougher than others, and are therefore less susceptible to having their yields increased.`
 
 
 
