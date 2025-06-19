@@ -69,6 +69,7 @@ private:
 private:
 	PlayerInfo &player;
 	std::function<void()> callback = nullptr;
+	bool freshlyLoaded = false;
 	bool requestedLaunch = false;
 
 	const Planet &planet;

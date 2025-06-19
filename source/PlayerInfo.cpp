@@ -185,6 +185,13 @@ bool PlayerInfo::IsLoaded() const
 
 
 
+bool PlayerInfo::FreshlyLoaded() const
+{
+	return freshlyLoaded;
+}
+
+
+
 // Make a new player.
 void PlayerInfo::New(const StartConditions &start)
 {

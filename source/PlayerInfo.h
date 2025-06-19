@@ -79,6 +79,8 @@ public:
 
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
+	// Check if the player was just loaded and hasn't run Land() yet.
+	bool FreshlyLoaded() const;
 	// Make a new player.
 	void New(const StartConditions &start);
 	// Load an existing player.

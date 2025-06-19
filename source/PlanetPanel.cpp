@@ -53,7 +53,7 @@ using namespace std;
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(callback),
+	: player(player), callback(callback), freshlyLoaded(player.FreshlyLoaded()),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
 	ui(*GameData::Interfaces().Get("planet"))
 {
@@ -91,8 +91,14 @@ PlanetPanel::~PlanetPanel()
 void PlanetPanel::FinishLanding()
 {
 	// Track how many commodities the player landed with so that the number
-	// sold can be accurately reported.
-	trading->SetInitialCommodities(player.Cargo().Commodities());
+	// sold can be accurately reported. This is only done if this panel is
+	// being created because the player landed on a planet, not because the
+	// pilot was just loaded. The commodities that the player lands with
+	// are not stored in the save file, meaning that using the current
+	// commodities that the player has upon loading a save could provide
+	// inaccurate results.
+	if(!freshlyLoaded)
+		trading->SetInitialCommodities(player.Cargo().Commodities());
 
 	// Determine which shops are conditionally available.
 	// TODO: Determine stock on the fly after condition entries can be subscribed to.
