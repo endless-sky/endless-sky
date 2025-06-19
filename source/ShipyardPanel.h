@@ -40,17 +40,17 @@ public:
 
 
 protected:
-	int TileSize() const override;
-	bool HasItem(const std::string &name) const override;
-	void DrawItem(const std::string &name, const Point &point) override;
-	double ButtonPanelHeight() const override;
-	double DrawDetails(const Point &center) override;
-	TransactionResult CanDoBuyButton() const override;
-	void DoBuyButton() override;
-	void Sell(bool storeOutfits) override;
-	char CheckButton(int x, int y) override;
-	void DrawButtons() override;
-	int FindItem(const std::string &text) const override;
+	virtual int TileSize() const override;
+	virtual bool HasItem(const std::string &name) const override;
+	virtual void DrawItem(const std::string &name, const Point &point) override;
+	virtual double ButtonPanelHeight() const override;
+	virtual double DrawDetails(const Point &center) override;
+	virtual TransactionResult CanDoBuyButton() const override;
+	virtual void DoBuyButton() override;
+	virtual void Sell(bool storeOutfits) override;
+	virtual char CheckButton(int x, int y) override;
+	virtual void DrawButtons() override;
+	virtual int FindItem(const std::string &text) const override;
 
 
 private:
