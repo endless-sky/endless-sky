@@ -944,7 +944,6 @@ void ShopPanel::DrawButtons()
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
-	const Color &back = *GameData::Colors().Get("panel background");
 
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
@@ -954,39 +953,26 @@ void ShopPanel::DrawButtons()
 	const auto credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
-	const Font &bigFont = FontSet::Get(18);
-	const Color &hover = *GameData::Colors().Get("hover");
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &inactive = *GameData::Colors().Get("inactive");
+	// Clear the buttonZones, they will be populated again as buttons are drawn.
+	buttonZones.clear();
 
 	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
-	FillShader::Fill(buyCenter, Point(60, 30), back);
 	bool isOwned = IsAlreadyOwned();
-	const Color *buyTextColor;
-	if(!CanBuy(isOwned))
-		buyTextColor = &inactive;
-	else if(hoverButton == (isOwned ? 'i' : 'b'))
-		buyTextColor = &hover;
+
+	if(isOwned)
+		ShopPanel::DrawButton(playerShip ? "_Install" : "_Cargo", buyCenter, Point(60, 30),
+			static_cast<bool>(CanBuy(isOwned)), hoverButton == 'i', 'i');
 	else
-		buyTextColor = &active;
-	string BUY = isOwned ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
-	bigFont.Draw(BUY,
-		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		*buyTextColor);
+		ShopPanel::DrawButton("_Buy", buyCenter, Point(60, 30),
+			static_cast<bool>(CanBuy(isOwned)), hoverButton == 'b', 'b');
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	FillShader::Fill(sellCenter, Point(60, 30), back);
-	static const string SELL = "_Sell";
-	bigFont.Draw(SELL,
-		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
-		CanSell() ? hoverButton == 's' ? hover : active : inactive);
+	ShopPanel::DrawButton("_Sell", sellCenter, Point(60, 30),
+		static_cast<bool>(CanSell()), hoverButton == 's', 's');
 
 	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-	FillShader::Fill(leaveCenter, Point(70, 30), back);
-	static const string LEAVE = "_Leave";
-	bigFont.Draw(LEAVE,
-		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
-		hoverButton == 'l' ? hover : active);
+	ShopPanel::DrawButton("_Leave", leaveCenter, Point(70, 30),
+		true, hoverButton == 'l', 'l');
 
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
 	const Sprite *findIcon =
@@ -1458,6 +1444,26 @@ void ShopPanel::MainDown()
 }
 
 
+void ShopPanel::DrawButton(const std::string &name, const Point &center, const Point &buttonSize, bool isActive,
+	bool hovering, char keyCode)
+{
+	// Define the colors and font
+	const Font &bigFont = FontSet::Get(18);
+	const Color &hover = *GameData::Colors().Get("hover");
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &inactive = *GameData::Colors().Get("inactive");
+
+	const Color *color = !isActive ? &inactive : hovering ? &hover : &active;
+	const Color &back = *GameData::Colors().Get("panel background");
+
+	FillShader::Fill(center, buttonSize, back);
+	bigFont.Draw(name, center - .5 * Point(bigFont.Width(name), bigFont.Height()), *color);
+
+	// Add this button to the buttonZones:
+	buttonZones.emplace_back(center, buttonSize, keyCode);
+}
+
+
 
 // If the selected item is no longer displayed, advance selection until we find something that is.
 void ShopPanel::CheckSelection()
@@ -1577,9 +1583,10 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 
 
 // Check if the given point is within the button zone, and if so return the
-// letter of the button (or ' ' if it's not on a button).
+// letter of the button (or '\0' if it's not on a button).
 char ShopPanel::CheckButton(int x, int y)
 {
+	// Check the Find button.
 	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
 		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
 		return 'f';
@@ -1587,21 +1594,12 @@ char ShopPanel::CheckButton(int x, int y)
 	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
 		return '\0';
 
-	if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
-		return ' ';
+	const Point clickPoint(x, y);
 
-	x -= Screen::Right() - SIDEBAR_WIDTH;
-	if(x > 9 && x < 70)
-	{
-		if(!IsAlreadyOwned())
-			return 'b';
-		else
-			return 'i';
-	}
-	else if(x > 89 && x < 150)
-		return 's';
-	else if(x > 169 && x < 240)
-		return 'l';
+	// Check all the buttonZones.
+	for(const ClickZone<char> zone : buttonZones)
+		if(zone.Contains(clickPoint))
+			return zone.Value();
 
-	return ' ';
+	return '\0';
 }
