@@ -2365,6 +2365,9 @@ interface "message log"
 	button d ""
 		from 570 0 top left
 		to 0 0 bottom right
+	button "A" ""
+		center 710 -30 bottom left
+		dimensions 200 60
 	sprite "ui/message log key"
 		center 710 -30 bottom left
 	visible if "!important messages only"
