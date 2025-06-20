@@ -46,6 +46,7 @@ protected:
 	virtual double ButtonPanelHeight() const override;
 	virtual double DrawDetails(const Point &center) override;
 	virtual char CheckButton(int x, int y) override;
+
 	virtual void DrawButtons() override;
 	virtual int FindItem(const std::string &text) const override;
 	virtual TransactionResult HandleShortcuts(char key) override;
@@ -60,8 +61,6 @@ private:
 	void SellShipChassis();
 	void SellShip(bool toStorage);
 
-
-private:
 	int modifier;
 
 	Sale<Ship> shipyard;
