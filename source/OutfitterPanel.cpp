@@ -101,15 +101,15 @@ namespace {
 
 
 
-	string UninstallActionName(ShopPanel::UninstallAction action)
+	string UninstallActionName(OutfitterPanel::UninstallAction action)
 	{
 		switch(action)
 		{
-		case ShopPanel::UninstallAction::Uninstall:
+		case OutfitterPanel::UninstallAction::Uninstall:
 			return "uninstall";
-		case ShopPanel::UninstallAction::Store:
+		case OutfitterPanel::UninstallAction::Store:
 			return "store";
-		case ShopPanel::UninstallAction::Sell:
+		case OutfitterPanel::UninstallAction::Sell:
 			return "sell";
 		}
 
@@ -308,7 +308,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 	if(selectedOutfit)
 	{
-		outfitInfo.Update(*selectedOutfit, player, static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Sell)),
+		outfitInfo.Update(*selectedOutfit, player, static_cast<bool>(CanUninstall(UninstallAction::Sell)),
 			collapsed.contains(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
@@ -370,660 +370,6 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 
 
-// Return true if the player is able to purchase the item from the outfitter or
-// previously sold stock and can afford it and is properly licensed (availability,
-// payment, licensing).
-ShopPanel::TransactionResult OutfitterPanel::CanPurchase(bool checkSpecialItems) const
-{
-	if(!planet || !selectedOutfit)
-		return "No outfit selected.";
-
-	// If outfit is not available in the Outfitter, respond that it can't be bought here.
-	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0))
-	{
-		// The store doesn't have it.
-		return "You cannot buy this outfit here. "
-			"It is being shown in the list because you have one, "
-			"but this " + planet->Noun() + " does not sell them.";
-	}
-
-	// Check special unique outfits, if you already have them.
-	// Skip this if told to for sake of speed
-	if(checkSpecialItems)
-	{
-		int mapSize = selectedOutfit->Get("map");
-		bool mapMinables = selectedOutfit->Get("map minables");
-		if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
-			return "You have already mapped all the systems shown by this map, "
-				"so there is no reason to buy another.";
-
-		if(HasLicense(selectedOutfit->TrueName()))
-			return "You already have one of these licenses, "
-				"so there is no reason to buy another.";
-	}
-
-	// Determine what you will have to pay to buy this outfit.
-	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
-	int64_t credits = player.Accounts().Credits();
-	if(cost > credits)
-		return "You don't have enough money to buy this outfit. You need a further " +
-			Format::CreditString(cost - credits);
-
-	// Add the cost to buy the required license.
-	int64_t licenseCost = LicenseCost(selectedOutfit, false);
-	if(cost + licenseCost > credits)
-		return "You don't have enough money to buy this outfit because you also need to buy a "
-			"license for it. You need a further " +
-			Format::CreditString(cost + licenseCost - credits);
-
-	// Check that the player has any necessary licenses.
-	if(licenseCost < 0)
-		return "You cannot buy this outfit, because it requires a license that you don't have.";
-
-	// The outfit can be purchased (available in the outfitter, licensed and affordable).
-	return true;
-}
-
-
-
-// Checking where it will go (can it fit in fleet cargo), not checking where it will
-// be sourced from.
-ShopPanel::TransactionResult OutfitterPanel::CanFitInCargo(bool returnReason) const
-{
-	// Check fleet cargo space vs mass.
-	double mass = selectedOutfit->Mass();
-	double freeCargo = player.Cargo().FreePrecise();
-	if(!mass || freeCargo >= mass)
-		return true;
-
-	// Don't waste time making strings that won't get used. However, we do need
-	// to make the string here while we have the values available.
-	if(returnReason)
-	{
-		return "You cannot load this outfit into cargo, because it takes up "
-			+ Format::CargoString(mass, "mass") + " and your fleet has "
-			+ Format::CargoString(freeCargo, "cargo space") + " free.";
-	}
-
-	return false;
-}
-
-
-
-// Checking where it will go (whether it actually be installed into any selected ship),
-// not checking where it will be sourced from.
-ShopPanel::TransactionResult OutfitterPanel::CanBeInstalled() const
-{
-	if(!planet || !selectedOutfit)
-		return "No outfit selected.";
-
-	if(!playerShip)
-		return "No ship selected.";
-
-	// Collect relevant errors.
-	vector<string> errors;
-
-	// Find if any ship can install the outfit.
-	for(const Ship *ship : playerShips)
-		if(ShipCanAdd(ship, selectedOutfit))
-			return true;
-
-	// If no selected ship can install the outfit, report error based on playerShip.
-	double outfitNeeded = -selectedOutfit->Get("outfit space");
-	double outfitSpace = playerShip->Attributes().Get("outfit space");
-	if(outfitNeeded > outfitSpace)
-		errors.push_back("You cannot install this outfit, because it takes up "
-			+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
-			+ Format::MassString(outfitSpace) + " free.");
-
-	double weaponNeeded = -selectedOutfit->Get("weapon capacity");
-	double weaponSpace = playerShip->Attributes().Get("weapon capacity");
-	if(weaponNeeded > weaponSpace)
-		errors.push_back("Only part of your ship's outfit capacity is usable for weapons. "
-			"You cannot install this outfit, because it takes up "
-			+ Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
-			+ Format::MassString(weaponSpace) + " free.");
-
-	double engineNeeded = -selectedOutfit->Get("engine capacity");
-	double engineSpace = playerShip->Attributes().Get("engine capacity");
-	if(engineNeeded > engineSpace)
-		errors.push_back("Only part of your ship's outfit capacity is usable for engines. "
-			"You cannot install this outfit, because it takes up "
-			+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
-			+ Format::MassString(engineSpace) + " free.");
-
-	if(selectedOutfit->Category() == "Ammunition")
-		errors.emplace_back(!playerShip->OutfitCount(selectedOutfit) ?
-			"This outfit is ammunition for a weapon. "
-			"You cannot install it without first installing the appropriate weapon."
-			: "You already have the maximum amount of ammunition for this weapon. "
-			"If you want to install more ammunition, you must first install another of these weapons.");
-
-	int mountsNeeded = -selectedOutfit->Get("turret mounts");
-	int mountsFree = playerShip->Attributes().Get("turret mounts");
-	if(mountsNeeded && !mountsFree)
-		errors.emplace_back("This weapon is designed to be installed on a turret mount, "
-			"but your ship does not have any unused turret mounts available.");
-
-	int gunsNeeded = -selectedOutfit->Get("gun ports");
-	int gunsFree = playerShip->Attributes().Get("gun ports");
-	if(gunsNeeded && !gunsFree)
-		errors.emplace_back("This weapon is designed to be installed in a gun port, "
-			"but your ship does not have any unused gun ports available.");
-
-	if(selectedOutfit->Get("installable") < 0.)
-		errors.emplace_back("This item is not an outfit that can be installed in a ship.");
-
-	// For unhandled outfit requirements, show a catch-all error message.
-	if(errors.empty())
-		errors.emplace_back("You cannot install this outfit in your ship, "
-			"because it would reduce one of your ship's attributes to a negative amount.");
-
-	// Return the errors in the appropriate format.
-	if(errors.empty())
-		return true;
-
-	if(errors.size() == 1)
-		return errors[0];
-
-	string errorMessage = "There are several reasons why you cannot buy this outfit:\n";
-	for(const string &error : errors)
-		errorMessage += "- " + error + "\n";
-
-	return errorMessage;
-}
-
-
-
-// Used in the "sell", "uninstall", and "store" to storage contexts. Are we able to remove Outfits from
-// the selected ships ("sell"/"uninstall") or from cargo ("store") to storage?
-// If not, return the reasons why not.
-ShopPanel::TransactionResult OutfitterPanel::CanUninstall(ShopPanel::UninstallAction action) const
-{
-	if(!planet || !selectedOutfit)
-		return "No outfit selected.";
-
-	if(!playerShip)
-		return "No ship selected.";
-
-	if(action == ShopPanel::UninstallAction::Sell)
-	{
-		// Can sell things in Cargo.
-		if(player.Cargo().Get(selectedOutfit))
-			return true;
-
-		// Can sell things in Storage.
-		if(player.Storage().Get(selectedOutfit))
-			return true;
-	}
-	else if(action == ShopPanel::UninstallAction::Store)
-	{
-		// If we have one in cargo, we'll move that one.
-		if(player.Cargo().Get(selectedOutfit))
-			return true;
-	}
-
-	if(selectedOutfit->Get("map"))
-		return "You cannot " + UninstallActionName(action) + " maps. Once you buy one, it is yours permanently.";
-
-	if(HasLicense(selectedOutfit->TrueName()))
-		return "You cannot " + UninstallActionName(action) + " licenses. Once you obtain one, it is yours permanently.";
-
-	for(const Ship *ship : playerShips)
-		if(ShipCanRemove(ship, selectedOutfit))
-			return true;
-
-	// None of the selected ships have any of this outfit in a state where it could be sold.
-	// Either none of the ships even have the outfit:
-	bool hasOutfit = false;
-	for(const Ship *ship : playerShips)
-		if(ship->OutfitCount(selectedOutfit))
-		{
-			hasOutfit = true;
-			break;
-		}
-
-	if(!hasOutfit)
-		return "You don't have any of these outfits to " + UninstallActionName(action) + ".";
-
-	// At least one of the outfit is installed on at least one of the selected ships.
-	// Create a complete summary of reasons why none of this outfit were able to be <verb>'d:
-	// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
-	// <verb>'d. Make a list of ship to errors to assemble into a string later on:
-	vector<pair<string, vector<string>>> dependentOutfitErrors;
-	for(const Ship *ship : playerShips)
-		if(ship->OutfitCount(selectedOutfit))
-		{
-			vector<string> errorDetails;
-			for(const pair<const char *, double> &it : selectedOutfit->Attributes())
-				if(ship->Attributes().Get(it.first) < it.second)
-				{
-					for(const auto &sit : ship->Outfits())
-					{
-						if(sit.first->Get(it.first) < 0.)
-							errorDetails.emplace_back(string("the \"") + sit.first->DisplayName() + "\" "
-								"depends on this outfit and must be uninstalled first");
-					}
-					if(errorDetails.empty())
-						errorDetails.emplace_back(
-							string("\"") + it.first + "\" value would be reduced to less than zero");
-				}
-			if(!errorDetails.empty())
-				dependentOutfitErrors.emplace_back(ship->Name(), std::move(errorDetails));
-		}
-
-	// Return the errors in the appropriate format.
-	if(dependentOutfitErrors.empty())
-		return true;
-
-	string errorMessage = "You cannot " + UninstallActionName(action) + " this from " +
-		(playerShips.size() > 1 ? "any of the selected ships" : "your ship") + " because:\n";
-	int i = 1;
-	for(const auto &[shipName, errors] : dependentOutfitErrors)
-	{
-		if(playerShips.size() > 1)
-		{
-			errorMessage += to_string(i++) + ". You cannot " + UninstallActionName(action) + " this outfit from \"";
-			errorMessage += shipName + "\" because:\n";
-		}
-		for(const string &error : errors)
-			errorMessage += "- " + error + "\n";
-	}
-	return errorMessage;
-}
-
-
-
-// Uninstall outfits from selected ships, redeem credits if it was a sale.
-// This also handles ammo dependencies.
-// Note: This will remove one outfit from each selected ship which has the outfit.
-void OutfitterPanel::Uninstall(bool sell) const
-{
-	// Key:
-	//   's' - Sell
-	//		Uninstall and redeem credits, item goes to Stock if not usually available.
-	//   'u' - Uninstall
-	//		Uninstall from ship and keep the item in Storage.
-
-	// Get the ships that have the most of this outfit installed.
-	const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
-	// Note: to get here, we have already confirmed that every ship in the selection
-	// has the outfit and it is able to be uninstalled in the first place.
-	for(Ship *ship : shipsToOutfit)
-	{
-		// Uninstall the outfit.
-		ship->AddOutfit(selectedOutfit, -1);
-		if(selectedOutfit->Get("required crew"))
-			ship->AddCrew(-selectedOutfit->Get("required crew"));
-		ship->Recharge();
-
-		// If the context is sale:
-		if(sell)
-		{
-			// Do the sale.
-			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
-			player.Accounts().AddCredits(price);
-			player.AddStock(selectedOutfit, 1);
-		}
-		// If the context is uninstall, move the outfit into Storage
-		else
-			// Move to storage.
-			player.Storage().Add(selectedOutfit, 1);
-
-		// Since some outfits have ammo, remove any ammo that must be sold because there
-		// aren't enough supporting slots for said ammo once this outfit is removed.
-		const Outfit *ammo = selectedOutfit->Ammo();
-		if(ammo && ship->OutfitCount(ammo))
-		{
-			// Determine how many of this ammo we must uninstall to also uninstall the launcher.
-			int mustUninstall = 0;
-			for(const pair<const char *, double> &it : ship->Attributes().Attributes())
-				if(it.second < 0.)
-					mustUninstall = max<int>(mustUninstall, it.second / ammo->Get(it.first));
-
-			if(mustUninstall)
-			{
-				ship->AddOutfit(ammo, -mustUninstall);
-
-				// If the context is sale:
-				if(sell)
-				{
-					// Do the sale.
-					int64_t price = player.FleetDepreciation().Value(ammo, day, mustUninstall);
-					player.Accounts().AddCredits(price);
-					player.AddStock(ammo, mustUninstall);
-				}
-				// If the context is uninstall, move the outfit's ammo to storage
-				else
-					// Move to storage.
-					player.Storage().Add(ammo, mustUninstall);
-			}
-		}
-	}
-}
-
-
-
-// Check if the outfit can be purchased (availability, payment, licensing) and
-// if it can be installed on any of the selected ships.
-// If not, return the reasons why not.
-ShopPanel::TransactionResult OutfitterPanel::CanDoBuyButton() const
-{
-	TransactionResult result = CanPurchase();
-	return result ? CanBeInstalled() : result;
-}
-
-
-
-// Buy and install the <modifier> outfits into each selected ship.
-// By definition Buy is from Outfitter (only).
-void OutfitterPanel::BuyFromShopAndInstall() const
-{
-	// Buy the required license.
-	int64_t licenseCost = LicenseCost(selectedOutfit, false);
-	if(licenseCost)
-	{
-		player.Accounts().AddCredits(-licenseCost);
-		for(const string &licenseName : selectedOutfit->Licenses())
-			if(!player.HasLicense(licenseName))
-				player.AddLicense(licenseName);
-	}
-
-	// Special case: maps.
-	int mapSize = selectedOutfit->Get("map");
-	if(mapSize)
-	{
-		bool mapMinables = selectedOutfit->Get("map minables");
-		player.Map(mapSize, mapMinables);
-		player.Accounts().AddCredits(-selectedOutfit->Cost());
-		return;
-	}
-
-	// Special case: licenses.
-	if(IsLicense(selectedOutfit->TrueName()))
-	{
-		player.AddLicense(LicenseRoot(selectedOutfit->TrueName()));
-		player.Accounts().AddCredits(-selectedOutfit->Cost());
-		return;
-	}
-
-	int modifier = Modifier();
-	for(int i = 0; i < modifier && CanDoBuyButton(); ++i)
-	{
-		// Find the ships with the fewest number of these outfits.
-		const vector<Ship *> shipsToOutfit = GetShipsToOutfit(true);
-		for(Ship *ship : shipsToOutfit)
-		{
-			if(!CanDoBuyButton())
-				return;
-
-			// Pay for it and remove it from available stock.
-			int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
-			player.Accounts().AddCredits(-price);
-			player.AddStock(selectedOutfit, -1);
-
-			// Install it on this ship.
-			ship->AddOutfit(selectedOutfit, 1);
-			int required = selectedOutfit->Get("required crew");
-			if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
-				ship->AddCrew(required);
-			ship->Recharge();
-		}
-	}
-}
-
-
-
-// Buy and install up to <modifier> outfits for each selected ship.
-void OutfitterPanel::DoBuyButton()
-{
-	BuyFromShopAndInstall();
-}
-
-
-
-// Return true if the player is able to purchase the item from the outfitter or
-// previously sold stock and can afford it and the player is properly licensed,
-// that is: availability, payment, and licensing, along with wheter the outfit
-// will fit in cargo.
-ShopPanel::TransactionResult OutfitterPanel::CanBuyToCargo() const
-{
-	if(!planet || !selectedOutfit)
-		return "No outfit selected.";
-
-	// Special case: maps, cannot place in Cargo.
-	if(selectedOutfit->Get("map"))
-		return "You place maps in to cargo.";
-
-	if(HasLicense(selectedOutfit->TrueName()))
-		return "You cannot place licenses into cargo.";
-
-	TransactionResult canPurchase = CanPurchase(false);
-	if(!canPurchase)
-		return canPurchase;
-	return CanFitInCargo(true);
-}
-
-
-
-// Buy up to <modifier> of the selected outfit and place them in fleet cargo.
-void OutfitterPanel::BuyIntoCargo()
-{
-	// Buy the required license.
-	int64_t licenseCost = LicenseCost(selectedOutfit, false);
-	if(licenseCost)
-	{
-		player.Accounts().AddCredits(-licenseCost);
-		for(const string &licenseName : selectedOutfit->Licenses())
-			if(!player.HasLicense(licenseName))
-				player.AddLicense(licenseName);
-	}
-
-	int howManyToBuy = Modifier();
-	double mass = selectedOutfit->Mass();
-	if(mass)
-		howManyToBuy = min(howManyToBuy, static_cast<int>(player.Cargo().FreePrecise() / mass));
-
-	// How much will it cost to buy all that we can fit?
-	int64_t price = player.StockDepreciation().Value(selectedOutfit, day, howManyToBuy);
-
-	// Adjust the number to buy to stay within the player's available credits.
-	while(price > player.Accounts().Credits() && howManyToBuy)
-	{
-		howManyToBuy--;
-		price = player.StockDepreciation().Value(selectedOutfit, day, howManyToBuy);
-	}
-
-	// Buy as many as can be paid for and will fit.
-	player.Accounts().AddCredits(-price);
-	player.AddStock(selectedOutfit, -howManyToBuy);
-	player.Cargo().Add(selectedOutfit, howManyToBuy);
-}
-
-
-
-// Sell <modifier> outfits, sourcing from cargo (first) or storage (second) or else the
-// selected ships.
-// Note: When selling from cargo or storage, up to <modifier> outfit will be sold in total,
-// but when selling from the selected ships, up to <modifier> outfit will be sold from each ship.
-// Note: sellOutfits is not used in the OutfitterPanel context.
-void OutfitterPanel::Sell(bool /* storeOutfits */)
-{
-	int modifier = Modifier();
-	// Now figure out where to sell it from:
-	// Sell from Cargo if we have any there:
-	if(player.Cargo().Get(selectedOutfit))
-		for(int i = 0; i < modifier && player.Cargo().Get(selectedOutfit); ++i)
-		{
-			// Do the sale from cargo.
-			player.Cargo().Remove(selectedOutfit);
-			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
-			player.Accounts().AddCredits(price);
-			player.AddStock(selectedOutfit, 1);
-		}
-	// Otherwise, sell from Storage if there are any available.
-	else if(player.Storage().Get(selectedOutfit))
-		for(int i = 0; i < modifier && player.Storage().Get(selectedOutfit); ++i)
-		{
-			// Do the sale from storage.
-			player.Storage().Remove(selectedOutfit);
-			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
-			player.Accounts().AddCredits(price);
-			player.AddStock(selectedOutfit, 1);
-		}
-	// And lastly, sell from the selected ships.
-	// Get the ships that have the most of this outfit installed.
-	else if(!GetShipsToOutfit().empty())
-		for(int i = 0; i < modifier && CanUninstall(ShopPanel::UninstallAction::Sell); ++i)
-			Uninstall(true);
-}
-
-
-
-// Check if the outfit is available to install (from already owned stores) as well as
-// if it can actually be installed on any of the selected ships.
-// If not, return the reasons why not.
-ShopPanel::TransactionResult OutfitterPanel::CanInstall() const
-{
-	if(!planet || !selectedOutfit)
-		return "No outfit selected.";
-
-	if(!player.Storage().Get(selectedOutfit) && !player.Cargo().Get(selectedOutfit))
-		return "You don't have any of this outfit to install, use \"B\" to buy (and install) it.";
-
-	// Then check if installation requirements are met by at least one selected ship.
-	return CanBeInstalled();
-}
-
-
-
-// Install from already owned stores: cargo or storage.
-// Note: Up to <modifier> for each selected ship will be installed.
-void OutfitterPanel::Install()
-{
-	int modifier = Modifier();
-	for(int i = 0; i < modifier && CanBeInstalled(); ++i)
-	{
-		// Find the ships with the fewest number of these outfits.
-		const vector<Ship *> shipsToOutfit = GetShipsToOutfit(true);
-		for(Ship *ship : shipsToOutfit)
-		{
-			if(!CanBeInstalled())
-				return;
-
-			// Use cargo first:
-			if(player.Cargo().Get(selectedOutfit))
-				player.Cargo().Remove(selectedOutfit);
-
-			// Use storage second:
-			else if(player.Storage().Get(selectedOutfit))
-				player.Storage().Remove(selectedOutfit);
-
-			// None were found in cargo or storage, bail out.
-			else
-				return;
-
-			// Install the selected outfit to this ship.
-			ship->AddOutfit(selectedOutfit, 1);
-			int required = selectedOutfit->Get("required crew");
-			if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
-				ship->AddCrew(required);
-			ship->Recharge();
-		}
-	}
-}
-
-
-
-// Uninstall up to <modifier> outfits from each of the selected ships and move them to storage,
-// or, if none are installed, move up to <modifier> of the selected outfit from fleet cargo to
-// storage.
-void OutfitterPanel::Uninstall()
-{
-	int modifier = Modifier();
-	// If installed on ship
-	if(CanUninstall(UninstallAction::Uninstall))
-		for(int i = 0; i < modifier && CanUninstall(ShopPanel::UninstallAction::Uninstall); ++i)
-			Uninstall(false);
-	// Otherwise, move up to <modifier> of the selected outfit from fleet cargo to storage.
-	else
-	{
-		int cargoCount = player.Cargo().Get(selectedOutfit);
-		if(cargoCount)
-		{
-			// Transfer <cargoCount> outfits from cargo to storage.
-			int howManyToMove = min(cargoCount, modifier);
-			player.Cargo().Remove(selectedOutfit, howManyToMove);
-			player.Storage().Add(selectedOutfit, howManyToMove);
-		}
-	}
-}
-
-
-
-// Check if the outfit is able to be moved to cargo from storage.
-// If not, return the reasons why not.
-bool OutfitterPanel::CanMoveToCargoFromStorage() const
-{
-	if(!planet || !selectedOutfit)
-		// No outfit selected.
-		return false;
-
-	if(selectedOutfit->Get("map"))
-		// You cannot move maps around. Once you buy one, it is yours permanently.
-		return false;
-
-	if(HasLicense(selectedOutfit->TrueName()))
-		// You cannot move licenses around. Once you obtain one, it is yours permanently.
-		return false;
-
-	if(!player.Storage().Get(selectedOutfit))
-		// You don't have any of these outfits in storage to move to your cargo hold.
-		return false;
-
-	// The return value must be a bool.
-	return static_cast<bool>(CanFitInCargo());
-}
-
-
-
-// Move up to <modifier> of selected outfit to cargo from storage.
-void OutfitterPanel::MoveToCargoFromStorage()
-{
-	int modifier = Modifier();
-	for(int i = 0; i < modifier && player.Storage().Get(selectedOutfit) && CanFitInCargo(); ++i)
-	{
-		player.Cargo().Add(selectedOutfit);
-		player.Storage().Remove(selectedOutfit);
-	}
-}
-
-
-
-// Move up to <modifier> of the selected outfit from fleet cargo to storage, or,
-// if none are available in cargo, uninstall up to <modifier> outfits from each of the
-// selected ships and move them to storage.
-void OutfitterPanel::RetainInStorage()
-{
-	int modifier = Modifier();
-	// If possible, move up to <modifier> of the selected outfit from fleet cargo to storage.
-	int cargoCount = player.Cargo().Get(selectedOutfit);
-	if(cargoCount)
-	{
-		// Transfer <cargoCount> outfits from cargo to storage.
-		int howManyToMove = min(cargoCount, modifier);
-		player.Cargo().Remove(selectedOutfit, howManyToMove);
-		player.Storage().Add(selectedOutfit, howManyToMove);
-	}
-	// Otherwise, uninstall and move up to <modifier> selected outfits to storage from each
-	// selected ship:
-	else
-		for(int i = 0; i < modifier && CanUninstall(ShopPanel::UninstallAction::Store); ++i)
-			Uninstall(false);
-}
-
-
-
 bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 {
 	if(!selectedOutfit)
@@ -1036,9 +382,9 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 	if(hoverButton == 'i')
 		return CanInstall() && ShipCanAdd(ship, selectedOutfit);
 	if(hoverButton == 's')
-		return CanUninstall(ShopPanel::UninstallAction::Sell) && ShipCanRemove(ship, selectedOutfit);
+		return CanUninstall(UninstallAction::Sell) && ShipCanRemove(ship, selectedOutfit);
 	if(hoverButton == 'u')
-		return CanUninstall(ShopPanel::UninstallAction::Uninstall) && ShipCanRemove(ship, selectedOutfit);
+		return CanUninstall(UninstallAction::Uninstall) && ShipCanRemove(ship, selectedOutfit);
 
 	return false;
 }
@@ -1084,42 +430,270 @@ void OutfitterPanel::DrawKey()
 
 
 
-void OutfitterPanel::ToggleForSale()
+// Check if the given point is within the button zone, and if so return the
+// letter of the button (or ' ' if it's not on a button).
+char OutfitterPanel::CheckButton(int x, int y)
 {
-	showForSale = !showForSale;
+	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 3. * rowOffsetY - BUTTON_ROW_START_PAD;
+	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	const double w = BUTTON_WIDTH / 2;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
 
-	CheckSelection();
-	delayedAutoScroll = true;
+	// Check the Find button.
+	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
+		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
+		return 'f';
+
+	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
+		return '\0';
+
+	// Row 1
+	if(rowBaseY < y && y <= rowBaseY + BUTTON_HEIGHT)
+	{
+		// Check if it's the _Buy button.
+		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
+			return 'b';
+		// Check if it's the _Install button.
+		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
+			return 'i';
+		// Check if it's the _Cargo button.
+		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
+			return 'c';
+	}
+
+	// Row 2
+	if(rowBaseY + rowOffsetY < y && y <= rowBaseY + rowOffsetY + BUTTON_HEIGHT)
+	{
+		// Check if it's the _Sell button:
+		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
+			return 's';
+		// Check if it's the _Uninstall button.
+		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
+			return 'u';
+		// Check if it's the Sto_re button.
+		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
+			return 'r';
+	}
+
+	// Row 3
+	if(rowBaseY + rowOffsetY * 2 < y && y <= rowBaseY + rowOffsetY * 2 + BUTTON_HEIGHT)
+	{
+		// Check if it's the _Leave button.
+		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
+			return 'l';
+	}
+
+	return ' ';
 }
 
 
 
-void OutfitterPanel::ToggleInstalled()
+void OutfitterPanel::DrawButtons()
 {
-	showInstalled = !showInstalled;
+	// There will be two rows of buttons:
+	//  [ Buy  ] [  Install  ] [  Cargo  ]
+	//  [ Sell ] [ Uninstall ] [ Storage ]
+	//                         [  Leave  ]
+	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 2.5 * rowOffsetY - BUTTON_ROW_START_PAD;
+	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
+	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
 
-	CheckSelection();
-	delayedAutoScroll = true;
+	// Draw the button panel (shop side panel footer).
+	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize,
+		*GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(
+		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
+		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
+
+	// Set up font size and colors for the credits.
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Color &back = *GameData::Colors().Get("panel background");
+
+	// Draw the row for credits display.
+	const Point creditsPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - ButtonPanelHeight() + 5);
+	font.Draw("You have:", creditsPoint, dim);
+	const string &credits = Format::CreditString(player.Accounts().Credits());
+	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
+
+	// Draw the row for Fleet Cargo Space free.
+	const Point cargoPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - ButtonPanelHeight() + 25);
+	font.Draw("Cargo Free:", cargoPoint, dim);
+	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+	font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, cargoPoint, bright);
+
+	// Define the button text colors.
+	const Font &bigFont = FontSet::Get(18);
+	const Color &hover = *GameData::Colors().Get("hover");
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &inactive = *GameData::Colors().Get("inactive");
+
+	auto DrawButton = [&](const string &name, const Point &center, bool isActive, bool hovering)
+	{
+		// Draw the first row of buttons.
+		const Color *textColor = !isActive ? &inactive : hovering ? &hover : &active;
+		FillShader::Fill(center, buttonSize, back);
+		bigFont.Draw(name, center - .5 * Point(bigFont.Width(name),
+			bigFont.Height()), *textColor);
+	};
+
+	// Row 1
+	DrawButton("_Buy", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0),
+		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b');
+	DrawButton("_Install", Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0),
+		static_cast<bool>(CanInstall()), hoverButton == 'i');
+	DrawButton("_Cargo", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0),
+		(CanMoveToCargoFromStorage() || CanBuyToCargo()), hoverButton == 'c');
+	// Row 2
+	DrawButton("_Sell", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 1),
+		static_cast<bool>(CanUninstall(UninstallAction::Sell)), hoverButton == 's');
+	DrawButton("_Uninstall", Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1),
+		static_cast<bool>(CanUninstall(UninstallAction::Uninstall)), hoverButton == 'u');
+	DrawButton("Sto_re", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1),
+		static_cast<bool>(CanUninstall(UninstallAction::Store)), hoverButton == 'r');
+	// Row 3
+	DrawButton("_Leave", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2),
+		true, hoverButton == 'l');
+
+	// Draw the Modifier hover text that appears below the buttons when a modifier
+	// is being applied.
+	int modifier = Modifier();
+	if(modifier > 1)
+	{
+		string mod = "x " + to_string(modifier);
+		int modWidth = font.Width(mod);
+		for(int i = -1; i < 2; i++)
+			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0)
+			+ Point(-.5 * modWidth, 10.), dim);
+		for(int i = -1; i < 2; i++)
+			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1)
+			+ Point(-.5 * modWidth, 10.), dim);
+	}
+
+	// Draw tooltips for the button being hovered over:
+	string tooltip;
+	tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
+	if(!tooltip.empty())
+		// Note: there is an offset between the cursor and tooltips in this case so that other
+		// buttons can be seen as the mouse moves around.
+		DrawTooltip(tooltip, hoverPoint + Point(-40, -60), dim, *GameData::Colors().Get("tooltip background"));
+
+	// Draw the tooltip for your full number of credits and free cargo space
+	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 30));
+	if(creditsBox.Contains(hoverPoint))
+		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
+	else if(ShopPanel::hoverCount)
+		--ShopPanel::hoverCount;
+
+	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
+	{
+		tooltip = Format::Number(player.Accounts().Credits()) + " credits" + "\n" +
+			Format::Number(player.Cargo().Free()) + " tons free out of " +
+			Format::Number(player.Cargo().Size()) + " tons total capacity";
+		DrawTooltip(tooltip, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+	}
 }
 
 
 
-void OutfitterPanel::ToggleStorage()
+int OutfitterPanel::FindItem(const string &text) const
 {
-	showStorage = !showStorage;
-
-	CheckSelection();
-	delayedAutoScroll = true;
+	int bestIndex = 9999;
+	int bestItem = -1;
+	auto it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
+	{
+		const Outfit *outfit = it->GetOutfit();
+		int index = Format::Search(outfit->DisplayName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index)
+				return i;
+		}
+	}
+	return bestItem;
 }
 
 
 
-void OutfitterPanel::ToggleCargo()
+ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(char key)
 {
-	showCargo = !showCargo;
+	TransactionResult result = false;
+	if(key == 'b')
+	{
+		// Buy and install up to <modifier> outfits for each selected ship.
+		result = CanDoBuyButton();
+		if(result)
+			DoBuyButton();
+	}
+	else if(key == 's')
+	{
+		// Sell <modifier> of the selected outfit from each selected ship.
+		result = CanUninstall(UninstallAction::Sell);
+		if(result)
+			Sell(false);
+	}
+	else if(key == 'r')
+	{
+		// Move <modifier> of the selected outfit to storage from either cargo (first) or else each
+		// of the selected ships.
+		result = CanUninstall(UninstallAction::Store);
+		if(result)
+			RetainInStorage();
+	}
+	else if(key == 'c')
+	{
+		// Either move up to <multiple> outfits into cargo from storage if any are in storage, or else buy up to
+		// <modifier> outfits into cargo.
+		// Note: If the outfit is not able to be moved from storage or bought into cargo, give an error based on the buy
+		// condition.
+		if(CanMoveToCargoFromStorage())
+			MoveToCargoFromStorage();
+		else
+		{
+			// Selected outfit cannot be moved from storage, try buying:
+			result = CanBuyToCargo();
+			if(result)
+				BuyIntoCargo();
+		}
+	}
+	else if(key == 'i')
+	{
+		// Install up to <modifier> outfits from already owned equipment into each selected ship.
+		result = CanInstall();
+		if(result)
+			Install();
+	}
+	else if(key == 'u')
+	{
+		// Move <modifier> of the selected outfit to storage from each selected ship or from cargo.
+		// Uninstall up to <multiple> outfits from each of the selected ships if any are available to uninstall, or
+		// else move up to <multiple> outfits from cargo into storage.
+		// Note: If the outfit is not able to be uninstalled or moved from cargo, give an error based on the
+		// uninstall condition.
+		result = CanUninstall(UninstallAction::Uninstall);
+		if(result)
+			Uninstall();
+		else if(CanUninstall(UninstallAction::Store))
+		{
+			RetainInStorage();
+			// don't raise the original result that got us into this branch
+			result = true;
+		}
+	}
 
-	CheckSelection();
-	delayedAutoScroll = true;
+	return result;
 }
 
 
@@ -1293,197 +867,694 @@ vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
 
 
 
-void OutfitterPanel::DrawButtons()
+// Return true if the player is able to purchase the item from the outfitter or
+// previously sold stock and can afford it and is properly licensed (availability,
+// payment, licensing).
+ShopPanel::TransactionResult OutfitterPanel::CanPurchase(bool checkSpecialItems) const
 {
-	// There will be two rows of buttons:
-	//  [ Buy  ] [  Install  ] [  Cargo  ]
-	//  [ Sell ] [ Uninstall ] [ Storage ]
-	//                         [  Leave  ]
-	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - 2.5 * rowOffsetY - BUTTON_ROW_START_PAD;
-	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
-	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
+	if(!planet || !selectedOutfit)
+		return "No outfit selected.";
 
-	// Draw the button panel (shop side panel footer).
-	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize,
-		*GameData::Colors().Get("shop side panel background"));
-	FillShader::Fill(
-		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
-		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
-
-	// Set up font size and colors for the credits.
-	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("medium");
-	const Color &back = *GameData::Colors().Get("panel background");
-
-	// Draw the row for credits display.
-	const Point creditsPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - ButtonPanelHeight() + 5);
-	font.Draw("You have:", creditsPoint, dim);
-	const string &credits = Format::CreditString(player.Accounts().Credits());
-	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
-
-	// Draw the row for Fleet Cargo Space free.
-	const Point cargoPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - ButtonPanelHeight() + 25);
-	font.Draw("Cargo Free:", cargoPoint, dim);
-	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-	font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, cargoPoint, bright);
-
-	// Define the button text colors.
-	const Font &bigFont = FontSet::Get(18);
-	const Color &hover = *GameData::Colors().Get("hover");
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &inactive = *GameData::Colors().Get("inactive");
-
-	auto DrawButton = [&](const string &name, const Point &center, bool isActive, bool hovering)
+	// If outfit is not available in the Outfitter, respond that it can't be bought here.
+	if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0))
 	{
-		// Draw the first row of buttons.
-		const Color *textColor = !isActive ? &inactive : hovering ? &hover : &active;
-		FillShader::Fill(center, buttonSize, back);
-		bigFont.Draw(name, center - .5 * Point(bigFont.Width(name),
-			bigFont.Height()), *textColor);
-	};
-
-	// Row 1
-	DrawButton("_Buy", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0),
-		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b');
-	DrawButton("_Install", Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0),
-		static_cast<bool>(CanInstall()), hoverButton == 'i');
-	DrawButton("_Cargo", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0),
-		(CanMoveToCargoFromStorage() || CanBuyToCargo()), hoverButton == 'c');
-	// Row 2
-	DrawButton("_Sell", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 1),
-		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Sell)), hoverButton == 's');
-	DrawButton("_Uninstall", Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1),
-		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Uninstall)), hoverButton == 'u');
-	DrawButton("Sto_re", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1),
-		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Store)), hoverButton == 'r');
-	// Row 3
-	DrawButton("_Leave", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2),
-		true, hoverButton == 'l');
-
-	// Draw the Modifier hover text that appears below the buttons when a modifier
-	// is being applied.
-	int modifier = Modifier();
-	if(modifier > 1)
-	{
-		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		for(int i = -1; i < 2; i++)
-			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0)
-			+ Point(-.5 * modWidth, 10.), dim);
-		for(int i = -1; i < 2; i++)
-			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1)
-			+ Point(-.5 * modWidth, 10.), dim);
+		// The store doesn't have it.
+		return "You cannot buy this outfit here. "
+			"It is being shown in the list because you have one, "
+			"but this " + planet->Noun() + " does not sell them.";
 	}
 
-	// Draw tooltips for the button being hovered over:
-	string tooltip;
-	tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
-	if(!tooltip.empty())
-		// Note: there is an offset between the cursor and tooltips in this case so that other
-		// buttons can be seen as the mouse moves around.
-		DrawTooltip(tooltip, hoverPoint + Point(-40, -60), dim, *GameData::Colors().Get("tooltip background"));
-
-	// Draw the tooltip for your full number of credits and free cargo space
-	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 30));
-	if(creditsBox.Contains(hoverPoint))
-		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
-	else if(ShopPanel::hoverCount)
-		--ShopPanel::hoverCount;
-
-	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
+	// Check special unique outfits, if you already have them.
+	// Skip this if told to for sake of speed
+	if(checkSpecialItems)
 	{
-		tooltip = Format::Number(player.Accounts().Credits()) + " credits" + "\n" +
-			Format::Number(player.Cargo().Free()) + " tons free out of " +
-			Format::Number(player.Cargo().Size()) + " tons total capacity";
-		DrawTooltip(tooltip, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+		int mapSize = selectedOutfit->Get("map");
+		bool mapMinables = selectedOutfit->Get("map minables");
+		if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
+			return "You have already mapped all the systems shown by this map, "
+				"so there is no reason to buy another.";
+
+		if(HasLicense(selectedOutfit->TrueName()))
+			return "You already have one of these licenses, "
+				"so there is no reason to buy another.";
 	}
+
+	// Determine what you will have to pay to buy this outfit.
+	int64_t cost = player.StockDepreciation().Value(selectedOutfit, day);
+	int64_t credits = player.Accounts().Credits();
+	if(cost > credits)
+		return "You don't have enough money to buy this outfit. You need a further " +
+			Format::CreditString(cost - credits);
+
+	// Add the cost to buy the required license.
+	int64_t licenseCost = LicenseCost(selectedOutfit, false);
+	if(cost + licenseCost > credits)
+		return "You don't have enough money to buy this outfit because you also need to buy a "
+			"license for it. You need a further " +
+			Format::CreditString(cost + licenseCost - credits);
+
+	// Check that the player has any necessary licenses.
+	if(licenseCost < 0)
+		return "You cannot buy this outfit, because it requires a license that you don't have.";
+
+	// The outfit can be purchased (available in the outfitter, licensed and affordable).
+	return true;
 }
 
 
 
-// Check if the given point is within the button zone, and if so return the
-// letter of the button (or ' ' if it's not on a button).
-char OutfitterPanel::CheckButton(int x, int y)
+// Checking where it will go (can it fit in fleet cargo), not checking where it will
+// be sourced from.
+ShopPanel::TransactionResult OutfitterPanel::CanFitInCargo(bool returnReason) const
 {
-	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - 3. * rowOffsetY - BUTTON_ROW_START_PAD;
-	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double w = BUTTON_WIDTH / 2;
-	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
+	// Check fleet cargo space vs mass.
+	double mass = selectedOutfit->Mass();
+	double freeCargo = player.Cargo().FreePrecise();
+	if(!mass || freeCargo >= mass)
+		return true;
 
-	// Check the Find button.
-	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
-		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
-		return 'f';
-
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
-		return '\0';
-
-	// Row 1
-	if(rowBaseY < y && y <= rowBaseY + BUTTON_HEIGHT)
+	// Don't waste time making strings that won't get used. However, we do need
+	// to make the string here while we have the values available.
+	if(returnReason)
 	{
-		// Check if it's the _Buy button.
-		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
-			return 'b';
-		// Check if it's the _Install button.
-		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
-			return 'i';
-		// Check if it's the _Cargo button.
-		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
-			return 'c';
+		return "You cannot load this outfit into cargo, because it takes up "
+			+ Format::CargoString(mass, "mass") + " and your fleet has "
+			+ Format::CargoString(freeCargo, "cargo space") + " free.";
 	}
 
-	// Row 2
-	if(rowBaseY + rowOffsetY < y && y <= rowBaseY + rowOffsetY + BUTTON_HEIGHT)
-	{
-		// Check if it's the _Sell button:
-		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
-			return 's';
-		// Check if it's the _Uninstall button.
-		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
-			return 'u';
-		// Check if it's the Sto_re button.
-		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
-			return 'r';
-	}
-
-	// Row 3
-	if(rowBaseY + rowOffsetY * 2 < y && y <= rowBaseY + rowOffsetY * 2 + BUTTON_HEIGHT)
-	{
-		// Check if it's the _Leave button.
-		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
-			return 'l';
-	}
-
-	return ' ';
+	return false;
 }
 
 
 
-int OutfitterPanel::FindItem(const string &text) const
+// Checking where it will go (whether it actually be installed into any selected ship),
+// not checking where it will be sourced from.
+ShopPanel::TransactionResult OutfitterPanel::CanBeInstalled() const
 {
-	int bestIndex = 9999;
-	int bestItem = -1;
-	auto it = zones.begin();
-	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
+	if(!planet || !selectedOutfit)
+		return "No outfit selected.";
+
+	if(!playerShip)
+		return "No ship selected.";
+
+	// Collect relevant errors.
+	vector<string> errors;
+
+	// Find if any ship can install the outfit.
+	for(const Ship *ship : playerShips)
+		if(ShipCanAdd(ship, selectedOutfit))
+			return true;
+
+	// If no selected ship can install the outfit, report error based on playerShip.
+	double outfitNeeded = -selectedOutfit->Get("outfit space");
+	double outfitSpace = playerShip->Attributes().Get("outfit space");
+	if(outfitNeeded > outfitSpace)
+		errors.push_back("You cannot install this outfit, because it takes up "
+			+ Format::CargoString(outfitNeeded, "outfit space") + ", and this ship has "
+			+ Format::MassString(outfitSpace) + " free.");
+
+	double weaponNeeded = -selectedOutfit->Get("weapon capacity");
+	double weaponSpace = playerShip->Attributes().Get("weapon capacity");
+	if(weaponNeeded > weaponSpace)
+		errors.push_back("Only part of your ship's outfit capacity is usable for weapons. "
+			"You cannot install this outfit, because it takes up "
+			+ Format::CargoString(weaponNeeded, "weapon space") + ", and this ship has "
+			+ Format::MassString(weaponSpace) + " free.");
+
+	double engineNeeded = -selectedOutfit->Get("engine capacity");
+	double engineSpace = playerShip->Attributes().Get("engine capacity");
+	if(engineNeeded > engineSpace)
+		errors.push_back("Only part of your ship's outfit capacity is usable for engines. "
+			"You cannot install this outfit, because it takes up "
+			+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
+			+ Format::MassString(engineSpace) + " free.");
+
+	if(selectedOutfit->Category() == "Ammunition")
+		errors.emplace_back(!playerShip->OutfitCount(selectedOutfit) ?
+			"This outfit is ammunition for a weapon. "
+			"You cannot install it without first installing the appropriate weapon."
+			: "You already have the maximum amount of ammunition for this weapon. "
+			"If you want to install more ammunition, you must first install another of these weapons.");
+
+	int mountsNeeded = -selectedOutfit->Get("turret mounts");
+	int mountsFree = playerShip->Attributes().Get("turret mounts");
+	if(mountsNeeded && !mountsFree)
+		errors.emplace_back("This weapon is designed to be installed on a turret mount, "
+			"but your ship does not have any unused turret mounts available.");
+
+	int gunsNeeded = -selectedOutfit->Get("gun ports");
+	int gunsFree = playerShip->Attributes().Get("gun ports");
+	if(gunsNeeded && !gunsFree)
+		errors.emplace_back("This weapon is designed to be installed in a gun port, "
+			"but your ship does not have any unused gun ports available.");
+
+	if(selectedOutfit->Get("installable") < 0.)
+		errors.emplace_back("This item is not an outfit that can be installed in a ship.");
+
+	// For unhandled outfit requirements, show a catch-all error message.
+	if(errors.empty())
+		errors.emplace_back("You cannot install this outfit in your ship, "
+			"because it would reduce one of your ship's attributes to a negative amount.");
+
+	// Return the errors in the appropriate format.
+	if(errors.empty())
+		return true;
+
+	if(errors.size() == 1)
+		return errors[0];
+
+	string errorMessage = "There are several reasons why you cannot buy this outfit:\n";
+	for(const string &error : errors)
+		errorMessage += "- " + error + "\n";
+
+	return errorMessage;
+}
+
+
+
+// Used in the "sell", "uninstall", and "store" to storage contexts. Are we able to remove Outfits from
+// the selected ships ("sell"/"uninstall") or from cargo ("store") to storage?
+// If not, return the reasons why not.
+ShopPanel::TransactionResult OutfitterPanel::CanUninstall(UninstallAction action) const
+{
+	if(!planet || !selectedOutfit)
+		return "No outfit selected.";
+
+	if(!playerShip)
+		return "No ship selected.";
+
+	if(action == UninstallAction::Sell)
 	{
-		const Outfit *outfit = it->GetOutfit();
-		int index = Format::Search(outfit->DisplayName(), text);
-		if(index >= 0 && index < bestIndex)
+		// Can sell things in Cargo.
+		if(player.Cargo().Get(selectedOutfit))
+			return true;
+
+		// Can sell things in Storage.
+		if(player.Storage().Get(selectedOutfit))
+			return true;
+	}
+	else if(action == UninstallAction::Store)
+	{
+		// If we have one in cargo, we'll move that one.
+		if(player.Cargo().Get(selectedOutfit))
+			return true;
+	}
+
+	if(selectedOutfit->Get("map"))
+		return "You cannot " + UninstallActionName(action) + " maps. Once you buy one, it is yours permanently.";
+
+	if(HasLicense(selectedOutfit->TrueName()))
+		return "You cannot " + UninstallActionName(action) + " licenses. Once you obtain one, it is yours permanently.";
+
+	for(const Ship *ship : playerShips)
+		if(ShipCanRemove(ship, selectedOutfit))
+			return true;
+
+	// None of the selected ships have any of this outfit in a state where it could be sold.
+	// Either none of the ships even have the outfit:
+	bool hasOutfit = false;
+	for(const Ship *ship : playerShips)
+		if(ship->OutfitCount(selectedOutfit))
 		{
-			bestIndex = index;
-			bestItem = i;
-			if(!index)
-				return i;
+			hasOutfit = true;
+			break;
+		}
+
+	if(!hasOutfit)
+		return "You don't have any of these outfits to " + UninstallActionName(action) + ".";
+
+	// At least one of the outfit is installed on at least one of the selected ships.
+	// Create a complete summary of reasons why none of this outfit were able to be <verb>'d:
+	// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
+	// <verb>'d. Make a list of ship to errors to assemble into a string later on:
+	vector<pair<string, vector<string>>> dependentOutfitErrors;
+	for(const Ship *ship : playerShips)
+		if(ship->OutfitCount(selectedOutfit))
+		{
+			vector<string> errorDetails;
+			for(const pair<const char *, double> &it : selectedOutfit->Attributes())
+				if(ship->Attributes().Get(it.first) < it.second)
+				{
+					for(const auto &sit : ship->Outfits())
+					{
+						if(sit.first->Get(it.first) < 0.)
+							errorDetails.emplace_back(string("the \"") + sit.first->DisplayName() + "\" "
+								"depends on this outfit and must be uninstalled first");
+					}
+					if(errorDetails.empty())
+						errorDetails.emplace_back(
+							string("\"") + it.first + "\" value would be reduced to less than zero");
+				}
+			if(!errorDetails.empty())
+				dependentOutfitErrors.emplace_back(ship->Name(), std::move(errorDetails));
+		}
+
+	// Return the errors in the appropriate format.
+	if(dependentOutfitErrors.empty())
+		return true;
+
+	string errorMessage = "You cannot " + UninstallActionName(action) + " this from " +
+		(playerShips.size() > 1 ? "any of the selected ships" : "your ship") + " because:\n";
+	int i = 1;
+	for(const auto &[shipName, errors] : dependentOutfitErrors)
+	{
+		if(playerShips.size() > 1)
+		{
+			errorMessage += to_string(i++) + ". You cannot " + UninstallActionName(action) + " this outfit from \"";
+			errorMessage += shipName + "\" because:\n";
+		}
+		for(const string &error : errors)
+			errorMessage += "- " + error + "\n";
+	}
+	return errorMessage;
+}
+
+
+
+// Return true if the player is able to purchase the item from the outfitter or
+// previously sold stock and can afford it and the player is properly licensed,
+// that is: availability, payment, and licensing, along with wheter the outfit
+// will fit in cargo.
+ShopPanel::TransactionResult OutfitterPanel::CanBuyToCargo() const
+{
+	if(!planet || !selectedOutfit)
+		return "No outfit selected.";
+
+	// Special case: maps, cannot place in Cargo.
+	if(selectedOutfit->Get("map"))
+		return "You place maps in to cargo.";
+
+	if(HasLicense(selectedOutfit->TrueName()))
+		return "You cannot place licenses into cargo.";
+
+	TransactionResult canPurchase = CanPurchase(false);
+	if(!canPurchase)
+		return canPurchase;
+	return CanFitInCargo(true);
+}
+
+
+
+// Check if the outfit can be purchased (availability, payment, licensing) and
+// if it can be installed on any of the selected ships.
+// If not, return the reasons why not.
+ShopPanel::TransactionResult OutfitterPanel::CanDoBuyButton() const
+{
+	TransactionResult result = CanPurchase();
+	return result ? CanBeInstalled() : result;
+}
+
+
+
+// Check if the outfit is available to install (from already owned stores) as well as
+// if it can actually be installed on any of the selected ships.
+// If not, return the reasons why not.
+ShopPanel::TransactionResult OutfitterPanel::CanInstall() const
+{
+	if(!planet || !selectedOutfit)
+		return "No outfit selected.";
+
+	if(!player.Storage().Get(selectedOutfit) && !player.Cargo().Get(selectedOutfit))
+		return "You don't have any of this outfit to install, use \"B\" to buy (and install) it.";
+
+	// Then check if installation requirements are met by at least one selected ship.
+	return CanBeInstalled();
+}
+
+
+
+// Buy up to <modifier> of the selected outfit and place them in fleet cargo.
+void OutfitterPanel::BuyIntoCargo()
+{
+	// Buy the required license.
+	int64_t licenseCost = LicenseCost(selectedOutfit, false);
+	if(licenseCost)
+	{
+		player.Accounts().AddCredits(-licenseCost);
+		for(const string &licenseName : selectedOutfit->Licenses())
+			if(!player.HasLicense(licenseName))
+				player.AddLicense(licenseName);
+	}
+
+	int howManyToBuy = Modifier();
+	double mass = selectedOutfit->Mass();
+	if(mass)
+		howManyToBuy = min(howManyToBuy, static_cast<int>(player.Cargo().FreePrecise() / mass));
+
+	// How much will it cost to buy all that we can fit?
+	int64_t price = player.StockDepreciation().Value(selectedOutfit, day, howManyToBuy);
+
+	// Adjust the number to buy to stay within the player's available credits.
+	while(price > player.Accounts().Credits() && howManyToBuy)
+	{
+		howManyToBuy--;
+		price = player.StockDepreciation().Value(selectedOutfit, day, howManyToBuy);
+	}
+
+	// Buy as many as can be paid for and will fit.
+	player.Accounts().AddCredits(-price);
+	player.AddStock(selectedOutfit, -howManyToBuy);
+	player.Cargo().Add(selectedOutfit, howManyToBuy);
+}
+
+
+
+// Buy and install up to <modifier> outfits for each selected ship.
+void OutfitterPanel::DoBuyButton()
+{
+	BuyFromShopAndInstall();
+}
+
+
+
+// Sell <modifier> outfits, sourcing from cargo (first) or storage (second) or else the
+// selected ships.
+// Note: When selling from cargo or storage, up to <modifier> outfit will be sold in total,
+// but when selling from the selected ships, up to <modifier> outfit will be sold from each ship.
+// Note: sellOutfits is not used in the OutfitterPanel context.
+void OutfitterPanel::Sell(bool /* storeOutfits */)
+{
+	int modifier = Modifier();
+	// Now figure out where to sell it from:
+	// Sell from Cargo if we have any there:
+	if(player.Cargo().Get(selectedOutfit))
+		for(int i = 0; i < modifier && player.Cargo().Get(selectedOutfit); ++i)
+		{
+			// Do the sale from cargo.
+			player.Cargo().Remove(selectedOutfit);
+			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+			player.Accounts().AddCredits(price);
+			player.AddStock(selectedOutfit, 1);
+		}
+	// Otherwise, sell from Storage if there are any available.
+	else if(player.Storage().Get(selectedOutfit))
+		for(int i = 0; i < modifier && player.Storage().Get(selectedOutfit); ++i)
+		{
+			// Do the sale from storage.
+			player.Storage().Remove(selectedOutfit);
+			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+			player.Accounts().AddCredits(price);
+			player.AddStock(selectedOutfit, 1);
+		}
+	// And lastly, sell from the selected ships.
+	// Get the ships that have the most of this outfit installed.
+	else if(!GetShipsToOutfit().empty())
+		for(int i = 0; i < modifier && CanUninstall(UninstallAction::Sell); ++i)
+			Uninstall(true);
+}
+
+
+
+// Install from already owned stores: cargo or storage.
+// Note: Up to <modifier> for each selected ship will be installed.
+void OutfitterPanel::Install()
+{
+	int modifier = Modifier();
+	for(int i = 0; i < modifier && CanBeInstalled(); ++i)
+	{
+		// Find the ships with the fewest number of these outfits.
+		const vector<Ship *> shipsToOutfit = GetShipsToOutfit(true);
+		for(Ship *ship : shipsToOutfit)
+		{
+			if(!CanBeInstalled())
+				return;
+
+			// Use cargo first:
+			if(player.Cargo().Get(selectedOutfit))
+				player.Cargo().Remove(selectedOutfit);
+
+			// Use storage second:
+			else if(player.Storage().Get(selectedOutfit))
+				player.Storage().Remove(selectedOutfit);
+
+			// None were found in cargo or storage, bail out.
+			else
+				return;
+
+			// Install the selected outfit to this ship.
+			ship->AddOutfit(selectedOutfit, 1);
+			int required = selectedOutfit->Get("required crew");
+			if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
+				ship->AddCrew(required);
+			ship->Recharge();
 		}
 	}
-	return bestItem;
+}
+
+
+
+// Check if the outfit is able to be moved to cargo from storage.
+// If not, return the reasons why not.
+bool OutfitterPanel::CanMoveToCargoFromStorage() const
+{
+	if(!planet || !selectedOutfit)
+		// No outfit selected.
+		return false;
+
+	if(selectedOutfit->Get("map"))
+		// You cannot move maps around. Once you buy one, it is yours permanently.
+		return false;
+
+	if(HasLicense(selectedOutfit->TrueName()))
+		// You cannot move licenses around. Once you obtain one, it is yours permanently.
+		return false;
+
+	if(!player.Storage().Get(selectedOutfit))
+		// You don't have any of these outfits in storage to move to your cargo hold.
+		return false;
+
+	// The return value must be a bool.
+	return static_cast<bool>(CanFitInCargo());
+}
+
+
+
+// Move up to <modifier> of selected outfit to cargo from storage.
+void OutfitterPanel::MoveToCargoFromStorage()
+{
+	int modifier = Modifier();
+	for(int i = 0; i < modifier && player.Storage().Get(selectedOutfit) && CanFitInCargo(); ++i)
+	{
+		player.Cargo().Add(selectedOutfit);
+		player.Storage().Remove(selectedOutfit);
+	}
+}
+
+
+
+// Move up to <modifier> of the selected outfit from fleet cargo to storage, or,
+// if none are available in cargo, uninstall up to <modifier> outfits from each of the
+// selected ships and move them to storage.
+void OutfitterPanel::RetainInStorage()
+{
+	int modifier = Modifier();
+	// If possible, move up to <modifier> of the selected outfit from fleet cargo to storage.
+	int cargoCount = player.Cargo().Get(selectedOutfit);
+	if(cargoCount)
+	{
+		// Transfer <cargoCount> outfits from cargo to storage.
+		int howManyToMove = min(cargoCount, modifier);
+		player.Cargo().Remove(selectedOutfit, howManyToMove);
+		player.Storage().Add(selectedOutfit, howManyToMove);
+	}
+	// Otherwise, uninstall and move up to <modifier> selected outfits to storage from each
+	// selected ship:
+	else
+		for(int i = 0; i < modifier && CanUninstall(UninstallAction::Store); ++i)
+			Uninstall(false);
+}
+
+
+
+// Buy and install the <modifier> outfits into each selected ship.
+// By definition Buy is from Outfitter (only).
+void OutfitterPanel::BuyFromShopAndInstall() const
+{
+	// Buy the required license.
+	int64_t licenseCost = LicenseCost(selectedOutfit, false);
+	if(licenseCost)
+	{
+		player.Accounts().AddCredits(-licenseCost);
+		for(const string &licenseName : selectedOutfit->Licenses())
+			if(!player.HasLicense(licenseName))
+				player.AddLicense(licenseName);
+	}
+
+	// Special case: maps.
+	int mapSize = selectedOutfit->Get("map");
+	if(mapSize)
+	{
+		bool mapMinables = selectedOutfit->Get("map minables");
+		player.Map(mapSize, mapMinables);
+		player.Accounts().AddCredits(-selectedOutfit->Cost());
+		return;
+	}
+
+	// Special case: licenses.
+	if(IsLicense(selectedOutfit->TrueName()))
+	{
+		player.AddLicense(LicenseRoot(selectedOutfit->TrueName()));
+		player.Accounts().AddCredits(-selectedOutfit->Cost());
+		return;
+	}
+
+	int modifier = Modifier();
+	for(int i = 0; i < modifier && CanDoBuyButton(); ++i)
+	{
+		// Find the ships with the fewest number of these outfits.
+		const vector<Ship *> shipsToOutfit = GetShipsToOutfit(true);
+		for(Ship *ship : shipsToOutfit)
+		{
+			if(!CanDoBuyButton())
+				return;
+
+			// Pay for it and remove it from available stock.
+			int64_t price = player.StockDepreciation().Value(selectedOutfit, day);
+			player.Accounts().AddCredits(-price);
+			player.AddStock(selectedOutfit, -1);
+
+			// Install it on this ship.
+			ship->AddOutfit(selectedOutfit, 1);
+			int required = selectedOutfit->Get("required crew");
+			if(required && ship->Crew() + required <= static_cast<int>(ship->Attributes().Get("bunks")))
+				ship->AddCrew(required);
+			ship->Recharge();
+		}
+	}
+}
+
+
+
+// Uninstall up to <modifier> outfits from each of the selected ships and move them to storage,
+// or, if none are installed, move up to <modifier> of the selected outfit from fleet cargo to
+// storage.
+void OutfitterPanel::Uninstall()
+{
+	int modifier = Modifier();
+	// If installed on ship
+	if(CanUninstall(UninstallAction::Uninstall))
+		for(int i = 0; i < modifier && CanUninstall(UninstallAction::Uninstall); ++i)
+			Uninstall(false);
+	// Otherwise, move up to <modifier> of the selected outfit from fleet cargo to storage.
+	else
+	{
+		int cargoCount = player.Cargo().Get(selectedOutfit);
+		if(cargoCount)
+		{
+			// Transfer <cargoCount> outfits from cargo to storage.
+			int howManyToMove = min(cargoCount, modifier);
+			player.Cargo().Remove(selectedOutfit, howManyToMove);
+			player.Storage().Add(selectedOutfit, howManyToMove);
+		}
+	}
+}
+
+
+
+// Uninstall outfits from selected ships, redeem credits if it was a sale.
+// This also handles ammo dependencies.
+// Note: This will remove one outfit from each selected ship which has the outfit.
+void OutfitterPanel::Uninstall(bool sell) const
+{
+	// Key:
+	//   's' - Sell
+	//		Uninstall and redeem credits, item goes to Stock if not usually available.
+	//   'u' - Uninstall
+	//		Uninstall from ship and keep the item in Storage.
+
+	// Get the ships that have the most of this outfit installed.
+	const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
+	// Note: to get here, we have already confirmed that every ship in the selection
+	// has the outfit and it is able to be uninstalled in the first place.
+	for(Ship *ship : shipsToOutfit)
+	{
+		// Uninstall the outfit.
+		ship->AddOutfit(selectedOutfit, -1);
+		if(selectedOutfit->Get("required crew"))
+			ship->AddCrew(-selectedOutfit->Get("required crew"));
+		ship->Recharge();
+
+		// If the context is sale:
+		if(sell)
+		{
+			// Do the sale.
+			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+			player.Accounts().AddCredits(price);
+			player.AddStock(selectedOutfit, 1);
+		}
+		// If the context is uninstall, move the outfit into Storage
+		else
+			// Move to storage.
+			player.Storage().Add(selectedOutfit, 1);
+
+		// Since some outfits have ammo, remove any ammo that must be sold because there
+		// aren't enough supporting slots for said ammo once this outfit is removed.
+		const Outfit *ammo = selectedOutfit->Ammo();
+		if(ammo && ship->OutfitCount(ammo))
+		{
+			// Determine how many of this ammo we must uninstall to also uninstall the launcher.
+			int mustUninstall = 0;
+			for(const pair<const char *, double> &it : ship->Attributes().Attributes())
+				if(it.second < 0.)
+					mustUninstall = max<int>(mustUninstall, it.second / ammo->Get(it.first));
+
+			if(mustUninstall)
+			{
+				ship->AddOutfit(ammo, -mustUninstall);
+
+				// If the context is sale:
+				if(sell)
+				{
+					// Do the sale.
+					int64_t price = player.FleetDepreciation().Value(ammo, day, mustUninstall);
+					player.Accounts().AddCredits(price);
+					player.AddStock(ammo, mustUninstall);
+				}
+				// If the context is uninstall, move the outfit's ammo to storage
+				else
+					// Move to storage.
+					player.Storage().Add(ammo, mustUninstall);
+			}
+		}
+	}
+}
+
+
+
+void OutfitterPanel::ToggleForSale()
+{
+	showForSale = !showForSale;
+
+	CheckSelection();
+	delayedAutoScroll = true;
+}
+
+
+
+void OutfitterPanel::ToggleInstalled()
+{
+	showInstalled = !showInstalled;
+
+	CheckSelection();
+	delayedAutoScroll = true;
+}
+
+
+
+void OutfitterPanel::ToggleStorage()
+{
+	showStorage = !showStorage;
+
+	CheckSelection();
+	delayedAutoScroll = true;
+}
+
+
+
+void OutfitterPanel::ToggleCargo()
+{
+	showCargo = !showCargo;
+
+	CheckSelection();
+	delayedAutoScroll = true;
 }

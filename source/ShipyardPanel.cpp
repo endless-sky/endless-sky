@@ -504,3 +504,31 @@ int ShipyardPanel::FindItem(const string &text) const
 	}
 	return bestItem;
 }
+
+
+
+ShopPanel::TransactionResult ShipyardPanel::HandleShortcuts(char key)
+{
+	TransactionResult result = false;
+	if(key == 'b')
+	{
+		// Buy up to <modifier> ships.
+		result = CanDoBuyButton();
+		if(result)
+			DoBuyButton();
+	}
+	else if(key == 's')
+	{
+		// Sell selected ships and outfits.
+		if(playerShip)
+			Sell(false);
+	}
+	else if(key == 'r' || key == 'u')
+	{
+		// Sell selected ships and move outfits to Storage.
+		if(playerShip)
+			Sell(true);
+	}
+
+	return result;
+}

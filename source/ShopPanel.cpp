@@ -256,83 +256,6 @@ int ShopPanel::VisibilityCheckboxesSize() const
 
 
 
-ShopPanel::TransactionResult ShopPanel::CanBuyToCargo() const
-{
-	return false;
-}
-
-
-
-ShopPanel::TransactionResult ShopPanel::CanDoBuyButton() const
-{
-	return false;
-}
-
-
-
-void ShopPanel::BuyIntoCargo()
-{
-}
-
-
-
-void ShopPanel::DoBuyButton()
-{
-}
-
-
-
-ShopPanel::TransactionResult ShopPanel::CanUninstall(ShopPanel::UninstallAction action) const
-{
-	return false;
-}
-
-
-
-ShopPanel::TransactionResult ShopPanel::CanInstall() const
-{
-	return false;
-}
-
-
-
-void ShopPanel::Install()
-{
-}
-
-
-
-void ShopPanel::Uninstall()
-{
-}
-
-
-
-bool ShopPanel::CanMoveToCargoFromStorage() const
-{
-	return false;
-}
-
-
-
-void ShopPanel::MoveToCargoFromStorage()
-{
-}
-
-
-void ShopPanel::RetainInStorage()
-{
-}
-
-
-
-bool ShopPanel::CanSellMultiple() const
-{
-	return true;
-}
-
-
-
 bool ShopPanel::ShouldHighlight(const Ship *ship)
 {
 	return (hoverButton == 's');
@@ -343,7 +266,6 @@ bool ShopPanel::ShouldHighlight(const Ship *ship)
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	TransactionResult result = false;
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
@@ -481,98 +403,20 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
 	else if(key == 'f')
 		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
-	else if(key == 'b')
-	{
-		// Outfitter: Buy and install up to <modifier> outfits for each selected ship.
-		// Shipyard: Buy up to <modifier> ships.
-		result = CanDoBuyButton();
-		if(result)
-			DoBuyButton();
-	}
-	else if(key == 's')
-	{
-		// In the Shipyard: Sell selected ships and outfits.
-		// In the Outfitter: Sell <modifier> of the selected outfit from each selected ship.
-		if(isOutfitter)
-			result = CanUninstall(UninstallAction::Sell);
-		else
-			result = playerShip;
-
-		if(result)
-			Sell(false);
-	}
-	else if(key == 'r')
-	{
-		// In the Shipyard: Sell selected ships and move outfits to Storage.
-		// In the Outfitter: Move <modifier> of the selected outfit to storage from either cargo (first) or else each
-		// of the selected ships.
-		if(isOutfitter)
-		{
-			result = CanUninstall(UninstallAction::Store);
-			if(result)
-				RetainInStorage();
-		}
-		else if(playerShip)
-			Sell(true);
-	}
-	else if(key == 'c' && isOutfitter)
-	{
-		// Either move up to <multiple> outfits into cargo from storage if any are in storage, or else buy up to
-		// <modifier> outfits into cargo.
-		// Note: If the outfit is not able to be moved from storage or bought into cargo, give an error based on the buy
-		// condition.
-		if(CanMoveToCargoFromStorage())
-			MoveToCargoFromStorage();
-		else
-		{
-			// Selected outfit cannot be moved from storage, try buying:
-			result = CanBuyToCargo();
-			if(result)
-				BuyIntoCargo();
-		}
-	}
-	else if(key == 'i' && isOutfitter)
-	{
-		// Install up to <modifier> outfits from already owned equipment into each selected ship.
-		result = CanInstall();
-		if(result)
-			Install();
-	}
-	else if(key == 'u')
-	{
-		// In the Shipyard: Sell selected ships and move outfits to Storage (previous behavior).
-		// In the Outfitter: Move <modifier> of the selected outfit to storage from each selected ship or from cargo.
-		if(isOutfitter)
-		{
-			// Uninstall up to <multiple> outfits from each of the selected ships if any are available to uninstall, or
-			// else move up to <multiple> outfits from cargo into storage.
-			// Note: If the outfit is not able to be uninstalled or moved from cargo, give an error based on the
-			// uninstall condition.
-			result = CanUninstall(UninstallAction::Uninstall);
-			if(result)
-				Uninstall();
-			else if(CanUninstall(UninstallAction::Store))
-			{
-				RetainInStorage();
-				result = true;
-			}
-		}
-		else if(playerShip)
-			// Shipyard, old behavior, treat 'u' the same as 'r': Sell ship and retain the outfits in storage.
-			Sell(true);
-	}
 	else
-		return false;
-
-	if(result.HasMessage())
-		GetUI()->Push(new Dialog(result.Message()));
-	else if(isOutfitter)
 	{
-		// Ship-based updates to cargo are handled when leaving.
-		// Ship-based selection changes are asynchronous, and handled by ShipyardPanel.
-		player.UpdateCargoCapacities();
-		CheckSelection();
+		TransactionResult result = HandleShortcuts(static_cast<char>(key));
+		if(result.HasMessage())
+			GetUI()->Push(new Dialog(result.Message()));
+		else if(isOutfitter)
+		{
+			// Ship-based updates to cargo are handled when leaving.
+			// Ship-based selection changes are asynchronous, and handled by ShipyardPanel.
+			player.UpdateCargoCapacities();
+		}
 	}
+
+	CheckSelection();
 
 	return true;
 }
