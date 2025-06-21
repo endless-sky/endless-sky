@@ -3900,24 +3900,6 @@ Files:
 Copyright: David Stark (zarkonnen@gmail.com)
 License: CC-BY-SA-4.0
 
-License: Depends
- Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and
- placed in the public domain. In June 2017, Unsplash modified their terms and conditions to make all images
- uploaded after that date subject to a permissive license (the "Unsplash License.") These pictures were added
- to the game after June 2017, but could have been uploaded before then. Therefore, the license of these images
- depends on when they were uploaded. If they were uploaded before June 2017, they are in the public domain. If
- they were uploaded on or after June 2017, they are subject to the Unsplash License. Additionally, all images
- uploaded to Unsplash after February 2018 cannot be sold without making "significant alterations" as they are
- subject to more restrictive terms and conditions.
-
-License: Unsplash
- Unsplash grants you an irrevocable, nonexclusive, worldwide copyright
- license to download, copy, modify, distribute, perform, and use photos
- from Unsplash for free, including for commercial purposes, without
- permission from or attributing the photographer or Unsplash. This
- license does not include the right to compile photos from Unsplash to
- replicate a similar or competing service.
-
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
