@@ -1220,6 +1220,11 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		// Any potential on offer conversation has been finished, so update
 		// the active NPCs for the first time.
 		UpdateNPCs(player);
+		if(deadline)
+		{
+			DistanceMap here(player);
+			player.CalculateRemainingDeadline(*this, here);
+		}
 	}
 	else if(trigger == DECLINE)
 	{
