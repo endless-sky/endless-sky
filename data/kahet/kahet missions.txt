@@ -1570,7 +1570,7 @@ mission "Ka'het: Patir Mystery 12.2A"
 		has "Ka'het: Patir Mystery 11: done"
 		( "Ka'het: Patir Mystery 12.1A: offered" + "Ka'het: Patir Mystery 12.1A: declined" ) % 2 == 0
 	to accept
-			has "Ka'het: Patir Mystery 12.1A: declined"
+		has "Ka'het: Patir Mystery 12.1A: declined"
 	on offer
 		conversation
 			`You find the team waiting for you in the lab. Next to them are two mechanical crates, roughly the size of a person. Most of the clutter around the room has been cut down considerably; these satellites alone must have used the larger part of their reserves. "Here they are, Captain," Dusk states proudly. "Two autonomous surveillance probes, capable of scanning an entire system without any input and slowly beaming the results back to us. Their capabilities are far from what our main fleet is capable of back home, but, considering our situation, they should be more than enough.`
