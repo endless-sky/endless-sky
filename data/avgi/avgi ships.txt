@@ -1834,7 +1834,8 @@ ship "Difraktos"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"R-360 RCS Thrusters" 2
+		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	engine 0 141
@@ -1915,7 +1916,8 @@ ship "Difraktos" "Difraktos (KKV)"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"R-360 RCS Thrusters" 2
+		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	turret "Speckle Turret"
@@ -1947,7 +1949,8 @@ ship "Difraktos" "Difraktos (Atomic)"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"R-360 RCS Thrusters" 2
+		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	gun
