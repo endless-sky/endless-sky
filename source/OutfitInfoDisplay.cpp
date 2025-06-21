@@ -497,13 +497,14 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 	}
 
+	double range = outfit.Range();
 	attributeLabels.emplace_back("range:");
-	attributeValues.emplace_back(Format::Number(outfit.Range()));
+	attributeValues.emplace_back(Format::Number(range));
 	attributesHeight += 20;
 
 	attributeLabels.emplace_back("velocity:");
 	double velocity = outfit.WeightedVelocity();
-	if(velocity == outfit.Range())
+	if(velocity == range)
 		attributeValues.emplace_back("instantaneous");
 	else
 		attributeValues.emplace_back(Format::Number(velocity * 60.));
@@ -708,7 +709,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"missile strength:",
 		"anti-missile:",
 		"tractor beam:",
-		"prospecting efficiency:",
+		"mining efficiency:",
 	};
 	vector<double> otherValues = {
 		outfit.Inaccuracy(),
