@@ -54,7 +54,7 @@ using namespace std;
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(callback),
+	: player(player), callback(callback), freshlyLoaded(player.FreshlyLoaded()),
 	planet(*player.GetPlanet()), system(*player.GetSystem())
 {
 	trading.reset(new TradingPanel(player));
@@ -87,6 +87,34 @@ PlanetPanel::~PlanetPanel()
 
 
 
+void PlanetPanel::FinishLanding()
+{
+	// Track how many commodities the player landed with so that the number
+	// sold can be accurately reported. This is only done if this panel is
+	// being created because the player landed on a planet, not because the
+	// pilot was just loaded. The commodities that the player lands with
+	// are not stored in the save file, meaning that using the current
+	// commodities that the player has upon loading a save could provide
+	// inaccurate results.
+	if(!freshlyLoaded)
+		trading->SetInitialCommodities(player.Cargo().Commodities());
+
+	// Determine which shops are conditionally available.
+	// TODO: Determine stock on the fly after condition entries can be subscribed to.
+	for(const Shop<Ship> *shop : planet.Shipyards())
+	{
+		hasShipyard = true;
+		shipyardStock.Add(shop->Stock());
+	}
+	for(const Shop<Outfit> *shop : planet.Outfitters())
+	{
+		hasOutfitter = true;
+		outfitterStock.Add(shop->Stock());
+	}
+}
+
+
+
 void PlanetPanel::Step()
 {
 	// If the player is dead, pop the planet panel.
@@ -103,27 +131,6 @@ void PlanetPanel::Step()
 	{
 		TakeOffIfReady();
 		return;
-	}
-
-	// Determine which shops are conditionally available.
-	// This needs to wait until the first Step call instead of being
-	// done in the constructor because the constructor is created
-	// before all of the player's landing logic is completed, which
-	// can cause certain conditions to return unexpected results.
-	// TODO: Determine stock on the fly after condition entries can be subscribed to.
-	if(!initializedShops)
-	{
-		initializedShops = true;
-		for(const Shop<Ship> *shop : planet.Shipyards())
-		{
-			hasShipyard = true;
-			shipyardStock.Add(shop->Stock());
-		}
-		for(const Shop<Outfit> *shop : planet.Outfitters())
-		{
-			hasOutfitter = true;
-			outfitterStock.Add(shop->Stock());
-		}
 	}
 
 	// Handle missions for locations that aren't handled separately,
@@ -370,6 +377,10 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	for(const auto &ship : absentCannotFly)
 		ship->SetIsParked(true);
 	absentCannotFly.clear();
+
+	// Update the trading panel with the player's final commodity count
+	// before it gets distributed out to the fleet.
+	trading->CalculateCommoditiesSold(player.Cargo().Commodities());
 
 	// Check for items that would be sold, or mission passengers that would be abandoned on-planet.
 	const Ship *flagship = player.Flagship();
