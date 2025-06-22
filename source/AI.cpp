@@ -540,6 +540,13 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	if(player.Ships().size() < 2)
 		return;
 
+	// Eject escape pods, if any in bays
+	if (activeCommands.Has(Command::ESCAPE_PODS))
+	{
+		Ship* oldFlagship = player.Flagship();
+		//#TODO
+	}
+
 	// Toggle the "deploy" command for the fleet or selected ships.
 	if(activeCommands.Has(Command::DEPLOY))
 		IssueDeploy(player);

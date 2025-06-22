@@ -86,6 +86,7 @@ const Command Command::AUTOSTEER(ONE << 35, "Auto steer");
 const Command Command::WAIT(ONE << 36, "");
 const Command Command::STOP(ONE << 37, "");
 const Command Command::SHIFT(ONE << 38, "");
+const Command Command::ESCAPE_PODS(ONE << 39, "Deploy escape pods");
 
 
 
@@ -292,7 +293,8 @@ void Command::Load(const DataNode &node)
 			{"nearest asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},
 			{"stop", Command::STOP},
-			{"shift", Command::SHIFT}
+			{"shift", Command::SHIFT},
+			{"escape pods", Command::ESCAPE_PODS},
 		};
 
 		auto it = lookup.find(node.Token(i));

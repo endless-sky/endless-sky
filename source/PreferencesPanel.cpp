@@ -579,7 +579,8 @@ void PreferencesPanel::DrawControls()
 		Command::FASTFORWARD,
 		Command::PAUSE,
 		Command::HELP,
-		Command::MESSAGE_LOG
+		Command::MESSAGE_LOG,
+		Command::ESCAPE_PODS,
 	};
 
 	int page = 0;
