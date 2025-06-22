@@ -467,6 +467,11 @@ public:
 	// drones. If any are visible, return true.
 	bool PositionFighters() const;
 
+	// Is this ship an escape pod?
+	bool IsEscapePod() const;
+	// Check if this ship carries any escape pods.
+	bool HasEscapePods() const;
+
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;

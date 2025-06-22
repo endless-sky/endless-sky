@@ -3476,6 +3476,26 @@ bool Ship::PositionFighters() const
 
 
 
+
+// Is this ship an escape pod?
+bool Ship::IsEscapePod() const
+{
+	return attributes.Category() == "Escape Pod";
+}
+
+
+
+// Check if the ship carries any pods that could be launched.
+bool Ship::HasEscapePods() const
+{
+	for(const Bay &bay : bays)
+		if(bay.ship && bay.ship->IsEscapePod())
+			return true;
+	return false;
+}
+
+
+
 CargoHold &Ship::Cargo()
 {
 	return cargo;
