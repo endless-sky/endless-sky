@@ -213,7 +213,7 @@ namespace {
 		// deleted from memory until the next landing, check both parked and destroyed states.)
 		auto isCandidate = [](const shared_ptr<Ship> &ship) -> bool
 		{
-			return ship->CanBeCarried() && !ship->IsParked() && !ship->IsDestroyed();
+			return ship->CanBeCarried() && !ship->IsParked() && !ship->IsDestroyed() && !ship->IsEscapePod();
 		};
 
 		auto toDeploy = vector<Ship *> {};
