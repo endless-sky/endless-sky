@@ -3528,6 +3528,7 @@ void Ship::DeployEscapePods(list<shared_ptr<Ship>> &ships, vector<Visual> &visua
 	if(!HasEscapePods() || !shouldEjectEscapePods)
 		return;
 
+	bool userFlagship = (isYours && this == player.Flagship());
 	vector<shared_ptr<Ship>> pods;
 
 	for(Bay &bay : bays)
@@ -3544,8 +3545,19 @@ void Ship::DeployEscapePods(list<shared_ptr<Ship>> &ships, vector<Visual> &visua
 		pod->SetCanBeCarried(false); // remove indent in PlayerInfoPanel
 		pod->SetSystem(GetSystem());
 
-		pod->Place(position, velocity + facing.Unit() & pod->MaxVelocity, facing, false);
+		// launch first pod (if flagship) from the position of the old ship to prevent camera jumps;
+		// all other pods can be launched from their bays
+		Point exit = (userFlagship && pods.size() == 1) ? position : position + angle.Rotate(bay.point);
+		Angle facing = (userFlagship && pods.size() == 1)
+			? angle + Angle::Random(45) - Angle::Random(90)
+			: angle + bay.facing;
+		Point vel = (userFlagship && pods.size() == 1)
+			? velocity + facing.Unit() * pod->MaxVelocity()
+			: velocity + facing.Unit() * (0.3 * pod->MaxVelocity()) + Angle::Random().Unit() * (0.2 * pod->MaxVelocity());
 
+		pod->Place(exit, vel, facing, false);
+
+		// transfer minimum required crew
 		int minCrew = min(Crew(), pod->RequiredCrew());
 		if(minCrew)
 		{
@@ -3553,16 +3565,39 @@ void Ship::DeployEscapePods(list<shared_ptr<Ship>> &ships, vector<Visual> &visua
 			pod->AddCrew(minCrew);
 		}
 
+		// update bunks and transfer cargo
+		pod->Cargo().SetBunks(pod->Attributes().Get("bunks") - pod->Crew());
+		cargo.TransferAll(pod->Cargo(), true);
+
+		// transfer extra crew if possible (only to the new flagship)
+		if(userFlagship && pods.size() == 1)
+		{
+			int extra = min(Crew(), pod->Cargo().BunksFree());
+			AddCrew(-extra);
+			pod->AddCrew(extra);
+		}
+
 		carriedMass -= pod->Mass();
+		for(const Effect *effect : bay.launchEffects)
+			visuals.emplace_back(*effect, exit, velocity, facing);
+
 		bay.ship.reset();
 	}
 
 	if(pods.empty())
 		return;
 
-	player.SetFlagship(*pods.front());
-	Messages::Add("Deployed " + to_string(pods.size()) + " escape pods. " +
-		pods.front()->Name() + " is now your flagship.", Messages::Importance::Highest);
+	if(userFlagship)
+	{
+		player.SetFlagship(*pods.front());
+		Messages::Add("Deployed " + to_string(pods.size()) + " escape pods. " +
+			pods.front()->Name() + " is now your flagship.", Messages::Importance::Highest);
+	}
+	else
+	{
+		for(auto &pod : pods)
+			pod->SetParent(player.FlagshipPtr());
+	}
 }
 
 
