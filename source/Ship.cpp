@@ -3271,11 +3271,19 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	}
 	if(!wasDestroyed && IsDestroyed())
 	{
+		// mark the escape pods as deployable for the engine
+		if(HasEscapePods())
+			shouldEjectEscapePods = true;
+
 		type |= ShipEvent::DESTROY;
 
 		if(IsYours())
-			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+		{
+			std::string destroyMsg = "Your " + DisplayModelName() + " \"" + Name() + "\" has been destroyed.";
+			if(HasEscapePods())
+				destroyMsg += " You have escaped in an escape pod.";
+			Messages::Add(destroyMsg, Messages::Importance::Highest);
+		}
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
