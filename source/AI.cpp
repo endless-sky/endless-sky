@@ -547,7 +547,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 		if(oldFlagship)
 		{
 			if(oldFlagship->HasEscapePods())
-				//#TODO
+				oldFlagship->SetEjectEscapePodsOrder(true);
 			else
 				Messages::Add("No escape pods available on flagship.", Messages::Importance::High);
 		}

@@ -1541,6 +1541,20 @@ void Ship::SetDeployOrder(bool shouldDeploy)
 
 
 
+void Ship::SetEjectEscapePodsOrder(bool shouldEject)
+{
+	this->shouldEjectEscapePods = shouldEject;
+}
+
+
+
+bool Ship::HasEjectEscapePodsOrder() const
+{
+	return shouldEjectEscapePods;
+}
+
+
+
 const Personality &Ship::GetPersonality() const
 {
 	return personality;
@@ -3492,6 +3506,50 @@ bool Ship::HasEscapePods() const
 		if(bay.ship && bay.ship->IsEscapePod())
 			return true;
 	return false;
+}
+
+
+
+// deploy all the pods that this ship carries
+void Ship::DeployEscapePods(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals, PlayerInfo &player)
+{
+	if(!HasEscapePods() || !shouldEjectEscapePods)
+		return;
+
+	vector<shared_ptr<Ship>> pods;
+
+	for(Bay &bay : bays)
+	{
+		shared_ptr<Ship> pod = bay.ship;
+		if(!pod || !pod->IsEscapePod())
+			continue;
+
+		pods.push_back(pod);
+		ships.push_back(pod);
+
+		pod->SetParent(nullptr);
+		pod->SetIsParked(false);
+		pod->SetSystem(GetSystem());
+
+		pod->Place(position, velocity + facing.Unit() & pod->MaxVelocity, facing, false);
+
+		int minCrew = min(Crew(), pod->RequiredCrew());
+		if(minCrew)
+		{
+			AddCrew(-minCrew);
+			pod->AddCrew(minCrew);
+		}
+
+		carriedMass -= pod->Mass();
+		bay.ship.reset();
+	}
+
+	if(pods.empty())
+		return;
+
+	player.SetFlagship(*pods.front());
+	Messages::Add("Deployed " + to_string(pods.size()) + " escape pods. " +
+		pods.front()->Name() + " is now your flagship.", Messages::Importance::Highest);
 }
 
 

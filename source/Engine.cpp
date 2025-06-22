@@ -1850,6 +1850,12 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	for(Weather &weather : activeWeather)
 		DoWeather(weather);
 
+	// After all damage in this frame is calculated, deploy escape pods if ship is destroyed (or ordered to do so).
+	// It is important to deploy pods before the ShipEvent::DESTROY for the original flagship is processed (in the next frame)
+	for (const auto &ship_ptr : ships)
+		if (ship_ptr->HasEjectEscapePodsOrder())
+			ship_ptr->DeployEscapePods(newShips, newVisuals, player);
+
 	// Check for flotsam collection (collisions with ships).
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		DoCollection(*it);
