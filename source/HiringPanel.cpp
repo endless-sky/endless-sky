@@ -69,12 +69,12 @@ void HiringPanel::Draw()
 	info.SetString("flagship extra", to_string(flagshipExtra));
 	info.SetString("flagship unused", to_string(flagshipUnused));
 
-	// Sum up the statistics for all your ships. You still pay the crew of
-	// disabled or out-of-system ships, but any parked ships have no crew costs.
+	// Sum up the statistics for all your ships. You still pay the crew of disabled or out-of-system ships,
+	// but any parked ships have no crew costs. Note that escape pods cannot carry passengers.
 	int fleetBunks = 0;
 	int fleetRequired = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
-		if(!ship->IsParked())
+		if(!ship->IsParked() && !ship->IsEscapePod())
 		{
 			fleetBunks += static_cast<int>(ship->Attributes().Get("bunks"));
 			fleetRequired += ship->RequiredCrew();

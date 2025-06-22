@@ -775,7 +775,8 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 			: dim
 		);
 
-		// Indent the ship name if it is a fighter or drone.
+		// Indent the ship name if it is a fighter, pod (not deployed) or drone.
+		// Note that deployed pod have CanBeCarried() == false
 		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
 		table.Draw(ship.DisplayModelName());
 

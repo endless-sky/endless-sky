@@ -458,6 +458,8 @@ public:
 	bool CanCarry(const Ship &ship) const;
 	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
+	// Set whether this ship can be carried.
+	void SetCanBeCarried(bool can);
 	// Move the given ship into one of the bays, if possible.
 	bool Carry(const std::shared_ptr<Ship> &ship);
 	// Empty the bays. If the carried ships are not special ships that are

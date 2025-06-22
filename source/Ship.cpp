@@ -3076,10 +3076,15 @@ double Ship::DragForce() const
 
 int Ship::RequiredCrew() const
 {
+	// Drones do net need crew
 	if(attributes.Get("automaton"))
 		return 0;
-
-	// Drones do not need crew, but all other ships need at least one.
+	// Escape pods require no crew while in a bay (currentSystem == nullptr).
+	// Also, don't require crew i fthe pod is landed on a planet.
+	if(IsEscapePod() && (!currentSystem || GetPlanet()))
+		return 0;
+	
+	// All other ships need at least one.
 	return max<int>(1, attributes.Get("required crew"));
 }
 
@@ -3395,6 +3400,13 @@ bool Ship::CanBeCarried() const
 
 
 
+void Ship::SetCanBeCarried(bool can)
+{
+	canBeCarried = can;
+}
+
+
+
 bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
 	if(!ship || !ship->CanBeCarried() || ship->IsDisabled())
@@ -3471,7 +3483,7 @@ const vector<Ship::Bay> &Ship::Bays() const
 
 
 
-// Adjust the positions and velocities of any visible carried fighters or
+// Adjust the positions and velocities of any visible carried fighters, escape pods or
 // drones. If any are visible, return true.
 bool Ship::PositionFighters() const
 {
@@ -3529,6 +3541,7 @@ void Ship::DeployEscapePods(list<shared_ptr<Ship>> &ships, vector<Visual> &visua
 
 		pod->SetParent(nullptr);
 		pod->SetIsParked(false);
+		pod->SetCanBeCarried(false); // remove indent in PlayerInfoPanel
 		pod->SetSystem(GetSystem());
 
 		pod->Place(position, velocity + facing.Unit() & pod->MaxVelocity, facing, false);
