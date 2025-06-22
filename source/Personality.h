@@ -44,6 +44,7 @@ public:
 	bool IsHunting() const;
 	bool IsNemesis() const;
 	bool IsDaring() const;
+	bool TargetsEscapePods() const;
 
 	// How they fight:
 	bool IsFrugal() const;

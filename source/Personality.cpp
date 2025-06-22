@@ -227,6 +227,13 @@ bool Personality::IsDaring() const
 
 
 
+bool Personality::TargetsEscapePods() const
+{
+	return (flags.test(VINDICTIVE) || flags.test(HUNTING) || flags.test(NEMESIS));
+}
+
+
+
 bool Personality::IsFrugal() const
 {
 	return flags.test(FRUGAL);
