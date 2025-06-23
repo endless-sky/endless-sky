@@ -70,7 +70,8 @@ jobs:
     name: Windows x64
     runs-on: windows-2025
     env:
-      OUTPUT: EndlessSky-${{ inputs.release_version }}-win64-setup.exe
+      OUTPUT_ZIP: EndlessSky-win64-${{ inputs.release_version }}.zip
+      OUTPUT_EXE: EndlessSky-${{ inputs.release_version }}-win64-setup.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -112,26 +113,34 @@ jobs:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
+          cmake --install build/release
+          7z a ${{ env.OUTPUT_ZIP }} "./install/release/*"
           cpack --config build/release/CPackConfig.cmake
-      - name: Upload artifact
+      - name: Upload zip artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
+          name: ${{ env.OUTPUT_ZIP }}
+          path: ${{ env.OUTPUT_ZIP }}
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT_EXE }}
+          path: ${{ env.OUTPUT_EXE }}
       - name: Upload Steam Depot
         uses: actions/upload-artifact@v4
         with:
           name: steam-win64-depot
           path: |
-            ./build/release/Endless Sky.exe
-            ./build/release/*.dll
+            ./install/release/Endless Sky.exe
+            ./install/release/*.dll
 
 
   release_windows_x86:
     name: Windows x86
     runs-on: windows-2025
     env:
-      OUTPUT: EndlessSky-${{ inputs.release_version }}-win32-setup.exe
+      OUTPUT_ZIP: EndlessSky-win32-${{ inputs.release_version }}.zip
+      OUTPUT_EXE: EndlessSky-${{ inputs.release_version }}-win32-setup.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -160,19 +169,26 @@ jobs:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
+          cmake --install build/release
+          7z a ${{ env.OUTPUT_ZIP }} "./install/release/*"
           cpack --config build/release/CPackConfig.cmake
-      - name: Upload artifact
+      - name: Upload zip artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
+          name: ${{ env.OUTPUT_ZIP }}
+          path: ${{ env.OUTPUT_ZIP }}
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT_EXE }}
+          path: ${{ env.OUTPUT_EXE }}
       - name: Upload Steam Depot
         uses: actions/upload-artifact@v4
         with:
           name: steam-win32-depot
           path: |
-            ./build/release/Endless Sky.exe
-            ./build/release/*.dll
+            ./install/release/Endless Sky.exe
+            ./install/release/*.dll
 
 
   release_macos_x64:
