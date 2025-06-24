@@ -1,3 +1,49 @@
+Version 0.10.14
+  * Breaking changes:
+    * Portrait image files have been removed. (@tibetiroka)
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@M68HC060, @mOctave, @jmelesky, @Saugia, @tibetiroka)
+      * "Deep: Project Hawking" can no longer be offered while either of "Deep: TMBR: 0" or "Deep: TMBR: 1" is active. (@tekker2234)
+      * The Hai "Baellie" and "Basrem" engines now draw their flare sprites at 0.8 scale to differentiate them from the "Benga" engines. (@Amazinite)
+      * Fixed inconsistencies in the name of the language condition used by the Incipias governments. (@TomGoodIdea)
+      * Corrected the "index" value of the "Nelmeb GP Hybrid Thruster". (@qxxt)
+      * The Aberrant first contact mission now uses the "<flagship>" text replacement in order to refer to the player's flagship, instead of using the name of the boarded ship. (@TomGoodIdea)
+      * The "Wanderers: Diplomacy" conversation now includes a branch for if the player used the Hai start. (@Amazinite)
+      * Patir 2 missions now have "on visit" messages and the "asteroid" ships are no longer capturable. (@Amazinite)
+    * Engine bugs:
+      * Haze is now drawn at the correct size. (@palant)
+      * Changes to the starfield zoom preference will now immediately update the background when starfield animation is diabled. (@Amazinite)
+      * Planet and spaceport descriptions no longer run away. (@TomGoodIdea)
+      * Improved map panel performance in some situations by caching mission deadline related calculations. (@Amazinite, @TomGoodIdea)
+      * Fixed various problems with text truncation. (@SomeTroglodyte)
+  * Game content:
+    * Sprites:
+      * Replaced various landscape and conversation scene images that were included under incompatible licenses. (@tibetiroka)
+    * Other:
+      * The Greenrock defense fleet is now composed of a mixture of Northern, Core, and Southern Pirate fleets, instead of only Northern. (@qxxt)
+      * Improved the descriptions and adjusted the NPC spawn locations of some Pirate jobs. (@Xcyiterr)
+  * Graphics:
+    * Each layer of fancy parallax starfield will now use different star locations. (@palant)
+  * Game mechanics:
+    * New mechanics:
+      * Added "<flagship>" and "<flagship model>" text replacements. (@Amazinite)
+  * User interface:
+    * Improved the route error message in the map when a route is known, but the flagship cannot use it. (@Amazinite)
+    * Scrolling through the logbook no longer plays sounds. (@tibetiroka)
+    * The planet panel will now only be offset to the left slightly when the game window is fewer than 1280 pixels wide. (@xobes)
+    * The message log panel can now be closed by clicking on the empty background space. (@warp-core)
+  * Under the hood:
+    * Alphabetized government definitions. (@Amazinite)
+    * BoardingPanel methods now use the shared Format::Decimal method instead of a special, locally-defined method. (@TomGoodIdea)
+    * Corrected various style issues in the PlayerInfo class. (@TomGoodIdea)
+  * Documentation:
+    * The game will now log an error message when the display resolution is below 1024x768, the minimum supported. (@TomGoodIdea)
+    * The contributing file now includes details about what acceptable licenses for proposed additions to Endless Sky. (@Amazinite)
+  * CI/CD and development environment:
+    * Added version metadata for Windows. (@TomGoodIdea)
+    * Fixed an issue where file execution permissions were not preserved through the MacOS release CD. (@warp-core)
+
 Version 0.10.13.1
   * Bug fixes:
     * Engine bugs:
