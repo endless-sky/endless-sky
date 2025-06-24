@@ -13,7 +13,7 @@ Version 0.10.14
       * Patir 2 missions now have "on visit" messages and the "asteroid" ships are no longer capturable. (@Amazinite)
     * Engine bugs:
       * Haze is now drawn at the correct size. (@palant)
-      * Changes to the starfield zoom preference will now immediately update the background when starfield animation is diabled. (@Amazinite)
+      * Changes to the starfield zoom preference will now immediately update the background when starfield animation is disabled. (@Amazinite)
       * Planet and spaceport descriptions no longer run away. (@TomGoodIdea)
       * Improved map panel performance in some situations by caching mission deadline related calculations. (@Amazinite, @TomGoodIdea)
       * Fixed various problems with text truncation. (@SomeTroglodyte)
