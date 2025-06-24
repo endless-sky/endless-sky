@@ -302,6 +302,7 @@ contributed to Endless Sky:
   JimmyFiryh
   jjhankins
   jmathes
+  jmelesky
   jmhorjus
   joshumu
   jostephd
