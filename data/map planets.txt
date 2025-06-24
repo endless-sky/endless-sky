@@ -398,7 +398,7 @@ planet Asterus
 planet Avalet
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_01
-	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas plant is heated to incandescence while the other experiences temperatures cold enough to freeze the water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of winds that ring the entire planet, producing immense cyclones capable of throwing clouds to the edge of space.`
+	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas planet is heated to incandescence while the other experiences temperatures cold enough to freeze the water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of winds that ring the entire planet, producing immense cyclones capable of throwing clouds to the edge of space.`
 	description `	The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In more modern times, the antimatter trapped by Avalet's magnetic field fueled Avgi starships until Antivli Station was built, a fading reflection of its mythological significance.`
 	government Uninhabited
 
@@ -2267,7 +2267,9 @@ planet Greenrock
 	security 0
 	tribute 1800
 		threshold 3500
-		fleet "Large Northern Pirates" 13
+		fleet "Large Southern Pirates" 9
+		fleet "Large Northern Pirates" 2
+		fleet "Large Core Pirates" 2
 
 planet Greenview
 	attributes hai "hai tourism" "hai: human presence" "human tourism" station

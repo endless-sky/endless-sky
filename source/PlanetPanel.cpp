@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Port.h"
+#include "Screen.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Shop.h"
@@ -54,8 +55,7 @@ using namespace std;
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
-	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get("planet"))
+	planet(*player.GetPlanet()), system(*player.GetSystem())
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
@@ -66,7 +66,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetRect(ui.GetBox("content"));
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -178,12 +177,16 @@ void PlanetPanel::Draw()
 			info.SetCondition("has outfitter");
 	}
 
-	ui.Draw(info, this);
+	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	ui->Draw(info, this);
 
 	// The description text needs to be updated because player conditions can be changed
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
+	{
+		description->SetRect(ui->GetBox("content"));
 		description->SetText(planet.Description().ToString());
+	}
 }
 
 
@@ -350,7 +353,7 @@ void PlanetPanel::TakeOffIfReady()
 			shipNames.pop_back();
 			shipNames.pop_back();
 			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
-				"Some of your ships in other systems are not be able to fly:\n" + shipNames +
+				"Some of your ships in other systems are not able to fly:\n" + shipNames +
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
 		}
