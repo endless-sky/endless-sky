@@ -1747,12 +1747,21 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 			// We are guaranteed that each carried `ship` is not parked and not disabled, and that
 			// all possible parents are also not parked, not disabled, and not `ship`.
 			for(auto &ship : toLoad)
+			{
+				bool carried = false;
 				for(auto &parent : carriers)
 					if(parent->GetSystem() == ship->GetSystem() && parent->Carry(ship))
 					{
+						carried = true;
 						--uncarried;
 						break;
 					}
+
+				// add minimum crew to escape pods to prevent ships without crew in space
+				// note that ship->RequiredCrew() will return 0 for landed / not deployed escape pods
+				if(!carried && ship->IsEscapePod())
+					ship->AddCrew(ship->Attributes().Get("required crew"));
+			}
 		}
 
 		if(uncarried)

@@ -3545,6 +3545,11 @@ void Ship::DeployEscapePods(list<shared_ptr<Ship>> &ships, vector<Visual> &visua
 		if(!pod || !pod->IsEscapePod())
 			continue;
 
+		int minCrew = min<int>(Crew(), pod->Attributes().Get("required crew"));
+		// Escape pods without crew don't get launched
+		if(!minCrew)
+			continue;
+
 		pods.push_back(pod);
 		ships.push_back(pod);
 
@@ -3566,12 +3571,8 @@ void Ship::DeployEscapePods(list<shared_ptr<Ship>> &ships, vector<Visual> &visua
 		pod->Place(exit, vel, facing, false);
 
 		// transfer minimum required crew
-		int minCrew = min(Crew(), pod->RequiredCrew());
-		if(minCrew)
-		{
-			AddCrew(-minCrew);
-			pod->AddCrew(minCrew);
-		}
+		AddCrew(-minCrew);
+		pod->AddCrew(minCrew);
 
 		// update bunks and transfer cargo
 		pod->Cargo().SetBunks(pod->Attributes().Get("bunks") - pod->Crew());
