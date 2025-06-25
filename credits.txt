@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.13-alpha
+version 0.10.14-alpha
 
 The player's manual and other
 resources are available at:
@@ -28,6 +28,7 @@ Developers
   roadrunner56
   Saugia
   tibetiroka
+  TomGoodIdea
   warp-core
   W1zrad
   Zitchas
@@ -83,12 +84,15 @@ Editors & Proofreaders
   Janaszar
   LocalGod79
   MCOfficer
+  mOctave
   Moonbeam
   RecursiveParadox
+  reticent-rem
   roadrunner56
   Tadrix
   temtemy
   Terin
+  TheGiraffe3
   tibetiroka
   W1zrad
   Zearth Goh aka TheMarksman
@@ -155,6 +159,7 @@ contributed to Endless Sky:
   10010101001
   1010todd
   3agleEmpire
+  4t4r1
   7even
   a4358
   abenkovskii
@@ -199,8 +204,10 @@ contributed to Endless Sky:
   brendanjones
   Brick63
   captain0xff
+  CasparKielwein
   ChamEV
   chrisandreae
+  Cherrio01
   comnom
   corecontingency
   Corraban2
@@ -223,6 +230,7 @@ contributed to Endless Sky:
   Disiuze
   DJF113
   doches
+  DmitriK
   dorbarker
   DownsB
   dplepage
@@ -247,6 +255,7 @@ contributed to Endless Sky:
   Faileas
   fakepass
   fcfort
+  fellow-starmadian
   Ferociousfeind
   fingolfin
   finite-galaxy
@@ -260,6 +269,7 @@ contributed to Endless Sky:
   Galaucus
   gecko-locator
   GefullteTaubenbrust2
+  geojak
   guillochon
   gunqqer
   Hacklin
@@ -289,6 +299,7 @@ contributed to Endless Sky:
   jarekchr
   jarmokivekas
   jerith
+  JimmyFiryh
   jjhankins
   jmathes
   jmhorjus
@@ -313,7 +324,9 @@ contributed to Endless Sky:
   leowongcanto
   LepRyot
   lheckemann
+  LilyIsTrans
   Lineth
+  LixiChronikouOriou
   LocalGod79
   Lorantine
   LordInsane
@@ -322,6 +335,8 @@ contributed to Endless Sky:
   luiges90
   LukeMarlin
   lumbar527
+  luzpaz
+  M68HC060
   macfreek
   Mach565
   MageKing17
@@ -362,6 +377,7 @@ contributed to Endless Sky:
   Ornok
   ovari
   OverYrPaygrade
+  palant
   PaulBlay
   PeacefulPotato
   pega3
@@ -379,6 +395,7 @@ contributed to Endless Sky:
   prophile
   pscamman
   Pshy0
+  pythonmcpi
   Quantumshark
   quyykk
   Rakete1111
@@ -444,6 +461,7 @@ contributed to Endless Sky:
   TheGiraffe3
   TheMarksman-ES
   thenerdfreak
+  thePeacemaker-66
   thetazero
   TheUnfetteredOne
   thewierdnut
@@ -455,6 +473,7 @@ contributed to Endless Sky:
   tiennou
   timbennett
   TJesionowski
+  tjubutsi
   tmbutterworth
   toilethinges
   TomGoodIdea
