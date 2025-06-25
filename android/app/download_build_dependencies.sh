@@ -17,6 +17,6 @@ echo "c56aba1d7b5b0e7e999e4a7698c70b63a3394ff9704b5f6e1c57e0c16f04dd06  SDL2.tar
 tar xzf SDL2.tar.gz -C ../jni/src
 
 echo "Downloading OpenAL-Soft"
-curl -Lo openal-soft.tar.bz2  https://openal-soft.org/openal-releases/openal-soft-1.22.0.tar.bz2
-echo "ce0f9300de3de7bc737b0be2a995619446e493521d070950eea53eddd533fc9b  openal-soft.tar.bz2" | sha256sum -c - || exit
+curl -Lo openal-soft.tar.bz2  https://github.com/kcat/openal-soft/releases/download/1.22.2/openal-soft-1.22.2.tar.bz2
+echo "ae94cc95cda76b7cc6e92e38c2531af82148e76d3d88ce996e2928a1ea7c3d20  openal-soft.tar.bz2" | sha256sum -c - || exit
 tar xjf openal-soft.tar.bz2 -C ../jni/src
