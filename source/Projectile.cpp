@@ -150,7 +150,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	}
 	// Spawn live effects. By using the current position of the projectile and not
 	// adding any offset from the projectile's velocity, effects will appear to spawn
-	// from the back of the projectile.
+	// from behind the projectile, as by the time the effect is visible, the projectile
+	// will have moved one frame forward from this position.
 	for(const auto &it : weapon->LiveEffects())
 		if(!Random::Int(it.second))
 			visuals.emplace_back(*it.first, position, velocity, angle);
