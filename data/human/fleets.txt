@@ -3551,7 +3551,7 @@ fleet "Large Heimdall Pirates (Warpless)"
 		"Raven (Defender)" 3
 		"Aerie (Heimdall) (Warpless)" 2
 		"Dagger (Heimdall)" 4
-	variant 4
+	variant 2
 		"Aerie (Heimdall) (Warpless)" 3
 		"Dagger (Heimdall)" 6
 	variant 2
