@@ -38,9 +38,10 @@ OPTION(ALSOFT_REQUIRE_OPENSL "" ON)
 OPTION(ALSOFT_BACKEND_OBOE "" OFF)
 OPTION(ALSOFT_BACKEND_SDL2 "" OFF)
 OPTION(ALSOFT_BACKEND_PIPEWIRE "" OFF)
+OPTION(ALSOFT_RTKIT OFF)
 set(LIBTYPE STATIC)
 add_definitions("-DAL_LIBTYPE_STATIC")
-add_subdirectory(openal-soft-1.22.0  EXCLUDE_FROM_ALL)
+add_subdirectory(openal-soft-1.22.2  EXCLUDE_FROM_ALL)
 
 OPTION(SDL_STATIC_PIC "" ON)
 set(SDL_SHARED OFF) # doesn't seem to work right... For now passing in via gradle
