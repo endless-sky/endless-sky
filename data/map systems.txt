@@ -4401,14 +4401,14 @@ system Almaaz
 	trade Medical 814
 	trade Metal 523
 	trade Plastic 308
-	fleet "Small Northern Pirates" 500
-	fleet "Large Northern Pirates" 600
+	fleet "Small Northern Pirates" 250
+	fleet "Large Northern Pirates" 300
 	fleet "Old Northern Pirates" 4000
 	fleet "Large Republic" 4000
 	fleet "Large Heimdall Pirates" 1500
-	fleet "Small Heimdall Pirates" 600
+	fleet "Small Heimdall Pirates" 650
 	fleet "Small Republic" 3000
-	fleet "Small Priate Miners" 1600
+	fleet "Small Priate Miners" 2400
 	fleet "Small Northern Merchants" 16000
 	fleet "Small Northern Merchants (Corrupt)" 12000
 	fleet "Human Miners (Corrupt)" 14000
@@ -4695,8 +4695,8 @@ system Alnilam
 	trade Medical 880
 	trade Metal 520
 	trade Plastic 334
-	fleet "Small Northern Pirates" 500
-	fleet "Large Northern Pirates" 700
+	fleet "Small Northern Pirates" 250
+	fleet "Large Northern Pirates" 500
 	fleet "Old Northern Pirates" 5000
 	fleet "Small Republic" 8000
 	fleet "Small Northern Merchants (Corrupt)" 12000
@@ -6892,8 +6892,8 @@ system Arneb
 	trade Medical 890
 	trade Metal 566
 	trade Plastic 358
-	fleet "Small Northern Pirates" 400
-	fleet "Large Northern Pirates" 500
+	fleet "Small Northern Pirates" 250
+	fleet "Large Northern Pirates" 400
 	fleet "Old Northern Pirates" 6000
 	fleet "Small Priate Miners" 1600
 	fleet "Small Republic" 8000
@@ -19562,11 +19562,11 @@ system Hatysa
 	trade Medical 824
 	trade Metal 503
 	trade Plastic 318
-	fleet "Small Northern Pirates" 600
-	fleet "Large Northern Pirates" 1000
+	fleet "Small Northern Pirates" 300
+	fleet "Large Northern Pirates" 5000
 	fleet "Old Northern Pirates" 6000
 	fleet "Derelict Pirate" 30000
-	fleet "Small Priate Miners" 1500
+	fleet "Small Priate Miners" 2000
 	fleet "Small Priate Traffic" 400
 	fleet "Large Northern Pirates" 900
 	fleet "Small Republic" 8000
