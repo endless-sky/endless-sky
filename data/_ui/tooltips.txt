@@ -1225,9 +1225,6 @@ tip "no steering!"
 tip "insufficient bunks?"
 	`This ship does not have enough bunks for its crew. It could become unresponsive at random times.`
 
-tip "insufficient heat?"
-	`This ship is too cold to use some of its engines while idle. Its movement may be hindered if it does not have another way of generating heat.`
-
 tip "afterburner only?"
 	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`
 

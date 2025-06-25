@@ -54,8 +54,6 @@ private:
 
 	const Interface *mainMenuUi;
 
-	// When the menu panel is closed, return the starfield to this position.
-	Point returnPos;
 	double animation = 0.;
 	double xSpeed = 0.;
 	double ySpeed = 0.;

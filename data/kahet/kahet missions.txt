@@ -1422,7 +1422,7 @@ mission "Ka'het: Patir Mystery 12.1A"
 				decline
 
 			label chanai
-			`	"Okay then. Most of the equipment we are going to need is the same equipment we used for Patir, so we will be ready to depart in just half an hour." After helping them pack the last few items, you take off and set the course to the new destination: <system>.`
+			`	"Okay then. Most of the equipment we are going to need is the same equipment we used for Patir, so we will be ready to depart in just half an hour." After helping them pack the last few items, you take off and set the course to the new destination: <stopovers>.`
 				launch
 	on enter Chanai
 		dialog
@@ -1516,7 +1516,7 @@ mission "Ka'het: Patir Mystery 12.1A"
 			label crystal
 			`	Dusk hands you the vial from earlier, which, despite its size, feels rather heavy in your hand. Inside is a grainy dust interspersed with small, violet crystals of various shapes. "We found a similar powder on the ground of a number of rooms inside the station. We have not explored the entire complex, of course, but if the pattern repeats we expect there to be something similar around the entire barrel."`
 			`	The particles suspended in the vial remind you of the regolith surrounding the Builder settlement orbiting Patir, but far less compact. "Attempts to learn the dust's composition have been inconclusive. Perhaps the instruments in the lab will give us better results, but our current tools only returned noise. However, we did notice something potentially interesting: the noise aligned with the scans you took in Lathia a few days ago. Whatever it is, it could be made of the same matter that composes those creatures - I can use the scanners on your ship to confirm it without wasting any time while we depart."`
-			`	You exit the station and enter your ship, and see most of the scientists have already moved their samples inside your cargo hold, with around two dozen containers scattered on the floor. Soon after, you're back inside the cockpit, preparing for liftoff; discussion about the next mission will have to wait until you're in Patir.`
+			`	You exit the station and enter your ship, and see most of the scientists have already moved their samples inside your cargo hold, with around two dozen containers scattered on the floor. Soon after, you're back inside the cockpit, preparing for liftoff; discussion about the next mission will have to wait until you're in <system>.`
 
 mission "Ka'het: Patir Mystery 12.1B"
 	landing

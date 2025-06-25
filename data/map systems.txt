@@ -30796,7 +30796,6 @@ system Patir
 	trade Metal 354
 	trade Plastic 426
 	fleet Ka'sei 300
-	hazard "Patir Black Hole Event Horizon" 1
 	hazard "Ember Waste Base Heat" 100
 		to spawn
 			not "ka'het: beyond Patir"

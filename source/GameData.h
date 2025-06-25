@@ -172,8 +172,6 @@ public:
 
 	static const StarField &Background();
 	static void StepBackground(const Point &vel, double zoom = 1.);
-	static const Point &GetBackgroundPosition();
-	static void SetBackgroundPosition(const Point &position);
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 
 	static const std::string &Tooltip(const std::string &label);
