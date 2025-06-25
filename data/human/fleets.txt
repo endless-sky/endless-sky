@@ -3539,17 +3539,21 @@ fleet "Large Heimdall Pirates (Warpless)"
 	personality
 		confusion 5
 		disables heroic opportunistic quiet waiting lingering
-	variant 6
-		"Marauder Raven (Heimdall) (Warpless)" 4
+	variant 3
+		"Raven (Defender)" 4
+		"Aerie (Heimdall) (Warpless)" 1
+		"Dagger (Heimdall)" 2
+	variant 3
+		"Marauder Leviathan (Heimdall) (Warpless)"
+		"Aerie (Heimdall) (Warpless)" 2
+		"Dagger (Heimdall)" 4
+	variant 5
+		"Raven (Defender)" 3
 		"Aerie (Heimdall) (Warpless)" 2
 		"Dagger (Heimdall)" 4
 	variant 4
-		"Marauder Leviathan (Heimdall) (Warpless)"
-		"Aerie (Heimdall) (Warpless)" 2
-		"Dagger (Heimdall)" 4
-	variant 2
-		"Marauder Raven (Heimdall) (Warpless)" 3
-		"Marauder Leviathan (Heimdall) (Warpless)"
+		"Aerie (Heimdall) (Warpless)" 3
+		"Dagger (Heimdall)" 6
 	variant 2
 		"Marauder Leviathan (Heimdall) (Warpless)" 2
 

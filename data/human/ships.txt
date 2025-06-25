@@ -3364,6 +3364,63 @@ ship "Raven"
 	"final explode" "final explosion small"
 	description "The Lionheart Raven is their most popular warship, an agile and elegant vessel that can nevertheless deal out and absorb considerable damage. Ravens are a favorite ship for bounty hunters, because they are more than a match for pirate interceptors and can be used by a skilled pilot to take down much larger ships as well."
 
+ship "Raven (Defender)"
+	sprite "ship/raven defender"
+	thumbnail "thumbnail/raven"
+	attributes
+		category "Light Warship"
+		"cost" 2750000
+		"shields" 5200
+		"hull" 1600
+		"required crew" 7
+		"bunks" 14
+		"mass" 280
+		"drag" 4.8
+		"heat dissipation" .62
+		"fuel capacity" 400
+		"cargo space" 20
+		"outfit space" 320
+		"weapon capacity" 130
+		"engine capacity" 110
+		"self destruct" 1
+		weapon
+			"blast radius" 65
+			"shield damage" 650
+			"hull damage" 350
+			"hit force" 1000
+	outfits
+		"Particle Cannon" 2
+		"Heavy Rocket Launcher" 2
+		"Heavy Rocket" 40
+		"Anti-Missile Turret"
+		
+		"Dwarf Core"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Water Coolant System"
+		"Large Radar Jammer"
+		"Laser Rifle" 7
+		
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Volcano Afterburner"
+		
+	engine -9.5 63
+	engine 9.5 63
+	gun -13.5 -35.5 "Particle Cannon"
+	gun 13.5 -35.5 "Particle Cannon"
+	gun -21 -28 "Heavy Rocket Launcher"
+	gun 21 -28 "Heavy Rocket Launcher"
+	turret 0 7.5 "Anti-Missile Turret"
+	leak "leak" 60 50
+	leak "flame" 50 80
+	explode "medium explosion" 24
+	explode "large explosion" 16
+	explode "tiny explosion" 28
+	explode "small explosion" 40
+	"final explode" "final explosion small"
+	description "Placeholder to make up for a lacking Betelgeuse LW. Originally used a Marauder weapons variant, but that had weird implications. Will likely be replaced in future with an alternate ship of sorts, or (unlikely) a bespoke Raven variant."
+
 
 
 ship "Roost"
