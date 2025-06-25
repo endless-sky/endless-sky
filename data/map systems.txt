@@ -4405,7 +4405,8 @@ system Almaaz
 	fleet "Large Northern Pirates" 600
 	fleet "Old Northern Pirates" 4000
 	fleet "Large Republic" 4000
-	fleet "Large Heimdall Pirates (Warpless)" 1500
+	fleet "Large Heimdall Pirates" 1500
+	fleet "Small Heimdall Pirates" 600
 	fleet "Small Republic" 3000
 	fleet "Small Priate Miners" 1600
 	fleet "Small Northern Merchants" 16000

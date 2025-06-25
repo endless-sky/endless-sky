@@ -2847,6 +2847,37 @@ ship "Modified Argosy" "Modified Argosy (Smuggler)"
 
 
 
+ship "Monitor" "Monitor (Heimdall)"
+	outfits
+		"Heavy Blaster" 2
+		"Heavy Rocket Pod"
+		"Heavy Rocket" 12
+		"Heavy Rocket Rack"
+		"Heavy Anti-Missile Turret" 2
+		"Gatling Turret"
+		"Gatling Gun Ammo" 6000
+		"Cargo Scanner"
+		"KP-6 Photovoltaic Array" 3
+		"nGVF-BB Fuel Cell"
+		"Supercapacitor"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 21
+		"Fragmentation Grenades" 8
+		"X3700 Ion Thruster"
+		"Greyhound Plasma Steering"
+		"Security Station" 2
+		"Volcano Afterburner"
+		
+	gun 0 -94.5 "Heavy Rocket Pod"
+	gun -11 -86 "Heavy Blaster"
+	gun 11 -86 "Heavy Blaster"
+	turret -17.5 -19.5 "Heavy Anti-Missile Turret"
+	turret 17.5 -19.5 "Heavy Anti-Missile Turret"
+	turret 0 17 "Gatling Turret"
+
+
+
 ship "Mule" "Mule (Hai Engines)"
 	outfits
 		"Sidewinder Missile Launcher" 2
@@ -3743,7 +3774,7 @@ ship "Wasp" "Wasp (Proton)"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 
-ship Aerie "Aerie (Heimdall) (Warpless)"
+ship Aerie "Aerie (Heimdall)"
 	attributes
 		category "Medium Warship"
 		cost 3500000
@@ -3783,8 +3814,8 @@ ship Aerie "Aerie (Heimdall) (Warpless)"
 		"A255 Atomic Steering"
 	gun "Sidewinder Missile Launcher"
 	gun "Sidewinder Missile Launcher"
-	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Laser Turret"
+	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Anti-Missile Turret"
 
 ship Dagger "Dagger (Heimdall)"
@@ -3817,7 +3848,7 @@ ship Dagger "Dagger (Heimdall)"
 	gun "Meteor Missile Pod"
 	gun "Gatling Gun"
 
-ship "Marauder Leviathan (Engines)" "Marauder Leviathan (Heimdall) (Warpless)"
+ship "Marauder Leviathan (Engines)" "Marauder Leviathan (Heimdall)"
 	attributes
 		category "Heavy Warship"
 		cost 10800000

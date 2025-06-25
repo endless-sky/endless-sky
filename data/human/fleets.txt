@@ -3532,7 +3532,7 @@ fleet "Human Wormhole Guards"
 	variant 5
 		"Rainmaker (Mark II Old Weapons)"
 
-fleet "Large Heimdall Pirates (Warpless)"
+fleet "Large Heimdall Pirates"
 	government "Pirate Heimdall"
 	names "pirate"
 	cargo 0
@@ -3541,21 +3541,40 @@ fleet "Large Heimdall Pirates (Warpless)"
 		disables heroic opportunistic quiet waiting lingering
 	variant 3
 		"Raven (Defender)" 4
-		"Aerie (Heimdall) (Warpless)" 1
+		"Aerie (Heimdall)" 1
 		"Dagger (Heimdall)" 2
 	variant 3
-		"Marauder Leviathan (Heimdall) (Warpless)"
-		"Aerie (Heimdall) (Warpless)" 2
+		"Marauder Leviathan (Heimdall)"
+		"Aerie (Heimdall)" 2
 		"Dagger (Heimdall)" 4
 	variant 5
 		"Raven (Defender)" 3
-		"Aerie (Heimdall) (Warpless)" 2
+		"Aerie (Heimdall)" 2
 		"Dagger (Heimdall)" 4
 	variant 2
-		"Aerie (Heimdall) (Warpless)" 3
+		"Aerie (Heimdall)" 3
 		"Dagger (Heimdall)" 6
 	variant 2
-		"Marauder Leviathan (Heimdall) (Warpless)" 2
+		"Marauder Leviathan (Heimdall)" 2
+
+fleet "Small Heimdall Pirates"
+	government "Pirate Heimdall"
+	names "pirate"
+	cargo 0
+	personality
+		confusion 5
+		disables heroic opportunistic quiet waiting lingering
+	variant 6
+		"Raven (Defender)" 2
+	variant 4
+		"Raven (Defender)" 1
+	variant 3
+		"Raven (Defender)" 1
+		"Aerie (Heimdall)" 1
+		"Dagger (Heimdall)" 2
+	variant 2
+		"Monitor (Heimdall)"
+		"Raven (Defender)" 2
 
 fleet "Small Priate Miners"
 	government "Pirate"
@@ -3873,12 +3892,3 @@ fleet "Human Miners (Corrupt)"
 	variant 5
 		"Sunder (Heavy)"
 		"Mining Drone" 2
-	variant 5
-		"Marauder Raven (Heimdall) (Warpless)" 3
-		"Aerie (Heimdall) (Warpless)" 2
-		"Dagger (Heimdall)" 4
-	variant 4
-		"Aerie (Heimdall) (Warpless)" 3
-		"Dagger (Heimdall)" 6
-	variant 2
-		"Marauder Leviathan (Heimdall) (Warpless)" 2
