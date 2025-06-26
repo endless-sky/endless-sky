@@ -48,13 +48,6 @@ namespace {
 	// Label for the description field of the detail pane.
 	const string DESCRIPTION = "description";
 
-	// TODO: Future code after PR #10743
-	// // Button size/placement info:
-	// constexpr double BUTTON_ROW_START_PAD = 4.;
-	// constexpr double BUTTON_ROW_PAD = 6.;
-	// constexpr double BUTTON_COL_PAD = 6.;
-	// constexpr double BUTTON_WIDTH = 75.;
-
 	// Determine the refillable ammunition a particular ship consumes or stores.
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
 	{
@@ -1024,108 +1017,6 @@ const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
 	return shipsToOutfit;
 }
 
-
-
-// TODO: Future code for after PR #10743
-// void OutfitterPanel::DrawButtons()
-// {
-// 	// There will be two rows of buttons:
-// 	//  [ Buy  ] [  Install  ] [  Cargo  ]
-// 	//  [ Sell ] [ Uninstall ] [ Storage ]
-// 	//                         [  Leave  ]
-// 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-// 	const double rowBaseY = Screen::BottomRight().Y() - 2.5 * rowOffsetY - BUTTON_ROW_START_PAD;
-// 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-// 	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
-// 	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
-
-// 	// Draw the button panel (shop side panel footer).
-// 	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
-// 	FillShader::Fill(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize,
-// 		*GameData::Colors().Get("shop side panel background"));
-// 	FillShader::Fill(
-// 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
-// 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
-
-// 	// Set up font size and colors for the credits.
-// 	const Font &font = FontSet::Get(14);
-// 	const Color &bright = *GameData::Colors().Get("bright");
-// 	const Color &dim = *GameData::Colors().Get("medium");
-
-// 	// Draw the row for credits display.
-// 	const Point creditsPoint(
-// 		Screen::Right() - SIDEBAR_WIDTH + 10,
-// 		Screen::Bottom() - ButtonPanelHeight() + 5);
-// 	font.Draw("You have:", creditsPoint, dim);
-// 	const string &credits = Format::CreditString(player.Accounts().Credits());
-// 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
-
-// 	// Draw the row for Fleet Cargo Space free.
-// 	const Point cargoPoint(
-// 		Screen::Right() - SIDEBAR_WIDTH + 10,
-// 		Screen::Bottom() - ButtonPanelHeight() + 25);
-// 	font.Draw("Cargo Free:", cargoPoint, dim);
-// 	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-// 	font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, cargoPoint, bright);
-
-// 	// Clear the buttonZones, they will be populated again as buttons are drawn.
-// 	buttonZones.clear();
-
-// 	// Row 1
-// 	ShopPanel::DrawButton("_Buy", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize,
-// 		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
-// 	ShopPanel::DrawButton("_Install", Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize,
-// 		static_cast<bool>(CanInstall()), hoverButton == 'i', 'i');
-// 	ShopPanel::DrawButton("_Cargo", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize,
-// 		(CanMoveToCargoFromStorage() || CanBuyToCargo()), hoverButton == 'c', 'c');
-// 	// Row 2
-// 	ShopPanel::DrawButton("_Sell", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 1), buttonSize,
-// 		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Sell)), hoverButton == 's', 's');
-// 	ShopPanel::DrawButton("_Uninstall", Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1), buttonSize,
-// 		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Uninstall)), hoverButton == 'u', 'u');
-// 	ShopPanel::DrawButton("Sto_re", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize,
-// 		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Store)), hoverButton == 'r', 'r');
-// 	// Row 3
-// 	ShopPanel::DrawButton("_Leave", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2), buttonSize,
-// 		true, hoverButton == 'l', 'l');
-
-// 	// Draw the Modifier hover text that appears below the buttons when a modifier
-// 	// is being applied.
-// 	int modifier = Modifier();
-// 	if(modifier > 1)
-// 	{
-// 		string mod = "x " + to_string(modifier);
-// 		int modWidth = font.Width(mod);
-// 		for(int i = -1; i < 2; i++)
-// 			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0)
-// 			+ Point(-.5 * modWidth, 10.), dim);
-// 		for(int i = -1; i < 2; i++)
-// 			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1)
-// 			+ Point(-.5 * modWidth, 10.), dim);
-// 	}
-
-// 	// Draw tooltips for the button being hovered over:
-// 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
-// 	if(!tooltip.empty())
-// 		// Note: there is an offset between the cursor and tooltips in this case so that other
-// 		// buttons can be seen as the mouse moves around.
-// 		DrawTooltip(tooltip, hoverPoint + Point(-40, -60), dim, *GameData::Colors().Get("tooltip background"));
-
-// 	// Draw the tooltip for your full number of credits and free cargo space
-// 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 30));
-// 	if(creditsBox.Contains(hoverPoint))
-// 		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
-// 	else if(ShopPanel::hoverCount)
-// 		--ShopPanel::hoverCount;
-
-// 	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
-// 	{
-// 		tooltip = Format::Number(player.Accounts().Credits()) + " credits" + "\n" +
-// 			Format::Number(player.Cargo().Free()) + " tons free out of " +
-// 			Format::Number(player.Cargo().Size()) + " tons total capacity";
-// 		DrawTooltip(tooltip, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
-// 	}
-// }
 
 
 int OutfitterPanel::FindItem(const string &text) const
