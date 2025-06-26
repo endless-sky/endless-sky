@@ -111,6 +111,10 @@ void StarField::FinishLoading()
 	const Interface *constants = GameData::Interfaces().Get("starfield");
 	fixedZoom = constants->GetValue("fixed zoom");
 	velocityReducer = constants->GetValue("velocity reducer");
+
+	minZoom = max(0., constants->GetValue("minimum zoom"));
+	zoomClamp = constants->GetValue("start clamping zoom");
+	clampSlope = max(0., (zoomClamp - minZoom) / zoomClamp);
 }
 
 
@@ -156,15 +160,16 @@ void StarField::Step(Point vel, double zoom)
 		baseZoom = fixedZoom;
 		vel /= velocityReducer;
 	}
-	else if(zoom < .25)
+	else if(zoom < zoomClamp)
 	{
 		// When the player's view zoom gets too small, the starfield begins to take up
 		// an extreme amount of system resources, and the tiling becomes very obvious.
-		// If the view zoom gets below 0.25, start zooming the starfield at a different
-		// rate, and don't go below 0.15 for the starfield's zoom.
-		// 0.25 is the vanilla minimum zoom, so this only applies when the "main view"
-		// interface has been modified to allow lower zoom values.
-		baseZoom = .4 * zoom + .15;
+		// If the view zoom gets below the zoom clamp value (default 0.25), start zooming
+		// the starfield at a different rate, and don't go below the minimum zoom value
+		// (default 0.15) for the starfield's zoom. 0.25 is the vanilla minimum zoom, so
+		// this only applies when the "main view" interface has been modified to allow
+		// lower zoom values.
+		baseZoom = clampSlope * zoom + minZoom;
 		// Reduce the movement of the background by the same adjustment as the zoom
 		// so that the background doesn't appear like it's moving way quicker than
 		// the player is.
