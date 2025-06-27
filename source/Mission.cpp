@@ -1575,7 +1575,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			[](const Planet *const &planet)
 			{
 				return planet->DisplayName();
-			});;
+			});
 	}
 	// Waypoints and marks: "<system name>" with "," and "and".
 	if(!result.waypoints.empty())

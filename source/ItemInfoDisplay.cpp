@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ItemInfoDisplay.h"
 
 #include "text/Alignment.h"
-#include "text/Format.h"
 #include "Color.h"
 #include "shader/FillShader.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Rectangle.h"
 #include "Screen.h"
