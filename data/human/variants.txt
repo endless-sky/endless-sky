@@ -3789,32 +3789,35 @@ ship Aerie "Aerie (Heimdall)"
 		hull 1900
 		"outfit space" 400
 		"required crew" 10
-		"self destruct" 1
+		"self destruct" .5
 		shields 5700
 		"turret mounts" 3
 		"weapon capacity" 150
 	outfits
-		"Quad Blaster Turret"
-		"Sidewinder Missile Launcher" 2
+		"Gatling Turret"
+		"Particle Cannon" 2
 		"Heavy Anti-Missile Turret" 2
 
 		"D67-TM Shield Generator"
-		"LP144a Battery Pack"
-		"Large Radar Jammer"
-		"Laser Rifle" 3
+		"D23-QP Shield Generator"
+		"Supercapacitor" 3
+		"Small Radar Jammer" 2
+		"Laser Rifle" 28
+		"Security Station" 6
+		"Fragmentation Grenades" 4
 		"NT-200 Nucleovoltaic"
+		"KP-6 Photovoltaic Array"
 		"Tactical Scanner"
 		"Outfits Expansion" 2
-		"Sidewinder Missile Rack"
 		"Volcano Afterburner"
-		"Water Coolant System" 2
-		"Sidewinder Missile" 113
+		"Water Coolant System"
+		"Gatling Gun Ammo" 6000
 
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
-	gun "Sidewinder Missile Launcher"
-	gun "Sidewinder Missile Launcher"
-	turret "Heavy Laser Turret"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	turret "Gatling Turret"
 	turret "Heavy Anti-Missile Turret"
 	turret "Heavy Anti-Missile Turret"
 
