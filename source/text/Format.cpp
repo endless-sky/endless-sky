@@ -352,7 +352,7 @@ string Format::CargoString(double amount, const string &cargo)
 
 
 // Converts the integer to string, and adds the noun, pluralized if needed.
-string SimplePluralization(int amount, const std::string &noun)
+string Format::SimplePluralization(int amount, const string &noun)
 {
 	string result = to_string(amount) + ' ' + noun;
 	if(amount != 1)
