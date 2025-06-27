@@ -1024,20 +1024,6 @@ ship "Sea Scorpion"
 
 	engine -23.5 68.5
 	engine 23.5 68.5
-	"steering engine" -23.5 68.5
-		zoom 0.4
-		right
-	"steering engine" 23.5 68.5
-		zoom 0.4
-		left
-	"steering engine" 29.5 61
-		zoom 0.55
-		angle -90
-		right
-	"steering engine" -29.5 61
-		zoom 0.55
-		angle 90
-		left
 	gun -13 -77.5
 	gun 13 -77.5
 	gun -27 -56
