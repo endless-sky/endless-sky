@@ -56,9 +56,10 @@ void ConditionsStore::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(!DataNode::IsConditionName(child.Token(0)))
+		const string &key = child.Token(0);
+		if(!DataNode::IsConditionName(key))
 			child.PrintTrace("Invalid condition during savegame-load:");
-		Set(child.Token(0), (child.Size() >= 2) ? child.Value(1) : 1);
+		Set(key, (child.Size() >= 2) ? child.Value(1) : 1);
 	}
 }
 
@@ -101,13 +102,13 @@ int64_t ConditionsStore::Get(const string &name) const
 
 	// If the name matches exactly, then access directly with explicit conversion to int64_t.
 	if(ce->name == name)
-		return ce->operator int64_t();
+		return *ce;
 
 	// If the name doesn't match exactly, then we are dealing with a prefixed provider that doesn't have an exactly
 	// matching entry. Get is const, so isn't supposed to add such an entry; use a temporary object for access.
 	ConditionEntry ceAccessor(name);
 	ceAccessor.providingEntry = ce;
-	return ceAccessor.operator int64_t();
+	return ceAccessor;
 }
 
 
@@ -190,7 +191,7 @@ const ConditionEntry *ConditionsStore::GetEntry(const string &name) const
 
 	// If we don't have an exact match, but we have a matching prefix-provider, then we return that one.
 	const ConditionEntry *ceProv = it->second.providingEntry;
-	if(ceProv && !name.compare(0, ceProv->name.length(), ceProv->name))
+	if(ceProv && name.starts_with(ceProv->name))
 		return ceProv;
 
 	// And otherwise we don't have a match.

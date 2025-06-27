@@ -41,7 +41,7 @@ galaxy "label gegno"
 	pos 854 -544
 
 galaxy "label graveyard"
-	pos 45 590
+	pos 100 630
 
 galaxy "label hai"
 	pos -74 -497
@@ -81,7 +81,7 @@ galaxy "label successors"
 	pos -122 1385
 
 galaxy "label tangled shroud"
-	pos -480 1050
+	pos -300 1080
 
 galaxy "label twilight"
 	pos -420 750
@@ -90,7 +90,7 @@ galaxy "label wanderers"
 	pos -145 -753
 
 galaxy "label waste"
-	pos 80 315
+	pos 160 380
 
 galaxy "pug empty galaxy"
 	pos 10000 7000
@@ -4402,6 +4402,7 @@ system Almaaz
 	trade Plastic 308
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 600
+	fleet "Old Northern Pirates" 4000
 	fleet "Large Republic" 4000
 	object
 		sprite star/f-giant
@@ -4649,6 +4650,7 @@ system Alnilam
 	trade Plastic 334
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 700
+	fleet "Old Northern Pirates" 5000
 	fleet "Large Republic" 10000
 	object
 		sprite star/f5
@@ -6821,6 +6823,7 @@ system Arneb
 	trade Plastic 358
 	fleet "Small Northern Pirates" 400
 	fleet "Large Northern Pirates" 500
+	fleet "Old Northern Pirates" 6000
 	fleet "Large Republic" 15000
 	object
 		sprite star/f5
@@ -19488,6 +19491,7 @@ system Hatysa
 	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 15000
+	fleet "Old Northern Pirates" 6000
 	fleet "Derelict Pirate" 30000
 	object
 		sprite star/k0
@@ -29497,6 +29501,7 @@ system Nunki
 	fleet "Large Southern Pirates" 2000
 	fleet "Small Southern Merchants" 1600
 	fleet "Small Militia" 2000
+	fleet "Old Southern Pirates" 7000
 	object
 		sprite star/m3
 		period 10
@@ -30705,13 +30710,21 @@ system Patir
 	trade Metal 354
 	trade Plastic 426
 	fleet Ka'sei 300
+	hazard "Patir Black Hole Event Horizon" 1
 	hazard "Ember Waste Base Heat" 100
+		to spawn
+			not "ka'het: beyond Patir"
 	hazard "Ember Waste Base Storm" 9000
+		to spawn
+			not "ka'het: beyond Patir"
+	hazard "Beyond Patir Shield Eraser" 1
+		to spawn
+			has "ka'het: beyond Patir"
 	object
-		sprite star/nova
+		sprite star/patir
 		period 1
 	object
-		sprite star/neutron-core
+		sprite "star/patir core"
 		period 1
 	object "Builder Settlement"
 		sprite "planet/asteroid base"
@@ -36156,6 +36169,7 @@ system Shaula
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 9000
 	fleet "Large Militia" 9000
+	fleet "Old Southern Pirates" 7000
 	object
 		sprite star/g5
 		period 10
