@@ -709,7 +709,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"missile strength:",
 		"anti-missile:",
 		"tractor beam:",
-		"mining efficiency:",
+		"mining precision:",
 	};
 	vector<double> otherValues = {
 		outfit.Inaccuracy(),

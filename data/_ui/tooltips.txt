@@ -1207,8 +1207,8 @@ tip "anti-missile:"
 tip "tractor beam:"
 	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
 
-tip "mining efficiency:"
-	`A measure of how well this weapon prevents damage to valuable materials while mining. Weapons with a higher efficiency will thus result in higher yields. Some minable objects are tougher than others, and are therefore less susceptible to having their yields increased.`
+tip "mining precision:"
+	`A measure of how well this weapon prevents damage to valuable materials while mining. Weapons with a positive precision result in higher yields, while a negative precision results in lower yields. Some minable objects are tougher than others, and are therefore less susceptible to having their yields altered.`
 
 
 
