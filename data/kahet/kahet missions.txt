@@ -832,6 +832,8 @@ mission "Ka'het: Patir Mystery 6"
 		clear "remnant: dusk busy"
 		dialog
 			`You have approached the Builder Settlement uncloaked, making the Ka'sei follow you, or the escort that was carrying the Remnant scientists has been destroyed, or the escort that was carrying the mission cargo was destroyed. You have failed this mission.`
+	on visit
+		dialog `You have reached <planet>, but not all of the cargo and passengers are in the system! Better depart and wait for your escorts to arrive in this star system. Remember that your escorts need to be cloaked as well. You may want to park your escorts that are incapable of cloaking.`
 	npc save
 		government "Test Dummy"
 		personality heroic nemesis unconstrained
@@ -983,6 +985,8 @@ mission "Ka'het: Patir Mystery 7"
 			`	As you awkwardly scoot down the slide with the seeds, the same corrugated texture that made it possible to climb now working against you, Dusk continues his explanation. "It seems odd how none of the boxes you found were empty, or even unsealed. The hydroponics fields were in a similar situation; you would expect to find at least traces indicating the place used to be full of plants, but there was nothing of that sort. I am starting to believe this place was never inhabited in the first place, but assembling this facility would go far beyond the known capabilities of the Ka'sei."`
 			`	Shortly after reaching the end, you meet up with the rest of the team, who all describe situations similar to the one you found. It takes a while to reach your ship outside the dome, but finally everything is ready to return to Remnant space. Next stop: <planet>.`
 				accept
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment 50000
 		conversation
@@ -1022,6 +1026,8 @@ mission "Ka'het: Patir Mystery 8A"
 			`	"Because of that, before we can start our mission, we will need to make a stopover at <destination> - I was able to convince the prefects on Viminal to reallocate one of the outposts that they had just delivered there to our mission, given it has higher priority than the mining expeditions they are setting up. After outfitting it with our research equipment, it has reached a mass of 97 tons."`
 			`	You help Dusk transport the chosen instruments to your ship; you also make sure to leave enough space for the facilities you're going to take from <planet>. As you're walking back to the ship's controls, Dusk reminds you to bring as many ramscoops with you as possible - you're going to need them in order to complete the mission plan while cloaked.`
 				accept
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		dialog
 			`Dusk's coordinates indicate the border of a large canyon near the equator of <planet>. Unlike most cracks on the surface, this one shows signs of geological activity: you only narrowly avoid a stream ejecting from a geyser in the canyon as you pass overhead. As you land, a row of Remnant structures are clearly visible running parallel to the cliff.`
@@ -1052,7 +1058,8 @@ mission "Ka'het: Patir Mystery 8B"
 		clear "remnant: dusk busy"
 		dialog
 			`You have approached the Builder Settlement uncloaked, making the Ka'sei follow you, or the escort that was carrying the Remnant scientists has been destroyed, or the escort that was carrying the mission cargo was destroyed. You have failed this mission.`
-
+	on visit
+		dialog `You have reached <planet>, but not all of the cargo and passengers are in the system! Better depart and wait for your escorts to arrive in this star system. Remember that your escorts need to be cloaked as well. You may want to park your escorts that are incapable of cloaking.`
 	npc save
 		government "Test Dummy"
 		personality unconstrained heroic nemesis
@@ -1309,7 +1316,9 @@ mission "Ka'het: Patir Mystery 10"
 		personality derelict mute pacifist target
 		ship "Remnant Satellite" "Bright Ember Yonder"
 		dialog `From the open cargo bay, you watch as the satellite moves up inside your ship. You split up tasks between yourself and Dusk, keeping the satellite stabilized while he downloads the data. In a few minutes the process is over, and you can return the probe to its original mission.`
-		
+	
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		conversation
 			`Walking down your ship's stairway, Dusk thanks you again for your help. You hand him a datapad with the information gathered, as well as the equipment he brought with him to pick up the satellite's signal.`
@@ -1366,6 +1375,8 @@ mission "Ka'het: Patir Mystery 11"
 	on enter Lathia
 		dialog
 			`A dull hum from below the cockpit signals that the scanners have activated. You take the opportunity to observe the mesmerizing colors of the neutron star, beautiful and terrifying at the same time. After a few minutes, a beeping sound alerts you that the scan is complete, and you can return to <system>.`
+	on visit
+		dialog `You have returned to <planet>, but you haven't visited <waypoints> yet! Better depart and make sure you visit the system.`
 	npc
 		government "Magic Asteroid"
 		system "Lathia"
@@ -1427,6 +1438,8 @@ mission "Ka'het: Patir Mystery 12.1A"
 	on enter Chanai
 		dialog
 			`The gargantuan station still sits far away from you, appearing as just a dot in the distance. A long range scan of the structure reveals enough of it for an initial assessment; after a quick discussion, the Remnant pick out an approach vector for you.`
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		conversation
 			`The external coating of the structure appears pristine and untouched, much like a new spaceship. Orbiting far above a black hole, next to no asteroid moves in an orbit capable of posing a threat to it. Next to you, one of the Remnant researchers points a bulky scanner toward the station; after a few minutes, she indicates a place from which the structure can be accessed.`
@@ -1528,6 +1541,8 @@ mission "Ka'het: Patir Mystery 12.1B"
 	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least five free bunks for the mission we are preparing."`
 	to offer
 		has "Ka'het: Patir Mystery 12.1A: done"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		conversation
 			`As you accompany the Remnant team back to the lab, they confirm Dusk's theories on the dust. From the way they speak about it, they seem to have reached a consensus on the source of the regolith, though they don't go into details.`
@@ -1570,7 +1585,7 @@ mission "Ka'het: Patir Mystery 12.2A"
 		has "Ka'het: Patir Mystery 11: done"
 		( "Ka'het: Patir Mystery 12.1A: offered" + "Ka'het: Patir Mystery 12.1A: declined" ) % 2 == 0
 	to accept
-			has "Ka'het: Patir Mystery 12.1A: declined"
+		has "Ka'het: Patir Mystery 12.1A: declined"
 	on offer
 		conversation
 			`You find the team waiting for you in the lab. Next to them are two mechanical crates, roughly the size of a person. Most of the clutter around the room has been cut down considerably; these satellites alone must have used the larger part of their reserves. "Here they are, Captain," Dusk states proudly. "Two autonomous surveillance probes, capable of scanning an entire system without any input and slowly beaming the results back to us. Their capabilities are far from what our main fleet is capable of back home, but, considering our situation, they should be more than enough.`
@@ -1587,6 +1602,8 @@ mission "Ka'het: Patir Mystery 12.2A"
 	on enter "Thepa"
 		dialog
 			`Dusk quickly reaches for the console, initiating the satellite deployment procedure you've become accustomed to. It doesn't take long for it to complete, and in a few minutes you're ready to leave the system once again.`
+	on visit
+		dialog phrase "generic missing waypoint or cargo and passengers"
 
 ship "Asteroid Blocker"
 	attributes
@@ -1658,7 +1675,7 @@ mission "Ka'het: Patir Mystery 12.2B"
 				"Fetri'sei (Patir 12.2)"
 		conversation
 			`The giant creature floats a few meters away from your cockpit, silent and motionless, but you know that inside the shell, the slug remains alive and well, ready to kill. Compared to some of the Ka'het back in the Graveyard, this is one of the Builders' smaller creations, but its size is still impressive for what is, in essence, a single organism.`
-			`	Before setting the <ship> to automatic station-keeping, you move your ship so that the main hatch is as close as possible to the Fetri'sei. The Remnant are already in the airlock donning their extravehicular suits, and you join them shortly after.`
+			`	Before setting the <flagship> to automatic station-keeping, you move your ship so that the main hatch is as close as possible to the Fetri'sei. The Remnant are already in the airlock donning their extravehicular suits, and you join them shortly after.`
 			`	"When we are inside, there is a high probability we will not be able to communicate," advises Dusk. "Normally, the walls of the armored shell are too thick and dense for our signals to pass through, and the spaces we need to navigate prevent us from using a physical tether. This does not mean we will be unprotected, however. May I see your sidearm?"`
 			`	You draw your weapon out of the holster and hand it to him. After a quick examination, he nods and gives it back before continuing. "Once inside, one of our first operations will be connecting to the downlink of the Fetri's telemetry: it is not protected, in our experience, and it is easy to access. From there, we will be able to monitor the vessel's shields.`
 			`	"Many things could go wrong during this mission: the unknown creature could leave the system early, or maybe we could inadvertently awaken the Ka'sei with our actions. If you notice anything out of the ordinary, no matter how minor, take out this gun, point at an empty spot on the shell, and shoot. Our terminals will let us know even the smallest variation in its shield integrity, and we will run back to safety as soon as this happens."`
@@ -1716,6 +1733,8 @@ mission "Ka'het: Patir Mystery 12.2B"
 			`	"Thank you for that, <first>. We had to cut short the exploration when we saw your message, before we had the chance to retrieve the specific data we were looking for. As a compromise, we decided to take some memory banks - these cylinders - with us, so we could search through the data later. It was dangerous, but it worked.`
 			`	"That said, I suggest returning to the outpost as soon as possible. The Ka'sei we have boarded may start acting erratically after this, or it may even attack us; we have removed part of its brain, after all. Hopefully this mission will not backfire against us."`
 			`	You sit back in the cockpit, starting the engines once again.`
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		fail "Ka'het: Patir Mystery 12.2C"
 
@@ -1905,6 +1924,8 @@ mission "Ka'het: Patir Mystery 13.1"
 				launch
 	on enter
 		conversation "end of Patir 2 - on enter"
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 1570000
 		clear "remnant: dusk busy"
@@ -1959,6 +1980,8 @@ mission "Ka'het: Patir Mystery 13.2"
 	on enter
 		conversation "end of Patir 2 - on enter"
 
+	on visit
+		dialog phrase "generic passenger on visit"
 	on complete
 		payment 1570000
 		clear "remnant: dusk busy"

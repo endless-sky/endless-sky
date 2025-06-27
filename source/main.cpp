@@ -580,6 +580,8 @@ Conversation LoadConversation(const PlayerInfo &player)
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
 		{"<model>", "[Ship Model]"},
+		{"<flagship>", "[Flagship]"},
+		{"<flagship model>", "[Flagship Model]"},
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};

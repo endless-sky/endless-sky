@@ -280,7 +280,6 @@ bool LogbookPanel::Drag(double dx, double dy)
 	else
 		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));
 
-	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 
