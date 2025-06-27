@@ -129,7 +129,8 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			// This projectile didn't die in a collision. Create any death effects.
 			// Place effects ahead of the projectile by 1.5x velocity. 1x comes from
 			// the anticipated movement of the projectile on its frame of death, and
-			// 0.5x comes from the behaivor of BatchDrawList::Add.
+			// 0.5x comes from the behavior of BatchDrawList::Add drawing the projectile sprite
+			// half way between its current position and its next position.
 			Point effectPosition = position + 1.5 * velocity;
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
