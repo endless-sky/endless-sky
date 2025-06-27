@@ -355,7 +355,7 @@ string Format::CargoString(double amount, const string &cargo)
 string Format::SimplePluralization(int amount, const string &noun)
 {
 	string result = to_string(amount) + ' ' + noun;
-	if(amount != 1)
+	if(abs(amount) != 1)
 		result += 's';
 	return result;
 }
