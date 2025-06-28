@@ -1494,6 +1494,7 @@ mission "Wanderers: Alpha Surveillance H"
 	description "Meet Admiral Danforth in the spaceport on <origin>, and talk about what to do next about the Alphas."
 	landing
 	source "Farpoint"
+	"offer precedence" 100
 	to offer
 		has "Wanderers: Alpha Surveillance G: done"
 	
