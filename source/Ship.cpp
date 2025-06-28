@@ -3126,6 +3126,13 @@ double Ship::TrueTurnRate() const
 
 
 
+double Ship::CrewTurnRate() const
+{
+	return TurnRate() * min(1., 1. * Crew() / RequiredCrew());
+}
+
+
+
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
@@ -3138,6 +3145,13 @@ double Ship::Acceleration() const
 double Ship::TrueAcceleration() const
 {
 	return Acceleration() * 1. / (1. + slowness * .05);
+}
+
+
+
+double Ship::CrewAcceleration() const
+{
+	return Acceleration() * min(1., 1. * Crew() / RequiredCrew());
 }
 
 
