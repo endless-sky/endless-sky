@@ -3,7 +3,7 @@ Version 0.10.14
     * Portrait image files have been removed. (@tibetiroka)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@M68HC060, @mOctave, @jmelesky, @Saugia, @tibetiroka)
+      * Typo fixes. (@jmelesky, @M68HC060, @mOctave, @Saugia, @tibetiroka)
       * "Deep: Project Hawking" can no longer be offered while either of "Deep: TMBR: 0" or "Deep: TMBR: 1" is active. (@tekker2234)
       * The Hai "Baellie" and "Basrem" engines now draw their flare sprites at 0.8 scale to differentiate them from the "Benga" engines. (@Amazinite)
       * Fixed inconsistencies in the name of the language condition used by the Incipias governments. (@TomGoodIdea)
@@ -15,7 +15,7 @@ Version 0.10.14
     * Engine bugs:
       * Haze is now drawn at the correct size. (@palant)
       * Changes to the starfield zoom preference will now immediately update the background when starfield animation is disabled. (@Amazinite)
-      * Planet and spaceport descriptions no longer run away. (@TomGoodIdea)
+      * Planet and spaceport descriptions no longer render outside of the text box. (@TomGoodIdea)
       * Improved map panel performance in some situations by caching mission deadline related calculations. (@Amazinite, @TomGoodIdea)
       * Fixed various problems with text truncation. (@SomeTroglodyte)
   * Game content:
@@ -43,7 +43,7 @@ Version 0.10.14
     * The contributing file now includes details about acceptable licenses for proposed additions to the game. (@Amazinite)
     * Added version metadata for Windows. (@TomGoodIdea)
   * CI/CD and development environment:
-    * Fixed an issue where file execution permissions were not preserved through the MacOS release CD. (@warp-core)
+    * Fixed an issue where file execution permissions were not preserved through the macOS release CD. (@warp-core)
 
 Version 0.10.13.1
   * Bug fixes:
