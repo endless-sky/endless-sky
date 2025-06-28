@@ -303,6 +303,9 @@ elseif(WIN32)
 		"https://github.com/endless-sky/endless-sky/wiki/PlayersManual" "Player's Manual")
 	set(CPACK_NSIS_MUI_ICON "${CMAKE_CURRENT_SOURCE_DIR}/icons/WinApp.ico")
 	set(CPACK_NSIS_INSTALLED_ICON_NAME "Endless Sky.exe")
+	set(CPACK_NSIS_MUI_WELCOMEFINISHPAGE_BITMAP "${CMAKE_CURRENT_SOURCE_DIR}\\\\installer\\\\welcome.bmp")
+	set(CPACK_NSIS_MUI_UNWELCOMEFINISHPAGE_BITMAP "${CMAKE_CURRENT_SOURCE_DIR}\\\\installer\\\\welcome.bmp")
+	set(CPACK_NSIS_MUI_HEADERIMAGE "${CMAKE_CURRENT_SOURCE_DIR}\\\\installer\\\\header.bmp")
 	set(CPACK_NSIS_EXTRA_PREINSTALL_COMMANDS
 		# Clear the previous contents of the installation directory to prevent data conflicts.
 		"RMDir /r $INSTDIR")
