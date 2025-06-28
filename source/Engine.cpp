@@ -1249,6 +1249,11 @@ void Engine::Draw() const
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Rectangle messageBox = hud->GetBox("messages");
 	bool messagesReversed = hud->GetValue("messages reversed");
+	double animationDuration = hud->GetValue("animation duration");
+	auto messageAnimation = [animationDuration](double age) -> double
+	{
+		return 1. - pow((age - animationDuration) / animationDuration, 2);
+	};
 	WrappedText messageLine(font);
 	messageLine.SetWrapWidth(messageBox.Width());
 	messageLine.SetParagraphBreak(0.);
@@ -1257,6 +1262,9 @@ void Engine::Draw() const
 	{
 		messageLine.Wrap(it->message);
 		int height = messageLine.Height();
+		int age = step - it->step;
+		if(it == messages.rbegin() && age < animationDuration)
+			height *= messageAnimation(age);
 		if(messagesReversed)
 		{
 			if(messagePoint.Y() + height > messageBox.Bottom())
@@ -1268,7 +1276,7 @@ void Engine::Draw() const
 			if(messagePoint.Y() < messageBox.Top())
 				break;
 		}
-		float alpha = (it->step + 1000 - step) * .001f;
+		float alpha = age < animationDuration ? messageAnimation(age) : (1000 + animationDuration - age) * .001f;
 		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
 		if(messagesReversed)
 			messagePoint.Y() += height;
