@@ -1263,7 +1263,7 @@ void Engine::Draw() const
 		messageLine.Wrap(it->message);
 		int height = messageLine.Height();
 		int age = step - it->step;
-		if(it == messages.rbegin() && age < animationDuration)
+		if(age < animationDuration)
 			height *= messageAnimation(age);
 		if(messagesReversed)
 		{
