@@ -3,7 +3,7 @@ Version 0.10.14
     * Portrait image files have been removed. (@tibetiroka)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@jmelesky, @M68HC060, @mOctave, @Saugia, @tibetiroka)
+      * Typo fixes. (@jmelesky, @M68HC060, @mOctave, @Saugia, @tekker2234, @tibetiroka)
       * "Deep: Project Hawking" can no longer be offered while either of "Deep: TMBR: 0" or "Deep: TMBR: 1" is active. (@tekker2234)
       * The Hai "Baellie" and "Basrem" engines now draw their flare sprites at 0.8 scale to differentiate them from the "Benga" engines. (@Amazinite)
       * Fixed inconsistencies in the name of the language condition used by the Incipias governments. (@TomGoodIdea)
@@ -12,28 +12,38 @@ Version 0.10.14
       * The "Wanderers: Diplomacy" conversation now includes a branch for if the player used the Hai start. (@Amazinite)
       * Patir 2 missions now have "on visit" messages. (@Amazinite)
       * The Patir 2 "asteroid" ships are no longer capturable. (@Amazinite)
+      * Fixed an issue where a dialog was appearing out of order in "Remnant: Cognizance 18". (@warp-core)
+      * "Wanderers: Alpha Surveillance H" now has a very high offer precedence nad so will offer before almost any other mission. (@Amazinite)
+      * Removed references to the removed "Cutthroat (Jousting)" variant of the Cutthroat. (@Saugia)
     * Engine bugs:
       * Haze is now drawn at the correct size. (@palant)
       * Changes to the starfield zoom preference will now immediately update the background when starfield animation is disabled. (@Amazinite)
       * Planet and spaceport descriptions no longer render outside of the text box. (@TomGoodIdea)
       * Improved map panel performance in some situations by caching mission deadline related calculations. (@Amazinite, @TomGoodIdea)
       * Fixed various problems with text truncation. (@SomeTroglodyte)
+      * Fixed free cargo and bunks being pluralized when there is only one unit available. (@TomGoodIdea)
+      * Corrected the positioning of projectile die effects. (@Amazinite)
   * Game content:
     * Sprites:
       * Replaced various landscape and conversation scene images that were included under incompatible licenses. (@tibetiroka)
     * Other:
       * The Greenrock defense fleet is now composed of a mixture of Northern, Core, and Southern Pirate fleets, instead of only Northern. (@qxxt, @Quantumshark)
       * Improved the descriptions and adjusted the NPC spawn locations of some Pirate jobs. (@Xcyiterr)
+      * Kor Mereti and Sestor planets no longer offer trading, bank, job board, or crew hiring services. (@Amazinite)
+      * Removed steering flare points from the Sea Scorpion and moved the thruster flare points slightly closer to the center. (@Saugia)
   * Graphics:
     * Each layer of fancy parallax starfield will now use different star locations. (@palant)
   * Game mechanics:
     * New mechanics:
       * Added "<flagship>" and "<flagship model>" text replacements. (@Amazinite)
+      * Added cargo and passenger space free conditions for the whole fleet and flagship only. (@Amazinite)
   * User interface:
     * Improved the route error message in the map when a route is known, but the flagship cannot use it. (@Amazinite)
     * Scrolling through the logbook no longer plays sounds. (@tibetiroka)
     * The planet panel will now only be offset to the left slightly when the game window is fewer than 1280 pixels wide. (@xobes)
     * The message log panel can now be closed by clicking on the empty background space. (@warp-core)
+    * Starfield zoom limits can now be customized through the interfaces file. (@Amazinite)
+    * The outfitter now lists a weapons projectile velocity and prospecting efficiency. (@Amazinite)
   * Under the hood:
     * Alphabetized government definitions. (@Amazinite)
     * BoardingPanel methods now use the shared Format::Decimal method instead of a special, locally-defined method. (@TomGoodIdea)
@@ -44,6 +54,7 @@ Version 0.10.14
     * Added version metadata for Windows. (@TomGoodIdea)
   * CI/CD and development environment:
     * Fixed an issue where file execution permissions were not preserved through the macOS release CD. (@warp-core)
+    * The Windows release CD now creates an NSIS based installed bundle as well as zip archive. (@TomGoodIdea)
 
 Version 0.10.13.1
   * Bug fixes:
