@@ -2837,6 +2837,8 @@ void Engine::DrawShipSprites(const Ship &ship)
 				ship.Velocity(),
 				ship.Facing() + hardpoint.GetAngle(),
 				ship.Zoom());
+			if(body.InheritsParentSwizzle())
+				body.SetSwizzle(ship.GetSwizzle());
 			drawObject(body);
 		}
 	};
