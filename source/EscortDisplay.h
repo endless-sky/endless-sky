@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ESCORT_DISPLAY_H_
-#define ESCORT_DISPLAY_H_
+#pragma once
 
 #include "Rectangle.h"
 
@@ -34,7 +33,7 @@ class Sprite;
 class EscortDisplay {
 public:
 	void Clear();
-	void Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
+	void Add(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected);
 
 	// Draw as many escort icons as will fit in the given bounding box.
 	void Draw(const Rectangle &bounds) const;
@@ -47,7 +46,7 @@ public:
 private:
 	class Icon {
 	public:
-		Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected,
+		Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected,
 				int basicHeight, int systemLabelHeight);
 
 		// Sorting operator.
@@ -85,7 +84,3 @@ private:
 	int basicHeight = 0;
 	int systemLabelHeight = 0;
 };
-
-
-
-#endif

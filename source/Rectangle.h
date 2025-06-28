@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RECTANGLE_H_
-#define RECTANGLE_H_
+#pragma once
 
 #include "Point.h"
 
@@ -73,7 +72,3 @@ private:
 	Point center;
 	Point dimensions;
 };
-
-
-
-#endif

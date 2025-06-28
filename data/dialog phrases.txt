@@ -55,6 +55,14 @@ phrase "generic cargo and passenger on visit"
 	word
 		`You have reached <planet>, but not all of the cargo and passengers are in the system! Better depart and wait for your escorts to arrive in this star system.`
 
+phrase "generic mineral delivery payment"
+	word
+		`You drop off the <amount> tons of <mineral> and collect your payment of <payment>.`
+
+phrase "generic mineral on visit"
+	word
+		`You've returned to <origin>, but you are not carrying <amount> tons of <mineral> in your cargo hold.`
+
 phrase "generic missing stopover or cargo and passengers"
 	word
 		`You have reached <planet>, but you're missing something! Either you haven't visited <stopovers>, or not all the cargo and passengers are in the system.`
@@ -139,3 +147,7 @@ phrase "generic aborted pirate cargo mission"
 phrase "generic completed pirate slave mission"
 	word
 		`After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>.`
+
+phrase "generic aborted pirate slave mission"
+	word
+		`Your slaves never arrived at <destination>. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`

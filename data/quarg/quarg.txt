@@ -61,11 +61,11 @@ conversation "quarg imprisonment"
 	label landed
 	`Your ship loses all power immediately upon touching down on the landing pad. As you walk around to try and find the problem, you pass by your hatch. You find that it is already opened with dozens of Quarg coming in, all clad in elegant full-body armor suits.`
 	`	"<first> <last>, you are found to be in illegal possession of Quarg equipment. Our devices are precious and ours alone. Though it is regrettable, we must seize you."`
-	`	They don't allow you to get as much as a word out before one of the guards has locked your arms behind your back, completely halting your attempts to fight back with surprisingly little effort. You are brought before something akin to a Quarg jury, where they lecture you for several hours on how dangerous it is for Quarg apparatus to be stolen and used so lightly by others. At the end of it all, they sentence you to life imprisonment.`
-	`	You spend the rest of your days in the same cell, which although large and comfortable, quickly proves plain and dull. You're kept in very good health and are well-fed, but the Quarg do not allow you to leave the cell and seldom entertain your attempts at striking conversation. You get few visitors and can only wonder what life would've been like had you the chance to live out all these years in freedom, the captain of a starship.`
-		die
+	`	They don't allow you to get as much as a word out before one of the guards has locked your arms behind your back, completely halting your attempts to fight back with surprisingly little effort. You are brought to something akin to a Quarg courtroom, where they lecture you for several hours on how dangerous it is for Quarg apparatuses to be stolen and used so blithely by others. At the end of it all, the jury sentences you to life imprisonment.`
+	`	You spend the rest of your days in the same cell, which although large and comfortable, quickly proves plain and dull. You're kept in very good health and are well-fed, but the Quarg do not allow you to leave the cell and seldom entertain your attempts at striking up a conversation. You get few visitors and can only wonder what life would've been like had you had the chance to live out all these years in freedom, the captain of a starship.`
 
 # Human Quarg
+
 fleet "Quarg"
 	government "Quarg"
 	names "quarg"
@@ -73,7 +73,9 @@ fleet "Quarg"
 	personality
 		forbearing opportunistic
 	variant
-		"Quarg Skylark"
+		"Quarg Lindwyrm"
+	variant
+		"Quarg Drake" 2
 	variant
 		"Quarg Wardragon"
 
@@ -84,22 +86,52 @@ fleet "Large Quarg"
 	personality
 		forbearing opportunistic
 	variant 2
-		"Quarg Skylark" 2
+		"Quarg Lindwyrm" 2
 		"Quarg Wardragon"
 	variant 2
 		"Quarg Wardragon" 2
-		"Quarg Skylark"
+		"Quarg Lindwyrm"
 	variant
-		"Quarg Skylark" 2
-		"Quarg Wardragon" 2
-	variant
-		"Quarg Wardragon" 3
-		"Quarg Skylark"
-	variant
-		"Quarg Skylark" 3
 		"Quarg Wardragon"
+		"Quarg Drake" 2
+	variant
+		"Quarg Lindwyrm" 2
+		"Quarg Wardragon"
+		"Quarg Drake"
+	variant
+		"Quarg Wardragon" 2
+		"Quarg Drake"
+		"Quarg Lindwyrm"
+	variant
+		"Quarg Lindwyrm" 3
+		"Quarg Wardragon"
+	variant
+		"Quarg Lindwyrm" 2
+		"Quarg Drake" 2
+
+fleet "Quarg Utility"
+	government "Quarg"
+	names "quarg"
+	cargo 1
+	personality
+		forbearing opportunistic
+	variant 3
+		"Quarg Guivre"
+		"Quarg Lindwyrm"
+		"Quarg Wardragon"
+	variant 2
+		"Quarg Guivre"
+		"Quarg Wardragon" 2
+	variant 2
+		"Quarg Guivre"
+		"Quarg Lindwyrm" 2
+	variant 2
+		"Quarg Guivre"
+		"Quarg Drake" 3
+
 
 # Hai Quarg
+
 fleet "Quarg (Hai)"
 	government "Quarg (Hai)"
 	names "quarg"
@@ -107,9 +139,11 @@ fleet "Quarg (Hai)"
 	personality
 		forbearing opportunistic
 	variant
-		"Quarg Skylark"
+		"Quarg Lindwyrm"
 	variant
 		"Quarg Wardragon"
+	variant
+		"Quarg Drake" 2
 
 fleet "Large Quarg (Hai)"
 	government "Quarg (Hai)"
@@ -118,22 +152,67 @@ fleet "Large Quarg (Hai)"
 	personality
 		forbearing opportunistic
 	variant 2
-		"Quarg Skylark" 2
+		"Quarg Lindwyrm" 2
 		"Quarg Wardragon"
 	variant 2
 		"Quarg Wardragon" 2
-		"Quarg Skylark"
+		"Quarg Lindwyrm"
 	variant
-		"Quarg Skylark" 2
-		"Quarg Wardragon" 2
-	variant
-		"Quarg Wardragon" 3
-		"Quarg Skylark"
-	variant
-		"Quarg Skylark" 3
 		"Quarg Wardragon"
+		"Quarg Drake" 2
+	variant
+		"Quarg Lindwyrm" 2
+		"Quarg Wardragon"
+		"Quarg Drake"
+	variant
+		"Quarg Wardragon" 2
+		"Quarg Drake"
+		"Quarg Lindwyrm"
+	variant
+		"Quarg Lindwyrm" 3
+		"Quarg Wardragon"
+	variant
+		"Quarg Lindwyrm" 2
+		"Quarg Drake" 2
+
+fleet "Quarg Utility (Hai)"
+	government "Quarg (Hai)"
+	names "quarg"
+	cargo 1
+	personality
+		forbearing opportunistic
+	variant 3
+		"Quarg Guivre"
+		"Quarg Lindwyrm"
+		"Quarg Wardragon"
+	variant 2
+		"Quarg Guivre"
+		"Quarg Drake" 3
+	variant 2
+		"Quarg Guivre"
+		"Quarg Wyvern"
+		"Quarg Lindwyrm"
+	variant
+		"Quarg Guivre"
+		"Quarg Wyvern" 2
+	variant
+		"Quarg Guivre"
+		"Quarg Wyvern" 2
+		"Quarg Drake"
+	variant
+		"Quarg Guivre"
+		"Quarg Wyvern" 2
+		"Quarg Wardragon"
+	variant
+		"Quarg Guivre"
+		"Quarg Wardragon" 3
+	variant
+		"Quarg Guivre"
+		"Quarg Wardragon" 2
+		"Quarg Drake" 2
 
 # Kor Efret Quarg
+
 fleet "Quarg (Kor Efret)"
 	government "Quarg (Kor Efret)"
 	names "quarg"
@@ -141,9 +220,11 @@ fleet "Quarg (Kor Efret)"
 	personality
 		forbearing opportunistic
 	variant
-		"Quarg Skylark"
+		"Quarg Lindwyrm"
 	variant
 		"Quarg Wardragon"
+	variant
+		"Quarg Drake" 2
 
 fleet "Large Quarg (Kor Efret)"
 	government "Quarg (Kor Efret)"
@@ -152,22 +233,28 @@ fleet "Large Quarg (Kor Efret)"
 	personality
 		forbearing opportunistic
 	variant 2
-		"Quarg Skylark" 2
-		"Quarg Wardragon"
+		"Quarg Wardragon" 4
+	variant 2
+		"Quarg Wardragon" 3
+		"Quarg Wyvern"
 	variant 2
 		"Quarg Wardragon" 2
-		"Quarg Skylark"
+		"Quarg Wyvern" 2
 	variant
-		"Quarg Skylark" 2
-		"Quarg Wardragon" 2
+		"Quarg Wyvern" 3
 	variant
 		"Quarg Wardragon" 3
-		"Quarg Skylark"
+		"Quarg Drake" 3
 	variant
-		"Quarg Skylark" 3
-		"Quarg Wardragon"
+		"Quarg Wyvern" 2
+		"Quarg Drake" 4
+	variant
+		"Quarg Hydra"
+		"Quarg Wyvern"
+		"Quarg Wardragon" 2
 
 # Gegno Quarg
+
 fleet "Quarg (Gegno)"
 	government "Quarg (Gegno)"
 	names "quarg"
@@ -175,9 +262,11 @@ fleet "Quarg (Gegno)"
 	personality
 		forbearing opportunistic
 	variant
-		"Quarg Skylark"
+		"Quarg Lindwyrm"
 	variant
 		"Quarg Wardragon"
+	variant
+		"Quarg Drake" 2
 
 fleet "Large Quarg (Gegno)"
 	government "Quarg (Gegno)"
@@ -186,17 +275,60 @@ fleet "Large Quarg (Gegno)"
 	personality
 		forbearing opportunistic
 	variant 2
-		"Quarg Skylark" 2
+		"Quarg Lindwyrm" 2
 		"Quarg Wardragon"
 	variant 2
 		"Quarg Wardragon" 2
-		"Quarg Skylark"
+		"Quarg Lindwyrm"
 	variant
-		"Quarg Skylark" 2
-		"Quarg Wardragon" 2
-	variant
-		"Quarg Wardragon" 3
-		"Quarg Skylark"
-	variant
-		"Quarg Skylark" 3
 		"Quarg Wardragon"
+		"Quarg Drake" 2
+	variant
+		"Quarg Lindwyrm" 2
+		"Quarg Wardragon"
+		"Quarg Drake"
+	variant
+		"Quarg Wardragon" 2
+		"Quarg Drake"
+		"Quarg Lindwyrm"
+	variant
+		"Quarg Lindwyrm" 3
+		"Quarg Wardragon"
+	variant
+		"Quarg Lindwyrm" 2
+		"Quarg Drake" 2
+
+fleet "Quarg Utility (Gegno)"
+	government "Quarg (Gegno)"
+	names "quarg"
+	cargo 1
+	personality
+		forbearing opportunistic
+	variant 3
+		"Quarg Guivre"
+		"Quarg Lindwyrm"
+		"Quarg Wardragon"
+	variant 2
+		"Quarg Guivre"
+		"Quarg Drake" 4
+	variant 2
+		"Quarg Guivre"
+		"Quarg Wyvern"
+		"Quarg Lindwyrm"
+	variant
+		"Quarg Guivre"
+		"Quarg Drake" 2
+		"Quarg Wardragon"
+	variant
+		"Quarg Guivre"
+		"Quarg Wyvern"
+		"Quarg Wardragon"
+		"Quarg Drake"
+	variant
+		"Quarg Guivre"
+		"Quarg Wyvern" 2
+		"Quarg Wardragon"
+	variant
+		"Quarg Guivre"
+		"Quarg Lindwyrm"
+		"Quarg Drake" 3

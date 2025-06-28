@@ -13,11 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_H_
-#define PLANET_H_
+#pragma once
 
+#include "Paragraphs.h"
 #include "Port.h"
 #include "Sale.h"
+#include "Shop.h"
 
 #include <list>
 #include <memory>
@@ -25,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class Fleet;
 class Government;
@@ -53,23 +55,23 @@ public:
 
 public:
 	// Load a planet's description from a file.
-	void Load(const DataNode &node, Set<Wormhole> &wormholes);
+	void Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions);
 	// Legacy wormhole do not have an associated Wormhole object so
 	// we must auto generate one if we detect such legacy wormhole.
 	void FinishLoading(Set<Wormhole> &wormholes);
 	// Check if both this planet and its containing system(s) have been defined.
 	bool IsValid() const;
 
-	// Get the name of the planet (all wormholes use the same name).
-	// When saving missions or writing the player's save, the reference name
+	// Get the name used for this planet in the data files.
+	// When saving missions or writing the player's save, the true name
 	// associated with this planet is used even if the planet was not fully
 	// defined (i.e. it belongs to an inactive plugin).
-	const std::string &Name() const;
-	void SetName(const std::string &name);
-	// Get the name used for this planet in the data files.
 	const std::string &TrueName() const;
-	// Get the planet's descriptive text.
-	const std::string &Description() const;
+	void SetName(const std::string &name);
+	// Get the display name of the planet (all wormholes use the same name).
+	const std::string &DisplayName() const;
+	// Return the description text for the planet, but not the spaceport:
+	const Paragraphs &Description() const;
 	// Get the landscape sprite.
 	const Sprite *Landscape() const;
 	// Get the name of the ambient audio to play on this planet.
@@ -97,14 +99,21 @@ public:
 	// that we can check if an uninhabited world should fine the player.
 	bool HasCustomSecurity() const;
 
-	// Check if this planet has a shipyard.
+	// Check if this planet has a permanent shipyard.
 	bool HasShipyard() const;
-	// Get the list of ships in the shipyard.
-	const Sale<Ship> &Shipyard() const;
-	// Check if this planet has an outfitter.
+	// Get the list of ships in the permanent shipyard.
+	const Sale<Ship> &ShipyardStock() const;
+	// Get the list of shipyards currently available on this planet.
+	// This will include conditionally available shops.
+	std::set<const Shop<Ship> *> Shipyards() const;
+
+	// Check if this planet has a permanent outfitter.
 	bool HasOutfitter() const;
-	// Get the list of outfits available from the outfitter.
-	const Sale<Outfit> &Outfitter() const;
+	// Get the list of outfits available from the permanent outfitter.
+	const Sale<Outfit> &OutfitterStock() const;
+	// Get the list of outitters available on this planet.
+	// This will include conditionally available shops.
+	std::set<const Shop<Outfit> *> Outfitters() const;
 
 	// Get this planet's government. If not set, returns the system's government.
 	const Government *GetGovernment() const;
@@ -158,16 +167,17 @@ public:
 
 private:
 	bool isDefined = false;
-	std::string name;
-	std::string description;
+	std::string trueName;
+	std::string displayName;
+	Paragraphs description;
 	Port port;
 	const Sprite *landscape = nullptr;
 	std::string music;
 
 	std::set<std::string> attributes;
 
-	std::set<const Sale<Ship> *> shipSales;
-	std::set<const Sale<Outfit> *> outfitSales;
+	std::set<const Shop<Ship> *> shipSales;
+	std::set<const Shop<Outfit> *> outfitSales;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
 	mutable Sale<Ship> shipyard;
@@ -197,7 +207,3 @@ private:
 	Wormhole *wormhole = nullptr;
 	std::vector<const System *> systems;
 };
-
-
-
-#endif

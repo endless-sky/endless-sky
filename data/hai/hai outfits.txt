@@ -11,8 +11,43 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+outfit "Phantom Pallet"
+	category "Systems"
+	series "Special Systems"
+	index 02020
+	cost 12000
+	thumbnail "outfit/phantom pallet"
+	"mass" 0.2
+	"unplunderable" 1
+	"energy consumption" 0.015
+	"heat generation" 0.03
+	# Replacing 30% of your cargo bay with these triples your cargo scan time.
+	"cargo space" -1
+	"cargo scan opacity" 15
+	description `Hai holographic outfits are made up of a set of individual "holopads" which work together to create a larger scene. The Phantom Pallet is an Unfettered variation of these holopads, durable enough to survive a firefight and easily hidden under floors, in walls, or in ceilings while remaining undetected. An enterprising privateer might pad their cargo bay with these and project fake cargo as sensor ghosts, confusing scanners into scanning empty space instead of contraband; that extra time has been known to make the difference between seized cargo and delivering needed supplies.`
+
+outfit "Holovid Zone"
+	category "Systems"
+	series "Special Systems"
+	index 02030
+	cost 320000
+	thumbnail "outfit/holovid zone"
+	"mass" 20
+	"outfit space" -20
+	"unplunderable" 1
+	"holographic entertainment" 1
+	"energy consumption" 0.5
+	"heat generation" 1.0
+	"cargo scan opacity" 150
+	"outfit scan opacity" 150
+	description "Hai holographic technology far exceeds the comparable human equivalents, and nowhere is this best exemplified than in the Holovid Zone. Its holographic projectors and textured force fields present lifelike visuals, while phase array speakers emanate sounds from anywhere in the room."
+	description "	For the Hai, such technology is commonplace, being used to create 3D conference rooms, holovid theaters, gaming arcades, and more. In the past, Hai captains used to install Holovid Zones on their command deck, allowing them to generate tactical evaluations of battles in real-time."
+	description "	The possibilities are endless... especially for a sly captain who misuses the device. Should authorities seek contraband or illegal outfits, a Holovid Zone may fool them long enough for a smuggler to escape. Deathsticks are hard to find in a ship with fifty tons of holographic straw."
+
 outfit "Pulse Cannon"
 	category "Guns"
+	series "Guns"
+	index 02010
 	cost 130000
 	thumbnail "outfit/pulse cannon"
 	"mass" 13
@@ -35,6 +70,8 @@ outfit "Pulse Cannon"
 
 outfit "Pulse Turret"
 	category "Turrets"
+	series "Turrets"
+	index 02010
 	cost 590000
 	thumbnail "outfit/pulse turret"
 	"mass" 34
@@ -49,7 +86,7 @@ outfit "Pulse Turret"
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
-		"turret turn" 2.3
+		"turret turn" 2.6
 		"velocity" 15
 		"lifetime" 30
 		"reload" 10
@@ -61,6 +98,8 @@ outfit "Pulse Turret"
 
 outfit "Tripulse Shredder"
 	category "Guns"
+	series "Guns"
+	index 02020
 	cost 520000
 	thumbnail "outfit/tripulse shredder"
 	"mass" 42
@@ -97,6 +136,8 @@ effect "pulse impact"
 
 outfit "Ion Cannon"
 	category "Guns"
+	series "Guns"
+	index 02030
 	cost 490000
 	thumbnail "outfit/ion cannon"
 	"mass" 47
@@ -113,9 +154,9 @@ outfit "Ion Cannon"
 		"lifetime" 50
 		"reload" 60
 		"firing energy" 120
-		"firing force" 10
+		"firing force" 15
 		"firing heat" 150
-		"hit force" 120
+		"hit force" 180
 		"shield damage" 168
 		"hull damage" 60
 		"ion damage" 6
@@ -136,6 +177,8 @@ effect "ion impact"
 
 outfit "Ionic Blaster Prototype"
 	category "Guns"
+	series "Guns"
+	index 02040
 	cost 530000
 	thumbnail "outfit/hai ionic blaster"
 	"mass" 19
@@ -152,9 +195,9 @@ outfit "Ionic Blaster Prototype"
 		"lifetime" 30
 		"reload" 30
 		"firing energy" 72
-		"firing force" 12
+		"firing force" 18
 		"firing heat" 108
-		"hit force" 72
+		"hit force" 108
 		"shield damage" 70
 		"hull damage" 30
 		"ion damage" .5
@@ -163,6 +206,8 @@ outfit "Ionic Blaster Prototype"
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
+	series "Turrets"
+	index 02020
 	cost 1260000
 	thumbnail "outfit/hai ionic turret"
 	"mass" 58
@@ -171,21 +216,22 @@ outfit "Ionic Turret Prototype"
 	"turret mounts" -1
 	"required crew" 1
 	weapon
-		sprite "projectile/ion bolt"
-			"frame rate" 5
+		sprite "projectile/ionic turret"
+			"frame rate" 20
+		"fade out" 10
 		"hardpoint sprite" "hardpoint/hai ionic turret"
 		"hardpoint offset" 16.
 		sound "ion"
-		"hit effect" "ion impact" 5
+		"hit effect" "ionic impact" 5
 		"inaccuracy" 2
-		"turret turn" 2.4
+		"turret turn" 1.4
 		"velocity" 12
 		"lifetime" 70
 		"reload" 70
 		"firing energy" 371
-		"firing force" 8
+		"firing force" 12
 		"firing heat" 259
-		"hit force" 60
+		"hit force" 90
 		"shield damage" 100
 		"hull damage" 50
 		"ion damage" 17.5
@@ -193,10 +239,22 @@ outfit "Ionic Turret Prototype"
 	description "This weapon vastly improves upon the ionization capabilities of the Ion Cannon, while doing less raw damage and not having nearly the weapon jamming affects. It is, however, also turret-mounted, enabling it to fire at enemies in any direction instead of just those directly ahead."
 	description "	This design cannot yet be mass-produced, but those that have been produced are prized by the few lucky enough to possess them."
 
+effect "ionic impact"
+	sprite "effect/ionic impact"
+		"no repeat"
+		"frame rate" 30
+	sound "ion impact"
+	"lifetime" 9
+	"random angle" 360
+	"random spin" 30
+	"random velocity" 2
+	"velocity scale" -.05
 
 outfit "Railgun Slug"
 	"display name" "Skipper Railgun Slug"
 	category "Ammunition"
+	series "Ammunition"
+	index 02020
 	cost 13
 	thumbnail "outfit/railslug"
 	"mass" 0.003
@@ -206,6 +264,8 @@ outfit "Railgun Slug"
 outfit "Railgun Slug Rack"
 	"display name" "Skipper Slug Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 02021
 	cost 15000
 	thumbnail "outfit/railslug rack"
 	"mass" 1
@@ -217,6 +277,8 @@ outfit "Railgun Slug Rack"
 outfit "Railgun"
 	"display name" "Skipper Railgun"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 02020
 	cost 20000
 	thumbnail "outfit/railgun"
 	"mass" 1
@@ -239,11 +301,12 @@ outfit "Railgun"
 		"reload" 12
 		"firing energy" 3.5
 		"firing heat" 7.2
-		"firing force" 70
+		"firing force" 105
 		"stream"
 		"submunition" "rslug" 1
 	description "The Hai designed this weapon to best complement their Flea drones. Each Skipper Railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
 	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "rslug"
 	weapon
@@ -260,7 +323,7 @@ outfit "rslug"
 		"hull damage" 8.4
 		"ion damage" .3
 		"scrambling damage" .3
-		"hit force" 15
+		"hit force" 22.5
 
 effect "rail sparks"
 	sprite "effect/railspark"
@@ -272,9 +335,21 @@ effect "rail sparks"
 	"random spin" 30
 	"velocity scale" 1.2
 
+outfitter "Railgun Slug Restock"
+	to sell
+		or
+			has "outfit: Railgun"
+			has "outfit: Railgun Slug Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Railgun Slug"
+
 
 outfit "Hai Tracker"
 	category "Ammunition"
+	series "Ammunition"
+	index 02010
 	cost 1000
 	thumbnail "outfit/hai tracker"
 	"mass" .2
@@ -283,6 +358,8 @@ outfit "Hai Tracker"
 
 outfit "Tracker Storage Pod"
 	category "Ammunition"
+	series "Ammunition"
+	index 02011
 	cost 28000
 	thumbnail "outfit/hai tracker storage"
 	"mass" 4.4
@@ -293,6 +370,8 @@ outfit "Tracker Storage Pod"
 
 outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 02010
 	cost 150000
 	thumbnail "outfit/hai tracker pod"
 	"mass" 8
@@ -325,9 +404,10 @@ outfit "Hai Tracker Pod"
 		"infrared tracking" .4
 		"shield damage" 200
 		"hull damage" 160
-		"hit force" 350
+		"hit force" 525
 		"missile strength" 16
 	description "Trackers are fast and accurate homing weapons. Although not as powerful as most human missiles, Trackers boast a significant hit force, helping to prevent the escape of whoever is unfortunate enough to be on the receiving end. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "tracker fire"
 	sprite "effect/tracker fire"
@@ -360,9 +440,21 @@ effect "tracker cloud"
 	"random frame rate" 2
 	"velocity scale" -.1
 
+outfitter "Hai Tracker Restock"
+	to sell
+		or
+			has "outfit: Hai Tracker Pod"
+			has "outfit: Tracker Storage Pod"
+	location
+		attributes "outfitter"
+	stock
+		"Hai Tracker"
+
 
 outfit "Bullfrog Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 02010
 	cost 55000
 	thumbnail "outfit/anti-missile hai"
 	"mass" 10
@@ -385,6 +477,8 @@ outfit "Bullfrog Anti-Missile"
 
 outfit "Chameleon Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 02020
 	cost 140000
 	thumbnail "outfit/heavy anti-missile hai"
 	"mass" 22
@@ -408,6 +502,8 @@ outfit "Chameleon Anti-Missile"
 
 outfit "Hai Cuttlefish Jammer"
 	category "Systems"
+	series "Jammers"
+	index 02010
 	cost 260000
 	thumbnail "outfit/hai jammer"
 	"mass" 10
@@ -418,6 +514,8 @@ outfit "Hai Cuttlefish Jammer"
 
 outfit "Hai Octopus Jammer"
 	category "Systems"
+	series "Jammers"
+	index 02020
 	cost 350000
 	thumbnail "outfit/hai jammer overclocked"
 	"mass" 10
@@ -429,6 +527,8 @@ outfit "Hai Octopus Jammer"
 
 outfit "Hai Corundum Regenerator"
 	category "Systems"
+	series "Shields"
+	index 02010
 	cost 300000
 	thumbnail "outfit/small regenerator hai"
 	"mass" 16
@@ -441,6 +541,8 @@ outfit "Hai Corundum Regenerator"
 
 outfit "Hai Diamond Regenerator"
 	category "Systems"
+	series "Shields"
+	index 02020
 	cost 1150000
 	thumbnail "outfit/large regenerator hai"
 	"mass" 49
@@ -453,6 +555,8 @@ outfit "Hai Diamond Regenerator"
 
 outfit "Hai Williwaw Cooling"
 	category "Systems"
+	series "Cooling"
+	index 02010
 	cost 15000
 	thumbnail "outfit/hai williwaw"
 	"mass" 8
@@ -461,6 +565,8 @@ outfit "Hai Williwaw Cooling"
 	description "While Hai technology is fairly heat efficient, occasionally they outfit their ships such that they sporadically overheat and shut down. When that happens, they install these."
 
 outfit "Quantum Keystone"
+	series "Drives"
+	index 50
 	category "Systems"
 	cost 12000
 	thumbnail "outfit/keystone"
@@ -472,6 +578,8 @@ outfit "Quantum Keystone"
 
 outfit "Value Detector"
 	category "Systems"
+	series "Scanners"
+	index 02010
 	cost 260000
 	thumbnail "outfit/value detector"
 	"mass" 5
@@ -485,6 +593,8 @@ outfit "Value Detector"
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
 	category "Power"
+	series "Batteries"
+	index 02010
 	cost 7000
 	thumbnail "outfit/tiny battery hai"
 	"mass" 5
@@ -495,6 +605,8 @@ outfit "Hai Chasm Batteries"
 outfit "Hai Fissure Batteries"
 	plural "Hai Fissure Batteries"
 	category "Power"
+	series "Batteries"
+	index 02020
 	cost 11000
 	thumbnail "outfit/small battery hai"
 	"mass" 15
@@ -505,6 +617,8 @@ outfit "Hai Fissure Batteries"
 outfit "Hai Gorge Batteries"
 	plural "Hai Gorge Batteries"
 	category "Power"
+	series "Batteries"
+	index 02030
 	cost 25000
 	thumbnail "outfit/medium battery hai"
 	"mass" 30
@@ -515,6 +629,8 @@ outfit "Hai Gorge Batteries"
 outfit "Hai Ravine Batteries"
 	plural "Hai Ravine Batteries"
 	category "Power"
+	series "Batteries"
+	index 02040
 	cost 47000
 	thumbnail "outfit/large battery hai"
 	"mass" 50
@@ -525,6 +641,8 @@ outfit "Hai Ravine Batteries"
 outfit "Hai Valley Batteries"
 	plural "Hai Valley Batteries"
 	category "Power"
+	series "Batteries"
+	index 02050
 	cost 74000
 	thumbnail "outfit/huge battery hai"
 	"mass" 70
@@ -535,6 +653,8 @@ outfit "Hai Valley Batteries"
 
 outfit "Boulder Reactor"
 	category "Power"
+	series "Generators"
+	index 02040
 	cost 5750000
 	thumbnail "outfit/hai boulder"
 	"mass" 90
@@ -545,6 +665,8 @@ outfit "Boulder Reactor"
 
 outfit "Geode Reactor"
 	category "Power"
+	series "Generators"
+	index 02030
 	cost 1750000
 	thumbnail "outfit/hai geode"
 	"mass" 58
@@ -555,6 +677,8 @@ outfit "Geode Reactor"
 
 outfit "Pebble Core"
 	category "Power"
+	series "Generators"
+	index 02020
 	cost 1050000
 	thumbnail "outfit/hai pebble core"
 	"mass" 32
@@ -565,6 +689,8 @@ outfit "Pebble Core"
 
 outfit "Sand Cell"
 	category "Power"
+	series "Generators"
+	index 02010
 	cost 45000
 	thumbnail "outfit/fuel cell hai"
 	"mass" 24
@@ -577,48 +703,57 @@ outfit "Sand Cell"
 outfit `"Baellie" Atomic Engines`
 	plural `"Baellie" Atomic Engines`
 	category "Engines"
+	series "Engines"
+	index 02010
 	"cost" 230000
 	thumbnail "outfit/tiny atomic engines hai"
 	"mass" 22
 	"outfit space" -22
 	"engine capacity" -22
-	"thrust" 9.8
+	"thrust" 14.7
 	"thrusting energy" .87
 	"thrusting heat" 1.7
-	"turn" 244
+	"turn" 366
 	"turning energy" .64
 	"turning heat" 1.28
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"flare sound" "atomic tiny"
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"steering flare sound" "atomic tiny"
 	description `While the Hai were designing the Flea, it quickly became apparent that even the "Basrem" engine set was too large for the purpose. As a result, a combined thruster steering set was created: "Baellie."`
 
 outfit `"Basrem" Atomic Thruster`
 	category "Engines"
+	series "Engines"
+	index 02021
 	"cost" 150000
 	thumbnail "outfit/tiny atomic thruster hai"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 15.22
+	"thrust" 22.83
 	"thrusting energy" 1.4
 	"thrusting heat" 2.8
 	"flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"flare sound" "atomic tiny"
 	description "Unbeknownst to the scientists of the Deep, the Hai have been using atomic engine technology for many millennia. Hai atomic engines are still much more energy hungry than other engines, but exhibit greater efficiency than their human counterparts."
 
 outfit `"Benga" Atomic Thruster`
 	category "Engines"
+	series "Engines"
+	index 02031
 	"cost" 300000
 	thumbnail "outfit/small atomic thruster hai"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"thrust" 25.15
+	"thrust" 37.725
 	"thrusting energy" 2.5
 	"thrusting heat" 4.8
 	"flare sprite" "effect/atomic flare/tiny"
@@ -628,12 +763,14 @@ outfit `"Benga" Atomic Thruster`
 
 outfit `"Biroo" Atomic Thruster`
 	category "Engines"
+	series "Engines"
+	index 02041
 	"cost" 610000
 	thumbnail "outfit/medium atomic thruster hai"
 	"mass" 44
 	"outfit space" -44
 	"engine capacity" -44
-	"thrust" 41.65
+	"thrust" 62.475
 	"thrusting energy" 4
 	"thrusting heat" 8.2
 	"flare sprite" "effect/atomic flare/small"
@@ -643,12 +780,14 @@ outfit `"Biroo" Atomic Thruster`
 
 outfit `"Bondir" Atomic Thruster`
 	category "Engines"
+	series "Engines"
+	index 02051
 	"cost" 1100000
 	thumbnail "outfit/large atomic thruster hai"
 	"mass" 63
 	"outfit space" -63
 	"engine capacity" -63
-	"thrust" 62.8
+	"thrust" 94.2
 	"thrusting energy" 6.1
 	"thrusting heat" 12.7
 	"flare sprite" "effect/atomic flare/medium"
@@ -658,12 +797,14 @@ outfit `"Bondir" Atomic Thruster`
 
 outfit `"Bufaer" Atomic Thruster`
 	category "Engines"
+	series "Engines"
+	index 02061
 	"cost" 2400000
 	thumbnail "outfit/huge atomic thruster hai"
 	"mass" 104
 	"outfit space" -104
 	"engine capacity" -104
-	"thrust" 108.85
+	"thrust" 163.275
 	"thrusting energy" 10.4
 	"thrusting heat" 22.6
 	"flare sprite" "effect/atomic flare/large"
@@ -673,42 +814,49 @@ outfit `"Bufaer" Atomic Thruster`
 
 outfit `"Basrem" Reverse Thruster`
 	category "Engines"
+	series "Engines"
+	index 02022
 	"cost" 150000
 	thumbnail "outfit/tiny atomic reverse hai"
 	"mass" 18
 	"outfit space" -18
 	"weapon capacity" -18
-	"reverse thrust" 15.22
+	"reverse thrust" 22.83
 	"reverse thrusting energy" 1.4
 	"reverse thrusting heat" 2.8
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"reverse flare sound" "atomic tiny"
 	description `The tiny "Basrem" Reverse Thrusters allow even the smallest of Hai ships additional maneuverability beyond normal steering. Many young Hai find these an invaluable investment when first setting out on their own.`
 
 outfit `"Benga" Reverse Thruster`
 	category "Engines"
+	series "Engines"
+	index 02032
 	"cost" 300000
 	thumbnail "outfit/small atomic reverse hai"
 	"mass" 28
 	"outfit space" -28
 	"weapon capacity" -28
-	"reverse thrust" 25.15
+	"reverse thrust" 37.725
 	"reverse thrusting energy" 2.5
 	"reverse thrusting heat" 4.8
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
-	"flare sound" "atomic tiny"
+	"reverse flare sound" "atomic tiny"
 	description "Considering them to be well worth the steep cost, many Hai freighter pilots install reverse thrusters such as these to supplement the often poor steering on larger Hai vessels."
 
 outfit `"Biroo" Reverse Thruster`
 	category "Engines"
+	series "Engines"
+	index 02042
 	"cost" 610000
 	thumbnail "outfit/medium atomic reverse hai"
 	"mass" 44
 	"outfit space" -44
 	"weapon capacity" -44
-	"reverse thrust" 41.65
+	"reverse thrust" 62.475
 	"reverse thrusting energy" 4
 	"reverse thrusting heat" 8.2
 	"reverse flare sprite" "effect/atomic flare/small"
@@ -718,27 +866,32 @@ outfit `"Biroo" Reverse Thruster`
 
 outfit `"Basrem" Atomic Steering`
 	category "Engines"
+	series "Engines"
+	index 02020
 	"cost" 120000
 	thumbnail "outfit/tiny atomic steering hai"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 301
+	"turn" 451.5
 	"turning energy" .7
 	"turning heat" 1.5
 	"steering flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
+		"scale" 0.8
 	"steering flare sound" "atomic tiny"
 	description "Hai atomic engines are too expensive to buy for most humans. All but the smallest of the engines are worth more than many of the most common ships flown in human space."
 
 outfit `"Benga" Atomic Steering`
 	category "Engines"
+	series "Engines"
+	index 02030
 	"cost" 250000
 	thumbnail "outfit/small atomic steering hai"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 563
+	"turn" 844.5
 	"turning energy" 1.1
 	"turning heat" 2.85
 	"steering flare sprite" "effect/atomic flare/tiny"
@@ -748,12 +901,14 @@ outfit `"Benga" Atomic Steering`
 
 outfit `"Biroo" Atomic Steering`
 	category "Engines"
+	series "Engines"
+	index 02040
 	"cost" 530000
 	thumbnail "outfit/medium atomic steering hai"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"turn" 1028
+	"turn" 1542
 	"turning energy" 2.0
 	"turning heat" 5.1
 	"steering flare sprite" "effect/atomic flare/small"
@@ -763,12 +918,14 @@ outfit `"Biroo" Atomic Steering`
 
 outfit `"Bondir" Atomic Steering`
 	category "Engines"
+	series "Engines"
+	index 02050
 	"cost" 950000
 	thumbnail "outfit/large atomic steering hai"
 	"mass" 49
 	"outfit space" -49
 	"engine capacity" -49
-	"turn" 1714
+	"turn" 2571
 	"turning energy" 3.2
 	"turning heat" 8.2
 	"steering flare sprite" "effect/atomic flare/medium"
@@ -778,12 +935,14 @@ outfit `"Bondir" Atomic Steering`
 
 outfit `"Bufaer" Atomic Steering`
 	category "Engines"
+	series "Engines"
+	index 02060
 	"cost" 2100000
 	thumbnail "outfit/huge atomic steering hai"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"turn" 2967
+	"turn" 4450.5
 	"turning energy" 5.2
 	"turning heat" 13.8
 	"steering flare sprite" "effect/atomic flare/large"
@@ -794,6 +953,8 @@ outfit `"Bufaer" Atomic Steering`
 
 outfit "Pulse Rifle"
 	category "Hand to Hand"
+	series "H2H"
+	index 02010
 	cost 11000
 	thumbnail "outfit/hai rifle"
 	"capture attack" .7
@@ -804,6 +965,8 @@ outfit "Pulse Rifle"
 
 outfit "Shield Beetle Pendant"
 	category "Unique"
+	series "Functional Unique"
+	index 30
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
 	"unique" 1
@@ -813,6 +976,8 @@ outfit "Shield Beetle Pendant"
 
 outfit "Failed Control System"
 	category "Systems"
+	series "Special Systems"
+	index 02010
 	cost 0
 	thumbnail "outfit/control transceiver"
 	"mass" 1

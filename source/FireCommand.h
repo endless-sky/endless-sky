@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FIRE_COMMAND_H_
-#define FIRE_COMMAND_H_
+#pragma once
 
 #include "Bitset.h"
 
@@ -59,7 +58,3 @@ private:
 	// Turret turn rates, reduced to 8 bits to save space.
 	std::vector<signed char> aim;
 };
-
-
-
-#endif

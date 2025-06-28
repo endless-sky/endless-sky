@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UI_H_
-#define UI_H_
+#pragma once
 
 #include "Point.h"
 
@@ -32,6 +31,18 @@ class Panel;
 // and passing them on to whatever panel is on top, and drawing of the panels
 // starting with whichever one is on the bottom.
 class UI {
+public:
+	enum class UISound
+	{
+		NONE,
+		SOFT,
+		NORMAL,
+		SOFT_BUZZ,
+		TARGET,
+		FAILURE
+	};
+
+
 public:
 	// Handle an event. The event is handed to each panel on the stack until one
 	// of them handles it. If none do, this returns false.
@@ -77,6 +88,8 @@ public:
 	// Get the current mouse position.
 	static Point GetMouse();
 
+	static void PlaySound(UISound sound);
+
 
 private:
 	// If a push or pop is queued, apply it.
@@ -93,7 +106,3 @@ private:
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
 };
-
-
-
-#endif

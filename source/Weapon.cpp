@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Weapon.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
 #include "Outfit.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 
@@ -51,13 +51,27 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "safe")
 			isSafe = true;
 		else if(key == "phasing")
+		{
 			isPhasing = true;
+			// Phasing projectiles implicitly have no asteroid collisions
+			// for reverse compatibility.
+			canCollideAsteroids = false;
+			canCollideMinables = false;
+		}
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
 		else if(key == "parallel")
 			isParallel = true;
 		else if(key == "gravitational")
 			isGravitational = true;
+		else if(key == "fused")
+			isFused = true;
+		else if(key == "no ship collisions")
+			canCollideShips = false;
+		else if(key == "no asteroid collisions")
+			canCollideAsteroids = false;
+		else if(key == "no minable collisions")
+			canCollideMinables = false;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -66,6 +80,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			hardpointSprite.LoadSprite(child);
 		else if(key == "sound")
 			sound = Audio::Get(child.Token(1));
+		else if(key == "empty sound")
+			emptySound = Audio::Get(child.Token(1));
 		else if(key == "ammo")
 		{
 			int usage = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -105,10 +121,23 @@ void Weapon::LoadWeapon(const DataNode &node)
 				(child.Size() >= 3) ? child.Value(2) : 1);
 			for(const DataNode &grand : child)
 			{
-				if((grand.Size() >= 2) && (grand.Token(0) == "facing"))
+				const string &grandKey = grand.Token(0);
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "facing" && grandHasValue)
 					submunitions.back().facing = Angle(grand.Value(1));
-				else if((grand.Size() >= 3) && (grand.Token(0) == "offset"))
+				else if(grandKey == "offset" && grand.Size() >= 3)
 					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
+				else if(grandKey == "spawn on" && grandHasValue)
+				{
+					submunitions.back().spawnOnNaturalDeath = false;
+					for(int j = 1; j < grand.Size(); ++j)
+					{
+						if(grand.Token(j) == "natural")
+							submunitions.back().spawnOnNaturalDeath = true;
+						else if(grand.Token(j) == "anti-missile")
+							submunitions.back().spawnOnAntiMissileDeath = true;
+					}
+				}
 				else
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
 			}
@@ -160,6 +189,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 				missileStrength = max(0., value);
 			else if(key == "anti-missile")
 				antiMissile = max(0., value);
+			else if(key == "tractor beam")
+				tractorBeam = max(0., value);
+			else if(key == "penetration count")
+				penetrationCount = static_cast<uint16_t>(value);
 			else if(key == "velocity")
 				velocity = value;
 			else if(key == "random velocity")
@@ -185,6 +218,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				turn = value;
 			else if(key == "turret turn")
 				turretTurn = value;
+			else if(key == "arc")
+				maxAngle = max(0., value);
 			else if(key == "tracking")
 				tracking = max(0., min(1., value));
 			else if(key == "optical tracking")
@@ -302,6 +337,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
 				piercing = max(0., value);
+			else if(key == "prospecting")
+				prospecting = value;
 			else if(key == "range override")
 				rangeOverride = max(0., value);
 			else if(key == "velocity override")
@@ -335,10 +372,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 	if(damageDropoffRange.first > damageDropoffRange.second)
 		damageDropoffRange.second = Range();
 
-	// Weapons of the same type will alternate firing (streaming) rather than
-	// firing all at once (clustering) if the weapon is not an anti-missile and
-	// is not vulnerable to anti-missile, or has the "stream" attribute.
-	isStreamed |= !(MissileStrength() || AntiMissile());
+	// Weapons of the same type will alternate firing (streaming) rather than firing all
+	// at once (clustering) if the weapon is not a special weapon type (e.g. anti-missile,
+	// tractor beam) and is not vulnerable to anti-missile, or has the "stream" attribute.
+	isStreamed |= !(MissileStrength() || AntiMissile() || TractorBeam());
 	isStreamed &= !isClustered;
 
 	// Support legacy missiles with no tracking type defined:
@@ -396,6 +433,13 @@ const Body &Weapon::HardpointSprite() const
 const Sound *Weapon::WeaponSound() const
 {
 	return sound;
+}
+
+
+
+const Sound *Weapon::EmptySound() const
+{
+	return emptySound;
 }
 
 

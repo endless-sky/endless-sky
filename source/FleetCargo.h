@@ -13,10 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLEET_CARGO_H_
-#define FLEET_CARGO_H_
+#pragma once
 
-#include "Sale.h"
+#include "Shop.h"
 
 class DataNode;
 class Outfit;
@@ -37,7 +36,5 @@ private:
 	// The number of different items this object can assign to ships.
 	int cargo = 3;
 	std::vector<std::string> commodities;
-	std::set<const Sale<Outfit> *> outfitters;
+	std::set<const Shop<Outfit> *> outfitters;
 };
-
-#endif

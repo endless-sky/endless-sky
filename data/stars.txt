@@ -22,206 +22,318 @@
 star "star/o0"
 	power 4.2
 	wind 0.46
+	icon "map/o-large-star"
 star "star/o3"
 	power 3.9
 	wind 0.46
+	icon "map/o-large-star"
 star "star/o5"
 	power 3.6
 	wind 0.47
+	icon "map/o-large-star"
 star "star/o8"
 	power 3.3
 	wind 0.48
+	icon "map/o-large-star"
 star "star/b0"
 	power 3.1
 	wind 0.49
+	icon "map/b-large-star"
 star "star/b3"
 	power 2.8
 	wind 0.5
+	icon "map/b-large-star"
 star "star/b5"
 	power 2.5
 	wind 0.51
+	icon "map/b-large-star"
 star "star/b8"
 	power 2.2
 	wind 0.52
+	icon "map/b-large-star"
 star "star/a0"
 	power 2
 	wind 0.53
+	icon "map/a-star"
 star "star/a3"
 	power 1.85
 	wind 0.54
+	icon "map/a-star"
 star "star/a5"
 	power 1.7
 	wind 0.55
+	icon "map/a-star"
 star "star/a8"
 	power 1.5
 	wind 0.56
+	icon "map/a-star"
 star "star/f0"
 	power 1.4
 	wind 0.57
+	icon "map/f-star"
 star "star/f3"
 	power 1.3
 	wind 0.59
+	icon "map/f-star"
 star "star/f5"
 	power 1.2
 	wind 0.60
+	icon "map/f-star"
 star "star/f8"
 	power 1.1
 	wind 0.62
+	icon "map/f-star"
 star "star/g0"
 	power 1
 	wind 0.64
+	icon "map/g-star"
 star "star/g3"
 	power 0.95
 	wind 0.66
+	icon "map/g-star"
 star "star/g5"
 	power 0.9
 	wind 0.69
+	icon "map/g-star"
 star "star/g8"
 	power 0.85
 	wind 0.72
+	icon "map/g-star"
 star "star/k0"
 	power 0.8
 	wind 0.75
+	icon "map/k-small-star"
 star "star/k3"
 	power 0.76
 	wind 0.78
+	icon "map/k-small-star"
 star "star/k5"
 	power 0.72
 	wind 0.82
+	icon "map/k-small-star"
 star "star/k8"
 	power 0.7
 	wind 0.86
+	icon "map/k-small-star"
 star "star/m0"
 	power 0.66
 	wind 0.90
+	icon "map/m-dwarf-star"
 star "star/m3"
 	power 0.64
 	wind 0.95
+	icon "map/m-dwarf-star"
 star "star/m5"
 	power 0.61
 	wind 1.05
+	icon "map/m-dwarf-star"
 star "star/m8"
 	power 0.60
 	wind 1.10
+	icon "map/m-dwarf-star"
 
 # Old main sequence stars.
 star "star/f5-old"
 	power 0.80
 	wind 0.9
+	icon "map/f-old-star"
 star "star/g0-old"
 	power 0.70
 	wind 1.0
+	icon "map/g-old-star"
 star "star/g5-old"
 	power 0.65
 	wind 1.1
+	icon "map/g-old-star"
 star "star/k0-old"
 	power 0.62
 	wind 1.3
+	icon "map/k-old-star"
 star "star/k5-old"
 	power 0.60
 	wind 1.5
+	icon "map/k-old-star"
 
 # Giant and supergiant stars.
 star "star/o-giant"
 	power 4.8
 	wind 1.5
+	icon "map/o-giant-star"
 star "star/b-giant"
 	power 3.7
 	wind 1.6
+	icon "map/b-giant-star"
 star "star/a-giant"
 	power 2.6
 	wind 1.7
+	icon "map/a-giant-star"
 star "star/f-giant"
 	power 2.0
 	wind 1.8
+	icon "map/f-giant-star"
 star "star/g-giant"
 	power 1.6
 	wind 1.9
+	icon "map/g-giant-star"
 star "star/k-giant"
 	power 1.4
 	wind 2
+	icon "map/k-giant-star"
 star "star/m-giant"
 	power 1.2
 	wind 2.1
+	icon "map/m-giant-star"
 star "star/o-supergiant"
 	power 5.2
 	wind 2.5
+	icon "map/o-supergiant-star"
 star "star/b-supergiant"
 	power 4.1
 	wind 2.6
+	icon "map/b-supergiant-star"
 star "star/a-supergiant"
 	power 3
 	wind 2.7
+	icon "map/a-supergiant-star"
 star "star/f-supergiant"
 	power 2.4
 	wind 2.8
+	icon "map/f-supergiant-star"
 star "star/g-supergiant"
 	power 2
 	wind 2.9
+	icon "map/g-supergiant-star"
 star "star/k-supergiant"
 	power 1.8
 	wind 3
+	icon "map/k-supergiant-star"
 star "star/m-supergiant"
 	power 1.6
 	wind 3.1
+	icon "map/m-supergiant-star"
 
 # Special stars.
+star "star/a-eater"
+	power 1.84
+	wind 0.45
+	icon "map/a-star"
 star "star/carbon"
 	power 0.1
 	wind 10
+	icon "map/carbon-star"
 star "star/nova"
 	power 0.2
 	wind 8
+	icon "map/nova-star"
 star "star/nova-old"
 	power 0.3
 	wind 6
+	icon "map/nova-old-star"
 star "star/nova-small"
 	power 0.2
 	wind 4
+	icon "map/nova-small-star"
 star "star/wr"
 	power 5
 	wind 4
+	icon "map/wr-star"
 star "star/protostar-orange"
 	power 0.5
 	wind 3
+	icon "map/k-small-star"
 star "star/protostar-yellow"
 	power 0.4
 	wind 5
+	icon "map/g-small-star"
+star "star/patir"
+	power 0.2
+	wind 8
+	icon "map/patir-star"
 
 # Rogue planet with unusual properties
 star "planet/rogue-radiating"
 	power .2
 	wind .6
 
+# Compact stellar objects.
 star "star/neutron"
 	power 4
 	wind 0.4
+	icon "map/neutron-star"
+star "star/neutron-small"
+	power 2
+	wind 0.2
+	icon "map/small-neutron-star"
+star "star/magnetar"
+	power 4
+	wind 0.8
+	icon "map/magnetar-star"
+star "star/black-hole"
+	power 0
+	wind 0
+	icon "map/black-hole-star"
+star "star/small-black-hole"
+	power 0
+	wind 0
+	icon "map/small-black-hole-star"
+star "star/coal-black-hole"
+	power 0
+	wind 0
+	icon "map/coal-black-hole-star"
+star "star/twilight-black-hole"
+	power 2.4
+	wind 0.3
+	icon "map/twilight-black-hole-star"
+star "star/big black hole"
+	icon "map/big black hole"
+star "star/black hole 3"
+	icon "map/black hole 3"
+star "star/black hole 4"
+	icon "map/black hole 4"
+star "star/black hole 5"
+	icon "map/black hole 5"
+star "star/black hole 6"
+	icon "map/black hole 6"
+star "star/black hole corona"
+	icon "map/black hole corona"
+star "star/black hole star"
+	icon "map/black hole star"
+star "star/black-hole-still"
+	icon "map/black-hole-still"
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
 	power 1.1
 	wind 0.5
+	icon "map/o-small-star"
 star "star/b-dwarf"
 	power 1
 	wind 0.6
+	icon "map/b-small-star"
 star "star/a-dwarf"
 	power 0.9
 	wind 0.7
+	icon "map/a-small-star"
 star "star/f-dwarf"
 	power 0.8
 	wind 0.8
+	icon "map/f-small-star"
 star "star/g-dwarf"
 	power 0.7
 	wind 0.9
+	icon "map/g-small-star"
 star "star/k-dwarf"
 	power 0.6
 	wind 1
+	icon "map/k-small-star"
 star "star/m-dwarf"
 	power 0.5
 	wind 1.2
+	icon "map/m-small-star"
 star "star/l-dwarf"
 	power 0.4
 	wind 1.3
+	icon "map/brown-dwarf-star"
 
 # Brown Dwarves
 # Because these look like planets, they reverse the trend of increasing solar wind
@@ -232,23 +344,28 @@ star "planet/browndwarf-l"
 star "planet/browndwarf-l-rogue"
 	power 0.4
 	wind 0.5
+	icon "map/brown-dwarf-star"
 star "planet/browndwarf-t"
 	power 0.3
 	wind 0.4
 star "planet/browndwarf-t-rogue"
 	power 0.3
 	wind 0.4
+	icon "map/brown-dwarf-star"
 star "planet/browndwarf-y"
 	power 0.1
 	wind 0.3
 star "planet/browndwarf-y-rogue"
 	power 0.1
 	wind 0.3
+	icon "map/brown-dwarf-star"
 
 # Extra stars kept for backwards compatibility.
 star "star/m4"
 	power 0.62
 	wind 1.00
+	icon "map/m-small-star"
 star "star/giant"
 	power 1.4
 	wind 2
+	icon "map/m-star"

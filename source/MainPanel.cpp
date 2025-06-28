@@ -27,8 +27,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "HailPanel.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "MapDetailPanel.h"
+#include "MessageLogPanel.h"
 #include "Messages.h"
 #include "Mission.h"
 #include "Phrase.h"
@@ -70,6 +71,10 @@ void MainPanel::Step()
 	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
 
+	// If the player is dead, don't show anything.
+	if(player.IsDead())
+		show = Command::NONE;
+
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
 	{
@@ -79,6 +84,11 @@ void MainPanel::Step()
 	else if(show.Has(Command::INFO))
 	{
 		GetUI()->Push(new PlayerInfoPanel(player));
+		isActive = false;
+	}
+	else if(show.Has(Command::MESSAGE_LOG))
+	{
+		GetUI()->Push(new MessageLogPanel());
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))
@@ -94,6 +104,18 @@ void MainPanel::Step()
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		player.Land(GetUI());
 		isActive = false;
+	}
+
+	// Offer the next available entering mission.
+	if(isActive && player.HasAvailableEnteringMissions() && player.Flagship())
+	{
+		Mission *mission = player.EnteringMission();
+		if(mission)
+			mission->Do(Mission::OFFER, player, GetUI());
+		else
+			player.HandleBlockedEnteringMissions(GetUI());
+		// Determine if a Dialog or ConversationPanel is being drawn next frame.
+		isActive = (GetUI()->Top().get() == this);
 	}
 
 	// Display any relevant help/tutorial messages.
@@ -187,16 +209,33 @@ bool MainPanel::AllowsFastForward() const noexcept
 
 
 
+Engine &MainPanel::GetEngine()
+{
+	return engine;
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(command.Has(Command::MAP | Command::INFO | Command::HAIL | Command::HELP))
+	if(player.IsDead())
+		return true;
+
+	if(command.Has(Command::MAP | Command::INFO | Command::MESSAGE_LOG | Command::HAIL | Command::HELP))
 		show = command;
+	else if(command.Has(Command::TURRET_TRACKING))
+	{
+		bool newValue = !Preferences::Has("Turrets focus fire");
+		Preferences::Set("Turrets focus fire", newValue);
+		Messages::Add("Turret tracking mode set to: " + string(newValue ? "focused" : "opportunistic") + ".",
+			Messages::Importance::High);
+	}
 	else if(command.Has(Command::AMMO))
 	{
 		Preferences::ToggleAmmoUsage();
-		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + "."
-			, Messages::Importance::High);
+		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".",
+			Messages::Importance::High);
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
@@ -208,14 +247,6 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return false;
 
 	return true;
-}
-
-
-
-// Forward the given TestContext to the Engine under MainPanel.
-void MainPanel::SetTestContext(TestContext &testContext)
-{
-	engine.SetTestContext(testContext);
 }
 
 
@@ -347,7 +378,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		for(const auto &it : target->Outfits())
 		{
 			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
-			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
+			if(it.first->IsDefined() && !it.first->Category().empty() && !outfitNameForDisplay.empty())
+				outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
 		}
 		for(const auto &it : outfitsByCategory)
 		{
@@ -411,20 +443,20 @@ bool MainPanel::ShowHailPanel()
 		target.reset();
 
 	if(flagship->IsEnteringHyperspace())
-		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::High);
-	else if(flagship->Cloaking() == 1.)
-		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::High);
+		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::Highest);
+	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
+		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::Highest);
 	else if(target)
 	{
 		// If the target is out of system, always report a generic response
 		// because the player has no way of telling if it's presently jumping or
 		// not. If it's in system and jumping, report that.
 		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
-				|| target->Cloaking() == 1.)
-			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::High);
+				|| target->IsCloaked())
+			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::Highest);
 		else if(target->IsEnteringHyperspace())
-			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace."
-				, Messages::Importance::High);
+			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace.",
+				Messages::Importance::Highest);
 		else
 		{
 			GetUI()->Push(new HailPanel(player, target,
@@ -436,11 +468,11 @@ bool MainPanel::ShowHailPanel()
 	{
 		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
 		if(!planet)
-			Messages::Add("Unable to send hail.", Messages::Importance::High);
+			Messages::Add("Unable to send hail.", Messages::Importance::Highest);
 		else if(planet->IsWormhole())
 		{
 			static const Phrase *wormholeHail = GameData::Phrases().Get("wormhole hail");
-			Messages::Add(wormholeHail->Get(), Messages::Importance::High);
+			Messages::Add(wormholeHail->Get(), Messages::Importance::Highest);
 		}
 		else if(planet->IsInhabited())
 		{
@@ -448,11 +480,11 @@ bool MainPanel::ShowHailPanel()
 			return true;
 		}
 		else
-			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited."
-				, Messages::Importance::High);
+			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited.",
+				Messages::Importance::Highest);
 	}
 	else
-		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::High);
+		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::Highest);
 
 	return false;
 }
@@ -666,6 +698,11 @@ void MainPanel::StepEvents(bool &isActive)
 				}
 			}
 		}
+
+		// Handle jump events from the player's flagship. This means we should check
+		// for entering missions that can be offered.
+		if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
+			player.CreateEnteringMissions();
 
 		// Remove the fully-handled event.
 		eventQueue.pop_front();

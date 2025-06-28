@@ -46,11 +46,25 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, double current
 
 
 // Create a new mortgage of the given amount.
-Mortgage::Mortgage(int64_t principal, int creditScore, int term)
-	: type(creditScore <= 0 ? "Fine" : "Mortgage"),
+Mortgage::Mortgage(string type, int64_t principal, int creditScore, int term)
+	: type(std::move(type)),
 	principal(principal),
 	interest((600 - creditScore / 2) * .00001),
 	interestString("0." + to_string(600 - creditScore / 2) + "%"),
+	term(term)
+{
+}
+
+
+
+// Create a mortgage with a specific interest rate instead of using the player's
+// credit score. Due to how the class is set up, the interest rate must currently
+// be within the range [0, 1).
+Mortgage::Mortgage(string type, int64_t principal, double interest, int term)
+	: type(std::move(type)),
+	principal(principal),
+	interest(interest * .01),
+	interestString("0." + to_string(static_cast<int>(1000. * interest)) + "%"),
 	term(term)
 {
 }
@@ -75,15 +89,17 @@ void Mortgage::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "principal" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "principal" && hasValue)
 			principal = child.Value(1);
-		else if(child.Token(0) == "interest" && child.Size() >= 2)
+		else if(key == "interest" && hasValue)
 		{
 			interest = child.Value(1);
 			int f = 100000. * interest;
 			interestString = "0." + to_string(f) + "%";
 		}
-		else if(child.Token(0) == "term" && child.Size() >= 2)
+		else if(key == "term" && hasValue)
 			term = max(1., child.Value(1));
 	}
 }
@@ -138,7 +154,8 @@ int64_t Mortgage::PayExtra(int64_t amount)
 
 
 // The type is "Mortgage" if this is a mortgage you applied for from a bank,
-// and "Fine" if this is a fine imposed on you for illegal activities.
+// "Fine" if this is a fine imposed on you for illegal activities, and
+// "Debt" if this is debt given to you by a mission.
 const string &Mortgage::Type() const
 {
 	return type;

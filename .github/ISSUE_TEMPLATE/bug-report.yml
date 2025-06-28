@@ -68,6 +68,7 @@ body:
       description: From where did you obtain your current game version?
       options:
         - Steam
+        - GOG
         - ESLauncher2
         - Built from source
         - GitHub Releases

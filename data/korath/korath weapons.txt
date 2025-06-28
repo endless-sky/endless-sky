@@ -14,6 +14,8 @@
 
 outfit "Grab-Strike Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04040
 	cost 821000
 	thumbnail "outfit/grab-strike"
 	"mass" 52
@@ -32,7 +34,7 @@ outfit "Grab-Strike Turret"
 		"hit effect" "grab-strike impact"
 		"die effect" "grab-strike impact"
 		"inaccuracy" 1
-		"turret turn" 1.9
+		"turret turn" 1.6
 		"velocity" 10
 		"lifetime" 100
 		"reload" 20
@@ -45,7 +47,7 @@ outfit "Grab-Strike Turret"
 		"tracking" .7
 		"shield damage" 108
 		"hull damage" 32
-		"hit force" -160
+		"hit force" -240
 	description "Korath Grab-Strike projectiles are designed to pull a target closer to the Korath ship, to keep it from escaping."
 
 effect "grab-strike impact"
@@ -59,6 +61,8 @@ effect "grab-strike impact"
 
 outfit "Shunt-Strike Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04080
 	cost 821000
 	thumbnail "outfit/shunt-strike"
 	"mass" 42
@@ -78,7 +82,7 @@ outfit "Shunt-Strike Turret"
 		"hit effect" "shunt-strike hit"
 		"die effect" "shunt-strike sparkle"
 		"inaccuracy" 1
-		"turret turn" 2.1
+		"turret turn" 2.6
 		"velocity" 10
 		"lifetime" 81
 		"reload" 30
@@ -117,6 +121,8 @@ effect "shunt-strike sparkle"
 
 outfit "Banisher Grav-Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04050
 	cost 943000
 	thumbnail "outfit/banisher"
 	"mass" 41
@@ -132,7 +138,7 @@ outfit "Banisher Grav-Turret"
 		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
-		"turret turn" 4.2
+		"turret turn" 3.2
 		"velocity" 590
 		"lifetime" 1
 		"reload" 1
@@ -140,11 +146,13 @@ outfit "Banisher Grav-Turret"
 		"firing heat" 4.9
 		"shield damage" 2.8
 		"hull damage" .9
-		"hit force" 40
+		"hit force" 60
 	description "The Korath like to keep their enemies close... but not too close."
 
 outfit "Expeller Grav-Ray"
 	category "Guns"
+	series "Guns"
+	index 04030
 	cost 819000
 	thumbnail "outfit/expeller"
 	"mass" 20
@@ -164,7 +172,7 @@ outfit "Expeller Grav-Ray"
 		"firing heat" 3.1
 		"shield damage" 1.4
 		"hull damage" .45
-		"hit force" 25
+		"hit force" 37.5
 	description "This low-power version of the Banisher is used on Korath fighters to push enemy vessels away from carriers and civilians."
 
 effect "banisher impact"
@@ -177,6 +185,8 @@ effect "banisher impact"
 
 outfit "Warder Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 04010
 	cost 845000
 	thumbnail "outfit/warder"
 	"mass" 28
@@ -201,12 +211,15 @@ effect "korath warder"
 		"no repeat"
 		"frame rate" 6
 	sound "warder"
+	"sound category" "anti-missile"
 	"lifetime" 11
 	"velocity scale" 1
 
 
 outfit "Fire-Lance"
 	category "Guns"
+	series "Guns"
+	index 04020
 	cost 697000
 	thumbnail "outfit/fire-lance"
 	"mass" 22
@@ -241,6 +254,8 @@ effect "fire-lance impact"
 
 outfit "Blaze-Pike Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04020
 	cost 1970000
 	thumbnail "outfit/blaze-pike"
 	"mass" 57
@@ -255,7 +270,7 @@ outfit "Blaze-Pike Turret"
 		sound "blaze-pike"
 		"hit effect" "blaze-pike hit"
 		"inaccuracy" 0.45
-		"turret turn" 2.1
+		"turret turn" 1.2
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
@@ -279,6 +294,8 @@ effect "blaze-pike hit"
 
 outfit "Korath Inferno"
 	category "Turrets"
+	series "Turrets"
+	index 04030
 	cost 2670000
 	thumbnail "outfit/korath inferno"
 	"mass" 86
@@ -293,7 +310,7 @@ outfit "Korath Inferno"
 		sound "korath inferno"
 		"hit effect" "korath inferno hit"
 		"inaccuracy" 0.5
-		"turret turn" 1.3
+		"turret turn" 0.8
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
@@ -318,6 +335,8 @@ effect "korath inferno hit"
 
 outfit "Thermal Repeater"
 	category "Guns"
+	series "Guns"
+	index 04010
 	cost 306000
 	thumbnail "outfit/repeater"
 	"mass" 11
@@ -356,6 +375,8 @@ effect "repeater impact"
 
 outfit "Thermal Repeater Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04010
 	cost 874000
 	thumbnail "outfit/repeater turret"
 	"mass" 29
@@ -389,6 +410,8 @@ outfit "Thermal Repeater Turret"
 
 outfit "Piercer Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 04030
 	cost 3500
 	thumbnail "outfit/piercer"
 	"mass" .3
@@ -397,6 +420,8 @@ outfit "Piercer Missile"
 
 outfit "Piercer Missile Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04031
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
 	"mass" 2.2
@@ -407,6 +432,8 @@ outfit "Piercer Missile Rack"
 
 outfit "Piercer Missile Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04030
 	cost 593000
 	thumbnail "outfit/piercer launcher"
 	"mass" 18
@@ -440,10 +467,11 @@ outfit "Piercer Missile Launcher"
 		"shield damage" 290
 		"hull damage" 440
 		"piercing" .2
-		"hit force" 300
+		"hit force" 450
 		"missile strength" 73
 		"stream"
 	description "Korath Piercer Missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "piercer fire"
 	sprite "effect/piercer fire"
@@ -476,9 +504,21 @@ effect "piercer explosion"
 	"random velocity" .1
 	"velocity scale" .08
 
+outfitter "Piercer Missile Restock"
+	to sell
+		or
+			has "outfit: Piercer Missile Launcher"
+			has "outfit: Piercer Missile Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Piercer Missile"
+
 
 outfit "Korath Detainer"
 	category "Guns"
+	series "Guns"
+	index 04060
 	cost 1340000
 	thumbnail "outfit/detainer"
 	"mass" 76
@@ -500,9 +540,9 @@ outfit "Korath Detainer"
 		"burst reload" 10
 		"burst count" 2
 		"firing energy" 756
-		"firing force" 40
+		"firing force" 60
 		"firing heat" 400
-		"hit force" 80
+		"hit force" 120
 		"shield damage" 320
 		"hull damage" 240
 		"slowing damage" 40
@@ -541,6 +581,8 @@ effect "detainer smoke"
 
 outfit "Cluster Mine"
 	category "Ammunition"
+	series "Ammunition"
+	index 04040
 	cost 3500
 	thumbnail "outfit/korath mine"
 	"mass" .7
@@ -549,6 +591,8 @@ outfit "Cluster Mine"
 
 outfit "Cluster Mine Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04041
 	cost 31500
 	thumbnail "outfit/korath mine storage"
 	"mass" 2.7
@@ -559,6 +603,8 @@ outfit "Cluster Mine Rack"
 
 outfit "Cluster Mine Layer"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04040
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
 	"mass" 36
@@ -592,9 +638,10 @@ outfit "Cluster Mine Layer"
 		"missile strength" 35
 		"shield damage" -3200
 		"hull damage" -2400
-		"hit force" -150
+		"hit force" -225
 		"stream"
 	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Korath Mine Submunition"
 	weapon
@@ -612,7 +659,7 @@ outfit "Korath Mine Submunition"
 		"drag" .05
 		"shield damage" 350
 		"hull damage" 280
-		"hit force" 200
+		"hit force" 300
 		"missile strength" 22
 
 effect "minelayer fire"
@@ -636,9 +683,21 @@ effect "minelayer split"
 	"random velocity" 2.5
 	"velocity scale" .8
 
+outfitter "Cluster Mine Restock"
+	to sell
+		or
+			has "outfit: Cluster Mine Layer"
+			has "outfit: Cluster Mine Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Cluster Mine"
+
 
 outfit "Shield Disruptor Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04070
 	cost 983000
 	thumbnail "outfit/disruptor"
 	"mass" 35
@@ -654,7 +713,7 @@ outfit "Shield Disruptor Turret"
 		sound "disruptor"
 		"hit effect" "disruptor impact"
 		"inaccuracy" 1
-		"turret turn" 1.5
+		"turret turn" 1.6
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -678,6 +737,8 @@ effect "disruptor impact"
 
 outfit "Husk-Slice"
 	category "Guns"
+	series "Guns"
+	index 04040
 	cost 832000
 	thumbnail "outfit/slicer"
 	"mass" 46
@@ -703,6 +764,8 @@ outfit "Husk-Slice"
 
 outfit "Husk-Slice Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04060
 	cost 1473000
 	thumbnail "outfit/slicer turret"
 	"mass" 59
@@ -718,7 +781,7 @@ outfit "Husk-Slice Turret"
 		sound "slicer"
 		"hit effect" "slicer impact"
 		"inaccuracy" 0
-		"turret turn" 2.9
+		"turret turn" 2.6
 		"velocity" 520
 		"lifetime" 1
 		"reload" 1.62
@@ -743,6 +806,8 @@ effect "slicer impact"
 
 outfit "Digger Mining Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04090
 	cost 509000
 	thumbnail "outfit/korath digger turret"
 	"mass" 16
@@ -758,7 +823,7 @@ outfit "Digger Mining Turret"
 		sound "korath digger"
 		"hit effect" "korath digger hit"
 		"inaccuracy" 1.5
-		"turret turn" 4.6
+		"turret turn" 4.4
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -767,11 +832,14 @@ outfit "Digger Mining Turret"
 		"shield damage" 0.8
 		"hull damage" 1.3
 		"minable damage" 5.2
+		"prospecting" 4.2
 		"disruption damage" .08
 	description `When the Korath Exiles needed a cheap mining laser for their large vessels, they re-engineered this ancient, robust design and added a turret base. The mild shield disruption effect makes it somewhat useful in combat if required.`
 
 outfit "Digger Mining Beam"
 	category "Guns"
+	series "Guns"
+	index 04070
 	cost 419000
 	thumbnail "outfit/korath digger"
 	"mass" 10
@@ -793,6 +861,7 @@ outfit "Digger Mining Beam"
 		"shield damage" 0.5
 		"hull damage" 0.9
 		"minable damage" 4.6
+		"prospecting" 3.7
 		"disruption damage" .06
 	description `The gun version of the classic Korath mining laser allows a larger mothership to release a cloud of fighter-sized miners to harvest resources when working faster-moving or more dangerous asteroid fields.`
 
@@ -807,6 +876,8 @@ effect "korath digger hit"
 
 outfit "Langrage Hyper-Heaver"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04050
 	cost 3450000
 	thumbnail "outfit/korath heaver"
 	"mass" 46
@@ -835,7 +906,7 @@ outfit "Langrage Hyper-Heaver"
 		"firing fuel" 12.5
 		"shield damage" -342
 		"hull damage" -342
-		"hit force" 3600
+		"hit force" 5400
 		submunition "Heaver Shard" 20
 	description `Langrage Hyper-Heavers raise the use of improvised ammunition to a fine art. This turret converts scrap metal, nearby asteroids, compressed garbage, or other debris into a high speed debris field. The exact mechanism is unclear, but the internal workings bear some similarities to hyperdrives and Banishers.`
 	description `	At close range, the heaved langrage merely forces the enemy back. As the launch field collapses and the langrage returns fully to normal space, however, it is rent into a rapidly-expanding cloud of deadly projectiles as it returns to normal space.`
@@ -860,7 +931,7 @@ outfit "Heaver Shard"
 		"random velocity" 1.5
 		"lifetime" 20
 		"random lifetime" 7.5
-		"hit force" 20
+		"hit force" 30
 		submunition "Heaver Splinter" 3
 
 outfit "Heaver Splinter"
@@ -875,7 +946,7 @@ outfit "Heaver Splinter"
 		"random lifetime" 7.5
 		"shield damage" 5.7
 		"hull damage" 5.7
-		"hit force" 6.7
+		"hit force" 10.05
 
 effect "heaver shard hit"
 	sprite "effect/heaver shard hit"
@@ -899,6 +970,8 @@ effect "heaver splinter hit"
 
 outfit "Firelight Storage Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04011
 	cost 27400
 	thumbnail "outfit/firelight rack"
 	"mass" 3
@@ -909,6 +982,8 @@ outfit "Firelight Storage Rack"
 
 outfit "Firelight Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 04010
 	cost 7600
 	thumbnail "outfit/firelight"
 	"mass" 0.3
@@ -919,6 +994,8 @@ outfit "Firelight Missile"
 
 outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04010
 	cost 1937000
 	thumbnail "outfit/firelight bank"
 	"mass" 22
@@ -933,8 +1010,9 @@ outfit "Firelight Missile Bank"
 		ammo "Firelight Missile"
 		icon "icon/firelight"
 		"hit effect" "firelight ring" 20
+		"die effect" "piercer fire"
 		"velocity" 4
-		"velocity override" 16
+		"velocity override" 13
 		"lifetime" 10
 		"reload" 120
 		"burst reload" 30
@@ -943,17 +1021,16 @@ outfit "Firelight Missile Bank"
 		"firing heat" 151
 		"acceleration" 0.6
 		"drag" .1
-		"infrared tracking" .7
-		"optical tracking" .9
-		"homing" 4
-		"trigger radius" 30
-		"blast radius" 60
-		"hit force" 100
-		"missile strength" 60
+		"optical tracking" .7
+		"homing" 3
+		"blast radius" 48
+		"hit force" 150
+		"missile strength" 33
 		submunition "Firelight Turning"
 		"stream"
 	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
 	description "	Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 
 outfit "Firelight Turning"
@@ -966,12 +1043,11 @@ outfit "Firelight Turning"
 		"acceleration" -0.1
 		"turn" 4.6
 		"homing" 4
-		"infrared tracking" .7
-		"optical tracking" .9
-		"trigger radius" 30
-		"blast radius" 60
-		"hit force" 60
-		"missile strength" 60
+		"tracking" .9
+		"trigger radius" 20
+		"blast radius" 48
+		"hit force" 90
+		"missile strength" 30
 		"submunition" "Firelight Activated"
 
 outfit "Firelight Activated"
@@ -982,22 +1058,21 @@ outfit "Firelight Activated"
 		"hit effect" "firelight ring" 20
 		"die effect" "small explosion"
 		"velocity" 3
-		"lifetime" 140
+		"lifetime" 168
 		"acceleration" 1.6
-		"drag" .1
-		"turn" 2
-		"homing" 4
-		"infrared tracking" .5
+		"drag" .12
+		"turn" 1.7
+		"homing" 3
 		"optical tracking" .7
-		"trigger radius" 30
-		"blast radius" 60
+		"trigger radius" 20
+		"blast radius" 48
 		"shield damage" 950
 		"hull damage" 950
 		"heat damage" 1800
 		"burn damage" 10
 		"corrosion damage" 2
-		"hit force" 400
-		"missile strength" 60
+		"hit force" 600
+		"missile strength" 33
 
 effect "firelight ring"
 	sprite "effect/firestorm ring"
@@ -1010,9 +1085,21 @@ effect "firelight ring"
 	"random velocity" 2
 	"velocity scale" 0.1
 
+outfitter "Firelight Restock"
+	to sell
+		or
+			has "outfit: Firelight Missile Bank"
+			has "outfit: Firelight Storage Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Firelight Missile"
+
 
 outfit "Microbot Grinder"
 	category "Guns"
+	series "Guns"
+	index 04080
 	thumbnail "outfit/unknown"
 	"mass" 182
 	"outfit space" -212
@@ -1044,6 +1131,8 @@ outfit "Microbot Grinder"
 outfit "Firestorm Torpedo"
 	plural "Firestorm Torpedoes"
 	category "Ammunition"
+	series "Ammunition"
+	index 04020
 	cost 19800
 	thumbnail "outfit/firestorm torpedo"
 	"mass" 1
@@ -1054,6 +1143,8 @@ outfit "Firestorm Torpedo"
 
 outfit "Firestorm Torpedo Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04021
 	cost "135000"
 	thumbnail "outfit/firestorm torpedo rack"
 	"mass" 7
@@ -1065,6 +1156,8 @@ outfit "Firestorm Torpedo Rack"
 outfit "Firestorm Battery"
 	plural "Firestorm Batteries"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04020
 	cost 2383000
 	thumbnail "outfit/firestorm battery"
 	"mass" 35
@@ -1081,7 +1174,7 @@ outfit "Firestorm Battery"
 		"hardpoint sprite" "hardpoint/firestorm battery"
 		sound "firestorm"
 		ammo "Firestorm Torpedo"
-		"turret turn" 2.7
+		"turret turn" 2.6
 		icon "icon/firestorm torpedo"
 		"hit effect" "firestorm ring" 40
 		"die effect" "small explosion"
@@ -1096,7 +1189,6 @@ outfit "Firestorm Battery"
 		"drag" .12
 		"turn" 1.6
 		"homing" 4
-		"infrared tracking" .7
 		"optical tracking" .9
 		"trigger radius" 40
 		"blast radius" 95
@@ -1105,9 +1197,10 @@ outfit "Firestorm Battery"
 		"heat damage" 5320
 		"burn damage" 40
 		"corrosion damage" 5
-		"hit force" 4000
+		"hit force" 6000
 		"missile strength" 115
 	description "Though not as refined as the newer Firelight version, this torpedo contains an augmented Korath Plasma Core reactor element completely stripped of its protective casing and safety interlocks. When activated, it generates a tremendous explosion of heat and force that pushes ships away and will even melt their hulls."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "firestorm ring"
 	sprite "effect/firestorm ring"
@@ -1118,3 +1211,13 @@ effect "firestorm ring"
 	"random angle" 360
 	"random velocity" 3
 	"velocity scale" 0.1
+
+outfitter "Firestorm Torpedo Restock"
+	to sell
+		or
+			has "outfit: Firestorm Battery"
+			has "outfit: Firestorm Torpedo Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Firestorm Torpedo"

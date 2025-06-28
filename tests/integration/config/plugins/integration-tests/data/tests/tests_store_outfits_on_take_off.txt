@@ -281,7 +281,6 @@ test "Store Outfit On Take Off"
 				"outfit: D23-QP Shield Generator" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 1
-		watchdog 90000
 		navigate
 			"travel destination" Winter
 		call "Land"
@@ -317,7 +316,6 @@ test "Sell Outfit On Take Off"
 				"outfit: D23-QP Shield Generator" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 0
-		watchdog 90000
 		navigate
 			"travel destination" Winter
 		call "Land"

@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "System.h"
 
 #include <algorithm>
@@ -42,17 +42,18 @@ namespace {
 
 
 // Load a port's description from a node.
-void Port::Load(const DataNode &node)
+void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	loaded = true;
-	if(node.Size() > 1)
-		name = node.Token(1);
+	const int nameIndex = 1 + (node.Token(0) == "add");
+	if(node.Size() > nameIndex)
+		name = node.Token(nameIndex);
 
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
-
-		if(key == "recharges" && (child.HasChildren() || child.Size() >= 2))
+		bool hasValue = child.Size() >= 2;
+		if(key == "recharges" && (child.HasChildren() || hasValue))
 		{
 			auto setRecharge = [&](const DataNode &valueNode, const string &value) noexcept -> void {
 				if(value == "all")
@@ -73,7 +74,7 @@ void Port::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				setRecharge(grand, grand.Token(0));
 		}
-		else if(key == "services" && (child.HasChildren() || child.Size() >= 2))
+		else if(key == "services" && (child.HasChildren() || hasValue))
 		{
 			auto setServices = [&](const DataNode &valueNode, const string &value) noexcept -> void {
 				if(value == "all")
@@ -98,13 +99,9 @@ void Port::Load(const DataNode &node)
 		}
 		else if(key == "news")
 			hasNews = true;
-		else if(key == "description" && child.Size() >= 2)
+		else if(key == "description" && hasValue)
 		{
-			const string &value = child.Token(1);
-			if(!description.empty() && !value.empty() && value[0] > ' ')
-				description += '\t';
-			description += value;
-			description += '\n';
+			description.Load(child, playerConditions);
 
 			// If we have a description but no name then use the default spaceport name.
 			if(name.empty())
@@ -133,6 +130,13 @@ void Port::LoadUninhabitedSpaceport()
 	recharge = RechargeType::All;
 	services = ServicesType::OffersMissions;
 	hasNews = true;
+}
+
+
+
+void Port::LoadDescription(const DataNode &node, const ConditionsStore *playerConditions)
+{
+	description.Load(node, playerConditions);
 }
 
 
@@ -167,14 +171,7 @@ const string &Port::Name() const
 
 
 
-string &Port::Description()
-{
-	return description;
-}
-
-
-
-const string &Port::Description() const
+const Paragraphs &Port::Description() const
 {
 	return description;
 }

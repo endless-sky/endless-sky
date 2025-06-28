@@ -59,6 +59,8 @@ namespace {
 				return "on destroy";
 			case NPC::Trigger::KILL:
 				return "on kill";
+			case NPC::Trigger::ENCOUNTER:
+				return "on encounter";
 			default:
 				return "unknown trigger";
 		}
@@ -68,14 +70,16 @@ namespace {
 
 
 // Construct and Load() at the same time.
-NPC::NPC(const DataNode &node)
+NPC::NPC(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node);
+	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
-void NPC::Load(const DataNode &node)
+void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.
@@ -117,9 +121,12 @@ void NPC::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "system")
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(key == "system")
 		{
-			if(child.Size() >= 2)
+			if(hasValue)
 			{
 				if(child.Token(1) == "destination")
 					isAtDestination = true;
@@ -127,32 +134,31 @@ void NPC::Load(const DataNode &node)
 					system = GameData::Systems().Get(child.Token(1));
 			}
 			else
-				location.Load(child);
+				location.Load(child, visitedSystems, visitedPlanets);
 		}
-		else if(child.Token(0) == "uuid" && child.Size() >= 2)
+		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
-		else if(child.Token(0) == "planet" && child.Size() >= 2)
+		else if(key == "planet" && hasValue)
 			planet = GameData::Planets().Get(child.Token(1));
-		else if(child.Token(0) == "succeed" && child.Size() >= 2)
+		else if(key == "succeed" && hasValue)
 			succeedIf = child.Value(1);
-		else if(child.Token(0) == "fail" && child.Size() >= 2)
+		else if(key == "fail" && hasValue)
 			failIf = child.Value(1);
-		else if(child.Token(0) == "evade")
+		else if(key == "evade")
 			mustEvade = true;
-		else if(child.Token(0) == "accompany")
+		else if(key == "accompany")
 			mustAccompany = true;
-		else if(child.Token(0) == "government" && child.Size() >= 2)
+		else if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
-		else if(child.Token(0) == "personality")
+		else if(key == "personality")
 			personality.Load(child);
-		else if(child.Token(0) == "cargo settings" && child.HasChildren())
+		else if(key == "cargo settings" && child.HasChildren())
 		{
 			cargo.Load(child);
 			overrideFleetCargo = true;
 		}
-		else if(child.Token(0) == "dialog")
+		else if(key == "dialog")
 		{
-			bool hasValue = (child.Size() > 1);
 			// Dialog text may be supplied from a stock named phrase, a
 			// private unnamed phrase, or directly specified.
 			if(hasValue && child.Token(1) == "phrase")
@@ -173,20 +179,20 @@ void NPC::Load(const DataNode &node)
 			else
 				Dialog::ParseTextNode(child, 1, dialogText);
 		}
-		else if(child.Token(0) == "conversation" && child.HasChildren())
-			conversation = ExclusiveItem<Conversation>(Conversation(child));
-		else if(child.Token(0) == "conversation" && child.Size() > 1)
+		else if(key == "conversation" && child.HasChildren())
+			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
+		else if(key == "conversation" && hasValue)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
-		else if(child.Token(0) == "to" && child.Size() >= 2)
+		else if(key == "to" && hasValue)
 		{
 			if(child.Token(1) == "spawn")
-				toSpawn.Load(child);
+				toSpawn.Load(child, playerConditions);
 			else if(child.Token(1) == "despawn")
-				toDespawn.Load(child);
+				toDespawn.Load(child, playerConditions);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(child.Token(0) == "on" && child.Size() >= 2)
+		else if(key == "on" && hasValue)
 		{
 			static const map<string, Trigger> trigger = {
 				{"assist", Trigger::ASSIST},
@@ -197,26 +203,27 @@ void NPC::Load(const DataNode &node)
 				{"board", Trigger::BOARD},
 				{"capture", Trigger::CAPTURE},
 				{"destroy", Trigger::DESTROY},
-				{"kill", Trigger::KILL}
+				{"kill", Trigger::KILL},
+				{"encounter", Trigger::ENCOUNTER},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				npcActions[it->second].Load(child);
+				npcActions[it->second].Load(child, playerConditions, visitedSystems, visitedPlanets);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(child.Token(0) == "ship")
+		else if(key == "ship")
 		{
 			if(child.HasChildren() && child.Size() == 2)
 			{
 				// Loading an NPC from a save file, or an entire ship specification.
 				// The latter may result in references to non-instantiated outfits.
-				ships.emplace_back(make_shared<Ship>(child));
+				ships.emplace_back(make_shared<Ship>(child, playerConditions));
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						shipEvents[ships.back().get()] = grand.Value(1);
 			}
-			else if(child.Size() >= 2)
+			else if(hasValue)
 			{
 				// Loading a ship managed by GameData, i.e. "base models" and variants.
 				stockShips.push_back(GameData::Ships().Get(child.Token(1)));
@@ -232,12 +239,12 @@ void NPC::Load(const DataNode &node)
 				child.PrintTrace(message);
 			}
 		}
-		else if(child.Token(0) == "fleet")
+		else if(key == "fleet")
 		{
 			if(child.HasChildren())
 			{
 				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)));
-				if(child.Size() >= 2)
+				if(hasValue)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.
 					size_t numAdded = child.Value(1);
@@ -245,7 +252,7 @@ void NPC::Load(const DataNode &node)
 						fleets.push_back(fleets.back());
 				}
 			}
-			else if(child.Size() >= 2)
+			else if(hasValue)
 			{
 				auto fleet = ExclusiveItem<Fleet>(GameData::Fleets().Get(child.Token(1)));
 				if(child.Size() >= 3 && child.Value(2) > 1.)
@@ -376,7 +383,7 @@ string NPC::Validate(bool asTemplate) const
 		// A null system reference is allowed, since it will be set during
 		// instantiation if not given explicitly.
 		if(system && !system->IsValid())
-			return "system \"" + system->Name() + "\"";
+			return "system \"" + system->TrueName() + "\"";
 
 		// A planet is optional, but if given must be valid.
 		if(planet && !planet->IsValid())
@@ -425,12 +432,12 @@ void NPC::UpdateSpawning(const PlayerInfo &player)
 	// only checked after the spawn conditions have passed so that an NPC
 	// doesn't "despawn" before spawning in the first place.
 	if(!passedSpawnConditions)
-		passedSpawnConditions = toSpawn.Test(player.Conditions());
+		passedSpawnConditions = toSpawn.Test();
 
 	// It is allowable for an NPC to pass its spawning conditions and then immediately pass its despawning
 	// conditions. (Any such NPC will never be spawned in-game.)
 	if(passedSpawnConditions && !toDespawn.IsEmpty() && !passedDespawnConditions)
-		passedDespawnConditions = toDespawn.Test(player.Conditions());
+		passedDespawnConditions = toDespawn.Test();
 }
 
 
@@ -512,7 +519,8 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
-		Messages::Add("Mission failed.", Messages::Importance::Highest);
+		Messages::Add("Mission failed" + (caller ? ": \"" + caller->Name() + "\"" : "") + ".",
+			Messages::Importance::Highest);
 	else if(ui && !alreadySucceeded && HasSucceeded(player.GetSystem(), false))
 	{
 		// If "completing" this NPC displays a conversation, reference
@@ -628,8 +636,8 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const System *destination,
-		int jumps, int64_t payload) const
+NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const System *origin,
+		const System *destination, int jumps, int64_t payload) const
 {
 	NPC result;
 	result.government = government;
@@ -678,14 +686,17 @@ NPC NPC::Instantiate(map<string, string> &subs, const System *origin, const Syst
 	{
 		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
-		result.ships.back()->FinishLoading(true);
+		ship->FinishLoading(true);
 	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
+	map<string, string> playerSubs;
+	player.AddPlayerSubstitutions(playerSubs);
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
 	{
 		result.ships.push_back(make_shared<Ship>(**shipIt));
-		result.ships.back()->SetName(*nameIt);
+		result.ships.back()->SetName(Format::Replace(Format::Replace(
+			Phrase::ExpandPhrases(*nameIt), subs), playerSubs));
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
@@ -747,6 +758,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		{ShipEvent::BOARD, {Trigger::BOARD}},
 		{ShipEvent::CAPTURE, {Trigger::CAPTURE, Trigger::KILL}},
 		{ShipEvent::DESTROY, {Trigger::DESTROY, Trigger::KILL}},
+		{ShipEvent::ENCOUNTER, {Trigger::ENCOUNTER}},
 	};
 
 	int type = event.Type();
@@ -778,7 +790,8 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 			{Trigger::BOARD, ShipEvent::BOARD},
 			{Trigger::CAPTURE, ShipEvent::CAPTURE},
 			{Trigger::DESTROY, ShipEvent::DESTROY},
-			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY}
+			{Trigger::KILL, ShipEvent::CAPTURE | ShipEvent::DESTROY},
+			{Trigger::ENCOUNTER, ShipEvent::ENCOUNTER},
 		};
 
 		// Some Triggers cannot be met if any of the ships in this NPC have certain events.
@@ -792,17 +805,17 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		const auto excludedIt = triggerExclusions.find(trigger);
 		const int excludedEvents = excludedIt == triggerExclusions.end() ? 0 : excludedIt->second;
 
-		// The PROVOKE Trigger only requires a single ship to receive the
+		// The PROVOKE and ENCOUNTER Triggers only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
-		if(trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
+		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto it = shipEvents.find(ship.get());
 					return it != shipEvents.end() && (it->second & requiredEvents) && !(it->second & excludedEvents);
 				}))
 		{
-			it->second.Do(player, ui, caller);
+			it->second.Do(player, ui, caller, event.Target());
 		}
 	}
 }

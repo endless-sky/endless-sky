@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MenuPanel.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -27,13 +27,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LoadPanel.h"
 #include "Logger.h"
 #include "MainPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PreferencesPanel.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "StarField.h"
+#include "image/Sprite.h"
+#include "shader/StarField.h"
 #include "StartConditionsPanel.h"
 #include "System.h"
 #include "UI.h"
@@ -42,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
+#include <cmath>
 #include <stdexcept>
 
 using namespace std;
@@ -64,7 +66,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	{
 		for(const auto &source : GameData::Sources())
 		{
-			auto credit = Format::Split(Files::Read(source + "credits.txt"), "\n");
+			auto credit = Format::Split(Files::Read(source / "credits.txt"), "\n");
 			if((credit.size() > 1) || !credit.front().empty())
 			{
 				credits.insert(credits.end(), credit.begin(), credit.end());
@@ -91,12 +93,39 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 	if(player.GetPlanet())
 		Audio::PlayMusic(player.GetPlanet()->MusicName());
+
+	if(!scrollSpeed)
+		scrollSpeed = 1;
+
+	xSpeed = mainMenuUi->GetValue("x speed");
+	ySpeed = mainMenuUi->GetValue("y speed");
+	yAmplitude = mainMenuUi->GetValue("y amplitude");
+	returnPos = GameData::GetBackgroundPosition();
+	GameData::SetBackgroundPosition(Point());
+
+	// When the player is in the menu, pause the game sounds.
+	Audio::Pause();
+}
+
+
+
+MenuPanel::~MenuPanel()
+{
+	Audio::Resume();
+	GameData::SetBackgroundPosition(returnPos);
 }
 
 
 
 void MenuPanel::Step()
 {
+	if(Preferences::Has("Animate main menu background"))
+	{
+		GameData::StepBackground(Point(xSpeed, yAmplitude * sin(animation * TO_RAD)));
+		animation += ySpeed;
+	}
+	else
+		GameData::StepBackground(Point());
 	if(GetUI()->IsTop(this) && !scrollingPaused)
 	{
 		scroll += scrollSpeed;
@@ -112,7 +141,7 @@ void MenuPanel::Step()
 void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
@@ -126,9 +155,9 @@ void MenuPanel::Draw()
 			info.SetString("ship", flagship.Name());
 		}
 		if(player.GetSystem())
-			info.SetString("system", player.GetSystem()->Name());
+			info.SetString("system", player.GetSystem()->DisplayName());
 		if(player.GetPlanet())
-			info.SetString("planet", player.GetPlanet()->Name());
+			info.SetString("planet", player.GetPlanet()->DisplayName());
 		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
@@ -161,10 +190,11 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		gamePanels.CanSave(true);
 		GetUI()->PopThrough(this);
+		return true;
 	}
 	else if(key == 'p')
-		GetUI()->Push(new PreferencesPanel());
-	else if(key == 'l')
+		GetUI()->Push(new PreferencesPanel(player));
+	else if(key == 'l' || key == 'm')
 		GetUI()->Push(new LoadPanel(player, gamePanels));
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{
@@ -174,7 +204,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
 	else if(key == 'q')
+	{
 		GetUI()->Quit();
+		return true;
+	}
 	else if(key == ' ')
 		scrollingPaused = !scrollingPaused;
 	else if(key == SDLK_DOWN)
@@ -184,6 +217,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else
 		return false;
 
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 

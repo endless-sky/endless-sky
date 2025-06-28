@@ -17,11 +17,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PORT_H_
-#define PORT_H_
+#pragma once
+
+#include "Paragraphs.h"
 
 #include <string>
 
+class ConditionsStore;
 class DataNode;
 
 
@@ -59,9 +61,12 @@ public:
 
 public:
 	// Load a port's description from a node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	void LoadDefaultSpaceport();
 	void LoadUninhabitedSpaceport();
+
+	// Load a port's description text paragraphs from the planet spaceport description.
+	void LoadDescription(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Whether this port was loaded from the Load function.
 	bool CustomLoaded() const;
@@ -73,8 +78,7 @@ public:
 	int GetRecharges() const;
 
 	const std::string &Name() const;
-	std::string &Description();
-	const std::string &Description() const;
+	const Paragraphs &Description() const;
 
 	// Check whether the given recharging is possible.
 	bool CanRecharge(int type) const;
@@ -93,7 +97,7 @@ private:
 
 	// The description of this port. Shown when clicking on the
 	// port button on the planet panel.
-	std::string description;
+	Paragraphs description;
 
 	// What is recharged when landing on this port.
 	int recharge = RechargeType::None;
@@ -104,7 +108,3 @@ private:
 	// Whether this port has news.
 	bool hasNews = false;
 };
-
-
-
-#endif

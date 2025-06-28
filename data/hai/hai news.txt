@@ -60,6 +60,7 @@ news "trading in Hai space"
 			"If I had known there was such high demand for human-made products around here, I would've started making trips years ago!"
 			"One day I'll finally retire from my life as a merchant, and when that happens I know no better place than in Hai space."
 			"Plenty of businessmen come by curious of what I have in my hold, but I'll never tell them about my stash of industrial-sized shampoo bottles that I bring in on each visit to Hai space."
+			"The early Firebird gets the wormhole."
 		word
 			`"`
 
@@ -395,6 +396,74 @@ news "hai advertisement in Hai space"
 		word
 			`"`
 
+news "hai attacked by pirates"
+	location
+		government "Hai"
+	to show
+		random < 30
+	name
+		word
+			"Hai civilian"
+			"Hai youth"
+	message
+		word
+			`"`
+		word
+			"The human ship carrying my family was attacked by pirates when they came back from human space. I guess I may as well join the Unfettered now that I have nothing to lose."
+			"Pirates destroyed the human ship my children were on. They were always curious about the humans, and look where that got them! I will join the Unfettered; they are right."
+			"Human ships are so frail... My sister was on one, and she told me it lost all of its shields in a few shots! Thankfully, human weapons are not that strong either, so they were able to escape." 3
+			"You call these human vessels ships? They just barely protect against the void. Given the danger of human space, I would expect humans to have more heavy transports that can at least try to defend themselves, such as the Behemoth!" 2
+			"No wonder you have so many pirates in your space, with those fragile freighters you have. So much cargo with so little protection is pure madness! That is why I love humans." 3
+		word
+			`"`
+
+news "hai joining unfettered"
+	location
+		government "Hai"
+	name
+		word
+			"Hai civilian"
+			"Hai youth"
+	to show
+		random < 60
+	message
+		word
+			`"`
+		word
+			"Apparently our brothers and sisters to the north are in need of help. I may go there someday." 2
+			"Some very big things are going to happen in Unfettered space, and I wish to be a part of them!" 2
+			"I have lost everything... I knew I should not have taken that big loan. There is nothing left for me now except to go to Unfettered space for a new life." 2
+			"I come from Unfettered space. The Hai there are quite energetic and friendly once you get to know them, but I could not stand the poor living conditions." 2
+			"Have you heard? The art in Unfettered space is ever-changing, never dull. I wish I could go there and see it in person." 2
+			"Art in Unfettered space is less stagnant than here. We could learn a lot from it."
+			"Art in Unfettered space is more diverse than here. We could learn a lot from it."
+			"My music is not appreciated here. I guess I'll be going to Unfettered space to see how they like it. I heard their taste is more... developed." 2
+		word
+			`"`
+
+news "hai joining unfettered"
+	location
+		government "Hai (Unfettered)"
+	name
+		word
+			"Hai merchant"
+	to show
+		has "Unfettered Jump Drive 1: offered"
+		random < 60
+	message
+		word
+			`"`
+		word
+			"So many people need relocation. I have made it my job to carry them around, asking for little if anything in return. Some are Hai going into Unfettered space because they have lost themselves."
+			"With the rumors of action soon here in the north, the demand for transportation has greatly increased. I cannot possibly fit all of them. Time to buy a larger ship, I guess."
+			"Many of those who transport Hai here ask for little - too little. Have you seen the increase in demand? I'm going to raise my price; I can't be transporting people around all day for nothing."
+			"Once I'm done transporting people, I will stay here and be a part of the action."
+			"I've just finished transporting some passengers to Unfettered space, and now I have to transport more? Maybe you could help us, Captain."
+			"Is it just me, or are there fewer merchants transporting Hai here?"
+		word
+			`"`
+
+
 news "unfettered hai no dialog"
 	location
 		government "Hai (Unfettered)"
@@ -464,7 +533,7 @@ news "Unfettered Regret"
 	location
 		government "Hai (Unfettered)"
 	to show
-		random < 10
+		random < 20
 	name
 		word
 			"Unfettered fighter"
@@ -474,11 +543,11 @@ news "Unfettered Regret"
 		word
 			`"`
 		word
-			"At first I thought that joining the Unfettered would be fun. Now I can't go back or my crewmembers will beat me."
+			"At first I thought that joining the Unfettered would be fun. Now I can't go back or my crew members will beat me."
 			"I feel like the only Hai on this planet who regrets joining the Unfettered."
 			"I want to go home."
-			"I don't know why the Fettered Hai keep giving us tribute. To be honest with you, I don't think we're much of a threat."
-			"My captain calls the food shipments we get from the Fettered 'tribute,' but anyone can see it's charity to keep us from starving."
+			"I don't know why the Fettered Hai keep giving us tribute. To be honest with you, I don't think we're much of a threat." 2
+			"My captain calls the food shipments we get from the Fettered 'tribute,' but anyone can see it's charity to keep us from starving." 2
 		word
 			`"`
 
@@ -516,7 +585,7 @@ news "unfettered hai after wanderers invasion regret"
 		government "Hai (Unfettered)"
 	to show
 		has "event: wanderers: unfettered invasion starts"
-		random < 10
+		random < 40
 	name
 		word
 			"Unfettered fighter"
@@ -528,13 +597,13 @@ news "unfettered hai after wanderers invasion regret"
 		word
 			"I had to shoot down a surrendering Wanderer ship when my captain decided to invade their space. It was small, and didn't pose a threat, but my captain made me do it anyways. I don't know if I can take this anymore."
 			"The birds hardly try to fight back. It makes me wonder if they want us to conquer their planets."
-			"I don't think it's right that we attack those that have surrendered. What honor is there in killing civilians?"
+			"I don't think it's right that we attack those that have surrendered. What honor is there in killing civilians?" 2
 			"I came here to do battle with warriors, not with merchants and cowardly birds."
 			"What challenge is there in killing the weak? I desire to battle with those who are worthy."
 			"What we're doing up north isn't right, but if I try to speak against it, others call me 'coward' and tell me to ship myself home."
-			"I was held prisoner on a Wanderer world. They fed me and took care of me. The only thing they asked me to do in return was to teach them the Hai language. If it were the other way around, I'd be dead."
-			"I was held prisoner on a Wanderer world. They said that we were welcome to take their planets, if it was their fate. It must be a trap."
+			"I was held prisoner on a Wanderer world. They fed me and took care of me. The only thing they asked me to do in return was to teach them the Hai language. If it were the other way around, I'd be dead." 2
+			"I was held prisoner on a Wanderer world. They said that we were welcome to take their planets, if it was their fate. It must be a trap." 2
 			"I was held prisoner on a Wanderer world. Even though I attacked them, they were so kind to me. I don't want to fight them anymore, I'd feel too guilty."
-			"I was held prisoner by the aliens up north. They call themselves the Wanderers, but everyone here just calls them 'birds.'"
+			"I was held prisoner by the aliens up north. They call themselves the Wanderers, but everyone here just calls them 'birds.'" 2
 		word
 			`"`

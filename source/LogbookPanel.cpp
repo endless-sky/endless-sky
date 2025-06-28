@@ -15,20 +15,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LogbookPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Color.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -92,17 +92,7 @@ void LogbookPanel::Draw()
 		Point(1., Screen::Height()),
 		lineColor);
 
-	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
-	if(edgeSprite->Height())
-	{
-		// If the screen is high enough, the edge sprite should repeat.
-		double spriteHeight = edgeSprite->Height();
-		Point pos(
-			Screen::Left() + WIDTH + .5 * edgeSprite->Width(),
-			Screen::Top() + .5 * spriteHeight);
-		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
-			SpriteShader::Draw(edgeSprite, pos);
-	}
+	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + WIDTH);
 
 	// Colors to be used for drawing the log.
 	const Font &font = FontSet::Get(14);
@@ -175,17 +165,21 @@ void LogbookPanel::Draw()
 
 bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
+
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
 		Drag(0., (Screen::Height() - 100.) * direction);
+		sound = UI::UISound::NONE;
 	}
 	else if(key == SDLK_HOME || key == SDLK_END)
 	{
 		double direction = (key == SDLK_HOME) - (key == SDLK_END);
 		Drag(0., maxScroll * direction);
+		sound = UI::UISound::NONE;
 	}
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
@@ -244,7 +238,10 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			categoryScroll = max(categoryScroll, 0.);
 		}
 	}
+	else
+		sound = UI::UISound::NONE;
 
+	UI::PlaySound(sound);
 	return true;
 }
 
@@ -265,6 +262,7 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 			// If selecting a different year, select the first month in that
 			// year.
 			Update(false);
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 	}
 	else if(x > WIDTH)

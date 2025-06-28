@@ -13,10 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEXT_DISPLAYTEXT_H_
-#define ES_TEXT_DISPLAYTEXT_H_
+#pragma once
 
-#include "layout.hpp"
+#include "Layout.h"
 
 #include <string>
 
@@ -36,7 +35,3 @@ private:
 	Layout layout;
 	std::string text;
 };
-
-
-
-#endif

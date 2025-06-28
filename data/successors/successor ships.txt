@@ -1,0 +1,1127 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+
+ship "Aaulqra"
+	plural "Aaulqran"
+	sprite "ship/aaulqra"
+	thumbnail "thumbnail/aaulqra"
+	attributes
+		licenses
+			"High Houses"
+		category "Medium Warship"
+		"cost" 26000000
+		"shields" 10000
+		"hull" 55000
+		"required crew" 18
+		"bunks" 25
+		"mass" 650
+		"drag" 8.75
+		"heat dissipation" 0.49
+		"fuel capacity" 600
+		"cargo space" 15
+		"outfit space" 550
+		"weapon capacity" 240
+		"engine capacity" 120
+		"multimodal armor" 1
+		"hull repair rate" 2.75
+		"hull energy" 4.0
+		"hull heat" 4.0
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`"Ojet" Bimodal Coilgun` 6
+
+		`"Nnesa" Fusion Core`
+		`"Uoret" Fusion Core`
+		"Primary Power Reserve"
+
+		`"Jorv" Shield Cortex`
+
+		"Successor Cooling" 2
+		"Multimodal Armor: Regen"
+		"Kinetic Rail Rifle" 7
+
+		`"Chyyra" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		`"Chyyra" Inductive Reverser`
+		"Hyperdrive"
+
+	gun 0 -116 `"Ojet" Bimodal Coilgun`
+	gun 0 -109 `"Ojet" Bimodal Coilgun`
+	gun -14 -74 `"Ojet" Bimodal Coilgun`
+	gun 14 -74 `"Ojet" Bimodal Coilgun`
+	gun -12 -83 `"Ojet" Bimodal Coilgun`
+	gun 12 -83 `"Ojet" Bimodal Coilgun`
+	turret -17 4
+	turret 17 4
+	engine -17 50
+	engine 17 50
+	"reverse engine" -36 -20
+		zoom .8
+	"reverse engine" 36 -20
+		zoom .8
+	"steering engine" -41 55
+		zoom .5
+		angle 90
+		left
+	"steering engine" 41 55
+		zoom .5
+		angle 270
+		right
+	"steering engine" -9 -94
+		zoom .5
+		angle 90
+		right
+	"steering engine" 9 -94
+		zoom .5
+		angle 270
+		left
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `The Aaulqra is the oldest warship design currently produced by the High Houses in Successor space, with a recognizable lineage continuing back several thousand years to early in the old empire. It is compact, fast, and durable for a ship of its class, but has relatively limited internal space and lacks any significant cargo or passenger facilities. The captains of these vessels are often up-and-coming Successor officers hoping to prove themselves to one of the High Houses by demonstrating their mastery of the vessel; while most, of course, do not, the ship's flexibility and ubiquitous presence make it an excellent starting point for those who do.`
+
+
+ship "Aaulqra" "Aaulqra (Naive)"
+	description "This medium warship is among the most common designs employed by the High Houses of the Successors. It is compact, fast, and durable for a ship of its class, but limited internal space and fuel capacity restrict it mostly to short-range patrol service."
+
+
+
+ship "Ejniisde"
+	plural "Ejniisden"
+	sprite "ship/ejniisde"
+	thumbnail "thumbnail/ejniisde"
+	attributes
+		licenses
+			"Successor"
+		category "Space Liner"
+		"cost" 4100000
+		"shields" 2000
+		"hull" 9500
+		"required crew" 12
+		"bunks" 64
+		"mass" 350
+		"drag" 4.6
+		"heat dissipation" 0.67
+		"fuel capacity" 700
+		"cargo space" 50
+		"outfit space" 265
+		"weapon capacity" 85
+		"engine capacity" 100
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`6-"Ruuv" Betavoltaic Cell`
+		`"Ej" Shield Cortex`
+
+		"Successor Cooling"
+		"Successor Fuel Sail"
+
+		`"Veusa" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Chyyra" Inductive Reverser`
+		"Hyperdrive"
+
+	gun 0 -106
+	turret 22 10
+	turret -22 10
+	engine 25 67
+		zoom .8
+	engine -25 67
+		zoom .8
+	"steering engine" 7 -83
+		zoom .5
+		over
+		left
+		angle 270
+	"steering engine" -7 -83
+		zoom .5
+		over
+		right
+		angle 90
+	"steering engine" -6 99
+		zoom .5
+		left
+		angle 90
+	"steering engine" 6 99
+		zoom .5
+		right
+		angle 270
+	"reverse engine" 26 -22
+		zoom .8
+	"reverse engine" -26 -22
+		zoom .8
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description "The Successors have a relatively small population and therefore are not in great need of large transport vessels. However, transporting passengers entirely by shuttle lacks a degree of comfort and security, so for longer journeys, the Successors use this dedicated transport ship. While unarmed by default, it is fast enough to escape most ships that might mean it harm."
+
+
+
+ship "Kaskhorade"
+	plural "Kaskhoraden"
+	sprite "ship/kaskhorade"
+	thumbnail "thumbnail/kaskhorade"
+	attributes
+		licenses
+			"High Houses"
+		category "Utility"
+		"cost" 45250000
+		"shields" 7000
+		"hull" 44500
+		"required crew" 34
+		"bunks" 130
+		"mass" 990
+		"drag" 13.6
+		"heat dissipation" .5
+		"fuel capacity" 600
+		"cargo space" 140
+		"outfit space" 570
+		"weapon capacity" 280
+		"engine capacity" 110
+		"multimodal armor" 1
+		"hull repair rate" 2.25
+		"hull energy" 3.26
+		"hull heat" 3.26
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`"Ojet" Bimodal Coilgun` 2
+		`"Sjeja" Kinetic Lance` 2
+		"High-Velocity Spike" 40
+		"Bimodal Coilgun Turret"
+
+		`"Uoret" Fusion Core`
+		"Auxiliary Power Reserve"
+		`"Jaase" Shield Cortex`
+
+		"Successor Cooling"
+		"Multimodal Armor: Light"
+		"Kinetic Rail Rifle" 25
+
+		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		`"Veusa" Inductive Reverser`
+		"Hyperdrive"
+
+	gun -3 -120 `"Sjeja" Kinetic Lance`
+	gun 3 -120 `"Sjeja" Kinetic Lance`
+	gun -19 -74 `"Ojet" Bimodal Coilgun`
+	gun 19 -74 `"Ojet" Bimodal Coilgun`
+	turret -31 6
+	turret 31 6
+	turret 0 -15 "Bimodal Coilgun Turret"
+	turret 0 30
+	engine -8 80
+		zoom .8
+	engine 8 80
+		zoom .8
+	"reverse engine" -40 -13
+		zoom .8
+	"reverse engine" 40 -13
+		zoom .8
+	"steering engine" -30 55
+		zoom .5
+		angle 90
+		left
+		over
+	"steering engine" 30 55
+		zoom .5
+		angle 270
+		right
+		over
+	"steering engine" -16 -90
+		zoom .5
+		angle 90
+		right
+		over
+	"steering engine" 16 -90
+		zoom .5
+		angle 270
+		left
+		over
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `Serving as the heavy multipurpose backbone of the fleets of the various High Houses, the Kaskhorade trades some of the maneuverability of its smaller siblings for greater flexibility; in addition to being a capable warship, it also offers a sizable amount of free cargo and bunk space that allow it to fulfill a wide variety of missions. Along with serving as convoy escorts and fleet warships, these vessels are often used to transport high-ranking members of the High Houses, as they can remain well-defended while outfitted for fast and luxurious travel.`
+
+
+
+ship "Kvelqde"
+	plural "Kvelqden"
+	sprite "ship/kvelqde"
+	thumbnail "thumbnail/kvelqde"
+	attributes
+		licenses
+			"Successor"
+		category "Transport"
+		"cost" 185000
+		"shields" 350
+		"hull" 2400
+		"required crew" 1
+		"bunks" 9
+		"mass" 110
+		"drag" 2.25
+		"heat dissipation" 0.82
+		"fuel capacity" 500
+		"cargo space" 25
+		"outfit space" 160
+		"weapon capacity" 55
+		"engine capacity" 45
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`1-"Uurau" Betavoltaic Cell` 2
+		`"Ej" Shield Cortex`
+
+		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+
+	gun 0 -32
+	turret 0 0
+	engine -8 28
+	engine 8 28
+	"steering engine" 9 -20.5
+		zoom .5
+		over
+		left
+		angle 270
+	"steering engine" -9 -20.5
+		zoom .5
+		over
+		right
+		angle 90
+	"steering engine" 6.5 29
+		zoom .5
+		over
+		right
+		angle 270
+	"steering engine" -6.5 29
+		zoom .5
+		over
+		left
+		angle 90
+	"reverse engine" 12.5 -5
+		zoom .5
+		over
+	"reverse engine" -12.5 -5
+		zoom .5
+		over
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description "This tiny shuttle is the smallest vessel operating in Successor space, and the first ship that new Successor pilots are able to get their arms on. Despite their small size, they are capable multipurpose vessels, and are frequently used for transporting passengers and cargo, and for short-duration research expeditions."
+	description "	The design of the Kvelqde is, like most Successor vessels, based on originals from the time of the Predecessors. While the modern incarnation is nowhere near as advanced, successive iterations with more limited resources have promoted the cost-efficiency and user-friendliness of the design."
+
+
+ship "Kvelqde" "Kvelqde (Naive)"
+	description "This tiny shuttle is the smallest vessel operating in Successor space, and appears to fulfill much the same role as the human shuttles with which you are familiar, transporting small groups of passengers and quantities of cargo throughout their space. While it has enough space to equip weapons if necessary, its limited internal space and the low energy density of civilian Successor generators make these hardpoints most suitable to mining rather than combat."
+
+
+
+ship "Kvelqde-Khora"
+	plural "Kvelqden-Khora"
+	sprite "ship/kvelqde-khora"
+	thumbnail "thumbnail/kvelqde-khora"
+	attributes
+		licenses
+			"Successor"
+		category "Interceptor"
+		"cost" 240000
+		"shields" 785
+		"hull" 4625
+		"required crew" 1
+		"bunks" 6
+		"mass" 158
+		"drag" 2.95
+		"heat dissipation" 0.78
+		"fuel capacity" 500
+		"cargo space" 10
+		"outfit space" 197
+		"weapon capacity" 63
+		"engine capacity" 45
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Overcharged Pulse Laser" 2
+		"Overcharged Laser Turret"
+
+		`3-"Kaska" Betavoltaic Cell`
+		"Auxiliary Power Reserve" 3
+		`"Ej" Shield Cortex`
+
+		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+
+	gun -4 -30
+	gun 4 -30
+	turret 0 0
+	engine -8 28
+	engine 8 28
+	"steering engine" 9 -20.5
+		zoom .5
+		over
+		left
+		angle 270
+	"steering engine" -9 -20.5
+		zoom .5
+		over
+		right
+		angle 90
+	"steering engine" 6.5 29
+		zoom .5
+		over
+		right
+		angle 270
+	"steering engine" -6.5 29
+		zoom .5
+		over
+		left
+		angle 90
+	"reverse engine" 12.5 -5
+		zoom .5
+		over
+	"reverse engine" -12.5 -5
+		zoom .5
+		over
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `One of the more industrious members of the People's Houses has done their best to ruggedize this Kvelqde: additional armor plating has been laid over most of the exposed hull, a second gun port has been attached to the underside, and the shield grid has had its capacity substantially increased. While not quite capable of standing toe-to-toe with a production interceptor of the High Houses, it bares enough teeth for a bit of light piracy, and its greater durability is quite welcome for navigating the decaying stations and hostile worlds of southwestern Successor space.`
+
+
+
+ship "Myaede"
+	plural "Myaeden"
+	sprite "ship/myaede"
+	thumbnail "thumbnail/myaede"
+	attributes
+		licenses
+			"Successor"
+		category "Light Freighter"
+		"cost" 3250000
+		"shields" 1500
+		"hull" 13000
+		"required crew" 6
+		"bunks" 20
+		"mass" 500
+		"drag" 7.1
+		"heat dissipation" 0.62
+		"fuel capacity" 500
+		"cargo space" 125
+		"outfit space" 275
+		"weapon capacity" 125
+		"engine capacity" 130
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Pulse Laser Turret" 2
+
+		`3-"Kaska" Betavoltaic Cell` 2
+		`1-"Uurau" Betavoltaic Cell`
+		`"Ej" Shield Cortex`
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+
+	gun -3 -60
+	gun 3 -60
+	turret -33 -11 "Pulse Laser Turret"
+	turret 33 -11 "Pulse Laser Turret"
+	engine -40 10
+	engine 40 10
+	"steering engine" 20 -50
+		zoom .5
+		over
+		left
+		angle 270
+	"steering engine" -20 -50
+		zoom .5
+		over
+		right
+		angle 90
+	"steering engine" 13 54
+		zoom .5
+		over
+		right
+		angle 270
+	"steering engine" -13 54
+		zoom .5
+		over
+		left
+		angle 90
+	"reverse engine" -40 -28
+		over
+	"reverse engine" 40 -28
+		over
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `The Myaede is neither elegant nor fast, but it has remained the mainstay of Successor commerce since before the collapse of the old empire over a thousand years ago, boasting a spacious cargo hold, heavy armor, and a flexible enough weapons layout to let it fight back in a pinch. Much like the grand heirlooms of the High Houses, a familial Myaede is often passed down through the lineage of spacefaring low-born Successors, and many of the pilots flying these first took the helm as children under a grandparent's watchful gaze.`
+
+
+ship "Myaede" "Myaede (Naive)"
+	description `The Myaede is neither elegant nor fast, but has cemented itself as the backbone of Successor commerce with a spacious cargo hold, heavy armor, and a flexible enough weapons layout to let it fight back in a pinch. The design is robust and dependable; many of the ships you've seen appear old and worn but pass through the spaceport no less smoothly than their newer counterparts.`
+
+
+
+ship "Nnaatej"
+	plural "Nnaatejen"
+	sprite "ship/nnaatej"
+	thumbnail "thumbnail/nnaatej"
+	attributes
+		licenses
+			"Successor"
+		category "Transport"
+		"cost" 3825000
+		"shields" 3000
+		"hull" 15500
+		"required crew" 5
+		"bunks" 26
+		"mass" 570
+		"drag" 5.6
+		"heat dissipation" 0.61
+		"fuel capacity" 500
+		"cargo space" 35
+		"outfit space" 220
+		"weapon capacity" 54
+		"engine capacity" 82
+		"waterlining" 1
+		"corrosion resistance" 0.6
+		"slowing resistance" 0.6
+		"hull repair rate" 0.1
+		"hull heat" 0.25
+		"hull energy" 0.2
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`6-"Ruuv" Betavoltaic Cell`
+		`"Ej" Shield Cortex`
+
+		"Successor Fuel Sail"
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+
+	turret 0 -10
+	engine 0 62
+	"steering engine" 5 -75
+		zoom .5
+		over
+		left
+		angle 270
+	"steering engine" -5 -75
+		zoom .5
+		over
+		right
+		angle 90
+	"steering engine" 8 49
+		zoom .5
+		over
+		right
+		angle 270
+	"steering engine" -8 49
+		zoom .5
+		over
+		left
+		angle 90
+	"reverse engine" -9 -56
+		zoom .6
+		over
+	"reverse engine" 9 -56
+		zoom .6
+		over
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `Owing to their amphibious nature, a substantial portion of the Successor population lives underwater. Most of their ships are built with this in mind and are capable of some degree of underwater operation. However, the Nnaatej is a specialist vessel built specifically for this purpose, shuttling passengers from deep ocean to deep space and back again. It is designed with a denser, pressure-stable hull, built-in maintenance systems, and increased resistance to corrosion and slowing effects. These features come at the cost of making it a heavy and expensive ship for its size, but are considered well worth it to ensure the safety and comfort of its passengers and cargo.`
+
+
+
+ship "Nnesaarau"
+	plural "Nnesaaraun"
+	sprite "ship/nnesaarau"
+	thumbnail "thumbnail/nnesaarau"
+	attributes
+		licenses
+			"Successor"
+		category "Transport"
+		"cost" 1225000
+		"shields" 1800
+		"hull" 2200
+		"required crew" 1
+		"bunks" 4
+		"mass" 90
+		"drag" 2.1
+		"heat dissipation" 0.86
+		"fuel capacity" 600
+		"cargo space" 8
+		"outfit space" 175
+		"weapon capacity" 30
+		"engine capacity" 60
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`3-"Kaska" Betavoltaic Cell`
+		`1-"Uurau" Betavoltaic Cell`
+		"Auxiliary Power Reserve"
+		`"Ej" Shield Cortex`
+
+		`"Chyyra" Inductive Thruster`
+		`"Aqra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Scram Drive"
+
+	gun -7.5 -38
+	gun 0 -34
+	gun 7.5 -38
+	engine 0 34
+	"steering engine" -10 -29
+		zoom .5
+		right
+		over
+		angle 270
+	"steering engine" 10 -29
+		zoom .5
+		over
+		left
+		angle 90
+	"reverse engine" -20 -14
+		zoom .6
+		over
+	"reverse engine" 20 -14
+		zoom .6
+		over
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description "Quick and comfortable, the Nnesaarau is among the newest designs utilized in Successor space, having first emerged from House Chydiyi's shipyards no more than twenty years ago. For various reasons, it is also among the least popular; it was designed solely as a luxury passenger transport and sees very little use outside that role because of its high price and restrictive internals. Nonetheless, some hotshot pilots swear by these ships as racing or fast courier vessels."
+
+
+ship "Nnesaarau" "Nnesaarau (Naive)"
+	description "These very light vessels don't have much room for passengers or cargo, but move swiftly and elegantly through Successor space. These qualities, combined with their high price and uncommon presence, suggest that these may be luxury craft of some sort, too impractical for use by the majority of Successors."
+
+
+
+ship "Ojde"
+	plural "Ojden"
+	sprite "ship/ojde"
+	thumbnail "thumbnail/ojde"
+	attributes
+		licenses
+			"Successor"
+		category "Heavy Freighter"
+		"cost" 8250000
+		"shields" 3000
+		"hull" 31500
+		"required crew" 8
+		"bunks" 24
+		"mass" 1190
+		"drag" 15.5
+		"heat dissipation" 0.5
+		"fuel capacity" 500
+		"cargo space" 450
+		"outfit space" 330
+		"weapon capacity" 180
+		"engine capacity" 150
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Pulse Laser Turret" 2
+
+		`6-"Ruuv" Betavoltaic Cell`
+		"Auxiliary Power Reserve" 3
+		`"Ej" Shield Cortex`
+		"Successor Cooling"
+
+		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		`"Chyyra" Inductive Reverser`
+		"Hyperdrive"
+
+	gun 28 -110
+	gun -28 -110
+	turret 34 37
+	turret -34 37
+	turret 0 32
+	engine 15 93
+	engine -15 93
+	"reverse engine" -19 -117
+		zoom .8
+	"reverse engine" 19 -117
+		zoom .8
+	"steering engine" 33 -99
+		zoom .5
+		angle 270
+		left
+	"steering engine" -33 -99
+		zoom .5
+		angle 90
+		right
+	"steering engine" 43 63
+		zoom .5
+		angle 270
+		right
+	"steering engine" -43 63
+		zoom .5
+		angle 90
+		left
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `Although it is the largest freighter employed by the Successors, the "Ojde" is still substantially smaller than large human freighters like the Bulk Freighter and Behemoth. While this limits the cargo capacity of any single ship, it also allows these vessels to be surprisingly fast and maneuverable and increases the number of facilities which can effectively tend to them.`
+	description `	Though somewhat less popular among more traditional merchants than the time-tested Myaede, the increased cargo capacity of the Ojde makes it a more or less mandatory choice for those hoping to assemble a large-scale transport operation.`
+
+
+ship "Ojde" "Ojde (Naive)"
+	description `Although it is the largest freighter employed by the Successors, the Ojde is still substantially smaller than large human freighters like the Bulk Freighter and Behemoth. While this limits the cargo capacity of any single ship, it also allows these vessels to be surprisingly fast and maneuverable and increases the number of facilities which can effectively tend to them.`
+
+
+
+ship "Seiitej"
+	plural "Seiitejen"
+	sprite "ship/seiitej"
+	thumbnail "thumbnail/seiitej"
+	attributes
+		licenses
+			"High Houses"
+		category "Utility"
+		"cost" 9250000
+		"shields" 8000
+		"hull" 19000
+		"required crew" 8
+		"bunks" 36
+		"mass" 320
+		"drag" 5.2
+		"heat dissipation" .60
+		"fuel capacity" 800
+		"cargo space" 130
+		"outfit space" 370
+		"weapon capacity" 90
+		"engine capacity" 110
+		"multimodal armor" 1
+		"hull repair rate" 1.2
+		"hull energy" 1.74
+		"hull heat" 1.74
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`"Ojet" Bimodal Coilgun` 4
+
+		`"Ryuit" Fusion Core`
+		"Auxiliary Power Reserve" 3
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Light"
+		"Kinetic Rail Rifle" 15
+
+		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		"Hyperdrive"
+
+	gun -10 -78
+	gun -5 -86
+	gun 5 -86
+	gun 10 -78
+	turret 0 -29
+	engine -25 44
+	engine 25 44
+	"reverse engine" -25 -35
+		zoom .7
+	"reverse engine" 25 -35
+		zoom .7
+	"steering engine" -44 34
+		left
+		angle 90
+		zoom .5
+		over
+	"steering engine" 44 34
+		right
+		angle 270
+		zoom .5
+		over
+	"steering engine" -5 -89
+		right
+		angle 90
+		zoom .4
+	"steering engine" 5 -89
+		left
+		angle 270
+		zoom .4
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `The Seiitej is the High Houses' vessel of choice for transporting small amounts of cargo and passengers throughout Successor space. Though less spacious than a dedicated civilian freighter or transport vessel, it is much more durable while remaining fast and maneuverable. While these vessels support a relatively light armament (by the standards of the High Houses), their speed and flexible internals allow them to frequently serve as patrol craft as well.`
+	description "	Their lighter armor and smaller combat systems also make them significantly less expensive to manufacture than the High Houses' purpose-built warships, which contributes to their growing ubiquity."
+
+
+
+ship "Stolsaqra"
+	plural "Stolsaqran"
+	sprite "ship/stolsaqra"
+	thumbnail "thumbnail/stolsaqra"
+	attributes
+		licenses
+			"Successor"
+		category "Interceptor"
+		"cost" 450000
+		"shields" 850
+		"hull" 6100
+		"required crew" 1
+		"bunks" 2
+		"mass" 120
+		"drag" 2.75
+		"heat dissipation" 0.79
+		"fuel capacity" 300
+		"cargo space" 5
+		"outfit space" 212
+		"weapon capacity" 90
+		"engine capacity" 80
+		"multimodal armor" 1
+		"hull repair rate" 0.3
+		"hull energy" 0.4
+		"hull heat" 0.4
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Successor Pulse Laser" 3
+
+		`3-"Kaska" Betavoltaic Cell`
+		`1-"Uurau" Betavoltaic Cell` 2
+		"Auxiliary Power Reserve" 2
+		`"Byiaa" Shield Cortex`
+
+		`"Aqra" Inductive Thruster` 2
+		`"Aqra" Inductive Steering`
+		`"Aqra" Inductive Reverser`
+		"Hyperdrive"
+
+	gun 0 -40 "Successor Pulse Laser"
+	gun -10.5 -20 "Successor Pulse Laser"
+	gun 10.5 -20 "Successor Pulse Laser"
+	engine -8 35
+	engine 8 35
+	"steering engine" 4 -41
+		zoom .4
+		over
+		left
+		angle 270
+	"steering engine" -4 -41
+		zoom .4
+		over
+		right
+		angle 90
+	"steering engine" 12 33
+		zoom .4
+		over
+		right
+		angle 270
+	"steering engine" -12 33
+		zoom .4
+		over
+		left
+		angle 90
+	"reverse engine" 15 -3
+		zoom .8
+		over
+	"reverse engine" -15 -3
+		zoom .8
+		over
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description "The Successors have limited experience in making warships this small, and while their attempt at an interceptor is durable and sports a surprising amount of firepower for a ship of its size, it is also plagued with power and propulsion issues, as most of their standard technology is either too large or not powerful enough to yield effective combat performance at this scale. The result is a ship that ambitious pilots call a challenge and prudent captains call a deathtrap, but that continues to see use as a patrol and escort vessel because of its speed and heavy armament."
+	description `	The Stolsaqra also has the distinction of being the only purpose-built warship manufactured by the High Houses that is made available to the general public, albeit with significantly downgraded systems compared to the military-exclusive model.`
+
+
+ship "Stolsaqra" "Stolsaqra (Naive)"
+	description `The Successors' attempt at an interceptor is quite compact and sports a surprising amount of firepower for a ship of its size, though restrictive internal space leaves it plagued with power and propulsion issues if it is equipped to fully utilize its weapons capacity. While it is manufactured by the High Houses, the Stolsaqra is made available to the general Successor public, albeit with significantly downgraded systems compared to the military-exclusive model.`
+
+
+
+ship "Veusade"
+	plural "Veusaden"
+	sprite "ship/veusade"
+	thumbnail "thumbnail/veusade"
+	attributes
+		licenses
+			"High Houses"
+		category "Light Warship"
+		"cost" 16500000
+		"shields" 8000
+		"hull" 29000
+		"required crew" 5
+		"bunks" 10
+		"mass" 360
+		"drag" 5.45
+		"heat dissipation" .62
+		"fuel capacity" 500
+		"cargo space" 15
+		"outfit space" 370
+		"weapon capacity" 96
+		"engine capacity" 120
+		"multimodal armor" 1
+		"hull repair rate" 1.45
+		"hull energy" 2.1
+		"hull heat" 2.1
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Drag Cannon" 8
+
+		`"Ryuit" Fusion Core`
+		"Auxiliary Power Reserve" 2
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Heavy"
+
+		"Kinetic Rail Rifle" 5
+
+		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive Steering`
+		"Hyperdrive"
+
+	gun -25 -32 "Drag Cannon"
+	gun -22 -34 "Drag Cannon"
+	gun -11 -64 "Drag Cannon"
+	gun -7 -72 "Drag Cannon"
+	gun 7 -72 "Drag Cannon"
+	gun 11 -64 "Drag Cannon"
+	gun 22 -34 "Drag Cannon"
+	gun 25 -32 "Drag Cannon"
+	engine -11 21
+		zoom .8
+	engine 11 21
+		zoom .8
+	"reverse engine" -27 -25
+		zoom .7
+	"reverse engine" 27 -25
+		zoom .7
+	"steering engine" -40 28
+		left
+		angle 90
+		zoom .5
+		over
+	"steering engine" 40 28
+		right
+		angle 270
+		zoom .5
+		over
+	"steering engine" -7 -71
+		right
+		angle 90
+		zoom .5
+	"steering engine" 7 -71
+		left
+		angle 270
+		zoom .5
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `Blessed with the honor of being named with the Successor word for swiftness, the Veusade is designed for only one purpose: to carry eight drag cannons as close to an enemy ship's hull as possible.`
+	description "	Vessels of this lineage earned renown in many of the conflicts between the Predecessors' High Houses, catching and killing ships many times their size and escaping before reinforcements could arrive. In the present, such a narrowly-focused design makes these vessels ill-suited for multipurpose use, but they are frequently seen as auxiliary or police craft, owing to their ability to rapidly intercept and immobilize fleeing ships."
+
+
+ship "Veusade" "Veusade (Naive)"
+	description `The Veusade bristles with gun ports but has a small overall weapons capacity; in fact, it is just enough to saturate its hardpoints with drag cannons. Such a narrowly-focused design makes these ships ill-suited for multipurpose use, but they are frequently seen as auxiliary or police craft, owing to their ability to rapidly catch and immobilize fleeing vessels.`
+
+
+
+ship "Vujlet"
+	plural "Vujleten"
+	sprite "ship/vujlet"
+	thumbnail "thumbnail/vujlet"
+	attributes
+		licenses
+			"High Houses"
+		category "Light Warship"
+		"cost" 8200000
+		"shields" 3000
+		"hull" 17500
+		"required crew" 2
+		"bunks" 6
+		"mass" 230
+		"drag" 3.8
+		"heat dissipation" .68
+		"fuel capacity" 600
+		"cargo space" 10
+		"outfit space" 280
+		"weapon capacity" 105
+		"engine capacity" 85
+		"exclusive: Vujlet" 1
+		"multimodal armor" 1
+		"hull repair rate" 0.875
+		"hull energy" 1.27
+		"hull heat" 1.27
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		`"Ojet" Bimodal Coilgun` 2
+
+		`"Nnesa" Fusion Core`
+		`OC-"Mavra" Betavoltaic Cell`
+		"Auxiliary Power Reserve"
+		`"Jaase" Shield Cortex`
+		"Successor Cooling"
+		"Multimodal Armor: Heavy"
+		"Kinetic Rail Rifle" 4
+
+		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive Steering`
+		`"Chyyra" Inductive Reverser`
+		"Hyperdrive"
+
+	gun -6 -46 `"Ojet" Bimodal Coilgun`
+	gun 6 -46 `"Ojet" Bimodal Coilgun`
+	gun -9 -30
+	gun 9 -30
+	engine -16 49
+		zoom .9
+	engine 16 49
+		zoom .9
+	"reverse engine" -16 -6
+		zoom .9
+		over
+	"reverse engine" 16 -5
+		zoom .9
+		over
+	"steering engine" -4 -53
+		right
+		angle 90
+		zoom .5
+		over
+	"steering engine" 4 -53
+		left
+		angle 270
+		zoom .5
+		over
+	"steering engine" -28 34
+		left
+		angle 90
+		zoom .5
+		over
+	"steering engine" 28 34
+		right
+		angle 270
+		zoom .5
+		over
+	leak "leak" 50 50
+	leak "flame" 30 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion medium"
+	description `Navigating the stars with the grace of a flitting bird, the compact Vujlet is a mass-produced High Houses warship flexible enough to serve in a variety of light-duty roles. Large enough to operate as a self-sufficient unit, these vessels serve as a useful bridge between short-ranged and relatively vulnerable interceptors, and larger, more resource-intensive warships that can be much more expensive to build and operate.`
+	description `	The design was originally employed by House Kaatrij as a stealth reconnaissance vessel that made use of their then-recently-developed cloaking technology. As the alliance between the New Houses strengthened, the plans for the Vujlet were distributed among them, and the light warship rapidly became a mainstay of their fleets. Unfortunately, without the materials present in their Predecessors' domain, House Kaatrij has been unable to manufacture stealth equipment for the Vujlet in the modern era.`
+
+
+ship "Vujlet" "Vujlet (Naive)"
+	description `The compact Vujlet is a mass-produced High Houses warship flexible enough to serve in a variety of light-duty roles. Large enough to operate as a self-sufficient unit, these vessels serve as a useful bridge between short-ranged, relatively vulnerable interceptors, and larger, more resource-intensive warships that can be much more expensive to build and operate.`

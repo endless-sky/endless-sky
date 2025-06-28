@@ -16,7 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameWindow.h"
 
 #include "Files.h"
-#include "ImageBuffer.h"
+#include "image/ImageBuffer.h"
+#include "image/ImageFileData.h"
 #include "Logger.h"
 #include "Screen.h"
 
@@ -30,10 +31,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// The minimal screen resolution requirements.
+	constexpr int minWidth = 1024;
+	constexpr int minHeight = 768;
+
 	SDL_Window *mainWindow = nullptr;
 	SDL_GLContext context = nullptr;
 	int width = 0;
 	int height = 0;
+	int drawWidth = 0;
+	int drawHeight = 0;
 	bool supportsAdaptiveVSync = false;
 
 	// Logs SDL errors and returns true if found
@@ -69,7 +76,7 @@ string GameWindow::SDLVersions()
 
 
 
-bool GameWindow::Init()
+bool GameWindow::Init(bool headless)
 {
 #ifdef _WIN32
 	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
@@ -78,6 +85,14 @@ bool GameWindow::Init()
 	// Set the class name for the window on Linux. Used to set the application icon.
 	// This sets it for both X11 and Wayland.
 	setenv("SDL_VIDEO_X11_WMCLASS", "io.github.endless_sky.endless_sky", true);
+#endif
+
+	// When running the integration tests, don't create a window nor an OpenGL context.
+	if(headless)
+#if defined(__linux__) && !SDL_VERSION_ATLEAST(2, 0, 22)
+		setenv("SDL_VIDEODRIVER", "dummy", true);
+#else
+		SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
 #endif
 
 	// This needs to be called before any other SDL commands.
@@ -99,15 +114,12 @@ bool GameWindow::Init()
 			" The game will run more slowly.");
 
 	// Make the window just slightly smaller than the monitor resolution.
-	int minWidth = 640;
-	int minHeight = 480;
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
 	if(maxWidth < minWidth || maxHeight < minHeight)
-	{
-		ExitWithError("Monitor resolution is too small!");
-		return false;
-	}
+		Logger::LogError("Monitor resolution is too small! Minimal requirement is "
+			+ to_string(minWidth) + 'x' + to_string(minHeight)
+			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.');
 
 	int windowWidth = maxWidth - 100;
 	int windowHeight = maxHeight - 100;
@@ -130,12 +142,21 @@ bool GameWindow::Init()
 
 	// The main window spawns visibly at this point.
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
+		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, headless ? 0 : flags);
 
 	if(!mainWindow)
 	{
 		ExitWithError("Unable to create window!");
 		return false;
+	}
+
+	// Bail out early if we are in headless mode; no need to initialize all the OpenGL stuff.
+	if(headless)
+	{
+		width = windowWidth;
+		height = windowHeight;
+		Screen::SetRaw(width, height);
+		return true;
 	}
 
 	// Settings that must be declared before the context creation.
@@ -244,12 +265,8 @@ void GameWindow::Quit()
 	SDL_ShowCursor(true);
 
 	// Clean up in the reverse order that everything is launched.
-//#ifndef _WIN32
-	// Under windows, this cleanup code causes intermittent crashes.
 	if(context)
 		SDL_GL_DeleteContext(context);
-//#endif
-
 	if(mainWindow)
 		SDL_DestroyWindow(mainWindow);
 
@@ -272,7 +289,7 @@ void GameWindow::SetIcon()
 
 	// Load the icon file.
 	ImageBuffer buffer;
-	if(!buffer.Read(Files::Resources() + "icon.png"))
+	if(!buffer.Read(ImageFileData(Files::Resources() / "icon.png")))
 		return;
 	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
 		return;
@@ -313,7 +330,6 @@ void GameWindow::AdjustViewport()
 
 	// Find out the drawable dimensions. If this is a high- DPI display, this
 	// may be larger than the window.
-	int drawWidth, drawHeight;
 	SDL_GL_GetDrawableSize(mainWindow, &drawWidth, &drawHeight);
 	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);
 
@@ -377,6 +393,20 @@ int GameWindow::Width()
 int GameWindow::Height()
 {
 	return height;
+}
+
+
+
+int GameWindow::DrawWidth()
+{
+	return drawWidth;
+}
+
+
+
+int GameWindow::DrawHeight()
+{
+	return drawHeight;
 }
 
 

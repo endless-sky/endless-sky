@@ -54,6 +54,24 @@ void Gamerules::Load(const DataNode &node)
 			depreciationGracePeriod = max<int>(0, child.Value(1));
 		else if(key == "depreciation max age")
 			depreciationMaxAge = max<int>(0, child.Value(1));
+		else if(key == "disabled fighters avoid projectiles")
+		{
+			const string &value = child.Token(1);
+			if(value == "all")
+				fighterHitPolicy = FighterDodgePolicy::ALL;
+			else if(value == "none")
+				fighterHitPolicy = FighterDodgePolicy::NONE;
+			else if(value == "only player")
+				fighterHitPolicy = FighterDodgePolicy::ONLY_PLAYER;
+			else
+				child.PrintTrace("Skipping unrecognized value for gamerule:");
+		}
+		else if(key == "system departure min")
+			systemDepartureMin = max<double>(0., child.Value(1));
+		else if(key == "system arrival min")
+			systemArrivalMin = max<double>(0., child.Value(1));
+		else if(key == "fleet multiplier")
+			fleetMultiplier = max<double>(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -120,4 +138,32 @@ int Gamerules::DepreciationGracePeriod() const
 int Gamerules::DepreciationMaxAge() const
 {
 	return depreciationMaxAge;
+}
+
+
+
+Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
+{
+	return fighterHitPolicy;
+}
+
+
+
+double Gamerules::SystemDepartureMin() const
+{
+	return systemDepartureMin;
+}
+
+
+
+double Gamerules::SystemArrivalMin() const
+{
+	return systemArrivalMin;
+}
+
+
+
+double Gamerules::FleetMultiplier() const
+{
+	return fleetMultiplier;
 }

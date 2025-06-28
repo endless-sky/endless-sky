@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // ... and any system includes needed for the test file.
 #include <algorithm>
+#include <random>
 
 namespace { // test namespace
 
@@ -66,7 +67,9 @@ SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 			std::vector<int> toSort = { 2, 4, 6, 8, 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 4, 2, 8, 6, 1, 3, 5 };
 
-			std::random_shuffle(toSort.begin(), toSort.end());
+			std::random_device rd;
+			std::mt19937 gen(rd());
+			std::shuffle(toSort.begin(), toSort.end(), gen);
 			std::sort(toSort.begin(), toSort.end(), c);
 			CHECK( toSort == expectedOrder );
 		}

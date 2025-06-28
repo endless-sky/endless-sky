@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapShipyardPanel.h"
 
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -23,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -68,14 +69,14 @@ const Sprite *MapShipyardPanel::CompareSprite() const
 
 
 
-int MapShipyardPanel::SelectedSpriteSwizzle() const
+const Swizzle *MapShipyardPanel::SelectedSpriteSwizzle() const
 {
 	return selected->CustomSwizzle();
 }
 
 
 
-int MapShipyardPanel::CompareSpriteSwizzle() const
+const Swizzle *MapShipyardPanel::CompareSpriteSwizzle() const
 {
 	return compare->CustomSwizzle();
 }
@@ -138,7 +139,7 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !player.HasVisited(*system))
+	if(!system || !player.CanView(*system))
 		return numeric_limits<double>::quiet_NaN();
 
 	// If there is a shipyard with parked ships, the order of precedence is
@@ -154,7 +155,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 		for(const StellarObject &object : system->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
-				const auto &shipyard = object.GetPlanet()->Shipyard();
+				const auto &shipyard = object.GetPlanet()->ShipyardStock();
 				if(shipyard.Has(selected))
 					return 1.;
 				if(!shipyard.empty())
@@ -176,7 +177,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 	int bestItem = -1;
 	for(unsigned i = 0; i < list.size(); ++i)
 	{
-		int index = Search(list[i]->DisplayModelName(), text);
+		int index = Format::Search(list[i]->DisplayModelName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;
@@ -216,11 +217,12 @@ void MapShipyardPanel::DrawItems()
 
 			bool isForSale = true;
 			unsigned parkedInSystem = 0;
-			if(player.HasVisited(*selectedSystem))
+			if(player.CanView(*selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
-					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Shipyard().Has(ship))
+					if(object.HasSprite() && object.HasValidPlanet()
+							&& object.GetPlanet()->ShipyardStock().Has(ship))
 					{
 						isForSale = true;
 						break;
@@ -250,7 +252,7 @@ void MapShipyardPanel::DrawItems()
 				? "1 ship parked"
 				: Format::Number(parkedInSystem) + " ships parked";
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->DisplayModelName(), price, info, parking_details);
+					ship->DisplayModelName(), ship->VariantMapShopName(), price, info, parking_details);
 			list.push_back(ship);
 		}
 	}
@@ -264,9 +266,9 @@ void MapShipyardPanel::Init()
 	catalog.clear();
 	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())
-		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
-			for(const Ship *ship : it.second.Shipyard())
-				if(!seen.count(ship))
+		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
+			for(const Ship *ship : it.second.ShipyardStock())
+				if(!seen.contains(ship))
 				{
 					catalog[ship->Attributes().Category()].push_back(ship);
 					seen.insert(ship);
@@ -278,7 +280,7 @@ void MapShipyardPanel::Init()
 		{
 			const Ship *model = GameData::Ships().Get(it->TrueModelName());
 			++parkedShips[it->GetSystem()][model];
-			if(!seen.count(model))
+			if(!seen.contains(model))
 			{
 				catalog[model->Attributes().Category()].push_back(model);
 				seen.insert(model);

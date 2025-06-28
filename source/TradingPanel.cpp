@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Screen.h"
 #include "System.h"
 #include "UI.h"
 
@@ -90,7 +91,7 @@ void TradingPanel::Step()
 
 void TradingPanel::Draw()
 {
-	const Interface *tradeUi = GameData::Interfaces().Get("trade");
+	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
 	const Rectangle box = tradeUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();
@@ -234,9 +235,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1);
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
+	else if(key == 'u' || key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(key == 'e' || key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
 	{
 		for(const auto &it : player.Cargo().Commodities())
 		{
@@ -284,7 +285,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 bool TradingPanel::Click(int x, int y, int clicks)
 {
-	const Interface *tradeUi = GameData::Interfaces().Get("trade");
+	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
 	const Rectangle box = tradeUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();

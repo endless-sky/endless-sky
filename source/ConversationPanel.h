@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONVERSATION_PANEL_H_
-#define CONVERSATION_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -46,6 +45,8 @@ public:
 	ConversationPanel(PlayerInfo &player, const Conversation &conversation,
 		const Mission *caller = nullptr, const System *system = nullptr,
 		const std::shared_ptr<Ship> &ship = nullptr, bool useTransactions = false);
+
+	virtual ~ConversationPanel() override;
 
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
@@ -163,7 +164,3 @@ void ConversationPanel::SetCallback(T *t, void (T::*fun)(int))
 {
 	callback = std::bind(fun, t, std::placeholders::_1);
 }
-
-
-
-#endif

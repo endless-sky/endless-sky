@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef INFO_PANEL_STATE_H_
-#define INFO_PANEL_STATE_H_
+#pragma once
 
 #include <memory>
 #include <set>
@@ -86,7 +85,3 @@ private:
 	// Keep track of whether the ships are sorted.
 	ShipComparator *currentSort = nullptr;
 };
-
-
-
-#endif

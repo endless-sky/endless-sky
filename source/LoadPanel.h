@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef LOAD_PANEL_H_
-#define LOAD_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -23,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 
 #include <ctime>
+#include <filesystem>
 #include <map>
 #include <string>
 #include <utility>
@@ -57,7 +57,7 @@ private:
 
 	// Snapshot name callback.
 	void SnapshotCallback(const std::string &name);
-	void WriteSnapshot(const std::string &sourceFile, const std::string &snapshotName);
+	void WriteSnapshot(const std::filesystem::path &sourceFile, const std::filesystem::path &snapshotName);
 	// Load snapshot callback.
 	void LoadCallback();
 	// Delete callbacks.
@@ -70,7 +70,7 @@ private:
 	SavedGame loadedInfo;
 	UI &gamePanels;
 
-	std::map<std::string, std::vector<std::pair<std::string, std::time_t>>> files;
+	std::map<std::string, std::vector<std::pair<std::string, std::filesystem::file_time_type>>> files;
 	std::string selectedPilot;
 	std::string selectedFile;
 	// If the player enters a filename that exists, prompt before overwriting it.
@@ -86,7 +86,3 @@ private:
 	double sideScroll = 0;
 	double centerScroll = 0;
 };
-
-
-
-#endif

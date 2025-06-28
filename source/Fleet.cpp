@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 
 #include "DataNode.h"
+#include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
@@ -37,7 +38,7 @@ using namespace std;
 namespace {
 	// Generate an offset magnitude that will sample from an annulus (planets)
 	// or a circle (systems without inhabited planets).
-	double OffsetFrom(pair<Point, double> &center)
+	double OffsetFrom(const pair<Point, double> &center)
 	{
 		// If the center has a radius, then position ships further away.
 		double minimumOffset = center.second ? 1. : 0.;
@@ -72,7 +73,7 @@ void Fleet::Load(const DataNode &node)
 		// are only valid with "variant" or "personality" definitions.
 		bool add = (child.Token(0) == "add");
 		bool remove = (child.Token(0) == "remove");
-		bool hasValue = (child.Size() >= 2);
+		bool hasValue = child.Size() >= 2;
 		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
 		{
 			child.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
@@ -109,6 +110,8 @@ void Fleet::Load(const DataNode &node)
 			cargo.LoadSingle(child);
 		else if(key == "personality")
 			personality.Load(child);
+		else if(key == "formation" && hasValue)
+			formation = GameData::Formations().Get(child.Token(1));
 		else if(key == "variant" && !remove)
 		{
 			if(resetVariants && !add)
@@ -311,7 +314,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			{
 				// Log this error.
 				Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
-					+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
+					+ planet->TrueName() + "\" in system \"" + system.TrueName() + "\"");
 				return;
 			}
 
@@ -425,15 +428,14 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	bool unrestricted = ship.GetPersonality().IsUnrestricted();
-	bool canEnter = (source != nullptr || unrestricted || any_of(system.Links().begin(), system.Links().end(),
+	bool canEnter = (source != nullptr || any_of(system.Links().begin(), system.Links().end(),
 		[&ship](const System *link) noexcept -> bool
 		{
-			return !ship.GetGovernment()->IsRestrictedFrom(*link);
+			return !ship.IsRestrictedFrom(*link);
 		}
 	));
 
-	if(!canEnter || system.Links().empty() || (source && !system.Links().count(source)))
+	if(!canEnter || system.Links().empty() || (source && !system.Links().contains(source)))
 	{
 		Place(system, ship);
 		return &system;
@@ -443,9 +445,8 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	if(!source)
 	{
 		vector<const System *> validSystems;
-		const Government *gov = ship.GetGovernment();
 		for(const System *link : system.Links())
-			if(unrestricted || !gov->IsRestrictedFrom(*link))
+			if(!ship.IsRestrictedFrom(*link))
 				validSystems.emplace_back(link);
 		auto it = validSystems.cbegin();
 		advance(it, Random::Int(validSystems.size()));
@@ -527,6 +528,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 			ship->SetPersonality(fighterPersonality);
 		else
 			ship->SetPersonality(personality);
+		ship->SetFormationPattern(formation);
 
 		placed.push_back(ship);
 	}
@@ -535,7 +537,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 
 
 
-bool Fleet::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &placed) const
+bool Fleet::PlaceFighter(const shared_ptr<Ship> &fighter, vector<shared_ptr<Ship>> &placed) const
 {
 	if(!fighter->CanBeCarried())
 		return false;

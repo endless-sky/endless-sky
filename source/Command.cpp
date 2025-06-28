@@ -53,35 +53,39 @@ const Command Command::LEFT(ONE << 2, "Turn left");
 const Command Command::RIGHT(ONE << 3, "Turn right");
 const Command Command::BACK(ONE << 4, "Reverse");
 const Command Command::MOUSE_TURNING_HOLD(ONE << 5, "Mouse turning (hold)");
-const Command Command::PRIMARY(ONE << 6, "Fire primary weapon");
-const Command Command::SECONDARY(ONE << 7, "Fire secondary weapon");
-const Command Command::SELECT(ONE << 8, "Select secondary weapon");
-const Command Command::LAND(ONE << 9, "Land on planet / station");
-const Command Command::BOARD(ONE << 10, "Board selected ship");
-const Command Command::HAIL(ONE << 11, "Talk to selected ship");
-const Command Command::SCAN(ONE << 12, "Scan selected ship");
-const Command Command::JUMP(ONE << 13, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(ONE << 14, "");
-const Command Command::TARGET(ONE << 15, "Select next ship");
-const Command Command::NEAREST(ONE << 16, "Select nearest hostile ship");
-const Command Command::NEAREST_ASTEROID(ONE << 17, "Select nearest asteroid");
-const Command Command::DEPLOY(ONE << 18, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(ONE << 19, "Fire afterburner");
-const Command Command::CLOAK(ONE << 20, "Toggle cloaking device");
-const Command Command::MAP(ONE << 21, "View star map");
-const Command Command::INFO(ONE << 22, "View player info");
-const Command Command::FULLSCREEN(ONE << 23, "Toggle fullscreen");
-const Command Command::FASTFORWARD(ONE << 24, "Toggle fast-forward");
-const Command Command::HELP(ONE << 25, "Show help");
-const Command Command::FIGHT(ONE << 26, "Fleet: Fight my target");
-const Command Command::GATHER(ONE << 27, "Fleet: Gather around me");
-const Command Command::HOLD(ONE << 28, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 29, "Fleet: Harvest flotsam");
-const Command Command::AMMO(ONE << 30, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 31, "Auto steer");
-const Command Command::WAIT(ONE << 32, "");
-const Command Command::STOP(ONE << 33, "");
-const Command Command::SHIFT(ONE << 34, "");
+const Command Command::AIM_TURRET_HOLD(ONE << 6, "Turret aim override (hold)");
+const Command Command::PRIMARY(ONE << 7, "Fire primary weapon");
+const Command Command::TURRET_TRACKING(ONE << 8, "Toggle turret tracking");
+const Command Command::SECONDARY(ONE << 9, "Fire secondary weapon");
+const Command Command::SELECT(ONE << 10, "Select secondary weapon");
+const Command Command::LAND(ONE << 11, "Land on planet / station");
+const Command Command::BOARD(ONE << 12, "Board selected ship");
+const Command Command::HAIL(ONE << 13, "Talk to selected ship");
+const Command Command::SCAN(ONE << 14, "Scan selected ship");
+const Command Command::JUMP(ONE << 15, "Initiate hyperspace jump");
+const Command Command::FLEET_JUMP(ONE << 16, "Initiate fleet jump");
+const Command Command::TARGET(ONE << 17, "Select next ship");
+const Command Command::NEAREST(ONE << 18, "Select nearest hostile ship");
+const Command Command::NEAREST_ASTEROID(ONE << 19, "Select nearest asteroid");
+const Command Command::DEPLOY(ONE << 20, "Deploy / recall fighters");
+const Command Command::AFTERBURNER(ONE << 21, "Fire afterburner");
+const Command Command::CLOAK(ONE << 22, "Toggle cloaking device");
+const Command Command::MAP(ONE << 23, "View star map");
+const Command Command::INFO(ONE << 24, "View player info");
+const Command Command::MESSAGE_LOG(ONE << 25, "View message log");
+const Command Command::FULLSCREEN(ONE << 26, "Toggle fullscreen");
+const Command Command::FASTFORWARD(ONE << 27, "Toggle fast-forward");
+const Command Command::HELP(ONE << 28, "Show help");
+const Command Command::PAUSE(ONE << 29, "Pause");
+const Command Command::FIGHT(ONE << 30, "Fleet: Fight my target");
+const Command Command::GATHER(ONE << 31, "Fleet: Gather around me");
+const Command Command::HOLD(ONE << 32, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 33, "Fleet: Harvest flotsam");
+const Command Command::AMMO(ONE << 34, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 35, "Auto steer");
+const Command Command::WAIT(ONE << 36, "");
+const Command Command::STOP(ONE << 37, "");
+const Command Command::SHIFT(ONE << 38, "");
 
 
 
@@ -129,7 +133,7 @@ void Command::ReadKeyboard()
 
 
 // Load the keyboard preferences.
-void Command::LoadSettings(const string &path)
+void Command::LoadSettings(const filesystem::path &path)
 {
 	DataFile file(path);
 
@@ -165,7 +169,7 @@ void Command::LoadSettings(const string &path)
 
 
 // Save the keyboard preferences.
-void Command::SaveSettings(const string &path)
+void Command::SaveSettings(const filesystem::path &path)
 {
 	DataWriter out(path);
 
@@ -269,7 +273,8 @@ void Command::Load(const DataNode &node)
 			{"hail", Command::HAIL},
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
-			{"mouseturninghold", Command::MOUSE_TURNING_HOLD},
+			{"mouse turning hold", Command::MOUSE_TURNING_HOLD},
+			{"aim turret hold", Command::AIM_TURRET_HOLD},
 			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},
