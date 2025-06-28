@@ -223,11 +223,11 @@ mission "FW Southern Recon 1B"
 			`	"We're going to have to fight them eventually, but first we need as much information as we can get on their new weapon systems. I'd like you to find one of their Gunboats that has the new electron beams installed, steal one of them, and bring it back here. I imagine one of them can't be much bigger than twenty or thirty tons, so you ought to be able to find space for it. Think you can do that?"`
 			choice
 				`	"How can I find a Gunboat that's all by itself? They're usually a part of a bigger fleet."`
-				`	"I actually already plundered one of these new guns previously. I can give it to you now."`
+				`	"I already plundered one of these new guns previously. I can give it to you now."`
 					goto gun
 					to display
 						has "outfit: Electron Beam"
-				`	"I actually already plundered one of these new turrets previously. I can give it to you now."`
+				`	"I already plundered one of these new turrets previously. I can give it to you now."`
 					goto turret
 					to display
 						has "outfit: Electron Turret"
