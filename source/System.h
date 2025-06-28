@@ -179,8 +179,9 @@ public:
 	// in per frame).
 	double Danger() const;
 
-	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
-	int MinimumFleetPeriod() const;
+	// Amount of time a ship should linger when it has nothing to do,
+	// unless something else overrides that linger time.
+	int LingerTime() const;
 
 	const std::vector<RaidFleet> &RaidFleets() const;
 
@@ -259,6 +260,11 @@ private:
 	double solarWind = 0.;
 	double starfieldDensity = 1.;
 	int minimumFleetPeriod = 0;
+
+	// The "linger time" from data files:
+	int requestedLingerTime = -1;
+	// Actual linger time, using a fallback for negative times.
+	int actualLingerTime = 0;
 
 	std::vector<RaidFleet> raidFleets;
 	bool noRaids = false;
