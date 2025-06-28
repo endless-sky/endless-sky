@@ -115,15 +115,17 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Mission::Mission(const DataNode &node)
+Mission::Mission(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node);
+	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
 // Load a mission, either from the game data or from a saved game.
-void Mission::Load(const DataNode &node)
+void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	// All missions need a name.
 	if(node.Size() < 2)
@@ -141,20 +143,24 @@ void Mission::Load(const DataNode &node)
 		return;
 	}
 	name = node.Token(1);
+	if(!DataNode::IsConditionName(name))
+		node.PrintTrace("Error: Invalid mission name");
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "name" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "name" && hasValue)
 			displayName = child.Token(1);
-		else if(child.Token(0) == "uuid" && child.Size() >= 2)
+		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
-		else if(child.Token(0) == "description" && child.Size() >= 2)
+		else if(key == "description" && hasValue)
 			description = child.Token(1);
-		else if(child.Token(0) == "blocked" && child.Size() >= 2)
+		else if(key == "blocked" && hasValue)
 			blocked = child.Token(1);
-		else if(child.Token(0) == "deadline" && child.Size() >= 4)
+		else if(key == "deadline" && child.Size() >= 4)
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
-		else if(child.Token(0) == "deadline")
+		else if(key == "deadline")
 		{
 			if(child.Size() == 1)
 				deadlineMultiplier += 2;
@@ -163,11 +169,11 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 3)
 				deadlineMultiplier += child.Value(2);
 		}
-		else if(child.Token(0) == "distance calculation settings" && child.HasChildren())
+		else if(key == "distance calculation settings" && child.HasChildren())
 		{
 			distanceCalcSettings.Load(child);
 		}
-		else if(child.Token(0) == "cargo" && child.Size() >= 3)
+		else if(key == "cargo" && child.Size() >= 3)
 		{
 			cargo = child.Token(1);
 			cargoSize = child.Value(2);
@@ -185,7 +191,7 @@ void Mission::Load(const DataNode &node)
 						" They are now mission-level properties:");
 			}
 		}
-		else if(child.Token(0) == "passengers" && child.Size() >= 2)
+		else if(key == "passengers" && hasValue)
 		{
 			passengers = child.Value(1);
 			if(child.Size() >= 3)
@@ -193,28 +199,32 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 4)
 				passengerProb = child.Value(3);
 		}
-		else if(child.Token(0) == "apparent payment" && child.Size() >= 2)
+		else if(key == "apparent payment" && hasValue)
 			paymentApparent = child.Value(1);
 		else if(ParseContraband(child))
 		{
 			// This was an "illegal" or "stealth" entry. It has already been
 			// parsed, so nothing more needs to be done here.
 		}
-		else if(child.Token(0) == "invisible")
+		else if(key == "invisible")
 			isVisible = false;
-		else if(child.Token(0) == "priority")
+		else if(key == "priority")
 			hasPriority = true;
-		else if(child.Token(0) == "minor")
+		else if(key == "non-blocking")
+			isNonBlocking = true;
+		else if(key == "minor")
 			isMinor = true;
-		else if(child.Token(0) == "autosave")
+		else if(key == "offer precedence" && hasValue)
+			offerPrecedence = child.Value(1);
+		else if(key == "autosave")
 			autosave = true;
-		else if(child.Token(0) == "job")
+		else if(key == "job")
 			location = JOB;
-		else if(child.Token(0) == "landing")
+		else if(key == "landing")
 			location = LANDING;
-		else if(child.Token(0) == "assisting")
+		else if(key == "assisting")
 			location = ASSISTING;
-		else if(child.Token(0) == "boarding")
+		else if(key == "boarding")
 		{
 			location = BOARDING;
 			for(const DataNode &grand : child)
@@ -223,91 +233,110 @@ void Mission::Load(const DataNode &node)
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(child.Token(0) == "shipyard")
+		else if(key == "shipyard")
 			location = SHIPYARD;
-		else if(child.Token(0) == "outfitter")
+		else if(key == "outfitter")
 			location = OUTFITTER;
-		else if(child.Token(0) == "repeat")
+		else if(key == "job board")
+			location = JOB_BOARD;
+		else if(key == "entering")
+			location = ENTERING;
+		else if(key == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
-		else if(child.Token(0) == "clearance")
+		else if(key == "clearance")
 		{
 			clearance = (child.Size() == 1 ? "auto" : child.Token(1));
-			clearanceFilter.Load(child);
+			clearanceFilter.Load(child, visitedSystems, visitedPlanets);
 		}
-		else if(child.Size() == 2 && child.Token(0) == "ignore" && child.Token(1) == "clearance")
+		else if(child.Size() == 2 && key == "ignore" && child.Token(1) == "clearance")
 			ignoreClearance = true;
-		else if(child.Token(0) == "infiltrating")
+		else if(key == "infiltrating")
 			hasFullClearance = false;
-		else if(child.Token(0) == "failed")
+		else if(key == "failed")
 			hasFailed = true;
-		else if(child.Token(0) == "to" && child.Size() >= 2)
+		else if(key == "to" && hasValue)
 		{
 			if(child.Token(1) == "offer")
-				toOffer.Load(child);
+				toOffer.Load(child, playerConditions);
 			else if(child.Token(1) == "complete")
-				toComplete.Load(child);
+				toComplete.Load(child, playerConditions);
 			else if(child.Token(1) == "fail")
-				toFail.Load(child);
+				toFail.Load(child, playerConditions);
 			else if(child.Token(1) == "accept")
-				toAccept.Load(child);
+				toAccept.Load(child, playerConditions);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(child.Token(0) == "source" && child.Size() >= 2)
+		else if(key == "source" && hasValue)
 		{
 			source = GameData::Planets().Get(child.Token(1));
 			ParseMixedSpecificity(child, "planet", 2);
 		}
-		else if(child.Token(0) == "source")
-			sourceFilter.Load(child);
-		else if(child.Token(0) == "destination" && child.Size() == 2)
+		else if(key == "source")
+			sourceFilter.Load(child, visitedSystems, visitedPlanets);
+		else if(key == "destination" && child.Size() == 2)
 		{
 			destination = GameData::Planets().Get(child.Token(1));
 			ParseMixedSpecificity(child, "planet", 2);
 		}
-		else if(child.Token(0) == "destination")
-			destinationFilter.Load(child);
-		else if(child.Token(0) == "waypoint" && child.Size() >= 2)
+		else if(key == "destination")
+			destinationFilter.Load(child, visitedSystems, visitedPlanets);
+		else if(key == "complete")
+		{
+			if(!hasValue)
+				child.PrintTrace("Incomplete \"complete\" option. Follow \"complete\" with \"at\".");
+			else if(child.Token(1) == "at")
+			{
+				LocationFilter loaded(child, visitedSystems, visitedPlanets);
+				if(loaded.IsEmpty())
+					child.PrintTrace("Error: The \"complete at\" filter must not be empty. Ignoring this filter.");
+				else
+					completionFilter = loaded;
+			}
+			else
+				child.PrintTrace("Unknown \"complete\" option \"" + child.Token(1) + '"');
+		}
+		else if(key == "waypoint" && hasValue)
 		{
 			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
 			set<const System *> &set = visited ? visitedWaypoints : waypoints;
 			set.insert(GameData::Systems().Get(child.Token(1)));
 			ParseMixedSpecificity(child, "system", 2 + visited);
 		}
-		else if(child.Token(0) == "waypoint" && child.HasChildren())
-			waypointFilters.emplace_back(child);
-		else if(child.Token(0) == "stopover" && child.Size() >= 2)
+		else if(key == "waypoint" && child.HasChildren())
+			waypointFilters.emplace_back(child, visitedSystems, visitedPlanets);
+		else if(key == "stopover" && hasValue)
 		{
 			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
 			set<const Planet *> &set = visited ? visitedStopovers : stopovers;
 			set.insert(GameData::Planets().Get(child.Token(1)));
 			ParseMixedSpecificity(child, "planet", 2 + visited);
 		}
-		else if(child.Token(0) == "stopover" && child.HasChildren())
-			stopoverFilters.emplace_back(child);
-		else if(child.Token(0) == "mark" && child.Size() >= 2)
+		else if(key == "stopover" && child.HasChildren())
+			stopoverFilters.emplace_back(child, visitedSystems, visitedPlanets);
+		else if(key == "mark" && hasValue)
 		{
 			bool unmarked = child.Size() >= 3 && child.Token(2) == "unmarked";
 			set<const System *> &set = unmarked ? unmarkedSystems : markedSystems;
 			set.insert(GameData::Systems().Get(child.Token(1)));
 		}
-		else if(child.Token(0) == "substitutions" && child.HasChildren())
-			substitutions.Load(child);
-		else if(child.Token(0) == "npc")
-			npcs.emplace_back(child);
-		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
+		else if(key == "substitutions" && child.HasChildren())
+			substitutions.Load(child, playerConditions);
+		else if(key == "npc")
+			npcs.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
+		else if(key == "on" && hasValue && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
 			// to control the triggering system.
 			if(child.Size() >= 3)
 			{
 				MissionAction &action = onEnter[GameData::Systems().Get(child.Token(2))];
-				action.Load(child);
+				action.Load(child, playerConditions, visitedSystems, visitedPlanets);
 			}
 			else
-				genericOnEnter.emplace_back(child);
+				genericOnEnter.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
 		}
-		else if(child.Token(0) == "on" && child.Size() >= 2)
+		else if(key == "on" && hasValue)
 		{
 			static const map<string, Trigger> trigger = {
 				{"complete", COMPLETE},
@@ -325,7 +354,25 @@ void Mission::Load(const DataNode &node)
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				actions[it->second].Load(child);
+				actions[it->second].Load(child, playerConditions, visitedSystems, visitedPlanets);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
+		}
+		else if(key == "color" && child.Size() >= 3)
+		{
+			auto setColor = [&child](ExclusiveItem<Color> &color) noexcept -> void {
+				if(child.Size() >= 5)
+					color = ExclusiveItem<Color>(Color(child.Value(2), child.Value(3), child.Value(4)));
+				else
+					color = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(2)));
+			};
+			const string &value = child.Token(1);
+			if(value == "unavailable")
+				setColor(unavailable);
+			else if(value == "unselected")
+				setColor(unselected);
+			else if(value == "selected")
+				setColor(selected);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -335,8 +382,6 @@ void Mission::Load(const DataNode &node)
 
 	if(displayName.empty())
 		displayName = name;
-	if(hasPriority && location == LANDING)
-		node.PrintTrace("Warning: \"priority\" tag has no effect on \"landing\" missions:");
 }
 
 
@@ -368,10 +413,28 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("stealth");
 		if(!isVisible)
 			out.Write("invisible");
+		auto saveColor = [&out](const ExclusiveItem<Color> &color, string tokenName) noexcept -> void {
+			if(!color->IsLoaded())
+				return;
+			if(!color->Name().empty())
+				out.Write("color", tokenName, color->Name());
+			else
+			{
+				const float *rgba = color->Get();
+				out.Write("color", tokenName, rgba[0], rgba[1], rgba[2]);
+			}
+		};
+		saveColor(unavailable, "unavailable");
+		saveColor(unselected, "unselected");
+		saveColor(selected, "selected");
 		if(hasPriority)
 			out.Write("priority");
+		if(isNonBlocking)
+			out.Write("non-blocking");
 		if(isMinor)
 			out.Write("minor");
+		if(offerPrecedence)
+			out.Write("offer precedence", offerPrecedence);
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -380,6 +443,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("shipyard");
 		else if(location == OUTFITTER)
 			out.Write("outfitter");
+		else if(location == JOB_BOARD)
+			out.Write("job board");
 		else if(location == ASSISTING)
 			out.Write("assisting");
 		else if(location == BOARDING)
@@ -396,6 +461,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		else if(location == JOB)
 			out.Write("job");
+		else if(location == ENTERING)
+			out.Write("entering");
 		if(!clearance.empty())
 		{
 			out.Write("clearance", clearance);
@@ -447,11 +514,16 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.EndChild();
 		}
 		if(destination)
-			out.Write("destination", destination->Name());
+			out.Write("destination", destination->TrueName());
+		if(!completionFilter.IsEmpty() && completionFilter.IsValid())
+		{
+			out.Write("complete", "at");
+			completionFilter.Save(out);
+		}
 		for(const System *system : waypoints)
-			out.Write("waypoint", system->Name());
+			out.Write("waypoint", system->TrueName());
 		for(const System *system : visitedWaypoints)
-			out.Write("waypoint", system->Name(), "visited");
+			out.Write("waypoint", system->TrueName(), "visited");
 
 		for(const Planet *planet : stopovers)
 			out.Write("stopover", planet->TrueName());
@@ -459,9 +531,9 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("stopover", planet->TrueName(), "visited");
 
 		for(const System *system : markedSystems)
-			out.Write("mark", system->Name());
+			out.Write("mark", system->TrueName());
 		for(const System *system : unmarkedSystems)
-			out.Write("mark", system->Name(), "unmarked");
+			out.Write("mark", system->TrueName(), "unmarked");
 
 		for(const NPC &npc : npcs)
 			npc.Save(out);
@@ -485,8 +557,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 void Mission::NeverOffer()
 {
-	// Add the equivalent "never" condition, `"'" != 0`.
-	toOffer.Add("has", "'");
+	toOffer.MakeNever();
 }
 
 
@@ -522,6 +593,29 @@ bool Mission::IsVisible() const
 
 
 
+// The colors that should be used to display the mission name if it is shown
+// in your mission list.
+const Color &Mission::Unavailable() const
+{
+	return *unavailable;
+}
+
+
+
+const Color &Mission::Unselected() const
+{
+	return *unselected;
+}
+
+
+
+const Color &Mission::Selected() const
+{
+	return *selected;
+}
+
+
+
 // Check if this instantiated mission uses any systems, planets, or ships that are
 // not fully defined. If everything is fully defined, this is a valid mission.
 bool Mission::IsValid() const
@@ -532,6 +626,11 @@ bool Mission::IsValid() const
 	// Every mission is required to have a destination.
 	if(!destination || !destination->IsValid())
 		return false;
+
+	// Missions with completion filters must have valid filters.
+	if(!completionFilter.IsEmpty() && !completionFilter.IsValid())
+		return false;
+
 	// All stopovers must be valid.
 	for(auto &&planet : Stopovers())
 		if(!planet->IsValid())
@@ -578,12 +677,21 @@ bool Mission::IsValid() const
 
 
 
-// Check if this mission has high priority. If any high-priority missions
-// are available, no others will be shown at landing or in the spaceport.
-// This is to be used for missions that are part of a series.
+// Check if this mission has high priority. If any priority missions
+// are available, only other priority missions and non-blocking ones can offer alongside it.
 bool Mission::HasPriority() const
 {
 	return hasPriority;
+}
+
+
+
+// Check if this mission is a "non-blocking" mission.
+// Such missions will not prevent minor missions from being offered alongside them,
+// and will not be prevented from offering by priority missions.
+bool Mission::IsNonBlocking() const
+{
+	return isNonBlocking;
 }
 
 
@@ -593,6 +701,13 @@ bool Mission::HasPriority() const
 bool Mission::IsMinor() const
 {
 	return isMinor;
+}
+
+
+
+int Mission::OfferPrecedence() const
+{
+	return offerPrecedence;
 }
 
 
@@ -796,6 +911,11 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		if(!sourceFilter.Matches(*boardingShip))
 			return false;
 	}
+	else if(location == ENTERING)
+	{
+		if(!sourceFilter.Matches(player.GetSystem()))
+			return false;
+	}
 	else
 	{
 		if(source && source != player.GetPlanet())
@@ -805,17 +925,16 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 	}
 
-	const auto &playerConditions = player.Conditions();
-	if(!toOffer.Test(playerConditions))
+	if(!toOffer.Test())
 		return false;
 
-	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
+	if(!toFail.IsEmpty() && toFail.Test())
 		return false;
 
-	if(repeat && playerConditions.Get(name + ": offered") >= repeat)
+	if(repeat && player.Conditions().Get(name + ": offered") >= repeat)
 		return false;
 
-	bool isFailed = IsFailed(player);
+	bool isFailed = IsFailed();
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return false;
@@ -839,11 +958,10 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 
 bool Mission::CanAccept(const PlayerInfo &player) const
 {
-	const auto &playerConditions = player.Conditions();
-	if(!toAccept.Test(playerConditions))
+	if(!toAccept.Test())
 		return false;
 
-	bool isFailed = IsFailed(player);
+	bool isFailed = IsFailed();
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, isFailed))
 		return false;
@@ -877,7 +995,9 @@ bool Mission::HasSpace(const Ship &ship) const
 
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
-	if(player.GetPlanet() != destination)
+	if(completionFilter.IsEmpty() && player.GetPlanet() != destination)
+		return false;
+	else if(!completionFilter.IsEmpty() && !completionFilter.Matches(player.GetPlanet(), player.GetSystem()))
 		return false;
 
 	return IsSatisfied(player);
@@ -893,12 +1013,12 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 		return false;
 
 	// Test the completion conditions for this mission.
-	if(!toComplete.Test(player.Conditions()))
+	if(!toComplete.Test())
 		return false;
 
 	// Determine if any fines or outfits that must be transferred, can.
 	auto it = actions.find(COMPLETE);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player)))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed()))
 		return false;
 
 	// NPCs which must be accompanied or evaded must be present (or not),
@@ -929,9 +1049,9 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 
 
-bool Mission::IsFailed(const PlayerInfo &player) const
+bool Mission::IsFailed() const
 {
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test())
 		return true;
 
 	for(const NPC &npc : npcs)
@@ -988,18 +1108,11 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	}
 
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
-	substitutions.Substitutions(subs, player.Conditions());
-	subs["<first>"] = player.FirstName();
-	subs["<last>"] = player.LastName();
-	if(flagship)
-	{
-		subs["<ship>"] = flagship->Name();
-		subs["<model>"] = flagship->DisplayModelName();
-	}
+	GameData::GetTextReplacements().Substitutions(subs);
+	substitutions.Substitutions(subs);
+	player.AddPlayerSubstitutions(subs);
 
-	const auto &playerConditions = player.Conditions();
-	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
+	subs["<conditions>"] = toAccept.Test() ? "meet" : "do not meet";
 
 	ostringstream out;
 	if(bunksNeeded > 0)
@@ -1067,7 +1180,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		if(!stopovers.empty())
 			return false;
 	}
-	if(trigger == ABORT && IsFailed(player))
+	if(trigger == ABORT && IsFailed())
 		return false;
 	if(trigger == WAYPOINT && !waypoints.empty())
 		return false;
@@ -1097,7 +1210,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 
 	// Don't update any further conditions if this action exists and can't be completed.
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(), boardingShip))
 		return false;
 
 	if(trigger == ACCEPT)
@@ -1107,6 +1220,11 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		// Any potential on offer conversation has been finished, so update
 		// the active NPCs for the first time.
 		UpdateNPCs(player);
+		if(deadline)
+		{
+			DistanceMap here(player);
+			player.CalculateRemainingDeadline(*this, here);
+		}
 	}
 	else if(trigger == DECLINE)
 	{
@@ -1198,7 +1316,7 @@ bool Mission::HasShip(const shared_ptr<Ship> &ship) const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(event.TargetGovernment()->IsPlayer() && !IsFailed(player))
+	if(event.TargetGovernment()->IsPlayer() && !IsFailed())
 	{
 		bool failed = false;
 		string message;
@@ -1286,8 +1404,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// If anything goes wrong below, this mission should not be offered.
 	result.hasFailed = true;
 	result.isVisible = isVisible;
+	result.unavailable = unavailable;
+	result.unselected = unselected;
+	result.selected = selected;
 	result.hasPriority = hasPriority;
+	result.isNonBlocking = isNonBlocking;
 	result.isMinor = isMinor;
+	result.offerPrecedence = offerPrecedence;
 	result.autosave = autosave;
 	result.location = location;
 	result.overridesCapture = overridesCapture;
@@ -1295,6 +1418,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
+	result.completionFilter = completionFilter;
 	result.markedSystems = markedSystems;
 	// Handle waypoint systems that are chosen randomly.
 	const System *const sourceSystem = player.GetSystem();
@@ -1420,8 +1544,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Generate the substitutions map.
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
-	substitutions.Substitutions(subs, player.Conditions());
+	GameData::GetTextReplacements().Substitutions(subs);
+	substitutions.Substitutions(subs);
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = Format::MassString(result.cargoSize);
 	subs["<cargo>"] = Format::CargoString(result.cargoSize, subs["<commodity>"]);
@@ -1429,11 +1553,11 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	if(player.GetPlanet())
-		subs["<origin>"] = player.GetPlanet()->Name();
+		subs["<origin>"] = player.GetPlanet()->DisplayName();
 	else if(boardingShip)
 		subs["<origin>"] = boardingShip->Name();
-	subs["<planet>"] = result.destination ? result.destination->Name() : "";
-	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
+	subs["<planet>"] = result.destination ? result.destination->DisplayName() : "";
+	subs["<system>"] = result.destination ? result.destination->GetSystem()->DisplayName() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
@@ -1456,8 +1580,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 				stopovers += result;
 				planets += result;
 			}
-			stopovers += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
-			planets += planet->Name();
+			stopovers += planet->DisplayName() + " in the " + planet->GetSystem()->DisplayName() + " system";
+			planets += planet->DisplayName();
 		}
 		subs["<stopovers>"] = stopovers;
 		subs["<planet stopovers>"] = planets;
@@ -1471,7 +1595,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		{
 			if(count++)
 				systems += (&system != last) ? ", " : (count > 2 ? ", and " : " and ");
-			systems += system->Name();
+			systems += system->DisplayName();
 		}
 		return systems;
 	};
@@ -1496,8 +1620,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(player.Conditions(), subs,
-			sourceSystem, result.destination->GetSystem(), jumps, payload));
+		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1515,7 +1638,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(player.Conditions(), subs, sourceSystem, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto oit = onEnter.begin();
 	for( ; oit != onEnter.end(); ++oit)
@@ -1526,12 +1649,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(oit != onEnter.end())
 	{
-		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->TrueName() + "'\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(player.Conditions(), subs, sourceSystem, jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto eit = genericOnEnter.begin();
 	for( ; eit != genericOnEnter.end(); ++eit)
@@ -1547,8 +1670,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)
-		result.genericOnEnter.emplace_back(action.Instantiate(
-			player.Conditions(), subs, sourceSystem, jumps, payload));
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
@@ -1585,12 +1707,12 @@ int Mission::CalculateJumps(const System *sourceSystem)
 				distanceCalcSettings.AssumesJumpDrive());
 		auto it = destinations.begin();
 		auto bestIt = it;
-		int bestDays = distance.Days(*bestIt);
+		int bestDays = distance.Days(**bestIt);
 		if(bestDays < 0)
 			bestDays = numeric_limits<int>::max();
 		for(++it; it != destinations.end(); ++it)
 		{
-			int days = distance.Days(*it);
+			int days = distance.Days(**it);
 			if(days >= 0 && days < bestDays)
 			{
 				bestIt = it;
@@ -1607,7 +1729,7 @@ int Mission::CalculateJumps(const System *sourceSystem)
 			distanceCalcSettings.WormholeStrat(),
 			distanceCalcSettings.AssumesJumpDrive());
 	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
-	expectedJumps += distance.Days(destination->GetSystem());
+	expectedJumps += distance.Days(*destination->GetSystem());
 
 	return expectedJumps;
 }
@@ -1620,7 +1742,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	const auto eit = onEnter.find(system);
 	const auto originalSize = didEnter.size();
-	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed(player)))
+	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed()))
 	{
 		eit->second.Do(player, ui, this);
 		didEnter.insert(&eit->second);
@@ -1629,7 +1751,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 	// which may use a LocationFilter to govern which systems it can be performed in.
 	else
 		for(MissionAction &action : genericOnEnter)
-			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed(player)))
+			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed()))
 			{
 				action.Do(player, ui, this);
 				didEnter.insert(&action);
@@ -1645,14 +1767,15 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 // locations, so move that parsing out to a helper function.
 bool Mission::ParseContraband(const DataNode &node)
 {
-	if(node.Token(0) == "illegal" && node.Size() == 2)
+	const string &key = node.Token(0);
+	if(key == "illegal" && node.Size() == 2)
 		fine = node.Value(1);
-	else if(node.Token(0) == "illegal" && node.Size() == 3)
+	else if(key == "illegal" && node.Size() == 3)
 	{
 		fine = node.Value(1);
 		fineMessage = node.Token(2);
 	}
-	else if(node.Token(0) == "stealth")
+	else if(key == "stealth")
 		failIfDiscovered = true;
 	else
 		return false;

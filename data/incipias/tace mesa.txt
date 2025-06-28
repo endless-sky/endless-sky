@@ -46,7 +46,7 @@ ship "Tace Mesa"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Interceptor"
+		category "Unclassified"
 		cost 500000
 		"mass" 525
 		"outfit space" 45
@@ -57,6 +57,7 @@ ship "Tace Mesa"
 		"solar collection" 200
 		"fuel capacity" 200
 
+		"inscrutable" 1
 		"heat dissipation" 0.47
 		"energy capacity" 1000
 

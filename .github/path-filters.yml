@@ -11,8 +11,18 @@ unit_tests:
   - 'tests/unit/**/*.hpp'
   - 'tests/unit/**/*.cpp'
 
+shaders:
+  - 'shaders/**'
+  - 'utils/check_shaders.sh'
+
 integration_tests:
   - 'tests/integration/config/plugins/integration-tests/**'
+
+steam:
+  - 'steam/**'
+
+doxygen_config:
+  - 'Doxyfile'
 
 codespell:
   - .codespell.exclude
@@ -37,6 +47,7 @@ cmake_files:
   - utils/vcpkg_bootstrap.cmake
   - utils/check_cmake.sh
   - CMakePresets.json
+  - 'overlays/**'
   - vcpkg.json
   - vcpkg-configuration.json
 

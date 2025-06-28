@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <string>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Government;
@@ -75,9 +76,11 @@ public:
 	~NPC() noexcept = default;
 
 	// Construct and Load() at the same time.
-	explicit NPC(const DataNode &node);
+	explicit NPC(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
@@ -109,8 +112,8 @@ public:
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(const ConditionsStore &store, std::map<std::string, std::string> &subs,
-			const System *origin, const System *destination, int jumps, int64_t payload) const;
+	NPC Instantiate(const PlayerInfo &player, std::map<std::string, std::string> &subs, const System *origin,
+			const System *destination, int jumps, int64_t payload) const;
 
 
 private:

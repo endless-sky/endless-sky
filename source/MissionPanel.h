@@ -17,13 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
-#include "text/WrappedText.h"
-
 #include <list>
 
 class Color;
+class Interface;
 class Mission;
 class PlayerInfo;
+class TextArea;
 
 
 
@@ -82,6 +82,8 @@ private:
 	void CycleInvolvedSystems(const Mission &mission);
 
 private:
+	const Interface *missionInterface;
+
 	const std::list<Mission> &available;
 	const std::list<Mission> &accepted;
 	int cycleInvolvedIndex = 0;
@@ -90,8 +92,11 @@ private:
 	double availableScroll = 0.;
 	double acceptedScroll = 0.;
 
+	bool canDrag = true;
+
 	int dragSide = 0;
 	int hoverSortCount = 0;
 	int hoverSort = -1; // 0 to 3 for each UI element
-	WrappedText wrap;
+	std::shared_ptr<TextArea> description;
+	bool descriptionVisible = false;
 };

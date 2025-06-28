@@ -13,6 +13,8 @@
 
 outfit "Locust Blaster"
 	category "Guns"
+	series "Guns"
+	index 10010
 	cost 284000
 	thumbnail "outfit/locust blaster"
 	"mass" 7
@@ -37,6 +39,8 @@ outfit "Locust Blaster"
 
 outfit "Locust Turret"
 	category "Turrets"
+	series "Turrets"
+	index 10010
 	cost 1265000
 	thumbnail "outfit/locust turret"
 	"mass" 28
@@ -50,7 +54,7 @@ outfit "Locust Turret"
 		sound "locust blaster"
 		"hit effect" "bullet impact"
 		"inaccuracy" 5
-		"turret turn" 6
+		"turret turn" 3.7
 		"velocity" 10
 		"random velocity" 2
 		"lifetime" 40
@@ -65,6 +69,8 @@ outfit "Locust Turret"
 
 outfit "Mandible Cannon"
 	category "Guns"
+	series "Guns"
+	index 10020
 	cost 1170000
 	thumbnail "outfit/mandible cannon"
 	"mass" 29
@@ -95,6 +101,8 @@ outfit "Mandible Cannon"
 
 outfit "Thorax Cannon"
 	category "Guns"
+	series "Guns"
+	index 10030
 	cost 3484000
 	thumbnail "outfit/thorax cannon"
 	"mass" 105
@@ -171,6 +179,8 @@ effect "yellow spark fragment"
 
 outfit "Swarm Clip"
 	category "Ammunition"
+	series "Ammunition"
+	index 10011
 	cost 24000
 	thumbnail "outfit/swarm storage"
 	"mass" 2
@@ -181,6 +191,8 @@ outfit "Swarm Clip"
 
 outfit "Swarm Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 10010
 	cost 250
 	thumbnail "outfit/swarm missile"
 	"mass" 0.04
@@ -189,6 +201,8 @@ outfit "Swarm Missile"
 
 outfit "Swarm Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 10010
 	cost 363000
 	thumbnail "outfit/swarm pod"
 	"mass" 5
@@ -201,7 +215,7 @@ outfit "Swarm Pod"
 			"frame rate" .01
 		sound "swarm missile"
 		ammo "Swarm Missile"
-		icon "icon/meteor"
+		icon "icon/swarm"
 		"die effect" "missile death"
 		"hit effect" "particle impact"
 		"live effect" "swarm flare" 1000000
@@ -222,6 +236,7 @@ outfit "Swarm Pod"
 		"missile strength" 8
 		"stream"
 	description "The Swarm Pod proved to be an effective weapon in early conflicts with the Korath by overpowering early Korath anti-missile defenses. But just as the Bunrodea developed technology to combat Korath weaponry, the Korath did the same, prompting them to create their own rapid-fire anti-missile turret that limited the usefulness of the Swarm Pod against some Korath targets."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "swarm flare"
 	sprite "effect/swarm"
@@ -240,9 +255,21 @@ effect "swarm impact"
 	"random spin" 10
 	"velocity scale" -.05
 
+outfitter "Swarm Missile Restock"
+	to sell
+		or
+			has "outfit: Swarm Pod"
+			has "outfit: Swarm Clip"
+	location
+		attributes "outfitter"
+	stock
+		"Swarm Missile"
+
 
 outfit "Buzzer Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 10010
 	cost 1195000
 	thumbnail "outfit/buzzer"
 	"mass" 19
@@ -266,5 +293,6 @@ effect "buzzer"
 		"no repeat"
 		"frame rate" 10
 	sound "buzzer am"
+	"sound category" "anti-missile"
 	"lifetime" 11
 	"velocity scale" 1

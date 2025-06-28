@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Panel.h"
+#include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "text/WrappedText.h"
 
@@ -46,7 +47,7 @@ public:
 	void SetAlignment(Alignment a);
 	void SetTruncate(Truncate t);
 
-	int GetTextHeight();
+	int GetTextHeight(bool trailingBreak = true);
 	int GetLongestLineWidth();
 
 
@@ -59,7 +60,7 @@ protected:
 	virtual bool Scroll(double dx, double dy) override;
 
 	void Invalidate();
-	void Validate();
+	void Validate(bool trailingBreak);
 
 
 private:
@@ -75,4 +76,7 @@ private:
 	ScrollVar<double> scroll;
 	bool dragging = false;
 	bool hovering = false;
+
+	ScrollBar scrollBar;
+	bool scrollHeightIncludesTrailingBreak = false;
 };

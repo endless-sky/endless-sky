@@ -32,7 +32,7 @@ fleet "Small Hai"
 	variant 1
 		"Grasshopper"
 		"Grasshopper (Tracker)"
-		"Centipede"
+		"Centipede (Holovid)"
 	variant 1
 		"Lightning Bug" 2
 		"Grasshopper"
@@ -93,7 +93,7 @@ fleet "Large Hai"
 		"Shield Beetle (Tracker)"
 		"Lightning Bug" 2
 	variant 2
-		"Centipede"
+		"Centipede (Holovid)"
 		"Shield Beetle (Pulse)" 2
 		"Shield Beetle (Tracker)"
 	variant 1
@@ -234,7 +234,7 @@ fleet "Small Hai Merchant"
 		"Lightning Bug (Pulse)"
 		"Aphid" 5
 	variant 2
-		"Centipede"
+		"Centipede (Holovid)"
 	variant 3
 		"Aphid (Armed)" 3
 		"Centipede"
@@ -245,26 +245,26 @@ fleet "Small Hai Merchant"
 		"Centipede" 2
 		"Centipede (Pulse)" 3
 	variant 1
-		"Centipede" 2
+		"Centipede (Holovid)" 2
 		"Lightning Bug" 2
 	variant 2
 		"Centipede" 2
 		"Water Bug"
 	variant 1
-		"Centipede"
+		"Centipede (Holovid)"
 		"Lightning Bug" 2
 	variant 1
 		"Centipede"
 		"Aphid (Armed)" 5
 	variant 1
-		"Centipede" 2
+		"Centipede (Holovid)" 2
 		"Lightning Bug" 2
 	variant 1
 		"Centipede" 2
 		"Lightning Bug"
 	variant 1
 		"Grasshopper"
-		"Centipede" 2
+		"Centipede (Holovid)" 2
 	variant 1
 		"Grasshopper"
 		"Scarab" 2
@@ -293,11 +293,11 @@ fleet "Large Hai Merchant"
 		"Water Bug" 3
 	variant 1
 		"Shield Beetle (Tracker)"
-		"Centipede" 3
+		"Centipede (Holovid)" 3
 	variant 1
 		"Shield Beetle (Tracker)"
 		"Cicada" 2
-		"Centipede" 1
+		"Centipede (Holovid)" 1
 	variant 2
 		"Water Bug" 3
 		"Centipede" 2
@@ -307,12 +307,12 @@ fleet "Large Hai Merchant"
 	variant 2
 		"Water Bug" 3
 		"Cicada"
-		"Centipede" 1
+		"Centipede (Holovid)" 1
 	variant 1
 		"Centipede" 3
 		"Centipede (Pulse)" 2
 	variant 3
-		"Centipede" 2
+		"Centipede (Holovid)" 2
 		"Lightning Bug" 3
 		"Water Bug"
 	variant 2
@@ -329,7 +329,7 @@ fleet "Large Hai Merchant"
 		"Aphid" 2
 		"Aphid (Armed)"
 	variant 1
-		"Centipede"
+		"Centipede (Holovid)"
 		"Geocoris (Tracker)"
 		"Lightning Bug"
 		"Water Bug"
@@ -349,33 +349,33 @@ fleet "Small Hai Merchant (Sympathizers)"
 		confusion 25
 		timid frugal appeasing
 	variant 3
-		"Water Bug"
+		"Water Bug (Phantom Pallet)"
 		"Lightning Bug (Pulse)" 2
 	variant 3
 		"Water Bug (Pulse)"
-		"Lightning Bug" 2
+		"Lightning Bug (Phantom Pallet)" 2
 	variant 1
-		"Water Bug"
+		"Water Bug (Phantom Pallet)"
 		"Water Bug (Pulse)"
 		"Lightning Bug"
 	variant 1
-		"Water Bug" 2
+		"Water Bug (Phantom Pallet)" 2
 		"Lightning Bug (Pulse)"
 	variant 3
-		"Lightning Bug" 2
+		"Lightning Bug (Phantom Pallet)" 2
 		"Aphid (Armed)" 3
 	variant 3
 		"Lightning Bug" 2
 		"Scarab" 3
 	variant 1
-		"Lightning Bug"
+		"Lightning Bug (Phantom Pallet)"
 		"Aphid (Armed)" 5
 	variant 2
 		"Lightning Bug (Pulse)" 2
-		"Aphid" 3
+		"Aphid (Phantom Pallet)" 3
 	variant 2
 		"Lightning Bug (Pulse)"
-		"Aphid" 5
+		"Aphid (Phantom Pallet)" 5
 	variant 2
 		"Centipede"
 	variant 3
@@ -386,19 +386,19 @@ fleet "Small Hai Merchant (Sympathizers)"
 		"Centipede (Pulse)" 3
 	variant 1
 		"Centipede" 2
-		"Lightning Bug" 2
+		"Lightning Bug (Phantom Pallet)" 2
 	variant 2
 		"Centipede" 2
-		"Water Bug"
+		"Water Bug (Phantom Pallet)"
 	variant 1
 		"Centipede"
-		"Lightning Bug" 2
+		"Lightning Bug (Phantom Pallet)" 2
 	variant 1
-		"Centipede"
+		"Centipede (Holovid)"
 		"Aphid (Armed)" 5
 	variant 1
 		"Centipede" 2
-		"Lightning Bug" 2
+		"Lightning Bug (Phantom Pallet)" 2
 	variant 1
 		"Centipede" 2
 		"Lightning Bug"
@@ -424,25 +424,25 @@ fleet "Large Hai Merchant (Sympathizers)"
 		"Cicada" 2
 		"Centipede" 1
 	variant 2
-		"Water Bug" 3
+		"Water Bug (Phantom Pallet)" 3
 		"Centipede" 2
 	variant 2
 		"Water Bug" 3
 		"Cicada" 2
 	variant 2
-		"Water Bug" 3
+		"Water Bug (Phantom Pallet)" 3
 		"Cicada"
-		"Centipede" 1
+		"Centipede (Holovid)" 1
 	variant 1
 		"Centipede" 3
 		"Centipede (Pulse)" 2
 	variant 3
-		"Centipede" 2
-		"Lightning Bug" 3
+		"Centipede (Holovid)" 2
+		"Lightning Bug (Phantom Pallet)" 3
 		"Water Bug"
 	variant 2
 		"Aphid (Armed)" 2
-		"Lightning Bug"
+		"Lightning Bug (Phantom Pallet)"
 		"Centipede"
 	variant 2
 		"Aphid (Armed)" 2
@@ -451,18 +451,18 @@ fleet "Large Hai Merchant (Sympathizers)"
 	variant 1
 		"Geocoris (Tracker)"
 		"Shield Beetle"
-		"Aphid" 2
+		"Aphid (Phantom Pallet)" 2
 		"Aphid (Armed)"
 	variant 1
 		"Centipede"
 		"Geocoris (Tracker)"
-		"Lightning Bug"
-		"Water Bug"
+		"Lightning Bug (Phantom Pallet)"
+		"Water Bug (Phantom Pallet)"
 		"Grasshopper (Tracker)"
 	variant 1
 		"Cicada" 2
 		"Geocoris (Tracker)"
-		"Water Bug"
+		"Water Bug (Phantom Pallet)"
 		"Grasshopper (Tracker)"
 
 
@@ -887,6 +887,32 @@ fleet "Large Plundering Unfettered"
 		"Lightning Bug (Pulse)"
 		"Sea Scorpion (Pulse)"
 		"Shield Beetle (Pulse)"
+
+fleet "Unfettered Hai Space Raid"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 1
+	personality
+		coward disables harvests plunders
+	variant 10
+		"Lightning Bug (Pulse)" 5
+	variant 5
+		"Shield Beetle"
+	variant 5
+		"Shield Beetle (Pulse)"
+	variant 4
+		"Sea Scorpion (Pulse)" 2
+	variant 5
+		"Sea Scorpion (Ion)" 2
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Sea Scorpion (Pulse)"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Sea Scorpion (Shredder)"
+		"Sea Scorpion (Ion)"
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
 
 fleet "Unfettered Raid"
 	government "Hai (Unfettered)"

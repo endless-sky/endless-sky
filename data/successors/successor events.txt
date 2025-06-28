@@ -1,0 +1,101 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+event "label successor space"
+	galaxy "label successors"
+		sprite label/successors
+
+event "successors: first contact wait"
+
+event "successors: tardy for sioeora"
+
+event "successors: released kijra-pet wait"
+
+event "successors: trust 1"
+	# Associated with getting the translation device.
+	# Add facilities to previously-available but limited planets.
+	planet "Iyra-Ijasa-Iret"
+		add shipyard "Successor Basics"
+		add shipyard "Waterlining"
+		add outfitter "Successor Basics"
+	planet "Kua-Oa-Aava"
+		add outfitter "Successor Basics"
+	planet "Mavra-Sol-Kvel"
+		add shipyard "Successor Civilian"
+		add outfitter "Successor Civilian"
+	planet "Mosaa-Oa-Vyret"
+		add shipyard "Successor Heavy"
+		add outfitter "Successor Civilian"
+		add outfitter "Successor Heavy"
+		add outfitter "Successor High Tech"
+		add outfitter "Successor Weapons Heavy"
+	planet "Raaqa-Kvelq-Ryuit"
+		add shipyard "Successor Civilian"
+		add outfitter "Successor Civilian"
+		add outfitter "Successor Weapons Basics"
+	planet "Staja-Kella-Oa"
+		add shipyard "Successor Basics"
+		add outfitter "Successor Basics"
+	# Some fleets now have ships with names that include English words.
+	fleet "Kaatrij Home"
+		names "house kaatrij"
+
+event "successors: trust 2"
+	# Associated with "Successors: Trusted" mission.
+	# Replace "Naive" variants in shipyards.
+	shipyard "Successor Basics"
+		remove "Kvelqde (Naive)"
+		remove "Stolsaqra (Naive)"
+		add "Kvelqde"
+		add "Stolsaqra"
+	shipyard "Successor Civilian"
+		remove "Kvelqde (Naive)"
+		remove "Stolsaqra (Naive)"
+		remove "Myaede (Naive)"
+		add "Kvelqde"
+		add "Stolsaqra"
+		add "Myaede"
+	shipyard "Successor Heavy"
+		remove "Kvelqde (Naive)"
+		remove "Stolsaqra (Naive)"
+		remove "Myaede (Naive)"
+		remove "Nnesaarau (Naive)"
+		remove "Ojde (Naive)"
+		add "Kvelqde"
+		add "Stolsaqra"
+		add "Myaede"
+		add "Nnesaarau"
+		add "Ojde"
+	shipyard "New Houses Light"
+		remove "Vujlet (Naive)"
+		add "Vujlet"
+	shipyard "High Houses Light"
+		remove "Aaulqra (Naive)"
+		remove "Veusade (Naive)"
+		add "Aaulqra"
+		add "Veusade"
+	shipyard "High Houses Heavy"
+		remove "Aaulqra (Naive)"
+		remove "Veusade (Naive)"
+		add "Aaulqra"
+		add "Veusade"
+
+event "successors: unified defense"
+	government "People's Houses"
+		bribe 0
+	system "Kella-Uoasa"
+		add fleet "Large New Houses" 1200
+		add fleet "Small New Houses" 600
+	system "Myruet-Kvelq"
+		add fleet "Large Old Houses" 1200
+		add fleet "Large New Houses" 1200
