@@ -146,7 +146,10 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 				bool isVoweled = false;
 				for(const char &c : "aeiou")
 					if(name.starts_with(c) || name.starts_with(toupper(c)))
+					{
 						isVoweled = true;
+						break;
+					}
 				return (isVoweled ? "an " : "a ") + name + " License";
 			});
 		fullText += ".\n";
