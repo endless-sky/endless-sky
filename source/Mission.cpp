@@ -1564,6 +1564,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(result.paymentApparent)
 		subs["<payment>"] = Format::CreditString(abs(result.paymentApparent));
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
+	auto getDisplayName = [](const auto *const &item)
+		{
+			return item->DisplayName();
+		};
 	if(!result.stopovers.empty())
 	{
 		subs["<stopovers>"] = Format::List<set, const Planet *>(result.stopovers,
@@ -1571,25 +1575,13 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			{
 				return planet->DisplayName() + " in the " + planet->GetSystem()->DisplayName() + " system";
 			});
-		subs["<planet stopovers>"] = Format::List<set, const Planet *>(result.stopovers,
-			[](const Planet *const &planet)
-			{
-				return planet->DisplayName();
-			});
+		subs["<planet stopovers>"] = Format::List<set, const Planet *>(result.stopovers, getDisplayName);
 	}
 	// Waypoints and marks: "<system name>" with "," and "and".
 	if(!result.waypoints.empty())
-		subs["<waypoints>"] = Format::List<set, const System *>(result.waypoints,
-			[](const System *const &system)
-			{
-				return system->DisplayName();
-			});
+		subs["<waypoints>"] = Format::List<set, const System *>(result.waypoints, getDisplayName);
 	if(!result.markedSystems.empty())
-		subs["<marks>"] = Format::List<set, const System *>(result.markedSystems,
-			[](const System *const &system)
-			{
-				return system->DisplayName();
-			});
+		subs["<marks>"] = Format::List<set, const System *>(result.markedSystems, getDisplayName);
 
 	// Done making subs, so expand the phrases and recursively substitute.
 	for(const auto &keyValue : subs)
