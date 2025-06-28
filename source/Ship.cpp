@@ -1539,6 +1539,20 @@ void Ship::SetDeployOrder(bool shouldDeploy)
 
 
 
+void Ship::SetEjectEscapePodsOrder(bool shouldEject)
+{
+	this->shouldEjectEscapePods = shouldEject;
+}
+
+
+
+bool Ship::HasEjectEscapePodsOrder() const
+{
+	return shouldEjectEscapePods;
+}
+
+
+
 const Personality &Ship::GetPersonality() const
 {
 	return personality;
@@ -3060,10 +3074,15 @@ double Ship::DragForce() const
 
 int Ship::RequiredCrew() const
 {
+	// Drones do net need crew
 	if(attributes.Get("automaton"))
 		return 0;
-
-	// Drones do not need crew, but all other ships need at least one.
+	// Escape pods require no crew while in a bay (currentSystem == nullptr).
+	// Also, don't require crew i fthe pod is landed on a planet.
+	if(IsEscapePod() && (!currentSystem || GetPlanet()))
+		return 0;
+	
+	// All other ships need at least one.
 	return max<int>(1, attributes.Get("required crew"));
 }
 
@@ -3250,11 +3269,19 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	}
 	if(!wasDestroyed && IsDestroyed())
 	{
+		// mark the escape pods as deployable for the engine
+		if(HasEscapePods())
+			shouldEjectEscapePods = true;
+
 		type |= ShipEvent::DESTROY;
 
 		if(IsYours())
-			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+		{
+			std::string destroyMsg = "Your " + DisplayModelName() + " \"" + Name() + "\" has been destroyed.";
+			if(HasEscapePods())
+				destroyMsg += " You have escaped in an escape pod.";
+			Messages::Add(destroyMsg, Messages::Importance::Highest);
+		}
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -3379,6 +3406,13 @@ bool Ship::CanBeCarried() const
 
 
 
+void Ship::SetCanBeCarried(bool can)
+{
+	canBeCarried = can;
+}
+
+
+
 bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
 	if(!ship || !ship->CanBeCarried() || ship->IsDisabled())
@@ -3455,7 +3489,7 @@ const vector<Ship::Bay> &Ship::Bays() const
 
 
 
-// Adjust the positions and velocities of any visible carried fighters or
+// Adjust the positions and velocities of any visible carried fighters, escape pods or
 // drones. If any are visible, return true.
 bool Ship::PositionFighters() const
 {
@@ -3470,6 +3504,107 @@ bool Ship::PositionFighters() const
 			bay.ship->zoom = zoom;
 		}
 	return hasVisible;
+}
+
+
+
+
+// Is this ship an escape pod?
+bool Ship::IsEscapePod() const
+{
+	return attributes.Category() == "Escape Pod";
+}
+
+
+
+// Check if the ship carries any pods that could be launched.
+bool Ship::HasEscapePods() const
+{
+	for(const Bay &bay : bays)
+		if(bay.ship && bay.ship->IsEscapePod())
+			return true;
+	return false;
+}
+
+
+
+// deploy all the pods that this ship carries
+void Ship::DeployEscapePods(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals, PlayerInfo &player)
+{
+	if(!HasEscapePods() || !shouldEjectEscapePods)
+		return;
+
+	bool userFlagship = (isYours && this == player.Flagship());
+	vector<shared_ptr<Ship>> pods;
+
+	for(Bay &bay : bays)
+	{
+		shared_ptr<Ship> pod = bay.ship;
+		if(!pod || !pod->IsEscapePod())
+			continue;
+
+		int minCrew = min<int>(Crew(), pod->Attributes().Get("required crew"));
+		// Escape pods without crew don't get launched
+		if(!minCrew)
+			continue;
+
+		pods.push_back(pod);
+		ships.push_back(pod);
+
+		pod->SetParent(nullptr);
+		pod->SetIsParked(false);
+		pod->SetCanBeCarried(false); // remove indent in PlayerInfoPanel
+		pod->SetSystem(GetSystem());
+
+		// launch first pod (if flagship) from the position of the old ship to prevent camera jumps;
+		// all other pods can be launched from their bays
+		Point exit = (userFlagship && pods.size() == 1) ? position : position + angle.Rotate(bay.point);
+		Angle facing = (userFlagship && pods.size() == 1)
+			? angle + Angle::Random(45) - Angle::Random(90)
+			: angle + bay.facing;
+		Point vel = (userFlagship && pods.size() == 1)
+			? velocity + facing.Unit() * pod->MaxVelocity()
+			: velocity + facing.Unit() * (0.3 * pod->MaxVelocity()) + Angle::Random().Unit() * (0.2 * pod->MaxVelocity());
+
+		pod->Place(exit, vel, facing, false);
+
+		// transfer minimum required crew
+		AddCrew(-minCrew);
+		pod->AddCrew(minCrew);
+
+		// update bunks and transfer cargo
+		pod->Cargo().SetBunks(pod->Attributes().Get("bunks") - pod->Crew());
+		cargo.TransferAll(pod->Cargo(), true);
+
+		// transfer extra crew if possible (only to the new flagship)
+		if(userFlagship && pods.size() == 1)
+		{
+			int extra = min(Crew(), pod->Cargo().BunksFree());
+			AddCrew(-extra);
+			pod->AddCrew(extra);
+		}
+
+		carriedMass -= pod->Mass();
+		for(const Effect *effect : bay.launchEffects)
+			visuals.emplace_back(*effect, exit, velocity, facing);
+
+		bay.ship.reset();
+	}
+
+	if(pods.empty())
+		return;
+
+	if(userFlagship)
+	{
+		player.SetFlagship(*pods.front());
+		Messages::Add("Deployed " + to_string(pods.size()) + " escape pods. " +
+			pods.front()->Name() + " is now your flagship.", Messages::Importance::Highest);
+	}
+	else
+	{
+		for(auto &pod : pods)
+			pod->SetParent(player.FlagshipPtr());
+	}
 }
 
 

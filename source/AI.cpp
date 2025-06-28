@@ -213,7 +213,7 @@ namespace {
 		// deleted from memory until the next landing, check both parked and destroyed states.)
 		auto isCandidate = [](const shared_ptr<Ship> &ship) -> bool
 		{
-			return ship->CanBeCarried() && !ship->IsParked() && !ship->IsDestroyed();
+			return ship->CanBeCarried() && !ship->IsParked() && !ship->IsDestroyed() && !ship->IsEscapePod();
 		};
 
 		auto toDeploy = vector<Ship *> {};
@@ -539,6 +539,19 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	// The commands below here only apply if you have escorts or fighters.
 	if(player.Ships().size() < 2)
 		return;
+
+	// Eject escape pods, if any in bays
+	if (activeCommands.Has(Command::ESCAPE_PODS))
+	{
+		Ship* oldFlagship = player.Flagship();
+		if(oldFlagship)
+		{
+			if(oldFlagship->HasEscapePods())
+				oldFlagship->SetEjectEscapePodsOrder(true);
+			else
+				Messages::Add("No escape pods available on flagship.", Messages::Importance::High);
+		}
+	}
 
 	// Toggle the "deploy" command for the fleet or selected ships.
 	if(activeCommands.Has(Command::DEPLOY))
@@ -1515,6 +1528,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		if(hasNemesis && !isPotentialNemesis)
 			continue;
 		if(!CanPursue(ship, *foe))
+			continue;
+
+		// Check if this foe is an escape pod and if the current ship's personality should ignore it.
+		if (foe->IsEscapePod() && !person.TargetsEscapePods())
 			continue;
 
 		// Estimate the range a second from now, so ships prefer foes they are approaching.
@@ -3976,6 +3993,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				continue;
 			// Don't hit ships that cannot be hit without targeting
 			if(target != currentTarget.get() && !FighterHitHelper::IsValidTarget(target))
+				continue;
+			// Check if this foe is an escape pod and if the current ship's personality should ignore it.
+			if (target->IsEscapePod() && !person.TargetsEscapePods())
 				continue;
 
 			Point p = target->Position() - start;
