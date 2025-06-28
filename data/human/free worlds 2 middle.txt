@@ -238,15 +238,15 @@ mission "FW Southern Recon 1B"
 			label gun
 			action
 				outfit "Electron Beam" -1
+				set "FW Southern Recon 1B: done"
 			branch end
 			
 			label turret
 			action
 				outfit "Electron Turret" -1
+				set "FW Southern Recon 1B (Turret): done"
 			
 			label end
-			action
-				set "FW Southern Recon 1B: done"
 			`	"Oh! That's great to hear. I'll get my team to take it off your hands right away."`
 			`	You hand off the weapon to Freya's science team once they arrive. Freya tells you that she'll be waiting for you in a cafe in the spaceport after she's had a chance to look at it more closely.`
 				decline
