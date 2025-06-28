@@ -64,14 +64,16 @@
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
         <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li>Removed the unused portrait image assets from the game files</li>
+          <li>Various fixes to the missions and content of the recently added Patir 2 storyline.</li>
+          <li>Updated the text truncation algorithm to fix inaccurate truncation that could cause text to render outside of the intended input box or crash the game.</li>
+          <li>Long planet or spaceport descriptions that created a scrolling text box no longer slide off the screen.</li>
+          <li>Starfield zoom limits can now be customized through the interfaces file.</li>
+          <li>The planet panel will now only be offset to the left slightly when the game window is fewer than 1280 pixels wide.</li>
+          <li>We now offer a Windows NSIS installer bundle for installing the game.</li>
         </ul>
         <p>You can find out more in the changelog.</p>
-        <p>Special thanks to the ??? people who contributed to this release!</p>
+        <p>Special thanks to the 15 people who contributed to this release!</p>
       </description>
       <url>https://github.com/endless-sky/endless-sky/blob/v0.10.14/changelog</url>
     </release>
