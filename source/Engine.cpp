@@ -1249,7 +1249,7 @@ void Engine::Draw() const
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Rectangle messageBox = hud->GetBox("messages");
 	bool messagesReversed = hud->GetValue("messages reversed");
-	double animationDuration = hud->GetValue("animation duration");
+	double animationDuration = hud->GetValue("message animation duration");
 	auto messageAnimation = [animationDuration](double age) -> double
 	{
 		return 1. - pow((age - animationDuration) / animationDuration, 2);
