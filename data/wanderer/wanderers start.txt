@@ -195,9 +195,17 @@ mission "Wanderers: Diplomacy"
 	on offer
 		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). She has now been assigned by the Hai to be their diplomat to the Wanderers, and to serve as a translator as well.`
 		conversation
-			`As you are approaching Hai-home, you contact the Hai government and ask if they would be willing to provide an ambassador to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a private government hangar, where a diplomat meets you. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago." To the best of your knowledge, the Republic has never mentioned the Hai or publicly acknowledged receiving an envoy from them.`
+			`As you are approaching Hai-home, you contact the Hai government and ask if they would be willing to provide an ambassador to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a private government hangar, where a diplomat meets you. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago."`
+			`	To the best of your knowledge, the Republic has never mentioned the Hai or publicly acknowledged receiving an envoy from them.`
+				to display
+					not "hai space start"
 			choice
 				`	"Wait, the human Republic knows that the Hai exist? I had heard nothing but vague rumors of your existence before I found the wormhole."`
+					to display
+						not "hai space start"
+				`	"Wait, the human Republic knows that the Hai exist?"`
+					to display
+						has "hai space start"
 				`	"I'm pleased to meet you. Are you willing to travel with me?"`
 					goto travel
 			
@@ -1486,6 +1494,7 @@ mission "Wanderers: Alpha Surveillance H"
 	description "Meet Admiral Danforth in the spaceport on <origin>, and talk about what to do next about the Alphas."
 	landing
 	source "Farpoint"
+	"offer precedence" 100
 	to offer
 		has "Wanderers: Alpha Surveillance G: done"
 	

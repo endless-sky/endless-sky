@@ -21,6 +21,7 @@ class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Mission;
+class Planet;
 class PlayerInfo;
 class System;
 class UI;
@@ -36,9 +37,11 @@ class NPCAction {
 public:
 	NPCAction() = default;
 	// Construct and Load() at the same time.
-	explicit NPCAction(const DataNode &node, const ConditionsStore *playerConditions);
+	explicit NPCAction(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
-	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
