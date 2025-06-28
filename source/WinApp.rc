@@ -13,11 +13,11 @@ VS_VERSION_INFO VERSIONINFO
 		{
 			VALUE "CompanyName", "\0"
 			VALUE "FileDescription", "Space exploration and combat game\0"
-			VALUE "FileVersion", "0.10.14\0"
+			VALUE "FileVersion", "0.10.15-alpha\0"
 			VALUE "InternalName", "Endless Sky\0"
 			VALUE "OriginalFilename", "Endless Sky.exe\0"
 			VALUE "ProductName", "Endless Sky\0"
-			VALUE "ProductVersion", "0.10.14\0"
+			VALUE "ProductVersion", "0.10.15-alpha\0"
 		}
 	}
 	BLOCK "VarFileInfo"
