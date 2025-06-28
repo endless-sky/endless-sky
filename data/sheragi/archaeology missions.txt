@@ -355,7 +355,30 @@ mission "Sad Archie"
 	on complete
 		log `Experienced a strange vision while drifting in the Ildaria system that looked like the fall of a civilization of dragon-people. The terrain on the planet of Zug looks strikingly similar to this vision.`
 		conversation
+			branch tmbr
+				has "Deep Archaeology 5: done"
+			action
+				set "archaeology after TMBR"
+			label tmbr
 			`On a whim, as you're landing on Zug you pull up a geological map of the planet and find that the geography you dreamt of while drifting in the Ildaria system was surprisingly close to the real thing. There's even a massive basalt outcropping right where you saw a lava flow burying a city. There's no way your ship's sensors can tell what's underneath it, though.`
+
+
+
+mission "Rim Archaeology Reminder"
+	landing
+	non-blocking
+	name "Foster's Assistance?"
+	description "Head to <destination> and see if Albert Foster can help uncover Zug's mystery."
+	source
+		not planet "Vinci"
+	destination "Vinci"
+	to offer
+		has "archaeology after TMBR"
+		has "Deep Archaeology 5: done"
+	on offer
+		conversation
+			`As your ship settles down on <origin>, you recall the visions of an alien civilization you experienced while in Ildaria, and how the terrain you saw resembled the landscape of Zug. Perhaps Albert Foster can help you investigate further.`
+				accept
 
 
 
@@ -366,8 +389,13 @@ mission "Rim Archaeology 1"
 	source "Vinci"
 	destination "Zug"
 	passengers 1
+	blocked `You consider telling Albert Foster about your findings on Zug, but realize that you don't have a bunk free to take him there! Return when you have free space.`
 	to offer
 		has "Sad Archie: done"
+		has "Deep Archaeology 5: done"
+		or
+			not "archaeology after TMBR"
+			has "Rim Archaeology Reminder: offered"
 	
 	on offer
 		conversation
@@ -376,7 +404,14 @@ mission "Rim Archaeology 1"
 				`	(Of course!)`
 				`	(Not right now.)`
 					defer
-			`Foster seems glad to see you. You do your best to pique his interest without saying anything that will make him think you're crazy, but he's clearly not buying it. "I'm sorry," he says, "but I'm not mounting an expedition just because you have a 'hunch.' So unless you're willing to tell me the source of your information, I'm not interested." He turns his attention back to the data pad that he was reading before you walked into his office.`
+			branch recent
+				has "archaeology after TMBR"
+			`	Foster seems glad to see you. "It's been a while, <first>. Something catch your eye recently?"`
+				goto interest
+			label recent
+			`	Foster is slightly surprised by your arrival. "My apologies, but I haven't made any progress in the Deep since we last talked. Unless you have something else for me?"`
+			label interest
+			`	You do your best to pique his interest without saying anything that will make him think you're crazy, but he's clearly not buying it. "I'm sorry," he says, "but I'm not mounting an expedition just because you have a 'hunch.' So unless you're willing to tell me the source of your information, I'm not interested." He turns his attention back to the data pad that he was reading before you walked into his office.`
 			choice
 				`	"I'd rather not say."`
 				`	"I had this dream about dragon-people on Zug."`
