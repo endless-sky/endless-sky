@@ -5153,7 +5153,7 @@ mission "Dangerous Games 2"
 			`	Again, you put the ship into reverse and turn around. This is not going at all how it was supposed to.`
 				goto "roll call"
 			label east2
-			`	Cautiously, you turn to the east and power forward. subpods fly ahead, exulting in their agility in the face of the dangerous ocean.`
+			`	Cautiously, you turn to the east and power forward. Subpods fly ahead, exulting in their agility in the face of the dangerous ocean.`
 			`	After holding your breath for what feels like hours, Karengo radios you. "Knew you'd find your way eventually. What's the next direction?"`
 				goto "riddle three"
 			label north2
