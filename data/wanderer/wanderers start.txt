@@ -1618,6 +1618,7 @@ mission "Wanderers: Alpha Surveillance J"
 	
 	on complete
 		"reputation: Wanderer" >?= 30
+		event "wanderers: heavy gust mass production" 30
 		event "wanderers: unfettered invasion starts" 64
 		log "Reported to the Wanderers that the Alphas who had been selling jump drives to the Unfettered have been weakened and driven into hiding. The Wanderers are ramping up production of military ships to try to face the continuing Unfettered onslaught."
 		conversation
