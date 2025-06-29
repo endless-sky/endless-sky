@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class PlayerInfo;
 class RenderBuffer;
 struct Plugin;
 
@@ -37,7 +38,7 @@ struct Plugin;
 // UI panel for editing preferences, especially the key mappings.
 class PreferencesPanel : public Panel {
 public:
-	PreferencesPanel();
+	PreferencesPanel(PlayerInfo &player);
 	virtual ~PreferencesPanel();
 
 	// Draw this panel.
@@ -82,6 +83,11 @@ private:
 
 
 private:
+	PlayerInfo &player;
+	// Determine if the player's mission deadlines need to be recached when
+	// this panel is closed due to the deadline blink preference changing.
+	bool recacheDeadlines = false;
+
 	int editing;
 	int editingGesture; // Why is this separate from editing?
 	int selected;

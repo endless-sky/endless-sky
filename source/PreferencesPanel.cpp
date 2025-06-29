@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "PlayerInfo.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
@@ -120,8 +121,8 @@ namespace {
 
 
 
-PreferencesPanel::PreferencesPanel()
-	: editing(-1), selected(0), hover(-1)
+PreferencesPanel::PreferencesPanel(PlayerInfo &player)
+	: player(player), editing(-1), selected(0), hover(-1)
 	, controlTypeDropdown{new Dropdown}
 {
 	// Select the first valid plugin.
@@ -1446,6 +1447,9 @@ void PreferencesPanel::Exit()
 
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
+	if(recacheDeadlines)
+		player.CalculateRemainingDeadlines();
+
 	GetUI()->Pop(this);
 }
 
@@ -1541,6 +1545,13 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));
+
+	// If the deadline blink preference was toggled and the player is in flight,
+	// then we need to recache the remaining mission deadlines. This doesn't need
+	// to be done when the player is landed since the MapPanel already recalculates
+	// the remaining deadlines when it is opened in that case.
+	if(str == "Deadline blink by distance" && !player.GetPlanet())
+		recacheDeadlines = !recacheDeadlines;
 }
 
 
