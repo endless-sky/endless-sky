@@ -10661,7 +10661,7 @@ conversation "Ice Queen"
 		`	"My reasons are my own."`
 
 	action
-		set ""help ildico""
+		set "helpildico"
 	`	Ildico doesn't react for a moment, seemingly taking in your words.`
 	`	At length she nods slowly. "We'll see."`
 	`	She pauses again and then shrugs. "It's not like I have anything to lose... very well. I need to discover what happened to my father. I know he first went to Clark to meet with a terraforming firm there. That's where I start my search."`
@@ -10669,7 +10669,7 @@ conversation "Ice Queen"
 
 conversation "Ice Queen End"
 	branch "help ildico"
-		has ""help ildico""
+		has "helpildico"
 	`Your thrusters kick up fresh dust as you land on your assigned concrete pad in the sprawling spaceport. Ildico, looking less pale and significantly more sturdy, waits by the exit.`
 	`	"Thank you for getting me out of there. After all those years on the ice this place will be no challenge for me. Perhaps someday our paths will cross again. If they do, I will remember this small kindness."`
 	`	She gives you a stern nod, and then exits your ship and into the chaos of Clark.`
@@ -10688,7 +10688,7 @@ mission "Ice Queen 2"
 	destination "Glory"
 	passengers 1
 	to offer
-		has ""help ildico""
+		has "helpildico"
 		or
 			has "Ice Queen: done"
 			has "Stone to Ice Queen: done"
