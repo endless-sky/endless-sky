@@ -1065,6 +1065,9 @@ event "wanderers: moonbeam mass production"
 		add variant
 			"Derecho"
 			"Autumn Leaf (Heavy)" 2
+		add variant 2
+			"Heavy Gust"
+			"Heavy Gust (Moonbeam)" 2
 	outfitter "Wanderer Advanced"
 		"Moonbeam"
 		"Moonbeam Turret"
