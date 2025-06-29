@@ -2772,7 +2772,7 @@ void Engine::FillRadar()
 	else if(!hasHostiles)
 		hadHostiles = false;
 
-	// Add projectiles that have a missile strength or homing.
+	// Add projectiles that have a missile strength or blast radius.
 	for(const Projectile &projectile : projectiles)
 	{
 		if(!projectile.HasSprite())
