@@ -1641,7 +1641,16 @@ mission "Wanderers: Unfettered Invasion Patch"
 		event "wanderers: unfettered invasion starts"
 		fail
 
-
+# Giving Heavy Gust to old saves:
+mission "Wanderers: Heavy Gust Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: unfettered invasion starts"
+		not "event: wanderers: heavy gust mass production"
+	on offer
+		event "wanderers: heavy gust mass production"
+		fail
 
 mission "Wanderers Invaded 0"
 	landing
