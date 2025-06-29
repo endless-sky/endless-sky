@@ -51,6 +51,7 @@ public:
 	double Radius() const;
 	// Which color swizzle should be applied to the sprite?
 	const Swizzle *GetSwizzle() const;
+	bool InheritsParentSwizzle() const;
 	// Get the sprite frame and mask for the given time step.
 	float GetFrame(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
@@ -132,6 +133,7 @@ private:
 	const Sprite *sprite = nullptr;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
 	const Swizzle *swizzle = Swizzle::None();
+	bool inheritsParentSwizzle = false;
 
 	float frameRate = 2.f / 60.f;
 	int delay = 0;
