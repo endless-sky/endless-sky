@@ -56,6 +56,7 @@ class Person;
 class Phrase;
 class Planet;
 class PlayerInfo;
+class Point;
 class Politics;
 class Shader;
 class Ship;
@@ -109,7 +110,7 @@ public:
 	static void StepEconomy();
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
-	static void Change(const DataNode &node, const ConditionsStore *playerConditions);
+	static void Change(const DataNode &node, const PlayerInfo &player);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
@@ -173,6 +174,9 @@ public:
 	static const CategoryList &GetCategory(const CategoryType type);
 
 	static const StarField &Background();
+	static void StepBackground(const Point &vel, double zoom = 1.);
+	static const Point &GetBackgroundPosition();
+	static void SetBackgroundPosition(const Point &position);
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 
 	static const std::string &Tooltip(const std::string &label);

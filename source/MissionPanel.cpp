@@ -127,6 +127,7 @@ namespace {
 // Open the missions panel directly.
 MissionPanel::MissionPanel(PlayerInfo &player)
 	: MapPanel(player),
+	missionInterface(GameData::Interfaces().Get("mission")),
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
@@ -142,6 +143,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	description->SetFont(FontSet::Get(14));
 	description->SetAlignment(Alignment::JUSTIFIED);
 	description->SetColor(*GameData::Colors().Get("bright"));
+	description->SetRect(missionInterface->GetBox("description"));
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -161,6 +163,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 // Switch to the missions panel from another map panel.
 MissionPanel::MissionPanel(const MapPanel &panel)
 	: MapPanel(panel),
+	missionInterface(GameData::Interfaces().Get("mission")),
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
@@ -182,6 +185,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	description->SetFont(FontSet::Get(14));
 	description->SetAlignment(Alignment::JUSTIFIED);
 	description->SetColor(*GameData::Colors().Get("bright"));
+	description->SetRect(missionInterface->GetBox("description"));
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -317,8 +321,10 @@ void MissionPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
 	if(command.Has(Command::HELP))
 	{
+		sound = UI::UISound::NONE;
 		DoHelp("jobs", true);
 		DoHelp("map advanced", true);
 	}
@@ -397,6 +403,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	// mission list, update the selected system, and pan the map.
 	SetSelectedScrollAndCenter();
 
+	UI::PlaySound(sound);
 	return true;
 }
 
@@ -434,6 +441,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				}
 				else if(hoverSort == 3)
 					player.ToggleSortAscending();
+				UI::PlaySound(UI::UISound::NORMAL);
 				return true;
 			}
 			return false;
@@ -864,9 +872,31 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 		if(it->Deadline())
 			SpriteShader::Draw(fast, pos + Point(-4., 8.));
 
+		const Color *color = nullptr;
 		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
-		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
-			pos, (!canAccept ? dim : isSelected ? selected : unselected));
+		if(!canAccept)
+		{
+			if(it->Unavailable().IsLoaded())
+				color = &it->Unavailable();
+			else
+				color = &dim;
+		}
+		else if(isSelected)
+		{
+			if(it->Selected().IsLoaded())
+				color = &it->Selected();
+			else
+				color = &selected;
+		}
+		else
+		{
+			if(it->Unselected().IsLoaded())
+				color = &it->Unselected();
+			else
+				color = &unselected;
+		}
+
+		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
 	}
 
 	return pos;
@@ -888,14 +918,12 @@ void MissionPanel::DrawMissionInfo()
 	if(availableIt != available.end() || acceptedIt != accepted.end())
 		info.SetCondition("has description");
 
-	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
-	info.SetString("bunks free", to_string(player.Cargo().BunksFree()) + " bunks");
+	info.SetString("cargo free", Format::SimplePluralization(player.Cargo().Free(), "ton"));
+	info.SetString("bunks free", Format::SimplePluralization(player.Cargo().BunksFree(), "bunk"));
 
 	info.SetString("today", player.GetDate().ToString());
 
-	const Interface *missionInterface = GameData::Interfaces().Get("mission");
 	missionInterface->Draw(info, this);
-	description->SetRect(missionInterface->GetBox("description"));
 
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())

@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Screen.h"
 #include "System.h"
 #include "UI.h"
 
@@ -90,7 +91,7 @@ void TradingPanel::Step()
 
 void TradingPanel::Draw()
 {
-	const Interface *tradeUi = GameData::Interfaces().Get("trade");
+	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
 	const Rectangle box = tradeUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();
@@ -284,7 +285,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 bool TradingPanel::Click(int x, int y, int clicks)
 {
-	const Interface *tradeUi = GameData::Interfaces().Get("trade");
+	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
 	const Rectangle box = tradeUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();

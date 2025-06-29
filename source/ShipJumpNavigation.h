@@ -57,6 +57,7 @@ public:
 	bool CanJump(const System *from, const System *to) const;
 
 	// Check what jump methods this ship has.
+	bool HasAnyDrive() const;
 	bool HasHyperdrive() const;
 	bool HasScramDrive() const;
 	bool HasJumpDrive() const;

@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipJumpNavigation.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "UI.h"
 #include "Weapon.h"
 #include "Wormhole.h"
 
@@ -3345,9 +3346,27 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	// If cloaking costs nothing, and no one has asked you for help, cloak at will.
 	// Player ships should never cloak automatically if they are not in danger.
 	bool cloakFreely = (fuelCost <= 0.) && !ship.GetShipToAssist() && !ship.IsYours();
-	// If this ship is injured / repairing, it should cloak while under threat.
+	// If this ship is injured and can repair those injuries while cloaked,
+	// then it should cloak while under threat.
+	bool canRecoverShieldsCloaked = false;
+	bool canRecoverHullCloaked = false;
+	if(attributes.Get("cloaked regen multiplier") > -1.)
+	{
+		if(attributes.Get("shield generation") > 0.)
+			canRecoverShieldsCloaked = true;
+		else if(attributes.Get("cloaking shield delay") < 1. && attributes.Get("delayed shield generation") > 0.)
+			canRecoverShieldsCloaked = true;
+	}
+	if(attributes.Get("cloaked repair multiplier") > -1.)
+	{
+		if(attributes.Get("hull repair rate") > 0.)
+			canRecoverHullCloaked = true;
+		else if(attributes.Get("cloaking repair delay") < 1. && attributes.Get("delayed hull repair") > 0.)
+			canRecoverHullCloaked = true;
+	}
 	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
-			&& (attributes.Get("shield generation") || attributes.Get("hull repair rate"));
+			&& ((ship.Shields() < 1. && canRecoverShieldsCloaked)
+			|| (ship.Hull() < 1. && canRecoverHullCloaked));
 	if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
 	{
 		command |= Command::CLOAK;
@@ -4229,7 +4248,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			Messages::Add({message, GameData::MessageCategories().Get("info")});
 
 			if(Preferences::GetNotificationSetting() == Preferences::NotificationSetting::BOTH)
-				Audio::Play(Audio::Get("fail"), SoundCategory::ALERT);
+				UI::PlaySound(UI::UISound::FAILURE);
 		}
 		// If any destination was found, find the corresponding stellar object
 		// and set it as your ship's target planet.
@@ -4271,6 +4290,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		// If no ship was found, look for nearby asteroids.
 		if(!found)
 			TargetMinable(ship);
+		else
+			UI::PlaySound(UI::UISound::TARGET);
 	}
 	else if(activeCommands.Has(Command::TARGET))
 	{
@@ -4297,6 +4318,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		}
 		if(selectNext)
 			ship.SetTargetShip(shared_ptr<Ship>());
+		else
+			UI::PlaySound(UI::UISound::TARGET);
 	}
 	else if(activeCommands.Has(Command::BOARD))
 	{
@@ -4398,6 +4421,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				if(it == options.begin())
 					it = options.end();
 				ship.SetTargetShip((--it)->first->shared_from_this());
+				UI::PlaySound(UI::UISound::TARGET);
 			}
 		}
 	}
@@ -4446,7 +4470,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		if(target)
 			message.clear();
 		else if(!message.empty())
-			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::FAILURE);
 
 		const Message::Category *messageCategory = GameData::MessageCategories().Get("normal");
 
@@ -4469,7 +4493,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				message = "The authorities on this " + next->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 				messageCategory = GameData::MessageCategories().Get("high");
-				Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(next != target)
 				message = "Switching landing targets. Now landing on " + next->DisplayName() + ".";
@@ -4509,14 +4533,14 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			{
 				Messages::Add(*GameData::Messages().Get("no landables"));
 				message.clear();
-				Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(!target->GetPlanet()->CanLand())
 			{
 				message = "The authorities on this " + target->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 				messageCategory = GameData::MessageCategories().Get("high");
-				Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(!types.empty())
 			{
@@ -4732,25 +4756,25 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		{
 			Messages::Add(*GameData::Messages().Get("no hyperdrive"));
 			autoPilot.Clear();
-			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(!ship.JumpNavigation().JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add(*GameData::Messages().Get("cannot jump"));
 			autoPilot.Clear();
-			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add(*GameData::Messages().Get("no fuel"));
 			autoPilot.Clear();
-			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(ship.IsLanding())
 		{
 			Messages::Add(*GameData::Messages().Get("cannot jump while landing"));
 			autoPilot.Clear(Command::JUMP);
-			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else
 		{

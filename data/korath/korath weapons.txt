@@ -471,6 +471,7 @@ outfit "Piercer Missile Launcher"
 		"missile strength" 73
 		"stream"
 	description "Korath Piercer Missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "piercer fire"
 	sprite "effect/piercer fire"
@@ -502,6 +503,16 @@ effect "piercer explosion"
 	"random spin" 60
 	"random velocity" .1
 	"velocity scale" .08
+
+outfitter "Piercer Missile Restock"
+	to sell
+		or
+			has "outfit: Piercer Missile Launcher"
+			has "outfit: Piercer Missile Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Piercer Missile"
 
 
 outfit "Korath Detainer"
@@ -630,6 +641,7 @@ outfit "Cluster Mine Layer"
 		"hit force" -225
 		"stream"
 	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Korath Mine Submunition"
 	weapon
@@ -670,6 +682,16 @@ effect "minelayer split"
 	"random spin" 5
 	"random velocity" 2.5
 	"velocity scale" .8
+
+outfitter "Cluster Mine Restock"
+	to sell
+		or
+			has "outfit: Cluster Mine Layer"
+			has "outfit: Cluster Mine Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Cluster Mine"
 
 
 outfit "Shield Disruptor Turret"
@@ -1008,6 +1030,7 @@ outfit "Firelight Missile Bank"
 		"stream"
 	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
 	description "	Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 
 outfit "Firelight Turning"
@@ -1061,6 +1084,16 @@ effect "firelight ring"
 	"random angle" 360
 	"random velocity" 2
 	"velocity scale" 0.1
+
+outfitter "Firelight Restock"
+	to sell
+		or
+			has "outfit: Firelight Missile Bank"
+			has "outfit: Firelight Storage Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Firelight Missile"
 
 
 outfit "Microbot Grinder"
@@ -1167,6 +1200,7 @@ outfit "Firestorm Battery"
 		"hit force" 6000
 		"missile strength" 115
 	description "Though not as refined as the newer Firelight version, this torpedo contains an augmented Korath Plasma Core reactor element completely stripped of its protective casing and safety interlocks. When activated, it generates a tremendous explosion of heat and force that pushes ships away and will even melt their hulls."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "firestorm ring"
 	sprite "effect/firestorm ring"
@@ -1177,3 +1211,13 @@ effect "firestorm ring"
 	"random angle" 360
 	"random velocity" 3
 	"velocity scale" 0.1
+
+outfitter "Firestorm Torpedo Restock"
+	to sell
+		or
+			has "outfit: Firestorm Battery"
+			has "outfit: Firestorm Torpedo Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Firestorm Torpedo"

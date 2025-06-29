@@ -225,8 +225,6 @@ outfit "EMP Torpedo"
 	category "Ammunition"
 	series "Ammunition"
 	index 03010
-	licenses
-		Remnant
 	cost 4400
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
@@ -296,6 +294,18 @@ outfit "EMP Torpedo Bay"
 		"hit force" 135
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+
+outfitter "EMP Torpedo Restock"
+	to sell
+		or
+			has "outfit: EMP Torpedo Bay"
+			has "outfit: Ka'het EMP Deployer"
+			has "outfit: EMP Torpedo Storage Bay"
+	location
+		attributes "outfitter"
+	stock
+		"EMP Torpedo"
 
 
 
@@ -303,8 +313,6 @@ outfit "Teciimach Canister"
 	category "Ammunition"
 	series "Ammunition"
 	index 03020
-	licenses
-		Remnant
 	cost 35500
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
@@ -379,6 +387,7 @@ outfit "Teciimach Bay"
 		"missile strength" 95
 	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 	description "Centuries later, the Teciimach revision includes a range of upgrades to their effectiveness, efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Teciimach Pod"
 	category "Secondary Weapons"
@@ -433,6 +442,7 @@ outfit "Teciimach Pod"
 		"missile strength" 95
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor-class vessels."
 	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "emp torpedo fire"
 	sprite "effect/emp torpedo fire"
@@ -463,6 +473,17 @@ effect "emp spark"
 	"random frame rate" 6
 	"random velocity" 7
 	"velocity scale" 0.1
+
+outfitter "Teciimach Canister Restock"
+	to sell
+		or
+			has "outfit: Teciimach Bay"
+			has "outfit: Teciimach Pod"
+			has "outfit: Teciimach Canister Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Teciimach Canister"
 
 
 
@@ -976,11 +997,11 @@ outfit "Remnant License"
 	series "Licenses"
 	index 03010
 	thumbnail "outfit/remnant license"
-	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
+	description "In addition to serving as a handy IFF verifier, personal identification tool, and license to purchase Remnant technology, this device features movable parts that mechanically click with every adjustment. When the pieces are switched in a specific order and rhythm, the series of clicks produces a surprisingly beautiful blend of classical music tracks."
 
 outfit "Remnant Capital License"
 	category "Licenses"
 	series "Licenses"
 	index 03020
 	thumbnail "outfit/remnant capital license"
-	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."
+	description "While seemingly innocuous at first, this device shows the brilliant simplicity of Remnant engineering. Tapping either edge produces a brief, faint hum which can carry over vast distances on a planet. This humming allows captains who have been entrusted with the Remnant's most valuable technology to call nearby patrols for aid should they ever become stranded."
