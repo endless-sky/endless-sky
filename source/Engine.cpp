@@ -1262,12 +1262,15 @@ void Engine::Draw() const
 	{
 		messageLine.Wrap(it->message);
 		int height = messageLine.Height();
+		if(messagesReversed && it == messages.rbegin())
+			messagePoint.Y() -= height;
 		int age = step - it->step;
 		if(age < animationDuration)
 			height *= messageAnimation(age);
 		if(messagesReversed)
 		{
-			if(messagePoint.Y() + height > messageBox.Bottom())
+			messagePoint.Y() += height;
+			if(messagePoint.Y() > messageBox.Bottom())
 				break;
 		}
 		else
@@ -1278,8 +1281,6 @@ void Engine::Draw() const
 		}
 		float alpha = age < animationDuration ? messageAnimation(age) : (1000 + animationDuration - age) * .001f;
 		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
-		if(messagesReversed)
-			messagePoint.Y() += height;
 	}
 
 	// Draw crosshairs around anything that is targeted.
