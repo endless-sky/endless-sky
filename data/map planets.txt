@@ -1964,9 +1964,12 @@ planet Freedom
 	shipyard "Betelgeuse Basics"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
-	outfitter "Basic Outfits"
 	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
+	outfitter "Pirate Advanced"
+	outfitter "Common Outfits"
+	outfitter "Delta V Basics"
+	outfitter "Lovelace Basics"
 	"required reputation" -10
 	security 0
 	tribute 500
@@ -2386,15 +2389,15 @@ planet Haven
 	description `	Much of the planet is desert, but with enough moisture to grow enough crops to feed the entire population. Strip mining has turned other parts of the planet into barren wastelands, and has polluted many of the rivers.`
 	spaceport `The spaceport is old and dingy, with piles of litter in the gutters and graffiti on many of the alley walls. Many of the shops are closed, the windows boarded over or covered with yellowing paper.`
 	spaceport `	This is an independent world, and a relatively stable settlement, but the effects of its separation from the rest of the galaxy are evident. A few young people carrying large backpacks eye you with interest, perhaps trying to gauge their chances of getting you to give them a cheap lift off-planet.`
-	shipyard "Core Pirates"
 	shipyard "Northern Pirates"
-	shipyard "Advanced Northern Pirates"
+	shipyard "Northern Anarchist"
 	outfitter "Basic Outfits"
 	outfitter "Ammo North"
 	outfitter "Ammo South"
 	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
-	outfitter "Pirate Advanced"
+	outfitter "Northern Pirate Basic"
+	outfitter "Northern Anarchist"
 	outfitter "Northern Explorers"
 	bribe 0.03
 	security 0
@@ -6595,9 +6598,12 @@ planet Zenith
 	description `Zenith is a cold and unpleasant world, where the fog seldom lifts and the sun is rarely seen, where much of the lowlands are flooded each day by the tide, and storms are unpredictable and fierce. It has, however, one major advantage as a place to settle: it is far enough away that the Republic makes no attempt to control it.`
 	description `	Several villages have been founded near the equator, and in addition there are an unknown number of private holdings, ranging from underground bunkers to enormous concrete fortresses. Because the land is owned by no government and anyone can build a dwelling without permission or paperwork as long as they are willing to fight off any other claimants, the total population of Zenith is unknown.`
 	spaceport `To create a spaceport for Zenith, one enterprising privateer a few centuries ago used a mixture of explosives and heavy machinery to shift the top of one of the tallest mountains down into the neighboring valleys, creating a high plateau that is (usually) above the fog line. There are landing pads both for starships like yours and for airships that carry cargo to and from the settlements elsewhere on the planet. The port is nearly deserted, however; it is clear that they do not do much business here.`
+	shipyard "Basic Ships"
 	outfitter "Ammo North"
+	outfitter "Basic Outfits"
 	outfitter "Pirate Outfits"
 	outfitter "Pirate Basics"
+	outfitter "Northern Pirate Basics"
 	bribe 0.04
 	security 0
 	tribute 400
@@ -6645,7 +6651,7 @@ planet "Midas Station"
 		fleet "Small Northern Pirates" 10
 		fleet "Priate Miners" 5
 
-planet "Rhyac"
+planet Rhyac
 	attributes frozen fishing "ice giant" pirate
 	landscape land/snow9
 	description `Rhyac teeters at the end of the habitable zone, sparsely populated by only two kinds of people. The desperate in need of hiding, and those who hunger for a challenge. The planet is almost entirely covered in a frozen ocean, with tiny islands no bigger than a small earth city. Fluffy, dense clouds loom overhead, the few rays of light passing through refracting off small patches of mirror-like ice in a sparkly shimmer.`
@@ -6660,7 +6666,7 @@ planet "Rhyac"
 		fleet "Large Northern Pirates" 10
 		fleet "Small Northern Pirates" 15
 
-planet "Dot"
+planet Dot
 	attributes uninhabited
 	landscape land/canyon05a
 	description `While space is limited in the northern pirate kingdom, and Dot is just as inhabitable as any other moon, not a soul has ever set foot on the surface of this dwarf planet with plans on staying. With days as dark as night and a thin atmosphere of near pure nitrogen, the planet has little to offer. Without any strategic importance or valuable materials, Dot is seldom visited by any party.`
@@ -6668,13 +6674,23 @@ planet "Dot"
 	government Uninhabited
 	security 0
 
-planet "Masquerade"
+planet Masquerade
 	attributes frontier north "north pirate" pirate
 	landscape land/masquerade
 	description `From orbit, Masquerade looks entirely uninhabbitable. The ozone layer is too thin to block most incoming radiation, leaving the surface nearly dead and incredibly radioactive. However, the planet is home to towering mountains that flank vein-like canyons all across the planet's surface. These sheir cliffs condense Masquerade's humid air into thick, fluffy clouds that hover below the peaks. It's under these clouds that life can thrive, mostly shielded from the harmful gamma radiation above.`
 	description `	In stark contrast to the surface, the land beneath the clouds is a thick and florishing jungle. Almost each valey has a running stream, the air rarely ever dropping below 90% humidity. While cloud cover is frequent, there are periodic dry spells that have forced life to adapt to the sudden radiation bombardment. The huge, towering trees have flaking bark they frequently shed, with leaves so thin the radiation passes right through them. What little animal life there is consist primarily of insects, most with the ability to quickly burrow underground should the sun ever bear down on them.
 	spaceport `Masquerade's landing pads consist of thick concrete structures that poke out from above the treetops. Huge reinforced beams let ships land atop these towers while facilities all nest inside behind layers of lead shielding, all while an array of rusty cranes swing platforms of goods to and from docked ships above.`
 	spaceport `	Most major settlements are positioned far away from the spaceports themselves, as the frequent passage of starships leaves deadly holes in the cloud cover above. To traverse these long distances, the locals use huge trucks to plow across muddy scars cut between the trees, the ground too soft to build any roads or rails atop. The cities themselves tightly hug the walls of the canyon, burried deep within the thick stone with tunnels that can stretch killometers long. Lofty catwalks and bridges dance between sturdy stone towers while farmers wizz by on well-worn ontricopters, carrying all sorts of humid crops like rices and beans.`
+	shipyard "Basic Ships"
+	shipyard "Northern Pirates"
+	shipyard "True Anarchist"
+	outfitter "Ammo North"
+	outfitter "Pirate Outfits"
+	outfitter "Pirate Basics"
+	outfitter "Northern Pirate Basics"
+	outfitter "Common Outfits"
+	outfitter "Delta V Basics"
+	outfitter "True Anarchist"
 	"required reputation" -10
 	bribe 0.1
 	security 0
@@ -6683,7 +6699,7 @@ planet "Masquerade"
 		fleet "Large Northern Pirates" 5
 		fleet "Small Northern Pirates" 10
 
-planet "Nemo"
+planet Nemo
 	attributes uninhabited
 	landscape land/station50
 	description `The air smells strongly of placeholder.`
