@@ -111,13 +111,126 @@ interface "planet"
 		align right
 		pad 10 0
 
+interface "planet (small screen)"
+	image "land"
+		center -60 60
+		dimensions 500 270
+	sprite "ui/planet dialog compact"
+		center -60 60
+	#button l
+	#	center -60 0
+	#	dimensions 500 270
 
+	box "content"
+		from -300 -63 to 180 214
+
+	visible if "has shipyard"
+	sprite "ui/planet dialog button"
+		center 280 -51
+	button s "_Shipyard"
+		center 280 -51
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+
+	visible if "has outfitter"
+	sprite "ui/planet dialog button"
+		center 280 9
+	button o "_Outfitter"
+		center 280 9
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+
+	visible if "has job board"
+	sprite "ui/planet dialog button"
+		center -400 9
+	button j "_Job Board"
+		center -400 9
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	visible if "can hire crew"
+	sprite "ui/planet dialog button"
+		center 280 69
+	button h "_Hire Crew"
+		center 280 69
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+
+	visible if "has trade"
+	sprite "ui/planet dialog button"
+		center -400 -51
+	button t "_Trading"
+		center -400 -51
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+
+	visible if "!has trade"
+	sprite "ui/planet dialog button"
+		center -400 -51
+	button "View star map" "Map"
+		center -400 -51
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+
+	visible if "has bank"
+	sprite "ui/planet dialog button"
+		center -400 69
+	button b "_Bank"
+		center -400 69
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+
+	visible if "has port"
+	sprite "ui/planet dialog button"
+		center -400 129
+	"dynamic button" p "port name"
+		center -400 129
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+
+	visible if "!has port"
+	sprite "ui/planet dialog button"
+		center -400 129
+	button "View player info" "Info"
+		center -400 129
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+
+	visible
+	active if "has ship"
+	sprite "ui/planet dialog button"
+		center 280 129
+	button d "_Depart"
+		center 280 129
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
 
 interface "spaceport"
 	box "content"
 		from -300 -61 to 180 214
 
-
+interface "spaceport (small screen)"
+	box "content"
+		from -300 -61 to 180 214
 
 interface "news"
 	sprite "ui/news"
@@ -135,11 +248,134 @@ interface "news"
 		from -400 -201
 		to 80 10
 
-
+interface "news (small screen)"
+	sprite "ui/news"
+		center -160 -186
+	image "portrait"
+		center 20 -181
+	string "name"
+		from -400 -241
+		align center left
+		color "bright"
+	box "message portrait"
+		from -400 -201
+		to -50 10
+	box "message"
+		from -400 -201
+		to 80 10
 
 
 # The top of the text panel is the planet dialog is at +70, and it is 500 x 260.
 interface "hiring"
+	label "flagship"
+		center -70 -56
+		color "bright"
+		align right
+	label "entire fleet"
+		center 50 -56
+		color "bright"
+		align right
+	label "salary"
+		center 170 -56
+		color "bright"
+		align right
+
+	line
+		center -60 -46
+		dimensions 480 1
+
+	label "bunks"
+		center -290 -31
+		align left
+	string "flagship bunks"
+		center -70 -31
+		align right
+	string "fleet bunks"
+		center 50 -31
+		align right
+
+	label "required crew"
+		center -290 -11
+		align left
+	string "flagship required"
+		center -70 -11
+		align right
+	string "fleet required"
+		center 50 -11
+		align right
+	string "salary required"
+		center 170 -11
+		align right
+
+	label "extra crew"
+		center -290 9
+		align left
+	string "flagship extra"
+		center -70 9
+		align right
+	string "salary extra"
+		center 170 9
+		align right
+
+	active if "can hire"
+	sprite "ui/dialog cancel"
+		center 140 214
+	button h "_Hire"
+		center 140 214
+		dimensions 80 40
+
+	active if "can fire"
+	sprite "ui/dialog cancel"
+		center 60 214
+	button f "_Fire"
+		center 60 214
+		dimensions 80 40
+
+	active if "can hire"
+	sprite "ui/dialog cancel"
+		center -182 214
+	button z "Hire All"
+		center -182 214
+		dimensions 80 40
+
+	active if "can fire"
+	sprite "ui/dialog cancel"
+		center -262 214
+	button x "Fire All"
+		center -262 214
+		dimensions 80 40
+
+	active
+	string "modifier"
+		from -65 49
+		color "dim"
+		align left
+
+	label "passenger space"
+		center -290 39
+		align left
+	string "flagship unused"
+		center -70 39
+		align right
+	string "fleet unused"
+		center 50 39
+		align right
+
+	label "passengers"
+		center -290 59
+		align left
+	string "passengers"
+		center 50 59
+		align right
+
+	label "(Extra crew for your flagship increases your odds of capturing ships,"
+		center -60 149
+	label "and once you capture a ship you need crew members to serve on it.)"
+		center -60 169
+
+
+
+interface "hiring (small screen)"
 	label "flagship"
 		center -70 -56
 		color "bright"
@@ -278,7 +514,35 @@ interface "trade"
 		center 130 214
 		dimensions 90 30
 
+interface "trade (small screen)"
+	box "content"
+		from -310 -63 to 190 194
 
+	line
+		center -60 -46
+		dimensions 480 1
+
+	active if "can buy"
+	sprite "ui/dialog cancel"
+		center 40 214
+	button u "B_uy All"
+		center 40 214
+		dimensions 70 30
+
+	sprite "ui/wide button"
+		center 130 214
+
+	active if "can sell"
+	visible if "!can sell outfits"
+	button e "S_ell All"
+		center 130 214
+		dimensions 90 30
+
+	active if "can sell outfits"
+	visible if "can sell outfits"
+	button e "S_ell Outfits"
+		center 130 214
+		dimensions 90 30
 
 interface "bank"
 	box "content"
@@ -295,7 +559,20 @@ interface "bank"
 		center 140 214
 		dimensions 80 40
 
+interface "bank (small screen)"
+	box "content"
+		from -310 -63 to 190 214
 
+	line
+		center -60 -46
+		dimensions 480 1
+
+	active if "can pay"
+	sprite "ui/dialog cancel"
+		center 140 214
+	button a "Pay _All"
+		center 140 214
+		dimensions 80 40
 
 interface "info panel"
 	line "bg"
