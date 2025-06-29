@@ -1704,7 +1704,8 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			flagship->AddCrew(-extra);
 			if(extra == 1)
-				Messages::Add(*GameData::Messages().Get("fired single crew member for passenger space"));
+				Messages::Add({"You fired a crew member to free up a bunk for a passenger.",
+					GameData::MessageCategories().Get("normal")});
 			else
 				Messages::Add({"You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
 					GameData::MessageCategories().Get("normal")});
@@ -1718,7 +1719,8 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	{
 		flagship->AddCrew(-extra);
 		if(extra == 1)
-			Messages::Add(*GameData::Messages().Get("fired single crew member for no bunks"));
+			Messages::Add({"You fired a crew member because you have no bunk for them.",
+				GameData::MessageCategories().Get("normal")});
 		else
 			Messages::Add({"You fired " + to_string(extra) + " crew members because you have no bunks for them.",
 				GameData::MessageCategories().Get("normal")});

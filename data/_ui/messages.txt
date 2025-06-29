@@ -153,9 +153,3 @@ message "wormhole hail"
 message "cannot hail without target"
 	text "Unable to send hail: no target selected."
 	category "high"
-
-message "fired single crew member for passenger space"
-	text "You fired a crew member to free up a bunk for a passenger."
-
-message "fired single crew member for no bunks"
-	text "You fired a crew member because you have no bunk for them."
