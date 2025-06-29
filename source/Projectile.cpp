@@ -127,9 +127,14 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		if(lifetime > -1000)
 		{
 			// This projectile didn't die in a collision. Create any death effects.
+			// Place effects ahead of the projectile by 1.5x velocity. 1x comes from
+			// the anticipated movement of the projectile on its frame of death, and
+			// 0.5x comes from the behavior of BatchDrawList::Add drawing the projectile sprite
+			// half way between its current position and its next position.
+			Point effectPosition = position + 1.5 * velocity;
 			for(const auto &it : weapon->DieEffects())
 				for(int i = 0; i < it.second; ++i)
-					visuals.emplace_back(*it.first, position, velocity, angle);
+					visuals.emplace_back(*it.first, effectPosition, velocity, angle);
 
 			for(const auto &it : weapon->Submunitions())
 				if(lifetime > -100 ? it.spawnOnNaturalDeath : it.spawnOnAntiMissileDeath)
@@ -144,6 +149,10 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		MarkForRemoval();
 		return;
 	}
+	// Spawn live effects. By using the current position of the projectile and not
+	// adding any offset from the projectile's velocity, effects will appear to spawn
+	// from behind the projectile, as by the time the effect is visible, the projectile
+	// will have moved one frame forward from this position.
 	for(const auto &it : weapon->LiveEffects())
 		if(!Random::Int(it.second))
 			visuals.emplace_back(*it.first, position, velocity, angle);
@@ -275,9 +284,14 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 // marks the projectile as needing deletion if it has run out of hits.
 void Projectile::Explode(vector<Visual> &visuals, double intersection, Point hitVelocity)
 {
+	// Offset the placement position of effects by the projectile's velocity while
+	// also accounting for the intersection clipping. Hit effects should appear from
+	// the front of the projectile, and so are shifted forward by the full velocity
+	// of the projectile.
+	Point effectPosition = position + velocity * intersection;
 	for(const auto &it : weapon->HitEffects())
 		for(int i = 0; i < it.second; ++i)
-			visuals.emplace_back(*it.first, position + velocity * intersection, velocity, angle, hitVelocity);
+			visuals.emplace_back(*it.first, effectPosition, velocity, angle, hitVelocity);
 	// The projectile dies if it has no hits remaining.
 	if(--hitsRemaining == 0)
 	{

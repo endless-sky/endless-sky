@@ -497,8 +497,17 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 	}
 
+	double range = outfit.Range();
 	attributeLabels.emplace_back("range:");
-	attributeValues.emplace_back(Format::Number(outfit.Range()));
+	attributeValues.emplace_back(Format::Number(range));
+	attributesHeight += 20;
+
+	attributeLabels.emplace_back("velocity:");
+	double velocity = outfit.WeightedVelocity();
+	if(velocity == range)
+		attributeValues.emplace_back("instantaneous");
+	else
+		attributeValues.emplace_back(Format::Number(velocity * 60.));
 	attributesHeight += 20;
 
 	// Identify the dropoff at range and inform the player.
@@ -699,14 +708,16 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"blast radius:",
 		"missile strength:",
 		"anti-missile:",
-		"tractor beam:"
+		"tractor beam:",
+		"mining precision:",
 	};
 	vector<double> otherValues = {
 		outfit.Inaccuracy(),
 		outfit.BlastRadius(),
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile()),
-		outfit.TractorBeam() * 60.
+		outfit.TractorBeam() * 60.,
+		outfit.Prospecting() && outfit.MinableDamage() ? outfit.Prospecting() / outfit.MinableDamage() : 0.,
 	};
 
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)

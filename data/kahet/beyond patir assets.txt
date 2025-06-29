@@ -48,9 +48,9 @@ ship "Asteroid Large 1"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 29000000
 		"hull" 36561
@@ -101,9 +101,9 @@ ship "Asteroid Large 2"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 2"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 23000000
 		"hull" 37151
@@ -156,9 +156,9 @@ ship "Asteroid Large 3"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 3"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 19000000
 		"hull" 35172
@@ -209,9 +209,9 @@ ship "Asteroid Large 4"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 4"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 17000000
 		"hull" 35172
@@ -262,9 +262,9 @@ ship "Asteroid Large 5"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 5"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 31000000
 		"hull" 36716
@@ -315,9 +315,9 @@ ship "Asteroid Medium"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid medium"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 13000000
 		"hull" 21248
@@ -367,9 +367,9 @@ ship "Asteroid Young 1"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 11000000
 		"hull" 16459
@@ -418,9 +418,9 @@ ship "Asteroid Young 2"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young 2"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 7000000
 		"hull" 15984
@@ -469,9 +469,9 @@ ship "Asteroid Young 3"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young 3"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 5000000
 		"hull" 17021
@@ -520,9 +520,9 @@ ship "Asteroid Young 4"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young 4"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 3000000
 		"hull" 16462

@@ -70,13 +70,17 @@ jobs:
     name: Windows x64
     runs-on: windows-2025
     env:
-      OUTPUT: EndlessSky-win64-${{ inputs.release_version }}.zip
+      OUTPUT_ZIP: EndlessSky-win64-${{ inputs.release_version }}.zip
+      OUTPUT_EXE: EndlessSky-${{ inputs.release_version }}-win64-setup.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
           show-progress: false
           fetch-depth: '10'
+      - name: Install dependencies
+        run: |
+          choco install nsis.portable
       - name: Find cache keys
         run: |
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
@@ -103,19 +107,25 @@ jobs:
           vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
       - name: Run CMake
         run: |
-          cmake --preset mingw-release
+          cmake --preset mingw-release -DCPACK_PACKAGE_FILE_NAME="EndlessSky-${{ inputs.release_version }}-win64-setup"
           cmake --build build --preset mingw-ci-release
         env:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
           cmake --install build/release
-          7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Upload artifact
+          7z a ${{ env.OUTPUT_ZIP }} "./install/release/*"
+          cpack --config build/release/CPackConfig.cmake
+      - name: Upload zip artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
+          name: ${{ env.OUTPUT_ZIP }}
+          path: ${{ env.OUTPUT_ZIP }}
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT_EXE }}
+          path: ${{ env.OUTPUT_EXE }}
       - name: Upload Steam Depot
         uses: actions/upload-artifact@v4
         with:
@@ -129,12 +139,16 @@ jobs:
     name: Windows x86
     runs-on: windows-2025
     env:
-      OUTPUT: EndlessSky-win32-${{ inputs.release_version }}.zip
+      OUTPUT_ZIP: EndlessSky-win32-${{ inputs.release_version }}.zip
+      OUTPUT_EXE: EndlessSky-${{ inputs.release_version }}-win32-setup.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
           show-progress: false
+      - name: Install dependencies
+        run: |
+          choco install nsis.portable
       - name: Add Mingw to PATH
         run: |
           echo (Join-Path C: mingw32 bin) >> $env:GITHUB_PATH
@@ -149,19 +163,25 @@ jobs:
           vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
       - name: Run CMake
         run: |
-          cmake --preset mingw32-release
+          cmake --preset mingw32-release -DCPACK_PACKAGE_FILE_NAME="EndlessSky-${{ inputs.release_version }}-win32-setup"
           cmake --build build --preset mingw32-ci-release
         env:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
           cmake --install build/release
-          7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Upload artifact
+          7z a ${{ env.OUTPUT_ZIP }} "./install/release/*"
+          cpack --config build/release/CPackConfig.cmake
+      - name: Upload zip artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
+          name: ${{ env.OUTPUT_ZIP }}
+          path: ${{ env.OUTPUT_ZIP }}
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.OUTPUT_EXE }}
+          path: ${{ env.OUTPUT_EXE }}
       - name: Upload Steam Depot
         uses: actions/upload-artifact@v4
         with:
@@ -210,11 +230,15 @@ jobs:
           cmake --build build --preset macos-ci-release
         env:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      - name: Zip artifact
+        run: |
+          cd build/release
+          7z a macos-artifact-x64.zip "Endless Sky.app"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: macos-artifact-x64
-          path: build/release/Endless Sky.app
+          path: build/release/macos-artifact-x64.zip
 
 
   release_macos_arm:
@@ -256,11 +280,15 @@ jobs:
           cmake --build build --preset macos-arm-ci-release
         env:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      - name: Zip artifact
+        run: |
+          cd build/release
+          7z a macos-artifact-arm.zip "Endless Sky.app"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: macos-artifact-arm
-          path: build/release/Endless Sky.app
+          path: build/release/macos-artifact-arm.zip
 
 
   release_macos:
@@ -274,11 +302,19 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: macos-artifact-x64
-          path: x64/Endless Sky.app
+          path: x64/macos-artifact-x64.zip
+      - name: Extract x64 artifact
+        run: |
+          cd x64
+          7z x macos-artifact-x64.zip
       - uses: actions/download-artifact@v4
         with:
           name: macos-artifact-arm
-          path: arm/Endless Sky.app
+          path: arm/macos-artifact-arm.zip
+      - name: Extract arm artifact
+        run: |
+          cd arm
+          7z x macos-artifact-arm.zip
       - name: Create universal binary
         run: |
           cp -r "arm/Endless Sky.app" "Endless Sky.app"
