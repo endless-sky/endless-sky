@@ -1364,14 +1364,14 @@ mission "Arachi Cartoonist 1"
 					goto end
 				`	"Alright, it's a bit of a long trip to <planet>, but if you're sure, let's head to my ship and I'll show you your bunk."`
 				`	"I happen to own a ship matching that description, a Betelgeuse Leviathan. Would you like to see it?"`
-					goto hasleviathan
+					goto "has leviathan"
 					to display
 						has "ship model: Leviathan"
 			`	"Oh, leave I cannot. Whether far away or not this <planet> you speak of is, allowed to leave Coalition space, we are not," he says. "Go on without me you must, Captain."`
 			label end
 			`	He thanks you and wishes you safe travels on your journey to <planet>.`
 				accept
-			label hasleviathan
+			label "has leviathan"
 			action
 				"coalition jobs" += 2
 				payment 75940
@@ -1869,7 +1869,7 @@ mission "Coalition: Pilgrimage 4"
 			choice
 				`	"If it's alright for me to go, I'd love to."`
 				`	"I don't want to disturb anyone, so I'll stay by the ship and wait for you."`
-					goto notgo
+					goto "not go"
 			`	"Wonderful!" she cheers, tapping her frontal hooves lightly on the ground. "Now, guide us to the shrine, would you, young dear?" she asks the local Saryd, who turns around and gestures for you to follow.`
 			`	You stick close to Vellorae as the two of you try to keep the local Saryd in sight. The task is difficult as he nearly vanishes into the fog whenever he gets too far ahead, only for his silhouette to become clearer again after he waits for you to catch up. After many minutes, you feel the ground beneath your shoes shift from the solid spaceport platform to gravel to wet patches of the planet's mossy "grass." Finally you reach a minuscule lake, or perhaps a very large puddle, in the middle of a mossy field surrounded by toppled and hollowed out tree trunks.`
 			`	As the two of you approach the water, the local Saryd warns you not to touch it. Vellorae looks at it as if gazing into a mirror, or perhaps she is just trying to make out the reflection of the moon, scattered and vague through the layers of mist. She then moves to one of the tree trunks, and placing the bangle inside it as she lays on the ground facing the water, lays both her hands reverently on the trunk. She spends nearly an hour in this position, during which the chill of the fog slowly seeps through your coat and into your bones. Vellorae and the Saryd who guided you don't seem particularly bothered by it, but she is quick to finish once she looks over and notices you shivering. She picks the bangle up from the trunk and stands, and then asks the other Saryd to guide you two back to the spaceport.`
@@ -1880,7 +1880,7 @@ mission "Coalition: Pilgrimage 4"
 			`	"The hunter bird of nightfall and omens, Magl Ina is. When mourning someone dear, one is, ask it for forgiveness for their wrongdoings, they must."`
 			`	You follow the Saryd back to the gravel path and then to the spaceport grounds, where Vellorae thanks him for guiding the two of you to the shrine. He offers his condolences and wishes her a safe journey to the next shrine. He soon disappears into the fog again, and you and Vellorae head back to your ship.`
 				goto end
-			label notgo
+			label "not go"
 			`	She sighs briefly, and agrees to meet with you later, following the Saryd local deep into the fog stretching out of the city. You head inside your ship, waiting for a few hours until you hear a voice just outside your hatch. You let Vellorae in once you realize that it's hers.`
 			label end
 			`	"To <destination>, we must go now. The Path of Lor Ie Vees, I must take," she says, heading to her bunk to rest.`
@@ -1907,7 +1907,7 @@ mission "Coalition: Pilgrimage 5"
 			choice
 				`	(Go along with her.)`
 				`	(Stay in my ship.)`
-					goto notgo
+					goto "not go"
 			`	She takes you around the spaceport city, touring some clothing shops and bringing you to parks she had visited with her husband. Shortly after noon you two enter a restaurant, where she insists on paying for your meal. You tour the city with her for a while longer and, just before the sun sets, reach the forest at the base of the mountain on top of which Starlit University is located.`
 			`	Once night falls, many lights start to appear inside the forest, and Vellorae beckons you to follow her in. "Stick close, you should. Difficult to navigate the path, for other species it often is." As you walk down a trail with her, you approach one of the lights to see that it's a bonfire on a platform in a miniature clearing, at what you hope is a safe distance from the trees around it. Continuing to the next light, Vellorae clutches the bangle in her hands the entire time, humming some guttural, almost tribal chant. As you pass by another fire, a short burst of flames gets closer to some nearby shrubs, but thankfully is put out before it can cause any harm. It is extinguished with an odd, large, fabric net on a pole by a cloaked Saryd who seemed to materialize from the trees near the fire.`
 			`	"Take care to not damage the forest with the path's fires, we must, so volunteer for keeping the flames, many of the local students do." Vellorae tells you. "When visiting here, Adfices and I were, wondered if any extra credits, the task granted, but apparently only out of a respect for Lor Ie Vees, the students do it."`
@@ -1921,7 +1921,7 @@ mission "Coalition: Pilgrimage 5"
 			`	You continue to follow her closely through the forest, regularly passing more bonfires, until you see multiple lights in the distance and realize it is the edge of the forest leading back into the city. Only as you step out of the woods do you notice that you're back where the path started, even though you were certain you had kept to only one side of the mountain.`
 			`	Vellorae takes a final look at the path, where only a few of the bonfires' lights are still visible through the dense groupings of pine trees. She tells you she's ready to leave, and you bring her back to your ship.`
 				goto end
-			label notgo
+			label "not go"
 			`	She says she'll be back at night and leaves. You watch a few transmissions from the planet, most of them in some way related to Starlit University. One is what you guess is a Saryd comedy movie, something about one who cut down trees in order to make scarves but came to regret it later. You try and follow along, but subtitles for the transmissions only come in Kimek or Arach. A few hours into the night, you leave your ship to wait for Vellorae, who arrives shortly after.`
 			label end
 			`	She heads to her bunk, saying she'll rest for the trip. It hits you that she hasn't told you her next destination yet, so you knock on her door to ask.`

@@ -883,12 +883,12 @@ mission "Hai Reveal [A06a] The Calm"
 				`	"And you want me to place some new relays?"`
 					goto relays
 				`	"Can't you just change the priorities of the Lovelace Labs relays?"`
-					goto lovenot
+					goto "love not"
 				`	"What if you distribute the traffic over multiple routes?"`
 					goto multiple
 				`	"So why haven't you placed more relays?"`
 					goto more
-			label lovenot
+			label "love not"
 			`	Remington says, "They're privately-owned relays, so we have no say over them. Lovelace Labs reserves priority status on that bandwidth for their internal purposes. We pay a stiff sum to get the highest priority they are willing to part with, but often they don't leave much for anyone else."`
 			choice
 				`	"And you want me to place some more relays?"`

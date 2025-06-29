@@ -795,13 +795,13 @@ mission "Ka'het: Patir Mystery 6"
 			`	One of the other Remnant shows you a hologram of the system, with what looks like the Builder settlement you visited earlier highlighted by a yellow light. "First of all, we have transferred <payment> to your logistics account for saving the data on the dome's atmosphere. It is only thanks to you that we were able to learn more about what kind of atmosphere the Builders may have lived in."`
 			choice
 				`	"Thank you."`
-					goto skipdialog
+					goto "skip dialog"
 				`	"Can you tell me more about that?"`
 			`	"The air in the settlement we visited was almost evenly split between oxygen and argon, while containing very little nitrogen. Despite its differences, it is interesting to note that such a composition is breathable by human standards."`
 			`	"We could have removed our helmets after the airlock?" you ask.`
 			`	"It is a bit more complicated than that. We found that the pressure inside the complex was much, much lower than what we are used to - less than a sixteenth of an atmosphere. On most Earth-like planets, you would only find such pressures at over 20,000 meters. There are two possibilities: either the Builders were born in a thin atmosphere, or the life support system failed some time ago and the structure has been slowly losing air ever since. We hope to find the answer soon enough.`
 
-			label skipdialog
+			label "skip dialog"
 			`	"On top of that, we have learned that the Fetri'sei that attacked us was not waiting in the structure when we first entered the system; it was gathering materials from the asteroid belt together with the rest of its fellow Ka'sei, and only moved inside the dome when it spotted us."`
 
 			label proposal
@@ -1209,11 +1209,11 @@ mission "Ka'het: Patir Mystery 9"
 				`	"What is your reason for not having a symbiont?"`
 					goto reason
 				`	"Do you have a symbiont, Dusk?"`
-					goto dusksymbiont
+					goto "dusk symbiont"
 				`	(Just finish the dinner and leave.)`
 			`	The rest of the dinner passes rather quickly, and within half an hour you're ready to return to your ship. At the entrance, Dusk approaches you.`
 				goto next
-			label dusksymbiont
+			label "dusk symbiont"
 			`	"I do have one - right under the cervical vertebrae, at the top of my back. Being the lead researcher of this mission, there was not much choice left; removing it at this point wasn't an acceptable option, and switching positions this late into the program would have been much more harmful than increasing the reserves planned to the right level." As the dinner comes to an end, you and Dusk move back near the entrance.`
 				goto next
 

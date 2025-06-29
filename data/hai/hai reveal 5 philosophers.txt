@@ -1215,12 +1215,12 @@ mission "Hai Reveal [B13] Freedom"
 			`	You could be forgiven for hesitating to follow them, but General Choot'k appears beside you and places one strong paw on your shoulder. "Come, now. We will discover if our task is finished or impossible. It is time for bravery." He guides you in after the operatives, along with his own troops.`
 			choice
 				`	"Lead on."`
-					goto leadon
+					goto "lead on"
 				`	"Treating me like a coward? That's grounds for a duel."`
 			`	"Heh heh," he laughs in a low voice. "Maybe soon."`
 			action
 				set "Hai Reveal [B13] Freedom: challenged Choot'k"
-			label leadon
+			label "lead on"
 			`	It's pitch black when you enter, but scanners show the room is a vast cavern, some sort of public space suitable for ten thousand people or more. As the last of the troops file in, a second blast door closes behind you. High roof lights snap on making the room as bright as day in the blink of an eye.`
 			`	You see before you scores of pirates, corralled and held captive by an equally large crowd of heavily-armed civilians - all of which are hesitantly pointing guns at the operatives. It seems the citizens arranged a violent rebellion to coincide with the Republic's attack. Three unarmed civilians wearing distinctive hooded robes walk towards the operatives: one Hai, one human, and to your surprise one lizard-like Korath. The leader of the Syndicate operatives exits her suit and approaches them.`
 			`	The Hai speaks. "We are the leaders of the civilian government of Elenchus. Although we are grateful for your assistance in defeating our violent rulers, we will not accept your dominion either. We have heard of your civil war. Elenchus is an independent nation, and we intend to stay so unless you intend to force otherwise. I can, however, promise that unlike our overlords, we have no interest in anything other than peace. We will send no military ships through the wormhole."`

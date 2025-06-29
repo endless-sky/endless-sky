@@ -187,12 +187,12 @@ mission "Remnant: Lost in Ember Waste"
 					goto know
 			
 			`	"There are red wormholes scattered around this region of space. You can only access them if you have a Key Stone on your ship, though. Don't ask me how it works, but that's how it is."`
-				goto keystone
+				goto "key stone"
 			
 			label know
 			`	"Lost your Key Stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
 			
-			label keystone
+			label "key stone"
 			`	The woman reaches into a bag that she has with her and hands you a Quantum Key Stone. "Just put this on your ship and you can be on your way out of here."`
 			choice
 				`	"You're just giving this to me?"`
