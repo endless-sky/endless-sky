@@ -1807,7 +1807,7 @@ mission "Wanderers Invaded 2"
 		fleet
 			names "wanderer"
 			variant
-				"Strong Wind" 1
+				"Heavy Gust" 1
 				"Autumn Leaf" 2
 				"Summer Leaf" 3
 	npc
@@ -2498,8 +2498,7 @@ mission "Wanderers Defend Sich'ka'ara"
 			names "wanderer"
 			variant
 				"Tempest (Heavy)"
-				"Tempest"
-				"Strong Wind" 1
+				"Heavy Gust" 2
 				"Autumn Leaf" 2
 				"Summer Leaf" 3
 	on complete
@@ -2940,7 +2939,7 @@ mission "Wanderers Ap'arak 2"
 			variant
 				"Derecho (Turret)"
 				"Derecho"
-				"Strong Wind" 2
+				"Heavy Gust" 2
 				"Autumn Leaf" 4
 				"Summer Leaf" 3
 	npc
