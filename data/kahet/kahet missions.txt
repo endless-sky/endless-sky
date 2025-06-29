@@ -951,7 +951,7 @@ mission "Ka'het: Patir Mystery 7"
 			label gardens
 			action
 				"patir: builder seeds" ++
-			`	"I agree, it feels the most interesting of the two." The two of you follow the route indicated on the map for a while before reaching the entrance: a slender, sturdy-looking pillar roughly two meters wide with a circular opening on one side. Moving closer you can see the end of a shallow ramp right beyond the door, swirling upwards inside of the column and likely reaching the top of the dome.`
+			`	"I agree, it feels the more interesting of the two." The two of you follow the route indicated on the map for a while before reaching the entrance: a slender, sturdy-looking pillar roughly two meters wide with a circular opening on one side. Moving closer you can see the end of a shallow ramp right beyond the door, swirling upwards inside of the column and likely reaching the top of the dome.`
 			`	"If this is supposed to be the exit of the garden," Dusk says, "I fail to see where the entrance should be. We are going to have to walk up it instead."`
 			choice
 				`	"Alright, let's go."`
