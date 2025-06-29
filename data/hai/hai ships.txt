@@ -1022,22 +1022,8 @@ ship "Sea Scorpion"
 		"Tracker Storage Pod" 4
 		"Value Detector" 2
 
-	engine -28.5 68.5
-	engine 28.5 68.5
-	"steering engine" -28.5 68.5
-		zoom 0.4
-		right
-	"steering engine" 28.5 68.5
-		zoom 0.4
-		left
-	"steering engine" 64.5 23.5
-		zoom 0.55
-		angle -90
-		right
-	"steering engine" -64.5 23.5
-		zoom 0.55
-		angle 90
-		left
+	engine -23.5 68.5
+	engine 23.5 68.5
 	gun -13 -77.5
 	gun 13 -77.5
 	gun -27 -56
@@ -1111,9 +1097,9 @@ ship "Sea Scorpion" "Sea Scorpion (Ionic Blasters)"
 		"Hai Diamond Regenerator"
 		"Hai Valley Batteries"
 		"Hyperdrive"
-		"Value Detector"
-		"Ionic Blaster Prototype" 4
-		"Pulse Turret" 2
+		"Ion Cannon"
+		"Ionic Blaster Prototype" 2
+		"Ionic Turret Prototype"
 		"Pulse Rifle" 36
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
@@ -1127,7 +1113,7 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 		"Hai Williwaw Cooling" 4
 		"Hyperdrive"
 		"Pulse Cannon" 2
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2

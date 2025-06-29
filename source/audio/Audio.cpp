@@ -154,27 +154,7 @@ void Audio::Init(const vector<filesystem::path> &sources)
 	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
 	alDopplerFactor(0.);
 
-	// Get all the sound files in the game data and all plugins.
-	for(const auto &source : sources)
-	{
-		filesystem::path root = source / "sounds/";
-		vector<filesystem::path> files = Files::RecursiveList(root);
-		for(const auto &path : files)
-		{
-			if(path.extension() == ".wav")
-			{
-				// The "name" of the sound is its full path within the "sounds/"
-				// folder, without the ".wav" or "~.wav" suffix.
-				string name = (path.parent_path() / path.stem()).lexically_relative(root).generic_string();
-				if(name.ends_with('~'))
-					name.resize(name.length() - 1);
-				loadQueue[name] = path;
-			}
-		}
-	}
-	// Begin loading the files.
-	if(!loadQueue.empty())
-		loadThread = thread(&Load);
+	LoadSounds(sources);
 
 	// Create the music-streaming threads.
 	currentTrack.reset(new Music());
@@ -193,9 +173,36 @@ void Audio::Init(const vector<filesystem::path> &sources)
 
 
 
-void Audio::CheckReferences()
+// Get all the sound files in the game data and all plugins.
+void Audio::LoadSounds(const vector<filesystem::path> &sources)
 {
-	if(!isInitialized)
+	for(const auto &source : sources)
+	{
+		filesystem::path root = source / "sounds";
+		vector<filesystem::path> files = Files::RecursiveList(root);
+		for(const auto &path : files)
+		{
+			if(path.extension() == ".wav")
+			{
+				// The "name" of the sound is its full path within the "sounds/"
+				// folder, without the ".wav" or "~.wav" suffix.
+				string name = (path.parent_path() / path.stem()).lexically_relative(root).generic_string();
+				if(name.ends_with('~'))
+					name.resize(name.length() - 1);
+				loadQueue[name] = path;
+			}
+		}
+	}
+	// Begin loading the files.
+	if(!loadQueue.empty())
+		loadThread = thread(&Load);
+}
+
+
+
+void Audio::CheckReferences(bool parseOnly)
+{
+	if(!isInitialized && !parseOnly)
 	{
 		Logger::LogError("Warning: audio could not be initialized. No audio will play.");
 		return;
@@ -643,10 +650,10 @@ namespace {
 	void Source::Move(const QueueEntry &entry) const
 	{
 		Point angle = entry.sum / entry.weight;
-		// The source should be along the vector (angle.X(), angle.Y(), 1).
+		// The source should be along the vector (angle.X(), angle.Y(), -1).
 		// The length of the vector should be sqrt(1 / weight).
 		double scale = sqrt(1. / (entry.weight * (angle.LengthSquared() + 1.)));
-		alSource3f(source, AL_POSITION, angle.X() * scale, angle.Y() * scale, scale);
+		alSource3f(source, AL_POSITION, angle.X() * scale, angle.Y() * scale, -scale);
 	}
 
 

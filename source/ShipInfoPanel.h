@@ -42,6 +42,7 @@ class ShipInfoPanel : public Panel {
 public:
 	explicit ShipInfoPanel(PlayerInfo &player);
 	explicit ShipInfoPanel(PlayerInfo &player, InfoPanelState state);
+	virtual ~ShipInfoPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
