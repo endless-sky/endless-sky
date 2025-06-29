@@ -928,6 +928,9 @@ tip "ammo usage:"
 tip "range:"
 	`Total range of this weapon.`
 
+tip "velocity:"
+	`The initial velocity of projectiles fired by this weapon. Some weapons have projectiles that accelerate or decelerate from this initial value as they travel.`
+
 tip "dropoff modifier:"
 	`The multiplier applied to the damage of this weapon once its projectile has reached the maximum dropoff range.`
 
@@ -1203,6 +1206,9 @@ tip "anti-missile:"
 
 tip "tractor beam:"
 	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
+
+tip "mining precision:"
+	`A measure of how well this weapon prevents damage to valuable materials while mining. Weapons with a positive precision result in higher yields, while a negative precision results in lower yields. Some minable objects are tougher than others, and are therefore less susceptible to having their yields altered.`
 
 
 

@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../opengl.h"
 
 #include <filesystem>
+#include <functional>
 #include <string>
 
 class Color;
@@ -72,6 +73,8 @@ private:
 	std::string TruncateFront(const std::string &str, int &width) const;
 	std::string TruncateMiddle(const std::string &str, int &width) const;
 
+	std::string TruncateEndsOrMiddle(const std::string &str, int &width,
+		std::function<std::string(const std::string &, int)> getResultString) const;
 
 private:
 	const Shader *shader;
