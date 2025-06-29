@@ -4869,7 +4869,7 @@ void PlayerInfo::DoAccounting()
 		string message = "You receive " + Format::List<map, string, int64_t>(income,
 			[](const pair<string, int64_t> &it)
 			{
-				return to_string(it.second) + ' ' + it.first;
+				return Format::CreditString(it.second) + ' ' + it.first;
 			}) + '.';
 		Messages::Add(message, Messages::Importance::High, true);
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
