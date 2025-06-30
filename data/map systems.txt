@@ -43742,7 +43742,7 @@ system Zubeneschamali
 system Iniquus
 	pos -390.667 -569.704
 	government Uninhabited
-	attributes "black hole" "notable star"
+	attributes "north" "black hole" "notable star"
 	arrival 4000
 	habitable 100000
 	belt 3000
@@ -43757,10 +43757,6 @@ system Iniquus
 	object
 		sprite star/black-hole-core
 	object
-		sprite star/debree-belt/debree-belt
-			"frame rate" 1
-			"random start frame"
-	object
 		sprite star/coolstar/coolstar
 			scale 2.65
 			"frame rate" 10
@@ -43768,24 +43764,134 @@ system Iniquus
 		sprite star/a-supergiant
 		distance 520
 		offset 300
-	object
-		sprite planet/station19s
-		distance 2500
-		period 0.223
-		offset 69
 
 system Temp1
 	pos -387.648 -457.444
 	government Uninhabited
 	attributes "north"
+	habitable 2100
+	belt 1841
+	belt 2417 10
+	belt 2897 9
 	haze _menu/haze-browner
 	link Hatysa
+	asteroids "medium rock" 29 1.988
+	asteroids "small rock" 12 1.96
+	asteroids "large metal" 15 1.652
+	minables titanium 12 2.539
+	minables uranium 3 2.021
+	minables aluminum 14 2.678
+	minables iron 16 2.125
+	fleet "Old Northern Pirates" 60000
+	fleet "Derelict Pirate" 30000
+	fleet "Small Northern Pirates" 2000
+	fleet "Large Northern Pirates" 3500
+	fleet "Small Priate Miners" 6000
+	fleet "Human Miners (Corrupt)" 9000
+	fleet "Small Republic" 7000
+	object
+		sprite star/g-giant
+		period 10
+	object
+		sprite planet/desert3-b
+			scale 0.5
+		distance 512.065
+		period 125
+		offset 20
+	object
+		sprite planet/desert6-b
+			scale 0.8
+		distance 910.046
+		period 220
+		offset 30
+		object
+			sprite "planet/asteroid base"
+				scale 0.4
+			distance 174.383
+			period 20
+			offset 412
+	object
+		sprite planet/ocean0-b
+			scale 0.9
+		distance 1703.229
+		period 360
+		offset 70
+		object
+			sprite planet/ice3-b
+				scale 0.25
+			distance 519.829
+			period 150
+			offset 50
+		object
+			sprite planet/luna-b
+				scale 0.85
+			distance 188.29
+			period 50
+			offset 30
+	object
+		sprite planet/desert0-b
+			scale 0.8
+		distance 2584.766
+		period 520
+		offset 110
+		object
+			sprite planet/dust3-b
+				scale 0.5
+			distance 250.857
+			period 60
+			offset 3
+	object
+		sprite planet/rock21
+			scale 0.7
+		distance 3646.748
+		period 650
+		offset 130
+	object
+		sprite planet/fog0-b
+			scale 2
+		distance 5781.377
+		period 910
+		offset 170
+		object
+			sprite planet/forest7
+				scale 0.5
+			distance 1958.942
+			period 180
+			offset 73
+		object
+			sprite "planet/asteroid base"
+			distance 1500.196
+			period 120
+			offset 47
+		object
+			sprite planet/luna
+				scale 1.15
+			distance 1027.279
+			period 90
+			offset 17
+		object
+			sprite planet/ice4
+				scale 0.5
+			distance 774.708
+			period 60
+			offset 23
+		object
+			sprite planet/ocean2-b
+				scale 0.5
+			distance 505.545
+			period 30
+			offset 41
+	object
+		sprite planet/dust0
+		distance 9032.032
+		period 1260
+		offset 190
 
 system Temp3
 	pos -458.167 -457.296
 	government Uninhabited
-	attributes "north"
-	habitable 10000
+	attributes "north" "notable star"
+	habitable 6000
 	belt 1724 3
 	belt 2393 7
 	haze _menu/haze-browner
@@ -43825,7 +43931,7 @@ system Temp3
 		object
 			sprite planet/desert10-b
 				scale 0.4
-			distance 464.101
+			distance 464.289
 			period 416.302
 	object
 		sprite planet/rock10-b
@@ -43857,27 +43963,26 @@ system Temp3
 system "Temp 4"
 	pos -332.389 -624.185
 	government Uninhabited
-	attributes "north" "notable star"
-	arrival 2600
-	habitable 320
+	attributes "north"
+	arrival 900
+	habitable 820
 	belt 650 30
 	"jump range" 82
 	haze _menu/haze-browner
 	link Unagi
 	asteroids "small rock" 50 0.5
 	asteroids "large metal" 15 0.5
-	minables neodymium 9 0.25
+	minables neodymium 10 0.25
 	minables iron 15 0.25
 	minables lead 10 0.25
-	fleet "Small Priate Miners" 12000
-	fleet "Human Miners (Corrupt)" 16000
-	fleet "Small Northern Pirates" 10000
-	fleet "Small Republic" 18000
-	fleet "Large Northern Pirates" 30000
+	fleet "Small Priate Miners" 8000
+	fleet "Human Miners (Corrupt)" 12000
+	fleet "Small Northern Pirates" 6000
+	fleet "Small Republic" 12000
+	fleet "Large Northern Pirates" 24000
 	object
-		sprite planet/browndwarf-l-rouge
-			scale 0.2
-			"frame rate" 1
+		sprite star/m-giant
+			scale .15
 		period 50
 	object
 		sprite planet/gas8
@@ -43888,8 +43993,11 @@ system "Temp 4"
 			distance 368.447
 			period 178.088
 	object
+		sprite star/debree-belt/debree-belt
+			scale 0.062
+	object
 		sprite planet/lava5
-			scale 0.75
+			scale 0.55
 		distance 151.595
 		period 1550.757
 	object
@@ -43902,7 +44010,7 @@ system "Temp 4"
 		period 8549.755
 	object Nemo
 		sprite planet/station19s
-			scale 0.3
-		distance 187.946
+			scale 0.6
+		distance 412.946
 		period 1550.76
 		offset 140
