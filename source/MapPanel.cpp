@@ -469,7 +469,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 	{
 		hasDestination = true;
 		center = .5 * (draw[0]->Position() + draw[1]->Position());
-		drawnSystems = { draw[0], draw[1] };
+		drawnSystems = {draw[0], draw[1]};
 	}
 	else
 	{

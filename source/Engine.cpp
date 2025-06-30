@@ -545,7 +545,7 @@ void Engine::Step(bool isActive)
 			// If the jump has completed, draw the next system in the player's jump
 			// plan, or set the minimapSystems to nullptr to only display the current
 			// system if the travel plan is empty.
-			vector<const System *> &plan = player.TravelPlan();
+			const vector<const System *> &plan = player.TravelPlan();
 			if(plan.empty())
 			{
 				minimapSystems[0] = nullptr;
