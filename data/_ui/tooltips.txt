@@ -1479,7 +1479,7 @@ tip "Show planet labels"
 	`Display an overlay on nearby landable planets and stations.`
 
 tip "Show mini-map"
-	`Display a mini-map of nearby systems when initiating a hyperspace jump.`
+	`Control the display of a mini-map of nearby systems. If set to "when jumping", the mini-map only appears when initiating a hyperspace jump. If set to "always on", then it is always present when in flight.`
 
 tip "Clickable radar display"
 	`Activate the ability to send commands to your escorts using the in-system radar mini-map.`
