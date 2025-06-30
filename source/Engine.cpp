@@ -2777,14 +2777,15 @@ void Engine::FillRadar()
 	{
 		if(!projectile.HasSprite())
 			continue;
-		if(projectile.MissileStrength())
-		{
-			bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
-			radar[currentCalcBuffer].Add(
-				isEnemy ? Radar::SPECIAL : Radar::INACTIVE, projectile.Position(), 1.);
-		}
-		else if(projectile.GetWeapon().BlastRadius())
-			radar[currentCalcBuffer].Add(Radar::SPECIAL, projectile.Position(), 1.8);
+
+		bool isBlast = projectile.GetWeapon().BlastRadius();
+		if(!projectile.MissileStrength() && !isBlast)
+			continue;
+
+		bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
+		bool isSafe = projectile.GetWeapon().IsSafe();
+		radar[currentCalcBuffer].Add(isEnemy || (isBlast && !isSafe) ? Radar::SPECIAL : Radar::INACTIVE,
+			projectile.Position(), isBlast ? 1.8 : 1.);
 	}
 }
 
