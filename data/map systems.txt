@@ -4404,15 +4404,15 @@ system Almaaz
 	fleet "Small Northern Pirates" 250
 	fleet "Large Northern Pirates" 300
 	fleet "Old Northern Pirates" 4000
-	fleet "Large Republic" 4000
-	fleet "Large Heimdall Pirates" 1500
-	fleet "Small Heimdall Pirates" 650
+	fleet "Large Heimdall Pirates" 3000
+	fleet "Small Heimdall Pirates" 850
 	fleet "Small Republic" 3000
-	fleet "Small Priate Miners" 2400
+	fleet "Large Republic" 6000
+	fleet "Northern Priate Miners" 2400
 	fleet "Small Northern Merchants" 16000
 	fleet "Small Northern Merchants (Corrupt)" 12000
-	fleet "Human Miners (Corrupt)" 14000
 	fleet "Large Northern Merchants (Corrupt)" 16000
+	fleet "Human Miners (Corrupt)" 14000
 	object
 		sprite star/f-giant
 			scale 1.5
@@ -4698,8 +4698,11 @@ system Alnilam
 	fleet "Small Northern Pirates" 250
 	fleet "Large Northern Pirates" 500
 	fleet "Old Northern Pirates" 5000
+	fleet "Northern Priate Miners" 2500
+	fleet "Northern Pirate Merchants" 4000
 	fleet "Small Republic" 8000
-	fleet "Small Northern Merchants (Corrupt)" 12000
+	fleet "Small Northern Merchants (Corrupt)" 8000
+	fleet "Large Northern Merchants (Corrupt)" 12000
 	fleet "Small Priate Traffic" 400
 	object
 		sprite star/f5
@@ -6895,7 +6898,8 @@ system Arneb
 	fleet "Small Northern Pirates" 250
 	fleet "Large Northern Pirates" 400
 	fleet "Old Northern Pirates" 6000
-	fleet "Small Priate Miners" 1600
+	fleet "Northern Priate Miners" 1600
+	fleet "Northern Pirate Merchants" 4000
 	fleet "Small Republic" 8000
 	fleet "Small Northern Merchants (Corrupt)" 8000
 	fleet "Large Northern Merchants (Corrupt)" 12000
@@ -19562,15 +19566,16 @@ system Hatysa
 	trade Medical 824
 	trade Metal 503
 	trade Plastic 318
-	fleet "Small Northern Pirates" 300
-	fleet "Large Northern Pirates" 5000
+	fleet "Small Northern Pirates" 600
+	fleet "Large Northern Pirates" 1000
 	fleet "Old Northern Pirates" 6000
 	fleet "Derelict Pirate" 30000
-	fleet "Small Priate Miners" 2000
+	fleet "Northern Priate Miners" 2000
+	fleet "Northern Pirate Merchants" 6000
 	fleet "Small Priate Traffic" 400
-	fleet "Large Northern Pirates" 900
-	fleet "Small Republic" 8000
-	fleet "Small Northern Merchants (Corrupt)" 14000
+	fleet "Small Republic" 5000
+	fleet "Small Northern Merchants (Corrupt)" 8000
+	fleet "Large Northern Merchants (Corrupt)" 12000
 	fleet "Human Miners (Corrupt)" 9000
 	object
 		sprite star/k0

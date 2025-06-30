@@ -3576,9 +3576,9 @@ fleet "Small Heimdall Pirates"
 		"Monitor (Heimdall)"
 		"Raven (Defender)" 2
 
-fleet "Small Priate Miners"
-	government "Pirate"
-	names "pirate"
+fleet "Northern Priate Miners"
+	government "Northern Anarchists"
+	names "civilian"
 	cargo 0
 	personality
 		confusion 30
@@ -3602,6 +3602,92 @@ fleet "Small Priate Miners"
 	variant 4
 		"Scrapper (Miner) 3"
 		"Fury" 2
+	variant 12
+		"Sparrow"
+	variant 7
+		"Sparrow (Miner)"
+	variant 1
+		"Fury"
+	variant 6
+		"Fury (Miner A)"
+	variant 3
+		"Fury (Miner B)"
+	variant 1
+		"Hawk"
+	variant 6
+		"Hawk (Miner A)"
+	variant 3
+		"Hawk (Miner B)"
+
+
+
+fleet "Northern Pirate Merchants"
+	government "Northern Anarchists"
+	names "civilian"
+	cargo 3
+	personality
+		confusion 40
+		coward disables fleeing timid appeasing secretive
+	variant 3
+		"Mule"
+		"Dagger"
+	variant 3
+		"Mule (Heavy)"
+		"Dagger"
+	variant 6
+		"Mule"
+		"Dagger"
+		"Berserker" 2
+	variant 6
+		"Mule" 2
+		"Dagger"
+		"Sparrow" 3
+	variant 9
+		"Mule (Heavy)" 2
+		"Dagger"
+		"Berserker" 2
+	variant 4
+		"Hauler"
+		"Berserker" 2
+	variant 4
+		"Hauler"
+		"Sparrow" 2
+	variant 8
+		"Hauler" 2
+		"Berserker (Afterburner)" 2
+	variant 6
+		"Heavy Shuttle"
+		"Fury (Gatling)"
+	variant 6
+		"Heavy Shuttle"
+		"Sparrow (Gatling)"
+	variant 6
+		"Blackbird"
+	variant 6
+		"Hogshead"
+	variant 6
+		"Scout"
+	variant 8
+		"Scout (Speedy)" 2
+	variant 10
+		"Hauler II"
+		"Raven"
+		"Berserker" 2
+	variant 15
+		"Behemoth"
+		"Berserker (Afterburner)" 2
+	variant 15
+		"Behemoth (Speedy)"
+		"Berserker (Afterburner)" 2
+	variant 15
+		"Behemoth"
+		"Berserker (Afterburner)" 3
+	variant 15
+		"Behemoth"
+		"Berserker (Strike)" 3
+	variant 17
+		"Behemoth" 
+		"Firebird" 2
 
 # These are small ships without warp drives that go between two inhabitted planets, to make it all feel more alive!
 

@@ -2295,3 +2295,96 @@ government "Wormhole Alpha"
 		"Bounty Hunter that Won't Enter Hai Space" -.01
 		"Free Worlds that won't enter wormhole" -.01
 		"Republic that won't enter wormhole" -.01
+
+government "Pirate Heimdall"
+	swizzle 6
+	color "governments: Pirate"
+	
+	"player reputation" -10
+	"attitude toward"
+		"Pirate" 10
+		"Pirate (Merchant)" 10
+		"Author" -.01
+		"Hai" -.01
+		"Hai (Wormhole Access)" -.01
+		"Korath" -.01
+		"Merchant" 0
+		"Syndicate" -.01
+		"Deep Security" -.01
+		"Free Worlds" -.01
+		"Independent" -.01
+		"Militia" -.01
+		"Navy Intelligence" -.01
+		"Navy (Oathkeeper)" -.01
+		"Neutral" -.01
+		"Quarg" -.01
+		"Quarg (Hai)" -.01
+		"Republic" -.01
+		"Republic Intelligence" -.01
+		"Republic (Friendly)" -.01
+		"Syndicate" -.01
+		"Uninhabited" -.01
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
+	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
+# There's probably a lot of things that don't need to be on here, but I didn't want to run into an edge case!
+# Also, they SHOULD be hostile to Uninhabited, it stops them from landing on those planets.
+
+# Anarchists should have a distinct personality, and government, for lore stuff. Here it is!
+
+government "Northern Anarchists"
+	"display name" "Pirate"
+	swizzle 6
+	color "governments: Pirate"
+	
+	"player reputation" -10
+	"attitude toward"
+		"Pirate" 10
+		"Pirate Heimdall" 10
+		"Author" -.01
+		"Hai" -.01
+		"Hai (Wormhole Access)" -.01
+		"Korath" -.01
+		"Merchant" -.1
+		"Syndicate" -.01
+		"Deep Security" -.01
+		"Free Worlds" -.01
+		"Independent" .2
+		"Militia" -.01
+		"Navy Intelligence" -.01
+		"Navy (Oathkeeper)" -.01
+		"Neutral" -.01
+		"Quarg" -.01
+		"Quarg (Hai)" -.01
+		"Republic" -.01
+		"Republic Intelligence" -.01
+		"Republic (Friendly)" -.01
+		"Syndicate" -.01
+		"Uninhabited" -.01
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly pirate"
+	"friendly disabled hail" "friendly disabled pirate"
+	"hostile hail" "hostile pirate"
+	"hostile disabled hail" "hostile disabled pirate"
+
+# Not to be confused with above, this government makes corrupt traders show up in pirate systems. You can't shoot these guys, it breaks one of the very few rules to being a pirate, so you'll get punished!
+
+government "Merchant (Corrupt)"
+	"display name" "Merchant"
+	swizzle 5
+	
+	"player reputation" 10
+	"attitude toward"
+		"Pirate" 10
+		"Priate Heimdall" 10
+		"Northern Anarchist" 10
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"friendly disabled hail" "friendly disabled"
+	"hostile hail" "hostile civilian"
+	"hostile disabled hail" "hostile disabled"
