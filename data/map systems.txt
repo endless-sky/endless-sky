@@ -8219,7 +8219,7 @@ system Belak'kor
 			period 168.63766
 		object
 			sprite planet/station3kd
-			distance 396
+			distance 446
 			period 153.53773
 	object
 		sprite planet/callisto-b
@@ -15237,7 +15237,7 @@ system Embe'kor
 			period 109.71794
 		object
 			sprite planet/station2k
-			distance 389
+			distance 439
 			period 200.78997
 	object
 		sprite planet/browndwarf-l
@@ -32759,7 +32759,7 @@ system Pemuka
 		period 4404.1538
 		object
 			sprite planet/station2k
-			distance 250
+			distance 300
 			period 103.44932
 
 system Peragenor
@@ -40515,7 +40515,7 @@ system Syrma
 		period 11419.895
 		object
 			sprite planet/tethys
-			distance 253
+			distance 353
 			period 247.84213
 
 system Tailwind
