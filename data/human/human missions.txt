@@ -1310,7 +1310,9 @@ outfit "Imaginary Weapon"
 		"acceleration" 1.2
 		"drag" .1
 		"turn" 3
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"tracking" 1.
 
 ship "Hallucination"
