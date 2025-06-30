@@ -33,8 +33,6 @@ void AsteroidBelt::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(child.Size() < 1)
-			continue;
 		const string &key = child.Token(0);
 		if(child.Size() < 2)
 			child.PrintTrace("Warning: Expected belt sub-key to have a value:");
@@ -58,7 +56,7 @@ void AsteroidBelt::Load(const DataNode &node)
 		node.PrintTrace("Error: \"scale factor closest periapsis\" must be in the range [0, 1]:");
 	if(scaleFactorClosestApoapsis < scaleFactorClosestPeriapsis || scaleFactorClosestApoapsis > 1.)
 		node.PrintTrace("Error: \"scale factor closest apoapsis\" must be in the range"
-						" [\"scale factor closest periapsis\", 1]:");
+			" [\"scale factor closest periapsis\", 1]:");
 	if(scaleFactorFarthestPeriapsis < 1.)
 		node.PrintTrace("Error: \"scale factor farthest periapsis\" must be >= 1:");
 	if(scaleFactorFarthestApoapsis < scaleFactorFarthestPeriapsis)

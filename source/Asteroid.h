@@ -38,6 +38,9 @@ public:
 	double Energy() const;
 	int Belt() const;
 
+	// Load an asteroids/minables description. Note the node is the one holding the "[add] (asteroids|minables)" tokens.
+	void Load(const DataNode &node, int valueIndex, std::size_t beltCount, const ConditionsStore *conditions);
+
 	// Determine whether this minable should be placed according to the "to spawn" conditions. Un-cached.
 	bool ShouldSpawn() const;
 
@@ -49,7 +52,4 @@ private:
 	double energy = 0.;
 	int belt = 0;
 	ConditionSet toSpawn;
-
-	// Load an asteroids/minables description. Note the node is the one holding the "[add] (asteroids|minables)" tokens.
-	void Load(const DataNode &node, int valueIndex, std::size_t beltCount, const ConditionsStore *conditions);
 };
