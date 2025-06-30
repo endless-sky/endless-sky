@@ -1246,13 +1246,17 @@ void Engine::Draw() const
 	// Draw messages. Draw the most recent messages first, as some messages
 	// may be wrapped onto multiple lines.
 	const Font &font = FontSet::Get(14);
-	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Rectangle messageBox = hud->GetBox("messages");
 	bool messagesReversed = hud->GetValue("messages reversed");
 	double animationDuration = hud->GetValue("message animation duration");
+	const vector<Messages::Entry> &messages = Messages::Get(step, animationDuration);
 	auto messageAnimation = [animationDuration](double age) -> double
 	{
-		return 1. - pow((age - animationDuration) / animationDuration, 2);
+		return max(0., 1. - pow((age - animationDuration) / animationDuration, 2));
+	};
+	auto naturalDecay = [animationDuration](int age) -> float
+	{
+		return (1000 + animationDuration - age) * .001f;
 	};
 	WrappedText messageLine(font);
 	messageLine.SetWrapWidth(messageBox.Width());
@@ -1264,8 +1268,13 @@ void Engine::Draw() const
 		int height = messageLine.Height();
 		if(messagesReversed && it == messages.rbegin())
 			messagePoint.Y() -= height;
-		int age = step - it->step;
-		if(age < animationDuration)
+		// Dying messages are those scheduled for removal as duplicates.
+		bool isDying = it->deathStep >= 0;
+		int naturalAge = step - it->step;
+		// New messages should fade in, while dying ones should fade out.
+		int age = isDying ? it->deathStep - step : naturalAge;
+		bool isAnimating = age < animationDuration;
+		if(isAnimating)
 			height *= messageAnimation(age);
 		if(messagesReversed)
 		{
@@ -1279,7 +1288,8 @@ void Engine::Draw() const
 			if(messagePoint.Y() < messageBox.Top())
 				break;
 		}
-		float alpha = age < animationDuration ? messageAnimation(age) : (1000 + animationDuration - age) * .001f;
+		float alpha = isAnimating ? isDying ? min<double>(messageAnimation(age), naturalDecay(naturalAge))
+			: messageAnimation(age) : naturalDecay(age);
 		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
 	}
 
