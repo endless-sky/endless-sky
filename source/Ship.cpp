@@ -3083,7 +3083,7 @@ int Ship::RequiredCrew() const
 	// Also, don't require crew i fthe pod is landed on a planet.
 	if(IsEscapePod() && (!currentSystem || GetPlanet()))
 		return 0;
-	
+
 	// All other ships need at least one.
 	return max<int>(1, attributes.Get("required crew"));
 }

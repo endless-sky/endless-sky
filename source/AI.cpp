@@ -541,9 +541,9 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 		return;
 
 	// Eject escape pods, if any in bays
-	if (activeCommands.Has(Command::ESCAPE_PODS))
+	if(activeCommands.Has(Command::ESCAPE_PODS))
 	{
-		Ship* oldFlagship = player.Flagship();
+		Ship *oldFlagship = player.Flagship();
 		if(oldFlagship)
 		{
 			if(oldFlagship->HasEscapePods())
@@ -1531,7 +1531,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			continue;
 
 		// Check if this foe is an escape pod and if the current ship's personality should ignore it.
-		if (foe->IsEscapePod() && !person.TargetsEscapePods())
+		if(foe->IsEscapePod() && !person.TargetsEscapePods())
 			continue;
 
 		// Estimate the range a second from now, so ships prefer foes they are approaching.
@@ -3995,7 +3995,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			if(target != currentTarget.get() && !FighterHitHelper::IsValidTarget(target))
 				continue;
 			// Check if this foe is an escape pod and if the current ship's personality should ignore it.
-			if (target->IsEscapePod() && !person.TargetsEscapePods())
+			if(target->IsEscapePod() && !person.TargetsEscapePods())
 				continue;
 
 			Point p = target->Position() - start;

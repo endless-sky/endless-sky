@@ -3180,7 +3180,7 @@ ship "Small Pod"
 	explode "tiny explosion" 5
 	explode "small explosion" 1
 	description "Like a fighter, this escape pod is designed to be attached to a larger ship and to serve as a lifeboat if the need arises. Developed for the city-ships during the colonization era and only refitted with a hyperdrive afterwards, these pods are cramped, slow, and outdated, but they are still better than dying in space. That is, unless you mind spending your last hours in a metal coffin."
-	description "	Escape pods cannot carry crew, passengers or cargo. You cannot carry an escape pod unless you have a ship in your fleet with an escape pod bay." 
+	description "	Escape pods cannot carry crew, passengers or cargo. You cannot carry an escape pod unless you have a ship in your fleet with an escape pod bay."
 
 
 
