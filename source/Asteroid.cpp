@@ -21,18 +21,18 @@ using namespace std;
 
 
 
-Asteroid::Asteroid(const std::string &name, const DataNode &node, int valueIndex)
+Asteroid::Asteroid(const std::string &name, const DataNode &node, int valueIndex, const ConditionsStore *conditions)
 	: name(name)
 {
-	Load(node, valueIndex, 0);
+	Load(node, valueIndex, 0, conditions);
 }
 
 
 
-Asteroid::Asteroid(const Minable *type, const DataNode &node, int valueIndex, std::size_t beltCount)
+Asteroid::Asteroid(const Minable *type, const DataNode &node, int valueIndex, std::size_t beltCount, const ConditionsStore *conditions)
 	: type(type)
 {
-	Load(node, valueIndex, max(beltCount, static_cast<size_t>(1)));
+	Load(node, valueIndex, max(beltCount, static_cast<size_t>(1)), conditions);
 }
 
 
@@ -72,7 +72,7 @@ int Asteroid::Belt() const
 
 
 
-void Asteroid::Load(const DataNode &node, int valueIndex, std::size_t beltCount)
+void Asteroid::Load(const DataNode &node, int valueIndex, std::size_t beltCount, const ConditionsStore *conditions)
 {
 	const bool isMinable = beltCount > 0;
 
@@ -97,7 +97,7 @@ void Asteroid::Load(const DataNode &node, int valueIndex, std::size_t beltCount)
 		else if(isMinable && key == "belt")
 			belt = child.Value(1);
 		else if(key == "to" && child.Token(1) == "spawn")
-			toSpawn.Load(child);
+			toSpawn.Load(child, conditions);
 		else
 			child.PrintTrace("Warning: Unrecognized asteroid/minable sub-key:");
 	}
@@ -112,7 +112,7 @@ void Asteroid::Load(const DataNode &node, int valueIndex, std::size_t beltCount)
 
 
 
-bool Asteroid::ShouldSpawn(const ConditionsStore &conditionsStore) const
+bool Asteroid::ShouldSpawn() const
 {
-	return toSpawn.Test(conditionsStore);
+	return toSpawn.Test();
 }

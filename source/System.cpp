@@ -217,7 +217,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 						}
 				}
 				else
-					asteroids.emplace_back(value, child, valueIndex);
+					asteroids.emplace_back(value, child, valueIndex, playerConditions);
 			}
 			else
 				child.PrintTrace("Error: Expected key to have at least one value:");
@@ -237,7 +237,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 						}
 				}
 				else
-					asteroids.emplace_back(type, child, valueIndex, belts.size());
+					asteroids.emplace_back(type, child, valueIndex, belts.size(), playerConditions);
 			}
 			else
 				child.PrintTrace("Error: Expected key to have at least one value:");

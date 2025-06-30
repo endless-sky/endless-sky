@@ -28,8 +28,9 @@ class Minable;
 // Note: Not to be confused with AsteroidField::Asteroid.
 class Asteroid {
 public:
-	Asteroid(const std::string &name, const DataNode &node, int valueIndex);
-	Asteroid(const Minable *type, const DataNode &node, int valueIndex, std::size_t beltCount);
+	Asteroid(const std::string &name, const DataNode &node, int valueIndex, const ConditionsStore *conditions);
+	Asteroid(const Minable *type, const DataNode &node, int valueIndex, std::size_t beltCount,
+		const ConditionsStore *conditions);
 
 	const std::string &Name() const;
 	const Minable *Type() const;
@@ -38,7 +39,7 @@ public:
 	int Belt() const;
 
 	// Determine whether this minable should be placed according to the "to spawn" conditions. Un-cached.
-	bool ShouldSpawn(const ConditionsStore &conditionsStore) const;
+	bool ShouldSpawn() const;
 
 
 private:
@@ -50,5 +51,5 @@ private:
 	ConditionSet toSpawn;
 
 	// Load an asteroids/minables description. Note the node is the one holding the "[add] (asteroids|minables)" tokens.
-	void Load(const DataNode &node, int valueIndex, std::size_t beltCount);
+	void Load(const DataNode &node, int valueIndex, std::size_t beltCount, const ConditionsStore *conditions);
 };

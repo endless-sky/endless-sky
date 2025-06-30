@@ -1478,11 +1478,10 @@ void Engine::EnterSystem()
 		}
 	}
 
-	ConditionsStore &conditions = player.Conditions();
 	asteroids.Clear();
 	for(const Asteroid &a : system->Asteroids())
 	{
-		if(!a.ShouldSpawn(conditions))
+		if(!a.ShouldSpawn())
 			continue;
 		// Check whether this is a minable or an ordinary asteroid.
 		if(a.Type())
