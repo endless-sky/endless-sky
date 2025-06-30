@@ -110,6 +110,8 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
+	void DrawButton(const std::string &name, const Point &center, const Point &buttonSize, bool isActive,
+		bool hovering, char keyCode);
 	void CheckSelection();
 
 
@@ -179,6 +181,7 @@ protected:
 	double previousX = 0.;
 
 	std::vector<Zone> zones;
+	std::vector<ClickZone<char>> buttonZones;
 	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
