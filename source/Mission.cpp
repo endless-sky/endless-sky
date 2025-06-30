@@ -1565,9 +1565,9 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		subs["<payment>"] = Format::CreditString(abs(result.paymentApparent));
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
 	auto getDisplayName = [](const auto *const &item)
-		{
-			return item->DisplayName();
-		};
+	{
+		return item->DisplayName();
+	};
 	if(!result.stopovers.empty())
 	{
 		subs["<stopovers>"] = Format::List<set, const Planet *>(result.stopovers,
