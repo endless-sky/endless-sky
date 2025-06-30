@@ -103,7 +103,10 @@ void Asteroid::Load(const DataNode &node, int valueIndex, std::size_t beltCount,
 	}
 
 	if(count <= 0)
+	{
 		node.PrintTrace("Error: asteroid/minable must have a positive count:");
+		count = 1;
+	}
 	else if(energy <= 0.)
 		node.PrintTrace("Error: asteroid/minable must have a positive energy:");
 	else if(valueIndex == 1 && static_cast<unsigned>(belt) > static_cast<unsigned>(beltCount))
