@@ -974,7 +974,6 @@ mission "There Might Be Riots part 2"
 	passengers 8
 	to offer
 		has "There Might Be Riots 1: done"
-		has "Deep Archaeology 5: done"
 		random < 30
 	
 	on offer
@@ -1151,7 +1150,7 @@ mission "There Might Be Riots part 3B"
 		personality heroic nemesis
 		fleet
 			variant
-				"Combat Drone" 15
+				"Combat Drone" 5
 	npc
 		government "Team Red"
 		personality waiting heroic
@@ -1163,7 +1162,7 @@ mission "There Might Be Riots part 3B"
 		personality waiting heroic
 		fleet
 			variant
-				"Combat Drone" 35
+				"Combat Drone" 25
 	
 	on visit
 		dialog `You arrive on <planet>, but realize that your escort carrying the band and their supplies has not arrived yet. Better depart and wait for your escorts to enter the system.`
@@ -7314,7 +7313,7 @@ mission "Adelita 2"
 
 			`	"Great. My name is Alejandra, but call me Ale. Here's the plan: you're going to drop me and a friend off at <planet>, where we'll film the conditions in a secret Syndicate sweatshop.`
 			`	"Thing is, these aren't just poorly paid factory workers. They're slaves. As you can imagine, we can't get in as regular workers, so with a bit of hacking, we got ourselves jobs on-site as private security. We know that one of the Syndicate's 'trusted contractors' is getting the slaves from the pirates on Covert, and we also know where they're doing the transaction.`
-			`	"So while we get the footage we need in the factories, you'll be going with my associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on <planet>."`
+			`	"So while we get the footage we need in the factories, you'll be going with my associate, Bunker, to spy on the Syndicate's rendezvous with the pirates on Hippocrates."`
 			choice
 				`	"Hold on, pirates?"`
 				`	"Won't this get me in trouble with the Syndicate?"`
@@ -7517,10 +7516,8 @@ mission "Syndicate Business 1"
 	to offer
 		random < 40
 		credits > 5000000
-		"combat rating" > 50
 	source
 		government "Syndicate"
-		attributes "core"
 		not planet "Sunracer"
 	waypoint "Moktar"
 	destination "Sunracer"
@@ -7556,7 +7553,7 @@ mission "Syndicate Business 1"
 			label negotiate
 			`	"Aye, then I won't negotiate with you! Prepare to meet your end!"`
 			label power
-			`	The Vanguard's engines roar to life and you see a baker's half dozen fixed guns take aim at you, ready to strike.`
+			`	The Vanguard's engines roar to life and you see a baker's half-dozen guns take aim at your ship, ready to fire.`
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
@@ -7807,18 +7804,12 @@ mission "Syndicate Business 2"
 
 event "syndicate business 1m investment done"
 
-# Part 2
-# Best case: 10m, 8200 per day best case out of the negative after ~3.3 years
-# Worst case: 11m, 4000 per day worst case out of the negative after ~6.8 years (plus a little longer for 10M-->11M)
-# Super Worst case: 11m, 4000 per day worst case out of the negative after over 20 years if you don't pay off the debt
-# Driven by if you were mean to Howard in part 1 and part 2, which of 3 investment options picked, and if you pay off debt ASAP
 
 mission "Syndicate Business 3"
 	name "Visit Howard on <planet>"
 	description "Howard wants to tell you about another investment opportunity."
 	source
 		government "Syndicate"
-		attributes "core"
 		not planet "Hephaestus"
 	destination "Hephaestus"
 	to offer
@@ -7836,7 +7827,6 @@ mission "Syndicate Business 3"
 			label rudemessage
 			`	"<first> <last>, my bank contact has informed me that you've achieved modest success. Meanwhile, I've come across an investment opportunity that far surpasses our previous venture. Meet me at my new office on <planet> (note the address, I've moved up since my promotion). I expect our meeting to be prompt and efficient."`
 			label signoff
-
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 			choice
@@ -7904,7 +7894,6 @@ mission "Syndicate Business 3"
 mission "Syndicate Business 4"
 	name "Escort Howard to <planet>"
 	description "Escort Howard from Megaparsec Inc. to <planet> to learn what favor is needed in exchange for an investment opportunity."
-	priority
 	source "Hephaestus"
 	to offer
 		has "Syndicate Business 3: done"
@@ -7955,7 +7944,6 @@ mission "Syndicate Business 4"
 mission "Syndicate Business 5"
 	name "Disable a Marauder ship in <waypoints>"
 	description "Howard wants you to disable a Marauder ship in exchange for an investment opportunity."
-	priority
 	to offer
 		has "Syndicate Business 4: done"
 	source "Sunracer"
@@ -8026,7 +8014,7 @@ mission "Syndicate Business 5"
 			label accepting
 			`	Howard nods with approval. "Excellent. The Marauder ship was last seen near Oblate, in the outer rim of that system. It's likely to be well armed, so stay sharp. Once you've disabled it, head back here and I'll make sure you're properly compensated."`
 			branch blewupgolden
-				has "syndicate business golden jewel dead"
+				has "syndicate business: golden jewel dead"
 			`	He cracks a smile. "I remember the first time we met you left that Vanguard alive. Same deal here, but disable the Marauder. Hopefully that Vanguard's not still around.`
 				goto ending
 			label blewupgolden
@@ -8044,7 +8032,7 @@ mission "Syndicate Business 5"
 		system "Moktar"
 		ship "Vanguard" "Golden Jewel"
 		to despawn
-			has "syndicate business golden jewel dead"
+			has "syndicate business: golden jewel dead"
 		on encounter
 			conversation
 				`When you enter Moktar, your sensors detect the same pirate Vanguard from when you first rescued Howard. Your ship is immediately hailed, and the pirate opens communication.`
@@ -8058,9 +8046,9 @@ mission "Syndicate Business 5"
 				label whomst
 				`	"Bah, you banal, bumbling baboon! Prepare to meet your doom!"`
 				label power
-				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life and you see over half a dozen fixed guns take aim at your ship, ready to strike.`
+				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life and you see a baker's half-dozen guns take aim at your ship, ready to fire.`
 		on kill
-			set "syndicate business golden jewel dead"
+			set "syndicate business: golden jewel dead"
 			dialog "The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby."
 
 	on enter "Oblate"
@@ -8963,7 +8951,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 			`	Her hand vigorously shakes yours. "Gotta say you handled yourself well out there. Always good to see a capt'n worth more than the dust on their boots." She gives you an approving nod.`
 
 			label nextup
-			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over to the spaceport when you can. Probably have some credits or a photo op or something fancy and tedious waiting for you."`
+			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over to the spaceport on Rand when you can. Probably have some credits or a photo op or something fancy and tedious waiting for you."`
 			`	She shrugs, and winks, "Anyways, I got plenty of work that needs doing. Take care of yourself, Capt'n."`
 			`	With that she heads back to her freighter fleet.`
 
@@ -9010,7 +8998,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 			`	He gives you a sheepish smile and says, "This is a celebration in your honor, Hero of Rand."`
 			choice
 				`	"Hero of Rand?"`
-				`	"What do mean?"`
+				`	"What do you mean?"`
 				`	"So you lied to me."`
 			`	He shrugs. "I just thought it would be more fun this way. Who doesn't like surprises?"`
 			`	"Without you the entire planet would have defaulted. Our creditors were circling like vultures eager to assume ownership of all our production capabilities, and turn the population into indentured servants. The whole world would have been their debtor's prison."`
@@ -9133,20 +9121,11 @@ mission "Timothy Radrickson 4: Imprisoned"
 			`	Tom gives that sort of news anchor laugh that's neither committal nor haughty. "In that case, forget what I said about 20 years. Anything more than 5 years on Oblivion is a life sentence."`
 			`	Both news anchors laugh, and then segue into a story about highly intelligent ferrets that have learned to sing in German.`
 				accept
-	to complete
-		never
-
-mission "Timothy Radrickson 5: Oblivion Meeting"
-	landing
-	to offer
-		random < 90
-		has "Timothy Radrickson 4: Imprisoned: active"
-	source "Oblivion"
-	invisible
-	on offer
+	on complete
 		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
 		log `Oblivion had not been kind to Timothy. The last time he had been seen alive he was dying the slow, toxic death that world is famed for. Asked me to help him.`
 		set "timothy radrickson 4 log entry correct"
+		event "rad tim dead" 1
 		conversation
 			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick and infirm linger, looking for a handout; the price of progress on such a hostile world.`
 			`	Among the crowd one face draws your attention. A worker, unsupervised, is moving around a trolley of minerals by your ship as you have it refueled. His complexion is sallow, and his skin seems to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize you recognize him.`
@@ -9158,10 +9137,8 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 				`	"Shouldn't have broken the law."`
 			`	"I could use your help. Just to buy some things. Might help." His red eyes glance side to side before he says, conspiratorially, "Meet me tonight in the spaceport. Outside the Stephenson warehouse. Stephenson. I'll tell you what I need."`
 			`	With that, he returns to moving the mineral trolley, leaving you to yourself.`
-				accept
-	on enter
-		fail
 
+event "rad tim dead"
 
 mission "Timothy Radrickson 5a: Timshank Redemption"
 	name "Meet Tim's contact on <planet>"
@@ -9175,8 +9152,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 		"timothy radrickson suit" >= 1
 		"timothy radrickson id" >= 1
 	to offer
-		has "Timothy Radrickson 5: Oblivion Meeting: offered"
-		not "Timothy Radrickson 5: Oblivion Meeting: failed"
+		has "Timothy Radrickson 4: Imprisoned: done"
+		not "event: rad tim dead"
 	on offer
 		conversation
 			`Even after donning a particulate mask, Oblivion's toxic atmosphere is so thick it seems as if you could swallow it; it doesn't help that the air somehow feels even denser at night. The warehouse marked "Stephenson Heavy Industries" turns out to be at the very edge of the spaceport's boundary, and all you see when you get there is a lone box truck parked in the loading bay.`
@@ -10378,7 +10355,7 @@ mission "Timothy Radrickson: Log Fix 3"
 	invisible
 	to offer
 		has "Timothy Radrickson 3d: Return to Rand: done"
-		not "Timothy Radrickson 5: Oblivion Meeting: offered"
+		not "Timothy Radrickson 4: Imprisoned: done"
 		not "timothy radrickson 3 log entry correct"
 		not "Timothy Radrickson: Log Fix 2: offered"
 	on offer
@@ -10392,7 +10369,7 @@ mission "Timothy Radrickson: Log Fix 4"
 	landing
 	invisible
 	to offer
-		has "Timothy Radrickson 5: Oblivion Meeting: offered"
+		has "Timothy Radrickson 4: Imprisoned: done"
 		not "Timothy Radrickson 5a: Timshank Redemption: offered"
 		not "timothy radrickson 4 log entry correct"
 		not "Timothy Radrickson: Log Fix 3: offered"

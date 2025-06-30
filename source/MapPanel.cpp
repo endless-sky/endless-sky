@@ -182,52 +182,15 @@ namespace {
 		return false;
 	}
 
-	pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, const int step)
+	pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, int step)
 	{
 		bool blink = false;
 		int daysLeft = 1;
 		if(mission.Deadline())
 		{
-			daysLeft = mission.Deadline() - player.GetDate() + 1;
-			if(daysLeft > 0)
-			{
-				if(Preferences::Has("Deadline blink by distance"))
-				{
-					DistanceMap distance(player, player.GetSystem());
-					if(distance.HasRoute(*mission.Destination()->GetSystem()))
-					{
-						set<const System *> toVisit;
-						for(const Planet *stopover : mission.Stopovers())
-						{
-							if(distance.HasRoute(*stopover->GetSystem()))
-								toVisit.insert(stopover->GetSystem());
-							--daysLeft;
-						}
-						for(const System *waypoint : mission.Waypoints())
-							if(distance.HasRoute(*waypoint))
-								toVisit.insert(waypoint);
-
-						int systemCount = toVisit.size();
-						for(int i = 0; i < systemCount; ++i)
-						{
-							const System *closest;
-							int minimalDist = numeric_limits<int>::max();
-							for(const System *sys : toVisit)
-								if(distance.Days(*sys) < minimalDist)
-								{
-									closest = sys;
-									minimalDist = distance.Days(*sys);
-								}
-							daysLeft -= distance.Days(*closest);
-							distance = DistanceMap(player, closest);
-							toVisit.erase(closest);
-						}
-						daysLeft -= distance.Days(*mission.Destination()->GetSystem());
-					}
-				}
-				int blinkFactor = min(6, max(1, daysLeft));
-				blink = (step % (10 * blinkFactor) > 5 * blinkFactor);
-			}
+			daysLeft = player.RemainingDeadline(mission);
+			int blinkFactor = min(6, max(1, daysLeft));
+			blink = (step % (10 * blinkFactor) > 5 * blinkFactor);
 		}
 		return pair<bool, bool>(blink, daysLeft > 0);
 	}
@@ -263,6 +226,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	fromMission(fromMission)
 {
 	Audio::Pause();
+	UI::PlaySound(UI::UISound::SOFT);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 	// Recalculate the fog each time the map is opened, just in case the player
@@ -292,6 +256,13 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	double playerRange = player.Flagship() ? player.Flagship()->JumpNavigation().JumpRange() : 0.;
 	if(systemRange || playerRange)
 		playerJumpDistance = systemRange ? systemRange : playerRange;
+
+	// Recalculate any mission deadlines if the player is landed in case
+	// changes to the player's flagship have changed the deadline calculations.
+	// If the player is not landed, then the deadlines will have already been
+	// recalculated on the day change.
+	if(player.GetPlanet())
+		player.CalculateRemainingDeadlines();
 
 	CenterOnSystem(selectedSystem, true);
 }
@@ -377,7 +348,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1280
+	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1300
 		? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
 
@@ -443,13 +414,21 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 	}
 
 	// Draw a warning if the selected system is not routable.
-
 	if(selectedSystem != &playerSystem && !distance.HasRoute(*selectedSystem))
 	{
+		static const string NO_SHIP = "You do not have a flagship to jump with!";
+		static const string NO_DRIVE = "You do not have a drive installed to be able to jump!";
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
-		const string &message = player.CanView(*selectedSystem) ? UNAVAILABLE : UNKNOWN;
-		info.SetString("route error", message);
+		const Ship *flagship = player.Flagship();
+		if(!flagship)
+			info.SetString("route error", NO_SHIP);
+		else if(!flagship->JumpNavigation().HasAnyDrive())
+			info.SetString("route error", NO_DRIVE);
+		else if(player.CanView(*selectedSystem))
+			info.SetString("route error", UNAVAILABLE);
+		else
+			info.SetString("route error", UNKNOWN);
 	}
 
 	mapInterface->Draw(info, this);
@@ -583,6 +562,12 @@ bool MapPanel::AllowsFastForward() const noexcept
 
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	// When changing the map mode, explicitly close all child panels (for example, scrollable text boxes).
+	auto removeChildren = [this]()
+	{
+		for(auto &child : GetChildren())
+			RemoveChild(child.get());
+	};
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
@@ -590,26 +575,31 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
 		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapShipyardPanel(*this));
 	}
 	else if(key == 'o' && buttonCondition != "is outfitters")
 	{
 		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapOutfitterPanel(*this));
 	}
 	else if(key == 'i' && buttonCondition != "is missions")
 	{
 		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MissionPanel(*this));
 	}
 	else if(key == 'p' && buttonCondition != "is ports")
 	{
 		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapDetailPanel(*this, false));
 	}
 	else if(key == 't' && buttonCondition != "is stars")
 	{
 		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapDetailPanel(*this, true));
 	}
 	else if(key == 'f')
@@ -625,6 +615,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else
 		return false;
 
+	UI::PlaySound(UI::UISound::SOFT);
 	return true;
 }
 
@@ -937,7 +928,7 @@ bool MapPanel::IsSatisfied(const Mission &mission) const
 
 bool MapPanel::IsSatisfied(const PlayerInfo &player, const Mission &mission)
 {
-	return mission.IsSatisfied(player) && !mission.IsFailed(player);
+	return mission.IsSatisfied(player) && !mission.IsFailed();
 }
 
 
@@ -1061,7 +1052,7 @@ void MapPanel::UpdateCache()
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
-							size += object.GetPlanet()->Shipyard().size();
+							size += object.GetPlanet()->ShipyardStock().size();
 					value = size ? min(10., size) / 10. : -1.;
 				}
 				else if(commodity == SHOW_OUTFITTER)
@@ -1069,7 +1060,7 @@ void MapPanel::UpdateCache()
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
-							size += object.GetPlanet()->Outfitter().size();
+							size += object.GetPlanet()->OutfitterStock().size();
 					value = size ? min(60., size) / 60. : -1.;
 				}
 				else if(commodity == SHOW_VISITED)

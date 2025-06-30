@@ -49,7 +49,7 @@ const double System::DEFAULT_NEIGHBOR_DISTANCE = 100.;
 
 
 // Load a system's description.
-void System::Load(const DataNode &node, Set<Planet> &planets)
+void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 		return;
@@ -255,7 +255,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
-				fleets.emplace_back(fleet, child.Value(valueIndex + 1), child);
+				fleets.emplace_back(fleet, child.Value(valueIndex + 1), child, playerConditions);
 		}
 		else if(key == "raid")
 			RaidFleet::Load(raidFleets, child, remove, valueIndex);
@@ -273,7 +273,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			else
 			{
-				hazards.emplace_back(hazard, child.Value(valueIndex + 1), child);
+				hazards.emplace_back(hazard, child.Value(valueIndex + 1), child, playerConditions);
 			}
 		}
 		else if(key == "belt")
@@ -338,7 +338,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						it->parent -= removed;
 			}
 			else
-				LoadObject(child, planets);
+				LoadObject(child, planets, playerConditions);
 		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
@@ -369,7 +369,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "arrival")
 		{
-			if(child.Size() >= 2)
+			if(hasValue)
 			{
 				extraHyperArrivalDistance = child.Value(1);
 				extraJumpArrivalDistance = fabs(child.Value(1));
@@ -377,9 +377,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			for(const DataNode &grand : child)
 			{
 				const string &type = grand.Token(0);
-				if(type == "link" && grand.Size() >= 2)
+				bool grandHasValue = grand.Size() >= 2;
+				if(type == "link" && grandHasValue)
 					extraHyperArrivalDistance = grand.Value(1);
-				else if(type == "jump" && grand.Size() >= 2)
+				else if(type == "jump" && grandHasValue)
 					extraJumpArrivalDistance = fabs(grand.Value(1));
 				else
 					grand.PrintTrace("Warning: Skipping unsupported arrival distance limitation:");
@@ -387,7 +388,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(key == "departure")
 		{
-			if(child.Size() >= 2)
+			if(hasValue)
 			{
 				jumpDepartureDistance = child.Value(1);
 				hyperDepartureDistance = fabs(child.Value(1));
@@ -395,15 +396,16 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			for(const DataNode &grand : child)
 			{
 				const string &type = grand.Token(0);
-				if(type == "link" && grand.Size() >= 2)
+				bool grandHasValue = grand.Size() >= 2;
+				if(type == "link" && grandHasValue)
 					hyperDepartureDistance = grand.Value(1);
-				else if(type == "jump" && grand.Size() >= 2)
+				else if(type == "jump" && grandHasValue)
 					jumpDepartureDistance = fabs(grand.Value(1));
 				else
 					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
 			}
 		}
-		else if(key == "invisible fence" && child.Size() >= 2)
+		else if(key == "invisible fence" && hasValue)
 			invisibleFenceRadius = max(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -481,13 +483,13 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 
 	// Some systems in the game may be considered inaccessible. If this system is inaccessible,
 	// then it shouldn't have accessible links or jump neighbors.
-	if(inaccessible)
+	if(!IsValid() || inaccessible)
 		return;
 
 	// If linked systems are inaccessible, then they shouldn't be a part of the accessible links
 	// set that gets used for navigation and other purposes.
 	for(const System *link : links)
-		if(!link->Inaccessible())
+		if(link->IsValid() && !link->Inaccessible())
 			accessibleLinks.insert(link);
 
 	// Neighbors are cached for each system for the purpose of quicker
@@ -1020,7 +1022,8 @@ const vector<RaidFleet> &System::RaidFleets() const
 
 
 
-void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
+void System::LoadObject(const DataNode &node, Set<Planet> &planets,
+		const ConditionsStore *playerConditions, int parent)
 {
 	int index = objects.size();
 	objects.push_back(StellarObject());
@@ -1037,10 +1040,12 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "hazard" && child.Size() >= 3)
-			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2), child);
-		else if(child.Token(0) == "object")
-			LoadObject(child, planets, index);
+		const string &key = child.Token(0);
+		if(key == "hazard" && child.Size() >= 3)
+			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2),
+				child, playerConditions);
+		else if(key == "object")
+			LoadObject(child, planets, playerConditions, index);
 		else
 			LoadObjectHelper(child, object);
 	}
@@ -1051,16 +1056,16 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing) const
 {
 	const string &key = node.Token(0);
-	bool hasValue = (node.Size() >= 2);
+	bool hasValue = node.Size() >= 2;
 	if(key == "sprite" && hasValue)
 	{
 		object.LoadSprite(node);
 		if(removing)
 			return;
-		object.isStar = !node.Token(1).compare(0, 5, "star/");
+		object.isStar = node.Token(1).starts_with("star/");
 		if(!object.isStar)
 		{
-			object.isStation = !node.Token(1).compare(0, 14, "planet/station");
+			object.isStation = node.Token(1).starts_with("planet/station");
 			object.isMoon = (!object.isStation && object.parent >= 0 && !objects[object.parent].IsStar());
 		}
 	}
@@ -1103,8 +1108,8 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	for(const auto &it : systems)
 	{
 		const System &other = it.second;
-		// Skip systems that have no name or that are inaccessible.
-		if(it.first.empty() || other.TrueName().empty() || other.Inaccessible())
+		// Skip systems that are invalid or inaccessible.
+		if(!other.IsValid() || other.Inaccessible())
 			continue;
 
 		if(&other != this && other.Position().Distance(position) <= distance)

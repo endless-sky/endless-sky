@@ -44,19 +44,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-namespace {
-	// Format the given double with one decimal place.
-	string Round(double value)
-	{
-		int integer = round(value * 10.);
-		string result = to_string(integer / 10);
-		result += ".0";
-		result.back() += integer % 10;
-
-		return result;
-	}
-}
-
 
 
 // Constructor.
@@ -186,18 +173,18 @@ void BoardingPanel::Draw()
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
 		info.SetString("your crew", to_string(crew));
 		info.SetString("your attack",
-			Round(attackOdds.AttackerPower(crew)));
+			Format::Decimal(attackOdds.AttackerPower(crew), 1));
 		info.SetString("your defense",
-			Round(defenseOdds.DefenderPower(crew)));
+			Format::Decimal(defenseOdds.DefenderPower(crew), 1));
 	}
 	int vCrew = victim ? victim->Crew() : 0;
 	if(victim && (canCapture || victim->IsYours()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
-			Round(defenseOdds.AttackerPower(vCrew)));
+			Format::Decimal(defenseOdds.AttackerPower(vCrew), 1));
 		info.SetString("enemy defense",
-			Round(attackOdds.DefenderPower(vCrew)));
+			Format::Decimal(attackOdds.DefenderPower(vCrew), 1));
 	}
 	if(victim && canCapture && !victim->IsYours())
 	{
@@ -208,13 +195,13 @@ void BoardingPanel::Draw()
 		if(!isCapturing)
 			odds *= (1. - victim->Attributes().Get("self destruct"));
 		info.SetString("attack odds",
-			Round(100. * odds) + "%");
+			Format::Decimal(100. * odds, 1) + "%");
 		info.SetString("attack casualties",
-			Round(attackOdds.AttackerCasualties(crew, vCrew)));
+			Format::Decimal(attackOdds.AttackerCasualties(crew, vCrew), 1));
 		info.SetString("defense odds",
-			Round(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
+			Format::Decimal(100. * (1. - defenseOdds.Odds(vCrew, crew)), 1) + "%");
 		info.SetString("defense casualties",
-			Round(defenseOdds.DefenderCasualties(vCrew, crew)));
+			Format::Decimal(defenseOdds.DefenderCasualties(vCrew, crew), 1));
 	}
 
 	const Interface *boarding = GameData::Interfaces().Get("boarding");

@@ -34,6 +34,9 @@ on:
     - Doxyfile
     - keys.txt
 
+permissions:
+  contents: read
+  actions: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -60,31 +63,46 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+        fetch-depth: '10'
     - name: Install development dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2 libltdl-dev
+        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2 libltdl-dev
     - name: Disable VM sound card
       run: |
         sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
-    - name: Setup cached directories
-      uses: actions/cache@v4
+    - name: Find cache keys
+      run: |
+        echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+        git log --pretty=format:'${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+        echo -e '\nEOF' >> restore_keys.txt
+        cat restore_keys.txt >> "$GITHUB_ENV"
+        echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+    - name: Setup ccache
+      uses: hendrikmuhs/ccache-action@v1
       with:
-        path: /home/runner/.cache/sccache
-        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-${{ github.ref }}
-        restore-keys: |
-          ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-refs/heads/master
-    - name: Setup sccache
-      uses: Mozilla-Actions/sccache-action@v0.0.5
+        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-${{ env.CACHE_HASH }}
+        restore-keys: ${{ env.RESTORE_KEYS }}
+        evict-old-files: '2d'
+        append-timestamp: 'false'
+    - name: Adjust version strings
+      run: ./utils/cd_update_versions.sh
+    - name: Setup vcpkg cache
+      uses: TAServers/vcpkg-cache@v3
+      id: vcpkg-cache
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
-        buildPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
-        testPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+    - name: Run CMake
+      run: |
+        cmake --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        cmake --build build --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+      env:
+        VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
     - name: Run Benchmarks
       run: ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci-benchmark' || 'linux-gles-ci-benchmark' }}
 
@@ -100,15 +118,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           show-progress: false
-      - name: Setup cached directories
-        uses: actions/cache@v4
-        with:
-          path: /home/runner/.cache/sccache
-          key: ${{ runner.os }}-steam-ci-sccache-${{ github.ref }}
-          restore-keys: |
-            ${{ runner.os }}-steam-ci-sccache-refs/heads/master
-      - name: Setup sccache
-        uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Build Endless Sky
         run: |
           cd steam
@@ -130,24 +139,40 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
-    - name: Setup cached directories
-      uses: actions/cache@v4
+        fetch-depth: '10'
+    - name: Find cache keys
+      run: |
+        echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+        git log --pretty=format:'${{ runner.os }}-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+        echo -e '\nEOF' >> restore_keys.txt
+        cat restore_keys.txt >> "$GITHUB_ENV"
+        echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+      shell: bash
+    - name: Setup ccache
+      uses: hendrikmuhs/ccache-action@v1
       with:
-        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
-        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
-        restore-keys: |
-          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
-    - name: Setup sccache
-      uses: Mozilla-Actions/sccache-action@v0.0.5
+        key: ${{ runner.os }}-ci-${{ env.CACHE_HASH }}
+        restore-keys: ${{ env.RESTORE_KEYS }}
+        evict-old-files: '2d'
+        append-timestamp: 'false'
+    - name: Adjust version strings
+      run: ./utils/cd_update_versions.sh
+    - name: Setup vcpkg cache
+      uses: TAServers/vcpkg-cache@v3
+      id: vcpkg-cache
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'mingw-ci'
-        buildPreset: 'mingw-ci'
-        testPreset: 'mingw-ci'
+        vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+    - name: Run CMake
+      run: |
+        cmake --preset mingw-ci
+        cmake --build build --preset mingw-ci
+        ctest --preset mingw-ci
+      env:
+        VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
     - name: Run Benchmarks
       run: ctest --preset mingw-ci-benchmark
     - name: Upload binary
@@ -173,24 +198,40 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
-    - name: Setup cached directories
-      uses: actions/cache@v4
+        fetch-depth: '10'
+    - name: Find cache keys
+      run: |
+        echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+        git log --pretty=format:'${{ runner.os }}-clang-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+        echo -e '\nEOF' >> restore_keys.txt
+        cat restore_keys.txt >> "$GITHUB_ENV"
+        echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+      shell: bash
+    - name: Setup ccache
+      uses: hendrikmuhs/ccache-action@v1
       with:
-        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
-        key: ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-${{ github.ref }}
-        restore-keys: |
-          ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-refs/heads/master
-    - name: Setup sccache
-      uses: Mozilla-Actions/sccache-action@v0.0.5
+        key: ${{ runner.os }}-clang-ci-${{ env.CACHE_HASH }}
+        restore-keys: ${{ env.RESTORE_KEYS }}
+        evict-old-files: '2d'
+        append-timestamp: 'false'
+    - name: Adjust version strings
+      run: ./utils/cd_update_versions.sh
+    - name: Setup vcpkg cache
+      uses: TAServers/vcpkg-cache@v3
+      id: vcpkg-cache
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'clang-cl-ci'
-        buildPreset: 'clang-cl-ci'
-        testPreset: 'clang-cl-ci'
+        vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+    - name: Run CMake
+      run: |
+        cmake --preset clang-cl-ci
+        cmake --build build --preset clang-cl-ci
+        ctest --preset clang-cl-ci
+      env:
+        VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
     - name: Run Benchmarks
       run: ctest --preset clang-cl-ci-benchmark
 
@@ -206,26 +247,41 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
-    - name: Setup cached directories
-      uses: actions/cache@v4
-      with:
-        path: /Users/runner/Library/Caches/Mozilla.sccache
-        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
-        restore-keys: |
-          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
-    - name: Setup sccache
-      uses: Mozilla-Actions/sccache-action@v0.0.5
+        fetch-depth: '10'
     - name: Install pkg-config
       run: type -P pkg-config || brew install pkg-config
+    - name: Find cache keys
+      run: |
+        echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+        git log --pretty=format:'${{ runner.os }}-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+        echo -e '\nEOF' >> restore_keys.txt
+        cat restore_keys.txt >> "$GITHUB_ENV"
+        echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+    - name: Setup ccache
+      uses: hendrikmuhs/ccache-action@v1
+      with:
+        key: ${{ runner.os }}-ci-${{ env.CACHE_HASH }}
+        restore-keys: ${{ env.RESTORE_KEYS }}
+        evict-old-files: '2d'
+        append-timestamp: 'false'
+    - name: Adjust version strings
+      run: ./utils/cd_update_versions.sh
+    - name: Setup vcpkg cache
+      uses: TAServers/vcpkg-cache@v3
+      id: vcpkg-cache
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'macos-ci'
-        buildPreset: 'macos-ci'
-        testPreset: 'macos-ci'
+        vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+    - name: Run CMake
+      run: |
+        cmake --preset macos-ci
+        cmake --build build --preset macos-ci
+        ctest --preset macos-ci
+      env:
+        VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
 
@@ -242,26 +298,41 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
-    - name: Setup cached directories
-      uses: actions/cache@v4
-      with:
-        path: /Users/runner/Library/Caches/Mozilla.sccache
-        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
-        restore-keys: |
-          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
-    - name: Setup sccache
-      uses: Mozilla-Actions/sccache-action@v0.0.5
+        fetch-depth: '10'
     - name: Install pkg-config
       run: type -P pkg-config || brew install pkg-config
+    - name: Find cache keys
+      run: |
+        echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+        git log --pretty=format:'${{ runner.os }}-arm-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+        echo -e '\nEOF' >> restore_keys.txt
+        cat restore_keys.txt >> "$GITHUB_ENV"
+        echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+    - name: Setup ccache
+      uses: hendrikmuhs/ccache-action@v1
+      with:
+        key: ${{ runner.os }}-arm-ci-${{ env.CACHE_HASH }}
+        restore-keys: ${{ env.RESTORE_KEYS }}
+        evict-old-files: '2d'
+        append-timestamp: 'false'
+    - name: Adjust version strings
+      run: ./utils/cd_update_versions.sh
+    - name: Setup vcpkg cache
+      uses: TAServers/vcpkg-cache@v3
+      id: vcpkg-cache
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'macos-arm-ci'
-        buildPreset: 'macos-arm-ci'
-        testPreset: 'macos-arm-ci'
+        vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+    - name: Run CMake
+      run: |
+        cmake --preset macos-arm-ci
+        cmake --build build --preset macos-arm-ci
+        ctest --preset macos-arm-ci
+      env:
+        VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
     - name: Run Benchmarks
       run: ctest --preset macos-arm-ci-benchmark
 

@@ -281,6 +281,7 @@ outfit "Ka'het EMP Deployer"
 		"hit force" 135
 		"missile strength" 80
 	description "Eons ago, the Builders were attacked by alien ships which used weapons that ignored their hull and damaged their reactors. Although they never did recover any of these weapons, after years of research they managed to replicate their effects."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Ka'het Emergency Deployer"
 	category "Secondary Weapons"
@@ -541,3 +542,14 @@ outfit "Ka'het Compact Engine"
 		"frame rate" 30
 	"steering flare sound" "plasma small"
 	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Improvements over time allowed it to maintain a comparable efficiency to the larger models, although unlike those, it requires some energy to activate the engines in addition to the constant energy drain that all Builder-designed engines have."
+
+# Hand to Hand:
+
+outfit "Ka'het Electric Stunner"
+	category "Hand to Hand"
+	cost 103500
+	thumbnail "outfit/ka'het taser"
+	"capture attack" 1.3
+	"capture defense" 8.5
+	"unplunderable" 1
+	description "A weapon of curious design, clearly not built with human hands in mind. Its short range makes it effective only for defending against enemy boarders, using the knowledge of your ship's architecture to your advantage."

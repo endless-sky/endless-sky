@@ -654,8 +654,8 @@ mission "Remnant: Cognizance 18"
 				"'olofez" 10
 	on enter "Nenia"
 		dialog `As you enter the system, you quickly search for the Archon, but it is nowhere to be seen. A Korath hunting party, however, is clearly waiting for you and moves to attack. As their ships converge on you, the Pelicans immediately set to work collecting void sprites. As the last one closes its hold, the confirmation codes flash across your tactical screen. "Good to go."`
-	on enter "Pantica"
-		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquiline's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later, you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
+	on fail
+		fail "Remnant: Cognizance 18B"
 	on complete
 		log "Successfully introduced a flock of void sprites to Esquiline. Time will tell how they fare."
 		"salary: Remnant" = 2500
@@ -665,6 +665,19 @@ mission "Remnant: Cognizance 18"
 		conversation
 			`Moments later a ping comes in on the commlink, and Prefect Chilia appears on screen accompanied by Plume. Plume gestures first. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," he concludes.`
 			`	"In the meantime," continues Chilia, "We are allocating you a daily stipend from our resources to cover some of your ongoing crew, maintenance, and upgrading costs. A larger one-time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred during this mission."`
+
+
+
+mission "Remnant: Cognizance 18B"
+	entering
+	invisible
+	source
+		system "Nenia"
+	destination "Aventine"
+	to offer
+		has "Remnant: Cognizance 18: active"
+	on enter "Pantica"
+		dialog `You watch vigilantly as the Pelicans with the void sprites dip low into Esquiline's atmosphere and open their bay doors. The void sprites emerge tentatively, then confidently launch themselves into the clouds. A few minutes later, you receive a message from Esquiline station informing you that the first void sprite just swooped through the bay, grabbed one of the asteroid supplements, and vanished into the clouds again.`
 
 
 
@@ -1514,7 +1527,6 @@ mission "Remnant: Cognizance 34"
 	name "Observe changes in Postverta"
 	description "Something is going on outside, and Dusk would like you to take a look."
 	source "Ssil Vida"
-	waypoint "Postverta"
 	to offer
 		has "Remnant: Cognizance 33: done"
 	on offer
@@ -1525,10 +1537,14 @@ mission "Remnant: Cognizance 34"
 			`	Dusk looks around, and then gestures. "Captain <first>, please go investigate what is going on out there. Just take a good look around and then report back."`
 				accept
 	on enter "Postverta"
+		set "remnant: saw changed postverta"
 		conversation
 			`Just like the Remnant said, the system appears to be full of life. Where once there was just asteroids and a fairly empty system, there is now life signs everywhere. As you dodge among the asteroids, you note that most of them appear to have something growing on them: plants. Moss or fungus might be a better word, although you are fairly certain that nothing in the current classifications of life can adequately categorize what you can see outside. The sudden appearance of all this life is only compounded when your sensors light up to notify you that it is tracking several flocks of void sprites.`
 			`	As you move away from the station you continue to spot signs of life and activity everywhere: flitting among the rocks, soaring along the solar winds, and hunting amongst clouds. What is unclear, however, is where it came from. The only hint might be in the fact that your ship instruments report a sudden spike in the ambient energy in the surrounding area.`
+	to complete
+		has "remnant: saw changed postverta"
 	on complete
+		clear "remnant: saw changed postverta"
 		conversation
 			`Back on the station Dusk, Gavriil, and many of the Remnant on the station meet you in the docking bay. Dusk and several of the others just came back from walking out on the hull of <origin>, and they report seeing void sprites passing close to the station. They quickly pull the data from your ship sensors and throw it up on a holographic display. Everyone gathers around, intently drinking in the data and footage. They stand, stare, and ponder with intense concentration as the data continues to stream in from the station.`
 			`	Without warning, something clicks in your mind. Suddenly there is a hum of hundreds of conversations crowding your thoughts and a momentary feeling of seeing the system through thousands of eyes. You feel a wave of curiosity, and a glimpse of <origin> as it might have been once - shiny and gleaming. The image ages like a fast-forward video of untold thousands of orbits as the station wears and the sky changes around it. Then the image freezes on what appears to be the present day. A feeling of appreciation replaces the sense of curiosity, followed by a blurry image of the <ship> leaving the station and heading in a dozen different directions simultaneously, as if watching it splinter into ghosts.`
