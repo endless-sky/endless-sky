@@ -40475,10 +40475,10 @@ system Umbral
 system Unagi
 	pos -318.74 -561.26
 	government Pirate
-	attributes "north"
-	arrival 500
+	attributes "north" "notable star"
+	arrival 1500
 	"jump range" 69
-	habitable 320
+	habitable 1500
 	belt 1960
 	haze _menu/haze-brown
 	link Almaaz
@@ -40500,40 +40500,65 @@ system Unagi
 	trade Medical 797
 	trade Metal 479
 	trade Plastic 364
-	fleet "Small Northern Pirates" 800
+	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
-	fleet "Derelict Pirate" 10000
+	fleet "Old Northern Pirates" 6000
+	fleet "Derelict Pirate" 30000
+	fleet "Northern Priate Miners" 4000
+	fleet "Northern Pirate Merchants" 6000
 	fleet "Small Republic" 8000
-	fleet "Large Republic" 16000
 	fleet "Small Northern Merchants (Corrupt)" 8000
 	fleet "Large Northern Merchants (Corrupt)" 12000
+	fleet "Human Miners (Corrupt)" 9000
+	object
+		sprite star/g3
+		distance 1200
+		period 1200
+		object
+			sprite planet/lava3-b
+				scale 0.5
+			distance 144.41
+			period 38.804
+		object "New Montego"
+			sprite planet/ocean0-b
+			distance 430.25
+			period 199.556
+			object
+				sprite planet/rock13-b
+					scale 0.25
+				distance 137.055
+				period 25
+		object
+			sprite planet/mars-b
+			distance 772.94
+			period 480.511
 	object
 		sprite star/m0
-		period 10
-	object
-		sprite planet/lava3-b
-		distance 144.41
-		period 38.804
-	object
-		sprite planet/rock6
-		distance 430.25
-		period 199.556
-	object
-		sprite planet/mars-b
-		distance 772.94
-		period 480.511
-	object
-		sprite planet/gas13
-		distance 2336.98
-		period 2526.19
+		distance 1200
+		period 1200
+		offset 180
 		object
-			sprite planet/rock7-b
-			distance 293
-			period 13.456
+			sprite planet/rock20
+			distance 645.595
+			period 480.511
 		object
-			sprite planet/rhea
-			distance 388
-			period 20.506
+			sprite planet/rock6
+				scale 1.2
+			distance 430.25
+			period 199.556
+		object
+			sprite planet/gas13
+			distance 1188.753
+			period 726.19
+			offset 180
+			object
+				sprite planet/rock7-b
+				distance 293
+				period 13.456
+			object
+				sprite planet/rhea
+				distance 388
+				period 20.506
 
 system Unukalhai
 	pos -710 405

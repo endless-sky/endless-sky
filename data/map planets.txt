@@ -6736,6 +6736,23 @@ planet Masquerade
 		fleet "Large Northern Pirates" 5
 		fleet "Small Northern Pirates" 10
 
+planet "New Montego"
+	attributes frontier north "north pirate" pirate
+	landscape land/newmontego
+	description `At a glance, New Montego looks like the perfect tropical resort. Beautiful beaches, bright oceans, and a stable climate. However, the strong strong odour in the air says otherwise. The oceans here are filled with a volatile concoction of sulfur and lithium, perpetually heating the planet's atmosphere to above 310 kelvin year-round, getting their blue tint from the thick slurry of bacteria that seed the seas.`
+	description `	Most land on New Montego is split up into large islands that dot the expansive oceans, beaches accented with bright orange and yellow outcrops that contrast the saturated blue sky. Thick green grass covers most of the land, blanketing islands in a fluffy greenish-yellow carpet. Thick trees punch through the dense foliage, growing outwards instead of upwards, giving their branches a unique mushroom-like look.`
+	description `	While the planet might host the ideal conditions for growing tropical fruit, the threat of consistent acid rain makes finding suitable land difficult. Most farming is limited to small greenhouses built around the large, industrial towers that pull clean water from deep underground.`
+	spaceport `Despite not being safe for swimming, New Montego's oceans have a variety of industrial uses, specifially in the production of batteries. Large industrial pumps leech off the vibrant oceans, excracting and filtering valuable resources from the water through a snaking network of hissing, dripping pipes that weave over and around buildings like vines.`
+	spaceport `	Spaceports on New Montego are more of a collection of loosely bridged landing pads than a single coherent structure, often nested on top of sturdy outcrops and patches of open land between the trees. Small cargo buggies race along the beaches like a highway, kicking up sand that glistens in the sunlight. Since most towns build around the industry they service, it's led to a unique tangled architecture. Sandstone homes and bleached wood huts huddle up against towering metal structures, bridges built atop pipes and dangling from one platform to the next.`
+	outfitter "New Montego"
+	"required reputation" -10
+	bribe 0.1
+	security 0
+	tribute 200
+		threshold 1
+		fleet "Large Northern Pirates" 10
+		fleet "Small Northern Pirates" 20
+
 planet Nemo
 	attributes uninhabited
 	landscape land/station50
