@@ -4007,7 +4007,7 @@ mission "Smuggle gang to <planet>" "Pirate smuggle to <planet> [2]"
 		dialog phrase "generic passenger on visit"
 	on abort
 		"reputation: Pirate" -= 1
-		dialog "You turn the angry thugs away. This certianly doesn't help to establish your reputation as a reliable, no-questions-asked transporter."
+		dialog "You turn the angry thugs away. This certainly doesn't help to establish your reputation as a reliable, no-questions-asked transporter."
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
