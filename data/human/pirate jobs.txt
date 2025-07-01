@@ -3730,8 +3730,10 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [0]"
 		government "Pirate" "Repubic" "Deep" "Free Worlds" "Syndicate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 2000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -3751,8 +3753,10 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [1]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 2000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -3772,8 +3776,10 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [2]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 2000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -3793,8 +3799,10 @@ mission "Transport employees to <planet>" "Pirate transport to <planet> [3]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 2000
 		dialog "You find your contact on <planet> and they do a quick head count before handing you your payment of <payment>."
 
@@ -3814,8 +3822,10 @@ mission "Transport employees to <planet>" "Pirate transport to <planet> [4]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 2000
 		dialog "You find your contact on <planet> and they do a quick head count before handing you your payment of <payment>."
 
@@ -3835,8 +3845,10 @@ mission "Transport gang to <planet>" "Pirate transport to <planet> [5]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 1500
 		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
 
@@ -3858,8 +3870,10 @@ mission "Transport wealthy anarchists to <planet>"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 8000
 		dialog "One of the anarchist's guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
 
@@ -3880,8 +3894,10 @@ mission "Transport shady group to <planet>" "Transport shady group to <planet> (
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 3000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 
@@ -3902,8 +3918,10 @@ mission "Transport shady group to <planet>" "Transport shady group to <planet> (
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 3000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 
@@ -3931,7 +3949,7 @@ mission "Smuggle anarchists to <planet>" "Pirate smuggle to <planet> [0]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 4000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -3955,10 +3973,13 @@ mission "Smuggle employees to <planet>" "Pirate smuggle to <planet> [1]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "You turn the employees away at the spaceport, their employer won't be happy to hear this..."
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 4000
 		dialog "You find your contact on <planet> and they do a quick head count before handing you your payment of <payment>."
 
@@ -3984,10 +4005,13 @@ mission "Smuggle gang to <planet>" "Pirate smuggle to <planet> [2]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "You turn the angry thugs away. This certianly doesn't help to establish your reputation as a reliable, no-questions-asked transporter."
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 4000
 		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
 
@@ -4014,10 +4038,13 @@ mission "Smuggle wealthy druglord to <planet>"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "You turn the annoyed druglord and their disgruntled guards away, no doubt they'll tell their fellow elite about this."
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 9000
 		dialog "One of the druglord's guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
 
@@ -4042,8 +4069,13 @@ mission "Smuggle shady group to <planet>"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 1
+		dialog "You turn the annoyed, cloaked figures away. Whoever they are, they'll likely tell their colleagues about this."
+	on fail
+		"reputation: Pirate" -= 1
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 3000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 
@@ -4065,8 +4097,10 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [0]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 1000
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -4086,8 +4120,10 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [1]"
 		government "Pirate" "Repubic" "Deep" "Free Worlds" "Syndicate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 1000
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -4107,8 +4143,10 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [2]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 1000
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 
@@ -4128,8 +4166,10 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [3]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 1250
 		dialog "You find your contact on <planet>, and after a lengthy head count, they hand you your payment of <payment>."
 
@@ -4149,8 +4189,10 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [4]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on fail
+		"reputation: Pirate" -= 2
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 1250
 		dialog "You find your contact on <planet>, and after a lengthy head count, they hand you your payment of <payment>."
 
@@ -4176,10 +4218,13 @@ mission "Smuggle large gang to <planet>" "Pirate bulk smuggle to <planet> [0]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 2
+		dialog "You turn the large group of angry thugs away. This certianly doesn't help to establish your reputation as a reliable, no-questions-asked transporter."
 	on fail
-		"reputation: Pirate" -= 1
+		"reputation: Pirate" -= 2
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 1000
 		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
 
@@ -4204,10 +4249,13 @@ mission "Smuggle employees to <planet>" "Pirate bulk smuggle to <planet> [1]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 2
+		dialog "You turn the employees away at the spaceport, their employer won't be happy to hear this..."
 	on fail
-		"reputation: Pirate" -= 1
+		"reputation: Pirate" -= 2
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 2500
 		dialog "You find your contact on <planet>, and after a lengthy head count, they hand you your payment of <payment>."
 
@@ -4235,10 +4283,13 @@ mission "Smuggle cartel members to <planet>"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 2
+		dialog "You turn the annoyed cartel and their disgruntled guards away, no doubt they'll tell their fellow elite about this."
 	on fail
 		"reputation: Pirate" -= 2
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 8000
 		dialog "One of the cartel guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
 
@@ -4265,10 +4316,13 @@ mission "Smuggle armed group to <planet>" "Pirate bulk smuggle to <planet> [2]"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 2
+		dialog "You feel like the group leader is trying to explode your head with their intense stare. They reluctantly turn around, and will probably tell their fellow mercs about this."
 	on fail
 		"reputation: Pirate" -= 2
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 2500
 		dialog "The armed group marches out into the <planet>, the crowd giving way as they do. A well dressed member hands you a payment of <payment> before rejoining the squad at the front."
 
@@ -4290,9 +4344,9 @@ mission "Mass transport to <planet>" "Pirate mass transport to <planet> [0]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on fail
-		"reputation: Pirate" -= 2
+		"reputation: Pirate" -= 3
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 500
 		dialog "After a hectic unloading process at the <planet> spaceport, you collect your payment of <payment>."
 
@@ -4316,7 +4370,7 @@ mission "Mass transport to <planet>" "Pirate mass transport to <planet> [1]"
 	on fail
 		"reputation: Pirate" -= 4
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 500
 		dialog "After what feels like hours spent in the <planet> spaceport, finding lost baggage and organizing the unloading, you finally collect your payment of <payment>."
 
@@ -4344,9 +4398,12 @@ mission "Smuggle plunderbund elite to <planet>"
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
+	on abort
+		"reputation: Pirate" -= 2
+		dialog "You cast away the particularly disgruntled plunderbund and their extensive security compliment, much to their grand annoyance. No doubt, there will be much banter among the upper elite about this unfortunate act."
 	on fail
 		"reputation: Pirate" -= 6
 	on complete
-		payment
+		"pirate jobs" ++
 		payment 7000
 		dialog "One of the plunderbund's guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
