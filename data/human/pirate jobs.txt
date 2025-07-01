@@ -3727,7 +3727,7 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [0]"
 		government "Pirate"
 	destination
 		distance 2 12
-		government "Pirate" "Repubic" "Deep" "Free Worlds" "Syndicate"
+		government "Pirate" "Republic" "Deep" "Free Worlds" "Syndicate"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on fail
@@ -3786,7 +3786,7 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [2]"
 mission "Transport employees to <planet>" "Pirate transport to <planet> [3]"
 	job
 	repeat
-	description "A ship scrapping opperation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
+	description "A ship scrapping operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 2 10 .8
 	to offer
 		random < 50
@@ -3809,7 +3809,7 @@ mission "Transport employees to <planet>" "Pirate transport to <planet> [3]"
 mission "Transport employees to <planet>" "Pirate transport to <planet> [4]"
 	job
 	repeat
-	description "A narcotics opperation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
+	description "A narcotics operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 2 10 .8
 	to offer
 		random < 50
@@ -3959,7 +3959,7 @@ mission "Smuggle employees to <planet>" "Pirate smuggle to <planet> [1]"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "An illegal opperation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	description "An illegal operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
 	passengers 2 10 .8
 	illegal 50000 `Your ship is boarded and the employees are escorted to the brig. Their employeer won't be happy to hear this...`
 	to offer
@@ -4117,7 +4117,7 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [1]"
 		government "Pirate"
 	destination
 		distance 2 12
-		government "Pirate" "Repubic" "Deep" "Free Worlds" "Syndicate"
+		government "Pirate" "Republic" "Deep" "Free Worlds" "Syndicate"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on fail
@@ -4153,7 +4153,7 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [2]"
 mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [3]"
 	job
 	repeat
-	description "A large ship scrapping opperation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
+	description "A large ship scrapping operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .6
 	to offer
 		random < 350
@@ -4176,7 +4176,7 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [3]"
 mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [4]"
 	job
 	repeat
-	description "A large narcotics opperation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
+	description "A large narcotics operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .6
 	to offer
 		random < 350
@@ -4220,7 +4220,7 @@ mission "Smuggle large gang to <planet>" "Pirate bulk smuggle to <planet> [0]"
 		dialog phrase "generic passenger on visit"
 	on abort
 		"reputation: Pirate" -= 2
-		dialog "You turn the large group of angry thugs away. This certianly doesn't help to establish your reputation as a reliable, no-questions-asked transporter."
+		dialog "You turn the large group of angry thugs away. This certainly doesn't help to establish your reputation as a reliable, no-questions-asked transporter."
 	on fail
 		"reputation: Pirate" -= 2
 	on complete
@@ -4234,7 +4234,7 @@ mission "Smuggle employees to <planet>" "Pirate bulk smuggle to <planet> [1]"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "A large, illegal opperation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	description "A large, illegal operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
 	passengers 11 30 .8
 	illegal 100000 `Your ship is boarded and the employees are escorted to the brig. Their employeer won't be happy to hear this...`
 	to offer
