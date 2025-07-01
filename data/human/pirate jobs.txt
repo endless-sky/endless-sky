@@ -3722,7 +3722,7 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [0]"
 	to offer
 		random < 50
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -100
 	source
 		government "Pirate"
 	destination
@@ -3743,7 +3743,7 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [1]"
 	to offer
 		random < 50
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -100
 	source
 		government "Pirate"
 	destination
@@ -3764,7 +3764,7 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [2]"
 	to offer
 		random < 50
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -100
 	source
 		government "Pirate"
 	destination
@@ -3785,7 +3785,7 @@ mission "Transport employees to <planet>" "Pirate transport to <planet> [3]"
 	to offer
 		random < 50
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -3806,7 +3806,7 @@ mission "Transport employees to <planet>" "Pirate transport to <planet> [4]"
 	to offer
 		random < 50
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -3827,7 +3827,7 @@ mission "Transport gang to <planet>" "Pirate transport to <planet> [5]"
 	to offer
 		random < 150
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -3872,7 +3872,7 @@ mission "Transport shady group to <planet>" "Transport shady group to <planet> (
 	to offer
 		random < 80
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -3894,7 +3894,7 @@ mission "Transport shady group to <planet>" "Transport shady group to <planet> (
 	to offer
 		random < 80
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -3906,6 +3906,8 @@ mission "Transport shady group to <planet>" "Transport shady group to <planet> (
 		payment
 		payment 3000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
+
+
 
 mission "Smuggle anarchists to <planet>" "Pirate smuggle to <planet> [0]"
 	color selected "illegal job: selected"
@@ -4045,6 +4047,8 @@ mission "Smuggle shady group to <planet>"
 		payment 3000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 
+
+
 mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [0]"
 	job
 	repeat
@@ -4053,7 +4057,7 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [0]"
 	to offer
 		random < 300
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4074,7 +4078,7 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [1]"
 	to offer
 		random < 300
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4095,7 +4099,7 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [2]"
 	to offer
 		random < 300
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4116,7 +4120,7 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [3]"
 	to offer
 		random < 350
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4137,7 +4141,7 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [4]"
 	to offer
 		random < 350
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4163,8 +4167,8 @@ mission "Smuggle large gang to <planet>" "Pirate bulk smuggle to <planet> [0]"
 	to offer
 		random < 280
 		and
-			"reputation: Pirate" > 0
-			"combat rating" > 100
+			"reputation: Pirate" > -10
+			"combat rating" > 150
 	source
 		government "Pirate"
 	destination
@@ -4191,7 +4195,8 @@ mission "Smuggle employees to <planet>" "Pirate bulk smuggle to <planet> [1]"
 	to offer
 		random < 350
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
+			"combat rating" > 150
 	source
 		government "Pirate"
 	destination
@@ -4220,7 +4225,7 @@ mission "Smuggle cartel members to <planet>"
 		random < 350
 		and
 			"reputation: Pirate" > 0
-          		"combat rating" > 100
+			"combat rating" > 150
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
@@ -4251,7 +4256,7 @@ mission "Smuggle armed group to <planet>" "Pirate bulk smuggle to <planet> [2]"
 	to offer
 		random < 800
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
           		"combat rating" > 450
 	source
 		government "Republic" "Free Worlds "Syndicate" "Deep"
@@ -4299,7 +4304,7 @@ mission "Mass transport to <planet>" "Pirate mass transport to <planet> [1]"
 	to offer
 		random < 1200
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > -10
 			"combat rating" > 100
 	source
 		government "Pirate"
@@ -4328,7 +4333,7 @@ mission "Smuggle plunderbund elite to <planet>"
 	to offer
 		random < 2200
 		and
-			"reputation: Pirate" > 0
+			"reputation: Pirate" > 10
           		"combat rating" > 250
 	to accept
 		has "outfit (installed): Luxury Accommodations"
