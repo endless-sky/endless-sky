@@ -523,7 +523,6 @@ void Engine::Step(bool isActive)
 		{
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
-			minimap.Fade();
 		}
 
 		minimap.Step(flagship);
@@ -1458,6 +1457,7 @@ void Engine::EnterSystem()
 		// its destination system. Player travel causes a date change,
 		// thus the wormhole's new position should be used.
 		flagship->SetPosition(usedWormhole->Position());
+		minimap.SnapToCenter();
 		if(player.HasTravelPlan())
 		{
 			// Wormhole travel generally invalidates travel plans

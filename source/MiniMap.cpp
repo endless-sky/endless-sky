@@ -38,19 +38,26 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	// The number of frames to spend interpolating to the next target center.
+	const double LERP_DURATION = 150.;
+}
+
 
 
 MiniMap::MiniMap(const PlayerInfo &player)
-	: player(player)
+	: player(player), center(player.GetSystem() ? player.GetSystem()->Position() : Point()), lerpCount(LERP_DURATION)
 {
 }
 
 
 
-void MiniMap::Fade()
+void MiniMap::SnapToCenter()
 {
-	// Only let the minimap linger for 1.5 seconds after a jump has completed.
-	displayMinimap = min(displayMinimap, 90);
+	if(!player.GetSystem())
+		return;
+	center = player.GetSystem()->Position();
+	lerpCount = LERP_DURATION;
 }
 
 
@@ -60,25 +67,26 @@ void MiniMap::Step(const shared_ptr<Ship> &flagship)
 	if(!flagship)
 		return;
 
+	// Retarget the center of the minimap if the target system updated.
+	bool retargetCenter = false;
 	// If the flagship is in hyperspace or the player is holding the jump command,
 	// determine what system the player is jumping or about to jump into.
 	if(flagship->IsEnteringHyperspace() || flagship->Commands().Has(Command::JUMP))
 	{
-		// Let the minimap linger for 3 seconds after the player hit the jump key.
-		displayMinimap = 180;
+		// Let the minimap linger for 5 seconds after the player hit the jump key.
+		displayMinimap = 300;
 		// Draw the systems that the player is jumping between on the minimap.
 		const System *from = flagship->GetSystem();
 		const System *to = flagship->GetTargetSystem();
 		if(from && to && from != to)
 		{
 			current = from;
+			if(target != to)
+				retargetCenter = true;
 			target = to;
 		}
 	}
-	// If the player isn't jumping, count down how long the jump 
-	else if(displayMinimap > 0)
-		--displayMinimap;
-	else
+	else if(!displayMinimap)
 	{
 		// If the jump has completed, draw the next system in the player's jump
 		// plan, or set the minimapSystems to nullptr to only display the current
@@ -87,18 +95,24 @@ void MiniMap::Step(const shared_ptr<Ship> &flagship)
 		if(plan.empty())
 		{
 			current = flagship->GetSystem();
+			if(target)
+				retargetCenter = true;
 			target = nullptr;
 		}
 		else
 		{
 			current = flagship->GetSystem();
-			target = plan.front();
+			const System *next = plan.back();
+			if(target != next)
+				retargetCenter = true;
+			target = next;
 		}
 	}
 
 	// Control the fading in and out of the minimap.
 	if(displayMinimap)
 	{
+		--displayMinimap;
 		if(displayMinimap < 30 && fadeMinimap)
 			--fadeMinimap;
 		else if(fadeMinimap < 30)
@@ -108,10 +122,33 @@ void MiniMap::Step(const shared_ptr<Ship> &flagship)
 		fadeMinimap = 0;
 
 	// Determine where the minimap should be centered.
-	if(target)
-		center = .5 * (current->Position() + target->Position());
-	else
-		center = current->Position();
+	if(retargetCenter)
+	{
+		// Quickly lerp toward changed targets.
+		lerpCount = 0;
+		oldCenter = center;
+		// Center the system half way between the target system and the current system,
+		// If there is no target system, then center on the current system.
+		if(target)
+			targetCenter = .5 * (current->Position() + target->Position());
+		else
+			targetCenter = current->Position();
+	}
+	// If the flagship begins jumping to the target system, lerp toward the target system's position.
+	// The last check here prevents the center from moving toward the next system before you've even finished
+	// jumping into the current one.
+	else if(flagship->IsEnteringHyperspace() && targetCenter != target->Position() && lerpCount >= LERP_DURATION)
+	{
+		lerpCount = 0;
+		oldCenter = center;
+		targetCenter = target->Position();
+	}
+
+	if(lerpCount < LERP_DURATION)
+	{
+		center = oldCenter.Lerp(targetCenter, lerpCount / LERP_DURATION);
+		++lerpCount;
+	}
 }
 
 
@@ -126,18 +163,15 @@ void MiniMap::Draw(int step) const
 	if(pref == Preferences::MinimapDisplay::OFF)
 		return;
 
-	float alpha = 1.f;
+	float alpha = .5f;
 	if(pref == Preferences::MinimapDisplay::WHEN_JUMPING)
 	{
 		if(!displayMinimap)
 			return;
-		alpha = .5f * min(1.f, fadeMinimap / 30.f);
+		alpha *= min(1.f, fadeMinimap / 30.f);
 	}
 
 	set<const System *> drawnSystems;
-	drawnSystems.insert(current);
-	if(target)
-		drawnSystems.insert(target);
 
 	const Font &font = FontSet::Get(14);
 	Color lineColor(alpha, 0.f);
@@ -235,6 +269,10 @@ void MiniMap::Draw(int step) const
 			}
 		}
 	};
+
+	drawnSystems.insert(current);
+	if(target)
+		drawnSystems.insert(target);
 
 	drawSystemLinks(*current);
 	if(!target)
