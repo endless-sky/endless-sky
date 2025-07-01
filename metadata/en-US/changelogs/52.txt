@@ -1,0 +1,2 @@
+* Bump to upstream 0.10.14
+* Revert openal version
