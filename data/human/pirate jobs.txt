@@ -4308,7 +4308,7 @@ mission "Smuggle armed group to <planet>" "Pirate bulk smuggle to <planet> [2]"
 		random < 800
 		and
 			"reputation: Pirate" > -10
-          		"combat rating" > 450
+          	"combat rating" > 450
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Deep"
 	destination
@@ -4388,7 +4388,7 @@ mission "Smuggle plunderbund elite to <planet>"
 		random < 2200
 		and
 			"reputation: Pirate" > 10
-          		"combat rating" > 250
+          	"combat rating" > 250
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
