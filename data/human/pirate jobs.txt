@@ -3714,7 +3714,8 @@ mission "Republic Assassination [2]"
 
 
 
-mission "Transport anarchists to <planet>" "Pirate transport to <planet> [0]"
+mission "Pirate transport to <planet> [0]"
+	name "Transport anarchists to <planet>"
 	job
 	repeat
 	description "This family of <bunks> anarchists are looking to escape local trouble by moving to <destination>, and they will pay you <payment> to take them there."
@@ -3737,7 +3738,8 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [0]"
 		payment 2000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Transport anarchists to <planet>" "Pirate transport to <planet> [1]"
+mission "Pirate transport to <planet> [1]"
+	name "Transport anarchists to <planet>"
 	job
 	repeat
 	description "This family of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them there."
@@ -3760,7 +3762,8 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [1]"
 		payment 2000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Transport anarchists to <planet>" "Pirate transport to <planet> [2]"
+mission "Pirate transport to <planet> [2]"
+	name "Transport anarchists to <planet>"
 	job
 	repeat
 	description "This family of <bunks> anarchists are hoping to start a new life on <destination>, and they will pay you <payment> to take them there."
@@ -3783,7 +3786,8 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [2]"
 		payment 2000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Transport employees to <planet>" "Pirate transport to <planet> [3]"
+mission "Pirate transport to <planet> [3]"
+	name "Transport employees to <planet>"
 	job
 	repeat
 	description "A ship scrapping operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
@@ -3806,7 +3810,8 @@ mission "Transport employees to <planet>" "Pirate transport to <planet> [3]"
 		payment 2000
 		dialog "You find your contact on <planet> and they do a quick head count before handing you your payment of <payment>."
 
-mission "Transport employees to <planet>" "Pirate transport to <planet> [4]"
+mission "Pirate transport to <planet> [4]"
+	name "Transport employees to <planet>"
 	job
 	repeat
 	description "A narcotics operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
@@ -3829,7 +3834,8 @@ mission "Transport employees to <planet>" "Pirate transport to <planet> [4]"
 		payment 2000
 		dialog "You find your contact on <planet> and they do a quick head count before handing you your payment of <payment>."
 
-mission "Transport gang to <planet>" "Pirate transport to <planet> [5]"
+mission "Pirate transport to <planet> [5]"
+	name "Transport gang to <planet>"
 	job
 	repeat
 	description "This gang of <bunks> petty criminals is hoping to travel to <destination>, and they will pay you <payment> to take them there."
@@ -3877,7 +3883,8 @@ mission "Transport wealthy anarchists to <planet>"
 		payment 8000
 		dialog "One of the anarchist's guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
 
-mission "Transport shady group to <planet>" "Transport shady group to <planet> (Short)"
+mission "Transport shady group to <planet> (Short)"
+	name "Transport shady group to <planet>"
 	job
 	repeat
 	description "This group of <bunks> shady individuals seek urgent transport to <destination> by <date>, and they will pay you <payment> to take them there."
@@ -3901,7 +3908,8 @@ mission "Transport shady group to <planet>" "Transport shady group to <planet> (
 		payment 3000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 
-mission "Transport shady group to <planet>" "Transport shady group to <planet> (Long)"
+mission "Transport shady group to <planet> (Long)"
+	name "Transport shady group to <planet>"
 	job
 	repeat
 	description "This group of <bunks> shady individuals seek urgent transport to <destination> by <date>, and they will pay you <payment> to take them there."
@@ -3927,7 +3935,8 @@ mission "Transport shady group to <planet>" "Transport shady group to <planet> (
 
 
 
-mission "Smuggle anarchists to <planet>" "Pirate smuggle to <planet> [0]"
+mission "Pirate smuggle to <planet> [0]"
+	name "Smuggle anarchists to <planet>"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
@@ -3953,7 +3962,8 @@ mission "Smuggle anarchists to <planet>" "Pirate smuggle to <planet> [0]"
 		payment 4000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Smuggle employees to <planet>" "Pirate smuggle to <planet> [1]"
+mission "Pirate smuggle to <planet> [1]"
+	name "Smuggle employees to <planet>"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
@@ -3983,7 +3993,8 @@ mission "Smuggle employees to <planet>" "Pirate smuggle to <planet> [1]"
 		payment 4000
 		dialog "You find your contact on <planet> and they do a quick head count before handing you your payment of <payment>."
 
-mission "Smuggle gang to <planet>" "Pirate smuggle to <planet> [2]"
+mission "Pirate smuggle to <planet> [2]"
+	name "Smuggle gang to <planet>"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
@@ -4081,7 +4092,8 @@ mission "Smuggle shady group to <planet>"
 
 
 
-mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [0]"
+mission "Pirate bulk transport to <planet> [0]"
+	name "Bulk transport to <planet>"
 	job
 	repeat
 	description "This large group of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them there."
@@ -4104,7 +4116,8 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [0]"
 		payment 1000
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [1]"
+mission "Pirate bulk transport to <planet> [1]"
+	name "Bulk transport to <planet>"
 	job
 	repeat
 	description "This large group of <bunks> anarchists are looking to escape local trouble by moving to <destination>, and they will pay you <payment> to take them there."
@@ -4127,7 +4140,8 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [1]"
 		payment 1000
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [2]"
+mission "Pirate bulk transport to <planet> [2]"
+	name "Bulk transport to <planet>"
 	job
 	repeat
 	description "This large group of <bunks> anarchists are hoping to start new lives on <destination>, and they will pay you <payment> to take them there."
@@ -4150,7 +4164,8 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [2]"
 		payment 1000
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 
-mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [3]"
+mission "Pirate bulk transport to <planet> [3]"
+	name "Bulk transport to <planet>"
 	job
 	repeat
 	description "A large ship scrapping operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
@@ -4173,7 +4188,8 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [3]"
 		payment 1250
 		dialog "You find your contact on <planet>, and after a lengthy head count, they hand you your payment of <payment>."
 
-mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [4]"
+mission "Pirate bulk transport to <planet> [4]"
+	name "Bulk transport to <planet>"
 	job
 	repeat
 	description "A large narcotics operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
@@ -4196,7 +4212,8 @@ mission "Bulk transport to <planet>" "Pirate bulk transport to <planet> [4]"
 		payment 1250
 		dialog "You find your contact on <planet>, and after a lengthy head count, they hand you your payment of <payment>."
 
-mission "Smuggle large gang to <planet>" "Pirate bulk smuggle to <planet> [0]"
+mission "Pirate bulk smuggle to <planet> [0]"
+	name "Smuggle large gang to <planet>"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
@@ -4228,7 +4245,8 @@ mission "Smuggle large gang to <planet>" "Pirate bulk smuggle to <planet> [0]"
 		payment 1000
 		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
 
-mission "Smuggle employees to <planet>" "Pirate bulk smuggle to <planet> [1]"
+mission "Pirate bulk smuggle to <planet> [1]"
+	name "Smuggle employees gang to <planet>"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
@@ -4293,7 +4311,8 @@ mission "Smuggle cartel members to <planet>"
 		payment 8000
 		dialog "One of the cartel guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
 
-mission "Smuggle armed group to <planet>" "Pirate bulk smuggle to <planet> [2]"
+mission "Pirate bulk smuggle to <planet> [2]"
+	name "Smuggle armed group to <planet>"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
@@ -4326,7 +4345,8 @@ mission "Smuggle armed group to <planet>" "Pirate bulk smuggle to <planet> [2]"
 		payment 2500
 		dialog "The armed group marches out into the <planet>, the crowd giving way as they do. A well dressed member hands you a payment of <payment> before rejoining the squad at the front."
 
-mission "Mass transport to <planet>" "Pirate mass transport to <planet> [0]"
+mission "Pirate mass transport to <planet> [0]"
+	name "Mass transport to <planet>"
 	job
 	repeat
 	description "This huge group of <bunks> various travelers all seek transit to <destination>, and their travel organizer will pay you <payment> to take them there."
@@ -4350,7 +4370,8 @@ mission "Mass transport to <planet>" "Pirate mass transport to <planet> [0]"
 		payment 500
 		dialog "After a hectic unloading process at the <planet> spaceport, you collect your payment of <payment>."
 
-mission "Mass transport to <planet>" "Pirate mass transport to <planet> [1]"
+mission "Pirate mass transport to <planet> [1]"
+	name "Mass transport to <planet>"
 	job
 	repeat
 	description "This gigantic group of <bunks> various travelers all seek mass transit to <destination>, and their travel organizer will pay you <payment> to take them there."
