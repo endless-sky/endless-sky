@@ -4310,7 +4310,7 @@ mission "Smuggle armed group to <planet>" "Pirate bulk smuggle to <planet> [2]"
 			"reputation: Pirate" > -10
           		"combat rating" > 450
 	source
-		government "Republic" "Free Worlds "Syndicate" "Deep"
+		government "Republic" "Free Worlds" "Syndicate" "Deep"
 	destination
 		distance 6 12
 		government "Pirate"
