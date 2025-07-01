@@ -3718,7 +3718,7 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [0]"
 	job
 	repeat
 	description "This family of <bunks> anarchists are looking to escape local trouble by moving to <destination>, and they will pay you <payment> to take them there."
-	passengers 2 10 .1
+	passengers 3 10 .725
 	to offer
 		random < 50
 		and
@@ -3741,7 +3741,7 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [1]"
 	job
 	repeat
 	description "This family of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them there."
-	passengers 2 10 .1
+	passengers 3 10 .725
 	to offer
 		random < 50
 		and
@@ -3764,7 +3764,7 @@ mission "Transport anarchists to <planet>" "Pirate transport to <planet> [2]"
 	job
 	repeat
 	description "This family of <bunks> anarchists are hoping to start a new life on <destination>, and they will pay you <payment> to take them there."
-	passengers 2 10 .1
+	passengers 3 10 .725
 	to offer
 		random < 50
 		and
