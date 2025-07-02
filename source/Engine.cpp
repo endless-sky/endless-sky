@@ -518,7 +518,6 @@ void Engine::Step(bool isActive)
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship.get()))
 					labels.emplace_back(labels, *player.GetSystem(), object);
 		}
-
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
 			doEnter = false;
