@@ -104,7 +104,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				else if(grandKey == "leading")
 					leading = true;
 				else
-					child.PrintTrace("Skipping unknown homing attribute:");
+					grand.PrintTrace("Skipping unknown homing attribute:");
 			}
 		}
 		else if(child.Size() < 2)
