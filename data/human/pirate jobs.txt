@@ -3728,7 +3728,7 @@ mission "Pirate transport to <planet> [0]"
 		government "Pirate"
 	destination
 		distance 2 12
-		government "Pirate" "Republic" "Deep" "Free Worlds" "Syndicate"
+		government "Pirate" "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on fail
@@ -4130,7 +4130,7 @@ mission "Pirate bulk transport to <planet> [1]"
 		government "Pirate"
 	destination
 		distance 2 12
-		government "Pirate" "Republic" "Deep" "Free Worlds" "Syndicate"
+		government "Pirate" "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on fail
@@ -4333,7 +4333,7 @@ mission "Pirate bulk smuggle to <planet> [2]"
 		government "Pirate"
 	destination
 		distance 6 12
-		government "Republic" "Free Worlds" "Syndicate" "Deep"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on abort
@@ -4344,7 +4344,7 @@ mission "Pirate bulk smuggle to <planet> [2]"
 	on complete
 		"pirate jobs" ++
 		payment 2500
-		dialog "The armed group marches out into the <planet>, the crowd giving way as they do. A well-dressed member hands you a payment of <payment> before rejoining the squad at the front."
+		dialog "The armed group stash their gear and march out into the <planet>, the crowd giving way as they do. A well-dressed member hands you a payment of <payment> before rejoining the squad at the front."
 
 mission "Pirate mass transport to <planet> [0]"
 	name "Mass transport to <planet>"
