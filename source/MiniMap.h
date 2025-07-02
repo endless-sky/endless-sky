@@ -30,7 +30,6 @@ class MiniMap {
 public:
 	MiniMap(const PlayerInfo &player);
 
-	void SnapToCenter();
 	void Step(const std::shared_ptr<Ship> &flagship);
 	void Draw(int step) const;
 

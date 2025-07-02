@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/RingShader.h"
 #include "Set.h"
 #include "Ship.h"
+#include "StellarObject.h"
 #include "System.h"
 
 #include <set>
@@ -52,25 +53,22 @@ MiniMap::MiniMap(const PlayerInfo &player)
 
 
 
-void MiniMap::SnapToCenter()
-{
-	if(!player.GetSystem())
-		return;
-	center = player.GetSystem()->Position();
-	lerpCount = LERP_DURATION;
-}
-
-
-
 void MiniMap::Step(const shared_ptr<Ship> &flagship)
 {
 	if(!flagship)
 		return;
 
-	current = flagship->GetSystem();
-	const System *next = nullptr;
+	// Retarget the center of the minimap if the current or target system are updated.
+	bool retargetCenter = false;
 
-	// If the flagship is jumping into a system, that should always be the target.
+	// The current system is always the system that the flagship is in.
+	const System *flagshipSystem = flagship->GetSystem();
+	if(current != flagshipSystem)
+		retargetCenter = true;
+	current = flagshipSystem;
+
+	// If the flagship is jumping into a system, that is the target.
+	const System *next = nullptr;
 	bool enteringHyperspace = flagship->IsEnteringHyperspace();
 	if(enteringHyperspace || flagship->Commands().Has(Command::JUMP))
 	{
@@ -79,16 +77,14 @@ void MiniMap::Step(const shared_ptr<Ship> &flagship)
 		// The minimap will linger for 5 seconds after the player stops jumping.
 		displayMinimap = 300;
 	}
-	// If the flagship is not jumping into a system, then the target should be
+	// If the flagship is not in the middle of jumping, then the target should be
 	// the next system in the travel plan.
-	else
+	else if(!flagship->IsHyperspacing())
 	{
 		const vector<const System *> &plan = player.TravelPlan();
 		next = plan.empty() ? nullptr : plan.back();
 	}
 
-	// Retarget the center of the minimap if the target system is updated.
-	bool retargetCenter = false;
 	// Update the target if a new target is available. If there is no new target,
 	// then only set the target to null if the minimap is no longer lingering.
 	// This allows the player to send a jump command to target a new system,
@@ -180,7 +176,6 @@ void MiniMap::Draw(int step) const
 	const Color &blockedColor = colors.Get("blocked mission")->Additive(alpha * 2.f);
 	const Color &waypointColor = colors.Get("waypoint")->Additive(alpha * 2.f);
 
-	const System *flagshipSystem = flagship->GetSystem();
 	auto drawSystemLinks = [&](const System &system) -> void {
 		static const string UNKNOWN_SYSTEM = "Unexplored System";
 		const Government *gov = system.GetGovernment();
@@ -196,7 +191,7 @@ void MiniMap::Draw(int step) const
 		RingShader::Draw(from, MapPanel::OUTER, MapPanel::INNER, color);
 
 		// Add a circle around the system that the player is currently in.
-		if(&system == flagshipSystem)
+		if(&system == current)
 			RingShader::Draw(from, 11.f, 9.f, brightColor);
 
 		for(const System *link : system.Links())
