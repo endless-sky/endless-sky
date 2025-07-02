@@ -3861,7 +3861,7 @@ mission "Pirate transport to <planet> [5]"
 mission "Transport wealthy anarchists to <planet>"
 	job
 	repeat
-	description "These <bunks> wealthy anarchists seek comftorable travel to <destination>, and they will pay you <payment> to take them there."
+	description "These <bunks> wealthy anarchists seek comfortable travel to <destination>, and they will pay you <payment> to take them there."
 	passengers 4 8 .8
 	to offer
 		random < 350
@@ -4254,7 +4254,7 @@ mission "Pirate bulk smuggle to <planet> [1]"
 	repeat
 	description "A large, illegal operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
 	passengers 11 30 .8
-	illegal 100000 `Your ship is boarded and the employees are escorted to the brig. Their employeer won't be happy to hear this...`
+	illegal 100000 `Your ship is boarded and the employees are escorted to the brig. Their employer won't be happy to hear this...`
 	to offer
 		random < 350
 		and
@@ -4283,7 +4283,7 @@ mission "Smuggle cartel members to <planet>"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "This group of <bunks> cartel members and their secutiy guards covert, yet comftorable travel to <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	description "This group of <bunks> cartel members and their security guards covert, yet comfortable travel to <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
 	passengers 12 24 .8
 	illegal 250000 `Your ship is boarded and a firefight breaks out! After the inside of your <model> is trashed, the remaining guards and cartel members are escorted to the brig and you're hit with a hefty fine. This sure won't go over well...`
 	stealth
@@ -4322,21 +4322,22 @@ mission "Pirate bulk smuggle to <planet> [2]"
 	description "A large, heavily armed group of <bunks> is seeking no-questions-asked covert transit to <destination> by <date>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
 	passengers 20 40 .8
 	illegal 5000000 `Your ship is boarded by security and a firefight breaks out! The inside of both your <model> and the officer's ship is trashed, leaving none of the armed group alive. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
+	stealth
 	deadline 14
 	to offer
 		random < 800
 		and
 			"reputation: Pirate" > -10
-          	"combat rating" > 450
+			"combat rating" > 450
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Deep"
+		government "Pirate"
 	destination
 		distance 6 12
-		government "Pirate"
+		government "Republic" "Free Worlds" "Syndicate" "Deep"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on abort
-		"reputation: Pirate" -= 2
+		"reputation: Pirate" -= 1
 		dialog "You feel like the group leader is trying to explode your head with their intense stare. They reluctantly turn around, and will probably tell their fellow mercs about this."
 	on fail
 		"reputation: Pirate" -= 2
@@ -4403,13 +4404,13 @@ mission "Smuggle plunderbund elite to <planet>"
 	repeat
 	description "This large consist of <bunks> plunderbund aristocracy and their extensive guardianship detachment seek sumptuous, yet surreptitious travel to <destination>, and they will compensate you with <payment> to take them there without being caught by planetary law enforcement."
 	passengers 24 36 .8
-	illegal 25000000 `Your ship errupts into a massive warzone as soon as system security board! The inside of both your <model> and the officer's ship is trashed, as well as the multiple reinforcment ships called in to help. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
+	illegal 25000000 `Your ship erupts into a massive war zone as soon as system security board! The inside of both your <model> and the officer's ship is trashed, as well as the multiple reinforcment ships called in to help. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
 	stealth
 	to offer
 		random < 2200
 		and
 			"reputation: Pirate" > 10
-          	"combat rating" > 250
+			"combat rating" > 250
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
