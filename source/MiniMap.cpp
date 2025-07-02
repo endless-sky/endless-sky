@@ -21,8 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
-#include "shader/LineShader.h"
 #include "Interface.h"
+#include "shader/LineShader.h"
 #include "MapPanel.h"
 #include "Mission.h"
 #include "Planet.h"
@@ -79,7 +79,7 @@ void MiniMap::Step(const shared_ptr<Ship> &flagship)
 		// The minimap will linger for 5 seconds after the player stops jumping.
 		displayMinimap = 300;
 	}
-	// If the flagship is not jumping into a system, then the target should be 
+	// If the flagship is not jumping into a system, then the target should be
 	// the next system in the travel plan.
 	else
 	{
