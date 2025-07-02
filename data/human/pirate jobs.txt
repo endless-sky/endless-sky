@@ -3722,8 +3722,7 @@ mission "Pirate transport to <planet> [0]"
 	passengers 3 10 .725
 	to offer
 		random < 50
-		and
-			"reputation: Pirate" > -100
+		"reputation: Pirate" > -100
 	source
 		government "Pirate"
 	destination
@@ -3746,8 +3745,7 @@ mission "Pirate transport to <planet> [1]"
 	passengers 3 10 .725
 	to offer
 		random < 50
-		and
-			"reputation: Pirate" > -100
+		"reputation: Pirate" > -100
 	source
 		government "Pirate"
 	destination
@@ -3770,8 +3768,7 @@ mission "Pirate transport to <planet> [2]"
 	passengers 3 10 .725
 	to offer
 		random < 50
-		and
-			"reputation: Pirate" > -100
+		"reputation: Pirate" > -100
 	source
 		government "Pirate"
 	destination
@@ -3794,8 +3791,7 @@ mission "Pirate transport to <planet> [3]"
 	passengers 2 10 .8
 	to offer
 		random < 50
-		and
-			"reputation: Pirate" > -10
+		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -3818,8 +3814,7 @@ mission "Pirate transport to <planet> [4]"
 	passengers 2 10 .8
 	to offer
 		random < 50
-		and
-			"reputation: Pirate" > -10
+		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -3842,8 +3837,7 @@ mission "Pirate transport to <planet> [5]"
 	passengers 4 8 .8
 	to offer
 		random < 150
-		and
-			"reputation: Pirate" > -10
+		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -3865,8 +3859,7 @@ mission "Transport wealthy anarchists to <planet>"
 	passengers 4 8 .8
 	to offer
 		random < 350
-		and
-			"reputation: Pirate" > 0
+		"reputation: Pirate" > 0
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
@@ -3917,8 +3910,7 @@ mission "Transport shady group to <planet> (Long)"
 	deadline 14
 	to offer
 		random < 80
-		and
-			"reputation: Pirate" > -10
+		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -3948,6 +3940,7 @@ mission "Pirate smuggle to <planet> [0]"
 	stealth
 	to offer
 		random < 50
+		"reputation: Pirate" > 0
 	source
 		government "Pirate"
 	destination
@@ -3974,8 +3967,7 @@ mission "Pirate smuggle to <planet> [1]"
 	illegal 50000 `Your ship is boarded and the employees are escorted to the brig. Their employeer won't be happy to hear this...`
 	to offer
 		random < 150
-		and
-			"reputation: Pirate" > 0
+		"reputation: Pirate" > 0
 	source
 		government "Pirate"
 	destination
@@ -4006,9 +3998,8 @@ mission "Pirate smuggle to <planet> [2]"
 	stealth
 	to offer
 		random < 80
-		and
-			"reputation: Pirate" > 0
-			"combat rating" > 100
+		"reputation: Pirate" > 0
+		"combat rating" > 100
 	source
 		government "Pirate"
 	destination
@@ -4038,8 +4029,7 @@ mission "Smuggle wealthy druglord to <planet>"
 	stealth
 	to offer
 		random < 150
-		and
-			"reputation: Pirate" > 0
+		"reputation: Pirate" > 0
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
@@ -4071,8 +4061,7 @@ mission "Smuggle shady group to <planet>"
 	deadline 14
 	to offer
 		random < 80
-		and
-			"reputation: Pirate" > 0
+		"reputation: Pirate" > 0
 	source
 		government "Pirate"
 	destination
@@ -4100,8 +4089,7 @@ mission "Pirate bulk transport to <planet> [0]"
 	passengers 11 30 .8
 	to offer
 		random < 300
-		and
-			"reputation: Pirate" > -10
+		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4124,8 +4112,7 @@ mission "Pirate bulk transport to <planet> [1]"
 	passengers 11 30 .8
 	to offer
 		random < 300
-		and
-			"reputation: Pirate" > -10
+		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4148,8 +4135,7 @@ mission "Pirate bulk transport to <planet> [2]"
 	passengers 11 30 .8
 	to offer
 		random < 300
-		and
-			"reputation: Pirate" > -10
+		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4172,8 +4158,7 @@ mission "Pirate bulk transport to <planet> [3]"
 	passengers 11 30 .6
 	to offer
 		random < 350
-		and
-			"reputation: Pirate" > -10
+		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4196,8 +4181,7 @@ mission "Pirate bulk transport to <planet> [4]"
 	passengers 11 30 .6
 	to offer
 		random < 350
-		and
-			"reputation: Pirate" > -10
+		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4225,9 +4209,8 @@ mission "Pirate bulk smuggle to <planet> [0]"
 	stealth
 	to offer
 		random < 280
-		and
-			"reputation: Pirate" > -10
-			"combat rating" > 150
+		"reputation: Pirate" > -10
+		"combat rating" > 150
 	source
 		government "Pirate"
 	destination
@@ -4257,9 +4240,8 @@ mission "Pirate bulk smuggle to <planet> [1]"
 	illegal 100000 `Your ship is boarded and the employees are escorted to the brig. Their employer won't be happy to hear this...`
 	to offer
 		random < 350
-		and
-			"reputation: Pirate" > -10
-			"combat rating" > 150
+		"reputation: Pirate" > -10
+		"combat rating" > 150
 	source
 		government "Pirate"
 	destination
@@ -4289,9 +4271,8 @@ mission "Smuggle cartel members to <planet>"
 	stealth
 	to offer
 		random < 350
-		and
-			"reputation: Pirate" > 0
-			"combat rating" > 150
+		"reputation: Pirate" > 0
+		"combat rating" > 150
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
@@ -4326,9 +4307,8 @@ mission "Pirate bulk smuggle to <planet> [2]"
 	deadline 14
 	to offer
 		random < 800
-		and
-			"reputation: Pirate" > -10
-			"combat rating" > 450
+		"reputation: Pirate" > -10
+		"combat rating" > 450
 	source
 		government "Pirate"
 	destination
@@ -4354,9 +4334,8 @@ mission "Pirate mass transport to <planet> [0]"
 	passengers 30 60 .8
 	to offer
 		random < 600
-		and
-			"reputation: Pirate" > 0
-			"combat rating" > 100
+		"reputation: Pirate" > 0
+		"combat rating" > 100
 	source
 		government "Pirate"
 	destination
@@ -4379,9 +4358,8 @@ mission "Pirate mass transport to <planet> [1]"
 	passengers 60 120 .8
 	to offer
 		random < 1200
-		and
-			"reputation: Pirate" > -10
-			"combat rating" > 100
+		"reputation: Pirate" > -10
+		"combat rating" > 100
 	source
 		government "Pirate"
 	destination
@@ -4408,9 +4386,8 @@ mission "Smuggle plunderbund elite to <planet>"
 	stealth
 	to offer
 		random < 2200
-		and
-			"reputation: Pirate" > 10
-			"combat rating" > 250
+		"reputation: Pirate" > 10
+		"combat rating" > 250
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
