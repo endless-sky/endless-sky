@@ -3832,7 +3832,7 @@ mission "Pirate transport to <planet> [4]"
 	on complete
 		"pirate jobs" ++
 		payment 2000
-		dialog "You find your contact on <planet> and they do a quick head count before handing you your payment of <payment>."
+		dialog "You find your contact on <planet>. They do a quick head count before handing you your payment of <payment>."
 
 mission "Pirate transport to <planet> [5]"
 	name "Transport gang to <planet>"
