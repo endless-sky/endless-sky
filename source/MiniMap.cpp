@@ -67,49 +67,46 @@ void MiniMap::Step(const shared_ptr<Ship> &flagship)
 	if(!flagship)
 		return;
 
-	// Retarget the center of the minimap if the target system updated.
-	bool retargetCenter = false;
-	// If the flagship is in hyperspace or the player is holding the jump command,
-	// determine what system the player is jumping or about to jump into.
-	if(flagship->IsEnteringHyperspace() || flagship->Commands().Has(Command::JUMP))
+	current = flagship->GetSystem();
+	const System *next = nullptr;
+
+	// If the flagship is jumping into a system, that should always be the target.
+	bool enteringHyperspace = flagship->IsEnteringHyperspace();
+	if(enteringHyperspace || flagship->Commands().Has(Command::JUMP))
 	{
-		// Let the minimap linger for 5 seconds after the player hit the jump key.
+		next = flagship->GetTargetSystem();
+		// Display the minimap if the player is jumping or is preparing to jump.
+		// The minimap will linger for 5 seconds after the player stops jumping.
 		displayMinimap = 300;
-		// Draw the systems that the player is jumping between on the minimap.
-		const System *from = flagship->GetSystem();
-		const System *to = flagship->GetTargetSystem();
-		if(from && to && from != to)
-		{
-			current = from;
-			if(target != to)
-				retargetCenter = true;
-			target = to;
-		}
 	}
-	else if(!displayMinimap)
+	// If the flagship is not jumping into a system, then the target should be 
+	// the next system in the travel plan.
+	else
 	{
-		// If the jump has completed, draw the next system in the player's jump
-		// plan, or set the minimapSystems to nullptr to only display the current
-		// system if the travel plan is empty.
 		const vector<const System *> &plan = player.TravelPlan();
-		if(plan.empty())
-		{
-			current = flagship->GetSystem();
-			if(target)
-				retargetCenter = true;
-			target = nullptr;
-		}
-		else
-		{
-			current = flagship->GetSystem();
-			const System *next = plan.back();
-			if(target != next)
-				retargetCenter = true;
-			target = next;
-		}
+		next = plan.empty() ? nullptr : plan.back();
 	}
 
-	// Control the fading in and out of the minimap.
+	// Retarget the center of the minimap if the target system is updated.
+	bool retargetCenter = false;
+	// Update the target if a new target is available. If there is no new target,
+	// then only set the target to null if the minimap is no longer lingering.
+	// This allows the player to send a jump command to target a new system,
+	// cancel the jump, and have that target system linger on the map for a short
+	// moment.
+	if(next != target && (next || !displayMinimap))
+	{
+		retargetCenter = true;
+		target = next;
+	}
+	// The target might not have updated, but the current system could have moved
+	// to the target. If this is the case, clear the target. We don't need to recenter
+	// the target in this case since the center should already be interpolating toward
+	// this point.
+	else if(target == current)
+		target = nullptr;
+
+	// Control the display and fading in and out of the minimap.
 	if(displayMinimap)
 	{
 		--displayMinimap;
@@ -124,7 +121,6 @@ void MiniMap::Step(const shared_ptr<Ship> &flagship)
 	// Determine where the minimap should be centered.
 	if(retargetCenter)
 	{
-		// Quickly lerp toward changed targets.
 		lerpCount = 0;
 		oldCenter = center;
 		// Center the system half way between the target system and the current system,
@@ -135,15 +131,16 @@ void MiniMap::Step(const shared_ptr<Ship> &flagship)
 			targetCenter = current->Position();
 	}
 	// If the flagship begins jumping to the target system, lerp toward the target system's position.
-	// The last check here prevents the center from moving toward the next system before you've even finished
-	// jumping into the current one.
-	else if(flagship->IsEnteringHyperspace() && targetCenter != target->Position() && lerpCount >= LERP_DURATION)
+	// The last check here prevents the center from moving toward the next system before it has finished
+	// lerping toward its previous target.
+	else if(enteringHyperspace && targetCenter != target->Position() && lerpCount >= LERP_DURATION)
 	{
 		lerpCount = 0;
 		oldCenter = center;
 		targetCenter = target->Position();
 	}
 
+	// Lerp toward the target.
 	if(lerpCount < LERP_DURATION)
 	{
 		center = oldCenter.Lerp(targetCenter, lerpCount / LERP_DURATION);
