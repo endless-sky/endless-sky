@@ -3790,7 +3790,7 @@ mission "Pirate transport to <planet> [3]"
 	name "Transport employees to <planet>"
 	job
 	repeat
-	description "A ship scrapping operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
+	description "A ship-scrapping operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 2 10 .8
 	to offer
 		random < 50
@@ -3881,7 +3881,7 @@ mission "Transport wealthy anarchists to <planet>"
 	on complete
 		"pirate jobs" ++
 		payment 8000
-		dialog "One of the anarchist's guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
+		dialog "One of the anarchist's guards hands you your payment of <payment>, after which the group enters the <planet> spaceport."
 
 mission "Transport shady group to <planet> (Short)"
 	name "Transport shady group to <planet>"
@@ -4186,7 +4186,7 @@ mission "Pirate bulk transport to <planet> [3]"
 	on complete
 		"pirate jobs" ++
 		payment 1250
-		dialog "You find your contact on <planet>, and after a lengthy head count, they hand you your payment of <payment>."
+		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
 
 mission "Pirate bulk transport to <planet> [4]"
 	name "Bulk transport to <planet>"
@@ -4210,7 +4210,7 @@ mission "Pirate bulk transport to <planet> [4]"
 	on complete
 		"pirate jobs" ++
 		payment 1250
-		dialog "You find your contact on <planet>, and after a lengthy head count, they hand you your payment of <payment>."
+		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
 
 mission "Pirate bulk smuggle to <planet> [0]"
 	name "Smuggle large gang to <planet>"
@@ -4275,7 +4275,7 @@ mission "Pirate bulk smuggle to <planet> [1]"
 	on complete
 		"pirate jobs" ++
 		payment 2500
-		dialog "You find your contact on <planet>, and after a lengthy head count, they hand you your payment of <payment>."
+		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
 
 mission "Smuggle cartel members to <planet>"
 	color selected "illegal job: selected"
@@ -4303,7 +4303,7 @@ mission "Smuggle cartel members to <planet>"
 		dialog phrase "generic passenger on visit"
 	on abort
 		"reputation: Pirate" -= 2
-		dialog "You turn the annoyed cartel and their disgruntled guards away, no doubt they'll tell their fellow elite about this."
+		dialog "You turn the annoyed cartel and their disgruntled guards away. No doubt they'll tell their fellow elite about this."
 	on fail
 		"reputation: Pirate" -= 2
 	on complete
@@ -4344,7 +4344,7 @@ mission "Pirate bulk smuggle to <planet> [2]"
 	on complete
 		"pirate jobs" ++
 		payment 2500
-		dialog "The armed group marches out into the <planet>, the crowd giving way as they do. A well dressed member hands you a payment of <payment> before rejoining the squad at the front."
+		dialog "The armed group marches out into the <planet>, the crowd giving way as they do. A well-dressed member hands you a payment of <payment> before rejoining the squad at the front."
 
 mission "Pirate mass transport to <planet> [0]"
 	name "Mass transport to <planet>"
