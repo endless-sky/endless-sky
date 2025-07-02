@@ -4283,7 +4283,7 @@ mission "Smuggle cartel members to <planet>"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "This group of <bunks> cartel members and their security guards covert, yet comfortable travel to <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	description "This group of <bunks> cartel members and their guards seek covert, yet comfortable, travel to <destination>. They will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
 	passengers 12 24 .8
 	illegal 250000 `Your ship is boarded and a firefight breaks out! After the inside of your <model> is trashed, the remaining guards and cartel members are escorted to the brig and you're hit with a hefty fine. This sure won't go over well...`
 	stealth
