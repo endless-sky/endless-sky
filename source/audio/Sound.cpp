@@ -28,8 +28,8 @@ namespace {
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
 	uint32_t ReadHeader(shared_ptr<iostream> in, uint32_t &frequency);
-	uint32_t Read4(const shared_ptr<iostream> in);
-	uint16_t Read2(const shared_ptr<iostream> in);
+	uint32_t Read4(const shared_ptr<iostream> &in);
+	uint16_t Read2(const shared_ptr<iostream> &in);
 }
 
 
@@ -155,7 +155,7 @@ namespace {
 
 
 
-	uint32_t Read4(const shared_ptr<iostream> in)
+	uint32_t Read4(const shared_ptr<iostream> &in)
 	{
 		unsigned char data[4];
 		in->read(reinterpret_cast<char *>(data), 4);
@@ -169,7 +169,7 @@ namespace {
 
 
 
-	uint16_t Read2(const shared_ptr<iostream> in)
+	uint16_t Read2(const shared_ptr<iostream> &in)
 	{
 		unsigned char data[2];
 		in->read(reinterpret_cast<char *>(data), 2);
