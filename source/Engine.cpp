@@ -2296,7 +2296,7 @@ void Engine::HandleMouseClicks()
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->DisplayName()
 									+ " refuse to let you land.", Messages::Importance::Highest);
-						else if(!flagship->IsDestroyed())
+						else if(!flagship->IsDestroyed() && !flagship->Commands().Has(Command::LAND))
 						{
 							activeCommands |= Command::LAND;
 							Messages::Add("Landing on " + planet->DisplayName() + ".", Messages::Importance::High);
