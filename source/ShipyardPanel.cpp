@@ -392,8 +392,6 @@ void ShipyardPanel::SellShip(bool toStorage)
 		playerShips.insert(playerShip);
 }
 
-
-
 int ShipyardPanel::FindItem(const string &text) const
 {
 	int bestIndex = 9999;

@@ -1444,7 +1444,8 @@ void ShopPanel::MainDown()
 }
 
 
-void ShopPanel::DrawButton(const std::string &name, const Point &center, const Point &buttonSize, bool isActive,
+
+void ShopPanel::DrawButton(const string &name, const Point &center, const Point &buttonSize, bool isActive,
 	bool hovering, char keyCode)
 {
 	const Color *color = !isActive ? &inactive : hovering ? &hover : &active;
