@@ -1569,7 +1569,7 @@ void PlayerInfo::Land(UI *ui)
 						const Port &port = landingPlanet->GetPort();
 						ship->Recharge(landingPlanet->CanUseServices() ? port.GetRecharges() : Port::RechargeType::None,
 							port.HasService(Port::ServicesType::HireCrew));
-						ship->SetPlanet(planet);
+						ship->SetPlanet(landingPlanet);
 					}
 					else
 						ship->Recharge(Port::RechargeType::None, false);
