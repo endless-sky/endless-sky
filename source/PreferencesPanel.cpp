@@ -580,7 +580,7 @@ void PreferencesPanel::DrawControls()
 		Command::PAUSE,
 		Command::HELP,
 		Command::MESSAGE_LOG,
-		Command::ESCAPE_PODS,
+		Command::ESCAPE_PODS
 	};
 
 	int page = 0;
