@@ -522,21 +522,50 @@ void Engine::Step(bool isActive)
 		{
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
+			// Only let the minimap linger for 1.5 seconds after a jump has completed.
+			displayMinimap = min(displayMinimap, 90);
 		}
 		if(flagship->IsEnteringHyperspace() || flagship->Commands().Has(Command::JUMP))
 		{
-			if(jumpCount < 100)
-				++jumpCount;
+			// Let the minimap linger for 3 seconds after the player hit the jump key.
+			displayMinimap = 180;
+			// Draw the systems that the player is jumping between on the minimap.
 			const System *from = flagship->GetSystem();
 			const System *to = flagship->GetTargetSystem();
 			if(from && to && from != to)
 			{
-				jumpInProgress[0] = from;
-				jumpInProgress[1] = to;
+				minimapSystems[0] = from;
+				minimapSystems[1] = to;
 			}
 		}
-		else if(jumpCount > 0)
-			--jumpCount;
+		else if(displayMinimap > 0)
+			--displayMinimap;
+		else
+		{
+			// If the jump has completed, draw the next system in the player's jump
+			// plan, or set the minimapSystems to nullptr to only display the current
+			// system if the travel plan is empty.
+			const vector<const System *> &plan = player.TravelPlan();
+			if(plan.empty())
+			{
+				minimapSystems[0] = nullptr;
+				minimapSystems[1] = nullptr;
+			}
+			else
+			{
+				minimapSystems[0] = flagship->GetSystem();
+				minimapSystems[1] = plan.front();
+			}
+		}
+		if(displayMinimap)
+		{
+			if(displayMinimap < 30 && fadeMinimap)
+				--fadeMinimap;
+			else if(fadeMinimap < 30)
+				++fadeMinimap;
+		}
+		else
+			fadeMinimap = 0;
 	}
 	ai.UpdateEvents(events);
 	if(isActive)
@@ -1337,8 +1366,13 @@ void Engine::Draw() const
 		for(int i = 0; i < 2; ++i)
 			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
 	}
-	if(jumpCount && Preferences::Has("Show mini-map"))
-		MapPanel::DrawMiniMap(player, .5f * min(1.f, jumpCount / 30.f), jumpInProgress, step);
+
+	// Draw the systems mini-map.
+	Preferences::MinimapDisplay minimap = Preferences::GetMinimapDisplay();
+	if(minimap == Preferences::MinimapDisplay::ALWAYS_ON)
+		MapPanel::DrawMiniMap(player, 1.f, minimapSystems, step);
+	else if(displayMinimap && minimap == Preferences::MinimapDisplay::WHEN_JUMPING)
+		MapPanel::DrawMiniMap(player, .5f * min(1.f, fadeMinimap / 30.f), minimapSystems, step);
 
 	// Draw ammo status.
 	double ammoIconWidth = hud->GetValue("ammo icon width");
@@ -2791,17 +2825,20 @@ void Engine::FillRadar()
 	else if(!hasHostiles)
 		hadHostiles = false;
 
-	// Add projectiles that have a missile strength or homing.
-	for(Projectile &projectile : projectiles)
+	// Add projectiles that have a missile strength or blast radius.
+	for(const Projectile &projectile : projectiles)
 	{
-		if(projectile.MissileStrength())
-		{
-			bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
-			radar[currentCalcBuffer].Add(
-				isEnemy ? Radar::SPECIAL : Radar::INACTIVE, projectile.Position(), 1.);
-		}
-		else if(projectile.GetWeapon().BlastRadius())
-			radar[currentCalcBuffer].Add(Radar::SPECIAL, projectile.Position(), 1.8);
+		if(!projectile.HasSprite())
+			continue;
+
+		bool isBlast = projectile.GetWeapon().BlastRadius();
+		if(!projectile.MissileStrength() && !isBlast)
+			continue;
+
+		bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
+		bool isSafe = projectile.GetWeapon().IsSafe();
+		radar[currentCalcBuffer].Add(isEnemy || (isBlast && !isSafe) ? Radar::SPECIAL : Radar::INACTIVE,
+			projectile.Position(), isBlast ? 1.8 : 1.);
 	}
 }
 
