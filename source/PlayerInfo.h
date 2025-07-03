@@ -162,7 +162,7 @@ public:
 	const Ship *Flagship() const;
 	Ship *Flagship();
 	const std::shared_ptr<Ship> &FlagshipPtr();
-	// Set the flagship (on departure or during flight).
+	// Set the flagship (on departure or during flight or when escaping in an escape pod).
 	void SetFlagship(Ship &other);
 	// Get the full list of ships the player owns.
 	const std::vector<std::shared_ptr<Ship>> &Ships() const;

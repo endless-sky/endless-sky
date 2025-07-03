@@ -294,7 +294,7 @@ void Command::Load(const DataNode &node)
 			{"wait", Command::WAIT},
 			{"stop", Command::STOP},
 			{"shift", Command::SHIFT},
-			{"escape pods", Command::ESCAPE_PODS},
+			{"escape pods", Command::ESCAPE_PODS}
 		};
 
 		auto it = lookup.find(node.Token(i));
