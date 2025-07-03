@@ -4809,6 +4809,14 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 
 
+void AI::DisengageAutopilot()
+{
+	Messages::Add("Disengaging autopilot.", Messages::Importance::High);
+	autoPilot.Clear();
+}
+
+
+
 bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, int type) const
 {
 	auto sit = actions.find(ship.shared_from_this());
