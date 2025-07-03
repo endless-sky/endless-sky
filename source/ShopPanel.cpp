@@ -1447,14 +1447,7 @@ void ShopPanel::MainDown()
 void ShopPanel::DrawButton(const std::string &name, const Point &center, const Point &buttonSize, bool isActive,
 	bool hovering, char keyCode)
 {
-	// Define the colors and font
-	const Font &bigFont = FontSet::Get(18);
-	const Color &hover = *GameData::Colors().Get("hover");
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &inactive = *GameData::Colors().Get("inactive");
-
 	const Color *color = !isActive ? &inactive : hovering ? &hover : &active;
-	const Color &back = *GameData::Colors().Get("panel background");
 
 	FillShader::Fill(center, buttonSize, back);
 	bigFont.Draw(name, center - .5 * Point(bigFont.Width(name), bigFont.Height()), *color);

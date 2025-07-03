@@ -18,12 +18,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "GameData.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
+#include "text/FontSet.h"
 
 #include <map>
 #include <set>
@@ -225,6 +227,13 @@ private:
 	std::string shipName;
 	std::string warningType;
 	int hoverCount = 0;
+
+	// Define the colors and font
+	const Font &bigFont = FontSet::Get(18);
+	const Color &hover = *GameData::Colors().Get("hover");
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &inactive = *GameData::Colors().Get("inactive");
+	const Color &back = *GameData::Colors().Get("panel background");
 
 	bool checkedHelp = false;
 };
