@@ -63,6 +63,12 @@ public:
 		int64_t maintenanceCosts = 0;
 		int64_t assetsReturns = 0;
 	};
+	enum SortType {
+		ABC,
+		PAY,
+		SPEED,
+		CONVENIENT
+	};
 
 
 public:
@@ -224,13 +230,14 @@ public:
 	// the purpose of determining how frequently the MapPanel should blink the mission
 	// marker.
 	void CalculateRemainingDeadlines();
+	// Add a mission that was just accepted to the cached remaining deadlines.
+	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
 	// The number of days left before this mission's deadline has elapsed, or,
 	// if the "Deadline blink by distance" preference is true, before the player
 	// doesn't have enough days left to complete the mission before the deadline
 	// will elapse. Returns 0 if the give mission doesn't have a deadline.
 	int RemainingDeadline(const Mission &mission) const;
 
-	enum SortType {ABC, PAY, SPEED, CONVENIENT};
 	const SortType GetAvailableSortType() const;
 	void NextAvailableSortType();
 	const bool ShouldSortAscending() const;
@@ -362,9 +369,6 @@ public:
 	// Should help dialogs relating to carriers be displayed?
 	bool DisplayCarrierHelp() const;
 
-	// Add a mission that was just accepted to the cached remaining deadlines.
-	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
-
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.
@@ -401,6 +405,8 @@ private:
 	bool CanBeSaved() const;
 	// Handle the daily salaries and payments.
 	void DoAccounting();
+
+	bool HasClearance() const;
 
 
 private:
