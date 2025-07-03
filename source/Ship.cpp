@@ -3080,7 +3080,7 @@ int Ship::RequiredCrew() const
 	if(attributes.Get("automaton"))
 		return 0;
 	// Escape pods require no crew while in a bay (currentSystem == nullptr).
-	// Also, don't require crew i fthe pod is landed on a planet.
+	// Also, don't require crew if the pod is landed on a planet.
 	if(IsEscapePod() && (!currentSystem || GetPlanet()))
 		return 0;
 
