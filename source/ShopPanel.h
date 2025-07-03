@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "text/FontSet.h"
 #include "GameData.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
@@ -25,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
-#include "text/FontSet.h"
 
 #include <map>
 #include <set>
