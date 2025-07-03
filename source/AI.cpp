@@ -502,6 +502,9 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
 	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
 
+	if(!autoPilot.Has(Command::STOP) && activeCommands.Has(Command::STOP))
+		Messages::Add("Coming to a stop.", Messages::Importance::High);
+
 	autoPilot |= activeCommands;
 	if(activeCommands.Has(AutopilotCancelCommands()))
 	{
@@ -517,9 +520,6 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	const Ship *flagship = player.Flagship();
 	if(!flagship || flagship->IsDestroyed())
 		return;
-
-	if(activeCommands.Has(Command::STOP))
-		Messages::Add("Coming to a stop.", Messages::Importance::High);
 
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
