@@ -72,7 +72,7 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 			return false;
 
 		data.resize(bytes);
-		in->read(data.data(), bytes);
+		if (!in->read(data.data(), bytes))
 			return false;
 	}
 	else if(path.extension() == ".mp3")
