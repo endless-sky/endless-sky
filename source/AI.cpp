@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DistanceMap.h"
 #include "FighterHitHelper.h"
 #include "Flotsam.h"
+#include "text/Format.h"
 #include "FormationPattern.h"
 #include "FormationPositioner.h"
 #include "GameData.h"
@@ -4234,17 +4235,11 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			string message = "Note: you have ";
 			message += (missions == 1 ? "a mission that requires" : "missions that require");
 			message += " landing on ";
-			size_t count = destinations.size();
-			bool oxfordComma = (count > 2);
-			for(const Planet *planet : destinations)
-			{
-				message += planet->DisplayName();
-				--count;
-				if(count > 1)
-					message += ", ";
-				else if(count == 1)
-					message += (oxfordComma ? ", and " : " and ");
-			}
+			message += Format::List<set, const Planet *>(destinations,
+				[](const Planet *const &planet)
+				{
+					return planet->DisplayName();
+				});
 			message += " in the system you are jumping to.";
 			Messages::Add(message, Messages::Importance::Info);
 
