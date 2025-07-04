@@ -4813,7 +4813,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 void AI::DisengageAutopilot()
 {
-	Messages::Add("Disengaging autopilot.", Messages::Importance::High);
+	Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
 	autoPilot.Clear();
 }
 
