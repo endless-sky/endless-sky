@@ -679,6 +679,7 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Hyperdrive"
 
 ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Pulse Cannon"
 		"Pulse Turret" 2
