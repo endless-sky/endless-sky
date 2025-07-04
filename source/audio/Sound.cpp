@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sound.h"
 
 #include "../Files.h"
+#include "supplier/WavSupplier.h"
 
 #include <AL/al.h>
 
@@ -88,6 +89,13 @@ unsigned Sound::Buffer3x() const
 bool Sound::IsLooping() const
 {
 	return isLooped;
+}
+
+
+
+unique_ptr<AudioSupplier> Sound::CreateSupplier() const
+{
+	return unique_ptr<AudioSupplier>{new WavSupplier{*this, false, IsLooping()}};
 }
 
 
