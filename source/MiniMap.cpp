@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/RingShader.h"
 #include "Set.h"
 #include "Ship.h"
-#include "StellarObject.h"
 #include "System.h"
 
 #include <set>
@@ -95,7 +94,7 @@ void MiniMap::Step(const shared_ptr<Ship> &flagship)
 		retargetCenter = true;
 		target = next;
 	}
-	// The target might not have updated, but the current system could have moved
+	// The target might not have updated, but the player could have moved
 	// to the target. If this is the case, clear the target. We don't need to recenter
 	// the target in this case since the center should already be interpolating toward
 	// this point.
@@ -119,7 +118,7 @@ void MiniMap::Step(const shared_ptr<Ship> &flagship)
 	{
 		lerpCount = 0;
 		oldCenter = center;
-		// Center the system half way between the target system and the current system,
+		// Center the view half way between the target system and the current system,
 		// If there is no target system, then center on the current system.
 		if(target)
 			targetCenter = .5 * (current->Position() + target->Position());

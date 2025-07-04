@@ -25,7 +25,7 @@ class System;
 
 
 
-// A minature map of the nearby systems that displays while on the main panel.
+// A miniature map of the nearby systems that displays while on the main panel.
 class MiniMap {
 public:
 	MiniMap(const PlayerInfo &player);
