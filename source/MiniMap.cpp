@@ -261,13 +261,12 @@ void MiniMap::Draw(int step) const
 		}
 	};
 
-	drawnSystems.insert(current);
 	if(target)
 		drawnSystems.insert(target);
-
 	drawSystemLinks(*current);
 	if(!target)
 		return;
+	drawnSystems.insert(current);
 	drawSystemLinks(*target);
 
 	// Draw the directional arrow. If this is a normal jump,
