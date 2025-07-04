@@ -311,6 +311,7 @@ void MapPanel::Draw()
 		RingShader::Draw(Zoom() * (playerSystem.Position() + center),
 			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), jumpRangeColor);
 
+	// Draw a circle around the selected system.
 	Color brightColor(.4f, 0.f);
 	RingShader::Draw(Zoom() * (selectedSystem->Position() + center),
 		11.f, 9.f, brightColor);
@@ -436,25 +437,37 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 
 
 
-void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step)
+void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *const draw[2], int step)
 {
+	bool hasDestination = false;
+	Point center;
+	set<const System *> drawnSystems;
+	const System *currentSystem = player.GetSystem();
+	if(draw[0] && draw[1])
+	{
+		hasDestination = true;
+		center = .5 * (draw[0]->Position() + draw[1]->Position());
+		drawnSystems = {draw[0], draw[1]};
+	}
+	else
+	{
+		drawnSystems.insert(currentSystem);
+		center = currentSystem->Position();
+	}
+
 	const Font &font = FontSet::Get(14);
 	Color lineColor(alpha, 0.f);
-	Point center = .5 * (jump[0]->Position() + jump[1]->Position());
-	const Point &drawPos = GameData::Interfaces().Get("hud")->GetPoint("mini-map");
-	set<const System *> drawnSystems = { jump[0], jump[1] };
-	bool isLink = jump[0]->Links().contains(jump[1]);
+	Color brightColor(.4f * alpha, 0.f);
 
+	const Point &drawPos = GameData::Interfaces().Get("hud")->GetPoint("mini-map");
 	const Set<Color> &colors = GameData::Colors();
 	const Color &currentColor = colors.Get("active mission")->Additive(alpha * 2.f);
 	const Color &blockedColor = colors.Get("blocked mission")->Additive(alpha * 2.f);
 	const Color &waypointColor = colors.Get("waypoint")->Additive(alpha * 2.f);
 
 	const Ship *flagship = player.Flagship();
-	for(int i = 0; i < 2; ++i)
-	{
+	auto drawSystemLinks = [&](const System &system) -> void {
 		static const string UNKNOWN_SYSTEM = "Unexplored System";
-		const System &system = *jump[i];
 		const Government *gov = system.GetGovernment();
 		Point from = system.Position() - center + drawPos;
 		const string &name = player.KnowsName(system) ? system.DisplayName() : UNKNOWN_SYSTEM;
@@ -466,6 +479,10 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		if(player.CanView(system) && system.IsInhabited(flagship) && gov)
 			color = gov->GetColor().Additive(alpha);
 		RingShader::Draw(from, OUTER, INNER, color);
+
+		// Add a circle around the system that the player is currently in.
+		if(&system == currentSystem)
+			RingShader::Draw(from, 11.f, 9.f, brightColor);
 
 		for(const System *link : system.Links())
 		{
@@ -534,21 +551,29 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 					DrawPointer(from, missionCounter, waypointColor, false);
 			}
 		}
-	}
+	};
 
-	// Draw the rest of the directional arrow. If this is a normal jump,
-	// the stem was already drawn above.
-	Point from = jump[0]->Position() - center + drawPos;
-	Point to = jump[1]->Position() - center + drawPos;
-	Point unit = (to - from).Unit();
-	from += LINK_OFFSET * unit;
-	to -= LINK_OFFSET * unit;
-	Color bright(2.f * alpha, 0.f);
-	// Non-hyperspace jumps are drawn with a dashed directional arrow.
-	if(!isLink)
-		LineShader::DrawDashed(from, to, unit, LINK_WIDTH, bright, 11., 4.);
-	LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., LINK_WIDTH, bright);
-	LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10., LINK_WIDTH, bright);
+	if(hasDestination)
+	{
+		for(int i = 0; i < 2; ++i)
+			drawSystemLinks(*draw[i]);
+
+		// Draw the rest of the directional arrow. If this is a normal jump,
+		// the stem was already drawn above.
+		Point from = draw[0]->Position() - center + drawPos;
+		Point to = draw[1]->Position() - center + drawPos;
+		Point unit = (to - from).Unit();
+		from += LINK_OFFSET * unit;
+		to -= LINK_OFFSET * unit;
+		Color bright(2.f * alpha, 0.f);
+		// Non-hyperspace jumps are drawn with a dashed directional arrow.
+		if(!draw[0]->Links().contains(draw[1]))
+			LineShader::DrawDashed(from, to, unit, LINK_WIDTH, bright, 11., 4.);
+		LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., LINK_WIDTH, bright);
+		LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10., LINK_WIDTH, bright);
+	}
+	else
+		drawSystemLinks(*currentSystem);
 }
 
 
