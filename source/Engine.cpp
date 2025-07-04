@@ -2853,11 +2853,11 @@ void Engine::DrawShipSprites(const Ship &ship)
 	};
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.IsUnder())
+		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
 			drawHardpoint(hardpoint);
 	drawObject(ship);
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(!hardpoint.IsUnder())
+		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
 			drawHardpoint(hardpoint);
 
 	DrawEngineFlares(Ship::EnginePoint::OVER);

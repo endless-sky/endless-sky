@@ -358,7 +358,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			attributes.isParallel = false;
 			attributes.isOmnidirectional = true;
 			attributes.turnMultiplier = 0.;
-			bool drawUnder = (key == "gun");
+			if(key == "gun")
+				attributes.side = Hardpoint::Side::UNDER;
 			if(child.HasChildren())
 			{
 				bool defaultBaseAngle = true;
@@ -388,9 +389,11 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					else if(grandKey == "turret turn multiplier")
 						attributes.turnMultiplier = grand.Value(1);
 					else if(grandKey == "under")
-						drawUnder = true;
+						attributes.side = Hardpoint::Side::UNDER;
+					else if(grandKey == "inside")
+						attributes.side = Hardpoint::Side::INSIDE;
 					else if(grandKey == "over")
-						drawUnder = false;
+						attributes.side = Hardpoint::Side::OVER;
 					else
 						grand.PrintTrace("Warning: Child nodes of \"" + key
 							+ "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
@@ -409,9 +412,9 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				}
 			}
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, attributes, drawUnder, outfit);
+				armament.AddGunPort(hardpoint, attributes, outfit);
 			else
-				armament.AddTurret(hardpoint, attributes, drawUnder, outfit);
+				armament.AddTurret(hardpoint, attributes, outfit);
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -685,7 +688,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAttributes(), bit->IsUnder(), outfit);
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAttributes(), outfit);
 					if(nextGun != end)
 						++nextGun;
 				}
@@ -694,7 +697,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					merged.AddTurret(bit->GetPoint() * 2., bit->GetBaseAttributes(), bit->IsUnder(), outfit);
+					merged.AddTurret(bit->GetPoint() * 2., bit->GetBaseAttributes(), outfit);
 					if(nextTurret != end)
 						++nextTurret;
 				}
@@ -1104,10 +1107,12 @@ void Ship::Save(DataWriter &out) const
 					out.Write("blindspot", blindspot.first.Degrees(), blindspot.second.Degrees());
 				if(attributes.turnMultiplier)
 					out.Write("turret turn multiplier", attributes.turnMultiplier);
-				if(hardpoint.IsUnder())
-					out.Write("under");
-				else
+				if(hardpoint.GetSide() == Hardpoint::Side::OVER)
 					out.Write("over");
+				else if(hardpoint.GetSide() == Hardpoint::Side::INSIDE)
+					out.Write("inside");
+				else
+					out.Write("under");
 			}
 			out.EndChild();
 		}
