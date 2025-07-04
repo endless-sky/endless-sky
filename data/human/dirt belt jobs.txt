@@ -21,7 +21,7 @@ mission "Drought Relief"
 	to offer
 		random < 10
 	source
-		government "Republic"
+		government "Republic" "Deep"
 		not attributes "farming"
 	destination
 		distance 3 10
