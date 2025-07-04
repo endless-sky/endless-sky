@@ -27,34 +27,31 @@ namespace {
 
 	mutex incomingMutex;
 
-	vector<pair<string, Messages::Importance>> incoming;
+	vector<pair<string, const Message::Category *>> incoming;
 	vector<Messages::Entry> recent;
-	deque<pair<string, Messages::Importance>> logged;
+	deque<pair<string, const Message::Category *>> logged;
 }
 
 
 
-// Add a message to the list along with its level of importance
-// When forced, the message is forcibly added to the log, but not to the list.
-void Messages::Add(const string &message, Importance importance, bool force)
+// Add a message to the list along with its level of importance.
+void Messages::Add(const Message &message)
 {
-	lock_guard<mutex> lock(incomingMutex);
-	incoming.emplace_back(message, importance);
-	AddLog(message, importance, force);
-}
-
-
-
-// Add a message to the log. For messages meant to be shown
-// also on the main panel, use Add instead.
-void Messages::AddLog(const string &message, Importance importance, bool force)
-{
-	if(force || logged.empty() || message != logged.front().first)
+	const Message::Category *category = message.GetCategory();
+	if(!category)
+		return;
+	string text = message.Text();
+	if(!category->LogDeduplication() || logged.empty() || text != logged.front().first)
 	{
-		logged.emplace_front(message, importance);
+		logged.emplace_front(text, category);
 		if(logged.size() > MAX_LOG)
 			logged.pop_back();
 	}
+
+	if(category->LogOnly())
+		return;
+	lock_guard<mutex> lock(incomingMutex);
+	incoming.emplace_back(text, category);
 }
 
 
@@ -67,14 +64,11 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 	lock_guard<mutex> lock(incomingMutex);
 
 	// Load the incoming messages.
-	for(const pair<string, Importance> &item : incoming)
+	for(const auto &[message, category] : incoming)
 	{
-		const string &message = item.first;
-		Importance importance = item.second;
-
 		// If this message is not important and it is already being shown in the
 		// list, ignore it.
-		if(importance == Importance::Low)
+		if(category->AggressiveDeduplication())
 		{
 			bool skip = false;
 			for(const Messages::Entry &entry : recent)
@@ -94,7 +88,7 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 				it->step -= 60;
 			// For each incoming message, if it exactly matches an existing message,
 			// replace that one with this new one by scheduling the old one for removal.
-			if(importance != Importance::Low && it->message == message && it->deathStep < 0)
+			if(!category->AggressiveDeduplication() && it->message == message && it->deathStep < 0)
 				it->deathStep = step + animationDuration;
 			// Erase messages that have reached the end of their lifetime.
 			if(age > 1000 + animationDuration || (it->deathStep >= 0 && it->deathStep <= step))
@@ -102,7 +96,7 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 			else
 				++it;
 		}
-		recent.emplace_back(step, message, importance);
+		recent.emplace_back(step, message, category);
 	}
 	incoming.clear();
 	return recent;
@@ -110,7 +104,7 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 
 
 
-const deque<pair<string, Messages::Importance>> &Messages::GetLog()
+const deque<pair<string, const Message::Category *>> &Messages::GetLog()
 {
 	return logged;
 }
@@ -124,26 +118,4 @@ void Messages::Reset()
 	incoming.clear();
 	recent.clear();
 	logged.clear();
-}
-
-
-
-// Get color that should be used for drawing messages of given importance.
-const Color *Messages::GetColor(Importance importance, bool isLogPanel)
-{
-	string prefix = isLogPanel ? "message log importance " : "message importance ";
-	switch(importance)
-	{
-		case Messages::Importance::Highest:
-			return GameData::Colors().Get(prefix + "highest");
-		case Messages::Importance::High:
-			return GameData::Colors().Get(prefix + "high");
-		case Messages::Importance::Info:
-			return GameData::Colors().Get(prefix + "info");
-		case Messages::Importance::Daily:
-			return GameData::Colors().Get(prefix + "daily");
-		case Messages::Importance::Low:
-		default:
-			return GameData::Colors().Get(prefix + "low");
-	}
 }
