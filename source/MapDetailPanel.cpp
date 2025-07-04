@@ -824,8 +824,8 @@ void MapDetailPanel::DrawInfo()
 	double lowCompare = 0;
 	double halfCompare = 0;
 
-	// When comparing prices, determine gradient of colors to represent commodity delta prices for displayed commodities
-	if (!noCompare && canView && selectedSystem->IsInhabited(player.Flagship()))
+	// When comparing prices, determine gradient of colors to represent commodity delta prices for displayed commodities.
+	if(!noCompare && canView && selectedSystem->IsInhabited(player.Flagship()))
 	{
 		double highCompare = 0;
 		for(const Trade::Commodity &commodity : GameData::Commodities())
@@ -875,7 +875,9 @@ void MapDetailPanel::DrawInfo()
 		else
 			price = (canView ? "n/a" : "?");
 
-		if (!noCompare && player.GetSystem() != selectedSystem)
+		if(!noCompare && player.GetSystem() != selectedSystem && canView && selectedSystem->IsInhabited(player.Flagship())))
+			// Avoid divide by zero.
+			halfCompare = halfCompare < 1 ? 1 : halfCompare;
 			color = MapColor((static_cast<double>(value) - (lowCompare + halfCompare)) / halfCompare);
 
 		const auto alignRight = Layout(140, Alignment::RIGHT, Truncate::BACK);
