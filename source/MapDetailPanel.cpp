@@ -60,7 +60,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <utility>
 #include <vector>
-#include <catch2/generators/catch_generators.hpp>
 
 using namespace std;
 
