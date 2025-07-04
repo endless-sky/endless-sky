@@ -1290,6 +1290,7 @@ ship "Shield Beetle" "Shield Beetle (Unfettered)"
 		"Hyperdrive"
 
 ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Ion Cannon" 2
 		"Hai Tracker" 420
