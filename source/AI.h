@@ -77,6 +77,7 @@ template <class Type>
 	void Step(Command &activeCommands);
 	// Process commands for the player only, called by Step in non-paused mode.
 	void MovePlayer(Ship &ship, Command &activeCommands);
+	void DisengageAutopilot();
 
 	// Set the mouse position for turning the player's flagship.
 	void SetMousePosition(Point position);

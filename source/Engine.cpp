@@ -250,7 +250,7 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(player, ships, asteroids.Minables(), flotsam),
-	ammoDisplay(player), shipCollisions(256u, 32u, CollisionType::SHIP)
+	ammoDisplay(player), minimap(player), shipCollisions(256u, 32u, CollisionType::SHIP)
 {
 	zoom.base = Preferences::ViewZoom();
 	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
@@ -522,50 +522,9 @@ void Engine::Step(bool isActive)
 		{
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
-			// Only let the minimap linger for 1.5 seconds after a jump has completed.
-			displayMinimap = min(displayMinimap, 90);
 		}
-		if(flagship->IsEnteringHyperspace() || flagship->Commands().Has(Command::JUMP))
-		{
-			// Let the minimap linger for 3 seconds after the player hit the jump key.
-			displayMinimap = 180;
-			// Draw the systems that the player is jumping between on the minimap.
-			const System *from = flagship->GetSystem();
-			const System *to = flagship->GetTargetSystem();
-			if(from && to && from != to)
-			{
-				minimapSystems[0] = from;
-				minimapSystems[1] = to;
-			}
-		}
-		else if(displayMinimap > 0)
-			--displayMinimap;
-		else
-		{
-			// If the jump has completed, draw the next system in the player's jump
-			// plan, or set the minimapSystems to nullptr to only display the current
-			// system if the travel plan is empty.
-			const vector<const System *> &plan = player.TravelPlan();
-			if(plan.empty())
-			{
-				minimapSystems[0] = nullptr;
-				minimapSystems[1] = nullptr;
-			}
-			else
-			{
-				minimapSystems[0] = flagship->GetSystem();
-				minimapSystems[1] = plan.front();
-			}
-		}
-		if(displayMinimap)
-		{
-			if(displayMinimap < 30 && fadeMinimap)
-				--fadeMinimap;
-			else if(fadeMinimap < 30)
-				++fadeMinimap;
-		}
-		else
-			fadeMinimap = 0;
+
+		minimap.Step(flagship);
 	}
 	ai.UpdateEvents(events);
 	if(isActive)
@@ -1368,11 +1327,7 @@ void Engine::Draw() const
 	}
 
 	// Draw the systems mini-map.
-	Preferences::MinimapDisplay minimap = Preferences::GetMinimapDisplay();
-	if(minimap == Preferences::MinimapDisplay::ALWAYS_ON)
-		MapPanel::DrawMiniMap(player, 1.f, minimapSystems, step);
-	else if(displayMinimap && minimap == Preferences::MinimapDisplay::WHEN_JUMPING)
-		MapPanel::DrawMiniMap(player, .5f * min(1.f, fadeMinimap / 30.f), minimapSystems, step);
+	minimap.Draw(step);
 
 	// Draw ammo status.
 	double ammoIconWidth = hud->GetValue("ammo icon width");
@@ -2297,17 +2252,15 @@ void Engine::HandleMouseClicks()
 						if(!planet->CanLand(*flagship))
 							Messages::Add({"The authorities on " + planet->DisplayName()
 								+ " refuse to let you land.", GameData::MessageCategories().Get("high")});
-						else if(!flagship->IsDestroyed())
-						{
+						else if(!flagship->IsDestroyed() && !flagship->Commands().Has(Command::LAND))
 							activeCommands |= Command::LAND;
-							Messages::Add({"Landing on " + planet->DisplayName() + ".",
-								GameData::MessageCategories().Get("normal")});
-						}
 					}
 					else
 					{
 						UI::PlaySound(UI::UISound::TARGET);
 						flagship->SetTargetStellar(&object);
+						if(flagship->Commands().Has(Command::LAND))
+							ai.DisengageAutopilot();
 					}
 
 					clickedPlanet = true;
@@ -2895,6 +2848,8 @@ void Engine::DrawShipSprites(const Ship &ship)
 				ship.Velocity(),
 				ship.Facing() + hardpoint.GetAngle(),
 				ship.Zoom());
+			if(body.InheritsParentSwizzle())
+				body.SetSwizzle(ship.GetSwizzle());
 			drawObject(body);
 		}
 	};

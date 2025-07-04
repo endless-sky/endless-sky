@@ -71,7 +71,6 @@ using namespace std;
 namespace {
 	const std::string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
 	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
-	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
 	const int MAX_STARS = 5;
 
@@ -92,12 +91,13 @@ namespace {
 		unsigned unavailable = 0;
 
 	private:
-		unsigned maximumActive = MAX_MISSION_POINTERS_DRAWN;
+		unsigned maximumActive = MapPanel::MAX_MISSION_POINTERS_DRAWN;
 	};
 
 	void PointerDrawCount::Reserve()
 	{
-		maximumActive = max(MAX_MISSION_POINTERS_DRAWN / 2, MAX_MISSION_POINTERS_DRAWN - (available + unavailable));
+		maximumActive = max(MapPanel::MAX_MISSION_POINTERS_DRAWN / 2,
+			MapPanel::MAX_MISSION_POINTERS_DRAWN - (available + unavailable));
 	}
 
 	unsigned PointerDrawCount::MaximumActive() const
@@ -182,19 +182,6 @@ namespace {
 		return false;
 	}
 
-	pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, int step)
-	{
-		bool blink = false;
-		int daysLeft = 1;
-		if(mission.Deadline())
-		{
-			daysLeft = player.RemainingDeadline(mission);
-			int blinkFactor = min(6, max(1, daysLeft));
-			blink = (step % (10 * blinkFactor) > 5 * blinkFactor);
-		}
-		return pair<bool, bool>(blink, daysLeft > 0);
-	}
-
 	// Return total value of raid fleet (if any) and 60 frames worth of system danger.
 	double DangerFleetTotal(const PlayerInfo &player, const System &system, const bool withRaids)
 	{
@@ -208,11 +195,39 @@ namespace {
 
 }
 
+const unsigned MapPanel::MAX_MISSION_POINTERS_DRAWN = 12;
 const float MapPanel::OUTER = 6.f;
 const float MapPanel::INNER = 3.5f;
 const float MapPanel::LINK_WIDTH = 1.2f;
 // Draw links only outside the system ring, which has radius MapPanel::OUTER.
 const float MapPanel::LINK_OFFSET = 7.f;
+
+
+
+void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack, bool bigger)
+{
+	if(++systemCount > MAX_MISSION_POINTERS_DRAWN)
+		return;
+	Angle angle = Angle(MISSION_POINTERS_ANGLE_DELTA * systemCount);
+	if(drawBack)
+		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
+	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);
+}
+
+
+
+pair<bool, bool> MapPanel::BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, int step)
+{
+	bool blink = false;
+	int daysLeft = 1;
+	if(mission.Deadline())
+	{
+		daysLeft = player.RemainingDeadline(mission);
+		int blinkFactor = min(6, max(1, daysLeft));
+		blink = (step % (10 * blinkFactor) > 5 * blinkFactor);
+	}
+	return pair<bool, bool>(blink, daysLeft > 0);
+}
 
 
 
@@ -433,147 +448,6 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 	}
 
 	mapInterface->Draw(info, this);
-}
-
-
-
-void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *const draw[2], int step)
-{
-	bool hasDestination = false;
-	Point center;
-	set<const System *> drawnSystems;
-	const System *currentSystem = player.GetSystem();
-	if(draw[0] && draw[1])
-	{
-		hasDestination = true;
-		center = .5 * (draw[0]->Position() + draw[1]->Position());
-		drawnSystems = {draw[0], draw[1]};
-	}
-	else
-	{
-		drawnSystems.insert(currentSystem);
-		center = currentSystem->Position();
-	}
-
-	const Font &font = FontSet::Get(14);
-	Color lineColor(alpha, 0.f);
-	Color brightColor(.4f * alpha, 0.f);
-
-	const Point &drawPos = GameData::Interfaces().Get("hud")->GetPoint("mini-map");
-	const Set<Color> &colors = GameData::Colors();
-	const Color &currentColor = colors.Get("active mission")->Additive(alpha * 2.f);
-	const Color &blockedColor = colors.Get("blocked mission")->Additive(alpha * 2.f);
-	const Color &waypointColor = colors.Get("waypoint")->Additive(alpha * 2.f);
-
-	const Ship *flagship = player.Flagship();
-	auto drawSystemLinks = [&](const System &system) -> void {
-		static const string UNKNOWN_SYSTEM = "Unexplored System";
-		const Government *gov = system.GetGovernment();
-		Point from = system.Position() - center + drawPos;
-		const string &name = player.KnowsName(system) ? system.DisplayName() : UNKNOWN_SYSTEM;
-		font.Draw(name, from + Point(OUTER, -.5 * font.Height()), lineColor);
-
-		// Draw the origin and destination systems, since they
-		// might not be linked via hyperspace.
-		Color color = Color(.5f * alpha, 0.f);
-		if(player.CanView(system) && system.IsInhabited(flagship) && gov)
-			color = gov->GetColor().Additive(alpha);
-		RingShader::Draw(from, OUTER, INNER, color);
-
-		// Add a circle around the system that the player is currently in.
-		if(&system == currentSystem)
-			RingShader::Draw(from, 11.f, 9.f, brightColor);
-
-		for(const System *link : system.Links())
-		{
-			// Only draw systems known to be attached to the jump systems.
-			if(!player.CanView(system) && !player.CanView(*link))
-				continue;
-
-			// Draw the system link. This will double-draw the jump
-			// path if it is via hyperlink, to increase brightness.
-			Point to = link->Position() - center + drawPos;
-			Point unit = (from - to).Unit() * LINK_OFFSET;
-			LineShader::Draw(from - unit, to + unit, LINK_WIDTH, lineColor);
-
-			if(drawnSystems.contains(link))
-				continue;
-			drawnSystems.insert(link);
-
-			gov = link->GetGovernment();
-			Color color = Color(.5f * alpha, 0.f);
-			if(player.CanView(*link) && link->IsInhabited(flagship) && gov)
-				color = gov->GetColor().Additive(alpha);
-			RingShader::Draw(to, OUTER, INNER, color);
-		}
-
-		unsigned missionCounter = 0;
-		for(const Mission &mission : player.Missions())
-		{
-			if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
-				break;
-
-			if(!mission.IsVisible())
-				continue;
-
-			if(mission.Destination()->IsInSystem(&system))
-			{
-				pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
-				if(!blink.first)
-				{
-					bool isSatisfied = IsSatisfied(player, mission) && blink.second;
-					DrawPointer(from, missionCounter, isSatisfied ? currentColor : blockedColor, false);
-				}
-				else
-					++missionCounter;
-			}
-
-			for(const System *waypoint : mission.Waypoints())
-			{
-				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
-					break;
-				if(waypoint == &system)
-					DrawPointer(from, missionCounter, waypointColor, false);
-			}
-			for(const Planet *stopover : mission.Stopovers())
-			{
-				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
-					break;
-				if(stopover->IsInSystem(&system))
-					DrawPointer(from, missionCounter, waypointColor, false);
-			}
-
-			for(const System *mark : mission.MarkedSystems())
-			{
-				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
-					break;
-				if(mark == &system)
-					DrawPointer(from, missionCounter, waypointColor, false);
-			}
-		}
-	};
-
-	if(hasDestination)
-	{
-		for(int i = 0; i < 2; ++i)
-			drawSystemLinks(*draw[i]);
-
-		// Draw the rest of the directional arrow. If this is a normal jump,
-		// the stem was already drawn above.
-		Point from = draw[0]->Position() - center + drawPos;
-		Point to = draw[1]->Position() - center + drawPos;
-		Point unit = (to - from).Unit();
-		from += LINK_OFFSET * unit;
-		to -= LINK_OFFSET * unit;
-		Color bright(2.f * alpha, 0.f);
-		// Non-hyperspace jumps are drawn with a dashed directional arrow.
-		if(!draw[0]->Links().contains(draw[1]))
-			LineShader::DrawDashed(from, to, unit, LINK_WIDTH, bright, 11., 4.);
-		LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., LINK_WIDTH, bright);
-		LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10., LINK_WIDTH, bright);
-	}
-	else
-		drawSystemLinks(*currentSystem);
 }
 
 
@@ -1600,16 +1474,4 @@ void MapPanel::DrawPointer(const System *system, unsigned &systemCount, unsigned
 	if(systemCount >= max)
 		return;
 	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
-}
-
-
-
-void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack, bool bigger)
-{
-	if(++systemCount > MAX_MISSION_POINTERS_DRAWN)
-		return;
-	Angle angle = Angle(MISSION_POINTERS_ANGLE_DELTA * systemCount);
-	if(drawBack)
-		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
-	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);
 }

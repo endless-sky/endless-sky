@@ -1564,46 +1564,25 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<day>"] = result.deadline.LongString();
 	if(result.paymentApparent)
 		subs["<payment>"] = Format::CreditString(abs(result.paymentApparent));
-	// Stopover and waypoint substitutions: iterate by reference to the
-	// pointers so we can check when we're at the very last one in the set.
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
+	auto getDisplayName = [](const auto *const &item)
+	{
+		return item->DisplayName();
+	};
 	if(!result.stopovers.empty())
 	{
-		string stopovers;
-		string planets;
-		const Planet * const *last = &*--result.stopovers.end();
-		int count = 0;
-		for(const Planet * const &planet : result.stopovers)
-		{
-			if(count++)
+		subs["<stopovers>"] = Format::List<set, const Planet *>(result.stopovers,
+			[](const Planet *const &planet)
 			{
-				string result = (&planet != last) ? ", " : (count > 2 ? ", and " : " and ");
-				stopovers += result;
-				planets += result;
-			}
-			stopovers += planet->DisplayName() + " in the " + planet->GetSystem()->DisplayName() + " system";
-			planets += planet->DisplayName();
-		}
-		subs["<stopovers>"] = stopovers;
-		subs["<planet stopovers>"] = planets;
+				return planet->DisplayName() + " in the " + planet->GetSystem()->DisplayName() + " system";
+			});
+		subs["<planet stopovers>"] = Format::List<set, const Planet *>(result.stopovers, getDisplayName);
 	}
 	// Waypoints and marks: "<system name>" with "," and "and".
-	auto systemsReplacement = [](const set<const System *> &systemsSet) -> string {
-		string systems;
-		const System * const *last = &*--systemsSet.end();
-		int count = 0;
-		for(const System * const &system : systemsSet)
-		{
-			if(count++)
-				systems += (&system != last) ? ", " : (count > 2 ? ", and " : " and ");
-			systems += system->DisplayName();
-		}
-		return systems;
-	};
 	if(!result.waypoints.empty())
-		subs["<waypoints>"] = systemsReplacement(result.waypoints);
+		subs["<waypoints>"] = Format::List<set, const System *>(result.waypoints, getDisplayName);
 	if(!result.markedSystems.empty())
-		subs["<marks>"] = systemsReplacement(result.markedSystems);
+		subs["<marks>"] = Format::List<set, const System *>(result.markedSystems, getDisplayName);
 
 	// Done making subs, so expand the phrases and recursively substitute.
 	for(const auto &keyValue : subs)
