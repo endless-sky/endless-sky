@@ -1265,6 +1265,7 @@ interface "hud"
 		from 120 0 bottom left
 		to -110 -200 bottom right
 	value "messages reversed" 0
+	value "message animation duration" 30
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
@@ -1289,8 +1290,12 @@ interface "main view"
 
 
 interface "starfield"
+	# Fixed starfield zoom preference constants:
 	value "fixed zoom" .35
 	value "velocity reducer" 1.4
+	# Starfield zoom behavior constants:
+	value "start clamping zoom" .25
+	value "minimum zoom" .15
 
 
 
@@ -2362,6 +2367,12 @@ interface "info panel"
 interface "message log"
 	value "width" 570
 
+	button d ""
+		from 570 0 top left
+		to 0 0 bottom right
+	button "A" ""
+		center 710 -30 bottom left
+		dimensions 200 60
 	sprite "ui/message log key"
 		center 710 -30 bottom left
 	visible if "!important messages only"
