@@ -139,7 +139,7 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new FillElement(child, anchor));
 			else if(key == "line")
 			{
-				child.PrintTrace("\"line\" is deprecated, please use \"fill\" instead:");
+				child.PrintTrace("\"line\" is deprecated, use \"fill\" instead:");
 				elements.push_back(new FillElement(child, anchor));
 			}
 			else
