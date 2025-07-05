@@ -1455,7 +1455,6 @@ void ShopPanel::DrawButton(const string &name, const Rectangle buttonShape, bool
 	const Font &bigFont = FontSet::Get(18);
 	const Color *color = !isActive ? &inactive : hovering ? &hover : &active;
 
-	//const Point &center, const Point &buttonSize
 	FillShader::Fill(buttonShape.Center(), buttonShape.Dimensions(), back);
 	bigFont.Draw(name, buttonShape.Center() - .5 * Point(bigFont.Width(name), bigFont.Height()), *color);
 
