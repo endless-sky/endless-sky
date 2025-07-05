@@ -820,14 +820,14 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		SpriteShader::Draw(rush[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 105., 7.5));
 
 		if(hoverSort >= 0)
-			FillShader::Fill({pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.)}, highlight);
+			FillShader::Fill(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.), highlight);
 	}
 
 	// Panel title
 	font.Draw(label, pos, title);
 	FillShader::Fill(
-		{pos + Point(.5 * size.X() - 5., 15.),
-		Point(size.X() - 10., 1.)},
+		pos + Point(.5 * size.X() - 5., 15.),
+		Point(size.X() - 10., 1.),
 		separatorLine);
 
 	pos.Y() += 5.;
@@ -865,8 +865,8 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 		bool isSelected = it == selectIt;
 		if(isSelected)
 			FillShader::Fill(
-				{pos + Point(.5 * SIDE_WIDTH - 5., 8.),
-				Point(SIDE_WIDTH - 10., 20.)},
+				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
+				Point(SIDE_WIDTH - 10., 20.),
 				highlight);
 
 		if(it->Deadline())

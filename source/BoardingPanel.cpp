@@ -126,7 +126,7 @@ void BoardingPanel::Draw()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	FillShader::Fill({Point(-155., -60.), Point(360., 250.)}, opaque);
+	FillShader::Fill(Point(-155., -60.), Point(360., 250.), opaque);
 
 	int index = (scroll - 10) / 20;
 	int y = -170 - scroll + 20 * index;
@@ -142,7 +142,7 @@ void BoardingPanel::Draw()
 		// Check if this is the selected row.
 		bool isSelected = (index == selected);
 		if(isSelected)
-			FillShader::Fill({Point(-155., y + 10.), Point(360., 20.)}, back);
+			FillShader::Fill(Point(-155., y + 10.), Point(360., 20.), back);
 
 		// Color the item based on whether you have space for it.
 		const Color &color = item.CanTake(*you) ? isSelected ? bright : medium : dim;

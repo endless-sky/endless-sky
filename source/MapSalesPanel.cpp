@@ -278,8 +278,8 @@ void MapSalesPanel::DrawPanel() const
 {
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	FillShader::Fill(
-		{Point(Screen::Left() + WIDTH * .5, 0.),
-		Point(WIDTH, Screen::Height())},
+		Point(Screen::Left() + WIDTH * .5, 0.),
+		Point(WIDTH, Screen::Height()),
 		back);
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + WIDTH);

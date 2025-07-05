@@ -66,8 +66,8 @@ void MessageLogPanel::Draw()
 	// Draw the panel.
 	const Color &backColor = *GameData::Colors().Get("message log background");
 	FillShader::Fill(
-		{Point(Screen::Left() + .5 * width, 0.),
-		Point(width, Screen::Height())},
+		Point(Screen::Left() + .5 * width, 0.),
+		Point(width, Screen::Height()),
 		backColor);
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + width);

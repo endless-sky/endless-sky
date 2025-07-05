@@ -238,7 +238,7 @@ void Table::DrawUnderline() const
 
 void Table::DrawUnderline(const Color &color) const
 {
-	FillShader::Fill({point + lineOff - Point(0., 2.), lineSize}, color);
+	FillShader::Fill(point + lineOff - Point(0., 2.), lineSize, color);
 }
 
 

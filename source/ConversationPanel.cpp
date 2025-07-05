@@ -130,8 +130,8 @@ void ConversationPanel::Draw()
 	const Color &back = *GameData::Colors().Get("conversation background");
 	double boxWidth = WIDTH + 2. * MARGIN - 10.;
 	FillShader::Fill(
-		{Point(Screen::Left() + .5 * boxWidth, 0.),
-		Point(boxWidth, Screen::Height())},
+		Point(Screen::Left() + .5 * boxWidth, 0.),
+		Point(boxWidth, Screen::Height()),
 		back);
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + boxWidth);
@@ -182,14 +182,14 @@ void ConversationPanel::Draw()
 			}
 
 			// Color selected text box, or flicker if user attempts an error.
-			FillShader::Fill({center, fieldSize}, (flickerTime % 6 > 3) ? dim : selectionColor);
+			FillShader::Fill(center, fieldSize, (flickerTime % 6 > 3) ? dim : selectionColor);
 			if(flickerTime)
 				--flickerTime;
 			// Fill non-selected text box with dimmer color.
-			FillShader::Fill({unselected, fieldSize}, dark);
+			FillShader::Fill(unselected, fieldSize, dark);
 			// Draw the text cursor.
 			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
-			FillShader::Fill({center, Point(1., 16.)}, dim);
+			FillShader::Fill(center, Point(1., 16.), dim);
 		}
 
 		font.Draw("First name:", point + Point(40, 0), dim);
@@ -227,7 +227,7 @@ void ConversationPanel::Draw()
 				choice = index;
 
 			if(index == choice)
-				FillShader::Fill({center + Point(-5, 0), size + Point(30, 0)}, selectionColor);
+				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
 			AddZone(zone, [this, index](){ this->ClickChoice(index); });
 			++index;
 

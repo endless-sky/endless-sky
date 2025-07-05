@@ -78,18 +78,18 @@ void LogbookPanel::Draw()
 	// Draw the panel. The sidebar should be slightly darker than the rest.
 	const Color &sideColor = *GameData::Colors().Get("logbook sidebar");
 	FillShader::Fill(
-		{Point(Screen::Left() + .5 * SIDEBAR_WIDTH, 0.),
-		Point(SIDEBAR_WIDTH, Screen::Height())},
+		Point(Screen::Left() + .5 * SIDEBAR_WIDTH, 0.),
+		Point(SIDEBAR_WIDTH, Screen::Height()),
 		sideColor);
 	const Color &backColor = *GameData::Colors().Get("logbook background");
 	FillShader::Fill(
-		{Point(Screen::Left() + SIDEBAR_WIDTH + .5 * TEXT_WIDTH, 0.),
-		Point(TEXT_WIDTH, Screen::Height())},
+		Point(Screen::Left() + SIDEBAR_WIDTH + .5 * TEXT_WIDTH, 0.),
+		Point(TEXT_WIDTH, Screen::Height()),
 		backColor);
 	const Color &lineColor = *GameData::Colors().Get("logbook line");
 	FillShader::Fill(
-		{Point(Screen::Left() + SIDEBAR_WIDTH - .5, 0.),
-		Point(1., Screen::Height())},
+		Point(Screen::Left() + SIDEBAR_WIDTH - .5, 0.),
+		Point(1., Screen::Height()),
 		lineColor);
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + WIDTH);
@@ -112,8 +112,8 @@ void LogbookPanel::Draw()
 	{
 		if(selectedDate ? dates[i].Month() == selectedDate.Month() : selectedName == contents[i])
 		{
-			FillShader::Fill({pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.)}, lineColor);
-			FillShader::Fill({pos + highlightOffset, highlightSize}, backColor);
+			FillShader::Fill(pos + highlightOffset - Point(1., 0.), highlightSize + Point(0., 2.), lineColor);
+			FillShader::Fill(pos + highlightOffset, highlightSize, backColor);
 		}
 		font.Draw(contents[i], pos + textOffset, dates[i].Month() ? medium : bright);
 		pos.Y() += LINE_HEIGHT;
