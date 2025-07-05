@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 class Color;
-class Point;
+class Rectangle;
 
 
 
@@ -26,5 +26,5 @@ class Point;
 class FillShader {
 public:
 	static void Init();
-	static void Fill(const Point &center, const Point &size, const Color &color);
+	static void Fill(const Rectangle &area, const Color &color);
 };

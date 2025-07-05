@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Color.h"
 #include "../GameData.h"
-#include "../Point.h"
+#include "../Rectangle.h"
 #include "../Screen.h"
 #include "Shader.h"
 
@@ -71,7 +71,7 @@ void FillShader::Init()
 
 
 
-void FillShader::Fill(const Point &center, const Point &size, const Color &color)
+void FillShader::Fill(const Rectangle &area, const Color &color)
 {
 	if(!shader || !shader->Object())
 		throw std::runtime_error("FillShader: Draw() called before Init().");
@@ -82,10 +82,10 @@ void FillShader::Fill(const Point &center, const Point &size, const Color &color
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
 
-	GLfloat centerV[2] = {static_cast<float>(center.X()), static_cast<float>(center.Y())};
+	GLfloat centerV[2] = {static_cast<float>(area.Center().X()), static_cast<float>(area.Center().Y())};
 	glUniform2fv(centerI, 1, centerV);
 
-	GLfloat sizeV[2] = {static_cast<float>(size.X()), static_cast<float>(size.Y())};
+	GLfloat sizeV[2] = {static_cast<float>(area.Dimensions().X()), static_cast<float>(area.Dimensions().Y())};
 	glUniform2fv(sizeI, 1, sizeV);
 
 	glUniform4fv(colorI, 1, color.Get());

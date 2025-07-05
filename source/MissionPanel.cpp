@@ -773,7 +773,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * entries + 40);
-	FillShader::Fill(pos + .5 * size, size, back);
+	FillShader::Fill(Rectangle::FromCorner(pos, size), back);
 
 	// Edges:
 	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
@@ -820,14 +820,14 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		SpriteShader::Draw(rush[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 105., 7.5));
 
 		if(hoverSort >= 0)
-			FillShader::Fill(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.), highlight);
+			FillShader::Fill({pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.)}, highlight);
 	}
 
 	// Panel title
 	font.Draw(label, pos, title);
 	FillShader::Fill(
-		pos + Point(.5 * size.X() - 5., 15.),
-		Point(size.X() - 10., 1.),
+		{pos + Point(.5 * size.X() - 5., 15.),
+		Point(size.X() - 10., 1.)},
 		separatorLine);
 
 	pos.Y() += 5.;
@@ -865,8 +865,8 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 		bool isSelected = it == selectIt;
 		if(isSelected)
 			FillShader::Fill(
-				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
-				Point(SIDE_WIDTH - 10., 20.),
+				{pos + Point(.5 * SIDE_WIDTH - 5., 8.),
+				Point(SIDE_WIDTH - 10., 20.)},
 				highlight);
 
 		if(it->Deadline())
@@ -996,7 +996,7 @@ void MissionPanel::DrawTooltips()
 		size += Point(20., 20.);
 		Point topLeft = Point(Screen::Left() + SIDE_WIDTH - 120. + 30 * hoverSort, Screen::Top() + 30.);
 		// Draw the background fill and the tooltip text.
-		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+		FillShader::Fill(Rectangle::FromCorner(topLeft, size), *GameData::Colors().Get("tooltip background"));
 		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 	}
 }

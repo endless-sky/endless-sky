@@ -218,7 +218,7 @@ void Dialog::Draw()
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
-		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
+		FillShader::Fill({inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT)}, back);
 
 		Point stringPos(
 			inputPos.X() - (Width() - HORIZONTAL_PADDING) * .5 + INPUT_LEFT_PADDING,
@@ -228,7 +228,7 @@ void Dialog::Draw()
 		font.Draw(inputText, stringPos, bright);
 
 		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + INPUT_TOP_PADDING, inputPos.Y());
-		FillShader::Fill(barPos, Point(1., INPUT_HEIGHT - INPUT_VERTICAL_PADDING), dim);
+		FillShader::Fill({barPos, Point(1., INPUT_HEIGHT - INPUT_VERTICAL_PADDING)}, dim);
 	}
 }
 
