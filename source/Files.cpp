@@ -410,7 +410,11 @@ shared_ptr<iostream> Files::Open(const filesystem::path &path, bool write)
 	}
 
 	if(write)
+#ifdef _WIN32
+		return shared_ptr<iostream>{new fstream{path, ios::out}};
+#else
 		return shared_ptr<iostream>{new fstream{path, ios::out | ios::binary}};
+#endif
 	return shared_ptr<iostream>{new fstream{path, ios::in | ios::binary}};
 }
 

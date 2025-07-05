@@ -185,6 +185,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Minable.cpp
 	Minable.h
 	MinableDamageDealt.h
+	MiniMap.cpp
+	MiniMap.h
 	Mission.cpp
 	Mission.h
 	MissionAction.cpp
