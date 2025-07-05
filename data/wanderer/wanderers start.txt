@@ -1291,12 +1291,15 @@ mission "Wanderers: Alpha Surveillance D"
 	on enter "Asikafarnut"
 		dialog `Elias checks the tracker. "Still due southeast," he says. "And I hope those Korath ships aren't on the same side as the Alphas."`
 		unmark "Asikafarnut"
+		mark "Sobarati"
 		mark "Ferukistek"
 	on enter "Sobarati"
 		dialog `Elias fiddles with his tracking device for a while, and then gives up. "Sorry, I'm not reading any signals here. Maybe they jumped right over this system?"`
+		unmark "Sobarati"
 	on enter "Ferukistek"
 		dialog `Elias says, "Found their trail. They've turned and headed east again, and maybe a little bit north."`
 		unmark "Ferukistek"
+		unmark "Sobarati"
 		mark "Host"
 	on enter "Makferuti"
 		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
