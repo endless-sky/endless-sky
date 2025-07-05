@@ -934,5 +934,5 @@ void Interface::LineElement::Draw(const Rectangle &rect, const Information &info
 	// Avoid crashes for malformed interface elements that are not fully loaded.
 	if(!from.Get() && !to.Get())
 		return;
-	FillShader::Fill(rect.Center(), rect.Dimensions(), *color);
+	FillShader::Fill(rect, *color);
 }
