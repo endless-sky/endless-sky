@@ -104,7 +104,11 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
-	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
+	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard")),
+	hover(*GameData::Colors().Get("hover")),
+	active(*GameData::Colors().Get("active")),
+	inactive(*GameData::Colors().Get("inactive")),
+	back(*GameData::Colors().Get("panel background"))
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -960,18 +964,18 @@ void ShopPanel::DrawButtons()
 	bool isOwned = IsAlreadyOwned();
 
 	if(isOwned)
-		ShopPanel::DrawButton(playerShip ? "_Install" : "_Cargo", buyCenter, Point(60, 30),
+		ShopPanel::DrawButton(playerShip ? "_Install" : "_Cargo", Rectangle(buyCenter, Point(60, 30)),
 			static_cast<bool>(CanBuy(isOwned)), hoverButton == 'i', 'i');
 	else
-		ShopPanel::DrawButton("_Buy", buyCenter, Point(60, 30),
+		ShopPanel::DrawButton("_Buy", Rectangle(buyCenter, Point(60, 30)),
 			static_cast<bool>(CanBuy(isOwned)), hoverButton == 'b', 'b');
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	ShopPanel::DrawButton("_Sell", sellCenter, Point(60, 30),
+	ShopPanel::DrawButton("_Sell", Rectangle(sellCenter, Point(60, 30)),
 		static_cast<bool>(CanSell()), hoverButton == 's', 's');
 
 	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-	ShopPanel::DrawButton("_Leave", leaveCenter, Point(70, 30),
+	ShopPanel::DrawButton("_Leave", Rectangle(leaveCenter, Point(70, 30)),
 		true, hoverButton == 'l', 'l');
 
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
@@ -1445,16 +1449,18 @@ void ShopPanel::MainDown()
 
 
 
-void ShopPanel::DrawButton(const string &name, const Point &center, const Point &buttonSize, bool isActive,
+void ShopPanel::DrawButton(const string &name, const Rectangle buttonShape, bool isActive,
 	bool hovering, char keyCode)
 {
+	const Font &bigFont = FontSet::Get(18);
 	const Color *color = !isActive ? &inactive : hovering ? &hover : &active;
 
-	FillShader::Fill(center, buttonSize, back);
-	bigFont.Draw(name, center - .5 * Point(bigFont.Width(name), bigFont.Height()), *color);
+	//const Point &center, const Point &buttonSize
+	FillShader::Fill(buttonShape.Center(), buttonShape.Dimensions(), back);
+	bigFont.Draw(name, buttonShape.Center() - .5 * Point(bigFont.Width(name), bigFont.Height()), *color);
 
 	// Add this button to the buttonZones:
-	buttonZones.emplace_back(center, buttonSize, keyCode);
+	buttonZones.emplace_back(buttonShape, keyCode);
 }
 
 

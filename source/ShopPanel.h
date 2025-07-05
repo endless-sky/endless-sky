@@ -18,11 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
-#include "text/FontSet.h"
-#include "GameData.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "Rectangle.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
@@ -112,8 +111,7 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
-	void DrawButton(const std::string &name, const Point &center, const Point &buttonSize, bool isActive,
-		bool hovering, char keyCode);
+	void DrawButton(const std::string &name, const Rectangle, bool isActive, bool hovering, char keyCode);
 	void CheckSelection();
 
 
@@ -228,12 +226,11 @@ private:
 	std::string warningType;
 	int hoverCount = 0;
 
-	// Define the colors and font
-	const Font &bigFont = FontSet::Get(18);
-	const Color &hover = *GameData::Colors().Get("hover");
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &inactive = *GameData::Colors().Get("inactive");
-	const Color &back = *GameData::Colors().Get("panel background");
+	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData
+	const Color &hover;
+	const Color &active;
+	const Color &inactive;
+	const Color &back;
 
 	bool checkedHelp = false;
 };
