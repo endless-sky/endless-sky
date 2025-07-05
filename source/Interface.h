@@ -256,10 +256,10 @@ private:
 	};
 
 
-	// This class handles "line" elements.
-	class LineElement : public Element {
+	// This class handles "fill" elements.
+	class FillElement : public Element {
 	public:
-		LineElement(const DataNode &node, const Point &globalAnchor);
+		FillElement(const DataNode &node, const Point &globalAnchor);
 
 	protected:
 		// Parse the given data line: one that is not recognized by Element
