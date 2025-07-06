@@ -1581,8 +1581,8 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 
 
 
-// Check if the given point is within the button zone, and if so return the
-// letter of the button (or '\0' if it's not on a button).
+// Check if the given point is within the button zone (default is to return ' '), and if the point is within a button,
+// return letter of the button, and if not within the button panel at all, return '\0'.
 char ShopPanel::CheckButton(int x, int y)
 {
 	// Check the Find button.
@@ -1600,5 +1600,6 @@ char ShopPanel::CheckButton(int x, int y)
 		if(zone.Contains(clickPoint))
 			return zone.Value();
 
-	return '\0';
+	// Returning space here ensures that hover text for the ship info panel is supressed.
+	return ' ';
 }
