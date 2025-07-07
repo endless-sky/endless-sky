@@ -15,9 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameWindow.h"
 
-#include "Files.h"
-#include "image/ImageBuffer.h"
-#include "image/ImageFileData.h"
 #include "Logger.h"
 #include "Screen.h"
 
@@ -246,13 +243,6 @@ bool GameWindow::Init(bool headless)
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
 
-#ifndef __APPLE__
-	// On OS X, setting the window icon will cause that same icon to be used
-	// in the dock and the application switcher. That's not something we
-	// want, because the ".icns" icon that is used automatically is prettier.
-	SetIcon();
-#endif
-
 	return true;
 }
 
@@ -278,30 +268,6 @@ void GameWindow::Quit()
 void GameWindow::Step()
 {
 	SDL_GL_SwapWindow(mainWindow);
-}
-
-
-
-void GameWindow::SetIcon()
-{
-	if(!mainWindow)
-		return;
-
-	// Load the icon file.
-	ImageBuffer buffer;
-	if(!buffer.Read(ImageFileData(Files::Resources() / "icon.png")))
-		return;
-	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
-		return;
-
-	// Convert the icon to an SDL surface.
-	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer.Pixels(), buffer.Width(), buffer.Height(),
-		32, 4 * buffer.Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-	if(surface)
-	{
-		SDL_SetWindowIcon(mainWindow, surface);
-		SDL_FreeSurface(surface);
-	}
 }
 
 
