@@ -201,12 +201,6 @@ int main(int argc, char *argv[])
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 
-		// On Windows, make sure that the sleep timer has at least 1 ms resolution
-		// to avoid irregular frame rates.
-#ifdef _WIN32
-		timeBeginPeriod(1);
-#endif
-
 		Preferences::Load();
 
 		// Load global conditions:
@@ -219,6 +213,12 @@ int main(int argc, char *argv[])
 			return 1;
 
 		GameData::LoadSettings();
+
+#ifdef _WIN32
+		// Make sure that the sleep timer has at least 1 ms resolution
+		// to avoid irregular frame rates.
+		timeBeginPeriod(1);
+#endif
 
 		if(!isTesting || debugMode)
 		{
