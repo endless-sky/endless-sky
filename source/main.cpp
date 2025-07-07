@@ -235,6 +235,11 @@ int main(int argc, char *argv[])
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
+
+#ifdef _WIN32
+		// Reset the timer resolution so that it doesn't affect performance of the whole OS.
+		timeEndPeriod(1);
+#endif
 	}
 	catch(Test::known_failure_tag)
 	{
