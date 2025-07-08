@@ -11,6 +11,15 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+phrase "bribe rejection hail"
+	word
+		"Thanks for the patronage, but"
+                "Your attempt is futile;"
+	word
+		"we are too honorable to accept this from an enemy."
+		"we value honor over greed."
+
+
 phrase "band"
 	word
 		"There Might Be Riots"
