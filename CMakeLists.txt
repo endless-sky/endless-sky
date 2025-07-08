@@ -25,6 +25,8 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
 # On Linux use relative RPATH.
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
+# Generate compile commands for lsp parsers. This doesn't affect the build.
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Setup vcpkg.
 if(ES_USE_VCPKG)
