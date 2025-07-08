@@ -262,7 +262,7 @@ void GameData::FinishLoading()
 	defaultWormholes = objects.wormholes;
 	defaultSubstitutions = objects.substitutions;
 
-	defaultGamerules = objects.gamerulePresets.Get("Default");
+	defaultGamerules = objects.gamerulesPresets.Get("Default");
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -815,9 +815,9 @@ const Set<Wormhole> &GameData::Wormholes()
 
 
 
-const Set<Gamerules> &GameData::GamerulePresets()
+const Set<Gamerules> &GameData::GamerulesPresets()
 {
-	return objects.gamerulePresets;
+	return objects.gamerulesPresets;
 }
 
 

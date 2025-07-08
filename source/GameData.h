@@ -147,7 +147,7 @@ public:
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
-	static const Set<Gamerules> &GamerulePresets();
+	static const Set<Gamerules> &GamerulesPresets();
 
 	static ConditionsStore &GlobalConditions();
 
