@@ -587,15 +587,17 @@ string Government::GetHail(bool isDisabled) const
 	return phrase ? phrase->Get() : "";
 }
 
-string Government::GetBribeRejectionHail(map<string, string> &&subs) const
+string Government::GetBribeAcceptanceHail() const
 {
-	string hailStr = briceAcceptanceHail ? bribeAcceptanceHail->Get() : "It's a pleasure doing business with you.";
+	string hailStr = bribeAcceptanceHail ? bribeAcceptanceHail->Get() : "It's a pleasure doing business with you.";
 
-	if (hailStr.empty()) 
-		return hailStr;
+	return hailStr;
+}
 
-	subs["<npc>"] = Name();
-	return Format::Replace(hailStr, subs);
+string Government::GetBribeRejectionHail() const
+{
+	string hailStr = bribeRejectionHail ? bribeRejectionHail->Get() : "I do not want your money.";
+	return hailStr;
 }
 
 // Find out if this government speaks a different language.
