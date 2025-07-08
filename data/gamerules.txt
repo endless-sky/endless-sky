@@ -21,7 +21,7 @@
 	# provides a very small amount of fuel to every ship regardless of whether they have
 	# an actual ramscoop or not. The strength of this ramscoop is scaled with the square
 	# of the distance to the system center, meaning it falls off much more quickly than
-	a normal ramscoop.
+	# a normal ramscoop.
 	# DEFAULT: true
 	# ALLOWABLE VALUES: false, true, 0, 1
 	"universal ramscoop" true
