@@ -90,7 +90,7 @@ string Gamerules::GetString(const string &rule) const
 		if(fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
 			return "only player";
 	}
-	return "";
+	return {};
 }
 
 
