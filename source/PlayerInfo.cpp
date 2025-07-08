@@ -207,6 +207,7 @@ void PlayerInfo::New(const StartConditions &start)
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
 	start.GetConditions().Apply();
+	gamerules = GameData::DefaultGamerules();
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -444,6 +445,8 @@ void PlayerInfo::Load(const filesystem::path &path)
 				}
 			}
 		}
+		else if(key == "gamerules")
+			gamerules.Load(child);
 		else if(key == "start")
 			startData.Load(child);
 	}
@@ -3353,6 +3356,8 @@ void PlayerInfo::ApplyChanges()
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 
+	GameData::SetGamerules(gamerules);
+
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
 	GameData::SetDate(GetDate());
@@ -4669,6 +4674,9 @@ void PlayerInfo::Save(DataWriter &out) const
 			}
 	}
 	out.EndChild();
+	
+	out.Write();
+	gamerules.Save(out);
 
 	out.Write();
 	out.WriteComment("How you began:");

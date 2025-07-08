@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Gamerules.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 
 #include <algorithm>
 
@@ -75,6 +76,35 @@ void Gamerules::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
+}
+
+
+
+void Gamerules::Save(DataWriter &out) const
+{
+	out.Write("gamerules");
+	out.BeginChild();
+	{
+		out.Write("universal ramscoop", universalRamscoop ? 1 : 0);
+		out.Write("person spawn period", personSpawnPeriod);
+		out.Write("no person spawn weight", noPersonSpawnWeight);
+		out.Write("npc max mining time", npcMaxMiningTime);
+		out.Write("universal frugal threshold", universalFrugalThreshold);
+		out.Write("depreciation min", depreciationMin);
+		out.Write("depreciation daily", depreciationDaily);
+		out.Write("depreciation grace period", depreciationGracePeriod);
+		out.Write("depreciation max age", depreciationMaxAge);
+		if(fighterHitPolicy == FighterDodgePolicy::ALL)
+			out.Write("disabled fighters avoid projectiles", "all");
+		else if(fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
+			out.Write("disabled fighters avoid projectiles", "only player");
+		else
+			out.Write("disabled fighters avoid projectiles", "none");
+		out.Write("system departure min", systemDepartureMin);
+		out.Write("system arrival min", systemArrivalMin);
+		out.Write("fleet multiplier", fleetMultiplier);
+	}
+	out.EndChild();
 }
 
 

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 class DataNode;
+class DataWriter;
 
 
 
@@ -35,6 +36,7 @@ public:
 
 	// Load a gamerules node.
 	void Load(const DataNode &node);
+	void Save(DataWriter &out) const;
 
 	bool UniversalRamscoopActive() const;
 	int PersonSpawnPeriod() const;

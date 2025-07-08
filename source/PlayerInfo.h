@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Depreciation.h"
 #include "EsUuid.h"
 #include "GameEvent.h"
+#include "Gamerules.h"
 #include "Mission.h"
 #include "SystemEntry.h"
 
@@ -476,6 +477,7 @@ private:
 	bool sortSeparatePossible = false;
 
 	ConditionsStore conditions;
+	Gamerules gamerules;
 	std::map<std::string, EsUuid> giftedShips;
 
 	std::set<const System *> seen;
