@@ -27,6 +27,11 @@ using namespace std;
 // Load a gamerules node.
 void Gamerules::Load(const DataNode &node)
 {
+	if(node.Size() >= 2)
+		name = node.Token(1);
+	else
+		name = "Default";
+	
 	for(const DataNode &child : node)
 	{
 		if(child.Size() < 2)
@@ -37,7 +42,9 @@ void Gamerules::Load(const DataNode &node)
 
 		const string &key = child.Token(0);
 
-		if(key == "universal ramscoop")
+		if(key == "description")
+			description = child.Token(1);
+		else if(key == "universal ramscoop")
 			universalRamscoop = child.BoolValue(1);
 		else if(key == "person spawn period")
 			personSpawnPeriod = max<int>(1, child.Value(1));
@@ -105,6 +112,20 @@ void Gamerules::Save(DataWriter &out) const
 		out.Write("fleet multiplier", fleetMultiplier);
 	}
 	out.EndChild();
+}
+
+
+
+const string &Gamerules::Name() const
+{
+	return name;
+}
+
+
+
+const string &Gamerules::Description() const
+{
+	return description;
 }
 
 
