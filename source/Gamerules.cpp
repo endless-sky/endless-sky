@@ -32,7 +32,7 @@ void Gamerules::Load(const DataNode &node)
 		name = node.Token(1);
 	else
 		name = "Default";
-	
+
 	for(const DataNode &child : node)
 	{
 		if(child.Size() < 2)

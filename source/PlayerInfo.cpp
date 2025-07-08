@@ -4679,7 +4679,7 @@ void PlayerInfo::Save(DataWriter &out) const
 			}
 	}
 	out.EndChild();
-	
+
 	out.Write();
 	gamerules.Save(out);
 
