@@ -3356,6 +3356,11 @@ void PlayerInfo::ApplyChanges()
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 
+	// Set the active gamerules to the rules from this player.
+	// If the player's gamerules were never loaded, then this is an
+	// old pilot that was implicitly using the default gamerules before.
+	if(!gamerules.IsLoaded())
+		gamerules = *GameData::DefaultGamerules();
 	GameData::SetGamerules(gamerules);
 
 	// Make sure all stellar objects are correctly positioned. This is needed

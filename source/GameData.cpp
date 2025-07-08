@@ -86,7 +86,9 @@ namespace {
 	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
-	Gamerules defaultGamerules;
+
+	const Gamerules *defaultGamerules = nullptr;
+	Gamerules activeGamerules;
 
 	Politics politics;
 
@@ -259,8 +261,8 @@ void GameData::FinishLoading()
 	defaultOutfitSales = objects.outfitSales;
 	defaultWormholes = objects.wormholes;
 	defaultSubstitutions = objects.substitutions;
-	defaultGamerules = objects.gamerules;
 
+	defaultGamerules = objects.gamerulePresets.Get("Default");
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -435,8 +437,8 @@ void GameData::Revert()
 	objects.outfitSales.Revert(defaultOutfitSales);
 	objects.wormholes.Revert(defaultWormholes);
 	objects.substitutions.Revert(defaultSubstitutions);
-	objects.gamerules = defaultGamerules;
 
+	activeGamerules = *defaultGamerules;
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -1002,19 +1004,19 @@ const TextReplacements &GameData::GetTextReplacements()
 
 const Gamerules &GameData::GetGamerules()
 {
-	return objects.gamerules;
+	return activeGamerules;
 }
 
 
 
 void GameData::SetGamerules(const Gamerules &gamerules)
 {
-	objects.gamerules = gamerules;
+	activeGamerules = gamerules;
 }
 
 
 
-const Gamerules &GameData::DefaultGamerules()
+const Gamerules *GameData::DefaultGamerules()
 {
 	return defaultGamerules;
 }

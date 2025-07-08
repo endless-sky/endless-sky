@@ -27,6 +27,7 @@ using namespace std;
 // Load a gamerules node.
 void Gamerules::Load(const DataNode &node)
 {
+	loaded = true;
 	if(node.Size() >= 2)
 		name = node.Token(1);
 	else
@@ -112,6 +113,13 @@ void Gamerules::Save(DataWriter &out) const
 		out.Write("fleet multiplier", fleetMultiplier);
 	}
 	out.EndChild();
+}
+
+
+
+bool Gamerules::IsLoaded() const
+{
+	return loaded;
 }
 
 

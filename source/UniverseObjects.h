@@ -135,7 +135,6 @@ private:
 	Set<Gamerules> gamerulePresets;
 	std::set<double> neighborDistances;
 
-	Gamerules gamerules;
 	TextReplacements substitutions;
 	Trade trade;
 	std::vector<StartConditions> startConditions;

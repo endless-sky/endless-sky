@@ -191,7 +191,7 @@ void StartConditions::FinishLoading()
 
 	// If no gamerules were specified, then use the defaults.
 	if(!gamerules)
-		gamerules = &GameData::DefaultGamerules();
+		gamerules = GameData::DefaultGamerules();
 
 	// The UNLOCKED StartInfo should always display the correct information. Therefore, we get the
 	// planet and system names now. If we had gotten these during Load, the planet and system provided
