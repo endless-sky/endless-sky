@@ -14,11 +14,14 @@
 # A set of constants and booleans that determine game behavior.
 # If the game data does not specify a value for a certain gamerule, then its default
 # value is used.
-gamerules
+"gamerules preset" "Default"
+	description "The default set of gamerules around which the game is developed."
+
 	# Determines whether the "universal ramscoop" is active on all ships. This ramscoop
 	# provides a very small amount of fuel to every ship regardless of whether they have
-	# an actual ramscoop or not. The strength of this ramscoop is scaled with the distance
-	# to the system center twice, meaning it falls off much more quickly than a normal ramscoop.
+	# an actual ramscoop or not. The strength of this ramscoop is scaled with the square
+	# of the distance to the system center, meaning it falls off much more quickly than
+	a normal ramscoop.
 	# DEFAULT: true
 	# ALLOWABLE VALUES: false, true, 0, 1
 	"universal ramscoop" true
