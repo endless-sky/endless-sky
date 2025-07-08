@@ -152,7 +152,7 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 			else if(value == "reveal")
 				LoadState(child, StartState::REVEALED);
 		}
-		else if("gamerules preset" && hasValue)
+		else if("gamerule preset" && hasValue)
 			gamerules = GameData::GamerulePresets().Get(value);
 		else
 			conditions.Add(child, playerConditions);
