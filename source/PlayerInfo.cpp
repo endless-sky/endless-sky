@@ -207,7 +207,7 @@ void PlayerInfo::New(const StartConditions &start)
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
 	start.GetConditions().Apply();
-	gamerules = GameData::DefaultGamerules();
+	gamerules = start.GetGamerules();
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();

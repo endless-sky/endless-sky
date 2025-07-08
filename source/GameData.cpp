@@ -813,6 +813,13 @@ const Set<Wormhole> &GameData::Wormholes()
 
 
 
+const Set<Gamerules> &GameData::GamerulePresets()
+{
+	return objects.gamerulePresets;
+}
+
+
+
 const Government *GameData::PlayerGovernment()
 {
 	return playerGovernment;
