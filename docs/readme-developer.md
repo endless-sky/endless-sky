@@ -51,7 +51,7 @@ Endless Sky requires precompiled libraries to compile and play: [Download link](
 Install [Homebrew](https://brew.sh). Once it is installed, use it to install the tools and libraries you will need:
 
 ```bash
-$ brew install cmake ninja mad libpng jpeg-turbo sdl2
+$ brew install cmake ninja mad libpng jpeg-turbo sdl2 minizip
 ```
 
 **Note**: If you are on Apple Silicon (and want to compile for ARM), make sure that you are using ARM Homebrew!
@@ -63,14 +63,18 @@ If you want to build the libraries from source instead of using Homebrew, you ca
 You can use your favorite package manager to install the needed dependencies. If you're using a slower moving distro like Ubuntu or Debian (or any derivatives thereof), make sure to use at least Ubuntu 22.04 LTS or Debian 12.
 If your distro does not provide up-to-date version of these libraries, you can use vcpkg to build the necessary libraries from source by passing `-DES_USE_VCPKG=ON`. Older versions of Ubuntu and Debian, for example, will need this. Additional dependencies will likely need to be installed to build the libraries from source as well.
 
-In addition to the below dependencies, you will also need CMake 3.16 or newer, however 3.21 or newer is strongly recommended. You can get the latest version from the [official website](https://cmake.org/download/). If you are often switching branches, then you can also consider installing [ccache](https://ccache.dev/) to speed up rebuilds after switching branches.
+In addition to the below dependencies, you will also need CMake 3.19 or newer, however 3.21 or newer is strongly recommended. You can get the latest version from the [official website](https://cmake.org/download/). If you are often switching branches, then you can also consider installing [ccache](https://ccache.dev/) to speed up rebuilds after switching branches.
 
 
 <details>
 <summary>DEB-based distros</summary>
 
 ```
-g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
+g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libminizip-dev libopenal-dev libmad0-dev uuid-dev
+```
+If your CMake version is less than 3.31, you will also need
+```
+pkgconf
 ```
 Additionally, if you want to build unit tests:
 ```
@@ -85,7 +89,11 @@ While sufficient versions of other dependencies are available, Ubuntu 22.04 does
 <summary>RPM-based distros</summary>
 
 ```
-gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel
+gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel minizip-devel openal-soft-devel libmad-devel libuuid-devel
+```
+If your CMake version is less than 3.31, you will also need
+```
+pkgconf
 ```
 Additionally, if you want to build unit tests:
 ```
@@ -125,7 +133,7 @@ Replace `<preset>` with one of the following presets:
 
 - Windows: `clang-cl` (builds with Clang for Windows), `mingw` (builds with MinGW), `mingw32` (builds with x86 MinGW)
 - MacOS: `macos` or `macos-arm` (builds with the default compiler, for x64 and ARM64 respectively)
-- Linux: `linux` (builds with the default compiler), `linux-gles` (compiles with GLES instead of OpenGL support)
+- Linux: `linux` (builds with the default compiler), `linux-gles` (compiles with GLES instead of OpenGL support), `linux-armv7` (provides better support for 32-bit ARM systems)
 
 You can list all of available presets with `cmake --list-presets`.
 
