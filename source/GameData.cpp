@@ -67,6 +67,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <atomic>
+#include <cassert>
 #include <filesystem>
 #include <iostream>
 #include <queue>
@@ -88,7 +89,7 @@ namespace {
 	TextReplacements defaultSubstitutions;
 
 	const Gamerules *defaultGamerules = nullptr;
-	Gamerules activeGamerules;
+	const Gamerules *activeGamerules = nullptr;
 
 	Politics politics;
 
@@ -263,6 +264,7 @@ void GameData::FinishLoading()
 	defaultSubstitutions = objects.substitutions;
 
 	defaultGamerules = objects.gamerulesPresets.Get("Default");
+	activeGamerules = defaultGamerules;
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -438,7 +440,7 @@ void GameData::Revert()
 	objects.wormholes.Revert(defaultWormholes);
 	objects.substitutions.Revert(defaultSubstitutions);
 
-	activeGamerules = *defaultGamerules;
+	activeGamerules = defaultGamerules;
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -1004,12 +1006,13 @@ const TextReplacements &GameData::GetTextReplacements()
 
 const Gamerules &GameData::GetGamerules()
 {
-	return activeGamerules;
+	assert(activeGamerules != nullptr && "activeGamerules may not be nullptr");
+	return *activeGamerules;
 }
 
 
 
-void GameData::SetGamerules(const Gamerules &gamerules)
+void GameData::SetGamerules(const Gamerules *gamerules)
 {
 	activeGamerules = gamerules;
 }

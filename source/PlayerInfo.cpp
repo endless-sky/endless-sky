@@ -445,8 +445,8 @@ void PlayerInfo::Load(const filesystem::path &path)
 				}
 			}
 		}
-		else if(key == "gamerules")
-			gamerules.Load(child);
+		else if(key == "gamerules preset" && hasValue)
+			gamerules = GameData::GamerulesPresets().Get(child.Token(1));
 		else if(key == "start")
 			startData.Load(child);
 	}
@@ -3359,8 +3359,8 @@ void PlayerInfo::ApplyChanges()
 	// Set the active gamerules to the rules from this player.
 	// If the player's gamerules were never loaded, then this is an
 	// old pilot that was implicitly using the default gamerules before.
-	if(!gamerules.IsLoaded())
-		gamerules = *GameData::DefaultGamerules();
+	if(!gamerules)
+		gamerules = GameData::DefaultGamerules();
 	GameData::SetGamerules(gamerules);
 
 	// Make sure all stellar objects are correctly positioned. This is needed
@@ -4680,8 +4680,8 @@ void PlayerInfo::Save(DataWriter &out) const
 	}
 	out.EndChild();
 
-	out.Write();
-	gamerules.Save(out);
+	if(gamerules)
+		out.Write("gamerules preset", gamerules->Name());
 
 	out.Write();
 	out.WriteComment("How you began:");

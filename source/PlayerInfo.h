@@ -477,7 +477,7 @@ private:
 	bool sortSeparatePossible = false;
 
 	ConditionsStore conditions;
-	Gamerules gamerules;
+	const Gamerules *gamerules = nullptr;
 	std::map<std::string, EsUuid> giftedShips;
 
 	std::set<const System *> seen;

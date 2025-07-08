@@ -81,7 +81,7 @@ public:
 
 	const ConditionAssignments &GetConditions() const noexcept;
 	const std::vector<Ship> &Ships() const noexcept;
-	const Gamerules &GetGamerules() const noexcept;
+	const Gamerules *GetGamerules() const noexcept;
 
 	// Get this start's intro conversation.
 	const Conversation &GetConversation() const;

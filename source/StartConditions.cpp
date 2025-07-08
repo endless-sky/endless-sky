@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 
 #include <algorithm>
-#include <cassert>
 #include <sstream>
 
 using namespace std;
@@ -250,10 +249,9 @@ const vector<Ship> &StartConditions::Ships() const noexcept
 
 
 
-const Gamerules &StartConditions::GetGamerules() const noexcept
+const Gamerules *StartConditions::GetGamerules() const noexcept
 {
-	assert(gamerules != nullptr && "gamerules may not be nullptr");
-	return *gamerules;
+	return gamerules;
 }
 
 
