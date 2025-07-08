@@ -385,7 +385,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			if(!ship || requestedToBribeShip)
 			{
 				player.Accounts().AddCredits(-bribe);
-				SetMessage("It's a pleasure doing business with you.");
+				SetMessage(ship->GetGovernment()->GetBribeAcceptanceHail(player.GetSubstitutions()));
 			}
 			if(ship)
 			{
@@ -413,7 +413,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			}
 		}
 		else
-			SetMessage("I do not want your money.");
+			SetMessage(ship->GetGovernment()->GetBribeRejectionHail(player.GetSubstitutions()));
 	}
 	else
 		sound = UI::UISound::NONE;

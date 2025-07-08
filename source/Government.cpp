@@ -166,6 +166,10 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				hostileHail = nullptr;
 			else if(key == "hostile disabled hail")
 				hostileDisabledHail = nullptr;
+			else if(key == "bribe acceptance hail")
+				bribeAcceptanceHail = nullptr;
+			else if(key == "bribe rejection hail")
+				bribeRejectionHail = nullptr;
 			else if(key == "language")
 				language.clear();
 			else if(key == "send untranslated hails")
@@ -401,6 +405,10 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			hostileHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "hostile disabled hail")
 			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "bribe acceptance hail")
+			bribeAcceptanceHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "bribe rejection hail")
+			bribeRejectionHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
@@ -579,7 +587,16 @@ string Government::GetHail(bool isDisabled) const
 	return phrase ? phrase->Get() : "";
 }
 
+string Government::GetBribeRejectionHail(map<string, string> &&subs) const
+{
+	string hailStr = briceAcceptanceHail ? bribeAcceptanceHail->Get() : "It's a pleasure doing business with you.";
 
+	if (hailStr.empty()) 
+		return hailStr;
+
+	subs["<npc>"] = Name();
+	return Format::Replace(hailStr, subs);
+}
 
 // Find out if this government speaks a different language.
 const string &Government::Language() const
