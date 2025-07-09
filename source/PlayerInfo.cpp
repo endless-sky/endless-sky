@@ -177,7 +177,7 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New(const StartConditions &start)
+void PlayerInfo::New(const StartConditions &start, const Gamerules *gamerules)
 {
 	// Clear any previously loaded data.
 	Clear();
@@ -207,7 +207,7 @@ void PlayerInfo::New(const StartConditions &start)
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
 	start.GetConditions().Apply();
-	gamerules = start.GetGamerules();
+	this->gamerules = gamerules;
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -2617,6 +2617,7 @@ const ConditionsStore &PlayerInfo::Conditions() const
 void PlayerInfo::SetGamerules(const Gamerules *gamerules)
 {
 	this->gamerules = gamerules;
+	GameData::SetGamerules(gamerules);
 }
 
 

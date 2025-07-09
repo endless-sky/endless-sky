@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
+#include "StartConditionsPanel.h"
 #include "text/Table.h"
 #include "text/Truncate.h"
 #include "UI.h"
@@ -46,15 +47,24 @@ using namespace std;
 
 
 
-GamerulesPanel::GamerulesPanel(PlayerInfo &player)
-	: player(player), presetUi(GameData::Interfaces().Get("gamerules presets")), selected(0)
+GamerulesPanel::GamerulesPanel(const Gamerules *preset, StartConditionsPanel *parent)
+	: chosenPreset(preset), parent(parent), presetUi(GameData::Interfaces().Get("gamerules presets"))
 {
-	selectedPreset = GameData::GetGamerules().Name();
-
 	// Set the initial preset list and description scroll ranges.
 	Rectangle presetListBox = presetUi->GetBox("preset list");
 
-	presetListHeight = GameData::GamerulesPresets().size() * 20;
+	auto presets = GameData::GamerulesPresets();
+	presetListHeight = presets.size() * 20;
+
+	selectedIndex = 0;
+	for(const auto &it : presets)
+	{
+		if(&it.second != chosenPreset)
+			++selectedIndex;
+		else
+			break;
+	}
+	selectedName = chosenPreset->Name();
 
 	presetListScroll.SetDisplaySize(presetListBox.Height());
 	presetListScroll.SetMaxValue(presetListHeight);
@@ -62,7 +72,7 @@ GamerulesPanel::GamerulesPanel(PlayerInfo &player)
 	presetDescriptionScroll.SetDisplaySize(presetDescriptionBox.Height());
 
 	presetListClip = std::make_unique<RenderBuffer>(presetListBox.Dimensions());
-	RenderPresetDescription(selectedPreset);
+	RenderPresetDescription(*chosenPreset);
 }
 
 
@@ -101,7 +111,10 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	else if(key == 'c')
 		GetUI()->Push(new Dialog("Gamerule customization will be added in a future update."));
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	{
+		parent->SetChosenPreset(chosenPreset);
 		GetUI()->Pop(this);
+	}
 	else
 		return false;
 
@@ -121,11 +134,11 @@ bool GamerulesPanel::Click(int x, int y, int clicks)
 		int index = 0;
 		for(const auto &zone : presetZones)
 		{
-			if(zone.Contains(point) && selectedPreset != zone.Value())
+			if(zone.Contains(point) && selectedName != zone.Value())
 			{
-				selectedPreset = zone.Value();
-				selected = index;
-				RenderPresetDescription(selectedPreset);
+				selectedName = zone.Value();
+				selectedIndex = index;
+				RenderPresetDescription(selectedName);
 				break;
 			}
 			index++;
@@ -232,7 +245,7 @@ void GamerulesPanel::DrawPresets()
 
 		presetZones.emplace_back(presetListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), name);
 
-		bool isSelected = (name == selectedPreset);
+		bool isSelected = (name == selectedName);
 		if(isSelected || name == hoverItem)
 			table.DrawHighlight(back);
 
@@ -370,9 +383,9 @@ void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 
 void GamerulesPanel::HandleUp()
 {
-	selected = max(0, selected - 1);
-	selectedPreset = presetZones.at(selected).Value();
-	RenderPresetDescription(selectedPreset);
+	selectedIndex = max(0, selectedIndex - 1);
+	selectedName = presetZones.at(selectedIndex).Value();
+	RenderPresetDescription(selectedName);
 	ScrollSelectedPreset();
 }
 
@@ -380,9 +393,9 @@ void GamerulesPanel::HandleUp()
 
 void GamerulesPanel::HandleDown()
 {
-	selected = min(selected + 1, static_cast<int>(presetZones.size() - 1));
-	selectedPreset = presetZones.at(selected).Value();
-	RenderPresetDescription(selectedPreset);
+	selectedIndex = min(selectedIndex + 1, static_cast<int>(presetZones.size() - 1));
+	selectedName = presetZones.at(selectedIndex).Value();
+	RenderPresetDescription(selectedName);
 	ScrollSelectedPreset();
 }
 
@@ -390,17 +403,15 @@ void GamerulesPanel::HandleDown()
 
 void GamerulesPanel::SelectPreset(const string &name)
 {
-	const Gamerules *selected = GameData::GamerulesPresets().Get(name);
-	player.SetGamerules(selected);
-	GameData::SetGamerules(selected);
+	chosenPreset = GameData::GamerulesPresets().Get(name);
 }
 
 
 
 void GamerulesPanel::ScrollSelectedPreset()
 {
-	while(selected * 20 - presetListScroll < 0)
+	while(selectedIndex * 20 - presetListScroll < 0)
 		presetListScroll.Scroll(-Preferences::ScrollSpeed());
-	while(selected * 20 - presetListScroll > presetListClip->Height())
+	while(selectedIndex * 20 - presetListScroll > presetListClip->Height())
 		presetListScroll.Scroll(Preferences::ScrollSpeed());
 }

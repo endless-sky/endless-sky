@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class ConditionsStore;
 class DataNode;
-class Gamerules;
 class Ship;
 class Sprite;
 
@@ -81,7 +80,6 @@ public:
 
 	const ConditionAssignments &GetConditions() const noexcept;
 	const std::vector<Ship> &Ships() const noexcept;
-	const Gamerules *GetGamerules() const noexcept;
 
 	// Get this start's intro conversation.
 	const Conversation &GetConversation() const;
@@ -116,8 +114,6 @@ private:
 	ConditionAssignments conditions;
 	// Ships that a new pilot begins with (rather than being required to purchase one).
 	std::vector<Ship> ships;
-	// The gamerules that will apply to new pilots.
-	const Gamerules *gamerules = nullptr;
 
 	// The conversation to display when a game begins with this scenario.
 	ExclusiveItem<Conversation> conversation;

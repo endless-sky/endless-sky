@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <vector>
 
+class Gamerules;
 class PlayerInfo;
 class StartConditions;
 class UI;
@@ -39,6 +40,8 @@ public:
 	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &allScenarios, const Panel *parent);
 
 	virtual void Draw() override final;
+
+	void SetChosenPreset(const Gamerules *preset);
 
 
 protected:
@@ -65,6 +68,8 @@ private:
 	StartConditionsList scenarios;
 	// The currently selected starting scenario.
 	StartConditionsList::iterator startIt;
+	// The currently selected gamerules preset.
+	const Gamerules *preset;
 	// Colors with which to draw text.
 	const Color &bright;
 	const Color &medium;

@@ -29,15 +29,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Command;
 class Gamerules;
 class Interface;
-class PlayerInfo;
 class RenderBuffer;
+class StartConditionsPanel;
 
 
 
 // UI panel for editing preferences, especially the key mappings.
 class GamerulesPanel : public Panel {
 public:
-	GamerulesPanel(PlayerInfo &player);
+	GamerulesPanel(const Gamerules *preset, StartConditionsPanel *parent);
 	virtual ~GamerulesPanel();
 
 	// Draw this panel.
@@ -68,15 +68,18 @@ private:
 
 
 private:
-	PlayerInfo &player;
+	// The currently chosen gamerule preset.
+	const Gamerules *chosenPreset;
+	// The panel to return the chosen preset to.
+	StartConditionsPanel *parent;
+
 	const Interface *presetUi;
 
-	int selected;
+	int selectedIndex;
+	std::string selectedName;
 
 	Point hoverPoint;
 	std::string hoverItem;
-
-	std::string selectedPreset;
 
 	std::vector<ClickZone<std::string>> presetZones;
 

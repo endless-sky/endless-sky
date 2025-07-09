@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "Gamerules.h"
 #include "Logger.h"
 #include "Planet.h"
 #include "Ship.h"
@@ -151,8 +150,6 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 			else if(value == "reveal")
 				LoadState(child, StartState::REVEALED);
 		}
-		else if("gamerules preset" && hasValue)
-			gamerules = GameData::GamerulesPresets().Get(value);
 		else
 			conditions.Add(child, playerConditions);
 	}
@@ -187,10 +184,6 @@ void StartConditions::FinishLoading()
 {
 	for(Ship &ship : ships)
 		ship.FinishLoading(true);
-
-	// If no gamerules were specified, then use the defaults.
-	if(!gamerules)
-		gamerules = GameData::DefaultGamerules();
 
 	// The UNLOCKED StartInfo should always display the correct information. Therefore, we get the
 	// planet and system names now. If we had gotten these during Load, the planet and system provided
@@ -245,13 +238,6 @@ const ConditionAssignments &StartConditions::GetConditions() const noexcept
 const vector<Ship> &StartConditions::Ships() const noexcept
 {
 	return ships;
-}
-
-
-
-const Gamerules *StartConditions::GetGamerules() const noexcept
-{
-	return gamerules;
 }
 
 

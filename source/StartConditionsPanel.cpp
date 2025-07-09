@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "GamerulesPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "MainPanel.h"
@@ -61,6 +62,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 		}
 
 	startIt = scenarios.begin();
+	preset = GameData::DefaultGamerules();
 
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	if(startConditionsMenu)
@@ -132,10 +134,19 @@ void StartConditionsPanel::Draw()
 
 
 
+void StartConditionsPanel::SetChosenPreset(const Gamerules *preset)
+{
+	this->preset = preset;
+}
+
+
+
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
+	else if(key == 'g')
+		GetUI()->Push(new GamerulesPanel(preset, this));
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
 		// Move up / down an entry, or a page. If at the bottom / top, wrap around.
@@ -161,7 +172,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
 		&& info.HasCondition("unlocked start"))
 	{
-		player.New(*startIt);
+		player.New(*startIt, preset);
 
 		ConversationPanel *panel = new ConversationPanel(
 			player, startIt->GetConversation());
