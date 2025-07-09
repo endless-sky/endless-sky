@@ -562,7 +562,6 @@ interface "settings"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
-	
 
 
 
@@ -996,6 +995,25 @@ interface "preferences"
 	visible if "volume max"
 	sprite "ui/audio max"
 		center 281 35
+
+
+
+interface "gamerules presets"
+	sprite "ui/plugins panel"
+		center -20 -20
+	button c "_Customize Rules"
+		center -195 210
+		dimensions 120 30
+	label "Gamerule Presets:"
+		from -225 -236
+		align top left
+		color bright
+	line
+		from -230 -222 to -10 -221
+	box "preset list"
+		from -250 -216 to -10 184
+	box "preset description"
+		from 250 -234 to 10 184
 
 
 

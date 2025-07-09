@@ -2614,6 +2614,13 @@ const ConditionsStore &PlayerInfo::Conditions() const
 
 
 
+void PlayerInfo::SetGamerules(const Gamerules *gamerules)
+{
+	this->gamerules = gamerules;
+}
+
+
+
 // Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
 const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 {
