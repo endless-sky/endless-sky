@@ -249,7 +249,7 @@ void GamerulesPanel::DrawPresets()
 		if(isSelected || name == hoverItem)
 			table.DrawHighlight(back);
 
-		const Sprite *sprite = box[&preset == &GameData::GetGamerules()];
+		const Sprite *sprite = box[&preset == chosenPreset];
 		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, spriteBounds.Center());

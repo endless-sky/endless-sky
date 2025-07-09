@@ -4689,7 +4689,11 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.EndChild();
 
 	if(gamerules)
+	{
+		out.Write();
+		out.WriteComment("The rules you play by:");
 		out.Write("gamerules preset", gamerules->Name());
+	}
 
 	out.Write();
 	out.WriteComment("How you began:");
