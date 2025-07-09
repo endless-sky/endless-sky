@@ -93,7 +93,6 @@ void GamerulesPanel::Draw()
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	presetUi->Draw(info, this);
-	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
 	presetZones.clear();
 	DrawPresets();
@@ -107,11 +106,11 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		HandleDown();
 	else if(key == SDLK_UP)
 		HandleUp();
-	else if(key == 'c')
+	else if(key == 'r')
 		GetUI()->Push(new Dialog("Gamerule customization will be added in a future update."));
-	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	else if(key == 'c' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
-		if(callback)
+		if(key == 'c' && callback)
 			callback(chosenPreset);
 		GetUI()->Pop(this);
 	}

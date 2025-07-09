@@ -279,6 +279,11 @@ interface "main menu"
 	button e "_Enter Ship"
 		center 435 155
 		dimensions 90 30
+	sprite "ui/wide button"
+		center 435 195
+	button g "_Gamerules"
+		center 435 195
+		dimensions 120 30
 	visible if "!pilot loaded"
 	button n "_New Pilot"
 		center 435 155
@@ -1007,7 +1012,10 @@ interface "preferences"
 interface "gamerules presets"
 	sprite "ui/plugins panel"
 		center -20 -20
-	button c "_Customize Rules"
+	button c "_Confirm Selection"
+		center 195 210
+		dimensions 120 30
+	button r "Customize _Rules"
 		center -195 210
 		dimensions 120 30
 	label "Gamerule Presets:"

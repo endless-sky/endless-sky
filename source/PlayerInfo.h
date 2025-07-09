@@ -282,6 +282,8 @@ public:
 	// Access the "condition" flags for this player.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
+	// Access or set the currently active gamerules for this player.
+	const Gamerules *GetGamerules() const;
 	void SetGamerules(const Gamerules *gamerules);
 	// Maps defined names for gifted ships to UUIDs for the ship instances.
 	const std::map<std::string, EsUuid> &GiftedShips() const;

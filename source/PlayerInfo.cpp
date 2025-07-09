@@ -2614,6 +2614,13 @@ const ConditionsStore &PlayerInfo::Conditions() const
 
 
 
+const Gamerules *PlayerInfo::GetGamerules() const
+{
+	return gamerules;
+}
+
+
+
 void PlayerInfo::SetGamerules(const Gamerules *gamerules)
 {
 	this->gamerules = gamerules;
