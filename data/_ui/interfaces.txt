@@ -415,6 +415,12 @@ interface "start conditions menu"
 	button s "_Start Game"
 		center -285 155
 		dimensions 90 30
+	sprite "ui/wide button"
+		center -435 195
+	active
+	button g "_Gamerules"
+		center -435 195
+		dimensions 120 30
 	
 	# The box that will contain the description text
 	box "start description"
