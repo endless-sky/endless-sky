@@ -146,7 +146,11 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == 'g')
-		GetUI()->Push(new GamerulesPanel(preset, this));
+	{
+		GamerulesPanel *panel = new GamerulesPanel(preset);
+		panel->SetCallback(this, &SetChosenPreset);
+		GetUI()->Push(panel);
+	}
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
 		// Move up / down an entry, or a page. If at the bottom / top, wrap around.

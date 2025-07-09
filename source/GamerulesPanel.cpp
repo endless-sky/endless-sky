@@ -33,7 +33,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
-#include "StartConditionsPanel.h"
 #include "text/Table.h"
 #include "text/Truncate.h"
 #include "UI.h"
@@ -47,8 +46,8 @@ using namespace std;
 
 
 
-GamerulesPanel::GamerulesPanel(const Gamerules *preset, StartConditionsPanel *parent)
-	: chosenPreset(preset), parent(parent), presetUi(GameData::Interfaces().Get("gamerules presets"))
+GamerulesPanel::GamerulesPanel(const Gamerules *preset)
+	: chosenPreset(preset), presetUi(GameData::Interfaces().Get("gamerules presets"))
 {
 	// Set the initial preset list and description scroll ranges.
 	Rectangle presetListBox = presetUi->GetBox("preset list");
@@ -112,7 +111,8 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		GetUI()->Push(new Dialog("Gamerule customization will be added in a future update."));
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
-		parent->SetChosenPreset(chosenPreset);
+		if(callback)
+			callback(chosenPreset);
 		GetUI()->Pop(this);
 	}
 	else
