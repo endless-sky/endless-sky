@@ -148,7 +148,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 	else if(key == 'g')
 	{
 		GamerulesPanel *panel = new GamerulesPanel(preset);
-		panel->SetCallback(this, &SetChosenPreset);
+		panel->SetCallback(this, &StartConditionsPanel::SetChosenPreset);
 		GetUI()->Push(panel);
 	}
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
