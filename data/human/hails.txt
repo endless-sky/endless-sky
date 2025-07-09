@@ -11,13 +11,21 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+phrase "quarg bribe rejection hail"
+	word
+		"A species as advanced as us will be not be swayed by mere cash."
+		"Remove your weapons, then we can talk."
+		"We have more than enough resources; we do not want or need more from a warmongerer."
+		"Pathetic."
+
 phrase "bribe rejection hail"
 	word
-		"Thanks for the patronage, but "
+		"It is too late: "
 		"Your attempt is futile; "
 	word
 		"we are too honorable to accept this from an enemy."
 		"we value honor over greed."
+		"we will not be swayed so easily."
 
 phrase "band"
 	word
