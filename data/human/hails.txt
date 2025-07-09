@@ -13,12 +13,11 @@
 
 phrase "bribe rejection hail"
 	word
-		"Thanks for the patronage, but"
-                "Your attempt is futile;"
+		"Thanks for the patronage, but "
+		"Your attempt is futile; "
 	word
 		"we are too honorable to accept this from an enemy."
 		"we value honor over greed."
-
 
 phrase "band"
 	word
@@ -4589,6 +4588,14 @@ phrase "friendly free worlds"
 		"friendly free worlds 8"
 		"friendly free worlds 9"
 		"friendly free worlds 10"
+
+phrase "pirate bribe acceptance hail"
+	word
+		"Something is strange - now I don't feel like killing you!"
+		"Thanks for the patronage!"
+		"Can I keep blowing up your ships? Alright, nevermind."
+		"Glad I got what's due to me."
+		"Another step towards anarchy!"
 
 phrase "friendly pirate"
 	word

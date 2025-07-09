@@ -1639,6 +1639,7 @@ government "Pirate"
 	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled pirate"
+	"bribe acceptance hail" "pirate bribe acceptance hail"
 	raid "pirate raid"
 
 government "Pirate (Devil-Run Gang)"
