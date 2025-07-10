@@ -1054,7 +1054,7 @@ ship "Modified Tachytia"
 		"cost" 99000000
 		"shields" 6000
 		"hull" 36000
-		"required crew" 300
+		"required crew" 600
 		"bunks" 900
 		"mass" 6000
 		"drag" 6
@@ -1092,7 +1092,7 @@ ship "Modified Tachytia"
 		"Radiative Lamina"
 		"Optical Laser Rifle" 900
 		
-		`Z-3600 "Beam" Amat Torch`
+		`A-3600 "Beam" Amat Torch`
 		"Inductive Extractor" 6
 		"Hyperdrive"
 

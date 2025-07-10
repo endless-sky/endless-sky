@@ -55,8 +55,7 @@ outfit "Speckle Coilgun"
 		ammo "Speck Round"
 		"fire effect" "speckle fire"
 		"inaccuracy" 0.9
-		"velocity" 30
-		"random velocity" 0.6
+		"velocity override" 30
 		"reload" 18
 		"burst reload" 6
 		"burst count" 3
@@ -89,8 +88,7 @@ outfit "Speckle Turret"
 		"hardpoint offset" 9
 		"fire effect" "speckle fire"
 		"inaccuracy" 1.2
-		"velocity" 30
-		"random velocity" 0.6
+		"velocity override" 30
 		"reload" 18
 		"burst reload" 6
 		"burst count" 3
@@ -115,6 +113,8 @@ outfit "Speck"
 			"frame rate" 30
 			"no repeat"
 		"hit effect" "speck impact"
+		"velocity" 30
+		"random velocity" 0.6
 		"lifetime" 30
 		"random lifetime" 3
 		"shield damage" 24
@@ -298,7 +298,7 @@ outfit "Ultraviolet Excimer Laser"
 	"turret mounts" -1
 	"magnetic nozzle" -2
 	weapon
-		"hardpoint sprite" "hardpoint/blue optical laser"
+		"hardpoint sprite" "hardpoint/uv excimer laser"
 		"hardpoint offset" 3
 		sprite "projectile/uv excimer laser"
 			"frame rate" 3
@@ -322,6 +322,8 @@ outfit "Ultraviolet Excimer Laser"
 		"hit force" 3
 		"damage dropoff" 0 2100
 		"dropoff modifier" 0
+	description "A"
+	description ""
 
 effect "uv laser glare"
 	sprite "effect/uv excimer laser glare"
@@ -428,8 +430,8 @@ outfit "UREB Turret"
 		"hardpoint offset" 21
 		sound "slicer"
 		"fire effect" "electron flare"
-		"firing energy" 45
-		"firing heat" 72
+		"firing energy" 60
+		"firing heat" 90
 		"turret turn" 0.3
 		"reload" 6
 		"burst reload" 3
@@ -614,22 +616,7 @@ outfit `"Nettle" KKV`
 	"mass" 0.15
 	"nettle capacity" -1
 	description "The Nettle missile is a cheap, single-stage kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Little more than a payload of tungsten rods, an octaazacubane thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. While only a fraction of the payload actually impacts a target, the cloud of projectiles is difficult to completely eliminate."
-	description "	The Nettle KKV is ammunition for the Vertical Launch Array; without a Vertical Launch Array or Nettle Magazine to store them in you cannot purchase or use Nettle KKVs."
-
-
-outfit "Nettle Magazine"
-	category "Ammunition"
-	series "Ammunition"
-	index 07021
-	licenses
-		"Twilight Guard"
-	cost 60000
-	thumbnail "outfit/nettle magazine"
-	"mass" 3
-	"outfit space" -12
-	"nettle capacity" 72
-	ammo `"Nettle" KKV`
-	description "To improve the combat endurance of ships that rely on flooding the battlespace with small missiles, this magazine extends the capacity of Nettle launch cells by loading new Nettle KKVs through the bottoms of the cells."
+	description "	The Nettle KKV is ammunition for the Vertical Launch Array; without a Vertical Launch Array to store them in you cannot purchase or use Nettle KKVs."
 
 
 outfit "Nettle Active"
@@ -692,7 +679,6 @@ outfitter "Nettle Restock"
 	to sell
 		or
 			has "outfit: Medium VLS"
-			has "outfit: Nettle Magazine"
 	location
 		attributes "outfitter"
 	stock
@@ -711,22 +697,7 @@ outfit `"Orchid" Nuclear Missile`
 	"orchid capacity" -1
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. They have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
 	description "	This particular missile carries a powerful thermonuclear warhead, a staged device with a far higher yield to weight ratio than anything humanity has developed. It seems to be the product of centuries of development of nuclear devices, as opposed to humanity's long abstention from nuclear weapons research."
-	description "	The Orchid Missile is ammunition for the External Launch Tube; without a External Launch Tube or Orchid Magazine to store them in you cannot purchase or use Orchid Missiles."
-
-
-outfit "Orchid Magazine"
-	category "Ammunition"
-	series "Ammunition"
-	index 07031
-	licenses
-		"Avgi Atomics"
-	cost 150000
-	thumbnail "outfit/orchid magazine"
-	"mass" 3
-	"outfit space" -12
-	"orchid capacity" 3
-	ammo `"Orchid" Nuclear Missile`
-	description "This large ammunition storage loads new Orchid Missiles into the launch tubes with little more than a few cables, actuators, and solenoids. Designed to be as minimalistic as possible, the sheer size of each Orchid nonetheless makes this magazine rather bulky for the number of missiles it stores."
+	description "	The Orchid Missile is ammunition for the External Launch Tube; without a External Launch Tube to store them in you cannot purchase or use Orchid Missiles."
 
 
 outfit "Orchid Active"
