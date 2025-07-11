@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cassert>
@@ -2975,12 +2976,15 @@ void PlayerInfo::SelectNextSecondary()
 
 	// Find the next secondary weapon.
 	for( ; it != flagship->Outfits().end(); ++it)
-		if(it->first->Icon())
+	{
+		const Weapon *weapon = it->first->GetWeapon().get();
+		if(weapon && weapon->Icon())
 		{
 			selectedWeapons.clear();
 			selectedWeapons.insert(it->first);
 			return;
 		}
+	}
 
 	// If no weapon was selected and we didn't find any weapons at this point,
 	// then the player just doesn't have any secondary weapons.
@@ -2990,8 +2994,11 @@ void PlayerInfo::SelectNextSecondary()
 	// Reached the end of the list. Select all possible secondary weapons here.
 	it = flagship->Outfits().begin();
 	for( ; it != flagship->Outfits().end(); ++it)
-		if(it->first->Icon())
+	{
+		const Weapon *weapon = it->first->GetWeapon().get();
+		if(weapon && weapon->Icon())
 			selectedWeapons.insert(it->first);
+	}
 
 	// If we have only one weapon selected at this point, then the player
 	// only has a single secondary weapon. Clear the list, since the weapon

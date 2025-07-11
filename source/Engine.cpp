@@ -2839,18 +2839,22 @@ void Engine::DrawShipSprites(const Ship &ship)
 
 	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
 	{
-		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
-		{
-			Body body(
-				hardpoint.GetOutfit()->HardpointSprite(),
-				ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
-				ship.Velocity(),
-				ship.Facing() + hardpoint.GetAngle(),
-				ship.Zoom());
-			if(body.InheritsParentSwizzle())
-				body.SetSwizzle(ship.GetSwizzle());
-			drawObject(body);
-		}
+		const Outfit *outfit = hardpoint.GetOutfit();
+		if(!outfit)
+			return;
+		const Body &sprite = outfit->GetWeapon()->HardpointSprite();
+		if(!sprite.HasSprite())
+			return;
+
+		Body body(
+			sprite,
+			ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
+			ship.Velocity(),
+			ship.Facing() + hardpoint.GetAngle(),
+			ship.Zoom());
+		if(body.InheritsParentSwizzle())
+			body.SetSwizzle(ship.GetSwizzle());
+		drawObject(body);
 	};
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
