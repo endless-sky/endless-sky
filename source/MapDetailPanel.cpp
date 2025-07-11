@@ -883,24 +883,28 @@ void MapDetailPanel::DrawInfo()
 			// const Point &center, const Point &angle, float width, float height, float offset, const Color &color
 				PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
 
-		if(!noCompare && player.GetSystem() != selectedSystem && canView &&
-			selectedSystem->IsInhabited(player.Flagship()))
+		// Draw colored icons, when values are displayed.
+		if(canView && selectedSystem->IsInhabited(player.Flagship()))
 		{
-			// Avoid divide by zero, all deltas could possibly be zero.
-			halfCompare = halfCompare < 1 ? 1 : halfCompare;
-			double v = (static_cast<double>(value) - (lowCompare + halfCompare)) / halfCompare;
-			color = MapColor(v);
-			// Draw up/down/equals arrows based on price delta (value)
-			PointerShader::Draw(uiPoint + Point(137, 7. + (-7 * v)), Point(0., 1), 20.f,
-				static_cast<float>(-14. * v), 0.f, color);
-		}
-		else
-		{
-			halfCompare = (0.5 * (commodity.high - commodity.low));
-			// Avoid divide by zero, though this really shouldn't be a problem.
-			halfCompare = halfCompare < 1 ? 1 : halfCompare;
-			RingShader::Draw(uiPoint + Point(137, 7), OUTER, INNER,
-				MapColor((static_cast<double>(value) - (commodity.low + halfCompare)) / halfCompare));
+			if(!noCompare && player.GetSystem() != selectedSystem)
+			{
+				// Avoid divide by zero, all deltas could possibly be zero.
+				halfCompare = halfCompare < 1 ? 1 : halfCompare;
+				double v = (static_cast<double>(value) - (lowCompare + halfCompare)) / halfCompare;
+				color = MapColor(v);
+				// Draw up/down/equals arrows based on price delta (value)
+				PointerShader::Draw(uiPoint + Point(137, 7. + (-7 * v)), Point(0., 1), 20.f,
+					static_cast<float>(-14. * v), 0.f, color);
+			}
+			else
+			{
+				if(canView && selectedSystem->IsInhabited(player.Flagship()))
+					halfCompare = (0.5 * (commodity.high - commodity.low));
+				// Avoid divide by zero, though this really shouldn't be a problem.
+				halfCompare = halfCompare < 1 ? 1 : halfCompare;
+				RingShader::Draw(uiPoint + Point(137, 7), OUTER, INNER,
+					MapColor((static_cast<double>(value) - (commodity.low + halfCompare)) / halfCompare));
+			}
 		}
 
 		uiPoint.Y() += 20.;
