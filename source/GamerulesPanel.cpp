@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -106,8 +105,6 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		HandleDown();
 	else if(key == SDLK_UP)
 		HandleUp();
-	else if(key == 'r')
-		GetUI()->Push(new Dialog("Gamerule customization will be added in a future update."));
 	else if(key == 'c' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		if(key == 'c' && callback)

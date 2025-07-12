@@ -1010,13 +1010,10 @@ interface "preferences"
 
 
 interface "gamerules presets"
-	sprite "ui/plugins panel"
+	sprite "ui/settings panel"
 		center -20 -20
 	button c "_Confirm Selection"
 		center 195 210
-		dimensions 120 30
-	button r "Customize _Rules"
-		center -195 210
 		dimensions 120 30
 	label "Gamerule Presets:"
 		from -225 -236
