@@ -42,9 +42,9 @@ SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
 		auto item = ExclusiveItem<Object>{};
 
 		WHEN( "it is default-constructed" ) {
-			THEN( "it contains default data" ) {
+			THEN( "it contains no data" ) {
 				CHECK_FALSE( item.IsStock() );
-				CHECK( item->GetValue() == 0 );
+				CHECK_FALSE( item );
 			}
 		}
 
@@ -52,7 +52,7 @@ SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
 			item = ExclusiveItem<Object>(Object(2));
 			THEN( "the object is obtainable and the item is nonstock" ) {
 				CHECK_FALSE( item.IsStock() );
-				CHECK( item->GetValue() == 2 );
+				CHECK( item && item->GetValue() == 2 );
 			}
 		}
 
@@ -61,7 +61,7 @@ SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
 			item = ExclusiveItem<Object>(&obj);
 			THEN( "the object is obtainable and the item is stock" ) {
 				CHECK( item.IsStock() );
-				CHECK( item->GetValue() == 3 );
+				CHECK( item && item->GetValue() == 3 );
 			}
 		}
 	}

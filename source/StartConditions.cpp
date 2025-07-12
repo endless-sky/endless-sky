@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StartConditions.h"
 
+#include "Conversation.h"
 #include "DataNode.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -196,8 +197,14 @@ void StartConditions::FinishLoading()
 	unlocked.credits = Format::Credits(GetAccounts().Credits());
 	unlocked.debt = Format::Credits(GetAccounts().TotalDebt());
 
-	string reason = GetConversation().Validate();
-	if(!GetConversation().IsValidIntro() || !reason.empty())
+	if(!conversation)
+	{
+		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
+			+ unlocked.name + "\") does not have a starting conversation.");
+		return;
+	}
+	string reason = conversation->Validate();
+	if(!conversation->IsValidIntro() || !reason.empty())
 		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
 			+ unlocked.name + "\") has an invalid starting conversation."
 			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
@@ -216,7 +223,7 @@ bool StartConditions::IsValid() const
 		return false;
 
 	// A start must reference a valid "intro" conversation, either stock or custom.
-	if(!GetConversation().IsValidIntro() || !GetConversation().Validate().empty())
+	if(!conversation || !conversation->IsValidIntro() || !conversation->Validate().empty())
 		return false;
 
 	// All ship models must be valid.
@@ -242,9 +249,9 @@ const vector<Ship> &StartConditions::Ships() const noexcept
 
 
 
-const Conversation &StartConditions::GetConversation() const
+const Conversation *StartConditions::GetConversation() const
 {
-	return *conversation;
+	return conversation.Ptr();
 }
 
 

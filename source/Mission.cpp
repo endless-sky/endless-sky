@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Mission.h"
 
+#include "Conversation.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -414,7 +415,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(!isVisible)
 			out.Write("invisible");
 		auto saveColor = [&out](const ExclusiveItem<Color> &color, string tokenName) noexcept -> void {
-			if(!color->IsLoaded())
+			if(!color || !color->IsLoaded())
 				return;
 			if(!color->Name().empty())
 				out.Write("color", tokenName, color->Name());
@@ -595,23 +596,23 @@ bool Mission::IsVisible() const
 
 // The colors that should be used to display the mission name if it is shown
 // in your mission list.
-const Color &Mission::Unavailable() const
+const Color *Mission::Unavailable() const
 {
-	return *unavailable;
+	return unavailable.Ptr();
 }
 
 
 
-const Color &Mission::Unselected() const
+const Color *Mission::Unselected() const
 {
-	return *unselected;
+	return unselected.Ptr();
 }
 
 
 
-const Color &Mission::Selected() const
+const Color *Mission::Selected() const
 {
-	return *selected;
+	return selected.Ptr();
 }
 
 

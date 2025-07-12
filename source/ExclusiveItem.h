@@ -16,35 +16,117 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <memory>
-#include <utility>
+#include <variant>
 
 
 
 // This class provides "data template" classes with abstracted access to an object that
 // is either a reference to a shared, "stock" data or is a locally customized instance.
-template <class Type>
+template<class Type>
 class ExclusiveItem {
 public:
-	ExclusiveItem() = default;
+	// Construct an empty ExclusiveItem.
+	constexpr ExclusiveItem() noexcept = default;
 
-	explicit ExclusiveItem(const Type *item) : stockItem(item) {}
-	explicit ExclusiveItem(Type &&item) : item(std::move(item)) {}
+	// Initialize with a stock item.
+	explicit ExclusiveItem(const Type *item) noexcept;
+	// Initialize with a locally defined item.
+	explicit ExclusiveItem(Type &&item);
 
-	ExclusiveItem(ExclusiveItem&&) = default;
-	ExclusiveItem &operator=(ExclusiveItem&&) = default;
-	ExclusiveItem(const ExclusiveItem&) = default;
-	ExclusiveItem &operator=(const ExclusiveItem&) = default;
+	ExclusiveItem(ExclusiveItem &&other) = default;
+	ExclusiveItem &operator=(ExclusiveItem &&other) = default;
+	ExclusiveItem(const ExclusiveItem &other) = default;
+	ExclusiveItem &operator=(const ExclusiveItem &other) = default;
 
-	bool IsStock() const noexcept { return stockItem; }
+	bool IsStock() const noexcept;
 
-	const Type *operator->() const noexcept { return stockItem ? stockItem : std::addressof(item); }
-	const Type &operator*() const noexcept { return stockItem ? *stockItem : item; }
+	operator bool() const noexcept;
+	// Provides access to the underlying pointer. The caller is responsible
+	// for avoiding dereferencing nullptr.
+	const Type *Ptr() const noexcept;
+	// Provides access to the contained item through a pointer. The caller is responsible
+	// for avoiding dereferencing nullptr.
+	const Type *operator->() const noexcept;
+	// Provides access to the contained item. The caller is responsible
+	// for avoiding dereferencing nullptr.
+	const Type &operator*() const noexcept;
 
-	bool operator==(const ExclusiveItem &other) const { return this->operator*() == other.operator*(); }
-	bool operator!=(const ExclusiveItem &other) const { return !(this->operator*() == other.operator*()); }
+	bool operator==(const ExclusiveItem &other) const noexcept;
+	bool operator!=(const ExclusiveItem &other) const noexcept;
 
 
 private:
-	const Type *stockItem = nullptr;
-	Type item;
+	std::variant<std::shared_ptr<const Type>, const Type *> item;
 };
+
+
+
+template<class Type>
+inline ExclusiveItem<Type>::ExclusiveItem(const Type *item) noexcept
+	: item{item}
+{
+}
+
+
+
+template<class Type>
+inline ExclusiveItem<Type>::ExclusiveItem(Type &&item)
+	: item{std::shared_ptr<const Type>{new Type{item}}}
+{
+}
+
+
+
+template<class Type>
+inline bool ExclusiveItem<Type>::IsStock() const noexcept
+{
+	return item.index();
+}
+
+
+
+template<class Type>
+inline ExclusiveItem<Type>::operator bool() const noexcept
+{
+	return item.index() ? static_cast<bool>(std::get<1>(item)) : static_cast<bool>(std::get<0>(item));
+}
+
+
+
+template<class Type>
+inline const Type *ExclusiveItem<Type>::Ptr() const noexcept
+{
+	return item.index() ? std::get<1>(item) : std::get<0>(item).get();
+}
+
+
+
+template<class Type>
+inline const Type *ExclusiveItem<Type>::operator->() const noexcept
+{
+	return Ptr();
+}
+
+
+
+template<class Type>
+inline const Type &ExclusiveItem<Type>::operator*() const noexcept
+{
+	return item.index() ? *std::get<1>(item) : *std::get<0>(item);
+}
+
+
+
+template<class Type>
+inline bool ExclusiveItem<Type>::operator==(const ExclusiveItem &other) const noexcept
+{
+	return *this && other ? **this == *other : static_cast<bool>(*this) == static_cast<bool>(other);
+}
+
+
+
+template<class Type>
+inline bool ExclusiveItem<Type>::operator!=(const ExclusiveItem &other) const noexcept
+{
+	return *this && other ? **this != *other : static_cast<bool>(*this) != static_cast<bool>(other);
+}
