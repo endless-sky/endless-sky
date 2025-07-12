@@ -933,8 +933,8 @@ outfit "Meteor Missile Launcher"
 		"shield damage" 360
 		"hull damage" 220
 		"hit force" 330
-		"missile strength" 18
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are equipped with only the most basic of guidance systems, and their infrared tracking systems have even more trouble homing in on targets with low heat levels. Nevertheless, their simple construction is surprisingly robust, making them a credible threat to even well-defended targets if the missiles are fired in great numbers."
+		"missile strength" 6
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Meteor Missile Pod"
@@ -975,8 +975,8 @@ outfit "Meteor Missile Pod"
 		"shield damage" 360
 		"hull damage" 220
 		"hit force" 330
-		"missile strength" 18
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are equipped with only the most basic of guidance systems, and their infrared tracking systems have even more trouble homing in on targets with low heat levels. Nevertheless, their simple construction is surprisingly robust, making them a credible threat to even well-defended targets if the missiles are fired in great numbers."
+		"missile strength" 6
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
 
@@ -1055,14 +1055,13 @@ outfit "Sidewinder Missile Launcher"
 			"leading"
 			"throttle control"
 		"radar tracking" .9
-		"shield damage" 185
-		"hull damage" 120
+		"shield damage" 260
+		"hull damage" 180
 		"hit force" 255
-		"missile strength" 6
+		"missile strength" 18
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
-	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages. This includes their superior maneuverability and better tracking systems, making it much harder for ships to dodge or decoy."
+	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
-
 
 outfit "Sidewinder Missile Pod"
 	category "Secondary Weapons"
@@ -1100,12 +1099,12 @@ outfit "Sidewinder Missile Pod"
 			"leading"
 			"throttle control"
 		"radar tracking" .9
-		"shield damage" 185
-		"hull damage" 120
+		"shield damage" 260
+		"hull damage" 180
 		"hit force" 255
-		"missile strength" 6
+		"missile strength" 18
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
-	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages. This includes their superior maneuverability and better tracking systems, making it much harder for ships to dodge or decoy."
+	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
 
