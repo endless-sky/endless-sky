@@ -352,7 +352,8 @@ void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 	presetDescriptionScroll.Set(0, 0);
 
 	// Compute the height before drawing, so that we know the scroll bounds.
-	int descriptionHeight = 0;
+	// Start at a height of 10 to account for padding at the top of the description.
+	int descriptionHeight = 10;
 
 	const Sprite *sprite = preset.Thumbnail();
 	if(sprite)
