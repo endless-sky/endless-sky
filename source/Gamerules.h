@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class DataWriter;
+class Sprite;
 
 
 
@@ -43,6 +44,7 @@ public:
 
 	const std::string &Name() const;
 	const std::string &Description() const;
+	const Sprite *Thumbnail() const;
 
 	bool UniversalRamscoopActive() const;
 	int PersonSpawnPeriod() const;
@@ -63,6 +65,7 @@ private:
 	bool loaded = false;
 	std::string name;
 	std::string description;
+	const Sprite *thumbnail = nullptr;
 
 	bool universalRamscoop = true;
 	int personSpawnPeriod = 36000;

@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 
@@ -45,6 +47,8 @@ void Gamerules::Load(const DataNode &node)
 
 		if(key == "description")
 			description = child.Token(1);
+		else if(key == "thumbnail")
+			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "universal ramscoop")
 			universalRamscoop = child.BoolValue(1);
 		else if(key == "person spawn period")
@@ -134,6 +138,13 @@ const string &Gamerules::Name() const
 const string &Gamerules::Description() const
 {
 	return description;
+}
+
+
+
+const Sprite *Gamerules::Thumbnail() const
+{
+	return thumbnail;
 }
 
 

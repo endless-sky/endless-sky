@@ -1024,7 +1024,7 @@ interface "gamerules presets"
 	box "preset list"
 		from -250 -216 to -10 184
 	box "preset description"
-		from 250 -234 to 10 184
+		from 250 -244 to 10 184
 
 
 
