@@ -3721,7 +3721,7 @@ mission "Pirate transport to <planet> [0]"
 	description "This family of <bunks> anarchists are looking to escape local trouble by moving to <destination>, and they will pay you <payment> to take them there."
 	passengers 3 10 .725
 	to offer
-		random < 25
+		random < 15
 		"reputation: Pirate" > -100
 	source
 		government "Pirate"
@@ -3735,7 +3735,7 @@ mission "Pirate transport to <planet> [0]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 2000
+		payment 1500
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Pirate transport to <planet> [1]"
@@ -3745,7 +3745,7 @@ mission "Pirate transport to <planet> [1]"
 	description "This family of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 10 .725
 	to offer
-		random < 75
+		random < 55
 		"reputation: Pirate" > -100
 	source
 		government "Pirate"
@@ -3759,7 +3759,7 @@ mission "Pirate transport to <planet> [1]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 2000
+		payment 1000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Pirate transport to <planet> [2]"
@@ -3769,7 +3769,7 @@ mission "Pirate transport to <planet> [2]"
 	description "This family of <bunks> anarchists are hoping to start a new life on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 10 .725
 	to offer
-		random < 75
+		random < 55
 		"reputation: Pirate" > -100
 	source
 		government "Pirate"
@@ -3783,7 +3783,7 @@ mission "Pirate transport to <planet> [2]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 2000
+		payment 1000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Pirate transport to <planet> [3]"
@@ -3793,7 +3793,7 @@ mission "Pirate transport to <planet> [3]"
 	description "A ship-scrapping operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 2 10 .8
 	to offer
-		random < 60
+		random < 50
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -3807,7 +3807,7 @@ mission "Pirate transport to <planet> [3]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 2000
+		payment 1250
 		dialog "You find your contact on <planet>. They do a quick head count before handing you your payment of <payment>."
 
 mission "Pirate transport to <planet> [4]"
@@ -3817,7 +3817,7 @@ mission "Pirate transport to <planet> [4]"
 	description "A narcotics operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 2 10 .8
 	to offer
-		random < 60
+		random < 50
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -3831,7 +3831,7 @@ mission "Pirate transport to <planet> [4]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 2000
+		payment 1250
 		dialog "You find your contact on <planet>. They do a quick head count before handing you your payment of <payment>."
 
 mission "Pirate transport to <planet> [5]"
@@ -3841,7 +3841,7 @@ mission "Pirate transport to <planet> [5]"
 	description "This gang of <bunks> petty criminals is hoping to travel to <destination>, and they will pay you <payment> to take them there."
 	passengers 4 8 .8
 	to offer
-		random < 50
+		random < 40
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -3855,7 +3855,7 @@ mission "Pirate transport to <planet> [5]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1500
+		payment 1000
 		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
 
 mission "Transport wealthy anarchists to <planet>"
@@ -3864,7 +3864,7 @@ mission "Transport wealthy anarchists to <planet>"
 	description "These <bunks> wealthy anarchists seek comfortable travel to <destination>, and they will pay you <payment> to take them there."
 	passengers 4 8 .8
 	to offer
-		random < 80
+		random < 60
 		"reputation: Pirate" > 0
 	to accept
 		has "outfit (installed): Luxury Accommodations"
@@ -3891,7 +3891,7 @@ mission "Transport shady group to <planet> (Short)"
 	passengers 3 6 .8
 	deadline 6
 	to offer
-		random < 80
+		random < 60
 		and
 			"reputation: Pirate" > -10
 	source
@@ -3917,7 +3917,7 @@ mission "Transport shady group to <planet> (Long)"
 	passengers 3 6 .8
 	deadline 14
 	to offer
-		random < 80
+		random < 60
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -3948,7 +3948,7 @@ mission "Pirate smuggle to <planet> [0]"
 	illegal 50000 `Your ship is boarded and the wanted family is escorted to the brig. The anarchists won't be happy to hear this...`
 	stealth
 	to offer
-		random < 70
+		random < 50
 		"reputation: Pirate" > 0
 	source
 		government "Pirate"
@@ -3962,7 +3962,7 @@ mission "Pirate smuggle to <planet> [0]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 4000
+		payment 2000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Pirate smuggle to <planet> [1]"
@@ -3976,7 +3976,7 @@ mission "Pirate smuggle to <planet> [1]"
 	passengers 2 10 .8
 	illegal 50000 `Your ship is boarded and the employees are escorted to the brig. Their employeer won't be happy to hear this...`
 	to offer
-		random < 60
+		random < 40
 		"reputation: Pirate" > 0
 	source
 		government "Pirate"
@@ -3993,7 +3993,7 @@ mission "Pirate smuggle to <planet> [1]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 4000
+		payment 2250
 		dialog "You find your contact on <planet> and they do a quick head count before handing you your payment of <payment>."
 
 mission "Pirate smuggle to <planet> [2]"
@@ -4008,7 +4008,7 @@ mission "Pirate smuggle to <planet> [2]"
 	illegal 80000 `Your ship is boarded and the wanted gang is escorted to the brig. The pirates won't be happy to hear this...`
 	stealth
 	to offer
-		random < 80
+		random < 60
 		"reputation: Pirate" > 0
 		"combat rating" > 100
 	source
@@ -4026,7 +4026,7 @@ mission "Pirate smuggle to <planet> [2]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 4000
+		payment 2000
 		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
 
 mission "Smuggle wealthy druglord to <planet>"
@@ -4040,7 +4040,7 @@ mission "Smuggle wealthy druglord to <planet>"
 	illegal 250000 `Your ship is boarded and a firefight breaks out! After the inside of your <model> is trashed, the remaining guards and druglord are escorted to the brig and you're hit with a hefty fine. This sure won't go over well...`
 	stealth
 	to offer
-		random < 60
+		random < 40
 		"reputation: Pirate" > 0
 	to accept
 		has "outfit (installed): Luxury Accommodations"
@@ -4073,7 +4073,7 @@ mission "Smuggle shady group to <planet>"
 	passengers 3 6 .8
 	deadline 14
 	to offer
-		random < 80
+		random < 60
 		"reputation: Pirate" > 0
 	source
 		government "Pirate"
@@ -4090,7 +4090,7 @@ mission "Smuggle shady group to <planet>"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 3000
+		payment 4000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 
 
@@ -4102,12 +4102,12 @@ mission "Pirate bulk transport to <planet> [0]"
 	description "This large group of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .8
 	to offer
-		random < 60
+		random < 30
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
-		distance 2 12
+		distance 6 12
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4116,7 +4116,7 @@ mission "Pirate bulk transport to <planet> [0]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1000
+		payment 600
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Pirate bulk transport to <planet> [1]"
@@ -4126,12 +4126,12 @@ mission "Pirate bulk transport to <planet> [1]"
 	description "This large group of <bunks> anarchists seek transport to <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .8
 	to offer
-		random < 60
+		random < 30
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
-		distance 2 12
+		distance 6 12
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4140,7 +4140,7 @@ mission "Pirate bulk transport to <planet> [1]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1000
+		payment 600
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Pirate bulk transport to <planet> [2]"
@@ -4150,12 +4150,12 @@ mission "Pirate bulk transport to <planet> [2]"
 	description "This large group of <bunks> anarchists are hoping to start new lives on <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .8
 	to offer
-		random < 60
+		random < 30
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
-		distance 2 12
+		distance 6 12
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4164,7 +4164,7 @@ mission "Pirate bulk transport to <planet> [2]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1000
+		payment 600
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Pirate bulk transport to <planet> [3]"
@@ -4174,12 +4174,12 @@ mission "Pirate bulk transport to <planet> [3]"
 	description "A large ship scrapping operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .6
 	to offer
-		random < 50
+		random < 20
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
-		distance 1 4
+		distance 6 12
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4188,7 +4188,7 @@ mission "Pirate bulk transport to <planet> [3]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1250
+		payment 850
 		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
 
 mission "Pirate bulk transport to <planet> [4]"
@@ -4198,12 +4198,12 @@ mission "Pirate bulk transport to <planet> [4]"
 	description "A large narcotics operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .6
 	to offer
-		random < 50
+		random < 25
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
-		distance 5 12
+		distance 6 12
 		government "Pirate"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -4212,7 +4212,7 @@ mission "Pirate bulk transport to <planet> [4]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1250
+		payment 850
 		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
 
 mission "Pirate bulk smuggle to <planet> [0]"
@@ -4227,7 +4227,7 @@ mission "Pirate bulk smuggle to <planet> [0]"
 	illegal 80000 `Your ship is boarded and the wanted gang is escorted to the brig. The pirates won't be happy to hear this...`
 	stealth
 	to offer
-		random < 40
+		random < 25
 		"reputation: Pirate" > -10
 		"combat rating" > 150
 	source
@@ -4259,7 +4259,7 @@ mission "Pirate bulk smuggle to <planet> [1]"
 	passengers 11 30 .8
 	illegal 100000 `Your ship is boarded and the employees are escorted to the brig. Their employer won't be happy to hear this...`
 	to offer
-		random < 40
+		random < 20
 		"reputation: Pirate" > -10
 		"combat rating" > 150
 	source
@@ -4277,7 +4277,7 @@ mission "Pirate bulk smuggle to <planet> [1]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 2500
+		payment 1250
 		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
 
 mission "Smuggle cartel members to <planet>"
@@ -4328,7 +4328,7 @@ mission "Pirate bulk smuggle to <planet> [2]"
 	stealth
 	deadline 14
 	to offer
-		random < 20
+		random < 10
 		"reputation: Pirate" > -10
 		"combat rating" > 450
 	source
@@ -4346,8 +4346,8 @@ mission "Pirate bulk smuggle to <planet> [2]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 2500
-		dialog "The armed group stash their gear and march out into the <planet>, the crowd giving way as they do. A well-dressed member hands you a payment of <payment> before rejoining the squad at the front."
+		payment 6000
+		dialog "The armed group stash their gear and march out into the <planet> spaceport, the crowd giving way as they do. A well-dressed member hands you a payment of <payment> before rejoining the squad at the front."
 
 mission "Pirate mass transport to <planet> [0]"
 	name "Mass transport to <planet>"
@@ -4356,7 +4356,7 @@ mission "Pirate mass transport to <planet> [0]"
 	description "This huge group of <bunks> various travelers all seek transit to <destination>, and their travel organizer will pay you <payment> to take them there."
 	passengers 30 60 .8
 	to offer
-		random < 40
+		random < 30
 		"reputation: Pirate" > 0
 		"combat rating" > 100
 	source
@@ -4381,7 +4381,7 @@ mission "Pirate mass transport to <planet> [1]"
 	description "This gigantic group of <bunks> various travelers all seek mass transit to <destination>, and their travel organizer will pay you <payment> to take them there."
 	passengers 60 120 .8
 	to offer
-		random < 40
+		random < 20
 		"reputation: Pirate" > -10
 		"combat rating" > 100
 	source
@@ -4410,8 +4410,8 @@ mission "Smuggle plunderbund elite to <planet>"
 	illegal 25000000 `Your ship erupts into a massive war zone as soon as system security board! The inside of both your <model> and the officer's ship is trashed, as well as the multiple reinforcment ships called in to help. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
 	stealth
 	to offer
-		random < 20
-		"reputation: Pirate" > 10
+		random < 30
+		"reputation: Pirate" > 5
 		"combat rating" > 250
 	to accept
 		has "outfit (installed): Luxury Accommodations"
