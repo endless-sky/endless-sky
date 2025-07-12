@@ -51,8 +51,9 @@ SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
 		WHEN( "constructed with an rvalue reference" ) {
 			item = ExclusiveItem<Object>(Object(2));
 			THEN( "the object is obtainable and the item is nonstock" ) {
+				CHECK( item );
 				CHECK_FALSE( item.IsStock() );
-				CHECK( item && item->GetValue() == 2 );
+				CHECK( item->GetValue() == 2 );
 			}
 		}
 
@@ -60,8 +61,9 @@ SCENARIO( "Creating an ExclusiveItem" , "[ExclusiveItem][Creation]" ) {
 			auto obj = Object(3);
 			item = ExclusiveItem<Object>(&obj);
 			THEN( "the object is obtainable and the item is stock" ) {
+				CHECK( item );
 				CHECK( item.IsStock() );
-				CHECK( item && item->GetValue() == 3 );
+				CHECK( item->GetValue() == 3 );
 			}
 		}
 	}
