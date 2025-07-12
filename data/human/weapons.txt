@@ -1202,6 +1202,8 @@ outfit "Javelin Mini Pod"
 		"velocity" 10
 		"lifetime" 60
 		"reload" 40
+		"burst count" 30
+		"burst reload" 20
 		"firing energy" .2
 		"firing heat" 12
 		"shield damage" 48
