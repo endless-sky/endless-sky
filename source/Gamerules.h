@@ -40,7 +40,6 @@ public:
 	// Load a gamerules node.
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
-	bool IsLoaded() const;
 
 	const std::string &Name() const;
 	const std::string &Description() const;
@@ -62,7 +61,6 @@ public:
 
 
 private:
-	bool loaded = false;
 	std::string name;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
