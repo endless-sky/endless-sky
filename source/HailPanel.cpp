@@ -3,8 +3,7 @@ Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
+Foundation, either version 3 of the License, or (at your option) any later version.
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -15,8 +14,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "HailPanel.h"
-
+#include "text/Alignment.h"
+#include "audio/Audio.h"
 #include "Dialog.h"
+#include "shader/DrawList.h"
+#include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Information.h"
@@ -26,16 +30,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Ship.h"
+#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
-#include "audio/Audio.h"
-#include "image/Sprite.h"
-#include "shader/DrawList.h"
-#include "text/Alignment.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
-#include "text/Format.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -44,10 +42,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship,
-                     function<void(const Government *)> bribeCallback)
-    : player(player), ship(ship), bribeCallback(std::move(bribeCallback)),
-      facing(ship->Facing()) {
+HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> bribeCallback) : player(player), ship(ship), bribeCallback(std::move(bribeCallback)), facing(ship->Facing()) 
+{
     Audio::Pause();
     SetInterruptible(false);
     UI::PlaySound(UI::UISound::SOFT);
@@ -127,156 +123,158 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship,
 
     if (message.empty())
         SetMessage(ship->GetHail(player.GetSubstitutions()));
+
 }
 
 HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
     : player(player), object(object), planet(object->GetPlanet()),
-      facing(object->Facing()) {
-    Audio::Pause();
-    SetInterruptible(false);
-    UI::PlaySound(UI::UISound::SOFT);
+      facing(object->Facing()) 
+{
+    	Audio::Pause();
+    	SetInterruptible(false);
+    	UI::PlaySound(UI::UISound::SOFT);
 
-    const Government *gov =
-        planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
-    if (planet)
-        header = gov->GetName() + " " + planet->Noun() + " \"" +
-                 planet->DisplayName() + "\":";
-    hasLanguage = (gov->Language().empty() ||
-                   player.Conditions().Get("language: " + gov->Language()));
+    	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
+    	if (planet)
+        	header = gov->GetName() + " " + planet->Noun() + " \"" + planet->DisplayName() + "\":";
 
-    // If the player is hailing a planet, determine if a mission grants them
-    // clearance before checking if they have a language that matches the
-    // planet's government. This allows mission clearance to bypass language
-    // barriers.
-    if (planet && player.Flagship())
-        for (const Mission &mission : player.Missions())
-            if (mission.HasClearance(planet) &&
-                mission.ClearanceMessage() != "auto") {
-                planet->Bribe(mission.HasFullClearance());
-                SetMessage(mission.ClearanceMessage());
-                return;
-            }
+    	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 
-    if (!hasLanguage)
-        SetMessage("(An alien voice says something in a language you do not "
-                   "recognize.)");
-    else if (planet && player.Flagship()) {
-        if (planet->CanLand())
-            SetMessage("You are cleared to land, " + player.Flagship()->Name() +
-                       ".");
-        else {
-            SetBribe(planet->GetBribeFraction());
-            if (bribe)
-                SetMessage("If you want to land here, it'll cost you " +
-                           Format::CreditString(bribe) + ".");
-            else if (gov->IsEnemy())
-                SetMessage("You are not welcome here.");
-            else
-                SetMessage("I'm afraid we can't permit you to land here.");
+    	// If the player is hailing a planet, determine if a mission grants them
+    	// clearance before checking if they have a language that matches the
+    	// planet's government. This allows mission clearance to bypass language
+    	// barriers.
+    	if (planet && player.Flagship())
+        	for (const Mission &mission : player.Missions())
+            		if (mission.HasClearance(planet) &&
+                		mission.ClearanceMessage() != "auto") {
+                		planet->Bribe(mission.HasFullClearance());
+                		SetMessage(mission.ClearanceMessage());
+                	return;
+            	}
+
+    	if (!hasLanguage)
+        	SetMessage("(An alien voice says something in a language you do not recognize.)");
+    	else if (planet && player.Flagship()) {
+        	if (planet->CanLand())
+            		SetMessage("You are cleared to land, " + player.Flagship()->Name() + ".");
+        	else {
+            		SetBribe(planet->GetBribeFraction());
+            	if (bribe)
+                	SetMessage("If you want to land here, it'll cost you " + Format::CreditString(bribe) + ".");
+            	else if (gov->IsEnemy())
+                	SetMessage("You are not welcome here.");
+            	else
+                	SetMessage("I'm afraid we can't permit you to land here.");
         }
     }
 }
 
-HailPanel::~HailPanel() { Audio::Resume(); }
-
-void HailPanel::Draw() {
-    DrawBackdrop();
-
-    Information info;
-    info.SetString("header", header);
-    if (ship) {
-        info.SetCondition("show assist");
-        if (hasLanguage && !ship->IsDisabled()) {
-            if (requestedToBribeShip)
-                info.SetCondition("show pay bribe");
-            if (ship->GetGovernment()->IsEnemy()) {
-                if (requestedToBribeShip)
-                    info.SetCondition("can pay bribe");
-                else
-                    info.SetCondition("can bribe");
-            } else if (!ship->CanBeCarried() &&
-                       ship->GetShipToAssist() != player.FlagshipPtr())
-                info.SetCondition("can assist");
-        }
-    } else {
-        if (!GameData::GetPolitics().HasDominated(planet))
-            info.SetCondition("show dominate");
-        else
-            info.SetCondition("show relinquish");
-        if (hasLanguage) {
-            info.SetCondition("can dominate");
-            if (!planet->CanLand())
-                info.SetCondition("can bribe");
-        }
-    }
-
-    const Interface *hailUi = GameData::Interfaces().Get("hail panel");
-    hailUi->Draw(info, this);
-
-    const Sprite *sprite = ship ? ship->GetSprite() : object->GetSprite();
-
-    // Draw the sprite, rotated, scaled, and swizzled as necessary.
-    float zoom = min(2.f, 400.f / max(sprite->Width(), sprite->Height()));
-    Point center(-170., -10.);
-
-    DrawList draw;
-    draw.Clear(step);
-    // If this is a ship, copy its swizzle, animation settings, etc.
-    // Also draw its fighters and weapon hardpoints.
-    if (ship) {
-        bool hasFighters = ship->PositionFighters();
-        auto addHardpoint = [this, &draw, &center,
-                             zoom](const Hardpoint &hardpoint) -> void {
-            if (hardpoint.GetOutfit() &&
-                hardpoint.GetOutfit()->HardpointSprite().HasSprite()) {
-                Body body(hardpoint.GetOutfit()->HardpointSprite(),
-                          center + zoom * facing.Rotate(hardpoint.GetPoint()),
-                          Point(), facing + hardpoint.GetAngle(), zoom);
-                draw.Add(body);
-            }
-        };
-        auto addFighter = [this, &draw, &center,
-                           zoom](const Ship::Bay &bay) -> void {
-            if (bay.ship) {
-                Body body(*bay.ship, center + zoom * facing.Rotate(bay.point),
-                          Point(), facing + bay.facing, zoom);
-                draw.Add(body);
-            }
-        };
-
-        if (hasFighters)
-            for (const Ship::Bay &bay : ship->Bays())
-                if (bay.side == Ship::Bay::UNDER)
-                    addFighter(bay);
-        for (const Hardpoint &hardpoint : ship->Weapons())
-            if (hardpoint.IsUnder())
-                addHardpoint(hardpoint);
-        draw.Add(Body(*ship, center, Point(), facing, zoom));
-        for (const Hardpoint &hardpoint : ship->Weapons())
-            if (!hardpoint.IsUnder())
-                addHardpoint(hardpoint);
-        if (hasFighters)
-            for (const Ship::Bay &bay : ship->Bays())
-                if (bay.side == Ship::Bay::OVER)
-                    addFighter(bay);
-    } else
-        draw.Add(Body(*object, center, Point(), facing, zoom));
-
-    draw.Draw();
-
-    // Draw the current message.
-    WrappedText wrap;
-    wrap.SetAlignment(Alignment::JUSTIFIED);
-    wrap.SetWrapWidth(330);
-    wrap.SetFont(FontSet::Get(14));
-    wrap.Wrap(message);
-    wrap.Draw(Point(-50., -50.), *GameData::Colors().Get("medium"));
-
-    ++step;
+HailPanel::~HailPanel() 
+{ 
+	Audio::Resume(); 
 }
 
-bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
-                        bool isNewPress) {
+void HailPanel::Draw() 
+{
+    	DrawBackdrop();
+
+    	Information info;
+    	info.SetString("header", header);
+    	if (ship) {
+        	info.SetCondition("show assist");
+        	if (hasLanguage && !ship->IsDisabled()) {
+            		if (requestedToBribeShip)
+                		info.SetCondition("show pay bribe");
+            	if (ship->GetGovernment()->IsEnemy()) {
+                	if (requestedToBribeShip)
+                    		info.SetCondition("can pay bribe");
+                	else
+                   		 info.SetCondition("can bribe");
+            	} else if (!ship->CanBeCarried() &&
+                       	ship->GetShipToAssist() != player.FlagshipPtr())
+                	info.SetCondition("can assist");
+        	}
+    	} else {
+        	if (!GameData::GetPolitics().HasDominated(planet))
+            		info.SetCondition("show dominate");
+        	else
+            		info.SetCondition("show relinquish");
+
+        	if (hasLanguage) {
+            		info.SetCondition("can dominate");
+            	if (!planet->CanLand())
+                	info.SetCondition("can bribe");
+        	}
+    	}
+
+    	const Interface *hailUi = GameData::Interfaces().Get("hail panel");
+    	hailUi->Draw(info, this);
+
+    	const Sprite *sprite = ship ? ship->GetSprite() : object->GetSprite();
+
+    	// Draw the sprite, rotated, scaled, and swizzled as necessary.
+    	float zoom = min(2.f, 400.f / max(sprite->Width(), sprite->Height()));
+    	Point center(-170., -10.);
+
+    	DrawList draw;
+    	draw.Clear(step);
+
+    	// If this is a ship, copy its swizzle, animation settings, etc.
+    	// Also draw its fighters and weapon hardpoints.
+    	if (ship) 
+	{
+        	bool hasFighters = ship->PositionFighters();
+        	auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void {
+            	if (hardpoint.GetOutfit() &&
+                	hardpoint.GetOutfit()->HardpointSprite().HasSprite()) {
+                	Body body(hardpoint.GetOutfit()->HardpointSprite(),
+                          	center + zoom * facing.Rotate(hardpoint.GetPoint()),
+                          	Point(), facing + hardpoint.GetAngle(), zoom);
+                	draw.Add(body);
+            	}
+        };
+
+        auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void {
+            	if (bay.ship) {
+                	Body body(*bay.ship, center + zoom * facing.Rotate(bay.point), Point(), facing + bay.facing, zoom);
+                	draw.Add(body);
+            	}
+        };
+
+        if (hasFighters)
+            	for (const Ship::Bay &bay : ship->Bays())
+                	if (bay.side == Ship::Bay::UNDER)
+                    		addFighter(bay);
+        	for (const Hardpoint &hardpoint : ship->Weapons())
+            		if (hardpoint.IsUnder())
+                		addHardpoint(hardpoint);
+        	draw.Add(Body(*ship, center, Point(), facing, zoom));
+        	for (const Hardpoint &hardpoint : ship->Weapons())
+            		if (!hardpoint.IsUnder())
+                		addHardpoint(hardpoint);
+        	if (hasFighters)
+            		for (const Ship::Bay &bay : ship->Bays())
+                		if (bay.side == Ship::Bay::OVER)
+                    		addFighter(bay);
+    	} else
+        	draw.Add(Body(*object, center, Point(), facing, zoom));
+
+    	draw.Draw();
+
+    	// Draw the current message.
+    	WrappedText wrap;
+    	wrap.SetAlignment(Alignment::JUSTIFIED);
+   	wrap.SetWrapWidth(330);
+    	wrap.SetFont(FontSet::Get(14));
+    	wrap.Wrap(message);
+    	wrap.Draw(Point(-50., -50.), *GameData::Colors().Get("medium"));
+
+    	++step;
+}
+
+bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) 
+{
     UI::UISound sound = UI::UISound::NORMAL;
     bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 
