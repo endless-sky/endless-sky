@@ -352,8 +352,7 @@ void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 	presetDescriptionScroll.Set(0, 0);
 
 	// Compute the height before drawing, so that we know the scroll bounds.
-	// Start at a height of 10 to apply some padding to the top of the box.
-	int descriptionHeight = 10;
+	int descriptionHeight = 0;
 
 	const Sprite *sprite = preset.Thumbnail();
 	if(sprite)
@@ -380,8 +379,10 @@ void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 	{
 		Point center(0., top.Y() + .5 * sprite->Height());
 		SpriteShader::Draw(sprite, center);
-		top.Y() += sprite->Height() + 10.;
+		top.Y() += sprite->Height();
 	}
+	// Pad the top of the text.
+	top.Y() += 10.;
 
 	wrap.Draw(top, medium);
 	target.Deactivate();
