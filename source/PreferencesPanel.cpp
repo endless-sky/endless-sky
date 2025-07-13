@@ -1221,7 +1221,7 @@ void PreferencesPanel::DrawTooltips()
 	tooltip.IncrementCount();
 	if(!tooltip.ShouldDraw())
 		return;
-	
+
 	if(!tooltip.HasText())
 		tooltip.SetText(GameData::Tooltip(hoverItem));
 

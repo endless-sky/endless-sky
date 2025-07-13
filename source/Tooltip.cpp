@@ -34,9 +34,9 @@ namespace {
 
 Tooltip::Tooltip(int width, Alignment alignment, Direction direction, Corner corner)
 	: width(width), direction(direction), corner(corner),
-	normal(GameData::Colors().Get("tooltip background")), 
-	warning(GameData::Colors().Get("warning back")), 
-	error(GameData::Colors().Get("error back")), 
+	normal(GameData::Colors().Get("tooltip background")),
+	warning(GameData::Colors().Get("warning back")),
+	error(GameData::Colors().Get("error back")),
 	fontColor(GameData::Colors().Get("medium"))
 {
 	text.SetFont(FontSet::Get(14));
@@ -101,14 +101,6 @@ void Tooltip::SetZone(const Rectangle &zone)
 void Tooltip::SetText(const string &text)
 {
 	this->text.Wrap(text);
-	/*
-	int longest = wrap.LongestLineWidth();
-	if(longest < wrap.WrapWidth())
-	{
-		wrap.SetWrapWidth(longest);
-		wrap.Wrap(text);
-	}
-	*/
 }
 
 
