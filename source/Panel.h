@@ -113,6 +113,7 @@ protected:
 	// (or if force is set to true). Return true if the message was displayed.
 	bool DoHelp(const std::string &name, bool force = false) const;
 
+	const std::vector<std::shared_ptr<Panel>> &GetChildren();
 	// Add a child. Deferred until next frame.
 	void AddChild(const std::shared_ptr<Panel> &panel);
 	// Remove a child. Deferred until next frame.

@@ -971,6 +971,263 @@ mission "Exotic Life: Glaze"
 			`	You walk back to your ship from the binoculars.`
 				decline
 
+mission "Exotic Life: Bluestone"
+	minor
+	source Bluestone
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You step off your ship and wander around Bluestone's quiet yet functional spaceport. The buildings, made mostly of durable plastic resin, form a quaint but near-uniform red-brown landscape, in sharp contrast to the small yellow pub in the center. The spaceport is quiet, but the low hum of activity from a nearby oil drill gives it some life. As you are entering the pub, you spot an announcement on a bulletin board:`
+			`	"Guided Tour: Hybrid Crop Research Village - an exceptional hub of field-based research led by the Cornucopia College of Agriculture, nestled within captivating landscapes!"`
+			`	The bulletin catches your eye. It's a rare chance to see something other than refinery equipment and plastics, and the mention of hybrid crops entails something different. There's a signup sheet, and only a few spots remain.`
+			choice
+				`	(Sign up.)`
+				`	(Skip the tour.)`
+					decline
+			`	After signing up for the next tour, you are directed to hop onto a beat-up old bus that rattles along to the research village. You notice Bluestone's rusty industrial sprawl transition into the rocky fields of deep, desaturated blue grasses that the planet is known for. The village itself appears a small yet dynamic community, centered around a sleek, glass-paneled laboratory and greenhouse emanating reddish-yellow light. Dotted around are modest plastic resin apartment buildings. The entire community is surrounded by an expansive field containing rows and rows of crops.`
+			`	You get off the bus and are immediately ushered into the laboratory by a young-looking tour guide, along with half a dozen other tourists. She has a small nametag that reads:`
+			`		Zea S.`
+			`		Community Tour Guide`
+			`		MS in Agronomy`
+			`		Cornucopia College of Agriculture`
+			`	"Welcome to our guided tour of Bluestone's Hybrid Crop Research Village! Here, our dedicated scientists harness the secrets of native flora. The grasses and lichens you see around you have evolved unique photosynthetic pigments to thrive in our planet's dim, reddish light. Before we continue, can anyone name the most famous photosynthetic pigment found on Earth?"`
+			choice
+				`	"Tea leaves."`
+					goto oncewrong
+				`	"Green."`
+					goto oncewrong
+				`	"Chlorophyll."`
+					goto onceright
+				`	"Purple paint."`
+				`	(Remain silent.)`
+					goto awkward
+			`	"That's what I use to paint my dragon minis!" a tourist blurts out, his excitement briefly overtaking him before he immediately clears his throat to regain his composure.`
+			label oncewrong
+			`	Zea shifts uneasily. "Umm, not exactly. The answer I was looking for was chlorophyll.`
+				goto chlorophyll
+			label onceright
+			`	Zea beams broadly. "Exactly right! Chlorophyll is fundamental to life on Earth.`
+				goto chlorophyll
+			label awkward
+			`	There is an awkward pause as Zea scans the group. After another moment the tour guide sighs lightly, "Well, it's chlorophyll." Visibly trying to downplay the moment, she adds, "No worries - let's move on.`
+			label chlorophyll
+			`	"These pigments on our native plants are distinct from Earth's chlorophyll. Green chlorophyll actually captures red light fairly well, but not as well as a cyan pigment. Our planet's reddish hue can also be deceiving - near-infrared light, an invisible light just beyond what humans can see, is what our native plants truly thrive on. The vegetation can capture those wavelengths of light with remarkable efficiency. By deciphering their genetic blueprints, we've identified key adaptations that can be hybridized into crops found on Earth or other worlds to enhance their resilience in the low-light environments of cooler stars."`
+			`	You are then led outside to a small garden of native grasses and lichens next to the laboratory. "And now, take a closer look at our fascinating native species. Notice their muted blue and near-black colors - this isn't just a quirk of nature, but a vital adaptation that enhances absorption of red and near-infrared light on our dim planet. Their extensive root systems delve deep into the sparse soil, allowing them to efficiently access as much nutrients and water as possible under low-light conditions. Now, the leaves on these grasses are much larger and flatter than what you'd see on similar grasses on planets with brighter sunlight. Can anyone tell me why our plants might have larger and flatter leaves than somewhere like Earth?"`
+			choice
+				`	"Larger leaves maximize surface area to capture more light."`
+					goto twiceright
+				`	"They look nicer in the breeze."`
+					goto twicewrong
+				`	"It helps herbivores leaf them alone."`
+				`	(Say nothing.)`
+					goto twiceshy
+			`	A collective groan ripples through the tour group, punctuated by a couple of reluctant chuckles. Zea remains completely oblivious as she continues with the tour.`
+			label twicewrong
+			`	"Ummm, actually, that's not quite right. The main focus of these larger leaves is to maximize surface area for better light absorption."`
+				goto nativeplants
+			label twiceright
+			`	"Exactly right! They maximize surface area for better light absorption, which is crucial on our dim planet. Great answer!"`
+				goto nativeplants
+			label twiceshy
+			`	The guide makes eye contact with most of the group for an uncomfortable beat as she awaits a response. When none come, the tour guide says, "Well, it's because larger, thinner leaves maximize the surface area for light absorption... ummm, let's look at some grasses now."`
+			label nativeplants
+			`	She walks up to one of the grasses and gesture at its leaves. "The large, thin leaves of our native plants are designed to maximize surface area to better collect infrared rays, ensuring they capture every photon they can. These features collectively enable our plants to thrive where Earth plants would struggle."`
+			`	The tour continues as you enter a state-of-the-art greenhouse. Inside, hybrid crops flourish under controlled lighting that varies from yellow to red, as you feel warm from the heat lamps above. Zea points at a deep pot filled with a muted blue-black wheatgrass that has huge, delicate leaves. "Here, traditional Earth crops like wheat have been endowed with traits inspired by our native species. Observe the broader, darker leaves that boost photosynthetic efficiency in low-light conditions. These modifications not only help the plants harness energy from our reddish sunlight, but can be used across the galaxy to grow food where it was impossible before!"`
+			`	You feel the tour drawing to a close as the tour guide gathers the group for a final discussion.`
+			`	"Thank you for joining us on this exploration of the cutting edge of hybrid crops. I hope you leave here today with a renewed appreciation and curiosity for the foods you eat and the remarkable plants that surround us."`
+			choice
+				`	(Clap.)`
+				`	(Do nothing.)`
+					goto silence
+			`	You begin clapping and the room fills with applause as the other tourists join in. Zea smiles warmly, "Thank you all again, and have a wonderful day!"`
+				goto ending
+			label silence
+			`	The silence lingers a little too long. Zea waits another moment, then nods to herself a few times before quietly walking off.`
+			label ending
+			`	With the tour's ending, you board the same beat-up old bus that brought you here. As the bus lurches back towards the copper-colored resin of the spaceport, you have time to take in the rolling fields of blue-black grasses swaying under the dim, reddish suns of Bluestone.`
+				decline
+
+mission "Exotic Life: Geyser"
+	minor
+	source Geyser
+	to offer
+		random < 10
+	on offer
+		conversation
+			`As you wander through a row of half-demolished hangars, you spot clusters of spiny cacti with flat, rounded pads and bright red fruit growing in the rubble. A local, noticing your curiosity, strides over with a wry grin.`
+			`	"That plant over there? That's a prickly pear cactus. They're from right here on Geyser. Hardy things, too - they're so aggressive they've even taken root all over Earth."`
+			choice
+				`	"That doesn't sound right. They're native to Earth, not Geyser."`
+					goto argue
+				`	"Huh. Okay then."`
+			`	The local nods, satisfied. "Glad you can appreciate the local plants. Have a good one." They head off towards the food court.`
+				decline
+			label argue
+			`	"You tourists think you know everything. What are you, a plant scientist?"`
+			choice
+				`	"A botanist?"`
+				`	"Oh no, I'm no scientist."`
+			`	"Bah!" With a dismissive wave, they storm off, cursing tourists under their breath.`
+				decline
+
+mission "Exotic Life: Bloodsea"
+	minor
+	source Bloodsea
+	to offer
+		random < 10
+	on offer
+		conversation
+			branch formerpirates
+				or
+					has "event: bloodsea independent"
+					has "event: bloodsea joins free worlds"
+			`You step into one of the raucous open-air marketplaces of Bloodsea, where armed vendors and hulking guards barter over stolen cargo amid piles of weathered crates. As you weave through the maze of noise and color, you catch sight of a man huddled behind one of the crates - he's coughing violently, blood staining his lips, the crate, and the ground beside him. Before you can react, a lean, scarred woman fixes her steely gaze on you, her face hidden beneath a pair of stained bandanas - one concealing her mouth and nose, the other wrapped around her head.`
+				goto restofhello
+			label formerpirates
+			`You step into one of the raucous open-air marketplaces of Bloodsea, where wary-looking vendors and armed guards barter over allegedly legal cargo amid piles of weathered crates. As you weave through the maze of noise and color, you catch sight of a man huddled behind one of the crates - he's coughing violently, blood staining his lips, the crate, and the ground beside him. Before you can react, a lean, scarred woman fixes her steely gaze on you, her face hidden beneath a pair of stained bandanas - one concealing her mouth and nose, the other wrapped around her head.`
+			label restofhello
+			`	"That man's got the Bloodsea Bloom," she says flatly, as if mentioning the weather.`
+			choice
+				`	"What's that?"`
+				`	(Get back to your ship.)`
+					goto declined
+			`	She scoffs and leans in, her voice dropping to a rough whisper. "The red tide. Every summer, the bloody sea blooms, fills the air with nasty, toxic bits that chew up your lungs if you catch a whiff. No local goes near the beach when the bloom's ablooming."`
+			`	Then, she suddenly screams, "Only offworlders and blind fools with a death wish swim in that poison!"`
+			`	A wry grin floods her face, and she adds in a conversational tone, almost as an afterthought, "Now, I'll flay you alive and turn you into chum if you don't buy some fish bait. Eight racks." She slams a scarred hand into a rancid barrel beside her.`
+			choice
+				`	(Give her 80,000 credits for the barrel of rotten fish bait.)`
+					to display
+						credits > 80000
+				`	(Give her 8,000 credits for the barrel of rotten fish bait.)`
+					to display
+						credits > 8000
+					goto thousand
+				`	(Give her 800 credits for the barrel of rotten fish bait.)`
+					to display
+						credits > 800
+					goto hundred
+				`	(Run for it.)`
+					goto declined
+			action
+				payment -80000
+				"reputation: Pirate" += 1
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. She suppresses an amused glint in her eye and, with surprising care, gently pushes the putrid barrel towards you, her calloused fingers brushing the rim in a brief, elegant flourish. You bow your head in gratitude, roll it away, and once she's out of sight, ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this unruly port.`
+				decline
+			label thousand
+			action
+				payment -8000
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this unruly port.`
+				decline
+			label hundred
+			action
+				payment -800
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. Her nostrils flare, and she snatches to credits with a snarl. "Not even one rack," she spits, eyes blazing. Without warning, she hauls the barrel off the ground to slam it directly against your shin. You yelp and stagger backwards. She rakes a jagged knife through the air, roaring, "I'll carve you like a cod and string your entrails for the gulls!" You flee her and the barrel to dart back to the <ship>, her furious curses echoing behind you.`
+				decline
+			label declined
+			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, the woman's bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
+				decline
+
+mission "Exotic Life: Albatross"
+	minor
+	source Albatross
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You trudge through the biting wind to a weathered spaceport bar, its exterior marked by signs proclaiming "No Gods, No Masters," and "No Cybernetic Implants. No Badgers, Weasels, Or Polecats." Inside, the air is heavy with shadow and smoke - worn wood panels, dim, flickering lights, and cluttered signs declaring even more peculiar prohibitions. Slouched in a corner by the heavy door, an old man sits silently, his half-lidded eyes watching the drunken banter and clinking glasses. You could approach him, and perhaps press for answers about the bar's odd proclamations.`
+			label nextquestion
+			choice
+				`	"Why no 'Cybernetic Implants'?"`
+					goto implants
+					to display
+						not "heardimplants"
+				`	"What's the deal with 'Badgers'?"`
+					goto badgers
+					to display
+						not "heardbadgers"
+				`	"Turnips?"`
+					to display
+						has "heardbadgers"
+						not "heardturnips"
+					goto turnips
+				`	"The sign says 'No ${plural nouns}'?"`
+					goto madlib
+					to display
+						or
+							has "heardimplants"
+							has "heardturnips"
+							has "heardweasels"
+						not "heardmadlib"
+				`	"What's wrong with 'Weasels'?"`
+					goto weasels
+					to display
+						not "heardweasels"
+				`	"What about 'Polecats'?"`
+					goto polecats
+					to display
+						has "heardweasels"
+						not "heardpolecats"
+				`	"Albatross?"`
+					goto albatross
+					to display
+						has "heardpolecats"
+				`	(Thank him for the answers and leave.)`
+					goto ending
+					to display
+						or
+							has "heardimplants"
+							has "heardbadgers"
+							has "heardweasels"
+				`	(Turn around and leave.)`
+					goto ending
+					to display
+						not "heardimplants"
+						not "heardbadgers"
+						not "heardweasels"
+			label implants
+			action
+				set "heardimplants"
+			`	The old man grunts, leaning forward so that his voice drops to a rough whisper. "Cybernetic implants ain't allowed 'round here - always cheat at cards. Can't trust a rigged hand when fate's supposed to be fair!"`
+				goto nextquestion
+			label badgers
+			action
+				set "heardbadgers"
+			`	He pauses, then mutters simply, "Turnips."`
+				goto nextquestion
+			label turnips
+			action
+				set "heardturnips"
+			`	He explodes. "Badgers! They'll dig up every last turnip I grow, ruining my patch faster than a cyborg cleans house. Nothing but trouble!"`
+				goto nextquestion
+			label madlib
+			action
+				set "heardmadlib"
+			`	His lips curl into a bitter snarl as he spills a flood of exasperation, "They cause ${pirate adjectives that work as titles}, ${pirate adjectives that work as titles}, ${pirate adjectives that work as titles} ${bad outcomes}!"`
+			`	It's unclear how he expects you to respond.`
+				goto nextquestion
+			label weasels
+			action
+				set "heardweasels"
+			`	He snorts dismissively. "Weasels, now, they're just tiny polecats scampering about like mischief incarnate - ain't worth their salt, and worse, troublemakers by nature!"`
+				goto nextquestion
+			label polecats
+			action
+				set "heardpolecats"
+			`	His face darkens, and his voice grows weighty and ominous. "Polecats, they attract... the Albatross." For a suspended moment, the chatter ceases; the clamor of glasses and low murmurs fall silent as every patron registers the weight of that word. Then, as if on cue, the noise resumes, and the hubbub goes on as usual.`
+				goto nextquestion
+			label albatross
+			`	That single word slices through the renewed din, and in a heartbeat, the atmosphere shatters. Several patrons rise from their stools, their expressions hardening into threatening scowls. The old man, eyes distant and vacant, seems lost in thought while it becomes clear that you have crossed a forbidden line.`
+			`	Rough hands grip your shoulders, and before you can protest, you're dragged toward the door. Outside, in the biting wind, the echo of their shouted threats follows you. Perhaps some stones are best left unturned.`
+			label ending
+			action
+				clear "heardimplants"
+				clear "heardbadgers"
+				clear "heardturnips"
+				clear "heardmadlib"
+				clear "heardweasels"
+				clear "heardpolecats"
+
 mission "Little Vienna in New Austria"
 	minor
 	source "New Austria"

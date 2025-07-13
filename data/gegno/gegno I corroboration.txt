@@ -1234,7 +1234,7 @@ mission "Gegno Asteroid Mining Prologue"
 			`	You attempt to get the attention of some of the other Gegno present in the facility, but most of them give you strange glares or outright ignore you, until one seemingly annoyed Gegno gestures to the large cracked display.`
 
 			label "board"
-			`	The display, although cracked and beaten up, still appears otherwise functional. It presents a series of graphics in a list that seems to be updating in real-time. On the left side of each graphic are various types of mineable asteroids, and on the right are tally marks. It appears to be some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to "do your part", or perhaps make up for what you've done.`
+			`	The display, although cracked and beaten up, still appears otherwise functional. It presents a series of graphics in a list that seems to be updating in real-time. On the left side of each graphic are various types of minable asteroids, and on the right are tally marks. It appears to be some sort of job list linked with the station, which implies that the Gegno are at least giving you a chance to "do your part", or perhaps make up for what you've done.`
 			choice
 				`	(Accept one of the jobs.)`
 				`	(Leave without doing anything.)`

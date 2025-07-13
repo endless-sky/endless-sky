@@ -78,17 +78,14 @@ namespace {
 
 
 
-OutfitterPanel::OutfitterPanel(PlayerInfo &player)
-	: ShopPanel(player, true)
+OutfitterPanel::OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock)
+	: ShopPanel(player, true), outfitter(stock)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].push_back(it.first);
 
 	for(pair<const string, vector<string>> &it : catalog)
 		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
-
-	if(player.GetPlanet())
-		outfitter = player.GetPlanet()->Outfitter();
 
 	for(auto &ship : player.Ships())
 		if(ship->GetPlanet() == planet)
@@ -407,13 +404,13 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 		if(cost > credits)
 			errors.push_back("You do not have enough money to buy this outfit. You need a further " +
-				Format::CreditString(cost - credits));
+				Format::CreditString(cost - credits) + ".");
 
 		// Add the cost to buy the required license.
 		else if(cost + licenseCost > credits)
 			errors.push_back("You do not have enough money to buy this outfit because you also need "
 				"to buy a license for it. You need a further " +
-				Format::CreditString(cost + licenseCost - credits));
+				Format::CreditString(cost + licenseCost - credits) + ".");
 	}
 
 	bool anyShipCanInstall = true;
@@ -888,13 +885,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 
 bool OutfitterPanel::IsLicense(const string &name) const
 {
-	static const string &LICENSE = " License";
-	if(name.length() < LICENSE.length())
-		return false;
-	if(name.compare(name.length() - LICENSE.length(), LICENSE.length(), LICENSE))
-		return false;
-
-	return true;
+	return name.ends_with(" License");
 }
 
 

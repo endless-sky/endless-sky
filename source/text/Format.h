@@ -45,6 +45,8 @@ public:
 	static std::string MassString(double amount);
 	// Creates a string similar to '<amount> tons of <cargo>'.
 	static std::string CargoString(double amount, const std::string &cargo);
+	// Converts the integer to string, and adds the noun, pluralized if needed.
+	static std::string SimplePluralization(int amount, const std::string &noun);
 	// Convert a time in seconds to years/days/hours/minutes/seconds
 	static std::string PlayTime(double timeVal);
 	// Convert an ammo count into a short string for use in the ammo display.
@@ -86,4 +88,30 @@ public:
 
 	// Function for the "find" dialogs:
 	static int Search(const std::string &str, const std::string &sub);
+
+	// Return a string containing the elements separated with commas and "and" where needed.
+	template<template<class...> class C, class... T>
+	static std::string List(const C<T...> &elements,
+		std::function<std::string(typename C<T...>::const_reference)> toString);
 };
+
+
+
+template<template<class...> class C, class... T>
+std::string Format::List(const C<T...> &elements,
+	std::function<std::string(typename C<T...>::const_reference)> toString)
+{
+	std::string result;
+	if(elements.empty())
+		return result;
+	auto it = elements.begin();
+	result = toString(*it);
+	std::advance(it, 1);
+	if(it == elements.end())
+		return result;
+	if(elements.size() == 2)
+		return result + " and " + toString(*it);
+	for( ; it != std::prev(elements.end()); std::advance(it, 1))
+		result += ", " + toString(*it);
+	return result + ", and " + toString(*it);
+}
