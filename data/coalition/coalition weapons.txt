@@ -399,6 +399,7 @@ outfit "ion hail"
 		"ion damage" .3
 		"scrambling damage" .3
 
+
 outfit "Ion Rain Gun"
 	category "Guns"
 	series "Guns"
