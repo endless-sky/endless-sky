@@ -3906,7 +3906,7 @@ mission "Transport shady group to <planet> (Short)"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 3000
+		payment 12000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 
 mission "Transport shady group to <planet> (Long)"
@@ -3931,7 +3931,7 @@ mission "Transport shady group to <planet> (Long)"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 3000
+		payment 12000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 
 
@@ -4090,7 +4090,7 @@ mission "Smuggle shady group to <planet>"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 4000
+		payment 16000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 
 
