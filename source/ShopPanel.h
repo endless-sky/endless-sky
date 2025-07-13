@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <set>
@@ -221,7 +222,7 @@ private:
 	Point hoverPoint;
 	std::string shipName;
 	std::string warningType;
-	int hoverCount = 0;
+	Tooltip tooltip;
 
 	bool checkedHelp = false;
 };

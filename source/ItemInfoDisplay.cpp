@@ -30,21 +30,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-namespace {
-	const int HOVER_TIME = 60;
-}
-
 
 
 ItemInfoDisplay::ItemInfoDisplay()
+	: tooltip(WIDTH, Alignment::JUSTIFIED, Tooltip::Direction::LEFT, Tooltip::Corner::TOP_LEFT)
 {
 	description.SetAlignment(Alignment::JUSTIFIED);
 	description.SetWrapWidth(WIDTH - 20);
 	description.SetFont(FontSet::Get(14));
-
-	hoverText.SetAlignment(Alignment::JUSTIFIED);
-	hoverText.SetWrapWidth(WIDTH - 20);
-	hoverText.SetFont(FontSet::Get(14));
 }
 
 
@@ -98,20 +91,8 @@ void ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
 
 void ItemInfoDisplay::DrawTooltips() const
 {
-	if(!hoverCount || hoverCount-- < HOVER_TIME || !hoverText.Height())
-		return;
-
-	Point textSize(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-	Point boxSize = textSize + Point(20., 20.);
-
-	Point topLeft = hoverPoint;
-	if(topLeft.X() + boxSize.X() > Screen::Right())
-		topLeft.X() -= boxSize.X();
-	if(topLeft.Y() + boxSize.Y() > Screen::Bottom())
-		topLeft.Y() -= boxSize.Y();
-
-	FillShader::Fill(topLeft + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));
-	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
+	tooltip.Draw();
+	tooltip.DecrementCount();
 }
 
 
@@ -202,16 +183,16 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 	if(!hasHover)
 		return;
 
-	Point distance = hoverPoint - table.GetCenterPoint();
-	Point radius = .5 * table.GetRowSize();
-	if(abs(distance.X()) < radius.X() && abs(distance.Y()) < radius.Y())
+	Rectangle zone = table.GetRowBounds();
+	if(zone.Contains(hoverPoint))
 	{
-		hoverCount += 2 * (label == hover);
+		if(label == hover)
+			tooltip.IncrementCount();
 		hover = label;
-		if(hoverCount >= HOVER_TIME)
+		if(tooltip.ShouldDraw())
 		{
-			hoverCount = HOVER_TIME;
-			hoverText.Wrap(GameData::Tooltip(label));
+			tooltip.SetZone(zone);
+			tooltip.SetText(GameData::Tooltip(hover));
 		}
 	}
 }
