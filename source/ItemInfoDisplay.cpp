@@ -33,7 +33,7 @@ using namespace std;
 
 
 ItemInfoDisplay::ItemInfoDisplay()
-	: tooltip(WIDTH, Alignment::JUSTIFIED, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT)
+	: tooltip(WIDTH, Alignment::JUSTIFIED, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::BOTTOM_LEFT)
 {
 	description.SetAlignment(Alignment::JUSTIFIED);
 	description.SetWrapWidth(WIDTH - 20);
