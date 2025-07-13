@@ -29,7 +29,6 @@ namespace {
 	// of time.
 	const int HOVER_TIME = 60;
 
-	// Create a tooltip box. 
 	Rectangle CreateBox(const Rectangle &zone, const Point &boxSize,
 		Tooltip::Direction direction, Tooltip::Corner corner)
 	{
@@ -52,7 +51,7 @@ namespace {
 			box -= Point(boxSize.X(), 0);
 		if(direction == Tooltip::Direction::UP_LEFT || direction == Tooltip::Direction::UP_RIGHT)
 			box -= Point(0, boxSize.Y());
-		
+
 		return box;
 	}
 
