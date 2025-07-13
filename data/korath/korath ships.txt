@@ -1487,8 +1487,8 @@ ship "Kar Ik Vot 349"
 	attributes
 		category "Heavy Warship"
 		"cost" 41280000
-		"shields" 57200
-		"hull" 65400
+		"shields" 42900
+		"hull" 49000
 		"automaton" 1
 		"crew equivalent" 150
 		"mass" 3754
@@ -1554,8 +1554,8 @@ ship "Tek Far 71 - Lek"
 	attributes
 		category "Medium Warship"
 		"cost" 22870000
-		"shields" 25400
-		"hull" 29500
+		"shields" 19100
+		"hull" 22100
 		"automaton" 1
 		"crew equivalent" 50
 		"mass" 1240
@@ -1634,8 +1634,8 @@ ship "Tek Far 78 - Osk"
 	attributes
 		category "Medium Warship"
 		"cost" 25630000
-		"shields" 27600
-		"hull" 34100
+		"shields" 20700
+		"hull" 25600
 		"automaton" 1
 		"crew equivalent" 50
 		"mass" 1471
@@ -1714,8 +1714,8 @@ ship "Tek Far 109"
 	attributes
 		category "Medium Warship"
 		"cost" 18290000
-		"shields" 17900
-		"hull" 15800
+		"shields" 13500
+		"hull" 11900
 		"automaton" 1
 		"crew equivalent" 100
 		"mass" 1056
@@ -1802,8 +1802,8 @@ ship "Met Par Tek 53"
 	attributes
 		category "Light Warship"
 		"cost" 14480000
-		"shields" 15100
-		"hull" 22200
+		"shields" 11300
+		"hull" 16700
 		"automaton" 1
 		"crew equivalent" 25
 		"mass" 935
@@ -1861,8 +1861,8 @@ ship "Far Lek 14"
 	attributes
 		category "Drone"
 		"cost" 573000
-		"shields" 900
-		"hull" 1600
+		"shields" 700
+		"hull" 1200
 		"automaton" 1
 		"crew equivalent" 1
 		"mass" 26
@@ -1901,8 +1901,8 @@ ship "Far Osk 27"
 	attributes
 		category "Fighter"
 		"cost" 761000
-		"shields" 1500
-		"hull" 2400
+		"shields" 1200
+		"hull" 1800
 		"automaton" 1
 		"crew equivalent" 2
 		"mass" 34
@@ -1943,8 +1943,8 @@ ship "Model 8"
 	attributes
 		category "Interceptor"
 		"cost" 3725000
-		"shields" 5450
-		"hull" 3320
+		"shields" 4080
+		"hull" 2490
 		"automaton" 1
 		"crew equivalent" 5
 		"mass" 160
@@ -1990,8 +1990,8 @@ ship "Model 16"
 	attributes
 		category "Light Warship"
 		"cost" 8449000
-		"shields" 15700
-		"hull" 9800
+		"shields" 11800
+		"hull" 7400
 		"automaton" 1
 		"crew equivalent" 10
 		"mass" 390
@@ -2044,8 +2044,8 @@ ship "Model 32"
 	attributes
 		category "Light Warship"
 		"cost" 12765000
-		"shields" 27900
-		"hull" 13400
+		"shields" 21000
+		"hull" 10100
 		"automaton" 1
 		"crew equivalent" 25
 		"mass" 625
@@ -2099,8 +2099,8 @@ ship "Model 64"
 	attributes
 		category "Medium Warship"
 		"cost" 19552000
-		"shields" 41700
-		"hull" 18000
+		"shields" 31200
+		"hull" 13500
 		"automaton" 1
 		"crew equivalent" 50
 		"mass" 1096
@@ -2156,8 +2156,8 @@ ship "Model 128"
 	attributes
 		category "Medium Warship"
 		"cost" 24073000
-		"shields" 57000
-		"hull" 23100
+		"shields" 42800
+		"hull" 17300
 		"automaton" 1
 		"crew equivalent" 75
 		"mass" 1601
@@ -2214,8 +2214,8 @@ ship "Model 256"
 	attributes
 		category "Heavy Warship"
 		"cost" 34920000
-		"shields" 71700
-		"hull" 28700
+		"shields" 53800
+		"hull" 21600
 		"automaton" 1
 		"crew equivalent" 100
 		"mass" 2340
@@ -2274,8 +2274,8 @@ ship "Model 512"
 	attributes
 		category "Heavy Warship"
 		"cost" 40375000
-		"shields" 86400
-		"hull" 34200
+		"shields" 64800
+		"hull" 25600
 		"automaton" 1
 		"crew equivalent" 150
 		"mass" 3186
