@@ -63,13 +63,6 @@ void Tooltip::DecrementCount()
 
 
 
-void Tooltip::MaxCount()
-{
-	hoverCount = HOVER_TIME;
-}
-
-
-
 void Tooltip::ResetCount()
 {
 	hoverCount = 0;
@@ -100,6 +93,9 @@ void Tooltip::SetZone(const Rectangle &zone)
 
 void Tooltip::SetText(const string &text)
 {
+	// Reset the wrap width each time we set text in case the WrappedText
+	// was previously shrunk to the size of the text.
+	this->text.SetWrapWidth(width);
 	this->text.Wrap(text);
 }
 
@@ -126,9 +122,22 @@ void Tooltip::SetState(State state)
 
 
 
-void Tooltip::Draw() const
+void Tooltip::Shrink()
 {
-	if(!ShouldDraw() || !HasText())
+	const string &rawText = text.GetText();
+	int longest = text.LongestLineWidth();
+	if(longest < text.WrapWidth())
+	{
+		text.SetWrapWidth(longest);
+		text.Wrap(rawText);
+	}
+}
+
+
+
+void Tooltip::Draw(bool forceDraw) const
+{
+	if((!forceDraw && !ShouldDraw()) || !HasText())
 		return;
 
 	Point point;
@@ -149,9 +158,14 @@ void Tooltip::Draw(const Point &point) const
 {
 	Point textSize(text.WrapWidth(), text.Height() - text.ParagraphBreak());
 	Point boxSize = textSize + Point(20., 20.);
+	Rectangle box = Rectangle::FromCorner(point, boxSize);
 
-	Point corner = direction == Direction::RIGHT ? point : point - Point(boxSize.X(), 0);
-	Rectangle box = Rectangle::FromCorner(corner, boxSize);
+	// The default box has a direction of DOWN_RIGHT, so shift the box left
+	// or up accordingly with the chosen direction.
+	if(direction == Direction::UP_LEFT || direction == Direction::DOWN_LEFT)
+		box -= Point(boxSize.X(), 0);
+	if(direction == Direction::UP_LEFT || direction == Direction::UP_RIGHT)
+		box -= Point(0, boxSize.Y());
 
 	// If the chosen point would push the box off-screen, adjust the box's position.
 	// Instead of nudging the box by the amount of overflow, flip it over one of its axes

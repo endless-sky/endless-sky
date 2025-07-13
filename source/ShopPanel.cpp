@@ -83,7 +83,8 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard")),
-	tooltip(250, Alignment::LEFT, Tooltip::Direction::LEFT, Tooltip::Corner::TOP_LEFT)
+	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT),
+	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_RIGHT, Tooltip::Corner::TOP_LEFT)
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -142,11 +143,10 @@ void ShopPanel::Draw()
 		string text = shipName;
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
-		tooltip.SetText(text);
-		tooltip.SetState(warningType.empty() ? Tooltip::State::NORMAL
+		shipsTooltip.SetText(text);
+		shipsTooltip.SetState(warningType.empty() ? Tooltip::State::NORMAL
 			: (warningType.back() == '!' ? Tooltip::State::ERROR : Tooltip::State::WARNING));
-		tooltip.MaxCount();
-		tooltip.Draw();
+		shipsTooltip.Draw(true);
 	}
 
 	if(dragShip && isDraggingShip && dragShip->GetSprite())
@@ -813,7 +813,7 @@ void ShopPanel::DrawShipsSidebar()
 		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
 			shipName = ship->Name() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
-			tooltip.SetZone(shipZones.back());
+			shipsTooltip.SetZone(shipZones.back());
 		}
 
 		const auto checkIt = flightChecks.find(ship);
@@ -987,16 +987,17 @@ void ShopPanel::DrawButtons()
 	// Draw the tooltip for your full number of credits.
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
 	if(creditsBox.Contains(hoverPoint))
-		tooltip.IncrementCount();
+		creditsTooltip.IncrementCount();
 	else
-		tooltip.DecrementCount();
+		creditsTooltip.DecrementCount();
 
-	if(tooltip.ShouldDraw())
+	if(creditsTooltip.ShouldDraw())
 	{
-		tooltip.SetZone(creditsBox);
-		tooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits");
-		tooltip.SetState(Tooltip::State::NORMAL);
-		tooltip.Draw();
+		creditsTooltip.SetZone(creditsBox);
+		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits");
+		creditsTooltip.SetState(Tooltip::State::NORMAL);
+		creditsTooltip.Shrink();
+		creditsTooltip.Draw();
 	}
 }
 

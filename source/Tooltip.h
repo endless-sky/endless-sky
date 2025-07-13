@@ -31,8 +31,10 @@ class Tooltip {
 public:
 	// The direction from the draw point that the tooltip should be drawn in.
 	enum class Direction {
-		LEFT,
-		RIGHT
+		UP_LEFT,
+		UP_RIGHT,
+		DOWN_LEFT,
+		DOWN_RIGHT
 	};
 
 	// The corner from the drawn rectangle that the tooltip should be drawn from.
@@ -56,7 +58,6 @@ public:
 
 	void IncrementCount();
 	void DecrementCount();
-	void MaxCount();
 	void ResetCount();
 	bool ShouldDraw() const;
 
@@ -67,8 +68,12 @@ public:
 	void Clear();
 
 	void SetState(State state);
+	// Shrink the tooltip width to fit the length of the text.
+	void Shrink();
 
-	void Draw() const;
+	// If forceDraw is true, the hover timer is skipped when determining whether
+	// the tooltip should be drawn.
+	void Draw(bool forceDraw = false) const;
 
 
 private:

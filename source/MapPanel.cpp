@@ -236,7 +236,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	specialSystem(special),
 	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
 	commodity(commodity),
-	tooltip(150, Alignment::LEFT, Tooltip::Direction::RIGHT, Tooltip::Corner::BOTTOM_RIGHT),
+	tooltip(150, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_RIGHT),
 	fromMission(fromMission)
 {
 	Audio::Pause();

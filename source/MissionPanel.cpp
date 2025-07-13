@@ -129,7 +129,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
-	tooltip(150, Alignment::LEFT, Tooltip::Direction::RIGHT, Tooltip::Corner::BOTTOM_LEFT)
+	tooltip(150, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_LEFT)
 {
 	// Re-do job sorting since something could have changed
 	player.SortAvailable();
@@ -167,7 +167,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0),
-	tooltip(150, Alignment::LEFT, Tooltip::Direction::RIGHT, Tooltip::Corner::BOTTOM_LEFT)
+	tooltip(150, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_LEFT)
 {
 	Audio::Pause();
 

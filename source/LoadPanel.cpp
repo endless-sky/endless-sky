@@ -118,7 +118,7 @@ LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), selectedPilot(player.Identifier()),
 	pilotBox(GameData::Interfaces().Get("load menu")->GetBox("pilots")),
 	snapshotBox(GameData::Interfaces().Get("load menu")->GetBox("snapshots")),
-	tooltip(180, Alignment::LEFT, Tooltip::Direction::LEFT, Tooltip::Corner::TOP_LEFT)
+	tooltip(200, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT)
 {
 	// If you have a player loaded, and the player is on a planet, make sure
 	// the player is saved so that any snapshot you create will be of the
@@ -264,7 +264,10 @@ void LoadPanel::Draw()
 	if(!hasHoverZone)
 		tooltip.DecrementCount();
 	else
+	{
+		tooltip.Shrink();
 		tooltip.Draw();
+	}
 }
 
 

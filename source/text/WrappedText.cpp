@@ -141,6 +141,13 @@ void WrappedText::Wrap(const char *str)
 
 
 
+const std::string &WrappedText::GetText() const
+{
+	return text;
+}
+
+
+
 /// Get the height of the wrapped text.
 /// With trailingBreak, include a paragraph break after the text.
 int WrappedText::Height(bool trailingBreak) const

@@ -222,7 +222,8 @@ private:
 	Point hoverPoint;
 	std::string shipName;
 	std::string warningType;
-	Tooltip tooltip;
+	Tooltip shipsTooltip;
+	Tooltip creditsTooltip;
 
 	bool checkedHelp = false;
 };
