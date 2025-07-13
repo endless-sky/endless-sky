@@ -20,8 +20,8 @@ ship "Archon"
 	attributes
 		category "Unclassified"
 		"cost" 1000000000
-		"shields" 4000000
-		"hull" 1000000
+		"shields" 436000
+		"hull" 109000
 		"required crew" 1
 		"bunks" 1
 		"mass" 2150
