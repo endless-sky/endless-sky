@@ -84,7 +84,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard")),
 	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT),
-	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_RIGHT, Tooltip::Corner::TOP_LEFT)
+	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_LEFT, Tooltip::Corner::TOP_RIGHT)
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
