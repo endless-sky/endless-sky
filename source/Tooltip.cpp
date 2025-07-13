@@ -84,7 +84,7 @@ namespace {
 					corner = Tooltip::Corner::TOP_RIGHT;
 			}
 		}
-		if(box.Right() > Screen::Right())
+		else if(box.Right() > Screen::Right())
 		{
 			onScreen = false;
 			if(direction == Tooltip::Direction::UP_RIGHT)
@@ -100,6 +100,7 @@ namespace {
 					corner = Tooltip::Corner::TOP_LEFT;
 			}
 		}
+
 		if(box.Top() < Screen::Top())
 		{
 			onScreen = false;
@@ -116,7 +117,7 @@ namespace {
 					corner = Tooltip::Corner::BOTTOM_RIGHT;
 			}
 		}
-		if(box.Bottom() > Screen::Bottom())
+		else if(box.Bottom() > Screen::Bottom())
 		{
 			onScreen = false;
 			if(direction == Tooltip::Direction::DOWN_RIGHT)
