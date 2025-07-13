@@ -184,15 +184,20 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 		return;
 
 	Rectangle zone = table.GetRowBounds();
-	if(zone.Contains(hoverPoint))
+	if(!zone.Contains(hoverPoint))
+		return;
+
+	if(label == hover)
 	{
-		if(label == hover)
-			tooltip.IncrementCount();
-		hover = label;
-		if(tooltip.ShouldDraw())
-		{
-			tooltip.SetZone(zone);
-			tooltip.SetText(GameData::Tooltip(hover));
-		}
+		// The tooltip counter is decremented on every frame for this class,
+		// so double-increment the counter when hovering on a zone.
+		tooltip.IncrementCount();
+		tooltip.IncrementCount();
+	}
+	hover = label;
+	if(tooltip.ShouldDraw())
+	{
+		tooltip.SetZone(zone);
+		tooltip.SetText(GameData::Tooltip(hover));
 	}
 }
