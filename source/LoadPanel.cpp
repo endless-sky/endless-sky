@@ -242,7 +242,7 @@ void LoadPanel::Draw()
 				tooltip.IncrementCount();
 				if(tooltip.ShouldDraw())
 				{
-					tooltip.SetText(TimestampString(it.second));
+					tooltip.SetText(TimestampString(it.second), true);
 					tooltip.SetZone(zone);
 				}
 			}
@@ -264,10 +264,7 @@ void LoadPanel::Draw()
 	if(!hasHoverZone)
 		tooltip.DecrementCount();
 	else
-	{
-		tooltip.Shrink();
 		tooltip.Draw();
-	}
 }
 
 

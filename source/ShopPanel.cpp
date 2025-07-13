@@ -994,9 +994,8 @@ void ShopPanel::DrawButtons()
 	if(creditsTooltip.ShouldDraw())
 	{
 		creditsTooltip.SetZone(creditsBox);
-		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits");
+		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits", true);
 		creditsTooltip.SetState(Tooltip::State::NORMAL);
-		creditsTooltip.Shrink();
 		creditsTooltip.Draw();
 	}
 }

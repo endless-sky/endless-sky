@@ -63,13 +63,11 @@ public:
 
 	void SetZone(const Point &center, const Point &dimensions);
 	void SetZone(const Rectangle &zone);
-	void SetText(const std::string &text);
+	void SetText(const std::string &newText, bool shrink = false);
 	bool HasText() const;
 	void Clear();
 
 	void SetState(State state);
-	// Shrink the tooltip width to fit the length of the text.
-	void Shrink();
 
 	// If forceDraw is true, the hover timer is skipped when determining whether
 	// the tooltip should be drawn.

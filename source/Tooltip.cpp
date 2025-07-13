@@ -91,12 +91,22 @@ void Tooltip::SetZone(const Rectangle &zone)
 
 
 
-void Tooltip::SetText(const string &text)
+void Tooltip::SetText(const string &newText, bool shrink)
 {
 	// Reset the wrap width each time we set text in case the WrappedText
 	// was previously shrunk to the size of the text.
-	this->text.SetWrapWidth(width);
-	this->text.Wrap(text);
+	text.SetWrapWidth(width);
+	text.Wrap(newText);
+	if(shrink)
+	{
+		// Shrink the tooltip width to fit the length of the text.
+		int longest = text.LongestLineWidth();
+		if(longest < text.WrapWidth())
+		{
+			text.SetWrapWidth(longest);
+			text.Wrap(newText);
+		}
+	}
 }
 
 
@@ -118,19 +128,6 @@ void Tooltip::Clear()
 void Tooltip::SetState(State state)
 {
 	this->state = state;
-}
-
-
-
-void Tooltip::Shrink()
-{
-	const string &rawText = text.GetText();
-	int longest = text.LongestLineWidth();
-	if(longest < text.WrapWidth())
-	{
-		text.SetWrapWidth(longest);
-		text.Wrap(rawText);
-	}
 }
 
 
