@@ -409,7 +409,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 
 			tooltip.SetText(text);
 		}
-		tooltip.SetZone(hoverSystem->Position() + center, Point(20., 20.));
+		tooltip.SetZone((hoverSystem->Position() + center) * Zoom(), Point(20., 20.));
 		tooltip.Draw();
 	}
 
