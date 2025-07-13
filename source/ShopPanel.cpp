@@ -143,7 +143,7 @@ void ShopPanel::Draw()
 		string text = shipName;
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
-		shipsTooltip.SetText(text);
+		shipsTooltip.SetText(text, true);
 		shipsTooltip.SetState(warningType.empty() ? Tooltip::State::NORMAL
 			: (warningType.back() == '!' ? Tooltip::State::ERROR : Tooltip::State::WARNING));
 		shipsTooltip.Draw(true);
