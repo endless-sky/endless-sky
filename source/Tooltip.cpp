@@ -28,6 +28,118 @@ namespace {
 	// Only show tooltips if the mouse has hovered in one place for this amount
 	// of time.
 	const int HOVER_TIME = 60;
+
+	// Create a tooltip box. 
+	Rectangle CreateBox(const Rectangle &zone, const Point &boxSize,
+		Tooltip::Direction direction, Tooltip::Corner corner)
+	{
+		// Find the anchor point that the tooltip should be created from.
+		Point anchor;
+		if(corner == Tooltip::Corner::TOP_LEFT)
+			anchor = zone.TopLeft();
+		else if(corner == Tooltip::Corner::TOP_RIGHT)
+			anchor = zone.TopRight();
+		else if(corner == Tooltip::Corner::BOTTOM_LEFT)
+			anchor = zone.BottomLeft();
+		else if(corner == Tooltip::Corner::BOTTOM_RIGHT)
+			anchor = zone.BottomRight();
+
+		Rectangle box = Rectangle::FromCorner(anchor, boxSize);
+
+		// The default box has a direction of DOWN_RIGHT, so shift the box left
+		// or up accordingly with the chosen direction.
+		if(direction == Tooltip::Direction::UP_LEFT || direction == Tooltip::Direction::DOWN_LEFT)
+			box -= Point(boxSize.X(), 0);
+		if(direction == Tooltip::Direction::UP_LEFT || direction == Tooltip::Direction::UP_RIGHT)
+			box -= Point(0, boxSize.Y());
+		
+		return box;
+	}
+
+	// Determine where this tooltip should be positioned. Account for whether the
+	// default settings would generate a tooltip that goes off screen, and create
+	// an adjusted tooltip position if this occurs.
+	Rectangle PositionBox(const Rectangle &zone, const Point &boxSize,
+		Tooltip::Direction direction, Tooltip::Corner corner)
+	{
+		// Generate a tooltip box from the given parameters.
+		Rectangle box = CreateBox(zone, boxSize, direction, corner);
+
+		// If the tooltip goes off one of the edges of the screen, swap the draw
+		// direction to go the other way. Also swap the corner that the tooltip
+		// is being drawn from as to not overlap the hover zone.
+		bool onScreen = true;
+		if(box.Left() < Screen::Left())
+		{
+			onScreen = false;
+			if(direction == Tooltip::Direction::UP_LEFT)
+			{
+				direction = Tooltip::Direction::UP_RIGHT;
+				if(corner == Tooltip::Corner::BOTTOM_LEFT)
+					corner = Tooltip::Corner::BOTTOM_RIGHT;
+			}
+			else if(direction == Tooltip::Direction::DOWN_LEFT)
+			{
+				direction = Tooltip::Direction::DOWN_RIGHT;
+				if(corner == Tooltip::Corner::TOP_LEFT)
+					corner = Tooltip::Corner::TOP_RIGHT;
+			}
+		}
+		if(box.Right() > Screen::Right())
+		{
+			onScreen = false;
+			if(direction == Tooltip::Direction::UP_RIGHT)
+			{
+				direction = Tooltip::Direction::UP_LEFT;
+				if(corner == Tooltip::Corner::BOTTOM_RIGHT)
+					corner = Tooltip::Corner::BOTTOM_LEFT;
+			}
+			else if(direction == Tooltip::Direction::DOWN_RIGHT)
+			{
+				direction = Tooltip::Direction::DOWN_LEFT;
+				if(corner == Tooltip::Corner::TOP_RIGHT)
+					corner = Tooltip::Corner::TOP_LEFT;
+			}
+		}
+		if(box.Top() < Screen::Top())
+		{
+			onScreen = false;
+			if(direction == Tooltip::Direction::UP_RIGHT)
+			{
+				direction = Tooltip::Direction::DOWN_RIGHT;
+				if(corner == Tooltip::Corner::TOP_LEFT)
+					corner = Tooltip::Corner::BOTTOM_LEFT;
+			}
+			else if(direction == Tooltip::Direction::UP_LEFT)
+			{
+				direction = Tooltip::Direction::DOWN_LEFT;
+				if(corner == Tooltip::Corner::TOP_RIGHT)
+					corner = Tooltip::Corner::BOTTOM_RIGHT;
+			}
+		}
+		if(box.Bottom() > Screen::Bottom())
+		{
+			onScreen = false;
+			if(direction == Tooltip::Direction::DOWN_RIGHT)
+			{
+				direction = Tooltip::Direction::UP_RIGHT;
+				if(corner == Tooltip::Corner::BOTTOM_LEFT)
+					corner = Tooltip::Corner::TOP_LEFT;
+			}
+			else if(direction == Tooltip::Direction::DOWN_LEFT)
+			{
+				direction = Tooltip::Direction::UP_LEFT;
+				if(corner == Tooltip::Corner::BOTTOM_RIGHT)
+					corner = Tooltip::Corner::TOP_RIGHT;
+			}
+		}
+
+		// If the initial box doesn't fit on screen, generate a new one with
+		// a different draw location. Don't bother checking if this second box
+		// fits on screen, because if it doesn't, that means that the screen
+		// is simply too small to fit this box.
+		return onScreen ? box : CreateBox(zone, boxSize, direction, corner);
+	}
 }
 
 
@@ -137,45 +249,10 @@ void Tooltip::Draw(bool forceDraw) const
 	if((!forceDraw && !ShouldDraw()) || !HasText())
 		return;
 
-	Point point;
-	if(corner == Corner::TOP_LEFT)
-		point = zone.TopLeft();
-	else if(corner == Corner::TOP_RIGHT)
-		point = zone.TopRight();
-	else if(corner == Corner::BOTTOM_LEFT)
-		point = zone.BottomLeft();
-	else if(corner == Corner::BOTTOM_RIGHT)
-		point = zone.BottomRight();
-	Draw(point);
-}
-
-
-
-void Tooltip::Draw(const Point &point) const
-{
+	// Determine the tooltip's size and location.
 	Point textSize(text.WrapWidth(), text.Height() - text.ParagraphBreak());
 	Point boxSize = textSize + Point(20., 20.);
-	Rectangle box = Rectangle::FromCorner(point, boxSize);
-
-	// The default box has a direction of DOWN_RIGHT, so shift the box left
-	// or up accordingly with the chosen direction.
-	if(direction == Direction::UP_LEFT || direction == Direction::DOWN_LEFT)
-		box -= Point(boxSize.X(), 0);
-	if(direction == Direction::UP_LEFT || direction == Direction::UP_RIGHT)
-		box -= Point(0, boxSize.Y());
-
-	// If the chosen point would push the box off-screen, adjust the box's position.
-	// Instead of nudging the box by the amount of overflow, flip it over one of its axes
-	// Doing this ensures we don't overlap any useful information that would be covered by
-	// simply nudging the box.
-	if(box.Top() < Screen::Top())
-		box += Point(0, boxSize.Y());
-	if(box.Left() < Screen::Left())
-		box += Point(boxSize.X(), 0);
-	if(box.Right() > Screen::Right())
-		box -= Point(boxSize.X(), 0);
-	if(box.Bottom() > Screen::Bottom())
-		box -= Point(0, boxSize.Y());
+	Rectangle box = PositionBox(zone, boxSize, direction, corner);
 
 	// Determine the background color that should be used given the current state
 	// of this tooltip.

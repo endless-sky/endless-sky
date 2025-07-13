@@ -75,10 +75,6 @@ public:
 
 
 private:
-	void Draw(const Point &point) const;
-
-
-private:
 	int width;
 	Direction direction;
 	Corner corner;
