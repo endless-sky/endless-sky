@@ -22,8 +22,8 @@ ship "Aaulqra"
 			"High Houses"
 		category "Medium Warship"
 		"cost" 26000000
-		"shields" 10000
-		"hull" 55000
+		"shields" 8000
+		"hull" 44000
 		"required crew" 18
 		"bunks" 25
 		"mass" 650
@@ -115,8 +115,8 @@ ship "Ejniisde"
 			"Successor"
 		category "Space Liner"
 		"cost" 4100000
-		"shields" 2000
-		"hull" 9500
+		"shields" 1600
+		"hull" 7600
 		"required crew" 12
 		"bunks" 64
 		"mass" 350
@@ -193,8 +193,8 @@ ship "Kaskhorade"
 			"High Houses"
 		category "Utility"
 		"cost" 45250000
-		"shields" 7000
-		"hull" 44500
+		"shields" 5600
+		"hull" 35600
 		"required crew" 34
 		"bunks" 130
 		"mass" 990
@@ -289,8 +289,8 @@ ship "Kvelqde"
 			"Successor"
 		category "Transport"
 		"cost" 185000
-		"shields" 350
-		"hull" 2400
+		"shields" 280
+		"hull" 1900
 		"required crew" 1
 		"bunks" 9
 		"mass" 110
@@ -370,8 +370,8 @@ ship "Kvelqde-Khora"
 			"Successor"
 		category "Interceptor"
 		"cost" 240000
-		"shields" 785
-		"hull" 4625
+		"shields" 630
+		"hull" 3710
 		"required crew" 1
 		"bunks" 6
 		"mass" 158
@@ -451,8 +451,8 @@ ship "Myaede"
 			"Successor"
 		category "Light Freighter"
 		"cost" 3250000
-		"shields" 1500
-		"hull" 13000
+		"shields" 1200
+		"hull" 10400
 		"required crew" 6
 		"bunks" 20
 		"mass" 500
@@ -534,8 +534,8 @@ ship "Nnaatej"
 			"Successor"
 		category "Transport"
 		"cost" 3825000
-		"shields" 3000
-		"hull" 15500
+		"shields" 2400
+		"hull" 12400
 		"required crew" 5
 		"bunks" 26
 		"mass" 570
@@ -616,8 +616,8 @@ ship "Nnesaarau"
 			"Successor"
 		category "Transport"
 		"cost" 1225000
-		"shields" 1800
-		"hull" 2200
+		"shields" 1400
+		"hull" 1800
 		"required crew" 1
 		"bunks" 4
 		"mass" 90
@@ -688,8 +688,8 @@ ship "Ojde"
 			"Successor"
 		category "Heavy Freighter"
 		"cost" 8250000
-		"shields" 3000
-		"hull" 31500
+		"shields" 2400
+		"hull" 25200
 		"required crew" 8
 		"bunks" 24
 		"mass" 1190
@@ -770,8 +770,8 @@ ship "Seiitej"
 			"High Houses"
 		category "Utility"
 		"cost" 9250000
-		"shields" 8000
-		"hull" 19000
+		"shields" 6400
+		"hull" 15200
 		"required crew" 8
 		"bunks" 36
 		"mass" 320
@@ -855,8 +855,8 @@ ship "Stolsaqra"
 			"Successor"
 		category "Interceptor"
 		"cost" 450000
-		"shields" 850
-		"hull" 6100
+		"shields" 700
+		"hull" 4900
 		"required crew" 1
 		"bunks" 2
 		"mass" 120
@@ -945,8 +945,8 @@ ship "Veusade"
 			"High Houses"
 		category "Light Warship"
 		"cost" 16500000
-		"shields" 8000
-		"hull" 29000
+		"shields" 6400
+		"hull" 23200
 		"required crew" 5
 		"bunks" 10
 		"mass" 360
@@ -1040,8 +1040,8 @@ ship "Vujlet"
 			"High Houses"
 		category "Light Warship"
 		"cost" 8200000
-		"shields" 3000
-		"hull" 17500
+		"shields" 2400
+		"hull" 14000
 		"required crew" 2
 		"bunks" 6
 		"mass" 230
