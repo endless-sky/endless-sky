@@ -166,7 +166,7 @@ void Tooltip::Draw(const Point &point) const
 
 	// If the chosen point would push the box off-screen, adjust the box's position.
 	// Instead of nudging the box by the amount of overflow, flip it over one of its axes
-	// Doing this ensures we don't overlap any useful information hat would be covered by
+	// Doing this ensures we don't overlap any useful information that would be covered by
 	// simply nudging the box.
 	if(box.Top() < Screen::Top())
 		box += Point(0, boxSize.Y());
