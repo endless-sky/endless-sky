@@ -4560,8 +4560,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		if(!message.empty())
 			Messages::Add(message, messageImportance);
 	}
-	else if(activeCommands.Has(Command::JUMP | Command::FLEET_JUMP))
+	else if(activeCommands.Has(Command::JUMP))
 	{
+		// Note: FLEET_JUMP includes JUMP on the first instance only, so this if branch also services FLEET_JUMP.
 		if(player.TravelPlan().empty() && !isWormhole)
 		{
 			double bestMatch = -2.;
@@ -4595,6 +4596,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			if(player.KnowsName(*ship.GetTargetSystem()))
 				name = ship.GetTargetSystem()->DisplayName();
 
+			Messages::Add(std::to_string(activeCommands.state), Messages::Importance::High);
 			if(activeCommands.Has(Command::FLEET_JUMP))
 				Messages::Add("Engaging fleet autopilot to jump to the " + name + " system."
 					" Your fleet will jump when ready.", Messages::Importance::High);
