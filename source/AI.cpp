@@ -4596,7 +4596,6 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			if(player.KnowsName(*ship.GetTargetSystem()))
 				name = ship.GetTargetSystem()->DisplayName();
 
-			Messages::Add(std::to_string(activeCommands.state), Messages::Importance::High);
 			if(activeCommands.Has(Command::FLEET_JUMP))
 				Messages::Add("Engaging fleet autopilot to jump to the " + name + " system."
 					" Your fleet will jump when ready.", Messages::Importance::High);
