@@ -48,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <cstdint>
 #include <cstring>
 #include <ctime>
 #include <functional>
@@ -4886,6 +4887,18 @@ void PlayerInfo::DoAccounting()
 	string message = accounts.Step(assets, Salaries(), balance.maintenanceCosts);
 	if(!message.empty())
 		Messages::Add(message, Messages::Importance::High, true);
+
+	// Total the income and payments made, printing a message if non-zero.
+	int64_t totalCreditChange = -accounts.TotalPreviousPayment();
+	for(const auto &gain : income)
+		totalCreditChange += gain.second;
+	if(totalCreditChange)
+	{
+		string changeMsg = "You ";
+		if(totalCreditChange > 0){ changeMsg += "gained ";} else { changeMsg += "lost ";}
+		changeMsg += Format::CreditString(abs(totalCreditChange)) + " yesterday.";
+		Messages::Add(changeMsg, Messages::Importance::High);
+	}
 }
 
 
