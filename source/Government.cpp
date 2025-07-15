@@ -587,15 +587,20 @@ string Government::GetHail(bool isDisabled) const
 	return phrase ? phrase->Get() : "";
 }
 
+
+
 string Government::GetBribeAcceptanceHail() const
 {
 	return bribeAcceptanceHail ? bribeAcceptanceHail->Get() : "It's a pleasure doing business with you.";
 }
 
+
+
 string Government::GetBribeRejectionHail() const
 {
 	return bribeRejectionHail ? bribeRejectionHail->Get() : "I do not want your money.";
 }
+
 
 
 // Find out if this government speaks a different language.
