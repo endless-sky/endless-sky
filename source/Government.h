@@ -91,13 +91,9 @@ public:
 	// Get a hail message (which depends on whether this is an enemy government
 	// and if the ship is disabled).
 	std::string GetHail(bool isDisabled) const;
-
-	// Get a hail message that the government responds with if it accepts a
-	// bribe.
+	// Get a hail message that the government responds with if it accepts a bribe.
 	std::string GetBribeAcceptanceHail() const;
-
-	// Get a hail message that the government responds with if it rejects a
-	// bribe.
+	// Get a hail message that the government responds with if it rejects a bribe.
 	std::string GetBribeRejectionHail() const;
 
 	// Find out if this government speaks a different language.
