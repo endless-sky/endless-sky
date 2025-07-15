@@ -185,6 +185,8 @@ private:
 	const Phrase *friendlyDisabledHail = nullptr;
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
+	const Phrase *bribeAcceptanceHail = nullptr;
+	const Phrase *bribeRejectionHail = nullptr;
 	std::string language;
 	bool sendUntranslatedHails = false;
 	std::vector<RaidFleet> raidFleets;
