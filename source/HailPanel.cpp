@@ -306,7 +306,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	UI::UISound sound = UI::UISound::NORMAL;
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
-	const Government *gov = ship ? ship->GetGovernment() : planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
+	const Government *gov = ship ? ship->GetGovernment() : planet ? planet->GetGovernment() : nullptr;
 
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
