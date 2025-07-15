@@ -586,15 +586,15 @@ string Government::GetHail(bool isDisabled) const
 
 	return phrase ? phrase->Get() : "";
 }
- 
-string Government::GetBribeAcceptanceHail() const 
+
+string Government::GetBribeAcceptanceHail() const
 {
-       return bribeAcceptanceHail ? bribeAcceptanceHail->Get() : "It's a pleasure doing business with you.";
+	return bribeAcceptanceHail ? bribeAcceptanceHail->Get() : "It's a pleasure doing business with you.";
 }
 
-string Government::GetBribeRejectionHail() const 
+string Government::GetBribeRejectionHail() const
 {
-       return bribeRejectionHail ? bribeRejectionHail->Get() : "I do not want your money.";
+	return bribeRejectionHail ? bribeRejectionHail->Get() : "I do not want your money.";
 }
 
 
