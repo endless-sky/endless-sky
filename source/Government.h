@@ -3,8 +3,7 @@ Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
+Foundation, either version 3 of the License, or (at your option) any later version.
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -38,6 +37,8 @@ class Planet;
 class PlayerInfo;
 class Ship;
 class System;
+
+
 
 // Class representing a government. Each ship belongs to some government, and
 // attacking that ship will provoke its allied governments and reduce your
@@ -90,6 +91,15 @@ public:
 	// Get a hail message (which depends on whether this is an enemy government
 	// and if the ship is disabled).
 	std::string GetHail(bool isDisabled) const;
+
+	// Get a hail message that the government responds with if it accepts a 
+	// bribe.
+	std::string GetBribeAcceptanceHail() const;
+
+	// Get a hail message that the government responds with if it rejects a 
+	// bribe.
+	std::string GetBribeRejectionHail() const;
+
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
 	// Find out if this government should send custom hails even if the player does not know its language.
