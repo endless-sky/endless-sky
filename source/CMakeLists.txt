@@ -195,6 +195,7 @@ target_sources(EndlessSkyLib PRIVATE
 	MissionPanel.h
 	Mortgage.cpp
 	Mortgage.h
+	MouseButton.h
 	NPC.cpp
 	NPC.h
 	NPCAction.cpp

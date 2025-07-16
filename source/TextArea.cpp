@@ -162,13 +162,15 @@ void TextArea::Draw()
 
 
 
-bool TextArea::Click(int x, int y, int clicks)
+bool TextArea::Click(int x, int y, MouseButton button, int clicks)
 {
-	if(scroll.Scrollable() && scrollBar.SyncClick(scroll, x, y, clicks))
+	if(scroll.Scrollable() && scrollBar.SyncClick(scroll, x, y, button, clicks))
 	{
 		bufferIsValid = false;
 		return true;
 	}
+	if(button != MouseButton::LEFT)
+		return false;
 
 	if(!buffer)
 		return false;

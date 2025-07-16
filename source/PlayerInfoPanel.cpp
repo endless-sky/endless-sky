@@ -511,8 +511,11 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 
 
 
-bool PlayerInfoPanel::Click(int x, int y, int clicks)
+bool PlayerInfoPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	// Sort the ships if the click was on one of the column headers.
 	Point mouse = Point(x, y);
 	for(auto &zone : menuZones)

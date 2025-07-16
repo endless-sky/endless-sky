@@ -251,8 +251,16 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool MainPanel::Click(int x, int y, int clicks)
+bool MainPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button == MouseButton::RIGHT)
+	{
+		engine.RClick(Point(x, y));
+		return true;
+	}
+	else if(button != MouseButton::LEFT)
+		return false;
+
 	// Don't respond to clicks if another panel is active.
 	if(!canClick)
 		return true;
@@ -267,15 +275,6 @@ bool MainPanel::Click(int x, int y, int clicks)
 	hasControl = (mod & KMOD_CTRL);
 
 	engine.Click(dragSource, dragSource, hasShift, hasControl);
-
-	return true;
-}
-
-
-
-bool MainPanel::RClick(int x, int y)
-{
-	engine.RClick(Point(x, y));
 
 	return true;
 }
