@@ -52,21 +52,14 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 
 
 
-ConditionsStore::~ConditionsStore()
-{
-	// Clear removes the ConditionEntries in the correct order.
-	Clear();
-}
-
-
-
 void ConditionsStore::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(!DataNode::IsConditionName(child.Token(0)))
+		const string &key = child.Token(0);
+		if(!DataNode::IsConditionName(key))
 			child.PrintTrace("Invalid condition during savegame-load:");
-		Set(child.Token(0), (child.Size() >= 2) ? child.Value(1) : 1);
+		Set(key, (child.Size() >= 2) ? child.Value(1) : 1);
 	}
 }
 
@@ -79,7 +72,7 @@ void ConditionsStore::Save(DataWriter &out) const
 	for(const auto &it : storage)
 	{
 		// We don't need to save derived conditions that have a provider.
-		if(it.second.provider)
+		if(it.second.getFunction || it.second.providingEntry)
 			continue;
 		// If the condition's value is 0, don't write it at all.
 		if(!it.second.value)
@@ -109,13 +102,13 @@ int64_t ConditionsStore::Get(const string &name) const
 
 	// If the name matches exactly, then access directly with explicit conversion to int64_t.
 	if(ce->name == name)
-		return ce->operator int64_t();
+		return *ce;
 
 	// If the name doesn't match exactly, then we are dealing with a prefixed provider that doesn't have an exactly
 	// matching entry. Get is const, so isn't supposed to add such an entry; use a temporary object for access.
 	ConditionEntry ceAccessor(name);
-	ceAccessor.provider = ce->provider;
-	return ceAccessor.operator int64_t();
+	ceAccessor.providingEntry = ce;
+	return ceAccessor;
 }
 
 
@@ -150,23 +143,10 @@ ConditionEntry &ConditionsStore::operator[](const string &name)
 
 	// If a relevant prefix provider is found, then provision this entry with the provider.
 	if(ceprov != nullptr)
-		it->second.provider = ceprov->provider;
+		it->second.providingEntry = ceprov;
 
 	// Return the entry created.
 	return it->second;
-}
-
-
-
-void ConditionsStore::Clear()
-{
-	// Reverse clear, to make sure that prefix providers are not cleared before it's users are cleared.
-	for(auto it = storage.rbegin(); it != storage.rend(); ++it)
-		it->second.Clear();
-
-	// Also clear all conditions..
-	// TODO: This invalidates ConditionEntries. If invalidating is not allowed, then just reset all to zero instead.
-	storage.clear();
 }
 
 
@@ -177,7 +157,7 @@ int64_t ConditionsStore::PrimariesSize() const
 	for(const auto &it : storage)
 	{
 		// We only count primary conditions; conditions that don't have a provider.
-		if(it.second.provider)
+		if(it.second.providingEntry || it.second.getFunction)
 			continue;
 		++result;
 	}
@@ -209,10 +189,10 @@ const ConditionEntry *ConditionsStore::GetEntry(const string &name) const
 	if(name == it->first)
 		return &(it->second);
 
-	// The entry is also matching when we have a prefix entry and the prefix part in the provider matches.
-	ConditionEntry::DerivedProvider *provider = it->second.provider;
-	if(provider && provider->mainEntry && !name.compare(0, provider->mainEntry->name.length(), provider->mainEntry->name))
-		return &(it->second);
+	// If we don't have an exact match, but we have a matching prefix-provider, then we return that one.
+	const ConditionEntry *ceProv = it->second.providingEntry;
+	if(ceProv && name.starts_with(ceProv->name))
+		return ceProv;
 
 	// And otherwise we don't have a match.
 	return nullptr;

@@ -27,6 +27,7 @@
 					"name": "libuuid",
 					"platform": "linux"
 				},
+				"minizip",
 				"openal-soft",
 				{
 					"name": "openal-soft",
@@ -35,14 +36,16 @@
 					],
 					"platform": "linux"
 				},
-				"sdl2"
+				"sdl2",
+				"pkgconf"
 			]
 		},
 		"steam-libs": {
 			"description": "System libraries not provided in the Steam Sniper Runtime.",
 			"dependencies": [
 				"libmad",
-				"catch2"
+				"catch2",
+				"minizip"
 			]
 		},
 		"test-libs": {

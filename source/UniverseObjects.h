@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "CategoryType.h"
-#include "Sale.h"
 #include "Set.h"
+#include "Shop.h"
 
 #include "CategoryList.h"
 #include "Color.h"
@@ -82,7 +82,7 @@ public:
 	void FinishLoading();
 
 	// Apply the given change to the universe.
-	void Change(const DataNode &node, const ConditionsStore *playerConditions);
+	void Change(const DataNode &node, const PlayerInfo &player);
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
 	void UpdateSystems();
@@ -129,8 +129,8 @@ private:
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
-	Set<Sale<Ship>> shipSales;
-	Set<Sale<Outfit>> outfitSales;
+	Set<Shop<Ship>> shipSales;
+	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
 	std::set<double> neighborDistances;
 
