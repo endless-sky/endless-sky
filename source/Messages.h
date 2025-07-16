@@ -38,7 +38,7 @@ public:
 		Info,
 		Daily,
 		Low,
-		Overheat
+		HighestNoRepeat
 	};
 
 	class Entry {

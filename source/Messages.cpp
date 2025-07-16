@@ -84,7 +84,7 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 
 		// If this message is not important and it is already being shown in the
 		// list, ignore it.
-		if(importance == Importance::Low || importance == Importance::Overheat)
+		if(importance == Importance::Low || importance == Importance::HighestNoRepeat)
 		{
 			bool skip = false;
 			for(const Messages::Entry &entry : recent)
@@ -102,7 +102,7 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 				it.step -= 60;
 			// For each incoming message, if it exactly matches an existing message,
 			// replace that one with this new one by scheduling the old one for removal.
-			if(importance != Importance::Low && importance != Importance::Overheat
+			if(importance != Importance::Low && importance != Importance::HighestNoRepeat
 					&& it.message == message && it.deathStep < 0)
 				it.deathStep = step + animationDuration;
 		}
@@ -139,7 +139,7 @@ const Color *Messages::GetColor(Importance importance, bool isLogPanel)
 	switch(importance)
 	{
 		case Messages::Importance::Highest:
-		case Messages::Importance::Overheat:
+		case Messages::Importance::HighestNoRepeat:
 			return GameData::Colors().Get(prefix + "highest");
 		case Messages::Importance::High:
 			return GameData::Colors().Get(prefix + "high");
