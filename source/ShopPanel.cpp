@@ -662,8 +662,11 @@ bool ShopPanel::Drag(double dx, double dy)
 
 
 
-bool ShopPanel::Release(int x, int y)
+bool ShopPanel::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	dragShip = nullptr;
 	isDraggingShip = false;
 	return true;

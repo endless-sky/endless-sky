@@ -582,8 +582,10 @@ bool PlayerInfoPanel::Drag(double dx, double dy)
 
 
 
-bool PlayerInfoPanel::Release(int /* x */, int /* y */)
+bool PlayerInfoPanel::Release(int /* x */, int /* y */, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	if(!isDragging)
 		return true;
 	isDragging = false;

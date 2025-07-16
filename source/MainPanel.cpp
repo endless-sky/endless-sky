@@ -293,8 +293,11 @@ bool MainPanel::Drag(double dx, double dy)
 
 
 
-bool MainPanel::Release(int x, int y)
+bool MainPanel::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	if(isDragging)
 	{
 		dragPoint = Point(x, y);

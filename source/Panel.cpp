@@ -204,7 +204,7 @@ bool Panel::Scroll(double dx, double dy)
 
 
 
-bool Panel::Release(int x, int y)
+bool Panel::Release(int x, int y, MouseButton button)
 {
 	return false;
 }
@@ -239,9 +239,9 @@ bool Panel::DoDrag(double dx, double dy)
 
 
 
-bool Panel::DoRelease(int x, int y)
+bool Panel::DoRelease(int x, int y, MouseButton button)
 {
-	return EventVisit(&Panel::Release, x, y);
+	return EventVisit(&Panel::Release, x, y, button);
 }
 
 

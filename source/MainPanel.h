@@ -55,7 +55,7 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
-	virtual bool Release(int x, int y) override;
+	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Scroll(double dx, double dy) override;
 
 

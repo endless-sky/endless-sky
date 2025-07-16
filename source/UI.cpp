@@ -66,7 +66,7 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			handled = (*it)->DoRelease(x, y);
+			handled = (*it)->DoRelease(x, y, static_cast<MouseButton>(event.button.button));
 		}
 		else if(event.type == SDL_MOUSEWHEEL)
 			handled = (*it)->DoScroll(event.wheel.x, event.wheel.y);

@@ -84,7 +84,7 @@ protected:
 	virtual bool Click(int x, int y, MouseButton button, int clicks);
 	virtual bool Hover(int x, int y);
 	virtual bool Drag(double dx, double dy);
-	virtual bool Release(int x, int y);
+	virtual bool Release(int x, int y, MouseButton button);
 	virtual bool Scroll(double dx, double dy);
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
@@ -140,7 +140,7 @@ private:
 	bool DoClick(int x, int y, MouseButton button, int clicks);
 	bool DoHover(int x, int y);
 	bool DoDrag(double dx, double dy);
-	bool DoRelease(int x, int y);
+	bool DoRelease(int x, int y, MouseButton button);
 	bool DoScroll(double dx, double dy);
 
 	void DoDraw();

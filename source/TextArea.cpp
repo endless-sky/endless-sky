@@ -199,8 +199,11 @@ bool TextArea::Drag(double dx, double dy)
 
 
 
-bool TextArea::Release(int x, int y)
+bool TextArea::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	bool ret = dragging;
 	dragging = false;
 	return ret;
