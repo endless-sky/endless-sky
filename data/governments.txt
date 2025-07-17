@@ -299,7 +299,7 @@ government "Bunrodea"
 	swizzle 3
 	color .35 .65 .3
 	language "Bunrodea"
-	
+
 	"player reputation" 1
 	"attitude toward"
 		"Bunrodea (Erabu)" 1
@@ -309,7 +309,7 @@ government "Bunrodea"
 		"Kor Mereti" -0.01
 		"Kor Efret" -0.01
 	"bribe" 0
-	
+
 	"penalty for"
 		assist 0
 
@@ -318,7 +318,7 @@ government "Bunrodea (Erabu)"
 	swizzle 11
 	color .35 .65 .3
 	language "Bunrodea"
-	
+
 	"player reputation" 1
 	"attitude toward"
 		"Bunrodea" 1
@@ -328,7 +328,7 @@ government "Bunrodea (Erabu)"
 		"Kor Mereti" -0.01
 		"Kor Efret" -0.01
 	"bribe" 0
-	
+
 	"penalty for"
 		assist 0
 
@@ -337,7 +337,7 @@ government "Bunrodea (Guard)"
 	swizzle 11
 	color .35 .65 .3
 	language "Bunrodea"
-	
+
 	"player reputation" -1
 	"attitude toward"
 		"Bunrodea" 1
@@ -348,7 +348,7 @@ government "Bunrodea (Guard)"
 		"Kor Mereti" -0.01
 		"Kor Efret" -0.01
 	"bribe" 0
-	
+
 	"penalty for"
 		assist 0
 		disable 0
@@ -358,7 +358,7 @@ government "Bunrodea (Megasa)"
 	swizzle 18
 	color .35 .65 .3
 	language "Bunrodea"
-	
+
 	"player reputation" 1
 	"attitude toward"
 		"Bunrodea" 1
@@ -369,7 +369,7 @@ government "Bunrodea (Megasa)"
 		"Kor Mereti" -0.01
 		"Kor Efret" -0.01
 	"bribe" 0
-	
+
 	"penalty for"
 		assist 0
 
@@ -464,7 +464,7 @@ government "Drak (Incipias)"
 government "Elenctic Commune"
 	swizzle 0
 	color "governments: Neutral"
-	
+
 	"player reputation" 1000
 	"attitude toward"
 		"Hai" .1
@@ -503,7 +503,7 @@ government "Escort (Betraying)"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled"
-	
+
 government "Forest (Prey)"
 	"display name" "Forest"
 
@@ -523,7 +523,7 @@ color "governments: Free" .06 .68 0.
 government "Free Worlds"
 	swizzle 2
 	color "governments: Free"
-	
+
 	"player reputation" 1
 	"attitude toward"
 		"Alpha" -.4
@@ -545,7 +545,7 @@ government "Free Worlds that won't enter wormhole"
 	"display name" "Free Worlds"
 	swizzle 2
 	color "governments: Free"
-	
+
 	"player reputation" 1
 	"attitude toward"
 		"Free Worlds" 1
@@ -732,7 +732,7 @@ color "governments: Hai" .86 .48 .79
 government "Hai"
 	swizzle 0
 	color "governments: Hai"
-	
+
 	"player reputation" 0
 	"attitude toward"
 		"Hai (Wormhole Access)" 1
@@ -760,7 +760,7 @@ government "Hai Merchant"
 	"display name" "Hai"
 	swizzle 0
 	color "governments: Hai"
-	
+
 	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
@@ -788,7 +788,7 @@ government "Hai Merchant (Sympathizers)"
 	"display name" "Hai"
 	swizzle 0
 	color "governments: Hai"
-	
+
 	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
@@ -811,7 +811,7 @@ government "Hai Merchant (Human)"
 	"display name" "Hai"
 	swizzle 0
 	color "governments: Hai"
-	
+
 	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
@@ -836,7 +836,7 @@ government "Hai (Friendly Unfettered)"
 	swizzle 4
 	color "governments: Hai (Unfettered)"
 	"display name" "Hai (Unfettered)"
-	
+
 	"player reputation" 100
 	"attitude toward"
 		"Pirate" -.01
@@ -860,7 +860,7 @@ government "Hai (Unfettered)"
 	color "governments: Hai (Unfettered)"
 	"crew attack" 1.4
 	"crew defense" 2.2
-	
+
 	"player reputation" -1000
 	"attitude toward"
 		"Hai (Unfettered Wanderer Tribute)" 2
@@ -909,7 +909,7 @@ government "Hai (Unfettered Civilians)"
 	swizzle 4
 	color "governments: Hai (Unfettered)"
 	"display name" "Hai (Unfettered)"
-	
+
 	"player reputation" 10
 	"attitude toward"
 		"Hai (Unfettered)" .01
@@ -925,7 +925,7 @@ government "Hai (Unfettered Wanderer Tribute)"
 	"display name" "Hai (Unfettered)"
 	"crew attack" 1.4
 	"crew defense" 2.2
-	
+
 	"player reputation" 0
 	"friendly hail" "friendly unfettered"
 	"friendly disabled hail" "friendly disabled unfettered"
@@ -936,7 +936,7 @@ government "Hai (Wormhole Access)"
 	"display name" "Hai"
 	swizzle 0
 	color "governments: Hai"
-	
+
 	"player reputation" 0
 	"attitude toward"
 		"Hai" 1
@@ -1126,7 +1126,7 @@ color "governments: Independent" .78 .36 .36
 government "Independent"
 	swizzle 6
 	color "governments: Independent"
-	
+
 	"player reputation" 10
 	"bribe" .05
 	"fine" 0
@@ -1140,7 +1140,7 @@ government "Independent (Killable)"
 	"display name" "Independent"
 	swizzle 6
 	color "governments: Independent"
-	
+
 	"player reputation" 10
 	"bribe" .05
 	"fine" 0
@@ -1155,7 +1155,7 @@ government "Indigenous Lifeform"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
-	
+
 	"attitude toward"
 		"Ember Waste" 1
 	"penalty for"
@@ -1172,7 +1172,7 @@ government "Indigenous Lifeform (Acheron)"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
-	
+
 	"penalty for"
 		assist 0
 		disable 0
@@ -1222,7 +1222,7 @@ government "Indigenous Lifeform (Tree)"
 	# Nothing you do permanently angers indigenous creatures, because they are
 	# not sentient and do not remember you as an individual.
 	"player reputation" 1
-	
+
 	"penalty for"
 		assist 0
 		disable 0
@@ -1239,7 +1239,7 @@ government "Indigenous Lifeform (Tree Two)"
 	# Nothing you do permanently angers indigenous creatures, because they are
 	# not sentient and do not remember you as an individual.
 	"player reputation" 1
-	
+
 	"penalty for"
 		assist 0
 		disable 0
@@ -1259,7 +1259,7 @@ government "Ka'het"
 		"Indigenous Lifeform (Subsidurial)" 0
 		"Marauder" 0
 		"Parrot" 0
-	
+
 	"player reputation" -1
 
 government "Ka'het (Infighting)"
@@ -1274,13 +1274,13 @@ government "Ka'het (Infighting)"
 		"Indigenous Lifeform (Subsidurial)" 0
 		"Marauder" 0
 		"Parrot" 0
-	
+
 	"player reputation" -1
 
 government "Ka'sei"
 	swizzle 0
 	language "Ka'het"
-	
+
 	"penalty for"
 		assist 0
 		disable 0
@@ -1293,7 +1293,7 @@ government "Ka'sei (12.2)"
 	"display name" "Ka'sei"
 	swizzle 0
 	language "Ka'het"
-	
+
 	"penalty for"
 		assist 0
 		disable 0
@@ -1309,7 +1309,7 @@ government "Kor Efret"
 	swizzle 4
 	color .49 .33 .69
 	language "Korath"
-	
+
 	"attitude toward"
 		"Kor Mereti" -.01
 		"Kor Sestor" -.01
@@ -1326,11 +1326,11 @@ government "Kor Mereti"
 	swizzle 5
 	color .43 .48 .87
 	language "Korath"
-	
+
 	"attitude toward"
 		"Kor Sestor" -.01
 		"Wanderer" -.01
-	
+
 	"player reputation" -1000
 
 government "Kor Mereti (Hostile)"
@@ -1346,7 +1346,7 @@ government "Kor Sestor"
 	swizzle 0
 	color 1 .36 .49
 	language "Korath"
-	
+
 	"attitude toward"
 		"Kor Mereti" -.01
 		"Wanderer" -.01
@@ -1354,7 +1354,7 @@ government "Kor Sestor"
 		"Merchant" -.01
 		"Navy (Oathkeeper)" -.01
 		"Syndicate" -.01
-	
+
 	"player reputation" -1000
 
 color "governments: Korath Exiles" .8 .5 .1
@@ -1365,12 +1365,12 @@ government "Korath"
 	"crew attack" 1.4
 	"crew defense" 2.6
 	language "Korath"
-	
+
 	"attitude toward"
 		"Kor Sestor" -.01
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
-	
+
 	"player reputation" -10
 	"send untranslated hails"
 	"friendly hail" "friendly korath untranslated"
@@ -1440,7 +1440,7 @@ government "Magic Asteroid"
 	"display name" "???"
 	swizzle 0
 	language "Magic Asteroid"
-	
+
 	"attitude toward"
 		"Ka'sei (12.2)" -.01
 		"Uninhabited" -.01
@@ -1458,7 +1458,7 @@ government "Marauder"
 
 government "Merchant"
 	swizzle 5
-	
+
 	"player reputation" 10
 	"attitude toward"
 		"Pirate" -.2
@@ -1474,7 +1474,7 @@ government "Merchant"
 government "Militia"
 	swizzle 2
 	color "governments: Free"
-	
+
 	"player reputation" 0
 	"attitude toward"
 		"Merchant" .3
@@ -1503,7 +1503,7 @@ government "Navy (Oathkeeper)"
 	color "governments: Republic"
 	"crew attack" 1.2
 	"crew defense" 2.2
-	
+
 	"player reputation" 100
 	"attitude toward"
 		"Alpha" -.3
@@ -1526,7 +1526,7 @@ color "governments: Neutral" .84 .61 .37
 government "Neutral"
 	swizzle 0
 	color "governments: Neutral"
-	
+
 	"player reputation" 1
 	"attitude toward"
 		"Merchant" .3
@@ -1625,7 +1625,7 @@ color "governments: Pirate" .78 0. 0.
 government "Pirate"
 	swizzle 6
 	color "governments: Pirate"
-	
+
 	"player reputation" -10
 	"attitude toward"
 		"Author" -.01
@@ -1648,7 +1648,7 @@ government "Pirate (Devil-Run Gang)"
 	swizzle 6
 	color "governments: Pirate"
 	"display name" "Pirate"
-	
+
 	"player reputation" -1000
 	"attitude toward"
 		"Author" -.001
@@ -1670,7 +1670,7 @@ government "Pirate (Rival)"
 	"display name" "Pirate"
 	swizzle 6
 	color "governments: Pirate"
-	
+
 	"player reputation" -10
 	"attitude toward"
 		"Author" -.01
@@ -1695,7 +1695,7 @@ color "governments: Pug" .99 .89 .70
 government "Pug"
 	swizzle 0
 	color "governments: Pug"
-	
+
 	"player reputation" 1
 	"attitude toward"
 		"Drak" -.01
@@ -1712,7 +1712,7 @@ government "Pug (Wanderer)"
 	"display name" "Pug"
 	swizzle 0
 	color "governments: Pug"
-	
+
 	"player reputation" 1
 	"attitude toward"
 		"Drak" -.01
@@ -1730,7 +1730,7 @@ color "governments: Quarg" .88 .77 0
 government "Quarg"
 	swizzle 4
 	color "governments: Quarg"
-	
+
 	"player reputation" 1
 	"attitude toward"
 		"Quarg (Hai)" 1
@@ -1795,8 +1795,8 @@ government "Quarg (Gegno)"
 	"death sentence" "quarg imprisonment"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
-	"bribe acceptance hail" "quarg bribe acceptance hail" 
-	"bribe rejection hail" "quarg bribe rejection hail" 
+	"bribe acceptance hail" "quarg bribe acceptance hail"
+	"bribe rejection hail" "quarg bribe rejection hail"
 	atrocities
 		"Antimatter Core"
 		"Astral Ribault"
@@ -1846,7 +1846,7 @@ government "Quarg (Hai)"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 	"bribe acceptance hail" "quarg bribe acceptance hail"
-	"bribe rejection hail" "quarg bribe rejection hail" 
+	"bribe rejection hail" "quarg bribe rejection hail"
 	atrocities
 		"Antimatter Core"
 		"Astral Ribault"
@@ -1906,7 +1906,7 @@ government "Quarg (Incipias)"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 	"bribe acceptance hail" "quarg bribe acceptance hail"
-	"bribe rejection hail" "quarg bribe rejection hail" 
+	"bribe rejection hail" "quarg bribe rejection hail"
 	atrocities
 		"Antimatter Core"
 		"Astral Ribault"
@@ -1955,7 +1955,7 @@ government "Quarg (Kor Efret)"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 	"bribe acceptance hail" "quarg bribe acceptance hail"
-	"bribe rejection hail" "quarg bribe rejection hail" 
+	"bribe rejection hail" "quarg bribe rejection hail"
 	atrocities
 		"Antimatter Core"
 		"Astral Ribault"
@@ -1990,7 +1990,7 @@ government "Remnant"
 	swizzle 0
 	color "governments: Remnant"
 	"crew defense" 2.2
-	
+
 	"player reputation" 1
 	"bribe" 0
 	"attitude toward"
@@ -2023,7 +2023,7 @@ government "Remnant (Research)"
 	swizzle 0
 	color "governments: Remnant"
 	"crew defense" 2.2
-	
+
 	"player reputation" 1
 	"bribe" 0
 	"attitude toward"
@@ -2053,7 +2053,7 @@ government "Republic"
 	color "governments: Republic"
 	"crew attack" 1.2
 	"crew defense" 2.2
-	
+
 	"player reputation" 2
 	"attitude toward"
 		"Alpha" -.3
@@ -2080,7 +2080,7 @@ government "Republic (Friendly)"
 	"crew attack" 1.2
 	"crew defense" 2.2
 	"player reputation" 2
-	
+
 	"attitude toward"
 		"Alpha" -.01
 		"Merchant" .01
@@ -2112,7 +2112,7 @@ government "Republic that won't enter wormhole"
 	color "governments: Republic"
 	"crew attack" 1.2
 	"crew defense" 2.2
-	
+
 	"player reputation" 2
 	"attitude toward"
 		"Alpha" -.3
@@ -2187,7 +2187,7 @@ government "Silent Ones"
 government "Smuggler (Hai Trafficker)"
 	swizzle 5
 	"display name" "Smuggler"
-	
+
 	"bribe" .1
 	"fine" 0
 	"friendly hail" "friendly civilian"
@@ -2220,7 +2220,7 @@ color "governments: Syndicate" 0. .41 .71
 government "Syndicate"
 	swizzle 4
 	color "governments: Syndicate"
-	
+
 	"player reputation" 2
 	"attitude toward"
 		"Merchant" .3
@@ -2238,7 +2238,7 @@ government "Syndicate"
 government "Syndicate (Extremist)"
 	swizzle 1
 	color "governments: Syndicate"
-	
+
 	"player reputation" -1000
 	"attitude toward"
 		"Syndicate" -.01

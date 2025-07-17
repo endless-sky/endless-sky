@@ -51,6 +51,19 @@ phrase "hostile quarg"
 		"You have only a short time to learn to live together in peace."
 		"You must live in peace... or leave the galaxy."
 
+phrase "quarg bribe acceptance hail"
+	word
+		"We will take your offer, but in return you must learn how to leave in peace."
+		"The galaxy does not need more from you, but we will take it."
+		"Very well. We accept your bribe."
+
+phrase "quarg bribe rejection hail"
+	word
+		"A species as advanced as us will be not be swayed by mere cash."
+		"Remove your weapons, then we can talk."
+		"We have more than enough resources; we do not want or need more from a warmongerer."
+		"Pathetic."
+
 conversation "quarg imprisonment"
 	branch "landed"
 		has "flagship landed"

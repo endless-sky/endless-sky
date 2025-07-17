@@ -642,6 +642,7 @@ phrase "hai bribe acceptance hail"
 		"we will make an exception for this."
 		"we will accept your bribe."
 		"we hope your intentions go away after this."
+		"we hope you will leave us alone after this."
 
 
 phrase "hai bribe rejection hail"
