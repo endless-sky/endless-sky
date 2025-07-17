@@ -38,7 +38,7 @@ void AudioSupplier::NextChunk(ALuint buffer)
 	if(AvailableChunks())
 	{
 		vector<sample_t> samples = NextDataChunk();
-		alBufferData(buffer, FORMAT, samples.data(),  sizeof(sample_t) * OUTPUT_CHUNK, SAMPLE_RATE);
+		alBufferData(buffer, FORMAT, samples.data(), sizeof(sample_t) * OUTPUT_CHUNK, SAMPLE_RATE);
 	}
 	else
 		SetSilence(buffer, OUTPUT_CHUNK);

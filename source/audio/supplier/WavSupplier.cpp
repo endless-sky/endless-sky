@@ -58,8 +58,7 @@ vector<AudioSupplier::sample_t> WavSupplier::NextDataChunk()
 		return samples;
 
 	size_t currentSampleCount = 0;
-	do
-	{
+	do {
 		// If restarting the buffer, check 3x status.
 		if(!currentSample)
 		{
