@@ -258,7 +258,7 @@ bool MainPanel::Click(int x, int y, MouseButton button, int clicks)
 		engine.RClick(Point(x, y));
 		return true;
 	}
-	else if(button != MouseButton::LEFT)
+	if(button != MouseButton::LEFT)
 		return false;
 
 	// Don't respond to clicks if another panel is active.
