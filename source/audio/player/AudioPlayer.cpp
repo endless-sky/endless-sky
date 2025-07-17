@@ -55,7 +55,7 @@ void AudioPlayer::Update()
 	if(!buffersDone)
 		return;
 
-	if(!audioSupplier->MaxChunkCount() || shouldStop)
+	if(!audioSupplier->MaxChunks() || shouldStop)
 	{
 		// No chunks left to play.
 		ALint buffersQueued = 0;
@@ -72,7 +72,7 @@ void AudioPlayer::Update()
 			alSourceUnqueueBuffers(alSource, buffers.size(), buffers.data());
 
 			for(ALuint buffer : buffers)
-				audioSupplier->ReturnBuffer(buffer);
+				AudioSupplier::DestroyBuffer(buffer);
 
 			ReleaseSource();
 
@@ -82,19 +82,11 @@ void AudioPlayer::Update()
 	else if(audioSupplier->AvailableChunks())
 	{
 		// Queue as many buffers as possible.
-		vector<ALuint> buffers(min(buffersDone, audioSupplier->AvailableChunks()));
+		vector<ALuint> buffers(min(static_cast<size_t>(buffersDone), audioSupplier->AvailableChunks()));
 		alSourceUnqueueBuffers(alSource, buffers.size(), buffers.data());
 
 		for(ALuint &buffer : buffers)
-		{
-			if(audioSupplier->IsSynchronous())
-			{
-				audioSupplier->ReturnBuffer(buffer);
-				buffer = audioSupplier->AwaitNextChunk();
-			}
-			else
-				audioSupplier->NextChunk(buffer);
-		}
+			audioSupplier->NextChunk(buffer);
 		alSourceQueueBuffers(alSource, buffers.size(), buffers.data());
 	}
 }
@@ -176,12 +168,16 @@ void AudioPlayer::Init()
 		if(!ClaimSource())
 			return;
 
-	int bufferCount = clamp(audioSupplier->MaxChunkCount(), 1, MAX_INITIAL_BUFFERS);
+	int bufferCount = clamp(audioSupplier->MaxChunks(), static_cast<size_t>(1), MAX_INITIAL_BUFFERS);
 
 	vector<ALuint> buffers;
 	buffers.reserve(bufferCount);
 	for(int i = 0; i < bufferCount; ++i)
-		buffers.emplace_back(audioSupplier->AwaitNextChunk());
+	{
+		ALuint buffer = AudioSupplier::CreateBuffer();
+		audioSupplier->NextChunk(buffer);
+		buffers.emplace_back(buffer);
+	}
 
 	// Queue the actual audio buffers
 	alSourceQueueBuffers(alSource, buffers.size(), buffers.data());

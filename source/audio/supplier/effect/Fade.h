@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../AudioDataSupplier.h"
+#include "../AudioSupplier.h"
 
 #include <memory>
 #include <vector>
@@ -26,27 +26,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 /// There is usually a "primary" source that is not being faded,
 /// which then gets replaced by another source. That's when they are
 /// cross-faded.
-class Fade : public AudioDataSupplier {
+class Fade : public AudioSupplier {
 public:
 	Fade() = default;
 
-	void AddSource(std::unique_ptr<AudioDataSupplier> source, size_t fade = MAX_FADE);
+	void AddSource(std::unique_ptr<AudioSupplier> source, size_t fade = MAX_FADE);
 
 	void Set3x(bool is3x) override;
 
 	// Inherited pure virtual methods
-	ALsizei MaxChunkCount() const override;
-	int AvailableChunks() const override;
-	bool IsSynchronous() const override;
-	bool NextChunk(ALuint buffer) override;
-	std::vector<int16_t> NextDataChunk() override;
-	ALuint AwaitNextChunk() override;
-	void ReturnBuffer(ALuint buffer) override;
+	size_t MaxChunks() const override;
+	size_t AvailableChunks() const override;
+	std::vector<sample_t> NextDataChunk() override;
 
 
 private:
 	/// Cross-fades two sources. The faded result is stored in the fadeIn input.
-	void CrossFade(const std::vector<int16_t> &fadeOut, std::vector<int16_t> &fadeIn, size_t &fade);
+	static void CrossFade(const std::vector<sample_t> &fadeOut, std::vector<sample_t> &fadeIn, size_t &fade);
 
 
 private:
@@ -54,7 +50,7 @@ private:
 	static constexpr size_t MAX_FADE = 65536;
 
 	/// The fading sources, with their fade values.
-	std::vector<std::pair<std::unique_ptr<AudioDataSupplier>, size_t>> fadeProgress;
+	std::vector<std::pair<std::unique_ptr<AudioSupplier>, size_t>> fadeProgress;
 	/// The primary source; this one is not faded out by itself, but can be cross-faded with the other sources.
-	std::unique_ptr<AudioDataSupplier> primarySource;
+	std::unique_ptr<AudioSupplier> primarySource;
 };

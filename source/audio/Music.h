@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "supplier/AudioDataSupplier.h"
+#include "supplier/AudioSupplier.h"
 
 #include <filesystem>
 #include <memory>
@@ -29,7 +29,7 @@ class Music {
 public:
 	static void Init(const std::vector<std::filesystem::path> &sources);
 
-	static std::unique_ptr<AudioDataSupplier> CreateSupplier(const std::string &name, bool looping);
+	static std::unique_ptr<AudioSupplier> CreateSupplier(const std::string &name, bool looping);
 
 	Music() = delete;
 };

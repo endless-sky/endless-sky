@@ -16,62 +16,67 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <AL/al.h>
-#include <AL/alc.h>
 
 #include <cstdint>
 #include <vector>
 
 
 
-/// An audio supplier provides chunks of audio over time.
-/// There are two main ways they operate: synchronously or asynchronously.
-/// Synchronous suppliers provide audio samples on the fly, via AwaitNextChunk().
-/// Asynchronous suppliers generate audio in the background, which can be requested via NextChunk().
-/// Though both supplier types support both interfaces, the most efficient use is as described above.
-/// Mixed usage may result in extra chunks of silence.
+/// An audio supplier provides chunks of audio over time,
+/// which can be requested via NextChunk() or NextDataChunk().
 class AudioSupplier {
 public:
-	explicit AudioSupplier(bool is3x = false);
+	using sample_t = int16_t;
+
+	explicit AudioSupplier(bool is3x = false, bool isLooping = false);
 	virtual ~AudioSupplier() = default;
 
 	AudioSupplier(const AudioSupplier &) = delete;
 	AudioSupplier(AudioSupplier &&) = default;
 
-	/// The estimated number of non-silent chunks that can be supplied by further NextChunk() or AwaitNextChunk() calls.
+	/// The estimated number of non-silent chunks that can be supplied by further NextChunk()/NextDataChunk() calls.
 	/// Never less than AvailableChunks(), and is always zero when the supplier can't provide new chunks anymore.
-	virtual ALsizei MaxChunkCount() const = 0;
-	/// The number of chunks currently ready for access via NextChunk() or AwaitNextChunk().
-	virtual int AvailableChunks() const = 0;
+	virtual size_t MaxChunks() const = 0;
+	/// The number of chunks currently ready for access via NextChunk().
+	virtual size_t AvailableChunks() const = 0;
+	/// Gets the next, fixed-size chunk of audio samples. If there is no available chunk, a silence chunk is returned.
+	/// This returns the raw samples that would be put into an OpenAL buffer via a NextChunk() call.
+	virtual std::vector<sample_t> NextDataChunk() = 0;
 
-	/// Configures 3x audio playback. Some suppliers may choose to ignore this setting.
+	/// Configures 3x audio playback.
 	virtual void Set3x(bool is3x);
-
-	/// Whether the preferred chunk acquisition is AwaitNextChunk() or NextChunk().
-	virtual bool IsSynchronous() const = 0;
 
 	/// Puts the next queued audio chunk into the buffer, removing it from the supplier's queue.
 	/// If there is no queued audio, the buffer is filled with silence.
-	/// The buffer must be a buffer returned by the AwaitNextChunk() call of this supplier.
-	/// A sync supplier without caching may return a silent buffer.
-	/// This method should not be called if MaxChunkCount() is 0.
-	/// Returns true if real sound was provided instead of silence.
-	virtual bool NextChunk(ALuint buffer) = 0;
-	/// Returns an audio chunk in a buffer. For an async supplier, a silent buffer may be returned.
-	/// This method should not be called if MaxChunkCount() is 0.
-	virtual ALuint AwaitNextChunk() = 0;
-	/// Returns a buffer to the supplier, for reuse in AwaitNextChunk().
-	/// The caller may not use this buffer in NextChunk() afterwards.
-	virtual void ReturnBuffer(ALuint buffer) = 0;
+	virtual void NextChunk(ALuint buffer);
+
+	static ALuint CreateBuffer();
+	static void DestroyBuffer(ALuint buffer);
 
 
 protected:
 	/// Sets the buffer to silence for the given number of frames.
-	void SetSilence(ALuint buffer, size_t frames);
+	static void SetSilence(ALuint buffer, size_t frames);
 
 
 protected:
 	static constexpr int SAMPLE_RATE = 44100;
 	static constexpr ALenum FORMAT = AL_FORMAT_STEREO16;
+	/// How many samples to put in each output chunk. Because the output is in
+	/// stereo, the duration of the sample is half this amount, divided by the sample rate.
+	/// This chunk size provides 5 in-game frames' worth of audio.
+	static constexpr size_t OUTPUT_CHUNK = 1. / 60. * SAMPLE_RATE * 2 * 5;
+	/// How many bytes to read from a file at a time
+	static constexpr size_t INPUT_CHUNK = sizeof(sample_t) * 65536;
 
+	/// Whether the current playback is using the 3x samples (if available).
 	bool is3x = false;
+	/// 3x status can only really change when the file is played from the beginning.
+	/// This caches the status it should have after the next restart.
+	bool nextPlaybackIs3x = false;
+	/// A looping player will stream data forever
+	bool isLooping = false;
+
+	/// The index of the first sample to be processed
+	size_t currentSample = 0;
 };

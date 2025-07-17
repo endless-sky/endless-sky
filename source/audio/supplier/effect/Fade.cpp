@@ -19,7 +19,7 @@ using namespace std;
 
 
 
-void Fade::AddSource(unique_ptr<AudioDataSupplier> source, size_t fade)
+void Fade::AddSource(unique_ptr<AudioSupplier> source, size_t fade)
 {
 	fade = min(fade, MAX_FADE); // don't allow a slower fade than the default
 
@@ -41,20 +41,20 @@ void Fade::Set3x(bool is3x)
 
 
 
-ALsizei Fade::MaxChunkCount() const
+size_t Fade::MaxChunks() const
 {
-	int count = primarySource ? primarySource->MaxChunkCount() : 1;
+	size_t count = primarySource ? primarySource->MaxChunks() : 0;
 	for(const auto &[supplier, fade] : fadeProgress)
-		count = max(supplier->MaxChunkCount(), count);
+		count = max(supplier->MaxChunks(), count);
 
-	return max(1, count);
+	return count;
 }
 
 
 
-int Fade::AvailableChunks() const
+size_t Fade::AvailableChunks() const
 {
-	int count = primarySource ? primarySource->AvailableChunks() : MaxChunkCount();
+	size_t count = primarySource ? primarySource->AvailableChunks() : MaxChunks();
 	for(const auto &[supplier, fade] : fadeProgress)
 		count = min(supplier->AvailableChunks(), count);
 
@@ -63,36 +63,20 @@ int Fade::AvailableChunks() const
 
 
 
-bool Fade::IsSynchronous() const
+vector<AudioSupplier::sample_t> Fade::NextDataChunk()
 {
-	return false;
-}
-
-
-
-bool Fade::NextChunk(ALuint buffer)
-{
-	vector<int16_t> next = NextDataChunk();
-	alBufferData(buffer, FORMAT, next.data(), OUTPUT_CHUNK, SAMPLE_RATE);
-	return true;
-}
-
-
-
-vector<int16_t> Fade::NextDataChunk()
-{
-	vector<int16_t> result;
+	vector<sample_t> result;
 	if(!primarySource && fadeProgress.empty()) // no input sources -> output silence
-		result = vector<int16_t>(OUTPUT_CHUNK);
+		result = vector<sample_t>(OUTPUT_CHUNK);
 	else if(primarySource && fadeProgress.empty()) // only primary input, nothing to blend with -> output primary
 		result = primarySource->NextDataChunk();
 	else // fade sources
 	{
 		// Generate the faded background.
-		vector<int16_t> faded = fadeProgress[0].first->NextDataChunk();
+		vector<sample_t> faded = fadeProgress[0].first->NextDataChunk();
 		for(size_t i = 1; i < fadeProgress.size(); i++)
 		{
-			vector<int16_t> other = fadeProgress[i].first->NextDataChunk();
+			vector<sample_t> other = fadeProgress[i].first->NextDataChunk();
 			CrossFade(faded, other, fadeProgress[i - 1].second);
 			faded = std::move(other);
 		}
@@ -108,35 +92,16 @@ vector<int16_t> Fade::NextDataChunk()
 	}
 
 	// Clean up the finished sources.
-	if(primarySource && !primarySource->MaxChunkCount())
+	if(primarySource && !primarySource->MaxChunks())
 		primarySource.reset();
-	erase_if(fadeProgress, [](const auto &pair){ return !pair.second || !pair.first->MaxChunkCount(); });
+	erase_if(fadeProgress, [](const auto &pair){ return !pair.second || !pair.first->MaxChunks(); });
 
 	return result;
 }
 
 
 
-ALuint Fade::AwaitNextChunk()
-{
-	ALuint buffer;
-	alGenBuffers(1, &buffer);
-
-	NextChunk(buffer);
-	return buffer;
-}
-
-
-
-
-void Fade::ReturnBuffer(ALuint buffer)
-{
-	alDeleteBuffers(1, &buffer);
-}
-
-
-
-void Fade::CrossFade(const vector<int16_t> &fadeOut, vector<int16_t> &fadeIn, size_t &fade)
+void Fade::CrossFade(const vector<sample_t> &fadeOut, vector<sample_t> &fadeIn, size_t &fade)
 {
 	for(size_t i = 0; i < fadeIn.size() && fade; ++i)
 	{

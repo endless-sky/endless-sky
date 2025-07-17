@@ -19,8 +19,8 @@ using namespace std;
 
 
 
-AudioSupplier::AudioSupplier(bool is3x)
-	: is3x(is3x)
+AudioSupplier::AudioSupplier(bool is3x, bool isLooping)
+	: is3x(is3x), nextPlaybackIs3x(is3x), isLooping(isLooping)
 {
 }
 
@@ -28,12 +28,42 @@ AudioSupplier::AudioSupplier(bool is3x)
 
 void AudioSupplier::Set3x(bool is3x)
 {
-	this->is3x = is3x;
+	this->nextPlaybackIs3x = is3x;
 }
+
+
+
+void AudioSupplier::NextChunk(ALuint buffer)
+{
+	if(AvailableChunks())
+	{
+		vector<sample_t> samples = NextDataChunk();
+		alBufferData(buffer, FORMAT, samples.data(),  sizeof(sample_t) * OUTPUT_CHUNK, SAMPLE_RATE);
+	}
+	else
+		SetSilence(buffer, OUTPUT_CHUNK);
+}
+
+
+
+ALuint AudioSupplier::CreateBuffer()
+{
+	ALuint buffer;
+	alGenBuffers(1, &buffer);
+	return buffer;
+}
+
+
+
+void AudioSupplier::DestroyBuffer(ALuint buffer)
+{
+	alDeleteBuffers(1, &buffer);
+}
+
 
 
 void AudioSupplier::SetSilence(ALuint buffer, size_t frames)
 {
-	vector<int16_t> data(frames);
-	alBufferData(buffer, AL_FORMAT_STEREO16, data.data(), 2 * frames, 44100);
+	vector<sample_t> data(frames);
+	alBufferData(buffer, FORMAT, data.data(), sizeof(sample_t) * frames, SAMPLE_RATE);
 }

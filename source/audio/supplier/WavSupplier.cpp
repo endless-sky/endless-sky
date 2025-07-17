@@ -17,60 +17,61 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Sound.h"
 
+#include <algorithm>
+#include <cmath>
+
+using namespace std;
+
 
 
 WavSupplier::WavSupplier(const Sound &sound, bool is3x, bool looping)
-	: AudioSupplier(is3x), sound(sound), looping(looping), wasBufferGiven(false)
+	: AudioSupplier(is3x, looping), sound(sound), wasStarted(false)
 {
 }
 
 
 
-ALsizei WavSupplier::MaxChunkCount() const
+size_t WavSupplier::MaxChunks() const
 {
-	if(looping)
+	if(isLooping)
 		return 2;
-	return !wasBufferGiven;
+	else if(wasStarted && !currentSample)
+		return 0;
+	else
+		return ceil(((is3x ? sound.Buffer3x() : sound.Buffer()).size() - currentSample) / static_cast<float>(OUTPUT_CHUNK));
 }
 
 
 
-int WavSupplier::AvailableChunks() const
+size_t WavSupplier::AvailableChunks() const
 {
-	return MaxChunkCount();
+	return MaxChunks();
 }
 
 
 
-bool WavSupplier::IsSynchronous() const
+vector<AudioSupplier::sample_t> WavSupplier::NextDataChunk()
 {
-	return true;
+	vector<sample_t> samples(OUTPUT_CHUNK);
+	// If we are at the beginning of the buffer and it was already played, this is a loop.
+	if(!currentSample && wasStarted && !isLooping)
+		return samples;
+
+	size_t currentSampleCount = 0;
+	do
+	{
+		// If restarting the buffer, check 3x status.
+		if(!currentSample)
+		{
+			is3x = nextPlaybackIs3x;
+			wasStarted = true;
+		}
+		const vector<sample_t>& input = is3x ? sound.Buffer3x() : sound.Buffer();
+		size_t readChunk = min(input.size() - currentSample, samples.size() - currentSampleCount);
+		std::copy_n(input.begin() + currentSample, readChunk, samples.begin() + currentSampleCount);
+		currentSampleCount += readChunk;
+		currentSample = (currentSample + readChunk) % input.size();
+	} while(currentSampleCount < samples.size() && isLooping);
+	return samples;
 }
 
-
-
-bool WavSupplier::NextChunk(ALuint buffer)
-{
-	// This function must receive the buffer from AwaitNextChunk(),
-	// which returns the audio buffer backing this sound. No action needed.
-	// Note: Unlike the sync use via AwaitNextChunk(),
-	// this will not change 3x mode.
-	return true;
-}
-
-
-
-ALuint WavSupplier::AwaitNextChunk()
-{
-	wasBufferGiven = true;
-	if(is3x && sound.Buffer3x())
-		return sound.Buffer3x();
-	return sound.Buffer();
-}
-
-
-
-void WavSupplier::ReturnBuffer(ALuint buffer)
-{
-	// This is the audio buffer backing this sound. No action needed.
-}

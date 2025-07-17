@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "player/MusicPlayer.h"
 #include "../Point.h"
 #include "Sound.h"
-#include "player/VolumeFadePlayer.h"
 
 #include <AL/al.h>
 #include <AL/alc.h>
@@ -31,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <map>
+#include <memory>
 #include <mutex>
 #include <stdexcept>
 #include <thread>
@@ -262,7 +262,7 @@ void Audio::Play(const Sound *sound, SoundCategory category)
 // "listener". This will make it softer and change the left / right balance.
 void Audio::Play(const Sound *sound, const Point &position, SoundCategory category)
 {
-	if(!isInitialized || !sound || !sound->Buffer() || !volume[SoundCategory::MASTER])
+	if(!isInitialized || !sound || sound->Buffer().empty() || !volume[SoundCategory::MASTER])
 		return;
 
 	// Place sounds from the main thread directly into the queue. They are from
@@ -297,7 +297,7 @@ void Audio::PlayMusic(const string &name)
 	{
 		Fade *fade = new Fade();
 		fade->AddSource(Music::CreateSupplier(name, true));
-		musicPlayer = shared_ptr<AudioPlayer>(new MusicPlayer(unique_ptr<AudioDataSupplier>{fade}));
+		musicPlayer = shared_ptr<AudioPlayer>(new MusicPlayer(unique_ptr<AudioSupplier>{fade}));
 		musicPlayer->Init();
 		musicPlayer->SetVolume(Volume(SoundCategory::MUSIC));
 		musicPlayer->Play();
@@ -378,7 +378,7 @@ void Audio::Step(bool isFastForward)
 		}
 		else
 		{
-			reinterpret_cast<VolumeFadePlayer *>(player.get())->FadeOut();
+			reinterpret_cast<Fade *>(player->Supplier())->AddSource({}, 7350);
 			it = loopingPlayers.erase(it);
 		}
 	}
@@ -401,11 +401,13 @@ void Audio::Step(bool isFastForward)
 		shared_ptr<AudioPlayer> player;
 		if(sound->IsLooping())
 		{
-			player = shared_ptr<AudioPlayer>{new VolumeFadePlayer{entry.category, std::move(supplier)}};
+			unique_ptr<Fade> fade = make_unique<Fade>();
+			fade->AddSource(std::move(supplier));
+			player = make_shared<AudioPlayer>(entry.category, std::move(fade));
 			loopingPlayers.emplace(sound, player);
 		}
 		else
-			player = shared_ptr<AudioPlayer>{new AudioPlayer{entry.category, std::move(supplier)}};
+			player = make_shared<AudioPlayer>(entry.category, std::move(supplier));
 
 		player->Init();
 		player->SetVolume(Volume(entry.category));
@@ -443,13 +445,6 @@ void Audio::Quit()
 	musicPlayer.reset();
 
 	// Free the memory buffers for all the sound resources.
-	for(const auto &it : sounds)
-	{
-		ALuint id = it.second.Buffer();
-		alDeleteBuffers(1, &id);
-		id = it.second.Buffer3x();
-		alDeleteBuffers(1, &id);
-	}
 	sounds.clear();
 
 	// Close the connection to the OpenAL library.

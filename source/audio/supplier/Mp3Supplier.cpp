@@ -48,82 +48,35 @@ Mp3Supplier::~Mp3Supplier()
 
 
 
-ALsizei Mp3Supplier::MaxChunkCount() const
+size_t Mp3Supplier::MaxChunks() const
 {
 	if(done && buffer.size() < OUTPUT_CHUNK)
 		return 0;
 
-	return max(2, AvailableChunks());
+	return max(static_cast<size_t>(2), AvailableChunks());
 }
 
 
 
-int Mp3Supplier::AvailableChunks() const
+size_t Mp3Supplier::AvailableChunks() const
 {
 	return buffer.size() / OUTPUT_CHUNK;
 }
 
 
-
-bool Mp3Supplier::IsSynchronous() const
-{
-	return false;
-}
-
-
-
-bool Mp3Supplier::NextChunk(ALuint alBuffer)
-{
-	if(AvailableChunks())
-	{
-		lock_guard<mutex> lock(decodeMutex);
-		alBufferData(alBuffer, FORMAT, buffer.data(), sizeof(int16_t) * OUTPUT_CHUNK, SAMPLE_RATE);
-		buffer.erase(buffer.begin(), buffer.begin() + OUTPUT_CHUNK);
-		condition.notify_all();
-		return true;
-	}
-	else
-	{
-		SetSilence(alBuffer, OUTPUT_CHUNK);
-		return false;
-	}
-}
-
-
-vector<int16_t> Mp3Supplier::NextDataChunk()
+vector<AudioSupplier::sample_t> Mp3Supplier::NextDataChunk()
 {
 	if(AvailableChunks())
 	{
 		lock_guard<mutex> lock(decodeMutex);
 
-		vector<int16_t> temp{buffer.begin(), buffer.begin() + OUTPUT_CHUNK};
+		vector<sample_t> temp{buffer.begin(), buffer.begin() + OUTPUT_CHUNK};
 		buffer.erase(buffer.begin(), buffer.begin() + OUTPUT_CHUNK);
 		condition.notify_all();
 		return temp;
 	}
 	else
-		return vector<int16_t>(OUTPUT_CHUNK);
-}
-
-
-
-ALuint Mp3Supplier::AwaitNextChunk()
-{
-	// This is an async supplier, so return a silent buffer here.
-	ALuint buffer;
-	alGenBuffers(1, &buffer);
-
-	vector<int16_t> temp(OUTPUT_CHUNK);
-	alBufferData(buffer, FORMAT, temp.data(), OUTPUT_CHUNK, SAMPLE_RATE);
-
-	return buffer;
-}
-
-
-
-void Mp3Supplier::ReturnBuffer(ALuint buffer)
-{
-	alDeleteBuffers(1, &buffer);
+		return vector<sample_t>(OUTPUT_CHUNK);
 }
 
 
@@ -165,13 +118,17 @@ void Mp3Supplier::Decode()
 		if(stream.next_frame && stream.next_frame < stream.bufend)
 			remainder = stream.bufend - stream.next_frame;
 		if(remainder)
-			memcpy(input.data(), stream.next_frame, remainder);
+			memcpy(input.data(), stream.bufend - remainder, remainder);
 
 		// Now, read a chunk of data from the file.
 		data->read(reinterpret_cast<char *>(input.data() + remainder), INPUT_CHUNK - remainder);
 		// If you get the end of the file, loop around to the beginning.
+		size_t read = data->gcount();
 		if(data->eof() && looping)
+		{
+			data->clear();
 			data->seekg(0, iostream::beg);
+		}
 		else if(data->eof())
 		{
 			done = true;
@@ -180,11 +137,11 @@ void Mp3Supplier::Decode()
 		}
 
 		// If there is nothing to decode, return to the top of this loop.
-		if(!(remainder || !data->eof()))
+		if(!(read + remainder))
 			continue;
 
 		// Hand the input to the stream decoder.
-		mad_stream_buffer(&stream, &input.front(), INPUT_CHUNK);
+		mad_stream_buffer(&stream, &input.front(), read + remainder);
 
 		// Loop through the decoded result for that input block.
 		while(true)

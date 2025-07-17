@@ -52,10 +52,10 @@ void Music::Init(const vector<filesystem::path> &sources)
 
 
 
-unique_ptr<AudioDataSupplier> Music::CreateSupplier(const string &name, bool looping)
+unique_ptr<AudioSupplier> Music::CreateSupplier(const string &name, bool looping)
 {
 	if(paths.contains(name))
-		return unique_ptr<AudioDataSupplier>{
+		return unique_ptr<AudioSupplier>{
 				new Mp3Supplier{Files::Open(paths[name]), looping}};
 	return {};
 }

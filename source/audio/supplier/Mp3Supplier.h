@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "AudioDataSupplier.h"
+#include "AudioSupplier.h"
 
 #include <condition_variable>
 #include <iostream>
@@ -25,30 +25,27 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 /// Streams audio from an MP3 file. This is an async data supplier.
-class Mp3Supplier : public AudioDataSupplier {
+class Mp3Supplier : public AudioSupplier {
 public:
 	explicit Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping = false);
 	~Mp3Supplier();
 
-	// Inherited pure virtual methods.
-	ALsizei MaxChunkCount() const override;
-	int AvailableChunks() const override;
-	bool IsSynchronous() const override;
-	bool NextChunk(ALuint buffer) override;
-	std::vector<int16_t> NextDataChunk() override;
-	ALuint AwaitNextChunk() override;
-	void ReturnBuffer(ALuint buffer) override;
+	// Inherited pure virtual methods
+	size_t MaxChunks() const override;
+	size_t AvailableChunks() const override;
+	std::vector<sample_t> NextDataChunk() override;
 
 
 private:
 	/// This is the entry point for the decoding thread.
 	void Decode();
 
+
 private:
 	/// The number of chunks to queue up in the buffer.
 	static constexpr size_t BUFFER_CHUNK_SIZE = 2;
 	/// The decoded data.
-	std::vector<int16_t> buffer;
+	std::vector<sample_t> buffer;
 
 	/// The MP3 input stream.
 	std::shared_ptr<std::iostream> data;

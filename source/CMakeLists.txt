@@ -344,9 +344,6 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/player/AudioPlayer.h
 	audio/player/MusicPlayer.cpp
 	audio/player/MusicPlayer.h
-	audio/player/VolumeFadePlayer.cpp
-	audio/player/VolumeFadePlayer.h
-	audio/supplier/AudioDataSupplier.h
 	audio/supplier/AudioSupplier.cpp
 	audio/supplier/AudioSupplier.h
 	audio/supplier/Mp3Supplier.cpp

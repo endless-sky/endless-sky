@@ -27,15 +27,12 @@ public:
 	WavSupplier(const Sound &sound, bool is3x, bool looping = false);
 
 	// Inherited pure virtual methods
-	ALsizei MaxChunkCount() const override;
-	int AvailableChunks() const override;
-	bool IsSynchronous() const override;
-	bool NextChunk(ALuint buffer) override;
-	ALuint AwaitNextChunk() override;
-	void ReturnBuffer(ALuint buffer) override;
+	size_t MaxChunks() const override;
+	size_t AvailableChunks() const override;
+	std::vector<sample_t> NextDataChunk() override;
+
 
 private:
 	const Sound &sound;
-	const bool looping;
-	bool wasBufferGiven;
+	bool wasStarted;
 };

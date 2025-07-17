@@ -79,7 +79,7 @@ protected:
 
 protected:
 	/// The maximum number of buffers to queue up synchronously when the player is initialized.
-	static constexpr int MAX_INITIAL_BUFFERS = 3;
+	static constexpr size_t MAX_INITIAL_BUFFERS = 3;
 
 	SoundCategory category;
 
