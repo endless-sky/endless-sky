@@ -423,10 +423,12 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool LoadPanel::Click(int x, int y, int clicks)
+bool LoadPanel::Click(int x, int y, MouseButton button, int clicks)
 {
 	// When the user clicks, clear the hovered state.
 	hasHover = false;
+	if(button != MouseButton::LEFT)
+		return false;
 
 	const Point click(x, y);
 
