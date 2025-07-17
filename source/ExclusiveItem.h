@@ -88,7 +88,7 @@ inline bool ExclusiveItem<Type>::IsStock() const noexcept
 template<class Type>
 inline ExclusiveItem<Type>::operator bool() const noexcept
 {
-	return item.index() ? static_cast<bool>(std::get<1>(item)) : static_cast<bool>(std::get<0>(item));
+	return Ptr();
 }
 
 
@@ -112,7 +112,7 @@ inline const Type *ExclusiveItem<Type>::operator->() const noexcept
 template<class Type>
 inline const Type &ExclusiveItem<Type>::operator*() const noexcept
 {
-	return item.index() ? *std::get<1>(item) : *std::get<0>(item);
+	return *Ptr();
 }
 
 
