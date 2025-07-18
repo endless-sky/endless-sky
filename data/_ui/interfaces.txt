@@ -1800,27 +1800,40 @@ interface "hiring"
 		center 110 110
 		align right
 	
-	label "required crew"
+	label "required captains"
 		center -230 130
 		align left
-	string "flagship required"
+	string "flagship captains"
 		center -10 130
 		align right
-	string "fleet required"
+	string "fleet captains"
 		center 110 130
 		align right
-	string "salary required"
+	string "salary captains"
 		center 230 130
 		align right
 	
-	label "extra crew"
+	label "required crew"
 		center -230 150
 		align left
-	string "flagship extra"
+	string "flagship required"
 		center -10 150
 		align right
-	string "salary extra"
+	string "fleet required"
+		center 110 150
+		align right
+	string "salary required"
 		center 230 150
+		align right
+	
+	label "extra crew"
+		center -230 170
+		align left
+	string "flagship extra"
+		center -10 170
+		align right
+	string "salary extra"
+		center 230 170
 		align right
 	
 	active if "can hire"
@@ -1844,26 +1857,32 @@ interface "hiring"
 		align left
 	
 	label "passenger space"
-		center -230 180
-		align left
-	string "flagship unused"
-		center -10 180
-		align right
-	string "fleet unused"
-		center 110 180
-		align right
-	
-	label "passengers"
 		center -230 200
 		align left
-	string "passengers"
+	string "flagship unused"
+		center -10 200
+		align right
+	string "fleet unused"
 		center 110 200
 		align right
 	
-	label "(Extra crew for your flagship increases your odds of capturing ships,"
-		center 0 290
-	label "and once you capture a ship you need crew members to serve on it.)"
-		center 0 310
+	label "passengers"
+		center -230 220
+		align left
+	string "passengers"
+		center 110 220
+		align right
+	
+	label "(Each hyperspace-capable ship beyond your flagship requires a captain.)"
+		center 0 255
+	string "captain explanation 1"
+		center 0 275
+		color "medium"
+	string "captain explanation 2"
+		center 0 295
+		color "medium"
+	label "(Hiring extra crew on your flagship improves your capturing odds.)"
+		center 0 315
 
 
 

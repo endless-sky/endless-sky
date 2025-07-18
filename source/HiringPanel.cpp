@@ -16,12 +16,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HiringPanel.h"
 
 #include "Command.h"
+#include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ShipJumpNavigation.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -52,6 +55,7 @@ void HiringPanel::Draw()
 	Information info;
 
 	int flagshipBunks = 0;
+	int flagshipCaptains = 0;
 	int flagshipRequired = 0;
 	int flagshipExtra = 0;
 	int flagshipUnused = 0;
@@ -59,38 +63,61 @@ void HiringPanel::Draw()
 	if(flagship)
 	{
 		flagshipBunks = flagship->Attributes().Get("bunks");
-		flagshipRequired = flagship->RequiredCrew();
-		flagshipExtra = flagship->Crew() - flagshipRequired;
+		// The player is always a captain on their own flagship.
+		flagshipCaptains = 1;
+		flagshipRequired = flagship->RequiredCrew() - flagshipCaptains;
+		flagshipExtra = flagship->Crew() - flagship->RequiredCrew();
 		flagshipUnused = flagshipBunks - flagship->Crew();
 	}
 
 	info.SetString("flagship bunks", to_string(flagshipBunks));
+	info.SetString("flagship captains", to_string(flagshipCaptains));
 	info.SetString("flagship required", to_string(flagshipRequired));
 	info.SetString("flagship extra", to_string(flagshipExtra));
 	info.SetString("flagship unused", to_string(flagshipUnused));
 
 	// Sum up the statistics for all your ships. You still pay the crew of
 	// disabled or out-of-system ships, but any parked ships have no crew costs.
+	player.UpdateCrew();
+
+	int fleetCaptains = player.Captains() + flagshipCaptains;
 	int fleetBunks = 0;
-	int fleetRequired = 0;
+	int fleetSubordinates = player.SubordinateCrew();
+	int fleetFree = player.FreeCrew();
+	int passengers = player.Cargo().Passengers();
+
 	for(const shared_ptr<Ship> &ship : player.Ships())
 		if(!ship->IsParked())
 		{
 			fleetBunks += static_cast<int>(ship->Attributes().Get("bunks"));
-			fleetRequired += ship->RequiredCrew();
 		}
-	int passengers = player.Cargo().Passengers();
-	int fleetUnused = fleetBunks - fleetRequired - flagshipExtra;
+
+	int fleetRequired = fleetSubordinates + fleetFree - flagshipExtra;
+	int fleetUnused = fleetBunks - fleetFree - fleetSubordinates - fleetCaptains;
+
 	info.SetString("fleet bunks", to_string(fleetBunks));
+	info.SetString("fleet captains", to_string(fleetCaptains));
 	info.SetString("fleet required", to_string(fleetRequired));
 	info.SetString("fleet unused", to_string(fleetUnused));
 	info.SetString("passengers", to_string(passengers));
 
-	static const int DAILY_SALARY = 100;
-	int salary = DAILY_SALARY * (fleetRequired - (flagship ? 1 : 0));
-	int extraSalary = DAILY_SALARY * flagshipExtra;
-	info.SetString("salary required", to_string(salary));
-	info.SetString("salary extra", to_string(extraSalary));
+	const int baseSalary = GameData::GetGamerules().BaseCrewSalary();
+	const int baseCaptainSalary = GameData::GetGamerules().BaseCaptainSalary();
+	const int captainSalaryPerCrew = GameData::GetGamerules().CaptainSalaryPerCrew();
+	const double captainMultiplier = GameData::GetGamerules().CaptainMultiplier();
+
+	int captainSalary = player.CaptainSalaries();
+	int salary = fleetRequired * baseSalary;
+	int extraSalary = flagshipExtra * baseSalary;
+
+	info.SetString("salary captains", Format::Credits(captainSalary));
+	info.SetString("salary required", Format::Credits(salary));
+	info.SetString("salary extra", Format::Credits(extraSalary));
+
+	info.SetString("captain explanation 1", "(A captain's salary is " + Format::CreditString(baseCaptainSalary)
+		+ ", plus " + Format::Credits(captainSalaryPerCrew) + " for each crewmember under their");
+	info.SetString("captain explanation 2", "command, and multiplied by " + Format::Number(captainMultiplier)
+		+ " for all other hired captains in your fleet.)");
 
 	int modifier = Modifier();
 	if(modifier > 1)

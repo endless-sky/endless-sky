@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
@@ -917,24 +918,92 @@ Account &PlayerInfo::Accounts()
 
 
 
-// Calculate how much the player pays in daily salaries.
-int64_t PlayerInfo::Salaries() const
+// Recalculate the number of crew in the player's fleet.
+void PlayerInfo::UpdateCrew()
 {
-	// Don't count extra crew on anything but the flagship.
-	int64_t crew = 0;
-	const Ship *flagship = Flagship();
-	if(flagship)
-		crew = flagship->Crew() - flagship->RequiredCrew();
+	captains = 0;
+	subordinateCrew = 0;
+	freeCrew = 0;
 
-	// A ship that is "parked" remains on a planet and requires no salaries.
 	for(const shared_ptr<Ship> &ship : ships)
+		// Destroyed and parked ships do not have any crew on them.
 		if(!ship->IsParked() && !ship->IsDestroyed())
-			crew += ship->RequiredCrew();
-	if(!crew)
-		return 0;
+		{
+			bool isFlagship = Flagship() == ship.get();
+			// Extra crew is only counted on the flagship.
+			int crew = isFlagship ? ship->Crew() - 1 : ship->RequiredCrew();
 
-	// Every crew member except the player receives 100 credits per day.
-	return 100 * (crew - 1);
+			// Carried and automated ships cannot have a captain.
+			// The player is already the captain of their flagship and does not need to be paid.
+			if(!ship->Attributes().Get("automaton") && !ship->CanBeCarried() && !isFlagship)
+			{
+				captains++;
+				subordinateCrew += crew - 1;
+			}
+			else
+				freeCrew += crew;
+		}
+}
+
+
+
+// Get the number of subordinate crew in the player's fleet.
+int PlayerInfo::SubordinateCrew() const
+{
+	return subordinateCrew;
+}
+
+
+
+// Get the number of free crew in the player's fleet.
+int PlayerInfo::FreeCrew() const
+{
+	return freeCrew;
+}
+
+
+
+// Get the number of captains in the player's fleet.
+int PlayerInfo::Captains() const
+{
+	return captains;
+}
+
+
+
+// Calculate the total daily salary of all captains under the player's command.
+int64_t PlayerInfo::CaptainSalaries() const
+{
+	const int baseCaptainSalary = GameData::GetGamerules().BaseCaptainSalary();
+	const int captainSalaryPerCrew = GameData::GetGamerules().CaptainSalaryPerCrew();
+	const double captainMultiplier = GameData::GetGamerules().CaptainMultiplier();
+
+	// A captain's salary is equal to the base captain salary plus the captain salary per crew,
+	// for each of their subordinates. This is then multiplied by the captain multiplier for
+	// each hired captain in the player's fleet beyond the first.
+	// The subordinates of all captains are combined to simplify calculations.
+	return (baseCaptainSalary * captains + subordinateCrew * captainSalaryPerCrew)
+		* pow(captainMultiplier, captains - 1);
+}
+
+
+
+// Calculate the total daily salary of all non-captain crew under the player's command.
+int64_t PlayerInfo::CrewSalaries() const
+{
+	const int baseSalary = GameData::GetGamerules().BaseCrewSalary();
+
+	return (subordinateCrew + freeCrew) * baseSalary;
+}
+
+
+
+// Calculate how much the player pays in daily salaries.
+int64_t PlayerInfo::Salaries()
+{
+	UpdateCrew();
+
+	return CaptainSalaries() + CrewSalaries();
 }
 
 

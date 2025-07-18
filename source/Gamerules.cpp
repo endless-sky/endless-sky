@@ -72,6 +72,14 @@ void Gamerules::Load(const DataNode &node)
 			systemArrivalMin = max<double>(0., child.Value(1));
 		else if(key == "fleet multiplier")
 			fleetMultiplier = max<double>(0., child.Value(1));
+		else if(key == "base crew salary")
+			baseCrewSalary = max<int>(0., child.Value(1));
+		else if(key == "base captain salary")
+			baseCaptainSalary = max<int>(0., child.Value(1));
+		else if(key == "captain salary per crew")
+			captainSalaryPerCrew = max<int>(0., child.Value(1));
+		else if(key == "captain multiplier")
+			captainMultiplier = max<double>(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -166,4 +174,32 @@ double Gamerules::SystemArrivalMin() const
 double Gamerules::FleetMultiplier() const
 {
 	return fleetMultiplier;
+}
+
+
+
+int Gamerules::BaseCrewSalary() const
+{
+	return baseCrewSalary;
+}
+
+
+
+int Gamerules::BaseCaptainSalary() const
+{
+	return baseCaptainSalary;
+}
+
+
+
+int Gamerules::CaptainSalaryPerCrew() const
+{
+	return captainSalaryPerCrew;
+}
+
+
+
+double Gamerules::CaptainMultiplier() const
+{
+	return captainMultiplier;
 }

@@ -146,8 +146,18 @@ public:
 	// Access the player's accounting information.
 	const Account &Accounts() const;
 	Account &Accounts();
-	// Calculate the daily salaries for crew, not counting crew on "parked" ships.
-	int64_t Salaries() const;
+
+	// Update the number and types of crew on each of the player's ships. Called when calculating salaries.
+	void UpdateCrew();
+	// Get the number of each type of crew in the player's fleet.
+	int Captains() const;
+	int SubordinateCrew() const;
+	int FreeCrew() const;
+	// Calculate the salaries of each type of crew.
+	int64_t CaptainSalaries() const;
+	int64_t CrewSalaries() const;
+	int64_t Salaries();
+
 	// Calculate the daily maintenance cost and generated income for all ships and in cargo outfits.
 	FleetBalance MaintenanceAndReturns() const;
 
@@ -427,6 +437,12 @@ private:
 	double playTime = 0.;
 
 	Account accounts;
+
+	// The types of crew in the player's fleet.
+	int captains = 0;
+	int freeCrew = 0;
+	int subordinateCrew = 0;
+
 	// The licenses that the player owns.
 	std::set<std::string> licenses;
 
