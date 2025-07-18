@@ -31,5 +31,7 @@ public:
 
 	static std::unique_ptr<AudioSupplier> CreateSupplier(const std::string &name, bool looping);
 
+
+public:
 	Music() = delete;
 };
