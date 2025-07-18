@@ -91,7 +91,7 @@ namespace {
 
 	/// The active audio sources
 	vector<shared_ptr<AudioPlayer>> players;
-	/// The looping players for reuse. These are always VolumeFadePlayers.
+	/// The looping players for reuse. Looping sources always have the Fade effect.
 	map<const Sound *, shared_ptr<AudioPlayer>> loopingPlayers;
 
 	// Queue and thread for loading sound files in the background.
