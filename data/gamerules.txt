@@ -124,7 +124,7 @@ gamerules
 	# The base salary of a captain.
 	# DEFAULT: 100 (100 credits)
 	# ALLOWABLE VALUES: any integer >= 0.
-	"base captain salary" 500
+	"base captain salary" 2000
 
 	# An additional salary paid to a captain for each crew on their ship.
 	# DEFAULT: 100 (100 credits)
