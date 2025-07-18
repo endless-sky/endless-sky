@@ -34,6 +34,7 @@ shipyard "Mon Ki o'Uden Advanced"
 	# Has "Solifuge" and "Violin Spider" added by event.
 	# Technically has the specs for the "Ladybug" but not the resources to build it.
 
+
 # Mon Ki i'Hiya Consortium (loyalist) shipyards:
 shipyard "Mon Ki i'Hiya Basics"
 	"Aphid"
@@ -646,6 +647,30 @@ phrase "hai bribe acceptance hail"
 
 
 phrase "hai bribe rejection hail"
+	word
+		"The Hai"
+		"We"
+		"I"
+		"Haikind"
+	word
+		"will never"
+		"cannot"
+		"do not want to"
+	word
+		"accept"
+		"take"
+		"swindle"
+	word
+		"bribes"
+	word
+		"from"
+	word
+		"oppressors"
+		"tyrants"
+		"warmongerers"
+	word
+		"."
+		"!"
 
 phrase "friendly disabled unfettered"
 	word
