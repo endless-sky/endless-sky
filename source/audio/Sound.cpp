@@ -74,14 +74,14 @@ const string &Sound::Name() const
 
 
 
-const std::vector<AudioSupplier::sample_t>& Sound::Buffer() const
+const std::vector<AudioSupplier::sample_t> &Sound::Buffer() const
 {
 	return buffer.empty() ? buffer3x : buffer;
 }
 
 
 
-const std::vector<AudioSupplier::sample_t>& Sound::Buffer3x() const
+const std::vector<AudioSupplier::sample_t> &Sound::Buffer3x() const
 {
 	return buffer3x.empty() ? buffer : buffer3x;
 }

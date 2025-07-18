@@ -31,8 +31,8 @@ public:
 
 	const std::string &Name() const;
 
-	const std::vector<AudioSupplier::sample_t>& Buffer() const;
-	const std::vector<AudioSupplier::sample_t>& Buffer3x() const;
+	const std::vector<AudioSupplier::sample_t> &Buffer() const;
+	const std::vector<AudioSupplier::sample_t> &Buffer3x() const;
 	bool IsLooping() const;
 
 	std::unique_ptr<AudioSupplier> CreateSupplier() const;
