@@ -27,6 +27,7 @@
 					"name": "libuuid",
 					"platform": "linux"
 				},
+				"libflac",
 				"minizip",
 				"openal-soft",
 				{
@@ -45,6 +46,7 @@
 			"dependencies": [
 				"libmad",
 				"catch2",
+				"libflac",
 				"minizip"
 			]
 		},
