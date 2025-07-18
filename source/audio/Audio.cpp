@@ -378,7 +378,7 @@ void Audio::Step(bool isFastForward)
 		}
 		else
 		{
-			reinterpret_cast<Fade *>(player->Supplier())->AddSource({}, 7350);
+			reinterpret_cast<Fade *>(player->Supplier())->AddSource({}, 7350); // 20 frames of fade
 			it = loopingPlayers.erase(it);
 		}
 	}
