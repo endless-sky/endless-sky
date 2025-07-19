@@ -822,13 +822,12 @@ void MapDetailPanel::DrawInfo()
 	bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
 	int value = 0;
 	double lowCompare = 0;
-	double halfCompare = 0;
+	double highCompare = 0;
 
 	// When comparing prices, determine min/max deltas in order to represent commodity delta prices for displayed
 	// commodities as a gradient.
 	if(!noCompare && canView && selectedSystem->IsInhabited(player.Flagship()))
 	{
-		double highCompare = 0;
 		for(const Trade::Commodity &commodity : GameData::Commodities())
 		{
 			value = selectedSystem->Trade(commodity.name);
@@ -840,7 +839,6 @@ void MapDetailPanel::DrawInfo()
 				highCompare = value > highCompare ? value : highCompare;
 			}
 		}
-		halfCompare = (0.5 * (highCompare - lowCompare));
 	}
 
 	for(const Trade::Commodity &commodity : GameData::Commodities())
@@ -888,20 +886,28 @@ void MapDetailPanel::DrawInfo()
 		{
 			if(!noCompare && player.GetSystem() != selectedSystem)
 			{
-				// Avoid divide by zero, all deltas could possibly be zero.
-				halfCompare = halfCompare < 1 ? 1 : halfCompare;
-				double v = (static_cast<double>(value) - (lowCompare + halfCompare)) / halfCompare;
+				// Determine the relative negative-ness or positive-ness of the value compared to low/high.
+				// Note: if value is negative, lowCompare will be negative and if value is positive, highCompare will be
+				//       positive.
+				double v = 0;
+				if(value < 0)
+					v = static_cast<double>(value) / abs(lowCompare);
+				else if(value > 0)
+					v = static_cast<double>(value) / highCompare;
 				color = MapColor(v);
-				// Draw up/down/equals arrows based on price delta (value)
+				// Draw up/down/equals arrows based on price delta (value).
 				PointerShader::Draw(uiPoint + Point(137, 7. + (-7 * v)), Point(0., 1), 20.f,
 					static_cast<float>(-14. * v), 0.f, color);
 			}
 			else
 			{
+				double halfCompare = 1;
 				if(canView && selectedSystem->IsInhabited(player.Flagship()))
+				{
 					halfCompare = (0.5 * (commodity.high - commodity.low));
-				// Avoid divide by zero, though this really shouldn't be a problem.
-				halfCompare = halfCompare < 1 ? 1 : halfCompare;
+					// Avoid divide by zero, though this really shouldn't be a problem.
+					halfCompare = (halfCompare < 1) ? 1 : halfCompare;
+				}
 				RingShader::Draw(uiPoint + Point(137, 7), OUTER, INNER,
 					MapColor((static_cast<double>(value) - (commodity.low + halfCompare)) / halfCompare));
 			}
