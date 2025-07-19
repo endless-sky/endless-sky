@@ -624,17 +624,25 @@ phrase "hai bribe acceptance hail"
 		"We"
 		"The Hai"
 	word
+		" "
+	word
 		"feel"
 		"think that it is"
+	word
+		" "
 	word
 		"shameful"
 		"vile"
 	word
+		" "
+	word
 		"to work with you"
 	word
-		"!"
-		"."
+		" "
+	word
 		";"
+	word
+		" "
 	word
 		" "
 		"but "
@@ -653,17 +661,27 @@ phrase "hai bribe rejection hail"
 		"I"
 		"Haikind"
 	word
+		" "
+	word
 		"will never"
 		"cannot"
 		"do not want to"
+	word
+		" "
 	word
 		"accept"
 		"take"
 		"swindle"
 	word
+		" "
+	word
 		"bribes"
 	word
+		" "
+	word
 		"from"
+	word
+		" "
 	word
 		"oppressors"
 		"tyrants"
