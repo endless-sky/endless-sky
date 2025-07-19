@@ -4228,7 +4228,7 @@ planet Ochrescoop
 planet Ogmur
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa35
-	description `Beneath Ogmur’s oppressive gravity, churning red and white cyclones weave, merge, and split in an eternal dance, violent green flashes illuminating turbulent depths. The planet is dominated by a titan storm that spans a third of the visible globe, the most intense in all of Coalition space, and the reason why Coalition activity is concentrated on the planet’s other, calmer hemisphere.`
+	description `Beneath Ogmur's oppressive gravity, churning red and white cyclones weave, merge, and split in an eternal dance, violent green flashes illuminating turbulent depths. The planet is dominated by a titan storm that spans a third of the visible globe, the most intense in all of Coalition space, and the reason why Coalition activity is concentrated on the planet’s other, calmer hemisphere.`
 	government Uninhabited
 	security 0
 
