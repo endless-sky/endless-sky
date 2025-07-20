@@ -79,7 +79,7 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "captain salary per crew")
 			captainSalaryPerCrew = max<int>(0., child.Value(1));
 		else if(key == "captain multiplier")
-			captainMultiplier = max<double>(0., child.Value(1));
+			captainMultiplier = max<double>(1., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}

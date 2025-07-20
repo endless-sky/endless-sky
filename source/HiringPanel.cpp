@@ -114,9 +114,9 @@ void HiringPanel::Draw()
 	info.SetString("salary extra", Format::Credits(extraSalary));
 
 	info.SetString("captain explanation 1", "(A captain's salary is " + Format::CreditString(baseCaptainSalary)
-		+ ", plus " + Format::Credits(captainSalaryPerCrew) + " for each crewmember under their");
-	info.SetString("captain explanation 2", "command, and multiplied by " + Format::Number(captainMultiplier)
-		+ " for all other hired captains in your fleet.)");
+		+ ", plus " + Format::Credits(captainSalaryPerCrew) + " for each crewmember they");
+	info.SetString("captain explanation 2", "command, multiplied by " + Format::Number(captainMultiplier * 100)
+		+ " percent for each other captain in your fleet.)");
 
 	int modifier = Modifier();
 	if(modifier > 1)

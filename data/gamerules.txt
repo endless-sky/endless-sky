@@ -113,7 +113,7 @@ gamerules
 	# Whenever a day passes, all non-captain crew in the player's fleet will be paid this amount.
 	# DEFAULT: 100 (100 credits)
 	# ALLOWABLE VALUES: any integer >= 0.
-	"base crew salary" 500
+	"base crew salary" 250
 
 	# Each non-carried ship in the player's fleet requires a captain. The salary of a captain is
 	# equal to the "base captain salary" plus the number of crew on their ship times "captain salary per crew",
@@ -124,15 +124,15 @@ gamerules
 	# The base salary of a captain.
 	# DEFAULT: 100 (100 credits)
 	# ALLOWABLE VALUES: any integer >= 0.
-	"base captain salary" 2000
+	"base captain salary" 4000
 
 	# An additional salary paid to a captain for each crew on their ship.
 	# DEFAULT: 100 (100 credits)
 	# ALLOWABLE VALUES: any integer >= 0.
-	"captain salary per crew" 500
+	"captain salary per crew" 100
 
-	# Each captain beyond your first will multiply the salary of all your captains by this percentage.
+	# Each captain beyond your first will multiply the salary of all your captains by this value.
 	# Captains stack multiplicatively.
 	# DEFAULT: 1.5 (150 percent)
-	# ALLOWABLE VALUES: any value >= 0.
-	"captain multiplier" 1.25
+	# ALLOWABLE VALUES: any value >= 1.
+	"captain multiplier" 1.2
