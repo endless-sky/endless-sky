@@ -2470,7 +2470,7 @@ planet Heartvalley
 planet "Heaven Halls"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa31
-	description `This solitary gas giant was given its name due to a phenomenon unique out of all others in Coalition space. The icy rings surrounding it grow denser the closer to the planetary surface, and just a few kilometers into the sea of clouds, the small frozen specks form into sizeable, frigid asteroids. Curiously, most of these larger asteroids have tunnels cutting through their interiors, which inspired some of the bolder Saryd explorers to try and colonize the "frozen palaces".`
+	description `This solitary gas giant was given its name due to a phenomenon shared by no other planet in Coalition space. The icy rings surrounding it grow denser the closer to the planetary surface; just a few kilometers into the sea of clouds, the small frozen specks are replaced by sizable, frigid asteroids. Curiously, most of these larger asteroids have tunnels cutting through their interiors, inspiring some of the bolder Saryd explorers to try and colonize the "frozen palaces."`
 	government Uninhabited
 	security 0
 
@@ -3533,7 +3533,7 @@ planet Midgard
 planet "Midnight Diamond"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa26
-	description `When the Kimek first discovered the diamond rains that occur in the upper levels of this planet's atmosphere, their mining industry went wild, procuring hundreds of millions of the gems, and selecting the best of them for usage in planetside drilling efforts.`
+	description `When the Kimek first discovered the diamond rains that occur in the upper levels of this planet's atmosphere, their mining industry went wild, procuring hundreds of millions of the gems and selecting the best of them for usage in planetside drilling efforts.`
 	description `	From the outer limits of the system, this planet shines brightly in tones that contrast with the local star's light, earning the gas giant the nickname "Midnight Star."`
 	government Uninhabited
 	security 0
@@ -4228,7 +4228,7 @@ planet Ochrescoop
 planet Ogmur
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa35
-	description `Beneath Ogmur's oppressive gravity, churning red and white cyclones weave, merge, and split in an eternal dance, violent green flashes illuminating turbulent depths. The planet is dominated by a titan storm that spans a third of the visible globe, the most intense in all of Coalition space, and the reason why Coalition activity is concentrated on the planet's other, calmer hemisphere.`
+	description `Beneath Ogmur's oppressive gravity, churning red and white cyclones weave, merge, and split in an eternal dance, violent green flashes illuminating turbulent depths. The planet is dominated by a titan storm that spans a third of the visible globe, the most intense in all of Coalition space - and the reason why Coalition activity is concentrated on the planet's other, calmer hemisphere.`
 	government Uninhabited
 	security 0
 
@@ -5509,7 +5509,7 @@ planet "Spera Anatrusk"
 planet "Spiraling Indigo"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa38
-	description `This is both the heaviest gas giant in Coalition space, and the largest celestial object other than the local stars and ringworlds. While the Kimek certainly were not shy of harvesting the plentiful resources to be found here, the planet has had much more of a cultural footprint than an economic one. The perpetual storms surrounding the poles here have inspired many Kimek artists, be they writers, stylists, musicians, painters, or of any other kind. The world's popularity in Kimek media has even prompted some religious institutions to claim its beauty as a divine signal.`
+	description `Spiraling Indigo is the heaviest gas giant in Coalition space, exceeded only by stars and ringworlds. While the Kimek certainly didn't shy away from harvesting the plentiful resources to be found here, the planet has had much more of a cultural footprint than an economic one. The perpetual storms surrounding the poles here have inspired many Kimek artists, be they writers, stylists, musicians, painters, or of any other kind. The world's popularity in Kimek media has even prompted some religious institutions to claim its beauty as a divine signal.`
 	government Uninhabited
 	security 0
 
