@@ -1,0 +1,50 @@
+# Copyright (c) 2024 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+outfit "Gold Bars"
+	category "Special"
+	plural "Gold Bars"
+	cost 64000
+	thumbnail "outfit/gold bars"
+	mass 2.1
+	"installable" -1
+	description `At first it seems that these gold bars shine as one would expect, but you can't help but feel like they also somehow absorb light. The text "Nemo Me Impune Lacessit" is written on the gold bars. Most outfitters do not truly understand the value these bars hold, and would not give you any more than the price of brute gold for it.`
+
+ship "Sea Scorpion" "Si-Ra' Scorpion"
+	outfits
+		"Ionic Blaster Prototype" 4
+		"Pulse Turret" 2
+		"Systems Core (Small)"
+		"Hai Diamond Regenerator"
+		"Bright Cloud Shielding"
+		"Hai Octopus Jammer" 3
+		"Small Heat Shunt"
+		"Hai Zephyr Cooling"
+		"Hai Williwaw Cooling"
+		"Hyperdrive"
+		"Value Detector"
+		"Outfits Expansion" 2
+		"Hai Gorge Batteries"
+		"Small Biochemical Cell"
+		"Boulder Reactor"
+
+		"Pulse Rifle" 35
+		"Dual Pulse Pistols"
+		`"Biroo" Atomic Steering`
+		`"Biroo" Atomic Thruster`
+		"Afterburner (Asteroid Class)"
+		"Heshi"
+	cargo
+		outfits
+			"Gold Bars" 5
+
