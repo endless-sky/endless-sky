@@ -181,6 +181,158 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 
 
+// Check if the given point is within the button zone, and if so return the
+// letter of the button (or ' ' if it's not on a button).
+char ShipyardPanel::CheckButton(int x, int y)
+{
+	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
+		return '\0';
+
+	if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
+		return ' ';
+
+	x -= Screen::Right() - SIDEBAR_WIDTH;
+	if(x > 9 && x < 70)
+		// Check if it's the _Buy button.
+		return 'b';
+	else if(x > 89 && x < 150)
+		// Check if it's the _Sell button:
+		return 's';
+	else if(x > 169 && x < 240)
+		// Check if it's the _Leave button.
+		return 'l';
+
+	return ' ';
+}
+
+
+
+void ShipyardPanel::DrawButtons()
+{
+	// The last 70 pixels on the end of the side panel are for the buttons:
+	Point buttonSize(SIDEBAR_WIDTH, ButtonPanelHeight());
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
+		*GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(
+		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
+		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
+
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Color &back = *GameData::Colors().Get("panel background");
+
+	const Point creditsPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - 65);
+	font.Draw("You have:", creditsPoint, dim);
+
+	const auto credits = Format::CreditString(player.Accounts().Credits());
+	font.Draw({ credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT} }, creditsPoint, bright);
+
+	const Font &bigFont = FontSet::Get(18);
+	const Color &hover = *GameData::Colors().Get("hover");
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &inactive = *GameData::Colors().Get("inactive");
+
+	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
+	FillShader::Fill(buyCenter, Point(60, 30), back);
+	const Color *buyTextColor = !CanDoBuyButton() ? &inactive : hoverButton == 'b' ? &hover : &active;
+	string BUY = "_Buy";
+	bigFont.Draw(BUY,
+		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
+		*buyTextColor);
+
+	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
+	FillShader::Fill(sellCenter, Point(60, 30), back);
+	static const string SELL = "_Sell";
+	bigFont.Draw(SELL,
+		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
+		playerShip ? hoverButton == 's' ? hover : active : inactive);
+
+	// TODO: Add button for sell but retain outfits.
+
+	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
+	FillShader::Fill(leaveCenter, Point(70, 30), back);
+	static const string LEAVE = "_Leave";
+	bigFont.Draw(LEAVE,
+		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
+		hoverButton == 'l' ? hover : active);
+
+	int modifier = Modifier();
+	if(modifier > 1)
+	{
+		string mod = "x " + to_string(modifier);
+		int modWidth = font.Width(mod);
+		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
+	}
+
+	// Draw the tooltip for your full number of credits.
+	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
+	if(creditsBox.Contains(ShopPanel::hoverPoint))
+		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
+	else if(ShopPanel::hoverCount)
+		--ShopPanel::hoverCount;
+
+	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
+	{
+		string text = Format::Number(player.Accounts().Credits()) + " credits";
+		DrawTooltip(text, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+	}
+}
+
+
+
+int ShipyardPanel::FindItem(const string &text) const
+{
+	int bestIndex = 9999;
+	int bestItem = -1;
+	auto it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
+	{
+		const Ship *ship = it->GetShip();
+		int index = Format::Search(ship->DisplayModelName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index)
+				return i;
+		}
+	}
+	return bestItem;
+}
+
+
+
+ShopPanel::TransactionResult ShipyardPanel::HandleShortcuts(char key)
+{
+	TransactionResult result = false;
+	if(key == 'b')
+	{
+		// Buy up to <modifier> ships.
+		result = CanDoBuyButton();
+		if(result)
+			DoBuyButton();
+	}
+	else if(key == 's')
+	{
+		// Sell selected ships and outfits.
+		if(playerShip)
+			Sell(false);
+	}
+	else if(key == 'r' || key == 'u')
+	{
+		// Sell selected ships and move outfits to Storage.
+		if(playerShip)
+			Sell(true);
+	}
+
+	return result;
+}
+
+
+
 ShopPanel::TransactionResult ShipyardPanel::CanDoBuyButton () const
 {
 	if(!selectedShip)
@@ -379,128 +531,4 @@ void ShipyardPanel::SellShip(bool storeOutfits)
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
-}
-
-
-
-void ShipyardPanel::DrawButtons()
-{
-	// The last 70 pixels on the end of the side panel are for the buttons:
-	Point buttonSize(SIDEBAR_WIDTH, ButtonPanelHeight());
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
-		*GameData::Colors().Get("shop side panel background"));
-	FillShader::Fill(
-		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
-		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
-
-	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("medium");
-	const Color &back = *GameData::Colors().Get("panel background");
-
-	const Point creditsPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - 65);
-	font.Draw("You have:", creditsPoint, dim);
-
-	const auto credits = Format::CreditString(player.Accounts().Credits());
-	font.Draw({ credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT} }, creditsPoint, bright);
-
-	const Font &bigFont = FontSet::Get(18);
-	const Color &hover = *GameData::Colors().Get("hover");
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &inactive = *GameData::Colors().Get("inactive");
-
-	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
-	FillShader::Fill(buyCenter, Point(60, 30), back);
-	const Color *buyTextColor = !CanDoBuyButton() ? &inactive : hoverButton == 'b' ? &hover : &active;
-	string BUY = "_Buy";
-	bigFont.Draw(BUY,
-		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		*buyTextColor);
-
-	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	FillShader::Fill(sellCenter, Point(60, 30), back);
-	static const string SELL = "_Sell";
-	bigFont.Draw(SELL,
-		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
-		playerShip ? hoverButton == 's' ? hover : active : inactive);
-
-	// TODO: Add button for sell but retain outfits.
-
-	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-	FillShader::Fill(leaveCenter, Point(70, 30), back);
-	static const string LEAVE = "_Leave";
-	bigFont.Draw(LEAVE,
-		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
-		hoverButton == 'l' ? hover : active);
-
-	int modifier = Modifier();
-	if(modifier > 1)
-	{
-		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
-	}
-
-	// Draw the tooltip for your full number of credits.
-	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
-	if(creditsBox.Contains(ShopPanel::hoverPoint))
-		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
-	else if(ShopPanel::hoverCount)
-		--ShopPanel::hoverCount;
-
-	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
-	{
-		string text = Format::Number(player.Accounts().Credits()) + " credits";
-		DrawTooltip(text, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
-	}
-}
-
-
-
-// Check if the given point is within the button zone, and if so return the
-// letter of the button (or ' ' if it's not on a button).
-char ShipyardPanel::CheckButton(int x, int y)
-{
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
-		return '\0';
-
-	if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
-		return ' ';
-
-	x -= Screen::Right() - SIDEBAR_WIDTH;
-	if(x > 9 && x < 70)
-		// Check if it's the _Buy button.
-		return 'b';
-	else if(x > 89 && x < 150)
-		// Check if it's the _Sell button:
-		return 's';
-	else if(x > 169 && x < 240)
-		// Check if it's the _Leave button.
-		return 'l';
-
-	return ' ';
-}
-
-
-
-int ShipyardPanel::FindItem(const string &text) const
-{
-	int bestIndex = 9999;
-	int bestItem = -1;
-	auto it = zones.begin();
-	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
-	{
-		const Ship *ship = it->GetShip();
-		int index = Format::Search(ship->DisplayModelName(), text);
-		if(index >= 0 && index < bestIndex)
-		{
-			bestIndex = index;
-			bestItem = i;
-			if(!index)
-				return i;
-		}
-	}
-	return bestItem;
 }

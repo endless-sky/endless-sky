@@ -44,31 +44,27 @@ public:
 
 	virtual void Step() override;
 
+	enum class UninstallAction {
+		Uninstall,
+		Store,
+		Sell,
+	};
 
 protected:
-	int TileSize() const override;
-	int VisibilityCheckboxesSize() const override;
-	bool HasItem(const std::string &name) const override;
-	void DrawItem(const std::string &name, const Point &point) override;
-	double ButtonPanelHeight() const override;
-	double DrawDetails(const Point &center) override;
-	TransactionResult CanBuyToCargo() const override;
-	void BuyIntoCargo() override;
-	TransactionResult CanDoBuyButton() const override;
-	void DoBuyButton() override;
-	TransactionResult CanUninstall(ShopPanel::UninstallAction action) const override;
-	void Sell(bool storeOutfits) override;
-	TransactionResult CanInstall() const override;
-	void Install() override;
-	void Uninstall() override;
-	bool CanMoveToCargoFromStorage() const override;
-	void MoveToCargoFromStorage() override;
-	void RetainInStorage() override;
-	bool ShouldHighlight(const Ship *ship) override;
-	void DrawKey() override;
-	char CheckButton(int x, int y) override;
+	virtual int TileSize() const override;
+	virtual int VisibilityCheckboxesSize() const override;
+	virtual bool HasItem(const std::string &name) const override;
+	virtual void DrawItem(const std::string &name, const Point &point) override;
+	virtual double ButtonPanelHeight() const override;
+	virtual double DrawDetails(const Point &center) override;
+	virtual bool ShouldHighlight(const Ship *ship) override;
+	virtual void DrawKey() override;
+	virtual char CheckButton(int x, int y) override;
+
 	void DrawButtons() override;
 	int FindItem(const std::string &text) const override;
+	TransactionResult HandleShortcuts(char key) override;
+
 
 
 private:
@@ -84,18 +80,28 @@ private:
 
 	// Helper functions to make the cargo management code more readable.
 	TransactionResult CanPurchase(bool checkSpecialItems = true) const;
-	TransactionResult CanBeInstalled() const;
 	TransactionResult CanFitInCargo(bool returnReason = false) const;
+	TransactionResult CanBeInstalled() const;
+	TransactionResult CanUninstall(UninstallAction action) const;
+	TransactionResult CanBuyToCargo() const;
+	TransactionResult CanDoBuyButton() const;
+	TransactionResult CanInstall() const;
+	void BuyIntoCargo();
+	void DoBuyButton();
+	void Sell(bool storeOutfits);
+	void Install();
+	bool CanMoveToCargoFromStorage() const;
+	void MoveToCargoFromStorage();
+	void RetainInStorage();
 	void BuyFromShopAndInstall() const;
+	void Uninstall();
 	void Uninstall(bool sell) const;
 
-	// The visibility filter key is only displayed in the OutfitterPanel.
 	void ToggleForSale();
 	void ToggleInstalled();
 	void ToggleStorage();
 	void ToggleCargo();
 
-private:
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
 	// Allow toggling whether outfits that are for sale are shown.
