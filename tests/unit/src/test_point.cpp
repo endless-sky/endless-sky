@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../../source/Point.h"
 
 // ... and any system includes needed for the test file.
-#include <limits>
 #include <cmath>
+#include <limits>
 
 
 
