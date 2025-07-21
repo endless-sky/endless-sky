@@ -222,7 +222,7 @@ color "plugin reload required" .75 .1 .1 0.
 interface "map detail panel"
 	value "min planet panel height" 195
 	value "max planet panel height" 2022
-	value "starting X" 110
+	value "starting X" 105
 	value "starting Y" 45
 	value "government Y" 280
 	value "text margin" 15
