@@ -4311,12 +4311,9 @@ void Ship::DoGeneration()
 		// Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
 		{
-			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), scale);
-
-			double solarScaling = currentSystem->SolarPower() * scale;
-			energy += solarScaling * attributes.Get("solar collection");
-			heat += solarScaling * attributes.Get("solar heat");
+			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), position);
+			energy += currentSystem->SolarPower(attributes.Get("solar collection"), position);
+			heat += currentSystem->SolarPower(attributes.Get("solar heat"), position);
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
