@@ -896,7 +896,7 @@ void MapDetailPanel::DrawInfo()
 					v = static_cast<double>(value) / highCompare;
 				color = MapColor(v);
 				// Draw up/down/equals arrows based on price delta (value).
-				PointerShader::Draw(uiPoint + Point(137, 7. + (-7 * v)), Point(0., 1), 20.f,
+				PointerShader::Draw(uiPoint + Point(147, 7. + (-7 * v)), Point(0., 1), 20.f,
 					static_cast<float>(-14. * v), 0.f, color);
 			}
 			else
@@ -908,7 +908,7 @@ void MapDetailPanel::DrawInfo()
 					// Avoid divide by zero, though this really shouldn't be a problem.
 					halfCompare = (halfCompare < 1) ? 1 : halfCompare;
 				}
-				RingShader::Draw(uiPoint + Point(137, 7), OUTER, INNER,
+				RingShader::Draw(uiPoint + Point(147, 7), OUTER, INNER,
 					MapColor((static_cast<double>(value) - (commodity.low + halfCompare)) / halfCompare));
 			}
 		}
