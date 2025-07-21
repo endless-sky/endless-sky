@@ -45,7 +45,7 @@ void ShipManager::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
-		bool hasValue = child.Size() > 1;
+		bool hasValue = child.Size() >= 2;
 
 		if(key == "id" && hasValue)
 			id = child.Token(1);

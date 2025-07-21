@@ -31,6 +31,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// The minimal screen resolution requirements.
+	constexpr int minWidth = 1024;
+	constexpr int minHeight = 768;
+
 	SDL_Window *mainWindow = nullptr;
 	SDL_GLContext context = nullptr;
 	int width = 0;
@@ -110,15 +114,12 @@ bool GameWindow::Init(bool headless)
 			" The game will run more slowly.");
 
 	// Make the window just slightly smaller than the monitor resolution.
-	int minWidth = 640;
-	int minHeight = 480;
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
 	if(maxWidth < minWidth || maxHeight < minHeight)
-	{
-		ExitWithError("Monitor resolution is too small!");
-		return false;
-	}
+		Logger::LogError("Monitor resolution is too small! Minimal requirement is "
+			+ to_string(minWidth) + 'x' + to_string(minHeight)
+			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.');
 
 	int windowWidth = maxWidth - 100;
 	int windowHeight = maxHeight - 100;
@@ -264,12 +265,8 @@ void GameWindow::Quit()
 	SDL_ShowCursor(true);
 
 	// Clean up in the reverse order that everything is launched.
-//#ifndef _WIN32
-	// Under windows, this cleanup code causes intermittent crashes.
 	if(context)
 		SDL_GL_DeleteContext(context);
-//#endif
-
 	if(mainWindow)
 		SDL_DestroyWindow(mainWindow);
 

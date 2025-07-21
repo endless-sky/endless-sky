@@ -62,7 +62,7 @@ void Messages::AddLog(const string &message, Importance importance, bool force)
 // Get the messages for the given game step. Any messages that are too old
 // will be culled out, and new ones that have just been added will have
 // their "step" set to the given value.
-const vector<Messages::Entry> &Messages::Get(int step)
+const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 {
 	lock_guard<mutex> lock(incomingMutex);
 
@@ -83,16 +83,21 @@ const vector<Messages::Entry> &Messages::Get(int step)
 				continue;
 		}
 
-		// For each incoming message, if it exactly matches an existing message,
-		// replace that one with this new one.
 		auto it = recent.begin();
 		while(it != recent.end())
 		{
-			// Each time a new message comes in, "age" all the existing ones to
+			int age = step - it->step;
+			// Each time a new message comes in, "age" all the existing ones,
+			// except for cases where it would interrupt an animation, to
 			// limit how many of them appear at once.
-			it->step -= 60;
-			// Also erase messages that have reached the end of their lifetime.
-			if((importance != Importance::Low && it->message == message) || it->step < step - 1000)
+			if(age > animationDuration)
+				it->step -= 60;
+			// For each incoming message, if it exactly matches an existing message,
+			// replace that one with this new one by scheduling the old one for removal.
+			if(importance != Importance::Low && it->message == message && it->deathStep < 0)
+				it->deathStep = step + animationDuration;
+			// Erase messages that have reached the end of their lifetime.
+			if(age > 1000 + animationDuration || (it->deathStep >= 0 && it->deathStep <= step))
 				it = recent.erase(it);
 			else
 				++it;

@@ -261,7 +261,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		// Illegal passengers can only be detected by planetary security.
 		if(!scan)
 		{
-			int64_t fine = ship->Cargo().IllegalPassengersFine(gov, player);
+			int64_t fine = ship->Cargo().IllegalPassengersFine(gov);
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -269,7 +269,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 				for(const Mission &mission : player.Missions())
 				{
-					if(mission.IsFailed(player))
+					if(mission.IsFailed())
 						continue;
 
 					string fineMessage = mission.FineMessage();
@@ -289,7 +289,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		}
 		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
-			int64_t fine = ship->Cargo().IllegalCargoFine(gov, player);
+			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
@@ -297,7 +297,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 
 				for(const Mission &mission : player.Missions())
 				{
-					if(mission.IsFailed(player))
+					if(mission.IsFailed())
 						continue;
 
 					// Append the fineMessage from each applicable mission, if available.

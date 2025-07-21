@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
 #include "RaidFleet.h"
+#include "Swizzle.h"
 
 #include <limits>
 #include <map>
@@ -51,7 +52,8 @@ public:
 	Government();
 
 	// Load a government's definition from a file.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
 
 	// Get the display name of this government.
 	const std::string &GetName() const;
@@ -59,7 +61,7 @@ public:
 	void SetName(const std::string &trueName);
 	const std::string &GetTrueName() const;
 	// Get the color swizzle to use for ships of this government.
-	int GetSwizzle() const;
+	const Swizzle *GetSwizzle() const;
 	// Get the color to use for displaying this government on the map.
 	const Color &GetColor() const;
 
@@ -126,7 +128,7 @@ public:
 	int Fines(const Outfit *outfit) const;
 	int Fines(const Ship *ship) const;
 	// Check if given ship has illegal outfits or cargo.
-	bool FinesContents(const Ship *ship, const PlayerInfo &player) const;
+	bool FinesContents(const Ship *ship) const;
 
 	// Get or set the player's reputation with this government.
 	double Reputation() const;
@@ -150,7 +152,7 @@ private:
 	unsigned id;
 	std::string name;
 	std::string displayName;
-	int swizzle = 0;
+	const Swizzle *swizzle = Swizzle::None();
 	ExclusiveItem<Color> color;
 
 	std::vector<double> attitudeToward;

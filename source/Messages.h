@@ -47,6 +47,7 @@ public:
 			: step(step), message(message), importance(importance) {}
 
 		int step;
+		int deathStep = -1;
 		std::string message;
 		Importance importance;
 	};
@@ -62,7 +63,7 @@ public:
 	// Get the messages for the given game step. Any messages that are too old
 	// will be culled out, and new ones that have just been added will have
 	// their "step" set to the given value.
-	static const std::vector<Entry> &Get(int step);
+	static const std::vector<Entry> &Get(int step, int animationDuration);
 	static const std::deque<std::pair<std::string, Messages::Importance>> &GetLog();
 
 	// Reset the messages (i.e. because a new game was loaded).

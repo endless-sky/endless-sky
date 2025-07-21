@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "CategoryList.h"
 #include "ClickZone.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
@@ -31,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class CategoryList;
 class Outfit;
 class Planet;
 class PlayerInfo;
@@ -202,7 +202,7 @@ private:
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
 	void SideSelect(int count);
-	void SideSelect(Ship *ship);
+	void SideSelect(Ship *ship, int clicks = 1);
 	void MainAutoScroll(const std::vector<Zone>::const_iterator &selected);
 	void MainLeft();
 	void MainRight();
@@ -222,4 +222,6 @@ private:
 	std::string shipName;
 	std::string warningType;
 	int hoverCount = 0;
+
+	bool checkedHelp = false;
 };

@@ -1,0 +1,3 @@
+{
+	"Exclude": ["test_datafile.cpp", "\\Shader.cpp$", "Font.cpp", "Mask.cpp"]
+}

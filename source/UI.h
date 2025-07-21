@@ -32,6 +32,18 @@ class Panel;
 // starting with whichever one is on the bottom.
 class UI {
 public:
+	enum class UISound
+	{
+		NONE,
+		SOFT,
+		NORMAL,
+		SOFT_BUZZ,
+		TARGET,
+		FAILURE
+	};
+
+
+public:
 	// Handle an event. The event is handed to each panel on the stack until one
 	// of them handles it. If none do, this returns false.
 	bool Handle(const SDL_Event &event);
@@ -75,6 +87,8 @@ public:
 
 	// Get the current mouse position.
 	static Point GetMouse();
+
+	static void PlaySound(UISound sound);
 
 
 private:

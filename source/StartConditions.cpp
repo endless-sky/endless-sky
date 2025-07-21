@@ -37,14 +37,16 @@ namespace {
 
 
 
-StartConditions::StartConditions(const DataNode &node)
+StartConditions::StartConditions(const DataNode &node, const ConditionsStore *globalConditions,
+		const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, globalConditions, playerConditions);
 }
 
 
 
-void StartConditions::Load(const DataNode &node)
+void StartConditions::Load(const DataNode &node, const ConditionsStore *globalConditions,
+		const ConditionsStore *playerConditions)
 {
 	// When a plugin modifies an existing starting condition, default to
 	// clearing the previously-defined description text. The plugin may
@@ -115,13 +117,13 @@ void StartConditions::Load(const DataNode &node)
 			// a 3rd token (i.e. this will be treated as though it were a ship variant definition,
 			// without making the variant available to the rest of GameData).
 			if(child.HasChildren() || child.Size() >= add + 3)
-				ships.emplace_back(child);
+				ships.emplace_back(child, playerConditions);
 			// If there's only 2 tokens & there's no child nodes, the created instance would be ill-formed.
 			else
 				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");
 		}
 		else if(key == "conversation" && child.HasChildren() && !add)
-			conversation = ExclusiveItem<Conversation>(Conversation(child));
+			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
 		else if(key == "conversation" && hasValue && !child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)
@@ -131,11 +133,11 @@ void StartConditions::Load(const DataNode &node)
 		else if(key == "to" && hasValue)
 		{
 			if(value == "display")
-				toDisplay.Load(child);
+				toDisplay.Load(child, globalConditions);
 			else if(value == "reveal")
-				toReveal.Load(child);
+				toReveal.Load(child, globalConditions);
 			else if(value == "unlock")
-				toUnlock.Load(child);
+				toUnlock.Load(child, globalConditions);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -149,7 +151,7 @@ void StartConditions::Load(const DataNode &node)
 				LoadState(child, StartState::REVEALED);
 		}
 		else
-			conditions.Add(child);
+			conditions.Add(child, playerConditions);
 	}
 
 	// The unlocked state must have at least some information.
@@ -317,20 +319,20 @@ const string &StartConditions::GetDebt() const noexcept
 
 
 
-bool StartConditions::Visible(const ConditionsStore &conditionsStore) const
+bool StartConditions::Visible() const
 {
-	return toDisplay.Test(conditionsStore);
+	return toDisplay.Test();
 }
 
 
 
-void StartConditions::SetState(const ConditionsStore &conditionsStore)
+void StartConditions::SetState()
 {
-	if(toDisplay.Test(conditionsStore))
+	if(toDisplay.Test())
 	{
-		if(toReveal.Test(conditionsStore))
+		if(toReveal.Test())
 		{
-			if(toUnlock.Test(conditionsStore))
+			if(toUnlock.Test())
 				state = StartState::UNLOCKED;
 			else
 				state = StartState::REVEALED;

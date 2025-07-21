@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <string>
+
 
 
 // Class representing an RGBA color (for use by OpenGL). The specified colors
@@ -24,9 +26,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // zero the color's components will be added to whatever is underneath them.
 class Color {
 public:
-	// Constructor for shades of gray, opaque unless an alpha is also given.
+	// Constructor for shades of gray. Opaque unless an alpha is also given.
+	// IsLoaded is false when using this constructor.
 	explicit Color(float i = 1.f, float a = 1.f);
-	// Constructor for colors, opaque unless an alpha is also given.
+	// Constructor for colors. Opaque unless an alpha is also given.
 	Color(float r, float g, float b, float a = 1.f);
 
 	bool operator==(const Color &other) const;
@@ -36,6 +39,8 @@ public:
 	void Load(double r, double g, double b, double a);
 	// Check if Load() has been called for this color.
 	bool IsLoaded() const;
+	void SetName(const std::string &name);
+	const std::string &Name() const;
 	// Get the color as a float vector, suitable for use by OpenGL.
 	const float *Get() const;
 
@@ -60,5 +65,6 @@ private:
 	// Store the color as a float vector for easy interfacing with OpenGL.
 	float color[4];
 
+	std::string name;
 	bool isLoaded = false;
 };

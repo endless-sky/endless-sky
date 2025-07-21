@@ -74,69 +74,18 @@ namespace {
 PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system, const StellarObject &object)
 	: object(&object)
 {
-	const Planet &planet = *object.GetPlanet();
-	name = planet.DisplayName();
-	if(planet.IsWormhole())
-		color = *planet.GetWormhole()->GetLinkColor();
-	else if(planet.GetGovernment())
-	{
-		government = "(" + planet.GetGovernment()->GetName() + ")";
-		color = Color::Combine(.5f, planet.GetGovernment()->GetColor(), 1.f, Color(.3f));
-		if(!planet.CanLand())
-			hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
-	}
-	else
-	{
-		government = "(No government)";
-		color = Color(.3f);
-	}
-
-	// Figure out how big the label is.
-	const Font &font = FontSet::Get(14);
-	const Font &bigFont = FontSet::Get(18);
-	const double labelWidth = max(bigFont.Width(name), font.Width(government));
-	const double nameHeight = bigFont.Height();
-	const double labelHeight = nameHeight + (government.empty() ? 0. : 1. + font.Height());
-	const Point labelDimensions = {labelWidth + BORDER * 2., labelHeight + BORDER * 2.};
-
-	// Try to find a label direction that is not overlapping under any zoom.
-	const vector<double> &allZooms = Preferences::Zooms();
-	for(const double angle : LINE_ANGLES)
-	{
-		SetBoundingBox(labelDimensions, angle);
-		if(none_of(allZooms.begin(), allZooms.end(),
-				[&](const double zoom)
-				{
-					return HasOverlaps(labels, system, object, zoom);
-				}))
-		{
-			innerAngle = angle;
-			break;
-		}
-	}
-
-	// No non-overlapping choices, so set this to the default.
-	if(innerAngle < 0.)
-	{
-		innerAngle = LINE_ANGLES[0];
-		SetBoundingBox(labelDimensions, innerAngle);
-	}
-
-	// Cache the offsets for both labels; center labels.
-	const Point offset = GetOffset(Angle(innerAngle).Unit(), labelDimensions) - labelDimensions * .5;
-	const double nameX = (labelDimensions.X() - bigFont.Width(name)) * .5;
-	nameOffset = Point(offset.X() + nameX, offset.Y() + BORDER);
-	const double governmentX = (labelDimensions.X() - font.Width(government)) * .5;
-	governmentOffset = Point(offset.X() + governmentX, nameOffset.Y() + nameHeight + 1.);
+	UpdateData(labels, system);
 }
 
 
 
-void PlanetLabel::Update(const Point &center, const double zoom)
+void PlanetLabel::Update(const Point &center, const double zoom, const vector<PlanetLabel> &labels,
+	const System &system)
 {
 	drawCenter = center;
 	position = (object->Position() - center) * zoom;
 	radius = object->Radius() * zoom;
+	UpdateData(labels, system);
 }
 
 
@@ -180,6 +129,77 @@ void PlanetLabel::Draw() const
 		FontSet::Get(14).DrawAliased(government, to.X() + governmentOffset.X(),
 			to.Y() + governmentOffset.Y(), labelColor);
 	}
+}
+
+
+
+void PlanetLabel::UpdateData(const vector<PlanetLabel> &labels, const System &system)
+{
+	bool reposition = false;
+	const Planet &planet = *object->GetPlanet();
+	if(planet.DisplayName() != name)
+		reposition = true;
+	name = planet.DisplayName();
+	if(planet.IsWormhole())
+		color = *planet.GetWormhole()->GetLinkColor();
+	else if(planet.GetGovernment())
+	{
+		string newGovernment = "(" + planet.GetGovernment()->GetName() + ")";
+		if(newGovernment != government)
+			reposition = true;
+		government = newGovernment;
+		color = Color::Combine(.5f, planet.GetGovernment()->GetColor(), 1.f, Color(.3f));
+		if(!planet.CanLand())
+			hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
+	}
+	else
+	{
+		string newGovernment = "(No government)";
+		if(newGovernment != government)
+			reposition = true;
+		color = Color(.3f);
+	}
+
+	if(!reposition)
+		return;
+
+	// Figure out how big the label is.
+	const Font &font = FontSet::Get(14);
+	const Font &bigFont = FontSet::Get(18);
+	const double labelWidth = max(bigFont.Width(name), font.Width(government));
+	const double nameHeight = bigFont.Height();
+	const double labelHeight = nameHeight + (government.empty() ? 0. : 1. + font.Height());
+	const Point labelDimensions = {labelWidth + BORDER * 2., labelHeight + BORDER * 2.};
+
+	// Try to find a label direction that is not overlapping under any zoom.
+	const vector<double> &allZooms = Preferences::Zooms();
+	for(const double angle : LINE_ANGLES)
+	{
+		SetBoundingBox(labelDimensions, angle);
+		if(none_of(allZooms.begin(), allZooms.end(),
+				[&](const double zoom)
+				{
+					return HasOverlaps(labels, system, *object, zoom);
+				}))
+		{
+			innerAngle = angle;
+			break;
+		}
+	}
+
+	// No non-overlapping choices, so set this to the default.
+	if(innerAngle < 0.)
+	{
+		innerAngle = LINE_ANGLES[0];
+		SetBoundingBox(labelDimensions, innerAngle);
+	}
+
+	// Cache the offsets for both labels; center labels.
+	const Point offset = GetOffset(Angle(innerAngle).Unit(), labelDimensions) - labelDimensions * .5;
+	const double nameX = (labelDimensions.X() - bigFont.Width(name)) * .5;
+	nameOffset = Point(offset.X() + nameX, offset.Y() + BORDER);
+	const double governmentX = (labelDimensions.X() - font.Width(government)) * .5;
+	governmentOffset = Point(offset.X() + governmentX, nameOffset.Y() + nameHeight + 1.);
 }
 
 

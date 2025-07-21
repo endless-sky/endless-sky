@@ -237,6 +237,7 @@ mission "Incipias: Help The Stranded 1"
 				`	"The risks do sound concerning. I will leave them alone after all."`
 					goto declined
 			label yes
+			action
 				set "language: Incipias"
 				log `Discovered that the species to the northeast of Hai space, the Incipias, are under the protection of the Quarg. Was given a translator by a Quarg in order to assist a stranded Incipias ship, but was warned not to give the Incipias any advanced technology or interfere in their development.`
 			`	"Happy this one is that you agree to that condition. Bear in mind, Captain, that the slightest misstep may have grave consequences." The Quarg stares you down. "We will be watching your actions, to verify that they are peaceful and without ill or unwise intent. Please for a moment remain here," it says, and walks away.`
@@ -301,6 +302,20 @@ mission "Incipias: Help The Stranded 1"
 			label end
 			`	The five float away but the crowd continues staring at you, probably out of interest.`
 
+mission "Incipias: Fix Saves Missing Language"
+	landing
+	invisible
+	to offer
+		has "Incipias: Help The Stranded 1: offered"
+		not "Incipias: Help The Stranded 1: declined"
+		not "language: Incipias"
+	on offer
+		set "language: Incipias"
+		log `Noticed an alert on <ship>'s dashboard about minor data corruption. The following log entry was recovered, but the original timestamp was lost.`
+		log `Discovered that the species to the northeast of Hai space, the Incipias, are under the protection of the Quarg. Was given a translator by a Quarg in order to assist a stranded Incipias ship, but was warned not to give the Incipias any advanced technology or interfere in their development.`
+		fail
+
+
 mission "Incipias: No Help For The Stranded"
 	landing
 	invisible
@@ -313,7 +328,7 @@ mission "Incipias: No Help For The Stranded"
 			not "Incipias: Help The Stranded 1: offered"
 	on offer
 		fail
-		dialog `You identify the stranded alien ship you assisted earlier on your scanners, but with no way to communicate with them you are unable to to help. You have no choice but to leave them to their doom on this stormy world.`
+		dialog `You identify the stranded alien ship you assisted earlier on your scanners, but with no way to communicate with them you are unable to help. You have no choice but to leave them to their doom on this stormy world.`
 
 mission "Incipias: Help The Stranded 2"
 	landing
@@ -322,6 +337,7 @@ mission "Incipias: Help The Stranded 2"
 	passengers 5
 	source Turra
 	destination "Pon'tes"
+	blocked "You have landed on <origin>, but you don't have enough passenger space for the <bunks> Incipias. Return here when you have the required space free."
 	to offer
 		has "Incipias: Help The Stranded 1: done"
 	on offer

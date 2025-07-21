@@ -11,109 +11,315 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-ship "Quarg Skylark"
-	sprite "ship/skylark"
-	thumbnail "thumbnail/skylark"
+
+ship "Quarg Lindwyrm"
+	sprite "ship/quarg lindwyrm"
+	thumbnail "thumbnail/quarg lindwyrm"
 	attributes
-		category "Heavy Warship"
-		"cost" 5900000
-		"shields" 120000
-		"hull" 70000
-		"required crew" 120
-		"bunks" 210
-		"mass" 990
-		"drag" 18.5
-		"heat dissipation" .47
+		category "Heavy Freighter"
+		"cost" 20000000
+		"shields" 95000
+		"hull" 55000
+		"required crew" 35
+		"bunks" 40
+		"mass" 840
+		"drag" 11.5
+		"heat dissipation" .5
 		"fuel capacity" 1000
-		"cargo space" 200
-		"outfit space" 600
-		"weapon capacity" 200
-		"engine capacity" 120
-		"hull repair rate" 5
-		"hull energy" 5
-		"ramscoop" 10
+		"cargo space" 400
+		"outfit space" 460
+		"weapon capacity" 140
+		"engine capacity" 100
 		weapon
-			"blast radius" 250
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
+			"blast radius" 150
+			"shield damage" 15000
+			"hull damage" 7500
+			"hit force" 2250
 	outfits
-		"Quarg Skylance" 2
-		"Quarg Anti-Missile" 2
+		"Skydagger" 2
+		"Stratospear" 2
 		
-		"Antimatter Core"
-		"Nanotech Battery"
-		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 120
-		
-		"Medium Graviton Thruster"
+		"Singularity Core"
+		"Quantum Vacuum Battery"
+		"Aspis Shield Generator"
+		"Peripheral Repair Hub"
+		"Phalanx System" 40
+
+		"Small Graviton Thruster"
 		"Medium Graviton Steering"
 		"Jump Drive"
 		
-	engine -15 117
-	engine 15 117
-	turret -12 -80 "Quarg Skylance"
-	turret 12 -80 "Quarg Skylance"
-	turret -34 24 "Quarg Anti-Missile"
-	turret 34 24 "Quarg Anti-Missile"
-	explode "tiny explosion" 12
-	explode "small explosion" 16
-	explode "medium explosion" 30
-	explode "large explosion" 40
-	explode "huge explosion" 20
+	engine -29 125
+	engine 29 125
+	turret -19.5 -88.5 "Skydagger"
+	turret 19.5 -88.5 "Skydagger"
+	turret -29.5 69 "Stratospear"
+	turret 29.5 69 "Stratospear"
+	explode "small explosion" 35
+	explode "medium explosion" 50
+	explode "large explosion" 20
 	"final explode" "final explosion medium"
-	description "The Skylark is used by the Quarg as a freighter and warship."
+	description `The Quarg use the Lindwyrm as a heavy freighter, transporting in its ample cargo bays items both mundane and fantastical. In the days before the advent of modern cargo scanners revealed some measure of their contents, "the inside of a Quarg cargo hold" was slang used to describe any thing or place thought to be unknowable.`
+
+
+ship "Quarg Guivre"
+	sprite "ship/quarg guivre"
+	thumbnail "thumbnail/quarg guivre"
+	attributes
+		category "Utility"
+		"cost" 75000000
+		"shields" 185000
+		"hull" 115000
+		"required crew" 165
+		"bunks" 180
+		"mass" 2800
+		"drag" 29
+		"heat dissipation" .3
+		"fuel capacity" 2000
+		"cargo space" 300
+		"outfit space" 720
+		"weapon capacity" 280
+		"engine capacity" 140
+		weapon
+			"blast radius" 300
+			"shield damage" 30000
+			"hull damage" 15000
+			"hit force" 4500
+	outfits
+		"Slipstream Projector"
+		"Stratospear" 2
+		
+		"Quasar Core"
+		"Quantum Vacuum Battery"
+		"Ancile Shield Generator"
+		"Central Repair Hub"
+		"Phalanx System" 180
+
+		"Medium Graviton Thruster"
+		"Large Graviton Steering"
+		"Jump Drive"
+		
+	engine -25.5 144
+	engine 25.5 144
+	gun 0 -40 "Slipstream Projector"
+	turret -70 61 "Stratospear"
+	turret 70 61 "Stratospear"
+	explode "small explosion" 40
+	explode "medium explosion" 60
+	explode "large explosion" 45
+	explode "huge explosion" 20
+	"final explode" "final explosion large"
+	description "The Quarg employ these unusual craft as one of their primary tools for building and maintaining their ringworlds, each one operating continuously for hundreds or thousands of years on its planet-scale tasks. Each Guivre is equipped with a graviton slipstream projector, similar in usage to human-built tractor beams, but capable of shifting much, much larger objects with uncanny elegance and precision."
+
+
+ship "Quarg Drake"
+	sprite "ship/quarg drake"
+	thumbnail "thumbnail/quarg drake"
+	attributes
+		category "Light Warship"
+		"cost" 12000000
+		"shields" 95000
+		"hull" 25000
+		"required crew" 20
+		"bunks" 30
+		"mass" 440
+		"drag" 5.7
+		"heat dissipation" .65
+		"fuel capacity" 800
+		"cargo space" 20
+		"outfit space" 450
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 120
+			"shield damage" 12000
+			"hull damage" 6000
+			"hit force" 1800
+	outfits
+		"Skydagger" 2
+		"Skylance"
+		"Stratospear"
+		
+		"Antimatter Core"
+		"Quantum Vacuum Battery"
+		"Ancile Shield Generator"
+		"Peripheral Repair Hub"
+		"Phalanx System" 30
+
+		"Small Graviton Thruster"
+		"Small Graviton Steering"
+		"Jump Drive"
+		
+	engine -14 59.5
+	engine 14 59.5
+	turret 0 -29 "Skylance"
+	turret -43.5 4.5 "Skydagger"
+	turret 43.5 4.5 "Skydagger"
+	turret 0 8.5 "Stratospear"
+	explode "tiny explosion" 10
+	explode "small explosion" 15
+	explode "medium explosion" 20
+	explode "large explosion" 10
+	"final explode" "final explosion small"
+	description "The Drake is an older ship used by the Quarg for reconnaissance and initial contact with emerging spacefaring species. A popular legend states that a Drake surveyed Sol while humans began to discover spaceflight."
 
 
 ship "Quarg Wardragon"
-	sprite "ship/wardragon"
-	thumbnail "thumbnail/wardragon"
+	sprite "ship/quarg wardragon"
+	thumbnail "thumbnail/quarg wardragon"
 	attributes
-		category "Heavy Warship"
-		"cost" 5900000
-		"shields" 160000
-		"hull" 50000
-		"required crew" 160
-		"bunks" 185
-		"mass" 840
-		"drag" 14
-		"heat dissipation" .34
+		category "Light Warship"
+		"cost" 15000000
+		"shields" 105000
+		"hull" 30000
+		"required crew" 30
+		"bunks" 40
+		"mass" 600
+		"drag" 8.5
+		"heat dissipation" .6
 		"fuel capacity" 800
-		"cargo space" 50
-		"outfit space" 600
-		"weapon capacity" 200
-		"engine capacity" 120
-		"hull repair rate" 5
-		"hull energy" 5
-		"ramscoop" 10
+		"cargo space" 30
+		"outfit space" 510
+		"weapon capacity" 180
+		"engine capacity" 100
 		weapon
-			"blast radius" 250
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
+			"blast radius" 135
+			"shield damage" 13500
+			"hull damage" 6750
+			"hit force" 2025
 	outfits
-		"Quarg Skylance" 2
-		"Quarg Anti-Missile" 2
+		"Skylance" 2
+		"Stratospear" 2
 		
-		"Antimatter Core"
-		"Nanotech Battery"
-		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 160
+		"Singularity Core"
+		"Quantum Vacuum Battery"
+		"Ancile Shield Generator"
+		"Peripheral Repair Hub"
+		"Phalanx System" 40
+
+		"Small Graviton Thruster"
+		"Medium Graviton Steering"
+		"Jump Drive"
 		
+	engine -17 76.5
+	engine 17 76.5
+	turret -13 -18.5 "Stratospear"
+	turret 13 -18.5 "Stratospear"
+	turret -44 0.5 "Skylance"
+	turret 44 0.5 "Skylance"
+	explode "tiny explosion" 5
+	explode "small explosion" 20
+	explode "medium explosion" 25
+	explode "large explosion" 15
+	"final explode" "final explosion medium"
+	description "The Wardragon is used by the Quarg as a light warship. It is an older design within the Quarg's fleets, supposedly less intimidating compared to their larger warships and thus more suitable for dealings with particularly nascent species."
+
+
+ship "Quarg Wyvern"
+	sprite "ship/quarg wyvern"
+	thumbnail "thumbnail/quarg wyvern"
+	attributes
+		category "Medium Warship"
+		"cost" 27000000
+		"shields" 155000
+		"hull" 45000
+		"required crew" 50
+		"bunks" 60
+		"mass" 750
+		"drag" 9
+		"heat dissipation" .55
+		"fuel capacity" 1000
+		"cargo space" 20
+		"outfit space" 575
+		"weapon capacity" 250
+		"engine capacity" 120
+		weapon
+			"blast radius" 200
+			"shield damage" 20000
+			"hull damage" 10000
+			"hit force" 3000
+	outfits
+		"Elysian Ranseur" 2
+		"Astral Ribault" 2
+		"Stratospear"
+		
+		"Singularity Core"
+		"Quantum Vacuum Battery"
+		"Aspis Shield Generator"
+		"Peripheral Repair Hub"
+		"Phalanx System" 60
+
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Jump Drive"
 		
-	engine -14 47
-	engine 14 47
-	turret -9 -14 "Quarg Anti-Missile"
-	turret 9 -14 "Quarg Anti-Missile"
-	turret -28 7 "Quarg Skylance"
-	turret 28 7 "Quarg Skylance"
-	explode "tiny explosion" 12
-	explode "small explosion" 16
+	engine -23 121
+	engine 23 121
+	gun -17.5 -123 "Elysian Ranseur"
+	gun 17.5 -123 "Elysian Ranseur"
+	turret -38 -74 "Astral Ribault"
+	turret 38 -74 "Astral Ribault"
+	turret 0 6.5 "Stratospear"
+	explode "small explosion" 15
 	explode "medium explosion" 30
-	explode "large explosion" 40
-	explode "huge explosion" 20
+	explode "large explosion" 25
 	"final explode" "final explosion medium"
-	description "The Wardragon is used by the Quarg as a light warship."
+	description "When humans first encountered Quarg vessels, with their bizarre, scaly-looking hulls and alien forms, the comparisons to dragons of different sorts rapidly proliferated. The Wyvern is a midsize warship of the Quarg, though the distinction between the Quarg warship classes is insignificant to all but the most powerful forces in the galaxy."
+
+
+ship "Quarg Hydra"
+	sprite "ship/quarg hydra"
+	thumbnail "thumbnail/quarg hydra"
+	attributes
+		category "Heavy Warship"
+		"cost" 65000000
+		"shields" 310000
+		"hull" 80000
+		"required crew" 120
+		"bunks" 140
+		"mass" 2600
+		"drag" 25
+		"heat dissipation" .4
+		"fuel capacity" 800
+		"cargo space" 80
+		"outfit space" 925
+		"weapon capacity" 380
+		"engine capacity" 170
+		weapon
+			"blast radius" 390
+			"shield damage" 39000
+			"hull damage" 19500
+			"hit force" 5850
+	outfits
+		"Elysian Ranseur" 2
+		"Celestial Culverin" 3
+		"Stratospear" 2
+		"Astral Ribault"
+
+		"Quasar Core"
+		"Antimatter Core"
+		"Quantum Vacuum Battery"
+		"Aegis Shield Generator"
+		"Central Repair Hub"
+		"Phalanx System" 140
+
+		"Large Graviton Thruster"
+		"Large Graviton Steering"
+		"Jump Drive"
+	
+	engine -23.5 135
+	engine 23.5 135
+	gun -38 -168 "Elysian Ranseur"
+	gun 38 -168 "Elysian Ranseur"
+	gun -78 -129 "Celestial Culverin"
+	gun 78 -129 "Celestial Culverin"
+	gun 0 -130 "Celestial Culverin"
+	turret -52 -71.5 "Stratospear"
+	turret 52 -71.5 "Stratospear"
+	turret 0 7.5 "Astral Ribault"
+	explode "small explosion" 15
+	explode "medium explosion" 30
+	explode "large explosion" 20
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The many-headed mythological Hydra was supposedly venomous enough to kill mortals with nothing but the scent of its breath or a single drop of its blood. Any captain foolish enough to arouse the fury of the Quarg's heavy warships will no doubt quickly come to understand the exact significance of this part of the Hydra's legend."

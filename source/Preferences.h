@@ -63,6 +63,12 @@ public:
 		NEUTRAL
 	};
 
+	enum class TurretOverlays : int_fast8_t {
+		OFF = 0,
+		ALWAYS_ON,
+		BLINDSPOTS_ONLY
+	};
+
 	enum class AutoAim : int_fast8_t {
 		OFF = 0,
 		ALWAYS_ON,
@@ -106,6 +112,12 @@ public:
 		AUDIO,
 		VISUAL,
 		BOTH
+	};
+
+	enum class MinimapDisplay : int_fast8_t {
+		OFF = 0,
+		WHEN_JUMPING,
+		ALWAYS_ON
 	};
 
 
@@ -157,6 +169,11 @@ public:
 	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
 
+	/// Turret overlays setting, either "off", "always on", or "blindspots only".
+	static void ToggleTurretOverlays();
+	static TurretOverlays GetTurretOverlays();
+	static const std::string &TurretOverlaysSetting();
+
 	/// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
 	static AutoAim GetAutoAim();
@@ -187,13 +204,18 @@ public:
 	static FlotsamCollection GetFlotsamCollection();
 	static const std::string &FlotsamSetting();
 
-	/// Red alert siren and symbol
+	/// Red alert siren and symbol.
 	static void ToggleAlert();
 	static AlertIndicator GetAlertIndicator();
 	static const std::string &AlertSetting();
 	static bool PlayAudioAlert();
 	static bool DisplayVisualAlert();
 	static bool DoAlertHelper(AlertIndicator toDo);
+
+	/// Minimap display settings.
+	static void ToggleMinimapDisplay();
+	static MinimapDisplay GetMinimapDisplay();
+	static const std::string &MinimapSetting();
 
 	static int GetPreviousSaveCount();
 };

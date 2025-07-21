@@ -24,6 +24,8 @@ class Interface;
 class News;
 class PlayerInfo;
 class Port;
+class TextArea;
+
 
 
 // GUI panel to be shown when you are in a spaceport. This just draws the port
@@ -45,9 +47,8 @@ private:
 
 private:
 	PlayerInfo &player;
-	WrappedText text;
+	std::shared_ptr<TextArea> description;
 	const Port &port;
-	const Interface &ui;
 
 	// Current news item (if any):
 	bool hasNews = false;

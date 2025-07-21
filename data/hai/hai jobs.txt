@@ -1819,6 +1819,7 @@ mission "Superstitious Hai [3]"
 	destination
 		government "Hai"
 		attributes "retirement"
+		distance 4 8
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1864,7 +1865,7 @@ mission "Superstitious Hai [5]"
 	name "Superstitious Hai to <planet>"
 	job
 	repeat
-	description "A group of elderly Hai will pay <payment> for a vacation to <destination> on a keystone-equipped ship by <date>. They have requested that their ship have an authentic Hai keystone installed."
+	description "A group of <bunks> elderly Hai will pay <payment> for a vacation to <destination> on a keystone-equipped ship by <date>. They have requested that their ship have an authentic Hai keystone installed."
 	passengers 2 4 .8
 	deadline
 	to offer
@@ -1998,6 +1999,7 @@ mission "Superstitious Hai [9]"
 	destination
 		government "Hai"
 		attributes "retirement"
+		distance 4 8
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2046,7 +2048,7 @@ mission "Superstitious Hai [11]"
 	name "Superstitious Hai to <planet>"
 	job
 	repeat
-	description "A group of elderly Hai will pay <payment> for a vacation to <destination> on a keystone-equipped ship by <date>."
+	description "A group of <bunks> elderly Hai will pay <payment> for a vacation to <destination> on a keystone-equipped ship by <date>."
 	passengers 2 4 .8
 	deadline
 	to offer

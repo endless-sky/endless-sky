@@ -127,46 +127,38 @@ mission "Successors: First Contact 1"
 					to display
 						not "Successors: language"
 					goto language
+				`	"What do you mean that you were ripped from the galaxy?"`
+					to display
+						has "Successors: history"
+						not "Successors: ripped"
+					goto ripped
 				`	"How could you have met humans fifteen hundred years ago?"`
 					to display
 						not "Successors: history"
 					goto history
-				`	"What is House Sioeora?"`
-					to display
-						not "Successors: house"
-					goto house
-			label language
-			action
-				set "Successors: language"
-				set "Successors: history"
-			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
-			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of some olden languages," they say, "and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
-			choice
-				`	"What should I do now?"`
-					goto "what now"
-				`	"What do you mean that you were ripped from the galaxy?"`	# Define choices uniquely when they contain a follow-up question not in label "questions."
-					to display
-						not "Successors: ripped"
-					goto ripped
-				`	"What is House Sioeora?"`
-					to display
-						not "Successors: house"
-					goto house
-			label "language short"
-			action
-				set "Successors: language"
-			`	"T'is true," they say. "I am a scholar of some olden languages, and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
-			choice
-				`	"What should I do now?"`
-					goto "what now"
 				`	"Humans have certainly changed a lot in the last fifteen hundred years."`
 					to display
+						has "Successors: language"
 						not "Successors: changed"
 					goto changed
 				`	"What is House Sioeora?"`
 					to display
 						not "Successors: house"
 					goto house
+			label language
+			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
+				to display
+					has "Successors: history"
+			action
+				set "Successors: language"
+				set "Successors: history"
+			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of some olden languages," they say, "and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
+				goto questions
+			label "language short"
+			action
+				set "Successors: language"
+			`	"T'is true," they say. "I am a scholar of some olden languages, and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
+				goto questions
 			label changed
 			action
 				set "Successors: changed"
@@ -184,10 +176,12 @@ mission "Successors: First Contact 1"
 			choice
 				`	"What should I do now?"`
 					goto "what now"
-				`	"Is that how you know my language?"`
+				`	"Is that how you know my language?"` # This follow up question reverts to "How do you know my language?" if it isn't immediately asked
 					to display
 						not "Successors: language"
 					goto "language short"
+				`	"What do you mean that you were ripped from the galaxy?"`
+					goto ripped
 				`	"What is House Sioeora?"`
 					to display
 						not "Successors: house"
@@ -268,7 +262,7 @@ mission "Successors: First Contact 2"
 			choice
 				`	(Say nothing.)`
 					goto request
-				`	"Hello. I am <first> <last>.`
+				`	"Hello. I am <first> <last>."`
 					goto introduce
 				`	"I apologize for being late."`
 					to display
@@ -365,6 +359,16 @@ mission "Successors: First Contact 3"
 			choice
 				`	"We'd better get started, then."`
 					goto embark
+				`	"What did you mean that jump drives are 'familiar?'"`
+					to display
+						has "Successors: knowledge"
+						not "Successors: jump drives"
+					goto "jump drives"
+				`	"Do the scions have their own jump drives?"`
+					to display
+						has "Successors: jump drives"
+						not "Successors: warning"
+					goto warning
 				`	"What more can you tell me about these Kijra-pets?"`
 					to display
 						not "Successors: kijra-pet"
@@ -390,58 +394,26 @@ mission "Successors: First Contact 3"
 			action
 				set "Successors: knowledge"
 			`	"'Tis a mix of things," Sieasej says. "The... paths in space which connect those stars are ever-changing, year by year. A hazard of the space. Some years ago, t'was a pathway leading to it through which craft of all the Houses could find passage and explore. Now, it's been closed for many years and our vessels may not enter. The scions know thou must possess a jump drive in order for thou t'ave reach'd us here, for this technology's a familiar one to us. And so they know thou cans't retrieve that thing which they desire."`
-			choice
-				`	"We'd better get started then."`
-					goto embark
-				`	"What do you mean that jump drives are 'familiar?'"`
-					to display
-						not "Successors: jump drives"
-					goto "jump drives"
-				`	"What more can you tell me about the Kijra-pets?"`
-					to display
-						not "Successors: kijra-pet"
-					goto kijra-pet
-				`	"Are you certain you're okay going with me?"`
-					to display
-						not "Successors: you okay"
-					goto "you okay"
-				`	"Is there anything I should watch out for?"`
-					to display
-						not "Successors: watch out"
-					goto "watch out"
+				goto questions
+			label "jump drives"
+			action
+				set "Successors: jump drives"
+			`	"Remember, Captain, our Predecessors did ply the stars for ten thousand years before we last set eyes on thine own race, who then had only just discovered industry. Drives like the one within thy ship have been known to us for long into thy past."`
+				goto questions
+			label warning
+			action
+				set "Successors: warning"
+			`	"That is not for me to know, nor, I think, for thee."`
+				goto questions
 			label "you okay"
+			action
 				set "Successors: you okay"
 			`	Splotches of orange color emerge at the tips of Sieasej's arms. "I confess this is a little strange, and know the prospect of this... journey instills within me some thoughts of trepidation. But to visit these worlds is reward itself, and to do so in thy company, the very aliens who I have studied, makes it a reward that's doubly grand. Thou must realize that thou'rt a historian's dream. Thou'rt a creature from a distant story-page made flesh and blood in the modern age."`
 				goto questions
 			label "watch out"
+			action
 				set "Successors: watch out"
 			`	"The House hast warned me of the dangers which that space entails. Thy vessel must've endured enough to make it here intact, so I must trust that it shall be enduring once again."`
-				goto questions
-			label "jump drives"
-				set "Successors: jump drives"
-			`	"Remember, Captain, our Predecessors did ply the stars for ten thousand years before we last set eyes on thine own race, who then had only just discovered industry. Drives like the one within thy ship have been known to us for long into thy past."`
-			choice
-				`	"We'd better get going."`
-					goto embark
-				`	"Do the scions have their own jump drives?"`
-					to display
-						not "Successors: warning"
-					goto warning
-				`	"What more can you tell me about the Kijra-pets?"`
-					to display
-						not "Successors: kijra-pet"
-					goto kijra-pet
-				`	"Are you certain you're okay going with me?"`
-					to display
-						not "Successors: you okay"
-					goto "you okay"
-				`	"Is there anything I should watch out for?"`
-					to display
-						not "Successors: watch out"
-					goto "watch out"
-			label warning
-				set "Successors: warning"
-			`	"That is not for me to know, nor, I think, for thee."`
 				goto questions
 			label embark
 			action
@@ -561,10 +533,10 @@ mission "Successors: First Contact 3"
 				set "Successors FC3: released kijra-pet"
 			`	You gently set the animal you captured on the ground in front of you and back away from it slowly, shuffling to the side as the two larger creatures approach it and stroke it gently with their feelers. The smaller one wriggles a little before unfurling its gossamer wings and flitting away into the foliage. The two larger ones eventually follow, though not before one turns around to look at you and Sieasej and vocalizes.`
 				goto released
+			label "release friends"
 			action
 				set "Successors FC3: released kijra-pet"
 				set "Successors FC3: friend to animals" # Nonviolent capture AND released at first opportunity
-			label "release friends"
 			`	You gently coax the animal off your arm and onto the ground in front of you, backing away from it slowly and shuffling to the side. It runs towards the larger two creatures, touching the tips of its feelers against theirs and trilling softly as before. After some time, it wriggles a little before unfurling its gossamer wings and flitting away into the foliage. The two larger ones eventually follow, though not before one turns around to look at you and Sieasej and vocalizes, a longer, lower trill almost like a cat's purr.`
 				goto released
 			label successful
@@ -622,7 +594,7 @@ mission "Successors: First Contact 3"
 				event "successors: released kijra-pet wait" 32
 				log "Released the animal House Sioeora requested I bring to them. Returned their citizen, but was barred from further dealings with the House."
 			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. You and Sieasej are given fewer escorts than before, and you can't help but wonder if the absence of your quarry is particularly conspicuous to them. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
-			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "Tell us, hast though brought that item of our desiring?"`
+			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "Tell us, hast thou brought that item of our desiring?"`
 			choice
 				`	"No, I have not."`
 				`	"I was almost killed! I'm done doing your dirty work."`
@@ -709,6 +681,20 @@ mission "Successors: Kaatrij Monoglot Prompt"
 		conversation
 			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a strange-looking alien script that you unfortunately do not recognize. If you ever acquired some alien translation equipment, you might be able to decode it.`
 				decline
+
+mission "Successors: First Contact 3: Fix Friend to Animals"
+	landing
+	invisible
+	to offer
+		# Impossible to detect if the stopover happened, so patch the conditions after the mission completes
+		has "Successors: First Contact 3: done"
+		has "Successors FC3: nonviolent kijra-pet capture"
+		not "Successors FC3: released kijra-pet"
+		not "Successors FC3: captured kijra-pet"
+	on offer
+		set "Successors FC3: released kijra-pet"
+		set "Successors FC3: friend to animals"
+		fail
 
 mission "Successors: Kaatrij First Contact 1"
 	landing
@@ -806,7 +792,7 @@ mission "Successors: Kaatrij First Contact 1"
 					goto communicate
 			label questions
 			choice
-				`	"How is it that you can communicate with me?`
+				`	"How is it that you can communicate with me?"`
 					to display
 						not "language: Successor"
 					goto communicate
@@ -952,7 +938,7 @@ mission "Successors: Trusted"
 				set "Successors: sioeora"
 			branch "sioeora opposed"
 				has "successors kaatrij patron"
-			`	"Our mutual patrons remain their usual selves, with all that this entails. Would'st though believe that Riijaaora themself informed me of thine invitation here? They've made themself a leader 'mong the others for their fruitful advocacy of thee... ah, but I digress. Let it suffice to say that Sioeora doubtless shall support thee here today, for thou'rt by now a successful investment on their part."`
+			`	"Our mutual patrons remain their usual selves, with all that this entails. Would'st thou believe that Riijaaora themself informed me of thine invitation here? They've made themself a leader 'mong the others for their fruitful advocacy of thee... ah, but I digress. Let it suffice to say that Sioeora doubtless shall support thee here today, for thou'rt by now a successful investment on their part."`
 				goto "sioeora choice"
 			label "sioeora opposed"
 			`	"Ah, do they approve o'thy presence here and that?" Sieasej briefly examines a suckered arm before leaning in a little closer. "'Tis true the scions of my honored House remain towards thee a little chilly; and doubly so for thy finding of another patron which, I confess, may be what irks them most. Thou nonetheless remaineth a person of interest to them, and I suspect they'd be quite pleased to know that I'd encountered thee in council. So, let them brood, I say, for if Sioeora requires thee once more, they shan't be so knavish so's not to make thine acquaintance 'gain, methinks."`
@@ -1013,7 +999,7 @@ mission "Successors: Trusted"
 			branch "no kaatrij"
 				has "successors kaatrij patron"
 			`	This sparks some murmuring among the gathered Successors, both the representatives themselves and the other, quieter members who continue to stand around the periphery of the pool. There is no direct reply for some time until, after what seems like several minutes, the representative from House Kaatrij returns to the center and speaks.`
-			`	"Guest. House Kaatrij shall recognize thy noble words, even if we hold no reason for belief in them. We will permit the others to let thee buy our trinkets, and we shall watch thee closely to see if thy words is matched in action."`
+			`	"Guest. House Kaatrij shall recognize thy noble words, even if we hold no reason for belief in them. We will permit the others to let thee buy our trinkets, and we shall watch thee closely to see if thy words are matched in action."`
 			`	With no further comments from any of the Successors, the representative from House Sioeora calls for a vote from among the gathered representatives. Sioeora and Chydiyi vote for the proposition and Kaatrij abstains from the vote, remaining at the rim of the pool, inspecting your behavior closely. The representative from Sioeora then promptly produces another small box from within their outfit and presents it to you. You open it to reveal one of the pin insignias that you have seen throughout this meeting.`
 				goto license
 			label "no kaatrij"

@@ -351,6 +351,17 @@ string Format::CargoString(double amount, const string &cargo)
 
 
 
+// Converts the integer to string, and adds the noun, pluralized if needed.
+string Format::SimplePluralization(int amount, const string &noun)
+{
+	string result = to_string(amount) + ' ' + noun;
+	if(amount != 1 && amount != -1)
+		result += 's';
+	return result;
+}
+
+
+
 // Convert a time in seconds to years/days/hours/minutes/seconds
 string Format::PlayTime(double timeVal)
 {

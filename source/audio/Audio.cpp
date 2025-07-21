@@ -178,7 +178,7 @@ void Audio::LoadSounds(const vector<filesystem::path> &sources)
 {
 	for(const auto &source : sources)
 	{
-		filesystem::path root = source / "sounds/";
+		filesystem::path root = source / "sounds";
 		vector<filesystem::path> files = Files::RecursiveList(root);
 		for(const auto &path : files)
 		{
@@ -650,10 +650,10 @@ namespace {
 	void Source::Move(const QueueEntry &entry) const
 	{
 		Point angle = entry.sum / entry.weight;
-		// The source should be along the vector (angle.X(), angle.Y(), 1).
+		// The source should be along the vector (angle.X(), angle.Y(), -1).
 		// The length of the vector should be sqrt(1 / weight).
 		double scale = sqrt(1. / (entry.weight * (angle.LengthSquared() + 1.)));
-		alSource3f(source, AL_POSITION, angle.X() * scale, angle.Y() * scale, scale);
+		alSource3f(source, AL_POSITION, angle.X() * scale, angle.Y() * scale, -scale);
 	}
 
 

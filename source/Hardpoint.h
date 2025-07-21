@@ -46,6 +46,9 @@ public:
 		// (directional turret only)
 		Angle minArc;
 		Angle maxArc;
+		std::vector<std::pair<Angle, Angle>> blindspots;
+		// This attribute is added to the turret turn multiplier of the ship.
+		double turnMultiplier;
 	};
 
 
@@ -71,6 +74,8 @@ public:
 	const Angle &GetMaxArc() const;
 	// Get the angle this weapon ought to point at for ideal gun harmonization.
 	Angle HarmonizedAngle() const;
+	// Get the turret turn rate of this hardpoint, considering all applicable multipliers.
+	double TurnRate(const Ship &ship) const;
 	// Shortcuts for querying weapon characteristics.
 	bool IsTurret() const;
 	bool IsParallel() const;
@@ -78,10 +83,12 @@ public:
 	bool IsUnder() const;
 	bool IsHoming() const;
 	bool IsSpecial() const;
-	bool CanAim() const;
+	bool CanAim(const Ship &ship) const;
 
 	// Check if this weapon is ready to fire.
 	bool IsReady() const;
+	// Check if this weapon can't fire because of its blindspots.
+	bool IsBlind() const;
 	// Check if this weapon was firing in the previous step.
 	bool WasFiring() const;
 	// If this is a burst weapon, get the number of shots left in the burst.
@@ -91,7 +98,7 @@ public:
 
 	// Adjust this weapon's aim by the given amount, relative to its maximum
 	// "turret turn" rate.
-	void Aim(double amount);
+	void Aim(const Ship &ship, double amount);
 	// Fire this weapon. If it is a turret, it automatically points toward
 	// the given ship's target. If the weapon requires ammunition, it will
 	// be subtracted from the given ship.

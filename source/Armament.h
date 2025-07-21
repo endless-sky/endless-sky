@@ -71,7 +71,7 @@ public:
 	std::set<const Outfit *> RestockableAmmo() const;
 
 	// Adjust the aim of the turrets.
-	void Aim(const FireCommand &command);
+	void Aim(const Ship &ship, const FireCommand &command);
 	// Fire the given weapon, if it is ready.
 	void Fire(unsigned index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, bool jammed);
 	// Fire the given anti-missile system.

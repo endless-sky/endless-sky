@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapShipyardPanel.h"
 
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -68,14 +69,14 @@ const Sprite *MapShipyardPanel::CompareSprite() const
 
 
 
-int MapShipyardPanel::SelectedSpriteSwizzle() const
+const Swizzle *MapShipyardPanel::SelectedSpriteSwizzle() const
 {
 	return selected->CustomSwizzle();
 }
 
 
 
-int MapShipyardPanel::CompareSpriteSwizzle() const
+const Swizzle *MapShipyardPanel::CompareSpriteSwizzle() const
 {
 	return compare->CustomSwizzle();
 }
@@ -154,7 +155,7 @@ double MapShipyardPanel::SystemValue(const System *system) const
 		for(const StellarObject &object : system->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
-				const auto &shipyard = object.GetPlanet()->Shipyard();
+				const auto &shipyard = object.GetPlanet()->ShipyardStock();
 				if(shipyard.Has(selected))
 					return 1.;
 				if(!shipyard.empty())
@@ -220,7 +221,8 @@ void MapShipyardPanel::DrawItems()
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
-					if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->Shipyard().Has(ship))
+					if(object.HasSprite() && object.HasValidPlanet()
+							&& object.GetPlanet()->ShipyardStock().Has(ship))
 					{
 						isForSale = true;
 						break;
@@ -250,7 +252,7 @@ void MapShipyardPanel::DrawItems()
 				? "1 ship parked"
 				: Format::Number(parkedInSystem) + " ships parked";
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->DisplayModelName(), price, info, parking_details);
+					ship->DisplayModelName(), ship->VariantMapShopName(), price, info, parking_details);
 			list.push_back(ship);
 		}
 	}
@@ -265,7 +267,7 @@ void MapShipyardPanel::Init()
 	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())
 		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
-			for(const Ship *ship : it.second.Shipyard())
+			for(const Ship *ship : it.second.ShipyardStock())
 				if(!seen.contains(ship))
 				{
 					catalog[ship->Attributes().Category()].push_back(ship);

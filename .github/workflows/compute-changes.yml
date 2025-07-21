@@ -11,6 +11,8 @@ on:
         value: ${{ jobs.changed.outputs.unit_tests }}
       integration_tests:
         value: ${{ jobs.changed.outputs.integration_tests }}
+      shaders:
+        value: ${{ jobs.changed.outputs.shaders }}
       steam:
         value: ${{ jobs.changed.outputs.steam }}
       doxygen_config:
@@ -44,6 +46,7 @@ jobs:
       game_code: ${{ steps.filter.outputs.game_code }}
       unit_tests: ${{ steps.filter.outputs.unit_tests }}
       integration_tests: ${{ steps.filter.outputs.integration_tests }}
+      shaders: ${{ steps.filter.outputs.shaders }}
       steam: ${{ steps.filter.outputs.steam }}
       codespell: ${{ steps.filter.outputs.codespell }}
       editorconfig_files: ${{ steps.filter.outputs.editorconfig_files }}

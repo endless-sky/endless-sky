@@ -71,7 +71,8 @@ void CargoHold::Load(const DataNode &node)
 	// Cargo is stored as name / amount pairs in two lists: commodities and outfits.
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "commodities")
+		const string &key = child.Token(0);
+		if(key == "commodities")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
@@ -80,7 +81,7 @@ void CargoHold::Load(const DataNode &node)
 					commodities[grand.Token(0)] += tons;
 				}
 		}
-		else if(child.Token(0) == "outfits")
+		else if(key == "outfits")
 		{
 			for(const DataNode &grand : child)
 			{
@@ -584,7 +585,7 @@ int64_t CargoHold::Value(const System *system) const
 // be charged for any illegal outfits plus the sum of the fines for all
 // missions. If the returned value is negative, you are carrying something so
 // bad that it warrants a death sentence.
-int CargoHold::IllegalCargoFine(const Government *government, const PlayerInfo &player) const
+int CargoHold::IllegalCargoFine(const Government *government) const
 {
 	int totalFine = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
@@ -613,7 +614,7 @@ int CargoHold::IllegalCargoFine(const Government *government, const PlayerInfo &
 		int fine = it.first->Fine();
 		if(fine < 0)
 			return fine;
-		if(!it.first->IsFailed(player))
+		if(!it.first->IsFailed())
 			totalFine += fine;
 	}
 
@@ -622,7 +623,7 @@ int CargoHold::IllegalCargoFine(const Government *government, const PlayerInfo &
 
 
 
-int CargoHold::IllegalPassengersFine(const Government *government, const PlayerInfo &player) const
+int CargoHold::IllegalPassengersFine(const Government *government) const
 {
 	int totalFine = 0;
 	for(const auto &it : passengers)
@@ -630,7 +631,7 @@ int CargoHold::IllegalPassengersFine(const Government *government, const PlayerI
 		int fine = it.first->Fine();
 		if(fine < 0)
 			return fine;
-		if(!it.first->IsFailed(player))
+		if(!it.first->IsFailed())
 			totalFine += fine;
 	}
 

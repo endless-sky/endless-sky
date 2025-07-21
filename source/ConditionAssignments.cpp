@@ -28,37 +28,36 @@ using namespace std;
 
 namespace {
 	const auto ASSIGN_OP_TO_TEXT = map<ConditionAssignments::AssignOp, const string> {
-		{ConditionAssignments::AssignOp::AO_ASSIGN, "="},
-		{ConditionAssignments::AssignOp::AO_ADD, "+="},
-		{ConditionAssignments::AssignOp::AO_SUB, "-="},
-		{ConditionAssignments::AssignOp::AO_MUL, "*="},
-		{ConditionAssignments::AssignOp::AO_DIV, "/="},
-		{ConditionAssignments::AssignOp::AO_LT, "<?="},
-		{ConditionAssignments::AssignOp::AO_GT, ">?="},
+		{ConditionAssignments::AssignOp::ASSIGN, "="},
+		{ConditionAssignments::AssignOp::ADD, "+="},
+		{ConditionAssignments::AssignOp::SUB, "-="},
+		{ConditionAssignments::AssignOp::MUL, "*="},
+		{ConditionAssignments::AssignOp::DIV, "/="},
+		{ConditionAssignments::AssignOp::LT, "<?="},
+		{ConditionAssignments::AssignOp::GT, ">?="},
 	};
 }
 
 
 
 // Construct and Load() at the same time.
-ConditionAssignments::ConditionAssignments(const DataNode &node)
+ConditionAssignments::ConditionAssignments(const DataNode &node, const ConditionsStore *conditions)
 {
-	Load(node);
+	Load(node, conditions);
 }
 
 
 
 // Load a set of conditions from the children of this node.
-void ConditionAssignments::Load(const DataNode &node)
+void ConditionAssignments::Load(const DataNode &node, const ConditionsStore *conditions)
 {
+	this->conditions = conditions;
 	if(!node.HasChildren())
 		node.PrintTrace("Error: Loading empty set of assignments");
 
 	// Loop through all children, and parse each line into an Assignment.
 	for(const DataNode &child : node)
-	{
-		Add(child);
-	}
+		Add(child, conditions);
 }
 
 
@@ -91,34 +90,38 @@ bool ConditionAssignments::IsEmpty() const
 
 
 
-// Modify the given set of conditions.
-void ConditionAssignments::Apply(ConditionsStore &conditions) const
+void ConditionAssignments::Apply() const
 {
+	if(IsEmpty())
+		return;
+	if(!conditions)
+		throw runtime_error("Unable to Apply ConditionAssignments without a pointer to a ConditionsStore!");
+	ConditionsStore &conditionsStore = *const_cast<ConditionsStore *>(conditions);
 	for(const Assignment &assignment : assignments)
 	{
-		auto &ce = conditions[assignment.conditionToAssignTo];
-		int64_t newValue = assignment.expressionToEvaluate.Evaluate(conditions);
+		auto &ce = conditionsStore[assignment.conditionToAssignTo];
+		int64_t newValue = assignment.expressionToEvaluate.Evaluate();
 		switch(assignment.assignOperator)
 		{
-			case AssignOp::AO_ASSIGN:
+			case AssignOp::ASSIGN:
 				ce = newValue;
 				break;
-			case AssignOp::AO_ADD:
+			case AssignOp::ADD:
 				ce += newValue;
 				break;
-			case AssignOp::AO_SUB:
+			case AssignOp::SUB:
 				ce -= newValue;
 				break;
-			case AssignOp::AO_MUL:
+			case AssignOp::MUL:
 				ce = static_cast<int64_t>(ce) * newValue;
 				break;
-			case AssignOp::AO_DIV:
+			case AssignOp::DIV:
 				ce = newValue ? static_cast<int64_t>(ce) / newValue : numeric_limits<int64_t>::max();
 				break;
-			case AssignOp::AO_LT:
+			case AssignOp::LT:
 				ce = min(static_cast<int64_t>(ce), newValue);
 				break;
-			case AssignOp::AO_GT:
+			case AssignOp::GT:
 				ce = max(static_cast<int64_t>(ce), newValue);
 				break;
 		}
@@ -141,38 +144,42 @@ set<string> ConditionAssignments::RelevantConditions() const
 
 
 
-void ConditionAssignments::AddSetCondition(const std::string &name)
+void ConditionAssignments::AddSetCondition(const std::string &name, const ConditionsStore *conditions)
 {
-	assignments.emplace_back(name, AssignOp::AO_ASSIGN, ConditionSet(1));
+	this->conditions = conditions;
+	assignments.emplace_back(name, AssignOp::ASSIGN, ConditionSet(1, conditions));
 }
 
 
 
-void ConditionAssignments::Add(const DataNode &node)
+void ConditionAssignments::Add(const DataNode &node, const ConditionsStore *conditions)
 {
-	if(node.Token(0) == "set" || node.Token(0) == "clear")
+	this->conditions = conditions;
+	const string &key = node.Token(0);
+	if(key == "set" || key == "clear")
 	{
 		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
 		{
-			node.PrintTrace("Parse error; " + node.Token(0) + " keyword requires a single valid condition:");
+			node.PrintTrace("Parse error; " + key + " keyword requires a single valid condition:");
 			return;
 		}
-		assignments.emplace_back(node.Token(1), AssignOp::AO_ASSIGN, ConditionSet(node.Token(0) == "set" ? 1 : 0));
+		assignments.emplace_back(node.Token(1), AssignOp::ASSIGN,
+			ConditionSet(key == "set" ? 1 : 0, conditions));
 	}
 	else if(node.Size() == 2 && (node.Token(1) == "++" || node.Token(1) == "--"))
 	{
-		if(!DataNode::IsConditionName(node.Token(0)))
+		if(!DataNode::IsConditionName(key))
 		{
 			node.PrintTrace("Parse error; " + node.Token(1) + " operator requires a single valid condition:");
 			return;
 		}
-		assignments.emplace_back(node.Token(0), node.Token(1) == "++" ? AssignOp::AO_ADD : AssignOp::AO_SUB,
-			ConditionSet(1));
+		assignments.emplace_back(key, node.Token(1) == "++" ? AssignOp::ADD : AssignOp::SUB,
+			ConditionSet(1, conditions));
 	}
 	else if(node.Size() >= 3)
 	{
 		// Parse the assignment operator.
-		AssignOp ao = AssignOp::AO_ASSIGN;
+		AssignOp ao = AssignOp::ASSIGN;
 		const string assignOpString = node.Token(1);
 		auto it = find_if(ASSIGN_OP_TO_TEXT.begin(), ASSIGN_OP_TO_TEXT.end(),
 			[&assignOpString](const std::pair<AssignOp, const string> &e) {
@@ -187,7 +194,7 @@ void ConditionAssignments::Add(const DataNode &node)
 		}
 
 		// Parse the expression.
-		ConditionSet expr;
+		ConditionSet expr(conditions);
 		int tokenNr = 2;
 		if(!expr.ParseNode(node, tokenNr))
 			return;
@@ -196,7 +203,7 @@ void ConditionAssignments::Add(const DataNode &node)
 		expr.Optimize(node);
 
 		// Add the assignment when all parsing succeeded.
-		assignments.emplace_back(node.Token(0), ao, expr);
+		assignments.emplace_back(key, ao, expr);
 	}
 	else
 	{

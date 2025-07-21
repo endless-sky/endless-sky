@@ -48,7 +48,7 @@ public:
 
 		// A subset of the default input_iterator operations. Limiting to
 		// only a subset, since not all operations are used in-game.
-		const Point &operator*();
+		const Point &operator*() const;
 		PositionIterator &operator++();
 
 	private:
