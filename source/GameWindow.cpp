@@ -28,6 +28,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sstream>
 #include <string>
 
+#ifdef _WIN32
+#include <windows.h>
+
+#include <dwmapi.h>
+#include <SDL2/SDL_syswm.h>
+#include <versionhelpers.h>
+#endif
+
 using namespace std;
 
 namespace {
@@ -245,6 +253,23 @@ bool GameWindow::Init(bool headless)
 
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
+
+#ifdef _WIN32
+	// Set up a dark title bar.
+	if(IsWindows10OrGreater())
+	{
+		SDL_SysWMinfo windowInfo;
+		SDL_VERSION(&windowInfo.version);
+		SDL_GetWindowWMInfo(mainWindow, &windowInfo);
+		BOOL value = 1;
+
+		HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
+		auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
+			GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
+		dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
+		FreeLibrary(dwmapi);
+	}
+#endif
 
 #ifndef __APPLE__
 	// On OS X, setting the window icon will cause that same icon to be used
