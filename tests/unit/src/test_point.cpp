@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // ... and any system includes needed for the test file.
 #include <limits>
+#include <cmath>
 
 
 
@@ -397,8 +398,8 @@ SCENARIO( "Calculating absolute value", "[Point][abs]" ) {
 		Point first = Point(5.4321, -10.987654321);
 		WHEN( "Calculating abs" ) {
 			THEN( "The result is correct" ) {
-				CHECK( abs(first.X()) == abs(first).X() );
-				CHECK( abs(first.Y()) == abs(first).Y() );
+				CHECK( std::abs(first.X()) == abs(first).X() );
+				CHECK( std::abs(first.Y()) == abs(first).Y() );
 			}
 		}
 	}
