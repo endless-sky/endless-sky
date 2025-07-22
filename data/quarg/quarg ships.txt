@@ -29,7 +29,7 @@ ship "Quarg Lindwyrm"
 		"cargo space" 400
 		"outfit space" 460
 		"weapon capacity" 140
-		"engine capacity" 
+		"engine capacity" 100
 		"self destruct" .5
 		weapon
 			"blast radius" 150
