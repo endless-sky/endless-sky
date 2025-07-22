@@ -29,7 +29,8 @@ ship "Quarg Lindwyrm"
 		"cargo space" 400
 		"outfit space" 460
 		"weapon capacity" 140
-		"engine capacity" 100
+		"engine capacity" 
+		"self destruct" .5
 		weapon
 			"blast radius" 150
 			"shield damage" 15000
@@ -80,6 +81,7 @@ ship "Quarg Guivre"
 		"outfit space" 720
 		"weapon capacity" 280
 		"engine capacity" 140
+		"self destruct" .5
 		weapon
 			"blast radius" 300
 			"shield damage" 30000
@@ -130,6 +132,7 @@ ship "Quarg Drake"
 		"outfit space" 450
 		"weapon capacity" 140
 		"engine capacity" 80
+		"self destruct" .67
 		weapon
 			"blast radius" 120
 			"shield damage" 12000
@@ -182,6 +185,7 @@ ship "Quarg Wardragon"
 		"outfit space" 510
 		"weapon capacity" 180
 		"engine capacity" 100
+		"self destruct" .67
 		weapon
 			"blast radius" 135
 			"shield damage" 13500
@@ -233,6 +237,7 @@ ship "Quarg Wyvern"
 		"outfit space" 575
 		"weapon capacity" 250
 		"engine capacity" 120
+		"self destruct" .67
 		weapon
 			"blast radius" 200
 			"shield damage" 20000
@@ -285,6 +290,7 @@ ship "Quarg Hydra"
 		"outfit space" 925
 		"weapon capacity" 380
 		"engine capacity" 170
+		"self destruct" .67
 		weapon
 			"blast radius" 390
 			"shield damage" 39000
