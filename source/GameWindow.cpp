@@ -254,6 +254,8 @@ bool GameWindow::Init(bool headless)
 	AdjustViewport();
 
 #ifdef _WIN32
+	// Set up a dark title bar on Windows versions that support it
+	// without having to draw it manually.
 	HMODULE ntdll = LoadLibraryW(L"ntdll.dll");
 	auto rtlGetVersion = reinterpret_cast<NTSTATUS (*)(PRTL_OSVERSIONINFOW)>(GetProcAddress(ntdll, "RtlGetVersion"));
 	RTL_OSVERSIONINFOW versionInfo = {};
@@ -261,7 +263,6 @@ bool GameWindow::Init(bool headless)
 	FreeLibrary(ntdll);
 	if(versionInfo.dwBuildNumber >= 19041)
 	{
-		// Set up a dark title bar.
 		SDL_SysWMinfo windowInfo;
 		SDL_VERSION(&windowInfo.version);
 		SDL_GetWindowWMInfo(mainWindow, &windowInfo);
