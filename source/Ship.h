@@ -716,8 +716,8 @@ private:
 	std::array<uint8_t, 4> thrustHeldFrames = {};
 
 	int crew = 0;
-	int pilotError = 0;
-	int pilotOkay = 0;
+	int ticksPilotingInhibited = 0;
+	int ticksUntilNextLowCrewPilotInhibitedCheck = 0;
 
 	// Current status of this particular ship:
 	const System *currentSystem = nullptr;

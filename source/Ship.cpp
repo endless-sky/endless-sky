@@ -1851,8 +1851,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		}
 		if(helped)
 		{
-			pilotError = 120;
-			victim->pilotError = 120;
+			ticksPilotingInhibited = 120;
+			victim->ticksPilotingInhibited = 120;
 		}
 		return victim;
 	}
@@ -1868,8 +1868,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(cargo, false);
 
-		// Pause for two seconds before moving on.
-		pilotError = 120;
+		ticksPilotingInhibited = 120;
 	}
 
 	// Stop targeting this ship (so you will not board it again right away).
@@ -2312,7 +2311,7 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct(ActionType actionType) const
 {
-	bool cannotAct = zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
+	bool cannotAct = zoom != 1.f || isDisabled || hyperspaceCount || ticksPilotingInhibited ||
 		(actionType == ActionType::COMMUNICATION && !Crew());
 	if(cannotAct)
 		return true;
@@ -2597,8 +2596,9 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 
 	if(hireCrew)
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
-	pilotError = 0;
-	pilotOkay = 0;
+
+	ticksPilotingInhibited = 0;
+	ticksUntilNextLowCrewPilotInhibitedCheck = 0;
 
 	if((rechargeType & Port::RechargeType::Shields) || attributes.Get("shield generation"))
 		shields = MaxShields();
@@ -4711,19 +4711,27 @@ void Ship::DoInitializeMovement()
 
 void Ship::StepPilot()
 {
-	int requiredCrew = RequiredCrew();
+	// Every 30 ticks, there is a chance to inhibit piloting for 30 ticks.
+	// Note: once piloting has been inhibited and 30 ticks have passed, there is no grace period,
+	//       which means it can be inhibited again immediately. In-game this will look like
+	//       piloting has been inhibited for 60 ticks. This chain can keep going until rng doesn't inhibit piloting.
 
-	if(pilotError)
-		--pilotError;
-	else if(pilotOkay)
-		--pilotOkay;
+	const int requiredCrew = RequiredCrew();
+
+	if(ticksPilotingInhibited)
+		--ticksPilotingInhibited;
+	else if(ticksUntilNextLowCrewPilotInhibitedCheck)
+		--ticksUntilNextLowCrewPilotInhibitedCheck;
 	else if(isDisabled)
 	{
-		// If the ship is disabled, don't show a warning message due to missing crew.
+		// If the ship is disabled, don't show a warning message due to missing crew
+		// or update ticksUntilNextLowCrewPilotInhibitedCheck.
 	}
-	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
+	// Inhibit piloting on a chance equal to what portion of required crew is missing,
+	// but only if the ship requires crew at all.
+	else if(requiredCrew != 0 && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
-		pilotError = 30;
+		ticksPilotingInhibited = 30;
 		if(isYours || personality.IsEscort())
 		{
 			if(!parent.lock())
@@ -4735,7 +4743,7 @@ void Ship::StepPilot()
 		}
 	}
 	else
-		pilotOkay = 30;
+		ticksUntilNextLowCrewPilotInhibitedCheck = 30;
 }
 
 
@@ -4752,7 +4760,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 
 	if(isDisabled)
 		velocity *= 1. - dragForce;
-	else if(!pilotError)
+	else if(!ticksPilotingInhibited)
 	{
 		if(commands.Turn())
 		{
@@ -4972,7 +4980,7 @@ void Ship::StepTargeting()
 					|| target->GetSystem() != GetSystem())
 				isBoarding = false;
 		}
-		if(isBoarding && !pilotError)
+		if(isBoarding && !ticksPilotingInhibited)
 		{
 			Angle facing = angle;
 			bool left = target->Unit().Cross(facing.Unit()) < 0.;
