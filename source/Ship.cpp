@@ -4725,7 +4725,7 @@ void Ship::StepPilot()
 	else if(isDisabled)
 	{
 		// If the ship is disabled, don't show a warning message due to missing crew
-		// or update ticksUntilNextLowCrewPilotInhibitedCheck.
+		// or update pilotOkay.
 	}
 	// Inhibit piloting on a chance equal to what portion of required crew is missing,
 	// but only if the ship requires crew at all.
