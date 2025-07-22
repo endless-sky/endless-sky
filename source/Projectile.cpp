@@ -140,7 +140,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				if(lifetime > -100 ? it.spawnOnNaturalDeath : it.spawnOnAntiMissileDeath)
 					for(size_t i = 0; i < it.count; ++i)
 					{
-						const Weapon *const subWeapon = it.weapon;
+						const Weapon *const subWeapon = it.weapon.get();
 						Angle inaccuracy = Distribution::GenerateInaccuracy(subWeapon->Inaccuracy(),
 								subWeapon->InaccuracyDistribution());
 						projectiles.emplace_back(*this, it.offset, it.facing + inaccuracy, subWeapon);
