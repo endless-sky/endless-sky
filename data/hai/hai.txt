@@ -644,7 +644,6 @@ phrase "hai bribe acceptance hail"
 	word
 		" "
 	word
-		" "
 		"but "
 		"though "
 	word
