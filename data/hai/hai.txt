@@ -638,8 +638,6 @@ phrase "hai bribe acceptance hail"
 	word
 		"to work with you"
 	word
-		" "
-	word
 		";"
 	word
 		" "
