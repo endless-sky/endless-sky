@@ -166,6 +166,10 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				hostileHail = nullptr;
 			else if(key == "hostile disabled hail")
 				hostileDisabledHail = nullptr;
+			else if(key == "bribe acceptance hail")
+				bribeAcceptanceHail = nullptr;
+			else if(key == "bribe rejection hail")
+				bribeRejectionHail = nullptr;
 			else if(key == "language")
 				language.clear();
 			else if(key == "send untranslated hails")
@@ -401,6 +405,10 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			hostileHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "hostile disabled hail")
 			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "bribe acceptance hail")
+			bribeAcceptanceHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "bribe rejection hail")
+			bribeRejectionHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
@@ -577,6 +585,20 @@ string Government::GetHail(bool isDisabled) const
 		phrase = isDisabled ? friendlyDisabledHail : friendlyHail;
 
 	return phrase ? phrase->Get() : "";
+}
+
+
+
+string Government::GetBribeAcceptanceHail() const
+{
+	return bribeAcceptanceHail ? bribeAcceptanceHail->Get() : "It's a pleasure doing business with you.";
+}
+
+
+
+string Government::GetBribeRejectionHail() const
+{
+	return bribeRejectionHail ? bribeRejectionHail->Get() : "I do not want your money.";
 }
 
 
