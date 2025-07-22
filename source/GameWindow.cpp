@@ -33,7 +33,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <dwmapi.h>
 #include <SDL2/SDL_syswm.h>
-#include <versionhelpers.h>
 #endif
 
 using namespace std;
@@ -255,9 +254,14 @@ bool GameWindow::Init(bool headless)
 	AdjustViewport();
 
 #ifdef _WIN32
-	// Set up a dark title bar.
-	if(IsWindows10OrGreater())
+	HMODULE ntdll = LoadLibraryW(L"ntdll.dll");
+	auto rtlGetVersion = reinterpret_cast<NTSTATUS (*)(PRTL_OSVERSIONINFOW)>(GetProcAddress(ntdll, "RtlGetVersion"));
+	RTL_OSVERSIONINFOW versionInfo = {};
+	rtlGetVersion(&versionInfo);
+	FreeLibrary(ntdll);
+	if(versionInfo.dwBuildNumber >= 19041)
 	{
+		// Set up a dark title bar.
 		SDL_SysWMinfo windowInfo;
 		SDL_VERSION(&windowInfo.version);
 		SDL_GetWindowWMInfo(mainWindow, &windowInfo);
