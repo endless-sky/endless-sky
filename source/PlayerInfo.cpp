@@ -4895,7 +4895,10 @@ void PlayerInfo::DoAccounting()
 	if(totalCreditChange)
 	{
 		string changeMsg = "You ";
-		if(totalCreditChange > 0){ changeMsg += "gained ";} else { changeMsg += "lost ";}
+		if(totalCreditChange > 0)
+			changeMsg += "gained ";
+		else
+			changeMsg += "lost ";
 		changeMsg += Format::CreditString(abs(totalCreditChange)) + " yesterday.";
 		Messages::Add(changeMsg, Messages::Importance::High);
 	}
