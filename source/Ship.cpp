@@ -1851,8 +1851,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		}
 		if(helped)
 		{
-			ticksPilotInhibited = 120;
-			victim->ticksPilotInhibited = 120;
+			pilotError = 120;
+			victim->pilotError = 120;
 		}
 		return victim;
 	}
@@ -1868,7 +1868,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(cargo, false);
 
-		ticksPilotInhibited = 120;
+		pilotError = 120;
 	}
 
 	// Stop targeting this ship (so you will not board it again right away).
@@ -2311,7 +2311,7 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct(ActionType actionType) const
 {
-	bool cannotAct = zoom != 1.f || isDisabled || hyperspaceCount || ticksPilotInhibited ||
+	bool cannotAct = zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
 		(actionType == ActionType::COMMUNICATION && !Crew());
 	if(cannotAct)
 		return true;
@@ -2597,8 +2597,8 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	if(hireCrew)
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
 
-	ticksPilotInhibited = 0;
-	ticksUntilNextLowCrewPilotInhibitedCheck = 0;
+	pilotError = 0;
+	pilotOkay = 0;
 
 	if((rechargeType & Port::RechargeType::Shields) || attributes.Get("shield generation"))
 		shields = MaxShields();
@@ -4718,10 +4718,10 @@ void Ship::StepPilot()
 
 	const int requiredCrew = RequiredCrew();
 
-	if(ticksPilotInhibited)
-		--ticksPilotInhibited;
-	else if(ticksUntilNextLowCrewPilotInhibitedCheck)
-		--ticksUntilNextLowCrewPilotInhibitedCheck;
+	if(pilotError)
+		--pilotError;
+	else if(pilotOkay)
+		--pilotOkay;
 	else if(isDisabled)
 	{
 		// If the ship is disabled, don't show a warning message due to missing crew
@@ -4731,7 +4731,7 @@ void Ship::StepPilot()
 	// but only if the ship requires crew at all.
 	else if(requiredCrew != 0 && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
-		ticksPilotInhibited = 30;
+		pilotError = 30;
 		if(isYours || personality.IsEscort())
 		{
 			if(!parent.lock())
@@ -4743,7 +4743,7 @@ void Ship::StepPilot()
 		}
 	}
 	else
-		ticksUntilNextLowCrewPilotInhibitedCheck = 30;
+		pilotOkay = 30;
 }
 
 
@@ -4760,7 +4760,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 
 	if(isDisabled)
 		velocity *= 1. - dragForce;
-	else if(!ticksPilotInhibited)
+	else if(!pilotError)
 	{
 		if(commands.Turn())
 		{
@@ -4980,7 +4980,7 @@ void Ship::StepTargeting()
 					|| target->GetSystem() != GetSystem())
 				isBoarding = false;
 		}
-		if(isBoarding && !ticksPilotInhibited)
+		if(isBoarding && !pilotError)
 		{
 			Angle facing = angle;
 			bool left = target->Unit().Cross(facing.Unit()) < 0.;
