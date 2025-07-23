@@ -709,11 +709,7 @@ bool System::Inaccessible() const
 System::SolarGeneration System::GetSolarGeneration(const Point &shipPosition,
 	double shipRamscoop, double shipCollection, double shipCollectionHeat) const
 {
-	SolarGeneration generation{
-		.fuel = ramscoopAddend,
-		.energy = 0.,
-		.heat = 0.
-	};
+	SolarGeneration generation{ramscoopAddend, 0., 0.};
 	for(const auto &stellar : objects)
 	{
 		double power = GameData::SolarPower(stellar.GetSprite());
