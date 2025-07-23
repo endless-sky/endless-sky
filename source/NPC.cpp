@@ -15,15 +15,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "NPC.h"
 
+#include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
+#include "Fleet.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
+#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -345,7 +348,7 @@ void NPC::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		if(!conversation->IsEmpty())
+		if(conversation && !conversation->IsEmpty())
 			conversation->Save(out);
 
 		for(const shared_ptr<Ship> &ship : ships)
@@ -525,7 +528,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 	{
 		// If "completing" this NPC displays a conversation, reference
 		// it, to allow the completing event's target to be destroyed.
-		if(!conversation->IsEmpty())
+		if(conversation && !conversation->IsEmpty())
 			ui->Push(new ConversationPanel(player, *conversation, caller, nullptr, ship));
 		if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
@@ -733,11 +736,11 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		subs["<npc model>"] = result.ships.front()->DisplayModelName();
 	}
 	// Do string replacement on any dialog or conversation.
-	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
+	string dialogText = dialogPhrase && !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 
-	if(!conversation->IsEmpty())
+	if(conversation && !conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
 	return result;
