@@ -1380,9 +1380,9 @@ void MapPanel::DrawNames()
 {
 	// Draw names for all systems you have visited.
 	double zoom = Zoom();
-	static constexpr double BIGGER_TARGET_ZOOM = 2. / 3.;
 	if(zoom <= .5)
 		return;
+	static constexpr double BIGGER_TARGET_ZOOM = 2. / 3.;
 	double alpha = zoom >= BIGGER_TARGET_ZOOM ? 1. : (.5 - zoom) / (.5 - BIGGER_TARGET_ZOOM);
 	bool useBigFont = (zoom > 2.);
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
