@@ -4894,12 +4894,12 @@ void PlayerInfo::DoAccounting()
 		totalCreditChange += gain.second;
 	if(totalCreditChange)
 	{
-		string changeMsg = "You ";
+		string changeMsg = "For a total of " + Format::CreditString(abs(totalCreditChange));
 		if(totalCreditChange > 0)
-			changeMsg += "gained ";
+			changeMsg += " gained ";
 		else
-			changeMsg += "lost ";
-		changeMsg += Format::CreditString(abs(totalCreditChange)) + " yesterday.";
+			changeMsg += " lost ";
+		changeMsg += "yesterday.";
 		Messages::Add(changeMsg, Messages::Importance::High);
 	}
 }
