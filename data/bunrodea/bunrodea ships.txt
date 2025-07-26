@@ -17,8 +17,8 @@ ship "Kaiken"
 	attributes
 		category "Fighter"
 		"cost" 1199000
-		"shields" 3200
-		"hull" 800
+		"shields" 2600
+		"hull" 640
 		"required crew" 1
 		"bunks" 1
 		"mass" 60
@@ -62,8 +62,8 @@ ship "Sasumata"
 	attributes
 		category "Transport"
 		"cost" 12650000
-		"shields" 15500
-		"hull" 4200
+		"shields" 12400
+		"hull" 3400
 		"required crew" 10
 		"bunks" 72
 		"mass" 710
@@ -129,8 +129,8 @@ ship "Tanto"
 	attributes
 		category "Light Freighter"
 		"cost" 5995000
-		"shields" 16200
-		"hull" 3600
+		"shields" 13000
+		"hull" 2900
 		"required crew" 3
 		"bunks" 7
 		"mass" 247
@@ -181,8 +181,8 @@ ship "Ararebo"
 	attributes
 		category "Utility"
 		"cost" 17565000
-		"shields" 50300
-		"hull" 13600
+		"shields" 40300
+		"hull" 10900
 		"required crew" 15
 		"bunks" 43
 		"mass" 1068
@@ -248,8 +248,8 @@ ship "Tekkan"
 	attributes
 		category "Light Warship"
 		"cost" 10119000
-		"shields" 18600
-		"hull" 5200
+		"shields" 14900
+		"hull" 4200
 		"required crew" 6
 		"bunks" 9
 		"mass" 364
@@ -304,8 +304,8 @@ ship "Kunai"
 	attributes
 		category "Light Warship"
 		"cost" 12444000
-		"shields" 21400
-		"hull" 5700
+		"shields" 17200
+		"hull" 4600
 		"required crew" 15
 		"bunks" 37
 		"mass" 603
@@ -362,8 +362,8 @@ ship "Kama"
 	attributes
 		category "Medium Warship"
 		"cost" 20580000
-		"shields" 43700
-		"hull" 11500
+		"shields" 35000
+		"hull" 9200
 		"required crew" 39
 		"bunks" 43
 		"mass" 1160
@@ -429,8 +429,8 @@ ship "Chigiriki"
 	attributes
 		category "Heavy Warship"
 		"cost" 30876000
-		"shields" 64200
-		"hull" 21000
+		"shields" 51400
+		"hull" 16800
 		"required crew" 49
 		"bunks" 69
 		"mass" 1698
