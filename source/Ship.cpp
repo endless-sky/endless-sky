@@ -2257,6 +2257,13 @@ bool Ship::IsOverheated() const
 
 
 
+bool Ship::IsIonized() const
+{
+	return ionization > energy;
+}
+
+
+
 bool Ship::IsDisabled() const
 {
 	if(!isDisabled)
