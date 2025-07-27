@@ -256,7 +256,7 @@ int ShopPanel::VisibilityCheckboxesSize() const
 
 
 
-bool ShopPanel::ShouldHighlight(const Ship *ship)
+bool ShopPanel::ShouldHighlightShip(const Ship *ship)
 {
 	return (hoverButton == 's');
 }
@@ -746,7 +746,7 @@ void ShopPanel::DrawShipsSidebar()
 		SpriteShader::Draw(background, point);
 		// If this is one of the selected ships, check if the currently hovered
 		// button (if any) applies to it. If so, brighten the background.
-		if(isSelected && ShouldHighlight(ship.get()))
+		if(isSelected && ShouldHighlightShip(ship.get()))
 			SpriteShader::Draw(background, point);
 
 		const Sprite *sprite = ship->GetSprite();

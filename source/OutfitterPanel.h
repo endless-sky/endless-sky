@@ -50,6 +50,15 @@ public:
 		Sell,
 	};
 
+	// Sources and sinks are locations which items may move to and from within the outfitter.
+	enum class OutfitLocation {
+		Ship,
+		Shop,
+		Cargo,
+		Storage,
+	};
+
+
 protected:
 	virtual int TileSize() const override;
 	virtual int VisibilityCheckboxesSize() const override;
@@ -57,14 +66,18 @@ protected:
 	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual double ButtonPanelHeight() const override;
 	virtual double DrawDetails(const Point &center) override;
-	virtual bool ShouldHighlight(const Ship *ship) override;
+
+	virtual bool ButtonActive(char key, bool shipRelatedOnly=false);
+
+	virtual bool ShouldHighlightShip(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual char CheckButton(int x, int y) override;
 
+
+protected:
 	void DrawButtons() override;
 	int FindItem(const std::string &text) const override;
 	TransactionResult HandleShortcuts(char key) override;
-
 
 
 private:
@@ -73,30 +86,18 @@ private:
 	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
 	bool HasLicense(const std::string &name) const;
 	void CheckRefill();
-	void Refill();
+	void Refill() const;
 	// Shared code for reducing the selected ships to those that have the
 	// same quantity of the selected outfit.
-	std::vector<Ship *> GetShipsToOutfit(bool isBuy = false) const;
+	std::vector<Ship *> GetShipsToOutfit(bool isInstall = false) const;
 
 	// Helper functions to make the cargo management code more readable.
-	TransactionResult CanPurchase(bool checkSpecialItems = true) const;
-	TransactionResult CanFitInCargo(bool returnReason = false) const;
-	TransactionResult CanBeInstalled() const;
-	TransactionResult CanUninstall(UninstallAction action) const;
-	TransactionResult CanBuyToCargo() const;
-	TransactionResult CanDoBuyButton() const;
-	TransactionResult CanInstall() const;
-	void BuyIntoCargo();
-	void DoBuyButton();
-	void Sell(bool storeOutfits);
-	void Install();
-	bool CanMoveToCargoFromStorage() const;
-	void MoveToCargoFromStorage();
-	void RetainInStorage();
-	void BuyFromShopAndInstall() const;
-	void Uninstall();
-	void Uninstall(bool sell) const;
+	TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
+	TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
 
+
+private:
+	// Toggles for the display filters.
 	void ToggleForSale();
 	void ToggleInstalled();
 	void ToggleStorage();
