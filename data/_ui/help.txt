@@ -38,7 +38,7 @@ help "disabled"
 	`If the ship that disabled you is still hanging around, you might need to hail them first and bribe them to leave you alone.`
 
 help "hiring"
-	`Hiring extra crew is only helpful if you plan on capturing enemy ships. By default, each crew member other than yourself is paid 100 credits per day. Larger ships require more than one crew member, but you will automatically hire the minimum number of crew when you buy those ships.`
+	`Hiring extra crew is only helpful if you plan on capturing enemy ships. Each ship requires at least one officer, who is paid <base officer salary> per day, plus <officer salary per crew> for each crew under their command, up to a maximum of <crew per officer>. The first officer on your flagship is yourself and does not need any payment. All non-officer crew are paid <base crew salary> per day. You will automatically hire the minimum number of crew when you buy a ship.`
 	`Crew members take up space that can otherwise be used for passengers.`
 
 help "jobs"

@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 #include "shader/FogShader.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
@@ -958,11 +959,26 @@ const string &GameData::Tooltip(const string &label)
 
 
 
+string GameData::ReplaceNamesWithSalaries(const string &text)
+{
+	map<string, string> subs;
+	subs["<base crew salary>"] = Format::CreditString(GetGamerules().BaseCrewSalary());
+	subs["<base officer salary>"] = Format::CreditString(GetGamerules().BaseOfficerSalary());
+	subs["<crew per officer>"] = Format::Number(GetGamerules().CrewPerOfficer() - 1) + "crew";
+	subs["<officer salary per crew>"] = Format::CreditString(GetGamerules().OfficerSalaryPerCrew());
+	subs["<officer mutliplier>"] = Format::Number(GetGamerules().OfficerMultiplier() * 100) + '%';
+
+	return Format::Replace(text, subs);
+}
+
+
+
 string GameData::HelpMessage(const string &name)
 {
 	static const string EMPTY;
 	auto it = objects.helpMessages.find(name);
-	return Command::ReplaceNamesWithKeys(it == objects.helpMessages.end() ? EMPTY : it->second);
+	return it == objects.helpMessages.end() ? EMPTY
+		: Command::ReplaceNamesWithKeys(ReplaceNamesWithSalaries(it->second));
 }
 
 
