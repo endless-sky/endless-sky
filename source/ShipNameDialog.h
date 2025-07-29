@@ -37,7 +37,7 @@ public:
 
 
 protected:
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
 
 private:

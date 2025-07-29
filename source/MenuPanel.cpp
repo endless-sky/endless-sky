@@ -223,8 +223,11 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool MenuPanel::Click(int x, int y, int clicks)
+bool MenuPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	// Double clicking on the credits pauses/resumes the credits scroll.
 	if(clicks == 2 && mainMenuUi->GetBox("credits").Contains(Point(x, y)))
 	{

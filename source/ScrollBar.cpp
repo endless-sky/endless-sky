@@ -120,8 +120,11 @@ bool ScrollBar::Drag(double dx, double dy)
 	return true;
 }
 
-bool ScrollBar::Click(int x, int y, int clicks)
+bool ScrollBar::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	Point clickPos(x, y);
 	if((clickPos - from).Length() < 10.)
 	{
