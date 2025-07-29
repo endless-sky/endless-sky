@@ -150,11 +150,11 @@ public:
 	// Update the number and types of crew on each of the player's ships. Called when calculating salaries.
 	void UpdateCrew();
 	// Get the number of each type of crew in the player's fleet.
-	int Captains() const;
-	int SubordinateCrew() const;
-	int FreeCrew() const;
+	int Officers() const;
+	int Subordinates() const;
+	int Crew() const;
 	// Calculate the salaries of each type of crew.
-	int64_t CaptainSalaries() const;
+	int64_t OfficerSalaries() const;
 	int64_t CrewSalaries() const;
 	int64_t Salaries();
 
@@ -439,9 +439,9 @@ private:
 	Account accounts;
 
 	// The types of crew in the player's fleet.
-	int captains = 0;
-	int freeCrew = 0;
-	int subordinateCrew = 0;
+	int officers = 0;
+	int crew = 0;
+	int subordinates = 0;
 
 	// The licenses that the player owns.
 	std::set<std::string> licenses;

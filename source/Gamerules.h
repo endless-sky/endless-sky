@@ -50,9 +50,10 @@ public:
 	double SystemArrivalMin() const;
 	double FleetMultiplier() const;
 	int BaseCrewSalary() const;
-	int BaseCaptainSalary() const;
-	int CaptainSalaryPerCrew() const;
-	double CaptainMultiplier() const;
+	int BaseOfficerSalary() const;
+	int OfficerSalaryPerCrew() const;
+	int CrewPerOfficer() const;
+	double OfficerMultiplier() const;
 
 
 private:
@@ -69,8 +70,9 @@ private:
 	double systemDepartureMin = 0.;
 	double systemArrivalMin = 0.;
 	double fleetMultiplier = 1.;
-	int baseCrewSalary = 100;
-	int baseCaptainSalary = 100;
-	int captainSalaryPerCrew = 100;
-	double captainMultiplier = 1.1;
+	int baseCrewSalary = 200;
+	int baseOfficerSalary = 6000;
+	int crewPerOfficer = 20;
+	int officerSalaryPerCrew = 50;
+	double officerMultiplier = 1.1;
 };

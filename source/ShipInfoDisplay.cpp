@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Table.h"
 
 #include <algorithm>
+#include <cmath>
 #include <map>
 #include <sstream>
 
@@ -236,9 +237,17 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeValues.push_back(Format::Number(ship.Cargo().Used())
 			+ " / " + Format::Number(attributes.Get("cargo space")) + " tons");
 	attributesHeight += 20;
-	attributeLabels.push_back("required crew / bunks:");
-	attributeValues.push_back(Format::Number(ship.RequiredCrew())
-		+ " / " + Format::Number(attributes.Get("bunks")));
+
+	int requiredOfficers = ship.RequiredOfficers();
+	int requiredCrew = ship.RequiredCrew() - requiredOfficers;
+	int bunks = attributes.Get("bunks");
+	// Truncate if there are too many officers, crew, and/or bunks.
+	attributeLabels.push_back((requiredOfficers >= 10) + (requiredCrew >= 100) + (bunks >= 100) >= 2
+			? "off. / crew / bunks:" : "officers / crew / bunks:");
+	attributeValues.push_back(Format::Number(requiredOfficers)
+		+ " / " + Format::Number(requiredCrew)
+		+ " / " + Format::Number(bunks));
+
 	attributesHeight += 20;
 	attributeLabels.push_back(isGeneric ? "fuel capacity:" : "fuel:");
 	double fuelCapacity = attributes.Get("fuel capacity");

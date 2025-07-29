@@ -921,79 +921,77 @@ Account &PlayerInfo::Accounts()
 // Recalculate the number of crew in the player's fleet.
 void PlayerInfo::UpdateCrew()
 {
-	captains = 0;
-	subordinateCrew = 0;
-	freeCrew = 0;
+	officers = 0;
+	subordinates = 0;
+	crew = 0;
 
 	for(const shared_ptr<Ship> &ship : ships)
 		// Destroyed and parked ships do not have any crew on them.
 		if(!ship->IsParked() && !ship->IsDestroyed())
 		{
 			bool isFlagship = Flagship() == ship.get();
+			bool canBeCarried = ship->CanBeCarried();
+			int requiredCrew = ship->RequiredCrew() - ship->RequiredOfficers();
+			int requiredOfficers = ship->RequiredOfficers() - (!canBeCarried ? isFlagship : 0);
 			// Extra crew is only counted on the flagship.
-			int crew = isFlagship ? ship->Crew() - 1 : ship->RequiredCrew();
+			crew += isFlagship ? ship->Crew() - requiredOfficers - 1 : requiredCrew;
+			officers += requiredOfficers;
 
-			// Carried and automated ships cannot have a captain.
-			// The player is already the captain of their flagship and does not need to be paid.
-			if(!ship->Attributes().Get("automaton") && !ship->CanBeCarried() && !isFlagship)
-			{
-				captains++;
-				subordinateCrew += crew - 1;
-			}
-			else
-				freeCrew += crew;
+			// Carried ships do not have officers.
+			// The player counts as an officer on their flagship and does not need to be paid.
+			if(!canBeCarried)
+				subordinates += isFlagship ? max(requiredCrew - 19, 0) : requiredCrew;
 		}
 }
 
 
 
 // Get the number of subordinate crew in the player's fleet.
-int PlayerInfo::SubordinateCrew() const
+int PlayerInfo::Subordinates() const
 {
-	return subordinateCrew;
+	return subordinates;
 }
 
 
 
-// Get the number of free crew in the player's fleet.
-int PlayerInfo::FreeCrew() const
+// Get the number of crew in the player's fleet.
+int PlayerInfo::Crew() const
 {
-	return freeCrew;
+	return crew;
 }
 
 
 
-// Get the number of captains in the player's fleet.
-int PlayerInfo::Captains() const
+// Get the number of officers in the player's fleet.
+int PlayerInfo::Officers() const
 {
-	return captains;
+	return officers;
 }
 
 
 
-// Calculate the total daily salary of all captains under the player's command.
-int64_t PlayerInfo::CaptainSalaries() const
+// Calculate the total daily salary of all officers under the player's command.
+int64_t PlayerInfo::OfficerSalaries() const
 {
-	const int baseCaptainSalary = GameData::GetGamerules().BaseCaptainSalary();
-	const int captainSalaryPerCrew = GameData::GetGamerules().CaptainSalaryPerCrew();
-	const double captainMultiplier = GameData::GetGamerules().CaptainMultiplier();
+	const int baseOfficerSalary = GameData::GetGamerules().BaseOfficerSalary();
+	const int officerSalaryPerCrew = GameData::GetGamerules().OfficerSalaryPerCrew();
+	const double officerMultiplier = GameData::GetGamerules().OfficerMultiplier();
 
-	// A captain's salary is equal to the base captain salary plus the captain salary per crew,
-	// for each of their subordinates. This is then multiplied by the captain multiplier for
-	// each hired captain in the player's fleet beyond the first.
-	// The subordinates of all captains are combined to simplify calculations.
-	return (baseCaptainSalary * captains + subordinateCrew * captainSalaryPerCrew)
-		* pow(captainMultiplier, captains - 1);
+	// An officer's salary is equal to the base officer salary plus the officer salary per crew,
+	// for each of their subordinates. This is then multiplied by the officer multiplier for
+	// each hired officer in the player's fleet beyond the first.
+	return (baseOfficerSalary * officers + subordinates * officerSalaryPerCrew)
+		* pow(officerMultiplier, officers - 1);
 }
 
 
 
-// Calculate the total daily salary of all non-captain crew under the player's command.
+// Calculate the total daily salary of all non-officer crew under the player's command.
 int64_t PlayerInfo::CrewSalaries() const
 {
 	const int baseSalary = GameData::GetGamerules().BaseCrewSalary();
 
-	return (subordinateCrew + freeCrew) * baseSalary;
+	return (crew) * baseSalary;
 }
 
 
@@ -1003,7 +1001,7 @@ int64_t PlayerInfo::Salaries()
 {
 	UpdateCrew();
 
-	return CaptainSalaries() + CrewSalaries();
+	return OfficerSalaries() + CrewSalaries();
 }
 
 

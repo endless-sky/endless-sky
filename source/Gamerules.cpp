@@ -73,13 +73,15 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "fleet multiplier")
 			fleetMultiplier = max<double>(0., child.Value(1));
 		else if(key == "base crew salary")
-			baseCrewSalary = max<int>(0., child.Value(1));
-		else if(key == "base captain salary")
-			baseCaptainSalary = max<int>(0., child.Value(1));
-		else if(key == "captain salary per crew")
-			captainSalaryPerCrew = max<int>(0., child.Value(1));
-		else if(key == "captain multiplier")
-			captainMultiplier = max<double>(1., child.Value(1));
+			baseCrewSalary = max<int>(0, child.Value(1));
+		else if(key == "base officer salary")
+			baseOfficerSalary = max<int>(0, child.Value(1));
+		else if(key == "crew per officer")
+			crewPerOfficer = max<int>(1, child.Value(1));
+		else if(key == "officer salary per crew")
+			officerSalaryPerCrew = max<int>(0, child.Value(1));
+		else if(key == "officer multiplier")
+			officerMultiplier = max<double>(1., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -185,21 +187,28 @@ int Gamerules::BaseCrewSalary() const
 
 
 
-int Gamerules::BaseCaptainSalary() const
+int Gamerules::BaseOfficerSalary() const
 {
-	return baseCaptainSalary;
+	return baseOfficerSalary;
 }
 
 
 
-int Gamerules::CaptainSalaryPerCrew() const
+int Gamerules::CrewPerOfficer() const
 {
-	return captainSalaryPerCrew;
+	return crewPerOfficer;
 }
 
 
 
-double Gamerules::CaptainMultiplier() const
+int Gamerules::OfficerSalaryPerCrew() const
 {
-	return captainMultiplier;
+	return officerSalaryPerCrew;
+}
+
+
+
+double Gamerules::OfficerMultiplier() const
+{
+	return officerMultiplier;
 }

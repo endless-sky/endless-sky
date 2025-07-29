@@ -54,23 +54,23 @@ void HiringPanel::Draw()
 	Information info;
 
 	int flagshipBunks = 0;
-	int flagshipCaptains = 0;
+	int flagshipOfficers = 0;
 	int flagshipRequired = 0;
 	int flagshipExtra = 0;
 	int flagshipUnused = 0;
+	bool flagshipCarried = flagship->CanBeCarried();
 
 	if(flagship)
 	{
 		flagshipBunks = flagship->Attributes().Get("bunks");
-		// The player is always a captain on their own flagship.
-		flagshipCaptains = 1;
-		flagshipRequired = flagship->RequiredCrew() - flagshipCaptains;
+		flagshipOfficers = flagship->RequiredOfficers();
+		flagshipRequired = flagship->RequiredCrew() - flagshipOfficers;
 		flagshipExtra = flagship->Crew() - flagship->RequiredCrew();
 		flagshipUnused = flagshipBunks - flagship->Crew();
 	}
 
 	info.SetString("flagship bunks", to_string(flagshipBunks));
-	info.SetString("flagship captains", to_string(flagshipCaptains));
+	info.SetString("flagship officers", to_string(flagshipOfficers));
 	info.SetString("flagship required", to_string(flagshipRequired));
 	info.SetString("flagship extra", to_string(flagshipExtra));
 	info.SetString("flagship unused", to_string(flagshipUnused));
@@ -79,10 +79,9 @@ void HiringPanel::Draw()
 	// disabled or out-of-system ships, but any parked ships have no crew costs.
 	player.UpdateCrew();
 
-	int fleetCaptains = player.Captains() + flagshipCaptains;
+	int fleetOfficers = player.Officers() + (!flagshipCarried ? 1 : 0);
 	int fleetBunks = 0;
-	int fleetSubordinates = player.SubordinateCrew();
-	int fleetFree = player.FreeCrew();
+	int fleetCrew = player.Crew() + (!flagshipCarried ? 0 : 1);
 	int passengers = player.Cargo().Passengers();
 
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -91,32 +90,34 @@ void HiringPanel::Draw()
 			fleetBunks += static_cast<int>(ship->Attributes().Get("bunks"));
 		}
 
-	int fleetRequired = fleetSubordinates + fleetFree - flagshipExtra;
-	int fleetUnused = fleetBunks - fleetFree - fleetSubordinates - fleetCaptains;
+	int fleetRequired = fleetCrew - flagshipExtra;
+	int fleetUnused = fleetBunks - fleetCrew - fleetOfficers;
 
 	info.SetString("fleet bunks", to_string(fleetBunks));
-	info.SetString("fleet captains", to_string(fleetCaptains));
+	info.SetString("fleet officers", to_string(fleetOfficers));
 	info.SetString("fleet required", to_string(fleetRequired));
 	info.SetString("fleet unused", to_string(fleetUnused));
 	info.SetString("passengers", to_string(passengers));
 
 	const int baseSalary = GameData::GetGamerules().BaseCrewSalary();
-	const int baseCaptainSalary = GameData::GetGamerules().BaseCaptainSalary();
-	const int captainSalaryPerCrew = GameData::GetGamerules().CaptainSalaryPerCrew();
-	const double captainMultiplier = GameData::GetGamerules().CaptainMultiplier();
+	const int baseOfficerSalary = GameData::GetGamerules().BaseOfficerSalary();
+	const int officerSalaryPerCrew = GameData::GetGamerules().OfficerSalaryPerCrew();
+	const double officerMultiplier = GameData::GetGamerules().OfficerMultiplier();
 
-	int captainSalary = player.CaptainSalaries();
+	int officerSalary = player.OfficerSalaries();
 	int salary = fleetRequired * baseSalary;
 	int extraSalary = flagshipExtra * baseSalary;
 
-	info.SetString("salary captains", Format::Credits(captainSalary));
+	info.SetString("salary officers", Format::Credits(officerSalary));
 	info.SetString("salary required", Format::Credits(salary));
 	info.SetString("salary extra", Format::Credits(extraSalary));
 
-	info.SetString("captain explanation 1", "(A captain's salary is " + Format::CreditString(baseCaptainSalary)
-		+ ", plus " + Format::Credits(captainSalaryPerCrew) + " for each crewmember they");
-	info.SetString("captain explanation 2", "command, multiplied by " + Format::Number(captainMultiplier * 100)
-		+ " percent for each other captain in your fleet.)");
+	info.SetString("officer explanation 1", "(Each ship in your fleet requires one officer for every "
+		+ Format::Number(GameData::GetGamerules().CrewPerOfficer()) + " crew, rounded up.)");
+	info.SetString("officer explanation 2", "(An officer's salary is " + Format::CreditString(baseOfficerSalary)
+		+ ", plus " + Format::Credits(officerSalaryPerCrew) + " for each crew member they");
+	info.SetString("officer explanation 3", "command, multiplied by " + Format::Number(officerMultiplier * 100)
+		+ " percent for each other officer in your fleet.)");
 
 	int modifier = Modifier();
 	if(modifier > 1)

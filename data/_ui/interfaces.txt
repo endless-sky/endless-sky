@@ -1800,16 +1800,16 @@ interface "hiring"
 		center 110 110
 		align right
 	
-	label "required captains"
+	label "required officers"
 		center -230 130
 		align left
-	string "flagship captains"
+	string "flagship officers"
 		center -10 130
 		align right
-	string "fleet captains"
+	string "fleet officers"
 		center 110 130
 		align right
-	string "salary captains"
+	string "salary officers"
 		center 230 130
 		align right
 	
@@ -1873,12 +1873,13 @@ interface "hiring"
 		center 110 220
 		align right
 	
-	label "(Each hyperspace-capable ship beyond your flagship requires a captain.)"
+	string "officer explanation 1"
 		center 0 255
-	string "captain explanation 1"
+		color "medium"
+	string "officer explanation 2"
 		center 0 275
 		color "medium"
-	string "captain explanation 2"
+	string "officer explanation 3"
 		center 0 295
 		color "medium"
 	label "(Hiring extra crew on your flagship improves your capturing odds.)"
