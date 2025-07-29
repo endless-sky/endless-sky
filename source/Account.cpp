@@ -275,35 +275,12 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	if(debtPaid)
 		typesPaid["debt"] = debtPaid;
 
-	// If you made payments of three or more types, the punctuation needs to
-	// include commas, so just handle that separately here.
-	if(typesPaid.size() >= 3)
-	{
-		auto it = typesPaid.begin();
-		for(unsigned int i = 0; i < typesPaid.size() - 1; ++i)
+	out << Format::List<map, string, int64_t>(typesPaid,
+		[](const pair<string, int64_t> &it)
 		{
-			out << Format::CreditString(it->second) << " in " << it->first << ", ";
-			++it;
-		}
-		out << "and " << Format::CreditString(it->second) << " in " << it->first + ".";
-	}
-	else
-	{
-		if(salariesPaid)
-			out << Format::CreditString(salariesPaid) << " in crew salaries"
-				<< ((mortgagesPaid || finesPaid || debtPaid || maintenancePaid) ? " and " : ".");
-		if(maintenancePaid)
-			out << Format::CreditString(maintenancePaid) << "  in maintenance"
-				<< ((mortgagesPaid || finesPaid || debtPaid) ? " and " : ".");
-		if(mortgagesPaid)
-			out << Format::CreditString(mortgagesPaid) << " in mortgages"
-				<< ((finesPaid || debtPaid) ? " and " : ".");
-		if(finesPaid)
-			out << Format::CreditString(finesPaid) << " in fines"
-				<< (debtPaid ? " and " : ".");
-		if(debtPaid)
-			out << Format::CreditString(debtPaid) << " in debt.";
-	}
+			return Format::CreditString(it.second) + " in " + it.first;
+		});
+	out << '.';
 	return out.str();
 }
 

@@ -429,7 +429,9 @@ outfit "Celestial Culverin"
 		"die effect" "culverin die"
 		lifetime 110
 		reload 36
-		homing 4
+		"homing"
+			"leading"
+			"throttle control"
 		velocity 10
 		acceleration 0.6
 		drag 0.05
@@ -511,7 +513,9 @@ outfit "ribault guided"
 		"lifetime" 30
 		"fade out" 7
 		"turn" 5
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"tracking" .6
 		"acceleration" 1
 		"drag" .1

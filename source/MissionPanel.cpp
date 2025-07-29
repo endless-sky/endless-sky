@@ -918,8 +918,8 @@ void MissionPanel::DrawMissionInfo()
 	if(availableIt != available.end() || acceptedIt != accepted.end())
 		info.SetCondition("has description");
 
-	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
-	info.SetString("bunks free", to_string(player.Cargo().BunksFree()) + " bunks");
+	info.SetString("cargo free", Format::SimplePluralization(player.Cargo().Free(), "ton"));
+	info.SetString("bunks free", Format::SimplePluralization(player.Cargo().BunksFree(), "bunk"));
 
 	info.SetString("today", player.GetDate().ToString());
 

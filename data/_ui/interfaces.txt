@@ -1265,6 +1265,7 @@ interface "hud"
 		from 120 0 bottom left
 		to -110 -200 bottom right
 	value "messages reversed" 0
+	value "message animation duration" 30
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
@@ -1435,7 +1436,7 @@ interface "planet"
 		dimensions 720 360
 	
 	box "content"
-		from -240 80 to 240 355
+		from -240 80 to 240 320
 	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"

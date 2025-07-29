@@ -1569,7 +1569,7 @@ void PlayerInfo::Land(UI *ui)
 						const Port &port = landingPlanet->GetPort();
 						ship->Recharge(landingPlanet->CanUseServices() ? port.GetRecharges() : Port::RechargeType::None,
 							port.HasService(Port::ServicesType::HireCrew));
-						ship->SetPlanet(planet);
+						ship->SetPlanet(landingPlanet);
 					}
 					else
 						ship->Recharge(Port::RechargeType::None, false);
@@ -4854,34 +4854,23 @@ bool PlayerInfo::CanBeSaved() const
 void PlayerInfo::DoAccounting()
 {
 	// Check what salaries and tribute the player receives.
+	map<string, int64_t> income;
 	int64_t salariesIncome = accounts.SalariesIncomeTotal();
+	if(salariesIncome)
+		income["salary"] = salariesIncome;
 	int64_t tributeIncome = GetTributeTotal();
+	if(tributeIncome)
+		income["in tribute"] = tributeIncome;
 	FleetBalance balance = MaintenanceAndReturns();
-	if(salariesIncome || tributeIncome || balance.assetsReturns)
+	if(balance.assetsReturns)
+		income["based on outfits and ships"] = balance.assetsReturns;
+	if(!income.empty())
 	{
-		string message = "You receive ";
-		if(salariesIncome)
-		{
-			message += Format::CreditString(salariesIncome) + " salary";
-			if(tributeIncome)
+		string message = "You receive " + Format::List<map, string, int64_t>(income,
+			[](const pair<string, int64_t> &it)
 			{
-				if(balance.assetsReturns)
-					message += ", ";
-				else
-					message += " and ";
-			}
-		}
-		if(tributeIncome)
-			message += Format::CreditString(tributeIncome) + " in tribute";
-		if(balance.assetsReturns)
-		{
-			if(salariesIncome && tributeIncome)
-				message += ",";
-			if(salariesIncome || tributeIncome)
-				message += " and ";
-			message += Format::CreditString(balance.assetsReturns) + " based on outfits and ships";
-		}
-		message += ".";
+				return Format::CreditString(it.second) + ' ' + it.first;
+			}) + '.';
 		Messages::Add(message, Messages::Importance::High, true);
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
 	}
