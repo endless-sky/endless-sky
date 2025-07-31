@@ -36,6 +36,17 @@ using namespace std;
 namespace {
 	bool showUnderlines = false;
 	const int KERN = 2;
+
+	/// Shared VAO and VBO quad (0,0) -> (1,1)
+	GLuint vao = 0;
+	GLuint vbo = 0;
+
+	GLint colorI = 0;
+	GLint scaleI = 0;
+	GLint glyphSizeI = 0;
+	GLint glyphI = 0;
+	GLint aspectI = 0;
+	GLint positionI = 0;
 }
 
 
@@ -106,9 +117,11 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	{
 		screenWidth = Screen::Width();
 		screenHeight = Screen::Height();
-		GLfloat scale[2] = {2.f / screenWidth, -2.f / screenHeight};
-		glUniform2fv(scaleI, 1, scale);
+		scale[0] = 2.f / screenWidth;
+		scale[1] = -2.f / screenHeight;
 	}
+	glUniform2fv(scaleI, 1, scale);
+	glUniform2f(glyphSizeI, glyphWidth, glyphHeight);
 
 	GLfloat textPos[2] = {
 		static_cast<float>(x - 1.),
@@ -294,50 +307,55 @@ void Font::CalculateAdvances(ImageBuffer &image)
 
 void Font::SetUpShader(float glyphW, float glyphH)
 {
-	glyphW *= .5f;
-	glyphH *= .5f;
+	glyphWidth = glyphW * .5f;
+	glyphHeight = glyphH * .5f;
 
 	shader = GameData::Shaders().Get("font");
-	glUseProgram(shader->Object());
-	glUniform1i(shader->Uniform("tex"), 0);
-	glUseProgram(0);
+	// Initialize the shared parameters only once
+	if(!vao)
+	{
+		glUseProgram(shader->Object());
+		glUniform1i(shader->Uniform("tex"), 0);
+		glUseProgram(0);
 
-	// Create the VAO and VBO.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+		// Create the VAO and VBO.
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
 
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glGenBuffers(1, &vbo);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	GLfloat vertices[] = {
-		   0.f,    0.f, 0.f, 0.f,
-		   0.f, glyphH, 0.f, 1.f,
-		glyphW,    0.f, 1.f, 0.f,
-		glyphW, glyphH, 1.f, 1.f
-	};
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		GLfloat vertices[] = {
+				0.f, 0.f, 0.f, 0.f,
+				0.f, 1.f, 0.f, 1.f,
+				1.f, 0.f, 1.f, 0.f,
+				1.f, 1.f, 1.f, 1.f
+		};
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	// Connect the xy to the "vert" attribute of the vertex shader.
-	constexpr auto stride = 4 * sizeof(GLfloat);
-	glEnableVertexAttribArray(shader->Attrib("vert"));
-	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
+		// Connect the xy to the "vert" attribute of the vertex shader.
+		constexpr auto stride = 4 * sizeof(GLfloat);
+		glEnableVertexAttribArray(shader->Attrib("vert"));
+		glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
 
-	glEnableVertexAttribArray(shader->Attrib("corner"));
-	glVertexAttribPointer(shader->Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
-		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
+		glEnableVertexAttribArray(shader->Attrib("corner"));
+		glVertexAttribPointer(shader->Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
+				stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
+
+		colorI = shader->Uniform("color");
+		scaleI = shader->Uniform("scale");
+		glyphSizeI = shader->Uniform("glyphSize");
+		glyphI = shader->Uniform("glyph");
+		aspectI = shader->Uniform("aspect");
+		positionI = shader->Uniform("position");
+	}
 
 	// We must update the screen size next time we draw.
 	screenWidth = 0;
 	screenHeight = 0;
-
-	colorI = shader->Uniform("color");
-	scaleI = shader->Uniform("scale");
-	glyphI = shader->Uniform("glyph");
-	aspectI = shader->Uniform("aspect");
-	positionI = shader->Uniform("position");
 }
 
 
@@ -399,107 +417,39 @@ string Font::TruncateText(const DisplayText &text, int &width) const
 
 string Font::TruncateBack(const string &str, int &width) const
 {
-	int firstWidth = WidthRawString(str.c_str());
-	if(firstWidth <= width)
-	{
-		width = firstWidth;
-		return str;
-	}
-
-	int prevChars = str.size();
-	int prevWidth = firstWidth;
-
-	width -= widthEllipses;
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct) limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
-	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-
-		int nextWidth = WidthRawString(str.substr(0, nextChars).c_str(), '.');
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+	return TruncateEndsOrMiddle(str, width,
+		[](const string &str, int charCount)
 		{
-			if(prevWorks)
-			{
-				width = prevWidth + widthEllipses;
-				return str.substr(0, prevChars) + "...";
-			}
-			else
-			{
-				width = nextWidth + widthEllipses;
-				return str.substr(0, nextChars) + "...";
-			}
-		}
-
-		prevChars = nextChars;
-		prevWidth = nextWidth;
-	}
-	width = firstWidth;
-	return str;
+			return str.substr(0, charCount) + "...";
+		});
 }
 
 
 
 string Font::TruncateFront(const string &str, int &width) const
 {
-	int firstWidth = WidthRawString(str.c_str());
-	if(firstWidth <= width)
-	{
-		width = firstWidth;
-		return str;
-	}
-
-	int prevChars = str.size();
-	int prevWidth = firstWidth;
-
-	width -= widthEllipses;
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct) limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
-	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-
-		int nextWidth = WidthRawString(str.substr(str.size() - nextChars).c_str());
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+	return TruncateEndsOrMiddle(str, width,
+		[](const string &str, int charCount)
 		{
-			if(prevWorks)
-			{
-				width = prevWidth + widthEllipses;
-				return "..." + str.substr(str.size() - prevChars);
-			}
-			else
-			{
-				width = nextWidth + widthEllipses;
-				return "..." + str.substr(str.size() - nextChars);
-			}
-		}
-
-		prevChars = nextChars;
-		prevWidth = nextWidth;
-	}
-	width = firstWidth;
-	return str;
+			return "..." + str.substr(str.size() - charCount);
+		});
 }
 
 
 
 string Font::TruncateMiddle(const string &str, int &width) const
+{
+	return TruncateEndsOrMiddle(str, width,
+		[](const string &str, int charCount)
+		{
+			return str.substr(0, (charCount + 1) / 2) + "..." + str.substr(str.size() - charCount / 2);
+		});
+}
+
+
+
+string Font::TruncateEndsOrMiddle(const string &str, int &width,
+	function<string(const string &, int)> getResultString) const
 {
 	int firstWidth = WidthRawString(str.c_str());
 	if(firstWidth <= width)
@@ -508,43 +458,27 @@ string Font::TruncateMiddle(const string &str, int &width) const
 		return str;
 	}
 
-	int prevChars = str.size();
-	int prevWidth = firstWidth;
+	int workingChars = 0;
+	int workingWidth = 0;
 
-	width -= widthEllipses;
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct), limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
+	int low = 0, high = str.size() - 1;
+	while(low <= high)
 	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-
-		int leftChars = nextChars / 2;
-		int rightChars = nextChars - leftChars;
-		int nextWidth = WidthRawString((str.substr(0, leftChars) + str.substr(str.size() - rightChars)).c_str(), '.');
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+		// Think "how many chars to take from both ends, omitting in the middle".
+		int nextChars = (low + high) / 2;
+		int nextWidth = WidthRawString(getResultString(str, nextChars).c_str());
+		if(nextWidth <= width)
 		{
-			if(prevWorks)
+			if(nextChars > workingChars)
 			{
-				leftChars = prevChars / 2;
-				rightChars = prevChars - leftChars;
-				width = prevWidth + widthEllipses;
+				workingChars = nextChars;
+				workingWidth = nextWidth;
 			}
-			else
-				width = nextWidth + widthEllipses;
-			return str.substr(0, leftChars) + "..." + str.substr(str.size() - rightChars);
+			low = nextChars + (nextChars == low);
 		}
-
-		prevChars = nextChars;
-		prevWidth = nextWidth;
+		else
+			high = nextChars - 1;
 	}
-	width = firstWidth;
-	return str;
+	width = workingWidth;
+	return getResultString(str, workingChars);
 }

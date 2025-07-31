@@ -37,6 +37,8 @@ target_sources(EndlessSkyLib PRIVATE
 	BoardingPanel.h
 	Body.cpp
 	Body.h
+	Camera.cpp
+	Camera.h
 	CaptureOdds.cpp
 	CaptureOdds.h
 	CargoHold.cpp
@@ -183,6 +185,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Minable.cpp
 	Minable.h
 	MinableDamageDealt.h
+	MiniMap.cpp
+	MiniMap.h
 	Mission.cpp
 	Mission.h
 	MissionAction.cpp
