@@ -991,7 +991,7 @@ int64_t PlayerInfo::CrewSalaries() const
 {
 	const int baseSalary = GameData::GetGamerules().BaseCrewSalary();
 
-	return (crew) * baseSalary;
+	return crew * baseSalary;
 }
 
 
