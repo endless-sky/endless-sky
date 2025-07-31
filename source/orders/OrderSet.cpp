@@ -39,26 +39,12 @@ namespace {
 	constexpr bitset<Orders::TYPES_COUNT> HAS_TARGET_LOCATION{
 		(1 << Orders::MOVE_TO)
 	};
-
-	// Orders not included in the bitset should be removed when the given order is issued.
-	constexpr array<bitset<Orders::TYPES_COUNT>, Orders::TYPES_COUNT> SIMULTANEOUS{{
-		{}, // HOLD_POSITION
-		{}, // HOLD_ACTIVE
-		{}, // MOVE_TO
-		{}, // KEEP_STATION
-		{}, // GATHER
-		{}, // ATTACK
-		{}, // FINISH_OFF
-		{}, // MINE
-		{}, // HARVEST
-	}};
 }
 
 
 
 void OrderSet::Set(Types type) noexcept
 {
-	types &= SIMULTANEOUS[type];
 	types.set(type);
 }
 
