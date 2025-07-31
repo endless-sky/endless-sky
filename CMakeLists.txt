@@ -61,7 +61,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.13
+project("Endless Sky" VERSION 0.10.15
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -154,6 +154,8 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+elseif(ES_LINK_LIBATOMIC)
+	target_link_libraries(ExternalLibraries INTERFACE pthread atomic)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 endif()
@@ -290,6 +292,24 @@ elseif(WIN32)
 	install(FILES copyright DESTINATION .)
 	install(FILES changelog DESTINATION .)
 	install(FILES license.txt DESTINATION .)
+
+	# NSIS installer configuration.
+	set(CPACK_PACKAGE_VENDOR "Endless Sky")
+	set(CPACK_PACKAGE_INSTALL_DIRECTORY "Endless Sky")
+	set(CPACK_GENERATOR "NSIS")
+	set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/license.txt")
+	set(CPACK_NSIS_MENU_LINKS
+		"Endless Sky.exe" "Endless Sky"
+		"https://github.com/endless-sky/endless-sky/wiki/PlayersManual" "Player's Manual")
+	set(CPACK_NSIS_MUI_ICON "${CMAKE_CURRENT_SOURCE_DIR}/icons/WinApp.ico")
+	set(CPACK_NSIS_INSTALLED_ICON_NAME "Endless Sky.exe")
+	set(CPACK_NSIS_MUI_WELCOMEFINISHPAGE_BITMAP "${CMAKE_CURRENT_SOURCE_DIR}\\\\installer\\\\welcome.bmp")
+	set(CPACK_NSIS_MUI_UNWELCOMEFINISHPAGE_BITMAP "${CMAKE_CURRENT_SOURCE_DIR}\\\\installer\\\\welcome.bmp")
+	set(CPACK_NSIS_MUI_HEADERIMAGE "${CMAKE_CURRENT_SOURCE_DIR}\\\\installer\\\\header.bmp")
+	set(CPACK_NSIS_EXTRA_PREINSTALL_COMMANDS
+		# Clear the previous contents of the installation directory to prevent data conflicts.
+		"RMDir /r $INSTDIR")
+	include(CPack)
 elseif(UNIX)
 	# Install the binary.
 	install(TARGETS EndlessSky CONFIGURATIONS Release RUNTIME DESTINATION games)

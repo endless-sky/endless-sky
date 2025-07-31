@@ -4402,6 +4402,7 @@ system Almaaz
 	trade Plastic 308
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 600
+	fleet "Old Northern Pirates" 4000
 	fleet "Large Republic" 4000
 	object
 		sprite star/f-giant
@@ -4649,6 +4650,7 @@ system Alnilam
 	trade Plastic 334
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 700
+	fleet "Old Northern Pirates" 5000
 	fleet "Large Republic" 10000
 	object
 		sprite star/f5
@@ -6821,6 +6823,7 @@ system Arneb
 	trade Plastic 358
 	fleet "Small Northern Pirates" 400
 	fleet "Large Northern Pirates" 500
+	fleet "Old Northern Pirates" 6000
 	fleet "Large Republic" 15000
 	object
 		sprite star/f5
@@ -12460,8 +12463,8 @@ system Delia
 		sprite planet/desert9-b
 		distance 748.5
 		period 370.040
-	object
-		sprite planet/gas11
+	object Faliete
+		sprite planet/gas10-b
 		distance 2258.66
 		period 1939.71
 		object
@@ -16739,7 +16742,7 @@ system Fereti
 			scale 0.5
 		distance 1687.04
 		period 489.974
-	object
+	object Pathera
 		sprite planet/gas2
 		distance 2166.29
 		period 712.951
@@ -18189,7 +18192,7 @@ system Gerenus
 	object
 		sprite star/k-giant
 		period 10
-	object
+	object Baliesa
 		sprite planet/gas4-hot
 		distance 390.558
 		period 56.3673
@@ -19488,6 +19491,7 @@ system Hatysa
 	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 15000
+	fleet "Old Northern Pirates" 6000
 	fleet "Derelict Pirate" 30000
 	object
 		sprite star/k0
@@ -29497,6 +29501,7 @@ system Nunki
 	fleet "Large Southern Pirates" 2000
 	fleet "Small Southern Merchants" 1600
 	fleet "Small Militia" 2000
+	fleet "Old Southern Pirates" 7000
 	object
 		sprite star/m3
 		period 10
@@ -30705,13 +30710,21 @@ system Patir
 	trade Metal 354
 	trade Plastic 426
 	fleet Ka'sei 300
+	hazard "Patir Black Hole Event Horizon" 1
 	hazard "Ember Waste Base Heat" 100
+		to spawn
+			not "ka'het: beyond Patir"
 	hazard "Ember Waste Base Storm" 9000
+		to spawn
+			not "ka'het: beyond Patir"
+	hazard "Beyond Patir Shield Eraser" 1
+		to spawn
+			has "ka'het: beyond Patir"
 	object
-		sprite star/nova
+		sprite star/patir
 		period 1
 	object
-		sprite star/neutron-core
+		sprite "star/patir core"
 		period 1
 	object "Builder Settlement"
 		sprite "planet/asteroid base"
@@ -32051,7 +32064,7 @@ system Polerius
 		sprite planet/wormhole-red
 		distance 1824.15
 		period 691.676
-	object
+	object Antamesa
 		sprite planet/gas14-b
 		distance 2448.24
 		period 1075.45
@@ -34195,7 +34208,7 @@ system Ritilas
 		sprite planet/wormhole
 		distance 1666
 		period 868.879
-	object
+	object Meligara
 		sprite planet/gas6
 		distance 2320
 		period 1427.83
@@ -36156,6 +36169,7 @@ system Shaula
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 9000
 	fleet "Large Militia" 9000
+	fleet "Old Southern Pirates" 7000
 	object
 		sprite star/g5
 		period 10
