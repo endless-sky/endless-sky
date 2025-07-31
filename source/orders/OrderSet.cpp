@@ -103,8 +103,8 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem)
 		return;
 	}
 
-	bool targetShipInvalid = false,
-		targetAsteroidInvalid = false;
+	bool targetShipInvalid = false;
+	bool targetAsteroidInvalid = false;
 	if((types & (HAS_TARGET_SHIP | HAS_TARGET_SHIP_OR_ASTEROID)).any())
 	{
 		shared_ptr<Ship> tShip = GetTargetShip();
