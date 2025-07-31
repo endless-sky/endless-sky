@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
-#include "engine/OrderSet.h"
+#include "orders/OrderSet.h"
 #include "Point.h"
 
 #include <cstdint>
