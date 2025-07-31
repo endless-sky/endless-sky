@@ -30,7 +30,7 @@ class System;
 // of possible order types.
 class Orders {
 public:
-	enum Types {
+	enum class Types {
 		HOLD_POSITION,
 		// Hold active is the same command as hold position, but it is given when a ship
 		// actively needs to move back to the position it was holding.

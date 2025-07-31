@@ -22,22 +22,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	constexpr bitset<Orders::TYPES_COUNT> HAS_TARGET_SHIP{
-		(1 << Orders::KEEP_STATION) +
-		(1 << Orders::GATHER) +
-		(1 << Orders::FINISH_OFF)
+	constexpr bitset<static_cast<size_t>(Orders::Types::TYPES_COUNT)> HAS_TARGET_SHIP{
+		(1 << static_cast<int>(Orders::Types::KEEP_STATION)) +
+		(1 << static_cast<int>(Orders::Types::GATHER)) +
+		(1 << static_cast<int>(Orders::Types::FINISH_OFF))
 	};
 
-	constexpr bitset<Orders::TYPES_COUNT> HAS_TARGET_ASTEROID{
-		(1 << Orders::MINE)
+	constexpr bitset<static_cast<size_t>(Orders::Types::TYPES_COUNT)> HAS_TARGET_ASTEROID{
+		(1 << static_cast<int>(Orders::Types::MINE))
 	};
 
-	constexpr bitset<Orders::TYPES_COUNT> HAS_TARGET_SHIP_OR_ASTEROID{
-		(1 << Orders::ATTACK)
+	constexpr bitset<static_cast<size_t>(Orders::Types::TYPES_COUNT)> HAS_TARGET_SHIP_OR_ASTEROID{
+		(1 << static_cast<int>(Orders::Types::ATTACK))
 	};
 
-	constexpr bitset<Orders::TYPES_COUNT> HAS_TARGET_LOCATION{
-		(1 << Orders::MOVE_TO)
+	constexpr bitset<static_cast<size_t>(Orders::Types::TYPES_COUNT)> HAS_TARGET_LOCATION{
+		(1 << static_cast<int>(Orders::Types::MOVE_TO))
 	};
 }
 
@@ -45,7 +45,7 @@ namespace {
 
 bool OrderSet::Has(Types type) const noexcept
 {
-	return types[type];
+	return types[static_cast<size_t>(type)];
 }
 
 
@@ -70,7 +70,7 @@ void OrderSet::Add(const OrderSingle &newOrder, bool *hasMismatch, bool *already
 	{
 		Set(newOrder.type);
 		if(newTargetAsteroid)
-			*alreadyHarvesting = Has(HARVEST) && newOrder.type == HARVEST;
+			*alreadyHarvesting = Has(Types::HARVEST) && newOrder.type == Types::HARVEST;
 	}
 	else if(hasMismatch)
 	{
@@ -80,13 +80,15 @@ void OrderSet::Add(const OrderSingle &newOrder, bool *hasMismatch, bool *already
 	}
 
 	// Update target ship and/or asteroid if it's relevant for the new order.
-	if(HAS_TARGET_SHIP[newOrder.type] || HAS_TARGET_SHIP_OR_ASTEROID[newOrder.type])
+	if(HAS_TARGET_SHIP[static_cast<size_t>(newOrder.type)]
+			|| HAS_TARGET_SHIP_OR_ASTEROID[static_cast<size_t>(newOrder.type)])
 		SetTargetShip(newTargetShip);
-	if(HAS_TARGET_ASTEROID[newOrder.type] || HAS_TARGET_SHIP_OR_ASTEROID[newOrder.type])
+	if(HAS_TARGET_ASTEROID[static_cast<size_t>(newOrder.type)]
+			|| HAS_TARGET_SHIP_OR_ASTEROID[static_cast<size_t>(newOrder.type)])
 		SetTargetAsteroid(newTargetAsteroid);
 
 	// Update target system and point if it's relevant for the new order.
-	if(HAS_TARGET_LOCATION[newOrder.type])
+	if(HAS_TARGET_LOCATION[static_cast<size_t>(newOrder.type)])
 	{
 		SetTargetPoint(newOrder.GetTargetPoint());
 		SetTargetSystem(newOrder.GetTargetSystem());
@@ -97,9 +99,9 @@ void OrderSet::Add(const OrderSingle &newOrder, bool *hasMismatch, bool *already
 
 void OrderSet::Validate(const Ship *ship, const System *playerSystem)
 {
-	if(Has(MINE) && ship->Cargo().Free() && targetAsteroid.expired())
+	if(Has(Types::MINE) && ship->Cargo().Free() && targetAsteroid.expired())
 	{
-		Set(HARVEST);
+		Set(Types::HARVEST);
 		return;
 	}
 
@@ -114,7 +116,7 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem)
 		// for undocked ships (that have a current system).
 		targetShipInvalid = !tShip
 			|| (!tShip->IsTargetable() && tShip->GetGovernment() != ship->GetGovernment())
-			|| (tShip->IsDisabled() && Has(ATTACK))
+			|| (tShip->IsDisabled() && Has(Types::ATTACK))
 			|| (ship->GetSystem() && tShip->GetSystem() != ship->GetSystem() && tShip->GetSystem() != playerSystem);
 	}
 	if((types & (HAS_TARGET_ASTEROID | HAS_TARGET_SHIP_OR_ASTEROID)).any())
@@ -144,16 +146,16 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem)
 
 void OrderSet::Update(const Ship &ship)
 {
-	if((Has(MOVE_TO) || Has(HOLD_ACTIVE)) && ship.GetSystem() == targetSystem)
+	if((Has(Types::MOVE_TO) || Has(Types::HOLD_ACTIVE)) && ship.GetSystem() == targetSystem)
 	{
 		// If nearly stopped on the desired point, switch to a HOLD_POSITION order.
 		if(ship.Position().Distance(targetPoint) < 20. && ship.Velocity().Length() < .001)
-			Set(HOLD_POSITION);
+			Set(Types::HOLD_POSITION);
 	}
-	else if(Has(HOLD_POSITION) && ship.Position().Distance(targetPoint) > 20.)
+	else if(Has(Types::HOLD_POSITION) && ship.Position().Distance(targetPoint) > 20.)
 	{
 		// If far from the defined target point, return via a HOLD_ACTIVE order.
-		Set(HOLD_ACTIVE);
+		Set(Types::HOLD_ACTIVE);
 		// Ensure the system reference is maintained.
 		SetTargetSystem(ship.GetSystem());
 	}
@@ -164,12 +166,12 @@ void OrderSet::Update(const Ship &ship)
 void OrderSet::Set(Types type) noexcept
 {
 	types.reset();
-	types.set(type);
+	types.set(static_cast<size_t>(type));
 }
 
 
 
 void OrderSet::Reset(Types type) noexcept
 {
-	types.reset(type);
+	types.reset(static_cast<size_t>(type));
 }

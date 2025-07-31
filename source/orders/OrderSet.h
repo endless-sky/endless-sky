@@ -42,5 +42,5 @@ private:
 
 
 private:
-	std::bitset<TYPES_COUNT> types;
+	std::bitset<static_cast<size_t>(Types::TYPES_COUNT)> types;
 };
