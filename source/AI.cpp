@@ -450,7 +450,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	for(Ship *ship : targetShips)
 	{
 		ship->SetFormationPattern(toSet);
-		orders[ship].Set(Orders::GATHER);
+		orders[ship].Add(Orders::GATHER);
 		orders[ship].SetTargetShip(player.FlagshipPtr());
 	}
 
@@ -5010,7 +5010,7 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 			hasMismatch |= !orders.contains(ship);
 
 			OrderSet &existing = orders[ship];
-			existing.Add(newOrder, hasMismatch, alreadyHarvesting);
+			existing.Add(newOrder, &hasMismatch, &alreadyHarvesting);
 
 			if(isMoveOrder)
 			{

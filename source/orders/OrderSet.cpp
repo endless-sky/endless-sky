@@ -43,21 +43,6 @@ namespace {
 
 
 
-void OrderSet::Set(Types type) noexcept
-{
-	types.reset();
-	types.set(type);
-}
-
-
-
-void OrderSet::Reset(Types type) noexcept
-{
-	types.reset(type);
-}
-
-
-
 bool OrderSet::Has(Types type) const noexcept
 {
 	return types[type];
@@ -72,21 +57,22 @@ bool OrderSet::Empty() const noexcept
 
 
 
-void OrderSet::Add(const OrderSingle &newOrder, bool &hasMismatch, bool &alreadyHarvesting)
+void OrderSet::Add(const OrderSingle &newOrder, bool *hasMismatch, bool *alreadyHarvesting)
 {
 	shared_ptr<Ship> newTargetShip = newOrder.GetTargetShip();
 	shared_ptr<Minable> newTargetAsteroid = newOrder.GetTargetAsteroid();
-	hasMismatch |= !Has(newOrder.type)
-		|| GetTargetShip() != newTargetShip
-		|| GetTargetAsteroid() != newTargetAsteroid;
-
 	if(hasMismatch)
+		*hasMismatch |= !Has(newOrder.type)
+			|| GetTargetShip() != newTargetShip
+			|| GetTargetAsteroid() != newTargetAsteroid;
+
+	if(!hasMismatch || *hasMismatch)
 	{
 		Set(newOrder.type);
 		if(newTargetAsteroid)
-			alreadyHarvesting = Has(HARVEST) && newOrder.type == HARVEST;
+			*alreadyHarvesting = Has(HARVEST) && newOrder.type == HARVEST;
 	}
-	else
+	else if(hasMismatch)
 	{
 		// The new order is already in the old set, so it should be removed instead.
 		Reset(newOrder.type);
@@ -171,4 +157,19 @@ void OrderSet::Update(const Ship &ship)
 		// Ensure the system reference is maintained.
 		SetTargetSystem(ship.GetSystem());
 	}
+}
+
+
+
+void OrderSet::Set(Types type) noexcept
+{
+	types.reset();
+	types.set(type);
+}
+
+
+
+void OrderSet::Reset(Types type) noexcept
+{
+	types.reset(type);
 }
