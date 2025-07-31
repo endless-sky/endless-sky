@@ -3349,8 +3349,13 @@ mission "Coalition: Struggling Author 1"
 	on offer
 		conversation
 			`Upon reaching the spaceport, you walk to the restaurant to meet Anna Fangvin, the author the Coalition citizens showed interest in. A woman raises her arm to wave at you - she must be Anna.`
-			`	You approach and sit beside her. "Hello, are you <first>?" she asks. "Yes," you answer. "What do you write?"`
+			`	You approach and sit beside her. "Hello, are you <first>?" she asks.`
+			choice
+				`	"Yes. What do you write?"`
+				`	"Yes. Can I have a copy of your book 'Beyond the Hyperdrive'?"`
+					goto bookcopy
 			`	"I write science fiction novels. I just released 'Beyond the Hyperdrive', the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, take a look!"`
+			label "beyond the hyperdrive description"
 			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg Wardragon. You skim the front and back flaps, confirming most of what Anna told you about it. Her signature is on the title page.`
 			label "genre choice"
 			choice
@@ -3390,13 +3395,21 @@ mission "Coalition: Struggling Author 1"
 			label "quarg"
 			`	Over the course of a few seconds, Anna's optimistic smile sinks, and her eyes seem to dull. "You'll probably laugh, but, well... I have something of a... problem with them. I still remember when I was a little girl, my parents took me to Humanika during a vacation trip. It was my first time on a world so alien, so naturally, I wanted to explore. I wandered off from our tour group, and soon realized I was lost." She looks back at you momentarily, as if gauging how you're taking her tale. "There were so many hallways, twists and turns - I still cannot figure out how I ended up in that maze. It was a darker portion of the spaceport, and as I kept calling out for my parents, I only ever heard my own voice echoing back. And then, I saw it. A large Quarg, with eyes of a deep, piercing purple, staring right at me, far down the hallway. I broke into a sprint to flee, but I kept running into more and more Quarg... I don't remember much after that, just that I eventually got back to my parents.`
 			`	"And then when I grew up, when I was a teenager, I decided to do a project on the Quarg for college, assisting a journalist writing an article on them. I tried to keep the memories of that episode in my childhood away, for the sake of the project, but as I interviewed them, as I tried to talk and befriend them... even the polite ones, they seemed so... aloof. Different - and not in a good way. I just felt a great unease being there, near them again. It certainly didn't help that they often responded with silence to my questions, as if they had something to hide. For months I tried, but they just would not budge, and that eerie feeling whenever one was with me never went away..."`
+			label priorchoice
 			choice
 				`	(Tell her about the Coalition.)`
 					goto coalition
 				`	"That must have been rough, stuck on Humanika. Did your parents eventually find you?"`
 					goto parents
+				`	"Can I have a copy of the book?"`
+					to display
+						not "beyond the hyperdrive - asked for book copy"
 				`	"Well that's all well and good. But I have my own business to attend to now. Good luck with your book, thanks for your time, and goodbye."`
 					decline
+			action
+				set "beyond the hyperdrive - asked for book copy"
+			`	"I'm afraid I can't afford to give it away right now."`
+				goto priorchoice
 			label parents
 			`	"They eventually found me, thankfully. But it was distressing being stuck with that Quarg for what felt like an eternity. I don't remember exactly how long. Eventually, another Quarg brought my parents to me. I told them I wanted to get off Humanika as fast as possible and get back to Zug. They obliged, and we left that world; I've never wanted to go back."`
 			choice
@@ -3425,6 +3438,15 @@ mission "Coalition: Struggling Author 1"
 			label decline
 			`	Filled with disappointment, Anna says, "Well, I'm afraid I have other things to do, then. Thank you for the stories, at least." She leaves.`
 				decline
+			label bookcopy
+			action
+				set "beyond the hyperdrive - asked for book copy"
+			`	"I'm afraid I can't afford to give one away right now, but I'm happy to show it to you. I assume you already know that it's the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long."`
+				goto "beyond the hyperdrive description"
+	on accept
+		clear "beyond the hyperdrive - asked for book copy"
+	on decline
+		clear "beyond the hyperdrive - asked for book copy"
 	on enter
 		system
 			government "Coalition" "Heliarch"
@@ -3469,7 +3491,7 @@ mission "Coalition: Book Discovered 2"
 				`	(Ask Anna for another copy of the book.)`
 				`	(Forget about it.)`
 					decline
-			`	You call Anna, and ask her for another copy of "Beyond the Hyperdrive" for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, there probably won't even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." She hangs up, presumably to ship the second copy of "Beyond the Hyperdrive" to <destination>. You should head there to receive and gift it to Kachachee.`
+			`	You call Anna, and ask her for another copy of "Beyond the Hyperdrive" for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, there probably won't even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." You should head there to receive and gift it to Kachachee.`
 				accept
 	on complete
 		payment 7000
