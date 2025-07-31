@@ -179,7 +179,6 @@ ship "Ember Waste Node"
 		"mass" 1500
 		"drag" 12.3
 		"heat dissipation" .67
-		"fuel capacity" 250
 		"cargo space" 39
 		"outfit space" 0
 		"thrust" 120
@@ -244,6 +243,7 @@ ship "Embershade"
 		"energy generation" 6
 		"hull repair rate" 3
 		"cloak" .02
+		"cloaked firing" .02
 		"cloaking energy" 5
 		"hyperdrive" 1
 		"jump speed" .1

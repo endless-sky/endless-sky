@@ -404,13 +404,13 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 		if(cost > credits)
 			errors.push_back("You do not have enough money to buy this outfit. You need a further " +
-				Format::CreditString(cost - credits));
+				Format::CreditString(cost - credits) + ".");
 
 		// Add the cost to buy the required license.
 		else if(cost + licenseCost > credits)
 			errors.push_back("You do not have enough money to buy this outfit because you also need "
 				"to buy a license for it. You need a further " +
-				Format::CreditString(cost + licenseCost - credits));
+				Format::CreditString(cost + licenseCost - credits) + ".");
 	}
 
 	bool anyShipCanInstall = true;

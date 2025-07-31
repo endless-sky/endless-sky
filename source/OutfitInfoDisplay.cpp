@@ -190,6 +190,8 @@ namespace {
 		{"high shield permeability", 3},
 		{"low shield permeability", 3},
 		{"cloaked shield permeability", 3},
+		{"cloaked regen multiplier", 3},
+		{"cloaked repair multiplier", 3},
 		{"acceleration multiplier", 3},
 		{"turn multiplier", 3},
 		{"turret turn multiplier", 3},
@@ -495,8 +497,17 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		}
 	}
 
+	double range = outfit.Range();
 	attributeLabels.emplace_back("range:");
-	attributeValues.emplace_back(Format::Number(outfit.Range()));
+	attributeValues.emplace_back(Format::Number(range));
+	attributesHeight += 20;
+
+	attributeLabels.emplace_back("velocity:");
+	double velocity = outfit.WeightedVelocity();
+	if(velocity == range)
+		attributeValues.emplace_back("instantaneous");
+	else
+		attributeValues.emplace_back(Format::Number(velocity * 60.));
 	attributesHeight += 20;
 
 	// Identify the dropoff at range and inform the player.
@@ -636,18 +647,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		attributeValues.emplace_back(Format::Number(arc));
 		attributesHeight += 20;
 	}
-	int homing = outfit.Homing();
-	if(homing)
+	if(outfit.Homing())
 	{
-		static const string skill[] = {
-			"none",
-			"poor",
-			"fair",
-			"good",
-			"excellent"
-		};
-		attributeLabels.emplace_back("homing:");
-		attributeValues.push_back(skill[max(0, min(4, homing))]);
+		attributeLabels.emplace_back("homing type:");
+		attributeValues.emplace_back(outfit.Leading() ? "leading" : "direct");
 		attributesHeight += 20;
 	}
 	static const vector<string> PERCENT_NAMES = {
@@ -672,6 +675,18 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.push_back(Format::Number(percent) + "%");
 			attributesHeight += 20;
 		}
+	if(outfit.ThrottleControl())
+	{
+		attributeLabels.emplace_back("Projectiles can control thrust.");
+		attributeValues.emplace_back(" ");
+		attributesHeight += 20;
+	}
+	if(outfit.HasBlindspot())
+	{
+		attributeLabels.emplace_back("Cannot track targets behind it.");
+		attributeValues.emplace_back(" ");
+		attributesHeight += 20;
+	}
 
 	// Pad the table.
 	attributeLabels.emplace_back();
@@ -697,14 +712,16 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		"blast radius:",
 		"missile strength:",
 		"anti-missile:",
-		"tractor beam:"
+		"tractor beam:",
+		"mining precision:",
 	};
 	vector<double> otherValues = {
 		outfit.Inaccuracy(),
 		outfit.BlastRadius(),
 		static_cast<double>(outfit.MissileStrength()),
 		static_cast<double>(outfit.AntiMissile()),
-		outfit.TractorBeam() * 60.
+		outfit.TractorBeam() * 60.,
+		outfit.Prospecting() && outfit.MinableDamage() ? outfit.Prospecting() / outfit.MinableDamage() : 0.,
 	};
 
 	for(unsigned i = 0; i < OTHER_NAMES.size(); ++i)

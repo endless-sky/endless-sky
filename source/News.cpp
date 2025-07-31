@@ -25,7 +25,8 @@ using namespace std;
 
 
 
-void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	for(const DataNode &child : node)
 	{
@@ -53,7 +54,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					child.PrintTrace("Warning: Removing full location filter; partial removal is not supported:");
 			}
 			else
-				location.Load(child);
+				location.Load(child, visitedSystems, visitedPlanets);
 		}
 		else if(tag == "name")
 		{
