@@ -29,7 +29,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 	on offer
 		conversation
 			`When you return to Hai-home, you are directed to a government hangar where you are met by Xilin and Sayari, both looking very relieved.`
-			branch buildingdeferred
+			branch "building deferred"
 				has "Building Mountaintop Deferred"
 			`	"I am very glad to see you returned, Captain <last>. Sayari said you were away on an important errand, but I've been hoping for a day now that you would reappear. I think you might be the solution to the current impasse."`
 			`	"You see," says Sayari, "while you've been away it's been decided that a 'tourist trap type theme park destination' is a critical part of the cover story." Despite her Hai inflections, you can still hear the air quotes around that phrase in the tone of her voice. "So far it seems the movie cover has been circulating quite successfully, so we're leaning into it.`
@@ -60,7 +60,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 					goto main
 			`	Sayari explains, "The Hai are ruled by an elected council of elders. They are not responsible for every administrative decision that occurs, but they are the highest authority of our government. Their decisions are final, at least for the term of an election."`
 				goto main
-			label buildingdeferred
+			label "building deferred"
 			`	Xilin addresses you, "Not a great deal of progress has been made in your absence. We have maintained our position, so the other diplomats and the Elders still accept that you might be a viable solution to this impasse. It is unavoidable though that the Elders must speak with you first."`
 			label main
 			`	"If you're willing, there will be a council meeting in an hour, and I can put you first on the agenda. Will you do this?" asks Sayari.`
@@ -72,42 +72,42 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 					defer
 			`	Following Sayari, you pass beyond a security checkpoint where Xilin is prevented from following you. Sayari speaks with another Hai doing administrative work for a moment before gesturing you towards a private antechamber.`
 			`	"We shouldn't have to wait very long, but while we're alone," she says, glancing at the door as if faintly nervous for a second, "did you find anything on your investigation?"`
-			branch foundcat
+			branch "found cat"
 				has "Hai Rescue: Gipeep: done"
 			choice
 				`	"Yes, I found several Hai that had been kidnapped."`
 					goto kidnapped
 				`	"I found something out of place on Maelstrom."`
 					goto maelstrom
-			label foundcat
+			label "found cat"
 			choice
 				`	"Yes, I found several Hai that had been kidnapped."`
 					goto kidnapped
 				`	"I found a symbol being used with a captured Hai in a registered warehouse."`
-					goto angrycat
+					goto "angry cat"
 			label kidnapped
 			`	Sayari looks crestfallen as you list off the Hai that you found, but as you finish describing the situations she frowns contemplatively. "That seems to be more Hai, and more easily found than I would have expected. It would seem that the problem may be larger than we've previously thought possible... but was that it? Was there nothing unusual?"`
-			branch foundcat2
+			branch "found cat 2"
 				has "Hai Rescue: Gipeep: done"
 			choice
 				`	"I found something out of place on Maelstrom."`
 					goto maelstrom
-			label foundcat2
+			label "found cat 2"
 			choice
 				`	"I found a symbol being used with a captured Hai in a registered warehouse."`
-					goto angrycat
+					goto "angry cat"
 			label maelstrom
 			`	"Maelstrom is a significant world, a lot of important corporations obtain their raw materials from there and keep an eye on its operations," she muses. "If there's something going on there it doesn't bode well, we'll have to investigate it."`
 			action
 				set investigatemaelstrom
 			`	She glances at the door, as if having heard something you didn't, before giving you an appraising look. "I trust you have recorded all this in some capacity that you can give to me?"`
-				goto datastick
-			label angrycat
+				goto "data stick"
+			label "angry cat"
 			`	When you show her the symbol an odd expression flashes over her face for the briefest of moments, there and gone so quickly that you could've blinked and missed it. "Yes, this is a very odd symbol, and not one I associate with any known groups. I will have to investigate and show this to my friend. See if it matches anything she's found."`
 			action
 				set catsymbolfound
 			`	She glances at the door, as if having heard something you didn't, and gestures for you to quickly put your data pad away. "I trust you have recorded all this in some capacity that you can give to me?"`
-			label datastick
+			label "data stick"
 			`	You hand Sayari a data stick. "I saved everything from my logs on this."`
 			`	Gingerly, she takes the data stick and secretes it away on her person. Her expression of distaste looks like one she might give to some snake that could bite her at any moment.`
 			`	"I will have a thorough look later," is all she says.`
@@ -292,12 +292,12 @@ mission "Hai Building Mountaintop [2] Recruits"
 			choice
 				`	"How do you know all this?"`
 				`	"How do we make them less alien?"`
-					goto lessalien
+					goto "less alien"
 			`	Terry raises an eyebrow at you. "The Oracle may have been an AI supercomputer that could predict the economic situation across the whole of human-inhabited space up to fifteen years in the future, but it was still dependent on our incredibly developed data gathering, reporting, and collation infrastructure. With or without it, the Syndicate knows data. How else do you think we're so profitable?"`
 			`	When she puts it that way, it does suddenly feel like a bit of a stupid question.`
 			`	"As it turns out, that infrastructure is predicting that the Syndicate stands to lose billions of credits, per day, for the duration of any crisis evolving from this which involves the uncontrolled release of the Hai secret. However, we have a plan."`
 				goto plan
-			label lessalien
+			label "less alien"
 			`	Terry snorts and suppresses a smirk. "We don't. It takes years of sharing a society with humans for a Hai to learn how to code-switch their body language for us, and humans that have lived solely with Hai and no other human contact are equally unsuitable. No, we cannot make unsuitable volunteers less alien. There's a different approach that can work though."`
 			label plan
 			choice
@@ -339,7 +339,7 @@ mission "ZZ Hai Building Mountaintop [2a] Sales Job"
 		conversation
 			branch overdone
 				has "event: hai dog and pony done"
-			branch toomany
+			branch "too many"
 				"hai dog and pony" >= 17
 			branch interminable
 				"hai dog and pony" >= 14
@@ -363,7 +363,7 @@ mission "ZZ Hai Building Mountaintop [2a] Sales Job"
 			label interminable
 			`You land on the world of <planet> and do your part to sell the opportunity on Mountaintop. Why did you ever agree to this interminable dog and pony show? Is it really worth all this just to save one tiny little galaxy?`
 				defer
-			label toomany
+			label "too many"
 			`You land on the world of <planet> and do your part to sell the opportunity on Mountaintop. You're pretty sure you've done this more times than there are habitable planets in Hai space. Did you lose track and repeat a world? Will this nightmare ever end?`
 				defer
 			label overdone
@@ -493,10 +493,10 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 			`	"The transmission is secure," Alondo says. "This room has good soundproofing and some signal dampening. You can talk freely."`
 			choice
 				`	"What is it, Katya?"`
-					goto whaizzit
+					goto "what is it"
 				`	"You've taken a lot of precautions for this call."`
 			`	"Yes," she says. "This is a sensitive matter.`
-			label whaizzit
+			label "what is it"
 			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. Most weapons were on ships, but recently we've found a large stock in a warehouse on an anarchist world.`
 				to display
 					not "FW Bounty 3: done"
@@ -532,7 +532,7 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 					to display
 						has "Pirates with Hai Weapons 1: Katya's Message: Katya vouched for Sayari"
 				`	"Don't worry, I'm good for this secret agent stuff."`
-					goto goodagent
+					goto "good agent"
 					to display
 						has "Pirates with Hai Weapons 1: Katya's Message: explained"
 			label discrete
@@ -552,7 +552,7 @@ mission "Pirates with Hai Weapons 1: Katya's Message"
 			label acceptable
 			`	"Thank you," says Alondo, "Just remember this is a secret mission. Go about your business normally and look for your opportunity. You may have to be quite patient to get this done."`
 				goto end
-			label goodagent
+			label "good agent"
 			action
 				set "self-declared good agent"
 			`	Alondo chuckles. "You're full of surprises, aren't you? Good to know you're confident in your skills though."`
