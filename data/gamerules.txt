@@ -116,7 +116,7 @@ gamerules
 	"base crew salary" 200
 
 	# Most ships require at least one officer. The salary of each officer is equal to the "base officer salary"
-	# plus the number of crew on their ship times "officer salary per crew", all multplied by "officer multiplier"
+	# plus the number of crew on their ship times "officer salary per crew", all multiplied by "officer multiplier"
 	# to the power of the number of other officers in the player's fleet, excluding the player.
 	# The player counts as one officer for their flagship and does not need to be paid.
 
