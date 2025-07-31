@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // at a time.
 class OrderSingle : public Orders {
 public:
-	OrderSingle(Types type);
+	explicit OrderSingle(Types type);
 
 
 public:

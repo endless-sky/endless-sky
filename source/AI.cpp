@@ -450,7 +450,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	for(Ship *ship : targetShips)
 	{
 		ship->SetFormationPattern(toSet);
-		orders[ship].Add(Orders::GATHER);
+		orders[ship].Add(OrderSingle{Orders::GATHER});
 		orders[ship].SetTargetShip(player.FlagshipPtr());
 	}
 
