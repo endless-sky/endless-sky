@@ -2467,7 +2467,7 @@ planet Heartvalley
 	outfitter "Hai Basics"
 	security 0.1
 
-planet "Heaven Halls"
+planet "Heavenly Halls"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa31
 	description `This solitary gas giant was given its name due to a phenomenon shared by no other planet in Coalition space. The icy rings surrounding it grow denser the closer to the planetary surface; just a few kilometers into the sea of clouds, the small frozen specks are replaced by sizable, frigid asteroids. Curiously, most of these larger asteroids have tunnels cutting through their interiors, inspiring some of the bolder Saryd explorers to try and colonize the "frozen palaces."`
