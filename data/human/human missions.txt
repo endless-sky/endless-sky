@@ -11336,7 +11336,7 @@ mission "A Dead Man's Path 2"
 				`	"What do you want me to do?"`
 				`	"Tell me more before I decide."`
 			`	Sophie smiles at her brother. "Of course, Liam just can't wait to get started!" She turns back to you. "Maybe I should start with who our father was. We didn't get to know him very well - he came home only occasionally. Don't get me wrong, our parents weren't fighting, but he had this passion: he couldn't stay in one place for very long. He was a captain, not unlike you, and he was restless to explore even the furthest parts of the galaxy. We believe he traveled further than most human captains; sometimes he brought small items back home that nobody could explain."`
-			`	She pauses for a moment. "Anyway, his testament says he left something behind for us on <planet>, in <system>. He said that he wouldn't make it easy though; he loved fantasy books, and there's always an air of mystery to those stories. He told us of a few systems we should visit before we go to Prime. It'll be like one last fantasy story from dad!`
+			`	She pauses for a moment. "Anyway, his testament says he left something behind for us on <planet>, in <system>. He said that he wouldn't make it easy though; he loved fantasy books, and there's always an air of mystery to those stories. He told us of a few systems we should visit before we go to Prime. It'll be like one last fantasy story from Dad!`
 			`	"Of course, it would be much easier if we could go directly to Prime, but we want to respect our father's last will." She looks directly at you now. "And that is why we need your help. Could you help us again and take us through all these systems?"`
 			choice
 				`	"Which systems would we have to fly through?"`
@@ -11375,7 +11375,7 @@ mission "A Dead Man's Path 2"
 				`	"Now that we've come so far, sure."`
 				`	"I'm sorry, I've got to be somewhere else."`
 					goto "somewhere else"
-			`	Liam pulls out a map - not the starmap he had before, but a local map of Prime marked 'New Toulouse'. "Apparently our father bought a whole mountain on this planet, and he wants us to go there. It's to the west of us near the New Pyrenees, a little while away from Prime Central Spaceport where we are."`
+			`	Liam pulls out a map - not the starmap he had before, but a local map of Prime marked 'New Toulouse'. "Apparently our father bought a whole mountain on this planet, and he wants us to go there. It's to the west of us near the New Pyrenees, a little while away from the spaceport."`
 			choice
 				`	"Sounds good. I'll follow your lead."`
 					goto shuttle
