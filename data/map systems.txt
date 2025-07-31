@@ -24773,7 +24773,7 @@ system "Last Word"
 		sprite planet/rock1
 		distance 1383.46
 		period 823.322
-	object "Heaven Halls"
+	object "Heavenly Halls"
 		sprite planet/gas1-b
 		distance 4922.46
 		period 5525.77
