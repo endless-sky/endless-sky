@@ -38,8 +38,9 @@ help "disabled"
 	`If the ship that disabled you is still hanging around, you might need to hail them first and bribe them to leave you alone.`
 
 help "hiring"
-	`Hiring extra crew is only helpful if you plan on capturing enemy ships. Each ship requires at least one officer, who is paid <base officer salary> per day, plus <officer salary per crew> for each crew under their command, up to a maximum of <crew per officer>, all multiplied by <officer multiplier> for each other hired officer in your fleet. The first officer on your flagship is yourself and does not need any payment. All non-officer crew are paid <base crew salary> per day. You will automatically hire the minimum number of crew when you buy a ship.`
-	`Crew members take up space that can otherwise be used for passengers.`
+	`Each non-fighter ship requires at least one officer, plus an additional officer every <crew per officer> crew. Each officer beyond yourself is paid <base officer salary> per day, plus <officer salary per crew> for each crew under their command, and multiplied by <officer multiplier> percent for each other hired officer in your fleet`
+	`All non-officer crew are paid <base crew salary> per day. You will automatically hire the minimum number of crew when you buy a ship.`
+	`You can only hire extra crew for your flagship to help capture enemy ships. Crew members take up space that can otherwise be used for passengers.`
 
 help "jobs"
 	`Taking on jobs is a safe way to earn money. Special missions are offered in the Spaceport; more mundane jobs are posted on the Job Board. Most special missions are only offered once: if you turn one down, it will not be offered to you again.`

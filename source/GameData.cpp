@@ -964,9 +964,9 @@ string GameData::ReplaceNamesWithSalaries(const string &text)
 	map<string, string> subs;
 	subs["<base crew salary>"] = Format::CreditString(GetGamerules().BaseCrewSalary());
 	subs["<base officer salary>"] = Format::CreditString(GetGamerules().BaseOfficerSalary());
-	subs["<crew per officer>"] = Format::Number(GetGamerules().CrewPerOfficer() - 1) + "crew";
+	subs["<crew per officer>"] = Format::Number(GetGamerules().CrewPerOfficer());
 	subs["<officer salary per crew>"] = Format::CreditString(GetGamerules().OfficerSalaryPerCrew());
-	subs["<officer mutliplier>"] = Format::Number(GetGamerules().OfficerMultiplier() * 100) + '%';
+	subs["<officer multiplier>"] = Format::Number(GetGamerules().OfficerMultiplier() * 100);
 
 	return Format::Replace(text, subs);
 }

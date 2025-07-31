@@ -29,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Table.h"
 
 #include <algorithm>
-#include <cmath>
 #include <map>
 #include <sstream>
 

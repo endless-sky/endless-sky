@@ -3073,8 +3073,6 @@ int Ship::RequiredCrew() const
 
 int Ship::RequiredOfficers() const
 {
-	// The first crew member and every twentieth crew member after that on a
-	// non-carried ship will be an officer.
 	return !CanBeCarried() ? ceil(static_cast<double>(RequiredCrew())
 		/ GameData::GetGamerules().CrewPerOfficer()) : 0;
 }
