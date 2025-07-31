@@ -399,6 +399,9 @@ tip "hull protection:"
 tip "hull repair multiplier:"
 	`Modifies the amount of hull strength repaired per second by the given factor.`
 
+tip "cloaked repair multiplier:"
+	`Modifies the amount of hull strength repaired per second by the given factor while a cloaking device is active.`
+
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
 
@@ -644,6 +647,9 @@ tip "delayed shield generation:"
 
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
+
+tip "cloaked regen multiplier:"
+	`Modifies the amount of shield points recharged per second by the given factor while a cloaking device is active.`
 
 tip "high shield permeability:"
 	`This percentage of all incoming damage bypasses shields and applies directly to the hull when at full shields.`
@@ -922,6 +928,9 @@ tip "ammo usage:"
 tip "range:"
 	`Total range of this weapon.`
 
+tip "velocity:"
+	`The initial velocity of projectiles fired by this weapon. Some weapons have projectiles that accelerate or decelerate from this initial value as they travel.`
+
 tip "dropoff modifier:"
 	`The multiplier applied to the damage of this weapon once its projectile has reached the maximum dropoff range.`
 
@@ -1054,8 +1063,8 @@ tip "turret turn multiplier:"
 tip "arc:"
 	`The angular range of protection provided by this weapon, in degrees.`
 
-tip "homing:"
-	`This projectile's ability to track its target. Weapons with better homing can adjust to the target's speed to plot a more effective intercept course.`
+tip "homing type:"
+	`How this projectile tracks its target. Projectiles with "direct" will fly straight at their target, while projectiles with "leading" will lead their trajectory.`
 
 tip "tracking:"
 	`This projectile's ability to maintain its target lock.`
@@ -1198,6 +1207,9 @@ tip "anti-missile:"
 tip "tractor beam:"
 	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
 
+tip "mining precision:"
+	`A measure of how well this weapon prevents damage to valuable materials while mining. Weapons with a positive precision result in higher yields, while a negative precision results in lower yields. Some minable objects are tougher than others, and are therefore less susceptible to having their yields altered.`
+
 
 
 # Flight checks:
@@ -1218,6 +1230,9 @@ tip "no steering!"
 
 tip "insufficient bunks?"
 	`This ship does not have enough bunks for its crew. It could become unresponsive at random times.`
+
+tip "insufficient heat?"
+	`This ship is too cold to use some of its engines while idle. Its movement may be hindered if it does not have another way of generating heat.`
 
 tip "afterburner only?"
 	`This ship's only thruster is an afterburner. It may be unable to move if the afterburner runs out of fuel.`
@@ -1406,8 +1421,14 @@ tip "Draw background haze"
 tip "Draw starfield"
 	`Draw the background starfield when in flight.`
 
+tip "Fixed starfield zoom"
+	`Draw the background starfield with a fixed zoom level instead of changing with the view zoom level.`
+
 tip "Parallax background"
 	`Add parallax to objects in the background (haze and starfield). If set to fancy, create three layers of parallax. If set to fast, create one layer of parallax.`
+
+tip "Animate main menu background"
+	`Animate the background stars and haze in the main menu.`
 
 tip "Show hyperspace flash"
 	`Create a white flash when hyperspacing between systems.`
@@ -1458,7 +1479,7 @@ tip "Show planet labels"
 	`Display an overlay on nearby landable planets and stations.`
 
 tip "Show mini-map"
-	`Display a mini-map of nearby systems when initiating a hyperspace jump.`
+	`Control the display of a mini-map of nearby systems. If set to "when jumping", the mini-map only appears when initiating a hyperspace jump. If set to "always on", then it is always present when in flight.`
 
 tip "Clickable radar display"
 	`Activate the ability to send commands to your escorts using the in-system radar mini-map.`

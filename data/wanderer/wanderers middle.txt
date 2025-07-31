@@ -303,7 +303,8 @@ mission "Wanderers: First Mereti Attack"
 			variant
 				"Derecho"
 				"Tempest" 2
-				"Autumn Leaf" 3
+				"Heavy Gust"
+				"Autumn Leaf" 1
 	npc
 		government "Wanderer"
 		system Kaliptari
@@ -313,9 +314,9 @@ mission "Wanderers: First Mereti Attack"
 			variant
 				"Derecho"
 				"Tempest" 2
-				"Strong Wind" 1
-				"Autumn Leaf" 2
-				"Summer Leaf" 3
+				"Heavy Gust" 1
+				"Autumn Leaf" 3
+				"Summer Leaf" 2
 	on complete
 		event "wanderers: kaliptari battle ends"
 
@@ -1006,7 +1007,8 @@ mission "Wanderers: Mind Escorts"
 			variant
 				"Hurricane" 2
 				"Derecho" 3
-				"Tempest" 5
+				"Tempest" 4
+				"Heavy Gust" 2
 
 mission "Wanderers: Mind 4"
 	landing
@@ -1704,6 +1706,7 @@ mission "Wanderers: Sestor Attack"
 			names "wanderer"
 			variant
 				"Tempest (Heavy)"
+				"Heavy Gust"
 				"Strong Wind"
 		fleet
 			names "wanderer"
@@ -3194,6 +3197,7 @@ mission "Wanderers: Sestor: Factory Escorts"
 				"Tempest (Heavy)"
 				"Tempest (Moonbeam)" 2
 				"Tempest"
+				"Heavy Gust (Moonbeam)" 2
 
 
 
@@ -3479,23 +3483,29 @@ mission "Wanderers: Sestor: Combined Patch 1"
 event "wanderers: sestor planets unrestricted"
 	planet "Drekag Firask"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Sestor Ikfar"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 		description `This dry, hot world is home to almost no native life, but is ideal for the Korath automata because of its abundant solar energy. In the places where the Korath cities once were, the Kor Sestor have built massive factories with buildings sometimes close to a kilometer in height. In other places the land remains undeveloped, and now that the factories have been shut down it seems likely that it will stay that way for a very long time.`
 	planet "Devru Kaska"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Sebra Skira"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Keneska Fek"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Sopi Lefarkata"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 		description `This is a cold and mountainous world, and most of its oceans are covered in ice. A handful of giant craters gouged out from the sides of mountains are the only sign that there were once Korath settlements here. The Kor Sestor robots began building settlements of their own, in caverns deep under the mountains where they are safe from orbital bombardment, but now these settlements are falling into disrepair. Where the last set of Kor Mereti attacks collapsed one of the access tunnels, a handful of robots have gathered, trying in vain to dig them out.`
 
 event "wanderers taking jobs from kor efreti"

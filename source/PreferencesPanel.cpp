@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "PlayerInfo.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
@@ -81,6 +82,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 
 	// How many pages of controls and settings there are.
@@ -107,8 +109,8 @@ namespace {
 
 
 
-PreferencesPanel::PreferencesPanel()
-	: editing(-1), selected(0), hover(-1)
+PreferencesPanel::PreferencesPanel(PlayerInfo &player)
+	: player(player), editing(-1), selected(0), hover(-1)
 {
 	// Select the first valid plugin.
 	for(const auto &plugin : Plugins::Get())
@@ -153,7 +155,7 @@ PreferencesPanel::~PreferencesPanel()
 void PreferencesPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	Information info;
 
@@ -715,7 +717,9 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
+		"Fixed starfield zoom",
 		BACKGROUND_PARALLAX,
+		"Animate main menu background",
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
@@ -734,7 +738,7 @@ void PreferencesPanel::DrawSettings()
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
 		"Show planet labels",
-		"Show mini-map",
+		MINIMAP_DISPLAY,
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
@@ -987,6 +991,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == MINIMAP_DISPLAY)
+		{
+			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
+			text = Preferences::MinimapSetting();
 		}
 		else
 			text = isOn ? "on" : "off";
@@ -1246,6 +1255,9 @@ void PreferencesPanel::Exit()
 
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
+	if(recacheDeadlines)
+		player.CalculateRemainingDeadlines();
+
 	GetUI()->Pop(this);
 }
 
@@ -1338,9 +1350,18 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleNotificationSetting();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
+	else if(str == MINIMAP_DISPLAY)
+		Preferences::ToggleMinimapDisplay();
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));
+
+	// If the deadline blink preference was toggled and the player is in flight,
+	// then we need to recache the remaining mission deadlines. This doesn't need
+	// to be done when the player is landed since the MapPanel already recalculates
+	// the remaining deadlines when it is opened in that case.
+	if(str == "Deadline blink by distance" && !player.GetPlanet())
+		recacheDeadlines = !recacheDeadlines;
 }
 
 

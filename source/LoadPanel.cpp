@@ -138,7 +138,7 @@ LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 void LoadPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 	const Font &font = FontSet::Get(14);
 
 	Information info;
@@ -276,6 +276,8 @@ void LoadPanel::Draw()
 
 bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
+
 	if(key == 'n')
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
@@ -285,6 +287,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'd' && !selectedPilot.empty())
 	{
+		sound = UI::UISound::NONE;
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
 			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
@@ -297,6 +300,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
 			return false;
 
+		sound = UI::UISound::NONE;
 		nameToConfirm.clear();
 		filesystem::path lastSave = Files::Saves() / it->second.front().first;
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
@@ -305,6 +309,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'R' && !selectedFile.empty())
 	{
+		sound = UI::UISound::NONE;
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
 		if(!(fileName == selectedPilot + ".txt"))
 			GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
@@ -318,10 +323,13 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(fileName == selectedPilot + ".txt")
 			LoadCallback();
 		else
+		{
+			sound = UI::UISound::NONE;
 			GetUI()->Push(new Dialog(this, &LoadPanel::LoadCallback,
 				"If you load this snapshot, it will overwrite your current game. "
 				"Any progress will be lost, unless you have saved other snapshots. "
 				"Are you sure you want to do that?"));
+		}
 	}
 	else if(key == 'o')
 		Files::OpenUserSavesFolder();
@@ -409,6 +417,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else
 		return false;
 
+	UI::PlaySound(sound);
 	return true;
 }
 
@@ -431,6 +440,7 @@ bool LoadPanel::Click(int x, int y, int clicks)
 				selectedPilot = it.first;
 				selectedFile = it.second.front().first;
 				centerScroll = 0;
+				UI::PlaySound(UI::UISound::NORMAL);
 			}
 	}
 	else if(snapshotBox.Contains(click))
