@@ -45,6 +45,7 @@ namespace {
 
 void OrderSet::Set(Types type) noexcept
 {
+	types.reset();
 	types.set(type);
 }
 
