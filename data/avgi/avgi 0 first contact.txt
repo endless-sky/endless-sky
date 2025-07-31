@@ -615,7 +615,7 @@ mission "Avgi: Defend Ensemble 2"
 				"Aberrant Trip"
 				"Aberrant Triplet (Disable-able)" 3
 	on visit
-		dialog `You've landed on <planet>, but there are still Abberant attacking the system. You should take off and help the Avgi defeat them.`
+		dialog `You've landed on <planet>, but there are still Aberrant attacking the system. You should take off and help the Avgi defeat them.`
 
 	on complete
 		log `Defended Ensemble from the Aberrant raid with the help of a fleet of Twilight Guard ships armed with nuclear weapons. The Aberrant apparently do not usually raid this deep into the Tangled Shroud, which makes the size of this battle worrying.`
