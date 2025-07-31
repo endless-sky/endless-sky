@@ -6577,7 +6577,7 @@ mission "Lost Racer 2 - Continued"
 					goto suspicious
 				`	"Do you have a plan for where to go next?"`
 					goto plan
-			`	"Well their best isn't very good, is it! They don't notice that their number-one pilot has been missing for days? I'll get the best lawyers in the Republic to drag Megaparsec through court 'till the only thing left they'll be able to sell will be scrap!"`
+			`	"Well their best isn't very good, is it! They don't notice that their number-one pilot has been missing for days? I'll get the best lawyers in the Republic to drag Megaparsec through court 'till the only thing left they'll be able to sell is scrap!"`
 			choice
 				`	"What you said about 'network and monitoring issues' sounded suspicious."`
 				`	"So what's the plan from here?"`
@@ -6585,7 +6585,7 @@ mission "Lost Racer 2 - Continued"
 			label suspicious
 			`	Mr. Renard suddenly speaks more quietly. "I thought so too. I think it might have been sabotage."`
 			`	"What do you mean?" you ask.`
-			`	"Every day that Artemis is lost, the odds on her plummet and the bets on her competitors skyrocket. I've spend enough time making money to know that there's no faster way to bruise a competitor than scandal. I think someone sabotaged the race and went after my daughter because they knew it would make headlines, and they knew they could cash in by betting on underdogs."`
+			`	"Every day that Artemis is lost, the odds on her plummet and the bets on her competitors skyrocket. I've spent enough time making money to know that there's no faster way to bruise a competitor than scandal. I think someone sabotaged the race and went after my daughter because they knew it would make headlines, and they knew they could cash in by betting on underdogs."`
 			choice
 				`	"Who do you think did it?"`
 					goto perp
