@@ -74,12 +74,6 @@ bool OrderSet::Empty() const noexcept
 
 void OrderSet::Add(const OrderSingle &newOrder, bool &hasMismatch, bool &alreadyHarvesting)
 {
-	// HOLD_ACTIVE cannot be given as manual order, but we make sure here
-	// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
-	// command is given.
-	if(Has(HOLD_ACTIVE))
-		Set(HOLD_POSITION);
-
 	shared_ptr<Ship> newTargetShip = newOrder.GetTargetShip();
 	shared_ptr<Minable> newTargetAsteroid = newOrder.GetTargetAsteroid();
 	hasMismatch |= !Has(newOrder.type)
