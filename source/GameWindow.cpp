@@ -259,7 +259,8 @@ bool GameWindow::Init(bool headless)
 	HMODULE ntdll = LoadLibraryW(L"ntdll.dll");
 	auto rtlGetVersion = reinterpret_cast<NTSTATUS (*)(PRTL_OSVERSIONINFOW)>(GetProcAddress(ntdll, "RtlGetVersion"));
 	RTL_OSVERSIONINFOW versionInfo = {};
-	rtlGetVersion(&versionInfo);
+	if(rtlGetVersion)
+		rtlGetVersion(&versionInfo);
 	FreeLibrary(ntdll);
 	if(versionInfo.dwBuildNumber >= 19041)
 	{
