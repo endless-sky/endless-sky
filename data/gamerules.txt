@@ -113,7 +113,7 @@ gamerules
 	# Whenever a day passes, all non-officer crew in the player's fleet will be paid this amount.
 	# DEFAULT: 200 (200 credits per day)
 	# ALLOWABLE VALUES: any integer >= 0.
-	"base crew salary" 200
+	"base crew salary" 100
 
 	# Most ships require at least one officer. The salary of each officer is equal to the "base officer salary"
 	# plus the number of crew on their ship times "officer salary per crew", all multiplied by "officer multiplier"
@@ -123,7 +123,7 @@ gamerules
 	# The base salary of an officer.
 	# DEFAULT: 6000 (6000 credits per day)
 	# ALLOWABLE VALUES: any integer >= 0.
-	"base officer salary" 6000
+	"base officer salary" 5000
 
 	# Every required crew member on a non-fighter ship must be under the command of an officer or be an officer themselves.
 	# An officer can command up to this number of crew, including themselves.
