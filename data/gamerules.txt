@@ -111,7 +111,7 @@ gamerules
 	"fleet multiplier" 1.
 
 	# Whenever a day passes, all non-officer crew in the player's fleet will be paid this amount.
-	# DEFAULT: 200 (200 credits per day)
+	# DEFAULT: 100 (100 credits per day)
 	# ALLOWABLE VALUES: any integer >= 0.
 	"base crew salary" 100
 
@@ -121,9 +121,9 @@ gamerules
 	# The player counts as one officer for their flagship and does not need to be paid.
 
 	# The base salary of an officer.
-	# DEFAULT: 6000 (6000 credits per day)
+	# DEFAULT: 4000 (4000 credits per day)
 	# ALLOWABLE VALUES: any integer >= 0.
-	"base officer salary" 5000
+	"base officer salary" 4000
 
 	# Every required crew member on a non-fighter ship must be under the command of an officer or be an officer themselves.
 	# An officer can command up to this number of crew, including themselves.
@@ -133,9 +133,9 @@ gamerules
 	"crew per officer" 20
 
 	# An additional sum paid to an officer for each crew under their command.
-	# DEFAULT: 50 (50 credits per day)
+	# DEFAULT: 100 (100 credits per day)
 	# ALLOWABLE VALUES: any integer >= 0.
-	"officer salary per crew" 50
+	"officer salary per crew" 100
 
 	# Each officer beyond your first will multiply the salary of all your officers by this value.
 	# Officers stack multiplicatively.

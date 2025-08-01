@@ -70,9 +70,9 @@ private:
 	double systemDepartureMin = 0.;
 	double systemArrivalMin = 0.;
 	double fleetMultiplier = 1.;
-	int baseCrewSalary = 200;
-	int baseOfficerSalary = 6000;
+	int baseCrewSalary = 100;
+	int baseOfficerSalary = 4000;
 	int crewPerOfficer = 20;
-	int officerSalaryPerCrew = 50;
+	int officerSalaryPerCrew = 100;
 	double officerMultiplier = 1.1;
 };
