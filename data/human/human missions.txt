@@ -6523,7 +6523,7 @@ mission "Lost Racer 2 - Ended"
 			`	"Meet me in the spaceport in a couple of hours. I want to look for clues."`
 				decline
 			label glory
-			`	When you meet August Renard, he looks no better than when he left <ship>. However, he does manage to speak. "Please take me to <planet>, captain. It's better to lead the search remotely from there than deal with these people in person."`
+			`	When you meet August Renard, he looks no better than when he left the <ship>. However, he does manage to speak. "Please take me to <planet>, captain. It's better to lead the search remotely from there than deal with these people in person."`
 			choice
 				`	"I guess."`
 					accept
@@ -6533,17 +6533,17 @@ mission "Lost Racer 2 - Ended"
 		log "After a brief search, was unable to find anything of the famous racing pilot Artemis Renard. Returned her grieving father home to Glory."
 		log "Minor People" "August and Artemis Renard" `August Renard contracted me to help look for his daughter Artemis, a racing pilot who went missing. Unable to find the woman, but returned her father home to Glory.`
 		conversation
-			`As the advanced medical facilities of <planet> rise up to greet <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though the attempt ended poorly. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
+			`As the advanced medical facilities of <planet> rise up to greet the <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though the attempt ended poorly. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
 			choice
 				`	"Weren't you going to pay me?"`
 					goto greedy
 				`	(Leave him alone.)`
-			`	August is escorted to a Shuttle which has just landed on the pad next to <ship>, waves to you as he goes in, and launches to another part of the planet.`
+			`	August is escorted to a Shuttle which has just landed on the pad next to the <ship>, waves to you as he goes in, and launches to another part of the planet.`
 				decline
 			label greedy
 			action
 				payment 2000
-			`	August turns. "What! After what you've done, crashed my hopes, you expect me to pay you! Why would you think that? Fine!" He throws a credit chip at you and exits <ship> in a huff.`
+			`	August turns. "What! After what you've done, crashed my hopes, you expect me to pay you! Why would you think that? Fine!" He throws a credit chip at you and exits the <ship> in a huff.`
 			`	When you access the credit chip, you find it is only worth <payment>.`
 
 mission "Lost Racer 2 - Continued"
@@ -6667,17 +6667,17 @@ mission "Lost Racer 2 - Failed"
 	on complete
 		clear "lost racer august to glory"
 		conversation
-			`As the advanced medical facilities of <planet> rise up to greet <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though the attempt ended poorly. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
+			`As the advanced medical facilities of <planet> rise up to greet the <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though the attempt ended poorly. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
 			choice
 				`	"Weren't you going to pay me?"`
 					goto greedy
 				`	(Leave him alone.)`
-			`	August is escorted to a Shuttle which has just landed on the pad next to <ship>, waves to you as he goes in, and launches to another part of the planet.`
+			`	August is escorted to a Shuttle which has just landed on the pad next to the <ship>, waves to you as he goes in, and launches to another part of the planet.`
 				decline
 			label greedy
 			action
 				payment 2000
-			`	August turns. "What! After what you've done, crashed my hopes, you expect me to pay you! Why would you think that? Fine!" He throws a credit chip at you and exits <ship> in a huff.`
+			`	August turns. "What! After what you've done, crashed my hopes, you expect me to pay you! Why would you think that? Fine!" He throws a credit chip at you and exits the <ship> in a huff.`
 			`	When you access the credit chip, you find it is only worth <payment>.`
 
 mission "Lost Racer 3"
@@ -6800,7 +6800,7 @@ mission "Lost Racer Epilogue"
 			`	August calls, "You can let your fleet stay at the main spaceport; I'm afraid there's not room here."`
 				to display
 					"total ships" > 1
-			`	As you exit <ship>, you notice that the Flivver has been painted in the same colors that your ship has.`
+			`	As you exit the <ship>, you notice that the Flivver has been painted in the same colors that your ship has.`
 			`	August approaches. "Artemis wanted to give you something as a present for saving her life, and we were wondering if you would like to have this Flivver. We've managed to refurbish it enough that it should be perfectly functional, and if you want a fast ship there's nothing in the sky that can beat you."`
 			`	August leads you up the steps into the palatial mansion and into a large whitewashed room with a golden table. On the table lie keys for the starship Artemis used in her most recent race.`
 			action
