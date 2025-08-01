@@ -6657,7 +6657,8 @@ mission "Lost Racer 2 - Failed"
 	entering
 	name "Take August to <planet>"
 	description "After your failed search for Artemis Renard, take her father, August, back to <destination>."
-	source "Acamar"
+	source
+		system "Acamar"
 	destination "Glory"
 	passengers 1
 	to offer
