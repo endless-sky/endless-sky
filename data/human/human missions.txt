@@ -11313,7 +11313,7 @@ mission "A Dead Man's Path 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		log `Helped a pair of siblings named Sophie and Liam by bringing them to New China so they can hear their father's last will.`
-		dialog `When you arrive at <planet>'s spaceport, the siblings prepare to head off to the court where their father's last will will be read out. Just before they leave, Liam turns to you. "Captain <last>, I've transferred <payment> to your account. Would it be okay for you to wait here until we come back? We'll need a ride home. If you're able to take us, please meet us in the spaceport later."`
+		conversation `When you arrive at <planet>'s spaceport, the siblings prepare to head off to the court where their father's last will will be read out. Just before they leave, Liam turns to you. "Captain <last>, I've transferred <payment> to your account. Would it be okay for you to wait here until we come back? We'll need a ride home. If you're able to take us, please meet us in the spaceport later."`
 		payment 50000
 
 mission "A Dead Man's Path 2"
@@ -11427,7 +11427,7 @@ mission "A Dead Man's Path 2"
 			`			"This room you are in now is the culmination of all my work. I hope you understand that it was for your sake that I kept these a secret. My journey was long and unforgiving, but it was my life. I hope you continue that journey, to understand the universe a little better.`
 			`			"Your father."`
 			`	Understanding the personal nature of the message, you leave the two alone for a bit, walking around and looking at the artifacts on the left of the dome.`
-			`	After some time, the siblings call you back. Sophie says, "Captain <last>, Liam and I have thought about this, and we think that we would never be able to live up to our father's expectations if we kept this sword. We can study all these artifacts and understand more about the universe through them, but we cannot study this one. To understand its power, it needs to be used.`
+			`	After some time, the siblings call you back. Sophie says, "Captain <last>, Liam and I have thought about this, and we think that we would never be able to live up to our father's expectations if we kept this sword. We can study all these artifacts and understand more about the universe through them, but we cannot study this one. To understand its abilities, it needs to be used.`
 			`	"This sword was always at our father's side, and it has been many places. Take it to many more." She pulls the sword from the pedestal, and gives it one last look before handing over it to you. "It is yours now."`
 			choice
 				`	"I would be more than grateful to accept it."`
@@ -11442,7 +11442,7 @@ mission "A Dead Man's Path 2"
 			label accepted
 			action
 				outfit "Old Man's Sword" 1
-			`	You take the strange sword from Sophie. It's abnormally light, and you don't really know how to use it yet, but it has a strange feeling of power emanating from it.`
+			`	You take the strange sword from Sophie. It seems abnormally light, but maybe that's because you've never held a sword before.`
 				goto conclusion
 
 			label declined
