@@ -11313,7 +11313,8 @@ mission "A Dead Man's Path 1"
 		dialog phrase "generic passenger on visit"
 	on complete
 		log `Helped a pair of siblings named Sophie and Liam by bringing them to New China so they can hear their father's last will.`
-		conversation `When you arrive at <planet>'s spaceport, the siblings prepare to head off to the court where their father's last will will be read out. Just before they leave, Liam turns to you. "Captain <last>, I've transferred <payment> to your account. Would it be okay for you to wait here until we come back? We'll need a ride home. If you're able to take us, please meet us in the spaceport later."`
+		conversation
+			`When you arrive at <planet>'s spaceport, the siblings prepare to head off to the court where their father's last will will be read out. Just before they leave, Liam turns to you. "Captain <last>, I've transferred <payment> to your account. Would it be okay for you to wait here until we come back? We'll need a ride home. If you're able to take us, please meet us in the spaceport later."`
 		payment 50000
 
 mission "A Dead Man's Path 2"
