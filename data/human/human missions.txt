@@ -6495,7 +6495,7 @@ mission "Lost Racer 1"
 		payment 100000
 
 
-mission "Lost Racer 2"
+mission "Lost Racer 2 - Ended"
 	landing
 	name "Return to <planet>"
 	description "You have decided not to continue the search for Artemis Renard. Return her grieving father August to <destination>."
@@ -6555,7 +6555,7 @@ mission "Lost Racer 2 - Continued"
 	passengers 1
 	deadline
 	to offer
-		has "Lost Racer 2: declined"
+		has "Lost Racer 2 - Ended: declined"
 		not "abandoned lost racer"
 	on offer
 		conversation
@@ -6643,13 +6643,41 @@ mission "Lost Racer 2 - Continued"
 				accept
 			
 			label abandon
+			action
+				set "lost racer august to glory"
 			`	"You're just like all the rest of those captains, don't care about their passengers, only seek to be paid." August Renard sighs. "But, I suppose that is to be expected. If nobody will help, giving up is the only option.`
 			`	"At least take me back to Glory."`
-				decline
+				fail
 
-	on enter "Kugel"
+	on enter Kugel
 		dialog
 			"As soon as you enter the Kugel system, your sensors begin to pick up a weak radio signal coming from the second planet, this time matching exactly the frequency of Artemis Renard's transponder. It seems you have arrived in the correct system."
+
+mission "Lost Racer 2 - Failed"
+	entering
+	name "Take August to <planet>"
+	description "After your failed search for Artemis Renard, take her father, August, back to <destination>."
+	source "Acamar"
+	destination "Glory"
+	passengers 1
+	to offer
+		has "Lost Racer 2 - Continued: failed"
+		has "lost racer august to glory"
+	on complete
+		clear "lost racer august to glory"
+		conversation
+			`As the advanced medical facilities of <planet> rise up to greet <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though the attempt ended poorly. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
+			choice
+				`	"Weren't you going to pay me?"`
+					goto greedy
+				`	(Leave him alone.)`
+			`	August is escorted to a Shuttle which has just landed on the pad next to <ship>, waves to you as he goes in, and launches to another part of the planet.`
+				decline
+			label greedy
+			action
+				payment 2000
+			`	August turns. "What! After what you've done, crashed my hopes, you expect me to pay you! Why would you think that? Fine!" He throws a credit chip at you and exits <ship> in a huff.`
+			`	When you access the credit chip, you find it is only worth <payment>.`
 
 mission "Lost Racer 3"
 	landing
@@ -6662,7 +6690,7 @@ mission "Lost Racer 3"
 		has "Lost Racer 2: done"
 	on offer
 		conversation
-			`Upon reaching the second planet, you pinpoint the radio signal to a valley in the southern hemisphere. You descend through a raging sandstorm; you have to rely entirely on instruments as the view from the <ship>'s bridge is almost entirely obscured. Soon, your scanners report that the source of the signal is less than a kilometer out, and after a few moments more, you begin to discern the vague shape of a crashed Flivver through the haze of dust. You land the <ship> next to the wreck, and both you and Mr. Renard go to exit the ship.`
+			`Upon reaching the planet, you pinpoint the radio signal to a valley in the southern hemisphere. You descend through a raging sandstorm; you have to rely entirely on instruments as the view from the <ship>'s bridge is almost entirely obscured. Soon, your scanners report that the source of the signal is less than a kilometer out, and after a few moments more, you begin to discern the vague shape of a crashed Flivver through the haze of dust. You land the <ship> next to the wreck, and both you and Mr. Renard go to exit the ship.`
 			`	Visibility is even worse on foot, and while August shouts over the howling wind, you cannot tell what he is saying. As you clear the front part of your own ship, you see the crashed ship before you.`
 			scene "scene/flivver crash"
 			`	Mr. Renard shouts with what you believe to be joy at seeing the parachute and scattered flares. The two of you wade through the sand and increasingly dense scattered debris as quickly as you can until you arrive at the rear hatch of the crashed Flivver. You struggle to turn the lock but eventually force it open, briefly letting the sand-filled air rush into the interior of the ship before you close it behind you. Inside, the ship is dark and depowered but more or less intact. At the front of the craft, sitting in the half-submerged cockpit, is the woman you saw on the broadcast, wiping the sand from her face.`
@@ -6706,10 +6734,13 @@ mission "Lost Racer 3"
 				`	"I'll leave the questions to your father."`
 					goto noquestions
 			label crash
-			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox' hyperdrive malfunctioned, knocking me out. When I woke up, the Flivver was damaged and I was stranded on a planet with no way of calling for help - the flares had triggered when I crashed. Well, now you know. Is there anything else?"`
-			`	August asks, "Do you think someone could have sabotaged it? Any suspicious Syndicate employees hanging around? Any anything out of the ordinary?`
-			`	"Ah well, that's probably something to talk about later."`
-				goto noquestions
+			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox's hyperdrive malfunctioned, knocking me out. When I woke up, the Flivver was damaged and I was stranded on a planet with no way of calling for help - the flares had triggered when I crashed. Well, now you know. Is there anything else?"`
+			`	August asks, "Do you think someone could have sabotaged it? Any suspicious Syndicate employees hanging around? Any anything out of the ordinary?"`
+			`	"Not that I remember," replies Artemis. "This has happened only once or twice in the history of racing, but it's still happened. A one-in-a-million chance, perhaps. I wouldn't worry about it too much."`
+			choice
+				`	"That was a beautiful ship you had there. I've never seen a Flivver quite like that."`
+				`	"Alright."`
+					goto noquestions
 			label beautiful
 			`	"You have good taste, Captain. It's modified for racing: lighter hull plating, no weapon mounts, ample engines, of course. We've got a dozen for all the different races, but that one was a personal favorite."`
 			choice
