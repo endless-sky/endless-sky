@@ -6643,10 +6643,10 @@ mission "Lost Racer 2 - Continued"
 				accept
 			
 			label abandon
-			action
-				set "lost racer august to glory"
 			`	"You're just like all the rest of those captains, don't care about their passengers, only seek to be paid." August Renard sighs. "But, I suppose that is to be expected. If nobody will help, giving up is the only option.`
 			`	"At least take me back to Glory."`
+			action
+				set "lost racer august to glory"
 				fail
 
 	on enter Kugel
