@@ -58,7 +58,7 @@ void HiringPanel::Draw()
 	int flagshipRequired = 0;
 	int flagshipExtra = 0;
 	int flagshipUnused = 0;
-	bool flagshipCarried = false;
+	bool flagshipJump = false;
 
 	if(flagship)
 	{
@@ -67,7 +67,7 @@ void HiringPanel::Draw()
 		flagshipRequired = flagship->RequiredCrew() - flagshipOfficers;
 		flagshipExtra = flagship->Crew() - flagship->RequiredCrew();
 		flagshipUnused = flagshipBunks - flagship->Crew();
-		flagshipCarried = flagship->CanBeCarried();
+		flagshipJump = flagship->JumpNavigation().HasAnyDrive();
 	}
 
 	info.SetString("flagship bunks", to_string(flagshipBunks));
@@ -80,9 +80,9 @@ void HiringPanel::Draw()
 	// disabled or out-of-system ships, but any parked ships have no crew costs.
 	player.UpdateCrew();
 
-	int fleetOfficers = player.Officers() + (flagship && !flagshipCarried ? 1 : 0);
+	int fleetOfficers = player.Officers() + (flagshipJump ? 1 : 0);
 	int fleetBunks = 0;
-	int fleetCrew = player.Crew() + (!flagshipCarried ? 0 : 1);
+	int fleetCrew = player.Crew() + (!flagship || !flagshipJump ? 0 : 1);
 	int passengers = player.Cargo().Passengers();
 
 	for(const shared_ptr<Ship> &ship : player.Ships())

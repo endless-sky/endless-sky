@@ -3071,9 +3071,10 @@ int Ship::RequiredCrew() const
 
 
 
+// Ships than can jump between systems need at least one officer.
 int Ship::RequiredOfficers() const
 {
-	return !CanBeCarried() ? ceil(static_cast<double>(RequiredCrew())
+	return navigation.HasAnyDrive() ? ceil(static_cast<double>(RequiredCrew())
 		/ GameData::GetGamerules().CrewPerOfficer()) : 0;
 }
 

@@ -38,7 +38,7 @@ help "disabled"
 	`If the ship that disabled you is still hanging around, you might need to hail them first and bribe them to leave you alone.`
 
 help "hiring"
-	`Each non-fighter ship requires at least one officer, plus an additional officer every <crew per officer> crew. Each officer beyond yourself is paid <base officer salary> per day, plus <officer salary per crew> for each crew under their command, and multiplied by <officer multiplier> percent for each other hired officer in your fleet`
+	`Each jump-capable ship requires at least one officer, plus an additional officer every <crew per officer> crew. Each officer beyond yourself is paid <base officer salary> per day, plus <officer salary per crew> for each crew under their command, and multiplied by <officer multiplier> percent for each other hired officer in your fleet`
 	`All non-officer crew are paid <base crew salary> per day. You will automatically hire the minimum number of crew when you buy a ship.`
 	`You can only hire extra crew for your flagship to help capture enemy ships. Crew members take up space that can otherwise be used for passengers.`
 
