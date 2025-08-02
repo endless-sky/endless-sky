@@ -125,7 +125,7 @@ gamerules
 	# ALLOWABLE VALUES: any integer >= 0.
 	"base officer salary" 4000
 
-	# Every required crew member on a non-fighter ship must be under the command of an officer or be an officer themselves.
+	# Every required crew member on a jump-capable ship must be under the command of an officer or be an officer themselves.
 	# An officer can command up to this number of crew, including themselves.
 	# Extra crew on your flagship do not increase the number of officers on your ship.
 	# DEFAULT: 20 (1 officer and 19 crew)
