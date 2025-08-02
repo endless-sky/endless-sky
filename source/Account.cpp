@@ -160,7 +160,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	ostringstream out;
 
 	// Keep track of what payments were made and whether any could not be made.
-	crewSalariesOwed += salaries;
+	crewSalariesOwed = min((static_cast<int64_t>(1) << 62) - 1, crewSalariesOwed + salaries);
 	maintenanceDue += maintenance;
 	bool missedPayment = false;
 

@@ -60,6 +60,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Financial conditions are bound to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
+	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
+
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
 	// was higher up the list.
@@ -980,8 +983,14 @@ int64_t PlayerInfo::OfficerSalaries() const
 	// An officer's salary is equal to the base officer salary plus the officer salary per crew,
 	// for each of their subordinates. This is then multiplied by the officer multiplier for
 	// each hired officer in the player's fleet beyond the first.
-	return (baseOfficerSalary * officers + subordinates * officerSalaryPerCrew)
-		* pow(officerMultiplier, officers - 1);
+	const int64_t combinedSalary = baseOfficerSalary * officers + subordinates * officerSalaryPerCrew;
+	const double actualMultiplier = max(1., pow(officerMultiplier, officers - 1));
+
+	// Prevent possible integer overflows.
+	if(limit / actualMultiplier < combinedSalary)
+		return limit;
+
+	return combinedSalary * actualMultiplier;
 }
 
 
@@ -991,7 +1000,7 @@ int64_t PlayerInfo::CrewSalaries() const
 {
 	const int baseSalary = GameData::GetGamerules().BaseCrewSalary();
 
-	return crew * baseSalary;
+	return min<int64_t>(limit, crew * baseSalary);
 }
 
 
@@ -1001,7 +1010,7 @@ int64_t PlayerInfo::Salaries()
 {
 	UpdateCrew();
 
-	return OfficerSalaries() + CrewSalaries();
+	return min(limit, OfficerSalaries() + CrewSalaries());
 }
 
 
@@ -3599,8 +3608,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return date.DaysSinceEpoch() - StartData().GetDate().DaysSinceEpoch(); });
 
 	// Read-only account conditions.
-	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
-	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 
 	conditions["net worth"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, max(-limit, accounts.NetWorth())); });

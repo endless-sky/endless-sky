@@ -105,9 +105,9 @@ void HiringPanel::Draw()
 	const int officerSalaryPerCrew = GameData::GetGamerules().OfficerSalaryPerCrew();
 	const double officerMultiplier = GameData::GetGamerules().OfficerMultiplier();
 
-	int officerSalary = player.OfficerSalaries();
-	int salary = player.CrewSalaries();
-	int extraSalary = flagshipExtra * baseSalary;
+	int64_t officerSalary = player.OfficerSalaries();
+	int64_t salary = player.CrewSalaries();
+	int64_t extraSalary = flagshipExtra * baseSalary;
 
 	info.SetString("salary officers", Format::Credits(officerSalary));
 	info.SetString("salary required", Format::Credits(salary));
