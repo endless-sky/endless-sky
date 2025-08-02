@@ -164,15 +164,14 @@ help "shipyard"
 	`You can also press F to search the shipyard for a specific ship.`
 
 help "cargo management"
-	`Sometimes you may want to buy outfits directly into your cargo hold instead of having them installed. Perhaps a mission has asked you to retrieve some outfits, or perhaps you want to carry extra ammunition to refill your ships somewhere that does not stock those weapons.`
+	`Sometimes you may want to buy outfits directly into your cargo hold instead of having them installed.`
 	`You can use the following keyboard shortcuts or the buttons to move outfits around:`
 	`- "B" to buy and install outfits`
 	`- "S" to sell outfits from cargo, planetary storage, or your ship (in that order)`
-	`- "U" to uninstall outfits from your ship and leave them in planetary storage, or move outfits from cargo to planetary storage (in that order)`
 	`- "I" to install outfits from cargo and/or storage (in that order)`
-	`- "C" to move outfits from planetary storage and/or the outfitter (after paying) and move them to cargo`
-	`- "R" to move outfits from your cargo hold (if any are there) or else directly uninstall to planetary storage`
-	`You can also deselect your ship by Control-clicking on it, and then when buying outfits go directly into cargo.`
+	`- "U" to uninstall outfits from your ship and leave them in planetary storage, or unload outfits from cargo to planetary storage (in that order)`
+	`- "C" to move outfits from planetary storage and/or the outfitter (after paying) and move them into cargo`
+	`- "R" to move outfits from your cargo hold (if any are there) or else to uninstall to planetary storage`
 	`Outfits that are in your cargo hold can be installed at any outfitter without cost.`
 
 help "uninstalling and storage"
