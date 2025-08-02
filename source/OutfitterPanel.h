@@ -67,9 +67,9 @@ protected:
 	virtual double ButtonPanelHeight() const override;
 	virtual double DrawDetails(const Point &center) override;
 
-	virtual bool ButtonActive(char key, bool shipRelatedOnly=false);
+	virtual bool ButtonActive(char key, bool shipRelatedOnly = false);
 
-	virtual bool ShouldHighlightShip(const Ship *ship) override;
+	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual char CheckButton(int x, int y) override;
 
@@ -86,7 +86,7 @@ private:
 	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
 	bool HasLicense(const std::string &name) const;
 	void CheckRefill();
-	void Refill() const;
+	void Refill();
 	// Shared code for reducing the selected ships to those that have the
 	// same quantity of the selected outfit.
 	std::vector<Ship *> GetShipsToOutfit(bool isInstall = false) const;

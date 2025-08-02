@@ -91,7 +91,7 @@ protected:
 	virtual char CheckButton(int x, int y) = 0;
 	virtual TransactionResult HandleShortcuts(char key) = 0;
 
-	virtual bool ShouldHighlightShip(const Ship *ship);
+	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey() {};
 
 	// Only override the ones you need; the default action is to return false.
