@@ -939,8 +939,6 @@ void PlayerInfo::UpdateCrew()
 			// The player counts as an officer on their flagship and does not need to be paid.
 			int requiredOfficers = ship->RequiredOfficers() - (hasAnyDrive ? isFlagship : 0);
 
-			// The player counts as an officer on their flagship and does not need to be paid.
-			int requiredOfficers = ship->RequiredOfficers() - (!canBeCarried ? isFlagship : 0);
 			// Extra crew is only counted on the flagship.
 			crew += isFlagship ? ship->Crew() - requiredOfficers - 1 : requiredCrew;
 			officers += requiredOfficers;
