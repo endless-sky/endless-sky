@@ -95,12 +95,12 @@ protected:
 	virtual void DrawKey() {};
 
 	// Only override the ones you need; the default action is to return false.
-	bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	bool Click(int x, int y, int clicks) override;
-	bool Hover(int x, int y) override;
-	bool Drag(double dx, double dy) override;
-	bool Release(int x, int y) override;
-	bool Scroll(double dx, double dy) override;
+	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Hover(int x, int y) override;
+	virtual bool Drag(double dx, double dy) override;
+	virtual bool Release(int x, int y) override;
+	virtual bool Scroll(double dx, double dy) override;
 
 	void DoFind(const std::string &text);
 	virtual int FindItem(const std::string &text) const = 0;
