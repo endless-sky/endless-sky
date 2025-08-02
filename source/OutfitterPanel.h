@@ -44,13 +44,7 @@ public:
 
 	virtual void Step() override;
 
-	enum class UninstallAction {
-		Uninstall,
-		Store,
-		Sell,
-	};
-
-	// Sources and sinks are locations which items may move to and from within the outfitter.
+	// Define locations which items may move to and from within the outfitter.
 	enum class OutfitLocation {
 		Ship,
 		Shop,

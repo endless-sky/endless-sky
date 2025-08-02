@@ -1290,7 +1290,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 			{
 				// The current cost is more than the amount of money the player has, so try a smaller amount.
 				if(!--howManyPer)
-					// If the the smaller amount becomes zero, we're not able to do anything with cargo.
+					// If the smaller amount becomes zero, we're not able to do anything with cargo.
 					return "Cannot afford to buy this item and load into cargo.";
 				price = player.StockDepreciation().Value(selectedOutfit, day, howManyPer);
 			}
