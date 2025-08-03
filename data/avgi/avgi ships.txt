@@ -47,7 +47,7 @@ ship "Koryfi"
 		"Multispectral Scanner"
 		"Optical Laser Rifle" 2
 
-		"Magnetoplasma Drive" 3
+		"Cross MPD Drive" 3
 		"Hyperdrive"
 
 	engine -101.5 -11
@@ -158,7 +158,7 @@ ship "Melodikos"
 		"Multispectral Scanner"
 		"Optical Laser Rifle" 6
 
-		"Magnetoplasma Drive" 2
+		"Cross MPD Drive" 2
 		"Hyperdrive"
 
 	engine -92 1.5
@@ -300,7 +300,7 @@ ship "Avlaki"
 		"Multispectral Scanner"
 		"Optical Laser Rifle" 2
 
-		"Magnetoplasma Drive" 3
+		"Cross MPD Drive" 3
 		"Hyperdrive"
 
 	engine -101.5 -11
@@ -410,7 +410,7 @@ ship "Harmonikos"
 		"Multispectral Scanner"
 		"Optical Laser Rifle" 6
 
-		"Magnetoplasma Drive" 2
+		"Cross MPD Drive" 2
 		"Hyperdrive"
 
 	engine -92 1.5
@@ -544,7 +544,7 @@ ship "Phononos"
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell"
 		
-		"Magnetoplasma Drive" 2
+		"Cross MPD Drive" 2
 		"Hyperdrive"
 
 	engine -9 -19
@@ -614,7 +614,7 @@ ship "Frequentia"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 2
 
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector"
 		"R-180 RCS Thrusters"
@@ -695,7 +695,7 @@ ship "Polari"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 9
 
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector"
 		"R-180 RCS Thrusters"
@@ -775,7 +775,7 @@ ship "Entasi"
 		"Spectrometer Array" 6
 		"Optical Laser Rifle" 9
 
-		"Magnetoplasma Drive" 3
+		"Cross MPD Drive" 3
 		"Hyperdrive"
 
 	engine -45 45
@@ -918,7 +918,7 @@ ship "Undsyni"
 		"Spectrometer Array" 2
 		"Cargo Expansion" 12
 
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1002,7 +1002,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Spectrometer Array"
 		"Outfits Expansion"
 
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1031,7 +1031,7 @@ ship "Undsyni" "Undsyni (Plasmadyne)"
 		"Multispectral Scanner"
 		"Spectrometer Array"
 
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1092,7 +1092,7 @@ ship "Modified Tachytia"
 		"Radiative Lamina"
 		"Optical Laser Rifle" 900
 		
-		`A-3600 "Beam" Amat Torch`
+		"Beam Antimatter Torch"
 		"Inductive Extractor" 6
 		"Hyperdrive"
 
@@ -1191,6 +1191,7 @@ ship "Tremoros"
 		"hull" 2400
 		"automaton" 1
 		"crew equivalent" 1
+		"threshold percentage" 0.15
 		"mass" 90
 		"drag" 2.1
 		"heat dissipation" 0.72
@@ -1209,14 +1210,11 @@ ship "Tremoros"
 		"Speckle Coilgun" 4
 		"Speck Round" 3600
 		
-		"Ultracapacitor Cell" 4
-		"Diffuse Deflector"
+		"Ultracapacitor Bank" 6
 		"Multispectral Scanner"
 		"Magnetic Scoop"
 		
-		`Z-333 "Spark" Fusion Torch`
-		"Inductive Extractor"
-		"Remass Injector" 2
+		"Vapor Nuclear Rocket"
 		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
@@ -1250,7 +1248,7 @@ ship "Tremoros"
 	explode "small explosion" 9
 	"final explode" "final explosion small"
 
-	description "The Tremoros-class Interceptor is a small autonomous ship designed to support patrol and interdiction missions. With an emphasis on raw acceleration, it can rocket past any adversary even as it brings its guns to bear, making it exceedingly difficult to hit."
+	description "The Tremoros-class Interceptor is a small autonomous ship designed to support patrol and interdiction missions. Derived from a transatmospheric hypersonic fighter, it is capable of dual operations in both space and planetary atmospheres. With an emphasis on raw acceleration, it can rocket past any adversary even as it brings its guns to bear, making it exceedingly difficult to hit."
 	description "	The Tremoros has also seen use as an escort for smaller merchant convoys, with the ability to intercept any enemies that might pose a threat before they can come within range of vulnerable civilian ships."
 
 
@@ -1287,8 +1285,8 @@ ship "Prismaios"
 	outfits
 		"Speckle Turret" 2
 		"Speck Round" 4800
-		"Medium VLS"
-		`"Nettle" KKV` 216
+		"Small VLS"
+		`"Nettle" KKV` 54
 		"Green Optical Laser"
 
 		"Ultracapacitor Bank"
@@ -1298,7 +1296,7 @@ ship "Prismaios"
 		"Optical Lasing Generator"
 		"Optical Laser Rifle" 6
 		
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1329,7 +1327,7 @@ ship "Prismaios"
 	gun 9 33
 		angle 90
 		parallel
-	turret 0 -48 "Medium VLS"
+	turret 0 -48 "Small VLS"
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
 	turret 0 90 "Green Optical Laser"
@@ -1357,7 +1355,7 @@ ship "Prismaios" "Prismaios (Laserstar)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 6
 		
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor" 2
 		"Remass Injector"
 		"R-360 RCS Thrusters"
@@ -1384,7 +1382,7 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 6
 		
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1435,7 +1433,7 @@ ship "Interferos"
 		"Optical Lasing Generator"
 		"Magnetic Scoop"
 		
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector"
 		"R-180 RCS Thrusters"
@@ -1489,14 +1487,14 @@ ship "Interferos" "Interferos (KKV)"
 	outfits
 		"Green Optical Laser"
 		"Medium VLS" 2
-		`"Nettle" KKV` 432
+		`"Nettle" KKV` 216
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Magnetic Scoop"
 		
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector"
 		"R-180 RCS Thrusters"
@@ -1518,7 +1516,7 @@ ship "Interferos" "Interferos (Atomic)"
 		"Optical Lasing Generator"
 		"Magnetic Scoop"
 		
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector"
 		"R-180 RCS Thrusters"
@@ -1565,7 +1563,7 @@ ship "Diaspersi"
 	outfits
 		"Green Optical Laser" 2
 		"Medium VLS" 2
-		`"Nettle" KKV` 432
+		`"Nettle" KKV` 216
 		
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1576,7 +1574,7 @@ ship "Diaspersi"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 36
 		
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1670,7 +1668,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 36
 		
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1683,6 +1681,34 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 	turret "Green Optical Laser"
 	turret "Green Optical Laser"
 	turret "Speckle Turret"
+
+
+ship "Diaspersi" "Diaspersi (UREB)"
+	outfits
+		"UREB Turret"
+		"Green Optical Laser" 2
+		"Small VLS"
+		`"Nettle" KKV` 54
+		
+		"Ultracapacitor Bank"
+		"Specular Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner" 4
+		"Concealment Lamina"
+		"Deuterium Slush Tank" 3
+		"Magnetic Scoop"
+		"Optical Laser Rifle" 36
+		
+		"Spark Fusion Torch"
+		"Inductive Extractor"
+		"Remass Injector" 2
+		"R-360 RCS Thrusters"
+		"Hyperdrive"
+
+	turret "Small VLS"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "UREB Turret"
 
 
 ship "Refraktos"
@@ -1726,7 +1752,7 @@ ship "Refraktos"
 		"Heatsink Partition" 3
 		"Optical Laser Rifle" 24
 		
-		`Z-666 "Zap" Fusion Torch`
+		"Zap Fusion Torch"
 		"Inductive Extractor" 5
 		"Remass Injector" 1
 		"R-360 RCS Thrusters"
@@ -1787,6 +1813,64 @@ ship "Refraktos"
 	description "	Due to the anemic damage output of Avgi laser weapons compared to their kinetic weapons and missiles, the Refraktos is most often seen in a support role, providing antimissile coverage to entire fleets."
 
 
+ship "Refraktos" "Refraktos (UREB)"
+	outfits
+		"UREB Turret" 2
+		"Green Optical Laser" 3
+
+		"Photoelectric Lamina"
+		"Ultracapacitor Bank" 3
+		"Specular Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner" 2
+		"Magnetic Scoop" 2
+		"Heatsink Partition" 3
+		"Optical Laser Rifle" 24
+		
+		"Zap Fusion Torch"
+		"Inductive Extractor" 5
+		"Remass Injector" 1
+		"R-360 RCS Thrusters"
+		"Hyperdrive"
+
+	turret "UREB Turret"
+	turret "UREB Turret"
+	turret
+	turret
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+
+
+ship "Refraktos" "Refraktos (Excimer)"
+	outfits
+		"UV Excimer Laser"
+		"Green Optical Laser" 6
+
+		"Photoelectric Lamina"
+		"Ultracapacitor Bank" 3
+		"Specular Deflector"
+		"Optical Lasing Generator" 2
+		"Multispectral Scanner" 2
+		"Magnetic Scoop" 2
+		"Heatsink Partition" 3
+		"Optical Laser Rifle" 24
+		
+		"Zap Fusion Torch"
+		"Inductive Extractor" 5
+		"Remass Injector" 1
+		"R-360 RCS Thrusters"
+		"Hyperdrive"
+
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "UV Excimer Laser"
+
+
 ship "Difraktos"
 	plural "Difraktos"
 	sprite "ship/avgi difraktos"
@@ -1820,7 +1904,7 @@ ship "Difraktos"
 		"Speckle Turret" 4
 		"Speck Round" 9600
 		"Medium VLS" 2
-		`"Nettle" KKV` 432
+		`"Nettle" KKV` 216
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank"
@@ -1831,7 +1915,7 @@ ship "Difraktos"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-180 RCS Thrusters"
@@ -1903,7 +1987,7 @@ ship "Difraktos" "Difraktos (KKV)"
 		"Speckle Turret" 2
 		"Speck Round" 4800
 		"Medium VLS" 4
-		`"Nettle" KKV` 864
+		`"Nettle" KKV` 432
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1913,7 +1997,7 @@ ship "Difraktos" "Difraktos (KKV)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 		
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-180 RCS Thrusters"
@@ -1946,7 +2030,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 
-		`Z-333 "Spark" Fusion Torch`
+		"Spark Fusion Torch"
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-180 RCS Thrusters"
@@ -1962,6 +2046,71 @@ ship "Difraktos" "Difraktos (Atomic)"
 	turret "Speckle Turret"
 	turret
 	turret
+	turret
+	turret
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+
+
+ship "Difraktos" "Difraktos (UREB + Atomic)"
+	outfits
+		`"Orchid" Nuclear Missile` 24
+		"Concealment Lamina"
+		"External Launch Tube" 4
+		"Green Optical Laser" 2
+		Hyperdrive
+		"Inductive Extractor"
+		"Lantern Fission Core"
+		"Magnetic Scoop"
+		"Multispectral Scanner" 3
+		"Optical Laser Rifle" 42
+		"Optical Lasing Generator"
+		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
+		"Remass Injector" 2
+		"Specular Deflector"
+		"UREB Turret" 2
+		"Ultracapacitor Bank"
+		"Spark Fusion Torch"
+
+	gun
+	gun "External Launch Tube"
+	gun "External Launch Tube"
+	gun "External Launch Tube"
+	gun "External Launch Tube"
+	turret "UREB Turret"
+	turret "UREB Turret"
+	turret
+	turret
+	turret
+	turret
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+
+
+ship "Difraktos" "Difraktos (UREB)"
+	outfits
+		"Concealment Lamina"
+		"Green Optical Laser" 2
+		"Inductive Extractor" 2
+		"Jump Drive"
+		"Lantern Fission Core"
+		"Magnetic Scoop"
+		"Multispectral Scanner" 3
+		"Optical Laser Rifle" 42
+		"Optical Lasing Generator"
+		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
+		"Remass Injector"
+		"Specular Deflector"
+		"UREB Turret" 4
+		"Ultracapacitor Bank" 2
+		"Spark Fusion Torch"
+
+	turret "UREB Turret"
+	turret "UREB Turret"
+	turret "UREB Turret"
+	turret "UREB Turret"
 	turret
 	turret
 	turret "Green Optical Laser"
@@ -2003,7 +2152,7 @@ ship "Atenuatia"
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
 		"Medium VLS" 2
-		`"Nettle" KKV` 432
+		`"Nettle" KKV` 216
 		
 		"Ultracapacitor Bank" 3
 		"Specular Deflector"
@@ -2013,7 +2162,7 @@ ship "Atenuatia"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 90
 		
-		`Z-666 "Zap" Fusion Torch`
+		"Zap Fusion Torch"
 		"Inductive Extractor" 3
 		"Remass Injector" 3
 		"R-720 RCS Thrusters"
@@ -2162,7 +2311,7 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Multispectral Scanner" 6
 		"Optical Laser Rifle" 90
 		
-		`Z-666 "Zap" Fusion Torch`
+		"Zap Fusion Torch"
 		"Inductive Extractor" 2
 		"Remass Injector" 4
 		"R-720 RCS Thrusters"
@@ -2216,7 +2365,7 @@ ship "Akoustiki"
 		"Spectrometer Array"
 		"Optical Laser Rifle" 2
 		
-		"Magnetoplasma Drive" 2
+		"Cross MPD Drive" 2
 
 	engine -12 18
 	engine 12 18
@@ -2263,6 +2412,8 @@ ship "Photikon"
 		"shields" 240
 		"hull" 2100
 		"automaton" 1
+		"crew equivalent" 1
+		"threshold percentage" 0.15
 		"mass" 45
 		"drag" 0.6
 		"heat dissipation" 0.72
@@ -2284,7 +2435,7 @@ ship "Photikon"
 		"Ultracapacitor Cell" 3
 		"Multispectral Scanner"
 		
-		"Magnetoplasma Drive"
+		"Cross MPD Drive"
 
 	engine -9 -15
 		angle 15
@@ -2326,6 +2477,18 @@ ship "Photikon"
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
+ship "Photikon" "Photikon (KKV)"
+	outfits
+		"Small VLS"
+		'"Nettle" KKV' 54
+		
+		"Concentrating Solar Array"
+		"Ultracapacitor Cell" 3
+		"Multispectral Scanner"
+		
+		"Cross MPD Drive"
+
+
 ship "Photikon" "Photikon (Atomic)"
 	outfits
 		"External Launch Rail" 3
@@ -2335,7 +2498,7 @@ ship "Photikon" "Photikon (Atomic)"
 		"Ultracapacitor Cell" 3
 		"Multispectral Scanner"
 		
-		"Magnetoplasma Drive"
+		"Cross MPD Drive"
 
 
 # Drones
@@ -2373,7 +2536,7 @@ ship "Vibratia"
 		"Ultracapacitor Cell"
 		"Multispectral Scanner"
 	
-		"Magnetoplasma Drive"
+		"Cross MPD Drive"
 
 	engine 0 27
 	"reverse engine" -5 -12
@@ -2437,7 +2600,7 @@ ship "Undulon"
 		"Ultracapacitor Cell"
 		"Multispectral Scanner"
 
-		"Magnetoplasma Drive"
+		"Cross MPD Drive"
 
 	engine -15 3
 		angle 15
@@ -2509,7 +2672,7 @@ ship "Optikon"
 		"Multispectral Scanner"
 		"Spectrometer Array"
 
-		"Magnetoplasma Drive"
+		"Cross MPD Drive"
 
 	engine 0 21
 	"steering engine" -6 12
@@ -2552,7 +2715,7 @@ ship "Sonikis"
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 2
 
-		"Magnetoplasma Drive"
+		"Cross MPD Drive"
 
 	engine -39 -6
 	engine 39 -6
@@ -2586,7 +2749,7 @@ ship "Sonikis" "Sonikis (Armed)"
 		"Ultracapacitor Cell" 2
 		"Spectrometer Array"
 
-		"Magnetoplasma Drive"
+		"Cross MPD Drive"
 
 
 ship "Sonikis" "Sonikis (Tanker)"
@@ -2595,4 +2758,4 @@ ship "Sonikis" "Sonikis (Tanker)"
 		"Ultracapacitor Cell" 2
 		"Cryogenic Deuterium Tank" 2
 
-		"Magnetoplasma Drive"
+		"Cross MPD Drive"

@@ -728,6 +728,112 @@ outfit "Orchid Magazine"
 	ammo `"Orchid" Nuclear Missile`
 	description "This large ammunition storage loads new Orchid Missiles into the launch tubes with little more than a few cables, actuators, and solenoids. Designed to be as minimalistic as possible, the sheer size of each Orchid nonetheless makes this magazine rather bulky for the number of missiles it stores."
 
+outfit "Magnetoplasma Drive"
+	"display name" `E-120 "Cross" MPD Drive`
+	category "Engines"
+	series "Engines"
+	index 07010
+	"cost" 27000
+	thumbnail "outfit/magnetoplasma drive"
+	"mass" 12
+	"outfit space" -12
+	"engine capacity" -12
+	"thrust" 3
+	"thrusting energy" 1.2
+	"thrusting heat" 0.6
+	"reverse thrust" 3
+	"reverse thrusting energy" 1.2
+	"reverse thrusting heat" 0.6
+	"turn" 180
+	"turning energy" 1.2
+	"turning heat" 0.6
+	"drag reduction" 0.3
+	"flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 5
+	"flare sound" "plasma tiny"
+	"steering flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 5
+	"steering flare sound" "plasma tiny"
+	"reverse flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
+	description "For bulk transportation of passengers and goods, electric propulsion has long been used by the Avgi for its versatility and low cost. This compact set of magnetoplasmadynamic thrusters can propel light ships to impressive velocities, given time to accelerate, but it is also notably energy-hungry. Being propellant agnostic, it is common to see this workhorse drive ran with common water or ammonia propellants, contributing to its renowned flexibility."
+	description "	Designed to be clustered and oriented in any direction, this design can give a ship full six-axis control, allowing it to translate and rotate in any direction with ease."
+
+outfit `Z-333 "Spark" Fusion Torch`
+	category "Engines"
+	series "Engines"
+	index 07050
+	licenses
+		"Avgi Torch"
+	"cost" 1800000
+	thumbnail "outfit/spark fusion torch"
+	"mass" 333
+	"outfit space" -33
+	"engine capacity" -33
+	"thrust" 120
+	"thrusting energy" 9
+	"thrusting heat" 60
+	"thrusting fuel" 0.09
+	"drag reduction" 1
+	"flare sprite" "effect/avgi flare/fusion"
+		"frame rate" 15
+		"scale" 0.75
+	"flare sound" "fusion torch"
+	"afterburner effect" "small remass injection"
+	"magnetic nozzle" 3
+	description "The smallest Avgi fusion torch is actually the most recent design in the family, owing to the difficulties of miniaturizing the systems driving nuclear fusion. By cooling the fuel with a laser and passing it through an extremely powerful magnetic field, it can be spin polarized, aligning the nuclear spins of the deuterons to reduce ignition requirements and direct some of the emitted neutrons away from the spacecraft. While spin polarization is used on all Avgi fusion torches, it allows the Spark in particular to be far lighter and more compact than would otherwise be possible, reducing the required currents to drive the pinch and the mass of the necessary radiation shielding."
+	description "	The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
+
+outfit `Z-666 "Zap" Fusion Torch`
+	category "Engines"
+	series "Engines"
+	index 07060
+	licenses
+		"Avgi Torch"
+	"cost" 3900000
+	thumbnail "outfit/zap fusion torch"
+	"mass" 666
+	"outfit space" -66
+	"engine capacity" -66
+	"thrust" 270
+	"thrusting energy" 18
+	"thrusting heat" 120
+	"thrusting fuel" 0.18
+	"drag reduction" 2
+	"flare sprite" "effect/avgi flare/fusion"
+		"frame rate" 15
+	"flare sound" "fusion torch"
+	"afterburner effect" "medium remass injection"
+	"magnetic nozzle" 6
+	description "The fusion confinement scheme favored by the Avgi is a variant on the Z-pinch, which runs current axially down a column of deuterium plasma to squeeze it with the resulting magnetic field until it is hot and dense enough for fusion to occur. An annular flow surrounding the pinch keeps it stable, confining the plasma long enough for nearly all of the fuel to be burned by the time it makes its way down the length of the engine and out the magnetic nozzle on its rear. Without the need for fragile, heavy magnets or bulky lasers to ignite and confine the fusion reaction, the resulting drive is incredibly efficient and compact, which has made it the mainstay of Avgi spacecraft propulsion for centuries."
+	description "	The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
+
+outfit `Z-999 "Arc" Fusion Torch`
+	category "Engines"
+	series "Engines"
+	index 07070
+	licenses
+		"Avgi Torch"
+	"cost" 6000000
+	thumbnail "outfit/arc fusion torch"
+	"mass" 999
+	"outfit space" -99
+	"engine capacity" -99
+	"thrust" 450
+	"thrusting energy" 27
+	"thrusting heat" 150
+	"thrusting fuel" 0.27
+	"drag reduction" 3
+	"flare sprite" "effect/avgi flare/fusion"
+		"frame rate" 15
+		"scale" 2
+	"flare sound" "fusion torch"
+	"afterburner effect" "large remass injection"
+	"magnetic nozzle" 9
+	description "The largest and oldest of the common fusion torches used by the Avgi, the Arc is derived from an interstellar-class design that was modified and downrated to make it more suitable for interplanetary operations by trading specific impulse for raw thrust. At this scale, the pinch is long enough that it is able to confine the plasma for sufficient time to not only fuse the deuterium into a mix of helium-3 and tritium, but to likewise burn the aforementioned fusion products together with leftover deuterium to release even more energy. This reaction, known as catalyzed D-D fusion, gives the Arc superior fuel efficiency over its smaller cousins."
+	description "	The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
+
 outfit `Z-3600 "Beam" Amat Torch`
 	category "Engines"
 	series "Engines"
@@ -754,3 +860,81 @@ outfit `Z-3600 "Beam" Amat Torch`
 	"steering flare sound" "remnant afterburner"
 	"magnetic nozzle" 18
 	description "The fastest Avgi starships were propelled not just by their engines, but also by immense banks of lasers and particle beams stationed in the Anax system, pushing ships to velocities in excess of 0.2c before braking with a magsail or plasma magnet. Just before the invention of the hyperdrive, however, the Avgi perfected this beam-core antimatter drive, capable of pushing a starship with sufficient antimatter fuel to 0.4c and perhaps beyond. Requiring immense quantities of antimatter, the amat farms around Anax such as Antivli Station would have been strained to their limits had this design entered mass production, but the surprise invention of the hyperdrive rendered it laughably obsolete overnight."
+
+outfit "R-180 RCS Thrusters"
+	plural "R-180 RCS Thrusters"
+	category "Engines"
+	series "Engines"
+	index 07020
+	"cost" 54000
+	thumbnail "outfit/rcs small"
+	"mass" 18
+	"outfit space" -18
+	"engine capacity" -18
+	"turn" 750
+	"turning energy" 1.5
+	"turning heat" -3
+	"reverse thrust" 9
+	"reverse thrusting energy" 1.5
+	"reverse thrusting heat" -3
+	"steering flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.0625
+	"steering flare sound" "plasma small"
+	"reverse flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.125
+	"reverse flare sound" "plasma small"
+	description "Avgi reaction control thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using reactor heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, but require the ship to have excess heat in order to function."
+
+outfit "R-360 RCS Thrusters"
+	plural "R-360 RCS Thrusters"
+	category "Engines"
+	series "Engines"
+	index 07030
+	"cost" 126000
+	thumbnail "outfit/rcs medium"
+	"mass" 36
+	"outfit space" -36
+	"engine capacity" -36
+	"turn" 1710
+	"turning energy" 3
+	"turning heat" -6
+	"reverse thrust" 18
+	"reverse thrusting energy" 3
+	"reverse thrusting heat" -6
+	"steering flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.125
+	"steering flare sound" "plasma small"
+	"reverse flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.25
+	"reverse flare sound" "plasma small"
+	description "The Avgi have designed their reaction control thrusters to synergize with their fusion torches, tapping off high temperature waste heat and using it to superheat water for use in their reaction control systems. An additional magnetohydrodynamic accelerator around each thruster's nozzle improves specific impulse at the cost of significant energy use. These thrusters allow Avgi starships to easily dock with stations or other ships without igniting their highly radioactive fusion torches."
+
+outfit "R-720 RCS Thrusters"
+	plural "R-720 RCS Thrusters"
+	category "Engines"
+	series "Engines"
+	index 07040
+	"cost" 270000
+	thumbnail "outfit/rcs large"
+	"mass" 72
+	"outfit space" -72
+	"engine capacity" -72
+	"turn" 3690
+	"turning energy" 6
+	"turning heat" -9
+	"reverse thrust" 36
+	"reverse thrusting energy" 6
+	"reverse thrusting heat" -9
+	"steering flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.25
+	"steering flare sound" "plasma small"
+	"reverse flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 30
+		"scale" 0.5
+	"reverse flare sound" "plasma small"
+	description "This large set of 'teakettle' style reaction control thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."

@@ -75,12 +75,12 @@ outfit "Speckle Turret"
 	index 07020
 	cost 90000
 	thumbnail "outfit/speckle turret"
-	"mass" 16.8
+	"mass" 18.6
 	"outfit space" -24
 	"weapon capacity" -24
 	"energy capacity" 180
 	"turret mounts" -1
-	"speck capacity" 2400
+	"speck capacity" 1800
 	weapon
 		"sound" "speckle"
 		ammo "Speck Round" 2
@@ -115,7 +115,7 @@ outfit "Speck"
 		"hit effect" "speck impact"
 		"velocity" 30
 		"random velocity" 0.6
-		"lifetime" 30
+		"lifetime" 24
 		"random lifetime" 3
 		"shield damage" 24
 		"hull damage" 48
@@ -564,20 +564,20 @@ outfit "External Launch Tube"
 	description "This is a large launcher capable of carrying and deploying large torch-driven missiles and torpedoes. With a standardized design, it is compatible with a wide range of Avgi torch missiles. A coilgun-based ejection system allows missiles to be deployed with considerable initial velocity."
 
 
-outfit "Medium VLS"
-	"display name" "Vertical Launch Array (36)"
+outfit "Tiny VLS"
+	"display name" "Vertical Launch Array (6)"
 	category "Secondary Weapons"
 	series "Secondary Weapons"
 	index 07030
 	licenses
 		"Twilight Guard"
-	cost 240000
-	thumbnail "outfit/medium vls"
+	cost 36000
+	thumbnail "outfit/tiny vls"
 	"mass" 12
-	"outfit space" -42
-	"weapon capacity" -42
+	"outfit space" -6
+	"weapon capacity" -6
 	"turret mounts" -1
-	"nettle capacity" 216
+	"nettle capacity" 18
 	weapon
 		"hardpoint sprite" "hardpoint/medium vls"
 		sprite "projectile/nettle"
@@ -588,7 +588,85 @@ outfit "Medium VLS"
 		"fire effect" "sidewinder fire"
 		"inaccuracy" 360
 		"velocity" 3
-		"lifetime" 15
+		"lifetime" 30
+		"range override" 3600
+		"reload" 45
+		"burst reload" 9
+		"burst count" 2
+		"turret turn" 0.000001
+		"firing energy" 3
+		"firing heat" 1.5
+		"drag" .024
+		"infrared tracking" 0.6
+		"optical tracking" 0.3
+		"homing" 4
+		"missile strength" 9
+		"submunition" "Nettle Active"
+
+outfit "Small VLS"
+	"display name" "Vertical Launch Array (18)"
+	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 07030
+	licenses
+		"Twilight Guard"
+	cost 108000
+	thumbnail "outfit/small vls"
+	"mass" 12
+	"outfit space" -18
+	"weapon capacity" -18
+	"turret mounts" -1
+	"nettle capacity" 54
+	weapon
+		"hardpoint sprite" "hardpoint/medium vls"
+		sprite "projectile/nettle"
+			"scale" 0.5
+		sound "bounce"
+		ammo `"Nettle" KKV`
+		icon "icon/nettle"
+		"fire effect" "sidewinder fire"
+		"inaccuracy" 360
+		"velocity" 3
+		"lifetime" 30
+		"range override" 3600
+		"reload" 21
+		"burst reload" 9
+		"burst count" 6
+		"turret turn" 0.000001
+		"firing energy" 3
+		"firing heat" 1.5
+		"drag" .024
+		"infrared tracking" 0.6
+		"optical tracking" 0.3
+		"homing" 4
+		"missile strength" 9
+		"submunition" "Nettle Active"
+
+outfit "Medium VLS"
+	"display name" "Vertical Launch Array (36)"
+	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 07030
+	licenses
+		"Twilight Guard"
+	cost 216000
+	thumbnail "outfit/medium vls"
+	"mass" 12
+	"outfit space" -36
+	"weapon capacity" -36
+	"turret mounts" -1
+	"nettle capacity" 108
+	weapon
+		"hardpoint sprite" "hardpoint/medium vls"
+		sprite "projectile/nettle"
+			"scale" 0.5
+		sound "bounce"
+		ammo `"Nettle" KKV`
+		icon "icon/nettle"
+		"fire effect" "sidewinder fire"
+		"inaccuracy" 360
+		"velocity" 3
+		"lifetime" 30
 		"range override" 3600
 		"reload" 15
 		"burst reload" 9
