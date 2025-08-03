@@ -120,6 +120,23 @@ conversation "mission intro end"
 
 
 
+conversation "intro earth offer" 
+	`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
+	`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
+	`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
+	choice
+		`	"Of course."`
+		`	"Sorry, but I was planning on heading out in a different direction from here."`
+			decline
+	branch paradise
+		has "start: paradise"
+	`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
+		accept
+	label paradise
+	`	Once again you walk back to your ship with James. You've heard of <planet> before; one of the Paradise Worlds terraformed from a lifeless ice planet to the largest and most luxurious retirement home in the galaxy. As you look at his clothing and his modest luggage, something seems off about the idea of James living in such a place.`
+		accept
+
+
 
 conversation "mining intro ingot"
 	`You find James waiting for you just outside the spaceport bar. Against the steady patter of micrometeorites against the roof he tells you, "Working here on <origin> is one of the few jobs in the galaxy more dangerous than fighting pirates. And worse, because if a big meteorite decides to strike this station, there's basically nothing the miners can do about it except hope they see it coming." He turns to you with a grin. "But nonetheless, I think you might be interested in this idea."`
@@ -204,6 +221,25 @@ conversation "mining intro new sahara"
 	choice
 		`	"Of course."`
 		`	"Sorry, I think I'll go hunt some pirates instead."`
+			decline
+	`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
+		accept
+
+
+conversation "intro relic"
+	`You find James talking with a group of dock workers, who seem to be old acquaintances of his. As you approach, he says, "Well guys, here comes my ride. I should probably say goodbye." They head back off to do their work. "Even after all my years as a captain," says James, "I still feel a little sad visiting this world. <origin> was meant to be the future; an evergreen rest station for ships seeking to conquer the great cosmos. But then ships were able to travel for longer and further, and they discovered bigger, greener, more valuable planets, and suddenly the 'future' became little more than a ghost town. Can you imagine spending your life here?"`
+	choice
+		`	"It's better than living in poverty on an urban planet."`
+		`	"I can't."`
+			goto no
+	`	"I suppose," he says. "Anyway, I think it's time for the last leg of my journey. Do you think you can give me a lift to <planet>? I'll pay you quite well for your services, of course."`
+		goto final
+	label no
+	`	James cracks a smile at your frankness. "Anyway, I think it's time for the last leg of my journey. Do you think you can give me a lift to <planet>? I'll pay you quite well for your services, of course."`
+	label final
+	choice
+		`	"Sure, I can take you there."`
+		`	"Sorry, I was thinking of heading in a different direction from here."`
 			decline
 	`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
 		accept
@@ -319,16 +355,7 @@ mission "Intro [3 Transport]"
 		has "Intro [2 Transport]: done"
 	
 	on offer
-		conversation
-			`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
-			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
-			choice
-				`	"Of course."`
-				`	"Sorry, but I was planning on heading out in a different direction from here."`
-					decline
-			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
-				accept
+		conversation "intro earth offer"
 	
 	on complete
 		payment 30000
@@ -702,15 +729,15 @@ mission "Midgard Intro [2 Transport]"
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Simon, and Chuck, and their son Christopher. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. Make sure your jobs go to the same planet, though; Tejat has two habitable planets orbiting around it.`
+			`	"Great," he says. "This is Chai, and Simon, and their son Kamon. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. Make sure your jobs go to the same planet, though; Tejat has two habitable planets orbiting around it.`
 			`	"I'd also start taking more caution when flying about. We're about to leave the protection of the Deep, meaning that pirate attacks will only get more frequent. If you want to be a little safer should we be attacked, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
 		payment 22500
 		conversation
-			`Calda is everything Nifel is not. The planet is warm, wet, and filled to the brim with obnoxious tourists. Shortly after you disembark, you are approached by half a dozen salespeople talking over each other as they promote their company's luxury hotels and hot springs. When Simon, Chuck, and Christopher step off, the marketeers realize their mistake and begin harassing them instead.`
-			`	While Chuck is busy talking, Simon hands you the payment for the trip. As they walk away, you see a spaceport cleaner accidentally back into Christopher while she's wiping down a bench. A nearby couple in swimsuits spots the incident, and they start chewing out the cleaner, despite Christopher's efforts to explain that he doesn't mind.`
+			`Calda is everything Nifel is not. The planet is warm, wet, and filled to the brim with obnoxious tourists. Shortly after you disembark, you are approached by half a dozen salespeople talking over each other as they promote their company's luxury hotels and hot springs. When Chai, Simon, and Kamon step off, the marketeers realize their mistake and begin harassing them instead.`
+			`	While Chai is busy talking, Simon hands you the payment for the trip. As they walk away, you see a spaceport cleaner accidentally back into Kamon while she's wiping down a bench. A nearby couple in swimsuits spots the incident, and they start chewing out the cleaner, despite Kamon's efforts to explain that he doesn't mind.`
 			`	After the commotion clears, James shakes his head and says, "Some people don't have the first clue about how good they have it." Then, he turns to you and says, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
@@ -769,8 +796,8 @@ mission "Midgard Intro [1 Transport Alt]"
 	on offer
 		conversation
 			`You begin strolling through the spaceport, admiring the architecture and climate of <origin>, and how it is so similar, yet so distinct from your own homeworld. Eventually you find James, with someone else in tow.`
-			`	"Captain <last>!" he says. "Wonderful to see you again. Kath here is willing to pay <payment> if you bring them to <planet> so that they can skydive from the edge of space."`
-			`	"Norn has a thick enough atmosphere and low enough gravity that you can get away with aerial stunts you wouldn't be able to on any other world," Kath says. "Don't worry about handling the procedure for the space jump; I've done it before."`
+			`	"Captain <last>!" he says. "Wonderful to see you again. Chen here is willing to pay <payment> if you bring them to <planet> so that they can skydive from the edge of space."`
+			`	"Norn has a thick enough atmosphere and low enough gravity that you can get away with aerial stunts you wouldn't be able to on any other world," Chen says. "Don't worry about handling the procedure for the space jump; I've done it before."`
 			choice
 				`	"Sure, welcome aboard!"`
 				`	"Sorry, I think I'd rather go off in my own direction from here."`
@@ -781,8 +808,8 @@ mission "Midgard Intro [1 Transport Alt]"
 	on complete
 		payment 10000
 		conversation
-			`Just before you enter <planet>'s atmosphere, you open your loading bay ramp, as directed by Kath. Shortly afterward, they appear on your cargo hold camera in their full skydiving garb. They takes a running start and launches themself into space, quickly vanishing from your vision.`
-			`	Several minutes after your ship touches down, Kath approaches you in the spaceport, thanks you, and hands you <payment>. You are already well on your way towards paying down your mortgage!`
+			`Just before you enter <planet>'s atmosphere, you open your loading bay ramp, as directed by Chen. Shortly afterward, they appear on your cargo hold camera in their full skydiving garb. They takes a running start and launches themself into space, quickly vanishing from your vision.`
+			`	Several minutes after your ship touches down, Chen approaches you in the spaceport, thanks you, and hands you <payment>. You are already well on your way towards paying down your mortgage!`
 			`	As James leaves the ship, he says, "Again, if you're okay with continuing to give me a ride, just meet me in the spaceport."`
 			``
 			`	(As before, click the "Spaceport" button to continue this mission.)`
@@ -807,15 +834,15 @@ mission "Midgard Intro [2 Transport Alt]"
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Martin. Let's help him carry his luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money, especially if you're low on bunk space. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time.`
+			`	"Great," he says. "This is Van. Let's help him carry his luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money, especially if you're low on bunk space. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time.`
 			`	And if you want to be a little safer should we come across any pirates, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
 		payment 12000
 		conversation
-			`As you make the final landing descent to the surface of Earth, Martin looks down on Earth's cluttered surface and begins listing off places he recognizes. James joins in by talking about the history of the cities you're flying over, and the two of them begin joking about which of the cities would be the worst to live in.`
-			`	As he steps off, Martin hands you <payment>. "Thanks for the fun times, but I'd best be going. I have work in the morning."`
+			`As you make the final landing descent to the surface of Earth, Van looks down on Earth's cluttered surface and begins listing off places he recognizes. James joins in by talking about the history of the cities you're flying over, and the two of them begin joking about which of the cities would be the worst to live in.`
+			`	As he steps off, Van hands you <payment>. "Thanks for the fun times, but I'd best be going. I have work in the morning."`
 			`	After he leaves, James says, "I must say that I haven't met too many people from Earth during my time. Even today, billions of people grow up and die on this planet without taking a single step on another world." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
@@ -832,16 +859,7 @@ mission "Midgard Intro [3 Transport Alt]"
 		has "Midgard Intro [2 Transport Alt]: done"
 	
 	on offer
-		conversation
-			`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've in the Dirt Belt."`
-			`	After taking one last glance out the window, he says, "I admit that I might have taken quite the detour going to <origin>. My destination is back on <destination>. Are you willing to take me on one last trip? Of course I'll pay you quite well to take me there."`
-			choice
-				`	"Of course."`
-				`	"Sorry, but I was planning on heading out in a different direction from here."`
-					decline
-			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
-				accept
+		conversation "intro earth offer"
 	
 	on complete
 		payment 30000
@@ -1068,18 +1086,18 @@ mission "Midgard Intro [2 Interceptor]"
 		government Pirate
 		system "Tania Australis"
 		personality plunders
-		ship "Sparrow" "Dagger of Blood"
-		ship "Fury" "Asmodan's Plunder"
+		ship "Sparrow" "Beast of Brass"
+		ship "Berserker" "Bootlegger"
 	npc save
 		government Merchant
 		personality timid escort
-		ship "Freighter" "Roots and Moonlight"
-		ship "Freighter" "Serenity Sparks"
+		ship "Freighter" "Conagher's Porter"
+		ship "Freighter" "Solemn Vow"
 	
 	on offer
 		conversation
 			`The landscape of <origin> is beyond even the urban sprawls of Midgard and Asgard. Beyond the spaceport's glass walls is a vast forest of skyscrapers reaching out to the edge of your vision. Far away, the lights of distant buildings blend together, as though the horizon is ablaze.`
-			`	You find James standing on a landing pad underneath a large freighter, chatting with a person you assume is the captain. "There you are!" he says. "Captain Risa here says their two ships have always had troubles with pirates when venturing outside of the Deep, and they're looking for an escort to get them safely to Gemstone. Are you interested?"`
+			`	You find James standing on a landing pad underneath a large freighter, chatting with a person you assume is the captain. "There you are!" he says. "Captain McLain here says their two ships have always had troubles with pirates when venturing outside of the Deep, and they're looking for an escort to get them safely to Gemstone. Are you interested?"`
 			choice
 				`	"Of course!"`
 				`	"No, sounds a bit too risky for me."`
@@ -1226,19 +1244,19 @@ mission "Mainsail Intro [2 Transport]"
 	on offer
 		conversation
 			`It is raining.`
-			`	A deep fog envelops the spaceport city on <origin>. In the distance, you can see the faded lights of distant starships drifting like phantoms. On the streets below, harsh rain whips against the congested traffic, blending it into a muddy mess of red light.`
+			`	A deep fog envelops the spaceport city on <origin>. In the distance, you can see the faded lights of distant starships drifting like phantoms. On the streets below, harsh rain whips against the congested traffic, blurring it into a muddy mess of red light.`
 			`	By the time you see James, he's already got a small group of people with him: a young couple, and a teenage boy. "Hi there, Captain <last>!" says James. "Interested in carrying some tourists to <planet>?"`
 			choice
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Elona, and Matthew, and their son Logan. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we be attacked, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"Great," he says. "This is Chiyo, and Salim, and their son Khalil. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we be attacked, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
 		payment 15000
 		conversation
-			`As you make the final landing descent to the surface of Earth, Elona and Matthew stare out the window in rapt attention, pointing out landmarks on the planet's surface. James joins in by telling you all about some of the history of the cities you are flying over. Logan, meanwhile, has spent the entire journey playing a video game, and only glances out the window when the ship shakes from turbulence. As they all grab their luggage and step off your ship to explore humanity's homeworld, he is still immersed in the game.`
+			`As you make the final landing descent to the surface of Earth, Chiyo and Salim stare out the window in rapt attention, pointing out landmarks on the planet's surface. James joins in by telling you all about some of the history of the cities you are flying over. Khalil, meanwhile, has spent the entire journey playing a video game, and only glances out the window when the ship shakes from turbulence. As they all grab their luggage and step off your ship to explore humanity's homeworld, he is still immersed in the game.`
 			`	As you collect your payment, James pulls the parents aside and says, "Watch out for pickpockets, okay? And take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
 			`	After they leave, James shakes his head ruefully. "It'll probably be a decade before that kid is old enough to realize what he's missing out on. Waste of money, doing a trip like this with a teenage boy. They should've gone to Vinci and visited the holo-arcades; I'm sure that would interest him a lot more than historical museums and ancient cities." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
@@ -1256,16 +1274,7 @@ mission "Mainsail Intro [3 Transport]"
 		has "Mainsail Intro [2 Transport]: done"
 	
 	on offer
-		conversation
-			`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
-			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
-			choice
-				`	"Of course."`
-				`	"Sorry, but I was planning on heading out in a different direction from here."`
-					decline
-			`	Once again you walk back to your ship with James. You've heard of <planet> before; one of the Paradise Worlds terraformed from a lifeless ice planet to the largest and most luxurious retirement home in the galaxy. As you look at his clothing and his modest luggage, something seems off about the idea of James living in such a place.`
-				accept
+		conversation "intro earth offer"
 	
 	on complete
 		payment 30000
@@ -1330,20 +1339,20 @@ mission "Mainsail Intro [2 Transport Alt]"
 	on offer
 		conversation
 			`It is raining.`
-			`	A deep fog envelops the spaceport city on <origin>. In the distance, you can see the faded lights of distant starships drifting like phantoms. On the streets below, harsh rain whips against the congested traffic, blending it into a muddy mess of red light.`
+			`	A deep fog envelops the spaceport city on <origin>. In the distance, you can see the faded lights of distant starships drifting like phantoms. On the streets below, harsh rain whips against the congested traffic, blurring it into a muddy mess of red light.`
 			`	"Hi there, Captain <last>!" James says as he approaches you. "Interested in carrying a tourist to <planet>?" Behind him is a young-looking man wearing a floral shirt.`
 			choice
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Marshall. Let's help him carry his luggage to your ship." As you begin walking back, slightly ahead of him, James whispers to you, "Tourists are always a good way to make money, especially if you're low on bunk space. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we come across any pirates, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"Great," he says. "This is Mecit. Let's help him carry his luggage to your ship." As you begin walking back, slightly ahead of him, James whispers to you, "Tourists are always a good way to make money, especially if you're low on bunk space. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. And if you want to be a little safer should we come across any pirates, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
 		payment 6000
 		conversation
-			`As you make the final landing descent to the surface of Earth, Marshall looks down on Earth's cluttered surface, his eyes wide open. In an attempt to lighten the mood, James begins telling the both of you some of the history of the cities you are flying over, but Marshall wears a dour expression on his face up until he picks up his luggage and prepares to disembark.`
-			`	As you collect your payment, James pulls Marshall aside and says, "Watch out for pickpockets, okay? And take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
+			`As you make the final landing descent to the surface of Earth, Mecit looks down on Earth's cluttered surface, his eyes wide open. In an attempt to lighten the mood, James begins telling the both of you some of the history of the cities you are flying over, but Mecit wears a dour expression on his face up until he picks up his luggage and prepares to disembark.`
+			`	As you collect your payment, James pulls Mecit aside and says, "Watch out for pickpockets, okay? And take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
 			`	After he leaves, James shakes his head ruefully. "He probably expected Earth to be a relaxing holiday planet, like Caldra or Farseer. I just hope that he's able to see past his preconceptions and appreciate the planet's history." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
@@ -1360,16 +1369,7 @@ mission "Mainsail Intro [3 Transport Alt]"
 		has "Mainsail Intro [2 Transport Alt]: done"
 	
 	on offer
-		conversation
-			`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
-			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
-			choice
-				`	"Of course."`
-				`	"Sorry, but I was planning on heading out in a different direction from here."`
-					decline
-			`	Once again you walk back to your ship with James. You've heard of <planet> before; one of the Paradise Worlds terraformed from a lifeless ice planet to the largest and most luxurious retirement home in the galaxy. As you look at his clothing and his modest luggage, something seems off about the idea of James living in such a place.`
-				accept
+		conversation "intro earth offer"
 	
 	on complete
 		payment 30000
@@ -1400,7 +1400,7 @@ mission "Mainsail Intro [1 Freighter]"
 		conversation
 			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You find James talking with a man wearing dusty, rugged clothing, completely unlike the rest of the world around him. "Captain <last>!" says James. "Glad you could join us. Raphael here runs a tourism company centered around rock climbing. He's looking to expand his operations to <planet>, but he needs <cargo> delivered there in advance. Are you willing to help out?"`
 			choice
-				`	"Sure, anything I can do to assist them!"`
+				`	"Sure, anything I can do to help!"`
 				`	"Sorry, but I think I'm going to head out on my own."`
 					decline
 			`	"Great!" says James. "They'll be loading up your ship shortly."`
@@ -1535,8 +1535,8 @@ mission "Mainsail Intro [0.1 Interceptor]"
 	
 	on offer
 		conversation
-			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You end up finding James in one of the spaceport's gardens, and he waives you over to a table with a man finishing off a steak. On the far side of the table is a map covered in annotations. As you get closer, the man notices your arrival, wipes his mouth, and stands up.`
-			`	"<first>, this is Captain Henry," James says as you shake his hand. "Rather than throwing you into the deep end of space combat, I figure you should try your hand at something a little less suicidal. Henry mines asteroids in this part of space and says there's a good system nearby if you're willing to give it a try."`
+			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You end up finding James in one of the spaceport's gardens, and he waives you over to a table with a woman finishing off a steak. On the far side of the table is a map covered in annotations. As you get closer, the woman notices your arrival, wipes her mouth, and offers her hand.`
+			`	"<first>, this is Captain Hwang," James says as you shake her hand. "Rather than throwing you into the deep end of space combat, I figure you should try your hand at something a little safer. Hwang mines asteroids in this part of space and says there's a good system nearby if you're willing to give it a try."`
 			choice
 				`	"I'll give it a shot."`
 					goto mining
@@ -1544,11 +1544,11 @@ mission "Mainsail Intro [0.1 Interceptor]"
 					decline
 	
 			label "mining"
-			`	"That's good to hear," Captain Henry says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
-			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
+			`	"That's good to hear," Captain Hwang says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
+			`	"The first challenge," she continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
 			`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart, or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold asteroids are more work; they're not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
 			`	"I could go on, but I think you get the picture."`
-			`	You and James chat with Henry a while longer, and he suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there. The easiest asteroids to get there are the lead ones; you can spot them by their light gray, rounded appearance."`
+			`	You and James chat with Hwang a while longer, and she suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there. The easiest asteroids to get there are the lead ones; you can spot them by their light gray, rounded appearance."`
 			`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of lead before landing on <planet> and we can call it a day."`
 				accept
 	
@@ -1726,7 +1726,7 @@ mission "Delve Intro [0]"
 mission "Delve Intro [1 Transport]"
 	priority
 	name "Transport family to <planet>"
-	description "Bring your new friend James, along with a team of engineers, to <destination>. Payment will be <payment>."
+	description "Bring your new friend James, along with a family, to <destination>. Payment will be <payment>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	source "Burthen"
 	destination "Tinker"
@@ -1744,8 +1744,9 @@ mission "Delve Intro [1 Transport]"
 	
 	on offer
 		conversation
-			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. Eventually you find James with a small group in tow: four young-looking men and women.`
-			`	"Captain <last>!" he says. "Wonderful to see you again. I was just talking to this group of engineers. Their original transport has been delayed, and they're looking for another ship to take them to <planet>. They can pay you <payment> to take them there. What do you say?"`
+			`Every step on <origin> is a struggle. By the time you reach the spaceport cafe, you have just enough energy to slump into a chair with steel legs as thick as its cushions. After taking a rest, you find James. Following him is a family of four: a couple pushing along a pram, with a young child following close behind. While James would be below-average height back on Earth, he easily towers over the Burthen natives.`
+			`	"Captain <last>!" he says. "Wonderful to see you again. I was just talking to this family. They've been having trouble finding a single ship that can give them all passage, but I told them that your shuttlecraft has plenty of bunks. They can pay you <payment> to take them to <planet>, which is just a few jumps away from Earth, and is a planet well worth visiting in its own right. What do you say?"`
+			`	The husband chimes in. "We were afraid that if we were split across multiple ships, we wouldn't be able to keep an eye on Faiza." He gestures towards the child in the pram. "She hasn't been taking Burthen's gravity well."`
 			choice
 				`	"Sure, welcome aboard!"`
 				`	"Sorry, I think I'd rather go off in my own direction from here."`
@@ -1756,7 +1757,7 @@ mission "Delve Intro [1 Transport]"
 	on complete
 		payment 40000
 		conversation
-			`Along the journey, you learned that the team of engineers you are transporting are working on replacing one of their automated terraforming controllers. "We all graduated from the same class on Chiron," one of the engineers says while grinning. "One of us managed to land a job on Glory thanks to a family connection, and from there, we were able to form our team. There's been ups and downs across our forty years of work, but we always managed to figure things out in the end." He looks barely a day over twenty-five.`
+			`Along the journey, you learned more about the family you are transporting and why they are moving to <planet>. "There's Faiza's condition, of course, but we've always wanted to move offworld since before our first child was born," the mother, Carlijn says. "My husband and I were constantly moved out of new mining sites as we grew up. We didn't want our children to go through the same thing."`
 			`	You say goodbye to them and wish them well, and as agreed they pay you <payment>. You are already well on your way towards paying down your mortgage!`
 			`	As James leaves the ship, he says, "Again, if you're okay with continuing to give me a ride, just meet me in the spaceport."`
 			``
@@ -1778,21 +1779,23 @@ mission "Delve Intro [2 Transport]"
 	on offer
 		conversation
 			`It is raining.`
-			`	A deep fog envelops the spaceport city on <origin>. In the distance, you can see the faded lights of distant starships drifting like phantoms. On the streets below, harsh rain whips against the congested traffic, blending it into a muddy mess of red light.`
-			`	By the time you see James, he's already got a small group of people with him: a middle-aged couple, and a teenage boy. "Hi there, Captain <last>!" says James. "Interested in carrying some tourists to <planet>?"`
+			`	A deep fog envelops the spaceport city on <origin>. In the distance, you can see the faded lights of distant starships drifting like phantoms. On the streets below, harsh rain whips against the congested traffic, blurring it into a muddy mess of red light.`
+			`	By the time you see James, he's accompanied by three others. "Hi there, Captain <last>!" says James. "Interested in carrying some tourists to <planet>?"`
 			choice
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Elona, and Matthew, and their son Logan. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. I'd also start taking more caution when flying about. We're about to leave the protection of Deep Security, meaning that pirate attacks will only get more frequent. If you want to be a little safer should we be attacked, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"Great," he says. "This is Chiaki, Sarika, and Catrina. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. I'd also start taking more caution when flying about. We're about to leave the protection of Deep Security, meaning that pirate attacks will only get more frequent. If you want to be a little safer should we be attacked, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
 		payment 15000
 		conversation
-			`As you make the final landing descent to the surface of Earth, Elona and Matthew stare out the window in rapt attention, pointing out landmarks on the planet's surface. James joins in by telling you all about some of the history of the cities you are flying over. Logan, meanwhile, has spent the entire journey playing a handheld video game, and only glances out the window when the ship shakes from turbulence. As they all grab their luggage and step off your ship to explore humanity's homeworld, he is still immersed in the game.`
-			`	As you collect your payment, James pulls the parents aside and says, "Watch out for pickpockets, okay? And take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
-			`	After they leave, James shakes his head ruefully. "It'll probably be a decade before that kid is old enough to realize what he's missing out on. Waste of money, doing a trip like this with a teenage boy. They should've gone to Vinci and visited the holo-arcades; I'm sure that would interest him a lot more than historical museums and ancient cities." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
+			`As you make the final landing descent to the surface of Earth, Sarika is on the edge of her seat as she rattles off the landmarks you pass over. James tries to show off his own knowledge of the planet's history, but for every story he offers, Sarika responds with five more.`
+			`	Catrina lets out a laugh. "Give it a rest, old man. Sarika's been obsessed with the homeworld since she was in diapers." Then, she leans onto Chiaki's shoulder and pokes her cheek. "The real question I wanna ask is why you of all people haven't said a word since re-entry. I mean, isn't seeing Earth again bringing up any memories?"`
+			`	Chiaki's reply is terse. "I left this place for a reason." When she sees Catrina's cheeky smile fade, Chiaki quickly adds, "It's nothing serious, just that I'd prefer to make new memories with the two of you than dwell on the past."`
+			`	As your passengers disembark and you collect your payment, James pulls the trio aside and says, "Watch out for pickpockets, okay? And take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
+			`	After they leave, James chuckles. "Can't say I've ever seen an Earth fanatic and an Earth native in the same group before, let alone be on good terms with each other. That's one of the perks of being a starship captain, though: you get to have the most unique experiences in the galaxy." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
 
@@ -1809,8 +1812,8 @@ mission "Delve Intro [3 Transport]"
 	
 	on offer
 		conversation
-			`The spaceport on <origin> is so big and crowded that it takes a long time to find James. The sheer number of people here is almost overwhelming. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, all marching in unison. Starship captains haggle with merchants over trade goods and jobs. Flashes of light come from various landing bays as welders make repairs.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "This is it," he says, "where our race began. The world that all the tourists want to visit, and that no one wants to live on. Twenty billion people, more industry and exports than any other place in the galaxy. But underneath it all, poverty of a completely different sort from what you've got in the Dirt Belt."`
+			`<origin> is the same as it's always been. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, driving those beggars to hide behind trashcans or do their best impression of a respectable citizen until they pass. Starship captains haggle with merchants, speaking of sums greater than the income of some neighborhoods. Flashes of light come from various landing bays as poorly-protected welders risk their health to repair ships headed for places they can only dream of.`
+			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "I've seen all manner of reactions to experiencing <origin> in person for the first time. Awe. Surprise. Respect. Disgust. Their second reactions are just as varied. Some take it as a reminder of humanity's ever-present base nature; others see it as an inexusable failure of the Republic and its predecessors." He smirks. "Only ever seen one kind of reaction from an Earth native. Maybe you folk know something the rest of us don't."`
 			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
 			choice
 				`	"Of course."`
@@ -1831,7 +1834,7 @@ mission "Delve Intro [1 Freighter]"
 	name "Delivery to <planet>"
 	description "Travel with your new friend James to <destination>, and deliver <cargo>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
-	cargo "climbing equipment" 37
+	cargo "lithium" 50
 	passengers 1
 	source "Burthen"
 	destination "Tinker"
@@ -1845,9 +1848,9 @@ mission "Delve Intro [1 Freighter]"
 	
 	on offer
 		conversation
-			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You find James talking with a man wearing rugged clothing, completely unlike the rest of the world around him. "Captain <last>!" says James. "Glad you could join us. Raphael here runs a tourism company centered around rock climbing. He's looking to expand his operations to <planet>, but he needs <cargo> delivered there in advance. Are you willing to help out?"`
+			`Every step on <origin> is a struggle. By the time you reach the spaceport cafe, you have just enough energy to slump into a chair with steel legs as thick as its cushions. After taking a rest, you find James talking with a woman who is an offworlder just like you, judging by her height and how labored her movements are. "Captain <last>!" says James. "Glad you could join us. Mayumi is a visiting representative of one of <origin>'s largest mining companies, and she's looking for a captain to help move <cargo> to <destination> for processing. Are you willing to help out?"`
 			choice
-				`	"Sure, anything I can do to assist them!"`
+				`	"Sure, anything I can do to help!"`
 				`	"Sorry, but I think I'm going to head out on my own."`
 					decline
 			`	"Great!" says James. "They'll be loading up your ship shortly."`
@@ -1880,7 +1883,7 @@ mission "Delve Intro [2 Freighter]"
 	name "Rush delivery to <planet>"
 	description "This shipment of <commodity> needs to get to <destination>, by <date>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
-	cargo "sealed pathogens" 32
+	cargo thorium 42
 	passengers 1
 	source "Tinker"
 	destination "Relic"
@@ -1891,15 +1894,15 @@ mission "Delve Intro [2 Freighter]"
 	
 	on offer
 		conversation
-			`As you walk through the spaceport, James sees you from a distance and waves you over. As you approach, you see several people in hazmat suits working behind him. "I've found another job for you," he says.`
+			`As you walk through the spaceport, James sees you from a distance and waves you over. As you approach, you see several people in radiation suits working behind him. "I've found another job for you," he says.`
 			choice
 				`	"I hope it isn't related to those workers."`
 				`	"Sorry, I think I'll head off on my own now."`
 					decline
-			`	"As long as you don't do anything stupid," James says, "like open up the cargo yourself, you'll be safe. <cargo> needs to get to the refrigeration vaults on <planet> before they decay, and that means it needs to be there no later than <day>. If we take a direct route, there should be no trouble making the delivery on time. What do you say?"`
+			`	"As long as you don't do anything stupid," James says, "like open up the cargo yourself, you'll be safe. <cargo> needs to get to <planet> to help with an urgent reactor fuel shortage, and that means it needs to be there no later than <day>. If we take a direct route, there should be no trouble making the delivery on time. What do you say?"`
 			choice
 				`	"Sounds good. Let's do it!"`
-				`	"Sorry, no way am I loading up my shiny new starship with lethal diseases."`
+				`	"Sorry, no way am I loading up my shiny new starship with radioactive rocks."`
 					decline
 			`	"Great!" he says. "I mentioned this earlier, but you might want to stop by the outfitter and buy a local map. Hyperspace routes aren't always logical, and the last thing you want to do is get lost and end up with a pile of rotten fish that no one wants filling up your cargo hold. Also, we're going to be leaving Deep space soon; outside of the Deep or the Paradise Worlds, pirate attacks are frequent, so watch out."`
 				accept
@@ -1907,7 +1910,7 @@ mission "Delve Intro [2 Freighter]"
 	on complete
 		payment 35000
 		conversation
-			`Your cargo has loomed silently in your hold for the last few days, but as far as you can tell, the pathogens are still safely contained. The dock workers on <planet> offload it without comment, and give you your payment of <payment>.`
+			`Your cargo has loomed silently in your hold for the last few days, but the radiation alarms in your ship's hold haven't let out a squeak. The dock workers on <planet> offload it quickly onto several waiting trains, and give you your payment of <payment>.`
 			`	"If you can line them up right," says James, "rush deliveries can be your best source of income as a freighter captain. And keep your eye out for missions with large amounts of cargo, too, because your barge's hold is definitely big enough to handle them. And if you've got any cargo space to spare and you know what the prices are going to be at your destination, be sure to stock up on something you can sell for a profit."`
 			choice
 				`	"What would you recommend if I want to do more than just carry cargo?"`
@@ -1938,18 +1941,7 @@ mission "Delve Intro [3 Freighter]"
 		has "Delve Intro [2 Freighter]: done"
 	
 	on offer
-		conversation
-			`You find James talking with a group of scientists and dock workers, who seem to be old acquaintances of his. As you approach, he says, "Well guys, here comes my ride. I should probably say goodbye." They head back off to do their work. "Even after all my years as a captain," says James, "I still feel uncomfortable every time I land on <origin>. Every day, scientists on this planet work with pathogens capable of wiping out a planet within months. The risk of infection is such that you need a permit to live here. Can you imagine spending your life here?"`
-			choice
-				`	"Somebody has to do the risky stuff so that the rest of humanity can prosper."`
-				`	"It does seem awfully isolated. But some people might enjoy the solitude."`
-			`	"I suppose," he says. "Anyway, I think it's time for the last leg of my journey. Do you think you can give me a lift to <planet>? I'll pay you quite well for your services, of course."`
-			choice
-				`	"Sure, I can take you there."`
-				`	"Sorry, I was thinking of heading in a different direction from here."`
-					decline
-			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
-				accept
+		conversation "intro relic"
 	
 	on complete
 		payment 30000
@@ -1981,17 +1973,17 @@ mission "Delve Intro [1 Interceptor]"
 	npc
 		government Pirate
 		personality entering plunders
-		ship "Sparrow" "Bloodletter"
-		ship "Fury" "Hand of Fate"
+		ship "Sparrow" "Vain Butcher"
+		ship "Fury" "Rotten Clout"
 	npc save
 		government Merchant
 		personality timid escort
-		ship "Freighter" "Horn of Plenty"
-		ship "Freighter" "Morning Light"
+		ship "Freighter" "Spring Coming"
+		ship "Freighter" "Paparazzi Party"
 	
 	on offer
 		conversation
-			`You find James standing on a landing pad underneath a large freighter, chatting with a man you assume is the captain. "There you are!" he says. "Captain Eldred here says his two ships have been having trouble with pirates ever since they left the Rim ten days ago, and he's looking for an escort to get them safely to Gemstone. Are you interested?"`
+			`You find James standing on a landing pad underneath a large freighter, chatting with a woman you assume is the captain. "There you are!" he says. "Captain Rawda here says her two ships have always had trouble with pirates in the Core, and she's looking for an escort to get them safely to <planet>. Are you interested?"`
 			choice
 				`	"Of course!"`
 				`	"No, sounds a bit too risky for me."`
@@ -2004,7 +1996,7 @@ mission "Delve Intro [1 Interceptor]"
 	on complete
 		payment 30000
 		conversation
-			`The captain of the Horn of Plenty hands you <payment> and thanks you for your escort services. From the expression on his face, you'd guess that he's feeling lucky to still be alive after entrusting the safety of his fleet to a rookie pilot like yourself.`
+			`The captain of the <ship> hands you <payment> and thanks you for your escort services. From the expression on her face, you'd guess that she's feeling lucky to still be alive after entrusting the safety of her fleet to a rookie pilot like yourself.`
 			`	After he is gone, James turns to you and says, "Not too bad for your first escort mission. I recognize that look on your face - it's the same one I had after my first job like this back when I was a beginner. If I recall, my first priority after touching down was replacing some of the ship's guns with missile launchers so I'd actually have a chance against pirates. It's a scandal how they sell interceptors with nothing but short-ranged energy weapons these days; trying to use them in combat on such a small ship is practically suicide. Keep your distance with some missiles and you can almost never go wrong. Anyway, I'll stop rambling. If you've still got a hankering for some dangerous missions, come and find me in the spaceport before you leave." He picks up his suitcase and heads outside.`
 			``
 			`	(As before, click the "Spaceport" button to continue this mission. The next mission will involve carrying cargo, so it will only show up if you have all 15 tons of space free.)`
@@ -2017,7 +2009,7 @@ mission "Delve Intro [2 Interceptor]"
 	description "Deliver <commodity> to <destination>, while avoiding pirate attacks."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
-	cargo gemstones 15
+	cargo niobium 15
 	source "Lodestone"
 	destination "Ada"
 	to offer
@@ -2025,20 +2017,20 @@ mission "Delve Intro [2 Interceptor]"
 	npc
 		government Pirate
 		personality entering plunders
-		ship "Bastion" "Hammer of Thor"
+		ship "Splinter" "Spear of Heimdall"
 	
 	on offer
 		conversation
-			`You find James in the spaceport bar, talking with a woman wearing a business suit. The expression on James' face is growing increasingly concerned as she speaks. Seeing you come in, he waves to you and you join them at the table.`
-			`	"Hello <first>," says James. "This is Marissa, a senior manager at the mines." You shake hands with her.`
-			`	"Here's the deal," says Marissa. "Most of the gemstones we mine here are industrial grade, not pretty enough to be worth using as anything but sandpaper grit or drill bits. But every once in a while we happen on some higher quality gems. No one in this sector has the money to spend on jewelry, so we ship them north to the Paradise Worlds.`
-			`	"But in the past few months, every shipment we've sent has been attacked by a pirate ship, the Hammer of Thor. We don't have the money to pay a bounty hunter to take out the Hammer, so instead we're going to pay you to outrun it. Is the <ship> a fast ship?"`
+			`You find James in the spaceport bar, talking with a man wearing a business suit. The expression on James' face is growing increasingly concerned as he speaks. Seeing you come in, he waves to you and you join them at the table.`
+			`	"Hello <first>," says James. "This is Miguel, an independent mine owner of <origin>." Miguel smiles at you.`
+			`	"Here's the deal," says Miguel. "Most of the mining companies on <origin> have ties to the Syndicate, whether that be through direct ownership or indirect influence. Not us, though; my company's been resistant to any attempts of a takeover. One of their techniques to exert their control is preventing us from shipping our minerals to refineries within the Syndicate. However, there's nothing stopping us from shipping materials elsewhere in the galaxy, like magnetic elements for Lovelace's particle accelerators."`
+			`	"But in the past few months, every shipment we've sent has been attacked by a pirate ship, the Spear of Heimdall. I doubt Syndicated Security would be keen on helping a rival company, so instead we're going to pay you to outrun it. Can you do that for us?"`
 			choice
-				`	"As fast as they come. Nothing bigger than a fighter could chase it down."`
-				`	"Not fast enough. I don't think I can risk taking on this mission."`
+				`	"If you're willing to pay, then I'm willing to fly."`
+				`	"I got into the starship business to get away from people like you. Count me out."`
 					decline
-			`	"Great," she says. "My people will load up your ship immediately. Good luck, Captain."`
-			`	After she leaves, James says to you, "Now, get one thing clear. This is not your David and Goliath moment. The Hammer's shields are ten times as strong as yours, and if it's able to bring its weapons to bear, we'll be dead in two seconds. So, the moment we're in the sky, we head straight for hyperspace. Don't even wait around to see if the Hammer is coming or not. Got it?"`
+			`	"Great," he says. "My people will load up your ship immediately. Good luck, Captain."`
+			`	After he leaves, James says to you, "Now, get one thing clear. This is not your David and Goliath moment. The Spear's shields are ten times as strong as yours, and if it's able to bring its weapons to bear, we'll be dead in two seconds. So, the moment we're in the sky, we head straight for hyperspace. Don't even wait around to see if the Hammer is coming or not. Got it?"`
 			choice
 				`	"Got it."`
 					accept
@@ -2049,7 +2041,7 @@ mission "Delve Intro [2 Interceptor]"
 	on complete
 		payment 40000
 		conversation
-			`As you land on Ingot, James says, "Well, you made it in one piece! Still think you want to be piloting an interceptor?"`
+			`As you land on <planet>, James says, "Well, you made it in one piece! Still think you want to be piloting an interceptor?"`
 			choice
 				`	"Sure, but I can't wait until I've got a ship big enough to stand up to pirates instead of running from them."`
 				`	"Well, maybe I should've bought a freighter instead."`
@@ -2061,19 +2053,39 @@ mission "Delve Intro [2 Interceptor]"
 mission "Delve Intro [2.1 Interceptor]"
 	priority
 	name "Mine asteroids in <system>"
-	description "Go to the <system> system and mine 5 tons of Silicon, then land on <planet>."
+	description "Go to the Procyon system and mine 5 tons of Silicon, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
-	source "Ingot"
-	destination "New Sahara"
+	source "Ada"
+	destination "Relic"
 	to offer
 		has "Delve Intro [2 Interceptor]: done"
 	
 	on offer
-		conversation "mining intro ingot"
+		conversation
+			`Similar to Delve, <origin>'s spaceport is embedded in solid rock, but that is where the similarities end. Where Delve's spaceport is utilitarian, Ada finds space to flex its wealth by turning the industrial elements of rock and metal into elegant architecture. The nightmarish take-off and landing angles one might expect from a spaceport in a canyon wall are missing, replaced by spacious and well-marked flight paths. The smell of oil and steel pervasive in many Syndicate ports is suppressed by crisp air supplied by the local environmental control systems.`
+			`	You find James waiting for you inside the spaceport bar. Next to him is a man with a half-eaten hamburger and a plate of fries, busily examining a star map of the local sector. He notices your arrival and stands up to greet you. "<first>, this is Captain August," James says as you shake his hand. "I told him about your new ship and how it'd be a good idea for you to get a taste of asteroid mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
+			choice
+				`	"I'll give it a shot."`
+					goto mining
+				`	"I think I'm ready to head out on my own."`
+					decline
+			
+			label "mining"
+			`	"That's good to hear," Captain August says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
+			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
+			`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart, or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold asteroids are more work; they're not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
+			`	"I could go on, but I think you get the picture."`
+			`	You and James chat with August a while longer, and he suggests trying your hand at mining in Procyon. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there. Just watch out for getting stranded; the only landable planet in Procyon is Cassandra, which is uninhabited. Still, merchant and Navy ships should come frequently enough that you can just hail one of them for a refuel."`
+			`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of silicon in Procyon before jumping to <system> and landing on <planet>."`
+				accept
+
+	mark "Procyon"
+	on enter "Procyon"
+		unmark "Procyon"
 	
 	on visit
-		dialog `You've reached <destination>, but you don't have at least five tons of silicon in your cargo hold. Locate and mine silicon asteroids in this system before returning.`
+		dialog `You've reached <destination>, but you don't have at least five tons of silicon in your cargo hold. Locate and mine silicon asteroids in Procyon or another system before returning.`
 	
 	on complete
 		require "Silicon" 5
@@ -2087,29 +2099,13 @@ mission "Delve Intro [3 Interceptor]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
-	source "Thrall"
+	source "Relic"
 	destination "Hestia"
 	to offer
 		has "Delve Intro [2.1 Interceptor]: done"
 	
 	on offer
-		conversation
-			`You find James sitting at the spaceport's tiny bar, sipping a beer while watching the large displays that show the landing pads and the irrigated fields beyond. The displays are supposed to make the underground building feel less claustrophobic.`
-			`	"This is one of the least habitable planets in the galaxy. But if it doesn't kill us instantly, then someone's tried to settle it." He pauses for a moment while gazing at one of the displays. You spot a sandstorm picking up in the far distance as the workers in the fields hastily finish their work before it arrives.`
-			`	"Care for a drink?" he asks.`
-			choice
-				`	"Sure."`
-				`	"No thanks."`
-					goto end
-			`	He buys you a beer. It tastes a little stale, but it's not the worst beer you've ever had. You can't help but feel sorry for the people who work here, so isolated and cut off from even the basic amenities you took for granted on <starting planet>.`
-			label end
-			`	"Anyway," says James, "would you be willing to take me on one more journey? It's time for me to head for that retirement home."`
-			choice
-				`	"Of course."`
-				`	"Sorry, I think I'll go hunt some pirates instead."`
-					decline
-			`	Once again you walk back to your ship with James. Once you get there, as he's stowing his luggage, you pull up the information your computer has on <planet>. It's one of the "Paradise Worlds," terraformed to have a perfect climate, accessible only to the very wealthy. You wonder whether James is going to be able to fit in there.`
-				accept
+		conversation "intro relic"
 	
 	on complete
 		payment 30000
