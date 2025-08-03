@@ -6630,8 +6630,15 @@ mission "Lost Racer 2 - Continued"
 			`	"Calm! Calm? You expect me to be calm? If your daughter was missing would you be calm?"`
 			choice
 				`	"I'm sorry. Is there anywhere else she could be?"`
+					goto elsewhere
+				`	"I'm sure I wouldn't know."`
+				`	(Ignore the question.)`
+			`	August seems to suddenly calm down. "I suppose you wouldn't.`
+			`	"Anyway, I'm not sure if she could even be anywhere else. The route went north from here, up through Elnath and Nihal and then through the uninhabited systems back to Mirfak. But we've checked every one of those systems and haven't seen a signal." He stops for a moment, sitting down and putting his head in his hands. "We should have found her!"`
+				goto clearcrew
 			label elsewhere
 			`	"I'm not sure. The route went north from here, up through Elnath and Nihal and then through the uninhabited systems back to Mirfak. But we've checked every one of those systems! We should have seen a signal!" He stops for a moment, sitting down and putting his head in his hands. "We should have found her!"`
+			label clearcrew
 			`	You clear the rest of your crew off the bridge to give him some space.`
 			`	"I suppose I should just give you your money and go home," he rasps.`
 			choice
