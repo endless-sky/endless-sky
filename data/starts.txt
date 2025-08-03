@@ -35,7 +35,7 @@ start "default"
 	set "start: default"
 
 
-# Patch for if the player started a game before 0.10.13
+# Patch for if the player started a game before 0.10.15
 mission "Start: Default Patch"
 	invisible
 	landing
