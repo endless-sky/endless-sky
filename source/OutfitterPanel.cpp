@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Rectangle.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "image/Sprite.h"
@@ -50,7 +51,9 @@ namespace {
 	const string DESCRIPTION = "description";
 	const string LICENSE = " License";
 
-	constexpr int checkboxSpacing = 20;
+	// Numeric parameters for the visibility checkboxes. Note the checkboxes already have some padding of their own.
+	const Point checkboxSize{20, 20};
+	const Point keyPad{5, 8};
 
 	// Determine the refillable ammunition a particular ship consumes or stores.
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
@@ -156,8 +159,7 @@ int OutfitterPanel::TileSize() const
 
 int OutfitterPanel::VisibilityCheckboxesSize() const
 {
-	// Each checkbox is 20px, 4 checkboxes in total is 80px.
-	return 80;
+	return 4 * checkboxSize.Y() + 2. * keyPad.Y();
 }
 
 
@@ -287,13 +289,6 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 
 
 
-double OutfitterPanel::ButtonPanelHeight() const
-{
-	// The 60 is for padding the credit and cargo space information lines.
-	return 60. + BUTTON_HEIGHT * 3 + BUTTON_ROW_PAD * 2;
-}
-
-
 
 double OutfitterPanel::DrawDetails(const Point &center)
 {
@@ -369,506 +364,6 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 
 
-bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
-{
-	if(key == 'b')
-		return static_cast<bool>(CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Ship));
-	if(key == 'i')
-		return CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship) ||
-			CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship);
-	if(key == 'c')
-		return !shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Cargo) ||
-			CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Cargo));
-	if(key == 's')
-		return (!shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Shop) ||
-			CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Shop))) ||
-			CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Shop);
-	if(key == 'u')
-		return CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) ||
-			(!shipRelatedOnly && CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage));
-	if(key == 'r')
-		return (!shipRelatedOnly && CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage)) ||
-			CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage);
-	return false;
-}
-
-
-
-bool OutfitterPanel::ShouldHighlight(const Ship *ship)
-{
-	if(!selectedOutfit)
-		return false;
-
-	if(!ButtonActive(hoverButton, true))
-		return false;
-
-	// If we're hovering above a button that can modify ship outfits, highlight the ship.
-	if(hoverButton == 'b' || hoverButton == 'i')
-		return ShipCanAdd(ship, selectedOutfit);
-
-	// Otherwise, not installing, must be uninstalling.
-	return ShipCanRemove(ship, selectedOutfit);
-}
-
-
-
-// Draw the display filter selection checkboxes in the lower left of the outfit panel.
-void OutfitterPanel::DrawKey()
-{
-	const Sprite *back = SpriteSet::Get("ui/outfitter key");
-	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
-
-	const Font &font = FontSet::Get(14);
-	Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
-	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
-
-	Point pos = Screen::BottomLeft() + Point(10., -VisibilityCheckboxesSize() + checkboxSpacing / 2.);
-	const Point off{10., -.5 * font.Height()};
-	const Point checkboxSize{180., checkboxSpacing};
-	const Point checkboxOffset{80., 0.};
-
-	SpriteShader::Draw(box[showForSale], pos);
-	font.Draw("Show outfits for sale", pos + off, color[showForSale]);
-	AddZone(Rectangle(pos + checkboxOffset, checkboxSize), [this](){ ToggleForSale(); });
-
-	pos.Y() += checkboxSpacing;
-	SpriteShader::Draw(box[showInstalled], pos);
-	// The text color will be "medium" when no ships are selected, regardless of checkmark state,
-	// indicating that the selection is invalid (invalid context).
-	font.Draw("Show outfits installed", pos + off, color[showInstalled && playerShip]);
-	AddZone(Rectangle(pos + checkboxOffset, checkboxSize), [this]() { ToggleInstalled(); });
-
-	pos.Y() += checkboxSpacing;
-	SpriteShader::Draw(box[showCargo], pos);
-	font.Draw("Show outfits in cargo", pos + off, color[showCargo]);
-	AddZone(Rectangle(pos + checkboxOffset, checkboxSize), [this](){ ToggleCargo(); });
-
-	pos.Y() += checkboxSpacing;
-	SpriteShader::Draw(box[showStorage], pos);
-	font.Draw("Show outfits in storage", pos + off, color[showStorage]);
-	AddZone(Rectangle(pos + checkboxOffset, checkboxSize), [this](){ ToggleStorage(); });
-}
-
-
-
-// Check if the given point is within the button zone, and if so return the
-// letter of the button (or ' ' if it's not on a button).
-char OutfitterPanel::CheckButton(int x, int y)
-{
-	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - 3. * rowOffsetY - BUTTON_ROW_START_PAD;
-	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double w = BUTTON_WIDTH / 2;
-	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
-
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
-		return '\0';
-
-	// Row 1
-	if(rowBaseY < y && y <= rowBaseY + BUTTON_HEIGHT)
-	{
-		// Check if it's the _Buy button.
-		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
-			return 'b';
-		// Check if it's the _Install button.
-		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
-			return 'i';
-		// Check if it's the _Cargo button.
-		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
-			return 'c';
-	}
-
-	// Row 2
-	if(rowBaseY + rowOffsetY < y && y <= rowBaseY + rowOffsetY + BUTTON_HEIGHT)
-	{
-		// Check if it's the _Sell button:
-		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
-			return 's';
-		// Check if it's the _Uninstall button.
-		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
-			return 'u';
-		// Check if it's the Sto_re button.
-		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
-			return 'r';
-	}
-
-	// Row 3
-	if(rowBaseY + rowOffsetY * 2 < y && y <= rowBaseY + rowOffsetY * 2 + BUTTON_HEIGHT)
-	{
-		// Check if it's the _Leave button.
-		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
-			return 'l';
-	}
-
-	return ' ';
-}
-
-
-
-void OutfitterPanel::DrawButtons()
-{
-	// There will be two rows of buttons:
-	//  [ Buy  ] [  Install  ] [  Cargo  ]
-	//  [ Sell ] [ Uninstall ] [ Storage ]
-	//                         [  Leave  ]
-	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - 2.5 * rowOffsetY - BUTTON_ROW_START_PAD;
-	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
-	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
-
-	// Draw the button panel (shop side panel footer).
-	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize,
-		*GameData::Colors().Get("shop side panel background"));
-	FillShader::Fill(
-		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
-		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
-
-	// Set up font size and colors for the credits.
-	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("medium");
-	const Color &back = *GameData::Colors().Get("panel background");
-
-	// Draw the row for credits display.
-	const Point creditsPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - ButtonPanelHeight() + 5);
-	font.Draw("You have:", creditsPoint, dim);
-	const string &credits = Format::CreditString(player.Accounts().Credits());
-	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
-
-	// Draw the row for Fleet Cargo Space free.
-	const Point cargoPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - ButtonPanelHeight() + 25);
-	font.Draw("Cargo Free:", cargoPoint, dim);
-	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-	font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, cargoPoint, bright);
-
-	// Define the button text colors.
-	const Font &bigFont = FontSet::Get(18);
-	const Color &hover = *GameData::Colors().Get("hover");
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &inactive = *GameData::Colors().Get("inactive");
-
-	auto DrawButton = [&](const string &name, const Point &center, bool isActive, bool hovering)
-	{
-		// Draw the first row of buttons.
-		const Color *textColor = !isActive ? &inactive : hovering ? &hover : &active;
-		FillShader::Fill(center, buttonSize, back);
-		bigFont.Draw(name, center - .5 * Point(bigFont.Width(name), bigFont.Height()), *textColor);
-	};
-
-	// Row 1
-	DrawButton("_Buy", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), ButtonActive('b'),
-		hoverButton == 'b');
-	DrawButton("_Install", Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), ButtonActive('i'),
-		hoverButton == 'i');
-	DrawButton("_Cargo", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), ButtonActive('c'),
-		hoverButton == 'c');
-	// Row 2
-	DrawButton("_Sell", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 1), ButtonActive('s'),
-		hoverButton == 's');
-	DrawButton(!CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) &&
-		CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage) ? "_Unload" : "_Uninstall",
-		Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1), ButtonActive('u'),
-		hoverButton == 'u');
-	DrawButton("Sto_re", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), ButtonActive('r'),
-		hoverButton == 'r');
-	// Row 3
-	DrawButton("_Leave", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2), true, hoverButton == 'l');
-
-	// Draw the Modifier hover text that appears below the buttons when a modifier
-	// is being applied.
-	int modifier = Modifier();
-	if(modifier > 1)
-	{
-		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		for(int i = -1; i < 2; i++)
-			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0)
-			+ Point(-.5 * modWidth, 10.), dim);
-		for(int i = -1; i < 2; i++)
-			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1)
-			+ Point(-.5 * modWidth, 10.), dim);
-	}
-
-	// Draw tooltips for the button being hovered over:
-	string tooltip;
-	tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
-	if(!tooltip.empty())
-		// Note: there is an offset between the cursor and tooltips in this case so that other
-		// buttons can be seen as the mouse moves around.
-		DrawTooltip(tooltip, hoverPoint + Point(-40, -60), dim, *GameData::Colors().Get("tooltip background"));
-
-	// Draw the tooltip for your full number of credits and free cargo space
-	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 30));
-	if(creditsBox.Contains(hoverPoint))
-		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
-	else if(ShopPanel::hoverCount)
-		--ShopPanel::hoverCount;
-
-	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
-	{
-		tooltip = Format::Number(player.Accounts().Credits()) + " credits" + "\n" +
-			Format::Number(player.Cargo().Free()) + " tons free out of " +
-			Format::Number(player.Cargo().Size()) + " tons total capacity";
-		DrawTooltip(tooltip, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
-	}
-}
-
-
-
-int OutfitterPanel::FindItem(const string &text) const
-{
-	int bestIndex = 9999;
-	int bestItem = -1;
-	auto it = zones.begin();
-	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
-	{
-		const Outfit *outfit = it->GetOutfit();
-		int index = Format::Search(outfit->DisplayName(), text);
-		if(index >= 0 && index < bestIndex)
-		{
-			bestIndex = index;
-			bestItem = i;
-			if(!index)
-				return i;
-		}
-	}
-	return bestItem;
-}
-
-
-
-ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(char key)
-{
-	TransactionResult result = false;
-	if(key == 'b')
-	{
-		// Buy and install up to <modifier> outfits for each selected ship.
-		result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Ship);
-	}
-	else if(key == 's')
-	{
-		// Sell <modifier> of the selected outfit from cargo, or else storage, or else from each selected ship.
-		// Return a result based on the reason that none can be sold from the selected ships.
-		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Shop))
-			if(!MoveOutfit(OutfitLocation::Storage, OutfitLocation::Shop))
-				result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Shop);
-	}
-	else if(key == 'r')
-	{
-		// Move <modifier> of the selected outfit to storage from either cargo or else each of the selected ships.
-		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
-			result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage);
-	}
-	else if(key == 'c')
-	{
-		// Either move up to <multiple> outfits into cargo from storage if any are in storage, or else buy up to
-		// <modifier> outfits into cargo.
-		// Note: If the outfit connot be moved fro
-		// m storage or bought into cargo, give an error based on the buy
-		// condition.
-		if(!MoveOutfit(OutfitLocation::Storage, OutfitLocation::Cargo))
-			result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Cargo);
-	}
-	else if(key == 'i')
-	{
-		// Install up to <modifier> outfits from already owned equipment into each selected ship.
-		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship))
-			result = MoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship);
-	}
-	else if(key == 'u')
-	{
-		// Uninstall up to <multiple> outfits from each of the selected ships if any are available to uninstall, or
-		// else unload up to <multiple> outfits from cargo and place them storage.
-		// Note: If the outfit cannot be uninstalled or unloaded, give an error based on the inability to uninstall the
-		// outfit from any ship.
-		result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage);
-		if(!result)
-			// Unload from cargo, if possible, since we could not uninstall from the ship.
-			if(MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
-				result = true;
-	}
-
-	return result;
-}
-
-
-
-// Returns true if this ship can install the selected outfit.
-bool OutfitterPanel::ShipCanAdd(const Ship *ship, const Outfit *outfit)
-{
-	return (ship->Attributes().CanAdd(*outfit, 1) > 0);
-}
-
-
-
-// Returns true if this ship can uninstall the selected outfit.
-bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
-{
-	if(!ship->OutfitCount(outfit))
-		return false;
-
-	// If this outfit requires ammo, check if we could sell it if we sold all
-	// the ammo for it first.
-	const Outfit *ammo = outfit->Ammo();
-	if(ammo && ship->OutfitCount(ammo))
-	{
-		Outfit attributes = ship->Attributes();
-		attributes.Add(*ammo, -ship->OutfitCount(ammo));
-		return attributes.CanAdd(*outfit, -1);
-	}
-
-	// Ammo is not a factor, check whether this ship can uninstall this outfit.
-	return ship->Attributes().CanAdd(*outfit, -1);
-}
-
-
-
-void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned)
-{
-	const Sprite *thumbnail = outfit.Thumbnail();
-	const Sprite *back = SpriteSet::Get(
-		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
-	SpriteShader::Draw(back, center);
-	SpriteShader::Draw(thumbnail, center);
-
-	// Draw the outfit name.
-	const string &name = outfit.DisplayName();
-	const Font &font = FontSet::Get(14);
-	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
-	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
-		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
-}
-
-
-
-bool OutfitterPanel::HasLicense(const string &name) const
-{
-	return (IsLicense(name) && player.HasLicense(LicenseRoot(name)));
-}
-
-
-
-void OutfitterPanel::CheckRefill()
-{
-	if(checkedRefill)
-		return;
-	checkedRefill = true;
-
-	int count = 0;
-	map<const Outfit *, int> needed;
-	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		// Skip ships in other systems and those that were unable to land in-system.
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
-			continue;
-
-		++count;
-		auto toRefill = GetRefillableAmmunition(*ship);
-		for(const Outfit *outfit : toRefill)
-		{
-			int amount = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
-			if(amount > 0)
-			{
-				bool available = outfitter.Has(outfit) || player.Stock(outfit) > 0;
-				available = available || player.Cargo().Get(outfit) || player.Storage().Get(outfit);
-				if(available)
-					needed[outfit] += amount;
-			}
-		}
-	}
-
-	int64_t cost = 0;
-	for(auto &it : needed)
-	{
-		// Don't count cost of anything installed from cargo or storage.
-		it.second = max(0, it.second - player.Cargo().Get(it.first) - player.Storage().Get(it.first));
-		if(!outfitter.Has(it.first))
-			it.second = min(it.second, max(0, player.Stock(it.first)));
-		cost += player.StockDepreciation().Value(it.first, day, it.second);
-	}
-	if(!needed.empty() && cost < player.Accounts().Credits())
-	{
-		string message = "Do you want to reload all the ammunition for your ship";
-		message += (count == 1) ? "?" : "s?";
-		if(cost)
-			message += " It will cost " + Format::CreditString(cost) + ".";
-		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
-	}
-}
-
-
-
-void OutfitterPanel::Refill()
-{
-	for(const shared_ptr<Ship> &ship : player.Ships())
-	{
-		// Skip ships in other systems and those that were unable to land in-system.
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
-			continue;
-
-		auto toRefill = GetRefillableAmmunition(*ship);
-		for(const Outfit *outfit : toRefill)
-		{
-			int neededAmmo = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
-			if(neededAmmo > 0)
-			{
-				// Fill first from any stockpiles in storage.
-				const int fromStorage = player.Storage().Remove(outfit, neededAmmo);
-				neededAmmo -= fromStorage;
-				// Then from cargo.
-				const int fromCargo = player.Cargo().Remove(outfit, neededAmmo);
-				neededAmmo -= fromCargo;
-				// Then, buy at reduced (or full) price.
-				int available = outfitter.Has(outfit) ? neededAmmo : min<int>(neededAmmo, max<int>(0,
-					player.Stock(outfit)));
-				if(neededAmmo && available > 0)
-				{
-					int64_t price = player.StockDepreciation().Value(outfit, day, available);
-					player.Accounts().AddCredits(-price);
-					player.AddStock(outfit, -available);
-				}
-				ship->AddOutfit(outfit, available + fromStorage + fromCargo);
-			}
-		}
-	}
-}
-
-
-
-// Determine which ships of the selected ships should be referenced in this
-// iteration of Buy / Sell.
-vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isInstall) const
-{
-	vector<Ship *> shipsToOutfit;
-	int compareValue = isInstall ? numeric_limits<int>::max() : 0;
-	int compareMod = 2 * isInstall - 1;
-	for(Ship *ship : playerShips)
-	{
-		if((isInstall && !ShipCanAdd(ship, selectedOutfit))
-				|| (!isInstall && !ShipCanRemove(ship, selectedOutfit)))
-			continue;
-
-		int count = ship->OutfitCount(selectedOutfit);
-		if(compareMod * count < compareMod * compareValue)
-		{
-			shipsToOutfit.clear();
-			compareValue = count;
-		}
-		if(count == compareValue)
-			shipsToOutfit.push_back(ship);
-	}
-
-	return shipsToOutfit;
-}
-
-
-
 ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const
 {
 	if(!planet || !selectedOutfit)
@@ -882,23 +377,23 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 	string actionName = "unexpected action";
 	if(toLocation == OutfitLocation::Shop)
 		actionName = "sell";
-	else if(fromLocation != OutfitLocation::Shop)
+	else if(fromLocation == OutfitLocation::Shop)
 	{
-		if(toLocation == OutfitLocation::Ship)
-			actionName = "install";
-		else if(fromLocation == OutfitLocation::Ship)
-			actionName = "uninstall";
-		else if(toLocation == OutfitLocation::Cargo)
-			actionName = "load";
-		else if(toLocation == OutfitLocation::Storage)
-			actionName = "store";
+		if(toLocation == OutfitLocation::Cargo)
+			actionName = "buy and load";
+		else if(toLocation == OutfitLocation::Ship)
+			actionName = "buy and install";
 	}
-	else if(toLocation == OutfitLocation::Cargo)
-		actionName = "buy and load";
+	else if(fromLocation == OutfitLocation::Ship)
+		actionName = "uninstall";
 	else if(toLocation == OutfitLocation::Ship)
-		actionName = "buy and install";
-	// Prevent coding up bad combinations.
+		actionName = "install";
+	else if(toLocation == OutfitLocation::Cargo)
+		actionName = "load";
+	else if(toLocation == OutfitLocation::Storage)
+		actionName = "store";
 	else
+		// Prevent coding up bad combinations.
 		throw "unreachable; unsupported to/from combination";
 
 	// Handle special cases such as maps and licenses.
@@ -1430,6 +925,91 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 
 
 
+bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
+{
+	if(key == 'b')
+		return static_cast<bool>(CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Ship));
+	if(key == 'i')
+		return CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship) ||
+			CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship);
+	if(key == 'c')
+		return !shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Cargo) ||
+			CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Cargo));
+	if(key == 's')
+		return (!shipRelatedOnly && (CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Shop) ||
+			CanMoveOutfit(OutfitLocation::Storage, OutfitLocation::Shop))) ||
+			CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Shop);
+	if(key == 'u')
+		return CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) ||
+			(!shipRelatedOnly && CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage));
+	if(key == 'r')
+		return (!shipRelatedOnly && CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage)) ||
+			CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage);
+	return false;
+}
+
+
+
+bool OutfitterPanel::ShouldHighlight(const Ship *ship)
+{
+	if(!selectedOutfit)
+		return false;
+
+	if(!ButtonActive(hoverButton, true))
+		return false;
+
+	// If we're hovering above a button that can modify ship outfits, highlight the ship.
+	if(hoverButton == 'b' || hoverButton == 'i')
+		return ShipCanAdd(ship, selectedOutfit);
+
+	// Otherwise, not installing, must be uninstalling.
+	return ShipCanRemove(ship, selectedOutfit);
+}
+
+
+
+// Draw the display filter selection checkboxes in the lower left of the outfit panel.
+void OutfitterPanel::DrawKey()
+{
+	const Sprite *back = SpriteSet::Get("ui/outfitter key");  // TODO: fix the graphic, add 10 px to x and y
+
+	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
+
+	const Font &font = FontSet::Get(14);
+	const Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
+	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
+
+	Point pos = Screen::BottomLeft() +
+		Point{keyPad.X() + .5 * checkboxSize.X(), -VisibilityCheckboxesSize() + .5 * checkboxSize.Y() + keyPad.Y()};
+	const Point labelOffset{.5 * checkboxSize.X(), -.5 * font.Height()};
+	const Point activeAreaSize{180., checkboxSize.Y()};
+	// Include the label and the sprite (20px) in the active checkbox area.
+	const Point checkboxOffset{.5 * activeAreaSize.X() - .5 * checkboxSize.X(), 0.};
+
+	SpriteShader::Draw(box[showForSale], pos);
+	font.Draw("Show outfits for sale", pos + labelOffset, color[showForSale]);
+	AddZone(Rectangle(pos + checkboxOffset, activeAreaSize), [this](){ ToggleForSale(); });
+
+	pos.Y() += checkboxSize.Y();
+	SpriteShader::Draw(box[showInstalled], pos);
+	// The text color will be "medium" when no ships are selected, regardless of checkmark state,
+	// indicating that the selection is invalid (invalid context).
+	font.Draw("Show outfits installed", pos + labelOffset, color[showInstalled && playerShip]);
+	AddZone(Rectangle(pos + checkboxOffset, activeAreaSize), [this]() { ToggleInstalled(); });
+
+	pos.Y() += checkboxSize.Y();
+	SpriteShader::Draw(box[showCargo], pos);
+	font.Draw("Show outfits in cargo", pos + labelOffset, color[showCargo]);
+	AddZone(Rectangle(pos + checkboxOffset, activeAreaSize), [this](){ ToggleCargo(); });
+
+	pos.Y() += checkboxSize.Y();
+	SpriteShader::Draw(box[showStorage], pos);
+	font.Draw("Show outfits in storage", pos + labelOffset, color[showStorage]);
+	AddZone(Rectangle(pos + checkboxOffset, activeAreaSize), [this](){ ToggleStorage(); });
+}
+
+
+
 void OutfitterPanel::ToggleForSale()
 {
 	showForSale = !showForSale;
@@ -1466,4 +1046,431 @@ void OutfitterPanel::ToggleCargo()
 
 	CheckSelection();
 	delayedAutoScroll = true;
+}
+
+
+
+// Returns true if this ship can install the selected outfit.
+bool OutfitterPanel::ShipCanAdd(const Ship *ship, const Outfit *outfit)
+{
+	return (ship->Attributes().CanAdd(*outfit, 1) > 0);
+}
+
+
+
+// Returns true if this ship can uninstall the selected outfit.
+bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
+{
+	if(!ship->OutfitCount(outfit))
+		return false;
+
+	// If this outfit requires ammo, check if we could sell it if we sold all
+	// the ammo for it first.
+	const Outfit *ammo = outfit->Ammo();
+	if(ammo && ship->OutfitCount(ammo))
+	{
+		Outfit attributes = ship->Attributes();
+		attributes.Add(*ammo, -ship->OutfitCount(ammo));
+		return attributes.CanAdd(*outfit, -1);
+	}
+
+	// Ammo is not a factor, check whether this ship can uninstall this outfit.
+	return ship->Attributes().CanAdd(*outfit, -1);
+}
+
+
+
+void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned)
+{
+	const Sprite *thumbnail = outfit.Thumbnail();
+	const Sprite *back = SpriteSet::Get(
+		isSelected ? "ui/outfitter selected" : "ui/outfitter unselected");
+	SpriteShader::Draw(back, center);
+	SpriteShader::Draw(thumbnail, center);
+
+	// Draw the outfit name.
+	const string &name = outfit.DisplayName();
+	const Font &font = FontSet::Get(14);
+	Point offset(-.5 * OUTFIT_SIZE, -.5 * OUTFIT_SIZE + 10.);
+	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
+		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
+}
+
+
+
+bool OutfitterPanel::HasLicense(const string &name) const
+{
+	return (IsLicense(name) && player.HasLicense(LicenseRoot(name)));
+}
+
+
+
+void OutfitterPanel::CheckRefill()
+{
+	if(checkedRefill)
+		return;
+	checkedRefill = true;
+
+	int count = 0;
+	map<const Outfit *, int> needed;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		// Skip ships in other systems and those that were unable to land in-system.
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
+			continue;
+
+		++count;
+		auto toRefill = GetRefillableAmmunition(*ship);
+		for(const Outfit *outfit : toRefill)
+		{
+			int amount = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
+			if(amount > 0)
+			{
+				bool available = outfitter.Has(outfit) || player.Stock(outfit) > 0;
+				available = available || player.Cargo().Get(outfit) || player.Storage().Get(outfit);
+				if(available)
+					needed[outfit] += amount;
+			}
+		}
+	}
+
+	int64_t cost = 0;
+	for(auto &it : needed)
+	{
+		// Don't count cost of anything installed from cargo or storage.
+		it.second = max(0, it.second - player.Cargo().Get(it.first) - player.Storage().Get(it.first));
+		if(!outfitter.Has(it.first))
+			it.second = min(it.second, max(0, player.Stock(it.first)));
+		cost += player.StockDepreciation().Value(it.first, day, it.second);
+	}
+	if(!needed.empty() && cost < player.Accounts().Credits())
+	{
+		string message = "Do you want to reload all the ammunition for your ship";
+		message += (count == 1) ? "?" : "s?";
+		if(cost)
+			message += " It will cost " + Format::CreditString(cost) + ".";
+		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
+	}
+}
+
+
+
+void OutfitterPanel::Refill()
+{
+	for(const shared_ptr<Ship> &ship : player.Ships())
+	{
+		// Skip ships in other systems and those that were unable to land in-system.
+		if(ship->GetSystem() != player.GetSystem() || ship->IsDisabled())
+			continue;
+
+		auto toRefill = GetRefillableAmmunition(*ship);
+		for(const Outfit *outfit : toRefill)
+		{
+			int neededAmmo = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
+			if(neededAmmo > 0)
+			{
+				// Fill first from any stockpiles in storage.
+				const int fromStorage = player.Storage().Remove(outfit, neededAmmo);
+				neededAmmo -= fromStorage;
+				// Then from cargo.
+				const int fromCargo = player.Cargo().Remove(outfit, neededAmmo);
+				neededAmmo -= fromCargo;
+				// Then, buy at reduced (or full) price.
+				int available = outfitter.Has(outfit) ? neededAmmo : min<int>(neededAmmo, max<int>(0,
+					player.Stock(outfit)));
+				if(neededAmmo && available > 0)
+				{
+					int64_t price = player.StockDepreciation().Value(outfit, day, available);
+					player.Accounts().AddCredits(-price);
+					player.AddStock(outfit, -available);
+				}
+				ship->AddOutfit(outfit, available + fromStorage + fromCargo);
+			}
+		}
+	}
+}
+
+
+
+// Determine which ships of the selected ships should be referenced in this
+// iteration of Buy / Sell.
+const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isInstall) const
+{
+	vector<Ship *> shipsToOutfit;
+	int compareValue = isInstall ? numeric_limits<int>::max() : 0;
+	int compareMod = 2 * isInstall - 1;
+	for(Ship *ship : playerShips)
+	{
+		if((isInstall && !ShipCanAdd(ship, selectedOutfit))
+				|| (!isInstall && !ShipCanRemove(ship, selectedOutfit)))
+			continue;
+
+		int count = ship->OutfitCount(selectedOutfit);
+		if(compareMod * count < compareMod * compareValue)
+		{
+			shipsToOutfit.clear();
+			compareValue = count;
+		}
+		if(count == compareValue)
+			shipsToOutfit.push_back(ship);
+	}
+
+	return shipsToOutfit;
+}
+
+
+
+int OutfitterPanel::FindItem(const string &text) const
+{
+	int bestIndex = 9999;
+	int bestItem = -1;
+	auto it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
+	{
+		const Outfit *outfit = it->GetOutfit();
+		int index = Format::Search(outfit->DisplayName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index)
+				return i;
+		}
+	}
+	return bestItem;
+}
+
+
+
+double OutfitterPanel::ButtonPanelHeight() const
+{
+	// The 60 is for padding the credit and cargo space information lines.
+	return 60. + BUTTON_HEIGHT * 3 + BUTTON_ROW_PAD * 2;
+}
+
+
+
+// Check if the given point is within the button zone, and if so return the
+// letter of the button (or ' ' if it's not on a button).
+char OutfitterPanel::CheckButton(int x, int y)
+{
+	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 3. * rowOffsetY - BUTTON_ROW_START_PAD;
+	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	const double w = BUTTON_WIDTH / 2;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
+
+	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
+		return '\0';
+
+	// Row 1
+	if(rowBaseY < y && y <= rowBaseY + BUTTON_HEIGHT)
+	{
+		// Check if it's the _Buy button.
+		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
+			return 'b';
+		// Check if it's the _Install button.
+		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
+			return 'i';
+		// Check if it's the _Cargo button.
+		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
+			return 'c';
+	}
+
+	// Row 2
+	if(rowBaseY + rowOffsetY < y && y <= rowBaseY + rowOffsetY + BUTTON_HEIGHT)
+	{
+		// Check if it's the _Sell button:
+		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
+			return 's';
+		// Check if it's the _Uninstall button.
+		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
+			return 'u';
+		// Check if it's the Sto_re button.
+		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
+			return 'r';
+	}
+
+	// Row 3
+	if(rowBaseY + rowOffsetY * 2 < y && y <= rowBaseY + rowOffsetY * 2 + BUTTON_HEIGHT)
+	{
+		// Check if it's the _Leave button.
+		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
+			return 'l';
+	}
+
+	return ' ';
+}
+
+
+
+void OutfitterPanel::DrawButtons()
+{
+	// There will be two rows of buttons:
+	//  [ Buy  ] [  Install  ] [  Cargo  ]
+	//  [ Sell ] [ Uninstall ] [ Storage ]
+	//                         [  Leave  ]
+	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 2.5 * rowOffsetY - BUTTON_ROW_START_PAD;
+	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
+	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
+
+	// Draw the button panel (shop side panel footer).
+	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
+	FillShader::Fill(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize,
+		*GameData::Colors().Get("shop side panel background"));
+	FillShader::Fill(
+		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
+		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
+
+	// Set up font size and colors for the credits.
+	const Font &font = FontSet::Get(14);
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dim = *GameData::Colors().Get("medium");
+	const Color &back = *GameData::Colors().Get("panel background");
+
+	// Draw the row for credits display.
+	const Point creditsPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - ButtonPanelHeight() + 5);
+	font.Draw("You have:", creditsPoint, dim);
+	const string &credits = Format::CreditString(player.Accounts().Credits());
+	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
+
+	// Draw the row for Fleet Cargo Space free.
+	const Point cargoPoint(
+		Screen::Right() - SIDEBAR_WIDTH + 10,
+		Screen::Bottom() - ButtonPanelHeight() + 25);
+	font.Draw("Cargo Free:", cargoPoint, dim);
+	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+	font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, cargoPoint, bright);
+
+	// Define the button text colors.
+	const Color &hover = *GameData::Colors().Get("hover");
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &inactive = *GameData::Colors().Get("inactive");
+
+	// This function (DrawButton) is written to mimic the forhcoming DrawButton from PR #11447
+	auto DrawButton = [&](const string &name, const Rectangle &buttonShape, bool isActive, bool hovering,
+		char keyCode)
+	{
+		const Font &bigFont = FontSet::Get(18);
+		const Color *color = !isActive ? &inactive : hovering ? &hover : &active;
+
+		FillShader::Fill(buttonShape.Center(), buttonShape.Dimensions(), back);
+		bigFont.Draw(name, buttonShape.Center() - .5 * Point(bigFont.Width(name), bigFont.Height()), *color);
+	};
+
+	// Row 1.
+	DrawButton("_Buy", Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize),
+		ButtonActive('b'), hoverButton == 'b', 'b');
+	DrawButton("_Install", Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
+		ButtonActive('i'), hoverButton == 'i', 'i');
+	DrawButton("_Cargo", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
+		ButtonActive('c'), hoverButton == 'c', 'c');
+	// Row 2.
+	DrawButton("_Sell", Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 1), buttonSize),
+		ButtonActive('s'), hoverButton == 's', 's');
+	DrawButton(!CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) &&
+		CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage) ? "_Unload" : "_Uninstall",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1), buttonSize),
+		ButtonActive('u'), hoverButton == 'u', 'b');
+	DrawButton("Sto_re", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
+		ButtonActive('r'), hoverButton == 'r', 'r');
+	// Row 3.
+	DrawButton("_Leave", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2), buttonSize),
+		true, hoverButton == 'l', 'l');
+
+	// Draw the Modifier hover text that appears below the buttons when a modifier is being applied.
+	int modifier = Modifier();
+	if(modifier > 1)
+	{
+		string mod = "x " + to_string(modifier);
+		int modWidth = font.Width(mod);
+		for(int i = -1; i < 2; i++)
+			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0)
+			+ Point(-.5 * modWidth, 10.), dim);
+		for(int i = -1; i < 2; i++)
+			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1)
+			+ Point(-.5 * modWidth, 10.), dim);
+	}
+
+	// Draw tooltips for the button being hovered over:
+	string tooltip;
+	tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
+	if(!tooltip.empty())
+		// Note: there is an offset between the cursor and tooltips in this case so that other
+		// buttons can be seen as the mouse moves around.
+		DrawTooltip(tooltip, hoverPoint + Point(-40, -60), dim, *GameData::Colors().Get("tooltip background"));
+
+	// Draw the tooltip for your full number of credits and free cargo space
+	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 30));
+	if(creditsBox.Contains(hoverPoint))
+		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
+	else if(ShopPanel::hoverCount)
+		--ShopPanel::hoverCount;
+
+	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
+	{
+		tooltip = Format::Number(player.Accounts().Credits()) + " credits" + "\n" +
+			Format::Number(player.Cargo().Free()) + " tons free out of " +
+			Format::Number(player.Cargo().Size()) + " tons total capacity";
+		DrawTooltip(tooltip, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+	}
+}
+
+
+
+ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(char key)
+{
+	TransactionResult result = false;
+	if(key == 'b')
+	{
+		// Buy and install up to <modifier> outfits for each selected ship.
+		result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Ship);
+	}
+	else if(key == 's')
+	{
+		// Sell <modifier> of the selected outfit from cargo, or else storage, or else from each selected ship.
+		// Return a result based on the reason that none can be sold from the selected ships.
+		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Shop))
+			if(!MoveOutfit(OutfitLocation::Storage, OutfitLocation::Shop))
+				result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Shop);
+	}
+	else if(key == 'r')
+	{
+		// Move <modifier> of the selected outfit to storage from either cargo or else each of the selected ships.
+		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
+			result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage);
+	}
+	else if(key == 'c')
+	{
+		// Either move up to <multiple> outfits into cargo from storage if any are in storage, or else buy up to
+		// <modifier> outfits into cargo.
+		// Note: If the outfit connot be moved from storage or bought into cargo, give an error based on the buy
+		// condition.
+		if(!MoveOutfit(OutfitLocation::Storage, OutfitLocation::Cargo))
+			result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Cargo);
+	}
+	else if(key == 'i')
+	{
+		// Install up to <modifier> outfits from already owned equipment into each selected ship.
+		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship))
+			result = MoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship);
+	}
+	else if(key == 'u')
+	{
+		// Uninstall up to <multiple> outfits from each of the selected ships if any are available to uninstall, or
+		// else unload up to <multiple> outfits from cargo and place them storage.
+		// Note: If the outfit cannot be uninstalled or unloaded, give an error based on the inability to uninstall the
+		// outfit from any ship.
+		result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage);
+		if(!result)
+			// Unload from cargo, if possible, since we could not uninstall from the ship.
+			if(MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
+				result = true;
+	}
+
+	return result;
 }

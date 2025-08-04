@@ -58,19 +58,25 @@ protected:
 	virtual int VisibilityCheckboxesSize() const override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point) override;
-	virtual double ButtonPanelHeight() const override;
 	virtual double DrawDetails(const Point &center) override;
-
+	TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
+	TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
 	virtual bool ButtonActive(char key, bool shipRelatedOnly = false);
-
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
-	virtual char CheckButton(int x, int y) override;
 
+	// Toggles for the display filters.
+	virtual void ToggleForSale();
+	virtual void ToggleInstalled();
+	virtual void ToggleStorage();
+	virtual void ToggleCargo();
 
-protected:
-	void DrawButtons() override;
 	int FindItem(const std::string &text) const override;
+
+
+	virtual double ButtonPanelHeight() const override;	
+	virtual char CheckButton(int x, int y) override;
+	void DrawButtons() override;
 	TransactionResult HandleShortcuts(char key) override;
 
 
@@ -83,20 +89,9 @@ private:
 	void Refill();
 	// Shared code for reducing the selected ships to those that have the
 	// same quantity of the selected outfit.
-	std::vector<Ship *> GetShipsToOutfit(bool isInstall = false) const;
-
-	// Helper functions to make the cargo management code more readable.
-	TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
-	TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
-
+	const std::vector<Ship *> GetShipsToOutfit(bool isInstall = false) const;
 
 private:
-	// Toggles for the display filters.
-	void ToggleForSale();
-	void ToggleInstalled();
-	void ToggleStorage();
-	void ToggleCargo();
-
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
 	// Allow toggling whether outfits that are for sale are shown.
