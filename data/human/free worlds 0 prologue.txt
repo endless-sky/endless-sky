@@ -1273,8 +1273,7 @@ mission "FW Bounty 3"
 
 
 
-# Because there isn't an easy way for a mission to determine what failed it,
-# this mission handles the failure messages for FW Katya.
+# Because these missions can also be failed by having "chosen sides", this mission handles the failure messages for FW Katya.
 mission "FW Katya Failed"
 	non-blocking
 	landing
