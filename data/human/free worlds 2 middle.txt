@@ -21,7 +21,7 @@ mission "FW Diplomacy 1"
 	to offer
 		has "event: navy occupying the south"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "catalytic ramscoop available"
@@ -61,7 +61,7 @@ mission "FW Diplomacy 1B"
 	passengers 1
 	blocked "You do not have a bunk free for Alondo. Return here when you do."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -114,7 +114,7 @@ mission "FW Diplomacy 1C"
 		has "FW Diplomacy 1B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Stopped on Earth with Alondo to talk to Parliament and try to head off another bloody battle. Unfortunately, they were not willing to negotiate."
@@ -154,7 +154,7 @@ mission "FW Diplomacy 1D"
 		has "FW Diplomacy 1C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -184,7 +184,7 @@ mission "FW Southern Recon 1"
 	to offer
 		has "FW Diplomacy 1D: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw safe passage ends"
@@ -314,7 +314,7 @@ mission "FW Southern Battle 1"
 			has "FW Southern Recon 1B: done"
 			has "FW Southern Recon 1B (Turret): done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "normal in Alnasl"
@@ -351,7 +351,7 @@ mission "FW Southern Battle 1B"
 	to offer
 		has "FW Southern Battle 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "flamethrower available" 10
@@ -413,7 +413,7 @@ mission "FW Southern Battle 2"
 		has "FW Southern Battle 1B: done"
 	deadline 3
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Preparing for another major battle with the Navy, this time in the Rastaban system, which just recently expressed an interest in joining the Free Worlds but has not been able to do so due to the Navy presence. The Free Worlds will be using a new model of warship, the Dreadnought, in this battle."
@@ -530,7 +530,7 @@ mission "FW Southern Battle 3"
 	waypoint Albaldah
 	waypoint "Delta Sagittarii"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Navy has been driven out of the Rastaban system. That will allow the people on Harmony, Dancer, New Portland, and New India to join the Free Worlds."
@@ -657,7 +657,7 @@ mission "FW Southern Prisoners - Released"
 	to offer
 		has "FW Southern Prisoners - Release: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -700,7 +700,7 @@ mission "FW Southern Prisoners - Kept"
 	to offer
 		has "FW Southern Prisoners - Keep: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -777,7 +777,7 @@ mission "FW Northern 1"
 	passengers 1
 	blocked `You receive a message from Freya: "Captain, please meet up with us as soon as you have a bunk free for Alondo." You have no bunks free, so you should return here once you have made one available.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Three more planets have decided to defect to the Free Worlds: Clark, New Tibet, and New Holland."
@@ -824,7 +824,7 @@ mission "FW Northern 2"
 	to offer
 		has "FW Northern 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -857,7 +857,7 @@ mission "FW Northern 2A"
 	passengers 1
 	blocked "To continue this mission, you need a bunk free for Freya. Return here when you have made one available."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -878,7 +878,7 @@ mission "FW Northern 2B"
 		has "FW Northern 2A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -900,7 +900,7 @@ mission "FW Northern 2C"
 		has "FW Northern 2B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -933,7 +933,7 @@ mission "FW Northern 2D"
 		has "FW Northern 2C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -954,7 +954,7 @@ mission "FW Northern 3"
 		has "FW Northern 2D: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The shipyard on Zug is still trying to ramp up Dreadnought production. So far only a few ships have been built, but Freya will be helping to speed up the process."
@@ -1006,7 +1006,7 @@ mission "FW Northern 3B"
 	to offer
 		has "FW Northern 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1059,7 +1059,7 @@ mission "FW Northern 4"
 		has "FW Northern 3B: done"
 	clearance
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1081,7 +1081,7 @@ mission "FW Northern 4.1A"
 		karma >= 2
 		"reputation: Navy (Oathkeeper)" >= 0
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1122,7 +1122,7 @@ mission "FW Northern 4.2A"
 			karma < 2
 			"reputation: Navy (Oathkeeper)" < 0
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1159,7 +1159,7 @@ mission "FW Alphas 1.1"
 	to offer
 		has "FW Northern 4.1A: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Republic world of Poisonwood in the South has apparently been taken over by Alpha warlords. It is such a dire threat that despite the war, the Navy Oathkeepers have agreed to fight alongside the Free Worlds to liberate the planet."
@@ -1260,7 +1260,7 @@ mission "FW Alphas 1.2"
 	to offer
 		has "FW Northern 4.2A: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Republic world of Poisonwood in the South has apparently been taken over by Alpha warlords. Hopefully the Free Worlds will be able to liberate the planet and capture or kill the Alpha leaders."
@@ -1316,7 +1316,7 @@ mission "FW Alphas 1.1A"
 	to offer
 		has "FW Alphas 1.1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
@@ -1386,7 +1386,7 @@ mission "FW Alphas 1.2A"
 	to offer
 		has "FW Alphas 1.2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Liberated Poisonwood from the Alpha invaders. Had to bombard them from orbit, and many civilians were killed in the process, but at least the planet is free again."
@@ -1415,7 +1415,7 @@ mission "FW Bloodsea 1"
 	passengers 1
 	blocked `Alondo contacts you and asks, "Do you have a bunk ready for me?" You do not, so you will need to free one up to continue this mission.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1496,7 +1496,7 @@ mission "FW Bloodsea 1.1A"
 		has "FW Bloodsea 1.1: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1528,7 +1528,7 @@ mission "FW Bloodsea 1.1B"
 		has "FW Bloodsea 1.1A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1609,7 +1609,7 @@ mission "FW Bloodsea 1.2A"
 	to offer
 		has "FW Bloodsea 1.2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "battle for bloodsea"
@@ -1694,7 +1694,7 @@ mission "FW Dreadnoughts Ready"
 	to offer
 		has "fw bloodsea done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	on offer
 		log "Freya has announced that Dreadnoughts are now for sale on Zug. Finally the Free Worlds have a warship that can stand up to Navy capital ships."
 
@@ -1711,7 +1711,7 @@ mission "FW Albatross 1"
 		has "FW Dreadnoughts Ready: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1763,7 +1763,7 @@ mission "FW Albatross 2"
 		has "FW Albatross 1: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1793,7 +1793,7 @@ mission "FW Albatross 2A"
 		has "FW Albatross 2: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1857,7 +1857,7 @@ mission "FW Albatross 2B"
 		has "FW Albatross 2A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The people of Albatross, another anarchist world, have agreed to join the Free Worlds in gratitude for having been liberated from Ryk Bartlett, a warlord who was extorting them for protection money."
@@ -1889,7 +1889,7 @@ mission "FW Rand 1"
 	to offer
 		has "FW Albatross 2B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Another two planets, Rand and Oblivion, have expressed an interest in joining the Free Worlds. They are rather far from the rest of Free Worlds territory, however, so JJ is worried that it would create an indefensible tactical position."
@@ -1965,7 +1965,7 @@ mission "FW Rand 1B"
 	to offer
 		has "FW Rand 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Navy has invaded Rastaban and Delta Sagittarii, effectively slicing through Free Worlds territory and splitting up the Free Worlds fleet."
@@ -2078,7 +2078,7 @@ mission "FW Defend New Tibet"
 	to offer
 		has "FW Rand 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "As a member of the Council, must make the deciding vote on a difficult decision. A defector from the Syndicate is claiming to have proof that the Syndicate was behind the bombings of Martini and Geminus. If that is true, the Republic may agree to make peace with the Free Worlds. But, refusing to return the defector to the Syndicate would certainly earn their enmity."
