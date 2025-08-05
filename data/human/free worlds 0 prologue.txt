@@ -1071,7 +1071,7 @@ mission "FW Escort Second Chance"
 				`	"Yes, I know that I failed, and I'm very sorry for their loss."`
 					goto responsible
 			action
-				log "Refused to take responsibility for my failure to protect a Free Worlds freighter. Tomek was not happy about it."
+				log "Met with Tomek about my failure to protect a Free Worlds freighter. Tried to point out that there wasn't anything I could have done, but he was not happy about it."
 				set "fw escort: mistrusted"
 			`	"That is not an appropriate response," he says. "If we offer you a mission, we have to be able to trust that you will complete it, with no excuses. I'm sorry, but I have no interest in working with you in the future. Goodbye, Captain." He walks away.`
 				decline
@@ -1283,7 +1283,7 @@ mission "FW Bounty 3"
 	on complete
 		payment 500000
 		"assisted free worlds" ++
-		log "Defeated the Silverhawk, an Osprey armed with alien technology, and earned a good reputation with the Free Worlds militia by hunting down dangerous pirates."
+		log "Defeated the Silverhawk, an Osprey armed with alien technology, and earned a good reputation with the Free Worlds militia by hunting down other dangerous pirates."
 		dialog `The militia officer who asked you to hunt down the <npc> contacts you soon after you land. "You've done us a great service," he says. "I'll be telling the Council how helpful you were." He hands you a payment of <payment>.`
 
 
