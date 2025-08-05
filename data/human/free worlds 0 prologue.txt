@@ -328,7 +328,7 @@ mission "FW Recon 0"
 
 mission "FW Recon 1"
 	name "Free Worlds Reconnaissance"
-	description "Perform an outfit scan on the Cruiser <npc>, then report to a Free Worlds officer on <destination>."
+	description "Perform an outfit scan on the Cruiser <npc>, which is currently patrolling <system>, then report to a Free Worlds officer on <planet>."
 	source "Glaze"
 	to offer
 		has "FW Recon 0: done"
@@ -340,25 +340,20 @@ mission "FW Recon 1"
 				not "FW Recon 1: done"
 	to fail
 		has "chosen sides"
+	on abort
+		log "Turned down reconnaissance work from the Free Worlds."
+		dialog phrase "free worlds failed"
+	on decline
+		log "Turned down reconnaissance work from the Free Worlds."
+		dialog phrase "free worlds declined"
 	
 	on offer
 		conversation
-			branch deferred
-				has "FW Recon 1: deferred"
 			`When you walk into the spaceport bar, a man in a militia uniform flags you down, and says, "Captain <last>. One of my officers told me to keep an eye out for you. Would you be willing to do another small service for the Free Worlds?"`
 			choice
 				`	"Perhaps. What do you want me to do?"`
-					goto matter
 				`	"I only agreed to a transport job. I want no part in your rebellion."`
 					decline
-			label deferred
-			`Walking around the spaceport, you recall that a Free Worlds officer once asked for your services on <origin>. Do you want to see if they still need your help?`
-			choice
-				`	"(Sure.)"`
-				`	"(Not right now.)"`
-					goto decline
-			`	After a bit of searching, a man in a militia uniform flags you down. "I've heard of your work with Miss Reynolds, Captain <last>. Mind if we head somewhere a little more private?" Sure enough, the two of you find a table in the spaceport bar and sit down.`
-			label matter
 			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? The outfitter stocks scanners if you don't have one, though you might want to install a few of them to improve performance. We will pay <payment>."`
 			choice
 				`	"Sure, that sounds simple enough."`
@@ -369,12 +364,7 @@ mission "FW Recon 1"
 				`	"Sounds reasonable enough. I'll do it."`
 					accept
 				`	"If shady jobs like this are what constitute 'helping the Free Worlds,' then count me out."`
-					goto decline
-			label decline
-			action
-				set "FW Recon 1: deferred"
-			`	"Very well." The man bids you farewell as you leave.`
-				decline
+					decline
 	
 	npc "scan outfits"
 		government "Republic"
