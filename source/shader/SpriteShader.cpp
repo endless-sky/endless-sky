@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteShader.h"
 
+#include "../GameData.h"
 #include "../Screen.h"
 #include "Shader.h"
 #include "../image/Sprite.h"
@@ -29,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	Shader shader;
+	const Shader *shader;
 	GLint scaleI;
 	GLint texI;
 	GLint swizzleMaskI;
@@ -51,106 +52,22 @@ namespace {
 // Initialize the shaders.
 void SpriteShader::Init()
 {
-
-	static const char *vertexCode =
-		"// vertex sprite shader\n"
-		"precision mediump float;\n"
-		"uniform vec2 scale;\n"
-		"uniform vec2 position;\n"
-		"uniform mat2 transform;\n"
-		"uniform vec2 blur;\n"
-		"uniform float clip;\n"
-
-		"in vec2 vert;\n"
-		"out vec2 fragTexCoord;\n"
-
-		"void main() {\n"
-		"  vec2 blurOff = 2.f * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));\n"
-		"  gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);\n"
-		"  vec2 texCoord = vert + vec2(.5, .5);\n"
-		"  fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment sprite shader\n"
-		"precision mediump float;\n"
-#ifdef ES_GLES
-		"precision mediump sampler2DArray;\n"
-#endif
-		"uniform sampler2DArray tex;\n"
-		"uniform sampler2DArray swizzleMask;\n"
-		"uniform int useSwizzleMask;\n"
-		"uniform float frame;\n"
-		"uniform float frameCount;\n"
-		"uniform vec2 blur;\n"
-		"uniform mat4 swizzleMatrix;\n"
-		"uniform int useSwizzle;\n"
-		"uniform float alpha;\n"
-		"const int range = 5;\n"
-
-		"in vec2 fragTexCoord;\n"
-
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  float first = floor(frame);\n"
-		"  float second = mod(ceil(frame), frameCount);\n"
-		"  float fade = frame - first;\n"
-		"  vec4 color;\n"
-		"  if(blur.x == 0.f && blur.y == 0.f)\n"
-		"  {\n"
-		"    if(fade != 0.f)\n"
-		"      color = mix(\n"
-		"        texture(tex, vec3(fragTexCoord, first)),\n"
-		"        texture(tex, vec3(fragTexCoord, second)), fade);\n"
-		"    else\n"
-		"      color = texture(tex, vec3(fragTexCoord, first));\n"
-		"  }\n"
-		"  else\n"
-		"  {\n"
-		"    color = vec4(0., 0., 0., 0.);\n"
-		"    const float divisor = float(range * (range + 2) + 1);\n"
-		"    for(int i = -range; i <= range; ++i)\n"
-		"    {\n"
-		"      float scale = float(range + 1 - abs(i)) / divisor;\n"
-		"      vec2 coord = fragTexCoord + (blur * float(i)) / float(range);\n"
-		"      if(fade != 0.f)\n"
-		"        color += scale * mix(\n"
-		"          texture(tex, vec3(coord, first)),\n"
-		"          texture(tex, vec3(coord, second)), fade);\n"
-		"      else\n"
-		"        color += scale * texture(tex, vec3(coord, first));\n"
-		"    }\n"
-		"  }\n"
-		"  if(useSwizzle > 0)\n"
-		"  {\n"
-		"    vec4 swizzleColor;\n"
-		"    swizzleColor = color * swizzleMatrix;\n"
-		"    if(useSwizzleMask > 0)\n"
-		"    {\n"
-		"      float factor = texture(swizzleMask, vec3(fragTexCoord, first)).r;\n"
-		"      color = color * factor + swizzleColor * (1.0 - factor);\n"
-		"    }\n"
-		"    else\n"
-		"      color = swizzleColor;\n"
-		"  }\n"
-		"  finalColor = color * alpha;\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
-	scaleI = shader.Uniform("scale");
-	texI = shader.Uniform("tex");
-	frameI = shader.Uniform("frame");
-	frameCountI = shader.Uniform("frameCount");
-	positionI = shader.Uniform("position");
-	transformI = shader.Uniform("transform");
-	blurI = shader.Uniform("blur");
-	clipI = shader.Uniform("clip");
-	alphaI = shader.Uniform("alpha");
-	swizzleMatrixI = shader.Uniform("swizzleMatrix");
-	swizzleMaskI = shader.Uniform("swizzleMask");
-	useSwizzleMaskI = shader.Uniform("useSwizzleMask");
-	useSwizzleI = shader.Uniform("useSwizzle");
+	shader = GameData::Shaders().Get("sprite");
+	if(!shader->Object())
+		throw std::runtime_error("Could not find sprite shader!");
+	scaleI = shader->Uniform("scale");
+	texI = shader->Uniform("tex");
+	frameI = shader->Uniform("frame");
+	frameCountI = shader->Uniform("frameCount");
+	positionI = shader->Uniform("position");
+	transformI = shader->Uniform("transform");
+	blurI = shader->Uniform("blur");
+	clipI = shader->Uniform("clip");
+	alphaI = shader->Uniform("alpha");
+	swizzleMatrixI = shader->Uniform("swizzleMatrix");
+	swizzleMaskI = shader->Uniform("swizzleMask");
+	useSwizzleMaskI = shader->Uniform("useSwizzleMask");
+	useSwizzleI = shader->Uniform("useSwizzle");
 
 	// Generate the vertex data for drawing sprites.
 	glGenVertexArrays(1, &vao);
@@ -167,8 +84,8 @@ void SpriteShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	glEnableVertexAttribArray(shader->Attrib("vert"));
+	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -222,7 +139,7 @@ SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &posi
 
 void SpriteShader::Bind()
 {
-	glUseProgram(shader.Object());
+	glUseProgram(shader->Object());
 	glBindVertexArray(vao);
 
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};

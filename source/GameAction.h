@@ -49,11 +49,11 @@ class GameAction {
 public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
-	GameAction(const DataNode &node);
+	GameAction(const DataNode &node, const ConditionsStore *playerConditions);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Process a single sibling node.
-	void LoadSingle(const DataNode &child);
+	void LoadSingle(const DataNode &child, const ConditionsStore *playerConditions);
 	void Save(DataWriter &out) const;
 
 	// Determine if this GameAction references content that is not fully defined.

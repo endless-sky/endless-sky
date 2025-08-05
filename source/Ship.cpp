@@ -208,31 +208,29 @@ namespace {
 	}
 
 	// Ships which are scrambled have a chance for their weapons to jam,
-	// delaying their firing for another reload cycle. The less energy
-	// a ship has relative to its max and the more scrambled the ship is,
-	// the higher the chance that a weapon will jam. The jam chance is
-	// capped at 50%. Very small amounts of scrambling are ignored.
-	// The scale is such that a weapon with a scrambling damage of 5 and a reload
-	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
-	// of 5% when it is at 100% energy.
-	double CalculateJamChance(double maxEnergy, double scrambling)
+	// delaying their firing for another reload cycle.
+	// The scale is such that a weapon with a scrambling damage of 6 and a reload
+	// of 60 (i.e. the ion cannon) will approximately have an 9.5% of jamming its
+	// target, while seven of those same weapons will have a 50% chance of jamming.
+	// Very small amounts of scrambling are ignored, to prevent weapons from jamming
+	// well after combat has ended.
+	double CalculateJamChance(double scrambling)
 	{
-		double scale = maxEnergy * 220.;
-		return scrambling > .1 ? min(0.5, scale ? scrambling / scale : 1.) : 0.;
+		return scrambling > .1 ? 1. - pow(2., -1. * (scrambling / 70.)) : 0.;
 	}
 }
 
 
 
 // Construct and Load() at the same time.
-Ship::Ship(const DataNode &node)
+Ship::Ship(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
-void Ship::Load(const DataNode &node)
+void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
 		trueModelName = node.Token(1);
@@ -258,8 +256,9 @@ void Ship::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
 		bool add = (key == "add");
-		if(add && (child.Size() < 2 || child.Token(1) != "attributes"))
+		if(add && (!hasValue || child.Token(1) != "attributes"))
 		{
 			child.PrintTrace("Skipping invalid use of 'add' with " + (child.Size() < 2
 					? "no key." : "key: " + child.Token(1)));
@@ -267,30 +266,30 @@ void Ship::Load(const DataNode &node)
 		}
 		if(key == "sprite")
 			LoadSprite(child);
-		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
-		else if(key == "name" && child.Size() >= 2)
+		else if(key == "name" && hasValue)
 			name = child.Token(1);
-		else if(key == "display name" && child.Size() >= 2)
+		else if(key == "display name" && hasValue)
 			displayModelName = child.Token(1);
-		else if(key == "plural" && child.Size() >= 2)
+		else if(key == "plural" && hasValue)
 			pluralModelName = child.Token(1);
-		else if(key == "variant map name" && child.Size() >= 2)
+		else if(key == "variant map name" && hasValue)
 			variantMapShopName = child.Token(1);
-		else if(key == "noun" && child.Size() >= 2)
+		else if(key == "noun" && hasValue)
 			noun = child.Token(1);
-		else if(key == "swizzle" && child.Size() >= 2)
+		else if(key == "swizzle" && hasValue)
 			customSwizzleName = child.Token(1);
-		else if(key == "uuid" && child.Size() >= 2)
+		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "attributes" || add)
 		{
 			if(!add)
-				baseAttributes.Load(child);
+				baseAttributes.Load(child, playerConditions);
 			else
 			{
 				addAttributes = true;
-				attributes.Load(child);
+				attributes.Load(child, playerConditions);
 			}
 		}
 		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
@@ -315,11 +314,12 @@ void Ship::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				if(grandKey == "zoom" && grand.Size() >= 2)
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "zoom" && grandHasValue)
 					engine.zoom = grand.Value(1);
-				else if(grandKey == "angle" && grand.Size() >= 2)
+				else if(grandKey == "angle" && grandHasValue)
 					engine.facing += Angle(grand.Value(1));
-				else if(grandKey == "gimbal" && grand.Size() >= 2)
+				else if(grandKey == "gimbal" && grandHasValue)
 					engine.gimbal += Angle(grand.Value(1));
 				else
 				{
@@ -350,7 +350,7 @@ void Ship::Load(const DataNode &node)
 			}
 			else
 			{
-				if(child.Size() >= 2)
+				if(hasValue)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
 			Hardpoint::BaseAttributes attributes;
@@ -365,15 +365,16 @@ void Ship::Load(const DataNode &node)
 				for(const DataNode &grand : child)
 				{
 					bool needToCheckAngles = false;
-					if(grand.Token(0) == "angle" && grand.Size() >= 2)
+					const string &grandKey = grand.Token(0);
+					if(grandKey == "angle" && grand.Size() >= 2)
 					{
 						attributes.baseAngle = grand.Value(1);
 						needToCheckAngles = true;
 						defaultBaseAngle = false;
 					}
-					else if(grand.Token(0) == "parallel")
+					else if(grandKey == "parallel")
 						attributes.isParallel = true;
-					else if(grand.Token(0) == "arc" && grand.Size() >= 3)
+					else if(grandKey == "arc" && grand.Size() >= 3)
 					{
 						attributes.isOmnidirectional = false;
 						attributes.minArc = Angle(grand.Value(1));
@@ -382,11 +383,13 @@ void Ship::Load(const DataNode &node)
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
-					else if(grand.Token(0) == "turret turn multiplier")
+					else if(grandKey == "blindspot" && grand.Size() >= 3)
+						attributes.blindspots.emplace_back(grand.Value(1), grand.Value(2));
+					else if(grandKey == "turret turn multiplier")
 						attributes.turnMultiplier = grand.Value(1);
-					else if(grand.Token(0) == "under")
+					else if(grandKey == "under")
 						drawUnder = true;
-					else if(grand.Token(0) == "over")
+					else if(grandKey == "over")
 						drawUnder = false;
 					else
 						grand.PrintTrace("Warning: Child nodes of \"" + key
@@ -448,26 +451,28 @@ void Ship::Load(const DataNode &node)
 			if(child.HasChildren())
 				for(const DataNode &grand : child)
 				{
+					const string &grandKey = grand.Token(0);
+					bool grandHasValue = grand.Size() >= 2;
 					// Load in the effect(s) to be displayed when the ship launches.
-					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
+					if(grandKey == "launch effect" && grandHasValue)
 					{
 						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
 						const Effect *e = GameData::Effects().Get(grand.Token(1));
 						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
 					}
-					else if(grand.Token(0) == "angle" && grand.Size() >= 2)
+					else if(grandKey == "angle" && grandHasValue)
 						bay.facing = Angle(grand.Value(1));
 					else
 					{
 						bool handled = false;
 						for(unsigned i = 1; i < BAY_SIDE.size(); ++i)
-							if(grand.Token(0) == BAY_SIDE[i])
+							if(grandKey == BAY_SIDE[i])
 							{
 								bay.side = i;
 								handled = true;
 							}
 						for(unsigned i = 1; i < BAY_FACING.size(); ++i)
-							if(grand.Token(0) == BAY_FACING[i])
+							if(grandKey == BAY_FACING[i])
 							{
 								bay.facing = BAY_ANGLE[i];
 								handled = true;
@@ -477,7 +482,7 @@ void Ship::Load(const DataNode &node)
 					}
 				}
 		}
-		else if(key == "leak" && child.Size() >= 2)
+		else if(key == "leak" && hasValue)
 		{
 			if(!hasLeak)
 			{
@@ -491,7 +496,7 @@ void Ship::Load(const DataNode &node)
 				leak.closePeriod = child.Value(3);
 			leaks.push_back(leak);
 		}
-		else if(key == "explode" && child.Size() >= 2)
+		else if(key == "explode" && hasValue)
 		{
 			if(!hasExplode)
 			{
@@ -503,7 +508,7 @@ void Ship::Load(const DataNode &node)
 			explosionEffects[GameData::Effects().Get(child.Token(1))] += count;
 			explosionTotal += count;
 		}
-		else if(key == "final explode" && child.Size() >= 2)
+		else if(key == "final explode" && hasValue)
 		{
 			if(!hasFinalExplode)
 			{
@@ -544,40 +549,39 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "cargo")
 			cargo.Load(child);
-		else if(key == "crew" && child.Size() >= 2)
+		else if(key == "crew" && hasValue)
 			crew = static_cast<int>(child.Value(1));
-		else if(key == "fuel" && child.Size() >= 2)
+		else if(key == "fuel" && hasValue)
 			fuel = child.Value(1);
-		else if(key == "shields" && child.Size() >= 2)
+		else if(key == "shields" && hasValue)
 			shields = child.Value(1);
-		else if(key == "hull" && child.Size() >= 2)
+		else if(key == "hull" && hasValue)
 			hull = child.Value(1);
 		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
-		else if(key == "system" && child.Size() >= 2)
+		else if(key == "system" && hasValue)
 			currentSystem = GameData::Systems().Get(child.Token(1));
-		else if(key == "planet" && child.Size() >= 2)
+		else if(key == "planet" && hasValue)
 		{
 			zoom = 0.;
 			landingPlanet = GameData::Planets().Get(child.Token(1));
 		}
-		else if(key == "destination system" && child.Size() >= 2)
+		else if(key == "destination system" && hasValue)
 			targetSystem = GameData::Systems().Get(child.Token(1));
 		else if(key == "parked")
 			isParked = true;
-		else if(key == "description" && child.Size() >= 2)
+		else if(key == "description" && hasValue)
 		{
 			if(!hasDescription)
 			{
-				description.clear();
+				description.Clear();
 				hasDescription = true;
 			}
-			description += child.Token(1);
-			description += '\n';
+			description.Load(child, playerConditions);
 		}
-		else if(key == "formation" && child.Size() >= 2)
+		else if(key == "formation" && hasValue)
 			formationPattern = GameData::Formations().Get(child.Token(1));
-		else if(key == "remove" && child.Size() >= 2)
+		else if(key == "remove" && hasValue)
 		{
 			if(child.Token(1) == "bays")
 				removeBays = true;
@@ -657,7 +661,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			finalExplosions = base->finalExplosions;
 		if(outfits.empty())
 			outfits = base->outfits;
-		if(description.empty())
+		if(description.IsEmpty())
 			description = base->description;
 
 		bool hasHardpoints = false;
@@ -1096,6 +1100,8 @@ void Ship::Save(DataWriter &out) const
 					out.Write("parallel");
 				if(!attributes.isOmnidirectional)
 					out.Write("arc", firstArc, secondArc);
+				for(const auto &blindspot : attributes.blindspots)
+					out.Write("blindspot", blindspot.first.Degrees(), blindspot.second.Degrees());
 				if(attributes.turnMultiplier)
 					out.Write("turret turn multiplier", attributes.turnMultiplier);
 				if(hardpoint.IsUnder())
@@ -1241,9 +1247,9 @@ const string &Ship::Noun() const
 
 
 // Get this ship's description.
-const string &Ship::Description() const
+string Ship::Description() const
 {
-	return description;
+	return description.ToString();
 }
 
 
@@ -1311,8 +1317,10 @@ vector<string> Ship::FlightCheck() const
 	double reverseThrust = attributes.Get("reverse thrust");
 	double afterburner = attributes.Get("afterburner thrust");
 	double thrustEnergy = attributes.Get("thrusting energy");
+	double thrustHeat = attributes.Get("thrusting heat");
 	double turn = attributes.Get("turn");
 	double turnEnergy = attributes.Get("turning energy");
+	double turnHeat = attributes.Get("turning heat");
 	double hyperDrive = navigation.HasHyperdrive();
 	double jumpDrive = navigation.HasJumpDrive();
 
@@ -1333,6 +1341,8 @@ vector<string> Ship::FlightCheck() const
 	{
 		if(RequiredCrew() > attributes.Get("bunks"))
 			checks.emplace_back("insufficient bunks?");
+		if(IdleHeat() <= 0. && (thrustHeat < 0. || turnHeat < 0.))
+			checks.emplace_back("insufficient heat?");
 		if(!thrust && !reverseThrust)
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
@@ -1985,7 +1995,7 @@ int Ship::Scan(const PlayerInfo &player)
 
 	bool isImportant = false;
 	if(target->isYours)
-		isImportant = target.get() == player.Flagship() || government->FinesContents(target.get(), player);
+		isImportant = target.get() == player.Flagship() || government->FinesContents(target.get());
 
 	if(startedScanning && isYours)
 	{
@@ -2074,7 +2084,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	tractorBeamRange = 0.;
 	tractorFlotsam.clear();
 
-	double jamChance = CalculateJamChance(Energy(), scrambling);
+	double jamChance = CalculateJamChance(scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2137,7 +2147,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct(Ship::ActionType::FIRE))
 		return false;
 
-	double jamChance = CalculateJamChance(Energy(), scrambling);
+	double jamChance = CalculateJamChance(scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2176,7 +2186,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 			return pullVector;
 	}
 
-	double jamChance = CalculateJamChance(Energy(), scrambling);
+	double jamChance = CalculateJamChance(scrambling);
 
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	const vector<Hardpoint> &hardpoints = armament.Get();
@@ -3265,7 +3275,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| ((damage.Heat() || damage.Burn()) && isOverheated)
 				|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
 				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
-				|| (damage.Scrambling() && CalculateJamChance(Energy(), scrambling) > 0.1)
+				|| (damage.Scrambling() && CalculateJamChance(scrambling) > 0.1)
 				|| (damage.Slowing() && slowness > 10.)
 				|| (damage.Disruption() && disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
@@ -3891,7 +3901,7 @@ void Ship::Linger()
 
 
 
-bool Ship::Immitates(const Ship &other) const
+bool Ship::Imitates(const Ship &other) const
 {
 	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
 }
@@ -4061,7 +4071,8 @@ void Ship::DoGeneration()
 
 		const double hullAvailable = (attributes.Get("hull repair rate")
 			+ (hullDelay ? 0 : attributes.Get("delayed hull repair rate")))
-			* (1. + attributes.Get("hull repair multiplier"));
+			* (1. + attributes.Get("hull repair multiplier"))
+			* (1. + attributes.Get("cloaked repair multiplier") * Cloaking());
 		const double hullEnergy = (attributes.Get("hull energy")
 			+ (hullDelay ? 0 : attributes.Get("delayed hull energy")))
 			* (1. + attributes.Get("hull energy multiplier")) / hullAvailable;
@@ -4077,7 +4088,8 @@ void Ship::DoGeneration()
 
 		const double shieldsAvailable = (attributes.Get("shield generation")
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield generation")))
-			* (1. + attributes.Get("shield generation multiplier"));
+			* (1. + attributes.Get("shield generation multiplier"))
+			* (1. + attributes.Get("cloaked regen multiplier") * Cloaking());
 		const double shieldsEnergy = (attributes.Get("shield energy")
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield energy")))
 			* (1. + attributes.Get("shield energy multiplier")) / shieldsAvailable;
@@ -4639,8 +4651,9 @@ bool Ship::DoLandingLogic()
 				for(const auto &it : escorts)
 				{
 					const auto escort = it.lock();
-					// Check if escorts are also landed, or destroyed.
-					if(!escort || escort->IsDestroyed() || escort->zoom == 0.f)
+					// Check if escorts are also landed, destroyed, disabled, or being carried.
+					if(!escort || escort->IsDestroyed() || escort->IsDisabled() || escort->zoom == 0.f
+							|| !escort->GetSystem())
 						continue;
 					escortsLanded = false;
 					break;

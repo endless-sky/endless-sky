@@ -247,11 +247,15 @@ void ConversationPanel::Draw()
 // Handle key presses.
 bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
 	// Map popup happens when you press the map key, unless the name text entry
 	// fields are currently active. The name text entry fields are active if
 	// choices is empty and we aren't at the end of the conversation.
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
+	{
+		sound = UI::UISound::NONE;
 		GetUI()->Push(new MapDetailPanel(player, system, true));
+	}
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
@@ -333,6 +337,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	else
 		return false;
 
+	UI::PlaySound(sound);
 	return true;
 }
 
@@ -395,7 +400,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	node = index;
 	// Not every conversation node allows a choice. Move forward through the
 	// nodes until we encounter one that does, or the conversation ends.
-	while(node >= 0 && !conversation.HasAnyChoices(player.Conditions(), node))
+	while(node >= 0 && !conversation.HasAnyChoices(node))
 	{
 		int choice = 0;
 
@@ -410,7 +415,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		{
 			// Branch nodes change the flow of the conversation based on the
 			// player's condition variables rather than player input.
-			choice = !conversation.Conditions(node).Test(player.Conditions());
+			choice = !conversation.Conditions(node).Test();
 		}
 		else if(conversation.IsAction(node))
 		{
@@ -419,7 +424,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// and more. They are not allowed to spawn additional UI elements.
 			conversation.GetAction(node).Do(player, nullptr, caller);
 		}
-		else if(conversation.ShouldDisplayNode(player.Conditions(), node))
+		else if(conversation.ShouldDisplayNode(node))
 		{
 			// This is an ordinary conversation node which should be displayed.
 			// Perform any necessary text replacement, and add the text to the display.
@@ -437,7 +442,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	}
 	// Display whatever choices are being offered to the player.
 	for(int i = 0; i < conversation.Choices(node); ++i)
-		if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
+		if(conversation.ShouldDisplayNode(node, i))
 		{
 			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node, i), subs), getter);
 			choices.emplace_back(Paragraph(altered), i);

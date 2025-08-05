@@ -165,6 +165,7 @@ ship "Aphid" "Aphid (Armed)"
 		"Hyperdrive"
 
 ship "Aphid" "Aphid (Unfettered)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Chameleon Anti-Missile"
 		"Cargo Expansion" 2
@@ -679,6 +680,7 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Hyperdrive"
 
 ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Pulse Cannon"
 		"Pulse Turret" 2
@@ -1022,22 +1024,8 @@ ship "Sea Scorpion"
 		"Tracker Storage Pod" 4
 		"Value Detector" 2
 
-	engine -28.5 68.5
-	engine 28.5 68.5
-	"steering engine" -28.5 68.5
-		zoom 0.4
-		right
-	"steering engine" 28.5 68.5
-		zoom 0.4
-		left
-	"steering engine" 64.5 23.5
-		zoom 0.55
-		angle -90
-		right
-	"steering engine" -64.5 23.5
-		zoom 0.55
-		angle 90
-		left
+	engine -23.5 68.5
+	engine 23.5 68.5
 	gun -13 -77.5
 	gun 13 -77.5
 	gun -27 -56
@@ -1304,6 +1292,7 @@ ship "Shield Beetle" "Shield Beetle (Unfettered)"
 		"Hyperdrive"
 
 ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Ion Cannon" 2
 		"Hai Tracker" 420

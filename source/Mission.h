@@ -15,10 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Color.h"
 #include "ConditionSet.h"
 #include "Date.h"
 #include "DistanceCalculationSettings.h"
 #include "EsUuid.h"
+#include "ExclusiveItem.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
@@ -30,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Planet;
@@ -57,10 +60,12 @@ public:
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
-	explicit Mission(const DataNode &node);
+	explicit Mission(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
 	// Load a mission, either from the game data or from a saved game.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
@@ -74,15 +79,20 @@ public:
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
 	bool IsVisible() const;
+	// The colors that should be used to display the mission name if it is shown
+	// in your mission list.
+	const Color &Unavailable() const;
+	const Color &Unselected() const;
+	const Color &Selected() const;
 	// Check if this mission should be quarantined due to requiring currently-
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
-	// Check if this mission has high priority. If any high-priority missions
-	// are available, no others will be shown at landing or in the spaceport.
-	// This is to be used for missions that are part of a series.
+	// Check if this mission has high priority. If any priority missions
+	// are available, only other priority missions and non-blocking ones can offer alongside it.
 	bool HasPriority() const;
 	// Check if this mission is a "non-blocking" mission.
-	// Such missions will not prevent minor missions from being offered alongside them.
+	// Such missions will not prevent minor missions from being offered alongside them,
+	// and will not be prevented from offering by priority missions.
 	bool IsNonBlocking() const;
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other non-blocking missions (minor or otherwise) are being offered.
@@ -90,7 +100,7 @@ public:
 	int OfferPrecedence() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD, ENTERING};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
@@ -139,7 +149,7 @@ public:
 	bool HasSpace(const Ship &ship) const;
 	bool CanComplete(const PlayerInfo &player) const;
 	bool IsSatisfied(const PlayerInfo &player) const;
-	bool IsFailed(const PlayerInfo &player) const;
+	bool IsFailed() const;
 	bool OverridesCapture() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
@@ -203,6 +213,11 @@ private:
 	std::string blocked;
 	Location location = SPACEPORT;
 
+	// Colors that determine how this mission displays in the MissionPanel.
+	ExclusiveItem<Color> unavailable;
+	ExclusiveItem<Color> unselected;
+	ExclusiveItem<Color> selected;
+
 	EsUuid uuid;
 
 	bool hasFailed = false;
@@ -227,6 +242,7 @@ private:
 	bool ignoreClearance = false;
 	LocationFilter clearanceFilter;
 	bool hasFullClearance = true;
+	LocationFilter completionFilter;
 
 	int repeat = 1;
 	std::string cargo;

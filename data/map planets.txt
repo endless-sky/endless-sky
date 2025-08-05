@@ -245,6 +245,13 @@ planet Anitlos
 	description `	The other moons of Oura, while not quite as rich as Anitlos, are nonetheless a bounty of rare materials. Notably, rare elements like boron and beryllium, only produced by cosmic ray spallation of elements like oxygen, are produced at elevated rates in the ice of certain moons due to the trapping of charged particles by Oura's magnetic field.`
 	government Uninhabited
 
+planet Antamesa
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa24
+	description `The planet's tempest winds thrum beneath vibrant emerald and velvet auroras that flare like curtains aflame. Derelict stations sprawl across its skies, a single flank of each bristling with empty missile tubes. A handful remain semi-intact, casting warm, rosy halos against the swirling clouds, launchers still baring skyward at forgotten foes.`
+	government Uninhabited
+	security 0
+
 planet Antipode
 	attributes core frontier frozen mining
 	landscape land/snow17
@@ -398,7 +405,7 @@ planet Asterus
 planet Avalet
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_01
-	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas plant is heated to incandescence while the other experiences temperatures cold enough to freeze the water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of winds that ring the entire planet, producing immense cyclones capable of throwing clouds to the edge of space.`
+	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas planet is heated to incandescence while the other experiences temperatures cold enough to freeze the water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of winds that ring the entire planet, producing immense cyclones capable of throwing clouds to the edge of space.`
 	description `	The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In more modern times, the antimatter trapped by Avalet's magnetic field fueled Avgi starships until Antivli Station was built, a fading reflection of its mythological significance.`
 	government Uninhabited
 
@@ -464,6 +471,13 @@ planet Bailey
 	tribute 300
 		threshold 1500
 		fleet "Small CCOR" 11
+
+planet Baliesa
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa33
+	description `One of the smallest "Hot Jupiters" known, Baliesa is a calm, undemanding gas giant. Occasional storms form near the terminator line between the night and day side, but soon split into smaller and smaller vortexes until they disappear. The violet-tinted skies of the upper atmosphere leave space to a bright pink-colored haze below, hampering visual navigation but otherwise not causing any trouble.`
+	government Uninhabited
+	security 0
 
 planet "Bank of Blugtad"
 	attributes arach urban wealthy
@@ -1239,11 +1253,14 @@ wormhole "Devil-Run Wormhole"
 	link Devil-Run "Deep Space 7C"
 
 planet "Devru Kaska"
-	attributes korath station
+	attributes korath sestor station
 	landscape land/station27
 	music ambient/machinery
 	description `The Kor Sestor prefer to develop planets rather than planting stations in space, but this is a necessary exception: a deuterium refinery that harvests hydrogen both from the gas giant it orbits, and from the strong solar wind from this system's primary star.`
-	spaceport `As the station's orbit carries it in and out of the gas giant's shadow, the station cools by a considerable amount, and the metal of the hull creaks and groans in protest. When the station is not in shadow, the temperatures here are almost too hot for human survival.`
+	port
+		recharges all
+		services "offers missions"
+		description `As the station's orbit carries it in and out of the gas giant's shadow, the station cools by a considerable amount, and the metal of the hull creaks and groans in protest. When the station is not in shadow, the temperatures here are almost too hot for human survival.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -1293,10 +1310,13 @@ planet "Double Haze"
 	security 0.3
 
 planet "Drekag Firask"
-	attributes korath
+	attributes korath sestor
 	landscape land/sea5
 	description `Much of the surface of this world is covered in water. Ships the size of small cities float in the oceans, carried by the tides. The ships are designed to incubate algae and other microorganisms that once provided the Korath both with food and with a source of mixed hydrocarbons similar to petroleum. With the Korath gone and the food no longer needed, many of the ships have fallen into disrepair, or have drifted into the polar regions and been crushed against icebergs.`
-	spaceport `This is one of the few city-ships still in operation, probably because it was designed to produce oils and petroleum rather than raw food stuff. But even this ship is in poor repair, drifting low enough in the water that when storms arise, the waves break over the outer walls of the city and flood the streets where the Korath inhabitants once lived.`
+	port
+		recharges all
+		services "offers missions"
+		description `This is one of the few city-ships still in operation, probably because it was designed to produce oils and petroleum rather than raw food stuff. But even this ship is in poor repair, drifting low enough in the water that when storms arise, the waves break over the outer walls of the city and flood the streets where the Korath inhabitants once lived.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -1628,10 +1648,13 @@ planet "Esayaku Fen"
 	security 0
 
 planet "Esek Stovar"
-	attributes korath station
+	attributes korath mereti station
 	landscape land/station28
 	description `This Kor Mereti outpost is far enough from the front in their war with the Kor Sestor that it has fallen somewhat into disuse. The largest docking bays are still kept open for refueling and repairs, but the sections of the station that used to be living quarters have been sealed off.`
-	spaceport `Because this station is only in use now by autonomous vehicles, there is no atmosphere, and no need for airlocks or containment fields. The hangar bay doors have all been left wide open, so ships can come and go as they please.`
+	port
+		recharges all
+		services "offers missions"
+		description `Because this station is only in use now by autonomous vehicles, there is no atmosphere, and no need for airlocks or containment fields. The hangar bay doors have all been left wide open, so ships can come and go as they please.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -1692,6 +1715,14 @@ planet "Factory of Eblumab"
 	bribe 0
 	security 0.2
 
+planet Faliete
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa36
+	description `Veiled behind roiling storms, the silhouette of an enormous structure is suspended within the planet's upper clouds. Automated drones swarm the complex like moths to a flame, carrying raw components to mysterious ends. Occasionally, the factory disgorges vast slabs of smoky glass and metallic alloy. They glint in the dim light as they flutter downwards, fracturing into ever-smaller mosaics of scrap as they descend.`
+	description `	By the time these expansive sheets reach the lower atmosphere, they are little more than incandescent fragments, casting a constant, shimmering glow across the sky.`
+	government Uninhabited
+	security 0
+
 planet "Far Garden"
 	attributes farming saryd tourism urban
 	landscape land/mountain15-sfiera
@@ -1729,11 +1760,14 @@ planet "Far'en Lai"
 	government Uninhabited
 
 planet "Fara Skaeruti"
-	attributes korath station
+	attributes korath mereti station
 	landscape land/station24
 	music ambient/machinery
 	description `This station serves both as a deuterium refinery and as a factory. A large number of small spires protrude from the hull of the station, each carrying fuel pipes, so that ships can simply dock with one of the spires to refuel instead of having to navigate inside a hangar.`
-	spaceport `A swarm of robotic spacecraft flows around this station. The traffic pattern is chaotic, yet efficient, adapting from moment to moment depending on which ships are coming or going. The robots never crash into each other, even though they sometimes pass each other with less than a meter in between, while traveling at high speeds.`
+	port
+		recharges all
+		services "offers missions"
+		description `A swarm of robotic spacecraft flows around this station. The traffic pattern is chaotic, yet efficient, adapting from moment to moment depending on which ships are coming or going. The robots never crash into each other, even though they sometimes pass each other with less than a meter in between, while traveling at high speeds.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -2267,7 +2301,9 @@ planet Greenrock
 	security 0
 	tribute 1800
 		threshold 3500
-		fleet "Large Northern Pirates" 13
+		fleet "Large Southern Pirates" 9
+		fleet "Large Northern Pirates" 2
+		fleet "Large Core Pirates" 2
 
 planet Greenview
 	attributes hai "hai tourism" "hai: human presence" "human tourism" station
@@ -2789,7 +2825,7 @@ planet Jentuthro
 
 planet Jupiter
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa12
+	landscape land/nasa32
 	description `Once called the King of the Solar System, Jupiter is just as impressive even considering the variety of gas giants in the galaxy. Its famous Great Red Spot is still well-known by most of humanity, and you make sure to steer clear of it while taking in the rich yellows and browns of the planet's atmosphere.`
 	description `	From your vantage point, deep below the furthest excursions of human probes, you can see the glint of a few sensor balloons and floating deuterium collectors high above you.`
 	government Uninhabited
@@ -2898,10 +2934,13 @@ planet Kella-Uuoru-Sossa
 				has "trusted by the successors"
 
 planet "Keneska Fek"
-	attributes korath
+	attributes korath sestor
 	landscape land/desert10-harro
 	description `The Kor Sestor apparently use this as a mining world, but rather than digging for minerals they have been intentionally crashing metal-rich asteroids into undeveloped sections of the desert where the robots can then break them apart and extract the ore. Predictably, the ecological effects of this sort of mining are devastating.`
-	spaceport `The Kor Sestor refineries are laid out in a grid pattern. Each square of the grid is a few kilometers on each side, and is laid out in exactly the same way: a central power station, surrounded by smelters and repair bays and factories and storehouses laid out like spokes of a wheel. Each square produces and maintains a fleet of worker robots that occasionally collaborate to construct a new square, extending the city farther outward. Lines of harvester robots snake out from the refineries to the downed asteroids like trails of ants.`
+	port
+		recharges all
+		services "offers missions"
+		description `The Kor Sestor refineries are laid out in a grid pattern. Each square of the grid is a few kilometers on each side, and is laid out in exactly the same way: a central power station, surrounded by smelters and repair bays and factories and storehouses laid out like spokes of a wheel. Each square produces and maintains a fleet of worker robots that occasionally collaborate to construct a new square, extending the city farther outward. Lines of harvester robots snake out from the refineries to the downed asteroids like trails of ants.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -3093,7 +3132,7 @@ planet "Laki Nemparu"
 
 planet "Lenz's Loop"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa28
+	landscape land/nasa17
 	description `Lenz's Loop takes its name from the powerful magnetic field produced by its metallic hydrogen core. As one of the most powerful natural sources of magnetism known to humanity, it is named for Emil Lenz and his discoveries about the interactions between magnetism and electric currents.`
 	description `	While your ship's shielding fortunately keeps it safe from the dangerously strong magnetic field, captured charged particles from Kochab's frequent flares are channeled into the atmosphere near the poles, where it would be exceedingly dangerous for you to venture.`
 	government Uninhabited
@@ -3381,6 +3420,14 @@ planet Melenci
 	bribe 0
 	security 0
 
+planet Meligara
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa41
+	description `Of the three gas giants that orbit around Ritilas, Meligara is by far the closest to the lavender wormholes. The small distance made it inevitable for the two to influence each other: the gas giant has no major moon, and even its ring visibly tends to incline and become elliptical when the wormhole is at its closest.`
+	description `	Its thick clouds make it nearly impossible to navigate through the lower atmosphere, echoing strange readings in every direction.`
+	government Uninhabited
+	security 0
+
 planet Memory
 	attributes deep factory medical research
 	landscape land/badlands9-harro
@@ -3406,11 +3453,14 @@ planet "Mendez Station"
 	security 0
 
 planet "Merask Fortuno"
-	attributes korath station
+	attributes korath mereti station
 	landscape land/station25
 	music ambient/machinery
 	description `This station was built primarily for harvesting hyperspace fuel. Even when the Korath were still here, the harvesting was almost entirely automated, so the station only has living quarters for a handful of people.`
-	spaceport `Despite their masters being gone, the machines and robots of this station carry out their work just as diligently as before, harvesting fuel that will now be used only by other automata.`
+	port
+		recharges all
+		services "offers missions"
+		description `Despite their masters being gone, the machines and robots of this station carry out their work just as diligently as before, harvesting fuel that will now be used only by other automata.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -3427,11 +3477,14 @@ planet Mere
 		fleet "Large Militia" 14
 
 planet "Mereti Station"
-	attributes korath station
+	attributes korath mereti station
 	landscape land/station16
 	music ambient/machinery
 	description `This large station serves as the "mission control" for the robotic ships of the Kor Mereti faction. Warships of every shape and design are clustered in its docking bays or flying patrol outside.`
-	spaceport `The central core of this station is entirely sealed off, running on its own power generators serviced by self-maintaining repair robots. Inside the core are the advanced computers that direct the Kor Mereti war effort.`
+	port
+		recharges all
+		services "offers missions"
+		description `The central core of this station is entirely sealed off, running on its own power generators serviced by self-maintaining repair robots. Inside the core are the advanced computers that direct the Kor Mereti war effort.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -4361,6 +4414,13 @@ planet Passaritus
 	description `	Passaritus still happens to be an interesting locale to visit, at least if you have a gaslined ship. Its small size and relatively rapid rotation gives it sweeping bands of color, each corresponding to a different layer or wind speed, and the lower gravity allows updrafts to carry your ship upwards for kilometers.`
 	government Uninhabited
 
+planet Pathera
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa14
+	description `The planet's upper bands contain an unusually high concentration of rainbow-hued micrometeoroids, leaving ghostly trails in their wake. Rising thermal columns glow in a delicate pink as they carry some of the debris upwards.`
+	government Uninhabited
+	security 0
+
 planet Pearl
 	attributes forest medical paradise tourism
 	landscape land/forest10
@@ -4703,11 +4763,14 @@ planet "Refuge of Belugt"
 	security 0.2
 
 planet "Rekat Moraski"
-	attributes korath station
+	attributes korath mereti station
 	landscape land/station26
 	music ambient/machinery
 	description `This station is a refinery where ore from asteroids is processed into metal. Larger asteroids are processed where they are; smaller ones are brought into the refinery itself to be mined.`
-	spaceport `This station has several bays large enough that a small asteroid can be steered inside. Harvester microbots then work their way into seams of metal in the asteroid, digging deeper and deeper until the asteroid is honeycombed with small tunnels and all the metal-rich veins have been extracted.`
+	port
+		recharges all
+		services "offers missions"
+		description `This station has several bays large enough that a small asteroid can be steered inside. Harvester microbots then work their way into seams of metal in the asteroid, digging deeper and deeper until the asteroid is honeycombed with small tunnels and all the metal-rich veins have been extracted.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -4910,10 +4973,13 @@ planet "Sandy Two"
 	security 0.4
 
 planet "Sapira Mereti"
-	attributes korath
+	attributes korath mereti
 	landscape land/lava11
 	description `This was the seat of government and last military stronghold of the Kor Mereti faction during the Korath civil war. Here they built the factories and shipyards that churned out autonomous warships to prosecute their war against the Kor Sestor. The machines now rule this world alone, and have made it entirely uninhabitable for living creatures as they delve ever deeper into the planet's crust to harvest metal and fuel, and construct more and more factories to build new generations of robotic warships.`
-	spaceport `With no living creatures in sight, the only noises in this refueling depot are the roaring engines as robot ships land and take off, communicating silently with each other via radio. The autonomous ships land and take off with perfect precision in a steady, unbroken stream. Many of them have been damaged by weapons fire, and as soon as they land they are covered by a swarm of welding and repair microbots that lay down new layers of hull armor and rebuild weapons and engines that have been destroyed.`
+	port
+		recharges all
+		services "offers missions"
+		description `With no living creatures in sight, the only noises in this refueling depot are the roaring engines as robot ships land and take off, communicating silently with each other via radio. The autonomous ships land and take off with perfect precision in a steady, unbroken stream. Many of them have been damaged by weapons fire, and as soon as they land they are covered by a swarm of welding and repair microbots that lay down new layers of hull armor and rebuild weapons and engines that have been destroyed.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -4963,15 +5029,18 @@ planet Saska-Aa-Noorr
 
 planet "Sebarep Atarkis"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/clouds_04
+	landscape land/nasa37
 	description `Some recent event, natural or artificial, disrupted the rings around Sebarep Atarkis to the point of their complete instability. Now, hundreds of ringroids fall into the planet's atmosphere each day, tracing fiery paths in the planet's skies. This has measurably increased the temperature in the equatorial region, directly below the rings, and new storms and wind patterns are generated chaotically in the wake of their passage.`
 	description `	While you know it is extraordinarily unlikely due to the sheer size of the planet, you can't help but wonder what would happen if a ringroid were to fall directly upon your ship as you lurk under the clouds.`
 
 planet "Sebra Skira"
-	attributes korath station
+	attributes korath sestor station
 	landscape land/space4
 	description `This is one of the primary war platforms for the Kor Sestor. Some sections of the station are much newer than others, and the scars are still visible in places where weapons fire has annihilated part of the station. The robots have rebuilt the damaged parts in a seemingly random pattern, like burls of bark growing over damaged parts of a tree.`
-	spaceport `There is no atmosphere inside this station, and indeed it is unlikely the station could hold air even if it were ever recaptured by living beings. In places, the stars shine through small cracks in the hull.`
+	port
+		recharges all
+		services "offers missions"
+		description `There is no atmosphere inside this station, and indeed it is unlikely the station could hold air even if it were ever recaptured by living beings. In places, the stars shine through small cracks in the hull.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -5100,10 +5169,13 @@ planet "Sessiliki Far"
 	security 0
 
 planet "Sestor Ikfar"
-	attributes korath
+	attributes korath sestor
 	landscape land/hills1
 	description `This dry, hot world is home to almost no native life, but is ideal for the Korath automata because of its abundant solar energy. In the places where the Korath cities once were, the Kor Sestor have built massive factories with buildings sometimes close to a kilometer in height. In other places the land remains undeveloped, but the factories are constantly expanding outward.`
-	spaceport `In place of streets, massive tunnels and shafts run through the factory cities, wide enough for two capital ships to pass each other traveling in opposite directions without the risk of collision. The tunnels branch out into smaller and smaller passageways like capillaries branching out from an artery.`
+	port
+		recharges all
+		services "offers missions"
+		description `In place of streets, massive tunnels and shafts run through the factory cities, wide enough for two capital ships to pass each other traveling in opposite directions without the risk of collision. The tunnels branch out into smaller and smaller passageways like capillaries branching out from an artery.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -5376,10 +5448,13 @@ planet "Solima Skarati"
 	description `The Korath were endlessly creative in devising new weapons of war during the twilight years of their empire, but what destroyed this planet in the end was not a military disaster but an ecological one. Small villages along the ocean shores and rusting fleets of boats bear witness to the fact that this ocean world was once a fruitful fishery. But now the ocean carries high levels of industrial toxins, and in place of large fish only small invertebrates remain.`
 
 planet "Sopi Lefarkata"
-	attributes frozen korath
+	attributes frozen korath sestor
 	landscape land/mountain24-spfld
 	description `This is a cold and mountainous world, and most of its oceans are covered in ice. A handful of giant craters gouged out from the sides of mountains are the only sign that there were once Korath settlements here. But, the Kor Sestor robots have begun building settlements of their own, in caverns deep under the mountains where they are safe from orbital bombardment. Where recent Kor Mereti attacks have collapsed one of the access tunnels, swarms of robots have gathered to dig them out like ants when their hill has been stepped on.`
-	spaceport `The caverns of the Kor Sestor are hidden deep under the mountains, but there are also a handful of refueling stations on the surface. Each one is guarded by towering weapon platforms and swarms of autonomous fighter drones.`
+	port
+		recharges all
+		services "offers missions"
+		description `The caverns of the Kor Sestor are hidden deep under the mountains, but there are also a handful of refueling stations on the surface. Each one is guarded by towering weapon platforms and swarms of autonomous fighter drones.`
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -6291,7 +6366,7 @@ planet Viso
 
 planet "Vivid Aether"
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/nasa34
 	description `Whether it be from local evolution or panspermia, Vivid Aether's clouds are home to colonies of anaerobic microbial life, feeding on both sunlight and traces of methane in the atmosphere. These form colorful streaks in the upper atmosphere, which were what initially attracted Saryd explorers to the planet. Now, it is common for Heliarch research patrols to sit in orbit for weeks at a time in order to study the simple, yet exotic, ecology. Occasionally, they send down small vessels capable of withstanding the extreme pressures, though none happen to be nearby right now.`
 	description `	The life-bearing layer only extends downward a few hundred kilometers before pressures rise and the temperature becomes inhospitable to life. Deeper down, the atmosphere is barren and lifeless.`
 	government Uninhabited
@@ -6492,7 +6567,7 @@ planet "Wyvern Station"
 
 planet Xerolophos
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/nasa29
+	landscape land/nasa19
 	description `Although formerly classified as a "Hot Jupiter," Xerolophos does not present all the characteristics of one: it is very far from the system star - so distant that it isn't even tidally locked to it. Its temperature, instead, is unusually high even for a Hot Jupiter, with the core internally heating up the atmosphere much more than expected.`
 	description `	While it's possible that Xerolophos might have migrated here long ago, the Remnant haven't been able to explain the extreme temperatures of the planet even after years of studies and dispatching dozens of probes.`
 	government Uninhabited

@@ -1,6 +1,6 @@
 # Contributing to Endless Sky
 
-As a free and open source game, Endless Sky is the product of many people's work. Those who wish to contribute new content are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community-run Discord](https://discord.gg/ZeuASSx) beforehand. There are also [discussion rooms](https://steamcommunity.com/app/404410/discussions/) for those who prefer to use Steam, or GitHub's [discussion zone](https://github.com/endless-sky/endless-sky/discussions). Our forums (especially the GitHub and Discord) have projects that could use your help developing artwork, storylines, and other writing. We also have a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap) that outlines what our current goals for game development are. 
+As a free and open source game, Endless Sky is the product of many people's work. Those who wish to contribute new content are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community-run Discord](https://discord.gg/ZeuASSx) beforehand. There are also [discussion rooms](https://steamcommunity.com/app/404410/discussions/) for those who prefer to use Steam, or GitHub's [discussion zone](https://github.com/endless-sky/endless-sky/discussions). Our forums (especially the GitHub and Discord) have projects that could use your help developing artwork, storylines, and other writing. We also have a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap) that outlines what our current goals for game development are.
 
 We are always excited to welcome new contributors! Below are some guidelines and resources to help get involved.
 
@@ -23,6 +23,32 @@ If you believe your issue has been resolved, you can close the issue yourself. I
 
 ## Pull requests
 
+### Acknowledgement
+
+**By contributing to the game, you acknowledge that your work may be added to, modified, or removed as a result of future contributions by others. While we prefer to work with the original authors of contributions where possible when it comes to changing their contributions, particularly with respect to story content, you do not have strict ownership over your work after it has been contributed to the game.**
+
+If you are not comfortable with losing complete creative freedom over your work, please consider publishing it as a plugin instead. Plugins can be advertised on our [Discord server](https://discord.gg/ZeuASSx) or the [official plugins repository](https://github.com/endless-sky/endless-sky-plugins). For more information on when to consider publishing your content as a plugin or opening a pull request to add it to the game, please read the [Creation Guide - Plugin or Pull Request?](https://github.com/endless-sky/endless-sky/wiki/Creation-Guide---Plug-in-or-Pull-Request) article.
+
+### Acceptable licenses
+
+By contributing code or written content to the game, you accept that your works are being published under the [GPLv3.0 license](https://www.gnu.org/licenses/).
+
+All artwork, sounds, and other non-written assets contributed to the game must fall under a copyright license that follows the [Debian Free Software Guidelines](https://www.debian.org/social_contract#guidelines) and the work must be listed in the [copyright](https://github.com/endless-sky/endless-sky/blob/master/copyright) file along with the license it is published under.
+
+Common artwork licenses that are allowed include:
+* Anything in the public domain. (e.g. works published by NASA or other government agencies, or licensed under the CC0 public domain license.)
+* Any attribution (BY) Creative Commons license version 3.0 and later, which may also be share-alike (SA). (e.g. CC-BY-3.0, CC-BY-SA-4.0)
+
+Common artwork licenses that are disallowed include:
+* Creative Commons licenses older than version 3.0. (e.g. CC-BY-2.0)
+* Any non-commerical (NC) or no derivative works (ND) creative commons licenses. (e.g. CC-BY-NC-3.0)
+* Most proprietary licenses, including licenses used by many image hosting websites such as Pexels, Pixabay, and Unsplash.
+	* Note that many image hosting websites used to license images under the CC0 Public Domain license, but have since moved to using non-free proprietary licenses which limit derivative and/or commerical uses. For such websites, using older images may be acceptable. Confirm that the page that you sourced the image from clearly lists the license that the image was published under.
+
+For more reading on free licenses, see the following pages:
+* [The DFSG and Software Licenses](https://wiki.debian.org/DFSGLicenses)
+* [Debian License Information](https://www.debian.org/legal/licenses/)
+
 ### Posting pull requests
 
 If you are posting a pull request, please:
@@ -36,7 +62,16 @@ If you are posting a pull request, please:
 
 If proposing major changes to the game through your pull request, start by posting an issue or discussion and discussing the best way to implement it. Often the first strategy that occurs to you will not be the cleanest or most effective way to implement a new feature.
 
-Please keep in mind that **AI-generated/assisted content is forbidden** in Endless Sky development.
+### On AI-generated/assisted content
+
+**AI-generated/assisted content is forbidden** in Endless Sky development. This is for several reasons, including:
+
+* Ethical issues. LLMs rely on the unauthorized usage of copyrighted material in order to generate text. These 'tools' by their nature require mass copyright infringement to operate.
+
+* Philosophical issues. The reason why we're here and contributing to this project in the first place is because we like to write/model/edit/code for the game. We do those things because we enjoy it. Using AI to do these processes for us completely misses the point of this project. 
+There are many volunteers willing to help review, polish, and create new content. If you would like help with art, writing tone or style (particularly for aliens with unique speech mannerisms), please feel free to post in the content-creating channel in Discord, or feel free to state in your PR where you would particularly like our reviewers' help.
+
+* Legal issues. AI-generated material is currently in a legal gray area and most likely does not conform with the requirements of GPLv3, which Endless Sky is licensed under. This is the ultimate reason why we have a hard no on any AI content in the game.
 
 ### What to expect when opening a pull request
 
