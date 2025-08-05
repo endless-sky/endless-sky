@@ -160,6 +160,10 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 {
 	ostringstream out;
 
+	// Reset cached valued
+	totalPreviousPayment = 0;
+
+
 	// Keep track of what payments were made and whether any could not be made.
 	crewSalariesOwed += salaries;
 	maintenanceDue += maintenance;
@@ -259,7 +263,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	// If you didn't make any payments, no need to continue further.
 	if(!(salariesPaid + maintenancePaid + mortgagesPaid + finesPaid + debtPaid))
 	{
-		totalPreviousPayment = 0;
 		return out.str();
 	}
 	else if(missedPayment)
@@ -280,7 +283,6 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		typesPaid["debt"] = debtPaid;
 
 	// Record the total payment
-	totalPreviousPayment = 0;
 	for(const auto &paid : typesPaid)
 		totalPreviousPayment += paid.second;
 
