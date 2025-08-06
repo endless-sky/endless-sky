@@ -14,7 +14,7 @@
 mission "Sad Gamblers - Republic"
 	minor
 	source
-		government "Republic" "Deep"
+		government "Republic"
 		attributes "near earth"
 		not attributes "station"
 	to offer
@@ -133,7 +133,7 @@ mission "New Holland Foibles"
 mission "Trash Fire Crops"
 	minor
 	source
-		government "Republic" "Deep"
+		government "Republic"
 		attributes "dirt belt"
 		attributes "farming"
 		not attributes "station"
@@ -158,7 +158,7 @@ mission "Trash Fire Crops"
 mission "Worker's Occasion"
 	minor
 	source
-		government "Republic" "Deep"
+		government "Republic"
 		attributes "dirt belt"
 		not attributes "station"
 	to offer
@@ -187,7 +187,7 @@ mission "Worker's Occasion"
 mission "Paradise Cleaner Incident"
 	minor
 	source
-		government "Republic" "Deep"
+		government "Republic"
 		attributes "paradise"
 		not attributes "station"
 	to offer
@@ -476,7 +476,7 @@ mission "Masquerade Hanging"
 mission "News Reporter - Paradise"
 	minor
 	source
-		government "Republic" "Deep"
+		government "Republic"
 		attributes "paradise"
 		not attributes "station"
 	to offer
@@ -804,7 +804,7 @@ mission "Militia returning to Solace"
 mission "Republic 300 Year Anniversary"
 	landing
 	source
-		government "Republic" "Deep"
+		government "Republic" "Deep" "Syndicate"
 		not attributes "uninhabited"
 	to offer
 		year == 3030

@@ -2684,7 +2684,7 @@ mission "Released Prisoners [0]"
 	description "Transport <bunks> prisoners home after completing their sentences of hard labor. Payment is <payment>."
 	passengers 2 10 .9
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "mining" "factory"
 		attributes "north" "south" "rim" "frontier" "core"
 	destination
@@ -2705,7 +2705,7 @@ mission "Released Prisoners [1]"
 	description "Transport <bunks> prisoners home after completing their sentences as domestic servants. Payment is <payment>."
 	passengers 2 10 .9
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic"
 		attributes "paradise"
 	destination
 		distance 2 10
@@ -3119,7 +3119,7 @@ mission "Bounty Hunting (Very Tiny)"
 		"combat rating" < 80
 		random < 40
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3164,7 +3164,7 @@ mission "Bounty Hunting (Very Tiny, Local)"
 		"combat rating" < 80
 		random < 15
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3213,7 +3213,7 @@ mission "Bounty Hunting (Tiny)"
 		"combat rating" < 200
 		random < 30
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3266,7 +3266,7 @@ mission "Bounty Hunting (Tiny, Local)"
 		"combat rating" < 200
 		random < 20
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3317,7 +3317,7 @@ mission "Bounty Hunting (Very Small)"
 		"combat rating" < 350
 		random < 25
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3368,7 +3368,7 @@ mission "Bounty Hunting (Very Small, Local)"
 		"combat rating" < 350
 		random < 20
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3414,7 +3414,7 @@ mission "Bounty Hunting (Small)"
 		"combat rating" < 500
 		random < 25
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3458,7 +3458,7 @@ mission "Bounty Hunting (Small, Local)"
 		"combat rating" < 500
 		random < 20
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3500,7 +3500,7 @@ mission "Bounty Hunting (Medium)"
 		"combat rating" < 1200
 		random < 25
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3538,7 +3538,7 @@ mission "Bounty Hunting (Medium, Local)"
 		"combat rating" < 1200
 		random < 20
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3574,7 +3574,7 @@ mission "Bounty Hunting (Big)"
 		"combat rating" < 2500
 		random < 25
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3616,7 +3616,7 @@ mission "Bounty Hunting (Big, Local)"
 		"combat rating" < 2500
 		random < 20
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3659,7 +3659,7 @@ mission "Bounty Hunting (Small, Hidden)"
 				"combat rating" < 500
 				random < 20
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
@@ -3706,7 +3706,7 @@ mission "Bounty Hunting (Medium, Hidden)"
 				"combat rating" < 1200
 				random < 20
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
@@ -3747,7 +3747,7 @@ mission "Bounty Hunting (Big, Hidden)"
 				"combat rating" < 2500
 				random < 20
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
@@ -3790,10 +3790,10 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 		distance 2 6
 	npc board
@@ -3829,10 +3829,10 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 		distance 2 6
 	npc board
@@ -3873,7 +3873,7 @@ mission "Bounty Hunting (Solo Marauder I)"
 		"combat rating" < 500
 		random < 5
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3902,7 +3902,7 @@ mission "Bounty Hunting (Solo Marauder II)"
 		"combat rating" < 500
 		random < 5
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3927,7 +3927,7 @@ mission "Bounty Hunting (Solo Marauder III)"
 		"combat rating" < 1200
 		random < 5
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3952,7 +3952,7 @@ mission "Bounty Hunting (Solo Marauder IV)"
 		"combat rating" < 2500
 		random < 5
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3980,7 +3980,7 @@ mission "Bounty Hunting (Marauder I)"
 				"combat rating" < 1200
 				random < 35
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4008,7 +4008,7 @@ mission "Bounty Hunting (Marauder II)"
 				"combat rating" < 1800
 				random < 45
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4036,7 +4036,7 @@ mission "Bounty Hunting (Marauder III)"
 				"combat rating" < 2200
 				random < 45
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4064,7 +4064,7 @@ mission "Bounty Hunting (Marauder IV)"
 				"combat rating" < 2700
 				random < 30
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4092,7 +4092,7 @@ mission "Bounty Hunting (Marauder V)"
 				"combat rating" < 3500
 				random < 25
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4121,7 +4121,7 @@ mission "Bounty Hunting (Marauder VI)"
 				"combat rating" < 5000
 				random < 20
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4145,7 +4145,7 @@ mission "Bounty Hunting (Marauder VII)"
 		"combat rating" > 2500
 		random < 20
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4169,7 +4169,7 @@ mission "Bounty Hunting (Marauder VIII)"
 		"combat rating" > 2800
 		random < 15
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4193,7 +4193,7 @@ mission "Bounty Hunting (Marauder IX)"
 		"combat rating" > 3100
 		random < 10
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4214,7 +4214,7 @@ mission "Bounty Hunting (Marauder X)"
 	deadline 14
 	"apparent payment" 1000000
 	source
-		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	to offer
 		"combat rating" > 8103

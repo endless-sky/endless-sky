@@ -6355,7 +6355,7 @@ mission "Care Package to South 1"
 	name "Care package to <planet>"
 	description "An activist named Torrey has asked you to take a care package to her friend, an NCO named Irene in the Southern Mutual Defense Pact militia, stationed on <destination>. Payment is <payment>."
 	source
-		government "Republic" "Deep" "Syndicate"
+		government "Republic" "Syndicate"
 		attributes "near earth"
 		not attributes "station"
 	destination
@@ -6442,7 +6442,7 @@ mission "Moving House 1"
 	name "Moving House"
 	description "An anarchist named Kris has asked you to help move them and <cargo> from <planet stopovers> to <destination>. Payment is <payment>."
 	source
-		government "Republic" "Deep" "Syndicate"
+		government "Republic" "Syndicate"
 		attributes "near earth" "paradise" "core"
 	destination "Lichen"
 	stopover
