@@ -20,7 +20,7 @@ mission "remembrance day"
 	landing
 	non-blocking
 	source
-		government "Republic" "Deep"
+		distance "Sol" 100
 		attributes "spaceport"
 	to offer
 		has "event: remembrance day"
