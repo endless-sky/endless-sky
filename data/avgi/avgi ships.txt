@@ -1262,6 +1262,7 @@ ship "Prismaios"
 		category "Light Warship"
 		licenses
 			"Twilight Guard"
+			"Avgi Torch"
 		"cost" 3600000
 		"shields" 1800
 		"hull" 7200
@@ -1540,6 +1541,7 @@ ship "Diaspersi"
 		category "Medium Warship"
 		licenses
 			"Twilight Guard"
+			"Avgi Torch"
 		"cost" 4200000
 		"shields" 2400
 		"hull" 14400
@@ -1719,6 +1721,7 @@ ship "Refraktos"
 		category "Medium Warship"
 		licenses
 			"Twilight Guard"
+			"Avgi Torch"
 		"cost" 4500000
 		"shields" 3600
 		"hull" 12600
@@ -1844,7 +1847,7 @@ ship "Refraktos" "Refraktos (UREB)"
 
 ship "Refraktos" "Refraktos (Excimer)"
 	outfits
-		"UV Excimer Laser"
+		"Ultraviolet Excimer Laser"
 		"Green Optical Laser" 6
 
 		"Photoelectric Lamina"
@@ -1868,7 +1871,7 @@ ship "Refraktos" "Refraktos (Excimer)"
 	turret "Green Optical Laser"
 	turret "Green Optical Laser"
 	turret "Green Optical Laser"
-	turret "UV Excimer Laser"
+	turret "Ultraviolet Excimer Laser"
 
 
 ship "Difraktos"
@@ -1879,6 +1882,7 @@ ship "Difraktos"
 		category "Medium Warship"
 		licenses
 			"Twilight Guard"
+			"Avgi Torch"
 		"cost" 6000000
 		"shields" 6000
 		"hull" 18000
@@ -2126,6 +2130,7 @@ ship "Atenuatia"
 		category "Heavy Warship"
 		licenses
 			"Twilight Guard"
+			"Avgi Torch"
 		"cost" 14400000
 		"shields" 4200
 		"hull" 30000
@@ -2575,6 +2580,7 @@ ship "Undulon"
 	attributes
 		category "Drone"
 		licenses
+			"Twilight Guard"
 			"Avgi Atomics"
 		"cost" 36000
 		"hull" 600
