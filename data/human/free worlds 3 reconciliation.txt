@@ -21,7 +21,7 @@ mission "FW Reconciliation 1"
 		has "FW Defend New Tibet: done"
 	passengers 2
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	npc accompany save
 		personality escort timid
@@ -118,7 +118,7 @@ mission "FW Reconciliation 1B"
 	to offer
 		has "FW Reconciliation 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw empty gienah"
@@ -169,7 +169,7 @@ mission "FW Reconciliation 1C"
 	to offer
 		has "FW Reconciliation 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Collected atmospheric samples from Mutiny, a planet deep in Syndicate space, and verified that a nuclear test has been performed here using isotopes that match those from the attacks on Geminus and Martini. Also found carefully hidden signs of an underground test site."
@@ -224,7 +224,7 @@ mission "FW Reconciliation 2"
 	to offer
 		has "FW Reconciliation 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	npc accompany save
 		personality escort timid
@@ -303,7 +303,7 @@ mission "FW Reconciliation 2A"
 	to offer
 		has "FW Reconciliation 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log `The governor of Valhalla, in the Deep, has proposed a "police action" to arrest one or more of the Syndicate leaders and bring them to justice. It will be a secret joint operation between the Free Worlds, the Deep, and the Oathkeepers.`
@@ -360,7 +360,7 @@ mission "FW Reconciliation 2B"
 	to offer
 		has "FW Reconciliation 2A: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -394,7 +394,7 @@ mission "FW Reconciliation 2C"
 	to offer
 		has "FW Reconciliation 2B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Visited a village on a lawless world in northern Syndicate space, and purchased information on the whereabouts of several of the Syndicate executives who were implicated in the terrorist attacks."
@@ -419,7 +419,7 @@ mission "FW Defend Farpoint"
 	to offer
 		has "FW Reconciliation 2C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -499,7 +499,7 @@ mission "FW Embassy 1"
 	to offer
 		has "FW Defend Farpoint: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -530,7 +530,7 @@ mission "FW Embassy 1B"
 	to offer
 		has "FW Embassy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -641,7 +641,7 @@ mission "FW Embassy 1C"
 	to offer
 		has "event: fw reconciliation break"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -708,7 +708,7 @@ mission "FW Syndicate Capture 1"
 	to offer
 		has "FW Embassy 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Preparing to invade Syndicate space with a joint strike force made up of Free Worlds, Deep security, and Oathkeeper ships. The plan is to capture one of the Syndicate executives and bring him to trial."
@@ -762,7 +762,7 @@ mission "FW Syndicate Capture 1B"
 	to offer
 		has "FW Syndicate Capture 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw begin syndicate capture"
@@ -921,7 +921,7 @@ mission "FW Syndicate Capture 1C"
 	to offer
 		has "FW Syndicate Capture 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log `Succeeded in capturing a Syndicate executive named Alexander Soylent, but the Syndicate has responded by sending a massive fleet to Sol, supposedly to "protect" Earth but more likely to put pressure on Parliament and the people of Earth to side with the Syndicate.`
@@ -966,7 +966,7 @@ mission "FW Pug 1"
 	to offer
 		has "FW Syndicate Capture 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "All communications with Rand, which recently joined the Free Worlds but is close to Syndicate territory, have been cut off. It is possible that this is the beginning of a Syndicate invasion."
@@ -1053,7 +1053,7 @@ mission "FW Pug 2"
 	passengers 1
 	blocked `As you are landing, Alondo contacts you and asks, "Do you have a bunk free for me?" You do not, so you will need to free one up in order to continue this mission.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Syndicate may be cutting off the hyperspace links that join their territory to the rest of human space, in order to escape being punished for their crimes. People are worried that they will try to take over even more territory, including Earth itself."
@@ -1108,7 +1108,7 @@ mission "FW Pug 2A"
 	to offer
 		has "FW Pug 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Agreed to travel to Syndicate space through the one remaining hyperspace path that is still open, through the uninhabited star systems to the north."
@@ -1181,7 +1181,7 @@ mission "FW Pug 2B"
 		has "FW Pug 2A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Syndicate CEO, Alastair Korban, claims that the disappearing hyperspace links are not their doing, and that in fact they are under attack by aliens. In fact, they say that the Syndicate has had contact with two different alien species in this region - raiders and scavengers known as the Korath coming from the galactic core, and an enigmatic and irrational species named the Pug who occupy the system adjacent to the ones that recently got cut off from human space."
@@ -1260,7 +1260,7 @@ mission "FW Pug 2C: Hyperdrive"
 		not "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		outfit "Hyperdrive" -1
@@ -1291,7 +1291,7 @@ mission "FW Pug 2C: Scram Drive"
 		not "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		outfit "Scram Drive" -1
@@ -1322,7 +1322,7 @@ mission "FW Pug 2C: Jump Drive"
 		has "outfit (flagship installed): Jump Drive"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1453,7 +1453,7 @@ mission "FW Pug 3"
 		has "FW Pug 2C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Located the Pug homeworld, and met with some of them. They say that they have annexed the neighboring systems into the Pug Protectorate in order to stop the human civil war. However, their idea of bringing peace seems to involve conquering human space and replacing the Republic with their own government."
@@ -1595,7 +1595,7 @@ mission "FW Pug 3A"
 		has "FW Pug 3: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1628,7 +1628,7 @@ mission "FW Pug 3B"
 		has "FW Pug 3A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"salary: Free Worlds" = 17000
@@ -1681,7 +1681,7 @@ mission "FW Pug 3C"
 		not "already had jump drive"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with jump drives to make an assault on Pug territory. The Syndicate only has six jump drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
@@ -1717,7 +1717,7 @@ mission "FW Pug 3C (Extra)"
 		has "already had jump drive"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Free Worlds and Republic Navy are sending a joint fleet into Syndicate space, where they will be fitted with jump drives to make an assault on Pug territory. The Syndicate only has seven jump drives available, so this fleet will have to survive without reinforcements until a way is found to reopen the connection to the rest of human space."
@@ -1826,7 +1826,7 @@ mission "FW Pug 4"
 		has "FW Pug 3C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "at war with the pug"
@@ -1875,7 +1875,7 @@ mission "FW Pug 4A"
 	to offer
 		has "FW Pug 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Succeeded in driving the Pug out of the Delta Capricorni system for long enough to land on Maker and explore the technology that the Pug left behind. Freya thinks that she has discovered the device that is used for creating or destroying hyperspace links, but it will take time for her to figure out how to operate it."
@@ -1943,7 +1943,7 @@ mission "FW Pug 4B"
 	cargo "graviton reflector" 10
 	blocked `Freya contacts you and says, "Captain, you're going to need ten tons of cargo space." You do not have that much available, so you should return here when you do.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2029,7 +2029,7 @@ mission "FW Pug 4C"
 	to offer
 		has "FW Pug 4B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "reconnected delta capricorni" 0
@@ -2054,7 +2054,7 @@ mission "FW Pug 5"
 	passengers 1
 	blocked `Freya contacts you and says, "<first>, we're going to need space for me, plus ten tons of cargo, on your ship. Think you can do that?" You tell her you will contact her here on <origin> as soon as you have made the space available.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Freya succeeded in reopening the hyperspace link to one of the Syndicate systems. If the same can be done for the link to Sol, the entire Navy will be able to join the battle against the Pug."
@@ -2130,7 +2130,7 @@ mission "FW Pug 5A"
 		has "FW Pug 5: done"
 	cargo "graviton reflector" 10
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "liberation of altair"
@@ -2178,7 +2178,7 @@ mission "FW Pug 5B"
 	to offer
 		has "FW Pug 5A: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Succeeded in rendezvousing with the Navy in the Sol system and reopening a link to the Pug territory. But now Shiver is under attack by a massive Pug fleet."
@@ -2239,7 +2239,7 @@ mission "FW Pug 6"
 		dialog
 			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up some sort of anomaly outside the orbit of the outermost planet.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Preparing for the final assault on the Pug homeworld. There seems to be no other option but to force them to surrender, but with the help of the Navy that no longer seems like an impossible task."
@@ -2379,7 +2379,7 @@ mission "FW Syndicate Extremists 1"
 		has "FW Pug 6: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2416,7 +2416,7 @@ mission "FW Syndicate Extremists 1A"
 		has "FW Syndicate Extremists 1: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "With the Pug defeated, it is finally time to deal with the Syndicate extremists and the Alphas that they allied with. The extremists are armed with nuclear missiles, but the Syndicate CEO has agreed to provide a cloaking device that will make it possible to dodge the missiles."
@@ -2485,7 +2485,7 @@ mission "FW Syndicate Extremists 1B"
 		has "FW Syndicate Extremists 1A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"reputation: Syndicate (Extremist)" <?= -1000
@@ -2573,7 +2573,7 @@ mission "FW Syndicate Extremists 1C"
 		has "FW Syndicate Extremists 1B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Succeeded in drawing the fire of the Syndicate extremists for long enough for a Navy fleet to safely arrive in-system and assist in destroying them. This cloaking device will come in very handy in the future."
