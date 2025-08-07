@@ -352,7 +352,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				}
 				else if(grandKey == "ship")
 					loadedAtrocity = &atrocityShips[grand.Token(1)];
-				
+
 				if(loadedAtrocity)
 					for(const DataNode &great : grand)
 						if(great.Token(0) == "death sentence" && great.Size() > 1)
