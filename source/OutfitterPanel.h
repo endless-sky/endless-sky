@@ -44,46 +44,69 @@ public:
 
 	virtual void Step() override;
 
+	enum class UninstallAction {
+		Uninstall,
+		Store,
+		Sell,
+	};
 
 protected:
 	virtual int TileSize() const override;
 	virtual int VisibilityCheckboxesSize() const override;
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point) override;
-	virtual int DividerOffset() const override;
-	virtual int DetailWidth() const override;
+	virtual double ButtonPanelHeight() const override;
 	virtual double DrawDetails(const Point &center) override;
-	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
-	virtual void Buy(bool onlyOwned = false) override;
-	virtual bool CanSell(bool toStorage = false) const override;
-	virtual void Sell(bool toStorage = false) override;
-	virtual void FailSell(bool toStorage = false) const override;
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
-	virtual void ToggleForSale() override;
-	virtual void ToggleStorage() override;
-	virtual void ToggleCargo() override;
-	virtual int FindItem(const std::string &text) const override;
+
+	void DrawButtons() override;
+	int FindItem(const std::string &text) const override;
+	TransactionResult HandleShortcuts(char key) override;
+
 
 
 private:
-	static bool ShipCanBuy(const Ship *ship, const Outfit *outfit);
-	static bool ShipCanSell(const Ship *ship, const Outfit *outfit);
+	static bool ShipCanAdd(const Ship *ship, const Outfit *outfit);
+	static bool ShipCanRemove(const Ship *ship, const Outfit *outfit);
 	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
-	bool IsLicense(const std::string &name) const;
 	bool HasLicense(const std::string &name) const;
-	std::string LicenseRoot(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
 	// Shared code for reducing the selected ships to those that have the
 	// same quantity of the selected outfit.
-	const std::vector<Ship *> GetShipsToOutfit(bool isBuy = false) const;
+	std::vector<Ship *> GetShipsToOutfit(bool isBuy = false) const;
 
-private:
+	// Helper functions to make the cargo management code more readable.
+	TransactionResult CanPurchase(bool checkSpecialItems = true) const;
+	TransactionResult CanFitInCargo(bool returnReason = false) const;
+	TransactionResult CanBeInstalled() const;
+	TransactionResult CanUninstall(UninstallAction action) const;
+	TransactionResult CanBuyToCargo() const;
+	TransactionResult CanDoBuyButton() const;
+	TransactionResult CanInstall() const;
+	void BuyIntoCargo();
+	void DoBuyButton();
+	void Sell(bool storeOutfits);
+	void Install();
+	bool CanMoveToCargoFromStorage() const;
+	void MoveToCargoFromStorage();
+	void RetainInStorage();
+	void BuyFromShopAndInstall() const;
+	void Uninstall();
+	void Uninstall(bool sell) const;
+
+	void ToggleForSale();
+	void ToggleInstalled();
+	void ToggleStorage();
+	void ToggleCargo();
+
 	// Record whether we've checked if the player needs ammo refilled.
 	bool checkedRefill = false;
 	// Allow toggling whether outfits that are for sale are shown.
 	bool showForSale = true;
+	// Allow toggling whether installed outfits are shown.
+	bool showInstalled = true;
 	// Allow toggling whether stored outfits are shown.
 	bool showStorage = true;
 	// Allow toggling whether outfits in cargo are shown.
@@ -91,7 +114,7 @@ private:
 
 	Sale<Outfit> outfitter;
 
-	// Keep track of how many of the outfitter help screens have been shown
+	// Keep track of whether the outfitter help screens have been shown.
 	bool checkedHelp = false;
 
 	int shipsHere = 0;
