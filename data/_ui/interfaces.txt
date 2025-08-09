@@ -62,6 +62,8 @@ color "heat" .70 .43 .43 .75
 color "overheat" .70 .61 .43 .75
 color "energy" .6 .6 .6 .75
 color "fuel" .70 .62 .43 .75
+color "solar energy collection" .6 .6 .6 .75
+color "solar fuel collection" .70 .62 .43 .75
 
 # Colors for the escort HUD status bars.
 color "escort shields" .43 .55 .70 0.
@@ -1051,11 +1053,31 @@ interface "hud"
 		dimensions 0 -192
 		color "fuel"
 		size 2
+	bar "fuel collection"
+		from -58.5 425
+		dimensions 0 -192
+		color "solar fuel collection"
+		size 1
+	bar "fuel collection"
+		from -48.5 425
+		dimensions 0 -192
+		color "solar fuel collection"
+		size 1
 	bar "energy"
 		from -33.5 415
 		dimensions 0 -192
 		color "energy"
 		size 2
+	bar "energy collection"
+		from -38.5 415
+		dimensions 0 -192
+		color "solar energy collection"
+		size 1
+	bar "energy collection"
+		from -28.5 415
+		dimensions 0 -192
+		color "solar energy collection"
+		size 1
 	bar "heat"
 		from -13.5 403
 		dimensions 0 -192
