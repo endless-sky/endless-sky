@@ -2236,13 +2236,13 @@ government "Syndicate (Extremist)"
 
 government "Team Blue"
 	swizzle 5
-	"player reputation" 1000
+	"player reputation" -1000
 	"attitude toward"
 		"Team Red" -.1
 
 government "Team Red"
 	swizzle 0
-	"player reputation" 1000
+	"player reputation" -1000
 	"attitude toward"
 		"Team Blue" -.1
 

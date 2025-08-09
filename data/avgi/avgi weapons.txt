@@ -228,9 +228,9 @@ outfit "Blue Optical Laser"
 		"Twilight Guard"
 	cost 120000
 	thumbnail "outfit/blue optical laser"
-	"mass" 9
-	"outfit space" -9
-	"weapon capacity" -9
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
 	"turret mounts" -1
 	"lasing power" -2
 	weapon
@@ -289,7 +289,7 @@ outfit "Ultraviolet Excimer Laser"
 	licenses
 		"Twilight Guard"
 	cost 120000
-	thumbnail "outfit/uv optical laser"
+	thumbnail "outfit/uv excimer laser"
 	"mass" 120
 	"outfit space" -60
 	"weapon capacity" -30
@@ -565,7 +565,7 @@ outfit "External Launch Tube"
 
 
 outfit "Tiny VLS"
-	"display name" "Vertical Launch Array (6)"
+	"display name" "Vertical Launch Array (9)"
 	category "Secondary Weapons"
 	series "Secondary Weapons"
 	index 07030
@@ -573,13 +573,13 @@ outfit "Tiny VLS"
 		"Twilight Guard"
 	cost 36000
 	thumbnail "outfit/tiny vls"
-	"mass" 12
-	"outfit space" -6
-	"weapon capacity" -6
+	"mass" 4.95
+	"outfit space" -9
+	"weapon capacity" -9
 	"turret mounts" -1
-	"nettle capacity" 18
+	"nettle capacity" 27
 	weapon
-		"hardpoint sprite" "hardpoint/medium vls"
+		"hardpoint sprite" "hardpoint/tiny vls"
 		sprite "projectile/nettle"
 			"scale" 0.5
 		sound "bounce"
@@ -592,7 +592,7 @@ outfit "Tiny VLS"
 		"range override" 3600
 		"reload" 45
 		"burst reload" 9
-		"burst count" 2
+		"burst count" 3
 		"turret turn" 0.000001
 		"firing energy" 3
 		"firing heat" 1.5
@@ -612,13 +612,13 @@ outfit "Small VLS"
 		"Twilight Guard"
 	cost 108000
 	thumbnail "outfit/small vls"
-	"mass" 12
+	"mass" 9.9
 	"outfit space" -18
 	"weapon capacity" -18
 	"turret mounts" -1
 	"nettle capacity" 54
 	weapon
-		"hardpoint sprite" "hardpoint/medium vls"
+		"hardpoint sprite" "hardpoint/small vls"
 		sprite "projectile/nettle"
 			"scale" 0.5
 		sound "bounce"
@@ -651,7 +651,7 @@ outfit "Medium VLS"
 		"Twilight Guard"
 	cost 216000
 	thumbnail "outfit/medium vls"
-	"mass" 12
+	"mass" 19.8
 	"outfit space" -36
 	"weapon capacity" -36
 	"turret mounts" -1

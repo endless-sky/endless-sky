@@ -284,12 +284,12 @@ outfit "Ultracapacitor Bank"
 # Engines:
 
 outfit "Cross MPD Drive"
-	"display name" `E-120 "Cross" MPD Drive`
+	"display name" `E-12 "Cross" MPD Drive`
 	category "Engines"
 	series "Engines"
 	index 07010
 	"cost" 27000
-	thumbnail "outfit/magnetoplasma drive"
+	thumbnail "outfit/cross mpd"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -317,7 +317,7 @@ outfit "Cross MPD Drive"
 
 
 outfit "Vapor Nuclear Rocket"
-	"display name" `N-240 "Vapor" Gas Core NTR`
+	"display name" `N-24 "Vapor" Gas Core NTR`
 	category "Engines"
 	series "Engines"
 	index 07010
