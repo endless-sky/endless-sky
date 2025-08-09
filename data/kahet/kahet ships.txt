@@ -19,8 +19,8 @@ ship "Maeri'het"
 	attributes
 		category "Light Warship"
 		"cost" 13800000
-		"shields" 17600
-		"hull" 23100
+		"shields" 13200
+		"hull" 17300
 		"required crew" 1
 		"bunks" 1
 		"mass" 620
@@ -122,8 +122,8 @@ ship "Telis'het"
 	attributes
 		category "Medium Warship"
 		"cost" 32600000
-		"shields" 36000
-		"hull" 21300
+		"shields" 27000
+		"hull" 16000
 		"required crew" 1
 		"bunks" 1
 		"mass" 1570
@@ -261,8 +261,8 @@ ship "Vareti'het"
 	attributes
 		category "Heavy Warship"
 		cost 53800000
-		"shields" 42300
-		"hull" 25800
+		"shields" 31700
+		"hull" 19300
 		"required crew" 1
 		"bunks" 1
 		"mass" 3220
@@ -461,7 +461,7 @@ ship "Selii'mar"
 	attributes
 		category "Drone"
 		"cost" 965000
-		"hull" 2800
+		"hull" 2100
 		"mass" 65
 		"drag" .8
 		"heat dissipation" 1.1
@@ -492,8 +492,8 @@ ship "Faes'mar"
 	attributes
 		category "Drone"
 		"cost" 1180000
-		"shields" 200
-		"hull" 1900
+		"shields" 150
+		"hull" 1400
 		"mass" 54
 		"drag" .73
 		"heat dissipation" 1
@@ -536,8 +536,8 @@ ship "Fetri'sei"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 2400
-		"hull" 7200
+		"shields" 1800
+		"hull" 5400
 		"required crew" 1
 		"bunks" 1
 		"mass" 330
