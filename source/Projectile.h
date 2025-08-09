@@ -85,14 +85,14 @@ public:
 	// Get information on how this projectile impacted a ship.
 	ImpactInfo GetInfo(double intersection) const;
 
-	// Find out which ship or government this projectile is targeting. Note:
+	// Find out which body or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it
 	// for comparing.
-	const Ship *Target() const;
+	const Body *Target() const;
 	const Government *TargetGovernment() const;
 	// This function is much more costly, so use it only if you need to get a
-	// non-const shared pointer to the target ship.
-	std::shared_ptr<Ship> TargetPtr() const;
+	// non-const shared pointer to the target body.
+	std::shared_ptr<Body> TargetPtr() const;
 	// Clear the targeting information on this projectile.
 	void BreakTarget();
 
@@ -118,8 +118,9 @@ private:
 private:
 	const Weapon *weapon = nullptr;
 
-	std::weak_ptr<Ship> targetShip;
-	const Ship *cachedTarget = nullptr;
+	bool targetIsShip;
+	std::weak_ptr<Body> target;
+	const Body *cachedTarget = nullptr;
 	bool targetDisabled = false;
 	const Government *targetGovernment = nullptr;
 

@@ -50,8 +50,13 @@ namespace {
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
-	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
+	weapon(weapon), lifetime(weapon->Lifetime())
 {
+	shared_ptr<Ship> targetShip = parent.GetTargetShip();
+	targetIsShip = static_cast<bool>(targetShip);
+	target = targetIsShip ? reinterpret_pointer_cast<Body>(targetShip)
+		: reinterpret_pointer_cast<Body>(parent.GetTargetAsteroid());
+
 	government = parent.GetGovernment();
 	hitsRemaining = weapon->PenetrationCount();
 
@@ -60,10 +65,10 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 		targetShip.reset();
 
 	cachedTarget = TargetPtr().get();
-	if(cachedTarget)
+	if(cachedTarget && targetIsShip)
 	{
-		targetGovernment = cachedTarget->GetGovernment();
-		targetDisabled = cachedTarget->IsDisabled();
+		targetGovernment = targetShip->GetGovernment();
+		targetDisabled = targetShip->IsDisabled();
 	}
 
 	dV = this->angle.Unit() * (weapon->Velocity() + Random::Real() * weapon->RandomVelocity());
@@ -83,7 +88,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
 	: Body(weapon->WeaponSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset),
 	parent.velocity, parent.angle + angle),
-	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
+	weapon(weapon), targetIsShip(parent.targetIsShip), target(parent.target), lifetime(weapon->Lifetime())
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
@@ -160,34 +165,44 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.
 	// Also stop targeting fighters that have become disabled after this projectile was fired.
-	const Ship *target = cachedTarget;
-	if(target)
+	const Body *currentTarget = cachedTarget;
+	if(currentTarget)
 	{
-		target = TargetPtr().get();
-		if(!target || !target->IsTargetable() || target->GetGovernment() != targetGovernment ||
-				(!targetDisabled && !FighterHitHelper::IsValidTarget(target)))
-		{
+		currentTarget = TargetPtr().get();
+		if(!currentTarget)
 			BreakTarget();
-			target = nullptr;
+
+		if(targetIsShip)
+		{
+			auto targetShip = reinterpret_cast<const Ship *>(currentTarget);
+			if(!targetShip->IsTargetable() || targetShip->GetGovernment() != targetGovernment
+				|| (!targetDisabled && !FighterHitHelper::IsValidTarget(targetShip)))
+			{
+				BreakTarget();
+				currentTarget = nullptr;
+			}
 		}
 	}
 
 	double turn = weapon->Turn();
 	double accel = weapon->Acceleration();
 	bool homing = weapon->Homing();
-	if(target && homing && !Random::Int(30))
+	// TODO: Enable this for minable targets once they get the attributes
+	// required for the checks.
+	if(targetIsShip && currentTarget && homing && !Random::Int(30))
 	{
-		CheckLock(*target);
-		CheckConfused(*target);
+		auto &targetShip = *reinterpret_cast<const Ship *>(currentTarget);
+		CheckLock(targetShip);
+		CheckConfused(targetShip);
 	}
 	// Update the confusion direction after the projectile turns about
 	// 180 degrees away from its target.
 	if(!Random::Int(ceil(180 / turn)))
 		confusionDirection = Random::Int(2) ? -1 : 1;
-	if(target && homing && hasLock)
+	if(currentTarget && homing && hasLock)
 	{
 		// Vector d is the direction we want to turn towards.
-		Point d = target->Position() - position;
+		Point d = currentTarget->Position() - position;
 		Point unit = d.Unit();
 		double drag = weapon->Drag();
 		double trueVelocity = drag ? accel / drag : velocity.Length();
@@ -196,13 +211,13 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		// At the highest homing level, compensate for target motion.
 		if(weapon->Leading())
 		{
-			if(unit.Dot(target->Velocity()) < 0.)
+			if(unit.Dot(currentTarget->Velocity()) < 0.)
 			{
 				// If the target is moving toward this projectile, the intercept
 				// course is where the target and the projectile have the same
 				// velocity normal to the distance between them.
 				Point normal(unit.Y(), -unit.X());
-				double vN = normal.Dot(target->Velocity());
+				double vN = normal.Dot(currentTarget->Velocity());
 				double vT = sqrt(max(0., trueVelocity * trueVelocity - vN * vN));
 				d = vT * unit + vN * normal;
 			}
@@ -210,7 +225,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			{
 				// Adjust the target's position based on where it will be when we
 				// reach it (assuming we're pointed right towards it).
-				d += stepsToReach * target->Velocity();
+				d += stepsToReach * currentTarget->Velocity();
 				stepsToReach = d.Length() / trueVelocity;
 			}
 			unit = d.Unit();
@@ -221,7 +236,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		// The very dumbest of homing missiles lose their target if pointed
 		// away from it.
 		if(isFacingAway && weapon->HasBlindspot())
-			targetShip.reset();
+			target.reset();
 		else
 		{
 			double desiredTurn = TO_DEG * asin(cross);
@@ -242,7 +257,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		}
 	}
 	// Turn in a random direction if this weapon is confused.
-	else if(target && homing && isConfused)
+	else if(currentTarget && homing && isConfused)
 		turn *= confusionDirection;
 	// If a weapon is homing but has no target, do not turn it.
 	else if(homing)
@@ -269,7 +284,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 	// If this projectile is now within its "split range," it should split into
 	// sub-munitions next turn.
-	if(target && (position - target->Position()).Length() < weapon->SplitRange())
+	if(currentTarget && (position - currentTarget->Position()).Length() < weapon->SplitRange())
 		lifetime = 0;
 
 	// A projectile will begin to fade out when the remaining lifetime is smaller
@@ -353,8 +368,8 @@ Projectile::ImpactInfo Projectile::GetInfo(double intersection) const
 
 
 
-// Find out which ship this projectile is targeting.
-const Ship *Projectile::Target() const
+// Find out which body this projectile is targeting.
+const Body *Projectile::Target() const
 {
 	return cachedTarget;
 }
@@ -368,9 +383,9 @@ const Government *Projectile::TargetGovernment() const
 
 
 
-shared_ptr<Ship> Projectile::TargetPtr() const
+shared_ptr<Body> Projectile::TargetPtr() const
 {
-	return targetShip.lock();
+	return target.lock();
 }
 
 
@@ -378,7 +393,7 @@ shared_ptr<Ship> Projectile::TargetPtr() const
 // Clear the targeting information on this projectile.
 void Projectile::BreakTarget()
 {
-	targetShip.reset();
+	target.reset();
 	cachedTarget = nullptr;
 	targetGovernment = nullptr;
 	targetDisabled = false;
