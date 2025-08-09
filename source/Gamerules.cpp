@@ -16,6 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Gamerules.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 
@@ -26,6 +29,11 @@ using namespace std;
 // Load a gamerules node.
 void Gamerules::Load(const DataNode &node)
 {
+	if(node.Size() >= 2)
+		name = node.Token(1);
+	else
+		name = "Default";
+
 	for(const DataNode &child : node)
 	{
 		if(child.Size() < 2)
@@ -36,7 +44,11 @@ void Gamerules::Load(const DataNode &node)
 
 		const string &key = child.Token(0);
 
-		if(key == "universal ramscoop")
+		if(key == "description")
+			description = child.Token(1);
+		else if(key == "thumbnail")
+			thumbnail = SpriteSet::Get(child.Token(1));
+		else if(key == "universal ramscoop")
 			universalRamscoop = child.BoolValue(1);
 		else if(key == "person spawn period")
 			personSpawnPeriod = max<int>(1, child.Value(1));
@@ -75,6 +87,56 @@ void Gamerules::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
+}
+
+
+
+void Gamerules::Save(DataWriter &out) const
+{
+	out.Write("gamerules");
+	out.BeginChild();
+	{
+		out.Write("universal ramscoop", universalRamscoop ? 1 : 0);
+		out.Write("person spawn period", personSpawnPeriod);
+		out.Write("no person spawn weight", noPersonSpawnWeight);
+		out.Write("npc max mining time", npcMaxMiningTime);
+		out.Write("universal frugal threshold", universalFrugalThreshold);
+		out.Write("depreciation min", depreciationMin);
+		out.Write("depreciation daily", depreciationDaily);
+		out.Write("depreciation grace period", depreciationGracePeriod);
+		out.Write("depreciation max age", depreciationMaxAge);
+		if(fighterHitPolicy == FighterDodgePolicy::ALL)
+			out.Write("disabled fighters avoid projectiles", "all");
+		else if(fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
+			out.Write("disabled fighters avoid projectiles", "only player");
+		else
+			out.Write("disabled fighters avoid projectiles", "none");
+		out.Write("system departure min", systemDepartureMin);
+		out.Write("system arrival min", systemArrivalMin);
+		out.Write("fleet multiplier", fleetMultiplier);
+	}
+	out.EndChild();
+}
+
+
+
+const string &Gamerules::Name() const
+{
+	return name;
+}
+
+
+
+const string &Gamerules::Description() const
+{
+	return description;
+}
+
+
+
+const Sprite *Gamerules::Thumbnail() const
+{
+	return thumbnail;
 }
 
 

@@ -67,6 +67,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <atomic>
+#include <cassert>
 #include <filesystem>
 #include <iostream>
 #include <queue>
@@ -86,6 +87,9 @@ namespace {
 	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
+
+	const Gamerules *defaultGamerules = nullptr;
+	const Gamerules *activeGamerules = nullptr;
 
 	Politics politics;
 
@@ -256,8 +260,11 @@ void GameData::FinishLoading()
 	defaultGalaxies = objects.galaxies;
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
-	defaultSubstitutions = objects.substitutions;
 	defaultWormholes = objects.wormholes;
+	defaultSubstitutions = objects.substitutions;
+
+	defaultGamerules = objects.gamerulesPresets.Get("Default");
+	activeGamerules = defaultGamerules;
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -430,8 +437,10 @@ void GameData::Revert()
 	objects.galaxies.Revert(defaultGalaxies);
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
-	objects.substitutions.Revert(defaultSubstitutions);
 	objects.wormholes.Revert(defaultWormholes);
+	objects.substitutions.Revert(defaultSubstitutions);
+
+	activeGamerules = defaultGamerules;
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -808,6 +817,13 @@ const Set<Wormhole> &GameData::Wormholes()
 
 
 
+const Set<Gamerules> &GameData::GamerulesPresets()
+{
+	return objects.gamerulesPresets;
+}
+
+
+
 const Government *GameData::PlayerGovernment()
 {
 	return playerGovernment;
@@ -990,7 +1006,22 @@ const TextReplacements &GameData::GetTextReplacements()
 
 const Gamerules &GameData::GetGamerules()
 {
-	return objects.gamerules;
+	assert(activeGamerules != nullptr && "activeGamerules may not be nullptr");
+	return *activeGamerules;
+}
+
+
+
+void GameData::SetGamerules(const Gamerules *gamerules)
+{
+	activeGamerules = gamerules;
+}
+
+
+
+const Gamerules *GameData::DefaultGamerules()
+{
+	return defaultGamerules;
 }
 
 
