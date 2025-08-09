@@ -56,13 +56,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#include <mmsystem.h>
 
-#ifdef PlaySound
-#undef PlaySound
+#include <timeapi.h>
 #endif
-#endif
-
 
 using namespace std;
 
@@ -205,12 +201,6 @@ int main(int argc, char *argv[])
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 
-		// On Windows, make sure that the sleep timer has at least 1 ms resolution
-		// to avoid irregular frame rates.
-#ifdef _WIN32
-		timeBeginPeriod(1);
-#endif
-
 		Preferences::Load();
 
 		// Load global conditions:
@@ -223,6 +213,12 @@ int main(int argc, char *argv[])
 			return 1;
 
 		GameData::LoadSettings();
+
+#ifdef _WIN32
+		// Make sure that the sleep timer has at least 1 ms resolution
+		// to avoid irregular frame rates.
+		timeBeginPeriod(1);
+#endif
 
 		if(!isTesting || debugMode)
 		{
@@ -239,6 +235,11 @@ int main(int argc, char *argv[])
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
+
+#ifdef _WIN32
+		// Reset the timer resolution so that it doesn't affect performance of the whole OS.
+		timeEndPeriod(1);
+#endif
 	}
 	catch(Test::known_failure_tag)
 	{
