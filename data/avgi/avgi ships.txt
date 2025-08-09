@@ -1193,7 +1193,7 @@ ship "Tremoros"
 		"crew equivalent" 1
 		"threshold percentage" 0.15
 		"mass" 90
-		"drag" 2.1
+		"drag" 1.5
 		"heat dissipation" 0.72
 		"fuel capacity" 900
 		"cargo space" 12
