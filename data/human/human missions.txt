@@ -2085,14 +2085,42 @@ mission "Terraforming 3"
 			label danger
 			`	"This is where Amy's plan gets a bit scary," says Alaric.`
 			`	"I'm proposing crashing a medium-sized asteroid into the ice cap," she says. "If we pick the right asteroid, we can control the amount of dust that is created. The result will be a sudden influx of variability, that may allow the planet to revert to a wetter, more biodiverse state."`
+			branch fwpolitics
+				has "main plot completed"
 			choice
 				`	"That is a stupid idea, and I want nothing to do with it."`
 					decline
 				`	"Well, if you think it will work, I'm willing to try it!"`
-			`	"Great!" says Amy. "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and return here."`
+					goto try
+			label fwpolitics
+			choice
+				`	"I don't think the Free Worlds will approve this. I can't involve myself in the project."`
+					decline
+				`	"We should visit the Senate in Bourne first so we don't end up afoul of the new government."`
+					goto senate
+				`	"Well, if you think it will work, I'm willing to try it!"`
+					goto fwtry
+			label senate
+			`	"What?!" exclaims Amy, "I've already selected an appropriate asteroid and received the approval of local government officials. A redo could take months!"`
+			choice
+				`	"There aren't any laws against intentionally crashing asteroids into planets yet. Let's try it!"`
+					goto fwtry
+				`	"The Senate will take Rand's earlier approval into consideration."`
+					goto approval
+			label fwtry
+			action
+				set "terraform FW Rand without permission"
+			label try
+			`	"Great!" says Amy, "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and return here."`
 			`	Eric contacts some spaceport workers and has them load a small thruster onto your ship, along with the equipment you will need to mount it on the asteroid.`
 				accept
-	
+			label approval
+			action
+				set "Bourne terraforming approval"
+			`	"The wait will give us more time to simulate the impact and assess our plan," Alaric explains, "Better to wait and improve our method than be hasty and let something go wrong."`
+			`	"Okay. We'll go to Bourne. But I'll blame you if we don't get approved."`
+				decline
+
 	npc save assist
 		government "Uninhabited"
 		personality derelict fleeing uninterested waiting pacifist mute
@@ -2106,7 +2134,41 @@ mission "Terraforming 3"
 		dialog
 			`When you land, the sky already seems noticeably darker than before. Eric runs up to your ship. "You did it!" he says, excited. "A perfect hit. Now we just have to wait and see what the results are. Meet us in the spaceport bar again in a few hours, and Amy will have her initial measurements ready." He hands you a credit chip for <payment>.`
 
-
+mission "Terraforming 3B"
+	name "Senate Approval"
+	description "Bring Amy, Alaric, Eric, and a company lawyer to Bourne to get permission from the Free Worlds Senate to drop asteroids on planets."
+	source "Rand"
+	destination "Bourne"
+	to offer
+		has "Bourne terraforming approval"
+	passengers 4
+	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	on offer
+		log `Amy wants to drop an asteroid on Rand's polar ice cap. Let's see what the Senate has to say about that.`
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Eric, Alaric, and Amy hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		log "People" "Allison Holland" `Represents Rand in the Free Worlds Senate. Advocated for the plan to terraform Rand using an asteroid dropped on Rand's ice cap.`
+		conversation
+			`During your journey, you meet virtually with Allison Holland, the Senate representative from Rand, to convince her of your plan. She is initially unconvinced, but is persuaded by Eric when he mentions the possibility of agriculture inducing economic development. She agrees to help advocate to the rest of the senate for you.`
+			`	As you approach the Senate building, you note the amount of people entering. You feel fortunate that your connections within the capital allowed you to move the meeting up the schedule as most people must wait days or weeks to be heard. The public chambers of the Senate occupy a converted opera house some distance from the spaceport. Newly built brick buildings that house various government functions surround the central dome.`
+			`	As you enter, security officers quickly escort you, Amy, Alaric, and Eric to appellant tables built where the first few rows of seats used to be. You aren't quite going first, so you sit in the second row at a table already occupied by the lawyer of Alaric and Eric. The 40 members of the Senate take their seats at a curved table, during which the din of the 450 seat auditorium grows louder and louder. Eventually, the room is called to order by the chair, a position which rotates each session. The seat is currently occupied by an old senator from Flood, who starts quietly listing achievements of the Free Worlds and asking representatives of those projects to speak on them.`
+			`	After about 45 minutes, the agenda moves on to appeals for approval of new projects. First up is a request relating to Smuggler's Den. A renaming hearing was scheduled and talks to send construction equipment will begin. Fortunately, Amy's plan is pretty cheap, if risky. There are several other things to be approved including one about a regional planetary mapping initiative that fails mostly due to pushback from ex-pirate planet representatives. After several hours you finally hear the chair call out to your delegation.`
+			`	"Now hearing an appeal from the Rand Senator relating to the terraforming potential of her home planet. Senator?"`
+			`	Allison speaks from her seat on stage, "I have been convinced by two of our corporate ministers that, if some changes were made to the climate, new agricultural potential could be found on our currently arid planet. We have hired a young consultant to assist on this project.`
+			`	The chair speaks, "The delegation from Rand is given permission to speak."`
+			`	Amy doesn't move, the sudden realization of the Senate's power dawning on her.`
+			choice
+				`	"Amy, it's your turn to speak."`
+					goto speech
+				`	(Say nothing)`
+			`	After an awkward pause, Eric whispers, "Amy, you need to tell them our plan to terraform Rand."`
+			label speech
+			`	"Even now, most terraforming projects are far too expensive and time-consuming for a poor planet like Rand to contemplate. However, Rand's atmosphere has most of the elements needed for arable land to be cultivated; it just needs a little push to get the rest of the way there.`
+			`	As Amy speaks, whispering begins to fill the auditorium.`
+			`	"We want to redirect an asteroid to Rand's northern ice cap to distribute water across the surface, causing the climate to become amenable to agricultural development. I thank the chair."`
+			`	As Amy finishes her speech, the whispering reaches a fever pitch, now including the tables of delegations up front. In fact, you notice that the Rand Corporation lawyer is currently speaking to a table behind you which spoke out against the planetary mapping initiative from earlier. Those with large numbers of secret island properties must have quite the interest in rapid planetwide climate change.`
+			`The whispering stops as the chair taps his gavel and begins to speak, "The chair thanks you for the information about this new terraforming technique. Ministers, what are the conditions on Rand that might warrant such a project?"`
 
 mission "Terraforming 4"
 	name "Terraforming Rand"
@@ -2202,9 +2264,7 @@ mission "Terraforming 6"
 	to offer
 		"reputation: Republic" >= 0
 		has "event: terraforming timer"
-		or
-			not "chosen sides"
-			has "main plot completed"
+		not "chosen sides"
 	
 	on offer
 		conversation
