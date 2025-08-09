@@ -306,6 +306,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	UI::UISound sound = UI::UISound::NORMAL;
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
+	const Government *gov = ship ? ship->GetGovernment() : planet ? planet->GetGovernment() : nullptr;
 
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
@@ -374,6 +375,9 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if((key == 'b' || key == 'o') && hasLanguage)
 	{
+		if(!gov)
+			return true;
+
 		// Make sure it actually makes sense to bribe this ship.
 		if((ship && !shipIsEnemy) || (planet && planet->CanLand()))
 			return true;
@@ -385,7 +389,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			if(!ship || requestedToBribeShip)
 			{
 				player.Accounts().AddCredits(-bribe);
-				SetMessage("It's a pleasure doing business with you.");
+				SetMessage(gov->GetBribeAcceptanceHail());
 			}
 			if(ship)
 			{
@@ -413,7 +417,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			}
 		}
 		else
-			SetMessage("I do not want your money.");
+			SetMessage(gov->GetBribeRejectionHail());
 	}
 	else
 		sound = UI::UISound::NONE;
