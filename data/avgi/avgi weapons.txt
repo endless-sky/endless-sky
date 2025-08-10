@@ -601,7 +601,9 @@ outfit "Tiny VLS"
 		"drag" .024
 		"infrared tracking" 0.6
 		"optical tracking" 0.3
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
 
@@ -640,7 +642,9 @@ outfit "Small VLS"
 		"drag" .024
 		"infrared tracking" 0.6
 		"optical tracking" 0.3
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
 
