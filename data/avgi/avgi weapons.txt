@@ -298,9 +298,8 @@ outfit "Ultraviolet Excimer Laser"
 	"turret mounts" -1
 	"magnetic nozzle" -2
 	weapon
-		#"hardpoint sprite" "hardpoint/uv excimer laser"
+		# "hardpoint sprite" "hardpoint/uv excimer laser"
 		"hardpoint offset" 3
-		sprite "projectile/uv excimer laser"
 			"frame rate" 3
 		"sound" "optical laser"
 		"fire effect" "uv laser glare"
