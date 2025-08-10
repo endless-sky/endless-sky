@@ -263,7 +263,9 @@ outfit "Korath Grab-Strike"
 		"acceleration" 1
 		"drag" .1
 		"turn" .2
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"tracking" .7
 		"shield damage" 108
 		"hull damage" 32
@@ -452,7 +454,9 @@ outfit "Korath Piercer Launcher"
 		"acceleration" .54
 		"drag" .03
 		"turn" 1.6
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"infrared tracking" .9
 		"shield damage" 290
 		"hull damage" 440
@@ -510,7 +514,9 @@ outfit "Korath Minelayer"
 		"acceleration" .16
 		"drag" .04
 		"turn" 2
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"infrared tracking" .9
 		"missile strength" 35
 		"shield damage" -3200

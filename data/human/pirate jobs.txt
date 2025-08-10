@@ -2472,7 +2472,7 @@ mission "Eliminating Law Enforcement (North, Small)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	description "A Navy fleet within three jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
 	deadline 20
 	to offer
 		random < 25
@@ -2500,7 +2500,7 @@ mission "Eliminating Law Enforcement (North, Large)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A large Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	description "A large Navy fleet within three jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
 	deadline 20
 	to offer
 		random < 15
@@ -2529,7 +2529,7 @@ mission "Eliminating Law Enforcement (Core, Small)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	description "A Syndicate fleet within two jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
 	deadline 25
 	to offer
 		random < 25
@@ -2541,7 +2541,7 @@ mission "Eliminating Law Enforcement (Core, Small)"
 		government "Syndicate"
 		personality heroic marked staying target
 		system
-			distance 1 3
+			distance 1 2
 			neighbor
 				not government "Pirate"
 		fleet "Small Syndicate" 2
@@ -2559,7 +2559,7 @@ mission "Eliminating Law Enforcement (Core, Large)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A large Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	description "A large Syndicate fleet within two jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
 	deadline 25
 	to offer
 		random < 15
@@ -2571,7 +2571,7 @@ mission "Eliminating Law Enforcement (Core, Large)"
 		government "Syndicate"
 		personality heroic marked staying target
 		system
-			distance 1 3
+			distance 1 2
 			neighbor
 				not government "Pirate"
 		fleet "Large Syndicate"
@@ -2590,7 +2590,7 @@ mission "Eliminating Law Enforcement (South, Small)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	description "A militia fleet within two jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
 	deadline 14
 	to offer
 		random < 25
@@ -2622,7 +2622,7 @@ mission "Eliminating Law Enforcement (South, Large)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A large militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	description "A large militia fleet within two jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
 	deadline 14
 	to offer
 		random < 15
@@ -2652,10 +2652,7 @@ mission "Eliminating Law Enforcement (South, Large)"
 
 mission "Eliminating Competition (North, Small)"
 	name "Competition near <system>"
-	color selected "illegal job: selected"
-	color unselected "illegal job: unselected"
-	color unavailable "illegal job: unavailable"
-	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
+	description "A small rival gang is causing trouble within two jumps of the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
 	deadline 20
@@ -2681,10 +2678,7 @@ mission "Eliminating Competition (North, Small)"
 
 mission "Eliminating Competition (North, Large)"
 	name "Competition near <system>"
-	color selected "illegal job: selected"
-	color unselected "illegal job: unselected"
-	color unavailable "illegal job: unavailable"
-	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently within two jumps of the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
 	deadline 20
@@ -2711,10 +2705,7 @@ mission "Eliminating Competition (North, Large)"
 
 mission "Eliminating Competition (Core, Small)"
 	name "Competition near <system>"
-	color selected "illegal job: selected"
-	color unselected "illegal job: unselected"
-	color unavailable "illegal job: unavailable"
-	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
+	description "A small rival gang is causing trouble within two jumps of the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
 	deadline 20
@@ -2740,10 +2731,7 @@ mission "Eliminating Competition (Core, Small)"
 
 mission "Eliminating Competition (Core, Large)"
 	name "Competition near <system>"
-	color selected "illegal job: selected"
-	color unselected "illegal job: unselected"
-	color unavailable "illegal job: unavailable"
-	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently within two jumps of the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
 	deadline 20
@@ -2770,10 +2758,7 @@ mission "Eliminating Competition (Core, Large)"
 
 mission "Eliminating Competition (South, Small)"
 	name "Competition near <system>"
-	color selected "illegal job: selected"
-	color unselected "illegal job: unselected"
-	color unavailable "illegal job: unavailable"
-	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
+	description "A small rival gang is causing trouble within two jumps of the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
 	deadline 14
@@ -2799,10 +2784,7 @@ mission "Eliminating Competition (South, Small)"
 
 mission "Eliminating Competition (South, Large)"
 	name "Competition near <system>"
-	color selected "illegal job: selected"
-	color unselected "illegal job: unselected"
-	color unavailable "illegal job: unavailable"
-	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently within two jumps of the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
 	deadline 14
@@ -2829,10 +2811,7 @@ mission "Eliminating Competition (South, Large)"
 
 mission "Eliminating Competition (Marauders, Small)"
 	name "Competition near <system>"
-	color selected "illegal job: selected"
-	color unselected "illegal job: unselected"
-	color unavailable "illegal job: unavailable"
-	description "A small marauder gang is causing trouble near the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
+	description "A small marauder gang is causing trouble within two jumps of the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
 	deadline 20
@@ -2858,10 +2837,7 @@ mission "Eliminating Competition (Marauders, Small)"
 
 mission "Eliminating Competition (Marauders, Medium)"
 	name "Competition near <system>"
-	color selected "illegal job: selected"
-	color unselected "illegal job: unselected"
-	color unavailable "illegal job: unavailable"
-	description "A marauder gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
+	description "A marauder gang is gaining too much power. Their leader is currently within two jumps of the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
 	deadline 20
@@ -2888,10 +2864,7 @@ mission "Eliminating Competition (Marauders, Medium)"
 
 mission "Eliminating Competition (Marauders, Large)"
 	name "Marauder Elimination"
-	color selected "illegal job: selected"
-	color unselected "illegal job: unselected"
-	color unavailable "illegal job: unavailable"
-	description "The pirates of the <system> system have grown dissatisfied with the actions of the ruling Marauder gang. Take them out and return to <planet> by <day> for a payment of <payment>."
+	description "The pirates of the <system> system have grown dissatisfied with the actions of the ruling Marauder gang, who are currently within two jumps of the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
 	deadline 20
@@ -2926,7 +2899,7 @@ mission "Raid on Merchants (North)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> by <day> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted in Republic space within three jumps of the <system> system. Join in destroying them and return to <planet> by <day> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2944,8 +2917,7 @@ mission "Raid on Merchants (North)"
 		personality heroic staying target
 		system
 			distance 1 3
-			neighbor
-				not government "Pirate"
+			government "Republic"
 		fleet "Small Northern Merchants" 2
 		fleet "Large Northern Merchants"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
@@ -2961,7 +2933,7 @@ mission "Raid on Merchants (Core)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted in Syndicate space within two jumps of the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2978,7 +2950,8 @@ mission "Raid on Merchants (Core)"
 		personality heroic staying target
 		government "Merchant"
 		system
-			distance 1 3
+			distance 1 2
+			government "Syndicate"
 		fleet "Small Core Merchants" 2
 		fleet "Large Core Merchants"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
@@ -2994,7 +2967,7 @@ mission "Raid on Merchants (South)"
 	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted in Southern space within two jumps of the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -3010,7 +2983,7 @@ mission "Raid on Merchants (South)"
 		personality heroic staying target
 		government "Merchant"
 		system
-			distance 1 3
+			distance 1 2
 			neighbor
 				not government "Pirate"
 		fleet "Small Southern Merchants" 2
@@ -3256,7 +3229,7 @@ mission "Cargo Theft (North)"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
+	description `A merchant convoy has been spotted in Republic space within three jumps of the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
 	to offer
 		random < 15
 		"combat rating" > 3000
@@ -3268,8 +3241,8 @@ mission "Cargo Theft (North)"
 		government "Merchant"
 		personality staying heroic target
 		system
-			not government "Pirate"
-			distance 1 4
+			distance 1 3
+			government "Republic"
 		fleet
 			names "civilian"
 			variant
@@ -3296,7 +3269,7 @@ mission "Cargo Theft (Core)"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
+	description `A merchant convoy has been spotted in Syndicate space within two jumps of the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
 	to offer
 		random < 15
 		"combat rating" > 3000
@@ -3308,8 +3281,8 @@ mission "Cargo Theft (Core)"
 		government "Merchant"
 		personality staying heroic target
 		system
-			not government "Pirate"
-			distance 2 2
+			distance 1 2
+			government "Syndicate"
 		fleet
 			names "civilian"
 			variant
@@ -3336,7 +3309,7 @@ mission "Cargo Theft (South)"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
+	description `A merchant convoy has been spotted in Southern space within two jumps of the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
 	to offer
 		random < 15
 		"combat rating" > 3000
@@ -3351,8 +3324,7 @@ mission "Cargo Theft (South)"
 		personality staying heroic target
 		system
 			distance 1 2
-			neighbor
-				not government "Pirate"
+			not government "Pirate"
 		fleet
 			names "civilian"
 			variant
@@ -3379,7 +3351,7 @@ mission "FW Assassination [1]"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
-	description "A Free Worlds politician who is worrying local slave traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
+	description "A Free Worlds politician who is worrying local slave traders was spotted passing through Free Worlds space within two jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	deadline 14
@@ -3398,7 +3370,7 @@ mission "FW Assassination [1]"
 		personality staying target
 		system
 			government "Free Worlds"
-			distance 2 2
+			distance 1 2
 		fleet
 			names civilian
 			variant 10
@@ -3428,7 +3400,7 @@ mission "FW Assassination [2]"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
-	description "A Free Worlds politician who angered a pirate warlord was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Free Worlds. Payment is <payment>. Be advised that they may be heavily defended."
+	description "A Free Worlds politician who angered a pirate warlord was spotted passing through Free Worlds space within two jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Free Worlds. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
 	deadline 14
@@ -3447,7 +3419,7 @@ mission "FW Assassination [2]"
 		personality staying target
 		system
 			government "Free Worlds"
-			distance 2 2
+			distance 1 2
 		fleet
 			names civilian
 			variant 3
@@ -3483,7 +3455,7 @@ mission "Syndicate Assassination [1]"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
-	description "A Syndicate politician was spotted passing through a nearby system in their ship, the <npc>. Assassinate them by <day> to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
+	description "A Syndicate politician was spotted passing through Syndicate space within two jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	deadline 25
@@ -3499,7 +3471,7 @@ mission "Syndicate Assassination [1]"
 		personality staying target
 		system
 			government "Syndicate"
-			distance 2 3
+			distance 1 2
 		fleet
 			names civilian
 			variant 6
@@ -3538,7 +3510,7 @@ mission "Syndicate Assassination [2]"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
-	description "A Syndicate politician with plans that worry local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Syndicate. Payment is <payment>. Be advised that they may be heavily defended."
+	description "A Syndicate politician with plans that worry local pirate gangs was spotted passing through Syndicate space within two jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Syndicate. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
 	deadline 25
@@ -3554,7 +3526,7 @@ mission "Syndicate Assassination [2]"
 		personality staying target
 		system
 			government "Syndicate"
-			distance 2 3
+			distance 1 2
 		fleet
 			names civilian
 			variant 2
@@ -3603,7 +3575,7 @@ mission "Republic Assassination [1]"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
-	description "A Republic politician who is worrying local pirate gangs was spotted in their ship, the <npc>, in Northern space. Assassinate them by <day> to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
+	description "A Republic politician who is worrying local pirate gangs was spotted passing through inhabited Republic space within four jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
 	deadline 20
@@ -3619,8 +3591,9 @@ mission "Republic Assassination [1]"
 		personality staying target
 		system
 			government "Republic"
-			distance 3 6
-			not near "Cardax" 3
+			distance 4
+			not near "Sumar" 1
+			not near "Gorvi" 1
 		fleet
 			names civilian
 			variant 7
@@ -3666,7 +3639,7 @@ mission "Republic Assassination [2]"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
-	description "A Republic politician who is worrying local drug traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them by <day> to send a message to the Republic. Payment is <payment>. Be advised that they may be heavily defended."
+	description "A Republic politician who is worrying local drug traders was spotted passing through inhabited Republic space within four jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Republic. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
 	deadline 20
@@ -3682,8 +3655,9 @@ mission "Republic Assassination [2]"
 		personality staying target
 		system
 			government "Republic"
-			distance 3 6
-			not near "Cardax" 3
+			distance 4
+			not near "Sumar" 1
+			not near "Gorvi" 1
 		fleet
 			names civilian
 			variant 1
