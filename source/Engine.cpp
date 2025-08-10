@@ -1226,13 +1226,15 @@ void Engine::Draw() const
 	draw[currentDrawBuffer].Draw();
 	batchDraw[currentDrawBuffer].Draw();
 
+	const Color &gunsightTipColor = *GameData::Colors().Get("gunsight tip");
+
 	for(const Gunsight &gunsight : gunsights)
 	{
 		Point end1 = gunsight.start + gunsight.angle.Rotate(Point(gunsight.spread, -gunsight.range));
 		Point end2 = gunsight.start + gunsight.angle.Rotate(Point(-gunsight.spread, -gunsight.range));
 
-		LineShader::DrawGradient(gunsight.start * zoom, end1 * zoom, 1., gunsight.color, Color(0, 0, 0, 0));
-		LineShader::DrawGradient(gunsight.start * zoom, end2 * zoom, 1., gunsight.color, Color(0, 0, 0, 0));
+		LineShader::DrawGradient(gunsight.start * zoom, end1 * zoom, 1., gunsight.color, gunsightTipColor);
+		LineShader::DrawGradient(gunsight.start * zoom, end2 * zoom, 1., gunsight.color, gunsightTipColor);
 	}
 
 	for(const auto &it : statuses)
