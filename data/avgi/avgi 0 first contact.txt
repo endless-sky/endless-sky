@@ -542,7 +542,7 @@ mission "Avgi: Defend Ensemble 2"
 			names "avgi military names"
 			variant
 				"Prismaios"
-				"Prismaios (Atomic)" 2
+				"Prismaios (Orchid)" 2
 				"Tremoros" 3
 	npc
 		government "Avgi (Twilight Guard)"
@@ -550,11 +550,11 @@ mission "Avgi: Defend Ensemble 2"
 		fleet
 			names "avgi military names"
 			variant
-				"Difraktos (Atomic)"
+				"Difraktos (Orchid)"
 				"Refraktos"
-				"Atenuatia (Atomic)"
+				"Atenuatia (Orchid)"
 				"Vibratia" 20
-				"Photikon (Atomic)" 6
+				"Photikon (Ophrys)" 6
 	npc
 		government "Avgi (Twilight Guard)"
 		personality heroic staying waiting
