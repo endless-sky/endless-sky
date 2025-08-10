@@ -1212,7 +1212,6 @@ ship "Tremoros"
 		
 		"Ultracapacitor Bank" 5
 		"Multispectral Scanner"
-		"Magnetic Scoop"
 		
 		"Vapor Nuclear Rocket"
 		"R-180 RCS Thrusters"
