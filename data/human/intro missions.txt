@@ -1780,22 +1780,27 @@ mission "Delve Intro [2 Transport]"
 		conversation
 			`It is raining.`
 			`	A deep fog envelops the spaceport city on <origin>. In the distance, you can see the faded lights of distant starships drifting like phantoms. On the streets below, harsh rain whips against the congested traffic, blurring it into a muddy mess of red light.`
-			`	By the time you see James, he's accompanied by three others. "Hi there, Captain <last>!" says James. "Interested in carrying some tourists to <planet>?"`
+			`	By the time you see James, he's accompanied by three others. "Hi there, Captain <last>!" says James. "Interested in carrying some tourists?"`
 			choice
-				`	"Sure!"`
+				`	"Where are you headed?"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Chiaki, Sarika, and Catrina. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. I'd also start taking more caution when flying about. We're about to leave the protection of Deep Security, meaning that pirate attacks will only get more frequent. If you want to be a little safer should we be attacked, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
+			`	"To <planet>," one of them eagerly replies.`
+			choice
+				`	"Sure, I can take you there."`
+				`	"Sorry, but I'd like to avoid <planet> right now."`
+			`	"Great," he says. "This is Chiaki, Sarika, and Catrina. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time. Also, if you want to be a little safer should we be attacked, sell off any offensive weapons you might have. It might seem counterintuitive, but being unarmed makes you less of a target to pirates if there are others in the system that they could be defending themselves against."`
 				accept
 	
 	on complete
 		payment 15000
 		conversation
-			`As you make the final landing descent to the surface of Earth, Sarika is on the edge of her seat as she rattles off the landmarks you pass over. James tries to show off his own knowledge of the planet's history, but for every story he offers, Sarika responds with five more.`
-			`	Catrina lets out a laugh. "Give it a rest, old man. Sarika's been obsessed with the homeworld since she was in diapers." Then, she leans onto Chiaki's shoulder and pokes her cheek. "The real question I wanna ask is why you of all people haven't said a word since re-entry. I mean, isn't seeing Earth again bringing up any memories?"`
-			`	Chiaki's reply is terse. "I left this place for a reason." When she sees Catrina's cheeky smile fade, Chiaki quickly adds, "It's nothing serious, just that I'd prefer to make new memories with the two of you than dwell on the past."`
+			`As you make the final landing descent to the surface of Earth, Sarika is on the edge of her seat as she rattles off all the landmarks you pass over, of which you recognize surprisingly few. James tries to show off his own knowledge of the planet's history, but for every story he offers, Sarika responds with five more.`
+			`	Catrina lets out a laugh. "Give it a rest, old man. Sarika's been obsessed with the homeworld since she was in diapers." Then, she leans on Chiaki's shoulder. "The real question I wanna ask is why you of all people haven't said a word since re-entry. I mean, isn't seeing Earth again bringing up any memories?"`
+			`	Chiaki's reply is pointed. "I left this place for a reason." When she sees Catrina's cheeky smile fade, she quickly adds, "It's nothing serious. I'd just prefer making new memories with the two of you than dwelling on the past."`
+			`	You carefully follow the instructions from the air traffic controller to a landing pad halfway up the spaceport and bring your ship to rest. After all you've done for the Syndicate to escape this planet, you've returned.`
 			`	As your passengers disembark and you collect your payment, James pulls the trio aside and says, "Watch out for pickpockets, okay? And take it from an experienced captain, you do not want to be out after dark here. Play it safe, and have a great time."`
-			`	After they leave, James chuckles. "Can't say I've ever seen an Earth fanatic and an Earth native in the same group before, let alone be on good terms with each other. That's one of the perks of being a starship captain, though: you get to have the most unique experiences in the galaxy." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
+			`	After they leave, James chuckles. "Can't say I've ever seen an Earth fanatic and an Earth native in the same group before, let alone be on good terms. That's one of the perks of being a starship captain, though: you get to have the most unique experiences in the galaxy." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
 
 
@@ -1812,7 +1817,7 @@ mission "Delve Intro [3 Transport]"
 	
 	on offer
 		conversation
-			`<origin> is the same as it's always been. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, driving those beggars to hide behind trashcans or do their best impression of a respectable citizen until they pass. Starship captains haggle with merchants, speaking of sums greater than the income of some neighborhoods. Flashes of light come from various landing bays as poorly-protected welders risk their health to repair ships headed for places they can only dream of.`
+			`<origin> is the same as it's always been. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, driving those beggars to hide behind trashcans or do their best impression of a respectable citizen until they pass. Starship captains haggle with merchants, speaking of sums greater than the income of some neighborhoods. Flashes of light come from various landing bays as poorly-protected welders risk their health to repair ships destined for places they can only dream of.`
 			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "I've seen all manner of reactions to experiencing <origin> in person for the first time. Awe. Surprise. Respect. Disgust. Their second reactions are just as varied. Some take it as a reminder of humanity's ever-present base nature; others see it as an inexusable failure of the Republic and its predecessors." He smirks. "Only ever seen one kind of reaction from an Earth native. Maybe you folk know something the rest of us don't."`
 			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
 			choice
