@@ -591,7 +591,7 @@ outfit "Tiny VLS"
 		"velocity" 3
 		"lifetime" 30
 		"range override" 3600
-		"reload" 45
+		"reload" 60
 		"burst reload" 9
 		"burst count" 3
 		"turret turn" 0.000001
@@ -633,7 +633,7 @@ outfit "Small VLS"
 		"velocity" 3
 		"lifetime" 30
 		"range override" 3600
-		"reload" 21
+		"reload" 30
 		"burst reload" 9
 		"burst count" 6
 		"turret turn" 0.000001
