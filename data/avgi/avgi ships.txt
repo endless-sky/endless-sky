@@ -1220,23 +1220,23 @@ ship "Tremoros"
 
 	engine 0 51
 		gimbal 6
-		zoom 0.6
+		zoom 0.75
 	"reverse engine" -3 -33
 		angle 30
 	"reverse engine" 3 -33
 		angle -30
 	"steering engine" -3 -33
-		angle 120
+		angle 90
 		right
 	"steering engine" 3 -33
-		angle -120
+		angle -90
 		left
-	"steering engine" 0 51
-		angle -30
+	"steering engine" -6 45
+		angle 90
+		left
+	"steering engine" 6 45
+		angle -90
 		right
-	"steering engine" 0 51
-		angle 30
-		left
 	gun -6.5 -18 "Speckle Coilgun"
 	gun 6.5 -18 "Speckle Coilgun"
 	gun -6.5 -18 "Speckle Coilgun"
