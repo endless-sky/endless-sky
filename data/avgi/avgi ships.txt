@@ -1210,7 +1210,7 @@ ship "Tremoros"
 		"Speckle Coilgun" 4
 		"Speck Round" 3600
 		"Tiny VLS"
-		`"Nettle" KKV` 54
+		`"Nettle" KKV` 27
 		
 		"Ultracapacitor Bank" 5
 		"Multispectral Scanner"
