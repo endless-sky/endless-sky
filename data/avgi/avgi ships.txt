@@ -1092,7 +1092,7 @@ ship "Modified Tachytia"
 		"Radiative Lamina"
 		"Optical Laser Rifle" 900
 		
-		"Beam Antimatter Torch"
+		"Beam Antimatter Drive"
 		"Inductive Extractor" 6
 		"Hyperdrive"
 

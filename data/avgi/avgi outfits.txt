@@ -340,13 +340,13 @@ outfit "Vapor Nuclear Rocket"
 	description "	The Vapor Gas Core Nuclear Thermal Rocket is derived from the same reactor design as the Lantern Fission Core, stripped of power conversion equipment and radiation shielding. Like the Lantern, an electrostatic field of a few volts is used to trap ionized uranium plasma in the reactor even as hot hydrogen flows freely. The engine is bimodal, producing a small trickle of power from thermionic converters, but this capability comes at the cost of constant heat generation."
 
 
-outfit "Beam Antimatter Torch"
-	"display name" `A-3600 "Beam" Amat Torch`
+outfit "Beam Antimatter Drive"
+	"display name" `A-3600 "Beam" Amat Drive`
 	category "Engines"
 	series "Engines"
 	index 07080
 	"cost" 300000000
-	thumbnail "outfit/beam antimatter torch"
+	thumbnail "outfit/beam antimatter drive"
 	"mass" 3600
 	"outfit space" -360
 	"engine capacity" -360
