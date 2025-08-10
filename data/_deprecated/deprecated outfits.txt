@@ -740,7 +740,7 @@ outfit "Magnetoplasma Drive"
 	series "Engines"
 	index 07010
 	"cost" 27000
-	thumbnail "outfit/magnetoplasma drive"
+	thumbnail "outfit/cross mpd"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
@@ -845,7 +845,7 @@ outfit `Z-3600 "Beam" Amat Torch`
 	series "Engines"
 	index 07080
 	"cost" 300000000
-	thumbnail "outfit/beam antimatter torch"
+	thumbnail "outfit/beam antimatter drive"
 	"mass" 3600
 	"outfit space" -360
 	"engine capacity" -360

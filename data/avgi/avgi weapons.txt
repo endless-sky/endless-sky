@@ -289,7 +289,7 @@ outfit "Ultraviolet Excimer Laser"
 	licenses
 		"Twilight Guard"
 	cost 120000
-	thumbnail "outfit/uv excimer laser"
+	thumbnail "outfit/unknown"
 	"mass" 120
 	"outfit space" -60
 	"weapon capacity" -30
@@ -298,7 +298,7 @@ outfit "Ultraviolet Excimer Laser"
 	"turret mounts" -1
 	"magnetic nozzle" -2
 	weapon
-		"hardpoint sprite" "hardpoint/uv excimer laser"
+		#"hardpoint sprite" "hardpoint/uv excimer laser"
 		"hardpoint offset" 3
 		sprite "projectile/uv excimer laser"
 			"frame rate" 3
