@@ -599,12 +599,13 @@ outfit "Tiny VLS"
 		"firing heat" 1.5
 		"drag" .024
 		"infrared tracking" 0.6
-		"optical tracking" 0.3
+		"optical tracking" 0.6
 		"homing"
 			"leading"
 			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
+
 
 outfit "Small VLS"
 	"display name" "Vertical Launch Array (18)"
@@ -640,12 +641,13 @@ outfit "Small VLS"
 		"firing heat" 1.5
 		"drag" .024
 		"infrared tracking" 0.6
-		"optical tracking" 0.3
+		"optical tracking" 0.6
 		"homing"
 			"leading"
 			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
+
 
 outfit "Medium VLS"
 	"display name" "Vertical Launch Array (36)"
@@ -681,7 +683,7 @@ outfit "Medium VLS"
 		"firing heat" 1.5
 		"drag" .024
 		"infrared tracking" 0.6
-		"optical tracking" 0.3
+		"optical tracking" 0.6
 		"homing"
 			"leading"
 			"throttle control"
@@ -719,7 +721,7 @@ outfit "Nettle Active"
 			"leading"
 			"throttle control"
 		"infrared tracking" 0.6
-		"optical tracking" 0.3
+		"optical tracking" 0.6
 		"shield damage" -81
 		"hull damage" -108
 		"missile strength" 12
