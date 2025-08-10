@@ -2471,7 +2471,7 @@ ship "Photikon"
 	gun -6 -30
 	gun 0 -30
 	gun 6 -30
-	turret 0 -33 "Speckle Turret"
+	turret 0 -21 "Speckle Turret"
 
 	leak "flame" 30 60
 	explode "tiny explosion" 15

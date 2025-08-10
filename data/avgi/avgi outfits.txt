@@ -436,7 +436,7 @@ outfit "Arc Fusion Torch"
 	"engine capacity" -99
 	"thrust" 450
 	"thrusting energy" 27
-	"thrusting heat" 150
+	"thrusting heat" 180
 	"thrusting fuel" 0.27
 	"drag reduction" 3
 	"flare sprite" "effect/avgi flare/fusion"
