@@ -62,7 +62,7 @@ const Command Command::LAND(ONE << 11, "Land on planet / station");
 const Command Command::BOARD(ONE << 12, "Board selected ship");
 const Command Command::HAIL(ONE << 13, "Talk to selected ship");
 const Command Command::SCAN(ONE << 14, "Scan selected ship");
-const Command Command::GUNSIGHT(ONE << 15, "Show gunsights");
+const Command Command::GUNSIGHT(ONE << 15, "Toggle gunsights");
 const Command Command::JUMP(ONE << 16, "Initiate hyperspace jump");
 const Command Command::FLEET_JUMP(ONE << 17, "Initiate fleet jump");
 const Command Command::TARGET(ONE << 18, "Select next ship");

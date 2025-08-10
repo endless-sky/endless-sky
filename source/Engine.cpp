@@ -1126,37 +1126,37 @@ void Engine::Step(bool isActive)
 		});
 
 	gunsights.clear();
-	if(flagship && keyHeld.Has(Command::GUNSIGHT))
+	if(!Preferences::Has("Show gunsights"))
+		return;
+
+	for(shared_ptr<Ship> &ship : ships)
 	{
-		for(shared_ptr<Ship> &ship : ships)
+		if(ship->GetSystem() != flagship->GetSystem() || ship->IsDestroyed() || ship->IsDisabled()
+			|| !ship->IsTargetable() || ship->Attributes().Get("inscrutable"))
+			continue;
+
+		bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
+
+		if(ship == flagship || isYourTarget)
 		{
-			if(ship->GetSystem() != flagship->GetSystem() || ship->IsDestroyed() || ship->IsDisabled()
-				|| !ship->IsTargetable() || ship->Attributes().Get("inscrutable"))
-				continue;
+			const Color &gunsightColor = GetGunsightColor(*ship);
 
-			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
+			for(const Hardpoint &hardpoint : ship->Weapons())
+				if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.IsHoming())
+				{
+					Point gunsightStart = ship->Position() - camera.Center() + (ship->Facing().Rotate(hardpoint.GetPoint()));
+					Angle gunsightAngle = hardpoint.GetAngle() + ship->Facing();
+					double gunsightRange = hardpoint.GetOutfit()->Range();
+					double gunsightSpread = gunsightRange * tan(hardpoint.GetOutfit()->Inaccuracy() * PI / 180);
 
-			if(ship == flagship || isYourTarget)
-			{
-				const Color &gunsightColor = GetGunsightColor(*ship);
-
-				for(const Hardpoint &hardpoint : ship->Weapons())
-					if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.IsHoming())
-					{
-						Point gunsightStart = ship->Position() - camera.Center() + (ship->Facing().Rotate(hardpoint.GetPoint()));
-						Angle gunsightAngle = hardpoint.GetAngle() + ship->Facing();
-						double gunsightRange = hardpoint.GetOutfit()->Range();
-						double gunsightSpread = gunsightRange * tan(hardpoint.GetOutfit()->Inaccuracy() * PI / 180);
-
-						gunsights.push_back({
-							gunsightAngle,
-							gunsightStart,
-							gunsightRange,
-							gunsightSpread,
-							gunsightColor
-							});
-					}
-			}
+					gunsights.push_back({
+						gunsightAngle,
+						gunsightStart,
+						gunsightRange,
+						gunsightSpread,
+						gunsightColor
+						});
+				}
 		}
 	}
 }
@@ -2204,8 +2204,7 @@ void Engine::HandleKeyboardInputs()
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		Command::GUNSIGHT | maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD |
-		Command::AIM_TURRET_HOLD);
+		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD | Command::AIM_TURRET_HOLD);
 
 	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
 	// navigable destinations in the system.
