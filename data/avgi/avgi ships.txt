@@ -1368,7 +1368,7 @@ ship "Prismaios" "Prismaios (Laserstar)"
 	turret "Green Optical Laser"
 
 
-ship "Prismaios" "Prismaios (Atomic)"
+ship "Prismaios" "Prismaios (Orchid)"
 	outfits
 		"Green Optical Laser" 2
 		"Speckle Turret" 2
@@ -1506,7 +1506,7 @@ ship "Interferos" "Interferos (KKV)"
 	turret "Green Optical Laser"
 
 
-ship "Interferos" "Interferos (Atomic)"
+ship "Interferos" "Interferos (Orchid)"
 	outfits
 		"Green Optical Laser"
 		"External Launch Tube" 4
@@ -1651,7 +1651,7 @@ ship "Diaspersi"
 	description "The Diaspersi-class Escort Carrier is a light carrier capable of providing carrier operations support to smaller fleets, while also being capable of independent strike missions with minimal support. Seen escorting large merchant convoys and small Guard fleets alike, the Diaspersi can support two wings of combat drones as well as a single wing of larger fighters."
 
 
-ship "Diaspersi" "Diaspersi (Atomic)"
+ship "Diaspersi" "Diaspersi (Orchid)"
 	outfits
 		"Green Optical Laser" 2
 		"Speckle Turret"
@@ -2018,7 +2018,7 @@ ship "Difraktos" "Difraktos (KKV)"
 	turret "Green Optical Laser"
 
 
-ship "Difraktos" "Difraktos (Atomic)"
+ship "Difraktos" "Difraktos (Orchid)"
 	outfits
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
@@ -2056,7 +2056,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 	turret "Green Optical Laser"
 
 
-ship "Difraktos" "Difraktos (UREB + Atomic)"
+ship "Difraktos" "Difraktos (UREB + Orchid)"
 	outfits
 		`"Orchid" Nuclear Missile` 24
 		"Concealment Lamina"
@@ -2298,7 +2298,7 @@ ship "Atenuatia"
 	description "The Atenuatia is an Avgi fleet carrier, a capital ship that makes up the centerpiece of their battlefleets. With six wings of combat drones and two wings of bombers, an Atenuatia can bring forth an astounding amount of firepower. Carrying this arsenal of fighters has its cost, however, and the Atenuatia can carry relatively few heavy weapons for its size."
 
 
-ship "Atenuatia" "Atenuatia (Atomic)"
+ship "Atenuatia" "Atenuatia (Orchid)"
 	outfits
 		"Speckle Turret"
 		"Speck Round" 2400
@@ -2494,7 +2494,7 @@ ship "Photikon" "Photikon (KKV)"
 		"Cross MPD Drive"
 
 
-ship "Photikon" "Photikon (Atomic)"
+ship "Photikon" "Photikon (Ophrys)"
 	outfits
 		"External Launch Rail" 3
 		`"Ophrys" Nuclear Torpedo` 3
