@@ -713,7 +713,7 @@ outfit "Nettle Active"
 		"drag" .03
 		"turn" 6
 		"homing"
-    	"leading"
+			"leading"
 			"throttle control"
 		"infrared tracking" 0.6
 		"optical tracking" 0.3

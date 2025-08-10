@@ -1349,7 +1349,7 @@ ship "Prismaios" "Prismaios (Laserstar)"
 		"Blue Optical Laser" 2
 
 		"Lantern Fission Core"
-		"Ultracapacitor Bank" 3
+		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 2
 		"Multispectral Scanner"
@@ -1416,7 +1416,7 @@ ship "Interferos"
 		"fuel capacity" 600
 		"cargo space" 12
 		"outfit space" 294
-		"weapon capacity" 99
+		"weapon capacity" 102
 		"engine capacity" 66
 		"anchor point" 1
 		weapon
@@ -1856,7 +1856,7 @@ ship "Refraktos" "Refraktos (Excimer)"
 		"Optical Lasing Generator" 2
 		"Multispectral Scanner" 2
 		"Magnetic Scoop" 2
-		"Heatsink Partition" 3
+		"Heatsink Partition"
 		"Optical Laser Rifle" 24
 		
 		"Zap Fusion Torch"
@@ -2485,7 +2485,7 @@ ship "Photikon"
 ship "Photikon" "Photikon (KKV)"
 	outfits
 		"Small VLS"
-		'"Nettle" KKV' 54
+		`"Nettle" KKV` 54
 		
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 3
