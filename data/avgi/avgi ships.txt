@@ -1210,7 +1210,7 @@ ship "Tremoros"
 		"Speckle Coilgun" 4
 		"Speck Round" 3600
 		
-		"Ultracapacitor Bank" 6
+		"Ultracapacitor Bank" 5
 		"Multispectral Scanner"
 		"Magnetic Scoop"
 		
@@ -1747,7 +1747,7 @@ ship "Refraktos"
 		"Green Optical Laser" 3
 
 		"Photoelectric Lamina"
-		"Ultracapacitor Bank" 3
+		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 4
 		"Multispectral Scanner" 2

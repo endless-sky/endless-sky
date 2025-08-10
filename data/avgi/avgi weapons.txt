@@ -573,7 +573,7 @@ outfit "Tiny VLS"
 		"Twilight Guard"
 	cost 36000
 	thumbnail "outfit/tiny vls"
-	"mass" 4.95
+	"mass" 3
 	"outfit space" -9
 	"weapon capacity" -9
 	"turret mounts" -1
@@ -612,7 +612,7 @@ outfit "Small VLS"
 		"Twilight Guard"
 	cost 108000
 	thumbnail "outfit/small vls"
-	"mass" 9.9
+	"mass" 6
 	"outfit space" -18
 	"weapon capacity" -18
 	"turret mounts" -1
@@ -651,7 +651,7 @@ outfit "Medium VLS"
 		"Twilight Guard"
 	cost 216000
 	thumbnail "outfit/medium vls"
-	"mass" 19.8
+	"mass" 12
 	"outfit space" -36
 	"weapon capacity" -36
 	"turret mounts" -1
