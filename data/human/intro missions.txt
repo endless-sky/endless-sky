@@ -69,7 +69,7 @@ conversation "intro mission"
 	choice
 		`	"I'm just glad to be free from working for someone else."`
 			goto freedom
-		`	"And there's nothing quite like going six thousand credits into debt."`
+		`	"And there's nothing quite like going six hundred thousand credits into debt."`
 			goto money
 		`	"If I wanted to talk with you, I'd have said something. Leave me alone."`
 			decline
@@ -808,7 +808,7 @@ mission "Midgard Intro [1 Transport Alt]"
 	on complete
 		payment 10000
 		conversation
-			`Just before you enter <planet>'s atmosphere, you open your loading bay ramp, as directed by Chen. Shortly afterward, they appear on your cargo hold camera in their full skydiving garb. They takes a running start and launches themself into space, quickly vanishing from your vision.`
+			`Just before you enter <planet>'s atmosphere, you open your loading bay ramp, as directed by Chen. Shortly afterward, they appear on your cargo hold camera in their full skydiving garb. They take a running start and launch themself into space, quickly vanishing from your vision.`
 			`	Several minutes after your ship touches down, Chen approaches you in the spaceport, thanks you, and hands you <payment>. You are already well on your way towards paying down your mortgage!`
 			`	As James leaves the ship, he says, "Again, if you're okay with continuing to give me a ride, just meet me in the spaceport."`
 			``
@@ -1757,7 +1757,7 @@ mission "Delve Intro [1 Transport]"
 	on complete
 		payment 40000
 		conversation
-			`Along the journey, you learned more about the family you are transporting and why they are moving to <planet>. "There's Faiza's condition, of course, but we've always wanted to move offworld since before our first child was born," the mother, Carlijn says. "My husband and I were constantly moved out of new mining sites as we grew up. We didn't want our children to go through the same thing."`
+			`Along the journey, you learned more about the family you are transporting and why they are moving to <planet>. "There's Faiza's condition, of course, but we've always wanted to move offworld since before our first child was born," the mother, Carlijn says. "My husband and I constantly moved between different mining towns as we grew up. We didn't want our children to go through the same thing."`
 			`	You say goodbye to them and wish them well, and as agreed they pay you <payment>. You are already well on your way towards paying down your mortgage!`
 			`	As James leaves the ship, he says, "Again, if you're okay with continuing to give me a ride, just meet me in the spaceport."`
 			``
@@ -1813,7 +1813,7 @@ mission "Delve Intro [3 Transport]"
 	on offer
 		conversation
 			`<origin> is the same as it's always been. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, driving those beggars to hide behind trashcans or do their best impression of a respectable citizen until they pass. Starship captains haggle with merchants, speaking of sums greater than the income of some neighborhoods. Flashes of light come from various landing bays as poorly-protected welders risk their health to repair ships headed for places they can only dream of.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "I've seen all manner of reactions to experiencing <origin> in person for the first time. Awe. Surprise. Respect. Disgust. Their second reactions are just as varied. Some take it as a reminder of humanity's ever-present base nature; others see it as an inexusable failure of the Republic and its predecessors." He smirks. "Only ever seen one kind of reaction from an Earth native. Maybe you folk know something the rest of us don't."`
+			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "I've seen all manner of reactions to experiencing <origin> in person for the first time. Awe. Surprise. Respect. Disgust. Their second reactions are just as varied. Some take it as a reminder of humanity's ever-present base nature; others see it as an inexcusable failure of the Republic and its predecessors." He smirks. "Only ever seen one kind of reaction from an Earth native. Maybe you folk know something the rest of us don't."`
 			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
 			choice
 				`	"Of course."`
@@ -1824,7 +1824,7 @@ mission "Delve Intro [3 Transport]"
 	
 	on complete
 		payment 30000
-		log "Dropped James off on Hestia after running a few missions with him. Met a few spoiled tourists and got to visit Earth along the way."
+		log "Dropped James off on Hestia after running a few missions with him. Met a few spoiled tourists and revisited Earth along the way."
 		conversation "end of intro missions"
 
 
@@ -1945,7 +1945,7 @@ mission "Delve Intro [3 Freighter]"
 	
 	on complete
 		payment 30000
-		log "Dropped James off on Hestia after running a few missions with him. Still not convinced that my hold isn't a biohazard."
+		log "Dropped James off on Hestia after running a few missions with him. Still not convinced that my hold isn't radioactive."
 		conversation "end of intro missions"
 
 
@@ -2022,7 +2022,7 @@ mission "Delve Intro [2 Interceptor]"
 	on offer
 		conversation
 			`You find James in the spaceport bar, talking with a man wearing a business suit. The expression on James' face is growing increasingly concerned as he speaks. Seeing you come in, he waves to you and you join them at the table.`
-			`	"Hello <first>," says James. "This is Miguel, an independent mine owner of <origin>." Miguel smiles at you.`
+			`	"Hello <first>," says James. "This is Miguel, an independent mine owner on <origin>." Miguel smiles at you.`
 			`	"Here's the deal," says Miguel. "Most of the mining companies on <origin> have ties to the Syndicate, whether that be through direct ownership or indirect influence. Not us, though; my company's been resistant to any attempts of a takeover. One of their techniques to exert their control is preventing us from shipping our minerals to refineries within the Syndicate. However, there's nothing stopping us from shipping materials elsewhere in the galaxy, like magnetic elements for Lovelace's particle accelerators."`
 			`	"But in the past few months, every shipment we've sent has been attacked by a pirate ship, the Spear of Heimdall. I doubt Syndicated Security would be keen on helping a rival company, so instead we're going to pay you to outrun it. Can you do that for us?"`
 			choice
@@ -2071,7 +2071,7 @@ mission "Delve Intro [2.1 Interceptor]"
 				`	"I think I'm ready to head out on my own."`
 					decline
 			
-			label "mining"
+			label mining
 			`	"That's good to hear," Captain August says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
 			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
 			`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart, or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold asteroids are more work; they're not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
