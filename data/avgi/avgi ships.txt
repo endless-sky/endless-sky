@@ -1209,6 +1209,8 @@ ship "Tremoros"
 	outfits
 		"Speckle Coilgun" 4
 		"Speck Round" 3600
+		"Tiny VLS"
+		`"Nettle" KKV` 54
 		
 		"Ultracapacitor Bank" 5
 		"Multispectral Scanner"
@@ -1240,7 +1242,7 @@ ship "Tremoros"
 	gun 6.5 -18 "Speckle Coilgun"
 	gun -6.5 -18 "Speckle Coilgun"
 	gun 6.5 -18 "Speckle Coilgun"
-	turret 0 39
+	turret 0 39 "Tiny VLS"
 
 	leak "flame" 30 90
 	explode "tiny explosion" 12
