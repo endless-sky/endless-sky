@@ -6686,7 +6686,7 @@ mission "Lost Racer 2 - Failed"
 			label greedy
 			action
 				payment 2000
-			`	August turns. "What! After what you've done, crashed my hopes, you expect me to pay you! Why would you think that? Fine!" He throws a credit chip at you and exits the <ship> in a huff.`
+			`	August turns. "What? After what you've done, crashed my hopes, you expect me to pay you? Why would you think that? Fine!" He throws a credit chip at you and exits the <ship> in a huff.`
 			`	When you access the credit chip, you find it is only worth <payment>.`
 
 mission "Lost Racer 3"
