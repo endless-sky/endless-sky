@@ -41,7 +41,7 @@ galaxy "label gegno"
 	pos 854 -544
 
 galaxy "label graveyard"
-	pos 45 590
+	pos 100 630
 
 galaxy "label hai"
 	pos -74 -497
@@ -81,7 +81,7 @@ galaxy "label successors"
 	pos -122 1385
 
 galaxy "label tangled shroud"
-	pos -480 1050
+	pos -300 1080
 
 galaxy "label twilight"
 	pos -420 750
@@ -90,7 +90,7 @@ galaxy "label wanderers"
 	pos -145 -753
 
 galaxy "label waste"
-	pos 80 315
+	pos 160 380
 
 galaxy "pug empty galaxy"
 	pos 10000 7000
@@ -4402,6 +4402,7 @@ system Almaaz
 	trade Plastic 308
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 600
+	fleet "Old Northern Pirates" 4000
 	fleet "Large Republic" 4000
 	object
 		sprite star/f-giant
@@ -4649,6 +4650,7 @@ system Alnilam
 	trade Plastic 334
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 700
+	fleet "Old Northern Pirates" 5000
 	fleet "Large Republic" 10000
 	object
 		sprite star/f5
@@ -6821,6 +6823,7 @@ system Arneb
 	trade Plastic 358
 	fleet "Small Northern Pirates" 400
 	fleet "Large Northern Pirates" 500
+	fleet "Old Northern Pirates" 6000
 	fleet "Large Republic" 15000
 	object
 		sprite star/f5
@@ -8601,6 +8604,7 @@ system Boral
 system "Bore Fah"
 	pos 71.7761 -592.536
 	government Hai
+	raid "Unfettered Hai Space Raid" 20
 	arrival 625
 	habitable 625
 	belt 1823
@@ -8725,6 +8729,7 @@ system "Bosuno Le"
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
+	raid "Unfettered Hai Space Raid" 20
 	arrival 3180
 	habitable 3180
 	belt 1753
@@ -12458,8 +12463,8 @@ system Delia
 		sprite planet/desert9-b
 		distance 748.5
 		period 370.040
-	object
-		sprite planet/gas11
+	object Faliete
+		sprite planet/gas10-b
 		distance 2258.66
 		period 1939.71
 		object
@@ -14019,7 +14024,7 @@ system "Ehma Ti"
 	trade Plastic 469
 	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 500
-	fleet "Large Unfettered" 750
+	fleet "Large Unfettered" 825
 	fleet "Unfettered Raid" 2500
 	fleet "Small Hai Merchant (Sympathizers)" 2400
 	fleet "Large Hai Merchant (Sympathizers)" 4800
@@ -16737,7 +16742,7 @@ system Fereti
 			scale 0.5
 		distance 1687.04
 		period 489.974
-	object
+	object Pathera
 		sprite planet/gas2
 		distance 2166.29
 		period 712.951
@@ -18187,7 +18192,7 @@ system Gerenus
 	object
 		sprite star/k-giant
 		period 10
-	object
+	object Baliesa
 		sprite planet/gas4-hot
 		distance 390.558
 		period 56.3673
@@ -19486,6 +19491,7 @@ system Hatysa
 	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 15000
+	fleet "Old Northern Pirates" 6000
 	fleet "Derelict Pirate" 30000
 	object
 		sprite star/k0
@@ -20008,7 +20014,7 @@ system "Hi Yahr"
 	trade Plastic 405
 	fleet "Unfettered Logistics" 450
 	fleet "Small Unfettered" 500
-	fleet "Large Unfettered" 1000
+	fleet "Large Unfettered" 1100
 	fleet "Small Hai Merchant (Sympathizers)" 2400
 	fleet "Large Hai Merchant (Sympathizers)" 4800
 	object
@@ -20907,6 +20913,7 @@ system Il'le
 system "Imo Dep"
 	pos -56.2764 -600.1
 	government Hai
+	raid "Unfettered Hai Space Raid" 20
 	arrival 1715
 	habitable 1715
 	belt 1416
@@ -24956,13 +24963,13 @@ system Li-7
 	hazard "Predecessors Spatial Rift Weak" 30000
 	object
 		sprite planet/browndwarf-l-rogue
-		distance 271.899
-		period 179.337
+		distance 272
+		period 180
 		offset 180
 	object
 		sprite planet/browndwarf-y-rogue
-		distance 272.733
-		period 180.163
+		distance 272
+		period 180
 	object
 		sprite planet/gas7-hot
 		distance 1531
@@ -29494,6 +29501,7 @@ system Nunki
 	fleet "Large Southern Pirates" 2000
 	fleet "Small Southern Merchants" 1600
 	fleet "Small Militia" 2000
+	fleet "Old Southern Pirates" 7000
 	object
 		sprite star/m3
 		period 10
@@ -30702,13 +30710,21 @@ system Patir
 	trade Metal 354
 	trade Plastic 426
 	fleet Ka'sei 300
+	hazard "Patir Black Hole Event Horizon" 1
 	hazard "Ember Waste Base Heat" 100
+		to spawn
+			not "ka'het: beyond Patir"
 	hazard "Ember Waste Base Storm" 9000
+		to spawn
+			not "ka'het: beyond Patir"
+	hazard "Beyond Patir Shield Eraser" 1
+		to spawn
+			has "ka'het: beyond Patir"
 	object
-		sprite star/nova
+		sprite star/patir
 		period 1
 	object
-		sprite star/neutron-core
+		sprite "star/patir core"
 		period 1
 	object "Builder Settlement"
 		sprite "planet/asteroid base"
@@ -32048,7 +32064,7 @@ system Polerius
 		sprite planet/wormhole-red
 		distance 1824.15
 		period 691.676
-	object
+	object Antamesa
 		sprite planet/gas14-b
 		distance 2448.24
 		period 1075.45
@@ -34192,7 +34208,7 @@ system Ritilas
 		sprite planet/wormhole
 		distance 1666
 		period 868.879
-	object
+	object Meligara
 		sprite planet/gas6
 		distance 2320
 		period 1427.83
@@ -36153,6 +36169,7 @@ system Shaula
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 9000
 	fleet "Large Militia" 9000
+	fleet "Old Southern Pirates" 7000
 	object
 		sprite star/g5
 		period 10
@@ -41614,6 +41631,7 @@ system W-3197
 system "Wah Ki"
 	pos 14.9925 -612.792
 	government Hai
+	raid "Unfettered Hai Space Raid" 20
 	arrival 500
 	habitable 425
 	belt 1585
@@ -41807,7 +41825,7 @@ system "Wah Yoot"
 	trade Plastic 445
 	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 1000
-	fleet "Large Unfettered" 500
+	fleet "Large Unfettered" 550
 	fleet "Small Hai Merchant (Sympathizers)" 1200
 	fleet "Large Hai Merchant (Sympathizers)" 2400
 	object
@@ -43311,6 +43329,7 @@ system Zosma
 system "Zuba Zub"
 	pos -48.2661 -647.926
 	government Hai
+	raid "Unfettered Hai Space Raid" 20
 	arrival 500
 	habitable 425
 	belt 1911

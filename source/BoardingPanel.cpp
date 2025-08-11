@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BoardingPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "CargoHold.h"
 #include "Depreciation.h"
@@ -43,19 +43,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 
 using namespace std;
-
-namespace {
-	// Format the given double with one decimal place.
-	string Round(double value)
-	{
-		int integer = round(value * 10.);
-		string result = to_string(integer / 10);
-		result += ".0";
-		result.back() += integer % 10;
-
-		return result;
-	}
-}
 
 
 
@@ -169,7 +156,7 @@ void BoardingPanel::Draw()
 	Information info;
 	if(CanExit())
 		info.SetCondition("can exit");
-	if(CanTake())
+	if(CanTake() == CanTakeResult::CAN_TAKE)
 		info.SetCondition("can take");
 	if(CanCapture())
 		info.SetCondition("can capture");
@@ -186,18 +173,18 @@ void BoardingPanel::Draw()
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
 		info.SetString("your crew", to_string(crew));
 		info.SetString("your attack",
-			Round(attackOdds.AttackerPower(crew)));
+			Format::Decimal(attackOdds.AttackerPower(crew), 1));
 		info.SetString("your defense",
-			Round(defenseOdds.DefenderPower(crew)));
+			Format::Decimal(defenseOdds.DefenderPower(crew), 1));
 	}
 	int vCrew = victim ? victim->Crew() : 0;
 	if(victim && (canCapture || victim->IsYours()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
-			Round(defenseOdds.AttackerPower(vCrew)));
+			Format::Decimal(defenseOdds.AttackerPower(vCrew), 1));
 		info.SetString("enemy defense",
-			Round(attackOdds.DefenderPower(vCrew)));
+			Format::Decimal(attackOdds.DefenderPower(vCrew), 1));
 	}
 	if(victim && canCapture && !victim->IsYours())
 	{
@@ -208,13 +195,13 @@ void BoardingPanel::Draw()
 		if(!isCapturing)
 			odds *= (1. - victim->Attributes().Get("self destruct"));
 		info.SetString("attack odds",
-			Round(100. * odds) + "%");
+			Format::Decimal(100. * odds, 1) + "%");
 		info.SetString("attack casualties",
-			Round(attackOdds.AttackerCasualties(crew, vCrew)));
+			Format::Decimal(attackOdds.AttackerCasualties(crew, vCrew), 1));
 		info.SetString("defense odds",
-			Round(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
+			Format::Decimal(100. * (1. - defenseOdds.Odds(vCrew, crew)), 1) + "%");
 		info.SetString("defense casualties",
-			Round(defenseOdds.DefenderCasualties(vCrew, crew)));
+			Format::Decimal(defenseOdds.DefenderCasualties(vCrew, crew), 1));
 	}
 
 	const Interface *boarding = GameData::Interfaces().Get("boarding");
@@ -243,8 +230,25 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 	else if(playerDied)
 		return false;
-	else if(key == 't' && CanTake())
+	else if(key == 't')
 	{
+		CanTakeResult canTake = CanTake();
+		if(canTake != CanTakeResult::CAN_TAKE)
+		{
+			string message;
+			if(canTake == CanTakeResult::TARGET_YOURS)
+				message = "You cannot plunder your own ship.";
+			else if(canTake == CanTakeResult::NO_SELECTION)
+				message = "No item selected.";
+			else if(canTake == CanTakeResult::NO_CARGO_SPACE)
+				message = "You do not have enough cargo space to take this item, and you cannot install it as ammo.";
+			else
+				message = "You cannot plunder now.";
+
+			GetUI()->Push(new Dialog{message});
+			return true;
+		}
+
 		CargoHold &cargo = you->Cargo();
 		int count = plunder[selected].Count();
 
@@ -279,7 +283,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(count == plunder[selected].Count())
 		{
 			plunder.erase(plunder.begin() + selected);
-			selected = min<int>(selected, plunder.size());
+			if(plunder.size() && selected == static_cast<int>(plunder.size()))
+				--selected;
 		}
 		else
 			plunder[selected].Take(count);
@@ -499,89 +504,6 @@ bool BoardingPanel::Scroll(double dx, double dy)
 
 
 
-// You can't exit this panel if you're engaged in hand to hand combat.
-bool BoardingPanel::CanExit() const
-{
-	return !isCapturing;
-}
-
-
-
-// Check if you can take the given plunder item.
-bool BoardingPanel::CanTake() const
-{
-	// If you ship or the other ship has been captured:
-	if(!you->IsYours())
-		return false;
-	if(victim->IsYours())
-		return false;
-	if(isCapturing || playerDied)
-		return false;
-	if(static_cast<unsigned>(selected) >= plunder.size())
-		return false;
-
-	return plunder[selected].CanTake(*you);
-}
-
-
-
-// Check if it's possible to initiate hand to hand combat.
-bool BoardingPanel::CanCapture() const
-{
-	// You can't click the "capture" button if you're already in combat mode.
-	if(isCapturing || playerDied)
-		return false;
-
-	// If your ship or the other ship has been captured:
-	if(!you->IsYours())
-		return false;
-	if(victim->IsYours())
-		return false;
-	if(!canCapture)
-		return false;
-
-	return (!victim->RequiredCrew() || you->Crew() > 1);
-}
-
-
-
-// Check if you are in the process of hand to hand combat.
-bool BoardingPanel::CanAttack() const
-{
-	return isCapturing;
-}
-
-
-// Handle the keyboard scrolling and selection in the panel list.
-void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
-{
-	// Scrolling the list of plunder.
-	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-		// Keep one of the previous items onscreen while paging through.
-		selected += 10 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
-	else if(key == SDLK_HOME)
-		selected = 0;
-	else if(key == SDLK_END)
-		selected = static_cast<int>(plunder.size() - 1);
-	else
-	{
-		if(key == SDLK_UP)
-			--selected;
-		else if(key == SDLK_DOWN)
-			++selected;
-	}
-	selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
-
-	// Scroll down at least far enough to view the current item.
-	double minimumScroll = max(0., 20. * selected - 200.);
-	double maximumScroll = 20. * selected;
-	scroll = max(minimumScroll, min(maximumScroll, scroll));
-}
-
-
-
-// Functions for BoardingPanel::Plunder:
-
 // Constructor (commodity cargo).
 BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValue)
 	: name(commodity), outfit(nullptr), count(count), unitValue(unitValue)
@@ -708,4 +630,86 @@ void BoardingPanel::Plunder::UpdateStrings()
 double BoardingPanel::Plunder::UnitMass() const
 {
 	return outfit ? outfit->Mass() : 1.;
+}
+
+
+
+// You can't exit this panel if you're engaged in hand to hand combat.
+bool BoardingPanel::CanExit() const
+{
+	return !isCapturing;
+}
+
+
+
+// Check if you can take the given plunder item.
+BoardingPanel::CanTakeResult BoardingPanel::CanTake() const
+{
+	// If your ship or the other ship has been captured:
+	if(!you->IsYours())
+		return CanTakeResult::OTHER;
+	if(victim->IsYours())
+		return CanTakeResult::TARGET_YOURS;
+	if(isCapturing || playerDied)
+		return CanTakeResult::OTHER;
+	if(static_cast<unsigned>(selected) >= plunder.size())
+		return CanTakeResult::NO_SELECTION;
+
+	return plunder[selected].CanTake(*you) ? CanTakeResult::CAN_TAKE : CanTakeResult::NO_CARGO_SPACE;
+}
+
+
+
+// Check if it's possible to initiate hand to hand combat.
+bool BoardingPanel::CanCapture() const
+{
+	// You can't click the "capture" button if you're already in combat mode.
+	if(isCapturing || playerDied)
+		return false;
+
+	// If your ship or the other ship has been captured:
+	if(!you->IsYours())
+		return false;
+	if(victim->IsYours())
+		return false;
+	if(!canCapture)
+		return false;
+
+	return (!victim->RequiredCrew() || you->Crew() > 1);
+}
+
+
+
+// Check if you are in the process of hand to hand combat.
+bool BoardingPanel::CanAttack() const
+{
+	return isCapturing;
+}
+
+
+
+// Handle the keyboard scrolling and selection in the panel list.
+void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
+{
+	// Scrolling the list of plunder.
+	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+		// Keep one of the previous items onscreen while paging through.
+		selected += 10 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
+	else if(key == SDLK_HOME)
+		selected = 0;
+	else if(key == SDLK_END)
+		selected = static_cast<int>(plunder.size() - 1);
+	else
+	{
+		if(key == SDLK_UP)
+			--selected;
+		else if(key == SDLK_DOWN)
+			++selected;
+	}
+	selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
+
+	// Scroll down at least far enough to view the current item.
+	double minimumScroll = max(0., 20. * selected - 200.);
+	double maximumScroll = 20. * selected;
+	scroll = max(minimumScroll, min(maximumScroll, scroll));
 }

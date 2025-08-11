@@ -17,7 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MissionPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
@@ -42,7 +43,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "System.h"
-#include "text/truncate.hpp"
+#include "TextArea.h"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -125,6 +127,7 @@ namespace {
 // Open the missions panel directly.
 MissionPanel::MissionPanel(PlayerInfo &player)
 	: MapPanel(player),
+	missionInterface(GameData::Interfaces().Get("mission")),
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
@@ -136,9 +139,11 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
-	wrap.SetWrapWidth(380);
-	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetColor(*GameData::Colors().Get("bright"));
+	description->SetRect(missionInterface->GetBox("description"));
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -158,12 +163,15 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 // Switch to the missions panel from another map panel.
 MissionPanel::MissionPanel(const MapPanel &panel)
 	: MapPanel(panel),
+	missionInterface(GameData::Interfaces().Get("mission")),
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	Audio::Pause();
+
 	// Re-do job sorting since something could have changed
 	player.SortAvailable();
 
@@ -173,9 +181,11 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
-	wrap.SetWrapWidth(380);
-	wrap.SetFont(FontSet::Get(14));
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetColor(*GameData::Colors().Get("bright"));
+	description->SetRect(missionInterface->GetBox("description"));
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -311,8 +321,10 @@ void MissionPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
 	if(command.Has(Command::HELP))
 	{
+		sound = UI::UISound::NONE;
 		DoHelp("jobs", true);
 		DoHelp("map advanced", true);
 	}
@@ -391,6 +403,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	// mission list, update the selected system, and pan the map.
 	SetSelectedScrollAndCenter();
 
+	UI::PlaySound(sound);
 	return true;
 }
 
@@ -428,6 +441,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				}
 				else if(hoverSort == 3)
 					player.ToggleSortAscending();
+				UI::PlaySound(UI::UISound::NORMAL);
 				return true;
 			}
 			return false;
@@ -858,9 +872,31 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 		if(it->Deadline())
 			SpriteShader::Draw(fast, pos + Point(-4., 8.));
 
+		const Color *color = nullptr;
 		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
-		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
-			pos, (!canAccept ? dim : isSelected ? selected : unselected));
+		if(!canAccept)
+		{
+			if(it->Unavailable().IsLoaded())
+				color = &it->Unavailable();
+			else
+				color = &dim;
+		}
+		else if(isSelected)
+		{
+			if(it->Selected().IsLoaded())
+				color = &it->Selected();
+			else
+				color = &selected;
+		}
+		else
+		{
+			if(it->Unselected().IsLoaded())
+				color = &it->Unselected();
+			else
+				color = &unselected;
+		}
+
+		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
 	}
 
 	return pos;
@@ -882,21 +918,37 @@ void MissionPanel::DrawMissionInfo()
 	if(availableIt != available.end() || acceptedIt != accepted.end())
 		info.SetCondition("has description");
 
-	info.SetString("cargo free", to_string(player.Cargo().Free()) + " tons");
-	info.SetString("bunks free", to_string(player.Cargo().BunksFree()) + " bunks");
+	info.SetString("cargo free", Format::SimplePluralization(player.Cargo().Free(), "ton"));
+	info.SetString("bunks free", Format::SimplePluralization(player.Cargo().BunksFree(), "bunk"));
 
 	info.SetString("today", player.GetDate().ToString());
 
-	GameData::Interfaces().Get("mission")->Draw(info, this);
+	missionInterface->Draw(info, this);
 
 	// If a mission is selected, draw its descriptive text.
 	if(availableIt != available.end())
-		wrap.Wrap(availableIt->Description());
+	{
+		if(!descriptionVisible)
+		{
+			AddChild(description);
+			descriptionVisible = true;
+		}
+		description->SetText(availableIt->Description());
+	}
 	else if(acceptedIt != accepted.end())
-		wrap.Wrap(acceptedIt->Description());
-	else
-		return;
-	wrap.Draw(Point(-190., Screen::Bottom() - 213.), *GameData::Colors().Get("bright"));
+	{
+		if(!descriptionVisible)
+		{
+			AddChild(description);
+			descriptionVisible = true;
+		}
+		description->SetText(acceptedIt->Description());
+	}
+	else if(descriptionVisible)
+	{
+		RemoveChild(description.get());
+		descriptionVisible = false;
+	}
 }
 
 
@@ -1011,7 +1063,7 @@ void MissionPanel::Accept(bool force)
 		bool stillLooking = true;
 
 		// Updates availableIt if matching system found, returns true if planet also matches.
-		auto SelectNext = [this, planet, system, &stillLooking](list<Mission>::const_iterator &it) -> bool
+		auto SelectNext = [this, planet, system, &stillLooking](const list<Mission>::const_iterator &it) -> bool
 		{
 			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{

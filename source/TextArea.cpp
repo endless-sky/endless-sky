@@ -110,7 +110,7 @@ void TextArea::SetTruncate(Truncate t)
 
 int TextArea::GetTextHeight(bool trailingBreak)
 {
-	Validate();
+	Validate(trailingBreak);
 	return wrappedText.Height(trailingBreak);
 }
 
@@ -118,7 +118,7 @@ int TextArea::GetTextHeight(bool trailingBreak)
 
 int TextArea::GetLongestLineWidth()
 {
-	Validate();
+	Validate(scrollHeightIncludesTrailingBreak);
 	return wrappedText.LongestLineWidth();
 }
 
@@ -129,7 +129,7 @@ void TextArea::Draw()
 	if(!buffer)
 		buffer = std::make_unique<RenderBuffer>(size);
 
-	Validate();
+	Validate(scrollHeightIncludesTrailingBreak);
 	if(!bufferIsValid || !scroll.IsAnimationDone())
 	{
 		scroll.Step();
@@ -164,7 +164,7 @@ void TextArea::Draw()
 
 bool TextArea::Click(int x, int y, int clicks)
 {
-	if(scrollBar.SyncClick(scroll, x, y, clicks))
+	if(scroll.Scrollable() && scrollBar.SyncClick(scroll, x, y, clicks))
 	{
 		bufferIsValid = false;
 		return true;
@@ -239,12 +239,13 @@ void TextArea::Invalidate()
 
 
 
-void TextArea::Validate()
+void TextArea::Validate(bool trailingBreak)
 {
-	if(!textIsValid)
+	if(!textIsValid || trailingBreak != scrollHeightIncludesTrailingBreak)
 	{
 		wrappedText.Wrap(text);
-		scroll.SetMaxValue(wrappedText.Height());
+		scroll.SetMaxValue(wrappedText.Height(trailingBreak));
+		scrollHeightIncludesTrailingBreak = trailingBreak;
 		textIsValid = true;
 	}
 }

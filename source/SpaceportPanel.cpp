@@ -15,14 +15,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpaceportPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
+#include "Screen.h"
+#include "TextArea.h"
 #include "UI.h"
 
 using namespace std;
@@ -30,19 +33,16 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(PlayerInfo &player)
-	: player(player), port(player.GetPlanet()->GetPort()), ui(*GameData::Interfaces().Get("spaceport"))
+	: player(player), port(player.GetPlanet()->GetPort())
 {
 	SetTrapAllEvents(false);
 
-	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(ui.GetBox("content").Width());
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetColor(*GameData::Colors().Get("bright"));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	AddChild(description);
 
-	// Query the news interface to find out the wrap width.
-	// TODO: Allow Interface to handle wrapped text directly.
-	const Interface *newsUi = GameData::Interfaces().Get("news");
-	portraitWidth = newsUi->GetBox("message portrait").Width();
-	normalWidth = newsUi->GetBox("message").Width();
 	newsMessage.SetFont(FontSet::Get(14));
 }
 
@@ -55,6 +55,12 @@ void SpaceportPanel::UpdateNews()
 		return;
 	hasNews = true;
 
+	// Query the news interface to find out the wrap width.
+	// TODO: Allow Interface to handle wrapped text directly.
+	const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "news (small screen)" : "news");
+	portraitWidth = newsUi->GetBox("message portrait").Width();
+	normalWidth = newsUi->GetBox("message").Width();
+
 	// Randomly pick which portrait, if any, is to be shown. Depending on if
 	// this news has a portrait, different interface information gets filled in.
 	auto portrait = news->Portrait();
@@ -63,7 +69,10 @@ void SpaceportPanel::UpdateNews()
 	newsInfo.SetSprite("portrait", portrait);
 	newsInfo.SetString("name", news->Name() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
-	newsMessage.Wrap(news->Message());
+	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs);
+	player.AddPlayerSubstitutions(subs);
+	newsMessage.Wrap(Format::Replace(news->Message(), subs));
 }
 
 
@@ -91,13 +100,17 @@ void SpaceportPanel::Draw()
 	if(player.IsDead())
 		return;
 
-	Rectangle box = ui.GetBox("content");
-	text.Wrap(port.Description().ToString(player.Conditions()));
-	text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
+	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ?
+		"spaceport (small screen)" : "spaceport");
+	description->SetRect(ui->GetBox("content"));
+	// The description text needs to be updated, because player conditions can be changed
+	// in the meantime, for example if the player accepts a mission on the Job Board.
+	description->SetText(port.Description().ToString());
 
 	if(hasNews)
 	{
-		const Interface *newsUi = GameData::Interfaces().Get("news");
+		const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ?
+			"news (small screen)" : "news");
 		newsUi->Draw(newsInfo);
 		// Depending on if the news has a portrait, the interface box that
 		// gets filled in changes.
@@ -117,9 +130,8 @@ const News *SpaceportPanel::PickNews() const
 
 	vector<const News *> matches;
 	const Planet *planet = player.GetPlanet();
-	const auto &conditions = player.Conditions();
 	for(const auto &it : GameData::SpaceportNews())
-		if(!it.second.IsEmpty() && it.second.Matches(planet, conditions))
+		if(!it.second.IsEmpty() && it.second.Matches(planet))
 			matches.push_back(&it.second);
 
 	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];

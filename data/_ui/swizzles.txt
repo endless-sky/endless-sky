@@ -1,0 +1,237 @@
+# Copyright (c) 2025 by Daniel Yoon
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+swizzle "cloak fast"
+	override
+
+	red   0 0 1 0
+	green 0 0 0 0
+	blue  0 0 0 0
+	alpha 0 0 0 1
+
+swizzle "cloak fancy base"
+	override
+
+	red   0 0 1 0
+	green 0 0 1 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# Numbered swizzles, needed for backwards compatibility.
+
+# 0 red + yellow markings (republic)
+swizzle "0"
+	red   1 0 0 0
+	green 0 1 0 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# 1 red + magenta markings
+swizzle "1"
+	red   1 0 0 0
+	green 0 0 1 0
+	blue  0 1 0 0
+	alpha 0 0 0 1
+
+# 2 green + yellow (free worlds)
+swizzle "2"
+	red   0 1 0 0
+	green 1 0 0 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# 3 green + cyan
+swizzle "3"
+	red   0 0 1 0
+	green 1 0 0 0
+	blue  0 1 0 0
+	alpha 0 0 0 1
+
+# 4 blue + magenta (syndicate)
+swizzle "4"
+	red   0 1 0 0
+	green 0 0 1 0
+	blue  1 0 0 0
+	alpha 0 0 0 1
+
+# 5 blue + cyan (merchant)
+swizzle "5"
+	red   0 0 1 0
+	green 0 1 0 0
+	blue  1 0 0 0
+	alpha 0 0 0 1
+
+# 6 red and black (pirate)
+swizzle "6"
+	red   0 1 0 0
+	green 0 0 1 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# 7 pure red
+swizzle "7"
+	red   1 0 0 0
+	green 0 0 1 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# 8 faded red
+swizzle "8"
+	red   1 0 0 0
+	green 0 1 0 0
+	blue  0 1 0 0
+	alpha 0 0 0 1
+
+# 9 pure black
+swizzle "9"
+	red   0 0 1 0
+	green 0 0 1 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# 10 faded black
+swizzle "10"
+	red   0 1 0 0
+	green 0 1 0 0
+	blue  0 1 0 0
+	alpha 0 0 0 1
+
+# 11 pure white
+swizzle "11"
+	red   1 0 0 0
+	green 1 0 0 0
+	blue  1 0 0 0
+	alpha 0 0 0 1
+
+# 12 darkened blue
+swizzle "12"
+	red   0 0 1 0
+	green 0 0 1 0
+	blue  0 1 0 0
+	alpha 0 0 0 1
+
+# 13 pure blue
+swizzle "13"
+	red   0 0 1 0
+	green 0 0 1 0
+	blue  1 0 0 0
+	alpha 0 0 0 1
+
+# 14 faded blue
+swizzle "14"
+	red   0 1 0 0
+	green 0 1 0 0
+	blue  1 0 0 0
+	alpha 0 0 0 1
+
+# 15 darkened cyan
+swizzle "15"
+	red   0 0 1 0
+	green 0 1 0 0
+	blue  0 1 0 0
+	alpha 0 0 0 1
+
+# 16 pure cyan
+swizzle "16"
+	red   0 0 1 0
+	green 1 0 0 0
+	blue  1 0 0 0
+	alpha 0 0 0 1
+
+# 17 faded cyan
+swizzle "17"
+	red   0 1 0 0
+	green 1 0 0 0
+	blue  1 0 0 0
+	alpha 0 0 0 1
+
+# 18 darkened green
+swizzle "18"
+	red   0 0 1 0
+	green 0 1 0 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# 19 pure green
+swizzle "19"
+	red   0 0 1 0
+	green 1 0 0 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# 20 faded green
+swizzle "20"
+	red   0 1 0 0
+	green 1 0 0 0
+	blue  0 1 0 0
+	alpha 0 0 0 1
+
+# 21 darkened yellow
+swizzle "21"
+	red   0 1 0 0
+	green 0 1 0 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# 22 pure yellow
+swizzle "22"
+	red   1 0 0 0
+	green 1 0 0 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# 23 faded yellow
+swizzle "23"
+	red   1 0 0 0
+	green 1 0 0 0
+	blue  0 1 0 0
+	alpha 0 0 0 1
+
+# 24 darkened magenta
+swizzle "24"
+	red   0 1 0 0
+	green 0 0 1 0
+	blue  0 1 0 0
+	alpha 0 0 0 1
+
+# 25 pure magenta
+swizzle "25"
+	red   1 0 0 0
+	green 0 0 1 0
+	blue  1 0 0 0
+	alpha 0 0 0 1
+
+# 26 faded magenta
+swizzle "26"
+	red   1 0 0 0
+	green 0 1 0 0
+	blue  1 0 0 0
+	alpha 0 0 0 1
+
+# 27 red only (cloaked)
+swizzle "27"
+	override
+
+	red   0 0 1 0
+	green 0 0 0 0
+	blue  0 0 0 0
+	alpha 0 0 0 1
+
+# 28 black only (outline)
+swizzle "28"
+	override
+
+	red   0 0 0 0
+	green 0 0 0 0
+	blue  0 0 0 0
+	alpha 0 0 0 1
