@@ -3715,7 +3715,7 @@ planet Muspel
 	spaceport `	Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep.`
 		to display
 			not "start: deep"
-	spaceport `	Inside, people move at a slower and calmer pace, most likely to appear friendlier to tourists than other parts of the Deep.`
+	spaceport `	Inside, people move at a slower and calmer pace, something more likely to appear friendlier to tourists than other parts of the Deep.`
 		to display
 			has "start: deep"
 	bribe 0.03
