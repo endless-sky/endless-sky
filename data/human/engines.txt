@@ -47,7 +47,7 @@ outfit "Caldera Afterburner"
 	"mass" 37
 	"outfit space" -37
 	"engine capacity" -37
-	"afterburner thrust" 180.0
+	"afterburner thrust" 165
 	"afterburner fuel" 1
 	"afterburner heat" 42.0
 	"afterburner effect" "caldera afterburner" 5
