@@ -6744,8 +6744,8 @@ mission "Lost Racer 3"
 				`	"I'll leave the questions to your father."`
 					goto noquestions
 			label crash
-			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox's hyperdrive malfunctioned, knocking me out. When I woke up, the Flivver was damaged and I was stranded on a planet with no way of calling for help - the flares had triggered when I crashed. Well, now you know. Is there anything else?"`
-			`	August asks, "Do you think someone could have sabotaged it? Any suspicious Syndicate employees hanging around? Any anything out of the ordinary?"`
+			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox's hyperdrive malfunctioned, knocking me out. When I woke up, the Flivver was damaged and hurtling toward outer space. Luckily, the engines hadn't been damaged too much, so I was able to turn around and thrust in the direction of <origin>, but then the batteries gave out and the generator wasn't working. So I was stranded on a planet with no way of calling for help - the flares had triggered when I crashed, being unable to slow down without thrusters. Well, now you know. Is there anything else?"`
+			`	August asks, "Do you think someone could have sabotaged the hyperdrive? Any suspicious Syndicate employees hanging around? Any anything out of the ordinary?"`
 			`	"Not that I remember," replies Artemis. "This has happened only once or twice in the history of racing, but it's still happened. A one-in-a-million chance, perhaps. I wouldn't worry about it too much."`
 			choice
 				`	"That was a beautiful ship you had there. I've never seen a Flivver quite like that."`
