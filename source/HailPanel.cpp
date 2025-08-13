@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+#include "Weapon.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -243,16 +244,19 @@ void HailPanel::Draw()
 		bool hasFighters = ship->PositionFighters();
 		auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void
 		{
-			if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
-			{
-				Body body(
-					hardpoint.GetOutfit()->HardpointSprite(),
-					center + zoom * facing.Rotate(hardpoint.GetPoint()),
-					Point(),
-					facing + hardpoint.GetAngle(),
-					zoom);
-				draw.Add(body);
-			}
+			const Outfit *outfit = hardpoint.GetOutfit();
+			if(!outfit)
+				return;
+			const Body &sprite = outfit->GetWeapon()->HardpointSprite();
+			if(!sprite.HasSprite())
+				return;
+			Body body(
+				sprite,
+				center + zoom * facing.Rotate(hardpoint.GetPoint()),
+				Point(),
+				facing + hardpoint.GetAngle(),
+				zoom);
+			draw.Add(body);
 		};
 		auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void
 		{
