@@ -86,15 +86,15 @@ void MessageLogPanel::Draw()
 
 		// Draw messages.
 		Point pos = Screen::BottomLeft() + Point(PAD, scroll);
-		for(const auto &it : messages)
+		for(const auto &[text, category] : messages)
 		{
-			if(importantOnly && (it.second == Messages::Importance::Low || it.second == Messages::Importance::High))
+			if(importantOnly && !category->IsImportant())
 				continue;
 
-			messageLine.Wrap(it.first);
+			messageLine.Wrap(text);
 			pos.Y() -= messageLine.Height();
 			if(pos.Y() >= Screen::Top() - 3 * font.Height())
-				messageLine.Draw(pos, *Messages::GetColor(it.second, true));
+				messageLine.Draw(pos, category->LogColor());
 		}
 
 		maxScroll = max(0., scroll - pos.Y() + Screen::Top());
