@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DistanceMap.h"
 #include "FighterHitHelper.h"
 #include "Flotsam.h"
+#include "text/Format.h"
 #include "FormationPattern.h"
 #include "FormationPositioner.h"
 #include "GameData.h"
@@ -378,6 +379,9 @@ namespace {
 
 	// The minimum speed advantage a ship has to have to consider running away.
 	const double SAFETY_MULTIPLIER = 1.1;
+
+	// If a ship's velocity is below this value, the ship is considered stopped.
+	constexpr double VELOCITY_ZERO = .001;
 }
 
 
@@ -499,8 +503,16 @@ void AI::IssueMoveTarget(const Point &target, const System *moveToSystem)
 // Commands issued via the keyboard (mostly, to the flagship).
 void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 {
+	const Ship *flagship = player.Flagship();
+	if(!flagship || flagship->IsDestroyed())
+		return;
+
 	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
 	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
+
+	if(!autoPilot.Has(Command::STOP) && activeCommands.Has(Command::STOP)
+			&& flagship->Velocity().Length() > VELOCITY_ZERO)
+		Messages::Add("Coming to a stop.", Messages::Importance::High);
 
 	autoPilot |= activeCommands;
 	if(activeCommands.Has(AutopilotCancelCommands()))
@@ -513,13 +525,6 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 			Messages::Add("Disengaging autopilot.", Messages::Importance::High);
 		autoPilot.Clear();
 	}
-
-	const Ship *flagship = player.Flagship();
-	if(!flagship || flagship->IsDestroyed())
-		return;
-
-	if(activeCommands.Has(Command::STOP))
-		Messages::Add("Coming to a stop.", Messages::Importance::High);
 
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
@@ -945,12 +950,6 @@ void AI::Step(Command &activeCommands)
 				continue;
 			}
 		}
-		// Update any orders NPCs may have been given by their associated mission.
-		else if(it->IsSpecial() && !it->IsYours() && it->HasTravelDirective())
-		{
-			const Planet *destination = it->AllStopoversVisited() ? it->GetDestinationPlanet() : nullptr;
-			IssueNPCOrders(*it, destination);
-		}
 
 		// This ship may have updated its target ship.
 		double targetDistance = numeric_limits<double>::infinity();
@@ -1164,7 +1163,7 @@ void AI::Step(Command &activeCommands)
 		{
 			// Stopping to let fighters board or to be refueled takes priority
 			// even over following orders from the player.
-			if(it->Velocity().Length() > .001 || !target)
+			if(it->Velocity().Length() > VELOCITY_ZERO || !target)
 				Stop(*it, command);
 			else
 			{
@@ -1714,16 +1713,14 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		return false;
 
 	int type = it->second.type;
-	const bool hasTravelOrder = type == Orders::MOVE_TO || type == Orders::TRAVEL_TO || type == Orders::LAND_ON;
-
 
 	// Ships without an (alive) parent don't follow orders.
 	shared_ptr<Ship> parent = ship.GetParent();
 	if(!parent)
 		return false;
 	// If your parent is jumping or absent, that overrides your orders unless
-	// your orders are to hold position, or a travel directive.
-	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && !hasTravelOrder)
+	// your orders are to hold position.
+	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && type != Orders::MOVE_TO)
 	{
 		if(parent->GetSystem() != ship.GetSystem())
 			return false;
@@ -1737,16 +1734,8 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		return false;
 	}
 
-
 	shared_ptr<Ship> target = it->second.target.lock();
 	shared_ptr<Minable> targetAsteroid = it->second.targetAsteroid.lock();
-	if(type == Orders::LAND_ON && it->second.targetPlanet)
-	{
-		// LAND_ON would not be issued unless the planet was in this system.
-		ship.SetTargetStellar(ship.GetSystem()->FindStellar(it->second.targetPlanet));
-		it->second.type = Orders::LAND_ON;
-		MoveIndependent(ship, command);
-	}
 	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
 	{
 		// The desired position is in a different system. Find the best
@@ -1764,7 +1753,7 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		MoveTo(ship, command, it->second.point, Point(), 10., .1);
 	else if(type == Orders::HOLD_POSITION || type == Orders::HOLD_ACTIVE || type == Orders::MOVE_TO)
 	{
-		if(ship.Velocity().Length() > .001 || !ship.GetTargetShip())
+		if(ship.Velocity().Length() > VELOCITY_ZERO || !ship.GetTargetShip())
 			Stop(ship, command);
 		else
 		{
@@ -1847,7 +1836,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 
 		// If the position and velocity matches, smoothly match velocity over multiple frames.
 		Point velocityDelta = formationLead->Velocity() - ship.Velocity();
-		Point snapAcceleration = velocityDelta.Length() < 0.001 ? velocityDelta : velocityDelta.Unit() * 0.001;
+		Point snapAcceleration = velocityDelta.Length() < VELOCITY_ZERO ? velocityDelta : velocityDelta.Unit() * .001;
 		if((ship.Velocity() + snapAcceleration).Length() <= ship.MaxVelocity())
 			ship.SetVelocity(ship.Velocity() + snapAcceleration);
 	}
@@ -2054,9 +2043,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	else if(ship.GetTargetStellar())
 	{
 		MoveToPlanet(ship, command);
-		// Ships should land on their destination planet if they are free to
-		// move about, or have a travel directive indicating they should land.
-		if(!(shouldStay && ship.Attributes().Get("fuel capacity")) && ship.GetTargetStellar()->HasSprite()
+		if(!shouldStay && ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->HasSprite()
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
@@ -2131,10 +2118,9 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		// If the ship has no destination or the destination is unreachable, route to the parent's system.
 		if(!ship.GetTargetStellar() && (!ship.GetTargetSystem() || !ship.JumpNavigation().JumpFuel(ship.GetTargetSystem())))
 		{
-			// Route to the destination (either the parent ship's system or a system
-			// marked by the NPC's mission definition) by landing or jumping.
-			const System *destinationSystem = ship.GetDestinationSystem();
-			SelectRoute(ship, destinationSystem ? destinationSystem : parent.GetSystem());
+			// Route to the parent ship's system and check whether
+			// the ship should land (refuel or wormhole) or jump.
+			SelectRoute(ship, parent.GetSystem());
 		}
 
 		// Perform the action that this ship previously decided on.
@@ -2522,7 +2508,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	double speed = velocity.Length();
 
 	// If asked for a complete stop, the ship needs to be going much slower.
-	if(speed <= (maxSpeed ? maxSpeed : .001))
+	if(speed <= (maxSpeed ? maxSpeed : VELOCITY_ZERO))
 		return true;
 	if(!maxSpeed)
 		command |= Command::STOP;
@@ -4249,17 +4235,11 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			string message = "Note: you have ";
 			message += (missions == 1 ? "a mission that requires" : "missions that require");
 			message += " landing on ";
-			size_t count = destinations.size();
-			bool oxfordComma = (count > 2);
-			for(const Planet *planet : destinations)
-			{
-				message += planet->DisplayName();
-				--count;
-				if(count > 1)
-					message += ", ";
-				else if(count == 1)
-					message += (oxfordComma ? ", and " : " and ");
-			}
+			message += Format::List<set, const Planet *>(destinations,
+				[](const Planet *const &planet)
+				{
+					return planet->DisplayName();
+				});
 			message += " in the system you are jumping to.";
 			Messages::Add(message, Messages::Importance::Info);
 
@@ -4824,6 +4804,14 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 
 
+void AI::DisengageAutopilot()
+{
+	Messages::Add("Disengaging autopilot.", Messages::Importance::High);
+	autoPilot.Clear();
+}
+
+
+
 bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, int type) const
 {
 	auto sit = actions.find(ship.shared_from_this());
@@ -5111,7 +5099,7 @@ void AI::UpdateOrders(const Ship &ship)
 	if((order.type == Orders::MOVE_TO || order.type == Orders::HOLD_ACTIVE) && ship.GetSystem() == order.targetSystem)
 	{
 		// If nearly stopped on the desired point, switch to a HOLD_POSITION order.
-		if(ship.Position().Distance(order.point) < 20. && ship.Velocity().Length() < .001)
+		if(ship.Position().Distance(order.point) < 20. && ship.Velocity().Length() < VELOCITY_ZERO)
 			order.type = Orders::HOLD_POSITION;
 	}
 	else if(order.type == Orders::HOLD_POSITION && ship.Position().Distance(order.point) > 20.)
@@ -5121,59 +5109,4 @@ void AI::UpdateOrders(const Ship &ship)
 		// Ensure the system reference is maintained.
 		order.targetSystem = ship.GetSystem();
 	}
-}
-
-
-
-// Mission NPC blocks may define specific travel plans.
-void AI::IssueNPCOrders(Ship &ship, const Planet *destination)
-{
-	Orders newOrders;
-	const System *targetSystem = ship.GetDestinationSystem();
-	const map<const Planet *, bool> &stopovers = ship.GetStopovers();
-	const System *from = ship.GetSystem();
-	if(targetSystem)
-	{
-		RoutePlan routePlan(ship, *targetSystem, nullptr);
-		if(!routePlan.HasRoute())
-			ship.EraseWaypoint(targetSystem);
-		else
-		{
-			newOrders.type = Orders::TRAVEL_TO;
-			newOrders.targetSystem = targetSystem;
-			if(from == targetSystem)
-			{
-				// Travel to the next waypoint, if it exists.
-				ship.SetTargetStellar(nullptr);
-				const System *nextSystem = ship.NextWaypoint();
-				if(nextSystem)
-					newOrders.targetSystem = nextSystem;
-				else
-					newOrders.targetSystem = nullptr;
-			}
-		}
-	}
-
-	// If one of the planets in this system is a destination or stopover, it
-	// supercedes the order to travel to the next waypoint (unless already visited).
-	if(destination && destination->IsInSystem(from))
-	{
-		newOrders.type = Orders::LAND_ON;
-		newOrders.targetPlanet = destination;
-	}
-
-	for(const auto &it : stopovers)
-		if(!it.second && it.first->IsInSystem(from))
-		{
-			newOrders.type = Orders::LAND_ON;
-			newOrders.targetPlanet = it.first;
-			break;
-		}
-
-	// Update the NPC's orders.
-	Orders &existing = orders[&ship];
-	if(!newOrders.targetSystem && newOrders.type != Orders::LAND_ON)
-		orders.erase(&ship);
-	else
-		existing = newOrders;
 }

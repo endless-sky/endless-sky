@@ -1,6 +1,79 @@
+Version 0.10.14
+  * Breaking changes:
+    * Portrait image files have been removed. (@tibetiroka)
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@jmelesky, @M68HC060, @mOctave, @Saugia, @tekker2234, @tibetiroka)
+      * "Deep: Project Hawking" can no longer be offered while either of "Deep: TMBR: 0" or "Deep: TMBR: 1" is active. (@tekker2234)
+      * The Hai "Baellie" and "Basrem" engines now draw their flare sprites at 0.8 scale to differentiate them from the "Benga" engines. (@Amazinite)
+      * Fixed inconsistencies in the name of the language condition used by the Incipias governments. (@TomGoodIdea)
+      * Corrected the "index" value of the "Nelmeb GP Hybrid Thruster". (@qxxt)
+      * The Patir Mystery 12.2B and Aberrant first contact missions now use the "<flagship>" text replacement in order to refer to the player's flagship, instead of using the name of the boarded ship. (@Amazinite, @TomGoodIdea)
+      * The "Wanderers: Diplomacy" conversation now includes a branch for if the player used the Hai start. (@Amazinite)
+      * Patir 2 missions now have "on visit" messages. (@Amazinite)
+      * The Patir 2 "asteroid" ships are no longer capturable. (@Amazinite)
+      * Fixed an issue where a dialog was appearing out of order in "Remnant: Cognizance 18". (@warp-core)
+      * "Wanderers: Alpha Surveillance H" now has a very high offer precedence and so will offer before almost any other mission. (@Amazinite)
+      * Removed references to the removed "Cutthroat (Jousting)" variant of the Cutthroat. (@Saugia)
+    * Engine bugs:
+      * Haze is now drawn at the correct size. (@palant)
+      * Changes to the starfield zoom preference will now immediately update the background when starfield animation is disabled. (@Amazinite)
+      * Planet and spaceport descriptions no longer render outside of the text box. (@TomGoodIdea)
+      * Improved map panel performance in some situations by caching mission deadline related calculations. (@Amazinite, @TomGoodIdea)
+      * Fixed various problems with text truncation. (@SomeTroglodyte)
+      * Fixed free cargo and bunks being pluralized when there is only one unit available. (@TomGoodIdea)
+      * Corrected the positioning of projectile die effects. (@Amazinite)
+  * Game content:
+    * Missions:
+      * The mission "FW Southern Recon 1B" can now be completed immediately if you already have an electron beam with you to give to Freya, instead of requiring you to take off and land again to progress the story. (@Amazinite)
+    * Sprites:
+      * Replaced various landscape and conversation scene images that were included under incompatible licenses. (@tibetiroka)
+    * Other:
+      * The Greenrock defense fleet is now composed of a mixture of Northern, Core, and Southern Pirate fleets, instead of only Northern. (@qxxt, @Quantumshark)
+      * Improved the descriptions and adjusted the NPC spawn locations of some Pirate jobs. (@Xcyiterr)
+      * Kor Mereti and Sestor planets no longer offer trading, bank, job board, or crew hiring services. (@Amazinite)
+      * Removed steering flare points from the Sea Scorpion and moved the thruster flare points slightly closer to the center. (@Saugia)
+  * Graphics:
+    * Each layer of the fancy parallax starfield will now use different star locations. (@palant)
+  * Game mechanics:
+    * New mechanics:
+      * Added "<flagship>" and "<flagship model>" text replacements. (@Amazinite)
+      * Added cargo and passenger space free conditions for the whole fleet and flagship only. (@Amazinite)
+  * User interface:
+    * Improved the route error message in the map when a route is known, but the flagship cannot use it. (@Amazinite)
+    * Scrolling through the logbook no longer plays sounds. (@tibetiroka)
+    * The planet panel will now only be offset to the left slightly when the game window is fewer than 1280 pixels wide. (@xobes)
+    * The message log panel can now be closed by clicking on the empty background space. (@warp-core)
+    * Starfield zoom limits can now be customized through the interfaces file. (@Amazinite)
+    * The outfitter now lists a weapons projectile velocity and mining precision. (@Amazinite)
+  * Under the hood:
+    * Alphabetized government definitions. (@Amazinite)
+    * BoardingPanel methods now use the shared Format::Decimal method instead of a special, locally-defined method. (@TomGoodIdea)
+    * Corrected various style issues in the PlayerInfo class. (@TomGoodIdea)
+  * Documentation:
+    * The game will now log an error message when the display resolution is below 1024x768, the minimum supported. (@TomGoodIdea)
+    * The contributing file now includes details about acceptable licenses for proposed additions to the game. (@Amazinite)
+    * Added version metadata for Windows. (@TomGoodIdea)
+  * CI/CD and development environment:
+    * Fixed an issue where file execution permissions were not preserved through the macOS release CD. (@warp-core)
+    * The Windows release CD now creates an NSIS based installer bundle as well as zip archive. (@TomGoodIdea)
+
+Version 0.10.13.1
+  * Bug fixes:
+    * Engine bugs:
+      * Removed NPC travel instructions, fixing issues with some mission NPCs not starting in the correct system and other ships persisting or being removed on landing when they should do the opposite. (@Amazinite)
+      * Invalid systems will not be included in the "neighbors" lists of other systems. (@Amazinite)
+      * Slightly increased the screen width below which the "small screen" map panel button layout is used to avoid overlaps with other elements. (@Amazinite)
+  * Game content:
+    * Other:
+      * "FW Bounty 1" now includes its destination in its description. (@Anarchist2)
+  * CI/CD and development environment:
+    * Caching in CI/CD now only relies on actions/cache. (@tibetiroka)
+    * Added a CMake preset for armv7. (@M68HC060, @TomGoodIdea)
+
 Version 0.10.13
   * Big changes:
-    * Revamped the Quarg with new artwork, ships, outfits, descriptions, and balance changes more appropriate for their tier level. (@1010todd, @Arachi-Lover, @Azure3141, @Brick63, @Quantumshark, @JimmyFiryh, @Saugia)
+    * Revamped the Quarg with new artwork, ships, outfits, descriptions, and balance changes more appropriate for their tier level. (@1010todd, @Arachi-Lover, @Azure3141, @Brick63, @JimmyFiryh, @Karirawri, @Quantumshark, @Saugia)
     * Added a command for pausing time in the game without pulling up a menu, allowing you to send commands to your escorts without the stress of combat. The default key is 'P'. (@TomGoodIdea, @Zarkonnen, @TheGiraffe3, @Amazinite)
     * Added sound effects to various interactions with the UI. (@tibetiroka)
     * OpenGL fragment and vertex shader code is now defined in data files, instead of within the compiled binary, and so can be customized without recompilation. (@tibetiroka)
@@ -206,7 +279,7 @@ Version 0.10.13
       * Plugins can now be loaded from zip files. (@tibetiroka, @TomGoodIdea)
       * Missions can be given a "complete at" location filter, allowing them to be completed at any matching location. (@UnorderedSigh)
       * Added autoconditions for checking what day of the week it is. (@Amazinite)
-      * Turret hardpoints can now define "blindspots"; angles that they cannot aim towards. (@TomGoodIdea, @RisingLeaf, @tibetiroka, @petervdmeer)
+      * Turret hardpoints can now define "blindspots"; angles that they cannot fire towards. (@TomGoodIdea, @RisingLeaf, @tibetiroka, @petervdmeer)
       * Lines in outfit and ship descriptions can now have condition sets to determine when they are visible. (@Amazinite)
       * Missions can now customize the color of their names in the mission panel. (@Amazinite)
       * Location filters can now check if a planet or system has been visited by the player. (@Amazinite, @TomGoodIdea)

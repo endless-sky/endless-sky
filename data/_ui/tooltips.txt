@@ -928,6 +928,9 @@ tip "ammo usage:"
 tip "range:"
 	`Total range of this weapon.`
 
+tip "velocity:"
+	`The initial velocity of projectiles fired by this weapon. Some weapons have projectiles that accelerate or decelerate from this initial value as they travel.`
+
 tip "dropoff modifier:"
 	`The multiplier applied to the damage of this weapon once its projectile has reached the maximum dropoff range.`
 
@@ -1060,8 +1063,8 @@ tip "turret turn multiplier:"
 tip "arc:"
 	`The angular range of protection provided by this weapon, in degrees.`
 
-tip "homing:"
-	`This projectile's ability to track its target. Weapons with better homing can adjust to the target's speed to plot a more effective intercept course.`
+tip "homing type:"
+	`How this projectile tracks its target. Projectiles with "direct" will fly straight at their target, while projectiles with "leading" will lead their trajectory.`
 
 tip "tracking:"
 	`This projectile's ability to maintain its target lock.`
@@ -1203,6 +1206,9 @@ tip "anti-missile:"
 
 tip "tractor beam:"
 	`The base velocity that this weapon pulls flotsam toward itself. Heavier flotsam is more difficult to pull.`
+
+tip "mining precision:"
+	`A measure of how well this weapon prevents damage to valuable materials while mining. Weapons with a positive precision result in higher yields, while a negative precision results in lower yields. Some minable objects are tougher than others, and are therefore less susceptible to having their yields altered.`
 
 
 
@@ -1476,7 +1482,7 @@ tip "Show planet labels"
 	`Display an overlay on nearby landable planets and stations.`
 
 tip "Show mini-map"
-	`Display a mini-map of nearby systems when initiating a hyperspace jump.`
+	`Control the display of a mini-map of nearby systems. If set to "when jumping", the mini-map only appears when initiating a hyperspace jump. If set to "always on", then it is always present when in flight.`
 
 tip "Clickable radar display"
 	`Activate the ability to send commands to your escorts using the in-system radar mini-map.`
