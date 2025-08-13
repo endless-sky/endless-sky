@@ -54,8 +54,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 {
 	shared_ptr<Ship> targetShip = parent.GetTargetShip();
 	targetIsShip = static_cast<bool>(targetShip);
-	target = targetIsShip ? reinterpret_pointer_cast<Body>(targetShip)
-		: reinterpret_pointer_cast<Body>(parent.GetTargetAsteroid());
+	target = targetIsShip ? static_pointer_cast<Body>(targetShip)
+		: static_pointer_cast<Body>(parent.GetTargetAsteroid());
 
 	government = parent.GetGovernment();
 	hitsRemaining = weapon->PenetrationCount();
@@ -174,7 +174,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 
 		if(targetIsShip)
 		{
-			auto targetShip = reinterpret_cast<const Ship *>(currentTarget);
+			auto targetShip = static_cast<const Ship *>(currentTarget);
 			if(!targetShip->IsTargetable() || targetShip->GetGovernment() != targetGovernment
 				|| (!targetDisabled && !FighterHitHelper::IsValidTarget(targetShip)))
 			{
@@ -191,7 +191,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	// required for the checks.
 	if(targetIsShip && currentTarget && homing && !Random::Int(30))
 	{
-		auto &targetShip = *reinterpret_cast<const Ship *>(currentTarget);
+		auto &targetShip = *static_cast<const Ship *>(currentTarget);
 		CheckLock(targetShip);
 		CheckConfused(targetShip);
 	}
