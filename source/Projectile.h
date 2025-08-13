@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <vector>
 
+class Entity;
 class Government;
 class Ship;
 class Visual;
@@ -85,14 +86,14 @@ public:
 	// Get information on how this projectile impacted a ship.
 	ImpactInfo GetInfo(double intersection) const;
 
-	// Find out which body or government this projectile is targeting. Note:
+	// Find out which entity or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it
 	// for comparing.
-	const Body *Target() const;
+	const Entity *Target() const;
 	const Government *TargetGovernment() const;
 	// This function is much more costly, so use it only if you need to get a
-	// non-const shared pointer to the target body.
-	std::shared_ptr<Body> TargetPtr() const;
+	// non-const shared pointer to the target entity.
+	std::shared_ptr<Entity> TargetPtr() const;
 	// Clear the targeting information on this projectile.
 	void BreakTarget();
 
@@ -111,16 +112,16 @@ public:
 
 
 private:
-	void CheckLock(const Ship &target);
-	void CheckConfused(const Ship &target);
+	void CheckLock(const Entity *target, bool targetIsShip);
+	void CheckConfused(const Entity &target);
 
 
 private:
 	const Weapon *weapon = nullptr;
 
 	bool targetIsShip;
-	std::weak_ptr<Body> target;
-	const Body *cachedTarget = nullptr;
+	std::weak_ptr<Entity> target;
+	const Entity *cachedTarget = nullptr;
 	bool targetDisabled = false;
 	const Government *targetGovernment = nullptr;
 

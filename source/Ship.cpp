@@ -64,8 +64,6 @@ namespace {
 	const vector<string> ENGINE_SIDE = {"under", "over"};
 	const vector<string> STEERING_FACING = {"none", "left", "right"};
 
-	const double MAXIMUM_TEMPERATURE = 100.;
-
 	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
 	// The scan speed uses a gaussian drop-off with the reported scan radius as the standard deviation.
@@ -3540,13 +3538,6 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 			? perBox : count, notForGov));
 		count -= perBox;
 	}
-}
-
-
-
-const Outfit &Ship::Attributes() const
-{
-	return attributes;
 }
 
 

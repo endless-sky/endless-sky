@@ -374,7 +374,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 		}
 		else if(key == "minable" && hasValue)
-			minables.Get(node.Token(1))->Load(node);
+			minables.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "mission" && hasValue)
 			missions.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "outfit" && hasValue)

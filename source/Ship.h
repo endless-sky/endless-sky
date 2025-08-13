@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Body.h"
+#include "Entity.h"
 
 #include "Angle.h"
 #include "Armament.h"
@@ -64,7 +64,7 @@ class Visual;
 // in exactly the same state. The same class is used for the player's ship as
 // for all other ships, so their capabilities are exactly the same  within the
 // limits of what the AI knows how to command them to do.
-class Ship : public Body, public std::enable_shared_from_this<Ship> {
+class Ship : public Entity, public std::enable_shared_from_this<Ship> {
 public:
 	class Bay {
 	public:
@@ -474,8 +474,6 @@ public:
 	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
 	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
 
-	// Get the current attributes of this ship.
-	const Outfit &Attributes() const;
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
 	// Get the list of all outfits installed in this ship.
@@ -663,7 +661,6 @@ private:
 	ShipAICache aiCache;
 
 	// Installed outfits, cargo, etc.:
-	Outfit attributes;
 	Outfit baseAttributes;
 	bool addAttributes = false;
 	const Outfit *explosionWeapon = nullptr;

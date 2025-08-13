@@ -16,7 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 
 #include "Effect.h"
+#include "Entity.h"
 #include "FighterHitHelper.h"
+#include "Minable.h"
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
@@ -54,8 +56,8 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 {
 	shared_ptr<Ship> targetShip = parent.GetTargetShip();
 	targetIsShip = static_cast<bool>(targetShip);
-	target = targetIsShip ? static_pointer_cast<Body>(targetShip)
-		: static_pointer_cast<Body>(parent.GetTargetAsteroid());
+	target = targetIsShip ? static_pointer_cast<Entity>(targetShip)
+		: static_pointer_cast<Entity>(parent.GetTargetAsteroid());
 
 	government = parent.GetGovernment();
 	hitsRemaining = weapon->PenetrationCount();
@@ -165,7 +167,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	// If the target has left the system, stop following it. Also stop if the
 	// target has been captured by a different government.
 	// Also stop targeting fighters that have become disabled after this projectile was fired.
-	const Body *currentTarget = cachedTarget;
+	const Entity *currentTarget = cachedTarget;
 	if(currentTarget)
 	{
 		currentTarget = TargetPtr().get();
@@ -187,13 +189,10 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	double turn = weapon->Turn();
 	double accel = weapon->Acceleration();
 	bool homing = weapon->Homing();
-	// TODO: Enable this for minable targets once they get the attributes
-	// required for the checks.
-	if(targetIsShip && currentTarget && homing && !Random::Int(30))
+	if(currentTarget && homing && !Random::Int(30))
 	{
-		auto &targetShip = *static_cast<const Ship *>(currentTarget);
-		CheckLock(targetShip);
-		CheckConfused(targetShip);
+		CheckLock(currentTarget, targetIsShip);
+		CheckConfused(*currentTarget);
 	}
 	// Update the confusion direction after the projectile turns about
 	// 180 degrees away from its target.
@@ -368,8 +367,8 @@ Projectile::ImpactInfo Projectile::GetInfo(double intersection) const
 
 
 
-// Find out which body this projectile is targeting.
-const Body *Projectile::Target() const
+// Find out which entity this projectile is targeting.
+const Entity *Projectile::Target() const
 {
 	return cachedTarget;
 }
@@ -383,7 +382,7 @@ const Government *Projectile::TargetGovernment() const
 
 
 
-shared_ptr<Body> Projectile::TargetPtr() const
+shared_ptr<Entity> Projectile::TargetPtr() const
 {
 	return target.lock();
 }
@@ -405,7 +404,7 @@ void Projectile::BreakTarget()
 // and their brightness could could cause IR missiles to lose their locks more
 // often, and dense asteroid fields could do the same for radar and optically
 // guided missiles.
-void Projectile::CheckLock(const Ship &target)
+void Projectile::CheckLock(const Entity *target, bool targetIsShip)
 {
 	static const double RELOCK_RATE = .3;
 	double base = hasLock ? 1. : RELOCK_RATE;
@@ -426,15 +425,17 @@ void Projectile::CheckLock(const Ship &target)
 	// but can be affected by jamming.
 	if(weapon->OpticalTracking())
 	{
-		double opticalJamming = target.IsDisabled() ? 0. : target.Attributes().Get("optical jamming");
+		double opticalJamming = 0.;
+		if(!targetIsShip || !static_cast<const Ship *>(target)->IsDisabled())
+			opticalJamming = target->Attributes().Get("optical jamming");
 		if(opticalJamming)
 		{
-			double distance = position.Distance(target.Position());
+			double distance = position.Distance(target->Position());
 			double jammingRange = 500. + sqrt(opticalJamming) * 500.;
 			double rangeFraction = min(1., distance / jammingRange);
 			opticalJamming = (1. - rangeFraction) * opticalJamming;
 		}
-		double targetMass = target.Mass();
+		double targetMass = targetIsShip ? static_cast<const Ship *>(target)->Mass() : target->Attributes().Mass();
 		double weight = targetMass * targetMass * targetMass / 1e9;
 		double lockChance = weapon->OpticalTracking() * weight / ((1. + weight) * (1. + opticalJamming));
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
@@ -447,12 +448,14 @@ void Projectile::CheckLock(const Ship &target)
 	// wavelengths of IR radiation are easier to distinguish at closer distances.
 	if(weapon->InfraredTracking())
 	{
-		double distance = position.Distance(target.Position());
+		double distance = position.Distance(target->Position());
 		double shortRange = weapon->Range() * 0.33;
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double lockChance = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
+		double lockChance = weapon->InfraredTracking() * min(1.,
+			(targetIsShip ? static_cast<const Ship *>(target)->Heat()
+			: static_cast<const Minable *>(target)->Heat()) * multiplier);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
@@ -464,10 +467,12 @@ void Projectile::CheckLock(const Ship &target)
 	// time. Jamming of 10 will increase that to about 60%.
 	if(weapon->RadarTracking())
 	{
-		double radarJamming = target.IsDisabled() ? 0. : target.Attributes().Get("radar jamming");
+		double radarJamming = 0.;
+		if(!targetIsShip || !static_cast<const Ship *>(target)->IsDisabled())
+			radarJamming = target->Attributes().Get("radar jamming");
 		if(radarJamming)
 		{
-			double distance = position.Distance(target.Position());
+			double distance = position.Distance(target->Position());
 			double jammingRange = 500. + sqrt(radarJamming) * 500.;
 			double rangeFraction = min(1., distance / jammingRange);
 			radarJamming = (1. - rangeFraction) * radarJamming;
@@ -484,7 +489,7 @@ void Projectile::CheckLock(const Ship &target)
 // and turn in a random direction ("go haywire"). Each tracking method has
 // a different haywire condition. Weapons with multiple tracking methods
 // only go haywire if all of the tracking methods have gotten confused.
-void Projectile::CheckConfused(const Ship &target)
+void Projectile::CheckConfused(const Entity &target)
 {
 	if(hasLock)
 	{
