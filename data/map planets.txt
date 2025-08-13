@@ -2470,7 +2470,7 @@ planet Heartvalley
 planet "Heavenly Halls"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa31
-	description `This solitary gas giant was given its name due to a phenomenon shared by no other planet in Coalition space. The icy rings surrounding it grow denser the closer to the planetary surface; just a few kilometers into the sea of clouds, the small frozen specks are replaced by sizable, frigid asteroids. Curiously, most of these larger asteroids have tunnels cutting through their interiors, inspiring some of the bolder Saryd explorers to try and colonize the "frozen palaces."`
+	description `This solitary gas giant was given its name due to a phenomenon shared by no other planet in Coalition space. The icy rings surrounding it grow denser the closer they are to the planetary surface; just a few kilometers into the sea of clouds, the small frozen specks are replaced by sizable, frigid asteroids. Curiously, most of these larger asteroids have tunnels cutting through their interiors, inspiring some of the bolder Saryd explorers to try and colonize these "frozen palaces."`
 	government Uninhabited
 	security 0
 
@@ -5509,7 +5509,7 @@ planet "Spera Anatrusk"
 planet "Spiraling Indigo"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa38
-	description `Spiraling Indigo is the heaviest gas giant in Coalition space, exceeded only by stars and ringworlds. While the Kimek certainly didn't shy away from harvesting the plentiful resources to be found here, the planet has had much more of a cultural footprint than an economic one. The perpetual storms surrounding the poles here have inspired many Kimek artists, be they writers, stylists, musicians, painters, or of any other kind. The world's popularity in Kimek media has even prompted some religious institutions to claim its beauty as a divine signal.`
+	description `Spiraling Indigo is the heaviest gas giant in Coalition space, exceeded only by stars and ringworlds. While the Kimek certainly didn't shy away from harvesting the plentiful resources to be found here, the planet has had much more of a cultural footprint than an economic one. The perpetual storms surrounding the poles here have inspired many Kimek artists, be they writers, stylists, musicians, or painters. The world's popularity in Kimek media has even prompted some religious institutions to claim its beauty as a divine signal.`
 	government Uninhabited
 	security 0
 
