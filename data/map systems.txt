@@ -16686,6 +16686,7 @@ system Feraticus
 		sprite planet/gateway-frozen
 		distance 10000
 		period 126491
+		visibility 6000 1500
 
 system Fereti
 	pos -39 600
