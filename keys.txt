@@ -11,6 +11,7 @@
 "Board selected ship" 98
 "Talk to selected ship" 116
 "Scan selected ship" 115
+"Toggle gunsights" 120
 "Initiate hyperspace jump" 106
 "Select next ship" 110
 "Select nearest hostile ship" 114
