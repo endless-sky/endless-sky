@@ -19,13 +19,14 @@ using namespace std;
 
 
 
-void Fade::AddSource(unique_ptr<AudioSupplier> source, size_t fade)
+void Fade::AddSource(unique_ptr<AudioSupplier> source, size_t fadePerFrame)
 {
- 	// Don't allow a slower fade than the default.
-	fade = min(fade, MAX_FADE);
+	// Don't allow a slower fade than the default.
+	if(fadePerFrame < 1)
+		fadePerFrame = 1;
 
-	if(primarySource && fade)
-		fadeProgress.emplace_back(std::move(primarySource), fade);
+	if(primarySource)
+		fadeProgress.emplace_back(std::move(primarySource), MAX_FADE, fadePerFrame);
 	primarySource = std::move(source);
 }
 
@@ -36,7 +37,7 @@ void Fade::Set3x(bool is3x)
 	AudioSupplier::Set3x(is3x);
 	if(primarySource)
 		primarySource->Set3x(is3x);
-	for(const auto &[source, fade] : fadeProgress)
+	for(const auto &[source, fade, fadePerFrame] : fadeProgress)
 		source->Set3x(is3x);
 }
 
@@ -45,7 +46,7 @@ void Fade::Set3x(bool is3x)
 size_t Fade::MaxChunks() const
 {
 	size_t count = primarySource ? primarySource->MaxChunks() : 0;
-	for(const auto &[supplier, fade] : fadeProgress)
+	for(const auto &[supplier, fade, fadePerFrame] : fadeProgress)
 		count = max(supplier->MaxChunks(), count);
 
 	return count;
@@ -56,7 +57,7 @@ size_t Fade::MaxChunks() const
 size_t Fade::AvailableChunks() const
 {
 	size_t count = primarySource ? primarySource->AvailableChunks() : MaxChunks();
-	for(const auto &[supplier, fade] : fadeProgress)
+	for(const auto &[supplier, fade, fadePerFrame] : fadeProgress)
 		count = min(supplier->AvailableChunks(), count);
 
 	return count;
@@ -76,11 +77,12 @@ vector<AudioSupplier::sample_t> Fade::NextDataChunk()
 	else // fade sources
 	{
 		// Generate the faded background.
-		vector<sample_t> faded = fadeProgress[0].first->NextDataChunk();
+		vector<sample_t> faded = std::get<0>(fadeProgress[0])->NextDataChunk();
 		for(size_t i = 1; i < fadeProgress.size(); ++i)
 		{
-			vector<sample_t> other = fadeProgress[i].first->NextDataChunk();
-			CrossFade(faded, other, fadeProgress[i - 1].second);
+			vector<sample_t> other = std::get<0>(fadeProgress[i])->NextDataChunk();
+			auto& [source, fade, fadePerFrame] = fadeProgress[i - 1];
+			CrossFade(faded, other, fade, fadePerFrame);
 			faded = std::move(other);
 		}
 
@@ -91,24 +93,28 @@ vector<AudioSupplier::sample_t> Fade::NextDataChunk()
 			result.resize(OUTPUT_CHUNK); // silence
 
 		// The final blend.
-		CrossFade(faded, result, fadeProgress.back().second);
+		auto& [source, fade, fadePerFrame] = fadeProgress.back();
+		CrossFade(faded, result, fade, fadePerFrame);
 	}
 
 	// Clean up the finished sources.
 	if(primarySource && !primarySource->MaxChunks())
 		primarySource.reset();
-	erase_if(fadeProgress, [](const auto &pair){ return !pair.second || !pair.first->MaxChunks(); });
+	erase_if(fadeProgress, [](const auto &faded){ return !std::get<1>(faded) || !std::get<0>(faded)->MaxChunks(); });
 
 	return result;
 }
 
 
 
-void Fade::CrossFade(const vector<sample_t> &fadeOut, vector<sample_t> &fadeIn, size_t &fade)
+void Fade::CrossFade(const vector<sample_t> &fadeOut, vector<sample_t> &fadeIn, size_t &fade, size_t fadePerFrame)
 {
 	for(size_t i = 0; i < fadeIn.size() && fade; ++i)
 	{
 		fadeIn[i] = (fadeOut[i] * fade + (fadeIn[i] * (MAX_FADE - fade))) / MAX_FADE;
-		--fade;
+		if(fade > fadePerFrame)
+			fade -= fadePerFrame;
+		else
+			fade = 0;
 	}
 }

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../AudioSupplier.h"
 
 #include <memory>
+#include <tuple>
 #include <vector>
 
 
@@ -30,7 +31,8 @@ class Fade : public AudioSupplier {
 public:
 	Fade() = default;
 
-	void AddSource(std::unique_ptr<AudioSupplier> source, size_t fade = MAX_FADE);
+	// Adds a new primary source, and fades out the previous primary source at the specified rate.
+	void AddSource(std::unique_ptr<AudioSupplier> source, size_t fadePerFrame = 1);
 
 	void Set3x(bool is3x) override;
 
@@ -42,15 +44,19 @@ public:
 
 private:
 	/// Cross-fades two sources. The faded result is stored in the fadeIn input.
-	static void CrossFade(const std::vector<sample_t> &fadeOut, std::vector<sample_t> &fadeIn, size_t &fade);
+	static void CrossFade(const std::vector<sample_t> &fadeOut, std::vector<sample_t> &fadeIn, size_t &fade,
+		size_t fadePerFrame);
+
+
+public:
+	/// The fade duration. Smaller values mean faster fade.
+	/// The total number of faded samples is MAX_FADE / fadePerFrame.
+	static constexpr size_t MAX_FADE = 65536;
 
 
 private:
-	/// The number of samples to fade over; smaller values mean faster fade.
-	static constexpr size_t MAX_FADE = 65536;
-
-	/// The fading sources, with their fade values.
-	std::vector<std::pair<std::unique_ptr<AudioSupplier>, size_t>> fadeProgress;
+	/// The fading sources, with their current fade values, and how much they fade per frame.
+	std::vector<std::tuple<std::unique_ptr<AudioSupplier>, size_t, size_t>> fadeProgress;
 	/// The primary source; this one is not faded out by itself, but can be cross-faded with the other sources.
 	std::unique_ptr<AudioSupplier> primarySource;
 };

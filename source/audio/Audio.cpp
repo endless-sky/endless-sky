@@ -58,7 +58,6 @@ namespace {
 		// The source should be along the vector (angle.X(), angle.Y(), -1).
 		// The length of the vector should be sqrt(1 / weight).
 		double scale = sqrt(1. / (entry.weight * (angle.LengthSquared() + 1.)));
-
 		player.Move(angle.X() * scale, angle.Y() * scale, -scale);
 	}
 
@@ -378,7 +377,7 @@ void Audio::Step(bool isFastForward)
 		}
 		else
 		{
-			reinterpret_cast<Fade *>(player->Supplier())->AddSource({}, 7350); // 20 frames of fade
+			reinterpret_cast<Fade *>(player->Supplier())->AddSource({}, 3); // fast fade
 			it = loopingPlayers.erase(it);
 		}
 	}
