@@ -53,7 +53,7 @@ public:
 
 	/// Puts the next queued audio chunk into the buffer, removing it from the supplier's queue.
 	/// If there is no queued audio, the buffer is filled with silence.
-	virtual void NextChunk(ALuint buffer);
+	void NextChunk(ALuint buffer, bool spatial);
 
 
 protected:
@@ -64,6 +64,7 @@ protected:
 protected:
 	static constexpr int SAMPLE_RATE = 44100;
 	static constexpr ALenum FORMAT = AL_FORMAT_STEREO16;
+	static constexpr ALenum FORMAT_SPATIAL = AL_FORMAT_MONO16;
 	/// How many samples to put in each output chunk. Because the output is in
 	/// stereo, the duration of the sample is half this amount, divided by the sample rate.
 	/// This chunk size provides 5 in-game frames' worth of audio.

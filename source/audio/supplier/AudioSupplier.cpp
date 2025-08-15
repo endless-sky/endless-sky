@@ -48,12 +48,21 @@ void AudioSupplier::Set3x(bool is3x)
 
 
 
-void AudioSupplier::NextChunk(ALuint buffer)
+void AudioSupplier::NextChunk(ALuint buffer, bool spatial)
 {
 	if(AvailableChunks())
 	{
 		vector<sample_t> samples = NextDataChunk();
-		alBufferData(buffer, FORMAT, samples.data(), sizeof(sample_t) * OUTPUT_CHUNK, SAMPLE_RATE);
+		// Spatial audio is mono, but we get stereo data by default.
+		// (This difference is due to a limitation in OpenAL.)
+		if(spatial)
+		{
+			for(size_t i = 0; i < samples.size() / 2; ++i)
+				samples[i] = (static_cast<int>(samples[2 * i]) + static_cast<int>(samples[2 * i + 1])) / 2;
+			samples.resize(samples.size() / 2);
+		}
+		alBufferData(buffer, spatial ? FORMAT_SPATIAL : FORMAT, samples.data(),
+			sizeof(sample_t) * samples.size(), SAMPLE_RATE);
 	}
 	else
 		SetSilence(buffer, OUTPUT_CHUNK);

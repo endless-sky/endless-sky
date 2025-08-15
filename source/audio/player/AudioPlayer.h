@@ -31,7 +31,7 @@ class AudioPlayer {
 public:
 	/// Creates a new audio player with the given audio.
 	/// Please note that the audio isn't loaded from the supplier until the Play() call.
-	AudioPlayer(SoundCategory category, std::unique_ptr<AudioSupplier> audioSupplier);
+	AudioPlayer(SoundCategory category, std::unique_ptr<AudioSupplier> audioSupplier, bool spatial = true);
 	virtual ~AudioPlayer();
 
 	/// Updates the queued music of the player. This step may also mark the player as finished.
@@ -80,6 +80,7 @@ protected:
 	static constexpr size_t MAX_INITIAL_BUFFERS = 3;
 
 	SoundCategory category;
+	bool spatial;
 
 	/// The configured source, or 0.
 	ALuint alSource = 0;

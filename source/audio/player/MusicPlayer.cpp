@@ -20,7 +20,7 @@ using namespace std;
 
 
 MusicPlayer::MusicPlayer(unique_ptr<AudioSupplier> audioSupplier)
-	: AudioPlayer(SoundCategory::MUSIC, std::move(audioSupplier))
+	: AudioPlayer(SoundCategory::MUSIC, std::move(audioSupplier), false)
 {
 }
 

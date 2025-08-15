@@ -30,8 +30,8 @@ namespace
 
 
 
-AudioPlayer::AudioPlayer(SoundCategory category, unique_ptr<AudioSupplier> supplier)
-	: category(category), audioSupplier(std::move(supplier))
+AudioPlayer::AudioPlayer(SoundCategory category, unique_ptr<AudioSupplier> supplier, bool spatial)
+	: category(category), spatial(spatial), audioSupplier(std::move(supplier))
 {
 }
 
@@ -89,7 +89,7 @@ void AudioPlayer::Update()
 		alSourceUnqueueBuffers(alSource, buffers.size(), buffers.data());
 
 		for(ALuint &buffer : buffers)
-			audioSupplier->NextChunk(buffer);
+			audioSupplier->NextChunk(buffer, spatial);
 		alSourceQueueBuffers(alSource, buffers.size(), buffers.data());
 	}
 }
@@ -178,7 +178,7 @@ void AudioPlayer::Init()
 	for(int i = 0; i < bufferCount; ++i)
 	{
 		ALuint buffer = AudioSupplier::CreateBuffer();
-		audioSupplier->NextChunk(buffer);
+		audioSupplier->NextChunk(buffer, spatial);
 		buffers.emplace_back(buffer);
 	}
 
