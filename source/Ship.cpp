@@ -4651,8 +4651,9 @@ bool Ship::DoLandingLogic()
 				for(const auto &it : escorts)
 				{
 					const auto escort = it.lock();
-					// Check if escorts are also landed, or destroyed.
-					if(!escort || escort->IsDestroyed() || escort->zoom == 0.f)
+					// Check if escorts are also landed, destroyed, disabled, or being carried.
+					if(!escort || escort->IsDestroyed() || escort->IsDisabled() || escort->zoom == 0.f
+							|| !escort->GetSystem())
 						continue;
 					escortsLanded = false;
 					break;
