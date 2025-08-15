@@ -137,10 +137,10 @@ protected:
 	static constexpr int OUTFIT_SIZE = 183;
 	static constexpr int HOVER_TIME = 60;
 	// Button size/placement info:
-	static constexpr double BUTTON_ROW_START_PAD = 4.;
-	static constexpr double BUTTON_ROW_PAD = 6.;
-	static constexpr double BUTTON_COL_PAD = 6.;
-	static constexpr double BUTTON_WIDTH = 75.;
+	static constexpr double BUTTON_ROW_START_PAD = 10.;
+	static constexpr double BUTTON_ROW_PAD = 8.;
+	static constexpr double BUTTON_COL_PAD = 8.;
+	static constexpr double BUTTON_WIDTH = 73.;
 
 	PlayerInfo &player;
 	// Remember the current day, for calculating depreciation.

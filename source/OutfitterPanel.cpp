@@ -1244,8 +1244,8 @@ int OutfitterPanel::FindItem(const string &text) const
 
 double OutfitterPanel::ButtonPanelHeight() const
 {
-	// The 60 is for padding the credit and cargo space information lines.
-	return 60. + BUTTON_HEIGHT * 3 + BUTTON_ROW_PAD * 2;
+	// The 70 = (3 x 10 (pad) + 20 x 2 (text)) for the credit and cargo space information lines.
+	return 70. + BUTTON_HEIGHT * 3 + BUTTON_ROW_PAD * 2;
 }
 
 
@@ -1311,7 +1311,7 @@ void OutfitterPanel::DrawButtons()
 	//  [ Sell ] [ Uninstall ] [ Storage ]
 	//                         [  Leave  ]
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - 2.5 * rowOffsetY - BUTTON_ROW_START_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 2 * rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
 	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
 	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
@@ -1333,7 +1333,7 @@ void OutfitterPanel::DrawButtons()
 	// Draw the row for credits display.
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - ButtonPanelHeight() + 5);
+		Screen::Bottom() - ButtonPanelHeight() + 10);
 	font.Draw("You have:", creditsPoint, dim);
 	const string &credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
@@ -1341,7 +1341,7 @@ void OutfitterPanel::DrawButtons()
 	// Draw the row for Fleet Cargo Space free.
 	const Point cargoPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - ButtonPanelHeight() + 25);
+		Screen::Bottom() - ButtonPanelHeight() + 30);
 	font.Draw("Cargo Free:", cargoPoint, dim);
 	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
 	font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, cargoPoint, bright);
