@@ -817,23 +817,44 @@ void MapDetailPanel::DrawInfo()
 	// Adapt the coordinates for the text (the sprite is drawn from a center coordinate).
 	uiPoint.X() -= (tradeSprite->Width() / 2. - textMargin);
 	uiPoint.Y() -= (tradeSprite->Height() / 2. - textMargin);
+
+	// Don't "compare" prices if the current system is uninhabited and thus has no prices to compare to.
+	bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
+	int value = 0;
+	double lowCompare = 0;
+	double highCompare = 0;
+
+	// When comparing prices, determine min/max deltas in order to represent commodity delta prices for displayed
+	// commodities as a gradient.
+	if(!noCompare && canView && selectedSystem->IsInhabited(player.Flagship()))
+	{
+		for(const Trade::Commodity &commodity : GameData::Commodities())
+		{
+			value = selectedSystem->Trade(commodity.name);
+			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
+			if(value && localValue)
+			{
+				value -= localValue;
+				lowCompare = value < lowCompare ? value : lowCompare;
+				highCompare = value > highCompare ? value : highCompare;
+			}
+		}
+	}
+
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
 			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
-		const Color &color = isSelected ? medium : dim;
+		Color color = isSelected ? medium : dim;
 
 		font.Draw(commodity.name, uiPoint, color);
 
 		string price;
 		if(canView && selectedSystem->IsInhabited(player.Flagship()))
 		{
-			int value = selectedSystem->Trade(commodity.name);
+			value = selectedSystem->Trade(commodity.name);
 			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
-			// Don't "compare" prices if the current system is uninhabited and
-			// thus has no prices to compare to.
-			bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
 			if(!value)
 				price = "----";
 			else if(noCompare || player.GetSystem() == selectedSystem || !localValue)
@@ -853,11 +874,44 @@ void MapDetailPanel::DrawInfo()
 		else
 			price = (canView ? "n/a" : "?");
 
-		const auto alignRight = Layout(140, Alignment::RIGHT, Truncate::BACK);
+		const auto alignRight = Layout(130, Alignment::RIGHT, Truncate::BACK);
 		font.Draw({price, alignRight}, uiPoint, color);
 
 		if(isSelected)
-			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
+			// const Point &center, const Point &angle, float width, float height, float offset, const Color &color
+				PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
+
+		// Draw colored icons, when values are displayed.
+		if(canView && selectedSystem->IsInhabited(player.Flagship()))
+		{
+			if(!noCompare && player.GetSystem() != selectedSystem)
+			{
+				// Determine the relative negative-ness or positive-ness of the value compared to low/high.
+				// Note: if value is negative, lowCompare will be negative and if value is positive, highCompare will be
+				//       positive.
+				double v = 0;
+				if(value < 0)
+					v = static_cast<double>(value) / abs(lowCompare);
+				else if(value > 0)
+					v = static_cast<double>(value) / highCompare;
+				color = MapColor(v);
+				// Draw up/down/equals arrows based on price delta (value).
+				PointerShader::Draw(uiPoint + Point(143, 7. + (-7 * v)), Point(0., 1), 20.f,
+					static_cast<float>(-14. * v), 0.f, color);
+			}
+			else
+			{
+				double halfCompare = 1;
+				if(canView && selectedSystem->IsInhabited(player.Flagship()))
+				{
+					halfCompare = (0.5 * (commodity.high - commodity.low));
+					// Avoid divide by zero, though this really shouldn't be a problem.
+					halfCompare = (halfCompare < 1) ? 1 : halfCompare;
+				}
+				RingShader::Draw(uiPoint + Point(143, 8), OUTER, INNER,
+					MapColor((static_cast<double>(value) - (commodity.low + halfCompare)) / halfCompare));
+			}
+		}
 
 		uiPoint.Y() += 20.;
 	}
