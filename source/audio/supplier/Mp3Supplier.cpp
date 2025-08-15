@@ -133,7 +133,7 @@ void Mp3Supplier::Decode()
 		else if(data->eof())
 		{
 			done = true;
-			// Make sure there are full chunks of data available
+			// Make sure there are full chunks of data available.
 			buffer.resize(OUTPUT_CHUNK * ceil(static_cast<double>(buffer.size()) / static_cast<double>(OUTPUT_CHUNK)));
 		}
 
@@ -162,8 +162,8 @@ void Mp3Supplier::Decode()
 			// If the source is mono, read both output channels from the left input.
 			// Otherwise, read two separate input channels.
 			mad_fixed_t *channels[2] = {
-					synth.pcm.samples[0],
-					synth.pcm.samples[synth.pcm.channels > 1]
+				synth.pcm.samples[0],
+				synth.pcm.samples[synth.pcm.channels > 1]
 			};
 
 			// For this part, we need access to the output buffer.

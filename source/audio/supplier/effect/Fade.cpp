@@ -21,7 +21,8 @@ using namespace std;
 
 void Fade::AddSource(unique_ptr<AudioSupplier> source, size_t fade)
 {
-	fade = min(fade, MAX_FADE); // don't allow a slower fade than the default
+ 	// Don't allow a slower fade than the default.
+	fade = min(fade, MAX_FADE);
 
 	if(primarySource && fade)
 		fadeProgress.emplace_back(std::move(primarySource), fade);
@@ -66,15 +67,17 @@ size_t Fade::AvailableChunks() const
 vector<AudioSupplier::sample_t> Fade::NextDataChunk()
 {
 	vector<sample_t> result;
-	if(!primarySource && fadeProgress.empty()) // no input sources -> output silence
+	if(!primarySource && fadeProgress.empty())
+		// With no input sources, output silence.
 		result = vector<sample_t>(OUTPUT_CHUNK);
-	else if(primarySource && fadeProgress.empty()) // only primary input, nothing to blend with -> output primary
+	else if(primarySource && fadeProgress.empty())
+		// With only primary input (nothing to blend with), output primary.
 		result = primarySource->NextDataChunk();
 	else // fade sources
 	{
 		// Generate the faded background.
 		vector<sample_t> faded = fadeProgress[0].first->NextDataChunk();
-		for(size_t i = 1; i < fadeProgress.size(); i++)
+		for(size_t i = 1; i < fadeProgress.size(); ++i)
 		{
 			vector<sample_t> other = fadeProgress[i].first->NextDataChunk();
 			CrossFade(faded, other, fadeProgress[i - 1].second);
