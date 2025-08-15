@@ -74,7 +74,7 @@ protected:
 	/// 3x status can only really change when the file is played from the beginning.
 	/// This caches the status it should have after the next restart.
 	bool nextPlaybackIs3x = false;
-	/// A looping player will stream data forever
+	/// A looping player will stream data forever.
 	bool isLooping = false;
 
 	/// The index of the first sample to be processed

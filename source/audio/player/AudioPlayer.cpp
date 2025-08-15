@@ -179,7 +179,7 @@ void AudioPlayer::Init()
 		buffers.emplace_back(buffer);
 	}
 
-	// Queue the actual audio buffers
+	// Queue the actual audio buffers.
 	alSourceQueueBuffers(alSource, buffers.size(), buffers.data());
 }
 
@@ -211,13 +211,10 @@ bool AudioPlayer::ClaimSource()
 		ConfigureSource();
 		return true;
 	}
-	else
-	{
-		alGenSources(1, &alSource);
-		ConfigureSource();
+	alGenSources(1, &alSource);
+	ConfigureSource();
 
-		return alSource;
-	}
+	return alSource;
 }
 
 

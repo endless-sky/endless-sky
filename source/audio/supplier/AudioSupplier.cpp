@@ -28,7 +28,7 @@ AudioSupplier::AudioSupplier(bool is3x, bool isLooping)
 
 void AudioSupplier::Set3x(bool is3x)
 {
-	this->nextPlaybackIs3x = is3x;
+	nextPlaybackIs3x = is3x;
 }
 
 

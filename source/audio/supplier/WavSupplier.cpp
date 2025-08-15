@@ -65,7 +65,7 @@ vector<AudioSupplier::sample_t> WavSupplier::NextDataChunk()
 			is3x = nextPlaybackIs3x;
 			wasStarted = true;
 		}
-		const vector<sample_t>& input = is3x ? sound.Buffer3x() : sound.Buffer();
+		const vector<sample_t> &input = is3x ? sound.Buffer3x() : sound.Buffer();
 		size_t readChunk = min(input.size() - currentSample, samples.size() - currentSampleCount);
 		std::copy_n(input.begin() + currentSample, readChunk, samples.begin() + currentSampleCount);
 		currentSampleCount += readChunk;
