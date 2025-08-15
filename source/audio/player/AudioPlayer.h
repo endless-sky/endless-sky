@@ -19,10 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../SoundCategory.h"
 
 #include <AL/al.h>
-#include <AL/alc.h>
 
 #include <memory>
-#include <vector>
 
 
 
@@ -92,9 +90,4 @@ protected:
 	bool done = false;
 	/// Whether the player should stop queueing up more buffers (and terminate, once they all run out).
 	bool shouldStop = false;
-
-
-private:
-	/// The currently unclaimed OpenAL sources for reuse.
-	static std::vector<ALuint> availableSources;
 };

@@ -28,6 +28,11 @@ class AudioSupplier {
 public:
 	using sample_t = int16_t;
 
+	static ALuint CreateBuffer();
+	static void DestroyBuffer(ALuint buffer);
+
+
+public:
 	explicit AudioSupplier(bool is3x = false, bool isLooping = false);
 	virtual ~AudioSupplier() = default;
 
@@ -50,13 +55,10 @@ public:
 	/// If there is no queued audio, the buffer is filled with silence.
 	virtual void NextChunk(ALuint buffer);
 
-	static ALuint CreateBuffer();
-	static void DestroyBuffer(ALuint buffer);
-
 
 protected:
-	/// Sets the buffer to silence for the given number of frames.
-	static void SetSilence(ALuint buffer, size_t frames);
+	/// Sets the buffer to silence for the given number of samples.
+	static void SetSilence(ALuint buffer, size_t samples);
 
 
 protected:

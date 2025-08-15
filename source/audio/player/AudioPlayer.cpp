@@ -18,12 +18,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../../Random.h"
 
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
-
-
-vector<ALuint> AudioPlayer::availableSources{};
+namespace
+{
+	/// The currently unclaimed OpenAL sources for reuse.
+	std::vector<ALuint> availableSources;
+}
 
 
 

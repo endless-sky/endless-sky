@@ -19,6 +19,21 @@ using namespace std;
 
 
 
+ALuint AudioSupplier::CreateBuffer()
+{
+	ALuint buffer;
+	alGenBuffers(1, &buffer);
+	return buffer;
+}
+
+
+
+void AudioSupplier::DestroyBuffer(ALuint buffer)
+{
+	alDeleteBuffers(1, &buffer);
+}
+
+
 AudioSupplier::AudioSupplier(bool is3x, bool isLooping)
 	: is3x(is3x), nextPlaybackIs3x(is3x), isLooping(isLooping)
 {
@@ -46,24 +61,8 @@ void AudioSupplier::NextChunk(ALuint buffer)
 
 
 
-ALuint AudioSupplier::CreateBuffer()
+void AudioSupplier::SetSilence(ALuint buffer, size_t samples)
 {
-	ALuint buffer;
-	alGenBuffers(1, &buffer);
-	return buffer;
-}
-
-
-
-void AudioSupplier::DestroyBuffer(ALuint buffer)
-{
-	alDeleteBuffers(1, &buffer);
-}
-
-
-
-void AudioSupplier::SetSilence(ALuint buffer, size_t frames)
-{
-	vector<sample_t> data(frames);
-	alBufferData(buffer, FORMAT, data.data(), sizeof(sample_t) * frames, SAMPLE_RATE);
+	vector<sample_t> data(samples);
+	alBufferData(buffer, FORMAT, data.data(), sizeof(sample_t) * samples, SAMPLE_RATE);
 }
