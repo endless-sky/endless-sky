@@ -1375,7 +1375,7 @@ void OutfitterPanel::DrawButtons()
 	DrawButton(!CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) &&
 		CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage) ? "_Unload" : "_Uninstall",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1), buttonSize),
-		ButtonActive('u'), hoverButton == 'u', 'b');
+		ButtonActive('u'), hoverButton == 'u', 'u');
 	DrawButton("Sto_re", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
 		ButtonActive('r'), hoverButton == 'r', 'r');
 	// Row 3.
