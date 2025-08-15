@@ -64,6 +64,7 @@ size_t Mp3Supplier::AvailableChunks() const
 }
 
 
+
 vector<AudioSupplier::sample_t> Mp3Supplier::NextDataChunk()
 {
 	if(AvailableChunks())
