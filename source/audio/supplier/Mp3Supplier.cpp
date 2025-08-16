@@ -119,7 +119,7 @@ void Mp3Supplier::Decode()
 		if(stream.next_frame && stream.next_frame < stream.bufend)
 			remainder = stream.bufend - stream.next_frame;
 		if(remainder)
-			memcpy(input.data(), stream.bufend - remainder, remainder);
+			memcpy(input.data(), stream.next_frame, remainder);
 
 		// Now, read a chunk of data from the file.
 		data->read(reinterpret_cast<char *>(input.data() + remainder), INPUT_CHUNK - remainder);
