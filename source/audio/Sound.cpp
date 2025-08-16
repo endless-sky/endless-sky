@@ -16,8 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sound.h"
 
 #include "../Files.h"
-
-#include <AL/al.h>
+#include "supplier/WavSupplier.h"
 
 #include <cstdint>
 
@@ -42,7 +41,7 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 
 	isLooped = path.stem().string().ends_with('~');
 	bool isFast = isLooped ? path.stem().string().ends_with("@3x~") : path.stem().string().ends_with("@3x");
-	unsigned &buf = isFast ? buffer3x : buffer;
+	vector<AudioSupplier::sample_t> &buf = isFast ? buffer3x : buffer;
 
 	shared_ptr<iostream> in = Files::Open(path);
 	if(!in)
@@ -52,13 +51,17 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 	if(!bytes)
 		return false;
 
+	// Read 16-bit mono from the file.
 	vector<char> data(bytes);
 	in->read(data.data(), bytes);
 
-	if(!buf)
-		alGenBuffers(1, &buf);
-	alBufferData(buf, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
-
+	// Store 16-bit stereo buffer.
+	buf.resize(2 * data.size() / sizeof(AudioSupplier::sample_t));
+	for(size_t i = 0; i < buf.size() / 2; ++i)
+	{
+		buf[2 * i] = reinterpret_cast<AudioSupplier::sample_t *>(data.data())[i];
+		buf[2 * i + 1] = reinterpret_cast<AudioSupplier::sample_t *>(data.data())[i];
+	}
 	return true;
 }
 
@@ -71,16 +74,16 @@ const string &Sound::Name() const
 
 
 
-unsigned Sound::Buffer() const
+const vector<AudioSupplier::sample_t> &Sound::Buffer() const
 {
-	return buffer;
+	return buffer.empty() ? buffer3x : buffer;
 }
 
 
 
-unsigned Sound::Buffer3x() const
+const vector<AudioSupplier::sample_t> &Sound::Buffer3x() const
 {
-	return buffer3x;
+	return buffer3x.empty() ? buffer : buffer3x;
 }
 
 
@@ -88,6 +91,13 @@ unsigned Sound::Buffer3x() const
 bool Sound::IsLooping() const
 {
 	return isLooped;
+}
+
+
+
+unique_ptr<AudioSupplier> Sound::CreateSupplier() const
+{
+	return unique_ptr<AudioSupplier>{new WavSupplier{*this, false, IsLooping()}};
 }
 
 
