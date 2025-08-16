@@ -4985,6 +4985,14 @@ planet Sandsnap
 	bribe 0
 	security 0
 
+planet Sandswell
+	attributes uninhabited
+	landscape land/desert15
+	description "The close orbit of this sandy moon to its parent gas giant stirs up strong sandstorms on the surface. Combined with its low surface gravity, this results in the air here being filled with a constant haze of grit. It is unsurprising no attempts at permanent habitation have been made here."
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet "Sandy Two"
 	attributes factory farming folklore kimek urban
 	landscape land/badlands1
