@@ -77,11 +77,6 @@ protected:
 	void DrawButtons() override;
 	TransactionResult HandleShortcuts(char key) override;
 
-	virtual double ButtonPanelHeight() const override;
-	virtual char CheckButton(int x, int y) override;
-	void DrawButtons() override;
-	TransactionResult HandleShortcuts(char key) override;
-
 
 private:
 	static bool ShipCanAdd(const Ship *ship, const Outfit *outfit);
