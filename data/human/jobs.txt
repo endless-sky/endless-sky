@@ -3441,7 +3441,7 @@ mission "Bounty Hunting (Small, Hidden)"
 	description "A light pirate warship named the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
+	deadline 30
 	"apparent payment" 360000
 	to offer
 		"combat rating" > 120
@@ -3469,7 +3469,7 @@ mission "Bounty Hunting (Medium, Hidden)"
 	description "A medium pirate warship named the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
+	deadline 30
 	"apparent payment" 480000
 	to offer
 		"combat rating" > 148
@@ -3497,7 +3497,7 @@ mission "Bounty Hunting (Big, Hidden)"
 	description "A heavy warship known as the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
-	deadline 14
+	deadline 30
 	"apparent payment" 600000
 	to offer
 		"combat rating" > 403
