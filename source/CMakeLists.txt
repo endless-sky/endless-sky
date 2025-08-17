@@ -343,6 +343,12 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	orders/OrderSet.cpp
+	orders/OrderSet.h
+	orders/OrderSingle.cpp
+	orders/OrderSingle.h
+	orders/Orders.cpp
+	orders/Orders.h
 	image/BlendingMode.h
 	image/ImageBuffer.cpp
 	image/ImageBuffer.h
