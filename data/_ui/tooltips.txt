@@ -852,6 +852,36 @@ tip "scan concealment:"
 
 
 
+# Shop Tips:
+tip "outfitter: b"
+	`Buy from outfitter and install on ship.`
+
+tip "outfitter: s"
+	`Sell from cargo, storage, or ship, in that order.`
+
+tip "outfitter: i"
+	`Install on ship from cargo or storage, in that order.`
+
+tip "outfitter: u"
+	`Uninstall or move outfits from ship or cargo to storage, in that order.`
+
+tip "outfitter: c"
+	`Transfer outfit from planetary storage to cargo if possible, else buy from outfitter and place in cargo.`
+
+tip "outfitter: r"
+	`Move outfit from cargo or ship into planetary storage, in that order.`
+
+tip "shipyard: b"
+	`Buy <multiplier> of this ship.`
+
+tip "shipyard: s"
+	`Sell the selected ships and their outfits.`
+
+tip "shipyard: r"
+	`Sell the hulls of the selected ships, but retain the outfits in storage.`
+
+
+
 # Sale labels:
 tip "empty hull:"
 	`Price the ship itself would sell for without any outfits installed.`
