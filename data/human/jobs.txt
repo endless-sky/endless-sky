@@ -3121,9 +3121,8 @@ mission "Bounty Hunting (Very Tiny)"
 		random < 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 2
+		distance 2 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3181,9 +3180,8 @@ mission "Bounty Hunting (Tiny)"
 		random < 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 2
+		distance 2 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3239,9 +3237,8 @@ mission "Bounty Hunting (Very Small)"
 		random < 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 2
+		distance 2 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3297,9 +3294,8 @@ mission "Bounty Hunting (Small)"
 		random < 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 3
+		distance 2 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3352,9 +3348,8 @@ mission "Bounty Hunting (Medium)"
 		random < 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 3
+		distance 2 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3404,9 +3399,8 @@ mission "Bounty Hunting (Big)"
 		random < 50
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 3
+		distance 2 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3624,9 +3618,8 @@ mission "Bounty Hunting (Solo Marauder I)"
 		random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 3
+		distance 2 3
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3657,9 +3650,8 @@ mission "Bounty Hunting (Solo Marauder II)"
 		random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 3
+		distance 2 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3686,9 +3678,8 @@ mission "Bounty Hunting (Solo Marauder III)"
 		random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 3
+		distance 2 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3715,9 +3706,8 @@ mission "Bounty Hunting (Solo Marauder IV)"
 		random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 3
+		distance 2 4
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3747,9 +3737,8 @@ mission "Bounty Hunting (Marauder I)"
 				random < 35
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 4
+		distance 3 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3779,9 +3768,8 @@ mission "Bounty Hunting (Marauder II)"
 				random < 45
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 4
+		distance 3 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3811,9 +3799,8 @@ mission "Bounty Hunting (Marauder III)"
 				random < 45
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 4
+		distance 3 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3843,9 +3830,8 @@ mission "Bounty Hunting (Marauder IV)"
 				random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 4
+		distance 3 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3875,9 +3861,8 @@ mission "Bounty Hunting (Marauder V)"
 				random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 4
+		distance 3 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3908,9 +3893,8 @@ mission "Bounty Hunting (Marauder VI)"
 				random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 4
+		distance 3 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3936,9 +3920,8 @@ mission "Bounty Hunting (Marauder VII)"
 		random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 4
+		distance 3 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3964,9 +3947,8 @@ mission "Bounty Hunting (Marauder VIII)"
 		random < 15
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 4
+		distance 3 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -3992,9 +3974,8 @@ mission "Bounty Hunting (Marauder IX)"
 		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 4
+		distance 3 5
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
@@ -4020,9 +4001,8 @@ mission "Bounty Hunting (Marauder X)"
 		random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		distance 1 5
+		distance 4 6
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
