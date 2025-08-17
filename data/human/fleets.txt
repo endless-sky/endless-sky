@@ -3004,18 +3004,6 @@ fleet "Bounty (Very Small)"
 	cargo 1
 	personality
 		plunders
-	variant 1
-		"Argosy"
-	variant 1
-		"Argosy (Blaster)"
-	variant 1
-		"Argosy (Laser)"
-	variant 1
-		"Argosy (Missile)"
-	variant 1
-		"Argosy (Proton)"
-	variant 1
-		"Argosy (Turret)"
 	variant 3
 		"Clipper"
 	variant 3
@@ -3041,6 +3029,18 @@ fleet "Bounty (Small)"
 	cargo 1
 	personality
 		plunders
+	variant 1
+		"Argosy"
+	variant 1
+		"Argosy (Blaster)"
+	variant 1
+		"Argosy (Laser)"
+	variant 1
+		"Argosy (Missile)"
+	variant 1
+		"Argosy (Proton)"
+	variant 1
+		"Argosy (Turret)"
 	variant 2
 		"Modified Argosy"
 	variant 2
