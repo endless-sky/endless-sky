@@ -2952,8 +2952,6 @@ fleet "Bounty (Very Tiny)"
 	cargo 1
 	personality
 		plunders
-	variant 3
-		"Jackal"
 	variant 2
 		"Scrapper"
 	variant 1
@@ -2991,6 +2989,8 @@ fleet "Bounty (Tiny)"
 		"Hawk (Plasma)"
 	variant 1
 		"Hawk (Speedy)"
+	variant 3
+		"Jackal"
 	variant 1
 		"Wasp (Gatling)"
 	variant 1
