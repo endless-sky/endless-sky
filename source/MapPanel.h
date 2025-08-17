@@ -52,6 +52,7 @@ public:
 	static const int SHOW_DANGER = -7;
 	static const int SHOW_STARS = -8;
 
+	static const unsigned MAX_MISSION_POINTERS_DRAWN;
 	static const float OUTER;
 	static const float INNER;
 	static const float LINK_WIDTH;
@@ -68,6 +69,11 @@ public:
 	};
 
 
+public:
+	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
+		bool drawBack = true, bool bigger = false);
+	static std::pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, int step);
+
 
 public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION,
@@ -81,8 +87,6 @@ public:
 	// on top of everything else. This includes distance info, map mode buttons,
 	// escort/storage tooltips, and the non-routable system warning.
 	void FinishDrawing(const std::string &buttonCondition);
-
-	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 
 	// Map panels allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
@@ -210,8 +214,6 @@ private:
 	void DrawNames();
 	void DrawMissions();
 	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
-	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
-		bool drawBack = true, bool bigger = false);
 
 
 private:

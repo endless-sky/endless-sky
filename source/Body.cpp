@@ -103,6 +103,13 @@ const Swizzle *Body::GetSwizzle() const
 
 
 
+bool Body::InheritsParentSwizzle() const
+{
+	return inheritsParentSwizzle;
+}
+
+
+
 // Get the frame index for the given time step. If no time step is given, this
 // will return the frame from the most recently given step.
 float Body::GetFrame(int step) const
@@ -249,6 +256,8 @@ void Body::LoadSprite(const DataNode &node)
 			rewind = true;
 		else if(key == "center" && child.Size() >= 3)
 			center = Point(child.Value(1), child.Value(2));
+		else if(key == "inherits parent swizzle")
+			inheritsParentSwizzle = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -282,6 +291,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("rewind");
 		if(center)
 			out.Write("center", center.X(), center.Y());
+		if(inheritsParentSwizzle)
+			out.Write("inherits parent swizzle");
 	}
 	out.EndChild();
 }

@@ -947,28 +947,24 @@ mission "Exotic Life: Glaze"
 				`	(Ignore the specks and return to my ship.)`
 					to display
 						credits >= 1
-					goto closing
+					decline
 				`	(Pat my empty pockets and return to my ship as I can't even afford the 1 credit fee.)`
 					to display
 						credits < 1
-					goto closing
+					decline
 			action
 				payment -1
 			branch norareapes
 				random < 20
-			`	The binoculars hum as you focus in on the figures, expecting hikers. But what you see is something else entirely. A small group of shaggy, long-limbed creatures moves carefully through the canyon. Their fur is the same hue as the sandstone, blending almost perfectly with the terrain. They walk on two legs, but with a hunched, cautious gait, pausing often to glance around before continuing.`
-			`	One of them stops near a boulder, kneeling to scoop up a handful of dust and let it run through its fingers, as if testing the wind. Another lingers behind the rest, turning its head slightly, perhaps listening for something. There are no signs of tools or fire, certainly nothing to suggest the "canyon people" of local legend - but there's an undeniable sense of awareness in the way they move and seem to belong to the landscape itself.`
+			`	The binoculars hum as you focus in on the figures, expecting hikers, but what you see is something else entirely. A small group of shaggy, long-limbed creatures move carefully through the canyon. Their fur is the same hue as the sandstone, blending almost perfectly with the terrain. They walk on two legs, but with a hunched, cautious gait, pausing often to glance around before continuing.`
+			`	One of them stops near a boulder, kneeling to scoop up a handful of dust and let it run through its fingers, as if testing the wind. Another lingers behind the rest, turning its head slightly, perhaps listening for something. There are no signs of tools or fire - certainly nothing to suggest the "canyon people" of local legend - but there's an undeniable sense of awareness in the way they move and seem to belong to the landscape itself.`
 			action
 				set "exotic life: seen glaze apes"
-			`	After a long moment, they disappear behind a ridge, blending so seamlessly into the terrain that it's hard to tell if they were ever there at all. You step back from the binoculars, the last glimpse of them lingering in your mind.`
-			choice
-				`	(Return to your ship.)`
-					goto closing
+			`	After a long moment, they disappear behind a ridge, their camouflage making it hard to tell if they were ever there at all. You step back from the binoculars, the last glimpse of them lingering in your mind.`
+				decline
 			label norareapes
-			`	Curiosity gets the better of you, and you pay a credit to the machine. The binoculars whir softly as they adjust, bringing the distant canyon into focus. A group of brightly dressed tourists walks along a winding trail, pointing at rock formations and stopping to take photos. One of them waves excitedly at something -- maybe an unseen guide explaining the landscape.`
+			`	Curiosity gets the better of you, and you pay a credit to the machine. The binoculars whir softly as they adjust, bringing the distant canyon into focus. A group of brightly dressed tourists walk along a winding trail, pointing at rock formations and stopping to take photos. One of them waves excitedly at something - maybe an unseen guide explaining the landscape.`
 			`	Just another tour group exploring the canyons. You step back from the binoculars with a small chuckle.`
-			label closing
-			`	You walk back to your ship from the binoculars.`
 				decline
 
 mission "Exotic Life: Bluestone"

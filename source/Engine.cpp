@@ -250,7 +250,7 @@ namespace {
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(player, ships, asteroids.Minables(), flotsam),
-	ammoDisplay(player), shipCollisions(256u, 32u, CollisionType::SHIP)
+	ammoDisplay(player), minimap(player), shipCollisions(256u, 32u, CollisionType::SHIP)
 {
 	zoom.base = Preferences::ViewZoom();
 	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
@@ -415,8 +415,8 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 		map<string, map<Ship *, int>> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
-			// Skip ships that have been destroyed, have landed, or are disabled.
-			if(ship->LandedOrDestroyed() || ship->IsDisabled())
+			// Skip ships that have been destroyed.
+			if(ship->IsDestroyed() || ship->IsDisabled())
 				continue;
 
 			// Redo the loading up of fighters.
@@ -436,8 +436,8 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 		shared_ptr<Ship> npcFlagship;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
-			// Skip ships that have been destroyed or permanently landed.
-			if(ship->LandedOrDestroyed())
+			// Skip ships that have been destroyed.
+			if(ship->IsDestroyed())
 				continue;
 
 			// Avoid the exploit where the player can wear down an NPC's
@@ -523,20 +523,8 @@ void Engine::Step(bool isActive)
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
 		}
-		if(flagship->IsEnteringHyperspace() || flagship->Commands().Has(Command::JUMP))
-		{
-			if(jumpCount < 100)
-				++jumpCount;
-			const System *from = flagship->GetSystem();
-			const System *to = flagship->GetTargetSystem();
-			if(from && to && from != to)
-			{
-				jumpInProgress[0] = from;
-				jumpInProgress[1] = to;
-			}
-		}
-		else if(jumpCount > 0)
-			--jumpCount;
+
+		minimap.Step(flagship);
 	}
 	ai.UpdateEvents(events);
 	if(isActive)
@@ -1246,9 +1234,18 @@ void Engine::Draw() const
 	// Draw messages. Draw the most recent messages first, as some messages
 	// may be wrapped onto multiple lines.
 	const Font &font = FontSet::Get(14);
-	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Rectangle messageBox = hud->GetBox("messages");
 	bool messagesReversed = hud->GetValue("messages reversed");
+	double animationDuration = hud->GetValue("message animation duration");
+	const vector<Messages::Entry> &messages = Messages::Get(step, animationDuration);
+	auto messageAnimation = [animationDuration](double age) -> double
+	{
+		return max(0., 1. - pow((age - animationDuration) / animationDuration, 2));
+	};
+	auto naturalDecay = [animationDuration](int age) -> float
+	{
+		return (1000 + animationDuration - age) * .001f;
+	};
 	WrappedText messageLine(font);
 	messageLine.SetWrapWidth(messageBox.Width());
 	messageLine.SetParagraphBreak(0.);
@@ -1257,9 +1254,20 @@ void Engine::Draw() const
 	{
 		messageLine.Wrap(it->message);
 		int height = messageLine.Height();
+		if(messagesReversed && it == messages.rbegin())
+			messagePoint.Y() -= height;
+		// Dying messages are those scheduled for removal as duplicates.
+		bool isDying = it->deathStep >= 0;
+		int naturalAge = step - it->step;
+		// New messages should fade in, while dying ones should fade out.
+		int age = isDying ? it->deathStep - step : naturalAge;
+		bool isAnimating = age < animationDuration;
+		if(isAnimating)
+			height *= messageAnimation(age);
 		if(messagesReversed)
 		{
-			if(messagePoint.Y() + height > messageBox.Bottom())
+			messagePoint.Y() += height;
+			if(messagePoint.Y() > messageBox.Bottom())
 				break;
 		}
 		else
@@ -1268,10 +1276,9 @@ void Engine::Draw() const
 			if(messagePoint.Y() < messageBox.Top())
 				break;
 		}
-		float alpha = (it->step + 1000 - step) * .001f;
+		float alpha = isAnimating ? isDying ? min<double>(messageAnimation(age), naturalDecay(naturalAge))
+			: messageAnimation(age) : naturalDecay(age);
 		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
-		if(messagesReversed)
-			messagePoint.Y() += height;
 	}
 
 	// Draw crosshairs around anything that is targeted.
@@ -1318,8 +1325,9 @@ void Engine::Draw() const
 		for(int i = 0; i < 2; ++i)
 			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
 	}
-	if(jumpCount && Preferences::Has("Show mini-map"))
-		MapPanel::DrawMiniMap(player, .5f * min(1.f, jumpCount / 30.f), jumpInProgress, step);
+
+	// Draw the systems mini-map.
+	minimap.Draw(step);
 
 	// Draw ammo status.
 	double ammoIconWidth = hud->GetValue("ammo icon width");
@@ -1884,11 +1892,11 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Move(newVisuals, newFlotsam);
 	if(ship->IsDisabled() && !wasDisabled)
 		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
-	// Ships which are dead or landed should report that event.
+	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
-		// Make sure this ship's destruction or landing was recorded, even if
-		// it died from self-destruct.
+		// Make sure this ship's destruction was recorded, even if it died from
+		// self-destruct.
 		if(ship->IsDestroyed())
 		{
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
@@ -1900,8 +1908,6 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			if(ship->IsYours())
 				player.DeselectShip(ship.get());
 		}
-		else if(ship->HasLanded() && ship->IsSpecial())
-			eventQueue.emplace_back(nullptr, ship, ShipEvent::LAND);
 		return;
 	}
 
@@ -2245,16 +2251,15 @@ void Engine::HandleMouseClicks()
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->DisplayName()
 									+ " refuse to let you land.", Messages::Importance::Highest);
-						else if(!flagship->IsDestroyed())
-						{
+						else if(!flagship->IsDestroyed() && !flagship->Commands().Has(Command::LAND))
 							activeCommands |= Command::LAND;
-							Messages::Add("Landing on " + planet->DisplayName() + ".", Messages::Importance::High);
-						}
 					}
 					else
 					{
 						UI::PlaySound(UI::UISound::TARGET);
 						flagship->SetTargetStellar(&object);
+						if(flagship->Commands().Has(Command::LAND))
+							ai.DisengageAutopilot();
 					}
 
 					clickedPlanet = true;
@@ -2774,17 +2779,20 @@ void Engine::FillRadar()
 	else if(!hasHostiles)
 		hadHostiles = false;
 
-	// Add projectiles that have a missile strength or homing.
-	for(Projectile &projectile : projectiles)
+	// Add projectiles that have a missile strength or blast radius.
+	for(const Projectile &projectile : projectiles)
 	{
-		if(projectile.MissileStrength())
-		{
-			bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
-			radar[currentCalcBuffer].Add(
-				isEnemy ? Radar::SPECIAL : Radar::INACTIVE, projectile.Position(), 1.);
-		}
-		else if(projectile.GetWeapon().BlastRadius())
-			radar[currentCalcBuffer].Add(Radar::SPECIAL, projectile.Position(), 1.8);
+		if(!projectile.HasSprite())
+			continue;
+
+		bool isBlast = projectile.GetWeapon().BlastRadius();
+		if(!projectile.MissileStrength() && !isBlast)
+			continue;
+
+		bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
+		bool isSafe = projectile.GetWeapon().IsSafe();
+		radar[currentCalcBuffer].Add(isEnemy || (isBlast && !isSafe) ? Radar::SPECIAL : Radar::INACTIVE,
+			projectile.Position(), isBlast ? 1.8 : 1.);
 	}
 }
 
@@ -2839,6 +2847,8 @@ void Engine::DrawShipSprites(const Ship &ship)
 				ship.Velocity(),
 				ship.Facing() + hardpoint.GetAngle(),
 				ship.Zoom());
+			if(body.InheritsParentSwizzle())
+				body.SetSwizzle(ship.GetSwizzle());
 			drawObject(body);
 		}
 	};
