@@ -39,6 +39,28 @@ namespace {
 	constexpr bitset<static_cast<size_t>(Orders::Types::TYPES_COUNT)> HAS_TARGET_LOCATION{
 		(1 << static_cast<int>(Orders::Types::MOVE_TO))
 	};
+
+	// Orders not included in the bitset should be removed when the given order is issued.
+	constexpr array<bitset<static_cast<size_t>(Orders::Types::TYPES_COUNT)>,
+		static_cast<size_t>(Orders::Types::TYPES_COUNT)> SIMULTANEOUS{{
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // HOLD_POSITION
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // HOLD_ACTIVE
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // MOVE_TO
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // KEEP_STATION
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // GATHER
+		{}, // ATTACK
+		{}, // FINISH_OFF
+		{
+			(1 << static_cast<int>(Orders::Types::HOLD_POSITION)) +
+			(1 << static_cast<int>(Orders::Types::HOLD_ACTIVE)) +
+			(1 << static_cast<int>(Orders::Types::MOVE_TO)) +
+			(1 << static_cast<int>(Orders::Types::KEEP_STATION)) +
+			(1 << static_cast<int>(Orders::Types::GATHER)) +
+			(1 << static_cast<int>(Orders::Types::HARVEST))
+		}, // HOLD_FIRE
+		{}, // MINE
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // HARVEST
+	}};
 }
 
 
@@ -165,7 +187,7 @@ void OrderSet::Update(const Ship &ship)
 
 void OrderSet::Set(Types type) noexcept
 {
-	types.reset();
+	types &= SIMULTANEOUS[static_cast<size_t>(type)];
 	types.set(static_cast<size_t>(type));
 }
 
