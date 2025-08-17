@@ -3030,6 +3030,17 @@ fleet "Bounty (Very Small)"
 		"Headhunter (Particle)"
 	variant 6
 		"Headhunter (Strike)"
+	variant 9
+		"Quicksilver"
+	variant 9
+		"Quicksilver (Proton)"
+
+fleet "Bounty (Small)"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders
 	variant 2
 		"Modified Argosy"
 	variant 2
@@ -3042,10 +3053,6 @@ fleet "Bounty (Very Small)"
 		"Modified Argosy (Javelin)"
 	variant 2
 		"Modified Argosy (Missile)"
-	variant 9
-		"Quicksilver"
-	variant 9
-		"Quicksilver (Proton)"
 	variant 6
 		"Raven"
 	variant 6
@@ -3053,7 +3060,7 @@ fleet "Bounty (Very Small)"
 	variant 6
 		"Raven (Heavy)"
 
-fleet "Bounty (Small)"
+fleet "Bounty (Medium)"
 	government "Pirate"
 	names "pirate"
 	cargo 1
@@ -3065,31 +3072,6 @@ fleet "Bounty (Small)"
 		"Corvette (Missile)"
 	variant 3
 		"Corvette (Speedy)"
-	variant 4
-		"Manta"
-	variant 4
-		"Manta (Proton)"
-	variant 3
-		"Monitor"
-	variant 1
-		"Saber"
-	variant 1
-		"Saber (CCOR Gatling)"
-	variant 1
-		"Saber (CCOR Javelin)"
-	variant 3
-		"Splinter"
-	variant 3
-		"Splinter (Laser)"
-	variant 3
-		"Splinter (Proton)"
-
-fleet "Bounty (Medium)"
-	government "Pirate"
-	names "pirate"
-	cargo 1
-	personality
-		plunders
 	variant 2
 		"Bastion"
 	variant 2
@@ -3108,12 +3090,30 @@ fleet "Bounty (Medium)"
 		"Firebird (Plasma)"
 	variant 2
 		"Firebird (Heavy Blaster)"
+	variant 4
+		"Manta"
+	variant 4
+		"Manta (Proton)"
+	variant 3
+		"Monitor"
 	variant 3
 		"Osprey"
 	variant 3
 		"Osprey (Laser)"
 	variant 3
 		"Osprey (Missile)"
+	variant 1
+		"Saber"
+	variant 1
+		"Saber (CCOR Gatling)"
+	variant 1
+		"Saber (CCOR Javelin)"
+	variant 3
+		"Splinter"
+	variant 3
+		"Splinter (Laser)"
+	variant 3
+		"Splinter (Proton)"
 
 fleet "Bounty (Big)"
 	government "Pirate"

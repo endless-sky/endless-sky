@@ -3105,7 +3105,7 @@ mission "FW Cold Aid [2]"
 
 
 mission "Bounty Hunting (Very Tiny)"
-	name "Wanted corsair in <system>"
+	name "Wanted fighter in <system>"
 	description "A small pirate fighter named the <npc> has been attacking merchants in the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
@@ -3136,7 +3136,7 @@ mission "Bounty Hunting (Very Tiny)"
 			fail
 
 mission "Bounty Hunting (Very Tiny, Local)"
-	name "Wanted corsair entering <system>"
+	name "Wanted fighter entering <system>"
 	description "A small pirate fighter named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
@@ -3164,8 +3164,8 @@ mission "Bounty Hunting (Very Tiny, Local)"
 
 
 mission "Bounty Hunting (Tiny)"
-	name "Wanted outlaw in <system>"
-	description "A well armed pirate fighter named the <npc> has been attacking merchants in the <system> system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted interceptor in <system>"
+	description "A well armed pirate interceptor named the <npc> has been attacking merchants in the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline
@@ -3195,8 +3195,8 @@ mission "Bounty Hunting (Tiny)"
 			fail
 
 mission "Bounty Hunting (Tiny, Local)"
-	name "Wanted outlaw entering <system>"
-	description "A well armed pirate fighter named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted interceptor entering <system>"
+	description "A well armed pirate interceptor named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
@@ -3221,8 +3221,8 @@ mission "Bounty Hunting (Tiny, Local)"
 			fail
 
 mission "Bounty Hunting (Very Small)"
-	name "Wanted criminal in <system>"
-	description "A light pirate warship named the <npc> has been attacking merchants in the <system> system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted small pirate in <system>"
+	description "A small pirate ship named the <npc> has been attacking merchants in the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline
@@ -3252,8 +3252,8 @@ mission "Bounty Hunting (Very Small)"
 			fail
 
 mission "Bounty Hunting (Very Small, Local)"
-	name "Wanted criminal entering <system>"
-	description "A light pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted small pirate entering <system>"
+	description "A small pirate ship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
@@ -3278,8 +3278,8 @@ mission "Bounty Hunting (Very Small, Local)"
 			fail
 
 mission "Bounty Hunting (Small)"
-	name "Wanted bandit in <system>"
-	description "A medium pirate warship named the <npc> has been attacking merchants in the <system> system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted light warship in <system>"
+	description "A light pirate warship named the <npc> has been attacking merchants in the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline
@@ -3287,9 +3287,9 @@ mission "Bounty Hunting (Small)"
 	"apparent payment" 180000
 	to offer
 		or
-			"combat rating" > 80
+			"combat rating" > 120
+			has "ships: Light Warship"
 			has "ships: Medium Warship"
-			has "ships: Heavy Warship"
 		"combat rating" < 500
 		random < 50
 	source
@@ -3309,17 +3309,17 @@ mission "Bounty Hunting (Small)"
 			fail
 
 mission "Bounty Hunting (Small, Local)"
-	name "Wanted bandit entering <system>"
-	description "A medium pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted light warship entering <system>"
+	description "A light pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
 	"apparent payment" 180000
 	to offer
 		or
-			"combat rating" > 80
+			"combat rating" > 120
+			has "ships: Light Warship"
 			has "ships: Medium Warship"
-			has "ships: Heavy Warship"
 		"combat rating" < 500
 		random < 20
 	source
@@ -3335,8 +3335,8 @@ mission "Bounty Hunting (Small, Local)"
 			fail
 
 mission "Bounty Hunting (Medium)"
-	name "Wanted pirate in <system>"
-	description "A sizable pirate warship named the <npc> has been attacking merchants in the <system> system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted medium warship in <system>"
+	description "A medium pirate warship named the <npc> has been attacking merchants in the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline
@@ -3363,8 +3363,8 @@ mission "Bounty Hunting (Medium)"
 			fail
 
 mission "Bounty Hunting (Medium, Local)"
-	name "Wanted pirate entering <system>"
-	description "A sizable pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	name "Wanted medium warship entering <system>"
+	description "A medium pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
@@ -3386,7 +3386,7 @@ mission "Bounty Hunting (Medium, Local)"
 			fail
 
 mission "Bounty Hunting (Big)"
-	name "Wanted warlord in <system>"
+	name "Wanted heavy warship in <system>"
 	description "A heavy warship known as the <npc> has been attacking merchants in <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
@@ -3394,7 +3394,7 @@ mission "Bounty Hunting (Big)"
 	deadline 5
 	"apparent payment" 300000
 	to offer
-		"combat rating" > 500
+		"combat rating" > 403
 		"combat rating" < 2500
 		random < 50
 	source
@@ -3414,14 +3414,14 @@ mission "Bounty Hunting (Big)"
 			fail
 
 mission "Bounty Hunting (Big, Local)"
-	name "Wanted warlord entering <system>"
+	name "Wanted heavy warship entering <system>"
 	description "A heavy warship known as the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 3
 	"apparent payment" 300000
 	to offer
-		"combat rating" > 500
+		"combat rating" > 403
 		"combat rating" < 2500
 		random < 20
 	source
@@ -3437,14 +3437,14 @@ mission "Bounty Hunting (Big, Local)"
 			fail
 
 mission "Bounty Hunting (Small, Hidden)"
-	name "Disguised bandit near <system>"
-	description "A medium pirate warship named the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
+	name "Disguised light warship near <system>"
+	description "A light pirate warship named the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
 	"apparent payment" 360000
 	to offer
-		"combat rating" > 200
+		"combat rating" > 120
 		or
 			random < 5
 			and
@@ -3465,14 +3465,14 @@ mission "Bounty Hunting (Small, Hidden)"
 			fail
 
 mission "Bounty Hunting (Medium, Hidden)"
-	name "Disguised pirate near <system>"
-	description "A sizable pirate warship named the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
+	name "Disguised medium warship near <system>"
+	description "A medium pirate warship named the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
 	"apparent payment" 480000
 	to offer
-		"combat rating" > 350
+		"combat rating" > 148
 		or
 			random < 5
 			and
@@ -3493,14 +3493,14 @@ mission "Bounty Hunting (Medium, Hidden)"
 			fail
 
 mission "Bounty Hunting (Big, Hidden)"
-	name "Disguised warlord near <system>"
+	name "Disguised heavy warship near <system>"
 	description "A heavy warship known as the <npc> is posing as a merchant ship within a jump of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
 	deadline 14
 	"apparent payment" 600000
 	to offer
-		"combat rating" > 500
+		"combat rating" > 403
 		or
 			random < 5
 			and
@@ -3528,7 +3528,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 	repeat
 	job
 	to offer
-		"combat rating" > 50
+		"combat rating" > 40
 		random < 15
 	to accept
 		has "outfit (installed): Brig"
@@ -3567,7 +3567,7 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	repeat
 	job
 	to offer
-		"combat rating" > 200
+		"combat rating" > 148
 		random < 15
 	to accept
 		has "outfit (installed): Brig"
@@ -3610,10 +3610,10 @@ mission "Bounty Hunting (Solo Marauder I)"
 	"apparent payment" 130000
 	to offer
 		or
-			"combat rating" > 100
+			"combat rating" > 120
 			has "ships: Interceptor"
 			has "ships: Light Warship"
-		"combat rating" > 54
+		"combat rating" > 20
 		"combat rating" < 500
 		random < 5
 	source
@@ -3642,10 +3642,10 @@ mission "Bounty Hunting (Solo Marauder II)"
 	"apparent payment" 200000
 	to offer
 		or
-			"combat rating" > 200
+			"combat rating" > 148
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
-		"combat rating" > 100
+		"combat rating" > 54
 		"combat rating" < 500
 		random < 5
 	source
@@ -3673,7 +3673,7 @@ mission "Bounty Hunting (Solo Marauder III)"
 	deadline 5
 	"apparent payment" 310000
 	to offer
-		"combat rating" > 300
+		"combat rating" > 148
 		"combat rating" < 1200
 		random < 5
 	source
@@ -3701,7 +3701,7 @@ mission "Bounty Hunting (Solo Marauder IV)"
 	deadline 5
 	"apparent payment" 500000
 	to offer
-		"combat rating" > 500
+		"combat rating" > 403
 		"combat rating" < 2500
 		random < 5
 	source
@@ -3729,7 +3729,7 @@ mission "Bounty Hunting (Marauder I)"
 	deadline 5
 	"apparent payment" 360000
 	to offer
-		"combat rating" > 500
+		"combat rating" > 300
 		or
 			random < 5
 			and
@@ -3758,9 +3758,9 @@ mission "Bounty Hunting (Marauder II)"
 	job
 	deadline
 	deadline 5
-	"apparent payment" 380000
+	"apparent payment" 410000
 	to offer
-		"combat rating" > 600
+		"combat rating" > 403
 		or
 			random < 5
 			and
@@ -3779,7 +3779,7 @@ mission "Bounty Hunting (Marauder II)"
 		fleet "Marauder fleet II"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 380000
+			payment 410000
 			fail
 
 mission "Bounty Hunting (Marauder III)"
@@ -3789,9 +3789,9 @@ mission "Bounty Hunting (Marauder III)"
 	job
 	deadline
 	deadline 5
-	"apparent payment" 400000
+	"apparent payment" 450000
 	to offer
-		"combat rating" > 700
+		"combat rating" > 500
 		or
 			random < 5
 			and
@@ -3810,7 +3810,7 @@ mission "Bounty Hunting (Marauder III)"
 		fleet "Marauder fleet III"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 400000
+			payment 450000
 			fail
 
 mission "Bounty Hunting (Marauder IV)"
@@ -3820,9 +3820,9 @@ mission "Bounty Hunting (Marauder IV)"
 	job
 	deadline
 	deadline 5
-	"apparent payment" 480000
+	"apparent payment" 510000
 	to offer
-		"combat rating" > 1200
+		"combat rating" > 650
 		or
 			random < 5
 			and
@@ -3841,7 +3841,7 @@ mission "Bounty Hunting (Marauder IV)"
 		fleet "Marauder fleet IV"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 480000
+			payment 510000
 			fail
 
 mission "Bounty Hunting (Marauder V)"
@@ -3851,9 +3851,9 @@ mission "Bounty Hunting (Marauder V)"
 	job
 	deadline
 	deadline 5
-	"apparent payment" 500000
+	"apparent payment" 550000
 	to offer
-		"combat rating" > 1400
+		"combat rating" > 800
 		or
 			random < 5
 			and
@@ -3872,7 +3872,7 @@ mission "Bounty Hunting (Marauder V)"
 		fleet "Marauder fleet V"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 500000
+			payment 550000
 			fail
 
 
@@ -3883,9 +3883,9 @@ mission "Bounty Hunting (Marauder VI)"
 	job
 	deadline
 	deadline 5
-	"apparent payment" 520000
+	"apparent payment" 590000
 	to offer
-		"combat rating" > 1600
+		"combat rating" > 1000
 		or
 			random < 5
 			and
@@ -3904,7 +3904,7 @@ mission "Bounty Hunting (Marauder VI)"
 		fleet "Marauder fleet VI"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 520000
+			payment 590000
 			fail
 
 mission "Bounty Hunting (Marauder VII)"
@@ -3914,9 +3914,9 @@ mission "Bounty Hunting (Marauder VII)"
 	job
 	deadline
 	deadline 5
-	"apparent payment" 620000
+	"apparent payment" 680000
 	to offer
-		"combat rating" > 2500
+		"combat rating" > 1300
 		random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3931,7 +3931,7 @@ mission "Bounty Hunting (Marauder VII)"
 		fleet "Marauder fleet VII"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 620000
+			payment 680000
 			fail
 
 mission "Bounty Hunting (Marauder VIII)"
@@ -3941,9 +3941,9 @@ mission "Bounty Hunting (Marauder VIII)"
 	job
 	deadline
 	deadline 5
-	"apparent payment" 640000
+	"apparent payment" 740000
 	to offer
-		"combat rating" > 2800
+		"combat rating" > 1600
 		random < 15
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3958,7 +3958,7 @@ mission "Bounty Hunting (Marauder VIII)"
 		fleet "Marauder fleet VIII"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 640000
+			payment 740000
 			fail
 
 mission "Bounty Hunting (Marauder IX)"
@@ -3968,9 +3968,9 @@ mission "Bounty Hunting (Marauder IX)"
 	job
 	deadline
 	deadline 5
-	"apparent payment" 660000
+	"apparent payment" 800000
 	to offer
-		"combat rating" > 3100
+		"combat rating" > 2000
 		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3985,7 +3985,7 @@ mission "Bounty Hunting (Marauder IX)"
 		fleet "Marauder fleet IX"
 		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
 		on kill
-			payment 660000
+			payment 800000
 			fail
 
 mission "Bounty Hunting (Marauder X)"
@@ -3994,7 +3994,7 @@ mission "Bounty Hunting (Marauder X)"
 	repeat
 	job
 	deadline
-	deadline 5
+	deadline 14
 	"apparent payment" 5000000
 	to offer
 		"combat rating" > 8103
@@ -4002,7 +4002,7 @@ mission "Bounty Hunting (Marauder X)"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
-		distance 4 6
+		distance 1 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
