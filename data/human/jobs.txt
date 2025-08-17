@@ -3170,7 +3170,7 @@ mission "Bounty Hunting (Tiny)"
 	job
 	deadline
 	deadline 5
-	"apparent payment" 35000
+	"apparent payment" 50000
 	to offer
 		or
 			"combat rating" > 7
@@ -3191,7 +3191,7 @@ mission "Bounty Hunting (Tiny)"
 		fleet "Bounty (Tiny)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
-			payment 35000
+			payment 50000
 			fail
 
 mission "Bounty Hunting (Tiny, Local)"
@@ -3200,7 +3200,7 @@ mission "Bounty Hunting (Tiny, Local)"
 	repeat
 	job
 	deadline 3
-	"apparent payment" 35000
+	"apparent payment" 50000
 	to offer
 		or
 			"combat rating" > 7
@@ -3217,7 +3217,7 @@ mission "Bounty Hunting (Tiny, Local)"
 		fleet "Bounty (Tiny)"
 		dialog phrase "generic hunted bounty eliminated and payment dialog"
 		on kill
-			payment 35000
+			payment 50000
 			fail
 
 mission "Bounty Hunting (Very Small)"
