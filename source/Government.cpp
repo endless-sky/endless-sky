@@ -321,6 +321,9 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				atrocityOutfits.clear();
 				atrocityShips.clear();
 			}
+			const Conversation *deathSentenceForBlock = nullptr;
+			if(child.Size() >= valueIndex + 2 && child.Token(valueIndex) == "death sentence")
+				deathSentenceForBlock = GameData::Conversations().Get(child.Token(valueIndex + 1));
 			for(const DataNode &grand : child)
 			{
 				Atrocity *loadedAtrocity = nullptr;
@@ -354,9 +357,29 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 					loadedAtrocity = &atrocityShips[grand.Token(1)];
 
 				if(loadedAtrocity)
+				{
+					bool customDeathSentenceDefined = false;
 					for(const DataNode &great : grand)
-						if(great.Token(0) == "death sentence" && great.Size() > 1)
-							loadedAtrocity->customDeathSentence = GameData::Conversations().Get(great.Token(1));
+					{
+						bool greatRemove = great.Token(0) == "remove";
+						const string &greatKey = great.Token(greatRemove ? 1 : 0);
+						if(greatKey == "death sentence")
+						{
+							if(greatRemove)
+							{
+								loadedAtrocity->customDeathSentence = nullptr;
+								customDeathSentenceDefined = true;
+							}
+							else if(great.Size() > 1)
+							{
+								loadedAtrocity->customDeathSentence = GameData::Conversations().Get(great.Token(1));
+								customDeathSentenceDefined = true;
+							}
+						}
+					}
+					if(!customDeathSentenceDefined)
+						loadedAtrocity->customDeathSentence = deathSentenceForBlock;
+				}
 			}
 		}
 		else if(key == "enforces" && child.HasChildren())
