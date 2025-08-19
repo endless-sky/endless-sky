@@ -237,6 +237,13 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".",
 			Messages::Importance::High);
 	}
+	else if(command.Has(Command::GUNSIGHT))
+	{
+		bool newValue = !Preferences::Has("Show gunsights");
+		Preferences::Set("Show gunsights", newValue);
+		Messages::Add("Gunsights " + string(newValue ? "shown" : "hidden") + ".",
+			Messages::Importance::High);
+	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
 	else if((key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS) && !command)
