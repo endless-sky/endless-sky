@@ -280,7 +280,8 @@
 				"CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
 				"VCPKG_HOST_TRIPLET": "win32-release",
-				"VCPKG_TARGET_TRIPLET": "win32-release"
+				"VCPKG_TARGET_TRIPLET": "win32-release",
+				"ES_LARGE_ADDRESS_AWARE": true
 			}
 		},
 		{
