@@ -20,12 +20,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
 #include "shader/BatchDrawList.h"
+#include "Camera.h"
 #include "CollisionSet.h"
 #include "Color.h"
 #include "Command.h"
 #include "shader/DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "MiniMap.h"
 #include "PlanetLabel.h"
 #include "Point.h"
 #include "Preferences.h"
@@ -105,7 +107,7 @@ public:
 private:
 	class Outline {
 	public:
-		constexpr Outline(const Sprite *sprite, const Point &position, const Point &unit,
+		Outline(const Sprite *sprite, const Point &position, const Point &unit,
 			const float frame, const Color &color)
 			: sprite(sprite), position(position), unit(unit), frame(frame), color(color)
 		{
@@ -249,9 +251,8 @@ private:
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
 
-	// Viewport position and velocity.
-	Point center;
-	Point centerVelocity;
+	// Viewport camera.
+	Camera camera;
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;
@@ -269,10 +270,10 @@ private:
 	std::vector<AlertLabel> missileLabels;
 	std::vector<TurretOverlay> turretOverlays;
 	std::vector<std::pair<const Outfit *, int>> ammo;
-	int jumpCount = 0;
-	const System *jumpInProgress[2] = {nullptr, nullptr};
 	// Flagship's hyperspace percentage converted to a [0, 1] double.
 	double hyperspacePercentage = 0.;
+
+	MiniMap minimap;
 
 	int step = 0;
 	bool timePaused = false;

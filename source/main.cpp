@@ -57,6 +57,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <mmsystem.h>
+
+#ifdef PlaySound
+#undef PlaySound
+#endif
 #endif
 
 
@@ -159,7 +163,7 @@ int main(int argc, char *argv[])
 
 		if(printData)
 		{
-			PrintData::Print(argv);
+			PrintData::Print(argv, player);
 			return 0;
 		}
 		if(printTests)
@@ -328,6 +332,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// User pressed the Menu key.
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
+				UI::PlaySound(UI::UISound::NORMAL);
 			}
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
@@ -537,7 +542,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.13-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.15-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -575,6 +580,8 @@ Conversation LoadConversation(const PlayerInfo &player)
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
 		{"<model>", "[Ship Model]"},
+		{"<flagship>", "[Flagship]"},
+		{"<flagship model>", "[Flagship Model]"},
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};

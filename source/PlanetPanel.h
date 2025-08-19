@@ -67,7 +67,6 @@ private:
 
 	const Planet &planet;
 	const System &system;
-	const Interface &ui;
 
 	// Whether this planet has a shipyard or outfitter
 	// and the items that are for sale in each shop.

@@ -462,15 +462,16 @@ bool ConditionSet::ParseFromStart(const DataNode &node)
 	if(!conditions)
 		throw runtime_error("Unable to ParseFromStart(full) for a ConditionSet without a pointer to a ConditionsStore!");
 
+	const string &key = node.Token(0);
 	// Special handling for 'and' and 'or' nodes.
 	if(node.Size() == 1)
 	{
-		if(node.Token(0) == "and")
+		if(key == "and")
 		{
 			expressionOperator = ExpressionOp::AND;
 			return ParseChildren(node);
 		}
-		if(node.Token(0) == "or")
+		if(key == "or")
 		{
 			expressionOperator = ExpressionOp::OR;
 			return ParseChildren(node);
@@ -492,7 +493,7 @@ bool ConditionSet::ParseFromStart(const DataNode &node)
 		return FailParse(node, "unexpected child-nodes under toplevel");
 
 	// Special handling for 'never', 'has' and 'not' nodes.
-	if(node.Token(0) == "never")
+	if(key == "never")
 	{
 		if(node.Size() > 1)
 			return FailParse(node, "tokens found after never keyword");
@@ -501,7 +502,7 @@ bool ConditionSet::ParseFromStart(const DataNode &node)
 		literal = 0;
 		return true;
 	}
-	if(node.Token(0) == "has")
+	if(key == "has")
 	{
 		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
 			return FailParse(node, "has keyword requires a single condition");
@@ -511,7 +512,7 @@ bool ConditionSet::ParseFromStart(const DataNode &node)
 		conditionName = node.Token(1);
 		return true;
 	}
-	if(node.Token(0) == "not")
+	if(key == "not")
 	{
 		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
 			return FailParse(node, "not keyword requires a single condition");

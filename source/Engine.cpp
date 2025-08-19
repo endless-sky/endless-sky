@@ -69,6 +69,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "SystemEntry.h"
 #include "test/Test.h"
+#include "UI.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "Wormhole.h"
@@ -243,40 +244,13 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 3000.;
-
-	const double CAMERA_VELOCITY_TRACKING = 0.1;
-	const double CAMERA_POSITION_CENTERING = 0.01;
-
-	pair<Point, Point> NewCenter(const Point &oldCenter, const Point &oldCenterVelocity,
-		const Point &baseCenter, const Point &baseVelocity, const double influence, const bool killVelocity)
-	{
-		if(Preferences::CameraAcceleration() == Preferences::CameraAccel::OFF)
-			return make_pair(baseCenter, baseVelocity);
-
-		double cameraAccelMultiplier = Preferences::CameraAcceleration() == Preferences::CameraAccel::REVERSED ? -1. : 1.;
-
-		// Flip the velocity offset if cameraAccelMultiplier is negative to simplify logic.
-		const Point absoluteOldCenterVelocity = baseVelocity.Lerp(oldCenterVelocity, cameraAccelMultiplier);
-
-		const Point newAbsVelocity = absoluteOldCenterVelocity.Lerp(baseVelocity, CAMERA_VELOCITY_TRACKING);
-
-		Point newCenter = (oldCenter + newAbsVelocity).Lerp(baseCenter, CAMERA_POSITION_CENTERING);
-
-		// Flip the velocity back over the baseVelocity
-		Point newVelocity = baseVelocity.Lerp(newAbsVelocity, cameraAccelMultiplier);
-
-		newCenter = newCenter.Lerp(baseCenter, pow(influence, .5));
-		newVelocity = killVelocity ? baseVelocity : newVelocity.Lerp(baseVelocity, pow(influence, .5));
-
-		return make_pair(newCenter, newVelocity);
-	}
 }
 
 
 
 Engine::Engine(PlayerInfo &player)
 	: player(player), ai(player, ships, asteroids.Minables(), flotsam),
-	ammoDisplay(player), shipCollisions(256u, 32u, CollisionType::SHIP)
+	ammoDisplay(player), minimap(player), shipCollisions(256u, 32u, CollisionType::SHIP)
 {
 	zoom.base = Preferences::ViewZoom();
 	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
@@ -293,12 +267,12 @@ Engine::Engine(PlayerInfo &player)
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
 	if(object)
-		center = object->Position();
+		camera.SnapTo(object->Position());
 
 	// Now we know the player's current position. Draw the planets.
 	draw[currentCalcBuffer].Clear(step, zoom);
-	draw[currentCalcBuffer].SetCenter(center);
-	radar[currentCalcBuffer].SetCenter(center);
+	draw[currentCalcBuffer].SetCenter(camera.Center());
+	radar[currentCalcBuffer].SetCenter(camera.Center());
 	const Ship *flagship = player.Flagship();
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.HasSprite())
@@ -320,6 +294,7 @@ Engine::Engine(PlayerInfo &player)
 				system->Position() - player.GetSystem()->Position());
 
 	GameData::SetHaze(player.GetSystem()->Haze(), true);
+	GameData::SetBackgroundPosition(camera.Center());
 }
 
 
@@ -420,8 +395,7 @@ void Engine::Place()
 	// that all special ships have been repositioned.
 	ships.splice(ships.end(), newShips);
 
-	center = flagship->Center();
-	centerVelocity = flagship->Velocity();
+	camera.SnapTo(flagship->Center());
 
 	player.SetPlanet(nullptr);
 }
@@ -529,21 +503,11 @@ void Engine::Step(bool isActive)
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
 	if(object)
-	{
-		center = object->Position();
-		centerVelocity = Point();
-	}
+		camera.SnapTo(object->Position());
 	else if(flagship)
 	{
 		if(isActive && !timePaused)
-		{
-			const auto [newCenter, newCenterVelocity] = NewCenter(center, centerVelocity,
-				flagship->Center(), flagship->Velocity(), hyperspacePercentage,
-				flagship->IsHyperspacing());
-
-			center = newCenter;
-			centerVelocity = newCenterVelocity;
-		}
+			camera.MoveTo(flagship->Center(), hyperspacePercentage);
 
 		if(doEnterLabels)
 		{
@@ -559,20 +523,8 @@ void Engine::Step(bool isActive)
 			doEnter = false;
 			events.emplace_back(flagship, flagship, ShipEvent::JUMP);
 		}
-		if(flagship->IsEnteringHyperspace() || flagship->Commands().Has(Command::JUMP))
-		{
-			if(jumpCount < 100)
-				++jumpCount;
-			const System *from = flagship->GetSystem();
-			const System *to = flagship->GetTargetSystem();
-			if(from && to && from != to)
-			{
-				jumpInProgress[0] = from;
-				jumpInProgress[1] = to;
-			}
-		}
-		else if(jumpCount > 0)
-			--jumpCount;
+
+		minimap.Step(flagship);
 	}
 	ai.UpdateEvents(events);
 	if(isActive)
@@ -587,7 +539,7 @@ void Engine::Step(bool isActive)
 	}
 
 	wasActive = isActive;
-	Audio::Update(center);
+	Audio::Update(camera.Center());
 
 	// Update the zoom value now that the calculation thread is paused.
 	if(nextZoom)
@@ -617,6 +569,9 @@ void Engine::Step(bool isActive)
 			// Update the current zoom modifier if the flagship is landing or taking off.
 			nextZoom.modifier = Preferences::Has("Landing zoom") ? 1. + pow(1. - flagship->Zoom(), 2) : 1.;
 		}
+
+		// Step the background to account for the current velocity and zoom.
+		GameData::StepBackground(timePaused ? Point() : camera.Velocity(), zoom);
 	}
 
 	outlines.clear();
@@ -627,7 +582,7 @@ void Engine::Step(bool isActive)
 			if(ship->IsParked() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
 				continue;
 
-			outlines.emplace_back(ship->GetSprite(), (ship->Position() - center) * zoom, ship->Unit() * zoom,
+			outlines.emplace_back(ship->GetSprite(), (ship->Position() - camera.Center()) * zoom, ship->Unit() * zoom,
 				ship->GetFrame(), Color::Multiply(ship->Cloaking(), cloakColor));
 		}
 
@@ -635,7 +590,7 @@ void Engine::Step(bool isActive)
 	if(flagship && !flagship->IsDestroyed() && Preferences::Has("Highlight player's flagship"))
 	{
 		outlines.emplace_back(flagship->GetSprite(),
-			(flagship->Center() - center) * zoom,
+			(flagship->Center() - camera.Center()) * zoom,
 			flagship->Unit() * zoom * flagship->Scale(),
 			flagship->GetFrame(),
 			*GameData::Colors().Get("flagship highlight"));
@@ -735,7 +690,7 @@ void Engine::Step(bool isActive)
 		if(Preferences::Has("Show missile overlays"))
 			for(const Projectile &projectile : projectiles)
 			{
-				Point pos = projectile.Position() - center;
+				Point pos = projectile.Position() - camera.Center();
 				if(projectile.MissileStrength() && projectile.GetGovernment()->IsEnemy()
 						&& (pos.Length() < max(Screen::Width(), Screen::Height()) * .5 / zoom))
 					missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
@@ -755,7 +710,7 @@ void Engine::Step(bool isActive)
 #else
 					turretOverlays.emplace_back(
 #endif
-						(flagship->Position() - center
+						(flagship->Position() - camera.Center()
 							+ flagship->Zoom() * flagship->Facing().Rotate(hardpoint.GetPoint()))
 							* static_cast<double>(zoom),
 						(flagship->Facing() + hardpoint.GetAngle()).Unit(),
@@ -768,7 +723,7 @@ void Engine::Step(bool isActive)
 				}
 		// Update the planet label positions.
 		for(PlanetLabel &label : labels)
-			label.Update(center, zoom, labels, *player.GetSystem());
+			label.Update(camera.Center(), zoom, labels, *player.GetSystem());
 	}
 
 	if(flagship && flagship->IsOverheated())
@@ -827,7 +782,7 @@ void Engine::Step(bool isActive)
 		info.SetString("destination", name);
 
 		targets.push_back({
-			object->Position() - center,
+			object->Position() - camera.Center(),
 			object->Facing(),
 			object->Radius(),
 			GetPlanetTargetPointerColor(*object->GetPlanet()),
@@ -873,7 +828,7 @@ void Engine::Step(bool isActive)
 			0);
 		info.SetString("target name", targetAsteroid->DisplayName() + " " + targetAsteroid->Noun());
 
-		targetVector = targetAsteroid->Position() - center;
+		targetVector = targetAsteroid->Position() - camera.Center();
 
 		if(flagship->Attributes().Get("tactical scan power") || flagship->Attributes().Get("strategic scan power"))
 		{
@@ -918,13 +873,13 @@ void Engine::Step(bool isActive)
 			// of the width and the height of the sprite.
 			double size = (target->Width() + target->Height()) * .35;
 			targets.push_back({
-				target->Position() - center,
+				target->Position() - camera.Center(),
 				Angle(45.) + target->Facing(),
 				size,
 				GetShipTargetPointerColor(targetType),
 				4});
 
-			targetVector = target->Position() - center;
+			targetVector = target->Position() - camera.Center();
 
 			double targetRange = target->Position().Distance(flagship->Position());
 			// Finds the range of the scan collections.
@@ -1028,7 +983,7 @@ void Engine::Step(bool isActive)
 		&& (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
 	{
 		double width = max(target->Width(), target->Height());
-		Point pos = target->Position() - center;
+		Point pos = target->Position() - camera.Center();
 		const bool outfitInRange = pos.LengthSquared() <= (flagship->Attributes().Get("outfit scan power") * 10000);
 		const Status::Type outfitOverlayType = outfitInRange ? Status::Type::SCAN : Status::Type::SCAN_OUT_OF_RANGE;
 		statuses.emplace_back(pos, flagship->OutfitScanFraction(), 0.,
@@ -1084,7 +1039,7 @@ void Engine::Step(bool isActive)
 		{
 			double size = (ship->Width() + ship->Height()) * .35;
 			targets.push_back({
-				ship->Position() - center,
+				ship->Position() - camera.Center(),
 				Angle(45.) + ship->Facing(),
 				size,
 				*GameData::Colors().Get("ship target pointer player"),
@@ -1105,7 +1060,7 @@ void Engine::Step(bool isActive)
 			bool scanComplete = true;
 			for(const shared_ptr<Minable> &minable : asteroids.Minables())
 			{
-				Point offset = minable->Position() - center;
+				Point offset = minable->Position() - camera.Center();
 				// Use the squared length, as we used the squared scan range.
 				bool inRange = offset.LengthSquared() <= scanRangeMetric;
 
@@ -1139,7 +1094,7 @@ void Engine::Step(bool isActive)
 	const auto targetAsteroidPtr = flagship ? flagship->GetTargetAsteroid() : nullptr;
 	if(targetAsteroidPtr && !flagship->IsHyperspacing())
 		targets.push_back({
-			targetAsteroidPtr->Position() - center,
+			targetAsteroidPtr->Position() - camera.Center(),
 			targetAsteroidPtr->Facing(),
 			.8 * targetAsteroidPtr->Radius(),
 			GetMinablePointerColor(true),
@@ -1188,15 +1143,19 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	Point motionBlur = Preferences::Has("Render motion blur") ? centerVelocity : Point();
+	Point motionBlur = camera.Velocity();
+	double baseBlur = Preferences::Has("Render motion blur") ? 1. : 0.;
 
 	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
 	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
-		motionBlur *= 1. + pow(hyperspacePercentage *
+		motionBlur *= baseBlur + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
+	else
+		motionBlur *= baseBlur;
 
-	GameData::Background().Draw(center, motionBlur, zoom,
+	GameData::Background().Draw(motionBlur,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
+
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -1275,9 +1234,18 @@ void Engine::Draw() const
 	// Draw messages. Draw the most recent messages first, as some messages
 	// may be wrapped onto multiple lines.
 	const Font &font = FontSet::Get(14);
-	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Rectangle messageBox = hud->GetBox("messages");
 	bool messagesReversed = hud->GetValue("messages reversed");
+	double animationDuration = hud->GetValue("message animation duration");
+	const vector<Messages::Entry> &messages = Messages::Get(step, animationDuration);
+	auto messageAnimation = [animationDuration](double age) -> double
+	{
+		return max(0., 1. - pow((age - animationDuration) / animationDuration, 2));
+	};
+	auto naturalDecay = [animationDuration](int age) -> float
+	{
+		return (1000 + animationDuration - age) * .001f;
+	};
 	WrappedText messageLine(font);
 	messageLine.SetWrapWidth(messageBox.Width());
 	messageLine.SetParagraphBreak(0.);
@@ -1286,9 +1254,20 @@ void Engine::Draw() const
 	{
 		messageLine.Wrap(it->message);
 		int height = messageLine.Height();
+		if(messagesReversed && it == messages.rbegin())
+			messagePoint.Y() -= height;
+		// Dying messages are those scheduled for removal as duplicates.
+		bool isDying = it->deathStep >= 0;
+		int naturalAge = step - it->step;
+		// New messages should fade in, while dying ones should fade out.
+		int age = isDying ? it->deathStep - step : naturalAge;
+		bool isAnimating = age < animationDuration;
+		if(isAnimating)
+			height *= messageAnimation(age);
 		if(messagesReversed)
 		{
-			if(messagePoint.Y() + height > messageBox.Bottom())
+			messagePoint.Y() += height;
+			if(messagePoint.Y() > messageBox.Bottom())
 				break;
 		}
 		else
@@ -1297,10 +1276,9 @@ void Engine::Draw() const
 			if(messagePoint.Y() < messageBox.Top())
 				break;
 		}
-		float alpha = (it->step + 1000 - step) * .001f;
+		float alpha = isAnimating ? isDying ? min<double>(messageAnimation(age), naturalDecay(naturalAge))
+			: messageAnimation(age) : naturalDecay(age);
 		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
-		if(messagesReversed)
-			messagePoint.Y() += height;
 	}
 
 	// Draw crosshairs around anything that is targeted.
@@ -1347,8 +1325,9 @@ void Engine::Draw() const
 		for(int i = 0; i < 2; ++i)
 			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
 	}
-	if(jumpCount && Preferences::Has("Show mini-map"))
-		MapPanel::DrawMiniMap(player, .5f * min(1.f, jumpCount / 30.f), jumpInProgress, step);
+
+	// Draw the systems mini-map.
+	minimap.Draw(step);
 
 	// Draw ammo status.
 	double ammoIconWidth = hud->GetValue("ammo icon width");
@@ -1391,10 +1370,10 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	uiClickBox = Rectangle::WithCorners(from, to);
 	if(isRadarClick)
 		clickBox = Rectangle::WithCorners(
-			(from - radarCenter) / RADAR_SCALE + center,
-			(to - radarCenter) / RADAR_SCALE + center);
+			(from - radarCenter) / RADAR_SCALE + camera.Center(),
+			(to - radarCenter) / RADAR_SCALE + camera.Center());
 	else
-		clickBox = Rectangle::WithCorners(from / zoom + center, to / zoom + center);
+		clickBox = Rectangle::WithCorners(from / zoom + camera.Center(), to / zoom + camera.Center());
 }
 
 
@@ -1576,7 +1555,16 @@ void Engine::EnterSystem()
 
 	emptySoundsTimer.clear();
 
-	center = flagship->Center();
+	camera.SnapTo(flagship->Center(), true);
+
+	// If the player entered a system by wormhole or jump drive, center the background
+	// on the player's position. This is not done when entering a system by hyperdrive
+	// so that there is a seamless transition between systems, and entry by taking off
+	// from a planet is also excluded as to prevent the background from snapping to a
+	// different position relative to what it was when the player landed.
+	SystemEntry entry = player.GetSystemEntry();
+	if(entry == SystemEntry::WORMHOLE || entry == SystemEntry::JUMP)
+		GameData::SetBackgroundPosition(camera.Center());
 
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
@@ -1624,27 +1612,18 @@ void Engine::CalculateStep()
 		CalculateUnpaused(flagship, playerSystem);
 
 	// Draw the objects. Start by figuring out where the view should be centered:
-	Point newCenter = center;
-	Point newCenterVelocity;
-	if(flagship)
+	Camera newCamera = camera;
+	if(flagship && !timePaused)
 	{
-		if(!timePaused)
-		{
-			bool isHyperspacing = flagship->IsHyperspacing();
-			if(isHyperspacing)
-				hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
-			const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
-				flagship->Center(), flagship->Velocity(), hyperspacePercentage,
-				isHyperspacing);
-			newCenter = newCameraCenter;
-			newCenterVelocity = newCameraVelocity;
-		}
+		if(flagship->IsHyperspacing())
+			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
 		else
-			newCenterVelocity = flagship->Velocity();
+			hyperspacePercentage = 0.;
+		newCamera.MoveTo(flagship->Center(), hyperspacePercentage);
 	}
-	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
-	batchDraw[currentCalcBuffer].SetCenter(newCenter);
-	radar[currentCalcBuffer].SetCenter(newCenter);
+	draw[currentCalcBuffer].SetCenter(newCamera.Center(), newCamera.Velocity());
+	batchDraw[currentCalcBuffer].SetCenter(newCamera.Center());
+	radar[currentCalcBuffer].SetCenter(newCamera.Center());
 
 	// Populate the radar.
 	FillRadar();
@@ -1660,7 +1639,7 @@ void Engine::CalculateStep()
 				draw[currentCalcBuffer].Add(object);
 		}
 	// Draw the asteroids and minables.
-	asteroids.Draw(draw[currentCalcBuffer], newCenter, zoom);
+	asteroids.Draw(draw[currentCalcBuffer], newCamera.Center(), zoom);
 	// Draw the flotsam.
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		draw[currentCalcBuffer].Add(*it);
@@ -1836,7 +1815,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 
 	// Step the weather.
 	for(Weather &weather : activeWeather)
-		weather.Step(newVisuals, flagship ? flagship->Position() : center);
+		weather.Step(newVisuals, flagship ? flagship->Position() : camera.Center());
 	Prune(activeWeather);
 
 	// Move the visuals.
@@ -2020,10 +1999,10 @@ void Engine::FillCollisionSets()
 void Engine::SpawnFleets()
 {
 	// If the player has a pending boarding mission, spawn its NPCs.
-	if(player.ActiveBoardingMission())
+	if(player.ActiveInFlightMission())
 	{
-		Place(player.ActiveBoardingMission()->NPCs(), player.FlagshipPtr());
-		player.ClearActiveBoardingMission();
+		Place(player.ActiveInFlightMission()->NPCs(), player.FlagshipPtr());
+		player.ClearActiveInFlightMission();
 	}
 
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
@@ -2263,7 +2242,7 @@ void Engine::HandleMouseClicks()
 			{
 				// If the player clicked to land on a planet,
 				// do so unless already landing elsewhere.
-				Point position = object.Position() - center;
+				Point position = object.Position() - camera.Center();
 				const Planet *planet = object.GetPlanet();
 				if(planet->IsAccessible(flagship) && (clickPoint - position).Length() < object.Radius())
 				{
@@ -2272,14 +2251,16 @@ void Engine::HandleMouseClicks()
 						if(!planet->CanLand(*flagship))
 							Messages::Add("The authorities on " + planet->DisplayName()
 									+ " refuse to let you land.", Messages::Importance::Highest);
-						else if(!flagship->IsDestroyed())
-						{
+						else if(!flagship->IsDestroyed() && !flagship->Commands().Has(Command::LAND))
 							activeCommands |= Command::LAND;
-							Messages::Add("Landing on " + planet->DisplayName() + ".", Messages::Importance::High);
-						}
 					}
 					else
+					{
+						UI::PlaySound(UI::UISound::TARGET);
 						flagship->SetTargetStellar(&object);
+						if(flagship->Commands().Has(Command::LAND))
+							ai.DisengageAutopilot();
+					}
 
 					clickedPlanet = true;
 				}
@@ -2309,6 +2290,7 @@ void Engine::HandleMouseClicks()
 	bool clickedAsteroid = false;
 	if(clickTarget)
 	{
+		UI::PlaySound(UI::UISound::TARGET);
 		if(isRightClick)
 			ai.IssueShipTarget(clickTarget);
 		else
@@ -2346,7 +2328,10 @@ void Engine::HandleMouseClicks()
 		}
 	}
 	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
-		ai.IssueMoveTarget(clickPoint + center, playerSystem);
+	{
+		UI::PlaySound(UI::UISound::TARGET);
+		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
+	}
 
 	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
@@ -2794,17 +2779,20 @@ void Engine::FillRadar()
 	else if(!hasHostiles)
 		hadHostiles = false;
 
-	// Add projectiles that have a missile strength or homing.
-	for(Projectile &projectile : projectiles)
+	// Add projectiles that have a missile strength or blast radius.
+	for(const Projectile &projectile : projectiles)
 	{
-		if(projectile.MissileStrength())
-		{
-			bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
-			radar[currentCalcBuffer].Add(
-				isEnemy ? Radar::SPECIAL : Radar::INACTIVE, projectile.Position(), 1.);
-		}
-		else if(projectile.GetWeapon().BlastRadius())
-			radar[currentCalcBuffer].Add(Radar::SPECIAL, projectile.Position(), 1.8);
+		if(!projectile.HasSprite())
+			continue;
+
+		bool isBlast = projectile.GetWeapon().BlastRadius();
+		if(!projectile.MissileStrength() && !isBlast)
+			continue;
+
+		bool isEnemy = projectile.GetGovernment() && projectile.GetGovernment()->IsEnemy();
+		bool isSafe = projectile.GetWeapon().IsSafe();
+		radar[currentCalcBuffer].Add(isEnemy || (isBlast && !isSafe) ? Radar::SPECIAL : Radar::INACTIVE,
+			projectile.Position(), isBlast ? 1.8 : 1.);
 	}
 }
 
@@ -2859,6 +2847,8 @@ void Engine::DrawShipSprites(const Ship &ship)
 				ship.Velocity(),
 				ship.Facing() + hardpoint.GetAngle(),
 				ship.Zoom());
+			if(body.InheritsParentSwizzle())
+				body.SetSwizzle(ship.GetSwizzle());
 			drawObject(body);
 		}
 	};
@@ -3041,6 +3031,6 @@ void Engine::EmplaceStatusOverlay(const shared_ptr<Ship> &it, Preferences::Overl
 	if(it->IsYours())
 		cloak *= 0.6;
 
-	statuses.emplace_back(it->Position() - center, it->Shields(), it->Hull(),
+	statuses.emplace_back(it->Position() - camera.Center(), it->Shields(), it->Hull(),
 		min(it->Hull(), it->DisabledHull()), max(20., width * .5), type, alpha * (1. - cloak));
 }
