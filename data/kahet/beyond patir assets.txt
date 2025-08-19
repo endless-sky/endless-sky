@@ -48,9 +48,9 @@ ship "Asteroid Large 1"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 29000000
 		"hull" 36561
@@ -101,9 +101,9 @@ ship "Asteroid Large 2"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 2"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 23000000
 		"hull" 37151
@@ -156,9 +156,9 @@ ship "Asteroid Large 3"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 3"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 19000000
 		"hull" 35172
@@ -209,9 +209,9 @@ ship "Asteroid Large 4"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 4"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 17000000
 		"hull" 35172
@@ -262,9 +262,9 @@ ship "Asteroid Large 5"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 5"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 31000000
 		"hull" 36716
@@ -315,9 +315,9 @@ ship "Asteroid Medium"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid medium"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 13000000
 		"hull" 21248
@@ -367,9 +367,9 @@ ship "Asteroid Young 1"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 11000000
 		"hull" 16459
@@ -418,9 +418,9 @@ ship "Asteroid Young 2"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young 2"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 7000000
 		"hull" 15984
@@ -469,9 +469,9 @@ ship "Asteroid Young 3"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young 3"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 5000000
 		"hull" 17021
@@ -520,9 +520,9 @@ ship "Asteroid Young 4"
 	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young 4"
+	"uncapturable"
 	attributes
 		category "Transport"
-		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 3000000
 		"hull" 16462
@@ -661,7 +661,8 @@ outfit "Asteroid Circle Submunition"
 		"hit effect" "detainer smoke" 5
 		"die effect" "tiny explosion"
 		"turn" 6
-		"homing" 3
+		"homing"
+			"throttle control"
 		"tracking" 1
 		"acceleration" 1.5
 		"drag" 0.2
@@ -1091,7 +1092,8 @@ outfit "asteroid launch"
 		"acceleration" 2
 		"drag" .1
 		"turn" 6
-		"homing" 3
+		"homing"
+			"throttle control"
 		"hit effect" "seeker impact"
 		"die effect" "seeker impact"
 		"tracking" 1
@@ -1172,7 +1174,8 @@ outfit "track1 print right"
 		"drag" .1
 		"turn" 20
 		"live effect" "asteroid circle trail" 5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"tracking" 1
 		"lifetime" 550
 		"inaccuracy" 5
@@ -1191,7 +1194,8 @@ outfit "track1 print left"
 		"drag" .1
 		"turn" 20
 		"live effect" "asteroid circle trail" 5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"tracking" 1
 		"lifetime" 550
 		"inaccuracy" 5
@@ -1242,7 +1246,8 @@ outfit "track2 print right"
 		"drag" .1
 		"turn" 20
 		"live effect" "asteroid circle trail" 5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"tracking" 1
 		"lifetime" 550
 		"inaccuracy" 5
@@ -1261,7 +1266,8 @@ outfit "track2 print left"
 		"drag" .1
 		"turn" 20
 		"live effect" "asteroid circle trail" 5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"tracking" 1
 		"lifetime" 550
 		"inaccuracy" 5
@@ -1312,7 +1318,8 @@ outfit "track3 print right"
 		"drag" .1
 		"turn" 20
 		"live effect" "asteroid circle trail" 5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"tracking" 1
 		"lifetime" 550
 		"inaccuracy" 5
@@ -1331,7 +1338,8 @@ outfit "track3 print left"
 		"drag" .1
 		"turn" 20
 		"live effect" "asteroid circle trail" 5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"tracking" 1
 		"lifetime" 550
 		"inaccuracy" 5
@@ -1380,7 +1388,8 @@ outfit "track4 print right"
 		"drag" .1
 		"turn" 20
 		"live effect" "asteroid circle trail" 5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"tracking" 1
 		"lifetime" 550
 		"inaccuracy" 5
@@ -1397,7 +1406,8 @@ outfit "track4 print left"
 		"drag" .1
 		"turn" 20
 		"live effect" "asteroid circle trail" 5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"tracking" 1
 		"lifetime" 550
 		"inaccuracy" 5
@@ -1467,7 +1477,8 @@ outfit "Asteroid Weapon Large 3"
 		"submunition" "asteroid missile"
 			"facing" -30
 		"submunition" "magic deployer1"
-		"homing" 1
+		"homing"
+			"blindspot"
 		"optical tracking" 1
 		"turn" 0
 		"split range" 180
@@ -1486,7 +1497,9 @@ outfit "asteroid missile"
 		"turn" 60
 		"hit effect" "seeker impact"
 		"die effect" "seeker impact"
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"tracking" 0.95
 		"lifetime" 155
 		"hit force" 120
@@ -2374,7 +2387,7 @@ outfit "wep static"
 		"drag" 1
 		"lifetime" 575
 		"turn" 360
-		"homing" 2
+		"homing"
 		"tracking" 1
 		"trigger radius" 240
 		"blast radius" 400
