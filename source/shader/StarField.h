@@ -39,6 +39,8 @@ class StarField {
 public:
 	void Init(int stars, int width);
 	void FinishLoading();
+	const Point &Position() const;
+	void SetPosition(const Point &position);
 	void SetHaze(const Sprite *sprite, bool allowAnimation);
 
 	void Step(Point vel, double zoom = 1.);
@@ -61,6 +63,10 @@ private:
 
 	Point pos;
 	double baseZoom = 1.;
+
+	double minZoom;
+	double zoomClamp;
+	double clampSlope;
 
 	// Track the haze sprite, so we can animate the transition between different hazes.
 	const Sprite *lastSprite;

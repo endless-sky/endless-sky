@@ -892,6 +892,20 @@ void GameData::StepBackground(const Point &vel, double zoom)
 
 
 
+const Point &GameData::GetBackgroundPosition()
+{
+	return background.Position();
+}
+
+
+
+void GameData::SetBackgroundPosition(const Point &position)
+{
+	background.SetPosition(position);
+}
+
+
+
 void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	background.SetHaze(sprite, allowAnimation);
