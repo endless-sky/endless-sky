@@ -33,6 +33,8 @@ void AudioSupplier::DestroyBuffer(ALuint buffer)
 	alDeleteBuffers(1, &buffer);
 }
 
+
+
 AudioSupplier::AudioSupplier(bool is3x, bool isLooping)
 	: is3x(is3x), nextPlaybackIs3x(is3x), isLooping(isLooping)
 {
