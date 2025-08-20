@@ -24,7 +24,7 @@ using namespace std;
 
 namespace {
 	/// The currently unclaimed OpenAL sources for reuse.
-	std::vector<ALuint> availableSources;
+	vector<ALuint> availableSources;
 }
 
 
