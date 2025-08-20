@@ -22,8 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-namespace
-{
+namespace {
 	/// The currently unclaimed OpenAL sources for reuse.
 	std::vector<ALuint> availableSources;
 }
