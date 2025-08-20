@@ -52,12 +52,6 @@ private:
 		size_t fadePerFrame);
 
 
-public:
-	/// The fade duration. Smaller values mean faster fade.
-	/// The total number of faded samples is MAX_FADE / fadePerFrame.
-	static constexpr size_t MAX_FADE = 65536;
-
-
 private:
 	/// The fading sources, with their current fade values, and how much they fade per frame.
 	std::vector<std::tuple<std::unique_ptr<AudioSupplier>, size_t, size_t>> fadeProgress;
