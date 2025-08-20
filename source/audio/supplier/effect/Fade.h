@@ -29,6 +29,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 /// cross-faded.
 class Fade : public AudioSupplier {
 public:
+	/// The fade duration. Smaller values mean faster fade.
+	/// The total number of faded samples is MAX_FADE / fadePerFrame.
+	static constexpr size_t MAX_FADE = 65536;
+public:
 	Fade() = default;
 
 	// Adds a new primary source, and fades out the previous primary source at the specified rate.
