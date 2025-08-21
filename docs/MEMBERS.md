@@ -37,4 +37,10 @@
 - [TheMarksman-ES](https://github.com/TheMarksman-ES)
 - [Zitchas](https://github.com/Zitchas)
 
-For other contributors, you may view our [CREDITS](credits.txt) file, additionally there is a unofficial community run directory available at https://moctave.github.io/es-community-directory
+## Moderators
+- [danaris](https://github.com/danaris)
+- [ziproot](https://github.com/ziproot)
+- [bene_dictator](https://github.com/bene-dictator)
+- [NanaScone](https://github.com/NanaScone)
+
+For other contributors, you may view our [credits](/credits.txt) file, additionally there is a unofficial community run directory available at https://moctave.github.io/es-community-directory
