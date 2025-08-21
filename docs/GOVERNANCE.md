@@ -7,6 +7,7 @@ While the list of roles is presented in a rough hierarchy based on permission le
 
 ### Admin
 GitHub Permissions: Owner
+
 Description: An admin is someone with the highest permission level on GitHub. The purpose of an admin should be to help facilitate the development of the game by taking actions on GitHub that can not be done by lower permission levels.
 
 **Responsibilities/Duties:**
@@ -21,6 +22,7 @@ Description: An admin is someone with the highest permission level on GitHub. Th
 
 ### Developer
 GitHub Permissions: Write or Maintain
+
 Description: Developers (also known as collaborators on GitHub) are the primary driving force behind the game’s development. They are the ones with the permissions to merge pull requests into the game, and thus ultimately decide what should and should not be merged.
 
 **Responsibilities/Duties:**
@@ -39,6 +41,7 @@ Description: Developers (also known as collaborators on GitHub) are the primary 
 
 ### Reviewer
 GitHub Permissions: Triage or Read
+
 Description: Reviewers are the helpers of the developers. They are people who have shown themselves to have a good sense of how pull requests should be changed to make them better fit with the game, be that in correcting grammar and spelling, adjusting data syntax, or speaking on the game’s themes, story, and lore.
 
 **Responsibilities/Duties:**
@@ -53,6 +56,7 @@ Description: Reviewers are the helpers of the developers. They are people who ha
 
 ### Moderator
 GitHub Permissions: Moderator
+
 Description: Moderators help to keep discussions civil, ensure disagreements remain productive, de-escalate conflict, resolve communication mishaps, and prioritize creating a friendly and welcoming environment that assures contributors their time will be appreciated and valued.
 
 **Responsibilities/Duties:**
@@ -67,6 +71,7 @@ Description: Moderators help to keep discussions civil, ensure disagreements rem
 
 ### Contributor
 GitHub Permissions: Read
+
 Description: Contributors are those who create the majority of the pull requests for the game. This is not a role that is given to individuals, but one that someone steps into in deciding to open a pull request.
 
 **Responsibilities/Duties:**
