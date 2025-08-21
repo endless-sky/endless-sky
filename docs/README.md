@@ -9,15 +9,15 @@ Governance of the Endless Sky project falls to a system of Admins, Maintainers, 
 
 ## Community and Membership
 The Endless Sky Project is supported by a diverse group of maintainers, contributors, and community members.
-•	The roles and responsibilities of contributors are outlined in Members.md.
-•	New contributors are welcome and may advance to broader roles over time through demonstrated participation and collaboration.
+- The roles and responsibilities of contributors are outlined in Members.md.
+- New contributors are welcome and may advance to broader roles over time through demonstrated participation and collaboration.
 Community discussions take place primarily on GitHub, with supplementary conversations occurring through forums and other collaborative spaces.
 
 ## Contributing Guidelines
 We welcome contributions in code, content, testing, and documentation.
-•	Please begin with [CONTRIBUTING](CONTRIBUTING.md)
-•	Review [GOVERNANCE](GOVERNANCE.md) before making contributions.
-•	New contributors may also consult the [FAQ](FAQ.md) for common questions.
+- Please begin with [CONTRIBUTING](CONTRIBUTING.md)
+- Review [GOVERNANCE](GOVERNANCE.md) before making contributions.
+- New contributors may also consult the [FAQ](FAQ.md) for common questions.
 
 ## Frequently Asked Questions
 A compilation of common questions regarding contribution, membership, and project scope can be found in the FAQ.
