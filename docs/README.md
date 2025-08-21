@@ -25,6 +25,7 @@ A compilation of common questions regarding contribution, membership, and projec
 
 ## All Documentation
 - [Community Guide](COMMUNITY.md): Guidelines on how to interact with the Endless Sky community and what we expect from our members.
+- [Code Of Conduct](CONDUCT>.md): Defines standards for how to engage in our community.
 - [Contributing Guide](CONTRIBUTING.md): What to expect as a new contributor.
 - [Developer Readme](DEVELOPER.md): Instructions for building the game.
 - [FAQ](FAQ.md): Frequently asked questions.
