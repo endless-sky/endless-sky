@@ -108,6 +108,7 @@ If our existing moderation team feels that you meet these requirements, you may 
 - Help to keep discussions productive and on-topic
 - Keep your contributions to the Endless Sky community positive, helpful and inclusive
 - Report breaches of our [community guidelines](COMMUNITY.md) to the existing moderator team
+- Always follow our [Code of Conduct](CONDUCT.md)
 
 ### Reviewer
 The most important aspect of a reviewer is to provide consistently high-quality reviews on existing PRs. This does not mean to do a lot of reviews, but rather ensure that every review you provide is high quality, clear, concise, and productive. 
