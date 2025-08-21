@@ -97,14 +97,14 @@ Contributions have a lot of variance to them and there are tons of ways you can 
 Additionally, if you open a PR which gets succesfully merged, you will be listed in the [credits](/credits.txt) as a contributor and your name will be displayed on the main menu of the game.
 
 ### Moderator
-Commit to making the enviroment of the Endless Sky community safe, welcoming and friendly. Make sure to follow all of the outlines in the [community guide](COMMUNITY_GUIDE.md) and help others follow them as well. 
+Commit to making the enviroment of the Endless Sky community safe, welcoming and friendly. Make sure to follow all of the outlines in the [community guide](COMMUNITY.md) and help others follow them as well. 
 Show that you can stay cool, calm and collected, resolve conflicts and foster a healthy community. 
 
 If our existing moderation team feels that you meet these requirements, you may be invited to join the team and help our community grow.
 - Help to resolve conflict if you see it
 - Help to keep discussion productive and on-topic
 - Keep your contributions to the Endless Sky community positive, helpful and inclusive
-- Report breaches of our [community guidelines](COMMUNITY_GUIDE.md) to the existing moderator team
+- Report breaches of our [community guidelines](COMMUNITY.md) to the existing moderator team
 
 ### Reviewer
 The most important aspect of a reviewer is to consistently provide good, high quality reviews on existing PRs. This does not mean to do a lot of reviews but rather ensure that every review you provide is high quality, clear, concise, and productive. 
