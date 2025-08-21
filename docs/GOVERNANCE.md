@@ -79,3 +79,41 @@ Description: Moderators help to keep discussions civil, ensure disagreements rem
 - While our moderation team is equipped with the tools to take moderation actions when necessary, we believe that should be considered a last resort option. Our moderation team prefers to de-escalate and resolve conflicts and only utilizes moderation actions such as verbal warnings, time-outs, or more if de-escalation is impossible.
 
 A full member list of who occupies each role is available at [Members.md](Members.md)
+
+## Advancement
+Interested in obtaining one of the roles listed above? Here's how members of each role are determined.
+
+### Contributor
+Contribute Something!
+Contributions have a lot of variance to them and there are tons of ways you can contribute to the project, including but not limited to:
+- Playtest and provide feedback
+- Review existing PRs
+- Make your own PR
+- Stream the game
+- Add to the wiki
+- Make your own tool or service
+- and many more
+
+Additionally, if you open a PR which gets succesfully merged, you will be listed in the [credits](/credits.txt) as a contributor and your name will be displayed on the main menu of the game.
+
+### Moderator
+Commit to making the enviroment of the Endless Sky community safe, welcoming and friendly. Make sure to follow all of the outlines in the [community guide](COMMUNITY_GUIDE.md) and help others follow them as well. 
+Show that you can stay cool, calm and collected, resolve conflicts and foster a healthy community. 
+
+If our existing moderation team feels that you meet these requirements, you may be invited to join the team and help our community grow.
+- Help to resolve conflict if you see it
+- Help to keep discussion productive and on-topic
+- Keep your contributions to the Endless Sky community positive, helpful and inclusive
+- Report breaches of our [community guidelines](COMMUNITY_GUIDE.md) to the existing moderator team
+
+### Reviewer
+The most important aspect of a reviewer is to consistently provide good, high quality reviews on existing PRs. This does not mean to do a lot of reviews but rather ensure that every review you provide is high quality, clear, concise, and productive. 
+New reviewers are typically selected by our existing reviewers, developers and maintainers from those who have a proven track record of providing good reviews. 
+- Check the list of [Pull Requests](https://github.com/endless-sky/endless-sky/pulls) for any PRs marked as "Ready for Review" and provide a review.
+- Playtest PRs and post the results of your playtesting
+- Help identify and fix grammar/spelling errors on existing PRs
+- Assist new contributors with getting their PRs to a merge-ready state
+
+### Developer
+New developers are typically picked from our existing reviewer team. If reviewers are expected to provide good, high quality reviews, then developers are expected to provide good reviews _and_ merge PRs once no further review is necessary. 
+As such, if you are interested in becoming a developer aim for a reviewer role first following all of the advice provided in the previous section.
