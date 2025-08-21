@@ -110,6 +110,8 @@ double ShipJumpNavigation::JumpDriveFuel(double distance) const
 	if(!hasJumpDrive)
 		return 0.;
 	// Otherwise, find the first jump range that covers the distance.
+	// TODO: does this infer that there are multiple jump drives possible with different fuel costs?
+	//       if so, finding the shortest supported distance does NOT translate to the smallest cost
 	auto it = jumpDriveCosts.lower_bound(distance);
 	return (it == jumpDriveCosts.end()) ? 0. : it->second;
 }
@@ -137,8 +139,7 @@ pair<JumpType, double> ShipJumpNavigation::GetCheapestJumpType(const System *fro
 	// If these two systems are linked, or if the system we're jumping from has its own jump range,
 	// then use the cheapest jump drive available, which is mapped to a distance of 0.
 	const double distance = from->Position().Distance(to->Position());
-	double jumpFuelNeeded = JumpDriveFuel((linked || from->JumpRange())
-			? 0. : distance);
+	double jumpFuelNeeded = JumpDriveFuel((linked || from->JumpRange()) ? 0. : distance);
 	bool canJump = jumpFuelNeeded && (linked || !from->JumpRange() || from->JumpRange() >= distance);
 	if(linked && hasHyperdrive && (!canJump || hyperFuelNeeded <= jumpFuelNeeded))
 		return make_pair(JumpType::HYPERDRIVE, hyperFuelNeeded);

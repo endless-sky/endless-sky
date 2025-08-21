@@ -31,7 +31,8 @@ class System;
 class RoutePlan {
 public:
 	explicit RoutePlan(const System &center, const System &destination, const PlayerInfo *player = nullptr);
-	explicit RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player = nullptr);
+	explicit RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player = nullptr,
+		const DistanceMap *distanceMap = nullptr);
 
 	// Find out if the destination is reachable.
 	bool HasRoute() const;

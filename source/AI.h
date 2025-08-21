@@ -18,20 +18,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
+#include "JumpType.h"
 #include "orders/OrderSet.h"
 #include "Point.h"
 
-#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>
 #include <optional>
 #include <set>
+#include <unordered_map>
 #include <vector>
 
 class Angle;
 class AsteroidField;
 class Body;
+class DistanceMap;
 class Flotsam;
 class Government;
 class Minable;
@@ -251,4 +253,10 @@ private:
 	std::map<const Government *, std::vector<Ship *>> governmentRosters;
 	std::map<const Government *, std::vector<Ship *>> enemyLists;
 	std::map<const Government *, std::vector<Ship *>> allyLists;
+
+	// Route planning cache. (from, to, gov, jumpRange, driveType)
+	// Note: keep this updated as the variables driving the routing change.
+	//       E.g.: danger = f(gov), isRestrictedFrom = f(gov)
+	std::map<std::tuple<const System *, const System *, const Government *, double, JumpType *>,
+		DistanceMap> routeCache;
 };

@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hardpoint.h"
 #include "JumpType.h"
+#include "Logger.h"
 #include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
@@ -54,6 +55,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <limits>
 #include <set>
 #include <utility>
+
+#include "UniverseObjects.h"
 
 using namespace std;
 
@@ -666,11 +669,16 @@ void AI::ClearOrders()
 
 void AI::Step(Command &activeCommands)
 {
+	// DEBUG
+	chrono::steady_clock::time_point start = chrono::steady_clock::now();
+	// DEBUG
+
 	// First, figure out the comparative strengths of the present governments.
 	const System *playerSystem = player.GetSystem();
 	map<const Government *, int64_t> strength;
 	UpdateStrengths(strength, playerSystem);
 	CacheShipLists();
+	routeCache.clear();
 
 	// Update the counts of how long ships have been outside the "invisible fence."
 	// If a ship ceases to exist, this also ensures that it will be removed from
@@ -1220,6 +1228,11 @@ void AI::Step(Command &activeCommands)
 		it->SetCommands(command);
 		it->SetCommands(firingCommands);
 	}
+	// DEBUG
+	string debug = "Step ---> " + std::to_string((chrono::steady_clock::now() - start).count() / 1000000.) + "ms";
+	Logger::LogError("DEBUG " + debug);
+	// DEBUG
+	return;
 }
 
 
@@ -1834,6 +1847,9 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 void AI::MoveIndependent(Ship &ship, Command &command) const
 {
 	double invisibleFenceRadius = ship.GetSystem()->InvisibleFenceRadius();
+	// DEBUG
+	chrono::steady_clock::time_point start = chrono::steady_clock::now();
+	// DEBUG
 
 	shared_ptr<const Ship> target = ship.GetTargetShip();
 	// NPCs should not be beyond the "fence" unless their target is
@@ -2044,6 +2060,13 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	// Nowhere to go, and nothing to do, so stay near the system center.
 	else if(shouldStay)
 		MoveTo(ship, command, Point(), Point(), 40, 0.8);
+
+	// DEBUG
+	string debug = "MoveIndependent ---> " + std::to_string((chrono::steady_clock::now() - start).count() / 1000000.) + "ms";
+	Logger::LogError("DEBUG " + debug);
+	// DEBUG
+	//
+	return;
 }
 
 
@@ -2073,6 +2096,10 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && currentSystem->HasFuelFor(ship);
 
+	// DEBUG
+	chrono::steady_clock::time_point start = chrono::steady_clock::now();
+	// DEBUG
+
 	if(parent.Cloaking() == 1 && (ship.GetGovernment() != parent.GetGovernment()))
 	{
 		if(parent.GetGovernment() && parent.GetGovernment()->IsPlayer() &&
@@ -2091,6 +2118,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	// Non-staying escorts should route to their parent ship's system if not already in it.
 	if(!parentIsHere && !isStaying)
 	{
+		// TODO: I think we're getting in here for non "escort" ships, e.g. Drak Entity, update comment above
 		if(ship.GetTargetStellar())
 		{
 			// An escort with an out-of-system parent only lands to
@@ -2136,6 +2164,7 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	else if(parent.Commands().Has(Command::JUMP) && parent.GetTargetSystem() && !isStaying)
 	{
 		if(parent.GetTargetSystem() != ship.GetTargetSystem())
+			// TODO: DEBUG: DEBUG NPC Wandering Fleet ship "Prudent Voyager": Ne-20 to Cl-35
 			SelectRoute(ship, parent.GetTargetSystem());
 
 		if(ship.GetTargetSystem())
@@ -2209,6 +2238,13 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		Stop(ship, command, .2);
 	else
 		MoveWithParent(ship, command, parent);
+
+	// DEBUG
+	string debug = "MoveEscort ---> " + std::to_string((chrono::steady_clock::now() - start).count() / 1000000.) + "ms";
+	Logger::LogError("DEBUG " + debug);
+	// DEBUG
+	//
+	return;
 }
 
 
@@ -2258,9 +2294,35 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 void AI::SelectRoute(Ship &ship, const System *targetSystem) const
 {
 	const System *from = ship.GetSystem();
+	// DEBUG
+	chrono::steady_clock::time_point start = chrono::steady_clock::now();
+	string debug = (ship.IsYours() ? "Your " : "NPC ");
+	const Government *gov = ship.GetGovernment();
+	if(!ship.Name().empty())
+		debug += gov->GetName() + " " + ship.Noun() + " \"" + ship.Name() + "\":";
+	else
+		debug += ship.DisplayModelName() + " (" + gov->GetName() + "):";
+	debug += " " + from->DisplayName() + " to ";
+	debug += (targetSystem ? targetSystem->DisplayName() : "(Null)");
+	Logger::LogError("DEBUG " + debug);
+	// DEBUG
 	if(from == targetSystem || !targetSystem)
 		return;
-	RoutePlan route(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
+
+	// DEBUG
+	chrono::steady_clock::time_point t0 = chrono::steady_clock::now();
+	// DEBUG
+	// Look for an existing distance map for this combination of inputs before calculating a new one
+	JumpType driveCapability = ship.JumpNavigation().HasJumpDrive() ? JumpType::JUMP_DRIVE : JumpType::HYPERDRIVE;
+	auto it = routeCache.find(
+		std::make_tuple(from, targetSystem, gov, ship.JumpNavigation().JumpRange(), &driveCapability));
+	const DistanceMap *distanceMap = nullptr;
+	if (it != routeCache.end())
+		distanceMap = &(it->second);
+	RoutePlan route(ship, *targetSystem, ship.IsYours() ? &player : nullptr, distanceMap);
+	// DEBUG
+	Logger::LogError("DEBUG route ---> " + std::to_string((chrono::steady_clock::now() - t0).count() / 1000000.) + "ms");
+	// DEBUG
 	if(ShouldRefuel(ship, route))
 	{
 		// There is at least one planet that can refuel the ship.
@@ -2271,6 +2333,10 @@ void AI::SelectRoute(Ship &ship, const System *targetSystem) const
 	// The destination may be accessible by both jump and wormhole.
 	// Prefer wormhole travel in these cases, to conserve fuel.
 	if(nextSystem)
+	{
+		// DEBUG
+		chrono::steady_clock::time_point t1 = chrono::steady_clock::now();
+		// DEBUG
 		for(const StellarObject &object : from->Objects())
 		{
 			if(!object.HasSprite() || !object.HasValidPlanet())
@@ -2285,10 +2351,19 @@ void AI::SelectRoute(Ship &ship, const System *targetSystem) const
 				return;
 			}
 		}
+		// DEBUG
+		Logger::LogError("DEBUG for object ---> " + std::to_string((chrono::steady_clock::now() - t1).count() / 1000000.) + "ms");
+		// DEBUG
+	}
 	// Either there is no viable wormhole route to this system, or
 	// the target system cannot be reached.
 	ship.SetTargetSystem(nextSystem);
 	ship.SetTargetStellar(nullptr);
+
+	// DEBUG
+	debug = "SelectRoute ---> " + std::to_string((chrono::steady_clock::now() - start).count() / 1000000.) + "ms";
+	Logger::LogError("DEBUG " + debug);
+	// DEBUG
 }
 
 

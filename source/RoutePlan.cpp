@@ -15,7 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "RoutePlan.h"
 
+#include "Logger.h"
 #include "DistanceMap.h"
+
+#include <chrono>
 
 using namespace std;
 
@@ -29,15 +32,22 @@ RoutePlan::RoutePlan(const System &center, const System &destination, const Play
 
 
 
-RoutePlan::RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player)
+RoutePlan::RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player,
+	const DistanceMap *distanceMap)
 {
-	Init(DistanceMap(ship, destination, player));
+	if (distanceMap)
+		Init(distanceMap->copyTo(ship));
+	else
+		Init(DistanceMap(ship, destination, player));
 }
 
 
 
 void RoutePlan::Init(const DistanceMap &distance)
 {
+	// DEBUG
+	chrono::steady_clock::time_point t0 = chrono::steady_clock::now();
+	// DEBUG
 	auto it = distance.route.find(distance.destination);
 	if(it == distance.route.end())
 		return;
@@ -49,6 +59,9 @@ void RoutePlan::Init(const DistanceMap &distance)
 		plan.emplace_back(it->first, it->second);
 		it = distance.route.find(it->second.prev);
 	}
+	// DEBUG
+	Logger::LogError("DEBUG RoutePlan::Init ---> " + std::to_string((chrono::steady_clock::now() - t0).count() / 1000000.) + "ms");
+	// DEBUG
 }
 
 
