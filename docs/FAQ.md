@@ -1,4 +1,4 @@
-### When will <thing> be completed?
+### When will `########` be completed?
 Endless Sky is a community-driven project run entirely by volunteers. There is no specific timeline for when tasks will be worked on or finished; it depends entirely on our volunteers' schedules and availability. If you want to see something completed sooner, consider [contributing](CONTRIBUTING.md).
 
 ### What is a PR?
