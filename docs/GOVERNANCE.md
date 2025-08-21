@@ -78,7 +78,7 @@ Description: Moderators help to keep discussions civil, ensure disagreements rem
 **Notes:**
 - While our moderation team is equipped with the tools to take moderation actions when necessary, we believe that should be considered a last resort option. Our moderation team prefers to de-escalate and resolve conflicts and only utilizes moderation actions such as verbal warnings, time-outs, or more if de-escalation is impossible.
 
-A full member list of who occupies each role is available at [Members.md](Members.md)
+A full member list of who occupies each role is available at [Members](MEMBERS.md)
 
 ## Advancement
 Interested in obtaining one of the roles listed above? Here's how members of each role are determined.
