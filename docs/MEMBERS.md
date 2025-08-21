@@ -39,6 +39,11 @@ These are all of the members of the Endless Sky organization. Each group is list
 - [TheMarksman-ES](https://github.com/TheMarksman-ES)
 - [Zitchas](https://github.com/Zitchas)
 
+## Community Organizers
+- [AvianGeneticist](https://github.com/AvianGeneticist)
+- [Hecter94](https://github.com/Hecter94) 
+- [MasterOfGrey](https://github.com/MasterOfGrey)
+
 ## Moderators
 - [bene_dictator](https://github.com/bene-dictator)
 - [danaris](https://github.com/danaris)
