@@ -1,24 +1,25 @@
-### Guide to Contributing to the Astro Community
+### Guide to Contributing to the Endless Sky Community
 
-When interacting, strive to maintain a friendly, empathetic tone. This includes, but is not limited to, interactions on Discord, GitHub, and Twitter.
+When interacting, strive to maintain a friendly, empathetic tone. This includes, but is not limited to, interactions on Discord, GitHub, and Steam.
 
 "Tone" refers to word, punctuation, and conversational choices that determine how your message _feels_ to others. This includes nonverbal cues, like emojis and gifs.
 
 Compare these two responses:
 
-_Question:_ Hey, I'm beginning with Astro. I tried to use `document` in my Astro page, but it says that the object doesn't exist. How can I manipulate the DOM?
+_Question:_ Hey! I'm interested in helping with development, I think some of the existing fights are too difficult and I'd like to help with rebalancing them. Where should I start?
 
 | Answer 1                                                                           | Answer 2                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| You can't manipulate the DOM from an Astro file 😂 Astro is a static site builder. | Hey, welcome to the community! <br/> Astro pages and components run on the server. Because of that, you won't have access to everything you're used to when writing JavaScript for the web. You're on the right track, though - you can access `document` from a `<script>` tag in your Astro file. <br/> Check out the docs here, and let me know if you need any more help! https://docs.astro.build/en/guides/client-side-scripts/ |
+| skill issue lol, the fights aren't too hard, they're intentionally balanced that way. Just build your ship better 😂 | Hey, welcome to the community and thanks for your interest in contributing! <br/> I would reccomend checking out our [Readme](README.md) to get a feel for the project and you could start out by posting a [discussion](https://github.com/endless-sky/endless-sky/discussions) or an [issue](https://github.com/endless-sky/endless-sky/issues) detailing which sections you find too difficult and what changes you think might help. Once you've gotten some feedback feel free to post your changes in a [Pull Request](https://github.com/endless-sky/endless-sky/pulls) so they can be reviewed. I'm looking forward to seeing what you can come up with! |
 
 Answer 2 centered the user's feelings and as such, took more effort. However, it made a significant difference. This response:
 
 - welcomed the new member into the community
-- made them feel validated for asking the question ("You're on the right track")
-- provided an explanation that fit the person who asked the question: _Answer 2_ sought to explain things to a self-described beginner, who might not understand the implications of "static site builder"
-- made it clear that the community is willing to help and that asking is not a burden ("let me know if you need any more help!")
-- equipped them with a next step ("Check out the docs here"), while at the same time familiarized them onto our docs page
+- thanks them for their interest in contributing to the project
+- gives them several resources they can use to get started
+- assures them that their contribution will be properly reviewed and discussed
+- gives them insight into what to expect on the path towards making a change
+- ends on a positive note
 
 Our community prides itself on being _positive_, _helpful_, and _inclusive_. If you have these goals in mind when interacting in the community, you're on the right track!
 
