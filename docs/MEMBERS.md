@@ -1,10 +1,11 @@
 # Current members
-These are the members currently holding roles within the Endless Sky organization. Each group is listed in alphabetical order.  
+These are all of the members of the Endless Sky organization. Each group is listed in alphabetical order.  
 
 ## Admins
-- [Amazinite](https://github.com/Amazinite) 
+- [Amazinite](https://github.com/Amazinite)
 - [Hecter94](https://github.com/Hecter94)
-- [Peter van der Meer](https://github.com/petervdmeer)
+- [mzahniser](https://github.com/orgs/endless-sky/people/mzahniser)
+- [petervdmeer](https://github.com/petervdmeer)
 
 ## Maintainers
 - [Anarchist2](https://github.com/Anarchist2)
@@ -43,5 +44,13 @@ These are the members currently holding roles within the Endless Sky organizatio
 - [danaris](https://github.com/danaris)
 - [NanaScone](https://github.com/NanaScone)
 - [ziproot](https://github.com/ziproot)
+
+## Members
+- [Arachi-Lover](https://github.com/Arachi-Lover)
+- [arkhne](https://github.com/arkhne)
+- [Azure3141](https://github.com/Azure3141)
+- [Galaucus](https://github.com/Galaucus)
+- [ravenshining](https://github.com/ravenshining)
+- [UnorderedSigh](https://github.com/UnorderedSigh)
 
 For other contributors, you may view our [credits](/credits.txt) file, additionally there is a unofficial community run directory available at https://moctave.github.io/es-community-directory
