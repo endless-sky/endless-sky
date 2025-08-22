@@ -7673,7 +7673,6 @@ ship "Emergency Shuttle"
 	description "This Emergency Shuttle is custom-built, designed to be attached to a larger ship and to serve as a lifeboat if the need arises. It is intentionally designed to maximize the number of people it can carry to safety, but has very little space for outfits."
 
 
-
 mission "Syndicate Business 2"
 	name "Purchase bond on <planet>"
 	description "Bring Howard to <destination> in order to finish the paperwork you'll need to finalize your bond agreement with Megaparsec Incorporated."
@@ -8244,6 +8243,7 @@ mission "Syndicate Business 5"
 
 event "syndicate business 10m investment done"
 
+
 mission "Syndicate Business 5.1 A 10m Expansion Update"
 	landing
 	to offer
@@ -8479,6 +8479,7 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			label ending
 			`	The long journey back to the spaceport proceeds in silence, leaving your decision behind to echo through the lives of the people left here.`
 
+
 mission "Syndicate Business 6"
 	name "Visit Howard on <planet>"
 	description "Howard wants to tell you about yet another investment opportunity."
@@ -8538,7 +8539,6 @@ mission "Syndicate Business 6"
 	on complete
 		conversation
 			`Howard sends you a reminder of his address near the spaceport as you land your <model> on <planet> - curiously on the ninth floor of the Megaparsec corporate office, rather than the eighth floor you met him on last time. He must still be reserving conference rooms for these meetings.`
-
 
 
 mission "Syndicate Business 7"
@@ -8734,6 +8734,7 @@ mission "Syndicate Business 7"
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 
+
 mission "Syndicate Business 8"
 	name "Escort Howard to <planet>"
 	description "Escort Howard to <destination> so that he can shore up support for his promotion."
@@ -8815,6 +8816,7 @@ mission "Syndicate Business 8"
 
 event "syndicate business Howard schmoozing"
 
+
 mission "Syndicate Business 9"
 	name "Meet Howard on <planet>"
 	description "Meet Howard on <destination> to escort him back to Sunracer."
@@ -8875,6 +8877,7 @@ mission "Syndicate Business 9"
 			`		Howard Vendeur`
 			`		Director of Investor Relations & External Projects, Megaparsec Incorporated`
 
+
 mission "Syndicate Business 10"
 	name "Escort Howard to <planet>"
 	description "Escort Howard back to <destination> to finalize your 100M credit investment."
@@ -8926,6 +8929,7 @@ mission "Syndicate Business 10"
 		ship "Quicksilver" "The Noncompete"
 	on complete
 		event "syndicate business 100m investment done" 730
+		event "syndicate business vip eligible" 90
 		conversation
 			`As you land on Sunracer, Howard's Bounder touches down out of view. His office is still at Megaparsec's main building, but now on the 42nd floor rather than the eighth or ninth floors.`
 			`	You make your way through Sunracer's now-familiar terminals to the towering Megaparsec corporate office. Inside, the lobby exudes tasteful sophistication, polished surfaces accented by subtle, ambient lighting and a quiet hum of high-end technology. You are waved in by the receptionist and step into the elevator, and it takes noticeably longer than your previous rides - a deliberate and steady ascent.`
@@ -8981,7 +8985,7 @@ mission "Syndicate Business 10"
 				`	(Sign the loan.)`
 					goto nextynice
 				`	"I'm done with these deals. I'm leaving."`
-					decline
+					goto imleaving
 			label upcharge
 			`	Howard's tone carries a hint of impatience. "Now, the price for this investment is one hundred and eleven million credits for a 27,400 credit per day return. I've arranged a loan for you at the bank and through our Finance Division, so you won't need to come up with the investment immediately. I've talked down the loan's interest to be half as high as your prior loan. Just sign these documents to formalize the arrangement."`
 			`	He shoves a document over to you, with a flimsy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of the documents before signing."`
@@ -8989,7 +8993,14 @@ mission "Syndicate Business 10"
 				`	(Sign the loan.)`
 					goto nextymean
 				`	"I'm done with these deals. I'm leaving."`
+			label imleaving
+			`	Howard lets out a sharp breath, shaking his head in disbelief. "So that's it, then?" His expression hardens, "It's your right, of course, to walk away from the opportunity of a lifetime - one I promise you won't see again. But perhaps I misheard you... are you truly done with this deal?"`
+			choice
+				`	"You must have misheard - I said, 'I'm stunned by these deals, I'm agreeing.'" (Sign the loan.)`
+				`	"I'm done signing these dumpy deals with your bargain-bin pens. Goodbye, Howard."`
 					decline
+			branch nextymean
+				"syndicate business: mean to Howard" > 0
 			label nextynice
 			action
 				debt 100000000
@@ -9116,6 +9127,8 @@ mission "Syndicate Business 10"
 				clear "heardplanc"
 
 event "syndicate business 100m investment done"
+
+event "syndicate business vip eligible"
 
 
 mission "Timothy Radrickson 1: Stowaway"
