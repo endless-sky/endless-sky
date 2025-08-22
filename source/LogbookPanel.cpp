@@ -247,8 +247,11 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 
 
-bool LogbookPanel::Click(int x, int y, int clicks)
+bool LogbookPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	x -= Screen::Left();
 	y -= Screen::Top();
 	if(x < SIDEBAR_WIDTH)

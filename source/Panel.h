@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "MouseButton.h"
 #include "Rectangle.h"
 
 #include <functional>
@@ -80,11 +81,10 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
-	virtual bool Click(int x, int y, int clicks);
-	virtual bool RClick(int x, int y);
+	virtual bool Click(int x, int y, MouseButton button, int clicks);
 	virtual bool Hover(int x, int y);
 	virtual bool Drag(double dx, double dy);
-	virtual bool Release(int x, int y);
+	virtual bool Release(int x, int y, MouseButton button);
 	virtual bool Scroll(double dx, double dy);
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
@@ -137,11 +137,10 @@ private:
 	// handle the event first, before calling the virtual method for the derived
 	// class to handle it.
 	bool DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
-	bool DoClick(int x, int y, int clicks);
-	bool DoRClick(int x, int y);
+	bool DoClick(int x, int y, MouseButton button, int clicks);
 	bool DoHover(int x, int y);
 	bool DoDrag(double dx, double dy);
-	bool DoRelease(int x, int y);
+	bool DoRelease(int x, int y, MouseButton button);
 	bool DoScroll(double dx, double dy);
 
 	void DoDraw();
