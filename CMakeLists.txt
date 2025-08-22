@@ -30,7 +30,7 @@ set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 if(ES_USE_VCPKG)
 	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
 		CACHE STRING "Vcpkg toolchain file")
-	# No need to bootstrap vcpkg if the toolchain file is explictly provided.
+	# No need to bootstrap vcpkg if the toolchain file is explicitly provided.
 	if(CMAKE_TOOLCHAIN_FILE STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake")
 		include(utils/vcpkg_bootstrap.cmake)
 		x_vcpkg_bootstrap()
@@ -61,7 +61,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.13
+project("Endless Sky" VERSION 0.10.15
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -87,6 +87,23 @@ endif()
 find_path(LIBMAD_INCLUDE_DIR mad.h)
 find_library(LIBMAD_LIB_DEBUG NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib")
 find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib")
+
+# Find the zip-reading component of zlib.
+find_package(ZLIB REQUIRED)
+
+# Minizip has a different target name in vcpkg.
+if(ES_USE_VCPKG)
+	find_package(unofficial-minizip CONFIG REQUIRED)
+	set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
+else()
+	if(CMAKE_VERSION VERSION_LESS 3.31)
+		find_package(PkgConfig REQUIRED PkgConfig PkgConf)
+		pkg_check_modules(MINIZIP REQUIRED minizip)
+	else()
+		cmake_pkg_config(EXTRACT minizip REQUIRED)
+		set(MINIZIP_LIBRARIES "minizip")
+	endif()
+endif()
 
 # Find the MinGW runtime DLLs.
 if(MINGW AND WIN32)
@@ -131,12 +148,14 @@ if(MINGW)
 endif()
 
 # Link with the general libraries.
-target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL ${MINIZIP_LIBRARIES}
 	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+elseif(ES_LINK_LIBATOMIC)
+	target_link_libraries(ExternalLibraries INTERFACE pthread atomic)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
 endif()
@@ -193,7 +212,7 @@ if(APPLE AND ES_CREATE_BUNDLE)
 	# MacOS bundles are a bit special and need every resource specified when
 	# creating the executable.
 	# NOTE: This means that a reconfigure is needed if any assets are added/removed!
-	foreach(folder "data" "images" "sounds")
+	foreach(folder "data" "images" "shaders" "sounds")
 		file(GLOB_RECURSE RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/${folder}/*")
 		target_sources(EndlessSky PRIVATE "${RESOURCES}")
 
@@ -234,6 +253,9 @@ if(APPLE AND ES_CREATE_BUNDLE)
 elseif(WIN32)
 	add_executable(EndlessSky WIN32 source/main.cpp source/WinApp.rc)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
+	if(ES_LARGE_ADDRESS_AWARE)
+		target_link_options(EndlessSky PRIVATE "-Wl,--large-address-aware")
+	endif()
 else()
 	add_executable(EndlessSky source/main.cpp)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "endless-sky")
@@ -266,12 +288,31 @@ elseif(WIN32)
 	# Install the resource files.
 	install(DIRECTORY data DESTINATION .)
 	install(DIRECTORY images DESTINATION .)
+	install(DIRECTORY shaders DESTINATION .)
 	install(DIRECTORY sounds DESTINATION .)
 	install(FILES credits.txt DESTINATION .)
 	install(FILES keys.txt DESTINATION .)
 	install(FILES copyright DESTINATION .)
 	install(FILES changelog DESTINATION .)
 	install(FILES license.txt DESTINATION .)
+
+	# NSIS installer configuration.
+	set(CPACK_PACKAGE_VENDOR "Endless Sky")
+	set(CPACK_PACKAGE_INSTALL_DIRECTORY "Endless Sky")
+	set(CPACK_GENERATOR "NSIS")
+	set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/license.txt")
+	set(CPACK_NSIS_MENU_LINKS
+		"Endless Sky.exe" "Endless Sky"
+		"https://github.com/endless-sky/endless-sky/wiki/PlayersManual" "Player's Manual")
+	set(CPACK_NSIS_MUI_ICON "${CMAKE_CURRENT_SOURCE_DIR}/icons/WinApp.ico")
+	set(CPACK_NSIS_INSTALLED_ICON_NAME "Endless Sky.exe")
+	set(CPACK_NSIS_MUI_WELCOMEFINISHPAGE_BITMAP "${CMAKE_CURRENT_SOURCE_DIR}\\\\installer\\\\welcome.bmp")
+	set(CPACK_NSIS_MUI_UNWELCOMEFINISHPAGE_BITMAP "${CMAKE_CURRENT_SOURCE_DIR}\\\\installer\\\\welcome.bmp")
+	set(CPACK_NSIS_MUI_HEADERIMAGE "${CMAKE_CURRENT_SOURCE_DIR}\\\\installer\\\\header.bmp")
+	set(CPACK_NSIS_EXTRA_PREINSTALL_COMMANDS
+		# Clear the previous contents of the installation directory to prevent data conflicts.
+		"RMDir /r $INSTDIR")
+	include(CPack)
 elseif(UNIX)
 	# Install the binary.
 	install(TARGETS EndlessSky CONFIGURATIONS Release RUNTIME DESTINATION games)
@@ -302,6 +343,7 @@ elseif(UNIX)
 	# Install the resource files.
 	install(DIRECTORY data DESTINATION share/games/endless-sky)
 	install(DIRECTORY images DESTINATION share/games/endless-sky)
+	install(DIRECTORY shaders DESTINATION share/games/endless-sky)
 	install(DIRECTORY sounds DESTINATION share/games/endless-sky)
 	install(FILES credits.txt DESTINATION share/games/endless-sky)
 	install(FILES keys.txt DESTINATION share/games/endless-sky)
@@ -309,3 +351,9 @@ elseif(UNIX)
 	install(FILES changelog DESTINATION share/doc/endless-sky)
 	install(FILES license.txt DESTINATION share/doc/endless-sky)
 endif()
+
+# Create symlink to compile_commands.json from build/ so it's LSP-discoverable.
+execute_process(
+	COMMAND ${CMAKE_COMMAND} -E create_symlink
+	${CMAKE_BINARY_DIR}/compile_commands.json
+	${CMAKE_CURRENT_SOURCE_DIR}/build/compile_commands.json)

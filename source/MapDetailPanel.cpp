@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Angle.h"
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "CoreStartData.h"
@@ -103,6 +104,8 @@ MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system, bool fr
 MapDetailPanel::MapDetailPanel(const MapPanel &panel, bool isStars)
 	: MapPanel(panel), isStars(isStars)
 {
+	Audio::Pause();
+
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = isStars ? -8 : player.MapColoring();
 
@@ -859,7 +862,7 @@ void MapDetailPanel::DrawInfo()
 		uiPoint.Y() += 20.;
 	}
 
-	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor(player.Conditions())
+	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor()
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
@@ -867,7 +870,7 @@ void MapDetailPanel::DrawInfo()
 			Screen::Top() + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
-		description->SetText(selectedPlanet->Description().ToString(player.Conditions()));
+		description->SetText(selectedPlanet->Description().ToString());
 		if(!descriptionVisible)
 		{
 			AddChild(description);

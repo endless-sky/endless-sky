@@ -124,19 +124,27 @@ namespace
 
 
 
-// Construct and Load() at the same time.
-ConditionSet::ConditionSet(const DataNode &node)
+ConditionSet::ConditionSet(const ConditionsStore *conditions)
 {
-	Load(node);
+	this->conditions = conditions;
+}
+
+
+
+// Construct and Load() at the same time.
+ConditionSet::ConditionSet(const DataNode &node, const ConditionsStore *conditions)
+{
+	Load(node, conditions);
 }
 
 
 
 // Construct a terminal with a literal value;
-ConditionSet::ConditionSet(int64_t newLiteral)
+ConditionSet::ConditionSet(int64_t newLiteral, const ConditionsStore *conditions)
 {
 	expressionOperator = ExpressionOp::LIT;
 	literal = newLiteral;
+	this->conditions = conditions;
 }
 
 
@@ -157,6 +165,7 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
 	literal = other.literal;
 	conditionName = std::move(other.conditionName);
 	children = std::move(other.children);
+	conditions = other.conditions;
 
 	return *this;
 }
@@ -179,6 +188,7 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 	literal = other.literal;
 	conditionName = other.conditionName;
 	children = other.children;
+	conditions = other.conditions;
 
 	return *this;
 }
@@ -186,8 +196,12 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 
 
 // Load a set of conditions from the children of this node.
-void ConditionSet::Load(const DataNode &node)
+void ConditionSet::Load(const DataNode &node, const ConditionsStore *conditions)
 {
+	if(!conditions)
+		throw runtime_error("Unable to Load ConditionSet without a pointer to a ConditionsStore!");
+	this->conditions = conditions;
+
 	// The top-node is always an 'and' node, without the keyword.
 	expressionOperator = ExpressionOp::AND;
 	ParseBooleanChildren(node);
@@ -330,20 +344,24 @@ bool ConditionSet::IsValid() const
 
 
 
-// Check if the given condition values satisfy this set of conditions.
-bool ConditionSet::Test(const ConditionsStore &conditions) const
+bool ConditionSet::Test() const
 {
-	return Evaluate(conditions);
+	return Evaluate();
 }
 
 
 
-int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
+int64_t ConditionSet::Evaluate() const
 {
 	switch(expressionOperator)
 	{
 		case ExpressionOp::VAR:
-			return conditionsStore.Get(conditionName);
+		{
+			if(!conditions)
+				throw runtime_error("Unable to Evaluate ExpressionOp::VAR with condition name \"" + conditionName
+					+ "\" in ConditionSet without a pointer to a ConditionsStore!");
+			return conditions->Get(conditionName);
+		}
 		case ExpressionOp::LIT:
 			return literal;
 		case ExpressionOp::AND:
@@ -355,7 +373,7 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 			int64_t result = 0;
 			for(const ConditionSet &child : children)
 			{
-				int64_t childResult = child.Evaluate(conditionsStore);
+				int64_t childResult = child.Evaluate();
 				if(!childResult)
 					return 0;
 				// Assign the first non-zero result to the result variable.
@@ -367,7 +385,7 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 		case ExpressionOp::OR:
 			for(const ConditionSet &child : children)
 			{
-				int64_t childResult = child.Evaluate(conditionsStore);
+				int64_t childResult = child.Evaluate();
 				// Return the first non-zero result.
 				if(childResult)
 					return childResult;
@@ -380,9 +398,9 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 	// If we have an accumulator function and children, then let's use the accumulator on the children.
 	BinFun accumulatorOp = Op(expressionOperator);
 	if(accumulatorOp != nullptr && !children.empty())
-		return accumulate(next(children.begin()), children.end(), children[0].Evaluate(conditionsStore),
-			[&accumulatorOp, &conditionsStore](int64_t accumulated, const ConditionSet &b) -> int64_t {
-				return accumulatorOp(accumulated, b.Evaluate(conditionsStore));
+		return accumulate(next(children.begin()), children.end(), children[0].Evaluate(),
+			[&accumulatorOp](int64_t accumulated, const ConditionSet &b) -> int64_t {
+				return accumulatorOp(accumulated, b.Evaluate());
 		});
 
 	// If we don't have an accumulator function, or no children, then return the default value.
@@ -406,17 +424,22 @@ set<string> ConditionSet::RelevantConditions() const
 }
 
 
+
 bool ConditionSet::ParseNode(const DataNode &node)
 {
+	if(!conditions)
+		throw runtime_error("Unable to ParseNode(full) for a ConditionSet without a pointer to a ConditionsStore!");
+
+	const string &key = node.Token(0);
 	// Special handling for 'and' and 'or' nodes.
 	if(node.Size() == 1)
 	{
-		if(node.Token(0) == "and")
+		if(key == "and")
 		{
 			expressionOperator = ExpressionOp::AND;
 			return ParseBooleanChildren(node);
 		}
-		if(node.Token(0) == "or")
+		if(key == "or")
 		{
 			expressionOperator = ExpressionOp::OR;
 			return ParseBooleanChildren(node);
@@ -428,7 +451,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 		return FailParse(node, "unexpected child-nodes under toplevel");
 
 	// Special handling for 'never', 'has' and 'not' nodes.
-	if(node.Token(0) == "never")
+	if(key == "never")
 	{
 		if(node.Size() > 1)
 			return FailParse(node, "tokens found after never keyword");
@@ -437,7 +460,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 		literal = 0;
 		return true;
 	}
-	if(node.Token(0) == "has")
+	if(key == "has")
 	{
 		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
 			return FailParse(node, "has keyword requires a single condition");
@@ -447,17 +470,17 @@ bool ConditionSet::ParseNode(const DataNode &node)
 		conditionName = node.Token(1);
 		return true;
 	}
-	if(node.Token(0) == "not")
+	if(key == "not")
 	{
 		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
 			return FailParse(node, "not keyword requires a single condition");
 
 		// Create `conditionName == 0` expression.
 		expressionOperator = ExpressionOp::EQ;
-		children.emplace_back();
+		children.emplace_back(conditions);
 		children.back().expressionOperator = ExpressionOp::VAR;
 		children.back().conditionName = node.Token(1);
-		children.emplace_back(0);
+		children.emplace_back(0, conditions);
 		return true;
 	}
 
@@ -472,6 +495,9 @@ bool ConditionSet::ParseNode(const DataNode &node)
 
 bool ConditionSet::ParseNode(const DataNode &node, int &tokenNr)
 {
+	if(!conditions)
+		throw runtime_error("Unable to ParseNode(indexed) for a ConditionSet without a pointer to a ConditionsStore!");
+
 	// Nodes beyond this point should not have children.
 	if(node.HasChildren())
 		return FailParse(node, "unexpected child-nodes under arithmetic expression");
@@ -552,13 +578,16 @@ bool ConditionSet::Optimize(const DataNode &node)
 
 bool ConditionSet::ParseBooleanChildren(const DataNode &node)
 {
+	if(!conditions)
+		throw runtime_error("Unable to ParseBooleans in a ConditionSet without a pointer to a ConditionsStore!");
+
 	if(!node.HasChildren())
 		return FailParse(node, "child-nodes expected, found none");
 
 	// Load all child nodes.
 	for(const DataNode &child : node)
 	{
-		children.emplace_back();
+		children.emplace_back(conditions);
 		children.back().ParseNode(child);
 
 		if(children.back().expressionOperator == ExpressionOp::INVALID)
@@ -572,6 +601,9 @@ bool ConditionSet::ParseBooleanChildren(const DataNode &node)
 
 bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 {
+	if(!conditions)
+		throw runtime_error("Unable to ParseMini in a ConditionSet without a pointer to a ConditionsStore!");
+
 	if(tokenNr >= node.Size())
 		return FailParse(node, "expected terminal or sub-expression, found none");
 
@@ -607,7 +639,7 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 	else if(node.Token(tokenNr) == "(")
 	{
 		// We must already have handled an open-bracket to get here; this one goes into a sub-expression.
-		children.emplace_back();
+		children.emplace_back(conditions);
 		children.back().ParseMini(node, tokenNr);
 	}
 	else
@@ -640,6 +672,9 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 
 bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, ExpressionOp parentOp)
 {
+	if(!conditions)
+		throw runtime_error("Unable to ParseFromInfix in a ConditionSet without a pointer to a ConditionsStore!");
+
 	// Keep on parsing until we reach an end-state (error, end-of-tokens, closing-bracket, lower precedence token)
 	while(true)
 	{
@@ -704,7 +739,7 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 				if(infixOp == expressionOperator)
 				{
 					++tokenNr;
-					if(!((children.emplace_back()).ParseMini(node, tokenNr)))
+					if(!((children.emplace_back(conditions)).ParseMini(node, tokenNr)))
 						return FailParse();
 
 					continue;
@@ -716,9 +751,6 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 		}
 	}
 }
-
-
-
 
 
 
@@ -745,7 +777,7 @@ bool ConditionSet::PushDownLast(const DataNode &node)
 	children.pop_back();
 
 	// Create a new last child.
-	children.emplace_back();
+	children.emplace_back(conditions);
 
 	// Let the earlier removed child become a grandChild.
 	children.back().children.push_back(std::move(ce));
