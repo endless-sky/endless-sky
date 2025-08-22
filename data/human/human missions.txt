@@ -8506,7 +8506,7 @@ mission "Syndicate Business 6"
 		conversation
 			branch deferred
 				has "Syndicate Business 6: deferred"
-			`After an uneventful walk through the spaceport, you return to <ship> to see a message from Howard, the Megaparsec salesman who sold you two investments. The message says:`
+			`After an uneventful walk through the spaceport, you return to the <ship> to see a message from Howard, the Megaparsec salesman who sold you two investments. The message says:`
 				goto message
 			label deferred
 			`	After an uneventful trip through the spaceport, you remember saving a message from Howard, the Megaparsec salesman you've already invested with twice. The message says:`
@@ -8577,7 +8577,7 @@ mission "Syndicate Business 7"
 					goto great
 				`	"That's a bit dramatic with the window, no?"`
 					goto great
-			`	Howard raises an amused eyebrow and remarks, "Relax, it's nothing you can't handle. Just a minor detour on this road to greatness.`
+			`	Howard raises an amused eyebrow and remarks, "Relax, it's nothing you can't handle. Just a minor detour on this road to greatness."`
 			label great
 			`	He turns back towards the window. "Greatness. My own corner office, a luxurious company ship, not to mention a sizable bonus. Director... all I need from you is to help nudge a small event in our favor."`
 			choice
@@ -8587,12 +8587,12 @@ mission "Syndicate Business 7"
 			`	Yet again he briefly turns from the window to face you.`
 			`	"Of course.`
 			label nextsteps
-			`	"Said nudge entails a certain degree of discretion and precision. You've demonstrated that during our Marauder acquisition, now we need it for an excision. I need you to plant some evidence onto a ship in <waypoints> to bait the pirates there into attacking a research convoy. Then, regroup on <planet> before the convoy comes through next week, and that should definitively shut down the Marauder project. After the anticipated response by the pirates, we confirm on <planet> that there's no loose ends."`
+			`	"Said nudge entails a certain degree of discretion and precision. You've demonstrated that during our Marauder acquisition; now we need it for an excision. I need you to plant some evidence onto a ship in <waypoints> to bait the pirates there into attacking a research convoy. Then, regroup on <planet> before the convoy comes through next week, and that should definitively shut down the Marauder project. After the anticipated response by the pirates, we confirm on <planet> that there's no loose ends."`
 			`	Howard continues to watch the shipyards below for a long moment before turning from the window with a deliberate finality, and strides to his desk at the center of the room. Planting both hands firmly on the smooth surface, he meets your gaze with an unusual intensity and says, "I need you to kick a hornets' nest and to make sure those hornets sting."`
 			choice
 				`	"Stinging hornets and nest kicking. You got it."`
 					goto restofplan
-				`	"Last time I helped you start your Marauder project, now you want me to end it? What's going on, Howard?"`
+				`	"Last time I helped you start your Marauder project, and now you want me to end it? What's going on, Howard?"`
 			branch meanplan
 				"syndicate business: mean to Howard" > 0
 			`	Howard exhales, shaking his head with a knowing smile. "Starting the Marauder project got me here, but keeping it alive? That won't help me get to the next level." Howard leans casually against the desk, his tone becoming more familiar but still businesslike. "The engineers are whispering that mass production doesn't look feasible. That's bad news for me if the higher-ups catch wind of it before we can control the narrative."`
@@ -8616,10 +8616,10 @@ mission "Syndicate Business 7"
 					decline
 			branch meancutthroat
 				"syndicate business: mean to Howard" > 0
-			`	Howard's eyes soften as he meets your gaze, a fond smile playing on his lips. "Cutthroat? How far we've come since you saved me from that pirate in Moktar. Every hard move has been a stepping stone as we climb to the peak of this ruthless world. And when I reach the top, I won't forget the loyalty that got me there.`
+			`	Howard's eyes soften as he meets your gaze, a fond smile playing on his lips. "Cutthroat? How far we've come since you saved me from that pirate in Moktar. Every hard move has been a stepping stone as we climb to the peak of this ruthless world. And when I reach the top, I won't forget the loyalty that got me there."`
 				goto goldenjewelaround
 			label meancutthroat
-			`	"Me? Cutthroat?" Howard maintains a hard gaze as he gives you an exaggerated wink, "Don't you forget it. I appreciate what you did on Moktar, but business is business. It's a ruthless world, and all we can do is climb to the top or be trampled beneath." Begrudgingly, he adds, "And I don't forget those who help me get there.`
+			`	"Me? Cutthroat?" Howard maintains a hard gaze as he gives you an exaggerated wink, "Don't you forget it. I appreciate what you did on Moktar, but business is business. It's a ruthless world, and all we can do is climb to the top or be trampled beneath." Begrudgingly, he adds, "And I don't forget those who help me get there."`
 			label goldenjewelaround
 			branch piratearound
 				has "syndicate business: golden jewel dead"
@@ -8637,10 +8637,10 @@ mission "Syndicate Business 7"
 					decline
 			branch seendummy
 				( "Syndicate target practice [0]: done" + "Syndicate target practice [1]: done" + "Syndicate target practice [2]: done" + "Syndicate target practice [3]: done" ) > 0
-			`	"That's the neat part, you won't have to. You'll be planting the evidence on an automated prototype vessel. The technology's under wraps, and still in the testing phases. Anyway, there's no one on the ship. And I want you to load it up with this file," he holds up a data disk. "It contains the real timing and defenses of the convoy that's moving that vital Marauder research in a few days, as well as fake data indicating untold riches aboard to entice the pirates."`
+			`	"That's the neat part, you won't have to. You'll be planting the evidence on an automated prototype vessel. The technology's under wraps, and still in the testing phases. Anyway, there's no one on the ship. And I want you to load it up with this file." He holds up a data disk. "It contains the real timing and defenses of the convoy that's moving that vital Marauder research in a few days, as well as fake data indicating untold riches aboard to entice the pirates."`
 				goto postdummy
 			label seendummy
-			`	"That's the neat part, you won't have to. You'll be planting the evidence on an automated prototype vessel. Funnily enough, records indicate that you've even been offered to test them before, so you know that technology is still very much in the testing phases. Anyway, there's no one on the ship. And I want you to load it up with this file," he holds up a data disk. "It contains the real timing and defenses of the convoy that's moving that vital Marauder research in a few days, as well as fake data indicating untold riches aboard to entice the pirates."`
+			`	"That's the neat part, you won't have to. You'll be planting the evidence on an automated prototype vessel. Funnily enough, records indicate that you've even been offered to test them before, so you know that technology is still very much in the testing phases. Anyway, there's no one on the ship. And I want you to load it up with this file." He holds up a data disk. "It contains the real timing and defenses of the convoy that's moving that vital Marauder research in a few days, as well as fake data indicating untold riches aboard to entice the pirates."`
 			label postdummy
 			choice
 				`	"Okay, great. Makes sense to me."`
@@ -8652,7 +8652,7 @@ mission "Syndicate Business 7"
 				`	"Not interested. I'm done with these tasks."`
 					decline
 			label ending
-			`	He hands you a data disk containing the evidence. "I knew you'd make the right decision. Remember, we really want to kick the hornet's nest here. I've disabled the Quicksilver on <waypoints>, so it should be a cinch for you to upload this evidence onto the ship and ensure its destruction. Remember, first board, then blast. Meet me on <planet> afterwards for any follow-ups. See you in a week."`
+			`	He hands you a data disk containing the evidence. "I knew you'd make the right decision. Remember, we really want to kick the hornet's nest here. I've disabled the Quicksilver in <waypoints>, so it should be a cinch for you to upload this evidence onto the ship and ensure its destruction. Remember, first board, then blast. Meet me on <planet> afterwards for any follow-ups. See you in a week."`
 				accept
 	on enter "Moktar"
 		"reputation: Independent (Killable)" = -1000
@@ -8672,7 +8672,7 @@ mission "Syndicate Business 7"
 					`	"We can't keep meeting like this."`
 					`	"Uhhh... who are you again?"`
 						goto whomst
-				`	"Our paths are as persistently painful as the pestilence - your persistent presence has provoked my peevishness!"`
+				`	"Our paths are as powerfully painful as the pestilence - your persistent presence has provoked my peevishness!"`
 					goto power
 				label whomst
 				`	"I am the relentless, raging rapscallion who revels in ripping apart feeble, fumbling fiends!"`
@@ -8842,8 +8842,8 @@ mission "Syndicate Business 9"
 			`		Howard Vendeur`
 			`		Director of Investor Relations & External Projects, Megaparsec Incorporated`
 			choice
-				`	(Message back a heartfelt congratulations and that you're on your way.)`
-				`	(Respond that nobody cares about his promotion, but you'll be there soon.)`
+				`	(Message back a heartfelt congratulations and that I'm on my way.)`
+				`	(Respond that nobody cares about his promotion, but I'll be there soon.)`
 					goto rude
 			`	You immediately receive a response:`
 			`	"<first>,`
@@ -8873,7 +8873,7 @@ mission "Syndicate Business 9"
 			`Like clockwork, you get a message from Howard as the <ship> lands on <destination>:`
 			branch meanpromo
 				"syndicate business: mean to Howard" > 0
-			`	<first>,`
+			`	"<first>,`
 			`	"Welcome back. Meet me at the spaceport so we can get back to Sunracer. And take a moment to check out my new ship - I think you'll be impressed."`
 				goto restofhello
 			label meanpromo
@@ -8892,7 +8892,7 @@ mission "Syndicate Business 10"
 	destination "Sunracer"
 	on offer
 		conversation
-			`You step into Hephaestus' bustling spaceport, where the flash of arc welders and the clamor of robotic gantries set the relentless, industrial rhythm of the Syndicate. Amid the busy hangars, you spot Howard standing beside his brand-new Bounder - the sleek vessel cutting a striking figure against the hangar's harsh backdrop of chrome and concrete.`
+			`You step into Hephaestus' bustling spaceport, where the flash of arc welders and the clamor of robotic gantries set the relentless, industrial rhythm of the Syndicate. Amid the busy hangars, you spot Howard standing beside a brand-new Bounder - the sleek vessel cutting a striking figure against the hangar's harsh backdrop of chrome and concrete.`
 			`	Howard flashes you a proud smile as he beckons you closer. "Take a good look - what do you think?"`
 			choice
 				`	"It's alright, I suppose. Gets the job done."`
@@ -8934,7 +8934,7 @@ mission "Syndicate Business 10"
 	on complete
 		event "syndicate business 100m investment done" 730
 		conversation
-			`As you land on Sunracer, Howard's Bounder touches down out of view. His office is still at Megaparsec's main office, but now on the 42nd floor rather than the eighth or ninth floors.`
+			`As you land on Sunracer, Howard's Bounder touches down out of view. His office is still at Megaparsec's main building, but now on the 42nd floor rather than the eighth or ninth floors.`
 			`	You make your way through Sunracer's now-familiar terminals to the towering Megaparsec corporate office. Inside, the lobby exudes tasteful sophistication, polished surfaces accented by subtle, ambient lighting and a quiet hum of high-end technology. You are waved in by the receptionist and step into the elevator, and it takes noticeably longer than your previous rides - a deliberate and steady ascent.`
 			`	The elevator doors finally part to reveal the 42nd floor, a realm of refined elegance. Howard's corner office is a far cry from his modest reservable offices he had before. A custom-built smart desk commands the center, flanked by designer seating and accented by carefully curated art that whispers of ambition. Expansive windows frame a dynamic vista of the shipyards below - a living testament to the relentless innovation of Megaparsec. Standing at the window with quiet authority, Howard meets your gaze, a man unmistakably on his own deliberate ascent through the ranks of Megaparsec.`
 			`	He nods in acknowledgment as you step forward, the promise of new ventures electrifying the air.`
@@ -8955,7 +8955,6 @@ mission "Syndicate Business 10"
 			action
 				"syndicate business: mean to Howard" ++
 			`	Howard's expression momentarily tightens, before putting on a practiced smile. "Ah, your charm remains... distinct. I find a view helps with perspective."`
-				goto restofhello
 			label restofhello
 			`	Howard walks from the window towards the room's premier art piece, a canvas covered in bold, sweeping strokes of silver and blue. Howard gazes at the lines, "They evoke a rush of light and momentum, symbolizing Megaparsec's drive ever upwards towards uncharted horizons.`
 			`	"But we aren't here for an art tour. We're here to discuss your chance to invest in Megaparsec's new CRUCIBLE Facility."`
@@ -9003,7 +9002,7 @@ mission "Syndicate Business 10"
 				debt 100000000
 					interest 0.04
 					term 7300
-			`	He takes the document from you and you see the loan terms on the screen behind him: 100M credits, 20 years, 15% rate.`
+			`	He takes the document from you and you see the loan terms on the screen behind him: 100M credits, 20 years, 16% rate.`
 				goto nexty
 			label nextymean
 			action
@@ -9058,7 +9057,7 @@ mission "Syndicate Business 10"
 						has "heardplanc"
 			label planb
 			`	"There's a certain allure to uncompromising profit - a no-holds-barred, red-tape-free approach. We cut every corner on labor, safety, and the environment to unlock some explosive returns. It's the high-stakes, high-return option for those unafraid of a little controversy for rapid gains of 41,000 credits a day, or around 14% a year."`
-			`	He grins. "And as for any little controversies? Don't worry about it - they didn't matter last time, and the odds of another cropping up with this project are probably slim."`
+			`	He grins. "And as for those little controversies? Don't worry about it - they didn't matter last time, and the odds of another cropping up with this project are probably slim."`
 				to display
 					has "Syndicate Business expansion 10m evil"
 			action
