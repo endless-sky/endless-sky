@@ -14,7 +14,7 @@ _Question:_ Hey! I'm interested in helping with development, I think some of the
 
 Answer 2 centered the user's feelings and as such, took more effort. However, it made a significant difference. This response:
 
-- welcomed the new member into the community
+- welcomes the new member into the community
 - thanks them for their interest in contributing to the project
 - gives them several resources they can use to get started
 - assures them that their contribution will be properly reviewed and discussed

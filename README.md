@@ -49,7 +49,7 @@ A compilation of common questions regarding contribution, membership, and projec
 - [Contributing Guide](docs/CONTRIBUTING.md): What to expect as a new contributor.
 - [Developer Readme](docs/DEVELOPER.md): Instructions for building the game.
 - [FAQ](docs/FAQ.md): Frequently asked questions.
-- [Game readme](docs/GAME.md): Details about the Endless Sky game itself (installation, play, modding).
+- [Game Readme](docs/GAME.md): Details about the Endless Sky game itself (installation, play, modding).
 - [Governance](docs/GOVERNANCE.md): Processes for leadership and decision-making.
-- [Members](docs/MEMBERS.md): A full list of current organization members.
+- [Member List](docs/MEMBERS.md): A full list of current organization members.
 - [Readme](README.md): This document

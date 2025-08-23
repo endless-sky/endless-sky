@@ -54,7 +54,7 @@ Description: Reviewers are the helpers of the developers. They are people who ha
 - Unlike with developers, where an approval effectively states whether a pull request should be merged, approvals from reviewers can have multiple meanings. One meaning is that the reviewer believes that the pull request is good and should be merged. Another meaning is that the pull request is good in that reviewer’s area of expertise. For example, if a grammar and spelling reviewer reviews a mission pull request after seeing that it has no grammar or spelling issues, they can approve that pull request on the grounds that its grammar and spelling are good. But, a reviewer could approve the same pull request to mean that they like the missions and would like to see them merged. The approval message of a reviewer should describe which of these two situations they are approving the pull request for.
 - Although reviewer is a title that we give to people, one need not be a reviewer in order to review pull requests. The title of reviewer is simply an acknowledgement from the existing team that one has shown themself as capable of providing good, constructive reviews. Any power or weight that a reviewer may have does not flow from their title, but from their merit.
 
-### Moderator
+### Oathkeeper (Moderator)
 GitHub Permissions: Moderator
 
 Description: Moderators help to keep discussions civil, ensure disagreements remain productive, de-escalate conflict, resolve communication mishaps, and prioritize creating a friendly and welcoming environment that assures contributors their time will be appreciated and valued.

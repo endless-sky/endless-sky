@@ -58,4 +58,4 @@ These are all of the members of the Endless Sky organization. Each group is list
 - [ravenshining](https://github.com/ravenshining)
 - [UnorderedSigh](https://github.com/UnorderedSigh)
 
-For other contributors, you may view our [credits](/credits.txt) file, additionally there is a unofficial community run directory available at https://moctave.github.io/es-community-directory
+For other contributors, you may view our [credits](/credits.txt) file. There is also a unofficial community run directory available at https://moctave.github.io/es-community-directory

@@ -2,7 +2,7 @@
 Endless Sky is a community-driven project run entirely by volunteers. There is no specific timeline for when tasks will be worked on or finished; it depends entirely on our volunteers' schedules and availability. If you want to see something completed sooner, consider [contributing](CONTRIBUTING.md).
 
 ### What is a PR?
-A PR is a "Pull Request", a request to pull specific changes into the repository. This is how contributors suggest changes to the game in a way that allows those changes to be reviewed and potentially merged. Check the official GitHub [documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) for additional details.
+A PR is a "Pull Request", a request to pull specific changes into the repository. This is how contributors suggest changes to the game in a way that allows those changes to be reviewed and potentially added to the game. Check the official GitHub [documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) for additional details.
 
 ### How can I contribute?
 You may contribute in many ways. Playtesting and reviewing PRs, creating your own PRs, testing and fixing bugs, streaming the game, and many more. See our [contributing guidelines](CONTRIBUTING.md) for additional details on how to get started. 
@@ -10,8 +10,8 @@ You may contribute in many ways. Playtesting and reviewing PRs, creating your ow
 ### Can I add my own faction?
 Certainly! However, be aware that adding a whole new faction is a significant task, which typically requires several years before it is merge-ready. If you're a new contributor, we usually recommend starting with a few smaller contributions, such as a short storyline or a couple of new missions, before attempting to create an entire faction. 
 
-### Can I use LLM tools to contribute?
-No. LLM-generated or assisted content is not permitted in the Endless Sky project. See our [contributing guidelines](CONTRIBUTING.md#on-ai-generatedassisted-content) for further details. 
+### Can I use generative AI tools to contribute?
+No. AI-generated or assisted content is not permitted in the Endless Sky project. See our [contributing guidelines](CONTRIBUTING.md#on-ai-generatedassisted-content) for further details. 
 
 ### Do you accept donations?
 We do not accept donations. We ask that you instead donate to a charity of your choice. Please see https://github.com/endless-sky/endless-sky/wiki/Donations for more details. 
