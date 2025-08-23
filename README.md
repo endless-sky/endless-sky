@@ -40,9 +40,6 @@ For full installation instructions, consult the [Build Instructions](docs/DEVELO
 
 Endless Sky is a free, open source game. The [source code](https://github.com/endless-sky/endless-sky/) is available under the GPL v3 license, and all the artwork is either public domain or released under a variety of Creative Commons (and similarly permissive) licenses. (To determine the copyright status of any of the artwork, consult the [copyright file](https://github.com/endless-sky/endless-sky/blob/master/copyright).)
 
-## Frequently Asked Questions
-A compilation of common questions regarding contribution, membership, and project scope can be found in the [FAQ](docs/FAQ.md).
-
 ## All Documentation
 - [Community Guide](docs/COMMUNITY.md): Guidelines on how to interact with the Endless Sky community and what we expect from our members.
 - [Code Of Conduct](docs/CONDUCT.md): Defines standards for how to engage in our community.
