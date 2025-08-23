@@ -3153,9 +3153,8 @@ double Ship::TrueAcceleration() const
 
 double Ship::CrewAcceleration() const
 {
-	if(!Crew() || !RequiredCrew())
-		return Acceleration();
-	return Acceleration() * min(1., 1. * Crew() / RequiredCrew());
+	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
+	return Acceleration() * min(1., static_cast<double>(Crew()) / RequiredCrew());
 }
 
 
