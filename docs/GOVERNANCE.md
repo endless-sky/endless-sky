@@ -8,7 +8,7 @@ While the list of roles is presented in a rough hierarchy based on permission le
 ### Admin
 GitHub Permissions: Owner
 
-Description: An admin is someone with the highest permission level on GitHub. The purpose of an admin should be to help facilitate the development of the game by taking actions on GitHub that can not be done by lower permission levels.
+Description: An admin is someone with the highest permission level on GitHub. The purpose of an admin is to help facilitate the development of the game by taking actions on GitHub that can not be done by lower permission levels.
 
 **Responsibilities/Duties:**
 - Control creation and assignment of roles and teams within the GitHub organization and for each repository.
@@ -97,6 +97,7 @@ Address the reviews of reviewers and developers on their pull requests.
 - Contributors need not blindly accept every suggestion from a reviewer. If a contributor disagrees with a review comment, then they should explain why they disagree, particularly if the changes being requested are substantial. See the "On Review Relationships" and "On Reviews and Approvals" sections for more detail.
 
 A full member list of who occupies each role is available at [Members](MEMBERS.md)
+For additional information, see the GitHub [documentation](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization) available for organization roles.
 
 ## Advancement
 Interested in obtaining one of the roles listed above? Here's how members of each role are determined.
@@ -107,7 +108,7 @@ Contributions vary quite a bit, and there are numerous ways you can contribute t
 - Playtest and provide feedback
 - Review existing PRs
 - Make your own PR
-- Stream the game
+- Showcase the game
 - Add to the wiki
 - Make your own tool or service
 - and many more
