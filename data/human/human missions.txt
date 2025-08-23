@@ -8994,7 +8994,7 @@ mission "Syndicate Business 10"
 					goto nextymean
 				`	"I'm done with these deals. I'm leaving."`
 			label imleaving
-			`	Howard lets out a sharp breath, shaking his head in disbelief. "So that's it, then?" His expression hardens, "It's your right, of course, to walk away from the opportunity of a lifetime - one I promise you won't see again. But perhaps I misheard you... are you truly done with this deal?"`
+			`	Howard lets out a sharp breath, shaking his head in disbelief. "So that's it, then?" His expression hardens. "It's your right, of course, to walk away from the opportunity of a lifetime - one I promise you won't see again. But perhaps I misheard you... are you truly done with this deal?"`
 			choice
 				`	"You must have misheard - I said, 'I'm stunned by these deals, I'm agreeing.'" (Sign the loan.)`
 				`	"I'm done signing these dumpy deals with your bargain-bin pens. Goodbye, Howard."`
