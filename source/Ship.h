@@ -428,6 +428,10 @@ public:
 	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
 	double TrueAcceleration() const;
 	double TrueTurnRate() const;
+	// These two values are the ship's effective maximum acceleration and turn rate,
+	// accounting for the effects of insufficient crew.
+	double CrewAcceleration() const;
+	double CrewTurnRate() const;
 	// The ship's current speed right now
 	double CurrentSpeed() const;
 
