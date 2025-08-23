@@ -3128,6 +3128,8 @@ double Ship::TrueTurnRate() const
 
 double Ship::CrewTurnRate() const
 {
+	if(!Crew() || !RequiredCrew())
+		return TurnRate();
 	return TurnRate() * min(1., 1. * Crew() / RequiredCrew());
 }
 
@@ -3151,6 +3153,8 @@ double Ship::TrueAcceleration() const
 
 double Ship::CrewAcceleration() const
 {
+	if(!Crew() || !RequiredCrew())
+		return Acceleration();
 	return Acceleration() * min(1., 1. * Crew() / RequiredCrew());
 }
 
