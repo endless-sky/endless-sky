@@ -99,7 +99,7 @@ Address the reviews of reviewers and developers on their pull requests.
 A full member list of who occupies each role is available at [Members](MEMBERS.md)
 For additional information, see the GitHub [documentation](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization) available for organization roles.
 
-## Advancement
+## Role Criteria
 Interested in obtaining one of the roles listed above? Here's how members of each role are determined.
 
 ### Contributor
