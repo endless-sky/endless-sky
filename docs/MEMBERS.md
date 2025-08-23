@@ -1,5 +1,6 @@
 # Current members
-These are all of the members of the Endless Sky organization. Each group is listed in alphabetical order.  
+These are all of the members of the Endless Sky [organization](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations). Each group is listed in alphabetical order.
+For a description of each role, see [governance](GOVERNANCE.md)
 
 ## Admins
 - [Amazinite](https://github.com/Amazinite)
