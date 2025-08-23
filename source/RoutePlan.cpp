@@ -27,27 +27,35 @@ using namespace std;
 // RoutePlan is a wrapper on DistanceMap that uses destination
 RoutePlan::RoutePlan(const System &center, const System &destination, const PlayerInfo *player)
 {
-	Init(DistanceMap(center, destination, player));
+	auto d = DistanceMap(center, destination, player);
+	Init(d);
 }
 
 
 
 RoutePlan::RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player,
-	const DistanceMap *distanceMap)
+	const DistanceMap *distance)
 {
-	if (distanceMap)
-		Init(distanceMap->copyTo(ship));
+	if (distance)
+	{
+		auto d = distance->copyTo(ship);
+		Init(d);
+	}
 	else
-		Init(DistanceMap(ship, destination, player));
+	{
+		auto d = DistanceMap(ship, destination, player);
+		Init(d);
+	}
 }
 
 
 
-void RoutePlan::Init(const DistanceMap &distance)
+void RoutePlan::Init(DistanceMap &distance)
 {
 	// DEBUG
 	chrono::steady_clock::time_point t0 = chrono::steady_clock::now();
 	// DEBUG
+	distanceMap = &distance;
 	auto it = distance.route.find(distance.destination);
 	if(it == distance.route.end())
 		return;
@@ -103,6 +111,13 @@ int RoutePlan::RequiredFuel() const
 		return -1;
 
 	return plan.front().second.fuel;
+}
+
+
+
+DistanceMap RoutePlan::GetDistanceMap()
+{
+	return *distanceMap;
 }
 
 

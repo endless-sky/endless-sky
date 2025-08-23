@@ -27,8 +27,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <optional>
 #include <set>
-#include <unordered_map>
 #include <vector>
+
+#include "RoutePlan.h"
 
 class Angle;
 class AsteroidField;
@@ -108,7 +109,7 @@ private:
 
 	bool FollowOrders(Ship &ship, Command &command);
 	void MoveInFormation(Ship &ship, Command &command);
-	void MoveIndependent(Ship &ship, Command &command) const;
+	void MoveIndependent(Ship &ship, Command &command);
 	void MoveWithParent(Ship &ship, Command &command, const Ship &parent);
 	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
@@ -116,7 +117,7 @@ private:
 	// Set the ship's target system or planet in order to reach the
 	// next desired system. Will target a landable planet to refuel.
 	// If the ship is an escort it will only use routes known to the player.
-	void SelectRoute(Ship &ship, const System *targetSystem) const;
+	void SelectRoute(Ship &ship, const System *targetSystem);
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 
 	// Methods of moving from the current position to a desired position / orientation.
@@ -142,7 +143,7 @@ private:
 	// Special personality behaviors.
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
-	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
+	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(const Ship &ship, Command &command) const;
@@ -189,6 +190,7 @@ private:
 	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
+	RoutePlan GetRoutePlan(Ship &ship, const System *targetSystem);
 
 
 private:
@@ -254,9 +256,16 @@ private:
 	std::map<const Government *, std::vector<Ship *>> enemyLists;
 	std::map<const Government *, std::vector<Ship *>> allyLists;
 
-	// Route planning cache. (from, to, gov, jumpRange, driveType)
-	// Note: keep this updated as the variables driving the routing change.
-	//       E.g.: danger = f(gov), isRestrictedFrom = f(gov)
-	std::map<std::tuple<const System *, const System *, const Government *, double, JumpType *>,
-		DistanceMap> routeCache;
+	// Route planning cache:
+	// Note: keep this updated as the variables driving the routing change:
+	// - gov: danger = f(gov), isRestrictedFrom = f(gov)
+	// - wormhole requirements that are met, see Planet::IsAccessible(const Ship *ship)
+	// - from, to, jumpRange, driveType
+	std::map<std::tuple<//const System *, const System *, const Government *, double,
+		const JumpType *, std::string *>,
+		DistanceMap*> routeCache;
+	std::map<std::tuple<//const System *, const System *, const Government *, double,
+		int, int>,
+		DistanceMap*> routeCache2;
+	std::set<std::string>universeWormholeRequirements;
 };

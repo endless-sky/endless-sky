@@ -53,6 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <ranges>
 #include <set>
 #include <utility>
 
@@ -678,7 +679,24 @@ void AI::Step(Command &activeCommands)
 	map<const Government *, int64_t> strength;
 	UpdateStrengths(strength, playerSystem);
 	CacheShipLists();
+
+	// At each step, reconsider all routes as new.
 	routeCache.clear();
+	// Create a complete list of the attributes which may be required for a ship to use wormholes within
+	// the universe. This will be a complete set of all attributes that affect any wormhole in the universe.
+	universeWormholeRequirements.clear();
+	for(const auto &wormhole: std::views::values(GameData::Wormholes()))
+	{
+		if(!wormhole.IsValid())
+			continue;
+
+		const Planet &p = *wormhole.GetPlanet();
+		if(!p.IsValid())
+			continue;
+
+		for(const auto &req : p.RequiredAttributes())
+			universeWormholeRequirements.emplace(req);
+	}
 
 	// Update the counts of how long ships have been outside the "invisible fence."
 	// If a ship ceases to exist, this also ensures that it will be removed from
@@ -1844,7 +1862,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 
 
 
-void AI::MoveIndependent(Ship &ship, Command &command) const
+void AI::MoveIndependent(Ship &ship, Command &command)
 {
 	double invisibleFenceRadius = ship.GetSystem()->InvisibleFenceRadius();
 	// DEBUG
@@ -2291,38 +2309,18 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 // Set the ship's target system or planet in order to reach the
 // next desired system. Will target a landable planet to refuel.
 // If the ship is an escort it will only use routes known to the player.
-void AI::SelectRoute(Ship &ship, const System *targetSystem) const
+void AI::SelectRoute(Ship &ship, const System *targetSystem)
 {
-	const System *from = ship.GetSystem();
-	// DEBUG
+	// DEBUG -------------------------------------------------------------------------------
 	chrono::steady_clock::time_point start = chrono::steady_clock::now();
-	string debug = (ship.IsYours() ? "Your " : "NPC ");
-	const Government *gov = ship.GetGovernment();
-	if(!ship.Name().empty())
-		debug += gov->GetName() + " " + ship.Noun() + " \"" + ship.Name() + "\":";
-	else
-		debug += ship.DisplayModelName() + " (" + gov->GetName() + "):";
-	debug += " " + from->DisplayName() + " to ";
-	debug += (targetSystem ? targetSystem->DisplayName() : "(Null)");
-	Logger::LogError("DEBUG " + debug);
-	// DEBUG
+	// DEBUG -------------------------------------------------------------------------------
+
+	const System *from = ship.GetSystem();
 	if(from == targetSystem || !targetSystem)
 		return;
 
-	// DEBUG
-	chrono::steady_clock::time_point t0 = chrono::steady_clock::now();
-	// DEBUG
-	// Look for an existing distance map for this combination of inputs before calculating a new one
-	JumpType driveCapability = ship.JumpNavigation().HasJumpDrive() ? JumpType::JUMP_DRIVE : JumpType::HYPERDRIVE;
-	auto it = routeCache.find(
-		std::make_tuple(from, targetSystem, gov, ship.JumpNavigation().JumpRange(), &driveCapability));
-	const DistanceMap *distanceMap = nullptr;
-	if (it != routeCache.end())
-		distanceMap = &(it->second);
-	RoutePlan route(ship, *targetSystem, ship.IsYours() ? &player : nullptr, distanceMap);
-	// DEBUG
-	Logger::LogError("DEBUG route ---> " + std::to_string((chrono::steady_clock::now() - t0).count() / 1000000.) + "ms");
-	// DEBUG
+	auto route = GetRoutePlan(ship, targetSystem);
+
 	if(ShouldRefuel(ship, route))
 	{
 		// There is at least one planet that can refuel the ship.
@@ -2361,7 +2359,7 @@ void AI::SelectRoute(Ship &ship, const System *targetSystem) const
 	ship.SetTargetStellar(nullptr);
 
 	// DEBUG
-	debug = "SelectRoute ---> " + std::to_string((chrono::steady_clock::now() - start).count() / 1000000.) + "ms";
+	string debug = "SelectRoute ---> " + std::to_string((chrono::steady_clock::now() - start).count() / 1000000.) + "ms";
 	Logger::LogError("DEBUG " + debug);
 	// DEBUG
 }
@@ -3080,7 +3078,7 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 
 
 
-void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) const
+void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 {
 	const bool isStaying = ship.GetPersonality().IsStaying();
 	// Since DoSurveillance is called after target-seeking and firing, if this
@@ -5145,4 +5143,78 @@ void AI::UpdateOrders(const Ship &ship)
 		return;
 
 	it->second.Update(ship);
+}
+
+
+
+RoutePlan AI::GetRoutePlan(Ship &ship, const System *targetSystem)
+{
+	const System *from = ship.GetSystem();
+
+	// DEBUG -------------------------------------------------------------------------------
+	chrono::steady_clock::time_point start = chrono::steady_clock::now();
+	string debug = (ship.IsYours() ? "Your " : "NPC ");
+	const Government *gov = ship.GetGovernment();
+	if(!ship.Name().empty())
+		debug += gov->GetName() + " " + ship.Noun() + " \"" + ship.Name() + "\":";
+	else
+		debug += ship.DisplayModelName() + " (" + gov->GetName() + "):";
+	debug += " " + from->DisplayName() + " to ";
+	debug += (targetSystem ? targetSystem->DisplayName() : "(Null)");
+	Logger::LogError("DEBUG " + debug);
+	// DEBUG ---------------------------------------------------------------------------------
+
+	// DEBUG
+	chrono::steady_clock::time_point t0 = chrono::steady_clock::now();
+	// DEBUG
+
+	// Look for an existing distance map for this combination of inputs before calculating a new one
+	// Make the key for the cache
+	const JumpType driveCapability = ship.JumpNavigation().HasJumpDrive() ? JumpType::JUMP_DRIVE : JumpType::HYPERDRIVE;
+
+	// A cached route that could be used for this ship could depend on the wormholes which this ship can
+	// travel through. Find the intersection of all known wormhole required attributes and the attributes
+	// which this ship satisfies.
+	string wormholeKey;
+	const auto &shipAttributes = ship.Attributes();
+	for(const auto &requirement : universeWormholeRequirements)
+		if(shipAttributes.Get(requirement))
+			wormholeKey += "" + requirement;
+
+	// Search for a cached solution for this route.
+	auto key = std::make_tuple(//from, targetSystem, gov, ship.JumpNavigation().JumpRange(),
+	   &driveCapability, &wormholeKey);
+	auto key2 = make_tuple(1,2);
+
+	DistanceMap *distanceMapPtr = nullptr;
+	auto it = routeCache.find(key);
+	auto it2 = routeCache2.find(key2);
+	if(it != routeCache.end())
+		distanceMapPtr = (it->second);
+	if(it2 != routeCache2.end())
+		distanceMapPtr = (it->second);
+
+	RoutePlan route(ship, *targetSystem, ship.IsYours() ? &player : nullptr, distanceMapPtr);
+
+	// Update the cache if we didn't find our DistanceMap in cache to begin with.
+	if(it == routeCache.end())
+	{
+		auto d = route.GetDistanceMap();
+		routeCache.emplace(key, &d);
+	}
+	if(it2 == routeCache2.end())
+	{
+		auto d = route.GetDistanceMap();
+		routeCache2.emplace(key2, &d);
+	}
+
+	// DEBUG
+	Logger::LogError("DEBUG route ---> " + std::to_string((chrono::steady_clock::now() - t0).count() / 1000000.) + "ms");
+	// DEBUG
+	// DEBUG
+	debug = "GetRoutePlan ---> " + std::to_string((chrono::steady_clock::now() - start).count() / 1000000.) + "ms";
+	Logger::LogError("DEBUG " + debug);
+	// DEBUG
+
+	return route;
 }
