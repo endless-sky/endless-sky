@@ -3128,9 +3128,8 @@ double Ship::TrueTurnRate() const
 
 double Ship::CrewTurnRate() const
 {
-	if(!Crew() || !RequiredCrew())
-		return TurnRate();
-	return TurnRate() * min(1., 1. * Crew() / RequiredCrew());
+	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
+	return TurnRate() * min(1., static_cast<double>(Crew()) / RequiredCrew());
 }
 
 
