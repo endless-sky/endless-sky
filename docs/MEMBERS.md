@@ -4,7 +4,7 @@ These are all of the members of the Endless Sky organization. Each group is list
 ## Admins
 - [Amazinite](https://github.com/Amazinite)
 - [Hecter94](https://github.com/Hecter94)
-- [mzahniser](https://github.com/orgs/endless-sky/people/mzahniser)
+- [mzahniser](https://github.com/mzahniser)
 - [petervdmeer](https://github.com/petervdmeer)
 
 ## Maintainers
