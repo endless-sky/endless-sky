@@ -121,10 +121,22 @@ namespace {
 
 		// Does this bug need fixed?
 		char* pref_path = SDL_GetPrefPath(nullptr, "endless-sky");
-		std::filesystem::path path = pref_path;
-		SDL_free(pref_path);
+		// std::filesystem::path::parent_path() cannot handle traling slashes
+		std::filesystem::path path;
+		if (pref_path)
+		{
+			size_t pref_path_len = strlen(pref_path);
+			if (pref_path_len && pref_path[pref_path_len-1] == '/')
+			{
+				pref_path[pref_path_len-1] = 0;
+			}
+			path = std::filesystem::canonical(pref_path);
+			SDL_free(pref_path);
+		}
 		if(path.empty())
 			return;
+		SDL_Log("SDL_GetPrefPath returns %s", path.c_str());
+		SDL_Log("SDL_GetPrefPath parent is %s", path.parent_path().c_str());
 
 		if(Files::Exists(path.parent_path() / "preferences.txt"))
 		{
@@ -132,7 +144,7 @@ namespace {
 
 			// Yes, this needs fixed.
 			// files/*.txt needs moved to files/saves
-			Files::CreateFolder(path.parent_path() / "saves");
+			Files::CreateFolder(path / "saves");
 			for(const auto& f: Files::List(path))
 			{
 				if(f.extension() == ".txt")
@@ -152,7 +164,8 @@ namespace {
 
 			// the plugin directory needs moved into files/
 			// Don't care if this fails
-			Files::Move(path.parent_path() / "plugins", path / "plugins");
+			if (std::filesystem::exists(path.parent_path() / "plugins"))
+				Files::Move(path.parent_path() / "plugins", path / "plugins");
 		}
 	}
 
