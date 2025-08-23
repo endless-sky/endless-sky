@@ -1,11 +1,20 @@
 # Endless Sky
 
-Endless Sky is an open-source space exploration and combat game. This repository hosts the source code and data that power the game, as well as ongoing development by the community. If you are here to contribute to the project, whether through coding, artwork, balancing, documentation, or testing this document will help you get started and understand how our development process works.
+Endless Sky is an open-source space exploration and combat game inspired by classics like Escape Velocity. This repository hosts the source code and data that power the game, as well as ongoing development by the community. If you are here to contribute to the project, whether through coding, artwork, balancing, documentation, or testing this document will help you get started and understand how our development process works.
 
 If you’re instead looking to learn about the game itself (installation, gameplay basics, or system requirements), please see the [game readme](GAME.md)
 
+## Table of Contents
+- [Community and Membership](#community-and-membership)
+- [Contributing Guidelines](#contributing-guidelines)
+- [Governance](#governance)
+- [Building from Source](#building-from-source)
+- [Licensing](#licensing)
+- [FAQ](#frequently-asked-questions)
+- [Documentation](#all-documentation)
+
 ## Community and Membership
-The Endless Sky Project is supported by a diverse group of maintainers, contributors, and community members.
+Endless Sky is supported by a diverse group of maintainers, contributors, and community members.
 - See [members](MEMBERS.md) for a list of organization members
 - New contributors are welcome and may advance to broader roles over time through demonstrated participation and collaboration.
 - Community discussions take place primarily on GitHub, with supplementary conversations occurring through [Discord](https://discord.gg/ZeuASSx).
@@ -19,10 +28,8 @@ We welcome contributions in code, content, testing, and documentation.
 
 As a free and open source game, Endless Sky is the product of many people's work. Contributions of artwork, storylines, and other writing are most in-demand, though there is a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to [contribute](CONTRIBUTING.md) are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community-run Discord](https://discord.gg/ZeuASSx) beforehand. Those who prefer to use Steam can use its [discussion rooms](https://steamcommunity.com/app/404410/discussions/) as well, or GitHub's [discussion zone](https://github.com/endless-sky/endless-sky/discussions).
 
-Endless Sky's main discussion and development area was once [Google Groups](https://groups.google.com/g/endless-sky), but due to factors outside our control, it is now inaccessible to new users, and should not be used anymore.
-
 ## Governance
-Governance of the Endless Sky project falls to a system of Admins, Maintainers, Developers and Reviewers. While being moderated by our "Oathkeeper" team. Details of members as well as descriptions of roles are available in [governance](GOVERNANCE.md)
+Governance of Endless Sky falls to a system of Admins, Maintainers, Developers and Reviewers. While being moderated by our "Oathkeeper" team. Details of members as well as descriptions of roles are available in [governance](GOVERNANCE.md)
 
 ## Building from source
 Development is done using [CMake](https://cmake.org) to compile the project. Most popular IDEs are supported through their respective CMake integration.
