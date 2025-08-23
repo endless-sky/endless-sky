@@ -1,8 +1,8 @@
 # Endless Sky
 
-Thank you for your interest in our project!
-The Endless Sky Project is a community-driven development process for the FOSS (Free Open Source Software) game Endless Sky. 
-The purpose of this document is to provide an entry point for contributors, community members, and reviewers. If you are looking for information about the game itself, such as installation or gameplay, please see the [game readme](GAME.md)
+Endless Sky is an open-source space exploration and combat game. This repository hosts the source code and data that power the game, as well as ongoing development by the community. If you are here to contribute to the project, whether through coding, artwork, balancing, documentation, or testing this document will help you get started and understand how our development process works.
+
+If you’re instead looking to learn about the game itself (installation, gameplay basics, or system requirements), please see the [game readme](GAME.md)
 
 ## Community and Membership
 The Endless Sky Project is supported by a diverse group of maintainers, contributors, and community members.
