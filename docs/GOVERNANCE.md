@@ -133,6 +133,8 @@ New reviewers are typically selected by our existing reviewers, developers and m
 - Playtest PRs and post the results of your playtesting
 - Help identify and fix grammar/spelling errors on existing PRs
 - Assist new contributors with getting their PRs to a merge-ready state
+- Identify (or fix) logic and syntax errors
+- Provide feedback on design decisions
 
 ### Developer
 New developers are typically picked from our existing reviewer team. If reviewers are expected to provide good, high-quality reviews, then developers are expected to provide good reviews _and_ merge PRs once no further review is necessary. 
