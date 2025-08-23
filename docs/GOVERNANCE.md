@@ -40,7 +40,7 @@ Description: Developers (also known as collaborators on GitHub) are the primary 
 - The approval of a pull request from a developer should only ever mean that the developer believes that the pull request is in a good state and should be merged into the game in the state that it is in. Developers should not approve pull requests for any other reasons (e.g. approving to appease someone even if the developer themself does not believe that the pull requests should be merged).
 
 ### Reviewer
-GitHub Permissions: Triage or Read
+GitHub Permissions: Triage
 
 Description: Reviewers are the helpers of the developers. They are people who have shown themselves to have a good sense of how pull requests should be changed to make them better fit with the game, be that in correcting grammar and spelling, adjusting data syntax, or speaking on the game’s themes, story, and lore.
 
@@ -53,6 +53,21 @@ Description: Reviewers are the helpers of the developers. They are people who ha
 - Just as not all review comments from developers are binding, the same is true of reviewers. Just because a reviewer suggests a change does not mean that a contributor must accept that change, or that a developer must see to it that the change is made before merging the pull request.
 - Unlike with developers, where an approval effectively states whether a pull request should be merged, approvals from reviewers can have multiple meanings. One meaning is that the reviewer believes that the pull request is good and should be merged. Another meaning is that the pull request is good in that reviewer’s area of expertise. For example, if a grammar and spelling reviewer reviews a mission pull request after seeing that it has no grammar or spelling issues, they can approve that pull request on the grounds that its grammar and spelling are good. But, a reviewer could approve the same pull request to mean that they like the missions and would like to see them merged. The approval message of a reviewer should describe which of these two situations they are approving the pull request for.
 - Although reviewer is a title that we give to people, one need not be a reviewer in order to review pull requests. The title of reviewer is simply an acknowledgement from the existing team that one has shown themself as capable of providing good, constructive reviews. Any power or weight that a reviewer may have does not flow from their title, but from their merit.
+
+### Community Organizer
+GitHub Permissions: Triage
+
+Description: Community organizers should be the people’s people. While developers focus on the development side of the game, community organizers focus on the game’s community aspects.
+
+**Responsibilities/Duties:**
+- Assess community sentiment on the state of development, such as via surveys.
+- Act as a communication bridge between the wider community and the developers.
+- Be available for communication from all community members.
+- Suggest granting of roles to community members.
+- Encourage positive community interactions and growth.
+
+**Notes**
+- A community organizer is not the same thing as a moderator. A moderator’s role is in enforcement, while a community organizer's role is in analysis and interaction.
 
 ### Oathkeeper (Moderator)
 GitHub Permissions: Moderator
