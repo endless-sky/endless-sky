@@ -11,7 +11,7 @@ You may contribute in many ways. Playtesting and reviewing PRs, creating your ow
 Certainly! However, be aware that adding a whole new faction is a significant task, which typically requires several years before it is merge-ready. If you're a new contributor, we usually recommend starting with a few smaller contributions, such as a short storyline or a couple of new missions, before attempting to create an entire faction. 
 
 ### Can I use LLM tools to contribute?
-No. LLM-generated or assisted content is not permitted in the Endless Sky project. See our [contributing guidelines](https://github.com/Hecter94/endless-sky/blob/readme-refactor/docs/CONTRIBUTING.md#on-ai-generatedassisted-content) for further details. 
+No. LLM-generated or assisted content is not permitted in the Endless Sky project. See our [contributing guidelines](CONTRIBUTING.md#on-ai-generatedassisted-content) for further details. 
 
 ### Do you accept donations?
 We do not accept donations. We ask that you instead donate to a charity of your choice. Please see https://github.com/endless-sky/endless-sky/wiki/Donations for more details. 
