@@ -2117,6 +2117,53 @@ fleet "CCOR Logistics"
 		"Hogshead (CCOR)"
 		"Enforcer (CCOR)"
 
+fleet "Old Northern Pirates"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders harvests getaway
+	variant 3
+		"Monitor"
+	variant 2
+		"Monitor"
+		"Corvette"
+	variant 2
+		"Monitor"
+		"Fury"
+	variant 2
+		"Monitor"
+		"Hawk"
+		"Jackal"
+	variant
+		"Jackal"
+		"Scrapper" 2
+	variant
+		"Jackal"
+		"Berserker"
+
+fleet "Old Southern Pirates"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		disables plunders harvests getaway
+	variant 4
+		"Jackal"
+	variant
+		"Jackal"
+		"Sparrow"
+	variant
+		"Jackal"
+		"Fury"
+	variant
+		"Jackal"
+		"Fury"
+		"Sparrow"
+	variant
+		"Jackal"
+		"Scrapper"
+
 fleet "Small Independent"
 	government "Independent"
 	names "pirate"
@@ -2451,6 +2498,8 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Firebird"
 		"Corvette"
+	variant 2
+		"Firebird (Heavy Blaster)"
 	variant 8
 		"Firebird (Plasma)"
 		"Corvette (Speedy)"
@@ -2472,6 +2521,11 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Firebird (Missile)"
 		"Fury (Bomber)"
+	variant 2
+		"Firebird (Heavy Blaster)"
+		"Berserker"
+	variant 2
+		"Firebird (Heavy Blaster)" 2
 	variant 6
 		"Raven (Afterburner)" 2
 	variant 2

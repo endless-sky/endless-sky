@@ -71,7 +71,6 @@ using namespace std;
 namespace {
 	const std::string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
 	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
-	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
 	const int MAX_STARS = 5;
 
@@ -92,12 +91,13 @@ namespace {
 		unsigned unavailable = 0;
 
 	private:
-		unsigned maximumActive = MAX_MISSION_POINTERS_DRAWN;
+		unsigned maximumActive = MapPanel::MAX_MISSION_POINTERS_DRAWN;
 	};
 
 	void PointerDrawCount::Reserve()
 	{
-		maximumActive = max(MAX_MISSION_POINTERS_DRAWN / 2, MAX_MISSION_POINTERS_DRAWN - (available + unavailable));
+		maximumActive = max(MapPanel::MAX_MISSION_POINTERS_DRAWN / 2,
+			MapPanel::MAX_MISSION_POINTERS_DRAWN - (available + unavailable));
 	}
 
 	unsigned PointerDrawCount::MaximumActive() const
@@ -182,56 +182,6 @@ namespace {
 		return false;
 	}
 
-	pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, const int step)
-	{
-		bool blink = false;
-		int daysLeft = 1;
-		if(mission.Deadline())
-		{
-			daysLeft = mission.Deadline() - player.GetDate() + 1;
-			if(daysLeft > 0)
-			{
-				if(Preferences::Has("Deadline blink by distance"))
-				{
-					DistanceMap distance(player, player.GetSystem());
-					if(distance.HasRoute(*mission.Destination()->GetSystem()))
-					{
-						set<const System *> toVisit;
-						for(const Planet *stopover : mission.Stopovers())
-						{
-							if(distance.HasRoute(*stopover->GetSystem()))
-								toVisit.insert(stopover->GetSystem());
-							--daysLeft;
-						}
-						for(const System *waypoint : mission.Waypoints())
-							if(distance.HasRoute(*waypoint))
-								toVisit.insert(waypoint);
-
-						int systemCount = toVisit.size();
-						for(int i = 0; i < systemCount; ++i)
-						{
-							const System *closest;
-							int minimalDist = numeric_limits<int>::max();
-							for(const System *sys : toVisit)
-								if(distance.Days(*sys) < minimalDist)
-								{
-									closest = sys;
-									minimalDist = distance.Days(*sys);
-								}
-							daysLeft -= distance.Days(*closest);
-							distance = DistanceMap(player, closest);
-							toVisit.erase(closest);
-						}
-						daysLeft -= distance.Days(*mission.Destination()->GetSystem());
-					}
-				}
-				int blinkFactor = min(6, max(1, daysLeft));
-				blink = (step % (10 * blinkFactor) > 5 * blinkFactor);
-			}
-		}
-		return pair<bool, bool>(blink, daysLeft > 0);
-	}
-
 	// Return total value of raid fleet (if any) and 60 frames worth of system danger.
 	double DangerFleetTotal(const PlayerInfo &player, const System &system, const bool withRaids)
 	{
@@ -245,11 +195,39 @@ namespace {
 
 }
 
+const unsigned MapPanel::MAX_MISSION_POINTERS_DRAWN = 12;
 const float MapPanel::OUTER = 6.f;
 const float MapPanel::INNER = 3.5f;
 const float MapPanel::LINK_WIDTH = 1.2f;
 // Draw links only outside the system ring, which has radius MapPanel::OUTER.
 const float MapPanel::LINK_OFFSET = 7.f;
+
+
+
+void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack, bool bigger)
+{
+	if(++systemCount > MAX_MISSION_POINTERS_DRAWN)
+		return;
+	Angle angle = Angle(MISSION_POINTERS_ANGLE_DELTA * systemCount);
+	if(drawBack)
+		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
+	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);
+}
+
+
+
+pair<bool, bool> MapPanel::BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, int step)
+{
+	bool blink = false;
+	int daysLeft = 1;
+	if(mission.Deadline())
+	{
+		daysLeft = player.RemainingDeadline(mission);
+		int blinkFactor = min(6, max(1, daysLeft));
+		blink = (step % (10 * blinkFactor) > 5 * blinkFactor);
+	}
+	return pair<bool, bool>(blink, daysLeft > 0);
+}
 
 
 
@@ -263,6 +241,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	fromMission(fromMission)
 {
 	Audio::Pause();
+	UI::PlaySound(UI::UISound::SOFT);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 	// Recalculate the fog each time the map is opened, just in case the player
@@ -292,6 +271,13 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	double playerRange = player.Flagship() ? player.Flagship()->JumpNavigation().JumpRange() : 0.;
 	if(systemRange || playerRange)
 		playerJumpDistance = systemRange ? systemRange : playerRange;
+
+	// Recalculate any mission deadlines if the player is landed in case
+	// changes to the player's flagship have changed the deadline calculations.
+	// If the player is not landed, then the deadlines will have already been
+	// recalculated on the day change.
+	if(player.GetPlanet())
+		player.CalculateRemainingDeadlines();
 
 	CenterOnSystem(selectedSystem, true);
 }
@@ -340,6 +326,7 @@ void MapPanel::Draw()
 		RingShader::Draw(Zoom() * (playerSystem.Position() + center),
 			(playerJumpDistance + .5) * Zoom(), (playerJumpDistance - .5) * Zoom(), jumpRangeColor);
 
+	// Draw a circle around the selected system.
 	Color brightColor(.4f, 0.f);
 	RingShader::Draw(Zoom() * (selectedSystem->Position() + center),
 		11.f, 9.f, brightColor);
@@ -377,7 +364,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1280
+	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1300
 		? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
 
@@ -443,133 +430,24 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 	}
 
 	// Draw a warning if the selected system is not routable.
-
 	if(selectedSystem != &playerSystem && !distance.HasRoute(*selectedSystem))
 	{
+		static const string NO_SHIP = "You do not have a flagship to jump with!";
+		static const string NO_DRIVE = "You do not have a drive installed to be able to jump!";
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
-		const string &message = player.CanView(*selectedSystem) ? UNAVAILABLE : UNKNOWN;
-		info.SetString("route error", message);
+		const Ship *flagship = player.Flagship();
+		if(!flagship)
+			info.SetString("route error", NO_SHIP);
+		else if(!flagship->JumpNavigation().HasAnyDrive())
+			info.SetString("route error", NO_DRIVE);
+		else if(player.CanView(*selectedSystem))
+			info.SetString("route error", UNAVAILABLE);
+		else
+			info.SetString("route error", UNKNOWN);
 	}
 
 	mapInterface->Draw(info, this);
-}
-
-
-
-void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step)
-{
-	const Font &font = FontSet::Get(14);
-	Color lineColor(alpha, 0.f);
-	Point center = .5 * (jump[0]->Position() + jump[1]->Position());
-	const Point &drawPos = GameData::Interfaces().Get("hud")->GetPoint("mini-map");
-	set<const System *> drawnSystems = { jump[0], jump[1] };
-	bool isLink = jump[0]->Links().contains(jump[1]);
-
-	const Set<Color> &colors = GameData::Colors();
-	const Color &currentColor = colors.Get("active mission")->Additive(alpha * 2.f);
-	const Color &blockedColor = colors.Get("blocked mission")->Additive(alpha * 2.f);
-	const Color &waypointColor = colors.Get("waypoint")->Additive(alpha * 2.f);
-
-	const Ship *flagship = player.Flagship();
-	for(int i = 0; i < 2; ++i)
-	{
-		static const string UNKNOWN_SYSTEM = "Unexplored System";
-		const System &system = *jump[i];
-		const Government *gov = system.GetGovernment();
-		Point from = system.Position() - center + drawPos;
-		const string &name = player.KnowsName(system) ? system.DisplayName() : UNKNOWN_SYSTEM;
-		font.Draw(name, from + Point(OUTER, -.5 * font.Height()), lineColor);
-
-		// Draw the origin and destination systems, since they
-		// might not be linked via hyperspace.
-		Color color = Color(.5f * alpha, 0.f);
-		if(player.CanView(system) && system.IsInhabited(flagship) && gov)
-			color = gov->GetColor().Additive(alpha);
-		RingShader::Draw(from, OUTER, INNER, color);
-
-		for(const System *link : system.Links())
-		{
-			// Only draw systems known to be attached to the jump systems.
-			if(!player.CanView(system) && !player.CanView(*link))
-				continue;
-
-			// Draw the system link. This will double-draw the jump
-			// path if it is via hyperlink, to increase brightness.
-			Point to = link->Position() - center + drawPos;
-			Point unit = (from - to).Unit() * LINK_OFFSET;
-			LineShader::Draw(from - unit, to + unit, LINK_WIDTH, lineColor);
-
-			if(drawnSystems.contains(link))
-				continue;
-			drawnSystems.insert(link);
-
-			gov = link->GetGovernment();
-			Color color = Color(.5f * alpha, 0.f);
-			if(player.CanView(*link) && link->IsInhabited(flagship) && gov)
-				color = gov->GetColor().Additive(alpha);
-			RingShader::Draw(to, OUTER, INNER, color);
-		}
-
-		unsigned missionCounter = 0;
-		for(const Mission &mission : player.Missions())
-		{
-			if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
-				break;
-
-			if(!mission.IsVisible())
-				continue;
-
-			if(mission.Destination()->IsInSystem(&system))
-			{
-				pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
-				if(!blink.first)
-				{
-					bool isSatisfied = IsSatisfied(player, mission) && blink.second;
-					DrawPointer(from, missionCounter, isSatisfied ? currentColor : blockedColor, false);
-				}
-				else
-					++missionCounter;
-			}
-
-			for(const System *waypoint : mission.Waypoints())
-			{
-				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
-					break;
-				if(waypoint == &system)
-					DrawPointer(from, missionCounter, waypointColor, false);
-			}
-			for(const Planet *stopover : mission.Stopovers())
-			{
-				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
-					break;
-				if(stopover->IsInSystem(&system))
-					DrawPointer(from, missionCounter, waypointColor, false);
-			}
-
-			for(const System *mark : mission.MarkedSystems())
-			{
-				if(missionCounter >= MAX_MISSION_POINTERS_DRAWN)
-					break;
-				if(mark == &system)
-					DrawPointer(from, missionCounter, waypointColor, false);
-			}
-		}
-	}
-
-	// Draw the rest of the directional arrow. If this is a normal jump,
-	// the stem was already drawn above.
-	Point from = jump[0]->Position() - center + drawPos;
-	Point to = jump[1]->Position() - center + drawPos;
-	Point unit = (to - from).Unit();
-	from += LINK_OFFSET * unit;
-	to -= LINK_OFFSET * unit;
-	Color bright(2.f * alpha, 0.f);
-	// Non-hyperspace jumps are drawn with a dashed directional arrow.
-	if(!isLink)
-		LineShader::DrawDashed(from, to, unit, LINK_WIDTH, bright, 11., 4.);
-	LineShader::Draw(to, to + Angle(-30.).Rotate(unit) * -10., LINK_WIDTH, bright);
-	LineShader::Draw(to, to + Angle(30.).Rotate(unit) * -10., LINK_WIDTH, bright);
 }
 
 
@@ -636,6 +514,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else
 		return false;
 
+	UI::PlaySound(UI::UISound::SOFT);
 	return true;
 }
 
@@ -1595,16 +1474,4 @@ void MapPanel::DrawPointer(const System *system, unsigned &systemCount, unsigned
 	if(systemCount >= max)
 		return;
 	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
-}
-
-
-
-void MapPanel::DrawPointer(Point position, unsigned &systemCount, const Color &color, bool drawBack, bool bigger)
-{
-	if(++systemCount > MAX_MISSION_POINTERS_DRAWN)
-		return;
-	Angle angle = Angle(MISSION_POINTERS_ANGLE_DELTA * systemCount);
-	if(drawBack)
-		PointerShader::Draw(position, angle.Unit(), 14.f + bigger, 19.f + 2 * bigger, -4.f, black);
-	PointerShader::Draw(position, angle.Unit(), 8.f + bigger, 15.f + 2 * bigger, -6.f, color);
 }
