@@ -9,7 +9,9 @@ For a description of each role, see [governance](GOVERNANCE.md)
 - [petervdmeer](https://github.com/petervdmeer)
 
 ## Maintainers
+- [Amazinite](https://github.com/Amazinite)
 - [Anarchist2](https://github.com/Anarchist2)
+- [petervdmeer](https://github.com/petervdmeer)
 - [roadrunner56](https://github.com/roadrunner56)
 - [Saugia](https://github.com/saugia)
 - [tibetiroka](https://github.com/tibetiroka)

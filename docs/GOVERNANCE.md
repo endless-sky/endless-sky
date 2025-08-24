@@ -84,6 +84,18 @@ Description: Moderators help to keep discussions civil, ensure disagreements rem
 **Notes:**
 - While our moderation team is equipped with the tools to take moderation actions when necessary, we believe that this should be considered a last resort option. Our moderation team prefers to de-escalate and resolve conflicts and only utilizes moderation actions such as verbal warnings, time-outs, or more if de-escalation is impossible.
 
+### Organization Member
+GitHub Permissions: Read
+
+Description: Members are individuals who have been added to the Endless Sky organization without being granted a role. This is typically so they can be requested for reviews or given repository-specific permissions for specific projects.
+
+**Responsibilities/Duties:**
+Address the reviews of reviewers and developers when requested.
+
+**Notes**
+- While members do not have any organization-level permissions they may have repository-level permissions if necessary for their role.
+- Members are typically individuals who have contributed a great deal to a specific faction and are often requested for reviews on that faction.
+
 ### Contributor
 GitHub Permissions: Read
 

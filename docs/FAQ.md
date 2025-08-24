@@ -23,6 +23,6 @@ We do not accept donations. We ask that you instead donate to a charity of your 
 Author ships are special, unique ships that can spawn in the game. Each one is dedicated to a specific person or team of people who have made significant contributions to the project to recognize their efforts.
 
 ### What is tier?
-Tiers are a balancing metric used to help our development team compare combat capabilities between ships of different factions. It is a very rough estimate of how combat-capable we expect a specific ship to be relative to other ships. Tier is not a measure of overall technological progress and should not be used as a strict guideline for what a faction can and cannot possess.
+Tiers are a balancing metric used to help our development team compare combat capabilities between ships of different factions. It is a very rough estimate of how combat-capable we expect a specific ship to be relative to other ships. Tier is not a measure of overall technological progress and should not be used as a strict guideline for what a faction can and cannot possess. A list of factions by tier is available in [Story Ideas](https://github.com/endless-sky/endless-sky/wiki/StoryIdeas)
 
 _[return to README](/README.md)_
