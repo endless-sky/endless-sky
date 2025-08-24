@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "JumpType.h"
 #include "orders/OrderSet.h"
 #include "Point.h"
+#include "RoutePlan.h"
 
 #include <list>
 #include <map>
@@ -29,12 +30,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <vector>
 
-#include "RoutePlan.h"
 
 class Angle;
 class AsteroidField;
 class Body;
-class DistanceMap;
 class Flotsam;
 class Government;
 class Minable;
@@ -261,7 +260,7 @@ private:
 	// - gov: danger = f(gov), isRestrictedFrom = f(gov)
 	// - wormhole requirements that are met, see Planet::IsAccessible(const Ship *ship)
 	// - from, to, jumpRange, driveType
-	std::map<std::tuple<//const System *, const System *, const Government *, double,
+	std::map<std::tuple<const System *, const System *, const Government *, double,
 		const JumpType *, std::string *>,
 		RoutePlan*> routeCache;
 	std::set<std::string>universeWormholeRequirements;
