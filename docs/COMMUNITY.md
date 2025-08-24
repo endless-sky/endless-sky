@@ -6,7 +6,7 @@ When interacting, strive to maintain a friendly, empathetic tone. This includes,
 
 Compare these two responses:
 
-_Question:_ Hey! I'm interested in helping with development, I think some of the existing fights are too difficult and I'd like to help with rebalancing them. Where should I start?
+_Question:_ Hey! I'm interested in helping with development, I think some of the existing battles are too difficult and I'd like to help with rebalancing them. Where should I start?
 
 | Answer 1 | Answer 2 |
 | -------- | -------- |

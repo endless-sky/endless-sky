@@ -14,7 +14,7 @@ If you’re instead looking to learn about the game itself (installation, gamepl
 
 ## Community and Membership
 Endless Sky is supported by a diverse group of maintainers, contributors, and community members.
-- See [members](docs/MEMBERS.md) for a list of organization members
+- See [members](docs/MEMBERS.md) for a list of organization members.
 - New contributors are welcome, and can shape their role in the community in whatever ways align with their interests and contributions. Contributors with a long history of positive involvement in the community may be invited to take on more formal roles.
 - Community discussions take place primarily on GitHub, with supplementary conversations occurring through [Discord](https://discord.gg/ZeuASSx).
 - Make sure to follow our [community guide](docs/COMMUNITY.md)
@@ -41,11 +41,11 @@ Endless Sky is a free, open source game. The [source code](https://github.com/en
 
 ## All Documentation
 - [Community Guide](docs/COMMUNITY.md): Guidelines on how to interact with the Endless Sky community and what we expect from our members.
-- [Code Of Conduct](docs/CONDUCT.md): Defines standards for how to engage in our community.
+- [Code of Conduct](docs/CONDUCT.md): Defines standards for how to engage in our community.
 - [Contributing Guide](docs/CONTRIBUTING.md): What to expect as a new contributor.
 - [Developer Readme](docs/DEVELOPER.md): Instructions for building the game.
 - [FAQ](docs/FAQ.md): Answers to frequently asked questions.
 - [Game Readme](docs/GAME.md): Details about the Endless Sky game itself (installation, play, modding).
 - [Governance](docs/GOVERNANCE.md): Processes for leadership and decision-making.
 - [Member List](docs/MEMBERS.md): A full list of current organization members.
-- [Readme](README.md): This document
+- [README](README.md): This document.

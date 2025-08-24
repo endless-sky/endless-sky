@@ -59,6 +59,6 @@ For a description of each role, see [governance](GOVERNANCE.md)
 - [ravenshining](https://github.com/ravenshining)
 - [UnorderedSigh](https://github.com/UnorderedSigh)
 
-For other contributors, you may view our [credits](/credits.txt) file. There is also a unofficial community run directory available at https://moctave.github.io/es-community-directory
+For other contributors, you may view our [credits](/credits.txt) file. There is also a unofficial community-run directory available at https://moctave.github.io/es-community-directory
 
 _[return to readme](/README.md)_

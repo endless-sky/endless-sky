@@ -1,6 +1,6 @@
 # Governance
 
-Endless Sky is a volunteer-run project centred on community-driven development. Governance does not follow a strict hierarchy; each role is expected to handle only what falls within its scope. 
+Endless Sky is a volunteer-run project centerd on community-driven development. Governance does not follow a strict hierarchy; each role is expected to handle only what falls within its scope. 
 While the list of roles is presented in a rough hierarchy based on permission level, this should not be taken to mean that each role includes the responsibilities of the roles below it.
 
 ## Roles
@@ -8,7 +8,7 @@ While the list of roles is presented in a rough hierarchy based on permission le
 ### Admin
 GitHub Permissions: Owner
 
-Description: An admin is someone with the highest permission level on GitHub. The purpose of an admin is to help facilitate the development of the game by taking actions on GitHub that can not be done by lower permission levels.
+Description: An admin is someone with the highest permission level on GitHub. The purpose of an admin is to help facilitate the development of the game by taking actions on GitHub that cannot be done by lower permission levels.
 
 **Responsibilities/Duties:**
 - Control creation and assignment of roles and teams within the GitHub organization and for each repository.
@@ -37,7 +37,7 @@ Description: Developers (also known as collaborators on GitHub) are the primary 
 - Some developers have a specific "focus" for which area(s) of the game that they develop for. For example, some developers may focus on code, while others focus on content, or even just specific areas of content. But, a "focus" should under no circumstances be seen as a limit on the power of a developer. Just because a developer may focus on code changes does not mean that their feedback should be ignored when it comes to questions of content on the basis of their focus not being in content.
 - When reviewing a pull request, developers should use their own discretion to determine which of their review comments are absolutely necessary to be addressed in order for the pull request to be merged. Not every comment that a developer may have may block the merging of a pull request.
 - Developers should not simply support the review comments of other developers without first reviewing the pull request themselves. In cases where a pull request may be primarily outside of a developer's focus, understand that the ramifications of a pull request may be wide reaching. For example, while a code pull request may on its surface seem outside of the scope of a content focused developer, the impact of that code may still be felt on the content side of the game, and so a content focused developer could still review the pull request from that perspective.
-- The approval of a pull request from a developer should only ever mean that the developer believes that the pull request is in a good state and should be merged into the game in the state that it is in. Developers should not approve pull requests for any other reasons (e.g. approving to appease someone even if the developer themself does not believe that the pull requests should be merged).
+- The approval of a pull request from a developer should only ever mean that the developer believes that the pull request is in a good state and should be merged into the game in the state that it is in. Developers should not approve pull requests for any other reasons (e.g. approving to appease someone even if the developer themself does not believe that the pull request should be merged).
 
 ### Reviewer
 GitHub Permissions: Triage
@@ -46,7 +46,7 @@ Description: Reviewers are the helpers of the developers. They are people who ha
 
 **Responsibilities/Duties:**
 - Review pull requests.
-- Assign labels to issues and pull requests. (Triage permissions only.)
+- Assign labels to issues and pull requests.
 
 **Notes:**
 - Similar to developers, reviewers may have a specific "focus" for which area(s) of the game that they review for. But as with developers, the "focus" of a reviewer should not be seen as pigeon-holing them into only being able to review areas within their focus.
@@ -79,7 +79,7 @@ Description: Moderators help to keep discussions civil, ensure disagreements rem
 - Stay cool, calm, and collected even in tense situations.
 - Display good communication and conflict-resolution skills.
 - Show that they can be trusted to moderate fairly and unbiasedly.
-- Show a willingness to resolve conflicts even with uncooperative parties
+- Show a willingness to resolve conflicts even with uncooperative parties.
 
 **Notes:**
 - While our moderation team is equipped with the tools to take moderation actions when necessary, we believe that this should be considered a last resort option. Our moderation team prefers to de-escalate and resolve conflicts and only utilizes moderation actions such as verbal warnings, time-outs, or more if de-escalation is impossible.
@@ -113,7 +113,7 @@ Contributions vary quite a bit, and there are numerous ways you can contribute t
 - Make your own tool or service
 - and many more
 
-Additionally, if you open a PR which gets successfully merged, you will be listed in the [credits](/credits.txt) as a contributor and your name will be displayed on the main menu of the game.
+Additionally, if you open a PR which gets successfully merged, you will be listed in the [credits](/credits.txt) as a contributor and your GitHub name will be displayed on the main menu of the game.
 
 ### Moderator
 Commit to making the environment of the Endless Sky community safe, welcoming and friendly. Make sure to follow all of the outlines in the [community guide](COMMUNITY.md) and help others follow them as well. 
@@ -127,14 +127,14 @@ If our existing moderation team feels that you meet these requirements, you may 
 - Always follow our [Code of Conduct](CONDUCT.md)
 
 ### Reviewer
-The most important aspect of a reviewer is to provide consistently high-quality reviews on existing PRs. This does not mean to do a lot of reviews, but rather ensure that every review you provide is high quality, clear, concise, and productive. 
+The most important job of a reviewer is to provide consistently high-quality reviews on existing PRs. This does not mean to do a lot of reviews, but rather ensure that every review you provide is high quality, clear, concise, and productive. 
 New reviewers are typically selected by our existing reviewers, developers and maintainers from those who have a proven track record of providing good reviews. 
 - Check the list of [Pull Requests](https://github.com/endless-sky/endless-sky/pulls) for any PRs marked as "Ready for Review" and provide a review.
-- Playtest PRs and post the results of your playtesting
-- Help identify and fix grammar/spelling errors on existing PRs
-- Assist new contributors with getting their PRs to a merge-ready state
-- Identify (or fix) logic and syntax errors
-- Provide feedback on design decisions
+- Playtest PRs and post the results of your playtesting.
+- Help identify and fix grammar/spelling errors on existing PRs.
+- Assist new contributors with getting their PRs to a merge-ready state.
+- Identify (or fix) logic and syntax errors.
+- Provide feedback on design decisions.
 
 ### Developer
 New developers are typically picked from our existing reviewer team. If reviewers are expected to provide good, high-quality reviews, then developers are expected to provide good reviews _and_ merge PRs once no further review is necessary. 
