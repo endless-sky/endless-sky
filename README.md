@@ -28,7 +28,7 @@ We welcome contributions in code, content, testing, and documentation.
 As a free and open source game, Endless Sky is the product of many people's work. Contributions of artwork, storylines, and other writing are most in-demand, though there is a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to [contribute](docs/CONTRIBUTING.md) are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community-run Discord](https://discord.gg/ZeuASSx) beforehand. Those who prefer to use Steam can use its [discussion rooms](https://steamcommunity.com/app/404410/discussions/) as well, or GitHub's [discussion zone](https://github.com/endless-sky/endless-sky/discussions).
 
 ## Governance
-Governance of Endless Sky falls to a system of Admins, Maintainers, Developers, and Reviewers. While being moderated by our "Oathkeeper" team. Details of members as well as descriptions of roles are available in [governance](docs/GOVERNANCE.md)
+Governance of Endless Sky falls to a system of Admins, Maintainers, Developers, and Reviewers, with the whole being moderated by our Oathkeeper team. Details of members as well as descriptions of roles are available in [governance](docs/GOVERNANCE.md)
 
 ## Building from source
 Development is done using [CMake](https://cmake.org) to compile the project. Most popular IDEs are supported through their respective CMake integration.
