@@ -21,4 +21,4 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 |Screen Resolution | 1024x768 | 1920x1080 |
 |Storage Free | 350 MB | 1.5 GB |
 
-_[return to readme](/README.md)_
+_[return to README](/README.md)_

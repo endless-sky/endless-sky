@@ -10,7 +10,7 @@ _Question:_ Hey! I'm interested in helping with development, I think some of the
 
 | Answer 1 | Answer 2 |
 | -------- | -------- |
-| skill issue lol, the fights aren't too hard, they're intentionally balanced that way. Just build your ship better 😂 | Hey, welcome to the community and thanks for your interest in contributing! <br/> I would recommend checking out our [readme](README.md) to get a feel for the project and you could start out by posting a [discussion](https://github.com/endless-sky/endless-sky/discussions) or an [issue](https://github.com/endless-sky/endless-sky/issues) detailing which sections you find too difficult and what changes you think might help. Once you've gotten some feedback feel free to post your changes in a [pull request](https://github.com/endless-sky/endless-sky/pulls) so they can be reviewed. I'm looking forward to seeing what you can come up with! |
+| skill issue lol, the fights aren't too hard, they're intentionally balanced that way. Just build your ship better 😂 | Hey, welcome to the community and thanks for your interest in contributing! <br/> I would recommend checking out our [README](README.md) to get a feel for the project and you could start out by posting a [discussion](https://github.com/endless-sky/endless-sky/discussions) or an [issue](https://github.com/endless-sky/endless-sky/issues) detailing which sections you find too difficult and what changes you think might help. Once you've gotten some feedback feel free to post your changes in a [pull request](https://github.com/endless-sky/endless-sky/pulls) so they can be reviewed. I'm looking forward to seeing what you can come up with! |
 
 Answer 2 centered the user's feelings and as such, took more effort. However, it made a significant difference. This response:
 
@@ -44,4 +44,4 @@ Our community prides itself on being _positive_, _helpful_, and _inclusive_. If 
   - If you sense hesitancy in someone's participation, make it clear that you're happy they're participating.
   - Advocate for someone if you see that they're being dismissed.
 
-_[return to readme](/README.md)_
+_[return to README](/README.md)_

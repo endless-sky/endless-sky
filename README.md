@@ -2,7 +2,7 @@
 
 Endless Sky is an open-source space exploration and combat game inspired by classics like Escape Velocity. This repository hosts the source code and data that power the game, as well as ongoing development by the community. If you are here to contribute to the project, whether through coding, artwork, balancing, documentation, or testing, this document will help you get started and understand how our development process works.
 
-If you’re instead looking to learn about the game itself (installation, gameplay basics, or system requirements), please see the [game readme](docs/GAME.md)
+If you’re instead looking to learn about the game itself (installation, gameplay basics, or system requirements), please see the [game README](docs/GAME.md)
 
 ## Table of Contents
 - [Community and Membership](#community-and-membership)
@@ -33,7 +33,7 @@ Governance of Endless Sky falls to a system of Admins, Maintainers, Developers, 
 ## Building from source
 Development is done using [CMake](https://cmake.org) to compile the project. Most popular IDEs are supported through their respective CMake integration.
 
-For full installation instructions, consult the [Build Instructions](docs/DEVELOPER.md) readme.
+For full installation instructions, consult the [Build Instructions](docs/DEVELOPER.md) README.
 
 ## Licensing
 
@@ -43,9 +43,9 @@ Endless Sky is a free, open source game. The [source code](https://github.com/en
 - [Community Guide](docs/COMMUNITY.md): Guidelines on how to interact with the Endless Sky community and what we expect from our members.
 - [Code of Conduct](docs/CONDUCT.md): Defines standards for how to engage in our community.
 - [Contributing Guide](docs/CONTRIBUTING.md): What to expect as a new contributor.
-- [Developer Readme](docs/DEVELOPER.md): Instructions for building the game.
+- [Developer README](docs/DEVELOPER.md): Instructions for building the game.
 - [FAQ](docs/FAQ.md): Answers to frequently asked questions.
-- [Game Readme](docs/GAME.md): Details about the Endless Sky game itself (installation, play, modding).
+- [Game README](docs/GAME.md): Details about the Endless Sky game itself (installation, play, modding).
 - [Governance](docs/GOVERNANCE.md): Processes for leadership and decision-making.
 - [Member List](docs/MEMBERS.md): A full list of current organization members.
 - [README](README.md): This document.

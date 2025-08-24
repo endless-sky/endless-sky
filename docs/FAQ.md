@@ -25,4 +25,4 @@ Author ships are special, unique ships that can spawn in the game. Each one is d
 ### What is tier?
 Tiers are a balancing metric used to help our development team compare combat capabilities between ships of different factions. It is a very rough estimate of how combat-capable we expect a specific ship to be relative to other ships. Tier is not a measure of overall technological progress and should not be used as a strict guideline for what a faction can and cannot possess.
 
-_[return to readme](/README.md)_
+_[return to README](/README.md)_
