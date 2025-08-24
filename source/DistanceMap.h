@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <queue>
 #include <set>
+#include <utility>
 #include <vector>
 
 class PlayerInfo;
@@ -49,8 +50,6 @@ public:
 	// Optional arguments are as above.
 	explicit DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
 			bool useJumpDrive, int maxSystems = -1, int maxDays = -1);
-
-	DistanceMap copyTo(const Ship &ship) const;
 
 	// Find out if the given system is reachable.
 	bool HasRoute(const System &system) const;

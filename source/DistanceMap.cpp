@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DistanceMap.h"
 
-#include "Logger.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -24,9 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "Wormhole.h"
 
-#include <chrono>
-
 using namespace std;
+
 
 
 // Find paths from the given system. If the given maximum count is above zero,
@@ -38,20 +36,21 @@ DistanceMap::DistanceMap(const System *center, int maxSystems, int maxDays)
 }
 
 
+
 // Constructor that allows configuring the use of wormholes and jump drive travel.
 // Since no ship instance is available, we use the base game's default fuel for jump travel.
 DistanceMap::DistanceMap(const System *center, WormholeStrategy wormholeStrategy,
-						bool useJumpDrive, int maxSystems, int maxDays)
+		bool useJumpDrive, int maxSystems, int maxDays)
 	: center(center), maxSystems(maxSystems), maxDays(maxDays), wormholeStrategy(wormholeStrategy),
-	jumpRangeMax(useJumpDrive ? System::DEFAULT_NEIGHBOR_DISTANCE : 0.)
+			jumpRangeMax(useJumpDrive ? System::DEFAULT_NEIGHBOR_DISTANCE : 0.)
 {
 	Init();
 }
 
 
+
 // Constructor that uses PlayerInfo to determine the path.
 // If no center system is given, the map will start from the player's system.
-// TODO: is the previous comment correct?
 // Pathfinding will only use hyperspace paths known to the player; that is,
 // one end of the path has been visited. Also, if the ship has a jump drive
 // or wormhole access, the route will make use of it.
@@ -70,8 +69,10 @@ DistanceMap::DistanceMap(const PlayerInfo &player, const System *center)
 	else
 		this->center = flagship->GetSystem();
 
+
 	Init(flagship);
 }
+
 
 
 // Calculate the path for the given ship to get to the given system. The
@@ -89,22 +90,11 @@ DistanceMap::DistanceMap(const System &center, const System &destination, const 
 }
 
 
+
 DistanceMap::DistanceMap(const Ship &ship, const System &destination, const PlayerInfo *player)
 	: player(player), center(ship.GetSystem()), destination(&destination)
 {
 	Init(&ship);
-}
-
-
-
-DistanceMap DistanceMap::copyTo(const Ship &ship) const
-{
-	DistanceMap copy = DistanceMap(*this);
-
-	copy.ship = &ship;
-	copy.jumpRangeMax = copy.ship->JumpNavigation().JumpRange();
-
-	return copy;
 }
 
 
@@ -116,6 +106,7 @@ bool DistanceMap::HasRoute(const System &target) const
 }
 
 
+
 // Find out how many days away the given system is.
 int DistanceMap::Days(const System &target) const
 {
@@ -124,14 +115,16 @@ int DistanceMap::Days(const System &target) const
 }
 
 
+
 // Get a set containing all the systems.
 set<const System *> DistanceMap::Systems() const
 {
 	set<const System *> systems;
-	for(const auto &it: route)
+	for(const auto &it : route)
 		systems.insert(it.first);
 	return systems;
 }
+
 
 
 // Get the planned route from center to this system.
@@ -151,14 +144,12 @@ vector<const System *> DistanceMap::Plan(const System &target) const
 }
 
 
+
 // Depending on the capabilities of the given ship, use hyperspace paths,
 // jump drive paths, or both to find the shortest route. Bail out if the
 // source system or the maximum count is reached.
 void DistanceMap::Init(const Ship *ship)
 {
-	// DEBUG
-	chrono::steady_clock::time_point t0 = chrono::steady_clock::now();
-	// DEBUG
 	if(!center || (ship && ship->IsRestrictedFrom(*center)) || center == destination)
 		return;
 
@@ -179,7 +170,7 @@ void DistanceMap::Init(const Ship *ship)
 		if(!ship->JumpNavigation().HasHyperdrive() && !ship->JumpNavigation().HasJumpDrive())
 		{
 			bool hasWormhole = false;
-			for(const StellarObject &object: ship->GetSystem()->Objects())
+			for(const StellarObject &object : ship->GetSystem()->Objects())
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole())
 				{
 					hasWormhole = true;
@@ -195,7 +186,6 @@ void DistanceMap::Init(const Ship *ship)
 
 	// Find the route with the lowest fuel use. If multiple routes use the same fuel,
 	// choose the one with the fewest jumps (i.e. using jump drive rather than
-	// TODO: isn't a jump a day? couldn't it be more advantageous to take the route with fewer jumps and spend more fuel
 	// hyperdrive). If multiple routes have the same fuel and the same number of
 	// jumps, break the tie by using how "dangerous" the route is.
 
@@ -234,7 +224,7 @@ void DistanceMap::Init(const Ship *ship)
 		// Check for wormholes (which cost zero fuel). Wormhole travel should
 		// not be included in Local Maps or mission itineraries.
 		if(wormholeStrategy != WormholeStrategy::NONE)
-			for(const StellarObject &object: currentSystem->Objects())
+			for(const StellarObject &object : currentSystem->Objects())
 				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole()
 					&& (object.GetPlanet()->IsUnrestricted() || wormholeStrategy == WormholeStrategy::ALL))
 				{
@@ -248,7 +238,7 @@ void DistanceMap::Init(const Ship *ship)
 					// (If this is a multi-stop wormhole, you may know about
 					// some paths that it takes but not others.)
 					if(ship && (!object.GetPlanet()->IsAccessible(ship) ||
-								ship->IsRestrictedFrom(*object.GetPlanet())))
+							ship->IsRestrictedFrom(*object.GetPlanet())))
 						continue;
 					if(player && !player->HasVisited(*object.GetPlanet()))
 						continue;
@@ -258,21 +248,15 @@ void DistanceMap::Init(const Ship *ship)
 					Add(link, nextEdge);
 					// Bail out if the maximum number of systems is reached.
 					if(!--maxSystems)
-					{
-						Logger::LogError("DEBUG DistanceMap::Init --- maxSystems reached");
 						break;
-					}
 				}
 
 		// Bail out if the maximum number of systems is reached.
 		if(!Propagate(nextEdge))
 			break;
 	}
-	// DEBUG
-	Logger::LogError(
-		"DEBUG DistanceMap::Init ---> " + std::to_string((chrono::steady_clock::now() - t0).count() / 1000000.) + "ms");
-	// DEBUG
 }
+
 
 
 // Add the given links to the map, if better. Return false if max systems has been reached.
@@ -284,7 +268,7 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 	// JumpNeighbors also includes normal hyperspace links. Remember that jump drives
 	// can use hyperlanes, though it still costs more fuel.
 	auto links = currentSystem->Links();
-	for(const System *link: (jumpRangeMax > 0 ? currentSystem->JumpNeighbors(jumpRangeMax) : links))
+	for(const System *link : (jumpRangeMax > 0 ? currentSystem->JumpNeighbors(jumpRangeMax) : links))
 	{
 		// Copy the edge to be used for this link, and build upon its fields.
 		RouteEdge nextEdge = curEdge;
@@ -297,7 +281,8 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 			auto jumpType = ship->JumpNavigation().GetCheapestJumpType(currentSystem, link);
 			useJump = jumpType.first == JumpType::JUMP_DRIVE;
 			fuelCost = jumpType.second;
-		} else
+		}
+		else
 			fuelCost = linked ? Outfit::DEFAULT_HYPERDRIVE_COST : Outfit::DEFAULT_JUMP_DRIVE_COST;
 
 		// Check whether this link can be traveled. If this route is being
@@ -320,12 +305,14 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 }
 
 
+
 // Check if we already have a better path to the given system.
 bool DistanceMap::HasBetter(const System &to, const RouteEdge &edge)
 {
 	auto it = route.find(&to);
 	return (it != route.end() && !(it->second < edge));
 }
+
 
 
 // Add the given path to the record.
@@ -343,6 +330,7 @@ void DistanceMap::Add(const System &to, RouteEdge edge)
 }
 
 
+
 // Check whether the given link is travelable. If no player was given in the
 // constructor then this depends on travel restrictions; otherwise, the player must know
 // that the given link exists.
@@ -354,6 +342,7 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool linked, b
 	// Can never go where you don't know about.
 	if(!player->HasSeen(to))
 		return false;
+
 
 	// Check if Propagate produced links using hyperlanes you don't know about.
 	// If hyperlink status is known: OK, you know it, so we can trust the results.

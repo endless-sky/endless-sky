@@ -5184,28 +5184,15 @@ RoutePlan AI::GetRoutePlan(Ship &ship, const System *targetSystem)
 	// Search for a cached solution for this route.
 	auto key = std::make_tuple(//from, targetSystem, gov, ship.JumpNavigation().JumpRange(),
 	   &driveCapability, &wormholeKey);
-	auto key2 = make_tuple(1,2);
 
-	DistanceMap *distanceMapPtr = nullptr;
+	RoutePlan route;
 	auto it = routeCache.find(key);
-	auto it2 = routeCache2.find(key2);
 	if(it != routeCache.end())
-		distanceMapPtr = (it->second);
-	if(it2 != routeCache2.end())
-		distanceMapPtr = (it->second);
-
-	RoutePlan route(ship, *targetSystem, ship.IsYours() ? &player : nullptr, distanceMapPtr);
-
-	// Update the cache if we didn't find our DistanceMap in cache to begin with.
-	if(it == routeCache.end())
+		route = RoutePlan(*(it->second));
+	else
 	{
-		auto d = route.GetDistanceMap();
-		routeCache.emplace(key, &d);
-	}
-	if(it2 == routeCache2.end())
-	{
-		auto d = route.GetDistanceMap();
-		routeCache2.emplace(key2, &d);
+		route = RoutePlan(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
+		routeCache.emplace(key, &route);
 	}
 
 	// DEBUG
