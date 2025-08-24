@@ -141,7 +141,7 @@ If our existing moderation team feels that you meet these requirements, you may 
 ### Reviewer
 The most important job of a reviewer is to provide consistently high-quality reviews on existing PRs. This does not mean to do a lot of reviews, but rather ensure that every review you provide is high quality, clear, concise, and productive. 
 New reviewers are typically selected by our existing reviewers, developers and maintainers from those who have a proven track record of providing good reviews. 
-- Check the list of [Pull Requests](https://github.com/endless-sky/endless-sky/pulls) for any PRs marked as "Ready for Review" and provide a review.
+- Check the list of [Pull Requests](https://github.com/endless-sky/endless-sky/pulls) for any open PRs and provide a review.
 - Playtest PRs and post the results of your playtesting.
 - Help identify and fix grammar/spelling errors on existing PRs.
 - Assist new contributors with getting their PRs to a merge-ready state.
