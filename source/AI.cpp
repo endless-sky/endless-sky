@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "Command.h"
-#include "DistanceMap.h"
 #include "FighterHitHelper.h"
 #include "Flotsam.h"
 #include "text/Format.h"
@@ -52,6 +51,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <ranges>
 #include <set>
 #include <utility>
 
@@ -671,6 +671,24 @@ void AI::Step(Command &activeCommands)
 	map<const Government *, int64_t> strength;
 	UpdateStrengths(strength, playerSystem);
 	CacheShipLists();
+
+	// At each step, reconsider all routes as new.
+	routeCache.clear();
+	// Create a complete list of the attributes which may be required for a ship to use wormholes within
+	// the universe. This will be a complete set of all attributes that affect any wormhole in the universe.
+	universeWormholeRequirements.clear();
+	for(const auto &wormhole : std::views::values(GameData::Wormholes()))
+	{
+		if(!wormhole.IsValid())
+			continue;
+
+		const Planet &p = *wormhole.GetPlanet();
+		if(!p.IsValid())
+			continue;
+
+		for(const auto &req : p.RequiredAttributes())
+			universeWormholeRequirements.emplace(req);
+	}
 
 	// Update the counts of how long ships have been outside the "invisible fence."
 	// If a ship ceases to exist, this also ensures that it will be removed from
@@ -1831,7 +1849,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 
 
 
-void AI::MoveIndependent(Ship &ship, Command &command) const
+void AI::MoveIndependent(Ship &ship, Command &command)
 {
 	double invisibleFenceRadius = ship.GetSystem()->InvisibleFenceRadius();
 
@@ -2255,12 +2273,14 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 // Set the ship's target system or planet in order to reach the
 // next desired system. Will target a landable planet to refuel.
 // If the ship is an escort it will only use routes known to the player.
-void AI::SelectRoute(Ship &ship, const System *targetSystem) const
+void AI::SelectRoute(Ship &ship, const System *targetSystem)
 {
 	const System *from = ship.GetSystem();
 	if(from == targetSystem || !targetSystem)
 		return;
-	RoutePlan route(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
+
+	auto route = GetRoutePlan(ship, targetSystem);
+
 	if(ShouldRefuel(ship, route))
 	{
 		// There is at least one planet that can refuel the ship.
@@ -2271,6 +2291,7 @@ void AI::SelectRoute(Ship &ship, const System *targetSystem) const
 	// The destination may be accessible by both jump and wormhole.
 	// Prefer wormhole travel in these cases, to conserve fuel.
 	if(nextSystem)
+	{
 		for(const StellarObject &object : from->Objects())
 		{
 			if(!object.HasSprite() || !object.HasValidPlanet())
@@ -2285,6 +2306,7 @@ void AI::SelectRoute(Ship &ship, const System *targetSystem) const
 				return;
 			}
 		}
+	}
 	// Either there is no viable wormhole route to this system, or
 	// the target system cannot be reached.
 	ship.SetTargetSystem(nextSystem);
@@ -3005,7 +3027,7 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 
 
 
-void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) const
+void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 {
 	const bool isStaying = ship.GetPersonality().IsStaying();
 	// Since DoSurveillance is called after target-seeking and firing, if this
@@ -5070,4 +5092,41 @@ void AI::UpdateOrders(const Ship &ship)
 		return;
 
 	it->second.Update(ship);
+}
+
+
+
+RoutePlan AI::GetRoutePlan(Ship &ship, const System *targetSystem)
+{
+	const System *from = ship.GetSystem();
+	const Government *gov = ship.GetGovernment();
+
+	// Look for an existing distance map for this combination of inputs before calculating a new one
+	// Make the key for the cache
+	const JumpType driveCapability = ship.JumpNavigation().HasJumpDrive() ? JumpType::JUMP_DRIVE : JumpType::HYPERDRIVE;
+
+	// A cached route that could be used for this ship could depend on the wormholes which this ship can
+	// travel through. Find the intersection of all known wormhole required attributes and the attributes
+	// which this ship satisfies.
+	string wormholeKey;
+	const auto &shipAttributes = ship.Attributes();
+	for(const auto &requirement : universeWormholeRequirements)
+		if(shipAttributes.Get(requirement))
+			wormholeKey += "" + requirement;
+
+	// Search for a cached solution for this route.
+	auto key = std::make_tuple(from, targetSystem, gov, ship.JumpNavigation().JumpRange(),
+		&driveCapability, &wormholeKey);
+
+	RoutePlan route;
+	auto it = routeCache.find(key);
+	if(it != routeCache.end())
+		route = RoutePlan(*(it->second));
+	else
+	{
+		route = RoutePlan(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
+		routeCache.emplace(key, &route);
+	}
+
+	return route;
 }

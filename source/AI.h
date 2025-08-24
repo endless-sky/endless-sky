@@ -18,16 +18,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
+#include "JumpType.h"
 #include "orders/OrderSet.h"
 #include "Point.h"
+#include "RoutePlan.h"
 
-#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>
 #include <optional>
 #include <set>
 #include <vector>
+
 
 class Angle;
 class AsteroidField;
@@ -106,7 +108,7 @@ private:
 
 	bool FollowOrders(Ship &ship, Command &command);
 	void MoveInFormation(Ship &ship, Command &command);
-	void MoveIndependent(Ship &ship, Command &command) const;
+	void MoveIndependent(Ship &ship, Command &command);
 	void MoveWithParent(Ship &ship, Command &command, const Ship &parent);
 	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
@@ -114,7 +116,7 @@ private:
 	// Set the ship's target system or planet in order to reach the
 	// next desired system. Will target a landable planet to refuel.
 	// If the ship is an escort it will only use routes known to the player.
-	void SelectRoute(Ship &ship, const System *targetSystem) const;
+	void SelectRoute(Ship &ship, const System *targetSystem);
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 
 	// Methods of moving from the current position to a desired position / orientation.
@@ -140,7 +142,7 @@ private:
 	// Special personality behaviors.
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
-	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
+	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(const Ship &ship, Command &command) const;
@@ -187,6 +189,7 @@ private:
 	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
+	RoutePlan GetRoutePlan(Ship &ship, const System *targetSystem);
 
 
 private:
@@ -251,4 +254,14 @@ private:
 	std::map<const Government *, std::vector<Ship *>> governmentRosters;
 	std::map<const Government *, std::vector<Ship *>> enemyLists;
 	std::map<const Government *, std::vector<Ship *>> allyLists;
+
+	// Route planning cache:
+	// Note: keep this updated as the variables driving the routing change:
+	// - gov: danger = f(gov), isRestrictedFrom = f(gov)
+	// - wormhole requirements that are met, see Planet::IsAccessible(const Ship *ship)
+	// - from, to, jumpRange, driveType
+	std::map<std::tuple<const System *, const System *, const Government *, double,
+		const JumpType *, std::string *>,
+		RoutePlan *> routeCache;
+	std::set<std::string>universeWormholeRequirements;
 };
