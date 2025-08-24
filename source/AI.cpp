@@ -3534,8 +3534,8 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	Point position = ship.Position();
 	Point velocity = ship.Velocity() - targetVelocity;
 	Angle angle = ship.Facing();
-	double acceleration = ship.Acceleration();
-	double turnRate = ship.TurnRate();
+	double acceleration = ship.CrewAcceleration();
+	double turnRate = ship.CrewTurnRate();
 	shouldReverse = false;
 
 	// If I were to turn around and stop now the relative movement, where would that put me?
