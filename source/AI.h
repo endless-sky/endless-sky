@@ -262,6 +262,6 @@ private:
 	// - from, to, jumpRange, driveType
 	std::map<std::tuple<const System *, const System *, const Government *, double,
 		const JumpType *, std::string *>,
-		RoutePlan*> routeCache;
+		RoutePlan *> routeCache;
 	std::set<std::string>universeWormholeRequirements;
 };

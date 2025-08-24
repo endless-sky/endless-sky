@@ -677,7 +677,7 @@ void AI::Step(Command &activeCommands)
 	// Create a complete list of the attributes which may be required for a ship to use wormholes within
 	// the universe. This will be a complete set of all attributes that affect any wormhole in the universe.
 	universeWormholeRequirements.clear();
-	for(const auto &wormhole: std::views::values(GameData::Wormholes()))
+	for(const auto &wormhole : std::views::values(GameData::Wormholes()))
 	{
 		if(!wormhole.IsValid())
 			continue;
@@ -5116,7 +5116,7 @@ RoutePlan AI::GetRoutePlan(Ship &ship, const System *targetSystem)
 
 	// Search for a cached solution for this route.
 	auto key = std::make_tuple(from, targetSystem, gov, ship.JumpNavigation().JumpRange(),
-	   &driveCapability, &wormholeKey);
+		&driveCapability, &wormholeKey);
 
 	RoutePlan route;
 	auto it = routeCache.find(key);
