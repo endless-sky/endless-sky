@@ -10,7 +10,6 @@ If you’re instead looking to learn about the game itself (installation, gamepl
 - [Governance](#governance)
 - [Building from Source](#building-from-source)
 - [Licensing](#licensing)
-- [FAQ](#frequently-asked-questions)
 - [Documentation](#all-documentation)
 
 ## Community and Membership
