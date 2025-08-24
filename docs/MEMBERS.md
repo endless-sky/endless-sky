@@ -60,3 +60,5 @@ For a description of each role, see [governance](GOVERNANCE.md)
 - [UnorderedSigh](https://github.com/UnorderedSigh)
 
 For other contributors, you may view our [credits](/credits.txt) file. There is also a unofficial community run directory available at https://moctave.github.io/es-community-directory
+
+_[return to readme](/README.md)_

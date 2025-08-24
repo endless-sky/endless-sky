@@ -92,3 +92,5 @@ If you have opened a new feature pull request during a stable release developmen
 ### Reviewing a pull request
 
 Reviewing pull requests is an important part of maintaining Endless Sky and the main way that new content is added to the game. Your feedback helps contributors improve their work and ensures that new content is the best it can be. For more information, see the [wiki page](https://github.com/endless-sky/endless-sky/wiki/ReviewingPRs).
+
+_[return to readme](/README.md)_

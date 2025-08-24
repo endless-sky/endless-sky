@@ -217,3 +217,5 @@ $ cmake -G Xcode --preset macos # macos-arm for Apple Silicon
 ```
 
 The XCode project is located in the `build/` directory.
+
+_[return to readme](/README.md)_

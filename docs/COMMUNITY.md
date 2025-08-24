@@ -43,3 +43,5 @@ Our community prides itself on being _positive_, _helpful_, and _inclusive_. If 
   - Refer to someone by their expressed pronouns. If this wasn't expressed, use [`they/them`](https://en.wikipedia.org/wiki/Singular_they), which in English can be used to refer to individuals of any gender.
   - If you sense hesitancy in someone's participation, make it clear that you're happy they're participating.
   - Advocate for someone if you see that they're being dismissed.
+
+_[return to readme](/README.md)_
