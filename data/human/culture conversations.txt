@@ -1119,7 +1119,7 @@ phrase "sunracer opening"
 		"As you wade through the clang and clatter of Sunracer's ever-churning shipyards"
 		"Amidst the city's persisting glitz"
 		"Lost in a maze of hangars and half-built hulls"
-		"Navigating through the organized chaos of Megaparsec shipyards"
+		"While navigating through the organized chaos of Megaparsec shipyards"
 
 phrase "sunracer hovercraft adhook"
 	word
@@ -1129,7 +1129,7 @@ phrase "sunracer hovercraft adhook"
 	word
 		" seizes your attention"
 		" catches your eye"
-		" appears overheard"
+		" appears overhead"
 
 phrase "sunracer hovercraft adcloser"
 	word
@@ -1195,14 +1195,13 @@ phrase "sunracer fan tshirt"
 phrase "sunracer hovercraft race description"
 	word
 		"You push through the buzzing entrance, "
-		"Clusters of ecstatic fans pass you beneath the screens showcasing the race, "
 		"The entrance bursts with energy as you weave through enthusiastic crowds, "
 		"Amid a cascade of bright lights and raucous cheers, you enter the racetrack, "
 		"The crowd briefly disperses, leaving you ample space to go through the entrance, "
 	word
 		"navigate a series of well-lit steps, and settle into your seat. Now you are ready for the race."
 		"each step drawing you closer to the exciting race view from the stands."
-		"then you follow well-marked signs that lead you into the heart of the action in the stands."
+		"then follow well-marked signs that lead you into the heart of the action in the stands."
 		"where banners and cheers guide you to the stands for you to sit during the race."
 	word
 		" "
@@ -1274,10 +1273,9 @@ mission "A Sunracer Hovercraft Racing"
 			`${sunracer opening}, a ${sunracer hovercraft adhook}: there's a hovercraft race at the <racename>, just a few hours away by hover rail, or much faster aboard a <model>. ${sunracer hovercraft adcloser}`
 			choice
 				`	(Check it out.)`
-				`	(Skip the hovercraft race.)`
+				`	(Skip the race.)`
 					decline
 			action
-				
 				"race length" = 3 + "roll: 2"
 				"syndicate boost" = 2 + "roll: 2"
 				"delta boost" = 4 + "roll: 8"
@@ -1315,7 +1313,7 @@ mission "A Sunracer Hovercraft Racing"
 			`	"Hovercraft racing pits four ships against the clock - each trying to log as many laps as possible. The race is between three and five hours long and is split into two phases: an initial afterburn for a burst of speed, followed by laps completed in the remaining time.`
 			`	"Each racer has a roughly equal chance of victory, though Megaparsec Racing Technologies tends to win a bit more often overall. Megaparsec also excels in longer races thanks to their efficient ion engines that can go anywhere from zero to twelve laps an hour, but completely lack any initial speed burst. Deep racers shine on shorter stints by using high-powered atomics for a powerful start that can push them to complete between six and eighteen laps almost right out of the gate, but in longer races their lack of efficiency means they go only half as fast as Megaparsec, anywhere from zero to six laps an hour. The other two teams fall somewhere in-between.`
 			`	"Even though each team is roughly equal, in a given race, a savvy watcher can better predict a winner by knowing which teams perform better on shorter or longer race lengths, or a less sporting one with a powerful scanner might even be able to tell a hovercraft's exact afterburn level before the race even begins.`
-			`	"One last tip to remember - they say the surest way to make a small fortune in hovercraft racing is to start with a big one!" The speech ends with a hearty laugh, the sound mixing with the roar of engines inside the <racename>.`
+			`	"One last tip to remember - they say the surest way to make a small fortune in hovercraft racing is to start with a big one!" The fan's speech ends with a hearty laugh, whose sound mixes with the roar of engines inside the <racename>.`
 			``
 				goto decisioning
 			label scanner
