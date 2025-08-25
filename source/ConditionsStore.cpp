@@ -1,5 +1,5 @@
 /* ConditionsStore.cpp
-Copyright (c) 2020-2022 by Peter van der Meer
+Copyright (c) 2020-2025 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionsStore.h"
 
+#include "ConditionEntry.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Logger.h"
@@ -22,109 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 
 using namespace std;
-
-
-
-// Default constructor
-ConditionsStore::DerivedProvider::DerivedProvider(const string &name, bool isPrefixProvider)
-	: name(name), isPrefixProvider(isPrefixProvider)
-{
-}
-
-
-
-void ConditionsStore::DerivedProvider::SetGetFunction(function<int64_t(const string &)> newGetFun)
-{
-	getFunction = std::move(newGetFun);
-}
-
-
-
-void ConditionsStore::DerivedProvider::SetSetFunction(function<bool(const string &, int64_t)> newSetFun)
-{
-	setFunction = std::move(newSetFun);
-}
-
-
-
-ConditionsStore::ConditionEntry::operator int64_t() const
-{
-	if(!provider)
-		return value;
-
-	const string &key = fullKey.empty() ? provider->name : fullKey;
-	return provider->getFunction(key);
-}
-
-
-
-ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator=(int64_t val)
-{
-	if(!provider)
-		value = val;
-	else
-	{
-		const string &key = fullKey.empty() ? provider->name : fullKey;
-		provider->setFunction(key, val);
-	}
-	return *this;
-}
-
-
-
-ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator++()
-{
-	if(!provider)
-		++value;
-	else
-	{
-		const string &key = fullKey.empty() ? provider->name : fullKey;
-		provider->setFunction(key, provider->getFunction(key) + 1);
-	}
-	return *this;
-}
-
-
-
-ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator--()
-{
-	if(!provider)
-		--value;
-	else
-	{
-		const string &key = fullKey.empty() ? provider->name : fullKey;
-		provider->setFunction(key, provider->getFunction(key) - 1);
-	}
-	return *this;
-}
-
-
-
-ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator+=(int64_t val)
-{
-	if(!provider)
-		value += val;
-	else
-	{
-		const string &key = fullKey.empty() ? provider->name : fullKey;
-		provider->setFunction(key, provider->getFunction(key) + val);
-	}
-	return *this;
-}
-
-
-
-ConditionsStore::ConditionEntry &ConditionsStore::ConditionEntry::operator-=(int64_t val)
-{
-	if(!provider)
-		value -= val;
-	else
-	{
-		const string &key = fullKey.empty() ? provider->name : fullKey;
-		provider->setFunction(key, provider->getFunction(key) - val);
-	}
-	return *this;
-}
 
 
 
@@ -158,9 +56,10 @@ void ConditionsStore::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(!DataNode::IsConditionName(child.Token(0)))
+		const string &key = child.Token(0);
+		if(!DataNode::IsConditionName(key))
 			child.PrintTrace("Invalid condition during savegame-load:");
-		Set(child.Token(0), (child.Size() >= 2) ? child.Value(1) : 1);
+		Set(key, (child.Size() >= 2) ? child.Value(1) : 1);
 	}
 }
 
@@ -173,7 +72,7 @@ void ConditionsStore::Save(DataWriter &out) const
 	for(const auto &it : storage)
 	{
 		// We don't need to save derived conditions that have a provider.
-		if(it.second.provider)
+		if(it.second.getFunction || it.second.providingEntry)
 			continue;
 		// If the condition's value is 0, don't write it at all.
 		if(!it.second.value)
@@ -194,50 +93,41 @@ void ConditionsStore::Save(DataWriter &out) const
 // derived from other data-structures (derived conditions).
 int64_t ConditionsStore::Get(const string &name) const
 {
+	// Look for a relevant entry, either the exact entry, or a prefixed provider.
 	const ConditionEntry *ce = GetEntry(name);
+
+	// If no entry is found, then we simply don't have any relevant data.
 	if(!ce)
 		return 0;
 
-	if(!ce->provider)
-		return ce->value;
+	// If the name matches exactly, then access directly with explicit conversion to int64_t.
+	if(ce->name == name)
+		return *ce;
 
-	return ce->provider->getFunction(name);
+	// If the name doesn't match exactly, then we are dealing with a prefixed provider that doesn't have an exactly
+	// matching entry. Get is const, so isn't supposed to add such an entry; use a temporary object for access.
+	ConditionEntry ceAccessor(name);
+	ceAccessor.providingEntry = ce;
+	return ceAccessor;
 }
 
 
 
-// Add a value to a condition. Returns true on success, false on failure.
-bool ConditionsStore::Add(const string &name, int64_t value)
+void ConditionsStore::Add(const string &name, int64_t value)
 {
-	// This code performers 2 lookups of the condition, once for get and
-	// once for set. This might be optimized to a single lookup in a
-	// later version of the code.
-	return Set(name, Get(name) + value);
+	(*this)[name] += value;
 }
 
 
 
-// Set a value for a condition, either for the local value, or by performing
-// a set on the provider.
-bool ConditionsStore::Set(const string &name, int64_t value)
+void ConditionsStore::Set(const string &name, int64_t value)
 {
-	ConditionEntry *ce = GetEntry(name);
-	if(!ce)
-	{
-		(storage[name]).value = value;
-		return true;
-	}
-	if(!ce->provider)
-	{
-		ce->value = value;
-		return true;
-	}
-	return ce->provider->setFunction(name, value);
+	(*this)[name] = value;
 }
 
 
 
-ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
+ConditionEntry &ConditionsStore::operator[](const string &name)
 {
 	// Search for an exact match and return it if it exists.
 	auto it = storage.find(name);
@@ -246,88 +136,28 @@ ConditionsStore::ConditionEntry &ConditionsStore::operator[](const string &name)
 
 	// Check for a prefix provider.
 	ConditionEntry *ceprov = GetEntry(name);
-	// If no prefix provider is found, then just create a new value entry.
-	if(ceprov == nullptr)
-		return storage[name];
 
-	// Found a matching prefixed entry provider, but no exact match for the entry itself,
-	// let's create the exact match based on the prefix provider.
-	ConditionEntry &ce = storage[name];
-	ce.provider = ceprov->provider;
-	ce.fullKey = name;
-	return ce;
+	// Create the entry (name is used as key, and as ConditionEntry constructor argument.
+	auto emp = storage.emplace(make_pair(name, name));
+	it = emp.first;
+
+	// If a relevant prefix provider is found, then provision this entry with the provider.
+	if(ceprov != nullptr)
+		it->second.providingEntry = ceprov;
+
+	// Return the entry created.
+	return it->second;
 }
 
 
 
-// Build a provider for a given prefix.
-ConditionsStore::DerivedProvider &ConditionsStore::GetProviderPrefixed(const string &prefix)
-{
-	auto it = providers.emplace(std::piecewise_construct,
-		std::forward_as_tuple(prefix),
-		std::forward_as_tuple(prefix, true));
-	DerivedProvider *provider = &(it.first->second);
-	if(!provider->isPrefixProvider)
-	{
-		Logger::LogError("Error: Rewriting named provider \"" + prefix + "\" to prefixed provider.");
-		provider->isPrefixProvider = true;
-	}
-	if(VerifyProviderLocation(prefix, provider))
-	{
-		storage[prefix].provider = provider;
-		// Check if any matching later entries within the prefixed range use the same provider.
-		auto checkIt = storage.find(prefix);
-		while(checkIt != storage.end() && (0 == checkIt->first.compare(0, prefix.length(), prefix)))
-		{
-			ConditionEntry &ce = checkIt->second;
-			if(ce.provider != provider)
-			{
-				ce.provider = provider;
-				ce.fullKey = checkIt->first;
-				throw runtime_error("Replacing condition entries matching prefixed provider \""
-						+ prefix + "\".");
-			}
-			++checkIt;
-		}
-	}
-	return *provider;
-}
-
-
-
-// Build a provider for the condition identified by the given name.
-ConditionsStore::DerivedProvider &ConditionsStore::GetProviderNamed(const string &name)
-{
-	auto it = providers.emplace(std::piecewise_construct,
-		std::forward_as_tuple(name),
-		std::forward_as_tuple(name, false));
-	DerivedProvider *provider = &(it.first->second);
-	if(provider->isPrefixProvider)
-		Logger::LogError("Error: Retrieving prefixed provider \"" + name + "\" as named provider.");
-	else if(VerifyProviderLocation(name, provider))
-		storage[name].provider = provider;
-	return *provider;
-}
-
-
-
-// Helper to completely remove all data and linked condition-providers from the store.
-void ConditionsStore::Clear()
-{
-	storage.clear();
-	providers.clear();
-}
-
-
-
-// Helper for testing; check how many primary conditions are registered.
 int64_t ConditionsStore::PrimariesSize() const
 {
 	int64_t result = 0;
 	for(const auto &it : storage)
 	{
 		// We only count primary conditions; conditions that don't have a provider.
-		if(it.second.provider)
+		if(it.second.providingEntry || it.second.getFunction)
 			continue;
 		++result;
 	}
@@ -336,15 +166,15 @@ int64_t ConditionsStore::PrimariesSize() const
 
 
 
-ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name)
+ConditionEntry *ConditionsStore::GetEntry(const string &name)
 {
 	// Avoid code-duplication between const and non-const function.
-	return const_cast<ConditionsStore::ConditionEntry *>(const_cast<const ConditionsStore *>(this)->GetEntry(name));
+	return const_cast<ConditionEntry *>(const_cast<const ConditionsStore *>(this)->GetEntry(name));
 }
 
 
 
-const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &name) const
+const ConditionEntry *ConditionsStore::GetEntry(const string &name) const
 {
 	if(storage.empty())
 		return nullptr;
@@ -359,40 +189,11 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 	if(name == it->first)
 		return &(it->second);
 
-	// The entry is also matching when we have a prefix entry and the prefix part in the provider matches.
-	DerivedProvider *provider = it->second.provider;
-	if(provider && provider->isPrefixProvider && !name.compare(0, provider->name.length(), provider->name))
-		return &(it->second);
+	// If we don't have an exact match, but we have a matching prefix-provider, then we return that one.
+	const ConditionEntry *ceProv = it->second.providingEntry;
+	if(ceProv && name.starts_with(ceProv->name))
+		return ceProv;
 
 	// And otherwise we don't have a match.
 	return nullptr;
-}
-
-
-
-// Helper function to check if we can safely add a provider with the given name.
-bool ConditionsStore::VerifyProviderLocation(const string &name, const DerivedProvider *provider) const
-{
-	auto it = storage.upper_bound(name);
-	if(it == storage.begin())
-		return true;
-
-	--it;
-	const ConditionEntry &ce = it->second;
-
-	// If we find the provider we are trying to add, then it apparently
-	// was safe to add the entry since it was already added before.
-	if(ce.provider == provider)
-		return true;
-
-	if(!ce.provider && it->first == name)
-	{
-		Logger::LogError("Error: overwriting primary condition \"" + name + "\" with derived provider.");
-		return true;
-	}
-
-	if(ce.provider && ce.provider->isPrefixProvider && 0 == name.compare(0, ce.provider->name.length(), ce.provider->name))
-		throw runtime_error("Error: not adding provider for \"" + name + "\""
-				", because it is within range of prefixed derived provider \"" + ce.provider->name + "\".");
-	return true;
 }

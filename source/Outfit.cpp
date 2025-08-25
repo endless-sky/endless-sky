@@ -165,11 +165,13 @@ namespace {
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
 		{"hull heat multiplier", -1.},
+		{"cloaked repair multiplier", -1.},
 		{"shield multiplier", -1. },
 		{"shield generation multiplier", -1.},
 		{"shield energy multiplier", -1.},
 		{"shield fuel multiplier", -1.},
 		{"shield heat multiplier", -1.},
+		{"cloaked regen multiplier", -1.},
 		{"acceleration multiplier", -1.},
 		{"turn multiplier", -1.},
 		{"turret turn multiplier", -1.}
@@ -207,7 +209,7 @@ namespace {
 
 
 
-void Outfit::Load(const DataNode &node)
+void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
 		trueName = node.Token(1);
@@ -216,83 +218,83 @@ void Outfit::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "display name" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(key == "display name" && hasValue)
 			displayName = child.Token(1);
-		else if(child.Token(0) == "category" && child.Size() >= 2)
+		else if(key == "category" && hasValue)
 			category = child.Token(1);
-		else if(child.Token(0) == "series" && child.Size() >= 2)
+		else if(key == "series" && hasValue)
 			series = child.Token(1);
-		else if(child.Token(0) == "index" && child.Size() >= 2)
+		else if(key == "index" && hasValue)
 			index = child.Value(1);
-		else if(child.Token(0) == "plural" && child.Size() >= 2)
+		else if(key == "plural" && hasValue)
 			pluralName = child.Token(1);
-		else if(child.Token(0) == "flare sprite" && child.Size() >= 2)
+		else if(key == "flare sprite" && hasValue)
 		{
 			flareSprites.emplace_back(Body(), 1);
 			flareSprites.back().first.LoadSprite(child);
 		}
-		else if(child.Token(0) == "reverse flare sprite" && child.Size() >= 2)
+		else if(key == "reverse flare sprite" && hasValue)
 		{
 			reverseFlareSprites.emplace_back(Body(), 1);
 			reverseFlareSprites.back().first.LoadSprite(child);
 		}
-		else if(child.Token(0) == "steering flare sprite" && child.Size() >= 2)
+		else if(key == "steering flare sprite" && hasValue)
 		{
 			steeringFlareSprites.emplace_back(Body(), 1);
 			steeringFlareSprites.back().first.LoadSprite(child);
 		}
-		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
+		else if(key == "flare sound" && hasValue)
 			++flareSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "reverse flare sound" && child.Size() >= 2)
+		else if(key == "reverse flare sound" && hasValue)
 			++reverseFlareSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "steering flare sound" && child.Size() >= 2)
+		else if(key == "steering flare sound" && hasValue)
 			++steeringFlareSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
+		else if(key == "afterburner effect" && hasValue)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
-		else if(child.Token(0) == "jump effect" && child.Size() >= 2)
+		else if(key == "jump effect" && hasValue)
 			++jumpEffects[GameData::Effects().Get(child.Token(1))];
-		else if(child.Token(0) == "hyperdrive sound" && child.Size() >= 2)
+		else if(key == "hyperdrive sound" && hasValue)
 			++hyperSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "hyperdrive in sound" && child.Size() >= 2)
+		else if(key == "hyperdrive in sound" && hasValue)
 			++hyperInSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "hyperdrive out sound" && child.Size() >= 2)
+		else if(key == "hyperdrive out sound" && hasValue)
 			++hyperOutSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "jump sound" && child.Size() >= 2)
+		else if(key == "jump sound" && hasValue)
 			++jumpSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "jump in sound" && child.Size() >= 2)
+		else if(key == "jump in sound" && hasValue)
 			++jumpInSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "jump out sound" && child.Size() >= 2)
+		else if(key == "jump out sound" && hasValue)
 			++jumpOutSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "cargo scan sound" && child.Size() >= 2)
+		else if(key == "cargo scan sound" && hasValue)
 			++cargoScanSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "outfit scan sound" && child.Size() >= 2)
+		else if(key == "outfit scan sound" && hasValue)
 			++outfitScanSounds[Audio::Get(child.Token(1))];
-		else if(child.Token(0) == "flotsam sprite" && child.Size() >= 2)
+		else if(key == "flotsam sprite" && hasValue)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
-		else if(child.Token(0) == "weapon")
+		else if(key == "weapon")
 			LoadWeapon(child);
-		else if(child.Token(0) == "ammo" && child.Size() >= 2)
+		else if(key == "ammo" && hasValue)
 		{
 			// Non-weapon outfits can have ammo so that storage outfits
 			// properly remove excess ammo when the storage is sold, instead
 			// of blocking the sale of the outfit until the ammo is sold first.
 			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
 		}
-		else if(child.Token(0) == "description" && child.Size() >= 2)
-		{
-			description += child.Token(1);
-			description += '\n';
-		}
-		else if(child.Token(0) == "cost" && child.Size() >= 2)
+		else if(key == "description" && hasValue)
+			description.Load(child, playerConditions);
+		else if(key == "cost" && hasValue)
 			cost = child.Value(1);
-		else if(child.Token(0) == "mass" && child.Size() >= 2)
+		else if(key == "mass" && hasValue)
 			mass = child.Value(1);
-		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
+		else if(key == "licenses" && (child.HasChildren() || hasValue))
 		{
 			// Add any new licenses that were specified "inline".
-			if(child.Size() >= 2)
+			if(hasValue)
 			{
 				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
 					AddLicense(*it);
@@ -301,13 +303,13 @@ void Outfit::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 				AddLicense(grand.Token(0));
 		}
-		else if(child.Token(0) == "jump range" && child.Size() >= 2)
+		else if(key == "jump range" && hasValue)
 		{
 			// Jump range must be positive.
-			attributes[child.Token(0)] = max(0., child.Value(1));
+			attributes[key] = max(0., child.Value(1));
 		}
-		else if(child.Size() >= 2)
-			attributes[child.Token(0)] = child.Value(1);
+		else if(hasValue)
+			attributes[key] = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -345,7 +347,7 @@ void Outfit::Load(const DataNode &node)
 		attributes["jump drive fuel"] = (jumpFuel > 0. ? jumpFuel : DEFAULT_JUMP_DRIVE_COST);
 	}
 	if(attributes.Get("jump fuel"))
-		attributes["jump fuel"] = 0.;
+		attributes.Erase("jump fuel");
 
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
@@ -459,9 +461,9 @@ const int Outfit::Index() const
 
 
 
-const string &Outfit::Description() const
+string Outfit::Description() const
 {
-	return description;
+	return description.ToString();
 }
 
 

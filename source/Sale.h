@@ -28,7 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 template <class Item>
 class Sale : public std::set<const Item *> {
 public:
-	void Load(const DataNode &node, const Set<Item> &items);
+	void Load(const DataNode &node, const Set<Item> &items, bool preventModifiers = false);
+	void LoadSingle(const DataNode &child, const Set<Item> &items, bool preventModifiers = false);
 
 	void Add(const Sale<Item> &other);
 
@@ -38,21 +39,34 @@ public:
 
 
 template <class Item>
-void Sale<Item>::Load(const DataNode &node, const Set<Item> &items)
+void Sale<Item>::Load(const DataNode &node, const Set<Item> &items, bool preventModifiers)
 {
 	for(const DataNode &child : node)
+		LoadSingle(child, items, preventModifiers);
+}
+
+
+
+template <class Item>
+void Sale<Item>::LoadSingle(const DataNode &child, const Set<Item> &items, bool preventModifiers)
+{
+	const std::string &token = child.Token(0);
+	bool remove = (token == "clear" || token == "remove");
+	bool add = (token == "add");
+	if((remove || add) && preventModifiers)
 	{
-		const std::string &token = child.Token(0);
-		bool remove = (token == "clear" || token == "remove");
-		if(remove && child.Size() == 1)
-			this->clear();
-		else if(remove && child.Size() >= 2)
-			this->erase(items.Get(child.Token(1)));
-		else if(token == "add" && child.Size() >= 2)
-			this->insert(items.Get(child.Token(1)));
-		else
-			this->insert(items.Get(token));
+		child.PrintTrace("Error: Cannot \"add\" or \"remove\" inside a \"stock\" node:");
+		return;
 	}
+	bool hasValue = child.Size() >= 2;
+	if(remove && !hasValue)
+		this->clear();
+	else if(remove && hasValue)
+		this->erase(items.Get(child.Token(1)));
+	else if(add && hasValue)
+		this->insert(items.Get(child.Token(1)));
+	else
+		this->insert(items.Get(token));
 }
 
 

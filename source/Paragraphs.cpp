@@ -23,12 +23,12 @@ using namespace std;
 
 
 
-void Paragraphs::Load(const DataNode &node)
+void Paragraphs::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	for(const DataNode &child : node)
 		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")
 		{
-			text.emplace_back(child, node.Token(node.Size() - 1) + "\n");
+			text.emplace_back(ConditionSet(child, playerConditions), node.Token(node.Size() - 1) + "\n");
 			return;
 		}
 	text.emplace_back(ConditionSet(), node.Token(node.Size() - 1) + "\n");
@@ -50,21 +50,21 @@ bool Paragraphs::IsEmpty() const
 
 
 
-bool Paragraphs::IsEmptyFor(const ConditionsStore &vars) const
+bool Paragraphs::IsEmptyFor() const
 {
 	for(const auto &varsText : text)
-		if(!varsText.second.empty() && (varsText.first.IsEmpty() || varsText.first.Test(vars)))
+		if(!varsText.second.empty() && varsText.first.Test())
 			return false;
 	return true;
 }
 
 
 
-string Paragraphs::ToString(const ConditionsStore &vars) const
+string Paragraphs::ToString() const
 {
 	string result;
 	for(const auto &varsText : text)
-		if(!varsText.second.empty() && (varsText.first.IsEmpty() || varsText.first.Test(vars)))
+		if(!varsText.second.empty() && varsText.first.Test())
 			result += varsText.second;
 	return result;
 }

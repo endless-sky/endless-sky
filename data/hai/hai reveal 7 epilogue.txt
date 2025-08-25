@@ -686,16 +686,6 @@ ship "Boxwing" "Boxwing (Miner)"
 		"X1200 Ion Steering"
 
 
-ship "Dagger" "Dagger (Miner)"
-	outfits
-		"Beam Laser" 2
-		"Small Radar Jammer"
-		"nGVF-BB Fuel Cell"
-		"Supercapacitor"
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
-
-
 fleet "Cardax Miners"
 	government "Republic"
 	names "republic fighter"
