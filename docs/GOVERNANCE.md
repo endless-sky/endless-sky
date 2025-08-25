@@ -42,7 +42,7 @@ Description: Developers (also known as collaborators on GitHub) are the primary 
 ### Reviewer
 GitHub Permissions: Triage
 
-Description: Reviewers are the helpers of the developers. They are people who have shown themselves to have a good sense of how pull requests should be changed to make them better fit with the game, be that in correcting grammar and spelling, adjusting data syntax, or speaking on the game's themes, story, and lore.
+Description: Reviewers are the helpers of the developers. They are people who have shown themselves to have a good sense of how pull requests should be changed to make them better fit with the game, be that in analyzing code logic and structure, adjusting data syntax, correcting grammar and spelling, critiquing art, or speaking on the game's themes, story, and lore.
 
 **Responsibilities/Duties:**
 - Review pull requests.
