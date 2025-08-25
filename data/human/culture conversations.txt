@@ -1303,12 +1303,16 @@ mission "A Sunracer Hovercraft Racing"
 				`	(Watch the race.)`
 					goto race
 				`	(Ask someone for an overview of hover racing.)`
+					to display
+						has "hovercraft racing: talked to fan"
 				`	(Use your ship to scan the racers.)`
 					to display
 						or
 							"flagship attribute: outfit scan power" > 0
 							"flagship attribute: tactical scan power" > 0
 					goto scanner
+			action
+				set "hovercraft racing: talked to fan"
 			`	Near the <racename>'s entrance, you spot a friendly figure ${sunracer fan tshirt}:`
 			`	"Hovercraft racing pits four ships against the clock - each trying to log as many laps as possible. The race is between three and five hours long and is split into two phases: an initial afterburn for a burst of speed, followed by laps completed in the remaining time.`
 			`	"Each racer has a roughly equal chance of victory, though Megaparsec Racing Technologies tends to win a bit more often overall. Megaparsec also excels in longer races thanks to their efficient ion engines that can go anywhere from zero to twelve laps an hour, but completely lack any initial speed burst. Deep racers shine on shorter stints by using high-powered atomics for a powerful start that can push them to complete between six and eighteen laps almost right out of the gate, but in longer races their lack of efficiency means they go only half as fast as Megaparsec, anywhere from zero to six laps an hour. The other two teams fall somewhere in-between.`
@@ -1468,3 +1472,4 @@ mission "A Sunracer Hovercraft Racing"
 				clear "last place"
 				clear "second place margin"
 				clear "last place margin"
+				clear "hovercraft racing: talked to fan"
