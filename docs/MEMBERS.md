@@ -2,7 +2,7 @@
 These are all of the members of the Endless Sky [organization](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations). Each group is listed in alphabetical order.
 For a description of each role, see [governance](GOVERNANCE.md)
 
-## Admins
+## [Admins](GOVERNANCE.md#admin)
 - [Amazinite](https://github.com/Amazinite)
 - [Hecter94](https://github.com/Hecter94)
 - [mzahniser](https://github.com/mzahniser)
@@ -18,7 +18,7 @@ For a description of each role, see [governance](GOVERNANCE.md)
 - [TomGoodIdea](https://github.com/tomgoodidea)
 - [warp-core](https://github.com/warp-core)
 
-## Developers
+## [Developers](GOVERNANCE.md#developer)
 - [MCOfficer](https://github.com/MCOfficer)
 - [Pointedstick](https://github.com/Pointedstick)
 - [Quantumshark](https://github.com/Quantumshark)
@@ -26,7 +26,7 @@ For a description of each role, see [governance](GOVERNANCE.md)
 - [tehhowch](https://github.com/tehhowch)
 - [W1zrad](https://github.com/W1zrad)
 
-## Reviewers
+## [Reviewers](GOVERNANCE.md#reviewer)
 - [beccabunny](https://github.com/beccabunny)
 - [bene-dictator](https://github.com/bene-dictator)
 - [Daeridanii1](https://github.com/Daeridanii1)
@@ -42,18 +42,18 @@ For a description of each role, see [governance](GOVERNANCE.md)
 - [TheMarksman-ES](https://github.com/TheMarksman-ES)
 - [Zitchas](https://github.com/Zitchas)
 
-## Community Organizers
+## [Community Organizers](GOVERNANCE.md#community-organizer)
 - [AvianGeneticist](https://github.com/AvianGeneticist)
 - [Hecter94](https://github.com/Hecter94) 
 - [MasterOfGrey](https://github.com/MasterOfGrey)
 
-## Moderators
+## [Moderators](GOVERNANCE.md#oathkeeper-moderator)
 - [bene_dictator](https://github.com/bene-dictator)
 - [danaris](https://github.com/danaris)
 - [NanaScone](https://github.com/NanaScone)
 - [ziproot](https://github.com/ziproot)
 
-## Members
+## [Members](GOVERNANCE.md#organization-member)
 - [Arachi-Lover](https://github.com/Arachi-Lover)
 - [arkhne](https://github.com/arkhne)
 - [Azure3141](https://github.com/Azure3141)
