@@ -376,7 +376,7 @@ namespace {
 	{
 		double minRange = std::numeric_limits<double>::infinity();
 		double maxRange = 0.;
-		for(const Hardpoint& hardpoint : ship.Weapons())
+		for(const Hardpoint &hardpoint : ship.Weapons())
 			if(hardpoint.GetOutfit() && !hardpoint.IsSpecial())
 			{
 				minRange = min(hardpoint.GetOutfit()->Range(), minRange);
@@ -2464,7 +2464,7 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	double relativeFacing = acos(clamp(wantedAcceleration.Unit().Dot(angle.Unit()), -1., 1.));
 
 	// How long it takes for a ship to match both position and velocity with a given target.
-	const auto& interceptTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
+	const auto &interceptTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
 		double distance)
 	{
 		if(!acceleration)
@@ -2527,7 +2527,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	// This is a fudge factor for how straight you must be facing: it increases
 	// from 0.8 when it will take many frames to stop, to nearly 1 when it will
 	// take less than 1 frame to stop.
-	const auto& limit = [](double stopTime)
+	const auto &limit = [](double stopTime)
 	{
 		return .8 + .2 / (1. + stopTime * stopTime * stopTime * .001);
 	};
@@ -2538,7 +2538,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	double turnRate = TO_RAD * ship.TrueTurnRate();
 
 	// How long it takes for a ship to stop, given a facing angle and final angle relative to its velocity.
-	const auto& stoppingTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
+	const auto &stoppingTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
 		double finalFacing)
 	{
 		return velocity / acceleration + (abs(facingAngle) + abs(finalFacing)) / turningRate;
@@ -3497,7 +3497,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 		v = maxVelocity;
 	}
 
-	const auto& stopDistance = [](double v, double angle, double acceleration, double turn)
+	const auto &stopDistance = [](double v, double angle, double acceleration, double turn)
 	{
 		// Sum of: v + (v - a) + (v - 2a) + ... + 0.
 		// The number of terms will be v / a.
