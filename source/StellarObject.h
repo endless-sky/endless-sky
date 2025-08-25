@@ -7,16 +7,18 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef STELLAR_OBJECT_H_
-#define STELLAR_OBJECT_H_
+#pragma once
 
 #include "Body.h"
-#include "Hazard.h"
 #include "RandomEvent.h"
 
+class Hazard;
 class Planet;
 class Ship;
 
@@ -29,18 +31,23 @@ class Ship;
 // objects in each system move slightly in their orbits.
 class StellarObject : public Body {
 public:
+	// Disable certain checks that require images to be loaded since they are
+	// never loaded when the "matches" command is in use.
+	static void UsingMatchesCommand();
+
+
+public:
 	StellarObject();
 
-	/* Functions provided by the Body base class:
+	// Functions provided by the Body base class:
 	bool HasSprite() const;
-	int Width() const;
-	int Height() const;
-	Frame GetFrame(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	*/
+	// int Width() const;
+	// int Height() const;
+	// Frame GetFrame(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
 
 	// Get the radius of this planet, i.e. how close you must be to land.
 	double Radius() const;
@@ -51,7 +58,7 @@ public:
 	const Planet *GetPlanet() const;
 
 	// Only planets that you can land on have names.
-	const std::string &Name() const;
+	const std::string &DisplayName() const;
 	// If it is impossible to land on this planet, get the message
 	// explaining why (e.g. too hot, too cold, etc.).
 	const std::string &LandingMessage() const;
@@ -89,7 +96,3 @@ private:
 	// Let System handle setting all the values of an Object.
 	friend class System;
 };
-
-
-
-#endif

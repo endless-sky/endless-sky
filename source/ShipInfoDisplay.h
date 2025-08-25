@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_INFO_DISPLAY_H_
-#define SHIP_INFO_DISPLAY_H_
+#pragma once
 
 #include "ItemInfoDisplay.h"
 
@@ -19,6 +21,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <vector>
 
 class Depreciation;
+class PlayerInfo;
 class Point;
 class Ship;
 
@@ -31,10 +34,11 @@ class Ship;
 class ShipInfoDisplay : public ItemInfoDisplay {
 public:
 	ShipInfoDisplay() = default;
-	ShipInfoDisplay(const Ship &ship, const Depreciation &depreciation, int day);
+	ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed = true);
 
 	// Call this every time the ship changes.
-	void Update(const Ship &ship, const Depreciation &depreciation, int day);
+	void Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed = true,
+		bool scrollingPanel = false);
 
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
@@ -52,8 +56,8 @@ public:
 
 
 private:
-	void UpdateAttributes(const Ship &ship, const Depreciation &depreciation, int day);
-	void UpdateOutfits(const Ship &ship, const Depreciation &depreciation, int day);
+	void UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel);
+	void UpdateOutfits(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation);
 
 
 private:
@@ -72,7 +76,3 @@ private:
 	std::vector<std::string> saleValues;
 	int saleHeight = 0;
 };
-
-
-
-#endif

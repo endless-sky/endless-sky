@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 phrase "deep mystery cube pickup"
 	word
@@ -29,10 +32,8 @@ phrase "deep mystery cube pickup"
 	word
 		` `
 	word
-		`Odd.`
-		`Odd.`
-		`Strange.`
-		`Strange.`
+		`Odd.` 2
+		`Strange.` 2
 		`You think you see a shady figure watching you, but it could be your imagination.`
 		`You overhear someone giving your description, but you can't see where it's coming from or who they're talking to.`
 		`As you leave, you make eye contact with a dangerous-looking individual. Were they watching you? Probably a coincidence.`
@@ -75,6 +76,53 @@ phrase "deep mystery cube dropoff station payment"
 	word
 		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
 
+mission "Mystery Cube Delivery Job Safe [0]"
+	job
+	repeat
+	name "Mystery delivery to <planet>"
+	description "Deliver a package to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+	destination
+		distance 7 16
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		not attributes "station"
+	cargo "mystery package" 1
+	to offer
+		random < 30
+	on accept
+		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"mystery cube" ++
+		payment 5000 1000
+		dialog phrase "deep mystery cube dropoff payment"
+
+
+mission "Mystery Cube Delivery Job Safe [1]"
+	job
+	repeat
+	name "Mystery delivery to <planet>"
+	description "Deliver a package to <destination>. Payment is <payment>."
+	source
+		attributes "deep"
+	destination
+		distance 9 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		not attributes "station"
+	cargo "mystery package" 1
+	to offer
+		random < 15
+	on accept
+		dialog phrase "deep mystery cube pickup"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"mystery cube" ++
+		payment 5000 1000
+		dialog phrase "deep mystery cube dropoff payment"
+
 mission "Mystery Cube Delivery Job [0]"
 	job
 	repeat
@@ -88,7 +136,7 @@ mission "Mystery Cube Delivery Job [0]"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 25
+		random < 45
 		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
@@ -120,7 +168,7 @@ mission "Mystery Cube Delivery Job [1]"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 10
+		random < 30
 		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
@@ -152,7 +200,7 @@ mission "Mystery Cube Delivery Job [2]"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 10
+		random < 30
 		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
@@ -184,7 +232,7 @@ mission "Mystery Cube Delivery Job [3]"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 10
+		random < 30
 		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
@@ -216,7 +264,7 @@ mission "Mystery Cube Delivery Job Station"
 		attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 7
+		random < 10
 		"combat rating" > 35
 	on accept
 		dialog phrase "deep mystery cube pickup"
@@ -238,7 +286,7 @@ mission "Mystery Cube Delivery Job Station"
 mission "Mystery Cube Retrieval Job"
 	job
 	repeat
-	name "Mystery retrieval"
+	name "Mystery retrieval from <planet stopovers>"
 	description "Retrieve a package from <stopovers>, then return to <destination>. Payment is <payment>."
 	source
 		attributes "deep"
@@ -249,7 +297,7 @@ mission "Mystery Cube Retrieval Job"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
-		random < 10
+		random < 30
 		"combat rating" > 35
 	npc
 		government "Bounty Hunter"
@@ -275,9 +323,10 @@ mission "Transport scientists"
 	source
 		attributes "deep"
 	stopover
-		attributes "research"
+		attributes "education" "research"
+		not attributes "uninhabited"
 		distance 2 50
-	passengers 5 16
+	passengers 3 4 .43
 	to offer
 		random < 15
 	on stopover
@@ -290,6 +339,28 @@ mission "Transport scientists"
 		payment 30000
 
 
+mission "Transport science department"
+	job
+	repeat
+	description "A department of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
+	source
+		attributes "deep"
+	stopover
+		attributes "education" "research"
+		not attributes "uninhabited"
+		distance 2 50
+	passengers 20 4 .1
+	to offer
+		random < "passenger space" - 30
+	on stopover
+		dialog "The scientists have been giddily sharing and discussing the results of each of their research teams during the entire trip. You're happy for a bit of peace and quiet as they make tracks for a prominent research lab to have the results analyzed. You prepare for the return journey to <planet>."
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on complete
+		dialog "You bid goodbye to the scientists and accept your payment of <payment>."
+		payment 180000 100
+
+
 mission "Escort science vessel"
 	job
 	repeat
@@ -297,7 +368,7 @@ mission "Escort science vessel"
 	source
 		attributes "research"
 	stopover
-		attributes "quarg" "pirate" "volcanic" "frontier" "dirt belt" "north" "south"
+		attributes "education" "quarg" "pirate" "volcanic" "frontier" "dirt belt" "north" "south"
 		distance 6 50
 	to offer
 		random < 15
@@ -313,7 +384,7 @@ mission "Escort science vessel"
 		government "Merchant"
 		personality escort timid
 		fleet
-			names "deep"
+			names "deep science vessel"
 			variant
 				"Scout"
 			variant
@@ -348,7 +419,7 @@ mission "Record academic conference"
 	source
 		attributes "deep"
 	destination
-		attributes "research" "quarg" "rich" "paradise"
+		attributes "education" "research" "quarg" "rich" "paradise"
 		distance 4 10
 	cargo "recording equipment" 1
 	to offer
@@ -396,7 +467,7 @@ phrase "secure package dropoff payment"
 	word
 		` `
 	word
-		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited. You wonder how they knew.`
+		`Your bank account immediately notifies you that the agreed-upon payment of <payment> has been deposited.`
 
 
 mission "Secure Transport Job (Secret) [0]"
@@ -627,7 +698,7 @@ mission "Deep Security Package Reveal"
 					decline
 			label agree
 			`	"Excellent," he says, standing up and stretching as if concluding a friendly conversation. He turns back to you with a smile, "I'll add you to the list as soon as I get back to the office then. Your ID will also let you see which packages are ours specifically too. Oh, and again, thank you!"`
-			apply
+			action
 				set "deep security reveal"
 			`	Agent Wayde appears to flick a subtle salute your direction, or perhaps merely tips an imaginary cap. "Good day, captain. I look forward to working with you in the future."`
 			`	With a quick motion he flicks his hair back out his eyes and jogs away, sending one last wave your direction just before he turns a corner and disappears.`
@@ -770,7 +841,7 @@ mission "Secure Transport Job (Deep Security) [1]"
 mission "Deep Consultants"
 	minor
 	name "Transport consultants to <planet>"
-	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings.."
+	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings."
 	source
 		attributes "deep"
 		attributes "urban"
@@ -799,13 +870,13 @@ mission "Deep Consultants"
 				`	"Who are you?"`
 			`	Julie holds out her hand in greeting. "Apologies, let's do this properly. My name is Julie Gillar. My assistant and I were held back with our duties and missed our booked transport. We're in dire need of passage to Valhalla for several important business meetings, but unfortunately everything is booked up for the next five days straight, and that's just not acceptable to my employer."`
 			choice
-				`	"Sure, I'd be glad to help.`
+				`	"Sure, I'd be glad to help."`
 					goto sure
 				`	"Who's your employer?"`
 			`	Julie furtively glances at the people nearby. "Well, I have a few employers actually, but at the moment, indirectly, Deep Security."`
 			`	She leans in slightly closer and lowers her voice. "We have access to their list of trustworthy pilots for emergencies. You'll be paid quite well."`
 			choice
-				`	"Sure, I'd be glad to help.`
+				`	"Sure, I'd be glad to help."`
 					goto sure
 				`	"I'm sorry, but I really can't help you right now."`
 					decline
@@ -1021,3 +1092,143 @@ mission "Urgent Deep Sec Consultants [1]"
 		"reputation: Deep Security" += 1
 		"secure deep package" ++
 		dialog phrase "stranded consultant dropoff payment"
+
+
+mission "Lionheart Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, known for its advanced and experimental designs. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+		has "landing access: Valhalla"
+	source
+		near "Epsilon Leonis" 2 10
+		attributes factory
+	destination Valhalla
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Lionheart Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, known for its advanced and experimental designs. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+		has "landing access: Valhalla"
+	source
+		near "Epsilon Leonis" 2 10
+		attributes factory research
+	destination Valhalla
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Lionheart Shipment [2]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Lionheart Industries, known for its advanced and experimental designs. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+		has "landing access: Valhalla"
+	source
+		near "Epsilon Leonis" 2 10
+		attributes factory mining
+	destination Valhalla
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Deep Sky Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Deep Sky, manufacturer of cutting-edge cybernetics, weapons, and starship equipment. Payment is <payment>."
+	cargo Metal 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+		has "landing access: Asgard"
+	source
+		near Naos 2 15
+		attributes factory
+	destination Asgard
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Deep Sky Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Deep Sky, manufacturer of cutting-edge cybernetics, weapons, and starship equipment. Payment is <payment>."
+	cargo Electronics 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+		has "landing access: Asgard"
+	source
+		near Naos 2 15
+		attributes factory research
+	destination Asgard
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Deep Hovercraft Racer Transport"
+	name "Transport racer to <planet>"
+	description "Deliver a pilot and their hovercraft to <destination> to attend a race by <date>."
+	passengers 1
+	cargo "Deep hovercraft" 1
+	job
+	repeat
+	deadline
+	deadline 8
+	to offer
+		random < 6
+		has "landing access: Sunracer"
+	source
+		attributes "deep"
+	destination Sunracer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 11000
+		dialog `You drop off the pilot with their hovercraft and collect your payment of <payment>.`
+
+mission "Deep Hovercraft Large Racer Transport"
+	name "Transport team to <planet>"
+	description "Deliver this <passengers>-member racing team and their set of <cargo> to <destination> to attend a race by <date>."
+	passengers 50 100 .9
+	cargo "Deep hovercraft" 50
+	job
+	repeat
+	deadline
+	deadline 8
+	to offer
+		random < 1
+		has "landing access: Sunracer"
+	source
+		attributes "deep"
+	destination Sunracer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 23000
+		dialog `You drop off the racing team with their hovercraft and collect your payment of <payment>.`

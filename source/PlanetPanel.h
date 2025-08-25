@@ -7,24 +7,32 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_PANEL_H_
-#define PLANET_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
-#include "text/WrappedText.h"
+#include "Sale.h"
 
 #include <functional>
+#include <map>
 #include <memory>
+#include <string>
+#include <vector>
 
 class Interface;
+class Outfit;
 class Planet;
 class PlayerInfo;
+class Ship;
 class SpaceportPanel;
 class System;
+class TextArea;
 
 
 
@@ -34,6 +42,7 @@ class System;
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
+	virtual ~PlanetPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -50,7 +59,9 @@ protected:
 
 private:
 	void TakeOffIfReady();
-	void TakeOff();
+	void CheckWarningsAndTakeOff();
+	void WarningsDialogCallback(bool isOk);
+	void TakeOff(bool distributeCargo);
 
 
 private:
@@ -60,7 +71,14 @@ private:
 
 	const Planet &planet;
 	const System &system;
-	const Interface &ui;
+
+	// Whether this planet has a shipyard or outfitter
+	// and the items that are for sale in each shop.
+	bool initializedShops = false;
+	bool hasShipyard = false;
+	bool hasOutfitter = false;
+	Sale<Ship> shipyardStock;
+	Sale<Outfit> outfitterStock;
 
 	std::shared_ptr<Panel> trading;
 	std::shared_ptr<Panel> bank;
@@ -68,9 +86,11 @@ private:
 	std::shared_ptr<Panel> hiring;
 	Panel *selectedPanel = nullptr;
 
-	WrappedText text;
+	std::shared_ptr<TextArea> description;
+
+	// Out of system (absent) ships that cannot fly for some reason.
+	std::vector<std::shared_ptr<Ship>> absentCannotFly;
+
+	// Cache flight checks to not calculate them twice before each takeoff.
+	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> flightChecks;
 };
-
-
-
-#endif

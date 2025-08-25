@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "CargoHold.h"
@@ -16,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataWriter.h"
 #include "Depreciation.h"
 #include "GameData.h"
+#include "Government.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "System.h"
@@ -67,7 +71,8 @@ void CargoHold::Load(const DataNode &node)
 	// Cargo is stored as name / amount pairs in two lists: commodities and outfits.
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "commodities")
+		const string &key = child.Token(0);
+		if(key == "commodities")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
@@ -76,7 +81,7 @@ void CargoHold::Load(const DataNode &node)
 					commodities[grand.Token(0)] += tons;
 				}
 		}
-		else if(child.Token(0) == "outfits")
+		else if(key == "outfits")
 		{
 			for(const DataNode &grand : child)
 			{
@@ -135,7 +140,7 @@ void CargoHold::Save(DataWriter &out) const
 			}
 			firstOutfit = false;
 
-			out.Write(it.first->Name(), it.second);
+			out.Write(it.first->TrueName(), it.second);
 		}
 	// Back out any indentation blocks that are set, depending on what sorts of
 	// cargo were written to the file.
@@ -174,11 +179,25 @@ int CargoHold::Free() const
 
 
 
+double CargoHold::FreePrecise() const
+{
+	return size - UsedPrecise();
+}
+
+
+
 // Get the total amount of cargo space used, rounded up to the nearest ton.
 // (Some outfits may have non-integral masses.)
 int CargoHold::Used() const
 {
 	return CommoditiesSize() + OutfitsSize() + MissionCargoSize();
+}
+
+
+
+double CargoHold::UsedPrecise() const
+{
+	return CommoditiesSize() + OutfitsSizePrecise() + MissionCargoSize();
 }
 
 
@@ -197,10 +216,17 @@ int CargoHold::CommoditiesSize() const
 // Get the total mass of outfit cargo, rounded up to the nearest ton.
 int CargoHold::OutfitsSize() const
 {
+	return ceil(OutfitsSizePrecise());
+}
+
+
+
+double CargoHold::OutfitsSizePrecise() const
+{
 	double size = 0.;
 	for(const auto &it : outfits)
 		size += it.second * it.first->Mass();
-	return ceil(size);
+	return size;
 }
 
 
@@ -353,7 +379,7 @@ int CargoHold::Transfer(const string &commodity, int amount, CargoHold &to)
 
 	// Remove up to the specified tons of cargo from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
-	// remainder back to this cargo hold, even if there is not space for it.
+	// remainder back to this cargo hold, even if there is no space for it.
 	// Do not invalidate existing iterators by modifying the container.
 	int removed = Remove(commodity, amount);
 	int added = to.Add(commodity, removed);
@@ -372,7 +398,7 @@ int CargoHold::Transfer(const Outfit *outfit, int amount, CargoHold &to)
 
 	// Remove up to the specified number of items from this cargo hold, adding
 	// them to the given cargo hold if possible. If not possible, add the
-	// remainder back to this cargo hold, even if there is not space for it.
+	// remainder back to this cargo hold, even if there is no space for it.
 	// Do not invalidate existing iterators by modifying the container.
 	int removed = Remove(outfit, amount);
 	int added = to.Add(outfit, removed);
@@ -484,7 +510,7 @@ int CargoHold::Add(const Outfit *outfit, int amount)
 	// If the outfit has mass and this cargo hold has a size limit, apply it.
 	double mass = outfit->Mass();
 	if(size >= 0 && mass > 0.)
-		amount = max(0, min(amount, static_cast<int>(Free() / mass)));
+		amount = max(0, min(amount, static_cast<int>(FreePrecise() / mass)));
 	outfits[outfit] += amount;
 	return amount;
 }
@@ -559,7 +585,7 @@ int64_t CargoHold::Value(const System *system) const
 // be charged for any illegal outfits plus the sum of the fines for all
 // missions. If the returned value is negative, you are carrying something so
 // bad that it warrants a death sentence.
-int CargoHold::IllegalCargoFine() const
+int CargoHold::IllegalCargoFine(const Government *government) const
 {
 	int totalFine = 0;
 	// Carrying an illegal outfit is only half as bad as having it equipped.
@@ -572,8 +598,8 @@ int CargoHold::IllegalCargoFine() const
 		if(!it.second)
 			continue;
 
-		int fine = it.first->Get("illegal");
-		if(it.first->Get("atrocity") > 0.)
+		int fine = government->Fines(it.first);
+		if(government->Condemns(it.first))
 			return -1;
 		if(fine < 0)
 			return fine;
@@ -585,16 +611,7 @@ int CargoHold::IllegalCargoFine() const
 	// and avoid the bulk of the penalties when fined.
 	for(const auto &it : missionCargo)
 	{
-		int fine = it.first->IllegalCargoFine();
-		if(fine < 0)
-			return fine;
-		if(!it.first->IsFailed())
-			totalFine += fine;
-	}
-
-	for(const auto &it : passengers)
-	{
-		int fine = it.first->IllegalCargoFine();
+		int fine = it.first->Fine();
 		if(fine < 0)
 			return fine;
 		if(!it.first->IsFailed())
@@ -602,4 +619,41 @@ int CargoHold::IllegalCargoFine() const
 	}
 
 	return totalFine;
+}
+
+
+
+int CargoHold::IllegalPassengersFine(const Government *government) const
+{
+	int totalFine = 0;
+	for(const auto &it : passengers)
+	{
+		int fine = it.first->Fine();
+		if(fine < 0)
+			return fine;
+		if(!it.first->IsFailed())
+			totalFine += fine;
+	}
+
+	return totalFine;
+}
+
+
+
+// Returns the amount tons of illegal cargo.
+int CargoHold::IllegalCargoAmount() const
+{
+	int count = 0;
+
+	// Find any illegal outfits inside the cargo hold.
+	for(const auto &it : outfits)
+		if(it.first->Get("illegal") || it.first->Get("atrocity") > 0.)
+			count += it.second * max(0., it.first->Mass() + it.first->Get("scan brightness"));
+
+	// Find any illegal mission cargo.
+	for(const auto &it : missionCargo)
+		if(it.first->Fine())
+			count += it.second;
+
+	return count;
 }

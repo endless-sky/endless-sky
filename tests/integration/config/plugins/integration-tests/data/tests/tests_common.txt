@@ -1,4 +1,17 @@
-test-data "Three Earthly Barges"
+# Copyright (c) 2020 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Three Earthly Barges Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -22,15 +35,15 @@ test-data "Three Earthly Barges"
 				bunks 3
 				"cargo space" 50
 				drag 2.1
-				"engine capacity" 40
+				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8
 				hull 1000
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 600
 				"turret mounts" 1
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
@@ -61,15 +74,15 @@ test-data "Three Earthly Barges"
 				bunks 3
 				"cargo space" 50
 				drag 2.1
-				"engine capacity" 40
+				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8
 				hull 1000
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 600
 				"turret mounts" 1
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
@@ -100,15 +113,15 @@ test-data "Three Earthly Barges"
 				bunks 3
 				"cargo space" 50
 				drag 2.1
-				"engine capacity" 40
+				"engine capacity" 400
 				"fuel capacity" 300
 				"heat dissipation" 0.8
 				hull 1000
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 600
 				"turret mounts" 1
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
@@ -143,7 +156,7 @@ test-data "Three Earthly Barges"
 		visited "Menkent"
 
 
-test-data "Fighters and Carriers and Escorts"
+test-data "Fighters and Carriers and Escorts Save"
 	category "savegame"
 	contents
 		pilot Bobby Bughunter
@@ -168,14 +181,14 @@ test-data "Fighters and Carriers and Escorts"
 				mass 40
 				bunks 1
 				drag 0.83
-				"engine capacity" 40
+				"engine capacity" 400
 				"gun ports" 2
 				"heat dissipation" 0.85
 				hull 200
-				"outfit space" 110
+				"outfit space" 1100
 				"required crew" 1
 				shields 1100
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"Emergency Ramscoop"
 				Flamethrower
@@ -219,14 +232,14 @@ test-data "Fighters and Carriers and Escorts"
 				mass 40
 				bunks 1
 				drag 0.83
-				"engine capacity" 40
+				"engine capacity" 400
 				"gun ports" 2
 				"heat dissipation" 0.85
 				hull 200
-				"outfit space" 110
+				"outfit space" 1100
 				"required crew" 1
 				shields 1100
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"Emergency Ramscoop"
 				"Fuel Pod"
@@ -273,16 +286,16 @@ test-data "Fighters and Carriers and Escorts"
 				bunks 245
 				"cargo space" 530
 				drag 16.1
-				"engine capacity" 180
+				"engine capacity" 1800
 				"fuel capacity" 700
 				"gun ports" 4
 				"heat dissipation" 0.4
 				hull 8600
-				"outfit space" 740
+				"outfit space" 7400
 				"required crew" 70
 				shields 17500
 				"turret mounts" 6
-				"weapon capacity" 300
+				"weapon capacity" 3000
 			outfits
 				"Antimatter Core"
 				"Hai Tracker" 112
@@ -364,9 +377,9 @@ test-data "Fighters and Carriers and Escorts"
 				"heat dissipation" .7
 				"fuel capacity" 500
 				"cargo space" 50
-				"outfit space" 390
-				"weapon capacity" 150
-				"engine capacity" 95
+				"outfit space" 3900
+				"weapon capacity" 1500
+				"engine capacity" 950
 				weapon
 					"blast radius" 80
 					"shield damage" 800
@@ -424,15 +437,15 @@ test-data "Fighters and Carriers and Escorts"
 				bunks 2
 				"cargo space" 15
 				drag 0.9
-				"engine capacity" 40
+				"engine capacity" 400
 				"fuel capacity" 300
 				"gun ports" 2
 				"heat dissipation" 0.8
 				hull 300
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 1200
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"Beam Laser" 2
 				"Chipmunk Plasma Steering"
@@ -474,15 +487,15 @@ test-data "Fighters and Carriers and Escorts"
 				bunks 2
 				"cargo space" 15
 				drag 0.9
-				"engine capacity" 40
-				"fuel capacity" 300
+				"engine capacity" 400
+				"fuel capacity" 3000
 				"gun ports" 2
 				"heat dissipation" 0.8
 				hull 300
-				"outfit space" 130
+				"outfit space" 1300
 				"required crew" 1
 				shields 1200
-				"weapon capacity" 20
+				"weapon capacity" 200
 			outfits
 				"Beam Laser" 2
 				"Chipmunk Plasma Steering"
@@ -539,6 +552,84 @@ test "Load First Savegame"
 			key l
 
 
+test "Create New Pilot"
+	status partial
+	description "Helper function to create a new pilot."
+	sequence
+		input
+			key l
+		# new pilot
+		input
+			key n
+		# start
+		input
+			key s
+		# first name: a
+		input
+			key a
+		input
+			key "return"
+		# last name: b
+		input
+			key b
+		input
+			key "return"
+		# skip text
+		input
+			key "return"
+		# go to the main landing panel
+		input
+			key l
+
+
+test "Buy First Ship"
+	status partial
+	description "Helper function to buy the first ship of the shipyard, starting from the planet panel."
+	sequence
+		input
+			key s
+		# buy first ship
+		input
+			key "down"
+		input
+			key b
+		# confirm
+		input
+			key "return"
+		# back to landing
+		input
+			key l
+
+
+test "Start Game"
+	status broken
+	description "Test if one can start the game correctly: choose a name and buy a ship."
+	sequence
+		call "Create New Pilot"
+		call "Buy First Ship"
+		# beat it, old timer
+		input
+			key 3
+		input
+			key "return"
+		# to be sure
+		input
+			key l
+		# normally the mission being launched means the conditions are refreshed (or they always are?) and we don't need to launch
+		# but to be sure:
+		# save these in temporary conditions to know what they are if it fails, for easier debugging
+		apply
+			"test: Intro [0]: offered" = "Intro [0]: offered"
+			"test: Intro [0]: declined" = "Intro [0]: declined"
+			"test: ship model: Shuttle" = "ship model: Shuttle"
+			"test: ship model: Sparrow" = "ship model: Sparrow"
+			"test: ship model: Star Barge" = "ship model: Star Barge"
+		assert
+			"name: a b" == 1
+			"total ships" == 1
+			# Not checking for the intro mission conditions because the test shouldn't fail if the mission isn't offered or its name changes.
+
+
 test "Save To Default Snapshot"
 	status active
 	description "Helper function to save the game to the first snapshot. Typically used directly after opening the menu."
@@ -556,7 +647,7 @@ test "Save To Default Snapshot"
 			key a
 		# Confirm usage of the default snapshot name.
 		input
-			key "enter"
+			key "Return"
 		# Exit the menu that we are in (and return to the game)
 		input
 			key b
@@ -570,19 +661,26 @@ test "Depart"
 	sequence
 		input
 			key d
-		# The game needs 2 gamesteps for processing the launch before commands like the jump command can be given.
-		# Using empty inputs to trigger those game loops.
+
+
+test "Depart and Ignore Warning Message"
+	status partial
+	description "Helper function to depart from a planet when a message requiring acknowledgement via keyboard input is expected."
+	sequence
+		call "Depart"
+		# Acknowledge the expected message
 		input
+			key "Return"
+
+
+test "Depart and Abort on Warning Message"
+	status partial
+	description "Helper function to attempt departure from a planet, then stop when an expected warning message is given."
+	sequence
+		call "Depart"
+		# Acknowledge the expected message and abort take off.
 		input
-		# The ships zoom gets restored at a rate of .02 per step, so wait for a bit more than 50 steps to get to full zoom/full control.
-		apply
-			"test: Depart: zoom_restore_counter" = 55
-		label zoom_restore_loop
-		apply
-			"test: Depart: zoom_restore_counter" -= 1
-		input
-		branch zoom_restore_loop
-			"test: Depart: zoom_restore_counter" > 0
+			key "Escape"
 
 
 test "Sell first ship"
@@ -601,3 +699,50 @@ test "Sell first ship"
 		input
 			key "l"
 
+
+
+test "Land"
+	status partial
+	description "Helper for landing."
+	sequence
+		input
+			command land
+		label "landing"
+		branch "landing"
+			"flagship landed" == 0
+
+
+
+test "Trigger Ruin Spaceport Mission"
+	status partial
+	description "Launch, land, and go to the spaceport to trigger any potential missions."
+	sequence
+		call "Depart"
+		navigate
+			"travel destination" Ruin
+		call "Land"
+		input
+			key p
+
+
+test "Trigger Prime Spaceport Mission"
+	status partial
+	description "Launch, land, and go to the spaceport to trigger any potential missions."
+	sequence
+		call "Depart"
+		navigate
+			"travel destination" Prime
+		call "Land"
+		input
+			key p
+
+
+test "Skip Mission"
+	status partial
+	description "Just skip a mission by pressing return twice."
+	sequence
+		# press accept (or decline, depending on if it is shown) and then skip the dialog once
+		input
+			key "Return"
+		input
+			key "Return"

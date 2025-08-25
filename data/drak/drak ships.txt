@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 ship "Archon"
 	noun "entity"
@@ -15,21 +18,21 @@ ship "Archon"
 	thumbnail "thumbnail/archon"
 	"never disabled"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		"cost" 1000000000
 		"shields" 4000000
 		"hull" 1000000
 		"required crew" 1
 		"bunks" 1
-		"mass" 1000
-		"drag" 27
-		"heat dissipation" 40
+		"mass" 2150
+		"drag" 40.5
+		"heat dissipation" 27
 		"fuel capacity" 800
 		"cargo space" 0
 		"outfit space" 1300
 		"weapon capacity" 1125
 		"engine capacity" 200
-		"energy capacity" 20000
+		"energy capacity" 100000
 		"energy generation" 1000
 		"heat generation" 17
 		"shield generation" 100
@@ -37,12 +40,14 @@ ship "Archon"
 		"hull repair rate" 100
 		"hull energy" 100
 		"ion protection" 3
+		"scramble protection" 3
 		"ion resistance" 1
+		"scramble resistance" 1
 		"ramscoop" 100
-		"thrust" 80
+		"thrust" 120
 		"thrusting energy" 20
 		"thrusting heat" 10
-		"turn" 1600
+		"turn" 2400
 		"turning energy" 10
 		"turning heat" 5
 		weapon
@@ -108,7 +113,35 @@ ship "Archon" "Archon (Cloaked)"
 	"never disabled"
 	add attributes
 		"cloak" .04
+		"cloaked communication" 1
+		"cloak phasing" 1
+		"cloaked scanning" 1
 	"final explode" "archon c teleport"
+
+ship "Archon" "Archon (Hyperdrive Cloaked)"
+	sprite "ship/archon b"
+		"frame rate" 0.87
+	"never disabled"
+	add attributes
+		"cloak" .04
+		"cloaked communication" 1
+		"cloak phasing" 1
+		"cloaked scanning" 1
+		"jump speed" 1
+		"hyperdrive" 1
+		"silent jumps" 1
+	"final explode" "archon b teleport"
+	outfits
+		"Drak Antimatter Cannon"
+		"Drak Antimatter Cannon (Augmented)"
+		"Drak Anti-Missile Field" 2
+		"Drak Anti-Missile Field (Augmented)" 2
+		"Drak Draining Field"
+		"Drak Draining Field (Augmented)"
+		"Drak Distancer" 2
+		"Drak Turret" 3
+		"Drak Turret (Augmented)" 3
+
 
 effect "archon a teleport"
 	sprite "effect/archon teleport/archonateleport"

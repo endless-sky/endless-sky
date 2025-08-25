@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CARGO_HOLD_H_
-#define CARGO_HOLD_H_
+#pragma once
 
 #include <cstdint>
 #include <map>
@@ -19,8 +21,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 class DataNode;
 class DataWriter;
+class Government;
 class Mission;
 class Outfit;
+class PlayerInfo;
 class System;
 
 
@@ -45,9 +49,12 @@ public:
 	void SetSize(int tons);
 	int Size() const;
 	int Free() const;
+	double FreePrecise() const;
 	int Used() const;
+	double UsedPrecise() const;
 	int CommoditiesSize() const;
 	int OutfitsSize() const;
+	double OutfitsSizePrecise() const;
 	bool HasOutfits() const;
 	int MissionCargoSize() const;
 	bool HasMissionCargo() const;
@@ -100,9 +107,13 @@ public:
 
 	// If anything you are carrying is illegal, return the maximum fine you can
 	// be charged for any illegal outfits plus the sum of the fines for all
-	// missions. If the returned value is negative, you are carrying something so
-	// bad that it warrants a death sentence.
-	int IllegalCargoFine() const;
+	// missions. If the returned value is negative, you are carrying something
+	// or someone that warrants a death sentence for you.
+	int IllegalCargoFine(const Government *government) const;
+	int IllegalPassengersFine(const Government *government) const;
+
+	// Returns the amount tons of illegal cargo.
+	int IllegalCargoAmount() const;
 
 
 private:
@@ -116,7 +127,3 @@ private:
 	std::map<const Mission *, int> missionCargo;
 	std::map<const Mission *, int> passengers;
 };
-
-
-
-#endif

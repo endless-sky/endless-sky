@@ -7,17 +7,20 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "ItemInfoDisplay.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Color.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
-#include "text/layout.hpp"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "text/Table.h"
@@ -137,29 +140,26 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 	{
 		static const string NOUN[2] = {"outfit", "ship"};
 		string fullText = text + "\tTo purchase this " + NOUN[isShip] + " you must have ";
-		for(unsigned i = 0; i < licenses.size(); ++i)
-		{
-			bool isVoweled = false;
-			for(const char &c : "aeiou")
-				if(*licenses[i].begin() == c || *licenses[i].begin() == toupper(c))
-					isVoweled = true;
-			if(i)
+		fullText += Format::List<vector, string>(licenses,
+			[](const string &name)
 			{
-				if(licenses.size() > 2)
-					fullText += ", ";
-				else
-					fullText += " ";
-			}
-			if(i && i == licenses.size() - 1)
-				fullText += "and ";
-			fullText += (isVoweled ? "an " : "a ") + licenses[i] + " License";
-		}
+				bool isVoweled = false;
+				for(const char &c : "aeiou")
+					if(name.starts_with(c) || name.starts_with(toupper(c)))
+					{
+						isVoweled = true;
+						break;
+					}
+				return (isVoweled ? "an " : "a ") + name + " License";
+			});
 		fullText += ".\n";
 		description.Wrap(fullText);
 	}
 
-	// Pad by 10 pixels on the top and bottom.
-	descriptionHeight = description.Height() + 20;
+	// If there is a description, pad by 10 pixels on the top and bottom.
+	descriptionHeight = description.Height();
+	if(descriptionHeight)
+		descriptionHeight += 20;
 }
 
 

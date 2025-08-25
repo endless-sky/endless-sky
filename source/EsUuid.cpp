@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "EsUuid.h"
@@ -28,10 +31,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <uuid/uuid.h>
 #endif
 
+
+
 namespace es_uuid {
 namespace detail {
-constexpr std::size_t UUID_BUFFER_LENGTH = 37;
-
 #if defined(_WIN32)
 // Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
 EsUuid::UuidType MakeUuid()
@@ -88,6 +91,8 @@ signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b)
 	return result;
 }
 #else
+constexpr std::size_t UUID_BUFFER_LENGTH = 37;
+
 // Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
 EsUuid::UuidType MakeUuid()
 {
@@ -181,7 +186,7 @@ EsUuid::EsUuid(const std::string &input)
 	try {
 		value = ParseUuid(input);
 	}
-	catch (const std::invalid_argument &err)
+	catch(const std::invalid_argument &err)
 	{
 		Logger::LogError(err.what());
 	}

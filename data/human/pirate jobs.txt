@@ -6,12 +6,24 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+color "illegal job: selected" .875 .5 .5 0.
+color "illegal job: unselected" .75 .25 .25 0.
+color "illegal job: unavailable" .625 .125 .125 0.
+
 
 mission "Cargo Smuggling [0]"
 	name "Smuggling to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 40000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -23,7 +35,7 @@ mission "Cargo Smuggling [0]"
 	source
 		government "Pirate"
 	destination
-		distance 3 6
+		distance 4 6
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -33,13 +45,18 @@ mission "Cargo Smuggling [0]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 4000 300
 		dialog phrase "generic completed pirate cargo mission"
 
 mission "Cargo Smuggling [1]"
 	name "Smuggling to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 50000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -52,7 +69,7 @@ mission "Cargo Smuggling [1]"
 	source
 		government "Pirate"
 	destination
-		distance 3 8
+		distance 4 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -62,13 +79,18 @@ mission "Cargo Smuggling [1]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 4000 300
 		dialog phrase "generic completed pirate cargo mission"
 
 mission "Cargo Smuggling [2]"
 	name "Smuggling to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 64000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -91,13 +113,18 @@ mission "Cargo Smuggling [2]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 5000 300
 		dialog phrase "generic completed pirate cargo mission"
 
 mission "Cargo Smuggling [3]"
 	name "Smuggling to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 80000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -120,6 +147,7 @@ mission "Cargo Smuggling [3]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 6000 300
 		dialog phrase "generic completed pirate cargo mission"
 
@@ -127,8 +155,12 @@ mission "Cargo Smuggling [3]"
 
 mission "Drug Running [0]"
 	name "Drug run to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 75000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -140,7 +172,7 @@ mission "Drug Running [0]"
 	source
 		government "Pirate"
 	destination
-		distance 3 10
+		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -150,13 +182,18 @@ mission "Drug Running [0]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 5000 375
 		dialog phrase "generic completed pirate cargo mission"
 
 mission "Drug Running [1]"
 	name "Drug run to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 46,000 credits. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 92000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -179,13 +216,18 @@ mission "Drug Running [1]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 5000 375
 		dialog phrase "generic completed pirate cargo mission"
 
 mission "Drug Running [2]"
 	name "Drug run to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 110000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -208,13 +250,18 @@ mission "Drug Running [2]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 7000 375
 		dialog phrase "generic completed pirate cargo mission"
 
 mission "Drug Running [3]"
 	name "Drug run to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 130000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -237,6 +284,7 @@ mission "Drug Running [3]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 9000 375
 		dialog phrase "generic completed pirate cargo mission"
 
@@ -244,8 +292,12 @@ mission "Drug Running [3]"
 
 mission "Bulk Cargo Smuggling [0]"
 	name "Bulk smuggling to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
 	illegal 47000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -258,7 +310,7 @@ mission "Bulk Cargo Smuggling [0]"
 	source
 		government "Pirate"
 	destination
-		distance 3 8
+		distance 4 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -268,13 +320,18 @@ mission "Bulk Cargo Smuggling [0]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 7000 300
 		dialog phrase "generic completed pirate cargo mission"
 
 mission "Bulk Cargo Smuggling [1]"
 	name "Bulk smuggling to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
 	illegal 130000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -287,7 +344,7 @@ mission "Bulk Cargo Smuggling [1]"
 	source
 		government "Pirate"
 	destination
-		distance 3 12
+		distance 4 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -297,13 +354,18 @@ mission "Bulk Cargo Smuggling [1]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 10000 300
 		dialog phrase "generic completed pirate cargo mission"
 
 mission "Bulk Cargo Smuggling [2]"
 	name "Bulk smuggling to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
 	illegal 172000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -326,6 +388,7 @@ mission "Bulk Cargo Smuggling [2]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 15000 300
 		dialog phrase "generic completed pirate cargo mission"
 
@@ -333,8 +396,12 @@ mission "Bulk Cargo Smuggling [2]"
 
 mission "Bulk Drug Running [0]"
 	name "Bulk drug run to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
 	illegal 172000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -357,13 +424,18 @@ mission "Bulk Drug Running [0]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 10000 375
 		dialog phrase "generic completed pirate cargo mission"
 
 mission "Bulk Drug Running [1]"
 	name "Bulk drug run to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
 	illegal 200000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -386,13 +458,18 @@ mission "Bulk Drug Running [1]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 15000 375
 		dialog phrase "generic completed pirate cargo mission"
 
 mission "Bulk Drug Running [2]"
 	name "Bulk drug run to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
 	illegal 240000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -415,6 +492,7 @@ mission "Bulk Drug Running [2]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 20000 375
 		dialog phrase "generic completed pirate cargo mission"
 
@@ -422,6 +500,9 @@ mission "Bulk Drug Running [2]"
 
 mission "Stealth Cargo Smuggling (North) [0]"
 	name "Highly illegal cargo to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -474,12 +555,16 @@ mission "Stealth Cargo Smuggling (North) [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 50000 300
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Cargo Smuggling (North) [1]"
 	name "Highly illegal cargo to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -555,12 +640,16 @@ mission "Stealth Cargo Smuggling (North) [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 75000 450
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Cargo Smuggling (Core) [0]"
 	name "Highly illegal cargo to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -612,12 +701,16 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 50000 450
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Cargo Smuggling (Core) [1]"
 	name "Highly illegal cargo to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -695,12 +788,16 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 75000 450
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Cargo Smuggling (South) [0]"
 	name "Highly illegal cargo to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -716,7 +813,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		government "Pirate"
 		attributes "south pirate"
 	destination
-		distance 3 12
+		distance 4 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Militia
@@ -724,7 +821,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -732,7 +829,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -740,7 +837,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	on abort
@@ -753,12 +850,16 @@ mission "Stealth Cargo Smuggling (South) [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 50000 450
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Cargo Smuggling (South) [1]"
 	name "Highly illegal cargo to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -782,7 +883,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		system
 			distance 3 5
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -791,7 +892,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		system
 			distance 2 4
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -800,7 +901,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -808,7 +909,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -816,7 +917,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		personality heroic waiting entering
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -824,7 +925,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
@@ -837,6 +938,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 75000 450
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
@@ -845,6 +947,9 @@ mission "Stealth Cargo Smuggling (South) [1]"
 
 mission "Stealth Drug Running (North) [0]"
 	name "Highly illegal drugs to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -897,12 +1002,16 @@ mission "Stealth Drug Running (North) [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 75000 550
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Drug Running (North) [1]"
 	name "Highly illegal drugs to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -978,12 +1087,16 @@ mission "Stealth Drug Running (North) [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 100000 550
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Drug Running (Core) [0]"
 	name "Highly illegal drugs to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -1035,12 +1148,16 @@ mission "Stealth Drug Running (Core) [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 75000 550
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Drug Running (Core) [1]"
 	name "Highly illegal drugs to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -1118,12 +1235,16 @@ mission "Stealth Drug Running (Core) [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 100000 550
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Drug Running (South) [0]"
 	name "Highly illegal drugs to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -1139,7 +1260,7 @@ mission "Stealth Drug Running (South) [0]"
 		government "Pirate"
 		attributes "south pirate"
 	destination
-		distance 3 12
+		distance 4 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Militia
@@ -1147,7 +1268,7 @@ mission "Stealth Drug Running (South) [0]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1155,7 +1276,7 @@ mission "Stealth Drug Running (South) [0]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1163,7 +1284,7 @@ mission "Stealth Drug Running (South) [0]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	on abort
@@ -1176,12 +1297,16 @@ mission "Stealth Drug Running (South) [0]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 75000 550
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
 
 mission "Stealth Drug Running (South) [1]"
 	name "Highly illegal drugs to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
@@ -1205,7 +1330,7 @@ mission "Stealth Drug Running (South) [1]"
 		system
 			distance 3 5
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1214,7 +1339,7 @@ mission "Stealth Drug Running (South) [1]"
 		system
 			distance 2 4
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1223,7 +1348,7 @@ mission "Stealth Drug Running (South) [1]"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1231,7 +1356,7 @@ mission "Stealth Drug Running (South) [1]"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1239,7 +1364,7 @@ mission "Stealth Drug Running (South) [1]"
 		personality heroic waiting entering
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1247,7 +1372,7 @@ mission "Stealth Drug Running (South) [1]"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
@@ -1260,6 +1385,7 @@ mission "Stealth Drug Running (South) [1]"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
+		"pirate jobs" ++
 		payment 100000 550
 		"reputation: Pirate" += 5
 		dialog phrase "generic completed highly illegal pirate cargo mission"
@@ -1268,12 +1394,16 @@ mission "Stealth Drug Running (South) [1]"
 
 mission "Wanted Passenger [0]"
 	name "Wanted individual to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "This wanted individual wishes to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 1
 	cargo "battle trophies" 1
-	illegal 50000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, they find the criminal in the corner of one of the rooms of your ship, clutching their battle trophies and screaming "you'll never take them from me!" After a short confrontation, they carry the criminal out and leave you with a small fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 50000 `Upon scanning your vessel, law enforcement notice the criminal that you have on board. Entering your ship to detain them, they find the criminal in the corner of one of the rooms of your ship, clutching their battle trophies and screaming "you'll never take them from me!" After a short confrontation, they carry the criminal out and leave you with a small fine. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		or
@@ -1292,17 +1422,22 @@ mission "Wanted Passenger [0]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 30000 300
 		dialog "Your <passengers> insists that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 
 mission "Wanted Passengers [1]"
 	name "Wanted individuals to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "credit chips" 1
-	illegal 75000 `Upon scanning your vessel, law enforcement notices the criminals that you have on board. Entering your ship to detain them, they find the criminals busy scooping their credits into the airlock, hoping that no one can have them. The officers quickly detain the criminals and carry them off along with the rest of the credits, leaving you with a moderately sized fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 75000 `Upon scanning your vessel, law enforcement notices the criminals that you have on board. Entering your ship to detain them, they find the criminals busy scooping their credits into the airlock, hoping that no one can have them. The officers quickly detain the criminals and carry them off along with the rest of the credits, leaving you with a moderately sized fine. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 75
@@ -1321,17 +1456,22 @@ mission "Wanted Passengers [1]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 20000 300
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 	
 mission "Wanted Passengers [2]"
 	name "Wanted individuals to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "customized weapons" 1
-	illegal 75000 `Upon scanning your vessel, law enforcement notices the criminals that you have on board. Entering your ship to detain them, the criminals begin firing down the hallways with their customized weapons. Immediately met with tear gas, the criminals did not put up too much of a fight. The officers carry the criminals out and leave you with a moderate fine and a few laser marks in the halls of your ship. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 75000 `Upon scanning your vessel, law enforcement notices the criminals that you have on board. Entering your ship to detain them, the criminals begin firing down the hallways with their customized weapons. Immediately met with tear gas, the criminals did not put up too much of a fight. The officers carry the criminals out and leave you with a moderate fine and a few laser marks in the halls of your ship. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 50
@@ -1350,17 +1490,22 @@ mission "Wanted Passengers [2]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 20000 300
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 
 mission "Wanted Passengers [3]"
 	name "Wanted individuals to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
+	infiltrating
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "aged wine" 1
-	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find them all passed out in their bunks rooms, having drank too much of the wine that they had brought with them. After carrying the criminals out, they give you a moderate fine and leave. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 75000 `Upon scanning your vessel, law enforcement notice the criminals that you have on board. Entering your ship to detain them, they find them all passed out in their bunks rooms, having drank too much of the wine that they had brought with them. After carrying the criminals out, they give you a moderate fine and leave. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 25
@@ -1379,6 +1524,7 @@ mission "Wanted Passengers [3]"
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
+		"pirate jobs" ++
 		payment 20000 300
 		dialog "Your <passengers> insist that you land on the edge of the spaceport to avoid being seen. After you land, they pay you <payment> before quickly grabbing their things and leaving your ship."
 
@@ -1386,13 +1532,16 @@ mission "Wanted Passengers [3]"
 
 mission "Highly Wanted Passenger (North)"
 	name "Galactic criminal to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
 	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to a lot of trouble."
 	passengers 1
 	cargo "stolen navy secrets" 1
-	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 15
@@ -1469,19 +1618,23 @@ mission "Highly Wanted Passenger (North)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		"pirate jobs" ++
 		payment 200000 1000
 		"reputation: Pirate" += 5
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Highly Wanted Passenger (Core)"
 	name "Galactic criminal to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
 	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to a lot of trouble."
 	passengers 1
 	cargo "stolen banking records" 1
-	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 15
@@ -1560,19 +1713,23 @@ mission "Highly Wanted Passenger (Core)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		"pirate jobs" ++
 		payment 200000 1000
 		"reputation: Pirate" += 5
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
 
 mission "Highly Wanted Passenger (South)"
 	name "Galactic criminal to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	infiltrating
 	description "This criminal is wanted by every law enforcement agency in the galaxy and needs safe transport to <destination> with their <cargo>. The payment is high at an amazing <payment>, but transporting such a person could lead to a lot of trouble."
 	passengers 1
 	cargo "prototype technology" 1
-	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+	illegal 300000 `Law enforcement rush their way onto your ship through the airlocks, suited head to toe in armor and armed to the teeth. Your passenger is quickly made to surrender and is hauled off in cuffs. The officers consider detaining you as well, but eventually decide to minimize their paperwork by only issuing a fine. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 	stealth
 	to offer
 		random < 15
@@ -1588,7 +1745,7 @@ mission "Highly Wanted Passenger (South)"
 		government Militia
 		personality heroic waiting
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1597,7 +1754,7 @@ mission "Highly Wanted Passenger (South)"
 		system
 			distance 3 5
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1606,7 +1763,7 @@ mission "Highly Wanted Passenger (South)"
 		system
 			distance 2 4
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1615,7 +1772,7 @@ mission "Highly Wanted Passenger (South)"
 		system
 			distance 3
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1623,7 +1780,7 @@ mission "Highly Wanted Passenger (South)"
 		personality heroic waiting
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1631,7 +1788,7 @@ mission "Highly Wanted Passenger (South)"
 		personality heroic waiting entering
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)"
 	npc
@@ -1639,7 +1796,7 @@ mission "Highly Wanted Passenger (South)"
 		personality heroic staying
 		system destination
 		fleet
-			names "militia"
+			names "militia capital"
 			variant
 				"Bastion (Scanner)" 2
 	on abort
@@ -1652,6 +1809,7 @@ mission "Highly Wanted Passenger (South)"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		"pirate jobs" ++
 		payment 200000 1000
 		"reputation: Pirate" += 5
 		dialog "You land outside of the main city to avoid any chances of your passenger being seen. They grab their things and make their way off of your ship after paying you <payment>."
@@ -1660,73 +1818,103 @@ mission "Highly Wanted Passenger (South)"
 
 mission "Slave Transport [0]"
 	name "Transfer slaves to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	infiltrating
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Pirate"
 	destination
-		distance 3 30
+		distance 4 30
 		government "Pirate"
+	on abort
+		"reputation: Pirate" -= 9
+		dialog phrase "generic aborted pirate slave mission"
+	on fail
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		"pirate jobs" ++
 		payment 75000 800
 		dialog phrase "generic completed pirate slave mission"
 
 mission "Slave Transport [1]"
 	name "Transfer slaves to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	infiltrating
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Pirate"
 	destination
-		distance 3 30
+		distance 4 30
 		government "Pirate"
+	on abort
+		"reputation: Pirate" -= 9
+		dialog phrase "generic aborted pirate slave mission"
+	on fail
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		"pirate jobs" ++
 		payment 75000 800
 		dialog phrase "generic completed pirate slave mission"
 
 mission "Slave Transport [2]"
 	name "Transfer slaves to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	infiltrating
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
 	to offer
 		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 1100
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Pirate"
 	destination
-		distance 3 30
+		distance 4 30
 		government "Pirate"
+	on abort
+		"reputation: Pirate" -= 9
+		dialog phrase "generic aborted pirate slave mission"
+	on fail
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		"pirate jobs" ++
 		payment 75000 800
 		dialog phrase "generic completed pirate slave mission"
 
@@ -1734,49 +1922,69 @@ mission "Slave Transport [2]"
 
 mission "Bulk Slave Transport [0]"
 	name "Transfer slaves to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	infiltrating
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Pirate"
 	destination
-		distance 3 30
+		distance 4 30
 		government "Pirate"
+	on abort
+		"reputation: Pirate" -= 9
+		dialog phrase "generic aborted pirate slave mission"
+	on fail
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		"pirate jobs" ++
 		payment 100000 800
 		dialog phrase "generic completed pirate slave mission"
 
 mission "Bulk Slave Transport [1]"
 	name "Transfer slaves to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
+	infiltrating
+	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	illegal -1
 	to offer
 		random < 15
 		"reputation: Pirate" > 0
 		"combat rating" > 3000
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Pirate"
 	destination
-		distance 3 30
+		distance 4 30
 		government "Pirate"
+	on abort
+		"reputation: Pirate" -= 9
+		dialog phrase "generic aborted pirate slave mission"
+	on fail
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
+		"pirate jobs" ++
 		payment 100000 800
 		dialog phrase "generic completed pirate slave mission"
 
@@ -1784,6 +1992,9 @@ mission "Bulk Slave Transport [1]"
 
 mission "Mercenary Job (Medium, North, Dangerous Origin)"
 	name "Protection to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	description "The captain of the <npc> will pay you <payment> to help them escape local law enforcement and reach <destination> by <date>."
@@ -1829,6 +2040,7 @@ mission "Mercenary Job (Medium, North, Dangerous Origin)"
 			variant
 				"Corvette (Speedy)"
 	on complete
+		"pirate jobs" ++
 		payment 180000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
@@ -1836,6 +2048,9 @@ mission "Mercenary Job (Medium, North, Dangerous Origin)"
 
 mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 	name "Protect cargo to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	description "The captain of the <npc> will pay you <payment> to escort them and their illegal cargo safely through law-enforced space to reach <destination> by <date>."
@@ -1847,10 +2062,10 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes frontier north "north pirate"
-		distance 3 6
 	destination
 		government "Pirate"
 		attributes "north pirate"
+		distance 3 6
 	npc
 		government Republic
 		personality staying
@@ -1877,6 +2092,7 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 			variant 1
 				"Leviathan"
 	on complete
+		"pirate jobs" ++
 		payment 240000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
@@ -1884,6 +2100,9 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 
 mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 	name "Protect ship to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	description "The captain of the <npc> will pay you <payment> to escort them and their stolen vessel safely through law-enforced space to reach <destination> by <date>."
@@ -1920,10 +2139,9 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 			variant 4
 				"Leviathan (Heavy)"
 				"Freighter"
-			variant 1
-				"Bactrian"
-				"Shuttle"
+
 	on complete
+		"pirate jobs" ++
 		payment 375000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
@@ -1931,6 +2149,9 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 
 mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 	name "Protection to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	description "The captain of the <npc> will pay you <payment> to help them escape local law enforcement and reach <destination> by <date>."
@@ -1970,6 +2191,7 @@ mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 			variant 1
 				"Quicksilver (Proton)"
 	on complete
+		"pirate jobs" ++
 		payment 180000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
@@ -1977,6 +2199,9 @@ mission "Mercenary Job (Medium, Core, Dangerous Origin)"
 
 mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 	name "Protect cargo to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	description "The captain of the <npc> will pay you <payment> to escort them and their illegal cargo safely through law-enforced space to reach <destination> by <date>."
@@ -1988,10 +2213,10 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes core "core pirate"
-		distance 3 6
 	destination
 		government "Pirate"
 		attributes "core pirate"
+		distance 3 6
 	npc
 		government Syndicate
 		personality staying
@@ -2014,6 +2239,7 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 			variant 1
 				"Splinter (Laser)" 2
 	on complete
+		"pirate jobs" ++
 		payment 240000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
@@ -2021,6 +2247,9 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 
 mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 	name "Protect ship to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	description "The captain of the <npc> will pay you <payment> to escort them and their stolen vessel safely through law-enforced space to reach <destination> by <date>."
@@ -2067,6 +2296,7 @@ mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 				"Falcon (Heavy)"
 				"Heavy Shuttle"
 	on complete
+		"pirate jobs" ++
 		payment 375000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
@@ -2074,6 +2304,9 @@ mission "Escort Stolen Vessel (Extra Large, Core, Dangerous Path)"
 
 mission "Mercenary Job (Medium, South, Dangerous Origin)"
 	name "Protection to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	description "The captain of the <npc> will pay you <payment> to help them escape local law enforcement and reach <destination> by <date>."
@@ -2113,6 +2346,7 @@ mission "Mercenary Job (Medium, South, Dangerous Origin)"
 			variant 1
 				"Modified Argosy"
 	on complete
+		"pirate jobs" ++
 		payment 180000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
@@ -2120,6 +2354,9 @@ mission "Mercenary Job (Medium, South, Dangerous Origin)"
 
 mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 	name "Protect cargo to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	description "The captain of the <npc> will pay you <payment> to escort them and their illegal cargo safely through law-enforced space to reach <destination> by <date>."
@@ -2131,10 +2368,12 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes south "south pirate"
-		distance 3 6
 	destination
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
+		distance 4 6
 	npc
 		government Militia
 		personality staying
@@ -2159,6 +2398,7 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 			variant 1
 				"Bastion (Heavy)"
 	on complete
+		"pirate jobs" ++
 		payment 240000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
@@ -2166,6 +2406,9 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 
 mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 	name "Protect ship to <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
 	description "The captain of the <npc> will pay you <payment> to escort them and their stolen vessel safely through law-enforced space to reach <destination> by <date>."
@@ -2180,7 +2423,9 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 	destination
 		government "Pirate"
 		attributes "south pirate"
-		distance 3 6
+		neighbor
+			not government "Pirate"
+		distance 4 6
 	npc
 		government Militia
 		personality staying
@@ -2212,6 +2457,7 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 				"Falcon (Heavy)"
 				"Heavy Shuttle"
 	on complete
+		"pirate jobs" ++
 		payment 375000
 		dialog phrase "generic safe escort completion dialog"
 	on visit
@@ -2221,9 +2467,13 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 
 mission "Eliminating Law Enforcement (North, Small)"
 	name "Navy near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A Navy fleet within three jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 20
 	to offer
 		random < 25
 		"combat rating" > 1100
@@ -2232,21 +2482,26 @@ mission "Eliminating Law Enforcement (North, Small)"
 		attributes "north pirate"
 	npc kill
 		government "Republic"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
 			distance 1 3
 		fleet "Small Republic" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 250000
+		"pirate jobs" ++
+		payment 360000
 		"reputation: Pirate" += 5
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
 mission "Eliminating Law Enforcement (North, Large)"
 	name "Navy near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A large Navy fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A large Navy fleet within three jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 20
 	to offer
 		random < 15
 		"combat rating" > 3000
@@ -2255,22 +2510,27 @@ mission "Eliminating Law Enforcement (North, Large)"
 		attributes "north pirate"
 	npc kill
 		government "Republic"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
 			distance 1 3
 		fleet "Large Republic"
 		fleet "Small Republic" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 400000
+		"pirate jobs" ++
+		payment 600000
 		"reputation: Pirate" += 10
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Navy fleet."
 
 mission "Eliminating Law Enforcement (Core, Small)"
 	name "Syndicate near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A Syndicate fleet within two jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 25
 	to offer
 		random < 25
 		"combat rating" > 1100
@@ -2279,21 +2539,28 @@ mission "Eliminating Law Enforcement (Core, Small)"
 		attributes "core pirate"
 	npc kill
 		government "Syndicate"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
-			distance 1 3
+			distance 1 2
+			neighbor
+				not government "Pirate"
 		fleet "Small Syndicate" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 250000
+		"pirate jobs" ++
+		payment 360000
 		"reputation: Pirate" += 5
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
 mission "Eliminating Law Enforcement (Core, Large)"
 	name "Syndicate near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A large Syndicate fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A large Syndicate fleet within two jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 25
 	to offer
 		random < 15
 		"combat rating" > 3000
@@ -2302,61 +2569,82 @@ mission "Eliminating Law Enforcement (Core, Large)"
 		attributes "core pirate"
 	npc kill
 		government "Syndicate"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
-			distance 1 3
+			distance 1 2
+			neighbor
+				not government "Pirate"
 		fleet "Large Syndicate"
 		fleet "Small Syndicate" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 400000
+		"pirate jobs" ++
+		payment 600000
 		"reputation: Pirate" += 10
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the Syndicate fleet."
 
 mission "Eliminating Law Enforcement (South, Small)"
 	name "Militia near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A militia fleet within two jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 14
 	to offer
 		random < 25
 		"combat rating" > 1100
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc kill
 		government "Militia"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
-			distance 1 3
+			distance 1 2
+			neighbor
+				not government "Pirate"
 		fleet "Small Militia" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 250000
+		"pirate jobs" ++
+		payment 320000
 		"reputation: Pirate" += 5
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the militia fleet."
 
 mission "Eliminating Law Enforcement (South, Large)"
 	name "Militia near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A large militia fleet near the <system> system has halted our raids. Destroy them and return to <planet> for a payment of <payment>."
+	description "A large militia fleet within two jumps of the <system> system has halted our raids. Destroy them and return to <planet> by <day> for a payment of <payment>."
+	deadline 14
 	to offer
 		random < 15
 		"combat rating" > 3000
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc kill
 		government "Militia"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
-			distance 1 3
+			distance 1 2
+			neighbor
+				not government "Pirate"
 		fleet "Large Militia"
 		fleet "Small Militia" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
-		payment 400000
+		"pirate jobs" ++
+		payment 520000
 		"reputation: Pirate" += 10
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the militia fleet."
 
@@ -2364,9 +2652,10 @@ mission "Eliminating Law Enforcement (South, Large)"
 
 mission "Eliminating Competition (North, Small)"
 	name "Competition near <system>"
-	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A small rival gang is causing trouble within two jumps of the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 20
 		"combat rating" > 400
@@ -2375,7 +2664,7 @@ mission "Eliminating Competition (North, Small)"
 		attributes "north pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Small Northern Pirates" 4
@@ -2383,14 +2672,16 @@ mission "Eliminating Competition (North, Small)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
+		"pirate jobs" ++
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (North, Large)"
 	name "Competition near <system>"
-	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently within two jumps of the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 10
 		"combat rating" > 1100
@@ -2399,23 +2690,25 @@ mission "Eliminating Competition (North, Large)"
 		attributes "north pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
-			distance 1 3
+			distance 1 2
 		fleet "Large Northern Pirates" 2
 		fleet "Small Northern Pirates" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
+		"pirate jobs" ++
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (Core, Small)"
 	name "Competition near <system>"
-	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A small rival gang is causing trouble within two jumps of the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 20
 		"combat rating" > 400
@@ -2424,7 +2717,7 @@ mission "Eliminating Competition (Core, Small)"
 		attributes "core pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Small Core Pirates" 4
@@ -2432,14 +2725,16 @@ mission "Eliminating Competition (Core, Small)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
+		"pirate jobs" ++
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (Core, Large)"
 	name "Competition near <system>"
-	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently within two jumps of the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 10
 		"combat rating" > 1100
@@ -2448,23 +2743,25 @@ mission "Eliminating Competition (Core, Large)"
 		attributes "core pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
-			distance 1 3
+			distance 1 2
 		fleet "Large Core Pirates" 2
 		fleet "Small Core Pirates" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
+		"pirate jobs" ++
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (South, Small)"
 	name "Competition near <system>"
-	description "A small rival gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A small rival gang is causing trouble within two jumps of the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 14
 	to offer
 		random < 20
 		"combat rating" > 400
@@ -2473,7 +2770,7 @@ mission "Eliminating Competition (South, Small)"
 		attributes "south pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Small Southern Pirates" 4
@@ -2481,14 +2778,16 @@ mission "Eliminating Competition (South, Small)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
+		"pirate jobs" ++
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (South, Large)"
 	name "Competition near <system>"
-	description "A large rival gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
+	description "A large rival gang is gaining too much power. Their leader is currently within two jumps of the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 14
 	to offer
 		random < 10
 		"combat rating" > 1100
@@ -2497,23 +2796,25 @@ mission "Eliminating Competition (South, Large)"
 		attributes "south pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
-			distance 1 3
+			distance 1 2
 		fleet "Large Southern Pirates" 2
 		fleet "Small Southern Pirates" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
+		"pirate jobs" ++
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (Marauders, Small)"
 	name "Competition near <system>"
-	description "A small marauder gang is causing trouble near the <system> system. Take them out and return to <planet> for a payment of <payment>."
+	description "A small marauder gang is causing trouble within two jumps of the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 5
 		"combat rating" > 600
@@ -2521,7 +2822,7 @@ mission "Eliminating Competition (Marauders, Small)"
 		government "Pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder I" 2
@@ -2530,14 +2831,16 @@ mission "Eliminating Competition (Marauders, Small)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
+		"pirate jobs" ++
 		payment 500000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (Marauders, Medium)"
 	name "Competition near <system>"
-	description "A marauder gang is gaining too much power. Their leader is currently near the <system> system. Take them and their escorts out and return to <planet> for a payment of <payment>."
+	description "A marauder gang is gaining too much power. Their leader is currently within two jumps of the <system> system. Take them and their escorts out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 5
 		"combat rating" > 1100
@@ -2545,7 +2848,7 @@ mission "Eliminating Competition (Marauders, Medium)"
 		government "Pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder I"
@@ -2555,14 +2858,16 @@ mission "Eliminating Competition (Marauders, Medium)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
+		"pirate jobs" ++
 		payment 750000
 		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
 
 mission "Eliminating Competition (Marauders, Large)"
 	name "Marauder Elimination"
-	description "The pirates of the <system> system have grown dissatisified with the actions of the ruling Marauder gang. Take them out and return to <planet> for a payment of <payment>."
+	description "The pirates of the <system> system have grown dissatisfied with the actions of the ruling Marauder gang, who are currently within two jumps of the <system> system. Take them out and return to <planet> by <day> for a payment of <payment>."
 	repeat
 	job
+	deadline 20
 	to offer
 		random < 5
 		"combat rating" > 2100
@@ -2570,9 +2875,9 @@ mission "Eliminating Competition (Marauders, Large)"
 		government "Pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
-			distance 1 3
+			distance 1 2
 		fleet "Marauder I" 2
 		fleet "Marauder II" 2
 		fleet "Marauder III"
@@ -2581,16 +2886,20 @@ mission "Eliminating Competition (Marauders, Large)"
 	on accept
 		"reputation: Pirate (Rival)" = "reputation: Pirate"
 	on complete
+		"pirate jobs" ++
 		payment 900000
-		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the rival gang."
+		dialog "The pirates of <planet> gratefully pay you <payment> for eliminating the ruling gang."
 
 
 
 mission "Raid on Merchants (North)"
 	name "Merchants near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted in Republic space within three jumps of the <system> system. Join in destroying them and return to <planet> by <day> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2608,18 +2917,23 @@ mission "Raid on Merchants (North)"
 		personality heroic staying target
 		system
 			distance 1 3
+			government "Republic"
 		fleet "Small Northern Merchants" 2
 		fleet "Large Northern Merchants"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
 	on complete
+		"pirate jobs" ++
 		payment 150000
 		dialog "After counting up the loot from the destroyed merchant fleet, you are given your cut. <payment>"
 
 mission "Raid on Merchants (Core)"
 	name "Merchants near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted in Syndicate space within two jumps of the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2636,19 +2950,24 @@ mission "Raid on Merchants (Core)"
 		personality heroic staying target
 		government "Merchant"
 		system
-			distance 1 3
+			distance 1 2
+			government "Syndicate"
 		fleet "Small Core Merchants" 2
 		fleet "Large Core Merchants"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
 	on complete
+		"pirate jobs" ++
 		payment 150000
 		dialog "After counting up the loot from the destroyed merchant fleet, you are given your cut. <payment>"
 
 mission "Raid on Merchants (South)"
 	name "Merchants near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	job
-	description "A merchant fleet has been spotted near the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
+	description "A merchant fleet has been spotted in Southern space within two jumps of the <system> system. Join in destroying them and return to <planet> for a cut of the loot (<payment>)."
 	to offer
 		random < 50
 		"combat rating" > 150
@@ -2664,11 +2983,14 @@ mission "Raid on Merchants (South)"
 		personality heroic staying target
 		government "Merchant"
 		system
-			distance 1 3
+			distance 1 2
+			neighbor
+				not government "Pirate"
 		fleet "Small Southern Merchants" 2
 		fleet "Large Southern Merchants"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
 	on complete
+		"pirate jobs" ++
 		payment 150000
 		dialog "After counting up the loot from the destroyed merchant fleet, you are given your cut. <payment>"
 
@@ -2676,6 +2998,9 @@ mission "Raid on Merchants (South)"
 
 mission "Northern Pirate Defense"
 	name "Defend <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	minor
 	description "Local Navy forces are attacking <destination>! Defeat them to defend anarchy!"
@@ -2698,11 +3023,15 @@ mission "Northern Pirate Defense"
 	on offer
 		conversation "northern pirate defense"
 	on complete
+		"pirate jobs" ++
 		payment 200000
 		dialog `Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Navy.`
 
 mission "Northern Pirate Defense [Unpaid]"
 	name "Defend <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	minor
 	description "Local Navy forces are attacking <destination>! Defeat them to defend anarchy!"
@@ -2726,6 +3055,7 @@ mission "Northern Pirate Defense [Unpaid]"
 	on offer
 		conversation "northern pirate defense"
 	on complete
+		"pirate jobs" ++
 		dialog `Many locals of <planet> thank you for helping to drive off the Navy.`
 
 conversation "northern pirate defense"
@@ -2740,6 +3070,9 @@ conversation "northern pirate defense"
 
 mission "Core Pirate Defense"
 	name "Defend <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	minor
 	description "Local Syndicate forces are attacking <destination>! Defeat them to defend anarchy!"
@@ -2762,11 +3095,15 @@ mission "Core Pirate Defense"
 	on offer
 		conversation "core pirate defense"
 	on complete
+		"pirate jobs" ++
 		payment 200000
 		dialog `Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the Syndicate.`
 
 mission "Core Pirate Defense [Unpaid]"
 	name "Defend <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	minor
 	description "Local Syndicate forces are attacking <destination>! Defeat them to defend anarchy!"
@@ -2789,6 +3126,7 @@ mission "Core Pirate Defense [Unpaid]"
 	on offer
 		conversation "core pirate defense"
 	on complete
+		"pirate jobs" ++
 		dialog `Many locals of <planet> thank you for helping to drive off the Syndicate.`
 
 conversation "core pirate defense"
@@ -2803,6 +3141,9 @@ conversation "core pirate defense"
 
 mission "Southern Pirate Defense"
 	name "Defend <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	minor
 	description "Local militia forces are attacking <destination>! Defeat them to defend anarchy!"
@@ -2812,6 +3153,8 @@ mission "Southern Pirate Defense"
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc evade
 		government "Militia"
 		personality heroic staying waiting
@@ -2825,11 +3168,15 @@ mission "Southern Pirate Defense"
 	on offer
 		conversation "southern pirate defense"
 	on complete
+		"pirate jobs" ++
 		payment 200000
 		dialog `Many locals of <planet> thank you and collectively pay you <payment> for helping to drive off the militia forces.`
 
 mission "Southern Pirate Defense [Unpaid]"
 	name "Defend <planet>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	repeat
 	minor
 	description "Local militia forces are attacking <destination>! Defeat them to defend anarchy!"
@@ -2839,6 +3186,8 @@ mission "Southern Pirate Defense [Unpaid]"
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc evade
 		government "Militia"
 		personality heroic staying waiting
@@ -2852,6 +3201,7 @@ mission "Southern Pirate Defense [Unpaid]"
 	on offer
 		conversation "southern pirate defense"
 	on complete
+		"pirate jobs" ++
 		dialog `Many locals of <planet> thank you for helping to drive off the militia forces.`
 
 conversation "southern pirate defense"
@@ -2874,12 +3224,16 @@ outfit "Secret Cargo"
 
 mission "Cargo Theft (North)"
 	name "Convoy near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted in Republic space within three jumps of the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
 	to offer
 		random < 15
 		"combat rating" > 3000
+	deadline 20
 	source
 		government Pirate
 		attributes "north pirate"
@@ -2887,7 +3241,8 @@ mission "Cargo Theft (North)"
 		government "Merchant"
 		personality staying heroic target
 		system
-			distance 2 3
+			distance 1 3
+			government "Republic"
 		fleet
 			names "civilian"
 			variant
@@ -2902,18 +3257,23 @@ mission "Cargo Theft (North)"
 	on visit
 		dialog "You land on <planet>, but you don't have the secret cargo! Return to the <npc> and bring the cargo back to <planet>."
 	on complete
+		"pirate jobs" ++
 		outfit "Secret Cargo" -1
 		payment 1500000
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
 
 mission "Cargo Theft (Core)"
 	name "Convoy near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted in Syndicate space within two jumps of the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
 	to offer
 		random < 15
 		"combat rating" > 3000
+	deadline 20
 	source
 		government Pirate
 		attributes "core pirate"
@@ -2921,7 +3281,8 @@ mission "Cargo Theft (Core)"
 		government "Merchant"
 		personality staying heroic target
 		system
-			distance 2 3
+			distance 1 2
+			government "Syndicate"
 		fleet
 			names "civilian"
 			variant
@@ -2936,26 +3297,34 @@ mission "Cargo Theft (Core)"
 	on visit
 		dialog "You land on <planet>, but you don't have the secret cargo! Return to the <npc> and bring the cargo back to <planet>."
 	on complete
+		"pirate jobs" ++
 		outfit "Secret Cargo" -1
 		payment 1500000
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
 
 mission "Cargo Theft (South)"
 	name "Convoy near <system>"
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description `A merchant convoy has been spotted near the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> for payment of <payment>.`
+	description `A merchant convoy has been spotted in Southern space within two jumps of the <system> system. A local warlord is interested in having the cargo on the <npc>. Plunder it and return to <planet> by <day> for payment of <payment>.`
 	to offer
 		random < 15
 		"combat rating" > 3000
+	deadline 14
 	source
 		government Pirate
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc
 		government "Merchant"
 		personality staying heroic target
 		system
-			distance 2 3
+			distance 1 2
+			not government "Pirate"
 		fleet
 			names "civilian"
 			variant
@@ -2970,6 +3339,7 @@ mission "Cargo Theft (South)"
 	on visit
 		dialog "You land on <planet>, but you don't have the secret cargo! Return to the <npc> and bring the cargo back to <planet>."
 	on complete
+		"pirate jobs" ++
 		outfit "Secret Cargo" -1
 		payment 1500000
 		dialog "The pirates of <planet> take the secret cargo from your cargo hold and pay you <payment>."
@@ -2978,155 +3348,119 @@ mission "Cargo Theft (South)"
 
 mission "FW Assassination [1]"
 	name "Assassinate a political target"
-	description "A Free Worlds politician who is worrying local slave traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	description "A Free Worlds politician who is worrying local slave traders was spotted passing through Free Worlds space within two jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Free Worlds. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
+	deadline 14
 	to offer
-		"combat rating" > 200
+		"combat rating" > 300
 		random < 5
 		"reputation: Pirate" > -100
 		has "event: war begins"
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc kill
 		government "Free Worlds"
 		personality staying target
 		system
-			distance 2 5
+			government "Free Worlds"
+			distance 1 2
 		fleet
 			names civilian
-			variant
-				"Flivver"
-				"Osprey" 2
-			variant
-				"Osprey"
-				"Bastion"
-			variant
-				"Falcon"
+			variant 10
+				"Blackbird"
+			variant 2
+				"Blackbird"
+				"Sparrow"
+			variant 4
+				"Blackbird"
 				"Fury" 2
+			variant 3
+				"Blackbird"
+				"Hawk" 3
+			variant 1
+				"Blackbird"
+				"Osprey"
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 350000
+		"pirate jobs" ++
+		payment 460000
 		dialog "A band of slave traders thank you for eliminating the politician and pay you <payment>."
 		"reputation: Free Worlds" -= 10
 		"reputation: Pirate" += 3
 		
 mission "FW Assassination [2]"
 	name "Assassinate a political target"
-	description "A Free Worlds politician who has angered a powerful pirate warlord was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>. Be advised that they are heavily defended."
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	description "A Free Worlds politician who angered a pirate warlord was spotted passing through Free Worlds space within two jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Free Worlds. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
+	deadline 14
 	to offer
-		"combat rating" > 400
+		"combat rating" > 600
 		random < 5
 		"reputation: Pirate" > -50
 		has "event: war begins"
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc kill
 		government "Free Worlds"
 		personality staying target
 		system
-			distance 2 5
+			government "Free Worlds"
+			distance 1 2
 		fleet
 			names civilian
-			variant
-				"Star Queen"
-				"Osprey"
-				"Argosy" 2
-			variant
-				"Star Queen"
+			variant 3
+				"Blackbird"
+			variant 2
+				"Blackbird"
 				"Falcon"
-				"Argosy"
+			variant 3
+				"Blackbird"
+				"Osprey" 2
+			variant 3
+				"Blackbird"
+				"Bastion"
+				"Osprey"
+			variant 2
+				"Blackbird"
+				"Bastion"
+				"Sparrow" 4
+			variant 1
+				"Blackbird"
+				"Fury" 5
+				"Hawk" 4
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 600000
+		"pirate jobs" ++
+		payment 800000
 		dialog "The pirate warlord thanks you for eliminating the politician that threatened them and pays you <payment>."
 		"reputation: Free Worlds" -= 15
 		"reputation: Pirate" += 5
 		
-mission "FW Assassination [3]"
-	name "Assassinate a military target"
-	description "A Free Worlds militia commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 500
-		random < 5
-		"reputation: Pirate" > 50
-		has "event: war begins"
-	source
-		government "Pirate"
-		attributes "south pirate"
-	npc kill
-		government "Free Worlds"
-		personality staying target
-		system
-			distance 2 4
-		fleet
-			names "free worlds small"
-			variant
-				"Falcon"
-				"Osprey" 2
-				"Sparrow" 4
-			variant
-				"Falcon"
-				"Argosy (Laser)" 3
-				"Hawk" 2
-				"Fury" 2
-		dialog "The target has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 750000
-		dialog "A gang of pirates on <planet> thank you for taking out the Free Worlds commander and pay you <payment>."
-		"reputation: Free Worlds" -= 20
-		"reputation: Pirate" += 7
-		
-mission "FW Assassination [4]"
-	name "Assassinate a military target"
-	description "Rumor is the Free Worlds are planning a raid on regional pirate gangs. A militia commander said to be leading this raid has been spotted in a nearby system with a large fleet. Assassinate them in order to send a message to the Free Worlds. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 800
-		random < 5
-		"reputation: Pirate" > 100
-		has "event: war begins"
-	source
-		government "Pirate"
-		attributes "south pirate"
-	npc kill
-		government "Free Worlds"
-		personality staying target
-		system
-			distance 2 4
-		fleet
-			names "free worlds small"
-			variant
-				"Falcon" 2
-				"Bastion" 3
-				"Osprey" 2
-				"Argosy" 2
-			variant
-				"Falcon"
-				"Bastion" 2
-				"Argosy" 5
-				"Fury" 4
-		dialog "The target fleet has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 1000000
-		dialog "You are greeted by applause from many pirates when you land and a powerful pirate warlord pays you <payment>."
-		"reputation: Free Worlds" -= 25
-		"reputation: Pirate" += 10
-		
 mission "Syndicate Assassination [1]"
 	name "Assassinate a political target"
-	description "A Syndicate politician was spotted passing through a nearby system in their ship, the <npc>. Assassinate them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	description "A Syndicate politician was spotted passing through Syndicate space within two jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Syndicate. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
+	deadline 25
 	to offer
-		"combat rating" > 200
+		"combat rating" > 300
 		random < 5
 		"reputation: Pirate" > -100
 	source
@@ -3136,26 +3470,52 @@ mission "Syndicate Assassination [1]"
 		government "Syndicate"
 		personality staying target
 		system
-			distance 2 5
+			government "Syndicate"
+			distance 1 2
 		fleet
 			names civilian
-			variant
-				"Star Queen"
+			variant 6
+				"Arrow"
+			variant 6
+				"Bounder"
+			variant 2
+				"Arrow"
 				"Quicksilver" 2
+			variant 2
+				"Bounder"
+				"Manta"
+			variant 3
+				"Arrow"
+				"Wasp" 3
+			variant 3
+				"Bounder"
+				"Quicksilver"
+				"Wasp" 2
+			variant 1
+				"Arrow"
+				"Splinter"
+			variant 1
+				"Bounder"
+				"Splinter"
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 350000
+		"pirate jobs" ++
+		payment 460000
 		dialog "A pirate warlord thanks you for eliminating the politician and pays you <payment>."
 		"reputation: Syndicate" -= 10
 		"reputation: Pirate" += 3
 		
 mission "Syndicate Assassination [2]"
 	name "Assassinate a political target"
-	description "A Syndicate politician who has plans that worry many local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Syndicate. Payment is <payment>. Be advised that they are heavily defended."
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	description "A Syndicate politician with plans that worry local pirate gangs was spotted passing through Syndicate space within two jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Syndicate. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
+	deadline 25
 	to offer
-		"combat rating" > 400
+		"combat rating" > 600
 		random < 5
 		"reputation: Pirate" > -50
 	source
@@ -3165,101 +3525,62 @@ mission "Syndicate Assassination [2]"
 		government "Syndicate"
 		personality staying target
 		system
-			distance 2 5
+			government "Syndicate"
+			distance 1 2
 		fleet
 			names civilian
-			variant
-				"Star Queen"
-				"Splinter" 2
-			variant
-				"Star Queen"
+			variant 2
+				"Arrow"
+			variant 3
+				"Bounder"
+			variant 2
+				"Arrow"
+				"Vanguard"
+			variant 2
+				"Bounder"
+				"Protector"
+			variant 4
+				"Arrow"
+				"Quicksilver" 4
+			variant 2
+				"Bounder"
 				"Manta" 2
-		dialog "The targets have been destroyed. Return to <destination> for payment."
+			variant 2
+				"Arrow"
+				"Manta"
+				"Quicksilver" 2
+			variant 4
+				"Bounder"
+				"Splinter"
+				"Wasp" 3
+			variant 2
+				"Arrow"
+				"Manta"
+				"Splinter"
+			variant 2
+				"Bounder"
+				"Splinter" 2
+			variant 1
+				"Arrow" 10
+		dialog "The target has been destroyed. Return to <destination> for payment."
 	on complete
-		payment 600000
+		"pirate jobs" ++
+		payment 800000
 		dialog "A band of pirates thank you for eliminating the politician and pay you <payment>."
 		"reputation: Syndicate" -= 15
 		"reputation: Pirate" += 5
 		
-mission "Syndicate Assassination [3]"
-	name "Assassinate a military target"
-	description "A Syndicated Security commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Assassinate them in order to send a message to the Syndicate. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 500
-		random < 5
-		"reputation: Pirate" > 50
-	source
-		government "Pirate"
-		attributes "core pirate"
-	npc kill
-		government "Syndicate"
-		personality staying target
-		system
-			distance 2 4
-		fleet
-			names "syndicate small"
-			variant
-				"Vanguard"
-				"Manta" 2
-				"Splinter"
-				"Quicksilver" 3
-			variant
-				"Vanguard"
-				"Protector"
-				"Quicksilver" 4
-		dialog "The target has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 750000
-		dialog "A gang of pirates on <planet> thank you for taking out the Syndicated Security commander and pay you <payment>."
-		"reputation: Syndicate" -= 20
-		"reputation: Pirate" += 7
-		
-mission "Syndicate Assassination [4]"
-	name "Assassinate a military target"
-	description "Rumor is the Syndicate is planning a raid on regional pirate gangs. An important security commander said to be leading this raid has been spotted in a nearby system with a large fleet. Assassinate them in order to send a message to the Syndicate. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 800
-		random < 5
-		"reputation: Pirate" > 100
-	source
-		government "Pirate"
-		attributes "core pirate"
-	npc kill
-		government "Syndicate"
-		personality staying target
-		system
-			distance 2 4
-		fleet
-			names "syndicate small"
-			variant
-				"Vanguard"
-				"Protector" 2
-				"Splinter" 3
-				"Manta"
-				"Quicksilver" 2
-			variant
-				"Vanguard" 3
-				"Splinter" 2
-				"Manta" 2
-				"Quicksilver" 3
-		dialog "The target and their fleet has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 1000000
-		dialog "You are greeted by applause from many pirates when you land and a powerful pirate warlord pays you <payment>."
-		"reputation: Syndicate" -= 25
-		"reputation: Pirate" += 10
-		
 mission "Republic Assassination [1]"
 	name "Assassinate a political target"
-	description "A Republic politician who is worrying local pirate gangs was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	description "A Republic politician who is worrying local pirate gangs was spotted passing through inhabited Republic space within four jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Republic. Payment is <payment>. Be advised that they may have escorts."
 	repeat
 	job
+	deadline 20
 	to offer
-		"combat rating" > 200
+		"combat rating" > 300
 		random < 5
 		"reputation: Pirate" > -100
 	source
@@ -3269,16 +3590,45 @@ mission "Republic Assassination [1]"
 		government "Republic"
 		personality staying target
 		system
-			distance 3 5
+			government "Republic"
+			distance 4
+			not near "Sumar" 1
+			not near "Gorvi" 1
 		fleet
 			names civilian
-			variant
+			variant 7
 				"Flivver"
+			variant 7
+				"Scout"
+			variant 3
+				"Flivver"
+				"Raven"
+				"Berserker"
+			variant 2
+				"Scout"
+				"Aerie"
+				"Dagger" 4
+			variant 2
+				"Flivver"
+				"Firebird"
+			variant 3
+				"Scout"
 				"Headhunter" 2
-				"Corvette"
+			variant 1
+				"Flivver"
+				"Gunboat" 2
+			variant 1
+				"Scout"
+				"Frigate"
+			variant 1
+				"Mule"
+				"Dagger"
+			variant 1
+				"Star Queen"
 		dialog "The target has been destroyed. Return to <destination> for your payment."
 	on complete
-		payment 350000
+		"pirate jobs" ++
+		payment 460000
 		dialog "A pirate warlord thanks you for eliminating the politician pays you <payment>."
 		"reputation: Republic" -= 10
 		"reputation: Navy (Oathkeeper)" -= 10
@@ -3286,11 +3636,15 @@ mission "Republic Assassination [1]"
 		
 mission "Republic Assassination [2]"
 	name "Assassinate a political target"
-	description "A Republic politician who is worrying local drug traders was spotted in their ship, the <npc>, in a nearby system. Assassinate them in order to send a message to the Republic. Payment is <payment>. Be advised that they are heavily defended."
+	color selected "illegal job: selected"
+	color unselected "illegal job: unselected"
+	color unavailable "illegal job: unavailable"
+	description "A Republic politician who is worrying local drug traders was spotted passing through inhabited Republic space within four jumps of the <system> system in their ship, the <npc>. Assassinate them by <day> to send a message to the Republic. Payment is <payment>. Be advised that they may be heavily defended."
 	repeat
 	job
+	deadline 20
 	to offer
-		"combat rating" > 400
+		"combat rating" > 600
 		random < 5
 		"reputation: Pirate" > -50
 	source
@@ -3300,99 +3654,60 @@ mission "Republic Assassination [2]"
 		government "Republic"
 		personality staying target
 		system
-			distance 3 5
+			government "Republic"
+			distance 4
+			not near "Sumar" 1
+			not near "Gorvi" 1
 		fleet
 			names civilian
-			variant
+			variant 1
+				"Flivver"
+			variant 1
+				"Scout"
+			variant 2
+				"Mule"
+				"Dagger"
+			variant 2
 				"Star Queen"
-				"Headhunter" 3
-				"Firebird" 2
-			variant
-				"Star Queen"
-				"Gunboat" 2
+			variant 2
+				"Flivver"
+				"Aerie"
+				"Dagger" 4
 				"Frigate"
-		dialog "The targets have been destroyed. Return to <destination> for payment."
+			variant 4
+				"Scout"
+				"Headhunter" 4
+			variant 3
+				"Mule"
+				"Dagger"
+				"Raven" 2
+			variant 2
+				"Star Queen"
+				"Corvette"
+				"Firebird"
+			variant 2
+				"Flivver"
+				"Leviathan"
+			variant 2
+				"Scout"
+				"Corvette"
+				"Mule"
+				"Dagger"
+			variant 1
+				"Mule"
+				"Dagger"
+				"Cruiser"
+				"Combat Drone" 4
+			variant 1
+				"Star Queen"
+				"Carrier"
+				"Lance" 8
+				"Combat Drone" 6
+		dialog "The target has been destroyed. Return to <destination> for payment."
 	on complete
-		payment 600000
+		"pirate jobs" ++
+		payment 800000
 		dialog "A band of drug traders thank you for eliminating the politician and pay you <payment>."
 		"reputation: Republic" -= 15
 		"reputation: Navy (Oathkeeper)" -= 15
 		"reputation: Pirate" += 5
-		
-mission "Republic Assassination [3]"
-	name "Assassinate a military target"
-	description "A Republic Navy commander who has led a number of small raids against pirate gangs in the region has been spotted patrolling a nearby system with their fleet. Assassinate them in order to send a message to the Republic. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 600
-		random < 5
-		"reputation: Pirate" > 50
-	source
-		government "Pirate"
-		attributes "north pirate"
-	npc kill
-		government "Republic"
-		personality staying target
-		system
-			distance 3 4
-		fleet
-			names "republic small"
-			variant
-				"Cruiser"
-				"Combat Drone" 4
-				"Frigate" 2
-			variant
-				"Carrier"
-				"Lance" 4
-				"Combat Drone" 6
-				"Gunboat" 2
-				"Rainmaker"
-		dialog "The target has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 750000
-		dialog "A gang of pirates on <planet> thank you for taking out the Navy commander and pay you <payment>."
-		"reputation: Republic" -= 20
-		"reputation: Navy (Oathkeeper)" -= 20
-		"reputation: Pirate" += 7
-		
-mission "Republic Assassination [4]"
-	name "Assassinate a military target"
-	description "Rumor is the Republic is planning a raid on regional pirate gangs. An important Navy commander said to be leading this raid has been spotted in a nearby system with a large fleet. Assassinate them in order to send a message to the Republic. Payment is <payment>."
-	repeat
-	job
-	to offer
-		"combat rating" > 800
-		random < 5
-		"reputation: Pirate" > 100
-	source
-		government "Pirate"
-		attributes "north pirate"
-	npc kill
-		government "Republic"
-		personality staying target
-		system
-			distance 3 4
-		fleet
-			names "republic small"
-			variant
-				"Carrier" 2
-				"Lance" 8
-				"Combat Drone" 12
-				"Frigate" 3
-			variant
-				"Carrier"
-				"Lance" 4
-				"Combat Drone" 6
-				"Cruiser" 2
-				"Combat Drone" 8
-				"Frigate" 2
-				"Rainmaker" 2
-				"Gunboat" 2
-		dialog "The target and their fleet has been destroyed. Return to <destination> for your payment."
-	on complete
-		payment 1000000
-		dialog "You are greeted by applause from many pirates when you land and a powerful pirate warlord pays you <payment>."
-		"reputation: Republic" -= 25
-		"reputation: Navy (Oathkeeper)" -= 25
-		"reputation: Pirate" += 10

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Panel.h"
@@ -15,11 +18,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Color.h"
 #include "Command.h"
 #include "Dialog.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "image/Sprite.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 
 #include <cmath>
@@ -40,6 +46,23 @@ namespace {
 		SDL_CONTROLLER_BUTTON_DPAD_LEFT,
 		SDL_CONTROLLER_BUTTON_DPAD_RIGHT
 	};
+}
+
+
+
+// Draw a sprite repeatedly to make a vertical edge.
+void Panel::DrawEdgeSprite(const Sprite *edgeSprite, int posX)
+{
+	if(edgeSprite->Height())
+	{
+		// If the screen is high enough, the edge sprite should repeat.
+		double spriteHeight = edgeSprite->Height();
+		Point pos(
+			posX + .5 * edgeSprite->Width(),
+			Screen::Top() + .5 * spriteHeight);
+		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
+			SpriteShader::Draw(edgeSprite, pos);
+	}
 }
 
 
@@ -107,6 +130,12 @@ void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 // so, apply that zone's action and return true.
 bool Panel::ZoneClick(const Point &point)
 {
+	for(auto it = children.rbegin(); it != children.rend(); ++it)
+	{
+		if((*it)->ZoneClick(point))
+			return true;
+	}
+
 	for(const Zone &zone : zones)
 		if(zone.Contains(point))
 		{
@@ -122,18 +151,37 @@ bool Panel::ZoneClick(const Point &point)
 
 
 
-// Forward the given TestContext to the Engine under MainPanel.
-void Panel::SetTestContext(TestContext &testContext)
-{
-}
-
-
-
 // Panels will by default not allow fast-forward. The ones that do allow
 // it will override this (virtual) function and return true.
 bool Panel::AllowsFastForward() const noexcept
 {
 	return false;
+}
+
+
+
+void Panel::AddOrRemove()
+{
+	for(auto &panel : childrenToAdd)
+		if(panel)
+			children.emplace_back(std::move(panel));
+	childrenToAdd.clear();
+
+	for(auto *panel : childrenToRemove)
+	{
+		for(auto it = children.begin(); it != children.end(); ++it)
+		{
+			if(it->get() == panel)
+			{
+				children.erase(it);
+				break;
+			}
+		}
+	}
+	childrenToRemove.clear();
+
+	for(auto &child : children)
+		child->AddOrRemove();
 }
 
 
@@ -298,6 +346,64 @@ bool Panel::GamePadState(GamePad &controller)
 
 
 
+bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+{
+	return EventVisit(&Panel::KeyDown, key, mod, command, isNewPress);
+}
+
+
+
+bool Panel::DoClick(int x, int y, int clicks)
+{
+	return EventVisit(&Panel::Click, x, y, clicks);
+}
+
+
+
+bool Panel::DoRClick(int x, int y)
+{
+	return EventVisit(&Panel::RClick, x, y);
+}
+
+
+
+bool Panel::DoHover(int x, int y)
+{
+	return EventVisit(&Panel::Hover, x, y);
+}
+
+
+
+bool Panel::DoDrag(double dx, double dy)
+{
+	return EventVisit(&Panel::Drag, dx, dy);
+}
+
+
+
+bool Panel::DoRelease(int x, int y)
+{
+	return EventVisit(&Panel::Release, x, y);
+}
+
+
+
+bool Panel::DoScroll(double dx, double dy)
+{
+	return EventVisit(&Panel::Scroll, dx, dy);
+}
+
+
+
+void Panel::DoDraw()
+{
+	Draw();
+	for(auto &child : children)
+		child->DoDraw();
+}
+
+
+
 void Panel::SetIsFullScreen(bool set)
 {
 	isFullScreen = set;
@@ -391,12 +497,12 @@ int Panel::Modifier()
 
 
 
-// Display the given help message if it has not yet been shown. Return true
-// if the message was displayed.
-bool Panel::DoHelp(const string &name) const
+// Display the given help message if it has not yet been shown
+// (or if force is set to true). Return true if the message was displayed.
+bool Panel::DoHelp(const string &name, bool force) const
 {
 	string preference = "help: " + name;
-	if(Preferences::Has(preference))
+	if(!force && Preferences::Has(preference))
 		return false;
 
 	const string &message = GameData::HelpMessage(name);
@@ -404,7 +510,7 @@ bool Panel::DoHelp(const string &name) const
 		return false;
 
 	Preferences::Set(preference);
-	ui->Push(new Dialog(message));
+	ui->Push(new Dialog(Format::Capitalize(name) + ":\n\n" + message));
 
 	return true;
 }
@@ -426,4 +532,25 @@ void Panel::CursorToFirstZone()
 		Point center = firstZone->Center();
 		GetUI()->MoveMouseOffset(center);
 	}
+}
+
+
+
+const std::vector<std::shared_ptr<Panel>> &Panel::GetChildren()
+{
+	return children;
+}
+
+
+
+void Panel::AddChild(const shared_ptr<Panel> &panel)
+{
+	childrenToAdd.push_back(panel);
+}
+
+
+
+void Panel::RemoveChild(const Panel *panel)
+{
+	childrenToRemove.push_back(panel);
 }

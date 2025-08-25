@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SCREEN_H_
-#define SCREEN_H_
+#pragma once
 
 #include "Point.h"
 
@@ -21,6 +23,25 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // around some global variables, which means that no one but the drawing thread
 // is allowed to use it.
 class Screen {
+public:
+	// Use RAII to define the scope of a temporary screen size change.
+	class ScreenDimensionsGuard final
+	{
+	public:
+		// Constructor that changes the screen size on creation.
+		ScreenDimensionsGuard(int width, int height);
+		// Destructor, which restores the expected screen size.
+		~ScreenDimensionsGuard();
+		// Restore the screen settings.
+		void Deactivate();
+
+	private:
+		bool valid = false;
+		int oldWidth = 0;
+		int oldHeight = 0;
+	};
+
+
 public:
 	static void SetRaw(int width, int height);
 
@@ -53,7 +74,3 @@ public:
 	static Point BottomLeft();
 	static Point BottomRight();
 };
-
-
-
-#endif

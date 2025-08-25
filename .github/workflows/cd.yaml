@@ -9,146 +9,198 @@ on:
       - synchronize
       - opened
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
 jobs:
 
-  cd_ubuntu_x86_64:
-    runs-on: ubuntu-latest
+  cd_appimage_x64:
+    name: Linux
+    runs-on: ubuntu-22.04
     env:
-      OUTPUT: endless-sky-x86_64-continuous.tar.gz
+      OUTPUT: Endless_Sky-continuous-x86_64.AppImage
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
+          fetch-depth: '10'
       - name: Install dependencies
         run: |
-          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev
-          python3 -m pip install --user scons
+          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-cd-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: ${{ runner.os }}-cd-${{ env.CACHE_HASH }}
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          evict-old-files: '2d'
+          append-timestamp: 'false'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
-        shell: bash
-      - name: Build Application
-        run: scons -Qj $(nproc)
-      - name: Run Unit Tests
-        run: scons -Qj $(nproc) test
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset linux-release
+          cmake --build build --preset linux-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
-        run: tar -czf ${{ env.OUTPUT }} sounds images/ data/ license.txt keys.txt icon.png endless-sky credits.txt copyright changelog
+        run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
-  cd_appimage_x86_64:
-    runs-on: ubuntu-18.04
+  cd_windows_x64:
+    name: Windows
+    runs-on: windows-2025
     env:
-      ARCH: x86_64
-      OUTPUT: endless-sky-x86_64-continuous.AppImage
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: |
-          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-turbo8-dev libopenal-dev libmad0-dev libglew-dev libgl1-mesa-dev libegl1-mesa-dev libgles2-mesa-dev uuid-dev
-          python3 -m pip install --user scons
-      - name: Adjust version strings
-        run: ./utils/cd_update_versions.sh
-      - name: Build AppImage
-        run: ./utils/build_appimage.sh
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ env.OUTPUT }}
-          path: ${{ env.OUTPUT }}
-
-  cd_windows_win64:
-    runs-on: windows-latest
-    env:
-      DIR_MINGW64: C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64
-      DIR_ESLIB: .\dev64
       OUTPUT: EndlessSky-win64-continuous.zip
-      AR: gcc-ar
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Fetch development libraries
-        run: |
-          Invoke-WebRequest https://endless-sky.github.io/win64-dev.zip -OutFile win64-dev.zip
-          Expand-Archive win64-dev.zip -DestinationPath . -Force
-          Remove-Item win64-dev.zip
-      - name: Cache scons
-        uses: actions/cache@v2
+      - uses: actions/checkout@v4
         with:
-          path: 'scons-local'
-          key: scons-${{ hashFiles('.winmake') }}
+          show-progress: false
+          fetch-depth: '10'
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-cd-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+        shell: bash
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: ${{ runner.os }}-cd-${{ env.CACHE_HASH }}
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          evict-old-files: '2d'
+          append-timestamp: 'false'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
-      - name: Build Application
-        run: make -re -j ($(Get-CIMInstance -Class 'CIM_Processor').NumberOfLogicalProcessors) -f .winmake
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset mingw-release
+          cmake --build build --preset mingw-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
-          COPY .\bin\pkgd\release\endless-sky.exe EndlessSky.exe
-          COPY ".\dev64\bin\*.dll" .
-          COPY $Env:DIR_MINGW64\bin\libgcc_s_seh-1.dll .
-          COPY $Env:DIR_MINGW64\bin\libstdc++-6.dll .
-          COPY $Env:DIR_MINGW64\bin\libwinpthread-1.dll .
-          7z a ${{ env.OUTPUT }} .\sounds\ .\images\ .\data\ *.dll license.txt keys.txt icon.png EndlessSky.exe credits.txt copyright changelog
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
-  cd_macos_x86_64:
-    runs-on: macos-latest
+  cd_macos_x64:
+    name: MacOS
+    runs-on: macos-13
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
-      SDL2_FRAMEWORK: build/SDL2.framework
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Update Homebrew
-        run: brew update
-      - name: Install dependencies
-        run: brew install libpng jpeg-turbo
-      - name: Restore cached SDL2 framework
-        uses: actions/cache@v2
+      - uses: actions/checkout@v4
         with:
-          path: ${{ env.SDL2_FRAMEWORK }}
-          key: macos-latest-sdl2-${{ hashFiles('EndlessSky.xcodeproj/**', 'utils/set_dylibs_rpath.sh', 'utils/fetch_sdl2_framework.sh') }}
+          show-progress: false
+          fetch-depth: '10'
+      - name: Find cache keys
+        run: |
+          echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+          git log --pretty=format:'${{ runner.os }}-cd-%H' -n 10 | tail -n+2 >> restore_keys.txt
+          echo -e '\nEOF' >> restore_keys.txt
+          cat restore_keys.txt >> "$GITHUB_ENV"
+          echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: ${{ runner.os }}-cd-${{ env.CACHE_HASH }}
+          restore-keys: ${{ env.RESTORE_KEYS }}
+          evict-old-files: '2d'
+          append-timestamp: 'false'
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
-        shell: bash
-      - name: Build Application
-        run: xcodebuild -configuration "Release" -jobs $(sysctl -n hw.logicalcpu) -quiet
+      - name: Setup vcpkg cache
+        uses: TAServers/vcpkg-cache@v3
+        id: vcpkg-cache
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: lukka/get-cmake@latest
+      - uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Run CMake
+        run: |
+          cmake --preset macos-release
+          cmake --build build --preset macos-ci-release
+        env:
+          VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
       - name: Package Application
         run: |
-          cd build/Release
-          7z a ${{ github.workspace }}/${{ env.OUTPUT }} Endless\ Sky.app
+          cmake --install build/release
+          7z a ${{ env.OUTPUT }} "./install/release/*"
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
   cd_upload_artifacts_to_release:
+    name: Upload
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs:
-      - cd_ubuntu_x86_64
-      - cd_appimage_x86_64
-      - cd_windows_win64
-      - cd_macos_x86_64
+      - cd_appimage_x64
+      - cd_windows_x64
+      - cd_macos_x64
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT_UBUNTU: endless-sky-x86_64-continuous.tar.gz
-      OUTPUT_APPIMAGE: endless-sky-x86_64-continuous.AppImage
+      OUTPUT_APPIMAGE: Endless_Sky-continuous-x86_64.AppImage
       OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
       OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install github-release
         run: |
-          go get github.com/github-release/github-release
+          go install github.com/github-release/github-release@latest
           echo "GOPATH=$(go env GOPATH)" >> $GITHUB_ENV
           echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
       - name: Set environment variables
@@ -180,17 +232,11 @@ jobs:
               --pre-release
           fi
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           path: ${{ github.workspace }} # This will download all files to e.g `./EndlessSky-win64.zip/EndlessSky-win64.zip`
-      - name: Add ${{ env.OUTPUT_UBUNTU }} to release tag
-        run: |
-          github-release upload \
-            --tag continuous \
-            --replace \
-            --name ${{ env.OUTPUT_UBUNTU }} \
-            --file ${{ env.OUTPUT_UBUNTU }}/${{ env.OUTPUT_UBUNTU }}
       - name: Add ${{ env.OUTPUT_APPIMAGE }} to release tag
+        continue-on-error: true
         run: |
           github-release upload \
             --tag continuous \
@@ -198,6 +244,7 @@ jobs:
             --name ${{ env.OUTPUT_APPIMAGE }} \
             --file ${{ env.OUTPUT_APPIMAGE }}/${{ env.OUTPUT_APPIMAGE }}
       - name: Add ${{ env.OUTPUT_WINDOWS }} to release tag
+        continue-on-error: true
         run: |
           github-release upload \
             --tag continuous \

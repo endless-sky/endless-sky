@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEST_HELPER_OUTPUT_CAPTURE_HPP_
-#define ES_TEST_HELPER_OUTPUT_CAPTURE_HPP_
+#pragma once
 
 #include <iostream>
 #include <sstream>
@@ -20,7 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class OutputSink {
 public:
 	// Redirect an ostream, such as std::cout or std::cerr.
-	OutputSink(std::ostream &toCapture)
+	explicit OutputSink(std::ostream &toCapture)
 		: captured(toCapture), original(toCapture.rdbuf())
 	{
 		// Store anything sent to the captured stream in our buffer.
@@ -59,7 +61,3 @@ private:
 	// Our redirection buffer
 	std::stringstream storage;
 };
-
-
-
-#endif

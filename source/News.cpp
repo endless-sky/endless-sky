@@ -7,14 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "News.h"
 
 #include "DataNode.h"
 #include "Random.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 
@@ -22,7 +25,8 @@ using namespace std;
 
 
 
-void News::Load(const DataNode &node)
+void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	for(const DataNode &child : node)
 	{
@@ -41,15 +45,25 @@ void News::Load(const DataNode &node)
 
 		if(tag == "location")
 		{
-			if(remove)
+			if(add && !location.IsEmpty())
+				child.PrintTrace("Error: Cannot \"add\" to an existing location filter:");
+			else if(remove)
+			{
 				location = LocationFilter{};
+				if(child.HasChildren())
+					child.PrintTrace("Warning: Removing full location filter; partial removal is not supported:");
+			}
 			else
-				location.Load(child);
+				location.Load(child, visitedSystems, visitedPlanets);
 		}
 		else if(tag == "name")
 		{
 			if(remove)
+			{
 				names = Phrase{};
+				if(child.HasChildren())
+					child.PrintTrace("Warning: Removing all names; removal of individual names is not supported:");
+			}
 			else
 				names.Load(child);
 		}
@@ -80,16 +94,27 @@ void News::Load(const DataNode &node)
 		else if(tag == "message")
 		{
 			if(remove)
+			{
 				messages = Phrase{};
+				if(child.HasChildren())
+					child.PrintTrace("Warning: Removing all messages; removal of single messages is not supported:");
+			}
 			else
 				messages.Load(child);
 		}
 		else if(tag == "to" && hasValue && child.Token(valueIndex) == "show")
 		{
-			if(remove)
+			if(add && !toShow.IsEmpty())
+				child.PrintTrace("Error: Cannot \"add\" to an existing condition set:");
+			else if(remove)
+			{
 				toShow = ConditionSet{};
+				if(child.HasChildren())
+					child.PrintTrace("Warning: Removing all conditions; removal of condition subsets is not supported:");
+
+			}
 			else
-				toShow.Load(child);
+				toShow.Load(child, playerConditions);
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -105,14 +130,14 @@ bool News::IsEmpty() const
 
 
 
-// Check if this news item is available given the player's planet and conditions.
-bool News::Matches(const Planet *planet, const map<string, int64_t> &conditions) const
+// Check if this news item is available given the player's planet.
+bool News::Matches(const Planet *planet) const
 {
 	// If no location filter is specified, it should never match. This can be
 	// used to create news items that are never shown until an event "activates"
 	// them by specifying their location.
 	// Similarly, by updating a news item with "remove location", it can be deactivated.
-	return location.IsEmpty() ? false : (location.Matches(planet) && toShow.Test(conditions));
+	return location.IsEmpty() ? false : (location.Matches(planet) && toShow.Test());
 }
 
 

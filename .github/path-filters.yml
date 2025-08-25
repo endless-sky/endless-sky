@@ -1,57 +1,69 @@
 data:
-  - 'changelog*'
-  - 'copyright*'
-  - credits.txt
-  - icon.png
-  - keys.txt
-  - license.txt
   - 'data/**/*'
   - 'images/**/*'
   - 'sounds/**/*'
 
-game_code: &build
+game_code:
   - 'source/**'
-
-macos:
-  - 'XCode/**'
-  - '**/*.xcodeproj'
-  - 'icons/endless-sky.iconset/**'
-  - 'utils/fetch_sdl2_framework.sh'
-  - 'utils/set_dylibs_rpath.sh'
-  - *build
-
-windows:
-  - '**/*.cbp'
-  - EndlessSky.workspace
-  - SConstruct
-  - .winmake
-  - *build
-
-linux:
-  - SConstruct
-  - *build
 
 unit_tests:
   - 'tests/unit/**/*.h'
   - 'tests/unit/**/*.hpp'
   - 'tests/unit/**/*.cpp'
 
+shaders:
+  - 'shaders/**'
+  - 'utils/check_shaders.sh'
+
 integration_tests:
-  - 'utils/test_parse.*'
-  - 'tests/integration/run_tests*'
-  - 'data/tests/**'
-  - 'tests/integration/universes/**'
+  - 'tests/integration/config/plugins/integration-tests/**'
+
+steam:
+  - 'steam/**'
+
+doxygen_config:
+  - 'Doxyfile'
 
 codespell:
   - .codespell.exclude
+  - .codespell.words.exclude
 
-xcode_files:
-  - 'EndlessSky.xcodeproj/**'
-  - 'utils/check_xcode.sh'
+editorconfig_files:
+  - '**/!(*.mp3)'
 
-codeblocks_files:
-  - '*.cbp'
-  - 'utils/check_codeblocks.sh'
+content_style_check:
+  - utils/check_content_style.py
+  - utils/contentStyle.json
+
+code_style_check:
+  - utils/check_code_style.py
+
+cmake_files:
+  - CMakeLists.txt
+  - source/CMakeLists.txt
+  - tests/CMakeLists.txt
+  - tests/integration/IntegrationTests.cmake
+  - tests/integration/RunIntegrationTest.cmake
+  - utils/vcpkg_bootstrap.cmake
+  - utils/check_cmake.sh
+  - CMakePresets.json
+  - 'overlays/**'
+  - vcpkg.json
+  - vcpkg-configuration.json
 
 copyright:
-  - 'copyright'
+  - copyright
+  - utils/check_copyright.py
+
+changelog:
+  - changelog
+
+ci_config:
+  - '.github/workflows/ci.yml'
+  - '.github/path-filters.yml'
+  - '.github/workflows/compute-changes.yml'
+
+projects_check_config:
+  - '.github/workflows/projects_check.yml'
+  - '.github/path-filters.yml'
+  - '.github/workflows/compute-changes.yml'

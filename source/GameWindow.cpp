@@ -7,13 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "GameWindow.h"
 
 #include "Files.h"
-#include "ImageBuffer.h"
+#include "image/ImageBuffer.h"
+#include "image/ImageFileData.h"
 #include "Logger.h"
 #include "Screen.h"
 
@@ -21,17 +25,22 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <SDL2/SDL.h>
 
 #include <cstring>
-#include <string>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
 namespace {
+	// The minimal screen resolution requirements.
+	constexpr int minWidth = 1024;
+	constexpr int minHeight = 768;
+
 	SDL_Window *mainWindow = nullptr;
 	SDL_GLContext context = nullptr;
 	int width = 0;
 	int height = 0;
-	bool hasSwizzle = false;
+	int drawWidth = 0;
+	int drawHeight = 0;
 	bool supportsAdaptiveVSync = false;
 
 	// Logs SDL errors and returns true if found
@@ -67,8 +76,25 @@ string GameWindow::SDLVersions()
 
 
 
-bool GameWindow::Init()
+bool GameWindow::Init(bool headless)
 {
+#ifdef _WIN32
+	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
+	SDL_SetHint(SDL_HINT_WINDOWS_DPI_AWARENESS, "permonitorv2");
+#elif defined(__linux__)
+	// Set the class name for the window on Linux. Used to set the application icon.
+	// This sets it for both X11 and Wayland.
+	setenv("SDL_VIDEO_X11_WMCLASS", "io.github.endless_sky.endless_sky", true);
+#endif
+
+	// When running the integration tests, don't create a window nor an OpenGL context.
+	if(headless)
+#if defined(__linux__) && !SDL_VERSION_ATLEAST(2, 0, 22)
+		setenv("SDL_VIDEODRIVER", "dummy", true);
+#else
+		SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
+#endif
+
 	// This needs to be called before any other SDL commands.
 	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) != 0)
 	{
@@ -85,17 +111,16 @@ bool GameWindow::Init()
 		return false;
 	}
 	if(mode.refresh_rate && mode.refresh_rate < 60)
-		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + "). The game will run more slowly.");
+		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
+			" The game will run more slowly.");
 
 	// Make the window just slightly smaller than the monitor resolution.
-	int minWidth = 640;
-	int minHeight = 480;
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
-	if(maxWidth < minWidth || maxHeight < minHeight){
-		ExitWithError("Monitor resolution is too small!");
-		return false;
-	}
+	if(maxWidth < minWidth || maxHeight < minHeight)
+		Logger::LogError("Monitor resolution is too small! Minimal requirement is "
+			+ to_string(minWidth) + 'x' + to_string(minHeight)
+			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.');
 
 	int windowWidth = maxWidth - 100;
 	int windowHeight = maxHeight - 100;
@@ -111,18 +136,28 @@ bool GameWindow::Init()
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
 
-	if(Preferences::Has("fullscreen"))
+	if(Preferences::ScreenModeSetting() == "fullscreen")
 		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 	else if(Preferences::Has("maximized"))
 		flags |= SDL_WINDOW_MAXIMIZED;
 
 	// The main window spawns visibly at this point.
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, flags);
+		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, headless ? 0 : flags);
 
-	if(!mainWindow){
+	if(!mainWindow)
+	{
 		ExitWithError("Unable to create window!");
 		return false;
+	}
+
+	// Bail out early if we are in headless mode; no need to initialize all the OpenGL stuff.
+	if(headless)
+	{
+		width = windowWidth;
+		height = windowHeight;
+		Screen::SetRaw(width, height);
+		return true;
 	}
 
 	// Settings that must be declared before the context creation.
@@ -141,12 +176,14 @@ bool GameWindow::Init()
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 
 	context = SDL_GL_CreateContext(mainWindow);
-	if(!context){
+	if(!context)
+	{
 		ExitWithError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.");
 		return false;
 	}
 
-	if(SDL_GL_MakeCurrent(mainWindow, context)){
+	if(SDL_GL_MakeCurrent(mainWindow, context))
+	{
 		ExitWithError("Unable to set the current OpenGL context!");
 		return false;
 	}
@@ -154,7 +191,13 @@ bool GameWindow::Init()
 	// Initialize GLEW.
 #if !defined(__APPLE__) && !defined(ES_GLES)
 	glewExperimental = GL_TRUE;
-	if(glewInit() != GLEW_OK){
+	GLenum err = glewInit();
+#ifdef GLEW_ERROR_NO_GLX_DISPLAY
+	if(err != GLEW_OK && err != GLEW_ERROR_NO_GLX_DISPLAY)
+#else
+	if(err != GLEW_OK)
+#endif
+	{
 		ExitWithError("Unable to initialize GLEW!");
 		return false;
 	}
@@ -162,7 +205,8 @@ bool GameWindow::Init()
 
 	// Check that the OpenGL version is high enough.
 	const char *glVersion = reinterpret_cast<const char *>(glGetString(GL_VERSION));
-	if(!glVersion || !*glVersion){
+	if(!glVersion || !*glVersion)
+	{
 		ExitWithError("Unable to query the OpenGL version!");
 		return false;
 	}
@@ -193,7 +237,6 @@ bool GameWindow::Init()
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Check for support of various graphical features.
-	hasSwizzle = OpenGL::HasSwizzleSupport();
 	supportsAdaptiveVSync = OpenGL::HasAdaptiveVSyncSupport();
 
 	// Enable the user's preferred VSync state, otherwise update to an available
@@ -223,12 +266,8 @@ void GameWindow::Quit()
 	SDL_ShowCursor(true);
 
 	// Clean up in the reverse order that everything is launched.
-//#ifndef _WIN32
-	// Under windows, this cleanup code causes intermittent crashes.
 	if(context)
 		SDL_GL_DeleteContext(context);
-//#endif
-
 	if(mainWindow)
 		SDL_DestroyWindow(mainWindow);
 
@@ -251,7 +290,7 @@ void GameWindow::SetIcon()
 
 	// Load the icon file.
 	ImageBuffer buffer;
-	if(!buffer.Read(Files::Resources() + "icon.png"))
+	if(!buffer.Read(ImageFileData(Files::Resources() / "icon.png")))
 		return;
 	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
 		return;
@@ -292,7 +331,6 @@ void GameWindow::AdjustViewport()
 
 	// Find out the drawable dimensions. If this is a high- DPI display, this
 	// may be larger than the window.
-	int drawWidth, drawHeight;
 	SDL_GL_GetDrawableSize(mainWindow, &drawWidth, &drawHeight);
 	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);
 
@@ -360,6 +398,20 @@ int GameWindow::Height()
 
 
 
+int GameWindow::DrawWidth()
+{
+	return drawWidth;
+}
+
+
+
+int GameWindow::DrawHeight()
+{
+	return drawHeight;
+}
+
+
+
 bool GameWindow::IsMaximized()
 {
 	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_MAXIMIZED);
@@ -385,13 +437,6 @@ void GameWindow::ToggleFullscreen()
 	}
 	else
 		SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
-}
-
-
-
-bool GameWindow::HasSwizzle()
-{
-	return hasSwizzle;
 }
 
 
@@ -432,5 +477,3 @@ void GameWindow::ExitWithError(const string &message, bool doPopUp)
 
 	GameWindow::Quit();
 }
-
-

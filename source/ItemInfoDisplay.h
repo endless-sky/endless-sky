@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ITEM_INFO_DISPLAY_H_
-#define ITEM_INFO_DISPLAY_H_
+#pragma once
 
 #include "Point.h"
 #include "text/WrappedText.h"
@@ -73,8 +75,3 @@ protected:
 	bool hasHover = false;
 	mutable WrappedText hoverText;
 };
-
-
-
-#endif
-

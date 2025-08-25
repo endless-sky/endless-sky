@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DICTIONARY_H_
-#define DICTIONARY_H_
+#pragma once
 
 #include <string>
 #include <utility>
@@ -31,13 +33,11 @@ public:
 	// Get the value of a key, or 0 if it does not exist:
 	double Get(const char *key) const;
 	double Get(const std::string &key) const;
+	// Erase the given element.
+	void Erase(const char *key);
 
 	// Expose certain functions from the underlying vector:
 	using std::vector<std::pair<const char *, double>>::empty;
 	using std::vector<std::pair<const char *, double>>::begin;
 	using std::vector<std::pair<const char *, double>>::end;
 };
-
-
-
-#endif

@@ -6,12 +6,17 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Weapons:
 
 outfit "Ka'het Nullifier"
 	category "Guns"
+	series "Guns"
+	index 05030
 	cost 3062000
 	thumbnail "outfit/ka'het nullifier"
 	"mass" 68
@@ -34,14 +39,17 @@ outfit "Ka'het Nullifier"
 		"velocity" 9
 		"lifetime" 200
 		"reload" 350
+		"cluster"
 		"firing energy" 710
-		"firing force" 90
+		"firing force" 135
 		"firing heat" 160
 		"turn" 73
 		"shield damage" 120
 		"hull damage" 40
-		"ion damage" 150
-		"hit force" 50
+		"energy damage" 3200
+		"ion damage" 220
+		"scrambling damage" 10
+		"hit force" 75
 		"blast radius" 20
 	description "The Nullifier was one of the largest weapons the Builders ever developed, created specifically to be carried in battle by the Vareti. Although it does almost no damage to shields and hull, one shot is capable of disabling most kinds of reactors in a matter of seconds."
 
@@ -106,6 +114,8 @@ effect "ionball ring"
 
 outfit "Ka'het Ravager Beam"
 	category "Guns"
+	series "Guns"
+	index 05020
 	cost 322000
 	thumbnail "outfit/ka'het ravager beam"
 	"mass" 13
@@ -129,6 +139,8 @@ outfit "Ka'het Ravager Beam"
 
 outfit "Ka'het Ravager Turret"
 	category "Turrets"
+	series "Turrets"
+	index 05020
 	cost 417000
 	thumbnail "outfit/ka'het ravager turret"
 	"mass" 16
@@ -143,7 +155,7 @@ outfit "Ka'het Ravager Turret"
 		sound "disruptor"
 		"hit effect" "ravager impact"
 		"inaccuracy" .2
-		"turret turn" 1.8
+		"turret turn" 4.2
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -162,6 +174,8 @@ effect "ravager impact"
 
 outfit "Ka'het Annihilator"
 	category "Guns"
+	series "Guns"
+	index 05010
 	cost 351000
 	thumbnail "outfit/ka'het annihilator"
 	"mass" 10
@@ -185,6 +199,8 @@ outfit "Ka'het Annihilator"
 
 outfit "Ka'het Annihilator Turret"
 	category "Turrets"
+	series "Turrets"
+	index 05010
 	cost 529000
 	thumbnail "outfit/ka'het annihilator turret"
 	"mass" 25
@@ -194,11 +210,12 @@ outfit "Ka'het Annihilator Turret"
 	weapon
 		sprite "projectile/annihilator"
 			"frame rate" 7
+		sound "inhibitor"
 		"hardpoint sprite" "hardpoint/annihilator turret"
 		"hardpoint offset" 15.
 		"hit effect" "bullet impact"
 		"inaccuracy" 1
-		"turret turn" 2.3
+		"turret turn" 3.2
 		"range override" 630
 		"velocity override" 18
 		"reload" 10
@@ -221,6 +238,8 @@ outfit "Annihilator Projectile"
 
 outfit "Ka'het EMP Deployer"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 05010
 	cost 715000
 	thumbnail "outfit/ka'het emp deployer"
 	"mass" 18
@@ -250,7 +269,8 @@ outfit "Ka'het EMP Deployer"
 		"acceleration" .7
 		"drag" .1
 		"turn" 2
-		"homing" 3
+		"homing"
+			"throttle control"
 		"infrared tracking" .7
 		"radar tracking" .8
 		"trigger radius" 50
@@ -258,12 +278,16 @@ outfit "Ka'het EMP Deployer"
 		"shield damage" 700
 		"hull damage" 100
 		"ion damage" 48
-		"hit force" 90
+		"scrambling damage" 48
+		"hit force" 135
 		"missile strength" 80
 	description "Eons ago, the Builders were attacked by alien ships which used weapons that ignored their hull and damaged their reactors. Although they never did recover any of these weapons, after years of research they managed to replicate their effects."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Ka'het Emergency Deployer"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 05020
 	cost 645000
 	thumbnail "outfit/ka'het mhd deployer"
 	"mass" 13
@@ -284,7 +308,7 @@ outfit "Ka'het Emergency Deployer"
 		"reload" 60
 		"range override" 400
 		"firing energy" -3800
-		"firing force" 900
+		"firing force" 1350
 		"firing heat" 5800
 		"firing hull" 60
 		"trigger radius" 40
@@ -292,7 +316,7 @@ outfit "Ka'het Emergency Deployer"
 		"shield damage" 28750
 		"hull damage" 9060
 		"heat damage" 4920
-		"hit force" 1600
+		"hit force" 2400
 		"missile strength" 280
 	description "Most drones the Builders possessed were completely unarmed, making them very vulnerable to enemy attacks. Since installing weapons would have greatly reduced its cargo capacity, they instead decided to dissuade possible hijackers by developing these Emergency Deployers: they work by activating a series of reactions inside the ship's MHD generator and then ejecting it towards the enemy, resulting in a large scale detonation as soon as it hits something."
 
@@ -322,6 +346,8 @@ effect "mhd explosion"
 
 outfit "Ka'het Support Cooling"
 	category "Systems"
+	series "Cooling"
+	index 05010
 	cost 218000
 	thumbnail "outfit/ka'het support cooling"
 	"mass" 6
@@ -333,6 +359,8 @@ outfit "Ka'het Support Cooling"
 
 outfit "Ka'het Primary Cooling"
 	category "Systems"
+	series "Cooling"
+	index 05020
 	cost 563000
 	thumbnail "outfit/ka'het primary cooling"
 	"mass" 11
@@ -345,6 +373,8 @@ outfit "Ka'het Primary Cooling"
 
 outfit "Ka'het Shield Restorer"
 	category "Systems"
+	series "Shields"
+	index 05010
 	cost 138000
 	thumbnail "outfit/ka'het shield restorer"
 	"mass" 14
@@ -355,11 +385,13 @@ outfit "Ka'het Shield Restorer"
 
 outfit "Ka'het Grand Restorer"
 	category "Systems"
+	series "Shields"
+	index 05020
 	cost 1022000
 	thumbnail "outfit/ka'het grand restorer"
 	"mass" 72
 	"outfit space" -86
-	"shield generation" 7.08
+	"delayed shield generation" 7.08
 	"energy consumption" 10.62
 	"depleted shield delay" 350
 	description "This shield generator is the apex of Ka'het shielding technology, a field that developed rapidly and out of necessity rather than gradually and perfected over long periods. Nevertheless, the Grand Restorer grants good protection for the largest Het ships, replacing the basic restorers used elsewhere."
@@ -369,6 +401,8 @@ outfit "Ka'het Grand Restorer"
 
 outfit "Ka'het MHD Generator"
 	category "Power"
+	series "Generators"
+	index 05010
 	cost 1263000
 	thumbnail "outfit/ka'het mhd generator"
 	"mass" 20
@@ -379,6 +413,8 @@ outfit "Ka'het MHD Generator"
 
 outfit "Ka'het Reserve Accumulator"
 	category "Power"
+	series "Batteries"
+	index 05010
 	cost 27000
 	thumbnail "outfit/ka'het reserve accumulator"
 	"mass" 2
@@ -391,6 +427,8 @@ outfit "Ka'het Reserve Accumulator"
 outfit "Maeri Engine Nacelles"
 	plural "Maeri Engine Nacelles"
 	category "Engines"
+	series "Engines"
+	index 05030
 	"cost" 928000
 	thumbnail "outfit/ka'het maeri engine"
 	"mass" 59
@@ -398,9 +436,9 @@ outfit "Maeri Engine Nacelles"
 	"engine capacity" -59
 	"energy consumption" 5.01
 	"heat generation" 1.1
-	"thrust" 37.1
+	"thrust" 58.08
 	"thrusting heat" 2.8
-	"turn" 931.4
+	"turn" 1397.1
 	"turning heat" 1.3
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
@@ -408,11 +446,13 @@ outfit "Maeri Engine Nacelles"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma medium"
-	description "The Ka'het engines are peculiar in that they continuously draw large amounts of energy, but require no additional energy to activate: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsions, and generates only a tiny amount of heat."
+	description "The Ka'het engines are peculiar in that they continuously draw large amounts of energy, but require no additional energy to activate: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsion, and generates only a tiny amount of heat."
 
 outfit "Ka'het Sustainer Nacelles"
 	plural "Ka'het Sustainer Nacelles"
 	category "Engines"
+	series "Engines"
+	index 05020
 	"cost" 357000
 	thumbnail "outfit/ka'het sustainer engine"
 	"mass" 27
@@ -420,9 +460,9 @@ outfit "Ka'het Sustainer Nacelles"
 	"engine capacity" -27
 	"heat generation" 0.6
 	"energy consumption" 2.49
-	"thrust" 15.1
+	"thrust" 25.17
 	"thrusting heat" 1.0
-	"turn" 432.1
+	"turn" 648.15
 	"turning heat" 0.5
 	"flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
@@ -435,6 +475,8 @@ outfit "Ka'het Sustainer Nacelles"
 outfit "Telis Engine Nacelles"
 	plural "Telis Engine Nacelles"
 	category "Engines"
+	series "Engines"
+	index 05040
 	"cost" 1372000
 	thumbnail "outfit/ka'het telis engine"
 	"mass" 81
@@ -442,9 +484,9 @@ outfit "Telis Engine Nacelles"
 	"engine capacity" -81
 	"energy consumption" 6.81
 	"heat generation" 1.4
-	"thrust" 55.4
+	"thrust" 83.1
 	"thrusting heat" 3.5
-	"turn" 1379.2
+	"turn" 2068.8
 	"turning heat" 1.9
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
@@ -456,6 +498,8 @@ outfit "Telis Engine Nacelles"
 
 outfit "Vareti Engine Block"
 	category "Engines"
+	series "Engines"
+	index 05050
 	"cost" 1815000
 	thumbnail "outfit/ka'het vareti engine"
 	"mass" 137
@@ -463,9 +507,9 @@ outfit "Vareti Engine Block"
 	"engine capacity" -137
 	"energy consumption" 10.90
 	"heat generation" 2.58
-	"thrust" 93.9
+	"thrust" 140.85
 	"thrusting heat" 6.7
-	"turn" 2333.9
+	"turn" 3500.85
 	"turning heat" 3.32
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
@@ -477,6 +521,8 @@ outfit "Vareti Engine Block"
 
 outfit "Ka'het Compact Engine"
 	category "Engines"
+	series "Engines"
+	index 05010
 	"cost" 172000
 	thumbnail "outfit/ka'het compact engine"
 	"mass" 21
@@ -484,10 +530,10 @@ outfit "Ka'het Compact Engine"
 	"engine capacity" -21
 	"heat generation" 0.3
 	"energy consumption" 0.48
-	"thrust" 11.2
+	"thrust" 19.17
 	"thrusting energy" 1.7
 	"thrusting heat" 1.2
-	"turn" 234.4
+	"turn" 351.6
 	"turning energy" 0.42
 	"turning heat" 0.3
 	"flare sprite" "effect/ka'het flare/medium"
@@ -497,3 +543,14 @@ outfit "Ka'het Compact Engine"
 		"frame rate" 30
 	"steering flare sound" "plasma small"
 	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Improvements over time allowed it to maintain a comparable efficiency to the larger models, although unlike those, it requires some energy to activate the engines in addition to the constant energy drain that all Builder-designed engines have."
+
+# Hand to Hand:
+
+outfit "Ka'het Electric Stunner"
+	category "Hand to Hand"
+	cost 103500
+	thumbnail "outfit/ka'het taser"
+	"capture attack" 1.3
+	"capture defense" 8.5
+	"unplunderable" 1
+	description "A weapon of curious design, clearly not built with human hands in mind. Its short range makes it effective only for defending against enemy boarders, using the knowledge of your ship's architecture to your advantage."

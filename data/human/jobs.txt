@@ -6,7 +6,10 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Escort (Tiny, Northern, Dangerous Destination)"
 	name "Escort to <planet>"
@@ -40,6 +43,8 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -53,6 +58,8 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -100,6 +107,8 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -114,6 +123,8 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -558,6 +569,8 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
@@ -571,6 +584,8 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -620,6 +635,8 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
@@ -632,6 +649,8 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 				"Fury"
 			variant
 				"Berserker"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -1072,6 +1091,8 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 				"Fury"
 			variant
 				"Hawk"
+			variant
+				"Scrapper"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
@@ -1085,6 +1106,8 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 				"Fury"
 			variant
 				"Hawk"
+			variant
+				"Scrapper"
 	
 	npc accompany save
 		government "Merchant"
@@ -1547,6 +1570,23 @@ mission "Cargo [4]"
 		payment 4000
 		dialog phrase "generic cargo delivery payment"
 
+mission "Cargo [5]"
+	name "Delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 5 2 .1
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 3
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		dialog phrase "generic cargo delivery payment"
+
 mission "Bulk Delivery [0]"
 	name "Bulk delivery to <planet>"
 	job
@@ -1605,6 +1645,25 @@ mission "Bulk Delivery [2]"
 	on complete
 		payment
 		payment 4000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Bulk Delivery [3]"
+	name "Bulk delivery to <planet>"
+	job
+	repeat
+	description "Deliver <cargo> to <destination>. Payment is <payment>."
+	cargo random 25 2 .05
+	to offer
+		random < 70
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 3
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
 		dialog phrase "generic cargo delivery payment"
 
 mission "Rush Delivery [0]"
@@ -1691,6 +1750,27 @@ mission "Rush Delivery [3]"
 	on complete
 		payment
 		payment 22000
+		dialog phrase "generic cargo delivery payment"
+
+mission "Rush Delivery [4]"
+	name "Rush delivery to <planet>"
+	job
+	repeat
+	deadline
+	description "Deliver <cargo> to <destination> by <date>. Payment is <payment>."
+	cargo random 5 2 .1
+	to offer
+		random < 90
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 3
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment
+		payment 10000
 		dialog phrase "generic cargo delivery payment"
 
 
@@ -1789,6 +1869,62 @@ mission "Passengers [4]"
 	on complete
 		payment
 		payment 2000
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Passengers [5]"
+	name "Passenger transport to <planet>"
+	job
+	repeat
+	description "Bring <fare> to <destination>. Payment is <payment>."
+	passengers 1 10 .9
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 1 3
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 500
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Passengers to Quarg [1]"
+	name "Passenger transport to <planet>"
+	description "Bring <fare> to the Quarg planet of <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1 10 .9
+	to offer
+		random < 10
+		has "landing access: Humanika"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Humanika"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Passengers to Quarg [2]"
+	name "Passenger transport to <planet>"
+	description "Bring <fare> to the Quarg planet of <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1 10 .9
+	to offer
+		random < 10
+		has "landing access: Humanika"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Humanika"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Transport miners to <planet>"
@@ -1917,12 +2053,12 @@ mission "Wealthy tourists out"
 	name "Bring wealthy tourists to <planet>"
 	job
 	repeat
-	description "These <bunks> wealthy tourists want to see <destination>. They are willing to pay you <payment>."
+	description "These <bunks> wealthy tourists want to see <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 75
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "rich" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1934,6 +2070,54 @@ mission "Wealthy tourists out"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Wealthy tourist group out [0]"
+	name "Wealthy tourist group to <planet>"
+	job
+	repeat
+	description "A group of wealthy tourists, consisting of <bunks> members, want to see <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
+	passengers 15 5 .09
+	to offer
+		random < 75
+		random < ( "passenger space" - 35 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "rich" "urban"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "tourism"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 210000 135
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Wealthy tourist group out [1]"
+	name "Wealthy tourist group to <planet>"
+	job
+	repeat
+	description "A group of wealthy tourists, consisting of <bunks> members, want to see <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
+	passengers 15 5 .09
+	to offer
+		random < 75
+		random < ( "passenger space" - 35 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "rich" "urban"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "tourism"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 210000 135
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Tourists back [0]"
@@ -1979,15 +2163,15 @@ mission "Tourists back [1]"
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Wealthy tourists back"
-	name "Bring wealthy tourists home to <planet>"
+	name "Wealthy tourists home to <planet>"
 	job
 	repeat
-	description "These <bunks> wealthy tourists are headed home to <destination>. They are willing to pay you <payment>."
+	description "These <bunks> wealthy tourists are headed home to <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 75
-	on offer
-		require "Luxury Accommodations"
+	to accept
+		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -1999,6 +2183,54 @@ mission "Wealthy tourists back"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 10000 200
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Wealthy tourist group back [0]"
+	name "Wealthy tourists home to <planet>"
+	job
+	repeat
+	description "A group of wealthy tourists, consisting of <bunks> members, are headed home to <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
+	passengers 15 5 .09
+	to offer
+		random < 75
+		random < ( "passenger space" - 35 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "tourism"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "rich" "urban"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 210000 135
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Wealthy tourist group back [1]"
+	name "Wealthy tourists home to <planet>"
+	job
+	repeat
+	description "A group of wealthy tourists, consisting of <bunks> members, are headed home to <destination>, and wish to travel in a luxurious ship for the journey. They are willing to pay you <payment>."
+	passengers 15 5 .09
+	to offer
+		random < 75
+		random < ( "passenger space" - 35 ) * 2
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "tourism"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "rich" "urban"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 210000 135
 		dialog phrase "generic passenger dropoff payment"
 
 mission "Family [0]"
@@ -2107,6 +2339,27 @@ mission "Strike Breakers [mining]"
 		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
+mission "Strike Breakers [large mining]"
+	name "Strike breakers to <planet>"
+	job
+	repeat
+	description "Bring <bunks> strike breakers to <destination>, to take the place of mine workers who are on strike. The company will pay you <payment>."
+	passengers 40 4 .08
+	to offer
+		random < "passenger space" - 45
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "mining"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 130000 100
+		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
+
 mission "Strike Breakers [textile]"
 	name "Strike breakers to <planet>"
 	job
@@ -2127,6 +2380,27 @@ mission "Strike Breakers [textile]"
 	on complete
 		payment
 		payment 10000
+		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
+
+mission "Strike Breakers [large textile]"
+	name "Strike breakers to <planet>"
+	job
+	repeat
+	description "Bring <bunks> strike breakers to <destination>, to take the place of textile workers who are on strike. The company will pay you <payment>."
+	passengers 40 4 .08
+	to offer
+		random < "passenger space" - 45
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "textiles"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 130000 100
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
 mission "Strike Breakers [factory]"
@@ -2151,6 +2425,27 @@ mission "Strike Breakers [factory]"
 		payment 10000
 		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
 
+mission "Strike Breakers [large factory]"
+	name "Strike breakers to <planet>"
+	job
+	repeat
+	description "Bring <bunks> strike breakers to <destination>, to take the place of factory workers who are on strike. The company will pay you <payment>."
+	passengers 40 4 .08
+	to offer
+		random < "passenger space" - 45
+		random < 10
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "factory"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 130000 100
+		dialog "You unload the strike breakers amid an angry crowd of protesters held back by police. When you return to your ship, you find that the company has transferred the agreed-upon payment of <payment> into your account."
+
 mission "Colonists [0]"
 	name "Colonists to <planet>"
 	job
@@ -2158,21 +2453,20 @@ mission "Colonists [0]"
 	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
 	passengers 10 4 .1
 	to offer
-		random < 30
-		"passenger space" > 30
+		random < ( "passenger space" - 20 ) / 2
 	source
 		attributes "urban" "near earth" "core" "factory"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
 		distance 2 20
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 8000
-		dialog "The colonists depart your ship after paying you <payment>."
+		payment 70000 100
+		dialog "The colonists hand you <payment> before departing your ship, eager to start their new life on <planet>."
 
 mission "Colonists [1]"
 	name "Colonists to <planet>"
@@ -2181,51 +2475,94 @@ mission "Colonists [1]"
 	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
 	passengers 10 4 .1
 	to offer
-		random < 20
-		"passenger space" > 20
+		random < ( "passenger space" - 20 ) / 2
 	source
 		attributes "urban" "near earth" "core" "factory"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
 		distance 4 30
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
-		dialog "The colonists depart your ship after paying you <payment>."
+		payment 80000 100
+		dialog "The colonists hand you <payment> before departing your ship, eager to start their new life on <planet>."
+
+mission "Colonists [2]"
+	name "Colonists to <planet>"
+	job
+	repeat
+	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
+	passengers 10 4 .1
+	to offer
+		random < ( "passenger space" - 20 ) / 2
+	source
+		attributes "urban" "near earth" "core" "factory"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 90000 100
+		dialog "The colonists hand you <payment> before departing your ship, eager to start their new life on <planet>."
+
+mission "Colonists [3]"
+	name "Colonists to <planet>"
+	job
+	repeat
+	description "These <bunks> people are hoping to join a colony on <destination>. They will pay you <payment> to take them there."
+	passengers 10 4 .1
+	to offer
+		random < ( "passenger space" - 20 ) / 2
+	source
+		attributes "urban" "near earth" "core" "factory"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
+		not attributes "station" "urban"
+		distance 4 30
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 100000 100
+		dialog "The colonists hand you <payment> before departing your ship, eager to start their new life on <planet>."
 
 mission "Stranded Field Trip"
 	name "Stranded field trip to <planet>"
 	job
 	repeat
-	description `These <bunks> school students have been stranded on a field trip due to the unexpected bankruptcy of their booked transport. The school and parents have put up a reward of <payment> for them to be returned home to <destination>.`
+	description `These <bunks> pupils have been stranded on a field trip due to the unexpected bankruptcy of their booked transport. A reward of <payment> is available for them and their <tons> of luggage to be returned home to <destination>.`
 	passengers 20 4 .1
 	cargo "educational supplies" 2 10 .6
 	to offer
+		random < ( "passenger space" - 30 ) / 2
 		random < 10
-		"passenger space" > 30
 	source
 		attributes "near earth" "deep" "paradise" "tourism"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
+		attributes "education" "near earth" "deep" "paradise" "urban"
+		not attributes "station" "urban"
 		distance 4 16
-		attributes "near earth" "deep" "paradise" "urban"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment
-		payment 10000
+		payment 100000 150
 		dialog `The students excitedly rush off your ship into the arms of their waiting parents. The adventure was fun, but they're very pleased to be safely home after so long. The school deposits <payment> into your account.`
 
 mission "Prisoners [0]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Bring <bunks> petty criminals to <destination>, where they will serve their sentences as mine laborers. Payment is <payment>."
+	description "Bring <bunks> petty criminals to <destination>, where they will serve their sentences as mine laborers. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 10 .9
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2236,8 +2573,8 @@ mission "Prisoners [0]"
 		attributes "north" "south" "rim" "frontier" "core"
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2248,12 +2585,12 @@ mission "Prisoners [1]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as factory laborers. Payment is <payment>."
+	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as factory laborers. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2271,12 +2608,12 @@ mission "Prisoners [2]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as domestic servants. Payment is <payment>."
+	description "Transport <bunks> petty criminals to <destination>, where they will serve their sentences as domestic servants. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2293,12 +2630,12 @@ mission "Prisoners [3]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Transport <bunks> petty criminals to a penal colony on <destination>. Payment is <payment>."
+	description "Transport <bunks> petty criminals to a penal colony on <destination>. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 15 .9
 	to offer
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2315,13 +2652,13 @@ mission "Prisoners [4]"
 	name "Prisoner transport to <planet>"
 	job
 	repeat
-	description "Transport <bunks> violent felons to a penal colony on <destination>. Payment is <payment>."
+	description "Transport <bunks> violent felons to a penal colony on <destination>. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 10 .9
 	to offer
 		random < 10
 		"combat rating" > 50
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
@@ -2400,6 +2737,88 @@ mission "Released Prisoners [2]"
 	on complete
 		payment 3000 150
 		dialog "The released prisoners walk into the spaceport with nothing but discharge paperwork and the clothes on their backs. You collect your payment of <payment>."
+
+mission "Passenger Runoff [0]"
+	name "Passenger transport to <planet>"
+	description "Bring a hooded figure to <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1
+	"apparent payment" 12000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		random < 1
+		random < 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog `As your ship touches down on the landing pad, a blinking light notifies you that the cargo bay door was opened using the emergency release. You catch a glimpse of your passenger running off into the spaceport.`
+
+mission "Passenger Runoff [1]"
+	name "Passenger transport to <planet>"
+	description "Bring a teenager to <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1
+	"apparent payment" 12000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		random < 1
+		random < 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog `After landing, you go to the passenger compartments to notify them of the arrival and ask for the payment. The door opens as you raise your hand to knock, and a teenager rushes past you. Before you can recover, they're already gone and on their way into the depths of the spaceport.`
+
+mission "Passenger Runoff With Payment [0]"
+	name "Passenger transport to <planet>"
+	description "Bring a hooded figure to <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1
+	"apparent payment" 12000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		random < 1
+		random < 40
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000
+		dialog `As your ship touches down on the landing pad, a blinking light notifies you that the cargo bay door was opened using the emergency release. Checking the bay, you find a payment of <payment> and spot your passenger running off into the spaceport.`
+
+mission "Passenger Runoff With Payment [1]"
+	name "Passenger transport to <planet>"
+	description "Bring a teenager to <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1
+	"apparent payment" 12000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		random < 1
+		random < 40
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000
+		dialog `As your ship touches down on the landing pad, a blinking light notifies you that the cargo bay door was opened using the emergency release. Checking the bay, you find a payment of <payment> and spot your passenger running off into the spaceport.`
 
 mission "Large Bulk Delivery [0]"
 	name "Large bulk delivery to <planet>"
@@ -2575,17 +2994,129 @@ mission "Recycle garbage"
 		payment
 		payment 20000
 
+mission "FW Wildfire Aid [1]"
+	job
+	repeat
+	name "Wildfire aid to <planet>"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	description "A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Bring <cargo> to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	cargo "flames aid" 25 2 .05
+	deadline
+	to offer
+		random < 5
+	source
+		government "Free Worlds"
+	destination
+		government "Free Worlds"
+		distance 2 8
+		attributes "forest"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 8500 80
+		dialog "You drop off your cargo of <commodity> and collect your payment of <payment>. A group of <planet> citizens thank you for your assistance and bid you farewell."
+
+mission "FW Wildfire Aid [2]"
+	job
+	repeat
+	name "Firefighters to <planet>"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	description "A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport a team of <bunks> firefighters to <planet> by <date> to assist in the firefighting efforts. Payment is <payment>."
+	passengers 5 10
+	deadline
+	to offer
+		random < 5
+	source
+		government "Free Worlds"
+	destination
+		government "Free Worlds"
+		distance 2 8
+		attributes "forest"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10500 80
+		dialog "You wish the firefighting team well in their efforts and collect your payment of <payment>. A group of <planet> citizens comes to guide the team away to a nearby tent, and thank you for your assistance."
+
+mission "FW Cold Aid [1]"
+	name "Cold relief to <planet>"
+	description `A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport <cargo> to <planet> by <date> to assist in the recovery efforts. Payment is <payment>.`
+	job
+	repeat
+	deadline
+	source
+		government "Free Worlds"
+	destination
+		government "Free Worlds"
+		distance 2 8
+		attributes "frozen"
+	substitutions
+		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowstorm"
+			"random" < 30
+		"<problem>" "blizzard"
+			"random" < 10
+	cargo "cold aid" 10 15 0.5
+	to offer
+		random < 1
+	on complete
+		payment 8500 80
+		dialog `You turn your cargo of <cargo> over to the needy community in return for <payment>.`
+
+mission "FW Cold Aid [2]"
+	name "Cold relief to <planet>"
+	description `A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport <cargo> to <planet> by <date> to assist in the recovery efforts. Payment is <payment>.`
+	job
+	repeat
+	deadline
+	source
+		government "Free Worlds"
+	destination
+		government "Free Worlds"
+		distance 2 8
+		attributes "frozen"
+	substitutions
+		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowstorm"
+			"random" < 30
+		"<problem>" "blizzard"
+			"random" < 10
+	cargo "cold aid" 10 15 0.5
+	to offer
+		random < 1
+	on complete
+		payment 8500 80
+		dialog `You turn your cargo of <cargo> over to the needy community in return for <payment>.`
+
+
+
 mission "Bounty Hunting (Very Tiny)"
 	name "Wanted corsair near <system>"
-	description "A small pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A small pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 25000
 	to offer
 		or
-			"combat rating" > 50
+			"combat rating" > 15
 			has "ships: Interceptor"
 			has "ships: Light Warship"
-		"combat rating" < 200
+		"combat rating" < 80
 		random < 40
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2594,10 +3125,12 @@ mission "Bounty Hunting (Very Tiny)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 2
+			distance 1 1
 		fleet
 			names "pirate"
-			variant
+			variant 3
+				"Scrapper"
+			variant 6
 				"Sparrow"
 			variant
 				"Wasp"
@@ -2611,25 +3144,74 @@ mission "Bounty Hunting (Very Tiny)"
 				"Wasp (Plasma)"
 			variant
 				"Wasp (Proton)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 20000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 25000
+			fail
+
+mission "Bounty Hunting (Very Tiny, Local)"
+	name "Wanted corsair entering <system>"
+	description "A small pirate fighter named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 25000
+	to offer
+		or
+			"combat rating" > 15
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 80
+		random < 15
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Scrapper"
+			variant
+				"Scrapper (Gatling)"
+			variant
+				"Scrapper (Mod Blaster)"
+			variant 4
+				"Sparrow"
+			variant 2
+				"Sparrow (Gatling)"
+			variant 2
+				"Wasp"
+			variant
+				"Wasp (Javelin)"
+			variant
+				"Wasp (Meteor)"
+			variant
+				"Wasp (Plasma)"
+			variant
+				"Wasp (Proton)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 25000
+			fail
+
+
 
 mission "Bounty Hunting (Tiny)"
 	name "Wanted outlaw near <system>"
-	description "A well armed pirate fighter named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A well armed pirate fighter named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 50000
 	to offer
 		or
-			"combat rating" > 100
+			"combat rating" > 30
 			has "ships: Interceptor"
 			has "ships: Light Warship"
-		"combat rating" < 300
-		random < 40
+		"combat rating" < 200
+		random < 30
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2637,7 +3219,7 @@ mission "Bounty Hunting (Tiny)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 2
+			distance 1 1
 		fleet
 			names "pirate"
 			variant
@@ -2664,25 +3246,76 @@ mission "Bounty Hunting (Tiny)"
 				"Fury (Laser)"
 			variant
 				"Fury (Bomber)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 40000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 50000
+			fail
+
+mission "Bounty Hunting (Tiny, Local)"
+	name "Wanted outlaw entering <system>"
+	description "A well armed pirate fighter named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 50000
+	to offer
+		or
+			"combat rating" > 30
+			has "ships: Interceptor"
+			has "ships: Light Warship"
+		"combat rating" < 200
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Hawk"
+			variant
+				"Hawk (Plasma)"
+			variant
+				"Hawk (Speedy)"
+			variant
+				"Hawk (Bomber)"
+			variant
+				"Berserker"
+			variant
+				"Berserker (Afterburner)"
+			variant
+				"Berserker (Strike)"
+			variant
+				"Fury"
+			variant
+				"Fury (Gatling)"
+			variant
+				"Fury (Heavy)"
+			variant
+				"Fury (Laser)"
+			variant
+				"Fury (Bomber)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 50000
+			fail
 
 mission "Bounty Hunting (Very Small)"
 	name "Wanted criminal near <system>"
-	description "A light pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A light pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 95000
 	to offer
 		or
-			"combat rating" > 200
+			"combat rating" > 80
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
-		"combat rating" < 400
-		random < 40
+		"combat rating" < 350
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2690,7 +3323,7 @@ mission "Bounty Hunting (Very Small)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 2
+			distance 1 1
 		fleet
 			names "pirate"
 			variant
@@ -2715,23 +3348,71 @@ mission "Bounty Hunting (Very Small)"
 				"Clipper (Heavy)"
 			variant
 				"Clipper (Speedy)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 80000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 95000
+			fail
 
-
+mission "Bounty Hunting (Very Small, Local)"
+	name "Wanted criminal entering <system>"
+	description "A light pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 95000
+	to offer
+		or
+			"combat rating" > 80
+			has "ships: Light Warship"
+			has "ships: Medium Warship"
+		"combat rating" < 350
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Quicksilver"
+			variant
+				"Quicksilver (Proton)"
+			variant
+				"Raven"
+			variant
+				"Raven (Heavy)"
+			variant
+				"Raven (Afterburner)"
+			variant
+				"Headhunter"
+			variant
+				"Headhunter (Strike)"
+			variant
+				"Headhunter (Particle)"
+			variant
+				"Clipper"
+			variant
+				"Clipper (Heavy)"
+			variant
+				"Clipper (Speedy)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 95000
+			fail
 
 mission "Bounty Hunting (Small)"
 	name "Wanted bandit near <system>"
-	description "A low-end pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A medium pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 180000
 	to offer
-		"combat rating" > 300
-		random < 40
+		"combat rating" > 200
+		"combat rating" < 500
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2739,7 +3420,7 @@ mission "Bounty Hunting (Small)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 2
+			distance 1 1
 		fleet
 			names "pirate"
 			variant
@@ -2760,21 +3441,64 @@ mission "Bounty Hunting (Small)"
 				"Manta"
 			variant
 				"Manta (Proton)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 150000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 180000
+			fail
+
+mission "Bounty Hunting (Small, Local)"
+	name "Wanted bandit entering <system>"
+	description "A medium pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 180000
+	to offer
+		"combat rating" > 200
+		"combat rating" < 500
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Firebird"
+			variant
+				"Firebird (Missile)"
+			variant
+				"Splinter"
+			variant
+				"Splinter (Laser)"
+			variant
+				"Osprey"
+			variant
+				"Osprey (Laser)"
+			variant
+				"Bastion"
+			variant
+				"Manta"
+			variant
+				"Manta (Proton)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 180000
+			fail
 
 mission "Bounty Hunting (Medium)"
 	name "Wanted pirate near <system>"
-	description "A medium pirate warship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A sizable pirate warship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 240000
 	to offer
-		"combat rating" > 400
-		random < 20
+		"combat rating" > 350
+		"combat rating" < 1200
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2782,7 +3506,7 @@ mission "Bounty Hunting (Medium)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 2
+			distance 1 1
 		fleet
 			names "pirate"
 			variant
@@ -2797,21 +3521,58 @@ mission "Bounty Hunting (Medium)"
 				"Bastion (Laser)"
 			variant
 				"Firebird (Plasma)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 200000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 240000
+			fail
+
+mission "Bounty Hunting (Medium, Local)"
+	name "Wanted pirate entering <system>"
+	description "A sizable pirate warship named the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 240000
+	to offer
+		"combat rating" > 350
+		"combat rating" < 1200
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Protector"
+			variant
+				"Protector (Proton)"
+			variant
+				"Osprey (Missile)"
+			variant
+				"Bastion (Heavy)"
+			variant
+				"Bastion (Laser)"
+			variant
+				"Firebird (Plasma)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 240000
+			fail
 
 mission "Bounty Hunting (Big)"
 	name "Wanted warlord near <system>"
-	description "A heavy warship known as the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A heavy warship known as the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 300000
 	to offer
 		"combat rating" > 500
-		random < 20
+		"combat rating" < 2500
+		random < 25
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2819,7 +3580,7 @@ mission "Bounty Hunting (Big)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 2
+			distance 1 1
 		fleet
 			names "pirate"
 			variant
@@ -2838,21 +3599,65 @@ mission "Bounty Hunting (Big)"
 				"Vanguard"
 			variant
 				"Vanguard (Particle)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 250000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 300000
+			fail
+
+mission "Bounty Hunting (Big, Local)"
+	name "Wanted warlord entering <system>"
+	description "A heavy warship known as the <npc> has been attacking merchants in nearby star systems, and is reportedly entering this system. Destroy it by <day> for payment (<payment>)."
+	repeat
+	job
+	deadline 3
+	"apparent payment" 300000
+	to offer
+		"combat rating" > 500
+		"combat rating" < 2500
+		random < 20
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+	npc kill
+		government "Bounty"
+		personality heroic entering staying nemesis target
+		fleet
+			names "pirate"
+			variant
+				"Leviathan"
+			variant
+				"Leviathan (Heavy)"
+			variant
+				"Leviathan (Laser)"
+			variant
+				"Falcon"
+			variant
+				"Falcon (Heavy)"
+			variant
+				"Falcon (Laser)"
+			variant
+				"Vanguard"
+			variant
+				"Vanguard (Particle)"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 300000
+			fail
 
 mission "Bounty Hunting (Small, Hidden)"
 	name "Disguised bandit near <system>"
-	description "A low-end pirate warship named the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
+	description "A medium pirate warship named the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 30
+	"apparent payment" 360000
 	to offer
-		"combat rating" > 300
-		random < 20
+		"combat rating" > 200
+		or
+			random < 5
+			and
+				"combat rating" < 500
+				random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2881,21 +3686,25 @@ mission "Bounty Hunting (Small, Hidden)"
 				"Manta"
 			variant
 				"Manta (Proton)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 250000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 360000
+			fail
 
 mission "Bounty Hunting (Medium, Hidden)"
 	name "Disguised pirate near <system>"
-	description "A medium pirate warship named the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
+	description "A sizable pirate warship named the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 30
+	"apparent payment" 480000
 	to offer
-		"combat rating" > 400
-		random < 10
+		"combat rating" > 350
+		or
+			random < 5
+			and
+				"combat rating" < 1200
+				random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2918,21 +3727,25 @@ mission "Bounty Hunting (Medium, Hidden)"
 				"Bastion (Laser)"
 			variant
 				"Firebird (Plasma)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 350000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 480000
+			fail
 
 mission "Bounty Hunting (Big, Hidden)"
 	name "Disguised warlord near <system>"
-	description "A heavy warship known as the <npc> is posing as a merchant ship near the <system> system. Select merchant ships until you find a ship with a matching name, then destroy it and return to <planet> for payment (<payment>)."
+	description "A heavy warship known as the <npc> is posing as a merchant ship within two jumps of the <system> system. Find a merchant ship with a matching name and destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 30
+	"apparent payment" 600000
 	to offer
 		"combat rating" > 500
-		random < 10
+		or
+			random < 5
+			and
+				"combat rating" < 2500
+				random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -2959,25 +3772,23 @@ mission "Bounty Hunting (Big, Hidden)"
 				"Vanguard"
 			variant
 				"Vanguard (Particle)"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 450000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 600000
+			fail
 
 mission "Bounty Hunting (Small, Boarding, Entering)"
 	name "Stolen ship near <system>"
-	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminal to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	description "A wanted criminal is fleeing in a stolen ship, the <npc>, which is about to enter this system. Board the ship and detain the criminal in a brig, then bring them to <destination> by <date>. Reward for capture: <payment>."
 	passengers 1
 	deadline 14
 	repeat
 	job
 	to offer
-		"combat rating" > 80
+		"combat rating" > 50
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3007,7 +3818,7 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 
 mission "Bounty Hunting (Medium, Boarding, Entering)"
 	name "Stolen warship near <system>"
-	description "A wanted criminal and several accomplices are fleeing in a stolen warship, the <npc>, which is about to enter this system. Disable and board the vessel and bring the criminals to <destination> to stand trial on <date>. Reward for capture: <payment>."
+	description "Several wanted criminals are fleeing in a stolen warship, the <npc>, which is about to enter this system. Board the ship and detain the criminals in a brig, then bring them to <destination> by <date>. Reward for capture: <payment>."
 	passengers 4
 	deadline 14
 	repeat
@@ -3015,8 +3826,8 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	to offer
 		"combat rating" > 200
 		random < 15
-	on offer
-		require "Brig"
+	to accept
+		has "outfit (installed): Brig"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3048,16 +3859,18 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 
 mission "Bounty Hunting (Solo Marauder I)"
 	name "Marauder interceptor near <system>"
-	description "A Marauder interceptor named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder interceptor named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 130000
 	to offer
 		or
 			"combat rating" > 100
 			has "ships: Interceptor"
 			has "ships: Light Warship"
 		"combat rating" > 50
-		"combat rating" < 600
+		"combat rating" < 500
 		random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3066,27 +3879,27 @@ mission "Bounty Hunting (Solo Marauder I)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 2
+			distance 1 1
 		fleet "Marauder I"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 80000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 130000
+			fail
 
 mission "Bounty Hunting (Solo Marauder II)"
 	name "Small Marauder near <system>"
-	description "A small Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A small Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 200000
 	to offer
 		or
 			"combat rating" > 200
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
 		"combat rating" > 100
-		"combat rating" < 600
+		"combat rating" < 500
 		random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3095,23 +3908,23 @@ mission "Bounty Hunting (Solo Marauder II)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 2
+			distance 1 1
 		fleet "Marauder II"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 130000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 200000
+			fail
 
 mission "Bounty Hunting (Solo Marauder III)"
 	name "Marauder near <system>"
-	description "A Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 310000
 	to offer
 		"combat rating" > 300
-		"combat rating" < 1550
+		"combat rating" < 1200
 		random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3120,23 +3933,23 @@ mission "Bounty Hunting (Solo Marauder III)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 2
+			distance 1 1
 		fleet "Marauder III"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 180000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 310000
+			fail
 
 mission "Bounty Hunting (Solo Marauder IV)"
 	name "Large Marauder near <system>"
-	description "A large Marauder ship named the <npc> has been attacking merchants near the <system> system. Destroy it and return to <planet> for payment (<payment>)."
+	description "A large Marauder ship named the <npc> has been attacking merchants a jump away from the <system> system. Destroy it by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 500000
 	to offer
 		"combat rating" > 500
-		"combat rating" < 2980
+		"combat rating" < 2500
 		random < 5
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3145,22 +3958,22 @@ mission "Bounty Hunting (Solo Marauder IV)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 2
+			distance 1 1
 		fleet "Marauder IV"
-		dialog phrase "generic hunted bounty eliminated dialog"
-	on visit
-		dialog phrase "generic bounty hunting on visit"
-	on complete
-		payment 280000
-		dialog phrase "generic bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty eliminated and payment dialog"
+		on kill
+			payment 500000
+			fail
 
 mission "Bounty Hunting (Marauder I)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 360000
 	to offer
-		"combat rating" > 600
+		"combat rating" > 500
 		or
 			random < 5
 			and
@@ -3173,27 +3986,27 @@ mission "Bounty Hunting (Marauder I)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet I"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 300000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 360000
+			fail
 
 mission "Bounty Hunting (Marauder II)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 380000
 	to offer
-		"combat rating" > 750
+		"combat rating" > 600
 		or
 			random < 5
 			and
 				"combat rating" < 1800
-				random < 30
+				random < 45
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3201,27 +4014,27 @@ mission "Bounty Hunting (Marauder II)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet II"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 350000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 380000
+			fail
 
 mission "Bounty Hunting (Marauder III)"
 	name "Small Marauders near <system>"
-	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of small Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 400000
 	to offer
-		"combat rating" > 1097
+		"combat rating" > 700
 		or
 			random < 5
 			and
 				"combat rating" < 2200
-				random < 25
+				random < 45
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3229,22 +4042,22 @@ mission "Bounty Hunting (Marauder III)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet III"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 400000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 400000
+			fail
 
 mission "Bounty Hunting (Marauder IV)"
 	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 480000
 	to offer
-		"combat rating" > 1550
+		"combat rating" > 1200
 		or
 			random < 5
 			and
@@ -3257,22 +4070,22 @@ mission "Bounty Hunting (Marauder IV)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet IV"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 425000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 480000
+			fail
 
 mission "Bounty Hunting (Marauder V)"
 	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 500000
 	to offer
-		"combat rating" > 2000
+		"combat rating" > 1400
 		or
 			random < 5
 			and
@@ -3285,23 +4098,23 @@ mission "Bounty Hunting (Marauder V)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet V"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 450000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 500000
+			fail
 
 
 mission "Bounty Hunting (Marauder VI)"
 	name "Marauders near <system>"
-	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 520000
 	to offer
-		"combat rating" > 2500
+		"combat rating" > 1600
 		or
 			random < 5
 			and
@@ -3314,22 +4127,22 @@ mission "Bounty Hunting (Marauder VI)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet VI"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 475000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 520000
+			fail
 
 mission "Bounty Hunting (Marauder VII)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 620000
 	to offer
-		"combat rating" > 2980
+		"combat rating" > 2500
 		random < 20
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3338,22 +4151,22 @@ mission "Bounty Hunting (Marauder VII)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet VII"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 500000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 620000
+			fail
 
 mission "Bounty Hunting (Marauder VIII)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 640000
 	to offer
-		"combat rating" > 4000
+		"combat rating" > 2800
 		random < 15
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3362,22 +4175,22 @@ mission "Bounty Hunting (Marauder VIII)"
 		government "Bounty"
 		personality heroic staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet VIII"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 550000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 640000
+			fail
 
 mission "Bounty Hunting (Marauder IX)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 660000
 	to offer
-		"combat rating" > 6000
+		"combat rating" > 3100
 		random < 10
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -3386,20 +4199,20 @@ mission "Bounty Hunting (Marauder IX)"
 		government "Bounty"
 		personality heroic unconstrained staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet IX"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 600000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 660000
+			fail
 
 mission "Bounty Hunting (Marauder X)"
 	name "Large Marauders near <system>"
-	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants near the <system> system. Destroy the whole fleet and return to <planet> for payment (<payment>)."
+	description "A fleet of large Marauder ships, led by a vessel named the <npc>, has been attacking merchants a jump away from the <system> system. Destroy the whole fleet by <day> for payment (<payment>)."
 	repeat
 	job
+	deadline 14
+	"apparent payment" 1000000
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
@@ -3410,190 +4223,645 @@ mission "Bounty Hunting (Marauder X)"
 		government "Bounty"
 		personality heroic unconstrained staying nemesis target
 		system
-			distance 1 3
+			distance 1 1
 		fleet "Marauder fleet X"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
-	on visit
-		dialog phrase "generic fleet bounty hunting on visit"
-	on complete
-		payment 750000
-		dialog phrase "generic fleet bounty hunting payment dialog"
+		dialog phrase "generic hunted bounty fleet eliminated and payment dialog"
+		on kill
+			payment 1000000
+			fail
 
 
 
-mission "Raid Warning"
-	invisible
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-	to offer
-		"pirate attraction" >= 5
-	on offer
-		conversation
-			`When you enter the <origin> spaceport, you're almost immediately stopped by a grizzled old man. "You some kinda rookie, or you asking for a death wish?" he asks.`
-			choice
-				`	"Excuse me?"`
-					goto advice
-				`	"Yeah, I'm pretty fresh. Is there something I'm doing wrong by walking in here?"`
-				`	"I've been piloting for a while. I think I know what I'm doing."`
-					goto think
-			`	The old man chuckles. "Ain't nothing wrong with walking in here. It's what you're flying in with that's the issue.`
-				goto advice
-			
-			label think
-			`	The old man chuckles. "Well I don't think so after what I've seen.`
-			
-			label advice
-			`	"I seen those ships of yours. That fleet is juicy pickings for pirates if I've ever seen it." You look confusedly at the man. "Oh, do I need to spell it out for you? Pirates love to take out soft targets with lots of potential cargo, and your fleet is looking pretty heavy on cargo space with hardly any defenses."`
-			choice
-				`	"Oh, so that's why I've been seeing pirates everywhere I go."`
-				`	"So what should I do about that?"`
-					goto solution
-				`	"Don't you think I know that already?"`
-					goto rebuff
-			`	"What, you think they just had it out for you because you look funny? No, pirates have their reasons.`
-			label solution
-			`	"Either get yourself more guns in that fleet or get rid of some cargo space. Park your ships, sell them, doesn't matter, so long as the pirates don't see them, or you make it not worth it to try and steal whatever you might have. Pirates see a bunch of freighters flying around unprotected and they're going to take their chances. Doesn't matter if you actually have anything or not."`
-			choice
-				`	"Thanks for the advice."`
-				`	"I'll make sure to go do that. Thanks."`
-			`	"No problem. Just looking out for a fellow captain. No use in getting got because you didn't know any better. But now you do." The man gives you a firm pat on the back before walking off.`
-				decline
-			
-			label rebuff
-			`	"Sure doesn't look like it." The man gives an exaggerated shrug and starts to walk off. "Alright then, get yourself killed. Not like I used to haul cargo from one end of the galaxy to the other for fifty years or anything." The man gets further and further away, continuing to grumble about "kids these days" and other such things until you can no longer hear him.`
-				decline
-
-
-
-mission "Hunted Warning"
-	invisible
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
-	to offer
-		"combat rating" > 8103
-		or
-			not "chosen sides"
-			has "main plot completed"
-	on offer
-		log `Got noticed at a spaceport bar as a "famous warrior." Was warned to look out for bounty hunters or pirates hoping to make a name for themselves.`
-		conversation
-			`You walk into a bar in the spaceport looking for something to eat when a man sitting at a table in the corner looks up and takes notice of you. "It's Captain <last>, the famous warrior! Barkeep, give <first> a drink on my tab."`
-			choice
-				`	"Glad to get some recognition. I work hard out here."`
-					goto recognition
-				`	"Famous warrior?"`
-			`	"Of course! Word travels fast in the galaxy, and word on the hyperspace lanes is that you're quite the fighter."`
-			
-			branch recognition
-				"reputation: Republic" >= 0
-				"reputation: Free Worlds" >= 0
-				"reputation: Syndicate" >= 0
-			
-			`	"It doesn't help that you've pissed off the law, either," someone behind you says, not sounding too happy.`
-			label recognition
-			`	More patrons take notice of the conversation and begin chattering amongst themselves. "Quite the force to be reckoned with, I've heard," you overhear one of them mumble.`
-			`	"You might want to watch your back," another says to you. "Plenty of pirates with more brains than sense might be looking to make a name for themselves by taking out such a famous captain. A person like you has to have some enemies, and you never know who might have put a price on your head. A bounty hunter could retire early on the fat purse they'd get from spacing you."`
-			choice
-				`	"I'll be fine. My ship is strong enough to stand against anything."`
-				`	"Maybe I should go into hiding for a while."`
-					goto hide
-			`	"Oh, I'm sure it is. You wouldn't have gotten this notorious without being able to hold your own."`
-				goto end
-			label hide
-			`	"You'd need to hide for more than just a while, but laying low in a small ship might help to stay off the radar of pirates and bounty hunters."`
-			label end
-			`	After a few more minutes of mumbling, the bar returns to like it was before you entered. The food you ordered arrives and you dig in.`
-				decline
-
-mission "Hunted"
-	invisible
-	landing
+mission "Republic Navy Advisory System [frozen]"
+	name "Cold relief to <planet>"
+	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe cold snap. Payment is <payment>."
+	minor
 	repeat
-	deadline 30
+	deadline
+	source
+		government "Republic" "Syndicate"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
+		attributes "frozen"
+	substitutions
+		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowstorm"
+			"random" < 30
+		"<problem>" "blizzard"
+			"random" < 10
+	cargo "cold aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 8500 80
+		dialog `Shivering, appreciative aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
+
+mission "Republic Navy Advisory System [volcanic]"
+	name "Volcanic relief to <planet>"
+	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe volcanic eruption. Payment is <payment>."
+	minor
+	repeat
+	deadline
+	source
+		government "Republic" "Syndicate"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
+		attributes "volcanic" "lava"
+	substitutions
+		"<problem>" "volcanic event"
+		"<problem>" "volcanic eruption"
+			"random" < 60
+		"<problem>" "gas eruption"
+			"random" < 30
+	cargo "flames aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 8500 80
+		dialog `Relieved-looking aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
+
+mission "Republic Navy Advisory System [wildfire cargo]"
+	name "Wildfire relief to <planet>"
+	description "Deliver humanitarian aid of <cargo> to <destination> by <date> following a severe wildfire. Payment is <payment>."
+	minor
+	repeat
+	deadline
+	source
+		government "Republic"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
+		attributes "forest"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	cargo "flames aid" 10 15 0.5
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to supply <cargo> to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 8500 80
+		dialog `Ash-covered, relieved aid workers welcome your shipment. You look on, feeling satisfied that <cargo> will soon arrive to those that need it most. Back in your ship, you're notified that you've received <payment> for your service.`
+
+mission "Republic Navy Advisory System [wildfire firefighters]"
+	name "Transport Firefighters"
+	description "Transport <bunks> firefighters to <planet> by <date>. Payment is <payment>."
+	minor
+	repeat
+	deadline
+	source
+		government "Republic" "Syndicate"
+	destination
+		government "Republic" "Syndicate" "Independent" "Neutral"
+		distance 1 8
+		attributes "forest"
+	substitutions
+		"<problem>" "forest fire"
+		"<problem>" "brush fire"
+			"random" < 60
+		"<problem>" "wildfire"
+			"random" < 30
+	passengers 5 15
+	to offer
+		random < 1
+	on offer
+		dialog `This is the Republic Navy Advisory System: <planet> is experiencing a severe <problem>. Volunteers are requested to transport <bunks> firefighters to <planet> by <date>. A stipend of <payment> is provided to cover fuel, crew, and any incidental expenses.`
+	on complete
+		payment 9000 85
+		dialog "You land at a makeshift landing site a few minutes flight from the blaze. The smoky haze that drifts into your ship when the firefighters open the hatch to depart makes your eyes and nose itch. As you watch your passengers heading toward a staging area nearby, you think about the inferno they will soon be voluntarily entering. A chirp from your communications system indicates your stipend of <payment> has been deposited, and you begin your atmospheric flight back to <planet>'s main spaceport."
+
+mission "Mineral Shortages (Silicon)"
+	name "Harvested silicon to <planet>"
+	job
+	repeat
+	deadline 7
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Silicon"
+		"<amount>" "120"
+	to offer
+		random < 5
+		"outfit (all): Silicon" < 30
+	to accept
+		"cargo space" >= 120
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 55200
+		outfit "Silicon" -120
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Lead)"
+	name "Harvested lead to <planet>"
+	job
+	repeat
+	deadline 7
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Lead"
+		"<amount>" "120"
 	to offer
-		"combat rating" > 8103
-		"armament deterrence" >= 2
-		"ship scale" = "ship: Light Warship" + "ship: Medium Warship" * 2 + "ship: Heavy Warship" * 4
-		or
-			and
-				not "Hunted: active"
-				"ship scale" < 32
-				random < 2 + "ship scale" / 4
-			and
-				"ship scale" >= 32 + "Hunted: active" * 4
-				random < 10
-		or
-			not "chosen sides"
-			has "main plot completed"
-	# For weaker players, killing a single one of the attacking NPCs and then landing is sufficient to "complete" the mission.
-	npc save
-		to despawn
-			or
-				"armament deterrence" < 2
-				"armament deterrence" >= 3
-		government "Bounty Hunter"
-		personality heroic unconstrained waiting nemesis plunders harvests
-		system
-			distance 5 5
-		fleet "Bounty Hunters"
-	npc save
-		to despawn
-			or
-				"armament deterrence" < 3
-				"armament deterrence" >= 4
-		government "Bounty Hunter"
-		personality heroic unconstrained waiting nemesis plunders harvests
-		system
-			distance 5 5
-		fleet "Marauder fleet I"
-	npc save
-		to despawn
-			or
-				"armament deterrence" < 4
-				"armament deterrence" >= 8
-		government "Bounty Hunter"
-		personality heroic unconstrained waiting nemesis plunders harvests
-		system
-			distance 5 5
-		fleet "Marauder fleet IV"
-	npc save
-		to despawn
-			or
-				"armament deterrence" < 8
-				"armament deterrence" >= 16
-		government "Bounty Hunter"
-		personality heroic unconstrained waiting nemesis plunders harvests
-		system
-			distance 5 5
-		fleet "Marauder fleet VII"
-	npc save
-		to despawn
-			or
-				"armament deterrence" < 16
-				"armament deterrence" >= 32
-		government "Bounty Hunter"
-		personality heroic unconstrained waiting nemesis plunders harvests
-		system
-			distance 5 5
-		fleet "Marauder fleet X"
-	# For stronger players, all attacking NPCs must be killed before the mission will be completed.
-	npc kill
-		to despawn
-			"armament deterrence" < 32
-		government "Bounty Hunter"
-		personality heroic unconstrained waiting nemesis plunders harvests
-		system
-			distance 5 5
-		fleet "Marauder fleet X" 2
-	npc kill
-		to despawn
-			"armament deterrence" < 64
-		government "Bounty Hunter"
-		personality heroic unconstrained waiting nemesis plunders harvests
-		system
-			distance 5 5
-		fleet "Marauder fleet X"
+		random < 5
+		"outfit (all): Lead" < 30
+	to accept
+		"cargo space" >= 120
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 124200
+		outfit "Lead" -120
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Iron)"
+	name "Harvested iron to <planet>"
+	job
+	repeat
+	deadline 7
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Iron"
+		"<amount>" "120"
+	to offer
+		random < 5
+		"outfit (all): Iron" < 30
+	to accept
+		"cargo space" >= 120
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 165600
+		outfit "Iron" -120
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Aluminum)"
+	name "Harvested aluminum to <planet>"
+	job
+	repeat
+	deadline 7
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Aluminum"
+		"<amount>" "90"
+	to offer
+		random < 5
+		"outfit (all): Aluminum" < 20
+	to accept
+		"cargo space" >= 90
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 186300
+		outfit "Aluminum" -90
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Titanium)"
+	name "Harvested titanium to <planet>"
+	job
+	repeat
+	deadline 7
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Titanium"
+		"<amount>" "90"
+	to offer
+		random < 5
+		"outfit (all): Titanium" < 20
+	to accept
+		"cargo space" >= 90
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 258750
+		outfit "Titanium" -90
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Copper)"
+	name "Harvested copper to <planet>"
+	job
+	repeat
+	deadline 7
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Copper"
+		"<amount>" "90"
+	to offer
+		random < 5
+		"outfit (all): Copper" < 20
+	to accept
+		"cargo space" >= 90
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 310500
+		outfit "Copper" -90
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Neodymium)"
+	name "Harvested neodymium to <planet>"
+	job
+	repeat
+	deadline 14
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Neodymium"
+		"<amount>" "60"
+	to offer
+		random < 5
+		"outfit (all): Neodymium" < 10
+	to accept
+		"cargo space" >= 60
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 262200
+		outfit "Neodymium" -60
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Tungsten)"
+	name "Harvested tungsten to <planet>"
+	job
+	repeat
+	deadline 14
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Tungsten"
+		"<amount>" "60"
+	to offer
+		random < 5
+		"outfit (all): Tungsten" < 10
+	to accept
+		"cargo space" >= 60
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 310500
+		outfit "Tungsten" -60
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Uranium)"
+	name "Harvested uranium to <planet>"
+	job
+	repeat
+	deadline 14
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Uranium"
+		"<amount>" "60"
+	to offer
+		random < 5
+		"outfit (all): Uranium" < 10
+	to accept
+		"cargo space" >= 60
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 345000
+		outfit "Uranium" -60
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Silver)"
+	name "Harvested silver to <planet>"
+	job
+	repeat
+	deadline 28
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Silver"
+		"<amount>" "30"
+	to offer
+		random < 5
+		"outfit (all): Silver" < 5
+	to accept
+		"cargo space" >= 30
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 207000
+		outfit "Silver" -30
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Gold)"
+	name "Harvested gold to <planet>"
+	job
+	repeat
+	deadline 28
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Gold"
+		"<amount>" "30"
+	to offer
+		random < 5
+		"outfit (all): Gold" < 5
+	to accept
+		"cargo space" >= 30
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 276000
+		outfit "Gold" -30
+		dialog phrase "generic mineral delivery payment"
+
+mission "Mineral Shortages (Platinum)"
+	name "Harvested platinum to <planet>"
+	job
+	repeat
+	deadline 28
+	description "Factories on <planet> are suffering from a mineral shortage. Harvest <amount> tons of <mineral> and return to <destination> by <date>. Payment is <payment>."
+	substitutions
+		"<mineral>" "Platinum"
+		"<amount>" "30"
+	to offer
+		random < 5
+		"outfit (all): Platinum" < 5
+	to accept
+		"cargo space" >= 30
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "factory"
+	on visit
+		dialog phrase "generic mineral on visit"
+	on complete
+		payment 345000
+		outfit "Platinum" -30
+		dialog phrase "generic mineral delivery payment"
+
+mission "Student transport"
+	job
+	repeat
+	name "Transport student to <planet>"
+	description "This student needs transport to <destination> by <date> to study at one of <planet>'s universities. They will pay you <payment>."
+	deadline
+	to offer
+		random < 20
+	source
+		government "Free Worlds" "Independent" "Neutral" "Republic" "Syndicate"
+	passengers 1
+	destination
+		attributes "education"
+		distance 2 20
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 4000
+
+mission "Rich student transport"
+	job
+	repeat
+	name "Transport wealthy student to <planet>"
+	description "This rich student needs transport to <destination> by <date> to study at one of <planet>'s high-end universities. They will pay you <payment>."
+	passengers 1
+	to offer
+		random < 10
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		government "Free Worlds" "Independent" "Neutral" "Republic" "Syndicate"
+	destination
+		attributes "education"
+		distance 2 20
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 10000
+
+mission "Student field research (farming)"
+	job
+	repeat
+	name "Transport student to <planet>"
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
+	to offer
+		random < 5
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes "education"
+	passengers 1
+	substitutions
+		"<student research>" "farms of"
+		"<student research>" "soil quality of"
+			random < 80
+		"<student research>" "river water quality of"
+			random < 60
+		"<student research>" "agricultural industry of"
+			random < 40
+	destination
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes farming
+		distance 2 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 4000
+
+mission "Student field research (mining / oil)"
+	job
+	repeat
+	name "Transport student to <planet>"
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
+	to offer
+		random < 5
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes "education"
+	passengers 1
+	substitutions
+		"<student research>" "geology of"
+		"<student research>" "working conditions of"
+			random < 80
+		"<student research>" "tectonic activity of"
+			random < 60
+		"<student research>" "mining industry of"
+			random < 40
+		"<student research>" "petroleum industry of"
+			random < 20
+	destination
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes mining oil
+		distance 2 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 4000
+
+mission "Student field research (forest)"
+	job
+	repeat
+	name "Transport student to <planet>"
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
+	to offer
+		random < 5
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes "education"
+	passengers 1
+	substitutions
+		"<student research>" "biosphere of"
+		"<student research>" "soil quality of"
+			random < 83
+		"<student research>" "tree species of"
+			random < 67
+		"<student research>" "forests of"
+			random < 50
+		"<student research>" "forestry industry of"
+			random < 33
+		"<student research>" "indigenous wildlife of"
+			random < 17
+	destination
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes forest
+		distance 2 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 4000
+
+mission "Student field research (urban / factory)"
+	job
+	repeat
+	name "Transport student to <planet>"
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
+	to offer
+		random < 5
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes "education"
+	passengers 1
+	substitutions
+		"<student research>" "quality of life of the inhabitants of"
+		"<student research>" "cities of"
+			random < 80
+		"<student research>" "manufacturing industry of"
+			random < 60
+		"<student research>" "air quality of"
+			random < 40
+		"<student research>" "working conditions on"
+			random < 20
+	destination
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes urban factory
+		not planet "New Sahara"
+		distance 2 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 4000
+
+mission "Student field research (fishing)"
+	job
+	repeat
+	name "Transport student to <planet>"
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
+	to offer
+		random < 5
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes "education"
+	passengers 1
+	substitutions
+		"<student research>" "biosphere of"
+		"<student research>" "oceans of"
+			random < 83
+		"<student research>" "indigenous fish of"
+			random < 67
+		"<student research>" "water quality of"
+			random < 50
+		"<student research>" "fishing industry of"
+			random < 33
+		"<student research>" "aquacultural industry of"
+			random < 17
+	destination
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes fishing
+		distance 2 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 4000
+
+mission "Student field research (volcanic)"
+	job
+	repeat
+	name "Transport student to <planet>"
+	description "This student needs transport to <destination>, where they will perform field research on the <student research> <planet>. They will pay you <payment>."
+	to offer
+		random < 5
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes "education"
+	passengers 1
+	substitutions
+		"<student research>" "tectonic activity on"
+		"<student research>" "volcanic activity on"
+			random < 75
+		"<student research>" "volcanoes of"
+			random < 50
+		"<student research>" "atmosphere of"
+			random < 25
+	destination
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		attributes volcanic
+		distance 2 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 4000

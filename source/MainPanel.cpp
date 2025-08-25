@@ -7,13 +7,17 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
 #include "comparators/ByGivenOrder.h"
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/Font.h"
@@ -23,8 +27,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "GameData.h"
 #include "Government.h"
 #include "HailPanel.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "MapDetailPanel.h"
+#include "MessageLogPanel.h"
 #include "Messages.h"
 #include "Mission.h"
 #include "Phrase.h"
@@ -33,7 +38,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Preferences.h"
-#include "Random.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"
@@ -67,6 +71,10 @@ void MainPanel::Step()
 	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
 
+	// If the player is dead, don't show anything.
+	if(player.IsDead())
+		show = Command::NONE;
+
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
 	{
@@ -78,8 +86,15 @@ void MainPanel::Step()
 		GetUI()->Push(new PlayerInfoPanel(player));
 		isActive = false;
 	}
+	else if(show.Has(Command::MESSAGE_LOG))
+	{
+		GetUI()->Push(new MessageLogPanel());
+		isActive = false;
+	}
 	else if(show.Has(Command::HAIL))
 		isActive = !ShowHailPanel(show.Has(Command::SHIFT));
+	else if(show.Has(Command::HELP))
+		isActive = !ShowHelp(true);
 	show = Command::NONE;
 
 	// If the player just landed, pop up the planet panel. When it closes, it
@@ -91,40 +106,21 @@ void MainPanel::Step()
 		isActive = false;
 	}
 
-	// Display any relevant help/tutorial messages.
-	const Ship *flagship = player.Flagship();
-	if(flagship)
+	// Offer the next available entering mission.
+	if(isActive && player.HasAvailableEnteringMissions() && player.Flagship())
 	{
-		// Check if any help messages should be shown.
-		if(isActive && flagship->IsTargetable())
-			isActive = !DoHelp("navigation");
-		if(isActive && flagship->IsDestroyed())
-			isActive = !DoHelp("dead");
-		if(isActive && flagship->IsDisabled() && !flagship->IsDestroyed())
-			isActive = !DoHelp("disabled");
-		bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
-		if(isActive && !flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
-			isActive = !DoHelp("stranded");
-		shared_ptr<Ship> target = flagship->GetTargetShip();
-		if(isActive && target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
-			isActive = !DoHelp("friendly disabled");
-		if(isActive && player.Ships().size() > 1)
-			isActive = !DoHelp("multiple ship controls");
-		if(isActive && !flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
-				&& player.GetDate() <= player.StartData().GetDate() + 4)
-		{
-			++lostness;
-			int count = 1 + lostness / 3600;
-			if(count > lostCount && count <= 7)
-			{
-				string message = "lost 1";
-				message.back() += lostCount;
-				++lostCount;
-
-				isActive = !DoHelp(message);
-			}
-		}
+		Mission *mission = player.EnteringMission();
+		if(mission)
+			mission->Do(Mission::OFFER, player, GetUI());
+		else
+			player.HandleBlockedEnteringMissions(GetUI());
+		// Determine if a Dialog or ConversationPanel is being drawn next frame.
+		isActive = (GetUI()->Top().get() == this);
 	}
+
+	// Display any relevant help/tutorial messages.
+	if(isActive)
+		isActive = !ShowHelp(false);
 
 	engine.Step(isActive);
 
@@ -213,16 +209,33 @@ bool MainPanel::AllowsFastForward() const noexcept
 
 
 
+Engine &MainPanel::GetEngine()
+{
+	return engine;
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(command.Has(Command::MAP | Command::INFO | Command::HAIL))
+	if(player.IsDead())
+		return true;
+
+	if(command.Has(Command::MAP | Command::INFO | Command::MESSAGE_LOG | Command::HAIL | Command::HELP))
 		show = command;
+	else if(command.Has(Command::TURRET_TRACKING))
+	{
+		bool newValue = !Preferences::Has("Turrets focus fire");
+		Preferences::Set("Turrets focus fire", newValue);
+		Messages::Add("Turret tracking mode set to: " + string(newValue ? "focused" : "opportunistic") + ".",
+			Messages::Importance::High);
+	}
 	else if(command.Has(Command::AMMO))
 	{
 		Preferences::ToggleAmmoUsage();
-		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + "."
-			, Messages::Importance::High);
+		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".",
+			Messages::Importance::High);
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
@@ -234,14 +247,6 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return false;
 
 	return true;
-}
-
-
-
-// Forward the given TestContext to the Engine under MainPanel.
-void MainPanel::SetTestContext(TestContext &testContext)
-{
-	engine.SetTestContext(testContext);
 }
 
 
@@ -259,8 +264,9 @@ bool MainPanel::Click(int x, int y, int clicks)
 
 	SDL_Keymod mod = SDL_GetModState();
 	hasShift = (mod & KMOD_SHIFT);
+	hasControl = (mod & KMOD_CTRL);
 
-	engine.Click(dragSource, dragSource, hasShift);
+	engine.Click(dragSource, dragSource, hasShift, hasControl);
 
 	return true;
 }
@@ -294,7 +300,7 @@ bool MainPanel::Release(int x, int y)
 	{
 		dragPoint = Point(x, y);
 		if(dragPoint.Distance(dragSource) > 5.)
-			engine.Click(dragSource, dragPoint, hasShift);
+			engine.Click(dragSource, dragPoint, hasShift, hasControl);
 
 		isDragging = false;
 	}
@@ -343,9 +349,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 
-				out << "\t" << it.second
-					<< (it.second == 1 ? " ton of " : " tons of ")
-					<< it.first << "\n";
+				out << "\t" << Format::CargoString(it.second, it.first) << "\n";
 			}
 		for(const auto &it : target->Cargo().Outfits())
 			if(it.second)
@@ -354,14 +358,14 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "This " + target->Noun() + " is carrying:\n";
 				first = false;
 
-				out << "\t" << it.second;
+				out << "\t";
 				if(it.first->Get("installable") < 0.)
 				{
 					int tons = ceil(it.second * it.first->Mass());
-					out << (tons == 1 ? " ton of " : " tons of ") << Format::LowerCase(it.first->PluralName()) << "\n";
+					out << Format::CargoString(tons, Format::LowerCase(it.first->PluralName())) << "\n";
 				}
 				else
-					out << " " << (it.second == 1 ? it.first->Name(): it.first->PluralName()) << "\n";
+					out << it.second << " " << (it.second == 1 ? it.first->DisplayName() : it.first->PluralName()) << "\n";
 			}
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
@@ -376,12 +380,16 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 			out << "This " + target->Noun() + " is not equipped with any outfits.\n";
 
 		// Split target->Outfits() into categories, then iterate over them in order.
-		auto comparator = ByGivenOrder<string>(GameData::Category(CategoryType::OUTFIT));
+		vector<string> categories;
+		for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
+			categories.push_back(category.Name());
+		auto comparator = ByGivenOrder<string>(categories);
 		map<string, map<const string, int>, ByGivenOrder<string>> outfitsByCategory(comparator);
 		for(const auto &it : target->Outfits())
 		{
-			string outfitNameForDisplay = (it.second == 1 ? it.first->Name() : it.first->PluralName());
-			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
+			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
+			if(it.first->IsDefined() && !it.first->Category().empty() && !outfitNameForDisplay.empty())
+				outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
 		}
 		for(const auto &it : outfitsByCategory)
 		{
@@ -399,7 +407,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		for(const Ship::Bay &bay : target->Bays())
 			if(bay.ship)
 			{
-				int &value = count[bay.ship->ModelName()];
+				int &value = count[bay.ship->DisplayModelName()];
 				if(value)
 				{
 					// If the name and the plural name are the same string, just
@@ -445,24 +453,24 @@ bool MainPanel::ShowHailPanel(bool targetPlanet)
 		target.reset();
 
 	if(flagship->IsEnteringHyperspace())
-		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::High);
-	else if(flagship->Cloaking() == 1.)
-		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::High);
+		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::Highest);
+	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
+		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::Highest);
 	else if(target)
 	{
 		// If the target is out of system, always report a generic response
 		// because the player has no way of telling if it's presently jumping or
 		// not. If it's in system and jumping, report that.
 		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
-				|| target->Cloaking() == 1.)
-			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::High);
+				|| target->IsCloaked())
+			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::Highest);
 		else if(target->IsEnteringHyperspace())
-			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace."
-				, Messages::Importance::High);
+			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace.",
+				Messages::Importance::Highest);
 		else
 		{
 			GetUI()->Push(new HailPanel(player, target,
-				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); } ));
+				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); }));
 			return true;
 		}
 	}
@@ -470,11 +478,11 @@ bool MainPanel::ShowHailPanel(bool targetPlanet)
 	{
 		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
 		if(!planet)
-			Messages::Add("Unable to send hail.", Messages::Importance::High);
+			Messages::Add("Unable to send hail.", Messages::Importance::Highest);
 		else if(planet->IsWormhole())
 		{
 			static const Phrase *wormholeHail = GameData::Phrases().Get("wormhole hail");
-			Messages::Add(wormholeHail->Get(), Messages::Importance::High);
+			Messages::Add(wormholeHail->Get(), Messages::Importance::Highest);
 		}
 		else if(planet->IsInhabited())
 		{
@@ -482,13 +490,136 @@ bool MainPanel::ShowHailPanel(bool targetPlanet)
 			return true;
 		}
 		else
-			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited."
-				, Messages::Importance::High);
+			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited.",
+				Messages::Importance::Highest);
 	}
 	else
-		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::High);
+		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::Highest);
 
 	return false;
+}
+
+
+
+bool MainPanel::ShowHelp(bool force)
+{
+	const Ship *flagship = player.Flagship();
+	if(!flagship)
+		return false;
+
+	vector<string> forced;
+	// Check if any help messages should be shown.
+	if(Preferences::Has("Control ship with mouse"))
+	{
+		if(force)
+			forced.push_back("control ship with mouse");
+		else if(DoHelp("control ship with mouse"))
+			return true;
+	}
+	if(flagship->IsTargetable())
+	{
+		if(force)
+			forced.push_back("navigation");
+		else if(DoHelp("navigation"))
+			return true;
+	}
+	if(flagship->IsDestroyed())
+	{
+		if(force)
+			forced.push_back("dead");
+		else if(DoHelp("dead"))
+			return true;
+	}
+	else if(flagship->IsDisabled())
+	{
+		if(force)
+			forced.push_back("disabled");
+		else if(DoHelp("disabled"))
+			return true;
+	}
+	bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
+	if(!flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
+	{
+		if(force)
+			forced.push_back("stranded");
+		else if(DoHelp("stranded"))
+			return true;
+	}
+	shared_ptr<Ship> target = flagship->GetTargetShip();
+	if(target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
+	{
+		if(force)
+			forced.push_back("friendly disabled");
+		else if(DoHelp("friendly disabled"))
+			return true;
+	}
+	if(player.Ships().size() > 1)
+	{
+		if(force)
+			forced.push_back("multiple ship controls");
+		else if(DoHelp("multiple ship controls"))
+			return true;
+	}
+	if(flagship->IsTargetable() && player.Ships().size() > 1)
+	{
+		if(force)
+			forced.push_back("fleet harvest tutorial");
+		else if(DoHelp("fleet harvest tutorial"))
+			return true;
+	}
+	if(flagship->IsTargetable() &&
+			flagship->Attributes().Get("asteroid scan power") &&
+			player.Ships().size() > 1)
+	{
+		// Different order of these messages is intentional,
+		// because we're displaying the forced messages in reverse order.
+		if(force)
+		{
+			forced.push_back("fleet asteroid mining");
+			forced.push_back("fleet asteroid mining shortcuts");
+		}
+		else if(DoHelp("fleet asteroid mining shortcuts") && DoHelp("fleet asteroid mining"))
+			return true;
+	}
+	if(player.DisplayCarrierHelp())
+	{
+		if(force)
+			forced.push_back("try out fighters transfer cargo");
+		else if(DoHelp("try out fighters transfer cargo"))
+			return true;
+	}
+	if(Preferences::Has("Fighters transfer cargo"))
+	{
+		if(force)
+			forced.push_back("fighters transfer cargo");
+		else if(DoHelp("fighters transfer cargo"))
+			return true;
+	}
+	if(!flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
+			&& player.GetDate() <= player.StartData().GetDate() + 4)
+	{
+		++lostness;
+		int count = 1 + lostness / 3600;
+		if(count > lostCount && count <= 7)
+		{
+			string message = "lost 1";
+			message.back() += lostCount;
+			++lostCount;
+			if(force)
+				forced.push_back(message);
+			else if(DoHelp(message))
+				return true;
+		}
+	}
+
+	if(!force || forced.empty())
+		return false;
+
+	bool hasValidHelp = false;
+	// Reverse-iterate so that the player will see the basic messages first.
+	for(auto it = forced.rbegin(); it != forced.rend(); ++it)
+		hasValidHelp |= DoHelp(*it, true);
+	return hasValidHelp;
 }
 
 
@@ -577,6 +708,11 @@ void MainPanel::StepEvents(bool &isActive)
 				}
 			}
 		}
+
+		// Handle jump events from the player's flagship. This means we should check
+		// for entering missions that can be offered.
+		if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
+			player.CreateEnteringMissions();
 
 		// Remove the fully-handled event.
 		eventQueue.pop_front();

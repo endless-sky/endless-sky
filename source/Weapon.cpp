@@ -7,17 +7,20 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Weapon.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
 #include "Outfit.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 
@@ -32,6 +35,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	bool isClustered = false;
 	calculatedDamage = false;
 	doesDamage = false;
+	bool safeRangeOverriden = false;
 	bool disabledDamageSet = false;
 	bool minableDamageSet = false;
 	bool relativeDisabledDamageSet = false;
@@ -47,13 +51,62 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "safe")
 			isSafe = true;
 		else if(key == "phasing")
+		{
 			isPhasing = true;
+			// Phasing projectiles implicitly have no asteroid collisions
+			// for reverse compatibility.
+			canCollideAsteroids = false;
+			canCollideMinables = false;
+		}
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
 		else if(key == "parallel")
 			isParallel = true;
 		else if(key == "gravitational")
 			isGravitational = true;
+		else if(key == "fused")
+			isFused = true;
+		else if(key == "no ship collisions")
+			canCollideShips = false;
+		else if(key == "no asteroid collisions")
+			canCollideAsteroids = false;
+		else if(key == "no minable collisions")
+			canCollideMinables = false;
+		else if(key == "homing")
+		{
+			homing = true;
+			// Convert the old formatting for defining homing for reverse
+			// compatibility.
+			if(child.Size() == 2)
+			{
+				child.PrintTrace("Warning: Deprecated use of \"homing\" followed by a value."
+					" Define individual homing attributes instead:");
+				int value = child.Value(1);
+				if(value >= 3)
+				{
+					throttleControl = true;
+					if(value >= 4)
+						leading = true;
+				}
+				else if(value == 1)
+					blindspot = true;
+				else if(value == 0)
+					homing = false;
+			}
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+
+				if(grandKey == "blindspot")
+					blindspot = true;
+				else if(grandKey == "throttle control")
+					throttleControl = true;
+				else if(grandKey == "leading")
+					leading = true;
+				else
+					grand.PrintTrace("Skipping unknown homing attribute:");
+			}
+		}
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -62,6 +115,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			hardpointSprite.LoadSprite(child);
 		else if(key == "sound")
 			sound = Audio::Get(child.Token(1));
+		else if(key == "empty sound")
+			emptySound = Audio::Get(child.Token(1));
 		else if(key == "ammo")
 		{
 			int usage = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -101,12 +156,51 @@ void Weapon::LoadWeapon(const DataNode &node)
 				(child.Size() >= 3) ? child.Value(2) : 1);
 			for(const DataNode &grand : child)
 			{
-				if((grand.Size() >= 2) && (grand.Token(0) == "facing"))
+				const string &grandKey = grand.Token(0);
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "facing" && grandHasValue)
 					submunitions.back().facing = Angle(grand.Value(1));
-				else if((grand.Size() >= 3) && (grand.Token(0) == "offset"))
+				else if(grandKey == "offset" && grand.Size() >= 3)
 					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
+				else if(grandKey == "spawn on" && grandHasValue)
+				{
+					submunitions.back().spawnOnNaturalDeath = false;
+					for(int j = 1; j < grand.Size(); ++j)
+					{
+						if(grand.Token(j) == "natural")
+							submunitions.back().spawnOnNaturalDeath = true;
+						else if(grand.Token(j) == "anti-missile")
+							submunitions.back().spawnOnAntiMissileDeath = true;
+					}
+				}
 				else
 					child.PrintTrace("Skipping unknown or incomplete submunition attribute:");
+			}
+		}
+		else if(key == "inaccuracy")
+		{
+			inaccuracy = child.Value(1);
+			for(const DataNode &grand : child)
+			{
+				for(int j = 0; j < grand.Size(); ++j)
+				{
+					const string &token = grand.Token(j);
+
+					if(token == "inverted")
+						inaccuracyDistribution.second = true;
+					else if(token == "triangular")
+						inaccuracyDistribution.first = Distribution::Type::Triangular;
+					else if(token == "uniform")
+						inaccuracyDistribution.first = Distribution::Type::Uniform;
+					else if(token == "narrow")
+						inaccuracyDistribution.first = Distribution::Type::Narrow;
+					else if(token == "medium")
+						inaccuracyDistribution.first = Distribution::Type::Medium;
+					else if(token == "wide")
+						inaccuracyDistribution.first = Distribution::Type::Wide;
+					else
+						grand.PrintTrace("Skipping unknown distribution attribute:");
+				}
 			}
 		}
 		else
@@ -116,18 +210,22 @@ void Weapon::LoadWeapon(const DataNode &node)
 				lifetime = max(0., value);
 			else if(key == "random lifetime")
 				randomLifetime = max(0., value);
+			else if(key == "fade out")
+				fadeOut = max(0., value);
 			else if(key == "reload")
 				reload = max(1., value);
 			else if(key == "burst reload")
 				burstReload = max(1., value);
 			else if(key == "burst count")
 				burstCount = max(1., value);
-			else if(key == "homing")
-				homing = value;
 			else if(key == "missile strength")
 				missileStrength = max(0., value);
 			else if(key == "anti-missile")
 				antiMissile = max(0., value);
+			else if(key == "tractor beam")
+				tractorBeam = max(0., value);
+			else if(key == "penetration count")
+				penetrationCount = static_cast<uint16_t>(value);
 			else if(key == "velocity")
 				velocity = value;
 			else if(key == "random velocity")
@@ -151,10 +249,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 			}
 			else if(key == "turn")
 				turn = value;
-			else if(key == "inaccuracy")
-				inaccuracy = value;
 			else if(key == "turret turn")
 				turretTurn = value;
+			else if(key == "arc")
+				maxAngle = max(0., value);
 			else if(key == "tracking")
 				tracking = max(0., min(1., value));
 			else if(key == "optical tracking")
@@ -177,6 +275,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingShields = value;
 			else if(key == "firing ion")
 				firingIon = value;
+			else if(key == "firing scramble")
+				firingScramble = value;
 			else if(key == "firing slowing")
 				firingSlowing = value;
 			else if(key == "firing disruption")
@@ -205,6 +305,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 				triggerRadius = max(0., value);
 			else if(key == "blast radius")
 				blastRadius = max(0., value);
+			else if(key == "safe range override")
+			{
+				safeRange = max(0., value);
+				safeRangeOverriden = true;
+			}
 			else if(key == "shield damage")
 				damage[SHIELD_DAMAGE] = value;
 			else if(key == "hull damage")
@@ -227,6 +332,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[ENERGY_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
+			else if(key == "scrambling damage")
+				damage[WEAPON_JAMMING_DAMAGE] = value;
 			else if(key == "disruption damage")
 				damage[DISRUPTION_DAMAGE] = value;
 			else if(key == "slowing damage")
@@ -248,7 +355,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[RELATIVE_DISABLED_DAMAGE] = value;
 				relativeDisabledDamageSet = true;
 			}
-			else if (key == "relative minable damage")
+			else if(key == "relative minable damage")
 			{
 				damage[RELATIVE_MINABLE_DAMAGE] = value;
 				relativeMinableDamageSet = true;
@@ -263,6 +370,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[HIT_FORCE] = value;
 			else if(key == "piercing")
 				piercing = max(0., value);
+			else if(key == "prospecting")
+				prospecting = value;
 			else if(key == "range override")
 				rangeOverride = max(0., value);
 			else if(key == "velocity override")
@@ -296,10 +405,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 	if(damageDropoffRange.first > damageDropoffRange.second)
 		damageDropoffRange.second = Range();
 
-	// Weapons of the same type will alternate firing (streaming) rather than
-	// firing all at once (clustering) if the weapon is not an anti-missile and
-	// is not vulnerable to anti-missile, or has the "stream" attribute.
-	isStreamed |= !(MissileStrength() || AntiMissile());
+	// Weapons of the same type will alternate firing (streaming) rather than firing all
+	// at once (clustering) if the weapon is not a special weapon type (e.g. anti-missile,
+	// tractor beam) and is not vulnerable to anti-missile, or has the "stream" attribute.
+	isStreamed |= !(MissileStrength() || AntiMissile() || TractorBeam());
 	isStreamed &= !isClustered;
 
 	// Support legacy missiles with no tracking type defined:
@@ -323,6 +432,11 @@ void Weapon::LoadWeapon(const DataNode &node)
 			++it;
 		}
 	}
+
+	// Only when the weapon is not safe and has a blast radius is safeRange needed,
+	// except if it is already overridden.
+	if(!isSafe && blastRadius > 0 && !safeRangeOverriden)
+		safeRange = (blastRadius + triggerRadius);
 }
 
 
@@ -352,6 +466,13 @@ const Body &Weapon::HardpointSprite() const
 const Sound *Weapon::WeaponSound() const
 {
 	return sound;
+}
+
+
+
+const Sound *Weapon::EmptySound() const
+{
+	return emptySound;
 }
 
 
@@ -468,6 +589,22 @@ double Weapon::DamageDropoff(double distance) const
 
 
 
+// Return the weapon's damage dropoff at maximum range.
+double Weapon::MaxDropoff() const
+{
+	return damageDropoffModifier;
+}
+
+
+
+// Return the ranges at which the weapon's damage dropoff begins and ends.
+const pair<double, double> &Weapon::DropoffRanges() const
+{
+	return damageDropoffRange;
+}
+
+
+
 // Legacy support: allow turret outfits with no turn rate to specify a
 // default turnrate.
 void Weapon::SetTurretTurn(double rate)
@@ -490,4 +627,18 @@ double Weapon::TotalDamage(int index) const
 		}
 	}
 	return damage[index];
+}
+
+
+
+pair<Distribution::Type, bool> Weapon::InaccuracyDistribution() const
+{
+	return inaccuracyDistribution;
+}
+
+
+
+double Weapon::Inaccuracy() const
+{
+	return inaccuracy;
 }

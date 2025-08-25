@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_H_
-#define SHIP_H_
+#pragma once
 
 #include "Body.h"
 
@@ -22,9 +24,14 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "EsUuid.h"
 #include "FireCommand.h"
 #include "Outfit.h"
+#include "Paragraphs.h"
 #include "Personality.h"
 #include "Point.h"
+#include "Port.h"
+#include "ship/ShipAICache.h"
+#include "ShipJumpNavigation.h"
 
+#include <array>
 #include <list>
 #include <map>
 #include <memory>
@@ -32,17 +39,21 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DamageDealt;
 class DataNode;
 class DataWriter;
 class Effect;
 class Flotsam;
+class FormationPattern;
 class Government;
 class Minable;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Projectile;
 class StellarObject;
+class Swizzle;
 class System;
 class Visual;
 
@@ -57,13 +68,14 @@ class Ship : public Body, public std::enable_shared_from_this<Ship> {
 public:
 	class Bay {
 	public:
-		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(category) {}
+		Bay(double x, double y, std::string category) : point(x * .5, y * .5), category(std::move(category)) {}
 		Bay(Bay &&) = default;
 		Bay &operator=(Bay &&) = default;
 		~Bay() = default;
 
 		// Copying a bay does not copy the ship inside it.
-		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side), facing(b.facing), launchEffects(b.launchEffects) {}
+		Bay(const Bay &b) : point(b.point), category(b.category), side(b.side),
+			facing(b.facing), launchEffects(b.launchEffects) {}
 		Bay &operator=(const Bay &b) { return *this = Bay(b); }
 
 		Point point;
@@ -84,7 +96,7 @@ public:
 
 	class EnginePoint : public Point {
 	public:
-		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
+		EnginePoint(Point pos, double zoom) : Point(pos), zoom(zoom) {}
 
 		uint8_t side = 0;
 		static const uint8_t UNDER = 0;
@@ -97,32 +109,52 @@ public:
 
 		double zoom;
 		Angle facing;
+		Angle gimbal;
+	};
+
+	enum class ThrustKind {
+		LEFT = 0,
+		RIGHT = 1,
+		FORWARD = 2,
+		REVERSE = 3,
+	};
+
+	enum class CanFireResult {
+		INVALID,
+		NO_AMMO,
+		NO_ENERGY,
+		NO_FUEL,
+		NO_HULL,
+		NO_HEAT,
+		NO_ION,
+		NO_DISRUPTION,
+		NO_SLOWING,
+		CAN_FIRE
 	};
 
 
 public:
-	/* Functions provided by the Body base class:
-	bool HasSprite() const;
-	const Sprite *GetSprite() const;
-	int Width() const;
-	int Height() const;
-	int GetSwizzle() const;
-	Frame GetFrame(int step = -1) const;
-	const Mask &GetMask(int step = -1) const;
-	const Point &Position() const;
-	const Point &Velocity() const;
-	const Angle &Facing() const;
-	Point Unit() const;
-	double Zoom() const;
-	const Government *GetGovernment() const;
-	*/
+	// Functions provided by the Body base class:
+	// bool HasSprite() const;
+	// const Sprite *GetSprite() const;
+	// int Width() const;
+	// int Height() const;
+	// int GetSwizzle() const;
+	// Frame GetFrame(int step = -1) const;
+	// const Mask &GetMask(int step = -1) const;
+	// const Point &Position() const;
+	// const Point &Velocity() const;
+	// const Angle &Facing() const;
+	// Point Unit() const;
+	// double Zoom() const;
+	// const Government *GetGovernment() const;
 
 	Ship() = default;
 	// Construct and Load() at the same time.
-	Ship(const DataNode &node);
+	Ship(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Load data for a type of ship:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);
@@ -139,26 +171,35 @@ public:
 	const std::string &Name() const;
 
 	// Set / Get the name of this model of ship.
-	void SetModelName(const std::string &model);
-	const std::string &ModelName() const;
+	void SetTrueModelName(const std::string &model);
+	const std::string &TrueModelName() const;
+	const std::string &DisplayModelName() const;
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
+	// Get the variant name to be displayed on the Shipyard tab of the Map screen.
+	const std::string &VariantMapShopName() const;
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
 	const std::string &Noun() const;
 	// Get this ship's description.
-	const std::string &Description() const;
+	std::string Description() const;
 	// Get the shipyard thumbnail for this ship.
 	const Sprite *Thumbnail() const;
 	// Get this ship's cost.
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
+	int64_t Strength() const;
+	// Get the attraction and deterrence of this ship, for pirate raids.
+	// This is only useful for the player's ships.
+	double Attraction() const;
+	double Deterrence() const;
 
 	// Check if this ship is configured in such a way that it would be difficult
 	// or impossible to fly.
 	std::vector<std::string> FlightCheck() const;
 
 	void SetPosition(Point position);
+	void SetVelocity(Point velocity);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetName(const std::string &name);
@@ -183,8 +224,16 @@ public:
 	void SetPersonality(const Personality &other);
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
-	void SetHail(const Phrase &phrase);
+	const Phrase *GetHailPhrase() const;
+	void SetHailPhrase(const Phrase &phrase);
 	std::string GetHail(std::map<std::string, std::string> &&subs) const;
+	bool CanSendHail(const PlayerInfo &player, bool allowUntranslated = false) const;
+
+	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
+	const ShipAICache &GetAICache() const;
+	// Updates the AI and navigation caches. If the ship's mass hasn't changed,
+	// reuses some of the previous values.
+	void UpdateCaches(bool massLessChange = false);
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -194,30 +243,37 @@ public:
 	// Move this ship. A ship may create effects as it moves, in particular if
 	// it is in the process of blowing up.
 	void Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
-	// Generate energy, heat, etc. (This is called by Move().)
-	void DoGeneration();
+
 	// Launch any ships that are ready to launch.
 	void Launch(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals);
 	// Check if this ship is boarding another ship. If it is, it either plunders
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
-	std::shared_ptr<Ship> Board(bool autoPlunder = true);
+	std::shared_ptr<Ship> Board(bool autoPlunder, bool nonDocking);
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
-	int Scan();
+	int Scan(const PlayerInfo &player);
 	// Find out what fraction of the scan is complete.
 	double CargoScanFraction() const;
 	double OutfitScanFraction() const;
 
-	// Fire any weapons that are ready to fire. If an anti-missile is ready,
-	// instead of firing here this function returns true and it can be fired if
-	// collision detection finds a missile in range.
-	bool Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
-	// Fire an anti-missile. Returns true if the missile was killed.
+	// Fire any primary or secondary weapons that are ready to fire. Determines
+	// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
+	// The firing of special weapons is handled separately.
+	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, std::vector<int> *emptySoundsTimer);
+	// Return true if any anti-missile or tractor beam systems are ready to fire.
+	bool HasAntiMissile() const;
+	bool HasTractorBeam() const;
+	// Fire an anti-missile at the given missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
+	// Fire tractor beams at the given flotsam. Returns a Point representing the net
+	// pull on the flotsam from this ship's tractor beams.
+	Point FireTractorBeam(const Flotsam &flotsam, std::vector<Visual> &visuals);
 
-	// Get the system this ship is in.
+	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;
+	// Get the system this ship is in. If being carried, gets the parent's system.
+	const System *GetActualSystem() const;
 	// If the ship is landed, get the planet it has landed on.
 	const Planet *GetPlanet() const;
 
@@ -225,28 +281,41 @@ public:
 	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
-	bool IsParalyzed() const;
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
+	bool IsFleeing() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
+	// What kind of action this is we are trying to do.
+	enum class ActionType {AFTERBURNER, BOARD, COMMUNICATION, FIRE, PICKUP, SCAN};
 	// Check if some condition is keeping this ship from acting. (That is, it is
-	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
-	bool CannotAct() const;
-	// Get the degree to which this ship is cloaked. 1 means invisible and
-	// impossible to hit or target; 0 means fully visible.
+	// landing, hyperspacing, cloaking without "cloaked ActionType", disabled, or under-crewed.)
+	bool CannotAct(ActionType actionType) const;
+	// Get the degree to which this ship is cloaked. 1 means fully cloaked; 0 means fully visible.
+	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...
 	double Cloaking() const;
+	bool IsCloaked() const;
+	// The amount of cloaking this ship can do, per frame.
+	double CloakingSpeed() const;
+	// If this ship should be immune to the next damage caused.
+	bool Phases(Projectile &projectile) const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
+	int GetHyperspacePercentage() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump(bool waitingIsReady = false) const;
+	// Check if this ship is allowed to land on this planet, accounting for its personality.
+	bool IsRestrictedFrom(const Planet &planet) const;
+	// Check if this ship is allowed to enter this system, accounting for its personality.
+	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
-	int CustomSwizzle() const;
+	const Swizzle *CustomSwizzle() const;
+	const std::string &CustomSwizzleName() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -265,16 +334,23 @@ public:
 	void Destroy();
 	void SelfDestruct();
 	void Restore();
+	bool IsDamaged() const;
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
-	void Recharge(bool atSpaceport = true);
+	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
 	bool CanRefuel(const Ship &other) const;
+	// Check if this ship can transfer sufficient energy to the other ship.
+	bool CanGiveEnergy(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
 	double TransferFuel(double amount, Ship *to);
-	// Mark this ship as property of the given ship.
-	void WasCaptured(const std::shared_ptr<Ship> &capturer);
+	// Give the other ship some energy.
+	double TransferEnergy(double amount, Ship *to);
+	// Mark this ship as property of the given ship. Returns the number of crew transferred from the capturer.
+	int WasCaptured(const std::shared_ptr<Ship> &capturer);
+	// Clear all orders and targets this ship has (after capture or transfer of control).
+	void ClearTargetsAndOrders();
 
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
@@ -288,26 +364,34 @@ public:
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
 	double DisabledHull() const;
-	// Get the actual shield level of the ship.
+	// Get the maximum shield and hull values of the ship, accounting for multipliers.
+	double MaxShields() const;
+	double MaxHull() const;
+	// Get the absolute shield, hull, and fuel levels of the ship.
 	double ShieldLevel() const;
+	double HullLevel() const;
+	double FuelLevel() const;
 	// Get how disrupted this ship's shields are.
 	double DisruptionLevel() const;
 	// Get the (absolute) amount of hull that needs to be damaged until the
 	// ship becomes disabled. Returns 0 if the ships hull is already below the
 	// disabled threshold.
 	double HullUntilDisabled() const;
+	// Returns the remaining damage timer, for the damage overlay.
+	int DamageOverlayTimer() const;
+	// Get this ship's jump navigation, which contains information about how
+	// much it costs for this ship to jump, how far it can jump, and its possible
+	// jump methods.
+	const ShipJumpNavigation &JumpNavigation() const;
 	// Get the number of jumps this ship can make before running out of fuel.
 	// This depends on how much fuel it has and what sort of hyperdrive it uses.
+	// This does not show accurate number of jumps remaining beyond 1.
 	// If followParent is false, this ship will not follow the parent.
 	int JumpsRemaining(bool followParent = true) const;
-	// Get the amount of fuel expended per jump.
-	double JumpFuel(const System *destination = nullptr) const;
-	// Get the distance that this ship can jump.
-	double JumpRange(bool getCached = true) const;
-	// Get the cost of making a jump of the given type (if possible).
-	double HyperdriveFuel() const;
-	double JumpDriveFuel(double jumpDistance = 0.) const;
-	// Get the amount of fuel missing for the next jump (smart refuelling)
+	bool NeedsFuel(bool followParent = true) const;
+	// Checks whether this ship needs energy to function.
+	bool NeedsEnergy() const;
+	// Get the amount of fuel missing for the next jump (smart refueling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
 	double IdleHeat() const;
@@ -317,6 +401,11 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
+	// Calculate the drag on this ship. The drag can be no greater than the mass.
+	double Drag() const;
+	// Calculate the drag force that this ship experiences. The drag force is the drag
+	// divided by the mass, up to a value of 1.
+	double DragForce() const;
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -330,10 +419,24 @@ public:
 
 	// Get this ship's movement characteristics.
 	double Mass() const;
+	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
-	double MaxVelocity() const;
+	double MaxVelocity(bool withAfterburner = false) const;
+	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
+	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
+	double TrueAcceleration() const;
+	double TrueTurnRate() const;
+	// These two values are the ship's effective maximum acceleration and turn rate,
+	// accounting for the effects of insufficient crew.
+	double CrewAcceleration() const;
+	double CrewTurnRate() const;
+	// The ship's current speed right now
+	double CurrentSpeed() const;
+
+	double ThrustHeldFraction(ThrustKind kind) const;
+	uint8_t ThrustHeldFrames(ThrustKind kind) const;
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
@@ -354,9 +457,6 @@ public:
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;
-	// Change whether this ship can be carried. If false, the ship cannot be
-	// carried. If true, the ship can be carried if its category allows it.
-	void AllowCarried(bool allowCarried);
 	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
 	// Move the given ship into one of the bays, if possible.
@@ -394,9 +494,9 @@ public:
 	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
-	bool CanFire(const Weapon *weapon) const;
+	CanFireResult CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
-	// and add whatever heat it generates. Assume that CanFire() is true.
+	// and add whatever heat it generates). Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);
 
 	// Each ship can have a target system (to travel to), a target planet (to
@@ -404,19 +504,31 @@ public:
 	std::shared_ptr<Ship> GetTargetShip() const;
 	std::shared_ptr<Ship> GetShipToAssist() const;
 	const StellarObject *GetTargetStellar() const;
+	// Get ship's target system (it should always be one jump / wormhole pass away).
 	const System *GetTargetSystem() const;
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
+	const std::set<const Flotsam *> &GetTractorFlotsam() const;
+	// Pattern to use when flying in a formation.
+	const FormationPattern *GetFormationPattern() const;
+
+	// Mark this ship as fleeing.
+	void SetFleeing(bool fleeing = true);
 
 	// Set this ship's targets.
 	void SetTargetShip(const std::shared_ptr<Ship> &ship);
 	void SetShipToAssist(const std::shared_ptr<Ship> &ship);
 	void SetTargetStellar(const StellarObject *object);
+	// Set ship's target system (it should always be one jump / wormhole pass away).
 	void SetTargetSystem(const System *system);
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
+	// Pattern to use when flying in a formation (nullptr to clear formation).
+	void SetFormationPattern(const FormationPattern *formation);
+
+	bool CanPickUp(const Flotsam &flotsam) const;
 
 	// Manage escorts. When you set this ship's parent, it will automatically
 	// register itself as an escort of that ship, and unregister itself from any
@@ -425,15 +537,46 @@ public:
 	std::shared_ptr<Ship> GetParent() const;
 	const std::vector<std::weak_ptr<Ship>> &GetEscorts() const;
 
+	// How many AI steps has this ship been lingering?
+	int GetLingerSteps() const;
+	// The AI wants the ship to linger for one AI step.
+	void Linger();
+
+	// Check if this ship looks the same as another, based on model display names and outfits.
+	bool Imitates(const Ship &other) const;
+
 
 private:
+	// Various steps of Ship::Move:
+
+	// Check if this ship has been in a different system from the player for so
+	// long that it should be "forgotten." Also eliminate ships that have no
+	// system set because they just entered a fighter bay. Clear the hyperspace
+	// targets of ships that can't enter hyperspace.
+	bool StepFlags();
+	// Step ship destruction logic. Returns 1 if the ship has been destroyed, -1 if it is being
+	// destroyed, or 0 otherwise.
+	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoGeneration();
+	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoCloakDecision();
+	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
+	bool DoHyperspaceLogic(std::vector<Visual> &visuals);
+	// Step landing logic. Returns true if the ship is landing or departing.
+	bool DoLandingLogic();
+	void DoInitializeMovement();
+	void StepPilot();
+	void DoMovement(bool &isUsingAfterburner);
+	void StepTargeting();
+	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
+
+
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
-	// Find out how much fuel is consumed by the hyperdrive of the given type.
-	double BestFuel(const std::string &type, const std::string &subtype, double defaultFuel, double jumpDistance = 0.) const;
 	// Create one of this ship's explosions, within its mask. The explosions can
 	// either stay over the ship, or spread out if this is the final explosion.
 	void CreateExplosion(std::vector<Visual> &visuals, bool spread = false);
@@ -441,25 +584,37 @@ private:
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
+	// Calculate the attraction and deterrence of this ship, for pirate raids.
+	// This is only useful for the player's ships.
+	double CalculateAttraction() const;
+	double CalculateDeterrence() const;
+
+	// Increment the duration a thruster direction has been held.
+	void IncrementThrusterHeld(ThrustKind kind);
+
+	// Helper function for jettisoning flotsam.
+	void Jettison(std::shared_ptr<Flotsam> toJettison);
+
 
 private:
-	/* Protected member variables of the Body class:
-	Point position;
-	Point velocity;
-	Angle angle;
-	double zoom;
-	int swizzle;
-	const Government *government;
-	*/
+	// Protected member variables of the Body class:
+	// Point position;
+	// Point velocity;
+	// Angle angle;
+	// double zoom;
+	// int swizzle;
+	// const Government *government;
 
 	// Characteristics of the chassis:
 	bool isDefined = false;
 	const Ship *base = nullptr;
-	std::string modelName;
+	std::string trueModelName;
+	std::string displayModelName;
 	std::string pluralModelName;
 	std::string variantName;
+	std::string variantMapShopName;
 	std::string noun;
-	std::string description;
+	Paragraphs description;
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	EsUuid uuid;
@@ -478,6 +633,7 @@ private:
 	bool isDisabled = false;
 	bool isBoarding = false;
 	bool hasBoarded = false;
+	bool isFleeing = false;
 	bool isThrusting = false;
 	bool isReversing = false;
 	bool isSteering = false;
@@ -485,21 +641,30 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
-	int customSwizzle = -1;
+	const Swizzle *customSwizzle = nullptr;
+	std::string customSwizzleName;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
-	// Cached values for figuring out when anti-missile is in range.
+	// Cached values for figuring out when anti-missiles or tractor beams are in range.
 	double antiMissileRange = 0.;
+	double tractorBeamRange = 0.;
 	double weaponRadius = 0.;
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
 	double outfitScan = 0.;
+
+	double attraction = 0.;
+	double deterrence = 0.;
+
+	// Number of AI steps this ship has spent lingering
+	int lingerSteps = 0;
 
 	Command commands;
 	FireCommand firingCommands;
 
 	Personality personality;
 	const Phrase *hail = nullptr;
+	ShipAICache aiCache;
 
 	// Installed outfits, cargo, etc.:
 	Outfit attributes;
@@ -509,6 +674,7 @@ private:
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
+	std::list<std::pair<std::shared_ptr<Flotsam>, size_t>> jettisonedFromBay;
 
 	std::vector<Bay> bays;
 	// Cache the mass of carried ships to avoid repeatedly recomputing it.
@@ -527,6 +693,8 @@ private:
 	double heat = 0.;
 	// Accrued "ion damage" that will affect this ship's energy over time.
 	double ionization = 0.;
+	// Accrued "scrambling damage" that will affect this ship's weaponry over time.
+	double scrambling = 0.;
 	// Accrued "disruption damage" that will affect this ship's shield effectiveness over time.
 	double disruption = 0.;
 	// Accrued "slowing damage" that will affect this ship's movement over time.
@@ -542,8 +710,14 @@ private:
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
+	// Timer for a disabled ship to repair itself.
+	int disabledRecoveryCounter = 0;
+	// Number of frames the damage overlay should be displayed, if any.
+	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
+	// The amount of time in frames that an engine has been on for.
+	std::array<uint8_t, 4> thrustHeldFrames = {};
 
 	int crew = 0;
 	int pilotError = 0;
@@ -555,13 +729,12 @@ private:
 	// hyperspacing, and exploding. Each one must track some special counters:
 	const Planet *landingPlanet = nullptr;
 
+	ShipJumpNavigation navigation;
 	int hyperspaceCount = 0;
 	const System *hyperspaceSystem = nullptr;
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
-
-	double jumpRange = 0.;
 
 	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
 	// when the ship is dying.
@@ -592,12 +765,12 @@ private:
 	const System *targetSystem = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
+	std::set<const Flotsam *> tractorFlotsam;
+	const FormationPattern *formationPattern = nullptr;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
+
+	bool removeBays = false;
 };
-
-
-
-#endif

@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UI_H_
-#define UI_H_
+#pragma once
 
 #include "GamePad.h"
 #include "Point.h"
@@ -34,6 +36,18 @@ class UI {
 public:
 	UI(GamePad &controller);
 
+	enum class UISound
+	{
+		NONE,
+		SOFT,
+		NORMAL,
+		SOFT_BUZZ,
+		TARGET,
+		FAILURE
+	};
+
+
+public:
 	// Handle an event. The event is handed to each panel on the stack until one
 	// of them handles it. If none do, this returns false.
 	bool Handle(const SDL_Event &event);
@@ -100,6 +114,8 @@ public:
 
 	static void MoveMouseRelative(const Point &point);
 
+	static void PlaySound(UISound sound);
+
 
 private:
 	// If a push or pop is queued, apply it.
@@ -120,7 +136,3 @@ private:
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
 };
-
-
-
-#endif

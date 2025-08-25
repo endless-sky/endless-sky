@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "es-test.hpp"
@@ -17,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 // ... and any system includes needed for the test file.
 #include <algorithm>
+#include <random>
 
 namespace { // test namespace
 
@@ -42,7 +46,8 @@ SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 
 		THEN( "Unknown elements are sorted after known elements" ) {
 			for(int elt : givenOrder)
-				for(int elt2 : unknownElements) {
+				for(int elt2 : unknownElements)
+				{
 					CHECK( c(elt, elt2) );
 					CHECK( !c(elt2, elt) );
 				}
@@ -62,7 +67,9 @@ SCENARIO( "Test basic ByGivenOrder functionality." , "[ByGivenOrder]" ) {
 			std::vector<int> toSort = { 2, 4, 6, 8, 5, 1, 3 };
 			const std::vector<int> expectedOrder = { 4, 2, 8, 6, 1, 3, 5 };
 
-			std::random_shuffle(toSort.begin(), toSort.end());
+			std::random_device rd;
+			std::mt19937 gen(rd());
+			std::shuffle(toSort.begin(), toSort.end(), gen);
 			std::sort(toSort.begin(), toSort.end(), c);
 			CHECK( toSort == expectedOrder );
 		}

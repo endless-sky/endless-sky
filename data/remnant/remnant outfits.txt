@@ -1,4 +1,5 @@
 # Copyright (c) 2017 by Michael Zahniser
+# Copyright (c) 2021 by Zitchas
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -6,12 +7,17 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Weapons:
 
 outfit "Inhibitor Cannon"
 	category "Guns"
+	series "Guns"
+	index 03010
 	licenses
 		Remnant
 	cost 471000
@@ -34,10 +40,10 @@ outfit "Inhibitor Cannon"
 		"cluster"
 		"firing energy" 26
 		"firing heat" 45.5
-		"firing force" 13
+		"firing force" 19.5
 		"shield damage" 26
 		"hull damage" 19.5
-		"hit force" 39
+		"hit force" 58.5
 		"slowing damage" .5
 	description `Nearly a century ago, a Remnant scout exploring space north of the Ember Waste came under fire from an alien fleet armed with weapons that interfered with the scout's engines. The story says that the Remnant captain calmly told her crew, "We aren't going home until we steal that weapon." That alien technology became the basis of the Inhibitor Cannon.`
 	description `	Although the Remnant appreciated the original weapon, they were disappointed that it was too big to fit on most of their ships. Instead of letting their effort go to waste, they instead opted to put their newfound knowledge to use creating a weapon suitable for their more nimble craft. Thus, the Inhibitor is excellent at controlling engagement distances, keeping targets at range by both pushing them backward with the impact of each shot while also slowing their approach by interfering with their engines.`
@@ -54,6 +60,8 @@ effect "inhibitor impact"
 
 outfit "Inhibitor Turret"
 	category "Turrets"
+	series "Turrets"
+	index 03010
 	licenses
 		Remnant
 	cost 1371000
@@ -72,7 +80,7 @@ outfit "Inhibitor Turret"
 		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
 		"inaccuracy" .5
-		"turret turn" 3.5
+		"turret turn" 3.6
 		"velocity" 36
 		"random velocity" .5
 		"lifetime" 24
@@ -80,10 +88,10 @@ outfit "Inhibitor Turret"
 		"cluster"
 		"firing energy" 26
 		"firing heat" 45.5
-		"firing force" 13
+		"firing force" 19.5
 		"shield damage" 26
 		"hull damage" 19.5
-		"hit force" 39
+		"hit force" 58.5
 		"slowing damage" .5
 	description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant quickly decided that it would be even more useful as a turret that their ships could use to impede those chasing after them. These small Inhibitor Turrets are typically found primarily on Pelicans trying to outrun opponents rather than defeat them.`
 	description `Although these turrets are unremarkable in terms of performance, the comparatively recent perfection of a technique of installing the bulk of the weapon itself externally on the turret mount instead of under the base has resulted in a weapon that takes comparatively little outfit space. It does, however, still add quite a bit more to the mass of the ship.`
@@ -91,6 +99,8 @@ outfit "Inhibitor Turret"
 
 outfit "Thrasher Cannon"
 	category "Guns"
+	series "Guns"
+	index 03020
 	licenses
 		Remnant
 	cost 218000
@@ -129,6 +139,8 @@ effect "thrasher impact"
 
 outfit "Thrasher Turret"
 	category "Turrets"
+	series "Turrets"
+	index 03020
 	licenses
 		Remnant
 	cost 980000
@@ -148,7 +160,7 @@ outfit "Thrasher Turret"
 		sound "thrasher"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
-		"turret turn" 2.4
+		"turret turn" 2
 		"velocity" 10
 		"lifetime" 36
 		"reload" 5
@@ -161,6 +173,8 @@ outfit "Thrasher Turret"
 
 outfit "Point Defense Turret"
 	category "Turrets"
+	series "Anti-Missile"
+	index 03010
 	licenses
 		Remnant
 	cost 1120000
@@ -187,7 +201,7 @@ effect "point defense fire"
 		"frame rate" 17
 		"no repeat"
 	sound "point defense"
-
+	"sound category" "anti-missile"
 	lifetime 10
 	"velocity scale" .5
 
@@ -209,8 +223,8 @@ effect "point defense die"
 outfit "EMP Torpedo"
 	plural "EMP Torpedoes"
 	category "Ammunition"
-	licenses
-		Remnant
+	series "Ammunition"
+	index 03010
 	cost 4400
 	thumbnail "outfit/emp torpedo"
 	"mass" 1
@@ -219,6 +233,8 @@ outfit "EMP Torpedo"
 
 outfit "EMP Torpedo Storage Bay"
 	category "Ammunition"
+	series "Ammunition"
+	index 03011
 	licenses
 		Remnant
 	cost 98000
@@ -228,11 +244,13 @@ outfit "EMP Torpedo Storage Bay"
 	"energy capacity" 400
 	"emp torpedo capacity" 7
 	ammo "EMP Torpedo"
-	description "The EMP torpedo storage bay is used to store extra ammunition for weapons that use EMP torpedoes."
-	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP torpedoes."
+	description "The EMP Torpedo Storage Bay is used to store extra ammunition for weapons that use EMP torpedoes."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship fire EMP Torpedoes."
 
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 03010
 	licenses
 		Remnant
 	cost 583000
@@ -264,7 +282,8 @@ outfit "EMP Torpedo Bay"
 		"acceleration" .7
 		"drag" .1
 		"turn" 2
-		"homing" 3
+		"homing"
+			"throttle control"
 		"infrared tracking" .7
 		"radar tracking" .8
 		"trigger radius" 50
@@ -272,9 +291,161 @@ outfit "EMP Torpedo Bay"
 		"shield damage" 700
 		"hull damage" 100
 		"ion damage" 48
-		"hit force" 90
+		"scrambling damage" 48
+		"hit force" 135
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+
+outfitter "EMP Torpedo Restock"
+	to sell
+		or
+			has "outfit: EMP Torpedo Bay"
+			has "outfit: Ka'het EMP Deployer"
+			has "outfit: EMP Torpedo Storage Bay"
+	location
+		attributes "outfitter"
+	stock
+		"EMP Torpedo"
+
+
+
+outfit "Teciimach Canister"
+	category "Ammunition"
+	series "Ammunition"
+	index 03020
+	cost 35500
+	thumbnail "outfit/emp torpedo"
+	"mass" 1
+	"teciimach canister capacity" -1
+	description "This canister contains everything required to assemble a Teciimach Torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
+	description `	Unlike the previous generation of "EMP Torpedoes," the Teciimach torpedoes actively shape their emission pattern to avoid impacting their allies.`
+
+outfit "Teciimach Canister Rack"
+	category "Ammunition"
+	series "Ammunition"
+	index 03021
+	licenses
+		Remnant
+	cost 295000
+	thumbnail "outfit/emp rack"
+	"mass" 5
+	"outfit space" -9
+	"energy capacity" 500
+	"teciimach canister capacity" 9
+	ammo "Teciimach Canister"
+	description "The Teciimach Canister Rack is used to store extra sets of components, both to expand the capacity of a ship, and on carriers for resupplying fighters."
+	description "	In addition to its ammunition capacity, the storage bay can also contain a small amount of charge, enough to let an otherwise battery-less ship assemble Teciimach Torpedoes."
+
+outfit "Teciimach Bay"
+	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 03030
+	licenses
+		Remnant
+	cost 1525000
+	thumbnail "outfit/teciimach bay"
+	"mass" 9
+	"outfit space" -13
+	"weapon capacity" -13
+	"gun ports" -1
+	"teciimach canister capacity" 9
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "Teciimach Canister"
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		cluster
+		safe
+		"reload" 310
+		"firing energy" 400
+		"firing heat" 18
+		"inaccuracy" 5
+		"lifetime" 300
+		"velocity" 8
+		"acceleration" .7
+		"drag" .1
+		"turn" 2.5
+		"homing"
+			"throttle control"
+		"infrared tracking" .8
+		"radar tracking" .9
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 900
+		"hull damage" 125
+		"disabled damage" 60
+		"ion damage" 65
+		"scrambling damage" 65
+		"energy damage" 2000
+		"hit force" 135
+		"missile strength" 95
+	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
+	description "Centuries later, the Teciimach revision includes a range of upgrades to their effectiveness, efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+
+outfit "Teciimach Pod"
+	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 03020
+	licenses
+		Remnant
+	cost 762500
+	thumbnail "outfit/teciimach pod"
+	"mass" 3
+	"outfit space" -6
+	"weapon capacity" -6
+	"gun ports" -1
+	"teciimach canister capacity" 3
+	weapon
+		sprite "projectile/emp torpedo"
+			"frame rate" 2
+			"no repeat"
+		sound "torpedo"
+		ammo "Teciimach Canister"
+		icon "icon/emp"
+		"fire effect" "emp torpedo fire" 5
+		"hit effect" "nuke explosion"
+		"hit effect" "emp ring" 30
+		"hit effect" "emp spark" 20
+		"die effect" "tiny explosion"
+		cluster
+		safe
+		"burst count" 3
+		"burst reload" 110
+		"reload" 620
+		"firing energy" 350
+		"firing heat" 16
+		"inaccuracy" 5
+		"lifetime" 300
+		"velocity" 8
+		"acceleration" .7
+		"drag" .1
+		"turn" 2.5
+		"homing"
+			"throttle control"
+		"infrared tracking" .8
+		"radar tracking" .9
+		"trigger radius" 50
+		"blast radius" 200
+		"shield damage" 900
+		"hull damage" 125
+		"disabled damage" 60
+		"ion damage" 60
+		"scrambling damage" 60
+		"energy damage" 2000
+		"hit force" 135
+		"missile strength" 95
+	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor-class vessels."
+	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "emp torpedo fire"
 	sprite "effect/emp torpedo fire"
@@ -306,10 +477,23 @@ effect "emp spark"
 	"random velocity" 7
 	"velocity scale" 0.1
 
+outfitter "Teciimach Canister Restock"
+	to sell
+		or
+			has "outfit: Teciimach Bay"
+			has "outfit: Teciimach Pod"
+			has "outfit: Teciimach Canister Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Teciimach Canister"
+
 
 
 outfit "Ember Tear"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 03040
 	licenses
 		"Remnant Capital"
 	cost 270000000
@@ -323,7 +507,7 @@ outfit "Ember Tear"
 	weapon
 		sprite "projectile/ember tear/ember tear"
 			"frame rate" 30
-		sound "ion"
+		sound "ember tear"
 		"hit effect" "ember tear spark"
 		"hit effect" "ember tear impact"
 		"hit effect" "ember tear vortex"
@@ -333,7 +517,7 @@ outfit "Ember Tear"
 		"safe"
 		"lifetime" 1
 		"reload" 1
-		"firing force" 1
+		"firing force" 1.5
 		"blast radius" 150
 		"firing energy" 230
 		"firing fuel" 10
@@ -384,6 +568,7 @@ effect "ember tear vortex"
 		"start frame" 0
 		"no repeat"
 		"frame rate" 10
+	"sound" "ember tear hit"
 	"lifetime" 100
 	"velocity scale" 0
 	"random angle" 360
@@ -396,6 +581,8 @@ effect "ember tear vortex"
 
 outfit "Crystal Capacitor"
 	category "Power"
+	series "Batteries"
+	index 03010
 	licenses
 		Remnant
 	cost 57000
@@ -406,11 +593,14 @@ outfit "Crystal Capacitor"
 	"energy consumption" .4
 	"heat generation" .4
 	"ion resistance" 0.01
+	"scramble resistance" 0.01
 	description "These crystals, mined on the Remnant planet Viminal, can store a surprising amount of power in a compact form. Crystals pure enough to be used in such a manner are hard to find, however."
 	description "	The capacitors tend to leak small amounts of energy in the form of excess heat. This leaking of energy also results in a quicker dissipation of ionization, granting ships with these crystals some resistance against the occasional ion storms that occur in the Waste."
 
 outfit "Millennium Cell"
 	category "Power"
+	series "Generators"
+	index 03010
 	licenses
 		Remnant
 	cost 553000
@@ -420,11 +610,14 @@ outfit "Millennium Cell"
 	"energy generation" 3.6
 	"heat generation" 6.0
 	"ion resistance" 0.025
+	"scramble resistance" 0.025
 	description "This quite compact radiothermal generator uses isotopes so radioactive, and so tightly packed together, that it could almost be classified as a nuclear reactor."
 	description "	Although not very impressive in terms of how much energy they produce, Remnant generators have been designed to better handle the energy draining effects of ionization."
 
 outfit "Epoch Cell"
 	category "Power"
+	series "Generators"
+	index 03020
 	licenses
 		Remnant
 	cost 2123000
@@ -434,11 +627,14 @@ outfit "Epoch Cell"
 	"energy generation" 12.7
 	"heat generation" 19.8
 	"ion resistance" 0.085
+	"scramble resistance" 0.085
 	description "Efficient Remnant technology ensures that nearly all the heat produced by this generator's radioisotopes is converted into electricity instead of becoming waste heat."
 	description "	The Remnant took the ion dissipation effects of the crystals found on Viminal and replicated them for their generators in order to help survive the hostile environment of the Ember Waste."
 
 outfit "Aeon Cell"
 	category "Power"
+	series "Generators"
+	index 03030
 	licenses
 		Remnant
 	cost 4384000
@@ -448,11 +644,14 @@ outfit "Aeon Cell"
 	"energy generation" 21.9
 	"heat generation" 31.5
 	"ion resistance" 0.14
+	"scramble resistance" 0.14
 	description "The early Remnant engineers did not trust the finicky and unpredictable nuclear reactors that were then in use in human space, so they instead focused on perfecting the art of radioisotope thermoelectric power."
 	description "	The ion resistance on all Remnant generators not only allows them to bounce back from ion storms more quickly, but also gives their ships a window of time when an ion storm starts where they are not affected, giving them a chance to escape before becoming debilitated by the storm."
 
 outfit "Thermoelectric Cooler"
 	category "Systems"
+	series "Cooling"
+	index 03010
 	licenses
 		Remnant
 	cost 100000
@@ -465,17 +664,34 @@ outfit "Thermoelectric Cooler"
 
 outfit "Emergency Ramscoop"
 	category "Systems"
+	series "Ramscoops"
+	index 03010
 	licenses
 		Remnant
 	cost 72000
 	thumbnail "outfit/emergency ramscoop"
 	"mass" 4
 	"outfit space" -4
-	"ramscoop" 0.5
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+	"ramscoop" 1.25
+	description `The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their "gills," which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded.`
+
+outfit "NDR-114 Android"
+	category "Unique"
+	series "Functional Unique"
+	index 40
+	cost 120000
+	thumbnail "outfit/android"
+	"required crew" -1
+	"energy consumption" 0.01
+	"unique" 1
+	unplunderable 1
+	description "While these were once considered cutting-edge outfits, their lack of autonomous capabilities and economic benefit ensured they were never licensed by a manufacturer."
+	description "	Despite this, some captains commissioned these directly from their inventor, effectively replacing one of their crew members with a robotic counterpart. These captains found that androids possessed sufficient capabilities to perform most work, but lacked the capability to captain a ship or take part in boarding actions."
 
 outfit "Research Laboratory"
 	category "Systems"
+	series "Scanners"
+	index 03020
 	licenses
 		Remnant
 	cost 500000
@@ -484,7 +700,7 @@ outfit "Research Laboratory"
 	"outfit space" -6
 	"asteroid scan power" 84
 	"cargo scan power" 20
-	"cargo scan speed" 1
+	"cargo scan efficiency" 6
 	"atmosphere scan" 100
 	"required crew" 1
 	"unplunderable" 1
@@ -493,6 +709,8 @@ outfit "Research Laboratory"
 
 outfit "Quantum Key Stone"
 	category "Systems"
+	series "Drives"
+	index 60
 	licenses
 		Remnant
 	cost 240000
@@ -504,6 +722,8 @@ outfit "Quantum Key Stone"
 
 outfit "Salvage Scanner"
 	category "Systems"
+	series "Scanners"
+	index 03010
 	licenses
 		Remnant
 	cost 410000
@@ -511,10 +731,10 @@ outfit "Salvage Scanner"
 	"mass" 7
 	"outfit space" -7
 	"outfit scan power" 13
-	"outfit scan speed" 1
+	"outfit scan efficiency" 12
 	"tactical scan power" 84
-	description "When the Remnant unraveled the alien point defense turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
-	description "	 While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
+	description "When the Remnant unraveled the alien Point Defense Turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
+	description "	While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
 
 
 
@@ -522,29 +742,34 @@ outfit "Salvage Scanner"
 
 outfit "Bellows-Class Afterburner"
 	category "Engines"
+	series "Afterburners"
+	index 03010
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
 	"mass" 8
-	"outfit space" -7
-	"engine capacity" -7
+	"outfit space" -11
+	"engine capacity" -11
 	"slowing resistance" 0.01
-	"afterburner thrust" 153.0
-	"afterburner fuel" 0.5
-	"afterburner energy" 6.0
-	"afterburner heat" 8.0
+	"afterburner thrust" 187.5
+	"afterburner fuel" 1.3
+	"afterburner energy" 6
+	"afterburner heat" 18
 	"afterburner effect" "remnant afterburner"
 	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
-	description "	The Bellows-class afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
+	description "	The Bellows-Class Afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
 
 effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
 		"frame rate" 10
 	sound "remnant afterburner"
+	"sound category" "afterburner"
 
 
 
 outfit "Anvil-Class Engine"
 	category "Engines"
+	series "Engines"
+	index 03010
 	licenses
 		Remnant
 	"cost" 290000
@@ -552,13 +777,13 @@ outfit "Anvil-Class Engine"
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
-	"thrust" 13.5
+	"thrust" 20.7
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
-	"turn" 369.6
+	"turn" 554.4
 	"turning energy" 1.05
 	"turning heat" 1.1
-	"reverse thrust" 10.1
+	"reverse thrust" 15.45
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 1.45
 	"slowing resistance" 0.02
@@ -575,6 +800,8 @@ outfit "Anvil-Class Engine"
 
 outfit "Crucible-Class Thruster"
 	category "Engines"
+	series "Engines"
+	index 03021
 	licenses
 		Remnant
 	"cost" 200000
@@ -582,10 +809,10 @@ outfit "Crucible-Class Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 14.4
+	"thrust" 24.825
 	"thrusting energy" 2.1
 	"thrusting heat" 2.0
-	"reverse thrust" 10.8
+	"reverse thrust" 18.6
 	"reverse thrusting energy" 1.6
 	"reverse thrusting heat" 1.5
 	"slowing resistance" 0.012
@@ -599,6 +826,8 @@ outfit "Crucible-Class Thruster"
 
 outfit "Forge-Class Thruster"
 	category "Engines"
+	series "Engines"
+	index 03031
 	licenses
 		Remnant
 	"cost" 441000
@@ -606,10 +835,10 @@ outfit "Forge-Class Thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"thrust" 31.5
+	"thrust" 51
 	"thrusting energy" 4.4
 	"thrusting heat" 4.25
-	"reverse thrust" 23.6
+	"reverse thrust" 38.25
 	"reverse thrusting energy" 3.3
 	"reverse thrusting heat" 3.2
 	"slowing resistance" 0.024
@@ -623,6 +852,8 @@ outfit "Forge-Class Thruster"
 
 outfit "Smelter-Class Thruster"
 	category "Engines"
+	series "Engines"
+	index 03041
 	licenses
 		Remnant
 	"cost" 984000
@@ -630,10 +861,10 @@ outfit "Smelter-Class Thruster"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"thrust" 71.1
+	"thrust" 106.65
 	"thrusting energy" 9.5
 	"thrusting heat" 9.6
-	"reverse thrust" 53.3
+	"reverse thrust" 79.95
 	"reverse thrusting energy" 7.1
 	"reverse thrusting heat" 7.2
 	"slowing resistance" 0.048
@@ -647,6 +878,8 @@ outfit "Smelter-Class Thruster"
 
 outfit "Crucible-Class Steering"
 	category "Engines"
+	series "Engines"
+	index 03020
 	licenses
 		Remnant
 	"cost" 172000
@@ -654,7 +887,7 @@ outfit "Crucible-Class Steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"turn" 456
+	"turn" 684
 	"turning energy" 1.32
 	"turning heat" 1.4
 	"slowing resistance" 0.008
@@ -665,6 +898,8 @@ outfit "Crucible-Class Steering"
 
 outfit "Forge-Class Steering"
 	category "Engines"
+	series "Engines"
+	index 03030
 	licenses
 		Remnant
 	"cost" 393000
@@ -672,7 +907,7 @@ outfit "Forge-Class Steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 995
+	"turn" 1492.5
 	"turning energy" 2.64
 	"turning heat" 3.0
 	"slowing resistance" 0.016
@@ -683,6 +918,8 @@ outfit "Forge-Class Steering"
 
 outfit "Smelter-Class Steering"
 	category "Engines"
+	series "Engines"
+	index 03040
 	licenses
 		Remnant
 	"cost" 880000
@@ -690,7 +927,7 @@ outfit "Smelter-Class Steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 2123
+	"turn" 3184.5
 	"turning energy" 5.21
 	"turning heat" 6.2
 	"slowing resistance" 0.032
@@ -705,6 +942,8 @@ outfit "Smelter-Class Steering"
 
 outfit "Tuning Rifle"
 	category "Hand to Hand"
+	series "H2H"
+	index 03010
 	licenses
 		Remnant
 	cost 22000
@@ -716,10 +955,12 @@ outfit "Tuning Rifle"
 
 
 
-# Special
+# Unique
 
 outfit "Void Rifle"
-	category "Special"
+	category "Unique"
+	series "Functional Unique"
+	index 50
 	licenses
 		Remnant
 	cost 1000000
@@ -727,16 +968,43 @@ outfit "Void Rifle"
 	"capture attack" 20
 	"capture defense" 20
 	"energy consumption" 0.017
+	"unique" 1
 	"unplunderable" 1
-	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old void rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
-	description "	When fired, the void rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
+	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old Void Rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
+	description "	When fired, the Void Rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
+
+
+
+outfit "Void Sprite Parts"
+	plural "Void Sprite Parts"
+	category "Unique"
+	series "Non-Functional Unique"
+	index 20
+	cost 500
+	thumbnail "outfit/void sprite parts"
+	"flotsam sprite" "effect/void sprite parts/void sprite parts"
+	"mass" 1
+	"outfit space" -1
+	"flotsam chance" .5
+	"installable" -1
+	"unique" 1
+	description "This is nothing more and nothing less than a cubic meter of void sprite parts. To the Remnant, this represents both a terrible occurrence and a dreadful opportunity."
+	description "	This could have been very valuable to someone who knew what they were doing, if it had been handled properly. Instead, it is worth little more than the value of the compounds contained within."
+
+
+
+# Special
 
 outfit "Remnant License"
-	category "Special"
+	category "Licenses"
+	series "Licenses"
+	index 03010
 	thumbnail "outfit/remnant license"
-	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
+	description "In addition to serving as a handy IFF verifier, personal identification tool, and license to purchase Remnant technology, this device features movable parts that mechanically click with every adjustment. When the pieces are switched in a specific order and rhythm, the series of clicks produces a surprisingly beautiful blend of classical music tracks."
 
 outfit "Remnant Capital License"
-	category "Special"
+	category "Licenses"
+	series "Licenses"
+	index 03020
 	thumbnail "outfit/remnant capital license"
-	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."
+	description "While seemingly innocuous at first, this device shows the brilliant simplicity of Remnant engineering. Tapping either edge produces a brief, faint hum which can carry over vast distances on a planet. This humming allows captains who have been entrusted with the Remnant's most valuable technology to call nearby patrols for aid should they ever become stranded."

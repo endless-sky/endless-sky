@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_SHIPYARD_PANEL_H_
-#define MAP_SHIPYARD_PANEL_H_
+#pragma once
 
 #include "MapSalesPanel.h"
 
@@ -22,6 +24,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 class PlayerInfo;
 class Ship;
 class Sprite;
+class Swizzle;
 
 
 
@@ -39,8 +42,8 @@ protected:
 
 	virtual const Sprite *SelectedSprite() const override;
 	virtual const Sprite *CompareSprite() const override;
-	virtual int SelectedSpriteSwizzle() const override;
-	virtual int CompareSpriteSwizzle() const override;
+	virtual const Swizzle *SelectedSpriteSwizzle() const override;
+	virtual const Swizzle *CompareSpriteSwizzle() const override;
 	virtual const ItemInfoDisplay &SelectedInfo() const override;
 	virtual const ItemInfoDisplay &CompareInfo() const override;
 	virtual const std::string &KeyLabel(int index) const override;
@@ -60,6 +63,7 @@ private:
 private:
 	std::map<std::string, std::vector<const Ship *>> catalog;
 	std::vector<const Ship *> list;
+	std::map<const System *, std::map<const Ship *, int>> parkedShips;
 
 	const Ship *selected = nullptr;
 	const Ship *compare = nullptr;
@@ -67,7 +71,3 @@ private:
 	ShipInfoDisplay selectedInfo;
 	ShipInfoDisplay compareInfo;
 };
-
-
-
-#endif

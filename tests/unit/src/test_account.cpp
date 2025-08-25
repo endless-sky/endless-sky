@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "es-test.hpp"
@@ -32,18 +35,28 @@ namespace { // test namespace
 SCENARIO( "Creating an Account" , "[Account][Creation]" ) {
 	GIVEN( "an account" ) {
 		Account account;
-		WHEN( "money is added" ){
+		WHEN( "money is added" ) {
 			REQUIRE( account.Credits() == 0. );
 			account.AddCredits(100);
-			THEN( "the balance is increased" ){
+			THEN( "the balance is increased" ) {
 				REQUIRE( account.Credits() == 100 );
 			}
 		}
-		WHEN( "a fine is levied" ){
+		WHEN( "a fine is levied" ) {
 			REQUIRE( account.TotalDebt() == 0 );
 			account.AddFine(10000);
 			THEN ( "debt is incurred" ) {
 				REQUIRE( account.TotalDebt() == 10000 );
+			}
+		}
+		WHEN( "Mortgage is added" ) {
+			REQUIRE(account.Credits() == 0);
+			account.AddMortgage(200);
+			THEN( "The credits increased and the mortgage was added" ) {
+				REQUIRE( account.Credits() == 200);
+				REQUIRE( account.Mortgages().back().Type() == "Mortgage" );
+				REQUIRE( account.Mortgages().back().Principal() == 200);
+				REQUIRE( account.Mortgages().back().Interest() == ("0." + std::to_string(600 - account.CreditScore() / 2) + "%"));
 			}
 		}
 	}

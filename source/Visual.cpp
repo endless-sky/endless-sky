@@ -7,12 +7,15 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Visual.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Effect.h"
 #include "Random.h"
 
@@ -21,7 +24,7 @@ using namespace std;
 
 
 // Generate a visual based on the given Effect.
-Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity)
+Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity, double inheritedZoom)
 	: Body(effect, pos, vel, effect.hasAbsoluteAngle ? effect.absoluteAngle : facing),
 	lifetime(effect.lifetime)
 {
@@ -43,10 +46,13 @@ Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point h
 		velocity += angle.Unit() * Random::Real() * effect.randomVelocity;
 
 	if(effect.sound)
-		Audio::Play(effect.sound, position);
+		Audio::Play(effect.sound, position, effect.soundCategory);
 
 	if(effect.randomFrameRate)
 		AddFrameRate(effect.randomFrameRate * Random::Real());
+
+	if(effect.inheritsZoom)
+		scale *= inheritedZoom;
 }
 
 

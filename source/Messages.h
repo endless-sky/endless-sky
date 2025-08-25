@@ -7,15 +7,21 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MESSAGES_H_
-#define MESSAGES_H_
+#pragma once
 
-#include <string>
-#include <vector>
 #include <cstdint>
+#include <deque>
+#include <string>
+#include <utility>
+#include <vector>
+
+class Color;
 
 
 
@@ -29,6 +35,8 @@ public:
 	enum class Importance : uint_least8_t {
 		Highest,
 		High,
+		Info,
+		Daily,
 		Low
 	};
 
@@ -39,23 +47,28 @@ public:
 			: step(step), message(message), importance(importance) {}
 
 		int step;
+		int deathStep = -1;
 		std::string message;
 		Importance importance;
 	};
 
 public:
 	// Add a message to the list along with its level of importance
-	static void Add(const std::string &message, Importance importance);
+	// When forced, the message is forcibly added to the log, but not to the list.
+	static void Add(const std::string &message, Importance importance = Importance::Low, bool force = false);
+	// Add a message to the log. For messages meant to be shown
+	// also on the main panel, use Add instead.
+	static void AddLog(const std::string &message, Importance importance = Importance::Low, bool force = false);
 
 	// Get the messages for the given game step. Any messages that are too old
 	// will be culled out, and new ones that have just been added will have
 	// their "step" set to the given value.
-	static const std::vector<Entry> &Get(int step);
+	static const std::vector<Entry> &Get(int step, int animationDuration);
+	static const std::deque<std::pair<std::string, Messages::Importance>> &GetLog();
 
 	// Reset the messages (i.e. because a new game was loaded).
 	static void Reset();
+
+	// Get color that should be used for drawing messages of given importance.
+	static const Color *GetColor(Importance importance, bool isLogPanel);
 };
-
-
-
-#endif

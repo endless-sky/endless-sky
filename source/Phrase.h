@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PHRASE_H_
-#define PHRASE_H_
+#pragma once
 
 #include "WeightedList.h"
 
@@ -27,9 +29,14 @@ class DataNode;
 // Class representing a set of rules for generating text strings from words.
 class Phrase {
 public:
+	// Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
+	static std::string ExpandPhrases(const std::string &source);
+
+
+public:
 	Phrase() = default;
 	// Construct and Load() at the same time.
-	Phrase(const DataNode &node);
+	explicit Phrase(const DataNode &node);
 
 	// Parse the given node into a new branch associated with this phrase.
 	void Load(const DataNode &node);
@@ -51,7 +58,7 @@ private:
 	class Choice : private std::vector<std::pair<std::string, const Phrase *>> {
 	public:
 		// Create a choice from a grandchild DataNode.
-		Choice(const DataNode &node, bool isPhraseName = false);
+		explicit Choice(const DataNode &node, bool isPhraseName = false);
 
 		// Enable empty checks and iteration:
 		using std::vector<std::pair<std::string, const Phrase *>>::empty;
@@ -60,7 +67,7 @@ private:
 	};
 
 
-	// A Part represents a the content contained by a "word", "phrase", or "replace" child node.
+	// A Part represents the content contained by a "word", "phrase", or "replace" child node.
 	class Part {
 	public:
 		// Sources of text, either literal or via phrase invocation.
@@ -89,7 +96,3 @@ private:
 	// Each time this phrase is defined, a new sentence is created.
 	std::vector<Sentence> sentences;
 };
-
-
-
-#endif

@@ -6,42 +6,56 @@
 #
 # Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
 
 # Outfits
 
 outfit "Small EM Battery"
 	plural "Small EM Batteries"
 	category "Power"
+	series "Batteries"
+	index 13010
 	cost 200000
 	thumbnail "outfit/small embattery"
 	"mass" 14
 	"outfit space" -14
+	"unique" 1
 	"shield generation" 0.14
 	"shield energy" 0.14
 	"shield heat" 0.14
-	"energy capacity" 3600
+	"heat generation" 0.8
+	"energy capacity" 8300
 	description "This small superconductive inductor stores just enough power to keep a fighter running, and the electromagnetic field it generates helps to maintain the shield matrix."
 
 outfit "Large EM Battery"
 	plural "Large EM Batteries"
 	category "Power"
+	series "Batteries"
+	index 13020
 	cost 1000000
 	thumbnail "outfit/embattery"
 	"mass" 150
 	"outfit space" -150
+	"unique" 1
 	"shield generation" 0.8
 	"shield energy" 0.8
 	"shield heat" 0.8
-	"energy capacity" 40000
+	"heat generation" 6.5
+	"energy capacity" 100000
 	description "This is a massive superconductive coil, capable of storing large amounts of energy in an electromagnetic field and discharging all of it in a fraction of a second. The magnetic field also provides a small boost to the shield regeneration of the ship, which is otherwise very underdeveloped."
 
 outfit "Small Hybrid Cooling"
 	category "Systems"
+	series "Cooling"
+	index 13010
 	cost 200000
 	thumbnail "outfit/small sheragi cooling"
 	"mass" 8
 	"outfit space" -8
+	"unique" 1
 	"cooling" 9
 	"active cooling" 17
 	"cooling energy" 3.1
@@ -49,10 +63,13 @@ outfit "Small Hybrid Cooling"
 
 outfit "Large Hybrid Cooling"
 	category "Systems"
+	series "Cooling"
+	index 13020
 	cost 1000000
 	thumbnail "outfit/sheragicooling"
 	"mass" 40
 	"outfit space" -40
+	"unique" 1
 	"cooling" 24
 	"active cooling" 128
 	"cooling energy" 16.2
@@ -61,17 +78,20 @@ outfit "Large Hybrid Cooling"
 
 outfit "Fission Drive"
 	category "Engines"
+	series "Engines"
+	index 13010
 	cost 2650000
 	thumbnail "outfit/fissiondrive"
 	"mass" 71
 	"outfit space" -71
 	"engine capacity" -38
+	"unique" 1
 	"energy generation" 5.2
 	"heat generation" 19.4
-	"thrust" 15.47
+	"thrust" 26.7
 	"thrusting energy" 1.508
 	"thrusting heat" 2.86
-	"turn" 319.8
+	"turn" 479.7
 	"turning energy" 0.585
 	"turning heat" 1.365
 	"flare sprite" "effect/fissionflare"
@@ -82,26 +102,30 @@ outfit "Fission Drive"
 		"frame rate" 30
 		"rewind"
 	"steering flare sound" "atomic tiny"
-	description "A much smaller cousin of the fusion drive, it relies on fission instead of fusion to function, providing the necessary power generation and thrust to drive the Heavy Ion Cyclotron."
+	description "A much smaller cousin of the Fusion Drive, it relies on fission instead of fusion to function, providing the necessary power generation and thrust to drive the Heavy Ion Cyclotron."
 
 outfit "Fusion Drive"
 	category "Engines"
+	series "Engines"
+	index 13020
 	cost 80000000
 	thumbnail "outfit/fusiondrive"
 	"mass" 480
 	"outfit space" -480
 	"engine capacity" -230
+	"unique" 1
+	"jump fuel" 100
 	"jump speed" 0.2
 	"hyperdrive" 1
 	"energy generation" 54
 	"heat generation" 156
-	"turn" 2496.0
+	"turn" 3744.0
 	"turning energy" 4.55
 	"turning heat" 12.35
-	"thrust" 190
+	"thrust" 270.75
 	"thrusting energy" 11
 	"thrusting heat" 33
-	"reverse thrust" 44.8
+	"reverse thrust" 63.9
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 13.3
 	"flare sprite" "effect/fusionflare"
@@ -121,10 +145,13 @@ outfit "Fusion Drive"
 
 outfit "Electronic Warfare System"
 	category "Systems"
+	series "Scanners"
+	index 13010
 	cost 3400000
 	thumbnail "outfit/sheragi ews"
 	"mass" 6
 	"outfit space" -6
+	"unique" 1
 	"radar jamming" 10
 	"tactical scan power" 25
 	"scan interference" 2
@@ -135,6 +162,8 @@ outfit "Electronic Warfare System"
 
 outfit "Dragonflame Cannon"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 13020
 	cost 150000000
 	thumbnail "outfit/dragonflame"
 	"mass" 156
@@ -143,6 +172,7 @@ outfit "Dragonflame Cannon"
 	"required crew" 10
 	"gun ports" -1
 	"spinal mount" -1
+	"unique" 1
 	weapon
 		sound "dragonflame"
 		icon "icon/dragonflame"
@@ -156,13 +186,13 @@ outfit "Dragonflame Cannon"
 		"firing energy" 16000
 		"firing fuel" 200
 		"firing heat" 40000
-		"firing force" 1000
-		"hit force" 2000
+		"firing force" 1500
+		"hit force" 3000
 		"shield damage" 25000
 		"hull damage" 15000
 		"heat damage" 50000
 		"piercing" 0.4
-		"blast radius" 50
+		"penetration count" 20
 	description "The ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is exorbitant. It's hard to envision what could have motivated the creation of such a thing. It uses an obscene amount of energy to trigger an extremely powerful thermonuclear reaction, directing most of the energy from the resulting explosion forwards in a devastatingly powerful beam of gamma radiation."
 
 effect "dragonflame"
@@ -206,12 +236,15 @@ effect "dragonflame debris"
 
 outfit "Sheragi Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 13010
 	cost 845000
 	thumbnail "outfit/sheragiam"
 	"mass" 35
 	"outfit space" -35
 	"weapon capacity" -35
 	"turret mounts" -1
+	"unique" 1
 	weapon
 		"hardpoint sprite" "hardpoint/sheragiam"
 		"hardpoint offset" 1.5
@@ -222,7 +255,7 @@ outfit "Sheragi Anti-Missile"
 		"reload" 60
 		"firing energy" 220
 		"firing heat" 440
-	description "This Sheragi anti-missile system fires an extremely powerful laser pulse capable of obliterating any missile in a single shot, but it comes at the expense of a long recharge time."
+	description "The Sheragi Anti-Missile fires an extremely powerful laser pulse capable of obliterating any missile in a single shot, but it comes at the expense of a long recharge time."
 
 effect "sheragiam"
 	sprite "effect/sheragiam"
@@ -234,6 +267,8 @@ effect "sheragiam"
 
 outfit "Particle Waveform Turret"
 	category "Turrets"
+	series "Turrets"
+	index 13010
 	cost 1650000
 	thumbnail "outfit/pwave turret"
 	"mass" 47
@@ -241,6 +276,7 @@ outfit "Particle Waveform Turret"
 	"weapon capacity" -47
 	"turret mounts" -1
 	"required crew" 1
+	"unique" 1
 	weapon
 		sprite "projectile/pwavecannon"
 			"frame rate" 20
@@ -250,7 +286,7 @@ outfit "Particle Waveform Turret"
 		"fire effect" "lightning flare"
 		"hit effect" "pwave impact"
 		"inaccuracy" 1.5
-		"turret turn" 1.8
+		"turret turn" 1.2
 		"velocity" 50
 		"lifetime" 18
 		"reload" 60
@@ -260,6 +296,7 @@ outfit "Particle Waveform Turret"
 		"hull damage" 270
 		"heat damage" 224
 		"ion damage" 4.2
+		"scrambling damage" 4.2
 	description "This ancient Sheragi turret accelerates a dense packet of electrons that, while very ineffective against any kind of shielding, has a very long range and disrupts electrical systems. By the nature of these weapons, one can deduce that their tactics likely involved using the Dragonflame Cannon at long range to break the enemy shields and finishing them off at relatively close range with the Particle Waveform Turrets."
 
 effect "lightning flare"
@@ -280,6 +317,8 @@ effect "pwave impact"
 
 outfit "Shard Fabricator"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 13010
 	cost 330000
 	thumbnail "outfit/shard"
 	"mass" 10
@@ -287,6 +326,7 @@ outfit "Shard Fabricator"
 	"weapon capacity" -7
 	"fuel capacity" 36
 	"gun ports" -1
+	"unique" 1
 	"operating costs" 150
 	weapon
 		sprite "projectile/shardactive"
@@ -310,7 +350,9 @@ outfit "Shard Fabricator"
 		"acceleration" 1.5
 		"drag" .1
 		"turn" 8
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"radar tracking" .8
 		"missile strength" 1
 	description "To reduce reliance on supply chains during prolonged war time, this outfit contains specialized fabricators that produce simple kinetic missiles from stock materials and a small amount of stored fuel; their guidance system merely receives data from the shipboard radar. The missiles are fired in volleys of six at a time from each launcher, making them very effective at overwhelming point defenses despite their fragility. However, the low amount of fuel they carry means they can only home in on the target for about a second before they turn into unguided ammunition. Because they are manufactured on the spot, it takes a long time to reload."
@@ -324,7 +366,7 @@ outfit "Shard inactive"
 		"die effect" "missile death"
 		"lifetime" 60
 		"random lifetime" 40
-		"hit force" 20
+		"hit force" 30
 		"shield damage" 110
 		"hull damage" 160
 
@@ -338,12 +380,15 @@ effect "shard impact"
 
 outfit "Heavy Ion Cyclotron"
 	category "Guns"
+	series "Guns"
+	index 13010
 	cost 1650000
 	thumbnail "outfit/hion"
 	"mass" 33
 	"outfit space" -33
 	"weapon capacity" -21
 	"gun ports" -1
+	"unique" 1
 	weapon
 		sprite "projectile/hion"
 			"frame rate" 30
@@ -355,7 +400,7 @@ outfit "Heavy Ion Cyclotron"
 		"reload" 1
 		"firing energy" 2.9
 		"firing heat" 12.2
-		"firing force" 9
+		"firing force" 13.5
 	description "The main weapon of the Sheragi fighters is a particle accelerator not unlike the ones used by the Republic Navy and the Syndicate. However, this one produces a dense stream of heavy metal ions instead of bursts of lighter ones, resulting in high damage with intense recoil. Because the particle accelerator itself can be mounted elsewhere, it saves on weapon space."
 
 outfit "Heavy Ion Fragment"
@@ -370,6 +415,6 @@ outfit "Heavy Ion Fragment"
 		"random lifetime" 8
 		"acceleration" 0.001
 		"drag" .02
-		"hit force" 3
+		"hit force" 4.5
 		"shield damage" 1.79
 		"hull damage" 1.47

@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SET_H_
-#define SET_H_
+#pragma once
 
 #include <map>
 #include <string>
@@ -32,7 +34,7 @@ public:
 	// pointer rather than creating the item.
 	const Type *Find(const std::string &name) const;
 
-	bool Has(const std::string &name) const { return data.count(name); }
+	bool Has(const std::string &name) const { return data.contains(name); }
 
 	typename std::map<std::string, Type>::iterator begin() { return data.begin(); }
 	typename std::map<std::string, Type>::const_iterator begin() const { return data.begin(); }
@@ -85,7 +87,3 @@ void Set<Type>::Revert(const Set<Type> &other)
 		// reverting to has a name that is not also in this set.
 	}
 }
-
-
-
-#endif

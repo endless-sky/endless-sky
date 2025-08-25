@@ -7,11 +7,13 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFITTER_PANEL_H_
-#define OUTFITTER_PANEL_H_
+#pragma once
 
 #include "ShopPanel.h"
 
@@ -38,23 +40,21 @@ class Ship;
 // configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
 public:
-	explicit OutfitterPanel(PlayerInfo &player);
+	explicit OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock);
 
 	virtual void Step() override;
 
 
 protected:
 	virtual int TileSize() const override;
-	virtual int VisiblityCheckboxesSize() const override;
-	virtual int DrawPlayerShipInfo(const Point &point) override;
+	virtual int VisibilityCheckboxesSize() const override;
 	virtual bool HasItem(const std::string &name) const override;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
+	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
-	virtual int DrawDetails(const Point &center) override;
-	virtual bool CanBuy(bool checkAlreadyOwned = true) const override;
-	virtual void Buy(bool alreadyOwned = false) override;
-	virtual void FailBuy() const override;
+	virtual double DrawDetails(const Point &center) override;
+	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
+	virtual void Buy(bool onlyOwned = false) override;
 	virtual bool CanSell(bool toStorage = false) const override;
 	virtual void Sell(bool toStorage = false) override;
 	virtual void FailSell(bool toStorage = false) const override;
@@ -63,8 +63,7 @@ protected:
 	virtual void ToggleForSale() override;
 	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
-
-
+	virtual int FindItem(const std::string &text) const override;
 
 
 private:
@@ -73,7 +72,7 @@ private:
 	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
 	bool IsLicense(const std::string &name) const;
 	bool HasLicense(const std::string &name) const;
-	std::string LicenseName(const std::string &name) const;
+	std::string LicenseRoot(const std::string &name) const;
 	void CheckRefill();
 	void Refill();
 	// Shared code for reducing the selected ships to those that have the
@@ -94,7 +93,6 @@ private:
 
 	// Keep track of how many of the outfitter help screens have been shown
 	bool checkedHelp = false;
+
+	int shipsHere = 0;
 };
-
-
-#endif

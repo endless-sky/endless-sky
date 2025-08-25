@@ -1,0 +1,489 @@
+# Copyright (c) 2024 by Tommaso Becca
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+phrase tree
+	word
+		"Gentle Titan"
+
+phrase tree2
+	word
+		"Noble Giant"
+
+phrase empty
+	word
+		" "
+
+
+mission "Avgi: Gossamer Sailors"
+	invisible
+	landing
+	repeat
+	to offer
+		not "Avgi: Gossamer Sailors: active"
+		not "avgi: windjammers change"
+		not "avgi: windjammers despawn"
+	to complete
+		never
+	npc save
+		government "Indigenous Lifeform (Tree)"
+		personality timid uninterested mining mute
+		system Gossamer
+		fleet
+			names tree
+			fighters
+				names empty
+				personality
+					swarming mining
+			variant
+				"Windjammer"
+				"Pollen" 60
+				"Sprout" 1
+				"Pollen" 3
+				"Sprout" 3
+				"Pollen" 3
+				"Sprout" 1
+				"Pollen" 1
+				"Sprout" 2
+				"Pollen" 2
+				"Sprout" 1
+		to despawn
+			has "avgi: windjammers despawn"
+
+	npc save
+		government "Indigenous Lifeform (Tree Two)"
+		personality timid uninterested mining mute
+		system Gossamer
+		fleet
+			names tree2
+			fighters
+				names empty
+				personality
+					swarming mining
+			variant
+				"Bluejacket"
+				"Pollen" 60
+				"Sprout" 2
+				"Pollen" 3
+				"Sprout" 1
+				"Pollen" 3
+				"Sprout" 2
+				"Pollen" 1
+				"Sprout" 2
+				"Pollen" 1
+				"Sprout" 1
+		to despawn
+			has "avgi: windjammers despawn"
+
+
+# Outfits
+
+outfit "Pinecone Launcher"
+	category "Guns"
+	series "Guns"
+	index 92010
+	cost 540000
+	thumbnail "outfit/unknown"
+	"mass" 30
+	"outfit space" -30
+	"weapon capacity" -30
+	"gun ports" -1
+	"unplunderable" 1
+	weapon
+		"inaccuracy" 20
+		"velocity" 13
+		"lifetime" 200
+		"reload" 2000000
+		"firing energy" 25
+		"firing heat" 20
+		"acceleration" 1.3
+		"drag" .1
+		"turn" 4
+		"homing"
+			"leading"
+			"throttle control"
+		"tracking" .5
+		"missile strength" 40
+	description "When there is no one left to speak for the trees, these cannons will do all the talking."
+
+
+outfit "Pollen"
+	plural "Pollen"
+	category "Minerals"
+	cost 12000
+	thumbnail "outfit/pollen particle"
+	"flotsam sprite" "effect/flotsam pollen particle"
+	"mass" 0.3
+	"installable" -1
+	"minable" 1
+	"flotsam chance" 0.6
+	description "This granule of exotic Windjammer pollen is not only replete with nutritious proteins, but also appears to contain valuable platinum group elements bound in organic molecules. This includes a collection of complex enzymes, which appear to be capable of catalyzing many difficult reactions with ease."
+	description "	Achoo!"
+
+
+outfit "Jamfruit"
+	category "Minerals"
+	cost 36000
+	thumbnail "outfit/jamfruit pod"
+	"flotsam sprite" "effect/flotsam jamfruit pod"
+	"mass" 0.3
+	"installable" -1
+	"minable" 1
+	"flotsam chance" 0.3
+	description "Closer to a berry than a fruit, this tart prize of a Windjammer tree is not only delicious, but is rich in nutrients. It can be refined to extract a variety of useful medicinal compounds, giving it value both as a delicacy and as a remedy."
+
+
+# Ships
+
+ship "Windjammer"
+	sprite "ship/windjammer"
+	thumbnail "ship/windjammer"
+	"uncapturable"
+	attributes
+		category "Unclassified"
+		"cost" 1111000
+		"hull" 6900
+		"required crew" 1
+		"bunks" 1
+		"mass" 1240
+		"drag" 14
+		"heat dissipation" .6
+		"cargo space" 150
+		"outfit space" 250
+		"weapon capacity" 30
+		"cooling" 30
+		"overheat damage threshold" 0.66
+		"overheat damage rate" -0.06
+		"disabled recovery time" 720
+		"thrust" 44
+		"turn" 720
+		"hull repair rate" 3
+		"energy generation" 3
+		"energy capacity" 14400
+		"solar collection" 24
+		"solar heat" 0.3
+		"heat protection" 0.9
+		"atmosphere scan" 1
+		"inscrutable" 1
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Pinecone Launcher"
+		"Pollen" 120
+		"Jamfruit" 60
+
+	gun 0 -84.5 "Pinecone Launcher"
+	bay "Unclassified Minor" -14.5 -125
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 14.5 -125
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -32 -126
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 32 -126
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -49 -128
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 49 -128
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -91.5 -190.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 91.5 -190.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -106 -201.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 106 -201.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -123 -205.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 123 -205.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -141 -201
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 141 -201
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -156 -190.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 156 -190.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -164 -174
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 164 -174
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -163.5 -155
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 163.5 -155
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -156 -138.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 156 -138.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -141 -127.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 141 -127.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -121.5 -122
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 121.5 -122
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -104 -118
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 104 -118
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -86 -114.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 86 -114.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -68 -110.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 68 -110.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -24.5 -13
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 24.5 -13
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -24.5 5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 24.5 5
+		under
+		"launch effect" "basic launch"
+
+	leak "leak" 15 30
+	explode "pug small explosion" 20
+	"final explode" "pug huge explosion"
+
+
+ship "Bluejacket"
+	"display name" "Windjammer"
+	sprite "ship/bluejacket"
+	thumbnail "ship/bluejacket"
+	"uncapturable"
+	attributes
+		category "Unclassified"
+		"cost" 1212100
+		"hull" 3200
+		"required crew" 1
+		"bunks" 1
+		"mass" 1600
+		"drag" 16
+		"heat dissipation" .6
+		"cargo space" 150
+		"outfit space" 250
+		"weapon capacity" 30
+		"cooling" 30
+		"overheat damage threshold" 0.66
+		"overheat damage rate" -0.06
+		"disabled recovery time" 720
+		"thrust" 22
+		"turn" 1440
+		"hull repair rate" 3
+		"energy generation" 3
+		"energy capacity" 14400
+		"solar collection" 24
+		"solar heat" 0.3
+		"heat protection" 0.9
+		"atmosphere scan" 1
+		"inscrutable" 1
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Pinecone Launcher"
+		"Pollen" 90
+		"Jamfruit" 90
+
+	gun 0 -84.5 "Pinecone Launcher"
+	bay "Unclassified Minor" -14.5 -46
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 14.5 -46
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -32 -49
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 32 -49
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -49 -54.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 49 -54.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -65.5 -60
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 65.5 -60
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -82.5 -66.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 82.5 -66.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -99 -72
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 99 -72
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -118.5 -29
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 118.5 -29
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -119 -11
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 119 -11
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -110.5 5.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 110.5 5.5
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -94.5 16
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 94.5 16
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -76.5 19
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 76.5 19
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" -55.5 17
+		under
+		"launch effect" "basic launch"
+	bay "Unclassified Minor" 55.5 17
+		under
+		"launch effect" "basic launch"
+
+	leak "leak" 20 35
+	explode "pug small explosion" 20
+	"final explode" "pug huge explosion"
+
+
+ship "Pollen"
+	"never disabled"
+	swizzle 0
+	sprite "ship/pollen"
+	thumbnail "ship/pollen"
+	attributes
+		category "Unclassified Minor"
+		"cost" 126000
+		"hull" 200
+		"required crew" 1
+		"bunks" 1
+		"mass" 1
+		"drag" .3
+		"heat dissipation" .99
+		"outfit space" 10
+		"cooling" 6
+		"overheat damage threshold" -0.33
+		"overheat damage rate" 0.3
+		"thrust" 3
+		"turn" 14
+		"solar collection" 3
+		"atmosphere scan" 1
+		"inscrutable" 1
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Pollen" 10
+	explode "pug tiny explosion" 2
+	description "This allergenic menace is dreaded by captains across the galaxy. Only the most powerful civilizations could hope to contend with even a single granule."
+
+
+ship "Sprout"
+	sprite "ship/pollen"
+	thumbnail "ship/pollen"
+	"uncapturable"
+	attributes
+		category "Unclassified Minor"
+		"cost" 126000
+		"hull" 200
+		"required crew" 1
+		"bunks" 1
+		"mass" 1
+		"drag" .3
+		"heat dissipation" .99
+		"outfit space" 10
+		"cooling" 6
+		"overheat damage threshold" -0.33
+		"overheat damage rate" 0.3
+		"thrust" 3
+		"turn" 14
+		"solar collection" 3
+		"atmosphere scan" 1
+		"inscrutable" 1
+		"threshold percentage" 1
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Pollen" 5
+
+	explode "pug tiny explosion" 2
+	description "Marginally tamer than a free floating pollen granule, this sprouting terror is still not to be underestimated."

@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 // Enable the BENCHMARK macro sets, unless told not to
@@ -19,8 +22,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // We require SEH for Windows builds, so we test with SEH support too.
 #define CATCH_CONFIG_WINDOWS_SEH
 // Check for memory leaks from test code.
-// TODO: enable after patching upstream issue
-// #define CATCH_CONFIG_WINDOWS_CRTDBG
+#define CATCH_CONFIG_WINDOWS_CRTDBG
 #endif
 
-#include "catch.hpp"
+#include <catch2/catch_all.hpp>
