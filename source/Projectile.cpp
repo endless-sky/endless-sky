@@ -173,8 +173,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		currentTarget = TargetPtr().get();
 		if(!currentTarget)
 			BreakTarget();
-
-		if(targetIsShip)
+		else if(targetIsShip)
 		{
 			auto targetShip = static_cast<const Ship *>(currentTarget);
 			if(!targetShip->IsTargetable() || targetShip->GetGovernment() != targetGovernment
