@@ -11,6 +11,16 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+phrase "bribe rejection hail"
+	word
+		"It is too late: "
+		"Your attempt is futile; "
+	word
+		"we are too honorable to accept this from an enemy."
+		"we value honor over greed."
+		"we will not be swayed so easily."
+
 phrase "band"
 	word
 		"There Might Be Riots"
@@ -4580,6 +4590,14 @@ phrase "friendly free worlds"
 		"friendly free worlds 8"
 		"friendly free worlds 9"
 		"friendly free worlds 10"
+
+phrase "pirate bribe acceptance hail"
+	word
+		"Something is strange - now I don't feel like killing you!"
+		"Thanks for the patronage!"
+		"Can I keep blowing up your ships? Alright, nevermind."
+		"Glad I got what's due to me."
+		"Another step towards anarchy!"
 
 phrase "friendly pirate"
 	word
