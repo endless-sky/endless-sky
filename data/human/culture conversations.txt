@@ -1476,10 +1476,10 @@ mission "A Sunracer Hovercraft Racing"
 			label scanner
 			`	Your ship is close enough to the <racename>'s track to be able to scan exactly how many laps each hovercraft's afterburner can take them. Your ship relays the following afterburner data:`
 			``
-			`		Megaparsec Racing Technologies: No Afterburner Fuel`
-			`		Syndicate Performance Racing: &[syndicate boost] laps worth of Afterburner Fuel`
-			`		Delta V Grand Prix: &[delta boost] laps worth of Afterburner Fuel`
-			`		Deep Sky Dynamics: &[deep boost] laps worth of Afterburner Fuel`
+			`		Megaparsec Racing Technologies: No afterburner fuel`
+			`		Syndicate Performance Racing: &[syndicate boost] laps worth of afterburner fuel`
+			`		Delta V Grand Prix: &[delta boost] laps worth of afterburner fuel`
+			`		Deep Sky Dynamics: &[deep boost] laps worth of afterburner fuel`
 			``
 				goto decisioning
 			label race
