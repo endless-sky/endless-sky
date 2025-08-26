@@ -99,7 +99,6 @@ private:
 	int activePads = 0;
 
 	std::map<Uint8, std::chrono::time_point<std::chrono::steady_clock>> repeatTimer;
-	Uint8 repeatWhich;
 };
 
 
