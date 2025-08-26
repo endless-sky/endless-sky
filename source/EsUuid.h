@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <uuid/uuid.h>
 #endif
 
-#include <memory>
 #include <string>
 
 
@@ -83,23 +82,4 @@ private:
 
 private:
 	mutable UuidType value;
-};
-
-
-
-template <class T>
-struct UUIDComparator {
-	// Comparator for collections of shared_ptr<T>
-	bool operator() (const std::shared_ptr<T> &a, const std::shared_ptr<T> &b) const noexcept(false)
-	{
-		return a->UUID() < b->UUID();
-	}
-
-	// Comparator for collections of T*, e.g. set<T *>
-	bool operator()(const T *a, const T *b) const noexcept(false)
-	{
-		return a->UUID() < b->UUID();
-	}
-	// No comparator for collections of T, as std containers generally perform copy operations
-	// and copying this class will eventually be disabled.
 };
