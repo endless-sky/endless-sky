@@ -18,18 +18,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #ifdef _WIN32
 #include "text/Utf8.h"
-#endif
 
-
-#include <stdexcept>
-
-#ifdef _WIN32
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #else
 #include <uuid/uuid.h>
 #endif
+
+#include <stdexcept>
 
 
 
