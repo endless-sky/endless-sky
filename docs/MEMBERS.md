@@ -59,7 +59,6 @@ For a description of each role, see [governance](GOVERNANCE.md)
 - [Azure3141](https://github.com/Azure3141)
 - [Galaucus](https://github.com/Galaucus)
 - [ravenshining](https://github.com/ravenshining)
-- [UnorderedSigh](https://github.com/UnorderedSigh)
 
 For other contributors, you may view our [credits](/credits.txt) file. There is also a unofficial community-run directory available at https://moctave.github.io/es-community-directory
 
