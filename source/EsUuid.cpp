@@ -30,8 +30,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-
-
 namespace {
 #ifndef _WIN32
 	constexpr size_t UUID_BUFFER_LENGTH = 37;
