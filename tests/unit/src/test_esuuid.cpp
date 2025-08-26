@@ -16,14 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 #include "output-capture.hpp"
 
-// Include only the tested class's header.
+// Include only the tested classes' headers.
 #include "../../../source/EsUuid.h"
-// Declare the existence of the class internals that will be tested.
-namespace es_uuid {
-namespace detail {
-	EsUuid::UuidType MakeUuid();
-}
-}
+#include "../../../source/comparators/UUIDComparator.h"
+
 #include "../../../source/Random.h"
 
 // ... and any system includes needed for the test file.
@@ -186,7 +182,7 @@ SCENARIO( "Comparing IDs", "[uuid][comparison]" ) {
 				CHECK_FALSE( id == other );
 			}
 			WHEN( "the second clones the first" ) {
-				other.clone(id);
+				other.Clone(id);
 				THEN( "the two are equal" ) {
 					CHECK( other == id );
 					CHECK_FALSE( other != id );
@@ -239,7 +235,7 @@ SCENARIO( "Copying uniquely identifiable objects", "[uuid][copying]" ) {
 		}
 		WHEN( "a copy is explicitly requested" ) {
 			Identifiable other;
-			other.id.clone(source.id);
+			other.id.Clone(source.id);
 			THEN( "the copy has the same ID string" ) {
 				CHECK( other.id.ToString() == sourceId );
 			}
@@ -349,7 +345,7 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 	GIVEN( "two objects with the same UUID" ) {
 		auto source = std::make_shared<T>();
 		auto cloned = std::make_shared<T>();
-		cloned->id.clone(source->UUID());
+		cloned->id.Clone(source->UUID());
 		WHEN( "the collection has a default comparator" ) {
 			auto collection = std::set<std::shared_ptr<T>>{};
 			REQUIRE( collection.emplace(source).second );
@@ -385,8 +381,8 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 		std::string secondName = "two";
 		collection.insert({ {firstName, EsUuid()}, {secondName, EsUuid()} });
 		WHEN( "we use strings to find the corresponding UUID in the collection" ) {
-			collection.at(firstName).clone(first.id);
-			collection.at(secondName).clone(second.id);
+			collection.at(firstName).Clone(first.id);
+			collection.at(secondName).Clone(second.id);
 			THEN( "we can use them to identify the items in a unique way" ) {
 				CHECK( collection.at(firstName) == first.id );
 				CHECK( collection.at(secondName) == second.id );
@@ -409,7 +405,7 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 #ifdef CATCH_CONFIG_ENABLE_BENCHMARKING
 TEST_CASE( "Benchmark UUID Creation", "[!benchmark][uuid]" ) {
 	BENCHMARK( "MakeUuid" ) {
-		return es_uuid::detail::MakeUuid();
+		return EsUuid::MakeUuid();
 	};
 }
 #endif

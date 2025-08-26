@@ -37,22 +37,6 @@ namespace {
 	constexpr size_t UUID_BUFFER_LENGTH = 37;
 #endif
 
-	// Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
-	EsUuid::UuidType MakeUuid()
-	{
-		EsUuid::UuidType value;
-#ifdef _WIN32
-		RPC_STATUS status = UuidCreate(&value.id);
-		if(status == RPC_S_UUID_LOCAL_ONLY)
-			Logger::LogError("Created locally unique UUID only");
-		else if(status == RPC_S_UUID_NO_ADDRESS)
-			throw runtime_error("Failed to create UUID");
-#else
-		uuid_generate_random(value.id);
-#endif
-		return value;
-	}
-
 	EsUuid::UuidType ParseUuid(const string &str)
 	{
 		EsUuid::UuidType value;
@@ -121,6 +105,24 @@ namespace {
 		return uuid_compare(a.id, b.id);
 #endif
 	}
+}
+
+
+
+// Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
+EsUuid::UuidType EsUuid::MakeUuid()
+{
+	EsUuid::UuidType value;
+#ifdef _WIN32
+	RPC_STATUS status = UuidCreate(&value.id);
+	if(status == RPC_S_UUID_LOCAL_ONLY)
+		Logger::LogError("Created locally unique UUID only");
+	else if(status == RPC_S_UUID_NO_ADDRESS)
+		throw runtime_error("Failed to create UUID");
+#else
+	uuid_generate_random(value.id);
+#endif
+	return value;
 }
 
 

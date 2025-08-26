@@ -48,7 +48,11 @@ public:
 
 
 public:
+	static UuidType MakeUuid();
 	static EsUuid FromString(const std::string &input);
+
+
+public:
 	EsUuid() noexcept = default;
 	~EsUuid() noexcept = default;
 	// Copying a UUID does not copy its value. (This allows us to use simple copy operations on stock
