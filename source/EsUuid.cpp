@@ -32,99 +32,99 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace {
 #ifdef _WIN32
-// Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
-EsUuid::UuidType MakeUuid()
-{
-	EsUuid::UuidType value;
-	RPC_STATUS status = UuidCreate(&value.id);
-	if(status == RPC_S_UUID_LOCAL_ONLY)
-		Logger::LogError("Created locally unique UUID only");
-	else if(status == RPC_S_UUID_NO_ADDRESS)
-		throw std::runtime_error("Failed to create UUID");
+	// Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
+	EsUuid::UuidType MakeUuid()
+	{
+		EsUuid::UuidType value;
+		RPC_STATUS status = UuidCreate(&value.id);
+		if(status == RPC_S_UUID_LOCAL_ONLY)
+			Logger::LogError("Created locally unique UUID only");
+		else if(status == RPC_S_UUID_NO_ADDRESS)
+			throw std::runtime_error("Failed to create UUID");
 
-	return value;
-}
+		return value;
+	}
 
-EsUuid::UuidType ParseUuid(const std::string &str)
-{
-	EsUuid::UuidType value;
-	auto data = Utf8::ToUTF16(str, false);
-	RPC_STATUS status = UuidFromStringW(reinterpret_cast<RPC_WSTR>(&data[0]), &value.id);
-	if(status == RPC_S_INVALID_STRING_UUID)
-		throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
-	else if(status != RPC_S_OK)
-		throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
+	EsUuid::UuidType ParseUuid(const std::string &str)
+	{
+		EsUuid::UuidType value;
+		auto data = Utf8::ToUTF16(str, false);
+		RPC_STATUS status = UuidFromStringW(reinterpret_cast<RPC_WSTR>(&data[0]), &value.id);
+		if(status == RPC_S_INVALID_STRING_UUID)
+			throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
+		else if(status != RPC_S_OK)
+			throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
 
-	return value;
-}
+		return value;
+	}
 
-bool IsNil(const UUID &id) noexcept
-{
-	RPC_STATUS status;
-	return UuidIsNil(const_cast<UUID *>(&id), &status);
-}
+	bool IsNil(const UUID &id) noexcept
+	{
+		RPC_STATUS status;
+		return UuidIsNil(const_cast<UUID *>(&id), &status);
+	}
 
-std::string Serialize(const UUID &id)
-{
-	wchar_t *buf = nullptr;
-	RPC_STATUS status = UuidToStringW(const_cast<UUID *>(&id), reinterpret_cast<RPC_WSTR *>(&buf));
+	std::string Serialize(const UUID &id)
+	{
+		wchar_t *buf = nullptr;
+		RPC_STATUS status = UuidToStringW(const_cast<UUID *>(&id), reinterpret_cast<RPC_WSTR *>(&buf));
 
-	std::string result = (status == RPC_S_OK) ? Utf8::ToUTF8(buf) : "";
-	if(result.empty())
-		Logger::LogError("Failed to serialize UUID!");
-	else
-		RpcStringFreeW(reinterpret_cast<RPC_WSTR *>(&buf));
+		std::string result = (status == RPC_S_OK) ? Utf8::ToUTF8(buf) : "";
+		if(result.empty())
+			Logger::LogError("Failed to serialize UUID!");
+		else
+			RpcStringFreeW(reinterpret_cast<RPC_WSTR *>(&buf));
 
-	return result;
-}
+		return result;
+	}
 
-signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b)
-{
-	RPC_STATUS status;
-	auto result = UuidCompare(const_cast<UUID *>(&a.id), const_cast<UUID *>(&b.id), &status);
-	if(status != RPC_S_OK)
-		throw std::runtime_error("Fatal error comparing UUIDs \"" + Serialize(a.id) + "\" and \"" + Serialize(b.id) + "\"");
-	return result;
-}
+	signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b)
+	{
+		RPC_STATUS status;
+		auto result = UuidCompare(const_cast<UUID *>(&a.id), const_cast<UUID *>(&b.id), &status);
+		if(status != RPC_S_OK)
+			throw std::runtime_error("Fatal error comparing UUIDs \"" + Serialize(a.id) + "\" and \"" + Serialize(b.id) + "\"");
+		return result;
+	}
 #else
-constexpr std::size_t UUID_BUFFER_LENGTH = 37;
+	constexpr std::size_t UUID_BUFFER_LENGTH = 37;
 
-// Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
-EsUuid::UuidType MakeUuid()
-{
-	EsUuid::UuidType value;
-	uuid_generate_random(value.id);
-	return value;
-}
+	// Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
+	EsUuid::UuidType MakeUuid()
+	{
+		EsUuid::UuidType value;
+		uuid_generate_random(value.id);
+		return value;
+	}
 
-EsUuid::UuidType ParseUuid(const std::string &str)
-{
-	EsUuid::UuidType value;
-	auto result = uuid_parse(str.data(), value.id);
-	if(result == -1)
-		throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
-	else if(result != 0)
-		throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
+	EsUuid::UuidType ParseUuid(const std::string &str)
+	{
+		EsUuid::UuidType value;
+		auto result = uuid_parse(str.data(), value.id);
+		if(result == -1)
+			throw std::invalid_argument("Cannot convert \"" + str + "\" into a UUID");
+		else if(result != 0)
+			throw std::runtime_error("Fatal error parsing \"" + str + "\" as a UUID");
 
-	return value;
-}
+		return value;
+	}
 
-bool IsNil(const uuid_t &id) noexcept
-{
-	return uuid_is_null(id) == 1;
-}
+	bool IsNil(const uuid_t &id) noexcept
+	{
+		return uuid_is_null(id) == 1;
+	}
 
-std::string Serialize(const uuid_t &id)
-{
-	char buf[UUID_BUFFER_LENGTH];
-	uuid_unparse_lower(id, buf);
-	return std::string(buf);
-}
+	std::string Serialize(const uuid_t &id)
+	{
+		char buf[UUID_BUFFER_LENGTH];
+		uuid_unparse_lower(id, buf);
+		return std::string(buf);
+	}
 
-signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b) noexcept
-{
-	return uuid_compare(a.id, b.id);
-}
+	signed int Compare(const EsUuid::UuidType &a, const EsUuid::UuidType &b) noexcept
+	{
+		return uuid_compare(a.id, b.id);
+	}
 #endif
 }
 
