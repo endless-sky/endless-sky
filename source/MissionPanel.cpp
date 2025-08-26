@@ -30,8 +30,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "MapDetailPanel.h"
-#include "MapOutfitterPanel.h"
 #include "shader/LineShader.h"
 #include "Mission.h"
 #include "Planet.h"

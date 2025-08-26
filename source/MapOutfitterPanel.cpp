@@ -20,8 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "MapShipyardPanel.h"
-#include "MissionPanel.h"
 #include "Outfit.h"
 #include "Planet.h"
 #include "PlayerInfo.h"

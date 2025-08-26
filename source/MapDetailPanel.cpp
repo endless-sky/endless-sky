@@ -33,8 +33,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Layout.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
-#include "MissionPanel.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
