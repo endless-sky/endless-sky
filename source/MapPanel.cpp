@@ -604,7 +604,7 @@ bool MapPanel::Scroll(double dx, double dy)
 	{
 		player.SetMapZoom(max<int>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1));
 		cumulativeScroll = 0;
-        }
+	}
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:

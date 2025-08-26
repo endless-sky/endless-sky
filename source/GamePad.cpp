@@ -372,7 +372,7 @@ Command GamePad::ToPanelCommand()
 	std::map<Uint8, std::chrono::milliseconds> heldButtons = HeldButtons();
 	lock_guard<mutex> lock(gamePadMutex);
 	for(std::map<Uint8, std::chrono::milliseconds>::const_iterator it = heldButtons.cbegin();
-	    it != heldButtons.cend(); ++it)
+		it != heldButtons.cend(); ++it)
 	{
 		if(it->first == SDL_CONTROLLER_BUTTON_B
 			&& it->second.count() >= GamePad::LONG_PRESS_MILLISECONDS)
