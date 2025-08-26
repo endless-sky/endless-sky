@@ -672,15 +672,9 @@ bool MissionPanel::GamePadState(GamePad &controller)
 	else if(controller.Held(SDL_CONTROLLER_BUTTON_Y))
 		DoKey('A');
 	else if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSHOULDER))
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapOutfitterPanel(*this));
-	}
+		DoKey('o');
 	else if(controller.Held(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this, true));
-	}
+		DoKey('p');
 	controller.Clear(CONTROLLER_BUTTONS);
 
 	return Panel::GamePadState(controller);

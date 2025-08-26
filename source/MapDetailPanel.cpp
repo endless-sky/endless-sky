@@ -212,10 +212,17 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 
 bool MapDetailPanel::GamePadState(GamePad &controller)
 {
-	if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSHOULDER))
+	if(isStars)
 	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MissionPanel(*this));
+		if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSHOULDER))
+			DoKey('p');
+	}
+	else
+	{
+		if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSHOULDER))
+			DoKey('i');
+		else if(controller.Held(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
+			DoKey('t');
 	}
 	controller.Clear(CONTROLLER_BUTTONS);
 

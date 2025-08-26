@@ -69,15 +69,9 @@ MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 bool MapOutfitterPanel::GamePadState(GamePad &controller)
 {
 	if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSHOULDER))
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MapShipyardPanel(*this));
-	}
+		DoKey('s');
 	else if(controller.Held(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
-	{
-		GetUI()->Pop(this);
-		GetUI()->Push(new MissionPanel(*this));
-	}
+		DoKey('i');
 	controller.Clear(CONTROLLER_BUTTONS);
 
 	return Panel::GamePadState(controller);
