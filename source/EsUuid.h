@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <string>
 
-#if defined(_WIN32)
+#ifdef _WIN32
 // Don't include <windows.h>, which will shadow our Rectangle class.
 #define RPC_NO_WINDOWS_H
 #include <rpc.h>

@@ -16,14 +16,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 
 #include "Logger.h"
-#if defined(_WIN32)
+#ifdef _WIN32
 #include "text/Utf8.h"
 #endif
 
 
 #include <stdexcept>
 
-#if defined(_WIN32)
+#ifdef _WIN32
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -35,7 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 namespace es_uuid {
 namespace detail {
-#if defined(_WIN32)
+#ifdef _WIN32
 // Get a version 4 (random) Universally Unique Identifier (see IETF RFC 4122).
 EsUuid::UuidType MakeUuid()
 {
