@@ -68,7 +68,7 @@ public:
 	bool operator<(const EsUuid &other) const noexcept(false);
 
 	// Explicitly clone this UUID.
-	void clone(const EsUuid &other);
+	void Clone(const EsUuid &other);
 
 	// Get a string representation of this ID, e.g. for serialization.
 	std::string ToString() const noexcept(false);
