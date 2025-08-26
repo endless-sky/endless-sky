@@ -38,7 +38,7 @@ public:
 		UuidType &operator=(UuidType &&) = default;
 		~UuidType() = default;
 		UuidType &operator=(const UuidType &other) { return *this = UuidType(other); }
-#if defined(_WIN32)
+#ifdef _WIN32
 		UuidType(const UuidType &other) = default;
 		UUID id = {};
 #else
