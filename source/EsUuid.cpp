@@ -90,7 +90,7 @@ namespace {
 	string Serialize(const UUID &id)
 	{
 		wchar_t *buf = nullptr;
-		RPC_STATUS status = UuidToStringW(const_cast<UUID *>(&id), reinterpret_cast<RPC_WSTR *>(&buf));
+		RPC_STATUS status = UuidToStringW(&id, reinterpret_cast<RPC_WSTR *>(&buf));
 
 		string result = (status == RPC_S_OK) ? Utf8::ToUTF8(buf) : string{};
 		if(result.empty())
