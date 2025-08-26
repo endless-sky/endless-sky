@@ -398,7 +398,7 @@ namespace {
 
 		string data = Files::Read(path);
 		avifResult result = avifDecoderSetIOMemory(decoder.get(), reinterpret_cast<const uint8_t *>(data.c_str()),
-				data.size());
+			data.size());
 		if(result != AVIF_RESULT_OK)
 		{
 			Logger::LogError("Could not read file: " + path.generic_string());
@@ -408,11 +408,11 @@ namespace {
 		result = avifDecoderParse(decoder.get());
 		if(result != AVIF_RESULT_OK)
 		{
-			Logger::LogError("Failed to decode image: " + string(avifResultToString(result)));
+			Logger::LogError(string("Failed to decode image: ") + avifResultToString(result));
 			return 0;
 		}
-		// Generic image information is now available (width, height, depth, color profile, metadata, alpha, etc.)
-		// Also image count and frame timings.
+		// Generic image information is now available (width, height, depth, color profile, metadata, alpha, etc.),
+		// as well as image count and frame timings.
 		if(!decoder->imageCount)
 			return 0;
 
@@ -459,7 +459,7 @@ namespace {
 			throw runtime_error(message);
 		}
 		if(static_cast<unsigned>(buffer.Width()) != decoder->image->width
-				|| static_cast<unsigned>(buffer.Height()) != decoder->image->height)
+			|| static_cast<unsigned>(buffer.Height()) != decoder->image->height)
 		{
 			Logger::LogError("Invalid dimensions for \"" + path.generic_string() + "\"");
 			return 0;
@@ -497,7 +497,7 @@ namespace {
 			}
 			bufferFrame += repeats[avifFrameIndex];
 
-			avifFrameIndex++;
+			++avifFrameIndex;
 		}
 
 		if(avifFrameIndex != decoder->imageCount || bufferFrame != bufferFrameCount)
