@@ -37,10 +37,10 @@ Yes! Typically called plugins, there are many available for Endless Sky. You can
 ### Where are save files stored?
 Depending on your OS, you will find your save files in one of the following directories:
 * Linux: ~/.local/share/endless-sky/saves/
-* Windows: C:\Users\yourusername\AppData\Roaming\endless-sky\saves\
+* Windows: %APPDATA%\endless-sky\saves\
 * Mac OS X: ~/Library/ApplicationSupport/endless-sky/saves/
 
 ### Can I play Endless Sky on mobile?
-Yes, there is an unofficial mobile port of the game available on [FDroid](https://f-droid.org/en/packages/com.github.thewierdnut.endless_mobile/). For futher information see [Endless-Mobile GitHub](https://github.com/thewierdnut/endless-mobile)
+Yes, there is an unofficial mobile port of the game available on [F-Droid](https://f-droid.org/en/packages/com.github.thewierdnut.endless_mobile/). For futher information see [Endless-Mobile GitHub](https://github.com/thewierdnut/endless-mobile)
 
 _[return to README](/README.md)_
