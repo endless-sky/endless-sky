@@ -6565,7 +6565,7 @@ mission "Lost Racer 2 - Continued"
 				`	(Wait for Mr. Renard to return.)`
 					goto renard
 			`	The voice of an eerily calm anchor plays over more vignettes of the race infrastructure. "... and, of course, today's top story: three-time Centurion-Division, Paradise Circuit racing champion Artemis Renard has been officially declared 'missing' after she did not return here to Sunracer after this year's Megaparsec Core Championship. The search effort has been ongoing for days now, led by Megaparsec with support from the Republic Navy and Syndicated Security. The head of the event, Quinn Emerson, put out the following statement:`
-			`	"'We at Megaparsec put the greatest attention into ensuring the safety and well-being of all our event participants and guests. Over the past forty-six hours, our search teams have fully scanned the Volax, Cardax, Moktar, Bellatrix, and Menkar systems, and we are working in conjunction with the Republic and Syndicate to fully scour their territories belonging to the circuit as well. Ms. Renard's family can rest assured that if she's out there, we'll find her.'`
+			`	"'We at Megaparsec put the greatest attention into ensuring the safety and well-being of all our event participants and guests. Over the past forty-eight hours, our search teams have fully scanned the Volax, Cardax, Moktar, Bellatrix, and Menkar systems, and we are working in conjunction with the Republic and Syndicate to fully scour their territories belonging to the circuit as well. Ms. Renard's family can rest assured that if she's out there, we'll find her.'`
 			`	"'Artemis Renard, daughter of terraforming magnates August and Louisa Renard, is perhaps best known for shattering the record for the Betelgeuse Classic in last year's race, crossing the finish line nearly fifteen minutes faster than the record set by Jackson Lee over twenty years ago. She was last seen flying her ship, the "Moonfox," a white and red Lionheart Flivver with race registration B-168, in the Diphda system. Anyone with information regarding her whereabouts is encouraged to contact Syndicate or Navy authorities, as well as the Megaparsec Racing Events Commission, and may be entitled to monetary reward if such information leads to the retrieval of Ms. Renard or her ship.'"`
 			`	The broadcast then ends, going to an advertisement for the Megaparsec Splinter.`
 			
@@ -6746,7 +6746,7 @@ mission "Lost Racer 3"
 			label crash
 			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox's hyperdrive malfunctioned, knocking me out. When I woke up, the Flivver was damaged and hurtling toward outer space. Luckily, the engines hadn't been harmed too much, so I was able to turn around and thrust in the direction of <origin>, but then the batteries gave out and the generator stopped working. So I ended up stranded on a planet with no way of calling for help - the flares had triggered when I crashed, being unable to slow down without thrusters. Well, now you know. Is there anything else?"`
 			`	August asks, "Do you think someone could have sabotaged the hyperdrive? Any suspicious Syndicate employees hanging around? Any anything out of the ordinary?"`
-			`	"Not that I remember," replies Artemis. "This has happened only once or twice in the history of racing, but it's still happened. A one-in-a-million chance, perhaps. I wouldn't worry about it too much."`
+			`	"Not that I remember," replies Artemis. "This rarely happens in spaceship racing, but it's still happened. A one-in-a-million chance, perhaps. I wouldn't worry about it too much."`
 			choice
 				`	"That was a beautiful ship you had there. I've never seen a Flivver quite like that."`
 				`	"Alright."`
@@ -6763,7 +6763,7 @@ mission "Lost Racer 3"
 				accept
 	on complete
 		payment 150000
-		event "artemis renard recovered" 40
+		event "artemis renard recovered" 60
 		log "Helped a Paradisian find his missing daughter, a racing pilot who crashed on Sandswell."
 		log "Minor People" "August and Artemis Renard" `Helped August find his daughter Artemis Renard, a racing pilot who crashed on the uninhabited planet of Sandswell after her hyperdrive malfunctioned.`
 		conversation
