@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 template <class T>
 struct UUIDComparator {
 	// Comparator for collections of shared_ptr<T>
-	bool operator() (const std::shared_ptr<T> &a, const std::shared_ptr<T> &b) const noexcept(false)
+	bool operator()(const std::shared_ptr<T> &a, const std::shared_ptr<T> &b) const noexcept(false)
 	{
 		return a->UUID() < b->UUID();
 	}
