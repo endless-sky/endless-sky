@@ -16,7 +16,7 @@ If you’re instead looking to learn about the game itself (installation, gamepl
 Endless Sky is supported by a diverse group of maintainers, contributors, and community members.
 - See [members](docs/MEMBERS.md) for a list of organization members.
 - New contributors are welcome, and can shape their role in the community in whatever ways align with their interests and contributions. Contributors with a long history of positive involvement in the community may be invited to take on more formal roles.
-- Community discussions take place primarily on GitHub, with supplementary conversations occurring through [Discord](https://discord.gg/ZeuASSx).
+- Community discussions take place on [GitHub](https://github.com/endless-sky/endless-sky/discussions), [Discord](https://discord.gg/ZeuASSx), [Steam](https://steamcommunity.com/app/404410/discussions/), [GOG](https://www.gog.com/forum/endless_sky), [Reddit](https://www.reddit.com/r/endlesssky/).
 - Make sure to follow our [community guide](docs/COMMUNITY.md)
 
 ## Contributing Guidelines
