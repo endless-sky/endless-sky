@@ -170,6 +170,13 @@ bool ShipJumpNavigation::CanJump(const System *from, const System *to) const
 
 
 // Check what jump methods this ship has.
+bool ShipJumpNavigation::HasAnyDrive() const
+{
+	return hasHyperdrive || hasJumpDrive;
+}
+
+
+
 bool ShipJumpNavigation::HasHyperdrive() const
 {
 	return hasHyperdrive;

@@ -37,6 +37,8 @@ target_sources(EndlessSkyLib PRIVATE
 	BoardingPanel.h
 	Body.cpp
 	Body.h
+	Camera.cpp
+	Camera.h
 	CaptureOdds.cpp
 	CaptureOdds.h
 	CargoHold.cpp
@@ -183,6 +185,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Minable.cpp
 	Minable.h
 	MinableDamageDealt.h
+	MiniMap.cpp
+	MiniMap.h
 	Mission.cpp
 	Mission.h
 	MissionAction.cpp
@@ -336,9 +340,27 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/Sound.cpp
 	audio/Sound.h
 	audio/SoundCategory.h
+	audio/player/AudioPlayer.cpp
+	audio/player/AudioPlayer.h
+	audio/player/MusicPlayer.cpp
+	audio/player/MusicPlayer.h
+	audio/supplier/AudioSupplier.cpp
+	audio/supplier/AudioSupplier.h
+	audio/supplier/Mp3Supplier.cpp
+	audio/supplier/Mp3Supplier.h
+	audio/supplier/WavSupplier.cpp
+	audio/supplier/WavSupplier.h
+	audio/supplier/effect/Fade.cpp
+	audio/supplier/effect/Fade.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	orders/OrderSet.cpp
+	orders/OrderSet.h
+	orders/OrderSingle.cpp
+	orders/OrderSingle.h
+	orders/Orders.cpp
+	orders/Orders.h
 	image/BlendingMode.h
 	image/ImageBuffer.cpp
 	image/ImageBuffer.h

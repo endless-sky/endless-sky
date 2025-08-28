@@ -223,33 +223,15 @@ License: public-domain
 
 Files:
  images/land/haze0*
-Copyright: Izaac Hewitt-Lawrence
-License: Unsplash
- Taken from https://archive.is/LZQbZ and cropped. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after February
- 2018, so it is subject to an additional restriction limiting
- the sale of unaltered copies.
+Copyright: Matt Bango
+License: CC0
+ Taken from https://archive.md/6S9KR. Cropped.
 
 Files:
  images/land/haze1*
-Copyright: Tobias Rademacher
-License: Unsplash
- Taken from https://archive.is/Rc9fs and cropped. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after February
- 2018, so it is subject to an additional restriction limiting
- the sale of unaltered copies.
-
-Files:
- images/land/haze2*
-Copyright: Marek Piwnicki
-License: Unsplash
- Taken from https://archive.is/iVNGc and cropped. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after February
- 2018, so it is subject to an additional restriction limiting
- the sale of unaltered copies.
+Copyright: lydia harper
+License: CC0
+ Taken from https://archive.md/RVDAB. Cropped.
 
 Files:
  images/land/sea23*
@@ -365,16 +347,6 @@ Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Iaz Poolar (under the same license).
 
-Files: images/portrait/*
-Copyright: Various
-License: Depends
-Comment:
- Taken from unsplash.com and added to the game after June 2017. If the pictures were
- uploaded to unsplash.com before June 2017, they were donated and placed in the public
- domain. If the pictures were uploaded to unsplash.com on or after June 2017, they are
- subject to the Unsplash License. If they were also uploaded after February 2018, they
- are subject to additional restrictions.
-
 Files:
  images/outfit/quarg*
  images/hardpoint/quarg*
@@ -464,25 +436,17 @@ License: public-domain
 
 Files:
  images/scene/hai?shipyard*
-Copyright: Dan Asaki
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/OcBnr. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/mw1rC. Cropped.
 
 Files:
  images/scene/hai?start*
-Copyright: Willian Justen de Vasconcellos
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/7WLG3. This image was uploaded
- to unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded on February 11, 2018,
- so it is not subject to additional restrictions, as this is
- a week before the additional restrictions were added.
+ Taken from https://archive.md/GYsIK. Cropped.
 
 Files:
  images/land/badlands0*
@@ -558,23 +522,17 @@ License: public-domain
 
 Files:
  images/land/badlands2*
-Copyright: Koen van Gilst
-License: Unsplash
+Copyright: Tim de Groot
+License: CC0
 Comment:
- Taken from https://archive.is/Syt9W. This image was uploaded to
- unsplash.com in June 2017, so it is subject to the Unsplash
- License. It was uploaded before February 2018, so it is not
- subject to additional restrictions.
+ Taken from https://archive.md/hetsv. Cropped.
 
 Files:
  images/land/badlands6*
-Copyright: John Fowler
-License: Unsplash
+Copyright: Darryl
+License: CC0
 Comment:
- Taken from https://archive.is/u0tLY. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/I0k1p. Cropped.
 
 Files:
  images/land/canyon1*
@@ -592,57 +550,24 @@ License: public-domain
 
 Files:
  images/land/city2*
-Copyright: timJ
-License: Unsplash
+Copyright: Bango Architecture & Design
+License: CC0
 Comment:
- Taken from https://archive.is/Wqo8m. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions. The link to
- the image on the archive is broken and the published date
- can't be seen if you just look at the site. If you click
- view source and search `"id":"EJ4qfFp1g8Q",` you will see
- it was published in July 2017. You will also see in the
- source that the image is
- https://images.unsplash.com/photo-1500021804447-2ca2eaaaabeb,
- which matches the image as per https://archive.is/zU3K5.
+ Taken from https://archive.md/0od2q. Cropped.
 
 Files:
  images/land/city7*
-Copyright: Jason Wong
-License: Unsplash
+Copyright: Sawyer Bengston
+License: CC0
 Comment:
- Taken from https://archive.is/AmgC4. This image was uploaded to
- unsplash.com in June 2017, so it is subject to the Unsplash
- License. It was uploaded before February 2018, so it is not
- subject to additional restrictions.
+ Taken from https://archive.md/b7yVx. Cropped.
 
 Files:
  images/land/city11*
-Copyright: Bon Bahar
-License: Unsplash
+Copyright: Burst
+License: CC0
 Comment:
- Taken from https://archive.is/fWfhb. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions. The link to
- the image on the archive is broken and the published date
- can't be seen if you just look at the site. If you click
- view source and search "datePublished," you will see it
- was published in August 2017. You will also see in the
- source that the image is
- https://images.unsplash.com/photo-1501607087079-27057d2fdc93,
- which matches the image as per https://archive.is/7id7h.
-
-Files:
- images/land/city12*
-Copyright: Steven Pahel
-License: Unsplash
-Comment:
- Taken from https://archive.is/xYdxk. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/Q5zlt. Cropped.
 
 Files:
  images/land/dune1*
@@ -660,13 +585,10 @@ License: public-domain
 
 Files:
  images/land/fog1*
-Copyright: Peter Hammer
-License: Unsplash
+Copyright: Bob Richards
+License: CC0
 Comment:
- Taken from https://archive.is/eh77M. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/25whZ. Cropped.
 
 Files:
  images/land/fog6*
@@ -684,13 +606,10 @@ License: public-domain
 
 Files:
  images/land/hills0*
-Copyright: Baptist Standaert
-License: Unsplash
+Copyright: Levi Bare
+License: CC0
 Comment:
- Taken from https://archive.is/bT412. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/Sh742. Cropped.
 
 Files:
  images/land/mountain0*
@@ -708,13 +627,12 @@ License: public-domain
 
 Files:
  images/land/sea5*
-Copyright: Johannes Plenio
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/WHmJC. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from
+ https://web.archive.org/web/20230717053928/https://www.pexels.com/photo/lightning-over-sea-against-storm-clouds-248775/.
+ Cropped.
 
 Files:
  images/land/sea7*
@@ -725,13 +643,10 @@ License: public-domain
 
 Files:
  images/land/sky4*
-Copyright: Sergey Pesterev
-License: Unsplash
+Copyright: Elliot Chau
+License: CC0
 Comment:
- Taken from https://archive.is/psGa3. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/M4D1k. Cropped.
 
 Files:
  images/land/sky5*
@@ -749,13 +664,10 @@ License: public-domain
 
 Files:
  images/land/snow10*
-Copyright: Mathias Herheim
-License: Unsplash
+Copyright: Mary
+License: CC0
 Comment:
- Taken from https://archive.is/25091. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/xeS7l. Cropped.
 
 Files:
  images/land/water3*
@@ -766,75 +678,52 @@ License: public-domain
 
 Files:
  images/land/water4*
-Copyright: Unknown
-License: Depends
+Copyright: Bonnie Moreland
+License: CC0
 Comment:
- Cannot source. The image was probably removed from unsplash.
+ Taken from https://archive.md/BM15F. Cropped.
 
 Files:
  images/land/badlands10*
-Copyright: Jean Beller
-License: Unsplash
+Copyright: Bernard Spragg
+License: CC0
 Comment:
- Taken from https://archive.is/0HX4h. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/iGhNS. Cropped.
 
 Files:
  images/land/badlands11*
-Copyright: Luemen Rutkowski
-License: Unsplash
+Copyright: Thomas Shellberg
+License: CC0
 Comment:
- Taken from https://archive.is/HkBI5. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/NkUwS. Cropped.
 
 Files:
  images/land/badlands12*
-Copyright: Tim Mossholder
-License: Unsplash
+Copyright: kallerna
+License: CC-BY-SA-4.0
 Comment:
- Taken from https://archive.is/KsALa. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/yHGCD. Cropped.
 
 Files:
  images/land/beach13*
-Copyright: Mads Sonne
-License: Unsplash
+Copyright: N/A (CC0 Public Domain)
+License: CC0
 Comment:
- Taken from https://archive.is/ZmzZe. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/KrVlw. Cropped.
 
 Files:
  images/land/beach14*
-Copyright: Silas Baisch
-License: Unsplash
+Copyright: JJ Skys the Limit
+License: CC0
 Comment:
- Taken from https://archive.is/uMT7F. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/fMNOf. Cropped.
 
 Files:
  images/land/canyon13*
-Copyright: Miriam Mica
-License: Unsplash
+Copyright: Burst
+License: CC0
 Comment:
- Taken from https://archive.is/CyvxB. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/vxrjb. Cropped.
 
 Files:
  images/land/canyon14*
@@ -866,14 +755,10 @@ License: public-domain
 
 Files:
  images/land/desert13*
-Copyright: Mikk Tonissoo
-License: Unsplash
+Copyright: Pete Johnson
+License: CC0
 Comment:
- Taken from https://archive.is/KqPh4. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/nBACw. Cropped.
 
 Files:
  images/land/fields13*
@@ -884,14 +769,10 @@ License: public-domain
 
 Files:
  images/land/fields14*
-Copyright: Jeroen van Dijk
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/gj7LA. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/JIa0D. Cropped.
 
 Files:
  images/land/fields15*
@@ -909,25 +790,17 @@ License: public-domain
 
 Files:
  images/land/fog9*
-Copyright: J. P. Valery
-License: Unsplash
+Copyright: Matt Bango
+License: CC0
 Comment:
- Taken from https://archive.is/Ih53u. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/0IdLB. Cropped.
 
 Files:
  images/land/fog10*
-Copyright: Weronika
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/qZ3JG. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/gJ7ZQ. Cropped.
 
 Files:
  images/land/fog11*
@@ -959,25 +832,17 @@ License: public-domain
 
 Files:
  images/land/forest9*
-Copyright: Ekaterina Novitskaya
-License: Unsplash
+Copyright: JJ Skys the Limit
+License: CC0
 Comment:
- Taken from https://archive.is/YFXae. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/vS0d1. Cropped.
 
 Files:
  images/land/garden1*
-Copyright: Jon Canty
-License: Unsplash
+Copyright: Bonnie Moreland
+License: CC0
 Comment:
- Taken from https://archive.is/ceyjf. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from . Cropped.
 
 Files:
  images/land/hills8*
@@ -988,90 +853,59 @@ License: public-domain
 
 Files:
  images/land/lava12*
-Copyright: Hannah Wright
-License: Unsplash
+Copyright: Ashley Knedler
+License: CC0
 Comment:
- Taken from https://archive.is/xovBt. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/d9pun. Cropped.
 
 Files:
  images/land/lava13*
-Copyright: Marc Szeglat
-License: Unsplash
+Copyright: Matt Bango
+License: CC0
 Comment:
- Taken from https://archive.is/nHPqS. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded on February 12, 2018,
- so it is not subject to additional restrictions, as this is
- a week before the additional restrictions were added.
+ Taken from https://archive.md/Z7P0h. Cropped.
 
 Files:
  images/land/loc3*
-Copyright: Hafidh Satyanto
-License: Unsplash
+Copyright: James E. Scarborough
+License: CC-BY-SA-3.0
 Comment:
- Taken from https://archive.is/6pM64. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/5OCc6. Cropped.
 
 Files:
  images/land/sea18*
-Copyright: Marcus Woodbridge
-License: Unsplash
+Copyright: Bonnie Moreland
+License: CC0
 Comment:
- Taken from https://archive.is/mmrlP. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/IlMHP. Cropped.
 
 Files:
  images/land/sea19*
-Copyright: Michael Owen
-License: Unsplash
+Copyright: Joe deSousa
+License: CC0
 Comment:
- Taken from https://archive.is/N45Mz. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/tZIGh. Cropped.
 
 Files:
  images/land/sky10*
-Copyright: Marek Piwnicki
-License: Unsplash
+Copyright: Sergey Pesterev
+License: CC0
 Comment:
- Taken from https://archive.is/GtJDm. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/YElph. Cropped.
 
 Files:
  images/land/sky11*
-Copyright: Benjamin Voros
-License: Unsplash
+Copyright: eberhard grossgasteiger
+License: CC0
 Comment:
- Taken from https://archive.is/JBIFr. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded on February 26, 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies, as this is a week after the
- restriction was added.
+ Taken from https://archive.md/bre8R. Cropped.
 
 Files:
  images/land/snow14*
-Copyright: Alto Crew
-License: Unsplash
+Copyright: Travel Photographer
+License: CC0
 Comment:
- Taken from https://archive.is/0A1UT. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/g7ZBR. Cropped.
 
 Files:
  images/land/snow16*
@@ -1082,13 +916,10 @@ License: public-domain
 
 Files:
  images/land/snow17*
-Copyright: Denis Linine
-License: Unsplash
+Copyright: Bonnie Moreland
+License: CC0
 Comment:
- Taken from https://archive.is/zCjqu. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/SUw4x. Cropped.
 
 Files:
  images/land/snow18*
@@ -1099,106 +930,72 @@ License: public-domain
 
 Files:
  images/land/snow19*
-Copyright: Greg Garnhart
-License: Unsplash
+Copyright: Denis Linine
+License: CC0
 Comment:
- Taken from https://archive.is/JmYfL. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/JuOvc. Cropped.
 
 Files:
  images/land/snow20*
-Copyright: Sergey Pesterev
-License: Unsplash
+Copyright: Ezra Jeffrey
+License: CC0
 Comment:
- Taken from https://archive.is/5SjC2. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/yyvJi. Cropped.
 
 Files:
  images/land/snow21*
-Copyright: Clement Rothen
-License: Unsplash
+Copyright: Gabriel Santiago
+License: CC0
 Comment:
- Taken from https://archive.is/gBEOk. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded on February 20, 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies, as this is a day after the
- restriction was added.
+ Taken from https://archive.md/Bxclr. Cropped.
 
 Files:
  images/land/station4*
-Copyright: Alek Kalinowski
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/2KkAX. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/mrcny. Cropped.
+
+Files:
+ images/land/station5*
+Copyright: Damien Jemison
+License: CC-BY-SA-3.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Preamplifier_at_the_National_Ignition_Facility.jpg
 
 Files:
  images/land/station6*
-Copyright: Alvaro Pinot
-License: Unsplash
+Copyright: HD Wallpapers
+License: CC0
 Comment:
- Taken from https://archive.is/pfFYe. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/AgK7P. Cropped.
 
 Files:
  images/land/station9*
-Copyright: Tony Dinh
-License: Unsplash
+Copyright: Dominik Martin
+License: CC0
 Comment:
- Taken from https://archive.is/xsuf9. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/WfBdP. Cropped.
 
 Files:
  images/land/station10*
-Copyright: Upal Patel
-License: Unsplash
+Copyright: Thomas
+License: CC0
 Comment:
- Taken from https://archive.is/TXPDq. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/IFeBI. Cropped.
 
 Files:
  images/land/station11*
-Copyright: Aurelien Thomas
-License: Unsplash
+Copyright: Burst
+License: CC0
 Comment:
- Taken from https://archive.is/hvP1o. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/ZFH1k. Cropped.
 
 Files:
  images/land/station13*
-Copyright: Brayden Law
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/CYwnY. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies. The published date can't be seen
- if you just look at the site. If you click view source and
- search "datePublished," you will see it was published in
- December 2018.
+ Taken from https://archive.md/vdlNe. Cropped.
 
 Files:
  images/land/station14*
@@ -1209,95 +1006,59 @@ License: public-domain
 
 Files:
  images/land/station16*
-Copyright: Aron Yigin
-License: Unsplash
+Copyright: N/A (CC0 Public Domain)
+License: CC0
 Comment:
- Taken from https://archive.is/IuyvN. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/Z4Cb8. Cropped.
 
 Files:
  images/land/station17*
-Copyright: Upal Patel
-License: Unsplash
+Copyright: Bob Richards
+License: CC0
 Comment:
- Taken from https://archive.is/tAzhJ. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/YuOX5. Cropped.
 
 Files:
  images/land/station18*
-Copyright: Will Dunkley
-License: Unsplash
+Copyright: Eric Haidara
+License: CC0
 Comment:
- Taken from https://archive.is/ptsa9. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/PO2k5. Cropped.
 
 Files:
  images/land/station19*
-Copyright: Bradley Jasper Ybanez
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/EvVcQ. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/BlOxH. Cropped.
 
 Files:
- images/land/station20*
-Copyright: Dan Asaki
-License: Unsplash
+ images/land/station20
+Copyright: Easswar Kaylan
+License: CC0
 Comment:
- Taken from https://archive.is/OcBnr. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/CyUvl. Cropped.
 
 Files:
  images/land/station21*
-Copyright: Ryan Tang
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/Uj5DY. This image was uploaded to
- unsplash.com in June 2017, so it is subject to the Unsplash
- License. It was uploaded before February 2018, so it is not
- subject to additional restrictions.
+ Taken from https://archive.md/QtFR8. Cropped.
 
 Files:
  images/land/station22*
-Copyright: Jonathan Gallegos
-License: Unsplash
+Copyright: Matthew Henry
+License: CC0
 Comment:
- Taken from https://archive.is/Kaq8i. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/6oSrP. Cropped.
 
 Files:
  images/land/station23*
-Copyright: Patrick Robert Doyle
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/Qf9VJ. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018, so
- it is subject to an additional restriction limiting the sale of
- unaltered copies. The link to the image on the archive is broken
- and the published date can't be seen if you just look at the
- site. If you click view source and search `"id":"b-FRIPfxcj4",`
- you will see it was published in May 2019. You will also see
- in the source that the image is
- https://images.unsplash.com/photo-1557153334-3480a560a36e,
- which matches the image as per https://archive.is/WH8JI.
+ Taken from https://archive.md/NqDHu. Cropped.
 
 Files:
  images/land/station24*
@@ -1315,65 +1076,45 @@ License: public-domain
 
 Files:
  images/land/station26*
-Copyright: Graphic Node
-License: Unsplash
+Copyright: Brandon Mowinkel
+License: CC0
 Comment:
- Taken from https://archive.is/TSrOg. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/MEWh3. Cropped.
 
 Files:
  images/land/station29*
-Copyright: Unknown
-License: Depends
+Copyright: Pixabay
+License: CC0
 Comment:
- Cannot source. The image was probably removed from unsplash.
+ Taken from https://archive.md/h5aw2. Cropped.
 
 Files:
  images/land/station30*
-Copyright: Bradley Dunn
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/3exZC. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/gOPcS. Cropped.
 
 Files:
  images/land/station31*
-Copyright: Andra Taylor
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/tLH4b. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/K2Gow. Cropped.
 
 Files:
  images/land/station32*
-Copyright: Liam Drinan
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/Bvx01. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/fQ63C. Cropped.
 
 Files:
  images/land/station33*
-Copyright: Miguel Bruna
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/wqILb. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/wip/NNX5q. Cropped.
 
 Files:
  images/land/station34*
@@ -1385,46 +1126,31 @@ License: public-domain
 
 Files:
  images/land/station35*
-Copyright: Willian Justen de Vasconcellos
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/7WLG3. This image was uploaded
- to unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded on February 11, 2018,
- so it is not subject to additional restrictions, as this is
- a week before the additional restrictions were added.
+ Taken from https://archive.md/mw1rC. Cropped.
 
 Files:
  images/land/station36*
-Copyright: Anderson Djumin
-License: Unsplash
+Copyright: Flickr
+License: CC0
 Comment:
- Taken from https://archive.is/Vo35D. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/P8ueY. Cropped.
 
 Files:
  images/land/station37*
-Copyright: Alexandra Nicolae
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/iMtE1. This image was uploaded
- to unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/JGvqZ. Cropped.
 
 Files:
  images/land/station38*
-Copyright: Clare Whiting
-License: Unsplash
+Copyright: Txllxt TxllxT
+License: CC0
 Comment:
- Taken from https://archive.is/yZ5u2. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/niFgJ. Cropped.
 
 Files:
  images/land/station39*
@@ -1436,75 +1162,52 @@ License: public-domain
 
 Files:
  images/land/station40*
-Copyright: Ussama Azam
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/WEOdx. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/0U0OB. Cropped.
 
 Files:
  images/land/station41*
-Copyright: Angelika Yakymenko
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/BDkIW. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/Onjdb. Cropped.
 
 Files:
  images/land/station42*
-Copyright: Gil Ribeiro
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/80u48. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/GBHNf. Cropped.
 
 Files:
  images/land/station43*
-Copyright: Unknown
-License: Depends
+Copyright: Pixabay
+License: CC0
 Comment:
- Cannot source. The image was probably removed from unsplash.
+ Taken from https://archive.md/wip/xbZdU. Cropped.
 
 Files:
  images/land/station44*
-Copyright: Alvaro Pinot
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/3TUmc. This image was uploaded
- to unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/nXc00. Cropped.
 
 Files:
  images/land/station45*
-Copyright: Maxime Lebrun
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/oK8z4. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/7f4rj. Cropped.
 
 Files:
  images/land/water12*
-Copyright: Steve Adams
-License: Unsplash
+Copyright: Tricia Gray
+License: CC0
 Comment:
- Taken from https://archive.is/Qa3Ws. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/lG5ki. Cropped.
 
 Files:
  images/land/water13*
@@ -1516,58 +1219,45 @@ License: public-domain
 
 Files:
  images/land/station46*
-Copyright: Bruno Thethe
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/FpG3p. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/g3sWr. Cropped.
 
 Files:
  images/land/station47*
-Copyright: Adrien Olichon
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/zTEVA. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/UO5aq. Cropped.
 
 Files:
  images/land/station48*
-Copyright: Miquel Parera
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/UjGht. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/JLfrG. Cropped.
 
 Files:
  images/land/station49*
-Copyright: Andrea De Santis
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/jIP5x and cropped. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after February
- 2018, so it is subject to an additional restriction limiting
- the sale of unaltered copies.
+ Taken from https://archive.md/5kZGE. Cropped.
 
 Files:
  images/land/station50*
-Copyright: Mariia Ilina
-License: Unsplash
+Copyright: N/A (CC0 Public Domain)
+License: CC0
 Comment:
- Taken from https://archive.is/mQO7C, rotated and cropped. This
- image was uploaded to unsplash.com after June 2017, so it is
- subject to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/mm8MA. Cropped.
+
+Files:
+ images/land/station60*
+Copyright: Adrien Olichon
+License: CC0
+Comment:
+ Taken from https://www.pexels.com/photo/building-interior-2817472/. Cropped and edited.
 
 Files: images/land/lava11*
 Copyright: National Archives and Records Administration
@@ -1590,27 +1280,31 @@ License: public-domain
 
 Files:
  images/land/station8*
-Copyright: MTA of the State of New York
-License: CC-BY-2.0
-Comment: Taken from https://www.flickr.com/photos/61135621@N03/5836687124 and cropped.
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/rfXiB. Cropped.
 
 Files:
  images/land/station27*
-Copyright: Sebastian Sinisterra
-License: CC-BY-2.0
-Comment: Taken from https://www.flickr.com/photos/61135621@N03/17755765778 and cropped.
+Copyright: Flickr
+License: CC0
+Comment:
+ Taken from https://archive.md/Lt8lB. Cropped.
 
 Files:
  images/land/station28*
 Copyright: N/A (CC0 Public Domain)
 License: CC0
-Comment: Taken from https://pxhere.com/en/photo/1071635 and cropped.
+Comment:
+ Taken from https://pxhere.com/en/photo/1071635 and cropped.
 
 Files:
  images/land/station7*
 Copyright: N/A (CC0 Public Domain)
 License: CC0
-Comment: Taken from https://pxhere.com/en/photo/119196 and cropped.
+Comment:
+ Taken from https://pxhere.com/en/photo/119196 and cropped.
 
 Files:
  images/land/station15*
@@ -1620,12 +1314,6 @@ Comment:
  Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
  According to Section 3 of the Pixabay Terms of Service, all images with a
  "published date" earlier than January 9, 2019 have the CC0 license.
-
-Files:
- images/land/station5.jpg
-Copyright: Damien Jemison
-License: CC-BY-SA-3.0
-Comment: Taken from https://commons.wikimedia.org/wiki/File:Preamplifier_at_the_National_Ignition_Facility.jpg
 
 Files:
  images/land/lava5*
@@ -1863,7 +1551,25 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
 
 Files:
+ images/effect/asteroid?adult?flare*
+ images/effect/asteroid?adult?2?flare*
+ images/effect/asteroid?adult?3?flare*
+ images/effect/asteroid?adult?4?flare*
+ images/effect/asteroid?adult?5?flare*
+ images/effect/asteroid?medium?flare*
+ images/effect/asteroid?young?flare*
+ images/effect/asteroid?young?2?flare*
+ images/effect/asteroid?young?3?flare*
+ images/effect/asteroid?young?4?flare*
+ images/effect/asteroid?am?circle?defense*
+ images/effect/asteroid?am?fire*
+ images/effect/asteroid?circle?trail*
+ images/effect/asteroid?glow*
+ images/effect/asteroid?laser*
+ images/effect/asteroid?projectile?print*
+ images/effect/asteroid?projectile?static*
  images/hardpoint/javelin?turret*
+ images/hardpoint/asteroid?am?circle*
  images/planet/station1*
  images/planet/station2*
  images/planet/station3*
@@ -1879,6 +1585,9 @@ Files:
  images/planet/station16*
  images/planet/station17*
  images/planet/station-bunrodea*
+ images/planet/station-chanai*
+ images/planet/penrose-machine*
+ images/planet/base*
  images/ship/maeri'het*
  images/ship/subsidurial*
  images/ship/telis'het*
@@ -1931,6 +1640,7 @@ Files:
  images/outfit/ka'het?reserve?accumulator*
  images/outfit/ka'het?nullifier*
  images/outfit/ka'het?mhd?deployer*
+ images/outfit/ka'het?taser*
  images/outfit/mouthparts*
  images/outfit/excavator*
  images/outfit/fuel?pod*
@@ -1999,6 +1709,14 @@ Files:
  images/outfit/jamfruit?pod*
  images/outfit/anomalous?mass*
  images/outfit/decoy?plating*
+ images/outfit/asteroid?weapon?1*
+ images/outfit/asteroid?weapon?2*
+ images/outfit/asteroid?weapon?3*
+ images/outfit/asteroid?weapon?4*
+ images/outfit/asteroid?weapon?5*
+ images/outfit/asteroid?weapon?6*
+ images/outfit/asteroid?weapon?7*
+ images/outfit/asteroid?weapon?8*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -2013,9 +1731,15 @@ Files:
  images/projectile/annihilator*
  images/projectile/ravager?beam*
  images/projectile/mhd*
+ images/projectile/asteroid?missile*
+ images/projectile/asteroid?twin?projectile*
+ images/projectile/asteroid?weapon?circle*
+ images/projectile/asteroid?weapon?live*
+ images/projectile/asteroid?weapon?swarm*
  images/scene/ringworld?debris*
  images/scene/remnant?station*
  images/scene/asteroid?scene*
+ images/scene/lab?scene*
  images/planet/debris0*
  images/planet/debris1*
  images/planet/desert11*
@@ -2096,6 +1820,20 @@ Files:
  images/ship/bluejacket*
  images/ship/pollen*
  images/ship/windjammer*
+ images/_menu/haze-ghila*
+ images/_menu/haze-lathia*
+ images/_menu/haze-maithi*
+ images/_menu/haze-mitera*
+ images/_menu/haze-sarifa*
+ images/_menu/haze-chanai*
+ images/map/big?black?hole*
+ images/map/black?hole?3*
+ images/map/black?hole?4*
+ images/map/black?hole?5*
+ images/map/black?hole?6*
+ images/map/black?hole?corona*
+ images/map/black?hole?star*
+ images/map/black-hole-still*
  images/effect/flotsam?pollen?particle*
  images/effect/flotsam?jamfruit?pod*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
@@ -2104,6 +1842,7 @@ License: CC-BY-SA-4.0
 Files:
  images/effect/remnant?afterburner/remnant?afterburner*
  images/effect/mhd?spark*
+ images/effect/jd?detainer*
  images/land/nasa9*
  images/hardpoint/annihilator?turret*
  images/hardpoint/hai?ionic?turret*
@@ -2205,6 +1944,17 @@ Files:
  images/ship/pug?enfolta*
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
+ images/ship/asteroid?adult*
+ images/ship/asteroid?adult?2*
+ images/ship/asteroid?adult?3*
+ images/ship/asteroid?adult?4*
+ images/ship/asteroid?adult?5*
+ images/ship/asteroid?medium*
+ images/ship/asteroid?young*
+ images/ship/asteroid?young?2*
+ images/ship/asteroid?young?3*
+ images/ship/asteroid?young?4*
+ images/ship/remnant?satellite*
  images/thumbnail/hai?sea?scorpion*
  images/thumbnail/hai?anomalocaris*
  images/thumbnail/ibis*
@@ -2863,6 +2613,12 @@ Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
 
 Files:
+ images/ui/patir?cluster*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA (public domain)
+
+Files:
  images/star/a-dwarf*
  images/star/a-giant*
  images/star/a-supergiant*
@@ -2948,6 +2704,7 @@ Files:
  images/outfit/fusion?cannon*
  images/outfit/nuke*
  images/planet/pontes*
+ images/planet/wormhole?blue*
  images/projectile/fire-lance*
  images/projectile/fusion?gun?bolt*
  images/projectile/blaze-pike*
@@ -2970,10 +2727,33 @@ Files:
  images/star/coal-black-hole*
  images/star/neutron*
  images/star/small-black-hole*
+ images/star/big?black?hole?core*
+ images/star/big?black?hole*
+ images/star/black?hole?3?core*
+ images/star/black?hole?3*
+ images/star/black?hole?4?core*
+ images/star/black?hole?4*
+ images/star/black?hole?5?core*
+ images/star/black?hole?5*
+ images/star/black?hole?6?core*
+ images/star/black?hole?6*
+ images/star/black?hole?corona?core*
+ images/star/black?hole?corona*
+ images/star/black-hole-still-core*
+ images/star/black-hole-still*
+ images/star/black?hole?star?core*
+ images/star/black?hole?star*
  images/star/twilight-black-hole*
  images/thumbnail/battleship*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
+
+Files:
+ images/star/patir*
+ images/star/patir?core*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA (public domain); picture taken by the James Webb Space Telescope (https://www.flickr.com/photos/nasawebbtelescope/54451311621/in/album-72177720323168468)
 
 Files:
  images/outfit/small?photovoltaic*
@@ -3110,6 +2890,8 @@ Comment: Derived from works by Evan Fluharty (under the same license).
 Files:
  images/outfit/gat?turret?hardpoint*
  images/outfit/gat?turret*
+ images/ship/jackal*
+ images/thumbnail/jackal*
 Copyright: bene-dictator <benstaples8068@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license), detailed by Saugia.
@@ -3144,6 +2926,7 @@ Files:
  images/outfit/plasma?discharger*
  images/outfit/stagnation?beamx*
  images/outfit/star?tail?*
+ images/outfit/sword*
  images/planet/aera*
  images/planet/gliese*
  images/planet/redias*
@@ -3325,6 +3108,7 @@ Files:
  images/ship/hauler?vi*
  images/ship/heavy?gust*
  images/ship/mining?drone*
+ images/ship/monitor*
  images/ship/mule*
  images/ship/squall*
  images/ship/sunder*
@@ -3338,6 +3122,7 @@ Files:
  images/thumbnail/hauler?vi*
  images/thumbnail/heavy?gust*
  images/thumbnail/mining?drone*
+ images/thumbnail/monitor*
  images/thumbnail/mule*
  images/thumbnail/squall*
  images/thumbnail/sunder*
@@ -3381,6 +3166,7 @@ Files:
  sounds/korath?launch?external*
  sounds/*incip?plasma*
  sounds/locust?blaster*
+ sounds/magic*
  sounds/mandible?cannon*
  sounds/plasma?discharger*
  sounds/remnant?afterburner*
@@ -3602,112 +3388,73 @@ License: public-domain
 
 Files:
  images/scene/iceplains*
-Copyright: Federico Di Dio
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/MirSk. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/sWxGN.
 
 Files:
  images/scene/iceplains2*
-Copyright: Vidar Nordli-Mathisen
-License: Unsplash
+Copyright: Teddy Kelley
+License: CC0
 Comment:
- Taken from https://archive.is/uC6Up. This image was uploaded
- to unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded on February 2, 2018,
- so it is not subject to additional restrictions, as this is
- before the additional restrictions were added.
+ Taken from https://archive.md/SLxh7.
 
 Files:
  images/scene/redrocks*
-Copyright: Joshua Gresham
-License: Unsplash
+Copyright: Matt Bango
+License: CC0
 Comment:
- Taken from https://archive.is/0gRHU. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/SH0lV.
 
 Files:
  images/scene/seasidecliffs*
-Copyright: Joachim Pressl
-License: Unsplash
+Copyright: Matt Bango
+License: CC0
 Comment:
- Taken from https://archive.is/caZ9F. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/Bocy1.
 
 Files:
  images/scene/Seasunset*
-Copyright: Jim Cooke
-License: Unsplash
+Copyright: Matt Bango
+License: CC0
 Comment:
- Taken from https://archive.is/zRulg. This image was uploaded
- to unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/kU22Z. Cropped.
 
 Files:
  images/scene/smeer*
-Copyright: Parrish Freeman
-License: Unsplash
+Copyright: Yosh Ginsu
+License: CC0
 Comment:
- Taken from https://archive.is/W6LES. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/2thP6. Cropped.
 
 Files:
  images/scene/snowfield*
-Copyright: Alessio Soggetti
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/JGEju. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/Sr673. Cropped.
 
 Files:
  images/scene/snowvillage*
-Copyright: Matthew Buchanan
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/DRS7j. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/dPu5l. Cropped.
 
 Files:
  images/scene/sunset*
-Copyright: Carl Schlabach
-License: Unsplash
+Copyright: JJ Skys the Limit
+License: CC0
 Comment:
- Taken from https://archive.is/oFaOT. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/35hYy. Cropped.
 
 Files:
  images/scene/tower*
-Copyright: Constant Loubier
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/764rq. This image was
- uploaded to unsplash.com after June 2017, so it is subject
- to the Unsplash License. It was also uploaded after
- February 2018, so it is subject to an additional restriction
- limiting the sale of unaltered copies.
+ Taken from https://archive.md/XakPu.
 
 Files:
  images/scene/icepicture*
@@ -3737,6 +3484,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/outfit/anti-materiel?gun*
  images/outfit/cloud?piercer*
+ images/outfit/heavy?blaster*
  images/ship/quarg?guivre*
  images/ship/quarg?hydra*
  images/ship/quarg?lindwyrm*
@@ -3790,124 +3538,80 @@ Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the sam
 
 Files:
  images/land/badlands13*
-Copyright: Sasha Sashina
-License: Unsplash
+Copyright: Jeff Hollett
+License: CC0
 Comment:
- Taken from https://archive.is/X25Q2. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/5vajd. Cropped.
 
 Files:
  images/land/beach15*
-Copyright: Chris Meads
-License: Unsplash
+Copyright: Mike Wilson
+License: CC0
 Comment:
- Taken from https://archive.is/OmpGr. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/ZA6HK. Cropped.
 
 Files:
  images/land/city19*
-Copyright: Chan Yuki
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/9wmYF. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/B9Iby. Cropped.
 
 Files:
  images/land/city20*
-Copyright: JC Gellidon
-License: Unsplash
+Copyright: Andrew Guan
+License: CC0
 Comment:
- Taken from https://archive.is/K4bnD. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/gRTDV. Cropped.
 
 Files:
  images/land/city21*
-Copyright: Jesse Collins
-License: public-domain
- Taken from https://archive.is/qD91K. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+Copyright: Pedro Lastra
+License: CC0
+Comment:
+ Taken from https://archive.md/izxJw. Cropped.
 
 Files:
  images/land/city22*
-Copyright: Wong Zihoo
-License: Unsplash
+Copyright: Josh Rose
+License: CC0
 Comment:
- Taken from https://archive.is/sJt28. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/cSoHE. Cropped.
 
 Files:
  images/land/city23*
-Copyright: Juan Pablo Ahumada
-License: Unsplash
+Copyright: N/A (CC0 Public Domain)
+License: CC0
 Comment:
- Taken from https://archive.is/GAOgv. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/P6xEX. Cropped.
 
 Files:
  images/land/city24*
-Copyright: Samuel Charron
-License: Unsplash
+Copyright: Paolostefano1412
+License: CC0
 Comment:
- Taken from https://archive.is/wT75U. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded on February 20, 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies, as this is a day after the
- restriction was added.
+ Taken from https://archive.md/IYMin. Cropped.
 
 Files:
  images/land/city25*
-Copyright: Jules Marvin Eguilos
-License: Unsplash
+Copyright: Julia Caesar
+License: CC0
 Comment:
- Taken from https://archive.is/qMDPn. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/LelAu. Cropped.
 
 Files:
  images/land/desert14*
-Copyright: E Mens
-License: Unsplash
+Copyright: N/A (CC0 Public Domain)
+License: CC0
 Comment:
- Taken from https://archive.is/g5XEM. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/dzfDD. Cropped.
 
 Files:
  images/land/desert15*
-Copyright: Juli Kosolapova
-License: Unsplash
+Copyright: N/A (CC0 Public Domain)
+License: CC0
 Comment:
- Taken from https://archive.is/VDhic. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/epTUv. Cropped.
 
 Files:
  images/land/forest10*
@@ -3918,56 +3622,24 @@ License: public-domain
 
 Files:
  images/land/mountain27*
-Copyright: Marek Piwnicki
-License: Unsplash
+Copyright: Matt Bango
+License: CC0
 Comment:
- Taken from https://archive.is/1Tfmm. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/zfmFh. Cropped.
 
 Files:
  images/land/mountain28*
-Copyright: Luca Bravo
-License: Unsplash
+Copyright: Matt Bango
+License: CC0
 Comment:
- Taken from https://archive.is/FwnMI. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
-
-Files:
- images/land/mountain29*
-Copyright: Marek Piwnicki
-License: Unsplash
-Comment:
- Taken from https://archive.is/Uqm0M. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
-
-Files:
- images/land/mountain30*
-Copyright: Mike Liao
-License: Unsplash
-Comment:
- Taken from https://archive.is/k6mqP. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was uploaded before February 2018, so
- it is not subject to additional restrictions.
+ Taken from https://archive.md/cZdqa. Cropped.
 
 Files:
  images/land/sea22*
-Copyright: Martin Bennie
-License: Unsplash
+Copyright: Sergei Gussev
+License: CC0
 Comment:
- Taken from https://archive.is/MO0Rz. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/qxIbc. Cropped.
 
 Files:
  images/land/city26*
@@ -3996,26 +3668,17 @@ License: CC-BY-SA-4.0
 
 Files:
  images/land/snow22*
-Copyright: Paston Woelber
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/rmkuZ. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/R5Sbl. Cropped.
 
 Files:
  images/land/snow23*
- images/scene/iceplains3*
-Copyright: Daniel Frank
-License: Unsplash
+Copyright: Chris Marquardt
+License: CC0
 Comment:
- Taken from https://archive.is/xK5Wu. These images were
- uploaded to unsplash.com after June 2017, so they are
- subject to the Unsplash License. They were also uploaded
- after February 2018, so they are subject to an additional
- restriction limiting the sale of unaltered copies.
+ Taken from https://archive.md/UhUxg. Cropped.
 
 Files:
  images/ui/red?alert*
@@ -4237,24 +3900,6 @@ Files:
  images/ui/paused*
 Copyright: David Stark (zarkonnen@gmail.com)
 License: CC-BY-SA-4.0
-
-License: Depends
- Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and
- placed in the public domain. In June 2017, Unsplash modified their terms and conditions to make all images
- uploaded after that date subject to a permissive license (the "Unsplash License.") These pictures were added
- to the game after June 2017, but could have been uploaded before then. Therefore, the license of these images
- depends on when they were uploaded. If they were uploaded before June 2017, they are in the public domain. If
- they were uploaded on or after June 2017, they are subject to the Unsplash License. Additionally, all images
- uploaded to Unsplash after February 2018 cannot be sold without making "significant alterations" as they are
- subject to more restrictive terms and conditions.
-
-License: Unsplash
- Unsplash grants you an irrevocable, nonexclusive, worldwide copyright
- license to download, copy, modify, distribute, perform, and use photos
- from Unsplash for free, including for commercial purposes, without
- permission from or attributing the photographer or Unsplash. This
- license does not include the right to compile photos from Unsplash to
- replicate a similar or competing service.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
@@ -5644,57 +5289,3 @@ License: CC0
  Affirmer offers the Work as-is and makes no representations or warranties of any kind concerning the Work, express, implied, statutory or otherwise, including without limitation warranties of title, merchantability, fitness for a particular purpose, non infringement, or the absence of latent or other defects, accuracy, or the present or absence of errors, whether or not discoverable, all to the greatest extent permissible under applicable law.
  Affirmer disclaims responsibility for clearing rights of other persons that may apply to the Work or any use thereof, including without limitation any person's Copyright and Related Rights in the Work. Further, Affirmer disclaims responsibility for obtaining any necessary consents, permissions or other rights required for any use of the Work.
  Affirmer understands and acknowledges that Creative Commons is not a party to this document and has no duty or obligation with respect to this CC0 or use of the Work.
-
-License: CC-BY-2.0
- THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS CREATIVE COMMONS PUBLIC LICENSE ("CCPL" OR "LICENSE"). THE WORK IS PROTECTED BY COPYRIGHT AND/OR OTHER APPLICABLE LAW. ANY USE OF THE WORK OTHER THAN AS AUTHORIZED UNDER THIS LICENSE OR COPYRIGHT LAW IS PROHIBITED.
- .
- BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND AGREE TO BE BOUND BY THE TERMS OF THIS LICENSE. THE LICENSOR GRANTS YOU THE RIGHTS CONTAINED HERE IN CONSIDERATION OF YOUR ACCEPTANCE OF SUCH TERMS AND CONDITIONS.
- .
- 1. Definitions
- .
- "Collective Work" means a work, such as a periodical issue, anthology or encyclopedia, in which the Work in its entirety in unmodified form, along with a number of other contributions, constituting separate and independent works in themselves, are assembled into a collective whole. A work that constitutes a Collective Work will not be considered a Derivative Work (as defined below) for the purposes of this License.
- "Derivative Work" means a work based upon the Work or upon the Work and other pre-existing works, such as a translation, musical arrangement, dramatization, fictionalization, motion picture version, sound recording, art reproduction, abridgment, condensation, or any other form in which the Work may be recast, transformed, or adapted, except that a work that constitutes a Collective Work will not be considered a Derivative Work for the purpose of this License. For the avoidance of doubt, where the Work is a musical composition or sound recording, the synchronization of the Work in timed-relation with a moving image ("synching") will be considered a Derivative Work for the purpose of this License.
- "Licensor" means the individual or entity that offers the Work under the terms of this License.
- "Original Author" means the individual or entity who created the Work.
- "Work" means the copyrightable work of authorship offered under the terms of this License.
- "You" means an individual or entity exercising rights under this License who has not previously violated the terms of this License with respect to the Work, or who has received express permission from the Licensor to exercise rights under this License despite a previous violation.
- .
- 2. Fair Use Rights. Nothing in this license is intended to reduce, limit, or restrict any rights arising from fair use, first sale or other limitations on the exclusive rights of the copyright owner under copyright law or other applicable laws.
- .
- 3. License Grant. Subject to the terms and conditions of this License, Licensor hereby grants You a worldwide, royalty-free, non-exclusive, perpetual (for the duration of the applicable copyright) license to exercise the rights in the Work as stated below:
- .
- to reproduce the Work, to incorporate the Work into one or more Collective Works, and to reproduce the Work as incorporated in the Collective Works;
- to create and reproduce Derivative Works;
- to distribute copies or phonorecords of, display publicly, perform publicly, and perform publicly by means of a digital audio transmission the Work including as incorporated in Collective Works;
- to distribute copies or phonorecords of, display publicly, perform publicly, and perform publicly by means of a digital audio transmission Derivative Works.
- .
- For the avoidance of doubt, where the work is a musical composition:
- Performance Royalties Under Blanket Licenses. Licensor waives the exclusive right to collect, whether individually or via a performance rights society (e.g. ASCAP, BMI, SESAC), royalties for the public performance or public digital performance (e.g. webcast) of the Work.
- Mechanical Rights and Statutory Royalties. Licensor waives the exclusive right to collect, whether individually or via a music rights agency or designated agent (e.g. Harry Fox Agency), royalties for any phonorecord You create from the Work ("cover version") and distribute, subject to the compulsory license created by 17 USC Section 115 of the US Copyright Act (or the equivalent in other jurisdictions).
- Webcasting Rights and Statutory Royalties. For the avoidance of doubt, where the Work is a sound recording, Licensor waives the exclusive right to collect, whether individually or via a performance-rights society (e.g. SoundExchange), royalties for the public digital performance (e.g. webcast) of the Work, subject to the compulsory license created by 17 USC Section 114 of the US Copyright Act (or the equivalent in other jurisdictions).
- .
- The above rights may be exercised in all media and formats whether now known or hereafter devised. The above rights include the right to make such modifications as are technically necessary to exercise the rights in other media and formats. All rights not expressly granted by Licensor are hereby reserved.
- .
- 4. Restrictions.The license granted in Section 3 above is expressly made subject to and limited by the following restrictions:
- .
- You may distribute, publicly display, publicly perform, or publicly digitally perform the Work only under the terms of this License, and You must include a copy of, or the Uniform Resource Identifier for, this License with every copy or phonorecord of the Work You distribute, publicly display, publicly perform, or publicly digitally perform. You may not offer or impose any terms on the Work that alter or restrict the terms of this License or the recipients' exercise of the rights granted hereunder. You may not sublicense the Work. You must keep intact all notices that refer to this License and to the disclaimer of warranties. You may not distribute, publicly display, publicly perform, or publicly digitally perform the Work with any technological measures that control access or use of the Work in a manner inconsistent with the terms of this License Agreement. The above applies to the Work as incorporated in a Collective Work, but this does not require the Collective Work apart from the Work itself to be made subject to the terms of this License. If You create a Collective Work, upon notice from any Licensor You must, to the extent practicable, remove from the Collective Work any reference to such Licensor or the Original Author, as requested. If You create a Derivative Work, upon notice from any Licensor You must, to the extent practicable, remove from the Derivative Work any reference to such Licensor or the Original Author, as requested.
- If you distribute, publicly display, publicly perform, or publicly digitally perform the Work or any Derivative Works or Collective Works, You must keep intact all copyright notices for the Work and give the Original Author credit reasonable to the medium or means You are utilizing by conveying the name (or pseudonym if applicable) of the Original Author if supplied; the title of the Work if supplied; to the extent reasonably practicable, the Uniform Resource Identifier, if any, that Licensor specifies to be associated with the Work, unless such URI does not refer to the copyright notice or licensing information for the Work; and in the case of a Derivative Work, a credit identifying the use of the Work in the Derivative Work (e.g., "French translation of the Work by Original Author," or "Screenplay based on original Work by Original Author"). Such credit may be implemented in any reasonable manner; provided, however, that in the case of a Derivative Work or Collective Work, at a minimum such credit will appear where any other comparable authorship credit appears and in a manner at least as prominent as such other comparable authorship credit.
- .
- 5. Representations, Warranties and Disclaimer
- .
- UNLESS OTHERWISE MUTUALLY AGREED TO BY THE PARTIES IN WRITING, LICENSOR OFFERS THE WORK AS-IS AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND CONCERNING THE WORK, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF TITLE, MERCHANTIBILITY, FITNESS FOR A PARTICULAR PURPOSE, NONINFRINGEMENT, OR THE ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OF ABSENCE OF ERRORS, WHETHER OR NOT DISCOVERABLE. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES, SO SUCH EXCLUSION MAY NOT APPLY TO YOU.
- .
- 6. Limitation on Liability. EXCEPT TO THE EXTENT REQUIRED BY APPLICABLE LAW, IN NO EVENT WILL LICENSOR BE LIABLE TO YOU ON ANY LEGAL THEORY FOR ANY SPECIAL, INCIDENTAL, CONSEQUENTIAL, PUNITIVE OR EXEMPLARY DAMAGES ARISING OUT OF THIS LICENSE OR THE USE OF THE WORK, EVEN IF LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
- .
- 7. Termination
- .
- This License and the rights granted hereunder will terminate automatically upon any breach by You of the terms of this License. Individuals or entities who have received Derivative Works or Collective Works from You under this License, however, will not have their licenses terminated provided such individuals or entities remain in full compliance with those licenses. Sections 1, 2, 5, 6, 7, and 8 will survive any termination of this License.
- Subject to the above terms and conditions, the license granted here is perpetual (for the duration of the applicable copyright in the Work). Notwithstanding the above, Licensor reserves the right to release the Work under different license terms or to stop distributing the Work at any time; provided, however that any such election will not serve to withdraw this License (or any other license that has been, or is required to be, granted under the terms of this License), and this License will continue in full force and effect unless terminated as stated above.
- .
- 8. Miscellaneous
- .
- Each time You distribute or publicly digitally perform the Work or a Collective Work, the Licensor offers to the recipient a license to the Work on the same terms and conditions as the license granted to You under this License.
- Each time You distribute or publicly digitally perform a Derivative Work, Licensor offers to the recipient a license to the original Work on the same terms and conditions as the license granted to You under this License.
- If any provision of this License is invalid or unenforceable under applicable law, it shall not affect the validity or enforceability of the remainder of the terms of this License, and without further action by the parties to this agreement, such provision shall be reformed to the minimum extent necessary to make such provision valid and enforceable.
- No term or provision of this License shall be deemed waived and no breach consented to unless such waiver or consent shall be in writing and signed by the party to be charged with such waiver or consent.
- This License constitutes the entire agreement between the parties with respect to the Work licensed here. There are no understandings, agreements or representations with respect to the Work not specified here. Licensor shall not be bound by any additional provisions that may appear in any communication from You. This License may not be modified without the mutual written agreement of the Licensor and You.
