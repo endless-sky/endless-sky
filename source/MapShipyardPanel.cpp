@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapShipyardPanel.h"
 
+#include "comparators/BySeriesAndIndex.h"
 #include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
@@ -288,6 +289,5 @@ void MapShipyardPanel::Init()
 		}
 
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) { return a->DisplayModelName() < b->DisplayModelName(); });
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndexMap<Ship>());
 }
