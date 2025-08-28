@@ -106,7 +106,7 @@ Address the reviews of reviewers and developers on their pull requests.
 
 **Notes:**
 - Includes "content creators," which is a more specific term for contributors who open content pull requests.
-- Contributors need not blindly accept every suggestion from a reviewer. If a contributor disagrees with a review comment, then they should explain why they disagree, particularly if the changes being requested are substantial. See the "On Review Relationships" and "On Reviews and Approvals" sections for more detail.
+- Contributors need not blindly accept every suggestion from a reviewer. If a contributor disagrees with a review comment, then they should explain why they disagree, particularly if the changes being requested are substantial.
 
 A full member list of who occupies each role is available at [Members](MEMBERS.md).
 For additional information, see the GitHub [documentation](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization) available for organization roles.
