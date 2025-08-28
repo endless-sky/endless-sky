@@ -1317,7 +1317,7 @@ phrase "sunracer hovercraft adcloser"
 		
 phrase "sunracer city to wilderness description"
 	word
-		"Sunracer's bustling shipyards"
+		"the bustle of Sunracer's shipyards"
 		"the vibrant Megaparsec metropolis"
 		"the clamor of Sunracer's industrial hub"
 	word
@@ -1469,7 +1469,7 @@ mission "A Sunracer Hovercraft Racing"
 			`	Near the <racename>'s entrance, you spot a friendly figure ${sunracer fan tshirt}:`
 			`	"Hovercraft racing pits four ships against the clock - each trying to log as many laps as possible. The race is between three and five hours long and is split into two phases: an initial afterburn for a burst of speed, followed by laps completed in the remaining time.`
 			`	"Each racer has a roughly equal chance of victory, though Megaparsec Racing Technologies tends to win a bit more often overall. Megaparsec also excels in longer races thanks to their efficient ion engines that can do up to twelve laps an hour, but completely lack any initial speed burst. Deep racers shine on shorter stints by using high-powered atomics for a powerful start that can push them to complete up to eighteen laps in the first hour, but they tend to perform much worse in longer races due to their lack of efficiency. The other two teams fall somewhere in-between.`
-			`	"Even though each team is roughly equal, in a given race, a savvy watcher can better predict a winner by knowing which teams perform better on shorter or longer race lengths, or a less sporting one with a powerful scanner might even be able to tell a hovercraft's exact afterburn level before the race even begins.`
+			`	"Even though each team is roughly equal, in a given race, a savvy watcher can better predict a winner by knowing which teams perform better on shorter or longer race lengths, or a less sporting one with a powerful scanner might even be able to tell a hovercraft's exact level of afterburner fuel before the race even begins.`
 			`	"One last tip to remember - they say the surest way to make a small fortune in hovercraft racing is to start with a big one!" The fan's speech ends with a hearty laugh, whose sound mixes with the roar of engines inside the <racename>.`
 			``
 				goto decisioning
