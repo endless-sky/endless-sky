@@ -209,8 +209,9 @@ void MapShipyardPanel::DrawItems()
 		if(DrawHeader(corner, category))
 			continue;
 
-		for(const Ship *ship : it->second)
+		for(const string &name : it->second)
 		{
+			const Ship *ship = GameData::Ships().Get(name);
 			string price = Format::CreditString(ship->Cost());
 
 			string info = Format::Number(ship->MaxShields()) + " shields / ";
@@ -271,7 +272,7 @@ void MapShipyardPanel::Init()
 			for(const Ship *ship : it.second.ShipyardStock())
 				if(!seen.contains(ship))
 				{
-					catalog[ship->Attributes().Category()].push_back(ship);
+					catalog[ship->Attributes().Category()].push_back(ship->VariantName());
 					seen.insert(ship);
 				}
 
@@ -283,11 +284,11 @@ void MapShipyardPanel::Init()
 			++parkedShips[it->GetSystem()][model];
 			if(!seen.contains(model))
 			{
-				catalog[model->Attributes().Category()].push_back(model);
+				catalog[model->Attributes().Category()].push_back(model->TrueModelName());
 				seen.insert(model);
 			}
 		}
 
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(), BySeriesAndIndexMap<Ship>());
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
 }

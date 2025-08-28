@@ -61,30 +61,3 @@ public:
 		return Helper(*outfitA, *outfitB, nameA, nameB);
 	}
 };
-
-template<class T>
-class BySeriesAndIndexMap;
-
-template<>
-class BySeriesAndIndexMap<Ship> {
-public:
-	bool operator()(const Ship *shipA, const Ship *shipB) const
-	{
-		const Outfit &a = shipA->Attributes();
-		const Outfit &b = shipB->Attributes();
-		const std::string &nameA = shipA->TrueModelName();
-		const std::string &nameB = shipB->TrueModelName();
-		return Helper(a, b, nameA, nameB);
-	}
-};
-
-template<>
-class BySeriesAndIndexMap<Outfit> {
-public:
-	bool operator()(const Outfit *a, const Outfit *b) const
-	{
-		const std::string &nameA = a->TrueName();
-		const std::string &nameB = b->TrueName();
-		return Helper(*a, *b, nameA, nameB);
-	}
-};
