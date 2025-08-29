@@ -1868,7 +1868,6 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		// Take any commodities that fit.
 		victim->cargo.TransferAll(cargo, false);
 
-		// Pause for two seconds before moving on.
 		pilotError = 120;
 	}
 
@@ -2597,6 +2596,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 
 	if(hireCrew)
 		crew = min<int>(max(crew, RequiredCrew()), attributes.Get("bunks"));
+
 	pilotError = 0;
 	pilotOkay = 0;
 
@@ -4727,7 +4727,12 @@ void Ship::DoInitializeMovement()
 
 void Ship::StepPilot()
 {
-	int requiredCrew = RequiredCrew();
+	// Every 30 ticks, there is a chance to inhibit piloting for 30 ticks.
+	// Note: once piloting has been inhibited and 30 ticks have passed, there is no grace period,
+	//       which means it can be inhibited again immediately. In-game this will look like
+	//       piloting has been inhibited for 60 ticks. This chain can keep going until rng doesn't inhibit piloting.
+
+	const int requiredCrew = RequiredCrew();
 
 	if(pilotError)
 		--pilotError;
@@ -4735,9 +4740,12 @@ void Ship::StepPilot()
 		--pilotOkay;
 	else if(isDisabled)
 	{
-		// If the ship is disabled, don't show a warning message due to missing crew.
+		// If the ship is disabled, don't show a warning message due to missing crew
+		// or update pilotOkay.
 	}
-	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
+	// Inhibit piloting on a chance equal to what portion of required crew is missing,
+	// but only if the ship requires crew at all.
+	else if(requiredCrew != 0 && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
 		if(isYours || personality.IsEscort())
