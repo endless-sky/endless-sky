@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Include only the tested classes' headers.
 #include "../../../source/EsUuid.h"
-#include "../../../source/comparators/UUIDComparator.h"
+#include "../../../source/comparators/ByUUID.h"
 
 #include "../../../source/Random.h"
 
@@ -354,7 +354,7 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 			}
 		}
 		WHEN( "the collection uses an ID comparator" ) {
-			auto collection = std::set<std::shared_ptr<T>, UUIDComparator<T>>{};
+			auto collection = std::set<std::shared_ptr<T>, ByUUID<T>>{};
 			REQUIRE( collection.emplace(source).second );
 			THEN( "only one object may be added" ) {
 				CHECK_FALSE( collection.emplace(cloned).second );
@@ -362,7 +362,7 @@ SCENARIO( "Mapping identifiable collections", "[uuid][comparison][collections]" 
 		}
 	}
 	GIVEN( "a collection of items with UUIDs" ) {
-		auto collection = std::map<std::shared_ptr<T>, int, UUIDComparator<T>>{};
+		auto collection = std::map<std::shared_ptr<T>, int, ByUUID<T>>{};
 		auto first = std::make_shared<T>();
 		auto second = std::make_shared<T>();
 		collection.insert({ {first, -1}, {second, -2} });

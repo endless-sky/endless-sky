@@ -1,4 +1,4 @@
-/* UUIDComparator.h
+/* ByUUID.h
 Copyright (c) 2021 by Benjamin Hauch
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -20,7 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 template <class T>
-struct UUIDComparator {
+class ByUUID {
+public:
 	// Comparator for collections of shared_ptr<T>
 	bool operator()(const std::shared_ptr<T> &a, const std::shared_ptr<T> &b) const noexcept(false)
 	{
