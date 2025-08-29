@@ -55,8 +55,8 @@ using namespace std;
 
 
 
-MainPanel::MainPanel(PlayerInfo &player)
-	: player(player), engine(player)
+MainPanel::MainPanel(PlayerInfo &player, GamePad &controller)
+	: player(player), engine(player, controller)
 {
 	SetIsFullScreen(true);
 }
@@ -92,7 +92,7 @@ void MainPanel::Step()
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))
-		isActive = !ShowHailPanel();
+		isActive = !ShowHailPanel(show.Has(Command::SHIFT));
 	else if(show.Has(Command::HELP))
 		isActive = !ShowHelp(true);
 	show = Command::NONE;
@@ -324,6 +324,16 @@ bool MainPanel::Scroll(double dx, double dy)
 
 
 
+bool MainPanel::GamePadState(GamePad &controller)
+{
+	Command command = controller.ToPanelCommand();
+	if(command)
+		KeyDown(SDLK_UNKNOWN, 0, command, true);
+	return true;
+}
+
+
+
 void MainPanel::ShowScanDialog(const ShipEvent &event)
 {
 	shared_ptr<Ship> target = event.Target();
@@ -427,7 +437,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 
 
 
-bool MainPanel::ShowHailPanel()
+bool MainPanel::ShowHailPanel(bool targetPlanet)
 {
 	// An exploding ship cannot communicate.
 	const Ship *flagship = player.Flagship();
@@ -439,7 +449,7 @@ bool MainPanel::ShowHailPanel()
 		return false;
 
 	shared_ptr<Ship> target = flagship->GetTargetShip();
-	if((SDL_GetModState() & KMOD_SHIFT) && flagship->GetTargetStellar())
+	if((targetPlanet || (SDL_GetModState() & KMOD_SHIFT)) && flagship->GetTargetStellar())
 		target.reset();
 
 	if(flagship->IsEnteringHyperspace())

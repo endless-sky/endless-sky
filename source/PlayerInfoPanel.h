@@ -55,6 +55,9 @@ protected:
 	virtual bool Release(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	virtual bool NextPanel() override;
+	virtual bool PrevPanel() override;
+
 
 private:
 	// Draw the two subsections of this panel.

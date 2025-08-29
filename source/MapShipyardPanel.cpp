@@ -36,6 +36,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+	};
+}
+
 
 
 MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
@@ -52,6 +59,17 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 	Init();
 	onlyShowSoldHere = onlyHere;
 	UpdateCache();
+}
+
+
+
+bool MapShipyardPanel::GamePadState(GamePad &controller)
+{
+	if(controller.Held(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
+		DoKey('o');
+	controller.Clear(CONTROLLER_BUTTONS);
+
+	return Panel::GamePadState(controller);
 }
 
 
