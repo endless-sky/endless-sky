@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "output-capture.hpp"
 
 // Include only the tested classes' headers.
-#include "../../../source/EsUuid.h"
 #include "../../../source/comparators/ByUUID.h"
+#include "../../../source/EsUuid.h"
 
 #include "../../../source/Random.h"
 
