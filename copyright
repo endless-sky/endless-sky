@@ -3466,8 +3466,46 @@ License: public-domain
 
 Files:
  images/scene/hroar*
+ images/scene/hroar2*
+ images/scene/bloosh*
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
+
+Files:
+ images/outfit/haulerjacket*
+ images/scene/haulerjacket*
+Copyright: Koranir (daniel@yoon.com.au)
+License: CC-BY-SA-4.0
+
+Files:
+ sounds/hroarvictory.wav
+ sounds/hroarshort.wav
+Copyright: James Householder III
+License: CC-BY-SA-4.0
+
+Files:
+ images/land/gardena*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment: Taken from https://pxhere.com/en/photo/570498, cropped, and colored.
+
+Files:
+ images/scenes/saloon*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment: Taken from https://pxhere.com/en/photo/608426 and cropped.
+
+Files:
+ images/scenes/darktunnel*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment: Taken from https://pxhere.com/en/photo/1333585 and colored.
+
+Files:
+ images/scenes/quargmine*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment: Taken from https://pxhere.com/en/photo/521333, cropped, and colored.
 
 Files: images/land/asteroid0*
 Copyright: Becca Tommaso
