@@ -1180,7 +1180,7 @@ const EsUuid &Ship::UUID() const noexcept
 
 void Ship::SetUUID(const EsUuid &id)
 {
-	uuid.clone(id);
+	uuid.Clone(id);
 }
 
 
