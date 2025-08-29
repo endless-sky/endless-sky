@@ -87,7 +87,7 @@ private:
 
 
 
-template <class T>
+template<class T>
 struct UUIDComparator {
 	// Comparator for collections of shared_ptr<T>
 	bool operator() (const std::shared_ptr<T> &a, const std::shared_ptr<T> &b) const noexcept(false)

@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // interpolation between the old and new values, while clamping the value to a
 // suitable range. The Animate methods will return negative values, as they are
 // meant to be added as an offset to the draw position.
-template <typename T>
+template<typename T>
 class ScrollVar: public Animate<T>
 {
 public:
@@ -67,7 +67,7 @@ private:
 
 
 
-template <typename T>
+template<typename T>
 ScrollVar<T>::ScrollVar(const T &maxVal, const T &displaySize)
 	: maxVal{maxVal}, displaySize{displaySize}
 {
@@ -75,7 +75,7 @@ ScrollVar<T>::ScrollVar(const T &maxVal, const T &displaySize)
 
 
 
-template <typename T>
+template<typename T>
 void ScrollVar<T>::SetMaxValue(const T &value)
 {
 	maxVal = value;
@@ -84,7 +84,7 @@ void ScrollVar<T>::SetMaxValue(const T &value)
 
 
 
-template <typename T>
+template<typename T>
 const T &ScrollVar<T>::MaxValue() const
 {
 	return maxVal;
@@ -92,7 +92,7 @@ const T &ScrollVar<T>::MaxValue() const
 
 
 
-template <typename T>
+template<typename T>
 void ScrollVar<T>::SetDisplaySize(const T &size)
 {
 	displaySize = size;
@@ -101,7 +101,7 @@ void ScrollVar<T>::SetDisplaySize(const T &size)
 
 
 
-template <typename T>
+template<typename T>
 const T &ScrollVar<T>::DisplaySize() const
 {
 	return displaySize;
@@ -110,7 +110,7 @@ const T &ScrollVar<T>::DisplaySize() const
 
 
 
-template <typename T>
+template<typename T>
 bool ScrollVar<T>::Scrollable() const
 {
 	return maxVal > displaySize;
@@ -118,7 +118,7 @@ bool ScrollVar<T>::Scrollable() const
 
 
 
-template <typename T>
+template<typename T>
 bool ScrollVar<T>::IsScrollAtMin() const
 {
 	return this->Value() <= T{};
@@ -126,7 +126,7 @@ bool ScrollVar<T>::IsScrollAtMin() const
 
 
 
-template <typename T>
+template<typename T>
 bool ScrollVar<T>::IsScrollAtMax() const
 {
 	return this->Value() >= maxVal - displaySize;
@@ -134,7 +134,7 @@ bool ScrollVar<T>::IsScrollAtMax() const
 
 
 
-template <typename T>
+template<typename T>
 void ScrollVar<T>::Scroll(const T &dy, int steps)
 {
 	Set(this->Value() + dy, steps);
@@ -142,7 +142,7 @@ void ScrollVar<T>::Scroll(const T &dy, int steps)
 
 
 
-template <typename T>
+template<typename T>
 double ScrollVar<T>::AnimatedScrollFraction() const
 {
 	return static_cast<double>(Animate<T>::AnimatedValue()) / static_cast<double>(maxVal - displaySize);
@@ -150,7 +150,7 @@ double ScrollVar<T>::AnimatedScrollFraction() const
 
 
 
-template <typename T>
+template<typename T>
 double ScrollVar<T>::ScrollFraction() const
 {
 	return static_cast<double>(Animate<T>::Value()) / static_cast<double>(maxVal - displaySize);
@@ -158,7 +158,7 @@ double ScrollVar<T>::ScrollFraction() const
 
 
 
-template <typename T>
+template<typename T>
 void ScrollVar<T>::Set(const T &current, int steps)
 {
 	Animate<T>::Set(current, steps);
@@ -167,7 +167,7 @@ void ScrollVar<T>::Set(const T &current, int steps)
 
 
 
-template <typename T>
+template<typename T>
 void ScrollVar<T>::Clamp(int steps)
 {
 	int maxScroll = maxVal - displaySize;
@@ -179,7 +179,7 @@ void ScrollVar<T>::Clamp(int steps)
 
 
 
-template <typename T>
+template<typename T>
 ScrollVar<T> &ScrollVar<T>::operator=(const T &v)
 {
 	Set(v);

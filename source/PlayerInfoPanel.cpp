@@ -132,7 +132,7 @@ namespace {
 	}
 
 	// A helper function for reversing the arguments of the given function F.
-	template <InfoPanelState::ShipComparator &F>
+	template<InfoPanelState::ShipComparator &F>
 	bool ReverseCompare(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
 		return F(rhs, lhs);
