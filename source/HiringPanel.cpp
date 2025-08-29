@@ -82,7 +82,7 @@ void HiringPanel::Draw()
 
 	int fleetOfficers = player.Officers() + (flagshipJump ? 1 : 0);
 	int fleetBunks = 0;
-	int fleetCrew = player.Crew() + (!flagship || !flagshipJump ? 0 : 1);
+	int fleetCrew = player.Crew() + (!flagship || flagshipJump ? 0 : 1);
 	int passengers = player.Cargo().Passengers();
 
 	for(const shared_ptr<Ship> &ship : player.Ships())
