@@ -39,18 +39,18 @@ namespace {
 	// For getting the name of a ship model or outfit.
 	// The relevant method for each class has a different signature,
 	// so use template specialisation to select the appropriate version of the method.
-	template <class Type>
+	template<class Type>
 	string ObjectName(const Type &object) = delete;
 
-	template <>
+	template<>
 	string ObjectName(const Ship &object) { return object.TrueModelName(); }
 
-	template <>
+	template<>
 	string ObjectName(const Outfit &object) { return object.TrueName(); }
 
 
 	// Take a set of items and a set of sales and print a list of each item followed by the sales it appears in.
-	template <class Type>
+	template<class Type>
 	void PrintItemSales(const Set<Type> &items, const Set<Shop<Type>> &sales,
 		const string &itemNoun, const string &saleNoun)
 	{
@@ -72,7 +72,7 @@ namespace {
 
 	// Take a set of sales and print a list of each followed by the items it contains.
 	// Will fail to compile for items not of type Ship or Outfit.
-	template <class Type>
+	template<class Type>
 	void PrintSales(const Set<Shop<Type>> &sales, const string &saleNoun, const string &itemNoun)
 	{
 		cout << DataWriter::Quote(saleNoun) << ';' << DataWriter::Quote(itemNoun) << '\n';
@@ -88,7 +88,7 @@ namespace {
 
 
 	// Take a Set and print a list of the names (keys) it contains.
-	template <class Type>
+	template<class Type>
 	void PrintObjectList(const Set<Type> &objects, const string &name)
 	{
 		cout << DataWriter::Quote(name) << '\n';
@@ -98,7 +98,7 @@ namespace {
 
 	// Takes a Set of objects and prints the key for each, followed by a list of its attributes.
 	// The class 'Type' must have an accessible 'Attributes()' member method which returns a collection of strings.
-	template <class Type>
+	template<class Type>
 	void PrintObjectAttributes(const Set<Type> &objects, const string &name)
 	{
 		cout << DataWriter::Quote(name) << ',' << DataWriter::Quote("attributes") << '\n';
@@ -115,7 +115,7 @@ namespace {
 
 	// Takes a Set of objects, which must have an accessible member `Attributes()`, returning a collection of strings.
 	// Prints a list of all those string attributes and, for each, the list of keys of objects with that attribute.
-	template <class Type>
+	template<class Type>
 	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name)
 	{
 		cout << DataWriter::Quote("attribute") << ',' << DataWriter::Quote(name) << '\n';

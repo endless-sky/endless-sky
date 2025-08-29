@@ -32,7 +32,7 @@ class System;
 // Class representing a shop of items. Shops are able to be added to planets to designate
 // that this shop should always stock that planet, or they can be given a condition set and/or
 // location filter that allows them to optionally appear on a planet.
-template <class Item>
+template<class Item>
 class Shop {
 public:
 	Shop();
@@ -62,14 +62,14 @@ private:
 
 
 
-template <class Item>
+template<class Item>
 Shop<Item>::Shop()
 {
 }
 
 
 
-template <class Item>
+template<class Item>
 Shop<Item>::Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
 	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
 {
@@ -78,7 +78,7 @@ Shop<Item>::Shop(const DataNode &node, const Set<Item> &items, const ConditionsS
 
 
 
-template <class Item>
+template<class Item>
 void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
 	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
 {
@@ -141,7 +141,7 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 
 
 
-template <class Item>
+template<class Item>
 const std::string &Shop<Item>::Name() const
 {
 	return name;
@@ -149,7 +149,7 @@ const std::string &Shop<Item>::Name() const
 
 
 
-template <class Item>
+template<class Item>
 const Sale<Item> &Shop<Item>::Stock() const
 {
 	return stock;
@@ -157,7 +157,7 @@ const Sale<Item> &Shop<Item>::Stock() const
 
 
 
-template <class Item>
+template<class Item>
 bool Shop<Item>::CanStock(const Planet *planet) const
 {
 	// If this shop doesn't have a defined condition set or location filter,

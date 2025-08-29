@@ -55,7 +55,7 @@ private:
 
 
 
-template <class Type>
+template<class Type>
 const Type *Set<Type>::Find(const std::string &name) const
 {
 	auto it = data.find(name);
@@ -64,7 +64,7 @@ const Type *Set<Type>::Find(const std::string &name) const
 
 
 
-template <class Type>
+template<class Type>
 void Set<Type>::Revert(const Set<Type> &other)
 {
 	auto it = data.begin();
