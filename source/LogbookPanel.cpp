@@ -121,11 +121,6 @@ void LogbookPanel::Draw()
 
 	maxCategoryScroll = max(0., maxCategoryScroll + pos.Y() - Screen::Bottom());
 
-	// Parameters for drawing the main text:
-	WrappedText wrap(font);
-	wrap.SetAlignment(Alignment::JUSTIFIED);
-	wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
-
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
 
@@ -140,21 +135,26 @@ void LogbookPanel::Draw()
 			font.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
 			pos.Y() += LINE_HEIGHT;
 
-			wrap.Wrap(it->second);
-			wrap.Draw(pos, medium);
-			pos.Y() += wrap.Height() + GAP;
+			for(auto &media : it->second)
+			{
+				pos.Y() += media.Draw(pos, font, Alignment::JUSTIFIED, TEXT_WIDTH - 2. * PAD, medium);
+			}
+			pos.Y() += GAP;
 		}
 	}
 	else if(!selectedDate && pit != player.SpecialLogs().end())
 	{
-		for(const auto &it : pit->second)
+		for(auto &it : pit->second)
 		{
+			// Draw heading
 			font.Draw(it.first, pos + textOffset, bright);
 			pos.Y() += LINE_HEIGHT;
 
-			wrap.Wrap(it.second);
-			wrap.Draw(pos, medium);
-			pos.Y() += wrap.Height() + GAP;
+			for(auto &media : it.second)
+			{
+				pos.Y() += media.Draw(pos, font, Alignment::JUSTIFIED, TEXT_WIDTH - 2. * PAD, medium);
+			}
+			pos.Y() += GAP;
 		}
 	}
 

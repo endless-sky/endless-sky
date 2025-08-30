@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionAssignments.h"
 #include "ShipManager.h"
+#include "MediaNode.h"
 
-#include <cstdint>
 #include <map>
 #include <optional>
 #include <set>
@@ -87,8 +87,8 @@ private:
 
 private:
 	bool isEmpty = true;
-	std::string logText;
-	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	std::vector<MediaNode> logMedia;
+	std::map<std::string, std::map<std::string, std::vector<MediaNode>>> specialLogMedia;
 	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;

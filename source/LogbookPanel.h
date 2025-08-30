@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "Date.h"
+#include "MediaNode.h"
 
 #include <map>
 #include <string>
@@ -58,8 +59,8 @@ private:
 	// Current month being displayed:
 	Date selectedDate;
 	std::string selectedName;
-	std::multimap<Date, std::string>::const_iterator begin;
-	std::multimap<Date, std::string>::const_iterator end;
+	std::multimap<Date, std::vector<MediaNode>>::const_iterator begin;
+	std::multimap<Date, std::vector<MediaNode>>::const_iterator end;
 	// Other months available for display:
 	std::vector<std::string> contents;
 	std::vector<Date> dates;
