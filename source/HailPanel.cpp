@@ -256,6 +256,8 @@ void HailPanel::Draw()
 				Point(),
 				facing + hardpoint.GetAngle(),
 				zoom);
+			if(body.InheritsParentSwizzle())
+				body.SetSwizzle(ship->GetSwizzle());
 			draw.Add(body);
 		};
 		auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void

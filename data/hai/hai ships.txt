@@ -165,6 +165,7 @@ ship "Aphid" "Aphid (Armed)"
 		"Hyperdrive"
 
 ship "Aphid" "Aphid (Unfettered)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Chameleon Anti-Missile"
 		"Cargo Expansion" 2
@@ -679,6 +680,7 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Hyperdrive"
 
 ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Pulse Cannon"
 		"Pulse Turret" 2
@@ -1290,6 +1292,7 @@ ship "Shield Beetle" "Shield Beetle (Unfettered)"
 		"Hyperdrive"
 
 ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Ion Cannon" 2
 		"Hai Tracker" 420

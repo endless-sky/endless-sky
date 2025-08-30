@@ -59,7 +59,6 @@ private:
 
 
 private:
-	std::map<std::string, std::vector<const Ship *>> catalog;
 	std::vector<const Ship *> list;
 	std::map<const System *, std::map<const Ship *, int>> parkedShips;
 
