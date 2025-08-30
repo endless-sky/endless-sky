@@ -1,4 +1,4 @@
-/* Paragraph.cpp
+/* MediaNode.cpp
 Copyright (c) 2025 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -12,11 +12,12 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
+
 #include "MediaNode.h"
 
 #include "DataWriter.h"
-#include "shader/SpriteShader.h"
 #include "text/Format.h"
+#include "shader/SpriteShader.h"
 
 using namespace std;
 
