@@ -382,7 +382,6 @@ jobs:
           changelog
           copyright
           credits.txt
-          icon.png
           keys.txt
           license.txt
           data/
