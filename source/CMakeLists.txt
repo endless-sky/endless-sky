@@ -356,6 +356,7 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	comparators/ByUUID.h
 	orders/OrderSet.cpp
 	orders/OrderSet.h
 	orders/OrderSingle.cpp
