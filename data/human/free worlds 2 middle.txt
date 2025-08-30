@@ -1692,7 +1692,7 @@ mission "FW Bloodsea 1.2A"
 
 
 
-mission "Pirates Use Cutthroat"
+mission "Pirates Use Cutthroats"
 	landing
 	invisible
 	to offer
@@ -1702,7 +1702,7 @@ mission "Pirates Use Cutthroat"
 		fail
 
 event "pirates use cutthroat"
-	fleet "Large Southern Pirate"
+	fleet "Large Southern Pirates"
 		add variant 2
 			"Cutthroat" 3
 		add variant 1
