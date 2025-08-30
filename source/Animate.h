@@ -20,8 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Smoothly change a variable from one value to another. Used to smooth out
 // scrolling and panning.
 template<typename T>
-class Animate
-{
+class Animate {
 public:
 	virtual ~Animate() = default;
 	// Set the next target value of this variable, linearly interpolated along

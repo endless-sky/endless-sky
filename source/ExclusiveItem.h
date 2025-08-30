@@ -30,10 +30,10 @@ public:
 	explicit ExclusiveItem(const Type *item) : stockItem(item) {}
 	explicit ExclusiveItem(Type &&item) : item(std::move(item)) {}
 
-	ExclusiveItem(ExclusiveItem&&) = default;
-	ExclusiveItem &operator=(ExclusiveItem&&) = default;
-	ExclusiveItem(const ExclusiveItem&) = default;
-	ExclusiveItem &operator=(const ExclusiveItem&) = default;
+	ExclusiveItem(ExclusiveItem &&) = default;
+	ExclusiveItem &operator=(ExclusiveItem &&) = default;
+	ExclusiveItem(const ExclusiveItem &) = default;
+	ExclusiveItem &operator=(const ExclusiveItem &) = default;
 
 	bool IsStock() const noexcept { return stockItem; }
 
