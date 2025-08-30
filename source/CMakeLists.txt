@@ -352,6 +352,7 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/supplier/WavSupplier.h
 	audio/supplier/effect/Fade.cpp
 	audio/supplier/effect/Fade.h
+	comparators/ByDisplayName.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
