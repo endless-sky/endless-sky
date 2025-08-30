@@ -1197,6 +1197,7 @@ outfit "Firestorm Battery"
 		"inaccuracy" 3
 		"lifetime" 1900
 		"velocity" 6.6
+		"velocity override" 5
 		"acceleration" .6
 		"drag" .12
 		"turn" 1.6
