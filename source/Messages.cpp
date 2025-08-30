@@ -66,6 +66,16 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 {
 	lock_guard<mutex> lock(incomingMutex);
 
+	// Erase messages that have reached the end of their lifetime.
+	auto it = recent.begin();
+	while(it != recent.end())
+	{
+		if(step - it->step > 1000 + animationDuration || (it->deathStep >= 0 && it->deathStep <= step))
+			it = recent.erase(it);
+		else
+			++it;
+	}
+
 	// Load the incoming messages.
 	for(const pair<string, Importance> &item : incoming)
 	{
@@ -74,7 +84,7 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 
 		// If this message is not important and it is already being shown in the
 		// list, ignore it.
-		if(importance == Importance::Low)
+		if(importance == Importance::Low || importance == Importance::HighestNoRepeat)
 		{
 			bool skip = false;
 			for(const Messages::Entry &entry : recent)
@@ -83,24 +93,18 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 				continue;
 		}
 
-		auto it = recent.begin();
-		while(it != recent.end())
+		for(auto &it : recent)
 		{
-			int age = step - it->step;
 			// Each time a new message comes in, "age" all the existing ones,
 			// except for cases where it would interrupt an animation, to
 			// limit how many of them appear at once.
-			if(age > animationDuration)
-				it->step -= 60;
+			if(step - it.step > animationDuration)
+				it.step -= 60;
 			// For each incoming message, if it exactly matches an existing message,
 			// replace that one with this new one by scheduling the old one for removal.
-			if(importance != Importance::Low && it->message == message && it->deathStep < 0)
-				it->deathStep = step + animationDuration;
-			// Erase messages that have reached the end of their lifetime.
-			if(age > 1000 + animationDuration || (it->deathStep >= 0 && it->deathStep <= step))
-				it = recent.erase(it);
-			else
-				++it;
+			if(importance != Importance::Low && importance != Importance::HighestNoRepeat
+					&& it.message == message && it.deathStep < 0)
+				it.deathStep = step + animationDuration;
 		}
 		recent.emplace_back(step, message, importance);
 	}
@@ -135,6 +139,7 @@ const Color *Messages::GetColor(Importance importance, bool isLogPanel)
 	switch(importance)
 	{
 		case Messages::Importance::Highest:
+		case Messages::Importance::HighestNoRepeat:
 			return GameData::Colors().Get(prefix + "highest");
 		case Messages::Importance::High:
 			return GameData::Colors().Get(prefix + "high");
