@@ -300,7 +300,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		okIsActive = !canCancel;
 	else if(key == SDLK_RIGHT)
 		okIsActive = true;
-	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || (key == SDLK_SPACE) || isCloseRequest
+	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || isCloseRequest
 			|| (isMission && (key == 'a' || key == 'd')))
 	{
 		// Shortcuts for "accept" and "decline."
