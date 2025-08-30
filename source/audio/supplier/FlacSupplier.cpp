@@ -36,10 +36,10 @@ FLAC__StreamDecoderWriteStatus FlacSupplier::write_callback(const FLAC__Frame *f
 	const size_t blocksize = frame->header.blocksize;
 
 	AwaitBufferSpace();
-	static vector<int16_t> samples;
+	static vector<sample_t> samples;
 	for(size_t i = 0; i < blocksize; ++i)
 		for(size_t ch = 0; ch < channels; ++ch)
-			samples.push_back(static_cast<int16_t>(buffer[ch][i]));
+			samples.push_back(static_cast<sample_t>(buffer[ch][i]));
 
 	AddBufferData(samples);
 	/// Allow looping back to the beginning of the file on the next read.
@@ -72,7 +72,6 @@ void FlacSupplier::metadata_callback(const FLAC__StreamMetadata *metadata)
 
 
 
-
 void FlacSupplier::error_callback(FLAC__StreamDecoderErrorStatus status)
 {
 	Logger::LogError("FLAC error " + string(FLAC__StreamDecoderErrorStatusString[status]));
@@ -85,7 +84,7 @@ void FlacSupplier::error_callback(FLAC__StreamDecoderErrorStatus status)
 FLAC__StreamDecoderReadStatus FlacSupplier::read_callback(FLAC__byte buffer[], size_t *bytes)
 {
 	size_t requestedBytes = *bytes;
-	size_t readBytes = ReadInput(reinterpret_cast<char*>(buffer), *bytes);
+	size_t readBytes = ReadInput(reinterpret_cast<char*>(buffer), requestedBytes);
 	*bytes = readBytes;
 	if(readBytes != requestedBytes)
 		lastReadWasEof = true;

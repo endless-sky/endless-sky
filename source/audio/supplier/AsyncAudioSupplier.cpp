@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AsyncAudioSupplier.h"
 
 #include <cmath>
-#include <cstring>
 #include <thread>
 #include <utility>
 
