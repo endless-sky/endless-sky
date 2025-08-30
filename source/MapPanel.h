@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "Animate.h"
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
@@ -144,6 +145,7 @@ protected:
 	Point center;
 	Point recenterVector;
 	int recentering = 0;
+	Animate<double> zoom;
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
@@ -214,6 +216,9 @@ private:
 	void DrawNames();
 	void DrawMissions();
 	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
+
+	void IncrementZoom();
+	void DecrementZoom();
 
 
 private:
