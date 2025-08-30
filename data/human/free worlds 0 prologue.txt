@@ -824,7 +824,7 @@ mission "FW Escort 1B"
 		fleet "Large Southern Pirates" 2
 	
 	on abort
-		log "Declined an offer for escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Flaked off escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 		fail "FW Escort: Escorts"
 	on fail
 		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
@@ -863,7 +863,7 @@ mission "FW Escort 2"
 				accept
 	
 	on decline
-		log "Declined an offer for escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Declined an offer for more escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 		fail "FW Escort: Escorts"
 	
 	npc accompany save
@@ -892,7 +892,7 @@ mission "FW Escort 2"
 		fleet "Large Southern Pirates" 3
 	
 	on abort
-		log "Declined an offer for escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Flaked off escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 		fail "FW Escort: Escorts"
 	on fail
 		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
@@ -951,7 +951,7 @@ mission "FW Escort 2B"
 		fleet "Small Southern Pirates" 2
 	
 	on abort
-		log "Declined an offer for escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Flaked off escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 		fail "FW Escort: Escorts"
 	on fail
 		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
@@ -998,11 +998,11 @@ mission "FW Escort 3"
 		ship "Freighter" "F.S. Shackleton"
 	
 	on decline
-		log "Declined an offer for escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Declined an offer for more escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 	on abort
-		log "Declined an offer for escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Flaked off escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 	on fail
-		log "Failed a mission to save a Free Worlds freighter. They won't be happy about this."
+		log "Failed a mission to save a Free Worlds freighter. Tomek won't be happy about this."
 		set "fw intro escort failed"
 	on visit
 		dialog `You've returned to <planet>, but the <npc> is not with you. If you have not repaired it yet, travel to <waypoints> to do so, or take off wait for it to arrive in this system if you already have.`
