@@ -68,7 +68,6 @@ public:
 	template<class ...Args>
 	Type &emplace_back(int weight, Args &&...args);
 
-
 	iterator eraseAt(iterator position) noexcept;
 	iterator erase(iterator first, iterator last) noexcept;
 
