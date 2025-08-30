@@ -6482,7 +6482,7 @@ mission "Lost Racer 1"
 				`	"My ship is as fast as they come. We'll find her in no time."`
 					goto fast
 				`	"Artemis Renard? I think I heard she won something recently... maybe in Betelgeuse?"`
-			`	"Ah, yes," the man says with pride in his voice. "The Betelgeuse Classic, a circuit of every planet and major moon in the system, and hitting every marker in an equatorial orbit without refueling. They've been doing it since the Firebird was new, and no one's done it faster than my daughter - no one. She's the best; that's how I know something's gone wrong. Tell your people to warm up the engines."`
+			`	"Ah, yes," the man says with pride in his voice. "The Betelgeuse Classic. Contestants run a circuit of every planet and major moon in the system and hit every marker in an equatorial orbit without refueling. They've been doing it since the Firebird was new, and no one's done it faster than my daughter - no one. She's the best; that's how I know something's gone wrong. Tell your people to warm up the engines."`
 				goto board
 			label fast
 			`	"I appreciate your pride in your ship. I've heard 'fast as they come' for twenty years now, and I've never needed it more than today."`
@@ -6508,7 +6508,7 @@ mission "Lost Racer 2 - Ended"
 		conversation
 			`You were unable to find Artemis Renard in any of the three uninhabited systems, and you have watched hope fade into desperation in her father with each successive failure. You can't imagine he's been getting much sleep.`
 			`	During the landing on <planet>, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of ships in racing livery. A mostly depleted Navy contingent remains, empty areas testifying to the ongoing hunt, while the few remaining officers interview racers, organizers, and spectators. The spaceport seems busier and more hectic than usual.`
-			`	"I've got to speak with the race coordinators here," says Mr. Renard, striding towards the marshal station. "I see the marshals are back from searching. Syndicate idiots, probably didn't even notice she was missing till it was on the news. We've got to keep looking. Will you meet me back here in the spaceport in an hour or two? I'll double your fee."`
+			`	"I've got to speak with the race coordinators here," says Mr. Renard, striding towards the marshal station. "I see the marshals are back from searching. Syndicate idiots, probably didn't even notice she was missing 'til it was on the news. We've got to keep looking. Will you meet me back here in the spaceport in an hour or two? I'll double your fee."`
 			choice
 				`	"Of course. We're going to find her."`
 					goto next
@@ -6744,7 +6744,7 @@ mission "Lost Racer 3"
 				`	"I'll leave the questions to your father."`
 					goto noquestions
 			label crash
-			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox's hyperdrive malfunctioned, knocking me out. When I woke up, the Flivver was damaged and hurtling toward outer space. Luckily, the engines hadn't been harmed too much, so I was able to turn around and thrust in the direction of <origin>, but then the batteries gave out and the generator stopped working. So I ended up stranded on a planet with no way of calling for help - the flares had triggered when I crashed, being unable to slow down without thrusters. Well, now you know. Is there anything else?"`
+			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox's hyperdrive malfunctioned, knocking me out. When I woke up, I was in the wrong system and the Flivver was hurtling away from the star. Luckily, the engines hadn't been harmed too much, so I was able to turn around and thrust in the direction of <origin>, but then the batteries gave out and the generator stopped working. So I ended up stranded on a planet with no way of calling for help - the flares had triggered when I crashed, being unable to slow down without thrusters. Well, now you know. Is there anything else?"`
 			`	August asks, "Do you think someone could have sabotaged the hyperdrive? Any suspicious Syndicate employees hanging around? Any anything out of the ordinary?"`
 			`	"Not that I remember," replies Artemis. "This rarely happens in spaceship racing, but it's still happened. A one-in-a-million chance, perhaps. I wouldn't worry about it too much."`
 			choice
@@ -6804,7 +6804,7 @@ mission "Lost Racer Epilogue"
 						"total ships" > 1
 					goto continue
 				`	"You have a mansion here!"`
-			`	"Later, later," Artemis shouts. "We'll talk in a place where we needn't shout."`
+			`	"Later, later," Artemis shouts. "We'll talk in a place where we needn't yell."`
 			label continue
 			`	August calls, "You can let your fleet stay at the main spaceport; I'm afraid there's not room here."`
 				to display
