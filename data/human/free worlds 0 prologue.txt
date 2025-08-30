@@ -395,7 +395,7 @@ mission "FW Recon 1"
 	on visit
 		dialog `You land on <planet>, but you haven't yet scanned the Navy Cruiser patrolling the system. Depart and scan the Cruiser's outfits before returning.`
 	on complete
-		log "Scanned a Republic Cruiser as part of some recon work for the Free Worlds."
+		log "Scanned a Republic Cruiser as part of some reconnaissance work for the Free Worlds."
 		payment 10000
 		dialog `Soon after you land, the militia captain comes to your ship and pays you <payment> in exchange for your sensor logs regarding the <npc>. He says, "If you would be interested in continuing to work for us, meet me in the spaceport bar in an hour."`
 
@@ -1150,7 +1150,7 @@ mission "FW Bounty 1"
 	on visit
 		dialog phrase "generic fleet bounty hunting on visit"
 	on complete
-		log "Hunted down a fleet of pirates called the Rat Pack, who had been giving the Free Worlds trouble lately."
+		log "Hunted down a fleet of pirates called the Rat Pack who had been giving the Free Worlds trouble."
 		payment 200000
 		dialog `The militia officer who asked you to hunt down the "Rat Pack" arrives at your ship soon after you land and thanks you profusely. "Now we won't have to worry about them bothering ships in this sector anymore." She pays you the bounty of <payment> and says she'll tell other militia leaders how helpful you were.`
 
