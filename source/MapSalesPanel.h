@@ -88,6 +88,7 @@ protected:
 	double scroll = 0.;
 	double maxScroll = 0.;
 
+	std::map<std::string, std::vector<std::string>> catalog;
 	const CategoryList &categories;
 	bool onlyShowSoldHere = false;
 	bool onlyShowStorageHere = false;
