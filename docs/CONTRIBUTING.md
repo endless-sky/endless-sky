@@ -4,6 +4,8 @@ As a free and open source game, Endless Sky is the product of many people's work
 
 We are always excited to welcome new contributors! Below are some guidelines and resources to help get involved.
 
+See also: [Endless Sky Development Manifesto](https://github.com/endless-sky/endless-sky/discussions/8982)
+
 ## Issues
 
 ### Posting issues
