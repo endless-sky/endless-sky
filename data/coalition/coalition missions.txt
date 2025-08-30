@@ -1385,10 +1385,10 @@ mission "Arachi Cartoonist 1"
 			choice
 				`	"Of course! It's called <ship>."`
 				`	"The name is nothing special. I wouldn't even get the reference of it if I read your comic in the future, honestly."`
-					goto noship
+					goto "no ship"
 			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
 				decline
-			label noship
+			label "no ship"
 			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again, Captain."`
 				decline
 
@@ -1440,7 +1440,7 @@ mission "Arachi Cartoonist 2"
 			choice
 				`	"Of course! It's called <ship>."`
 				`	"The name is nothing special. I wouldn't even get the reference of it if I read your comic in the future, honestly."`
-					goto noship
+					goto "no ship"
 			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
 				accept
 

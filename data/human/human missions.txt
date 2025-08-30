@@ -8440,10 +8440,10 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			choice
 				`	(Try to change the subject and ask if he has any family.)`
 				`	(Say nothing.)`
-					goto "evil choice 2"workerleaves
+					goto "evil choice 2 worker leaves"
 			`	The worker turns back to the stones, staring at them for a long, uncomfortable silence. Finally, he shakes his head, his voice barely above a whisper.`
 			`	"No."`
-			label "evil choice 2"workerleaves
+			label "evil choice 2 worker leaves"
 			`	With that, he pushes himself to his feet and heads back to work without another word.`
 			label "hello there 2"
 			choice
