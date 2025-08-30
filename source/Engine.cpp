@@ -727,7 +727,7 @@ void Engine::Step(bool isActive)
 	}
 
 	if(flagship && flagship->IsOverheated())
-		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);
+		Messages::Add("Your ship has overheated.", Messages::Importance::HighestNoRepeat);
 
 	// Clear the HUD information from the previous frame.
 	info = Information();
