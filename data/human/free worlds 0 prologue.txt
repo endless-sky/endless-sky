@@ -763,7 +763,7 @@ mission "FW Escort 1"
 		fleet "Large Southern Pirates" 2
 	
 	on abort
-		log "Declined an offer for escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Flaked off escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 		fail "FW Escort: Escorts"
 	on fail
 		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
