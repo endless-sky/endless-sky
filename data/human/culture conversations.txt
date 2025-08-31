@@ -1137,79 +1137,79 @@ mission "Exotic Life: Albatross"
 				`	"Why no 'Cybernetic Implants'?"`
 					goto implants
 					to display
-						not "heardimplants"
+						not "heard implants"
 				`	"What's the deal with 'Badgers'?"`
 					goto badgers
 					to display
-						not "heardbadgers"
+						not "heard badgers"
 				`	"Turnips?"`
 					to display
-						has "heardbadgers"
-						not "heardturnips"
+						has "heard badgers"
+						not "heard turnips"
 					goto turnips
 				`	"The sign says 'No ${plural nouns}'?"`
 					goto "mad lib"
 					to display
 						or
-							has "heardimplants"
-							has "heardturnips"
-							has "heardweasels"
-						not "heardmadlib"
+							has "heard implants"
+							has "heard turnips"
+							has "heard weasels"
+						not "heard madlib"
 				`	"What's wrong with 'Weasels'?"`
 					goto weasels
 					to display
-						not "heardweasels"
+						not "heard weasels"
 				`	"What about 'Polecats'?"`
 					goto polecats
 					to display
-						has "heardweasels"
-						not "heardpolecats"
+						has "heard weasels"
+						not "heard polecats"
 				`	"Albatross?"`
 					goto albatross
 					to display
-						has "heardpolecats"
+						has "heard polecats"
 				`	(Thank him for the answers and leave.)`
 					goto ending
 					to display
 						or
-							has "heardimplants"
-							has "heardbadgers"
-							has "heardweasels"
+							has "heard implants"
+							has "heard badgers"
+							has "heard weasels"
 				`	(Turn around and leave.)`
 					goto ending
 					to display
-						not "heardimplants"
-						not "heardbadgers"
-						not "heardweasels"
+						not "heard implants"
+						not "heard badgers"
+						not "heard weasels"
 			label implants
 			action
-				set "heardimplants"
+				set "heard implants"
 			`	The old man grunts, leaning forward so that his voice drops to a rough whisper. "Cybernetic implants ain't allowed 'round here - always cheat at cards. Can't trust a rigged hand when fate's supposed to be fair!"`
 				goto "next question"
 			label badgers
 			action
-				set "heardbadgers"
+				set "heard badgers"
 			`	He pauses, then mutters simply, "Turnips."`
 				goto "next question"
 			label turnips
 			action
-				set "heardturnips"
+				set "heard turnips"
 			`	He explodes. "Badgers! They'll dig up every last turnip I grow, ruining my patch faster than a cyborg cleans house. Nothing but trouble!"`
 				goto "next question"
 			label "mad lib"
 			action
-				set "heardmadlib"
+				set "heard madlib"
 			`	His lips curl into a bitter snarl as he spills a flood of exasperation, "They cause ${pirate adjectives that work as titles}, ${pirate adjectives that work as titles}, ${pirate adjectives that work as titles} ${bad outcomes}!"`
 			`	It's unclear how he expects you to respond.`
 				goto "next question"
 			label weasels
 			action
-				set "heardweasels"
+				set "heard weasels"
 			`	He snorts dismissively. "Weasels, now, they're just tiny polecats scampering about like mischief incarnate - ain't worth their salt, and worse, troublemakers by nature!"`
 				goto "next question"
 			label polecats
 			action
-				set "heardpolecats"
+				set "heard polecats"
 			`	His face darkens, and his voice grows weighty and ominous. "Polecats, they attract... the Albatross." For a suspended moment, the chatter ceases; the clamor of glasses and low murmurs fall silent as every patron registers the weight of that word. Then, as if on cue, the noise resumes, and the hubbub goes on as usual.`
 				goto "next question"
 			label albatross
@@ -1217,12 +1217,12 @@ mission "Exotic Life: Albatross"
 			`	Rough hands grip your shoulders, and before you can protest, you're dragged toward the door. Outside, in the biting wind, the echo of their shouted threats follows you. Perhaps some stones are best left unturned.`
 			label ending
 			action
-				clear "heardimplants"
-				clear "heardbadgers"
-				clear "heardturnips"
-				clear "heardmadlib"
-				clear "heardweasels"
-				clear "heardpolecats"
+				clear "heard implants"
+				clear "heard badgers"
+				clear "heard turnips"
+				clear "heard madlib"
+				clear "heard weasels"
+				clear "heard polecats"
 
 mission "Little Vienna in New Austria"
 	minor
