@@ -59,7 +59,7 @@ public:
 
 	// Print the error message in the terminal, error file, and message box.
 	// Checks for video system errors and records those as well.
-	static void ExitWithError(const std::string& message, bool doPopUp = true);
+	static void ExitWithError(const std::string &message, bool doPopUp = true);
 
 
 private:

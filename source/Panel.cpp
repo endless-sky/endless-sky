@@ -194,14 +194,7 @@ bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool is
 
 
 
-bool Panel::Click(int x, int y, int clicks)
-{
-	return false;
-}
-
-
-
-bool Panel::RClick(int x, int y)
+bool Panel::Click(int x, int y, MouseButton button, int clicks)
 {
 	return false;
 }
@@ -229,7 +222,7 @@ bool Panel::Scroll(double dx, double dy)
 
 
 
-bool Panel::Release(int x, int y)
+bool Panel::Release(int x, int y, MouseButton button)
 {
 	return false;
 }
@@ -247,7 +240,7 @@ bool Panel::GamePadState(GamePad &controller)
 	for(auto it = released.cbegin(); it != released.cend(); ++it)
 	{
 		if(it->first == SDL_CONTROLLER_BUTTON_A)
-			Release(mouse.X(), mouse.Y());
+			Release(mouse.X(), mouse.Y(), MouseButton::LEFT);
 	}
 	for(auto it = pressed.cbegin(); it != pressed.cend(); ++it)
 	{
@@ -256,14 +249,14 @@ bool Panel::GamePadState(GamePad &controller)
 		{
 			controllerClickHandled = it->second;
 			if(!ZoneClick(mouse))
-				handled = Click(mouse.X(), mouse.Y(), 1);
+				handled = Click(mouse.X(), mouse.Y(), MouseButton::LEFT, 1);
 			else
 				handled = true;
 		}
 		else if(it->first == SDL_CONTROLLER_BUTTON_B)
-			handled = Click(mouse.X(), mouse.Y(), 2);
+			handled = Click(mouse.X(), mouse.Y(), MouseButton::LEFT, 2);
 		else if(it->first == SDL_CONTROLLER_BUTTON_Y)
-			handled = RClick(mouse.X(), mouse.Y());
+			handled = Click(mouse.X(), mouse.Y(), MouseButton::RIGHT, 1);
 		else if(it->first == SDL_CONTROLLER_BUTTON_BACK)
 		{
 			DoKey(SDLK_ESCAPE);
@@ -353,16 +346,9 @@ bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool 
 
 
 
-bool Panel::DoClick(int x, int y, int clicks)
+bool Panel::DoClick(int x, int y, MouseButton button, int clicks)
 {
-	return EventVisit(&Panel::Click, x, y, clicks);
-}
-
-
-
-bool Panel::DoRClick(int x, int y)
-{
-	return EventVisit(&Panel::RClick, x, y);
+	return EventVisit(&Panel::Click, x, y, button, clicks);
 }
 
 
@@ -381,9 +367,9 @@ bool Panel::DoDrag(double dx, double dy)
 
 
 
-bool Panel::DoRelease(int x, int y)
+bool Panel::DoRelease(int x, int y, MouseButton button)
 {
-	return EventVisit(&Panel::Release, x, y);
+	return EventVisit(&Panel::Release, x, y, button);
 }
 
 

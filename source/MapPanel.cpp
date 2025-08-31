@@ -244,6 +244,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	UI::PlaySound(UI::UISound::SOFT);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
+	zoom.Set(player.MapZoom(), 0);
 	// Recalculate the fog each time the map is opened, just in case the player
 	// bought a map since the last time they viewed the map.
 	FogShader::Redraw();
@@ -301,6 +302,8 @@ void MapPanel::Step()
 		center += recenterVector * (step * (1. - step) * (6. / RECENTER_TIME));
 		--recentering;
 	}
+
+	zoom.Step();
 }
 
 
@@ -467,7 +470,6 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		for(auto &child : GetChildren())
 			RemoveChild(child.get());
 	};
-	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
@@ -508,9 +510,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
-		player.SetMapZoom(min<int>(mapInterface->GetValue("max zoom"), player.MapZoom() + 1));
+		IncrementZoom();
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
-		player.SetMapZoom(max<int>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1));
+		DecrementZoom();
 	else
 		return false;
 
@@ -520,8 +522,11 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 
 
 
-bool MapPanel::Click(int x, int y, int clicks)
+bool MapPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	// Figure out if a system was clicked on.
 	Point click = Point(x, y) / Zoom() - center;
 	for(const auto &it : GameData::Systems())
@@ -597,12 +602,12 @@ bool MapPanel::Scroll(double dx, double dy)
 	cumulativeScroll += dy;
 	if(cumulativeScroll > 2.)
 	{
-		player.SetMapZoom(min<int>(mapInterface->GetValue("max zoom"), player.MapZoom() + 1));
+		IncrementZoom();
 		cumulativeScroll = 0;
 	}
 	else if(cumulativeScroll < -2.)
 	{
-		player.SetMapZoom(max<int>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1));
+		DecrementZoom();
 		cumulativeScroll = 0;
 	}
 
@@ -826,7 +831,7 @@ void MapPanel::Find(const string &name)
 
 double MapPanel::Zoom() const
 {
-	return pow(1.5, player.MapZoom());
+	return pow(1.5, zoom.AnimatedValue());
 }
 
 
@@ -1392,17 +1397,17 @@ void MapPanel::DrawSystems()
 
 void MapPanel::DrawNames()
 {
-	// Don't draw if too small.
-	double zoom = Zoom();
-	if(zoom <= 0.5)
-		return;
-
 	// Draw names for all systems you have visited.
+	double zoom = Zoom();
+	if(zoom <= .5)
+		return;
+	static constexpr double BIGGER_TARGET_ZOOM = 2. / 3.;
+	double alpha = zoom >= BIGGER_TARGET_ZOOM ? 1. : (.5 - zoom) / (.5 - BIGGER_TARGET_ZOOM);
 	bool useBigFont = (zoom > 2.);
 	const Font &font = FontSet::Get(useBigFont ? 18 : 14);
 	Point offset(useBigFont ? 8. : 6., -.5 * font.Height());
 	for(const Node &node : nodes)
-		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor);
+		font.Draw(node.name, zoom * (node.position + center) + offset, node.nameColor.Transparent(alpha));
 }
 
 
@@ -1489,4 +1494,23 @@ void MapPanel::DrawPointer(const System *system, unsigned &systemCount, unsigned
 	if(systemCount >= max)
 		return;
 	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
+}
+
+
+
+void MapPanel::IncrementZoom()
+{
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
+	double newZoom = min<double>(mapInterface->GetValue("max zoom"), player.MapZoom() + 1);
+	zoom.Set(newZoom, mapInterface->GetValue("zoom animation duration"));
+	player.SetMapZoom(newZoom);
+}
+
+
+void MapPanel::DecrementZoom()
+{
+	const Interface *mapInterface = GameData::Interfaces().Get("map");
+	double newZoom = max<double>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1);
+	zoom.Set(newZoom, mapInterface->GetValue("zoom animation duration"));
+	player.SetMapZoom(newZoom);
 }

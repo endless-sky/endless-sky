@@ -416,8 +416,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 
 
-bool MissionPanel::Click(int x, int y, int clicks)
+bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return MapPanel::Click(x, y, button, clicks);
+
 	dragSide = 0;
 
 	if(x > Screen::Right() - 80 && y > Screen::Bottom() - 50)
