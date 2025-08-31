@@ -65,27 +65,29 @@ namespace {
 	{
 		return ship.GetPlanet() == here;
 	}
+}
 
-	void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor)
+void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor)
+{
+	constexpr int WIDTH = 250;
+	constexpr int PAD = 10;
+	WrappedText wrap(FontSet::Get(14));
+	wrap.SetWrapWidth(WIDTH - 2 * PAD);
+	wrap.Wrap(text);
+	int longest = wrap.LongestLineWidth();
+	if(longest < wrap.WrapWidth())
 	{
-		constexpr int WIDTH = 250;
-		constexpr int PAD = 10;
-		WrappedText wrap(FontSet::Get(14));
-		wrap.SetWrapWidth(WIDTH - 2 * PAD);
+		wrap.SetWrapWidth(longest);
 		wrap.Wrap(text);
-		int longest = wrap.LongestLineWidth();
-		if(longest < wrap.WrapWidth())
-		{
-			wrap.SetWrapWidth(longest);
-			wrap.Wrap(text);
-		}
-
-		Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
-		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + textSize.Y(), Screen::Bottom()));
-		FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
-		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
 	}
 
+	Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
+	Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + textSize.Y(), Screen::Bottom()));
+	FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
+	wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
+}
+
+namespace {
 	constexpr auto ScrollbarMaybeUpdate = [](const auto &op, ScrollBar &scrollbar,
 		ScrollVar<double> &scroll, bool animate)
 	{
@@ -440,11 +442,11 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 
 	dragShip = nullptr;
 
-	char button = '\0';
+	char zoneButton = '\0';
 	// Check the Find button.
 	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
 		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
-		button = 'f';
+		zoneButton = 'f';
 	else
 		// Handle clicks on the buttons.
 		zoneButton = CheckButton(x, y);

@@ -958,11 +958,11 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 	if(!ButtonActive(hoverButton, true))
 		return false;
 
-	// If we're hovering above a button that can modify ship outfits, highlight the ship.
+	// If we're hovering above a button that can modify add outfits to a ship then highlight the ship.
 	if(hoverButton == 'b' || hoverButton == 'i')
 		return ShipCanAdd(ship, selectedOutfit);
 
-	// Otherwise, not installing, must be uninstalling.
+	// Otherwise, not installing, highlight ships which can have outfits removed.
 	return ShipCanRemove(ship, selectedOutfit);
 }
 
@@ -971,7 +971,7 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 // Draw the display filter selection checkboxes in the lower left of the outfit panel.
 void OutfitterPanel::DrawKey()
 {
-	const Sprite *back = SpriteSet::Get("ui/outfitter key");  // TODO: fix the graphic, add 10 px to x and y
+	const Sprite *back = SpriteSet::Get("ui/outfitter key");
 
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 

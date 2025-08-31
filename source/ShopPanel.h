@@ -30,13 +30,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class CategoryList;
 class Outfit;
 class Planet;
 class PlayerInfo;
 class Ship;
 
-
+void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor);
 
 // Class representing the common elements of both the shipyard panel and the
 // outfitter panel (e.g. the sidebar with the ships you own).
