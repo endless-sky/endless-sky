@@ -61,6 +61,8 @@ private:
 	void SellShipChassis();
 	void SellShip(bool toStorage);
 
+
+private:
 	int modifier;
 
 	Sale<Ship> shipyard;

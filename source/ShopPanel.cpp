@@ -66,6 +66,26 @@ namespace {
 		return ship.GetPlanet() == here;
 	}
 
+	void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor)
+	{
+		constexpr int WIDTH = 250;
+		constexpr int PAD = 10;
+		WrappedText wrap(FontSet::Get(14));
+		wrap.SetWrapWidth(WIDTH - 2 * PAD);
+		wrap.Wrap(text);
+		int longest = wrap.LongestLineWidth();
+		if(longest < wrap.WrapWidth())
+		{
+			wrap.SetWrapWidth(longest);
+			wrap.Wrap(text);
+		}
+
+		Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
+		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + textSize.Y(), Screen::Bottom()));
+		FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
+		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
+	}
+
 	constexpr auto ScrollbarMaybeUpdate = [](const auto &op, ScrollBar &scrollbar,
 		ScrollVar<double> &scroll, bool animate)
 	{
@@ -88,28 +108,6 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
-}
-
-
-
-void ShopPanel::DrawTooltip(const string& text, const Point& hoverPoint, const Color& textColor, const Color& backColor)
-{
-	constexpr int WIDTH = 250;
-	constexpr int PAD = 10;
-	WrappedText wrap(FontSet::Get(14));
-	wrap.SetWrapWidth(WIDTH - 2 * PAD);
-	wrap.Wrap(text);
-	int longest = wrap.LongestLineWidth();
-	if(longest < wrap.WrapWidth())
-	{
-		wrap.SetWrapWidth(longest);
-		wrap.Wrap(text);
-	}
-
-	Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
-	Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + textSize.Y(), Screen::Bottom()));
-	FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
-	wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
 }
 
 
@@ -423,8 +421,23 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool ShopPanel::Click(int x, int y, int clicks)
+bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	auto ScrollbarClick = [x, y, button, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
+	{
+		return ScrollbarMaybeUpdate([x, y, button, clicks](ScrollBar &scrollbar)
+			{
+				return scrollbar.Click(x, y, button, clicks);
+			}, scrollbar, scroll, true);
+	};
+	if(ScrollbarClick(mainScrollbar, mainScroll)
+			|| ScrollbarClick(sidebarScrollbar, sidebarScroll)
+			|| ScrollbarClick(infobarScrollbar, infobarScroll))
+		return true;
+
+	if(button != MouseButton::LEFT)
+		return false;
+
 	dragShip = nullptr;
 
 	char button = '\0';
@@ -434,22 +447,10 @@ bool ShopPanel::Click(int x, int y, int clicks)
 		button = 'f';
 	else
 		// Handle clicks on the buttons.
-		button = CheckButton(x, y);
+		zoneButton = CheckButton(x, y);
 
-	if(button)
-		return DoKey(button);
-
-	auto ScrollbarClick = [x, y, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
-	{
-		return ScrollbarMaybeUpdate([x, y, clicks](ScrollBar &scrollbar)
-			{
-				return scrollbar.Click(x, y, clicks);
-			}, scrollbar, scroll, true);
-	};
-	if(ScrollbarClick(mainScrollbar, mainScroll)
-			|| ScrollbarClick(sidebarScrollbar, sidebarScroll)
-			|| ScrollbarClick(infobarScrollbar, infobarScroll))
-		return true;
+	if(zoneButton)
+		return DoKey(zoneButton);
 
 	const Point clickPoint(x, y);
 
@@ -594,8 +595,11 @@ bool ShopPanel::Drag(double dx, double dy)
 
 
 
-bool ShopPanel::Release(int x, int y)
+bool ShopPanel::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	dragShip = nullptr;
 	isDraggingShip = false;
 	return true;

@@ -59,8 +59,8 @@ protected:
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual double DrawDetails(const Point &center) override;
-	TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
-	TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
+	virtual TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
+	virtual TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
 	virtual bool ButtonActive(char key, bool shipRelatedOnly = false);
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
@@ -71,13 +71,13 @@ protected:
 	virtual void ToggleStorage();
 	virtual void ToggleCargo();
 
-	int FindItem(const std::string &text) const override;
+	virtual int FindItem(const std::string &text) const override;
 
 
 	virtual double ButtonPanelHeight() const override;
 	virtual char CheckButton(int x, int y) override;
-	void DrawButtons() override;
-	TransactionResult HandleShortcuts(char key) override;
+	virtual void DrawButtons() override;
+	virtual TransactionResult HandleShortcuts(char key) override;
 
 
 private:
