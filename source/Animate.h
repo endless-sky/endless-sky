@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Smoothly change a variable from one value to another. Used to smooth out
 // scrolling and panning.
-template <typename T>
+template<typename T>
 class Animate {
 public:
 	virtual ~Animate() = default;
@@ -57,7 +57,7 @@ private:
 
 
 
-template <typename T>
+template<typename T>
 void Animate<T>::Set(const T &current, int steps)
 {
 	this->steps = steps;
@@ -66,7 +66,7 @@ void Animate<T>::Set(const T &current, int steps)
 
 
 
-template <typename T>
+template<typename T>
 void Animate<T>::EndAnimation()
 {
 	steps = 0;
@@ -74,7 +74,7 @@ void Animate<T>::EndAnimation()
 
 
 
-template <typename T>
+template<typename T>
 void Animate<T>::Step()
 {
 	if(steps <= 0)
@@ -89,7 +89,7 @@ void Animate<T>::Step()
 
 
 
-template <typename T>
+template<typename T>
 const T &Animate<T>::AnimatedValue() const
 {
 	return current;
@@ -97,7 +97,7 @@ const T &Animate<T>::AnimatedValue() const
 
 
 
-template <typename T>
+template<typename T>
 const T &Animate<T>::Value() const
 {
 	return target;
@@ -105,7 +105,7 @@ const T &Animate<T>::Value() const
 
 
 
-template <typename T>
+template<typename T>
 Animate<T>::operator const T &() const
 {
 	return Value();
@@ -113,7 +113,7 @@ Animate<T>::operator const T &() const
 
 
 
-template <typename T>
+template<typename T>
 bool Animate<T>::IsAnimationDone() const
 {
 	return steps == 0;
@@ -121,7 +121,7 @@ bool Animate<T>::IsAnimationDone() const
 
 
 
-template <typename T>
+template<typename T>
 Animate<T> &Animate<T>::operator=(const T &v)
 {
 	Set(v);
@@ -130,7 +130,7 @@ Animate<T> &Animate<T>::operator=(const T &v)
 
 
 
-template <typename T>
+template<typename T>
 Animate<T> &Animate<T>::operator+=(const T &v)
 {
 	Set(target + v);
@@ -139,7 +139,7 @@ Animate<T> &Animate<T>::operator+=(const T &v)
 
 
 
-template <typename T>
+template<typename T>
 Animate<T> &Animate<T>::operator-=(const T &v)
 {
 	Set(target - v);
