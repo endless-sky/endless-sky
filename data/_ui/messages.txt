@@ -56,6 +56,13 @@
 	"log color" "message log category normal"
 	"log only"
 
+# A category combining features of the "high" and "low" categories.
+"message category" "high no repeat"
+	"main color" "message category high"
+	"log color" "message log category high"
+	important
+	"aggressive deduplication"
+
 
 
 # Engine messages:
@@ -105,7 +112,7 @@ message "cannot board while cloaked"
 
 message "overheated"
 	text "Your ship has overheated."
-	category "high"
+	category "high no repeat"
 
 message "basics 1"
 	text `Press <View star map> to bring up your map. Select a destination, then close the map and press <Initiate hyperspace jump> to jump. Press <Land on planet / station> to land.`
