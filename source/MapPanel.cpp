@@ -598,7 +598,6 @@ bool MapPanel::Scroll(double dx, double dy)
 	// The mouse should be pointing to the same map position before and after zooming.
 	Point mouse = UI::GetMouse();
 	Point anchor = mouse / Zoom() - center;
-	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	cumulativeScroll += dy;
 	if(cumulativeScroll > 2.)
 	{
