@@ -43,6 +43,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "test/TestContext.h"
 #include "UI.h"
 
+#ifdef _WIN32
+#include "windows/TimerResolutionGuard.h"
+#endif
+
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -56,8 +60,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-
-#include <timeapi.h>
 #endif
 
 using namespace std;
@@ -215,9 +217,7 @@ int main(int argc, char *argv[])
 		GameData::LoadSettings();
 
 #ifdef _WIN32
-		// Make sure that the sleep timer has at least 1 ms resolution
-		// to avoid irregular frame rates.
-		timeBeginPeriod(1);
+		TimerResolutionGuard windowsTimerGuard;
 #endif
 
 		if(!isTesting || debugMode)
@@ -235,11 +235,6 @@ int main(int argc, char *argv[])
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
-
-#ifdef _WIN32
-		// Reset the timer resolution so that it doesn't affect performance of the whole OS.
-		timeEndPeriod(1);
-#endif
 	}
 	catch(Test::known_failure_tag)
 	{
