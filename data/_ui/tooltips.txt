@@ -1334,7 +1334,7 @@ tip "Fire primary weapon"
 	`Fire all of your flagship's primary weapons. The "automatic firing" setting will fire only those weapons that are within your target's range.`
 
 tip "Toggle turret tracking"
-	`Toggle the "Turret tracking" setting.`
+	`Toggle the "Turret tracking" setting between "focused" and "opportunistic". See the "Turret tracking" setting tooltip on the Settings tab for more details.`
 
 tip "Select secondary weapon"
 	`Cycle to your flagship's next secondary weapon. After cycling through all secondary weapons individually, selects every secondary weapon at once, then selects no weapons.`

@@ -24,7 +24,7 @@ class ConditionsStore;
 
 // A class representing an event that triggers randomly
 // in a given internal, for example fleets or hazards.
-template <typename T>
+template<typename T>
 class RandomEvent {
 public:
 	RandomEvent(const T *event, int period, const DataNode &node,
@@ -43,7 +43,7 @@ private:
 
 
 
-template <typename T>
+template<typename T>
 RandomEvent<T>::RandomEvent(const T *event, int period, const DataNode &node,
 		const ConditionsStore *playerConditions) noexcept
 	: event(event), period(period > 0 ? period : 200)
@@ -56,7 +56,7 @@ RandomEvent<T>::RandomEvent(const T *event, int period, const DataNode &node,
 
 
 
-template <typename T>
+template<typename T>
 const T *RandomEvent<T>::Get() const noexcept
 {
 	return event;
@@ -64,7 +64,7 @@ const T *RandomEvent<T>::Get() const noexcept
 
 
 
-template <typename T>
+template<typename T>
 int RandomEvent<T>::Period() const noexcept
 {
 	return period;
@@ -72,7 +72,7 @@ int RandomEvent<T>::Period() const noexcept
 
 
 
-template <typename T>
+template<typename T>
 bool RandomEvent<T>::CanTrigger() const
 {
 	return conditions.Test();

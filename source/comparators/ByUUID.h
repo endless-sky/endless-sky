@@ -1,5 +1,5 @@
-/* ByName.h
-Copyright (c) 2022 by Michael Zahniser
+/* ByUUID.h
+Copyright (c) 2021 by Benjamin Hauch
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,13 +15,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <memory>
+
 
 
 template<class T>
-class ByName {
+class ByUUID {
 public:
-	bool operator()(const T *a, const T *b) const
+	// Comparator for collections of shared_ptr<T>
+	bool operator()(const std::shared_ptr<T> &a, const std::shared_ptr<T> &b) const noexcept(false)
 	{
-		return a->Name() < b->Name();
+		return a->UUID() < b->UUID();
 	}
+
+	// Comparator for collections of T*, e.g. set<T *>
+	bool operator()(const T *a, const T *b) const noexcept(false)
+	{
+		return a->UUID() < b->UUID();
+	}
+	// No comparator for collections of T, as std containers generally perform copy operations
+	// and copying this class will eventually be disabled.
 };
