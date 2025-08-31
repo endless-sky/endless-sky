@@ -271,7 +271,7 @@ bool ShopPanel::IsAlreadyOwned() const
 
 bool ShopPanel::ShouldHighlight(const Ship *ship)
 {
-	return (hoverButton == 's');
+	return hoverButton == 's';
 }
 
 

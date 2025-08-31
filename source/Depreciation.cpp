@@ -379,5 +379,5 @@ double Depreciation::Depreciate(int age) const
 // default to no depreciation. When selling, they default to full.
 double Depreciation::DefaultDepreciation() const
 {
-	return (isStock ? 1. : Min());
+	return isStock ? 1. : Min();
 }

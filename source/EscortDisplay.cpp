@@ -194,7 +194,7 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool systemNameKnown, b
 // Sorting operator. It comes sooner if it costs more.
 bool EscortDisplay::Icon::operator<(const Icon &other) const
 {
-	return (cost > other.cost);
+	return cost > other.cost;
 }
 
 

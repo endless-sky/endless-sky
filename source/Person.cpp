@@ -141,7 +141,7 @@ bool Person::IsDestroyed() const
 		return true;
 
 	const Ship &flagship = *ships.front();
-	return (flagship.IsDestroyed() || (flagship.GetSystem() && flagship.GetGovernment() != government));
+	return flagship.IsDestroyed() || (flagship.GetSystem() && flagship.GetGovernment() != government);
 }
 
 

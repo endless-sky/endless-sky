@@ -331,7 +331,7 @@ void Preferences::Save()
 bool Preferences::Has(const string &name)
 {
 	auto it = settings.find(name);
-	return (it != settings.end() && it->second);
+	return it != settings.end() && it->second;
 }
 
 

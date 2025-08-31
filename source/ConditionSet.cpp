@@ -55,7 +55,7 @@ namespace
 		};
 
 		auto it = opMap.find(op);
-		return (it != opMap.end() ? it->second : nullptr);
+		return it != opMap.end() ? it->second : nullptr;
 	}
 
 	/// Map string tokens to precedence and internal operators.

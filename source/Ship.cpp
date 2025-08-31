@@ -2264,7 +2264,7 @@ bool Ship::IsDisabled() const
 
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull < minimumHull || (!crew && needsCrew));
+	return hull < minimumHull || (!crew && needsCrew);
 }
 
 
@@ -2305,7 +2305,7 @@ bool Ship::CanLand() const
 	Point distance = GetTargetStellar()->Position() - position;
 	double speed = velocity.Length();
 
-	return (speed < 1. && distance.Length() < GetTargetStellar()->Radius());
+	return speed < 1. && distance.Length() < GetTargetStellar()->Radius();
 }
 
 
@@ -2584,7 +2584,7 @@ bool Ship::IsDamaged() const
 // Check if this ship has been destroyed.
 bool Ship::IsDestroyed() const
 {
-	return (hull < 0.);
+	return hull < 0.;
 }
 
 
@@ -2627,7 +2627,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
-	return (fuel - navigation.JumpFuel(targetSystem) >= other.JumpFuelMissing());
+	return fuel - navigation.JumpFuel(targetSystem) >= other.JumpFuelMissing();
 }
 
 
@@ -2805,7 +2805,7 @@ double Ship::DisabledHull() const
 	double hull = MaxHull();
 	double minimumHull = MinimumHull();
 
-	return (hull > 0. ? minimumHull / hull : 0.);
+	return hull > 0. ? minimumHull / hull : 0.;
 }
 
 
@@ -3383,7 +3383,7 @@ bool Ship::CanCarry(const Ship &ship) const
 		if(!free)
 			break;
 	}
-	return (free > 0);
+	return free > 0;
 }
 
 

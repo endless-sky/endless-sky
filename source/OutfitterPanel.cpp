@@ -839,7 +839,7 @@ void OutfitterPanel::ToggleCargo()
 
 bool OutfitterPanel::ShipCanBuy(const Ship *ship, const Outfit *outfit)
 {
-	return (ship->Attributes().CanAdd(*outfit, 1) > 0);
+	return ship->Attributes().CanAdd(*outfit, 1) > 0;
 }
 
 
@@ -892,7 +892,7 @@ bool OutfitterPanel::IsLicense(const string &name) const
 
 bool OutfitterPanel::HasLicense(const string &name) const
 {
-	return (IsLicense(name) && player.HasLicense(LicenseRoot(name)));
+	return IsLicense(name) && player.HasLicense(LicenseRoot(name));
 }
 
 

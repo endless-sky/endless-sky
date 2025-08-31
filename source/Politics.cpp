@@ -95,12 +95,12 @@ bool Politics::IsEnemy(const Government *first, const Government *second) const
 			return true;
 
 		auto it = reputationWith.find(second);
-		return (it != reputationWith.end() && it->second < 0.);
+		return it != reputationWith.end() && it->second < 0.;
 	}
 
 	// Neither government is the player, so the question of enemies depends only
 	// on the attitude matrix.
-	return (first->AttitudeToward(second) < 0. || second->AttitudeToward(first) < 0.);
+	return first->AttitudeToward(second) < 0. || second->AttitudeToward(first) < 0.;
 }
 
 
@@ -376,7 +376,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 double Politics::Reputation(const Government *gov) const
 {
 	auto it = reputationWith.find(gov);
-	return (it == reputationWith.end() ? 0. : it->second);
+	return it == reputationWith.end() ? 0. : it->second;
 }
 
 

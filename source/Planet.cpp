@@ -554,7 +554,7 @@ bool Planet::HasCustomSecurity() const
 
 const System *Planet::GetSystem() const
 {
-	return (systems.empty() ? nullptr : systems.front());
+	return systems.empty() ? nullptr : systems.front();
 }
 
 
@@ -563,7 +563,7 @@ const System *Planet::GetSystem() const
 // in more than one system.
 bool Planet::IsInSystem(const System *system) const
 {
-	return (find(systems.begin(), systems.end(), system) != systems.end());
+	return find(systems.begin(), systems.end(), system) != systems.end();
 }
 
 

@@ -195,7 +195,7 @@ Rectangle Interface::GetBox(const string &name) const
 double Interface::GetValue(const string &name) const
 {
 	auto it = values.find(name);
-	return (it == values.end() ? 0. : it->second);
+	return it == values.end() ? 0. : it->second;
 }
 
 
@@ -205,7 +205,7 @@ const vector<double> &Interface::GetList(const string &name) const
 {
 	static vector<double> EMPTY;
 	auto it = lists.find(name);
-	return (it == lists.end() ? EMPTY : it->second);
+	return it == lists.end() ? EMPTY : it->second;
 }
 
 

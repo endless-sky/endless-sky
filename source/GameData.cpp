@@ -856,7 +856,7 @@ const string &GameData::LandingMessage(const Sprite *sprite)
 {
 	static const string EMPTY;
 	auto it = objects.landingMessages.find(sprite);
-	return (it == objects.landingMessages.end() ? EMPTY : it->second);
+	return it == objects.landingMessages.end() ? EMPTY : it->second;
 }
 
 
@@ -865,7 +865,7 @@ const string &GameData::LandingMessage(const Sprite *sprite)
 double GameData::SolarPower(const Sprite *sprite)
 {
 	auto it = objects.solarPower.find(sprite);
-	return (it == objects.solarPower.end() ? 0. : it->second);
+	return it == objects.solarPower.end() ? 0. : it->second;
 }
 
 
@@ -873,7 +873,7 @@ double GameData::SolarPower(const Sprite *sprite)
 double GameData::SolarWind(const Sprite *sprite)
 {
 	auto it = objects.solarWind.find(sprite);
-	return (it == objects.solarWind.end() ? 0. : it->second);
+	return it == objects.solarWind.end() ? 0. : it->second;
 }
 
 
@@ -882,7 +882,7 @@ double GameData::SolarWind(const Sprite *sprite)
 const Sprite *GameData::StarIcon(const Sprite *sprite)
 {
 	const auto it = objects.starIcons.find(sprite);
-	return (it == objects.starIcons.end() ? nullptr : it->second);
+	return it == objects.starIcons.end() ? nullptr : it->second;
 }
 
 
@@ -954,7 +954,7 @@ const string &GameData::Tooltip(const string &label)
 		it = objects.tooltips.find("cost:");
 	if(it == objects.tooltips.end() && label.starts_with("sells for"))
 		it = objects.tooltips.find("sells for:");
-	return (it == objects.tooltips.end() ? EMPTY : it->second);
+	return it == objects.tooltips.end() ? EMPTY : it->second;
 }
 
 

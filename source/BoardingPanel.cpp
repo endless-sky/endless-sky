@@ -530,7 +530,7 @@ BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count)
 bool BoardingPanel::Plunder::operator<(const Plunder &other) const
 {
 	// This may involve infinite values when the mass is zero, but that's okay.
-	return (unitValue / UnitMass() > other.unitValue / other.UnitMass());
+	return unitValue / UnitMass() > other.unitValue / other.UnitMass();
 }
 
 
@@ -678,7 +678,7 @@ bool BoardingPanel::CanCapture() const
 	if(!canCapture)
 		return false;
 
-	return (!victim->RequiredCrew() || you->Crew() > 1);
+	return !victim->RequiredCrew() || you->Crew() > 1;
 }
 
 

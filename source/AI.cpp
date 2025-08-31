@@ -1235,7 +1235,7 @@ void AI::SetMousePosition(Point position)
 int64_t AI::AllyStrength(const Government *government) const
 {
 	auto it = allyStrength.find(government);
-	return (it == allyStrength.end() ? 0 : it->second);
+	return it == allyStrength.end() ? 0 : it->second;
 }
 
 
@@ -1243,7 +1243,7 @@ int64_t AI::AllyStrength(const Government *government) const
 int64_t AI::EnemyStrength(const Government *government) const
 {
 	auto it = enemyStrength.find(government);
-	return (it == enemyStrength.end() ? 0 : it->second);
+	return it == enemyStrength.end() ? 0 : it->second;
 }
 
 
@@ -1294,7 +1294,7 @@ bool AI::CanPursue(const Ship &ship, const Ship &target) const
 	if(fit == fenceCount.end())
 		return true;
 	else
-		return (fit->second != FENCE_MAX);
+		return fit->second != FENCE_MAX;
 }
 
 
@@ -4808,7 +4808,7 @@ bool AI::Has(const Ship &ship, const weak_ptr<const Ship> &other, int type) cons
 	if(oit == sit->second.end())
 		return false;
 
-	return (oit->second & type);
+	return oit->second & type;
 }
 
 
@@ -4823,7 +4823,7 @@ bool AI::Has(const Government *government, const weak_ptr<const Ship> &other, in
 	if(oit == git->second.end())
 		return false;
 
-	return (oit->second & type);
+	return oit->second & type;
 }
 
 
@@ -4840,7 +4840,7 @@ bool AI::Has(const Ship &ship, const Government *government, int type) const
 	if(git == sit->second.end())
 		return false;
 
-	return (git->second & type);
+	return git->second & type;
 }
 
 

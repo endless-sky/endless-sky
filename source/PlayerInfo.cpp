@@ -3208,7 +3208,7 @@ const map<const Outfit *, int> &PlayerInfo::GetStock() const
 int PlayerInfo::Stock(const Outfit *outfit) const
 {
 	auto it = stock.find(outfit);
-	return (it == stock.end() ? 0 : it->second);
+	return it == stock.end() ? 0 : it->second;
 }
 
 
@@ -4066,7 +4066,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return !ce.NameWithoutPrefix().compare(flagship->GetSystem()->TrueName()); });
 	conditions["flagship landed"].ProvideNamed([this](const ConditionEntry &ce) -> bool {
-		return (flagship && flagship->GetPlanet()); });
+		return flagship && flagship->GetPlanet(); });
 	conditions["flagship planet: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
@@ -4845,7 +4845,7 @@ void PlayerInfo::ForgetGiftedShip(const Ship &oldShip, bool failsMissions)
 // Check that this player's current state can be saved.
 bool PlayerInfo::CanBeSaved() const
 {
-	return (!isDead && planet && system && !firstName.empty() && !lastName.empty());
+	return !isDead && planet && system && !firstName.empty() && !lastName.empty();
 }
 
 

@@ -524,5 +524,5 @@ bool Mask::Contains(Point point) const
 		}
 	}
 	// If the number of intersections is odd, the point is within the mask.
-	return (intersections & 1);
+	return intersections & 1;
 }

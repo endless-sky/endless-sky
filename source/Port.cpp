@@ -181,7 +181,7 @@ const Paragraphs &Port::Description() const
 // Check whether the given recharging is possible.
 bool Port::CanRecharge(int type) const
 {
-	return (recharge & type);
+	return recharge & type;
 }
 
 
@@ -189,7 +189,7 @@ bool Port::CanRecharge(int type) const
 // Check whether the given service is available.
 bool Port::HasService(int type) const
 {
-	return (services & type);
+	return services & type;
 }
 
 

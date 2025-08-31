@@ -714,7 +714,7 @@ int Mission::OfferPrecedence() const
 
 bool Mission::IsAtLocation(Location location) const
 {
-	return (this->location == location);
+	return this->location == location;
 }
 
 
@@ -877,7 +877,7 @@ bool Mission::HasClearance(const Planet *planet) const
 		return false;
 	if(planet == destination || stopovers.contains(planet) || visitedStopovers.contains(planet))
 		return true;
-	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet));
+	return !clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet);
 }
 
 
@@ -988,7 +988,7 @@ bool Mission::HasSpace(const PlayerInfo &player) const
 // Check if this mission's cargo can fit entirely on the referenced ship.
 bool Mission::HasSpace(const Ship &ship) const
 {
-	return (cargoSize <= ship.Cargo().Free() && passengers <= ship.Cargo().BunksFree());
+	return cargoSize <= ship.Cargo().Free() && passengers <= ship.Cargo().BunksFree();
 }
 
 
@@ -1150,7 +1150,7 @@ bool Mission::RecommendsAutosave() const
 // over and over again in different variants.
 bool Mission::IsUnique() const
 {
-	return (repeat == 1);
+	return repeat == 1;
 }
 
 

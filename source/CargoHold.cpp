@@ -307,7 +307,7 @@ int CargoHold::Passengers() const
 int CargoHold::Get(const string &commodity) const
 {
 	map<string, int>::const_iterator it = commodities.find(commodity);
-	return (it == commodities.end() ? 0 : it->second);
+	return it == commodities.end() ? 0 : it->second;
 }
 
 
@@ -316,7 +316,7 @@ int CargoHold::Get(const string &commodity) const
 int CargoHold::Get(const Outfit *outfit) const
 {
 	map<const Outfit *, int>::const_iterator it = outfits.find(outfit);
-	return (it == outfits.end() ? 0 : it->second);
+	return it == outfits.end() ? 0 : it->second;
 }
 
 
@@ -325,7 +325,7 @@ int CargoHold::Get(const Outfit *outfit) const
 int CargoHold::Get(const Mission *mission) const
 {
 	map<const Mission *, int>::const_iterator it = missionCargo.find(mission);
-	return (it == missionCargo.end() ? 0 : it->second);
+	return it == missionCargo.end() ? 0 : it->second;
 }
 
 
@@ -334,7 +334,7 @@ int CargoHold::Get(const Mission *mission) const
 int CargoHold::GetPassengers(const Mission *mission) const
 {
 	map<const Mission *, int>::const_iterator it = passengers.find(mission);
-	return (it == passengers.end() ? 0 : it->second);
+	return it == passengers.end() ? 0 : it->second;
 }
 
 

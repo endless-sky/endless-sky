@@ -167,7 +167,7 @@ void UI::PopThrough(const Panel *panel)
 // considered.
 bool UI::IsTop(const Panel *panel) const
 {
-	return (!stack.empty() && stack.back().get() == panel);
+	return !stack.empty() && stack.back().get() == panel;
 }
 
 

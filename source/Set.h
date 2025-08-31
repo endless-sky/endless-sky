@@ -59,7 +59,7 @@ template<class Type>
 const Type *Set<Type>::Find(const std::string &name) const
 {
 	auto it = data.find(name);
-	return (it == data.end() ? nullptr : &it->second);
+	return it == data.end() ? nullptr : &it->second;
 }
 
 

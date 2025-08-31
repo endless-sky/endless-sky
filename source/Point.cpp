@@ -63,7 +63,7 @@ bool Point::operator!() const noexcept
 	int mask = _mm_movemask_pd(cmp);
 	return mask == 3;
 #else
-	return (!x & !y);
+	return !x & !y;
 #endif
 }
 

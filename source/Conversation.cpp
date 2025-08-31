@@ -42,7 +42,7 @@ namespace {
 	int TokenIndex(const string &token)
 	{
 		auto it = TOKEN_INDEX.find(token);
-		return (it == TOKEN_INDEX.end() ? 0 : it->second);
+		return it == TOKEN_INDEX.end() ? 0 : it->second;
 	}
 
 	// Map an index back to a string, for saving the conversation to a file.

@@ -159,7 +159,7 @@ namespace Utf8 {
 
 		// 1 byte
 		if(bytes == 1)
-			return (str[pos++] & 0x7f);
+			return str[pos++] & 0x7f;
 
 		// 2-4 bytes
 		char32_t c = (str[pos++] & ((1 << (7 - bytes)) - 1));

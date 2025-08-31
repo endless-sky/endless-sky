@@ -111,7 +111,7 @@ bool DistanceMap::HasRoute(const System &target) const
 int DistanceMap::Days(const System &target) const
 {
 	auto it = route.find(&target);
-	return (it == route.end() ? -1 : it->second.days);
+	return it == route.end() ? -1 : it->second.days;
 }
 
 
@@ -310,7 +310,7 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 bool DistanceMap::HasBetter(const System &to, const RouteEdge &edge)
 {
 	auto it = route.find(&to);
-	return (it != route.end() && !(it->second < edge));
+	return it != route.end() && !(it->second < edge);
 }
 
 

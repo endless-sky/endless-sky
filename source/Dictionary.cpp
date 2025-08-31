@@ -73,7 +73,7 @@ double &Dictionary::operator[](const string &key)
 double Dictionary::Get(const char *key) const
 {
 	pair<size_t, bool> pos = Search(key, *this);
-	return (pos.second ? data()[pos.first].second : 0.);
+	return pos.second ? data()[pos.first].second : 0.;
 }
 
 

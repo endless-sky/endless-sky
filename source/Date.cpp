@@ -322,7 +322,7 @@ int Date::DaysUntilYearEnd() const
 // Get the current day of the month.
 int Date::Day() const
 {
-	return (date & 31);
+	return date & 31;
 }
 
 
@@ -330,7 +330,7 @@ int Date::Day() const
 // Get the current month (January = 1, rather than being zero-indexed).
 int Date::Month() const
 {
-	return ((date >> 5) & 15);
+	return (date >> 5) & 15;
 }
 
 
@@ -338,7 +338,7 @@ int Date::Month() const
 // Get the current year.
 int Date::Year() const
 {
-	return (date >> 9);
+	return date >> 9;
 }
 
 

@@ -413,14 +413,14 @@ int GameWindow::DrawHeight()
 
 bool GameWindow::IsMaximized()
 {
-	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_MAXIMIZED);
+	return SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_MAXIMIZED;
 }
 
 
 
 bool GameWindow::IsFullscreen()
 {
-	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP);
+	return SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP;
 }
 
 

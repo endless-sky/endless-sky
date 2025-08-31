@@ -627,7 +627,7 @@ bool Government::IsEnemy() const
 // Check if this is the player government.
 bool Government::IsPlayer() const
 {
-	return (this == GameData::PlayerGovernment());
+	return this == GameData::PlayerGovernment();
 }
 
 

@@ -107,7 +107,7 @@ const string &StellarObject::LandingMessage() const
 		return GameData::LandingMessage(GetSprite());
 
 	static const string EMPTY;
-	return (message ? *message : EMPTY);
+	return message ? *message : EMPTY;
 }
 
 

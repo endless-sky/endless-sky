@@ -209,7 +209,7 @@ const string &Command::Description() const
 {
 	static const string empty;
 	auto it = description.find(*this);
-	return (it == description.end() ? empty : it->second);
+	return it == description.end() ? empty : it->second;
 }
 
 
@@ -221,7 +221,7 @@ const string &Command::KeyName() const
 	static const string empty = "(none)";
 	auto it = keyName.find(*this);
 
-	return (!HasBinding() ? empty : it->second);
+	return !HasBinding() ? empty : it->second;
 }
 
 
@@ -248,7 +248,7 @@ bool Command::HasConflict() const
 		return false;
 
 	auto cit = keycodeCount.find(it->second);
-	return (cit != keycodeCount.end() && cit->second > 1);
+	return cit != keycodeCount.end() && cit->second > 1;
 }
 
 
@@ -332,7 +332,7 @@ void Command::Set(Command command)
 // Check if any of the given command's bits that are set, are also set here.
 bool Command::Has(Command command) const
 {
-	return (state & command.state);
+	return state & command.state;
 }
 
 
@@ -388,7 +388,7 @@ bool Command::operator!() const
 // For sorting commands (e.g. so a command can be the key in a map):
 bool Command::operator<(const Command &command) const
 {
-	return (state < command.state);
+	return state < command.state;
 }
 
 

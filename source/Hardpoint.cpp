@@ -317,7 +317,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 		return false;
 
 	// Check whether the missile was destroyed.
-	return (Random::Int(strength) > Random::Int(projectile.MissileStrength()));
+	return Random::Int(strength) > Random::Int(projectile.MissileStrength());
 }
 
 
