@@ -52,6 +52,7 @@ protected:
 	/// If the supplier is looping, the next call will still read data. Otherwise, "done" is set to true.
 	size_t ReadInput(char *output, size_t bytesToRead);
 
+
 protected:
 	bool done = false;
 	const bool looping;

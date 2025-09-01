@@ -30,9 +30,9 @@ public:
 
 
 private:
-	/// A flac frame has been processed; forward the samples to the output buffer
-	FLAC__StreamDecoderWriteStatus write_callback(const FLAC__Frame *frame, const FLAC__int32 * const buffer[]) override;
-	/// Metadata was read from the file
+	/// A flac frame has been processed; forward the samples to the output buffer.
+	FLAC__StreamDecoderWriteStatus write_callback(const FLAC__Frame *frame, const FLAC__int32 *const buffer[]) override;
+	/// Metadata was read from the file.
 	void metadata_callback(const FLAC__StreamMetadata *metadata) override;
 	void error_callback(FLAC__StreamDecoderErrorStatus status) override;
 

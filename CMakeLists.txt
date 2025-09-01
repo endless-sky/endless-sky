@@ -88,7 +88,7 @@ find_path(LIBMAD_INCLUDE_DIR mad.h)
 find_library(LIBMAD_LIB_DEBUG NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib")
 find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib")
 
-# FLAC's config is missing find_dependency(Threads), so include it here
+# FLAC's config is missing find_dependency(Threads), so include it here.
 find_package(Threads REQUIRED)
 find_package(FLAC CONFIG REQUIRED)
 

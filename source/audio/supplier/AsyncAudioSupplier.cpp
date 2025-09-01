@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AsyncAudioSupplier.h"
 
 #include <cmath>
-#include <cstring>
 #include <thread>
 #include <utility>
 
@@ -88,7 +87,7 @@ void AsyncAudioSupplier::AwaitBufferSpace()
 
 
 
-void AsyncAudioSupplier::AddBufferData(std::vector<sample_t>& samples)
+void AsyncAudioSupplier::AddBufferData(vector<sample_t> &samples)
 {
 	lock_guard<mutex> lock(bufferMutex);
 	buffer.insert(buffer.end(), samples.begin(), samples.end());
@@ -107,7 +106,7 @@ void AsyncAudioSupplier::PadBuffer()
 
 
 
-size_t AsyncAudioSupplier::ReadInput(char* output, size_t bytesToRead)
+size_t AsyncAudioSupplier::ReadInput(char *output, size_t bytesToRead)
 {
 	if(done)
 		return 0;
