@@ -3504,7 +3504,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 		// The average term's value will be v / 2. So:
 		return v * (angle / turn) + .5 * v * v / acceleration;
 	};
-	double relativeFacing = acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
+	double relativeFacing = acos(clamp(-velocity.Unit().Dot(angle.Unit()), -1., 1.));
 	double turnRate = TO_RAD * ship.TrueTurnRate();
 
 	double forwardDistance = stopDistance(v, relativeFacing, ship.TrueAcceleration(), turnRate);
