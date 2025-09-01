@@ -2839,7 +2839,7 @@ void AI::MoveToAttack(const Ship &ship, Command &command, const Body &target)
 	MoveTo(ship, command, target.Position(), target.Velocity(), minRange, 10.);
 	if(ship.Position().DistanceSquared(target.Position()) < maxRange * maxRange)
 		AimToAttack(ship, command, target);
-	else if(ship.Facing().Unit().Dot((target.Position() - ship.Position()).Unit()) > 0.9 && ShouldUseAfterburner(ship))
+	else if(ship.Facing().Unit().Dot((target.Position() - ship.Position()).Unit()) > .9 && ShouldUseAfterburner(ship))
 		command |= Command::AFTERBURNER;
 }
 
