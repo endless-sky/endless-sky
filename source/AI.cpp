@@ -382,7 +382,7 @@ namespace {
 				minRange = min(hardpoint.GetOutfit()->Range(), minRange);
 				maxRange = max(hardpoint.GetOutfit()->Range(), maxRange);
 			}
-		return {min(minRange, maxRange), max(minRange, maxRange)};
+		return minRange < maxRange ? {minRange, maxRange} : {maxRange, minRange};
 	}
 
 	// Constants for the invisible fence timer.
