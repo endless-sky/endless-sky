@@ -111,12 +111,8 @@ size_t AsyncAudioSupplier::ReadInput(char *output, size_t bytesToRead)
 	if(done)
 		return 0;
 	// Read a chunk of data from the file.
-	size_t read = 0;
-	while(!data->eof() && read < bytesToRead)
-	{
-		data->read(output + read, bytesToRead - read);
-		read += data->gcount();
-	}
+	data->read(output, bytesToRead);
+	size_t read = data->gcount();
 	// If we get the end of the file, loop around to the beginning.
 	if(data->eof() && looping)
 	{
