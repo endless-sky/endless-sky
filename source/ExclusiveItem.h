@@ -33,10 +33,10 @@ public:
 	// Initialize with a locally defined item.
 	explicit ExclusiveItem(Type &&item);
 
-	ExclusiveItem(ExclusiveItem &&other) = default;
-	ExclusiveItem &operator=(ExclusiveItem &&other) = default;
-	ExclusiveItem(const ExclusiveItem &other) = default;
-	ExclusiveItem &operator=(const ExclusiveItem &other) = default;
+	ExclusiveItem(ExclusiveItem &&) = default;
+	ExclusiveItem &operator=(ExclusiveItem &&) = default;
+	ExclusiveItem(const ExclusiveItem &) = default;
+	ExclusiveItem &operator=(const ExclusiveItem &) = default;
 
 	bool IsStock() const noexcept;
 
