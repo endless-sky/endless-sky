@@ -108,7 +108,7 @@ namespace {
 	constexpr auto Prune = [](auto &objects) { erase_if(objects,
 			[](const auto &obj) { return obj.ShouldBeRemoved(); }); };
 
-	template <class Type>
+	template<class Type>
 	void Append(vector<Type> &objects, vector<Type> &added)
 	{
 		objects.insert(objects.end(), make_move_iterator(added.begin()), make_move_iterator(added.end()));
@@ -727,7 +727,7 @@ void Engine::Step(bool isActive)
 	}
 
 	if(flagship && flagship->IsOverheated())
-		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);
+		Messages::Add("Your ship has overheated.", Messages::Importance::HighestNoRepeat);
 
 	// Clear the HUD information from the previous frame.
 	info = Information();

@@ -161,7 +161,8 @@ void ImageSet::ValidateFrames() noexcept(false)
 			}
 		}
 
-	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier) {
+	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier)
+	{
 		if(toResize.size() > paths[0].size())
 		{
 			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size())
@@ -231,7 +232,8 @@ void ImageSet::Load() noexcept(false)
 		}
 	}
 
-	auto FillSwizzleMasks = [&](vector<filesystem::path> &toFill, unsigned int intendedSize) {
+	auto FillSwizzleMasks = [&](vector<filesystem::path> &toFill, unsigned int intendedSize)
+	{
 		if(toFill.size() == 1 && intendedSize > 1)
 			for(unsigned int i = toFill.size(); i < intendedSize; i++)
 				toFill.emplace_back(toFill.back());
@@ -242,7 +244,8 @@ void ImageSet::Load() noexcept(false)
 	FillSwizzleMasks(paths[3], paths[0].size());
 
 
-	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier) {
+	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier)
+	{
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
 			if(!buffer.Read(toLoad[i], i))
 			{
