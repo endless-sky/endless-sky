@@ -372,7 +372,7 @@ namespace {
 
 	// The minimum and maximum weapon range of the ship.
 	// If the ship has no weapons, return {0, inf}.
-	std::pair<double, double> WeaponsRange(const Ship &ship)
+	pair<double, double> WeaponsRange(const Ship &ship)
 	{
 		double minRange = std::numeric_limits<double>::infinity();
 		double maxRange = 0.;
