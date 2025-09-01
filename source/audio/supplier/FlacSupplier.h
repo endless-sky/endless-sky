@@ -22,7 +22,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 /// Streams audio from a FLAC file.
-class FlacSupplier : public AsyncAudioSupplier, protected FLAC::Decoder::Stream {
+class FlacSupplier : protected FLAC::Decoder::Stream, public AsyncAudioSupplier {
+// Maintenance note: the order of the parents is important. AsyncAudioSupplier must be destructed first,
+// otherwise the FLAC::Decoder::Stream may free the resources with the decoder thread running.
 public:
 	explicit FlacSupplier(std::shared_ptr<std::iostream> data, bool looping = false);
 
