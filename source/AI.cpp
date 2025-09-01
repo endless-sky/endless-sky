@@ -2468,7 +2468,7 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 		double distance)
 	{
 		if(!acceleration)
-			return std::numeric_limits<double>::infinity();
+			return numeric_limits<double>::infinity();
 		double timeToTurn = facingAngle / turningRate;
 		// Calculate the intersection time assuming maximum acceleration. This won't be exact, as it ignores the
 		// other body's movement while we are turning, but usually it's close enough.
