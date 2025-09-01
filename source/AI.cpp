@@ -2850,7 +2850,7 @@ void AI::PickUp(const Ship &ship, Command &command, const Body &target)
 	MoveTo(ship, command, target.Position(), (target.Velocity() + ship.Velocity()) / 2.,
 		ship.Radius(), 100.);
 	if(ship.Position().DistanceSquared(target.Position()) > 600. * 600. &&
-			ship.Facing().Unit().Dot((target.Position() - ship.Position()).Unit()) > 0.9 &&
+			ship.Facing().Unit().Dot((target.Position() - ship.Position()).Unit()) > .9 &&
 			ShouldUseAfterburner(ship))
 		command |= Command::AFTERBURNER;
 }
