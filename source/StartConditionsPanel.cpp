@@ -193,10 +193,13 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 
 
-bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
+bool StartConditionsPanel::Click(int x, int y, MouseButton button, int /* clicks */)
 {
 	// When the user clicks, clear the hovered state.
 	hasHover = false;
+
+	if(button != MouseButton::LEFT)
+		return false;
 
 	// Only clicks within the list of scenarios should have an effect.
 	if(!entriesContainer.Contains(Point(x, y)))

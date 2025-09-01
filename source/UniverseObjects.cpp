@@ -315,6 +315,10 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : swizzles)
 		if(!it.second.IsLoaded())
 			Warn("swizzle", it.first);
+	// Persons can be referred to when marking them as destroyed.
+	for(const auto &it : persons)
+		if(!it.second.IsLoaded())
+			Warn("person", it.first);
 }
 
 

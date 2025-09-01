@@ -1189,7 +1189,7 @@ const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const st
 
 	// If an id was given, associate and store it with the UUID of the gifted ship.
 	if(!id.empty())
-		giftedShips[id].clone(ships.back()->UUID());
+		giftedShips[id].Clone(ships.back()->UUID());
 
 	return ships.back().get();
 }

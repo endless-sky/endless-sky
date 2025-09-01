@@ -86,6 +86,7 @@ namespace {
 	Set<Shop<Ship>> defaultShipSales;
 	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
+	Set<Person> defaultPersons;
 	TextReplacements defaultSubstitutions;
 
 	const Gamerules *defaultGamerules = nullptr;
@@ -261,6 +262,7 @@ void GameData::FinishLoading()
 	defaultShipSales = objects.shipSales;
 	defaultOutfitSales = objects.outfitSales;
 	defaultWormholes = objects.wormholes;
+	defaultPersons = objects.persons;
 	defaultSubstitutions = objects.substitutions;
 
 	defaultGamerules = objects.gamerulesPresets.Get("Default");
@@ -438,11 +440,10 @@ void GameData::Revert()
 	objects.shipSales.Revert(defaultShipSales);
 	objects.outfitSales.Revert(defaultOutfitSales);
 	objects.wormholes.Revert(defaultWormholes);
+	objects.persons.Revert(defaultPersons);
 	objects.substitutions.Revert(defaultSubstitutions);
 
 	activeGamerules = defaultGamerules;
-	for(auto &it : objects.persons)
-		it.second.Restore();
 
 	politics.Reset();
 	purchases.clear();
