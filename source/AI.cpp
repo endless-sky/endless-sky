@@ -2499,7 +2499,7 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	}
 	else if(facingAgainstTarget)
 	{
-		double maxSpeed = min(hasCruiseSpeed ? cruiseSpeed : std::numeric_limits<double>::infinity(),
+		double maxSpeed = min(hasCruiseSpeed ? cruiseSpeed : numeric_limits<double>::infinity(),
 			ship.MaxReverseVelocity() * .99);
 		if(!movingTowardsTarget || velocity.Length() < maxSpeed)
 			command |= Command::BACK;
