@@ -2532,9 +2532,9 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 		return .8 + .2 / (1. + stopTime * stopTime * stopTime * .001);
 	};
 
-	double relativeFacing = acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
-	double finalFacing = direction ? acos(min(1., max(-1., direction.Unit().Dot(-velocity.Unit())))) : 0.;
-	double finalReverseFacing = direction ? acos(min(1., max(-1., direction.Unit().Dot(angle.Unit())))) : 0.;
+	double relativeFacing = acos(clamp(-velocity.Unit().Dot(angle.Unit()), -1., 1.));
+	double finalFacing = direction ? acos(clamp(direction.Unit().Dot(-velocity.Unit()), -1., 1.)) : 0.;
+	double finalReverseFacing = direction ? acos(clamp(direction.Unit().Dot(angle.Unit()), -1., 1.)) : 0.;
 	double turnRate = TO_RAD * ship.TrueTurnRate();
 
 	// How long it takes for a ship to stop, given a facing angle and final angle relative to its velocity.
