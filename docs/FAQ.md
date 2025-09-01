@@ -32,7 +32,8 @@ Endless Sky follows a cyclical release pattern, switching between stable and uns
 Continuous builds are the most up-to-date version of Endless Sky, generated automatically whenever a [PR](#what-is-a-pr) is [merged](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request). Continuous builds always contain the latest changes but may also contain bugs, including serious ones. If you would like to try a Continuous build they are available through [GitHub](https://github.com/endless-sky/endless-sky/releases) and [ESLauncher2](https://github.com/EndlessSkyCommunity/ESLauncher2). Continuous builds are _not_ available on Steam or GOG.
 
 ### Are there mods for Endless Sky?
-Yes! Typically called plugins, there are many available for Endless Sky. You can find them on the official [plugin list](https://endless-sky.github.io/plugins.html), the #plugin-releases channel on our [Discord](https://discord.gg/ZeuASSx) or on sites like [moddb](https://www.moddb.com/games/endless-sky/mods). Once downloaded, simply unpack to your Plugins folder located in the Endless Sky directory and enjoy.
+Yes! Typically called plugins, there are many available for Endless Sky. You can find them on the official [plugin list](https://endless-sky.github.io/plugins.html), the #plugin-releases channel on our [Discord](https://discord.gg/ZeuASSx) or on sites like [moddb](https://www.moddb.com/games/endless-sky/mods). Once downloaded, simply place the file in your `plugins` folder (located in the Endless Sky directory) and enjoy. Optionally, you can unzip it, but this is not required.
+A directory of all known Endless Sky plugins can be found at [Hecter94's Plugin Archive](https://github.com/Hecter94/EndlessSky-PluginArchive).
 
 ### Where are save files stored?
 Depending on your OS, you will find your save files in one of the following directories:
