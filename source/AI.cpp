@@ -2621,7 +2621,7 @@ void AI::CircleAround(const Ship &ship, Command &command, const Body &target)
 			command |= Command::AFTERBURNER;
 	}
 	else
-		// TODO: This will look goofy for reverse-only ships, as they face the other way when thrusting.
+		// This will look goofy for reverse-only ships, as they face the other way when thrusting.
 		// This can also happen with mixed-thrust ships, so we can't easily fix it.
 		command.SetTurn(TurnToward(ship, direction));
 }
