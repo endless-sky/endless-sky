@@ -2492,7 +2492,7 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 
 	if(facingTowardsTarget)
 	{
-		double maxSpeed = min(hasCruiseSpeed ? cruiseSpeed : std::numeric_limits<double>::infinity(),
+		double maxSpeed = min(hasCruiseSpeed ? cruiseSpeed : numeric_limits<double>::infinity(),
 			ship.MaxVelocity() * .99);
 		if(!movingTowardsTarget || velocity.Length() < maxSpeed)
 			command |= Command::FORWARD;
