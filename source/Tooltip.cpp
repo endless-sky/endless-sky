@@ -264,6 +264,6 @@ void Tooltip::Draw(bool forceDraw) const
 	else
 		background = error;
 
-	FillShader::Fill(box.Center(), boxSize, *background);
+	FillShader::Fill(box, *background);
 	text.Draw(box.TopLeft() + Point(10., 10.), *fontColor);
 }
