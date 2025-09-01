@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "GameData.h"
 #include "Point.h"
 #include "Screen.h"
 
@@ -144,12 +143,9 @@ namespace {
 
 
 
-Tooltip::Tooltip(int width, Alignment alignment, Direction direction, Corner corner)
-	: width(width), direction(direction), corner(corner),
-	normal(GameData::Colors().Get("tooltip background")),
-	warning(GameData::Colors().Get("warning back")),
-	error(GameData::Colors().Get("error back")),
-	fontColor(GameData::Colors().Get("medium"))
+Tooltip::Tooltip(int width, Alignment alignment, Direction direction, Corner corner,
+		const Color *backColor, const Color *fontColor)
+	: width(width), direction(direction), corner(corner), backColor(backColor), fontColor(fontColor)
 {
 	text.SetFont(FontSet::Get(14));
 	// 10 pixels of padding will be left on either side of the tooltip box.
@@ -237,9 +233,16 @@ void Tooltip::Clear()
 
 
 
-void Tooltip::SetState(State state)
+void Tooltip::SetBackgroundColor(const Color *backColor)
 {
-	this->state = state;
+	this->backColor = backColor;
+}
+
+
+
+void Tooltip::SetFontColor(const Color *fontColor)
+{
+	this->fontColor = fontColor;
 }
 
 
@@ -254,16 +257,6 @@ void Tooltip::Draw(bool forceDraw) const
 	Point boxSize = textSize + Point(20., 20.);
 	Rectangle box = PositionBox(zone, boxSize, direction, corner);
 
-	// Determine the background color that should be used given the current state
-	// of this tooltip.
-	const Color *background = nullptr;
-	if(state == State::NORMAL)
-		background = normal;
-	else if(state == State::WARNING)
-		background = warning;
-	else
-		background = error;
-
-	FillShader::Fill(box, *background);
+	FillShader::Fill(box, *backColor);
 	text.Draw(box.TopLeft() + Point(10., 10.), *fontColor);
 }

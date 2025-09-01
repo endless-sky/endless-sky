@@ -83,8 +83,10 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard")),
-	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT),
-	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_LEFT, Tooltip::Corner::TOP_RIGHT)
+	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_LEFT, Tooltip::Corner::TOP_RIGHT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -144,8 +146,8 @@ void ShopPanel::Draw()
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
 		shipsTooltip.SetText(text, true);
-		shipsTooltip.SetState(warningType.empty() ? Tooltip::State::NORMAL
-			: (warningType.back() == '!' ? Tooltip::State::ERROR : Tooltip::State::WARNING));
+		shipsTooltip.SetBackgroundColor(warningType.empty() ? GameData::Colors().Get("tooltip background")
+			: (warningType.back() == '!' ? GameData::Colors().Get("error back") : GameData::Colors().Get("warning back")));
 		shipsTooltip.Draw(true);
 	}
 
@@ -1001,7 +1003,6 @@ void ShopPanel::DrawButtons()
 	{
 		creditsTooltip.SetZone(creditsBox);
 		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits", true);
-		creditsTooltip.SetState(Tooltip::State::NORMAL);
 		creditsTooltip.Draw();
 	}
 }

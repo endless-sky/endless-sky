@@ -45,16 +45,10 @@ public:
 		BOTTOM_RIGHT,
 	};
 
-	// The tooltip's state determines its background color.
-	enum class State {
-		NORMAL,
-		WARNING,
-		ERROR
-	};
-
 
 public:
-	Tooltip(int width, Alignment alignment, Direction direction, Corner corner);
+	Tooltip(int width, Alignment alignment, Direction direction, Corner corner,
+		const Color *backColor, const Color *fontColor);
 
 	void IncrementCount();
 	void DecrementCount();
@@ -67,7 +61,8 @@ public:
 	bool HasText() const;
 	void Clear();
 
-	void SetState(State state);
+	void SetBackgroundColor(const Color *backColor);
+	void SetFontColor(const Color *fontColor);
 
 	// If forceDraw is true, the hover timer is skipped when determining whether
 	// the tooltip should be drawn.
@@ -78,11 +73,8 @@ private:
 	int width;
 	Direction direction;
 	Corner corner;
-	State state = State::NORMAL;
 
-	const Color *normal;
-	const Color *warning;
-	const Color *error;
+	const Color *backColor;
 	const Color *fontColor;
 
 	Rectangle zone;
