@@ -1,5 +1,5 @@
-/* ByName.h
-Copyright (c) 2022 by Michael Zahniser
+/* MouseButton.h
+Copyright (c) 2025 by TomGoodIdea
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -17,11 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-template<class T>
-class ByName {
-public:
-	bool operator()(const T *a, const T *b) const
-	{
-		return a->Name() < b->Name();
-	}
+enum class MouseButton {
+	NONE = 0,
+	LEFT,
+	MIDDLE,
+	RIGHT,
+	X1,
+	X2
 };

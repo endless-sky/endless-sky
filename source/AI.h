@@ -54,7 +54,7 @@ class System;
 class AI {
 public:
 	// Any object that can be a ship's target is in a list of this type:
-template <class Type>
+	template<class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
 	AI(const PlayerInfo &player, const List<Ship> &ships,
