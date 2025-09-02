@@ -128,7 +128,7 @@ namespace {
 	}
 
 	// Validity check for this filter's sets. Only one element must be valid.
-	template <class T>
+	template<class T>
 	bool CheckValidity(const set<const T *> &c)
 	{
 		return c.empty() || any_of(c.begin(), c.end(),
