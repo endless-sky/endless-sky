@@ -2464,7 +2464,7 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	double relativeFacing = acos(clamp(wantedAcceleration.Unit().Dot(angle.Unit()), -1., 1.));
 
 	// How long it takes for a ship to match both position and velocity with a given target.
-	const auto &interceptTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
+	const auto interceptTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
 		double distance)
 	{
 		if(!acceleration)
