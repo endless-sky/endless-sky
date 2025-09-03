@@ -4941,7 +4941,6 @@ void AI::RegisterDerivedConditions(ConditionsStore& conditions)
 		return strength;
 	});
 	conditions["ally strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
-		printf("ally: %lu\n", allyStrength.size());
 		return allyStrength[GameData::PlayerGovernment()];
 	});
 	conditions["enemy strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
