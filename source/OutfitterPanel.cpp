@@ -1410,20 +1410,20 @@ void OutfitterPanel::DrawButtons()
 ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(char key)
 {
 	TransactionResult result = false;
-	if (key == 'b')
+	if(key == 'b')
 	{
 		// Buy and install up to <modifier> outfits for each selected ship.
 		result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Ship, "buy and install");
 	}
-	else if (key == 's')
+	else if(key == 's')
 	{
 		// Sell <modifier> of the selected outfit from cargo, or else storage, or else from each selected ship.
 		// Return a result based on the reason that none can be sold from the selected ships.
-		if (!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Shop))
-			if (!MoveOutfit(OutfitLocation::Storage, OutfitLocation::Shop))
+		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Shop))
+			if(!MoveOutfit(OutfitLocation::Storage, OutfitLocation::Shop))
 				result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Shop, "sell");
 	}
-	else if (key == 'r')
+	else if(key == 'r')
 	{
 		// Move <modifier> of the selected outfit to storage from either cargo or else each of the selected ships.
 		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
