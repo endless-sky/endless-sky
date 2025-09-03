@@ -59,8 +59,10 @@ protected:
 	virtual bool HasItem(const std::string &name) const override;
 	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual double DrawDetails(const Point &center) override;
-	virtual TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
-	virtual TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const;
+	virtual TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
+		const string &actionName = "no action specified") const;
+	virtual TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
+		const string &actionName = "no action specified") const;
 	virtual bool ButtonActive(char key, bool shipRelatedOnly = false);
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
