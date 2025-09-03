@@ -186,7 +186,7 @@ private:
 	// Register autoconditions that use the current AI state (ships in the system, strengths, etc.)
 	// These conditions may be a frame behind, depending on where the conditions are queried from,
 	// but that shouldn't really matter.
-	void RegisterDerivedConditions(ConditionsStore& conditions);
+	void RegisterDerivedConditions(ConditionsStore &conditions);
 
 
 private:

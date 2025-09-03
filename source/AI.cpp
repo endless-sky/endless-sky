@@ -4935,7 +4935,7 @@ void AI::RegisterDerivedConditions(ConditionsStore& conditions)
 	conditions["government strength: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		string name = ce.NameWithoutPrefix();
 		int64_t strength = 0;
-		for (const Ship* ship : governmentRosters[GameData::Governments().Get(name)])
+		for(const Ship *ship : governmentRosters[GameData::Governments().Get(name)])
 			if(ship)
 				strength += ship->Strength();
 		return strength;
@@ -4947,11 +4947,11 @@ void AI::RegisterDerivedConditions(ConditionsStore& conditions)
 		return enemyStrength[GameData::PlayerGovernment()];
 	});
 	conditions["ally strength: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
-		const Government* gov = GameData::Governments().Get(ce.NameWithoutPrefix());
+		const Government *gov = GameData::Governments().Get(ce.NameWithoutPrefix());
 		return gov ? allyStrength[gov] : 0.;
 	});
 	conditions["enemy strength: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
-		const Government* gov = GameData::Governments().Get(ce.NameWithoutPrefix());
+		const Government *gov = GameData::Governments().Get(ce.NameWithoutPrefix());
 		return gov ? enemyStrength[gov] : 0.;
 	});
 }
