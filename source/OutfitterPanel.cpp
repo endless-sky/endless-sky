@@ -636,8 +636,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 						double outfitRequires = -it.second;
 						if(shipAvailable < outfitRequires)
 							errors.push_back("You cannot install this outfit, because it requires "
-								+ Format::Number(outfitRequires) + " '"
-								+ Format::SimplePluralization(outfitRequires, it.first) + "', and this ship has "
+								+ Format::SimplePluralization(outfitRequires, "'" + it.first + "'") + ", and this ship has "
 								+ Format::Number(shipAvailable) + " free.");
 					}
 
