@@ -866,7 +866,7 @@ tip "outfitter: u"
 	`Uninstall or move outfits from ship or cargo to storage, in that order.`
 
 tip "outfitter: c"
-	`Transfer outfit from planetary storage to cargo if possible, else buy from outfitter and place in cargo.`
+	`Transfer outfit from planetary storage to cargo if possible, otherwise buy it from the outfitter.`
 
 tip "outfitter: r"
 	`Move outfit from cargo or ship into planetary storage, in that order.`
