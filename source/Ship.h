@@ -218,6 +218,9 @@ public:
 	// The player can selectively deploy their carried ships, rather than just all / none.
 	void SetDeployOrder(bool shouldDeploy = true);
 	bool HasDeployOrder() const;
+	// Should the eject pods be ejected? This will convert one of the pods to the new flagship, if this a flagship
+	void SetEjectEscapePodsOrder(bool shouldEject = true);
+	bool HasEjectEscapePodsOrder() const;
 
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
@@ -459,6 +462,8 @@ public:
 	bool CanCarry(const Ship &ship) const;
 	// Check if this is a ship of a type that can be carried.
 	bool CanBeCarried() const;
+	// Set whether this ship can be carried.
+	void SetCanBeCarried(bool can);
 	// Move the given ship into one of the bays, if possible.
 	bool Carry(const std::shared_ptr<Ship> &ship);
 	// Empty the bays. If the carried ships are not special ships that are
@@ -470,6 +475,13 @@ public:
 	// Adjust the positions and velocities of any visible carried fighters or
 	// drones. If any are visible, return true.
 	bool PositionFighters() const;
+
+	// Is this ship an escape pod?
+	bool IsEscapePod() const;
+	// Check if this ship carries any escape pods.
+	bool HasEscapePods() const;
+	// Deploy all escape pods that this ship carries.
+	void DeployEscapePods(std::list<std::shared_ptr<Ship>> &ships, std::vector<Visual> &visuals, PlayerInfo &player);
 
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -629,6 +641,7 @@ private:
 	bool isYours = false;
 	bool isParked = false;
 	bool shouldDeploy = false;
+	bool shouldEjectEscapePods = false;
 	bool isOverheated = false;
 	bool isDisabled = false;
 	bool isBoarding = false;
