@@ -13,13 +13,23 @@
 					"name": "glew",
 					"platform": "!osx"
 				},
+				"libavif",
 				"libpng",
 				"libjpeg-turbo",
+				{
+					"name": "libjpeg-turbo",
+					"features": [
+						"jpeg8"
+					],
+					"platform": "osx"
+				},
 				"libmad",
 				{
 					"name": "libuuid",
 					"platform": "linux"
 				},
+				"libflac",
+				"minizip",
 				"openal-soft",
 				{
 					"name": "openal-soft",
@@ -28,14 +38,18 @@
 					],
 					"platform": "linux"
 				},
-				"sdl2"
+				"sdl2",
+				"pkgconf"
 			]
 		},
 		"steam-libs": {
 			"description": "System libraries not provided in the Steam Sniper Runtime.",
 			"dependencies": [
+				"libavif",
 				"libmad",
-				"catch2"
+				"catch2",
+				"libflac",
+				"minizip"
 			]
 		},
 		"test-libs": {

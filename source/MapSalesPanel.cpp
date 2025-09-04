@@ -15,7 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapSalesPanel.h"
 
-#include "CategoryTypes.h"
+#include "audio/Audio.h"
+#include "CategoryList.h"
+#include "CategoryType.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -25,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "ItemInfoDisplay.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "shader/PointerShader.h"
@@ -35,8 +37,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
+#include "Swizzle.h"
 #include "System.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -65,6 +68,8 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
+	Audio::Pause();
+
 	commodity = SHOW_SPECIAL;
 }
 
@@ -92,6 +97,7 @@ void MapSalesPanel::Draw()
 
 bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NONE;
 	if(command.Has(Command::HELP))
 		DoHelp("map advanced shops", true);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -105,6 +111,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		scroll = -maxScroll;
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !zones.empty())
 	{
+		sound = UI::UISound::NORMAL;
 		selected += (key == SDLK_DOWN) - (key == SDLK_UP);
 		if(selected < 0)
 			selected = zones.size() - 1;
@@ -121,13 +128,17 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
+	UI::PlaySound(sound);
 	return true;
 }
 
 
 
-bool MapSalesPanel::Click(int x, int y, int clicks)
+bool MapSalesPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return MapPanel::Click(x, y, button, clicks);
+
 	if(x < Screen::Left() + WIDTH)
 	{
 		const Point point(x, y);
@@ -138,14 +149,19 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		{
 			Select(selected = -1);
 			Compare(compare = -1);
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else if((SDL_GetModState() & KMOD_SHIFT) == 0)
 		{
 			Select(selected = zone->Value());
 			Compare(compare = -1);
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else if(zone->Value() != selected)
+		{
 			Compare(compare = zone->Value());
+			UI::PlaySound(UI::UISound::NORMAL);
+		}
 	}
 	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 90)
 	{
@@ -154,20 +170,23 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		{
 			onlyShowSoldHere = false;
 			onlyShowStorageHere = false;
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else if(y < Screen::Top() + 62)
 		{
 			onlyShowSoldHere = !onlyShowSoldHere;
 			onlyShowStorageHere = false;
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else
 		{
 			onlyShowSoldHere = false;
 			onlyShowStorageHere = !onlyShowStorageHere;
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 	}
 	else
-		return MapPanel::Click(x, y, clicks);
+		return MapPanel::Click(x, y, button, clicks);
 
 	return true;
 }
@@ -208,16 +227,16 @@ bool MapSalesPanel::Scroll(double dx, double dy)
 
 
 
-int MapSalesPanel::SelectedSpriteSwizzle() const
+const Swizzle *MapSalesPanel::SelectedSpriteSwizzle() const
 {
-	return 0;
+	return Swizzle::None();
 }
 
 
 
-int MapSalesPanel::CompareSpriteSwizzle() const
+const Swizzle *MapSalesPanel::CompareSpriteSwizzle() const
 {
-	return 0;
+	return Swizzle::None();
 }
 
 
@@ -292,7 +311,7 @@ void MapSalesPanel::DrawInfo() const
 		const Color &back = *GameData::Colors().Get("map side panel background");
 		Point size(width, height);
 		Point topLeft(Screen::Right() - size.X(), Screen::Top());
-		FillShader::Fill(topLeft + .5 * size, size, back);
+		FillShader::Fill(Rectangle::FromCorner(topLeft, size), back);
 
 		Point leftPos = topLeft + Point(
 			-.5 * left->Width(),
@@ -346,7 +365,7 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 
 
 
-void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const
+void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle *swizzle) const
 {
 	if(sprite)
 	{
@@ -354,7 +373,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 		double scale = min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));
 
 		// No swizzle was specified, so default to the player swizzle.
-		if(swizzle == -1)
+		if(!swizzle)
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
@@ -362,7 +381,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 
 
 
-void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale,
+void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale,
 		bool isSelected, const string &name, const string &variantName,
 		const string &price, const string &info, const std::string &storage)
 {
@@ -388,7 +407,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 	if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
 	{
 		if(isSelected)
-			FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
+			FillShader::Fill(Rectangle::FromCorner(corner, blockSize), selectionColor);
 
 		DrawSprite(corner, sprite, swizzle);
 

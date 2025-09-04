@@ -17,13 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
-#include "text/WrappedText.h"
-
 #include <list>
 
 class Color;
+class Interface;
 class Mission;
 class PlayerInfo;
+class TextArea;
 
 
 
@@ -43,7 +43,7 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
@@ -82,6 +82,8 @@ private:
 	void CycleInvolvedSystems(const Mission &mission);
 
 private:
+	const Interface *missionInterface;
+
 	const std::list<Mission> &available;
 	const std::list<Mission> &accepted;
 	int cycleInvolvedIndex = 0;
@@ -95,5 +97,6 @@ private:
 	int dragSide = 0;
 	int hoverSortCount = 0;
 	int hoverSort = -1; // 0 to 3 for each UI element
-	WrappedText wrap;
+	std::shared_ptr<TextArea> description;
+	bool descriptionVisible = false;
 };

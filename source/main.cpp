@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
-#include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Engine.h"
@@ -58,6 +57,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <mmsystem.h>
+
+#ifdef PlaySound
+#undef PlaySound
+#endif
 #endif
 
 
@@ -67,7 +70,7 @@ void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
 	const string &testToRun, bool debugMode);
-Conversation LoadConversation();
+Conversation LoadConversation(const PlayerInfo &player);
 void PrintTestsTable();
 #ifdef _WIN32
 void InitConsole();
@@ -83,6 +86,7 @@ int main(int argc, char *argv[])
 	if(argc > 1)
 		InitConsole();
 #endif
+	PlayerInfo player;
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -116,7 +120,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		else if(arg == "-t" || arg == "--talk")
-			conversation = LoadConversation();
+			conversation = LoadConversation(player);
 		else if(arg == "-d" || arg == "--debug")
 			debugMode = true;
 		else if(arg == "-p" || arg == "--parse-save")
@@ -143,7 +147,7 @@ int main(int argc, char *argv[])
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
-		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
+		auto dataFuture = GameData::BeginLoad(queue, player, isConsoleOnly, debugMode,
 			isConsoleOnly || checkAssets || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
@@ -159,7 +163,7 @@ int main(int argc, char *argv[])
 
 		if(printData)
 		{
-			PrintData::Print(argv);
+			PrintData::Print(argv, player);
 			return 0;
 		}
 		if(printTests)
@@ -168,7 +172,6 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 
-		PlayerInfo player;
 		if(loadOnly || checkAssets)
 		{
 			if(checkAssets)
@@ -329,6 +332,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// User pressed the Menu key.
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
+				UI::PlaySound(UI::UISound::NORMAL);
 			}
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
@@ -538,7 +542,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.13-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.15-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -549,14 +553,15 @@ void PrintVersion()
 
 
 
-Conversation LoadConversation()
+Conversation LoadConversation(const PlayerInfo &player)
 {
+	const ConditionsStore *conditions = &player.Conditions();
 	Conversation conversation;
 	DataFile file(cin);
 	for(const DataNode &node : file)
 		if(node.Token(0) == "conversation")
 		{
-			conversation.Load(node);
+			conversation.Load(node, conditions);
 			break;
 		}
 
@@ -575,6 +580,8 @@ Conversation LoadConversation()
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
 		{"<model>", "[Ship Model]"},
+		{"<flagship>", "[Flagship]"},
+		{"<flagship model>", "[Flagship Model]"},
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};

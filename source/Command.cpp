@@ -89,14 +89,15 @@ const Command Command::FASTFORWARD(ONE << 36, "Toggle fast-forward");
 const Command Command::HELP(ONE << 37, "Show help");
 const Command Command::PAUSE(ONE << 38, "Pause");
 const Command Command::FIGHT(ONE << 39, "Fleet: Fight my target");
-const Command Command::GATHER(ONE << 40, "Fleet: Gather around me");
-const Command Command::HOLD(ONE << 41, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 42, "Fleet: Harvest flotsam");
-const Command Command::AMMO(ONE << 43, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 44, "Auto steer");
-const Command Command::WAIT(ONE << 45, "");
-const Command Command::STOP(ONE << 46, "");
-const Command Command::SHIFT(ONE << 47, "");
+const Command Command::HOLD_FIRE(ONE << 40, "Fleet: Toggle hold fire");
+const Command Command::GATHER(ONE << 41, "Fleet: Gather around me");
+const Command Command::HOLD_POSITION(ONE << 42, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 43, "Fleet: Harvest flotsam");
+const Command Command::AMMO(ONE << 44, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 45, "Auto steer");
+const Command Command::WAIT(ONE << 46, "");
+const Command Command::STOP(ONE << 47, "");
+const Command Command::SHIFT(ONE << 48, "");
 
 
 
@@ -343,8 +344,9 @@ void Command::Load(const DataNode &node)
 			{"fullscreen", Command::FULLSCREEN},
 			{"fastforward", Command::FASTFORWARD},
 			{"fight", Command::FIGHT},
+			{"hold fire", Command::HOLD_FIRE},
 			{"gather", Command::GATHER},
-			{"hold", Command::HOLD},
+			{"hold", Command::HOLD_POSITION},
 			{"ammo", Command::AMMO},
 			{"nearest asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},

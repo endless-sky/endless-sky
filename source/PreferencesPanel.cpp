@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PreferencesPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
 #include "Dialog.h"
@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "PlayerInfo.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
@@ -36,7 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
 #include "text/Table.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -64,6 +65,7 @@ namespace {
 	const string STATUS_OVERLAYS_ESCORT = "   Show escort overlays";
 	const string STATUS_OVERLAYS_ENEMY = "   Show enemy overlays";
 	const string STATUS_OVERLAYS_NEUTRAL = "   Show neutral overlays";
+	const string TURRET_OVERLAYS = "Turret overlays";
 	const string EXPEND_AMMO = "Escorts expend ammo";
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
@@ -80,6 +82,7 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 
 	// How many pages of controls and settings there are.
@@ -106,8 +109,8 @@ namespace {
 
 
 
-PreferencesPanel::PreferencesPanel()
-	: editing(-1), selected(0), hover(-1)
+PreferencesPanel::PreferencesPanel(PlayerInfo &player)
+	: player(player), editing(-1), selected(0), hover(-1)
 {
 	// Select the first valid plugin.
 	for(const auto &plugin : Plugins::Get())
@@ -152,7 +155,7 @@ PreferencesPanel::~PreferencesPanel()
 void PreferencesPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	Information info;
 
@@ -269,7 +272,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
 	{
-		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
+		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
 	}
 	else
@@ -280,8 +283,10 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 
 
-bool PreferencesPanel::Click(int x, int y, int clicks)
+bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	EndEditing();
 
 	Point point(x, y);
@@ -299,7 +304,18 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
-			editing = selected = index;
+		{
+			if(zones[index].Value().Has(Command::MENU))
+				GetUI()->Push(new Dialog([this, index]()
+					{
+						this->editing = this->selected = index;
+					},
+					"Rebinding this key will change the keypress you need to access this menu. "
+					"You really shouldn't rebind this unless needed.",
+					Truncate::NONE, true, true));
+			else
+				editing = selected = index;
+		}
 
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
@@ -538,8 +554,9 @@ void PreferencesPanel::DrawControls()
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
+		Command::HOLD_FIRE,
 		Command::GATHER,
-		Command::HOLD,
+		Command::HOLD_POSITION,
 		Command::AMMO,
 		Command::HARVEST,
 		Command::NONE,
@@ -714,7 +731,9 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
+		"Fixed starfield zoom",
 		BACKGROUND_PARALLAX,
+		"Animate main menu background",
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
@@ -728,11 +747,12 @@ void PreferencesPanel::DrawSettings()
 		STATUS_OVERLAYS_ENEMY,
 		STATUS_OVERLAYS_NEUTRAL,
 		"Show missile overlays",
+		TURRET_OVERLAYS,
 		"Show asteroid scanner overlay",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
 		"Show planet labels",
-		"Show mini-map",
+		MINIMAP_DISPLAY,
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
@@ -868,6 +888,11 @@ void PreferencesPanel::DrawSettings()
 			text = Preferences::StatusOverlaysSetting(Preferences::OverlayType::NEUTRAL);
 			isOn = text != "off" && text != "--";
 		}
+		else if(setting == TURRET_OVERLAYS)
+		{
+			text = Preferences::TurretOverlaysSetting();
+			isOn = text != "off";
+		}
 		else if(setting == CLOAK_OUTLINE)
 		{
 			text = Preferences::Has(CLOAK_OUTLINE) ? "fancy" : "fast";
@@ -980,6 +1005,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == MINIMAP_DISPLAY)
+		{
+			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
+			text = Preferences::MinimapSetting();
 		}
 		else
 			text = isOn ? "on" : "off";
@@ -1223,7 +1253,7 @@ void PreferencesPanel::DrawTooltips()
 	if(topLeft.Y() + size.Y() > Screen::Bottom())
 		topLeft.Y() -= size.Y();
 	// Draw the background fill and the tooltip text.
-	FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+	FillShader::Fill(Rectangle::FromCorner(topLeft, size), *GameData::Colors().Get("tooltip background"));
 	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 }
 
@@ -1231,7 +1261,16 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
+	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+	{
+		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+		return;
+	}
+
 	Command::SaveSettings(Files::Config() / "keys.txt");
+
+	if(recacheDeadlines)
+		player.CalculateRemainingDeadlines();
 
 	GetUI()->Pop(this);
 }
@@ -1294,6 +1333,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ENEMY);
 	else if(str == STATUS_OVERLAYS_NEUTRAL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
+	else if(str == TURRET_OVERLAYS)
+		Preferences::ToggleTurretOverlays();
 	else if(str == AUTO_AIM_SETTING)
 		Preferences::ToggleAutoAim();
 	else if(str == AUTO_FIRE_SETTING)
@@ -1323,9 +1364,18 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleNotificationSetting();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
+	else if(str == MINIMAP_DISPLAY)
+		Preferences::ToggleMinimapDisplay();
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));
+
+	// If the deadline blink preference was toggled and the player is in flight,
+	// then we need to recache the remaining mission deadlines. This doesn't need
+	// to be done when the player is landed since the MapPanel already recalculates
+	// the remaining deadlines when it is opened in that case.
+	if(str == "Deadline blink by distance" && !player.GetPlanet())
+		recacheDeadlines = !recacheDeadlines;
 }
 
 
