@@ -368,7 +368,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 					for(const DataNode &great : grand)
 					{
 						bool greatRemove = great.Token(0) == "remove";
-						const string &greatKey = great.Token(greatRemove ? 1 : 0);
+						const string &greatKey = great.Token(greatRemove);
 						if(greatKey == "death sentence")
 						{
 							if(greatRemove)
