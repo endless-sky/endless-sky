@@ -15,9 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameWindow.h"
 
-#include "Files.h"
-#include "image/ImageBuffer.h"
-#include "image/ImageFileData.h"
 #include "Logger.h"
 #include "Screen.h"
 
@@ -27,6 +24,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstring>
 #include <sstream>
 #include <string>
+
+#ifdef _WIN32
+#include <windows.h>
+
+#include <dwmapi.h>
+#include <SDL2/SDL_syswm.h>
+#endif
 
 using namespace std;
 
@@ -246,11 +250,28 @@ bool GameWindow::Init(bool headless)
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
 
-#ifndef __APPLE__
-	// On OS X, setting the window icon will cause that same icon to be used
-	// in the dock and the application switcher. That's not something we
-	// want, because the ".icns" icon that is used automatically is prettier.
-	SetIcon();
+#ifdef _WIN32
+	// Set up a dark title bar on Windows versions that support it
+	// without having to draw it manually.
+	HMODULE ntdll = LoadLibraryW(L"ntdll.dll");
+	auto rtlGetVersion = reinterpret_cast<NTSTATUS (*)(PRTL_OSVERSIONINFOW)>(GetProcAddress(ntdll, "RtlGetVersion"));
+	RTL_OSVERSIONINFOW versionInfo = {};
+	if(rtlGetVersion)
+		rtlGetVersion(&versionInfo);
+	FreeLibrary(ntdll);
+	if(versionInfo.dwBuildNumber >= 19041)
+	{
+		SDL_SysWMinfo windowInfo;
+		SDL_VERSION(&windowInfo.version);
+		SDL_GetWindowWMInfo(mainWindow, &windowInfo);
+		BOOL value = 1;
+
+		HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
+		auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
+			GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
+		dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
+		FreeLibrary(dwmapi);
+	}
 #endif
 
 	return true;
@@ -278,30 +299,6 @@ void GameWindow::Quit()
 void GameWindow::Step()
 {
 	SDL_GL_SwapWindow(mainWindow);
-}
-
-
-
-void GameWindow::SetIcon()
-{
-	if(!mainWindow)
-		return;
-
-	// Load the icon file.
-	ImageBuffer buffer;
-	if(!buffer.Read(ImageFileData(Files::Resources() / "icon.png")))
-		return;
-	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
-		return;
-
-	// Convert the icon to an SDL surface.
-	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer.Pixels(), buffer.Width(), buffer.Height(),
-		32, 4 * buffer.Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-	if(surface)
-	{
-		SDL_SetWindowIcon(mainWindow, surface);
-		SDL_FreeSurface(surface);
-	}
 }
 
 

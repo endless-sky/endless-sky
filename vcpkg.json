@@ -28,6 +28,7 @@
 					"name": "libuuid",
 					"platform": "linux"
 				},
+				"libflac",
 				"minizip",
 				"openal-soft",
 				{
@@ -47,6 +48,7 @@
 				"libavif",
 				"libmad",
 				"catch2",
+				"libflac",
 				"minizip"
 			]
 		},
