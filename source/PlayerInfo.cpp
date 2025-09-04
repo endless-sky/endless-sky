@@ -3771,6 +3771,17 @@ void PlayerInfo::RegisterDerivedConditions()
 		// The probability of any single fleet appearing is 1 - chance.
 		return round((1. - safeChance) * 1000.); });
 
+	// Special conditions about combat power.
+	conditions["flagship strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return flagship ? flagship->Strength() : 0;
+	});
+	conditions["player strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		int64_t strength = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			strength += ship->Strength();
+		return strength;
+	});
+
 	// Special conditions for cargo and passenger space.
 	conditions["cargo space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		int64_t retVal = 0;
