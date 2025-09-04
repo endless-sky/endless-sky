@@ -4929,13 +4929,13 @@ void AI::CacheShipLists()
 
 
 
-void AI::RegisterDerivedConditions(ConditionsStore& conditions)
+void AI::RegisterDerivedConditions(ConditionsStore &conditions)
 {
 	// Special conditions about system hostility.
 	conditions["government strength: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
-		string name = ce.NameWithoutPrefix();
+		const Government *gov = GameData::Governments().Get(ce.NameWithoutPrefix());
 		int64_t strength = 0;
-		for(const Ship *ship : governmentRosters[GameData::Governments().Get(name)])
+		for(const Ship *ship : governmentRosters[gov])
 			if(ship)
 				strength += ship->Strength();
 		return strength;

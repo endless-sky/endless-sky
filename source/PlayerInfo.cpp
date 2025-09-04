@@ -3774,7 +3774,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 	conditions["player strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		int64_t strength = 0;
-		for (const std::shared_ptr<Ship> &ship : ships)
+		for(const shared_ptr<Ship> &ship : ships)
 			strength += ship->Strength();
 		return strength;
 	});
