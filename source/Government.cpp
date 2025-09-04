@@ -372,9 +372,9 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 						if(greatKey == "death sentence")
 						{
 							if(greatRemove)
-								atrocityConversation  = nullptr;
+								atrocityConversation = nullptr;
 							else if(great.Size() > 1)
-								atrocityConversation  = GameData::Conversations().Get(great.Token(1));
+								atrocityConversation = GameData::Conversations().Get(great.Token(1));
 						}
 					}
 					loadedAtrocity->customDeathSentence = atrocityConversation;
