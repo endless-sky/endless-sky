@@ -177,6 +177,7 @@ public:
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 
 	static const std::string &Tooltip(const std::string &label);
+	static std::string ReplaceNamesWithSalaries(const std::string &text);
 	static std::string HelpMessage(const std::string &name);
 	static const std::map<std::string, std::string> &HelpTemplates();
 
