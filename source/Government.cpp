@@ -329,7 +329,10 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				Atrocity *loadedAtrocity = nullptr;
 				const string &grandKey = grand.Token(0);
 				if(grand.Size() == 1)
+				{
 					loadedAtrocity = &atrocityOutfits[GameData::Outfits().Get(grandKey)];
+					loadedAtrocity->isAtrocity = true;
+				}
 				else if(grandKey == "remove")
 				{
 					if(grand.Token(1) == "ship" && grand.Size() >= 3)
@@ -354,7 +357,10 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 					}
 				}
 				else if(grandKey == "ship")
+				{
 					loadedAtrocity = &atrocityShips[grand.Token(1)];
+					loadedAtrocity->isAtrocity = true;
+				}
 
 				if(loadedAtrocity)
 				{
