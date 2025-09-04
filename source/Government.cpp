@@ -364,7 +364,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 
 				if(loadedAtrocity)
 				{
-					bool customDeathSentenceDefined = false;
+					const Conversation *atrocityConversation = deathSentenceForBlock;
 					for(const DataNode &great : grand)
 					{
 						bool greatRemove = great.Token(0) == "remove";
@@ -372,19 +372,12 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 						if(greatKey == "death sentence")
 						{
 							if(greatRemove)
-							{
-								loadedAtrocity->customDeathSentence = nullptr;
-								customDeathSentenceDefined = true;
-							}
+								atrocityConversation  = nullptr;
 							else if(great.Size() > 1)
-							{
-								loadedAtrocity->customDeathSentence = GameData::Conversations().Get(great.Token(1));
-								customDeathSentenceDefined = true;
-							}
+								atrocityConversation  = GameData::Conversations().Get(great.Token(1));
 						}
 					}
-					if(!customDeathSentenceDefined)
-						loadedAtrocity->customDeathSentence = deathSentenceForBlock;
+					loadedAtrocity->customDeathSentence = atrocityConversation;
 				}
 			}
 		}
