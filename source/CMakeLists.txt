@@ -345,8 +345,12 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/player/AudioPlayer.h
 	audio/player/MusicPlayer.cpp
 	audio/player/MusicPlayer.h
+	audio/supplier/AsyncAudioSupplier.cpp
+	audio/supplier/AsyncAudioSupplier.h
 	audio/supplier/AudioSupplier.cpp
 	audio/supplier/AudioSupplier.h
+	audio/supplier/FlacSupplier.cpp
+	audio/supplier/FlacSupplier.h
 	audio/supplier/Mp3Supplier.cpp
 	audio/supplier/Mp3Supplier.h
 	audio/supplier/WavSupplier.cpp
