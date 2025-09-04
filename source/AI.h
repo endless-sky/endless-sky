@@ -30,7 +30,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <vector>
 
-
 class Angle;
 class AsteroidField;
 class Body;
@@ -263,5 +262,5 @@ private:
 	std::map<std::tuple<const System *, const System *, const Government *, double,
 		const JumpType *, std::string *>,
 		RoutePlan *> routeCache;
-	std::set<std::string>universeWormholeRequirements;
+	std::set<std::string> universeWormholeRequirements;
 };

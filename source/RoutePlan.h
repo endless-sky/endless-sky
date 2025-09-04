@@ -30,7 +30,7 @@ class System;
 // and keeps only the route to that system.
 class RoutePlan {
 public:
-	RoutePlan() {};
+	RoutePlan() = default;
 	RoutePlan(const System &center, const System &destination, const PlayerInfo *player = nullptr);
 	RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player = nullptr);
 
