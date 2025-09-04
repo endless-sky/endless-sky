@@ -435,3 +435,10 @@ target_sources(EndlessSkyLib PRIVATE
 	text/WrappedText.cpp
 	text/WrappedText.h
 )
+
+if(WIN32)
+	target_sources(EndlessSkyLib PRIVATE
+		windows/TimerResolutionGuard.cpp
+		windows/TimerResolutionGuard.h
+	)
+endif()

@@ -1,6 +1,6 @@
 #include <winver.h>
 
-AppIcon ICON "../icons/WinApp.ico"
+AppIcon ICON "../../icons/WinApp.ico"
 
 VS_VERSION_INFO VERSIONINFO
 	FILEVERSION 0,10,15,0
