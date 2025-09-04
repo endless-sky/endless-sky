@@ -33,6 +33,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdlib>
 
+#include "audio/music/Track.h"
+
 using namespace std;
 
 namespace {
@@ -216,9 +218,25 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		events[GameData::Events().Get(child.Token(1))] = make_pair(minDays, maxDays);
 	}
 	else if(key == "music" && hasValue)
-		music = child.Token(1);
+	{
+		isMute = false;
+		if(child.Token(1) == "<ambient>")
+			useAmbientMusic = true;
+		else
+		{
+			useAmbientMusic = false;
+			if(child.Size() > 1)
+				music = GameData::GetOrCreateTrack(child.Token(0), child.Value(1));
+			else
+				music = GameData::GetOrCreateTrack(child.Token(0));
+		}
+	}
 	else if(key == "mute")
-		music = "";
+	{
+		useAmbientMusic = false;
+		isMute = true;
+		music = GameData::GetOrCreateTrack("silence 99999", 99999.);
+	}
 	else if(key == "mark" && hasValue)
 		mark.insert(GameData::Systems().Get(child.Token(1)));
 	else if(key == "unmark" && hasValue)
@@ -295,13 +313,12 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("fail", name);
 	if(failCaller)
 		out.Write("fail");
-	if(music.has_value())
-	{
-		if(music->empty())
-			out.Write("mute");
-		else
-			out.Write("music", music.value());
-	}
+	if(isMute)
+		out.Write("mute");
+	else if(useAmbientMusic)
+		out.Write("music", "<ambient>");
+	else if(music)
+		out.Write("music", music->Name());
 
 	conditions.Save(out);
 }
@@ -450,18 +467,15 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 	if(failCaller && caller)
 		player.FailMission(*caller);
-	if(music.has_value())
+	if(useAmbientMusic)
 	{
-		if(*music == "<ambient>")
-		{
-			if(player.GetPlanet())
-				Audio::PlayMusic(player.GetPlanet()->MusicName());
-			else
-				Audio::PlayMusic(player.GetSystem()->MusicName());
-		}
+		if(player.GetPlanet())
+			Audio::PlayMusic(player.GetPlanet()->Music());
 		else
-			Audio::PlayMusic(music.value());
+			Audio::PlayMusic(player.GetSystem()->Music());
 	}
+	else if(music)
+		Audio::PlayMusic(music);
 
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply();

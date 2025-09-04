@@ -42,6 +42,13 @@ AudioSupplier::AudioSupplier(bool is3x, bool isLooping)
 
 
 
+size_t AudioSupplier::ConsumedBuffers() const
+{
+	return consumedBuffers;
+}
+
+
+
 void AudioSupplier::Set3x(bool is3x)
 {
 	nextPlaybackIs3x = is3x;

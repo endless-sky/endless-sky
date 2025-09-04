@@ -47,6 +47,8 @@ public:
 	/// Gets the next, fixed-size chunk of audio samples. If there is no available chunk, a silence chunk is returned.
 	/// This returns the raw samples that would be put into an OpenAL buffer via a NextChunk() call.
 	virtual std::vector<sample_t> NextDataChunk() = 0;
+	/// How many buffers were supplied via NextChunk() or NextDataChunk() calls, excluding silence.
+	virtual size_t ConsumedBuffers() const;
 
 	/// Configures 3x audio playback.
 	virtual void Set3x(bool is3x);
@@ -79,6 +81,8 @@ protected:
 	bool nextPlaybackIs3x = false;
 	/// A looping player will stream data forever.
 	bool isLooping = false;
+	/// How many buffers were sent by this supplier.
+	size_t consumedBuffers = 0;
 
 	/// The index of the first sample to be processed
 	size_t currentSample = 0;

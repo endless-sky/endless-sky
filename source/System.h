@@ -37,6 +37,7 @@ class Outfit;
 class Planet;
 class Ship;
 class Sprite;
+class Track;
 
 
 
@@ -94,8 +95,8 @@ public:
 	const Government *GetGovernment() const;
 	// Get this system's map icons.
 	const std::vector<const Sprite *> &GetMapIcons() const;
-	// Get the name of the ambient audio to play in this system.
-	const std::string &MusicName() const;
+	// Get the ambient audio to play in this system.
+	const Track *Music() const;
 
 	// Get the list of "attributes" of the planet.
 	const std::set<std::string> &Attributes() const;
@@ -221,7 +222,7 @@ private:
 	Point position;
 	const Government *government = nullptr;
 	std::vector<const Sprite *> mapIcons;
-	std::string music;
+	const Track *music = nullptr;
 
 	// All possible hyperspace links to other systems.
 	std::set<const System *> links;

@@ -428,7 +428,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				}
 			}
 
-			Audio::Step(isFastForward);
+			Audio::Step(isFastForward, player);
 
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
@@ -492,7 +492,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			if(!isHeadless)
 			{
-				Audio::Step(isFastForward);
+				Audio::Step(isFastForward, player);
 
 				// Events in this frame may have cleared out the menu, in which case
 				// we should draw the game panels instead:

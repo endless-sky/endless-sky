@@ -1,0 +1,43 @@
+/* Layer.cpp
+Copyright (c) 2025 by tibetiroka
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+#include "Layer.h"
+
+#include "../../Random.h"
+
+using namespace std;
+
+
+
+void Layer::AddSource(const function<unique_ptr<AudioSupplier>(bool)>& source)
+{
+	sources.emplace_back(source);
+}
+
+
+
+void Layer::Clear()
+{
+	sources.clear();
+}
+
+
+
+std::unique_ptr<AudioSupplier> Layer::CreateSupplier(bool loop) const
+{
+	if(sources.empty())
+		return {};
+	return sources[Random::Int(sources.size())](loop);
+}

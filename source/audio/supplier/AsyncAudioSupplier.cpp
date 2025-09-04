@@ -67,6 +67,7 @@ vector<AudioSupplier::sample_t> AsyncAudioSupplier::NextDataChunk()
 	{
 		lock_guard<mutex> lock(bufferMutex);
 
+		++consumedBuffers;
 		vector<sample_t> temp{buffer.begin(), buffer.begin() + OUTPUT_CHUNK};
 		buffer.erase(buffer.begin(), buffer.begin() + OUTPUT_CHUNK);
 		bufferCondition.notify_all();

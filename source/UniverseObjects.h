@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "audio/music/Playlist.h"
 #include "shader/Shader.h"
 #include "Ship.h"
 #include "StartConditions.h"
@@ -46,6 +47,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "test/Test.h"
 #include "test/TestData.h"
 #include "TextReplacements.h"
+#include "audio/music/Track.h"
 #include "Trade.h"
 #include "Wormhole.h"
 
@@ -124,13 +126,16 @@ private:
 	Set<Person> persons;
 	Set<Phrase> phrases;
 	Set<Planet> planets;
+	Set<Playlist> playlists;
 	Set<Shader> shaders;
 	Set<Ship> ships;
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
+	Set<Track> tracks;
 	Set<Shop<Ship>> shipSales;
 	Set<Shop<Outfit>> outfitSales;
+	Set<std::set<std::string>> variantTracks;
 	Set<Wormhole> wormholes;
 	std::set<double> neighborDistances;
 

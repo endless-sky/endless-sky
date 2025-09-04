@@ -62,7 +62,7 @@ protected:
 
 private:
 	/// The number of chunks to queue up in the buffer.
-	static constexpr size_t BUFFER_CHUNK_SIZE = 3;
+	static constexpr size_t BUFFER_CHUNK_SIZE = 6;
 	/// The decoded data.
 	std::vector<sample_t> buffer;
 

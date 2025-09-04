@@ -18,11 +18,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "player/AudioPlayer.h"
 #include "supplier/effect/Fade.h"
 #include "../Files.h"
+#include "../GameData.h"
 #include "../Logger.h"
 #include "Music.h"
 #include "player/MusicPlayer.h"
+#include "music/Playlist.h"
 #include "../Point.h"
+#include "../Random.h"
 #include "Sound.h"
+#include "music/TrackSupplier.h"
 
 #include <AL/al.h>
 #include <AL/alc.h>
@@ -32,6 +36,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <memory>
 #include <mutex>
+#include <random>
+#include <ranges>
 #include <stdexcept>
 #include <thread>
 #include <vector>
@@ -100,10 +106,17 @@ namespace {
 	// The current position of the "listener," i.e. the center of the screen.
 	Point listener;
 
-	// The active music player, if there is one. This player is also present in 'player'.
-	// In the current implementation, the supplier of the music source is always a Fade.
+	// The active music player. This player is also present in 'players'.
+	// This player is created in Init() and remains alive until Quit().
+	// In the current implementation, the supplier of the music source is always a TrackSupplier.
 	shared_ptr<AudioPlayer> musicPlayer;
-	string currentTrack;
+	const Playlist *currentPlaylist;
+	vector<const Track *> remainingTracks;
+	int musicCheckFrameCounter = 0;
+	// Whether the source has our next track scheduled.
+	// This is used to support switching back to a track if the game
+	// attempted to switch to silence first, but without repeating a track unnecessarily.
+	bool hasOurNextTrack = false;
 
 	// The number of Pause vs Resume requests received.
 	int pauseChangeCount = 0;
@@ -142,6 +155,11 @@ void Audio::Init(const vector<filesystem::path> &sources)
 	alDopplerFactor(0.);
 
 	LoadSounds(sources);
+
+	musicPlayer = make_shared<MusicPlayer>(make_unique<TrackSupplier>());
+	musicPlayer->Init();
+	musicPlayer->SetVolume(Volume(SoundCategory::MUSIC));
+	players.emplace_back(musicPlayer);
 }
 
 
@@ -277,30 +295,17 @@ void Audio::Play(const Sound *sound, const Point &position, SoundCategory catego
 
 
 
-// Play the given music. An empty string means to play nothing.
-void Audio::PlayMusic(const string &name)
+/// Force changing to the given track.
+void Audio::PlayMusic(const Track *track)
 {
 	if(!isInitialized)
 		return;
-
-	// Skip changing music if the requested music is already playing.
-	if(name == currentTrack)
-		return;
-
-	// Don't worry about thread safety here, since music will always be started
-	// by the main thread.
-	currentTrack = name;
-	if(musicPlayer && !musicPlayer->IsFinished())
-		reinterpret_cast<Fade *>(musicPlayer->Supplier())->AddSource(Music::CreateSupplier(name, true));
-	else
+	TrackSupplier *supplier = reinterpret_cast<TrackSupplier *>(musicPlayer->Supplier());
+	supplier->SetNextTrack(track, track ? TrackSupplier::SwitchPriority::IMMEDIATE : TrackSupplier::SwitchPriority::PREFERRED, true);
+	if(track)
 	{
-		Fade *fade = new Fade();
-		fade->AddSource(Music::CreateSupplier(name, true));
-		musicPlayer = shared_ptr<AudioPlayer>(new MusicPlayer(unique_ptr<AudioSupplier>{fade}));
-		musicPlayer->Init();
-		musicPlayer->SetVolume(Volume(SoundCategory::MUSIC));
-		musicPlayer->Play();
-		players.emplace_back(musicPlayer);
+		currentPlaylist = nullptr;
+		remainingTracks.clear();
 	}
 }
 
@@ -326,7 +331,7 @@ void Audio::Resume()
 /// Begin playing all the sounds that have been added since the last time
 /// this function was called.
 /// If the game is in fast forward mode, the fast version of sounds is played.
-void Audio::Step(bool isFastForward)
+void Audio::Step(bool isFastForward, const PlayerInfo &playerInfo)
 {
 	if(!isInitialized)
 		return;
@@ -417,8 +422,117 @@ void Audio::Step(bool isFastForward)
 	}
 	soundQueue.clear();
 
-	if(musicPlayer && musicPlayer->IsFinished())
-		musicPlayer.reset();
+	// Schedule the next track for playback.
+	++musicCheckFrameCounter;
+	if(musicCheckFrameCounter >= 5)
+	{
+		musicCheckFrameCounter = 0;
+
+		TrackSupplier *trackSupplier = reinterpret_cast<TrackSupplier *>(musicPlayer->Supplier());
+		printf("%lu %s %s %s\n", remainingTracks.size(), remainingTracks.empty() ? "null" : remainingTracks.back()->Name().c_str(),
+			trackSupplier->GetCurrentTrack() ? trackSupplier->GetCurrentTrack()->Name().c_str() : "null",
+			trackSupplier->GetNextTrack() ? trackSupplier->GetNextTrack()->Name().c_str() : "null");
+		// If this playlist is no longer valid, switch to silence.
+		if(currentPlaylist && !remainingTracks.empty() && !currentPlaylist->Matches(playerInfo))
+		{
+			if(currentPlaylist->Tracks().contains(trackSupplier->GetNextTrack()) &&
+					trackSupplier->GetNextTrackPriority() != TrackSupplier::SwitchPriority::IMMEDIATE)
+				trackSupplier->SetNextTrack(nullptr, TrackSupplier::SwitchPriority::PREFERRED);
+			currentPlaylist = nullptr;
+			remainingTracks.clear();
+		}
+		// Schedule the next track.
+		if(!trackSupplier->GetNextTrack() && trackSupplier->GetNextTrackPriority() != TrackSupplier::SwitchPriority::IMMEDIATE)
+		{
+			if(!currentPlaylist || remainingTracks.empty())
+			{
+				// Choose a new playlist.
+				vector<const Playlist *> validPlaylists;
+				for (const Playlist &playlist : GameData::Playlists() | views::values)
+					if(playlist.Matches(playerInfo))
+						validPlaylists.emplace_back(&playlist);
+				if(!validPlaylists.empty())
+				{
+					std::cout << "Candidate playlists: ";
+					for (auto valid_playlist : validPlaylists)
+						std::cout << valid_playlist->Name() << " ";
+					std::cout << std::endl;
+					shuffle(validPlaylists.begin(), validPlaylists.end(), mt19937{Random::Int()});
+
+					// Find different playlists that contain the current tracks.
+					bool foundVariant = false;
+					const Track *current = trackSupplier->GetCurrentTrack();
+					const Track *next = nullptr;
+					if(current)
+					{
+						for(const Playlist *playlist : validPlaylists)
+							if(playlist != currentPlaylist && playlist->Tracks().contains(current))
+							{
+								currentPlaylist = playlist;
+								next = current;
+								foundVariant = true;
+								printf("Found exact match\n");
+								break;
+							}
+						if(!foundVariant)
+						{
+							// If there aren't any, search for one with a variant track.
+							const set<string> *variants = GameData::VariantTracks().Get(current->Name());
+							for(const Playlist *playlist : validPlaylists)
+								if(playlist != currentPlaylist)
+									for(const Track *track : playlist->Tracks())
+										if(track->Name() == current->Name() || variants->contains(track->Name()))
+										{
+											currentPlaylist = playlist;
+											foundVariant = true;
+											printf("Found variant\n");
+											break;
+										}
+						}
+					}
+					// Otherwise, just go with a regular playlist.
+					if(!foundVariant)
+						currentPlaylist = validPlaylists.front();
+
+					remainingTracks = vector<const Track *>{currentPlaylist->Tracks().begin(), currentPlaylist->Tracks().end()};
+					shuffle(remainingTracks.begin(), remainingTracks.end(), mt19937{Random::Int()});
+
+					// If we chose a variant track, make sure it's selected first.
+					hasOurNextTrack = false;
+					if(next)
+					{
+						swap<const Track *>(*find(remainingTracks.begin(), remainingTracks.end(), next), remainingTracks.back());
+						hasOurNextTrack = true;
+					}
+					else if(foundVariant)
+					{
+						const set<string> *variants = GameData::VariantTracks().Get(current->Name());
+						for(auto it = remainingTracks.begin(); it != remainingTracks.end(); ++it)
+							if((*it)->Name() == current->Name() || variants->contains((*it)->Name()))
+							{
+								swap(*it, remainingTracks.back());
+								break;
+							}
+					}
+				}
+			}
+			if(currentPlaylist && !remainingTracks.empty())
+			{
+				// Play the next track.
+				if(hasOurNextTrack && trackSupplier->GetCurrentTrack() != remainingTracks.back())
+				{
+					remainingTracks.pop_back();
+					hasOurNextTrack = false;
+				}
+				else
+				{
+					trackSupplier->SetNextTrack(remainingTracks.back(), trackSupplier->GetNextTrackPriority());
+					remainingTracks.pop_back();
+					musicPlayer->Play();
+				}
+			}
+		}
+	}
 }
 
 
