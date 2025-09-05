@@ -826,7 +826,8 @@ void MapDetailPanel::DrawInfo()
 
 	// When comparing prices, determine min/max deltas in order to represent commodity delta prices for displayed
 	// commodities as a gradient.
-	if(!noCompare && canView && selectedSystem->IsInhabited(player.Flagship()))
+	bool otherIsInhabited = selectedSystem->IsInhabited(player.Flagship());
+	if(!noCompare && canView && otherIsInhabited)
 	{
 		for(const Trade::Commodity &commodity : GameData::Commodities())
 		{
@@ -853,7 +854,7 @@ void MapDetailPanel::DrawInfo()
 		font.Draw(commodity.name, uiPoint, color);
 
 		string price;
-		if(canView && selectedSystem->IsInhabited(player.Flagship()))
+		if(canView && otherIsInhabited)
 		{
 			value = selectedSystem->Trade(commodity.name);
 			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
@@ -883,7 +884,7 @@ void MapDetailPanel::DrawInfo()
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
 
 		// Draw colored icons when values are displayed.
-		if(canView && selectedSystem->IsInhabited(player.Flagship()))
+		if(canView && otherIsInhabited)
 		{
 			if(!noCompare && player.GetSystem() != selectedSystem)
 			{
@@ -901,14 +902,10 @@ void MapDetailPanel::DrawInfo()
 			}
 			else
 			{
-				double halfCompare = 1;
-				if(canView && selectedSystem->IsInhabited(player.Flagship()))
-				{
-					halfCompare = .5 * (commodity.high - commodity.low);
-					// Avoid divide by zero, though this really shouldn't be a problem.
-					if(halfCompare < 1)
-						halfCompare = 1;
-				}
+				double halfCompare = .5 * (commodity.high - commodity.low);
+				// Avoid divide by zero, though this really shouldn't be a problem.
+				if(halfCompare < 1)
+					halfCompare = 1;
 				RingShader::Draw(uiPoint + Point(143, 8), OUTER, INNER,
 					MapColor((value - (commodity.low + halfCompare)) / halfCompare));
 			}
