@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
+#include "image/SpriteSet.h"
 #include "System.h"
 #include "UI.h"
 
@@ -157,10 +158,27 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	}
 	else if(key == "log")
 	{
-		bool isSpecial = (child.Size() >= 3);
-		string &text = (isSpecial ?
-			specialLogText[child.Token(1)][child.Token(2)] : logText);
-		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+		// Special log format: log <tab> <heading> <log message> (minimum of 4)
+		// Special log format with sprite: log <tab> <heading> scene <sprite> (exactly 5)
+		bool isSpecial = (child.Size() > 3);
+
+		// Log message formats with sprites:, exactly 3 or 5 arguments, with scene as second to last.
+		//  - log scene <sprite>
+		//  - log <tab> <heading> scene <sprite>
+		bool isScene = ((child.Size() == 3 && child.Token(1) == "scene") ||
+			(child.Size() == 5 && child.Token(3) == "scene"));
+
+		auto &vec = (isSpecial ?
+			specialLogMedia[child.Token(1)][child.Token(2)] : logMedia);
+
+		if(isScene)
+			vec.emplace_back(SpriteSet::Get(isSpecial ? child.Token(4) : child.Token(2)));
+		else
+		{
+			string text;
+			Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+			vec.emplace_back(text);
+		}
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
@@ -235,29 +253,26 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 
 void GameAction::Save(DataWriter &out) const
 {
-	if(!logText.empty())
+	for(const auto &media : logMedia)
 	{
 		out.Write("log");
 		out.BeginChild();
-		{
-			// Break the text up into paragraphs.
-			for(const string &line : Format::Split(logText, "\n\t"))
-				out.Write(line);
-		}
+		media.Write(out);
 		out.EndChild();
 	}
-	for(auto &&it : specialLogText)
+	for(auto &&it : specialLogMedia)
+	{
 		for(auto &&eit : it.second)
 		{
-			out.Write("log", it.first, eit.first);
-			out.BeginChild();
+			for(const auto &media : eit.second)
 			{
-				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(eit.second, "\n\t"))
-					out.Write(line);
+				out.Write("log", it.first, eit.first);
+				out.BeginChild();
+				media.Write(out);
+				out.EndChild();
 			}
-			out.EndChild();
 		}
+	}
 	for(auto &&it : specialLogClear)
 	{
 		if(it.second.empty())
@@ -381,9 +396,9 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 // Perform the specified tasks.
 void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 {
-	if(!logText.empty())
-		player.AddLogEntry(logText);
-	for(auto &&it : specialLogText)
+	if(!logMedia.empty())
+		player.AddLogEntry(logMedia);
+	for(auto &&it : specialLogMedia)
 		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
 	for(auto &&it : specialLogClear)
@@ -499,11 +514,14 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.debt = debt;
 
-	if(!logText.empty())
-		result.logText = Format::Replace(logText, subs);
-	for(auto &&it : specialLogText)
+	result.logMedia = logMedia;
+	for(auto &media : result.logMedia)
+		media.FormatReplace(subs);
+	result.specialLogMedia = specialLogMedia;
+	for(auto &&it : result.specialLogMedia)
 		for(auto &&eit : it.second)
-			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
+			for(auto &media : eit.second)
+				media.FormatReplace(subs);
 	result.specialLogClear = specialLogClear;
 
 	result.fail = fail;
