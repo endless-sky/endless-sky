@@ -831,7 +831,7 @@ void MapDetailPanel::DrawInfo()
 		for(const Trade::Commodity &commodity : GameData::Commodities())
 		{
 			value = selectedSystem->Trade(commodity.name);
-			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
+			int localValue = player.GetSystem()->Trade(commodity.name);
 			if(value && localValue)
 			{
 				value -= localValue;
@@ -848,7 +848,7 @@ void MapDetailPanel::DrawInfo()
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
 			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
-		Color color = isSelected ? medium : dim;
+		const Color &color = isSelected ? medium : dim;
 
 		font.Draw(commodity.name, uiPoint, color);
 
@@ -892,11 +892,11 @@ void MapDetailPanel::DrawInfo()
 				// positive.
 				double v = 0;
 				if(value < 0)
-					v = static_cast<double>(value) / abs(lowCompare);
+					v = value / abs(lowCompare);
 				else if(value > 0)
-					v = static_cast<double>(value) / highCompare;
+					v = value / highCompare;
 				// Draw up/down/equals arrows based on price delta (value).
-				PointerShader::Draw(uiPoint + Point(143, 7. + (-7 * v)), Point(0., 1), 20.f,
+				PointerShader::Draw(uiPoint + Point(143, 7. - 7 * v), Point(0., 1), 20.f,
 					static_cast<float>(-14. * v), 0.f, MapColor(v));
 			}
 			else
@@ -910,7 +910,7 @@ void MapDetailPanel::DrawInfo()
 						halfCompare = 1;
 				}
 				RingShader::Draw(uiPoint + Point(143, 8), OUTER, INNER,
-					MapColor((static_cast<double>(value) - (commodity.low + halfCompare)) / halfCompare));
+					MapColor((value - (commodity.low + halfCompare)) / halfCompare));
 			}
 		}
 
