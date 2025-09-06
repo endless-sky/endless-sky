@@ -563,7 +563,12 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	}
 	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
-	if(activeCommands.Has(Command::HOLD) && !shift)
+	if(activeCommands.Has(Command::HOLD_FIRE) && !shift)
+	{
+		OrderSingle newOrder{Orders::Types::HOLD_FIRE};
+		IssueOrder(newOrder, "holding fire.");
+	}
+	if(activeCommands.Has(Command::HOLD_POSITION) && !shift)
 	{
 		OrderSingle newOrder{Orders::Types::HOLD_POSITION};
 		IssueOrder(newOrder, "holding position.");
@@ -1440,8 +1445,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(isYours)
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && (it->second.Has(Orders::Types::ATTACK) || it->second.Has(Orders::Types::FINISH_OFF)))
-			return it->second.GetTargetShip();
+		if(it != orders.end())
+		{
+			if(it->second.Has(Orders::Types::ATTACK) || it->second.Has(Orders::Types::FINISH_OFF))
+				return it->second.GetTargetShip();
+			if(it->second.Has(Orders::Types::HOLD_FIRE))
+				return target;
+		}
 	}
 
 	// If this ship is not armed, do not make it fight.
@@ -3512,8 +3522,8 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	Point position = ship.Position();
 	Point velocity = ship.Velocity() - targetVelocity;
 	Angle angle = ship.Facing();
-	double acceleration = ship.Acceleration();
-	double turnRate = ship.TurnRate();
+	double acceleration = ship.CrewAcceleration();
+	double turnRate = ship.CrewTurnRate();
 	shouldReverse = false;
 
 	// If I were to turn around and stop now the relative movement, where would that put me?
@@ -3829,10 +3839,15 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && it->second.GetTargetShip() == currentTarget)
+		if(it != orders.end())
 		{
-			disabledOverride = it->second.Has(Orders::Types::FINISH_OFF);
-			friendlyOverride = disabledOverride || it->second.Has(Orders::Types::ATTACK);
+			if(it->second.Has(Orders::Types::HOLD_FIRE))
+				return;
+			if(it->second.GetTargetShip() == currentTarget)
+			{
+				disabledOverride = it->second.Has(Orders::Types::FINISH_OFF);
+				friendlyOverride = disabledOverride || it->second.Has(Orders::Types::ATTACK);
+			}
 		}
 	}
 	bool currentIsEnemy = currentTarget
@@ -4934,10 +4949,13 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 	string who;
 	vector<const Ship *> ships;
 	size_t destroyedCount = 0;
+	// A "hold fire" order can used on the flagship to temporarily block autofire.
+	// Other orders can be issued only to escorts.
+	bool includeFlagship = newOrder.type == Orders::Types::HOLD_FIRE;
 	if(player.SelectedShips().empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
-			if(it.get() != player.Flagship() && !it->IsParked())
+			if((includeFlagship || it.get() != player.Flagship()) && !it->IsParked())
 			{
 				if(it->IsDestroyed())
 					++destroyedCount;
@@ -4945,7 +4963,7 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 					ships.push_back(it.get());
 			}
 		who = (ships.empty() ? destroyedCount : ships.size()) > 1
-			? "Your fleet is " : "Your escort is ";
+			? "Your fleet is " : includeFlagship ? "Your flagship is " : "Your escort is ";
 	}
 	else
 	{
