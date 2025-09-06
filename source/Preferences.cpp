@@ -252,7 +252,7 @@ void Preferences::Load()
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(key == "Show mini-map")
 			minimapDisplayIndex = max<int>(0, min<int>(node.Value(1), MINIMAP_DISPLAY_SETTING.size() - 1));
-		else if(key == "Prioritize flagship space")
+		else if(key == "Prioritize flagship use")
 			flagshipSpacePriorityIndex = clamp<int>(node.Value(1), 0, FLAGSHIP_SPACE_PRIORITY_SETTINGS.size() - 1);
 		else if(key == "previous saves" && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
@@ -325,7 +325,7 @@ void Preferences::Save()
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("Show mini-map", minimapDisplayIndex);
-	out.Write("Prioritize flagship space", flagshipSpacePriorityIndex);
+	out.Write("Prioritize flagship use", flagshipSpacePriorityIndex);
 	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)

@@ -74,7 +74,7 @@ namespace {
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
-	const string FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship space";
+	const string FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship use";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string DATE_FORMAT = "Date format";
 	const string NOTIFY_ON_DEST = "Notify on destination";
