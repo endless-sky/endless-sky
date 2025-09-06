@@ -147,6 +147,7 @@ private:
 	Set<Shop<Ship>> defaultShipSales;
 	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
+	Set<Person> defaultPersons;
 	TextReplacements defaultSubstitutions;
 
 	Gamerules gamerules;

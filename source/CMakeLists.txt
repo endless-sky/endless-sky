@@ -195,6 +195,7 @@ target_sources(EndlessSkyLib PRIVATE
 	MissionPanel.h
 	Mortgage.cpp
 	Mortgage.h
+	MouseButton.h
 	NPC.cpp
 	NPC.h
 	NPCAction.cpp
@@ -340,9 +341,23 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/Sound.cpp
 	audio/Sound.h
 	audio/SoundCategory.h
+	audio/player/AudioPlayer.cpp
+	audio/player/AudioPlayer.h
+	audio/player/MusicPlayer.cpp
+	audio/player/MusicPlayer.h
+	audio/supplier/AudioSupplier.cpp
+	audio/supplier/AudioSupplier.h
+	audio/supplier/Mp3Supplier.cpp
+	audio/supplier/Mp3Supplier.h
+	audio/supplier/WavSupplier.cpp
+	audio/supplier/WavSupplier.h
+	audio/supplier/effect/Fade.cpp
+	audio/supplier/effect/Fade.h
+	comparators/ByDisplayName.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	comparators/ByUUID.h
 	orders/OrderSet.cpp
 	orders/OrderSet.h
 	orders/OrderSingle.cpp

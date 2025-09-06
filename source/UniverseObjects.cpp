@@ -142,6 +142,7 @@ void UniverseObjects::FinishLoading()
 	defaultOutfitSales = outfitSales;
 	defaultSubstitutions = substitutions;
 	defaultWormholes = wormholes;
+	defaultPersons = persons;
 }
 
 
@@ -326,6 +327,10 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : swizzles)
 		if(!it.second.IsLoaded())
 			Warn("swizzle", it.first);
+	// Persons can be referred to when marking them as destroyed.
+	for(const auto &it : persons)
+		if(!it.second.IsLoaded())
+			Warn("person", it.first);
 }
 
 
@@ -341,8 +346,7 @@ void UniverseObjects::Revert()
 	outfitSales.Revert(defaultOutfitSales);
 	substitutions.Revert(defaultSubstitutions);
 	wormholes.Revert(defaultWormholes);
-	for(auto &it : persons)
-		it.second.Restore();
+	persons.Revert(defaultPersons);
 }
 
 
