@@ -391,6 +391,8 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && hasValue)
 			planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
+		else if(key == "playlist" && hasValue)
+			playlists.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "ship" && hasValue)
 		{
 			// Allow multiple named variants of the same ship model.
@@ -422,6 +424,8 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			tests.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "test-data" && hasValue)
 			testDataSets.Get(node.Token(1))->Load(node, path);
+		else if(key == "track" && hasValue)
+			tracks.Get(node.Token(1))->Load(node);
 		else if(key == "trade")
 			trade.Load(node);
 		else if(key == "landing message" && hasValue)
@@ -488,6 +492,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if(key == "substitutions" && node.HasChildren())
 			substitutions.Load(node, playerConditions);
+		else if(key == "variant" && hasValue)
+		{
+			for(int i = 1; i < node.Size(); ++i)
+				for(int j = 1; j < node.Size(); ++j)
+					if(i != j)
+						variantTracks.Get(node.Token(i))->emplace(node.Token(j));
+		}
 		else if(key == "wormhole" && hasValue)
 			wormholes.Get(node.Token(1))->Load(node);
 		else if(key == "gamerules" && node.HasChildren())

@@ -1,4 +1,4 @@
-/* Mp3Supplier.h
+/* Layer.h
 Copyright (c) 2025 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,18 +15,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "AsyncAudioSupplier.h"
+#include "../supplier/AudioSupplier.h"
+
+#include <functional>
+#include <memory>
+#include <vector>
 
 
 
-/// Streams audio from an MP3 file.
-class Mp3Supplier : public AsyncAudioSupplier {
+/// A layer plays a random sound from a selection.
+class Layer {
 public:
-	explicit Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping = false);
-	~Mp3Supplier() override;
+	Layer() = default;
+
+	void AddSource(const std::function<std::unique_ptr<AudioSupplier>(bool)> &source);
+	void Clear();
+	std::unique_ptr<AudioSupplier> CreateSupplier(bool loop) const;
 
 
 private:
-	/// This is the entry point for the decoding thread.
-	void Decode() override;
+	std::vector<std::function<std::unique_ptr<AudioSupplier>(bool)>> sources;
 };

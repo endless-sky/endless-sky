@@ -29,6 +29,14 @@ using namespace std;
 Mp3Supplier::Mp3Supplier(shared_ptr<iostream> data, bool looping)
 	: AsyncAudioSupplier(std::move(data), looping)
 {
+	Start();
+}
+
+
+
+Mp3Supplier::~Mp3Supplier()
+{
+	Stop();
 }
 
 
