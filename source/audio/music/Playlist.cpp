@@ -26,17 +26,17 @@ using namespace std;
 
 
 void Playlist::Load(const DataNode &data, const ConditionsStore *conditions, const set<const System *> *visitedSystems,
-	const set<const Planet*> *visitedPlanets)
+	const set<const Planet *> *visitedPlanets)
 {
 	if(data.Size() > 1)
 		name = data.Token(1);
 	else
 		Logger::LogError("Playlists must have a name");
-	for (const DataNode &child: data)
+	for(const DataNode &child : data)
 	{
 		if(child.Token(0) == "tracks")
 		{
-			for (const DataNode &trackNode : child)
+			for(const DataNode &trackNode : child)
 			{
 				const Track *track;
 				if(trackNode.Size() > 1)
@@ -57,7 +57,7 @@ void Playlist::Load(const DataNode &data, const ConditionsStore *conditions, con
 
 
 
-bool Playlist::Matches(const PlayerInfo& player) const
+bool Playlist::Matches(const PlayerInfo &player) const
 {
 	if(!toPlay.Evaluate())
 		return false;
@@ -72,14 +72,14 @@ bool Playlist::Matches(const PlayerInfo& player) const
 
 
 
-const std::set<const Track*>& Playlist::Tracks() const
+const set<const Track*> &Playlist::Tracks() const
 {
 	return tracks;
 }
 
 
 
-const std::string& Playlist::Name() const
+const string &Playlist::Name() const
 {
 	return name;
 }

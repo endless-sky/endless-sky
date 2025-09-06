@@ -21,7 +21,7 @@ using namespace std;
 
 
 
-SilenceSupplier::SilenceSupplier(double seconds) : seconds(seconds)
+SilenceSupplier::SilenceSupplier(double seconds, bool loop) : AudioSupplier(false, loop), seconds(seconds)
 {
 }
 
@@ -29,6 +29,8 @@ SilenceSupplier::SilenceSupplier(double seconds) : seconds(seconds)
 
 size_t SilenceSupplier::MaxChunks() const
 {
+	if(isLooping)
+		return 3;
 	return ceil(seconds / (static_cast<double>(OUTPUT_CHUNK) / SAMPLE_RATE / 2.)) - consumedBuffers;
 }
 

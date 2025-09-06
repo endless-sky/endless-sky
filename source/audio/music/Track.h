@@ -33,9 +33,9 @@ class Track {
 public:
 	Track() = default;
 	/// A track created for an audio file.
-	explicit Track(const std::string& name, double duration = -1.);
+	explicit Track(const std::string &name, double duration = -1.);
 	/// A track created with a custom name and data.
-	void Load(const DataNode& data);
+	void Load(const DataNode &data);
 	/// The name of the track. This is unique for all tracks
 	/// except for "silence", which can be duplicated.
 	const std::string &Name() const;

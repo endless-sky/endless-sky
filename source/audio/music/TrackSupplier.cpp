@@ -1,4 +1,4 @@
-/* TrackSupplier.h
+/* TrackSupplier.cpp
 Copyright (c) 2025 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -33,6 +33,22 @@ namespace
 		return available;
 	}
 
+	size_t MaxAvailable(const vector<unique_ptr<AudioSupplier>> &suppliers)
+	{
+		size_t available = suppliers.empty() ? 0 : suppliers.front()->AvailableChunks();
+		for(const auto &supplier : suppliers)
+			available = max(available, supplier->AvailableChunks());
+		return available;
+	}
+
+	size_t MinRemaining(const vector<unique_ptr<AudioSupplier>> &suppliers)
+	{
+		size_t remaining = suppliers.empty() ? 0 : suppliers.front()->MaxChunks();
+		for(const auto &supplier : suppliers)
+			remaining = min(remaining, supplier->MaxChunks());
+		return remaining;
+	}
+
 	size_t Remaining(const vector<unique_ptr<AudioSupplier>> &suppliers)
 	{
 		size_t remaining = suppliers.empty() ? 0 : suppliers.front()->MaxChunks();
@@ -61,12 +77,15 @@ const Track *TrackSupplier::GetNextTrack() const
 	return next;
 }
 
-
-
-const TrackSupplier::SwitchPriority TrackSupplier::GetNextTrackPriority() const
+TrackSupplier::SwitchPriority TrackSupplier::GetNextTrackPriority() const
 {
-	lock_guard guard(lock);
 	return nextPriority;
+}
+
+
+recursive_mutex &TrackSupplier::GetMutex() const
+{
+	return lock;
 }
 
 
@@ -74,22 +93,10 @@ const TrackSupplier::SwitchPriority TrackSupplier::GetNextTrackPriority() const
 void TrackSupplier::SetNextTrack(const Track* track, SwitchPriority priority, bool loop, bool sync)
 {
 	lock_guard guard(lock);
-	if(track == current)
-	{
-		// Special case: switching back to the current track.
-		// Just clear any previous change requests.
-		next = nullptr;
-		nextPriority = SwitchPriority::END_OF_TRACK;
-		nextIsLooping = false;
-		nextIsSynced = false;
-	}
-	else
-	{
-		next = track;
-		nextPriority = priority;
-		nextIsLooping = loop;
-		nextIsSynced = sync && track;
-	}
+	next = track;
+	nextPriority = priority;
+	nextIsLooping = loop;
+	nextIsSynced = (sync || next == current) && track;
 }
 
 
@@ -104,11 +111,11 @@ void TrackSupplier::Decode()
 	const AudioSupplier *currentBackground = nullptr;
 	// Preload the suppliers for the next track.
 	vector<unique_ptr<AudioSupplier>> nextSuppliers;
-	const Track* cachedNext = nullptr;
+	const Track *cachedNext = nullptr;
 	// How many iterations the next track was scheduled for.
 	int nextCounter = 0;
 	// How many iterations to wait before switching to a "preferred" track. Chosen arbitrarily.
-	constexpr int PREFERRED_COUNTER_LIMIT = 50;
+	constexpr int PREFERRED_COUNTER_LIMIT = 100;
 	constexpr int SILENCE_PREFERRED_COUNTER_LIMIT = 10;
 
 	while(!done)
@@ -123,6 +130,16 @@ void TrackSupplier::Decode()
 		// Validate the cached suppliers.
 		{
 			lock_guard guard(lock);
+			// If the next track can't be played, remove it.
+			if(next && next == cachedNext && !MinRemaining(nextSuppliers))
+			{
+				next = nullptr;
+				nextCounter = 0;
+				nextIsSynced = false;
+				nextIsLooping = false;
+				if(nextPriority != SwitchPriority::END_OF_TRACK)
+					nextPriority = SwitchPriority::IMMEDIATE;
+			}
 			if(cachedNext != next)
 			{
 				cachedNext = next;
@@ -133,7 +150,7 @@ void TrackSupplier::Decode()
 					auto layers = next->Layers();
 					if(!layers.empty())
 					{
-						nextSuppliers.emplace_back(layers.front().get().CreateSupplier(looping));
+						nextSuppliers.emplace_back(layers.front().get().CreateSupplier(nextIsLooping));
 						for(size_t i = 1; i < layers.size(); ++i)
 							nextSuppliers.emplace_back(layers[i].get().CreateSupplier(nextIsLooping));
 					}
@@ -144,6 +161,8 @@ void TrackSupplier::Decode()
 			else
 				nextCounter = 0;
 		}
+		if(!suppliers.front().get()->MaxChunks())
+			currentBackground = nullptr;
 
 		// Switch to the next supplier, if this one is exhausted.
 		// If the switch is forced, only switch once the cached chunks run out.
@@ -178,8 +197,9 @@ void TrackSupplier::Decode()
 				current = next;
 				next = nullptr;
 				nextCounter = 0;
-				nextPriority = SwitchPriority::END_OF_TRACK;
 				cachedNext = nullptr;
+				nextPriority = SwitchPriority::END_OF_TRACK;
+				nextIsSynced = false;
 				nextIsLooping = false;
 
 				suppliers.resize(1);
@@ -195,6 +215,8 @@ void TrackSupplier::Decode()
 		}
 
 		// Advance the foreground layers to the next file.
+		if(!suppliers.front().get()->MaxChunks())
+			currentBackground = nullptr;
 		if(current && currentBackground && currentBackground->MaxChunks() && !wantsToChange)
 		{
 			for(size_t i = 1; i < suppliers.size(); ++i)
@@ -208,10 +230,10 @@ void TrackSupplier::Decode()
 		// A good soft limiter is tanh(): it transforms all values into the [-1, 1] range while being almost linear
 		// for small values (tanh(1) = 0.8). This also avoids lower harmonic distortion for a reasonable input volume
 		// that is caused by all nonlinear limiters.
-		if(Available(suppliers))
+		if(Available(suppliers) || (!AvailableChunks() && MaxAvailable(suppliers)))
 		{
 			vector<float> mergedInputs(OUTPUT_CHUNK);
-			for (const auto &supplier : suppliers)
+			for(const auto &supplier : suppliers)
 			{
 				vector<sample_t> samples = supplier->NextDataChunk();
 				// Convert the samples to 32-bit float so we can add them together without overflow.
@@ -221,7 +243,7 @@ void TrackSupplier::Decode()
 			// Blend the samples
 			vector<sample_t> samples;
 			samples.reserve(OUTPUT_CHUNK);
-			for (float sample : mergedInputs)
+			for(float sample : mergedInputs)
 			{
 				samples.emplace_back(round(tanh(sample) * numeric_limits<sample_t>::max()));
 			}
@@ -229,6 +251,11 @@ void TrackSupplier::Decode()
 		}
 		else if(!done)
 		{
+			if(!AvailableChunks())
+			{
+				vector<sample_t> samples(OUTPUT_CHUNK);
+				AddBufferData(samples);
+			}
 			// If we can't read data, wait for it to become available.
 			// This would normally be managed in some I/O operation for async suppliers,
 			// but we aren't reading from any file here.

@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class SilenceSupplier : public AudioSupplier {
 public:
-	explicit SilenceSupplier(double seconds);
+	explicit SilenceSupplier(double seconds, bool loop);
 
 	// Inherited pure virtual methods
 	size_t MaxChunks() const override;

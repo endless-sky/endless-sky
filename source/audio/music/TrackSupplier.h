@@ -1,4 +1,4 @@
-/* TrackSuppler.h
+/* TrackSupplier.h
 Copyright (c) 2025 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -36,7 +36,8 @@ public:
 
 	const Track *GetCurrentTrack() const;
 	const Track *GetNextTrack() const;
-	const SwitchPriority GetNextTrackPriority() const;
+	SwitchPriority GetNextTrackPriority() const;
+	std::recursive_mutex &GetMutex() const;
 	/// Configures what track to play after the current one.
 	/// If forced, the supplier switches to the new track as soon as
 	/// the cached buffers of the old track run out. Otherwise, it waits for
@@ -56,5 +57,5 @@ private:
 	SwitchPriority nextPriority = SwitchPriority::END_OF_TRACK;
 	bool nextIsLooping = false;
 	bool nextIsSynced = false;
-	mutable std::mutex lock;
+	mutable std::recursive_mutex lock;
 };

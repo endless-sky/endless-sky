@@ -29,11 +29,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Ship.h"
 #include "System.h"
+#include "audio/music/Track.h"
 #include "UI.h"
 
 #include <cstdlib>
-
-#include "audio/music/Track.h"
 
 using namespace std;
 

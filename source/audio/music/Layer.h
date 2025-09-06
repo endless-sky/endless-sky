@@ -28,7 +28,7 @@ class Layer {
 public:
 	Layer() = default;
 
-	void AddSource(const std::function<std::unique_ptr<AudioSupplier>(bool)>& source);
+	void AddSource(const std::function<std::unique_ptr<AudioSupplier>(bool)> &source);
 	void Clear();
 	std::unique_ptr<AudioSupplier> CreateSupplier(bool loop) const;
 

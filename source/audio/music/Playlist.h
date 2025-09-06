@@ -32,7 +32,7 @@ class Playlist
 {
 public:
 	void Load(const DataNode &data, const ConditionsStore *conditions, const std::set<const System *> *visitedSystems,
-		const std::set<const Planet*> *visitedPlanets);
+		const std::set<const Planet *> *visitedPlanets);
 
 	bool Matches(const PlayerInfo &player) const;
 	const std::set<const Track *> &Tracks() const;

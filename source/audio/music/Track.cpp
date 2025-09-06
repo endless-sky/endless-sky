@@ -28,7 +28,7 @@ namespace {
 		if(data == "silence")
 		{
 			if(duration > 0.)
-				return [duration](bool loop){return std::make_unique<SilenceSupplier>(loop ? 999999. : duration);};
+				return [duration](bool loop){return make_unique<SilenceSupplier>(duration, loop);};
 			else
 			{
 				Logger::LogError("\"silence\" source requires a positive duration");
@@ -42,7 +42,7 @@ namespace {
 
 
 
-Track::Track(const std::string &name, double duration) : name(name)
+Track::Track(const string &name, double duration) : name(name)
 {
 	background.AddSource(ParseLine(name, duration));
 	this->name = name;
@@ -59,6 +59,7 @@ void Track::Load(const DataNode &data)
 		name = data.Token(1);
 	else
 		Logger::LogError("Tracks must have a name");
+	bool hadBackground = false;
 	for(const DataNode &child : data)
 	{
 		if(child.Token(0) == "background")
@@ -68,6 +69,7 @@ void Track::Load(const DataNode &data)
 			else
 			{
 				background.Clear();
+				hadBackground = true;
 				if(child.Size() > 2)
 					background.AddSource(ParseLine(child.Token(1), child.Value(2)));
 				else
@@ -93,11 +95,16 @@ void Track::Load(const DataNode &data)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+	if(!hadBackground)
+	{
+		data.PrintTrace("Missing node \"background\":");
+		background.AddSource(ParseLine("silence", 1.));
+	}
 }
 
 
 
-const std::string &Track::Name() const
+const string &Track::Name() const
 {
 	return name;
 }

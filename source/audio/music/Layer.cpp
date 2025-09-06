@@ -21,7 +21,7 @@ using namespace std;
 
 
 
-void Layer::AddSource(const function<unique_ptr<AudioSupplier>(bool)>& source)
+void Layer::AddSource(const function<unique_ptr<AudioSupplier>(bool)> &source)
 {
 	sources.emplace_back(source);
 }
@@ -35,7 +35,7 @@ void Layer::Clear()
 
 
 
-std::unique_ptr<AudioSupplier> Layer::CreateSupplier(bool loop) const
+unique_ptr<AudioSupplier> Layer::CreateSupplier(bool loop) const
 {
 	if(sources.empty())
 		return {};
