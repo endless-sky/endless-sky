@@ -297,7 +297,7 @@ void Audio::Play(const Sound *sound, const Point &position, SoundCategory catego
 /// Force changing to the given track.
 void Audio::PlayMusic(const Track *track)
 {
-	if(!isInitialized)
+	if(!isInitialized || !musicPlayer)
 		return;
 	TrackSupplier *supplier = reinterpret_cast<TrackSupplier *>(musicPlayer->Supplier());
 	supplier->SetNextTrack(track, track ? TrackSupplier::SwitchPriority::IMMEDIATE :
@@ -425,7 +425,7 @@ void Audio::Step(bool isFastForward, const PlayerInfo &playerInfo)
 
 	// Schedule the next track for playback.
 	++musicCheckFrameCounter;
-	if(musicCheckFrameCounter >= 5)
+	if(musicCheckFrameCounter >= 5 && musicPlayer)
 	{
 		musicCheckFrameCounter = 0;
 		TrackSupplier *trackSupplier = reinterpret_cast<TrackSupplier *>(musicPlayer->Supplier());

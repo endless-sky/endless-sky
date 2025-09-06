@@ -127,139 +127,143 @@ void TrackSupplier::Decode()
 			break;
 		}
 
-		// Validate the cached suppliers.
 		{
-			lock_guard guard(lock);
-			// If the next track can't be played, remove it.
-			if(next && next == cachedNext && !MinRemaining(nextSuppliers))
+			unique_lock guard(lock);
+			// Validate the cached suppliers.
 			{
-				next = nullptr;
-				nextCounter = 0;
-				nextIsSynced = false;
-				nextIsLooping = false;
-				if(nextPriority != SwitchPriority::END_OF_TRACK)
-					nextPriority = SwitchPriority::IMMEDIATE;
-			}
-			if(cachedNext != next)
-			{
-				cachedNext = next;
-				nextSuppliers.clear();
-				nextCounter = 0;
-				if(next)
+				// If the next track can't be played, remove it.
+				if(next && next == cachedNext && !MinRemaining(nextSuppliers))
 				{
-					auto layers = next->Layers();
-					if(!layers.empty())
+					next = nullptr;
+					nextCounter = 0;
+					nextIsSynced = false;
+					nextIsLooping = false;
+					if(nextPriority != SwitchPriority::END_OF_TRACK)
+						nextPriority = SwitchPriority::IMMEDIATE;
+				}
+				if(cachedNext != next)
+				{
+					cachedNext = next;
+					nextSuppliers.clear();
+					nextCounter = 0;
+					if(next)
 					{
-						nextSuppliers.emplace_back(layers.front().get().CreateSupplier(nextIsLooping));
-						for(size_t i = 1; i < layers.size(); ++i)
-							nextSuppliers.emplace_back(layers[i].get().CreateSupplier(nextIsLooping));
+						auto layers = next->Layers();
+						if(!layers.empty())
+						{
+							nextSuppliers.emplace_back(layers.front().get().CreateSupplier(nextIsLooping));
+							for(size_t i = 1; i < layers.size(); ++i)
+								nextSuppliers.emplace_back(layers[i].get().CreateSupplier(nextIsLooping));
+						}
 					}
 				}
-			}
-			if(nextPriority == SwitchPriority::PREFERRED)
-				++nextCounter;
-			else
-				nextCounter = 0;
-		}
-		if(!suppliers.front().get()->MaxChunks())
-			currentBackground = nullptr;
-
-		// Switch to the next supplier, if this one is exhausted.
-		// If the switch is forced, only switch once the cached chunks run out.
-		// This helps to reduce accidental switching when travelling between systems.
-		bool wantsToChange = false;
-		{
-			lock_guard guard(lock);
-			bool shouldChange = Available(nextSuppliers) || !next;
-			switch(nextPriority)
-			{
-				case SwitchPriority::IMMEDIATE:
-					wantsToChange = true;
-					break;
-				case SwitchPriority::PREFERRED:
-					wantsToChange = nextCounter >= ((next && current) ? PREFERRED_COUNTER_LIMIT : SILENCE_PREFERRED_COUNTER_LIMIT);
-					break;
-				case SwitchPriority::END_OF_TRACK:
-					wantsToChange = !Remaining(suppliers);
-					break;
-			}
-			shouldChange &= wantsToChange;
-			if(nextIsSynced && currentBackground)
-			{
-				while(nextSuppliers.front()->ConsumedBuffers() < currentBackground->ConsumedBuffers() &&
-						Available(nextSuppliers))
-					nextSuppliers.front()->NextDataChunk();
-				shouldChange &= nextSuppliers.front()->ConsumedBuffers() == currentBackground->ConsumedBuffers();
-			}
-
-			if(shouldChange)
-			{
-				current = next;
-				next = nullptr;
-				nextCounter = 0;
-				cachedNext = nullptr;
-				nextPriority = SwitchPriority::END_OF_TRACK;
-				nextIsSynced = false;
-				nextIsLooping = false;
-
-				suppliers.resize(1);
-				currentBackground = nextSuppliers.empty() ? nullptr : nextSuppliers.front().get();
-				if(nextSuppliers.empty())
-					reinterpret_cast<Fade*>(suppliers[0].get())->AddSource({});
+				if(nextPriority == SwitchPriority::PREFERRED)
+					++nextCounter;
 				else
-					reinterpret_cast<Fade*>(suppliers[0].get())->AddSource(std::move(nextSuppliers.front()));
-				for(size_t i = 1; i < nextSuppliers.size(); ++i)
-					suppliers.emplace_back(std::move(nextSuppliers[i]));
-				nextSuppliers.clear();
+					nextCounter = 0;
 			}
-		}
+			if(!suppliers.front().get()->MaxChunks())
+				currentBackground = nullptr;
 
-		// Advance the foreground layers to the next file.
-		if(!suppliers.front().get()->MaxChunks())
-			currentBackground = nullptr;
-		if(current && currentBackground && currentBackground->MaxChunks() && !wantsToChange)
-		{
-			for(size_t i = 1; i < suppliers.size(); ++i)
-				if(!suppliers[i]->MaxChunks())
-					suppliers[i] = current->Layers()[i].get().CreateSupplier(false);
-		}
+			// Switch to the next supplier, if this one is exhausted.
+			// If the switch is forced, only switch once the cached chunks run out.
+			// This helps to reduce accidental switching when travelling between systems.
+			bool wantsToChange = false;
+			{
+				bool shouldChange = Available(nextSuppliers) || !next;
+				switch(nextPriority)
+				{
+					case SwitchPriority::IMMEDIATE:
+						wantsToChange = true;
+						break;
+					case SwitchPriority::PREFERRED:
+						wantsToChange = nextCounter >= ((next && current) ? PREFERRED_COUNTER_LIMIT : SILENCE_PREFERRED_COUNTER_LIMIT);
+						break;
+					case SwitchPriority::END_OF_TRACK:
+						wantsToChange = !Remaining(suppliers);
+						break;
+				}
+				shouldChange &= wantsToChange;
+				if(nextIsSynced && currentBackground)
+				{
+					while(nextSuppliers.front()->ConsumedBuffers() < currentBackground->ConsumedBuffers() &&
+							Available(nextSuppliers))
+						nextSuppliers.front()->NextDataChunk();
+					shouldChange &= nextSuppliers.front()->ConsumedBuffers() == currentBackground->ConsumedBuffers();
+				}
 
-		// Get the next chunk from each supplier, and blend them together.
-		// As the audio samples represent the amplitudes of the sound waves, they can be combined simply by
-		// adding them together. However, this can overflow the sample type when the waves amplify each other.
-		// A good soft limiter is tanh(): it transforms all values into the [-1, 1] range while being almost linear
-		// for small values (tanh(1) = 0.8). This also avoids lower harmonic distortion for a reasonable input volume
-		// that is caused by all nonlinear limiters.
-		if(Available(suppliers) || (!AvailableChunks() && MaxAvailable(suppliers)))
-		{
-			vector<float> mergedInputs(OUTPUT_CHUNK);
-			for(const auto &supplier : suppliers)
-			{
-				vector<sample_t> samples = supplier->NextDataChunk();
-				// Convert the samples to 32-bit float so we can add them together without overflow.
-				for(size_t i = 0; i < OUTPUT_CHUNK; ++i)
-					mergedInputs[i] += static_cast<float>(samples[i]) / numeric_limits<sample_t>::max();
+				if(shouldChange)
+				{
+					current = next;
+					next = nullptr;
+					nextCounter = 0;
+					cachedNext = nullptr;
+					nextPriority = SwitchPriority::END_OF_TRACK;
+					nextIsSynced = false;
+					nextIsLooping = false;
+
+					suppliers.resize(1);
+					currentBackground = nextSuppliers.empty() ? nullptr : nextSuppliers.front().get();
+					if(nextSuppliers.empty())
+						reinterpret_cast<Fade*>(suppliers[0].get())->AddSource({});
+					else
+						reinterpret_cast<Fade*>(suppliers[0].get())->AddSource(std::move(nextSuppliers.front()));
+					for(size_t i = 1; i < nextSuppliers.size(); ++i)
+						suppliers.emplace_back(std::move(nextSuppliers[i]));
+					nextSuppliers.clear();
+				}
 			}
-			// Blend the samples
-			vector<sample_t> samples;
-			samples.reserve(OUTPUT_CHUNK);
-			for(float sample : mergedInputs)
+
+			// Advance the foreground layers to the next file.
+			if(!suppliers.front().get()->MaxChunks())
+				currentBackground = nullptr;
+			if(current && currentBackground && currentBackground->MaxChunks() && !wantsToChange)
 			{
-				samples.emplace_back(round(tanh(sample) * numeric_limits<sample_t>::max()));
+				for(size_t i = 1; i < suppliers.size(); ++i)
+					if(!suppliers[i]->MaxChunks())
+						suppliers[i] = current->Layers()[i].get().CreateSupplier(false);
 			}
-			AddBufferData(samples);
-		}
-		else if(!done)
-		{
-			if(!AvailableChunks())
+			// Get the next chunk from each supplier, and blend them together.
+			// As the audio samples represent the amplitudes of the sound waves, they can be combined simply by
+			// adding them together. However, this can overflow the sample type when the waves amplify each other.
+			// A good soft limiter is tanh(): it transforms all values into the [-1, 1] range while being almost linear
+			// for small values (tanh(1) = 0.8). This also avoids lower harmonic distortion for a reasonable input volume
+			// that is caused by all nonlinear limiters.
+			if(Available(suppliers) || (!AvailableChunks() && MaxAvailable(suppliers)))
 			{
-				vector<sample_t> samples(OUTPUT_CHUNK);
+				vector<float> mergedInputs(OUTPUT_CHUNK);
+				for(const auto &supplier : suppliers)
+				{
+					vector<sample_t> samples = supplier->NextDataChunk();
+					// Convert the samples to 32-bit float so we can add them together without overflow.
+					for(size_t i = 0; i < OUTPUT_CHUNK; ++i)
+						mergedInputs[i] += static_cast<float>(samples[i]) / numeric_limits<sample_t>::max();
+				}
+				// Blend the samples
+				vector<sample_t> samples;
+				samples.reserve(OUTPUT_CHUNK);
+				for(float sample : mergedInputs)
+				{
+					samples.emplace_back(round(tanh(sample) * numeric_limits<sample_t>::max()));
+				}
 				AddBufferData(samples);
 			}
-			// If we can't read data, wait for it to become available.
-			// This would normally be managed in some I/O operation for async suppliers,
-			// but we aren't reading from any file here.
-			this_thread::sleep_for(chrono::milliseconds(50));
+			else if(!done)
+			{
+				if(!AvailableChunks())
+				{
+					vector<sample_t> samples(OUTPUT_CHUNK);
+					AddBufferData(samples);
+				}
+				else
+				{
+					guard.unlock();
+					// If we can't read data, wait for it to become available.
+					// This would normally be managed in some I/O operation for async suppliers,
+					// but we aren't reading from any file here.
+					this_thread::sleep_for(chrono::milliseconds(50));
+				}
+			}
 		}
 	}
 }
