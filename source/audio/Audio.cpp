@@ -22,10 +22,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Logger.h"
 #include "player/MusicPlayer.h"
 #include "../Planet.h"
+#include "../PlayerInfo.h"
 #include "music/Playlist.h"
 #include "../Point.h"
 #include "../Random.h"
 #include "Sound.h"
+#include "../System.h"
 #include "music/TrackSupplier.h"
 
 #include <AL/al.h>
@@ -41,9 +43,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <thread>
 #include <vector>
-
-#include "../PlayerInfo.h"
-#include "../System.h"
 
 using namespace std;
 
