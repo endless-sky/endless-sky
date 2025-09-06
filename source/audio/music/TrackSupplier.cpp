@@ -259,7 +259,7 @@ void TrackSupplier::Decode()
 			// If we can't read data, wait for it to become available.
 			// This would normally be managed in some I/O operation for async suppliers,
 			// but we aren't reading from any file here.
-			this_thread::sleep_for(50ms);
+			this_thread::sleep_for(chrono::milliseconds(50));
 		}
 	}
 }
