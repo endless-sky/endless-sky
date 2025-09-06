@@ -26,8 +26,6 @@ using namespace std;
 AsyncAudioSupplier::AsyncAudioSupplier(shared_ptr<iostream> data, bool looping)
 	: looping(looping), data(std::move(data))
 {
-	// Don't start the thread until this object is fully constructed.
-	thread = std::thread(&AsyncAudioSupplier::Decode, this);
 }
 
 
@@ -69,6 +67,13 @@ vector<AudioSupplier::sample_t> AsyncAudioSupplier::NextDataChunk()
 	}
 	else
 		return vector<sample_t>(OUTPUT_CHUNK);
+}
+
+
+
+void AsyncAudioSupplier::Start()
+{
+	thread = std::thread(&AsyncAudioSupplier::Decode, this);
 }
 
 

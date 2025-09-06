@@ -61,7 +61,16 @@ namespace
 
 TrackSupplier::TrackSupplier() : AsyncAudioSupplier({})
 {
+	Start();
 }
+
+
+
+TrackSupplier::~TrackSupplier()
+{
+	Stop();
+}
+
 
 
 const Track *TrackSupplier::GetCurrentTrack() const

@@ -39,6 +39,7 @@ public:
 protected:
 	/// This is the entry point for the decoding thread.
 	virtual void Decode() = 0;
+	void Start();
 	void Stop();
 
 	void AwaitBufferSpace();

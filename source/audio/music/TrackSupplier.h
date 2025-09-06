@@ -33,6 +33,7 @@ public:
 
 public:
 	TrackSupplier();
+	~TrackSupplier() override;
 
 	const Track *GetCurrentTrack() const;
 	const Track *GetNextTrack() const;
