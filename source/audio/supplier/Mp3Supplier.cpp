@@ -33,6 +33,13 @@ Mp3Supplier::Mp3Supplier(shared_ptr<iostream> data, bool looping)
 
 
 
+Mp3Supplier::~Mp3Supplier()
+{
+	Stop();
+}
+
+
+
 void Mp3Supplier::Decode()
 {
 	// This vector will store the input from the file.

@@ -30,6 +30,13 @@ FlacSupplier::FlacSupplier(shared_ptr<iostream> data, bool looping)
 
 
 
+FlacSupplier::~FlacSupplier()
+{
+	Stop();
+}
+
+
+
 FLAC__StreamDecoderWriteStatus FlacSupplier::write_callback(const FLAC__Frame *frame, const FLAC__int32 *const buffer[])
 {
 	const size_t channels = frame->header.channels;

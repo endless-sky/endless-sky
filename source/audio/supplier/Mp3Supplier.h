@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Mp3Supplier : public AsyncAudioSupplier {
 public:
 	explicit Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping = false);
+	~Mp3Supplier() override;
 
 
 private:

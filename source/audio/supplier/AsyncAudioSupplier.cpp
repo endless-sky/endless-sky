@@ -34,13 +34,7 @@ AsyncAudioSupplier::AsyncAudioSupplier(shared_ptr<iostream> data, bool looping)
 
 AsyncAudioSupplier::~AsyncAudioSupplier()
 {
-	// Tell the decoding thread to stop.
-	{
-		lock_guard<mutex> lock(bufferMutex);
-		done = true;
-	}
-	bufferCondition.notify_all();
-	thread.join();
+	Stop();
 }
 
 
@@ -75,6 +69,20 @@ vector<AudioSupplier::sample_t> AsyncAudioSupplier::NextDataChunk()
 	}
 	else
 		return vector<sample_t>(OUTPUT_CHUNK);
+}
+
+
+
+void AsyncAudioSupplier::Stop()
+{
+	// Tell the decoding thread to stop.
+	{
+		lock_guard<mutex> lock(bufferMutex);
+		done = true;
+	}
+	bufferCondition.notify_all();
+	if(thread.joinable())
+		thread.join();
 }
 
 
