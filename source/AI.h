@@ -103,13 +103,14 @@ public:
 		// To support use as a map key:
 		bool operator==(const RouteCacheKey &other) const;
 		bool operator!=(const RouteCacheKey &other) const;
-		void debug_print() const;
 
 		class HashFunction {
 		public:
 			size_t operator()(const RouteCacheKey &key) const;
 		};
 
+
+	public:
 		const System *from;
 		const System *to;
 		const Government *gov;

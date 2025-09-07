@@ -122,8 +122,3 @@ vector<pair<const System *, int>> RoutePlan::FuelCosts() const
 		steps.emplace_back(it.first, it.second.fuel);
 	return steps;
 }
-
-void RoutePlan::debug_print() const
-{
-	Logger::LogError("RoutePlan(): size=" +to_string(this->plan.size()) + ", hasRoute = " + to_string(hasRoute) + ".");
-}

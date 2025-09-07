@@ -51,8 +51,6 @@ public:
 	// Get the list of jumps + fuel to take to get to the destination.
 	std::vector<std::pair<const System *, int>> FuelCosts() const;
 
-	void debug_print() const;
-
 
 private:
 	// Initializer for new RoutePlans
