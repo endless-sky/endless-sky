@@ -435,7 +435,7 @@ void Audio::Step(bool isFastForward, const PlayerInfo &playerInfo)
 		{
 			if(currentPlaylist->Tracks().contains(trackSupplier->GetNextTrack()) &&
 					trackSupplier->GetNextTrackPriority() != TrackSupplier::SwitchPriority::IMMEDIATE)
-				trackSupplier->SetNextTrack(nullptr, TrackSupplier::SwitchPriority::PREFERRED);
+				trackSupplier->SetNextTrack(nullptr, TrackSupplier::SwitchPriority::END_OF_TRACK);
 			currentPlaylist = nullptr;
 			remainingTracks.clear();
 		}
