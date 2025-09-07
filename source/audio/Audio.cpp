@@ -495,7 +495,7 @@ void Audio::Step(bool isFastForward, const PlayerInfo &playerInfo)
 					// If we chose a variant track, make sure it's selected first.
 					if(next)
 						swap<const Track *>(*find(remainingTracks.begin(), remainingTracks.end(), next), remainingTracks.back());
-					else if(foundVariant)
+					else if(foundVariant || (current && currentPlaylist->Tracks().contains(current)))
 					{
 						const set<string> *variants = GameData::VariantTracks().Get(current->Name());
 						for(auto it = remainingTracks.begin(); it != remainingTracks.end(); ++it)
@@ -512,6 +512,8 @@ void Audio::Step(bool isFastForward, const PlayerInfo &playerInfo)
 				// Play the next track.
 				if(trackSupplier->GetCurrentTrack() == remainingTracks.back() || foundVariant)
 					trackSupplier->SetNextTrack(remainingTracks.back(), TrackSupplier::SwitchPriority::PREFERRED, false, true);
+				else if(currentPlaylist->Tracks().contains(trackSupplier->GetCurrentTrack()))
+					trackSupplier->SetNextTrack(remainingTracks.back(), TrackSupplier::SwitchPriority::END_OF_TRACK);
 				else
 					trackSupplier->SetNextTrack(remainingTracks.back(), trackSupplier->GetNextTrackPriority());
 				remainingTracks.pop_back();
