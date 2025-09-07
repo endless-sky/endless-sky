@@ -27,33 +27,33 @@ namespace
 {
 	size_t Available(const vector<unique_ptr<AudioSupplier>> &suppliers)
 	{
-		size_t available = suppliers.empty() ? 0 : suppliers.front()->AvailableChunks();
+		size_t available = suppliers.empty() ? 0 : (suppliers.front() ? suppliers.front()->AvailableChunks() : 0);
 		for(const auto &supplier : suppliers)
-			available = min(available, supplier->AvailableChunks());
+			available = min(available, supplier ? supplier->AvailableChunks() : 0);
 		return available;
 	}
 
 	size_t MaxAvailable(const vector<unique_ptr<AudioSupplier>> &suppliers)
 	{
-		size_t available = suppliers.empty() ? 0 : suppliers.front()->AvailableChunks();
+		size_t available = suppliers.empty() ? 0 : (suppliers.front() ? suppliers.front()->AvailableChunks() : 0);
 		for(const auto &supplier : suppliers)
-			available = max(available, supplier->AvailableChunks());
+			available = max(available, supplier ? supplier->AvailableChunks() : 0);
 		return available;
 	}
 
 	size_t MinRemaining(const vector<unique_ptr<AudioSupplier>> &suppliers)
 	{
-		size_t remaining = suppliers.empty() ? 0 : suppliers.front()->MaxChunks();
+		size_t remaining = suppliers.empty() ? 0 : (suppliers.front() ? suppliers.front()->MaxChunks() : 0);
 		for(const auto &supplier : suppliers)
-			remaining = min(remaining, supplier->MaxChunks());
+			remaining = min(remaining, supplier ? supplier->MaxChunks() : 0);
 		return remaining;
 	}
 
 	size_t Remaining(const vector<unique_ptr<AudioSupplier>> &suppliers)
 	{
-		size_t remaining = suppliers.empty() ? 0 : suppliers.front()->MaxChunks();
+		size_t remaining = suppliers.empty() ? 0 : (suppliers.front() ? suppliers.front()->MaxChunks() : 0);
 		for(const auto &supplier : suppliers)
-			remaining = max(remaining, supplier->MaxChunks());
+			remaining = max(remaining, supplier ? supplier->MaxChunks() : 0);
 		return remaining;
 	}
 }
