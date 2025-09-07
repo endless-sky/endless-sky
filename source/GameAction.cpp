@@ -165,8 +165,7 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		// Log message formats with sprites:, exactly 3 or 5 arguments, with scene as second to last.
 		//  - log scene <sprite>
 		//  - log <tab> <heading> scene <sprite>
-		bool isScene = ((child.Size() == 3 && child.Token(1) == "scene") ||
-			(child.Size() == 5 && child.Token(3) == "scene"));
+		bool isScene = ((child.Size() == 3 || child.Size() == 5) && child.Token(child.Size() - 2) == "scene");
 
 		auto &vec = (isSpecial ?
 			specialLogMedia[child.Token(1)][child.Token(2)] : logMedia);

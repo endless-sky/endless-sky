@@ -424,10 +424,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
-					// If we can find the date, use the vector we already have, other wise build one.
 					std::vector<MediaNode> &vec = logbook[date];
-
-					// Read in nodes, text or images.
 					for(const DataNode &great : grand)
 					{
 						if(great.Token(0) == "scene" && great.Size() == 2)
