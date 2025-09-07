@@ -48,12 +48,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 #include "Wormhole.h"
 
-#include <algorithm>
-#include <cmath>
-#include <limits>
 #include <ranges>
-#include <set>
-#include <utility>
+
+#include "Logger.h"
 
 using namespace std;
 
@@ -388,12 +385,11 @@ namespace {
 
 AI::AI(const PlayerInfo &player, const List<Ship> &ships,
 		const List<Minable> &minables, const List<Flotsam> &flotsam)
-	: player(player), ships(ships), minables(minables), flotsam(flotsam)
+	: player(player), ships(ships), minables(minables), flotsam(flotsam), routeCache()
 {
 	// Allocate a starting amount of hardpoints for ships.
 	firingCommands.SetHardpoints(12);
 }
-
 
 
 // Fleet commands from the player.
@@ -671,6 +667,7 @@ void AI::ClearOrders()
 
 void AI::Step(Command &activeCommands)
 {
+	Logger::LogError("======================================================================");
 	// First, figure out the comparative strengths of the present governments.
 	const System *playerSystem = player.GetSystem();
 	map<const Government *, int64_t> strength;
@@ -678,7 +675,8 @@ void AI::Step(Command &activeCommands)
 	CacheShipLists();
 
 	// At each step, reconsider all routes as new.
-	routeCache.clear();
+  	routeCache.clear();
+	Logger::LogError("\tCLEARED! (" + to_string(routeCache.size()) + ")");
 	// Create a complete list of the attributes which may be required for a ship to use wormholes within
 	// the universe. This will be a complete set of all attributes that affect any wormhole in the universe.
 	universeWormholeRequirements.clear();
@@ -738,6 +736,8 @@ void AI::Step(Command &activeCommands)
 		// Skip any carried fighters or drones that are somehow in the list.
 		if(!it->GetSystem())
 			continue;
+
+		// Logger::LogError("Working with: \"" + it->Name() + "\" a \"" + it->DisplayModelName() + "\".");
 
 		if(it.get() == flagship)
 		{
@@ -5126,25 +5126,132 @@ RoutePlan AI::GetRoutePlan(Ship &ship, const System *targetSystem)
 	// A cached route that could be used for this ship could depend on the wormholes which this ship can
 	// travel through. Find the intersection of all known wormhole required attributes and the attributes
 	// which this ship satisfies.
-	string wormholeKey;
+	vector<string> wormholeKeys;
 	const auto &shipAttributes = ship.Attributes();
-	for(const auto &requirement : universeWormholeRequirements)
+	for(auto requirement : universeWormholeRequirements)
 		if(shipAttributes.Get(requirement))
-			wormholeKey += "" + requirement;
+			wormholeKeys.emplace_back(requirement);
 
 	// Search for a cached solution for this route.
-	auto key = std::make_tuple(from, targetSystem, gov, ship.JumpNavigation().JumpRange(),
-		&driveCapability, &wormholeKey);
+	auto key = RouteCacheKey(from, targetSystem, gov, ship.JumpNavigation().JumpRange(),
+		driveCapability, wormholeKeys);
 
 	RoutePlan route;
 	auto it = routeCache.find(key);
-	if(it != routeCache.end())
-		route = RoutePlan(*(it->second));
-	else
+	if(it == routeCache.end())
 	{
 		route = RoutePlan(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
-		routeCache.emplace(key, &route);
+		routeCache.emplace(key, route);
+
+		key.debug_print();
+		route.debug_print();
+		Logger::LogError("\t(" + to_string(static_cast<unsigned long long>(RouteCacheKey::HashFunction()(key))) +
+			", " + to_string(reinterpret_cast<unsigned long long>(&(route))) + ") CACHED! (" +
+			to_string(routeCache.size()) + ")");
+	}
+	else
+	{
+		try
+		{
+			route = RoutePlan(it->second);
+		}
+		catch (const std::bad_array_new_length& e)
+		{
+			Logger::LogError("\t\t\t3: !!!! std::bad_array_new_length !!!!");
+			Logger::LogError("\t\t\tE: Working with: \"" + ship.Name() + "\" a \"" + ship.DisplayModelName() + "\".");
+			Logger::LogError("\t\t\tFOUND: (" + to_string(static_cast<unsigned long long>(RouteCacheKey::HashFunction()(key))) +
+				", " + to_string(reinterpret_cast<unsigned long long>(&route)) + ")");
+			key.debug_print();
+			route.debug_print();
+			Logger::LogError("\t\t\t3: !!!! std::bad_array_new_length !!!!");
+		}
 	}
 
 	return route;
 }
+
+
+
+AI::RouteCacheKey::RouteCacheKey(
+	const System *from, const System *to, const Government *gov, double jumpDistance,
+	JumpType jumpType, const vector<string> &wormholeKeys)
+		: from(from), to(to), gov(gov), jumpDistance(jumpDistance),
+			jumpType(jumpType), wormholeKeys(wormholeKeys)
+{
+}
+
+size_t AI::RouteCacheKey::HashFunction::operator()(RouteCacheKey const &key) const
+{
+	int shift = 0;
+	size_t hash = std::hash<string>()(key.from->TrueName());
+	hash ^= std::hash<string>()(key.to->TrueName()) << ++shift;
+	hash ^= std::hash<string>()(key.gov->GetTrueName()) << ++shift;
+	hash ^= std::hash<int>()(key.jumpDistance) << ++shift;
+	hash ^= std::hash<int>()(static_cast<std::size_t>(key.jumpType)) << ++shift;
+	for(string k : key.wormholeKeys)
+	{
+		hash ^= std::hash<string>()(k) << ++shift;;
+	}
+	return hash;
+}
+
+bool AI::RouteCacheKey::operator==(const RouteCacheKey &other) const
+{
+	// Used by map to determine order and equivalence. this and other are considered
+	// equivalent (not unique) if neither compares less than the other.
+	// Beware doing this piecewise, as we need to consider the whole; make_tuple handles this nicely.
+
+	// DEBUG
+	// bool lt = make_tuple(to, from, gov, jumpDistance, jumpType, wormholeKeys) < make_tuple(
+	// 	other.to, other.from, other.gov, other.jumpDistance, other.jumpType, other.wormholeKeys);
+	// Logger::LogError("-----");
+	// this->debug_print();
+	// other.debug_print();
+	bool eq = true;
+	// Logger::LogError("\tA: eq = " + to_string(eq));
+	eq &= from == other.from;
+	// Logger::LogError("\tB: eq = " + to_string(eq));
+	eq &= to == other.to;
+	// Logger::LogError("\tC: eq = " + to_string(eq));
+	eq &= gov == other.gov;
+	// Logger::LogError("\tD: eq = " + to_string(eq));
+	eq &= jumpDistance == other.jumpDistance;
+	// Logger::LogError("\tE: eq = " + to_string(eq));
+	eq &= jumpType == other.jumpType;
+	// Logger::LogError("\tF: eq = " + to_string(eq));
+	eq &= wormholeKeys == other.wormholeKeys;
+	// Logger::LogError("\tG: eq = " + to_string(eq));
+	// Logger::LogError("-----");
+	return eq;
+}
+
+bool AI::RouteCacheKey::operator!=(const RouteCacheKey &other) const
+{
+	// Used by map to determine order and equivalence. this and other are considered
+	// equivalent (not unique) if neither compares less than the other.
+	// Beware doing this piecewise, as we need to consider the whole; make_tuple handles this nicely.
+	// bool lt = make_tuple(to, from, gov, jumpDistance, jumpType, wormholeKeys) < make_tuple(
+	// 	other.to, other.from, other.gov, other.jumpDistance, other.jumpType, other.wormholeKeys);
+	return !(*this == other);
+}
+
+void AI::RouteCacheKey::debug_print() const
+{
+	string w;
+	w += to_string(static_cast<unsigned long long>(HashFunction()(*this))) + " (";
+	w += "from: " + from->DisplayName() + ", ";
+	w += "to: " + to->DisplayName() + ", ";
+	w += "gov: " + gov->GetName() + ", ";
+	w += "jumpDistance: " + to_string(jumpDistance) + ", ";
+	w += "jumpType: " + to_string(static_cast<int>(jumpType)) + ", ";
+	w += "wormholeKeys: [";
+	string delim;
+	for(string key : wormholeKeys)
+	{
+		w += delim + key;
+		delim = "+";
+	}
+	w += "])";
+	Logger::LogError(w);
+}
+

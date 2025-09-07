@@ -24,11 +24,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RoutePlan.h"
 
 #include <list>
-#include <map>
-#include <memory>
 #include <optional>
 #include <set>
-#include <vector>
+#include <unordered_map>
 
 class Angle;
 class AsteroidField;
@@ -42,7 +40,7 @@ class ShipEvent;
 class StellarObject;
 class System;
 
-
+using namespace std;
 
 // This class is responsible for controlling all the ships in the game,
 // including the player's "flagship" - which is usually controlled via the
@@ -90,6 +88,35 @@ public:
 
 	// Find nearest landing location.
 	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
+
+
+public:
+	class RouteCacheKey {
+	public:
+		// Note: keep this updated as the variables driving the routing change:
+		// - from, to, jumpRange, driveType
+		// - gov: danger = f(gov), isRestrictedFrom = f(gov)
+		// - wormhole requirements that are met, see Planet::IsAccessible(const Ship *ship)
+		explicit RouteCacheKey(const System *from, const System *to, const Government *gov,
+			double jumpDistance, JumpType jumpType, const vector<string> &wormholeKeys);
+
+		// To support use as a map key:
+		bool operator==(const RouteCacheKey &other) const;
+		bool operator!=(const RouteCacheKey &other) const;
+		void debug_print() const;
+
+		class HashFunction {
+		public:
+			size_t operator()(const RouteCacheKey &key) const;
+		};
+
+		const System *from;
+		const System *to;
+		const Government *gov;
+		double jumpDistance;
+		JumpType jumpType;
+		vector<string> wormholeKeys;
+	};
 
 
 private:
@@ -255,12 +282,6 @@ private:
 	std::map<const Government *, std::vector<Ship *>> allyLists;
 
 	// Route planning cache:
-	// Note: keep this updated as the variables driving the routing change:
-	// - gov: danger = f(gov), isRestrictedFrom = f(gov)
-	// - wormhole requirements that are met, see Planet::IsAccessible(const Ship *ship)
-	// - from, to, jumpRange, driveType
-	std::map<std::tuple<const System *, const System *, const Government *, double,
-		const JumpType *, std::string *>,
-		RoutePlan *> routeCache;
-	std::set<std::string> universeWormholeRequirements;
+	unordered_map<RouteCacheKey, RoutePlan, RouteCacheKey::HashFunction> routeCache;
+	set<string> universeWormholeRequirements;
 };

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RoutePlan.h"
 
 #include "DistanceMap.h"
+#include "Logger.h"
 
 using namespace std;
 
@@ -33,6 +34,14 @@ RoutePlan::RoutePlan(const Ship &ship, const System &destination, const PlayerIn
 {
 	Init(DistanceMap(ship, destination, player));
 }
+
+
+
+RoutePlan::RoutePlan(const RoutePlan &other)
+{
+	plan = other.plan;
+	hasRoute = other.hasRoute;
+};
 
 
 
@@ -112,4 +121,9 @@ vector<pair<const System *, int>> RoutePlan::FuelCosts() const
 	for(const auto &it : plan)
 		steps.emplace_back(it.first, it.second.fuel);
 	return steps;
+}
+
+void RoutePlan::debug_print() const
+{
+	Logger::LogError("RoutePlan(): size=" +to_string(this->plan.size()) + ", hasRoute = " + to_string(hasRoute) + ".");
 }

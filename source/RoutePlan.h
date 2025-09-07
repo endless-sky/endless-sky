@@ -35,7 +35,7 @@ public:
 	RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player = nullptr);
 
 	// Copy constructor, used with caching.
-	RoutePlan(const RoutePlan &other) : plan(other.plan), hasRoute(other.hasRoute) {};
+	RoutePlan(const RoutePlan &other);
 
 	// Find out if the destination is reachable.
 	bool HasRoute() const;
@@ -50,6 +50,8 @@ public:
 	std::vector<const System *> Plan() const;
 	// Get the list of jumps + fuel to take to get to the destination.
 	std::vector<std::pair<const System *, int>> FuelCosts() const;
+
+	void debug_print() const;
 
 
 private:
