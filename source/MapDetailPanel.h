@@ -43,6 +43,7 @@ public:
 
 	virtual void Step() override;
 	virtual void Draw() override;
+	virtual bool GamePadState(GamePad &controller) override;
 
 	double GetScroll() const;
 
