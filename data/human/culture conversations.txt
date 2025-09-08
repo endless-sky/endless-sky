@@ -1433,7 +1433,7 @@ mission "A Sunracer Hovercraft Racing"
 				"syndicate boost" = 2 + "roll: 2"
 				"delta boost" = 4 + "roll: 8"
 				"deep boost" = 6 + "roll: 12"
-				# The ( ( 10 - x + "race length" ) / 10 ) flips to 1 when race length is x+, 0 if less than x. Used to only roll for the length of the track.
+				# The ( ( 10 - x + "race length" ) / 10 ) flips to 1 when race length is x or greater, 0 if it's less than x. Only used to roll for the length of the track.
 				"megaparsec speed" = "roll: 12" + "roll: 12" + "roll: 12" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 12" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 12"
 				"syndicate speed" = "roll: 10" + "roll: 10" + "roll: 10" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 10" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 10"
 				"delta speed" = "roll: 8" + "roll: 8" + "roll: 8" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 8" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 8"
@@ -1468,7 +1468,7 @@ mission "A Sunracer Hovercraft Racing"
 				set "hovercraft racing: talked to fan"
 			`	Near the <racename>'s entrance, you spot a friendly figure ${sunracer fan tshirt}:`
 			`	"Hovercraft racing pits four ships against the clock - each trying to log as many laps as possible. The race is between three and five hours long and is split into two phases: an initial afterburn for a burst of speed, followed by laps completed in the remaining time.`
-			`	"Each racer has a roughly equal chance of victory, though Megaparsec Racing Technologies tends to win a bit more often overall. Megaparsec also excels in longer races thanks to their efficient ion engines that can do up to twelve laps an hour, but completely lack any initial speed burst. Deep racers shine on shorter stints by using high-powered atomics for a powerful start that can push them to complete up to eighteen laps in the first hour, but they tend to perform much worse in longer races due to their lack of efficiency. The other two teams fall somewhere in-between.`
+			`	"Each racer has a roughly equal chance of victory, though Megaparsec Racing Technologies tends to win a bit more often overall. Megaparsec also excels in longer races thanks to their efficient ion engines that can do up to twelve laps an hour, but completely lack any initial speed burst. Deep racers shine on shorter stints by using high-powered atomics for a powerful start that can push them to complete up to eighteen laps in the first hour, but they tend to perform much worse in longer races due to their lack of efficiency. The other two teams fall somewhere in between.`
 			`	"Even though each team is roughly equal, in a given race, a savvy watcher can better predict a winner by knowing which teams perform better on shorter or longer race lengths, or a less sporting one with a powerful scanner might even be able to tell a hovercraft's exact level of afterburner fuel before the race even begins.`
 			`	"One last tip to remember - they say the surest way to make a small fortune in hovercraft racing is to start with a big one!" The fan's speech ends with a hearty laugh, whose sound mixes with the roar of engines inside the <racename>.`
 			``
@@ -1607,7 +1607,8 @@ mission "A Sunracer Hovercraft Racing"
 			`		Syndicate Performance Racing: <syndicate name>, &[syndicate laps] laps completed`
 			`		Delta V Grand Prix: <delta name>, &[delta laps] laps completed`
 			`		Deep Sky Dynamics: <deep name>, &[deep laps] laps completed`
-			# used for testing purposes	`	2nd place: &[second place], margin: &[second place margin]; last place: &[last place], margin: &[last place margin]`
+			# The next line can be used when testing changes to the mission, but should remain commented out on the master branch.
+			# `	2nd place: &[second place], margin: &[second place margin]; last place: &[last place], margin: &[last place margin]`
 			``
 			action
 				clear "race length"
