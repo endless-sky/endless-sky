@@ -123,6 +123,7 @@ mission "First Contact: Rulei - testing"
 	on enter "Menkent"
 		fail
 		log "testing normal log game action in save file"
+		log "Factions" "Rulei" scene "scene/rulei"
 		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago, but the only things that remain of them are a single strange ship and two scarred planets.`
 			`They communicate through some sort of invasive psionic ability, speaking in a thousand voices all at once. Prolonged contact seems unhealthy.`
 		conversation
