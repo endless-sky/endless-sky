@@ -1,5 +1,5 @@
-/* Mp3Supplier.h
-Copyright (c) 2025 by tibetiroka
+/* TimerResolutionGuard.cpp
+Copyright (c) 2025 by TomGoodIdea
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,19 +13,25 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#pragma once
+#include "TimerResolutionGuard.h"
 
-#include "AsyncAudioSupplier.h"
+#include <windows.h>
 
-
-
-/// Streams audio from an MP3 file.
-class Mp3Supplier : public AsyncAudioSupplier {
-public:
-	explicit Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping = false);
+#include <timeapi.h>
 
 
-private:
-	/// This is the entry point for the decoding thread.
-	void Decode() override;
-};
+
+TimerResolutionGuard::TimerResolutionGuard()
+{
+	// Make sure that the sleep timer has at least 1 ms resolution
+	// to avoid irregular frame rates.
+	timeBeginPeriod(1);
+}
+
+
+
+TimerResolutionGuard::~TimerResolutionGuard()
+{
+	// Reset the timer resolution so that it doesn't affect performance of the whole OS.
+	timeEndPeriod(1);
+}
