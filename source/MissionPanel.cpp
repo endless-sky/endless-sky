@@ -776,7 +776,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * entries + 40);
-	FillShader::Fill(pos + .5 * size, size, back);
+	FillShader::Fill(Rectangle::FromCorner(pos, size), back);
 
 	// Edges:
 	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
@@ -999,7 +999,7 @@ void MissionPanel::DrawTooltips()
 		size += Point(20., 20.);
 		Point topLeft = Point(Screen::Left() + SIDE_WIDTH - 120. + 30 * hoverSort, Screen::Top() + 30.);
 		// Draw the background fill and the tooltip text.
-		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+		FillShader::Fill(Rectangle::FromCorner(topLeft, size), *GameData::Colors().Get("tooltip background"));
 		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 	}
 }
