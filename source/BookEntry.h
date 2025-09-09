@@ -32,7 +32,7 @@ public:
 			explicit Item(const string &text);
 			explicit Item(const Sprite *scene);
 			Item Instantiate(const map<string, string>& subs) const;
-			void SaveAsChild(DataWriter &out) const;
+			void Save(DataWriter &out) const;
 			int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
 
 
@@ -49,7 +49,7 @@ public:
 	void Add(const BookEntry &other);
 
 	// When a GameAction is triggered, substitutions are performed.
-	BookEntry Instantiate(const map<string, string> &subs);
+	BookEntry Instantiate(const map<string, string> &subs) const;
 
 	// For use within a context such as `logbook` where the dates and topics are child nodes
 	void Save(DataWriter& out, int day, int month, int year) const;

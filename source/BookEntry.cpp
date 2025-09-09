@@ -57,20 +57,16 @@ BookEntry::Item BookEntry::Item::Instantiate(const map<string, string> &subs) co
 	return Item(Format::Replace(text, subs));
 }
 
-void BookEntry::Item::SaveAsChild(DataWriter &out) const
+void BookEntry::Item::Save(DataWriter &out) const
 {
-	out.BeginChild();
+	if(scene)
+		out.Write("scene", scene->Name());
+	else
 	{
-		if(scene)
-			out.Write("scene", scene->Name());
-		else
-		{
-			// Break the text up into paragraphs.
-			for(const string &line : Format::Split(text, "\n\t"))
-				out.Write(line);
-		}
+		// Break the text up into paragraphs.
+		for(const string &line : Format::Split(text, "\n\t"))
+			out.Write(line);
 	}
-	out.EndChild();
 }
 
 int BookEntry::Item::Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const
@@ -109,10 +105,10 @@ void BookEntry::Add(const BookEntry &other)
 		items.emplace_back(item);
 }
 
-BookEntry BookEntry::Instantiate(const map<string, string> &subs)
+BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 {
 	BookEntry newEntry;
-	for(Item &item : items)
+	for(const Item &item : items)
 		newEntry.items.emplace_back(item.Instantiate(subs));
 	return newEntry;
 }
@@ -124,7 +120,11 @@ void BookEntry::Save(DataWriter &out, const int day, const int month, const int 
 	for(const Item &item : items)
 	{
 		out.Write(day, month, year);
-		item.SaveAsChild(out);
+		out.BeginChild();
+		{
+			item.Save(out);
+		}
+		out.EndChild();
 	}
 }
 
@@ -135,7 +135,11 @@ void BookEntry::Save(DataWriter &out, const string &topic, const string &heading
 	for(const Item &item : items)
 	{
 		out.Write(topic, heading);
-		item.SaveAsChild(out);
+		out.BeginChild();
+		{
+			item.Save(out);
+		}
+		out.EndChild();
 	}
 }
 
@@ -144,7 +148,7 @@ void BookEntry::Save(DataWriter &out, const string &book, const string &topic, c
 	for(const Item &item : items)
 	{
 		out.Write(book, topic, heading);
-		item.SaveAsChild(out);
+		item.Save(out);
 	}
 }
 
@@ -153,7 +157,7 @@ void BookEntry::Save(DataWriter &out, const string &book) const
 	for(const Item &item : items)
 	{
 		out.Write(book);
-		item.SaveAsChild(out);
+		item.Save(out);
 	}
 }
 

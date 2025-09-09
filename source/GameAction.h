@@ -87,8 +87,8 @@ private:
 
 private:
 	bool isEmpty = true;
-	std::vector<BookEntry> logEntries;
-	std::map<std::string, std::map<std::string, std::vector<BookEntry>>> specialLogEntries;
+	BookEntry logEntries;
+	std::map<std::string, std::map<std::string, BookEntry>> specialLogEntries;
 	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;

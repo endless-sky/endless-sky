@@ -162,12 +162,13 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		Logger::LogError("ugh: [size:" + to_string(child.Size()) + "]");
 		if(child.Size() > 1)
 		{
-			// Special log format: log <tab> <heading> <log message> (minimum of 4)
-			// Special log format with sprite: log <tab> <heading> scene <sprite> (exactly 5)
-			bool isSpecial = (child.Size() > 3);
-			vector<BookEntry> &entries = (isSpecial ? specialLogEntries[child.Token(1)][child.Token(2)] : logEntries);
-			BookEntry &entry = entries.emplace_back();
-			entry.Read(child, isSpecial ? 3 : 1);
+			// Special log format: log <topic> <heading> <log message> (minimum of 4)
+			// Special log format with sprite: log <topic> <heading> scene <sprite> (exactly 5)
+			if(child.Size() > 3)
+				specialLogEntries[child.Token(1)][child.Token(2)].Read(child, 3);
+			else
+				logEntries.Read(child, 1);
+
 		}
 		else
 			child.PrintTrace("Error: Skipping invalid log entry:");
@@ -245,12 +246,10 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 
 void GameAction::Save(DataWriter &out) const
 {
-	for(const auto &logbookEntry : logEntries)
-		logbookEntry.Save(out, "log");
-	for(auto &&it : specialLogEntries)
-		for(auto &&eit : it.second)
-			for(const auto &logbookEntry : eit.second)
-				logbookEntry.Save(out, "log", it.first, eit.first);
+	logEntries.Save(out, "log");
+	for(const auto & [topic, nextMap] : specialLogEntries)
+		for(const auto & [heading, specialLogEntry] : nextMap)
+			specialLogEntry.Save(out, "log", topic, heading);
 	for(auto &&it : specialLogClear)
 	{
 		if(it.second.empty())
@@ -374,12 +373,10 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 // Perform the specified tasks.
 void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 {
-	for(const auto &logEntry : logEntries)
-		player.AddLogEntry(logEntry);
-	for(auto &&it : specialLogEntries)
-		for(auto &&eit : it.second)
-			for(const auto &logbookEntry : eit.second)
-				player.AddSpecialLog(it.first, eit.first, logbookEntry);
+	player.AddLogEntry(logEntries);
+	for(const auto & [topic, nextMap] : specialLogEntries)
+		for(const auto & [heading, specialLogEntry] : nextMap)
+			player.AddSpecialLog(topic, heading, specialLogEntry);
 	for(auto &&it : specialLogClear)
 	{
 		if(it.second.empty())
@@ -493,12 +490,10 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.debt = debt;
 
-	for(auto logEntry : logEntries)
-		result.logEntries.emplace_back(logEntry.Instantiate(subs));
-	for(auto &&it : specialLogEntries)
-		for(auto &&eit : it.second)
-			for(auto logEntry : eit.second)
-				result.specialLogEntries[it.first][eit.first].emplace_back(logEntry.Instantiate(subs));
+	result.logEntries.Add(logEntries.Instantiate(subs));
+	for(const auto & [topic, nextMap] : specialLogEntries)
+		for(const auto & [heading, specialLogEntry] : nextMap)
+			result.specialLogEntries[topic][heading].Add(specialLogEntry.Instantiate(subs));
 	result.specialLogClear = specialLogClear;
 
 	result.fail = fail;
