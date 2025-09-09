@@ -426,13 +426,11 @@ void PlayerInfo::Load(const filesystem::path &path)
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
-					BookEntry logbookEntry;
 					for(const DataNode &great : grand)
 					{
 						Logger::LogError("\t\t\tA: great.Size():" + to_string(great.Size()) + "");
-						logbookEntry.Read(great);
+						logbook[date].Read(great);
 					}
-					logbook.emplace(date, logbookEntry);
 				}
 				else if(grand.Size() >= 2)
 				{
@@ -1931,7 +1929,7 @@ void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
 
 // TODO: move to own book class so that help can be it's own book.
 // Get the player's logbook.
-const multimap<Date, BookEntry> &PlayerInfo::Logbook() const
+const map<Date, BookEntry> &PlayerInfo::Logbook() const
 {
 	return logbook;
 }
@@ -1940,7 +1938,7 @@ const multimap<Date, BookEntry> &PlayerInfo::Logbook() const
 
 void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 {
-	logbook.emplace(date, logbookEntry);
+	logbook[date].Add(logbookEntry);
 }
 
 

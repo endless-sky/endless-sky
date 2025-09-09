@@ -87,8 +87,9 @@ int BookEntry::Item::Draw(const Point &topLeft, WrappedText &wrap, const Color &
 
 void BookEntry::Read(const DataNode &node, const int startAt)
 {
-	Logger::LogError("\t\t\t\tBookEntry.Read(): [remaining:" + to_string(node.Size() - startAt) + ", startAt:" + to_string(startAt)
-		+ ", node.Size():" + to_string(node.Size()) + ", Token(startAt):" + node.Token(startAt) + "]");
+	Logger::LogError("\t\t\t\tBookEntry.Read(): [remaining:" + to_string(node.Size() - startAt) + ", startAt:"
+		+ to_string(startAt) + ", node.Size():" + to_string(node.Size()) + ", Token(startAt):"
+		+ node.Token(startAt) + "]");
 	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
 		items.emplace_back(Item(SpriteSet::Get(node.Token(startAt + 1))));
 	else
@@ -148,7 +149,11 @@ void BookEntry::Save(DataWriter &out, const string &book, const string &topic, c
 	for(const Item &item : items)
 	{
 		out.Write(book, topic, heading);
-		item.Save(out);
+		out.BeginChild();
+		{
+			item.Save(out);
+		}
+		out.EndChild();
 	}
 }
 
@@ -157,7 +162,11 @@ void BookEntry::Save(DataWriter &out, const string &book) const
 	for(const Item &item : items)
 	{
 		out.Write(book);
-		item.Save(out);
+		out.BeginChild();
+		{
+			item.Save(out);
+		}
+		out.EndChild();
 	}
 }
 

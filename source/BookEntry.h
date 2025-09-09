@@ -52,7 +52,7 @@ public:
 	BookEntry Instantiate(const map<string, string> &subs) const;
 
 	// For use within a context such as `logbook` where the dates and topics are child nodes
-	void Save(DataWriter& out, int day, int month, int year) const;
+	void Save(DataWriter &out, int day, int month, int year) const;
 	void Save(DataWriter &out, const string &topic, const string &heading) const;
 
 	// For use within a context such as a GameAction where every line is preceded by `log`
