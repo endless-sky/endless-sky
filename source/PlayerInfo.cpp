@@ -40,7 +40,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "image/SpriteSet.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -419,31 +418,28 @@ void PlayerInfo::Load(const filesystem::path &path)
 		}
 		else if(key == "logbook")
 		{
+			Logger::LogError("logbook");
 			for(const DataNode &grand : child)
 			{
+				Logger::LogError("\tchild.Size():" + to_string(child.Size()) + "");
+				Logger::LogError("\t\tgrand.Size():" + to_string(grand.Size()) + "");
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
-					std::vector<MediaNode> &vec = logbook[date];
+					BookEntry logbookEntry;
 					for(const DataNode &great : grand)
 					{
-						if(great.Token(0) == "scene" && great.Size() == 2)
-							vec.emplace_back(SpriteSet::Get(great.Token(1)));
-						else
-							vec.emplace_back(great.Token(0));
+						Logger::LogError("\t\t\tA: great.Size():" + to_string(great.Size()) + "");
+						logbookEntry.Read(great);
 					}
+					logbook.emplace(date, logbookEntry);
 				}
 				else if(grand.Size() >= 2)
 				{
-					std::vector<MediaNode> &vec = specialLogs[grand.Token(0)][grand.Token(1)];
-
-					// Read in nodes, text or images.
 					for(const DataNode &great : grand)
 					{
-						if(great.Token(0) == "scene" && great.Size() == 2)
-							vec.emplace_back(SpriteSet::Get(great.Token(1)));
-						else
-							vec.emplace_back(great.Token(0));
+						Logger::LogError("\t\t\tB: great.Size():" + to_string(great.Size()) + "");
+						specialLogs[grand.Token(0)][grand.Token(1)].Read(great);
 					}
 				}
 			}
@@ -1935,31 +1931,30 @@ void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
 
 // TODO: move to own book class so that help can be it's own book.
 // Get the player's logbook.
-const map<Date, vector<MediaNode>> &PlayerInfo::Logbook() const
+const multimap<Date, BookEntry> &PlayerInfo::Logbook() const
 {
 	return logbook;
 }
 
 
 
-void PlayerInfo::AddLogEntry(const vector<MediaNode> mediaVec)
+void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 {
-	logbook.emplace(date, mediaVec);
+	logbook.emplace(date, logbookEntry);
 }
 
 
 
-const map<string, map<string, vector<MediaNode>>> &PlayerInfo::SpecialLogs()
+const map<string, map<string, BookEntry>> &PlayerInfo::SpecialLogs()
 {
 	return specialLogs;
 }
 
 
 
-void PlayerInfo::AddSpecialLog(const string &type, const string &name, const vector<MediaNode> mediaVec)
+void PlayerInfo::AddSpecialLog(const string &type, const string &name, const BookEntry &logbookEntry)
 {
-	for(const auto &it : mediaVec)
-		specialLogs[type][name].push_back(it);
+	specialLogs[type][name].Add(logbookEntry);
 }
 
 
@@ -4646,30 +4641,14 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.Write("logbook");
 	out.BeginChild();
 	{
-		for(auto &&it : logbook)
+		for(const auto & [date, entry] : logbook)
 		{
-			out.Write(it.first.Day(), it.first.Month(), it.first.Year());
-			out.BeginChild();
-			{
-				for(const auto &media : it.second)
-				{
-					media.Write(out);
-				}
-			}
-			out.EndChild();
+			entry.Save(out, date.Day(), date.Month(), date.Year());
 		}
-		for(auto &&it : specialLogs)
-			for(auto &&eit : it.second)
+		for(const auto &[page, nextMap] : specialLogs)
+			for(const auto &[heading, entry] : nextMap)
 			{
-				out.Write(it.first, eit.first);
-				out.BeginChild();
-				{
-					for(const auto &media : eit.second)
-					{
-						media.Write(out);
-					}
-				}
-				out.EndChild();
+				entry.Save(out, page, heading);
 			}
 	}
 	out.EndChild();

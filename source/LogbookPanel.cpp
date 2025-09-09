@@ -26,14 +26,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "shader/SpriteShader.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
 #include <set>
+
+#include "Logger.h"
 
 using namespace std;
 
@@ -121,40 +121,42 @@ void LogbookPanel::Draw()
 
 	maxCategoryScroll = max(0., maxCategoryScroll + pos.Y() - Screen::Bottom());
 
+	// Parameters for drawing the main text:
+	WrappedText wrap(font);
+	wrap.SetAlignment(Alignment::JUSTIFIED);
+	wrap.SetWrapWidth(TEXT_WIDTH - 2. * PAD);
+
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
+	// Logger::LogError("-: LogbookPanel.Draw(): pos.Y():" + to_string(pos.Y()));
 
 	// Branch based on whether this is an ordinary log month or a special page.
 	auto pit = player.SpecialLogs().find(selectedName);
 	if(selectedDate && begin != end)
 	{
 		const auto layout = Layout(static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT);
-		for(auto it = begin; it != end; ++it)
+		for(auto datedEntry = begin; datedEntry != end; ++datedEntry)
 		{
-			string date = it->first.ToString();
+			string date = datedEntry->first.ToString();
 			font.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
 			pos.Y() += LINE_HEIGHT;
 
-			for(auto &media : it->second)
-			{
-				pos.Y() += media.Draw(pos, font, Alignment::JUSTIFIED, TEXT_WIDTH - 2. * PAD, medium);
-			}
+			pos.Y() += datedEntry->second.Draw(pos, wrap, medium);
 			pos.Y() += GAP;
+			// Logger::LogError("\tA: LogbookPanel.Draw(): pos.Y():" + to_string(pos.Y()));
 		}
 	}
 	else if(!selectedDate && pit != player.SpecialLogs().end())
 	{
-		for(auto &it : pit->second)
+		for(const auto &[heading, entry] : pit->second)
 		{
-			// Draw heading
-			font.Draw(it.first, pos + textOffset, bright);
+			font.Draw(heading, pos + textOffset, bright);
 			pos.Y() += LINE_HEIGHT;
 
-			for(auto &media : it.second)
-			{
-				pos.Y() += media.Draw(pos, font, Alignment::JUSTIFIED, TEXT_WIDTH - 2. * PAD, medium);
-			}
+			pos.Y() += entry.Draw(pos, wrap, medium);
 			pos.Y() += GAP;
+
+			// Logger::LogError("\tB: LogbookPanel.Draw(): pos.Y():" + to_string(pos.Y()));
 		}
 	}
 

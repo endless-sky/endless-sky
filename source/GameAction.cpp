@@ -28,11 +28,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
-#include "image/SpriteSet.h"
 #include "System.h"
 #include "UI.h"
 
 #include <cstdlib>
+
+#include "Logger.h"
 
 using namespace std;
 
@@ -158,26 +159,18 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	}
 	else if(key == "log")
 	{
-		// Special log format: log <tab> <heading> <log message> (minimum of 4)
-		// Special log format with sprite: log <tab> <heading> scene <sprite> (exactly 5)
-		bool isSpecial = (child.Size() > 3);
-
-		// Log message formats with sprites:, exactly 3 or 5 arguments, with scene as second to last.
-		//  - log scene <sprite>
-		//  - log <tab> <heading> scene <sprite>
-		bool isScene = ((child.Size() == 3 || child.Size() == 5) && child.Token(child.Size() - 2) == "scene");
-
-		auto &vec = (isSpecial ?
-			specialLogMedia[child.Token(1)][child.Token(2)] : logMedia);
-
-		if(isScene)
-			vec.emplace_back(SpriteSet::Get(isSpecial ? child.Token(4) : child.Token(2)));
-		else
+		Logger::LogError("ugh: [size:" + to_string(child.Size()) + "]");
+		if(child.Size() > 1)
 		{
-			string text;
-			Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
-			vec.emplace_back(text);
+			// Special log format: log <tab> <heading> <log message> (minimum of 4)
+			// Special log format with sprite: log <tab> <heading> scene <sprite> (exactly 5)
+			bool isSpecial = (child.Size() > 3);
+			vector<BookEntry> &entries = (isSpecial ? specialLogEntries[child.Token(1)][child.Token(2)] : logEntries);
+			BookEntry &entry = entries.emplace_back();
+			entry.Read(child, isSpecial ? 3 : 1);
 		}
+		else
+			child.PrintTrace("Error: Skipping invalid log entry:");
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
@@ -252,26 +245,12 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 
 void GameAction::Save(DataWriter &out) const
 {
-	for(const auto &media : logMedia)
-	{
-		out.Write("log");
-		out.BeginChild();
-		media.Write(out);
-		out.EndChild();
-	}
-	for(auto &&it : specialLogMedia)
-	{
+	for(const auto &logbookEntry : logEntries)
+		logbookEntry.Save(out, "log");
+	for(auto &&it : specialLogEntries)
 		for(auto &&eit : it.second)
-		{
-			for(const auto &media : eit.second)
-			{
-				out.Write("log", it.first, eit.first);
-				out.BeginChild();
-				media.Write(out);
-				out.EndChild();
-			}
-		}
-	}
+			for(const auto &logbookEntry : eit.second)
+				logbookEntry.Save(out, "log", it.first, eit.first);
 	for(auto &&it : specialLogClear)
 	{
 		if(it.second.empty())
@@ -395,11 +374,12 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 // Perform the specified tasks.
 void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 {
-	if(!logMedia.empty())
-		player.AddLogEntry(logMedia);
-	for(auto &&it : specialLogMedia)
+	for(const auto &logEntry : logEntries)
+		player.AddLogEntry(logEntry);
+	for(auto &&it : specialLogEntries)
 		for(auto &&eit : it.second)
-			player.AddSpecialLog(it.first, eit.first, eit.second);
+			for(const auto &logbookEntry : eit.second)
+				player.AddSpecialLog(it.first, eit.first, logbookEntry);
 	for(auto &&it : specialLogClear)
 	{
 		if(it.second.empty())
@@ -513,14 +493,12 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.debt = debt;
 
-	result.logMedia = logMedia;
-	for(auto &media : result.logMedia)
-		media.FormatReplace(subs);
-	result.specialLogMedia = specialLogMedia;
-	for(auto &&it : result.specialLogMedia)
+	for(auto logEntry : logEntries)
+		result.logEntries.emplace_back(logEntry.Instantiate(subs));
+	for(auto &&it : specialLogEntries)
 		for(auto &&eit : it.second)
-			for(auto &media : eit.second)
-				media.FormatReplace(subs);
+			for(auto logEntry : eit.second)
+				result.specialLogEntries[it.first][eit.first].emplace_back(logEntry.Instantiate(subs));
 	result.specialLogClear = specialLogClear;
 
 	result.fail = fail;

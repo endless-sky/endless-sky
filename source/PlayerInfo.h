@@ -213,10 +213,11 @@ public:
 	void AddPlayTime(std::chrono::nanoseconds timeVal);
 
 	// Get the player's logbook.
-	const map<Date, vector<MediaNode>> &Logbook() const;
-	void AddLogEntry(const vector<MediaNode> mediaVec);
-	const std::map<std::string, std::map<std::string, std::vector<MediaNode>>> &SpecialLogs();
-	void AddSpecialLog(const std::string &type, const std::string &name, vector<MediaNode> mediaVec);
+	const std::multimap<Date, BookEntry> &Logbook() const;
+	void AddLogEntry(const BookEntry &logbookEntry);
+	// Special logs are organized by topic (type) and heading (name)
+	const std::map<std::string, std::map<std::string, BookEntry>> &SpecialLogs();
+	void AddSpecialLog(const std::string &type, const std::string &name, const BookEntry &logbookEntry);
 	void RemoveSpecialLog(const std::string &type, const std::string &name);
 	void RemoveSpecialLog(const std::string &type);
 	bool HasLogs() const;
@@ -438,8 +439,8 @@ private:
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
 
-	std::map<Date, std::vector<MediaNode>> logbook;
-	std::map<std::string, std::map<std::string, std::vector<MediaNode>>> specialLogs;
+	std::multimap<Date, BookEntry> logbook;
+	std::map<std::string, std::map<std::string, BookEntry>> specialLogs;
 
 	// A list of the player's active, accepted missions.
 	std::list<Mission> missions;

@@ -1,4 +1,4 @@
-/* LogbookEntry.h
+/* BookEntry.h
 Copyright (c) 2025 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 
-
 using namespace std;
 
 // Implement a collection of text and image nodes which form a singular Logbook entry
@@ -32,7 +31,11 @@ public:
 		public:
 			explicit Item(const string &text);
 			explicit Item(const Sprite *scene);
-			void Save(DataWriter &out) const;
+			Item Instantiate(const map<string, string>& subs) const;
+			void SaveAsChild(DataWriter &out) const;
+			int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
+
+
 		private:
 			const Sprite *scene = nullptr;
 			string text;
@@ -42,12 +45,22 @@ public:
 public:
 	BookEntry();
 
-	void AddItem(Item &item);
+	void Read(const DataNode &node, int startAt = 0);
+	void Add(const BookEntry &other);
 
-	void Save(DataWriter &out) const;
-	void Instantiate(map<string, string> &subs);
+	// When a GameAction is triggered, substitutions are performed.
+	BookEntry Instantiate(const map<string, string> &subs);
+
+	// For use within a context such as `logbook` where the dates and topics are child nodes
+	void Save(DataWriter& out, int day, int month, int year) const;
+	void Save(DataWriter &out, const string &topic, const string &heading) const;
+
+	// For use within a context such as a GameAction where every line is preceded by `log`
+	void Save(DataWriter &out, const string &book, const string &topic, const string &heading) const;
+	void Save(DataWriter &out, const string &book) const;
+
 	// Returns height.
-	int Draw(const Point &topLeft, const Font &font, Alignment alignment, int width, const Color &color) const;
+	int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
 
-	vector<Item> &items;
+	vector<Item> items;
 };

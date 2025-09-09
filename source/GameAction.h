@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "BookEntry.h"
 #include "ConditionAssignments.h"
-#include "MediaNode.h"
 #include "ShipManager.h"
 
 #include <map>
@@ -87,8 +87,8 @@ private:
 
 private:
 	bool isEmpty = true;
-	std::vector<MediaNode> logMedia;
-	std::map<std::string, std::map<std::string, std::vector<MediaNode>>> specialLogMedia;
+	std::vector<BookEntry> logEntries;
+	std::map<std::string, std::map<std::string, std::vector<BookEntry>>> specialLogEntries;
 	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
