@@ -336,8 +336,10 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 
 
 
-bool Dialog::Click(int x, int y, int clicks)
+bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	Point clickPos(x, y);
 
 	const Sprite *sprite = SpriteSet::Get("ui/dialog cancel");

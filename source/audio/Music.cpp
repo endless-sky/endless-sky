@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Music.h"
 
 #include "../Files.h"
+#include "supplier/FlacSupplier.h"
 #include "../text/Format.h"
 #include "supplier/Mp3Supplier.h"
 
@@ -25,7 +26,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	map<string, filesystem::path> paths;
+	enum class MusicFileType {
+		MP3, FLAC
+	};
+
+	map<string, pair<filesystem::path, MusicFileType>> paths;
 }
 
 
@@ -40,12 +45,12 @@ void Music::Init(const vector<filesystem::path> &sources)
 
 		for(const auto &path : files)
 		{
-			// Sanity check on the path length.
-			if(Format::LowerCase(path.extension().string()) != ".mp3")
-				continue;
-
 			string name = (path.parent_path() / path.stem()).lexically_relative(root).generic_string();
-			paths[name] = path;
+			string extension = Format::LowerCase(path.extension().string());
+			if(extension == ".mp3")
+				paths[name] = {path, MusicFileType::MP3};
+			else if(extension == ".flac")
+				paths[name] = {path, MusicFileType::FLAC};
 		}
 	}
 }
@@ -55,7 +60,14 @@ void Music::Init(const vector<filesystem::path> &sources)
 unique_ptr<AudioSupplier> Music::CreateSupplier(const string &name, bool looping)
 {
 	if(paths.contains(name))
-		return unique_ptr<AudioSupplier>{
-			new Mp3Supplier{Files::Open(paths[name]), looping}};
+		switch(paths[name].second)
+		{
+			case MusicFileType::MP3:
+				return unique_ptr<AudioSupplier>{
+					new Mp3Supplier{Files::Open(paths[name].first), looping}};
+			case MusicFileType::FLAC:
+				return unique_ptr<AudioSupplier>{
+					new FlacSupplier{Files::Open(paths[name].first), looping}};
+		}
 	return {};
 }

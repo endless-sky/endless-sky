@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-template <class T>
+template<class T>
 class ByUUID {
 public:
 	// Comparator for collections of shared_ptr<T>
