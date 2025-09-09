@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Angle;
 class AsteroidField;
 class Body;
+class ConditionsStore;
 class Flotsam;
 class Government;
 class Minable;
@@ -54,7 +55,7 @@ public:
 	template<class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(const PlayerInfo &player, const List<Ship> &ships,
+	AI(PlayerInfo &player, const List<Ship> &ships,
 			const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
@@ -210,6 +211,11 @@ private:
 	// Functions to classify ships based on government and system.
 	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
 	void CacheShipLists();
+
+	/// Register autoconditions that use the current AI state (ships in the system, strengths, etc.)
+	/// These conditions may be a frame behind, depending on where the conditions are queried from,
+	/// but that shouldn't really matter.
+	void RegisterDerivedConditions(ConditionsStore &conditions);
 
 
 private:
