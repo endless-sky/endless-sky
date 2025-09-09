@@ -33,8 +33,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdlib>
 
-#include "Logger.h"
-
 using namespace std;
 
 namespace {
@@ -159,7 +157,6 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	}
 	else if(key == "log")
 	{
-		Logger::LogError("ugh: [size:" + to_string(child.Size()) + "]");
 		if(child.Size() > 1)
 		{
 			// Special log format: log <topic> <heading> <log message> (minimum of 4)

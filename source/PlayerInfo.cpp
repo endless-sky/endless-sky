@@ -418,17 +418,13 @@ void PlayerInfo::Load(const filesystem::path &path)
 		}
 		else if(key == "logbook")
 		{
-			Logger::LogError("logbook");
 			for(const DataNode &grand : child)
 			{
-				Logger::LogError("\tchild.Size():" + to_string(child.Size()) + "");
-				Logger::LogError("\t\tgrand.Size():" + to_string(grand.Size()) + "");
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
 					for(const DataNode &great : grand)
 					{
-						Logger::LogError("\t\t\tA: great.Size():" + to_string(great.Size()) + "");
 						logbook[date].Read(great);
 					}
 				}
@@ -436,7 +432,6 @@ void PlayerInfo::Load(const filesystem::path &path)
 				{
 					for(const DataNode &great : grand)
 					{
-						Logger::LogError("\t\t\tB: great.Size():" + to_string(great.Size()) + "");
 						specialLogs[grand.Token(0)][grand.Token(1)].Read(great);
 					}
 				}

@@ -22,9 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 
-
-#include "Logger.h"
-
 using namespace std;
 
 // Note: A BookEntry exists potentially in advance of having taken effect and being placed into
@@ -39,14 +36,12 @@ BookEntry::BookEntry()
 BookEntry::Item::Item(const string &text)
 	: text(text)
 {
-	Logger::LogError("\t\t\t\t\tnew Item, text: " + text);
 }
 
 // Image constructor.
 BookEntry::Item::Item(const Sprite *scene)
 	: scene(scene)
 {
-	Logger::LogError("\t\t\t\t\tnew Item, scene->Name(): " + scene->Name());
 }
 
 BookEntry::Item BookEntry::Item::Instantiate(const map<string, string> &subs) const
@@ -87,9 +82,6 @@ int BookEntry::Item::Draw(const Point &topLeft, WrappedText &wrap, const Color &
 
 void BookEntry::Read(const DataNode &node, const int startAt)
 {
-	Logger::LogError("\t\t\t\tBookEntry.Read(): [remaining:" + to_string(node.Size() - startAt) + ", startAt:"
-		+ to_string(startAt) + ", node.Size():" + to_string(node.Size()) + ", Token(startAt):"
-		+ node.Token(startAt) + "]");
 	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
 		items.emplace_back(Item(SpriteSet::Get(node.Token(startAt + 1))));
 	else
@@ -174,13 +166,10 @@ int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color)
 {
 	// offset will track the total height
 	Point offset = Point();
-	// Logger::LogError("\t\tEntry.Draw(): topLeft.Y() + offset.Y():" + to_string(topLeft.Y() + offset.Y()));
 	for(auto &item : items)
 	{
 		int y = item.Draw(topLeft + offset, wrap, color);
-		// Logger::LogError("\t\t\tItem.Draw() returned:" + to_string(y));
 		offset.Y() += y;
 	}
-	// Logger::LogError("\t\tEntry.Draw(): offset.Y():" + to_string(offset.Y()));
 	return offset.Y();
 }

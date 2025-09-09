@@ -128,7 +128,6 @@ void LogbookPanel::Draw()
 
 	// Draw the main text.
 	pos = Screen::TopLeft() + Point(SIDEBAR_WIDTH + PAD, PAD + .5 * (LINE_HEIGHT - font.Height()) - scroll);
-	// Logger::LogError("-: LogbookPanel.Draw(): pos.Y():" + to_string(pos.Y()));
 
 	// Branch based on whether this is an ordinary log month or a special page.
 	auto pit = player.SpecialLogs().find(selectedName);
@@ -143,7 +142,6 @@ void LogbookPanel::Draw()
 
 			pos.Y() += datedEntry->second.Draw(pos, wrap, medium);
 			pos.Y() += GAP;
-			// Logger::LogError("\tA: LogbookPanel.Draw(): pos.Y():" + to_string(pos.Y()));
 		}
 	}
 	else if(!selectedDate && pit != player.SpecialLogs().end())
@@ -155,8 +153,6 @@ void LogbookPanel::Draw()
 
 			pos.Y() += entry.Draw(pos, wrap, medium);
 			pos.Y() += GAP;
-
-			// Logger::LogError("\tB: LogbookPanel.Draw(): pos.Y():" + to_string(pos.Y()));
 		}
 	}
 
