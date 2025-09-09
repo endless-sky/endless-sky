@@ -1,4 +1,4 @@
-/* MediaNode.h
+/* LogbookEntry.h
 Copyright (c) 2025 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -25,19 +25,29 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-// Implement a node that is an image (if specified) or else text (if no image).
-class MediaNode {
+// Implement a collection of text and image nodes which form a singular Logbook entry
+class BookEntry {
 public:
-	explicit MediaNode(const string &text);
-	explicit MediaNode(const Sprite *scene);
+	class Item {
+		public:
+			explicit Item(const string &text);
+			explicit Item(const Sprite *scene);
+			void Save(DataWriter &out) const;
+		private:
+			const Sprite *scene = nullptr;
+			string text;
+	};
 
-	void Write(DataWriter &out) const;
-	void FormatReplace(map<string, string> &subs);
+
+public:
+	BookEntry();
+
+	void AddItem(Item &item);
+
+	void Save(DataWriter &out) const;
+	void Instantiate(map<string, string> &subs);
 	// Returns height.
 	int Draw(const Point &topLeft, const Font &font, Alignment alignment, int width, const Color &color) const;
 
-
-private:
-	const Sprite *scene = nullptr;
-	string text;
+	vector<Item> &items;
 };

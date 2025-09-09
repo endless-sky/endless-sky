@@ -22,12 +22,35 @@ mission "Intro [0]"
 		not "hai space start"
 	
 	on offer
+		log scene "scene/engine"
+		log scene "scene/engine"
+		log "TEST"
 		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
+		log "Factions" "Republic" scene "thumbnail/gunboat"
 		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
 			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
+		log "Factions" "Syndicate" scene "thumbnail/protector"
 		log "Factions" "Syndicate" `The Syndicate is a megacorporation, the largest employer in human space. People who cannot find steady work elsewhere flock to the Syndicate factory worlds, where they are almost guaranteed to find a job. Although the Syndicate is technically part of the Republic, Syndicate worlds are governed directly by the corporation.`
 			`The Syndicate is a central part of the Republic's economy, but they are also well known for selling shoddy products and for doing damage to the environment on the worlds they control. Their treatment of workers is questionable, and their opposition to organized labor is legendary. Some Syndicate factory towns have even been accused of human rights abuses.`
+		log "Factions" "Pirates" scene "thumbnail/pirate valkyrie"
 		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
+			`more pirate words`
+			`more pirate words 2`
+			scene "thumbnail/modified argosy"
+			one
+		log "Factions" "Pirates" 
+			scene "thumbnail/modified argosy"
+		log two
+		log "Factions" "Pirates" scene "thumbnail/modified argosy"
+		log "Factions" "Pirates" three
+		log "Factions Pirates scene thumbnail/modified argosy"
+		log "four"
+		log scene "scene/engine2"
+		log "Examples" "magnetar" scene "star/magnetar"
+		log "Examples" "warning" scene "ui/warning"
+		log "Examples" "error" scene "ui/error"
+		log "Factions" "Pirates" scene "ship/modified argosy"
+		log "Factions" "Pirates" scene "thumbnail/mleviathanw"
 		conversation
 			`With some trepidation, you give the shipyard owner your money and take your new ship for a test drive, piloting it out of the shipyard and onto a spare landing pad by the spaceport. Then you get out and look the ship over a bit more closely. You are busy polishing out a few rust spots with a piece of steel wool when an old man in grease-stained coveralls walks up.`
 			`	"Nothing quite like buying your very first starship," he says.`
@@ -87,6 +110,53 @@ mission "Intro [0]"
 			`	Then he adds, "If you're okay with giving me a lift for a while longer, sell off any of that cargo you bought and then meet me in the spaceport. I'll see if I can rustle up any interesting work for you to do."`
 			``
 			`	(Click the "Spaceport" button to continue this mission.)`
+
+
+
+mission "First Contact: Rulei - testing"
+	invisible
+	landing
+	to complete
+		never
+	on offer
+		fail "Ira Contact"
+	on enter "Menkent"
+		fail
+		log "testing normal log game action in save file"
+		log "Factions" "Rulei" `The Rulei were likely an ancient, technologically advanced civilization from long ago, but the only things that remain of them are a single strange ship and two scarred planets.`
+			`They communicate through some sort of invasive psionic ability, speaking in a thousand voices all at once. Prolonged contact seems unhealthy.`
+		conversation
+			`Moments after entering the system, you are overwhelmed by an intense sense of emptiness. As you attempt to comprehend this feeling, you begin hearing whispers from behind.`
+			choice
+				`	(Turn around slowly.)`
+				`	(Pull out my sidearm and turn quickly.)`
+			`	You turn around, but nothing is there besides the familiar internals of your ship. The whispers remain behind your head, like an itch that can't be reached. The whispers are in a completely foreign language that you can't even begin to understand. As you keep looking around, you begin hearing more and more murmuring. There feels to be hundreds of distinct voices tugging your mind in every direction at once now, overloading your senses. Just as you think you can't take anymore, everything falls completely silent.`
+			choice
+				`	"Hello?"`
+				`	"Is there someone there?"`
+				`	"Show yourself!"`
+			scene "scene/rulei"
+			`	"Human."`
+			`	An image suddenly flashes in your head as you feel millions of eyes staring at you from beyond the boundaries of space. Looking around again, you see a strange-looking spacecraft a bit off into the distance in front of you facing your direction. The voices continue to surround your mind with only slightly reduced intensity.`
+			choice
+				`	"Who are you?"`
+				`	"Where am I?"`
+					goto where
+			`	Numerous voices start up, but rather than becoming louder, they go back and forth in your head, as though they are having a discussion. After a few seconds, they fall silent, then speak a single word in a cacophonous unison.`
+			`	"Precursors."`
+			choice
+				`	"What is this place?"`
+				`	"Precursors of what?"`
+			label where
+			`	The whispers start to pick up with renewed strength. The swirl of endless vocals assaults your head, each moment more agonizing than the last. Finally, they cease, and you are left in silence.`
+			`	"An End."`
+			choice
+				`	"An end to what?"`
+				`	"What do you mean by that?"`
+			`	The voices resume, but you sense a newfound dreariness in their tone. You try once again to communicate with the ship, but despite constant whispering in the background, it no longer answers.`
+			`	Taking another look at the vessel, it seems to have some sort of advanced origin. Eerie star-like patterns flow on its surface, and it doesn't visibly have any standard means of propulsion. At the rear end is some type of floating ring of objects that rotate in a peculiar manner.`
+			`	The planets in this system seem to have an abnormal appearance similar to that of the starship, but for some reason even looking at them gives you a headache. Something unusual must have happened here a long time ago.`
+				decline
 
 
 

@@ -1,4 +1,4 @@
-/* MediaNode.cpp
+/* LogbookEntry.cpp
 Copyright (c) 2025 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "MediaNode.h"
+#include "BookEntry.h"
 
 #include "DataWriter.h"
 #include "text/Format.h"
@@ -21,23 +21,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+BookEntry::BookEntry()
+{
+}
+
 // Text constructor.
-MediaNode::MediaNode(const string &text)
+BookEntry::Item::Item(const string &text)
 	: text(text)
 {
 }
 
-
-
 // Image constructor.
-MediaNode::MediaNode(const Sprite *scene)
+BookEntry::Item::Item(const Sprite *scene)
 	: scene(scene)
 {
 }
 
-
-
-void MediaNode::Write(DataWriter &out) const
+void BookEntry::Item::Save(DataWriter &out) const
 {
 	if(scene)
 		out.Write("scene", scene->Name());
@@ -49,9 +49,12 @@ void MediaNode::Write(DataWriter &out) const
 	}
 }
 
+void BookEntry::AddItem(Item &item)
+{
+	items.emplace(item);
+}
 
-
-void MediaNode::FormatReplace(map<string, string> &subs)
+void BookEntry::FormatReplace(map<string, string> &subs)
 {
 	// Perform requested substitutions on the text of this node.
 	if(!text.empty())
@@ -60,7 +63,7 @@ void MediaNode::FormatReplace(map<string, string> &subs)
 
 
 
-int MediaNode::Draw(const Point &topLeft, const Font &font, Alignment alignment, int width, const Color &color) const
+int BookEntry::Draw(const Point &topLeft, const Font &font, Alignment alignment, int width, const Color &color) const
 {
 	if(scene)
 	{
