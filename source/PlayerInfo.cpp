@@ -1890,15 +1890,14 @@ void PlayerInfo::PoolCargo()
 
 const CargoHold &PlayerInfo::DistributeCargo()
 {
+	desiredCrew = flagship->Crew();
+	flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - desiredCrew);
+
 	// First, try to transfer to the flagship depending on the priority preference.
 	Preferences::FlagshipSpacePriority prioritySetting = Preferences::GetFlagshipSpacePriority();
 	if(prioritySetting == Preferences::FlagshipSpacePriority::PASSENGERS)
-	{
-		desiredCrew = flagship->Crew();
-		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - desiredCrew);
 		for(const auto &it : cargo.PassengerList())
 			cargo.TransferPassengers(it.first, it.second, flagship->Cargo());
-	}
 	else if(prioritySetting != Preferences::FlagshipSpacePriority::NONE)
 		cargo.TransferAll(flagship->Cargo(), prioritySetting == Preferences::FlagshipSpacePriority::BOTH);
 
