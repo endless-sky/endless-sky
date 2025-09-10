@@ -1,5 +1,5 @@
-/* Mp3Supplier.h
-Copyright (c) 2025 by tibetiroka
+/* TimerResolutionGuard.h
+Copyright (c) 2025 by TomGoodIdea
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,17 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "AsyncAudioSupplier.h"
 
 
-
-/// Streams audio from an MP3 file.
-class Mp3Supplier : public AsyncAudioSupplier {
+// A RAII class requesting increased timer precision on Windows
+// and withdrawing the request when it's no longer needed.
+class TimerResolutionGuard {
 public:
-	explicit Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping = false);
-
-
-private:
-	/// This is the entry point for the decoding thread.
-	void Decode() override;
+	TimerResolutionGuard();
+	~TimerResolutionGuard();
 };
