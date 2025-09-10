@@ -15,11 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <map>
 #include <string>
+#include <vector>
 
+class DataNode;
 class Color;
 class DataWriter;
 class Sprite;
+class Point;
 class WrappedText;
 
 
@@ -33,7 +37,7 @@ public:
 	public:
 		explicit Item(const std::string &text);
 		explicit Item(const Sprite *scene);
-			
+
 		Item Instantiate(const std::map<std::string, std::string> &subs) const;
 		void Save(DataWriter &out) const;
 		int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
