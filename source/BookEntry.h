@@ -15,31 +15,33 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Color.h"
-#include "DataWriter.h"
-#include "image/Sprite.h"
-#include "text/WrappedText.h"
-
 #include <string>
 
-using namespace std;
+class Color;
+class DataWriter;
+class Sprite;
+class WrappedText;
+
 
 // Implement a collection of text and image nodes which form a singular Logbook entry
 class BookEntry {
 public:
 	class Item {
-		public:
-			explicit Item(const string &text);
-			explicit Item(const Sprite *scene);
-			static Item Read(const DataNode &node, int startAt = 0);
-			Item Instantiate(const map<string, string> &subs) const;
-			void Save(DataWriter &out) const;
-			int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
-			bool Empty() const;
+	public:
+		static Item Read(const DataNode &node, int startAt = 0);
 
-		private:
-			const Sprite *scene = nullptr;
-			string text;
+	public:
+		explicit Item(const std::string &text);
+		explicit Item(const Sprite *scene);
+			
+		Item Instantiate(const std::map<std::string, std::string> &subs) const;
+		void Save(DataWriter &out) const;
+		int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
+		bool Empty() const;
+
+	private:
+		const Sprite *scene = nullptr;
+		std::string text;
 	};
 
 
@@ -52,12 +54,14 @@ public:
 	void Add(const BookEntry &other);
 
 	// When a GameAction is triggered, substitutions are performed.
-	BookEntry Instantiate(const map<string, string> &subs) const;
+	BookEntry Instantiate(const std::map<std::string, std::string> &subs) const;
 
 	void Save(DataWriter &out) const;
 
 	// Returns height.
 	int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
 
-	vector<Item> items;
+
+public:
+	std::vector<Item> items;
 };

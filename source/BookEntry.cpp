@@ -17,12 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Dialog.h"
 #include "text/Format.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 
 using namespace std;
+
+
 
 // Note: A BookEntry exists potentially in advance of having taken effect and being placed into
 // the logbook, e.g. when it exists as merely a potential outcome of a given GameAction.
@@ -50,12 +51,11 @@ BookEntry::Item::Item(const Sprite *scene)
 
 
 
-BookEntry::Item BookEntry::Item::Read(const DataNode &node, const int startAt)
+BookEntry::Item BookEntry::Item::Read(const DataNode &node, int startAt)
 {
 	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
 		return Item(SpriteSet::Get(node.Token(startAt + 1)));
 
-	// else
 	string text;
 	for(int i = startAt; i < node.Size(); ++i)
 	{
@@ -101,7 +101,6 @@ int BookEntry::Item::Draw(const Point &topLeft, WrappedText &wrap, const Color &
 		return scene->Height();
 	}
 
-	// else
 	wrap.Wrap(text);
 	wrap.Draw(topLeft, color);
 	return wrap.Height();
@@ -128,7 +127,7 @@ bool BookEntry::Empty() const
 
 
 
-void BookEntry::Append(const Item& item)
+void BookEntry::Append(const Item &item)
 {
 	if(!item.Empty())
 		items.emplace_back(item);
@@ -136,7 +135,7 @@ void BookEntry::Append(const Item& item)
 
 
 
-void BookEntry::Read(const DataNode &node, const int startAt)
+void BookEntry::Read(const DataNode &node, int startAt)
 {
 	// Note: Like Dialog::ParseTextNode, BookEntry::Read will consume all remaining Tokens of this node
 	// as well as all remaining tokens of the children of this node.
@@ -187,7 +186,7 @@ void BookEntry::Save(DataWriter &out) const
 int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const
 {
 	// offset will track the total height
-	Point offset = Point();
+	Point offset;
 	for(auto &item : items)
 	{
 		int y = item.Draw(topLeft + offset, wrap, color);

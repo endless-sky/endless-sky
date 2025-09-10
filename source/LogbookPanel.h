@@ -26,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class PlayerInfo;
 
+
+
 // User interface panel that displays a conversation, allowing you to make
 // choices. If a callback function is given, that function will be called when
 // the panel closes, to report the outcome of the conversation.
