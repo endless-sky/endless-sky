@@ -32,17 +32,41 @@ BookEntry::BookEntry()
 {
 }
 
+
+
 // Text constructor.
 BookEntry::Item::Item(const string &text)
 	: text(text)
 {
 }
 
+
+
 // Image constructor.
 BookEntry::Item::Item(const Sprite *scene)
 	: scene(scene)
 {
 }
+
+
+
+BookEntry::Item BookEntry::Item::Read(const DataNode &node, const int startAt)
+{
+	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
+		return Item(SpriteSet::Get(node.Token(startAt + 1)));
+
+	// else
+	string text;
+	for(int i = startAt; i < node.Size(); ++i)
+	{
+		if(!text.empty())
+			text += "\n\t";
+		text += node.Token(i);
+	}
+	return Item(text);
+};
+
+
 
 BookEntry::Item BookEntry::Item::Instantiate(const map<string, string> &subs) const
 {
@@ -51,6 +75,8 @@ BookEntry::Item BookEntry::Item::Instantiate(const map<string, string> &subs) co
 		return Item(scene);
 	return Item(Format::Replace(text, subs));
 }
+
+
 
 void BookEntry::Item::Save(DataWriter &out) const
 {
@@ -64,6 +90,8 @@ void BookEntry::Item::Save(DataWriter &out) const
 	}
 }
 
+
+
 int BookEntry::Item::Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const
 {
 	if(scene)
@@ -72,47 +100,80 @@ int BookEntry::Item::Draw(const Point &topLeft, WrappedText &wrap, const Color &
 		SpriteShader::Draw(scene, topLeft + offset);
 		return scene->Height();
 	}
-	else
-	{
-		wrap.Wrap(text);
-		wrap.Draw(topLeft, color);
-		return wrap.Height();
-	}
+
+	// else
+	wrap.Wrap(text);
+	wrap.Draw(topLeft, color);
+	return wrap.Height();
 }
+
+
+
+bool BookEntry::Item::Empty() const
+{
+	return !scene && text.empty();
+}
+
+
+
+bool BookEntry::Empty() const
+{
+	if(items.empty())
+		return true;
+	for(const Item &item : items)
+		if(!item.Empty())
+			return false;
+	return true;
+}
+
+
+
+void BookEntry::Append(const Item& item)
+{
+	if(!item.Empty())
+		items.emplace_back(item);
+}
+
+
 
 void BookEntry::Read(const DataNode &node, const int startAt)
 {
-	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
-		items.emplace_back(Item(SpriteSet::Get(node.Token(startAt + 1))));
-	else
-	{
-		string text;
-		Dialog::ParseTextNode(node, startAt, text);
-		items.emplace_back(Item(text));
-	}
+	// Note: Like Dialog::ParseTextNode, BookEntry::Read will consume all remaining Tokens of this node
+	// as well as all remaining tokens of the children of this node.
+
+	// First, consume the rest of this first node:
+	if(startAt <= node.Size())
+		Append(Item::Read(node, startAt));
+
+	// Then continue with its child nodes:
+	for(const DataNode &child : node)
+		Append(Item::Read(child));
 }
+
+
 
 void BookEntry::Add(const BookEntry &other)
 {
 	for(const Item &item : other.items)
-		items.emplace_back(item);
+		Append(item);
 }
+
+
 
 BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 {
 	BookEntry newEntry;
 	for(const Item &item : items)
-		newEntry.items.emplace_back(item.Instantiate(subs));
+		newEntry.Append(item.Instantiate(subs));
 	return newEntry;
 }
 
-void BookEntry::Save(DataWriter &out, const int day, const int month, const int year) const
+
+
+void BookEntry::Save(DataWriter &out) const
 {
-	// Note: in order to properly read sprites back in, we must repeat the day/month/year to distinguish
-	// text from sprites.
 	for(const Item &item : items)
 	{
-		out.Write(day, month, year);
 		out.BeginChild();
 		{
 			item.Save(out);
@@ -121,46 +182,7 @@ void BookEntry::Save(DataWriter &out, const int day, const int month, const int 
 	}
 }
 
-void BookEntry::Save(DataWriter &out, const string &topic, const string &heading) const
-{
-	// Note: in order to properly read sprites back in, we must repeat the day/month/year to distinguish
-	// text from sprites.
-	for(const Item &item : items)
-	{
-		out.Write(topic, heading);
-		out.BeginChild();
-		{
-			item.Save(out);
-		}
-		out.EndChild();
-	}
-}
 
-void BookEntry::Save(DataWriter &out, const string &book, const string &topic, const string &heading) const
-{
-	for(const Item &item : items)
-	{
-		out.Write(book, topic, heading);
-		out.BeginChild();
-		{
-			item.Save(out);
-		}
-		out.EndChild();
-	}
-}
-
-void BookEntry::Save(DataWriter &out, const string &book) const
-{
-	for(const Item &item : items)
-	{
-		out.Write(book);
-		out.BeginChild();
-		{
-			item.Save(out);
-		}
-		out.EndChild();
-	}
-}
 
 int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const
 {

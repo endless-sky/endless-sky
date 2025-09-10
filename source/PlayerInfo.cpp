@@ -4634,15 +4634,19 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.Write("logbook");
 	out.BeginChild();
 	{
-		for(const auto & [date, entry] : logbook)
-		{
-			entry.Save(out, date.Day(), date.Month(), date.Year());
-		}
-		for(const auto &[page, nextMap] : specialLogs)
-			for(const auto &[heading, entry] : nextMap)
+		for(const auto & [date, logbookEntry] : logbook)
+			if(!logbookEntry.Empty())
 			{
-				entry.Save(out, page, heading);
+				out.Write(date.Day(), date.Month(), date.Year());
+				logbookEntry.Save(out);
 			}
+		for(const auto &[topic, nextMap] : specialLogs)
+			for(const auto &[heading, logbookEntry] : nextMap)
+				if(!logbookEntry.Empty())
+				{
+					out.Write(topic, heading);
+					logbookEntry.Save(out);
+				}
 	}
 	out.EndChild();
 

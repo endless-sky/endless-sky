@@ -157,25 +157,23 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	}
 	else if(key == "log")
 	{
-		if(child.Size() > 1)
-		{
-			// Special log format: log <topic> <heading> <log message> (minimum of 4)
-			// Special log format with sprite: log <topic> <heading> scene <sprite> (exactly 5)
-			if(child.Size() > 3)
-				specialLogEntries[child.Token(1)][child.Token(2)].Read(child, 3);
-			else
-				logEntries.Read(child, 1);
-
-		}
-		else
-			child.PrintTrace("Error: Skipping invalid log entry:");
+		// Special log format: log <topic> <heading> [<log message>|scene <sprite>]
+		// Normal log format: log [<log message>|scene <sprite>]
+		// Note: the key of `log` or `log <topic> <heading>` may be on a line unto itself, with the child nodes
+		// distributed beneath it. But this must be distinguished from `log scene <image_name>`.
+		// This means that there can never be a special topic named 'scene' or there will be problems with the
+		// player logbook format.
+		if(child.Size() < 3 || (child.Size() == 3 && child.Token(1) == "scene"))
+			logEntries.Read(child, 1);
+		else if(child.Size() >= 3)
+			specialLogEntries[child.Token(1)][child.Token(2)].Read(child, 3);
 	}
-	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
+	else if ((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
 		giftShips.emplace_back();
 		giftShips.back().Load(child);
 	}
-	else if(key == "outfit" && hasValue)
+	else if (key == "outfit" && hasValue)
 	{
 		int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 		if(count)
@@ -243,10 +241,20 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 
 void GameAction::Save(DataWriter &out) const
 {
-	logEntries.Save(out, "log");
+	if(!logEntries.Empty())
+	{
+		out.Write("log");
+		logEntries.Save(out);
+	}
 	for(const auto & [topic, nextMap] : specialLogEntries)
 		for(const auto & [heading, specialLogEntry] : nextMap)
-			specialLogEntry.Save(out, "log", topic, heading);
+		{
+			if(!specialLogEntry.Empty())
+			{
+				out.Write("log", topic, heading);
+				specialLogEntry.Save(out);
+			}
+		}
 	for(auto &&it : specialLogClear)
 	{
 		if(it.second.empty())
@@ -330,6 +338,7 @@ string GameAction::Validate() const
 
 	return "";
 }
+
 
 
 bool GameAction::IsEmpty() const noexcept

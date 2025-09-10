@@ -31,10 +31,11 @@ public:
 		public:
 			explicit Item(const string &text);
 			explicit Item(const Sprite *scene);
+			static Item Read(const DataNode &node, const int startAt = 0);
 			Item Instantiate(const map<string, string>& subs) const;
 			void Save(DataWriter &out) const;
 			int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
-
+			bool Empty() const;
 
 		private:
 			const Sprite *scene = nullptr;
@@ -45,19 +46,15 @@ public:
 public:
 	BookEntry();
 
+	bool Empty() const;
+	void Append(const Item& item);
 	void Read(const DataNode &node, int startAt = 0);
 	void Add(const BookEntry &other);
 
 	// When a GameAction is triggered, substitutions are performed.
 	BookEntry Instantiate(const map<string, string> &subs) const;
 
-	// For use within a context such as `logbook` where the dates and topics are child nodes
-	void Save(DataWriter &out, int day, int month, int year) const;
-	void Save(DataWriter &out, const string &topic, const string &heading) const;
-
-	// For use within a context such as a GameAction where every line is preceded by `log`
-	void Save(DataWriter &out, const string &book, const string &topic, const string &heading) const;
-	void Save(DataWriter &out, const string &book) const;
+	void Save(DataWriter &out) const;
 
 	// Returns height.
 	int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
