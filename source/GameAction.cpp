@@ -168,12 +168,12 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		else if(child.Size() >= 3)
 			specialLogEntries[child.Token(1)][child.Token(2)].Read(child, 3);
 	}
-	else if ((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
+	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
 		giftShips.emplace_back();
 		giftShips.back().Load(child);
 	}
-	else if (key == "outfit" && hasValue)
+	else if(key == "outfit" && hasValue)
 	{
 		int count = (child.Size() < 3 ? 1 : static_cast<int>(child.Value(2)));
 		if(count)

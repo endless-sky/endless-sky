@@ -31,8 +31,8 @@ public:
 		public:
 			explicit Item(const string &text);
 			explicit Item(const Sprite *scene);
-			static Item Read(const DataNode &node, const int startAt = 0);
-			Item Instantiate(const map<string, string>& subs) const;
+			static Item Read(const DataNode &node, int startAt = 0);
+			Item Instantiate(const map<string, string> &subs) const;
 			void Save(DataWriter &out) const;
 			int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
 			bool Empty() const;
@@ -47,7 +47,7 @@ public:
 	BookEntry();
 
 	bool Empty() const;
-	void Append(const Item& item);
+	void Append(const Item &item);
 	void Read(const DataNode &node, int startAt = 0);
 	void Add(const BookEntry &other);
 
