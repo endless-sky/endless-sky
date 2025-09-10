@@ -943,7 +943,7 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 	if(!ButtonActive(hoverButton, true))
 		return false;
 
-	// If we're hovering above a button that can modify add outfits to a ship then highlight the ship.
+	// If we're hovering above a button that can add outfits to a ship then highlight the ship.
 	if(hoverButton == 'b' || hoverButton == 'i')
 		return ShipCanAdd(ship, selectedOutfit);
 
@@ -1382,8 +1382,7 @@ void OutfitterPanel::DrawButtons()
 	}
 
 	// Draw tooltips for the button being hovered over:
-	string tooltip;
-	tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
+	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
 	if(!tooltip.empty())
 		// Note: there is an offset between the cursor and tooltips in this case so that other
 		// buttons can be seen as the mouse moves around.
