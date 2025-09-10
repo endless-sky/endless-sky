@@ -25,14 +25,3 @@ public:
 		return a->Name() < b->Name();
 	}
 };
-
-
-
-template<class T>
-class ByDisplayName {
-public:
-	bool operator()(const T *a, const T *b) const
-	{
-		return a->DisplayName() < b->DisplayName();
-	}
-};
