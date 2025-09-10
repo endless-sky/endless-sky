@@ -41,7 +41,7 @@ RoutePlan::RoutePlan(const RoutePlan &other)
 {
 	plan = other.plan;
 	hasRoute = other.hasRoute;
-};
+}
 
 
 
