@@ -1338,7 +1338,7 @@ phrase "sunracer fan tshirt"
 		`wearing a Deep Sky Dynamics hat with the words "Peace, Prosperity, Progress... Podium"`
 		`dressed in a Delta V Grand Prix sweater on which the words "The Wild Pace of Plasma" are surrounded by various images of tiny chipmunks, greyhounds, capybaras, and impalas running across the shirt, leaving tiny footprints`
 	word
-		". Though clearly not a racer, "
+		". Though obviously not a racer, "
 	word
 		"he clearly is very familiar with hovercraft racing. You ask him for an overview and he responds"
 		"she clearly is very familiar with hovercraft racing. You ask her for an overview and she responds"
