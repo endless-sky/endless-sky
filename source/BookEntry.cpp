@@ -64,7 +64,7 @@ BookEntry::Item BookEntry::Item::Read(const DataNode &node, const int startAt)
 		text += node.Token(i);
 	}
 	return Item(text);
-};
+}
 
 
 
