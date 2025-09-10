@@ -37,22 +37,6 @@ BookEntry::BookEntry()
 
 
 
-// Text constructor.
-BookEntry::Item::Item(const string &text)
-	: text(text)
-{
-}
-
-
-
-// Image constructor.
-BookEntry::Item::Item(const Sprite *scene)
-	: scene(scene)
-{
-}
-
-
-
 BookEntry::Item BookEntry::Item::Read(const DataNode &node, int startAt)
 {
 	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
@@ -66,6 +50,22 @@ BookEntry::Item BookEntry::Item::Read(const DataNode &node, int startAt)
 		text += node.Token(i);
 	}
 	return Item(text);
+}
+
+
+
+// Text constructor.
+BookEntry::Item::Item(const string &text)
+	: text(text)
+{
+}
+
+
+
+// Image constructor.
+BookEntry::Item::Item(const Sprite *scene)
+	: scene(scene)
+{
 }
 
 
