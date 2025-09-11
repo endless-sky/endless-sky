@@ -37,102 +37,14 @@ BookEntry::BookEntry()
 
 
 
-BookEntry::Item BookEntry::Item::Read(const DataNode &node, int startAt)
-{
-	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
-		return Item(SpriteSet::Get(node.Token(startAt + 1)));
-
-	string text;
-	for(int i = startAt; i < node.Size(); ++i)
-	{
-		if(!text.empty())
-			text += "\n\t";
-		text += node.Token(i);
-	}
-	return Item(text);
-}
-
-
-
-// Text constructor.
-BookEntry::Item::Item(const string &text)
-	: text(text)
-{
-}
-
-
-
-// Image constructor.
-BookEntry::Item::Item(const Sprite *scene)
-	: scene(scene)
-{
-}
-
-
-
-BookEntry::Item BookEntry::Item::Instantiate(const map<string, string> &subs) const
-{
-	// Perform requested substitutions on the text of this node and return a new variant.
-	if(scene)
-		return Item(scene);
-	return Item(Format::Replace(text, subs));
-}
-
-
-
-void BookEntry::Item::Save(DataWriter &out) const
-{
-	if(scene)
-		out.Write("scene", scene->Name());
-	else
-	{
-		// Break the text up into paragraphs.
-		for(const string &line : Format::Split(text, "\n\t"))
-			out.Write(line);
-	}
-}
-
-
-
-int BookEntry::Item::Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const
-{
-	if(scene)
-	{
-		const Point offset(scene->Width() / 2, scene->Height() / 2);
-		SpriteShader::Draw(scene, topLeft + offset);
-		return scene->Height();
-	}
-
-	wrap.Wrap(text);
-	wrap.Draw(topLeft, color);
-	return wrap.Height();
-}
-
-
-
-bool BookEntry::Item::Empty() const
-{
-	return !scene && text.empty();
-}
-
-
-
 bool BookEntry::Empty() const
 {
 	if(items.empty())
 		return true;
-	for(const Item &item : items)
-		if(!item.Empty())
+	for(const ItemType &item : items)
+		if(!std::holds_alternative<std::monostate>(item))
 			return false;
 	return true;
-}
-
-
-
-void BookEntry::Append(const Item &item)
-{
-	if(!item.Empty())
-		items.emplace_back(item);
 }
 
 
@@ -144,19 +56,19 @@ void BookEntry::Read(const DataNode &node, int startAt)
 
 	// First, consume the rest of this first node:
 	if(startAt <= node.Size())
-		Append(Item::Read(node, startAt));
+		AppendItem(ReadItem(node, startAt));
 
 	// Then continue with its child nodes:
 	for(const DataNode &child : node)
-		Append(Item::Read(child));
+		AppendItem(ReadItem(child));
 }
 
 
 
 void BookEntry::Add(const BookEntry &other)
 {
-	for(const Item &item : other.items)
-		Append(item);
+	for(const ItemType &item : other.items)
+		AppendItem(item);
 }
 
 
@@ -164,8 +76,14 @@ void BookEntry::Add(const BookEntry &other)
 BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 {
 	BookEntry newEntry;
-	for(const Item &item : items)
-		newEntry.Append(item.Instantiate(subs));
+	for(const ItemType &item : items)
+	{
+		// Perform requested substitutions on the text of this node and return a new variant.
+		if(holds_alternative<string>(item))
+			newEntry.items.emplace_back(Format::Replace(std::get<string>(item), subs));
+		else
+			newEntry.items.emplace_back(item);
+	}
 	return newEntry;
 }
 
@@ -173,11 +91,16 @@ BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 
 void BookEntry::Save(DataWriter &out) const
 {
-	for(const Item &item : items)
+	for(const ItemType &item : items)
 	{
 		out.BeginChild();
 		{
-			item.Save(out);
+			// Break the text up into paragraphs.
+			if(holds_alternative<string>(item))
+				for(const string &line : Format::Split(std::get<string>(item), "\n\t"))
+					out.Write(line);
+			else
+				out.Write("scene", std::get<const Sprite *>(item)->Name());
 		}
 		out.EndChild();
 	}
@@ -187,12 +110,52 @@ void BookEntry::Save(DataWriter &out) const
 
 int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const
 {
-	// offset will track the total height
-	Point offset;
-	for(auto &item : items)
+	// offset will track 1the total height
+	Point itemOffset;
+	for(const ItemType &item : items)
 	{
-		int y = item.Draw(topLeft + offset, wrap, color);
-		offset.Y() += y;
+		if(holds_alternative<string>(item))
+		{
+			wrap.Wrap(std::get<string>(item));
+			wrap.Draw(topLeft + itemOffset, color);
+			itemOffset.Y() += wrap.Height();
+		}
+		else
+		{
+			const Sprite *scene = std::get<const Sprite *>(item);
+			const Point sceneOffset(scene->Width() / 2, scene->Height() / 2);
+			SpriteShader::Draw(scene, topLeft + itemOffset + sceneOffset);
+			itemOffset.Y() += scene->Height();
+		}
 	}
-	return offset.Y();
+	return itemOffset.Y();
+}
+
+
+
+void BookEntry::AppendItem(const ItemType &item)
+{
+	// Skip empty strings.
+	if(holds_alternative<string>(item) && std::get<string>(item) == "")
+		return;
+
+	if(!std::holds_alternative<std::monostate>(item))
+		items.emplace_back(item);
+}
+
+
+
+BookEntry::ItemType BookEntry::ReadItem(const DataNode &node, int startAt)
+{
+	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
+		return SpriteSet::Get(node.Token(startAt + 1));
+
+	string text;
+	for(int i = startAt; i < node.Size(); ++i)
+	{
+		if(!text.empty())
+			text += "\n\t";
+		text += node.Token(i);
+	}
+	return text;
 }

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <map>
 #include <string>
+#include <variant>
 #include <vector>
 
 class DataNode;
@@ -30,30 +31,13 @@ class WrappedText;
 // Implement a collection of text and image nodes which form a singular Logbook entry
 class BookEntry {
 public:
-	class Item {
-	public:
-		static Item Read(const DataNode &node, int startAt = 0);
-
-	public:
-		explicit Item(const std::string &text);
-		explicit Item(const Sprite *scene);
-
-		Item Instantiate(const std::map<std::string, std::string> &subs) const;
-		void Save(DataWriter &out) const;
-		int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
-		bool Empty() const;
-
-	private:
-		const Sprite *scene = nullptr;
-		std::string text;
-	};
+	typedef std::variant<std::monostate, const Sprite *, std::string> ItemType;
 
 
 public:
 	BookEntry();
 
 	bool Empty() const;
-	void Append(const Item &item);
 	void Read(const DataNode &node, int startAt = 0);
 	void Add(const BookEntry &other);
 
@@ -66,6 +50,11 @@ public:
 	int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
 
 
-public:
-	std::vector<Item> items;
+private:
+	void AppendItem(const ItemType &item);
+	ItemType ReadItem(const DataNode &node, int startAt = 0);
+
+
+private:
+	std::vector<ItemType> items;
 };
