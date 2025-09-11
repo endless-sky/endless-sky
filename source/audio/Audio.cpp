@@ -15,11 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Audio.h"
 
+#include "player/AudioPlayer.h"
+#include "supplier/effect/Fade.h"
 #include "../Files.h"
 #include "../Logger.h"
 #include "Music.h"
+#include "player/MusicPlayer.h"
 #include "../Point.h"
-#include "../Random.h"
 #include "Sound.h"
 
 #include <AL/al.h>
@@ -28,8 +30,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <map>
+#include <memory>
 #include <mutex>
-#include <set>
 #include <stdexcept>
 #include <thread>
 #include <vector>
@@ -42,29 +44,22 @@ namespace {
 	// when those sounds actually start playing.
 	class QueueEntry {
 	public:
-		void Add(Point position);
+		void Add(Point position, SoundCategory category);
 		void Add(const QueueEntry &other);
 
 		Point sum;
 		double weight = 0.;
+		SoundCategory category = SoundCategory::MASTER;
 	};
 
-	// OpenAL only allows a certain number of distinct sound sources. To work
-	// around that limitation, multiple instances of the same sound playing at
-	// the same time will be "coalesced" into a single source, and sources will
-	// be recycled once they are no longer playing.
-	class Source {
-	public:
-		Source(const Sound *sound, unsigned source);
-
-		void Move(const QueueEntry &entry) const;
-		unsigned ID() const;
-		const Sound *GetSound() const;
-
-	private:
-		const Sound *sound = nullptr;
-		unsigned source = 0;
-	};
+	void Move(const AudioPlayer &player, QueueEntry entry)
+	{
+		Point angle = entry.sum / entry.weight;
+		// The source should be along the vector (angle.X(), angle.Y(), -1).
+		// The length of the vector should be sqrt(1 / weight).
+		double scale = sqrt(1. / (entry.weight * (angle.LengthSquared() + 1.)));
+		player.Move(angle.X() * scale, angle.Y() * scale, -scale);
+	}
 
 	// Thread entry point for loading the sound files.
 	void Load();
@@ -77,7 +72,11 @@ namespace {
 	ALCdevice *device = nullptr;
 	ALCcontext *context = nullptr;
 	bool isInitialized = false;
-	double volume = .125;
+
+	// We keep track of the volume levels requested, and the volume levels
+	// currently set in OpenAL.
+	map<SoundCategory, double> volume{{SoundCategory::MASTER, .125}};
+	map<SoundCategory, double> cachedVolume;
 
 	// This queue keeps track of sounds that have been requested to play. Each
 	// added sound is "deferred" until the next audio position update to make
@@ -88,34 +87,35 @@ namespace {
 
 	// Sound resources that have been loaded from files.
 	map<string, Sound> sounds;
-	// OpenAL "sources" available for playing sounds. There are a limited number
-	// of these, so they must be reused.
-	vector<Source> sources;
-	vector<unsigned> recycledSources;
-	vector<unsigned> endingSources;
-	unsigned maxSources = 255;
+
+	/// The active audio sources
+	vector<shared_ptr<AudioPlayer>> players;
+	/// The looping players for reuse. Looping sources always have the Fade effect.
+	map<const Sound *, shared_ptr<AudioPlayer>> loopingPlayers;
 
 	// Queue and thread for loading sound files in the background.
-	map<string, string> loadQueue;
+	map<string, filesystem::path> loadQueue;
 	thread loadThread;
 
 	// The current position of the "listener," i.e. the center of the screen.
 	Point listener;
 
-	// MP3 streaming:
-	unsigned musicSource = 0;
-	const size_t MUSIC_BUFFERS = 3;
-	unsigned musicBuffers[MUSIC_BUFFERS];
-	shared_ptr<Music> currentTrack;
-	shared_ptr<Music> previousTrack;
-	int musicFade = 0;
-	vector<int16_t> fadeBuffer;
+	// The active music player, if there is one. This player is also present in 'player'.
+	// In the current implementation, the supplier of the music source is always a Fade.
+	shared_ptr<AudioPlayer> musicPlayer;
+	string currentTrack;
+
+	// The number of Pause vs Resume requests received.
+	int pauseChangeCount = 0;
+	// If we paused the audio multiple times, only resume it after the same number of Resume() calls.
+	// We start with -2, so when MenuPanel and PlanetPanel opens up the first time, it doesn't pause the loading sounds.
+	int pauseCount = -2;
 }
 
 
 
 // Begin loading sounds (in a separate thread).
-void Audio::Init(const vector<string> &sources)
+void Audio::Init(const vector<filesystem::path> &sources)
 {
 	device = alcOpenDevice(nullptr);
 	if(!device)
@@ -134,55 +134,48 @@ void Audio::Init(const vector<string> &sources)
 	ALfloat zero[3] = {0., 0., 0.};
 	ALfloat orientation[6] = {0., 0., -1., 0., 1., 0.};
 
-	alListenerf(AL_GAIN, volume);
+	alListenerf(AL_GAIN, volume[SoundCategory::MASTER]);
 	alListenerfv(AL_POSITION, zero);
 	alListenerfv(AL_VELOCITY, zero);
 	alListenerfv(AL_ORIENTATION, orientation);
 	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
 	alDopplerFactor(0.);
 
-	// Get all the sound files in the game data and all plugins.
-	for(const string &source : sources)
+	LoadSounds(sources);
+}
+
+
+
+// Get all the sound files in the game data and all plugins.
+void Audio::LoadSounds(const vector<filesystem::path> &sources)
+{
+	for(const auto &source : sources)
 	{
-		string root = source + "sounds/";
-		vector<string> files = Files::RecursiveList(root);
-		for(const string &path : files)
+		filesystem::path root = source / "sounds";
+		vector<filesystem::path> files = Files::RecursiveList(root);
+		for(const auto &path : files)
 		{
-			if(!path.compare(path.length() - 4, 4, ".wav"))
+			if(path.extension() == ".wav")
 			{
 				// The "name" of the sound is its full path within the "sounds/"
 				// folder, without the ".wav" or "~.wav" suffix.
-				size_t end = path.length() - 4;
-				if(path[end - 1] == '~')
-					--end;
-				loadQueue[path.substr(root.length(), end - root.length())] = path;
+				string name = (path.parent_path() / path.stem()).lexically_relative(root).generic_string();
+				if(name.ends_with('~'))
+					name.resize(name.length() - 1);
+				loadQueue[name] = path;
 			}
 		}
 	}
 	// Begin loading the files.
 	if(!loadQueue.empty())
 		loadThread = thread(&Load);
-
-	// Create the music-streaming threads.
-	currentTrack.reset(new Music());
-	previousTrack.reset(new Music());
-	alGenSources(1, &musicSource);
-	alGenBuffers(MUSIC_BUFFERS, musicBuffers);
-	for(unsigned buffer : musicBuffers)
-	{
-		// Queue up blocks of silence to start out with.
-		const vector<int16_t> &chunk = currentTrack->NextChunk();
-		alBufferData(buffer, AL_FORMAT_STEREO16, &chunk.front(), 2 * chunk.size(), 44100);
-	}
-	alSourceQueueBuffers(musicSource, MUSIC_BUFFERS, musicBuffers);
-	alSourcePlay(musicSource);
 }
 
 
 
-void Audio::CheckReferences()
+void Audio::CheckReferences(bool parseOnly)
 {
-	if(!isInitialized)
+	if(!isInitialized && !parseOnly)
 	{
 		Logger::LogError("Warning: audio could not be initialized. No audio will play.");
 		return;
@@ -211,19 +204,20 @@ double Audio::GetProgress()
 
 
 // Get the volume.
-double Audio::Volume()
+double Audio::Volume(SoundCategory category)
 {
-	return volume;
+	if(!volume.contains(category))
+		volume[category] = 1.;
+
+	return volume[category];
 }
 
 
 
 // Set the volume (to a value between 0 and 1).
-void Audio::SetVolume(double level)
+void Audio::SetVolume(double level, SoundCategory category)
 {
-	volume = min(1., max(0., level));
-	if(isInitialized)
-		alListenerf(AL_GAIN, volume);
+	volume[category] = clamp(level, 0., 1.);
 }
 
 
@@ -256,28 +250,28 @@ void Audio::Update(const Point &listenerPosition)
 
 
 // Play the given sound, at full volume.
-void Audio::Play(const Sound *sound)
+void Audio::Play(const Sound *sound, SoundCategory category)
 {
-	Play(sound, listener);
+	Play(sound, listener, category);
 }
 
 
 
 // Play the given sound, as if it is at the given distance from the
 // "listener". This will make it softer and change the left / right balance.
-void Audio::Play(const Sound *sound, const Point &position)
+void Audio::Play(const Sound *sound, const Point &position, SoundCategory category)
 {
-	if(!isInitialized || !sound || !sound->Buffer() || !volume)
+	if(!isInitialized || !sound || sound->Buffer().empty() || !volume[SoundCategory::MASTER])
 		return;
 
 	// Place sounds from the main thread directly into the queue. They are from
 	// the UI, and the Engine may not be running right now to call Update().
 	if(this_thread::get_id() == mainThreadID)
-		soundQueue[sound].Add(position - listener);
+		soundQueue[sound].Add(position - listener, category);
 	else
 	{
 		unique_lock<mutex> lock(audioMutex);
-		deferred[sound].Add(position - listener);
+		deferred[sound].Add(position - listener, category);
 	}
 }
 
@@ -290,150 +284,141 @@ void Audio::PlayMusic(const string &name)
 		return;
 
 	// Skip changing music if the requested music is already playing.
-	if(name == currentTrack->GetSource())
+	if(name == currentTrack)
 		return;
 
 	// Don't worry about thread safety here, since music will always be started
 	// by the main thread.
-	musicFade = 65536;
-	swap(currentTrack, previousTrack);
-	// If the name is empty, it means to turn music off.
-	currentTrack->SetSource(name);
+	currentTrack = name;
+	if(musicPlayer && !musicPlayer->IsFinished())
+		reinterpret_cast<Fade *>(musicPlayer->Supplier())->AddSource(Music::CreateSupplier(name, true));
+	else
+	{
+		Fade *fade = new Fade();
+		fade->AddSource(Music::CreateSupplier(name, true));
+		musicPlayer = shared_ptr<AudioPlayer>(new MusicPlayer(unique_ptr<AudioSupplier>{fade}));
+		musicPlayer->Init();
+		musicPlayer->SetVolume(Volume(SoundCategory::MUSIC));
+		musicPlayer->Play();
+		players.emplace_back(musicPlayer);
+	}
 }
 
 
 
-// Begin playing all the sounds that have been added since the last time
-// this function was called.
-void Audio::Step()
+// Pause all active playback streams. Doesn't cause new streams to be paused, and doesn't pause the music source.
+void Audio::Pause()
+{
+	pauseChangeCount++;
+}
+
+
+
+// Resumes all paused sound sources. If Pause() was called multiple times,
+// you have to call Resume() the same number of times to resume the sound sources.
+void Audio::Resume()
+{
+	pauseChangeCount--;
+}
+
+
+
+/// Begin playing all the sounds that have been added since the last time
+/// this function was called.
+/// If the game is in fast forward mode, the fast version of sounds is played.
+void Audio::Step(bool isFastForward)
 {
 	if(!isInitialized)
 		return;
 
-	vector<Source> newSources;
-	// For each sound that is looping, see if it is going to continue. For other
-	// sounds, check if they are done playing.
-	for(const Source &source : sources)
-	{
-		if(source.GetSound()->IsLooping())
+	for(const auto &[category, expected] : volume)
+		if(cachedVolume[category] != expected)
 		{
-			auto it = soundQueue.find(source.GetSound());
-			if(it != soundQueue.end())
-			{
-				source.Move(it->second);
-				newSources.push_back(source);
-				soundQueue.erase(it);
-			}
+			cachedVolume[category] = expected;
+			if(category == SoundCategory::MASTER)
+				alListenerf(AL_GAIN, expected);
 			else
-			{
-				alSourcei(source.ID(), AL_LOOPING, false);
-				endingSources.push_back(source.ID());
-			}
+				for(const auto &player : players)
+					if(player->Category() == category)
+						player->SetVolume(expected);
 		}
-		else
+
+	if(pauseChangeCount > 0)
+	{
+		bool wasPaused = pauseCount;
+		pauseCount += pauseChangeCount;
+		if(pauseCount && !wasPaused)
+			for(const auto &player : players)
+				player->Pause();
+	}
+	else if(pauseChangeCount < 0)
+	{
+		// Check that the game is not paused after this request. Also don't allow the pause count to go into negatives.
+		if(pauseCount && (pauseCount += pauseChangeCount) <= 0)
 		{
-			// Non-looping sounds: check if they're done playing.
-			ALint state;
-			alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
-			if(state == AL_PLAYING)
-				newSources.push_back(source);
-			else
-				recycledSources.push_back(source.ID());
+			pauseCount = 0;
+			for(const auto &player : players)
+				player->Play();
 		}
 	}
-	// These sources were looping and are now wrapping up a loop.
-	auto it = endingSources.begin();
-	while(it != endingSources.end())
+	pauseChangeCount = 0;
+
+	// For each sound that is looping, see if it is going to continue. For other
+	// sounds, check if they are done playing.
+	for(auto it = loopingPlayers.begin(); it != loopingPlayers.end();)
 	{
-		ALint state;
-		alGetSourcei(*it, AL_SOURCE_STATE, &state);
-		if(state == AL_PLAYING)
+		const auto &[sound, player] = *it;
+		auto queueIt = soundQueue.find(sound);
+		if(queueIt != soundQueue.end())
 		{
-			// Fade out the sound. This avoids a clicking or rasping sound if a
-			// sound is cut off in the middle of its loop.
-			float gain = 1.f;
-			alGetSourcef(*it, AL_GAIN, &gain);
-			gain = max(0.f, gain - .05f);
-			alSourcef(*it, AL_GAIN, gain);
+			Move(*player, queueIt->second);
+			soundQueue.erase(queueIt);
 			++it;
 		}
 		else
 		{
-			recycledSources.push_back(*it);
-			it = endingSources.erase(it);
+			reinterpret_cast<Fade *>(player->Supplier())->AddSource({}, 3); // fast fade
+			it = loopingPlayers.erase(it);
 		}
 	}
-	newSources.swap(sources);
+
+	// Queue up the new buffers in every player, and remove the finished ones.
+	for(const auto &player : players)
+	{
+		player->Supplier()->Set3x(isFastForward);
+		player->Update();
+	}
+
+	erase_if(players, [](const auto &player){ return player->IsFinished(); });
 
 	// Now, what is left in the queue is sounds that want to play, and that do
 	// not correspond to an existing source.
-	for(const auto &it : soundQueue)
+	for(const auto &[sound, entry] : soundQueue)
 	{
-		// Use a recycled source if possible. Otherwise, create a new one.
-		unsigned source = 0;
-		if(recycledSources.empty())
+		unique_ptr<AudioSupplier> supplier = sound->CreateSupplier();
+		supplier->Set3x(isFastForward);
+		shared_ptr<AudioPlayer> player;
+		if(sound->IsLooping())
 		{
-			if(sources.size() >= maxSources)
-				break;
-
-			alGenSources(1, &source);
-			if(!source)
-			{
-				// If we just tried to generate a new source and OpenAL would
-				// not give us one, we've reached this system's limit for the
-				// number of concurrent sounds.
-				maxSources = sources.size();
-				break;
-			}
+			unique_ptr<Fade> fade = make_unique<Fade>();
+			fade->AddSource(std::move(supplier));
+			player = make_shared<AudioPlayer>(entry.category, std::move(fade));
+			loopingPlayers.emplace(sound, player);
 		}
 		else
-		{
-			source = recycledSources.back();
-			recycledSources.pop_back();
-		}
-		// Begin playing this sound.
-		sources.emplace_back(it.first, source);
-		sources.back().Move(it.second);
-		alSourcePlay(source);
+			player = make_shared<AudioPlayer>(entry.category, std::move(supplier));
+
+		player->Init();
+		player->SetVolume(Volume(entry.category));
+		Move(*player, entry);
+		player->Play();
+
+		players.emplace_back(player);
 	}
 	soundQueue.clear();
 
-	// Queue up new buffers for the music, if necessary.
-	int buffersDone = 0;
-	alGetSourcei(musicSource, AL_BUFFERS_PROCESSED, &buffersDone);
-	if(buffersDone)
-	{
-		unsigned buffer = 0;
-		alSourceUnqueueBuffers(musicSource, 1, &buffer);
-
-		const vector<int16_t> &chunk = currentTrack->NextChunk();
-
-		if(!musicFade)
-			alBufferData(buffer, AL_FORMAT_STEREO16, &chunk.front(), 2 * chunk.size(), 44100);
-		else
-		{
-			fadeBuffer.clear();
-			const vector<int16_t> &other = previousTrack->NextChunk();
-			for(size_t i = 0; i < chunk.size(); ++i)
-			{
-				// Blend the two tracks together.
-				fadeBuffer.push_back(
-					(musicFade * other[i] + (65536 - musicFade) * chunk[i]) / 65536);
-
-				// Slowly fade into the new track.
-				if(musicFade)
-					--musicFade;
-			}
-			alBufferData(buffer, AL_FORMAT_STEREO16, &fadeBuffer.front(), 2 * fadeBuffer.size(), 44100);
-		}
-
-		alSourceQueueBuffers(musicSource, 1, &buffer);
-		// Check if the source has stopped (i.e. because it ran out of buffers).
-		ALint state;
-		alGetSourcei(musicSource, AL_SOURCE_STATE, &state);
-		if(state != AL_PLAYING)
-			alSourcePlay(musicSource);
-	}
+	if(musicPlayer && musicPlayer->IsFinished())
+		musicPlayer.reset();
 }
 
 
@@ -454,44 +439,12 @@ void Audio::Quit()
 	}
 
 	// Now, stop and delete any OpenAL sources that are playing.
-	for(const Source &source : sources)
-	{
-		alSourceStop(source.ID());
-		ALuint id = source.ID();
-		alDeleteSources(1, &id);
-	}
-	sources.clear();
-
-	// Also clean up any sources that are fading out.
-	for(unsigned id : endingSources)
-	{
-		alSourceStop(id);
-		alDeleteSources(1, &id);
-	}
-	endingSources.clear();
-
-	// And finally, clean up any sources that are done playing.
-	for(unsigned id : recycledSources)
-		alDeleteSources(1, &id);
-	recycledSources.clear();
+	players.clear();
+	loopingPlayers.clear();
+	musicPlayer.reset();
 
 	// Free the memory buffers for all the sound resources.
-	for(const auto &it : sounds)
-	{
-		ALuint id = it.second.Buffer();
-		alDeleteBuffers(1, &id);
-	}
 	sounds.clear();
-
-	// Clean up the music source and buffers.
-	if(isInitialized)
-	{
-		alSourceStop(musicSource);
-		alDeleteSources(1, &musicSource);
-		alDeleteBuffers(MUSIC_BUFFERS, musicBuffers);
-		currentTrack.reset();
-		previousTrack.reset();
-	}
 
 	// Close the connection to the OpenAL library.
 	if(context)
@@ -508,7 +461,8 @@ void Audio::Quit()
 namespace {
 	// Add a new source to this queue entry. Sources are weighted based on their
 	// position, and multiple sources can be added together in the same entry.
-	void QueueEntry::Add(Point position)
+	// The preserved category is the category of the last source.
+	void QueueEntry::Add(Point position, SoundCategory category)
 	{
 		// A distance of 500 counts as 1 OpenAL unit of distance.
 		position *= .002;
@@ -517,70 +471,22 @@ namespace {
 		double d = 1. / (1. + position.Dot(position));
 		sum += d * position;
 		weight += d;
+		this->category = category;
 	}
-
-
 
 	// Combine two queue entries.
 	void QueueEntry::Add(const QueueEntry &other)
 	{
 		sum += other.sum;
 		weight += other.weight;
+		category = other.category;
 	}
-
-
-
-	// This is a wrapper for an OpenAL audio source.
-	Source::Source(const Sound *sound, unsigned source)
-		: sound(sound), source(source)
-	{
-		// Give each source a small, random pitch variation. Otherwise, multiple
-		// instances of the same sound playing at slightly different times
-		// overlap and create a "grinding" interference sound.
-		alSourcef(source, AL_PITCH, 1. + (Random::Real() - Random::Real()) * .04);
-		alSourcef(source, AL_GAIN, 1.);
-		alSourcef(source, AL_REFERENCE_DISTANCE, 1.);
-		alSourcef(source, AL_ROLLOFF_FACTOR, 1.);
-		alSourcef(source, AL_MAX_DISTANCE, 100.);
-		alSourcei(source, AL_LOOPING, sound->IsLooping());
-		alSourcei(source, AL_BUFFER, sound->Buffer());
-	}
-
-
-
-	// Reposition this source based on the given entry in a sound queue.
-	void Source::Move(const QueueEntry &entry) const
-	{
-		Point angle = entry.sum / entry.weight;
-		// The source should be along the vector (angle.X(), angle.Y(), 1).
-		// The length of the vector should be sqrt(1 / weight).
-		double scale = sqrt(1. / (entry.weight * (angle.LengthSquared() + 1.)));
-		alSource3f(source, AL_POSITION, angle.X() * scale, angle.Y() * scale, scale);
-	}
-
-
-
-	// Get the OpenAL ID for this source.
-	unsigned Source::ID() const
-	{
-		return source;
-	}
-
-
-
-	// Get the sound resource currently being played by this source.
-	const Sound *Source::GetSound() const
-	{
-		return sound;
-	}
-
-
 
 	// Thread entry point for loading sounds.
 	void Load()
 	{
 		string name;
-		string path;
+		filesystem::path path;
 		Sound *sound;
 		while(true)
 		{
@@ -596,6 +502,10 @@ namespace {
 				name = loadQueue.begin()->first;
 				path = loadQueue.begin()->second;
 
+				// @3x sounds should be merged with their regular variant here.
+				if(name.ends_with("@3x"))
+					name.resize(name.size() - 3);
+
 				// Since we need to unlock the mutex below, create the map entry to
 				// avoid a race condition when accessing sounds' size.
 				sound = &sounds[name];
@@ -603,7 +513,7 @@ namespace {
 
 			// Unlock the mutex for the time-intensive part of the loop.
 			if(!sound->Load(path, name))
-				Logger::LogError("Unable to load sound \"" + name + "\" from path: " + path);
+				Logger::LogError("Unable to load sound \"" + name + "\" from path: " + path.string());
 		}
 	}
 }

@@ -303,7 +303,8 @@ mission "Wanderers: First Mereti Attack"
 			variant
 				"Derecho"
 				"Tempest" 2
-				"Autumn Leaf" 3
+				"Heavy Gust"
+				"Autumn Leaf" 1
 	npc
 		government "Wanderer"
 		system Kaliptari
@@ -313,9 +314,9 @@ mission "Wanderers: First Mereti Attack"
 			variant
 				"Derecho"
 				"Tempest" 2
-				"Strong Wind" 1
-				"Autumn Leaf" 2
-				"Summer Leaf" 3
+				"Heavy Gust" 1
+				"Autumn Leaf" 3
+				"Summer Leaf" 2
 	on complete
 		event "wanderers: kaliptari battle ends"
 
@@ -466,7 +467,7 @@ mission "Wanderers: Quarg Assistance 2"
 		personality escort
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
-		ship "Quarg Wardragon" "Ahlimona Spod"
+		ship "Quarg Wyvern" "Ahlimona Spod"
 
 
 
@@ -481,7 +482,7 @@ mission "Wanderers: Quarg Defenders"
 		personality staying uninterested heroic
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
-		ship "Quarg Wardragon" "Ahlimona Spod"
+		ship "Quarg Wyvern" "Ahlimona Spod"
 
 
 
@@ -788,7 +789,8 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon" 3
+				"Quarg Wardragon"
+				"Quarg Wyvern" 2
 	npc
 		government "Quarg (Kor Efret)"
 		personality heroic
@@ -796,7 +798,8 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon" 5
+				"Quarg Wardragon" 3
+				"Quarg Hydra"
 
 
 
@@ -1004,7 +1007,8 @@ mission "Wanderers: Mind Escorts"
 			variant
 				"Hurricane" 2
 				"Derecho" 3
-				"Tempest" 5
+				"Tempest" 4
+				"Heavy Gust" 2
 
 mission "Wanderers: Mind 4"
 	landing
@@ -1676,9 +1680,9 @@ mission "Wanderers: Sestor Attack"
 			fighters
 				names "kor sestor fighter"
 			variant
-				"Tek Far 109" 3
-				"Far Lek 14" 27
-				"Far Osk 27" 21
+				"Tek Far 109" 2
+				"Far Lek 14" 18
+				"Far Osk 27" 14
 		fleet
 			names "kor sestor"
 			fighters
@@ -1702,20 +1706,19 @@ mission "Wanderers: Sestor Attack"
 			names "wanderer"
 			variant
 				"Tempest (Heavy)"
+				"Heavy Gust"
 				"Strong Wind"
 		fleet
 			names "wanderer"
 			variant
-				"Autumn Leaf"
-				"Summer Leaf"
+				"Autumn Leaf" 3
 	npc
 		government "Wanderer"
 		personality heroic
 		fleet
 			names "wanderer"
 			variant
-				"Autumn Leaf"
-				"Summer Leaf" 3
+				"Autumn Leaf" 4
 		fleet
 			names "wanderer"
 			variant
@@ -1725,13 +1728,20 @@ mission "Wanderers: Sestor Attack"
 	npc
 		government "Kor Mereti"
 		personality heroic
-		system "Faronektu"
+		system "Mekislepti"
 		fleet
 			names "kor mereti"
 			variant
 				"Model 512"
 				"Model 256"
 				"Model 64"
+	npc
+		government "Kor Mereti"
+		personality heroic staying
+		fleet
+			names "kor mereti"
+			variant
+				"Model 16" 2
 				
 
 
@@ -2050,7 +2060,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2075,7 +2085,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2097,7 +2107,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 3
 
@@ -2143,10 +2153,10 @@ mission "Wanderers: Sestor: Quarg Help 2"
 	npc accompany save
 		government "Quarg (Hai)"
 		personality heroic waiting escort
-		ship "Quarg Wardragon" "Leukos-nikeseh"
-		ship "Quarg Wardragon" "Purros-machaira"
-		ship "Quarg Wardragon" "Melas-zugon"
-		ship "Quarg Wardragon" "Chloros-thanatos"
+		ship "Quarg Wyvern" "Leukos-nikeseh"
+		ship "Quarg Wyvern" "Purros-machaira"
+		ship "Quarg Wyvern" "Melas-zugon"
+		ship "Quarg Wyvern" "Chloros-thanatos"
 	npc
 		government "Kor Sestor"
 		personality heroic staying
@@ -2234,10 +2244,10 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 	npc
 		government "Quarg (Hai)"
 		personality heroic staying
-		ship "Quarg Wardragon" "Leukos-nikeseh"
-		ship "Quarg Wardragon" "Purros-machaira"
-		ship "Quarg Wardragon" "Melas-zugon"
-		ship "Quarg Wardragon" "Chloros-thanatos"
+		ship "Quarg Wyvern" "Leukos-nikeseh"
+		ship "Quarg Wyvern" "Purros-machaira"
+		ship "Quarg Wyvern" "Melas-zugon"
+		ship "Quarg Wyvern" "Chloros-thanatos"
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic staying
@@ -2247,7 +2257,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2269,7 +2279,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser"
 				"Combat Drone" 4
@@ -2291,7 +2301,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate (Mark II)" 3
 	npc evade
@@ -2750,7 +2760,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2772,7 +2782,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 3
 				"Gunboat" 3
@@ -3187,6 +3197,7 @@ mission "Wanderers: Sestor: Factory Escorts"
 				"Tempest (Heavy)"
 				"Tempest (Moonbeam)" 2
 				"Tempest"
+				"Heavy Gust (Moonbeam)" 2
 
 
 
@@ -3472,23 +3483,29 @@ mission "Wanderers: Sestor: Combined Patch 1"
 event "wanderers: sestor planets unrestricted"
 	planet "Drekag Firask"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Sestor Ikfar"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 		description `This dry, hot world is home to almost no native life, but is ideal for the Korath automata because of its abundant solar energy. In the places where the Korath cities once were, the Kor Sestor have built massive factories with buildings sometimes close to a kilometer in height. In other places the land remains undeveloped, and now that the factories have been shut down it seems likely that it will stay that way for a very long time.`
 	planet "Devru Kaska"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Sebra Skira"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Keneska Fek"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 	planet "Sopi Lefarkata"
 		"required reputation" 0
-		spaceport clear
+		remove spaceport
+		remove attributes sestor
 		description `This is a cold and mountainous world, and most of its oceans are covered in ice. A handful of giant craters gouged out from the sides of mountains are the only sign that there were once Korath settlements here. The Kor Sestor robots began building settlements of their own, in caverns deep under the mountains where they are safe from orbital bombardment, but now these settlements are falling into disrepair. Where the last set of Kor Mereti attacks collapsed one of the access tunnels, a handful of robots have gathered, trying in vain to dig them out.`
 
 event "wanderers taking jobs from kor efreti"

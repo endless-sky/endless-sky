@@ -39,6 +39,24 @@ effect "ion hazard"
 	"random velocity" 2
 
 
+hazard "Patir Black Hole Event Horizon"
+	"constant strength"
+	"range" 20
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 0 90
+		"dropoff modifier" 0
+		"relative hull damage" .0001
+		"piercing" 10
+
+
+hazard "Beyond Patir Shield Eraser"
+	"constant strength"
+	"system-wide"
+	weapon
+		"relative shield damage" 1
+
+
 
 hazard "Black Hole Accretion Disk"
 	"constant strength"
@@ -59,6 +77,107 @@ hazard "Black Hole Event Horizon"
 		"dropoff modifier" 0
 		"relative hull damage" .0009
 		"piercing" 10
+
+hazard "Balnii Black Hole Event Horizon"
+	"constant strength"
+	"range" 200
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 0 230
+		"dropoff modifier" 0
+		"relative hull damage" .0004
+		"fuel damage" -0.2
+		"piercing" 10
+
+hazard "Chanai Black Hole Event Horizon"
+	"constant strength"
+	"range" 100
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 0 120
+		"dropoff modifier" 0
+		"relative hull damage" .00035
+		"fuel damage" -0.15
+		"piercing" 10
+
+hazard "Chanai Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 120 400
+		"dropoff modifier" 0
+		"fuel damage" -0.05
+
+hazard "Athiri Black Hole Event Horizon"
+	"constant strength"
+	"range" 180
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 0 200
+		"dropoff modifier" 0
+		"relative hull damage" .0003
+		"fuel damage" -0.05
+		"piercing" 10
+
+hazard "Athiri Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 200 500
+		"dropoff modifier" 0
+		"fuel damage" -0.03
+
+hazard "Ghila Black Hole Event Horizon"
+	"constant strength"
+	"range" 50
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 0 80
+		"dropoff modifier" 0
+		"relative hull damage" .0001
+		"fuel damage" -0.02
+		"piercing" 10
+
+hazard "Beyond Patir Black Hole Event Horizon"
+	"constant strength"
+	"range" 50
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 0 80
+		"dropoff modifier" 0
+		"relative hull damage" .0003
+		"fuel damage" -0.05
+		"piercing" 10
+
+hazard "Beyond Patir Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 80 300
+		"dropoff modifier" 0
+		"fuel damage" -0.02
+
+hazard "Sarifa Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 80 300
+		"dropoff modifier" 0
+		"fuel damage" -0.1
+
+hazard "Thepa and Ghila Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 80 300
+		"dropoff modifier" 0
+		"fuel damage" -0.01
+
 
 hazard "Black Hole Gravity"
 	"constant strength"
@@ -110,6 +229,26 @@ hazard "Neutron Star Magnetic Field"
 		"dropoff modifier" 0
 		"shield damage" 6
 
+hazard "Magnetar Magnetic Field"
+	"constant strength"
+	"range" 1800
+	weapon
+		"damage dropoff" 0 1800
+		"dropoff modifier" 0
+		"disruption damage" 0.5
+		"discharge damage" 1
+
+hazard "Magnetar Induction"
+	"constant strength"
+	"range" 900
+	weapon
+		"gravitational"
+		"damage dropoff" 0 900
+		"dropoff modifier" 0
+		"heat damage" 24
+		"slowing damage" 0.3
+		"hit force" 12
+
 
 
 hazard "Rulei Gravity Field"
@@ -124,3 +263,117 @@ hazard "Rulei Gravity Field"
 
 effect "gravity well"
 	"sound" "gravity well"
+	"sound category" "environment"
+
+
+
+hazard "Predecessors Base Spatial Decay"
+	"duration" 1 200
+	"strength" 0.25 1.75
+	"system-wide"
+	"environmental effect" "void spark" 100
+	weapon
+		"relative hull damage" 0.00015
+		"corrosion damage" 0.005
+		"piercing" 0.25
+		"target effect" "void spark tiny"
+
+hazard "Predecessors Spatial Rift Weak"
+	"duration" 200 1000
+	"strength" 0.2 1.5
+	"system-wide"
+	"environmental effect" "void spark" 100
+	weapon
+		"corrosion damage" 0.05
+		"shield damage" 5
+		"relative hull damage" 0.0012
+		"piercing" 0.25
+		"target effect" "spatial hazard" 1
+		"target effect" "void spark tiny"
+
+hazard "Predecessors Spatial Rift Intense"
+	"duration" 300 1500
+	"strength" 1 3
+	"system-wide"
+	"environmental effect" "void spark" 100
+	weapon
+		"corrosion damage" 0.05
+		"shield damage" 5
+		"relative hull damage" 0.0012
+		"piercing" 0.25
+		"target effect" "spatial hazard" 1
+		"target effect" "void spark tiny"
+
+hazard "Predecessors Void Scar Erosion"
+	"constant strength"
+	"period" 60
+	"duration" 60
+	"strength" 1
+	"range" 1100
+	weapon
+		"corrosion damage" 0.2
+		"discharge damage" 0.2
+		"relative hull damage" 0.0005
+		"relative shield damage" 0.0005
+		"piercing" 0.1
+		"damage dropoff" 1100
+		"target effect" "spatial hazard" 1
+
+
+
+hazard "Avgi Beamed Power"
+	"constant strength"
+	"range" 300
+	"environmental effect" "power beaming" 12
+	weapon
+		"damage dropoff" 0 300
+		"energy damage" -90
+		"target effect" "power beaming" 60
+
+effect "power beaming"
+	sprite "effect/spark"
+		"scale" 0.25
+		"frame rate" 5
+		"random start frame"
+		"rewind"
+	"lifetime" 30
+	"random lifetime" 30
+	"random angle" 180
+	"random velocity" 1
+	"random spin" 10
+	"random frame rate" 5
+
+
+
+hazard "Smoke Ring Atmosphere"
+	range 1800 3000
+	"constant strength"
+	weapon
+		"shield damage" 0.3
+		"heat damage" 3
+		"target effect" "airstream 1" 6
+		"target effect" "airstream 2" 6
+
+effect "airstream 1"
+	sprite "effect/leak big"
+		"start frame" 2
+		"no repeat"
+		"frame rate" 3
+		"scale" 0.5
+	"lifetime" 60
+	"random lifetime" 60
+	"random angle" 12
+	"random spin" 180
+	"velocity scale" 0
+
+effect "airstream 2"
+	sprite "effect/leak"
+		"start frame" 2
+		"no repeat"
+		"frame rate" 3
+		"scale" 0.5
+	"lifetime" 60
+	"random lifetime" 90
+	"random angle" 15
+	"random spin" 180
+	"velocity scale" 0

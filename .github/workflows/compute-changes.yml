@@ -11,6 +11,12 @@ on:
         value: ${{ jobs.changed.outputs.unit_tests }}
       integration_tests:
         value: ${{ jobs.changed.outputs.integration_tests }}
+      shaders:
+        value: ${{ jobs.changed.outputs.shaders }}
+      steam:
+        value: ${{ jobs.changed.outputs.steam }}
+      doxygen_config:
+        value: ${{ jobs.changed.outputs.doxygen_config }}
       codespell:
         value: ${{ jobs.changed.outputs.codespell }}
       editorconfig_files:
@@ -40,6 +46,8 @@ jobs:
       game_code: ${{ steps.filter.outputs.game_code }}
       unit_tests: ${{ steps.filter.outputs.unit_tests }}
       integration_tests: ${{ steps.filter.outputs.integration_tests }}
+      shaders: ${{ steps.filter.outputs.shaders }}
+      steam: ${{ steps.filter.outputs.steam }}
       codespell: ${{ steps.filter.outputs.codespell }}
       editorconfig_files: ${{ steps.filter.outputs.editorconfig_files }}
       content_style_check: ${{ steps.filter.outputs.content_style_check }}
@@ -51,7 +59,7 @@ jobs:
       ci_config: ${{ steps.filter.outputs.ci_config }}
       projects_check_config: ${{ steps.filter.outputs.projects_check_config }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         fetch-depth: 2
         show-progress: false

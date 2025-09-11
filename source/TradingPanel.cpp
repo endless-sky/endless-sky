@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
+#include "shader/FillShader.h"
 #include "Dialog.h"
-#include "FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -31,13 +31,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
+#include "Screen.h"
 #include "System.h"
 #include "UI.h"
 
 #include <algorithm>
-#include <sstream>
 #include <string>
-#include <vector>
 
 using namespace std;
 
@@ -96,7 +95,7 @@ void TradingPanel::Step()
 
 void TradingPanel::Draw()
 {
-	const Interface *tradeUi = GameData::Interfaces().Get("trade");
+	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
 	const Rectangle box = tradeUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();
@@ -236,6 +235,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'u' || key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
 	else if(key == 'e' || key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
+	{
 		for(const auto &it : player.Cargo().Commodities())
 		{
 			const string &commodity = it.first;
@@ -253,6 +253,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Accounts().AddCredits(amount * price);
 			player.Cargo().Remove(commodity, amount);
 		}
+	}
 	else if(key == 'P' || (key == 'p' && (mod & KMOD_SHIFT)))
 	{
 		if(Preferences::Has("Confirm 'Sell Specials' button"))
@@ -281,9 +282,12 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 
 
-bool TradingPanel::Click(int x, int y, int clicks)
+bool TradingPanel::Click(int x, int y, MouseButton button, int clicks)
 {
-	const Interface *tradeUi = GameData::Interfaces().Get("trade");
+	if(button != MouseButton::LEFT)
+		return false;
+
+	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
 	const Rectangle box = tradeUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();

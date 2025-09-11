@@ -23,8 +23,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "Outfit.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Port.h"
 #include "Ship.h"
+#include "Shop.h"
 #include "System.h"
 
 #include <iostream>
@@ -37,25 +39,25 @@ namespace {
 	// For getting the name of a ship model or outfit.
 	// The relevant method for each class has a different signature,
 	// so use template specialisation to select the appropriate version of the method.
-	template <class Type>
+	template<class Type>
 	string ObjectName(const Type &object) = delete;
 
-	template <>
+	template<>
 	string ObjectName(const Ship &object) { return object.TrueModelName(); }
 
-	template <>
+	template<>
 	string ObjectName(const Outfit &object) { return object.TrueName(); }
 
 
 	// Take a set of items and a set of sales and print a list of each item followed by the sales it appears in.
-	template <class Type>
-	void PrintItemSales(const Set<Type> &items, const Set<Sale<Type>> &sales,
+	template<class Type>
+	void PrintItemSales(const Set<Type> &items, const Set<Shop<Type>> &sales,
 		const string &itemNoun, const string &saleNoun)
 	{
 		cout << DataWriter::Quote(itemNoun) << ',' << DataWriter::Quote(saleNoun) << '\n';
 		map<string, set<string>> itemSales;
 		for(auto &saleIt : sales)
-			for(auto &itemIt : saleIt.second)
+			for(auto &itemIt : saleIt.second.Stock())
 				itemSales[ObjectName(*itemIt)].insert(saleIt.first);
 		for(auto &itemIt : items)
 		{
@@ -70,15 +72,15 @@ namespace {
 
 	// Take a set of sales and print a list of each followed by the items it contains.
 	// Will fail to compile for items not of type Ship or Outfit.
-	template <class Type>
-	void PrintSales(const Set<Sale<Type>> &sales, const string &saleNoun, const string &itemNoun)
+	template<class Type>
+	void PrintSales(const Set<Shop<Type>> &sales, const string &saleNoun, const string &itemNoun)
 	{
 		cout << DataWriter::Quote(saleNoun) << ';' << DataWriter::Quote(itemNoun) << '\n';
 		for(auto &saleIt : sales)
 		{
 			cout << DataWriter::Quote(saleIt.first);
 			int index = 0;
-			for(auto &item : saleIt.second)
+			for(auto &item : saleIt.second.Stock())
 				cout << (index++ ? ';' : ',') << DataWriter::Quote(ObjectName(*item));
 			cout << '\n';
 		}
@@ -86,7 +88,7 @@ namespace {
 
 
 	// Take a Set and print a list of the names (keys) it contains.
-	template <class Type>
+	template<class Type>
 	void PrintObjectList(const Set<Type> &objects, const string &name)
 	{
 		cout << DataWriter::Quote(name) << '\n';
@@ -96,7 +98,7 @@ namespace {
 
 	// Takes a Set of objects and prints the key for each, followed by a list of its attributes.
 	// The class 'Type' must have an accessible 'Attributes()' member method which returns a collection of strings.
-	template <class Type>
+	template<class Type>
 	void PrintObjectAttributes(const Set<Type> &objects, const string &name)
 	{
 		cout << DataWriter::Quote(name) << ',' << DataWriter::Quote("attributes") << '\n';
@@ -113,7 +115,7 @@ namespace {
 
 	// Takes a Set of objects, which must have an accessible member `Attributes()`, returning a collection of strings.
 	// Prints a list of all those string attributes and, for each, the list of keys of objects with that attribute.
-	template <class Type>
+	template<class Type>
 	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name)
 	{
 		cout << DataWriter::Quote("attribute") << ',' << DataWriter::Quote(name) << '\n';
@@ -356,7 +358,7 @@ namespace {
 				<< DataWriter::Quote("energy dmg/s") << ',' << DataWriter::Quote("ion dmg/s") << ','
 				<< DataWriter::Quote("scrambling dmg/s") << ',' << DataWriter::Quote("slow dmg/s") << ','
 				<< DataWriter::Quote("disruption dmg/s") << ',' << "piercing" << ',' << DataWriter::Quote("fuel dmg/s") << ','
-				<< DataWriter::Quote("leak dmg/s") << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
+				<< DataWriter::Quote("leak dmg/s") << ',' << "push/s" << ',' << ',' << "strength" << ','
 				<< "deterrence" << '\n';
 
 			for(auto &it : GameData::Outfits())
@@ -425,7 +427,6 @@ namespace {
 				double hitforce = outfit.HitForce() * fireRate;
 				cout << hitforce << ',';
 
-				cout << outfit.Homing() << ',';
 				double strength = outfit.MissileStrength() + outfit.AntiMissile();
 				cout << strength << ',';
 
@@ -654,24 +655,28 @@ namespace {
 			PrintObjectList(GameData::Systems(), "system");
 	}
 
-	void LocationFilterMatches(const char *const *argv)
+	void LocationFilterMatches(const char *const *argv, const PlayerInfo &player)
 	{
+		StellarObject::UsingMatchesCommand();
 		DataFile file(cin);
 		LocationFilter filter;
+		const set<const System *> *visitedSystems = &player.VisitedSystems();
+		const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
 		for(const DataNode &node : file)
 		{
-			if(node.Token(0) == "changes" || (node.Token(0) == "event" && node.Size() == 1))
+			const string &key = node.Token(0);
+			if(key == "changes" || (key == "event" && node.Size() == 1))
 				for(const DataNode &child : node)
-					GameData::Change(child);
-			else if(node.Token(0) == "event")
+					GameData::Change(child, player);
+			else if(key == "event")
 			{
 				const auto *event = GameData::Events().Get(node.Token(1));
 				for(const auto &change : event->Changes())
-					GameData::Change(change);
+					GameData::Change(change, player);
 			}
-			else if(node.Token(0) == "location")
+			else if(key == "location")
 			{
-				filter.Load(node);
+				filter.Load(node, visitedSystems, visitedPlanets);
 				break;
 			}
 		}
@@ -722,7 +727,7 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 
 
 
-void PrintData::Print(const char *const *argv)
+void PrintData::Print(const char *const *argv, const PlayerInfo &player)
 {
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -747,7 +752,7 @@ void PrintData::Print(const char *const *argv)
 		else if(arg == "--systems")
 			Systems(argv);
 		else if(arg == "--matches")
-			LocationFilterMatches(argv);
+			LocationFilterMatches(argv, player);
 	}
 	cout.flush();
 }

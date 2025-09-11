@@ -25,9 +25,12 @@ help "basics 1"
 help "basics 2"
 	`For the main menu, press <Show main menu>. The control key bindings can be viewed and changed in the preferences.`
 
+help "basics 3"
+	`To see a help message again, press <Show help>. To see all help messages again, go to the main menu, select Preferences, then go to Settings. Navigate to page two, then select "Reactivate first-time help."`
+
 help "dead"
 	`Uh-oh! You just died. The universe can be a dangerous place for new captains!`
-	`Fortunately, your game is automatically saved every time you leave a planet. To load your most recent saved game, press <Show main menu> to return to the main menu, then click on "Load / Save" and "Enter Ship."`
+	`Fortunately, your game is automatically saved every time you leave a planet. To load your most recent saved game, press <Show main menu> to return to the main menu, then click on "Manage Pilots" and "Enter Ship."`
 
 help "disabled"
 	`Your ship just got disabled! Before an enemy ship finishes you off, you should find someone to help you.`
@@ -87,11 +90,17 @@ help "map advanced shops"
 	`Each ship or outfit can be clicked on, displaying that item's stats while also highlighting any planets where it is sold. Using Shift+click on a ship or outfit after you already have one selected will display that item's stats side by side with the previously selected item.`
 	`You can also press F to search the shipyard and outfitter maps for a specific ship or outfit.`
 
+help "map advanced stars"
+	`The starry map mode displays the stars on the system map. This can also be enabled by pressing T. The stars present in a system affect the amount of solar power and solar wind available for use by solar collectors and ramscoops respectively.`
+
 help "map advanced danger"
 	`The galaxy can be a dangerous place! Pirates raid some systems more frequently or in greater strength than others, and a poorly defended convoy risks attracting them in many systems. To get an idea of the relative danger of different systems, click on the alert icon next to the system name.`
 
 help "multiple ships"
 	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. Ships can also be sorted by clicking on the column headers in the player info panel. You will use the first ship in the list as your flagship. In the player info panel (accessed with <View player info>) you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
+
+help "shop with multiple ships"
+	`If you want to select a few similar ships from your fleet at once, double-click one of them. Other ships of the same model, with the same outfits as the one you selected will be added to your selection.`
 
 help "ship info"
 	`The ship info tab lets you view detailed information about ships in your fleet at any time. This includes any information you could see at a shipyard or outfitter, as well as the cargo and passengers distributed among each ship.`

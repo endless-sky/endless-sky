@@ -13,6 +13,13 @@ body:
       placeholder: wiki, style guide, etc.
     validations:
       required: true
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the documentation issue you encountered.
+      options:
+      - label: I have searched the existing issues
+        required: true
   - type: textarea
     id: description
     attributes:

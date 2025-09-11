@@ -35,7 +35,7 @@ const string &TestData::Name() const
 
 
 // Loader to load the generic test-data entry
-void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
+void TestData::Load(const DataNode &node, const filesystem::path &sourceDataFilePath)
 {
 	sourceDataFile = sourceDataFilePath;
 	if(node.Size() < 2)
@@ -53,7 +53,7 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 	for(const DataNode &child : node)
 		// Only need to parse the category for now. The contents will be
 		// scanned for at write-out of the test-data.
-		if(child.Size() > 1 && child.Token(0) == "category")
+		if(child.Token(0) == "category" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "savegame")
 				dataSetType = Type::SAVEGAME;
@@ -67,7 +67,8 @@ void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
 
 
 // Inject the test-data to the proper location.
-bool TestData::Inject() const
+bool TestData::Inject(const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets) const
 {
 	// Check if we have the required data to inject.
 	if(dataSetName.empty() || sourceDataFile.empty())
@@ -79,7 +80,7 @@ bool TestData::Inject() const
 		case Type::SAVEGAME:
 			return InjectSavegame();
 		case Type::MISSION:
-			return InjectMission();
+			return InjectMission(playerConditions, visitedSystems, visitedPlanets);
 		default:
 			return false;
 	}
@@ -113,7 +114,7 @@ bool TestData::InjectSavegame() const
 	// Then write out the complete contents to the target file
 	// Savegame data is written to the saves directory. Other test data
 	// types might be injected differently, e.g. direct object loading.
-	DataWriter dataWriter(Files::Saves() + dataSetName + ".txt");
+	DataWriter dataWriter(Files::Saves() / (dataSetName + ".txt"));
 	for(const DataNode &child : dataNode)
 		dataWriter.Write(child);
 
@@ -123,7 +124,8 @@ bool TestData::InjectSavegame() const
 
 
 
-bool TestData::InjectMission() const
+bool TestData::InjectMission(const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets) const
 {
 	const DataFile sourceData(sourceDataFile);
 	// Get the contents node in the test data.
@@ -134,7 +136,7 @@ bool TestData::InjectMission() const
 	const DataNode &dataNode = *nodePtr;
 	for(const DataNode &node : dataNode)
 		if(node.Token(0) == "mission" && node.Size() > 1)
-			GameData::Objects().missions.Get(node.Token(1))->Load(node);
+			GameData::Objects().missions.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
 
 	return true;
 }
