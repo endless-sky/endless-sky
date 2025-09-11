@@ -13,7 +13,8 @@
 			},
 			"cacheVariables": {
 				"CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-				"CMAKE_COLOR_DIAGNOSTICS": "ON"
+				"CMAKE_COLOR_DIAGNOSTICS": "ON",
+				"CMAKE_POLICY_VERSION_MINIMUM": "3.5"
 			}
 		},
 		{
@@ -31,7 +32,8 @@
 				"CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
 				"CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
 				"ES_USE_VCPKG": "ON",
-				"ES_USE_SYSTEM_LIBRARIES": "OFF"
+				"ES_USE_SYSTEM_LIBRARIES": "OFF",
+				"CMAKE_POLICY_VERSION_MINIMUM": "3.5"
 			},
 			"condition": {
 				"type": "equals",
@@ -54,7 +56,8 @@
 				"CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
 				"ES_USE_VCPKG": "ON",
 				"ES_USE_SYSTEM_LIBRARIES": "OFF",
-				"BUILD_TESTING": "OFF"
+				"BUILD_TESTING": "OFF",
+				"CMAKE_POLICY_VERSION_MINIMUM": "3.5"
 			},
 			"condition": {
 				"type": "equals",
