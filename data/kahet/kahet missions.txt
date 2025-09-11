@@ -2133,7 +2133,7 @@ mission "Ka'het: Voice From The Past 1B"
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
-			`With the ongoing construction preventing you from reaching most of the station, you try to look around near the landing pad. It takes almost half an hour before you give up; there's too many people to try to find someone who knows you, and everyone else seems far too busy to stop and listen to your story.`
+			`With the ongoing construction preventing you from reaching most of the station, you try to look around near the landing pad. It takes almost half an hour before you give up; there's too many people to try to find someone who knows you, and everyone else seems far too busy to stop and listen to your story. Perhaps you will have better luck in the spaceport of a mayor planet.`
 
 mission "Ka'het: Voice From The Past 2"
 	name "Outpost on Kumkapi"
@@ -2252,7 +2252,7 @@ mission "Ka'het: Voice From The Past 5"
 			`During the trip Gavriil has received a constant stream of communications, either from Kumkapi or Ssil Vida. He walks alongside you out of the airlock and down the ramp, silent but clearly thoughtful.`
 			`	"Thank you for this, Captain - not just for ferrying me back, but also for making this little adventure possible in the first place. There is still much to discover about the Builders and their civilization, and I am happy to have contributed to this puzzle at least a tiny bit.`
 			`	"One of the key events in order to understand their history is the first contacts they had with alien species. As it often happens, the first one was with the peaceful Quarg, but there is at least another encounter we know of that did not go nearly as well.`
-			`	"We do not know whether this was an actual invasion attempt or just an explorer that did not react well under pressure, but the two species fought, and the Builders only won after multiple days of fighting. The militarization of the Builder society started at the same time."`
+			`	"We do not know whether this was an actual invasion attempt or just an explorer that did not react well under pressure, but the two species fought, and the Builders only won after multiple days of fighting. The militarization of Builder society started at the same time."`
 			`	"What species were they attacked by?" you ask. "We cannot say for certain. From what I understand, no alien remains were found during the past Graveyard expeditions - other than Builder ones, naturally. However, an interstellar species does not just disappear without leaving any trace, and there are only a small number of candidates who fit the bill."`
 			choice
 				`	"The Korath?"`
@@ -2284,8 +2284,19 @@ mission "Ka'het: Voice From The Past 5"
 			`	"If you find anything else, do not hesitate to tell us. The analysis is still ongoing, but I have been able to spare 300,000 credits to deposit on your account to show our gratitude."`
 			choice
 				`	"You can keep the money. I would rather continue exploring further."`
+					goto keep
+				`	"Who are the Sheragi?"`
+					to display
+						not "event: rim archaeology results"
 				`	"Thank you."`
 					goto capitalist
+			`	"You might not have heard the name, but you have certainly been into their territory. They are a long extinct species, once inhabiting what has become the Rim and the South of human space. The same area where, not too long ago, you took the material we are currently using to power Ssil Vida," he replies, making a gesture in the direction of the station's reactor.`
+			`	"I can tell you that, as far as we know, they were roughly concurrent with the Builders; but this is the wealth of information I learnt during the work in Postverta. It is a continuously evolving field, and I have not been able to follow it closely beyond the engineering research on this station."`
+			choice
+				`	"You can keep the money. I would rather continue exploring further."`
+				`	"Thank you."`
+					goto capitalist
+			label keep
 			`	"Oh. Fascinating." He seems quite pleased by your reply. "Well, in that case, I could try calling Kumkapi again to see if they have something you could help them with. I have a lot to catch up with, but I will try to get back to you as soon as I hear from them."`
 			`	You wait for Gavriil for nearly an hour, but he doesn't show up again. Just before leaving, you notice he sent you a communication on your datapad. "<first>," it reads, "I won't be able to meet up with you again today. I apologize for the impoliteness, but there is just too much I need to catch up with in order to keep the project on target.`
 			`	"Nevertheless, I was able to get in contact with the test range, and they seemed happy to get more help. I won't be able to come with you this time, but if you follow the same indications I gave you last time you should have no problems finding them.`
