@@ -423,23 +423,16 @@ void PlayerInfo::Load(const filesystem::path &path)
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
-					string text;
 					for(const DataNode &great : grand)
 					{
-						if(!text.empty())
-							text += "\n\t";
-						text += great.Token(0);
+						logbook[date].Read(great);
 					}
-					logbook.emplace(date, text);
 				}
 				else if(grand.Size() >= 2)
 				{
-					string &text = specialLogs[grand.Token(0)][grand.Token(1)];
 					for(const DataNode &great : grand)
 					{
-						if(!text.empty())
-							text += "\n\t";
-						text += great.Token(0);
+						specialLogs[grand.Token(0)][grand.Token(1)].Read(great);
 					}
 				}
 			}
@@ -1929,35 +1922,32 @@ void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
 }
 
 
-
+// TODO: move to own book class so that help can be it's own book.
 // Get the player's logbook.
-const multimap<Date, string> &PlayerInfo::Logbook() const
+const map<Date, BookEntry> &PlayerInfo::Logbook() const
 {
 	return logbook;
 }
 
 
 
-void PlayerInfo::AddLogEntry(const string &text)
+void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 {
-	logbook.emplace(date, text);
+	logbook[date].Add(logbookEntry);
 }
 
 
 
-const map<string, map<string, string>> &PlayerInfo::SpecialLogs() const
+const map<string, map<string, BookEntry>> &PlayerInfo::SpecialLogs()
 {
 	return specialLogs;
 }
 
 
 
-void PlayerInfo::AddSpecialLog(const string &type, const string &name, const string &text)
+void PlayerInfo::AddSpecialLog(const string &type, const string &name, const BookEntry &logbookEntry)
 {
-	string &entry = specialLogs[type][name];
-	if(!entry.empty())
-		entry += "\n\t";
-	entry += text;
+	specialLogs[type][name].Add(logbookEntry);
 }
 
 
@@ -4655,29 +4645,19 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.Write("logbook");
 	out.BeginChild();
 	{
-		for(auto &&it : logbook)
-		{
-			out.Write(it.first.Day(), it.first.Month(), it.first.Year());
-			out.BeginChild();
+		for(const auto & [date, logbookEntry] : logbook)
+			if(!logbookEntry.Empty())
 			{
-				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(it.second, "\n\t"))
-					out.Write(line);
+				out.Write(date.Day(), date.Month(), date.Year());
+				logbookEntry.Save(out);
 			}
-			out.EndChild();
-		}
-		for(auto &&it : specialLogs)
-			for(auto &&eit : it.second)
-			{
-				out.Write(it.first, eit.first);
-				out.BeginChild();
+		for(const auto &[topic, nextMap] : specialLogs)
+			for(const auto &[heading, logbookEntry] : nextMap)
+				if(!logbookEntry.Empty())
 				{
-					// Break the text up into paragraphs.
-					for(const string &line : Format::Split(eit.second, "\n\t"))
-						out.Write(line);
+					out.Write(topic, heading);
+					logbookEntry.Save(out);
 				}
-				out.EndChild();
-			}
 	}
 	out.EndChild();
 
