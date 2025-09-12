@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Rectangle.h"
 #include "SavedGame.h"
+#include "Tooltip.h"
 
 #include <ctime>
 #include <filesystem>
@@ -80,7 +81,7 @@ private:
 	const Rectangle snapshotBox;
 
 	Point hoverPoint;
-	int hoverCount = 0;
+	Tooltip tooltip;
 	bool hasHover = false;
 	bool sideHasFocus = false;
 	double sideScroll = 0;
