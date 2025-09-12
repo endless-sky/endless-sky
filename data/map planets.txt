@@ -2148,16 +2148,6 @@ planet "Gi Tiures"
 	bribe 0
 	security 0
 
-planet Graede
-	attributes gegno vi
-	landscape land/forest2
-	description `Unlike the homeworld of the Gegno, the capital of the Vi is covered in astounding natural beauty where the land is untouched. Vast tracts of forests spread across relatively low mountain ranges, and a variety of both small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky.`
-	spaceport `The structure you're parked at seems to be just a section of a much larger rectangular building with many other sections and rods projecting out from it. From the height you are at, you can see the wilderness stretch on for miles, occasionally interrupted with another tall-reaching spaceport or factory.`
-	shipyard "Vi Cargo"
-	shipyard "Vi Warships I"
-	outfitter "Vi Basic"
-	outfitter "Vi Intermediate"
-
 planet "Giaru Gegno"
 	attributes "gegno quarg" quarg ringworld station
 	landscape land/station2
