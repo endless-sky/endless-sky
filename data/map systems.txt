@@ -40589,11 +40589,11 @@ system Uttna
 		distance 374
 		period 52.8210
 	object "Gi Tiures"
-		sprite planet/rock4
+		sprite planet/rock16
 		distance 1068
 		period 254.892
 		object
-			sprite planet/ice0
+			sprite planet/rock3
 			distance 195
 			period 102.9
 	object

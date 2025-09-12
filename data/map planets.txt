@@ -511,8 +511,8 @@ planet Beryl
 
 planet "Byigii"
 	attributes gegno uninhabited
-	landscape land/
-	description `.`
+	landscape land/haze1
+	description `Although there is no evidence of a civilization on this barren, dry planet, there are many signs of haphazard mining and excavation by the Gegno, presumably for resources to construct the large station that orbits above. Among the several dig sites across the surface are also mountainous piles of scrap metals, junk and other trash heaps, quite literally forming wastelands.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -1440,6 +1440,7 @@ planet "Ef Aourtdye"
 	description `	A majority of the mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials and quickly prepared to be put into service.`
 	spaceport `The Gegno here are much too busy to pay any attention to you as this spaceport is part of a larger refinery site. The largest Gegno heave around big metallic containers of either processed materials or various structural parts, while the Gegno closer to your own height are working with machinery. At the far end of the spaceport you can see rugged vehicles of varying sizes leaving or entering the site along paths that branch out to several more factories in the distance.`
 	"required reputation" 2
+	shipyard "Gegno Intermediate"
 	bribe 0
 	security 0
 
@@ -1696,7 +1697,7 @@ planet Essime
 planet Esstch
 	attributes gegno uninhabited
 	landscape land/badlands2
-	description `This hot desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno. However, due to the proximity of the system's star, it is too hot to be colonized.`
+	description `This desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno. However, due to the proximity of the system's star, it is too hot to be colonized.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2139,12 +2140,23 @@ planet Ghneoe
 
 planet "Gi Tiures"
 	attributes gegno
-	landscape land/
-	description "Test."
-	spaceport "Test."
+	landscape land/mountain9
+	description "The closeness of this planet to its parent star means that most daytime hours are characterized by intense heat and almost blindingly bright sunlight, even for the Gegno. Despite this, a significant axis tilt results in much longer nights than daytime hours where heat levels are acceptable, and it is these periods that are considered the populace's active hours."
+	description "	The Gegno of this planet live in a singular, expansive village cluster. At the core of it are three tall spires that appear as though they were once one, separated into thirds and pushed apart into a triangle formation."
+	spaceport "Though the Gegno living here and their civilization share a similar lack of progressiveness, their culture has noticable differences than those at their core worlds. Many wear lengthy clothing, and often travel in tightly-packed groups. Others mind to themselves in a comparatively eerie silence." 
 	"required reputation" 3
 	bribe 0
 	security 0
+
+planet Graede
+	attributes gegno vi
+	landscape land/forest2
+	description `Unlike the homeworld of the Gegno, the capital of the Vi is covered in astounding natural beauty where the land is untouched. Vast tracts of forests spread across relatively low mountain ranges, and a variety of both small and large marsupials can be seen running to and fro. Despite all of this, there are many plowed fields that have been converted to industrial ranges and shipyards, and several large cities have begun to grow towards the sky.`
+	spaceport `The structure you're parked at seems to be just a section of a much larger rectangular building with many other sections and rods projecting out from it. From the height you are at, you can see the wilderness stretch on for miles, occasionally interrupted with another tall-reaching spaceport or factory.`
+	shipyard "Vi Cargo"
+	shipyard "Vi Warships I"
+	outfitter "Vi Basic"
+	outfitter "Vi Intermediate"
 
 planet "Giaru Gegno"
 	attributes "gegno quarg" quarg ringworld station
