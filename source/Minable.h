@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Body.h"
+#include "Entity.h"
 
 #include "Angle.h"
 
@@ -37,7 +37,7 @@ class Visual;
 
 // Class representing an asteroid or other minable object that orbits in an
 // ellipse around the system center.
-class Minable : public Body {
+class Minable : public Entity {
 public:
 	class Payload {
 	public:
@@ -63,7 +63,7 @@ public:
 	// Point Unit() const;
 
 	// Load a definition of a minable object.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 	void FinishLoading();
 	const std::string &TrueName() const;
@@ -92,6 +92,11 @@ public:
 	double Hull() const;
 	// Get the maximum hull value of this asteroid.
 	double MaxHull() const;
+
+	// The current heat value of this minable, as a fraction between 0 and 1
+	// (or above 1 in case of overheat). Overheating does not have any effect
+	// on the minable, but we want this value to have the same scale as ship heat.
+	double Heat() const;
 
 
 private:
@@ -141,6 +146,8 @@ private:
 	// How much prospecting has been done on this object. Used to increase the
 	// payload drop rate.
 	double prospecting = 0.;
+	// The current heat value of this minable.
+	double heat = 0.;
 	// Material released when this object is destroyed.
 	std::vector<Payload> payload;
 	std::vector<LiveEffect> liveEffects;
