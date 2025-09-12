@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataFile.h"
 #include "DataNode.h"
+#include "DataSource.h"
 #include "Files.h"
 #include "Information.h"
 #include "Logger.h"
@@ -36,7 +37,7 @@ using namespace std;
 
 
 
-shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesystem::path> &sources,
+shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<DataSource> &sources,
 	const PlayerInfo &player, const ConditionsStore *globalConditions, bool debugMode)
 {
 	progress = 0.;
@@ -46,23 +47,22 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesys
 	// function (except for calling GetProgress which is safe due to the atomic).
 	return queue.Run([this, &player, &sources, globalConditions, debugMode]() noexcept -> void
 		{
-			vector<filesystem::path> files;
+			vector<DataSource> files;
 			for(const auto &source : sources)
 			{
 				// Iterate through the paths starting with the last directory given. That
 				// is, things in folders near the start of the path have the ability to
 				// override things in folders later in the path.
-				auto list = Files::RecursiveList(source / "data");
+				auto list = Files::RecursiveList(source.path / "data");
 				files.reserve(files.size() + list.size());
-				files.insert(files.end(),
-						make_move_iterator(list.begin()),
-						make_move_iterator(list.end()));
+				for(auto &path : list)
+					files.emplace_back(path, source.compatibilityLevels);
 			}
 
 			const double step = 1. / (static_cast<int>(files.size()) + 1);
-			for(const auto &path : files)
+			for(const auto &source : files)
 			{
-				LoadFile(path, player, globalConditions, debugMode);
+				LoadFile(source, player, globalConditions, debugMode);
 
 				// Increment the atomic progress by one step.
 				// We use acquire + release to prevent any reordering.
@@ -139,21 +139,22 @@ void UniverseObjects::FinishLoading()
 void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
 {
 	const ConditionsStore *playerConditions = &player.Conditions();
+	GameVersionConstraints compatibilityLevels = player.CompatibilityLevels();
 	const set<const System *> *visitedSystems = &player.VisitedSystems();
 	const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
 
 	const string &key = node.Token(0);
 	bool hasValue = node.Size() >= 2;
 	if(key == "fleet" && hasValue)
-		fleets.Get(node.Token(1))->Load(node);
+		fleets.Get(node.Token(1))->Load(node, compatibilityLevels);
 	else if(key == "galaxy" && hasValue)
 		galaxies.Get(node.Token(1))->Load(node);
 	else if(key == "government" && hasValue)
-		governments.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets);
+		governments.Get(node.Token(1))->Load(node, compatibilityLevels, visitedSystems, visitedPlanets);
 	else if(key == "outfitter" && hasValue)
 		outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets);
 	else if(key == "planet" && hasValue)
-		planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
+		planets.Get(node.Token(1))->Load(node, wormholes, playerConditions, compatibilityLevels);
 	else if(key == "shipyard" && hasValue)
 		shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets);
 	else if(key == "system" && hasValue)
@@ -323,16 +324,16 @@ void UniverseObjects::CheckReferences()
 
 
 
-void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &player,
+void UniverseObjects::LoadFile(const DataSource &source, const PlayerInfo &player,
 		const ConditionsStore *globalConditions, bool debugMode)
 {
 	// This is an ordinary file. Check to see if it is an image.
-	if(path.extension() != ".txt")
+	if(source.path.extension() != ".txt")
 		return;
 
-	DataFile data(path);
+	DataFile data(source.path);
 	if(debugMode)
-		Logger::LogError("Parsing: " + path.string());
+		Logger::LogError("Parsing: " + source.path.string());
 
 	const ConditionsStore *playerConditions = &player.Conditions();
 	const set<const System *> *visitedSystems = &player.VisitedSystems();
@@ -350,21 +351,21 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "swizzle" && hasValue)
 			swizzles.Get(node.Token(1))->Load(node);
 		else if(key == "conversation" && hasValue)
-			conversations.Get(node.Token(1))->Load(node, playerConditions);
+			conversations.Get(node.Token(1))->Load(node, playerConditions, source.compatibilityLevels);
 		else if(key == "effect" && hasValue)
 			effects.Get(node.Token(1))->Load(node);
 		else if(key == "event" && hasValue)
 			events.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "fleet" && hasValue)
-			fleets.Get(node.Token(1))->Load(node);
+			fleets.Get(node.Token(1))->Load(node, source.compatibilityLevels);
 		else if(key == "formation" && hasValue)
 			formations.Get(node.Token(1))->Load(node);
 		else if(key == "galaxy" && hasValue)
 			galaxies.Get(node.Token(1))->Load(node);
 		else if(key == "government" && hasValue)
-			governments.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets);
+			governments.Get(node.Token(1))->Load(node, source.compatibilityLevels, visitedSystems, visitedPlanets);
 		else if(key == "hazard" && hasValue)
-			hazards.Get(node.Token(1))->Load(node);
+			hazards.Get(node.Token(1))->Load(node, source.compatibilityLevels);
 		else if(key == "interface" && hasValue)
 		{
 			interfaces.Get(node.Token(1))->Load(node);
@@ -380,22 +381,24 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "minable" && hasValue)
 			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && hasValue)
-			missions.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
+			missions.Get(node.Token(1))->Load(node, playerConditions, source.compatibilityLevels,
+				visitedSystems, visitedPlanets);
 		else if(key == "outfit" && hasValue)
-			outfits.Get(node.Token(1))->Load(node, playerConditions);
+			outfits.Get(node.Token(1))->Load(node, playerConditions, source.compatibilityLevels);
 		else if(key == "outfitter" && hasValue)
 			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "person" && hasValue)
-			persons.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
+			persons.Get(node.Token(1))->Load(node, playerConditions, source.compatibilityLevels,
+				visitedSystems, visitedPlanets);
 		else if(key == "phrase" && hasValue)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && hasValue)
-			planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
+			planets.Get(node.Token(1))->Load(node, wormholes, playerConditions, source.compatibilityLevels);
 		else if(key == "ship" && hasValue)
 		{
 			// Allow multiple named variants of the same ship model.
 			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
-			ships.Get(name)->Load(node, playerConditions);
+			ships.Get(name)->Load(node, playerConditions, source.compatibilityLevels);
 		}
 		else if(key == "shipyard" && hasValue)
 			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets);
@@ -404,16 +407,16 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			// This node may either declare an immutable starting scenario, or one that is open to extension
 			// by other nodes (e.g. plugins may customize the basic start, rather than provide a unique start).
 			if(node.Size() == 1)
-				startConditions.emplace_back(node, globalConditions, playerConditions);
+				startConditions.emplace_back(node, globalConditions, playerConditions, source.compatibilityLevels);
 			else
 			{
 				const string &identifier = node.Token(1);
 				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
 					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
 				if(existingStart != startConditions.end())
-					existingStart->Load(node, globalConditions, playerConditions);
+					existingStart->Load(node, globalConditions, playerConditions, source.compatibilityLevels);
 				else
-					startConditions.emplace_back(node, globalConditions, playerConditions);
+					startConditions.emplace_back(node, globalConditions, playerConditions, source.compatibilityLevels);
 			}
 		}
 		else if(key == "system" && hasValue)
@@ -421,7 +424,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "test" && hasValue)
 			tests.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "test-data" && hasValue)
-			testDataSets.Get(node.Token(1))->Load(node, path);
+			testDataSets.Get(node.Token(1))->Load(node, source.path);
 		else if(key == "trade")
 			trade.Load(node);
 		else if(key == "landing message" && hasValue)

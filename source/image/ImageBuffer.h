@@ -69,6 +69,8 @@ public:
 	// image is the wrong size, or it is not a supported image format.
 	// If the file is an image sequence, it overwrites the preconfigured
 	// frame count with the number of frames found in the file.
+	// Currently this function doesn't make use of the compatibility context
+	// of ImageFileData, so the default one can be passed.
 	int Read(const ImageFileData &data, int frame = 0);
 
 

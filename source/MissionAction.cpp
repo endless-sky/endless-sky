@@ -116,14 +116,16 @@ MissionAction::MissionDialog::MissionDialog(const DataNode &node, const Conditio
 
 // Construct and Load() at the same time.
 MissionAction::MissionAction(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node, playerConditions, visitedSystems, visitedPlanets);
+	Load(node, playerConditions, compatibilityLevels, visitedSystems, visitedPlanets);
 }
 
 
 
 void MissionAction::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() >= 2)
@@ -132,7 +134,7 @@ void MissionAction::Load(const DataNode &node, const ConditionsStore *playerCond
 		system = node.Token(2);
 
 	for(const DataNode &child : node)
-		LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
+		LoadSingle(child, playerConditions, compatibilityLevels, visitedSystems, visitedPlanets);
 
 	// Collapse pure-text dialog (no phrases). This is necessary to handle saved missions.
 	// It is also an optimization for the most common case in game data files.
@@ -144,6 +146,7 @@ void MissionAction::Load(const DataNode &node, const ConditionsStore *playerCond
 
 
 void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	const string &key = child.Token(0);
@@ -161,7 +164,7 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 			dialog.emplace_back(grand, playerConditions);
 	}
 	else if(key == "conversation" && child.HasChildren())
-		conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
+		conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions, compatibilityLevels));
 	else if(key == "conversation" && hasValue)
 		conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
 	else if(key == "require" && hasValue)

@@ -29,6 +29,7 @@ class Body;
 class ConditionsStore;
 class DataNode;
 class Effect;
+class GameVersionConstraints;
 class Sound;
 class Sprite;
 
@@ -53,7 +54,8 @@ public:
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
-	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels);
 	bool IsDefined() const;
 
 	const std::string &TrueName() const;

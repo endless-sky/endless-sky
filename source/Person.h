@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 class FormationPattern;
+class GameVersionConstraints;
 class Government;
 class Ship;
 class System;
@@ -35,6 +36,7 @@ class System;
 class Person {
 public:
 	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Finish loading all the ships in this person specification.
 	void FinishLoading();

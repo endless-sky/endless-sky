@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 class DataWriter;
+class GameVersionConstraints;
 class Sprite;
 
 
@@ -59,9 +60,11 @@ public:
 public:
 	Conversation() = default;
 	// Construct and Load() at the same time.
-	Conversation(const DataNode &node, const ConditionsStore *playerConditions);
+	Conversation(const DataNode &node, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels);
 	// Read or write to files.
-	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels);
 	void Save(DataWriter &out) const;
 	// Check if any data is loaded in this conversation object.
 	bool IsEmpty() const noexcept;

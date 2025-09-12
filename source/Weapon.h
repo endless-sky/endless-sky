@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class Effect;
+class GameVersionConstraints;
 class Outfit;
 class Sound;
 class Sprite;
@@ -60,7 +61,7 @@ public:
 
 public:
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
-	void LoadWeapon(const DataNode &node);
+	void LoadWeapon(const DataNode &node, const GameVersionConstraints &compatibilityLevels);
 	bool IsWeapon() const;
 
 	// Get assets used by this weapon.

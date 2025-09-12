@@ -17,8 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "supplier/AudioSupplier.h"
 
-#include <filesystem>
 #include <memory>
+
+class DataSource;
+
+
 
 // The Music class streams audio from a file and delivers it to the program
 // one "block" at a time, so it never needs to hold the entire decoded file in
@@ -27,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // so the game won't freeze if the music stops for some reason.
 class Music {
 public:
-	static void Init(const std::vector<std::filesystem::path> &sources);
+	static void Init(const std::vector<DataSource> &sources);
 
 	static std::unique_ptr<AudioSupplier> CreateSupplier(const std::string &name, bool looping);
 
