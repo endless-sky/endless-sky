@@ -77,9 +77,11 @@ public:
 
 	// Construct and Load() at the same time.
 	explicit NPC(const DataNode &node, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
 	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.

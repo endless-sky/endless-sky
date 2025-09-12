@@ -1,5 +1,5 @@
-/* ImageFileData.h
-Copyright (c) 2024 by tibetiroka
+/* DataSource.h
+Copyright (c) 2025 by TomGoodIdea
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,29 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "BlendingMode.h"
+#include "GameVersionConstraints.h"
 
 #include <filesystem>
-#include <string>
-
-class GameVersionConstraints;
 
 
 
-class ImageFileData {
-public:
-	// Computes the image file data from a path. If the path has a source directory,
-	// it has to be specified here.
-	ImageFileData(const std::filesystem::path &path, const GameVersionConstraints &compatibilityLevels,
-		const std::filesystem::path &source = {});
-
-
+// A class representing a data source (for example a plugin) with certain compatibility levels requested.
+class DataSource {
 public:
 	std::filesystem::path path;
-	std::string extension;
-	std::string name;
-	bool is2x = false;
-	bool isSwizzleMask = false;
-	BlendingMode blendingMode = BlendingMode::ALPHA;
-	size_t frameNumber = 0;
+	GameVersionConstraints compatibilityLevels;
 };

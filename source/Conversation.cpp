@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
+#include "GameVersionConstraints.h"
 #include "Phrase.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
@@ -90,15 +91,17 @@ bool Conversation::RequiresLaunch(int outcome)
 
 
 // Construct and Load() at the same time.
-Conversation::Conversation(const DataNode &node, const ConditionsStore *playerConditions)
+Conversation::Conversation(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels)
 {
-	Load(node, playerConditions);
+	Load(node, playerConditions, compatibilityLevels);
 }
 
 
 
 // Load a conversation from file.
-void Conversation::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void Conversation::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels)
 {
 	// Make sure this really is a conversation specification.
 	if(node.Token(0) != "conversation")
@@ -182,7 +185,7 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 				}
 			}
 		}
-		else if(key == "action" || key == "apply")
+		else if(key == "action" || (compatibilityLevels.Matches({0, 10, 17}) && key == "apply"))
 		{
 			if(key == "apply")
 				child.PrintTrace("Warning: `apply` is deprecated syntax. Use `action` instead to ensure future compatibility.");

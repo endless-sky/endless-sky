@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Music.h"
 
+#include "../DataSource.h"
 #include "../Files.h"
 #include "supplier/FlacSupplier.h"
 #include "../text/Format.h"
@@ -35,12 +36,12 @@ namespace {
 
 
 
-void Music::Init(const vector<filesystem::path> &sources)
+void Music::Init(const vector<DataSource> &sources)
 {
 	for(const auto &source : sources)
 	{
 		// Find all the sound files that this resource source provides.
-		filesystem::path root = source / "sounds";
+		filesystem::path root = source.path / "sounds";
 		vector<filesystem::path> files = Files::RecursiveList(root);
 
 		for(const auto &path : files)

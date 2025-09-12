@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "shader/BatchShader.h"
+#include "DataSource.h"
 #include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
@@ -92,7 +93,7 @@ namespace {
 
 	StarField background;
 
-	vector<filesystem::path> sources;
+	vector<DataSource> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 
@@ -157,7 +158,7 @@ namespace {
 			return;
 
 		if(plugin->enabled)
-			sources.push_back(path);
+			sources.emplace_back(path, plugin->dependencies.gameVersion);
 
 		// Load the icon for the plugin, if any.
 		auto icon = make_shared<ImageSet>(plugin->name);
@@ -168,7 +169,7 @@ namespace {
 			filesystem::path iconPath = path / ("icon" + extension);
 			if(Files::Exists(iconPath))
 			{
-				icon->Add(iconPath);
+				icon->Add({iconPath, plugin->dependencies.gameVersion});
 				break;
 			}
 		}
@@ -177,7 +178,7 @@ namespace {
 			filesystem::path iconPath = path / ("icon@2x" + extension);
 			if(Files::Exists(iconPath))
 			{
-				icon->Add(iconPath);
+				icon->Add({iconPath, plugin->dependencies.gameVersion});
 				break;
 			}
 		}
@@ -289,9 +290,9 @@ void GameData::LoadShaders()
 	// The found shader files. The first element is the vertex shader,
 	// the second is the fragment shader.
 	map<string, pair<string, string>> loaded;
-	for(const filesystem::path &source : sources)
+	for(const auto &source : sources)
 	{
-		filesystem::path base = source / "shaders";
+		filesystem::path base = source.path / "shaders";
 		if(Files::Exists(base))
 			for(filesystem::path shaderFile : Files::RecursiveList(base))
 			{
@@ -407,7 +408,7 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 
 
 // Get the list of resource sources (i.e. plugin folders).
-const vector<filesystem::path> &GameData::Sources()
+const vector<DataSource> &GameData::Sources()
 {
 	return sources;
 }
@@ -999,7 +1000,8 @@ const Gamerules &GameData::GetGamerules()
 void GameData::LoadSources(TaskQueue &queue)
 {
 	sources.clear();
-	sources.push_back(Files::Resources());
+	// Core game data should always work in the most restrictive compatibility mode.
+	sources.emplace_back(Files::Resources(), GameVersionConstraints{GameVersion::Running()});
 
 	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
@@ -1030,13 +1032,13 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
-		filesystem::path directoryPath = source / "images";
+		filesystem::path directoryPath = source.path / "images";
 
 		vector<filesystem::path> imageFiles = Files::RecursiveList(directoryPath);
 		for(auto &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
-				ImageFileData data(path, directoryPath);
+				ImageFileData data(path, source.compatibilityLevels, directoryPath);
 
 				shared_ptr<ImageSet> &imageSet = images[data.name];
 				if(!imageSet)

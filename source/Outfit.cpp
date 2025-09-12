@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
+#include "GameVersionConstraints.h"
 #include "image/SpriteSet.h"
 
 #include <algorithm>
@@ -209,7 +210,8 @@ namespace {
 
 
 
-void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels)
 {
 	if(node.Size() >= 2)
 		trueName = node.Token(1);
@@ -277,7 +279,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "weapon")
-			LoadWeapon(child);
+			LoadWeapon(child, compatibilityLevels);
 		else if(key == "ammo" && hasValue)
 		{
 			// Non-weapon outfits can have ammo so that storage outfits
@@ -356,7 +358,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		GameData::AddJumpRange(attributes.Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn()
+	if(compatibilityLevels.Matches({0, 10, 17}) && IsWeapon() && attributes.Get("turret mounts") && !TurretTurn()
 		&& !AntiMissile() && !TractorBeam())
 	{
 		SetTurretTurn(4.);
@@ -364,40 +366,43 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	}
 	// Convert any legacy cargo / outfit scan definitions into power & speed,
 	// so no runtime code has to check for both.
-	auto convertScan = [&](string &&kind) -> void
+	if(compatibilityLevels.Matches({0, 10, 17}))
 	{
-		string label = kind + " scan";
-		double initial = attributes.Get(label);
-		if(initial)
+		auto convertScan = [&](string &&kind) -> void
 		{
-			attributes[label] = 0.;
-			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
-					+ label + " power\" and \"" + label + " speed\":");
+			string label = kind + " scan";
+			double initial = attributes.Get(label);
+			if(initial)
+			{
+				attributes[label] = 0.;
+				node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+						+ label + " power\" and \"" + label + " speed\":");
 
-			// A scan value of 300 is equivalent to a scan power of 9.
-			attributes[label + " power"] += initial * initial * .0001;
-			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
-			// It may have been already specified, and if so, should not be increased.
-			if(!attributes.Get(label + " efficiency"))
-				attributes[label + " efficiency"] = 15.;
-		}
+				// A scan value of 300 is equivalent to a scan power of 9.
+				attributes[label + " power"] += initial * initial * .0001;
+				// The default scan speed of 1 is unrelated to the magnitude of the scan value.
+				// It may have been already specified, and if so, should not be increased.
+				if(!attributes.Get(label + " efficiency"))
+					attributes[label + " efficiency"] = 15.;
+			}
 
-		// Similar check for scan speed which is replaced with scan efficiency.
-		label += " speed";
-		initial = attributes.Get(label);
-		if(initial)
-		{
-			attributes[label] = 0.;
-			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
-					+ kind + " scan efficiency\":");
-			// A reasonable update is 15x the previous value, as the base scan time
-			// is 10x what it was before scan efficiency was introduced, along with
-			// ships which are larger or further away also increasing the scan time.
-			attributes[kind + " scan efficiency"] += initial * 15.;
-		}
-	};
-	convertScan("outfit");
-	convertScan("cargo");
+			// Similar check for scan speed which is replaced with scan efficiency.
+			label += " speed";
+			initial = attributes.Get(label);
+			if(initial)
+			{
+				attributes[label] = 0.;
+				node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+						+ kind + " scan efficiency\":");
+				// A reasonable update is 15x the previous value, as the base scan time
+				// is 10x what it was before scan efficiency was introduced, along with
+				// ships which are larger or further away also increasing the scan time.
+				attributes[kind + " scan efficiency"] += initial * 15.;
+			}
+		};
+		convertScan("outfit");
+		convertScan("cargo");
+	}
 }
 
 

@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 class Fleet;
+class GameVersionConstraints;
 class Government;
 class Outfit;
 class PlayerInfo;
@@ -55,9 +56,11 @@ public:
 
 public:
 	// Load a planet's description from a file.
-	void Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels);
 	// Legacy wormhole do not have an associated Wormhole object so
 	// we must auto generate one if we detect such legacy wormhole.
+	// As this is done after loading the data, we can't know the compatibility context.
 	void FinishLoading(Set<Wormhole> &wormholes);
 	// Check if both this planet and its containing system(s) have been defined.
 	bool IsValid() const;

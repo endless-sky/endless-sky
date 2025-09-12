@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageFileData.h"
 
 #include "../text/Format.h"
+#include "../GameVersionConstraints.h"
 #include "../Logger.h"
 
 #include <cmath>
@@ -24,17 +25,19 @@ using namespace std;
 
 namespace {
 	// Check if the given character is a valid blending mode.
-	bool IsBlend(char c)
+	bool IsBlend(char c, const GameVersionConstraints &compatibilityLevels)
 	{
 		return (c == static_cast<char>(BlendingMode::ALPHA) || c == static_cast<char>(BlendingMode::HALF_ADDITIVE)
 			|| c == static_cast<char>(BlendingMode::ADDITIVE) || c == static_cast<char>(BlendingMode::PREMULTIPLIED_ALPHA)
-			|| c == static_cast<char>(BlendingMode::COMPAT_HALF_ADDITIVE));
+			|| (compatibilityLevels.Matches({0, 10, 17})
+			&& c == static_cast<char>(BlendingMode::COMPAT_HALF_ADDITIVE)));
 	}
 }
 
 
 
-ImageFileData::ImageFileData(const filesystem::path &path, const filesystem::path &source)
+ImageFileData::ImageFileData(const filesystem::path &path, const GameVersionConstraints &compatibilityLevels,
+	const filesystem::path &source)
 	: path(path), extension(Format::LowerCase(path.extension().string()))
 {
 	string name = (path.lexically_relative(source).parent_path() / path.stem()).generic_string();
@@ -53,7 +56,7 @@ ImageFileData::ImageFileData(const filesystem::path &path, const filesystem::pat
 	while(frameNumberStart > 0 && name[--frameNumberStart] >= '0' && name[frameNumberStart] <= '9')
 		continue;
 
-	if(frameNumberStart > 0 && IsBlend(name[frameNumberStart]))
+	if(frameNumberStart > 0 && IsBlend(name[frameNumberStart], compatibilityLevels))
 	{
 		frameNumber = Format::Parse(name.substr(frameNumberStart + 1));
 		blendingMode = static_cast<BlendingMode>(name[frameNumberStart]);

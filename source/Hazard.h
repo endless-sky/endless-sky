@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // while active.
 class Hazard : public Weapon {
 public:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const GameVersionConstraints &compatibilityLevels);
 
 	// Whether this hazard has a valid definition.
 	bool IsValid() const;

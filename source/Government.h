@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Conversation;
 class DataNode;
 class Fleet;
+class GameVersionConstraints;
 class Outfit;
 class Phrase;
 class Planet;
@@ -52,8 +53,8 @@ public:
 	Government();
 
 	// Load a government's definition from a file.
-	void Load(const DataNode &node, const std::set<const System *> *visitedSystems,
-		const std::set<const Planet *> *visitedPlanets);
+	void Load(const DataNode &node, const GameVersionConstraints &compatibilityLevels,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
 	// Get the display name of this government.
 	const std::string &GetName() const;

@@ -41,9 +41,12 @@ namespace {
 			for(const DataNode &child : node)
 				if(child.Size() == 2)
 				{
-					auto *plugin = plugins.Get(child.Token(0));
+					Plugin *plugin = plugins.Get(child.Token(0));
 					plugin->enabled = child.Value(1);
 					plugin->currentState = child.Value(1);
+					for(const DataNode &grand : child)
+						if(grand.Token(0) == "game versions" && grand.Size() >= 2)
+							plugin->wasOnVersions.insert(GameVersion{grand.Token(1)});
 				}
 		}
 	}
@@ -154,9 +157,7 @@ string Plugin::CreateDescription() const
 	}
 	if(!dependencies.IsEmpty())
 	{
-		text += "Dependencies:\n";
-		if(!dependencies.gameVersion.empty())
-			text += "  Game Version: " + dependencies.gameVersion + '\n';
+		text += "Dependencies:\n" + dependencies.gameVersion.Description();
 		if(!dependencies.required.empty())
 		{
 			text += "  Requires:\n";
@@ -233,7 +234,7 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 			{
 				const string &grandKey = grand.Token(0);
 				if(grandKey == "game version")
-					dependencies.gameVersion = grand.Token(1);
+					dependencies.gameVersion.Load(grand);
 				else if(grandKey == "requires" && grand.HasChildren())
 					for(const DataNode &great : grand)
 						dependencies.required.insert(great.Token(0));
@@ -282,6 +283,15 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 	plugin->tags = std::move(tags);
 	plugin->dependencies = std::move(dependencies);
 
+	plugin->wasOnVersions.insert(GameVersion::Running());
+
+	// Disable the plugin by default if it isn't compatible with the current game version,
+	// unless it was explicitly enabled on the same version.
+	if((plugin->dependencies.gameVersion.IsEmpty()
+			|| !plugin->dependencies.gameVersion.Matches(GameVersion::Running()))
+			&& !plugin->wasOnVersions.contains(GameVersion::Running()))
+		plugin->enabled = false;
+
 	return plugin;
 }
 
@@ -308,7 +318,20 @@ void Plugins::Save()
 	{
 		for(const auto &it : plugins)
 			if(it.second.IsValid())
+			{
 				out.Write(it.first, it.second.currentState);
+				out.BeginChild();
+				{
+					out.Write("game versions");
+					out.BeginChild();
+					{
+						for(const auto &version : it.second.wasOnVersions)
+							out.Write(version.ToString());
+					}
+					out.EndChild();
+				}
+				out.EndChild();
+			}
 	}
 	out.EndChild();
 }

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../text/Format.h"
 #include "../GameData.h"
+#include "../GameVersionConstraints.h"
 #include "ImageBuffer.h"
 #include "../Logger.h"
 #include "Mask.h"
@@ -210,7 +211,7 @@ void ImageSet::Load() noexcept(false)
 	// to be in separate locations on the disk. Create masks if needed.
 	for(size_t i = 0; i < paths[0].size(); ++i)
 	{
-		int loadedFrames = buffer[0].Read(paths[0][i], i);
+		int loadedFrames = buffer[0].Read({paths[0][i], {}}, i);
 		const string fileName = "\"" + name + "\" frame #" + to_string(i);
 		if(!loadedFrames)
 		{
@@ -247,7 +248,7 @@ void ImageSet::Load() noexcept(false)
 	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier)
 	{
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
-			if(!buffer.Read(toLoad[i], i))
+			if(!buffer.Read({toLoad[i], {}}, i))
 			{
 				Logger::LogError("Removing " + specifier + " frames for \"" + name + "\" due to read error");
 				buffer.Clear();

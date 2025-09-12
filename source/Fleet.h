@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class FormationPattern;
+class GameVersionConstraints;
 class Government;
 class Outfit;
 class Phrase;
@@ -48,9 +49,9 @@ class Fleet {
 public:
 	Fleet() = default;
 	// Construct and Load() at the same time.
-	Fleet(const DataNode &node);
+	Fleet(const DataNode &node, const GameVersionConstraints &compatibilityLevels);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const GameVersionConstraints &compatibilityLevels);
 
 	// Determine if this fleet template uses well-defined data.
 	bool IsValid(bool requireGovernment = true) const;

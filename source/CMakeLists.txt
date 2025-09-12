@@ -77,6 +77,7 @@ target_sources(EndlessSkyLib PRIVATE
 	DataFile.h
 	DataNode.cpp
 	DataNode.h
+	DataSource.h
 	DataWriter.cpp
 	DataWriter.h
 	Date.cpp
@@ -131,6 +132,10 @@ target_sources(EndlessSkyLib PRIVATE
 	GameLoadingPanel.h
 	Gamerules.cpp
 	Gamerules.h
+	GameVersion.cpp
+	GameVersion.h
+	GameVersionConstraints.cpp
+	GameVersionConstraints.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
