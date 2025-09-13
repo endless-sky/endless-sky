@@ -70,6 +70,7 @@ project("Endless Sky" VERSION 0.10.15
 find_package(SDL2 CONFIG REQUIRED)
 find_package(PNG REQUIRED)
 find_package(JPEG REQUIRED)
+find_package(libavif REQUIRED)
 if(NOT APPLE)
 	find_package(GLEW REQUIRED)
 endif()
@@ -87,6 +88,10 @@ endif()
 find_path(LIBMAD_INCLUDE_DIR mad.h)
 find_library(LIBMAD_LIB_DEBUG NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib")
 find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib")
+
+# FLAC's config is missing find_dependency(Threads), so include it here.
+find_package(Threads REQUIRED)
+find_package(FLAC CONFIG REQUIRED)
 
 # Find the zip-reading component of zlib.
 find_package(ZLIB REQUIRED)
@@ -148,8 +153,8 @@ if(MINGW)
 endif()
 
 # Link with the general libraries.
-target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL ${MINIZIP_LIBRARIES}
-	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG avif
+	OpenAL::OpenAL ${MINIZIP_LIBRARIES} FLAC::FLAC++ "$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
@@ -251,8 +256,14 @@ if(APPLE AND ES_CREATE_BUNDLE)
 	set(OUTPUT_NAME "Endless Sky")
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
 elseif(WIN32)
-	add_executable(EndlessSky WIN32 source/main.cpp source/WinApp.rc)
+	add_executable(EndlessSky WIN32 source/main.cpp source/windows/WinApp.rc)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
+	if(MINGW)
+		target_link_options(EndlessSky PRIVATE "-Wl,--major-subsystem-version,5,--minor-subsystem-version,1")
+	endif()
+	if(ES_LARGE_ADDRESS_AWARE)
+		target_link_options(EndlessSky PRIVATE "-Wl,--large-address-aware")
+	endif()
 else()
 	add_executable(EndlessSky source/main.cpp)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "endless-sky")

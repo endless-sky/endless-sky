@@ -330,13 +330,13 @@ mission "Coalition Yottrite 3"
 			`	"Roughly 5 tons, they weigh. To <destination>, this planet's neighboring world, you must bring them. Requested it so, the overseer has," they say.`
 			choice
 				`	"What's in the crates?"`
-					goto insidecrate
+					goto "inside crate"
 				`	"That's gotta be the shortest courier mission I've ever heard of. Can't some other ship do the trip?"`
-					goto soitwouldseem
-			label insidecrate
+					goto "so it would seem"
+			label "inside crate"
 			`	"Older samples that you've brought to us, they contain. Experimented with, the yottrite was. Unsure of the details, I am."`
 				goto end
-			label soitwouldseem
+			label "so it would seem"
 			`	"For you to carry them, the overseer asked. Why you in particular, unsure I am."`
 			label end
 			`	You figure that since it's so little cargo and to a planet in this very system, there's no harm in delivering the crates. They place them in your ship.`
@@ -1364,14 +1364,14 @@ mission "Arachi Cartoonist 1"
 					goto end
 				`	"Alright, it's a bit of a long trip to <planet>, but if you're sure, let's head to my ship and I'll show you your bunk."`
 				`	"I happen to own a ship matching that description, a Betelgeuse Leviathan. Would you like to see it?"`
-					goto hasleviathan
+					goto "has leviathan"
 					to display
 						has "ship model: Leviathan"
 			`	"Oh, leave I cannot. Whether far away or not this <planet> you speak of is, allowed to leave Coalition space, we are not," he says. "Go on without me you must, Captain."`
 			label end
 			`	He thanks you and wishes you safe travels on your journey to <planet>.`
 				accept
-			label hasleviathan
+			label "has leviathan"
 			action
 				"coalition jobs" += 2
 				payment 75940
@@ -1385,10 +1385,10 @@ mission "Arachi Cartoonist 1"
 			choice
 				`	"Of course! It's called <ship>."`
 				`	"The name is nothing special. I wouldn't even get the reference of it if I read your comic in the future, honestly."`
-					goto noship
+					goto "no ship"
 			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
 				decline
-			label noship
+			label "no ship"
 			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again, Captain."`
 				decline
 
@@ -1423,10 +1423,10 @@ mission "Arachi Cartoonist 2"
 			choice
 				`	"Of course! It's called <ship>."`
 				`	"The name is nothing special. I wouldn't even get the reference of it if I read your comic in the future, honestly."`
-					goto noship
+					goto "no ship"
 			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
 				accept
-			label noship
+			label "no ship"
 			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again Captain."`
 				accept
 			label leviathan
@@ -1440,7 +1440,7 @@ mission "Arachi Cartoonist 2"
 			choice
 				`	"Of course! It's called <ship>."`
 				`	"The name is nothing special. I wouldn't even get the reference of it if I read your comic in the future, honestly."`
-					goto noship
+					goto "no ship"
 			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
 				accept
 
@@ -1468,7 +1468,7 @@ mission "Coalition: Alpha Encounter"
 				has "license: Navy"
 			choice
 				`	"No, I'm not with the Navy. You could've just asked without slamming me to the ground."`
-					goto notnavy
+					goto "not navy"
 				`	"Is that why you attacked me?"`
 					goto detained
 			label navy
@@ -1478,7 +1478,7 @@ mission "Coalition: Alpha Encounter"
 					goto detained
 			`	"And I'm supposed to believe that crap?" He lashes out, trying again to knock the Arach off of him, but the agent only tightens the grip. She opens her mandibles, getting them close to the Alpha's neck. "Alright, alright, I get it!" the Alpha shouts, stopping his attempts to break free.`
 				goto detained
-			label notnavy
+			label "not navy"
 			`	He stares at you for a moment, as if unsure if you're telling the truth. "What the hell are you doing here then? Did you just stumble onto this place?" He stops struggling, but the Arach agent doesn't loosen her grip.`
 			label detained
 			`	The Saryd walks closer to the Alpha, stomping his hooves on the ground with each step. "Whatever your motivation was, a transgression, you have committed. Punished accordingly, you shall be," he says. "Kindly follow us to the detention facility, would you, Captain?" he asks you, but doesn't wait for an answer, as more agents arrive to escort you and the Alpha to the "detention facility."`
@@ -1566,13 +1566,13 @@ mission "Saryd University Lecture"
 					decline
 			label answer
 			`	"Answering some questions from the attendees, would you be comfortable with? Simple, they would be, about aspects of human society, physical structure, and the like, they would pertain to."`
-				goto choosetostay
+				goto "choose to stay"
 			label low
 			`	"Nonsense! Travel the galaxy, you do. A most knowledgeable individual, surely you must be. Accept my offer, will you?"`
-				goto choosetostay
+				goto "choose to stay"
 			label explanation
 			`	"Contact with a human world, Heliarchs have. Some documents on humanity, the government there gave. Shared their knowledge with civilian researchers, the Heliarchs have, so analyze the info, we do, so that understand humans better, we may."`
-			label choosetostay
+			label "choose to stay"
 			choice
 				`	"Sure, I'd be glad to."`
 					goto yes
@@ -1614,7 +1614,7 @@ mission "Saryd University Lecture"
 				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
 				`	"Humans know about the Quarg, but most people know little about them."`
 			`	The audience response is muted. You get the impression that you haven't told them anything they don't already know.`
-				goto nextquestion
+				goto "next question"
 			label hai
 			action
 				set "coalition knows hai"
@@ -1626,7 +1626,7 @@ mission "Saryd University Lecture"
 					has "coalition knows hai"
 			`	"Tell us more of them, could you?" asks another scientist.`
 			`	As you open your mouth to speak, the Heliarch cuts you off. "Enough questions on the Hai, we have." The crowd looks disappointed at this development.`
-			label nextquestion
+			label "next question"
 			`	The Arach selects another, this time a Kimek. "All of human space, united politically is it?"`
 			choice
 				`	"No, human space is split between the Republic in the north and the Free Worlds in the south."`
@@ -1653,21 +1653,21 @@ mission "Saryd University Lecture"
 					to display
 						has "free worlds checkmate"
 			`	As you answer the question, your translator begins to cut out. Repeating your answer does no good, as it continues to fizzle out as you talk. You look over to the Heliarch, who eyes the curious Kimek with suspicion. "Apologize for the malfunction, I must," says the Heliarch. "The next question, answer it please."`
-				goto questionthree
+				goto "question three"
 			label united
 			`	Upon finishing your sentence, several in the crowd begin to write down notes on datapads. It appears that information on human government is new to them.`
-			label questionthree
+			label "question three"
 			`	The Arach picks another Kimek. "Piracy in human space, how big of a problem is it?"`
 			choice
 				`	"There are entire pirate planets on the fringes of human space where warlords and criminals rule."`
 				`	"Piracy was a big problem in the past, but now it's a relatively minor issue."`
 				`	"There are many independent worlds that are not ruled by one singular government. Some groups there support piracy, but others are peaceful."`
-					goto pirategood
+					goto "pirate good"
 			`	"Stamped out, may lawlessness soon be," says the Heliarch in a solemn tone of voice. She picks a Saryd for the next question.`
-				goto questionfour
-			label pirategood
+				goto "question four"
+			label "pirate good"
 			`	Your microphone starts to fizzle out as you attempt to answer. The Heliarch's eight eyes are all on you, and you sense that it might not be a good idea to finish your sentence. The Heliarch selects a Saryd for the next question.`
-			label questionfour
+			label "question four"
 			`	"A fairly comprehensive map of human space, we have." The Saryd brings out a star map of the galactic south. "But of the core, we know not. Inform us of the galaxy, can you?"`
 			choice
 				`	(Tell them about the Korath.)`
@@ -1697,7 +1697,7 @@ mission "Saryd University Lecture"
 			`	The crowd shows considerable interest at this last part. "Knowledge of the jump drive, a species besides the Quarg possesses? Great news, this is! Our struggle against the Quarg, we do not take up alone. Possess jump drives, do any other species?" The Heliarch does not seem to mind you answering another question.`
 			choice
 				`	"There are aliens to the north of human space called the Hai. Some of them steal from the normal Hai, and try to get their hands on jump drives any way they can."`
-					goto knowunfettered
+					goto "know unfettered"
 					to display
 						not "coalition knows hai"
 						or
@@ -1715,7 +1715,7 @@ mission "Saryd University Lecture"
 			label unfortunate
 			`	The Heliarch speaks up against the murmurs of the crowd. "Driven to such desperation, it is unfortunate that our allies against the Quarg are. Powerful like the Coalition, hopefully one day they will be."`
 				goto exit
-			label knowunfettered
+			label "know unfettered"
 			`	Several members of the audience are delighted. "Unknown to us, this species is," says the Heliarch. "Powerful in their fight against the Quarg, may they become."`
 				goto exit
 			label sorry
@@ -1827,7 +1827,7 @@ mission "Coalition: Pilgrimage 3"
 			choice
 				`	"If this place is a shrine, what's with all the kids playing around as if it was a park?"`
 				`	"Sorry, I'm not one for prayers."`
-					goto noprayer
+					goto "no prayer"
 				`	"Of course. What do I have to do?"`
 					goto prayer
 			`	"A deity of life and plenty, Velaulra is, and as the greatest bounty of all, life is, strong ties with newborn children, she has. Common places for mothers to bond with their young ones, her shrines are." Vellorae explains. "In my case, here to thank her for Adfices' life, and all plenty there was in it, I am. Take my hands for a prayer, would you?"`
@@ -1835,7 +1835,7 @@ mission "Coalition: Pilgrimage 3"
 				`	"I know this is important for you, but I'm not one for prayers. Sorry."`
 				`	"I don't fully understand this, but I'd be glad to. What do I have to do?"`
 					goto prayer
-			label noprayer
+			label "no prayer"
 			`	"I see. That's fine, understand it, I do." She holds the bangle in one hand, covering it with the other, and closes her eyes for just under a minute while standing there in silence.`
 				goto river
 			label prayer
@@ -1869,7 +1869,7 @@ mission "Coalition: Pilgrimage 4"
 			choice
 				`	"If it's alright for me to go, I'd love to."`
 				`	"I don't want to disturb anyone, so I'll stay by the ship and wait for you."`
-					goto notgo
+					goto "not go"
 			`	"Wonderful!" she cheers, tapping her frontal hooves lightly on the ground. "Now, guide us to the shrine, would you, young dear?" she asks the local Saryd, who turns around and gestures for you to follow.`
 			`	You stick close to Vellorae as the two of you try to keep the local Saryd in sight. The task is difficult as he nearly vanishes into the fog whenever he gets too far ahead, only for his silhouette to become clearer again after he waits for you to catch up. After many minutes, you feel the ground beneath your shoes shift from the solid spaceport platform to gravel to wet patches of the planet's mossy "grass." Finally you reach a minuscule lake, or perhaps a very large puddle, in the middle of a mossy field surrounded by toppled and hollowed out tree trunks.`
 			`	As the two of you approach the water, the local Saryd warns you not to touch it. Vellorae looks at it as if gazing into a mirror, or perhaps she is just trying to make out the reflection of the moon, scattered and vague through the layers of mist. She then moves to one of the tree trunks, and placing the bangle inside it as she lays on the ground facing the water, lays both her hands reverently on the trunk. She spends nearly an hour in this position, during which the chill of the fog slowly seeps through your coat and into your bones. Vellorae and the Saryd who guided you don't seem particularly bothered by it, but she is quick to finish once she looks over and notices you shivering. She picks the bangle up from the trunk and stands, and then asks the other Saryd to guide you two back to the spaceport.`
@@ -1880,7 +1880,7 @@ mission "Coalition: Pilgrimage 4"
 			`	"The hunter bird of nightfall and omens, Magl Ina is. When mourning someone dear, one is, ask it for forgiveness for their wrongdoings, they must."`
 			`	You follow the Saryd back to the gravel path and then to the spaceport grounds, where Vellorae thanks him for guiding the two of you to the shrine. He offers his condolences and wishes her a safe journey to the next shrine. He soon disappears into the fog again, and you and Vellorae head back to your ship.`
 				goto end
-			label notgo
+			label "not go"
 			`	She sighs briefly, and agrees to meet with you later, following the Saryd local deep into the fog stretching out of the city. You head inside your ship, waiting for a few hours until you hear a voice just outside your hatch. You let Vellorae in once you realize that it's hers.`
 			label end
 			`	"To <destination>, we must go now. The Path of Lor Ie Vees, I must take," she says, heading to her bunk to rest.`
@@ -1907,7 +1907,7 @@ mission "Coalition: Pilgrimage 5"
 			choice
 				`	(Go along with her.)`
 				`	(Stay in my ship.)`
-					goto notgo
+					goto "not go"
 			`	She takes you around the spaceport city, touring some clothing shops and bringing you to parks she had visited with her husband. Shortly after noon you two enter a restaurant, where she insists on paying for your meal. You tour the city with her for a while longer and, just before the sun sets, reach the forest at the base of the mountain on top of which Starlit University is located.`
 			`	Once night falls, many lights start to appear inside the forest, and Vellorae beckons you to follow her in. "Stick close, you should. Difficult to navigate the path, for other species it often is." As you walk down a trail with her, you approach one of the lights to see that it's a bonfire on a platform in a miniature clearing, at what you hope is a safe distance from the trees around it. Continuing to the next light, Vellorae clutches the bangle in her hands the entire time, humming some guttural, almost tribal chant. As you pass by another fire, a short burst of flames gets closer to some nearby shrubs, but thankfully is put out before it can cause any harm. It is extinguished with an odd, large, fabric net on a pole by a cloaked Saryd who seemed to materialize from the trees near the fire.`
 			`	"Take care to not damage the forest with the path's fires, we must, so volunteer for keeping the flames, many of the local students do." Vellorae tells you. "When visiting here, Adfices and I were, wondered if any extra credits, the task granted, but apparently only out of a respect for Lor Ie Vees, the students do it."`
@@ -1921,7 +1921,7 @@ mission "Coalition: Pilgrimage 5"
 			`	You continue to follow her closely through the forest, regularly passing more bonfires, until you see multiple lights in the distance and realize it is the edge of the forest leading back into the city. Only as you step out of the woods do you notice that you're back where the path started, even though you were certain you had kept to only one side of the mountain.`
 			`	Vellorae takes a final look at the path, where only a few of the bonfires' lights are still visible through the dense groupings of pine trees. She tells you she's ready to leave, and you bring her back to your ship.`
 				goto end
-			label notgo
+			label "not go"
 			`	She says she'll be back at night and leaves. You watch a few transmissions from the planet, most of them in some way related to Starlit University. One is what you guess is a Saryd comedy movie, something about one who cut down trees in order to make scarves but came to regret it later. You try and follow along, but subtitles for the transmissions only come in Kimek or Arach. A few hours into the night, you leave your ship to wait for Vellorae, who arrives shortly after.`
 			label end
 			`	She heads to her bunk, saying she'll rest for the trip. It hits you that she hasn't told you her next destination yet, so you knock on her door to ask.`
@@ -2671,19 +2671,19 @@ mission "Coalition: Expeditions Past 6"
 				has "Rim Archaeology 6: offered"
 			choice
 				`	"No, I didn't even know there used to be ruins here."`
-					goto notknow
+					goto "not know"
 			label sheragi
 			choice
 				`	"Actually, yes. They were called Sheragi."`
 				`	"No, I didn't even know there used to be ruins here."`
-					goto notknow
+					goto "not know"
 			action
 				"told coalition about sheragi" ++
 			`	Surprised that you know more, she listens to your story with Albert Foster, and how you had a dream about ships evacuating Zug. You tell her of the city buried under the layers of rock, the efforts to uncover it, and how the Quarg eventually sent someone to keep watch of the digging process.`
 			`	"Cities buried whole by lava? Tuned their scanners to look for such odd ruins, no expedition must have..." she stops and thinks for a few minutes, working on the pylon's command panel. "Tell the story again, could you, Captain <last>? Formally record the findings here, I would like." You spend the next few hours retelling what you saw, and helping her collect what information on the Sheragi and their ruins humans have learned since Foster published his initial findings.`
 			`	Once she's satisfied, you two look to your map and match coordinates with the next stop Mimodum made.`
 				goto end
-			label notknow
+			label "not know"
 			`	She frowns slightly. "Figured as much, I had. Well, finding out more about them, the point of this expedition wasn't. A nice bonus, it would've been, but prepare to look for the next pylon, we should."`
 			label end
 			`	You open your map, and using the coordinates, gather that "Summit" is <planet>, a small moon close to the entrance to The Deep. Sedlitaris returns to her bunk, and you set course to <system>.`

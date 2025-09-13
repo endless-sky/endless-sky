@@ -2930,6 +2930,7 @@ Files:
  images/outfit/plasma?discharger*
  images/outfit/stagnation?beamx*
  images/outfit/star?tail?*
+ images/outfit/sword*
  images/planet/aera*
  images/planet/gliese*
  images/planet/redias*
@@ -3538,6 +3539,14 @@ Files:
 Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
+
+Files:
+ images/ship/racing?flivver*
+ images/thumbnail/racing?flivver*
+ images/scene/flivver?crash*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Gefüllte Taubenbrust (under the same license).
 
 Files:
  images/land/badlands13*
