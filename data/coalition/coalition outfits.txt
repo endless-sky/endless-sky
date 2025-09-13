@@ -503,3 +503,12 @@ outfit "Heliarch License"
 	index 08020
 	thumbnail "outfit/heliarch license"
 	description "An ornate circlet of gold and platinum, it serves as both a symbol of rank and as a license to access exclusive Heliarch facilities. Custom-made to fit a human's head, it's surprisingly light and comfortable."
+
+outfit "Beyond the Hyperdrive"
+	category "Unique"
+	series "Non-Functional Unique"
+	index 11
+	thumbnail "outfit/beyond the hyperdrive"
+	"unique" 1
+	description "A book gifted to you by Anna Fangvin, a struggling author who found success in Coalition space. It is a signed copy."
+	description "	The story follows a human captain who steals a jump drive from the Quarg and travels beyond the hyperlanes, learning new things about the aliens of the galaxy."
