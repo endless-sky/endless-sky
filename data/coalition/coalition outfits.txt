@@ -511,4 +511,4 @@ outfit "Beyond the Hyperdrive"
 	thumbnail "outfit/beyond the hyperdrive"
 	"unique" 1
 	description "A book gifted to you by Anna Fangvin, a struggling author who found success in Coalition space. It is a signed copy."
-	description "	The story follows a human captain who steals a Jump Drive from the Quarg and travels beyond the hyperlanes, learning new things about the aliens of the galaxy."
+	description "	The story follows a human captain who steals a jump drive from the Quarg and travels beyond the hyperlanes, learning new things about the aliens of the galaxy."
