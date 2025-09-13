@@ -254,7 +254,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Cargo().Remove(commodity, amount);
 		}
 	}
-	else if(key == 'P' || (key == 'p' && (mod & KMOD_SHIFT)))
+	else if((key == 'P' || (key == 'p' && (mod & KMOD_SHIFT))) && player.Cargo().MinablesSizePrecise())
 	{
 		if(Preferences::Has("Confirm 'Sell Specials' button"))
 			GetUI()->Push(new Dialog([this]() { SellOutfitsOrMinables(true); },

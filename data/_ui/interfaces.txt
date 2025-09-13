@@ -1427,10 +1427,10 @@ interface "escort element"
 
 
 interface "planet"
-	image "land"
+	image "land"e
 		center 0 -140
 	sprite "ui/planet dialog"
-		center 0 0
+		center 0 25
 	button l
 		center 0 -140
 		dimensions 720 360
@@ -1524,7 +1524,7 @@ interface "planet (small screen)"
 	image "land"
 		center -60 -140
 	sprite "ui/planet dialog"
-		center -60 0
+		center -60 25
 	button l
 		center -60 -140
 		dimensions 720 360
@@ -1973,18 +1973,14 @@ interface "trade"
 		dimensions 480 1
 	
 	sprite "ui/trading panel bottom"
-		center 159 357
+		center 159 354
 	
 	active if "can buy"
-	sprite "ui/embedded small button"
-		center 115 355
 	button B "B_uy All"
 		center 115 355
 		dimensions 70 30
 	
 	active if "can sell"
-	sprite "ui/embedded small button"
-		center 201 355
 	button S "S_ell All"
 		center 201 355
 		dimensions 70 30
@@ -2014,7 +2010,7 @@ interface "trade (small screen)"
 		dimensions 480 1
 	
 	sprite "ui/trading panel bottom"
-		center 99 357
+		center 99 354
 	
 	active if "can buy"
 	sprite "ui/embedded small button"
