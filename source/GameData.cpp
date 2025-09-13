@@ -85,6 +85,7 @@ namespace {
 	Set<Shop<Ship>> defaultShipSales;
 	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
+	Set<Person> defaultPersons;
 	TextReplacements defaultSubstitutions;
 
 	Politics politics;
@@ -258,9 +259,11 @@ void GameData::FinishLoading()
 	defaultOutfitSales = objects.outfitSales;
 	defaultSubstitutions = objects.substitutions;
 	defaultWormholes = objects.wormholes;
+	defaultPersons = objects.persons;
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
+	background.FinishLoading();
 }
 
 
@@ -431,8 +434,7 @@ void GameData::Revert()
 	objects.outfitSales.Revert(defaultOutfitSales);
 	objects.substitutions.Revert(defaultSubstitutions);
 	objects.wormholes.Revert(defaultWormholes);
-	for(auto &it : objects.persons)
-		it.second.Restore();
+	objects.persons.Revert(defaultPersons);
 
 	politics.Reset();
 	purchases.clear();
@@ -457,13 +459,14 @@ void GameData::ReadEconomy(const DataNode &node)
 	vector<string> headings;
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "purchases")
+		const string &key = child.Token(0);
+		if(key == "purchases")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 3 && grand.Value(2))
 					purchases[Systems().Get(grand.Token(0))][grand.Token(1)] += grand.Value(2);
 		}
-		else if(child.Token(0) == "system")
+		else if(key == "system")
 		{
 			headings.clear();
 			for(int index = 1; index < child.Size(); ++index)
@@ -471,7 +474,7 @@ void GameData::ReadEconomy(const DataNode &node)
 		}
 		else
 		{
-			System &system = *objects.systems.Get(child.Token(0));
+			System &system = *objects.systems.Get(key);
 
 			int index = 0;
 			for(const string &commodity : headings)
@@ -575,9 +578,9 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 
 
 // Apply the given change to the universe.
-void GameData::Change(const DataNode &node, const ConditionsStore *playerConditions)
+void GameData::Change(const DataNode &node, const PlayerInfo &player)
 {
-	objects.Change(node, playerConditions);
+	objects.Change(node, player);
 }
 
 
@@ -909,6 +912,27 @@ const CategoryList &GameData::GetCategory(const CategoryType type)
 const StarField &GameData::Background()
 {
 	return background;
+}
+
+
+
+void GameData::StepBackground(const Point &vel, double zoom)
+{
+	background.Step(vel, zoom);
+}
+
+
+
+const Point &GameData::GetBackgroundPosition()
+{
+	return background.Position();
+}
+
+
+
+void GameData::SetBackgroundPosition(const Point &position)
+{
+	background.SetPosition(position);
 }
 
 

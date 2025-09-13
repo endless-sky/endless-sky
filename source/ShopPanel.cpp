@@ -323,6 +323,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(!isOutfitter)
 			player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
+		UI::PlaySound(UI::UISound::NORMAL);
 	}
 	else if(command.Has(Command::HELP))
 	{
@@ -494,25 +495,28 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool ShopPanel::Click(int x, int y, int clicks)
+bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 {
-	dragShip = nullptr;
-	// Handle clicks on the buttons.
-	char button = CheckButton(x, y);
-	if(button)
-		return DoKey(button);
-
-	auto ScrollbarClick = [x, y, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
+	auto ScrollbarClick = [x, y, button, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
 	{
-		return ScrollbarMaybeUpdate([x, y, clicks](ScrollBar &scrollbar)
+		return ScrollbarMaybeUpdate([x, y, button, clicks](ScrollBar &scrollbar)
 			{
-				return scrollbar.Click(x, y, clicks);
+				return scrollbar.Click(x, y, button, clicks);
 			}, scrollbar, scroll, true);
 	};
 	if(ScrollbarClick(mainScrollbar, mainScroll)
 			|| ScrollbarClick(sidebarScrollbar, sidebarScroll)
 			|| ScrollbarClick(infobarScrollbar, infobarScroll))
 		return true;
+
+	if(button != MouseButton::LEFT)
+		return false;
+
+	dragShip = nullptr;
+	// Handle clicks on the buttons.
+	char zoneButton = CheckButton(x, y);
+	if(zoneButton)
+		return DoKey(zoneButton);
 
 	const Point clickPoint(x, y);
 
@@ -658,8 +662,11 @@ bool ShopPanel::Drag(double dx, double dy)
 
 
 
-bool ShopPanel::Release(int x, int y)
+bool ShopPanel::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	dragShip = nullptr;
 	isDraggingShip = false;
 	return true;

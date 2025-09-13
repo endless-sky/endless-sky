@@ -46,7 +46,7 @@ mission "Avgi: First Contact"
 		conversation
 			branch aviskir
 				has "flagship planet: Aviskir"
-			branch coreworld
+			branch "core world"
 				has "flagship planet attribute: avgi core"
 			branch station
 				has "flagship planet attribute: station"
@@ -75,7 +75,7 @@ mission "Avgi: First Contact"
 				`	(Move to a higher orbit.)`
 					goto orbit
 
-			label coreworld
+			label "core world"
 			`The first thing you notice about this habitable world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be a handful of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see the tumbling remains of what looks like half of an enormous starship with an equally large drive, splintered and broken along its spine.`
 			`	Your observations are interrupted by a blared warning from your console. You barely manage to yank your ship aside as a bright trail of plasma nearly clips you, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
 			action
@@ -319,7 +319,7 @@ mission "Avgi: Humans From the Deep"
 				set "avgi: asked about humans"
 			`	Prasinos thinks for a moment, then says, "Hesitance. It may come as a surprise to you, but you are not the first human to come to our space. Three- no, that would be six of your years ago, an alien ship was found drifting around a star in our space, swarmed by Aberrations. By some miracle they were driven away, and the ship recovered. And those were the first, and until now, the only humans we have had the honor of meeting. A crew of explorers from, I believe they said, 'the depths,' though I am not quite sure if that is a planet or a region of space."`
 			`	"Appreciation. They have told us much of humanity, and developed these devices so as to allow us to more easily communicate. And without the ability to return home, they now live among us, helping where they can with their knowledge of humanity's advanced technologies."`
-			label humanquestions
+			label "human questions"
 			choice
 				`	"What are these 'Aberrations?'"`
 					goto aberrant
@@ -340,7 +340,7 @@ mission "Avgi: Humans From the Deep"
 			action
 				set "avgi: asked about human tech"
 			`	Galano speaks. "Appreciation. Perhaps not to you, but humanity has had the hyperdrive since long before we reached our homeworld's moon. I have seen the changes and advancements even a handful of decades can bring, and your species' advantage over us of centuries has brought you miracles such as shields and repulsors."`
-				goto humanquestions
+				goto "human questions"
 
 			label aberrant
 			action
@@ -374,11 +374,11 @@ mission "Avgi: Humans From the Deep"
 			`	"Reservation. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
 			choice
 				`	"While I'm here, can I buy your technology?"`
-					goto buystuff
+					goto "buy stuff"
 				`	"Is there anything I can do to help in the meantime?"`
 
 			`	"Consideration. As an alien, you will inevitably be a novelty to most of us, but the existence of humans is well-known among the public enough for you to walk among us without issue. I will speak to others about a more formal role, but until then I am unsure if we can ask anything of you beyond keeping the peace."`
-			label buystuff
+			label "buy stuff"
 			`	Galano says, "Interest. I would expect human technology to be superior to our own in most aspects, but we will of course allow you to purchase our items with the agreement of the Assembly. In the event that it becomes possible to open trade relations with your human government, we may find it useful to have prior transactions."`
 			`	"Amusement. Not to mention the goodwill such a gesture could buy us," says Asime.`
 			`	Prasinos says, more seriously, "Reservation. Our material resources are quite limited at the moment, so for now I would only support providing for the requisition of small items that do not strain the needs of the Guard."`
@@ -615,7 +615,7 @@ mission "Avgi: Defend Ensemble 2"
 				"Aberrant Trip"
 				"Aberrant Triplet (Disable-able)" 3
 	on visit
-		dialog `You've landed on <planet>, but there are still Abberant attacking the system. You should take off and help the Avgi defeat them.`
+		dialog `You've landed on <planet>, but there are still Aberrant attacking the system. You should take off and help the Avgi defeat them.`
 
 	on complete
 		log `Defended Ensemble from the Aberrant raid with the help of a fleet of Twilight Guard ships armed with nuclear weapons. The Aberrant apparently do not usually raid this deep into the Tangled Shroud, which makes the size of this battle worrying.`

@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../opengl.h"
 
 #include <filesystem>
+#include <functional>
 #include <string>
 
 class Color;
@@ -72,23 +73,20 @@ private:
 	std::string TruncateFront(const std::string &str, int &width) const;
 	std::string TruncateMiddle(const std::string &str, int &width) const;
 
+	std::string TruncateEndsOrMiddle(const std::string &str, int &width,
+		std::function<std::string(const std::string &, int)> getResultString) const;
 
 private:
 	const Shader *shader;
 	GLuint texture = 0;
-	GLuint vao = 0;
-	GLuint vbo = 0;
-
-	GLint colorI = 0;
-	GLint scaleI = 0;
-	GLint glyphI = 0;
-	GLint aspectI = 0;
-	GLint positionI = 0;
 
 	int height = 0;
 	int space = 0;
 	mutable int screenWidth = 0;
 	mutable int screenHeight = 0;
+	mutable GLfloat scale[2]{0.f, 0.f};
+	GLfloat glyphWidth = 0.f;
+	GLfloat glyphHeight = 0.f;
 
 	static const int GLYPHS = 98;
 	int advance[GLYPHS * GLYPHS] = {};
