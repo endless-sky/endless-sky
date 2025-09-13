@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RoutePlan.h"
 
 #include "DistanceMap.h"
+#include "Logger.h"
 
 using namespace std;
 
@@ -32,6 +33,14 @@ RoutePlan::RoutePlan(const System &center, const System &destination, const Play
 RoutePlan::RoutePlan(const Ship &ship, const System &destination, const PlayerInfo *player)
 {
 	Init(DistanceMap(ship, destination, player));
+}
+
+
+
+RoutePlan::RoutePlan(const RoutePlan &other)
+{
+	plan = other.plan;
+	hasRoute = other.hasRoute;
 }
 
 
