@@ -27,6 +27,7 @@ class FlacSupplier : protected FLAC::Decoder::Stream, public AsyncAudioSupplier 
 // otherwise the FLAC::Decoder::Stream may free the resources with the decoder thread running.
 public:
 	explicit FlacSupplier(std::shared_ptr<std::iostream> data, bool looping = false);
+	~FlacSupplier() override;
 
 
 private:

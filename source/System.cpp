@@ -138,7 +138,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			else if(key == "government")
 				government = nullptr;
 			else if(key == "music")
-				music.clear();
+				music = nullptr;
 			else if(key == "attributes")
 				attributes.clear();
 			else if(key == "link")
@@ -387,7 +387,12 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
 		else if(key == "music")
-			music = value;
+		{
+			if(child.Size() > valueIndex + 1)
+				music = GameData::GetOrCreateTrack(value, child.Value(valueIndex + 1));
+			else
+				music = GameData::GetOrCreateTrack(value);
+		}
 		else if(key == "habitable")
 			habitable = child.Value(valueIndex);
 		else if(key == "jump range")
@@ -642,8 +647,8 @@ const vector<const Sprite *> &System::GetMapIcons() const
 
 
 
-// Get the name of the ambient audio to play in this system.
-const string &System::MusicName() const
+// Get the ambient audio to play in this system.
+const Track *System::Music() const
 {
 	return music;
 }

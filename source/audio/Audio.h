@@ -21,8 +21,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class PlayerInfo;
 class Point;
 class Sound;
+class Track;
 
 
 
@@ -64,8 +66,8 @@ public:
 	// "listener". This will make it softer and change the left / right balance.
 	static void Play(const Sound *sound, const Point &position, SoundCategory category);
 
-	// Play the given music. An empty string means to play nothing.
-	static void PlayMusic(const std::string &name);
+	/// Force changing to the given track.
+	static void PlayMusic(const Track *track);
 
 	// Pause all active sound sources. Doesn't cause new streams to be paused, and doesn't pause the music source.
 	static void Pause();
@@ -76,7 +78,7 @@ public:
 	/// Begin playing all the sounds that have been added since the last time
 	/// this function was called.
 	/// If the game is in fast forward mode, the fast version of sounds is played.
-	static void Step(bool isFastForward);
+	static void Step(bool isFastForward, const PlayerInfo &player);
 
 	// Shut down the audio system (because we're about to quit).
 	static void Quit();

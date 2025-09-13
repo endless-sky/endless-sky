@@ -55,6 +55,7 @@ class Person;
 class Phrase;
 class Planet;
 class PlayerInfo;
+class Playlist;
 class Point;
 class Politics;
 class Shader;
@@ -67,6 +68,7 @@ class TaskQueue;
 class Test;
 class TestData;
 class TextReplacements;
+class Track;
 class UniverseObjects;
 class Wormhole;
 
@@ -134,6 +136,7 @@ public:
 	static const Set<Interface> &Interfaces();
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
+	static const Set<Playlist> &Playlists();
 	static const Set<News> &SpaceportNews();
 	static const Set<Outfit> &Outfits();
 	static const Set<Shop<Outfit>> &Outfitters();
@@ -146,7 +149,11 @@ public:
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
+	static const Set<Track> &Tracks();
+	static const Set<std::set<std::string>> &VariantTracks();
 	static const Set<Wormhole> &Wormholes();
+
+	static const Track *GetOrCreateTrack(const std::string &track, double duration = -1.);
 
 	static ConditionsStore &GlobalConditions();
 

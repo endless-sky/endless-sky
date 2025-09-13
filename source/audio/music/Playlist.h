@@ -1,4 +1,4 @@
-/* Mp3Supplier.h
+/* Playlist.h
 Copyright (c) 2025 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,18 +15,33 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "AsyncAudioSupplier.h"
+#include "../../ConditionSet.h"
+#include "../../LocationFilter.h"
+
+#include <set>
+#include <string>
+
+class DataNode;
+class Track;
+class PlayerInfo;
 
 
 
-/// Streams audio from an MP3 file.
-class Mp3Supplier : public AsyncAudioSupplier {
+/// A grouping of tracks under shared conditions.
+class Playlist
+{
 public:
-	explicit Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping = false);
-	~Mp3Supplier() override;
+	void Load(const DataNode &data, const ConditionsStore *conditions, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
+
+	bool Matches(const PlayerInfo &player) const;
+	const std::set<const Track *> &Tracks() const;
+	const std::string &Name() const;
 
 
 private:
-	/// This is the entry point for the decoding thread.
-	void Decode() override;
+	std::string name;
+	std::set<const Track *> tracks;
+	ConditionSet toPlay;
+	LocationFilter playAt;
 };
