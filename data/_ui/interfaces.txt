@@ -1972,26 +1972,35 @@ interface "trade"
 		center 0 95
 		dimensions 480 1
 	
+	sprite "ui/trading panel bottom"
+		center 159 357
+	
 	active if "can buy"
-	sprite "ui/dialog cancel"
-		center 100 355
-	button u "B_uy All"
-		center 100 355
+	sprite "ui/embedded small button"
+		center 115 355
+	button B "B_uy All"
+		center 115 355
 		dimensions 70 30
 	
-	sprite "ui/wide button"
-		center 190 355
-	
 	active if "can sell"
-	visible if "!can sell outfits"
-	button e "S_ell All"
-		center 190 355
+	sprite "ui/embedded small button"
+		center 201 355
+	button S "S_ell All"
+		center 201 355
+		dimensions 70 30
+	
+	active if "can sell specials"
+	sprite "ui/wide button"
+		center -85 355
+	button P "Sell Specials"
+		center -85 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
-	visible if "can sell outfits"
-	button e "S_ell Outfits"
-		center 190 355
+	sprite "ui/wide button"
+		center -190 355
+	button L "Sell Outfits"
+		center -190 355
 		dimensions 90 30
 
 
@@ -2004,26 +2013,35 @@ interface "trade (small screen)"
 		center -60 95
 		dimensions 480 1
 	
+	sprite "ui/trading panel bottom"
+		center 99 357
+	
 	active if "can buy"
-	sprite "ui/dialog cancel"
-		center 40 355
-	button u "B_uy All"
-		center 40 355
+	sprite "ui/embedded small button"
+		center 55 355
+	button B "B_uy All"
+		center 55 355
 		dimensions 70 30
 	
-	sprite "ui/wide button"
-		center 130 355
-	
 	active if "can sell"
-	visible if "!can sell outfits"
-	button e "S_ell All"
-		center 130 355
+	sprite "ui/embedded small button"
+		center 141 355
+	button S "S_ell All"
+		center 141 355
+		dimensions 70 30
+	
+	active if "can sell specials"
+	sprite "ui/wide button"
+		center -145 355
+	button P "Sell Specials"
+		center -145 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
-	visible if "can sell outfits"
-	button e "S_ell Outfits"
-		center 130 355
+	sprite "ui/wide button"
+		center -250 355
+	button L "Sell Outfits"
+		center -250 355
 		dimensions 90 30
 
 
