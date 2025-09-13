@@ -1977,12 +1977,12 @@ interface "trade"
 	
 	active if "can buy"
 	button B "B_uy All"
-		center 115 355
+		center 120 355
 		dimensions 70 30
 	
 	active if "can sell"
 	button S "S_ell All"
-		center 201 355
+		center 200 355
 		dimensions 70 30
 	
 	active if "can sell specials"
@@ -2013,17 +2013,13 @@ interface "trade (small screen)"
 		center 99 354
 	
 	active if "can buy"
-	sprite "ui/embedded small button"
-		center 55 355
 	button B "B_uy All"
-		center 55 355
+		center 60 355
 		dimensions 70 30
 	
 	active if "can sell"
-	sprite "ui/embedded small button"
-		center 141 355
 	button S "S_ell All"
-		center 141 355
+		center 140 355
 		dimensions 70 30
 	
 	active if "can sell specials"
