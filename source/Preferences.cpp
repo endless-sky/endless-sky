@@ -167,6 +167,9 @@ namespace {
 	const vector<string> MINIMAP_DISPLAY_SETTING = {"off", "when jumping", "always on"};
 	int minimapDisplayIndex = 1;
 
+	const vector<string> FLAGSHIP_SPACE_PRIORITY_SETTINGS = {"none", "passengers", "cargo", "both"};
+	int flagshipSpacePriorityIndex = 1;
+
 	int previousSaveCount = 3;
 }
 
@@ -249,6 +252,8 @@ void Preferences::Load()
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
 		else if(key == "Show mini-map")
 			minimapDisplayIndex = max<int>(0, min<int>(node.Value(1), MINIMAP_DISPLAY_SETTING.size() - 1));
+		else if(key == "Prioritize flagship use")
+			flagshipSpacePriorityIndex = clamp<int>(node.Value(1), 0, FLAGSHIP_SPACE_PRIORITY_SETTINGS.size() - 1);
 		else if(key == "previous saves" && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(key == "alt-mouse turning")
@@ -320,6 +325,7 @@ void Preferences::Save()
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("Show mini-map", minimapDisplayIndex);
+	out.Write("Prioritize flagship use", flagshipSpacePriorityIndex);
 	out.Write("previous saves", previousSaveCount);
 
 	for(const auto &it : settings)
@@ -833,4 +839,26 @@ Preferences::MinimapDisplay Preferences::GetMinimapDisplay()
 const std::string &Preferences::MinimapSetting()
 {
 	return MINIMAP_DISPLAY_SETTING[minimapDisplayIndex];
+}
+
+
+
+void Preferences::ToggleFlagshipSpacePriority()
+{
+	if(++flagshipSpacePriorityIndex >= static_cast<int>(FLAGSHIP_SPACE_PRIORITY_SETTINGS.size()))
+		flagshipSpacePriorityIndex = 0;
+}
+
+
+
+Preferences::FlagshipSpacePriority Preferences::GetFlagshipSpacePriority()
+{
+	return static_cast<FlagshipSpacePriority>(flagshipSpacePriorityIndex);
+}
+
+
+
+const string &Preferences::FlagshipSpacePrioritySetting()
+{
+	return FLAGSHIP_SPACE_PRIORITY_SETTINGS[flagshipSpacePriorityIndex];
 }
