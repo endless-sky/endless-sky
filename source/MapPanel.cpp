@@ -598,14 +598,29 @@ bool MapPanel::Scroll(double dx, double dy)
 	// The mouse should be pointing to the same map position before and after zooming.
 	Point mouse = UI::GetMouse();
 	Point anchor = mouse / Zoom() - center;
-	if(dy > 0.)
+	cumulativeScroll += dy;
+	if(cumulativeScroll > 2.)
+	{
 		IncrementZoom();
-	else if(dy < 0.)
+		cumulativeScroll = 0;
+	}
+	else if(cumulativeScroll < -2.)
+	{
 		DecrementZoom();
+		cumulativeScroll = 0;
+	}
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
 	center = mouse / Zoom() - anchor;
+	return true;
+}
+
+
+
+bool MapPanel::PrevPanel()
+{
+	GetUI()->Pop(this);
 	return true;
 }
 

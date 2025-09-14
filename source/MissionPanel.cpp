@@ -120,6 +120,13 @@ namespace {
 			}
 		}
 	}
+
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_X,
+		SDL_CONTROLLER_BUTTON_Y,
+		SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+	};
 }
 
 
@@ -655,6 +662,23 @@ bool MissionPanel::Scroll(double dx, double dy)
 		return Drag(0., dy * Preferences::ScrollSpeed());
 
 	return MapPanel::Scroll(dx, dy);
+}
+
+
+
+bool MissionPanel::GamePadState(GamePad &controller)
+{
+	if(controller.Held(SDL_CONTROLLER_BUTTON_X))
+		DoKey('a');
+	else if(controller.Held(SDL_CONTROLLER_BUTTON_Y))
+		DoKey('A');
+	else if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSHOULDER))
+		DoKey('o');
+	else if(controller.Held(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
+		DoKey('p');
+	controller.Clear(CONTROLLER_BUTTONS);
+
+	return Panel::GamePadState(controller);
 }
 
 

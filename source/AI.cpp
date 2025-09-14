@@ -516,7 +516,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 		Messages::Add("Coming to a stop.", Messages::Importance::High);
 
 	autoPilot |= activeCommands;
-	if(activeCommands.Has(AutopilotCancelCommands()))
+	if(activeCommands.Has(AutopilotCancelCommands()) || activeCommands.HasMovement())
 	{
 		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
 		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
@@ -4630,6 +4630,13 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(mouseTurning && !ship.IsBoarding() && (!ship.IsReversing() || ship.Attributes().Get("reverse thrust")))
 		command.SetTurn(TurnToward(ship, mousePosition));
+
+	const Point &stick = activeCommands.TurnPoint();
+	if(stick.X() != 0. || stick.Y() != 0.)
+	{
+		command.SetTurn(TurnToward(ship, stick));
+	}
+	command.SetThrustGradient(activeCommands.ThrustGradient());
 
 	if(activeCommands)
 	{
