@@ -213,6 +213,7 @@ void Dialog::Draw()
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &inactive = *GameData::Colors().Get("inactive");
+	const string okText = isMission ? "Accept" : "OK";
 	okPos = pos + Point((top->Width() - RIGHT_MARGIN - cancel->Width()) * .5, 0.);
 	Point labelPos(
 		okPos.X() - .5 * font.Width(okText),
@@ -220,6 +221,7 @@ void Dialog::Draw()
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (activeButton == 1 ? bright : dim));
 	if(canCancel)
 	{
+		string cancelText = isMission ? "Decline" : "Cancel";
 		cancelPos = pos + Point(okPos.X() - cancel->Width() + BUTTON_RIGHT_MARGIN, 0.);
 		SpriteShader::Draw(cancel, cancelPos);
 		labelPos = {
@@ -553,4 +555,4 @@ int Dialog::Width() const
 {
 	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
 	return top->Width() - HORIZONTAL_MARGIN;
-}
+
