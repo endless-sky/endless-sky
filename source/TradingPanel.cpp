@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -394,7 +395,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 	}
 	if(outfitValue.size() == 1)
 		return "Sell " + outfitValue[0].name + " for " + Format::CreditString(profit) + "?";
-	ostringstream out;
+	std::ostringstream out;
 	out
 		<< "Sell "
 		<< Format::CargoString(tonsSold, sellMinable ? "of special commodities" : "of outfits")
