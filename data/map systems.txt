@@ -866,7 +866,7 @@ system "3 Axis"
 		sprite planet/ice0
 		distance 1340.63
 		period 388.064
-	object
+	object "Spiraling Indigo"
 		sprite planet/gas6
 		distance 2584.92
 		period 1038.98
@@ -1078,7 +1078,7 @@ system "4 Axis"
 		sprite planet/rock17-b
 		distance 1455.02
 		period 1076.88
-	object
+	object "Midnight Diamond"
 		sprite planet/gas1
 		distance 1864.98
 		period 1562.70
@@ -1926,7 +1926,7 @@ system Ablodab
 				scale 0.5
 			distance 148.05
 			period 24
-	object
+	object Ogmur
 		sprite planet/gas5
 		distance 1376.54
 		period 990.943
@@ -24544,7 +24544,7 @@ system Kugel
 	object
 		sprite star/g5
 		period 10
-	object
+	object "Sandswell"
 		sprite planet/desert0-b
 		distance 155.36
 		period 30.9833
@@ -24773,7 +24773,7 @@ system "Last Word"
 		sprite planet/rock1
 		distance 1383.46
 		period 823.322
-	object
+	object "Heavenly Halls"
 		sprite planet/gas1-b
 		distance 4922.46
 		period 5525.77

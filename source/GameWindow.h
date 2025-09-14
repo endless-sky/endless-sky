@@ -29,9 +29,6 @@ public:
 	// Paint the next frame in the main window.
 	static void Step();
 
-	// Ensure the proper icon is set on the main window.
-	static void SetIcon();
-
 	// Handle resize events of the main window.
 	static void AdjustViewport();
 
@@ -52,5 +49,5 @@ public:
 
 	// Print the error message in the terminal, error file, and message box.
 	// Checks for video system errors and records those as well.
-	static void ExitWithError(const std::string& message, bool doPopUp = true);
+	static void ExitWithError(const std::string &message, bool doPopUp = true);
 };

@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Color.h"
 #include "../GameData.h"
-#include "../Point.h"
+#include "../Rectangle.h"
 #include "../Screen.h"
 #include "Shader.h"
 
@@ -67,6 +67,13 @@ void FillShader::Init()
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+}
+
+
+
+void FillShader::Fill(const Rectangle &area, const Color &color)
+{
+	Fill(area.Center(), area.Dimensions(), color);
 }
 
 
