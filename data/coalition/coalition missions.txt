@@ -3750,8 +3750,15 @@ mission "Coalition: Struggling Author 4"
 
 
 event "beyond the hyperdrive is published"
-	fail "Coalition: Book Discovered 2"
 
+mission "Coalition: Beyond the Hyperdrive Fail Book Discovered 2"
+	landing
+	invisible
+	to offer
+		has "event: beyond the hyperdrive is published"
+	on offer
+		fail "Coalition: Book Discovered 2"
+		fail
 
 mission "Coalition: Struggling Author 5A"
 	landing
