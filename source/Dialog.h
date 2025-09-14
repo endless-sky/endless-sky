@@ -127,14 +127,16 @@ protected:
 	bool allowsFastForward = false;
 	bool isWide = false;
 
+	std::string okText;
+	std::string cancelText;
+	std::string thirdButtonLabel;
+
 	std::string input;
 
 	Point okPos;
 	Point cancelPos;
 	Point thirdPos;
 
-	// Third button, always the left-most button:
-	std::string thirdButtonLabel;
 	SDL_Keycode thirdButtonKey;
 
 	int numButtons;

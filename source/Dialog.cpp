@@ -213,7 +213,6 @@ void Dialog::Draw()
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &inactive = *GameData::Colors().Get("inactive");
-	const string okText = isMission ? "Accept" : "OK";
 	okPos = pos + Point((top->Width() - RIGHT_MARGIN - cancel->Width()) * .5, 0.);
 	Point labelPos(
 		okPos.X() - .5 * font.Width(okText),
@@ -221,7 +220,6 @@ void Dialog::Draw()
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (activeButton == 1 ? bright : dim));
 	if(canCancel)
 	{
-		string cancelText = isMission ? "Decline" : "Cancel";
 		cancelPos = pos + Point(okPos.X() - cancel->Width() + BUTTON_RIGHT_MARGIN, 0.);
 		SpriteShader::Draw(cancel, cancelPos);
 		labelPos = {
@@ -236,7 +234,7 @@ void Dialog::Draw()
 				cancelPos.X() - (thirdButtonSprite->Width() + cancel->Width()) / 2 + BUTTON_RIGHT_MARGIN, 0.);
 			SpriteShader::Draw(thirdButtonSprite, thirdPos);
 			labelPos = {
-				thirdPos.X() - .5 * font.Width(cancelText),
+				thirdPos.X() - .5 * font.Width(thirdButtonLabel),
 				thirdPos.Y() - .5 * font.Height()};
 			font.Draw(thirdButtonLabel, labelPos, activeButton == 3 ? bright : dim);
 		}
@@ -439,6 +437,9 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	activeButton = 1;
 	isWide = false;
 	numButtons = canCancel ? !thirdButtonLabel.empty() ? 3 : 2 : 1;
+
+	okText = isMission ? "Accept" : "OK";
+	cancelText = isMission ? "Decline" : "Cancel";
 
 	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
 	text = std::make_shared<TextArea>();
