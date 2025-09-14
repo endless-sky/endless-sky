@@ -208,7 +208,7 @@ mission "Avgi Culture: Park Politics"
 
 			label next4
 			`	Wisteria quickly completes his own move, as well as his movement of the Foil. Now he seems to be moving a piece in your direction, perhaps to block you. After a few more back-and-forth moves between the two of you, he asks you another question.`
-			`	"So, Captain <last>. I am curious. If you found yourself in our place, an invincible enemy placed between yourself, armed with the last dredges of your people's spacefaring strength, and the bulk of your people, held hostage on their very planets but otherwise unharmed, what would you do, question? Would you abandon them to their fate to build a new life out amongst the stars, or gamble your remaining strength on a bet to liberate them?"`
+			`	"So, Captain <last>. I am curious. If you found yourself in our place, an invincible enemy placed between yourself, armed with the last dregs of your people's spacefaring strength, and the bulk of your people held hostage on their very planets but otherwise unharmed, what would you do, question? Would you abandon them to their fate to build a new life out amongst the stars, or gamble your remaining strength on a bet to liberate them?"`
 			choice
 				`	"You can't just abandon everyone on your planets. Surely there's a way to win against the Aberrant, even if it takes sacrifice."`
 					goto liberate
