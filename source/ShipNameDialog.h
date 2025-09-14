@@ -17,8 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Dialog.h"
 
-#include "Point.h"
-
 #include <string>
 
 
@@ -33,15 +31,9 @@ public:
 	ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
 		const std::string &message, std::string initialValue = "");
 
-	virtual void Draw() override;
-
-
-protected:
-	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
-
 
 private:
-	Point randomPos;
+	virtual bool ThirdButtonFun(std::string &) override;
 };
 
 
@@ -51,4 +43,6 @@ ShipNameDialog::ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
 		const std::string &message, std::string initialValue)
 	: Dialog(panel, fun, message, initialValue)
 {
+	thirdButtonLabel = "Random";
+	numButtons = 3;
 }

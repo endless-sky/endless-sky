@@ -37,10 +37,10 @@ class TextArea;
 // callback function can be given to receive the player's response.
 class Dialog : public Panel {
 public:
-	// An OK / Cancel dialog where Cancel can be disabled. The okIsActive lets
+	// An OK / Cancel dialog where Cancel can be disabled. The activeButton == 1 lets
 	// you select whether "OK" (true) or "Cancel" (false) are selected as the default option.
 	Dialog(std::function<void()> okFunction, const std::string &message, Truncate truncate,
-		bool canCancel, bool okIsActive);
+		bool canCancel, int activeButton);
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
 	explicit Dialog(const std::string &text, Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
@@ -59,6 +59,7 @@ public:
 	Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
+	// Request string, 2 buttons
 	template<class T>
 	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "",
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
@@ -104,6 +105,8 @@ private:
 	void DoCallback(bool isOk = true) const;
 	// The width of the dialog, excluding margins.
 	int Width() const;
+	// Function associated with the third button.
+	virtual bool ThirdButtonFun(std::string &);
 
 
 protected:
@@ -118,7 +121,7 @@ protected:
 	std::function<bool(const std::string &)> validateFun;
 
 	bool canCancel;
-	bool okIsActive;
+	int activeButton;
 	bool isMission;
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
@@ -128,6 +131,13 @@ protected:
 
 	Point okPos;
 	Point cancelPos;
+	Point thirdPos;
+
+	// Third button, always the left-most button:
+	std::string thirdButtonLabel;
+	SDL_Keycode thirdButtonKey;
+
+	int numButtons;
 
 	const System *system = nullptr;
 	PlayerInfo *player = nullptr;
@@ -168,6 +178,7 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 
 
 
+// Three buttons, string input with validation.
 template<class T>
 Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
 	std::function<bool(const std::string &)> validate, std::string initialValue, Truncate truncate, bool allowsFastForward)
