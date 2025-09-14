@@ -96,7 +96,7 @@ mission "Avgi Culture: Park Politics"
 				`	(Move one of the Foil's stones towards Wisteria's side, to block him in the future.)`
 					goto "block wisteria 2"
 				`	(Move one of the Foil's stones towards its own exit. Why not?)`
-					goto "escape third 2"
+					goto "escape foil 2"
 
 			label escape2
 			action
