@@ -90,9 +90,9 @@ mission "Avgi Culture: Park Politics"
 				`	(Move one of the Foil's stones towards my own side, to start building a link.)`
 					goto escape2
 				`	(Move one of the Foil's stones towards Wisteria's side, to block him in the future.)`
-					goto blockwisteria2
+					goto "block wisteria 2"
 				`	(Move one of the Foil's stones towards its own exit. Why not?)`
-					goto escapefoil2
+					goto "escape foil 2"
 				`	(Move one of the Foil's stones towards Wisteria's side, to block him in the future.)`
 					goto "block wisteria 2"
 				`	(Move one of the Foil's stones towards its own exit. Why not?)`
