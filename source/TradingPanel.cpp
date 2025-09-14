@@ -36,8 +36,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
-#include <string>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
