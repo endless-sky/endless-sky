@@ -321,8 +321,6 @@ outfit "Ultraviolet Excimer Laser"
 		"hit force" 3
 		"damage dropoff" 0 2100
 		"dropoff modifier" 0
-	description "A"
-	description ""
 
 effect "uv laser glare"
 	sprite "effect/uv excimer laser glare"
