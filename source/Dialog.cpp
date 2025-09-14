@@ -236,7 +236,7 @@ void Dialog::Draw()
 				cancelPos.X() - (thirdButtonSprite->Width() + cancel->Width()) / 2 + BUTTON_RIGHT_MARGIN, 0.);
 			SpriteShader::Draw(thirdButtonSprite, thirdPos);
 			labelPos = {
-				thirdPos.X() - .5 * font.Width(cancelText),
+				thirdPos.X() - .5 * font.Width(thirdButtonLabel),
 				thirdPos.Y() - .5 * font.Height()};
 			font.Draw(thirdButtonLabel, labelPos, activeButton == 3 ? bright : dim);
 		}
