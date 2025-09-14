@@ -56,6 +56,7 @@ vector<AudioSupplier::sample_t> WavSupplier::NextDataChunk()
 	// If we are at the beginning of the buffer and it was already played, this is a loop.
 	if(!currentSample && wasStarted && !isLooping)
 		return samples;
+	++consumedBuffers;
 
 	size_t currentSampleCount = 0;
 	do {

@@ -25,8 +25,7 @@ void Fade::AddSource(unique_ptr<AudioSupplier> source, size_t fadePerFrame)
 	if(fadePerFrame < 1)
 		fadePerFrame = 1;
 
-	if(primarySource)
-		fadeProgress.emplace_back(std::move(primarySource), MAX_FADE, fadePerFrame);
+	fadeProgress.emplace_back(std::move(primarySource), MAX_FADE, fadePerFrame);
 	primarySource = std::move(source);
 }
 
@@ -38,7 +37,8 @@ void Fade::Set3x(bool is3x)
 	if(primarySource)
 		primarySource->Set3x(is3x);
 	for(const auto &[source, fade, fadePerFrame] : fadeProgress)
-		source->Set3x(is3x);
+		if(source)
+			source->Set3x(is3x);
 }
 
 
@@ -47,7 +47,8 @@ size_t Fade::MaxChunks() const
 {
 	size_t count = primarySource ? primarySource->MaxChunks() : 0;
 	for(const auto &[supplier, fade, fadePerFrame] : fadeProgress)
-		count = max(supplier->MaxChunks(), count);
+		if(supplier)
+			count = max(supplier->MaxChunks(), count);
 
 	return count;
 }
@@ -58,7 +59,8 @@ size_t Fade::AvailableChunks() const
 {
 	size_t count = primarySource ? primarySource->AvailableChunks() : MaxChunks();
 	for(const auto &[supplier, fade, fadePerFrame] : fadeProgress)
-		count = min(supplier->AvailableChunks(), count);
+		if(supplier)
+			count = min(supplier->AvailableChunks(), count);
 
 	return count;
 }
@@ -76,11 +78,12 @@ vector<AudioSupplier::sample_t> Fade::NextDataChunk()
 		result = primarySource->NextDataChunk();
 	else // fade sources
 	{
+		const auto nextChunk = [](auto &s) {return s ? s->NextDataChunk() : vector<sample_t>(OUTPUT_CHUNK);};
 		// Generate the faded background.
-		vector<sample_t> faded = std::get<0>(fadeProgress[0])->NextDataChunk();
+		vector<sample_t> faded = nextChunk(std::get<0>(fadeProgress[0]));
 		for(size_t i = 1; i < fadeProgress.size(); ++i)
 		{
-			vector<sample_t> other = std::get<0>(fadeProgress[i])->NextDataChunk();
+			vector<sample_t> other = nextChunk(std::get<0>(fadeProgress[i]));
 			auto &[source, fade, fadePerFrame] = fadeProgress[i - 1];
 			CrossFade(faded, other, fade, fadePerFrame);
 			faded = std::move(other);
@@ -100,7 +103,8 @@ vector<AudioSupplier::sample_t> Fade::NextDataChunk()
 	// Clean up the finished sources.
 	if(primarySource && !primarySource->MaxChunks())
 		primarySource.reset();
-	erase_if(fadeProgress, [](const auto &faded){ return !std::get<1>(faded) || !std::get<0>(faded)->MaxChunks(); });
+	erase_if(fadeProgress, [](const auto &faded){ return !std::get<1>(faded) ||
+		(std::get<0>(faded) && !std::get<0>(faded)->MaxChunks()); });
 
 	return result;
 }

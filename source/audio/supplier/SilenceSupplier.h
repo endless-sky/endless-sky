@@ -1,4 +1,4 @@
-/* Mp3Supplier.h
+/* SilenceSupplier.h
 Copyright (c) 2025 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,18 +15,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "AsyncAudioSupplier.h"
+#include "AudioSupplier.h"
 
 
 
-/// Streams audio from an MP3 file.
-class Mp3Supplier : public AsyncAudioSupplier {
+class SilenceSupplier : public AudioSupplier {
 public:
-	explicit Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping = false);
-	~Mp3Supplier() override;
+	explicit SilenceSupplier(double seconds, bool loop);
+
+	// Inherited pure virtual methods
+	size_t MaxChunks() const override;
+	size_t AvailableChunks() const override;
+	std::vector<sample_t> NextDataChunk() override;
 
 
 private:
-	/// This is the entry point for the decoding thread.
-	void Decode() override;
+	double seconds;
 };
