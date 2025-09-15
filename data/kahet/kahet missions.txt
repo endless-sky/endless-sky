@@ -308,7 +308,7 @@ mission "Ka'het: Death in the Graveyard 1"
 	name "Odd Ka'het"
 	description "Find a Remnant who can help you with the downed Ka'het in <destination>."
 	source
-		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retile" "Osaeli"
+		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retilie" "Osaeli"
 	stopover "Aventine"
 	to offer
 		has "Remnant: Cognizance 19: done"
@@ -332,14 +332,14 @@ mission "Ka'het: Death in the Graveyard 1"
 			choice
 				`	(Take your chance and attack it.)`
 					to display
-						has "armament deterrence" > 0
+						"armament deterrence" > 0
 					goto attack
 				`	(Come closer, carefully.)`
 				`	(Keep your distance.)`
 				`	(Turn around and leave.)`
 					depart
 			`	Minutes pass, and the Maeri'het keeps showing no reaction of any kind to your presence. By the time you complete a fly-around you both have almost reached the ground; a few metallic panels detach from the shell of the Ka'het just as it touches down, and a set of balloons start inflating out of the resulting holes.`
-			goto dead
+				goto dead
 			label attack
 			`	You hurriedly warm up your weapons and set the targeting computer toward the enemy. With the press of a button, you unleash all your wrath on the Ka'het - so much that the first shot that hits does not seem to encounter any shield, penetrating deep below the skin of the slug. The Maeri'het inclines on the starboard side and starts falling rapidly; a few metallic panels detach from its shell right before it reaches the ground, and a set of balloons rapidly inflate out of the resulting holes.`
 			label dead
@@ -349,7 +349,7 @@ mission "Ka'het: Death in the Graveyard 1"
 					goto report
 				`	(Blow it into pieces.)`
 					to display
-						has "armament deterrence" > 0
+						"armament deterrence" > 0
 					goto blow
 				`	(Land next to it and don your EVA suit.)`
 			`	You instinctively check your sidearm with your hand while walking down the stairway, knowing well how futile it would be in this situation. Despite being the smallest of the Ka'het you have seen, the Maeri'het remains still intimidatingly large. No longer cloaked, you notice a fluid coming down from its sides, starting right from the slug itself. It covers the entire landing zone, and some of it has almost reached up to your ship.`
@@ -488,7 +488,7 @@ mission "Ka'het: Death in the Graveyard 4A"
 				`	"Thank you."`
 					accept
 				`	"I may not have enough space for them."`
-			`	"Oh, I am sure an experienced captain like you will be able to find a place where to hide a stash of them around these parts," he signs amused. "See you on <planet>!"
+			`	"Oh, I am sure an experienced captain like you will be able to find a place where to hide a stash of them around these parts," he signs amused. "See you on <planet>!"`
 				accept
 	on complete
 		conversation
@@ -532,7 +532,7 @@ mission "Ka'het: Another Death in the Graveyard 0A"
 	landing
 	deadline 7
 	source
-		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retile" "Osaeli"
+		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retilie" "Osaeli"
 	to offer
 		or
 			has "Ka'het: Death in the Graveyard 4B: declined"
@@ -551,7 +551,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 	landing
 	deadline 4
 	source
-		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retile" "Osaeli"
+		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retilie" "Osaeli"
 	to offer
 		has "Ka'het: Another Death in the Graveyard 0A: active"
 	to accept
@@ -746,7 +746,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 				outfit "EMP Torpedo" 64
 			`	The front of this Maeri'het appears to have been set up for electronic warfare: a long series of EMP Deployers with their storage rack show prominently, plus a number of Ravager Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
 				decline
-			label weapon_vareti_guns
+			label weapon_vareti_gun
 			action
 				outfit "Ka'het Nullifier"
 				outfit "Ka'het Annihilator" 4
@@ -755,7 +755,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 				outfit "Ka'het Ravager Turret" 4
 			`	The impressive front of this Vareti'het appears to have been set up to focus on shield damage: a long series of Annililators show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
 				decline
-			label weapon_vareti_guns
+			label weapon_vareti_EMP
 			action
 				outfit "Ka'het Nullifier"
 				outfit "Ka'het Ravager Beam" 4
@@ -804,7 +804,7 @@ mission "Ka'het: Another Death in the Graveyard 1"
 	name "Another Odd Ka'het"
 	description "Take the Ka'het equipment you have gathered to <destination>."
 	source
-		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retile" "Osaeli"
+		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retilie" "Osaeli"
 	destination "Aventine"
 	cargo "Ka'het machinery" 40
 	blocked "Your sensors identify another hibernated Ka'het on the surface of <planet>, but you quickly realize that you wouldn't have enough space to take its machinery."
