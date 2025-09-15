@@ -3619,7 +3619,7 @@ mission "Coalition: Struggling Author 4"
 				`	"Let's go!"`
 					goto go
 				`	"What's the publishing company called?"`
-			`	"They're called 'Priyepichia Publishing.'" Anna shows you beautiful pictures of a clean white building perched on a mountainside, high above gentle waves. On the roof stands a landing pad painted with a blue dolphin.`
+			`	"They're called 'Priyepichia Publishing.'" Anna shows you beautiful pictures of a clean white building perched on a mountainside, high above gentle waves. On the roof stands a landing pad painted with a striped, sleek beetle-like creature whose hind legs resemble broad paddles.`
 			label go
 			`	You head back to your ship with Anna and Temporo, and plot a course to <destination>.`
 				accept
