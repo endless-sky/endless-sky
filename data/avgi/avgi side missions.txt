@@ -485,7 +485,7 @@ mission "Avgi Culture: Zapchannel Energy"
 
 			branch superpowers
 				random < 1
-			`	You take the vial, warm to the touch, and uncork it. Nikkio gives you an expectent look, and gestures at you before you carefully tip the drink back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in your chest, spreading as your body starts to go numb. As your vision darkens, punctuated by flashes of light in the corners of your eyes, your last thought is that perhaps you shouldn't have drunk a mysterious glowing liquid given to you by a seedy alien you just met in the spaceport.`
+			`	You take the vial, warm to the touch, and uncork it. Nikkio gives you an expectant look, and gestures at you before you carefully tip the drink back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in your chest, spreading as your body starts to go numb. As your vision darkens, punctuated by flashes of light in the corners of your eyes, your last thought is that perhaps you shouldn't have drunk a mysterious glowing liquid given to you by a seedy alien you just met in the spaceport.`
 				die
 
 			label superpowers
