@@ -338,10 +338,10 @@ mission "Ka'het: Death in the Graveyard 1"
 				`	(Keep your distance.)`
 				`	(Turn around and leave.)`
 					depart
-			`	Minutes pass, and the Maeri'het keeps showing no reaction of any kind to your presence. By the time you complete a fly-around you both have almost reached the ground; a few metallic panels detach from the shell of the Ka'het just as it touches down, and a set of of balloons start inflating out of the resulting holes.`
+			`	Minutes pass, and the Maeri'het keeps showing no reaction of any kind to your presence. By the time you complete a fly-around you both have almost reached the ground; a few metallic panels detach from the shell of the Ka'het just as it touches down, and a set of balloons start inflating out of the resulting holes.`
 			goto dead
 			label attack
-			`	You hurriedly warm up your weapons and set the targeting computer toward the enemy. With the press of a button, you unleash all your wrath on the Ka'het - so much that the first shot that hits does not seem to encounter any shield, penetrating deep below the skin of the slug. The Maeri'het inclines on the starboard side and starts falling rapidly; a few metallic panels detach from its shell right before it reaches the ground, and a set of of balloons rapidly inflate out of the resulting holes.`
+			`	You hurriedly warm up your weapons and set the targeting computer toward the enemy. With the press of a button, you unleash all your wrath on the Ka'het - so much that the first shot that hits does not seem to encounter any shield, penetrating deep below the skin of the slug. The Maeri'het inclines on the starboard side and starts falling rapidly; a few metallic panels detach from its shell right before it reaches the ground, and a set of balloons rapidly inflate out of the resulting holes.`
 			label dead
 			`	The Ka'het at last emits an uncomfortably loud whistle, reducing in intensity over the minutes pass until disappearing completely. And then, silence. It sits motionless at the bottom of what looks like a dry riverbed, surrounded by nothing but you and the calm night sky.`
 			choice
@@ -410,15 +410,15 @@ mission "Ka'het: Death in the Graveyard 3"
 				`	"Let's wait for it to leave then."`
 				`	"Should I engage it?"`
 					goto engage
-			`	"Ah, it is not that easy. Its programming may be telling it to heal it, but the slug will grow more frustrated with each failed attempt. You see, one of the functions left under the control of the biological side is the combat. It may not be able to decide to stop trying to heal it, but it can decide to register it as a foe, destroy it, and then leave freely as if it was never there," he concludes with an cold chant.`
+			`	"Ah, it is not that easy. Its programming may be telling it to heal it, but the slug will grow more frustrated with each failed attempt. You see, one of the functions left under the control of the biological side is the combat. It may not be able to decide to stop trying to heal it, but it can decide to register it as a foe, destroy it, and then leave freely as if it was never there," he concludes with a cold chant.`
 				goto firepower
 			label engage
-			`	"Ah, I am afraid so. Its programming may be telling it to heal it, but the slug will grow more frustrated with each failed attempt. You see, one of the functions left under the control of the biological side is the combat. It may not be able to decide to stop trying to heal it, but it can decide to register it as a foe, destroy it, and then leave freely as if it was never there," he concludes with an cold chant.`
+			`	"Ah, I am afraid so. Its programming may be telling it to heal it, but the slug will grow more frustrated with each failed attempt. You see, one of the functions left under the control of the biological side is the combat. It may not be able to decide to stop trying to heal it, but it can decide to register it as a foe, destroy it, and then leave freely as if it was never there," he concludes with a cold chant.`
 			label firepower
 			`	"And thus, the Telis is a threat to the Remnant xenobiological interests. If you have enough firepower to do so, I ask you to attack the Ka'het and lead it away, so that we can loot the carcass while it is still useful."`
 			choice
 				`	(Open fire.)`
-				`	"Sorry, but I'm not prepared for such an fight."`
+				`	"Sorry, but I'm not prepared for such a fight."`
 					goto weak
 			`	You put one hand on the throttle, and with the other pitch down toward the surface. The Gull engages its cloak as you fire the first shot, missing both Ka'het by a few meters to avoid damaging the corpse of the Maeri. Soon, a furious Telis follows you back into space, and the real battle begins.`
 				launch
@@ -499,7 +499,7 @@ mission "Ka'het: Death in the Graveyard 4A"
 			label rifle
 			`You wait for Plume next to the ramp of their Gull. When you see him, he is discussing about the destination of the Ka'het machinery with another Remnant. You recognize him: he had previously helped you have your Void Rifle. "Oh, Captain," he signs content, "Thank you for your help, once again! I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted to handle their machinery to safe storage whenever you might bring more of it."`
 			label how
-			`	He hands you a small data crystal, shaped like a icosahedron. "It contains a series of short videos on how to use the tools in a Research Laboratory, if you were to be carrying one aboard, to extract some of the most essential components out of a hibernated Ka'het. You will need practice, of course, but the procedure is really not too dissimilar from that of looting a standard ship. If it happens again, as long as you leave around 40-50 tons of space in your payload bay, you will be able to do most of what we did today without wasting a second to call us!"`
+			`	He hands you a small data crystal, shaped like an icosahedron. "It contains a series of short videos on how to use the tools in a Research Laboratory, if you were to be carrying one aboard, to extract some of the most essential components out of a hibernated Ka'het. You will need practice, of course, but the procedure is really not too dissimilar from that of looting a standard ship. If it happens again, as long as you leave around 40-50 tons of space in your payload bay, you will be able to do most of what we did today without wasting a second to call us!"`
 			`	After spending some more time discussing the procedure to follow the next time you encounter a hibernated Ka'het, you bid each other farewell with a short bow and part ways.`
 	on visit
 		dialog `You have returned to <planet>, but Plume's Gull hasn't arrived yet.`
@@ -538,7 +538,7 @@ mission "Ka'het: Another Death in the Graveyard 0A"
 			has "Ka'het: Death in the Graveyard 4B: declined"
 			has "Ka'het: Death in the Graveyard 4A: done"
 		random < 8
-	to accept 
+	to accept
 		has "outfit (flagship installed): Research Laboratory"
 	to complete
 		never
@@ -554,7 +554,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retile" "Osaeli"
 	to offer
 		has "Ka'het: Another Death in the Graveyard 0A: active"
-	to accept 
+	to accept
 		has "outfit (flagship installed): Research Laboratory"
 	on complete
 		conversation
@@ -693,18 +693,18 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 			action
 				outfit "Maeri Engine Nacelles"
 				outfit "Ka'het Sustainer Nacelles"
-			`	Despite their easily accessible position, disconnecting the nacelles of a Maeri'het proves to be more complicated than expected due to the the bungle of tubes coming in and out if it. After a few hours and a lot of sweat you are able to put both engine types into your cargo hold, and you can finally leave.`
+			`	Despite their easily accessible position, disconnecting the nacelles of a Maeri'het proves to be more complicated than expected due to the bungle of tubes coming in and out of it. After a few hours and a lot of sweat you are able to put both engine types into your cargo hold, and you can finally leave.`
 				decline
 			label engine_telis
 			action
 				outfit "Telis Engine Nacelles"
 				outfit "Ka'het Sustainer Nacelles" 2
-			`	Despite their easily accessible position, disconnecting the nacelles of a Telis'het proves to be more complicated than expected due to the the bungle of tubes coming in and out if it. After a few hours and a lot of sweat you are able to put both engine types into your cargo hold, and you can finally leave.`
+			`	Despite their easily accessible position, disconnecting the nacelles of a Telis'het proves to be more complicated than expected due to the bungle of tubes coming in and out of it. After a few hours and a lot of sweat you are able to put both engine types into your cargo hold, and you can finally leave.`
 				decline
 			label engine_vareti
 			action
 				outfit "Vareti Engine Block"
-			`	Despite its easily accessible position, disconnecting the huge thrusters of a Vareti'het proves to be more complicated than expected due to the the bungle of tubes coming in and out if it. After a few hours and a lot of sweat you are able to put the engine block into your cargo hold, and you can finally leave.`
+			`	Despite its easily accessible position, disconnecting the huge thrusters of a Vareti'het proves to be more complicated than expected due to the bungle of tubes coming in and out of it. After a few hours and a lot of sweat you are able to put the engine block into your cargo hold, and you can finally leave.`
 				decline
 
 			label weapon
@@ -736,7 +736,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 			action
 				outfit "Ka'het Ravager Beam" 4
 				outfit "Ka'het Annihilator Turret" 5
-			`	The front of this Maeri'het appears to have been set up to focus on hull damage: an long series of Ravager Beams show prominently, plus another n of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
+			`	The front of this Maeri'het appears to have been set up to focus on hull damage: a long series of Ravager Beams show prominently, plus another n of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
 				decline
 			label weapon_telis_EMP
 			action
@@ -744,7 +744,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 				outfit "Ka'het Annihilator Turret"
 				outfit "Ka'het Ravager Turret" 4
 				outfit "EMP Torpedo" 64
-			`	The front of this Maeri'het appears to have been set up for electronic warfare: an long series of EMP Deployers with their storage rack show prominently, plus a number of Ravager Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
+			`	The front of this Maeri'het appears to have been set up for electronic warfare: a long series of EMP Deployers with their storage rack show prominently, plus a number of Ravager Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
 				decline
 			label weapon_vareti_guns
 			action
@@ -753,7 +753,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 				outfit "Ka'het Ravager Beam" 2
 				outfit "Ka'het Annihilator Turret" 2
 				outfit "Ka'het Ravager Turret" 4
-			`	The impressive front of this Vareti'het appears to have been set up to focus on shield damage: an long series of Annililators show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
+			`	The impressive front of this Vareti'het appears to have been set up to focus on shield damage: a long series of Annililators show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
 				decline
 			label weapon_vareti_guns
 			action
@@ -810,7 +810,7 @@ mission "Ka'het: Another Death in the Graveyard 1"
 	blocked "Your sensors identify another hibernated Ka'het on the surface of <planet>, but you quickly realize that you wouldn't have enough space to take its machinery."
 	to offer
 		has "Ka'het: Another Death in the Graveyard 0A: active"
-	to accept 
+	to accept
 		has "outfit (flagship installed): Research Laboratory"
 	on offer
 		fail "Ka'het: Another Death in the Graveyard 0A"
