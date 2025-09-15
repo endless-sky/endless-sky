@@ -841,9 +841,9 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				"Maeri'het"
 			variant 4
 				"Maeri'het (EMP)"
-			variant 5
+			variant 12
 				"Telis'het"
-			variant 5
+			variant 12
 				"Telis'het (EMP)"
 			variant 5
 				"Telis'het (Guns)"
