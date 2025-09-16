@@ -75,11 +75,11 @@ GitHub Permissions: Moderator
 Description: Moderators help to keep discussions civil, ensure disagreements remain productive, de-escalate conflict, resolve communication mishaps, and prioritize creating a friendly and welcoming environment that assures contributors their time will be appreciated and valued.
 
 **Responsibilities/Duties:**
-- Show a genuine desire to foster a welcoming environment.
-- Stay cool, calm, and collected even in tense situations.
-- Display good communication and conflict-resolution skills.
-- Show that they can be trusted to moderate fairly and unbiasedly.
-- Show a willingness to resolve conflicts even with uncooperative parties.
+- Keep discussions civil
+- Ensure disagreements remain productive
+- De-escalate conflict
+- Resolve communication mishaps
+- Prioritize creating a friendly and welcoming environment
 
 **Notes:**
 - While our moderation team is equipped with the tools to take moderation actions when necessary, we believe that this should be considered a last resort option. Our moderation team prefers to de-escalate and resolve conflicts and only utilizes moderation actions such as verbal warnings, time-outs, or more if de-escalation is impossible.
@@ -120,7 +120,7 @@ Contributions vary quite a bit, and there are numerous ways you can contribute t
 - Playtest and provide feedback
 - Review existing PRs
 - Make your own PR
-- Showcase the game
+- Create content featuring the game
 - Add to the wiki
 - Make your own tool or service
 - and many more
