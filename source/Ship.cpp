@@ -2093,10 +2093,9 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Outfit *outfit = hardpoints[i].GetOutfit();
-		if(!outfit)
+		const Weapon *weapon = hardpoints[i].GetWeapon();
+		if(!weapon)
 			continue;
-		const Weapon *weapon = outfit->GetWeapon().get();
 		CanFireResult canFire = CanFire(weapon);
 		if(canFire == CanFireResult::CAN_FIRE)
 		{
@@ -2157,10 +2156,9 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Outfit *outfit = hardpoints[i].GetOutfit();
-		if(!outfit)
+		const Weapon *weapon = hardpoints[i].GetWeapon();
+		if(!weapon)
 			continue;
-		const Weapon *weapon = outfit->GetWeapon().get();
 		if(CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
@@ -2200,10 +2198,9 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Outfit *outfit = hardpoints[i].GetOutfit();
-		if(!outfit)
+		const Weapon *weapon = hardpoints[i].GetWeapon();
+		if(!weapon)
 			continue;
-		const Weapon *weapon = outfit->GetWeapon().get();
 		if(CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
@@ -5202,10 +5199,9 @@ double Ship::CalculateDeterrence() const
 	double tempDeterrence = 0.;
 	for(const Hardpoint &hardpoint : Weapons())
 	{
-		const Outfit *outfit = hardpoint.GetOutfit();
-		if(outfit)
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon)
 		{
-			const Weapon *weapon = outfit->GetWeapon().get();
 			// 1 DoT damage of type X = 100 damage of type X over an extended period of time
 			// (~95 damage after 5 seconds, ~99 damage after 8 seconds). Therefore, multiply
 			// DoT damage types by 100. Disruption, scrambling, and slowing don't have an

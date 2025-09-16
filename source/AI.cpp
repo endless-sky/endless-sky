@@ -158,10 +158,10 @@ namespace {
 	{
 		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
-			const Outfit *outfit = hardpoint.GetOutfit();
-			if(outfit && !hardpoint.IsSpecial())
+			const Weapon *weapon = hardpoint.GetWeapon();
+			if(weapon && !hardpoint.IsSpecial())
 			{
-				const Outfit *ammo = outfit->GetWeapon()->Ammo();
+				const Outfit *ammo = weapon->Ammo();
 				if(ammo && !ship.OutfitCount(ammo))
 					continue;
 				return true;
@@ -1450,10 +1450,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	double maxRange = 0.;
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Outfit *outfit = hardpoint.GetOutfit();
-		if(outfit && !hardpoint.IsSpecial())
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon && !hardpoint.IsSpecial())
 		{
-			double range = outfit->GetWeapon()->Range();
+			double range = weapon->Range();
 			minRange = min(minRange, range);
 			maxRange = max(maxRange, range);
 		}
@@ -2328,10 +2328,10 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	auto requiredAmmo = set<const Outfit *>{};
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Outfit *outfit = hardpoint.GetOutfit();
-		if(outfit && !hardpoint.IsSpecial())
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon && !hardpoint.IsSpecial())
 		{
-			const Outfit *ammo = outfit->GetWeapon()->Ammo();
+			const Outfit *ammo = weapon->Ammo();
 			if(!ammo || ship.OutfitCount(ammo))
 			{
 				// This fighter has at least one usable weapon, and
@@ -3588,10 +3588,9 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 	Point result;
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Outfit *outfit = hardpoint.GetOutfit();
-		if(!outfit || hardpoint.IsHoming() || hardpoint.IsTurret())
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(!weapon || hardpoint.IsHoming() || hardpoint.IsTurret())
 			continue;
-		const Weapon *weapon = outfit->GetWeapon().get();
 
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		Point p = target.Position() - start + ship.GetPersonality().Confusion();
@@ -3629,7 +3628,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			double maxRange = 0.;
 			for(const Hardpoint &hardpoint : ship.Weapons())
 				if(hardpoint.CanAim(ship))
-					maxRange = max(maxRange, hardpoint.GetOutfit()->GetWeapon()->Range());
+					maxRange = max(maxRange, hardpoint.GetWeapon()->Range());
 			// If this ship has no turrets, bail out.
 			if(!maxRange)
 				return;
@@ -3712,7 +3711,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			// Get the turret's current facing, in absolute coordinates:
 			Angle aim = ship.Facing() + hardpoint.GetAngle();
 			// Get this projectile's average velocity.
-			const Weapon *weapon = hardpoint.GetOutfit()->GetWeapon().get();
+			const Weapon *weapon = hardpoint.GetWeapon();
 			double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 			// Loop through each body this hardpoint could shoot at. Find the
 			// one that is the "best" in terms of how many frames it will take
@@ -3860,7 +3859,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	for(const Hardpoint &hardpoint : ship.Weapons())
 		if(hardpoint.IsReady())
 		{
-			const Weapon *weapon = hardpoint.GetOutfit()->GetWeapon().get();
+			const Weapon *weapon = hardpoint.GetWeapon();
 			if(!(!currentTarget && hardpoint.IsHoming() && weapon->Ammo())
 					&& !(!secondary && weapon->Icon())
 					&& !(beFrugal && weapon->Ammo())
@@ -3896,7 +3895,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				continue;
 		}
 
-		const Weapon *weapon = hardpoint.GetOutfit()->GetWeapon().get();
+		const Weapon *weapon = hardpoint.GetWeapon();
 		// Don't expend ammo for homing weapons that have no target selected.
 		if(!currentTarget && weapon->Homing() && weapon->Ammo())
 			continue;
@@ -4020,7 +4019,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, const Body &target) co
 		// Only auto-fire primary weapons that take no ammunition.
 		if(!hardpoint.IsReady())
 			continue;
-		const Weapon *weapon = hardpoint.GetOutfit()->GetWeapon().get();
+		const Weapon *weapon = hardpoint.GetWeapon();
 		if(weapon->Icon() || weapon->Ammo())
 			continue;
 
@@ -4644,7 +4643,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			int index = 0;
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
-				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->GetWeapon()->Icon())
+				if(hardpoint.IsReady() && !hardpoint.GetWeapon()->Icon())
 					firingCommands.SetFire(index);
 				++index;
 			}

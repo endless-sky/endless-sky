@@ -214,10 +214,10 @@ set<const Outfit *> Armament::RestockableAmmo() const
 	auto restockable = set<const Outfit *>{};
 	for(const Hardpoint &hardpoint : hardpoints)
 	{
-		const Outfit *outfit = hardpoint.GetOutfit();
-		if(outfit)
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon)
 		{
-			const Outfit *ammo = outfit->GetWeapon()->Ammo();
+			const Outfit *ammo = weapon->Ammo();
 			if(ammo && !ammo->GetWeapon())
 				restockable.emplace(ammo);
 		}

@@ -55,13 +55,9 @@ namespace {
 		auto toRefill = set<const Outfit *>{};
 		for(auto &&it : ship.Weapons())
 		{
-			const Outfit *outfit = it.GetOutfit();
-			if(outfit)
-			{
-				const Weapon *weapon = outfit->GetWeapon().get();
-				if(weapon->Ammo() && weapon->AmmoUsage() > 0)
+			const Weapon *weapon = it.GetWeapon();
+			if(weapon && weapon->Ammo() && weapon->AmmoUsage() > 0)
 					toRefill.emplace(weapon->Ammo());
-			}
 		}
 
 		// Carriers may be configured to supply ammunition for carried ships found

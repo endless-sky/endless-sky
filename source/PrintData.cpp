@@ -297,10 +297,9 @@ namespace {
 				double deterrence = 0.;
 				for(const Hardpoint &hardpoint : ship.Weapons())
 				{
-					const Outfit *outfit = hardpoint.GetOutfit();
-					if(outfit)
+					const Weapon *weapon = hardpoint.GetWeapon();
+					if(weapon)
 					{
-						const Weapon *weapon = outfit->GetWeapon().get();
 						if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 							continue;
 						double damage = weapon->ShieldDamage() + weapon->HullDamage()

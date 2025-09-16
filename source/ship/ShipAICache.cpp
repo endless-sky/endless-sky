@@ -45,10 +45,9 @@ void ShipAICache::Calibrate(const Ship &ship)
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Outfit *outfit = hardpoint.GetOutfit();
-		if(!outfit || hardpoint.IsSpecial())
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(!weapon || hardpoint.IsSpecial())
 			continue;
-		const Weapon *weapon = outfit->GetWeapon().get();
 
 		hasWeapons = true;
 		bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship.OutfitCount(weapon->Ammo()));
@@ -114,10 +113,9 @@ void ShipAICache::Calibrate(const Ship &ship)
 	// Get the weapon ranges for this ship, so the AI can call it.
 	for(const auto &hardpoint : ship.Weapons())
 	{
-		const Outfit *outfit = hardpoint.GetOutfit();
-		if(!outfit || hardpoint.IsSpecial())
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(!weapon || hardpoint.IsSpecial())
 			continue;
-		const Weapon *weapon = outfit->GetWeapon().get();
 		if((weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
 			continue;
 		double weaponRange = weapon->Range() + hardpoint.GetPoint().Length();

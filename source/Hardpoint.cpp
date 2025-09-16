@@ -66,6 +66,13 @@ const Outfit *Hardpoint::GetOutfit() const
 
 
 
+const Weapon *Hardpoint::GetWeapon() const
+{
+	return outfit ? outfit->GetWeapon().get() : nullptr;
+}
+
+
+
 // Get the location, relative to the center of the ship, from which
 // projectiles of this weapon should originate.
 const Point &Hardpoint::GetPoint() const

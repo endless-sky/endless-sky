@@ -26,6 +26,7 @@ class Outfit;
 class Projectile;
 class Ship;
 class Visual;
+class Weapon;
 
 
 
@@ -60,6 +61,7 @@ public:
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	// The Outfit is guaranteed to have a Weapon.
 	const Outfit *GetOutfit() const;
+	const Weapon *GetWeapon() const;
 	// Get the location, relative to the center of the ship, from which
 	// projectiles of this weapon should originate. This point must be
 	// rotated to take the ship's current facing direction into account.
