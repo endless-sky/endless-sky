@@ -2551,7 +2551,7 @@ planet Hilothire
 	description `	A large research outpost was once set up on one of the larger islands to study the possibility of terraforming the world and warming its climate, but after the Incursion it has since gone uncrewed. The fueling station still contains a significant amount of stored fuel, however, which could be used by a passing ship to refuel.`
 	port "Space_port"
 		recharges fuel
-		description `The landing pads are thick slabs of frigid steel sunk deep into the island's gravely terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
+		description `The landing pads are thick slabs of frigid steel sunk deep into the island's gravelly terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
 	government Uninhabited
 	security 0
 
