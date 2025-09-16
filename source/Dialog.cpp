@@ -502,6 +502,9 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
+
+	if(validateFun)
+		isOkDisabled = !validateFun(input);
 }
 
 
