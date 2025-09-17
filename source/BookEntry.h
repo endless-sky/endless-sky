@@ -35,7 +35,7 @@ public:
 
 
 public:
-	BookEntry();
+	BookEntry() = default;
 
 	bool Empty() const;
 	void Read(const DataNode &node, int startAt = 0);

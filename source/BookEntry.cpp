@@ -27,16 +27,6 @@ using namespace std;
 
 
 
-// Note: A BookEntry exists potentially in advance of having taken effect and being placed into
-// the logbook, e.g. when it exists as merely a potential outcome of a given GameAction.
-// When the GameAction is triggered, the Instantiate method will be called to perform necessary
-// substitutions on the text at that time.
-BookEntry::BookEntry()
-{
-}
-
-
-
 bool BookEntry::Empty() const
 {
 	if(items.empty())
@@ -51,9 +41,6 @@ bool BookEntry::Empty() const
 
 void BookEntry::Read(const DataNode &node, int startAt)
 {
-	// Note: Like Dialog::ParseTextNode, BookEntry::Read will consume all remaining Tokens of this node
-	// as well as all remaining tokens of the children of this node.
-
 	if(startAt <= node.Size())
 		AppendItem(ReadItem(node, startAt));
 
@@ -89,9 +76,9 @@ BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 
 void BookEntry::Save(DataWriter &out) const
 {
+	out.BeginChild();
 	for(const ItemType &item : items)
 	{
-		out.BeginChild();
 		{
 			// Break the text up into paragraphs.
 			if(holds_alternative<string>(item))
@@ -100,8 +87,8 @@ void BookEntry::Save(DataWriter &out) const
 			else
 				out.Write("scene", std::get<const Sprite *>(item)->Name());
 		}
-		out.EndChild();
 	}
+	out.EndChild();
 }
 
 
