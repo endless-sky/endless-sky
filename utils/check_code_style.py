@@ -81,7 +81,7 @@ word_include = {re.compile(regex): description for regex, description in {
 	# Matches any series of operators ending with '=', '<' or '>' that have no trailing whitespace.
 	"^[^<>=:]?[" + std_op + "]*[=<>:][^=<>:,\\s\\)\\]}]": "missing whitespace after operator",
 	# Matches any '(void)' arguments in methods
-	"\\(void\\)": "do not use void to denote a function with no arguments"f
+	"\\(void\\)": "do not use void to denote a function with no arguments"
 }.items()}
 
 # Patterns for excluding matches (test()#match) of 'include'
