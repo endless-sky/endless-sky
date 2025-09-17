@@ -81,7 +81,7 @@ word_include = {re.compile(regex): description for regex, description in {
 	# Matches any series of operators ending with '=', '<' or '>' that have no trailing whitespace.
 	"^[^<>=:]?[" + std_op + "]*[=<>:][^=<>:,\\s\\)\\]}]": "missing whitespace after operator",
 	# Matches any '(void)' arguments in methods
-	"\\(void\\)": "do not use void to denote a function with no arguments"
+	"\\(void\\)": "do not use void to denote a function with no arguments"f
 }.items()}
 
 # Patterns for excluding matches (test()#match) of 'include'
@@ -412,6 +412,7 @@ def check_global_format(sanitized_lines, original_lines, file):
 	issues = ([], [])
 	if file not in exclude_include_check:
 		join(issues, check_include(sanitized_lines, original_lines, file))
+	join(issues, check_class_declarations(sanitized_lines, original_lines, file))
 	return issues
 
 
@@ -564,6 +565,23 @@ def check_include(sanitized_lines, original_lines, file):
 		for i in range(len(group) - 1):
 			if group_lines[i].lower() > group_lines[i + 1].lower():
 				errors.append(Error(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
+	return errors, warnings
+
+
+# Checks the class declarations in .h files.
+# sanitized_lines: the lines of the file, without the line separators and the contents of strings and comments
+# original_lines: the lines of the file, without the terminating line separators
+# file: the path to the file
+# Returns a tuple of errors and warnings.
+def check_class_declarations(sanitized_lines, original_lines, file):
+	errors = []
+	warnings = []
+
+	class_lines = [line for line in sanitized_lines if line.startswith("class ") and line.endswith(';')]
+	for j in range(1, len(class_lines)):
+		if class_lines[j - 1].lower() > class_lines[j].lower():
+			errors.append(Error(class_lines[j - 1], j, "class declarations are not in alphabetical order"))
+
 	return errors, warnings
 
 
