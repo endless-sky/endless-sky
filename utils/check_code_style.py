@@ -568,7 +568,7 @@ def check_include(sanitized_lines, original_lines, file):
 	return errors, warnings
 
 
-# Checks the class declarations in .h files.
+# Checks the class forward declarations at the beginning of header files. Parameters:
 # sanitized_lines: the lines of the file, without the line separators and the contents of strings and comments
 # original_lines: the lines of the file, without the terminating line separators
 # file: the path to the file
