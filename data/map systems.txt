@@ -40565,7 +40565,7 @@ system "Urba Pest"
 
 system Uttna
 	pos 946.3 -580.8
-	government "Gegno"
+	government Gegno
 	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
