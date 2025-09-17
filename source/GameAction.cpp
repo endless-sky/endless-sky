@@ -157,11 +157,11 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	}
 	else if(key == "log")
 	{
-		// Special log format: log <topic> <heading> [<log message>|scene <sprite>]
+		// Special log format: log <category> <heading> [<log message>|scene <sprite>]
 		// Normal log format: log [<log message>|scene <sprite>]
-		// Note: the key of `log` or `log <topic> <heading>` may be on a line unto itself, with the child nodes
+		// Note: the key of `log` or `log <category> <heading>` may be on a line unto itself, with the child nodes
 		// distributed beneath it. But this must be distinguished from `log scene <image_name>`.
-		// This means that there can never be a special topic named 'scene' or there will be problems with the
+		// This means that there can never be a special category named 'scene' or there will be problems with the
 		// player logbook format.
 		if(child.Size() < 3 || (child.Size() == 3 && child.Token(1) == "scene"))
 			logEntries.Read(child, 1);
@@ -251,7 +251,7 @@ void GameAction::Save(DataWriter &out) const
 		{
 			if(!specialLogEntry.Empty())
 			{
-				out.Write("log", topic, heading);
+				out.Write("log", category, heading);
 				specialLogEntry.Save(out);
 			}
 		}
@@ -380,9 +380,9 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 {
 	player.AddLogEntry(logEntries);
-	for(const auto & [topic, nextMap] : specialLogEntries)
+	for(const auto & [category, nextMap] : specialLogEntries)
 		for(const auto & [heading, specialLogEntry] : nextMap)
-			player.AddSpecialLog(topic, heading, specialLogEntry);
+			player.AddSpecialLog(category, heading, specialLogEntry);
 	for(auto &&it : specialLogClear)
 	{
 		if(it.second.empty())

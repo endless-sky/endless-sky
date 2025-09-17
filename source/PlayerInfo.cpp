@@ -1945,20 +1945,20 @@ const map<string, map<string, BookEntry>> &PlayerInfo::SpecialLogs()
 
 
 
-void PlayerInfo::AddSpecialLog(const string &type, const string &name, const BookEntry &logbookEntry)
+void PlayerInfo::AddSpecialLog(const string &category, const string &heading, const BookEntry &logbookEntry)
 {
-	specialLogs[type][name].Add(logbookEntry);
+	specialLogs[category][heading].Add(logbookEntry);
 }
 
 
 
-void PlayerInfo::RemoveSpecialLog(const string &type, const string &name)
+void PlayerInfo::RemoveSpecialLog(const string &category, const string &heading)
 {
-	auto it = specialLogs.find(type);
+	auto it = specialLogs.find(category);
 	if(it == specialLogs.end())
 		return;
 	auto &nameMap = it->second;
-	auto eit = nameMap.find(name);
+	auto eit = nameMap.find(heading);
 	if(eit != nameMap.end())
 		nameMap.erase(eit);
 }
@@ -4651,11 +4651,11 @@ void PlayerInfo::Save(DataWriter &out) const
 				out.Write(date.Day(), date.Month(), date.Year());
 				logbookEntry.Save(out);
 			}
-		for(const auto &[topic, nextMap] : specialLogs)
+		for(const auto &[category, nextMap] : specialLogs)
 			for(const auto &[heading, logbookEntry] : nextMap)
 				if(!logbookEntry.Empty())
 				{
-					out.Write(topic, heading);
+					out.Write(category, heading);
 					logbookEntry.Save(out);
 				}
 	}

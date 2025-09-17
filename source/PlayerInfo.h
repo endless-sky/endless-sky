@@ -215,11 +215,10 @@ public:
 	// Get the player's logbook.
 	const std::map<Date, BookEntry> &Logbook() const;
 	void AddLogEntry(const BookEntry &logbookEntry);
-	// Special logs are organized by topic (type) and heading (name)
 	const std::map<std::string, std::map<std::string, BookEntry>> &SpecialLogs();
-	void AddSpecialLog(const std::string &type, const std::string &name, const BookEntry &logbookEntry);
-	void RemoveSpecialLog(const std::string &type, const std::string &name);
-	void RemoveSpecialLog(const std::string &type);
+	void AddSpecialLog(const std::string &category, const std::string &heading, const BookEntry &logbookEntry);
+	void RemoveSpecialLog(const std::string &category, const std::string &heading);
+	void RemoveSpecialLog(const std::string &category);
 	bool HasLogs() const;
 
 	// Get mission information.
