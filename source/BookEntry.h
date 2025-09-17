@@ -20,11 +20,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <variant>
 #include <vector>
 
-class DataNode;
 class Color;
+class DataNode;
 class DataWriter;
-class Sprite;
 class Point;
+class Sprite;
 class WrappedText;
 
 

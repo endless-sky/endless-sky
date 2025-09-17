@@ -54,11 +54,9 @@ void BookEntry::Read(const DataNode &node, int startAt)
 	// Note: Like Dialog::ParseTextNode, BookEntry::Read will consume all remaining Tokens of this node
 	// as well as all remaining tokens of the children of this node.
 
-	// First, consume the rest of this first node:
 	if(startAt <= node.Size())
 		AppendItem(ReadItem(node, startAt));
 
-	// Then continue with its child nodes:
 	for(const DataNode &child : node)
 		AppendItem(ReadItem(child));
 }
@@ -110,25 +108,24 @@ void BookEntry::Save(DataWriter &out) const
 
 int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const
 {
-	// offset will track 1the total height
-	Point itemOffset;
+	Point drawPoint = topLeft;
 	for(const ItemType &item : items)
 	{
 		if(holds_alternative<string>(item))
 		{
 			wrap.Wrap(std::get<string>(item));
-			wrap.Draw(topLeft + itemOffset, color);
-			itemOffset.Y() += wrap.Height();
+			wrap.Draw(drawPoint, color);
+			drawPoint.Y() += wrap.Height();
 		}
 		else
 		{
 			const Sprite *scene = std::get<const Sprite *>(item);
 			const Point sceneOffset(scene->Width() / 2, scene->Height() / 2);
-			SpriteShader::Draw(scene, topLeft + itemOffset + sceneOffset);
-			itemOffset.Y() += scene->Height();
+			SpriteShader::Draw(scene, drawPoint + sceneOffset);
+			drawPoint.Y() += scene->Height();
 		}
 	}
-	return itemOffset.Y();
+	return drawPoint.Y() - topLeft.Y();
 }
 
 
@@ -136,7 +133,7 @@ int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color)
 void BookEntry::AppendItem(const ItemType &item)
 {
 	// Skip empty strings.
-	if(holds_alternative<string>(item) && std::get<string>(item) == "")
+	if(holds_alternative<string>(item) && std::get<string>(item).empty())
 		return;
 
 	if(!std::holds_alternative<std::monostate>(item))

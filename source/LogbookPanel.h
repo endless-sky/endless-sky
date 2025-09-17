@@ -59,8 +59,8 @@ private:
 	// Current month being displayed:
 	Date selectedDate;
 	std::string selectedName;
-	std::multimap<Date, BookEntry>::const_iterator begin;
-	std::multimap<Date, BookEntry>::const_iterator end;
+	std::map<Date, BookEntry>::const_iterator begin;
+	std::map<Date, BookEntry>::const_iterator end;
 	// Other months available for display:
 	std::vector<std::string> contents;
 	std::vector<Date> dates;

@@ -246,8 +246,8 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("log");
 		logEntries.Save(out);
 	}
-	for(const auto & [topic, nextMap] : specialLogEntries)
-		for(const auto & [heading, specialLogEntry] : nextMap)
+	for(const auto &[category, headings] : specialLogEntries)
+		for(const auto &[heading, specialLogEntry] : headings)
 		{
 			if(!specialLogEntry.Empty())
 			{
@@ -496,10 +496,10 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.debt = debt;
 
-	result.logEntries.Add(logEntries.Instantiate(subs));
-	for(const auto & [topic, nextMap] : specialLogEntries)
-		for(const auto & [heading, specialLogEntry] : nextMap)
-			result.specialLogEntries[topic][heading].Add(specialLogEntry.Instantiate(subs));
+	result.logEntries = logEntries.Instantiate(subs);
+	for(const auto &[category, headings] : specialLogEntries)
+		for(const auto &[heading, specialLogEntry] : headings)
+			result.specialLogEntries[category][heading] = specialLogEntry.Instantiate(subs);
 	result.specialLogClear = specialLogClear;
 
 	result.fail = fail;
