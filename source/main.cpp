@@ -43,6 +43,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "test/TestContext.h"
 #include "UI.h"
 
+#ifdef _WIN32
+#include "windows/TimerResolutionGuard.h"
+#endif
+
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -56,13 +60,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#include <mmsystem.h>
-
-#ifdef PlaySound
-#undef PlaySound
 #endif
-#endif
-
 
 using namespace std;
 
@@ -205,12 +203,6 @@ int main(int argc, char *argv[])
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 
-		// On Windows, make sure that the sleep timer has at least 1 ms resolution
-		// to avoid irregular frame rates.
-#ifdef _WIN32
-		timeBeginPeriod(1);
-#endif
-
 		Preferences::Load();
 
 		// Load global conditions:
@@ -223,6 +215,10 @@ int main(int argc, char *argv[])
 			return 1;
 
 		GameData::LoadSettings();
+
+#ifdef _WIN32
+		TimerResolutionGuard windowsTimerGuard;
+#endif
 
 		if(!isTesting || debugMode)
 		{

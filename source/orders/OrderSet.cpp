@@ -39,6 +39,28 @@ namespace {
 	constexpr bitset<static_cast<size_t>(Orders::Types::TYPES_COUNT)> HAS_TARGET_LOCATION{
 		(1 << static_cast<int>(Orders::Types::MOVE_TO))
 	};
+
+	// Orders not included in the bitset should be removed when the given order is issued.
+	constexpr array<bitset<static_cast<size_t>(Orders::Types::TYPES_COUNT)>,
+		static_cast<size_t>(Orders::Types::TYPES_COUNT)> SIMULTANEOUS{{
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // HOLD_POSITION
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // HOLD_ACTIVE
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // MOVE_TO
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // KEEP_STATION
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // GATHER
+		{}, // ATTACK
+		{}, // FINISH_OFF
+		{
+			(1 << static_cast<int>(Orders::Types::HOLD_POSITION)) +
+			(1 << static_cast<int>(Orders::Types::HOLD_ACTIVE)) +
+			(1 << static_cast<int>(Orders::Types::MOVE_TO)) +
+			(1 << static_cast<int>(Orders::Types::KEEP_STATION)) +
+			(1 << static_cast<int>(Orders::Types::GATHER)) +
+			(1 << static_cast<int>(Orders::Types::HARVEST))
+		}, // HOLD_FIRE
+		{}, // MINE
+		{(1 << static_cast<int>(Orders::Types::HOLD_FIRE))}, // HARVEST
+	}};
 }
 
 
@@ -60,19 +82,25 @@ bool OrderSet::Empty() const noexcept
 void OrderSet::Add(const OrderSingle &newOrder, bool *hasMismatch, bool *alreadyHarvesting)
 {
 	shared_ptr<Ship> newTargetShip = newOrder.GetTargetShip();
+	bool newTargetShipRelevant = HAS_TARGET_SHIP[static_cast<size_t>(newOrder.type)]
+		|| HAS_TARGET_SHIP_OR_ASTEROID[static_cast<size_t>(newOrder.type)];
 	shared_ptr<Minable> newTargetAsteroid = newOrder.GetTargetAsteroid();
-	if(hasMismatch)
-		*hasMismatch |= !Has(newOrder.type)
-			|| GetTargetShip() != newTargetShip
-			|| GetTargetAsteroid() != newTargetAsteroid;
+	bool newTargetAsteroidRelevant = HAS_TARGET_ASTEROID[static_cast<size_t>(newOrder.type)]
+		|| HAS_TARGET_SHIP_OR_ASTEROID[static_cast<size_t>(newOrder.type)];
 
-	if(!hasMismatch || *hasMismatch)
+	bool individualHasMismatch = !Has(newOrder.type)
+		|| (newTargetShipRelevant && GetTargetShip() != newTargetShip)
+		|| (newTargetAsteroidRelevant && GetTargetAsteroid() != newTargetAsteroid);
+	if(hasMismatch)
+		*hasMismatch |= individualHasMismatch;
+
+	if(hasMismatch ? *hasMismatch : individualHasMismatch)
 	{
 		Set(newOrder.type);
-		if(newTargetAsteroid)
+		if(alreadyHarvesting && newTargetAsteroid)
 			*alreadyHarvesting = Has(Types::HARVEST) && newOrder.type == Types::HARVEST;
 	}
-	else if(hasMismatch)
+	else if(hasMismatch || individualHasMismatch)
 	{
 		// The new order is already in the old set, so it should be removed instead.
 		Reset(newOrder.type);
@@ -80,11 +108,9 @@ void OrderSet::Add(const OrderSingle &newOrder, bool *hasMismatch, bool *already
 	}
 
 	// Update target ship and/or asteroid if it's relevant for the new order.
-	if(HAS_TARGET_SHIP[static_cast<size_t>(newOrder.type)]
-			|| HAS_TARGET_SHIP_OR_ASTEROID[static_cast<size_t>(newOrder.type)])
+	if(newTargetShipRelevant)
 		SetTargetShip(newTargetShip);
-	if(HAS_TARGET_ASTEROID[static_cast<size_t>(newOrder.type)]
-			|| HAS_TARGET_SHIP_OR_ASTEROID[static_cast<size_t>(newOrder.type)])
+	if(newTargetAsteroidRelevant)
 		SetTargetAsteroid(newTargetAsteroid);
 
 	// Update target system and point if it's relevant for the new order.
@@ -165,7 +191,7 @@ void OrderSet::Update(const Ship &ship)
 
 void OrderSet::Set(Types type) noexcept
 {
-	types.reset();
+	types &= SIMULTANEOUS[static_cast<size_t>(type)];
 	types.set(static_cast<size_t>(type));
 }
 
