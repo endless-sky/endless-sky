@@ -260,6 +260,8 @@ target_sources(EndlessSkyLib PRIVATE
 	RoutePlan.cpp
 	RoutePlan.h
 	Sale.h
+	SaveDiscardDialog.cpp
+	SaveDiscardDialog.h
 	SavedGame.cpp
 	SavedGame.h
 	Screen.cpp
