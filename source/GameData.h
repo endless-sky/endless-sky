@@ -85,6 +85,7 @@ public:
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
+	static void SaveSettings();
 	static void LoadSettings();
 	static void LoadShaders();
 	static double GetProgress();
