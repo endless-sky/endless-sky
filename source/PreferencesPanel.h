@@ -64,6 +64,7 @@ private:
 	void DrawTooltips();
 
 	void Exit();
+	bool CheckExit(SDL_Keycode nextAction);
 
 	void HandleSettingsString(const std::string &str, Point cursorPosition);
 
@@ -74,6 +75,9 @@ private:
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
 
+	// Callbacks related to managing controls profiles.
+	void SaveControls(const std::string &controlsName);
+	void DiscardControlChanges();
 
 private:
 	PlayerInfo &player;
@@ -99,6 +103,7 @@ private:
 
 	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
+	SDL_Keycode postDialogAction;
 
 	std::string selectedPlugin;
 

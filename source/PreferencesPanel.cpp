@@ -45,6 +45,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 
+#include "Logger.h"
+#include "SaveDiscardDialog.h"
+
 using namespace std;
 
 namespace {
@@ -105,6 +108,14 @@ namespace {
 		{"environment volume", SoundCategory::ENVIRONMENT},
 		{"alert volume", SoundCategory::ALERT}
 	};
+
+	// Prevent changing controls profiles that are shipped with the game resources.
+	bool CanChange(const string &profileName) {
+		// Return false if the profileName matches a profile found in the game resources.
+		if(Files::Exists(Files::Resources() / ("keys_" + profileName + ".txt")))
+			return false;
+		return true;
+	}
 }
 
 
@@ -173,6 +184,13 @@ void PreferencesPanel::Draw()
 			info.SetCondition(bar + " none");
 	}
 
+	if(page == 'c')
+	{
+		info.SetString("selected controls profile", Command::Name());
+		if(Command::GetProfileType() == "Working")
+			info.SetCondition("show controls changed");
+	}
+
 	if(Plugins::HasChanged())
 		info.SetCondition("show plugins changed");
 	if(CONTROLS_PAGE_COUNT > 1)
@@ -217,6 +235,8 @@ void PreferencesPanel::Draw()
 
 bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	postDialogAction = '\0';
+
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
 		Command::SetKey(zones[editing].Value(), key);
@@ -231,10 +251,15 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if(key == SDLK_RETURN)
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		Exit();
+	{
+		if(page != 'c' || CheckExit(key))
+			Exit();
+	}
 	else if(key == 'c' || key == 's' || key == 'p' || key == 'a')
 	{
-		page = key;
+		if(page != 'c' || CheckExit(key))
+			page = key;
+
 		hoverItem.clear();
 		selected = 0;
 
@@ -1250,20 +1275,42 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
-	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
-	{
-		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
-		return;
-	}
-
-	Command::SaveSettings(Files::Config() / "keys.txt");
-
 	if(recacheDeadlines)
 		player.CalculateRemainingDeadlines();
 
 	GetUI()->Pop(this);
 }
 
+
+
+// Return if able to exit.
+bool PreferencesPanel::CheckExit(SDL_Keycode nextAction)
+{
+	Logger::LogError("CheckExit()" + Command::GetProfileType() + Command::Name());
+
+	if(Command::GetProfileType() == "Working")
+	{
+		string message;
+		if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+			message = "Menu keybind is not bound or has conflicts.\n";
+		else
+			message = "Select 'Save' to activate this controls profile and save it.\n";
+
+		GetUI()->Push(new SaveDiscardDialog(this,
+			&PreferencesPanel::SaveControls,
+			[](const string &profileName) { return CanChange(profileName); },
+			&PreferencesPanel::DiscardControlChanges,
+			message +
+			"'Discard' will revert to the previous active control profile.\n" +
+			"'Cancel' to go back and make further changes.",
+			Command::Name()));
+
+		// Note: While this dialog is modal, this code is non-blocking.
+		postDialogAction = nextAction;
+		return false;
+	}
+	return true;
+}
 
 
 void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosition)
@@ -1440,4 +1487,26 @@ void PreferencesPanel::ScrollSelectedPlugin()
 		pluginListScroll.Scroll(-Preferences::ScrollSpeed());
 	while(selected * 20 - pluginListScroll > pluginListClip->Height())
 		pluginListScroll.Scroll(Preferences::ScrollSpeed());
+}
+
+
+
+
+void PreferencesPanel::SaveControls(const std::string& profileName)
+{
+	Command::RenameProfile(profileName);
+	Command::ActivateWorkingCopy();
+	GameData::SaveSettings();
+	DoKey(postDialogAction);
+	postDialogAction = '\0';
+}
+
+
+
+
+void PreferencesPanel::DiscardControlChanges()
+{
+	Command::DiscardWorkingCopy();
+	DoKey(postDialogAction);
+	postDialogAction = '\0';
 }

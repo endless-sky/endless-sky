@@ -217,7 +217,10 @@ color "wormholes: beyond Patir" .19 .27 .69
 # Color of warning message when users enable or disable plugins via in-game UI.
 color "plugin reload required" .75 .1 .1 0.
 
-
+# Colors used in Preferences panel:
+color "controls text" .5 .5 .5 1.
+color "controls warning text" 0.67 0.33 0.33 1.
+color "controls text shadow" 0. 0. 0. 1.
 
 interface "map detail panel"
 	value "min planet panel height" 195
@@ -461,7 +464,7 @@ interface "load menu"
 	button d "_Delete"
 		center -285 155
 		dimensions 90 30
-
+	
 	sprite "ui/wide button"
 		center -435 195
 	active
@@ -486,6 +489,64 @@ interface "load menu"
 	button l "_Load Game"
 		center 435 155
 		dimensions 90 30
+
+
+
+interface "modal list dialog"
+	sprite "_menu/buttonless side panel"
+		center 0 0
+
+	string "title"
+		color "bright"
+		align center
+		truncate back
+		width 230
+		center 0 -145
+	line
+		color "bright"
+		center 0 -130
+		dimensions 210 1
+	
+	box "selection list"
+		center 0 0
+		dimensions 230 262
+		
+	value "selection list horizontal text pad" 5
+	value "selection list fade out" 10
+	
+	# Note: mapping buttons 3, 2, 1 to F1, F2, F3 (left to right on screen vs keyboard)
+	active if "button three active"
+	"dynamic button" F1 "button three label"
+		color "medium"
+		align center
+		truncate back
+		width 70
+		center -95 155
+	sprite "ui/dialog cancel"
+		center -95 155
+		dimensions 70 30
+	
+	active if "button two active"
+	"dynamic button" F2 "button two label"
+		color "medium"
+		align center
+		truncate back
+		width 70
+		center 0 155
+	sprite "ui/dialog cancel"
+		center 0 155
+		dimensions 70 30
+	
+	active if "button one active"
+	"dynamic button" F3 "button one label"
+		color "medium"
+		align center
+		truncate back
+		width 70
+		center 95 155
+	sprite "ui/dialog cancel"
+		center 95 155
+		dimensions 70 30
 
 
 
@@ -524,7 +585,82 @@ interface "controls"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
-
+	
+	# Upon accessing the controls panel shall:
+	#  ! create a copy of the active profile as a working copy with the same name
+	#    - actually a working copy is made when changes are requested
+	#  - display the name of the profile
+	#  ! highlight keys that have changed
+	#    - not implemented
+	#  - offer a button to select a different profile ("Change Profile")
+	#    - this button will pop the select profile dialog
+	#
+	# The select profile dialog will:
+	#  - display a list of all profiles:
+	#    - from the player directory
+	#    - the game data directory
+	#  - "Select" button:
+	#    - not change the active profile, rather a newly selected profile will be copied into the working copy
+	#    - close the dialog
+	#  - "Delete" button:
+	#    - delete the selected profile if it is a user profile
+	#    - provide a message or tool tip that indicates that game profiles cannot be deleted
+	#    - will be deactivated if the selected profile is a game profile
+	#    - keep the dialog open
+	#  - "Cancel" button:
+	#    - Close the window, make no changes to the working copy
+	#
+	# An attempt to change pages or back out of the control panel will:
+	#  - check for changes between the active profile and the working copy
+	#  - if there are changes:
+	#    - pop an instance of the SaveDiscardDialog to request a name for the profile (defaults to current name)
+	#
+	# Within the SaveDiscardDialog:
+	#  - save will:
+	#    - store the profile with the selected name
+	#    - copy the working copy over to the active profile
+	#    - proceed to the desired next space (back or another preference panel)
+	#    - Do not allow saving over profiles that are distributed with the game data
+	#  - discard will:
+	#    - discard the working copy and make no changes to the active profile
+	#    - proceed to the desired next space (back or another preference panel)
+	#
+	
+	active
+	label "Controls Profile:"
+		from 40 -277
+		align left
+		color bright
+		
+	# shadow, one px down from text
+	string "selected controls profile"
+		from 40 -259
+		align left
+		width 140
+		truncate back
+		color "controls text shadow"
+	visible if "show controls changed"
+	string "selected controls profile"
+		from 40 -260
+		align left
+		width 140
+		truncate back
+		color "controls warning text"
+	visible if "!show controls changed"
+	string "selected controls profile"
+		from 40 -260
+		align left
+		width 140
+		truncate back
+		color "controls text"
+	visible
+	
+	sprite "ui/dialog cancel"
+		center 221 -270
+	button e "C_hange"
+		center 221 -270
+		dimensions 70 30
+	
 
 
 interface "settings"
@@ -963,7 +1099,6 @@ interface "audio"
 	visible if "alert volume max"
 	sprite "ui/audio max"
 		center 238 -28
-
 
 
 interface "preferences"
