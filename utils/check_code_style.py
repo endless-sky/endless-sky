@@ -412,7 +412,7 @@ def check_global_format(sanitized_lines, original_lines, file):
 	issues = ([], [])
 	if file not in exclude_include_check:
 		join(issues, check_include(sanitized_lines, original_lines, file))
-	join(issues, check_class_declarations(sanitized_lines, original_lines, file))
+	join(issues, check_class_forward_declarations(sanitized_lines, original_lines, file))
 	return issues
 
 
@@ -573,14 +573,16 @@ def check_include(sanitized_lines, original_lines, file):
 # original_lines: the lines of the file, without the terminating line separators
 # file: the path to the file
 # Returns a tuple of errors and warnings.
-def check_class_declarations(sanitized_lines, original_lines, file):
+def check_class_forward_declarations(sanitized_lines, original_lines, file):
 	errors = []
 	warnings = []
 
-	class_lines = [line for line in sanitized_lines if line.startswith("class ") and line.endswith(';')]
-	for j in range(1, len(class_lines)):
-		if class_lines[j - 1].lower() > class_lines[j].lower():
-			errors.append(Error(class_lines[j - 1], j, "class declarations are not in alphabetical order"))
+	class_lines = [(index, line) for index, line in enumerate(sanitized_lines) if line.startswith("class ") and line.endswith(';')]
+	for i in range(len(class_lines) - 1):
+		_, prev_line = class_lines[i]
+		line_num, next_line = class_lines[i + 1]
+		if prev_line.lower() > next_line.lower():
+			errors.append(Error(prev_line, line_num, "class forward declarations are not in alphabetical order"))
 
 	return errors, warnings
 
