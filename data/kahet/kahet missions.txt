@@ -382,7 +382,7 @@ mission "Ka'het: Death in the Graveyard 2"
 		has "Ka'het: Death in the Graveyard 1: active"
 	on offer
 		conversation
-			`It has to be winter time here in <planet>: the chilly valleys that normally surround the starport are covered by a thick layer of snow, and you can see your ship's anti-icing fluids being sprayed automatically over the cockpit window. You find Plume waiting for you right at the landing pad he had indicated you on the way here, not far from a group of Pelicans and a lone Gull.`
+			`It has to be winter time here on <planet>: the chilly valleys that normally surround the starport are covered by a thick layer of snow, and you can see your ship's anti-icing fluids being sprayed automatically over the cockpit window. You find Plume waiting for you right on the landing pad he indicated to you on your way down, not far from a group of Pelicans and a lone Gull.`
 			`	"No better chance to skip the pleasantries, eh?" he begins, rubbing his arms in the cold. He seems severely under-dressed for the weather. You invite him to come aboard, but he stops after the airlock's door. "Sorry, but this time I already have my ride for the mission. We have prepared the Gull out there based on your instructions - the machinery we want to loot will need an appropriately large cargo hold."`
 			choice
 				`	"What happened with that Maeri'het?"`
@@ -423,7 +423,7 @@ mission "Ka'het: Death in the Graveyard 3"
 			`	You put one hand on the throttle, and with the other pitch down toward the surface. The Gull engages its cloak as you fire the first shot, missing both Ka'het by a few meters to avoid damaging the corpse of the Maeri. Soon, a furious Telis follows you back into space, and the real battle begins.`
 				launch
 			label weak
-			`	"Neither are we," the intercom chants in unison. "This project is thus aborted, seeing as there is no practical way to complete it. Our group can split here: the return route is well explored, and our tanks have enough propellant to stay cloaked until reaching safer territory."`
+			`	"Neither are we," other voices on the intercom chant in unison. "This project is thus aborted, seeing as there is no practical way to complete it. Our group can split here: the return route is well explored, and our tanks have enough propellant to stay cloaked until reaching safer territory."`
 			`	"Captain <first>," Plume continues in a subdued tone, "I ask you to leave this planet with us as well. For as long as we stay here, even at this distance, some of the Maeri'het's biological self will remain active to keep an eye on our intentions, and will continue to do so until it finally dies. I would rather have them be inhibited during their end than fully conscious - for a lack of better word, a more humane end." He bids you farewell, and the Gull disappears after a short climb into the sky.`
 			choice
 				`	(Fly back to orbit.)`
@@ -473,7 +473,7 @@ mission "Ka'het: Death in the Graveyard 4A"
 				or
 					has "event: remnant: cognizance merganser"
 					has "event: remnant: penguin"
-			`	"We have not quite gotten to the point of true live ships," he replies with a quick glance at his Gull, "but we should be close, from what I have seen."`
+			`	"We have not quite gotten to the point of true live ships," he replies with a quick glance at his Gull, "but we should be close, from what I have seen.`
 			label living
 			`	"As far as I am concerned, the key difference lies in the role left to the being in question. Our paradigm is not to take an organism, inhibit it when we don't need it, and build around it the true spaceship. No, the whole ship is built in the same manner as a biological organism, to the point where it would be impossible to split it into a mechanical and biological portion. The relationship between the crew and the ship will never go beyond what is between a Remnant and their symbiont: both capable of going their own way, but mutually benefiting from their relationship."`
 				goto outfit
