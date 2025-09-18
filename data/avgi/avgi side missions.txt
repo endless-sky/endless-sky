@@ -63,7 +63,7 @@ mission "Avgi Culture: Park Politics"
 					goto escape1
 				`	(Focus on blocking Wisteria. Move a stone towards his triangle.)`
 					goto "block wisteria 1"
-				`	(Focus on blocking the foil. Move a stone towards its triangle.)`
+				`	(Focus on blocking the Foil. Move a stone towards its triangle.)`
 					goto "block foil 1"
 
 			label escape1

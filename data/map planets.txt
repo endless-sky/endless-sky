@@ -3259,7 +3259,7 @@ planet Mabatham
 	port "Space_port"
 		recharges fuel
 		services trading "offers missions"
-		description `The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes could take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
+		description `The "spaceport" is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes can take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
 	government Avgi
 	security 0
 

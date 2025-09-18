@@ -112,7 +112,6 @@ outfit "Nucleolysis Beam"
 		"corrosion damage" 0.015
 	description "This beam weapon creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant products have a higher energy state than the original nucleus, the beam cools its target, defying conventional thermodynamics."
 	description "In practice, this beam can deplete a ship's deuterium fuel while causing the very matter of its hull to decay."
-	
 
 outfit "Telescopic Antimissile"
 	category "Turrets"

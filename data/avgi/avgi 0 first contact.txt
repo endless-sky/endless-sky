@@ -788,7 +788,7 @@ mission "Avgi: Frontline Combat"
 	on accept
 		log `Agreed to help Kokkino by clearing out Aberrant stragglers infesting a cluster of systems behind the front lines.`
 	on visit
-		dialog `You land on <planet>, but there are still Aberrant left in the systems to the north. Return once you've killed them all.`
+		dialog `You've landed on <planet>, but there are still Aberrant left in the systems to the north. Return once you've killed them all.`
 
 	npc kill
 		government "Aberrant"
