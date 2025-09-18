@@ -2052,7 +2052,7 @@ ship "Builder Satellite"
 	sprite "ship/builder satellite"
 	attributes
 		category "Drone"
-		"hull" 150
+		"hull" 1500
 		"mass" 10
 		"drag" 2
 		"heat dissipation" 1
@@ -2073,7 +2073,7 @@ mission "Ka'het: Voice From The Past 0"
 	npc assist save
 		government "Builder"
 		system "Fereti"
-		personality derelict target waiting
+		personality derelict waiting
 		ship "Builder Satellite 2" "Valii'sei"
 		on assist
 			dialog
