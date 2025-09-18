@@ -2050,16 +2050,27 @@ event "patir mystery 2 timer"
 
 mission "Ka'het: Patir Mystery 14"
 	name "Back in action"
-	description "Now that the situation in <waypoints> is again under control, return there to gather additional data for prefect Chilia."
+	description "Now that the situation in <waypoints> is again under control, return there to gather additional data for prefect Chilia. Return to <destination> after."
 	source
 		government "Remnant"
 	waypoint "Patir"
 	to offer
-#		random < 60
-#		has "event: patir mystery 2 timer"
-#		has "Ka'het: Voice From The Past 1: done"
+		random < 60
+		has "event: patir mystery 2 timer"
+		has "Ka'het: Voice From The Past 1: done"
 	on offer
 		conversation
+			`Although its architecture still feels wildly alien, time has helped you become familiar with the way <planet>'s main starport is organized. By now, therefore, it's not difficult for you to notice when something changes. Some are subtler than others - it wasn't long ago that additional barriers were placed between the rows of landing pads, much to your displeasure.`
+			`	Passing the arch that conducts into the northern shipyards reveals a curious sight. A group of hangars that until now were marked as off limits are now open, and packed of crowds of construction workers are walking in and out of the area. Among the crowd, pairs of camels tow sections of Remnant spacecrafts of all kinds; you step aside to let a convoy pass with some of the longest wings you ever had a chance to see.`
+			`	"What a show, don't you think?" a familiar voice chants as you turn around. Taely smiles, making a gesture of welcome with her hands. "If you were looking for Chilia, he should be upstairs right now."`
+			choice
+				`	"Why should I be looking for Chilia?"`
+					goto chilia
+				`	"Are you working on a new ship?"`
+			`	"On a rather old one, in reality," she replies, "but the last time this yard was active was been years before your arrival, so for you it should make little difference."`
+			label chilia
+			`	Suddenly, your communicator buzzes with a message - from Chilia, of course.`
+
 			`Meet Chilia, says they have nearly gained "total control" of Patir's state. His interest is not in exploring Patir, but in the potential risk the creatures beyond Patir may pose. He reveals that analysis of your data has shown that one of the creatures may have been in the system when you traveled back, and that it had disappeared by the time you took off again. The Remnant satellite around the black hole you already visited once should reveal more info on what happened; it would also pave the way to new explorations of the Builder settlement.`
 				accept
 	npc assist save
@@ -2657,7 +2668,7 @@ mission "Ka'het: Patir Mystery 38"
 			`The flock of Terns is there, and Dusk confirms everything. To continue, you will need a carrier that can transport them to Patir, where they will serve as aids as well as decoys for the lifeboat issues.`
 
 mission "Ka'het: Patir Mystery 39"
-	name "Back in action"
+	name "Logistics of a first contact"
 	description "Accompany the Remnant team to <system>. Together with them will come <cargo> tons of cargo and 6 Terns."
 # add deadline
 	source "Caelian"
@@ -2693,6 +2704,8 @@ mission "Ka'het: Patir Mystery 40"
 			`Get 'em tiger`
 				accept
 # add NPC for asteroids that follow you
+	on enter Lathia
+		dialog "Dusk follows protocol and tries to communicates with the planetoid in all known languages and frequencies, then directs you to land."
 	on complete
 		conversation
 			`You know what happens.`
@@ -2716,7 +2729,7 @@ mission "Ka'het: Patir Mystery 41"
 	on complete
 # Patir returns event
 		conversation
-			`Lots of talks, Dusk reveals his vision, stars have moved by the time you return.`
+			`People are attaching new payloads to Terns. Lots of talks, Dusk reveals his vision, stars have moved by the time you return.`
 
 mission "Ka'het: Patir Mystery 42"
 	landing
