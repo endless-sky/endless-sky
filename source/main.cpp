@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
+#include "GameVersion.h"
 #include "GameWindow.h"
 #include "Logger.h"
 #include "MainPanel.h"
@@ -538,7 +539,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.15-alpha" << endl;
+	cerr << "Endless Sky ver. " << GameVersion::Running().ToString() << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -557,7 +558,8 @@ Conversation LoadConversation(const PlayerInfo &player)
 	for(const DataNode &node : file)
 		if(node.Token(0) == "conversation")
 		{
-			conversation.Load(node, conditions);
+			// Assume that best backwards compatibility is requested.
+			conversation.Load(node, conditions, {});
 			break;
 		}
 

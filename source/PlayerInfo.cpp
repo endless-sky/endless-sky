@@ -182,6 +182,8 @@ void PlayerInfo::New(const StartConditions &start)
 	// Clear any previously loaded data.
 	Clear();
 
+	gameVersions = {GameVersion::Running()};
+
 	// Copy the core information from the full starting scenario.
 	startData = start;
 	// Copy any ships in the start conditions.
@@ -247,13 +249,23 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// Register derived conditions now, so old primary versions can load into them.
 	RegisterDerivedConditions();
 
+	gameVersions.insert(GameVersion::Running());
+	GameVersionConstraints compatibilityLevels;
+
 	DataFile file(path);
 	for(const DataNode &child : file)
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
+		// Game versions for compatibility context:
+		if(key == "game versions")
+		{
+			for(const DataNode &grand : child)
+				gameVersions.insert(GameVersion{grand.Token(0)});
+			compatibilityLevels = CompatibilityLevels();
+		}
 		// Basic player information and persistent UI settings:
-		if(key == "pilot" && child.Size() >= 3)
+		else if(key == "pilot" && child.Size() >= 3)
 		{
 			firstName = child.Token(1);
 			lastName = child.Token(2);
@@ -304,7 +316,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		else if(key == "ship")
 		{
 			// Ships owned by the player have various special characteristics:
-			ships.push_back(make_shared<Ship>(child, &conditions));
+			ships.push_back(make_shared<Ship>(child, &conditions, compatibilityLevels));
 			ships.back()->SetIsSpecial();
 			ships.back()->SetIsYours();
 			// Defer finalizing this ship until we have processed all changes to game state.
@@ -356,7 +368,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		// Records of things you have done or are doing, or have happened to you:
 		else if(key == "mission")
 		{
-			missions.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
+			missions.emplace_back(child, &conditions, compatibilityLevels, &visitedSystems, &visitedPlanets);
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if((key == "mission cargo" || key == "mission passengers") && child.HasChildren())
@@ -373,7 +385,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 					}
 		}
 		else if(key == "available job")
-			availableJobs.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
+			availableJobs.emplace_back(child, &conditions, compatibilityLevels, &visitedSystems, &visitedPlanets);
 		else if(key == "sort type")
 			availableSortType = static_cast<SortType>(child.Value(1));
 		else if(key == "sort descending")
@@ -383,7 +395,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		else if(key == "separate possible")
 			sortSeparatePossible = true;
 		else if(key == "available mission")
-			availableMissions.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
+			availableMissions.emplace_back(child, &conditions, compatibilityLevels, &visitedSystems, &visitedPlanets);
 		else if(key == "conditions")
 			conditions.Load(child);
 		else if(key == "gifted ships" && child.HasChildren())
@@ -588,6 +600,14 @@ void PlayerInfo::FinishTransaction()
 	assert(transactionSnapshot && "Finishing PlayerInfo while one hasn't been started");
 	delete transactionSnapshot;
 	transactionSnapshot = nullptr;
+}
+
+
+
+GameVersionConstraints PlayerInfo::CompatibilityLevels() const
+{
+	assert(!gameVersions.empty() && "Requesting compatibility context for an undefined player");
+	return {*gameVersions.begin(), *gameVersions.rbegin()};
 }
 
 
@@ -4363,6 +4383,15 @@ void PlayerInfo::Save(const string &filePath) const
 
 void PlayerInfo::Save(DataWriter &out) const
 {
+	// Game versions for compatibility context:
+	out.Write("game versions");
+	out.BeginChild();
+	{
+		for(auto &version : gameVersions)
+			out.Write(version.ToString());
+	}
+	out.EndChild();
+
 	// Basic player information and persistent UI settings:
 
 	// Pilot information:

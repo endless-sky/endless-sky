@@ -58,6 +58,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class DataSource;
 class ConditionsStore;
 class Panel;
 class PlayerInfo;
@@ -74,7 +75,7 @@ class UniverseObjects {
 	friend class TestData;
 public:
 	// Load game objects from the given directories of definitions.
-	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::filesystem::path> &sources,
+	std::shared_future<void> Load(TaskQueue &queue, const std::vector<DataSource> &sources,
 		const PlayerInfo &player, const ConditionsStore *globalConditions, bool debugMode = false);
 	// Determine the fraction of data files read from disk.
 	double GetProgress() const;
@@ -96,7 +97,7 @@ public:
 
 
 private:
-	void LoadFile(const std::filesystem::path &path, const PlayerInfo &player,
+	void LoadFile(const DataSource &source, const PlayerInfo &player,
 		const ConditionsStore *globalConditions, bool debugMode = false);
 
 

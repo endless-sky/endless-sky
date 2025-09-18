@@ -67,10 +67,10 @@ public:
 public:
 	StartConditions() = default;
 	explicit StartConditions(const DataNode &node, const ConditionsStore *globalConditions,
-		const ConditionsStore *playerConditions);
+		const ConditionsStore *playerConditions, const GameVersionConstraints &compatibilityLevels);
 
 	void Load(const DataNode &node, const ConditionsStore *globalConditions,
-		const ConditionsStore *playerConditions);
+		const ConditionsStore *playerConditions, const GameVersionConstraints &compatibilityLevels);
 	// Finish loading the ship definitions.
 	void FinishLoading();
 

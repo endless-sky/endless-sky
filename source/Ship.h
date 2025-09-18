@@ -151,10 +151,12 @@ public:
 
 	Ship() = default;
 	// Construct and Load() at the same time.
-	Ship(const DataNode &node, const ConditionsStore *playerConditions);
+	Ship(const DataNode &node, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels);
 
 	// Load data for a type of ship:
-	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);

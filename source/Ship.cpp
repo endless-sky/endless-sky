@@ -223,14 +223,16 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Ship::Ship(const DataNode &node, const ConditionsStore *playerConditions)
+Ship::Ship(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels)
 {
-	Load(node, playerConditions);
+	Load(node, playerConditions, compatibilityLevels);
 }
 
 
 
-void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels)
 {
 	if(node.Size() >= 2)
 		trueModelName = node.Token(1);
@@ -285,11 +287,11 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "attributes" || add)
 		{
 			if(!add)
-				baseAttributes.Load(child, playerConditions);
+				baseAttributes.Load(child, playerConditions, compatibilityLevels);
 			else
 			{
 				addAttributes = true;
-				attributes.Load(child, playerConditions);
+				attributes.Load(child, playerConditions, compatibilityLevels);
 			}
 		}
 		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)

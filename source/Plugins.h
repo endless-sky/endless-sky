@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "GameVersionConstraints.h"
 #include "Set.h"
 
 #include <filesystem>
@@ -24,15 +25,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Represents information about a single plugin.
-struct Plugin {
-	struct PluginDependencies {
+class Plugin {
+public:
+	class PluginDependencies {
+	public:
 		// Checks if there are any dependencies of any kind.
 		bool IsEmpty() const;
 		// Checks if there are any duplicate dependencies. E.g. the same dependency in both required and conflicted.
 		bool IsValid() const;
 
+	public:
 		// The game version to match against.
-		std::string gameVersion;
+		GameVersionConstraints gameVersion;
 		// The plugins, if any, which are required by this plugin.
 		std::set<std::string> required;
 		// The plugins, if any, which are designed to work with this plugin but aren't required.
@@ -41,11 +45,15 @@ struct Plugin {
 		std::set<std::string> conflicted;
 	};
 
+
+public:
 	// Checks whether this plugin is valid, i.e. whether it exists.
 	bool IsValid() const;
 	// Constructs a description of the plugin from its name, tags, dependencies, etc.
 	std::string CreateDescription() const;
 
+
+public:
 	// The name that identifies this plugin.
 	std::string name;
 	// The path to the plugin's folder.
@@ -67,6 +75,8 @@ struct Plugin {
 	bool enabled = true;
 	// The current state of the plugin.
 	bool currentState = true;
+	// What versions of the game this plugin was previously loaded by.
+	std::set<GameVersion> wasOnVersions;
 };
 
 

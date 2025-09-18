@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "Command.h"
+#include "DataSource.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -66,7 +67,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	{
 		for(const auto &source : GameData::Sources())
 		{
-			auto credit = Format::Split(Files::Read(source / "credits.txt"), "\n");
+			auto credit = Format::Split(Files::Read(source.path / "credits.txt"), "\n");
 			if((credit.size() > 1) || !credit.front().empty())
 			{
 				credits.insert(credits.end(), credit.begin(), credit.end());

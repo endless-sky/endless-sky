@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../DataWriter.h"
 #include "../Files.h"
 #include "../GameData.h"
+#include "../GameVersionConstraints.h"
 #include "../Mission.h"
 #include "../UniverseObjects.h"
 
@@ -136,7 +137,9 @@ bool TestData::InjectMission(const ConditionsStore *playerConditions,
 	const DataNode &dataNode = *nodePtr;
 	for(const DataNode &node : dataNode)
 		if(node.Token(0) == "mission" && node.Size() > 1)
-			GameData::Objects().missions.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
+			GameData::Objects().missions.Get(node.Token(1))->Load(node, playerConditions,
+				GameVersionConstraints{GameVersion::Running()},
+				visitedSystems, visitedPlanets);
 
 	return true;
 }

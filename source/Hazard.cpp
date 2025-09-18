@@ -24,7 +24,7 @@ using namespace std;
 
 
 
-void Hazard::Load(const DataNode &node)
+void Hazard::Load(const DataNode &node, const GameVersionConstraints &compatibilityLevels)
 {
 	if(node.Size() < 2)
 		return;
@@ -34,7 +34,7 @@ void Hazard::Load(const DataNode &node)
 	{
 		const string &key = child.Token(0);
 		if(key == "weapon")
-			LoadWeapon(child);
+			LoadWeapon(child, compatibilityLevels);
 		else if(key == "constant strength")
 			deviates = false;
 		else if(key == "system-wide")

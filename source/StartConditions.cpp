@@ -38,15 +38,15 @@ namespace {
 
 
 StartConditions::StartConditions(const DataNode &node, const ConditionsStore *globalConditions,
-		const ConditionsStore *playerConditions)
+	const ConditionsStore *playerConditions, const GameVersionConstraints &compatibilityLevels)
 {
-	Load(node, globalConditions, playerConditions);
+	Load(node, globalConditions, playerConditions, compatibilityLevels);
 }
 
 
 
 void StartConditions::Load(const DataNode &node, const ConditionsStore *globalConditions,
-		const ConditionsStore *playerConditions)
+	const ConditionsStore *playerConditions, const GameVersionConstraints &compatibilityLevels)
 {
 	// When a plugin modifies an existing starting condition, default to
 	// clearing the previously-defined description text. The plugin may
@@ -117,13 +117,13 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 			// a 3rd token (i.e. this will be treated as though it were a ship variant definition,
 			// without making the variant available to the rest of GameData).
 			if(child.HasChildren() || child.Size() >= add + 3)
-				ships.emplace_back(child, playerConditions);
+				ships.emplace_back(child, playerConditions, compatibilityLevels);
 			// If there's only 2 tokens & there's no child nodes, the created instance would be ill-formed.
 			else
 				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");
 		}
 		else if(key == "conversation" && child.HasChildren() && !add)
-			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
+			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions, compatibilityLevels));
 		else if(key == "conversation" && hasValue && !child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(value));
 		else if(add)

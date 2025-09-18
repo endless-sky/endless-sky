@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameVersionConstraints.h"
 #include "Government.h"
 #include "Logger.h"
 #include "PlayerInfo.h"
@@ -54,7 +55,8 @@ namespace {
 
 
 // Load a planet's description from a file.
-void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions)
+void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels)
 {
 	if(node.Size() < 2)
 		return;
@@ -249,7 +251,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 	// For reverse compatibility, if this planet has a spaceport but it was not custom loaded,
 	// and the planet has the "uninhabited" attribute, replace the spaceport with a special-case
 	// uninhabited spaceport.
-	if(HasNamedPort() && !port.CustomLoaded())
+	if(compatibilityLevels.Matches({0, 10, 17}) && HasNamedPort() && !port.CustomLoaded())
 	{
 		if(attributes.contains("uninhabited"))
 			port.LoadUninhabitedSpaceport();
@@ -308,6 +310,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 // Legacy wormhole do not have an associated Wormhole object so
 // we must auto generate one if we detect such legacy wormhole.
+// As this is done after loading the data, we can't know the compatibility context.
 void Planet::FinishLoading(Set<Wormhole> &wormholes)
 {
 	// If this planet is in multiple systems, then it is a wormhole.

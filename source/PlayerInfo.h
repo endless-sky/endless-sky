@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Depreciation.h"
 #include "EsUuid.h"
 #include "GameEvent.h"
+#include "GameVersionConstraints.h"
 #include "Mission.h"
 #include "SystemEntry.h"
 
@@ -103,6 +104,8 @@ public:
 	void StartTransaction();
 	// Complete the transaction.
 	void FinishTransaction();
+
+	GameVersionConstraints CompatibilityLevels() const;
 
 	// Apply the given changes and store them in the player's saved game file.
 	void AddChanges(std::list<DataNode> &changes, bool instantChanges = false);
@@ -410,6 +413,11 @@ private:
 
 
 private:
+	// What versions of the game this pilot was previously loaded by.
+	// This should be saved and loaded first to ensure that the correct
+	// compatibility model will be used for the rest of the player's data.
+	std::set<GameVersion> gameVersions;
+
 	std::string firstName;
 	std::string lastName;
 	std::string filePath;

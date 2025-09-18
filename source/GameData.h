@@ -33,6 +33,7 @@ class Color;
 class ConditionsStore;
 class Conversation;
 class DataNode;
+class DataSource;
 class DataWriter;
 class Date;
 class Effect;
@@ -41,6 +42,7 @@ class FormationPattern;
 class Galaxy;
 class GameEvent;
 class Gamerules;
+class GameVersionConstraints;
 class Government;
 class Hazard;
 class ImageSet;
@@ -95,7 +97,7 @@ public:
 	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
-	static const std::vector<std::filesystem::path> &Sources();
+	static const std::vector<DataSource> &Sources();
 
 	// Get a reference to the UniverseObjects object.
 	static UniverseObjects &Objects();
