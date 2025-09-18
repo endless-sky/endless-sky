@@ -353,7 +353,7 @@ mission "Ka'het: Death in the Graveyard 1"
 					goto blow
 				`	(Land next to it and don your EVA suit.)`
 			`	You instinctively check your sidearm with your hand while walking down the stairway, knowing well how futile it would be in this situation. Despite being the smallest of the Ka'het you have seen, the Maeri'het remains still intimidatingly large. No longer cloaked, you notice a fluid coming down from its sides, starting right from the slug itself. It covers the entire landing zone, and some of it has almost reached your ship.`
-			`	For an instant, you entertain the thought of looting the ship's outfits. But as if it was reading your mind, the Maeri'het hits you with another cloud of warm, pale vapor, making your suit send an overheat warning. Defeated, you turn around and climb back to your cockpit.`
+			`	For an instant, you entertain the thought of looting its outfits. But as if it was reading your mind, the Maeri'het hits you with another cloud of warm, pale vapor, making your suit send an overheat warning. Defeated, you turn around and climb back to your cockpit.`
 			label report
 			`	With the course set and the engines back running, you take a second to reason over the best course of action. The choice falls on a trip to Aventine: if there's anyone who will want to hear about this, it has to be Plume's laboratory.`
 				accept
@@ -520,10 +520,10 @@ mission "Ka'het: Death in the Graveyard 4B"
 			`As you are about to leave the cockpit, the screen atop the transponder starts beeping. It is a message from Plume. "Captain <first>, I have been trying to make some arrangements in order to simplify things in the future. I am transmitting you a series of short videos on how to use the tools in a Research Laboratory, if you were to be carrying one aboard, to extract the most important components out of a hibernated Ka'het. You will need practice, of course, but the procedure is really not too dissimilar from that of looting a standard ship. They are going to be some heavy pieces; I recommend leaving at least 40 or 50 tons of cargo space free for such an eventuality.`
 			branch rifle
 				has "Remnant: Face to Maw 2B: offered"
-			`	"I have assigned one of our technicians to handle the Ka'het machinery you might bring us." The picture and id of a Remnant appears on screen, but you don't recognize him. "May the Embers bring more success in our future endeavors!"`
+			`	"I have assigned one of our technicians to handle the Ka'het machinery you might bring us." The picture and ID of a Remnant appears on screen, but you don't recognize him. "May the Embers bring more success in our future endeavors!"`
 				decline
 			label rifle
-			`	"I have assigned one of our technicians to handle the Ka'het machinery you might bring us." The picture and id of a Remnant appears on screen: he is the same person that had previously helped you with your Void Rifle. "May the Embers bring more success in our future endeavors!"`
+			`	"I have assigned one of our technicians to handle the Ka'het machinery you might bring us." The picture and ID of a Remnant appears on screen: he is the same person that had previously helped you with your Void Rifle. "May the Embers bring more success in our future endeavors!"`
 				decline
 
 mission "Ka'het: Another Death in the Graveyard 0A"
