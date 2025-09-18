@@ -2161,6 +2161,7 @@ mission "Ka'het: Voice From The Past 1B"
 				`	(Not now.)`
 					defer
 			`With the ongoing construction preventing you from reaching most of the station, you try to look around near the landing pad. It takes almost half an hour before you give up; there's too many people to try to find someone who knows you, and everyone else seems far too busy to stop and listen to your story. Perhaps you will have better luck in the spaceport of a major planet.`
+				decline
 
 mission "Ka'het: Voice From The Past 2"
 	name "Outpost on Kumkapi"
@@ -2173,7 +2174,6 @@ mission "Ka'het: Voice From The Past 2"
 	to offer
 		has "Ka'het: Voice From The Past 1: done"
 	on offer
-		fail "Ka'het: Voice From The Past 0"
 		conversation
 			`Ssil Vida's outfitter was built atop the original storage platforms of the station, far too large for the Remnant's logistics system. While it does not seem to be particularly well equipped, what they were able to set up on completely alien infrastructure since the first time you came here is still impressive.`
 			`	Your walk comes to an end when Gavriil's name appears on your communicator. You turn around and stride back to the spaceport, where you find him waiting at a table.`
@@ -2198,6 +2198,8 @@ mission "Ka'het: Voice From The Past 2"
 			`	"On the other hand, we have also been completing milestones ahead of schedule lately, and there are plenty of experienced people here who could take over for some time. I can afford to leave the reins to someone else for a few days.`
 			`	"Plus," he concludes with a smile, "it will be an opportunity to see some faces I have not seen in years, and to reminisce about the past for a bit. I should have done this a while ago."`
 				accept
+	on complete
+		fail "Ka'het: Voice From The Past 0"
 
 
 mission "Ka'het: Voice From The Past 3"
@@ -2292,10 +2294,6 @@ mission "Ka'het: Voice From The Past 5"
 				`	"The Sheragi?"`
 					to display
 						has "event: rim archaeology results"
-				`	"The Predecessors?"`
-					to display
-						has "event: label successor space"
-					goto predecessors
 			`	"A good guess. Both the Hai and the Sheragi would make sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard. I heard there are great debates about the two species going on to this day, especially after the discoveries in Ssil Vida, but I am not the person to ask about them.`
 				goto continue
 			label pug
@@ -2304,7 +2302,7 @@ mission "Ka'het: Voice From The Past 5"
 			label korath
 			`	"Not this time," he signs, amused. "More time has passed between the end of the Builders and the Korath's discovery of spaceflight than it has between the latter and now. Keep it in mind that we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 			label continue
-			`	"Whatever happened, the scars left by this short encounter were not merely psychological, as this satellite shows. Some kind of virus started spreading soon after the first contact, possibly of alien origin. We do not know the impact it had on their civilization, but it must have been quite severe: Alix appears to have been used as a quarantine facility at the time, and satellites like this had the sole function of warning incoming ships of the danger.`
+			`	"Whatever happened, the scars left by this short encounter were not merely psychological. What this satellite shows is that some kind of virus or bacteria started spreading soon after the first contact, possibly of alien origin. We do not know the impact it had on their civilization, but it must have been quite severe: Alix appears to have been used as a quarantine facility at the time, and satellites like this had the sole function of warning incoming ships of the danger.`
 			`	"If you find anything else, do not hesitate to tell us. The analysis is still ongoing, but I have been able to spare 300,000 credits to deposit on your account to show our gratitude."`
 			choice
 				`	"You can keep the money. I would rather continue exploring further."`
@@ -2314,6 +2312,8 @@ mission "Ka'het: Voice From The Past 5"
 						not "event: rim archaeology results"
 				`	"Thank you."`
 					goto capitalist
+			action
+				set "remnant: sheragi question"
 			`	"You might not have heard the name, but you have certainly been into their territory. They are a long extinct species, once inhabiting what has become the Rim and the South of human space. The same area where, not too long ago, you got the material we are currently using to power Ssil Vida," he replies, making a gesture in the direction of the station's reactor.`
 			`	"I can tell you that, as far as we know, they were roughly concurrent with the Builders; but this is the wealth of information I learnt during the work in Postverta. It is a continuously evolving field, and I have not been able to follow it closely beyond the engineering research on this station."`
 			choice
@@ -2390,7 +2390,7 @@ mission "Ka'het: Voice From The Past 6"
 	on complete
 		event "ka'het: quarantine site" 25
 		conversation
-			`Unlike your last visit, the testing range on <planet> has become eerily empty once again. Gone are the massive fleets occupying every parking spot, and the few ships that are still here are rarely bigger than a Petrel. Heartened, you set sight on a random pad in the vicinity of the facility and touch down softly.`
+			`Unlike your last visit, the testing range on <planet> has become eerily empty once again. Gone are the massive fleets occupying every parking spot, and the few ships that are still here are rarely bigger than a Petrel. Enticed, you set sight on a random pad in the vicinity of the facility and touch down softly.`
 			`	With a datapad in your hand and the pad workers unloading your used mission equipment, you start looking around for someone to deliver the data to. The only people you can find nearby are the ones working on your ship, as well as the pad manager you had met earlier.`
 			`	"They relented!" she signs excitedly after noticing you. "It took a few days, but they finally accepted that we do not have the facilities nor the personnel to handle such traffic, and moved the satellite to a more appropriate laboratory. Somewhere on Aventine, I believe."`
 			choice
