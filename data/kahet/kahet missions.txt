@@ -328,7 +328,7 @@ mission "Ka'het: Death in the Graveyard 1"
 				`	(Turn around and leave.)`
 					depart
 			`	A few seconds pass before the proximity alert starts playing again. And this time, you see it. You shine it with your ship's floodlights, and the clear, translucent figure of a partly cloaked Ka'het shows up in front of you. It appears to be flickering, with its various sections becoming more and less transparent seemingly at random.`
-			`	Even stranger, it isn't facing toward you, nor it appears to have reacted in any way. It is simply floating next to you, slowly descending as it puffs clouds of vapor out of upper body. There doesn't seem to be anything indicating that it might be ready to attack, though this could change in a matter of seconds.`
+			`	Even stranger, it isn't facing toward you, nor does it appear to have reacted in any way. It is simply floating next to you, slowly descending as it puffs clouds of vapor out of upper body. There doesn't seem to be anything indicating that it might be ready to attack, though this could change in a matter of seconds.`
 			choice
 				`	(Take your chance and attack it.)`
 					to display
@@ -343,7 +343,7 @@ mission "Ka'het: Death in the Graveyard 1"
 			label attack
 			`	You hurriedly warm up your weapons and set the targeting computer toward the enemy. With the press of a button, you unleash all your wrath on the Ka'het - so much that the first shot that hits does not seem to encounter any shield, penetrating deep below the skin of the slug. The Maeri'het inclines on the starboard side and starts falling rapidly; a few metallic panels detach from its shell right before it reaches the ground, and a set of balloons rapidly inflate out of the resulting holes.`
 			label dead
-			`	The Ka'het at last emits an uncomfortably loud whistle, reducing in intensity over the minutes pass until disappearing completely. And then, silence. It sits motionless at the bottom of what looks like a dry riverbed, surrounded by nothing but you and the calm night sky.`
+			`	The Ka'het at last emits an uncomfortably loud whistle, reducing in intensity over the minutes pass until disappearing completely. The Ka'het sits motionless at the bottom of what looks like a dry riverbed, surrounded by nothing but you and the calm night sky.`
 			choice
 				`	(Report it to the Remnant.)`
 					goto report
@@ -352,13 +352,13 @@ mission "Ka'het: Death in the Graveyard 1"
 						"armament deterrence" > 0
 					goto blow
 				`	(Land next to it and don your EVA suit.)`
-			`	You instinctively check your sidearm with your hand while walking down the stairway, knowing well how futile it would be in this situation. Despite being the smallest of the Ka'het you have seen, the Maeri'het remains still intimidatingly large. No longer cloaked, you notice a fluid coming down from its sides, starting right from the slug itself. It covers the entire landing zone, and some of it has almost reached up to your ship.`
+			`	You instinctively check your sidearm with your hand while walking down the stairway, knowing well how futile it would be in this situation. Despite being the smallest of the Ka'het you have seen, the Maeri'het remains still intimidatingly large. No longer cloaked, you notice a fluid coming down from its sides, starting right from the slug itself. It covers the entire landing zone, and some of it has almost reached your ship.`
 			`	For an instant, you entertain the thought of looting the ship's outfits. But as if it was reading your mind, the Maeri'het hits you with another cloud of warm, pale vapor, making your suit send an overheat warning. Defeated, you turn around and climb back to your cockpit.`
 			label report
-			`	With the course set and the engines back running, you take a second to reason over the best course of action. The choice falls on a trip to Aventine: if there's anyone who will want to hear about this, it's has to be Plume's laboratory.`
+			`	With the course set and the engines back running, you take a second to reason over the best course of action. The choice falls on a trip to Aventine: if there's anyone who will want to hear about this, it has to be Plume's laboratory.`
 				accept
 			label blow
-			`	The Ka'het easily crumbles under the strength of your firepower, collapsing onto itself within seconds. Some part of its body get blown away from the carcass still mostly intact, while the machinery takes more effort to destroy; by the time you're done, nothing is left of it but a puddle of organic material and some scrap metal. After searching through the debris, you eventually find some materials precious enough to sell raw.`
+			`	The Ka'het easily crumbles under the strength of your firepower, collapsing onto itself within seconds. Some parts of its body get blown away from the carcass still mostly intact, while the machinery takes more effort to destroy; by the time you're done, nothing is left of it but a puddle of organic material and some scrap metal. After searching through the debris, you eventually find some materials precious enough to sell raw.`
 				decline
 	on decline
 		outfit "Neodymium"
@@ -404,8 +404,8 @@ mission "Ka'het: Death in the Graveyard 3"
 		has "Ka'het: Death in the Graveyard 1: done"
 	on offer
 		conversation
-			`It's daytime now. Flying in formation with the Late Season Dancing, you spot the Maeri'het on the ground easily: it has spread a pair of enormous solar wings, long at least thrice the body of the Ka'het itself. A look at your radar reveals more, however. There is a second Ka'het standing above the downed one, classified by your IFF as a Telis.`
-			`	"It is trying to reanimate it," Plume chants over the intercom, "but I do not think it can make it. It has been too long since you found it for it to have any effect." Among the smoke clouds you distinguish pairs of tiny arms protrude from the bottom of the Telis'het, pressing all over the corpse below it. You record some electric shocks move between the two, but the Maeri'het does not react.`
+			`It's daytime now. Flying in formation with the Late Season Dancing, you spot the Maeri'het on the ground easily: it has spread a pair of enormous solar wings, at least thrice as long as the body of the Ka'het itself. A look at your radar reveals more, however. There is a second Ka'het standing above the downed one, classified by your IFF as a Telis.`
+			`	"It is trying to reanimate the Maeri'het," Plume chants over the intercom, "but I do not think it can do so. It has been too long since you found it for repairs to have any effect." Among the smoke clouds you distinguish pairs of tiny arms protrude from the bottom of the Telis'het, pressing all over the corpse below it. You record some electric shocks move between the two, but the Maeri'het does not react.`
 			choice
 				`	"Let's wait for it to leave then."`
 				`	"Should I engage it?"`
@@ -424,13 +424,13 @@ mission "Ka'het: Death in the Graveyard 3"
 				launch
 			label weak
 			`	"Neither are we," the intercom chants in unison. "This project is thus aborted, seeing as there is no practical way to complete it. Our group can split here: the return route is well explored, and our tanks have enough propellant to stay cloaked until reaching safer territory."`
-			`	"Captain <first>," Plume continues more subdued, "I ask you to leave this planet with us as well. For as long as we stay here, even at this distance, some of their biological self will remain active to keep an eye on our intentions, and will continue to do until it finally dies. I would rather have them be inhibited during their end than fully conscious - for a lack of better word, a more humane end." He bids you farewell, and the Gull disappears after a short climb.`
+			`	"Captain <first>," Plume continues in a subdued tone, "I ask you to leave this planet with us as well. For as long as we stay here, even at this distance, some of the Maeri'het's biological self will remain active to keep an eye on our intentions, and will continue to do so until it finally dies. I would rather have them be inhibited during their end than fully conscious - for a lack of better word, a more humane end." He bids you farewell, and the Gull disappears after a short climb into the sky.`
 			choice
 				`	(Fly back to orbit.)`
 					flee
 				`	(Stay and see what happens.)`
 			`	Half an hour passes without either of the Ka'het making a move. Then, right after your external sensors record a low hum, the Telis lifts up in the air and rotates upside down. It fires three times: one beam to the each side of the head, and another in the middle of the abdomen. Had it not started to collapse in itself, most of the outfits would have probably survived intact.`
-			`	When the spectacle is over, you command the autopilot back toward orbit, and leave before the Telis decides to engage you as well.`
+			`	When the spectacle is over, you command the autopilot back toward orbit and leave before the Telis decides to engage you as well.`
 				flee
 	npc kill
 		government "Ka'het"
@@ -443,15 +443,15 @@ mission "Ka'het: Death in the Graveyard 3"
 mission "Ka'het: Death in the Graveyard 4A"
 	landing
 	name "Disassembled Ka'het"
-	description "Escort Plume and his crew back to <destination> safely while they transport the Ka'het components gathered during the mission."
+	description "Escort Plume and his crew back to <destination> safely while they transport the Ka'het components gathered during the mission on <origin>."
 	destination "Aventine"
 	to offer
 		has "Ka'het: Death in the Graveyard 3: done"
 	on offer
 		conversation
 			`The face of the Maeri'het has been pried open, showing a complex grid of wires running all over the flesh of the slug. Machinery of all kinds surround the ship, from sets of cylinders making a faint, purplish glow to spherical containers covered in a blue liquid of some kind.`
-			`	The largest components have been moved atop some sort of anti-gravity plating, lifting them above the terrain but otherwise requiring a human to push them somewhere. You give them a hand transporting a few pieces out of the carcass; despite the help of the plating, their sheer inertia makes the activity exhausting. Once inside their Gull, they couple the Ka'het machinery with the adapters onboard and power them with their instrumentation.`
-			`	"According to the transponder, its name was Nona-caci'het," reveals Plume. "It had lived for just over 500 years, almost as much as us Remnant have existed. It fought thousands of battles, the last of which," he reads stoically from a datapad, "was with another Maeri'het just over two months ago. Since then, the only other lifeform it has seen was when it descended into a planetary atmosphere to shell a few specimen of an amphibian animal it classified as foe."`
+			`	The largest components have been moved atop some sort of anti-gravity plating, lifting them above the terrain but otherwise requiring a human to push them somewhere. You give the Remnant a hand transporting a few pieces out of the carcass; despite the help of the plating, their sheer inertia makes the activity exhausting. Once inside their Gull, the Remnant couple the Ka'het machinery with the adapters onboard and power them with their instrumentation.`
+			`	"According to the transponder, its name was Nona-caci'het," reveals Plume. "It had lived for just over 500 years, almost as much time as we Remnant have existed. It fought thousands of battles, the last of which," he reads stoically from a datapad, "was with another Maeri'het just over two months ago. Since then, the only other lifeform it has seen was when it descended into a planetary atmosphere to shell a few specimens of an amphibian animal it classified as foe."`
 			choice
 				`	"Why did it die?"`
 				`	"I did not know they did that."`
@@ -464,7 +464,7 @@ mission "Ka'het: Death in the Graveyard 4A"
 			`	"Oh, not only they do, but the vast majority of Ka'het attack victims are animals on the ground. Countless species have been driven to extinction over the past tens of thousands of years by their hunting. For the foreseeable future, the Graveyard will continue live up to its name."`
 			label honest
 			`	He shrugs. "I have a hard time considering the Ka'het the same way as most lifeforms. They do not follow any of the rules that constrain evolution: they do not collaborate, they do not take part in a food chain, and even more, they do not even reproduce! Their internal organs are not set up like a living being, but like a spaceship, shaped for ease of maintenance and replacement.`
-			`	"Void Sprite research has only restarted recently, as you know well. As such, the typical curriculum of a xenobiologist is focused on symbionts, Korath, creatures indigenous of Ember Waste planets, and lastly the Ka'het. But in reality, little of the design or behavior of a Ka'het can be described by biology. Most of the discoveries in that field were done decades, if not centuries ago - it is a straightforward, even mechanical, design. There is a reason if our engineers can choose to specialize in the Ka'het, while there is no branch of xenobiology covering it in detail."`
+			`	"Void Sprite research has only restarted recently, as you know well. As such, the typical curriculum of a xenobiologist is focused on symbionts, Korath, creatures indigenous of Ember Waste planets, and lastly the Ka'het. But in reality, little of the design or behavior of a Ka'het can be described by biology. Most of the discoveries in that field were done decades, if not centuries ago - it is a straightforward, even mechanical, design. There is a reason that our engineers can choose to specialize in the Ka'het, while there is no branch of xenobiology covering it in detail."`
 			choice
 				`	"I see."`
 					goto outfit
@@ -478,7 +478,7 @@ mission "Ka'het: Death in the Graveyard 4A"
 			`	"As far as I am concerned, the key difference lies in the role left to the being in question. Our paradigm is not to take an organism, inhibit it when we don't need it, and build around it the true spaceship. No, the whole ship is built in the same manner as a biological organism, to the point where it would be impossible to split it into a mechanical and biological portion. The relationship between the crew and the ship will never go beyond what is between a Remnant and their symbiont: both capable of going their own way, but mutually benefiting from their relationship."`
 				goto outfit
 			label skip
-			`	He seems amused. "I had a feeling you would wonder about that. No need to worry, <first>, we have left something from you as well."`
+			`	He seems amused. "I had a feeling you would wonder about that. No need to worry, <first>, we have left something for you as well."`
 			label outfit
 			`	He accompanies you toward two large containers, conveniently placed next to your ship. He unlocks the doors: one contains a pair of MHD Generators, and the other a pair of Shield Restorers. "We had to uninstall a number of systems to gain access to the ones we were looking for. Most of them were damaged in the process, but we made sure to keep these intact as a way to thank you for your contribution before leaving for <planet>."`
 			action
@@ -488,18 +488,18 @@ mission "Ka'het: Death in the Graveyard 4A"
 				`	"Thank you."`
 					accept
 				`	"I may not have enough space for them."`
-			`	"Oh, I am sure an experienced captain like you will be able to find a place where to hide a stash of them around these parts," he signs amused. "See you on <planet>!"`
+			`	"Oh, I am sure an experienced captain like you will be able to find a place to hide a stash of them around these parts," he signs in an amused fashion. "See you on <planet>!"`
 				accept
 	on complete
 		conversation
 			branch rifle
 				has "Remnant: Face to Maw 2B: offered"
-			`You wait for Plume next to the ramp of their Gull. When you see him, he is discussing about the destination of the Ka'het machinery with another Remnant. "Oh, Captain," he signs content, "Thank you for your help once again. I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted to handle their machinery to safe storage whenever you might bring more of it."`
+			`You wait for Plume next to the ramp of his Gull. When you see him, he is discussing the destination of the Ka'het machinery with another Remnant. "Oh, Captain," he signs contentedly, "Thank you for your help once again. I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted the job of handling their machinery to safe storage whenever you might bring more of it."`
 				goto how
 			label rifle
-			`You wait for Plume next to the ramp of their Gull. When you see him, he is discussing about the destination of the Ka'het machinery with another Remnant. You recognize him: he had previously helped you have your Void Rifle. "Oh, Captain," he signs content, "Thank you for your help, once again! I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted to handle their machinery to safe storage whenever you might bring more of it."`
+			`You wait for Plume next to the ramp of his Gull. When you see him, he is discussing the destination of the Ka'het machinery with another Remnant. You recognize him as the man who had previously helped you with your Void Rifle. "Oh, Captain," Plume signs contentedly, "Thank you for your help, once again! I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted the job of handling their machinery to safe storage whenever you might bring more of it."`
 			label how
-			`	He hands you a small data crystal, shaped like an icosahedron. "It contains a series of short videos on how to use the tools in a Research Laboratory, if you were to be carrying one aboard, to extract some of the most essential components out of a hibernated Ka'het. You will need practice, of course, but the procedure is really not too dissimilar from that of looting a standard ship. If it happens again, as long as you leave around 40-50 tons of space in your payload bay, you will be able to do most of what we did today without wasting a second to call us!"`
+			`	He hands you a small data crystal, shaped like an icosahedron. "This contains a series of short videos on how to use the tools in a Research Laboratory, if you were to be carrying one aboard, to extract some of the most essential components out of a hibernated Ka'het. You will need practice, of course, but the procedure is really not too dissimilar from that of looting a standard ship. If it happens again, as long as you leave around 40-50 tons of space in your payload bay, you will be able to do most of what we did today without wasting a second to call us!"`
 			`	After spending some more time discussing the procedure to follow the next time you encounter a hibernated Ka'het, you bid each other farewell with a short bow and part ways.`
 	on visit
 		dialog `You have returned to <planet>, but Plume's Gull hasn't arrived yet.`
@@ -517,13 +517,13 @@ mission "Ka'het: Death in the Graveyard 4B"
 		has "Ka'het: Death in the Graveyard 3: declined"
 	on offer
 		conversation
-			`As you are about to leave the cockpit, the screen atop the transponder starts beeping. It is a message from Plume. "Captain <first>, I have been trying to make some arrangements in order to simplify things in the future. I am transmitting you a series of short videos on how to use the tools in a Research Laboratory, if you were to be carrying one aboard, to extract the most important components out of a hibernated Ka'het. You will need practice, of course, but the procedure is really not too dissimilar from that of looting a standard ship. They are going to be some heavy pieces; I recommend leaving at least 40 or 50 tons free for such an eventuality.`
+			`As you are about to leave the cockpit, the screen atop the transponder starts beeping. It is a message from Plume. "Captain <first>, I have been trying to make some arrangements in order to simplify things in the future. I am transmitting you a series of short videos on how to use the tools in a Research Laboratory, if you were to be carrying one aboard, to extract the most important components out of a hibernated Ka'het. You will need practice, of course, but the procedure is really not too dissimilar from that of looting a standard ship. They are going to be some heavy pieces; I recommend leaving at least 40 or 50 tons of cargo space free for such an eventuality.`
 			branch rifle
 				has "Remnant: Face to Maw 2B: offered"
 			`	"I have assigned one of our technicians to handle the Ka'het machinery you might bring us." The picture and id of a Remnant appears on screen, but you don't recognize him. "May the Embers bring more success in our future endeavors!"`
 				decline
 			label rifle
-			`	"I have assigned one of our technicians to handle the Ka'het machinery you might bring us." The picture and id of a Remnant appears on screen: he is the same person that had previously helped you have your Void Rifle. "May the Embers bring more success in our future endeavors!"`
+			`	"I have assigned one of our technicians to handle the Ka'het machinery you might bring us." The picture and id of a Remnant appears on screen: he is the same person that had previously helped you with your Void Rifle. "May the Embers bring more success in our future endeavors!"`
 				decline
 
 mission "Ka'het: Another Death in the Graveyard 0A"
@@ -576,7 +576,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 				outfit "Neodymium"
 				outfit "Iron" 4
 				outfit "Copper" 2
-			`	You about halfway through the outfit list when, without warning, the entire structure starts pulsating in an increasingly more violent manner. You take leap toward your ship, but the entire slug implodes in front of you! You make it through unscathed, but most of the outfits you had extracted have been critically damaged by the flying debris. The only thing that you are able to get to work among the scrap is a single Reserve Accumulator and some previous metals.`
+			`	You are about halfway through the outfit list when, without warning, the entire structure starts pulsating in an increasingly more violent manner. You leap toward your ship, but the entire slug implodes in front of you! You make it through unscathed, but most of the outfits you had extracted have been critically damaged by the flying debris. The only thing that you are able to get to work among the scrap is a single Reserve Accumulator and some precious metals.`
 				decline
 
 			label all_lucky
@@ -736,7 +736,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 			action
 				outfit "Ka'het Ravager Beam" 4
 				outfit "Ka'het Annihilator Turret" 5
-			`	The front of this Maeri'het appears to have been set up to focus on hull damage: a long series of Ravager Beams show prominently, plus another n of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
+			`	The front of this Maeri'het appears to have been set up to focus on hull damage: a long series of Ravager Beams show prominently, plus a number of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
 				decline
 			label weapon_telis_EMP
 			action
@@ -753,7 +753,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 				outfit "Ka'het Ravager Beam" 2
 				outfit "Ka'het Annihilator Turret" 2
 				outfit "Ka'het Ravager Turret" 4
-			`	The impressive front of this Vareti'het appears to have been set up to focus on shield damage: a long series of Annililators show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
+			`	The impressive front of this Vareti'het appears to have been set up to focus on shield damage: a long series of Annihilators show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
 				decline
 			label weapon_vareti_EMP
 			action
