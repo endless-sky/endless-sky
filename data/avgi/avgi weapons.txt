@@ -401,7 +401,7 @@ outfit "External Launch Rail"
 		"velocity" 6
 		"lifetime" 3
 		"turn" 90
-		"homing" 2
+		"homing"
 		"optical tracking" 0.72
 		"range override" 600
 		"stream"
@@ -439,7 +439,9 @@ outfit "External Launch Tube"
 		"firing heat" 30
 		"drag" 3
 		"radar tracking" 0.9
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"missile strength" 9
 		"stream"
 		"submunition" "Orchid Active"
@@ -481,7 +483,9 @@ outfit "Medium VLS"
 		"drag" .024
 		"infrared tracking" 0.9
 		"optical tracking" 0.6
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
 	description "This large vertical launch system is made up of 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
@@ -493,8 +497,6 @@ outfit `"Nettle" KKV`
 	category "Ammunition"
 	series "Ammunition"
 	index 07020
-	licenses
-		"Twilight Guard"
 	cost 450
 	thumbnail "outfit/nettle kkv"
 	"mass" 0.15
@@ -529,7 +531,9 @@ outfit "Nettle Active"
 		"acceleration" 0.3
 		"drag" .024
 		"turn" 6
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"infrared tracking" 0.9
 		"optical tracking" 0.6
 		"shield damage" -108
@@ -626,7 +630,7 @@ outfit "Orchid Active"
 		"lifetime" 15
 		"drag" 3
 		"turn" 15
-		"homing" 2
+		"homing"
 		"radar tracking" 0.9
 		"submunition" "Orchid Boost"
 		"missile strength" 36
@@ -645,7 +649,9 @@ outfit "Orchid Boost"
 		"acceleration" 0.3
 		"drag" 0.018
 		"turn" 3
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"radar tracking" 0.9
 		"split range" 300
 		"submunition" "Orchid Coast"
@@ -664,7 +670,9 @@ outfit "Orchid Coast"
 		"acceleration" 0.03
 		"drag" 0.006
 		"turn" 1.5
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"radar tracking" 0.9
 		"split range" 1200
 		"submunition" "Orchid Divert"
@@ -684,7 +692,9 @@ outfit "Orchid Divert"
 		"acceleration" 0.3
 		"drag" 0.018
 		"turn" 3
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"radar tracking" 0.9
 		"split range" 600
 		"submunition" "Orchid Terminal"
@@ -787,7 +797,7 @@ outfit "Ophrys Terminal"
 		"acceleration" 0.006
 		"drag" 0.0003
 		"turn" 6
-		"homing" 2
+		"homing"
 		"optical tracking" 0.72
 		"trigger radius" 30
 		"blast radius" 90

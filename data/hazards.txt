@@ -39,6 +39,16 @@ effect "ion hazard"
 	"random velocity" 2
 
 
+hazard "Patir Black Hole Event Horizon"
+	"constant strength"
+	"range" 20
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 0 90
+		"dropoff modifier" 0
+		"relative hull damage" .0001
+		"piercing" 10
+
 
 hazard "Beyond Patir Shield Eraser"
 	"constant strength"

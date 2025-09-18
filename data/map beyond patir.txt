@@ -18,6 +18,7 @@ galaxy "Patir Cluster"
 system Athiri
 	pos 10225.5 -432.5
 	government Uninhabited
+	attributes "beyond patir"
 	haze _menu/haze-chanai
 	habitable 1400
 	belt 1074
@@ -25,7 +26,7 @@ system Athiri
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Athiri Black Hole Event Horizon" 1
 	hazard "Athiri Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole corona core"
 		period 1
@@ -45,6 +46,7 @@ system Athiri
 system Balnii
 	pos 10268.3 -359.3
 	government Uninhabited
+	attributes "beyond patir"
 	haze _menu/haze-sarifa
 	arrival 1100
 	habitable 360
@@ -52,7 +54,7 @@ system Balnii
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Balnii Black Hole Event Horizon" 1
-	hazard "Black Hole Gravity" 2
+	hazard "Small Black Hole Gravity" 2
 	object
 		sprite "star/big black hole core"
 		period 1
@@ -63,6 +65,7 @@ system Balnii
 system Chanai
 	pos 9883.5 -34.5
 	government Uninhabited
+	attributes "beyond patir"
 	haze _menu/haze-chanai
 	habitable 1250
 	belt 1887
@@ -70,7 +73,7 @@ system Chanai
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Chanai Black Hole Event Horizon" 1
 	hazard "Chanai Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 3 core"
 		period 1
@@ -86,6 +89,7 @@ system Chanai
 system Ghila
 	pos 9820.5 -100.5
 	government Uninhabited
+	attributes "beyond patir"
 	haze _menu/haze-ghila
 	habitable 1715
 	belt 1165
@@ -93,7 +97,7 @@ system Ghila
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Ghila Black Hole Event Horizon" 1
 	hazard "Thepa and Ghila Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black-hole-still-core"
 		period 1
@@ -115,6 +119,7 @@ system Ghila
 system Lathia
 	pos 10107.5 -332.5
 	government Uninhabited
+	attributes "beyond patir"
 	haze _menu/haze-lathia
 	habitable 1715
 	belt 1815
@@ -135,6 +140,7 @@ system Lathia
 system Maithi
 	pos 10092.5 -489.5
 	government Uninhabited
+	attributes "beyond patir"
 	haze _menu/haze-maithi
 	habitable 425.92
 	belt 1379
@@ -142,7 +148,7 @@ system Maithi
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Beyond Patir Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 5 core"
 		period 1
@@ -158,6 +164,7 @@ system Maithi
 system Mitera
 	pos 9957.5 -92.5
 	government Uninhabited
+	attributes "beyond patir"
 	haze _menu/haze-mitera
 	habitable 3645
 	belt 1464
@@ -165,7 +172,7 @@ system Mitera
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Beyond Patir Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 4 core"
 		period 1
@@ -181,6 +188,7 @@ system Mitera
 system Sarifa
 	pos 10136.5 -406.5
 	government Uninhabited
+	attributes "beyond patir"
 	haze _menu/haze-sarifa
 	habitable 5486.68
 	belt 1757
@@ -188,7 +196,7 @@ system Sarifa
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Sarifa Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/f8"
 		distance 549
@@ -204,13 +212,14 @@ system Sarifa
 system Thepa
 	pos 9975.5 -2.5
 	government Uninhabited
+	attributes "beyond patir"
 	haze _menu/haze-maithi
 	habitable 320
 	belt 1793
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Thepa and Ghila Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 6 core"
 		period 1

@@ -369,8 +369,6 @@ outfit "High-Velocity Spike"
 	category "Ammunition"
 	series "Ammunition"
 	index 11010
-	licenses
-		"High Houses"
 	cost 3500
 	thumbnail "outfit/hv spike"
 	"mass" .5

@@ -146,7 +146,23 @@ void ImageSet::ValidateFrames() noexcept(false)
 	framePaths[2].clear();
 	framePaths[3].clear();
 
-	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier) {
+	// Ensure that image sequences aren't mixed with other images.
+	for(int i = 0; i < 4; ++i)
+		for(const auto &path : paths[i])
+		{
+			string ext = path.extension().string();
+			if(ImageBuffer::ImageSequenceExtensions().contains(Format::LowerCase(ext)) && paths[i].size() > 1)
+			{
+				Logger::LogError("Image sequences must be exclusive; ignoring all but the image sequence data for \""
+						+ name + "\"");
+				paths[i][0] = path;
+				paths[i].resize(1);
+				break;
+			}
+		}
+
+	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier)
+	{
 		if(toResize.size() > paths[0].size())
 		{
 			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size())
@@ -173,24 +189,42 @@ void ImageSet::Load() noexcept(false)
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
 	size_t frames = paths[0].size();
-	buffer[0].Clear(frames);
-	buffer[1].Clear(frames);
-	buffer[2].Clear(frames);
-	buffer[3].Clear(frames);
 
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
-	if(makeMasks)
-		masks.resize(frames);
+
+	const auto UpdateFrameCount = [&]()
+	{
+		buffer[1].Clear(frames);
+		buffer[2].Clear(frames);
+		buffer[3].Clear(frames);
+
+		if(makeMasks)
+			masks.resize(frames);
+	};
+
+	buffer[0].Clear(frames);
+	UpdateFrameCount();
 
 	// Load the 1x sprites first, then the 2x sprites, because they are likely
 	// to be in separate locations on the disk. Create masks if needed.
-	for(size_t i = 0; i < frames; ++i)
+	for(size_t i = 0; i < paths[0].size(); ++i)
 	{
+		int loadedFrames = buffer[0].Read(paths[0][i], i);
 		const string fileName = "\"" + name + "\" frame #" + to_string(i);
-		if(!buffer[0].Read(paths[0][i], i))
-			Logger::LogError("Failed to read image data for " + fileName);
-		else if(makeMasks)
+		if(!loadedFrames)
+		{
+			Logger::LogError("Failed to read image data for \"" + fileName);
+			continue;
+		}
+		// If we loaded an image sequence, clear all other buffers.
+		if(loadedFrames > 1)
+		{
+			frames = loadedFrames;
+			UpdateFrameCount();
+		}
+
+		if(makeMasks)
 		{
 			masks[i].Create(buffer[0], i, fileName);
 			if(!masks[i].IsLoaded())
@@ -198,7 +232,8 @@ void ImageSet::Load() noexcept(false)
 		}
 	}
 
-	auto FillSwizzleMasks = [&](vector<filesystem::path> &toFill, unsigned int intendedSize) {
+	auto FillSwizzleMasks = [&](vector<filesystem::path> &toFill, unsigned int intendedSize)
+	{
 		if(toFill.size() == 1 && intendedSize > 1)
 			for(unsigned int i = toFill.size(); i < intendedSize; i++)
 				toFill.emplace_back(toFill.back());
@@ -209,7 +244,8 @@ void ImageSet::Load() noexcept(false)
 	FillSwizzleMasks(paths[3], paths[0].size());
 
 
-	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier) {
+	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier)
+	{
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
 			if(!buffer.Read(toLoad[i], i))
 			{

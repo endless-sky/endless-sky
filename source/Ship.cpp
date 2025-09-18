@@ -208,17 +208,15 @@ namespace {
 	}
 
 	// Ships which are scrambled have a chance for their weapons to jam,
-	// delaying their firing for another reload cycle. The less energy
-	// a ship has relative to its max and the more scrambled the ship is,
-	// the higher the chance that a weapon will jam. The jam chance is
-	// capped at 50%. Very small amounts of scrambling are ignored.
-	// The scale is such that a weapon with a scrambling damage of 5 and a reload
-	// of 60 (i.e. the ion cannon) will only ever push a ship to a jam chance
-	// of 5% when it is at 100% energy.
-	double CalculateJamChance(double maxEnergy, double scrambling)
+	// delaying their firing for another reload cycle.
+	// The scale is such that a weapon with a scrambling damage of 6 and a reload
+	// of 60 (i.e. the ion cannon) will approximately have an 9.5% of jamming its
+	// target, while seven of those same weapons will have a 50% chance of jamming.
+	// Very small amounts of scrambling are ignored, to prevent weapons from jamming
+	// well after combat has ended.
+	double CalculateJamChance(double scrambling)
 	{
-		double scale = maxEnergy * 220.;
-		return scrambling > .1 ? min(0.5, scale ? scrambling / scale : 1.) : 0.;
+		return scrambling > .1 ? 1. - pow(2., -1. * (scrambling / 70.)) : 0.;
 	}
 }
 
@@ -570,8 +568,6 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		}
 		else if(key == "destination system" && hasValue)
 			targetSystem = GameData::Systems().Get(child.Token(1));
-		else if(key == "waypoint index" && child.Size() >= 2)
-			waypoint = child.Value(1);
 		else if(key == "parked")
 			isParked = true;
 		else if(key == "description" && hasValue)
@@ -1167,8 +1163,6 @@ void Ship::Save(DataWriter &out) const
 			out.Write("planet", landingPlanet->TrueName());
 		if(targetSystem)
 			out.Write("destination system", targetSystem->TrueName());
-		if(waypoint > 0 && waypoint <= waypoints.size())
-			out.Write("waypoint index", waypoint);
 		if(isParked)
 			out.Write("parked");
 	}
@@ -1186,7 +1180,7 @@ const EsUuid &Ship::UUID() const noexcept
 
 void Ship::SetUUID(const EsUuid &id)
 {
-	uuid.clone(id);
+	uuid.Clone(id);
 }
 
 
@@ -1323,8 +1317,10 @@ vector<string> Ship::FlightCheck() const
 	double reverseThrust = attributes.Get("reverse thrust");
 	double afterburner = attributes.Get("afterburner thrust");
 	double thrustEnergy = attributes.Get("thrusting energy");
+	double thrustHeat = attributes.Get("thrusting heat");
 	double turn = attributes.Get("turn");
 	double turnEnergy = attributes.Get("turning energy");
+	double turnHeat = attributes.Get("turning heat");
 	double hyperDrive = navigation.HasHyperdrive();
 	double jumpDrive = navigation.HasJumpDrive();
 
@@ -1345,6 +1341,8 @@ vector<string> Ship::FlightCheck() const
 	{
 		if(RequiredCrew() > attributes.Get("bunks"))
 			checks.emplace_back("insufficient bunks?");
+		if(IdleHeat() <= 0. && (thrustHeat < 0. || turnHeat < 0.))
+			checks.emplace_back("insufficient heat?");
 		if(!thrust && !reverseThrust)
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
@@ -1817,7 +1815,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	hasBoarded = false;
 
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->LandedOrDestroyed() || victim->GetSystem() != GetSystem())
+	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship." Except when the ship is
@@ -2086,7 +2084,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	tractorBeamRange = 0.;
 	tractorFlotsam.clear();
 
-	double jamChance = CalculateJamChance(Energy(), scrambling);
+	double jamChance = CalculateJamChance(scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2149,7 +2147,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct(Ship::ActionType::FIRE))
 		return false;
 
-	double jamChance = CalculateJamChance(Energy(), scrambling);
+	double jamChance = CalculateJamChance(scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2188,7 +2186,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 			return pullVector;
 	}
 
-	double jamChance = CalculateJamChance(Energy(), scrambling);
+	double jamChance = CalculateJamChance(scrambling);
 
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	const vector<Hardpoint> &hardpoints = armament.Get();
@@ -2591,33 +2589,10 @@ bool Ship::IsDestroyed() const
 
 
 
-void Ship::LandForever()
-{
-	hasLanded = true;
-}
-
-
-
-// Check if this ship has permanently landed.
-bool Ship::HasLanded() const
-{
-	return hasLanded;
-}
-
-
-
-// Check if this ship has permanently landed or been destroyed.
-bool Ship::LandedOrDestroyed() const
-{
-	return (IsDestroyed() || HasLanded());
-}
-
-
-
-// Recharge and repair this ship (e.g. because it has landed temporarily).
+// Recharge and repair this ship (e.g. because it has landed).
 void Ship::Recharge(int rechargeType, bool hireCrew)
 {
-	if(LandedOrDestroyed())
+	if(IsDestroyed())
 		return;
 
 	if(hireCrew)
@@ -2760,11 +2735,6 @@ void Ship::ClearTargetsAndOrders()
 	targetFlotsam.reset();
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
-	destinationSystem = nullptr;
-	destinationPlanet = nullptr;
-	stopovers.clear();
-	waypoints.clear();
-	waypoint = 0;
 }
 
 
@@ -3154,6 +3124,14 @@ double Ship::TrueTurnRate() const
 
 
 
+double Ship::CrewTurnRate() const
+{
+	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
+	return TurnRate() * min(1., static_cast<double>(Crew()) / RequiredCrew());
+}
+
+
+
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
@@ -3166,6 +3144,14 @@ double Ship::Acceleration() const
 double Ship::TrueAcceleration() const
 {
 	return Acceleration() * 1. / (1. + slowness * .05);
+}
+
+
+
+double Ship::CrewAcceleration() const
+{
+	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
+	return Acceleration() * min(1., static_cast<double>(Crew()) / RequiredCrew());
 }
 
 
@@ -3305,7 +3291,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| ((damage.Heat() || damage.Burn()) && isOverheated)
 				|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
 				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
-				|| (damage.Scrambling() && CalculateJamChance(Energy(), scrambling) > 0.1)
+				|| (damage.Scrambling() && CalculateJamChance(scrambling) > 0.1)
 				|| (damage.Slowing() && slowness > 10.)
 				|| (damage.Disruption() && disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
@@ -3784,45 +3770,6 @@ const System *Ship::GetTargetSystem() const
 
 
 
-// Persistent targets for mission NPCs.
-bool Ship::HasTravelDirective() const
-{
-	return !stopovers.empty() || !waypoints.empty() || destinationPlanet || destinationSystem;
-}
-
-
-
-const map<const Planet *, bool> &Ship::GetStopovers() const
-{
-	return stopovers;
-}
-
-
-
-bool Ship::AllStopoversVisited() const
-{
-	if(stopovers.empty())
-		return true;
-
-	return all_of(stopovers.begin(), stopovers.end(), [](const auto &it) { return it.second; });
-}
-
-
-
-const Planet *Ship::GetDestinationPlanet() const
-{
-	return destinationPlanet;
-}
-
-
-
-const System *Ship::GetDestinationSystem() const
-{
-	return destinationSystem;
-}
-
-
-
 // Mining target.
 shared_ptr<Minable> Ship::GetTargetAsteroid() const
 {
@@ -3893,66 +3840,6 @@ void Ship::SetTargetSystem(const System *system)
 	targetSystem = system;
 }
 
-
-
-// Persistent targets for mission NPCs.
-void Ship::SetDestination(const Planet *destination)
-{
-	destinationPlanet = destination;
-}
-
-
-
-void Ship::SetStopovers(const vector<const Planet *> &newStopovers)
-{
-	// Mark each planet as not visited.
-	for(const auto &it : newStopovers)
-		stopovers[it] = false;
-}
-
-
-
-void Ship::SetWaypoints(const vector<const System *> &newWaypoints)
-{
-	// Ships loaded from save files may have an existing waypoint that
-	// indicates which systems have already been visited.
-	if(waypoint < newWaypoints.size())
-	{
-		waypoints = newWaypoints;
-		if(targetSystem && personality.IsEntering())
-		{
-			--waypoint;
-			destinationSystem = targetSystem;
-		}
-		else
-			destinationSystem = newWaypoints[waypoint];
-	}
-	else
-		destinationSystem = nullptr;
-}
-
-
-
-const System *Ship::NextWaypoint()
-{
-	++waypoint;
-
-	destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
-	return destinationSystem;
-}
-
-
-
-void Ship::EraseWaypoint(const System *system)
-{
-	auto it = std::find(waypoints.begin(), waypoints.end(), system);
-	if(it == waypoints.end())
-		return;
-	if(waypoint > static_cast<unsigned>(std::distance(waypoints.begin(), it)))
-		--waypoint;
-	waypoints.erase(it);
-	destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
-}
 
 
 // Mining target.
@@ -4440,12 +4327,11 @@ void Ship::DoGeneration()
 		// Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
 		{
-			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), scale);
-
-			double solarScaling = currentSystem->SolarPower() * scale;
-			energy += solarScaling * attributes.Get("solar collection");
-			heat += solarScaling * attributes.Get("solar heat");
+			System::SolarGeneration generation = currentSystem->GetSolarGeneration(position,
+				attributes.Get("ramscoop"), attributes.Get("solar collection"), attributes.Get("solar heat"));
+			fuel += generation.fuel;
+			energy += generation.energy;
+			heat += generation.heat;
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
@@ -4751,9 +4637,8 @@ bool Ship::DoLandingLogic()
 
 	float landingSpeed = attributes.Get("landing speed");
 	landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
-	// Special ships do not disappear forever when they land; they just slowly refuel.
-	// Exception: mission NPCs given the "destination" directive will be removed
-	// when they land on their target.
+	// Special ships do not disappear forever when they land; they
+	// just slowly refuel.
 	if(landingPlanet && zoom)
 	{
 		// Move the ship toward the center of the planet while landing.
@@ -4775,36 +4660,21 @@ bool Ship::DoLandingLogic()
 				SetTargetSystem(nullptr);
 				landingPlanet = nullptr;
 			}
-			else if(isSpecial && !isYours)
+			else if(!isSpecial || personality.IsFleeing())
 			{
 				bool escortsLanded = true;
 				for(const auto &it : escorts)
 				{
 					const auto escort = it.lock();
-					// Check if escorts are also landed, or destroyed.
-					if(!escort || escort->IsDestroyed() || escort->zoom == 0.f)
+					// Check if escorts are also landed, destroyed, disabled, or being carried.
+					if(!escort || escort->IsDestroyed() || escort->IsDisabled() || escort->zoom == 0.f
+							|| !escort->GetSystem())
 						continue;
 					escortsLanded = false;
 					break;
 				}
 				if(escortsLanded)
-				{
-					// This mission NPC has a directive to land on at least one specific planet.
-					// If this is one of them, this ship may land on a "destination" (permanently),
-					// or have a "stopover."
-					if(AllStopoversVisited() && destinationPlanet == landingPlanet)
-					{
-						MarkForRemoval();
-						LandForever();
-					return true;
-					}
-					else if(!stopovers.empty())
-					{
-						auto it = stopovers.find(landingPlanet);
-						if(it != stopovers.end())
-							it->second = true;
-					}
-				}
+					MarkForRemoval();
 				return true;
 			}
 
@@ -5398,10 +5268,4 @@ void Ship::Jettison(shared_ptr<Flotsam> toJettison)
 		}
 		++bayIndex;
 	}
-}
-
-void Ship::ResetStopovers()
-{
-	for(auto &stopover : stopovers)
-		stopover.second = false;
 }

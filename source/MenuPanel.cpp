@@ -100,8 +100,8 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	xSpeed = mainMenuUi->GetValue("x speed");
 	ySpeed = mainMenuUi->GetValue("y speed");
 	yAmplitude = mainMenuUi->GetValue("y amplitude");
-	// Start the animation wave at a random point.
-	animation = Random::Real() * 360.;
+	returnPos = GameData::GetBackgroundPosition();
+	GameData::SetBackgroundPosition(Point());
 
 	// When the player is in the menu, pause the game sounds.
 	Audio::Pause();
@@ -112,6 +112,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 MenuPanel::~MenuPanel()
 {
 	Audio::Resume();
+	GameData::SetBackgroundPosition(returnPos);
 }
 
 
@@ -123,6 +124,8 @@ void MenuPanel::Step()
 		GameData::StepBackground(Point(xSpeed, yAmplitude * sin(animation * TO_RAD)));
 		animation += ySpeed;
 	}
+	else
+		GameData::StepBackground(Point());
 	if(GetUI()->IsTop(this) && !scrollingPaused)
 	{
 		scroll += scrollSpeed;
@@ -190,7 +193,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return true;
 	}
 	else if(key == 'p')
-		GetUI()->Push(new PreferencesPanel());
+		GetUI()->Push(new PreferencesPanel(player));
 	else if(key == 'l' || key == 'm')
 		GetUI()->Push(new LoadPanel(player, gamePanels));
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
@@ -220,8 +223,11 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool MenuPanel::Click(int x, int y, int clicks)
+bool MenuPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	// Double clicking on the credits pauses/resumes the credits scroll.
 	if(clicks == 2 && mainMenuUi->GetBox("credits").Contains(Point(x, y)))
 	{
