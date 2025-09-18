@@ -526,7 +526,7 @@ mission "Ka'het: Death in the Graveyard 4B"
 			`	"I have assigned one of our technicians to handle the Ka'het machinery you might bring us." The picture and ID of a Remnant appears on screen: he is the same person that had previously helped you with your Void Rifle. "May the Embers bring more success in our future endeavors!"`
 				decline
 
-mission "Ka'het: Another Death in the Graveyard 0A"
+mission "Ka'het: Another Death in the Graveyard 0"
 	invisible
 	repeat
 	landing
@@ -543,9 +543,77 @@ mission "Ka'het: Another Death in the Graveyard 0A"
 	to complete
 		never
 	to fail
-		has "Ka'het: Another Death in the Graveyard 1: active"
+		has "Ka'het: Another Death in the Graveyard 1A: active"
+	on offer
+		clear "ka'het: slug loot"
+		clear "ka'het: maeri"
+		clear "ka'het: telis"
+		clear "ka'het: vareti"
 
-mission "Ka'het: Another Death in the Graveyard 0B"
+mission "Ka'het: Another Death in the Graveyard 1A"
+	repeat
+	landing
+	name "Another Odd Ka'het"
+	description "Take the Ka'het equipment you have gathered to <destination>."
+	source
+		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retilie" "Osaeli"
+	destination "Aventine"
+	cargo "Ka'het machinery" 40
+	blocked "Your sensors identify another hibernated Ka'het on the surface of <planet>, but you quickly realize that you wouldn't have enough space to take its machinery."
+	to offer
+		has "Ka'het: Another Death in the Graveyard 0: active"
+	to accept
+		has "outfit (flagship installed): Research Laboratory"
+	on offer
+		fail "Ka'het: Another Death in the Graveyard 0"
+		conversation
+			branch vareti
+				random < 10
+			branch telis
+					random < 75
+			action
+				set "ka'het: maeri"
+			`A glare from the ground catches your attention. In the distance, you notice what looks like a Maeri'het lying down at the bottom of a dried riverbed, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume had given you, you could use your Research Laboratory to give a significant help to the Remnant efforts.`
+				goto choice
+			label telis
+			action
+				set "ka'het: telis"
+			`A glare from the ground catches your attention. In the distance, you notice what looks like a Telis'het lying down at the bottom of a dry lake bed, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume had given you, you could use your Research Laboratory to give a significant help to the Remnant efforts.`
+				goto choice
+			label vareti
+			action
+				set "ka'het: vareti"
+			`A glare from the ground catches your attention. In the distance, you notice what looks like a Vareti'het lying down at the bottom of a dried basin, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume had given you, you could use your Research Laboratory to give a significant help to the Remnant efforts.`
+			label choice
+			choice
+				`	(Descend and try to remove its machinery.)`
+				`	(Ignore it and find another place to land.)`
+					decline
+			`	Following Plume's videos step by step, the whole procedure turns out to be quite straightforward and clean. After a little more than an hour your cargo bay has filled with Ka'het machinery of all kinds, connected to the Research Laboratory with a series of increasingly cumbersome adapters one after another. Now that the job is done, you could spend some more time looting the slug's conventional outfits - with the caveat that the chances of another Ka'het noticing your presence would be quite high.`
+			choice
+				`	(Depart and bring the machinery to Aventine.)`
+					launch
+				`	(Stop and loot what is left of the Ka'het.)`
+			action
+				set "ka'het: slug loot"
+			`	As you expected, before you have the chance to bring out any of its outfits your radar registers another Ka'het coming into the atmosphere with guns raised. You will need to fight it if you want the chance to loot the downed slug - or else, it will reach it by itself and likely destroy it.`
+				launch
+	on decline
+		clear "ka'het: maeri"
+		clear "ka'het: telis"
+		clear "ka'het: vareti"
+	on complete
+		clear "ka'het: maeri"
+		clear "ka'het: telis"
+		clear "ka'het: vareti"
+		dialog
+			`You meet up with the Remnant technician at the indicated coordinates and drop the cargo you have gathered one by one. After you're done, he thanks you with a short bow and quickly disappears behind a hangar door.`
+	on abort
+		clear "ka'het: maeri"
+		clear "ka'het: telis"
+		clear "ka'het: vareti"
+
+mission "Ka'het: Another Death in the Graveyard 1B"
 	invisible
 	repeat
 	landing
@@ -553,10 +621,13 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 	source
 		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retilie" "Osaeli"
 	to offer
-		has "Ka'het: Another Death in the Graveyard 0A: active"
+		has "Ka'het: Another Death in the Graveyard 0: active"
 	to accept
 		has "outfit (flagship installed): Research Laboratory"
+	to complete
+		has "ka'het: dead in the graveyard"
 	on complete
+		clear "ka'het: dead in the graveyard"
 		conversation
 			`With the Ka'het destroyed, you return to the site where the other slug lies defenseless. While the battle did not touch it, you notice that a number of components show superficial damage, either due to your extraction job or previous battle damage. It would be best to focus on looting just an area and disregard the rest to avoid risking its collapse.`
 			choice
@@ -675,14 +746,14 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 				outfit "Ka'het Primary Cooling"
 				outfit "Ka'het Support Cooling"
 				outfit "Ka'het Shield Restorer" 10
-			`	Mounted at the very edges of the shell of the Maeri'het, you find a series of pristine Shield Restorers connected with a heat sink. You uninstall them together with the cooling systems they sit next to, and in a few hours you are ready to leave.`
+			`	Mounted at the very edges of the shell of the Telis'het, you find a series of pristine Shield Restorers connected with a heat sink. You uninstall them together with the cooling systems they sit next to, and in a few hours you are ready to leave.`
 				decline
 			label shield_vareti
 			action
 				outfit "Ka'het Primary Cooling"
 				outfit "Ka'het Support Cooling"
 				outfit "Ka'het Grand Restorer" 2
-			`	Mounted at the very edges of the shell of the Maeri'het, you find a pair of enormous Grand Restorers connected with a heat sink. You carefully uninstall them together with the cooling systems they sit next to, and in a few hours you are ready to leave.`
+			`	Mounted at the very edges of the shell of the Vareti'het, you find a pair of enormous Grand Restorers connected with a heat sink. You carefully uninstall them together with the cooling systems they sit next to, and in a few hours you are ready to leave.`
 				decline
 
 			label engine
@@ -736,7 +807,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 			action
 				outfit "Ka'het Ravager Beam" 4
 				outfit "Ka'het Annihilator Turret" 5
-			`	The front of this Maeri'het appears to have been set up to focus on hull damage: a long series of Ravager Beams show prominently, plus a number of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
+			`	The front of this Telis'het appears to have been set up to focus on hull damage: a long series of Ravager Beams show prominently, plus a number of Annihilator Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
 				decline
 			label weapon_telis_EMP
 			action
@@ -744,7 +815,7 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 				outfit "Ka'het Annihilator Turret"
 				outfit "Ka'het Ravager Turret" 4
 				outfit "EMP Torpedo" 64
-			`	The front of this Maeri'het appears to have been set up for electronic warfare: a long series of EMP Deployers with their storage rack show prominently, plus a number of Ravager Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
+			`	The front of this Telis'het appears to have been set up for electronic warfare: a long series of EMP Deployers with their storage rack show prominently, plus a number of Ravager Turrets on the back. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
 				decline
 			label weapon_vareti_gun
 			action
@@ -765,14 +836,10 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 				outfit "EMP Torpedo" 32
 			`	The impressive front of this Vareti'het appears to have been set up to focus on hull damage: a number of EMP Deployers and Ravager Beams show prominently, surrounding the enormous barrel of the Nullifier. On the back, a variety of Ravager and Annihilator Turrets make their appearance. You disconnect them from their base plates, making sure not to damage any of its fragile targeting system, and move them all to your cargo hold.`
 				decline
-		clear "ka'het: slug loot"
-		clear "ka'het: maeri"
-		clear "ka'het: telis"
-		clear "ka'het: vareti"
 	to fail
 		and
-			not "Ka'het: Another Death in the Graveyard 1: active"
-			not "Ka'het: Another Death in the Graveyard 0A: active"
+			not "Ka'het: Another Death in the Graveyard 1A: active"
+			not "Ka'het: Another Death in the Graveyard 0: active"
 	npc kill
 		to spawn
 			has "ka'het: slug loot"
@@ -780,9 +847,9 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 		personality plunders mining harvests staying target launching
 		fleet
 			names "ka'het"
-			variant 4
+			variant 5
 				"Maeri'het"
-			variant 4
+			variant 5
 				"Maeri'het (EMP)"
 			variant 12
 				"Telis'het"
@@ -797,71 +864,8 @@ mission "Ka'het: Another Death in the Graveyard 0B"
 			variant 1
 				"Vareti'het (Strong)"
 		dialog "You have destroyed the Ka'het ship. You can now return to <planet> to loot the hibernated slug."
-
-mission "Ka'het: Another Death in the Graveyard 1"
-	repeat
-	landing
-	name "Another Odd Ka'het"
-	description "Take the Ka'het equipment you have gathered to <destination>."
-	source
-		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retilie" "Osaeli"
-	destination "Aventine"
-	cargo "Ka'het machinery" 40
-	blocked "Your sensors identify another hibernated Ka'het on the surface of <planet>, but you quickly realize that you wouldn't have enough space to take its machinery."
-	to offer
-		has "Ka'het: Another Death in the Graveyard 0A: active"
-	to accept
-		has "outfit (flagship installed): Research Laboratory"
-	on offer
-		fail "Ka'het: Another Death in the Graveyard 0A"
-		conversation
-			branch vareti
-				random < 10
-			branch telis
-				and
-					random < 50
-					random > 9
-			action
-				set "ka'het: maeri"
-			`A glare from the ground catches your attention. In the distance, you notice what looks like a Maeri'het lying down at the bottom of a dried riverbed, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume had given you, you could use your Research Laboratory to give a significant help to the Remnant efforts.`
-				goto choice
-			label telis
-			action
-				set "ka'het: telis"
-			`A glare from the ground catches your attention. In the distance, you notice what looks like a Telis'het lying down at the bottom of a dry lake bed, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume had given you, you could use your Research Laboratory to give a significant help to the Remnant efforts.`
-				goto choice
-			label vareti
-			action
-				set "ka'het: vareti"
-			`A glare from the ground catches your attention. In the distance, you notice what looks like a Vareti'het lying down at the bottom of a dried basin, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume had given you, you could use your Research Laboratory to give a significant help to the Remnant efforts.`
-			label choice
-			choice
-				`	(Descend and try to remove its machinery.)`
-				`	(Ignore it and find another place to land.)`
-					decline
-			`	Following Plume's videos step by step, the whole procedure turns out to be quite straightforward and clean. After a little more than an hour your cargo bay has filled with Ka'het machinery of all kinds, connected to the Research Laboratory with a series of increasingly cumbersome adapters one after another. Now that the job is done, you could spend some more time looting the slug's conventional outfits - with the caveat that the chances of another Ka'het noticing your presence would be quite high.`
-			choice
-				`	(Depart and bring the machinery to Aventine.)`
-					launch
-				`	(Stop and loot what is left of the Ka'het.)`
-			action
-				set "ka'het: slug loot"
-			`	As you expected, before you have the chance to bring out any of its outfits your radar registers another Ka'het coming into the atmosphere with guns raised. You will need to fight it if you want the chance to loot the downed slug - or else, it will reach it by itself and likely destroy it.`
-				launch
-	on decline
-		clear "ka'het: maeri"
-		clear "ka'het: telis"
-		clear "ka'het: vareti"
-	on complete
-		clear "ka'het: maeri"
-		clear "ka'het: telis"
-		clear "ka'het: vareti"
-		dialog
-			`You meet up with the Remnant technician at the indicated coordinates and drop the cargo you have gathered one by one. After you're done, he thanks you with a short bow and quickly disappears behind a hangar door.`
-	on abort
-		clear "ka'het: maeri"
-		clear "ka'het: telis"
-		clear "ka'het: vareti"
+		on kill
+			set "ka'het: dead in the graveyard"
 
 mission "Ka'het: Patir Reveal"
 	invisible
