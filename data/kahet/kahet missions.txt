@@ -2280,7 +2280,8 @@ mission "Ka'het: Voice From The Past 5"
 			`	"Thank you for this, Captain - not just for ferrying me back, but also for making this little adventure possible in the first place. There is still much to discover about the Builders and their civilization, and I am happy to have contributed to this puzzle at least a tiny bit.`
 			`	"One of the key events in order to understand their history is the first contacts they had with alien species. As it often happens, the first one was with the peaceful Quarg, but there is at least another encounter we know of that did not go nearly as well.`
 			`	"We do not know whether this was an actual invasion attempt or just an explorer that did not react well under pressure, but the two species fought, and the Builders only won after multiple days of fighting. The militarization of Builder society started at the same time."`
-			`	"What species were they attacked by?" you ask. "We cannot say for certain. From what I understand, no alien remains were found during the past Graveyard expeditions - other than Builder ones, naturally. However, an interstellar species does not just disappear without leaving any trace, and there are only a small number of candidates who fit the bill."`
+			`	"What species were they attacked by?" you ask.`
+			`	"We cannot say for certain. From what I understand, no alien remains were found during the past Graveyard expeditions - other than Builder ones, naturally. However, an interstellar species does not just disappear without leaving any trace, and there are only a small number of candidates who fit the bill."`
 			choice
 				`	"The Korath?"`
 					goto korath
