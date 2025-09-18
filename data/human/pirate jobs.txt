@@ -3881,7 +3881,7 @@ mission "Transport wealthy anarchists to <planet>"
 		"pirate jobs" ++
 		payment
 		payment 8000
-		dialog "One of the anarchist's guards hands you your payment of <payment>, after which the group enters the <planet> spaceport."
+		dialog "One of the anarchists' guards hands you your payment of <payment>, after which the group enters the <planet> spaceport."
 
 mission "Transport shady group to <planet> (Short)"
 	name "Transport shady group to <planet>"
