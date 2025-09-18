@@ -2134,7 +2134,7 @@ mission "Ka'het: Voice From The Past 1"
 			choice
 				`	"They did."`
 				`	(Tell him about the encounter.)`
-			`	You take him aside to again explain your encounter with the Builder satellite, but he stops you before you can begin. "Plume told me everything a few days ago. It is always delightful to see something one has theorized about become reality," he continues proudly. "What you have observed is usually called a 'zombie satellite.' Not too technical of an expression, maybe, but certainly effective.`
+			`	You take him aside to again explain your encounter with the Builder satellite, but he stops you before you can begin. "Plume told me everything a few days ago. It is always delightful to see something one has theorized about become reality," he continues proudly. "What you have observed is usually called a 'zombie satellite.' Not too technical of an expression, maybe, but certainly meaningful.`
 			`	"There are many ways a spacecraft can die, some less violent than others. And there are times, years after the supposed end of operations, when the spacecraft spontaneously comes back to life and communicates again with the ground. It is not a predictable event, nor does it happen only to specific designs; it simply happens, no matter whether the satellite was built on Aventine, Hai-home, or Valhalla.`
 			`	"What makes it special in this case is the sheer length of time that has passed between the 'death' of the satellite and now. This spacecraft was silent the last time we explored Fereti, which either means it survived for tens of thousands of years and died a few hundred years ago, or that it died at the time of the Builders and only came back to life after millennia - both very fascinating possibilities in their own right.`
 			`	"This would be the first active Builder satellite we have identified, which is not surprising given these conditions. If your report is accurate, we need to go study it as soon as possible."`
@@ -2160,7 +2160,7 @@ mission "Ka'het: Voice From The Past 1B"
 				`	(Yes.)`
 				`	(Not now.)`
 					defer
-			`With the ongoing construction preventing you from reaching most of the station, you try to look around near the landing pad. It takes almost half an hour before you give up; there's too many people to try to find someone who knows you, and everyone else seems far too busy to stop and listen to your story. Perhaps you will have better luck in the spaceport of a mayor planet.`
+			`With the ongoing construction preventing you from reaching most of the station, you try to look around near the landing pad. It takes almost half an hour before you give up; there's too many people to try to find someone who knows you, and everyone else seems far too busy to stop and listen to your story. Perhaps you will have better luck in the spaceport of a major planet.`
 
 mission "Ka'het: Voice From The Past 2"
 	name "Outpost on Kumkapi"
@@ -2194,7 +2194,7 @@ mission "Ka'het: Voice From The Past 2"
 			choice
 				`	"Alright, let's do this."`
 				`	"Will you come with me?"`
-			`	You make a gesture toward your ship, to which he replies with an undecided expression. "Our backlog here has been growing considerably, and leaving for another adventure right now would not make it shorter." He stops for a couple seconds, then continues.`
+			`	You make a gesture toward your ship, to which he replies with an undecided expression. "Our backlog here has been growing considerably, and leaving for another adventure right now would not make it shorter." He stops for a few seconds, then continues.`
 			`	"On the other hand, we have also been completing milestones ahead of schedule lately, and there are plenty of experienced people here who could take over for some time. I can afford to leave the reins to someone else for a few days.`
 			`	"Plus," he concludes with a smile, "it will be an opportunity to see some faces I have not seen in years, and to reminisce about the past for a bit. I should have done this a while ago."`
 				accept
@@ -2257,10 +2257,10 @@ mission "Ka'het: Voice From The Past 4"
 			choice
 				`	"About as well as a mission in the middle of the Graveyard can go."`
 				`	"It could have gone better."`
-			`	"I will make sure to reward you appropriately once this is said and done," he replies. Behind him, two technicians climb atop a scaffolding and take a closer look at the satellite you brought with you. "One of the challenges with these kinds of artifacts is not only its alien origins, but also the era in which they were designed.`
+			`	"I will make sure to reward you appropriately once this is said and done," he replies. Behind him, two technicians climb atop a scaffolding and take a closer look at the satellite you brought with you. "One of the challenges with these kinds of artifacts is not only their alien origins, but also the era in which they were designed.`
 			`	"The Builder empire lasted for tens of millennia; their technological level varied wildly during this time, and the remains of one era are often incompatible with the remains of previous eras. We have done our best to date this spacecraft, so this is the moment of truth."`
 			`	A technician carefully hands a wide cable to the two atop the platform, who move toward the captured satellite and try to insert the cord into an opening on its back.`
-			`	It takes a few attempts, but at last they succeed. While you can't quite see what one technician is signing from the control console, it must be great news, judging from the cheer that erupts right after. "The transfer has started!" Gavriil gestures in celebration. He rushes toward the terminals at the back of the hangar, almost in disbelief.`
+			`	It takes a few attempts, but at last they succeed. While you can't quite see what one technician is signing from the control console, it must be great news, judging from the cheer that erupts soon after. "The transfer has started!" Gavriil gestures in celebration. He rushes toward the terminals at the back of the hangar, almost in disbelief.`
 			`	The excitement only slightly wears off as the hours pass, the sheer amount of data taken from the spacecraft boosting it again and again. Finally, Gavriil comes back to you with anticipation. "The transfer is mostly complete by now, and the analysis will soon begin. If you are ready, this would be a good time to return to Ssil Vida - it will take days before any result is ready."`
 				accept
 
@@ -2299,13 +2299,13 @@ mission "Ka'het: Voice From The Past 5"
 			`	"A good guess. Both the Hai and the Sheragi would make sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard. I heard there are great debates about the two species going on to this day, especially after the discoveries in Ssil Vida, but I am not the person to ask about them.`
 				goto continue
 			label pug
-			`	"Interesting guess. We do know that they used to have a presence in this area at some point, but there is little use in speculating about their purposes with so little information, especially when there are more likely candidates. Either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
+			`	"Interesting guess. We do know that they used to have a presence in this area at some point, but there is no use in speculating about their purposes with so little information, especially when there are more likely candidates. Either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 				goto continue
 			label predecessors
-			`	"Those that came before?" He shakes his head with some disappointment. "I may not know much about them, but I can tell you that far more time has passed between the end of the Builders and the first Predecessor artifacts than it has between the latter and now. Keep it in mind, we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
+			`	"Those that came before?" He shakes his head with some disappointment. "I may not know much about them, but I can tell you that far more time has passed between the end of the Builders and the first Predecessor artifacts than it has between the latter and now. Keep it in mind that we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 				goto continue
 			label korath
-			`	"Not this time," he signs, amused. "More time has passed between the end of the Builders and the Korath's discovery of spaceflight than it has between the latter and now. Keep it in mind, we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
+			`	"Not this time," he signs, amused. "More time has passed between the end of the Builders and the Korath's discovery of spaceflight than it has between the latter and now. Keep it in mind that we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 			label continue
 			`	"Whatever happened, the scars left by this short encounter were not merely psychological, as this satellite shows. Some kind of virus started spreading soon after the first contact, possibly of alien origin. We do not know the impact it had on their civilization, but it must have been quite severe: Alix appears to have been used as a quarantine facility at the time, and satellites like this had the sole function of warning incoming ships of the danger.`
 			`	"If you find anything else, do not hesitate to tell us. The analysis is still ongoing, but I have been able to spare 300,000 credits to deposit on your account to show our gratitude."`
@@ -2317,7 +2317,7 @@ mission "Ka'het: Voice From The Past 5"
 						not "event: rim archaeology results"
 				`	"Thank you."`
 					goto capitalist
-			`	"You might not have heard the name, but you have certainly been into their territory. They are a long extinct species, once inhabiting what has become the Rim and the South of human space. The same area where, not too long ago, you took the material we are currently using to power Ssil Vida," he replies, making a gesture in the direction of the station's reactor.`
+			`	"You might not have heard the name, but you have certainly been into their territory. They are a long extinct species, once inhabiting what has become the Rim and the South of human space. The same area where, not too long ago, you got the material we are currently using to power Ssil Vida," he replies, making a gesture in the direction of the station's reactor.`
 			`	"I can tell you that, as far as we know, they were roughly concurrent with the Builders; but this is the wealth of information I learnt during the work in Postverta. It is a continuously evolving field, and I have not been able to follow it closely beyond the engineering research on this station."`
 			choice
 				`	"You can keep the money. I would rather continue exploring further."`
@@ -2361,7 +2361,7 @@ mission "Ka'het: Voice From The Past 6"
 				accept
 	npc
 		government "Remnant"
-		personality heroic launching lingering
+		personality heroic launching lingering uninterested
 		fleet "Large Remnant"
 		fleet "Small Remnant"
 	on stopover
@@ -2400,11 +2400,11 @@ mission "Ka'het: Voice From The Past 6"
 			choice
 				`	"Is there someone I can give this data to?"`
 				`	"The location you gave me did not seem to have been inhabited."`
-			`	You give her a brief summary of your mission, and of your findings. "I am afraid the people you were supposed to deliver this data to have left together with the satellite," she replies, perplexed. "It has been busy for all of us recently, and some steps were skipped to accelerate the process."`
+			`	You give her a brief summary of your mission, and of your findings. "I am afraid the people you were supposed to deliver this data to have left together with the satellite," she replies, perplexed. "It has been busy for all of us recently, and some steps were skipped to accelerate the process.`
 			`	"If you leave the datapad here, I promise I will make sure it gets into the right hands. I am sure they will contact you themselves after things have calmed down a bit." You hand her the tablet with the info you recorded, hopeful it will reach its destination, and prepare to leave once again.`
 
 event "ka'het: quarantine site"
 
 event "ka'het: alix discoveries"
 	planet Alix
-		add description `	Long before becoming an automated mining outpost, this moon was originally designated as a Builder quarantine site.`
+		add description `	Long before becoming an automated mining outpost, this moon was designated as a Builder quarantine site.`
