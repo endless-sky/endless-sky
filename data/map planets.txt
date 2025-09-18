@@ -4402,6 +4402,13 @@ planet "Outpost Tekis"
 		fleet "Small Dissonance Pirates" 9
 		fleet "Large Dissonance Pirates" 6
 
+planet Pacili
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa22
+	description `Although on the smaller end of gas giants known, Pacili represents a calm, unremarkable gas giant. A band of its upper atmosphere features temperatures and pressures compatible with human life; if it wasn't for the scarcity of oxygen, it could be even considered habitable.`
+	government Uninhabited
+	security 0
+
 planet Palarei
 	attributes ka'het uninhabited
 	landscape land/valley5
