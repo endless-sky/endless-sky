@@ -3892,8 +3892,7 @@ mission "Transport shady group to <planet> (Short)"
 	deadline 6
 	to offer
 		random < 60
-		and
-			"reputation: Pirate" > -10
+		"reputation: Pirate" > -10
 	source
 		government "Pirate"
 	destination
@@ -4035,7 +4034,7 @@ mission "Smuggle wealthy druglord to <planet>"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "This group of <bunks> armed guards and their boss seek covert, yet comftorable travel to <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
+	description "This group of <bunks> armed guards and their boss seek covert, yet comfortable travel to <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
 	passengers 3 12 .8
 	illegal 250000 `Your ship is boarded and a firefight breaks out! After the inside of your <model> is trashed, the remaining guards and druglord are escorted to the brig and you're hit with a hefty fine. This sure won't go over well...`
 	stealth
@@ -4053,7 +4052,7 @@ mission "Smuggle wealthy druglord to <planet>"
 		dialog phrase "generic passenger on visit"
 	on abort
 		"reputation: Pirate" -= 1
-		dialog "You turn the annoyed druglord and their disgruntled guards away, no doubt they'll tell their fellow elite about this."
+		dialog "You turn the annoyed druglord and their disgruntled guards away. No doubt they'll tell their fellow elite about this."
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
@@ -4407,7 +4406,7 @@ mission "Smuggle plunderbund elite to <planet>"
 	repeat
 	description "This large consist of <bunks> plunderbund aristocracy and their extensive guardianship detachment seek sumptuous, yet surreptitious travel to <destination>, and they will compensate you with <payment> to take them there without being caught by planetary law enforcement."
 	passengers 24 36 .8
-	illegal 25000000 `Your ship erupts into a massive war zone as soon as system security board! The inside of both your <model> and the officer's ship is trashed, as well as the multiple reinforcment ships called in to help. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
+	illegal 25000000 `Your ship erupts into a massive war zone as soon as system security board! The inside of both your <model> and the officer's ship is trashed, as well as the multiple reinforcement ships called in to help. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
 	stealth
 	to offer
 		random < 30
@@ -4424,7 +4423,7 @@ mission "Smuggle plunderbund elite to <planet>"
 		dialog phrase "generic passenger on visit"
 	on abort
 		"reputation: Pirate" -= 2
-		dialog "You cast away the particularly disgruntled plunderbund and their extensive security compliment, much to their grand annoyance. No doubt, there will be much banter among the upper elite about this unfortunate act."
+		dialog "You cast away the particularly disgruntled plunderbund and their extensive security compliment, much to their grand annoyance. No doubt there will be much banter among the upper elite about this unfortunate act."
 	on fail
 		"reputation: Pirate" -= 6
 	on complete
