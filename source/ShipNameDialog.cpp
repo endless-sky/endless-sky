@@ -24,7 +24,7 @@ using namespace std;
 
 
 
-bool ShipNameDialog::ThirdButtonFun(string &input)
+bool ShipNameDialog::RandomName(const string &)
 {
 	input = GameData::Phrases().Get("civilian")->Get();
 	// False means to keep the dialog box open.
