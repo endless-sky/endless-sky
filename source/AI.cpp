@@ -374,7 +374,7 @@ namespace {
 	// If the ship has no weapons, return {0, inf}.
 	pair<double, double> WeaponsRange(const Ship &ship)
 	{
-		double minRange = std::numeric_limits<double>::infinity();
+		double minRange = numeric_limits<double>::infinity();
 		double maxRange = 0.;
 		for(const Hardpoint &hardpoint : ship.Weapons())
 			if(hardpoint.GetOutfit() && !hardpoint.IsSpecial())
@@ -2527,7 +2527,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	// This is a fudge factor for how straight you must be facing: it increases
 	// from 0.8 when it will take many frames to stop, to nearly 1 when it will
 	// take less than 1 frame to stop.
-	const auto &limit = [](double stopTime)
+	const auto limit = [](double stopTime)
 	{
 		return .8 + .2 / (1. + stopTime * stopTime * stopTime * .001);
 	};
@@ -2538,7 +2538,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	double turnRate = TO_RAD * ship.TrueTurnRate();
 
 	// How long it takes for a ship to stop, given a facing angle and final angle relative to its velocity.
-	const auto &stoppingTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
+	const auto stoppingTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
 		double finalFacing)
 	{
 		return velocity / acceleration + (abs(facingAngle) + abs(finalFacing)) / turningRate;
@@ -3497,7 +3497,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 		v = maxVelocity;
 	}
 
-	const auto &stopDistance = [](double v, double angle, double acceleration, double turn)
+	const auto stopDistance = [](double v, double angle, double acceleration, double turn)
 	{
 		// Sum of: v + (v - a) + (v - 2a) + ... + 0.
 		// The number of terms will be v / a.
