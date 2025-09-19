@@ -461,7 +461,7 @@ interface "load menu"
 	button d "_Delete"
 		center -285 155
 		dimensions 90 30
-
+	
 	sprite "ui/wide button"
 		center -435 195
 	active
@@ -486,6 +486,64 @@ interface "load menu"
 	button l "_Load Game"
 		center 435 155
 		dimensions 90 30
+
+
+
+interface "modal list dialog"
+	sprite "_menu/buttonless side panel"
+		center 0 0
+
+	string "title"
+		color "bright"
+		align center
+		truncate back
+		width 230
+		center 0 -145
+	line
+		color "bright"
+		center 0 -130
+		dimensions 210 1
+	
+	box "selection list"
+		center 0 0
+		dimensions 230 262
+		
+	value "selection list horizontal text pad" 5
+	value "selection list fade out" 10
+	
+	# Note: mapping buttons 3, 2, 1 to F1, F2, F3 (left to right on screen vs keyboard)
+	active if "button three active"
+	"dynamic button" F1 "button three label"
+		color "medium"
+		align center
+		truncate back
+		width 70
+		center -95 155
+	sprite "ui/dialog cancel"
+		center -95 155
+		dimensions 70 30
+	
+	active if "button two active"
+	"dynamic button" F2 "button two label"
+		color "medium"
+		align center
+		truncate back
+		width 70
+		center 0 155
+	sprite "ui/dialog cancel"
+		center 0 155
+		dimensions 70 30
+	
+	active if "button one active"
+	"dynamic button" F3 "button one label"
+		color "medium"
+		align center
+		truncate back
+		width 70
+		center 95 155
+	sprite "ui/dialog cancel"
+		center 95 155
+		dimensions 70 30
 
 
 
