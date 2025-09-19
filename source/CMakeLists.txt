@@ -193,6 +193,8 @@ target_sources(EndlessSkyLib PRIVATE
 	MissionAction.h
 	MissionPanel.cpp
 	MissionPanel.h
+	ModalListDialog.cpp
+	ModalListDialog.h
 	Mortgage.cpp
 	Mortgage.h
 	MouseButton.h
@@ -260,8 +262,6 @@ target_sources(EndlessSkyLib PRIVATE
 	RoutePlan.cpp
 	RoutePlan.h
 	Sale.h
-	SaveDiscardDialog.cpp
-	SaveDiscardDialog.h
 	SavedGame.cpp
 	SavedGame.h
 	Screen.cpp

@@ -26,11 +26,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "ModalListDialog.h"
 #include "PlayerInfo.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
+#include "SaveDiscardDialog.h"
 #include "Screen.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
@@ -46,7 +48,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 
 #include "Logger.h"
-#include "SaveDiscardDialog.h"
 
 using namespace std;
 
@@ -299,6 +300,11 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	{
 		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
+	}
+	else if(page == 'c')
+	{
+		if(key == 'e')
+			SelectProfile();
 	}
 	else
 		return false;
@@ -1296,14 +1302,24 @@ bool PreferencesPanel::CheckExit(SDL_Keycode nextAction)
 		else
 			message = "Select 'Save' to activate this controls profile and save it.\n";
 
-		GetUI()->Push(new SaveDiscardDialog(this,
-			&PreferencesPanel::SaveControls,
-			[](const string &profileName) { return CanChange(profileName); },
-			&PreferencesPanel::DiscardControlChanges,
+		// GetUI()->Push(new SaveDiscardDialog(this,
+		// 	&PreferencesPanel::SaveControls,
+		// 	[](const string &profileName) { return CanChange(profileName); },
+		// 	&PreferencesPanel::DiscardControlChanges,
+		// 	message +
+		// 	"'Discard' will revert to the previous active control profile.\n" +
+		// 	"'Cancel' to go back and make further changes.",
+		// 	Command::Name()));
+
+		GetUI()->Push(new Dialog(this,
 			message +
 			"'Discard' will revert to the previous active control profile.\n" +
 			"'Cancel' to go back and make further changes.",
-			Command::Name()));
+			Command::Name(),
+			Dialog::FunctionButton(this, "Save", 's', &PreferencesPanel::SaveControls),
+			Dialog::FunctionButton(this, "Discard", 'd', &PreferencesPanel::DiscardControlChanges),
+			[](const string &profileName) { return CanChange(profileName); } /* validate */
+			));
 
 		// Note: While this dialog is modal, this code is non-blocking.
 		postDialogAction = nextAction;
@@ -1492,21 +1508,119 @@ void PreferencesPanel::ScrollSelectedPlugin()
 
 
 
-void PreferencesPanel::SaveControls(const std::string& profileName)
+bool PreferencesPanel::SaveControls(const std::string &profileName)
 {
 	Command::RenameProfile(profileName);
 	Command::ActivateWorkingCopy();
 	GameData::SaveSettings();
 	DoKey(postDialogAction);
 	postDialogAction = '\0';
+	// Close dialog.
+	return true;
 }
 
 
 
-
-void PreferencesPanel::DiscardControlChanges()
+bool PreferencesPanel::DiscardControlChanges(const string &profileName)
 {
 	Command::DiscardWorkingCopy();
 	DoKey(postDialogAction);
 	postDialogAction = '\0';
+	// Close dialog.
+	return true;
 }
+
+
+
+std::vector<std::string> PreferencesPanel::GetAvailableProfiles()
+{
+	std::vector<std::string> options;
+	options.assign({"testing", "second", "third", "TODO: read from disk"
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more...",
+	"more..."
+
+	});
+	return options;
+}
+
+
+
+void PreferencesPanel::SelectProfile()
+{
+	GetUI()->Push(new ModalListDialog(this,
+		"Select a saved controls profile:",
+		GetAvailableProfiles(),
+		Command::Name(),
+		Dialog::FunctionButton(this, "_Load", 'l', &PreferencesPanel::LoadProfile),
+		Dialog::FunctionButton(this, "_Cancel", 'c', &PreferencesPanel::CancelDialog),
+		Dialog::FunctionButton(this, "_Delete", 'd', &PreferencesPanel::DeleteProfile),
+		&PreferencesPanel::HoverProfile
+		));
+}
+
+
+
+bool PreferencesPanel::LoadProfile(const string &profileName)
+{
+	Logger::LogError("PreferencesPanel::LoadProfile(const string &" + profileName + ")");
+
+	// Close the dialog.
+	return true;
+}
+
+
+
+string PreferencesPanel::HoverProfile(const string &profileName)
+{
+	Logger::LogError("PreferencesPanel::HoverProfile(const string &" + profileName + ")");
+	if(profileName != "testing")
+		return "I'm a hover text for " + profileName + "!";
+	return "Can't delete `testing`!";
+}
+
+
+
+bool PreferencesPanel::CancelDialog(const string &profileName)
+{
+	Logger::LogError("PreferencesPanel::CancelDialog(const string &" + profileName + ")");
+
+	// Close the dialog.
+	return true;
+}
+
+
+
+bool PreferencesPanel::DeleteProfile(const string &profileName)
+{
+	Logger::LogError("PreferencesPanel::DeleteProfile(const string &" + profileName + ")");
+	if(profileName == "testing")
+		Logger::LogError("Tried to delete `testing`!");
+
+	// Keep the dialog open.
+	return false;
+}
+

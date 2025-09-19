@@ -496,57 +496,56 @@ interface "modal list dialog"
 	sprite "_menu/buttonless side panel"
 		center 0 0
 
-	string "title"
+	string "modal list title"
 		color "bright"
 		align center
 		truncate back
 		width 230
-		center 0 -145
+		center 0 -155
 	line
 		color "bright"
-		center 0 -130
+		center 0 -145
 		dimensions 210 1
 	
 	box "selection list"
-		center 0 0
-		dimensions 230 262
+		center 0 15
+		dimensions 230 300
 		
 	value "selection list horizontal text pad" 5
 	value "selection list fade out" 10
 	
 	# Note: mapping buttons 3, 2, 1 to F1, F2, F3 (left to right on screen vs keyboard)
+	visible if "has button three"
 	active if "button three active"
+	sprite "ui/dialog cancel"
+		center -85 200
 	"dynamic button" F1 "button three label"
 		color "medium"
 		align center
 		truncate back
-		width 70
-		center -95 155
-	sprite "ui/dialog cancel"
-		center -95 155
 		dimensions 70 30
+		center -85 200
 	
+	visibile
 	active if "button two active"
+	sprite "ui/dialog cancel"
+		center 0 200
 	"dynamic button" F2 "button two label"
 		color "medium"
 		align center
 		truncate back
-		width 70
-		center 0 155
-	sprite "ui/dialog cancel"
-		center 0 155
 		dimensions 70 30
+		center 0 200
 	
 	active if "button one active"
+	sprite "ui/dialog cancel"
+		center 85 200
 	"dynamic button" F3 "button one label"
 		color "medium"
 		align center
 		truncate back
-		width 70
-		center 95 155
-	sprite "ui/dialog cancel"
-		center 95 155
 		dimensions 70 30
+		center 85 200
 
 
 
@@ -657,7 +656,7 @@ interface "controls"
 	
 	sprite "ui/dialog cancel"
 		center 221 -270
-	button e "C_hange"
+	button e "Chang_e"
 		center 221 -270
 		dimensions 70 30
 	
