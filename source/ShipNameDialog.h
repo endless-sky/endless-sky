@@ -50,6 +50,6 @@ ShipNameDialog::ShipNameDialog(T *panel,
 		initialValue,
 		buttonOne,
 		Dialog::FunctionButton(this, "Random", 'r', &ShipNameDialog::RandomName),
-		[](const std::string &) { return true; } /* validate */ )
+		[](const std::string &) { return true; })
 {
 }
