@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/WrappedText.h"
 
 #include <map>
+#include <SDL_keycode.h>
 #include <string>
 #include <vector>
 
@@ -177,7 +178,7 @@ private:
 		// Color for inactive, active, and hover states.
 		const Color *color[3] = {nullptr, nullptr, nullptr};
 		int fontSize = 14;
-		char buttonKey = '\0';
+		SDL_Keycode buttonKey = '\0';
 		bool isDynamic = false;
 		Truncate truncate = Truncate::NONE;
 	};

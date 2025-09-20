@@ -538,7 +538,15 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	isDynamic = (key.ends_with("string") || key.ends_with("dynamic button"));
 	if(key.ends_with("button") || key.ends_with("dynamic button"))
 	{
-		buttonKey = node.Token(1).front();
+		const string tk = node.Token(1);
+		if(tk.size() == 2 && tk.front() == 'F' && tk.back() >= '1' && tk.back() <= '9')
+		{
+			// Treat as function key, e.g. F1 through F9
+			buttonKey = SDLK_F1 + (tk.back() - '1');
+		}
+		else
+			// handle per normal, single first character
+			buttonKey = node.Token(1).front();
 		if(node.Size() >= 3)
 			str = node.Token(2);
 	}
