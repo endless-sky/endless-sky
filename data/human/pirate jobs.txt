@@ -3796,7 +3796,7 @@ mission "Pirate transport to <planet> [3]"
 	name "Transport employees to <planet>"
 	job
 	repeat
-	description "A ship-scrapping operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
+	description "A ship scrapping operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 2 10 .8
 	to offer
 		random < 20
