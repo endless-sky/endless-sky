@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "shader/BatchShader.h"
-#include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
 #include "ConditionsStore.h"
@@ -72,8 +71,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <queue>
 #include <utility>
 #include <vector>
-
-#include "Logger.h"
 
 using namespace std;
 
@@ -280,7 +277,6 @@ void GameData::CheckReferences()
 void GameData::SaveSettings()
 {
 	string profileName = Command::Name();
-	Logger::LogError("GameData::SaveSettings() " + profileName);
 	string currentProfilePath = Files::Config() / ("keys_" + profileName + ".txt");
 
 	// Save the active profile to the provided path.
@@ -320,7 +316,6 @@ void GameData::LoadSettings()
 			currentProfileName = "Migrated";
 			Command::LoadSettings(Files::Config() / "keys.txt", currentProfileName);
 
-			Logger::LogError("Files::Delete(" + static_cast<string>(Files::Config() / "keys.txt") + ");");
 			Files::Delete(Files::Config() / "keys.txt");
 		}
 
