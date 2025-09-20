@@ -2240,7 +2240,7 @@ mission "Ka'het: Voice From The Past 3"
 		personality derelict target waiting
 		ship "Builder Satellite" "Valii'sei"
 		conversation
-			`You approach the spacecraft, and activate the equipment the Remnant gave you. Slowly, a large robotic claw, padded with a thick gray insulation, emerges out of your cargo hold. It takes a few tries, but you're finally able to put the satellite into your cargo bay and get the fittings to keep it in place prepared.`
+			`You approach the spacecraft, and activate the equipment the Remnant gave you. Slowly, a large robotic claw, padded with a thick gray insulation, emerges out of your cargo hold. It takes a few tries, but you're finally able to put the satellite into your cargo bay and prepare the fittings to keep it in place.`
 				launch
 
 mission "Ka'het: Voice From The Past 4"
@@ -2383,14 +2383,14 @@ mission "Ka'het: Voice From The Past 6"
 			`	Just as you're starting to feel that this mystery will remain unsolved, you have a stroke of luck: a small meteorite hits the surface a few kilometers away from you, throwing a cloud of debris in every direction. You check the composition of the nearly imperceptible atmosphere near the surface, and find it composed almost entirely of precious metal particles.`
 			`	The overall picture has become clearer: the frequent asteroid impacts on a moon like this raise enough meteorite dust to effectively shroud the planet in an extremely sparse atmosphere, which the Builder machines attract and gather so that they can be transported off-planet afterwards. It's a slow and cumbersome process, but it's also one that was able to work for tens of thousands of years without maintenance.`
 			label quarantine
-			`	You record a brief log of your thoughts, and move on to the target location. The mining facilities you see become progressively smaller and more sporadic, until they disappear completely. Flying just above a series of increasingly featureless highlands, you eventually reach your destination, unremarkable plateau extending for kilometers in every direction.`
+			`	You record a brief log of your thoughts, and move on to the target location. The mining facilities you see become progressively smaller and more sporadic, until they disappear completely. Flying just above a series of increasingly featureless highlands, you eventually reach your destination: an unremarkable plateau extending for kilometers in every direction.`
 			`	You pitch down and lower your altitude to look for debris, but you're not able to find anything useful. There were many ruins on the way here that could have certainly been a quarantine site at some point, but there's absolutely nothing here, as if it was never even inhabited in the first place.`
 			`	Perplexed, you turn your ship around and activate the high-power scanners the Remnant gave you. The task is very tedious: you have to pass over every bit of terrain going at just the right speed, careful not to skew the data with any abrupt movements, so that the instruments can function correctly.`
 			`	It takes an hour, but a familiar beep from the cockpit panel finally signals you can come back to <destination> to deliver the data.`
 	on complete
 		event "ka'het: quarantine site" 25
 		conversation
-			`Unlike your last visit, the testing range on <planet> has become eerily empty once again. Gone are hectic crowds and the massive fleets occupying every parking spot: the few ships that are still here are rarely bigger than a Petrel. Enticed, you set sight on a random pad in the vicinity of the facility and touch down softly.`
+			`Unlike your last visit, the testing range on <planet> has become eerily empty once again. Gone are the hectic crowds and the massive fleets occupying every parking spot: the few ships that are still here are rarely bigger than a Petrel. Enticed, you set sight on a random pad in the vicinity of the facility and touch down softly.`
 			`	With a datapad in your hand and the pad workers unloading your used mission equipment, you start looking around for someone to deliver the data to. The only people you can find nearby are the ones working on your ship, as well as the pad manager you had met earlier.`
 			`	"They relented!" she signs excitedly after noticing you. "It took a few days, but they finally accepted that we do not have the facilities nor the personnel to handle such traffic, and moved the satellite to a more appropriate laboratory. Somewhere on Aventine, I believe."`
 			choice
