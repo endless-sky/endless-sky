@@ -4001,7 +4001,7 @@ mission "Pirate smuggle to <planet> [1]"
 		dialog phrase "generic passenger on visit"
 	on abort
 		"reputation: Pirate" -= 1
-		dialog "You turn the employees away at the spaceport. Their employer won't be happy to hear this..."
+		dialog "You turn the confused and annoyed employees away. Their employer won't be happy to hear this..."
 	on fail
 		"reputation: Pirate" -= 2
 	on complete
@@ -4299,7 +4299,7 @@ mission "Pirate bulk smuggle to <planet> [1]"
 		dialog phrase "generic passenger on visit"
 	on abort
 		"reputation: Pirate" -= 2
-		dialog "You turn the employees away at the spaceport. Their employer won't be happy to hear this..."
+		dialog "You turn the confused and annoyed employees away. Their employer won't be happy to hear this..."
 	on fail
 		"reputation: Pirate" -= 2
 	on complete
@@ -4371,7 +4371,7 @@ mission "Pirate bulk smuggle to <planet> [2]"
 		dialog phrase "generic passenger on visit"
 	on abort
 		"reputation: Pirate" -= 3
-		dialog "You feel like the group leader is trying to explode your head with their intense stare. They reluctantly turn around, and will probably tell their fellow mercs about this."
+		dialog "You feel like the group leader is trying to explode your head with their intense stare, but they reluctantly leave. No doubt they'll tell their fellow mercs about this."
 	on fail
 		"reputation: Pirate" -= 4
 	on complete
