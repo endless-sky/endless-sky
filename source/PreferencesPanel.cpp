@@ -47,8 +47,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 
-#include "Logger.h"
-
 using namespace std;
 
 namespace {
@@ -114,6 +112,9 @@ namespace {
 	bool CanChange(const string &profileName) {
 		// Return false if the profileName matches a profile found in the game resources.
 		if(Files::Exists(Files::Resources() / ("keys_" + profileName + ".txt")))
+			return false;
+		// Prevent saving control profile with a conflict or missing binding for the MENU key.
+		if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
 			return false;
 		return true;
 	}
@@ -1292,8 +1293,6 @@ void PreferencesPanel::Exit()
 // Return if able to exit.
 bool PreferencesPanel::CheckExit(SDL_Keycode nextAction)
 {
-	Logger::LogError("CheckExit()" + Command::GetProfileType() + Command::Name());
-
 	if(Command::GetProfileType() == "Working")
 	{
 		string message;
@@ -1302,15 +1301,6 @@ bool PreferencesPanel::CheckExit(SDL_Keycode nextAction)
 		else
 			message = "Select 'Save' to activate this controls profile and save it.\n";
 
-		// GetUI()->Push(new SaveDiscardDialog(this,
-		// 	&PreferencesPanel::SaveControls,
-		// 	[](const string &profileName) { return CanChange(profileName); },
-		// 	&PreferencesPanel::DiscardControlChanges,
-		// 	message +
-		// 	"'Discard' will revert to the previous active control profile.\n" +
-		// 	"'Cancel' to go back and make further changes.",
-		// 	Command::Name()));
-
 		GetUI()->Push(new Dialog(this,
 			message +
 			"'Discard' will revert to the previous active control profile.\n" +
@@ -1318,10 +1308,9 @@ bool PreferencesPanel::CheckExit(SDL_Keycode nextAction)
 			Command::Name(),
 			Dialog::FunctionButton(this, "Save", 's', &PreferencesPanel::SaveControls),
 			Dialog::FunctionButton(this, "Discard", 'd', &PreferencesPanel::DiscardControlChanges),
-			[](const string &profileName) { return CanChange(profileName); } /* validate */
-			));
+			[](const string &profileName) { return CanChange(profileName); }));
 
-		// Note: While this dialog is modal, this code is non-blocking.
+		// Note: While this dialog is modal, this code is non-blocking, need to prime the next action.
 		postDialogAction = nextAction;
 		return false;
 	}
@@ -1515,6 +1504,7 @@ bool PreferencesPanel::SaveControls(const std::string &profileName)
 	GameData::SaveSettings();
 	DoKey(postDialogAction);
 	postDialogAction = '\0';
+
 	// Close dialog.
 	return true;
 }
@@ -1524,69 +1514,81 @@ bool PreferencesPanel::SaveControls(const std::string &profileName)
 bool PreferencesPanel::DiscardControlChanges(const string &profileName)
 {
 	Command::DiscardWorkingCopy();
+	// Always save the active profile at this point, handles some potential oddities with discard after delete.
+	GameData::SaveSettings();
 	DoKey(postDialogAction);
 	postDialogAction = '\0';
+
 	// Close dialog.
 	return true;
 }
 
 
 
-std::vector<std::string> PreferencesPanel::GetAvailableProfiles()
+void PreferencesPanel::UpdateAvailableProfiles()
 {
-	std::vector<std::string> options;
-	options.assign({"testing", "second", "third", "TODO: read from disk"
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more...",
-	"more..."
+	immutableProfiles.clear();
+	availableProfiles.clear();
+	profilePaths.clear();
 
-	});
-	return options;
+	auto GetProfileName = [&](string &fileName)
+	{
+		size_t pos = fileName.find('_') + 1;
+		// Note, we know that ".txt" is 4 characters, hence the 4.
+		return fileName.substr(pos, fileName.size() - pos - 4);
+	};
+
+	for(const auto &path : Files::List(Files::Resources()))
+	{
+		string fileName = Files::Name(path);
+		// Skip any files that aren't text files.
+		if(path.extension() != ".txt" || !fileName.starts_with("keys_"))
+			continue;
+
+		string profileName = GetProfileName(fileName);
+		immutableProfiles.emplace_back(profileName);
+		availableProfiles.emplace_back(profileName);
+		profilePaths.emplace(profileName, path);
+	}
+	for(const auto &path : Files::List(Files::Config()))
+	{
+		string fileName = Files::Name(path);
+		// Skip any files that aren't text files.
+		if(path.extension() != ".txt" || !fileName.starts_with("keys_"))
+			continue;
+
+		string profileName = GetProfileName(fileName);
+		availableProfiles.emplace_back(profileName);
+		profilePaths.emplace(profileName, path);
+	}
 }
 
 
 
 void PreferencesPanel::SelectProfile()
 {
-	GetUI()->Push(new ModalListDialog(this,
+	UpdateAvailableProfiles();
+	modalDialog = new ModalListDialog(this,
 		"Select a saved controls profile:",
-		GetAvailableProfiles(),
+		availableProfiles,
 		Command::Name(),
-		Dialog::FunctionButton(this, "_Load", 'l', &PreferencesPanel::LoadProfile),
-		Dialog::FunctionButton(this, "_Cancel", 'c', &PreferencesPanel::CancelDialog),
-		Dialog::FunctionButton(this, "_Delete", 'd', &PreferencesPanel::DeleteProfile),
-		&PreferencesPanel::HoverProfile
-		));
+		Dialog::FunctionButton(this, "Load", 'l', &PreferencesPanel::LoadProfile),
+		Dialog::FunctionButton(this, "Cancel", SDLK_ESCAPE, &PreferencesPanel::CancelDialog),
+		Dialog::FunctionButton(this, "Delete", SDLK_DELETE, &PreferencesPanel::DeleteProfile),
+		&PreferencesPanel::HoverProfile);
+	GetUI()->Push(modalDialog);
 }
 
 
 
 bool PreferencesPanel::LoadProfile(const string &profileName)
 {
-	Logger::LogError("PreferencesPanel::LoadProfile(const string &" + profileName + ")");
+	auto search = profilePaths.find(profileName);
+	if(search != profilePaths.end())
+		Command::LoadSettings(search->second, profileName);
+	else
+		// Unable to load, leave dialog open.
+		return false;
 
 	// Close the dialog.
 	return true;
@@ -1596,18 +1598,16 @@ bool PreferencesPanel::LoadProfile(const string &profileName)
 
 string PreferencesPanel::HoverProfile(const string &profileName)
 {
-	Logger::LogError("PreferencesPanel::HoverProfile(const string &" + profileName + ")");
-	if(profileName != "testing")
-		return "I'm a hover text for " + profileName + "!";
-	return "Can't delete `testing`!";
+	for(string name : immutableProfiles)
+		if(name == profileName)
+			return "Game resource.";
+	return "User profile.";
 }
 
 
 
 bool PreferencesPanel::CancelDialog(const string &profileName)
 {
-	Logger::LogError("PreferencesPanel::CancelDialog(const string &" + profileName + ")");
-
 	// Close the dialog.
 	return true;
 }
@@ -1616,9 +1616,27 @@ bool PreferencesPanel::CancelDialog(const string &profileName)
 
 bool PreferencesPanel::DeleteProfile(const string &profileName)
 {
-	Logger::LogError("PreferencesPanel::DeleteProfile(const string &" + profileName + ")");
-	if(profileName == "testing")
-		Logger::LogError("Tried to delete `testing`!");
+	for(string name : immutableProfiles)
+		if(name == profileName)
+		{
+			// Cannot delete game profiles.
+			UI::PlaySound(UI::UISound::FAILURE);
+			return false;
+		}
+
+	// Delete user profile:
+	auto search = profilePaths.find(profileName);
+	if(search != profilePaths.end())
+	{
+		// If the current active profile is deleted, make it a working copy so that a prompt to save is issued.
+		if(profileName == Command::Name())
+			Command::MakeWorkingCopy();
+
+		Files::Delete(search->second);
+
+		UpdateAvailableProfiles();
+		modalDialog->UpdateList(availableProfiles);
+	}
 
 	// Keep the dialog open.
 	return false;
