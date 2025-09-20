@@ -2088,7 +2088,7 @@ mission "Ka'het: Voice From The Past 0"
 
 mission "Ka'het: Voice From The Past 1"
 	name "Builder signal"
-	description "Look for Gavriil aboard <destination> to ask him about the Builder satellite."
+	description "Look for Gavriil aboard <destination> to ask them about the Builder satellite."
 	source
 		government "Remnant"
 		attributes "remnant primary"
@@ -2124,17 +2124,17 @@ mission "Ka'het: Voice From The Past 1"
 			`	"This pad contains the extracts of all our published engineering papers - the publicly available ones, at least. If what you have encountered has been studied previously, it should be here somewhere." Plume returns to his job after showing you the basics, signing to give him a call if you need more help.`
 			`	Left by yourself, you grab a nearby seat and start making some searches inside the terminal. The first half hour does not return any useful result: there are millions of papers to choose from, and the initial queries you come up with find either thousands of possible matches, or none at all.`
 			`	Eventually, however, you start getting the hang of it. You find one paper that describes the phenomena you observed, then another, then even more. By the end of the hour, you've saved at least a dozen relevant papers.`
-			`	Though you can't understand any of them in depth, a detail catches your eye: three of those papers were authored by Gavriil, the engineer you last left in <system>. If there's anyone who can get you to the end of this, it has to be him.`
+			`	Though you can't understand any of them in depth, a detail catches your eye: three of those papers were authored by Gavriil, the engineer you last left in <system>. If there's anyone who can get you to the end of this, it has to be them.`
 			`	You wave goodbye to Plume, still busy transferring the delicate cargo to the safety of the laboratory, and climb aboard your ship. Next stop: <planet>.`
 				accept
 	on complete
 		conversation
 			`The more time passes, the more Ssil Vida resembles a Remnant outpost. The local spaceport has followed a transformation similar to Esquiline on a grander scale, with walls covered by mazes of piping and dozens of active work stations expanding the already operational outfitter. There is no need to wander around, however: Gavriil is waiting for you right beside the landing pad.`
-			`	"Nice to see you again," he gestures warmly. "I hope the Embers blessed your journey."`
+			`	"Nice to see you again," they gestures warmly. "I hope the Embers blessed your journey."`
 			choice
 				`	"They did."`
-				`	(Tell him about the encounter.)`
-			`	You take him aside to again explain your encounter with the Builder satellite, but he stops you before you can begin. "Plume told me everything a few days ago. It is always delightful to see something one has theorized about become reality," he continues proudly. "What you have observed is usually called a 'zombie satellite.' Not too technical of an expression, maybe, but certainly meaningful.`
+				`	(Tell them about the encounter.)`
+			`	You take them aside to again explain your encounter with the Builder satellite, but they stop you before you can begin. "Plume told me everything a few days ago. It is always delightful to see something one has theorized about become reality," they continue proudly. "What you have observed is usually called a 'zombie satellite.' Not too technical of an expression, maybe, but certainly meaningful.`
 			`	"There are many ways a spacecraft can die, some less violent than others. And there are times, years after the supposed end of operations, when the spacecraft spontaneously comes back to life and communicates again with the ground. It is not a predictable event, nor does it happen only to specific designs; it simply happens, no matter whether the satellite was built on Aventine, Hai-home, or Valhalla.`
 			`	"What makes it special in this case is the sheer length of time that has passed between the 'death' of the satellite and now. This spacecraft was silent the last time we explored Fereti, which either means it survived for tens of thousands of years and died a few hundred years ago, or that it died at the time of the Builders and only came back to life after millennia - both very fascinating possibilities in their own right.`
 			`	"This would be the first active Builder satellite we have identified, which is not surprising given these conditions. If your report is accurate, we need to go study it as soon as possible."`
@@ -2144,7 +2144,7 @@ mission "Ka'het: Voice From The Past 1"
 					goto signal
 			`	"I have a few ideas, but there is no way to be sure. One of the most frequent causes is the software successfully rebooting after a memory failure, practically resetting it to the factory setup, but without more information this is at best a guess on my part."`
 			label signal
-			`	You hand him a data chip with the communication you received from the satellite, which he quickly puts into his pocket. "I will try to take a few hours off to give it a first pass with the instruments we have here. While they are not the best suited for this sort of analysis, I remember a few tricks that might get something usable out of it.`
+			`	You hand them a data chip with the communication you received from the satellite, which they quickly put into their pocket. "I will try to take a few hours off to give it a first pass with the instruments we have here. While they are not the best suited for this sort of analysis, I remember a few tricks that might get something usable out of it.`
 			`	"In the meantime, feel free to take a look at the changes we have been making here. I will give you a call from the spaceport when I have something to show."`
 
 mission "Ka'het: Voice From The Past 1B"
@@ -2176,8 +2176,8 @@ mission "Ka'het: Voice From The Past 2"
 	on offer
 		conversation
 			`Ssil Vida's outfitter was built atop the original storage platforms of the station, far too large for the Remnant's logistics system. While it does not seem to be particularly well equipped, what they were able to set up on completely alien infrastructure since the first time you came here is still impressive.`
-			`	Your walk comes to an end when Gavriil's name appears on your communicator. You turn around and stride back to the spaceport, where you find him waiting at a table.`
-			`	"I have good news and bad news," he signs with a slight frown. "How much do you know about the history of our exploration of the Graveyard?"`
+			`	Your walk comes to an end when Gavriil's name appears on your communicator. You turn around and stride back to the spaceport, where you find them waiting at a table.`
+			`	"I have good news and bad news," they sign with a slight frown. "How much do you know about the history of our exploration of the Graveyard?"`
 			choice
 				`	"Not much. Can you summarize it?"`
 				`	"Enough."`
@@ -2190,13 +2190,13 @@ mission "Ka'het: Voice From The Past 2"
 			label continue
 			`	"What we have discovered in the analysis is that the communication you received contains some kind of audio recording, the meaning of which remains a mystery. I have transmitted it to Aventine so that xenolinguists will be able to archive it for further study, but the purpose of this signal, and consequently of the satellite, will remain unknown."`
 			`	He pauses for a few seconds, thoughtful. "The data we have gathered shows that the satellite is not too large, nor particularly heavy. A way to circumvent these issues could be to capture the Builder spacecraft and bring it to one of our laboratories - if it is still alive it should be possible to extract its data mostly, if not fully intact.`
-			`	"Have you ever been on <planet>?" he asks, without waiting for an answer. "It is a small semi-abandoned colony in <system>, orbiting right above Viminal. I used to know some people there who should have just the equipment a project like this would need."`
+			`	"Have you ever been on <planet>?" they ask, without waiting for an answer. "It is a small semi-abandoned colony in <system>, orbiting right above Viminal. I used to know some people there who should have just the equipment a project like this would need."`
 			choice
 				`	"Alright, let's do this."`
 				`	"Will you come with me?"`
-			`	You make a gesture toward your ship, to which he replies with an undecided expression. "Our backlog here has been growing considerably, and leaving for another adventure right now would not make it shorter." He stops for a few seconds, then continues.`
+			`	You make a gesture toward your ship, to which they reply with an undecided expression. "Our backlog here has been growing considerably, and leaving for another adventure right now would not make it shorter." They stop for a few seconds, then continue.`
 			`	"On the other hand, we have also been completing milestones ahead of schedule lately, and there are plenty of experienced people here who could take over for some time. I can afford to leave the reins to someone else for a few days.`
-			`	"Plus," he concludes with a smile, "it will be an opportunity to see some faces I have not seen in years, and to reminisce about the past for a bit. I should have done this a while ago."`
+			`	"Plus," they conclude with a smile, "it will be an opportunity to see some faces I have not seen in years, and to reminisce about the past for a bit. I should have done this a while ago."`
 				accept
 	on complete
 		fail "Ka'het: Voice From The Past 0"
@@ -2216,8 +2216,8 @@ mission "Ka'het: Voice From The Past 3"
 	on offer
 		conversation
 			`The gradual descent toward the landing site is quite slow. Dozens of mining outposts are scattered over the surface, some of which are quite big, but none of them give the impression of being in active use. Even the landing pads, almost all empty, have started to show a thin layer of dust and regolith.`
-			`	"Just a few decades ago, these buildings were sprawling with activity," Gavriil explains, keeping his eyes on the horizon. "Everyone was on the hunt for Key Stone veins outside of Viminal, and planetary systems tend to have similar characteristics between each other. I will spare you the details, but this turned out not to be the case with <planet>, and most of the infrastructure that had built up here was left without a clear purpose."`
-			`	Following the landing trajectory, you steer left after passing over a canyon and prepare for the final approach. You notice his eyes light up when the target outpost comes into view, just for an instant. "So as not to leave it to rot, a few projects to reuse the abandoned facilities were given the go ahead. The one we are going to visit today has become a major testing facility for advanced technologies, whether built by us or recovered from other sources."`
+			`	"Just a few decades ago, these buildings were sprawling with activity," Gavriil explains, keeping their eyes on the horizon. "Everyone was on the hunt for Key Stone veins outside of Viminal, and planetary systems tend to have similar characteristics between each other. I will spare you the details, but this turned out not to be the case with <planet>, and most of the infrastructure that had built up here was left without a clear purpose."`
+			`	Following the landing trajectory, you steer left after passing over a canyon and prepare for the final approach. You notice their eyes light up when the target outpost comes into view, just for an instant. "So as not to leave it to rot, a few projects to reuse the abandoned facilities were given the go ahead. The one we are going to visit today has become a major testing facility for advanced technologies, whether built by us or recovered from other sources."`
 			choice
 				`	"I see."`
 					goto skip
@@ -2229,7 +2229,7 @@ mission "Ka'het: Voice From The Past 3"
 			label danger
 			`	"It can be. Many weapons have been tested here over the years, and even projects that had more peaceful purposes occasionally had some rather explosive results. Mind you, this is no matter to be taken lightly."`
 			label skip
-			`	By the time you complete the post-landing checklist, Gavriil has already left the ship to meet up with the people on the ground. The crowd that has been gathering around the pad give him a warm welcome, to which he replies cheerfully. He must have spent a lot of time on this moon when he was younger.`
+			`	By the time you complete the post-landing checklist, Gavriil has already left the ship to meet up with the people on the ground. The crowd that has been gathering around the pad gives them a warm welcome, to which they reply cheerfully. They must have spent a lot of time on this moon when they were younger.`
 			`	After some brief introductions, you follow the group as it moves down a few ramps of stairs and inside some well-lit tunnels right below the outpost. At the end of them lies a large hangar, wide in both directions but with a rather low ceiling. "We have a few rigs we used to capture test satellites in the past," one of the technicians explains. "They were Remnant spacecraft in those cases, but there is nothing fundamentally preventing their use in your mission.`
 			`	"Connecting with the spacecraft after you carry it here is going to be a bit more complicated. We have the machines necessary to keep it stored, but I had to order some special devices from Aventine to download its data after all is said and done. Either way, a fleet will have brought it here before you are back, so it should not pose a problem."`
 			`	You help them load the satellite capture equipment in your ship, and make sure to leave enough space for the spacecraft itself. "I will stay here to help them prepare for the satellite," Gavriil signs, "and hopefully remain updated with Ssil Vida on the progress made in my absence. See you in a month or two."`
@@ -2254,14 +2254,14 @@ mission "Ka'het: Voice From The Past 4"
 	on offer
 		conversation
 			`A few pad workers guide you to the designated landing site, where a large harness is waiting for your special payload to arrive. Once the satellite's container has been safely berthed to its transporter, you follow the convoy as it slowly descends down a wide ramp and into the same hangar you had been shown earlier.`
-			`	Gavriil seems enthusiastic. "Fantastic. We have already prepared the machinery delivered from Aventine, so we should be able to start the transfer right now," he signs, gesturing toward four contraptions - each about as large as a closet. "I hope your journey went well."`
+			`	Gavriil seems enthusiastic. "Fantastic. We have already prepared the machinery delivered from Aventine, so we should be able to start the transfer right now," they sign, gesturing toward four contraptions - each about as large as a closet. "I hope your journey went well."`
 			choice
 				`	"About as well as a mission in the middle of the Graveyard can go."`
 				`	"It could have gone better."`
-			`	"I will make sure to reward you appropriately once this is said and done," he replies. Behind him, two technicians climb atop a scaffolding and take a closer look at the satellite you brought with you. "One of the challenges with these kinds of artifacts is not only their alien origins, but also the era in which they were designed.`
+			`	"I will make sure to reward you appropriately once this is said and done," they reply. Behind them, two technicians climb atop a scaffolding and take a closer look at the satellite you brought with you. "One of the challenges with these kinds of artifacts is not only their alien origins, but also the era in which they were designed.`
 			`	"The Builder empire lasted for tens of millennia; their technological level varied wildly during this time, and the remains of one era are often incompatible with the remains of previous eras. We have done our best to date this spacecraft, so this is the moment of truth."`
 			`	A technician carefully hands a wide cable to the two atop the platform, who move toward the captured satellite and try to insert the cord into an opening on its back.`
-			`	It takes a few attempts, but at last they succeed. While you can't quite see what one technician is signing from the control console, it must be great news, judging from the cheer that erupts soon after. "The transfer has started!" Gavriil gestures in celebration. He rushes toward the terminals at the back of the hangar, almost in disbelief.`
+			`	It takes a few attempts, but at last they succeed. While you can't quite see what one technician is signing from the control console, it must be great news, judging from the cheer that erupts soon after. "The transfer has started!" Gavriil gestures in celebration. They rush toward the terminals at the back of the hangar, almost in disbelief.`
 			`	The excitement only slightly wears off as the hours pass, the sheer amount of data taken from the spacecraft boosting it again and again. Finally, Gavriil comes back to you with anticipation. "The transfer is mostly complete by now, and the analysis will soon begin. If you are ready, this would be a good time to return to Ssil Vida - it will take days before any result is ready."`
 				accept
 
@@ -2277,7 +2277,7 @@ mission "Ka'het: Voice From The Past 5"
 		log `Captured an active Builder satellite. It was a warning beacon orbiting the moon Alix, which appears to have been used as a quarantine site to defend against an alien plague.`
 		event "ka'het: alix discoveries"
 		conversation
-			`During the trip, Gavriil has received a constant stream of communications, either from Kumkapi or Ssil Vida. He walks alongside you out of the airlock and down the ramp, silent but clearly thoughtful.`
+			`During the trip, Gavriil has received a constant stream of communications, either from Kumkapi or Ssil Vida. They walk alongside you out of the airlock and down the ramp, silent but clearly thoughtful.`
 			`	"Thank you for this, Captain - not just for ferrying me back, but also for making this little adventure possible in the first place. There is still much to discover about the Builders and their civilization, and I am happy to have contributed to this puzzle at least a tiny bit.`
 			`	"One of the key events in order to understand their history is the first contacts they had with what for them would be alien species. As it often happens, the first one was with the peaceful Quarg, but there is at least another encounter we know of that did not go nearly as well.`
 			`	"We do not know whether it was an actual invasion attempt or just an explorer that did not react well under pressure, but the two species fought, and the Builders only won after multiple days of fighting. The militarization of Builder society started at the same time."`
@@ -2300,7 +2300,7 @@ mission "Ka'het: Voice From The Past 5"
 			`	"Interesting guess. We do know that they used to have a presence in this area at some point, but there is no use in speculating about their purposes with so little information, especially when there are more likely candidates. Either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 				goto continue
 			label korath
-			`	"Not this time," he signs, amused. "More time has passed between the end of the Builders and the Korath's discovery of spaceflight than it has between the latter and now. Keep it in mind that we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
+			`	"Not this time," they sign, amused. "More time has passed between the end of the Builders and the Korath's discovery of spaceflight than it has between the latter and now. Keep it in mind that we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 			label continue
 			`	"Whatever happened, the scars left by this short encounter were not merely psychological. What this satellite shows is that some kind of virus or bacteria started spreading soon after the first contact, possibly of alien origin. We do not know the impact it had on their civilization, but it must have been quite severe: Alix appears to have been used as a quarantine facility at the time, and satellites like this had the sole function of warning incoming ships of the danger.`
 			`	"If you find anything else, do not hesitate to tell us. The analysis is still ongoing, but I have been able to spare 300,000 credits to deposit on your account to show our gratitude."`
@@ -2314,15 +2314,15 @@ mission "Ka'het: Voice From The Past 5"
 					goto capitalist
 			action
 				set "remnant: sheragi question"
-			`	"You might not have heard the name, but you have certainly been into their territory. They are a long extinct species, once inhabiting what has become the Rim and the South of human space. The same area where, not too long ago, you got the material we are currently using to power Ssil Vida," he replies, making a gesture in the direction of the station's reactor.`
+			`	"You might not have heard the name, but you have certainly been into their territory. They are a long extinct species, once inhabiting what has become the Rim and the South of human space. The same area where, not too long ago, you got the material we are currently using to power Ssil Vida," they reply, making a gesture in the direction of the station's reactor.`
 			`	"I can tell you that, as far as we know, they were roughly concurrent with the Builders; but this is the wealth of information I learnt during the work in Postverta. It is a continuously evolving field, and I have not been able to follow it closely beyond the engineering research on this station."`
 			choice
 				`	"You can keep the money. I would rather continue exploring further."`
 				`	"Thank you."`
 					goto capitalist
 			label keep
-			`	"Oh. Fascinating." He seems quite pleased by your reply. "Well, in that case, I could try calling Kumkapi again to see if they have something you could help them with. I have a lot to catch up with, but I will try to get back to you as soon as I hear from them."`
-			`	You wait for Gavriil for nearly an hour, but he doesn't show up again. Just before leaving, you notice he sent you a communication on your datapad. "<first>," it reads, "I won't be able to meet up with you again today. I apologize for the impoliteness, but there is just too much I need to catch up with in order to keep the project on target.`
+			`	"Oh. Fascinating." They seem quite pleased by your reply. "Well, in that case, I could try calling Kumkapi again to see if they have something you could help them with. I have a lot to catch up with, but I will try to get back to you as soon as I hear from them."`
+			`	You wait for Gavriil for nearly an hour, but they don't show up again. Just before leaving, you notice they sent you a communication on your datapad. "<first>," it reads, "I won't be able to meet up with you again today. I apologize for the impoliteness, but there is just too much I need to catch up with in order to keep the project on target.`
 			`	"Nevertheless, I was able to get in contact with the test range, and they seemed happy to get more help. I won't be able to come with you this time, but if you follow the same indications I gave you last time you should have no problems finding them.`
 			`	"Farewell, Captain, and may the Embers guide you back soon."`
 				accept
@@ -2330,7 +2330,7 @@ mission "Ka'het: Voice From The Past 5"
 			action
 				payment 300000
 				event "ka'het: quarantine site" 80
-			`	"Farewell, Captain, and may the Embers guide you back soon," he gestures with a short bow.`
+			`	"Farewell, Captain, and may the Embers guide you back soon," they gesture with a short bow.`
 				decline
 
 mission "Ka'het: Voice From The Past 6"
