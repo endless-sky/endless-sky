@@ -80,12 +80,8 @@ gamerules
 	"depreciation grace period" 7
 
 	# The percentage of an item's depreciable value that it maintains day over day.
-	# This only applies to the exponential term of the depreciation calculation.
-	# Even if this value is set to 1, items will still lose value in a linear fashion.
-	# Values above 1 cause the value to fall off later, while values below 1 cause it to
-	# fall off sooner.
 	# DEFAULT: .997 (99.7 percent)
-	# ALLOWABLE VALUES: any value between 0. and 1.001
+	# ALLOWABLE VALUES: any value between 0. and 1.
 	"depreciation daily" 0.997
 
 	# The age (in days), after the end of the grace period, at which an item will become fully depreciated.

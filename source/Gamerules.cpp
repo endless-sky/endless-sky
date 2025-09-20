@@ -49,7 +49,7 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "depreciation min")
 			depreciationMin = min<double>(1., max<double>(0., child.Value(1)));
 		else if(key == "depreciation daily")
-			depreciationDaily = min<double>(1.001, max<double>(0., child.Value(1)));
+			depreciationDaily = min<double>(1., max<double>(0., child.Value(1)));
 		else if(key == "depreciation grace period")
 			depreciationGracePeriod = max<int>(0, child.Value(1));
 		else if(key == "depreciation max age")
