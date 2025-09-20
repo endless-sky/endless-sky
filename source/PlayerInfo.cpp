@@ -424,9 +424,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
 					for(const DataNode &great : grand)
-					{
 						logbook[date].Read(great);
-					}
 				}
 				else if(grand.Size() >= 2)
 				{

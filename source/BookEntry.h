@@ -28,6 +28,7 @@ class Sprite;
 class WrappedText;
 
 
+
 // Implement a collection of text and image nodes which form a singular Logbook entry
 class BookEntry {
 public:
