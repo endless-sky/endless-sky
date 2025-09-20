@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <map>
 
-#include "Logger.h"
+
 
 using namespace std;
 
@@ -231,9 +231,7 @@ void Command::DiscardWorkingCopy()
 // Load the keyboard preferences into the working copy.
 void Command::MakeWorkingCopy()
 {
-	Logger::LogError("MakeWorkingCopy() " + Name());
 	CopyProfile(ProfileType::ACTIVE, ProfileType::WORKING);
-	Logger::LogError("--> GetProfileType() = " + Command::GetProfileType());
 }
 
 
@@ -241,9 +239,7 @@ void Command::MakeWorkingCopy()
 // Save the working copy into the active profile.
 void Command::ActivateWorkingCopy()
 {
-	Logger::LogError("ActivateWorkingCopy() " + Name());
 	CopyProfile(ProfileType::WORKING, ProfileType::ACTIVE);
-	Logger::LogError("--> GetProfileType() = " + Command::GetProfileType());
 }
 
 

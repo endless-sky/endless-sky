@@ -111,7 +111,7 @@ namespace {
 	// Prevent changing controls profiles that are shipped with the game resources.
 	bool CanChange(const string &profileName) {
 		// Return false if the profileName matches a profile found in the game resources.
-		if(Files::Exists(Files::Resources() / ("keys_" + profileName + ".txt")))
+		if(profileName.empty() || Files::Exists(Files::Resources() / ("keys_" + profileName + ".txt")))
 			return false;
 		// Prevent saving control profile with a conflict or missing binding for the MENU key.
 		if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
