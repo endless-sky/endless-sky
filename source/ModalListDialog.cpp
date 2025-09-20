@@ -313,6 +313,8 @@ bool ModalListDialog::Scroll(double dx, double dy)
 	return Drag(0., dy * Preferences::ScrollSpeed());
 }
 
+
+
 void ModalListDialog::Init()
 {
 	activeButton = 1;
@@ -326,6 +328,7 @@ void ModalListDialog::Init()
 }
 
 
+
 bool ModalListDialog::DoCallback() const
 {
 	bool closeDialog = false;
@@ -337,3 +340,4 @@ bool ModalListDialog::DoCallback() const
 		closeDialog = buttonThree.buttonAction(selectedOption);
 	return closeDialog;
 }
+
