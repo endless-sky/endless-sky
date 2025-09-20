@@ -4364,14 +4364,14 @@ mission "Pirate bulk smuggle to <planet> [2]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on abort
-		"reputation: Pirate" -= 1
+		"reputation: Pirate" -= 3
 		dialog "You feel like the group leader is trying to explode your head with their intense stare. They reluctantly turn around, and will probably tell their fellow mercs about this."
 	on fail
 		"reputation: Pirate" -= 4
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 6000
+		payment 20000
 		dialog "The armed group stash their gear and march out into the <planet> spaceport, the crowd giving way as they do. A well-dressed member hands you a payment of <payment> before rejoining the squad at the front."
 		"reputation: Pirate" += 2
 
