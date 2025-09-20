@@ -2467,6 +2467,13 @@ planet Heartvalley
 	outfitter "Hai Basics"
 	security 0.1
 
+planet "Heavenly Halls"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa31
+	description `This solitary gas giant was given its name due to a phenomenon shared by no other planet in Coalition space. The icy rings surrounding it grow denser the closer they are to the planetary surface; just a few kilometers into the sea of clouds, the small frozen specks are replaced by sizable, frigid asteroids. Curiously, most of these larger asteroids have tunnels cutting through their interiors, inspiring some of the bolder Saryd explorers to try and colonize these "frozen palaces."`
+	government Uninhabited
+	security 0
+
 planet Helheim
 	attributes deep mining volcanic
 	landscape land/lava1
@@ -3523,6 +3530,14 @@ planet Midgard
 		threshold 6000
 		fleet "Large Deep Security" 30
 
+planet "Midnight Diamond"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa26
+	description `When the Kimek first discovered the diamond rains that occur in the upper levels of this planet's atmosphere, their mining industry went wild, procuring hundreds of millions of the gems and selecting the best of them for usage in planetside drilling efforts.`
+	description `	From the outer limits of the system, this planet shines brightly in tones that contrast with the local star's light, earning the gas giant the nickname "Midnight Star."`
+	government Uninhabited
+	security 0
+
 planet "Midway Emerald"
 	attributes kimek shipping urban wealthy
 	landscape land/forest8
@@ -4209,6 +4224,13 @@ planet Ochrescoop
 	spaceport `	A holographic sign floating next to the stairs proudly states that over 7,000 years have elapsed since the last fatal safety accident.`
 	bribe 0.1
 	security 0.5
+
+planet Ogmur
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa35
+	description `Beneath Ogmur's oppressive gravity, churning blue and yellow cyclones weave, merge, and split in an eternal dance, violent green flashes illuminating turbulent depths. The planet is dominated by a titan storm that spans a third of the visible globe, the most intense in all of Coalition space - and the reason why Coalition activity is concentrated on the planet's other, much calmer hemisphere.`
+	government Uninhabited
+	security 0
 
 planet "Ogmur's Siphon"
 	attributes arach "coalition station" research
@@ -4963,6 +4985,14 @@ planet Sandsnap
 	bribe 0
 	security 0
 
+planet Sandswell
+	attributes uninhabited
+	landscape land/desert15
+	description "The close orbit of this sandy moon to its parent gas giant stirs up strong sandstorms on the surface. Combined with its low surface gravity, this results in the air here being filled with a constant haze of grit. It is unsurprising no attempts at permanent habitation have been made here."
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet "Sandy Two"
 	attributes factory farming folklore kimek urban
 	landscape land/badlands1
@@ -5483,6 +5513,13 @@ planet "Spera Anatrusk"
 	attributes korath
 	landscape land/badlands11
 	description `This is a relatively dry planet, and the only Korath cities were close to the poles where the temperatures are more mild and the lifeless deserts give way to grasslands and even a few scattered forests. The largest city was clearly destroyed by orbital bombardment. The other cities seem to have been done in by rioting or looting, leaving smashed windows and burned-out buildings behind. Some of the damage is very recent; the Korath survivors here held out for a long time.`
+
+planet "Spiraling Indigo"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa38
+	description `Spiraling Indigo is the heaviest gas giant in Coalition space, exceeded only by stars and ringworlds. While the Kimek certainly didn't shy away from harvesting the plentiful resources to be found here, the planet has had much more of a cultural footprint than an economic one. The perpetual storms surrounding the poles here have inspired many Kimek artists, be they writers, stylists, musicians, or painters. The world's popularity in Kimek media has even prompted some religious institutions to claim its beauty as a divine signal.`
+	government Uninhabited
+	security 0
 
 planet Splashdown
 	attributes farming north

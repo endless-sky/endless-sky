@@ -20,7 +20,7 @@ jobs:
       OUTPUT: Endless_Sky-${{ inputs.release_version  }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
           fetch-depth: '10'
@@ -74,7 +74,7 @@ jobs:
       OUTPUT_EXE: EndlessSky-${{ inputs.release_version }}-win64-setup.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
           fetch-depth: '10'
@@ -143,7 +143,7 @@ jobs:
       OUTPUT_EXE: EndlessSky-${{ inputs.release_version }}-win32-setup.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
       - name: Install dependencies
@@ -197,7 +197,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
           fetch-depth: '10'
@@ -247,7 +247,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
           fetch-depth: '10'
@@ -349,7 +349,7 @@ jobs:
     name: Steam Linux
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - name: Build Endless Sky
@@ -371,7 +371,7 @@ jobs:
     env:
       data: steam-data-depot
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - name: Upload Steam Data Depot
@@ -382,7 +382,6 @@ jobs:
           changelog
           copyright
           credits.txt
-          icon.png
           keys.txt
           license.txt
           data/

@@ -364,10 +364,39 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 
 
-bool MapDetailPanel::Click(int x, int y, int clicks)
+bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 {
-	if(scroll.Scrollable() && scrollbar.SyncClick(scroll, x, y, clicks))
+	if(scroll.Scrollable() && scrollbar.SyncClick(scroll, x, y, button, clicks))
 		return true;
+
+	if(button == MouseButton::RIGHT)
+	{
+		if(!Preferences::Has("System map sends move orders"))
+			return true;
+		// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
+		// positions aren't hard-coded.
+		else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
+		{
+			// Only handle clicks on the actual orbits element, rather than the whole UI region.
+			// (Note: this isn't perfect, and the clickable area extends into the angled sides a bit.)
+			const Point orbitCenter(Screen::TopRight() + Point(-120., 160.));
+			auto uiClick = Point(x, y) - orbitCenter;
+			if(uiClick.Length() > 130)
+				return true;
+
+			// Only issue movement orders if the player is in-flight.
+			if(player.GetPlanet())
+				GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
+			else if(!player.CanView(*selectedSystem))
+				GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
+			else
+				player.SetEscortDestination(selectedSystem, uiClick / scale);
+		}
+		return true;
+	}
+
+	if(button != MouseButton::LEFT)
+		return MapPanel::Click(x, y, button, clicks);
 
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double planetCardWidth = planetCardInterface->GetValue("width");
@@ -466,39 +495,10 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	}
 
 	// The click was not on an interface element, so check if it was on a system.
-	MapPanel::Click(x, y, clicks);
+	MapPanel::Click(x, y, button, clicks);
 	// If the system just changed, the selected planet is no longer valid.
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
-	return true;
-}
-
-
-
-bool MapDetailPanel::RClick(int x, int y)
-{
-	if(!Preferences::Has("System map sends move orders"))
-		return true;
-	// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
-	// positions aren't hard-coded.
-	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
-	{
-		// Only handle clicks on the actual orbits element, rather than the whole UI region.
-		// (Note: this isn't perfect, and the clickable area extends into the angled sides a bit.)
-		const Point orbitCenter(Screen::TopRight() + Point(-120., 160.));
-		auto uiClick = Point(x, y) - orbitCenter;
-		if(uiClick.Length() > 130)
-			return true;
-
-		// Only issue movement orders if the player is in-flight.
-		if(player.GetPlanet())
-			GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
-		else if(!player.CanView(*selectedSystem))
-			GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
-		else
-			player.SetEscortDestination(selectedSystem, uiClick / scale);
-	}
-
 	return true;
 }
 
@@ -737,8 +737,7 @@ void MapDetailPanel::DrawInfo()
 		(planetCards.size()) * planetCardHeight) : 0.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
-	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
-		size, back);
+	FillShader::Fill(Rectangle::FromCorner(Screen::TopLeft(), size), back);
 
 	const double startingX = mapInterface->GetValue("starting X");
 	Point uiPoint(Screen::Left() + startingX, Screen::Top());

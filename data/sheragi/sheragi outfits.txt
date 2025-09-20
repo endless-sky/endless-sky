@@ -350,7 +350,9 @@ outfit "Shard Fabricator"
 		"acceleration" 1.5
 		"drag" .1
 		"turn" 8
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"radar tracking" .8
 		"missile strength" 1
 	description "To reduce reliance on supply chains during prolonged war time, this outfit contains specialized fabricators that produce simple kinetic missiles from stock materials and a small amount of stored fuel; their guidance system merely receives data from the shipboard radar. The missiles are fired in volleys of six at a time from each launcher, making them very effective at overwhelming point defenses despite their fragility. However, the low amount of fuel they carry means they can only home in on the target for about a second before they turn into unguided ammunition. Because they are manufactured on the spot, it takes a long time to reload."

@@ -1618,6 +1618,7 @@ mission "Wanderers: Alpha Surveillance J"
 	
 	on complete
 		"reputation: Wanderer" >?= 30
+		event "wanderers: heavy gust mass production" 30
 		event "wanderers: unfettered invasion starts" 64
 		log "Reported to the Wanderers that the Alphas who had been selling jump drives to the Unfettered have been weakened and driven into hiding. The Wanderers are ramping up production of military ships to try to face the continuing Unfettered onslaught."
 		conversation
@@ -1640,7 +1641,16 @@ mission "Wanderers: Unfettered Invasion Patch"
 		event "wanderers: unfettered invasion starts"
 		fail
 
-
+# Giving Heavy Gust to old saves:
+mission "Wanderers: Heavy Gust Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: unfettered invasion starts"
+		not "event: wanderers: heavy gust mass production"
+	on offer
+		event "wanderers: heavy gust mass production"
+		fail
 
 mission "Wanderers Invaded 0"
 	landing
@@ -1806,7 +1816,7 @@ mission "Wanderers Invaded 2"
 		fleet
 			names "wanderer"
 			variant
-				"Strong Wind" 1
+				"Heavy Gust" 1
 				"Autumn Leaf" 2
 				"Summer Leaf" 3
 	npc
@@ -2238,11 +2248,11 @@ mission "Wanderers Solifuge Recon 4"
 		conversation "solifuge conversation"
 
 conversation "solifuge conversation"
-	branch altStart
+	branch "alt start"
 		has "Strider Alt Start: done"
 	`You give the message from Sayari to the spaceport authorities so that they can deliver it to the council of elders. After the message has been delivered, the council requests that you meet with them.`
 		goto start
-	label altStart
+	label "alt start"
 	`	When you arrive on <planet>, you are quickly escorted from the spaceport to the council chambers.`
 	label start
 	`	"Greetings again, <first> <last>," one of the elders says to you. "It is our understanding that our Unfettered brothers and sisters have created a carrier ship. How difficult was it for you to combat it?"`
@@ -2268,7 +2278,7 @@ conversation "solifuge conversation"
 	`	The elders once again mumble among themselves. They continue to ask Osen a number of questions about this new carrier. How difficult is one to produce? How much does it cost? What are the capabilities of the drones? How useful would it be without being able to repair the hull of its drones?`
 	`	After having all their questions answered, the elders seem to be interested in the idea of Osen's new ship. "This hull repair technology indeed sounds necessary," an elder says. "We will provide what funding we can to help fast track its development."`
 	`	Osen's father turns to you. "You have traveled many systems, <first> <last>. Perhaps you might be able to help. If you know of any peoples who have such technology from elsewhere in the galaxy, should it exist, then perhaps we could meet with them."`
-	branch altEnd
+	branch "alt end"
 		has "Strider Alt Start: done"
 	choice
 		`	"I'm sorry, but I can't help right now. I need to return to the Wanderers."`
@@ -2282,7 +2292,7 @@ conversation "solifuge conversation"
 	`	"This is understandable," Osen's father responds. "Return to where you are needed, but when you are able to help, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you safe travels back to <planet>.`
 		accept
 	
-	label altEnd
+	label "alt end"
 	choice
 		`	"I'd be glad to help. I'm sure I could find someone with hull repair technology that could help."`
 			goto glad
@@ -2497,8 +2507,7 @@ mission "Wanderers Defend Sich'ka'ara"
 			names "wanderer"
 			variant
 				"Tempest (Heavy)"
-				"Tempest"
-				"Strong Wind" 1
+				"Heavy Gust" 2
 				"Autumn Leaf" 2
 				"Summer Leaf" 3
 	on complete
@@ -2939,7 +2948,7 @@ mission "Wanderers Ap'arak 2"
 			variant
 				"Derecho (Turret)"
 				"Derecho"
-				"Strong Wind" 2
+				"Heavy Gust" 2
 				"Autumn Leaf" 4
 				"Summer Leaf" 3
 	npc
