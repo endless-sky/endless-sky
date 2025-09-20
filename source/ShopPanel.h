@@ -31,6 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class CategoryList;
 class Outfit;
 class Planet;
