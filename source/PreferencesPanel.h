@@ -23,9 +23,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollVar.h"
 #include "text/WrappedText.h"
 
+#include <map>
 #include <memory>
 #include <string>
 #include <vector>
+
+#include "ModalListDialog.h"
 
 class PlayerInfo;
 class RenderBuffer;
@@ -64,6 +67,7 @@ private:
 	void DrawTooltips();
 
 	void Exit();
+	bool CheckExit(SDL_Keycode nextAction);
 
 	void HandleSettingsString(const std::string &str, Point cursorPosition);
 
@@ -74,9 +78,22 @@ private:
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
 
+	// Callbacks related to managing controls profiles.
+	bool SaveControls(const std::string &profileName);
+	bool DiscardControlChanges(const std::string &profileName);
+
+	void UpdateAvailableProfiles();
+	void SelectProfile();
+	bool LoadProfile(const std::string &profileName);
+	std::string HoverProfile(const std::string &profileName);
+	bool CancelDialog(const std::string &profileName);
+	bool DeleteProfile(const std::string &profileName);
+
 
 private:
 	PlayerInfo &player;
+	ModalListDialog *modalDialog;
+
 	// Determine if the player's mission deadlines need to be recached when
 	// this panel is closed due to the deadline blink preference changing.
 	bool recacheDeadlines = false;
@@ -99,6 +116,11 @@ private:
 
 	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
+
+	SDL_Keycode postDialogAction;
+	std::vector<std::string> availableProfiles;
+	std::vector<std::string> immutableProfiles;
+	std::map<std::string, std::filesystem::path> profilePaths;
 
 	std::string selectedPlugin;
 

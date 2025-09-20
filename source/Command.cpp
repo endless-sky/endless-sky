@@ -26,18 +26,29 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <map>
 
+
+
 using namespace std;
 
 namespace {
+	// There is both a working copy and an active set of controls. When loading or modifying, the working copy
+	// will be affected. The working copy can be made active, and the active copy will always be what is saved.
+	// The active copy can be copied into the working copy to support modification.
+	// E.g.: load -> working <-> active -> save
+	Command::ProfileType inUse = Command::ProfileType::WORKING;
 	// These lookup tables make it possible to map a command to its description,
 	// the name of the key it is mapped to, or the SDL keycode it is mapped to.
 	map<Command, string> description;
-	map<Command, string> keyName;
-	map<int, Command> commandForKeycode;
-	map<Command, int> keycodeForCommand;
+
+	// These lookup tables exists for both the working and active profiles.
+	map<Command::ProfileType, map<Command, string>> keyName;
+	map<Command::ProfileType, string> profileName;
+	map<Command::ProfileType, map<int, Command>> commandForKeycode;
+	map<Command::ProfileType, map<Command, int>> keycodeForCommand;
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
-	map<int, int> keycodeCount;
+	map<Command::ProfileType, map<int, int>> keycodeCount;
+
 	// Need a uint64_t 1 to generate Commands.
 	const uint64_t ONE = 1;
 }
@@ -96,7 +107,7 @@ string Command::ReplaceNamesWithKeys(const string &text)
 {
 	map<string, string> subs;
 	for(const auto &it : description)
-		subs['<' + it.second + '>'] = '"' + keyName[it.first] + '"';
+		subs['<' + it.second + '>'] = '"' + keyName[inUse][it.first] + '"';
 
 	return Format::Replace(text, subs);
 }
@@ -106,14 +117,14 @@ string Command::ReplaceNamesWithKeys(const string &text)
 // Create a command representing whatever is mapped to the given key code.
 Command::Command(int keycode)
 {
-	auto it = commandForKeycode.find(keycode);
-	if(it != commandForKeycode.end())
+	auto it = commandForKeycode[inUse].find(keycode);
+	if(it != commandForKeycode[inUse].end())
 		*this = it->second;
 }
 
 
 
-// Read the current keyboard state.
+// Read the current keyboard state and map it to a command from the ACTIVE profile.
 void Command::ReadKeyboard()
 {
 	Clear();
@@ -122,7 +133,7 @@ void Command::ReadKeyboard()
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands. Also, more
 	// than one key can be held down at once.
-	for(const auto &it : keycodeForCommand)
+	for(const auto &it : keycodeForCommand[ProfileType::ACTIVE])
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
 			*this |= it.first;
 
@@ -133,9 +144,13 @@ void Command::ReadKeyboard()
 
 
 
-// Load the keyboard preferences.
-void Command::LoadSettings(const filesystem::path &path)
+// Load the keyboard preferences into the working copy.
+void Command::LoadSettings(const filesystem::path &path, const string &name)
 {
+	MakeWorkingCopy();
+
+	profileName[inUse] = name;
+
 	DataFile file(path);
 
 	// Create a map of command names to Command objects in the enumeration above.
@@ -152,29 +167,29 @@ void Command::LoadSettings(const filesystem::path &path)
 		{
 			Command command = it->second;
 			int keycode = node.Value(1);
-			keycodeForCommand[command] = keycode;
-			keyName[command] = SDL_GetKeyName(keycode);
+			keycodeForCommand[inUse][command] = keycode;
+			keyName[inUse][command] = SDL_GetKeyName(keycode);
 		}
 	}
 
 	// Regenerate the lookup tables.
-	commandForKeycode.clear();
-	keycodeCount.clear();
-	for(const auto &it : keycodeForCommand)
+	commandForKeycode[inUse].clear();
+	keycodeCount[inUse].clear();
+	for(const auto &it : keycodeForCommand[inUse])
 	{
-		commandForKeycode[it.second] = it.first;
-		++keycodeCount[it.second];
+		commandForKeycode[inUse][it.second] = it.first;
+		++keycodeCount[inUse][it.second];
 	}
 }
 
 
 
-// Save the keyboard preferences.
+// Save the keyboard preferences. Always saves the ACTIVE profile.
 void Command::SaveSettings(const filesystem::path &path)
 {
 	DataWriter out(path);
 
-	for(const auto &it : keycodeForCommand)
+	for(const auto &it : keycodeForCommand[ProfileType::ACTIVE])
 	{
 		auto dit = description.find(it.first);
 		if(dit != description.end())
@@ -184,22 +199,94 @@ void Command::SaveSettings(const filesystem::path &path)
 
 
 
-// Set the key that is mapped to the given command.
+// Set the key that is mapped to the given command in the WORKING profile.
 void Command::SetKey(Command command, int keycode)
 {
+	MakeWorkingCopy();
+
 	// Always reset *all* the mappings when one is set. That way, if two commands
 	// are mapped to the same key and you change one of them, the other stays mapped.
-	keycodeForCommand[command] = keycode;
-	keyName[command] = SDL_GetKeyName(keycode);
+	keycodeForCommand[inUse][command] = keycode;
+	keyName[inUse][command] = SDL_GetKeyName(keycode);
 
 	commandForKeycode.clear();
 	keycodeCount.clear();
 
-	for(const auto &it : keycodeForCommand)
+	for(const auto &it : keycodeForCommand[inUse])
 	{
-		commandForKeycode[it.second] = it.first;
-		++keycodeCount[it.second];
+		commandForKeycode[inUse][it.second] = it.first;
+		++keycodeCount[inUse][it.second];
 	}
+}
+
+
+
+void Command::DiscardWorkingCopy()
+{
+	inUse = ProfileType::ACTIVE;
+}
+
+
+
+// Load the keyboard preferences into the working copy.
+void Command::MakeWorkingCopy()
+{
+	CopyProfile(ProfileType::ACTIVE, ProfileType::WORKING);
+}
+
+
+
+// Save the working copy into the active profile.
+void Command::ActivateWorkingCopy()
+{
+	CopyProfile(ProfileType::WORKING, ProfileType::ACTIVE);
+}
+
+
+
+// Load the keyboard preferences into the working copy.
+void Command::CopyProfile(ProfileType from, ProfileType to)
+{
+	if(inUse == from)
+	{
+		inUse = to;
+
+		profileName[to] = profileName[from];
+
+		// Regenerate the lookup tables.
+		keyName[to].clear();
+		commandForKeycode[to].clear();
+		keycodeForCommand[to].clear();
+		keycodeCount[to].clear();
+		for(const auto &[command, keycode] : keycodeForCommand[from])
+		{
+			keyName[to][command] = keyName[from][command];
+			keycodeForCommand[to][command] = keycodeForCommand[from][command];
+			commandForKeycode[to][keycode] = commandForKeycode[from][keycode];
+			keycodeCount[to][keycode] = keycodeCount[from][keycode];
+		}
+	}
+}
+
+
+
+string Command::GetProfileType()
+{
+	return (inUse == ProfileType::WORKING) ? "Working" : "Active";
+}
+
+
+
+std::string Command::Name()
+{
+	return profileName[inUse];
+}
+
+
+
+void Command::RenameProfile(const string &name)
+{
+	profileName[inUse] = name;
 }
 
 
@@ -220,7 +307,7 @@ const string &Command::Description() const
 const string &Command::KeyName() const
 {
 	static const string empty = "(none)";
-	auto it = keyName.find(*this);
+	auto it = keyName[inUse].find(*this);
 
 	return (!HasBinding() ? empty : it->second);
 }
@@ -230,9 +317,9 @@ const string &Command::KeyName() const
 // Check if the key has no binding.
 bool Command::HasBinding() const
 {
-	auto it = keyName.find(*this);
+	auto it = keyName[inUse].find(*this);
 
-	if(it == keyName.end())
+	if(it == keyName[inUse].end())
 		return false;
 	if(it->second.empty())
 		return false;
@@ -244,12 +331,12 @@ bool Command::HasBinding() const
 // Check whether this is the only command mapped to the key it is mapped to.
 bool Command::HasConflict() const
 {
-	auto it = keycodeForCommand.find(*this);
-	if(it == keycodeForCommand.end())
+	auto it = keycodeForCommand[inUse].find(*this);
+	if(it == keycodeForCommand[inUse].end())
 		return false;
 
-	auto cit = keycodeCount.find(it->second);
-	return (cit != keycodeCount.end() && cit->second > 1);
+	auto cit = keycodeCount[inUse].find(it->second);
+	return (cit != keycodeCount[inUse].end() && cit->second > 1);
 }
 
 
