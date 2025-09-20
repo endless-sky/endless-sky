@@ -3718,7 +3718,7 @@ mission "Pirate transport to <planet> [0]"
 	name "Transport anarchists to <planet>"
 	job
 	repeat
-	description "This family of <bunks> anarchists are looking to escape local trouble by moving to <destination>, and they will pay you <payment> to take them and their bags there."
+	description "This family of <bunks> anarchists are looking to escape local trouble by moving to <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
 	passengers 3 10
 	cargo "Family Belongings" 4 2
 	to offer
@@ -3744,7 +3744,7 @@ mission "Pirate transport to <planet> [1]"
 	name "Transport anarchists to <planet>"
 	job
 	repeat
-	description "This family of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them and their bags there."
+	description "This family of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
 	passengers 3 10
 	cargo "Battered Baggage" 2 1
 	to offer
@@ -3770,7 +3770,7 @@ mission "Pirate transport to <planet> [2]"
 	name "Transport anarchists to <planet>"
 	job
 	repeat
-	description "This family of <bunks> anarchists are hoping to start a new life on <destination>, and they will pay you <payment> to take them there."
+	description "This family of <bunks> anarchists are hoping to start a new life on <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
 	passengers 3 10
 	cargo "Battered Baggage" 2 1
 	to offer
@@ -3870,7 +3870,7 @@ mission "Pirate transport to <planet> [5]"
 mission "Transport wealthy anarchists to <planet>"
 	job
 	repeat
-	description "These <bunks> wealthy anarchists seek comfortable travel to <destination>, and they will pay you <payment> to take them and their bags there."
+	description "These <bunks> wealthy anarchists seek comfortable travel to <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
 	passengers 4 8 .8
 	cargo "Fancy Baggage" 4 2 
 	to offer
@@ -3955,7 +3955,7 @@ mission "Pirate smuggle to <planet> [0]"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "This family of <bunks> wanted anarchists is hoping to find work on <destination>, and they will pay you <payment> to smuggle them and their bags there without being scanned or caught by planetary law enforcement."
+	description "This family of <bunks> wanted anarchists is hoping to find work on <destination>, and they will pay you <payment> to smuggle them and their <tons> of bags there without being scanned or caught by planetary law enforcement."
 	passengers 2 10
 	cargo "Battered Baggage" 2 1 
 	illegal 50000 `Your ship is boarded and the wanted family is escorted to the brig. The anarchists won't be happy to hear this...`
@@ -4051,7 +4051,7 @@ mission "Smuggle wealthy druglord to <planet>"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "This group of <bunks> armed guards and their boss seek covert, yet comfortable travel to <destination>, and they will pay you <payment> to take them and their bags there without being scanned or caught by planetary law enforcement."
+	description "This group of <bunks> armed guards and their boss seek covert, yet comfortable travel to <destination>, and they will pay you <payment> to take them and their <tons> of bags there without being scanned or caught by planetary law enforcement."
 	passengers 3 12 .8
 	cargo "Fancy Baggage" 4 2 
 	illegal 250000 `Your ship is boarded and a firefight breaks out! After the inside of your <model> is trashed, the remaining guards and druglord are escorted to the brig and you're hit with a hefty fine. This sure won't go over well...`
@@ -4118,7 +4118,7 @@ mission "Pirate bulk transport to <planet> [0]"
 	name "Bulk transport to <planet>"
 	job
 	repeat
-	description "This large group of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them and their bags there."
+	description "This large group of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
 	passengers 11 30 .8
 	cargo "Battered Baggage" 6 2
 	to offer
@@ -4144,7 +4144,7 @@ mission "Pirate bulk transport to <planet> [1]"
 	name "Bulk transport to <planet>"
 	job
 	repeat
-	description "This large group of <bunks> anarchists seek transport to <destination>, and they will pay you <payment> to take them and their bags there."
+	description "This large group of <bunks> anarchists seek transport to <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
 	passengers 11 30 .8
 	cargo "Battered Baggage" 6 2
 	to offer
@@ -4170,7 +4170,7 @@ mission "Pirate bulk transport to <planet> [2]"
 	name "Bulk transport to <planet>"
 	job
 	repeat
-	description "This large group of <bunks> anarchists are hoping to start new lives on <destination>, and they will pay you <payment> to take them and their bags there."
+	description "This large group of <bunks> anarchists are hoping to start new lives on <destination>, and they will pay you <payment> to take them and their <tons> of bags there."
 	passengers 11 30 .8
 	cargo "Battered Baggage" 6 2
 	to offer
@@ -4315,7 +4315,7 @@ mission "Smuggle cartel members to <planet>"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "This group of <bunks> cartel members and their guards seek covert, yet comfortable, travel to <destination>. They will pay you <payment> to take them and their bags there without being scanned or caught by planetary law enforcement."
+	description "This group of <bunks> cartel members and their guards seek covert, yet comfortable, travel to <destination>. They will pay you <payment> to take them and their <tons> of bags there without being scanned or caught by planetary law enforcement."
 	passengers 12 24 .8
 	cargo "Fancy Baggage" 8 4 
 	illegal 250000 `Your ship is boarded and a firefight breaks out! After the inside of your <model> is trashed, the remaining guards and cartel members are escorted to the brig and you're hit with a hefty fine. This sure won't go over well...`
@@ -4385,7 +4385,7 @@ mission "Pirate mass transport to <planet> [0]"
 	name "Mass transport to <planet>"
 	job
 	repeat
-	description "This huge group of <bunks> various travelers all seek transit to <destination>, and their travel organizer will pay you <payment> to take them and their bags there."
+	description "This huge group of <bunks> various travelers all seek transit to <destination>, and their travel organizer will pay you <payment> to take them and their <tons> of bags there."
 	passengers 30 60 .8
 	cargo "Battered Baggage" 20 10 
 	to offer
@@ -4412,7 +4412,7 @@ mission "Pirate mass transport to <planet> [1]"
 	name "Mass transport to <planet>"
 	job
 	repeat
-	description "This gigantic group of <bunks> various travelers all seek mass transit to <destination>, and their travel organizer will pay you <payment> to take them and their bags there."
+	description "This gigantic group of <bunks> various travelers all seek mass transit to <destination>, and their travel organizer will pay you <payment> to take them and their <tons> of bags there."
 	passengers 60 120 .8
 	cargo "Battered Baggage" 40 20 
 	to offer
@@ -4441,7 +4441,7 @@ mission "Smuggle plunderbund elite to <planet>"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "This large cohort of <bunks> plunderbund aristocracy and their extensive guardianship detachment seek sumptuous, yet surreptitious travel to <destination>, and they will compensate you with <payment> to take them and their extensive paraphernalia there without being caught by planetary law enforcement."
+	description "This large cohort of <bunks> plunderbund aristocracy and their extensive guardianship detachment seek sumptuous, yet surreptitious travel to <destination>, and they will compensate you with <payment> to take them and their <tons> of extensive paraphernalia there without being caught by planetary law enforcement."
 	passengers 24 36 .8
 	cargo "Lavish Paraphernalia" 20 10 
 	illegal 25000000 `Your ship erupts into a massive war zone as soon as system security board! The inside of both your <model> and the officer's ship is trashed, as well as the multiple reinforcement ships called in to help. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
