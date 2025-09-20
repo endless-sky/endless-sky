@@ -3719,7 +3719,7 @@ mission "Pirate transport to <planet> [0]"
 	job
 	repeat
 	description "This family of <bunks> anarchists are looking to escape local trouble by moving to <destination>, and they will pay you <payment> to take them there."
-	passengers 3 10 .725
+	passengers 3 10
 	to offer
 		random < 15
 		"reputation: Pirate" > -100
@@ -3744,7 +3744,7 @@ mission "Pirate transport to <planet> [1]"
 	job
 	repeat
 	description "This family of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them there."
-	passengers 3 10 .725
+	passengers 3 10
 	to offer
 		random < 25
 		"reputation: Pirate" > -100
@@ -3769,7 +3769,7 @@ mission "Pirate transport to <planet> [2]"
 	job
 	repeat
 	description "This family of <bunks> anarchists are hoping to start a new life on <destination>, and they will pay you <payment> to take them there."
-	passengers 3 10 .725
+	passengers 3 10
 	to offer
 		random < 25
 		"reputation: Pirate" > -100
@@ -3861,12 +3861,8 @@ mission "Pirate transport to <planet> [5]"
 		"pirate jobs" ++
 		payment
 		payment 1000
-<<<<<<< Updated upstream
-		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> and the group slips off into the crowd."
-=======
 		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
 		"reputation: Pirate" += .5
->>>>>>> Stashed changes
 
 mission "Transport wealthy anarchists to <planet>"
 	job
@@ -3956,7 +3952,7 @@ mission "Pirate smuggle to <planet> [0]"
 	job
 	repeat
 	description "This family of <bunks> wanted anarchists is hoping to find work on <destination>, and they will pay you <payment> to smuggle them there without being scanned or caught by planetary law enforcement."
-	passengers 2 10 .8
+	passengers 2 10
 	illegal 50000 `Your ship is boarded and the wanted family is escorted to the brig. The anarchists won't be happy to hear this...`
 	stealth
 	to offer
@@ -4451,7 +4447,7 @@ mission "Smuggle plunderbund elite to <planet>"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on abort
-		"reputation: Pirate" -= 2
+		"reputation: Pirate" -= 4
 		dialog "You cast away the particularly disgruntled plunderbund and their extensive security compliment, much to their grand annoyance. No doubt there will be much banter among the upper elite about this unfortunate act."
 	on fail
 		"reputation: Pirate" -= 6
