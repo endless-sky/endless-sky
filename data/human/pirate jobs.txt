@@ -4429,5 +4429,5 @@ mission "Smuggle plunderbund elite to <planet>"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 7000
+		payment 10000
 		dialog "One of the plunderbund's guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
