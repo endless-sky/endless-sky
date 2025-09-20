@@ -492,47 +492,36 @@ interface "load menu"
 interface "modal list dialog"
 	sprite "_menu/buttonless side panel"
 		center 0 0
-
-	string "title"
+	
+	string "modal list title"
 		color "bright"
 		align center
 		truncate back
 		width 230
-		center 0 -145
+		center 0 -155
 	line
 		color "bright"
-		center 0 -130
+		center 0 -145
 		dimensions 210 1
 	
 	box "selection list"
-		center 0 0
-		dimensions 230 262
+		center 0 15
+		dimensions 230 300
 		
 	value "selection list horizontal text pad" 5
 	value "selection list fade out" 10
 	
 	# Note: mapping buttons 3, 2, 1 to F1, F2, F3 (left to right on screen vs keyboard)
+	visible if "has button three"
 	active if "button three active"
-<<<<<<< HEAD
-=======
 	sprite "ui/dialog cancel"
 		center -85 200
 	hover if "button three focus"
->>>>>>> 42cbdcd56 (Update ModalListDialog to implement proper hover/focus for buttons)
 	"dynamic button" F1 "button three label"
 		color "medium"
 		hover bright
 		align center
 		truncate back
-<<<<<<< HEAD
-		width 70
-		center -95 155
-	sprite "ui/dialog cancel"
-		center -95 155
-		dimensions 70 30
-	
-	active if "button two active"
-=======
 		dimensions 70 30
 		center -85 200
 	
@@ -541,35 +530,25 @@ interface "modal list dialog"
 	sprite "ui/dialog cancel"
 		center 0 200
 	hover if "button two focus"
->>>>>>> 42cbdcd56 (Update ModalListDialog to implement proper hover/focus for buttons)
 	"dynamic button" F2 "button two label"
 		color "medium"
 		hover bright
 		align center
 		truncate back
-		width 70
-		center 0 155
-	sprite "ui/dialog cancel"
-		center 0 155
 		dimensions 70 30
+		center 0 200
 	
 	active if "button one active"
-<<<<<<< HEAD
-=======
 	sprite "ui/dialog cancel"
 		center 85 200
 	hover if "button one focus"
->>>>>>> 42cbdcd56 (Update ModalListDialog to implement proper hover/focus for buttons)
 	"dynamic button" F3 "button one label"
 		color "medium"
 		hover bright
 		align center
 		truncate back
-		width 70
-		center 95 155
-	sprite "ui/dialog cancel"
-		center 95 155
 		dimensions 70 30
+		center 85 200
 
 
 
@@ -646,7 +625,6 @@ interface "settings"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
-	
 
 
 
