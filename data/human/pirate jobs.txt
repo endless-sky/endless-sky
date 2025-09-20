@@ -3745,7 +3745,7 @@ mission "Pirate transport to <planet> [1]"
 	description "This family of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 10 .725
 	to offer
-		random < 55
+		random < 25
 		"reputation: Pirate" > -100
 	source
 		government "Pirate"
@@ -3769,7 +3769,7 @@ mission "Pirate transport to <planet> [2]"
 	description "This family of <bunks> anarchists are hoping to start a new life on <destination>, and they will pay you <payment> to take them there."
 	passengers 3 10 .725
 	to offer
-		random < 55
+		random < 25
 		"reputation: Pirate" > -100
 	source
 		government "Pirate"
@@ -3793,7 +3793,7 @@ mission "Pirate transport to <planet> [3]"
 	description "A ship-scrapping operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 2 10 .8
 	to offer
-		random < 50
+		random < 20
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -3817,7 +3817,7 @@ mission "Pirate transport to <planet> [4]"
 	description "A narcotics operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 2 10 .8
 	to offer
-		random < 50
+		random < 15
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -3841,7 +3841,7 @@ mission "Pirate transport to <planet> [5]"
 	description "This gang of <bunks> petty criminals is hoping to travel to <destination>, and they will pay you <payment> to take them there."
 	passengers 4 8 .8
 	to offer
-		random < 40
+		random < 30
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -3864,7 +3864,7 @@ mission "Transport wealthy anarchists to <planet>"
 	description "These <bunks> wealthy anarchists seek comfortable travel to <destination>, and they will pay you <payment> to take them there."
 	passengers 4 8 .8
 	to offer
-		random < 60
+		random < 25
 		"reputation: Pirate" > 0
 	to accept
 		has "outfit (installed): Luxury Accommodations"
@@ -3891,7 +3891,7 @@ mission "Transport shady group to <planet> (Short)"
 	passengers 3 6 .8
 	deadline 6
 	to offer
-		random < 60
+		random < 30
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -3916,7 +3916,7 @@ mission "Transport shady group to <planet> (Long)"
 	passengers 3 6 .8
 	deadline 14
 	to offer
-		random < 60
+		random < 25
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -3947,7 +3947,7 @@ mission "Pirate smuggle to <planet> [0]"
 	illegal 50000 `Your ship is boarded and the wanted family is escorted to the brig. The anarchists won't be happy to hear this...`
 	stealth
 	to offer
-		random < 50
+		random < 30
 		"reputation: Pirate" > 0
 	source
 		government "Pirate"
@@ -4007,7 +4007,7 @@ mission "Pirate smuggle to <planet> [2]"
 	illegal 80000 `Your ship is boarded and the wanted gang is escorted to the brig. The pirates won't be happy to hear this...`
 	stealth
 	to offer
-		random < 60
+		random < 30
 		"reputation: Pirate" > 0
 		"combat rating" > 100
 	source
@@ -4039,7 +4039,7 @@ mission "Smuggle wealthy druglord to <planet>"
 	illegal 250000 `Your ship is boarded and a firefight breaks out! After the inside of your <model> is trashed, the remaining guards and druglord are escorted to the brig and you're hit with a hefty fine. This sure won't go over well...`
 	stealth
 	to offer
-		random < 40
+		random < 24
 		"reputation: Pirate" > 0
 	to accept
 		has "outfit (installed): Luxury Accommodations"
@@ -4072,7 +4072,7 @@ mission "Smuggle shady group to <planet>"
 	passengers 3 6 .8
 	deadline 14
 	to offer
-		random < 60
+		random < 20
 		"reputation: Pirate" > 0
 	source
 		government "Pirate"
@@ -4101,7 +4101,7 @@ mission "Pirate bulk transport to <planet> [0]"
 	description "This large group of <bunks> anarchists is hoping to find work on <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .8
 	to offer
-		random < 30
+		random < 18
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -4125,7 +4125,7 @@ mission "Pirate bulk transport to <planet> [1]"
 	description "This large group of <bunks> anarchists seek transport to <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .8
 	to offer
-		random < 30
+		random < 18
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -4149,7 +4149,7 @@ mission "Pirate bulk transport to <planet> [2]"
 	description "This large group of <bunks> anarchists are hoping to start new lives on <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .8
 	to offer
-		random < 30
+		random < 18
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -4197,7 +4197,7 @@ mission "Pirate bulk transport to <planet> [4]"
 	description "A large narcotics operation is looking to move a team of <bunks> employees to their facility on <destination>, and they will pay you <payment> to take them there."
 	passengers 11 30 .6
 	to offer
-		random < 25
+		random < 15
 		"reputation: Pirate" > -10
 	source
 		government "Pirate"
@@ -4290,7 +4290,7 @@ mission "Smuggle cartel members to <planet>"
 	illegal 250000 `Your ship is boarded and a firefight breaks out! After the inside of your <model> is trashed, the remaining guards and cartel members are escorted to the brig and you're hit with a hefty fine. This sure won't go over well...`
 	stealth
 	to offer
-		random < 40
+		random < 25
 		"reputation: Pirate" > 0
 		"combat rating" > 150
 	to accept
@@ -4355,7 +4355,7 @@ mission "Pirate mass transport to <planet> [0]"
 	description "This huge group of <bunks> various travelers all seek transit to <destination>, and their travel organizer will pay you <payment> to take them there."
 	passengers 30 60 .8
 	to offer
-		random < 30
+		random < 15
 		"reputation: Pirate" > 0
 		"combat rating" > 100
 	source
@@ -4380,7 +4380,7 @@ mission "Pirate mass transport to <planet> [1]"
 	description "This gigantic group of <bunks> various travelers all seek mass transit to <destination>, and their travel organizer will pay you <payment> to take them there."
 	passengers 60 120 .8
 	to offer
-		random < 20
+		random < 12
 		"reputation: Pirate" > -10
 		"combat rating" > 100
 	source
@@ -4409,7 +4409,7 @@ mission "Smuggle plunderbund elite to <planet>"
 	illegal 25000000 `Your ship erupts into a massive war zone as soon as system security board! The inside of both your <model> and the officer's ship is trashed, as well as the multiple reinforcement ships called in to help. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
 	stealth
 	to offer
-		random < 30
+		random < 10
 		"reputation: Pirate" > 5
 		"combat rating" > 250
 	to accept
