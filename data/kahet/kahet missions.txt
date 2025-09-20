@@ -355,7 +355,7 @@ mission "Ka'het: Death in the Graveyard 1"
 			`	You instinctively check your sidearm with your hand while walking down the stairway, knowing well how futile it would be in this situation. Despite being the smallest type of Ka'het you have seen, the Maeri'het remains intimidatingly large. No longer cloaked, you notice a fluid coming down from its sides, starting right from the slug itself. It covers the entire landing zone, and some of it has almost reached your ship.`
 			`	For an instant, you entertain the thought of looting its outfits. But as if it was reading your mind, the Maeri'het hits you with another cloud of warm, pale vapor, making your suit send an overheat warning. Defeated, you turn around and climb back to your cockpit.`
 			label report
-			`	With the course set and the engines back running, you take a second to reason over the best course of action. The choice falls on a trip to Aventine: if there's anyone who will want to hear about this, it has to be Plume's laboratory.`
+			`	Once the engines are back running you take a second to reason over the best course of action. The choice falls on a trip to Aventine: if there's anyone who will want to hear about this, it has to be Plume's laboratory.`
 				accept
 			label blow
 			`	The Ka'het easily crumbles under the strength of your firepower, collapsing onto itself within seconds. Some parts of its body get blown away from the carcass still mostly intact, while the machinery takes more effort to destroy; by the time you're done, nothing is left of it but a puddle of organic material and some scrap metal. After searching through the debris, you eventually find some materials precious enough to sell raw.`
@@ -606,6 +606,7 @@ mission "Ka'het: Another Death in the Graveyard 1A"
 		clear "ka'het: maeri"
 		clear "ka'het: telis"
 		clear "ka'het: vareti"
+		payment 100000
 		dialog
 			`You meet up with the Remnant technician at the indicated coordinates and drop the cargo you have gathered one by one. After you're done, he thanks you with a short bow and quickly disappears behind a hangar door.`
 	on abort
@@ -781,12 +782,15 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 			label weapon
 			branch weapon_maeri_EMP
 				has "ka'het: maeri"
+				random < 50
 			branch weapon_telis_gun
 				has "ka'het: telis"
+				random < 50
 			branch weapon_telis_EMP
 				has "ka'het: telis"
 			branch weapon_vareti_gun
 				has "ka'het: vareti"
+				random < 50
 			branch weapon_vareti_EMP
 				has "ka'het: vareti"
 			action
