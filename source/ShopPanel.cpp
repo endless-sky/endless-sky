@@ -146,8 +146,8 @@ void ShopPanel::Draw()
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
 		shipsTooltip.SetText(text, true);
-		shipsTooltip.SetBackgroundColor(warningType.empty() ? GameData::Colors().Get("tooltip background")
-			: (warningType.back() == '!' ? GameData::Colors().Get("error back") : GameData::Colors().Get("warning back")));
+		shipsTooltip.SetBackgroundColor(GameData::Colors().Get(warningType.empty() ? "tooltip background"
+			: (warningType.back() == '!' ? "error back" : "warning back")));
 		shipsTooltip.Draw(true);
 	}
 

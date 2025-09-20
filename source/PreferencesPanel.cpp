@@ -109,7 +109,7 @@ namespace {
 
 PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	: player(player), editing(-1), selected(0), hover(-1),
-	tooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Select the first valid plugin.

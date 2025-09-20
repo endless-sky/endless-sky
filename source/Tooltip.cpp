@@ -39,7 +39,7 @@ namespace {
 			anchor = zone.TopRight();
 		else if(corner == Tooltip::Corner::BOTTOM_LEFT)
 			anchor = zone.BottomLeft();
-		else if(corner == Tooltip::Corner::BOTTOM_RIGHT)
+		else
 			anchor = zone.BottomRight();
 
 		Rectangle box = Rectangle::FromCorner(anchor, boxSize);
@@ -203,7 +203,7 @@ void Tooltip::SetText(const string &newText, bool shrink)
 {
 	// Reset the wrap width each time we set text in case the WrappedText
 	// was previously shrunk to the size of the text.
-	text.SetWrapWidth(width);
+	text.SetWrapWidth(width - 20);
 	text.Wrap(newText);
 	if(shrink)
 	{
@@ -253,7 +253,7 @@ void Tooltip::Draw(bool forceDraw) const
 		return;
 
 	// Determine the tooltip's size and location.
-	Point textSize(text.WrapWidth(), text.Height() - text.ParagraphBreak());
+	Point textSize(text.WrapWidth(), text.Height(false));
 	Point boxSize = textSize + Point(20., 20.);
 	Rectangle box = PositionBox(zone, boxSize, direction, corner);
 

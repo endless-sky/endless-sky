@@ -830,7 +830,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		{
 			Rectangle zone = Rectangle(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.));
 			tooltip.SetZone(zone);
-			FillShader::Fill(zone.Center(), zone.Dimensions(), highlight);
+			FillShader::Fill(zone, highlight);
 		}
 	}
 
