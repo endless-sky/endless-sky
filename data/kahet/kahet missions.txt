@@ -2059,6 +2059,7 @@ mission "Ka'het: Patir Mystery 14"
 		has "event: patir mystery 2 timer"
 		has "Ka'het: Voice From The Past 1: done"
 	on offer
+# event to change Ssil Vida's appearance
 		conversation
 			`Although its architecture still feels wildly alien, time has helped you become familiar with the way <planet>'s main starport is organized. By now, therefore, it's not difficult for you to notice when something changes. Some are subtler than others - it wasn't long ago that additional barriers were placed between the rows of landing pads, much to your displeasure.`
 			`	Passing the arch that conducts into the northern shipyards reveals a curious sight. A group of hangars that until now were marked as off limits are now open, and packed of crowds of construction workers are walking in and out of the area. Among the crowd, pairs of camels tow sections of Remnant spacecrafts of all kinds; you step aside to let a convoy pass with some of the longest wings you ever had a chance to see.`
@@ -2084,7 +2085,7 @@ mission "Ka'het: Patir Mystery 14"
 				`	"Alright then."`
 					goto go
 				`	"How do you know it will not disappear while I am there?"`
-			`	"We have conducted a wide variety of tests during this period," he boasts. "We have started established a relation between Ssil Vida's signal and Patir's behavior, to an extent. At the moment, we are sending a continuous signal out of the station. Once the signal stops the time it takes for Patir to disappear varies, but I can personally assure you that for as long as it continues Patir will stay there - it is just a one-day mission, after all."`
+			`	"We have conducted a wide variety of tests during this period," he boasts. "We have started established a relation between Ssil Vida's signal and Patir's behavior, to an extent. At the moment, we are sending a continuous signal out of the station. Once the signal stops the time it takes for Patir to disappear varies, but we are reasonably certain that for as long as it continues Patir will stay there - it is just a one-day mission, after all. And even in the very worst case, this time we have the knowledge and the tools to bring you back rapidly."`
 			choice
 				`	"Alright, I am convinced."`
 				`	"Sorry, but I cannot return there after the last time."`
@@ -2100,7 +2101,7 @@ mission "Ka'het: Patir Mystery 14"
 		dialog `The satellite floats into your payload bay, and after a quick checkout you download its data. It only takes a few minutes before you can release it once again.`
 	on complete
 		conversation
-			`You meet Chilia in front of the landing pad.`
+			`You meet with Chilia in front of the landing pad. "Thank you for the help," he chants as you hand him the data. "If you are interested in continuing the Patir research project, meet me in the starport in a few hours - I might have good news for you."`
 
 
 mission "Ka'het: Patir Mystery 15"
@@ -2113,14 +2114,25 @@ mission "Ka'het: Patir Mystery 15"
 		has "Ka'het: Patir Mystery 14: done"
 	on offer
 		conversation
-			`Chilia is waiting for you at the pad and thanks you for the data. Grab a team from Ssil Vida to return to Patir.`
+			`The flurry of activity around the same hangars you visited previously has not died down. Hordes of technicians work together to move machinery of all kinds in and out of the construction site, much of which ends up somewhere underground beyond your sight. You don't see Taely among the crew this time, but you recognize some of the engineers that often work with her - and eventually, you see Chilia looking for you inside the crowd.`
+			`	"Ah, Captain. We feel confident enough in our results to move on with the next phase. We are readying a team aboard <planet> for an initial expedition, with a relatively simple mission: reactivating our outpost next to the Builder settlement."`
+			choice
+				`	"What about the data I gave you?"`
+					goto data
+				`	"Is there nobody here on <origin> that could do the same?"`
+			`	He gives you an odd look. "Not with the same training. We found that much of the preparations for <planet> were easily applicable to Patir as well, which allowed us to prepare for it fairly quickly. And plus," he continues authoritatively, "it would be good practice for you to see the machines that will make your future expeditions possible directly, so as to gain more confidence in them.`
+				goto details
+			label data
+			`	"The analysis of the data is still ongoing - we know that it appeared not long before Patir moved, and disappeared shortly after, but figuring out what happened in between is proving to be more complicated than expected. Still, we should know more soon enough, and there is no reason for it to block our progress.`
+			label details
+			`	"Make sure to leave space for a team of three when you get there. This expedition will use just the resources that you left around Patir when you left, so there should be no need to use your cargo this time."`
 				accept
-
 
 mission "Ka'het: Patir Mystery 16"
 	landing
 	name "Stop by <planet>"
 	description "Before bringing the Remnant to the Builder settlement around Patir, stop by <destination> to meet up with Chilia."
+	blocked "You dock with Ssil Vida, but despite Chilia's words, you are still lacking the <bunks> bunks necessary for the job."
 	source "Ssil Vida"
 	destination "Caelian"
 	passengers 3
@@ -2128,13 +2140,17 @@ mission "Ka'het: Patir Mystery 16"
 		has "Ka'het: Patir Mystery 14: done"
 	on offer
 		conversation
-			`Ssil Vida has changed (change sprite). You see people, but you're sad: Dusk is not among them. Before you leave, Chilia calls you and tells you to stop at a place far from Caelian's spaceport because he has news.`
+			`After these past months, Ssil Vida's docking section has become unrecognizable: it is distinctly Remnant, with tall arches and curved, segmented walls separating it into a variety of smaller rooms. Walking further inside the station reveals that at least the main chambers have kept most of their previous features; however, you can feel that this likely will not last for long.`
+			`	The three Remnant escort you on a quick tour of some of the modifications made recently. You walk through a control room with at least two dozen people sitting at their consoles, carefully managing the power of the station. They explain that many of the people there are focused solely on the emitter at the core of Ssil Vida: many of the modulators they have built around the station have the purpose of simplifying its control, but it's still very much an ongoing project.`
+			`	While they accompany you through a large corridor, filled only with Remnant terminals and closed doors, your attention is drawn to the cargo being transported by a pair of workers. It is mostly contained inside an opaque container, but you can see a bundle of pipes slightly glowing due to the sheer heat - a typical feature of Korath outfits. They are not sold in the nearby outfitter from what you have seen; you are left to wonder what their purpose here might be.`
+			`	Before you can think much of it, however, a short message from Chilia reaches your communicator. It instructs you to urgently meet him with the other three Remnant on a specific location <planet>, and to come with a free bunk and at least 65 tons free in your cargo: the plans, apparently, have changed.`
 				accept
 
 mission "Ka'het: Patir Mystery 17"
 	landing
 	name "Return to <system>"
 	description "Bring the 3 Remnant archaeologists and Prefect Chilia to <destination>, together with the new equipment."
+	blocked "You dock with Ssil Vida, but despite Chilia's words, you are still lacking the <bunks> bunks and <cargo> cargo necessary for the job."
 	source "Caelian"
 	destination "Builder Settlement"
 	passengers 4
@@ -2182,10 +2198,10 @@ ship "Fetri'sei" "Fetri'sei (Patir 18)"
 		"Ka'het Shield Restorer"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator"
-		"Asteroid Jump Drive (Patir 12A)"
+		"Asteroid Jump Drive (Patir 18)"
 		"Asteroid Weapon Small"
 
-outfit "Asteroid Jump Drive (Patir 12A)"
+outfit "Asteroid Jump Drive (Patir 18)"
 	"display name" "???"
 	category "Systems"
 	cost 29631456
