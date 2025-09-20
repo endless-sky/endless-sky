@@ -2062,29 +2062,50 @@ mission "Ka'het: Patir Mystery 14"
 		conversation
 			`Although its architecture still feels wildly alien, time has helped you become familiar with the way <planet>'s main starport is organized. By now, therefore, it's not difficult for you to notice when something changes. Some are subtler than others - it wasn't long ago that additional barriers were placed between the rows of landing pads, much to your displeasure.`
 			`	Passing the arch that conducts into the northern shipyards reveals a curious sight. A group of hangars that until now were marked as off limits are now open, and packed of crowds of construction workers are walking in and out of the area. Among the crowd, pairs of camels tow sections of Remnant spacecrafts of all kinds; you step aside to let a convoy pass with some of the longest wings you ever had a chance to see.`
-			`	"What a show, don't you think?" a familiar voice chants as you turn around. Taely smiles, making a gesture of welcome with her hands. "If you were looking for Chilia, he should be upstairs right now."`
+			`	"What a show, don't you think?" a familiar voice chants as you turn around. Taely smiles, making a gesture of welcome with her hands. "If you were looking for prefect Chilia, he should be upstairs right now."`
 			choice
 				`	"Why should I be looking for Chilia?"`
 					goto chilia
 				`	"Are you working on a new ship?"`
 			`	"On a rather old one, in reality," she replies, "but the last time this yard was active was been years before your arrival, so for you it should make little difference."`
 			label chilia
-			`	Suddenly, your communicator buzzes with a message - from Chilia, of course.`
-
-			`Meet Chilia, says they have nearly gained "total control" of Patir's state. His interest is not in exploring Patir, but in the potential risk the creatures beyond Patir may pose. He reveals that analysis of your data has shown that one of the creatures may have been in the system when you traveled back, and that it had disappeared by the time you took off again. The Remnant satellite around the black hole you already visited once should reveal more info on what happened; it would also pave the way to new explorations of the Builder settlement.`
+			`	Suddenly, your communicator buzzes with a message - from prefect Chilia, of course - telling you to meet him in <planet> as soon as possible. Taely looks amused. "He wants to speak with you about Patir," she explains, "A lot of resources have been redirected on that project since your last expedition, and older projects are finding a new reason to be. And I am helping where I can too," she concludes, carefully slipping with a tool bag under the enormous wing being transported. "If everything goes to plan, you will see the results in a matter of weeks."`
+			`	You bid her farewell, and you look for Chilia in the upper floors. "<first>!" he signs surprised. "That is some great timing. I have just prepared a new assignment for you."`
+			choice
+				`	"On Patir, right?"`
+				`	(Let him talk.)`
+					goto patir
+			`	He smiles. "I assume you must have spoken with Taely. Yes, that is correct. What had started as a lower priority project has been taking up more and more resources recently, for good reason.`
+			label patir
+			`	"Advances in our understanding of Ssil Vida have allowed us to experiment with Patir in the past months; you might have noticed it flicker in and out of your stellar map recently. We are now confident to have gained near total control of Patir's state, and how to make it stay in this galaxy or the other.`
+			`	"Our interest in the project is not purely academic," he continues, grabbing a datapad. "The creatures that inhabit that region can be both a potential threat, and an interesting resource. Look here." The screen shows a recording of radar data, taken on the day you returned from Patir based on the timestamp.`
+			`	"We believe that one of those beings was in Patir when you returned back in the Milky Way. As you know, we have a satellite around the black hole, but we have been unable to contact it since your return. If you board it and take its data, it might tell us more."`
+			choice
+				`	"Alright then."`
+					goto go
+				`	"How do you know it will not disappear while I am there?"`
+			`	"We have conducted a wide variety of tests during this period," he boasts. "We have started established a relation between Ssil Vida's signal and Patir's behavior, to an extent. At the moment, we are sending a continuous signal out of the station. Once the signal stops the time it takes for Patir to disappear varies, but I can personally assure you that for as long as it continues Patir will stay there - it is just a one-day mission, after all."`
+			choice
+				`	"Alright, I am convinced."`
+				`	"Sorry, but I cannot return there after the last time."`
+					decline
+			label go
+			`	"I would come with you if I could," he signs with trepidation, "but I am required here at the moment, and it is a task that can be easily done by a single person. Follow the procedure Dusk showed, and you will be done in no time."`
 				accept
 	npc assist save
 		system "Patir"
 		government "Remnant"
 		personality derelict target pacifist mute
 		ship "Remnant Satellite" "Bright Ember Yonder"
-		dialog `You capture the satellite, this time by yourself, and download the data. Then you free it.`
+		dialog `The satellite floats into your payload bay, and after a quick checkout you download its data. It only takes a few minutes before you can release it once again.`
+	on complete
+		conversation
+			`You meet Chilia in front of the landing pad.`
 
 
 mission "Ka'het: Patir Mystery 15"
-	landing
 	name "Remnant scientists"
-	description "Visit <planet> to gather a group of 3 Remnant scientists that wants to return to Patir."
+	description "Visit <planet> to gather 3 Remnant scientists that wants to return to Patir."
 	source
 		government "Remnant"
 	destination "Ssil Vida"
@@ -2648,7 +2669,7 @@ mission "Ka'het: Patir Mystery 37"
 		has "Ka'het: Patir Mystery 36: done"
 	on offer
 		conversation
-			`Swans go well, Taely asks for a ride back. You can ask her about Peregrines.`
+			`Swans go well, Taely asks for a ride back. Mention Korath in Ssil Vida? You can ask her about Peregrines.`
 				accept
 
 mission "Ka'het: Patir Mystery 38"
