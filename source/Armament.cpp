@@ -31,18 +31,18 @@ using namespace std;
 
 // Add a gun hardpoint (fixed-direction weapon).
 void Armament::AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes,
-	bool isUnder, const Outfit *outfit)
+	bool isUnder, const Outfit *outfit, int group)
 {
-	hardpoints.emplace_back(point, attributes, false, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, false, isUnder, outfit, group);
 }
 
 
 
 // Add a turret hardpoint.
 void Armament::AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes,
-	bool isUnder, const Outfit *outfit)
+	bool isUnder, const Outfit *outfit, int group)
 {
-	hardpoints.emplace_back(point, attributes, true, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, true, isUnder, outfit, group);
 }
 
 
@@ -93,7 +93,7 @@ int Armament::Add(const Outfit *outfit, int count)
 			// have left to install.
 			if(count > 0)
 			{
-				hardpoint.Install(outfit);
+				hardpoint.Install(outfit, 0);
 				--count;
 				++added;
 			}
@@ -157,6 +157,13 @@ void Armament::UninstallAll()
 
 
 
+void Armament::SetHardpointGroup(unsigned index, int group)
+{
+	hardpoints[index].SetGroup(group);
+}
+
+
+
 // Swap the weapons in the given two hardpoints.
 void Armament::Swap(unsigned first, unsigned second)
 {
@@ -171,8 +178,9 @@ void Armament::Swap(unsigned first, unsigned second)
 
 	// Swap the weapons in the two hardpoints.
 	const Outfit *outfit = hardpoints[first].GetOutfit();
-	hardpoints[first].Install(hardpoints[second].GetOutfit());
-	hardpoints[second].Install(outfit);
+	int group = hardpoints[first].GetGroup();
+	hardpoints[first].Install(hardpoints[second].GetOutfit(), hardpoints[second].GetGroup());
+	hardpoints[second].Install(outfit, group);
 }
 
 
