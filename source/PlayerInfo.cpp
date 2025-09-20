@@ -4902,19 +4902,9 @@ void PlayerInfo::DoAccounting()
 			}
 			if(!governments.empty())
 			{
-				message = "You have lost reputation with the ";
-				// TODO: use Format::List
-				if(governments.size() == 1)
-					message += (*governments.cbegin())->GetName();
-				else
-					for(auto it = governments.cbegin(); it != governments.cend(); ++it)
-					{
-						if(it == prev(governments.cend()))
-							message += "and the " + (*it)->GetName();
-						else
-							message += (*it)->GetName() + ", ";
-					}
-				message += " due to active tributes.";
+				message = "You have lost reputation with "
+					+ Format::List(governments, [](const Government *gov){ return "the " + gov->GetName(); })
+					+ " due to active tributes.";
 				Messages::Add(message, Messages::Importance::High);
 			}
 		}
