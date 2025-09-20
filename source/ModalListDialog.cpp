@@ -63,11 +63,13 @@ void ModalListDialog::UpdateList(std::vector<std::string> newOptions)
 	options.assign(newOptions.begin(), newOptions.end());
 	bool found = false;
 	for(auto &it : options)
+	{
 		if(it == selectedOption)
 		{
 			found = true;
 			break;
 		}
+	}
 	if(!found)
 		selectedOption = options.front();
 }
@@ -97,6 +99,13 @@ void ModalListDialog::Draw()
 		info.SetCondition("has button three");
 		info.SetCondition("button three active");
 	}
+
+	if(activeButton == 1)
+		info.SetCondition("button one focus");
+	else if(activeButton == 2)
+		info.SetCondition("button two focus");
+	else if(activeButton == 3)
+		info.SetCondition("button three focus");
 
 	// Draw the static components, labels and buttons.
 	const Interface *loadPanel = GameData::Interfaces().Get("modal list dialog");

@@ -513,10 +513,18 @@ interface "modal list dialog"
 	
 	# Note: mapping buttons 3, 2, 1 to F1, F2, F3 (left to right on screen vs keyboard)
 	active if "button three active"
+<<<<<<< HEAD
+=======
+	sprite "ui/dialog cancel"
+		center -85 200
+	hover if "button three focus"
+>>>>>>> 42cbdcd56 (Update ModalListDialog to implement proper hover/focus for buttons)
 	"dynamic button" F1 "button three label"
 		color "medium"
+		hover bright
 		align center
 		truncate back
+<<<<<<< HEAD
 		width 70
 		center -95 155
 	sprite "ui/dialog cancel"
@@ -524,8 +532,19 @@ interface "modal list dialog"
 		dimensions 70 30
 	
 	active if "button two active"
+=======
+		dimensions 70 30
+		center -85 200
+	
+	visible
+	active if "button two active"
+	sprite "ui/dialog cancel"
+		center 0 200
+	hover if "button two focus"
+>>>>>>> 42cbdcd56 (Update ModalListDialog to implement proper hover/focus for buttons)
 	"dynamic button" F2 "button two label"
 		color "medium"
+		hover bright
 		align center
 		truncate back
 		width 70
@@ -535,8 +554,15 @@ interface "modal list dialog"
 		dimensions 70 30
 	
 	active if "button one active"
+<<<<<<< HEAD
+=======
+	sprite "ui/dialog cancel"
+		center 85 200
+	hover if "button one focus"
+>>>>>>> 42cbdcd56 (Update ModalListDialog to implement proper hover/focus for buttons)
 	"dynamic button" F3 "button one label"
 		color "medium"
+		hover bright
 		align center
 		truncate back
 		width 70
