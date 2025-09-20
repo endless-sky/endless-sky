@@ -37,6 +37,27 @@ class TextArea;
 // callback function can be given to receive the player's response.
 class Dialog : public Panel {
 public:
+	class FunctionButton
+	{
+	public:
+		FunctionButton() = default;
+
+		~FunctionButton() = default;
+
+		template<class T>
+		FunctionButton(T *panel,
+			const std::string &buttonLabel,
+			SDL_Keycode buttonKey = '\0',
+			bool (T::*buttonAction)(const std::string&) = nullptr);
+
+	public:
+		std::string buttonLabel;
+		SDL_Keycode buttonKey;
+		std::function<bool(const std::string &)> buttonAction;
+	};
+
+
+public:
 	// An OK / Cancel dialog where Cancel can be disabled. The okIsActive lets
 	// you select whether "OK" (true) or "Cancel" (false) are selected as the default option.
 	Dialog(std::function<void()> okFunction, const std::string &message, Truncate truncate,
@@ -132,6 +153,20 @@ protected:
 	const System *system = nullptr;
 	PlayerInfo *player = nullptr;
 };
+
+
+
+template<class T>
+Dialog::FunctionButton::FunctionButton(T *panel,
+	const std::string &buttonLabel,
+	SDL_Keycode buttonKey,
+	bool(T::*buttonAction)(const std::string &))
+	:
+	buttonLabel(buttonLabel),
+	buttonKey(buttonKey),
+	buttonAction(std::bind(buttonAction, panel, std::placeholders::_1))
+{
+}
 
 
 
