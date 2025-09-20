@@ -321,7 +321,7 @@ void GameData::LoadSettings()
 			Command::LoadSettings(Files::Config() / "keys.txt", currentProfileName);
 
 			Logger::LogError("Files::Delete(" + static_cast<string>(Files::Config() / "keys.txt") + ");");
-			// TODO: Files::Delete(Files::Config() / "keys.txt");
+			Files::Delete(Files::Config() / "keys.txt");
 		}
 
 		// Save off a current profile for next time.
