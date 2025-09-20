@@ -97,7 +97,7 @@ private:
 
 		// Set the conditions that control when this element is visible and active.
 		// An empty string means it is always visible or active.
-		void SetConditions(const std::string &visible, const std::string &active);
+		void SetConditions(const std::string &visible, const std::string &active, const std::string &hover = "");
 
 		// Get the bounding rectangle, given the current screen dimensions.
 		Rectangle Bounds() const;
@@ -123,6 +123,7 @@ private:
 		Point padding;
 		std::string visibleIf;
 		std::string activeIf;
+		std::string hoverIf;
 	};
 
 	// This class handles "sprite", "image", and "outline" elements.
