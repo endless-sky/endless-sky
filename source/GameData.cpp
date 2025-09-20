@@ -277,7 +277,7 @@ void GameData::CheckReferences()
 void GameData::SaveSettings()
 {
 	string profileName = Command::Name();
-	string currentProfilePath = Files::Config() / ("keys_" + profileName + ".txt");
+	filesystem::path currentProfilePath = Files::Config() / ("keys_" + profileName + ".txt");
 
 	// Save the active profile to the provided path.
 	Command::SaveSettings(currentProfilePath);
@@ -301,7 +301,7 @@ void GameData::LoadSettings()
 		currentProfileName.pop_back();
 
 	// Load the current settings profile if it can be found.
-	string currentProfilePath = Files::Config() / ("keys_" + currentProfileName + ".txt");
+	filesystem::path currentProfilePath = Files::Config() / ("keys_" + currentProfileName + ".txt");
 
 	if(currentProfileName.empty() || !Files::Exists(currentProfilePath))
 	{
