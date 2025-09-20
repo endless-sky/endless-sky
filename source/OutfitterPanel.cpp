@@ -364,7 +364,8 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 
 
-ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const
+ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
+	const string &actionName) const
 {
 	if(!planet || !selectedOutfit)
 		return "No outfit selected.";
@@ -372,28 +373,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 	// Prevent coding up bad combinations.
 	if(fromLocation == toLocation)
 		throw "unreachable; to and from are the same";
-
-	// Determine a name for this action based on the fromLocation and toLocation:
-	string actionName = "unexpected action";
-	if(toLocation == OutfitLocation::Shop)
-		actionName = "sell";
-	else if(fromLocation == OutfitLocation::Shop)
-	{
-		if(toLocation == OutfitLocation::Cargo)
-			actionName = "buy and load";
-		else if(toLocation == OutfitLocation::Ship)
-			actionName = "buy and install";
-	}
-	else if(fromLocation == OutfitLocation::Ship)
-		actionName = "uninstall";
-	else if(toLocation == OutfitLocation::Ship)
-		actionName = "install";
-	else if(toLocation == OutfitLocation::Cargo)
-		actionName = "load";
-	else if(toLocation == OutfitLocation::Storage)
-		actionName = "store";
-	else
-		// Prevent coding up bad combinations.
+	if(fromLocation == OutfitLocation::Shop && toLocation == OutfitLocation::Storage)
 		throw "unreachable; unsupported to/from combination";
 
 	// Handle special cases such as maps and licenses.
@@ -403,6 +383,10 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			return "You cannot " + actionName + " maps. Once you buy one, it is yours permanently.";
 		if(toLocation == OutfitLocation::Cargo || toLocation == OutfitLocation::Storage)
 			return "You cannot place maps into " + LocationName(toLocation) + ".";
+		int mapSize = selectedOutfit->Get("map");
+		bool mapMinables = selectedOutfit->Get("map minables");
+		if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
+			return "You have already mapped all the systems shown by this map, so there is no reason to buy another.";
 	}
 
 	if(HasLicense(selectedOutfit->TrueName()))
@@ -411,6 +395,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			return "You cannot " + actionName + " licenses. Once you obtain one, it is yours permanently.";
 		if(toLocation == OutfitLocation::Cargo || toLocation == OutfitLocation::Storage)
 			return "You cannot place licenses into " + LocationName(toLocation) + ".";
+		return "You already have one of these licenses, so there is no reason to buy another.";
 	}
 
 	bool canSource = false;
@@ -542,7 +527,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 		{
 			// Do we have any in cargo?.
 			if(!player.Cargo().Get(selectedOutfit))
-				return "You don't have any " + selectedOutfit->PluralName() + " in your cargo hold.";
+				return "You don't have any " + selectedOutfit->PluralName() + " in cargo to " + actionName + ".";
 			canSource = true;
 			break;
 		}
@@ -550,7 +535,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 		{
 			// Do we have any in storage?
 			if(!player.Storage().Get(selectedOutfit))
-				return "You don't have any " + selectedOutfit->PluralName() + " in storage.";
+				return "You don't have any " + selectedOutfit->PluralName() + " in storage to " + actionName + ".";
 			canSource = true;
 			break;
 		}
@@ -636,9 +621,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 						double outfitRequires = -it.second;
 						if(shipAvailable < outfitRequires)
 							errors.push_back("You cannot install this outfit, because it requires "
-								+ Format::Number(outfitRequires) + " '"
-								+ Format::SimplePluralization(outfitRequires, it.first) + "', and this ship has "
-								+ Format::Number(shipAvailable) + " free.");
+								+ Format::SimplePluralization(outfitRequires, "'" + static_cast<string>(it.first) + "'")
+								+ ", and this ship has " + Format::Number(shipAvailable) + " free.");
 					}
 
 				// Return the errors in the appropriate format.
@@ -690,14 +674,15 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 
 
-ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation) const
+ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
+	const string &actionName) const
 {
 	// Source up outfits from the <fromLocation> and move them to the specified <toLocation>. If ships are the to/from
 	// location, then each ship will install/uninstall up to <howManyPer> outfits each, as allowed. Otherwise, it's
 	// simply how many per shop/hold when ships are not involved in the move.
 
 	// Note: CanMoveOutfit must be checked prior to further execution.
-	TransactionResult can_move = CanMoveOutfit(fromLocation, toLocation);
+	TransactionResult can_move = CanMoveOutfit(fromLocation, toLocation, actionName);
 	if(!can_move)
 		return can_move;
 
@@ -958,11 +943,11 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 	if(!ButtonActive(hoverButton, true))
 		return false;
 
-	// If we're hovering above a button that can modify ship outfits, highlight the ship.
+	// If we're hovering above a button that can modify add outfits to a ship then highlight the ship.
 	if(hoverButton == 'b' || hoverButton == 'i')
 		return ShipCanAdd(ship, selectedOutfit);
 
-	// Otherwise, not installing, must be uninstalling.
+	// Otherwise, not installing, highlight ships which can have outfits removed.
 	return ShipCanRemove(ship, selectedOutfit);
 }
 
@@ -971,7 +956,7 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 // Draw the display filter selection checkboxes in the lower left of the outfit panel.
 void OutfitterPanel::DrawKey()
 {
-	const Sprite *back = SpriteSet::Get("ui/outfitter key");  // TODO: fix the graphic, add 10 px to x and y
+	const Sprite *back = SpriteSet::Get("ui/outfitter key");
 
 	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
 
@@ -1294,7 +1279,7 @@ void OutfitterPanel::DrawButtons()
 	// Clear the buttonZones, they will be populated again as buttons are drawn.
 	buttonZones.clear();
 
-	// Row 1
+	// Row 1.
 	DrawButton("_Buy", Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize),
 		ButtonActive('b'), hoverButton == 'b', 'b');
 	DrawButton("_Install", Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
@@ -1359,7 +1344,7 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(char key)
 	if(key == 'b')
 	{
 		// Buy and install up to <modifier> outfits for each selected ship.
-		result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Ship);
+		result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Ship, "buy and install");
 	}
 	else if(key == 's')
 	{
@@ -1367,13 +1352,13 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(char key)
 		// Return a result based on the reason that none can be sold from the selected ships.
 		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Shop))
 			if(!MoveOutfit(OutfitLocation::Storage, OutfitLocation::Shop))
-				result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Shop);
+				result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Shop, "sell");
 	}
 	else if(key == 'r')
 	{
 		// Move <modifier> of the selected outfit to storage from either cargo or else each of the selected ships.
 		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))
-			result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage);
+			result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage, "store");
 	}
 	else if(key == 'c')
 	{
@@ -1382,13 +1367,13 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(char key)
 		// Note: If the outfit connot be moved from storage or bought into cargo, give an error based on the buy
 		// condition.
 		if(!MoveOutfit(OutfitLocation::Storage, OutfitLocation::Cargo))
-			result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Cargo);
+			result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Cargo, "buy and load");
 	}
 	else if(key == 'i')
 	{
 		// Install up to <modifier> outfits from already owned equipment into each selected ship.
 		if(!MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Ship))
-			result = MoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship);
+			result = MoveOutfit(OutfitLocation::Storage, OutfitLocation::Ship, "install");
 	}
 	else if(key == 'u')
 	{
@@ -1396,7 +1381,7 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(char key)
 		// else unload up to <multiple> outfits from cargo and place them storage.
 		// Note: If the outfit cannot be uninstalled or unloaded, give an error based on the inability to uninstall the
 		// outfit from any ship.
-		result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage);
+		result = MoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage, "uninstall");
 		if(!result)
 			// Unload from cargo, if possible, since we could not uninstall from the ship.
 			if(MoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage))

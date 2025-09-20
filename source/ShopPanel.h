@@ -31,13 +31,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class CategoryList;
 class Outfit;
 class Planet;
 class PlayerInfo;
 class Ship;
 
-
+void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor);
 
 // Class representing the common elements of both the shipyard panel and the
 // outfitter panel (e.g. the sidebar with the ships you own).
@@ -50,11 +52,10 @@ public:
 
 
 protected:
-	// TransactionResult holds the result of an attempt to do a transaction.
-	// It is implicitly created from a string or boolean in code. Any string
-	// indicates failure. True indicates success, of course, while false
-	// (without a string) indicates failure, but no need to pop up a message
-	// about it.
+	// TransactionResult holds the result of an attempt to do a transaction. It is implicitly
+	// created from a string or boolean in code. Any string indicates failure.
+	// True indicates success, of course, while false (without a string)
+	// indicates failure, but no need to pop up a message about it.
 	class TransactionResult {
 	public:
 		TransactionResult(const char *error) : success(false), message(error) {}
@@ -75,9 +76,6 @@ protected:
 
 protected:
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
-
-	static void DrawTooltip(const std::string &text, const Point &hoverPoint, const Color &textColor,
-		const Color &backColor);
 
 	void CheckForMissions(Mission::Location location) const;
 
@@ -110,6 +108,8 @@ protected:
 	void DrawButton(const std::string &name, const Rectangle, bool isActive, bool hovering, char keyCode);
 	void CheckSelection();
 
+
+protected:
 	class Zone : public ClickZone<const Ship *> {
 	public:
 		explicit Zone(Point center, Point size, const Ship *ship);
@@ -128,6 +128,8 @@ protected:
 		Info
 	};
 
+
+protected:
 	static constexpr int SIDEBAR_PADDING = 5;
 	static constexpr int SIDEBAR_CONTENT = 250;
 	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
@@ -143,6 +145,8 @@ protected:
 	static constexpr double BUTTON_COL_PAD = 5.;
 	static constexpr double BUTTON_WIDTH = 75.;
 
+
+protected:
 	PlayerInfo &player;
 	// Remember the current day, for calculating depreciation.
 	int day;
