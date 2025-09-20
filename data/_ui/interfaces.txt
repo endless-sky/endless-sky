@@ -519,19 +519,23 @@ interface "modal list dialog"
 	active if "button three active"
 	sprite "ui/dialog cancel"
 		center -85 200
+	hover if "button three focus"
 	"dynamic button" F1 "button three label"
 		color "medium"
+		hover bright
 		align center
 		truncate back
 		dimensions 70 30
 		center -85 200
 	
-	visibile
+	visible
 	active if "button two active"
 	sprite "ui/dialog cancel"
 		center 0 200
+	hover if "button two focus"
 	"dynamic button" F2 "button two label"
 		color "medium"
+		hover bright
 		align center
 		truncate back
 		dimensions 70 30
@@ -540,8 +544,10 @@ interface "modal list dialog"
 	active if "button one active"
 	sprite "ui/dialog cancel"
 		center 85 200
+	hover if "button one focus"
 	"dynamic button" F3 "button one label"
 		color "medium"
+		hover bright
 		align center
 		truncate back
 		dimensions 70 30
