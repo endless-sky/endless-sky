@@ -31,7 +31,7 @@ bool BookEntry::Empty() const
 {
 	if(items.empty())
 		return true;
-	for(const ItemType &item : items)
+	for(const BookEntryItem &item : items)
 		if(!std::holds_alternative<std::monostate>(item))
 			return false;
 	return true;
@@ -42,18 +42,17 @@ bool BookEntry::Empty() const
 void BookEntry::Read(const DataNode &node, int startAt)
 {
 	if(startAt <= node.Size())
-		AppendItem(ReadItem(node, startAt));
+		ReadItem(node, startAt);
 
 	for(const DataNode &child : node)
-		AppendItem(ReadItem(child));
+		ReadItem(child);
 }
 
 
 
 void BookEntry::Add(const BookEntry &other)
 {
-	for(const ItemType &item : other.items)
-		AppendItem(item);
+	items.insert(items.end(), other.items.begin(), other.items.end());
 }
 
 
@@ -61,7 +60,7 @@ void BookEntry::Add(const BookEntry &other)
 BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 {
 	BookEntry newEntry;
-	for(const ItemType &item : items)
+	for(const BookEntryItem &item : items)
 	{
 		// Perform requested substitutions on the text of this node and return a new variant.
 		if(holds_alternative<string>(item))
@@ -77,7 +76,7 @@ BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 void BookEntry::Save(DataWriter &out) const
 {
 	out.BeginChild();
-	for(const ItemType &item : items)
+	for(const BookEntryItem &item : items)
 	{
 		{
 			// Break the text up into paragraphs.
@@ -96,7 +95,7 @@ void BookEntry::Save(DataWriter &out) const
 int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const
 {
 	Point drawPoint = topLeft;
-	for(const ItemType &item : items)
+	for(const BookEntryItem &item : items)
 	{
 		if(holds_alternative<string>(item))
 		{
@@ -117,29 +116,23 @@ int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color)
 
 
 
-void BookEntry::AppendItem(const ItemType &item)
-{
-	// Skip empty strings.
-	if(holds_alternative<string>(item) && std::get<string>(item).empty())
-		return;
-
-	if(!std::holds_alternative<std::monostate>(item))
-		items.emplace_back(item);
-}
-
-
-
-BookEntry::ItemType BookEntry::ReadItem(const DataNode &node, int startAt)
+void BookEntry::ReadItem(const DataNode &node, int startAt)
 {
 	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
-		return SpriteSet::Get(node.Token(startAt + 1));
-
-	string text;
-	for(int i = startAt; i < node.Size(); ++i)
+		items.emplace_back(SpriteSet::Get(node.Token(startAt + 1)));
+	else
 	{
+		string text;
+		for(int i = startAt; i < node.Size(); ++i)
+			// Skip empty strings.
+			if(!node.Token(i).empty())
+			{
+				if(!text.empty())
+					text += "\n\t";
+				text += node.Token(i);
+			}
+
 		if(!text.empty())
-			text += "\n\t";
-		text += node.Token(i);
+			items.emplace_back(text);
 	}
-	return text;
 }
