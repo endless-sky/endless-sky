@@ -4336,12 +4336,8 @@ mission "Smuggle cartel members to <planet>"
 		"pirate jobs" ++
 		payment
 		payment 8000
-<<<<<<< Updated upstream
-		dialog "One of the cartel guards hands you your payment of <payment> before they and the rest of the group enter the <planet> spaceport."
-=======
 		dialog "One of the cartel guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
 		"reputation: Pirate" += 2
->>>>>>> Stashed changes
 
 mission "Pirate bulk smuggle to <planet> [2]"
 	name "Smuggle armed group to <planet>"
