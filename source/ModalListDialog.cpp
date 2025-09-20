@@ -313,6 +313,8 @@ bool ModalListDialog::Scroll(double dx, double dy)
 	return Drag(0., dy * Preferences::ScrollSpeed());
 }
 
+
+
 void ModalListDialog::Init()
 {
 	activeButton = 1;
@@ -324,6 +326,7 @@ void ModalListDialog::Init()
 			numButtons++;
 	}
 }
+
 
 
 bool ModalListDialog::DoCallback() const

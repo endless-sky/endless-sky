@@ -57,6 +57,7 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+
 private:
 	void Init();
 	bool DoCallback() const;
