@@ -3856,7 +3856,7 @@ mission "Pirate transport to <planet> [5]"
 		"pirate jobs" ++
 		payment
 		payment 1000
-		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
+		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> and the group slips off into the crowd."
 
 mission "Transport wealthy anarchists to <planet>"
 	job
@@ -3973,7 +3973,7 @@ mission "Pirate smuggle to <planet> [1]"
 	repeat
 	description "An illegal operation is looking to move <bunks> employees to a facility on <destination>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
 	passengers 2 10 .8
-	illegal 50000 `Your ship is boarded and the employees are escorted to the brig. Their employeer won't be happy to hear this...`
+	illegal 50000 `Your ship is boarded and the employees are escorted to the brig. Their employer won't be happy to hear this...`
 	to offer
 		random < 40
 		"reputation: Pirate" > 0
@@ -3986,7 +3986,7 @@ mission "Pirate smuggle to <planet> [1]"
 		dialog phrase "generic passenger on visit"
 	on abort
 		"reputation: Pirate" -= 1
-		dialog "You turn the employees away at the spaceport, their employer won't be happy to hear this..."
+		dialog "You turn the employees away at the spaceport. Their employer won't be happy to hear this..."
 	on fail
 		"reputation: Pirate" -= 1
 	on complete
@@ -4270,7 +4270,7 @@ mission "Pirate bulk smuggle to <planet> [1]"
 		dialog phrase "generic passenger on visit"
 	on abort
 		"reputation: Pirate" -= 2
-		dialog "You turn the employees away at the spaceport, their employer won't be happy to hear this..."
+		dialog "You turn the employees away at the spaceport. Their employer won't be happy to hear this..."
 	on fail
 		"reputation: Pirate" -= 2
 	on complete
@@ -4311,7 +4311,7 @@ mission "Smuggle cartel members to <planet>"
 		"pirate jobs" ++
 		payment
 		payment 8000
-		dialog "One of the cartel guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
+		dialog "One of the cartel guards hands you your payment of <payment> before they and the rest of the group enter the <planet> spaceport."
 
 mission "Pirate bulk smuggle to <planet> [2]"
 	name "Smuggle armed group to <planet>"
@@ -4404,7 +4404,7 @@ mission "Smuggle plunderbund elite to <planet>"
 	color unavailable "illegal job: unavailable"
 	job
 	repeat
-	description "This large consist of <bunks> plunderbund aristocracy and their extensive guardianship detachment seek sumptuous, yet surreptitious travel to <destination>, and they will compensate you with <payment> to take them there without being caught by planetary law enforcement."
+	description "This large cohort of <bunks> plunderbund aristocracy and their extensive guardianship detachment seek sumptuous, yet surreptitious travel to <destination>, and they will compensate you with <payment> to take them there without being caught by planetary law enforcement."
 	passengers 24 36 .8
 	illegal 25000000 `Your ship erupts into a massive war zone as soon as system security board! The inside of both your <model> and the officer's ship is trashed, as well as the multiple reinforcement ships called in to help. A rightfully furious officer hits you with an immense fine and says you're lucky that you're not shot on the spot for this...`
 	stealth
