@@ -348,7 +348,7 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 	// Check if this element is active.
 	int state = info.HasCondition(activeIf);
 	// Check if the mouse is hovering over this element.
-	state += (state && (box.Contains(UI::GetMouse()) || info.HasCondition(hoverIf)));
+	state += (state && (box.Contains(UI::GetMouse()) || (!hoverIf.empty() && info.HasCondition(hoverIf))));
 	// Place buttons even if they are inactive, in case the UI wants to show a
 	// message explaining why the button is inactive.
 	if(panel)
@@ -370,8 +370,7 @@ void Interface::Element::SetConditions(const string &visible, const string &acti
 {
 	visibleIf = visible;
 	activeIf = active;
-	if(hover != "")
-		hoverIf = hover;
+	hoverIf = hover;
 }
 
 
