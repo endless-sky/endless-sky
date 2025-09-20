@@ -32,7 +32,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
-#include "SaveDiscardDialog.h"
 #include "Screen.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
