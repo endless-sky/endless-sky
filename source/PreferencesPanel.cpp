@@ -74,6 +74,7 @@ namespace {
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
+	const string FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship use";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string DATE_FORMAT = "Date format";
 	const string NOTIFY_ON_DEST = "Notify on destination";
@@ -283,8 +284,10 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 
 
-bool PreferencesPanel::Click(int x, int y, int clicks)
+bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	EndEditing();
 
 	Point point(x, y);
@@ -551,8 +554,9 @@ void PreferencesPanel::DrawControls()
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
+		Command::HOLD_FIRE,
 		Command::GATHER,
-		Command::HOLD,
+		Command::HOLD_POSITION,
 		Command::AMMO,
 		Command::HARVEST,
 		Command::NONE,
@@ -757,14 +761,15 @@ void PreferencesPanel::DrawSettings()
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
 		"Automatically unpark flagship",
-		"",
+		FLAGSHIP_SPACE_PRIORITY,
+		"\t",
 		"Map",
 		"Deadline blink by distance",
 		"Hide unexplored map regions",
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		"\t",
+		"",
 		"Other",
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
@@ -920,6 +925,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
+		}
+		else if(setting == FLAGSHIP_SPACE_PRIORITY)
+		{
+			isOn = Preferences::GetFlagshipSpacePriority() != Preferences::FlagshipSpacePriority::NONE;
+			text = Preferences::FlagshipSpacePrioritySetting();
 		}
 		else if(setting == SHIP_OUTLINES)
 		{
@@ -1239,7 +1249,7 @@ void PreferencesPanel::DrawTooltips()
 	if(topLeft.Y() + size.Y() > Screen::Bottom())
 		topLeft.Y() -= size.Y();
 	// Draw the background fill and the tooltip text.
-	FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
+	FillShader::Fill(Rectangle::FromCorner(topLeft, size), *GameData::Colors().Get("tooltip background"));
 	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
 }
 
@@ -1344,6 +1354,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			speed = 10;
 		Preferences::SetScrollSpeed(speed);
 	}
+	else if(str == FLAGSHIP_SPACE_PRIORITY)
+		Preferences::ToggleFlagshipSpacePriority();
 	else if(str == DATE_FORMAT)
 		Preferences::ToggleDateFormat();
 	else if(str == NOTIFY_ON_DEST)
