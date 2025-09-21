@@ -539,10 +539,21 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	if(key.ends_with("button") || key.ends_with("dynamic button"))
 	{
 		const string tk = node.Token(1);
-		if(tk.size() == 2 && tk.front() == 'F' && tk.back() >= '1' && tk.back() <= '9')
+		if(tk.size() > 1 && tk.size() <= 3 && (tk.front() == 'F' || tk.front() == 'f'))
 		{
-			// Treat as function key, e.g. F1 through F9
-			buttonKey = SDLK_F1 + (tk.back() - '1');
+			int number = 0;
+			try {
+				number = stoi(tk.substr(1));
+			}
+			catch(...)
+			{
+			}
+
+			// Treat as function key, e.g. F1 through F12, or F13 through F24
+			if(number > 0 && number < 12)
+				buttonKey = SDLK_F1 + number - 1;
+			if(number > 12 && number <= 24)
+				buttonKey = SDLK_F13 + number - 13;
 		}
 		else
 			// handle per normal, single first character
