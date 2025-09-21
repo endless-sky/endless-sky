@@ -179,8 +179,7 @@ bool ModalListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
 
 	// Handle mouse clicks that are mapped via interfaces.txt
-	// Button order is depicted on screen as 3, 2, 1 and mapped to F21, F22, F23 so keyboard order matches screen order.
-	if(key == SDLK_F23 || key == buttonOne.buttonKey)
+	if(key == SDLK_F21 || key == buttonOne.buttonKey)
 	{
 		activeButton = 1;
 		key = SDLK_RETURN;
@@ -190,7 +189,7 @@ bool ModalListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		activeButton = 2;
 		key = SDLK_RETURN;
 	}
-	else if(key == SDLK_F21 || key == buttonThree.buttonKey)
+	else if(key == SDLK_F23 || key == buttonThree.buttonKey)
 	{
 		activeButton = 3;
 		key = SDLK_RETURN;
