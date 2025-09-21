@@ -70,7 +70,7 @@ In addition to the below dependencies, you will also need CMake 3.19 or newer, h
 <summary>DEB-based distros</summary>
 
 ```
-g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libminizip-dev libopenal-dev libmad0-dev uuid-dev
+g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libavif-dev libgl1-mesa-dev libglew-dev libminizip-dev libopenal-dev libmad0-dev libflac++-dev uuid-dev
 ```
 If your CMake version is less than 3.31, you will also need
 ```
@@ -89,7 +89,7 @@ While sufficient versions of other dependencies are available, Ubuntu 22.04 does
 <summary>RPM-based distros</summary>
 
 ```
-gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel minizip-devel openal-soft-devel libmad-devel libuuid-devel
+gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel libavif-devel mesa-libGL-devel glew-devel minizip-devel openal-soft-devel libmad-devel flac-devel libuuid-devel
 ```
 If your CMake version is less than 3.31, you will also need
 ```
