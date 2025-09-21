@@ -4277,7 +4277,7 @@ mission "Pirate bulk smuggle to <planet> [0]"
 		"reputation: Pirate" += 1
 
 mission "Pirate bulk smuggle to <planet> [1]"
-	name "Smuggle employees gang to <planet>"
+	name "Smuggle employees to <planet>"
 	color selected "illegal job: selected"
 	color unselected "illegal job: unselected"
 	color unavailable "illegal job: unavailable"
