@@ -73,7 +73,7 @@ segment_include = {re.compile(regex): description for regex, description in {
 	# Matches any commas that are not followed by whitespace characters.
 	",\\S": "commas should be followed by whitespaces",
 	# Matches incorrect structured bindings
-	r"\s&\s+\[": "structured bindings should not contain a space after the ampersand: &[first, second]",
+	"&\\s+\\[": "structured bindings should not contain a space after the ampersand: &[first, second]",
 }.items()}
 # Dict of patterns for selecting potential formatting issues in a single word.
 # Also contains the error description for the patterns.
