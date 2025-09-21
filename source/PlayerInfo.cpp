@@ -4643,7 +4643,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.Write("logbook");
 	out.BeginChild();
 	{
-		for(const auto & [date, logbookEntry] : logbook)
+		for(const auto &[date, logbookEntry] : logbook)
 			if(!logbookEntry.Empty())
 			{
 				out.Write(date.Day(), date.Month(), date.Year());
