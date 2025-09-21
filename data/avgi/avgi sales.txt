@@ -189,6 +189,6 @@ outfitter "Avgi Dissonance Smuggling"
 	"Concealment Lamina"
 	"Diffuse Deflector"
 	`Z-333 "Spark" Fusion Torch`
-	"`Z-666 "Zap" Fusion Torch`"
+	`Z-666 "Zap" Fusion Torch`
 	"Inductive Extractor"
 	"Remass Injector"
