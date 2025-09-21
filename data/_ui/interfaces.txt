@@ -511,13 +511,12 @@ interface "modal list dialog"
 	value "selection list horizontal text pad" 5
 	value "selection list fade out" 10
 	
-	# Note: mapping buttons 3, 2, 1 to F1, F2, F3 (left to right on screen vs keyboard)
 	visible if "has button three"
 	active if "button three active"
 	sprite "ui/dialog cancel"
 		center -85 200
 	hover if "button three focus"
-	"dynamic button" F1 "button three label"
+	"dynamic button" F23 "button three label"
 		color "medium"
 		hover bright
 		align center
@@ -530,7 +529,7 @@ interface "modal list dialog"
 	sprite "ui/dialog cancel"
 		center 0 200
 	hover if "button two focus"
-	"dynamic button" F2 "button two label"
+	"dynamic button" F22 "button two label"
 		color "medium"
 		hover bright
 		align center
@@ -542,7 +541,7 @@ interface "modal list dialog"
 	sprite "ui/dialog cancel"
 		center 85 200
 	hover if "button one focus"
-	"dynamic button" F3 "button one label"
+	"dynamic button" F21 "button one label"
 		color "medium"
 		hover bright
 		align center
