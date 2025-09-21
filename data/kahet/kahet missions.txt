@@ -2140,10 +2140,10 @@ mission "Ka'het: Patir Mystery 16"
 		has "Ka'het: Patir Mystery 14: done"
 	on offer
 		conversation
-			`After these past months, Ssil Vida's docking section has become unrecognizable: it is distinctly Remnant, with tall arches and curved, segmented walls separating it into a variety of smaller rooms. Walking further inside the station reveals that at least the main chambers have kept most of their previous features; however, you can feel that this likely will not last for long.`
+			`After these past months, Ssil Vida's docking section has become unrecognizable: it is distinctly Remnant, with tall arches and curved, segmented walls separating it into a variety of smaller rooms. Walking further inside the station reveals that at least the main chambers have kept most of their previous features; however, you can feel that this likely will not last for long. You meet there with the new group. To your displeasure, Dusk does not make an appearance.`
 			`	The three Remnant escort you on a quick tour of some of the modifications made recently. You walk through a control room with at least two dozen people sitting at their consoles, carefully managing the power of the station. They explain that many of the people there are focused solely on the emitter at the core of Ssil Vida: many of the modulators they have built around the station have the purpose of simplifying its control, but it's still very much an ongoing project.`
 			`	While they accompany you through a large corridor, filled only with Remnant terminals and closed doors, your attention is drawn to the cargo being transported by a pair of workers. It is mostly contained inside an opaque container, but you can see a bundle of pipes slightly glowing due to the sheer heat - a typical feature of Korath outfits. They are not sold in the nearby outfitter from what you have seen; you are left to wonder what their purpose here might be.`
-			`	Before you can think much of it, however, a short message from Chilia reaches your communicator. It instructs you to urgently meet him with the other three Remnant on a specific location <planet>, and to come with a free bunk and at least 65 tons free in your cargo: the plans, apparently, have changed.`
+			`	Before you can think much of it, however, a short message from Chilia reaches your commlink. It instructs you to urgently meet him with the other three Remnant on a specific location <planet>, and to come with a free bunk and at least 65 tons free in your cargo: the plans, apparently, have changed.`
 				accept
 
 mission "Ka'het: Patir Mystery 17"
@@ -2159,11 +2159,41 @@ mission "Ka'het: Patir Mystery 17"
 		has "Ka'het: Patir Mystery 16: done"
 	on offer
 		conversation
-			`You go far, far away from the spaceport, in one of the original settlements below the ground. You meet Chilia, who explains you about the data you brought (magic asteroid becoming just asteroid after the trip, Ka'sei mining and eating it). He shows you one of the systems developed that took advantage of Ka'het weaknesses: a system capable of emitting a signal that would make the Ka'het eject their cargo. He wants to come with you to use it on the Ka'sei to try to get the asteroid parts back. You're told to keep 65 tons free, 3 for the weapon and 62 for the maximum Ka'sei cargo space.`
+			`You overfly <origin>'s starport and stay at altitude; based on the coordinates Chilia gave you, the flight is far from over. As minutes pass, the city transforms into more and more sparse buildings deep in the desert, with barely visible roads in the sands connecting each. The more distant of these are organized in a circular fashion: a central building, of a sand-like okra and similar to some of outposts in the Rim, and rings of buildings of a more alien-like Remnant design surrounding it.`
+			`	As you soon find out, your destination is one of these settlements. You follow Chilia's instructions and touch down in an unsigned spot on a dune, not without kicking up loads of sand in the process. The three Remnant, busy discussing something you don't fully understand about Ssil Vida's design progression, stay in your ship's bridge while you meet up with Chilia.`
+			`	"Come here, Captain!" he gestures from behind a short barrier, mostly blocking the blowing sand. You follow him until stopping in front of the entrance of a large elevator in the central building. He writes on his commlink, and the elevator starts raising toward your floor; while Remnant numerals still escape you, it must have started deep below the ground for how long it takes.`
+			choice
+				`	"Why did you message me?"`
+					goto message
+				`	"What is this place?"`
+			`	"Oh, just an older facility of ours. As you might know, for the longest time we built our outposts like bunkers, even trying to make difficult hard to spot from orbit. Ever since we have relaxed our standards, most of these have been relegated to the role of storage. But it is not just for a history lesson that I have called you here today.`
+			label message
+			`	"We have made a new discovery in your data. After Patir moved, the creature did not simply disappear: a Ka'sei approached it, mined it, and harvested its pieces. This has important implications - these beings were fully capable of inhibiting the Ka'sei while in the other galaxy, so they either died when Patir moved or their abilities could not work anymore. Either possibility is equally interesting, and it is imperative that we investigate this sooner rather than later."`
+			`	The doors of the elevator open, and a few workers come out of it with a large piece of Remnant machinery. Though most of its components are hidden inside featureless boxes and standard pipes, it is topped by a segmented, cruciform antenna. You also notice its small size - the chances of something like that taking up the 65 tons that Chilia had asked you are nil.`
+			choice
+				`	"What does that do?"`
+					goto clueless
+				`	"Is that a communicator of some sort?"`
+					goto wickedsmart
+				`	"Where is the rest of it?"`
+			`	He doesn't seem to understand your question, so you explain your doubt further. "Oh, that is unrelated to this payload - it is just 3 tons, all here in front of you. But you will understand my request shortly.`
+				goto clueless
+			label wickedsmart
+			`	"Good intuition. Not in the sense of two-way communication, but its function is based on reliably transmitting a particular signal to the Ka'het. Let me explain.`
+			label clueless
+			`	"It was not long after we started translating the Builder language that we tried to put some of that effort into hacking their system. Given their destructive potential, the Ka'het were the natural target for this Electronic Warfare operation." The technicians carefully load the payload into your ship, trying to connect it with its electrical system.`
+			`	"Our understanding of their system was quite poor at the time, but despite this, we discovered a backdoor left by their designers. A unique signal that instructs the slug to dump its cargo and not retake it, perhaps to avoid damage from ingesting hazardous material. As long as it has not digested it yet, this could let us access the parts of the creature inside the Ka'sei without having to kill most of them. That is the reason I asked you for 65 tons free: 3 for this weapon, and 62 for the maximum cargo capacity of a Ka'sei."`
+			choice
+				`	"How do I use it?"`
+					goto how
+				`	"Why is it not used anymore?"`
+			`	"Shamefully, we could never make it small or reliable enough to justify the investment," he replies disappointed. "Most of its components have to be replaced after less than a dozen uses, for a capability that is not too useful in first place. In fact, the most important lesson from the study was of how little use the typical Ka'het cargo was; there are much easier ways to get our hands on metallic asteroids."`
+			label how
+			`	The workers signal that they are done with the installation. "I will come with you to operate it, Captain. Your previous mission will take precedence," he continues, "but as soon as they are done, I will direct you on the procedure to follow."`
 				accept
 	on complete
 		conversation
-			`You unload the Remnant, the settlement is dusty but mostly okay. Chilia tells you he will prepare the equipment for the mission.`
+			`The three suited-up Remnant leave your ship toward the outpost, while Chilia stays aboard to prepare the electronic warfare system for its mission. You try your best to aid Chilia and to support the team on their EVA, but will take at least a few hours before either of them is ready for the next phase.`
 
 event "Ka'het don't spawn in Fereti and Lire"
 	system Fereti
@@ -2266,7 +2296,7 @@ mission "Ka'het: Patir Mystery 18"
 		event "Ka'het don't spawn in Fereti and Lire"
 		event "no Patir spaceport and no Fetri spawn"
 		conversation
-			`People have explored, come back with you. Go, my player.`
+			`Time is passing, so Chilia makes you go there to see their progress. Outpost is dusty, people have explored, come back with you. Go, my player.`
 				launch
 	on enter
 		event "Patir spaceport returns and Fetri spawn"
