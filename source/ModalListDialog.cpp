@@ -47,6 +47,15 @@ ModalListDialog::ModalListDialog()
 	Audio::Pause();
 	SetInterruptible(false);
 	UI::PlaySound(UI::UISound::SOFT);
+
+	activeButton = 1;
+	numButtons = 1;
+	if(buttonTwo.buttonAction)
+	{
+		numButtons++;
+		if(buttonThree.buttonAction)
+			numButtons++;
+	}
 }
 
 
@@ -170,18 +179,18 @@ bool ModalListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
 
 	// Handle mouse clicks that are mapped via interfaces.txt
-	// Button order is depicted on screen as 3, 2, 1 and mapped to F1, F2, F3 so keyboard order matches screen order.
-	if(key == SDLK_F3 || key == buttonOne.buttonKey)
+	// Button order is depicted on screen as 3, 2, 1 and mapped to F21, F22, F23 so keyboard order matches screen order.
+	if(key == SDLK_F23 || key == buttonOne.buttonKey)
 	{
 		activeButton = 1;
 		key = SDLK_RETURN;
 	}
-	else if(key == SDLK_F2 || key == buttonTwo.buttonKey)
+	else if(key == SDLK_F22 || key == buttonTwo.buttonKey)
 	{
 		activeButton = 2;
 		key = SDLK_RETURN;
 	}
-	else if(key == SDLK_F1 || key == buttonThree.buttonKey)
+	else if(key == SDLK_F21 || key == buttonThree.buttonKey)
 	{
 		activeButton = 3;
 		key = SDLK_RETURN;
@@ -311,20 +320,6 @@ bool ModalListDialog::Drag(double dx, double dy)
 bool ModalListDialog::Scroll(double dx, double dy)
 {
 	return Drag(0., dy * Preferences::ScrollSpeed());
-}
-
-
-
-void ModalListDialog::Init()
-{
-	activeButton = 1;
-	numButtons = 1;
-	if(buttonTwo.buttonAction)
-	{
-		numButtons++;
-		if(buttonThree.buttonAction)
-			numButtons++;
-	}
 }
 
 

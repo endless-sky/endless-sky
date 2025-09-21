@@ -105,6 +105,5 @@ ModalListDialog::ModalListDialog(T *panel,
 	buttonThree(buttonThree),
 	hoverFun(std::bind(hoverFun, panel, std::placeholders::_1))
 {
-	Init();
 	UpdateList(options);
 }
