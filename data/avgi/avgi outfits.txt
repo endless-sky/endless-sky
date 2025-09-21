@@ -283,20 +283,19 @@ outfit "Ultracapacitor Bank"
 
 # Engines:
 
-outfit "Cross MPD Drive"
-	"display name" `E-12 "Cross" MPD Drive`
+outfit "Magnetoplasma Drive"
 	category "Engines"
 	series "Engines"
 	index 07010
 	"cost" 27000
-	thumbnail "outfit/cross mpd"
+	thumbnail "outfit/magnetoplasma drive"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"thrust" 3
+	"thrust" 4.5
 	"thrusting energy" 1.2
 	"thrusting heat" 0.6
-	"reverse thrust" 3
+	"reverse thrust" 4.5
 	"reverse thrusting energy" 1.2
 	"reverse thrusting heat" 0.6
 	"turn" 180
@@ -313,11 +312,10 @@ outfit "Cross MPD Drive"
 		"frame rate" 5
 	"reverse flare sound" "plasma tiny"
 	description "For bulk transportation of passengers and goods, electric propulsion has long been used by the Avgi for its versatility and low cost. This compact set of magnetoplasmadynamic thrusters can propel light ships to impressive velocities, given time to accelerate, but it is also notably energy-hungry. Being propellant agnostic, it is common to see this workhorse drive ran with common water or ammonia propellants, contributing to its renowned flexibility."
-	description "	Designed to be clustered and oriented in any direction, this design can give a ship full six-axis control, allowing it to translate and rotate in any direction with ease."
+	description "	Designed to be clustered and oriented in any direction, the thruster layout gives a ship full six-axis control, allowing it to translate and rotate in any direction with ease."
 
 
 outfit "Vapor Nuclear Rocket"
-	"display name" `N-24 "Vapor" Gas Core NTR`
 	category "Engines"
 	series "Engines"
 	index 07010
@@ -340,8 +338,7 @@ outfit "Vapor Nuclear Rocket"
 	description "	The Vapor Gas Core Nuclear Thermal Rocket is derived from the same reactor design as the Lantern Fission Core, stripped of power conversion equipment and radiation shielding. Like the Lantern, an electrostatic field of a few volts is used to trap ionized uranium plasma in the reactor even as hot hydrogen flows freely. The engine is bimodal, producing a small trickle of power from thermionic converters, but this capability comes at the cost of constant heat generation."
 
 
-outfit "Beam Antimatter Drive"
-	"display name" `A-3600 "Beam" Amat Drive`
+outfit `A-3600 "Beam" Amat Drive`
 	category "Engines"
 	series "Engines"
 	index 07080
@@ -369,8 +366,7 @@ outfit "Beam Antimatter Drive"
 	description "The fastest Avgi starships were propelled not just by their engines, but also by immense banks of lasers and particle beams stationed in the Anax system, pushing ships to velocities in excess of 0.2c before braking with a magsail or plasma magnet. Just before the invention of the hyperdrive, however, the Avgi perfected this beam-core antimatter drive, capable of pushing a starship with sufficient antimatter fuel to 0.4c and perhaps beyond. Requiring immense quantities of antimatter, the amat farms around Anax such as Antivli Station would have been strained to their limits had this design entered mass production, but the surprise invention of the hyperdrive rendered it laughably obsolete overnight."
 
 
-outfit "Spark Fusion Torch"
-	"display name" `Z-333 "Spark" Fusion Torch`
+outfit `Z-333 "Spark" Fusion Torch`
 	category "Engines"
 	series "Engines"
 	index 07050
@@ -396,8 +392,7 @@ outfit "Spark Fusion Torch"
 	description "	The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
 
 
-outfit "Zap Fusion Torch"
-	"display name" `Z-666 "Zap" Fusion Torch`
+outfit `Z-666 "Zap" Fusion Torch`
 	category "Engines"
 	series "Engines"
 	index 07060
@@ -422,8 +417,7 @@ outfit "Zap Fusion Torch"
 	description "	The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
 
 
-outfit "Arc Fusion Torch"
-	"display name" `Z-999 "Arc" Fusion Torch`
+outfit `Z-999 "Arc" Fusion Torch`
 	category "Engines"
 	series "Engines"
 	index 07070
@@ -514,8 +508,7 @@ outfit "Inductive Extractor"
 	description "The Inductive Extractor is a component that can be installed into an Avgi fusion torch to turn a portion of its thrust into energy. It requires a magnetic nozzle slot to be installed."
 
 
-outfit "Small RCS Thrusters"
-	"display name" "R-180 RCS Thrusters"
+outfit "R-180 RCS Thrusters"
 	plural "R-180 RCS Thrusters"
 	category "Engines"
 	series "Engines"
@@ -542,8 +535,7 @@ outfit "Small RCS Thrusters"
 	description "Avgi reaction control thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using reactor heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, but require the ship to have excess heat in order to function."
 
 
-outfit "Medium RCS Thrusters"
-	"display name" "R-360 RCS Thrusters"
+outfit "R-360 RCS Thrusters"
 	plural "R-360 RCS Thrusters"
 	category "Engines"
 	series "Engines"
@@ -570,8 +562,7 @@ outfit "Medium RCS Thrusters"
 	description "The Avgi have designed their reaction control thrusters to synergize with their fusion torches, tapping off high temperature waste heat and using it to superheat water for use in their reaction control systems. An additional magnetohydrodynamic accelerator around each thruster's nozzle improves specific impulse at the cost of significant energy use. These thrusters allow Avgi starships to easily dock with stations or other ships without igniting their highly radioactive fusion torches."
 
 
-outfit "Large RCS Thrusters"
-	"display name" "R-720 RCS Thrusters"
+outfit "R-720 RCS Thrusters"
 	plural "R-720 RCS Thrusters"
 	category "Engines"
 	series "Engines"

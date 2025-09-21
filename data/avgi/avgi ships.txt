@@ -614,7 +614,7 @@ ship "Frequentia"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 2
 
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
 		"R-180 RCS Thrusters"
@@ -695,7 +695,7 @@ ship "Polari"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 9
 
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
 		"R-180 RCS Thrusters"
@@ -918,7 +918,7 @@ ship "Undsyni"
 		"Spectrometer Array" 2
 		"Cargo Expansion" 12
 
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1002,7 +1002,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Spectrometer Array"
 		"Outfits Expansion"
 
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1031,7 +1031,7 @@ ship "Undsyni" "Undsyni (Plasmadyne)"
 		"Multispectral Scanner"
 		"Spectrometer Array"
 
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1092,7 +1092,7 @@ ship "Modified Tachytia"
 		"Radiative Lamina"
 		"Optical Laser Rifle" 900
 		
-		"Beam Antimatter Drive"
+		`A-3600 "Beam" Amat Drive`
 		"Inductive Extractor" 6
 		"Hyperdrive"
 
@@ -1298,7 +1298,7 @@ ship "Prismaios"
 		"Optical Lasing Generator"
 		"Optical Laser Rifle" 6
 		
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1357,7 +1357,7 @@ ship "Prismaios" "Prismaios (Laserstar)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 6
 		
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor" 2
 		"Remass Injector"
 		"R-360 RCS Thrusters"
@@ -1384,7 +1384,7 @@ ship "Prismaios" "Prismaios (Orchid)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 6
 		
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1435,7 +1435,7 @@ ship "Interferos"
 		"Optical Lasing Generator"
 		"Magnetic Scoop"
 		
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
 		"R-180 RCS Thrusters"
@@ -1496,7 +1496,7 @@ ship "Interferos" "Interferos (KKV)"
 		"Optical Lasing Generator"
 		"Magnetic Scoop"
 		
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
 		"R-180 RCS Thrusters"
@@ -1518,7 +1518,7 @@ ship "Interferos" "Interferos (Orchid)"
 		"Optical Lasing Generator"
 		"Magnetic Scoop"
 		
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
 		"R-180 RCS Thrusters"
@@ -1577,7 +1577,7 @@ ship "Diaspersi"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 36
 		
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1671,7 +1671,7 @@ ship "Diaspersi" "Diaspersi (Orchid)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 36
 		
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1702,7 +1702,7 @@ ship "Diaspersi" "Diaspersi (UREB)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 36
 		
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-360 RCS Thrusters"
@@ -1756,7 +1756,7 @@ ship "Refraktos"
 		"Heatsink Partition" 3
 		"Optical Laser Rifle" 24
 		
-		"Zap Fusion Torch"
+		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 5
 		"Remass Injector" 1
 		"R-360 RCS Thrusters"
@@ -1831,7 +1831,7 @@ ship "Refraktos" "Refraktos (UREB)"
 		"Heatsink Partition" 3
 		"Optical Laser Rifle" 24
 		
-		"Zap Fusion Torch"
+		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 5
 		"Remass Injector" 1
 		"R-360 RCS Thrusters"
@@ -1860,7 +1860,7 @@ ship "Refraktos" "Refraktos (Excimer)"
 		"Heatsink Partition"
 		"Optical Laser Rifle" 24
 		
-		"Zap Fusion Torch"
+		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 5
 		"Remass Injector" 1
 		"R-360 RCS Thrusters"
@@ -1920,7 +1920,7 @@ ship "Difraktos"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-180 RCS Thrusters"
@@ -2002,7 +2002,7 @@ ship "Difraktos" "Difraktos (KKV)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 		
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-180 RCS Thrusters"
@@ -2035,7 +2035,7 @@ ship "Difraktos" "Difraktos (Orchid)"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-180 RCS Thrusters"
@@ -2076,7 +2076,7 @@ ship "Difraktos" "Difraktos (UREB + Orchid)"
 		"Specular Deflector"
 		"UREB Turret" 2
 		"Ultracapacitor Bank"
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 
 	gun
 	gun "External Launch Tube"
@@ -2110,7 +2110,7 @@ ship "Difraktos" "Difraktos (UREB)"
 		"Specular Deflector"
 		"UREB Turret" 4
 		"Ultracapacitor Bank" 2
-		"Spark Fusion Torch"
+		`Z-333 "Spark" Fusion Torch`
 
 	turret "UREB Turret"
 	turret "UREB Turret"
@@ -2168,7 +2168,7 @@ ship "Atenuatia"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 90
 		
-		"Zap Fusion Torch"
+		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 3
 		"Remass Injector" 3
 		"R-720 RCS Thrusters"
@@ -2317,7 +2317,7 @@ ship "Atenuatia" "Atenuatia (Orchid)"
 		"Multispectral Scanner" 6
 		"Optical Laser Rifle" 90
 		
-		"Zap Fusion Torch"
+		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 2
 		"Remass Injector" 4
 		"R-720 RCS Thrusters"
