@@ -120,6 +120,13 @@ public:
 		ALWAYS_ON
 	};
 
+	enum class FlagshipSpacePriority : int_fast8_t {
+		NONE = 0,
+		PASSENGERS,
+		CARGO,
+		BOTH
+	};
+
 
 public:
 	static void Load();
@@ -216,6 +223,11 @@ public:
 	static void ToggleMinimapDisplay();
 	static MinimapDisplay GetMinimapDisplay();
 	static const std::string &MinimapSetting();
+
+	/// Flagship space priority setting.
+	static void ToggleFlagshipSpacePriority();
+	static FlagshipSpacePriority GetFlagshipSpacePriority();
+	static const std::string &FlagshipSpacePrioritySetting();
 
 	static int GetPreviousSaveCount();
 };
