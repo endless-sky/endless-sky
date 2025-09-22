@@ -3736,7 +3736,7 @@ mission "Pirate transport to <planet> [0]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1500 300
+		payment 1500
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 		"reputation: Pirate" += .5
 
@@ -3762,7 +3762,7 @@ mission "Pirate transport to <planet> [1]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1000 300
+		payment 1000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 		"reputation: Pirate" += .5
 
@@ -3788,7 +3788,7 @@ mission "Pirate transport to <planet> [2]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1000 300
+		payment 1000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 		"reputation: Pirate" += .5
 
@@ -3813,7 +3813,7 @@ mission "Pirate transport to <planet> [3]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1250 300
+		payment 1250
 		dialog "You find your contact on <planet>. They do a quick head count before handing you your payment of <payment>."
 		"reputation: Pirate" += .5
 
@@ -3838,7 +3838,7 @@ mission "Pirate transport to <planet> [4]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1250 300
+		payment 1250
 		dialog "You find your contact on <planet>. They do a quick head count before handing you your payment of <payment>."
 		"reputation: Pirate" += .5
 
@@ -3863,7 +3863,7 @@ mission "Pirate transport to <planet> [5]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1000 300
+		payment 1000
 		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
 		"reputation: Pirate" += .5
 
@@ -3890,7 +3890,7 @@ mission "Transport wealthy anarchists to <planet>"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 8000 375
+		payment 8000
 		dialog "One of the anarchists' guards hands you your payment of <payment>, after which the group enters the <planet> spaceport."
 		"reputation: Pirate" += 1
 
@@ -3900,7 +3900,7 @@ mission "Transport shady group to <planet> (Short)"
 	repeat
 	description "This group of <bunks> shady individuals seek urgent transport to <destination> by <date>, and they will pay you <payment> to take them there."
 	passengers 3 6 .8
-	deadline 8
+	deadline 6
 	to offer
 		random < 30
 		"reputation: Pirate" > -10
@@ -3916,7 +3916,7 @@ mission "Transport shady group to <planet> (Short)"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 12000 400
+		payment 12000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 		"reputation: Pirate" += .5
 
@@ -3926,7 +3926,7 @@ mission "Transport shady group to <planet> (Long)"
 	repeat
 	description "This group of <bunks> shady individuals seek urgent transport to <destination> by <date>, and they will pay you <payment> to take them there."
 	passengers 3 6 .8
-	deadline 16
+	deadline 14
 	to offer
 		random < 25
 		"reputation: Pirate" > -10
@@ -3942,7 +3942,7 @@ mission "Transport shady group to <planet> (Long)"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 12000 400
+		payment 12000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 		"reputation: Pirate" += .5
 		
@@ -3975,7 +3975,7 @@ mission "Pirate smuggle to <planet> [0]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 2000 375
+		payment 2000
 		dialog "You wish the anarchist family the best of luck on <planet>, and collect your payment of <payment>."
 		"reputation: Pirate" += .5
 
@@ -4007,7 +4007,7 @@ mission "Pirate smuggle to <planet> [1]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 2250 375
+		payment 2250
 		dialog "You find your contact on <planet> and they do a quick head count before handing you your payment of <payment>."
 		"reputation: Pirate" += 1
 		
@@ -4041,7 +4041,7 @@ mission "Pirate smuggle to <planet> [2]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 2000 375
+		payment 2000
 		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
 		"reputation: Pirate" += 1
 		
@@ -4076,7 +4076,7 @@ mission "Smuggle wealthy druglord to <planet>"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 9000 450
+		payment 9000
 		dialog "One of the druglord's guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
 		"reputation: Pirate" += 1.5
 		
@@ -4089,7 +4089,7 @@ mission "Smuggle shady group to <planet>"
 	description "This group of <bunks> incredibly shady individuals seek urgent, covert transport to <destination> by <date>, and they will pay you <payment> to take them there without being scanned or caught by planetary law enforcement."
 	illegal 50000 `Your ship is boarded and the shady group is escorted to the brig. Hopefully this doesn't make someone mad...`
 	passengers 3 6 .8
-	deadline 16
+	deadline 14
 	to offer
 		random < 20
 		"reputation: Pirate" > 0
@@ -4108,7 +4108,7 @@ mission "Smuggle shady group to <planet>"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 16000 475
+		payment 16000
 		dialog "Before you can even speak, the group hands you <payment> and vanishes into the <planet> crowd."
 		"reputation: Pirate" += 1
 
@@ -4136,7 +4136,7 @@ mission "Pirate bulk transport to <planet> [0]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 600 200
+		payment 600
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 		"reputation: Pirate" += 2
 
@@ -4162,7 +4162,7 @@ mission "Pirate bulk transport to <planet> [1]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 600 200
+		payment 600
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 		"reputation: Pirate" += 1
 		
@@ -4188,7 +4188,7 @@ mission "Pirate bulk transport to <planet> [2]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 600 200
+		payment 600
 		dialog "You wish the anarchists the best of luck on <planet>, and collect your payment of <payment>."
 		"reputation: Pirate" += 1
 
@@ -4213,7 +4213,7 @@ mission "Pirate bulk transport to <planet> [3]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 850 200
+		payment 850
 		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
 		"reputation: Pirate" += 1
 
@@ -4238,7 +4238,7 @@ mission "Pirate bulk transport to <planet> [4]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 850 200
+		payment 850
 		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
 		"reputation: Pirate" += 1
 
@@ -4272,7 +4272,7 @@ mission "Pirate bulk smuggle to <planet> [0]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1000 375
+		payment 1000
 		dialog "As soon as you land on <planet>, the gang leader hands you your payment of <payment> before the group slips off into the crowd."
 		"reputation: Pirate" += 1
 
@@ -4305,7 +4305,7 @@ mission "Pirate bulk smuggle to <planet> [1]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 1250 375
+		payment 1250
 		dialog "You find your contact on <planet> and, after a lengthy head count, they hand you your payment of <payment>."
 		"reputation: Pirate" += 1
 
@@ -4341,7 +4341,7 @@ mission "Smuggle cartel members to <planet>"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 8000 450
+		payment 8000
 		dialog "One of the cartel guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
 		"reputation: Pirate" += 2
 
@@ -4377,7 +4377,7 @@ mission "Pirate bulk smuggle to <planet> [2]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 20000 600
+		payment 20000
 		dialog "The armed group stash their gear and march out into the <planet> spaceport, the crowd giving way as they do. A well-dressed member hands you a payment of <payment> before rejoining the squad at the front."
 		"reputation: Pirate" += 2
 
@@ -4404,7 +4404,7 @@ mission "Pirate mass transport to <planet> [0]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 500 100
+		payment 500
 		dialog "After a hectic unloading process at the <planet> spaceport, you collect your payment of <payment>."
 		"reputation: Pirate" += 1.5
 
@@ -4431,7 +4431,7 @@ mission "Pirate mass transport to <planet> [1]"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 500 100
+		payment 500
 		dialog "After what feels like hours spent in the <planet> spaceport, finding lost baggage and organizing the unloading, you finally collect your payment of <payment>."
 		"reputation: Pirate" += 1.5
 
@@ -4467,6 +4467,6 @@ mission "Smuggle plunderbund elite to <planet>"
 	on complete
 		"pirate jobs" ++
 		payment
-		payment 10000 600
+		payment 10000
 		dialog "One of the plunderbund's guards hands you your payment of <payment>, before they and the rest of the group enter the <planet> spaceport."
 		"reputation: Pirate" += 3
