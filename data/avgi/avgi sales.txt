@@ -123,7 +123,7 @@ outfitter "Avgi Superconductors"
 	"Inductive Extractor"
 
 outfitter "Avgi Propulsion"
-	"Cross MPD Drive"
+	"Magnetoplasma Drive"
 	"Vapor Nuclear Rocket"
 	`Z-333 "Spark" Fusion Torch`
 	"R-180 RCS Thrusters"
