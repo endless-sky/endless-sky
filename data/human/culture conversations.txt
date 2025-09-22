@@ -1254,10 +1254,10 @@ mission "Little Vienna in New Austria"
 			label backtoship
 			`	With the atmosphere steeped in nostalgia for a distant city on a distant world long past, you return to your ship.`
 
-mission "Easter Celebrations"
+mission "Easter Celebrations: Deep"
 	minor
 	source
-		planet "Harmony" "New Tortuga"
+		government "Deep"
 	to offer
 		# Easter Sunday is on a Sunday.
 		"days since epoch" % 7 == 0
@@ -1267,20 +1267,21 @@ mission "Easter Celebrations"
 		365 - "days until year end" <= ( year % 19 * 19 + ( 15 - ( 13 + year / 100 * 8 ) / 25 + year / 100 - year / 400 ) % 30 ) % 30 + 80 + 7
 	on offer
 		conversation
-			`During a walk through the spaceport, you observe a small church tucked between a grain silo and a welding shop. Written on the door in large letters are the words "Stop by for a celebration of the Risen God!"`
+			`During a walk through the spaceport, you observe a large church standing in the middle of a large lawn with pruned topiaries, flower gardens, and croquet runs, a piece of land that would certainly cost a lot of money in such a crowded area. Printed on a large sign near the road are the words "Stop by for a celebration of the Risen God!"`
 			choice
 				`	(Step in.)`
 				`	(Move on.)`
 					decline
-			`	Inside the building, a group is singing with deafening loudness. On the stage at the front of the room, a man strums a guitar; behind him a lady softly plays the piano. A large screen displays lyrics to the current song, "Christ Our Lord has Risen Again."`
+			`	Inside the building at the far end, a group is singing with deafening loudness. On the stage at the front of the room, a man strums a guitar; behind him a lady softly plays the piano. A large screen displays lyrics to the current song, "Christ Our Lord has Risen Again." You estimate that at least a thousand people have showed up for the event.`
 			choice
 				`	(Head out.)`
 					goto headout
 				`	(Stay and enjoy the music.)`
-			`	The pastor loops through several other hymns, eventually ending with an announcement of thanks to those who attended the celebration. As the group breaks up, you notice a bulletin board documenting several church events - a potluck on Wednesday, a notification of an outing on Saturday night, and several other items blocked by a passing pedestrian.`
-				decline
+			`	The pastor loops through several other hymns, including one which he said had been composed just last week on Bourne, before eventually ending with an announcement of thanks to those who attended the celebration. As the crowd begins to break up, you decide to leave before the doorways become too busy to move through.`
 			label headout
-			`	On your way out of the room, you notice a bulletin board documenting several church events - a potluck on Wednesday, a notification of an outing on Saturday night, and several other items blocked by a passing pedestrian.`
+			`	On your way out of the room, you notice a bulletin board near the door documenting several church events - a potluck on Wednesday, a notification of an off-planet trip for the next weekend, and several other items blocked by a set of people in the process of a furious debate.`
+			`	Once outside on the wide lawns, you notice a group of children gathered around an old man. He says something that you cannot hear, and the children scatter, each heading in a different direction. You notice that they carry plastic baskets under one arm.`
+			`	The adult fires a starting pistol, and immediately each child begins looking in the shrubs nearby. One of them holds up a plastic egg with a shout of triumph.`
 				decline
 
 phrase "racetrack"
