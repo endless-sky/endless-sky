@@ -2296,21 +2296,31 @@ mission "Ka'het: Patir Mystery 18"
 		event "Ka'het don't spawn in Fereti and Lire"
 		event "no Patir spaceport and no Fetri spawn"
 		conversation
-			`Time is passing, so Chilia makes you go there to see their progress. Outpost is dusty, people have explored, come back with you. Go, my player.`
-				launch
+			`It has been at least half an hour since Chilia finished setting up for the mission. Despite the occasional updates from the exploration team on the commlink, he is getting more visibly impatient as time passes, compulsively tapping over his console in a musical rhythm. Most what they relay is about the status of the machinery and the samples left in the lab, and your mind soon trails off to other thoughts.`
+			`	At last, they make their way back to your ship. "The outpost and its consumables are in a fairly good state. After we completed our tasks, we took the opportunity to check out what was left in the paltry. We have brought some of it with us, if you wish to share a meal before the mission," he concludes with a smile and a gesture toward their handbags.`
+			choice
+				`	(Accept it.)`
+					goto hungry
+				`	"This is not the moment to eat."`
+			`	Chilia nods. "This time it is best to leave them for the return trip. Captain," he continues, turning to you, "if you are ready to leave, so am I. I will activate the weapon as soon as we are in orbit - our target should be well within its range."`
+				accept
+			label hungry
+			`	The meals you are shown have become rather familiar, but not particularly appetizing. Unlike most times, you notice that the Remnant expedition does not eat much more than you - perhaps they don't use symbionts, or maybe they have just eaten some while inside the lab. Chilia, still in anticipation for the mission (and perhaps hoping to accelerate things), limits to drinking some water.`
+			`	Once you are done, Chilia signals you that he is ready to go when you are - the target is within range, and he should be able to activate it as soon as you reach orbit.`
+				accept
 	on enter
 		event "Patir spaceport returns and Fetri spawn"
-		conversation
-			`Chilia uses the thing; but instead of releasing its cargo, the target Ka'sei... activates a jump drive?!?.`
+		dialog
+			`As soon as you give him the go, Chilia calmly sits at his console and starts fiddling with the control. The antenna atop your ship moves to track the chosen Fetri'sei, and the signal starts; but right after, instead of cargo being ejected, you detect an energy spike coming from the Ka'sei. It's activating a Jump Drive! Taken aback, Chilia signs you to try to follow it.`
 	npc board
 		government "Ka'sei (Patir 18)"
 		personality coward waiting pacifist uninterested fleeing target
 		ship "Fetri'sei (Patir 18)" "Faii-rii'het"
 		on assist
 			"reputation: Ka'sei (Patir 18)" <?= -1
-			conversation
-				`You give it fuel and it jumps away! It can only go to Patir or Lire.`
-		conversation
+			dialog
+				`Now that the Ka'sei is a few meters away from you, your ship detects it has completely run out of hyperspace fuel. Following Chilia's advice, you try to give it some - chances are that it will jump to a safer system than this one.`
+		dialog
 			`Grab them outfits.`
 	npc
 		government "Ka'het"
@@ -2320,10 +2330,10 @@ mission "Ka'het: Patir Mystery 18"
 		on disable
 			"reputation: Ka'sei (Patir 18)" <?= -1
 			dialog
-				`You may now board the guy.`
+				`You dock with the stranded Ka'sei now that the area is safer, and Chilia signals you the foreign outfits in it - at least, the ones that have not been fully digested yet. Take them and bring them to <destination>.`
 	on enter "Fereti"
 		dialog
-			`There's your ship, Captain. Kill the slug, then board it.`
+			`"There it is!" signs Chilia excited. "As long as it does not jump further away, the best course of action is to kill that Maeri'het and then board the Fetri safely to retrieve its cargo."`
 	on complete
 		require "Asteroid Jump Drive (Patir 12A)"
 		require "Asteroid Weapon Small"
