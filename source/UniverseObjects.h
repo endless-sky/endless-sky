@@ -132,9 +132,9 @@ private:
 	Set<Shop<Ship>> shipSales;
 	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
+	Set<Gamerules> gamerulesPresets;
 	std::set<double> neighborDistances;
 
-	Gamerules gamerules;
 	TextReplacements substitutions;
 	Trade trade;
 	std::vector<StartConditions> startConditions;

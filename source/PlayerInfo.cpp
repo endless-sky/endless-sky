@@ -177,7 +177,7 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New(const StartConditions &start)
+void PlayerInfo::New(const StartConditions &start, const Gamerules *gamerules)
 {
 	// Clear any previously loaded data.
 	Clear();
@@ -207,6 +207,7 @@ void PlayerInfo::New(const StartConditions &start)
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
 	start.GetConditions().Apply();
+	this->gamerules = gamerules;
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -444,6 +445,8 @@ void PlayerInfo::Load(const filesystem::path &path)
 				}
 			}
 		}
+		else if(key == "gamerules preset" && hasValue)
+			gamerules = GameData::GamerulesPresets().Get(child.Token(1));
 		else if(key == "start")
 			startData.Load(child);
 	}
@@ -2613,6 +2616,21 @@ const ConditionsStore &PlayerInfo::Conditions() const
 
 
 
+const Gamerules *PlayerInfo::GetGamerules() const
+{
+	return gamerules;
+}
+
+
+
+void PlayerInfo::SetGamerules(const Gamerules *gamerules)
+{
+	this->gamerules = gamerules;
+	GameData::SetGamerules(gamerules);
+}
+
+
+
 // Uuid for the gifted ships, with the ship class follow by the names they had when they were gifted to the player.
 const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 {
@@ -3354,6 +3372,13 @@ void PlayerInfo::ApplyChanges()
 	AddChanges(dataChanges);
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
+
+	// Set the active gamerules to the rules from this player.
+	// If the player's gamerules were never loaded, then this is an
+	// old pilot that was implicitly using the default gamerules before.
+	if(!gamerules)
+		gamerules = GameData::DefaultGamerules();
+	GameData::SetGamerules(gamerules);
 
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
@@ -4682,6 +4707,13 @@ void PlayerInfo::Save(DataWriter &out) const
 			}
 	}
 	out.EndChild();
+
+	if(gamerules)
+	{
+		out.Write();
+		out.WriteComment("The rules you play by:");
+		out.Write("gamerules preset", gamerules->Name());
+	}
 
 	out.Write();
 	out.WriteComment("How you began:");
