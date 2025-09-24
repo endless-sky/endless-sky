@@ -2303,10 +2303,12 @@ mission "Ka'het: Patir Mystery 18"
 					goto hungry
 				`	"This is not the moment to eat."`
 			`	Chilia nods. "This time it is best to leave them for the return trip. Captain," he continues, turning to you, "if you are ready to leave, so am I. I will activate the weapon as soon as we are in orbit - our target should be well within its range."`
-				accept
+				goto end
 			label hungry
 			`	The meals you are shown have become rather familiar, but not particularly appetizing. Unlike most times, you notice that the Remnant expedition does not eat much more than you - perhaps they don't use symbionts, or maybe they have just eaten some while inside the lab. Chilia, still in anticipation for the mission (and perhaps hoping to accelerate things), limits to drinking some water.`
 			`	Once you are done, Chilia signals you that he is ready to go when you are - the target is within range, and he should be able to activate it as soon as you reach orbit.`
+			label end
+			`	Back inside your ship, you notice Chilia telling the three researchers that it would be better for them to stay locked in their bunks for the rest of the mission. Evidently they don't have the same authorization level as prefect Chilia - or you, for that matter.`
 				accept
 	on enter
 		event "Patir spaceport returns and Fetri spawn"
@@ -2321,7 +2323,7 @@ mission "Ka'het: Patir Mystery 18"
 			dialog
 				`Now that the Ka'sei is a few meters away from you, your ship detects it has completely run out of hyperspace fuel. Following Chilia's advice, you try to give it some - chances are that it will jump to a safer system than this one.`
 		dialog
-			`Grab them outfits.`
+			`You dock with the stranded Ka'sei, and Chilia signals you the foreign outfits in it - or at least, the ones that have not been fully digested yet. "The Fetri appears to have overheated beyond what it could survive," he signs undecided. "Realistically, there is nothing we can do for it. Take the unknown outfits into your cargo hold, we will figure out the next move back on the <planet>."`
 	npc
 		government "Ka'het"
 		system "Fereti"
@@ -2329,11 +2331,9 @@ mission "Ka'het: Patir Mystery 18"
 		ship "Maeri'het (Disable-able)" "Alix-ori'het"
 		on disable
 			"reputation: Ka'sei (Patir 18)" <?= -1
-			dialog
-				`You dock with the stranded Ka'sei now that the area is safer, and Chilia signals you the foreign outfits in it - at least, the ones that have not been fully digested yet. Take them and bring them to <destination>.`
 	on enter "Fereti"
 		dialog
-			`"There it is!" signs Chilia excited. "As long as it does not jump further away, the best course of action is to kill that Maeri'het and then board the Fetri safely to retrieve its cargo."`
+			`"There it is!" signs Chilia thrilled. "As long as it does not jump further away, the best course of action is to destroy the Maeri'het to prevent it from complicating things further. Once the area is safe, you should be able to loot those outfits directly from its cargo hold."`
 	on complete
 		require "Asteroid Jump Drive (Patir 12A)"
 		require "Asteroid Weapon Small"
@@ -2351,14 +2351,45 @@ mission "Ka'het: Patir Mystery 19"
 		has "Ka'het: Patir Mystery 18: done"
 	on offer
 		conversation
-			`Chilia says you have done good, yay we have the stuff, give them to me on Caelian so that we can analyze 'em. Also drop off there the exploration team. Possibility of overhearing (well, seeing) a conversation between the researchers about Patir not being set up for living quarters proportional to its size? (i.e. they had their own living quarters in the transfer vehicle)`
+			`Despite the hiccups, the mood in the bridge is ecstatic. Chilia has been careful to hide the outfits you looted into nondescript containers, but when the other Remnant have come out of their bunks it was clear that they had been able to gather some of what had happened. For his part, Chilia does not seem to mind them, limiting himself to sipping from a colorful drink with a sly face.`
+			choice
+				`	(Join Chilia.)`
+					goto chilia
+				`	(Speak with the Remnant researchers.)`
+			`	As soon as you approach them, they shoot their shot with a few questions about your mission here. Just as you have seen Chilia do, you dodge most of them with generic answer and soon enough, the conversation veers back to Patir itself. They sign a bit too fast for your abilities, but you're able to follow most of it. What catches your attention their description of the structure of the Builder settlement: according to them, the living quarters are extremely limited compared to the size of the outpost, suggesting that there must have been a separate vehicle to house them at some point. While unlikely to be of much use, you take note of it just as Chilia joins the table.`
+			`	Sharing a drink with the rest of you, he commends all of you for your efforts, careful not to go into any specifics. "Given the results obtained, I say we can classify this as mission accomplished on both sides," he concludes. "Once our glasses are empty, it is time to move back to <destination> for the analysis of our data."`
+				accept
+			label chilia
+			`	"Nicely done, Captain. With the items secured, I say we can easily classify this as mission accomplished." He accompanies you somewhere more private, and continues. "It seems that, in some way, the Ka'sei gained the ability to activate some of these outfits while digesting them. It must have been by accident, but it is still good news for us - it means that there has to be a way for us to use this technology on our own ships.`
+			`	"I caught the opportunity to transfer some of the data the Ka'sei had gathered, in case it helps our efforts. Naturally, it will take a while to decrypt and translate; better move to <destination> so that the analysis of that data, and even more so of the items, can commence."`
 				accept
 	on complete
 		payment 500000
 		outfit "Asteroid Jump Drive (Patir 12A)" -1
 		outfit "Asteroid Weapon Small" -1
 		conversation
-			`Chilia says goodbye, if you ask to keep the outfits he laughs. Says you'll hear from him again, but his role here is done. However, some are going to do a new expedition to the space beyond Patir after this success, and he presents you. There's no need, however: the lead is, you guessed it, Dusk. He says hi and tells you the next mission will be time limited, so to meet up with him in the spaceport only once you've got a jump-capable ship that can carry 1 fighter`
+			`The first to leave your ship are the three researchers, who make you various gestures of farewell as they disappear into the starport. Chilia hangs around for a while longer, but after your cargo gets unloaded, still hidden inside standard packages, he signs that it is time for him to leave as well.`
+			`	"As you might have figured out, our next objective is to study these items and their technology in depth, hopefully to reverse engineer them or at least figure out their workings." You offer to give him a hand, but he shakes his head. "Your help has been inestimable, but you cannot follow me where these, and I, are going. You have seen yourself how complicated maintaining some secrecy around this project is proving to be."`
+			choice
+				`	"Is there nothing I can do then?"`
+					goto patir
+				`	"I understand."`
+					goto patir
+				`	"I was hoping to keep those for myself."`
+			`	He grins. "Do not feel too disappointed, activating these outfits is going to be complicated than connecting some wires to it and pressing a button. I have a hard time believing you - or anyone, for that matter - could get them to fire by themselves, even if I have just begun studying them.`
+			label patir
+			`	"If you continue like in the past weeks, I doubt it will take you too long to get the authorizations for this project," he gestures pleased. "But as I have found, even right now there are other projects about Patir that would like your participation. During our return, I have informed Dusk that you are free from your obligations with my research; if you would like to meet him, just remain nearby your landing pad." He bows, and you return it as he follows the cargo deeper into the starport. You catch the opportunity to clean up the cockpit and the empty bunks. Some Remnant nearby soon notice you taking out the trash, and offer you a hand.`
+			`	By the time Dusk arrives, your ship's interior look as good as new. You greet and invite him to take a seat, which he warmly accepts. "It is nice to see you again, <first>. I heard your travels in Patir with Chilia went... well, at least better than ours," he quips.`
+			choice
+				`	"What do you know about it?"`
+				`	"All things considered, quite well."`
+					goto chat
+				`	"It could have gone better."`
+					goto chat
+			`	"About the same as you, I imagine. Right now, you and I have the same level of authorization, at least for what concerns Patir and the related systems. Prefect Chilia, of course, is going to be far more involved than us in everything related to its military potential."`
+			label chat
+			`	Your chat with Dusk goes on for some time, discussing with him the details of your previous trips. For his part, he describes you his progress over the past months: his focus expanded from Patir itself to the worlds that lie beyond it, and on how to use Ssil Vida to reach it.`
+			`	"Given our progress, we now feel ready for a new expedition. At first a short, single-day one, to test our systems in a practical scenario. If all goes well, after that we will be able to progressively increase our stay to any length of time," he asserts. You follow him out of your ship as he prepares to leave. "Before we can go, I need you to prepare a ship capable of carrying a fighter, and outfit it with a Jump Drive and a Key Stone. One of our Ibis should more than suffice, if you do not have one already. It is more important to do things right than to do them quickly, so come meet me here only when you are ready."`
 
 mission "Ka'het: Patir Mystery 20"
 	name "Explore <system> again"
@@ -2376,7 +2407,7 @@ mission "Ka'het: Patir Mystery 20"
 			`You find Dusk, who asks you if you have the jumping carrier he asked (option to tell him you have the carrier, but not the JD? Upon which he gives you one?). If you say yes, he explains the rest: you'll bring a Smew to act as lifeboat to station on the Patir lab, but more importantly, this will be a test to attempt to move Patir again to that place you went before, only intentionally (and for just 1 day). Dusk gives a call to Ssil Vida, and they launch a signal that will reach Patir in 6 days.`
 				accept
 	on visit
-		dialog "You've arrived at <planet>, but your passengers or the Calm Sea Afire are not with you!"
+		dialog "You've arrived at <planet>, but either your passengers or the Calm Sea Afire are not with you!"
 	on complete
 		take ship "Smew" "Calm Sea Afire"
 			id 551551
@@ -2384,7 +2415,7 @@ mission "Ka'het: Patir Mystery 20"
 			"with outfits"
 		conversation
 			`You did it! Sit back and enjoy the show. You see the stars move, n stuff. Meet in a few hours.`
-# add patir moves event
+# add patir moves event, even if you fail the deadline.
 
 mission "Ka'het: Patir Mystery 21"
 	name "Gaslined test run"
@@ -2571,7 +2602,7 @@ mission "Ka'het: Patir Mystery 30"
 		not "Ka'het: Patir Mystery 29: done"
 	on offer
 		conversation
-			`You are surprised to find Chilia waiting for you instead of Dusk. He says they jammed him, but he escaped and could deliver the scans manually! Prevent it from doing so.`
+			`You are surprised to find Chilia waiting for you instead of Dusk. He says they jammed him, but he escaped and could deliver the scans manually! Prevent it from doing so. How did they jam it? Simply, a signal strong enough send toward someone listening will fry any antenna! It's something the korath have done to them, and they have done to the korath, many times.`
 				accept
 # add raider with no people aboard and a hospital ship. They have NPC Kill; this means that succeeding the mission equals ending the Remnant campaign. On disable sets "remnant: patir hospital disabled"
 # add lil satellite that you deployed back then in the early campaign; when you assist it, it sets the "remnant: patir called help" condition. The communication will be one-way, and they will reply on Baianus
@@ -2757,7 +2788,7 @@ mission "Ka'het: Patir Mystery 39"
 	on offer
 # give the player the terns
 		conversation
-			`The team this time is big. The Terns are many. The cargo heavy. But you can do it!`
+			`The team this time is big. The Terns are many. The cargo heavy. But you can do it! Maybe add Dawn among the people who stay in the lab in Patir?`
 				accept
 	on complete
 # take from the player the terns
