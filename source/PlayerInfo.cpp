@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
@@ -59,6 +60,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Financial conditions are bound to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
+	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
+
 	// Move the flagship to the start of your list of ships. It does not make sense
 	// that the flagship would change if you are reunited with a different ship that
 	// was higher up the list.
@@ -917,24 +921,98 @@ Account &PlayerInfo::Accounts()
 
 
 
-// Calculate how much the player pays in daily salaries.
-int64_t PlayerInfo::Salaries() const
+// Recalculate the number of crew in the player's fleet.
+void PlayerInfo::UpdateCrew()
 {
-	// Don't count extra crew on anything but the flagship.
-	int64_t crew = 0;
-	const Ship *flagship = Flagship();
-	if(flagship)
-		crew = flagship->Crew() - flagship->RequiredCrew();
+	officers = 0;
+	subordinates = 0;
+	crew = 0;
 
-	// A ship that is "parked" remains on a planet and requires no salaries.
 	for(const shared_ptr<Ship> &ship : ships)
+		// Destroyed and parked ships do not have any crew on them.
 		if(!ship->IsParked() && !ship->IsDestroyed())
-			crew += ship->RequiredCrew();
-	if(!crew)
-		return 0;
+		{
+			bool isFlagship = Flagship() == ship.get();
+			bool hasAnyDrive = ship->JumpNavigation().HasAnyDrive();
+			int requiredCrew = ship->RequiredCrew() - ship->RequiredOfficers();
 
-	// Every crew member except the player receives 100 credits per day.
-	return 100 * (crew - 1);
+			// The player counts as an officer on their flagship and does not need to be paid.
+			int requiredOfficers = ship->RequiredOfficers() - (hasAnyDrive ? isFlagship : 0);
+
+			// Extra crew is only counted on the flagship.
+			crew += isFlagship ? ship->Crew() - requiredOfficers - 1 : requiredCrew;
+			officers += requiredOfficers;
+
+			// Driveless ships do not have officers, and therefore do not have subordinate crew.
+			if(hasAnyDrive)
+				subordinates += isFlagship ? max(requiredCrew - 19, 0) : requiredCrew;
+		}
+}
+
+
+
+// Get the number of subordinate crew in the player's fleet.
+int PlayerInfo::Subordinates() const
+{
+	return subordinates;
+}
+
+
+
+// Get the number of crew in the player's fleet.
+int PlayerInfo::Crew() const
+{
+	return crew;
+}
+
+
+
+// Get the number of officers in the player's fleet.
+int PlayerInfo::Officers() const
+{
+	return officers;
+}
+
+
+
+// Calculate the total daily salary of all officers under the player's command.
+int64_t PlayerInfo::OfficerSalaries() const
+{
+	const int baseOfficerSalary = GameData::GetGamerules().BaseOfficerSalary();
+	const int officerSalaryPerCrew = GameData::GetGamerules().OfficerSalaryPerCrew();
+	const double officerMultiplier = GameData::GetGamerules().OfficerMultiplier();
+
+	// An officer's salary is equal to the base officer salary plus the officer salary per crew,
+	// for each of their subordinates. This is then multiplied by the officer multiplier for
+	// each hired officer in the player's fleet beyond the first.
+	const int64_t combinedSalary = baseOfficerSalary * officers + subordinates * officerSalaryPerCrew;
+	const double actualMultiplier = max(1., pow(officerMultiplier, officers - 1));
+
+	// Prevent possible integer overflows.
+	if(limit / actualMultiplier < combinedSalary)
+		return limit;
+
+	return combinedSalary * actualMultiplier;
+}
+
+
+
+// Calculate the total daily salary of all non-officer crew under the player's command.
+int64_t PlayerInfo::CrewSalaries() const
+{
+	const int baseSalary = GameData::GetGamerules().BaseCrewSalary();
+
+	return min<int64_t>(limit, crew * baseSalary);
+}
+
+
+
+// Calculate how much the player pays in daily salaries.
+int64_t PlayerInfo::Salaries()
+{
+	UpdateCrew();
+
+	return min(limit, OfficerSalaries() + CrewSalaries());
 }
 
 
@@ -3534,8 +3612,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		return date.DaysSinceEpoch() - StartData().GetDate().DaysSinceEpoch(); });
 
 	// Read-only account conditions.
-	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
-	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 
 	conditions["net worth"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, max(-limit, accounts.NetWorth())); });
