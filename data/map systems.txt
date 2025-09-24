@@ -4907,6 +4907,7 @@ system "Alpha Centauri"
 	habitable 1190
 	belt 1116
 	haze _menu/haze-67
+	link Muphrid
 	link Sol
 	asteroids "small rock" 1 1.944
 	asteroids "medium rock" 2 5.04
