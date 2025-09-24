@@ -2369,7 +2369,7 @@ mission "Ka'het: Patir Mystery 19"
 		outfit "Asteroid Weapon Small" -1
 		conversation
 			`The first to leave your ship are the three researchers, who make you various gestures of farewell as they disappear into the starport. Chilia hangs around for a while longer, but after your cargo gets unloaded, still hidden inside standard packages, he signs that it is time for him to leave as well.`
-			`	"As you might have figured out, our next objective is to study these items and their technology in depth, hopefully to reverse engineer them or at least figure out their workings." You offer to give him a hand, but he shakes his head. "Your help has been inestimable, but you cannot follow me where these, and I, are going. You have seen yourself how complicated maintaining some secrecy around this project is proving to be."`
+			`	"As you might have figured out, our next objective is to study these items and their technology in depth, hoping to reverse engineer them or, at least, figure out their inner workings." You offer to give him a hand, but he shakes his head. "Your help has been inestimable, but you cannot follow me where these, and I, are going. You have seen yourself how complicated maintaining some secrecy around this project is proving to be."`
 			choice
 				`	"Is there nothing I can do then?"`
 					goto patir
