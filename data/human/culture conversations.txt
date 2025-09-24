@@ -1627,3 +1627,244 @@ mission "A Sunracer Hovercraft Racing"
 				clear "second place margin"
 				clear "last place margin"
 				clear "hovercraft racing: talked to fan"
+
+
+phrase "three card monte opening"
+	word
+		"You step down from your ship onto the main concourse of the spaceport, "
+		"Strolling past the smoky glow of the spaceport bar, you drift into the main area, "
+		"After a quiet walk around the area, you find yourself back in the heart of the spaceport, "
+		"You descend from your ship to enter the spaceport, "
+	word
+		"where a semiscircle of onlookers has formed around a battered folding table and a trio of worn cards. "
+		"and find your path blocked by a tight ring of locals listening as a nimble-fingered dealer swaps three cards across a board. "
+		"when a sharp laugh draws your attention to a small card game on a crate. "
+		"and see a tight cluster of faces leaning in around a makeshift table as quick hands shuffle three tired cards. "
+	word
+		"The dealer looks up, grins, and offers a simple challenge: "
+		"The dealer glances up, eyebrows arched, as he spreads his arms over the cards in invitation: "
+		"The dealer's gaze lingers on you, one hand resting on the cards as though daring you the step closer: "
+		"The dealer finally notices you, his grin widening as he gestures grandly at the three waiting cards: "
+
+
+mission "Three Card Monte"
+	minor
+	repeat
+	# invisible
+	non-blocking
+	"offer precedence" 10
+	to offer
+		random < 100
+	#	random < 2 + 5 * "flagship planet attribute: tourism" + 5 * "flagship planet attribute: urban" + 10 * "flagship planet attribute: pirate" - "Three Card Monte: declined"
+		credits > 1000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
+		# not attributes "deep" "station"
+	on offer
+		conversation
+			`${three card monte opening}"The game's simple. Stake 1,000 credits and find the ace to double your money."`
+			`	"Always a pleasure to see another captain of fortune," the dealer says, tipping a weathered hat. His gaze never leaves your credits.`
+				to display
+					"reputation: Pirate" > 100
+			action
+				"monte: games played" = 0
+				"monte: not scam chance" = "reputation: Pirate" / 10 + 50
+				"monte: not scam chance" >?= 10 # 10% floor, so always at least a 60% of not being scammed first round, meaning the player always comes out ahead in the first game
+			label newgame
+			`	The dealer waits expectantly.`
+			choice
+				`	(Put down 1000 credits to play the game.)`
+					to display
+						credits > 1000
+				`	(Skip the game.)`
+					decline
+			action
+				"monte: multiplication" = 1 + "roll: 2"
+				"monte: addition" = "roll: 3"
+				"monte: card spot" = ( "monte: multiplication" * 1 + "monte: addition" ) % 3
+				"monte: step" = 1
+				clear "monte: scammed"
+				payment -1000
+			`	You drop a 1,000 credit chip to play. "All you need to do is find the ace," the dealer says, flashing the ace faceup towards you, then setting it down between two other facedown cards in the center. He starts shuffling with a practiced twist.`
+				goto begin
+			label nextdecision
+			# `	testing, &[monte: card spot]. &[monte: multiplication] &[monte: addition]`
+			branch ending
+				"monte: step" >= 3 + "monte: games played" * 2
+			action
+				"monte: step" ++
+				"monte: multiplication" = 1 + "roll: 2"
+				"monte: addition" = "roll: 3"
+				"monte: card spot" = ( "monte: multiplication" * "monte: card spot" + "monte: addition" ) % 3
+			label begin
+			branch swap1
+				and
+					"monte: multiplication" == 1
+					"monte: addition" == 0
+			branch swap2
+				and
+					"monte: multiplication" == 1
+					"monte: addition" == 1
+			branch swap3
+				and
+					"monte: multiplication" == 1
+					"monte: addition" == 2
+			branch swap4
+				and
+					"monte: multiplication" == 2
+					"monte: addition" == 0
+			branch swap5
+				and
+					"monte: multiplication" == 2
+					"monte: addition" == 1
+			# swap6 mult 2 add 2, swapping left & right
+			`	The dealer swaps the left and right cards, trading their places in a practiced motion.`
+				goto nextdecision
+			label swap1 # no change
+			`	The dealer taps the left card, a mock swap leaving the layout untouched.`
+				goto nextdecision
+			label swap2 # swap clockwise
+			`	The dealer rotates the whole set of cards to the right, the rightmost card rolling around to the left.`
+				goto nextdecision
+			label swap3 # swap counterclockwise
+			`	The dealer shifts the trio one step to the left, the leftmost card ending up on the right.`
+				goto nextdecision
+			label swap4 # swap middle and right
+			`	The dealer snaps the middle and right cards together, exchanging their places with a slick flick.`
+				goto nextdecision
+			label swap5 # swap left and middle
+			`	The dealer flicks the left and middle cards across each other in a quick swap.`
+				goto nextdecision
+			label ending
+			`	With a theatrical flourish, he fans his hands across the table, then leans in. "Where's the ace?"`
+			choice
+				`	"Left."`
+					goto leftcard
+				`	"Middle."`
+					goto middlecard
+				`	"Right."`
+			action
+				"monte: guess" = 2
+			`	The dealer dramatically puts his hand on the rightmost card that you chose...`
+				goto failedcard
+			label leftcard
+			action
+				"monte: guess" = 0
+			`	The dealer dramatically puts his hand on the leftmost card that you chose...`
+				goto failedcard
+			label middlecard
+			action
+				"monte: guess" = 1
+			`	The dealer dramatically puts his hand on the middle card that you chose...`
+			label failedcard
+			`testing, card spot &[monte: card spot], guess &[monte: guess]. Not scam chance: &[monte: not scam chance] + 50 - &[monte: games played] * 25`
+			branch correct
+				and
+					"monte: card spot" == "monte: guess"
+					random < "monte: not scam chance" + 50 - 25 * "monte: games played"
+			`	And flips your chosen, decidedly non-ace card. You've lost 1000 credits this round.`
+			`	Then he playfully reveals the left card: the ace.`
+				to display
+					or
+						and
+							"monte: card spot" == 0
+							"monte: card spot" != "monte: guess"
+						and
+							"monte: card spot" != 0
+							"monte: card spot" == "monte: guess"
+			`	With a single, clean motion he shows that the middle card was the ace.`
+				to display
+					or
+						and
+							"monte: card spot" == 1
+							"monte: card spot" != "monte: guess"
+						and
+							"monte: card spot" != 1
+							"monte: card spot" != 2
+							"monte: card spot" == "monte: guess"
+			`	He then sweeps his hand to reveal that the right card was the ace.`
+				to display
+					and
+						"monte: card spot" == 2
+						"monte: card spot" != "monte: guess"
+			branch scammed
+				"monte: card spot" == "monte: guess"
+			`	"Better luck next time."`
+				goto again
+			label scammed
+			action
+				"monte: scammed" = 1
+			`	The dealer shrugs, "Better luck next time."`
+				goto again
+			label correct
+			`	And flips over an ace! The dealer seems bewildered, but begrudgingly hands over 2,000 credits, doubling your money.`
+			action
+				payment 2000
+			label again
+			branch cutoff
+				"monte: games played" < 3
+			`	The dealer looks spooked by some unseen authorities and shoos you away, quickly packing up and disappearing into the spaceport.`
+				goto trueending
+			label cutoff
+			`	The dealer gives you a look. "Fancy another game?"`
+			action
+				"monte: games played" ++
+			choice
+				`	"Of course!"`
+					to display
+						and
+							credits > 1000
+					goto newgame
+				`	"You cheated!"`
+					to display
+						"monte: scammed" >= 1
+				`	"Not today."`
+					goto trueending
+			branch pirateworld
+				"flagship planet attribute: pirate" > 0
+			`	The dealer feigns offense, shoulders lifting. "Cheated? Me? You've got quite the imagination, friend." He slides forward a fresh credit chip with a crooked grin. "Prove it. Same rules, double or nothing."`
+			choice
+				`	"Fine. But I'm watching you."`
+					to display
+						and
+							credits > 1000
+					goto newgame
+				`	"And get scammed again? I don't think so."`
+					goto trueending
+			label pirateworld
+			`	The dealer throws back his head and laughs. "Cheated? Sure did, what're you gonna do about it, eh?"`
+			`	From the crowd, several burly figures step forward, weapons on hips, while the dealer's grin never fades.`
+			`	"Matter of fact, you've ruined the game. That's a mark's fee, 10,000 credits. Hand it over." He jerks a thumb at the hulking men circling close. "They'll collect if you're shy."`
+			choice
+				`	"You got it, here's 10,000 credits"`
+					to display
+						credits > 10000
+				`	(Book it for your ship.)`
+					goto bookit
+			`	Your credit chips thud as they land on the table, and you see the dealer's grin widen while you're fleeced and embarrassed.`
+				goto trueending
+			label bookit
+			action
+				clear "monte: games played"
+				clear "monte: multiplication"
+				clear "monte: addition"
+				clear "monte: card spot"
+				clear "monte: guess"
+				clear "monte: step"
+				clear "monte: not scam chance"
+				clear "monte: scammed"
+				"reputation: Pirates" -= 10
+			`	You bolt for the <flagship>.`
+			`	"After them!" the dealer shouts, while his men leap into pursuit, curses and boots echoing behind you. The sound of commotion behind you dissolves as you make it aboard your ship before they can catch up.`
+				launch
+			label trueending
+			`	You leave the gambling game for your ship.`
+			action
+				clear "monte: games played"
+				clear "monte: multiplication"
+				clear "monte: addition"
+				clear "monte: card spot"
+				clear "monte: guess"
+				clear "monte: step"
+				clear "monte: not scam chance"
+				clear "monte: scammed"
