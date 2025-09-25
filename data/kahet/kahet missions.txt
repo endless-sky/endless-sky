@@ -2386,14 +2386,15 @@ mission "Ka'het: Patir Mystery 19"
 					goto chat
 				`	"It could have gone better."`
 					goto chat
-			`	"About the same as you, I imagine. Right now, you and I have the same level of authorization, at least for what concerns Patir and the related systems. Prefect Chilia, of course, is going to be far more involved than us in everything related to its military potential."`
+			`	"About the same as you, I imagine. Right now, you and I have the same level of authorization, at least for what concerns Patir and the related systems. Prefect Chilia, of course, is going to be far more involved than us in the matters related to its military potential."`
 			label chat
 			`	Your chat with Dusk goes on for some time, discussing with him the details of your previous trips. For his part, he describes you his progress over the past months: his focus expanded from Patir itself to the worlds that lie beyond it, and on how to use Ssil Vida to reach it.`
-			`	"Given our progress, we now feel ready for a new expedition. At first a short, single-day one, to test our systems in a practical scenario. If all goes well, after that we will be able to progressively increase our stay to any length of time," he asserts. You follow him out of your ship as he prepares to leave. "Before we can go, I need you to prepare a ship capable of carrying a fighter, and outfit it with a Jump Drive and a Key Stone. One of our Ibis should more than suffice, if you do not have one already. It is more important to do things right than to do them quickly, so come meet me here only when you are ready."`
+			`	"Given our progress, we now feel ready for a new expedition. At first a short, single-day one, to test our systems in a practical scenario. If all goes well, after that we will be able to progressively increase our stay to any length of time," he asserts. You follow him out of your ship as he prepares to leave. "Before we can go, I need you to prepare a ship capable of carrying a fighter, and outfit it with a Jump Drive and a Key Stone. One of our Ibis should more than suffice, if you do not have one already.`
+			`	"It is more important to do things right than to do them quickly," he concludes stoically. "We will be time-limited once we start, so come meet me here only when you are ready."`
 
 mission "Ka'het: Patir Mystery 20"
 	name "Explore <system> again"
-	description "Bring a group of Remnant scientists to the <destination>, together with the Smew you have been given, exactly on <date>."
+	description "Bring a group of Remnant scientists to the <destination>, together with the Petrel you have been given, exactly on <date>."
 	deadline 6
 	source "Caelian"
 	destination "Builder Settlement"
@@ -2401,7 +2402,7 @@ mission "Ka'het: Patir Mystery 20"
 	to offer
 		has "Ka'het: Patir Mystery 19: done"
 	on offer
-		give ship "Smew" "Calm Sea Afire"
+		give ship "Petrel (Lifeboat)" "Calm Sea Afire"
 			id 551551
 		conversation
 			`You find Dusk, who asks you if you have the jumping carrier he asked (option to tell him you have the carrier, but not the JD? Upon which he gives you one?). If you say yes, he explains the rest: you'll bring a Smew to act as lifeboat to station on the Patir lab, but more importantly, this will be a test to attempt to move Patir again to that place you went before, only intentionally (and for just 1 day). Dusk gives a call to Ssil Vida, and they launch a signal that will reach Patir in 6 days.`
@@ -2409,13 +2410,15 @@ mission "Ka'het: Patir Mystery 20"
 	on visit
 		dialog "You've arrived at <planet>, but either your passengers or the Calm Sea Afire are not with you!"
 	on complete
-		take ship "Smew" "Calm Sea Afire"
+		take ship "Petrel (Lifeboat)"  "Calm Sea Afire"
 			id 551551
 			"require outfits"
 			"with outfits"
 		conversation
 			`You did it! Sit back and enjoy the show. You see the stars move, n stuff. Meet in a few hours.`
 # add patir moves event, even if you fail the deadline.
+
+# add petrel lifeboat (see discord)
 
 mission "Ka'het: Patir Mystery 21"
 	name "Gaslined test run"
