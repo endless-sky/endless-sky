@@ -571,7 +571,7 @@ void Engine::Step(bool isActive)
 		}
 
 		// Step the background to account for the current velocity and zoom.
-		GameData::StepBackground(timePaused ? Point() : camera.Velocity(), zoom);
+		GameData::StepBackground(timePaused || !flagship ? Point() : camera.Velocity(), zoom);
 	}
 
 	outlines.clear();
