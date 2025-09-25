@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <set>
@@ -226,7 +227,8 @@ private:
 	Point hoverPoint;
 	std::string shipName;
 	std::string warningType;
-	int hoverCount = 0;
+	Tooltip shipsTooltip;
+	Tooltip creditsTooltip;
 
 	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
 	const Color &hover;

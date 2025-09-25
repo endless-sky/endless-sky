@@ -66,28 +66,6 @@ namespace {
 		return ship.GetPlanet() == here;
 	}
 
-	const int HOVER_TIME = 60;
-
-	void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor)
-	{
-		constexpr int WIDTH = 250;
-		constexpr int PAD = 10;
-		WrappedText wrap(FontSet::Get(14));
-		wrap.SetWrapWidth(WIDTH - 2 * PAD);
-		wrap.Wrap(text);
-		int longest = wrap.LongestLineWidth();
-		if(longest < wrap.WrapWidth())
-		{
-			wrap.SetWrapWidth(longest);
-			wrap.Wrap(text);
-		}
-
-		Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
-		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + textSize.Y(), Screen::Bottom()));
-		FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
-		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
-	}
-
 	constexpr auto ScrollbarMaybeUpdate = [](const auto &op, ScrollBar &scrollbar,
 		ScrollVar<double> &scroll, bool animate)
 	{
@@ -105,6 +83,10 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard")),
+	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_LEFT, Tooltip::Corner::TOP_RIGHT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
 	hover(*GameData::Colors().Get("hover")),
 	active(*GameData::Colors().Get("active")),
 	inactive(*GameData::Colors().Get("inactive")),
@@ -167,10 +149,10 @@ void ShopPanel::Draw()
 		string text = shipName;
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
-		const Color &textColor = *GameData::Colors().Get("medium");
-		const Color &backColor = *GameData::Colors().Get(warningType.empty() ? "tooltip background"
-					: (warningType.back() == '!' ? "error back" : "warning back"));
-		DrawTooltip(text, hoverPoint, textColor, backColor);
+		shipsTooltip.SetText(text, true);
+		shipsTooltip.SetBackgroundColor(GameData::Colors().Get(warningType.empty() ? "tooltip background"
+			: (warningType.back() == '!' ? "error back" : "warning back")));
+		shipsTooltip.Draw(true);
 	}
 
 	if(dragShip && isDraggingShip && dragShip->GetSprite())
@@ -586,6 +568,7 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 			return true;
 		}
 
+
 	return true;
 }
 
@@ -842,7 +825,7 @@ void ShopPanel::DrawShipsSidebar()
 		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
 			shipName = ship->Name() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
-			hoverPoint = shipZones.back().TopLeft();
+			shipsTooltip.SetZone(shipZones.back());
 		}
 
 		const auto checkIt = flightChecks.find(ship);
@@ -1002,14 +985,15 @@ void ShopPanel::DrawButtons()
 	// Draw the tooltip for your full number of credits.
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
 	if(creditsBox.Contains(hoverPoint))
-		hoverCount += hoverCount < HOVER_TIME;
-	else if(hoverCount)
-		--hoverCount;
+		creditsTooltip.IncrementCount();
+	else
+		creditsTooltip.DecrementCount();
 
-	if(hoverCount == HOVER_TIME)
+	if(creditsTooltip.ShouldDraw())
 	{
-		string text = Format::Number(player.Accounts().Credits()) + " credits";
-		DrawTooltip(text, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+		creditsTooltip.SetZone(creditsBox);
+		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits", true);
+		creditsTooltip.Draw();
 	}
 }
 
