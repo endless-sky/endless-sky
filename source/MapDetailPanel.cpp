@@ -872,19 +872,8 @@ void MapDetailPanel::DrawInfo()
 				if(Preferences::Has("Show parenthesis"))
 					price += ")";
 			}
-		}
-		else
-			price = (canView ? "n/a" : "?");
 
-		const auto alignRight = Layout(130, Alignment::RIGHT, Truncate::BACK);
-		font.Draw({price, alignRight}, uiPoint, color);
-
-		if(isSelected)
-			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
-
-		// Draw colored icons when values are displayed.
-		if(canView && otherIsInhabited)
-		{
+			// Draw colored icons when values are displayed.
 			if(!noCompare && player.GetSystem() != selectedSystem)
 			{
 				// Determine the relative negativeness or positiveness of the value compared to low/high.
@@ -909,6 +898,14 @@ void MapDetailPanel::DrawInfo()
 					MapColor((value - (commodity.low + halfCompare)) / halfCompare));
 			}
 		}
+		else
+			price = (canView ? "n/a" : "?");
+
+		const auto alignRight = Layout(130, Alignment::RIGHT, Truncate::BACK);
+		font.Draw({price, alignRight}, uiPoint, color);
+
+		if(isSelected)
+			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
 
 		uiPoint.Y() += 20.;
 	}
