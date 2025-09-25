@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
+#include "Message.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "News.h"
@@ -117,6 +118,8 @@ private:
 	Set<Government> governments;
 	Set<Hazard> hazards;
 	Set<Interface> interfaces;
+	Set<Message::Category> messageCategories;
+	Set<Message> messages;
 	Set<Minable> minables;
 	Set<Mission> missions;
 	Set<News> news;
