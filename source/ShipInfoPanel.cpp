@@ -174,7 +174,9 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
-		GetUI()->Push(new ShipNameDialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
+		GetUI()->Push(new ShipNameDialog(this,
+			Dialog::FunctionButton(this, "Rename", 'r', &ShipInfoPanel::Rename),
+			"Change this ship's name?", (*shipIt)->Name()));
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift) || key == 'k'))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
@@ -726,13 +728,15 @@ bool ShipInfoPanel::Hover(const Point &point)
 
 
 
-void ShipInfoPanel::Rename(const string &name)
+bool ShipInfoPanel::Rename(const string &name)
 {
 	if(shipIt != panelState.Ships().end() && !name.empty())
 	{
 		player.RenameShip(shipIt->get(), name);
 		UpdateInfo();
 	}
+	// Close dialog
+	return true;
 }
 
 
