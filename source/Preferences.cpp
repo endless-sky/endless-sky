@@ -187,7 +187,6 @@ void Preferences::Load()
 	settings["Damaged fighters retreat"] = true;
 	settings["Show escort systems on map"] = true;
 	settings["Show stored outfits on map"] = true;
-	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
 	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
