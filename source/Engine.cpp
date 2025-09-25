@@ -526,6 +526,9 @@ void Engine::Step(bool isActive)
 
 		minimap.Step(flagship);
 	}
+	else
+		// If there is no flagship, stop the camera.
+		camera.SnapTo(camera.Center());
 	ai.UpdateEvents(events);
 	if(isActive)
 	{
@@ -571,7 +574,7 @@ void Engine::Step(bool isActive)
 		}
 
 		// Step the background to account for the current velocity and zoom.
-		GameData::StepBackground(timePaused || !flagship ? Point() : camera.Velocity(), zoom);
+		GameData::StepBackground(timePaused ? Point() : camera.Velocity(), zoom);
 	}
 
 	outlines.clear();
