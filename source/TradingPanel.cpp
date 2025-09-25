@@ -407,7 +407,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 		return right.value < left.value;
 	});
 	const size_t toDisplay = min<int>(displayLimit, outfitValue.size());
-	for(size_t i = 0; i < toDisplay; i++)
+	for(size_t i = 0; i < toDisplay; ++i)
 		out << outfitValue[i].name << endl;
 	if(outfitValue.size() > displayLimit)
 	{
