@@ -1427,7 +1427,7 @@ interface "escort element"
 
 
 interface "planet"
-	image "land"e
+	image "land"
 		center 0 -140
 	sprite "ui/planet dialog"
 		center 0 25
