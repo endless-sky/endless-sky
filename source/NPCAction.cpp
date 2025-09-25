@@ -27,14 +27,16 @@ using namespace std;
 
 // Construct and Load() at the same time.
 NPCAction::NPCAction(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node, playerConditions, visitedSystems, visitedPlanets);
+	Load(node, playerConditions, compatibilityLevels, visitedSystems, visitedPlanets);
 }
 
 
 
 void NPCAction::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() >= 2)
@@ -47,7 +49,7 @@ void NPCAction::Load(const DataNode &node, const ConditionsStore *playerConditio
 		if(key == "triggered")
 			triggered = true;
 		else
-			action.LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
+			action.LoadSingle(child, playerConditions, compatibilityLevels, visitedSystems, visitedPlanets);
 	}
 }
 

@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Effect.h"
 #include "GameData.h"
+#include "GameVersionConstraints.h"
 #include "Outfit.h"
 #include "image/SpriteSet.h"
 
@@ -29,7 +30,7 @@ using namespace std;
 
 
 // Load from a "weapon" node, either in an outfit or in a ship (explosion).
-void Weapon::LoadWeapon(const DataNode &node)
+void Weapon::LoadWeapon(const DataNode &node, const GameVersionConstraints &compatibilityLevels)
 {
 	isWeapon = true;
 	bool isClustered = false;
@@ -53,10 +54,13 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "phasing")
 		{
 			isPhasing = true;
-			// Phasing projectiles implicitly have no asteroid collisions
-			// for reverse compatibility.
-			canCollideAsteroids = false;
-			canCollideMinables = false;
+			if(compatibilityLevels.Matches({0, 10, 17}))
+			{
+				// Phasing projectiles implicitly have no asteroid collisions
+				// for reverse compatibility.
+				canCollideAsteroids = false;
+				canCollideMinables = false;
+			}
 		}
 		else if(key == "no damage scaling")
 			isDamageScaled = false;
@@ -77,7 +81,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 			homing = true;
 			// Convert the old formatting for defining homing for reverse
 			// compatibility.
-			if(child.Size() == 2)
+			if(compatibilityLevels.Matches({0, 10, 17}) && child.Size() == 2)
 			{
 				child.PrintTrace("Warning: Deprecated use of \"homing\" followed by a value."
 					" Define individual homing attributes instead:");
@@ -412,7 +416,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 	isStreamed &= !isClustered;
 
 	// Support legacy missiles with no tracking type defined:
-	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
+	if(compatibilityLevels.Matches({0, 10, 17})
+		&& homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
 	{
 		tracking = 1.;
 		node.PrintTrace("Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");

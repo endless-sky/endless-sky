@@ -61,10 +61,12 @@ public:
 
 	// Construct and Load() at the same time.
 	explicit Mission(const DataNode &node, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
 	// Load a mission, either from the game data or from a saved game.
 	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const GameVersionConstraints &compatibilityLevels,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.

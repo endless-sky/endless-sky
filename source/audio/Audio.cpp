@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Audio.h"
 
 #include "player/AudioPlayer.h"
+#include "../DataSource.h"
 #include "supplier/effect/Fade.h"
 #include "../Files.h"
 #include "../Logger.h"
@@ -115,7 +116,7 @@ namespace {
 
 
 // Begin loading sounds (in a separate thread).
-void Audio::Init(const vector<filesystem::path> &sources)
+void Audio::Init(const vector<DataSource> &sources)
 {
 	device = alcOpenDevice(nullptr);
 	if(!device)
@@ -147,11 +148,11 @@ void Audio::Init(const vector<filesystem::path> &sources)
 
 
 // Get all the sound files in the game data and all plugins.
-void Audio::LoadSounds(const vector<filesystem::path> &sources)
+void Audio::LoadSounds(const vector<DataSource> &sources)
 {
 	for(const auto &source : sources)
 	{
-		filesystem::path root = source / "sounds";
+		filesystem::path root = source.path / "sounds";
 		vector<filesystem::path> files = Files::RecursiveList(root);
 		for(const auto &path : files)
 		{

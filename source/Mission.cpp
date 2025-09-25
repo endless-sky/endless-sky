@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DistanceMap.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GameVersionConstraints.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
@@ -116,15 +117,17 @@ namespace {
 
 // Construct and Load() at the same time.
 Mission::Mission(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node, playerConditions, visitedSystems, visitedPlanets);
+	Load(node, playerConditions, compatibilityLevels, visitedSystems, visitedPlanets);
 }
 
 
 
 // Load a mission, either from the game data or from a saved game.
 void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	// All missions need a name.
@@ -182,14 +185,15 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			if(child.Size() >= 5)
 				cargoProb = child.Value(4);
 
-			for(const DataNode &grand : child)
-			{
-				if(!ParseContraband(grand))
-					grand.PrintTrace("Skipping unrecognized attribute:");
-				else
-					grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\"."
-						" They are now mission-level properties:");
-			}
+			if(compatibilityLevels.Matches({0, 10, 17}))
+				for(const DataNode &grand : child)
+				{
+					if(!ParseContraband(grand))
+						grand.PrintTrace("Skipping unrecognized attribute:");
+					else
+						grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\"."
+							" They are now mission-level properties:");
+				}
 		}
 		else if(key == "passengers" && hasValue)
 		{
@@ -323,7 +327,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 		else if(key == "substitutions" && child.HasChildren())
 			substitutions.Load(child, playerConditions);
 		else if(key == "npc")
-			npcs.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
+			npcs.emplace_back(child, playerConditions, compatibilityLevels, visitedSystems, visitedPlanets);
 		else if(key == "on" && hasValue && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -331,10 +335,10 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			if(child.Size() >= 3)
 			{
 				MissionAction &action = onEnter[GameData::Systems().Get(child.Token(2))];
-				action.Load(child, playerConditions, visitedSystems, visitedPlanets);
+				action.Load(child, playerConditions, compatibilityLevels, visitedSystems, visitedPlanets);
 			}
 			else
-				genericOnEnter.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
+				genericOnEnter.emplace_back(child, playerConditions, compatibilityLevels, visitedSystems, visitedPlanets);
 		}
 		else if(key == "on" && hasValue)
 		{
@@ -354,7 +358,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				actions[it->second].Load(child, playerConditions, visitedSystems, visitedPlanets);
+				actions[it->second].Load(child, playerConditions, compatibilityLevels, visitedSystems, visitedPlanets);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}

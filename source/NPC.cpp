@@ -71,14 +71,16 @@ namespace {
 
 // Construct and Load() at the same time.
 NPC::NPC(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node, playerConditions, visitedSystems, visitedPlanets);
+	Load(node, playerConditions, compatibilityLevels, visitedSystems, visitedPlanets);
 }
 
 
 
 void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const GameVersionConstraints &compatibilityLevels,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
@@ -180,7 +182,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 				Dialog::ParseTextNode(child, 1, dialogText);
 		}
 		else if(key == "conversation" && child.HasChildren())
-			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
+			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions, compatibilityLevels));
 		else if(key == "conversation" && hasValue)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
 		else if(key == "to" && hasValue)
@@ -208,7 +210,8 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				npcActions[it->second].Load(child, playerConditions, visitedSystems, visitedPlanets);
+				npcActions[it->second].Load(child, playerConditions, compatibilityLevels,
+					visitedSystems, visitedPlanets);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -218,7 +221,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			{
 				// Loading an NPC from a save file, or an entire ship specification.
 				// The latter may result in references to non-instantiated outfits.
-				ships.emplace_back(make_shared<Ship>(child, playerConditions));
+				ships.emplace_back(make_shared<Ship>(child, playerConditions, compatibilityLevels));
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						shipEvents[ships.back().get()] = grand.Value(1);
@@ -243,7 +246,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		{
 			if(child.HasChildren())
 			{
-				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)));
+				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child, compatibilityLevels)));
 				if(hasValue)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.

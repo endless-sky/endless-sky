@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Fleet.h"
 #include "GameData.h"
+#include "GameVersionConstraints.h"
 #include "Outfit.h"
 #include "Phrase.h"
 #include "Politics.h"
@@ -99,8 +100,8 @@ Government::Government()
 
 
 // Load a government's definition from a file.
-void Government::Load(const DataNode &node, const set<const System *> *visitedSystems,
-	const set<const Planet *> *visitedPlanets)
+void Government::Load(const DataNode &node, const GameVersionConstraints &compatibilityLevels,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() >= 2)
 	{
@@ -403,7 +404,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
-		else if(key == "enforces" && child.Token(valueIndex) == "all")
+		else if(compatibilityLevels.Matches({0, 10, 17}) && key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
 			child.PrintTrace("Warning: Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");

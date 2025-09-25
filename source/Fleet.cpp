@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "FormationPattern.h"
 #include "GameData.h"
+#include "GameVersionConstraints.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Phrase.h"
@@ -51,14 +52,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Fleet::Fleet(const DataNode &node)
+Fleet::Fleet(const DataNode &node, const GameVersionConstraints &compatibilityLevels)
 {
-	Load(node);
+	Load(node, compatibilityLevels);
 }
 
 
 
-void Fleet::Load(const DataNode &node)
+void Fleet::Load(const DataNode &node, const GameVersionConstraints &compatibilityLevels)
 {
 	if(node.Size() >= 2)
 		fleetName = node.Token(1);
@@ -106,7 +107,8 @@ void Fleet::Load(const DataNode &node)
 			cargo.Load(child);
 		// Allow certain individual cargo settings to be direct children
 		// of Fleet for backwards compatibility.
-		else if(key == "cargo" || key == "commodities" || key == "outfitters")
+		else if(key == "cargo"
+				|| (compatibilityLevels.Matches({0, 10, 17}) && (key == "commodities" || key == "outfitters")))
 			cargo.LoadSingle(child);
 		else if(key == "personality")
 			personality.Load(child);
