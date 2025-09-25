@@ -228,7 +228,7 @@ private:
 	std::string warningType;
 	int hoverCount = 0;
 
-	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData
+	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
 	const Color &hover;
 	const Color &active;
 	const Color &inactive;
