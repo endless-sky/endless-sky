@@ -1078,6 +1078,9 @@ interface "hud"
 	sprite "ui/red alert"
 		from 10 10
 		align top left
+	visible if "nuke alert"
+	sprite "icon/nuke"
+		from 24 24
 	visible
 	sprite "ui/radar"
 		from 0 0
