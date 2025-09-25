@@ -71,7 +71,9 @@ segment_include = {re.compile(regex): description for regex, description in {
 	# Matches any tabulator characters.
 	"\t": "tabulators should only be used for indentation",
 	# Matches any commas that are not followed by whitespace characters.
-	",\\S": "commas should be followed by whitespaces"
+	",\\S": "commas should be followed by whitespaces",
+	# Matches incorrect structured bindings
+	"&\\s+\\[": "structured bindings should not contain whitespace after the ampersand",
 }.items()}
 # Dict of patterns for selecting potential formatting issues in a single word.
 # Also contains the error description for the patterns.
