@@ -538,7 +538,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	isDynamic = (key.ends_with("string") || key.ends_with("dynamic button"));
 	if(key.ends_with("button") || key.ends_with("dynamic button"))
 	{
-		buttonKey = node.Token(1).front();
+		buttonKey = SDL_GetKeyFromName(node.Token(1).c_str());
 		if(node.Size() >= 3)
 			str = node.Token(2);
 	}
