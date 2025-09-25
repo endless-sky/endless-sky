@@ -412,7 +412,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 	if(outfitValue.size() > displayLimit)
 	{
 		int64_t value = 0;
-		for(size_t i = displayLimit; i < outfitValue.size(); i++)
+		for(size_t i = displayLimit; i < outfitValue.size(); ++i)
 			value += outfitValue[i].value;
 		out << "and " << Format::CreditString(value) << " more.";
 	}
