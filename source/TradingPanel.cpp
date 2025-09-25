@@ -57,7 +57,7 @@ namespace {
 	const int BUY_X = 310;
 	const int SELL_X = 370;
 	const int HOLD_X = 430;
-	const size_t SELL_OUTFITS_DISPLAY_LIMIT = 15;
+	constexpr size_t SELL_OUTFITS_DISPLAY_LIMIT = 15;
 }
 
 
