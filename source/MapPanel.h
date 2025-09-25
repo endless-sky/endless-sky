@@ -115,6 +115,7 @@ protected:
 	void Find(const std::string &name);
 
 	double Zoom() const;
+	double TargetZoom() const;
 
 	// Check whether the NPC and waypoint conditions of the given mission have
 	// been satisfied.

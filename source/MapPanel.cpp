@@ -597,15 +597,16 @@ bool MapPanel::Scroll(double dx, double dy)
 {
 	// The mouse should be pointing to the same map position before and after zooming.
 	Point mouse = UI::GetMouse();
-	Point anchor = mouse / Zoom() - center;
+	Point anchor = mouse / TargetZoom() - center;
 	if(dy > 0.)
 		IncrementZoom();
 	else if(dy < 0.)
 		DecrementZoom();
 
-	// Now, Zoom() has changed (unless at one of the limits). But, we still want
+	// Now, the target zoom has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
-	center = mouse / Zoom() - anchor;
+	recenterVector = mouse / TargetZoom() - anchor - center;
+	recentering = RECENTER_TIME;
 	return true;
 }
 
@@ -816,6 +817,13 @@ void MapPanel::Find(const string &name)
 double MapPanel::Zoom() const
 {
 	return pow(1.5, zoom.AnimatedValue());
+}
+
+
+
+double MapPanel::TargetZoom() const
+{
+	return pow(1.5, zoom.Value());
 }
 
 
