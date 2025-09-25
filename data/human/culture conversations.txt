@@ -1264,16 +1264,16 @@ mission "Struggling Author Gone Missing"
 	on offer
 		conversation
 			`As your ship settles down on landing pad A5B, two young adults approach. One speaks up, "Hello, Captain. Have you seen a woman named Anna Fangvin anywhere? She was last seen in the spaceport, and must have left in someone's spaceship."`
-			`	Around the spaceport you see countless other groups doing the same thing. Anna must have been more popular than she thought.`
+			`	Around the spaceport you see a few other groups doing the same thing. Anna may have been more popular than she thought.`
 			choice
 				`	"She went to another star system a long ways from here. You won't be able to get to her."`
 				`	"No, I don't know. Sorry."`
 					goto continue
 			`	"If you ever see her again, tell her that the Coalition of Book Enjoyers appreciates her work. It wouldn't be possible for you to bring us to her location?" You respond in the negative, and the two go off to the other groups to spread the news.`
 			label continue
-			`	Posters hang on many of the spaceport's walls - here too, Anna must have been famous. The posters read:`
+			`	Posters hang on many of the spaceport's walls - here too, Anna's books must have been famous. The posters read:`
 			`	MISSING:`
-			`		Anna Fangvin, a young author whose books are widely read throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
+			`		Anna Fangvin, a young author whose books have been shared throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
 				decline
 
 phrase "racetrack"

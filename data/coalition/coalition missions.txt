@@ -3456,7 +3456,7 @@ mission "Coalition: Struggling Author 1"
 				`	"My jump drive would like to welcome you to Coalition space."`
 				`	"That was a jump drive."`
 				`	"That's what happens every time I go to Coalition space with a jump drive."`
-			`	"Wow. I can't believe this is happening! I'm so excited!" Anna looks out the window, then turns back.`
+			`	"Wow. I can't believe this is happening!" Anna looks out the window, then turns back.`
 			`	"Can I take a look at your jump drive? I'm interested to see how it works," Anna says. You take her to the engine room of <ship>, where she begins taking notes and pictures of the drive.`
 			`	"Well, thank you for bringing me here," Anna says when she finishes. "I didn't sleep too well, so I'll see you later. Goodbye!" She heads back into her cabin, and you settle back into the controls.`
 	npc
@@ -3468,14 +3468,14 @@ mission "Coalition: Struggling Author 1"
 		conversation
 			`Anna gives you the book before you both exit the <ship>. The moment you are out, three Kimek approach you and Anna.`
 			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"`
-			`	"Oh, I write science fiction novels," replies Anna.`
+			`	"Oh, I write science fiction novels," replies Anna, only mildly taken aback by the sight of giant beetles.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
 			`	Then, switching the translation box back on, the Kimek explains that Anna is welcome to be with you, but reminds you that she will not be allowed to do much until she registers with the Heliarchs on the Ring of Friendship.`
 			`	"Okay," says Anna, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and meet me there."`
 
 mission "Coalition: Book Discovered 2"
-	name `"Beyond the Hyperdrive" for Kachachee`
-	description `Now that you have a copy of Anna Fangvin's "Beyond the Hyperdrive," give it to Kachachee and their group on <destination>.`
+	name `Beyond the Hyperdrive for Kachachee`
+	description `Now that you have a copy of Anna Fangvin's Beyond the Hyperdrive, give it to Kachachee and their group on <destination>.`
 	to offer
 		has "coalition: struggling author - beyond the hyperdrive"
 	source
@@ -3487,15 +3487,25 @@ mission "Coalition: Book Discovered 2"
 			`Sorting through messages, you recall that a Kimek named Kachachee and their group wanted a copy of Anna Fangvin's "Beyond the Hyperdrive." You now know her.`
 			choice
 				`	(Ask Anna for another copy of the book.)`
+				`	(Give Kachachee your copy of the book.)`
+					accept
 				`	(Forget about it.)`
 					decline
-			`	You call Anna, and ask her for another copy of "Beyond the Hyperdrive" for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, there probably won't even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." You should head there to receive and gift it to Kachachee.`
+			action
+				set "struggling author: asked for another copy of beyond the hyperdrive"
+			`	You call Anna, and ask her for another copy of Beyond the Hyperdrive for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, there probably won't even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." You should head there to receive and gift it to Kachachee.`
 				accept
 	on complete
 		payment 7000
 		conversation
-			`After receiving the book - it turns out to have reached there in a normal spacecraft, along with a message from Anna stating her disappointment - you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
-			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
+			branch owncopy
+				not "struggling author: asked for another copy of beyond the hyperdrive"
+			`After receiving the book - it turns out to have gotten there in a normal spacecraft, along with a message from Anna stating her disappointment - you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
+				goto gift
+			label owncopy
+			`When you land on <planet>, you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
+			label gift
+			`	Walking over to the aforementioned public square, you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
 
 mission "Coalition: Struggling Author 2"
 	name "Help Anna register with the Heliarchy"
@@ -3554,7 +3564,7 @@ mission "Coalition: Struggling Author 3"
 			choice
 				`	"What's the plan now?"`
 				`	"Did the Heliarch agent mention anywhere we should go now?"`
-				`	"Why do the Heliarch care about who publishes the book?"`
+				`	"Why does the Heliarchy care about who publishes the book?"`
 					goto publisher
 			label "take us to destination"
 			`	The Heliarch straightens up. "Take us to <planet>, you should. Better help there, I can."`
@@ -3694,7 +3704,7 @@ mission "Coalition: Struggling Author 4"
 				goto "rest of interview"
 			label "lounge"
 			`	You leave the room and walk to the lounge. There are several tables where many Kimek are chatting in their native language, while a few Saryds and Arachi are visibly relaxed. You sit at an empty table to pass the time, occasionally going to the water dispenser to hydrate yourself.`
-			`	After thirty minutes, a Kimek approaches you. Their translation device speaks. "An alien in our space, you are? Most strange, this meeting truly is. A Coalition member the likes of you, I have never encountered. Or human, are you?"`
+			`	After thirty minutes, a Kimek approaches you. Their translation device speaks. "An alien in our space, you are? Most strange, this meeting truly is. A Coalition member the likes of you, I have never encountered. Or... ahmm... from outside of our space, are you?"`
 			# kst-1 is short for [K]imek [s]mall [t]alk 1
 			choice
 				`	"I'd prefer to be left alone right now."`
@@ -3706,20 +3716,20 @@ mission "Coalition: Struggling Author 4"
 					goto "kst-1 endonym"
 			label "kst-1 glad to meet you"
 			`	"Same. 'Akacharra', my name is. To our fine neighborhood, for what purpose have you come here?"`
-			`	"My friend Anna Fangvin is publishing a book here," you say.`
+			`	"I'm helping someone publish a book here," you say. "Her name's Anna Fangvin.`
 				goto "kst-1 anna"
 			label "kst-1 not only alien"
 			`	"If more of you, here there are, then who are they?"`
-			`	"It's just two; my friend Anna Fangvin and I. She's publishing a book in your space," you reply.`
+			`	"It's just two; my passenger Anna Fangvin and I. She's publishing a book in your space," you reply.`
 				goto "kst-1 anna"
 			label "kst-1 endonym"
 			`	"'Humans', you are? Know that, I never did. For correcting me and educating me on your fellow kind, I am thankful," says the Kimek. "So, the other human, who is she?"`
-			`	"Oh, that's my friend Anna Fangvin. She's here to publish her book in Coalition space," you answer.`
+			`	"Oh, that's my passenger Anna Fangvin. She's here to publish her book in Coalition space," you answer.`
 			label "kst-1 anna"
 			`	"Anna Fangvin, her name is? An interesting name, it is, and her book, just as interesting it will be when it is released. But know the title of the book, I do not, so if tell me you will, appreciate it I will."`
 			choice
-				`	"It is called 'Beyond the Hyperdrive.' It could very well be years before release, but I'm glad you're taking interest."`
-				`	"It is called 'Beyond the Hyperdrive.' I think it's likely to be one of the best books of all time."`
+				`	"It's called 'Beyond the Hyperdrive.' It could very well be years before release, but I'm glad you're taking interest."`
+				`	"It's called 'Beyond the Hyperdrive.' I think it's likely to be one of the best books of all time."`
 			`	"So, 'Beyond the Hyperdrive,' it is, you say? Thankful, I am. On its release, buy the book, I will remember to."`
 			`	The Kimek walks away after the two of you exchange farewells, leaving you to your own devices.`
 				goto "anna approaches"
@@ -3765,7 +3775,7 @@ mission "Coalition: Struggling Author 5A"
 	name "Visit Anna"
 	description "Visit the author Anna Fangvin on <destination>."
 	source
-		not near "Quaru" 0 100
+		not government "Coalition"
 	destination "Inmost Blue"
 	to offer
 		has "event: beyond the hyperdrive is published"
@@ -3784,7 +3794,7 @@ mission "Coalition: Struggling Author 5B"
 	name "Visit Anna"
 	description "Visit the author Anna Fangvin on <destination>."
 	source
-		near "4 Winter Rising" 1 100
+		government "Coalition"
 	destination "Inmost Blue"
 	to offer
 		has "event: beyond the hyperdrive is published"
@@ -3825,7 +3835,7 @@ conversation "anna invites you to book signing"
 	`	The signing continues for several more hours. Eventually, the same Kimek in the bookstore uniform announces that the store is closing soon.`
 	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna walks with you back to your ship to say goodbye.`
 	`	"My book succeeded beyond my wildest dreams, and it was all because of you, <first>!" she says, almost in a teary voice. She pulls out a credit chip. "Here, <payment>. You've done so much for me and my career, and you deserve it."`
-	`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book, but translated to your language. Quickly reading through it, you realize that the book has been significantly altered from the version you read in human space. "Here, take it. A special copy just for you, as a thank you for all you've done."`
+	`	Anna then takes out another copy of Beyond the Hyperdrive, which she signs in front of you. It is the Coalition edition of the book, but translated to your language. Quickly reading through it, you realize that the book has been significantly altered from the version you read in human space. "Here, take it. A special copy just for you, as a thank you for all you've done."`
 	choice
 		`	"Why is this book so different from the one in human space?"`
 		`	"Did you make any changes to it?"`
@@ -3849,5 +3859,5 @@ mission "Beyond the Hyperdrive Gratitude Payment"
 	on offer
 		payment 2000000
 		conversation
-			`You are shocked to see an extra <payment> in your account. Checking your messages you spot a notification from Anna, the author whose book "Beyond the Hyperdrive" was published in Coalition space a few months ago. She explains that the book has been selling very well in Coalition space and sends an expression of gratitude. Given the <payment> you received this is likely an understatement.`
+			`You are shocked to see an extra <payment> in your account. Checking your messages you spot a notification from Anna, the author whose book Beyond the Hyperdrive was published in Coalition space a few months ago. She explains that the book has been selling very well in Coalition space and sends an expression of gratitude. Given the <payment> you received this is likely an understatement.`
 				decline
