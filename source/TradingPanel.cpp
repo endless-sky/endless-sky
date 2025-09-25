@@ -385,7 +385,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 		profit += value;
 		tonsSold += static_cast<int>(it.second * it.first->Mass());
 		// Store a description of the count & item, followed by its value.
-		outfitValue.push_back({ "", it.second, value });
+		outfitValue.push_back({{}, it.second, value});
 		if(sellMinable)
 			outfitValue.back().name = Format::CargoString(it.second, it.first->DisplayName());
 		else if(it.second == 1)
