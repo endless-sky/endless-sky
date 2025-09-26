@@ -1654,12 +1654,12 @@ mission "Three Card Monte"
 	non-blocking
 	"offer precedence" 10
 	to offer
-		random < 100
-	#	random < 2 + 5 * "flagship planet attribute: tourism" + 5 * "flagship planet attribute: urban" + 10 * "flagship planet attribute: pirate" - "Three Card Monte: declined"
+		random < 20
+		random < 2 + 5 * "flagship planet attribute: tourism" + 5 * "flagship planet attribute: urban" + 10 * "flagship planet attribute: pirate" - "Three Card Monte: declined"
 		credits > 1000
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
-		# not attributes "deep" "station"
+		not attributes "deep" "station"
 	on offer
 		conversation
 			`${three card monte opening}"The game's simple. Stake 1,000 credits and find the ace to double your money."`
@@ -1688,7 +1688,6 @@ mission "Three Card Monte"
 			`	You drop a 1,000 credit chip to play. "All you need to do is find the ace," the dealer says, flashing the ace faceup towards you, then setting it down between two other facedown cards in the center. He starts shuffling with a practiced twist.`
 				goto begin
 			label nextdecision
-			# `	testing, &[monte: card spot]. &[monte: multiplication] &[monte: addition]`
 			branch ending
 				"monte: step" >= 3 + "monte: games played" * 2
 			action
@@ -1757,7 +1756,6 @@ mission "Three Card Monte"
 				"monte: guess" = 1
 			`	The dealer dramatically puts his hand on the middle card that you chose...`
 			label failedcard
-			`testing, card spot &[monte: card spot], guess &[monte: guess]. Not scam chance: &[monte: not scam chance] + 50 - &[monte: games played] * 25`
 			branch correct
 				and
 					"monte: card spot" == "monte: guess"
