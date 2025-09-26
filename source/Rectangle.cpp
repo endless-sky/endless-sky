@@ -159,6 +159,22 @@ Point Rectangle::TopLeft() const
 
 
 
+// Get the top right conrer - that is, the maximum x and minimum y.
+Point Rectangle::TopRight() const
+{
+	return center + Point(.5, -.5) * dimensions;
+}
+
+
+
+// Get the bottom left corner - that is, the minimum x and maximum y.
+Point Rectangle::BottomLeft() const
+{
+	return center + Point(-.5, .5) * dimensions;
+}
+
+
+
 // Get the bottom right corner - that is, the maximum x and y.
 Point Rectangle::BottomRight() const
 {
