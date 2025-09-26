@@ -1663,7 +1663,7 @@ mission "Three Card Monte"
 	on offer
 		conversation
 			`${three card monte opening}"The game's simple. Stake 1,000 credits and find the ace to double your money."`
-			`	"Always a pleasure to see another captain of fortune," the dealer says, tipping a weathered hat. His gaze never leaves your wallet.`
+			`	The dealer tips a weathered hat, "Always a pleasure to see another captain of fortune." His gaze never leaves your wallet`
 				to display
 					"reputation: Pirate" > 100
 			action
@@ -1673,7 +1673,7 @@ mission "Three Card Monte"
 			label newgame
 			`	The dealer waits expectantly.`
 			choice
-				`	(Put down 1000 credits to play the game.)`
+				`	(Put down 1,000 credits to play the game.)`
 					to display
 						credits > 1000
 				`	(Skip the game.)`
@@ -1760,7 +1760,7 @@ mission "Three Card Monte"
 				and
 					"monte: card spot" == "monte: guess"
 					random < "monte: not scam chance" + 50 - 25 * "monte: games played"
-			`	And flips your chosen, decidedly non-ace card. You've lost 1000 credits this round.`
+			`	And flips your chosen, decidedly non-ace card. You've lost 1,000 credits this round.`
 			`	Then he playfully reveals the left card: the ace.`
 				to display
 					or
