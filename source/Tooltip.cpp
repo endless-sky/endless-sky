@@ -165,7 +165,7 @@ void Tooltip::IncrementCount()
 
 void Tooltip::DecrementCount()
 {
-	if(hoverCount)
+	if(hoverCount > 0)
 		--hoverCount;
 }
 
