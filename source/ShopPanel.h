@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <set>
@@ -39,7 +40,7 @@ class Planet;
 class PlayerInfo;
 class Ship;
 
-void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor);
+
 
 // Class representing the common elements of both the shipyard panel and the
 // outfitter panel (e.g. the sidebar with the ships you own).
@@ -135,14 +136,13 @@ protected:
 	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
 	static constexpr int INFOBAR_WIDTH = 300;
 	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static constexpr int BUTTON_HEIGHT = 30;
 	static constexpr int SHIP_SIZE = 250;
 	static constexpr int OUTFIT_SIZE = 183;
-	static constexpr int HOVER_TIME = 60;
 	// Button size/placement info:
 	static constexpr double BUTTON_ROW_START_PAD = 10.;
 	static constexpr double BUTTON_ROW_PAD = 5.;
 	static constexpr double BUTTON_COL_PAD = 5.;
+	static constexpr double BUTTON_HEIGHT = 30.;
 	static constexpr double BUTTON_WIDTH = 75.;
 
 
@@ -194,7 +194,10 @@ protected:
 
 	bool delayedAutoScroll = false;
 	Point hoverPoint;
-	int hoverCount = 0;
+
+	Tooltip shipsTooltip;
+	Tooltip creditsTooltip;
+	Tooltip buttonsTooltip;
 
 
 private:
@@ -225,7 +228,7 @@ private:
 	std::string shipName;
 	std::string warningType;
 
-	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData
+	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
 	const Color &hover;
 	const Color &active;
 	const Color &inactive;

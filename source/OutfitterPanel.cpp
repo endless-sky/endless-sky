@@ -1249,8 +1249,8 @@ void OutfitterPanel::DrawButtons()
 
 	// Draw the button panel (shop side panel footer).
 	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize,
-		*GameData::Colors().Get("shop side panel background"));
+	const Rectangle buttonsFooter(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize);
+	FillShader::Fill(buttonsFooter, *GameData::Colors().Get("shop side panel background"));
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
@@ -1316,23 +1316,31 @@ void OutfitterPanel::DrawButtons()
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
 	if(!tooltip.empty())
-		// Note: there is an offset between the cursor and tooltips in this case so that other
-		// buttons can be seen as the mouse moves around.
-		DrawTooltip(tooltip, hoverPoint + Point(-40, -60), dim, *GameData::Colors().Get("tooltip background"));
+		buttonsTooltip.IncrementCount();
+	else
+		buttonsTooltip.DecrementCount();
+
+	if(buttonsTooltip.ShouldDraw())
+	{
+		buttonsTooltip.SetZone(buttonsFooter);
+		buttonsTooltip.SetText(tooltip, true);
+		buttonsTooltip.Draw();
+	}
 
 	// Draw the tooltip for your full number of credits and free cargo space
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 30));
 	if(creditsBox.Contains(hoverPoint))
-		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
-	else if(ShopPanel::hoverCount)
-		--ShopPanel::hoverCount;
+		creditsTooltip.IncrementCount();
+	else
+		creditsTooltip.DecrementCount();
 
-	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
+	if(creditsTooltip.ShouldDraw())
 	{
-		tooltip = Format::Number(player.Accounts().Credits()) + " credits" + "\n" +
+		creditsTooltip.SetZone(creditsBox);
+		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits" + "\n" +
 			Format::Number(player.Cargo().Free()) + " tons free out of " +
-			Format::Number(player.Cargo().Size()) + " tons total capacity";
-		DrawTooltip(tooltip, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+			Format::Number(player.Cargo().Size()) + " tons total capacity", true);
+		creditsTooltip.Draw();
 	}
 }
 
