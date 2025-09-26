@@ -55,8 +55,6 @@ public:
 	int CommoditiesSize() const;
 	int OutfitsSize() const;
 	double OutfitsSizePrecise() const;
-	int MinablesSize() const;
-	double MinablesSizePrecise() const;
 	bool HasOutfits() const;
 	int MissionCargoSize() const;
 	bool HasMissionCargo() const;

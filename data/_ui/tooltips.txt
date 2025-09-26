@@ -852,36 +852,6 @@ tip "scan concealment:"
 
 
 
-# Shop Tips:
-tip "outfitter: b"
-	`Buy from outfitter and install on ship.`
-
-tip "outfitter: s"
-	`Sell from cargo, storage, or ship, in that order.`
-
-tip "outfitter: i"
-	`Install on ship from cargo or storage, in that order.`
-
-tip "outfitter: u"
-	`Uninstall or move outfits from ship or cargo to storage, in that order.`
-
-tip "outfitter: c"
-	`Transfer outfit from planetary storage to cargo if possible, otherwise buy it from the outfitter.`
-
-tip "outfitter: r"
-	`Move outfit from cargo or ship into planetary storage, in that order.`
-
-tip "shipyard: b"
-	`Buy <multiplier> of this ship.`
-
-tip "shipyard: s"
-	`Sell the selected ships and their outfits.`
-
-tip "shipyard: r"
-	`Sell the hulls of the selected ships, but retain the outfits in storage.`
-
-
-
 # Sale labels:
 tip "empty hull:"
 	`Price the ship itself would sell for without any outfits installed.`
@@ -1564,7 +1534,7 @@ tip "Automatically unpark flagship"
 
 tip "Prioritize flagship use"
 	`When distributing cargo and passengers among your ships on takeoff, prioritize the flagship over your escorts. (When your flagship does not have enough space, some mission cargo or passengers may still be moved to your other ships.)`
-
+	
 tip "Deadline blink by distance"
 	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
 
@@ -1588,15 +1558,6 @@ tip "Reactivate first-time help"
 
 tip "Interrupt fast-forward"
 	`Disable fast-forward whenever you land or when a conversation, dialog, or other panel appears while in flight.`
-
-tip "'Sell Outfits' without outfitter"
-	`In the Trading panel, controls whether the 'Sell Outfits' button will allow selling outfits even when there is not Outfitter at which to buy them back.`
-
-tip "Confirm 'Sell Outfits' button"
-	`In the Trading panel, controls whether or not to confirm sales of all outfits in cargo.`
-
-tip "Confirm 'Sell Flotsam' button"
-	`In the Trading panel, controls whether or not to confirm sales of mineables, specials and other flotsam that may have been picked up.`
 
 tip "Landing zoom"
 	`Apply a cinematic zoom in and out when you are landing and taking off.`

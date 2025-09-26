@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -28,15 +27,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "Messages.h"
 #include "Outfit.h"
-#include "Planet.h"
 #include "PlayerInfo.h"
-#include "Preferences.h"
 #include "Screen.h"
 #include "System.h"
 #include "UI.h"
 
 #include <algorithm>
-#include <sstream>
 #include <string>
 
 using namespace std;
@@ -57,7 +53,6 @@ namespace {
 	const int BUY_X = 310;
 	const int SELL_X = 370;
 	const int HOLD_X = 430;
-	constexpr size_t SELL_OUTFITS_DISPLAY_LIMIT = 15;
 }
 
 
@@ -129,22 +124,32 @@ void TradingPanel::Draw()
 	font.Draw("free:", Point(MIN_X + SELL_X + 5, lastY), selected);
 	font.Draw(to_string(player.Cargo().Free()), Point(MIN_X + HOLD_X, lastY), selected);
 
+	int outfits = player.Cargo().OutfitsSize();
 	int missionCargo = player.Cargo().MissionCargoSize();
-	double minableCargo = player.Cargo().MinablesSizePrecise();
-	double outfitCargo = max(0., player.Cargo().OutfitsSizePrecise() - minableCargo);
-	if(minableCargo || outfitCargo || missionCargo)
+	sellOutfits = false;
+	if(player.Cargo().HasOutfits() || missionCargo)
 	{
-		string str = Format::MassString(ceil(minableCargo + outfitCargo + missionCargo)) + " of ";
-		if(minableCargo && missionCargo)
+		bool hasOutfits = false;
+		bool hasMinables = false;
+		for(const auto &it : player.Cargo().Outfits())
+			if(it.second)
+			{
+				bool isMinable = it.first->Get("minable");
+				(isMinable ? hasMinables : hasOutfits) = true;
+			}
+		sellOutfits = (hasOutfits && !hasMinables);
+
+		string str = Format::MassString(outfits + missionCargo) + " of ";
+		if(hasMinables && missionCargo)
 			str += "mission cargo and other items.";
-		else if(outfitCargo && missionCargo)
+		else if(hasOutfits && missionCargo)
 			str += "outfits and mission cargo.";
-		else if(outfitCargo && minableCargo)
-			str += "outfits and flotsam.";
-		else if(outfitCargo)
+		else if(hasOutfits && hasMinables)
+			str += "outfits and special commodities.";
+		else if(hasOutfits)
 			str += "outfits.";
-		else if(minableCargo)
-			str += "flotsam.";
+		else if(hasMinables)
+			str += "special commodities.";
 		else
 			str += "mission cargo.";
 		font.Draw(str, Point(MIN_X + NAME_X, lastY), unselected);
@@ -196,6 +201,7 @@ void TradingPanel::Draw()
 
 		if(hold)
 		{
+			sellOutfits = false;
 			canSell |= (price != 0);
 			font.Draw(to_string(hold), Point(MIN_X + HOLD_X, y), selected);
 		}
@@ -204,14 +210,10 @@ void TradingPanel::Draw()
 	if(showProfit)
 		font.Draw("Profit", Point(MIN_X + PROFIT_X, FIRST_Y), selected);
 
-	canSellOutfits = outfitCargo &&
-		(player.GetPlanet()->HasOutfitter() || Preferences::Has("'Sell Outfits' without outfitter"));
 	Information info;
-	if(canSellOutfits)
+	if(sellOutfits)
 		info.SetCondition("can sell outfits");
-	if(minableCargo)
-		info.SetCondition("can sell flotsam");
-	if(canSell)
+	else if(player.Cargo().HasOutfits() || canSell)
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0 && canBuy)
 		info.SetCondition("can buy");
@@ -233,9 +235,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1);
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'u' || (key == 'b' && (mod & KMOD_SHIFT)))
+	else if(key == 'u' || key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(key == 'e' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(key == 'e' || key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
 	{
 		for(const auto &it : player.Cargo().Commodities())
 		{
@@ -254,22 +256,22 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Accounts().AddCredits(amount * price);
 			player.Cargo().Remove(commodity, amount);
 		}
-	}
-	else if(key == 'f' && player.Cargo().MinablesSizePrecise())
-	{
-		if(Preferences::Has("Confirm 'Sell Flotsam' button"))
-			GetUI()->Push(new Dialog([this]() { SellOutfitsOrFlotsam(true); },
-				OutfitSalesMessage(true), Truncate::NONE, true, false));
-		else
-			SellOutfitsOrFlotsam(true);
-	}
-	else if((key == 'L' || (key == 'l' && (mod & KMOD_SHIFT))) && canSellOutfits)
-	{
-		if(Preferences::Has("Confirm 'Sell Outfits' button"))
-			GetUI()->Push(new Dialog([this]() { SellOutfitsOrFlotsam(false); },
-				OutfitSalesMessage(false), Truncate::NONE, true, false));
-		else
-			SellOutfitsOrFlotsam(false);
+		int day = player.GetDate().DaysSinceEpoch();
+		for(const auto &it : player.Cargo().Outfits())
+		{
+			const Outfit * const outfit = it.first;
+			const int64_t &amount = it.second;
+			if(outfit->Get("minable") <= 0. && !sellOutfits)
+				continue;
+
+			int64_t value = player.FleetDepreciation().Value(outfit, day, amount);
+			profit += value;
+			tonsSold += static_cast<int>(amount * outfit->Mass());
+
+			player.AddStock(outfit, amount);
+			player.Accounts().AddCredits(value);
+			player.Cargo().Remove(outfit, amount);
+		}
 	}
 	else if(command.Has(Command::MAP))
 		GetUI()->Push(new MapDetailPanel(player));
@@ -338,85 +340,4 @@ void TradingPanel::Buy(int64_t amount)
 	amount = player.Cargo().Add(type, amount);
 	player.Accounts().AddCredits(-amount * price);
 	GameData::AddPurchase(system, type, amount);
-}
-
-
-
-void TradingPanel::SellOutfitsOrFlotsam(bool sellFlotsam)
-{
-	int day = player.GetDate().DaysSinceEpoch();
-	for(const auto &it : player.Cargo().Outfits())
-	{
-		if(sellFlotsam != static_cast<bool>(it.first->Get("minable")))
-			continue;
-		if(!it.second)
-			continue;
-		int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
-		profit += value;
-		tonsSold += static_cast<int>(it.second * it.first->Mass());
-
-		player.AddStock(it.first, it.second);
-		player.Accounts().AddCredits(value);
-		player.Cargo().Remove(it.first, it.second);
-	}
-}
-
-
-
-string TradingPanel::OutfitSalesMessage(bool sellFlotsam) const
-{
-	struct OutfitInfo {
-		string name;
-		int64_t count, value;
-	};
-	vector<OutfitInfo> outfitValue;
-	double tonsSold = 0;
-	int profit = 0;
-	int day = player.GetDate().DaysSinceEpoch();
-	for(auto &[outfit, count] : player.Cargo().Outfits())
-	{
-		if(sellFlotsam != static_cast<bool>(outfit->Get("minable")))
-			continue;
-		if(!count)
-			continue;
-		int64_t value = player.FleetDepreciation().Value(outfit, day, count);
-		profit += value;
-		tonsSold += static_cast<int>(count * outfit->Mass());
-		// Store a description of the count & item, followed by its value.
-		outfitValue.push_back({{}, count, value});
-		if(sellFlotsam && count == 1)
-			outfitValue.back().name = Format::CargoString(count, outfit->DisplayName());
-		if(sellFlotsam)
-			outfitValue.back().name = Format::CargoString(count, outfit->PluralName());
-		else if(count == 1)
-			outfitValue.back().name = outfit->DisplayName();
-		else
-			outfitValue.back().name = Format::Number(count) + " " + outfit->PluralName();
-	}
-	if(outfitValue.size() == 1)
-		return "Sell " + outfitValue[0].name + " for " + Format::CreditString(profit) + "?";
-	std::ostringstream out;
-	out << "Sell ";
-	out << Format::CargoString(tonsSold, sellFlotsam ? "of special commodities" : "of outfits");
-	out << " for " << Format::CreditString(profit) << '?' << endl;
-
-	// Sort by decreasing value.
-	sort(outfitValue.begin(), outfitValue.end(), [](const OutfitInfo &left, const OutfitInfo &right)
-	{
-		return right.value < left.value;
-	});
-	const size_t toDisplay = min<int>(SELL_OUTFITS_DISPLAY_LIMIT, outfitValue.size());
-	for(size_t i = 0; i < toDisplay; ++i)
-		out << outfitValue[i].name << endl;
-	if(outfitValue.size() > SELL_OUTFITS_DISPLAY_LIMIT)
-	{
-		int64_t count = 0;
-		for(size_t i = SELL_OUTFITS_DISPLAY_LIMIT; i < outfitValue.size(); ++i)
-			count += outfitValue[i].count;
-		if(sellFlotsam)
-			out << "and " << Format::MassString(count) << " more.";
-		else
-			out << "and " << Format::Number(count) << " more.";
-	}
-	return out.str();
 }

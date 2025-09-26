@@ -396,14 +396,6 @@ const set<string> &Planet::Attributes() const
 
 
 
-// Get the list of "attributes" of the planet.
-const set<string> &Planet::RequiredAttributes() const
-{
-	return requiredAttributes;
-}
-
-
-
 // Get planet's noun descriptor from attributes
 const string &Planet::Noun() const
 {
