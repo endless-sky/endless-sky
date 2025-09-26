@@ -26,6 +26,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Screen.h"
 
+#ifdef _WIN32
+#include "windows/WinVersion.h"
+#endif
+
 #include <algorithm>
 #include <cstddef>
 #include <map>
@@ -342,8 +346,10 @@ void Preferences::Save()
 	out.Write("Prioritize flagship use", flagshipSpacePriorityIndex);
 	out.Write("previous saves", previousSaveCount);
 #ifdef _WIN32
-	out.Write("Title bar theme", titleBarThemeIndex);
-	out.Write("Window rounding", windowRoundingIndex);
+	if(WinVersion::SupportsDarkTheme())
+		out.Write("Title bar theme", titleBarThemeIndex);
+	if(WinVersion::SupportsWindowRounding())
+		out.Write("Window rounding", windowRoundingIndex);
 #endif
 
 	for(const auto &it : settings)
