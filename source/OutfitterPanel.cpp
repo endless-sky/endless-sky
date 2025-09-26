@@ -943,7 +943,7 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 	if(!ButtonActive(hoverButton, true))
 		return false;
 
-	// If we're hovering above a button that can modify add outfits to a ship then highlight the ship.
+	// If we're hovering above a button that can add outfits to a ship then highlight the ship.
 	if(hoverButton == 'b' || hoverButton == 'i')
 		return ShipCanAdd(ship, selectedOutfit);
 
