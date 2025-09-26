@@ -398,10 +398,9 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 	if(outfitValue.size() == 1)
 		return "Sell " + outfitValue[0].name + " for " + Format::CreditString(profit) + "?";
 	std::ostringstream out;
-	out
-		<< "Sell "
-		<< Format::CargoString(tonsSold, sellMinable ? "of special commodities" : "of outfits")
-		<< " for " << Format::CreditString(profit) << '?' << endl;
+	out << "Sell "
+	out << Format::CargoString(tonsSold, sellMinable ? "of special commodities" : "of outfits")
+	out << " for " << Format::CreditString(profit) << '?' << endl;
 
 	// Sort by decreasing value.
 	sort(outfitValue.begin(), outfitValue.end(), [](const OutfitInfo &left, const OutfitInfo &right)
