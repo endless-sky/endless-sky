@@ -52,7 +52,7 @@ private:
 	const System &system;
 	const int COMMODITY_COUNT;
 	// There are multiple requirements to selling outfits. This caches the calculation in Step().
-	bool canSellOutfits;
+	bool canSellOutfits = false;
 
 	// Keep track of how much we sold and how much profit was made.
 	int tonsSold = 0;
