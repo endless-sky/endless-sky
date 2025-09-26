@@ -44,7 +44,7 @@ protected:
 private:
 	void Buy(int64_t amount);
 	void SellOutfitsOrMinables(bool sellMinable);
-	std::string OutfitSalesMessage(bool sellMinable, size_t displayLimit);
+	std::string OutfitSalesMessage(bool sellMinable, size_t displayLimit) const;
 
 
 private:
