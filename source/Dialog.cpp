@@ -213,7 +213,6 @@ void Dialog::Draw()
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &inactive = *GameData::Colors().Get("inactive");
-	const string okText = isMission ? "Accept" : "OK";
 	okPos = pos + Point((top->Width() - RIGHT_MARGIN - cancel->Width()) * .5, 0.);
 	Point labelPos(
 		okPos.X() - .5 * font.Width(okText),
@@ -221,7 +220,6 @@ void Dialog::Draw()
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (activeButton == 1 ? bright : dim));
 	if(canCancel)
 	{
-		string cancelText = isMission ? "Decline" : "Cancel";
 		cancelPos = pos + Point(okPos.X() - cancel->Width() + BUTTON_RIGHT_MARGIN, 0.);
 		SpriteShader::Draw(cancel, cancelPos);
 		labelPos = {
@@ -236,14 +234,14 @@ void Dialog::Draw()
 				cancelPos.X() - (thirdButtonSprite->Width() + cancel->Width()) / 2 + BUTTON_RIGHT_MARGIN, 0.);
 			SpriteShader::Draw(thirdButtonSprite, thirdPos);
 			labelPos = {
-				thirdPos.X() - .5 * font.Width(cancelText),
+				thirdPos.X() - .5 * font.Width(buttonThree.buttonLabel),
 				thirdPos.Y() - .5 * font.Height()};
-			font.Draw(thirdButtonLabel, labelPos, activeButton == 3 ? bright : dim);
+			font.Draw(buttonThree.buttonLabel, labelPos, activeButton == 3 ? bright : dim);
 		}
 	}
 
 	// Draw the input, if any.
-	if(!isMission && (intFun || stringFun))
+	if(!isMission && (intFun || stringFun || validateFun))
 	{
 		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
 
@@ -338,14 +336,14 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 	}
 	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || key == SDLK_SPACE || isCloseRequest
 			|| (isMission && (key == 'a' || key == 'd'))
-			|| (numButtons == 3 && key == thirdButtonKey))
+			|| (numButtons == 3 && key == buttonThree.buttonKey))
 	{
 		// Note: The key shortcuts only work when there is no stringFun defined, else they are being typed out.
 		if(key == 'a' || (!canCancel && isCloseRequest))
 			activeButton = 1;
 		if(key == 'd' || (canCancel && isCloseRequest))
 			activeButton = 2;
-		if(key == thirdButtonKey && numButtons == 3)
+		if(key == buttonThree.buttonKey && numButtons == 3)
 			activeButton = 3;
 
 		// Now that we know what button was selected, process the button press
@@ -367,7 +365,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		else if(activeButton == 3)
 		{
 			// Do third button callback, if this returns true, also close the dialog.
-			if(ThirdButtonFun(input))
+			if(buttonThree.buttonAction(input))
 				GetUI()->Pop(this);
 		}
 		else
@@ -438,7 +436,16 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	this->canCancel = canCancel;
 	activeButton = 1;
 	isWide = false;
-	numButtons = canCancel ? !thirdButtonLabel.empty() ? 3 : 2 : 1;
+	numButtons = canCancel ? !buttonThree.buttonLabel.empty() ? 3 : 2 : 1;
+
+	if(buttonOne.buttonLabel.empty())
+		okText = isMission ? "Accept" : "OK";
+	else
+	{
+		okText = buttonOne.buttonLabel;
+		stringFun = buttonOne.buttonAction;
+	}
+	cancelText = isMission ? "Decline" : "Cancel";
 
 	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
 	text = std::make_shared<TextArea>();
@@ -501,6 +508,9 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
+
+	if(validateFun)
+		isOkDisabled = !validateFun(input);
 }
 
 
@@ -543,10 +553,4 @@ int Dialog::Width() const
 {
 	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
 	return top->Width() - HORIZONTAL_MARGIN;
-}
-
-bool Dialog::ThirdButtonFun(string & /* input */)
-{
-	// Default is to close the window after execution.
-	return true;
 }
