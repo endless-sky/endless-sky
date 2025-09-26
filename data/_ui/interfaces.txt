@@ -1976,19 +1976,19 @@ interface "trade"
 		center 159 354
 	
 	active if "can buy"
-	button B "B_uy All"
+	button u "B_uy All"
 		center 120 355
 		dimensions 70 30
 	
 	active if "can sell"
-	button S "S_ell All"
+	button e "S_ell All"
 		center 200 355
 		dimensions 70 30
 	
-	active if "can sell specials"
+	active if "can sell flotsam"
 	sprite "ui/wide button"
 		center -85 355
-	button P "Sell Specials"
+	button f "Sell _Flotsam"
 		center -85 355
 		dimensions 90 30
 	
@@ -2013,19 +2013,19 @@ interface "trade (small screen)"
 		center 99 354
 	
 	active if "can buy"
-	button B "B_uy All"
+	button u "B_uy All"
 		center 60 355
 		dimensions 70 30
 	
 	active if "can sell"
-	button S "S_ell All"
+	button e "S_ell All"
 		center 140 355
 		dimensions 70 30
 	
 	active if "can sell specials"
 	sprite "ui/wide button"
 		center -145 355
-	button P "Sell Specials"
+	button f "Sell _Flotsam"
 		center -145 355
 		dimensions 90 30
 	

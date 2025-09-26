@@ -776,7 +776,7 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		"'Sell Outfits' without outfitter",
 		"Confirm 'Sell Outfits' button",
-		"Confirm 'Sell Specials' button",
+		"Confirm 'Sell Flotsam' button",
 		"Landing zoom",
 		SCROLL_SPEED,
 		DATE_FORMAT,

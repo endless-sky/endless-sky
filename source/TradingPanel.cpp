@@ -210,7 +210,7 @@ void TradingPanel::Draw()
 	if(canSellOutfits)
 		info.SetCondition("can sell outfits");
 	if(minableCargo)
-		info.SetCondition("can sell specials");
+		info.SetCondition("can sell flotsam");
 	if(canSell)
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0 && canBuy)
@@ -233,9 +233,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1);
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'u' || key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
+	else if(key == 'u' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(key == 'e' || key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(key == 'e' || (key == 's' && (mod & KMOD_SHIFT)))
 	{
 		for(const auto &it : player.Cargo().Commodities())
 		{
@@ -255,23 +255,21 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Cargo().Remove(commodity, amount);
 		}
 	}
-	else if((key == 'P' || (key == 'p' && (mod & KMOD_SHIFT))) && player.Cargo().MinablesSizePrecise())
+	else if(key == 'f' && player.Cargo().MinablesSizePrecise())
 	{
-		if(Preferences::Has("Confirm 'Sell Specials' button"))
-			GetUI()->Push(new Dialog([this]() { SellOutfitsOrMinables(true); },
-				OutfitSalesMessage(true, SELL_OUTFITS_DISPLAY_LIMIT),
-				Truncate::NONE, true, false));
+		if(Preferences::Has("Confirm 'Sell Flotsam' button"))
+			GetUI()->Push(new Dialog([this]() { SellOutfitsOrFlotsam(true); },
+				OutfitSalesMessage(true), Truncate::NONE, true, false));
 		else
-			SellOutfitsOrMinables(true);
+			SellOutfitsOrFlotsam(true);
 	}
 	else if((key == 'L' || (key == 'l' && (mod & KMOD_SHIFT))) && canSellOutfits)
 	{
 		if(Preferences::Has("Confirm 'Sell Outfits' button"))
-			GetUI()->Push(new Dialog([this]() { SellOutfitsOrMinables(false); },
-				OutfitSalesMessage(false, SELL_OUTFITS_DISPLAY_LIMIT),
-				Truncate::NONE, true, false));
+			GetUI()->Push(new Dialog([this]() { SellOutfitsOrFlotsam(false); },
+				OutfitSalesMessage(false), Truncate::NONE, true, false));
 		else
-			SellOutfitsOrMinables(false);
+			SellOutfitsOrFlotsam(false);
 	}
 	else if(command.Has(Command::MAP))
 		GetUI()->Push(new MapDetailPanel(player));
@@ -344,12 +342,12 @@ void TradingPanel::Buy(int64_t amount)
 
 
 
-void TradingPanel::SellOutfitsOrMinables(bool sellMinable)
+void TradingPanel::SellOutfitsOrFlotsam(bool sellFlotsam)
 {
 	int day = player.GetDate().DaysSinceEpoch();
 	for(const auto &it : player.Cargo().Outfits())
 	{
-		if(sellMinable != static_cast<bool>(it.first->Get("minable")))
+		if(sellFlotsam != static_cast<bool>(it.first->Get("minable")))
 			continue;
 		if(!it.second)
 			continue;
@@ -365,7 +363,7 @@ void TradingPanel::SellOutfitsOrMinables(bool sellMinable)
 
 
 
-string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
+string TradingPanel::OutfitSalesMessage(bool sellFlotsam) const
 {
 	struct OutfitInfo {
 		string name;
@@ -377,7 +375,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 	int day = player.GetDate().DaysSinceEpoch();
 	for(auto &[outfit, count] : player.Cargo().Outfits())
 	{
-		if(sellMinable != static_cast<bool>(outfit->Get("minable")))
+		if(sellFlotsam != static_cast<bool>(outfit->Get("minable")))
 			continue;
 		if(!count)
 			continue;
@@ -386,9 +384,9 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 		tonsSold += static_cast<int>(count * outfit->Mass());
 		// Store a description of the count & item, followed by its value.
 		outfitValue.push_back({{}, count, value});
-		if(sellMinable && count == 1)
+		if(sellFlotsam && count == 1)
 			outfitValue.back().name = Format::CargoString(count, outfit->DisplayName());
-		if(sellMinable)
+		if(sellFlotsam)
 			outfitValue.back().name = Format::CargoString(count, outfit->PluralName());
 		else if(count == 1)
 			outfitValue.back().name = outfit->DisplayName();
@@ -398,8 +396,8 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 	if(outfitValue.size() == 1)
 		return "Sell " + outfitValue[0].name + " for " + Format::CreditString(profit) + "?";
 	std::ostringstream out;
-	out << "Sell "
-	out << Format::CargoString(tonsSold, sellMinable ? "of special commodities" : "of outfits")
+	out << "Sell ";
+	out << Format::CargoString(tonsSold, sellFlotsam ? "of special commodities" : "of outfits");
 	out << " for " << Format::CreditString(profit) << '?' << endl;
 
 	// Sort by decreasing value.
@@ -407,16 +405,16 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 	{
 		return right.value < left.value;
 	});
-	const size_t toDisplay = min<int>(displayLimit, outfitValue.size());
+	const size_t toDisplay = min<int>(SELL_OUTFITS_DISPLAY_LIMIT, outfitValue.size());
 	for(size_t i = 0; i < toDisplay; ++i)
 		out << outfitValue[i].name << endl;
-	if(outfitValue.size() > displayLimit)
+	if(outfitValue.size() > SELL_OUTFITS_DISPLAY_LIMIT)
 	{
 		int64_t count = 0;
-		for(size_t i = displayLimit; i < outfitValue.size(); ++i)
+		for(size_t i = SELL_OUTFITS_DISPLAY_LIMIT; i < outfitValue.size(); ++i)
 			count += outfitValue[i].count;
-		if(sellMinable)
-			out << "and " << Format::Mass(count) << " more.";
+		if(sellFlotsam)
+			out << "and " << Format::MassString(count) << " more.";
 		else
 			out << "and " << Format::Number(count) << " more.";
 	}
