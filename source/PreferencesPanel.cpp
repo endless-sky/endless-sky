@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -73,6 +74,7 @@ namespace {
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
+	const string TOOLTIP_ACTIVATION = "Tooltip activation";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship use";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
@@ -444,6 +446,16 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 				speed = min(60, speed + 10);
 			Preferences::SetScrollSpeed(speed);
 		}
+		else if(hoverItem == TOOLTIP_ACTIVATION)
+		{
+			int steps = Preferences::TooltipActivation();
+			if(dy < 0.)
+				steps = max(0, steps - 20);
+			else
+				steps = min(120, steps + 20);
+			Preferences::SetTooltipActivation(steps);
+			tooltip.UpdateActivationCount();
+		}
 		return true;
 	}
 	else if(page == 'p')
@@ -783,6 +795,7 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		"Landing zoom",
 		SCROLL_SPEED,
+		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
 		"Show parenthesis",
 		NOTIFY_ON_DEST
@@ -1003,6 +1016,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
+		}
+		else if(setting == TOOLTIP_ACTIVATION)
+		{
+			isOn = true;
+			text = Format::StepsToSeconds(Preferences::TooltipActivation());
 		}
 		else if(setting == ALERT_INDICATOR)
 		{
@@ -1339,6 +1357,14 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		if(speed > 60)
 			speed = 10;
 		Preferences::SetScrollSpeed(speed);
+	}
+	else if(str == TOOLTIP_ACTIVATION)
+	{
+		int steps = Preferences::TooltipActivation() + 20;
+		if(steps > 120)
+			steps = 0;
+		Preferences::SetTooltipActivation(steps);
+		tooltip.UpdateActivationCount();
 	}
 	else if(str == FLAGSHIP_SPACE_PRIORITY)
 		Preferences::ToggleFlagshipSpacePriority();

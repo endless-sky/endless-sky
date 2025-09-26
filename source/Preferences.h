@@ -153,6 +153,9 @@ public:
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
 
+	static int TooltipActivation();
+	static void SetTooltipActivation(int steps);
+
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();

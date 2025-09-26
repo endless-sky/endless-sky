@@ -19,15 +19,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 
 using namespace std;
 
 namespace {
-	// Only show tooltips if the mouse has hovered in one place for this amount
-	// of time.
-	const int HOVER_TIME = 60;
-
 	Rectangle CreateBox(const Rectangle &zone, const Point &boxSize,
 		Tooltip::Direction direction, Tooltip::Corner corner)
 	{
@@ -151,13 +148,14 @@ Tooltip::Tooltip(int width, Alignment alignment, Direction direction, Corner cor
 	// 10 pixels of padding will be left on either side of the tooltip box.
 	text.SetWrapWidth(width - 20);
 	text.SetAlignment(alignment);
+	UpdateActivationCount();
 }
 
 
 
 void Tooltip::IncrementCount()
 {
-	if(hoverCount < HOVER_TIME)
+	if(hoverCount < activationHover)
 		++hoverCount;
 }
 
@@ -180,7 +178,7 @@ void Tooltip::ResetCount()
 
 bool Tooltip::ShouldDraw() const
 {
-	return hoverCount >= HOVER_TIME;
+	return hoverCount >= activationHover;
 }
 
 
@@ -259,4 +257,11 @@ void Tooltip::Draw(bool forceDraw) const
 
 	FillShader::Fill(box, *backColor);
 	text.Draw(box.TopLeft() + Point(10., 10.), *fontColor);
+}
+
+
+
+void Tooltip::UpdateActivationCount()
+{
+	activationHover = Preferences::TooltipActivation();
 }

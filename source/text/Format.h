@@ -47,6 +47,8 @@ public:
 	static std::string CargoString(double amount, const std::string &cargo);
 	// Converts the integer to string, and adds the noun, pluralized if needed.
 	static std::string SimplePluralization(int amount, const std::string &noun);
+	// Convert a number of steps (1/60 sec each) to seconds.
+	static std::string StepsToSeconds(size_t steps);
 	// Convert a time in seconds to years/days/hours/minutes/seconds
 	static std::string PlayTime(double timeVal);
 	// Convert an ammo count into a short string for use in the ammo display.
