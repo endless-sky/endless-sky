@@ -455,10 +455,7 @@ conversation "remnant key stones"
 			goto "why mention"
 		`	"Okay."`
 			accept
-	`	"Of course. There are several different methods available for doing so." He switches to a chant as he begins listing methods.`
-	`	"Firstly, our outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
-	`	"Secondly, if you do not have any ships selected in the outfitter control panel when you make a purchase, our logistics system will assign it for delivery to your cargo hold instead of scheduling an installation.`
-	`	"Lastly, if you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold."`
+	`	"Of course. You can instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing them by pressing the 'C' key."`
 	`	He glances at his commlink and starts tapping at something. "We look forward to your return," he trills, before striding away still looking at his display.`
 		accept
 	label "why mention"
