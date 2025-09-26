@@ -1235,60 +1235,6 @@ double OutfitterPanel::ButtonPanelHeight() const
 
 
 
-// Check if the given point is within the button zone, and if so return the
-// letter of the button (or ' ' if it's not on a button).
-char OutfitterPanel::CheckButton(int x, int y)
-{
-	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - 3. * rowOffsetY - BUTTON_ROW_START_PAD;
-	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double w = BUTTON_WIDTH / 2;
-	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
-
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
-		return '\0';
-
-	// Row 1
-	if(rowBaseY < y && y <= rowBaseY + BUTTON_HEIGHT)
-	{
-		// Check if it's the _Buy button.
-		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
-			return 'b';
-		// Check if it's the _Install button.
-		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
-			return 'i';
-		// Check if it's the _Cargo button.
-		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
-			return 'c';
-	}
-
-	// Row 2
-	if(rowBaseY + rowOffsetY < y && y <= rowBaseY + rowOffsetY + BUTTON_HEIGHT)
-	{
-		// Check if it's the _Sell button:
-		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
-			return 's';
-		// Check if it's the _Uninstall button.
-		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
-			return 'u';
-		// Check if it's the Sto_re button.
-		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
-			return 'r';
-	}
-
-	// Row 3
-	if(rowBaseY + rowOffsetY * 2 < y && y <= rowBaseY + rowOffsetY * 2 + BUTTON_HEIGHT)
-	{
-		// Check if it's the _Leave button.
-		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
-			return 'l';
-	}
-
-	return ' ';
-}
-
-
-
 void OutfitterPanel::DrawButtons()
 {
 	// There will be two rows of buttons:
@@ -1303,8 +1249,8 @@ void OutfitterPanel::DrawButtons()
 
 	// Draw the button panel (shop side panel footer).
 	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize,
-		*GameData::Colors().Get("shop side panel background"));
+	const Rectangle buttonsFooter(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize);
+	FillShader::Fill(buttonsFooter, *GameData::Colors().Get("shop side panel background"));
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
@@ -1313,7 +1259,6 @@ void OutfitterPanel::DrawButtons()
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
-	const Color &back = *GameData::Colors().Get("panel background");
 
 	// Draw the row for credits display.
 	const Point creditsPoint(
@@ -1331,21 +1276,8 @@ void OutfitterPanel::DrawButtons()
 	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
 	font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, cargoPoint, bright);
 
-	// Define the button text colors.
-	const Color &hover = *GameData::Colors().Get("hover");
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &inactive = *GameData::Colors().Get("inactive");
-
-	// This function (DrawButton) is written to mimic the forhcoming DrawButton from PR #11447
-	auto DrawButton = [&](const string &name, const Rectangle &buttonShape, bool isActive, bool hovering,
-		char keyCode)
-	{
-		const Font &bigFont = FontSet::Get(18);
-		const Color *color = !isActive ? &inactive : hovering ? &hover : &active;
-
-		FillShader::Fill(buttonShape.Center(), buttonShape.Dimensions(), back);
-		bigFont.Draw(name, buttonShape.Center() - .5 * Point(bigFont.Width(name), bigFont.Height()), *color);
-	};
+	// Clear the buttonZones, they will be populated again as buttons are drawn.
+	buttonZones.clear();
 
 	// Row 1.
 	DrawButton("_Buy", Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize),
@@ -1384,23 +1316,31 @@ void OutfitterPanel::DrawButtons()
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
 	if(!tooltip.empty())
-		// Note: there is an offset between the cursor and tooltips in this case so that other
-		// buttons can be seen as the mouse moves around.
-		DrawTooltip(tooltip, hoverPoint + Point(-40, -60), dim, *GameData::Colors().Get("tooltip background"));
+		buttonsTooltip.IncrementCount();
+	else
+		buttonsTooltip.DecrementCount();
+
+	if(buttonsTooltip.ShouldDraw())
+	{
+		buttonsTooltip.SetZone(buttonsFooter);
+		buttonsTooltip.SetText(tooltip, true);
+		buttonsTooltip.Draw();
+	}
 
 	// Draw the tooltip for your full number of credits and free cargo space
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 30));
 	if(creditsBox.Contains(hoverPoint))
-		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
-	else if(ShopPanel::hoverCount)
-		--ShopPanel::hoverCount;
+		creditsTooltip.IncrementCount();
+	else
+		creditsTooltip.DecrementCount();
 
-	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
+	if(creditsTooltip.ShouldDraw())
 	{
-		tooltip = Format::Number(player.Accounts().Credits()) + " credits" + "\n" +
+		creditsTooltip.SetZone(creditsBox);
+		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits" + "\n" +
 			Format::Number(player.Cargo().Free()) + " tons free out of " +
-			Format::Number(player.Cargo().Size()) + " tons total capacity";
-		DrawTooltip(tooltip, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+			Format::Number(player.Cargo().Size()) + " tons total capacity", true);
+		creditsTooltip.Draw();
 	}
 }
 

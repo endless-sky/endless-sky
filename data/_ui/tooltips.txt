@@ -1552,6 +1552,9 @@ tip "Rehire extra crew when lost"
 
 tip "Automatically unpark flagship"
 	`Automatically unpark a ship dragged to the first position in the ship list, and make it your flagship.`
+
+tip "Prioritize flagship use"
+	`When distributing cargo and passengers among your ships on takeoff, prioritize the flagship over your escorts. (When your flagship does not have enough space, some mission cargo or passengers may still be moved to your other ships.)`
 	
 tip "Deadline blink by distance"
 	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`

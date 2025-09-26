@@ -181,38 +181,14 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 
 
-// Check if the given point is within the button zone, and if so return the
-// letter of the button (or ' ' if it's not on a button).
-char ShipyardPanel::CheckButton(int x, int y)
-{
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
-		return '\0';
-
-	if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
-		return ' ';
-
-	x -= Screen::Right() - SIDEBAR_WIDTH;
-	if(x > 9 && x < 70)
-		// Check if it's the _Buy button.
-		return 'b';
-	else if(x > 89 && x < 150)
-		// Check if it's the _Sell button:
-		return 's';
-	else if(x > 169 && x < 240)
-		// Check if it's the _Leave button.
-		return 'l';
-
-	return ' ';
-}
-
-
-
 void ShipyardPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
-	Point buttonSize(SIDEBAR_WIDTH, ButtonPanelHeight());
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
-		*GameData::Colors().Get("shop side panel background"));
+
+	// Draw the button panel (shop side panel footer).
+	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
+	const Rectangle buttonsFooter(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize);
+	FillShader::Fill(buttonsFooter, *GameData::Colors().Get("shop side panel background"));
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
@@ -267,17 +243,32 @@ void ShipyardPanel::DrawButtons()
 		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
 	}
 
+	// Draw tooltips for the button being hovered over:
+	string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
+	if(!tooltip.empty())
+		buttonsTooltip.IncrementCount();
+	else
+		buttonsTooltip.DecrementCount();
+
+	if(buttonsTooltip.ShouldDraw())
+	{
+		buttonsTooltip.SetZone(buttonsFooter);
+		buttonsTooltip.SetText(tooltip, true);
+		buttonsTooltip.Draw();
+	}
+
 	// Draw the tooltip for your full number of credits.
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
-	if(creditsBox.Contains(ShopPanel::hoverPoint))
-		ShopPanel::hoverCount += ShopPanel::hoverCount < ShopPanel::HOVER_TIME;
-	else if(ShopPanel::hoverCount)
-		--ShopPanel::hoverCount;
+	if(creditsBox.Contains(hoverPoint))
+		creditsTooltip.IncrementCount();
+	else
+		creditsTooltip.DecrementCount();
 
-	if(ShopPanel::hoverCount == ShopPanel::HOVER_TIME)
+	if(creditsTooltip.ShouldDraw())
 	{
-		string text = Format::Number(player.Accounts().Credits()) + " credits";
-		DrawTooltip(text, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+		creditsTooltip.SetZone(creditsBox);
+		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits", true);
+		creditsTooltip.Draw();
 	}
 }
 

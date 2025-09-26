@@ -21,9 +21,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "Rectangle.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <set>
@@ -38,7 +40,7 @@ class Planet;
 class PlayerInfo;
 class Ship;
 
-void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor);
+
 
 // Class representing the common elements of both the shipyard panel and the
 // outfitter panel (e.g. the sidebar with the ships you own).
@@ -86,11 +88,10 @@ protected:
 	virtual double ButtonPanelHeight() const = 0;
 	virtual double DrawDetails(const Point &center) = 0;
 	virtual void DrawButtons() = 0;
-	virtual void DrawKey();
-	virtual char CheckButton(int x, int y) = 0;
 	virtual TransactionResult HandleShortcuts(char key) = 0;
 
 	virtual bool ShouldHighlight(const Ship *ship);
+	virtual void DrawKey() {};
 
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -105,6 +106,7 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
+	void DrawButton(const std::string &name, const Rectangle, bool isActive, bool hovering, char keyCode);
 	void CheckSelection();
 
 
@@ -134,14 +136,13 @@ protected:
 	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
 	static constexpr int INFOBAR_WIDTH = 300;
 	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static constexpr int BUTTON_HEIGHT = 30;
 	static constexpr int SHIP_SIZE = 250;
 	static constexpr int OUTFIT_SIZE = 183;
-	static constexpr int HOVER_TIME = 60;
 	// Button size/placement info:
 	static constexpr double BUTTON_ROW_START_PAD = 10.;
 	static constexpr double BUTTON_ROW_PAD = 5.;
 	static constexpr double BUTTON_COL_PAD = 5.;
+	static constexpr double BUTTON_HEIGHT = 30.;
 	static constexpr double BUTTON_WIDTH = 75.;
 
 
@@ -180,6 +181,7 @@ protected:
 	double previousX = 0.;
 
 	std::vector<Zone> zones;
+	std::vector<ClickZone<char>> buttonZones;
 	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
@@ -192,7 +194,10 @@ protected:
 
 	bool delayedAutoScroll = false;
 	Point hoverPoint;
-	int hoverCount = 0;
+
+	Tooltip shipsTooltip;
+	Tooltip creditsTooltip;
+	Tooltip buttonsTooltip;
 
 
 private:
@@ -214,11 +219,20 @@ private:
 	void MainDown();
 	void CategoryAdvance(const std::string &category);
 	std::vector<Zone>::const_iterator Selected() const;
+	// Check if the given point is within the button zone, and if so return the
+	// letter of the button (or ' ' if it's not on a button).
+	char CheckButton(int x, int y);
 
 
 private:
 	std::string shipName;
 	std::string warningType;
+
+	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
+	const Color &hover;
+	const Color &active;
+	const Color &inactive;
+	const Color &back;
 
 	bool checkedHelp = false;
 };
