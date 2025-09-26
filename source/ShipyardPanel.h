@@ -55,7 +55,7 @@ private:
 	TransactionResult CanDoBuyButton() const;
 	void DoBuyButton();
 	void Sell(bool storeOutfits);
-	void BuyShip(const std::string &name);
+	bool BuyShip(const std::string &name);
 	void SellShipAndOutfits();
 	void SellShipChassis();
 	void SellShip(bool toStorage);

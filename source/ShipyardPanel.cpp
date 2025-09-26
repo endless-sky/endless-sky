@@ -365,7 +365,9 @@ void ShipyardPanel::DoBuyButton()
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
-	GetUI()->Push(new ShipNameDialog(this, &ShipyardPanel::BuyShip, message));
+	GetUI()->Push(new ShipNameDialog(this,
+			Dialog::FunctionButton(this, "Buy", 'b', &ShipyardPanel::BuyShip),
+			message));
 }
 
 
@@ -440,7 +442,7 @@ void ShipyardPanel::Sell(bool storeOutfits)
 
 
 
-void ShipyardPanel::BuyShip(const string &name)
+bool ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost)
@@ -468,6 +470,8 @@ void ShipyardPanel::BuyShip(const string &name)
 	playerShips.clear();
 	playerShips.insert(playerShip);
 	CheckSelection();
+	// Close dialog
+	return true;
 }
 
 

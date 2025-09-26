@@ -37,10 +37,31 @@ class TextArea;
 // callback function can be given to receive the player's response.
 class Dialog : public Panel {
 public:
-	// An OK / Cancel dialog where Cancel can be disabled. The okIsActive lets
+	class FunctionButton
+	{
+	public:
+		FunctionButton() = default;
+
+		~FunctionButton() = default;
+
+		template<class T>
+		FunctionButton(T *panel,
+			const std::string &buttonLabel,
+			SDL_Keycode buttonKey = '\0',
+			bool (T::*buttonAction)(const std::string&) = nullptr);
+
+	public:
+		std::string buttonLabel;
+		SDL_Keycode buttonKey;
+		std::function<bool(const std::string &)> buttonAction;
+	};
+
+
+public:
+	// An OK / Cancel dialog where Cancel can be disabled. The activeButton == 1 lets
 	// you select whether "OK" (true) or "Cancel" (false) are selected as the default option.
 	Dialog(std::function<void()> okFunction, const std::string &message, Truncate truncate,
-		bool canCancel, bool okIsActive);
+		bool canCancel, int activeButton);
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
 	explicit Dialog(const std::string &text, Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
@@ -81,6 +102,15 @@ public:
 	Dialog(T *t, void (T::*fun)(bool), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
+	// Three button context, must provide actions for button 1 and button 3, button 2 is cancel.
+	template<class T>
+	Dialog(T *panel,
+		const std::string &text,
+		const std::string &initialValue,
+		Dialog::FunctionButton buttonOne,
+		Dialog::FunctionButton buttonThree,
+		std::function<bool(const std::string &)> validate);
+
 	// Draw this panel.
 	virtual void Draw() override;
 
@@ -117,21 +147,44 @@ protected:
 	std::function<void(bool)> boolFun;
 	std::function<bool(const std::string &)> validateFun;
 
-	bool canCancel;
-	bool okIsActive;
+	int activeButton;
 	bool isMission;
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
 	bool isWide = false;
 
 	std::string input;
+	bool canCancel;
+
+	std::string okText;
+	std::string cancelText;
 
 	Point okPos;
 	Point cancelPos;
+	Point thirdPos;
+
+	Dialog::FunctionButton buttonOne;
+	Dialog::FunctionButton buttonThree;
+
+	int numButtons;
 
 	const System *system = nullptr;
 	PlayerInfo *player = nullptr;
 };
+
+
+
+template<class T>
+Dialog::FunctionButton::FunctionButton(T *panel,
+	const std::string &buttonLabel,
+	SDL_Keycode buttonKey,
+	bool(T::*buttonAction)(const std::string &))
+	:
+	buttonLabel(buttonLabel),
+	buttonKey(buttonKey),
+	buttonAction(std::bind(buttonAction, panel, std::placeholders::_1))
+{
+}
 
 
 
@@ -196,4 +249,23 @@ Dialog::Dialog(T *t, void (T::*fun)(bool), const std::string &text, Truncate tru
 	: boolFun(std::bind(fun, t, std::placeholders::_1)), allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate);
+}
+
+
+
+template<class T>
+Dialog::Dialog(T *panel,
+	const std::string &text,
+	const std::string &initialValue,
+	Dialog::FunctionButton buttonOne,
+	Dialog::FunctionButton buttonThree,
+	std::function<bool(const std::string &)> validate)
+	:
+	validateFun(std::move(validate)),
+	input(initialValue),
+	canCancel(true),
+	buttonOne(buttonOne),
+	buttonThree(buttonThree)
+{
+	Init(text, Truncate::NONE);
 }
