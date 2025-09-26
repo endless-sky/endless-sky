@@ -1054,7 +1054,7 @@ ship "Modified Tachytia"
 		"cost" 99000000
 		"shields" 6000
 		"hull" 36000
-		"required crew" 300
+		"required crew" 600
 		"bunks" 900
 		"mass" 6000
 		"drag" 6
@@ -1092,7 +1092,7 @@ ship "Modified Tachytia"
 		"Radiative Lamina"
 		"Optical Laser Rifle" 900
 		
-		`Z-3600 "Beam" Amat Torch`
+		`A-3600 "Beam" Amat Drive`
 		"Inductive Extractor" 6
 		"Hyperdrive"
 
@@ -1191,8 +1191,9 @@ ship "Tremoros"
 		"hull" 2400
 		"automaton" 1
 		"crew equivalent" 1
+		"threshold percentage" 0.15
 		"mass" 90
-		"drag" 2.1
+		"drag" 1.5
 		"heat dissipation" 0.72
 		"fuel capacity" 900
 		"cargo space" 12
@@ -1208,49 +1209,47 @@ ship "Tremoros"
 	outfits
 		"Speckle Coilgun" 4
 		"Speck Round" 3600
+		"Tiny VLS"
+		`"Nettle" KKV` 27
 		
-		"Ultracapacitor Cell" 4
-		"Diffuse Deflector"
+		"Ultracapacitor Bank" 5
 		"Multispectral Scanner"
-		"Magnetic Scoop"
 		
-		`Z-333 "Spark" Fusion Torch`
-		"Inductive Extractor"
-		"Remass Injector" 2
+		"Vapor Nuclear Rocket"
 		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
 	engine 0 51
 		gimbal 6
-		zoom 0.6
+		zoom 0.75
 	"reverse engine" -3 -33
 		angle 30
 	"reverse engine" 3 -33
 		angle -30
 	"steering engine" -3 -33
-		angle 120
+		angle 90
 		right
 	"steering engine" 3 -33
-		angle -120
+		angle -90
 		left
-	"steering engine" 0 51
-		angle -30
+	"steering engine" -6 45
+		angle 90
+		left
+	"steering engine" 6 45
+		angle -90
 		right
-	"steering engine" 0 51
-		angle 30
-		left
 	gun -6.5 -18 "Speckle Coilgun"
 	gun 6.5 -18 "Speckle Coilgun"
 	gun -6.5 -18 "Speckle Coilgun"
 	gun 6.5 -18 "Speckle Coilgun"
-	turret 0 39
+	turret 0 39 "Tiny VLS"
 
 	leak "flame" 30 90
 	explode "tiny explosion" 12
 	explode "small explosion" 9
 	"final explode" "final explosion small"
 
-	description "The Tremoros-class Interceptor is a small autonomous ship designed to support patrol and interdiction missions. With an emphasis on raw acceleration, it can rocket past any adversary even as it brings its guns to bear, making it exceedingly difficult to hit."
+	description "The Tremoros-class Interceptor is a small autonomous ship designed to support patrol and interdiction missions. Derived from a transatmospheric hypersonic fighter, it is capable of dual operations in both space and planetary atmospheres. With an emphasis on raw acceleration, it can rocket past any adversary even as it brings its guns to bear, making it exceedingly difficult to hit."
 	description "	The Tremoros has also seen use as an escort for smaller merchant convoys, with the ability to intercept any enemies that might pose a threat before they can come within range of vulnerable civilian ships."
 
 
@@ -1264,6 +1263,7 @@ ship "Prismaios"
 		category "Light Warship"
 		licenses
 			"Twilight Guard"
+			"Avgi Torch"
 		"cost" 3600000
 		"shields" 1800
 		"hull" 7200
@@ -1277,7 +1277,7 @@ ship "Prismaios"
 		"cargo space" 36
 		"outfit space" 360
 		"weapon capacity" 120
-		"engine capacity" 96
+		"engine capacity" 105
 		"anchor point" 1
 		weapon
 			"blast radius" 240
@@ -1287,8 +1287,8 @@ ship "Prismaios"
 	outfits
 		"Speckle Turret" 2
 		"Speck Round" 4800
-		"Medium VLS"
-		`"Nettle" KKV` 216
+		"Small VLS"
+		`"Nettle" KKV` 54
 		"Green Optical Laser"
 
 		"Ultracapacitor Bank"
@@ -1329,7 +1329,7 @@ ship "Prismaios"
 	gun 9 33
 		angle 90
 		parallel
-	turret 0 -48 "Medium VLS"
+	turret 0 -48 "Small VLS"
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
 	turret 0 90 "Green Optical Laser"
@@ -1350,7 +1350,7 @@ ship "Prismaios" "Prismaios (Laserstar)"
 		"Blue Optical Laser" 2
 
 		"Lantern Fission Core"
-		"Ultracapacitor Bank" 3
+		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 2
 		"Multispectral Scanner"
@@ -1369,14 +1369,13 @@ ship "Prismaios" "Prismaios (Laserstar)"
 	turret "Green Optical Laser"
 
 
-ship "Prismaios" "Prismaios (Atomic)"
+ship "Prismaios" "Prismaios (Orchid)"
 	outfits
 		"Green Optical Laser" 2
 		"Speckle Turret" 2
 		"Speck Round" 4800
 		"External Launch Tube" 2
-		"Orchid Magazine" 2
-		`"Orchid" Nuclear Missile` 18
+		`"Orchid" Nuclear Missile` 12
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1388,7 +1387,7 @@ ship "Prismaios" "Prismaios (Atomic)"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	gun
@@ -1418,7 +1417,7 @@ ship "Interferos"
 		"fuel capacity" 600
 		"cargo space" 12
 		"outfit space" 294
-		"weapon capacity" 99
+		"weapon capacity" 102
 		"engine capacity" 66
 		"anchor point" 1
 		weapon
@@ -1490,7 +1489,7 @@ ship "Interferos" "Interferos (KKV)"
 	outfits
 		"Green Optical Laser"
 		"Medium VLS" 2
-		`"Nettle" KKV` 432
+		`"Nettle" KKV` 216
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -1508,14 +1507,15 @@ ship "Interferos" "Interferos (KKV)"
 	turret "Green Optical Laser"
 
 
-ship "Interferos" "Interferos (Atomic)"
+ship "Interferos" "Interferos (Orchid)"
 	outfits
+		"Green Optical Laser"
 		"External Launch Tube" 4
-		"Orchid Magazine" 3
-		`"Orchid" Nuclear Missile` 33
+		`"Orchid" Nuclear Missile` 24
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
+		"Optical Lasing Generator"
 		"Magnetic Scoop"
 		
 		`Z-333 "Spark" Fusion Torch`
@@ -1529,7 +1529,9 @@ ship "Interferos" "Interferos (Atomic)"
 	gun "External Launch Tube"
 	gun "External Launch Tube"
 	gun "External Launch Tube"
-
+	turret
+	turret
+	turret "Green Optical Laser"
 
 # Medium Warships
 
@@ -1540,6 +1542,7 @@ ship "Diaspersi"
 		category "Medium Warship"
 		licenses
 			"Twilight Guard"
+			"Avgi Torch"
 		"cost" 4200000
 		"shields" 2400
 		"hull" 14400
@@ -1562,18 +1565,15 @@ ship "Diaspersi"
 			"hit force" 2400
 	outfits
 		"Green Optical Laser" 2
-		"Speckle Turret"
-		"Speck Round" 2400
-		"Medium VLS"
-		"Nettle Magazine" 6
-		`"Nettle" KKV` 648
+		"Medium VLS" 2
+		`"Nettle" KKV` 216
 		
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner" 4
 		"Concealment Lamina"
-		"Deuterium Slush Tank"
+		"Deuterium Slush Tank" 3
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 36
 		
@@ -1611,7 +1611,7 @@ ship "Diaspersi"
 	turret 0 -12 "Medium VLS"
 	turret -9 9 "Green Optical Laser"
 	turret 9 9 "Green Optical Laser"
-	turret 0 51 "Speckle Turret"
+	turret 0 51 "Medium VLS"
 	bay "Fighter" 0 -63
 		"launch effect" "avgi external"
 		over
@@ -1652,21 +1652,20 @@ ship "Diaspersi"
 	description "The Diaspersi-class Escort Carrier is a light carrier capable of providing carrier operations support to smaller fleets, while also being capable of independent strike missions with minimal support. Seen escorting large merchant convoys and small Guard fleets alike, the Diaspersi can support two wings of combat drones as well as a single wing of larger fighters."
 
 
-ship "Diaspersi" "Diaspersi (Atomic)"
+ship "Diaspersi" "Diaspersi (Orchid)"
 	outfits
 		"Green Optical Laser" 2
 		"Speckle Turret"
 		"Speck Round" 2400
 		"External Launch Tube" 2
-		"Orchid Magazine" 2
-		`"Orchid" Nuclear Missile` 18
+		`"Orchid" Nuclear Missile` 12
 		"Ophrys Stockpile" 3
 		`"Ophrys" Nuclear Torpedo` 36
 		
-		"Ultracapacitor Cell" 3
+		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner" 3
 		"Concealment Lamina"
 		"Deuterium Slush Tank"
 		"Magnetic Scoop"
@@ -1687,6 +1686,34 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 	turret "Speckle Turret"
 
 
+ship "Diaspersi" "Diaspersi (UREB)"
+	outfits
+		"UREB Turret"
+		"Green Optical Laser" 2
+		"Small VLS"
+		`"Nettle" KKV` 54
+		
+		"Ultracapacitor Bank"
+		"Specular Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner" 4
+		"Concealment Lamina"
+		"Deuterium Slush Tank" 3
+		"Magnetic Scoop"
+		"Optical Laser Rifle" 36
+		
+		`Z-333 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
+		"R-360 RCS Thrusters"
+		"Hyperdrive"
+
+	turret "Small VLS"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "UREB Turret"
+
+
 ship "Refraktos"
 	plural "Refraktos"
 	sprite "ship/avgi refraktos"
@@ -1695,6 +1722,7 @@ ship "Refraktos"
 		category "Medium Warship"
 		licenses
 			"Twilight Guard"
+			"Avgi Torch"
 		"cost" 4500000
 		"shields" 3600
 		"hull" 12600
@@ -1708,7 +1736,7 @@ ship "Refraktos"
 		"cargo space" 60
 		"outfit space" 516
 		"weapon capacity" 150
-		"engine capacity" 168
+		"engine capacity" 180
 		"anchor point" 1
 		weapon
 			"blast radius" 420
@@ -1720,7 +1748,7 @@ ship "Refraktos"
 		"Green Optical Laser" 3
 
 		"Photoelectric Lamina"
-		"Ultracapacitor Bank" 3
+		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 4
 		"Multispectral Scanner" 2
@@ -1789,6 +1817,64 @@ ship "Refraktos"
 	description "	Due to the anemic damage output of Avgi laser weapons compared to their kinetic weapons and missiles, the Refraktos is most often seen in a support role, providing antimissile coverage to entire fleets."
 
 
+ship "Refraktos" "Refraktos (UREB)"
+	outfits
+		"UREB Turret" 2
+		"Green Optical Laser" 3
+
+		"Photoelectric Lamina"
+		"Ultracapacitor Bank" 3
+		"Specular Deflector"
+		"Optical Lasing Generator"
+		"Multispectral Scanner" 2
+		"Magnetic Scoop" 2
+		"Heatsink Partition" 3
+		"Optical Laser Rifle" 24
+		
+		`Z-666 "Zap" Fusion Torch`
+		"Inductive Extractor" 5
+		"Remass Injector" 1
+		"R-360 RCS Thrusters"
+		"Hyperdrive"
+
+	turret "UREB Turret"
+	turret "UREB Turret"
+	turret
+	turret
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+
+
+ship "Refraktos" "Refraktos (Excimer)"
+	outfits
+		"Ultraviolet Excimer Laser"
+		"Green Optical Laser" 6
+
+		"Photoelectric Lamina"
+		"Ultracapacitor Bank" 3
+		"Specular Deflector"
+		"Optical Lasing Generator" 2
+		"Multispectral Scanner" 2
+		"Magnetic Scoop" 2
+		"Heatsink Partition"
+		"Optical Laser Rifle" 24
+		
+		`Z-666 "Zap" Fusion Torch`
+		"Inductive Extractor" 5
+		"Remass Injector" 1
+		"R-360 RCS Thrusters"
+		"Hyperdrive"
+
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Ultraviolet Excimer Laser"
+
+
 ship "Difraktos"
 	plural "Difraktos"
 	sprite "ship/avgi difraktos"
@@ -1797,6 +1883,7 @@ ship "Difraktos"
 		category "Medium Warship"
 		licenses
 			"Twilight Guard"
+			"Avgi Torch"
 		"cost" 6000000
 		"shields" 6000
 		"hull" 18000
@@ -1822,19 +1909,18 @@ ship "Difraktos"
 		"Speckle Turret" 4
 		"Speck Round" 9600
 		"Medium VLS" 2
-		"Nettle Magazine" 2
-		`"Nettle" KKV` 576
+		`"Nettle" KKV` 216
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank"
-		"Diffuse Deflector"
+		"Specular Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner" 3
 		"Concealment Lamina"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 
-		`Z-666 "Zap" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-180 RCS Thrusters"
@@ -1906,18 +1992,17 @@ ship "Difraktos" "Difraktos (KKV)"
 		"Speckle Turret" 2
 		"Speck Round" 4800
 		"Medium VLS" 4
-		"Nettle Magazine" 2
-		`"Nettle" KKV` 1008
+		`"Nettle" KKV` 432
 
-		"Ultracapacitor Cell" 2
+		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner" 3
 		"Concealment Lamina"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 		
-		`Z-666 "Zap" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-180 RCS Thrusters"
@@ -1934,24 +2019,23 @@ ship "Difraktos" "Difraktos (KKV)"
 	turret "Green Optical Laser"
 
 
-ship "Difraktos" "Difraktos (Atomic)"
+ship "Difraktos" "Difraktos (Orchid)"
 	outfits
 		"Green Optical Laser" 3
 		"Speckle Turret" 2
 		"Speck Round" 9600
 		"External Launch Tube" 4
-		"Orchid Magazine" 6
-		`"Orchid" Nuclear Missile` 42
+		`"Orchid" Nuclear Missile` 24
 
 		"Ultracapacitor Bank"
-		"Diffuse Deflector"
+		"Specular Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner" 3
 		"Concealment Lamina"
 		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 
-		`Z-666 "Zap" Fusion Torch`
+		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
 		"R-180 RCS Thrusters"
@@ -1973,6 +2057,71 @@ ship "Difraktos" "Difraktos (Atomic)"
 	turret "Green Optical Laser"
 
 
+ship "Difraktos" "Difraktos (UREB + Orchid)"
+	outfits
+		`"Orchid" Nuclear Missile` 24
+		"Concealment Lamina"
+		"External Launch Tube" 4
+		"Green Optical Laser" 2
+		Hyperdrive
+		"Inductive Extractor"
+		"Lantern Fission Core"
+		"Magnetic Scoop"
+		"Multispectral Scanner" 3
+		"Optical Laser Rifle" 42
+		"Optical Lasing Generator"
+		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
+		"Remass Injector" 2
+		"Specular Deflector"
+		"UREB Turret" 2
+		"Ultracapacitor Bank"
+		`Z-333 "Spark" Fusion Torch`
+
+	gun
+	gun "External Launch Tube"
+	gun "External Launch Tube"
+	gun "External Launch Tube"
+	gun "External Launch Tube"
+	turret "UREB Turret"
+	turret "UREB Turret"
+	turret
+	turret
+	turret
+	turret
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+
+
+ship "Difraktos" "Difraktos (UREB)"
+	outfits
+		"Concealment Lamina"
+		"Green Optical Laser" 2
+		"Inductive Extractor" 2
+		"Jump Drive"
+		"Lantern Fission Core"
+		"Magnetic Scoop"
+		"Multispectral Scanner" 3
+		"Optical Laser Rifle" 42
+		"Optical Lasing Generator"
+		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
+		"Remass Injector"
+		"Specular Deflector"
+		"UREB Turret" 4
+		"Ultracapacitor Bank" 2
+		`Z-333 "Spark" Fusion Torch`
+
+	turret "UREB Turret"
+	turret "UREB Turret"
+	turret "UREB Turret"
+	turret "UREB Turret"
+	turret
+	turret
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+
+
 # Heavy Warships
 
 ship "Atenuatia"
@@ -1982,6 +2131,7 @@ ship "Atenuatia"
 		category "Heavy Warship"
 		licenses
 			"Twilight Guard"
+			"Avgi Torch"
 		"cost" 14400000
 		"shields" 4200
 		"hull" 30000
@@ -2008,14 +2158,14 @@ ship "Atenuatia"
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
 		"Medium VLS" 2
-		"Nettle Magazine" 3
-		`"Nettle" KKV` 648
+		`"Nettle" KKV` 216
 		
 		"Ultracapacitor Bank" 3
 		"Specular Deflector"
 		"Optical Lasing Generator" 3
-		"Magnetic Scoop"
 		"Multispectral Scanner" 6
+		"Deuterium Slush Tank" 3
+		"Magnetic Scoop"
 		"Optical Laser Rifle" 90
 		
 		`Z-666 "Zap" Fusion Torch`
@@ -2149,7 +2299,7 @@ ship "Atenuatia"
 	description "The Atenuatia is an Avgi fleet carrier, a capital ship that makes up the centerpiece of their battlefleets. With six wings of combat drones and two wings of bombers, an Atenuatia can bring forth an astounding amount of firepower. Carrying this arsenal of fighters has its cost, however, and the Atenuatia can carry relatively few heavy weapons for its size."
 
 
-ship "Atenuatia" "Atenuatia (Atomic)"
+ship "Atenuatia" "Atenuatia (Orchid)"
 	outfits
 		"Speckle Turret"
 		"Speck Round" 2400
@@ -2268,6 +2418,8 @@ ship "Photikon"
 		"shields" 240
 		"hull" 2100
 		"automaton" 1
+		"crew equivalent" 1
+		"threshold percentage" 0.15
 		"mass" 45
 		"drag" 0.6
 		"heat dissipation" 0.72
@@ -2320,7 +2472,7 @@ ship "Photikon"
 	gun -6 -30
 	gun 0 -30
 	gun 6 -30
-	turret 0 -33 "Speckle Turret"
+	turret 0 -21 "Speckle Turret"
 
 	leak "flame" 30 60
 	explode "tiny explosion" 15
@@ -2331,7 +2483,19 @@ ship "Photikon"
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
 
 
-ship "Photikon" "Photikon (Atomic)"
+ship "Photikon" "Photikon (KKV)"
+	outfits
+		"Small VLS"
+		`"Nettle" KKV` 54
+		
+		"Concentrating Solar Array"
+		"Ultracapacitor Cell" 3
+		"Multispectral Scanner"
+		
+		"Magnetoplasma Drive"
+
+
+ship "Photikon" "Photikon (Ophrys)"
 	outfits
 		"External Launch Rail" 3
 		`"Ophrys" Nuclear Torpedo` 3
@@ -2417,6 +2581,7 @@ ship "Undulon"
 	attributes
 		category "Drone"
 		licenses
+			"Twilight Guard"
 			"Avgi Atomics"
 		"cost" 36000
 		"hull" 600

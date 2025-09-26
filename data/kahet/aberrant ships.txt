@@ -887,7 +887,7 @@ ship "Aberrant Trip"
 		"Ka'het Reserve Accumulator"
 		"Anomalous Shield Restorer"
 
-		"Ka'het Compact Engine" 2
+		"Ka'het Compact Engine"
 		"Hyperdrive"
 		"Anomalous Mass" 22
 
@@ -969,7 +969,7 @@ ship "Aberrant Triplet"
 		"Ka'het Reserve Accumulator"
 		"Anomalous Shield Restorer"
 
-		"Ka'het Compact Engine" 2
+		"Ka'het Compact Engine"
 		"Hyperdrive"
 		"Anomalous Mass" 34
 
