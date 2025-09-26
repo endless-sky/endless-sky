@@ -34,6 +34,7 @@ class Outfit;
 class PlayerInfo;
 class Ship;
 class System;
+class Track;
 class UI;
 
 
@@ -100,7 +101,9 @@ private:
 	int64_t fine = 0;
 	std::vector<Debt> debt;
 
-	std::optional<std::string> music;
+	const Track *music = nullptr;
+	bool useAmbientMusic = false;
+	bool isMute = false;
 
 	std::set<const System *> mark;
 	std::set<const System *> unmark;

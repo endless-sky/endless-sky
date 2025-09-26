@@ -1503,7 +1503,7 @@ void PlayerInfo::Land(UI *ui)
 	if(!freshlyLoaded)
 	{
 		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
-		Audio::PlayMusic(planet->MusicName());
+		Audio::PlayMusic(planet->Music());
 	}
 
 	// Mark this planet as visited.

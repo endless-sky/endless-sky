@@ -18,11 +18,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "player/AudioPlayer.h"
 #include "supplier/effect/Fade.h"
 #include "../Files.h"
+#include "../GameData.h"
 #include "../Logger.h"
-#include "Music.h"
 #include "player/MusicPlayer.h"
+#include "../Planet.h"
+#include "../PlayerInfo.h"
+#include "music/Playlist.h"
 #include "../Point.h"
+#include "../Random.h"
 #include "Sound.h"
+#include "../System.h"
+#include "music/TrackSupplier.h"
 
 #include <AL/al.h>
 #include <AL/alc.h>
@@ -32,6 +38,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <memory>
 #include <mutex>
+#include <random>
+#include <ranges>
 #include <stdexcept>
 #include <thread>
 #include <vector>
@@ -100,10 +108,13 @@ namespace {
 	// The current position of the "listener," i.e. the center of the screen.
 	Point listener;
 
-	// The active music player, if there is one. This player is also present in 'player'.
-	// In the current implementation, the supplier of the music source is always a Fade.
+	// The active music player. This player is also present in 'players'.
+	// This player is created in Init() and remains alive until Quit().
+	// In the current implementation, the supplier of the music source is always a TrackSupplier.
 	shared_ptr<AudioPlayer> musicPlayer;
-	string currentTrack;
+	const Playlist *currentPlaylist;
+	vector<const Track *> remainingTracks;
+	int musicCheckFrameCounter = 0;
 
 	// The number of Pause vs Resume requests received.
 	int pauseChangeCount = 0;
@@ -142,6 +153,11 @@ void Audio::Init(const vector<filesystem::path> &sources)
 	alDopplerFactor(0.);
 
 	LoadSounds(sources);
+
+	musicPlayer = make_shared<MusicPlayer>(make_unique<TrackSupplier>());
+	musicPlayer->Init();
+	musicPlayer->SetVolume(Volume(SoundCategory::MUSIC));
+	players.emplace_back(musicPlayer);
 }
 
 
@@ -277,31 +293,20 @@ void Audio::Play(const Sound *sound, const Point &position, SoundCategory catego
 
 
 
-// Play the given music. An empty string means to play nothing.
-void Audio::PlayMusic(const string &name)
+/// Force changing to the given track.
+void Audio::PlayMusic(const Track *track)
 {
-	if(!isInitialized)
+	if(!isInitialized || !musicPlayer)
 		return;
-
-	// Skip changing music if the requested music is already playing.
-	if(name == currentTrack)
-		return;
-
-	// Don't worry about thread safety here, since music will always be started
-	// by the main thread.
-	currentTrack = name;
-	if(musicPlayer && !musicPlayer->IsFinished())
-		reinterpret_cast<Fade *>(musicPlayer->Supplier())->AddSource(Music::CreateSupplier(name, true));
-	else
+	TrackSupplier *supplier = reinterpret_cast<TrackSupplier *>(musicPlayer->Supplier());
+	supplier->SetNextTrack(track, track ? TrackSupplier::SwitchPriority::IMMEDIATE :
+		TrackSupplier::SwitchPriority::PREFERRED, true);
+	if(track)
 	{
-		Fade *fade = new Fade();
-		fade->AddSource(Music::CreateSupplier(name, true));
-		musicPlayer = shared_ptr<AudioPlayer>(new MusicPlayer(unique_ptr<AudioSupplier>{fade}));
-		musicPlayer->Init();
-		musicPlayer->SetVolume(Volume(SoundCategory::MUSIC));
-		musicPlayer->Play();
-		players.emplace_back(musicPlayer);
+		currentPlaylist = nullptr;
+		remainingTracks.clear();
 	}
+	musicPlayer->Play();
 }
 
 
@@ -326,7 +331,7 @@ void Audio::Resume()
 /// Begin playing all the sounds that have been added since the last time
 /// this function was called.
 /// If the game is in fast forward mode, the fast version of sounds is played.
-void Audio::Step(bool isFastForward)
+void Audio::Step(bool isFastForward, const PlayerInfo &playerInfo)
 {
 	if(!isInitialized)
 		return;
@@ -417,8 +422,105 @@ void Audio::Step(bool isFastForward)
 	}
 	soundQueue.clear();
 
-	if(musicPlayer && musicPlayer->IsFinished())
-		musicPlayer.reset();
+	// Schedule the next track for playback.
+	++musicCheckFrameCounter;
+	if(musicCheckFrameCounter >= 5 && musicPlayer)
+	{
+		musicCheckFrameCounter = 0;
+		TrackSupplier *trackSupplier = reinterpret_cast<TrackSupplier *>(musicPlayer->Supplier());
+		lock_guard guard(trackSupplier->GetMutex());
+
+		// If this playlist is no longer valid, switch to silence.
+		if(currentPlaylist && !remainingTracks.empty() && !currentPlaylist->Matches(playerInfo))
+		{
+			if(currentPlaylist->Tracks().contains(trackSupplier->GetNextTrack()) &&
+					trackSupplier->GetNextTrackPriority() != TrackSupplier::SwitchPriority::IMMEDIATE)
+				trackSupplier->SetNextTrack(nullptr, TrackSupplier::SwitchPriority::END_OF_TRACK);
+			currentPlaylist = nullptr;
+			remainingTracks.clear();
+		}
+
+		// Schedule the next track.
+		bool foundVariant = false;
+		if(!trackSupplier->GetNextTrack() && trackSupplier->GetNextTrackPriority() !=
+			TrackSupplier::SwitchPriority::IMMEDIATE && (!playerInfo.GetSystem() || !playerInfo.GetSystem()->Music()) &&
+			(!playerInfo.GetPlanet() || !playerInfo.GetPlanet()->Music()))
+		{
+			if(!currentPlaylist || remainingTracks.empty())
+			{
+				// Choose a new playlist.
+				vector<const Playlist *> validPlaylists;
+				for(const Playlist &playlist : GameData::Playlists() | views::values)
+					if(playlist.Matches(playerInfo))
+						validPlaylists.emplace_back(&playlist);
+				if(!validPlaylists.empty())
+				{
+					shuffle(validPlaylists.begin(), validPlaylists.end(), mt19937{Random::Int()});
+
+					// Find different playlists that contain the current track.
+					const Track *current = trackSupplier->GetCurrentTrack();
+					const Track *next = nullptr;
+					if(current)
+					{
+						for(const Playlist *playlist : validPlaylists)
+							if(playlist != currentPlaylist && playlist->Tracks().contains(current))
+							{
+								currentPlaylist = playlist;
+								next = current;
+								foundVariant = true;
+								break;
+							}
+						if(!foundVariant)
+						{
+							// If there aren't any, search for one with a variant track.
+							const set<string> *variants = GameData::VariantTracks().Get(current->Name());
+							for(const Playlist *playlist : validPlaylists)
+								if(playlist != currentPlaylist)
+									for(const Track *track : playlist->Tracks())
+										if(track->Name() == current->Name() || variants->contains(track->Name()))
+										{
+											currentPlaylist = playlist;
+											foundVariant = true;
+											break;
+										}
+						}
+					}
+					// Otherwise, just go with a regular playlist.
+					if(!foundVariant)
+						currentPlaylist = validPlaylists.front();
+
+					remainingTracks = vector<const Track *>{currentPlaylist->Tracks().begin(), currentPlaylist->Tracks().end()};
+					shuffle(remainingTracks.begin(), remainingTracks.end(), mt19937{Random::Int()});
+
+					// If we chose a variant track, make sure it's selected first.
+					if(next)
+						swap<const Track *>(*find(remainingTracks.begin(), remainingTracks.end(), next), remainingTracks.back());
+					else if(foundVariant || (current && currentPlaylist->Tracks().contains(current)))
+					{
+						const set<string> *variants = GameData::VariantTracks().Get(current->Name());
+						for(auto it = remainingTracks.begin(); it != remainingTracks.end(); ++it)
+							if((*it)->Name() == current->Name() || variants->contains((*it)->Name()))
+							{
+								swap(*it, remainingTracks.back());
+								break;
+							}
+					}
+				}
+			}
+			if(currentPlaylist && !remainingTracks.empty())
+			{
+				// Play the next track.
+				if(trackSupplier->GetCurrentTrack() == remainingTracks.back() || foundVariant)
+					trackSupplier->SetNextTrack(remainingTracks.back(), TrackSupplier::SwitchPriority::PREFERRED, false, true);
+				else if(currentPlaylist->Tracks().contains(trackSupplier->GetCurrentTrack()))
+					trackSupplier->SetNextTrack(remainingTracks.back(), TrackSupplier::SwitchPriority::END_OF_TRACK);
+				else
+					trackSupplier->SetNextTrack(remainingTracks.back(), trackSupplier->GetNextTrackPriority());
+				remainingTracks.pop_back();
+			}
+		}
+		musicPlayer->Play();
+	}
 }
 
 
