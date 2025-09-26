@@ -140,11 +140,11 @@ void TradingPanel::Draw()
 		else if(outfitCargo && missionCargo)
 			str += "outfits and mission cargo.";
 		else if(outfitCargo && minableCargo)
-			str += "outfits and special commodities.";
+			str += "outfits and flotsam.";
 		else if(outfitCargo)
 			str += "outfits.";
 		else if(minableCargo)
-			str += "special commodities.";
+			str += "flotsam.";
 		else
 			str += "mission cargo.";
 		font.Draw(str, Point(MIN_X + NAME_X, lastY), unselected);
