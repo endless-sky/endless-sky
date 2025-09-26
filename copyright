@@ -2049,12 +2049,15 @@ Files:
  images/asteroid/water?droplet/*
  images/effect/avgi?flare/antimatter*
  images/effect/avgi?flare/fusion*
+ images/effect/avgi?flare/ntr*
  images/effect/avgi?flare/remass*
  images/effect/avgi?flare/rcs*
  images/effect/blue?optical?laser?glare*
  images/effect/green?optical?laser?glare*
+ images/effect/uv?excimer?laser?glare*
  images/effect/flotsam?integral?wood*
  images/effect/flotsam?voidfish*
+ images/hardpoint/ureb?turret*
  images/icon/nettle*
  images/icon/orchid*
  images/label/outer?limits*
@@ -2073,6 +2076,7 @@ Files:
  images/outfit/orchid?missile*
  images/outfit/remass?injector*
  images/outfit/trefoil?board*
+ images/outfit/ureb?turret*
  images/outfit/voidfish*
  images/planet/aviskir*
  images/planet/nebula1*
@@ -2095,13 +2099,15 @@ Files:
  images/hardpoint/green?optical?laser*
  images/hardpoint/plasmadyne?scoop*
  images/hardpoint/speckle?turret*
+ images/hardpoint/tiny?vls*
+ images/hardpoint/small?vls*
  images/hardpoint/medium?vls*
  images/outfit/anomalous?shield?restorer*
  images/outfit/antimatter?power?cell*
  images/outfit/arc?fusion?torch*
  images/outfit/blue?optical?laser*
  images/outfit/green?optical?laser*
- images/outfit/beam?antimatter?torch*
+ images/outfit/beam?antimatter?drive*
  images/outfit/concealment?lamina*
  images/outfit/deuterium?slush?tank*
  images/outfit/diffuse?deflector*
@@ -2110,6 +2116,7 @@ Files:
  images/outfit/heatsink?partition*
  images/outfit/inductive?extractor*
  images/outfit/lantern?fission?core*
+ images/outfit/vapor?nuclear?rocket*
  images/outfit/magnetic?scoop*
  images/outfit/magnetoplasma?drive*
  images/outfit/multispectral?scanner*
@@ -2131,6 +2138,8 @@ Files:
  images/outfit/telescopic?antimissile*
  images/outfit/ultracapacitor?bank*
  images/outfit/ultracapacitor?cell*
+ images/outfit/tiny?vls*
+ images/outfit/small?vls*
  images/outfit/medium?vls*
  images/outfit/zap?fusion?torch*
  images/effect/flotsam?telescopic?antimissile*
