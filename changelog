@@ -36,6 +36,7 @@ Version 0.10.15
       * Increased the bitrate of the "explosion huge.wav" sound. (@Anarchist2)
     * Balance:
       * The Heavy Gust becomes available shortly after the Autumn Leaf, and appears in various system and mission fleet. (@Quantumshark)
+      * Various changes to Avgi content. (@Azure3141)
     * Other:
       * The variants of the Aphid, Lightning Bug, and Shield Beetle sold by the Unfettered Hai are now differentiated by subtitles in the map shipyard view. (@warp-core)
       * Gave the Firestorm Battery a velocity override so the AI no longer overestimates its range. (@Quantumshark)
@@ -58,12 +59,14 @@ Version 0.10.15
       * Ramscoop fuel and solar energy collection are now based on a ship's actual distances to the stars in a system, instead of the distance to the system center. (@TomGoodIdea)
       * The autopilot can now account for insufficient crew. (@NobodyIII, @tibetiroka)
       * Added a preference allowing a user to control if passengers and/or cargo are loaded into the flagship or escorts first. (@TomGoodIdea)
+      * The autopilot AI can now more readily and effectively make use of reverse thrust. (@tibetiroka)
   * User interface:
     * The "Show mini-map" preference now has the option to have the mini-map shown at all times. (@Amazinite)
     * The radar no longer shows invisible projectiles, and projectiles with a blast radius will now appear larger. (@TomGoodIdea)
     * The landing message will no longer be repeated if the player selects the planet they are already landing on. (@Amazinite)
     * The map outfitter and shipyard panels now sort by series and index, instead of alphabetically. (@Anarchist2)
     * The tooltip for the "Toggle turret tracking" control now directs users to the "Turret tracking" setting for more details about what it does. (@xobes)
+    * Refactored and consolidated tooltip handling into its own class and improved tooltip positioning in some cases. (@Amazinite)
   * Under the hood:
     * Sound loading code now uses references to shared_ptrs instead of making copies. (@TomGoodIdea)
     * Consolidated code for listing itmes into the Format class. (@TomGoodIdea)
@@ -86,6 +89,7 @@ Version 0.10.15
     * The CI workflow will now also run on changes in the "images" and "sounds" directories. (@warp-core)
     * Raised the version of the "actions/checkout" GitHub Action used from v4 to v5. (@TheGiraffe3)
     * Reduced the version of openal-soft acquired by vcpkg to 1.23.1 to include compatibility with some older versions of MacOS X and fix crashes when built for 32-bit Windows. (@TomGoodIdea)
+    * The code style checker now also catches class forward declarations that are out of alphabetical order and structured binding declarations that contain whitespace between the reference symbol and open square bracket. (@xobes)
 
 Version 0.10.14
   * Breaking changes:
