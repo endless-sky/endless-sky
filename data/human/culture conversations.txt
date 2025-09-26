@@ -1636,14 +1636,14 @@ phrase "three card monte opening"
 		"After a quiet walk around the area, you find yourself back in the heart of the spaceport, "
 		"You descend from your ship to enter the spaceport, "
 	word
-		"where a semiscircle of onlookers has formed around a battered folding table and a trio of worn cards. "
+		"where a semicircle of onlookers has formed around a battered folding table and a trio of worn cards. "
 		"and find your path blocked by a tight ring of locals listening as a nimble-fingered dealer swaps three cards across a board. "
 		"when a sharp laugh draws your attention to a small card game on a crate. "
 		"and see a tight cluster of faces leaning in around a makeshift table as quick hands shuffle three tired cards. "
 	word
 		"The dealer looks up, grins, and offers a simple challenge: "
 		"The dealer glances up, eyebrows arched, as he spreads his arms over the cards in invitation: "
-		"The dealer's gaze lingers on you, one hand resting on the cards as though daring you the step closer: "
+		"The dealer's gaze lingers on you, one hand resting on the cards as though daring you to step closer: "
 		"The dealer finally notices you, his grin widening as he gestures grandly at the three waiting cards: "
 
 
@@ -1663,7 +1663,7 @@ mission "Three Card Monte"
 	on offer
 		conversation
 			`${three card monte opening}"The game's simple. Stake 1,000 credits and find the ace to double your money."`
-			`	"Always a pleasure to see another captain of fortune," the dealer says, tipping a weathered hat. His gaze never leaves your credits.`
+			`	"Always a pleasure to see another captain of fortune," the dealer says, tipping a weathered hat. His gaze never leaves your wallet.`
 				to display
 					"reputation: Pirate" > 100
 			action
@@ -1681,7 +1681,7 @@ mission "Three Card Monte"
 			action
 				"monte: multiplication" = 1 + "roll: 2"
 				"monte: addition" = "roll: 3"
-				"monte: card spot" = ( "monte: multiplication" * 1 + "monte: addition" ) % 3
+				"monte: card spot" = ( "monte: multiplication" + "monte: addition" ) % 3
 				"monte: step" = 1
 				clear "monte: scammed"
 				payment -1000
@@ -1836,7 +1836,7 @@ mission "Three Card Monte"
 			`	From the crowd, several burly figures step forward, weapons on hips, while the dealer's grin never fades.`
 			`	"Matter of fact, you've ruined the game. That's a mark's fee, 10,000 credits. Hand it over." He jerks a thumb at the hulking men circling close. "They'll collect if you're shy."`
 			choice
-				`	"You got it, here's 10,000 credits"`
+				`	"You got it, here's 10,000 credits."`
 					to display
 						credits > 10000
 				`	(Book it for your ship.)`
@@ -1853,8 +1853,8 @@ mission "Three Card Monte"
 				clear "monte: step"
 				clear "monte: not scam chance"
 				clear "monte: scammed"
-				"reputation: Pirates" -= 10
-			`	You bolt for the <flagship>.`
+				"reputation: Pirate" -= 10
+			`	You bolt for the <ship>.`
 			`	"After them!" the dealer shouts, while his men leap into pursuit, curses and boots echoing behind you. The sound of commotion behind you dissolves as you make it aboard your ship before they can catch up.`
 				launch
 			label trueending
