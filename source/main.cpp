@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #ifdef _WIN32
 #include "windows/TimerResolutionGuard.h"
+#include "windows/WinVersion.h"
 #endif
 
 #include <chrono>
@@ -79,8 +80,9 @@ void InitConsole();
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
-	// Handle command-line arguments
 #ifdef _WIN32
+	WinVersion::Init();
+	// Handle command-line arguments
 	if(argc > 1)
 		InitConsole();
 #endif

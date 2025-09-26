@@ -127,6 +127,21 @@ public:
 		BOTH
 	};
 
+#ifdef _WIN32
+	enum class TitleBarTheme : int_fast8_t {
+		DEFAULT,
+		LIGHT,
+		DARK
+	};
+
+	enum class WindowRounding : int_fast8_t {
+		DEFAULT,
+		OFF,
+		LARGE,
+		SMALL
+	};
+#endif
+
 
 public:
 	static void Load();
@@ -230,4 +245,14 @@ public:
 	static const std::string &FlagshipSpacePrioritySetting();
 
 	static int GetPreviousSaveCount();
+
+#ifdef _WIN32
+	static void ToggleTitleBarTheme();
+	static TitleBarTheme GetTitleBarTheme();
+	static const std::string &TitleBarThemeSetting();
+
+	static void ToggleWindowRounding();
+	static WindowRounding GetWindowRounding();
+	static const std::string &WindowRoundingSetting();
+#endif
 };
