@@ -375,23 +375,25 @@ string TradingPanel::OutfitSalesMessage(bool sellMinable, size_t displayLimit)
 	double tonsSold = 0;
 	int profit = 0;
 	int day = player.GetDate().DaysSinceEpoch();
-	for(auto &it : player.Cargo().Outfits())
+	for(auto &[outfit, count] : player.Cargo().Outfits())
 	{
-		if(sellMinable != static_cast<bool>(it.first->Get("minable")))
+		if(sellMinable != static_cast<bool>(outfit->Get("minable")))
 			continue;
-		if(!it.second)
+		if(!count)
 			continue;
-		int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
+		int64_t value = player.FleetDepreciation().Value(outfit, day, count);
 		profit += value;
-		tonsSold += static_cast<int>(it.second * it.first->Mass());
+		tonsSold += static_cast<int>(count * outfit->Mass());
 		// Store a description of the count & item, followed by its value.
-		outfitValue.push_back({{}, it.second, value});
+		outfitValue.push_back({{}, count, value});
+		if(sellMinable && count == 1)
+			outfitValue.back().name = Format::CargoString(count, outfit->DisplayName());
 		if(sellMinable)
-			outfitValue.back().name = Format::CargoString(it.second, it.first->DisplayName());
-		else if(it.second == 1)
-			outfitValue.back().name = it.first->DisplayName();
+			outfitValue.back().name = Format::CargoString(count, outfit->PluralName());
+		else if(count == 1)
+			outfitValue.back().name = outfit->DisplayName();
 		else
-			outfitValue.back().name = Format::Number(it.second) + " " + it.first->PluralName();
+			outfitValue.back().name = Format::Number(count) + " " + outfit->PluralName();
 	}
 	if(outfitValue.size() == 1)
 		return "Sell " + outfitValue[0].name + " for " + Format::CreditString(profit) + "?";
