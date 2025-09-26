@@ -81,6 +81,11 @@ bool OrderSet::Empty() const noexcept
 
 void OrderSet::Add(const OrderSingle &newOrder, bool *hasMismatch, bool *alreadyHarvesting)
 {
+	// HOLD_ACTIVE cannot be given as manual order, but is used internally by ship AI.
+	// Set HOLD_POSITION here, so that it's possible for the player to unset the order.
+	if(Has(Types::HOLD_ACTIVE))
+		Set(Types::HOLD_POSITION);
+
 	shared_ptr<Ship> newTargetShip = newOrder.GetTargetShip();
 	bool newTargetShipRelevant = HAS_TARGET_SHIP[static_cast<size_t>(newOrder.type)]
 		|| HAS_TARGET_SHIP_OR_ASTEROID[static_cast<size_t>(newOrder.type)];
