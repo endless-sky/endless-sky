@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Point.h"
 #include "ScrollVar.h"
-#include "text/WrappedText.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <memory>
@@ -108,11 +108,9 @@ private:
 	char page = 'c';
 
 	Point hoverPoint;
-	int hoverCount = 0;
+	Tooltip tooltip;
 	std::string selectedItem;
 	std::string hoverItem;
-	std::string tooltip;
-	WrappedText hoverText;
 
 	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
