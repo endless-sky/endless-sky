@@ -28491,6 +28491,7 @@ system Muphrid
 	arrival 1570
 	habitable 1570
 	belt 1759
+	link "Alpha Centauri"
 	link Menkent
 	link Porrima
 	asteroids "small rock" 10 4.7348
