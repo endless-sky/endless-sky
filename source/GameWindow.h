@@ -52,6 +52,7 @@ public:
 	static void ExitWithError(const std::string &message, bool doPopUp = true);
 
 #ifdef _WIN32
+	// Set attributes of the main window according to the current preferences.
 	static void UpdateTitleBarTheme();
 	static void UpdateWindowRounding();
 #endif
