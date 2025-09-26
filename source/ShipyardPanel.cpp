@@ -206,34 +206,22 @@ void ShipyardPanel::DrawButtons()
 	const auto credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({ credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT} }, creditsPoint, bright);
 
-	const Font &bigFont = FontSet::Get(18);
-	const Color &hover = *GameData::Colors().Get("hover");
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &inactive = *GameData::Colors().Get("inactive");
+	// Clear the buttonZones, they will be populated again as buttons are drawn.
+	buttonZones.clear();
 
-	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
-	FillShader::Fill(buyCenter, Point(60, 30), back);
-	const Color *buyTextColor = !CanDoBuyButton() ? &inactive : hoverButton == 'b' ? &hover : &active;
-	string BUY = "_Buy";
-	bigFont.Draw(BUY,
-		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		*buyTextColor);
-
-	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	FillShader::Fill(sellCenter, Point(60, 30), back);
-	static const string SELL = "_Sell";
-	bigFont.Draw(SELL,
-		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
-		playerShip ? hoverButton == 's' ? hover : active : inactive);
+	const Point buyCenter(Screen::BottomRight() - Point(210, 25));
+	ShopPanel::DrawButton("_Buy",
+		Rectangle(buyCenter, Point(60, 30)),
+		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
+	ShopPanel::DrawButton("_Sell",
+		Rectangle(Screen::BottomRight() - Point(130, 25), Point(60, 30)),
+		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
 
 	// TODO: Add button for sell but retain outfits.
 
-	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-	FillShader::Fill(leaveCenter, Point(70, 30), back);
-	static const string LEAVE = "_Leave";
-	bigFont.Draw(LEAVE,
-		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
-		hoverButton == 'l' ? hover : active);
+	ShopPanel::DrawButton("_Leave",
+		Rectangle(Screen::BottomRight() - Point(45, 25), Point(60, 30)),
+		true, hoverButton == 'l', 'l');
 
 	int modifier = Modifier();
 	if(modifier > 1)
