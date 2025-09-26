@@ -796,7 +796,7 @@ void PreferencesPanel::DrawSettings()
 		NOTIFY_ON_DEST
 #ifdef _WIN32
 		, "",
-		"System-specific",
+		"Windows Options",
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
 #endif
