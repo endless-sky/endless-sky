@@ -554,3 +554,4 @@ int Dialog::Width() const
 	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
 	return top->Width() - HORIZONTAL_MARGIN;
 }
+
