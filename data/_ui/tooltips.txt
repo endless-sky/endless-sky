@@ -1534,7 +1534,7 @@ tip "Automatically unpark flagship"
 
 tip "Prioritize flagship use"
 	`When distributing cargo and passengers among your ships on takeoff, prioritize the flagship over your escorts. (When your flagship does not have enough space, some mission cargo or passengers may still be moved to your other ships.)`
-	
+
 tip "Deadline blink by distance"
 	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
 
@@ -1560,7 +1560,7 @@ tip "Interrupt fast-forward"
 	`Disable fast-forward whenever you land or when a conversation, dialog, or other panel appears while in flight.`
 
 tip "'Sell Outfits' without outfitter"
-	`In the Trading panel, controls  if the 'Sell Outfits' button will allow selling outfits even when there is not Outfitter at which to buy them back.` 
+	`In the Trading panel, controls whether the 'Sell Outfits' button will allow selling outfits even when there is not Outfitter at which to buy them back.`
 
 tip "Confirm 'Sell Outfits' button"
 	`In the Trading panel, controls whether or not to confirm sales of all outfits in cargo.`
