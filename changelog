@@ -10,18 +10,18 @@ Version 0.10.15
     * Engine bugs:
       * Ships that cannot land with the flagship will now be assigned to the correct planet. (@TomGoodIdea)
       * The "Coming to a stop" and flagship overheating messages will no longer be sent excessively. (@TomGoodIdea)
-      * On Windows, files are now written in the text mode, not the binary mode, for the correct new line format. (@TomGoodIdea)
+      * On Windows, files are now written in the text mode, not the binary mode, for the correct newline format. (@TomGoodIdea)
       * Fixed a bug where carriers with docked ships would not be correctly despawned when landing. (@Anarchist2)
       * The collection of persons is now reset when loading a save file, preventing undefined person names from permeating across save files. (@TomGoodIdea)
       * The spaceport description will no longer appear in space after the player dies while in the spaceport panel. (@TomGoodIdea)
-      * Fixed an issue where a low priority message will not appear due to an invisible message with the same text at the end of its lifetime still in the list. (@TomGoodIdea)
+      * Fixed an issue where a low priority message would not appear due to an invisible message with the same text at the end of its lifetime still in the list. (@TomGoodIdea)
       * Fixed an error in depreciation calculations that allowed item values to fall slightly below 25% in some cases. (@Amazinite)
   * Game content:
     * New content:
       * Added five new landable gas giants throughout the Graveyard. (@beccabunny)
       * Added a couple of missions about the last will of a late ship captain. (@TheGiraffe3, @RisingLeaf, @bene-dictator)
       * Added four new landable gas giants to Coalition space. (@Arachi-Lover)
-      * Added new missions in the Syndicate investment storyline. (@reticent-rem)
+      * Added new missions to the Syndicate investment storyline. (@reticent-rem)
       * Created a mission chain about rescuing a lost racer. (@TheGiraffe3, @Daeridanii1)
       * Created dynamic, repeatable hovercraft racing missions on Sunracer. (@reticent-rem)
       * Added a mission chain where the player discovers an ancient Ka'het satellite. (@beccabunny)
@@ -48,11 +48,11 @@ Version 0.10.15
     * On Windows, where supported, use the dark theme for the title bar in windowed mode. (@TomGoodIdea)
     * Images and image sequences can now be loaded from AVIF files. (@tibetiroka)
   * Audio:
-    * Sounds can now be played from FLAC files. (@tibetiroka)
+    * Music can now be played from FLAC files. (@tibetiroka)
   * Game mechanics:
     * New mechanics:
       * Added a "Hold Fire" command for escort ships. (@TomGoodIdea)
-      * Added autoconditions for "flagship strength" and "player strength" to get the strengths of ships in the player's fleet. (@tibetiroka)
+      * Added autoconditions for flagship, player and government strengths to get the strengths of ships in the player's system. (@tibetiroka)
     * Mechanics changes:
       * The weapon jam chance from scrambling is no longer affected by the current energy level. (@Anarchist2)
       * The ability of a homing projectile to track targets behind it, reduce its acceleration, and lead a target can now be set independently of one another. (@Anarchist2)
@@ -82,7 +82,7 @@ Version 0.10.15
     * Removed unused icon setting code and files. (@TomGoodIdea)
     * Various improvements and fixes to timers on Windows. (@TomGoodIdea)
   * Documentation:
-    * Replaced the Windows metadata file description with the application names because it was used as the process name in Task Manager. (@TomGoodIdea)
+    * Replaced the Windows metadata file description with the application name because it was used as the process name in Task Manager. (@TomGoodIdea)
     * Specified a target link version for Windows. (@TomGoodIdea)
   * CI/CD and development environment:
     * Include the "cmath" header in "test_point.cpp" and use "std::abs" to fix use of the wrong function on ARM64. (@r41k0u)
