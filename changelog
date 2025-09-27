@@ -9,12 +9,12 @@ Version 0.10.15
       * "Remnant: Expanded Horizons Astral job" will no longer select Beyond Patir systems as a waypoint. (@beccabunny)
     * Engine bugs:
       * Ships that cannot land with the flagship will now be assigned to the correct planet. (@TomGoodIdea)
-      * The "Coming to a stop" message will no longer be sent excessively. (@TomGoodIdea)
+      * The "Coming to a stop" and flagship overheating messages will no longer be sent excessively. (@TomGoodIdea)
       * On Windows, files are now written in the text mode, not the binary mode, for the correct new line format. (@TomGoodIdea)
       * Fixed a bug where carriers with docked ships would not be correctly despawned when landing. (@Anarchist2)
       * The collection of persons is now reset when loading a save file, preventing undefined person names from permeating across save files. (@TomGoodIdea)
       * The spaceport description will no longer appear in space after the player dies while in the spaceport panel. (@TomGoodIdea)
-      * Fixed an issue where a low priority message will not appear due to an invisible message with the same text at the end of its lifetime still in the list, and do not duplicate messages about the flagship overheating. (@TomGoodIdea)
+      * Fixed an issue where a low priority message will not appear due to an invisible message with the same text at the end of its lifetime still in the list. (@TomGoodIdea)
       * Fixed an error in depreciation calculations that allowed item values to fall slightly below 25% in some cases. (@Amazinite)
   * Game content:
     * New content:
@@ -29,13 +29,13 @@ Version 0.10.15
       * The "There Might Be Riots" mission chain can now be completed without doing the Deep Archaeology missions, and feature 25 instead of 35 Combat Drones. (@Anarchist2)
     * Sprites:
       * Added various new gas giant landscapes. (@beccabunny)
-      * Fixed artefacts at the edges of some images. (@mbartlett21)
+      * Fixed artifacts at the edges of some images. (@mbartlett21)
       * Removed various unused landscape images with unspecified/incompatible copyrights. (@warp-core)
       * Added thumbnail images for Aberrant ships. (@beccabunny)
     * Sounds:
       * Increased the bitrate of the "explosion huge.wav" sound. (@Anarchist2)
     * Balance:
-      * The Heavy Gust becomes available shortly after the Autumn Leaf, and appears in various system and mission fleet. (@Quantumshark)
+      * The Heavy Gust becomes available shortly after the Autumn Leaf, and appears in various system and mission fleets. (@Quantumshark)
       * Various changes to Avgi content. (@Azure3141)
     * Other:
       * The variants of the Aphid, Lightning Bug, and Shield Beetle sold by the Unfettered Hai are now differentiated by subtitles in the map shipyard view. (@warp-core)
@@ -46,13 +46,13 @@ Version 0.10.15
     * Ship hardpoints can now inherit the ship's swizzle and apply it to weapon hardpoint sprites. (@TomGoodIdea)
     * Zooming in the map is now smoothly animated. (@TomGoodIdea)
     * On Windows, where supported, use the dark theme for the title bar in windowed mode. (@TomGoodIdea)
-    * Images and image sequences can now be loaded from AVIF formatted files. (@tibetiroka)
+    * Images and image sequences can now be loaded from AVIF files. (@tibetiroka)
   * Audio:
-    * Sounds can now be played from FLAC formatted files. (@tibetiroka)
+    * Sounds can now be played from FLAC files. (@tibetiroka)
   * Game mechanics:
     * New mechanics:
       * Added a "Hold Fire" command for escort ships. (@TomGoodIdea)
-      * Added autoconditions for "flagship strength" and "player strength" to get the strengths of ships in the player's fleet. (@tibetiroka, @TomGoodIdea)
+      * Added autoconditions for "flagship strength" and "player strength" to get the strengths of ships in the player's fleet. (@tibetiroka)
     * Mechanics changes:
       * The weapon jam chance from scrambling is no longer affected by the current energy level. (@Anarchist2)
       * The ability of a homing projectile to track targets behind it, reduce its acceleration, and lead a target can now be set independently of one another. (@Anarchist2)
@@ -69,7 +69,7 @@ Version 0.10.15
     * Refactored and consolidated tooltip handling into its own class and improved tooltip positioning in some cases. (@Amazinite)
   * Under the hood:
     * Sound loading code now uses references to shared_ptrs instead of making copies. (@TomGoodIdea)
-    * Consolidated code for listing itmes into the Format class. (@TomGoodIdea)
+    * Consolidated code for listing items into the Format class. (@TomGoodIdea)
     * Refactored ship order handling to support concurrent orders. (@TomGoodIdea)
     * Enabled large address awareness on 32-bit Windows builds, allowing the use of more than 2 GB of memory. (@TomGoodIdea)
     * Refactored audio loading, playback, and effects into separate classes. (@tibetiroka)
