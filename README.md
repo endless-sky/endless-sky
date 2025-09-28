@@ -21,7 +21,7 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 |RAM | 750 MB | 2 GB |
 |Graphics | OpenGL 3.0 | OpenGL 3.3 |
 |Screen Resolution | 1024x768 | 1920x1080 |
-|Storage Free | 350 MB | 1.5 GB |
+|Storage Free | 400 MB | 1.5 GB |
 
 |Operating System | Minimum Version |
 |---|---|
