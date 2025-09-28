@@ -7038,7 +7038,6 @@ system Asio
 	belt 1478
 	haze _menu/haze-133
 	link Heutesl
-	link Oosuoro
 	asteroids "small rock" 4 2.6
 	asteroids "large rock" 7 3
 	asteroids "small metal" 9 3
@@ -20498,7 +20497,6 @@ system Iigen
 	haze _menu/haze-brown
 	link Heutesl
 	link Oosuoro
-	link Uttna
 	link Yllke
 	asteroids "small rock" 46 3.92
 	asteroids "medium rock" 57 5.2
@@ -28078,7 +28076,7 @@ system Mizar
 
 system Mnashyu
 	pos 824.044 -309.322
-	government Gegno
+	government Uninhabited
 	arrival 1430
 	habitable 1430
 	belt 1163
@@ -28144,12 +28142,12 @@ system Mohuwo
 	haze _menu/haze-brown
 	link Auhru
 	link Pbelnep
+	link Uttna
 	asteroids "small metal" 1 6.78
 	asteroids "medium metal" 1 5.53
 	asteroids "large metal" 2 5.53
-	fleet "Small Scin" 1400
-	fleet "Large Scin" 1800
-	fleet "Scin Transport" 3000
+	fleet "Small Scin" 2000
+	fleet "Scin Transport" 4000
 	object
 		sprite star/a0
 		distance 85.6
@@ -29932,7 +29930,6 @@ system Oosuoro
 	habitable 700
 	belt 828
 	haze _menu/haze-33
-	link Asio
 	link Eogho
 	link Heutesl
 	link Iigen
@@ -29959,10 +29956,14 @@ system Oosuoro
 	object
 		sprite star/g3
 		period 10
+	object Byigii
+		sprite planet/rock14-b
+		distance 640
+		period 120
 		object Tschyss
 			sprite planet/tschyss
-			distance 325
-			period 120
+			distance 180
+			period 70
 	object
 		sprite planet/ice7
 		distance 2229.4
@@ -40560,21 +40561,22 @@ system "Urba Pest"
 
 system Uttna
 	pos 946.3 -580.8
-	government Uninhabited
+	government Gegno
 	attributes "bright star" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1748
 	"jump range" 60
 	haze _menu/haze-brown
-	link Iigen
+	link Mohuwo
 	asteroids "medium rock" 3 4.8
 	asteroids "large rock" 2 3.96
 	asteroids "small metal" 4 2.84
 	asteroids "large metal" 16 3.42
 	minables lead 2 2.2
-	fleet "Gegno Basic" 2600
-	fleet "Gegno Miners" 1800
+	fleet "Gegno Basic" 1600
+	fleet "Gegno Cargo" 3000
+	fleet "Gegno Miners" 4000
 	object
 		sprite star/a8
 		period 10
@@ -40582,12 +40584,12 @@ system Uttna
 		sprite planet/dust6
 		distance 374
 		period 52.8210
-	object
-		sprite planet/rock4
+	object "Gi Tiures"
+		sprite planet/rock16
 		distance 1068
 		period 254.892
 		object
-			sprite planet/ice0
+			sprite planet/rock3
 			distance 195
 			period 102.9
 	object
