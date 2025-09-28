@@ -3270,7 +3270,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 		if(IsYours())
 			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Duplicating);
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.

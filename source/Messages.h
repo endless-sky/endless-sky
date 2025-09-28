@@ -38,7 +38,8 @@ public:
 		Info,
 		Daily,
 		Low,
-		HighestNoRepeat
+		HighestNoRepeat,
+		Duplicating
 	};
 
 	class Entry {
