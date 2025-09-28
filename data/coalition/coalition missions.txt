@@ -243,6 +243,7 @@ mission "Coalition Yottrite 1"
 		has "Coalition Yottrite 2: offered"
 	source
 		near "Bloptab" 1 100
+		not government "Uninhabited"
 	destination "Bloptab's Furnace"
 	on offer
 		conversation
