@@ -45,8 +45,10 @@ protected:
 	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual double ButtonPanelHeight() const override;
 	virtual double DrawDetails(const Point &center) override;
-
 	virtual void DrawButtons() override;
+	virtual TransactionResult CanDoBuyButton() const;
+	virtual void DoBuyButton();
+	virtual void Sell(bool storeOutfits);
 	virtual int FindItem(const std::string &text) const override;
 	virtual TransactionResult HandleShortcuts(char key) override;
 

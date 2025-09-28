@@ -508,7 +508,6 @@ void ShipyardPanel::SellShip(bool storeOutfits)
 
 
 
-
 int ShipyardPanel::FindItem(const string &text) const
 {
 	int bestIndex = 9999;
