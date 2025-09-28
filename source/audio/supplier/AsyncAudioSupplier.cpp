@@ -26,21 +26,13 @@ using namespace std;
 AsyncAudioSupplier::AsyncAudioSupplier(shared_ptr<iostream> data, bool looping)
 	: looping(looping), data(std::move(data))
 {
-	// Don't start the thread until this object is fully constructed.
-	thread = std::thread(&AsyncAudioSupplier::Decode, this);
 }
 
 
 
 AsyncAudioSupplier::~AsyncAudioSupplier()
 {
-	// Tell the decoding thread to stop.
-	{
-		lock_guard<mutex> lock(bufferMutex);
-		done = true;
-	}
-	bufferCondition.notify_all();
-	thread.join();
+	Stop();
 }
 
 
@@ -67,6 +59,7 @@ vector<AudioSupplier::sample_t> AsyncAudioSupplier::NextDataChunk()
 	{
 		lock_guard<mutex> lock(bufferMutex);
 
+		++consumedBuffers;
 		vector<sample_t> temp{buffer.begin(), buffer.begin() + OUTPUT_CHUNK};
 		buffer.erase(buffer.begin(), buffer.begin() + OUTPUT_CHUNK);
 		bufferCondition.notify_all();
@@ -74,6 +67,27 @@ vector<AudioSupplier::sample_t> AsyncAudioSupplier::NextDataChunk()
 	}
 	else
 		return vector<sample_t>(OUTPUT_CHUNK);
+}
+
+
+
+void AsyncAudioSupplier::Start()
+{
+	thread = std::thread(&AsyncAudioSupplier::Decode, this);
+}
+
+
+
+void AsyncAudioSupplier::Stop()
+{
+	// Tell the decoding thread to stop.
+	{
+		lock_guard<mutex> lock(bufferMutex);
+		done = true;
+	}
+	bufferCondition.notify_all();
+	if(thread.joinable())
+		thread.join();
 }
 
 

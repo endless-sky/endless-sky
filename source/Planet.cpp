@@ -100,7 +100,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			if(key == "display name")
 				displayName.clear();
 			else if(key == "music")
-				music.clear();
+				music = nullptr;
 			else if(key == "attributes")
 				attributes.clear();
 			else if(key == "description")
@@ -186,7 +186,12 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		else if(key == "landscape")
 			landscape = SpriteSet::Get(value);
 		else if(key == "music")
-			music = value;
+		{
+			if(child.Size() > valueIndex + 1)
+				music = GameData::GetOrCreateTrack(value, child.Value(valueIndex + 1));
+			else
+				music = GameData::GetOrCreateTrack(value);
+		}
 		else if(key == "description")
 			description.Load(child, playerConditions);
 		else if(key == "spaceport")
@@ -380,8 +385,8 @@ const Sprite *Planet::Landscape() const
 
 
 
-// Get the name of the ambient audio to play on this planet.
-const string &Planet::MusicName() const
+// Get the ambient audio to play on this planet.
+const Track *Planet::Music() const
 {
 	return music;
 }

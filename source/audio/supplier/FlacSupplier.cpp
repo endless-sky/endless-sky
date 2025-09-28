@@ -26,6 +26,14 @@ using namespace std;
 FlacSupplier::FlacSupplier(shared_ptr<iostream> data, bool looping)
 	: AsyncAudioSupplier(std::move(data), looping)
 {
+	Start();
+}
+
+
+
+FlacSupplier::~FlacSupplier()
+{
+	Stop();
 }
 
 
@@ -36,10 +44,10 @@ FLAC__StreamDecoderWriteStatus FlacSupplier::write_callback(const FLAC__Frame *f
 	const size_t blocksize = frame->header.blocksize;
 
 	AwaitBufferSpace();
-	static vector<sample_t> samples;
+	vector<sample_t> samples;
 	for(size_t i = 0; i < blocksize; ++i)
 		for(size_t ch = 0; ch < channels; ++ch)
-			samples.push_back(static_cast<sample_t>(buffer[ch][i]));
+			samples.emplace_back(static_cast<sample_t>(buffer[ch][i]));
 
 	AddBufferData(samples);
 	/// Allow looping back to the beginning of the file on the next read.

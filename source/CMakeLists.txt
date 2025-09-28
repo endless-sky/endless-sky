@@ -343,6 +343,14 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/Sound.cpp
 	audio/Sound.h
 	audio/SoundCategory.h
+	audio/music/Layer.cpp
+	audio/music/Layer.h
+	audio/music/Playlist.cpp
+	audio/music/Playlist.h
+	audio/music/Track.cpp
+	audio/music/Track.h
+	audio/music/TrackSupplier.cpp
+	audio/music/TrackSupplier.h
 	audio/player/AudioPlayer.cpp
 	audio/player/AudioPlayer.h
 	audio/player/MusicPlayer.cpp
@@ -355,6 +363,8 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/supplier/FlacSupplier.h
 	audio/supplier/Mp3Supplier.cpp
 	audio/supplier/Mp3Supplier.h
+	audio/supplier/SilenceSupplier.cpp
+	audio/supplier/SilenceSupplier.h
 	audio/supplier/WavSupplier.cpp
 	audio/supplier/WavSupplier.h
 	audio/supplier/effect/Fade.cpp

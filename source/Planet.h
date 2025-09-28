@@ -35,6 +35,7 @@ class PlayerInfo;
 class Ship;
 class Sprite;
 class System;
+class Track;
 class Wormhole;
 
 
@@ -74,8 +75,8 @@ public:
 	const Paragraphs &Description() const;
 	// Get the landscape sprite.
 	const Sprite *Landscape() const;
-	// Get the name of the ambient audio to play on this planet.
-	const std::string &MusicName() const;
+	// Get the ambient audio to play on this planet.
+	const Track *Music() const;
 
 	// Get the list of "attributes" of the planet.
 	const std::set<std::string> &Attributes() const;
@@ -172,7 +173,7 @@ private:
 	Paragraphs description;
 	Port port;
 	const Sprite *landscape = nullptr;
-	std::string music;
+	const Track *music = nullptr;
 
 	std::set<std::string> attributes;
 

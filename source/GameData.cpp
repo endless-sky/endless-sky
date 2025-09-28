@@ -711,6 +711,13 @@ const Set<Mission> &GameData::Missions()
 
 
 
+const Set<Playlist>& GameData::Playlists()
+{
+	return objects.playlists;
+}
+
+
+
 const Set<News> &GameData::SpaceportNews()
 {
 	return objects.news;
@@ -781,6 +788,20 @@ const Set<TestData> &GameData::TestDataSets()
 
 
 
+const Set<Track>& GameData::Tracks()
+{
+	return objects.tracks;
+}
+
+
+
+const Set<set<string>> &GameData::VariantTracks()
+{
+	return objects.variantTracks;
+}
+
+
+
 ConditionsStore &GameData::GlobalConditions()
 {
 	return globalConditions;
@@ -805,6 +826,20 @@ const Set<System> &GameData::Systems()
 const Set<Wormhole> &GameData::Wormholes()
 {
 	return objects.wormholes;
+}
+
+
+
+const Track *GameData::GetOrCreateTrack(const string &track, double duration)
+{
+	Track *t;
+	if(duration > 0.)
+		t = objects.tracks.Get(track + " " + to_string(duration));
+	else
+		t = objects.tracks.Get(track);
+	if(!t->Valid())
+		*t = Track(track, duration);
+	return t;
 }
 
 
