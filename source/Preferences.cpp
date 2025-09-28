@@ -177,10 +177,10 @@ namespace {
 	int previousSaveCount = 3;
 
 #ifdef _WIN32
-	const vector<string> TITLE_BAR_THEME_SETTINGS = {"default", "light", "dark"};
+	const vector<string> TITLE_BAR_THEME_SETTINGS = {"system default", "light", "dark"};
 	int titleBarThemeIndex = 0;
 
-	const vector<string> WINDOW_ROUNDING_SETTINGS = {"default", "off", "large", "small"};
+	const vector<string> WINDOW_ROUNDING_SETTINGS = {"system default", "off", "large", "small"};
 	int windowRoundingIndex = 0;
 #endif
 }
