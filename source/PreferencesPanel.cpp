@@ -82,6 +82,7 @@ namespace {
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string FIGHTER_REPAIR = "Repair fighters in";
+	const string FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship use";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string DATE_FORMAT = "Date format";
 	const string NOTIFY_ON_DEST = "Notify on destination";
@@ -90,13 +91,12 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
 	const int SETTINGS_PAGE_COUNT = 2;
-	// Hovering a preference for this many frames activates the tooltip.
-	const int HOVER_TIME = 60;
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -122,7 +122,9 @@ namespace {
 
 
 PreferencesPanel::PreferencesPanel(PlayerInfo &player)
-	: player(player), editing(-1), selected(0), hover(-1)
+	: player(player), editing(-1), selected(0), hover(-1),
+	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 	, controlTypeDropdown{new Dropdown}
 {
 	// Select the first valid plugin.
@@ -134,11 +136,6 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 		}
 
 	SetIsFullScreen(true);
-
-	// Initialize a centered tooltip.
-	hoverText.SetFont(FontSet::Get(14));
-	hoverText.SetWrapWidth(250);
-	hoverText.SetAlignment(Alignment::LEFT);
 
 	controlTypeDropdown->SetPadding(0);
 	controlTypeDropdown->ShowDropIcon(true);
@@ -361,8 +358,10 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 
 
-bool PreferencesPanel::Click(int x, int y, int clicks)
+bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	return FingerDown(x, y, 0) && FingerUp(x, y, 0);
 }
 
@@ -476,20 +475,32 @@ bool PreferencesPanel::Hover(int x, int y)
 	hoverPoint = Point(x, y);
 
 	hoverItem.clear();
-	tooltip.clear();
+	tooltip.Clear();
 
 	hover = -1;
 	for(unsigned index = 0; index < zones.size(); ++index)
-		if(zones[index].Contains(hoverPoint))
+	{
+		const auto &zone = zones[index];
+		if(zone.Contains(hoverPoint))
+		{
 			hover = index;
+			tooltip.SetZone(zone);
+		}
+	}
 
 	for(const auto &zone : prefZones)
 		if(zone.Contains(hoverPoint))
+		{
 			hoverItem = zone.Value();
+			tooltip.SetZone(zone);
+		}
 
 	for(const auto &zone : pluginZones)
 		if(zone.Contains(hoverPoint))
+		{
 			hoverItem = zone.Value();
+			tooltip.SetZone(zone);
+		}
 
 	return true;
 }
@@ -707,8 +718,9 @@ void PreferencesPanel::DrawControls()
 		Command::NONE,
 		Command::DEPLOY,
 		Command::FIGHT,
+		Command::HOLD_FIRE,
 		Command::GATHER,
-		Command::HOLD,
+		Command::HOLD_POSITION,
 		Command::AMMO,
 		Command::HARVEST,
 		Command::NONE,
@@ -929,7 +941,7 @@ void PreferencesPanel::DrawSettings()
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
 		"Show planet labels",
-		"Show mini-map",
+		MINIMAP_DISPLAY,
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
@@ -948,14 +960,15 @@ void PreferencesPanel::DrawSettings()
 		"Fighters transfer cargo",
 		"Rehire extra crew when lost",
 		"Automatically unpark flagship",
-		"",
+		FLAGSHIP_SPACE_PRIORITY,
+		"\t",
 		"Map",
 		"Deadline blink by distance",
 		"Hide unexplored map regions",
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		"\t",
+		"",
 		"Other",
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
@@ -1117,6 +1130,11 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = Preferences::Has(FIGHTER_REPAIR) ? "parallel" : "series";
 		}
+		else if(setting == FLAGSHIP_SPACE_PRIORITY)
+		{
+			isOn = Preferences::GetFlagshipSpacePriority() != Preferences::FlagshipSpacePriority::NONE;
+			text = Preferences::FlagshipSpacePrioritySetting();
+		}
 		else if(setting == SHIP_OUTLINES)
 		{
 			isOn = true;
@@ -1187,6 +1205,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == MINIMAP_DISPLAY)
+		{
+			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
+			text = Preferences::MinimapSetting();
 		}
 		else
 			text = isOn ? "on" : "off";
@@ -1400,38 +1423,17 @@ void PreferencesPanel::DrawTooltips()
 {
 	if(hoverItem.empty())
 	{
-		// Step the tooltip timer back.
-		hoverCount -= hoverCount ? 1 : 0;
+		tooltip.DecrementCount();
 		return;
 	}
-
-	// Step the tooltip timer forward [0-60].
-	hoverCount += hoverCount < HOVER_TIME;
-
-	if(hoverCount < HOVER_TIME)
+	tooltip.IncrementCount();
+	if(!tooltip.ShouldDraw())
 		return;
 
-	// Create the tooltip text.
-	if(tooltip.empty())
-	{
-		tooltip = GameData::Tooltip(hoverItem);
-		// No tooltip for this item.
-		if(tooltip.empty())
-			return;
-		hoverText.Wrap(tooltip);
-	}
+	if(!tooltip.HasText())
+		tooltip.SetText(GameData::Tooltip(hoverItem));
 
-	Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-	size += Point(20., 20.);
-	Point topLeft = hoverPoint;
-	// Do not overflow the screen dimensions.
-	if(topLeft.X() + size.X() > Screen::Right())
-		topLeft.X() -= size.X();
-	if(topLeft.Y() + size.Y() > Screen::Bottom())
-		topLeft.Y() -= size.Y();
-	// Draw the background fill and the tooltip text.
-	FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-	hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
+	tooltip.Draw();
 }
 
 
@@ -1536,12 +1538,16 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			speed = 10;
 		Preferences::SetScrollSpeed(speed);
 	}
+	else if(str == FLAGSHIP_SPACE_PRIORITY)
+		Preferences::ToggleFlagshipSpacePriority();
 	else if(str == DATE_FORMAT)
 		Preferences::ToggleDateFormat();
 	else if(str == NOTIFY_ON_DEST)
 		Preferences::ToggleNotificationSetting();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
+	else if(str == MINIMAP_DISPLAY)
+		Preferences::ToggleMinimapDisplay();
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));

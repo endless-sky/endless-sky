@@ -251,6 +251,8 @@ void HailPanel::Draw()
 					Point(),
 					facing + hardpoint.GetAngle(),
 					zoom);
+				if(body.InheritsParentSwizzle())
+					body.SetSwizzle(ship->GetSwizzle());
 				draw.Add(body);
 			}
 		};

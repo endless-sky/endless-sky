@@ -46,6 +46,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 #include "text/FontSet.h"
 
+#ifdef _WIN32
+#include "windows/TimerResolutionGuard.h"
+#endif
+
 #include <SDL.h>
 #include <SDL_events.h>
 #include <SDL_scancode.h>
@@ -64,13 +68,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#include <mmsystem.h>
-
-#ifdef PlaySound
-#undef PlaySound
 #endif
-#endif
-
 
 using namespace std;
 
@@ -222,12 +220,6 @@ int main(int argc, char *argv[])
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 
-		// On Windows, make sure that the sleep timer has at least 1 ms resolution
-		// to avoid irregular frame rates.
-#ifdef _WIN32
-		timeBeginPeriod(1);
-#endif
-
 		CrashState::Set(CrashState::PREFERENCES);
 
 		Preferences::Load();
@@ -255,6 +247,10 @@ int main(int argc, char *argv[])
 			return 1;
 
 		GameData::LoadSettings();
+
+#ifdef _WIN32
+		TimerResolutionGuard windowsTimerGuard;
+#endif
 
 		if(!isTesting || debugMode)
 		{
@@ -685,7 +681,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.14" << endl;
+	cerr << "Endless Sky ver. 0.10.15-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

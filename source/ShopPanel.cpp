@@ -69,29 +69,6 @@ namespace {
 		return ship.GetPlanet() == here;
 	}
 
-	const int HOVER_TIME = 60;
-
-	void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor)
-	{
-		constexpr int WIDTH = 250;
-		constexpr int PAD = 10;
-		WrappedText wrap(FontSet::Get(14));
-		wrap.SetWrapWidth(WIDTH - 2 * PAD);
-		wrap.Wrap(text);
-		int longest = wrap.LongestLineWidth();
-		if(longest < wrap.WrapWidth())
-		{
-			wrap.SetWrapWidth(longest);
-			wrap.Wrap(text);
-		}
-
-		Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
-		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + textSize.Y(), Screen::Bottom()));
-		FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
-		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
-	}
-
-
 	constexpr auto ScrollbarMaybeUpdate = [](const auto &op, ScrollBar &scrollbar,
 		ScrollVar<double> &scroll, bool animate)
 	{
@@ -113,7 +90,11 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
-	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
+	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard")),
+	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_LEFT, Tooltip::Corner::TOP_RIGHT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -196,10 +177,10 @@ void ShopPanel::Draw()
 		string text = shipName;
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
-		const Color &textColor = *GameData::Colors().Get("medium");
-		const Color &backColor = *GameData::Colors().Get(warningType.empty() ? "tooltip background"
-					: (warningType.back() == '!' ? "error back" : "warning back"));
-		DrawTooltip(text, hoverPoint, textColor, backColor);
+		shipsTooltip.SetText(text, true);
+		shipsTooltip.SetBackgroundColor(GameData::Colors().Get(warningType.empty() ? "tooltip background"
+			: (warningType.back() == '!' ? "error back" : "warning back")));
+		shipsTooltip.Draw(true);
 	}
 
 	if(dragShip && isDraggingShip && dragShip->GetSprite())
@@ -530,171 +511,28 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool ShopPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 {
-	// treat left joystick like arrow keys, right joystick like navigation keys.
-	// Fallback to the default zone-navigation behavior on the side pane.
-	if(activePane == ShopPane::Main)
+	auto ScrollbarClick = [x, y, button, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
 	{
-		if(axis == SDL_CONTROLLER_AXIS_LEFTX)
-			return KeyDown(positive ? SDLK_RIGHT : SDLK_LEFT, 0, Command(), true);
-		else if(axis == SDL_CONTROLLER_AXIS_LEFTY)
-			return KeyDown(positive ? SDLK_DOWN : SDLK_UP, 0, Command(), true);
-	}
-	else if(activePane == ShopPane::Info)
-	{
-		if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
-		   axis == SDL_CONTROLLER_AXIS_LEFTY)
-			return true; // prevent event from doing normal button selection logic
-	}
-	else if(activePane == ShopPane::Sidebar)
-	{
-		if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
-		   axis == SDL_CONTROLLER_AXIS_LEFTY)
-		{
-			// do not rely on default zone-based cursor handling, as this class
-			// uses its own zones (also confusingly named "Zone")
-			std::vector<Point> options = GetUI()->ZonePositions();
-			for(auto& z: shipZones)
+		return ScrollbarMaybeUpdate([x, y, button, clicks](ScrollBar &scrollbar)
 			{
-				// only add zones in the right side panel that are visible on the
-				// screen
-				Rectangle sidePane(Point(Screen::Right() - SIDEBAR_WIDTH/2.0, 0), Point(SIDEBAR_WIDTH, Screen::Height()));
-				if(sidePane.Contains(z.Center()))
-					options.push_back(z.Center());
-			}
-			Point oldPos = GamepadCursor::Position();
-			GamepadCursor::MoveDir(GamePad::LeftStick(), options);
-
-			if(isDraggingShip)
-			{
-				const Point& dp = GamepadCursor::Position() - oldPos;
-				Drag(dp.X(), dp.Y());
-			}
-
-			return true;
-		}
-	}
-
-	if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
-	{
-		if(positive && activePane == ShopPane::Main)
-		{
-			activePane = ShopPane::Info;
-			GamepadCursor::SetEnabled(false);
-		}
-		else if(activePane == ShopPane::Info)
-		{
-			if(positive)
-			{
-				activePane = ShopPane::Sidebar;
-				GamepadCursor::SetEnabled(true);
-			}
-			else
-			{
-				activePane = ShopPane::Main;
-				GamepadCursor::SetEnabled(false);
-			}
-		}
-		else if(!positive && activePane == ShopPane::Sidebar)
-		{
-			activePane = ShopPane::Info;
-			GamepadCursor::SetEnabled(false);
-		}
-		return true;
-	}
-	return false;
-}
-
-
-
-bool ShopPanel::ControllerButtonDown(SDL_GameControllerButton button)
-{
-	if(button == SDL_CONTROLLER_BUTTON_GUIDE)
-		return KeyDown(SDLK_ESCAPE, 0, Command(), true);
-	if(activePane == ShopPane::Main)
-	{
-		if(button == SDL_CONTROLLER_BUTTON_A)
-		{
-			activePane = ShopPane::Sidebar;
-			// switch to the sidebar, and highlight the buy button
-			// TODO: need a better way to find this.
-			const Point buyCenter = Screen::BottomRight() - Point(210, 25);
-			GamepadCursor::SetPosition(buyCenter);
-			return true;
-		}
-	}
-	else if(activePane == ShopPane::Sidebar)
-	{
-		if(isDraggingShip)
-		{
-			// Any button ends the dragging operation
-			const Point& p = GamepadCursor::Position();
-			return Release(p.X(), p.Y());
-		}
-
-		if(button == SDL_CONTROLLER_BUTTON_A)
-		{
-			// Act like a short click
-			const Point& p = GamepadCursor::Position();
-			bool ret = Click(p.X(), p.Y(), 1);
-			Release(p.X(), p.Y());
-			return ret;
-		}
-		else if(button == SDL_CONTROLLER_BUTTON_B)
-		{
-			// Act like a long click
-			const Point& p = GamepadCursor::Position();
-			bool ret = Click(p.X(), p.Y(), 1);
-			lastShipClickTime = SDL_GetTicks() - LONG_CLICK_DURATION - 1;
-			Release(p.X(), p.Y());
-			return ret;
-		}
-		else if(button == SDL_CONTROLLER_BUTTON_X)
-		{
-			// Act like a double click
-			const Point& p = GamepadCursor::Position();
-			return Click(p.X(), p.Y(), 2);
-		}
-		else if(button == SDL_CONTROLLER_BUTTON_Y)
-		{
-			// If we have a ship selected, act like the start of a drag and drop
-			const Point& p = GamepadCursor::Position();
-			for(const auto &zone : shipZones)
-			{
-				// floating point comparison ok here.
-				if(zone.Center().X() == p.X() && zone.Center().Y() == p.Y())
-				{
-					Click(p.X(), p.Y(), 1);
-					return Drag(10, -10);
-				}
-			}
-		}
-	}
-	return false;
-}
-
-
-
-bool ShopPanel::Click(int x, int y, int clicks)
-{
-	dragShip = nullptr;
-	// Handle clicks on the buttons.
-	char button = CheckButton(x, y);
-	if(button)
-		return DoKey(button);
-
-	auto ScrollbarClick = [x, y, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
-	{
-		return ScrollbarMaybeUpdate([x, y, clicks](ScrollBar &scrollbar)
-			{
-				return scrollbar.Click(x, y, clicks);
+				return scrollbar.Click(x, y, button, clicks);
 			}, scrollbar, scroll, true);
 	};
 	if(ScrollbarClick(mainScrollbar, mainScroll)
 			|| ScrollbarClick(sidebarScrollbar, sidebarScroll)
 			|| ScrollbarClick(infobarScrollbar, infobarScroll))
 		return true;
+
+	if(button != MouseButton::LEFT)
+		return false;
+
+	dragShip = nullptr;
+	// Handle clicks on the buttons.
+	char zoneButton = CheckButton(x, y);
+	if(zoneButton)
+		return DoKey(zoneButton);
 
 	const Point clickPoint(x, y);
 
@@ -841,8 +679,10 @@ bool ShopPanel::Drag(double dx, double dy)
 
 
 
-bool ShopPanel::Release(int x, int y)
+bool ShopPanel::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	if (isDraggingShip)
 	{
 		dragShip = nullptr;
@@ -1058,7 +898,7 @@ void ShopPanel::DrawShipsSidebar()
 		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
 			shipName = ship->Name() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
-			hoverPoint = shipZones.back().TopLeft();
+			shipsTooltip.SetZone(shipZones.back());
 		}
 
 		const auto checkIt = flightChecks.find(ship);
@@ -1288,14 +1128,15 @@ void ShopPanel::DrawButtons()
 	// Draw the tooltip for your full number of credits.
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
 	if(creditsBox.Contains(hoverPoint))
-		hoverCount += hoverCount < HOVER_TIME;
-	else if(hoverCount)
-		--hoverCount;
+		creditsTooltip.IncrementCount();
+	else
+		creditsTooltip.DecrementCount();
 
-	if(hoverCount == HOVER_TIME)
+	if(creditsTooltip.ShouldDraw())
 	{
-		string text = Format::Number(player.Accounts().Credits()) + " credits";
-		DrawTooltip(text, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+		creditsTooltip.SetZone(creditsBox);
+		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits", true);
+		creditsTooltip.Draw();
 	}
 }
 

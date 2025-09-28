@@ -16,11 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sound.h"
 
 #include "../Files.h"
-
-#include <SDL2/SDL_rwops.h>
-#include "../Files.h"
-
-#include <AL/al.h>
+#include "supplier/WavSupplier.h"
 
 #include <cstdint>
 
@@ -42,9 +38,9 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(shared_ptr<iostream> in, uint32_t &frequency);
-	uint32_t Read4(const shared_ptr<iostream> in);
-	uint16_t Read2(const shared_ptr<iostream> in);
+	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t &frequency);
+	uint32_t Read4(const shared_ptr<iostream> &in);
+	uint16_t Read2(const shared_ptr<iostream> &in);
 
 	bool ReadMP3(const shared_ptr<iostream>& in, vector<char>& data, uint32_t& frequency);
 }
@@ -57,7 +53,7 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 
 	isLooped = path.stem().string().ends_with('~');
 	bool isFast = isLooped ? path.stem().string().ends_with("@3x~") : path.stem().string().ends_with("@3x");
-	unsigned &buf = isFast ? buffer3x : buffer;
+	vector<AudioSupplier::sample_t> &buf = isFast ? buffer3x : buffer;
 
 	shared_ptr<iostream> in = Files::Open(path);
 	if(!in)
@@ -85,10 +81,13 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 		return false;
 	}
 
-	if(!buf)
-		alGenBuffers(1, &buf);
-	alBufferData(buf, AL_FORMAT_MONO16, &data.front(), data.size(), frequency);
-
+	// Store 16-bit stereo buffer.
+	buf.resize(2 * data.size() / sizeof(AudioSupplier::sample_t));
+	for(size_t i = 0; i < buf.size() / 2; ++i)
+	{
+		buf[2 * i] = reinterpret_cast<AudioSupplier::sample_t *>(data.data())[i];
+		buf[2 * i + 1] = reinterpret_cast<AudioSupplier::sample_t *>(data.data())[i];
+	}
 	return true;
 }
 
@@ -101,16 +100,16 @@ const string &Sound::Name() const
 
 
 
-unsigned Sound::Buffer() const
+const vector<AudioSupplier::sample_t> &Sound::Buffer() const
 {
-	return buffer;
+	return buffer.empty() ? buffer3x : buffer;
 }
 
 
 
-unsigned Sound::Buffer3x() const
+const vector<AudioSupplier::sample_t> &Sound::Buffer3x() const
 {
-	return buffer3x;
+	return buffer3x.empty() ? buffer : buffer3x;
 }
 
 
@@ -122,11 +121,18 @@ bool Sound::IsLooping() const
 
 
 
+unique_ptr<AudioSupplier> Sound::CreateSupplier() const
+{
+	return unique_ptr<AudioSupplier>{new WavSupplier{*this, false, IsLooping()}};
+}
+
+
+
 namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(shared_ptr<iostream> in, uint32_t &frequency)
+	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t &frequency)
 	{
 		uint32_t chunkID = Read4(in);
 		if(chunkID != 0x46464952) // "RIFF" in big endian.
@@ -185,7 +191,7 @@ namespace {
 
 
 
-	uint32_t Read4(const shared_ptr<iostream> in)
+	uint32_t Read4(const shared_ptr<iostream> &in)
 	{
 		unsigned char data[4];
 		in->read(reinterpret_cast<char *>(data), 4);
@@ -199,7 +205,7 @@ namespace {
 
 
 
-	uint16_t Read2(const shared_ptr<iostream> in)
+	uint16_t Read2(const shared_ptr<iostream> &in)
 	{
 		unsigned char data[2];
 		in->read(reinterpret_cast<char *>(data), 2);

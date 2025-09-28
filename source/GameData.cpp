@@ -88,6 +88,7 @@ namespace {
 	Set<Shop<Ship>> defaultShipSales;
 	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
+	Set<Person> defaultPersons;
 	TextReplacements defaultSubstitutions;
 
 	Politics politics;
@@ -261,6 +262,7 @@ void GameData::FinishLoading()
 	defaultOutfitSales = objects.outfitSales;
 	defaultSubstitutions = objects.substitutions;
 	defaultWormholes = objects.wormholes;
+	defaultPersons = objects.persons;
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -474,8 +476,7 @@ void GameData::Revert()
 	objects.outfitSales.Revert(defaultOutfitSales);
 	objects.substitutions.Revert(defaultSubstitutions);
 	objects.wormholes.Revert(defaultWormholes);
-	for(auto &it : objects.persons)
-		it.second.Restore();
+	objects.persons.Revert(defaultPersons);
 
 	politics.Reset();
 	purchases.clear();

@@ -136,7 +136,7 @@ namespace {
 	}
 
 	// A helper function for reversing the arguments of the given function F.
-	template <InfoPanelState::ShipComparator &F>
+	template<InfoPanelState::ShipComparator &F>
 	bool ReverseCompare(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
 		return F(rhs, lhs);
@@ -516,8 +516,11 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 
 
 
-bool PlayerInfoPanel::Click(int x, int y, int clicks)
+bool PlayerInfoPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	// Sort the ships if the click was on one of the column headers.
 	Point mouse = Point(x, y);
 	for(auto &zone : menuZones)
@@ -599,8 +602,10 @@ bool PlayerInfoPanel::Drag(double dx, double dy)
 
 
 
-bool PlayerInfoPanel::Release(int x, int y)
+bool PlayerInfoPanel::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	if(!isDragging)
 		return true;
 	isDragging = false;

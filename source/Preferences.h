@@ -114,6 +114,19 @@ public:
 		BOTH
 	};
 
+	enum class MinimapDisplay : int_fast8_t {
+		OFF = 0,
+		WHEN_JUMPING,
+		ALWAYS_ON
+	};
+
+	enum class FlagshipSpacePriority : int_fast8_t {
+		NONE = 0,
+		PASSENGERS,
+		CARGO,
+		BOTH
+	};
+
 
 public:
 	static void Load();
@@ -199,13 +212,23 @@ public:
 	static FlotsamCollection GetFlotsamCollection();
 	static const std::string &FlotsamSetting();
 
-	/// Red alert siren and symbol
+	/// Red alert siren and symbol.
 	static void ToggleAlert();
 	static AlertIndicator GetAlertIndicator();
 	static const std::string &AlertSetting();
 	static bool PlayAudioAlert();
 	static bool DisplayVisualAlert();
 	static bool DoAlertHelper(AlertIndicator toDo);
+
+	/// Minimap display settings.
+	static void ToggleMinimapDisplay();
+	static MinimapDisplay GetMinimapDisplay();
+	static const std::string &MinimapSetting();
+
+	/// Flagship space priority setting.
+	static void ToggleFlagshipSpacePriority();
+	static FlagshipSpacePriority GetFlagshipSpacePriority();
+	static const std::string &FlagshipSpacePrioritySetting();
 
 	static int GetPreviousSaveCount();
 };
