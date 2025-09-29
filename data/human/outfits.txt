@@ -125,8 +125,8 @@ outfit "K25R Shield Generator"
 	thumbnail "outfit/"
 	"mass" 19
 	"outfit space" -19
-	"delayed shield generation" 0.54
-	"delayed shield energy" 0.54
+	"delayed shield generation" 0.81
+	"delayed shield energy" 0.81
 	"shield delay" 240
 	description "This small shield generator is most popular among skilled interceptor pilots. With the right tactics, a pilot with such a generator can defeat even a more powerful opponent using a standard shield generator by intermittently retreating from combat, allowing their shields to recover faster than their opponent's."
 	description "For slower ships, however, disengaging from combat may not always be feasible, and as such the Deep's more reliable shield generators are much more effective."
@@ -139,8 +139,8 @@ outfit "K36S Shield Generator"
 	thumbnail "outfit/"
 	"mass" 26
 	"outfit space" -26
-	"delayed shield generation" 0.88
-	"delayed shield energy" 0.88
+	"delayed shield generation" 1.32
+	"delayed shield energy" 1.32
 	"shield delay" 240
 	description "Kraz Cybernetics recently began producing their K-series of shield generators as alternatives to the D-series produced by the Deep. Although this model can recover shields much more quickly than a similarly-sized Deep shield generator, any damage sustained by the shields can destabilise the generator, requiring it to be switched off for a few seconds in order for the internal matrix to reassert itself."
 
@@ -152,8 +152,8 @@ outfit "K49V Shield Generator"
 	thumbnail "outfit/"
 	"mass" 38
 	"outfit space" -38
-	"delayed shield generation" 1.39
-	"delayed shield energy" 1.39
+	"delayed shield generation" 2.19
+	"delayed shield energy" 2.19
 	"shield delay" 240
 	description ""
 
@@ -165,8 +165,8 @@ outfit "K64W Shield Generator"
 	thumbnail "outfit/"
 	"mass" 54
 	"outfit space" -54
-	"delayed shield generation" 2.21
-	"delayed shield energy" 2.21
+	"delayed shield generation" 3.31
+	"delayed shield energy" 3.31
 	"shield delay" 240
 	description "Few ships large enough to use a shield generator this size are fast enough to benefit from the properties of Kraz's shield generator line. Those few ships with the correct combination of size and speed to use it, however, can be immensely effective if piloted carefully."
 
