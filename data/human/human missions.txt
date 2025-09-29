@@ -2550,7 +2550,7 @@ mission "Terraforming Field Trip 1"
 				`	"Sorry, that's too far out of my way."`
 			action
 				set "terraforming field trip: deferred later"
-			`	Amy's disappointment returns, but before leaving, she gives you her contact information, saying, "Well, I'd still love to come along the next time you are travelling that way."`
+			`	Amy's disappointment returns, but before leaving, she gives you her contact information, saying, "Well, I'd still love to come along the next time you are traveling that way."`
 				defer
 			label end
 			`	She is delighted and explains that she will meet you at your ship later today, before leaving to attend to her work in preparation for her absence.`
