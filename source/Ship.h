@@ -134,7 +134,7 @@ public:
 
 	// Since having ShipEvent here would create a dependency cycle, use a simplified version.
 	class ShipEventInternal {
-	// TODO: Remove once Apple Clang gets C++20 support.
+	// TODO: Remove once our GitHub Actions runners have Apple Clang 16 or newer.
 #ifdef __APPLE__
 	public:
 		ShipEventInternal(const Government *actor = nullptr, int type = 0) : actor{actor}, type{type} {}
@@ -148,7 +148,7 @@ public:
 	class DamageLog {
 	public:
 		class Entry {
-		// TODO: Remove once Apple Clang gets C++20 support.
+		// TODO: Remove once our GitHub Actions runners have Apple Clang 16 or newer.
 #ifdef __APPLE__
 		public:
 			Entry(double amount = 0., const Government *source = nullptr) : amount{amount}, source{source} {}
