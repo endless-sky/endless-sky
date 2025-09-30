@@ -1886,24 +1886,18 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	bool isJump = ship->IsUsingJumpDrive();
 	bool wasHere = (flagship && ship->GetSystem() == flagship->GetSystem());
 	bool wasHyperspacing = ship->IsHyperspacing();
-	bool wasDisabled = ship->IsDisabled();
 	// Give the ship the list of visuals so that it can draw explosions,
 	// ion sparks, jump drive flashes, etc.
 	ship->Move(newVisuals, newFlotsam);
-	if(ship->IsDisabled() && !wasDisabled)
-		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
+	list<Ship::ShipEventInternal> unhandledShipEvents = ship->HandleEvents();
+	for(const auto &it : unhandledShipEvents)
+		eventQueue.emplace_back(it.actor, ship, it.type);
+
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
-		// Make sure this ship's destruction was recorded, even if it died from
-		// self-destruct.
 		if(ship->IsDestroyed())
 		{
-			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
-			// Any still-docked ships' destruction must be recorded as well.
-			for(const auto &bay : ship->Bays())
-				if(bay.ship)
-					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::DESTROY);
 			// If this is a player ship, make sure it's no longer selected.
 			if(ship->IsYours())
 				player.DeselectShip(ship.get());
