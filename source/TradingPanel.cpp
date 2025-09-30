@@ -224,8 +224,8 @@ void TradingPanel::Draw()
 
 			Rectangle buyRect = Rectangle::FromCorner(Point(MIN_X + BUY_X, y), Point(SELL_X - BUY_X, 20));
 			Rectangle sellRect = Rectangle::FromCorner(Point(MIN_X + SELL_X, y), Point(HOLD_X - SELL_X, 20));
-			AddZone(buyRect, [this, buyRect]() { Click(buyRect.Center().X(), buyRect.Center().Y(), 1); });
-			AddZone(sellRect, [this, sellRect]() { Click(sellRect.Center().X(), sellRect.Center().Y(), 1); });
+			AddZone(buyRect, [this, buyRect]() { Click(buyRect.Center().X(), buyRect.Center().Y(), MouseButton::LEFT, 1); });
+			AddZone(sellRect, [this, sellRect]() { Click(sellRect.Center().X(), sellRect.Center().Y(), MouseButton::LEFT, 1); });
 		}
 		else
 		{

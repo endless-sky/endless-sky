@@ -166,7 +166,7 @@ void BankPanel::Draw()
 		}
 		const Rectangle pos = table.GetTextBounds("[pay extra]");
 		table.Draw("[pay extra]");
-		AddZone(pos, [this, pos]() { Click(pos.Center().X(), pos.Center().Y(), 1); });
+		AddZone(pos, [this, pos]() { Click(pos.Center().X(), pos.Center().Y(), MouseButton::LEFT, 1); });
 
 		++row;
 
@@ -256,7 +256,7 @@ void BankPanel::Draw()
 		table.Advance(4);
 		Rectangle pos = table.GetTextBounds("[apply]");
 		table.Draw("[apply]", selected);
-		AddZone(pos, [this, pos]() { Click(pos.Center().X(), pos.Center().Y(), 1); });
+		AddZone(pos, [this, pos]() { Click(pos.Center().X(), pos.Center().Y(), MouseButton::LEFT, 1); });
 	}
 
 	Information info;

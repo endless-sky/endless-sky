@@ -37,9 +37,9 @@ public:
 	void SetMousePos(const Point& p) { mouse_pos = p; }
 
 protected:
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
-	virtual bool Release(int x, int y) override;
+	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
 	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
@@ -196,7 +196,7 @@ Dropdown::DroppedPanel::DroppedPanel(Dropdown* parent):
 
 
 
-bool Dropdown::DroppedPanel::Click(int x, int y, int clicks)
+bool Dropdown::DroppedPanel::Click(int x, int y, MouseButton, int clicks)
 {
 	mouse_pos = Point(x, y);
 
@@ -226,7 +226,7 @@ bool Dropdown::DroppedPanel::Drag(double dx, double dy)
 
 
 
-bool Dropdown::DroppedPanel::Release(int x, int y)
+bool Dropdown::DroppedPanel::Release(int x, int y, MouseButton)
 {
 	// short click, leave it up. Long click, see what they selected
 	if (SDL_GetTicks() - click_stamp < 500)

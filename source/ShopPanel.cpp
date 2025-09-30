@@ -511,8 +511,155 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
+bool ShopPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// treat left joystick like arrow keys, right joystick like navigation keys.
+	// Fallback to the default zone-navigation behavior on the side pane.
+	if(activePane == ShopPane::Main)
+	{
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX)
+			return KeyDown(positive ? SDLK_RIGHT : SDLK_LEFT, 0, Command(), true);
+		else if(axis == SDL_CONTROLLER_AXIS_LEFTY)
+			return KeyDown(positive ? SDLK_DOWN : SDLK_UP, 0, Command(), true);
+	}
+	else if(activePane == ShopPane::Info)
+	{
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
+		   axis == SDL_CONTROLLER_AXIS_LEFTY)
+			return true; // prevent event from doing normal button selection logic
+	}
+	else if(activePane == ShopPane::Sidebar)
+	{
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
+		   axis == SDL_CONTROLLER_AXIS_LEFTY)
+		{
+			// do not rely on default zone-based cursor handling, as this class
+			// uses its own zones (also confusingly named "Zone")
+			std::vector<Point> options = GetUI()->ZonePositions();
+			for(auto& z: shipZones)
+			{
+				// only add zones in the right side panel that are visible on the
+				// screen
+				Rectangle sidePane(Point(Screen::Right() - SIDEBAR_WIDTH/2.0, 0), Point(SIDEBAR_WIDTH, Screen::Height()));
+				if(sidePane.Contains(z.Center()))
+					options.push_back(z.Center());
+			}
+			Point oldPos = GamepadCursor::Position();
+			GamepadCursor::MoveDir(GamePad::LeftStick(), options);
+
+			if(isDraggingShip)
+			{
+				const Point& dp = GamepadCursor::Position() - oldPos;
+				Drag(dp.X(), dp.Y());
+			}
+
+			return true;
+		}
+	}
+
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
+	{
+		if(positive && activePane == ShopPane::Main)
+		{
+			activePane = ShopPane::Info;
+			GamepadCursor::SetEnabled(false);
+		}
+		else if(activePane == ShopPane::Info)
+		{
+			if(positive)
+			{
+				activePane = ShopPane::Sidebar;
+				GamepadCursor::SetEnabled(true);
+			}
+			else
+			{
+				activePane = ShopPane::Main;
+				GamepadCursor::SetEnabled(false);
+			}
+		}
+		else if(!positive && activePane == ShopPane::Sidebar)
+		{
+			activePane = ShopPane::Info;
+			GamepadCursor::SetEnabled(false);
+		}
+		return true;
+	}
+	return false;
+}
+
+
+
+bool ShopPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(button == SDL_CONTROLLER_BUTTON_GUIDE)
+		return KeyDown(SDLK_ESCAPE, 0, Command(), true);
+	if(activePane == ShopPane::Main)
+	{
+		if(button == SDL_CONTROLLER_BUTTON_A)
+		{
+			activePane = ShopPane::Sidebar;
+			// switch to the sidebar, and highlight the buy button
+			// TODO: need a better way to find this.
+			const Point buyCenter = Screen::BottomRight() - Point(210, 25);
+			GamepadCursor::SetPosition(buyCenter);
+			return true;
+		}
+	}
+	else if(activePane == ShopPane::Sidebar)
+	{
+		if(isDraggingShip)
+		{
+			// Any button ends the dragging operation
+			const Point& p = GamepadCursor::Position();
+			return Release(p.X(), p.Y(), MouseButton::LEFT);
+		}
+
+		if(button == SDL_CONTROLLER_BUTTON_A)
+		{
+			// Act like a short click
+			const Point& p = GamepadCursor::Position();
+			bool ret = Click(p.X(), p.Y(), MouseButton::LEFT, 1);
+			Release(p.X(), p.Y(), MouseButton::LEFT);
+			return ret;
+		}
+		else if(button == SDL_CONTROLLER_BUTTON_B)
+		{
+			// Act like a long click
+			const Point& p = GamepadCursor::Position();
+			bool ret = Click(p.X(), p.Y(), MouseButton::LEFT, 1);
+			lastShipClickTime = SDL_GetTicks() - LONG_CLICK_DURATION - 1;
+			Release(p.X(), p.Y(), MouseButton::LEFT);
+			return ret;
+		}
+		else if(button == SDL_CONTROLLER_BUTTON_X)
+		{
+			// Act like a double click
+			const Point& p = GamepadCursor::Position();
+			return Click(p.X(), p.Y(), MouseButton::LEFT, 2);
+		}
+		else if(button == SDL_CONTROLLER_BUTTON_Y)
+		{
+			// If we have a ship selected, act like the start of a drag and drop
+			const Point& p = GamepadCursor::Position();
+			for(const auto &zone : shipZones)
+			{
+				// floating point comparison ok here.
+				if(zone.Center().X() == p.X() && zone.Center().Y() == p.Y())
+				{
+					Click(p.X(), p.Y(), MouseButton::LEFT, 1);
+					return Drag(10, -10);
+				}
+			}
+		}
+	}
+	return false;
+}
+
+
+
 bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	dragShip = nullptr;
 	auto ScrollbarClick = [x, y, button, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
 	{
 		return ScrollbarMaybeUpdate([x, y, button, clicks](ScrollBar &scrollbar)

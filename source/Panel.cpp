@@ -380,7 +380,7 @@ bool Panel::DoFingerDown(int x, int y, int fid, int clicks)
 	if(FingerDown(x, y, fid))
 		return true;
 	Hover(x, y);
-	if(DoClick(x, y, clicks))
+	if(DoClick(x, y, MouseButton::LEFT, clicks))
 	{
 		panelFingerId = fid;
 		return true;
@@ -431,7 +431,7 @@ bool Panel::DoFingerUp(int x, int y, int fid)
 	if (fid == panelFingerId)
 	{
 		panelFingerId = -1;
-		return Release(x, y);
+		return Release(x, y, MouseButton::LEFT);
 	}
 	return false;
 }

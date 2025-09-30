@@ -115,7 +115,7 @@ void Command::InitIcons()
 	iconName[Command::FASTFORWARD] = "ui/icon_fast_forward";
 	iconName[Command::FIGHT] = "ui/icon_fleet_fight";
 	iconName[Command::GATHER] = "ui/icon_fleet_gather";
-	iconName[Command::HOLD] = "ui/icon_fleet_stop";
+	iconName[Command::HOLD_POSITION] = "ui/icon_fleet_stop";
 	iconName[Command::HARVEST] = "ui/icon_fleet_harvest";
 	iconName[Command::AMMO] = "ui/icon_ammo_usage";
 	iconName[Command::STOP] = "ui/icon_fleet_stop";

@@ -252,7 +252,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	// bought a map since the last time they viewed the map.
 	FogShader::Redraw();
 
-	mapZoom.Set(1.0, 0);
+	zoom.Set(1.0, 0);
 
 	// Recalculate escort positions every time the map is opened, as they may
 	// be changing systems even if the player does not.
@@ -642,7 +642,7 @@ bool MapPanel::FingerMove(int x, int y, int fid)
 
 		center += zoomGesture.CenterDelta();
 		zoom = zoom * zoomGesture.Zoom();
-		int player_zoom_level = log(mapZoom) / log(1.5);
+		int player_zoom_level = log(zoom) / log(1.5);
 		if(player_zoom_level >= mapInterface->GetValue("max zoom"))
 		{
 			player_zoom_level = mapInterface->GetValue("max zoom");
@@ -732,7 +732,7 @@ bool MapPanel::ControllerButtonDown(SDL_GameControllerButton button)
 		if(button == SDL_CONTROLLER_BUTTON_A && controllerSelected < nodes.size())
 		{
 			Point pos = Zoom() * (nodes[controllerSelected].position + center);
-			Click(pos.X(), pos.Y(), 1);
+			Click(pos.X(), pos.Y(), MouseButton::LEFT, 1);
 			return true;
 		}
 		

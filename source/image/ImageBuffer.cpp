@@ -57,7 +57,7 @@ namespace {
 		extensions.insert(AVIF_EXTENSIONS.begin(), AVIF_EXTENSIONS.end());
 		extensions.insert(KTX_EXTENSIONS.begin(), KTX_EXTENSIONS.end());
 		return extensions;
-	}
+	}();
 
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame);
@@ -270,7 +270,7 @@ int ImageBuffer::Read(const ImageFileData &data, int frame)
 	if(!isPNG && !isJPG && !isAVIF && !isKTX)
 		return false;
 
-	int loaded;
+	int loaded = 0;
 	if(isPNG)
 		loaded = ReadPNG(data.path, *this, frame);
 	else if(isJPG)
@@ -278,7 +278,7 @@ int ImageBuffer::Read(const ImageFileData &data, int frame)
 	else if(isAVIF)
 		loaded = ReadAVIF(data.path, *this, frame, data.blendingMode == BlendingMode::PREMULTIPLIED_ALPHA);
 	else if(isKTX)
-		loaded = ReadKTX(data.path, *this))
+		loaded = ReadKTX(data.path, *this);
 
 	if(loaded <= 0)
 		return 0;

@@ -388,7 +388,7 @@ bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 bool Dialog::FingerDown(int x, int y, int fid)
 {
 	// Consume fingerdown event, so that we process the tap on a finger up
-	// instead. This is so that we don't inadverntently leak a finger up event
+	// instead. This is so that we don't inadvertently leak a finger up event
 	// to a controlling panel when we close on a click event.
 	return true;
 }
@@ -397,7 +397,7 @@ bool Dialog::FingerDown(int x, int y, int fid)
 
 bool Dialog::FingerUp(int x, int y, int fid)
 {
-	return Click(x, y, 1);
+	return Click(x, y, MouseButton::LEFT, 1);
 }
 
 

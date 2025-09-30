@@ -69,13 +69,13 @@ namespace
 
 
 
-void RadialSelectionPanel::ReleaseWithMouseUp(const Point& position, int button)
+void RadialSelectionPanel::ReleaseWithMouseUp(const Point& position, MouseButton button)
 {
 	// Default the position to the mouse position, and also cache the mouse
 	// position for the selection logic
 	m_position = position;
 	m_mouse_pos = position;
-	m_triggered_mouse_button = button;
+	m_triggered_mouse_button = static_cast<int>(button);
 	MoveCursor(position);
 }
 
@@ -200,9 +200,9 @@ bool RadialSelectionPanel::Drag(double dx, double dy)
 
 
 
-bool RadialSelectionPanel::Release(int x, int y)
+bool RadialSelectionPanel::Release(int x, int y, MouseButton button)
 {
-	if(m_triggered_mouse_button != -1)
+	if(m_triggered_mouse_button == static_cast<int>(button))
 	{
 		m_mouse_pos = Point(x, y);
 		MoveCursor(m_mouse_pos);

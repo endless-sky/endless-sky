@@ -1129,7 +1129,7 @@ void Interface::RadialSelectionElement::Place(const Rectangle &bounds, Panel *pa
 		switch (e.type)
 		{
 		case Panel::Event::MOUSE:
-			radial_selection->ReleaseWithMouseUp(e.pos, e.id);
+			radial_selection->ReleaseWithMouseUp(e.pos, static_cast<MouseButton>(e.id));
 			break;
 		case Panel::Event::TOUCH:
 			radial_selection->ReleaseWithFingerUp(e.pos, e.id);

@@ -28,7 +28,7 @@ public:
 
 	// we need to know how we were triggered, so we know what release event
 	// destroys this panel
-	void ReleaseWithMouseUp(const Point& position, int button);
+	void ReleaseWithMouseUp(const Point& position, MouseButton button);
 	void ReleaseWithFingerUp(const Point& position, int fid);
 	void ReleaseWithButtonUp(SDL_GameControllerButton button);
 	void ReleaseWithAxisZero(SDL_GameControllerAxis axis);
@@ -49,7 +49,7 @@ public:
 protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
-	virtual bool Release(int x, int y) override;
+	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool FingerMove(int x, int y, int fid) override;
 	virtual bool FingerUp(int x, int y, int fid) override;
 	virtual bool ControllerButtonUp(SDL_GameControllerButton button) override;
