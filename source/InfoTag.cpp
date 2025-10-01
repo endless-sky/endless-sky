@@ -16,15 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "InfoTag.h"
 
 #include "Color.h"
-#include "GameData.h"
-#include "shader/FillShader.h"
 #include "text/FontSet.h"
-#include "shader/LineShader.h"
+#include "GameData.h"
 #include "Point.h"
-#include "shader/PointerShader.h"
 #include "shader/PolygonShader.h"
 #include "Rectangle.h"
-#include "shader/RingShader.h"
 #include "Screen.h"
 
 using namespace std;
@@ -44,7 +40,7 @@ namespace {
 		// The points vector will always start at and end at the anchor, but not include the anchor for that reason.
 		vector<Point> points;
 
-		double earWidth = .7 * earLength;
+		double earWidth = 7.;
 		Point ccw_offset;
 		Point cw_offset;
 		Point center_offset;
@@ -297,100 +293,8 @@ void InfoTag::Draw() const
 	Rectangle box = boxPoints.first;
 	vector<Point> points = boxPoints.second;
 
-	Color testing(1.f, 0.f, 1.f, 1.f);
-	RingShader::Draw(anchor, 10, 9, testing);
-
-	Point earSideOne = *boxPoints.second.begin() - anchor;
-
-	// Draw ear.
-	if(earLength > 0)
-	{
-		// Draw ear.
-		double th = 0.5;
-		double low;
-		double high;
-		Point ear = earSideOne;
-		if(facing == InfoTag::Direction::EAST || facing == InfoTag::Direction::WEST)
-		{
-			low = -earSideOne.Y();
-			high = earSideOne.Y();
-			if(low > high)
-			{
-				low = earSideOne.Y();
-				high = -earSideOne.Y();
-			}
-			double y = low + 1;
-			while(y < high - 1)
-			{
-				ear.Y() = y;
-				LineShader::Draw(anchor, anchor + ear, 1.f, backColor->Opaque(), false);
-				y += th;
-			}
-		}
-		else
-		{
-			low = -earSideOne.X();
-			high = earSideOne.X();
-			if(low > high)
-			{
-				low = earSideOne.X();
-				high = -earSideOne.X();
-			}
-			double x = low + 1;
-			while(x < high - 1)
-			{
-				ear.X() = x;
-				LineShader::Draw(anchor, anchor + ear, 1.f, *backColor);
-				x += th;
-			}
-		}
-	}
-
-	FillShader::Fill(box, *backColor);
-	text.Draw(box.TopLeft() + Point(10., 10.), *fontColor);
-
-	if(border > 0)
-	{
-		// Note: due to the way that LineShader does it's antialiasing, a 1px satisfying-looking border wasn't being
-		// displayed as truly 1 px. And it still isn't, there is just no winning with this one.
-		constexpr float scale = 0.5;
-		if(earLength > 0)
-		{
-			Point last = anchor;
-			for(auto p: points)
-			{
-				LineShader::Draw(last, p, scale * border, borderColor->Opaque(), false);
-				last = p;
-			}
-			LineShader::Draw(last, anchor, scale * border, borderColor->Opaque(), false);
-		}
-		else
-		{
-			LineShader::Draw(box.TopLeft(), box.BottomLeft(), scale * border, borderColor->Opaque(), false);
-			LineShader::Draw(box.TopRight(), box.BottomRight(), scale * border, borderColor->Opaque(), false);
-			LineShader::Draw(box.TopLeft(), box.TopRight(), scale * border, borderColor->Opaque(), false);
-			LineShader::Draw(box.BottomLeft(), box.BottomRight(), scale * border, borderColor->Opaque(), false);
-		}
-	}
-}
-
-
-
-void InfoTag::Draw2() const
-{
-	// Determine the InfoTag's size and location.
-	Point textSize(text.WrapWidth(), text.Height(false));
-	Point boxSize = textSize + Point(20., 20.);
-
-	pair boxPoints = PositionBox(anchor, boxSize, facing, affinity, earLength);
-	Rectangle box = boxPoints.first;
-	vector<Point> points = boxPoints.second;
-
-	Color testing(1.f, 1.f, 0.f, 1.f);
-	RingShader::Draw(anchor, 10, 9, testing);
-
 	points.emplace_back(anchor);
-	PolygonShader::Draw(points, *backColor, *borderColor);
+	PolygonShader::Draw(points, *backColor, *borderColor, border);
 	text.Draw(box.TopLeft() + Point(10., 10.), *fontColor);
 }
 
@@ -434,9 +338,6 @@ void InfoTag::Draw(Point anchor, std::string text, int width, Alignment alignmen
 	{
 		borderColor = &white;
 	}
-
-	Color testing(0.f, 1.f, 1.f, 1.f);				/// TODO: DEBUG -----------------delete me
-	RingShader::Draw(anchor, 10, 9, testing);		/// TODO: DEBUG -----------------delete me
 
 	points.emplace_back(anchor);
 	PolygonShader::Draw(points, *backColor, *borderColor, border);

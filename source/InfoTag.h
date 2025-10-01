@@ -46,9 +46,6 @@ public:
 
 
 public:
-	///////////////////////// all of this will go away
-	InfoTag() = default;
-
 	InfoTag(int width, Alignment alignment, Direction facing, Affinity affinity,
 		const Color *backColor, const Color *fontColor, const Color *borderColor,
 		double earLength = 10, double border = 1);
@@ -62,9 +59,6 @@ public:
 	void SetFontColor(const Color *fontColor);
 
 	void Draw() const;
-	void Draw2() const;
-	///////////////////////// all of this will go away
-
 	static void Draw(Point anchor, std::string text, int width, Alignment alignment,
 		Direction facing, Affinity affinity,
 		const Color *backColor = nullptr, const Color *fontColor = nullptr, const Color *borderColor = nullptr,
@@ -72,7 +66,6 @@ public:
 
 
 private:
-	///////////////////////// all of this will go away
 	int width;
 	Direction facing;
 	Affinity affinity;
@@ -85,6 +78,4 @@ private:
 
 	Point anchor;
 	WrappedText text;
-	/////////////////////////////////////////////
-
 };
