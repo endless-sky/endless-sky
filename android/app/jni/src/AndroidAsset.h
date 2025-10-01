@@ -114,10 +114,14 @@ public:
 			}
 
 			// Cheat #2... If it has a file extension, it isn't a directory
-			if (dir_name.size() > 5 && (dir_name[dir_name.size() - 4] == '.' ||
-			                            dir_name[dir_name.size() - 5] == '.' ))
+			for (ssize_t i = dir_name.size() - 1; i >= 0; --i)
 			{
-				return false;
+				if (dir_name[i] == '.')
+					return false;
+				else if (dir_name[i] == '/')
+					return false;
+				else if (dir_name[i] == '\\')
+					return false;
 			}
 
 			// At this point, assume it really exists. :(
