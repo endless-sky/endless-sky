@@ -90,15 +90,15 @@ find_library(LIBMAD_LIB_DEBUG NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INS
 find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib")
 
 if(UNIX AND NOT APPLE AND NOT ES_USE_VCPKG)
-   # Many linux distros use the autotools build of flac, which does not 
-   # package the flac-config.cmake. Use PkgConfig instead.
-   find_package(PkgConfig REQUIRED)
-   pkg_check_modules(flac++ REQUIRED IMPORTED_TARGET flac++)
-   add_library(FLAC::FLAC++ ALIAS PkgConfig::flac++)
+	# Many linux distros use the autotools build of flac, which does not
+	# package the flac-config.cmake. Use PkgConfig instead.
+	find_package(PkgConfig REQUIRED)
+	pkg_check_modules(flac++ REQUIRED IMPORTED_TARGET flac++)
+	add_library(FLAC::FLAC++ ALIAS PkgConfig::flac++)
 else()
-   # FLAC's config is missing find_dependency(Threads), so include it here.
-   find_package(Threads REQUIRED)
-   find_package(FLAC CONFIG REQUIRED)
+	# FLAC's config is missing find_dependency(Threads), so include it here.
+	find_package(Threads REQUIRED)
+	find_package(FLAC CONFIG REQUIRED)
 endif()
 
 # Find the zip-reading component of zlib.
