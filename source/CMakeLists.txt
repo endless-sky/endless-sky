@@ -401,6 +401,8 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/OutlineShader.h
 	shader/PointerShader.cpp
 	shader/PointerShader.h
+	shader/PolygonShader.cpp
+	shader/PolygonShader.h
 	shader/RingShader.cpp
 	shader/RingShader.h
 	shader/Shader.cpp
