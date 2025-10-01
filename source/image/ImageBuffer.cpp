@@ -19,7 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageFileData.h"
 #include "../Logger.h"
 
+#ifndef __ANDROID__
 #include <avif/avif.h>
+#endif
 #include <jpeglib.h>
 #include <png.h>
 
@@ -275,8 +277,10 @@ int ImageBuffer::Read(const ImageFileData &data, int frame)
 		loaded = ReadPNG(data.path, *this, frame);
 	else if(isJPG)
 		loaded = ReadJPG(data.path, *this, frame);
+#ifndef __ANDROID__
 	else if(isAVIF)
 		loaded = ReadAVIF(data.path, *this, frame, data.blendingMode == BlendingMode::PREMULTIPLIED_ALPHA);
+#endif
 	else if(isKTX)
 		loaded = ReadKTX(data.path, *this);
 
@@ -470,6 +474,9 @@ namespace {
 	// logic that avoids duplicating the frames.
 	int ReadAVIF(const filesystem::path &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied)
 	{
+#ifdef __ANDROID__
+		return 0;
+#else
 		unique_ptr<avifDecoder, void(*)(avifDecoder *)> decoder(avifDecoderCreate(), avifDecoderDestroy);
 		if(!decoder)
 		{
@@ -586,6 +593,7 @@ namespace {
 			Logger::LogError("Skipped corrupted frames for \"" + path.generic_string() + "\"");
 
 		return bufferFrameCount;
+#endif
 	}
 
 

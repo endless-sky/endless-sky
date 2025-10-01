@@ -20,3 +20,16 @@ echo "Downloading OpenAL-Soft"
 curl -kLo openal-soft.tar.bz2  https://openal-soft.org/openal-releases/openal-soft-1.22.0.tar.bz2
 echo "ce0f9300de3de7bc737b0be2a995619446e493521d070950eea53eddd533fc9b  openal-soft.tar.bz2" | sha256sum -c - || exit
 tar xjf openal-soft.tar.bz2 -C ../jni/src
+
+# Unusable without av1 decoder backend
+# echo "Downloading libavif"
+# curl -Lo libavif.tar.gz https://github.com/AOMediaCodec/libavif/archive/refs/tags/v0.11.1.tar.gz
+# echo "0eb49965562a0e5e5de58389650d434cff32af84c34185b6c9b7b2fccae06d4e  libavif.tar.gz" | sha256sum -c - || exit
+# tar xzf libavif.tar.gz -C ../jni/src
+# # It claims that cmake 3.13 is required, but it mysteriously works fine with
+# # 3.10 (which is what the ndk provides)
+# sed -i '/cmake_minimum_required/d' ../jni/src/libavif-0.11.1/CMakeLists.txt
+
+# Uhg... This changes the timestamps in the tarball every time, so the checksum never matches. 
+# echo "Downloading libgav1"
+# curl -Lo libgav1.tar.gz https://chromium.googlesource.com/codecs/libgav1/+archive/c05bf9be660cf170d7c26bd06bb42b3322180e58.tar.gz

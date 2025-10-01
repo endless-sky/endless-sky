@@ -14,12 +14,4 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 void Music::Init(const std::vector<std::filesystem::path> &sources) {}
 
-Music::Music() {}
-Music::~Music() {}
-
-void Music::SetSource(const std::string &name) {}
-const std::vector<int16_t> &Music::NextChunk() { return next; }
-
-void Music::Decode() {}
-
-const std::string &Music::GetSource() const { return currentSource; }
+std::unique_ptr<AudioSupplier> Music::CreateSupplier(const std::string &name, bool looping) { return {}; }

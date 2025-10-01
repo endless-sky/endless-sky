@@ -88,6 +88,10 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Armament.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/AsteroidField.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/audio/Audio.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/audio/player/AudioPlayer.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/audio/supplier/AudioSupplier.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/audio/supplier/WavSupplier.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/audio/supplier/effect/Fade.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/BankPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/shader/BatchDrawList.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/shader/BatchShader.cpp
@@ -181,11 +185,13 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/MessageLogPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Messages.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Minable.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/MiniMap.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Mission.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MissionAction.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/MissionPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Mortgage.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/audio/Music_stub.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/audio/player/MusicPlayer.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/News.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/NPC.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/NPCAction.cpp
@@ -193,6 +199,9 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Outfit.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/OutfitInfoDisplay.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/OutfitterPanel.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/orders/Orders.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/orders/OrderSet.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/orders/OrderSingle.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/shader/OutlineShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Panel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Paragraphs.cpp
@@ -263,6 +272,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/text/WrappedText.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TextArea.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TextReplacements.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/Tooltip.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Trade.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/TradingPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/UI.cpp
