@@ -147,6 +147,8 @@ target_sources(EndlessSkyLib PRIVATE
 	InfoPanelState.h
 	Information.cpp
 	Information.h
+	InfoTag.cpp
+	InfoTag.h
 	Interface.cpp
 	Interface.h
 	ItemInfoDisplay.cpp
