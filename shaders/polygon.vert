@@ -1,5 +1,5 @@
-/* line.vert
-Copyright (c) 2014 by Michael Zahniser
+/* polygon.vert
+Copyright (c) PolygonShader
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
