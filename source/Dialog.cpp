@@ -218,6 +218,7 @@ void Dialog::Draw()
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
+		hasInput = true;
 		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
 
 		Point stringPos(
@@ -330,7 +331,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		}
 		else
 		{
-			if (intFun || stringFun)
+			if (hasInput)
 			{
 				SDL_StopTextInput();
 			}
@@ -374,7 +375,7 @@ bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 		}
 	}
 
-	if (intFun || stringFun)
+	if (hasInput)
 	{
 		// Clicked on edit field. popup touchscreen keyboard if needed.
 		SDL_StartTextInput();

@@ -132,6 +132,9 @@ protected:
 
 	const System *system = nullptr;
 	PlayerInfo *player = nullptr;
+
+	// Keep track of whether or not an input is drawn.
+	bool hasInput = false;
 };
 
 
