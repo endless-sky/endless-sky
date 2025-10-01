@@ -863,7 +863,10 @@ bool ShopPanel::Release(int x, int y, MouseButton button)
 							if (!playerShips.empty())
 								playerShip = *playerShips.begin();
 							else
+							{
 								playerShip = nullptr;
+								outfit_disposition->SetSelected(MOVE_TO_CARGO);
+							}
 						}
 					}
 				}
