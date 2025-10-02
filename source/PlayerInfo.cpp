@@ -1186,7 +1186,7 @@ const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const st
 
 	// If an id was given, associate and store it with the UUID of the gifted ship.
 	if(!id.empty())
-		giftedShips[id].clone(ships.back()->UUID());
+		giftedShips[id].Clone(ships.back()->UUID());
 
 	return ships.back().get();
 }
@@ -1890,25 +1890,27 @@ void PlayerInfo::PoolCargo()
 
 const CargoHold &PlayerInfo::DistributeCargo()
 {
+	desiredCrew = flagship->Crew();
+	flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - desiredCrew);
+
+	// First, try to transfer to the flagship depending on the priority preference.
+	Preferences::FlagshipSpacePriority prioritySetting = Preferences::GetFlagshipSpacePriority();
+	if(prioritySetting == Preferences::FlagshipSpacePriority::PASSENGERS)
+		for(const auto &it : cargo.PassengerList())
+			cargo.TransferPassengers(it.first, it.second, flagship->Cargo());
+	else if(prioritySetting != Preferences::FlagshipSpacePriority::NONE)
+		cargo.TransferAll(flagship->Cargo(), prioritySetting == Preferences::FlagshipSpacePriority::BOTH);
+
+	// Distribute the remaining cargo among the escorts.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet)
+		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet && ship != flagship)
 		{
-			if(ship != flagship)
-			{
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
-				cargo.TransferAll(ship->Cargo());
-			}
-			else
-			{
-				// Your flagship takes first priority for passengers but last for cargo.
-				desiredCrew = ship->Crew();
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
-				for(const auto &it : cargo.PassengerList())
-					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
-			}
+			ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
+			cargo.TransferAll(ship->Cargo());
 		}
-	// Load up your flagship last, so that it will have space free for any
-	// plunder that you happen to acquire.
+
+	// If the escorts couldn't fit all of the cargo or passengers, try to move the rest to the flagship
+	// regardless of the priority preference.
 	cargo.TransferAll(flagship->Cargo());
 
 	return cargo;
@@ -3767,6 +3769,17 @@ void PlayerInfo::RegisterDerivedConditions()
 		}
 		// The probability of any single fleet appearing is 1 - chance.
 		return round((1. - safeChance) * 1000.); });
+
+	// Special conditions about combat power.
+	conditions["flagship strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return flagship ? flagship->Strength() : 0;
+	});
+	conditions["player strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		int64_t strength = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			strength += ship->Strength();
+		return strength;
+	});
 
 	// Special conditions for cargo and passenger space.
 	conditions["cargo space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {

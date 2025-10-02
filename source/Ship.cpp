@@ -1180,7 +1180,7 @@ const EsUuid &Ship::UUID() const noexcept
 
 void Ship::SetUUID(const EsUuid &id)
 {
-	uuid.clone(id);
+	uuid.Clone(id);
 }
 
 
@@ -3119,7 +3119,10 @@ double Ship::TurnRate() const
 
 double Ship::TrueTurnRate() const
 {
-	return TurnRate() * 1. / (1. + slowness * .05);
+	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
+	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
+	double slownessMultiplier = 1. / (1. + slowness * .05);
+	return TurnRate() * crewMultiplier * slownessMultiplier;
 }
 
 
@@ -3135,7 +3138,10 @@ double Ship::Acceleration() const
 
 double Ship::TrueAcceleration() const
 {
-	return Acceleration() * 1. / (1. + slowness * .05);
+	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
+	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
+	double slownessMultiplier = 1. / (1. + slowness * .05);
+	return Acceleration() * crewMultiplier * slownessMultiplier;
 }
 
 
@@ -3156,6 +3162,16 @@ double Ship::ReverseAcceleration() const
 {
 	return attributes.Get("reverse thrust") / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
+}
+
+
+
+double Ship::TrueReverseAcceleration() const
+{
+	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
+	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
+	double slownessMultiplier = 1. / (1. + slowness * .05);
+	return ReverseAcceleration() * crewMultiplier * slownessMultiplier;
 }
 
 
@@ -4311,12 +4327,11 @@ void Ship::DoGeneration()
 		// Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
 		{
-			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), scale);
-
-			double solarScaling = currentSystem->SolarPower() * scale;
-			energy += solarScaling * attributes.Get("solar collection");
-			heat += solarScaling * attributes.Get("solar heat");
+			System::SolarGeneration generation = currentSystem->GetSolarGeneration(position,
+				attributes.Get("ramscoop"), attributes.Get("solar collection"), attributes.Get("solar heat"));
+			fuel += generation.fuel;
+			energy += generation.energy;
+			heat += generation.heat;
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
@@ -4981,11 +4996,11 @@ void Ship::StepTargeting()
 
 			// Check if the ship will still be pointing to the same side of the target
 			// angle if it turns by this amount.
-			facing += TurnRate() * turn;
+			facing += TrueTurnRate() * turn;
 			bool stillLeft = target->Unit().Cross(facing.Unit()) < 0.;
 			if(left != stillLeft)
 				turn = 0.;
-			angle += TurnRate() * turn;
+			angle += TrueTurnRate() * turn;
 
 			velocity += dv.Unit() * .1;
 			position += dp.Unit() * .5;

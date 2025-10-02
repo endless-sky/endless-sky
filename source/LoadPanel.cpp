@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "LoadPanel.h"
 
+#include "text/Alignment.h"
 #include "Color.h"
 #include "Command.h"
 #include "ConversationPanel.h"
@@ -109,10 +110,6 @@ namespace {
 			}
 		return date;
 	}
-
-	// Only show tooltips if the mouse has hovered in one place for this amount
-	// of time.
-	const int HOVER_TIME = 60;
 }
 
 
@@ -120,7 +117,9 @@ namespace {
 LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 	: player(player), gamePanels(gamePanels), selectedPilot(player.Identifier()),
 	pilotBox(GameData::Interfaces().Get("load menu")->GetBox("pilots")),
-	snapshotBox(GameData::Interfaces().Get("load menu")->GetBox("snapshots"))
+	snapshotBox(GameData::Interfaces().Get("load menu")->GetBox("snapshots")),
+	tooltip(200, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// If you have a player loaded, and the player is on a planet, make sure
 	// the player is saved so that any snapshot you create will be of the
@@ -207,18 +206,14 @@ void LoadPanel::Draw()
 			alpha = min(alpha, 1.);
 
 			if(it.first == selectedPilot)
-				FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
+				FillShader::Fill(zone, Color(.1 * alpha, 0.));
 			const int textWidth = pilotBox.Width() - 2. * hTextPad;
 			font.Draw({it.first, {textWidth, Truncate::BACK}}, textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
 		}
 	}
 
-	// The hover count "decays" over time if not hovering over a saved game.
-	if(hoverCount)
-		--hoverCount;
-	string hoverText;
-
 	// Draw the list of snapshots for the selected pilot.
+	bool hasHoverZone = false;
 	if(!selectedPilot.empty() && files.contains(selectedPilot))
 	{
 		const Point topLeft = snapshotBox.TopLeft();
@@ -244,9 +239,13 @@ void LoadPanel::Draw()
 			bool isHighlighted = (file == selectedFile || isHovering);
 			if(isHovering)
 			{
-				hoverCount = min(HOVER_TIME, hoverCount + 2);
-				if(hoverCount == HOVER_TIME)
-					hoverText = TimestampString(it.second);
+				hasHoverZone = true;
+				tooltip.IncrementCount();
+				if(tooltip.ShouldDraw())
+				{
+					tooltip.SetText(TimestampString(it.second), true);
+					tooltip.SetZone(zone);
+				}
 			}
 
 			double alpha = min((drawPoint.Y() - (top - fadeOut)) * .1,
@@ -255,7 +254,7 @@ void LoadPanel::Draw()
 			alpha = min(alpha, 1.);
 
 			if(file == selectedFile)
-				FillShader::Fill(zone.Center(), zone.Dimensions(), Color(.1 * alpha, 0.));
+				FillShader::Fill(zone, Color(.1 * alpha, 0.));
 			size_t pos = file.find('~') + 1;
 			const string name = file.substr(pos, file.size() - 4 - pos);
 			const int textWidth = snapshotBox.Width() - 2. * hTextPad;
@@ -263,13 +262,10 @@ void LoadPanel::Draw()
 		}
 	}
 
-	if(!hoverText.empty())
-	{
-		Point boxSize(font.Width(hoverText) + 20., 30.);
-
-		FillShader::Fill(hoverPoint + .5 * boxSize, boxSize, *GameData::Colors().Get("tooltip background"));
-		font.Draw(hoverText, hoverPoint + Point(10., 10.), *GameData::Colors().Get("medium"));
-	}
+	if(!hasHoverZone)
+		tooltip.DecrementCount();
+	else
+		tooltip.Draw();
 }
 
 
@@ -423,10 +419,12 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool LoadPanel::Click(int x, int y, int clicks)
+bool LoadPanel::Click(int x, int y, MouseButton button, int clicks)
 {
 	// When the user clicks, clear the hovered state.
 	hasHover = false;
+	if(button != MouseButton::LEFT)
+		return false;
 
 	const Point click(x, y);
 
@@ -483,8 +481,8 @@ bool LoadPanel::Hover(int x, int y)
 	// Tooltips should not pop up unless the mouse stays in one place for the
 	// full hover time. Otherwise, every time the user scrubs the mouse over the
 	// list, tooltips will appear after one second.
-	if(hoverCount < HOVER_TIME)
-		hoverCount = 0;
+	if(!tooltip.ShouldDraw())
+		tooltip.ResetCount();
 
 	return true;
 }
