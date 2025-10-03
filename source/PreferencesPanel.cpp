@@ -74,7 +74,7 @@ namespace {
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
-	const string TOOLTIP_ACTIVATION = "Tooltip activation";
+	const string TOOLTIP_ACTIVATION = "Tooltip activation time";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship use";
 	const string SHIP_OUTLINES = "Ship outlines in shops";

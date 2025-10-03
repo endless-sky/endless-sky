@@ -215,7 +215,7 @@ void Preferences::Load()
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(key));
 		else if(key == "scroll speed" && hasValue)
 			scrollSpeed = node.Value(1);
-		else if(key == "Tooltip activation" && hasValue)
+		else if(key == "Tooltip activation time" && hasValue)
 			tooltipActivation = node.Value(1);
 		else if(key == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));

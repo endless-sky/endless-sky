@@ -1565,7 +1565,7 @@ tip "Landing zoom"
 tip "Scroll speed"
 	`The speed of scrolling in panels that can scroll.`
 
-tip "Tooltip activation"
+tip "Tooltip activation time"
 	`For how long you need to hover over an item to show its tooltip.`
 
 tip "Date format"
