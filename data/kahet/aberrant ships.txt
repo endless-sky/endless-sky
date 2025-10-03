@@ -21,8 +21,8 @@ ship "Aberrant Latte"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 9600
-		"hull" 14400
+		"shields" 6000
+		"hull" 9000
 		"required crew" 1
 		"bunks" 1
 		"mass" 289
@@ -92,8 +92,8 @@ ship "Aberrant Chomper"
 	attributes
 		category "Light Warship"
 		"cost" 5700000
-		"shields" 6400
-		"hull" 14400
+		"shields" 4000
+		"hull" 9000
 		"required crew" 1
 		"bunks" 1
 		"mass" 304
@@ -170,8 +170,8 @@ ship "Aberrant Pileup"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 13600
-		"hull" 18600
+		"shields" 8500
+		"hull" 11600
 		"required crew" 1
 		"bunks" 1
 		"mass" 354
@@ -242,8 +242,8 @@ ship "Aberrant Hugger"
 	attributes
 		category "Light Warship"
 		"cost" 5700000
-		"shields" 9600
-		"hull" 14400
+		"shields" 6000
+		"hull" 9000
 		"required crew" 1
 		"bunks" 1
 		"mass" 240
@@ -316,8 +316,8 @@ ship "Aberrant Longfellow"
 	attributes
 		category "Light Warship"
 		"cost" 5700000
-		"shields" 10800
-		"hull" 17200
+		"shields" 6800
+		"hull" 10800
 		"required crew" 1
 		"bunks" 1
 		"mass" 303
@@ -396,8 +396,8 @@ ship "Aberrant Dancer"
 	attributes
 		category "Light Warship"
 		"cost" 5700000
-		"shields" 19200
-		"hull" 33800
+		"shields" 12000
+		"hull" 21100
 		"required crew" 1
 		"bunks" 1
 		"mass" 469
@@ -474,8 +474,8 @@ ship "Aberrant Junior"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 6400
-		"hull" 18600
+		"shields" 4000
+		"hull" 11600
 		"required crew" 1
 		"bunks" 1
 		"mass" 324
@@ -549,8 +549,8 @@ ship "Aberrant Icebreaker"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 7600
-		"hull" 21600
+		"shields" 4800
+		"hull" 13500
 		"required crew" 1
 		"bunks" 1
 		"mass" 354
@@ -625,8 +625,8 @@ ship "Aberrant Pike"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 6600
-		"hull" 17900
+		"shields" 4100
+		"hull" 11200
 		"required crew" 1
 		"bunks" 1
 		"mass" 398
@@ -700,8 +700,8 @@ ship "Aberrant Mole"
 	attributes
 		category "Light Warship"
 		"cost" 5700000
-		"shields" 6600
-		"hull" 15200
+		"shields" 4100
+		"hull" 9500
 		"required crew" 1
 		"bunks" 1
 		"mass" 324
@@ -777,8 +777,8 @@ ship "Aberrant Whiskers"
 	attributes
 		category "Interceptor"
 		"cost" 5700000
-		"shields" 6200
-		"hull" 17200
+		"shields" 3800
+		"hull" 10800
 		"required crew" 1
 		"bunks" 1
 		"mass" 331
@@ -847,8 +847,8 @@ ship "Aberrant Trip"
 	attributes
 		category "Medium Warship"
 		"cost" 5700000
-		"shields" 14200
-		"hull" 16600
+		"shields" 8900
+		"hull" 10400
 		"required crew" 1
 		"bunks" 1
 		"mass" 444
@@ -929,8 +929,8 @@ ship "Aberrant Triplet"
 	attributes
 		category "Medium Warship"
 		"cost" 5700000
-		"shields" 34600
-		"hull" 33800
+		"shields" 21600
+		"hull" 21100
 		"required crew" 1
 		"bunks" 1
 		"mass" 666
