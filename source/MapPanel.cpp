@@ -298,7 +298,21 @@ void MapPanel::Step()
 		--recentering;
 	}
 
+	// The mouse should be pointing to the same map position before and after zooming.
+	bool needsRecenter = !zoom.IsAnimationDone();
+	Point mouse, anchor;
+	if(needsRecenter)
+	{
+		mouse = UI::GetMouse();
+		anchor = mouse / Zoom() - center;
+	}
+
 	zoom.Step();
+
+	// Now, Zoom() has changed (unless at one of the limits). But, we still want
+	// anchor to be the same, so:
+	if(needsRecenter)
+		center = mouse / Zoom() - anchor;
 }
 
 
@@ -587,17 +601,11 @@ bool MapPanel::Drag(double dx, double dy)
 
 bool MapPanel::Scroll(double dx, double dy)
 {
-	// The mouse should be pointing to the same map position before and after zooming.
-	Point mouse = UI::GetMouse();
-	Point anchor = mouse / Zoom() - center;
 	if(dy > 0.)
 		IncrementZoom();
 	else if(dy < 0.)
 		DecrementZoom();
 
-	// Now, Zoom() has changed (unless at one of the limits). But, we still want
-	// anchor to be the same, so:
-	center = mouse / Zoom() - anchor;
 	return true;
 }
 
