@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "Rectangle.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
@@ -30,6 +31,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 #include <vector>
+
+using namespace std;
 
 class CategoryList;
 class Outfit;
@@ -50,15 +53,15 @@ public:
 
 
 protected:
-	// BuyResult holds the result of an attempt to buy. It is implicitly
+	// TransactionResult holds the result of an attempt to do a transaction. It is implicitly
 	// created from a string or boolean in code. Any string indicates failure.
 	// True indicates success, of course, while false (without a string)
 	// indicates failure, but no need to pop up a message about it.
-	class BuyResult {
+	class TransactionResult {
 	public:
-		BuyResult(const char *error) : success(false), message(error) {}
-		BuyResult(std::string error) : success(false), message(std::move(error)) {}
-		BuyResult(bool result) : success(result), message() {}
+		TransactionResult(const char *error) : success(false), message(error) {}
+		TransactionResult(std::string error) : success(false), message(std::move(error)) {}
+		TransactionResult(bool result) : success(result), message() {}
 
 		explicit operator bool() const noexcept { return success; }
 
@@ -75,28 +78,20 @@ protected:
 protected:
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
-	void CheckForMissions(Mission::Location location);
+	void CheckForMissions(Mission::Location location) const;
 
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;
 	virtual int VisibilityCheckboxesSize() const;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point) = 0;
-	virtual int DividerOffset() const = 0;
-	virtual int DetailWidth() const = 0;
+	virtual double ButtonPanelHeight() const = 0;
 	virtual double DrawDetails(const Point &center) = 0;
-	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
-	virtual void Buy(bool onlyOwned = false) = 0;
-	virtual bool CanSell(bool toStorage = false) const = 0;
-	virtual void Sell(bool toStorage = false) = 0;
-	virtual void FailSell(bool toStorage = false) const;
-	virtual bool CanSellMultiple() const;
-	virtual bool IsAlreadyOwned() const;
+	virtual void DrawButtons() = 0;
+	virtual TransactionResult HandleShortcuts(char key) = 0;
+
 	virtual bool ShouldHighlight(const Ship *ship);
-	virtual void DrawKey();
-	virtual void ToggleForSale();
-	virtual void ToggleStorage();
-	virtual void ToggleCargo();
+	virtual void DrawKey() {};
 
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
@@ -111,6 +106,7 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
+	void DrawButton(const std::string &name, const Rectangle, bool isActive, bool hovering, char keyCode);
 	void CheckSelection();
 
 
@@ -140,9 +136,14 @@ protected:
 	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
 	static constexpr int INFOBAR_WIDTH = 300;
 	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static constexpr int BUTTON_HEIGHT = 70;
 	static constexpr int SHIP_SIZE = 250;
 	static constexpr int OUTFIT_SIZE = 183;
+	// Button size/placement info:
+	static constexpr double BUTTON_ROW_START_PAD = 10.;
+	static constexpr double BUTTON_ROW_PAD = 5.;
+	static constexpr double BUTTON_COL_PAD = 5.;
+	static constexpr double BUTTON_HEIGHT = 30.;
+	static constexpr double BUTTON_WIDTH = 75.;
 
 
 protected:
@@ -180,6 +181,7 @@ protected:
 	double previousX = 0.;
 
 	std::vector<Zone> zones;
+	std::vector<ClickZone<char>> buttonZones;
 	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
@@ -190,11 +192,17 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 
+	bool delayedAutoScroll = false;
+	Point hoverPoint;
+
+	Tooltip shipsTooltip;
+	Tooltip creditsTooltip;
+	Tooltip buttonsTooltip;
+
 
 private:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
-	void DrawButtons();
 	void DrawMain();
 
 	int DrawPlayerShipInfo(const Point &point);
@@ -217,13 +225,14 @@ private:
 
 
 private:
-	bool delayedAutoScroll = false;
-
-	Point hoverPoint;
 	std::string shipName;
 	std::string warningType;
-	Tooltip shipsTooltip;
-	Tooltip creditsTooltip;
+
+	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
+	const Color &hover;
+	const Color &active;
+	const Color &inactive;
+	const Color &back;
 
 	bool checkedHelp = false;
 };
