@@ -35,6 +35,7 @@ using namespace std;
 namespace {
 	map<string, bool> settings;
 	int scrollSpeed = 60;
+	int tooltipActivation = 60;
 
 	// Strings for ammo expenditure:
 	const string EXPEND_AMMO = "Escorts expend ammo";
@@ -214,6 +215,8 @@ void Preferences::Load()
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(key));
 		else if(key == "scroll speed" && hasValue)
 			scrollSpeed = node.Value(1);
+		else if(key == "Tooltip activation time" && hasValue)
+			tooltipActivation = node.Value(1);
 		else if(key == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
 		else if(key == "Flotsam collection")
@@ -306,6 +309,7 @@ void Preferences::Save()
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
+	out.Write("Tooltip activation time", tooltipActivation);
 	out.Write("boarding target", boardingIndex);
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
@@ -425,6 +429,20 @@ int Preferences::ScrollSpeed()
 void Preferences::SetScrollSpeed(int speed)
 {
 	scrollSpeed = speed;
+}
+
+
+
+int Preferences::TooltipActivation()
+{
+	return tooltipActivation;
+}
+
+
+
+void Preferences::SetTooltipActivation(int steps)
+{
+	tooltipActivation = steps;
 }
 
 

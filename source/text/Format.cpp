@@ -362,6 +362,13 @@ string Format::SimplePluralization(int amount, const string &noun)
 
 
 
+string Format::StepsToSeconds(size_t steps)
+{
+	return Number(steps / 60.) + " s";
+}
+
+
+
 // Convert a time in seconds to years/days/hours/minutes/seconds
 string Format::PlayTime(double timeVal)
 {

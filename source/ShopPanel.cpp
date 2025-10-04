@@ -181,6 +181,14 @@ void ShopPanel::Draw()
 
 
 
+void ShopPanel::UpdateTooltipActivation()
+{
+	shipsTooltip.UpdateActivationCount();
+	creditsTooltip.UpdateActivationCount();
+}
+
+
+
 void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 {
 	const Sprite *back = SpriteSet::Get(

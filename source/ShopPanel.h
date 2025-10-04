@@ -48,6 +48,8 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	virtual void UpdateTooltipActivation() override;
+
 
 protected:
 	// BuyResult holds the result of an attempt to buy. It is implicitly
