@@ -61,8 +61,11 @@ protected:
 	static void SetSilence(ALuint buffer, size_t samples);
 
 
-protected:
+public:
 	static constexpr int SAMPLE_RATE = 44100;
+
+
+protected:
 	static constexpr ALenum FORMAT = AL_FORMAT_STEREO16;
 	static constexpr ALenum FORMAT_SPATIAL = AL_FORMAT_MONO16;
 	/// How many samples to put in each output chunk. Because the output is in
