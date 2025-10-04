@@ -746,7 +746,7 @@ void Engine::Step(bool isActive)
 	if(flagship)
 	{
 		// Have an alarm label flash up when enemy ships are in the system
-		if(alarmTime && step / 20 % 2 && Preferences::DisplayVisualAlert())
+		if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
 			info.SetCondition("red alert");
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
@@ -762,7 +762,7 @@ void Engine::Step(bool isActive)
 		// total heat level.
 		if(heat > 1.)
 			info.SetBar("overheat", min(1., heat - 1.));
-		if(flagship->IsOverheated() && (step / 20) % 2)
+		if(flagship->IsOverheated() && (uiStep / 20) % 2)
 			info.SetBar("overheat blink", min(1., heat));
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
@@ -854,7 +854,7 @@ void Engine::Step(bool isActive)
 
 		// Only update the "active" state shown for the target if it is
 		// in the current system and targetable, or owned by the player.
-		int targetType = RadarType(*target, step);
+		int targetType = RadarType(*target, uiStep);
 		const bool blinking = targetType == Radar::BLINK;
 		if(!blinking && ((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours()))
 			lastTargetType = targetType;
@@ -1109,6 +1109,7 @@ void Engine::Go()
 {
 	if(!timePaused)
 		++step;
+	++uiStep;
 	currentCalcBuffer = currentCalcBuffer ? 0 : 1;
 	queue.Run([this] { CalculateStep(); });
 }
@@ -1237,7 +1238,7 @@ void Engine::Draw() const
 	Rectangle messageBox = hud->GetBox("messages");
 	bool messagesReversed = hud->GetValue("messages reversed");
 	double animationDuration = hud->GetValue("message animation duration");
-	const vector<Messages::Entry> &messages = Messages::Get(step, animationDuration);
+	const vector<Messages::Entry> &messages = Messages::Get(uiStep, animationDuration);
 	auto messageAnimation = [animationDuration](double age) -> double
 	{
 		return max(0., 1. - pow((age - animationDuration) / animationDuration, 2));
@@ -1258,9 +1259,9 @@ void Engine::Draw() const
 			messagePoint.Y() -= height;
 		// Dying messages are those scheduled for removal as duplicates.
 		bool isDying = it->deathStep >= 0;
-		int naturalAge = step - it->step;
+		int naturalAge = uiStep - it->step;
 		// New messages should fade in, while dying ones should fade out.
-		int age = isDying ? it->deathStep - step : naturalAge;
+		int age = isDying ? it->deathStep - uiStep : naturalAge;
 		bool isAnimating = age < animationDuration;
 		if(isAnimating)
 			height *= messageAnimation(age);
@@ -1327,7 +1328,7 @@ void Engine::Draw() const
 	}
 
 	// Draw the systems mini-map.
-	minimap.Draw(step);
+	minimap.Draw(uiStep);
 
 	// Draw ammo status.
 	double ammoIconWidth = hud->GetValue("ammo icon width");
@@ -2756,7 +2757,7 @@ void Engine::FillRadar()
 
 			// Figure out what radar color should be used for this ship.
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
-			int type = isYourTarget ? Radar::SPECIAL : RadarType(*ship, step);
+			int type = isYourTarget ? Radar::SPECIAL : RadarType(*ship, uiStep);
 			// Calculate how big the radar dot should be.
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 
