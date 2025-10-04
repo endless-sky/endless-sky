@@ -1334,7 +1334,7 @@ tip "Fire primary weapon"
 	`Fire all of your flagship's primary weapons. The "automatic firing" setting will fire only those weapons that are within your target's range.`
 
 tip "Toggle turret tracking"
-	`Toggle the "Turret tracking" setting.`
+	`Toggle the "Turret tracking" setting between "focused" and "opportunistic". See the "Turret tracking" setting tooltip on the Settings tab for more details.`
 
 tip "Select secondary weapon"
 	`Cycle to your flagship's next secondary weapon. After cycling through all secondary weapons individually, selects every secondary weapon at once, then selects no weapons.`
@@ -1374,6 +1374,9 @@ tip "Deploy / recall fighters"
 
 tip "Fleet: Fight my target"
 	`Command your entire fleet to focus fire on the selected target. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on a hostile ship.`
+
+tip "Fleet: Toggle hold fire"
+	`Command your fleet to stop firing except if they are given a specific target to shoot at afterwards. If only some escorts are selected, only sends the command to those escorts.`
 
 tip "Fleet: Gather around me"
 	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. You can also command escorts to gather around another ship by right clicking on a friendly ship.`
@@ -1528,6 +1531,9 @@ tip "Rehire extra crew when lost"
 
 tip "Automatically unpark flagship"
 	`Automatically unpark a ship dragged to the first position in the ship list, and make it your flagship.`
+
+tip "Prioritize flagship use"
+	`When distributing cargo and passengers among your ships on takeoff, prioritize the flagship over your escorts. (When your flagship does not have enough space, some mission cargo or passengers may still be moved to your other ships.)`
 	
 tip "Deadline blink by distance"
 	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
