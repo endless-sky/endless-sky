@@ -135,11 +135,10 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new BarElement(child, anchor));
 			else if(key == "pointer")
 				elements.push_back(new PointerElement(child, anchor));
-			else if(key == "fill")
-				elements.push_back(new FillElement(child, anchor));
-			else if(key == "line")
+			else if(key == "fill" || key == "line")
 			{
-				child.PrintTrace("\"line\" is deprecated, use \"fill\" instead:");
+				if(key == "line")
+					child.PrintTrace("\"line\" is deprecated, use \"fill\" instead:");
 				elements.push_back(new FillElement(child, anchor));
 			}
 			else
