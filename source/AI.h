@@ -54,8 +54,7 @@ public:
 template <class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(PlayerInfo &player, const List<Ship> &ships,
-			const List<Minable> &minables, const List<Flotsam> &flotsam);
+	AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
 	void IssueFormationChange(PlayerInfo &player);

@@ -386,8 +386,7 @@ namespace {
 
 
 
-AI::AI(PlayerInfo &player, const List<Ship> &ships,
-		const List<Minable> &minables, const List<Flotsam> &flotsam)
+AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
 	// Allocate a starting amount of hardpoints for ships.
