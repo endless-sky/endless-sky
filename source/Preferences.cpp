@@ -309,7 +309,7 @@ void Preferences::Save()
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
-	out.Write("Tooltip activation", tooltipActivation);
+	out.Write("Tooltip activation time", tooltipActivation);
 	out.Write("boarding target", boardingIndex);
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
