@@ -46,9 +46,9 @@ namespace {
 
 // Constructor.
 Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes,
-	bool isTurret, bool isUnder, const Outfit *outfit)
+	bool isTurret, const Outfit *outfit)
 	: outfit(outfit), point(point * .5), baseAngle(attributes.baseAngle), baseAttributes(attributes),
-	isTurret(isTurret), isParallel(baseAttributes.isParallel), isUnder(isUnder)
+	isTurret(isTurret), isParallel(baseAttributes.isParallel)
 {
 	UpdateArc();
 }
@@ -158,9 +158,9 @@ bool Hardpoint::IsOmnidirectional() const
 
 
 
-bool Hardpoint::IsUnder() const
+Hardpoint::Side Hardpoint::GetSide() const
 {
-	return isUnder;
+	return baseAttributes.side;
 }
 
 
