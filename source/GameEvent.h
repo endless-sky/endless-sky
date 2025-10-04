@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "ConditionSet.h"
+#include "ConditionAssignments.h"
 #include "DataNode.h"
 #include "Date.h"
 
@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataWriter;
 class Planet;
 class PlayerInfo;
@@ -48,9 +49,9 @@ public:
 public:
 	GameEvent() = default;
 	// Construct and Load() at the same time.
-	explicit GameEvent(const DataNode &node);
+	explicit GameEvent(const DataNode &node, const ConditionsStore *playerConditions);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	void Save(DataWriter &out) const;
 	// If disabled, an event will not Apply() or Save().
 	void Disable();
@@ -72,6 +73,8 @@ public:
 
 	const std::list<DataNode> &Changes() const;
 
+	// Comparison operator, based on the date of the event.
+	bool operator<(const GameEvent &other) const;
 
 private:
 	Date date;
@@ -79,7 +82,7 @@ private:
 	bool isDisabled = false;
 	bool isDefined = false;
 
-	ConditionSet conditionsToApply;
+	ConditionAssignments conditionsToApply;
 	std::list<DataNode> changes;
 	std::vector<const System *> systemsToVisit;
 	std::vector<const Planet *> planetsToVisit;

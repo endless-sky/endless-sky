@@ -14,6 +14,8 @@
 outfit "Cooling Ducts"
 	plural "Cooling Ducts"
 	category "Systems"
+	series "Cooling"
+	index 01010
 	cost 10000
 	thumbnail "outfit/cooling ducts"
 	"mass" 5
@@ -23,6 +25,8 @@ outfit "Cooling Ducts"
 
 outfit "Water Coolant System"
 	category "Systems"
+	series "Cooling"
+	index 01020
 	cost 25000
 	thumbnail "outfit/water cooling"
 	"mass" 10
@@ -32,6 +36,8 @@ outfit "Water Coolant System"
 
 outfit "Liquid Nitrogen Cooler"
 	category "Systems"
+	series "Cooling"
+	index 01030
 	cost 60000
 	thumbnail "outfit/liquid nitrogen"
 	"mass" 20
@@ -41,6 +47,8 @@ outfit "Liquid Nitrogen Cooler"
 
 outfit "Liquid Helium Cooler"
 	category "Systems"
+	series "Cooling"
+	index 01040
 	cost 150000
 	thumbnail "outfit/liquid helium"
 	"mass" 40
@@ -51,6 +59,8 @@ outfit "Liquid Helium Cooler"
 
 outfit "D14-RN Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 01010
 	cost 20000
 	thumbnail "outfit/tiny shield"
 	"mass" 15
@@ -61,6 +71,8 @@ outfit "D14-RN Shield Generator"
 
 outfit "D23-QP Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 01020
 	cost 35000
 	thumbnail "outfit/small shield"
 	"mass" 22
@@ -71,6 +83,8 @@ outfit "D23-QP Shield Generator"
 
 outfit "D41-HY Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 01030
 	cost 65000
 	thumbnail "outfit/medium shield"
 	"mass" 30
@@ -81,6 +95,8 @@ outfit "D41-HY Shield Generator"
 
 outfit "D67-TM Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 01040
 	cost 120000
 	thumbnail "outfit/large shield"
 	"mass" 45
@@ -91,6 +107,8 @@ outfit "D67-TM Shield Generator"
 
 outfit "D94-YV Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 01050
 	cost 200000
 	thumbnail "outfit/huge shield"
 	"mass" 60
@@ -101,6 +119,8 @@ outfit "D94-YV Shield Generator"
 
 outfit "S-270 Regenerator"
 	category "Systems"
+	series "Shields"
+	index 01060
 	cost 220000
 	thumbnail "outfit/small regenerator"
 	"mass" 12
@@ -113,6 +133,8 @@ outfit "S-270 Regenerator"
 
 outfit "S-970 Regenerator"
 	category "Systems"
+	series "Shields"
+	index 01070
 	cost 800000
 	thumbnail "outfit/large regenerator"
 	"mass" 37
@@ -126,6 +148,8 @@ outfit "S-970 Regenerator"
 
 outfit "Small Radar Jammer"
 	category "Systems"
+	series "Jammers"
+	index 01010
 	cost 24000
 	thumbnail "outfit/small radar jammer"
 	"mass" 4
@@ -135,6 +159,8 @@ outfit "Small Radar Jammer"
 
 outfit "Large Radar Jammer"
 	category "Systems"
+	series "Jammers"
+	index 01020
 	cost 138000
 	thumbnail "outfit/large radar jammer"
 	"mass" 14
@@ -145,6 +171,8 @@ outfit "Large Radar Jammer"
 
 outfit "Ramscoop"
 	category "Systems"
+	series "Ramscoops"
+	index 01010
 	cost 60000
 	thumbnail "outfit/ramscoop"
 	"mass" 10
@@ -155,6 +183,8 @@ outfit "Ramscoop"
 
 outfit "Catalytic Ramscoop"
 	category "Systems"
+	series "Ramscoops"
+	index 01020
 	cost 320000
 	thumbnail "outfit/catalytic ramscoop"
 	"mass" 16
@@ -164,6 +194,8 @@ outfit "Catalytic Ramscoop"
 
 outfit "Hyperdrive"
 	category "Systems"
+	series "Drives"
+	index 10
 	cost 50000
 	thumbnail "outfit/hyperdrive"
 	"mass" 20
@@ -176,6 +208,8 @@ outfit "Hyperdrive"
 
 outfit "Scram Drive"
 	category "Systems"
+	series "Drives"
+	index 20
 	cost 90000
 	thumbnail "outfit/scram drive"
 	"mass" 30
@@ -187,6 +221,8 @@ outfit "Scram Drive"
 
 outfit "Jump Drive"
 	category "Systems"
+	series "Drives"
+	index 30
 	cost 1000000
 	thumbnail "outfit/jump drive"
 	"mass" 20
@@ -198,6 +234,8 @@ outfit "Jump Drive"
 
 outfit "Jump Drive (Broken)"
 	plural "Jump Drives (Broken)"
+	series "Drives"
+	index 40
 	category "Systems"
 	cost 25000
 	thumbnail "outfit/jump drive (broken)"
@@ -208,6 +246,8 @@ outfit "Jump Drive (Broken)"
 
 outfit "Cargo Scanner"
 	category "Systems"
+	series "Scanners"
+	index 01020
 	cost 8000
 	thumbnail "outfit/cargo scanner"
 	"mass" 1
@@ -218,6 +258,8 @@ outfit "Cargo Scanner"
 
 outfit "Outfit Scanner"
 	category "Systems"
+	series "Scanners"
+	index 01030
 	cost 24000
 	thumbnail "outfit/outfit scanner"
 	"mass" 2
@@ -228,6 +270,8 @@ outfit "Outfit Scanner"
 
 outfit "Asteroid Scanner"
 	category "Systems"
+	series "Scanners"
+	index 01010
 	cost 61000
 	thumbnail "outfit/asteroid scanner"
 	"mass" 6
@@ -237,6 +281,8 @@ outfit "Asteroid Scanner"
 
 outfit "Tactical Scanner"
 	category "Systems"
+	series "Scanners"
+	index 01040
 	cost 144000
 	thumbnail "outfit/tactical scanner"
 	"mass" 4
@@ -246,6 +292,8 @@ outfit "Tactical Scanner"
 
 outfit "Surveillance Pod"
 	category "Systems"
+	series "Scanners"
+	index 01050
 	cost 122500
 	thumbnail "outfit/surveillance pod"
 	"mass" 5
@@ -261,12 +309,16 @@ outfit "Surveillance Pod"
 
 outfit "Cloaking Device"
 	category "Unique"
+	series "Functional Unique"
+	index 10
 	cost 1200000
 	"mass" 10
 	"outfit space" -10
 	"cloak" .01
 	"cloaking energy" 1
 	"cloaking fuel" .2
+	"cloaked regen multiplier" -1
+	"cloaked repair multiplier" -1
 	"unique" 1
 	"unplunderable" 1
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
@@ -274,6 +326,8 @@ outfit "Cloaking Device"
 
 outfit "Outfits Expansion"
 	category "Systems"
+	series "Expansions"
+	index 20
 	cost 50000
 	thumbnail "outfit/outfit expansion"
 	"mass" 5
@@ -287,6 +341,8 @@ outfit "Outfits Expansion"
 
 outfit "Cargo Expansion"
 	category "Systems"
+	series "Expansions"
+	index 10
 	cost 30000
 	thumbnail "outfit/cargo expansion"
 	"mass" 5
@@ -297,6 +353,8 @@ outfit "Cargo Expansion"
 
 outfit "Bunk Room"
 	category "Systems"
+	series "Passenger"
+	index 20
 	cost 40000
 	thumbnail "outfit/bunk room"
 	"mass" 5
@@ -307,6 +365,8 @@ outfit "Bunk Room"
 
 outfit "Small Bunk Room"
 	category "Systems"
+	series "Passenger"
+	index 10
 	cost 20000
 	thumbnail "outfit/small bunk room"
 	"mass" 3
@@ -317,6 +377,8 @@ outfit "Small Bunk Room"
 
 outfit "Brig"
 	category "Systems"
+	series "Passenger"
+	index 30
 	cost 40000
 	thumbnail "outfit/brig"
 	"mass" 3
@@ -327,6 +389,8 @@ outfit "Brig"
 outfit "Luxury Accommodations"
 	plural "Luxury Accommodations"
 	category "Systems"
+	series "Passenger"
+	index 40
 	cost 250000
 	thumbnail "outfit/luxury accommodations"
 	"mass" 10
@@ -337,6 +401,8 @@ outfit "Luxury Accommodations"
 
 outfit "Fuel Pod"
 	category "Systems"
+	series "Fuel"
+	index 10
 	cost 20000
 	thumbnail "outfit/fuel pod"
 	"mass" 8
@@ -346,6 +412,8 @@ outfit "Fuel Pod"
 
 outfit "Interference Plating"
 	category "Systems"
+	series "Special Systems"
+	index 01010
 	cost 50000
 	thumbnail "outfit/interference plating"
 	"mass" 4
@@ -356,6 +424,8 @@ outfit "Interference Plating"
 
 outfit "Laser Rifle"
 	category "Hand to Hand"
+	series "H2H"
+	index 01010
 	cost 8000
 	thumbnail "outfit/laser rifle"
 	"capture attack" .6
@@ -366,6 +436,8 @@ outfit "Laser Rifle"
 outfit "Fragmentation Grenades"
 	plural "Fragmentation Grenades"
 	category "Hand to Hand"
+	series "H2H"
+	index 01020
 	cost 17000
 	thumbnail "outfit/fragmentation grenades"
 	"capture attack" 1.3
@@ -375,6 +447,8 @@ outfit "Fragmentation Grenades"
 
 outfit "Security Station"
 	category "Hand to Hand"
+	series "Fortifications"
+	index 01010
 	cost 42000
 	thumbnail "outfit/security station"
 	"mass" 2
@@ -386,6 +460,8 @@ outfit "Security Station"
 outfit "Nerve Gas"
 	plural "Nerve Gas"
 	category "Hand to Hand"
+	series "H2H"
+	index 01030
 	cost 75000
 	thumbnail "outfit/nerve gas"
 	"capture attack" 2.8
@@ -397,6 +473,8 @@ outfit "Nerve Gas"
 
 outfit "Mug"
 	category "Hand to Hand"
+	series "H2H"
+	index 99010
 	cost 50
 	thumbnail "outfit/mug"
 	"capture attack" .1
@@ -406,6 +484,8 @@ outfit "Mug"
 
 outfit "Antigrav Glass"
 	category "Hand to Hand"
+	series "H2H"
+	index 99020
 	plural "Antigrav Glasses"
 	cost 25
 	thumbnail "outfit/unknown"
@@ -415,20 +495,46 @@ outfit "Antigrav Glass"
 	description "This glass has had a miniature repulsor attached to it, similar to those found on drones, anti-grav trolleys, and spaceships. When it is activated it allows you to drink your beverage without holding it by way of levitation."
 	description "	The miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you suspect this one will be marginally more effective than anything else you've got."
 
+outfit "Old Man's Sword"
+	category "Unique"
+	series "H2H"
+	index 99030
+	cost 220000
+	thumbnail "outfit/sword"
+	"capture attack" 1.4
+	"capture defense" 1
+	"unplunderable" 1
+	"unique" 1
+	description "While swords are seen today as being old curios and commemorative objects, rendered useless when gunpowder became dominant on the battlefield thousands of years ago, this sword is unlike any you have seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade itself that don't appear to be in any human language."
+
 outfit "Puny"
 	category "Unique"
+	series "Non-Functional Unique"
+	index 10
 	"display name" `"Puny"`
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/collar"
 	"unique" 1
 	description `A poodle you rescued from a dubious racing complex on Freedom. She appears to have formed a strong bond with you, willing to stick by your side.`
 	description `	Her history matches with Pookie's, but Pookie's owner claimed that Puny was not hers. Puny is also vastly less urine-prone; you suspect that the race organizers may have toilet-trained her.`
 
 outfit "Tear of Skade"
 	category "Unique"
+	series "Functional Unique"
+	index 20
 	thumbnail "outfit/skadetear"
 	"cooling" 4
 	"unique" 1
 	description "A strange glowing stone gifted to you by the Skadenga. It lacks any power source, yet is quite cold."
+
+outfit "Blood of Surtr"
+	category "Unique"
+	series "Functional Unique"
+	index 21
+	thumbnail "outfit/surtrblood"
+	"energy generation" 2
+	"heat generation" 4
+	"unique" 1
+	description "A strange glowing stone gifted to you by Ildico Drifa. It hums with energy and heat."
 
 
 outfit "Local Map"
@@ -436,41 +542,56 @@ outfit "Local Map"
 	cost 1000
 	thumbnail "outfit/map"
 	"map" 12
+	"map minables" 1
 	description "This data chip contains complete information on the twelve star systems closest to this one: planets, ports, governments, trade prices, available services, etc. You can get all the same information just by exploring those systems yourself, but having a map can save you from making wrong turns if you are trying to travel through new territory to reach a certain system quickly."
 
 
 outfit "Pilot's License"
 	category "Licenses"
+	series "Licenses"
+	index 01010
 	cost 50000
 	thumbnail "outfit/license"
 	description "For much of the Republic's nearly three century long history, being able to pilot your own starship was limited only by your ability to purchase one. But at the turn of the millennium in an attempt to increase tax revenue, the Republic Parliament passed a law requiring that all ship captains purchase a pilot's license, and for no small fee at that. Needless to say, this policy is not terribly popular with freelance merchant captains."
 
 outfit "Navy License"
 	category "Licenses"
+	series "Licenses"
+	index 01020
 	thumbnail "outfit/navy license"
 	description "It is unusual, but not unheard of, for private citizens to be given the right to purchase Navy ships for their own private use. Recently, certain rich worlds have also begun petitioning Parliament for special permission to purchase Navy warships for their private security forces."
 
 outfit "Navy Auxiliary License"
 	category "Licenses"
+	series "Licenses"
+	index 01030
 	thumbnail "outfit/auxiliary license"
 	description "It is a particularly rare occurrence for a Navy Auxiliary, of any kind, to be owned for private use."
 
 outfit "Navy Cruiser License"
 	category "Licenses"
+	series "Licenses"
+	index 01040
 	thumbnail "outfit/navy cruiser license"
 	description "It is a very rare privilege to be permitted to purchase a Navy capital ship for private use - not just because of a Cruiser's firepower, but because it is a potent symbol of the Republic's strength."
 
 outfit "Navy Carrier License"
 	category "Licenses"
+	series "Licenses"
+	index 01050
 	thumbnail "outfit/navy carrier license"
 	description "Only a handful of people in the past century have been given permission to purchase a Navy Carrier, even a decommissioned one, for private use."
 
 outfit "Militia License"
 	category "Licenses"
+	series "Licenses"
+	index 01060
 	thumbnail "outfit/militia license"
 	description "This is the standard issue license for all pilots that have enlisted in a local militia, but with the formation of the Free Worlds it has also become a license given to all those that fight for the Free Worlds cause, allowing pilots to fly the colors of the Free Worlds and purchase unique ships that the fledgling government has developed."
 
 outfit "City-Ship License"
 	category "Licenses"
+	series "Licenses"
+	index 01070
 	thumbnail "outfit/city-ship license"
 	description "You look closely at the silhouette of the ship on the license, but you can't make out what model of ship it is. Perhaps it is an older city-ship, one of the first that carried humanity to greatness among the stars."

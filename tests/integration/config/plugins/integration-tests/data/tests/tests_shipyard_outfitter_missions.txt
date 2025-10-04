@@ -73,11 +73,11 @@ test-data "Shipyard Outfitter Mission Save"
 test-data "Shipyard Outfitter Mission Missions"
 	category mission
 	contents
-		mission "%TEST%: SHIPYARD MISSION"
+		mission "TEST: SHIPYARD MISSION"
 			shipyard
 			source "Ruin"
 			to offer
-				has "%TEST%: SHIPYARD MISSION OFFER"
+				has "TEST: SHIPYARD MISSION OFFER"
 			on offer
 				conversation
 					`THIS IS A SHIPYARD MISSION YO!`
@@ -87,11 +87,11 @@ test-data "Shipyard Outfitter Mission Missions"
 
 
 
-		mission "%TEST%: OUTFITTER MISSION"
+		mission "TEST: OUTFITTER MISSION"
 			outfitter
 			source "Ruin"
 			to offer
-				has "%TEST%: OUTFITTER MISSION OFFER"
+				has "TEST: OUTFITTER MISSION OFFER"
 			on offer
 				conversation
 					`THIS IS A OUTFITTER MISSION YO!`
@@ -125,17 +125,6 @@ test "Trigger Outfitter Mission"
 			key o
 
 
-test "End Missions"
-	status partial
-	description "Just skip a mission by pressing return twice."
-	sequence
-		# Press accept (or decline, depending on if it is shown) and then skip the dialog once.
-		input
-			key "Return"
-		input
-			key "Return"
-
-
 test "Test Shipyard And Outfitter Mission"
 	status partial
 	description "Set a few conditions so they are displayed on errors, clarifying things up."
@@ -155,9 +144,9 @@ test "Shipyard Mission Test"
 		inject "Shipyard Outfitter Mission Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: SHIPYARD MISSION OFFER" = 1
+			"TEST: SHIPYARD MISSION OFFER" = 1
 		call "Trigger Shipyard Mission"
-		call "End Missions"
+		call "Skip Mission"
 		call "Depart"
 		call "Test Shipyard And Outfitter Mission"
 		assert
@@ -172,9 +161,9 @@ test "Outfitter Mission Test"
 		inject "Shipyard Outfitter Mission Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: OUTFITTER MISSION OFFER" = 1
+			"TEST: OUTFITTER MISSION OFFER" = 1
 		call "Trigger Outfitter Mission"
-		call "End Missions"
+		call "Skip Mission"
 		call "Depart"
 		call "Test Shipyard And Outfitter Mission"
 		assert

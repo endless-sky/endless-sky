@@ -154,7 +154,7 @@ mission "Unfettered Jump Drive 1"
 		attributes "unfettered"
 	on offer
 		conversation
-			`The Unfettered have clearly noticed that you have a jump drive installed; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your jump drive?`
+			`The Unfettered have clearly noticed that you have a jump drive; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your jump drive?`
 			choice
 				`	(No.)`
 					defer
@@ -167,7 +167,10 @@ mission "Unfettered Jump Drive 1"
 					goto more
 				`	"How will my ship leave here without my jump drive?"`
 			
-			`	"We will give you a hyperdrive in its place," they say, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
+			`	"We can give you a hyperdrive in its place, if required," they say, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
+			`	"Oh, and by the way, you will no longer be required to keep your Anomalocaris in working condition to guarantee our friendship," they add.`
+				to display
+					has "Hai Legacy 3: done"
 			choice
 				`	"Okay, I accept your generous offer."`
 					goto end
@@ -182,17 +185,29 @@ mission "Unfettered Jump Drive 1"
 			`	"Do not underestimate the value of our friendship," they say. "Soon we will become powerful once more, with many fruitful worlds under our control, and when that day comes you will benefit greatly from being our ally."`
 			choice
 				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my jump drive."`
+					to display
+						"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" == 1
 					goto end
+				`	"You can take the jump drive, but I don't need a hyperdrive in exchange."`
+					to display
+						"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
+					goto spareJD
 				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
 					goto refuse
 			
 			label end
+			branch spareJD
+				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
+			action
+				outfit "Hyperdrive" 1
 			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
+				accept
+			label spareJD
+			`	The Unfettered engineers quickly retrieve the jump drive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
 				accept
 	
 	on accept
 		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 10
 
@@ -224,6 +239,12 @@ mission "Unfettered Jump Drive 2"
 				`	"Sorry, I need this jump drive right now, but I will come back later and sell it to you."`
 					defer
 				`	"Yes, I will sell you my jump drive."`
+			
+			branch spareJD
+				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
+			action
+				outfit "Hyperdrive" 1
+			label spareJD
 			`	Once again, they swap your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
 			choice
 				`	"Then I will find more, and bring them to you."`
@@ -234,7 +255,6 @@ mission "Unfettered Jump Drive 2"
 	
 	on accept
 		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 20
 		fail "Unfettered Jump Drive 1"
@@ -294,12 +314,16 @@ mission "Unfettered Jump Drive 3"
 			`	"Those worlds are now held by a species of scavengers, who feast on the ruin of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
 			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
 			label job
+			branch spareJD
+				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
+			action
+				outfit "Hyperdrive" 1
+			label spareJD
 			`	"If you want to provide us with more jump drives, visit the job board from now on," says the leader. "We will have warriors ready to receive them from you for the usual pay."`
 				accept
 	
 	on accept
 		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 30
 		fail "Unfettered Jump Drive 2"
@@ -373,11 +397,11 @@ mission "Unfettered Jump Drive Trading"
 					to display
 						not "unfettered: uninterested in weapons"
 					goto uninterested
-				`	(Leave and come back another time.)`
+				`	"I don't really want to do this right now."`
 			action
 				clear "unfettered: uninterested in weapons"
 				"unfettered: jd to sell" ++
-			`	"How rude. You better hope there will be someone else to guide you, next time!" Says the engineer as you walk off and return to your ship.`
+			`	"How rude. You better hope there will be someone else to guide you next time!" says the engineer as you return to your ship.`
 				defer
 			label uninterested
 			action
@@ -418,7 +442,7 @@ mission "Unfettered Jump Drive Trading"
 				`	"I'll settle for the tripulse, then."`
 					to display
 						has "choice: tripulse"
-					goto buytripulse
+					goto "buy tripulse"
 				`	"Can you tell me more about that small ionic weapon?"`
 					to display
 						not "choice: blaster"
@@ -432,13 +456,13 @@ mission "Unfettered Jump Drive Trading"
 				set "choice: blaster"
 			scene "outfit/hai ionic blaster"
 			`	"Ah, the Blaster. It is favored by many Shield Beetle captains, because it can easily help them turn the tide of battle without needing to dedicate too much weapon space to it. Especially considering its other effects, its damage potential is serviceable. While it is true that it does not do enough ion damage to properly disable a ship on its own, it is able to jam their weapons and will give you the upper hand in a long fight. This is a more recent innovation, however, and some say it lacks the... finesse of others.`
-				goto backtochoose
+				goto "back to choose"
 			label turret
 			action
 				set "choice: turret"
 			scene "outfit/hai ionic turret"
 			`	"That is my preferred weapon out of all of them, by far. Unlike the Ion Cannon that is a hybrid weapon meant to damage the enemy from long range whilst applying a good deal of ionization, this one's role is mostly to disable enemy ships. Even a ship with many batteries will cower before this weapon! And due to its high range and fast turn-rate, small ships and even fighters will never bother you again!`
-			label backtochoose
+			label "back to choose"
 			`	"However, we only have these weapons in very limited quantities, and as such we cannot afford to give these to you yet. So, about my offer, have you made up your mind?"`
 				goto weapons
 
@@ -452,7 +476,7 @@ mission "Unfettered Jump Drive Trading"
 				payment 1000000
 				set "unfettered: money for drives"
 			`	"As you wish. Do remember that if you want to sell further jump drives to us for money you may go to the job board."`
-				accept
+				goto end
 
 			label tripulse
 			action
@@ -460,10 +484,17 @@ mission "Unfettered Jump Drive Trading"
 			scene "outfit/tripulse shredder"
 			`	"The Tripulse Shredder may seem crude, but it packs a punch! Its specialty is how it combines a lot of firepower in one gun slot, and, due to its burst nature, it's perfect for pilots who already use hit and run tactics. Some captains even say that a Sea Scorpion can get the upper hand against a Shield Beetle when it uses four of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
 				goto weapons
-			label buytripulse
+			label "buy tripulse"
 			action
 				outfit "Tripulse Shredder" 2
 			`	They order their crew to do the transfer and come to address you before leaving. "Do note that if you ever want more weapons, we will always be willing to trade them for jump drives in the job board. However, we can always offer money instead if that is of higher value to you. Of course, we can only do this exchange here on <origin>, given it is where these advanced weapons are produced and stocked."`
+			label end
+			branch spareJD
+				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
+			action
+				outfit "Hyperdrive" 1
+			label spareJD
+			`	The engineer leaves and you return to your ship after being escorted out of the facility.`
 				accept
 
 			label dodge
@@ -512,6 +543,5 @@ mission "Unfettered Jump Drive Trading"
 		clear "choice: tripulse"
 		clear "choice: blaster"
 		outfit "Jump Drive" -1
-		outfit "Hyperdrive" 1
 		"reputation: Hai (Unfettered)" >?= 40
 		fail

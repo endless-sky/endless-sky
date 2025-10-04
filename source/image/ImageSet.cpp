@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageSet.h"
 
+#include "../text/Format.h"
 #include "../GameData.h"
 #include "ImageBuffer.h"
 #include "../Logger.h"
@@ -28,28 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Determine whether the given path is to an @2x image.
-	bool Is2x(const filesystem::path &path)
-	{
-		return path.stem().string().ends_with("@2x");
-	}
-
-	// Determine whether the given path is to a swizzle mask.
-	bool IsSwizzleMask(const filesystem::path &path, bool is2x)
-	{
-		string s = path.stem().string();
-		if(is2x)
-			s.resize(s.length() - 3);
-
-		return s.ends_with("@sw");
-	}
-
-	// Check if the given character is a valid blending mode.
-	bool IsBlend(char c)
-	{
-		return (c == '-' || c == '~' || c == '^' || c == '+' || c == '=');
-	}
-
 	// Determine whether the given path or name is to a sprite for which a
 	// collision mask ought to be generated.
 	bool IsMasked(const filesystem::path &path)
@@ -58,51 +37,6 @@ namespace {
 			return false;
 		filesystem::path directory = *path.begin();
 		return directory == "ship" || directory == "asteroid";
-	}
-
-	// Get the character index where the sprite name in the given path ends.
-	size_t NameEnd(const filesystem::path &path)
-	{
-		// The path always ends in a three-letter extension, ".png" or ".jpg".
-		// In addition, 3 more characters may be taken up by an @2x label or a mask label.
-		bool is2x = Is2x(path);
-		const string name = path.string();
-		size_t end = name.size() - path.extension().string().size() - (is2x ? 3 : 0) - (IsSwizzleMask(path, is2x) ? 3 : 0);
-		// This should never happen, but just in case:
-		if(!end)
-			return 0;
-
-		// Skip any numbers at the end of the name.
-		size_t pos = end;
-		while(--pos)
-			if(name[pos] < '0' || name[pos] > '9')
-				break;
-
-		// If there is not a blending mode specifier before the numbers, they
-		// are part of the sprite name, not a frame index.
-		return (IsBlend(name[pos]) ? pos : end);
-	}
-
-	// Get the frame index from the given path.
-	size_t FrameIndex(const filesystem::path &path)
-	{
-		// Get the character index where the "name" portion of the path ends.
-		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).(png|jpg)
-		size_t i = NameEnd(path);
-
-		// If the name contains a frame index, it must be separated from the name
-		// by a character indicating the additive blending mode.
-		const string name = path.string();
-		if(!IsBlend(name[i]))
-			return 0;
-
-		size_t frame = 0;
-		// The path ends in an extension, so there's no need to check for going off
-		// the end of the string in this loop; we're guaranteed to hit a non-digit.
-		for(++i; name[i] >= '0' && name[i] <= '9'; ++i)
-			frame = (frame * 10) + (name[i] - '0');
-
-		return frame;
 	}
 
 	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
@@ -149,16 +83,7 @@ namespace {
 bool ImageSet::IsImage(const filesystem::path &path)
 {
 	filesystem::path ext = path.extension();
-	return (ext == ".png" || ext == ".jpg" || ext == ".PNG" || ext == ".JPG");
-}
-
-
-
-// Get the base name for the given path. The path should be relative to one
-// of the source image directories, not a full filesystem path.
-string ImageSet::Name(const filesystem::path &path)
-{
-	return path.string().substr(0, NameEnd(path));
+	return ImageBuffer::ImageExtensions().contains(Format::LowerCase(ext.string()));
 }
 
 
@@ -199,13 +124,11 @@ bool ImageSet::IsEmpty() const
 
 // Add a single image to this set. Assume the name of the image has already
 // been checked to make sure it belongs in this set.
-void ImageSet::Add(filesystem::path path)
+void ImageSet::Add(ImageFileData data)
 {
 	// Determine which frame of the sprite this image will be.
-	bool is2x = Is2x(path);
-	size_t frame = FrameIndex(path);
 	// Store the requested path.
-	framePaths[is2x + (2 * IsSwizzleMask(path, is2x))][frame].swap(path);
+	framePaths[data.is2x + (2 * data.isSwizzleMask)][data.frameNumber].swap(data.path);
 }
 
 
@@ -223,7 +146,23 @@ void ImageSet::ValidateFrames() noexcept(false)
 	framePaths[2].clear();
 	framePaths[3].clear();
 
-	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier) {
+	// Ensure that image sequences aren't mixed with other images.
+	for(int i = 0; i < 4; ++i)
+		for(const auto &path : paths[i])
+		{
+			string ext = path.extension().string();
+			if(ImageBuffer::ImageSequenceExtensions().contains(Format::LowerCase(ext)) && paths[i].size() > 1)
+			{
+				Logger::LogError("Image sequences must be exclusive; ignoring all but the image sequence data for \""
+						+ name + "\"");
+				paths[i][0] = path;
+				paths[i].resize(1);
+				break;
+			}
+		}
+
+	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier)
+	{
 		if(toResize.size() > paths[0].size())
 		{
 			Logger::LogError(prefix + to_string(toResize.size() - paths[0].size())
@@ -250,31 +189,51 @@ void ImageSet::Load() noexcept(false)
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
 	size_t frames = paths[0].size();
-	buffer[0].Clear(frames);
-	buffer[1].Clear(frames);
-	buffer[2].Clear(frames);
-	buffer[3].Clear(frames);
 
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
-	if(makeMasks)
-		masks.resize(frames);
+
+	const auto UpdateFrameCount = [&]()
+	{
+		buffer[1].Clear(frames);
+		buffer[2].Clear(frames);
+		buffer[3].Clear(frames);
+
+		if(makeMasks)
+			masks.resize(frames);
+	};
+
+	buffer[0].Clear(frames);
+	UpdateFrameCount();
 
 	// Load the 1x sprites first, then the 2x sprites, because they are likely
 	// to be in separate locations on the disk. Create masks if needed.
-	for(size_t i = 0; i < frames; ++i)
+	for(size_t i = 0; i < paths[0].size(); ++i)
 	{
-		if(!buffer[0].Read(paths[0][i], i))
-			Logger::LogError("Failed to read image data for \"" + name + "\" frame #" + to_string(i));
-		else if(makeMasks)
+		int loadedFrames = buffer[0].Read(paths[0][i], i);
+		const string fileName = "\"" + name + "\" frame #" + to_string(i);
+		if(!loadedFrames)
 		{
-			masks[i].Create(buffer[0], i);
+			Logger::LogError("Failed to read image data for \"" + fileName);
+			continue;
+		}
+		// If we loaded an image sequence, clear all other buffers.
+		if(loadedFrames > 1)
+		{
+			frames = loadedFrames;
+			UpdateFrameCount();
+		}
+
+		if(makeMasks)
+		{
+			masks[i].Create(buffer[0], i, fileName);
 			if(!masks[i].IsLoaded())
-				Logger::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
+				Logger::LogError("Failed to create collision mask for " + fileName);
 		}
 	}
 
-	auto FillSwizzleMasks = [&](vector<filesystem::path> &toFill, unsigned int intendedSize) {
+	auto FillSwizzleMasks = [&](vector<filesystem::path> &toFill, unsigned int intendedSize)
+	{
 		if(toFill.size() == 1 && intendedSize > 1)
 			for(unsigned int i = toFill.size(); i < intendedSize; i++)
 				toFill.emplace_back(toFill.back());
@@ -285,7 +244,8 @@ void ImageSet::Load() noexcept(false)
 	FillSwizzleMasks(paths[3], paths[0].size());
 
 
-	auto LoadSprites = [&](vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier) {
+	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier)
+	{
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
 			if(!buffer.Read(toLoad[i], i))
 			{
@@ -302,11 +262,7 @@ void ImageSet::Load() noexcept(false)
 
 	// Warn about a "high-profile" image that will be blurry due to rendering at 50% scale.
 	bool willBlur = (buffer[0].Width() & 1) || (buffer[0].Height() & 1);
-	if(willBlur && (
-			(name.length() > 5 && !name.compare(0, 5, "ship/"))
-			|| (name.length() > 7 && !name.compare(0, 7, "outfit/"))
-			|| (name.length() > 10 && !name.compare(0, 10, "thumbnail/"))
-	))
+	if(willBlur && (name.starts_with("ship/") || name.starts_with("outfit/") || name.starts_with("thumbnail/")))
 		Logger::LogError("Warning: image \"" + name + "\" will be blurry since width and/or height are not even ("
 			+ to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").");
 }

@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "Visual.h"
 
+#include <algorithm>
 #include <cmath>
 #include <map>
 
@@ -125,6 +126,16 @@ Angle Hardpoint::HarmonizedAngle() const
 
 
 
+double Hardpoint::TurnRate(const Ship &ship) const
+{
+	if(!outfit)
+		return 0.;
+	return outfit->TurretTurn()
+		* (1. + ship.Attributes().Get("turret turn multiplier") + baseAttributes.turnMultiplier);
+}
+
+
+
 // Find out if this is a turret hardpoint (whether or not it has a turret installed).
 bool Hardpoint::IsTurret() const
 {
@@ -171,9 +182,9 @@ bool Hardpoint::IsSpecial() const
 
 
 
-bool Hardpoint::CanAim() const
+bool Hardpoint::CanAim(const Ship &ship) const
 {
-	return outfit && outfit->TurretTurn();
+	return TurnRate(ship);
 }
 
 
@@ -181,7 +192,19 @@ bool Hardpoint::CanAim() const
 // Check if this weapon is ready to fire.
 bool Hardpoint::IsReady() const
 {
-	return outfit && burstReload <= 0. && burstCount;
+	return outfit && burstReload <= 0. && burstCount && (!IsBlind() || IsSpecial());
+}
+
+
+
+// Check if this weapon can't fire because of its blindspots.
+bool Hardpoint::IsBlind() const
+{
+	return any_of(baseAttributes.blindspots.begin(), baseAttributes.blindspots.end(),
+		[this](pair<Angle, Angle> blindspot)
+		{
+			return angle.IsInRange(blindspot.first + baseAngle, blindspot.second + baseAngle);
+		});
 }
 
 
@@ -227,12 +250,12 @@ void Hardpoint::Step()
 
 // Adjust this weapon's aim by the given amount, relative to its maximum
 // "turret turn" rate. Up to its angle limit.
-void Hardpoint::Aim(double amount)
+void Hardpoint::Aim(const Ship &ship, double amount)
 {
 	if(!outfit)
 		return;
 
-	const double add = outfit->TurretTurn() * amount;
+	const double add = TurnRate(ship) * amount;
 	if(isOmnidirectional)
 		angle += add;
 	else
@@ -325,6 +348,7 @@ void Hardpoint::Jam()
 	// Reset the reload count.
 	reload += outfit->Reload();
 	burstReload += outfit->BurstReload();
+	--burstCount;
 }
 
 
@@ -409,7 +433,7 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	if(offset.Length() > range)
 		return false;
 
-	// Check if the target is within the arc of fire.
+	// Check if the target is within the arc of fire and isn't blocked by a blindspot.
 	Angle aim(offset);
 	if(!isOmnidirectional)
 	{
@@ -418,12 +442,14 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 		if(!aim.IsInRange(minArc, maxArc))
 			return false;
 	}
+	angle = aim - facing;
+	if(IsBlind())
+		return false;
 
 	// Precompute the number of visuals that will be added.
 	visuals.reserve(visuals.size() + outfit->FireEffects().size()
 		+ outfit->HitEffects().size() + outfit->DieEffects().size());
 
-	angle = aim - facing;
 	start += aim.Rotate(outfit->HardpointOffset());
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
 
@@ -457,7 +483,7 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// Anti-missile sounds can be specified either in the outfit itself or in
 	// the effect they create.
 	if(outfit->WeaponSound())
-		Audio::Play(outfit->WeaponSound(), start);
+		Audio::Play(outfit->WeaponSound(), start, IsSpecial() ? SoundCategory::ANTI_MISSILE : SoundCategory::WEAPON);
 	// Apply any "kick" from firing this weapon.
 	double force = outfit->FiringForce();
 	if(force)

@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameWindow.h"
 
-#include "Files.h"
-#include "image/ImageBuffer.h"
 #include "Logger.h"
 #include "Screen.h"
 
@@ -27,13 +25,26 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sstream>
 #include <string>
 
+#ifdef _WIN32
+#include <windows.h>
+
+#include <dwmapi.h>
+#include <SDL2/SDL_syswm.h>
+#endif
+
 using namespace std;
 
 namespace {
+	// The minimal screen resolution requirements.
+	constexpr int minWidth = 1024;
+	constexpr int minHeight = 768;
+
 	SDL_Window *mainWindow = nullptr;
 	SDL_GLContext context = nullptr;
 	int width = 0;
 	int height = 0;
+	int drawWidth = 0;
+	int drawHeight = 0;
 	bool supportsAdaptiveVSync = false;
 
 	// Logs SDL errors and returns true if found
@@ -107,15 +118,12 @@ bool GameWindow::Init(bool headless)
 			" The game will run more slowly.");
 
 	// Make the window just slightly smaller than the monitor resolution.
-	int minWidth = 640;
-	int minHeight = 480;
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
 	if(maxWidth < minWidth || maxHeight < minHeight)
-	{
-		ExitWithError("Monitor resolution is too small!");
-		return false;
-	}
+		Logger::LogError("Monitor resolution is too small! Minimal requirement is "
+			+ to_string(minWidth) + 'x' + to_string(minHeight)
+			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.');
 
 	int windowWidth = maxWidth - 100;
 	int windowHeight = maxHeight - 100;
@@ -242,11 +250,28 @@ bool GameWindow::Init(bool headless)
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
 
-#ifndef __APPLE__
-	// On OS X, setting the window icon will cause that same icon to be used
-	// in the dock and the application switcher. That's not something we
-	// want, because the ".icns" icon that is used automatically is prettier.
-	SetIcon();
+#ifdef _WIN32
+	// Set up a dark title bar on Windows versions that support it
+	// without having to draw it manually.
+	HMODULE ntdll = LoadLibraryW(L"ntdll.dll");
+	auto rtlGetVersion = reinterpret_cast<NTSTATUS (*)(PRTL_OSVERSIONINFOW)>(GetProcAddress(ntdll, "RtlGetVersion"));
+	RTL_OSVERSIONINFOW versionInfo = {};
+	if(rtlGetVersion)
+		rtlGetVersion(&versionInfo);
+	FreeLibrary(ntdll);
+	if(versionInfo.dwBuildNumber >= 19041)
+	{
+		SDL_SysWMinfo windowInfo;
+		SDL_VERSION(&windowInfo.version);
+		SDL_GetWindowWMInfo(mainWindow, &windowInfo);
+		BOOL value = 1;
+
+		HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
+		auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
+			GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
+		dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
+		FreeLibrary(dwmapi);
+	}
 #endif
 
 	return true;
@@ -261,12 +286,8 @@ void GameWindow::Quit()
 	SDL_ShowCursor(true);
 
 	// Clean up in the reverse order that everything is launched.
-//#ifndef _WIN32
-	// Under windows, this cleanup code causes intermittent crashes.
 	if(context)
 		SDL_GL_DeleteContext(context);
-//#endif
-
 	if(mainWindow)
 		SDL_DestroyWindow(mainWindow);
 
@@ -278,30 +299,6 @@ void GameWindow::Quit()
 void GameWindow::Step()
 {
 	SDL_GL_SwapWindow(mainWindow);
-}
-
-
-
-void GameWindow::SetIcon()
-{
-	if(!mainWindow)
-		return;
-
-	// Load the icon file.
-	ImageBuffer buffer;
-	if(!buffer.Read(Files::Resources() + "icon.png"))
-		return;
-	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
-		return;
-
-	// Convert the icon to an SDL surface.
-	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer.Pixels(), buffer.Width(), buffer.Height(),
-		32, 4 * buffer.Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-	if(surface)
-	{
-		SDL_SetWindowIcon(mainWindow, surface);
-		SDL_FreeSurface(surface);
-	}
 }
 
 
@@ -330,7 +327,6 @@ void GameWindow::AdjustViewport()
 
 	// Find out the drawable dimensions. If this is a high- DPI display, this
 	// may be larger than the window.
-	int drawWidth, drawHeight;
 	SDL_GL_GetDrawableSize(mainWindow, &drawWidth, &drawHeight);
 	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);
 
@@ -394,6 +390,20 @@ int GameWindow::Width()
 int GameWindow::Height()
 {
 	return height;
+}
+
+
+
+int GameWindow::DrawWidth()
+{
+	return drawWidth;
+}
+
+
+
+int GameWindow::DrawHeight()
+{
+	return drawHeight;
 }
 
 

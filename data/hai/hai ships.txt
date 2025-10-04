@@ -11,6 +11,92 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+ship "Anomalocaris"
+	plural "Anomalocarises"
+	sprite "ship/hai anomalocaris"
+	thumbnail "thumbnail/hai anomalocaris"
+	attributes
+		category "Medium Warship"
+		"cost" 7400000
+		"shields" 14200
+		"hull" 6800
+		"required crew" 20
+		"bunks" 26
+		"mass" 970
+		"drag" 9.3
+		"heat dissipation" .49
+		"fuel capacity" 400
+		"cargo space" 121
+		"outfit space" 533
+		"weapon capacity" 192
+		"engine capacity" 98
+		weapon
+			"blast radius" 210
+			"shield damage" 2100
+			"hull damage" 1050
+			"hit force" 3150
+	outfits
+		"Ion Cannon"
+		"Pulse Cannon"
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile" 2
+		"Boulder Reactor"
+		"Pebble Core"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 20
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+	gun -24 -89.5
+	gun 24 -89.5
+	turret 0 -32.5 "Pulse Turret"
+	turret -40 -28
+	turret 40 -28
+	turret 0 60 "Pulse Turret"
+	engine -50 15
+	engine 50 15
+	"steering engine" -50 15
+		zoom 0.5
+		right
+	"steering engine" 50.5 15
+		zoom 0.5
+		left
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 24
+	explode "small explosion" 50
+	explode "medium explosion" 30
+	explode "large explosion" 14
+	"final explode" "final explosion medium"
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy and able to take larger amounts of damage."
+
+ship "Anomalocaris" "Anomalocaris (Venerable)"
+	add attributes
+		"threshold percentage" 0.4
+	outfits
+		"Pulse Cannon" 2
+		"Pulse Turret"
+		"Thermal Repeater Turret" 2
+		"Chameleon Anti-Missile"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 4
+		"Value Detector"
+		"Hai Valley Batteries"
+		"Boulder Reactor"
+		"Pulse Rifle" 20
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Afterburner (Asteroid Class)"
+		"Hyperdrive"
+	turret "Pulse Turret"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Chameleon Anti-Missile"
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy, although this one has accrued damage after being submerged underwater for a long period of time."
+
 ship "Aphid"
 	sprite "ship/hai aphid"
 	thumbnail "thumbnail/hai aphid"
@@ -51,6 +137,20 @@ ship "Aphid"
 	explode "medium explosion" 15
 	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai interplanetary economy. Because of how peaceful Hai space has been for much of its history, Aphids only come with basic defenses as stock, and rely on larger Hai ships for more serious protection."
 
+ship "Aphid" "Aphid (Phantom Pallet)"
+	outfits
+		"Pulse Turret"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+		"Phantom Pallet" 4
+
 ship "Aphid" "Aphid (Armed)"
 	outfits
 		"Pulse Turret"
@@ -65,6 +165,7 @@ ship "Aphid" "Aphid (Armed)"
 		"Hyperdrive"
 
 ship "Aphid" "Aphid (Unfettered)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Chameleon Anti-Missile"
 		"Cargo Expansion" 2
@@ -134,6 +235,24 @@ ship "Centipede"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 	description `The introduction of humans to the Hai civilization has led to a substantial amount of cultural exchange. While some may argue that pickled acorns have been the greatest product of this relationship, many more will point to this luxury transport ship. The product of human-Hai cooperation from the project's inception, the Centipede was released around the turn of the 31st century, but has already become quite popular among Hai fleets.`
+
+ship "Centipede" "Centipede (Holovid)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 112
+		"Bullfrog Anti-Missile" 3
+		"Geode Reactor"
+		"Hai Corundum Regenerator"
+		"Hai Ravine Batteries"
+		"Hai Williwaw Cooling" 3
+		"Hai Cuttlefish Jammer" 2
+		"Luxury Accommodations"
+		"Holovid Zone"
+		"Quantum Keystone"
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		`"Basrem" Atomic Steering`
+		Hyperdrive
 
 ship "Centipede" "Centipede (Pulse)"
 	outfits
@@ -243,7 +362,7 @@ ship "Cicada"
 	explode "large explosion" 16
 	explode "huge explosion" 4
 	"final explode" "final explosion medium"
-	description `A design nearly as old as the Aphid, practically no new Cicadas have been built in recent memory; it is so reliable that the second-hand market is saturated Cicadas that have outlived not just one pilot, but in many cases multiple whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life."`
+	description `A design nearly as old as the Aphid, practically no new Cicadas have been built in recent memory; it is so reliable that the second-hand market is saturated with Cicadas that have outlived not just one pilot, but in many cases whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life."`
 
 
 
@@ -514,6 +633,22 @@ ship "Lightning Bug"
 	"final explode" "final explosion small"
 	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted Ion Cannons."
 
+ship "Lightning Bug" "Lightning Bug (Phantom Pallet)"
+	outfits
+		"Ion Cannon"
+		"Bullfrog Anti-Missile" 2
+		"Hai Cuttlefish Jammer"
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle" 2
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Phantom Pallet" 7
+		"Hyperdrive"
+
 ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
 		"Hai Tracker Pod"
@@ -545,6 +680,7 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Hyperdrive"
 
 ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Pulse Cannon"
 		"Pulse Turret" 2
@@ -888,22 +1024,8 @@ ship "Sea Scorpion"
 		"Tracker Storage Pod" 4
 		"Value Detector" 2
 
-	engine -28.5 68.5
-	engine 28.5 68.5
-	"steering engine" -28.5 68.5
-		zoom 0.4
-		right
-	"steering engine" 28.5 68.5
-		zoom 0.4
-		left
-	"steering engine" 64.5 23.5
-		zoom 0.55
-		angle -90
-		right
-	"steering engine" -64.5 23.5
-		zoom 0.55
-		angle 90
-		left
+	engine -23.5 68.5
+	engine 23.5 68.5
 	gun -13 -77.5
 	gun 13 -77.5
 	gun -27 -56
@@ -965,12 +1087,14 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
-ship "Sea Scorpion" "Sea Scorpion (Ionic)"
+# These variants don't spawn normally and have larger crew counts to represent experimentation with ionic weapons.
+ship "Sea Scorpion" "Sea Scorpion (Ionic Blasters)"
+	crew 30
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Boulder Reactor"
-		"Chameleon Anti-Missile"
+		"Hai Williwaw Cooling" 2
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
 		"Hai Valley Batteries"
@@ -978,7 +1102,7 @@ ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 		"Ion Cannon"
 		"Ionic Blaster Prototype" 2
 		"Ionic Turret Prototype"
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 	outfits
@@ -991,7 +1115,7 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 		"Hai Williwaw Cooling" 4
 		"Hyperdrive"
 		"Pulse Cannon" 2
-		"Pulse Rifle" 15
+		"Pulse Rifle" 36
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2
@@ -1168,6 +1292,7 @@ ship "Shield Beetle" "Shield Beetle (Unfettered)"
 		"Hyperdrive"
 
 ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
+	"variant map name" "Unfettered Shipyards"
 	outfits
 		"Ion Cannon" 2
 		"Hai Tracker" 420
@@ -1432,6 +1557,30 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+
+ship "Shield Beetle" "Shield Beetle (Tripulse Ionic Turret)"
+	crew 80
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 2
+		"Pulse Turret"
+		"Tripulse Shredder" 2
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Chameleon Anti-Missile" 2
+		"Bullfrog Anti-Missile"
+		"Hai Diamond Regenerator"
+		"Hai Octopus Jammer"
+		"Hai Williwaw Cooling" 2
+		Hyperdrive
+		"Quantum Keystone"
+		"Value Detector"
+		"Hai Gorge Batteries"
+		"Boulder Reactor" 2
+		`"Basrem" Atomic Steering`
+		`"Biroo" Atomic Steering`
+		`"Bufaer" Atomic Thruster`
+		"Pulse Rifle" 85
 
 
 
@@ -1835,6 +1984,24 @@ ship "Water Bug"
 	explode "huge explosion" 5
 	"final explode" "final explosion medium"
 	description "The design of the Water Bug is almost as old as the Aphid, but until recently it never saw much use. A spike in aggression from the Unfettered Hai has led the tougher and more well-defended Water Bug to see an increase in popularity over its little brother, the Aphid. The Water Bug is now the most widely used Hai freighter, comprising the bulk of all Hai merchant fleets."
+
+ship "Water Bug" "Water Bug (Phantom Pallet)"
+	outfits
+		"Hai Tracker Pod" 2
+		"Hai Tracker" 168
+		"Tracker Storage Pod" 2
+		"Pulse Turret"
+		"Chameleon Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Gorge Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		`"Basrem" Reverse Thruster`
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+		"Phantom Pallet" 7
 
 ship "Water Bug" "Water Bug (Jump)"
 	outfits

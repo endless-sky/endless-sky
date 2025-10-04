@@ -1,16 +1,22 @@
 (The lines in parentheses (like this one) are instructions for filling out this template. These lines can be deleted.)
 (The lines in double curly brackets ({{}}) should be replaced as it describes.)
-(You can open a PR to add or improve this template, if you find it lacking!)
+(You can open a PR to add to or improve this template, if you find it lacking!)
 
 (Choose one heading, or add your own.)
 **Content (Artwork / Missions / Jobs)**
 **Balance**
 **Feature**
 **Bug fix**
+**Typo fix**
 **CI/CD/Testing**
+**Refactor**
 **Documentation**
 
 This PR addresses the bug/feature described in issue #{{insert number}}
+
+## Acknowledgement
+
+- [ ] I acknowledge that I have read and understand the [Contributing](https://github.com/endless-sky/endless-sky/blob/master/docs/CONTRIBUTING.md) article.
 
 ## Summary
 {{Describe and explain your changes. Include links to related issues.}}

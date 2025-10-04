@@ -1,0 +1,1008 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+ship "Aberrant Latte"
+	"display name" `K-IA "Latte"`
+	plural `Lattes`
+	sprite "ship/aberrant latte"
+	thumbnail "thumbnail/aberrant latte"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 9600
+		"hull" 14400
+		"required crew" 1
+		"bunks" 1
+		"mass" 289
+		"drag" 3.0
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 82
+		"outfit space" 232
+		"weapon capacity" 64
+		"engine capacity" 66
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 1.2
+		"hull repair rate" 0.6
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 300
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 2800
+	outfits
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+		"Hyperdrive"
+		"Anomalous Mass" 15
+
+	gun -12 -31 "Ka'het Ravager Beam"
+	gun 12 -31 "Ka'het Ravager Beam"
+
+	engine -18 35.5
+	engine 18 35.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to be as close to the baseline as can be expected from such a strange creature."
+
+
+ship "Aberrant Latte" "Aberrant Latte (Disable-able)"
+	"display name" `K-IA "Latte"`
+	"uncapturable"
+
+
+ship "Aberrant Chomper"
+	"display name" `K-IB "Chomper"`
+	plural "Chompers"
+	sprite "ship/aberrant chomper"
+	thumbnail "thumbnail/aberrant chomper"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"cost" 5700000
+		"shields" 6400
+		"hull" 14400
+		"required crew" 1
+		"bunks" 1
+		"mass" 304
+		"drag" 3.2
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 61
+		"outfit space" 351
+		"weapon capacity" 189
+		"engine capacity" 62
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 1.2
+		"hull repair rate" 0.6
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 300
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 2800
+	outfits
+		"Ka'het Ravager Beam" 6
+		"Nucleolysis Beam"
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Antimatter Power Cell"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+		"Hyperdrive"
+		"Anomalous Mass" 15
+
+	gun -13.5 -36.5 "Ka'het Ravager Beam"
+	gun 13.5 -36.5 "Ka'het Ravager Beam"
+	gun -24.5 -29.5 "Ka'het Ravager Beam"
+	gun 24.5 -29.5 "Ka'het Ravager Beam"
+	gun 0 -27.5 "Nucleolysis Beam"
+	gun -28 -19.5 "Ka'het Ravager Beam"
+	gun 28 -19.5 "Ka'het Ravager Beam"
+
+	engine -18 50.5
+	engine 18 50.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to be much more heavily armed than most others of its kind."
+
+
+ship "Aberrant Chomper" "Aberrant Chomper (Disable-able)"
+	"display name" `K-IB "Chomper"`
+	"uncapturable"
+
+
+ship "Aberrant Pileup"
+	"display name" `K-IC "Pileup"`
+	plural "Pileups"
+	sprite "ship/aberrant pileup"
+	thumbnail "thumbnail/aberrant pileup"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 13600
+		"hull" 18600
+		"required crew" 1
+		"bunks" 1
+		"mass" 354
+		"drag" 3.7
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 123
+		"outfit space" 269
+		"weapon capacity" 94
+		"engine capacity" 66
+		"energy capacity" 17000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 1.2
+		"hull repair rate" 0.6
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 300
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 2800
+	outfits
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+		"Anomalous Shield Restorer"
+
+		"Ka'het Compact Engine" 2
+		"Hyperdrive"
+		"Anomalous Mass" 17
+
+	gun -11 -40.5
+	gun 11 -40.5
+
+	engine -19 57
+	engine 19 57
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to be somewhat larger and sturdier than others."
+
+
+ship "Aberrant Pileup" "Aberrant Pileup (Disable-able)"
+	"display name" "K-IC Pileup"
+	"uncapturable"
+
+
+ship "Aberrant Hugger"
+	"display name" `K-IE "Hugger"`
+	plural "Huggers"
+	sprite "ship/aberrant hugger"
+	thumbnail "thumbnail/aberrant hugger"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"cost" 5700000
+		"shields" 9600
+		"hull" 14400
+		"required crew" 1
+		"bunks" 1
+		"mass" 240
+		"drag" 1.4
+		"heat dissipation" .96
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 82
+		"outfit space" 305
+		"weapon capacity" 144
+		"engine capacity" 93
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 1.2
+		"hull repair rate" 0.6
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 300
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 2800
+	outfits
+		"Ka'het Ravager Beam" 4
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+		"Antimatter Power Cell"
+
+		"Ka'het Compact Engine" 3
+		"Hyperdrive"
+		"Anomalous Mass" 12
+
+	gun -16.5 -8.5 "Ka'het Ravager Beam"
+	gun 16.5 -8.5 "Ka'het Ravager Beam"
+	gun -13 -3.5 "Ka'het Ravager Beam"
+	gun 13 -3.5 "Ka'het Ravager Beam"
+
+	engine -11.5 85.5
+	engine 11.5 85.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to be lighter and capable of higher speeds than most other Aberrant ships, yet it still carries an enlarged armament."
+
+
+ship "Aberrant Hugger" "Aberrant Hugger (Disable-able)"
+	"display name" `K-IE "Hugger"`
+	"uncapturable"
+
+
+ship "Aberrant Longfellow"
+	"display name" `K-IF "Longfellow"`
+	plural "Longfellows"
+	sprite "ship/aberrant longfellow"
+	thumbnail "thumbnail/aberrant longfellow"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"cost" 5700000
+		"shields" 10800
+		"hull" 17200
+		"required crew" 1
+		"bunks" 1
+		"mass" 303
+		"drag" 2.7
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 82
+		"outfit space" 319
+		"weapon capacity" 72
+		"engine capacity" 135
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 1.2
+		"hull repair rate" 0.6
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 300
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 2800
+	outfits
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+		"Antimatter Power Cell"
+
+		"Ka'het Compact Engine" 5
+		"Hyperdrive"
+		"Anomalous Mass" 15
+
+	gun -14.5 -63.5 "Ka'het Ravager Beam"
+	gun 14.5 -63.5 "Ka'het Ravager Beam"
+	turret -11.5 -21.5
+	turret 11.5 -21.5
+
+	engine -14 37.5
+		zoom 1.5
+	engine 14 37.5
+		zoom 1.5
+	engine -6.5 39.5
+		zoom 1.5
+	engine 6.5 39.5
+		zoom 1.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to have grown extra thrusters around a lean, sleek fuselage."
+
+
+ship "Aberrant Longfellow" "Aberrant Longfellow (Disable-able)"
+	"display name" `K-IF "Longfellow"`
+	"uncapturable"
+
+
+ship "Aberrant Dancer"
+	"display name" `K-IG "Dancer"`
+	plural "Dancers"
+	sprite "ship/aberrant dancer"
+	thumbnail "thumbnail/aberrant dancer"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"cost" 5700000
+		"shields" 19200
+		"hull" 33800
+		"required crew" 1
+		"bunks" 1
+		"mass" 469
+		"drag" 4.8
+		"heat dissipation" .91
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 82
+		"outfit space" 510
+		"weapon capacity" 244
+		"engine capacity" 96
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 1.2
+		"hull repair rate" 0.6
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 500
+			"shield damage" 11400
+			"hull damage" 8800
+			"hit force" 3400
+	outfits
+		"Ka'het Ravager Beam" 2
+		"Telescopic Antimissile" 4
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+		"Antimatter Power Cell"
+
+		"Ka'het Compact Engine" 2
+		"Hyperdrive"
+		"Anomalous Mass" 24
+
+	gun -34.5 -58
+	gun 34.5 -58
+	turret -9.5 -22.5 "Telescopic Antimissile"
+	turret 9.5 -22.5 "Telescopic Antimissile"
+	turret -33.5 -9.5 "Telescopic Antimissile"
+	turret 33.5 -9.5 "Telescopic Antimissile"
+	turret 0 -2.5
+
+	engine -3.5 43.5
+	engine 3.5 43.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular appears to have several hardpoints designed to mount turrets."
+
+
+ship "Aberrant Dancer" "Aberrant Dancer (Disable-able)"
+	"display name" `K-IG "Dancer"`
+	"uncapturable"
+
+
+ship "Aberrant Junior"
+	"display name" `K-IIA "Junior"`
+	plural "Juniors"
+	sprite "ship/aberrant junior"
+	thumbnail "thumbnail/aberrant junior"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 6400
+		"hull" 18600
+		"required crew" 1
+		"bunks" 1
+		"mass" 324
+		"drag" 3.4
+		"heat dissipation" .87
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 66
+		"outfit space" 277
+		"weapon capacity" 92
+		"engine capacity" 62
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.6
+		"hull repair rate" 1.2
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 300
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 2800
+	outfits
+		"Ka'het Ravager Beam" 2
+		"Aberrant Spiker" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+		"Hyperdrive"
+		"Anomalous Mass" 16
+
+	gun -9.5 -27.5 "Ka'het Ravager Beam"
+	gun 9.5 -27.5 "Ka'het Ravager Beam"
+	gun -25 21 "Aberrant Spiker"
+		angle -90
+	gun 25 21 "Aberrant Spiker"
+		angle 90
+	engine -14.5 41
+	engine 14.5 41
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to be compact, smaller-than-average, and still in the process of growing."
+
+
+ship "Aberrant Junior" "Aberrant Junior (Disable-able)"
+	"display name" `K-IIA "Junior"`
+	"uncapturable"
+
+
+ship "Aberrant Icebreaker"
+	"display name" `K-IIB "Icebreaker"`
+	plural "Icebreakers"
+	sprite "ship/aberrant icebreaker"
+	thumbnail "thumbnail/aberrant icebreaker"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 7600
+		"hull" 21600
+		"required crew" 1
+		"bunks" 1
+		"mass" 354
+		"drag" 3.6
+		"heat dissipation" .87
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 66
+		"outfit space" 313
+		"weapon capacity" 103
+		"engine capacity" 73
+		"energy capacity" 15000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.6
+		"hull repair rate" 1.2
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 300
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 2800
+	outfits
+		"Ka'het Ravager Beam" 2
+		"Aberrant Spiker" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+		"Anomalous Shield Restorer"
+
+		"Ka'het Compact Engine" 2
+		"Hyperdrive"
+		"Anomalous Mass" 18
+
+	gun -10.5 -42.5 "Ka'het Ravager Beam"
+	gun 10.5 -42.5 "Ka'het Ravager Beam"
+	gun -24 30 "Aberrant Spiker"
+		angle -90
+	gun 24 30 "Aberrant Spiker"
+		angle 90
+	engine -12 51
+	engine 12 51
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular seems to be in the process of growing more elongated, and has a tougher hull than most other variants."
+
+
+ship "Aberrant Icebreaker" "Aberrant Icebreaker (Disable-able)"
+	"display name" `K-IIB "Icebreaker"`
+	"uncapturable"
+
+
+ship "Aberrant Pike"
+	"display name" `K-IIC "Pike"`
+	plural "Pikes"
+	sprite "ship/aberrant pike"
+	thumbnail "thumbnail/aberrant pike"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 6600
+		"hull" 17900
+		"required crew" 1
+		"bunks" 1
+		"mass" 398
+		"drag" 3.3
+		"heat dissipation" .89
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 66
+		"outfit space" 291
+		"weapon capacity" 102
+		"engine capacity" 62
+		"energy capacity" 18000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.6
+		"hull repair rate" 1.2
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 300
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 2800
+	outfits
+		"Ka'het Ravager Beam" 2
+		"Aberrant Spiker" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+		"Hyperdrive"
+		"Anomalous Mass" 20
+
+	gun -9.5 -39 "Ka'het Ravager Beam"
+	gun 9.5 -39 "Ka'het Ravager Beam"
+	gun -23 7 "Aberrant Spiker"
+		angle -90
+	gun 23 7 "Aberrant Spiker"
+		angle 90
+	engine -12.5 54
+	engine 12.5 54
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular has grown into a sleek, elongated shape."
+
+
+ship "Aberrant Pike" "Aberrant Pike (Disable-able)"
+	"display name" `K-IIC "Pike"`
+	"uncapturable"
+
+
+ship "Aberrant Mole"
+	"display name" `K-IID "Mole"`
+	plural "Moles"
+	sprite "ship/aberrant mole"
+	thumbnail "thumbnail/aberrant mole"
+	"never disabled"
+	attributes
+		category "Light Warship"
+		"cost" 5700000
+		"shields" 6600
+		"hull" 15200
+		"required crew" 1
+		"bunks" 1
+		"mass" 324
+		"drag" 3.4
+		"heat dissipation" .87
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 66
+		"outfit space" 318
+		"weapon capacity" 148
+		"engine capacity" 52
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.6
+		"hull repair rate" 1.2
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 300
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 2800
+	outfits
+		"Ka'het Ravager Beam" 4
+		"Aberrant Spiker" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 2
+		"Hyperdrive"
+		"Anomalous Mass" 16
+
+	gun -3.5 -35.5 "Ka'het Ravager Beam"
+	gun 3.5 -35.5 "Ka'het Ravager Beam"
+	gun -8.5 -30.5 "Ka'het Ravager Beam"
+	gun 8.5 -30.5 "Ka'het Ravager Beam"
+	gun -25 21 "Aberrant Spiker"
+		angle -90
+	gun 25 21 "Aberrant Spiker"
+		angle 90
+	engine -11.5 42.5
+	engine 11.5 42.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant has grown a sharp, bladed prow capable of fitting more forward weapons."
+
+
+ship "Aberrant Mole" "Aberrant Mole (Disable-able)"
+	"display name" `K-IID "Mole"`
+	"uncapturable"
+
+
+ship "Aberrant Whiskers"
+	"display name" `K-IIE "Whiskers"`
+	plural "Whiskers"
+	sprite "ship/aberrant whiskers"
+	thumbnail "thumbnail/aberrant whiskers"
+	"never disabled"
+	attributes
+		category "Interceptor"
+		"cost" 5700000
+		"shields" 6200
+		"hull" 17200
+		"required crew" 1
+		"bunks" 1
+		"mass" 331
+		"drag" 2.1
+		"heat dissipation" .9
+		"fuel capacity" 300
+		"ramscoop" 0.2
+		"cargo space" 66
+		"outfit space" 265
+		"weapon capacity" 64
+		"engine capacity" 72
+		"energy capacity" 12000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 3.4
+		"shield generation" 0.6
+		"hull repair rate" 1.2
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 300
+			"shield damage" 6400
+			"hull damage" 4800
+			"hit force" 2800
+	outfits
+		"Ka'het Ravager Beam" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+
+		"Ka'het Compact Engine" 3
+		"Hyperdrive"
+		"Anomalous Mass" 16
+
+	gun -9 -46.5 "Ka'het Ravager Beam"
+	gun 9 -46.5 "Ka'het Ravager Beam"
+	engine -12.5 27
+	engine 12.5 27
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant in particular appears to be growing some sort of tail-like structure, increasing its agility."
+
+
+ship "Aberrant Whiskers" "Aberrant Whiskers (Disable-able)"
+	"display name" `K-IIE "Whiskers"`
+	"uncapturable"
+
+
+ship "Aberrant Trip"
+	"display name" `K-IIF "Trip"`
+	plural "Trips"
+	sprite "ship/aberrant trip"
+	thumbnail "thumbnail/aberrant trip"
+	"never disabled"
+	attributes
+		category "Medium Warship"
+		"cost" 5700000
+		"shields" 14200
+		"hull" 16600
+		"required crew" 1
+		"bunks" 1
+		"mass" 444
+		"drag" 8.6
+		"heat dissipation" .4
+		"fuel capacity" 600
+		"ramscoop" 0.2
+		"cargo space" 77
+		"outfit space" 383
+		"weapon capacity" 185
+		"engine capacity" 61
+		"energy capacity" 13000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 7.6
+		"shield generation" 0.9
+		"hull repair rate" 0.2
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 600
+			"shield damage" 12400
+			"hull damage" 9600
+			"hit force" 3800
+	outfits
+		"Ka'het Ravager Beam"
+		"Nucleolysis Beam" 2
+		"Aberrant Spiker" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+		"Anomalous Shield Restorer"
+
+		"Ka'het Compact Engine"
+		"Hyperdrive"
+		"Anomalous Mass" 22
+
+	gun -2 -37 "Nucleolysis Beam"
+	gun 16 -37 "Nucleolysis Beam"
+	gun -25 -17.5 "Ka'het Ravager Beam"
+	gun -34 25 "Aberrant Spiker"
+		angle -90
+	gun 32 32 "Aberrant Spiker"
+		angle 90
+	turret 8.5 -21
+	turret -5 -3.5
+
+	engine -19 37.5
+	engine 23.5 43
+	engine 18 45
+	engine -1.5 52.5
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "Something appears to have gone terribly wrong in the germination of this variant. It is a lopsided, deformed mass of malformed material, which survives only through sheer luck."
+
+ship "Aberrant Trip" "Aberrant Trip (Disable-able)"
+	"display name" `K-IIF "Trip"`
+	"uncapturable"
+
+
+ship "Aberrant Triplet"
+	"display name" `K-IIG "Triplet"`
+	plural "Triplets"
+	sprite "ship/aberrant triplet"
+	thumbnail "thumbnail/aberrant triplet"
+	"never disabled"
+	attributes
+		category "Medium Warship"
+		"cost" 5700000
+		"shields" 34600
+		"hull" 33800
+		"required crew" 1
+		"bunks" 1
+		"mass" 666
+		"drag" 6.7
+		"heat dissipation" .65
+		"fuel capacity" 900
+		"ramscoop" 0.2
+		"cargo space" 126
+		"outfit space" 496
+		"weapon capacity" 266
+		"engine capacity" 92
+		"energy capacity" 23000
+		"inscrutable" 1
+		"energy generation" 39
+		"heat generation" 32
+		"shield heat" 6.6
+		"shield generation" 1.8
+		"hull repair rate" 1.4
+		"quantum keystone" 1
+		"ka'sei" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
+		weapon
+			"blast radius" 600
+			"shield damage" 12400
+			"hull damage" 9600
+			"hit force" 3800
+	outfits
+		"Ka'het Ravager Beam" 4
+		"Nucleolysis Beam" 2
+		"Aberrant Spiker" 2
+
+		"Ka'het Primary Cooling"
+		"Ka'het Shield Restorer"
+		"Ka'het MHD Generator"
+		"Ka'het Reserve Accumulator"
+		"Anomalous Shield Restorer"
+
+		"Ka'het Compact Engine"
+		"Hyperdrive"
+		"Anomalous Mass" 34
+
+	gun -8.5 -42 "Nucleolysis Beam"
+	gun 8.5 -42 "Nucleolysis Beam"
+	gun -25 -31 "Ka'het Ravager Beam"
+	gun 25 -31 "Ka'het Ravager Beam"
+	gun -35.5 -22 "Ka'het Ravager Beam"
+	gun 35.5 -22 "Ka'het Ravager Beam"
+	gun -43 25 "Aberrant Spiker"
+		angle -90
+	gun 43 25 "Aberrant Spiker"
+		angle 90
+	turret 0 -21
+	turret -13 -3
+	turret 13 -3
+
+	engine -29 38
+	engine 29 38
+	engine -8 57
+	engine 8 57
+
+
+	explode "tiny explosion" 8
+	explode "small explosion" 14
+	explode "medium explosion" 26
+	explode "large explosion" 18
+	"final explode" "nuke explosion"
+	"final explode" "nuke residue fast" 50
+	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
+	description "This variant seems to be a composite of two or three individuals, fused together into a single mass."
+
+
+ship "Aberrant Triplet" "Aberrant Triplet (Disable-able)"
+	"display name" `K-IIG "Triplet"`
+	"uncapturable"

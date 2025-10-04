@@ -38,12 +38,13 @@ using namespace std;
 namespace {
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
-		// Maps are not transferrable; they represent the player's spatial awareness.
+		// Maps are not transferable; they represent the player's spatial awareness.
 		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{
-			if(!player.HasMapped(mapSize))
-				player.Map(mapSize);
+			bool mapMinables = outfit->Get("map minables");
+			if(!player.HasMapped(mapSize, mapMinables))
+				player.Map(mapSize, mapMinables);
 			Messages::Add("You received a map of nearby systems.", Messages::Importance::High);
 			return;
 		}
@@ -125,30 +126,36 @@ namespace {
 
 
 // Construct and Load() at the same time.
-GameAction::GameAction(const DataNode &node)
+GameAction::GameAction(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
-void GameAction::Load(const DataNode &node)
+void GameAction::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	for(const DataNode &child : node)
-		LoadSingle(child);
+		LoadSingle(child, playerConditions);
 }
 
 
 
 // Load a single child at a time, used for streamlining MissionAction::Load.
-void GameAction::LoadSingle(const DataNode &child)
+void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *playerConditions)
 {
 	isEmpty = false;
 
 	const string &key = child.Token(0);
-	bool hasValue = (child.Size() >= 2);
+	bool hasValue = child.Size() >= 2;
 
-	if(key == "log")
+	if(key == "remove" && child.Size() >= 3 && child.Token(1) == "log")
+	{
+		auto &type = specialLogClear[child.Token(2)];
+		if(child.Size() > 3)
+			type.push_back(child.Token(3));
+	}
+	else if(key == "log")
 	{
 		bool isSpecial = (child.Size() >= 3);
 		string &text = (isSpecial ?
@@ -191,7 +198,7 @@ void GameAction::LoadSingle(const DataNode &child)
 		for(const DataNode &grand : child)
 		{
 			const string &grandKey = grand.Token(0);
-			bool grandHasValue = (grand.Size() > 1);
+			bool grandHasValue = grand.Size() >= 2;
 			if(grandKey == "term" && grandHasValue)
 				debtEntry.term = max<int>(1, grand.Value(1));
 			else if(grandKey == "interest" && grandHasValue)
@@ -221,7 +228,7 @@ void GameAction::LoadSingle(const DataNode &child)
 	else if(key == "fail")
 		failCaller = true;
 	else
-		conditions.Add(child);
+		conditions.Add(child, playerConditions);
 }
 
 
@@ -251,6 +258,14 @@ void GameAction::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
+	for(auto &&it : specialLogClear)
+	{
+		if(it.second.empty())
+			out.Write("remove", "log", it.first);
+		else
+			for(auto &&jt : it.second)
+				out.Write("remove", "log", it.first, jt);
+	}
 	for(auto &&it : giftShips)
 		it.Save(out);
 	for(auto &&it : giftOutfits)
@@ -273,9 +288,9 @@ void GameAction::Save(DataWriter &out) const
 	for(auto &&it : events)
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const System *system : mark)
-		out.Write("mark", system->Name());
+		out.Write("mark", system->TrueName());
 	for(const System *system : unmark)
-		out.Write("unmark", system->Name());
+		out.Write("unmark", system->TrueName());
 	for(const string &name : fail)
 		out.Write("fail", name);
 	if(failCaller)
@@ -316,10 +331,10 @@ string GameAction::Validate() const
 	// Marked and unmarked system must be valid.
 	for(auto &&system : mark)
 		if(!system->IsValid())
-			return "system \"" + system->Name() + "\"";
+			return "system \"" + system->TrueName() + "\"";
 	for(auto &&system : unmark)
 		if(!system->IsValid())
-			return "system \"" + system->Name() + "\"";
+			return "system \"" + system->TrueName() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
@@ -371,6 +386,14 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
+	for(auto &&it : specialLogClear)
+	{
+		if(it.second.empty())
+			player.RemoveSpecialLog(it.first);
+		else
+			for(auto &&jt : it.second)
+				player.RemoveSpecialLog(it.first, jt);
+	}
 
 	// If multiple outfits, ships are being transferred, first remove the ships,
 	// then the outfits, before adding any new ones.
@@ -441,7 +464,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 
 	// Check if applying the conditions changes the player's reputations.
-	conditions.Apply(player.Conditions());
+	conditions.Apply();
 }
 
 
@@ -481,6 +504,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
+	result.specialLogClear = specialLogClear;
 
 	result.fail = fail;
 	result.failCaller = failCaller;

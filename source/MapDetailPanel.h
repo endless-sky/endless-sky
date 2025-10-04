@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPlanetCard.h"
 #include "Point.h"
+#include "ScrollBar.h"
+#include "ScrollVar.h"
 
 #include <map>
 #include <vector>
@@ -26,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Planet;
 class PlayerInfo;
 class System;
+class TextArea;
 
 
 
@@ -35,15 +38,15 @@ class System;
 // click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
-	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
-	explicit MapDetailPanel(const MapPanel &panel);
+	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr, bool fromMission = false);
+	explicit MapDetailPanel(const MapPanel &panel, bool isStars);
 
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	double GetScroll() const;
 
 public:
-	static double GetScroll();
 	static double PlanetPanelHeight();
 
 
@@ -55,12 +58,11 @@ protected:
 
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	// Handle single & double-clicks on commodities, planet information, or objects in the "orbits" display.
-	virtual bool Click(int x, int y, int clicks) override;
-	// Handle right-clicks within the "orbits" display.
-	virtual bool RClick(int x, int y) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
 
 private:
+	void InitTextArea();
 	void GeneratePlanetCards(const System &system);
 	void DrawKey();
 	void DrawInfo();
@@ -68,8 +70,6 @@ private:
 
 	// Set the commodity coloring, and update the player info as well.
 	void SetCommodity(int index);
-	// Set the scroll, and make sure it does not become a negative value.
-	void SetScroll(double newScroll);
 
 
 private:
@@ -78,10 +78,10 @@ private:
 
 	// Which panel is being hovered over and should be affected by up and down keys.
 	bool isPlanetViewSelected = false;
+	bool isStars = false;
 
-	// Maximum scrolling possible with the current amount of planets being displayed.
-	double maxScroll = 0.;
-	static double scroll;
+	ScrollVar<double> scroll;
+	ScrollBar scrollbar;
 
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;
@@ -93,4 +93,8 @@ private:
 	std::vector<MapPlanetCard> planetCards;
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
+
+	std::shared_ptr<TextArea> description = nullptr;
+	bool descriptionVisible = false;
+	int descriptionXOffset;
 };

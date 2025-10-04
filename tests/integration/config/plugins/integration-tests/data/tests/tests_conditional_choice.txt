@@ -68,22 +68,22 @@ test-data "Conversation Conditions Test Save"
 test-data "Conversation Conditions Test Missions"
 	category mission
 	contents
-		mission "%TEST%: CONDITIONAL CHOICE"
+		mission "TEST: CONDITIONAL CHOICE"
 			priority
 			source "Ruin"
 			to offer
-				has "%TEST%: CONDITIONAL CHOICE"
+				has "TEST: CONDITIONAL CHOICE"
 			on offer
 				conversation
 					# cant actually write an integration test for seeing this or not
 					`"You should not see this."`
 						to display
-							not "%TEST%: CONDITIONAL CHOICE"
+							not "TEST: CONDITIONAL CHOICE"
 					`"Does this work? Do you not see the first sentence?"`
 					choice
 						`	"No."`
 							to display
-								has "%TEST%: CONDITIONAL CHOICE"
+								has "TEST: CONDITIONAL CHOICE"
 							accept
 						`	"Yes."`
 							decline
@@ -92,21 +92,21 @@ test-data "Conversation Conditions Test Missions"
 			on decline
 				set "failed test"
 
-		mission "%TEST%: CONDITIONAL CHOICE GOTO"
+		mission "TEST: CONDITIONAL CHOICE GOTO"
 			priority
 			source "Ruin"
 			to offer
-				has "%TEST%: CONDITIONAL CHOICE GOTO"
+				has "TEST: CONDITIONAL CHOICE GOTO"
 			on offer
 				conversation
 					`"Can you use the hidden path?"`
 					choice
 						`	"Yes."`
 							to display
-								not "%TEST%: CONDITIONAL CHOICE GOTO"
+								not "TEST: CONDITIONAL CHOICE GOTO"
 						`	"No."`
 							to display
-								has "%TEST%: CONDITIONAL CHOICE GOTO"
+								has "TEST: CONDITIONAL CHOICE GOTO"
 							goto canuse
 					# just in case the goto is fully ignored
 					`	"You should not be here!"`
@@ -120,11 +120,11 @@ test-data "Conversation Conditions Test Missions"
 				set "failed test"
 
 
-		mission "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+		mission "TEST: CONDITIONAL CHOICE DOWN OUT OF BOUND"
 			priority
 			source "Ruin"
 			to offer
-				has "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+				has "TEST: CONDITIONAL CHOICE DOWN OUT OF BOUND"
 			on offer
 				conversation
 					`	"Don't you dare clicking on the hidden option!"`
@@ -133,7 +133,7 @@ test-data "Conversation Conditions Test Missions"
 							accept
 						`	"I do what I want."`
 							to display
-								not "%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND"
+								not "TEST: CONDITIONAL CHOICE DOWN OUT OF BOUND"
 					`	"In that case... Test failed."`
 						decline
 			on accept
@@ -142,11 +142,11 @@ test-data "Conversation Conditions Test Missions"
 				set "failed test"
 
 
-		mission "%TEST%: NAME IN CONVERSATION"
+		mission "TEST: NAME IN CONVERSATION"
 			priority
 			source "Ruin"
 			to offer
-				has "%TEST%: NAME IN CONVERSATION"
+				has "TEST: NAME IN CONVERSATION"
 			on offer
 				conversation
 					name
@@ -166,7 +166,7 @@ test "Test Conditions"
 	description "Set a few conditions so they are displayed on errors, clarifying things up."
 	sequence
 		apply
-			# test accepted/failed. If neither it wasnt offered.
+			# test accepted/failed. If neither it wasn't offered.
 			"test: succeed test" = "succeed test"
 			"test: failed test" = "failed test"
 			# if we launched
@@ -181,9 +181,9 @@ test "Conditional Test"
 		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: CONDITIONAL CHOICE" = 1
+			"TEST: CONDITIONAL CHOICE" = 1
 		call "Trigger Ruin Spaceport Mission"
-		call "Skip Spaceport Mission"
+		call "Skip Mission"
 		call "Depart"
 		call "Test Conditions"
 		assert
@@ -198,9 +198,9 @@ test "Conditional Test Goto"
 		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: CONDITIONAL CHOICE GOTO" = 1
+			"TEST: CONDITIONAL CHOICE GOTO" = 1
 		call "Trigger Ruin Spaceport Mission"
-		call "Skip Spaceport Mission"
+		call "Skip Mission"
 		call "Depart"
 		call "Test Conditions"
 		assert
@@ -215,13 +215,13 @@ test "Conditional Test Out of Bound"
 		inject "Conversation Conditions Test Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: CONDITIONAL CHOICE DOWN OUT OF BOUND" = 1
+			"TEST: CONDITIONAL CHOICE DOWN OUT OF BOUND" = 1
 		call "Trigger Ruin Spaceport Mission"
 		# If only one option is displayed this shouldn't do anything,
 		# but if we can somehow access the condition below with the down key then its a problem.
 		input
 			key "Down"
-		call "Skip Spaceport Mission"
+		call "Skip Mission"
 		call "Depart"
 		call "Test Conditions"
 		assert
@@ -238,7 +238,7 @@ test "Enter Name in Conversation"
 		assert
 			"name: Bobbi Bughunter" == 1
 		apply
-			"%TEST%: NAME IN CONVERSATION" = 1
+			"TEST: NAME IN CONVERSATION" = 1
 		call "Trigger Ruin Spaceport Mission"
 		input
 			key a
@@ -253,5 +253,5 @@ test "Enter Name in Conversation"
 		call "Depart"
 		call "Test Conditions"
 		assert
-			"%TEST%: NAME IN CONVERSATION: offered" == 1
+			"TEST: NAME IN CONVERSATION: offered" == 1
 			"name: a b" == 1
