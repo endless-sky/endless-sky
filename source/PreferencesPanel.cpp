@@ -213,6 +213,13 @@ void PreferencesPanel::Draw()
 
 
 
+void PreferencesPanel::UpdateTooltipActivation()
+{
+	tooltip.UpdateActivationCount();
+}
+
+
+
 bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(static_cast<unsigned>(editing) < zones.size())
@@ -454,7 +461,8 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			else
 				steps = min(120, steps + 20);
 			Preferences::SetTooltipActivation(steps);
-			tooltip.UpdateActivationCount();
+			for(auto &panel : GetUI()->Stack())
+				panel->UpdateTooltipActivation();
 		}
 		return true;
 	}
@@ -1364,7 +1372,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		if(steps > 120)
 			steps = 0;
 		Preferences::SetTooltipActivation(steps);
-		tooltip.UpdateActivationCount();
+		for(auto &panel : GetUI()->Stack())
+			panel->UpdateTooltipActivation();
 	}
 	else if(str == FLAGSHIP_SPACE_PRIORITY)
 		Preferences::ToggleFlagshipSpacePriority();
