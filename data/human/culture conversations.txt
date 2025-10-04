@@ -17,6 +17,7 @@ mission "Sad Gamblers - Republic"
 		government "Republic"
 		attributes "near earth"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -30,6 +31,7 @@ mission "Sad Gamblers - Syndicate"
 	source
 		government "Syndicate"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -45,6 +47,7 @@ mission "Foiled Kidnapping Witnessed"
 	source
 		government "Syndicate"
 		not attributes "station" "frontier" "urban"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -61,6 +64,7 @@ mission "Gift Store Interaction"
 		government "Republic"
 		attributes "deep"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -93,6 +97,7 @@ mission "Gift Store Interaction"
 mission "New China Mourners"
 	minor
 	source "New China"
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -106,6 +111,7 @@ mission "New China Mourners"
 mission "New Holland Foibles"
 	minor
 	source "New Holland"
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -138,6 +144,7 @@ mission "Trash Fire Crops"
 		attributes "dirt belt"
 		attributes "farming"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -162,6 +169,7 @@ mission "Worker's Occasion"
 		government "Republic"
 		attributes "dirt belt"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -191,6 +199,7 @@ mission "Paradise Cleaner Incident"
 		government "Republic"
 		attributes "paradise"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -208,6 +217,7 @@ mission "Curious Waiter"
 		government "Syndicate"
 		attributes "factory"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -235,6 +245,7 @@ mission "Syndicated Security Troops"
 		government "Syndicate"
 		attributes "urban"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -250,6 +261,7 @@ mission "Class Trip to Port"
 	source
 		attributes "south"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -264,6 +276,7 @@ mission "Old Defense Turrets"
 	source
 		attributes "south"
 		not attributes "station" "frontier"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -281,6 +294,7 @@ mission "Blind Landing"
 		government "Free Worlds"
 		attributes "farming"
 		not attributes "station" "frontier"
+	"offer precedence" 5
 	to offer
 		"year" > "bumper crop year" + 2
 		random < 1
@@ -308,6 +322,7 @@ mission "Forest Fire"
 		government "Free Worlds"
 		attributes "frontier"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -340,6 +355,7 @@ mission "Local Politics"
 		attributes "frontier"
 		attributes "south"
 		not attributes "station" "urban" "ex-pirate"
+	"offer precedence" 5
 	to offer
 		or
 			and
@@ -365,6 +381,7 @@ mission "Military Response Test"
 	source
 		government "Free Worlds"
 		not attributes "station" "urban" "frontier"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -381,6 +398,7 @@ mission "Missed Mugging"
 	source
 		government "Free Worlds"
 		not attributes "station" "frontier"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -397,6 +415,7 @@ mission "Sojourn Sunday Sales"
 		government "Free Worlds"
 		attributes "urban"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -412,6 +431,7 @@ mission "Tarazed Ship Christening"
 	to offer
 		random < 10
 		has "main plot completed"
+	"offer precedence" 5
 	on offer
 		conversation
 			`As you walk past a number of ships and crew going about their work in the spaceport, a small gathering in front of a Shuttle catches your attention. A young woman wearing a rather cheesy pilot uniform is in the midst of a little group of people all celebrating together. As you pass by them, a man standing on the top of a ladder breaks a bottle of Champagne on the (clearly not new) ship's hull. A loud cheer erupts from the group, earning an embarrassed blush from the young woman.`
@@ -466,6 +486,7 @@ mission "Masquerade Hanging"
 	source
 		government "Pirate"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -480,6 +501,7 @@ mission "News Reporter - Paradise"
 		government "Republic"
 		attributes "paradise"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 8
 		has "event: war begins"
@@ -536,6 +558,7 @@ mission "Scientists at the Pub after a Conference"
 		government "Republic"
 		attributes "urban"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -593,6 +616,7 @@ mission "Sol-Bound Shuttle"
 	minor
 	source
 		system "Sol"
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -628,6 +652,7 @@ mission "Earth Day Blackout"
 	minor
 	landing
 	source "Earth"
+	"offer precedence" 5
 	to offer
 		day == 22
 		month == 4
@@ -690,6 +715,7 @@ mission "Burthen Triathlon"
 	minor
 	source
 		planet "Burthen"
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -756,6 +782,7 @@ mission "Burthen Triathlon"
 mission "CCOR Guerrilla Standoff"
 	minor
 	source "Gagarin"
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -784,6 +811,7 @@ mission "CCOR Guerrilla Standoff"
 
 mission "Raider returning to Mordente-Bridi"
 	source "Mordente-Bridi"
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -794,6 +822,7 @@ mission "Raider returning to Mordente-Bridi"
 
 mission "Militia returning to Solace"
 	source "Solace"
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -807,6 +836,7 @@ mission "Republic 300 Year Anniversary"
 	source
 		government "Republic"
 		not attributes "uninhabited"
+	"offer precedence" 5
 	to offer
 		year == 3030
 	on offer
@@ -849,6 +879,7 @@ mission "Republic 300 Year Anniversary"
 mission "Exotic Life: Delve"
 	minor
 	source Delve
+	"offer precedence" 5
 	to offer
 		random < 20
 	on offer
@@ -883,6 +914,7 @@ mission "Exotic Life: Delve"
 mission "Exotic Life: Ada"
 	minor
 	source Ada
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -930,6 +962,7 @@ mission "Exotic Life: Glaze"
 	repeat
 	minor
 	source Glaze
+	"offer precedence" 5
 	to offer
 		random < 10
 		or
@@ -970,6 +1003,7 @@ mission "Exotic Life: Glaze"
 mission "Exotic Life: Bluestone"
 	minor
 	source Bluestone
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -1047,6 +1081,7 @@ mission "Exotic Life: Bluestone"
 mission "Exotic Life: Geyser"
 	minor
 	source Geyser
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -1070,6 +1105,7 @@ mission "Exotic Life: Geyser"
 mission "Exotic Life: Bloodsea"
 	minor
 	source Bloodsea
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -1127,6 +1163,7 @@ mission "Exotic Life: Bloodsea"
 mission "Exotic Life: Albatross"
 	minor
 	source Albatross
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -1227,6 +1264,7 @@ mission "Exotic Life: Albatross"
 mission "Little Vienna in New Austria"
 	minor
 	source "New Austria"
+	"offer precedence" 5
 	to offer
 		random < 10
 	on offer
@@ -1412,6 +1450,7 @@ mission "A Sunracer Hovercraft Racing"
 	minor
 	repeat
 	invisible
+	"offer precedence" 10
 	to offer
 		random < 40
 	source "Sunracer"
