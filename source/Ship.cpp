@@ -3270,7 +3270,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 		if(IsYours())
 			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+				" \"" + Name() + "\" has been destroyed.", Messages::Importance::HighestDuplicating);
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -4142,10 +4142,10 @@ void Ship::DoGeneration()
 				Ship &ship = *it.second;
 				if(!hullDelay)
 					DoRepair(ship.hull, hullRemaining, ship.MaxHull(),
-						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
+						energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 				if(!shieldDelay)
 					DoRepair(ship.shields, shieldsRemaining, ship.MaxShields(),
-						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
+						energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
