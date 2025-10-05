@@ -17,10 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "Animate.h"
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
-#include "text/WrappedText.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <string>
@@ -95,7 +96,7 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
@@ -144,6 +145,7 @@ protected:
 	Point center;
 	Point recenterVector;
 	int recentering = 0;
+	Animate<double> zoom;
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
@@ -162,10 +164,8 @@ protected:
 	void UpdateCache();
 
 	// For tooltips:
-	int hoverCount = 0;
 	const System *hoverSystem = nullptr;
-	std::string tooltip;
-	WrappedText hoverText;
+	Tooltip tooltip;
 
 	// An X offset in pixels to be applied to the selected system UI if something
 	// else gets in the way of its default position.
@@ -214,6 +214,9 @@ private:
 	void DrawNames();
 	void DrawMissions();
 	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
+
+	void IncrementZoom();
+	void DecrementZoom();
 
 
 private:

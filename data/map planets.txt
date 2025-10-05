@@ -270,9 +270,9 @@ planet "Antivli Station"
 	description `Once one of many, this was an enormous synchrotron particle accelerator several kilometers in diameter, dedicated towards the industrial production of large quantities of antimatter. With beamed power provided by the thousands of solar collection satellites around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts. The discovery of the hyperdrive nearly wiped the antimatter economy out overnight, with interstellar travel now almost trivial.`
 	description `	Combined, the amat farms around Anax once produced several tons of antimatter each year. The economic crash caused by the hyperdrive brought production to its knees, but the final death of Antivli Station appears to have come at the hands of the Aberrant.`
 	port "Amat _Plant"
+		recharges energy
 		description `The docks once used by specialized antimatter transport ships are wrecked beyond recognition, with only a small trickle of energy available. Beyond this, the beamlines once used to produce antimatter are broken and shattered - the antimatter plant is certainly beyond recovery.`
 		description `	The station's stockpile of antimatter, hundreds of tons held in reserve as antihydrogen ice plated with a thin layer of antilithium, appears to have likewise been lost to the Incursion. Whatever happened to the antimatter, it is at least certain that it did not breach its magnetic levitation containment tanks, as otherwise nothing of the station would be left but vapor.`
-		recharges energy
 	government Uninhabited
 
 planet Aqra-Kvel-Taaq
@@ -1587,9 +1587,9 @@ planet Entantel
 	landscape land/snow39
 	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density results in a very low gravitational acceleration for its size.`
 	description `	Because of its shallow gravity well and abundance of volatiles, Entantel was one of the biggest exporters of water ice in the outer Anax system, where it was largely used as cheap propellant or to fill the numerous cylinder habitats with artificial lakes and rivers.`
-		description `The spaceport here launched most upmass via a space elevator that was destroyed in the Incursion. Enormous blocks of ice would often be shipped wholesale, with little refining done on-site, and so despite the abundance of water, there is barely enough deuterium fuel stockpiled here to fill a few large tankers.`
 	port "Fuel De_pot"
 		recharges fuel
+		description `The spaceport here launched most upmass via a space elevator that was destroyed in the Incursion. Enormous blocks of ice would often be shipped wholesale, with little refining done on-site, and so despite the abundance of water, there is barely enough deuterium fuel stockpiled here to fill a few large tankers.`
 	government Uninhabited
 
 planet Erabuthro
@@ -2467,6 +2467,13 @@ planet Heartvalley
 	outfitter "Hai Basics"
 	security 0.1
 
+planet "Heavenly Halls"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa31
+	description `This solitary gas giant was given its name due to a phenomenon shared by no other planet in Coalition space. The icy rings surrounding it grow denser the closer they are to the planetary surface; just a few kilometers into the sea of clouds, the small frozen specks are replaced by sizable, frigid asteroids. Curiously, most of these larger asteroids have tunnels cutting through their interiors, inspiring some of the bolder Saryd explorers to try and colonize these "frozen palaces."`
+	government Uninhabited
+	security 0
+
 planet Helheim
 	attributes deep mining volcanic
 	landscape land/lava1
@@ -2543,8 +2550,9 @@ planet Hilothire
 	description `While Hilothire contains an oxygen-rich atmosphere, it is almost entirely covered in icy oceans. At the poles, massive ice caps stretch nearly to the tropics. Pristine icebergs often float down to the equator, where they accumulate around the few rocky islands that peek above the waves.`
 	description `	A large research outpost was once set up on one of the larger islands to study the possibility of terraforming the world and warming its climate, but after the Incursion it has since gone uncrewed. The fueling station still contains a significant amount of stored fuel, however, which could be used by a passing ship to refuel.`
 	port "Space_port"
-		description `The landing pads are thick slabs of frigid steel sunk deep into the island's gravely terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
 		recharges fuel
+		description `The landing pads are thick slabs of frigid steel sunk deep into the island's gravelly terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
+	government Uninhabited
 	security 0
 
 planet Hippocrates
@@ -3249,8 +3257,9 @@ planet Mabatham
 	description `Mabatham teeters on the line between ocean planet and hothouse world. With a surface largely covered with water, broken only by a handful of volcanic islands, its atmosphere is thick and humid, saturated with water vapor that works to trap the heat from its two parent stars. While temperate near the poles, the equator is inhospitably warm, with constant hurricanes dwarfing anything seen on either Earth or Aviskir raging in the tropics.`
 	description `	Despite the constant rains and frequent storms, the planet's bountiful oceanic ecosystem is able to sustain a small community of particularly stubborn Avgi, who managed to eke out a life on a rocky island chain. They refused to be evacuated in the wake of the Incursion, and their outpost remains, weathering the wind and sea.`
 	port "Space_port"
-		description `The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes could take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
 		recharges fuel
+		services trading "offers missions"
+		description `The "spaceport" is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes can take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
 	government Avgi
 	security 0
 
@@ -3522,6 +3531,14 @@ planet Midgard
 	tribute 3000
 		threshold 6000
 		fleet "Large Deep Security" 30
+
+planet "Midnight Diamond"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa26
+	description `When the Kimek first discovered the diamond rains that occur in the upper levels of this planet's atmosphere, their mining industry went wild, procuring hundreds of millions of the gems and selecting the best of them for usage in planetside drilling efforts.`
+	description `	From the outer limits of the system, this planet shines brightly in tones that contrast with the local star's light, earning the gas giant the nickname "Midnight Star."`
+	government Uninhabited
+	security 0
 
 planet "Midway Emerald"
 	attributes kimek shipping urban wealthy
@@ -4209,6 +4226,13 @@ planet Ochrescoop
 	spaceport `	A holographic sign floating next to the stairs proudly states that over 7,000 years have elapsed since the last fatal safety accident.`
 	bribe 0.1
 	security 0.5
+
+planet Ogmur
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa35
+	description `Beneath Ogmur's oppressive gravity, churning blue and yellow cyclones weave, merge, and split in an eternal dance, violent green flashes illuminating turbulent depths. The planet is dominated by a titan storm that spans a third of the visible globe, the most intense in all of Coalition space - and the reason why Coalition activity is concentrated on the planet's other, much calmer hemisphere.`
+	government Uninhabited
+	security 0
 
 planet "Ogmur's Siphon"
 	attributes arach "coalition station" research
@@ -4963,6 +4987,14 @@ planet Sandsnap
 	bribe 0
 	security 0
 
+planet Sandswell
+	attributes uninhabited
+	landscape land/desert15
+	description "The close orbit of this sandy moon to its parent gas giant stirs up strong sandstorms on the surface. Combined with its low surface gravity, this results in the air here being filled with a constant haze of grit. It is unsurprising no attempts at permanent habitation have been made here."
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet "Sandy Two"
 	attributes factory farming folklore kimek urban
 	landscape land/badlands1
@@ -5483,6 +5515,13 @@ planet "Spera Anatrusk"
 	attributes korath
 	landscape land/badlands11
 	description `This is a relatively dry planet, and the only Korath cities were close to the poles where the temperatures are more mild and the lifeless deserts give way to grasslands and even a few scattered forests. The largest city was clearly destroyed by orbital bombardment. The other cities seem to have been done in by rioting or looting, leaving smashed windows and burned-out buildings behind. Some of the damage is very recent; the Korath survivors here held out for a long time.`
+
+planet "Spiraling Indigo"
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/nasa38
+	description `Spiraling Indigo is the heaviest gas giant in Coalition space, exceeded only by stars and ringworlds. While the Kimek certainly didn't shy away from harvesting the plentiful resources to be found here, the planet has had much more of a cultural footprint than an economic one. The perpetual storms surrounding the poles here have inspired many Kimek artists, be they writers, stylists, musicians, or painters. The world's popularity in Kimek media has even prompted some religious institutions to claim its beauty as a divine signal.`
+	government Uninhabited
+	security 0
 
 planet Splashdown
 	attributes farming north

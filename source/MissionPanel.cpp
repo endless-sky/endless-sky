@@ -56,9 +56,6 @@ using namespace std;
 namespace {
 	constexpr int SIDE_WIDTH = 280;
 
-	// Hovering over sort buttons for this many frames activates the tooltip.
-	const int HOVER_TIME = 60;
-
 	// Check if the mission involves the given system,
 	bool Involves(const Mission &mission, const System *system)
 	{
@@ -131,7 +128,9 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
-	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end())
+	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
+	tooltip(150, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Re-do job sorting since something could have changed
 	player.SortAvailable();
@@ -168,7 +167,9 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
-	availableScroll(0), acceptedScroll(0), dragSide(0)
+	availableScroll(0), acceptedScroll(0), dragSide(0),
+	tooltip(150, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	Audio::Pause();
 
@@ -248,8 +249,11 @@ void MissionPanel::Draw()
 {
 	MapPanel::Draw();
 
-	// Update the tooltip timer [0-60].
-	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
+	// Update the tooltip timer.
+	if(hoverSort >= 0)
+		tooltip.IncrementCount();
+	else
+		tooltip.DecrementCount();
 
 	const Set<Color> &colors = GameData::Colors();
 
@@ -409,8 +413,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 
 
-bool MissionPanel::Click(int x, int y, int clicks)
+bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return MapPanel::Click(x, y, button, clicks);
+
 	dragSide = 0;
 
 	if(x > Screen::Right() - 80 && y > Screen::Bottom() - 50)
@@ -437,7 +444,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				else if(hoverSort == 2)
 				{
 					player.NextAvailableSortType();
-					tooltip.clear();
+					tooltip.Clear();
 				}
 				else if(hoverSort == 3)
 					player.ToggleSortAscending();
@@ -639,7 +646,7 @@ bool MissionPanel::Hover(int x, int y)
 	}
 
 	if(oldSort != hoverSort)
-		tooltip.clear();
+		tooltip.Clear();
 
 	return dragSide || MapPanel::Hover(x, y);
 }
@@ -773,7 +780,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * entries + 40);
-	FillShader::Fill(pos + .5 * size, size, back);
+	FillShader::Fill(Rectangle::FromCorner(pos, size), back);
 
 	// Edges:
 	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
@@ -820,7 +827,11 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		SpriteShader::Draw(rush[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 105., 7.5));
 
 		if(hoverSort >= 0)
-			FillShader::Fill(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.), highlight);
+		{
+			Rectangle zone = Rectangle(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.));
+			tooltip.SetZone(zone);
+			FillShader::Fill(zone, highlight);
+		}
 	}
 
 	// Panel title
@@ -955,50 +966,42 @@ void MissionPanel::DrawMissionInfo()
 
 void MissionPanel::DrawTooltips()
 {
-	if(hoverSort < 0 || hoverSortCount < HOVER_TIME)
+	if(hoverSort < 0 || !tooltip.ShouldDraw())
 		return;
 
 	// Create the tooltip text.
-	if(tooltip.empty())
+	if(!tooltip.HasText())
 	{
+		string text;
 		if(hoverSort == 0)
-			tooltip = "Filter out missions with a deadline";
+			text = "Filter out missions with a deadline";
 		else if(hoverSort == 1)
-			tooltip = "Filter out missions that you can't accept";
+			text = "Filter out missions that you can't accept";
 		else if(hoverSort == 2)
 		{
 			switch(player.GetAvailableSortType())
 			{
 				case 0:
-					tooltip = "Sort alphabetically";
+					text = "Sort alphabetically";
 					break;
 				case 1:
-					tooltip = "Sort by payment";
+					text = "Sort by payment";
 					break;
 				case 2:
-					tooltip = "Sort by distance";
+					text = "Sort by distance";
 					break;
 				case 3:
-					tooltip = "Sort by convenience: "
+					text = "Sort by convenience: "
 							"Prioritize missions going to a planet or system that is already a destination of one of your missions";
 					break;
 			}
 		}
 		else if(hoverSort == 3)
-			tooltip = "Sort direction";
+			text = "Sort direction";
+		tooltip.SetText(text);
+	}
 
-		hoverText.Wrap(tooltip);
-	}
-	if(!tooltip.empty())
-	{
-		// Add 10px margin to all sides of the text.
-		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-		size += Point(20., 20.);
-		Point topLeft = Point(Screen::Left() + SIDE_WIDTH - 120. + 30 * hoverSort, Screen::Top() + 30.);
-		// Draw the background fill and the tooltip text.
-		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
-	}
+	tooltip.Draw();
 }
 
 
