@@ -89,7 +89,7 @@ const Command Command::AUTOSTEER(ONE << 36, "Auto steer");
 // assigned to them, but may have descriptions as needed to facilitate
 // assignments in downstream ports like endless-mobile.
 const Command Command::WAIT(ONE << 37, "");
-const Command Command::STOP(ONE << 38, "Stop Ship");
+const Command Command::STOP(ONE << 38, "Stop your ship");
 const Command Command::SHIFT(ONE << 39, "");
 
 
