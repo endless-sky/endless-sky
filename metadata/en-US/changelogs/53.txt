@@ -1,0 +1,3 @@
+* Bump to upstream 0.10.15
+* Fix wav loading
+* Fix dialog keyboard popup logic

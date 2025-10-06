@@ -33,3 +33,10 @@ tar xjf openal-soft.tar.bz2 -C ../jni/src
 # Uhg... This changes the timestamps in the tarball every time, so the checksum never matches. 
 # echo "Downloading libgav1"
 # curl -Lo libgav1.tar.gz https://chromium.googlesource.com/codecs/libgav1/+archive/c05bf9be660cf170d7c26bd06bb42b3322180e58.tar.gz
+
+
+echo "Downloading dav1d"
+curl -Lo dav1d.tar.xz http://downloads.videolan.org/videolan/dav1d/1.5.1/dav1d-1.5.1.tar.xz
+echo "401813f1f89fa8fd4295805aa5284d9aed9bc7fc1fdbe554af4292f64cbabe21  dav1d.tar.xz" | sha256sum -c - || exit
+tar xf dav1d.tar.xz -C ../jni/src/dav1d/
+
