@@ -99,7 +99,8 @@ Government::Government()
 
 
 // Load a government's definition from a file.
-void Government::Load(const DataNode &node)
+void Government::Load(const DataNode &node, const set<const System *> *visitedSystems,
+	const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() >= 2)
 	{
@@ -355,15 +356,15 @@ void Government::Load(const DataNode &node)
 			}
 		}
 		else if(key == "enforces" && child.HasChildren())
-			enforcementZones.emplace_back(child);
+			enforcementZones.emplace_back(child, visitedSystems, visitedPlanets);
 		else if(key == "provoked on scan")
 			provokedOnScan = true;
 		else if(key == "travel restrictions" && child.HasChildren())
 		{
 			if(add)
-				travelRestrictions.Load(child);
+				travelRestrictions.Load(child, visitedSystems, visitedPlanets);
 			else
-				travelRestrictions = LocationFilter(child);
+				travelRestrictions = LocationFilter(child, visitedSystems, visitedPlanets);
 		}
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)

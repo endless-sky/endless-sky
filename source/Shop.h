@@ -25,19 +25,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class ConditionsStore;
 class Planet;
+class System;
 
 
 
 // Class representing a shop of items. Shops are able to be added to planets to designate
 // that this shop should always stock that planet, or they can be given a condition set and/or
 // location filter that allows them to optionally appear on a planet.
-template <class Item>
+template<class Item>
 class Shop {
 public:
 	Shop();
-	Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions);
+	Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
-	void Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
 	// This shop's name.
 	const std::string &Name() const;
@@ -59,23 +62,25 @@ private:
 
 
 
-template <class Item>
+template<class Item>
 Shop<Item>::Shop()
 {
 }
 
 
 
-template <class Item>
-Shop<Item>::Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions)
+template<class Item>
+Shop<Item>::Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
+	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
 {
-	Load(node, items, playerConditions);
+	Load(node, items, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
-template <class Item>
-void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions)
+template<class Item>
+void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
+	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
 {
 	name = node.Token(1);
 	// If an event or second definition updates this shop, clear the stock
@@ -115,7 +120,7 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 					child.PrintTrace("Warning: Removing full location filter; partial removal is not supported:");
 			}
 			else
-				location.Load(child);
+				location.Load(child, visitedSystems, visitedPlanets);
 		}
 		else if(key == "stock")
 		{
@@ -136,7 +141,7 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 
 
 
-template <class Item>
+template<class Item>
 const std::string &Shop<Item>::Name() const
 {
 	return name;
@@ -144,7 +149,7 @@ const std::string &Shop<Item>::Name() const
 
 
 
-template <class Item>
+template<class Item>
 const Sale<Item> &Shop<Item>::Stock() const
 {
 	return stock;
@@ -152,7 +157,7 @@ const Sale<Item> &Shop<Item>::Stock() const
 
 
 
-template <class Item>
+template<class Item>
 bool Shop<Item>::CanStock(const Planet *planet) const
 {
 	// If this shop doesn't have a defined condition set or location filter,

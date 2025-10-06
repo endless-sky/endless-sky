@@ -21,12 +21,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Point.h"
 #include "ScrollVar.h"
-#include "text/WrappedText.h"
+#include "Tooltip.h"
 
 #include <memory>
 #include <string>
 #include <vector>
 
+class PlayerInfo;
 class RenderBuffer;
 struct Plugin;
 
@@ -35,7 +36,7 @@ struct Plugin;
 // UI panel for editing preferences, especially the key mappings.
 class PreferencesPanel : public Panel {
 public:
-	PreferencesPanel();
+	PreferencesPanel(PlayerInfo &player);
 	virtual ~PreferencesPanel();
 
 	// Draw this panel.
@@ -45,7 +46,7 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Drag(double dx, double dy) override;
@@ -75,6 +76,11 @@ private:
 
 
 private:
+	PlayerInfo &player;
+	// Determine if the player's mission deadlines need to be recached when
+	// this panel is closed due to the deadline blink preference changing.
+	bool recacheDeadlines = false;
+
 	int editing;
 	int selected;
 	int hover;
@@ -85,11 +91,9 @@ private:
 	char page = 'c';
 
 	Point hoverPoint;
-	int hoverCount = 0;
+	Tooltip tooltip;
 	std::string selectedItem;
 	std::string hoverItem;
-	std::string tooltip;
-	WrappedText hoverText;
 
 	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
