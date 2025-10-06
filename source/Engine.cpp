@@ -1144,11 +1144,18 @@ list<ShipEvent> &Engine::Events()
 	return events;
 }
 
-
+uint64_t now()
+{
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	return ts.tv_sec * 1000000000ul + ts.tv_nsec;
+}
 
 // Draw a frame.
 void Engine::Draw() const
 {
+	uint64_t t_0 = now();
+
 	Point motionBlur = camera.Velocity();
 	double baseBlur = Preferences::Has("Render motion blur") ? 1. : 0.;
 
@@ -1161,7 +1168,7 @@ void Engine::Draw() const
 
 	GameData::Background().Draw(motionBlur,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
-
+	uint64_t t_bg = now();
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -1169,9 +1176,11 @@ void Engine::Draw() const
 	if(Preferences::Has("Show planet labels"))
 		for(const PlanetLabel &label : labels)
 			label.Draw();
-
+	uint64_t t_pl = now();
 	draw[currentDrawBuffer].Draw();
+	uint64_t t_draw = now();
 	batchDraw[currentDrawBuffer].Draw();
+	uint64_t t_batch = now();
 
 	for(const auto &it : statuses)
 	{
@@ -1209,11 +1218,12 @@ void Engine::Draw() const
 			RingShader::Draw(pos, radius, 1.5f, it.disabled,
 				Color::Multiply(it.alpha, color[colorIndex]), dashes, it.angle);
 	}
+	uint64_t t_status = now();
 
 	// Draw labels on missiles
 	for(const AlertLabel &label : missileLabels)
 		label.Draw();
-
+	uint64_t t_missiles = now();
 	for(const auto &outline : outlines)
 	{
 		if(!outline.sprite)
@@ -1221,6 +1231,7 @@ void Engine::Draw() const
 		Point size(outline.sprite->Width(), outline.sprite->Height());
 		OutlineShader::Draw(outline.sprite, outline.position, size, outline.color, outline.unit, outline.frame);
 	}
+	uint64_t t_outlines = now();
 
 	// Draw turret overlays.
 	if(!turretOverlays.empty())
@@ -1233,9 +1244,12 @@ void Engine::Draw() const
 				it.isBlind ? blindspot : normal);
 		PointerShader::Unbind();
 	}
+	uint64_t t_turrets = now();
 
 	if(flash)
 		FillShader::Fill(Point(), Screen::Dimensions(), Color(flash, flash));
+	uint64_t t_flash = now();
+	
 
 	// Draw messages. Draw the most recent messages first, as some messages
 	// may be wrapped onto multiple lines.
@@ -1286,6 +1300,7 @@ void Engine::Draw() const
 			: messageAnimation(age) : naturalDecay(age);
 		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
 	}
+	uint64_t t_messages = now();
 
 	// Draw crosshairs around anything that is targeted.
 	for(const Target &target : targets)
@@ -1301,6 +1316,8 @@ void Engine::Draw() const
 		}
 		PointerShader::Unbind();
 	}
+	uint64_t t_crosshairs = now();
+
 
 	// Draw the heads-up display.
 	hud->Draw(info);
@@ -1312,12 +1329,14 @@ void Engine::Draw() const
 			hud->GetValue("radar radius"),
 			hud->GetValue("radar pointer radius"));
 	}
+	uint64_t t_radar = now();
 	if(hud->HasPoint("target") && targetVector.Length() > 20.)
 	{
 		Point center = hud->GetPoint("target");
 		double radius = hud->GetValue("target radius");
 		PointerShader::Draw(center, targetVector.Unit(), 10.f, 10.f, radius, Color(1.f));
 	}
+	uint64_t t_target = now();
 
 	// Draw the faction markers.
 	if(targetSwizzle && hud->HasPoint("faction markers"))
@@ -1331,9 +1350,12 @@ void Engine::Draw() const
 		for(int i = 0; i < 2; ++i)
 			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
 	}
+	uint64_t t_factions = now();
+
 
 	// Draw the systems mini-map.
 	minimap.Draw(step);
+	uint64_t t_minimap = now();
 
 	// map buttons cover up these icons, and provide their own version anyways.
 	if (!Preferences::Has("Show buttons on map"))
@@ -1356,9 +1378,11 @@ void Engine::Draw() const
 			ammoDisplay.Draw(ammo_box, Point(ammoIconWidth, ammoIconHeight));
 		}
 	}
+	uint64_t t_buttons = now();
 
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));
+	uint64_t t_escorts = now();
 
 	// Draw a onscreen joystick in the bottom left corner, if enabled
 	if(Preferences::Has("Onscreen Joystick"))
@@ -1378,6 +1402,7 @@ void Engine::Draw() const
 			RingShader::Draw(jsPos * bounds.Width() / 2 + bounds.Center(), 50, 0, color);
 		}
 	}
+	uint64_t t_joystick = now();
 
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -1385,10 +1410,91 @@ void Engine::Draw() const
 		Color color = *colors.Get("medium");
 		font.Draw(loadString,
 			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
+		static string display_string[3];
+		static uint64_t bg = 0;
+		static uint64_t pl = 0;
+		static uint64_t draw = 0;
+		static uint64_t batch = 0;
+		static uint64_t status = 0;
+		static uint64_t missiles = 0;
+		static uint64_t outlines = 0;
+		static uint64_t turrets = 0;
+		static uint64_t flash = 0;
+		static uint64_t messages = 0;
+		static uint64_t crosshairs = 0;
+		static uint64_t radar = 0;
+		static uint64_t target = 0;
+		static uint64_t factions = 0;
+		static uint64_t minimap = 0;
+		static uint64_t buttons = 0;
+		static uint64_t escorts = 0;
+		static uint64_t joystick = 0;
+		bg += t_bg - t_0;
+		pl += t_pl - t_bg;
+		draw += t_draw - t_pl;
+		batch += t_batch - t_draw;
+		status += t_status - t_batch;
+		missiles += t_missiles - t_status;
+		outlines += t_outlines - t_missiles;
+		turrets += t_turrets - t_outlines;
+		flash += t_flash - t_turrets;
+		messages += t_messages - t_flash;
+		crosshairs += t_crosshairs - t_messages;
+		radar += t_radar - t_crosshairs;
+		target += t_target - t_radar;
+		factions += t_factions - t_target;
+		minimap += t_minimap - t_factions;
+		buttons += t_buttons - t_minimap;
+		escorts += t_escorts - t_buttons;
+		joystick += t_joystick - t_escorts;
+
+		static uint64_t counter = 0;
+		if (++counter == 60)
+		{
+			counter = 0;
+
+			display_string[0]  =  " bg " + std::to_string(bg);
+			display_string[0] +=  " pl " + std::to_string(pl);
+			display_string[0] +=  " dr " + std::to_string(draw);
+			display_string[0] +=  " ba " + std::to_string(batch);
+			display_string[0] +=  " st " + std::to_string(status);
+			display_string[0] +=  " mi " + std::to_string(missiles);
+			display_string[1]  =  " ou " + std::to_string(outlines);
+			display_string[1] +=  " tu " + std::to_string(turrets);
+			display_string[1] +=  " fl " + std::to_string(flash);
+			display_string[1] +=  " me " + std::to_string(messages);
+			display_string[1] +=  " cr " + std::to_string(crosshairs);
+			display_string[1] +=  " ra " + std::to_string(radar);
+			display_string[2]  =  " ta " + std::to_string(target);
+			display_string[2] +=  " fa " + std::to_string(factions);
+			display_string[2] +=  " mi " + std::to_string(minimap);
+			display_string[2] +=  " bu " + std::to_string(buttons);
+			display_string[2] +=  " es " + std::to_string(escorts);
+			display_string[2] +=  " jo " + std::to_string(joystick);
+			bg = 0;
+			pl = 0;
+			draw = 0;
+			batch = 0;
+			status = 0;
+			missiles = 0;
+			outlines = 0;
+			turrets = 0;
+			flash = 0;
+			messages = 0;
+			crosshairs = 0;
+			radar = 0;
+			target = 0;
+			factions = 0;
+			minimap = 0;
+			buttons = 0;
+			escorts = 0;
+			joystick = 0;
+		}
+		FontSet::Get(14).Draw(display_string[0], Point(10., Screen::Height() * -.5 + 24.), color);
+		FontSet::Get(14).Draw(display_string[1], Point(10., Screen::Height() * -.5 + 44.), color);
+		FontSet::Get(14).Draw(display_string[2], Point(10., Screen::Height() * -.5 + 64.), color);
 	}
 }
-
-
 
 // Select the object the player clicked on.
 void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasControl)
