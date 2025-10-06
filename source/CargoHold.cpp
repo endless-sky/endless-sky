@@ -612,8 +612,8 @@ int CargoHold::IllegalCargoFine(const Government *government) const
 	for(const auto &it : missionCargo)
 	{
 		int fine = it.first->Fine();
-		if(fine < 0 && !government->IgnoresUniversalAtrocities())
-			return fine;
+		if(fine < 0)
+			return -1 * government->IgnoresUniversalAtrocities();
 		if(!it.first->IsFailed() && !government->IgnoresUniversalIllegals())
 			totalFine += fine;
 	}
@@ -629,8 +629,8 @@ int CargoHold::IllegalPassengersFine(const Government *government) const
 	for(const auto &it : passengers)
 	{
 		int fine = it.first->Fine();
-		if(fine < 0 && !government->IgnoresUniversalAtrocities())
-			return fine;
+		if(fine < 0)
+			return -1 * government->IgnoresUniversalAtrocities();
 		if(!it.first->IsFailed() && !government->IgnoresUniversalIllegals())
 			totalFine += fine;
 	}
