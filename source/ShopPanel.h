@@ -32,8 +32,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class CategoryList;
 class Outfit;
 class Planet;
@@ -114,7 +112,7 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
-	void DrawButton(const std::string &name, const Rectangle, bool isActive, bool hovering, char keyCode);
+	void DrawButton(const std::string &name, const Rectangle &buttonShape, bool isActive, bool hovering, char keyCode);
 	void CheckSelection();
 
 
