@@ -32,12 +32,10 @@ class WrappedText;
 // Implement a collection of text and image nodes which form a singular Logbook entry
 class BookEntry {
 public:
-	typedef std::variant<std::monostate, const Sprite *, std::string> BookEntryItem;
+	typedef std::variant<std::monostate, const Sprite *, std::string> Item;
 
 
 public:
-	BookEntry() = default;
-
 	bool Empty() const;
 	void Read(const DataNode &node, int startAt = 0);
 	void Add(const BookEntry &other);
@@ -56,5 +54,5 @@ private:
 
 
 private:
-	std::vector<BookEntryItem> items;
+	std::vector<Item> items;
 };

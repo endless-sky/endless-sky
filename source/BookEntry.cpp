@@ -31,7 +31,7 @@ bool BookEntry::Empty() const
 {
 	if(items.empty())
 		return true;
-	for(const BookEntryItem &item : items)
+	for(const Item &item : items)
 		if(!std::holds_alternative<std::monostate>(item))
 			return false;
 	return true;
@@ -60,7 +60,7 @@ void BookEntry::Add(const BookEntry &other)
 BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 {
 	BookEntry newEntry;
-	for(const BookEntryItem &item : items)
+	for(const Item &item : items)
 	{
 		// Perform requested substitutions on the text of this node and return a new variant.
 		if(holds_alternative<string>(item))
@@ -76,7 +76,7 @@ BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 void BookEntry::Save(DataWriter &out) const
 {
 	out.BeginChild();
-	for(const BookEntryItem &item : items)
+	for(const Item &item : items)
 	{
 		{
 			// Break the text up into paragraphs.
@@ -95,7 +95,7 @@ void BookEntry::Save(DataWriter &out) const
 int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const
 {
 	Point drawPoint = topLeft;
-	for(const BookEntryItem &item : items)
+	for(const Item &item : items)
 	{
 		if(holds_alternative<string>(item))
 		{
