@@ -5013,7 +5013,7 @@ void Ship::StepTargeting()
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::Highest);
+						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::HighestNoRepeat);
 				}
 				else
 				{
