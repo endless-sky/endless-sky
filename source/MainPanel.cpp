@@ -59,8 +59,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "image/SpriteSet.h"
 
-#include <malloc.h>
-
 using namespace std;
 
 
@@ -185,14 +183,9 @@ void MainPanel::Draw()
 
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
-		static auto info = mallinfo2();
-
 		string loadString = to_string(lround(load * 100.)) + "% GPU";
 		const Color &color = *GameData::Colors().Get("medium");
 		FontSet::Get(14).Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
-
-		FontSet::Get(14).Draw("malloc " + to_string(info.uordblks / 1024 / 1024) + "MB", Point(-100., Screen::Height() * -.5 + 24.), color);
-
 
 		loadSum += loadTimer.Time();
 		if(++loadCount == 60)
@@ -200,7 +193,6 @@ void MainPanel::Draw()
 			load = loadSum;
 			loadSum = 0.;
 			loadCount = 0;
-			info = mallinfo2();
 		}
 	}
 
