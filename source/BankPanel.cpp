@@ -71,7 +71,7 @@ void BankPanel::Step()
 void BankPanel::Draw()
 {
 	// Draw the "Pay All" button.
-	const Interface *bankUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "bank (small screen)" : "bank");
+	const Interface *bankUi = GameData::Interfaces().Get("bank");
 	const Rectangle box = bankUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();
@@ -321,7 +321,7 @@ bool BankPanel::Click(int x, int y, MouseButton button, int clicks)
 	if(button != MouseButton::LEFT)
 		return false;
 
-	const Interface *bankUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "bank (small screen)" : "bank");
+	const Interface *bankUi = GameData::Interfaces().Get("bank");
 	const Rectangle box = bankUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();
