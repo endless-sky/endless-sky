@@ -402,8 +402,7 @@ namespace {
 
 
 
-AI::AI(PlayerInfo &player, const List<Ship> &ships,
-		const List<Minable> &minables, const List<Flotsam> &flotsam)
+AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
 	// Allocate a starting amount of hardpoints for ships.
@@ -4266,12 +4265,17 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			else if(selectNext && isPlayer == shift && other->IsTargetable())
 			{
 				ship.SetTargetShip(other);
+				if(isPlayer)
+					player.SelectShip(other.get(), false);
 				selectNext = false;
 				break;
 			}
 		}
 		if(selectNext)
+		{
 			ship.SetTargetShip(shared_ptr<Ship>());
+			player.SelectShip(nullptr, false);
+		}
 		else
 			UI::PlaySound(UI::UISound::TARGET);
 	}
