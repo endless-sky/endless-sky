@@ -2496,7 +2496,10 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	bool facingAgainstTarget = angle.Unit().Dot(-wantedAcceleration.Unit()) > .9;
 	bool hasCruiseSpeed = (cruiseSpeed > 0.);
 
-	if(reverseTime < forwardTime)
+	bool canMatchVelocityForward = ship.MaxVelocity() * ship.MaxVelocity() >= targetVelocity.LengthSquared();
+	bool canMatchVelocityReverse = ship.MaxReverseVelocity() * ship.MaxReverseVelocity() >= targetVelocity.LengthSquared();
+	if((canMatchVelocityReverse && (reverseTime < forwardTime || !canMatchVelocityForward))
+			|| (!canMatchVelocityReverse && !canMatchVelocityForward && reverseTime < forwardTime))
 		command.SetTurn(TurnToward(ship, -wantedAcceleration));
 	else
 		command.SetTurn(TurnToward(ship, wantedAcceleration));
