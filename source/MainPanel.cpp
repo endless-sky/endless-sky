@@ -160,24 +160,14 @@ void MainPanel::Step()
 	canClick = isActive;
 }
 
-uint64_t now()
-{
-	struct timespec ts;
-	clock_gettime(CLOCK_MONOTONIC, &ts);
-	return ts.tv_sec * 1000000000ul + ts.tv_nsec;
-}
+
 
 void MainPanel::Draw()
 {
-	uint64_t t_0 = now();
 	FrameTimer loadTimer;
-	uint64_t t_timer = now();
-
 	glClear(GL_COLOR_BUFFER_BIT);
-	uint64_t t_clear = now();
 
 	engine.Draw();
-	uint64_t t_draw = now();
 
 	if(isDragging)
 	{
@@ -192,7 +182,6 @@ void MainPanel::Draw()
 		else
 			isDragging = false;
 	}
-	uint64_t t_drag = now();
 
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -206,40 +195,13 @@ void MainPanel::Draw()
 
 
 		loadSum += loadTimer.Time();
-		uint64_t t_stats = now();
-
-		static std::string stat_display;
-		static uint64_t timer = 0;
-		static uint64_t clear = 0;
-		static uint64_t draw = 0;
-		static uint64_t drag = 0;
-		static uint64_t stats = 0;
-		timer += t_timer - t_0;
-		clear += t_clear - t_timer;
-		draw += t_draw - t_clear;
-		drag += t_drag - t_draw;
-		stats += t_stats - t_drag;
-
 		if(++loadCount == 60)
 		{
 			load = loadSum;
 			loadSum = 0.;
 			loadCount = 0;
 			info = mallinfo2();
-
-			stat_display  = " ti " + std::to_string(timer);
-			stat_display += " cl " + std::to_string(clear);
-			stat_display += " dr " + std::to_string(draw);
-			stat_display += " dg " + std::to_string(drag);
-			stat_display += " st " + std::to_string(stats);
-			timer = 0;
-			clear = 0;
-			draw = 0;
-			drag = 0;
-			stats = 0;
 		}
-		
-		FontSet::Get(14).Draw(stat_display, Point(-150., Screen::Height() * -.5 + 44.), color);
 	}
 
 	bool isActive = (GetUI()->Top().get() == this);
