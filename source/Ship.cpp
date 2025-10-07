@@ -4645,7 +4645,7 @@ bool Ship::DoLandingLogic()
 		if(GetTargetStellar())
 			position = .97 * position + .03 * GetTargetStellar()->Position();
 		zoom -= landingSpeed;
-		if(zoom < 0.f)
+		if(zoom <= 0.f)
 		{
 			// If this is not a special ship, it ceases to exist when it
 			// lands on a true planet. If this is a wormhole, the ship is
