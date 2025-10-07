@@ -1570,8 +1570,8 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 
 
 
-// Check if the given point is within the button zone (default is to return ' '), and if the point is within a button,
-// return letter of the button, and if not within the button panel at all, return '\0'.
+// Check if the given point is within the button zone, and if so return the letter of the button.
+// Returns '\0' if the click is not within the panel, and ' ' if it's within the panel but not on a button.
 char ShopPanel::CheckButton(int x, int y)
 {
 	// Check the Find button.
