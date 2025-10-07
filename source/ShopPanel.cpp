@@ -970,6 +970,7 @@ void ShopPanel::DrawButtons()
 	const Sprite *findIcon =
 		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
 	SpriteShader::Draw(findIcon, findCenter);
+	buttonZones.emplace_back(Rectangle(findCenter, {findIcon->Width(), findIcon->Height()}), 'f');
 	static const string FIND = "_Find";
 
 	int modifier = Modifier();
@@ -1438,7 +1439,7 @@ void ShopPanel::MainDown()
 
 
 
-void ShopPanel::DrawButton(const string &name, const Rectangle buttonShape, bool isActive,
+void ShopPanel::DrawButton(const string &name, const Rectangle &buttonShape, bool isActive,
 	bool hovering, char keyCode)
 {
 	const Font &bigFont = FontSet::Get(18);
@@ -1574,20 +1575,15 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 // Returns '\0' if the click is not within the panel, and ' ' if it's within the panel but not on a button.
 char ShopPanel::CheckButton(int x, int y)
 {
-	// Check the Find button.
-	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
-		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
-		return 'f';
-
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
-		return '\0';
-
 	const Point clickPoint(x, y);
 
 	// Check all the buttonZones.
 	for(const ClickZone<char> zone : buttonZones)
 		if(zone.Contains(clickPoint))
 			return zone.Value();
+
+	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
+		return '\0';
 
 	// Returning space here ensures that hover text for the ship info panel is supressed.
 	return ' ';
