@@ -20,10 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryList.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "text/Format.h"
-#include "FrameTimer.h"
 #include "GameData.h"
 #include "Government.h"
 #include "HailPanel.h"
@@ -38,7 +35,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Preferences.h"
-#include "Screen.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "StellarObject.h"
@@ -142,7 +138,6 @@ void MainPanel::Step()
 
 void MainPanel::Draw()
 {
-	FrameTimer loadTimer;
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	engine.Draw();
@@ -159,21 +154,6 @@ void MainPanel::Draw()
 		}
 		else
 			isDragging = false;
-	}
-
-	if(Preferences::Has("Show CPU / GPU load"))
-	{
-		string loadString = to_string(lround(load * 100.)) + "% GPU";
-		const Color &color = *GameData::Colors().Get("medium");
-		FontSet::Get(14).Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
-
-		loadSum += loadTimer.Time();
-		if(++loadCount == 60)
-		{
-			load = loadSum;
-			loadSum = 0.;
-			loadCount = 0;
-		}
 	}
 }
 

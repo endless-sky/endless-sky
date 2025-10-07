@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "Files.h"
 #include "text/Font.h"
+#include "text/FontSet.h"
+#include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
@@ -60,6 +62,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+
+#define PSAPI_VERSION 1
+#include <psapi.h>
+#elif defined(__APPLE__)
+#include <mach/task_info.h>
+#else
+#include <fstream>
+#include <unistd.h>
 #endif
 
 using namespace std;
@@ -288,9 +298,6 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	bool isDebugPaused = false;
 	bool isFastForward = false;
 
-	// If fast forwarding, keep track of whether the current frame should be drawn.
-	int skipFrame = 0;
-
 	// Limit how quickly full-screen mode can be toggled.
 	int toggleTimeout = 0;
 
@@ -366,8 +373,17 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// Game loop when running the game normally.
 	if(!testContext.CurrentTest())
 	{
+		chrono::steady_clock::duration cpuLoadSum{};
+		string cpuLoadString{};
+		chrono::steady_clock::duration gpuLoadSum{};
+		string gpuLoadString{};
+		string ramString;
+		int step = 0;
+
 		while(!menuPanels.IsDone())
 		{
+			if(++step == 60)
+				step = 0;
 			if(toggleTimeout)
 				--toggleTimeout;
 			chrono::steady_clock::time_point start = chrono::steady_clock::now();
@@ -416,15 +432,14 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					timer.SetFrameRate(frameRate);
 				}
 
-				if(isFastForward && inFlight)
-				{
-					skipFrame = (skipFrame + 1) % 3;
-					if(skipFrame)
-						continue;
-				}
+				if(isFastForward && inFlight && step % 3)
+					continue;
 			}
 
 			Audio::Step(isFastForward);
+
+			cpuLoadSum += chrono::steady_clock::now() - start;
+			chrono::steady_clock::time_point drawStart = chrono::steady_clock::now();
 
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
@@ -435,6 +450,43 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				SpriteShader::Draw(SpriteSet::Get("ui/paused"), Screen::TopLeft() + Point(10., 10.));
 			else if(isFastForward)
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
+
+			gpuLoadSum += chrono::steady_clock::now() - drawStart;
+
+			if(Preferences::Has("Show CPU / GPU load"))
+			{
+				static const Font &font = FontSet::Get(14);
+				static const Color &medium = *GameData::Colors().Get("medium");
+				font.Draw(cpuLoadString, Point(-40., Screen::Height() * -.5 + 5.), medium);
+				font.Draw(gpuLoadString, Point(-40., Screen::Height() * -.5 + 19.), medium);
+				font.Draw(ramString, Point(-40., Screen::Height() * -.5 + 33.), medium);
+				if(!step)
+				{
+					cpuLoadString = "CPU: " + Format::Decimal(
+						chrono::duration_cast<chrono::nanoseconds>(cpuLoadSum).count() / 6e6, 2) + " ms";
+					cpuLoadSum = {};
+					gpuLoadString = "GPU: " + Format::Decimal(
+						chrono::duration_cast<chrono::nanoseconds>(gpuLoadSum).count() / 6e6, 2) + " ms";
+					gpuLoadSum = {};
+					static size_t virtualMemoryUse;
+#ifdef _WIN32
+					static PROCESS_MEMORY_COUNTERS info;
+					GetProcessMemoryInfo(GetCurrentProcess(), &info, sizeof(info));
+					virtualMemoryUse = info.PagefileUsage;
+#elif defined(__APPLE__)
+					static mach_task_basic_info_data_t info;
+					static mach_msg_type_number_t infoSize = MACH_TASK_BASIC_INFO_COUNT;
+					task_info(mach_task_self(), MACH_TASK_BASIC_INFO, &info, &infoSize);
+					virtualMemoryUse = info.virtual_size;
+#else
+					static string statmStr;
+					ifstream statm{"/proc/self/statm"};
+					getline(statm, statmStr, ' ');
+					virtualMemoryUse = stoul(statmStr) * getpagesize();
+#endif
+					ramString = "MEM: " + Format::Decimal(virtualMemoryUse / 1048576., 2) + " MB";
+				}
+			}
 
 			GameWindow::Step();
 
