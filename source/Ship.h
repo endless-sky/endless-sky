@@ -425,9 +425,11 @@ public:
 	double MaxVelocity(bool withAfterburner = false) const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
-	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
+	// These values are the ship's current maximum acceleration and turn rate,
+	// accounting for factors such as slowing and crew count.
 	double TrueAcceleration() const;
 	double TrueTurnRate() const;
+	double TrueReverseAcceleration() const;
 	// The ship's current speed right now
 	double CurrentSpeed() const;
 
