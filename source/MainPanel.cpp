@@ -172,7 +172,8 @@ void MainPanel::Draw()
 	uint64_t t_0 = now();
 	FrameTimer loadTimer;
 	uint64_t t_timer = now();
-
+	glFinish();
+	uint64_t t_finish = now();
 	glClear(GL_COLOR_BUFFER_BIT);
 	uint64_t t_clear = now();
 
@@ -210,12 +211,14 @@ void MainPanel::Draw()
 
 		static std::string stat_display;
 		static uint64_t timer = 0;
+		static uint64_t finish = 0;
 		static uint64_t clear = 0;
 		static uint64_t draw = 0;
 		static uint64_t drag = 0;
 		static uint64_t stats = 0;
 		timer += t_timer - t_0;
-		clear += t_clear - t_timer;
+		finish += t_finish - t_timer;
+		clear += t_clear - t_finish;
 		draw += t_draw - t_clear;
 		drag += t_drag - t_draw;
 		stats += t_stats - t_drag;
@@ -228,18 +231,20 @@ void MainPanel::Draw()
 			info = mallinfo2();
 
 			stat_display  = " ti " + std::to_string(timer);
+			stat_display += " fi " + std::to_string(finish);
 			stat_display += " cl " + std::to_string(clear);
 			stat_display += " dr " + std::to_string(draw);
 			stat_display += " dg " + std::to_string(drag);
 			stat_display += " st " + std::to_string(stats);
 			timer = 0;
+			finish = 0;
 			clear = 0;
 			draw = 0;
 			drag = 0;
 			stats = 0;
 		}
 		
-		FontSet::Get(14).Draw(stat_display, Point(-150., Screen::Height() * -.5 + 44.), color);
+		FontSet::Get(14).Draw(stat_display, Point(-150., Screen::Height() * -.5 + 84.), color);
 	}
 
 	bool isActive = (GetUI()->Top().get() == this);
