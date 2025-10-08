@@ -434,7 +434,10 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				}
 
 				if(isFastForward && inFlight && step % 3)
+				{
+					cpuLoadSum += chrono::steady_clock::now() - start;
 					continue;
+				}
 			}
 
 			Audio::Step(isFastForward);

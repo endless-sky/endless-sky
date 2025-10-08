@@ -1410,7 +1410,7 @@ tip "Camera acceleration"
 	`Determines whether the screen center is fixed on, trails behind, or speeds ahead of the flagship while accelerating.`
 
 tip "Show CPU / GPU load"
-	`Display the CPU and GPU load, and virtual memory usage at the top of the screen. Loads are presented as the time that it takes to calculate or draw each frame. >16.66 ms loads (or CPU load >5.55 ms when fast-forward is active) means the game will run slower.`
+	`Display the CPU and GPU load, and virtual memory usage at the top of the screen. Loads are presented as the time that it takes to calculate or draw each frame. >16.66 ms loads (or CPU load >50 ms when fast-forward is active) mean the game will run slower.`
 
 tip "Render motion blur"
 	`Toggle whether motion blur is rendered for all moving objects.`
