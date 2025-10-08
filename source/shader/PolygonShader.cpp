@@ -93,7 +93,7 @@ void PolygonShader::Draw(const vector<Point> &polygon, const Color &insideColor,
 
 	GLfloat positions[N][2];
 	int i = 0;
-	for(auto point: polygon)
+	for(auto point : polygon)
 	{
 		positions[i][0] = static_cast<GLfloat>(point.X());
 		positions[i][1] = static_cast<GLfloat>(point.Y());

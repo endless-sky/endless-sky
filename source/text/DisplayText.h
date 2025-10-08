@@ -20,16 +20,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-class Sprite;
-class Point;
 class Color;
+class Point;
+class Sprite;
 
 
 
 // Class for holding a displayed text and layout.
 class DisplayText {
 public:
-	static constexpr char SPRITE_PLACEHOLDER = 28; /* ASCII: File Separator */
+	// ASCII 28 is "File Separator"
+	static constexpr char SPRITE_PLACEHOLDER = 28;
 
 
 public:

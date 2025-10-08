@@ -1,4 +1,4 @@
-/* HailOverlay.cpp
+/* HelpOverlay.cpp
 Copyright (c) 2025 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
