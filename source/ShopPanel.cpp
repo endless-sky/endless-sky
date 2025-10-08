@@ -142,11 +142,12 @@ void ShopPanel::Draw()
 	DrawButtons();
 	DrawKey();
 
-	// Draw the Find button.
+	// Draw the Find button. Note: buttonZones are cleared in DrawButtons.
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
 	const Sprite *findIcon =
 		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
 	SpriteShader::Draw(findIcon, findCenter);
+	buttonZones.emplace_back(Rectangle(findCenter, {findIcon->Width(), findIcon->Height()}), 'f');
 	static const string FIND = "_Find";
 
 	shipInfo.DrawTooltips();
@@ -189,6 +190,14 @@ void ShopPanel::Draw()
 		if(selected != zones.end())
 			MainAutoScroll(selected);
 	}
+}
+
+
+
+void ShopPanel::UpdateTooltipActivation()
+{
+	shipsTooltip.UpdateActivationCount();
+	creditsTooltip.UpdateActivationCount();
 }
 
 
@@ -1295,7 +1304,7 @@ void ShopPanel::MainDown()
 
 
 
-void ShopPanel::DrawButton(const string &name, const Rectangle buttonShape, bool isActive,
+void ShopPanel::DrawButton(const string &name, const Rectangle &buttonShape, bool isActive,
 	bool hovering, char keyCode)
 {
 	const Font &bigFont = FontSet::Get(18);
@@ -1427,24 +1436,19 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 
 
 
-// Check if the given point is within the button zone (default is to return ' '), and if the point is within a button,
-// return letter of the button, and if not within the button panel at all, return '\0'.
+// Check if the given point is within the button zone, and if so return the letter of the button.
+// Returns '\0' if the click is not within the panel, and ' ' if it's within the panel but not on a button.
 char ShopPanel::CheckButton(int x, int y)
 {
-	// Check the Find button.
-	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
-		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
-		return 'f';
-
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
-		return '\0';
-
 	const Point clickPoint(x, y);
 
 	// Check all the buttonZones.
 	for(const ClickZone<char> zone : buttonZones)
 		if(zone.Contains(clickPoint))
 			return zone.Value();
+
+	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
+		return '\0';
 
 	// Returning space here ensures that hover text for the ship info panel is supressed.
 	return ' ';
