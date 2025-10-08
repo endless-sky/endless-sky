@@ -103,7 +103,7 @@ void PolygonShader::Draw(const vector<Point> &polygon, const Color &insideColor,
 	glUniform2fv(polygonI, i, *positions);
 	glUniform1i(numSidesI, i);
 
-	glUniform1i(borderWidthI, borderWidth);
+	glUniform1f(borderWidthI, borderWidth);
 
 	glUniform4fv(insideColorI, 1, insideColor.Get());
 	glUniform4fv(borderColorI, 1, borderColor.Opaque().Get());

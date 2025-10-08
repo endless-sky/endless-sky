@@ -22,7 +22,7 @@ uniform int numSides;
 uniform vec2[N] polygon;
 uniform vec4 insideColor;
 uniform vec4 borderColor;
-uniform int borderWidth;
+uniform float borderWidth;
 
 in vec2 pos;
 out vec4 finalColor;
