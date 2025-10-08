@@ -477,7 +477,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 #elif defined(__APPLE__)
 					static mach_task_basic_info_data_t info;
 					static mach_msg_type_number_t infoSize = MACH_TASK_BASIC_INFO_COUNT;
-					task_info(mach_task_self(), MACH_TASK_BASIC_INFO, static_cast<task_info_t>(&info), &infoSize);
+					task_info(mach_task_self(), MACH_TASK_BASIC_INFO, reinterpret_cast<task_info_t>(&info), &infoSize);
 					virtualMemoryUse = info.virtual_size;
 #else
 					static string statmStr;
