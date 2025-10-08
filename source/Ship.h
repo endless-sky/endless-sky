@@ -718,7 +718,11 @@ private:
 	std::array<uint8_t, 4> thrustHeldFrames = {};
 
 	int crew = 0;
+	// Ticks until piloting is no longer inhibited.
+	// Zero value means piloting is uninhibited.
 	int pilotError = 0;
+	// Ticks until piloting can become inhibited by low crew.
+	// Zero value means low crew can (but not necessarily will) inhibit piloting.
 	int pilotOkay = 0;
 
 	// Current status of this particular ship:
