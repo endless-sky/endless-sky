@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/WrappedText.h"
 
 #include <map>
+#include <SDL_keycode.h>
 #include <string>
 #include <vector>
 
@@ -96,7 +97,7 @@ private:
 
 		// Set the conditions that control when this element is visible and active.
 		// An empty string means it is always visible or active.
-		void SetConditions(const std::string &visible, const std::string &active);
+		void SetConditions(const std::string &visible, const std::string &active, const std::string &hover);
 
 		// Get the bounding rectangle, given the current screen dimensions.
 		Rectangle Bounds() const;
@@ -122,6 +123,7 @@ private:
 		Point padding;
 		std::string visibleIf;
 		std::string activeIf;
+		std::string hoverIf;
 	};
 
 	// This class handles "sprite", "image", and "outline" elements.
@@ -177,7 +179,7 @@ private:
 		// Color for inactive, active, and hover states.
 		const Color *color[3] = {nullptr, nullptr, nullptr};
 		int fontSize = 14;
-		char buttonKey = '\0';
+		SDL_Keycode buttonKey = '\0';
 		bool isDynamic = false;
 		Truncate truncate = Truncate::NONE;
 	};
