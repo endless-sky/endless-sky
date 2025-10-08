@@ -179,7 +179,7 @@ void PlanetPanel::Draw()
 			info.SetCondition("has outfitter");
 	}
 
-	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	const Interface *ui = GameData::Interfaces().Get("planet");
 	ui->Draw(info, this);
 
 	// The description text needs to be updated because player conditions can be changed
