@@ -11,6 +11,10 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+color "infotag background" .2 .2 .2 1.
+color "medium" .5 .5 .5 0.
+color "white" 1. 1. 1. 0.
+
 help "bank"
 	`This is the bank. Here, you can apply for new mortgages, if your income and credit history allows it. The bank is also a good place to get an overview of your daily expenses: mortgage payments, crew salaries, etc.`
 	`Paying off a mortgage early means you pay less interest to the bank, but it is sometimes wiser to instead use your money to buy a bigger ship which can earn you more income.`
@@ -178,10 +182,6 @@ help "stranded"
 	`Oops! You just ran out of fuel in an uninhabited star system. Fortunately, other ships are willing to help you.`
 	`Press <Select next ship> to cycle through all the ships in this system. When you have a friendly one selected, press <Talk to selected ship> to hail it. You can then ask for help, and if it has fuel to spare it will fly over and transfer fuel to your ship. This is easiest for the other ship to do if your ship is nearly stationary.`
 
-help "trading"
-	`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press "+" or "-" (or Enter and Delete).`
-	`You can buy 5 tons at once by holding down Shift, 20 by holding down Control, 500 by holding down Alt, or larger amounts at a time by holding down two keys at once, or even all three.`
-
 help "friendly disabled"
 	`This ship is disabled and needs your help to patch them up! Pressing <Board selected ship> will fly you to their ship and get them up and running again. Just be sure to do it when no one is trying to kill you, or they could get caught in the crossfire!`
 
@@ -193,3 +193,183 @@ help "control ship with mouse"
 	`<Reverse> is used to thrust reverse.`
 	`Right mouse click will fire primary weapons.`
 	`<Mouse turning (hold)> will toggle mouse turning while it is held.`
+
+interface "help overlay: planet"
+	visible if "has shipyard"
+	infotag "shipyard key"
+		anchor 410 90
+		width 300
+		shrink
+		ear
+			facing west
+			affinity center
+			length 15
+		text
+			`<S>`
+		alignment center
+	
+	visible if "has outfitter"
+	infotag "outfitter key"
+		anchor 410 150
+		width 300
+		shrink
+		ear
+			facing west
+			affinity center
+			length 15
+		text
+			`<O>`
+		alignment center
+		
+	visible if "can hire crew"
+	infotag "hire key"
+		anchor 410 210
+		width 300
+		shrink
+		ear
+			facing west
+			affinity center
+			length 15
+		text
+			`<H>`
+		alignment center
+		
+	infotag "depart key"
+		anchor 410 270
+		width 300
+		shrink
+		ear
+			facing west
+			affinity center
+			length 15
+		text
+			`<D>`
+		alignment center
+	
+	visible if "has trade"
+	infotag "trade key"
+		anchor -410 90
+		width 300
+		shrink
+		ear
+			facing east
+			affinity center
+			length 15
+		text
+			`<T>`
+		alignment center
+		
+	visible if "has job board"
+	infotag "job board key"
+		anchor -410 150
+		width 300
+		shrink
+		ear
+			facing east
+			affinity center
+			length 15
+		text
+			`<J>`
+		alignment center
+	
+	visible if "has bank"
+	infotag "bank key"
+		anchor -410 210
+		width 300
+		shrink
+		ear
+			facing east
+			affinity center
+			length 15
+		text
+			`<B>`
+		alignment center
+	
+	visible if "has port"
+	infotag "port key"
+		anchor -410 270
+		width 300
+		shrink
+		ear
+			facing east
+			affinity center
+			length 15
+		text
+			`<P>`
+		alignment center
+		
+interface "help overlay: trading"
+	include "help overlay: planet"
+	
+	infotag "main"
+		anchor 0 0
+		width 600
+		ear
+			facing south
+			affinity center
+			length 0
+		text
+			`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press <+> or <-> (or <Enter> and <Delete>).`
+			`You can buy 5 tons at once by holding down <Shift>, 20 by holding down <Control>, 500 by holding down <Alt>, or larger amounts at a time by holding down two keys at once, or even all three.`
+		alignment justified
+
+	infotag "buy all keys"
+		anchor 100 370
+		width 350
+		shrink
+		ear
+			facing north
+			affinity cw
+			length 15
+		shrink
+		text 
+			`<U> or <Shift>+<B>`
+		alignment center
+
+	infotag "sell all keys"
+		anchor 190 370
+		width 350
+		shrink
+		ear
+			facing north
+			affinity ccw
+			length 15
+		text 
+			`<E> or <Shift>+<S>`
+		alignment center
+
+	infotag "sell key"
+		anchor 140 80
+		width 350
+		shrink
+		ear
+			facing south
+			affinity cw
+			length 15
+		text 
+			`<-> or <Delete>`
+		alignment center
+		
+	infotag "buy key"
+		anchor 80 80
+		width 350
+		shrink
+		ear
+			facing south
+			affinity ccw
+			length 15
+		text 
+			`<+> or <Enter>`
+		alignment center
+		
+	infotag "up down"
+		anchor -200 80
+		width 350
+		shrink
+		ear
+			facing south
+			affinity center
+			length 15
+		text 
+			`<Up> or <Dn> to change selection`
+		alignment center

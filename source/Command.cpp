@@ -26,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <map>
 
+#include "Logger.h"
+
 using namespace std;
 
 namespace {
@@ -91,13 +93,83 @@ const Command Command::SHIFT(ONE << 39, "");
 
 
 // In the given text, replace any instances of command names (in angle brackets)
-// with key names (in quotes).
+// with key names (using key sprites).
 string Command::ReplaceNamesWithKeys(const string &text)
 {
+	string replacement;
 	map<string, string> subs;
 	for(const auto &it : description)
-		subs['<' + it.second + '>'] = '"' + keyName[it.first] + '"';
+	{
+		auto found = subs.find('<' + it.second + '>');
+		if(found != subs.end() && !found->second.empty())
+			continue;
+		if(keyName[it.first].length() <= 3)
+			replacement = "<sprite:ui/help/keyboard_square:" + keyName[it.first] + '>';
+		else if(keyName[it.first].length() <= 4)
+			replacement = "<sprite:ui/help/keyboard_mid:" + keyName[it.first] + '>';
+		else
+			replacement = "<sprite:ui/help/keyboard_wide:" + keyName[it.first] + '>';
+		subs['<' + it.second + '>'] = replacement;
+	}
 
+	// This expands out any obvious keys that were also found:
+	size_t start = 0;
+	size_t search = start;
+	string key;
+	while(search < text.length())
+	{
+		size_t left = text.find('<', search);
+		if(left == string::npos)
+			break;
+
+		size_t right = text.find('>', left);
+		if(right == string::npos)
+			break;
+
+		key.assign(text, left + 1, right - left - 1);
+		if(SDL_GetKeyFromName(key.c_str()) == SDLK_UNKNOWN)
+		{
+			search = right + 1;
+			continue;
+		}
+		if(key.length() <= 3)
+			replacement = "<sprite:ui/help/keyboard_square:" + key + '>';
+		else if(key.length() <= 4)
+			replacement = "<sprite:ui/help/keyboard_mid:" + key + '>';
+		else
+			replacement = "<sprite:ui/help/keyboard_wide:" + key + '>';
+		subs['<' + key + '>'] = replacement;
+		search = right + 1;
+	}
+
+#ifdef __APPLE__
+	subs["<Alt>"] = "<sprite:ui/help/keyboard_wide:Option>";
+	subs["<Control>"] = "<sprite:ui/help/keyboard_wide:Command>";
+	subs["<Ctrl>"] = "<sprite:ui/help/keyboard_wide:Command>";
+#else
+	subs["<Alt>"] = "<sprite:ui/help/keyboard_mid:Alt>";
+	subs["<Control>"] = "<sprite:ui/help/keyboard_mid:Ctrl>";
+	subs["<Ctrl>"] = "<sprite:ui/help/keyboard_mid:Ctrl>";
+#endif
+	subs["<Backspace>"] = "<sprite:ui/help/keyboard_mid:Bksp>";
+	subs["<Delete>"] = "<sprite:ui/help/keyboard_square:Del>";
+	subs["<Del>"] = "<sprite:ui/help/keyboard_square:Del>";
+	subs["<Enter>"] = "<sprite:ui/help/keyboard_wide:Enter>";
+	subs["<Esc>"] = "<sprite:ui/help/keyboard_square:Esc>";
+	subs["<Escape>"] = "<sprite:ui/help/keyboard_square:Esc>";
+	subs["<Return>"] = "<sprite:ui/help/keyboard_wide:Enter>";
+	subs["<Shift>"] = "<sprite:ui/help/keyboard_wide:Shift>";
+	// Arrows
+	subs["<Up>"] = "<sprite:ui/help/keyboard_square:Up>";
+	subs["<Down>"] = "<sprite:ui/help/keyboard_square:Dn>";
+	subs["<Dn>"] = "<sprite:ui/help/keyboard_square:Dn>";
+	subs["<Left>"] = "<sprite:ui/help/keyboard_square:Lft>";
+	subs["<Lft>"] = "<sprite:ui/help/keyboard_square:Lft>";
+	subs["<Rt>"] = "<sprite:ui/help/keyboard_square:Rt>";
+	subs["<Right>"] = "<sprite:ui/help/keyboard_square:Rt>";
+	// TODO: what about left/right carets?
+
+	// TODO : case-insensitive replacements...
 	return Format::Replace(text, subs);
 }
 

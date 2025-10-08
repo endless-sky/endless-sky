@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 
 #include "Angle.h"
+#include "Command.h"
 #include "DataNode.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
@@ -23,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
+#include "InfoTag.h"
 #include "text/Layout.h"
 #include "shader/LineShader.h"
 #include "shader/OutlineShader.h"
@@ -40,6 +42,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 
 using namespace std;
+
+
 
 namespace {
 	// Parse a set of tokens that specify horizontal and vertical alignment.
@@ -121,6 +125,21 @@ void Interface::Load(const DataNode &node)
 			else
 				str.clear();
 		}
+		else if(key == "include" && child.Size() == 2)
+		{
+			const Interface *other = GameData::Interfaces().Get(child.Token(1));
+			if(other)
+			{
+				elements.insert(elements.end(), other->elements.cbegin(), other->elements.cend());
+				points.insert(other->points.begin(), other->points.end());
+				values.insert(other->values.begin(), other->values.end());
+				values.insert(other->values.begin(), other->values.end());
+				lists.insert(other->lists.begin(), other->lists.end());
+				for(auto &element : elements)
+					element->SetConditions(visibleIf, activeIf);
+			} else
+				child.PrintTrace("Failed to include undefined interface:");
+		}
 		else
 		{
 			// Check if this node specifies a known element type.
@@ -137,6 +156,8 @@ void Interface::Load(const DataNode &node)
 				elements.push_back(new PointerElement(child, anchor));
 			else if(key == "line")
 				elements.push_back(new LineElement(child, anchor));
+			else if(key == "infotag")
+				elements.push_back(new InfoTagElement(child, anchor));
 			else
 			{
 				child.PrintTrace("Skipping unrecognized element:");
@@ -245,7 +266,6 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 	// A location can be specified as:
 	// center (+ dimensions):
 	bool hasCenter = false;
-	Point dimensions;
 
 	// from (+ dimensions):
 	Point fromPoint;
@@ -935,4 +955,185 @@ void Interface::LineElement::Draw(const Rectangle &rect, const Information &info
 	if(!from.Get() && !to.Get())
 		return;
 	FillShader::Fill(rect, *color);
+}
+
+
+
+// Members of the InfoTagElement class:
+
+// Constructor.
+Interface::InfoTagElement::InfoTagElement(const DataNode &node, const Point &globalAnchor)
+{
+	if(node.Size() < 2)
+		return;
+
+	// Get the name of the element and find out what type it is (bar or ring).
+	name = node.Token(1);
+
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+
+	// Fill in a default color if none is specified.
+	if(!fontColor)
+		fontColor = GameData::Colors().Get("active");
+	if(!backColor)
+		backColor = GameData::Colors().Get("tooltip background");
+	if(!borderColor)
+		borderColor = GameData::Colors().Get("hover");
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::InfoTagElement::ParseLine(const DataNode &node)
+{
+	const string &key = node.Token(0);
+	bool hasValue = node.Size() >= 2;
+
+	// `width` is handled by generic
+
+	if(key == "anchor" && node.Size() == 3)
+	{
+		anchor = Point(node.Value(1), node.Value(2));
+	}
+
+	// earlength <earLength>
+	else if(key == "ear" && node.HasChildren())
+	{
+		// border, with width and/or color underneath it as child nodes
+		for(const DataNode &child : node)
+		{
+			const string &key2 = child.Token(0);
+			bool hasValue2 = child.Size() >= 2;
+
+			// length <length>
+			if(key2 == "length" && hasValue2)
+				earLength = child.Value(1);
+
+			// facing <facing>
+			else if(key2 == "facing" && hasValue2)
+			{
+				if(child.Token(1) == "north")
+					facing = InfoTag::Direction::NORTH;
+				else if(child.Token(1) == "south")
+					facing = InfoTag::Direction::SOUTH;
+				else if(child.Token(1) == "east")
+					facing = InfoTag::Direction::EAST;
+				else if(child.Token(1) == "west")
+					facing = InfoTag::Direction::WEST;
+				else
+					return false;
+			}
+
+			// affinity <affinity>
+			else if(key2 == "affinity" && hasValue2)
+			{
+				if(child.Token(1) == "ccw")
+					affinity = InfoTag::Affinity::CCW;
+				else if(child.Token(1) == "center")
+					affinity = InfoTag::Affinity::CENTER;
+				else if(child.Token(1) == "cw")
+					affinity = InfoTag::Affinity::CW;
+				else
+					return false;
+			}
+			else
+				return false;
+		}
+	}
+
+	// border <border color> <width>
+	else if(key == "border")
+	{
+		// border <color> <width>
+		if(node.Size() >= 3)
+		{
+			borderColor = GameData::Colors().Get(node.Token(1));
+			borderWidth = node.Value(2);
+		}
+		else if(node.HasChildren())
+		{
+			// border, with width and/or color underneath it as child nodes
+			for(const DataNode &child : node)
+			{
+				const string &key2 = child.Token(0);
+				bool hasValue2 = child.Size() >= 2;
+				if(key2 == "color" && hasValue2)
+					borderColor = GameData::Colors().Get(child.Token(1));
+				else if(key2 == "width")
+					borderWidth = child.Value(1);
+				else
+					return false;
+			}
+		}
+	}
+
+	// background <background color>
+	else if(key == "background" && hasValue)
+	{
+		backColor = GameData::Colors().Get(node.Token(1));
+	}
+
+	// color <text color>
+	else if(key == "color" && hasValue)
+	{
+		fontColor = GameData::Colors().Get(node.Token(1));
+	}
+
+	// shrink, default is no shrink, if flag is present, then shrink
+	else if(key == "shrink" && !hasValue)
+	{
+		shrink = true;
+	}
+
+	else if(key == "alignment")
+	{
+		const string &value = node.Token(1);
+		if(value == "left")
+			textAlignment = Alignment::LEFT;
+		else if(value == "center")
+			textAlignment = Alignment::CENTER;
+		else if(value == "right")
+			textAlignment = Alignment::RIGHT;
+		else if(value == "justified")
+			textAlignment = Alignment::JUSTIFIED;
+		else
+			return false;
+	}
+
+	// text <text strings>
+	else if(key == "text")
+	{
+		text.clear();
+		for(const DataNode &child : node)
+		{
+			if(!text.empty())
+			{
+				text += '\n';
+				if(child.Token(0)[0] != '\t')
+					text += '\t';
+			}
+			text += child.Token(0);
+		}
+	}
+	else
+		return false;
+
+	return true;
+}
+
+
+
+// Draw this element in the given rectangle.
+void Interface::InfoTagElement::Draw(const Rectangle &rect, const Information &info, int state) const
+{
+	// Avoid crashes for malformed interface elements that are not fully loaded.
+	if(text.empty() || !rect.Width() || !backColor || !fontColor || !borderColor)
+		return;
+
+	string text2 = Command::ReplaceNamesWithKeys(text);
+
+	InfoTag::Draw(anchor, text2, rect.Width(), textAlignment, facing, affinity, backColor, fontColor, borderColor,
+		shrink, earLength, borderWidth);
 }

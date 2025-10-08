@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "HelpOverlay.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
@@ -343,10 +344,11 @@ bool Panel::DoHelp(const string &name, bool force) const
 
 	const string &message = GameData::HelpMessage(name);
 	if(message.empty())
-		return false;
+		ui->Push(new HelpOverlay("help overlay: " + name));
+	else
+		ui->Push(new Dialog(Format::Capitalize(name) + ":\n\n" + message));
 
 	Preferences::Set(preference);
-	ui->Push(new Dialog(Format::Capitalize(name) + ":\n\n" + message));
 
 	return true;
 }
