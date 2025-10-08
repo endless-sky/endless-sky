@@ -66,6 +66,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define PSAPI_VERSION 1
 #include <psapi.h>
 #elif defined(__APPLE__)
+#include <mach/mach.h>
 #include <mach/task_info.h>
 #else
 #include <fstream>
