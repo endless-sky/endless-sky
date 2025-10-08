@@ -3270,7 +3270,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 		if(IsYours())
 			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+				" \"" + Name() + "\" has been destroyed.", Messages::Importance::HighestDuplicating);
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -4142,10 +4142,10 @@ void Ship::DoGeneration()
 				Ship &ship = *it.second;
 				if(!hullDelay)
 					DoRepair(ship.hull, hullRemaining, ship.MaxHull(),
-						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
+						energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 				if(!shieldDelay)
 					DoRepair(ship.shields, shieldsRemaining, ship.MaxShields(),
-						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
+						energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
@@ -4645,7 +4645,7 @@ bool Ship::DoLandingLogic()
 		if(GetTargetStellar())
 			position = .97 * position + .03 * GetTargetStellar()->Position();
 		zoom -= landingSpeed;
-		if(zoom < 0.f)
+		if(zoom <= 0.f)
 		{
 			// If this is not a special ship, it ceases to exist when it
 			// lands on a true planet. If this is a wormhole, the ship is
@@ -5013,7 +5013,7 @@ void Ship::StepTargeting()
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::Highest);
+						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::HighestNoRepeat);
 				}
 				else
 				{
