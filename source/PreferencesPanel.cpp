@@ -42,6 +42,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 #include "text/WrappedText.h"
 
+#ifdef _WIN32
+#include "windows/WinVersion.h"
+#endif
+
 #include "opengl.h"
 
 #include <algorithm>
@@ -87,6 +91,10 @@ namespace {
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
+#ifdef _WIN32
+	const string TITLE_BAR_THEME = "Title bar theme";
+	const string WINDOW_ROUNDING = "Window rounding";
+#endif
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -807,6 +815,12 @@ void PreferencesPanel::DrawSettings()
 		DATE_FORMAT,
 		"Show parenthesis",
 		NOTIFY_ON_DEST
+#ifdef _WIN32
+		, "",
+		"Windows Options",
+		TITLE_BAR_THEME,
+		WINDOW_ROUNDING
+#endif
 	};
 
 	bool isCategory = true;
@@ -1040,6 +1054,18 @@ void PreferencesPanel::DrawSettings()
 			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
 			text = Preferences::MinimapSetting();
 		}
+#ifdef _WIN32
+		else if(setting == TITLE_BAR_THEME)
+		{
+			isOn = WinVersion::SupportsDarkTheme();
+			text = isOn ? Preferences::TitleBarThemeSetting() : "N/A";
+		}
+		else if(setting == WINDOW_ROUNDING)
+		{
+			isOn = WinVersion::SupportsWindowRounding();
+			text = isOn ? Preferences::WindowRoundingSetting() : "N/A";
+		}
+#endif
 		else
 			text = isOn ? "on" : "off";
 
@@ -1385,6 +1411,12 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleAlert();
 	else if(str == MINIMAP_DISPLAY)
 		Preferences::ToggleMinimapDisplay();
+#ifdef _WIN32
+	else if(str == TITLE_BAR_THEME)
+		Preferences::ToggleTitleBarTheme();
+	else if(str == WINDOW_ROUNDING)
+		Preferences::ToggleWindowRounding();
+#endif
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));
