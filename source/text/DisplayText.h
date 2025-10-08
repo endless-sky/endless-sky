@@ -17,13 +17,26 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Layout.h"
 
+#include "../Point.h"
+
 #include <string>
+<<<<<<< Updated upstream
 #include <vector>
 
 class Color;
 class Point;
 class Sprite;
 
+=======
+<<<<<<< Updated upstream
+=======
+#include <vector>
+
+class Color;
+class Sprite;
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 
 // Class for holding a displayed text and layout.

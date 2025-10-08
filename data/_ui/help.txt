@@ -193,6 +193,11 @@ help "control ship with mouse"
 	`<Reverse> is used to thrust reverse.`
 	`Right mouse click will fire primary weapons.`
 	`<Mouse turning (hold)> will toggle mouse turning while it is held.`
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 
 interface "help overlay: planet"
 	visible if "has shipyard"
@@ -322,7 +327,11 @@ interface "help overlay: trading"
 			affinity cw
 			length 15
 		shrink
+<<<<<<< Updated upstream
 		text 
+=======
+		text
+>>>>>>> Stashed changes
 			`<U> or <Shift>+<B>`
 		alignment center
 
@@ -334,7 +343,11 @@ interface "help overlay: trading"
 			facing north
 			affinity ccw
 			length 15
+<<<<<<< Updated upstream
 		text 
+=======
+		text
+>>>>>>> Stashed changes
 			`<E> or <Shift>+<S>`
 		alignment center
 
@@ -346,7 +359,11 @@ interface "help overlay: trading"
 			facing south
 			affinity cw
 			length 15
+<<<<<<< Updated upstream
 		text 
+=======
+		text
+>>>>>>> Stashed changes
 			`<-> or <Delete>`
 		alignment center
 		
@@ -358,7 +375,11 @@ interface "help overlay: trading"
 			facing south
 			affinity ccw
 			length 15
+<<<<<<< Updated upstream
 		text 
+=======
+		text
+>>>>>>> Stashed changes
 			`<+> or <Enter>`
 		alignment center
 		
@@ -370,6 +391,13 @@ interface "help overlay: trading"
 			facing south
 			affinity center
 			length 15
+<<<<<<< Updated upstream
 		text 
 			`<Up> or <Dn> to change selection`
 		alignment center
+=======
+		text
+			`<Up> or <Dn> to change selection`
+		alignment center
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
