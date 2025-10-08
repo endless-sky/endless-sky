@@ -198,6 +198,7 @@ void ShopPanel::UpdateTooltipActivation()
 {
 	shipsTooltip.UpdateActivationCount();
 	creditsTooltip.UpdateActivationCount();
+	buttonsTooltip.UpdateActivationCount();
 }
 
 
