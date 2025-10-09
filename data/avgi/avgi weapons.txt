@@ -765,6 +765,8 @@ effect "fleck impact"
 outfitter "Nettle Restock"
 	to sell
 		or
+			has "outfit: Tiny VLS"
+			has "outfit: Small VLS"
 			has "outfit: Medium VLS"
 	location
 		attributes "outfitter"
