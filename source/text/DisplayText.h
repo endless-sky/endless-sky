@@ -17,13 +17,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Layout.h"
 
-#include "../Point.h"
-
 #include <string>
 #include <tuple>
 #include <vector>
 
 class Color;
+class Point;
 class Sprite;
 
 
