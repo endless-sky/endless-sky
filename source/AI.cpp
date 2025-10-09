@@ -4562,7 +4562,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 			if(activeCommands.Has(Command::FLEET_JUMP))
 				Messages::Add("Engaging fleet autopilot to jump to the " + name + " system."
-					" Your fleet will jump when ready.", Messages::Importance::HighestNoRepeat);
+					" Your fleet will jump when ready.", Messages::Importance::HighNoRepeat);
 			else
 				Messages::Add("Engaging autopilot to jump to the " + name + " system.", Messages::Importance::High);
 		}
