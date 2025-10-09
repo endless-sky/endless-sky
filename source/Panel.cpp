@@ -336,7 +336,7 @@ int Panel::Modifier()
 
 // Display the given help message if it has not yet been shown
 // (or if force is set to true). Return true if the message was displayed.
-bool Panel::DoHelp(const string &name, bool force) const
+bool Panel::DoHelp(const string &name, bool force, PlayerInfo *player) const
 {
 	string preference = "help: " + name;
 	if(!force && Preferences::Has(preference))
@@ -344,7 +344,7 @@ bool Panel::DoHelp(const string &name, bool force) const
 
 	const string &message = GameData::HelpMessage(name);
 	if(message.empty())
-		ui->Push(new HelpOverlay("help overlay: " + name));
+		ui->Push(new HelpOverlay(player, "help overlay: " + name));
 	else
 		ui->Push(new Dialog(Format::Capitalize(name) + ":\n\n" + message));
 

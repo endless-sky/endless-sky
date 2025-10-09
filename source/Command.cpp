@@ -96,6 +96,7 @@ const Command Command::SHIFT(ONE << 39, "");
 // with key names (using key sprites).
 string Command::ReplaceNamesWithKeys(const string &text)
 {
+	string key;
 	string replacement;
 	map<string, string> subs;
 	for(const auto &it : description)
@@ -103,19 +104,21 @@ string Command::ReplaceNamesWithKeys(const string &text)
 		auto found = subs.find('<' + it.second + '>');
 		if(found != subs.end() && !found->second.empty())
 			continue;
-		if(keyName[it.first].length() <= 3)
-			replacement = "<sprite:ui/help/keyboard_square:" + keyName[it.first] + '>';
-		else if(keyName[it.first].length() <= 4)
-			replacement = "<sprite:ui/help/keyboard_mid:" + keyName[it.first] + '>';
+		key = keyName[it.first];
+		if(key.length() <= 2)
+			replacement = "<sprite:ui/help/keyboard_1:" + key + '>';
+		else if(key.length() <= 3)
+			replacement = "<sprite:ui/help/keyboard_2:" + key + '>';
+		else if(key.length() <= 4)
+			replacement = "<sprite:ui/help/keyboard_3:" + key + '>';
 		else
-			replacement = "<sprite:ui/help/keyboard_wide:" + keyName[it.first] + '>';
+			replacement = "<sprite:ui/help/keyboard_4:" + key + '>';
 		subs['<' + it.second + '>'] = replacement;
 	}
 
 	// This expands out any obvious keys that were also found:
 	size_t start = 0;
 	size_t search = start;
-	string key;
 	while(search < text.length())
 	{
 		size_t left = text.find('<', search);
@@ -132,12 +135,14 @@ string Command::ReplaceNamesWithKeys(const string &text)
 			search = right + 1;
 			continue;
 		}
-		if(key.length() <= 3)
-			replacement = "<sprite:ui/help/keyboard_square:" + key + '>';
+		if(key.length() <= 2)
+			replacement = "<sprite:ui/help/keyboard_1:" + key + '>';
+		else if(key.length() <= 3)
+			replacement = "<sprite:ui/help/keyboard_2:" + key + '>';
 		else if(key.length() <= 4)
-			replacement = "<sprite:ui/help/keyboard_mid:" + key + '>';
+			replacement = "<sprite:ui/help/keyboard_3:" + key + '>';
 		else
-			replacement = "<sprite:ui/help/keyboard_wide:" + key + '>';
+			replacement = "<sprite:ui/help/keyboard_4:" + key + '>';
 		subs['<' + key + '>'] = replacement;
 		search = right + 1;
 	}
@@ -147,26 +152,26 @@ string Command::ReplaceNamesWithKeys(const string &text)
 	subs["<Control>"] = "<sprite:ui/help/keyboard_wide:Command>";
 	subs["<Ctrl>"] = "<sprite:ui/help/keyboard_wide:Command>";
 #else
-	subs["<Alt>"] = "<sprite:ui/help/keyboard_mid:Alt>";
-	subs["<Control>"] = "<sprite:ui/help/keyboard_mid:Ctrl>";
-	subs["<Ctrl>"] = "<sprite:ui/help/keyboard_mid:Ctrl>";
+	subs["<Alt>"] = "<sprite:ui/help/keyboard_2:Alt>";
+	subs["<Control>"] = "<sprite:ui/help/keyboard_3:Ctrl>";
+	subs["<Ctrl>"] = "<sprite:ui/help/keyboard_3:Ctrl>";
 #endif
-	subs["<Backspace>"] = "<sprite:ui/help/keyboard_mid:Bksp>";
-	subs["<Delete>"] = "<sprite:ui/help/keyboard_square:Del>";
-	subs["<Del>"] = "<sprite:ui/help/keyboard_square:Del>";
-	subs["<Enter>"] = "<sprite:ui/help/keyboard_wide:Enter>";
-	subs["<Esc>"] = "<sprite:ui/help/keyboard_square:Esc>";
-	subs["<Escape>"] = "<sprite:ui/help/keyboard_square:Esc>";
-	subs["<Return>"] = "<sprite:ui/help/keyboard_wide:Enter>";
-	subs["<Shift>"] = "<sprite:ui/help/keyboard_wide:Shift>";
+	subs["<Backspace>"] = "<sprite:ui/help/keyboard_3:Bksp>";
+	subs["<Delete>"] = "<sprite:ui/help/keyboard_2:Del>";
+	subs["<Del>"] = "<sprite:ui/help/keyboard_2:Del>";
+	subs["<Enter>"] = "<sprite:ui/help/keyboard_4:Enter>";
+	subs["<Esc>"] = "<sprite:ui/help/keyboard_2:Esc>";
+	subs["<Escape>"] = "<sprite:ui/help/keyboard_2:Esc>";
+	subs["<Return>"] = "<sprite:ui/help/keyboard_4:Enter>";
+	subs["<Shift>"] = "<sprite:ui/help/keyboard_4:Shift>";
 	// Arrows
-	subs["<Up>"] = "<sprite:ui/help/keyboard_square:Up>";
-	subs["<Down>"] = "<sprite:ui/help/keyboard_square:Dn>";
-	subs["<Dn>"] = "<sprite:ui/help/keyboard_square:Dn>";
-	subs["<Left>"] = "<sprite:ui/help/keyboard_square:Lft>";
-	subs["<Lft>"] = "<sprite:ui/help/keyboard_square:Lft>";
-	subs["<Rt>"] = "<sprite:ui/help/keyboard_square:Rt>";
-	subs["<Right>"] = "<sprite:ui/help/keyboard_square:Rt>";
+	subs["<Up>"] = "<sprite:ui/help/keyboard_1:Up>";
+	subs["<Down>"] = "<sprite:ui/help/keyboard_1:Dn>";
+	subs["<Dn>"] = "<sprite:ui/help/keyboard_1:Dn>";
+	subs["<Left>"] = "<sprite:ui/help/keyboard_2:Lft>";
+	subs["<Lft>"] = "<sprite:ui/help/keyboard_2:Lft>";
+	subs["<Rt>"] = "<sprite:ui/help/keyboard_1:Rt>";
+	subs["<Right>"] = "<sprite:ui/help/keyboard_1:Rt>";
 	// TODO: what about left/right carets?
 
 	// TODO : case-insensitive replacements...

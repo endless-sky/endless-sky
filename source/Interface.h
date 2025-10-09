@@ -288,7 +288,6 @@ private:
 		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
 
 	private:
-		std::string name;
 		std::string text;
 		Point anchor;
 
@@ -306,6 +305,7 @@ private:
 
 
 private:
+	std::vector<const Interface *> includes;
 	std::vector<Element *> elements;
 	std::map<std::string, Element> points;
 	std::map<std::string, double> values;

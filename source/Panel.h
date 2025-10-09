@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 class Command;
+class PlayerInfo;
 class Point;
 class Sprite;
 class TestContext;
@@ -111,7 +112,7 @@ protected:
 	static int Modifier();
 	// Display the given help message if it has not yet been shown
 	// (or if force is set to true). Return true if the message was displayed.
-	bool DoHelp(const std::string &name, bool force = false) const;
+	bool DoHelp(const std::string &name, bool force = false, PlayerInfo *player = nullptr) const;
 
 	const std::vector<std::shared_ptr<Panel>> &GetChildren();
 	// Add a child. Deferred until next frame.

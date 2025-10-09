@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Color;
 class InfoTag;
+class PlayerInfo;
 class TextArea;
 
 
@@ -28,7 +29,7 @@ class TextArea;
 // to bribe a planet to allow you to land there.
 class HelpOverlay : public Panel {
 public:
-	HelpOverlay(const std::string &name);
+	HelpOverlay(PlayerInfo *player, const std::string &name);
 
 	virtual ~HelpOverlay() override;
 
@@ -42,4 +43,5 @@ protected:
 
 private:
 	std::string name;
+	PlayerInfo &player;
 };

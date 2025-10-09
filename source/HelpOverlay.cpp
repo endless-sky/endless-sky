@@ -20,6 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "Planet.h"
+#include "PlayerInfo.h"
+#include "Port.h"
+#include "System.h"
 #include "TextArea.h"
 #include "UI.h"
 
@@ -27,8 +31,8 @@ using namespace std;
 
 
 
-HelpOverlay::HelpOverlay(const string &name)
-	: name(name)
+HelpOverlay::HelpOverlay(PlayerInfo *player, const string &name)
+	: name(name), player(*player)
 {
 	Audio::Pause();
 	SetInterruptible(false);
@@ -47,6 +51,29 @@ HelpOverlay::~HelpOverlay()
 void HelpOverlay::Draw()
 {
 	Information info;
+
+	// Some help relies on planet service information, update info based on that data.
+	const Planet *planet = player.GetPlanet();
+	const System *system = player.GetSystem();
+	if(planet->CanUseServices())
+	{
+		const Port &port = planet->GetPort();
+
+		if(port.HasService(Port::ServicesType::Bank))
+			info.SetCondition("has bank");
+		if(port.HasService(Port::ServicesType::JobBoard))
+			info.SetCondition("has job board");
+		if(port.HasService(Port::ServicesType::HireCrew))
+			info.SetCondition("can hire crew");
+		if(port.HasService(Port::ServicesType::Trading) && system->HasTrade())
+			info.SetCondition("has trade");
+		if(planet->HasNamedPort())
+			info.SetCondition("has port");
+		if(planet->HasShipyard())
+			info.SetCondition("has shipyard");
+		if(planet->HasOutfitter())
+			info.SetCondition("has outfitter");
+	}
 
 	const Interface *helpUi = GameData::Interfaces().Get(name);
 	helpUi->Draw(info, this);

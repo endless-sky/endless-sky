@@ -128,17 +128,7 @@ void Interface::Load(const DataNode &node)
 		else if(key == "include" && child.Size() == 2)
 		{
 			const Interface *other = GameData::Interfaces().Get(child.Token(1));
-			if(other)
-			{
-				elements.insert(elements.end(), other->elements.cbegin(), other->elements.cend());
-				points.insert(other->points.begin(), other->points.end());
-				values.insert(other->values.begin(), other->values.end());
-				values.insert(other->values.begin(), other->values.end());
-				lists.insert(other->lists.begin(), other->lists.end());
-				for(auto &element : elements)
-					element->SetConditions(visibleIf, activeIf);
-			} else
-				child.PrintTrace("Failed to include undefined interface:");
+			includes.push_back(other);
 		}
 		else
 		{
@@ -175,6 +165,9 @@ void Interface::Load(const DataNode &node)
 // Draw this interface.
 void Interface::Draw(const Information &info, Panel *panel) const
 {
+	for(const Interface *other : includes)
+		other->Draw(info, panel);
+
 	for(const Element *element : elements)
 		element->Draw(info, panel);
 }
@@ -964,12 +957,6 @@ void Interface::LineElement::Draw(const Rectangle &rect, const Information &info
 // Constructor.
 Interface::InfoTagElement::InfoTagElement(const DataNode &node, const Point &globalAnchor)
 {
-	if(node.Size() < 2)
-		return;
-
-	// Get the name of the element and find out what type it is (bar or ring).
-	name = node.Token(1);
-
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
 

@@ -196,7 +196,7 @@ help "control ship with mouse"
 
 interface "help overlay: planet"
 	visible if "has shipyard"
-	infotag "shipyard key"
+	infotag
 		anchor 410 90
 		width 300
 		shrink
@@ -209,7 +209,7 @@ interface "help overlay: planet"
 		alignment center
 	
 	visible if "has outfitter"
-	infotag "outfitter key"
+	infotag
 		anchor 410 150
 		width 300
 		shrink
@@ -222,7 +222,7 @@ interface "help overlay: planet"
 		alignment center
 		
 	visible if "can hire crew"
-	infotag "hire key"
+	infotag
 		anchor 410 210
 		width 300
 		shrink
@@ -234,7 +234,7 @@ interface "help overlay: planet"
 			`<H>`
 		alignment center
 		
-	infotag "depart key"
+	infotag
 		anchor 410 270
 		width 300
 		shrink
@@ -247,7 +247,7 @@ interface "help overlay: planet"
 		alignment center
 	
 	visible if "has trade"
-	infotag "trade key"
+	infotag
 		anchor -410 90
 		width 300
 		shrink
@@ -260,7 +260,7 @@ interface "help overlay: planet"
 		alignment center
 		
 	visible if "has job board"
-	infotag "job board key"
+	infotag
 		anchor -410 150
 		width 300
 		shrink
@@ -273,7 +273,7 @@ interface "help overlay: planet"
 		alignment center
 	
 	visible if "has bank"
-	infotag "bank key"
+	infotag
 		anchor -410 210
 		width 300
 		shrink
@@ -286,7 +286,7 @@ interface "help overlay: planet"
 		alignment center
 	
 	visible if "has port"
-	infotag "port key"
+	infotag
 		anchor -410 270
 		width 300
 		shrink
@@ -301,7 +301,7 @@ interface "help overlay: planet"
 interface "help overlay: trading"
 	include "help overlay: planet"
 	
-	infotag "main"
+	infotag
 		anchor 0 0
 		width 600
 		ear
@@ -313,7 +313,7 @@ interface "help overlay: trading"
 			`You can buy 5 tons at once by holding down <Shift>, 20 by holding down <Control>, 500 by holding down <Alt>, or larger amounts at a time by holding down two keys at once, or even all three.`
 		alignment justified
 
-	infotag "buy all keys"
+	infotag
 		anchor 100 370
 		width 350
 		shrink
@@ -326,7 +326,7 @@ interface "help overlay: trading"
 			`<U> or <Shift>+<B>`
 		alignment center
 
-	infotag "sell all keys"
+	infotag
 		anchor 190 370
 		width 350
 		shrink
@@ -338,7 +338,7 @@ interface "help overlay: trading"
 			`<E> or <Shift>+<S>`
 		alignment center
 
-	infotag "sell key"
+	infotag
 		anchor 140 80
 		width 350
 		shrink
@@ -350,7 +350,7 @@ interface "help overlay: trading"
 			`<-> or <Delete>`
 		alignment center
 		
-	infotag "buy key"
+	infotag
 		anchor 80 80
 		width 350
 		shrink
@@ -362,7 +362,7 @@ interface "help overlay: trading"
 			`<+> or <Enter>`
 		alignment center
 		
-	infotag "up down"
+	infotag
 		anchor -200 80
 		width 350
 		shrink
