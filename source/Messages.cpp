@@ -49,7 +49,7 @@ void Messages::Add(const string &message, Importance importance, bool force)
 // also on the main panel, use Add instead.
 void Messages::AddLog(const string &message, Importance importance, bool force)
 {
-	if(force || logged.empty() || message != logged.front().first)
+	if(force || logged.empty() || message != logged.front().first || importance == Importance::HighestDuplicating)
 	{
 		logged.emplace_front(message, importance);
 		if(logged.size() > MAX_LOG)
@@ -103,7 +103,7 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 			// For each incoming message, if it exactly matches an existing message,
 			// replace that one with this new one by scheduling the old one for removal.
 			if(importance != Importance::Low && importance != Importance::HighestNoRepeat
-					&& it.message == message && it.deathStep < 0)
+					&& importance != Importance::HighestDuplicating && it.message == message && it.deathStep < 0)
 				it.deathStep = step + animationDuration;
 		}
 		recent.emplace_back(step, message, importance);
@@ -140,6 +140,7 @@ const Color *Messages::GetColor(Importance importance, bool isLogPanel)
 	{
 		case Messages::Importance::Highest:
 		case Messages::Importance::HighestNoRepeat:
+		case Messages::Importance::HighestDuplicating:
 			return GameData::Colors().Get(prefix + "highest");
 		case Messages::Importance::High:
 			return GameData::Colors().Get(prefix + "high");
