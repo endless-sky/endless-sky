@@ -1448,9 +1448,9 @@ char ShopPanel::CheckButton(int x, int y)
 		if(zone.Contains(clickPoint))
 			return zone.Value();
 
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
+	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
 		return '\0';
 
-	// Returning space here ensures that hover text for the ship info panel is supressed.
+	// Returning space here ensures that hover text for the ship info panel is suppressed.
 	return ' ';
 }
