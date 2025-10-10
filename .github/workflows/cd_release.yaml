@@ -193,7 +193,7 @@ jobs:
 
   release_macos_x64:
     name: MacOS x64
-    runs-on: macos-13
+    runs-on: macos-14
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -243,7 +243,7 @@ jobs:
 
   release_macos_arm:
     name: MacOS ARM
-    runs-on: macos-13
+    runs-on: macos-14
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -293,7 +293,7 @@ jobs:
 
   release_macos:
     name: MacOS Universal
-    runs-on: macos-13
+    runs-on: macos-14
     needs: [release_macos_arm, release_macos_x64]
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
