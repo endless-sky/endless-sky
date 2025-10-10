@@ -4178,13 +4178,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Gamerule condition getter:
 	conditions["gamerule: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
-		string input = ce.NameWithoutPrefix();
-		auto it = input.find("==");
-		if(it == string::npos)
-			return GameData::GetGamerules().GetValue(input);
-		string rule = input.substr(0, it);
-		string value = input.substr(it + 2);
-		return GameData::GetGamerules().GetString(rule) == value;
+		return GameData::GetGamerules().GetValue(ce.NameWithoutPrefix());
 	});
 
 	// Global conditions setters and getters:

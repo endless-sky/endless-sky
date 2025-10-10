@@ -79,22 +79,6 @@ void Gamerules::Load(const DataNode &node)
 
 
 
-string Gamerules::GetString(const string &rule) const
-{
-	if(rule == "disabled fighters avoid projectiles")
-	{
-		if(fighterHitPolicy == FighterDodgePolicy::ALL)
-			return "all";
-		if(fighterHitPolicy == FighterDodgePolicy::NONE)
-			return "none";
-		if(fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
-			return "only player";
-	}
-	return {};
-}
-
-
-
 int Gamerules::GetValue(const string &rule) const
 {
 	if(rule == "universal ramscoop")
@@ -116,7 +100,14 @@ int Gamerules::GetValue(const string &rule) const
 	if(rule == "depreciation max age")
 		return depreciationMaxAge;
 	if(rule == "disabled fighters avoid projectiles")
-		return fighterHitPolicy != FighterDodgePolicy::NONE;
+	{
+		if(fighterHitPolicy == FighterDodgePolicy::ALL)
+			return 2;
+		if(fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
+			return 1;
+		if(fighterHitPolicy == FighterDodgePolicy::NONE)
+			return 0;
+	}
 	if(rule == "system departure min")
 		return systemDepartureMin * 1000;
 	if(rule == "system arrival min")
