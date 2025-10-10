@@ -179,8 +179,8 @@ ship "Pug Arfecta"
 	attributes
 		category "Medium Warship"
 		"cost" 90000000
-		"shields" 98000
-		"hull" 80000
+		"shields" 30600
+		"hull" 25000
 		"required crew" 36
 		"bunks" 46
 		"mass" 1325
@@ -192,13 +192,13 @@ ship "Pug Arfecta"
 		"weapon capacity" 390
 		"engine capacity" 220
 		"energy capacity" 10000
-		"energy generation" 200
+		"energy generation" 90
 		"heat generation" 10
-		"shield generation" 32
-		"shield energy" 32
+		"shield generation" 24
+		"shield energy" 24
 		"hull repair rate" 5
 		"hull energy" 5
-		"cloaking fuel" -.2
+		"cloaking fuel" -.15
 		"reverse thrust" 99
 		"reverse thrusting energy" 4.9
 		"reverse thrusting heat" 6.9

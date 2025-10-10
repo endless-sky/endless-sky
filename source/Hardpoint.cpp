@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "Visual.h"
 
+#include <algorithm>
 #include <cmath>
 #include <map>
 
@@ -191,7 +192,19 @@ bool Hardpoint::CanAim(const Ship &ship) const
 // Check if this weapon is ready to fire.
 bool Hardpoint::IsReady() const
 {
-	return outfit && burstReload <= 0. && burstCount;
+	return outfit && burstReload <= 0. && burstCount && (!IsBlind() || IsSpecial());
+}
+
+
+
+// Check if this weapon can't fire because of its blindspots.
+bool Hardpoint::IsBlind() const
+{
+	return any_of(baseAttributes.blindspots.begin(), baseAttributes.blindspots.end(),
+		[this](pair<Angle, Angle> blindspot)
+		{
+			return angle.IsInRange(blindspot.first + baseAngle, blindspot.second + baseAngle);
+		});
 }
 
 
@@ -420,7 +433,7 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 	if(offset.Length() > range)
 		return false;
 
-	// Check if the target is within the arc of fire.
+	// Check if the target is within the arc of fire and isn't blocked by a blindspot.
 	Angle aim(offset);
 	if(!isOmnidirectional)
 	{
@@ -429,12 +442,14 @@ bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visu
 		if(!aim.IsInRange(minArc, maxArc))
 			return false;
 	}
+	angle = aim - facing;
+	if(IsBlind())
+		return false;
 
 	// Precompute the number of visuals that will be added.
 	visuals.reserve(visuals.size() + outfit->FireEffects().size()
 		+ outfit->HitEffects().size() + outfit->DieEffects().size());
 
-	angle = aim - facing;
 	start += aim.Rotate(outfit->HardpointOffset());
 	CreateEffects(outfit->FireEffects(), start, ship.Velocity(), aim, visuals);
 

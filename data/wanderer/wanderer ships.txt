@@ -19,7 +19,7 @@ ship "Earth Shaper"
 		licenses
 			Wanderer
 		"cost" 500000
-		"hull" 3300
+		"hull" 2500
 		"automaton" 1
 		"mass" 35
 		"drag" .95
@@ -57,7 +57,7 @@ ship "Flycatcher"
 		licenses
 			Wanderer
 		"cost" 830000
-		"hull" 4700
+		"hull" 3600
 		"automaton" 1
 		"mass" 40
 		"drag" .6
@@ -97,8 +97,8 @@ ship "Summer Leaf"
 		licenses
 			Wanderer
 		"cost" 9500000
-		"shields" 14400
-		"hull" 6700
+		"shields" 10800
+		"hull" 5100
 		"required crew" 6
 		"bunks" 15
 		"mass" 174
@@ -147,8 +147,8 @@ ship "Autumn Leaf"
 		licenses
 			Wanderer
 		"cost" 12500000
-		"shields" 18700
-		"hull" 7400
+		"shields" 14000
+		"hull" 5600
 		"required crew" 8
 		"bunks" 13
 		"mass" 228
@@ -209,8 +209,8 @@ ship "Strong Wind"
 		licenses
 			"Wanderer"
 		"cost" 16100000
-		"shields" 28500
-		"hull" 19600
+		"shields" 21400
+		"hull" 14700
 		"required crew" 17
 		"bunks" 39
 		"mass" 561
@@ -267,8 +267,8 @@ ship "Heavy Gust"
 		licenses
 			"Wanderer Military"
 		"cost" 17600000
-		"shields" 35200
-		"hull" 21200
+		"shields" 26400
+		"hull" 15900
 		"required crew" 22
 		"bunks" 34
 		"mass" 598
@@ -315,7 +315,19 @@ ship "Heavy Gust"
 	"final explode" "final explosion medium"
 	description "The Heavy Gust is a further modification of the Strong Wind, adjusted even more heavily for combat purposes at the expense of much of its precursor's peacetime utility. These modifications make the Heavy Gust a fast medium warship, agile enough to keep up with foes too quick to be caught with a Tempest."
 
-
+ship "Heavy Gust" "Heavy Gust (Moonbeam)"
+	outfits
+		"Sunbeam" 4
+		"Moonbeam" 2
+		"Moonbeam Turret"
+		
+		"Blue Sun Reactor"
+		"Dark Storm Shielding"
+		
+		"Type 4 Radiant Thruster"
+		"Type 4 Radiant Steering"
+		"Hyperdrive"
+		
 
 ship "Tempest"
 	sprite "ship/tempest"
@@ -325,8 +337,8 @@ ship "Tempest"
 		licenses
 			"Wanderer Military"
 		"cost" 19700000
-		"shields" 42100
-		"hull" 25900
+		"shields" 31600
+		"hull" 19400
 		"required crew" 38
 		"bunks" 53
 		"mass" 830
@@ -448,8 +460,8 @@ ship "Derecho"
 		licenses
 			"Wanderer Military"
 		"cost" 30500000
-		"shields" 53200
-		"hull" 32700
+		"shields" 39900
+		"hull" 24600
 		"required crew" 53
 		"bunks" 82
 		"mass" 1475
@@ -578,8 +590,8 @@ ship "Hurricane"
 		licenses
 			"Wanderer Military"
 		"cost" 39100000
-		"shields" 72400
-		"hull" 46500
+		"shields" 54300
+		"hull" 34900
 		"required crew" 76
 		"bunks" 117
 		"mass" 2414
@@ -718,8 +730,8 @@ ship "Cool Breeze"
 		licenses
 			"Wanderer Military"
 		"cost" 4530000
-		"shields" 7700
-		"hull" 3100
+		"shields" 5800
+		"hull" 2400
 		"required crew" 1
 		"bunks" 3
 		"mass" 86
@@ -775,8 +787,8 @@ ship "Winter Gale"
 		licenses
 			"Wanderer Military"
 		"cost" 14100000
-		"shields" 22400
-		"hull" 14800
+		"shields" 16800
+		"hull" 11100
 		"required crew" 14
 		"bunks" 23
 		"mass" 455
@@ -878,8 +890,8 @@ ship "Deep River"
 		licenses
 			Wanderer
 		"cost" 18300000
-		"shields" 17600
-		"hull" 47500
+		"shields" 13200
+		"hull" 35700
 		"required crew" 13
 		"bunks" 22
 		"mass" 1362
@@ -967,8 +979,8 @@ ship "Deep River Transport"
 		licenses
 			Wanderer
 		"cost" 18300000
-		"shields" 17600
-		"hull" 47500
+		"shields" 13200
+		"hull" 35700
 		"required crew" 13
 		"bunks" 166
 		"mass" 1339
@@ -1019,8 +1031,8 @@ ship "Riptide"
 		licenses
 			Wanderer
 		"cost" 21120000
-		"shields" 38600
-		"hull" 22350
+		"shields" 29000
+		"hull" 16800
 		"required crew" 47
 		"bunks" 233
 		"mass" 994

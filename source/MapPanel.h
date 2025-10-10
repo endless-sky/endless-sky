@@ -17,10 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "Animate.h"
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
-#include "text/WrappedText.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <string>
@@ -52,6 +53,7 @@ public:
 	static const int SHOW_DANGER = -7;
 	static const int SHOW_STARS = -8;
 
+	static const unsigned MAX_MISSION_POINTERS_DRAWN;
 	static const float OUTER;
 	static const float INNER;
 	static const float LINK_WIDTH;
@@ -68,6 +70,11 @@ public:
 	};
 
 
+public:
+	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
+		bool drawBack = true, bool bigger = false);
+	static std::pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, int step);
+
 
 public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION,
@@ -82,16 +89,16 @@ public:
 	// escort/storage tooltips, and the non-routable system warning.
 	void FinishDrawing(const std::string &buttonCondition);
 
-	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
-
 	// Map panels allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
+
+	virtual void UpdateTooltipActivation() override;
 
 
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
@@ -140,6 +147,7 @@ protected:
 	Point center;
 	Point recenterVector;
 	int recentering = 0;
+	Animate<double> zoom;
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
@@ -158,10 +166,8 @@ protected:
 	void UpdateCache();
 
 	// For tooltips:
-	int hoverCount = 0;
 	const System *hoverSystem = nullptr;
-	std::string tooltip;
-	WrappedText hoverText;
+	Tooltip tooltip;
 
 	// An X offset in pixels to be applied to the selected system UI if something
 	// else gets in the way of its default position.
@@ -169,27 +175,8 @@ protected:
 
 	bool fromMission = false;
 
-private:
-	void DrawTravelPlan();
-	// Display the name of and distance to the selected system.
-	void DrawSelectedSystem();
-	// Indicate which other systems have player escorts.
-	void DrawEscorts();
-	void DrawWormholes();
-	void DrawLinks();
-	// Draw systems in accordance to the set commodity color scheme.
-	void DrawSystems();
-	void DrawNames();
-	void DrawMissions();
-	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
-	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
-		bool drawBack = true, bool bigger = false);
-
 
 private:
-	// This is the coloring mode currently used in the cache.
-	int cachedCommodity = -10;
-
 	class Node {
 	public:
 		Node(const Point &position, const Color &color, const std::string &name,
@@ -204,7 +191,6 @@ private:
 		const Government *government;
 		std::vector<const Sprite *> mapIcons;
 	};
-	std::vector<Node> nodes;
 
 	class Link {
 	public:
@@ -215,5 +201,30 @@ private:
 		Point end;
 		Color color;
 	};
+
+
+private:
+	void DrawTravelPlan();
+	// Display the name of and distance to the selected system.
+	void DrawSelectedSystem();
+	// Indicate which other systems have player escorts.
+	void DrawEscorts();
+	void DrawWormholes();
+	void DrawLinks();
+	// Draw systems in accordance to the set commodity color scheme.
+	void DrawSystems();
+	void DrawNames();
+	void DrawMissions();
+	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
+
+	void IncrementZoom();
+	void DecrementZoom();
+
+
+private:
+	// This is the coloring mode currently used in the cache.
+	int cachedCommodity = -10;
+
+	std::vector<Node> nodes;
 	std::vector<Link> links;
 };

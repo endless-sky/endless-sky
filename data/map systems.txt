@@ -41,7 +41,7 @@ galaxy "label gegno"
 	pos 854 -544
 
 galaxy "label graveyard"
-	pos 45 590
+	pos 100 630
 
 galaxy "label hai"
 	pos -74 -497
@@ -81,7 +81,7 @@ galaxy "label successors"
 	pos -122 1385
 
 galaxy "label tangled shroud"
-	pos -480 1050
+	pos -300 1080
 
 galaxy "label twilight"
 	pos -420 750
@@ -90,7 +90,7 @@ galaxy "label wanderers"
 	pos -145 -753
 
 galaxy "label waste"
-	pos 80 315
+	pos 160 380
 
 galaxy "pug empty galaxy"
 	pos 10000 7000
@@ -866,7 +866,7 @@ system "3 Axis"
 		sprite planet/ice0
 		distance 1340.63
 		period 388.064
-	object
+	object "Spiraling Indigo"
 		sprite planet/gas6
 		distance 2584.92
 		period 1038.98
@@ -1078,7 +1078,7 @@ system "4 Axis"
 		sprite planet/rock17-b
 		distance 1455.02
 		period 1076.88
-	object
+	object "Midnight Diamond"
 		sprite planet/gas1
 		distance 1864.98
 		period 1562.70
@@ -1926,7 +1926,7 @@ system Ablodab
 				scale 0.5
 			distance 148.05
 			period 24
-	object
+	object Ogmur
 		sprite planet/gas5
 		distance 1376.54
 		period 990.943
@@ -4402,6 +4402,7 @@ system Almaaz
 	trade Plastic 308
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 600
+	fleet "Old Northern Pirates" 4000
 	fleet "Large Republic" 4000
 	object
 		sprite star/f-giant
@@ -4649,6 +4650,7 @@ system Alnilam
 	trade Plastic 334
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 700
+	fleet "Old Northern Pirates" 5000
 	fleet "Large Republic" 10000
 	object
 		sprite star/f5
@@ -6821,6 +6823,7 @@ system Arneb
 	trade Plastic 358
 	fleet "Small Northern Pirates" 400
 	fleet "Large Northern Pirates" 500
+	fleet "Old Northern Pirates" 6000
 	fleet "Large Republic" 15000
 	object
 		sprite star/f5
@@ -11218,7 +11221,6 @@ system Current
 		multiplier 1.5
 	habitable 1250
 	belt 1923
-	"jump range" 30
 	haze _menu/haze-twilit-embers
 	link Gust
 	link Torrent
@@ -12460,8 +12462,8 @@ system Delia
 		sprite planet/desert9-b
 		distance 748.5
 		period 370.040
-	object
-		sprite planet/gas11
+	object Faliete
+		sprite planet/gas10-b
 		distance 2258.66
 		period 1939.71
 		object
@@ -16684,6 +16686,7 @@ system Feraticus
 		sprite planet/gateway-frozen
 		distance 10000
 		period 126491
+		visibility 6000 1500
 
 system Fereti
 	pos -39 600
@@ -16739,7 +16742,7 @@ system Fereti
 			scale 0.5
 		distance 1687.04
 		period 489.974
-	object
+	object Pathera
 		sprite planet/gas2
 		distance 2166.29
 		period 712.951
@@ -18189,7 +18192,7 @@ system Gerenus
 	object
 		sprite star/k-giant
 		period 10
-	object
+	object Baliesa
 		sprite planet/gas4-hot
 		distance 390.558
 		period 56.3673
@@ -19488,6 +19491,7 @@ system Hatysa
 	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 15000
+	fleet "Old Northern Pirates" 6000
 	fleet "Derelict Pirate" 30000
 	object
 		sprite star/k0
@@ -24540,7 +24544,7 @@ system Kugel
 	object
 		sprite star/g5
 		period 10
-	object
+	object "Sandswell"
 		sprite planet/desert0-b
 		distance 155.36
 		period 30.9833
@@ -24769,7 +24773,7 @@ system "Last Word"
 		sprite planet/rock1
 		distance 1383.46
 		period 823.322
-	object
+	object "Heavenly Halls"
 		sprite planet/gas1-b
 		distance 4922.46
 		period 5525.77
@@ -29497,6 +29501,7 @@ system Nunki
 	fleet "Large Southern Pirates" 2000
 	fleet "Small Southern Merchants" 1600
 	fleet "Small Militia" 2000
+	fleet "Old Southern Pirates" 7000
 	object
 		sprite star/m3
 		period 10
@@ -30705,13 +30710,21 @@ system Patir
 	trade Metal 354
 	trade Plastic 426
 	fleet Ka'sei 300
+	hazard "Patir Black Hole Event Horizon" 1
 	hazard "Ember Waste Base Heat" 100
+		to spawn
+			not "ka'het: beyond Patir"
 	hazard "Ember Waste Base Storm" 9000
+		to spawn
+			not "ka'het: beyond Patir"
+	hazard "Beyond Patir Shield Eraser" 1
+		to spawn
+			has "ka'het: beyond Patir"
 	object
-		sprite star/nova
+		sprite star/patir
 		period 1
 	object
-		sprite star/neutron-core
+		sprite "star/patir core"
 		period 1
 	object "Builder Settlement"
 		sprite "planet/asteroid base"
@@ -32051,7 +32064,7 @@ system Polerius
 		sprite planet/wormhole-red
 		distance 1824.15
 		period 691.676
-	object
+	object Antamesa
 		sprite planet/gas14-b
 		distance 2448.24
 		period 1075.45
@@ -32389,7 +32402,7 @@ system Prelude
 		multiplier 1.2
 	habitable 2300
 	belt 1664
-	"jump range" 30
+	"jump range" 45
 	haze _menu/haze-twilight-thin
 	link Si-28
 	asteroids "small rock" 3 4.111
@@ -32434,10 +32447,6 @@ system Prelude
 			sprite planet/callisto-b
 			distance 177
 			period 61.628
-	object
-		sprite planet/rock14-b
-		distance 2244
-		period 886.605
 	object
 		sprite planet/ice6
 		distance 2285.91
@@ -34195,7 +34204,7 @@ system Ritilas
 		sprite planet/wormhole
 		distance 1666
 		period 868.879
-	object
+	object Meligara
 		sprite planet/gas6
 		distance 2320
 		period 1427.83
@@ -36156,6 +36165,7 @@ system Shaula
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 9000
 	fleet "Large Militia" 9000
+	fleet "Old Southern Pirates" 7000
 	object
 		sprite star/g5
 		period 10
@@ -38516,7 +38526,11 @@ system Symphony
 		period 4189.62
 		object
 			sprite planet/dust0-b
-			distance 340
+			distance 300
+			period 36
+		object
+			sprite planet/dust0
+			distance 360
 			period 48
 		object "Navigeo Yards"
 			sprite planet/station-shipyard-a1
@@ -38524,10 +38538,6 @@ system Symphony
 			distance 360
 			period 48
 			offset 180
-		object
-			sprite planet/dust0
-			distance 360
-			period 48
 	object
 		sprite planet/gas4-b
 		distance 6120.6

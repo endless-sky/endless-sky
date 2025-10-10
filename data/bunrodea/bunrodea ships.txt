@@ -17,8 +17,8 @@ ship "Kaiken"
 	attributes
 		category "Fighter"
 		"cost" 1199000
-		"shields" 3200
-		"hull" 800
+		"shields" 2600
+		"hull" 640
 		"required crew" 1
 		"bunks" 1
 		"mass" 60
@@ -34,6 +34,7 @@ ship "Kaiken"
 			"hit force" 600
 	outfits
 		"Locust Blaster" 3
+		"Lasher Pistol"
 		
 		"Solar Battery"
 		"Solar Cell" 27
@@ -62,8 +63,8 @@ ship "Sasumata"
 	attributes
 		category "Transport"
 		"cost" 12650000
-		"shields" 15500
-		"hull" 4200
+		"shields" 12400
+		"hull" 3400
 		"required crew" 10
 		"bunks" 72
 		"mass" 710
@@ -75,6 +76,8 @@ ship "Sasumata"
 		"weapon capacity" 122
 		"engine capacity" 126
 		"cloak" .05
+		"cloaked regen multiplier" -1
+		"cloaked repair multiplier" -1
 		"cloaking energy" 10
 		"cloaking fuel" .05
 		weapon
@@ -87,6 +90,7 @@ ship "Sasumata"
 		"Swarm Missile" 1000
 		"Swarm Clip"
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 41
 		
 		"Quark Reactor"
 		"Reactor Overclocker" 2
@@ -127,8 +131,8 @@ ship "Tanto"
 	attributes
 		category "Light Freighter"
 		"cost" 5995000
-		"shields" 16200
-		"hull" 3600
+		"shields" 13000
+		"hull" 2900
 		"required crew" 3
 		"bunks" 7
 		"mass" 247
@@ -146,6 +150,7 @@ ship "Tanto"
 			"hit force" 1800
 	outfits
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 5
 		
 		"Solar Battery" 2
 		"Solar Cell" 42
@@ -179,8 +184,8 @@ ship "Ararebo"
 	attributes
 		category "Utility"
 		"cost" 17565000
-		"shields" 50300
-		"hull" 13600
+		"shields" 40300
+		"hull" 10900
 		"required crew" 15
 		"bunks" 43
 		"mass" 1068
@@ -199,6 +204,7 @@ ship "Ararebo"
 	outfits
 		"Locust Turret" 2
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 29
 		
 		"Dark Reactor"
 		"Reactor Overclocker" 8
@@ -246,8 +252,8 @@ ship "Tekkan"
 	attributes
 		category "Light Warship"
 		"cost" 10119000
-		"shields" 18600
-		"hull" 5200
+		"shields" 14900
+		"hull" 4200
 		"required crew" 6
 		"bunks" 9
 		"mass" 364
@@ -267,6 +273,7 @@ ship "Tekkan"
 		"Locust Blaster" 2
 		"Locust Turret"
 		"Buzzer Anti-Missile" 2
+		"Lasher Pistol" 8
 		
 		"Quark Reactor"
 		"Solar Battery"
@@ -302,8 +309,8 @@ ship "Kunai"
 	attributes
 		category "Light Warship"
 		"cost" 12444000
-		"shields" 21400
-		"hull" 5700
+		"shields" 17200
+		"hull" 4600
 		"required crew" 15
 		"bunks" 37
 		"mass" 603
@@ -322,6 +329,7 @@ ship "Kunai"
 	outfits
 		"Mandible Cannon" 4
 		"Locust Blaster" 2
+		"Lasher Pistol" 26
 		
 		"Quark Reactor"
 		"Solar Battery" 2
@@ -360,8 +368,8 @@ ship "Kama"
 	attributes
 		category "Medium Warship"
 		"cost" 20580000
-		"shields" 43700
-		"hull" 11500
+		"shields" 35000
+		"hull" 9200
 		"required crew" 39
 		"bunks" 43
 		"mass" 1160
@@ -381,6 +389,7 @@ ship "Kama"
 		"Mandible Cannon" 4
 		"Swarm Pod" 6
 		"Swarm Missile" 2400
+		"Lasher Pistol" 41
 		
 		"Electroweak Reactor"
 		"Reactor Overclocker" 2
@@ -427,8 +436,8 @@ ship "Chigiriki"
 	attributes
 		category "Heavy Warship"
 		"cost" 30876000
-		"shields" 64200
-		"hull" 21000
+		"shields" 51400
+		"hull" 16800
 		"required crew" 49
 		"bunks" 69
 		"mass" 1698
@@ -449,6 +458,7 @@ ship "Chigiriki"
 		"Locust Blaster" 6
 		"Swarm Pod" 10
 		"Swarm Missile" 4000
+		"Lasher Pistol" 59
 		
 		"Dark Reactor"
 		"Reactor Limiter" 3

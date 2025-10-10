@@ -86,7 +86,6 @@ public:
 	double Reload() const;
 	double BurstReload() const;
 	int BurstCount() const;
-	int Homing() const;
 
 	int AmmoUsage() const;
 
@@ -166,6 +165,11 @@ public:
 	bool CanCollideShips() const;
 	bool CanCollideAsteroids() const;
 	bool CanCollideMinables() const;
+	// Attributes that determine how projectiles from this weapon home onto targets.
+	bool Homing() const;
+	bool HasBlindspot() const;
+	bool ThrottleControl() const;
+	bool Leading() const;
 
 	// These values include all submunitions:
 	// Normal damage types:
@@ -270,6 +274,11 @@ private:
 	// to true, then this convergence will not be used and the weapon will
 	// be aimed directly in the gunport angle/direction.
 	bool isParallel = false;
+	// Attributes for homing.
+	bool homing = false;
+	bool blindspot = false;
+	bool throttleControl = false;
+	bool leading = false;
 
 	// Attributes.
 	int lifetime = 0;
@@ -278,7 +287,6 @@ private:
 	double reload = 1.;
 	double burstReload = 1.;
 	int burstCount = 1;
-	int homing = 0;
 
 	int missileStrength = 0;
 	int antiMissile = 0;
@@ -388,7 +396,6 @@ inline int Weapon::FadeOut() const { return fadeOut; }
 inline double Weapon::Reload() const { return reload; }
 inline double Weapon::BurstReload() const { return burstReload; }
 inline int Weapon::BurstCount() const { return burstCount; }
-inline int Weapon::Homing() const { return homing; }
 
 inline int Weapon::MissileStrength() const { return missileStrength; }
 inline int Weapon::AntiMissile() const { return antiMissile; }
@@ -451,6 +458,10 @@ inline bool Weapon::IsFused() const { return isFused; }
 inline bool Weapon::CanCollideShips() const { return canCollideShips; }
 inline bool Weapon::CanCollideAsteroids() const { return canCollideAsteroids; }
 inline bool Weapon::CanCollideMinables() const { return canCollideMinables; }
+inline bool Weapon::Homing() const { return homing; }
+inline bool Weapon::HasBlindspot() const { return blindspot; }
+inline bool Weapon::ThrottleControl() const { return throttleControl; }
+inline bool Weapon::Leading() const { return leading; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
