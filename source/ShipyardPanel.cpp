@@ -214,7 +214,6 @@ void ShipyardPanel::DrawButtons()
 	const string &credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
-
 	// Clear the buttonZones, they will be populated again as buttons are drawn.
 	buttonZones.clear();
 
@@ -232,6 +231,7 @@ void ShipyardPanel::DrawButtons()
 	ShopPanel::DrawButton("_Leave",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
 		true, hoverButton == 'l', 'l');
+
 	// Draw the Modifier hover text that appears below the buttons when a modifier
 	// is being applied.
 	int modifier = Modifier();
