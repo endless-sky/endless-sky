@@ -659,12 +659,18 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 		if(finalExplosions.empty())
 			finalExplosions = base->finalExplosions;
-		if(outfits.empty())
+		const bool inheritsOutfits = outfits.empty();
+		if(inheritsOutfits)
 			outfits = base->outfits;
 		if(description.IsEmpty())
 			description = base->description;
 
 		bool hasHardpoints = false;
+		if(inheritsOutfits && armament.Get().empty())
+		{
+			hasHardpoints = true;
+			armament = base->armament;
+		}
 		for(const Hardpoint &hardpoint : armament.Get())
 			if(hardpoint.GetPoint())
 				hasHardpoints = true;
