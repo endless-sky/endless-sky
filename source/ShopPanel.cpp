@@ -61,10 +61,22 @@ namespace {
 	constexpr int ICON_COLS = 4;
 	constexpr float ICON_SIZE = ICON_TILE - 8;
 
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+		SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+		SDL_CONTROLLER_BUTTON_B,
+		SDL_CONTROLLER_BUTTON_X,
+		SDL_CONTROLLER_BUTTON_Y
+	};
+
+
+
 	bool CanShowInSidebar(const Ship &ship, const Planet *here)
 	{
 		return ship.GetPlanet() == here;
 	}
+
+
 
 	constexpr auto ScrollbarMaybeUpdate = [](const auto &op, ScrollBar &scrollbar,
 		ScrollVar<double> &scroll, bool animate)
@@ -675,6 +687,48 @@ bool ShopPanel::Scroll(double dx, double dy)
 
 
 
+bool ShopPanel::GamePadState(GamePad &controller)
+{
+	set<Uint8> pressed = controller.ReadHeld(CONTROLLER_BUTTONS);
+	map<Uint8, chrono::milliseconds> released = controller.ReleasedButtons();
+	if(pressed.find(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER) != pressed.cend())
+		heldRightShoulder = true;
+	else if(heldRightShoulder && released.find(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER) != released.cend())
+		heldRightShoulder = false;
+	for(auto it = pressed.cbegin(); it != pressed.cend(); ++it)
+	{
+		if(*it == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+			DoKey(SDLK_TAB);
+		else if(*it == SDL_CONTROLLER_BUTTON_B)
+			gamepadControl = true;
+		else if(*it == SDL_CONTROLLER_BUTTON_X)
+		{
+			if(heldRightShoulder)
+				DoKey('i');
+			else
+				DoKey('b');
+		}
+		else if(*it == SDL_CONTROLLER_BUTTON_Y)
+		{
+			if(heldRightShoulder)
+				DoKey('u');
+			else
+				DoKey('s');
+		}
+		if(gamepadControl)
+		{
+			Point mouse = GetUI()->GetMouse();
+			if(!ZoneClick(mouse))
+				Click(mouse.X(), mouse.Y(), MouseButton::LEFT, 1);
+		}
+	}
+	controller.Clear(CONTROLLER_BUTTONS);
+
+	return Panel::GamePadState(controller);
+}
+
+
+
 void ShopPanel::DoFind(const string &text)
 {
 	int index = FindItem(text);
@@ -690,6 +744,14 @@ void ShopPanel::DoFind(const string &text)
 
 		MainAutoScroll(best);
 	}
+}
+
+
+
+bool ShopPanel::PrevPanel()
+{
+	GetUI()->Pop(this);
+	return true;
 }
 
 
@@ -1224,7 +1286,7 @@ void ShopPanel::SideSelect(int count)
 void ShopPanel::SideSelect(Ship *ship, int clicks)
 {
 	bool shift = (SDL_GetModState() & KMOD_SHIFT);
-	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
+	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI)) | gamepadControl;
 
 	if(shift)
 	{
@@ -1298,6 +1360,9 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 
 	playerShip = ship;
 	playerShips.insert(playerShip);
+
+	gamepadControl = false;
+
 	CheckSelection();
 }
 

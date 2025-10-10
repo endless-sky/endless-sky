@@ -37,6 +37,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+	};
+}
+
 
 
 MapOutfitterPanel::MapOutfitterPanel(PlayerInfo &player)
@@ -53,6 +60,19 @@ MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 	Init();
 	onlyShowSoldHere = onlyHere;
 	UpdateCache();
+}
+
+
+
+bool MapOutfitterPanel::GamePadState(GamePad &controller)
+{
+	if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSHOULDER))
+		DoKey('s');
+	else if(controller.Held(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
+		DoKey('i');
+	controller.Clear(CONTROLLER_BUTTONS);
+
+	return Panel::GamePadState(controller);
 }
 
 
