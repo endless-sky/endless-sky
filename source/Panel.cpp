@@ -143,6 +143,12 @@ bool Panel::AllowsFastForward() const noexcept
 
 
 
+void Panel::UpdateTooltipActivation()
+{
+}
+
+
+
 void Panel::AddOrRemove()
 {
 	for(auto &panel : childrenToAdd)

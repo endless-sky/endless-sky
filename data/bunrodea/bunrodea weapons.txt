@@ -125,7 +125,7 @@ outfit "Thorax Cannon"
 		"inaccuracy" 0
 		"velocity" 15
 		"lifetime" 120
-		"reload" 120
+		"reload" 240
 		"firing energy" 3150
 		"firing force" 1875
 		"firing heat" 1905

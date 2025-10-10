@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/WrappedText.h"
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -38,10 +39,6 @@ class Sprite;
 // the contents of an Information object.
 class Interface {
 public:
-	// A destructor is needed to clean up the polymorphic list of elements.
-	Interface() = default;
-	~Interface();
-
 	void Load(const DataNode &node);
 
 	// Draw this interface. If the given panel is not null, also register any
@@ -119,7 +116,6 @@ private:
 	protected:
 		AnchoredPoint from;
 		AnchoredPoint to;
-		Point dimensions;
 		Point alignment;
 		Point padding;
 		std::string visibleIf;
@@ -306,7 +302,7 @@ private:
 
 private:
 	std::vector<const Interface *> includes;
-	std::vector<Element *> elements;
+	std::vector<std::unique_ptr<Element>> elements;
 	std::map<std::string, Element> points;
 	std::map<std::string, double> values;
 	std::map<std::string, std::vector<double>> lists;

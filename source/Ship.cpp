@@ -659,12 +659,18 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 		if(finalExplosions.empty())
 			finalExplosions = base->finalExplosions;
-		if(outfits.empty())
+		const bool inheritsOutfits = outfits.empty();
+		if(inheritsOutfits)
 			outfits = base->outfits;
 		if(description.IsEmpty())
 			description = base->description;
 
 		bool hasHardpoints = false;
+		if(inheritsOutfits && armament.Get().empty())
+		{
+			hasHardpoints = true;
+			armament = base->armament;
+		}
 		for(const Hardpoint &hardpoint : armament.Get())
 			if(hardpoint.GetPoint())
 				hasHardpoints = true;
@@ -4645,7 +4651,7 @@ bool Ship::DoLandingLogic()
 		if(GetTargetStellar())
 			position = .97 * position + .03 * GetTargetStellar()->Position();
 		zoom -= landingSpeed;
-		if(zoom < 0.f)
+		if(zoom <= 0.f)
 		{
 			// If this is not a special ship, it ceases to exist when it
 			// lands on a true planet. If this is a wormhole, the ship is
@@ -5013,7 +5019,7 @@ void Ship::StepTargeting()
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::Highest);
+						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::HighestNoRepeat);
 				}
 				else
 				{
