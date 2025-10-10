@@ -38,7 +38,6 @@ public:
 	// Load a gamerules node.
 	void Load(const DataNode &node);
 
-	std::string GetString(const std::string &rule) const;
 	int GetValue(const std::string &rule) const;
 
 	bool UniversalRamscoopActive() const;
