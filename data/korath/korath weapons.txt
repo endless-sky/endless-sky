@@ -144,8 +144,8 @@ outfit "Banisher Grav-Turret"
 		"reload" 1
 		"firing energy" 3.3
 		"firing heat" 4.9
-		"shield damage" 3.08
-		"hull damage" .99
+		"shield damage" 3.1
+		"hull damage" 1
 		"hit force" 60
 	description "The Korath like to keep their enemies close... but not too close."
 
@@ -697,7 +697,7 @@ outfit "Shield Disruptor Turret"
 		"reload" 1
 		"firing energy" 8.0
 		"firing heat" 2.7
-		"shield damage" 4.18
+		"shield damage" 4.2
 		"hull damage" .55
 		"disruption damage" .24
 	description "Shield Disruptor Turrets interfere with a ship's shields, allowing a ship's hull to be damaged even when shields are up. However, they do very little hull damage by themselves."
@@ -736,8 +736,8 @@ outfit "Husk-Slice"
 		"burst count" 17
 		"firing energy" 5.6
 		"firing heat" 17.8
-		"shield damage" 6.93
-		"hull damage" 18.37
+		"shield damage" 6.9
+		"hull damage" 18.4
 	description "This massive beam weapon is relatively ineffective against shields, but cuts through hull armor like it's made of paper."
 
 outfit "Husk-Slice Turret"
@@ -767,8 +767,8 @@ outfit "Husk-Slice Turret"
 		"burst count" 17
 		"firing energy" 5.6
 		"firing heat" 17.8
-		"shield damage" 6.93
-		"hull damage" 18.37
+		"shield damage" 6.9
+		"hull damage" 18.4
 	description "This turret fires a tightly focused energy beam that is particularly effective against hull armor. When paired with a disruptor turret, it is a deadly combination."
 
 effect "slicer impact"

@@ -34,7 +34,7 @@ outfit "Sunbeam"
 		"reload" 1
 		"firing energy" 5.2
 		"firing heat" 6.2
-		"shield damage" 7.92
+		"shield damage" 7.9
 		"hull damage" 3.3
 		"heat damage" 12.1
 	description "The Wanderers do not devote much time to developing weapon technology, preferring to focus their attention on more constructive endeavors. However, the few weapons they have created are efficient and deadly."
@@ -76,7 +76,7 @@ outfit "Sunbeam Turret"
 		"reload" 1
 		"firing energy" 5.2
 		"firing heat" 6.2
-		"shield damage" 7.92
+		"shield damage" 7.9
 		"hull damage" 3.3
 		"heat damage" 12.1
 	description "As the Wanderers slowly cope with the transition from peacetime to the growing conflict with the Unfettered Hai, they have begun building ships that are capable of carrying turret-mounted weapons. Because of the sheer size of the Sunbeam, this turret only carries one of them."
@@ -108,7 +108,7 @@ outfit "Dual Sunbeam Turret"
 		"reload" 1
 		"firing energy" 10.4
 		"firing heat" 12.4
-		"shield damage" 15.84
+		"shield damage" 15.8
 		"hull damage" 6.6
 		"heat damage" 24.2
 	description "This turret carries a pair of Wanderer Sunbeams. For any ship that can support its energy requirements, it is an immensely powerful weapon."
@@ -140,8 +140,8 @@ outfit "Moonbeam"
 		"burst reload" 1
 		"firing energy" 5.4
 		"firing heat" 1.8
-		"shield damage" 5.28
-		"hull damage" 9.24
+		"shield damage" 5.3
+		"hull damage" 9.25
 	description "Because their Sunbeams are not very effective against the heavy plating of the Korath drones, the Wanderers have developed a new beam weapon that is considerably more effective against hull armor."
 
 effect "moonbeam fleck"
@@ -190,8 +190,8 @@ outfit "Moonbeam Turret"
 		"burst reload" 1
 		"firing energy" 5.4
 		"firing heat" 1.8
-		"shield damage" 5.28
-		"hull damage" 9.24
+		"shield damage" 5.3
+		"hull damage" 9.25
 	description "This turret only carries a single Moonbeam weapon, but with its duty cycle increased so it can do 50% more damage than the non-turreted version."
 
 outfit "Wanderer Anti-Missile"

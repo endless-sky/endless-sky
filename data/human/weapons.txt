@@ -31,8 +31,8 @@ outfit "Energy Blaster"
 		"reload" 12
 		"firing energy" 5.8
 		"firing heat" 18
-		"shield damage" 8.48
-		"hull damage" 5.28
+		"shield damage" 8.5
+		"hull damage" 5.3
 	description "Although not the most accurate or damaging of weapons, the Energy Blaster is popular because it is small enough to be installed on even the tiniest of ships. One blaster is not enough to do appreciable damage to anything larger than a fighter, but a ship equipped with several of them becomes a force to be reckoned with."
 
 outfit "Twin Blaster"
@@ -69,8 +69,8 @@ outfit "Blaster Submunition"
 		"hit effect" "blaster impact"
 		"velocity" 10.625
 		"lifetime" 48
-		"shield damage" 8.48
-		"hull damage" 5.28
+		"shield damage" 8.5
+		"hull damage" 5.3
 
 outfit "Blaster Turret"
 	category "Turrets"
@@ -96,8 +96,8 @@ outfit "Blaster Turret"
 		"reload" 6
 		"firing energy" 5.8
 		"firing heat" 18
-		"shield damage" 8.48
-		"hull damage" 5.28
+		"shield damage" 8.5
+		"hull damage" 5.3
 	description "A Blaster Turret is a pair of Energy Blasters mounted on a rotating platform, allowing it to fire in any direction. Sophisticated software algorithms allow the turret to correct for a target's motion, making the Blaster Turret effective even against small, quickly moving fighters. Because it needs a special mounting point with a 360 degree field of view, not all ships are capable of being equipped with a turret."
 
 outfit "Quad Blaster Turret"
@@ -124,8 +124,8 @@ outfit "Quad Blaster Turret"
 		"reload" 3
 		"firing energy" 5.8
 		"firing heat" 18
-		"shield damage" 8.48
-		"hull damage" 5.28
+		"shield damage" 8.5
+		"hull damage" 5.3
 	description "A Quad Blaster Turret carries four guns on a single turret mount, doubling the firepower of an ordinary Blaster Turret for ships with enough space to install one and energy to drive it."
 
 effect "blaster impact"
@@ -157,8 +157,8 @@ outfit "Modified Blaster"
 		"reload" 12
 		"firing energy" 6.5
 		"firing heat" 25.2
-		"shield damage" 10.56
-		"hull damage" 7.04
+		"shield damage" 10.6
+		"hull damage" 7
 	description "This is an Energy Blaster that has been tampered with to increase its power slightly, at the cost of reduced range and higher energy consumption. Modified Blasters also produce an extreme amount of heat when firing, increasing the risk that your ship will overheat."
 
 outfit "Twin Modified Blaster"
@@ -195,8 +195,8 @@ outfit "Modified Blaster Submunition"
 		"hit effect" "blaster impact"
 		"velocity" 10
 		"lifetime" 48
-		"shield damage" 10.56
-		"hull damage" 7.04
+		"shield damage" 10.6
+		"hull damage" 7
 
 outfit "Modified Blaster Turret"
 	category "Turrets"
@@ -222,8 +222,8 @@ outfit "Modified Blaster Turret"
 		"reload" 6
 		"firing energy" 6.5
 		"firing heat" 25.2
-		"shield damage" 10.56
-		"hull damage" 7.04
+		"shield damage" 10.6
+		"hull damage" 7
 	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of higher energy consumption and heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible."
 
 
@@ -249,7 +249,7 @@ outfit "Beam Laser"
 		"firing energy" .67
 		"firing heat" 1.6
 		"shield damage" .8
-		"hull damage" 1.04
+		"hull damage" 1.05
 	description "In the early part of the space era, the settlements in the region of space known as the Deep developed in relative isolation from the rest of human space. One result of that isolation is that their weapons technology mostly uses beam weapons, instead of the energy projectile weapons that are more common elsewhere."
 
 outfit "Laser Turret"
@@ -278,7 +278,7 @@ outfit "Laser Turret"
 		"firing energy" 1.33
 		"firing heat" 3.2
 		"shield damage" 1.6
-		"hull damage" 2.08
+		"hull damage" 2.1
 	description "Laser Turrets are hated by fighter pilots because it is nearly impossible to dodge them once you are within their reach. This turret carries a pair of lasers and can swivel almost instantly to fire on new targets as they approach. Laser Turrets are especially useful when mounted on slow-moving freighters to fend off packs of small pirate vessels."
 
 effect "beam laser impact"
@@ -312,8 +312,8 @@ outfit "Heavy Laser"
 		"reload" 1
 		"firing energy" 1.33
 		"firing heat" 2.8
-		"shield damage" 1.36
-		"hull damage" 1.92
+		"shield damage" 1.4
+		"hull damage" 1.9
 	description "The Heavy Laser is an upgraded Beam Laser with a significantly longer range and higher power. It is mostly intended for larger ships, where energy and space are plentiful, but some pilots consider a single Heavy Laser to be a worthwhile alternative to a pair of Beam Lasers, because the longer range makes up for the fact that it does not quite deal twice as much damage."
 
 outfit "Heavy Laser Turret"
@@ -341,8 +341,8 @@ outfit "Heavy Laser Turret"
 		"reload" 1
 		"firing energy" 2.66
 		"firing heat" 5.6
-		"shield damage" 2.72
-		"hull damage" 3.84
+		"shield damage" 2.8
+		"hull damage" 3.8
 	description "For ships with enough space to install one, the Heavy Laser Turret is a powerful weapon, equally useful for driving off fighters and for bombarding larger targets with continuous fire without having to worry about pointing your ship in the right direction."
 
 effect "heavy laser impact"
@@ -376,9 +376,9 @@ outfit "Mining Laser"
 		"reload" 1
 		"firing energy" 1.1
 		"firing heat" 2.1
-		"shield damage" .64
-		"hull damage" 1.12
-		"minable damage" 1.52
+		"shield damage" .6
+		"hull damage" 1.1
+		"minable damage" 1.5
 		"prospecting" .8
 	description "The development of the Beam Laser in the mid-2400s not only led to advancements in space warfare, but also to the field of asteroid mining, as the traditional but inefficient method of towing asteroids to bases for extraction was supplanted by individual spacecraft that could precisely extract the ore from asteroids themselves."
 	description "	The modern Mining Laser is a derivative of the Beam Laser engineered to optimize mineral yield and extraction rates at the expense of range and shield damage."
@@ -409,9 +409,9 @@ outfit "Mining Laser Turret"
 		"reload" 1
 		"firing energy" 1.1
 		"firing heat" 2.1
-		"shield damage" .64
-		"hull damage" 1.12
-		"minable damage" 1.52
+		"shield damage" .6
+		"hull damage" 1.1
+		"minable damage" 1.5
 		"prospecting" .8
 	description "While asteroid miners typically prefer more nimble ships that can keep speed with asteroids, the Mining Laser Turret makes it easier for large and slow ships with spacious cargo holds to mine."
 	description "	Mining Laser Turrets are designed to be used in conjunction with asteroid scanners, as being unable to target asteroids means you have to aim the weapon manually as if it were a fixed gun."
@@ -467,8 +467,8 @@ outfit "Electron Beam"
 		"reload" 1
 		"firing energy" 2
 		"firing heat" 3.6
-		"shield damage" 1.92
-		"hull damage" 2.64
+		"shield damage" 1.9
+		"hull damage" 2.6
 	description "The Electron Beam is a recent development by the Deep Sky labs, a more powerful weapon with a design similar to their perennially popular laser guns."
 
 outfit "Electron Turret"
@@ -496,8 +496,8 @@ outfit "Electron Turret"
 		"reload" 1
 		"firing energy" 4
 		"firing heat" 7.2
-		"shield damage" 3.84
-		"hull damage" 5.28
+		"shield damage" 3.8
+		"hull damage" 5.2
 	description "This turret places two of Deep Sky's recently developed electron beam weapons onto a rotating turret, providing unsurpassed accuracy and power for shooting down fast-moving targets."
 
 effect "electron impact"
@@ -644,8 +644,8 @@ outfit "Proton Fragment"
 		"inaccuracy" 2
 		"lifetime" 24
 		"hit force" 9
-		"shield damage" 8.08
-		"hull damage" 6.72
+		"shield damage" 8.1
+		"hull damage" 6.7
 
 effect "proton impact"
 	sprite "effect/proton impact"
@@ -821,8 +821,8 @@ outfit "Flamethrower Projectile"
 		"random lifetime" 8
 		"damage dropoff" 0 198
 		"dropoff modifier" .5
-		"shield damage" .64
-		"hull damage" .56
+		"shield damage" .65
+		"hull damage" .55
 		"heat damage" 125
 
 effect "flamethrower die"
