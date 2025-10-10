@@ -15,9 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameWindow.h"
 
-#include "Files.h"
-#include "image/ImageBuffer.h"
-#include "image/ImageFileData.h"
 #include "Logger.h"
 #include "Screen.h"
 
@@ -27,6 +24,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstring>
 #include <sstream>
 #include <string>
+
+#ifdef _WIN32
+#include "windows/WinVersion.h"
+
+#include <windows.h>
+
+#include <dwmapi.h>
+#include <SDL2/SDL_syswm.h>
+#endif
 
 using namespace std;
 
@@ -247,11 +253,9 @@ bool GameWindow::Init(bool headless)
 	// Make sure the screen size and view-port are set correctly.
 	AdjustViewport();
 
-#ifndef __APPLE__
-	// On OS X, setting the window icon will cause that same icon to be used
-	// in the dock and the application switcher. That's not something we
-	// want, because the ".icns" icon that is used automatically is prettier.
-	SetIcon();
+#ifdef _WIN32
+	UpdateTitleBarTheme();
+	UpdateWindowRounding();
 #endif
 
 	return true;
@@ -279,30 +283,6 @@ void GameWindow::Quit()
 void GameWindow::Step()
 {
 	SDL_GL_SwapWindow(mainWindow);
-}
-
-
-
-void GameWindow::SetIcon()
-{
-	if(!mainWindow)
-		return;
-
-	// Load the icon file.
-	ImageBuffer buffer;
-	if(!buffer.Read(ImageFileData(Files::Resources() / "icon.png")))
-		return;
-	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
-		return;
-
-	// Convert the icon to an SDL surface.
-	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer.Pixels(), buffer.Width(), buffer.Height(),
-		32, 4 * buffer.Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-	if(surface)
-	{
-		SDL_SetWindowIcon(mainWindow, surface);
-		SDL_FreeSurface(surface);
-	}
 }
 
 
@@ -477,3 +457,67 @@ void GameWindow::ExitWithError(const string &message, bool doPopUp)
 
 	GameWindow::Quit();
 }
+
+
+
+#ifdef _WIN32
+void GameWindow::UpdateTitleBarTheme()
+{
+	if(!WinVersion::SupportsDarkTheme())
+		return;
+
+	SDL_SysWMinfo windowInfo;
+	SDL_VERSION(&windowInfo.version);
+	SDL_GetWindowWMInfo(mainWindow, &windowInfo);
+
+	BOOL value;
+	Preferences::TitleBarTheme themePreference = Preferences::GetTitleBarTheme();
+	// If the default option is selected, check the system-wide preference.
+	if(themePreference == Preferences::TitleBarTheme::DEFAULT)
+	{
+		HKEY systemPreference;
+		if(RegOpenKeyExW(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+			0, KEY_READ, &systemPreference) == ERROR_SUCCESS)
+		{
+			DWORD size = sizeof(value);
+			if(RegQueryValueExW(systemPreference, L"AppsUseLightTheme", 0, nullptr,
+					reinterpret_cast<LPBYTE>(&value), &size) == ERROR_SUCCESS)
+				// The key says about light theme, while DWM expects information about dark theme.
+				value = !value;
+			else
+				value = 1;
+			RegCloseKey(systemPreference);
+		}
+		else
+			value = 1;
+	}
+	else
+		value = themePreference == Preferences::TitleBarTheme::DARK;
+
+	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
+	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
+		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
+	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
+	FreeLibrary(dwmapi);
+}
+
+
+
+void GameWindow::UpdateWindowRounding()
+{
+	if(!WinVersion::SupportsWindowRounding())
+		return;
+
+	SDL_SysWMinfo windowInfo;
+	SDL_VERSION(&windowInfo.version);
+	SDL_GetWindowWMInfo(mainWindow, &windowInfo);
+
+	auto value = static_cast<DWM_WINDOW_CORNER_PREFERENCE>(Preferences::GetWindowRounding());
+
+	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
+	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
+		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
+	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_WINDOW_CORNER_PREFERENCE, &value, sizeof(value));
+	FreeLibrary(dwmapi);
+}
+#endif

@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Angle;
 class AsteroidField;
 class Body;
+class ConditionsStore;
 class Flotsam;
 class Government;
 class Minable;
@@ -55,8 +56,7 @@ public:
 	template<class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(const PlayerInfo &player, const List<Ship> &ships,
-			const List<Minable> &minables, const List<Flotsam> &flotsam);
+	AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
 	void IssueFormationChange(PlayerInfo &player);
@@ -182,6 +182,11 @@ private:
 	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
 	void CacheShipLists();
 
+	/// Register autoconditions that use the current AI state (ships in the system, strengths, etc.)
+	/// These conditions may be a frame behind, depending on where the conditions are queried from,
+	/// but that shouldn't really matter.
+	void RegisterDerivedConditions(ConditionsStore &conditions);
+
 
 private:
 	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
@@ -191,7 +196,7 @@ private:
 
 private:
 	// TODO: Figure out a way to remove the player dependency.
-	const PlayerInfo &player;
+	PlayerInfo &player;
 	// Data from the game engine.
 	const List<Ship> &ships;
 	const List<Minable> &minables;

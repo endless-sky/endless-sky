@@ -409,7 +409,7 @@ Command GamePad::RightStickCommand() const
 		else if(degAbs <= 30.)
 			command.Set(Command::BOARD | Command::SHIFT);
 		else if(deg < 150. && deg >= 90.)
-			command.Set(Command::HOLD);
+			command.Set(Command::HOLD_POSITION);
 		else if(deg < 90. && deg > 30.)
 			command.Set(Command::GATHER);
 		else if(deg < -30. && deg >= -90.)
