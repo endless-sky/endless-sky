@@ -88,7 +88,7 @@ protected:
 	virtual double ButtonPanelHeight() const = 0;
 	virtual double DrawDetails(const Point &center) = 0;
 	virtual void DrawButtons() = 0;
-	virtual TransactionResult HandleShortcuts(char key) = 0;
+	virtual TransactionResult HandleShortcuts(SDL_Keycode key) = 0;
 
 	virtual bool ShouldHighlight(const Ship *ship);
 	virtual void DrawKey() {};

@@ -75,7 +75,7 @@ protected:
 
 	virtual double ButtonPanelHeight() const override;
 	virtual void DrawButtons() override;
-	virtual TransactionResult HandleShortcuts(char key) override;
+	virtual TransactionResult HandleShortcuts(SDL_Keycode key) override;
 
 
 private:

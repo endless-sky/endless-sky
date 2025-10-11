@@ -262,7 +262,7 @@ void ShipyardPanel::DrawButtons()
 
 
 
-ShopPanel::TransactionResult ShipyardPanel::HandleShortcuts(char key)
+ShopPanel::TransactionResult ShipyardPanel::HandleShortcuts(SDL_Keycode key)
 {
 	TransactionResult result = false;
 	if(key == 'b')

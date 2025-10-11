@@ -50,7 +50,7 @@ protected:
 	virtual void DoBuyButton();
 	virtual void Sell(bool storeOutfits);
 	virtual int FindItem(const std::string &text) const override;
-	virtual TransactionResult HandleShortcuts(char key) override;
+	virtual TransactionResult HandleShortcuts(SDL_Keycode key) override;
 
 
 private:
