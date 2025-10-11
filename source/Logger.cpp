@@ -36,8 +36,12 @@ namespace {
 
 
 
-Logger::Session::Session()
+Logger::Session::Session(bool quiet)
+	: quiet{quiet}
 {
+	if(quiet)
+		return;
+
 	string message = "Logger session beginning. Game version: " + GameVersion::Running().ToString()
 		+ ". Detected operating system version: ";
 #ifdef _WIN32
@@ -54,6 +58,9 @@ Logger::Session::Session()
 
 Logger::Session::~Session()
 {
+	if(quiet)
+		return;
+
 	Log("Logger session end.", Level::INFO);
 }
 

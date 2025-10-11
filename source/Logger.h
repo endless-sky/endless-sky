@@ -39,8 +39,12 @@ public:
 	// Print additional control messages when a session begins or ends.
 	class Session {
 	public:
-		Session();
+		Session(bool quiet);
 		~Session();
+
+
+	private:
+		bool quiet;
 	};
 
 

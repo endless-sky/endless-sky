@@ -131,7 +131,9 @@ int main(int argc, char *argv[])
 
 	Preferences::Load();
 
-	Logger::Session logSession;
+	bool isConsoleOnly = loadOnly || printTests || printData;
+
+	Logger::Session logSession{isConsoleOnly || !testToRunName.empty()};
 
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
@@ -142,7 +144,6 @@ int main(int argc, char *argv[])
 		TaskQueue queue;
 
 		// Begin loading the game data.
-		bool isConsoleOnly = loadOnly || printTests || printData;
 		auto dataFuture = GameData::BeginLoad(queue, player, isConsoleOnly, debugMode,
 			isConsoleOnly || checkAssets || (isTesting && !debugMode));
 

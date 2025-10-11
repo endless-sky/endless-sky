@@ -33,10 +33,16 @@ std::string IgnoreLogHeaders(std::string output)
 		size_t pos = line.find('|');
 		if(pos != std::string::npos)
 		{
-			pos = line.find('|');
+			pos = line.find('|', pos);
 			if(pos != std::string::npos)
 				// pos is the index of the second bar, after which there's a space, so add 2.
-				line = line.substr(pos + 2);
+				try {
+					line = line.substr(pos + 2);
+				}
+				catch(std::out_of_range)
+				{
+					line.clear();
+				}
 		}
 		formattedOutput += line + '\n';
 	}

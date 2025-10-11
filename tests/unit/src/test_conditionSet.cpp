@@ -85,7 +85,8 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( IgnoreLogHeaders(warnings.Flush()) == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
+				REQUIRE( IgnoreLogHeaders(warnings.Flush()) == validationWarning
+					+ invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
 			}
 		}
 	}
@@ -252,7 +253,8 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndMessage)), &storeWithData};
 		THEN( "Expression \'" + std::get<0>(expressionAndMessage) + "\' is invalid and triggers error-message" ) {
 			REQUIRE_FALSE( numberSet.IsValid() );
-			REQUIRE( IgnoreLogHeaders(warnings.Flush()).substr(0, std::get<1>(expressionAndMessage).size()) == std::get<1>(expressionAndMessage) );
+			REQUIRE( IgnoreLogHeaders(warnings.Flush()).substr(0, std::get<1>(expressionAndMessage).size())
+				== std::get<1>(expressionAndMessage) );
 			REQUIRE( numberSet.IsEmpty() );
 		}
 	}
