@@ -29,7 +29,10 @@ std::string IgnoreLogHeaders(std::string output)
 		// Completely skip the session markers.
 		if(line.find("Logger session") != std::string::npos)
 			continue;
-		formattedOutput += line.substr(line.find("| W |") + 5) + '\n';
+		size_t pos = line.find("| W |");
+		if(pos != std::string::npos)
+			line = line.substr(pos + 6);
+		formattedOutput += line + '\n';
 	}
 	return formattedOutput;
 }
