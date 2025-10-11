@@ -448,13 +448,13 @@ bool ConditionSet::ParseNode(const DataNode &node)
 
 	// Nodes beyond this point should not have children.
 	if(node.HasChildren())
-		return FailParse(node, "unexpected child-nodes under toplevel");
+		return FailParse(node, "Unexpected child-nodes under toplevel");
 
 	// Special handling for 'never', 'has' and 'not' nodes.
 	if(key == "never")
 	{
 		if(node.Size() > 1)
-			return FailParse(node, "tokens found after never keyword");
+			return FailParse(node, "Tokens found after never keyword");
 
 		expressionOperator = ExpressionOp::LIT;
 		literal = 0;
@@ -463,7 +463,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 	if(key == "has")
 	{
 		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
-			return FailParse(node, "has keyword requires a single condition");
+			return FailParse(node, "Has keyword requires a single condition");
 
 		// Convert has keyword directly to the variable.
 		expressionOperator = ExpressionOp::VAR;
@@ -473,7 +473,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 	if(key == "not")
 	{
 		if(node.Size() != 2 || !DataNode::IsConditionName(node.Token(1)))
-			return FailParse(node, "not keyword requires a single condition");
+			return FailParse(node, "Not keyword requires a single condition");
 
 		// Create `conditionName == 0` expression.
 		expressionOperator = ExpressionOp::EQ;
@@ -500,7 +500,7 @@ bool ConditionSet::ParseNode(const DataNode &node, int &tokenNr)
 
 	// Nodes beyond this point should not have children.
 	if(node.HasChildren())
-		return FailParse(node, "unexpected child-nodes under arithmetic expression");
+		return FailParse(node, "Unexpected child-nodes under arithmetic expression");
 
 	// Parse initial expression.
 	if(!ParseMini(node, tokenNr))
@@ -516,7 +516,7 @@ bool ConditionSet::ParseNode(const DataNode &node, int &tokenNr)
 
 	// Parsing from infix should have consumed and parsed all tokens.
 	if(tokenNr < node.Size())
-		return FailParse(node, "tokens found after parsing full expression");
+		return FailParse(node, "Tokens found after parsing full expression");
 
 	return true;
 }
@@ -582,7 +582,7 @@ bool ConditionSet::ParseBooleanChildren(const DataNode &node)
 		throw runtime_error("Unable to ParseBooleans in a ConditionSet without a pointer to a ConditionsStore!");
 
 	if(!node.HasChildren())
-		return FailParse(node, "child-nodes expected, found none");
+		return FailParse(node, "Child-nodes expected, found none");
 
 	// Load all child nodes.
 	for(const DataNode &child : node)
@@ -605,7 +605,7 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 		throw runtime_error("Unable to ParseMini in a ConditionSet without a pointer to a ConditionsStore!");
 
 	if(tokenNr >= node.Size())
-		return FailParse(node, "expected terminal or sub-expression, found none");
+		return FailParse(node, "Expected terminal or sub-expression, found none");
 
 	// Any (sub)expression should start with one of the following:
 	// - an opening bracket.
@@ -621,7 +621,7 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 		hadOpenBracket = true;
 		++tokenNr;
 		if(tokenNr >= node.Size())
-			return FailParse(node, "missing sub-expression and closing bracket");
+			return FailParse(node, "Missing sub-expression and closing bracket");
 	}
 
 	if(node.IsNumber(tokenNr))
@@ -643,13 +643,13 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 		children.back().ParseMini(node, tokenNr);
 	}
 	else
-		return FailParse(node, "expected terminal or open-bracket");
+		return FailParse(node, "Expected terminal or open-bracket");
 
 	// Keep parsing until we get to the closing bracket, if we had an open bracket.
 	while(hadOpenBracket)
 	{
 		if(tokenNr >= node.Size())
-			return FailParse(node, "missing closing bracket");
+			return FailParse(node, "Missing closing bracket");
 		else if(node.Token(tokenNr) == ")")
 		{
 			// Remove the closing bracket.
@@ -705,7 +705,7 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 			case ExpressionOp::GT:
 			{
 				if(tokenNr + 1 >= node.Size())
-					return FailParse(node, "expected terminal after infix operator \"" + node.Token(tokenNr) + "\"");
+					return FailParse(node, "Expected terminal after infix operator \"" + node.Token(tokenNr) + "\"");
 
 				// If the precedence of the new operator is less or equal than the parents operator, then let the parent handle it.
 				if(Precedence(infixOp) <= Precedence(parentOp))
@@ -744,10 +744,10 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 
 					continue;
 				}
-				return FailParse(node, "precedence confusion on infix operator");
+				return FailParse(node, "Precedence confusion on infix operator");
 			}
 			default:
-				return FailParse(node, "expected infix operator instead of \"" + node.Token(tokenNr) + "\"");
+				return FailParse(node, "Expected infix operator instead of \"" + node.Token(tokenNr) + "\"");
 		}
 	}
 }
@@ -770,7 +770,7 @@ bool ConditionSet::PushDownLast(const DataNode &node)
 {
 	// Can only perform push-down if there is at least one expression to push down.
 	if(children.empty())
-		return FailParse(node, "cannot create sub-expression from void");
+		return FailParse(node, "Cannot create sub-expression from void");
 
 	// Store and remove the child that we want to push down.
 	ConditionSet ce = std::move(children.back());
