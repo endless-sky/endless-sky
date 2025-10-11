@@ -1110,8 +1110,6 @@ void Interface::InfoTagElement::Draw(const Rectangle &rect, const Information &i
 	if(text.empty() || !rect.Width() || !backColor || !fontColor || !borderColor)
 		return;
 
-	string text2 = Command::ReplaceNamesWithKeys(text);
-
-	InfoTag::Draw(anchor, text2, rect.Width(), textAlignment, facing, affinity, backColor, fontColor, borderColor,
+	InfoTag::Draw(anchor, text, rect.Width(), textAlignment, facing, affinity, backColor, fontColor, borderColor,
 		shrink, earLength, borderWidth);
 }
