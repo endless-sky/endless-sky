@@ -19,8 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Sale.h"
 
-#include <map>
-#include <set>
 #include <string>
 #include <vector>
 
@@ -60,9 +58,9 @@ protected:
 	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual double DrawDetails(const Point &center) override;
 	virtual TransactionResult CanMoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
-		const string &actionName = "no action specified") const;
+		const std::string &actionName = "no action specified") const;
 	virtual TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
-		const string &actionName = "no action specified") const;
+		const std::string &actionName = "no action specified") const;
 	virtual bool ButtonActive(char key, bool shipRelatedOnly = false);
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
