@@ -45,7 +45,7 @@ Logger::Session::Session()
 #else
 	utsname uName;
 	uname(&uName);
-	message += uName.sysversion + ' ' + uName.release + ' ' + uName.version + '.';
+	message += string(uName.sysname) + ' ' + uName.release + ' ' + uName.version + '.';
 #endif
 	Log(message, Level::INFO);
 }
