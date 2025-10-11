@@ -1,9 +1,5 @@
 /* polygon.frag
-<<<<<<< HEAD
-Copyright (c) PolygonShader
-=======
 Copyright (c) 2025 by xobes
->>>>>>> c9b4a959eca602a03ca3ea302b91030372e8b733
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
