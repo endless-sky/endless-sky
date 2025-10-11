@@ -234,11 +234,5 @@ private:
 	const Color &inactive;
 	const Color &back;
 
-	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
-	const Color &hover;
-	const Color &active;
-	const Color &inactive;
-	const Color &back;
-
 	bool checkedHelp = false;
 };
