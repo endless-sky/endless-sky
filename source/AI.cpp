@@ -940,7 +940,8 @@ void AI::Step(Command &activeCommands)
 			}
 			else if(!it->IsBoarding())
 			{
-				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8);
+				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8, 0.,
+					shipToAssist->Facing().Unit());
 				command |= Command::BOARD;
 			}
 
@@ -1133,7 +1134,7 @@ void AI::Step(Command &activeCommands)
 			else if(parentHasSpace && ShouldDock(*it, *parent, playerSystem))
 			{
 				it->SetTargetShip(parent);
-				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
+				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8, 0., parent->Facing().Unit());
 				command |= Command::BOARD;
 				it->SetCommands(command);
 				it->SetCommands(firingCommands);
@@ -1838,7 +1839,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	const double POSITION_DEADBAND = ship.Radius() * 1.25;
 	constexpr double VELOCITY_DEADBAND = .1;
 	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), POSITION_DEADBAND,
-		VELOCITY_DEADBAND);
+		VELOCITY_DEADBAND, 0., formationLead->Facing().Unit());
 
 	// If we match the position and velocity, then also match the facing angle within some limits.
 	constexpr double FACING_TOLERANCE_DEGREES = 3;
@@ -2453,7 +2454,7 @@ bool AI::MoveToPlanet(const Ship &ship, Command &command, double cruiseSpeed)
 
 // Instead of moving to a point with a fixed location, move to a moving point (Ship = position + velocity)
 bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
-	const Point &targetVelocity, double radius, double slow, double cruiseSpeed)
+	const Point &targetVelocity, double radius, double slow, double cruiseSpeed, const Point &finalDirection)
 {
 	const Point &position = ship.Position();
 	const Point &velocity = ship.Velocity();
@@ -2474,6 +2475,7 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	double turnRate = TO_RAD * ship.TrueTurnRate();
 	Point wantedAcceleration = dp + dv;
 	double relativeFacing = acos(clamp(wantedAcceleration.Unit().Dot(angle.Unit()), -1., 1.));
+	double relativeFinalFacing = finalDirection ? acos(clamp(wantedAcceleration.Unit().Dot(finalDirection), -1., 1.)) : 0.;
 
 	// How long it takes for a ship to match both position and velocity with a given target.
 	const auto interceptTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
@@ -2489,8 +2491,9 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	};
 
 	// Approximate intersect time without factoring in maximum velocities
-	double forwardTime = interceptTime(speed, relativeFacing, ship.TrueAcceleration(), turnRate, distance);
-	double reverseTime = interceptTime(speed, PI - relativeFacing, ship.TrueReverseAcceleration(), turnRate, distance);
+	double forwardTime = interceptTime(speed, relativeFacing + relativeFinalFacing, ship.TrueAcceleration(), turnRate, distance);
+	double reverseTime = interceptTime(speed, PI - relativeFacing + (finalDirection ? PI - relativeFinalFacing : 0.),
+		ship.TrueReverseAcceleration(), turnRate, distance);
 
 	bool movingTowardsTarget = velocity.Unit().Dot(wantedAcceleration.Unit()) > .9;
 	bool facingTowardsTarget = angle.Unit().Dot(wantedAcceleration.Unit()) > .9;
@@ -2565,9 +2568,9 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	else
 		command.SetTurn(TurnToward(ship, velocity));
 	double currentRelFacing = velocity.Unit().Dot(angle.Unit());
-	if(currentRelFacing < -limit(forwardTime))
+	if(currentRelFacing < -limit((speed - maxSpeed) / ship.TrueAcceleration()))
 		command |= Command::FORWARD;
-	else if(currentRelFacing > limit(reverseTime))
+	else if(currentRelFacing > limit((speed - maxSpeed) / ship.TrueReverseAcceleration()))
 		command |= Command::BACK;
 	return false;
 }
@@ -2592,7 +2595,7 @@ void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 	if(ship.Position().LengthSquared() < squaredDeparture)
 	{
 		Point closestDeparturePoint = ship.Position().Unit() * (departure + SAFETY_OFFSET);
-		MoveTo(ship, command, closestDeparturePoint, Point(), 0., 0.);
+		MoveTo(ship, command, closestDeparturePoint, Point(), 0., 0., 0., direction.Unit());
 	}
 	else if(!isJump && scramThreshold)
 	{
@@ -2603,8 +2606,9 @@ void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 		if(fabs(deviation) > scramThreshold)
 		{
 			// Need to maneuver; not ready to jump
-			Point goodVelocity = direction * max(ship.Velocity().Unit().Dot(direction), 0.);
-			MoveTo(ship, command, ship.Position() + goodVelocity, goodVelocity, 1., .1);
+			// It would often be faster to just stop, but ships with scram drives are often running away.
+			Point goodVelocity = direction * ship.Velocity().Length();
+			MoveTo(ship, command, ship.Position(), goodVelocity, 1000., .1, 0, direction);
 		}
 		else
 			command.SetTurn(TurnToward(ship, direction));
