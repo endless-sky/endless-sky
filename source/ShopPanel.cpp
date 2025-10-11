@@ -193,6 +193,14 @@ void ShopPanel::Draw()
 
 
 
+void ShopPanel::UpdateTooltipActivation()
+{
+	shipsTooltip.UpdateActivationCount();
+	creditsTooltip.UpdateActivationCount();
+}
+
+
+
 void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 {
 	const Sprite *back = SpriteSet::Get(
@@ -801,7 +809,7 @@ void ShopPanel::DrawShipsSidebar()
 		const int detailHeight = DrawPlayerShipInfo(point + offset);
 		point.Y() += detailHeight + SHIP_SIZE / 2;
 	}
-	else if(player.Cargo().Size())
+	else if(isOutfitter && player.Cargo().Size())
 	{
 		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
 		font.Draw("cargo space:", point, medium);
@@ -1302,7 +1310,7 @@ void ShopPanel::MainDown()
 
 
 
-void ShopPanel::DrawButton(const string &name, const Rectangle buttonShape, bool isActive,
+void ShopPanel::DrawButton(const string &name, const Rectangle &buttonShape, bool isActive,
 	bool hovering, char keyCode)
 {
 	const Font &bigFont = FontSet::Get(18);
@@ -1434,24 +1442,19 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 
 
 
-// Check if the given point is within the button zone (default is to return ' '), and if the point is within a button,
-// return letter of the button, and if not within the button panel at all, return '\0'.
+// Check if the given point is within the button zone, and if so return the letter of the button.
+// Returns '\0' if the click is not within the panel, and ' ' if it's within the panel but not on a button.
 char ShopPanel::CheckButton(int x, int y)
 {
-	// Check the Find button.
-	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
-		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
-		return 'f';
-
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
-		return '\0';
-
 	const Point clickPoint(x, y);
 
 	// Check all the buttonZones.
 	for(const ClickZone<char> zone : buttonZones)
 		if(zone.Contains(clickPoint))
 			return zone.Value();
+
+	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
+		return '\0';
 
 	// Returning space here ensures that hover text for the ship info panel is supressed.
 	return ' ';

@@ -51,6 +51,8 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	virtual void UpdateTooltipActivation() override;
+
 
 protected:
 	// TransactionResult holds the result of an attempt to do a transaction. It is implicitly
@@ -106,7 +108,7 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
-	void DrawButton(const std::string &name, const Rectangle, bool isActive, bool hovering, char keyCode);
+	void DrawButton(const std::string &name, const Rectangle &buttonShape, bool isActive, bool hovering, char keyCode);
 	void CheckSelection();
 
 
@@ -227,6 +229,12 @@ private:
 private:
 	std::string shipName;
 	std::string warningType;
+
+	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
+	const Color &hover;
+	const Color &active;
+	const Color &inactive;
+	const Color &back;
 
 	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
 	const Color &hover;
