@@ -38,6 +38,7 @@ public:
 		Info,
 		Daily,
 		Low,
+		HighNoRepeat,
 		HighestNoRepeat,
 		HighestDuplicating
 	};
