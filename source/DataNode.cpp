@@ -342,7 +342,8 @@ int DataNode::PrintTrace(const string &message) const
 	}
 
 	// Put an empty line in the log between each error message.
-	Logger::Log(message + '\n' + line + (message.empty() ? string{} : "\n"), Logger::Level::WARNING);
+	string emptyLine = message.empty() ? string{} : "\n";
+	Logger::Log(message + emptyLine + line + emptyLine, Logger::Level::WARNING);
 
 	// Tell the caller what indentation level we're at now.
 	return indent;
