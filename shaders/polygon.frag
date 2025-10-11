@@ -1,5 +1,5 @@
 /* polygon.frag
-Copyright (c) PolygonShader
+Copyright (c) 2025 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -22,7 +22,7 @@ uniform int numSides;
 uniform vec2[N] polygon;
 uniform vec4 insideColor;
 uniform vec4 borderColor;
-uniform int borderWidth;
+uniform float borderWidth;
 
 in vec2 pos;
 out vec4 finalColor;

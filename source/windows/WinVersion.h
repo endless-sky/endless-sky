@@ -1,5 +1,5 @@
-/* polygon.vert
-Copyright (c) 2025 by xobes
+/* WinVersion.h
+Copyright (c) 2025 by TomGoodIdea
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,17 +13,16 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-const int N = 7;
+#pragma once
 
-precision mediump float;
-precision mediump int;
 
-uniform vec2 scale;
 
-in vec2 vert;
-out vec2 pos;
+// A wrapper class that queries the version of Windows that is running the game,
+// and provides information on support for various features.
+class WinVersion {
+public:
+	static void Init();
 
-void main() {
-	pos = vert / scale;
-	gl_Position = vec4(vert, 0, 1);
-}
+	static bool SupportsDarkTheme();
+	static bool SupportsWindowRounding();
+};
