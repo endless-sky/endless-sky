@@ -253,8 +253,8 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndMessage)), &storeWithData};
 		THEN( "Expression \'" + std::get<0>(expressionAndMessage) + "\' is invalid and triggers error-message" ) {
 			REQUIRE_FALSE( numberSet.IsValid() );
-			REQUIRE( IgnoreLogHeaders(warnings.Flush()).substr(0, std::get<1>(expressionAndMessage).size())
-				== std::get<1>(expressionAndMessage) );
+			std::string formatted = IgnoreLogHeaders(warnings.Flush());
+			REQUIRE( formatted.substr(0, std::get<1>(expressionAndMessage).size()) == std::get<1>(expressionAndMessage) );
 			REQUIRE( numberSet.IsEmpty() );
 		}
 	}

@@ -35,14 +35,13 @@ std::string IgnoreLogHeaders(std::string output)
 		{
 			pos = line.find('|', pos);
 			if(pos != std::string::npos)
+			{
 				// pos is the index of the second bar, after which there's a space, so add 2.
-				try {
+				if(line.size() > pos + 2)
 					line = line.substr(pos + 2);
-				}
-				catch(std::out_of_range)
-				{
+				else
 					line.clear();
-				}
+			}
 		}
 		formattedOutput += line + '\n';
 	}
