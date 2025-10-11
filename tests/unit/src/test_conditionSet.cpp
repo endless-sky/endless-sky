@@ -85,8 +85,8 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( IgnoreLogHeaders(warnings.Flush()) == validationWarning
-					+ invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
+				std::string formatted = IgnoreLogHeaders(warnings.Flush());
+				REQUIRE( formatted == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
 			}
 		}
 	}
