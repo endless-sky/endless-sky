@@ -142,11 +142,12 @@ void ShopPanel::Draw()
 	DrawButtons();
 	DrawKey();
 
-	// Draw the Find button.
+	// Draw the Find button. Note: buttonZones are cleared in DrawButtons.
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
 	const Sprite *findIcon =
 		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
 	SpriteShader::Draw(findIcon, findCenter);
+	buttonZones.emplace_back(Rectangle(findCenter, {findIcon->Width(), findIcon->Height()}), 'f');
 	static const string FIND = "_Find";
 
 	shipInfo.DrawTooltips();
@@ -197,6 +198,7 @@ void ShopPanel::UpdateTooltipActivation()
 {
 	shipsTooltip.UpdateActivationCount();
 	creditsTooltip.UpdateActivationCount();
+	buttonsTooltip.UpdateActivationCount();
 }
 
 
@@ -437,15 +439,8 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 
 	dragShip = nullptr;
 
-	char zoneButton = '\0';
-	// Check the Find button.
-	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
-		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
-		zoneButton = 'f';
-	else
-		// Handle clicks on the buttons.
-		zoneButton = CheckButton(x, y);
-
+	// Handle clicks on the buttons.
+	char zoneButton = CheckButton(x, y);
 	if(zoneButton)
 		return DoKey(zoneButton);
 
@@ -632,7 +627,7 @@ void ShopPanel::DoFind(const string &text)
 
 int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 {
-	// onlyOwned represents that `outfit` is being transferred from Cargo or Storage
+	// onlyOwned represents that `outfit` is being transferred from Cargo or Storage.
 
 	// If the player is attempting to install an outfit from cargo, storage, or that they just
 	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
@@ -1456,6 +1451,6 @@ char ShopPanel::CheckButton(int x, int y)
 	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
 		return '\0';
 
-	// Returning space here ensures that hover text for the ship info panel is supressed.
+	// Returning space here ensures that hover text for the ship info panel is suppressed.
 	return ' ';
 }

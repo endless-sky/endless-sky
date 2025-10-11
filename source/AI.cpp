@@ -50,7 +50,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 #include "Wormhole.h"
 
+#include <algorithm>
+#include <cmath>
+#include <limits>
 #include <ranges>
+#include <set>
+#include <utility>
 
 using namespace std;
 
