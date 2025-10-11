@@ -2491,7 +2491,8 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	};
 
 	// Approximate intersect time without factoring in maximum velocities
-	double forwardTime = interceptTime(speed, relativeFacing + relativeFinalFacing, ship.TrueAcceleration(), turnRate, distance);
+	double forwardTime = interceptTime(speed, relativeFacing + relativeFinalFacing,
+		ship.TrueAcceleration(), turnRate, distance);
 	double reverseTime = interceptTime(speed, PI - relativeFacing + (finalDirection ? PI - relativeFinalFacing : 0.),
 		ship.TrueReverseAcceleration(), turnRate, distance);
 
