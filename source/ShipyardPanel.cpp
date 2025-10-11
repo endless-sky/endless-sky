@@ -203,22 +203,22 @@ void ShipyardPanel::DrawButtons()
 	font.Draw("You have:", creditsPoint, dim);
 
 	const auto credits = Format::CreditString(player.Accounts().Credits());
-	font.Draw({ credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT} }, creditsPoint, bright);
+	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
 	// Clear the buttonZones, they will be populated again as buttons are drawn.
 	buttonZones.clear();
 
 	const Point buyCenter(Screen::BottomRight() - Point(210, 25));
-	ShopPanel::DrawButton("_Buy",
+	DrawButton("_Buy",
 		Rectangle(buyCenter, Point(60, 30)),
 		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
-	ShopPanel::DrawButton("_Sell",
+	DrawButton("_Sell",
 		Rectangle(Screen::BottomRight() - Point(130, 25), Point(60, 30)),
 		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
 
 	// TODO: Add button for sell but retain outfits.
 
-	ShopPanel::DrawButton("_Leave",
+	DrawButton("_Leave",
 		Rectangle(Screen::BottomRight() - Point(45, 25), Point(60, 30)),
 		true, hoverButton == 'l', 'l');
 
@@ -254,7 +254,8 @@ void ShipyardPanel::DrawButtons()
 	if(creditsTooltip.ShouldDraw())
 	{
 		creditsTooltip.SetZone(creditsBox);
-		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits", true);
+		int64_t credits = player.Accounts().Credits();
+		creditsTooltip.SetText(to_string(credits) + (credits == 1 ? " credit" : " credits"), true);
 		creditsTooltip.Draw();
 	}
 }
@@ -369,15 +370,15 @@ void ShipyardPanel::Sell(bool storeOutfits)
 	{
 		message = "WARNING: This planet has no Outfitter. "
 			"There is no way to retain the outfits in storage.\n";
+		storeOutfits = false;
 	}
 	// Never allow keeping outfits where they cannot be retrieved.
 	// TODO: Consider how to keep outfits in Cargo in the future.
-	storeOutfits &= planet->HasOutfitter();
 
 	if(!storeOutfits)
 		message += "Sell the ";
 	else if(count == 1)
-		message += "Sell the hull of the ";
+		message = "Sell the hull of the ";
 	else
 		message = "Sell the hulls of the ";
 	if(count == 1)
