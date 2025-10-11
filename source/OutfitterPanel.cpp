@@ -1346,7 +1346,7 @@ void OutfitterPanel::DrawButtons()
 
 
 
-ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(char key)
+ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 {
 	TransactionResult result = false;
 	if(key == 'b')

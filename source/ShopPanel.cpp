@@ -402,7 +402,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
 	else
 	{
-		TransactionResult result = HandleShortcuts(static_cast<char>(key));
+		TransactionResult result = HandleShortcuts(key);
 		if(result.HasMessage())
 			GetUI()->Push(new Dialog(result.Message()));
 		else if(isOutfitter)
