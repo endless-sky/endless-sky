@@ -955,9 +955,9 @@ void ShopPanel::DrawMain()
 	nextY -= 40 + TILE_SIZE;
 
 	// What amount would mainScroll have to equal to make nextY equal the
-	// bottom of the screen? (Also leave space for the "key" at the bottom.)
-	// And a small (10px) amount of space between the lasts item and the bottom
-	// of the screen.
+	// bottom of the screen? (Also leave space for the "key" at the bottom,
+	// and a small (10px) amount of space between the lasts item and the bottom
+	// of the screen.)
 	mainScroll.SetDisplaySize(Screen::Height());
 	mainScroll.SetMaxValue(max(0., nextY + mainScroll.AnimatedValue() - Screen::Height() / 2 - TILE_SIZE / 2 +
 		VisibilityCheckboxesSize() + 10.) + Screen::Height());
