@@ -173,7 +173,7 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		if(count)
 			giftOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		else
-			child.PrintTrace("Error: Skipping invalid outfit quantity:");
+			child.PrintTrace("Skipping invalid outfit quantity:");
 	}
 	else if(key == "payment")
 	{
@@ -190,7 +190,7 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		if(value > 0)
 			fine += value;
 		else
-			child.PrintTrace("Error: Skipping invalid \"fine\" with non-positive value:");
+			child.PrintTrace("Skipping invalid \"fine\" with non-positive value:");
 	}
 	else if(key == "debt" && hasValue)
 	{
@@ -204,7 +204,7 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 			else if(grandKey == "interest" && grandHasValue)
 				debtEntry.interest = clamp(grand.Value(1), 0., 0.999);
 			else
-				grand.PrintTrace("Error: Skipping unrecognized \"debt\" attribute:");
+				grand.PrintTrace("Skipping unrecognized \"debt\" attribute:");
 		}
 	}
 	else if(key == "event" && hasValue)

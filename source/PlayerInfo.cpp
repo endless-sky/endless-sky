@@ -1097,7 +1097,8 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
-					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->Name());
+					Logger::Log("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->Name(),
+						Logger::Level::WARNING);
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
@@ -3399,7 +3400,7 @@ void PlayerInfo::ValidateLoad()
 	// If a system was not specified in the player data, use the flagship's system.
 	if(!planet && !ships.empty())
 	{
-		string warning = "Warning: no planet specified for player";
+		string warning = "No planet specified for player";
 		auto it = find_if(ships.begin(), ships.end(), [](const shared_ptr<Ship> &ship) noexcept -> bool
 			{ return ship->GetPlanet() && ship->GetPlanet()->IsValid() && !ship->IsParked() && ship->CanBeFlagship(); });
 		if(it != ships.end())
@@ -3411,7 +3412,7 @@ void PlayerInfo::ValidateLoad()
 		else
 			warning += " (no ships could supply a valid player location).";
 
-		Logger::LogError(warning);
+		Logger::Log(warning, Logger::Level::WARNING);
 	}
 
 	// As a result of external game data changes (e.g. unloading a mod) it's possible the player ended up
@@ -3419,13 +3420,15 @@ void PlayerInfo::ValidateLoad()
 	if(planet && !system)
 	{
 		system = planet->GetSystem();
-		Logger::LogError("Warning: player system was not specified. Defaulting to the specified planet's system.");
+		Logger::Log("Player system was not specified. Defaulting to the specified planet's system.",
+			Logger::Level::WARNING);
 	}
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
 		system = &startData.GetSystem();
 		planet = &startData.GetPlanet();
-		Logger::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
+		Logger::Log("Player system and/or planet was not valid. Defaulting to the starting location.",
+			Logger::Level::WARNING);
 	}
 
 	// Every ship ought to have specified a valid location, but if not,
@@ -3435,16 +3438,18 @@ void PlayerInfo::ValidateLoad()
 		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
 		{
 			ship->SetSystem(system);
-			Logger::LogError("Warning: player ship \"" + ship->Name()
-				+ "\" did not specify a valid system. Defaulting to the player's system.");
+			Logger::Log("Player ship \"" + ship->Name()
+				+ "\" did not specify a valid system. Defaulting to the player's system.",
+				Logger::Level::WARNING);
 		}
 		// In-system ships that aren't on a valid planet should get moved to the player's planet
 		// (but e.g. disabled ships or those that didn't have a planet should remain in space).
 		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
 		{
 			ship->SetPlanet(planet);
-			Logger::LogError("Warning: in-system player ship \"" + ship->Name()
-				+ "\" specified an invalid planet. Defaulting to the player's planet.");
+			Logger::Log("In-system player ship \"" + ship->Name()
+				+ "\" specified an invalid planet. Defaulting to the player's planet.",
+				Logger::Level::WARNING);
 		}
 		// Owned ships that are not in the player's system always start in flight.
 	}
@@ -3452,7 +3457,8 @@ void PlayerInfo::ValidateLoad()
 	// Validate the travel plan.
 	if(travelDestination && !travelDestination->IsValid())
 	{
-		Logger::LogError("Warning: removed invalid travel plan destination \"" + travelDestination->TrueName() + ".\"");
+		Logger::Log("Removed invalid travel plan destination \"" + travelDestination->TrueName() + "\".",
+			Logger::Level::WARNING);
 		travelDestination = nullptr;
 	}
 	if(!travelPlan.empty() && any_of(travelPlan.begin(), travelPlan.end(),
@@ -3460,7 +3466,7 @@ void PlayerInfo::ValidateLoad()
 	{
 		travelPlan.clear();
 		travelDestination = nullptr;
-		Logger::LogError("Warning: reset the travel plan due to use of invalid system(s).");
+		Logger::Log("Reset the travel plan due to use of invalid system(s).", Logger::Level::WARNING);
 	}
 
 	// For old saves, default to the first start condition (the default "Endless Sky" start).
@@ -3626,8 +3632,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship)
 			return 0;
 		if(GetPlanet())
-			Logger::LogError("Warning: Use of \"flagship bays free: <category>\""
-				" condition while landed is unstable behavior.");
+			Logger::Log("Use of \"flagship bays free: <category>\" condition while landed is unstable behavior.",
+				Logger::Level::WARNING);
 		return flagship->BaysFree(ce.NameWithoutPrefix()); });
 	conditions["flagship bays"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		if(!flagship)
@@ -3639,7 +3645,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship)
 			return 0;
 		if(GetPlanet())
-			Logger::LogError("Warning: Use of \"flagship bays free\" condition while landed is unstable behavior.");
+			Logger::Log("Use of \"flagship bays free\" condition while landed is unstable behavior.",
+				Logger::Level::WARNING);
 		const vector<Ship::Bay> &bays = flagship->Bays();
 		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; }); });
 
@@ -4123,8 +4130,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		const System *system = GameData::Systems().Find(ce.NameWithoutPrefix());
 		if(!system)
 		{
-			Logger::LogError("Warning: System \"" + ce.NameWithoutPrefix()
-					+ "\" referred to in condition is not valid.");
+			Logger::Log("System \"" + ce.NameWithoutPrefix() + "\" referred to in condition is not valid.",
+				Logger::Level::WARNING);
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);
@@ -4134,15 +4141,15 @@ void PlayerInfo::RegisterDerivedConditions()
 		const Planet *planet = GameData::Planets().Find(ce.NameWithoutPrefix());
 		if(!planet)
 		{
-			Logger::LogError("Warning: Planet \"" + ce.NameWithoutPrefix()
-					+ "\" referred to in condition is not valid.");
+			Logger::Log("Planet \"" + ce.NameWithoutPrefix() + "\" referred to in condition is not valid.",
+				Logger::Level::WARNING);
 			return -1;
 		}
 		const System *system = planet->GetSystem();
 		if(!system)
 		{
-			Logger::LogError("Warning: Planet \"" + ce.NameWithoutPrefix()
-					+ "\" referred to in condition is not in any system.");
+			Logger::Log("Planet \"" + ce.NameWithoutPrefix() + "\" referred to in condition is not in any system.",
+				Logger::Level::WARNING);
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);

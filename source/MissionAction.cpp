@@ -170,12 +170,12 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 		if(count >= 0)
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		else
-			child.PrintTrace("Error: Skipping invalid \"require\" count:");
+			child.PrintTrace("Skipping invalid \"require\" count:");
 	}
 	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 	{
-		child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+		child.PrintTrace("Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
 		requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 	}
 	else if(key == "system")
@@ -183,7 +183,7 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 		if(system.empty() && child.HasChildren())
 			systemFilter.Load(child, visitedSystems, visitedPlanets);
 		else
-			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
+			child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
 	}
 	else if(key == "can trigger after failure")
 		runsWhenFailed = true;

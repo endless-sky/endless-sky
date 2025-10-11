@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
+#include "GameVersion.h"
 #include "GameWindow.h"
 #include "Logger.h"
 #include "MainPanel.h"
@@ -45,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #ifdef _WIN32
 #include "windows/TimerResolutionGuard.h"
+#include "windows/WinConsole.h"
 #include "windows/WinVersion.h"
 #endif
 
@@ -57,12 +59,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <exception>
 #include <string>
 
-#ifdef _WIN32
-#define STRICT
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#endif
-
 using namespace std;
 
 void PrintHelp();
@@ -71,9 +67,6 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	const string &testToRun, bool debugMode);
 Conversation LoadConversation(const PlayerInfo &player);
 void PrintTestsTable();
-#ifdef _WIN32
-void InitConsole();
-#endif
 
 
 
@@ -84,7 +77,7 @@ int main(int argc, char *argv[])
 	WinVersion::Init();
 	// Handle command-line arguments
 	if(argc > 1)
-		InitConsole();
+		WinConsole::Init();
 #endif
 	PlayerInfo player;
 	Conversation conversation;
@@ -99,10 +92,9 @@ int main(int argc, char *argv[])
 	// Whether the game has encountered errors while loading.
 	bool hasErrors = false;
 	// Ensure that we log errors to the errors.txt file.
-	Logger::SetLogErrorCallback([&hasErrors](const string &errorMessage) {
-		static const string PARSING_PREFIX = "Parsing: ";
-		if(errorMessage.substr(0, PARSING_PREFIX.length()) != PARSING_PREFIX)
-			hasErrors = true;
+	Logger::SetLogCallback([&hasErrors](const string &errorMessage, Logger::Level level)
+	{
+		hasErrors |= level != Logger::Level::INFO;
 		Files::LogErrorToFile(errorMessage);
 	});
 
@@ -137,6 +129,10 @@ int main(int argc, char *argv[])
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
+	Preferences::Load();
+
+	Logger::Session logSession;
+
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
 	try {
@@ -157,7 +153,7 @@ int main(int argc, char *argv[])
 
 		if(isTesting && !GameData::Tests().Has(testToRunName))
 		{
-			Logger::LogError("Test \"" + testToRunName + "\" not found.");
+			Logger::Log("Test \"" + testToRunName + "\" not found.", Logger::Level::ERROR);
 			return 1;
 		}
 
@@ -204,8 +200,6 @@ int main(int argc, char *argv[])
 			return hasErrors;
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
-
-		Preferences::Load();
 
 		// Load global conditions:
 		DataFile globalConditions(Files::Config() / "global conditions.txt");
@@ -540,7 +534,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.16-alpha" << endl;
+	cerr << "Endless Sky ver. " << GameVersion::Running().ToString() << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -598,46 +592,3 @@ void PrintTestsTable()
 			cout << it.second.Name() << '\n';
 	cout.flush();
 }
-
-
-
-#ifdef _WIN32
-void InitConsole()
-{
-	const int UNINITIALIZED = -2;
-	bool redirectStdout = _fileno(stdout) == UNINITIALIZED;
-	bool redirectStderr = _fileno(stderr) == UNINITIALIZED;
-	bool redirectStdin = _fileno(stdin) == UNINITIALIZED;
-
-	// Bail if stdin, stdout, and stderr are already initialized (e.g. writing to a file)
-	if(!redirectStdout && !redirectStderr && !redirectStdin)
-		return;
-
-	// Bail if we fail to attach to the console
-	if(!AttachConsole(ATTACH_PARENT_PROCESS) && !AllocConsole())
-		return;
-
-	// Perform console redirection.
-	if(redirectStdout)
-	{
-		FILE *fstdout = nullptr;
-		freopen_s(&fstdout, "CONOUT$", "w", stdout);
-		if(fstdout)
-			setvbuf(stdout, nullptr, _IOFBF, 4096);
-	}
-	if(redirectStderr)
-	{
-		FILE *fstderr = nullptr;
-		freopen_s(&fstderr, "CONOUT$", "w", stderr);
-		if(fstderr)
-			setvbuf(stderr, nullptr, _IOLBF, 1024);
-	}
-	if(redirectStdin)
-	{
-		FILE *fstdin = nullptr;
-		freopen_s(&fstdin, "CONIN$", "r", stdin);
-		if(fstdin)
-			setvbuf(stdin, nullptr, _IONBF, 0);
-	}
-}
-#endif

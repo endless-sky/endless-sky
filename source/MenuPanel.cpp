@@ -78,7 +78,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	}
 	else if(showCreditsWarning)
 	{
-		Logger::LogError("Warning: interface \"main menu\" does not contain a box for \"credits\"");
+		Logger::Log("Interface \"main menu\" does not contain a box for \"credits\".", Logger::Level::WARNING);
 		showCreditsWarning = false;
 	}
 

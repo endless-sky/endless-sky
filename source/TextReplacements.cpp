@@ -43,18 +43,18 @@ void TextReplacements::Load(const DataNode &node, const ConditionsStore *playerC
 		string key = child.Token(0);
 		if(key.empty())
 		{
-			child.PrintTrace("Error: Cannot replace the empty string:");
+			child.PrintTrace("Cannot replace the empty string:");
 			continue;
 		}
 		if(key.front() != '<')
 		{
 			key = "<" + key;
-			child.PrintTrace("Warning: text replacements must be prefixed by \"<\":");
+			child.PrintTrace("Text replacements must be prefixed by \"<\":");
 		}
 		if(key.back() != '>')
 		{
 			key += ">";
-			child.PrintTrace("Warning: text replacements must be suffixed by \">\":");
+			child.PrintTrace("Text replacements must be suffixed by \">\":");
 		}
 		if(reserved.contains(key))
 		{

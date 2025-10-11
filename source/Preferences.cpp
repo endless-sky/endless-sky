@@ -614,7 +614,7 @@ bool Preferences::ToggleVSync()
 		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 		{
 			// Restore original saved setting.
-			Logger::LogError("Unable to change VSync state");
+			Logger::Log("Unable to change VSync state.", Logger::Level::WARNING);
 			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
 			return false;
 		}

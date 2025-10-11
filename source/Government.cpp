@@ -242,7 +242,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				bool add = grand.Token(0) == "add";
 				if((add || remove) && grand.Size() < 2)
 				{
-					grand.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
+					grand.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
 					continue;
 				}
 				if(clearTrusted && !add && !remove)
@@ -364,7 +364,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		else if(key == "send untranslated hails")
 			sendUntranslatedHails = true;
 		else if(!hasValue)
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 		else if(key == "default attitude")
 			defaultAttitude = child.Value(valueIndex);
 		else if(key == "player reputation")
@@ -378,7 +378,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		else if(key == "fine")
 			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(add)
-			child.PrintTrace("Error: Unsupported use of add:");
+			child.PrintTrace("Unsupported use of add:");
 		else if(key == "display name")
 			displayName = child.Token(valueIndex);
 		else if(key == "swizzle")
@@ -406,7 +406,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
-			child.PrintTrace("Warning: Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");
+			child.PrintTrace("Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");

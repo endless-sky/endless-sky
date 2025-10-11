@@ -143,7 +143,7 @@ void FleetCargo::LoadSingle(const DataNode &node)
 {
 	const string &key = node.Token(0);
 	if(node.Size() < 2)
-		node.PrintTrace("Error: Expected key to have a value:");
+		node.PrintTrace("Expected key to have a value:");
 	else if(key == "cargo")
 			cargo = static_cast<int>(node.Value(1));
 	else if(key == "commodities")

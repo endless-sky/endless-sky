@@ -797,6 +797,6 @@ bool ConditionSet::FailParse()
 
 bool ConditionSet::FailParse(const DataNode &node, const string &failText)
 {
-	node.PrintTrace("Error: " + failText + ":");
+	node.PrintTrace(failText + ":");
 	return FailParse();
 }

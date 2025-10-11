@@ -108,16 +108,16 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		else if(node.Token(i) == "accompany")
 			mustAccompany = true;
 		else
-			node.PrintTrace("Warning: Skipping unrecognized NPC completion condition \"" + node.Token(i) + "\":");
+			node.PrintTrace("Skipping unrecognized NPC completion condition \"" + node.Token(i) + "\":");
 	}
 
 	// Check for incorrect objective combinations.
 	if(failIf & ShipEvent::DESTROY && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
-		node.PrintTrace("Error: conflicting NPC mission objective to save and destroy or capture.");
+		node.PrintTrace("Conflicting NPC mission objective to save and destroy or capture.");
 	if(mustEvade && mustAccompany)
-		node.PrintTrace("Warning: NPC mission objective to accompany and evade is synonymous with kill.");
+		node.PrintTrace("NPC mission objective to accompany and evade is synonymous with kill.");
 	if(mustEvade && (succeedIf & ShipEvent::DESTROY || succeedIf & ShipEvent::CAPTURE))
-		node.PrintTrace("Warning: redundant NPC mission objective to evade and destroy or capture.");
+		node.PrintTrace("Redundant NPC mission objective to evade and destroy or capture.");
 
 	for(const DataNode &child : node)
 	{
@@ -231,7 +231,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			}
 			else
 			{
-				string message = "Error: Skipping unsupported use of a ship token and child nodes: ";
+				string message = "Skipping unsupported use of a ship token and child nodes: ";
 				if(child.Size() >= 3)
 					message += "to both name and customize a ship, create a variant and then reference it here.";
 				else
@@ -664,8 +664,8 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	}
 	if(ait != npcActions.end())
 	{
-		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) +
-				"\" in NPC uses invalid " + std::move(reason));
+		Logger::Log("Instantiation Error: Action \"" + TriggerToText(ait->first) +
+			"\" in NPC uses invalid " + std::move(reason), Logger::Level::WARNING);
 		return result;
 	}
 	for(const auto &it : npcActions)

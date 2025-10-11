@@ -375,7 +375,8 @@ void Engine::Place()
 		else if(!ship->GetSystem())
 		{
 			// Log this error.
-			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
+			Logger::Log("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system",
+				Logger::Level::WARNING);
 			ship->SetSystem(system);
 		}
 
