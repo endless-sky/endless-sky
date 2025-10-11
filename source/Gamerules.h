@@ -28,7 +28,9 @@ public:
 	// Defines which disabled fighters can dodge stray projectiles.
 	enum class FighterDodgePolicy
 	{
-		ALL, NONE, ONLY_PLAYER
+		NONE = 0,
+		ONLY_PLAYER = 1,
+		ALL = 2
 	};
 
 
