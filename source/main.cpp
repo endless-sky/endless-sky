@@ -131,12 +131,12 @@ int main(int argc, char *argv[])
 
 	Preferences::Load();
 
-	bool isConsoleOnly = loadOnly || printTests || printData;
-
-	Logger::Session logSession{isConsoleOnly || !testToRunName.empty()};
-
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
+	bool isConsoleOnly = loadOnly || printTests || printData;
+
+	Logger::Session logSession{isConsoleOnly || isTesting};
+
 	try {
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();

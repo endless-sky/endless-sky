@@ -29,21 +29,7 @@ std::string IgnoreLogHeaders(std::string output)
 		// Completely skip the session markers.
 		if(line.find("Logger session") != std::string::npos)
 			continue;
-		// There is one bar after the timestamp, and another after the message level.
-		size_t pos = line.find('|');
-		if(pos != std::string::npos)
-		{
-			pos = line.find('|', pos + 1);
-			if(pos != std::string::npos)
-			{
-				// pos is the index of the second bar, after which there's a space, so add 2.
-				if(line.size() > pos + 2)
-					line = line.substr(pos + 2);
-				else
-					line.clear();
-			}
-		}
-		formattedOutput += line + '\n';
+		formattedOutput += line.substr(line.find("| W |") + 5) + '\n';
 	}
 	return formattedOutput;
 }
