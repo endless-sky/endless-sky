@@ -125,7 +125,7 @@ void UniverseObjects::FinishLoading()
 			for(const string &name : category.second)
 				persons.Get(name)->NeverSpawn();
 		else
-			Logger::LogError("Unhandled \"disable\" keyword of type \"" + category.first + "\"");
+			Logger::Log("Unhandled \"disable\" keyword of type \"" + category.first + "\".", Logger::Level::WARNING);
 	}
 
 	// Sort all category lists.
@@ -169,7 +169,7 @@ void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
 	else if(key == "wormhole" && hasValue)
 		wormholes.Get(node.Token(1))->Load(node);
 	else
-		node.PrintTrace("Error: Invalid \"event\" data:");
+		node.PrintTrace("Invalid \"event\" data:");
 }
 
 
@@ -203,7 +203,7 @@ void UniverseObjects::CheckReferences()
 	// Log a warning for an "undefined" class object that was never loaded from disk.
 	auto Warn = [](const string &noun, const string &name)
 	{
-		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
+		Logger::Log(noun + " \"" + name + "\" is referred to, but not fully defined.", Logger::Level::WARNING);
 	};
 	// Class objects with a deferred definition should still get named when content is loaded.
 	auto NameIfDeferred = [](const set<string> &deferred, auto &it)
@@ -243,7 +243,7 @@ void UniverseObjects::CheckReferences()
 			Warn("conversation", it.first);
 	// The "default intro" conversation must invoke the prompt to set the player's name.
 	if(!conversations.Get("default intro")->IsValidIntro())
-		Logger::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
+		Logger::Log("The \"default intro\" conversation must contain a \"name\" node.", Logger::Level::WARNING);
 	// Effects are serialized as a part of ships.
 	for(auto &&it : effects)
 		if(it.second.Name().empty())
@@ -332,7 +332,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 
 	DataFile data(path);
 	if(debugMode)
-		Logger::LogError("Parsing: " + path.string());
+		Logger::Log("Parsing: " + path.string(), Logger::Level::INFO);
 
 	const ConditionsStore *playerConditions = &player.Conditions();
 	const set<const System *> *visitedSystems = &player.VisitedSystems();

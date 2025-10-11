@@ -46,7 +46,7 @@ Minable::Payload::Payload(const DataNode &node)
 		bool hasValue = child.Size() >= 2;
 
 		if(!hasValue)
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 		else if(key == "max drops")
 			maxDrops = max<int>(1, child.Value(1));
 		else if(key == "drop rate")
@@ -73,7 +73,7 @@ void Minable::Load(const DataNode &node)
 		bool hasValue = child.Size() >= 2;
 
 		if(!hasValue)
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 		else if(key == "display name")
 			displayName = child.Token(1);
 		else if(key == "noun")

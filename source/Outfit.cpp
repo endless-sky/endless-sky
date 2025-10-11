@@ -327,7 +327,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	{
 		pluralName = displayName + 's';
 		if((displayName.back() == 's' || displayName.back() == 'z') && node.Token(0) == "outfit")
-			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
+			node.PrintTrace("Explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralName + "\".");
 	}
 
@@ -360,7 +360,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		&& !AntiMissile() && !TractorBeam())
 	{
 		SetTurretTurn(4.);
-		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
+		node.PrintTrace("Deprecated use of a turret without specified \"turret turn\":");
 	}
 	// Convert any legacy cargo / outfit scan definitions into power & speed,
 	// so no runtime code has to check for both.
@@ -371,7 +371,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		if(initial)
 		{
 			attributes[label] = 0.;
-			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ label + " power\" and \"" + label + " speed\":");
 
 			// A scan value of 300 is equivalent to a scan power of 9.
@@ -388,7 +388,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		if(initial)
 		{
 			attributes[label] = 0.;
-			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ kind + " scan efficiency\":");
 			// A reasonable update is 15x the previous value, as the base scan time
 			// is 10x what it was before scan efficiency was introduced, along with
