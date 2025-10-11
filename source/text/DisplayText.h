@@ -27,6 +27,7 @@ class Color;
 class Sprite;
 
 
+
 // Class for holding a displayed text and layout.
 class DisplayText {
 public:
