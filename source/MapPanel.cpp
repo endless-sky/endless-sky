@@ -484,6 +484,8 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		for(auto &child : GetChildren())
 			RemoveChild(child.get());
 	};
+	if(key == SDLK_AC_BACK)
+		GetUI()->Pop(this);
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
