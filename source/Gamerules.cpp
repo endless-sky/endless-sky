@@ -73,7 +73,7 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "fleet multiplier")
 			fleetMultiplier = max<double>(0., child.Value(1));
 		else
-			miscRule[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
+			miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
 }
 
