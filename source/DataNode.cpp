@@ -323,6 +323,9 @@ list<DataNode>::const_iterator DataNode::end() const noexcept
 // Print a message followed by a "trace" of this node and its parents.
 int DataNode::PrintTrace(const string &message) const
 {
+	if(!message.empty())
+		Logger::Log(message, Logger::Level::WARNING);
+
 	// Recursively print all the parents of this node, so that the user can
 	// trace it back to the right point in the file.
 	size_t indent = 0;
@@ -340,10 +343,7 @@ int DataNode::PrintTrace(const string &message) const
 			line += ' ';
 		line += DataWriter::Quote(token);
 	}
-
-	// Put an empty line in the log between each error message.
-	string emptyLine = message.empty() ? string{} : "\n";
-	Logger::Log(message + emptyLine + line + emptyLine, Logger::Level::WARNING);
+	Logger::Log(line + (message.empty() ? string{} : "\n"), Logger::Level::WARNING);
 
 	// Tell the caller what indentation level we're at now.
 	return indent;
