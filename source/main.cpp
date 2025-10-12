@@ -135,7 +135,8 @@ int main(int argc, char *argv[])
 	const bool isTesting = !testToRunName.empty();
 	bool isConsoleOnly = loadOnly || printTests || printData;
 
-	Logger::Session logSession{isConsoleOnly || isTesting};
+	if(!isConsoleOnly && !isTesting)
+		static Logger::Session logSession;
 
 	try {
 		// Load plugin preferences before game data if any.
