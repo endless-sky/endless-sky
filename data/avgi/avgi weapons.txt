@@ -604,7 +604,7 @@ outfit "Tiny VLS"
 		"missile strength" 9
 		"submunition" "Nettle Active"
 	description "This tiny vertical launch system contains nine independent launch cells, each occupying one ton of outfit space. Compatible with small-to-medium Avgi missiles, the cells' contents can be easily swapped to suit a given mission. This array's compact footprint makes it suitable for drones and fighters, though the system still requires a turret mount."
-	description "	Vertical launch systems can rapidly launch missiles and are quite versatile, but as dual launchers and magazines, no separate missile storage is available."
+	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Small VLS"
