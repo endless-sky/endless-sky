@@ -113,7 +113,6 @@ outfit "Nucleolysis Beam"
 	description "This beam weapon creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant products have a higher energy state than the original nucleus, the beam cools its target, defying conventional thermodynamics."
 	description "In practice, this beam can deplete a ship's deuterium fuel while causing the very matter of its hull to decay."
 
-
 outfit "Telescopic Antimissile"
 	category "Turrets"
 	series "Anti-Missile"
@@ -186,8 +185,8 @@ outfit "Anomalous Mass"
 	"flotsam chance" 0.4
 	"mass" 2.718
 	"outfit space" -4
-	"heat generation" 1.4
+	"heat generation" 0.4
 	"drag" 0.04
-	"inertia reduction" 0.04
+	"inertia reduction" 0.01
 	"unplunderable" 1
 	description "Found with widely varying properties in different mechanisms of an Aberration, this mass of glassy, fleshy material is characterized by the very difficulty of classifying its composition. Webs of anomalous material embedded in the mass seem not to be composed of atomic matter as the Avgi know it, but by something entirely different, which resists any attempts to probe its makeup. This is thought to enable many of the Aberrants' more baffling abilities, for lack of any other explanation."

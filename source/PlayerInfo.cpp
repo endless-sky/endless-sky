@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
@@ -1501,10 +1502,8 @@ void PlayerInfo::Land(UI *ui)
 		return;
 
 	if(!freshlyLoaded)
-	{
 		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
-		Audio::PlayMusic(planet->MusicName());
-	}
+	Audio::PlayMusic(planet->MusicName());
 
 	// Mark this planet as visited.
 	Visit(*planet);
@@ -4186,6 +4185,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(value <= 1)
 			return 0;
 		return Random::Int(value);
+	});
+
+	// Gamerule condition getter:
+	conditions["gamerule: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
+		return GameData::GetGamerules().GetValue(ce.NameWithoutPrefix());
 	});
 
 	// Global conditions setters and getters:
