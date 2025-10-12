@@ -30,6 +30,10 @@ std::string IgnoreLogHeaders(std::string output)
 		if(line.find("Logger session") != std::string::npos)
 			continue;
 		size_t pos = line.find("| W |");
+		if(pos == std::string::npos)
+			pos = line.find("| I |");
+		if(pos == std::string::npos)
+			pos = line.find("| E |");
 		if(pos != std::string::npos)
 			line = line.substr(pos + 6);
 		formattedOutput += line + '\n';
