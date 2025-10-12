@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "WinVersion.h"
 
+#include "../text/Utf8.h"
+
 #include <windows.h>
 
 using namespace std;
@@ -37,8 +39,9 @@ void WinVersion::Init()
 
 string WinVersion::ToString()
 {
+	string servicePack = Utf8::ToUTF8(versionInfo.szCSDVersion);
 	return "Windows NT " + to_string(versionInfo.dwMajorVersion) + '.' + to_string(versionInfo.dwMinorVersion) + '.'
-		+ to_string(versionInfo.dwBuildNumber);
+		+ to_string(versionInfo.dwBuildNumber) + (servicePack.empty() ? string{} : ' ' + servicePack);
 }
 
 
