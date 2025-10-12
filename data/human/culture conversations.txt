@@ -885,7 +885,7 @@ mission "Exotic Life: Buccaneer Bay"
 		credits > 379
 	on offer
 		conversation
-			`You wander the planet's sun-bleached boardwalk past dozens of rum-soaked bars to see a cramped restaurant squeezed between a closed souvenir shop and yet another bar. Painted coral with a battered tin awning, a hand-written board dangles with the words "Fresh Delish Dish Fish."`
+			`You wander the planet's sun-bleached boardwalk, passing dozens of rum-soaked bars. Eventually, you see a cramped restaurant squeezed between a closed souvenir shop and yet another bar. Painted coral with a battered tin awning, a hand-written board dangles above the door with the words "Fresh Delish Dish Fish."`
 			`	A lanky waiter with a braided silver beard and cybernetic left eye aggressively waves you in and gives a practiced yell: "Best Dish Fish in town! Once-in-a-lifetime experience, plus a worlds-renowned souvenir! Try the Dish Fish - the fish that's a dish!"`
 			choice
 				`	"What?"`
