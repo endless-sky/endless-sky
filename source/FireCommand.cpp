@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	template <typename T>
+	template<typename T>
 	void SubsetAssign(std::vector<T> &lhs, const std::vector<T> &rhs) noexcept
 	{
 		const auto size = lhs.size() < rhs.size() ? lhs.size() : rhs.size();

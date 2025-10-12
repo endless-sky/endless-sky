@@ -78,11 +78,11 @@ mission "Hai Leaks Response 3"
 			choice
 				`	"Are the other Hai likely to be a problem here?"`
 				`	"How much longer can the Republic keep up the ruse?"`
-					goto badnews
+					goto "bad news"
 			`	Sayari shakes her head. "No problem remotely so severe as the one at hand. Now, I expect you have something for us, Mr. Yang?"`
 			`	"Well, I'm afraid I may have some bad news from our side." He taps on his screen as he says, 'bad news,' and the holoprojector begins showing a series of charts.`
 				goto charts
-			label badnews
+			label "bad news"
 			`	Mr. Yang responds, "On that, I'm afraid I may have some bad news." He taps on his screen as he says, 'bad news,' and the holoprojector begins showing a series of charts.`
 			label charts
 			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
@@ -485,19 +485,19 @@ mission "Hai Leaks Response 6"
 			`	You have not had much exposure to this elected "Council of Elders," but it seems they must hold some kind of final authority over decisions.`
 			choice
 				`	"But what should I do about it?"`
-					goto dothings
+					goto "do things"
 				`	"Are Hai kidnappings common?"`
 			`	"They're not. Well, it can be hard to tell sometimes, but no, I wouldn't say they're common. There have been instances in the past though where occasional pirate groups have been caught either trying or succeeding. My understanding is that those were dealt with effectively." She gives an odd shrug that is distorted by the cloak.`
 			`	"Still, my friend is very bright, and she is insistent that there is something beneath the noise that cannot be accounted for by normal circumstances. There has been a spike in disappearances since the leak, and not necessarily on worlds where they could be expected to have got themselves into trouble. With recent events her words have begun to trouble me, especially after that raid on Allhome. Nothing like that has ever happened before," she says.`
-			label dothings
+			label "do things"
 			`	"You are well-known, and must be canny to have got where you are. A Hai in trouble might recognize you, or you might perceive them when others would not. It would be in the interests of both our people to be sure that there is no such issue. Would you look for me? For both our sakes?"`
-			branch aboutthat
+			branch "about that"
 				"hai slave prereq" >= 1
 			choice
 				`	"Sure, I can have a look around."`
 			`	She gives you a little smile and nods. "If you come across someone and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh.'"`
 				goto mean
-			label aboutthat
+			label "about that"
 			`	"Well, about that," you say, "I think I might have already come across some potential evidence of this before."`
 			`	Sayari's hood nearly slips off as she looks up at you with a horrified expression. "Surely not?!"`
 			`	You rush to reassure her. "Nothing concrete, of course. I can go and look to be sure."`

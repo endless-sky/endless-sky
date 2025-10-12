@@ -16,11 +16,20 @@ Official releases of Endless Sky are available as direct downloads from [GitHub]
 
 Endless Sky has very minimal system requirements, meaning most systems should be able to run the game. The most restrictive requirement is likely that your device must support at least OpenGL 3.
 
-|| Minimum | Recommended |
+|Hardware | Minimum | Recommended |
 |---|----:|----:|
 |RAM | 750 MB | 2 GB |
-|Graphics | OpenGL 3.0 | OpenGL 3.3 |
-|Storage Free | 350 MB | 1.5 GB |
+|Graphics | OpenGL 3.0 | OpenGL 3.0 |
+|Screen Resolution | 1024x768 | 1920x1080 |
+|Storage Free | 400 MB | 1.5 GB |
+
+|Operating System | Minimum Version |
+|---|---|
+|Linux | Any modern distribution (equivalent of Ubuntu 20.04) |
+|MacOS | 10.7 |
+|Windows | XP (5.1) |
+
+It may be possible to run Endless Sky on other operating systems, though it is not officially supported.
 
 ## Building from source
 

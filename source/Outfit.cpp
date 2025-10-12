@@ -165,11 +165,13 @@ namespace {
 		{"hull energy multiplier", -1.},
 		{"hull fuel multiplier", -1.},
 		{"hull heat multiplier", -1.},
+		{"cloaked repair multiplier", -1.},
 		{"shield multiplier", -1. },
 		{"shield generation multiplier", -1.},
 		{"shield energy multiplier", -1.},
 		{"shield fuel multiplier", -1.},
 		{"shield heat multiplier", -1.},
+		{"cloaked regen multiplier", -1.},
 		{"acceleration multiplier", -1.},
 		{"turn multiplier", -1.},
 		{"turret turn multiplier", -1.}
@@ -193,7 +195,7 @@ namespace {
 
 	// Used to add the contents of one outfit's map to another, while also
 	// erasing any key with a value of zero.
-	template <class T>
+	template<class T>
 	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
 	{
 		for(const auto &it : otherMap)

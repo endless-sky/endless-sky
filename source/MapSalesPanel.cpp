@@ -97,6 +97,7 @@ void MapSalesPanel::Draw()
 
 bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NONE;
 	if(command.Has(Command::HELP))
 		DoHelp("map advanced shops", true);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -110,6 +111,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		scroll = -maxScroll;
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !zones.empty())
 	{
+		sound = UI::UISound::NORMAL;
 		selected += (key == SDLK_DOWN) - (key == SDLK_UP);
 		if(selected < 0)
 			selected = zones.size() - 1;
@@ -126,13 +128,17 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
+	UI::PlaySound(sound);
 	return true;
 }
 
 
 
-bool MapSalesPanel::Click(int x, int y, int clicks)
+bool MapSalesPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return MapPanel::Click(x, y, button, clicks);
+
 	if(x < Screen::Left() + WIDTH)
 	{
 		const Point point(x, y);
@@ -143,14 +149,19 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		{
 			Select(selected = -1);
 			Compare(compare = -1);
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else if((SDL_GetModState() & KMOD_SHIFT) == 0)
 		{
 			Select(selected = zone->Value());
 			Compare(compare = -1);
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else if(zone->Value() != selected)
+		{
 			Compare(compare = zone->Value());
+			UI::PlaySound(UI::UISound::NORMAL);
+		}
 	}
 	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 90)
 	{
@@ -159,20 +170,23 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		{
 			onlyShowSoldHere = false;
 			onlyShowStorageHere = false;
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else if(y < Screen::Top() + 62)
 		{
 			onlyShowSoldHere = !onlyShowSoldHere;
 			onlyShowStorageHere = false;
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 		else
 		{
 			onlyShowSoldHere = false;
 			onlyShowStorageHere = !onlyShowStorageHere;
+			UI::PlaySound(UI::UISound::NORMAL);
 		}
 	}
 	else
-		return MapPanel::Click(x, y, clicks);
+		return MapPanel::Click(x, y, button, clicks);
 
 	return true;
 }
@@ -297,7 +311,7 @@ void MapSalesPanel::DrawInfo() const
 		const Color &back = *GameData::Colors().Get("map side panel background");
 		Point size(width, height);
 		Point topLeft(Screen::Right() - size.X(), Screen::Top());
-		FillShader::Fill(topLeft + .5 * size, size, back);
+		FillShader::Fill(Rectangle::FromCorner(topLeft, size), back);
 
 		Point leftPos = topLeft + Point(
 			-.5 * left->Width(),
@@ -393,7 +407,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swi
 	if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
 	{
 		if(isSelected)
-			FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
+			FillShader::Fill(Rectangle::FromCorner(corner, blockSize), selectionColor);
 
 		DrawSprite(corner, sprite, swizzle);
 
