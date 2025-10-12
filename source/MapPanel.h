@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
-#include "text/WrappedText.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <string>
@@ -91,6 +91,8 @@ public:
 
 	// Map panels allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
+
+	virtual void UpdateTooltipActivation() override;
 
 
 protected:
@@ -164,10 +166,8 @@ protected:
 	void UpdateCache();
 
 	// For tooltips:
-	int hoverCount = 0;
 	const System *hoverSystem = nullptr;
-	std::string tooltip;
-	WrappedText hoverText;
+	Tooltip tooltip;
 
 	// An X offset in pixels to be applied to the selected system UI if something
 	// else gets in the way of its default position.

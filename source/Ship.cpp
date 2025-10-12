@@ -659,12 +659,18 @@ void Ship::FinishLoading(bool isNewInstance)
 		}
 		if(finalExplosions.empty())
 			finalExplosions = base->finalExplosions;
-		if(outfits.empty())
+		const bool inheritsOutfits = outfits.empty();
+		if(inheritsOutfits)
 			outfits = base->outfits;
 		if(description.IsEmpty())
 			description = base->description;
 
 		bool hasHardpoints = false;
+		if(inheritsOutfits && armament.Get().empty())
+		{
+			hasHardpoints = true;
+			armament = base->armament;
+		}
 		for(const Hardpoint &hardpoint : armament.Get())
 			if(hardpoint.GetPoint())
 				hasHardpoints = true;
@@ -3119,15 +3125,10 @@ double Ship::TurnRate() const
 
 double Ship::TrueTurnRate() const
 {
-	return TurnRate() * 1. / (1. + slowness * .05);
-}
-
-
-
-double Ship::CrewTurnRate() const
-{
 	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
-	return TurnRate() * min(1., static_cast<double>(Crew()) / RequiredCrew());
+	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
+	double slownessMultiplier = 1. / (1. + slowness * .05);
+	return TurnRate() * crewMultiplier * slownessMultiplier;
 }
 
 
@@ -3143,15 +3144,10 @@ double Ship::Acceleration() const
 
 double Ship::TrueAcceleration() const
 {
-	return Acceleration() * 1. / (1. + slowness * .05);
-}
-
-
-
-double Ship::CrewAcceleration() const
-{
 	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
-	return Acceleration() * min(1., static_cast<double>(Crew()) / RequiredCrew());
+	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
+	double slownessMultiplier = 1. / (1. + slowness * .05);
+	return Acceleration() * crewMultiplier * slownessMultiplier;
 }
 
 
@@ -3172,6 +3168,16 @@ double Ship::ReverseAcceleration() const
 {
 	return attributes.Get("reverse thrust") / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
+}
+
+
+
+double Ship::TrueReverseAcceleration() const
+{
+	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
+	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
+	double slownessMultiplier = 1. / (1. + slowness * .05);
+	return ReverseAcceleration() * crewMultiplier * slownessMultiplier;
 }
 
 
@@ -3270,7 +3276,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 		if(IsYours())
 			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+				" \"" + Name() + "\" has been destroyed.", Messages::Importance::HighestDuplicating);
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -4142,10 +4148,10 @@ void Ship::DoGeneration()
 				Ship &ship = *it.second;
 				if(!hullDelay)
 					DoRepair(ship.hull, hullRemaining, ship.MaxHull(),
-						energy, hullEnergy, heat, hullHeat, fuel, hullFuel);
+						energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
 				if(!shieldDelay)
 					DoRepair(ship.shields, shieldsRemaining, ship.MaxShields(),
-						energy, shieldsEnergy, heat, shieldsHeat, fuel, shieldsFuel);
+						energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
@@ -4645,7 +4651,7 @@ bool Ship::DoLandingLogic()
 		if(GetTargetStellar())
 			position = .97 * position + .03 * GetTargetStellar()->Position();
 		zoom -= landingSpeed;
-		if(zoom < 0.f)
+		if(zoom <= 0.f)
 		{
 			// If this is not a special ship, it ceases to exist when it
 			// lands on a true planet. If this is a wormhole, the ship is
@@ -4996,11 +5002,11 @@ void Ship::StepTargeting()
 
 			// Check if the ship will still be pointing to the same side of the target
 			// angle if it turns by this amount.
-			facing += TurnRate() * turn;
+			facing += TrueTurnRate() * turn;
 			bool stillLeft = target->Unit().Cross(facing.Unit()) < 0.;
 			if(left != stillLeft)
 				turn = 0.;
-			angle += TurnRate() * turn;
+			angle += TrueTurnRate() * turn;
 
 			velocity += dv.Unit() * .1;
 			position += dp.Unit() * .5;
@@ -5013,7 +5019,7 @@ void Ship::StepTargeting()
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::Highest);
+						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::HighestNoRepeat);
 				}
 				else
 				{
