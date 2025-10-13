@@ -742,9 +742,7 @@ double System::ExtraHyperArrivalDistance() const
 // Additional travel distance to target for ships entering using a jumpdrive.
 double System::ExtraJumpArrivalDistance() const
 {
-	if(extraJumpArrivalDistance >= 0)
-		return max(extraJumpArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
-	return min(extraJumpArrivalDistance, -GameData::GetGamerules().SystemArrivalMin());
+	return max(extraJumpArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
 }
 
 
