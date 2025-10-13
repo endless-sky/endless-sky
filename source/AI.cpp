@@ -402,8 +402,7 @@ namespace {
 
 
 
-AI::AI(PlayerInfo &player, const List<Ship> &ships,
-		const List<Minable> &minables, const List<Flotsam> &flotsam)
+AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
 	// Allocate a starting amount of hardpoints for ships.
@@ -533,7 +532,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	autoPilot |= activeCommands;
 	if(activeCommands.Has(AutopilotCancelCommands()))
 	{
-		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
+		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP | Command::FLEET_JUMP));
 		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
 		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
 		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
@@ -2497,7 +2496,10 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	bool facingAgainstTarget = angle.Unit().Dot(-wantedAcceleration.Unit()) > .9;
 	bool hasCruiseSpeed = (cruiseSpeed > 0.);
 
-	if(reverseTime < forwardTime)
+	bool canMatchVelocityForward = ship.MaxVelocity() * ship.MaxVelocity() >= targetVelocity.LengthSquared();
+	bool canMatchVelocityReverse = ship.MaxReverseVelocity() * ship.MaxReverseVelocity() >= targetVelocity.LengthSquared();
+	if((canMatchVelocityReverse && (reverseTime < forwardTime || !canMatchVelocityForward))
+			|| (!canMatchVelocityReverse && !canMatchVelocityForward && reverseTime < forwardTime))
 		command.SetTurn(TurnToward(ship, -wantedAcceleration));
 	else
 		command.SetTurn(TurnToward(ship, wantedAcceleration));
@@ -4266,12 +4268,17 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			else if(selectNext && isPlayer == shift && other->IsTargetable())
 			{
 				ship.SetTargetShip(other);
+				if(isPlayer)
+					player.SelectShip(other.get(), false);
 				selectNext = false;
 				break;
 			}
 		}
 		if(selectNext)
+		{
 			ship.SetTargetShip(shared_ptr<Ship>());
+			player.SelectShip(nullptr, false);
+		}
 		else
 			UI::PlaySound(UI::UISound::TARGET);
 	}
@@ -4554,8 +4561,12 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				name = ship.GetTargetSystem()->DisplayName();
 
 			if(activeCommands.Has(Command::FLEET_JUMP))
-				Messages::Add("Engaging fleet autopilot to jump to the " + name + " system."
-					" Your fleet will jump when ready.", Messages::Importance::High);
+			{
+				// Note: also has command JUMP on only the first call.
+				if(activeCommands.Has(Command::JUMP))
+					Messages::Add("Engaging fleet autopilot to jump to the " + name + " system."
+						" Your fleet will jump when ready.", Messages::Importance::High);
+			}
 			else
 				Messages::Add("Engaging autopilot to jump to the " + name + " system.", Messages::Importance::High);
 		}

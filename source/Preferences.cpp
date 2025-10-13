@@ -26,6 +26,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Screen.h"
 
+#ifdef _WIN32
+#include "windows/WinVersion.h"
+#endif
+
 #include <algorithm>
 #include <cstddef>
 #include <map>
@@ -35,6 +39,7 @@ using namespace std;
 namespace {
 	map<string, bool> settings;
 	int scrollSpeed = 60;
+	int tooltipActivation = 60;
 
 	// Strings for ammo expenditure:
 	const string EXPEND_AMMO = "Escorts expend ammo";
@@ -174,6 +179,14 @@ namespace {
 	int largeGraphicsReductionIndex = 0;
 
 	int previousSaveCount = 3;
+
+#ifdef _WIN32
+	const vector<string> TITLE_BAR_THEME_SETTINGS = {"system default", "light", "dark"};
+	int titleBarThemeIndex = 0;
+
+	const vector<string> WINDOW_ROUNDING_SETTINGS = {"system default", "off", "large", "small"};
+	int windowRoundingIndex = 0;
+#endif
 }
 
 
@@ -217,6 +230,8 @@ void Preferences::Load()
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(key));
 		else if(key == "scroll speed" && hasValue)
 			scrollSpeed = node.Value(1);
+		else if(key == "Tooltip activation time" && hasValue)
+			tooltipActivation = node.Value(1);
 		else if(key == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
 		else if(key == "Flotsam collection")
@@ -265,6 +280,12 @@ void Preferences::Load()
 			settings["Control ship with mouse"] = (!hasValue || node.Value(1));
 		else if(key == "notification settings")
 			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
+#ifdef _WIN32
+		else if(key == "Title bar theme")
+			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
+		else if(key == "Window rounding")
+			windowRoundingIndex = clamp<int>(node.Value(1), 0, WINDOW_ROUNDING_SETTINGS.size() - 1);
+#endif
 		else
 			settings[key] = (node.Size() == 1 || node.Value(1));
 	}
@@ -311,6 +332,7 @@ void Preferences::Save()
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
+	out.Write("Tooltip activation time", tooltipActivation);
 	out.Write("boarding target", boardingIndex);
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
@@ -333,6 +355,12 @@ void Preferences::Save()
 	out.Write("Prioritize flagship use", flagshipSpacePriorityIndex);
 	out.Write("Reduce large graphics", largeGraphicsReductionIndex);
 	out.Write("previous saves", previousSaveCount);
+#ifdef _WIN32
+	if(WinVersion::SupportsDarkTheme())
+		out.Write("Title bar theme", titleBarThemeIndex);
+	if(WinVersion::SupportsWindowRounding())
+		out.Write("Window rounding", windowRoundingIndex);
+#endif
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -431,6 +459,20 @@ int Preferences::ScrollSpeed()
 void Preferences::SetScrollSpeed(int speed)
 {
 	scrollSpeed = speed;
+}
+
+
+
+int Preferences::TooltipActivation()
+{
+	return tooltipActivation;
+}
+
+
+
+void Preferences::SetTooltipActivation(int steps)
+{
+	tooltipActivation = steps;
 }
 
 
@@ -890,3 +932,51 @@ const string &Preferences::LargeGraphicsReductionSetting()
 {
 	return LARGE_GRAPHICS_REDUCTION_SETTINGS[largeGraphicsReductionIndex];
 }
+
+
+
+#ifdef _WIN32
+void Preferences::ToggleTitleBarTheme()
+{
+	if(++titleBarThemeIndex >= static_cast<int>(TITLE_BAR_THEME_SETTINGS.size()))
+		titleBarThemeIndex = 0;
+	GameWindow::UpdateTitleBarTheme();
+}
+
+
+
+Preferences::TitleBarTheme Preferences::GetTitleBarTheme()
+{
+	return static_cast<TitleBarTheme>(titleBarThemeIndex);
+}
+
+
+
+const string &Preferences::TitleBarThemeSetting()
+{
+	return TITLE_BAR_THEME_SETTINGS[titleBarThemeIndex];
+}
+
+
+
+void Preferences::ToggleWindowRounding()
+{
+	if(++windowRoundingIndex >= static_cast<int>(WINDOW_ROUNDING_SETTINGS.size()))
+		windowRoundingIndex = 0;
+	GameWindow::UpdateWindowRounding();
+}
+
+
+
+Preferences::WindowRounding Preferences::GetWindowRounding()
+{
+	return static_cast<WindowRounding>(windowRoundingIndex);
+}
+
+
+
+const string &Preferences::WindowRoundingSetting()
+{
+	return WINDOW_ROUNDING_SETTINGS[windowRoundingIndex];
+}
+#endif
