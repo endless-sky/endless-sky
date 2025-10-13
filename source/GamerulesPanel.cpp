@@ -119,8 +119,11 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 
 
-bool GamerulesPanel::Click(int x, int y, int clicks)
+bool GamerulesPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	Point point(x, y);
 
 	// Don't handle clicks outside of the clipped area.
