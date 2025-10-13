@@ -125,8 +125,8 @@ public:
 
 	// The minimum distances from the system center to jump out of the system.
 	// Separated by jump drives and hyperdrives.
-	double JumpDepartureDistance() const;
 	double HyperDepartureDistance() const;
+	double JumpDepartureDistance() const;
 
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.

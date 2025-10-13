@@ -732,7 +732,9 @@ System::SolarGeneration System::GetSolarGeneration(const Point &shipPosition,
 // Additional travel distance to target for ships entering through hyperspace.
 double System::ExtraHyperArrivalDistance() const
 {
-	return max(extraHyperArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
+	if(extraHyperArrivalDistance >= 0)
+		return max(extraHyperArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
+	return min(extraHyperArrivalDistance, -GameData::GetGamerules().SystemArrivalMin());
 }
 
 
@@ -740,14 +742,9 @@ double System::ExtraHyperArrivalDistance() const
 // Additional travel distance to target for ships entering using a jumpdrive.
 double System::ExtraJumpArrivalDistance() const
 {
-	return max(extraJumpArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
-}
-
-
-
-double System::JumpDepartureDistance() const
-{
-	return max(jumpDepartureDistance, GameData::GetGamerules().SystemDepartureMin());
+	if(extraJumpArrivalDistance >= 0)
+		return max(extraJumpArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
+	return min(extraJumpArrivalDistance, -GameData::GetGamerules().SystemArrivalMin());
 }
 
 
@@ -755,6 +752,13 @@ double System::JumpDepartureDistance() const
 double System::HyperDepartureDistance() const
 {
 	return max(hyperDepartureDistance, GameData::GetGamerules().SystemDepartureMin());
+}
+
+
+
+double System::JumpDepartureDistance() const
+{
+	return max(jumpDepartureDistance, GameData::GetGamerules().SystemDepartureMin());
 }
 
 
