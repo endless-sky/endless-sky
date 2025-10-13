@@ -142,6 +142,12 @@ bool Panel::AllowsFastForward() const noexcept
 
 
 
+void Panel::UpdateTooltipActivation()
+{
+}
+
+
+
 void Panel::AddOrRemove()
 {
 	for(auto &panel : childrenToAdd)
@@ -291,7 +297,7 @@ void Panel::DrawBackdrop() const
 
 	// Darken everything but the dialog.
 	const Color &back = *GameData::Colors().Get("dialog backdrop");
-	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
+	FillShader::Fill(Point(), Screen::Dimensions(), back);
 }
 
 

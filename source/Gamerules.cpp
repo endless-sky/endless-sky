@@ -93,7 +93,7 @@ void Gamerules::Load(const DataNode &node)
 
 void Gamerules::Save(DataWriter &out) const
 {
-	out.Write("gamerules");
+	out.Write("gamerules", name);
 	out.BeginChild();
 	{
 		out.Write("universal ramscoop", universalRamscoop ? 1 : 0);
@@ -137,6 +137,39 @@ const string &Gamerules::Description() const
 const Sprite *Gamerules::Thumbnail() const
 {
 	return thumbnail;
+}
+
+
+
+int Gamerules::GetValue(const string &rule) const
+{
+	if(rule == "universal ramscoop")
+		return universalRamscoop;
+	if(rule == "person spawn period")
+		return personSpawnPeriod;
+	if(rule == "no person spawn weight")
+		return noPersonSpawnWeight;
+	if(rule == "npc max mining time")
+		return npcMaxMiningTime;
+	if(rule == "universal frugal threshold")
+		return universalFrugalThreshold * 1000;
+	if(rule == "depreciation min")
+		return depreciationMin * 1000;
+	if(rule == "depreciation daily")
+		return depreciationDaily * 1000;
+	if(rule == "depreciation grace period")
+		return depreciationGracePeriod;
+	if(rule == "depreciation max age")
+		return depreciationMaxAge;
+	if(rule == "disabled fighters avoid projectiles")
+		return static_cast<int>(fighterHitPolicy);
+	if(rule == "system departure min")
+		return systemDepartureMin * 1000;
+	if(rule == "system arrival min")
+		return systemArrivalMin * 1000;
+	if(rule == "fleet multiplier")
+		return fleetMultiplier * 1000;
+	return 0;
 }
 
 

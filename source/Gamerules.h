@@ -30,7 +30,9 @@ public:
 	// Defines which disabled fighters can dodge stray projectiles.
 	enum class FighterDodgePolicy
 	{
-		ALL, NONE, ONLY_PLAYER
+		NONE = 0,
+		ONLY_PLAYER = 1,
+		ALL = 2
 	};
 
 
@@ -44,6 +46,8 @@ public:
 	const std::string &Name() const;
 	const std::string &Description() const;
 	const Sprite *Thumbnail() const;
+
+	int GetValue(const std::string &rule) const;
 
 	bool UniversalRamscoopActive() const;
 	int PersonSpawnPeriod() const;

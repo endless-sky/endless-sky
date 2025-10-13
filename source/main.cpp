@@ -43,6 +43,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "test/TestContext.h"
 #include "UI.h"
 
+#ifdef _WIN32
+#include "windows/TimerResolutionGuard.h"
+#include "windows/WinVersion.h"
+#endif
+
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -56,13 +61,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#include <mmsystem.h>
-
-#ifdef PlaySound
-#undef PlaySound
 #endif
-#endif
-
 
 using namespace std;
 
@@ -81,8 +80,9 @@ void InitConsole();
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
-	// Handle command-line arguments
 #ifdef _WIN32
+	WinVersion::Init();
+	// Handle command-line arguments
 	if(argc > 1)
 		InitConsole();
 #endif
@@ -205,12 +205,6 @@ int main(int argc, char *argv[])
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 
-		// On Windows, make sure that the sleep timer has at least 1 ms resolution
-		// to avoid irregular frame rates.
-#ifdef _WIN32
-		timeBeginPeriod(1);
-#endif
-
 		Preferences::Load();
 
 		// Load global conditions:
@@ -223,6 +217,10 @@ int main(int argc, char *argv[])
 			return 1;
 
 		GameData::LoadSettings();
+
+#ifdef _WIN32
+		TimerResolutionGuard windowsTimerGuard;
+#endif
 
 		if(!isTesting || debugMode)
 		{
@@ -542,7 +540,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.15-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.16-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

@@ -122,7 +122,7 @@ void StartConditionsPanel::Draw()
 
 		bool isHighlighted = it == startIt || (hasHover && zone.Contains(hoverPoint));
 		if(it == startIt)
-			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
+			FillShader::Fill(zone, selectedBackground.Additive(opacity));
 
 		const auto name = DisplayText(it->GetDisplayName(), Truncate::BACK);
 		font.Draw(name, pos + entryTextPadding, (isHighlighted ? bright : medium).Transparent(opacity));
