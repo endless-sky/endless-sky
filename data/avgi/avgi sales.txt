@@ -73,6 +73,8 @@ outfitter "Avgi General"
 	"Bunk Room"
 	"Cargo Expansion"
 	"Outfits Expansion"
+	"Fuel Pod"
+	"Local Map"
 
 outfitter "Avgi Specialized"
 	"Speck Round"
