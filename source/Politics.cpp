@@ -252,8 +252,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			continue;
 		if(ship->GetSystem() != player.GetSystem())
 			continue;
+		// Skip parked ships. The spaceport authorities are only scanning the ships you just landed with.
 		const Planet *planet = player.GetPlanet();
-		if(planet && ship->GetPlanet() != planet)
+		if((planet && ship->GetPlanet() != planet) || ship->IsParked())
 			continue;
 
 		int failedMissions = 0;
