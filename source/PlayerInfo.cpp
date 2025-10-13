@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
@@ -1186,7 +1187,7 @@ const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const st
 
 	// If an id was given, associate and store it with the UUID of the gifted ship.
 	if(!id.empty())
-		giftedShips[id].clone(ships.back()->UUID());
+		giftedShips[id].Clone(ships.back()->UUID());
 
 	return ships.back().get();
 }
@@ -1501,10 +1502,8 @@ void PlayerInfo::Land(UI *ui)
 		return;
 
 	if(!freshlyLoaded)
-	{
 		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
-		Audio::PlayMusic(planet->MusicName());
-	}
+	Audio::PlayMusic(planet->MusicName());
 
 	// Mark this planet as visited.
 	Visit(*planet);
@@ -1890,25 +1889,27 @@ void PlayerInfo::PoolCargo()
 
 const CargoHold &PlayerInfo::DistributeCargo()
 {
+	desiredCrew = flagship->Crew();
+	flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - desiredCrew);
+
+	// First, try to transfer to the flagship depending on the priority preference.
+	Preferences::FlagshipSpacePriority prioritySetting = Preferences::GetFlagshipSpacePriority();
+	if(prioritySetting == Preferences::FlagshipSpacePriority::PASSENGERS)
+		for(const auto &it : cargo.PassengerList())
+			cargo.TransferPassengers(it.first, it.second, flagship->Cargo());
+	else if(prioritySetting != Preferences::FlagshipSpacePriority::NONE)
+		cargo.TransferAll(flagship->Cargo(), prioritySetting == Preferences::FlagshipSpacePriority::BOTH);
+
+	// Distribute the remaining cargo among the escorts.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet)
+		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet && ship != flagship)
 		{
-			if(ship != flagship)
-			{
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
-				cargo.TransferAll(ship->Cargo());
-			}
-			else
-			{
-				// Your flagship takes first priority for passengers but last for cargo.
-				desiredCrew = ship->Crew();
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
-				for(const auto &it : cargo.PassengerList())
-					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
-			}
+			ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
+			cargo.TransferAll(ship->Cargo());
 		}
-	// Load up your flagship last, so that it will have space free for any
-	// plunder that you happen to acquire.
+
+	// If the escorts couldn't fit all of the cargo or passengers, try to move the rest to the flagship
+	// regardless of the priority preference.
 	cargo.TransferAll(flagship->Cargo());
 
 	return cargo;
@@ -3768,6 +3769,17 @@ void PlayerInfo::RegisterDerivedConditions()
 		// The probability of any single fleet appearing is 1 - chance.
 		return round((1. - safeChance) * 1000.); });
 
+	// Special conditions about combat power.
+	conditions["flagship strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return flagship ? flagship->Strength() : 0;
+	});
+	conditions["player strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		int64_t strength = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			strength += ship->Strength();
+		return strength;
+	});
+
 	// Special conditions for cargo and passenger space.
 	conditions["cargo space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		int64_t retVal = 0;
@@ -4173,6 +4185,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(value <= 1)
 			return 0;
 		return Random::Int(value);
+	});
+
+	// Gamerule condition getter:
+	conditions["gamerule: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
+		return GameData::GetGamerules().GetValue(ce.NameWithoutPrefix());
 	});
 
 	// Global conditions setters and getters:
@@ -4854,34 +4871,23 @@ bool PlayerInfo::CanBeSaved() const
 void PlayerInfo::DoAccounting()
 {
 	// Check what salaries and tribute the player receives.
+	map<string, int64_t> income;
 	int64_t salariesIncome = accounts.SalariesIncomeTotal();
+	if(salariesIncome)
+		income["salary"] = salariesIncome;
 	int64_t tributeIncome = GetTributeTotal();
+	if(tributeIncome)
+		income["in tribute"] = tributeIncome;
 	FleetBalance balance = MaintenanceAndReturns();
-	if(salariesIncome || tributeIncome || balance.assetsReturns)
+	if(balance.assetsReturns)
+		income["based on outfits and ships"] = balance.assetsReturns;
+	if(!income.empty())
 	{
-		string message = "You receive ";
-		if(salariesIncome)
-		{
-			message += Format::CreditString(salariesIncome) + " salary";
-			if(tributeIncome)
+		string message = "You receive " + Format::List<map, string, int64_t>(income,
+			[](const pair<string, int64_t> &it)
 			{
-				if(balance.assetsReturns)
-					message += ", ";
-				else
-					message += " and ";
-			}
-		}
-		if(tributeIncome)
-			message += Format::CreditString(tributeIncome) + " in tribute";
-		if(balance.assetsReturns)
-		{
-			if(salariesIncome && tributeIncome)
-				message += ",";
-			if(salariesIncome || tributeIncome)
-				message += " and ";
-			message += Format::CreditString(balance.assetsReturns) + " based on outfits and ships";
-		}
-		message += ".";
+				return Format::CreditString(it.second) + ' ' + it.first;
+			}) + '.';
 		Messages::Add(message, Messages::Importance::High, true);
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
 	}

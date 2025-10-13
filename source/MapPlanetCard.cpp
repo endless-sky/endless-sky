@@ -287,8 +287,8 @@ void MapPlanetCard::Highlight(double availableSpace) const
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double width = planetCardInterface->GetValue("width");
 
-	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
-		Point(width, availableSpace), *GameData::Colors().Get("item selected"));
+	Rectangle highlightRegion = Rectangle::FromCorner(Point(Screen::Left(), yCoordinate), Point(width, availableSpace));
+	FillShader::Fill(highlightRegion, *GameData::Colors().Get("item selected"));
 }
 
 

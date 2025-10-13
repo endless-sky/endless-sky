@@ -283,8 +283,11 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 
 
-bool TradingPanel::Click(int x, int y, int clicks)
+bool TradingPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
 	const Rectangle box = tradeUi->GetBox("content");
 	const int MIN_X = box.Left();
