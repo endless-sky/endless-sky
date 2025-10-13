@@ -82,8 +82,8 @@ public:
 	void Load(const DataNode &node);
 
 	// Returns the name of this pattern.
-	const std::string &Name() const;
-	void SetName(const std::string &name);
+	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
 
 	// Get an iterator to iterate over the formation positions in this pattern.
 	PositionIterator begin(double centerBodyRadius) const;

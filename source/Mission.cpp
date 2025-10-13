@@ -416,8 +416,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		auto saveColor = [&out](const ExclusiveItem<Color> &color, string tokenName) noexcept -> void {
 			if(!color->IsLoaded())
 				return;
-			if(!color->Name().empty())
-				out.Write("color", tokenName, color->Name());
+			if(!color->TrueName().empty())
+				out.Write("color", tokenName, color->TrueName());
 			else
 			{
 				const float *rgba = color->Get();
@@ -570,7 +570,17 @@ const EsUuid &Mission::UUID() const noexcept
 
 
 
-const string &Mission::Name() const
+// Get the internal name used for this mission. This name is unique and is
+// never modified by string substitution, so it can be used in condition
+// variables, etc.
+const string &Mission::TrueName() const
+{
+	return name;
+}
+
+
+
+const string &Mission::DisplayName() const
 {
 	return displayName;
 }
@@ -1337,7 +1347,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 				failed |= (it.first == this);
 			if(failed)
 				message = "Your " + event.Target()->DisplayModelName() +
-					" \"" + event.Target()->Name() + "\" has been plundered. ";
+					" \"" + event.Target()->GivenName() + "\" has been plundered. ";
 		}
 
 		if(failed)
@@ -1370,16 +1380,6 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 
 	for(NPC &npc : npcs)
 		npc.Do(event, player, ui, this, isVisible);
-}
-
-
-
-// Get the internal name used for this mission. This name is unique and is
-// never modified by string substitution, so it can be used in condition
-// variables, etc.
-const string &Mission::Identifier() const
-{
-	return name;
 }
 
 
@@ -1555,7 +1555,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(player.GetPlanet())
 		subs["<origin>"] = player.GetPlanet()->DisplayName();
 	else if(boardingShip)
-		subs["<origin>"] = boardingShip->Name();
+		subs["<origin>"] = boardingShip->GivenName();
 	subs["<planet>"] = result.destination ? result.destination->DisplayName() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->DisplayName() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
@@ -1595,7 +1595,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(!reason.empty())
 	{
 		Logger::LogError("Instantiation Error: NPC template in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+			+ TrueName() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const NPC &npc : npcs)
@@ -1613,7 +1613,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(ait != actions.end())
 	{
 		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+			+ TrueName() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : actions)
@@ -1629,7 +1629,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(oit != onEnter.end())
 	{
 		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->TrueName() + "'\" in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+			+ TrueName() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const auto &it : onEnter)
@@ -1645,7 +1645,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	if(eit != genericOnEnter.end())
 	{
 		Logger::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
-			+ Identifier() + "\" uses invalid " + std::move(reason));
+			+ TrueName() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)

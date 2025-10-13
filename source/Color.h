@@ -39,8 +39,8 @@ public:
 	void Load(double r, double g, double b, double a);
 	// Check if Load() has been called for this color.
 	bool IsLoaded() const;
-	void SetName(const std::string &name);
-	const std::string &Name() const;
+	void SetTrueName(const std::string &name);
+	const std::string &TrueName() const;
 	// Get the color as a float vector, suitable for use by OpenGL.
 	const float *Get() const;
 

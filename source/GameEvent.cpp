@@ -169,7 +169,7 @@ void GameEvent::Disable()
 
 
 // All events held by GameData have a name, but those loaded from a save do not.
-const string &GameEvent::Name() const
+const string &GameEvent::TrueName() const
 {
 	return name;
 }
@@ -177,7 +177,7 @@ const string &GameEvent::Name() const
 
 
 // "Stock" GameEvents require a name to be serialized with an accepted mission.
-void GameEvent::SetName(const string &name)
+void GameEvent::SetTrueName(const string &name)
 {
 	this->name = name;
 }

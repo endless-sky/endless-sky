@@ -39,14 +39,14 @@ namespace {
 
 
 
-const string &Effect::Name() const
+const string &Effect::TrueName() const
 {
 	return name;
 }
 
 
 
-void Effect::SetName(const string &name)
+void Effect::SetTrueName(const string &name)
 {
 	this->name = name;
 }

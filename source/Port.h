@@ -77,7 +77,7 @@ public:
 	// Get all the possible sources that can get recharged at this port.
 	int GetRecharges() const;
 
-	const std::string &Name() const;
+	const std::string &DisplayName() const;
 	const Paragraphs &Description() const;
 
 	// Check whether the given recharging is possible.

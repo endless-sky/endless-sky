@@ -422,22 +422,22 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 
 
 // Get the display name of this government.
-const string &Government::GetName() const
+const string &Government::DisplayName() const
 {
 	return displayName;
 }
 
 
 
-// Set / Get the name used for this government in the data files.
-void Government::SetName(const string &trueName)
+// Set / Get the true name used for this government in the data files.
+void Government::SetTrueName(const string &trueName)
 {
 	this->name = trueName;
 }
 
 
 
-const string &Government::GetTrueName() const
+const string &Government::TrueName() const
 {
 	return name;
 }

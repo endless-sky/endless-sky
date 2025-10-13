@@ -143,7 +143,7 @@ bool News::Matches(const Planet *planet) const
 
 
 // Get the speaker's name.
-string News::Name() const
+string News::SpeakerName() const
 {
 	return names.Get();
 }

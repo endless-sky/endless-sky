@@ -164,7 +164,7 @@ int Port::GetRecharges() const
 
 
 
-const string &Port::Name() const
+const string &Port::DisplayName() const
 {
 	return name;
 }

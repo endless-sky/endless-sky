@@ -253,14 +253,14 @@ void FormationPattern::Load(const DataNode &node)
 
 
 
-const string &FormationPattern::Name() const
+const string &FormationPattern::TrueName() const
 {
 	return name;
 }
 
 
 
-void FormationPattern::SetName(const std::string &name)
+void FormationPattern::SetTrueName(const std::string &name)
 {
 	this->name = name;
 }

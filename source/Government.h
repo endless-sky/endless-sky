@@ -56,10 +56,10 @@ public:
 		const std::set<const Planet *> *visitedPlanets);
 
 	// Get the display name of this government.
-	const std::string &GetName() const;
-	// Set / Get the name used for this government in the data files.
-	void SetName(const std::string &trueName);
-	const std::string &GetTrueName() const;
+	const std::string &DisplayName() const;
+	// Set / Get the true name used for this government in the data files.
+	void SetTrueName(const std::string &trueName);
+	const std::string &TrueName() const;
 	// Get the color swizzle to use for ships of this government.
 	const Swizzle *GetSwizzle() const;
 	// Get the color to use for displaying this government on the map.

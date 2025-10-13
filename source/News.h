@@ -43,7 +43,7 @@ public:
 	bool Matches(const Planet *planet) const;
 
 	// Get the speaker's name.
-	std::string Name() const;
+	std::string SpeakerName() const;
 	// Pick a portrait at random out of the possible options.
 	const Sprite *Portrait() const;
 	// Get the speaker's message, chosen randomly.
