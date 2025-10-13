@@ -223,7 +223,7 @@ outfitter "Hicemus"
 	"Outfits Expansion"
 	"Small Bunk Room"
 	"Bunk Room"
-	"Fuel Module"
+	"Fuel Pod"
 	"Hyperdrive"
 	"Local Map"
 
