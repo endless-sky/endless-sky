@@ -124,7 +124,8 @@ namespace {
 
 
 
-DialogPanel::DialogPanel(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
+DialogPanel::DialogPanel(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel,
+	bool okIsActive)
 	: voidFun(okFunction)
 {
 	Init(message, truncate, canCancel, false);
@@ -144,7 +145,8 @@ DialogPanel::DialogPanel(const string &text, Truncate truncate, bool allowsFastF
 
 
 // Mission accept / decline dialog.
-DialogPanel::DialogPanel(const string &text, PlayerInfo &player, const System *system, Truncate truncate, bool allowsFastForward)
+DialogPanel::DialogPanel(const string &text, PlayerInfo &player, const System *system, Truncate truncate,
+	bool allowsFastForward)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	allowsFastForward(allowsFastForward),
 	system(system), player(&player)

@@ -248,7 +248,7 @@ void Conversation::Save(DataWriter &out) const
 				// Check what node the conversation goes to after this.
 				int index = it.next;
 				if(index > 0 && !NodeIsValid(index))
-					index = Conversation::Endpoint::DECLINE;
+					index = Endpoint::DECLINE;
 
 				// Write the node that we go to next after this.
 				Endpoint::WriteToken(index, out);

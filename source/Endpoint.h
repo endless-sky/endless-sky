@@ -40,7 +40,7 @@ public:
 	// Check whether the given outcome is one that forces the
 	// player to immediately depart.
 	static bool RequiresLaunch(int outcome);
-	
+
 	// Get the index of the given special string. 0 means it is "goto", a number
 	// less than 0 means it is an outcome, and 1 means no match.
 	static int TokenIndex(const std::string &token);
@@ -50,4 +50,4 @@ public:
 
 	// Write a "goto" or endpoint.
 	static void WriteToken(int index, DataWriter &out);
-}
+};
