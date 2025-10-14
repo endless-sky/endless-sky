@@ -1,4 +1,4 @@
-/* Dialog.cpp
+/* DialogPanel.cpp
 Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Dialog.h"
+#include "DialogPanel.h"
 
 #include "audio/Audio.h"
 #include "text/Clipboard.h"
@@ -123,7 +123,7 @@ namespace {
 
 
 
-Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
+DialogPanel::DialogPanel(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
 	: voidFun(okFunction)
 {
 	Init(message, truncate, canCancel, false);
@@ -134,7 +134,7 @@ Dialog::Dialog(function<void()> okFunction, const string &message, Truncate trun
 
 // Dialog that has no callback (information only). In this form, there is
 // only an "ok" button, not a "cancel" button.
-Dialog::Dialog(const string &text, Truncate truncate, bool allowsFastForward)
+DialogPanel::DialogPanel(const string &text, Truncate truncate, bool allowsFastForward)
 	: allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate, false);
@@ -143,7 +143,7 @@ Dialog::Dialog(const string &text, Truncate truncate, bool allowsFastForward)
 
 
 // Mission accept / decline dialog.
-Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Truncate truncate, bool allowsFastForward)
+DialogPanel::DialogPanel(const string &text, PlayerInfo &player, const System *system, Truncate truncate, bool allowsFastForward)
 	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
 	allowsFastForward(allowsFastForward),
 	system(system), player(&player)
@@ -153,7 +153,7 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Tru
 
 
 
-Dialog::~Dialog()
+DialogPanel::~DialogPanel()
 {
 	Audio::Resume();
 }
@@ -161,7 +161,7 @@ Dialog::~Dialog()
 
 
 // Draw this panel.
-void Dialog::Draw()
+void DialogPanel::Draw()
 {
 	DrawBackdrop();
 
@@ -235,7 +235,7 @@ void Dialog::Draw()
 
 
 // Format and add the text from the given node to the given string.
-void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &text)
+void DialogPanel::ParseTextNode(const DataNode &node, size_t startingIndex, string &text)
 {
 	for(int i = startingIndex; i < node.Size(); ++i)
 	{
@@ -254,14 +254,14 @@ void Dialog::ParseTextNode(const DataNode &node, size_t startingIndex, string &t
 
 
 
-bool Dialog::AllowsFastForward() const noexcept
+bool DialogPanel::AllowsFastForward() const noexcept
 {
 	return allowsFastForward;
 }
 
 
 
-bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
@@ -336,7 +336,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 
 
 
-bool Dialog::Click(int x, int y, MouseButton button, int clicks)
+bool DialogPanel::Click(int x, int y, MouseButton button, int clicks)
 {
 	if(button != MouseButton::LEFT)
 		return false;
@@ -369,7 +369,7 @@ bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 
 
 // Common code from all three constructors:
-void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
+void DialogPanel::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
 	Audio::Pause();
 	SetInterruptible(isMission);
@@ -444,7 +444,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 
 
-void Dialog::DoCallback(const bool isOk) const
+void DialogPanel::DoCallback(const bool isOk) const
 {
 	if(isMission)
 	{
@@ -478,7 +478,7 @@ void Dialog::DoCallback(const bool isOk) const
 
 
 
-int Dialog::Width() const
+int DialogPanel::Width() const
 {
 	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
 	return top->Width() - HORIZONTAL_MARGIN;

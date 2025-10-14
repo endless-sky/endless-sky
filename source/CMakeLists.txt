@@ -83,8 +83,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Date.h
 	Depreciation.cpp
 	Depreciation.h
-	Dialog.cpp
-	Dialog.h
+	DialogPanel.cpp
+	DialogPanel.h
 	Dictionary.cpp
 	Dictionary.h
 	DistanceCalculationSettings.h

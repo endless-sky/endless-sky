@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "DistanceMap.h"
 #include "Files.h"
 #include "text/Format.h"
@@ -1617,7 +1617,7 @@ void PlayerInfo::Land(UI *ui)
 		if(mit != inactiveMissions.rend())
 			message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
 		message += "They will be reactivated when the necessary plugin is reinstalled.";
-		ui->Push(new Dialog(message));
+		ui->Push(new DialogPanel(message));
 	}
 
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
@@ -2438,7 +2438,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 			string message = it.BlockedMessage(*this);
 			if(!message.empty())
 			{
-				ui->Push(new Dialog(message));
+				ui->Push(new DialogPanel(message));
 				return;
 			}
 		}
@@ -2461,7 +2461,7 @@ void PlayerInfo::HandleBlockedEnteringMissions(UI *ui)
 			it = availableEnteringMissions.erase(it);
 			if(!message.empty())
 			{
-				ui->Push(new Dialog(message));
+				ui->Push(new DialogPanel(message));
 				return;
 			}
 		}
@@ -4307,7 +4307,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		if(missionVisits > 1)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
-		ui->Push(new Dialog(visitText));
+		ui->Push(new DialogPanel(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
@@ -4746,13 +4746,13 @@ void PlayerInfo::Fine(UI *ui)
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui->Push(new Dialog(message));
+				ui->Push(new DialogPanel(message));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui->Push(new Dialog(message));
+			ui->Push(new DialogPanel(message));
 	}
 }
 

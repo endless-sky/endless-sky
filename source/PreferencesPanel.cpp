@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "Files.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -319,7 +319,7 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 		if(zones[index].Contains(point))
 		{
 			if(zones[index].Value().Has(Command::MENU))
-				GetUI()->Push(new Dialog([this, index]()
+				GetUI()->Push(new DialogPanel([this, index]()
 					{
 						this->editing = this->selected = index;
 					},
@@ -1297,7 +1297,7 @@ void PreferencesPanel::Exit()
 {
 	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
 	{
-		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+		GetUI()->Push(new DialogPanel("Menu keybind is not bound or has conflicts."));
 		return;
 	}
 
@@ -1325,7 +1325,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			// Only show this if it's not possible to zoom the view at all, as
 			// otherwise the dialog will show every time, which is annoying.
 			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-				GetUI()->Push(new Dialog(
+				GetUI()->Push(new DialogPanel(
 					"Your screen resolution is too low to support a zoom level above 100%."));
 			Screen::SetZoom(ZOOM_FACTOR_MIN);
 		}
@@ -1352,7 +1352,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == VSYNC_SETTING)
 	{
 		if(!Preferences::ToggleVSync())
-			GetUI()->Push(new Dialog(
+			GetUI()->Push(new DialogPanel(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
 	else if(str == CAMERA_ACCELERATION)

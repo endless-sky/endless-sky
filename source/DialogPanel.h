@@ -1,4 +1,4 @@
-/* Dialog.h
+/* DialogPanel.h
 Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -35,50 +35,51 @@ class TextArea;
 // only an "ok" button, or may also have a "cancel" button. If this dialog is
 // introducing a mission, the buttons are instead "accept" and "decline". A
 // callback function can be given to receive the player's response.
-class Dialog : public Panel {
+class DialogPanel : public Panel {
 public:
 	// An OK / Cancel dialog where Cancel can be disabled. The okIsActive lets
 	// you select whether "OK" (true) or "Cancel" (false) are selected as the default option.
-	Dialog(std::function<void()> okFunction, const std::string &message, Truncate truncate,
+	DialogPanel(std::function<void()> okFunction, const std::string &message, Truncate truncate,
 		bool canCancel, bool okIsActive);
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
-	explicit Dialog(const std::string &text, Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
+	explicit DialogPanel(const std::string &text, Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 	// Mission accept / decline dialog.
-	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr,
+	DialogPanel(const std::string &text, PlayerInfo &player, const System *system = nullptr,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
-	virtual ~Dialog() override;
+	virtual ~DialogPanel() override;
 
 	// Three different kinds of dialogs can be constructed: requesting numerical
 	// input, requesting text input, or not requesting any input at all. In any
 	// case, the callback is called only if the user selects "ok", not "cancel."
 	template<class T>
-	Dialog(T *t, void (T::*fun)(int), const std::string &text,
+	DialogPanel(T *t, void (T::*fun)(int), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 	template<class T>
-	Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue,
+	DialogPanel(T *t, void (T::*fun)(int), const std::string &text, int initialValue,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
 	template<class T>
-	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "",
+	DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "",
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
 	// This callback requests text input but with validation. The "ok" button is disabled
 	// if the validation callback returns false.
 	template<class T>
-	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
+	DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text,
 			std::function<bool(const std::string &)> validate,
 			std::string initialValue = "",
 			Truncate truncate = Truncate::NONE,
 			bool allowsFastForward = false);
 
+	// Callback is always called with no parameters.
 	template<class T>
-	Dialog(T *t, void (T::*fun)(), const std::string &text,
+	DialogPanel(T *t, void (T::*fun)(), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
 	// Callback is always called with value user input to dialog (ok == true, cancel == false).
 	template<class T>
-	Dialog(T *t, void (T::*fun)(bool), const std::string &text,
+	DialogPanel(T *t, void (T::*fun)(bool), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
 	// Draw this panel.
@@ -136,7 +137,7 @@ protected:
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, Truncate truncate, bool allowsFastForward)
+DialogPanel::DialogPanel(T *t, void (T::*fun)(int), const std::string &text, Truncate truncate, bool allowsFastForward)
 	: intFun(std::bind(fun, t, std::placeholders::_1)), allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate);
@@ -145,7 +146,7 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, Truncate trun
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text,
+DialogPanel::DialogPanel(T *t, void (T::*fun)(int), const std::string &text,
 	int initialValue, Truncate truncate, bool allowsFastForward)
 	: intFun(std::bind(fun, t, std::placeholders::_1)),
 	allowsFastForward(allowsFastForward),
@@ -157,7 +158,7 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text,
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
+DialogPanel::DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text,
 	std::string initialValue, Truncate truncate, bool allowsFastForward)
 	: stringFun(std::bind(fun, t, std::placeholders::_1)),
 	allowsFastForward(allowsFastForward),
@@ -169,7 +170,7 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
+DialogPanel::DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text,
 	std::function<bool(const std::string &)> validate, std::string initialValue, Truncate truncate, bool allowsFastForward)
 	: stringFun(std::bind(fun, t, std::placeholders::_1)),
 	validateFun(std::move(validate)),
@@ -183,7 +184,7 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(), const std::string &text, Truncate truncate, bool allowsFastForward)
+DialogPanel::DialogPanel(T *t, void (T::*fun)(), const std::string &text, Truncate truncate, bool allowsFastForward)
 	: voidFun(std::bind(fun, t)), allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate);
@@ -192,7 +193,7 @@ Dialog::Dialog(T *t, void (T::*fun)(), const std::string &text, Truncate truncat
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(bool), const std::string &text, Truncate truncate, bool allowsFastForward)
+DialogPanel::DialogPanel(T *t, void (T::*fun)(bool), const std::string &text, Truncate truncate, bool allowsFastForward)
 	: boolFun(std::bind(fun, t, std::placeholders::_1)), allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate);

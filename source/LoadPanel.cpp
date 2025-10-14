@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "Files.h"
 #include "shader/FillShader.h"
@@ -291,7 +291,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'd' && !selectedPilot.empty())
 	{
 		sound = UI::UISound::NONE;
-		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
+		GetUI()->Push(new DialogPanel(this, &LoadPanel::DeletePilot,
 			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
 				+ "Confirm the name of the pilot you want to delete.",
@@ -306,7 +306,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		sound = UI::UISound::NONE;
 		nameToConfirm.clear();
 		filesystem::path lastSave = Files::Saves() / it->second.front().first;
-		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
+		GetUI()->Push(new DialogPanel(this, &LoadPanel::SnapshotCallback,
 			"Enter a name for this snapshot, or use the most recent save's date:",
 			FileDate(lastSave)));
 	}
@@ -315,7 +315,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		sound = UI::UISound::NONE;
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
 		if(!(fileName == selectedPilot + ".txt"))
-			GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
+			GetUI()->Push(new DialogPanel(this, &LoadPanel::DeleteSave,
 				"Are you sure you want to delete the selected saved game file, \""
 					+ selectedFile + "\"?"));
 	}
@@ -328,7 +328,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		else
 		{
 			sound = UI::UISound::NONE;
-			GetUI()->Push(new Dialog(this, &LoadPanel::LoadCallback,
+			GetUI()->Push(new DialogPanel(this, &LoadPanel::LoadCallback,
 				"If you load this snapshot, it will overwrite your current game. "
 				"Any progress will be lost, unless you have saved other snapshots. "
 				"Are you sure you want to do that?"));
@@ -590,7 +590,7 @@ void LoadPanel::SnapshotCallback(const string &name)
 	if(Files::Exists(to) && suffix != nameToConfirm)
 	{
 		nameToConfirm = suffix;
-		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback, "Warning: \"" + suffix
+		GetUI()->Push(new DialogPanel(this, &LoadPanel::SnapshotCallback, "Warning: \"" + suffix
 			+ "\" is being used for an existing snapshot.\nOverwrite it?", suffix));
 	}
 	else
@@ -610,7 +610,7 @@ void LoadPanel::WriteSnapshot(const filesystem::path &sourceFile, const filesyst
 		loadedInfo.Load(Files::Saves() / selectedFile);
 	}
 	else
-		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName.string() + "\"."));
+		GetUI()->Push(new DialogPanel("Error: unable to create the file \"" + snapshotName.string() + "\"."));
 }
 
 
@@ -655,7 +655,7 @@ void LoadPanel::DeletePilot(const string &)
 		failed |= Files::Exists(path);
 	}
 	if(failed)
-		GetUI()->Push(new Dialog("Deleting pilot files failed."));
+		GetUI()->Push(new DialogPanel("Deleting pilot files failed."));
 
 	sideHasFocus = true;
 	selectedPilot.clear();
@@ -672,7 +672,7 @@ void LoadPanel::DeleteSave()
 	filesystem::path path = Files::Saves() / selectedFile;
 	Files::Delete(path);
 	if(Files::Exists(path))
-		GetUI()->Push(new Dialog("Deleting snapshot file failed."));
+		GetUI()->Push(new DialogPanel("Deleting snapshot file failed."));
 
 	sideHasFocus = true;
 	selectedPilot.clear();

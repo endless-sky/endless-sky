@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "CargoHold.h"
 #include "Depreciation.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -245,7 +245,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else
 				message = "You cannot plunder now.";
 
-			GetUI()->Push(new Dialog{message});
+			GetUI()->Push(new DialogPanel{message});
 			return true;
 		}
 
@@ -302,7 +302,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		{
 			victim->SelfDestruct();
 			GetUI()->Pop(this);
-			GetUI()->Push(new Dialog("The moment you blast through the airlock, a series of explosions rocks the enemy ship."
+			GetUI()->Push(new DialogPanel("The moment you blast through the airlock, a series of explosions rocks the enemy ship."
 				" They appear to have set off their self-destruct sequence..."));
 			return true;
 		}

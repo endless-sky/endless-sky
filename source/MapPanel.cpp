@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "shader/BatchDrawList.h"
 #include "CargoHold.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "shader/FogShader.h"
@@ -511,7 +511,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	}
 	else if(key == 'f')
 	{
-		GetUI()->Push(new Dialog(
+		GetUI()->Push(new DialogPanel(
 			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}

@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -177,7 +177,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
 			}
 			else
-				Dialog::ParseTextNode(child, 1, dialogText);
+				DialogPanel::ParseTextNode(child, 1, dialogText);
 		}
 		else if(key == "conversation" && child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
@@ -528,7 +528,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 		if(!conversation->IsEmpty())
 			ui->Push(new ConversationPanel(player, *conversation, caller, nullptr, ship));
 		if(!dialogText.empty())
-			ui->Push(new Dialog(dialogText));
+			ui->Push(new DialogPanel(dialogText));
 	}
 }
 

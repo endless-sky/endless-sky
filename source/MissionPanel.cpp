@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Command.h"
 #include "CoreStartData.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -348,7 +348,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
-			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
+			GetUI()->Push(new DialogPanel(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->Name() + "\"?"));
 		return true;
 	}
@@ -1050,7 +1050,7 @@ void MissionPanel::Accept(bool force)
 		else
 			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
 				<< " to make room for this mission. Continue?";
-		GetUI()->Push(new Dialog(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
+		GetUI()->Push(new DialogPanel(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}
 
