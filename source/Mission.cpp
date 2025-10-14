@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "DialogPanel.h"
 #include "DistanceMap.h"
+#include "Endpoint.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
@@ -1255,7 +1256,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		it->second.Do(player, ui, this, (destination && isVisible) ? destination->GetSystem() : nullptr,
 			boardingShip, IsUnique());
 	else if(trigger == OFFER && location != JOB)
-		player.MissionCallback(Conversation::ACCEPT);
+		player.MissionCallback(Endpoint::ACCEPT);
 
 	return true;
 }

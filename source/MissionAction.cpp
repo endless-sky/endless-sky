@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "DialogPanel.h"
+#include "Endpoint.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
@@ -401,7 +402,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 			ui->Push(new DialogPanel(text));
 	}
 	else if(isOffer && ui)
-		player.MissionCallback(Conversation::ACCEPT);
+		player.MissionCallback(Endpoint::ACCEPT);
 
 	action.Do(player, ui, caller);
 }

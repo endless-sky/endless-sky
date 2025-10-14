@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "DataNode.h"
 #include "text/DisplayText.h"
+#include "Endpoint.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -449,7 +450,7 @@ void DialogPanel::DoCallback(const bool isOk) const
 	if(isMission)
 	{
 		if(intFun)
-			intFun(okIsActive ? Conversation::ACCEPT : Conversation::DECLINE);
+			intFun(okIsActive ? Endpoint::ACCEPT : Endpoint::DECLINE);
 
 		return;
 	}

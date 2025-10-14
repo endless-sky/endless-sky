@@ -93,6 +93,8 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
+	Endpoint.cpp
+	Endpoint.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp

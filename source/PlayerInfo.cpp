@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "DialogPanel.h"
 #include "DistanceMap.h"
+#include "Endpoint.h"
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -661,7 +662,7 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 	// conversation, it should still appear in the player's ship list (but
 	// will be red, because it is dead). The player's escorts will scatter
 	// automatically, as they have a now-dead parent.
-	else if(response == Conversation::EXPLODE)
+	else if(response == Endpoint::EXPLODE)
 		flagship->Destroy();
 	// If it died in open combat, it is already marked destroyed.
 	else if(!flagship->IsDestroyed())
@@ -2485,8 +2486,8 @@ void PlayerInfo::MissionCallback(int response)
 	Mission &mission = missionList.front();
 
 	// If landed, this conversation may require the player to immediately depart.
-	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
-	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
+	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
+	if(response == Endpoint::ACCEPT || response == Endpoint::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
 		if(planet)
@@ -2514,12 +2515,12 @@ void PlayerInfo::MissionCallback(int response)
 				|| mission.IsAtLocation(Mission::ENTERING))
 			activeInFlightMission = &*--spliceIt;
 	}
-	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
+	else if(response == Endpoint::DECLINE || response == Endpoint::FLEE)
 	{
 		mission.Do(Mission::DECLINE, *this);
 		missionList.pop_front();
 	}
-	else if(response == Conversation::DEFER || response == Conversation::DEPART)
+	else if(response == Endpoint::DEFER || response == Endpoint::DEPART)
 	{
 		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
@@ -2533,7 +2534,7 @@ void PlayerInfo::MissionCallback(int response)
 void PlayerInfo::BasicCallback(int response)
 {
 	// If landed, this conversation may require the player to immediately depart.
-	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
+	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
 }
 
 
