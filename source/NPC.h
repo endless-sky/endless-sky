@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Conversation.h"
+#include "Dialog.h"
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "Fleet.h"
@@ -23,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "NPCAction.h"
 #include "Personality.h"
-#include "Phrase.h"
 
 #include <list>
 #include <map>
@@ -140,8 +140,7 @@ private:
 	const Planet *planet = nullptr;
 
 	// Dialog or conversation to show when all requirements for this NPC are met:
-	std::string dialogText;
-	ExclusiveItem<Phrase> dialogPhrase;
+	Dialog dialog;
 	ExclusiveItem<Conversation> conversation;
 
 	// Conditions that must be met in order for this NPC to be placed or despawned:

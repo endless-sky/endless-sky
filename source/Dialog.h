@@ -39,6 +39,8 @@ public:
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	void Save(DataWriter &out) const;
 
+	bool Validate() const;
+
 	const std::string &Text() const;
 	bool IsEmpty() const;
 

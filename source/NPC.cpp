@@ -158,27 +158,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			overrideFleetCargo = true;
 		}
 		else if(key == "dialog")
-		{
-			// Dialog text may be supplied from a stock named phrase, a
-			// private unnamed phrase, or directly specified.
-			if(hasValue && child.Token(1) == "phrase")
-			{
-				if(!child.HasChildren() && child.Size() == 3)
-					dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2)));
-				else
-					child.PrintTrace("Skipping unsupported dialog phrase syntax:");
-			}
-			else if(!hasValue && child.HasChildren() && (*child.begin()).Token(0) == "phrase")
-			{
-				const DataNode &firstGrand = (*child.begin());
-				if(firstGrand.Size() == 1 && firstGrand.HasChildren())
-					dialogPhrase = ExclusiveItem<Phrase>(Phrase(firstGrand));
-				else
-					firstGrand.PrintTrace("Skipping unsupported dialog phrase syntax:");
-			}
-			else
-				DialogPanel::ParseTextNode(child, 1, dialogText);
-		}
+			dialog.Load(node, playerConditions);
 		else if(key == "conversation" && child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
 		else if(key == "conversation" && hasValue)
@@ -265,6 +245,8 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
+	dialog.Collapse();
+
 	// Empty spawning conditions imply that an instantiated NPC has spawned (or
 	// if this is an NPC template, that any NPCs created from this will spawn).
 	passedSpawnConditions = toSpawn.IsEmpty();
@@ -334,17 +316,8 @@ void NPC::Save(DataWriter &out) const
 			out.Write("government", government->GetTrueName());
 		personality.Save(out);
 
-		if(!dialogText.empty())
-		{
-			out.Write("dialog");
-			out.BeginChild();
-			{
-				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(dialogText, "\n\t"))
-					out.Write(line);
-			}
-			out.EndChild();
-		}
+		if(!dialog.IsEmpty())
+			dialog.Save(out);
 		if(!conversation->IsEmpty())
 			conversation->Save(out);
 
@@ -390,8 +363,8 @@ string NPC::Validate(bool asTemplate) const
 			return "planet \"" + planet->TrueName() + "\"";
 
 		// If a stock phrase or conversation is given, it must not be empty.
-		if(dialogPhrase.IsStock() && dialogPhrase->IsEmpty())
-			return "stock phrase";
+		if(!dialog.Validate())
+			return "stock phrase in dialog";
 		if(conversation.IsStock() && conversation->IsEmpty())
 			return "stock conversation";
 
@@ -527,8 +500,8 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 		// it, to allow the completing event's target to be destroyed.
 		if(!conversation->IsEmpty())
 			ui->Push(new ConversationPanel(player, *conversation, caller, nullptr, ship));
-		if(!dialogText.empty())
-			ui->Push(new DialogPanel(dialogText));
+		if(!dialog.IsEmpty())
+			ui->Push(new DialogPanel(dialog.Text()));
 	}
 }
 
@@ -733,10 +706,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		subs["<npc model>"] = result.ships.front()->DisplayModelName();
 	}
 	// Do string replacement on any dialog or conversation.
-	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
-	if(!dialogText.empty())
-		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
-
+	result.dialog = dialog.Instantiate(subs);
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
@@ -811,8 +781,8 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
-					auto it = shipEvents.find(ship.get());
-					return it != shipEvents.end() && (it->second & requiredEvents) && !(it->second & excludedEvents);
+					auto sit = shipEvents.find(ship.get());
+					return sit != shipEvents.end() && (sit->second & requiredEvents) && !(sit->second & excludedEvents);
 				}))
 		{
 			it->second.Do(player, ui, caller, event.Target());

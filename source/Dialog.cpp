@@ -125,6 +125,16 @@ void Dialog::Save(DataWriter &out) const
 
 
 
+bool Dialog::Validate() const
+{
+	for(const DialogLine &line : lines)
+		if(line.text.empty() && line.phrase.IsStock() && line.phrase->IsEmpty())
+			return false;
+	return true;
+}
+
+
+
 const string &Dialog::Text() const
 {
 	return text;
@@ -185,8 +195,6 @@ Dialog Dialog::Instantiate(const map<string, string> &subs) const
 			string content;
 			if(!line.text.empty())
 				content = line.text;
-			else if(line.phrase.IsStock() && line.phrase->IsEmpty())
-				content = "stock phrase";
 			else
 				content = line.phrase->Get();
 

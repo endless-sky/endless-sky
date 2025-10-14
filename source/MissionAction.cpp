@@ -173,6 +173,9 @@ string MissionAction::Validate() const
 	if(!systemFilter.IsValid())
 		return "system location filter";
 
+	// Dialogs must contain valid phrases.
+	if(!dialog.Validate())
+		return "stock phrase in dialog";
 	// Stock conversations must be defined.
 	if(conversation.IsStock() && conversation->IsEmpty())
 		return "stock conversation";
