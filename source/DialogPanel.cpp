@@ -237,26 +237,6 @@ void DialogPanel::Draw()
 
 
 
-// Format and add the text from the given node to the given string.
-void DialogPanel::ParseTextNode(const DataNode &node, size_t startingIndex, string &text)
-{
-	for(int i = startingIndex; i < node.Size(); ++i)
-	{
-		if(!text.empty())
-			text += "\n\t";
-		text += node.Token(i);
-	}
-	for(const DataNode &child : node)
-		for(int i = 0; i < child.Size(); ++i)
-		{
-			if(!text.empty())
-				text += "\n\t";
-			text += child.Token(i);
-		}
-}
-
-
-
 bool DialogPanel::AllowsFastForward() const noexcept
 {
 	return allowsFastForward;

@@ -158,9 +158,20 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	else if(key == "log")
 	{
 		bool isSpecial = (child.Size() >= 3);
-		string &text = (isSpecial ?
-			specialLogText[child.Token(1)][child.Token(2)] : logText);
-		DialogPanel::ParseTextNode(child, isSpecial ? 3 : 1, text);
+		string &text = (isSpecial ? specialLogText[child.Token(1)][child.Token(2)] : logText);
+		for(int i = isSpecial ? 3 : 1; i < child.Size(); ++i)
+		{
+			if(!text.empty())
+				text += "\n\t";
+			text += child.Token(i);
+		}
+		for(const DataNode &grand : child)
+			for(int i = 0; i < grand.Size(); ++i)
+			{
+				if(!text.empty())
+					text += "\n\t";
+				text += grand.Token(i);
+			}
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
