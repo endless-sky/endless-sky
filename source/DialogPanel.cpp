@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
-#include "DataNode.h"
 #include "text/DisplayText.h"
 #include "Endpoint.h"
 #include "shader/FillShader.h"

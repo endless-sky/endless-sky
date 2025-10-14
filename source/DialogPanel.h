@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <string>
 
-class DataNode;
 class PlayerInfo;
 class System;
 class TextArea;
