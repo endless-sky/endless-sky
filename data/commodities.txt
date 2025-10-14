@@ -212,7 +212,7 @@ trade
 		"sugar cane"
 		"sunflower oil"
 		"sunflower seeds"
-		"Syndicate Synthetic Sustanance"
+		"Syndicate Synthetic Sustenance"
 		"synthetic grains"
 		"synthetic snacks"
 		"synthetic protein"
