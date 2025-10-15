@@ -216,7 +216,7 @@ trade
 		"synthetic grains"
 		"synthetic snacks"
 		"synthetic protein"
-		"synthetic vegtables"
+		"synthetic vegetables"
 		"syrup"
 		"tea"
 		"teff"
