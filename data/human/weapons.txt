@@ -788,8 +788,8 @@ outfit "Plasma Repeater"
 		"reload" 7
 		"firing energy" 13
 		"firing heat" 100
-		"shield damage" 52.8
-		"hull damage" 20.8
+		"shield damage" 26.4
+		"hull damage" 10.4
 		"heat damage" 144
 		"hit force" 28.5
 	description `Decades after buying the rights for the Plasma Cannon, Kraz Cybernetics put this weapon on the shelves of every high-end outfitter of the Southern Rim. The repeater has so far proved immensely popular amongst any who braved testing it, and is shaping up to become an essential deterrent for anyone who flaunts their haul for pirate plunder.`
