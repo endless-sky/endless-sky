@@ -2432,6 +2432,7 @@ mission "FWC End"
 		event "deep sky tech available"
 		event "syndicate tech available"
 		"salary: Free Worlds" = 8900
+		set "core links correct"
 		set "main plot completed"
 		set "free worlds plot completed"
 		set "free worlds checkmate"
