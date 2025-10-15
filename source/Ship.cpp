@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "FormationPattern.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "JumpType.h"
 #include "Logger.h"
@@ -3064,6 +3065,7 @@ double Ship::DragForce() const
 
 
 
+// The total number of all types of crew (officers and non-officers) on a ship.
 int Ship::RequiredCrew() const
 {
 	if(attributes.Get("automaton"))
@@ -3071,6 +3073,15 @@ int Ship::RequiredCrew() const
 
 	// Drones do not need crew, but all other ships need at least one.
 	return max<int>(1, attributes.Get("required crew"));
+}
+
+
+
+// Ships than can jump between systems need at least one officer.
+int Ship::RequiredOfficers() const
+{
+	return navigation.HasAnyDrive() ? ceil(static_cast<double>(RequiredCrew())
+		/ GameData::GetGamerules().CrewPerOfficer()) : 0;
 }
 
 
