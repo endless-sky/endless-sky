@@ -37,26 +37,6 @@ class Sprite;
 // are set for the player, or even trigger various changes to the game's state.
 class Conversation {
 public:
-	// The possible outcomes of a conversation:
-	static const int ACCEPT = -1;
-	static const int DECLINE = -2;
-	static const int DEFER = -3;
-	// These 3 options force the player to TakeOff (if landed), or cause
-	// the boarded NPCs to explode, in addition to respectively duplicating
-	// the above mission outcomes.
-	static const int LAUNCH = -4;
-	static const int FLEE = -5;
-	static const int DEPART = -6;
-	// The player may simply die (if landed on a planet or captured while
-	// in space), or the flagship might also explode.
-	static const int DIE = -7;
-	static const int EXPLODE = -8;
-
-	// Check whether the given conversation outcome is one that forces the
-	// player to immediately depart.
-	static bool RequiresLaunch(int outcome);
-
-public:
 	Conversation() = default;
 	// Construct and Load() at the same time.
 	Conversation(const DataNode &node, const ConditionsStore *playerConditions);
