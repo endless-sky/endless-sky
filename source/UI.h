@@ -15,7 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "GamePad.h"
 #include "Point.h"
+#include "Rectangle.h"
 
 #include <memory>
 #include <vector>
@@ -32,6 +34,8 @@ class Panel;
 // starting with whichever one is on the bottom.
 class UI {
 public:
+	UI(GamePad &controller);
+
 	enum class UISound
 	{
 		NONE,
@@ -47,6 +51,9 @@ public:
 	// Handle an event. The event is handed to each panel on the stack until one
 	// of them handles it. If none do, this returns false.
 	bool Handle(const SDL_Event &event);
+
+	// Handle game controller state.
+	void HandleGamePad();
 
 	// Step all the panels forward (advance animations, move objects, etc.).
 	void StepAll();
@@ -88,8 +95,27 @@ public:
 	// Check if there are no panels left.
 	bool IsEmpty() const;
 
+	// Get the game pad state
+	GamePad &Controller() const;
+
+	// Move cursor to the first zone of topmost panel.
+	void CursorToFirstZone() const;
+
+	// Move to the next/prev zone in definition order
+	void CursorToNextZone(const Point &mouse) const;
+	void CursorToPrevZone(const Point &mouse) const;
+
+	void NextPanel(bool dir);
+
+
 	// Get the current mouse position.
 	static Point GetMouse();
+
+	// Move mouse according to relative game coordinates. Origin is at the middle of the
+	// game window.
+	static void MoveMouseOffset(const Point &point);
+
+	static void MoveMouseRelative(const Point &point);
 
 	static void PlaySound(UISound sound);
 
@@ -98,12 +124,16 @@ private:
 	// If a push or pop is queued, apply it.
 	void PushOrPop();
 
+	// Get all reachable zones.
+	std::list<Rectangle> AllZones() const;
+
 
 private:
 	// Whether the player has taken actions that enable us to save the game.
 	bool canSave = false;
 	// Whether the player has requested the game to shut down.
 	bool isDone = false;
+	GamePad &controller;
 
 	std::vector<std::shared_ptr<Panel>> stack;
 	std::vector<std::shared_ptr<Panel>> toPush;

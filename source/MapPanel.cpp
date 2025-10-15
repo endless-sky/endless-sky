@@ -601,11 +601,26 @@ bool MapPanel::Drag(double dx, double dy)
 
 bool MapPanel::Scroll(double dx, double dy)
 {
-	if(dy > 0.)
+	cumulativeScroll += dy;
+	if(cumulativeScroll > 2.)
+	{
 		IncrementZoom();
-	else if(dy < 0.)
+		cumulativeScroll = 0;
+	}
+	else if(cumulativeScroll < -2.)
+	{
 		DecrementZoom();
+		cumulativeScroll = 0;
+	}
 
+	return true;
+}
+
+
+
+bool MapPanel::PrevPanel()
+{
+	GetUI()->Pop(this);
 	return true;
 }
 
