@@ -71,6 +71,7 @@ public:
 	// mortgages if a blank string is provided.
 	int64_t TotalDebt(const std::string &type = "") const;
 
+	int64_t TotalPreviousPayment() const;
 
 private:
 	int64_t YearlyRevenue() const;
@@ -86,6 +87,9 @@ private:
 	int64_t maintenanceDue = 0;
 	// Your credit score determines the interest rate on your mortgages.
 	int creditScore = 400;
+
+	// Keep track of how many credits were paid in the last step
+	int64_t totalPreviousPayment = 0;
 
 	std::vector<Mortgage> mortgages;
 
