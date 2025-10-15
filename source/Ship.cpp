@@ -269,7 +269,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && hasValue)
-			name = child.Token(1);
+			givenName = child.Token(1);
 		else if(key == "display name" && hasValue)
 			displayModelName = child.Token(1);
 		else if(key == "plural" && hasValue)
@@ -791,7 +791,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		string message;
 		if(isYours)
 		{
-			message = "Player ship " + trueModelName + " \"" + name + "\":";
+			message = "Player ship " + trueModelName + " \"" + givenName + "\":";
 			string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
 			for(auto &&outfit : undefinedOutfits)
 				message += PREFIX + outfit;
@@ -816,8 +816,8 @@ void Ship::FinishLoading(bool isNewInstance)
 				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
 			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : trueModelName;
-			if(!name.empty())
-				warning += " \"" + name + "\"";
+			if(!givenName.empty())
+				warning += " \"" + givenName + "\"";
 			warning += ": outfit \"" + outfit->TrueName() + "\" installed as a ";
 			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
@@ -885,7 +885,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		// This check is mostly useful for variants and stock ships, which have
 		// no names. Print the outfits to facilitate identifying this ship definition.
-		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + VariantName() + "):\n";
+		string message = (!givenName.empty() ? "Ship \"" + givenName + "\" " : "") + "(" + VariantName() + "):\n";
 		ostringstream outfitNames;
 		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
@@ -908,7 +908,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(!isNewInstance && targetSystem)
 	{
 		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ")
-			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->TrueName();
+			+ trueModelName + " \"" + givenName + "\": Cannot reach target system \"" + targetSystem->TrueName();
 		if(!currentSystem)
 		{
 			Logger::LogError(message + "\" (no current system).");
@@ -951,7 +951,7 @@ void Ship::Save(DataWriter &out) const
 	out.Write("ship", trueModelName);
 	out.BeginChild();
 	{
-		out.Write("name", name);
+		out.Write("name", givenName);
 		if(displayModelName != trueModelName)
 			out.Write("display name", displayModelName);
 		if(pluralModelName != displayModelName + 's')
@@ -1194,7 +1194,7 @@ void Ship::SetUUID(const EsUuid &id)
 
 const string &Ship::GivenName() const
 {
-	return name;
+	return givenName;
 }
 
 
@@ -1202,7 +1202,7 @@ const string &Ship::GivenName() const
 // Set the name of this particular ship.
 void Ship::SetGivenName(const string &name)
 {
-	this->name = name;
+	this->givenName = name;
 }
 
 
@@ -4753,7 +4753,7 @@ void Ship::StepPilot()
 				Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
 					, Messages::Importance::Low);
 			else if(Preferences::Has("Extra fleet status messages"))
-				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
+				Messages::Add("The " + givenName + " is moving erratically because there are not enough crew to pilot it."
 					, Messages::Importance::Low);
 		}
 	}

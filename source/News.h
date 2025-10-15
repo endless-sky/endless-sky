@@ -54,7 +54,7 @@ private:
 	LocationFilter location;
 	ConditionSet toShow;
 
-	Phrase names;
+	Phrase speakerNames;
 	std::vector<const Sprite *> portraits;
 	Phrase messages;
 };

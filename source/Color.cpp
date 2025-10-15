@@ -75,14 +75,14 @@ bool Color::IsLoaded() const
 
 void Color::SetTrueName(const string &name)
 {
-	this->name = name;
+	this->trueName = name;
 }
 
 
 
 const string &Color::TrueName() const
 {
-	return name;
+	return trueName;
 }
 
 

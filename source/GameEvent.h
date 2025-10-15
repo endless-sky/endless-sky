@@ -78,7 +78,7 @@ public:
 
 private:
 	Date date;
-	std::string name;
+	std::string trueName;
 	bool isDisabled = false;
 	bool isDefined = false;
 

@@ -150,7 +150,7 @@ public:
 
 private:
 	unsigned id;
-	std::string name;
+	std::string trueName;
 	std::string displayName;
 	const Swizzle *swizzle = Swizzle::None();
 	ExclusiveItem<Color> color;

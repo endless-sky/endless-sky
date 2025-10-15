@@ -49,7 +49,7 @@ public:
 
 
 private:
-	std::string name;
+	std::string trueName;
 
 	const Sound *sound = nullptr;
 	SoundCategory soundCategory = SoundCategory::EXPLOSION;

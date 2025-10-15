@@ -207,7 +207,7 @@ private:
 
 
 private:
-	std::string name;
+	std::string trueName;
 	std::string displayName;
 	std::string description;
 	std::string blocked;

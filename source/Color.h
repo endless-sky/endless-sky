@@ -65,6 +65,6 @@ private:
 	// Store the color as a float vector for easy interfacing with OpenGL.
 	float color[4];
 
-	std::string name;
+	std::string trueName;
 	bool isLoaded = false;
 };

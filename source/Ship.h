@@ -616,7 +616,7 @@ private:
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	EsUuid uuid;
-	std::string name;
+	std::string givenName;
 	bool canBeCarried = false;
 
 	int forget = 0;

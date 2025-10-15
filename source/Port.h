@@ -93,7 +93,7 @@ private:
 	bool loaded = false;
 
 	// The name of this port.
-	std::string name;
+	std::string displayName;
 
 	// The description of this port. Shown when clicking on the
 	// port button on the planet panel.
