@@ -158,7 +158,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			overrideFleetCargo = true;
 		}
 		else if(key == "dialog")
-			dialog.Load(node, playerConditions);
+			dialog.Load(child, playerConditions);
 		else if(key == "conversation" && child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
 		else if(key == "conversation" && hasValue)
