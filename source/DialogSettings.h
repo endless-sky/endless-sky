@@ -29,12 +29,14 @@ class DataWriter;
 class UI;
 
 
-//
-class Dialog {
+// A class that parses "dialog" nodes. Dialogs are short texts where the player
+// is only able to respond with one or two buttons. Generally used for displaying
+// short messages that don't necessitate the use of a full conversation panel.
+class DialogSettings {
 public:
-	Dialog() = default;
+	DialogSettings() = default;
 	// Construct and Load() at the same time.
-	Dialog(const DataNode &node, const ConditionsStore *playerConditions);
+	DialogSettings(const DataNode &node, const ConditionsStore *playerConditions);
 
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	void Save(DataWriter &out) const;
@@ -48,7 +50,7 @@ public:
 	// collapse everything into the "text" variable.
 	void Collapse();
 	// Apply any replacements, evaluate any condition sets, and generate from any phrases.
-	Dialog Instantiate(const std::map<std::string, std::string> &subs) const;
+	DialogSettings Instantiate(const std::map<std::string, std::string> &subs) const;
 
 
 private:

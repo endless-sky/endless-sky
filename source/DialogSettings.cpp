@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Dialog.h"
+#include "DialogSettings.h"
 
 #include <utility>
 
@@ -26,21 +26,21 @@ using namespace std;
 
 
 
-Dialog::DialogLine::DialogLine(std::string text)
+DialogSettings::DialogLine::DialogLine(std::string text)
 	: text(std::move(text))
 {
 }
 
 
 
-Dialog::DialogLine::DialogLine(const ExclusiveItem<Phrase> &phrase)
+DialogSettings::DialogLine::DialogLine(const ExclusiveItem<Phrase> &phrase)
 	: phrase(phrase)
 {
 }
 
 
 
-Dialog::DialogLine::DialogLine(const DataNode &node, const ConditionsStore *playerConditions)
+DialogSettings::DialogLine::DialogLine(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	const string &key = node.Token(0);
 	bool hasValue = node.Size() >= 2;
@@ -85,14 +85,14 @@ Dialog::DialogLine::DialogLine(const DataNode &node, const ConditionsStore *play
 
 
 
-Dialog::Dialog(const DataNode &node, const ConditionsStore *playerConditions)
+DialogSettings::DialogSettings(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	Load(node, playerConditions);
 }
 
 
 
-void Dialog::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void DialogSettings::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
 	{
@@ -109,7 +109,7 @@ void Dialog::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 
 
-void Dialog::Save(DataWriter &out) const
+void DialogSettings::Save(DataWriter &out) const
 {
 	// A Dialog being saved has already been instantiated, so all information
 	// is stored in the "text" variable.
@@ -125,7 +125,7 @@ void Dialog::Save(DataWriter &out) const
 
 
 
-bool Dialog::Validate() const
+bool DialogSettings::Validate() const
 {
 	for(const DialogLine &line : lines)
 		if(line.text.empty() && line.phrase.IsStock() && line.phrase->IsEmpty())
@@ -135,21 +135,21 @@ bool Dialog::Validate() const
 
 
 
-const string &Dialog::Text() const
+const string &DialogSettings::Text() const
 {
 	return text;
 }
 
 
 
-bool Dialog::IsEmpty() const
+bool DialogSettings::IsEmpty() const
 {
 	return text.empty();
 }
 
 
 
-void Dialog::Collapse()
+void DialogSettings::Collapse()
 {
 	if(!text.empty())
 		return;
@@ -176,9 +176,9 @@ void Dialog::Collapse()
 
 
 
-Dialog Dialog::Instantiate(const map<string, string> &subs) const
+DialogSettings DialogSettings::Instantiate(const map<string, string> &subs) const
 {
-	Dialog result;
+	DialogSettings result;
 	// Result is already cached for dialogs that are pure text at Load() time.
 	if(!text.empty())
 		result.text = Format::Replace(Phrase::ExpandPhrases(text), subs);

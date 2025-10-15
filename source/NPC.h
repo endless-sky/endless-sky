@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Conversation.h"
-#include "Dialog.h"
+#include "DialogSettings.h"
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "Fleet.h"
@@ -140,7 +140,7 @@ private:
 	const Planet *planet = nullptr;
 
 	// Dialog or conversation to show when all requirements for this NPC are met:
-	Dialog dialog;
+	DialogSettings dialog;
 	ExclusiveItem<Conversation> conversation;
 
 	// Conditions that must be met in order for this NPC to be placed or despawned:

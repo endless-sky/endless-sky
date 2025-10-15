@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
-#include "Dialog.h"
+#include "DialogSettings.h"
 #include "ExclusiveItem.h"
 #include "GameAction.h"
 #include "LocationFilter.h"
@@ -90,7 +90,7 @@ private:
 	std::string system;
 	LocationFilter systemFilter;
 
-	Dialog dialog;
+	DialogSettings dialog;
 	ExclusiveItem<Conversation> conversation;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.
