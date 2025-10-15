@@ -603,13 +603,15 @@ outfit "Tiny VLS"
 			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
-
+	description "This tiny vertical launch system contains nine independent launch cells, each occupying one ton of outfit space. Compatible with small-to-medium Avgi missiles, the cells' contents can be easily swapped to suit a given mission. This array's compact footprint makes it suitable for drones and fighters, though the system still requires a turret mount."
+	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Small VLS"
 	"display name" "Vertical Launch Array (18)"
 	category "Secondary Weapons"
 	series "Secondary Weapons"
-	index 07030
+	index 07031
 	licenses
 		"Twilight Guard"
 	cost 108000
@@ -645,13 +647,15 @@ outfit "Small VLS"
 			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
-
+	description "This small vertical launch system contains 18 independent launch cells in a rectangular array. Designed for flexibility, the system can employ a variety of small or medium-sized missiles. Owing to its large surface footprint, a turret mount is required for the launcher to deploy missiles safely."
+	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Medium VLS"
 	"display name" "Vertical Launch Array (36)"
 	category "Secondary Weapons"
 	series "Secondary Weapons"
-	index 07030
+	index 07032
 	licenses
 		"Twilight Guard"
 	cost 216000
@@ -687,8 +691,8 @@ outfit "Medium VLS"
 			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
-	description "This large vertical launch system is made up of 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
-	description "	Vertical launch systems such as this one are capable of rapidly launching multiple missiles in parallel, but take up quite a bit of space."
+	description "This medium vertical launch system contains 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for swift vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
+	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 
