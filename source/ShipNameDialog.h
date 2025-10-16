@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Dialog.h"
+#include "DialogPanel.h"
 
 #include "Point.h"
 
@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Contains a text entry field and an additional button, "Random",
 // which populates the text entry field with a randomly selected name
 // from the "civilian" phrase.
-class ShipNameDialog : public Dialog {
+class ShipNameDialog : public DialogPanel {
 public:
 	template<class T>
 	ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
@@ -49,6 +49,6 @@ private:
 template<class T>
 ShipNameDialog::ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
 		const std::string &message, std::string initialValue)
-	: Dialog(panel, fun, message, initialValue)
+	: DialogPanel(panel, fun, message, initialValue)
 {
 }

@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "comparators/BySeriesAndIndex.h"
 #include "Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -713,9 +713,9 @@ void OutfitterPanel::FailSell(bool toStorage) const
 	if(!planet || !selectedOutfit)
 		return;
 	else if(selectedOutfit->Get("map"))
-		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
+		GetUI()->Push(new DialogPanel("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
 	else if(HasLicense(selectedOutfit->TrueName()))
-		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
+		GetUI()->Push(new DialogPanel("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
 	else
 	{
 		bool hasOutfit = player.Cargo().Get(selectedOutfit);
@@ -727,7 +727,7 @@ void OutfitterPanel::FailSell(bool toStorage) const
 				break;
 			}
 		if(!hasOutfit)
-			GetUI()->Push(new Dialog("You do not have any of these outfits to " + verb + "."));
+			GetUI()->Push(new DialogPanel("You do not have any of these outfits to " + verb + "."));
 		else
 		{
 			for(const Ship *ship : playerShips)
@@ -737,19 +737,19 @@ void OutfitterPanel::FailSell(bool toStorage) const
 						for(const auto &sit : ship->Outfits())
 							if(sit.first->Get(it.first) < 0.)
 							{
-								GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
+								GetUI()->Push(new DialogPanel("You cannot " + verb + " this outfit, "
 									"because that would cause your ship's \"" + it.first +
 									"\" value to be reduced to less than zero. "
 									"To " + verb + " this outfit, you must " + verb + " the " +
 									sit.first->DisplayName() + " outfit first."));
 								return;
 							}
-						GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
+						GetUI()->Push(new DialogPanel("You cannot " + verb + " this outfit, "
 							"because that would cause your ship's \"" + it.first +
 							"\" value to be reduced to less than zero."));
 						return;
 					}
-			GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
+			GetUI()->Push(new DialogPanel("You cannot " + verb + " this outfit, "
 				"because something else in your ship depends on it."));
 		}
 	}
@@ -949,7 +949,7 @@ void OutfitterPanel::CheckRefill()
 		message += (count == 1) ? "?" : "s?";
 		if(cost)
 			message += " It will cost " + Format::CreditString(cost) + ".";
-		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
+		GetUI()->Push(new DialogPanel(this, &OutfitterPanel::Refill, message));
 	}
 }
 

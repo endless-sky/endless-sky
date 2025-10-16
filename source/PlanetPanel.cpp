@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -354,7 +354,7 @@ void PlanetPanel::TakeOffIfReady()
 			// Pop back the last ", " in the string.
 			shipNames.pop_back();
 			shipNames.pop_back();
-			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
+			GetUI()->Push(new DialogPanel(this, &PlanetPanel::CheckWarningsAndTakeOff,
 				"Some of your ships in other systems are not able to fly:\n" + shipNames +
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
@@ -493,7 +493,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		// Pool cargo together, so that the cargo number on the trading panel
 		// is still accurate while the popup is active.
 		player.PoolCargo();
-		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
+		GetUI()->Push(new DialogPanel(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
 

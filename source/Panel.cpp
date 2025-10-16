@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -352,7 +352,7 @@ bool Panel::DoHelp(const string &name, bool force) const
 		return false;
 
 	Preferences::Set(preference);
-	ui->Push(new Dialog(Format::Capitalize(name) + ":\n\n" + message));
+	ui->Push(new DialogPanel(Format::Capitalize(name) + ":\n\n" + message));
 
 	return true;
 }
