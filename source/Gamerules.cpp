@@ -109,7 +109,7 @@ int Gamerules::GetValue(const string &rule) const
 	if(rule == "system departure min")
 		return systemDepartureMin * 1000;
 	if(rule == "system arrival min")
-		return *systemArrivalMin * 1000;
+		return systemArrivalMin.value_or(0.) * 1000;
 	if(rule == "fleet multiplier")
 		return fleetMultiplier * 1000;
 	return 0;
