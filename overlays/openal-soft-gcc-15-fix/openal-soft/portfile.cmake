@@ -5,7 +5,7 @@ vcpkg_from_github(
     SHA512 21f768484978e4321b733004988cb5ecf43d908e7e08f2d421a338633fcfb2ade722d035de73742470ff135ab538d6b9b56df14020976adb1d1e081dfb095c6b
     HEAD_REF master
 	PATCHES
-		"add-cstdint-to-alu-header.patch"
+		"add-cstdint-where-needed.patch"
 )
 
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
