@@ -69,7 +69,6 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "system departure min")
 			systemDepartureMin = max<double>(0., child.Value(1));
 		else if(key == "system arrival min")
-			systemArrivalMin = max<double>(0., child.Value(1));
 		{
 			if(child.Token(1) == "unset")
 				systemArrivalMin.reset();
