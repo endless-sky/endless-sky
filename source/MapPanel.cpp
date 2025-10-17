@@ -268,12 +268,9 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	if(systemRange || playerRange)
 		playerJumpDistance = systemRange ? systemRange : playerRange;
 
-	// Recalculate any mission deadlines if the player is landed in case
-	// changes to the player's flagship have changed the deadline calculations.
-	// If the player is not landed, then the deadlines will have already been
-	// recalculated on the day change.
-	if(player.GetPlanet())
-		player.CalculateRemainingDeadlines();
+	// Recache the remaining number of days for all deadline missions and
+	// the location of tracked NPCs.
+	player.CacheMissionInformation();
 
 	CenterOnSystem(selectedSystem, true);
 }
@@ -1457,6 +1454,8 @@ void MapPanel::DrawMissions()
 			DrawPointer(stopoverSystem, counts.drawn, counts.MaximumActive(), waypointColor);
 		}
 		for(const System *mark : mission.MarkedSystems())
+			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
+		for(const System *mark : mission.TrackedSystems())
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
 	// Draw the available and unavailable jobs.

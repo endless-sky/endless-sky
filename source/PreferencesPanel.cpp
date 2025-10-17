@@ -1304,7 +1304,7 @@ void PreferencesPanel::Exit()
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	if(recacheDeadlines)
-		player.CalculateRemainingDeadlines();
+		player.CacheMissionInformation(true);
 
 	GetUI()->Pop(this);
 }

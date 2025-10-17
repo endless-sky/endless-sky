@@ -382,6 +382,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 
 	if(displayName.empty())
 		displayName = name;
+	hasTrackedNpcs = ranges::any_of(npcs, [](const NPC &npc) { return npc.GetPersonality().IsTracked(); });
 }
 
 
@@ -772,6 +773,25 @@ const set<const System *> &Mission::MarkedSystems() const
 const set<const System *> &Mission::UnmarkedSystems() const
 {
 	return unmarkedSystems;
+}
+
+
+
+const set<const System *> &Mission::TrackedSystems(bool recalculate) const
+{
+	if(hasTrackedNpcs && recalculate)
+	{
+		trackedSystems.clear();
+		for(const NPC &npc : npcs)
+		{
+			if(!npc.GetPersonality().IsTracked())
+				continue;
+			for(const auto &ship : npc.Ships())
+				if(!ship->IsDestroyed() && ship->GetSystem())
+					trackedSystems.insert(ship->GetSystem());
+		}
+	}
+	return trackedSystems;
 }
 
 
@@ -1218,13 +1238,10 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		++player.Conditions()[name + ": offered"];
 		++player.Conditions()[name + ": active"];
 		// Any potential on offer conversation has been finished, so update
-		// the active NPCs for the first time.
+		// the active NPCs for the first time and cache any necessary information.
 		UpdateNPCs(player);
-		if(deadline)
-		{
-			DistanceMap here(player);
-			player.CalculateRemainingDeadline(*this, here);
-		}
+		DistanceMap here(player);
+		player.CacheMissionInformation(*this, here);
 	}
 	else if(trigger == DECLINE)
 	{
@@ -1600,6 +1617,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
+	result.hasTrackedNpcs = hasTrackedNpcs;
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
