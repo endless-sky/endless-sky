@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 class DataNode;
+class DataWriter;
+class Sprite;
 
 
 
@@ -39,6 +41,11 @@ public:
 
 	// Load a gamerules node.
 	void Load(const DataNode &node);
+	void Save(DataWriter &out) const;
+
+	const std::string &Name() const;
+	const std::string &Description() const;
+	const Sprite *Thumbnail() const;
 
 	int GetValue(const std::string &rule) const;
 
@@ -58,6 +65,10 @@ public:
 
 
 private:
+	std::string name;
+	std::string description;
+	const Sprite *thumbnail = nullptr;
+
 	bool universalRamscoop = true;
 	int personSpawnPeriod = 36000;
 	int noPersonSpawnWeight = 1000;
