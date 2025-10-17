@@ -70,6 +70,12 @@ void Gamerules::Load(const DataNode &node)
 			systemDepartureMin = max<double>(0., child.Value(1));
 		else if(key == "system arrival min")
 			systemArrivalMin = max<double>(0., child.Value(1));
+		{
+			if(child.Token(1) == "unset")
+				systemArrivalMin.reset();
+			else
+				systemArrivalMin = child.Value(1);
+		}
 		else if(key == "fleet multiplier")
 			fleetMultiplier = max<double>(0., child.Value(1));
 		else
