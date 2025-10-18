@@ -1,3 +1,62 @@
+Version 0.10.16
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@Deltaspace0)
+      * Resampled various wave files to 44.1 kHz. (@Saugia)
+      * Coalition Yottrite missions will no longer offer on uninhabited gas giants. (@Arachi-Lover)
+      * Fixed the "on visit" message of "Dangerous Games 1" to account for the possibility that the player has reached the destination with all the passengers but not visited the stopover. (@warp-core)
+      * Having a Tiny or Small VLS will now also enable resupplying Nettle missiles, in addition to the Medium VLS. (@Azure3141)
+    * Engine bugs:
+      * Fixed an issue where the fuel and heat costs of repairing shields and hull on docked fighters were applied incorrectly. (@TomGoodIdea)
+      * Messages about multiple identical player owned ships being destroyed will no longer be suppressed as duplicates. (@TomGoodIdea)
+      * Fixed an issue where planet ambient music was not being played at the correct time. (@TomGoodIdea)
+      * Fixed problems with anti-missile and tractor beam turrets installed on hardpoints with blindspots. (@TomGoodIdea)
+      * The background no longer moves inappropriately after the player is dead. (@TomGoodIdea)
+      * The messsage about being unable to board a ship while cloaked can no longer be duplicated. (@TomGoodIdea)
+      * Selecting escorts with commands will now also target them. (@TomGoodIdea)
+      * Ships approaching a target will now also consider maximum velocities. (@tibetiroka)
+      * Fixed issues when landing on planets or wormholes with custom "landing speeds". (@TomGoodIdea)
+      * The fleet jump message will no longer be shown repeatedly. (@xobes)
+      * Planetary security will no longer scan parked ships, so the player can no longer receive fines for illegal outfits on those ships. (@Amazinite)
+      * Fixed various recent issues ship AI movement. (@tibetiroka)
+      * The game will now recognise and load plugins that only modify shaders. (@TomGoodIdea)
+  * Game content:
+    * New content:
+      * Added descriptions for the Tiny and Small VLS. (@Azure3141)
+      * Added a selection of new "food" commodity names, and moved "fertilizer" from "food" to "industrial". (@reticent-rem)
+    * Mission changes:
+      * Lowered the offer precedence of culture conversations so they never block missions. (@reticent-rem)
+      * Added system markers to "Wanderers: Alpha Surveillance D" to indicate the next system(s) to search. (@Anarchist2)
+    * Sprites:
+      * Added a new and improved image for the Esquiline reveal scene. (@beccabunny)
+      * Renamed the duplicate "fog12" and "lava14" jpeg landscapes to "fog15" and "lava15" to avoid name collision, and added copyright entries for various previously unlisted landscapes. (@warp-core)
+    * Balance:
+      * Bunrodea ships now carry hand-to-hand outfits. (@LixiChronikouOriou)
+      * Increased the reload time of the Thorax Cannon from two seconds to four seconds. (@AvianGeneticist)
+    * Other:
+      * "Acorn Delights: Part 1" no longer allows the same conversation choices to be selected repeatedly. (@TheGiraffe3)
+  * Graphics:
+    * Animated elements on the HUD will no longer freeze when using the "pause" command.
+    * On Windows 10 and 11, the window theme and corner rounding can now be customized. (@TomGoodIdea)
+  * Game mechanics:
+    * New mechanics:
+      * New autocondition: "gamerule: <gamerule>" which gives the value of the given gamerule. (@Amazinite)
+    * Mechanics changes:
+      * Ship variants that inherit outfits and weapon hardpoint layouts from their bases will now also inherit the installed weapon layouts. (@warp-core)
+  * User interface:
+    * The shipyard panel no longer lists cargo capacity when no player ship is selected. (@TomGoodIdea)
+    * Tooltip activation time can now be customized. (@TomGoodIdea)
+  * Under the hood:
+    * An error is now reported when loaindg wave files with incorrect sample rates (anything but 44.1 kHz). (@tibetiroka)
+    * Slightly improved performance when drawing the loading ring. (@TomGoodIdea)
+    * Added a plaintext description for the stop command. (@thewierdnut)
+    * Buttons in the shop panels now use ClizkZones. (@xobes)
+    * The Interface class now stores Elements via unique_ptrs, instead of raw pointers. This also fixes a small memory leak. (@warp-core)
+  * Documentation:
+    * Updated the system requirements and listed minimum supported operating systems. (@TomGoodIdea)
+  * CI/CD and development environment:
+    * Added an alternate libflac detection method for systems where it doesn't provide a Cmake configuration. (@thewierdnut)
+
 Version 0.10.15
   * Bug fixes:
     * Content bugs:
