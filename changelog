@@ -18,14 +18,14 @@ Version 0.10.16
       * Fixed issues when landing on planets or wormholes with custom "landing speeds". (@TomGoodIdea)
       * The fleet jump message will no longer be shown repeatedly. (@xobes)
       * Planetary security will no longer scan parked ships, so the player can no longer receive fines for illegal outfits on those ships. (@Amazinite)
-      * Fixed various recent issues ship AI movement. (@tibetiroka)
+      * Fixed various recent issues with ship AI movement. (@tibetiroka)
       * The game will now recognize and load plugins that only modify shaders. (@TomGoodIdea)
   * Game content:
     * New content:
       * Added descriptions for the Tiny and Small VLS. (@Azure3141)
       * Added a selection of new "food" commodity names, and moved "fertilizer" from "food" to "industrial". (@reticent-rem)
     * Mission changes:
-      * Lowered the offer precedence of culture conversations so they never block missions. (@reticent-rem)
+      * Lowered the offer precedence of culture conversations so they never block story missions. (@reticent-rem)
       * Added system markers to "Wanderers: Alpha Surveillance D" to indicate the next system(s) to search. (@Anarchist2)
     * Sprites:
       * Added a new and improved image for the Esquiline reveal scene. (@beccabunny)
@@ -47,10 +47,10 @@ Version 0.10.16
     * The shipyard panel no longer lists cargo capacity when no player ship is selected. (@TomGoodIdea)
     * Tooltip activation time can now be customized. (@TomGoodIdea)
   * Under the hood:
-    * An error is now reported when loaindg wave files with incorrect sample rates (anything but 44.1 kHz). (@tibetiroka)
+    * An error is now reported when loading wave files with incorrect sample rates (anything but 44.1 kHz). (@tibetiroka)
     * Slightly improved performance when drawing the loading ring. (@TomGoodIdea)
     * Added a plaintext description for the stop command. (@thewierdnut)
-    * Buttons in the shop panels now use ClizkZones. (@xobes)
+    * Buttons in the shop panels now use ClickZones. (@xobes)
     * The Interface class now stores Elements via unique_ptrs, instead of raw pointers. This also fixes a small memory leak. (@warp-core)
   * Documentation:
     * Updated the system requirements and listed minimum supported operating systems. (@TomGoodIdea)
