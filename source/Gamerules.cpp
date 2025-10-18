@@ -73,7 +73,7 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "fleet multiplier")
 			fleetMultiplier = max<double>(0., child.Value(1));
 		else
-			child.PrintTrace("Skipping unrecognized gamerule:");
+			miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
 }
 
@@ -107,7 +107,11 @@ int Gamerules::GetValue(const string &rule) const
 		return systemArrivalMin * 1000;
 	if(rule == "fleet multiplier")
 		return fleetMultiplier * 1000;
-	return 0;
+
+	auto it = miscRules.find(rule);
+	if(it == miscRules.end())
+		return 0;
+	return it->second;
 }
 
 
