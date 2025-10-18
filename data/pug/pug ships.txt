@@ -179,8 +179,8 @@ ship "Pug Arfecta"
 	attributes
 		category "Medium Warship"
 		"cost" 90000000
-		"shields" 98000
-		"hull" 80000
+		"shields" 30600
+		"hull" 25000
 		"required crew" 36
 		"bunks" 46
 		"mass" 1325
