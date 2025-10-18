@@ -77,7 +77,7 @@ public:
 	// Get all the possible sources that can get recharged at this port.
 	int GetRecharges() const;
 
-	const std::string &Name() const;
+	const std::string &DisplayName() const;
 	const Paragraphs &Description() const;
 
 	// Check whether the given recharging is possible.
@@ -93,7 +93,7 @@ private:
 	bool loaded = false;
 
 	// The name of this port.
-	std::string name;
+	std::string displayName;
 
 	// The description of this port. Shown when clicking on the
 	// port button on the planet panel.

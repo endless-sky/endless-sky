@@ -600,7 +600,7 @@ const string &System::TrueName() const
 
 
 
-void System::SetName(const string &name)
+void System::SetTrueName(const string &name)
 {
 	trueName = name;
 	if(displayName.empty())

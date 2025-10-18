@@ -455,7 +455,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	else if(!multiplePatternsSet)
 	{
 		// If only one pattern was found, then select the next pattern (or clear the pattern if there is no next).
-		auto it = formationPatterns.find(toSet->Name());
+		auto it = formationPatterns.find(toSet->TrueName());
 		if(it != formationPatterns.end())
 			++it;
 		toSet = (it == formationPatterns.end() ? nullptr : &(it->second));
@@ -473,7 +473,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 
 	unsigned int count = targetShips.size();
 	string message = to_string(count) + (count == 1 ? " ship" : " ships") + " will ";
-	message += toSet ? ("assume \"" + toSet->Name() + "\" formation.") : "no longer fly in formation.";
+	message += toSet ? ("assume \"" + toSet->TrueName() + "\" formation.") : "no longer fly in formation.";
 	Messages::Add(message, Messages::Importance::Low);
 }
 
@@ -488,7 +488,7 @@ void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 		: Orders::Types::KEEP_STATION);
 	newOrder.SetTargetShip(target);
 	IssueOrder(newOrder,
-		(isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\"."));
+		(isEnemy ? "focusing fire on" : "following") + (" \"" + target->GivenName() + "\"."));
 }
 
 
@@ -575,7 +575,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	{
 		OrderSingle newOrder{target->IsDisabled() ? Orders::Types::FINISH_OFF : Orders::Types::ATTACK};
 		newOrder.SetTargetShip(target);
-		IssueOrder(newOrder, "focusing fire on \"" + target->Name() + "\".");
+		IssueOrder(newOrder, "focusing fire on \"" + target->GivenName() + "\".");
 	}
 	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
@@ -2927,7 +2927,7 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 	const Government *government = ship->GetGovernment();
 	const string &language = government->Language();
 	if(language.empty() || player.Conditions().Get("language: " + language))
-		Messages::Add(government->GetName() + " " + ship->Noun() + " \"" + ship->Name()
+		Messages::Add(government->DisplayName() + " " + ship->Noun() + " \"" + ship->GivenName()
 			+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
 
 }
