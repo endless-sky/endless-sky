@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Angle;
 class AsteroidField;
 class Body;
+class ConditionsStore;
 class Flotsam;
 class Government;
 class Minable;
@@ -52,11 +53,10 @@ class System;
 class AI {
 public:
 	// Any object that can be a ship's target is in a list of this type:
-template <class Type>
+	template<class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(const PlayerInfo &player, const List<Ship> &ships,
-			const List<Minable> &minables, const List<Flotsam> &flotsam);
+	AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
 	void IssueFormationChange(PlayerInfo &player);
@@ -125,7 +125,8 @@ private:
 	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
 	static bool MoveToPlanet(const Ship &ship, Command &command, double cruiseSpeed = 0.);
 	static bool MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
-		const Point &targetVelocity, double radius, double slow, double cruiseSpeed = 0.);
+		const Point &targetVelocity, double radius, double slow, double cruiseSpeed = 0.,
+		const Point &finalDirection = Point());
 	static bool Stop(const Ship &ship, Command &command, double maxSpeed = 0., const Point &direction = Point());
 	static void PrepareForHyperspace(const Ship &ship, Command &command);
 	static void CircleAround(const Ship &ship, Command &command, const Body &target);
@@ -182,6 +183,11 @@ private:
 	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
 	void CacheShipLists();
 
+	/// Register autoconditions that use the current AI state (ships in the system, strengths, etc.)
+	/// These conditions may be a frame behind, depending on where the conditions are queried from,
+	/// but that shouldn't really matter.
+	void RegisterDerivedConditions(ConditionsStore &conditions);
+
 
 private:
 	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
@@ -191,7 +197,7 @@ private:
 
 private:
 	// TODO: Figure out a way to remove the player dependency.
-	const PlayerInfo &player;
+	PlayerInfo &player;
 	// Data from the game engine.
 	const List<Ship> &ships;
 	const List<Minable> &minables;
