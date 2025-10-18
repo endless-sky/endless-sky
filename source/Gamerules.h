@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <map>
 #include <string>
 
 class DataNode;
@@ -71,4 +72,7 @@ private:
 	double systemDepartureMin = 0.;
 	double systemArrivalMin = 0.;
 	double fleetMultiplier = 1.;
+
+	// Miscellanous rules that are only used by the gamedata and not by the engine.
+	std::map<std::string, int> miscRules;
 };

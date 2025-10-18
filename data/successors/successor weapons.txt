@@ -364,6 +364,8 @@ outfit `"Sjeja" Kinetic Lance`
 		"penetration count" 5
 	description "The largest and most powerful of the Successors' modern weapons, this massive superconducting coilgun is elegant in its simplicity, cleanly perforating targets at extreme range. Although the weapon requires a substantial burst of power in order to fire, it is capable of storing some of this within the coils themselves, allowing it to be fired without additional battery banks at the cost of inflicting a lingering power draw on the ship's systems."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "High-Velocity Spike"
 	category "Ammunition"
@@ -391,6 +393,7 @@ outfit "High-Velocity Spike Rack"
 
 outfitter "Kinetic Lance Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has `outfit: "Sjeja" Kinetic Lance`
 			has "outfit: High-Velocity Spike Rack"

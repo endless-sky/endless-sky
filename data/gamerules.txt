@@ -109,3 +109,8 @@ gamerules
 	# DEFAULT: 1.0 (no changes)
 	# ALLOWABLE VALUES: any value >= 0.
 	"fleet multiplier" 1.
+
+	# Determines whether ammo for most secondary weapons can be restocked at any outfitter.
+	# DEFAULT: true
+	# ALLOWABLE VALUES: false, true, 0, 1
+	"universal ammo restocking" true
