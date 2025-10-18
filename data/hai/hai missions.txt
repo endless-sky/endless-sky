@@ -918,7 +918,6 @@ mission "Expanding Business: shipyard complete"
 		has "event: shipyard on greenwater"
 	on offer
 		"salary: Turner Incorporated" = 4000
-		dialog "On receipt of a new and unexpected deposit, you realize that the shipyard on Greenwater must now be operational."
 		fail
 
 
