@@ -44,7 +44,8 @@ void EscortDisplay::Clear()
 
 
 
-void EscortDisplay::Add(const shared_ptr<Ship> &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected)
+void EscortDisplay::Add(const shared_ptr<Ship> &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping,
+	bool isSelected)
 {
 	icons.emplace_back(ship, isHere, systemNameKnown, fleetIsJumping, isSelected, basicHeight, systemLabelHeight);
 }
@@ -169,8 +170,8 @@ const vector<shared_ptr<Ship>> &EscortDisplay::Click(const Point &point) const
 
 
 
-EscortDisplay::Icon::Icon(const shared_ptr<Ship> &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected,
-		int basicHeight, int systemLabelHeight)
+EscortDisplay::Icon::Icon(const shared_ptr<Ship> &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping,
+		bool isSelected, int basicHeight, int systemLabelHeight)
 	: sprite(ship->GetSprite()),
 	isDisabled(ship->IsDisabled()),
 	isHere(isHere),
