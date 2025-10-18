@@ -12,14 +12,14 @@ Version 0.10.16
       * Fixed an issue where planet ambient music was not being played at the correct time. (@TomGoodIdea)
       * Fixed problems with anti-missile and tractor beam turrets installed on hardpoints with blindspots. (@TomGoodIdea)
       * The background no longer moves inappropriately after the player is dead. (@TomGoodIdea)
-      * The messsage about being unable to board a ship while cloaked can no longer be duplicated. (@TomGoodIdea)
+      * The message about being unable to board a ship while cloaked can no longer be duplicated. (@TomGoodIdea)
       * Selecting escorts with commands will now also target them. (@TomGoodIdea)
       * Ships approaching a target will now also consider maximum velocities. (@tibetiroka)
       * Fixed issues when landing on planets or wormholes with custom "landing speeds". (@TomGoodIdea)
       * The fleet jump message will no longer be shown repeatedly. (@xobes)
       * Planetary security will no longer scan parked ships, so the player can no longer receive fines for illegal outfits on those ships. (@Amazinite)
       * Fixed various recent issues ship AI movement. (@tibetiroka)
-      * The game will now recognise and load plugins that only modify shaders. (@TomGoodIdea)
+      * The game will now recognize and load plugins that only modify shaders. (@TomGoodIdea)
   * Game content:
     * New content:
       * Added descriptions for the Tiny and Small VLS. (@Azure3141)
