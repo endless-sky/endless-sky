@@ -381,8 +381,8 @@ namespace {
 		for(const Hardpoint &hardpoint : ship.Weapons())
 			if(hardpoint.GetOutfit() && !hardpoint.IsSpecial())
 			{
-				minRange = min(hardpoint.GetOutfit()->Range(), minRange);
-				maxRange = max(hardpoint.GetOutfit()->Range(), maxRange);
+				minRange = min(hardpoint.GetWeapon()->Range(), minRange);
+				maxRange = max(hardpoint.GetWeapon()->Range(), maxRange);
 			}
 		return minRange < maxRange ? pair{minRange, maxRange} : pair{maxRange, minRange};
 	}
