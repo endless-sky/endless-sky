@@ -55,7 +55,7 @@ void Sale<Item>::LoadSingle(const DataNode &child, const Set<Item> &items, bool 
 	bool add = (token == "add");
 	if((remove || add) && preventModifiers)
 	{
-		child.PrintTrace("Error: Cannot \"add\" or \"remove\" inside a \"stock\" node:");
+		child.PrintTrace("Cannot \"add\" or \"remove\" inside a \"stock\" node:");
 		return;
 	}
 	bool hasValue = child.Size() >= 2;

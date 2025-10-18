@@ -128,7 +128,7 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 	glDrawBuffers(1, draw_buffers);
 
 	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		Logger::LogError("Failed to initialize framebuffer for RenderBuffer");
+		Logger::Log("Failed to initialize framebuffer for RenderBuffer.", Logger::Level::WARNING);
 
 
 	glBindTexture(GL_TEXTURE_2D, 0);

@@ -34,7 +34,7 @@ void ShipManager::Load(const DataNode &node)
 {
 	if(node.Size() < 3 || node.Token(1) != "ship")
 	{
-		node.PrintTrace("Error: Skipping unrecognized node.");
+		node.PrintTrace("Skipping unrecognized node.");
 		return;
 	}
 	taking = node.Token(0) == "take";
@@ -53,7 +53,7 @@ void ShipManager::Load(const DataNode &node)
 		{
 			int val = child.Value(1);
 			if(val <= 0)
-				child.PrintTrace("Error: \"count\" must be a non-zero, positive number.");
+				child.PrintTrace("\"count\" must be a non-zero, positive number.");
 			else
 				count = val;
 		}
@@ -66,14 +66,14 @@ void ShipManager::Load(const DataNode &node)
 			else if(key == "require outfits")
 				requireOutfits = true;
 			else
-				child.PrintTrace("Error: Skipping unrecognized token.");
+				child.PrintTrace("Skipping unrecognized token.");
 		}
 		else
-			child.PrintTrace("Error: Skipping unrecognized token.");
+			child.PrintTrace("Skipping unrecognized token.");
 	}
 
 	if(taking && !id.empty() && count > 1)
-		node.PrintTrace("Error: Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
+		node.PrintTrace("Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
 }
 
 
