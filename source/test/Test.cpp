@@ -102,7 +102,7 @@ namespace {
 
 	string ShipToString(const Ship &ship)
 	{
-		string description = "name: " + ship.Name();
+		string description = "name: " + ship.GivenName();
 		const System *system = ship.GetSystem();
 		const Planet *planet = ship.GetPlanet();
 		description += ", system: " + (system ? system->TrueName() : "<not set>");

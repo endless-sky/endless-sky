@@ -347,7 +347,7 @@ const string &Planet::TrueName() const
 
 
 
-void Planet::SetName(const string &name)
+void Planet::SetTrueName(const string &name)
 {
 	trueName = name;
 	if(displayName.empty())
@@ -414,7 +414,7 @@ const string &Planet::Noun() const
 // Check whether this planet's port is named.
 bool Planet::HasNamedPort() const
 {
-	return !port.Name().empty();
+	return !port.DisplayName().empty();
 }
 
 

@@ -15,6 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <map>
+#include <string>
+
 class DataNode;
 
 
@@ -26,7 +29,9 @@ public:
 	// Defines which disabled fighters can dodge stray projectiles.
 	enum class FighterDodgePolicy
 	{
-		ALL, NONE, ONLY_PLAYER
+		NONE = 0,
+		ONLY_PLAYER = 1,
+		ALL = 2
 	};
 
 
@@ -35,6 +40,8 @@ public:
 
 	// Load a gamerules node.
 	void Load(const DataNode &node);
+
+	int GetValue(const std::string &rule) const;
 
 	bool UniversalRamscoopActive() const;
 	int PersonSpawnPeriod() const;
@@ -65,4 +72,7 @@ private:
 	double systemDepartureMin = 0.;
 	double systemArrivalMin = 0.;
 	double fleetMultiplier = 1.;
+
+	// Miscellanous rules that are only used by the gamedata and not by the engine.
+	std::map<std::string, int> miscRules;
 };

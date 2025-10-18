@@ -74,7 +74,11 @@ public:
 
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
-	const std::string &Name() const;
+	// Get the internal name used for this mission. This name is unique and is
+	// never modified by string substitution, so it can be used in condition
+	// variables, etc.
+	const std::string &TrueName() const;
+	const std::string &DisplayName() const;
 	const std::string &Description() const;
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
@@ -185,10 +189,6 @@ public:
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
 	bool RequiresGiftedShip(const std::string &shipId) const;
 
-	// Get the internal name used for this mission. This name is unique and is
-	// never modified by string substitution, so it can be used in condition
-	// variables, etc.
-	const std::string &Identifier() const;
 	// Get a specific mission action from this mission.
 	// If the mission action is not found for the given trigger, returns an empty
 	// mission action.
@@ -207,7 +207,7 @@ private:
 
 
 private:
-	std::string name;
+	std::string trueName;
 	std::string displayName;
 	std::string description;
 	std::string blocked;

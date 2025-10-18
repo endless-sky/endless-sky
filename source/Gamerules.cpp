@@ -73,8 +73,45 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "fleet multiplier")
 			fleetMultiplier = max<double>(0., child.Value(1));
 		else
-			child.PrintTrace("Skipping unrecognized gamerule:");
+			miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
+}
+
+
+
+int Gamerules::GetValue(const string &rule) const
+{
+	if(rule == "universal ramscoop")
+		return universalRamscoop;
+	if(rule == "person spawn period")
+		return personSpawnPeriod;
+	if(rule == "no person spawn weight")
+		return noPersonSpawnWeight;
+	if(rule == "npc max mining time")
+		return npcMaxMiningTime;
+	if(rule == "universal frugal threshold")
+		return universalFrugalThreshold * 1000;
+	if(rule == "depreciation min")
+		return depreciationMin * 1000;
+	if(rule == "depreciation daily")
+		return depreciationDaily * 1000;
+	if(rule == "depreciation grace period")
+		return depreciationGracePeriod;
+	if(rule == "depreciation max age")
+		return depreciationMaxAge;
+	if(rule == "disabled fighters avoid projectiles")
+		return static_cast<int>(fighterHitPolicy);
+	if(rule == "system departure min")
+		return systemDepartureMin * 1000;
+	if(rule == "system arrival min")
+		return systemArrivalMin * 1000;
+	if(rule == "fleet multiplier")
+		return fleetMultiplier * 1000;
+
+	auto it = miscRules.find(rule);
+	if(it == miscRules.end())
+		return 0;
+	return it->second;
 }
 
 
