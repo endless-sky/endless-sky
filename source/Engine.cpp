@@ -32,7 +32,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
-#include "FrameTimer.h"
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Government.h"
@@ -1340,14 +1339,6 @@ void Engine::Draw() const
 
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));
-
-	if(Preferences::Has("Show CPU / GPU load"))
-	{
-		string loadString = to_string(lround(load * 100.)) + "% CPU";
-		Color color = *colors.Get("medium");
-		font.Draw(loadString,
-			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
-	}
 }
 
 
@@ -1584,8 +1575,6 @@ void Engine::EnterSystem()
 
 void Engine::CalculateStep()
 {
-	FrameTimer loadTimer;
-
 	// If there is a pending zoom update then use it
 	// because the zoom will get updated in the main thread
 	// as soon as the calculation thread is finished.
@@ -1703,15 +1692,6 @@ void Engine::CalculateStep()
 	// Draw the visuals.
 	for(const Visual &visual : visuals)
 		batchDraw[currentCalcBuffer].AddVisual(visual);
-
-	// Keep track of how much of the CPU time we are using.
-	loadSum += loadTimer.Time();
-	if(++loadCount == 60)
-	{
-		load = loadSum;
-		loadSum = 0.;
-		loadCount = 0;
-	}
 }
 
 
