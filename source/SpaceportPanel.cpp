@@ -67,7 +67,7 @@ void SpaceportPanel::UpdateNews()
 	// Cache the randomly picked results until the next update is requested.
 	hasPortrait = portrait;
 	newsInfo.SetSprite("portrait", portrait);
-	newsInfo.SetString("name", news->Name() + ':');
+	newsInfo.SetString("name", news->SpeakerName() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs);

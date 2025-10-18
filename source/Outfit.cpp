@@ -419,16 +419,16 @@ const string &Outfit::TrueName() const
 
 
 
-const string &Outfit::DisplayName() const
+void Outfit::SetTrueName(const string &name)
 {
-	return displayName;
+	this->trueName = name;
 }
 
 
 
-void Outfit::SetName(const string &name)
+const string &Outfit::DisplayName() const
 {
-	this->trueName = name;
+	return displayName;
 }
 
 

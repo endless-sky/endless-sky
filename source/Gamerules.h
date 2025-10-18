@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <map>
 #include <optional>
 #include <string>
 
@@ -72,4 +73,7 @@ private:
 	double systemDepartureMin = 0.;
 	std::optional<double> systemArrivalMin;
 	double fleetMultiplier = 1.;
+
+	// Miscellanous rules that are only used by the gamedata and not by the engine.
+	std::map<std::string, int> miscRules;
 };
