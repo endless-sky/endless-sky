@@ -226,12 +226,15 @@ public:
 	const std::list<Mission> &AvailableJobs() const;
 	bool HasAvailableEnteringMissions() const;
 
-	// Determine how many days left the player has for each mission with a deadline, for
+	// For all active missions, cache information that can be requested often but does not change often,
+	// or needs calculated at least once.
+	// - Determine how many days left the player has for each mission with a deadline, for
 	// the purpose of determining how frequently the MapPanel should blink the mission
 	// marker.
-	void CalculateRemainingDeadlines();
-	// Add a mission that was just accepted to the cached remaining deadlines.
-	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
+	// - Determine which systems any tracked NPCs are located in.
+	void CacheMissionInformation(bool onlyDeadlines = false);
+	// Cache information for a mission that was just accepted.
+	void CacheMissionInformation(const Mission &mission, const DistanceMap &here, bool onlyDeadlines = false);
 	// The number of days left before this mission's deadline has elapsed, or,
 	// if the "Deadline blink by distance" preference is true, before the player
 	// doesn't have enough days left to complete the mission before the deadline
@@ -465,7 +468,7 @@ private:
 	// enables its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeInFlightMission = nullptr;
 	// For each active mission with a deadline, calculate how many days the player
-	// has left to compelete the mission. The number of days remaining is reduced
+	// has left to complete the mission. The number of days remaining is reduced
 	// by the number of days of travel it will take to complete the mission if the
 	// "Deadline blink by distance" preference is true.
 	std::map<const Mission *, int> remainingDeadlines;
