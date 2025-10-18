@@ -307,6 +307,8 @@ outfit "Railgun"
 	description "The Hai designed this weapon to best complement their Flea drones. Each Skipper Railgun provides a significant amount of force upon firing, pushing the Flea drone backwards and therefore forcing it to keep its distance from its target."
 	description "	Flea drone pilots joke that they provide more thrust than engines of similar size, so Unfettered should be using them at the back of their ships. There's probably a cultural component to the joke that many miss, because it's told quite often and the Hai laugh hysterically about it - every time."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "rslug"
 	weapon
@@ -338,6 +340,7 @@ effect "rail sparks"
 
 outfitter "Railgun Slug Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Railgun"
 			has "outfit: Railgun Slug Rack"
@@ -411,6 +414,8 @@ outfit "Hai Tracker Pod"
 		"missile strength" 16
 	description "Trackers are fast and accurate homing weapons. Although not as powerful as most human missiles, Trackers boast a significant hit force, helping to prevent the escape of whoever is unfortunate enough to be on the receiving end. Their only weakness is their large turning radius: if a Tracker misses its target, it takes a long time to turn around."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "tracker fire"
 	sprite "effect/tracker fire"
@@ -445,6 +450,7 @@ effect "tracker cloud"
 
 outfitter "Hai Tracker Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Hai Tracker Pod"
 			has "outfit: Tracker Storage Pod"
