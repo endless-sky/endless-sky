@@ -665,7 +665,7 @@ void Engine::Step(bool isActive)
 			{
 				bool isSelected = (flagship && flagship->GetTargetShip() == it);
 				const System *system = it->GetSystem();
-				escorts.Add(*it, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
+				escorts.Add(it, system == currentSystem, player.KnowsName(*system), fleetIsJumping, isSelected);
 			}
 	for(const shared_ptr<Ship> &escort : player.Ships())
 		if(!escort->IsParked() && escort != flagship && !escort->IsDestroyed())
@@ -679,7 +679,7 @@ void Engine::Step(bool isActive)
 					break;
 				}
 			const System *system = escort->GetSystem();
-			escorts.Add(*escort, system == currentSystem, system && player.KnowsName(*system), fleetIsJumping, isSelected);
+			escorts.Add(escort, system == currentSystem, system && player.KnowsName(*system), fleetIsJumping, isSelected);
 		}
 
 	statuses.clear();
@@ -1025,9 +1025,12 @@ void Engine::Step(bool isActive)
 		doClick = doClick && !player.SelectShips(clickBox, hasShift);
 		if(doClick)
 		{
-			const vector<const Ship *> &stack = escorts.Click(clickPoint);
+			const vector<shared_ptr<Ship>> &stack = escorts.Click(clickPoint);
 			if(!stack.empty())
-				doClick = !player.SelectShips(stack, hasShift);
+			{
+				player.SelectShips(stack, hasShift);
+				doClick = false;
+			}
 			else
 				clickPoint /= isRadarClick ? RADAR_SCALE : zoom;
 		}
