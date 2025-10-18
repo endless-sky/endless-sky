@@ -3052,7 +3052,7 @@ bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
 
 
 
-void PlayerInfo::SelectShips(const vector<shared_ptr<Ship>> &stack, bool hasShift)
+bool PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 {
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
@@ -3060,9 +3060,20 @@ void PlayerInfo::SelectShips(const vector<shared_ptr<Ship>> &stack, bool hasShif
 	// If shift is not held, the first ship in the stack will also become the
 	// player's flagship's target.
 	bool first = !hasShift;
-	for(const shared_ptr<Ship> &ship : stack)
-		SelectShip(ship, &first);
-	UI::PlaySound(UI::UISound::TARGET);
+
+	bool matched = false;
+	for(const weak_ptr<Ship> &ship : stack)
+	{
+		const shared_ptr<Ship> shipPtr = ship.lock();
+		if(shipPtr)
+		{
+			matched = true;
+			SelectShip(shipPtr, &first);
+		}
+	}
+	if(matched)
+		UI::PlaySound(UI::UISound::TARGET);
+	return matched;
 }
 
 

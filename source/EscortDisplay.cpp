@@ -158,13 +158,13 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 
 // Check if the given point is a click on an escort icon. If so, return the
 // stack of ships represented by the icon. Otherwise, return an empty stack.
-const vector<shared_ptr<Ship>> &EscortDisplay::Click(const Point &point) const
+const vector<weak_ptr<Ship>> &EscortDisplay::Click(const Point &point) const
 {
 	for(unsigned i = 0; i < zones.size(); ++i)
 		if(zones[i].Contains(point))
 			return stacks[i];
 
-	static const vector<shared_ptr<Ship>> EMPTY;
+	static const vector<weak_ptr<Ship>> EMPTY;
 	return EMPTY;
 }
 

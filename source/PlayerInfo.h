@@ -335,7 +335,7 @@ public:
 	bool SelectShips(const Rectangle &box, bool hasShift);
 	// Select any ships in the given stack, provided by the EscortDisplay. This may contain
 	// mission NPCs that are in the EscortDisplay.
-	void SelectShips(const std::vector<std::shared_ptr<Ship>> &stack, bool hasShift);
+	bool SelectShips(const std::vector<std::weak_ptr<Ship>> &stack, bool hasShift);
 	// Select one of the ships that the player owns.
 	void SelectShip(const Ship *ship, bool hasShift);
 	void DeselectShip(const Ship *ship);

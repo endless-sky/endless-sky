@@ -41,7 +41,7 @@ public:
 
 	// Check if the given point is a click on an escort icon. If so, return the
 	// stack of ships represented by the icon. Otherwise, return an empty stack.
-	const std::vector<std::shared_ptr<Ship>> &Click(const Point &point) const;
+	const std::vector<std::weak_ptr<Ship>> &Click(const Point &point) const;
 
 
 private:
@@ -67,7 +67,7 @@ private:
 		std::string system;
 		std::vector<double> low;
 		std::vector<double> high;
-		std::vector<std::shared_ptr<Ship>> ships;
+		std::vector<std::weak_ptr<Ship>> ships;
 		int height = 0;
 	};
 
@@ -78,7 +78,7 @@ private:
 
 private:
 	mutable std::list<Icon> icons;
-	mutable std::vector<std::vector<std::shared_ptr<Ship>>> stacks;
+	mutable std::vector<std::vector<std::weak_ptr<Ship>>> stacks;
 	mutable std::vector<Rectangle> zones;
 
 	const Interface *element = nullptr;
