@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Point.h"
+#include "Tooltip.h"
 #include "text/WrappedText.h"
 
 #include <string>
@@ -71,7 +72,6 @@ protected:
 	// For tooltips:
 	Point hoverPoint;
 	mutable std::string hover;
-	mutable int hoverCount = 0;
+	mutable Tooltip tooltip;
 	bool hasHover = false;
-	mutable WrappedText hoverText;
 };

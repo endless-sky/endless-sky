@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
@@ -783,7 +784,7 @@ void PlayerInfo::AdvanceDate(int amount)
 		for(Mission &mission : missions)
 		{
 			if(mission.CheckDeadline(date) && mission.IsVisible())
-				Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
+				Messages::Add("You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
 					Messages::Importance::Highest);
 			if(!mission.IsFailed())
 				mission.Do(Mission::DAILY, *this);
@@ -1097,7 +1098,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
-					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->Name());
+					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->GivenName());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
@@ -1186,7 +1187,7 @@ const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const st
 
 	// If an id was given, associate and store it with the UUID of the gifted ship.
 	if(!id.empty())
-		giftedShips[id].clone(ships.back()->UUID());
+		giftedShips[id].Clone(ships.back()->UUID());
 
 	return ships.back().get();
 }
@@ -1303,7 +1304,7 @@ void PlayerInfo::RenameShip(const Ship *selected, const string &name)
 	for(auto &ship : ships)
 		if(ship.get() == selected)
 		{
-			ship->SetName(name);
+			ship->SetGivenName(name);
 			return;
 		}
 }
@@ -1501,10 +1502,8 @@ void PlayerInfo::Land(UI *ui)
 		return;
 
 	if(!freshlyLoaded)
-	{
 		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
-		Audio::PlayMusic(planet->MusicName());
-	}
+	Audio::PlayMusic(planet->MusicName());
 
 	// Mark this planet as visited.
 	Visit(*planet);
@@ -1612,7 +1611,7 @@ void PlayerInfo::Land(UI *ui)
 		int named = 0;
 		while(mit != inactiveMissions.rend() && (++named < 10))
 		{
-			message += "\t\"" + mit->Name() + "\"\n";
+			message += "\t\"" + mit->DisplayName() + "\"\n";
 			++mit;
 		}
 		if(mit != inactiveMissions.rend())
@@ -1771,7 +1770,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		if(it.second)
 		{
 			if(it.first->IsVisible())
-				Messages::Add("Mission \"" + it.first->Name()
+				Messages::Add("Mission \"" + it.first->DisplayName()
 					+ "\" aborted because you do not have space for the cargo."
 						, Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
@@ -1780,7 +1779,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		if(it.second)
 		{
 			if(it.first->IsVisible())
-				Messages::Add("Mission \"" + it.first->Name()
+				Messages::Add("Mission \"" + it.first->DisplayName()
 					+ "\" aborted because you do not have enough passenger bunks free."
 						, Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
@@ -1890,25 +1889,27 @@ void PlayerInfo::PoolCargo()
 
 const CargoHold &PlayerInfo::DistributeCargo()
 {
+	desiredCrew = flagship->Crew();
+	flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - desiredCrew);
+
+	// First, try to transfer to the flagship depending on the priority preference.
+	Preferences::FlagshipSpacePriority prioritySetting = Preferences::GetFlagshipSpacePriority();
+	if(prioritySetting == Preferences::FlagshipSpacePriority::PASSENGERS)
+		for(const auto &it : cargo.PassengerList())
+			cargo.TransferPassengers(it.first, it.second, flagship->Cargo());
+	else if(prioritySetting != Preferences::FlagshipSpacePriority::NONE)
+		cargo.TransferAll(flagship->Cargo(), prioritySetting == Preferences::FlagshipSpacePriority::BOTH);
+
+	// Distribute the remaining cargo among the escorts.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet)
+		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet && ship != flagship)
 		{
-			if(ship != flagship)
-			{
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
-				cargo.TransferAll(ship->Cargo());
-			}
-			else
-			{
-				// Your flagship takes first priority for passengers but last for cargo.
-				desiredCrew = ship->Crew();
-				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - desiredCrew);
-				for(const auto &it : cargo.PassengerList())
-					cargo.TransferPassengers(it.first, it.second, ship->Cargo());
-			}
+			ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
+			cargo.TransferAll(ship->Cargo());
 		}
-	// Load up your flagship last, so that it will have space free for any
-	// plunder that you happen to acquire.
+
+	// If the escorts couldn't fit all of the cargo or passengers, try to move the rest to the flagship
+	// regardless of the priority preference.
 	cargo.TransferAll(flagship->Cargo());
 
 	return cargo;
@@ -2245,9 +2246,9 @@ void PlayerInfo::SortAvailable()
 			// Tiebreaker for equal PAY is ABC.
 			case ABC:
 			{
-				if(lhs.Name() < rhs.Name())
+				if(lhs.DisplayName() < rhs.DisplayName())
 					return true;
-				else if(lhs.Name() > rhs.Name())
+				else if(lhs.DisplayName() > rhs.DisplayName())
 					return false;
 			}
 			// Tiebreaker fallback to keep sorting consistent is unique UUID:
@@ -2636,9 +2637,9 @@ void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 	const Ship *flag = Flagship();
 	if(flag)
 	{
-		subs["<ship>"] = flag->Name();
+		subs["<ship>"] = flag->GivenName();
 		subs["<model>"] = flag->DisplayModelName();
-		subs["<flagship>"] = flag->Name();
+		subs["<flagship>"] = flag->GivenName();
 		subs["<flagship model>"] = flag->DisplayModelName();
 	}
 
@@ -3406,7 +3407,7 @@ void PlayerInfo::ValidateLoad()
 		{
 			planet = (*it)->GetPlanet();
 			system = (*it)->GetSystem();
-			warning += ". Defaulting to location of flagship \"" + (*it)->Name() + "\", " + planet->TrueName() + ".";
+			warning += ". Defaulting to location of flagship \"" + (*it)->GivenName() + "\", " + planet->TrueName() + ".";
 		}
 		else
 			warning += " (no ships could supply a valid player location).";
@@ -3435,7 +3436,7 @@ void PlayerInfo::ValidateLoad()
 		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
 		{
 			ship->SetSystem(system);
-			Logger::LogError("Warning: player ship \"" + ship->Name()
+			Logger::LogError("Warning: player ship \"" + ship->GivenName()
 				+ "\" did not specify a valid system. Defaulting to the player's system.");
 		}
 		// In-system ships that aren't on a valid planet should get moved to the player's planet
@@ -3443,7 +3444,7 @@ void PlayerInfo::ValidateLoad()
 		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
 		{
 			ship->SetPlanet(planet);
-			Logger::LogError("Warning: in-system player ship \"" + ship->Name()
+			Logger::LogError("Warning: in-system player ship \"" + ship->GivenName()
 				+ "\" specified an invalid planet. Defaulting to the player's planet.");
 		}
 		// Owned ships that are not in the player's system always start in flight.
@@ -3767,6 +3768,17 @@ void PlayerInfo::RegisterDerivedConditions()
 		}
 		// The probability of any single fleet appearing is 1 - chance.
 		return round((1. - safeChance) * 1000.); });
+
+	// Special conditions about combat power.
+	conditions["flagship strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return flagship ? flagship->Strength() : 0;
+	});
+	conditions["player strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		int64_t strength = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+			strength += ship->Strength();
+		return strength;
+	});
 
 	// Special conditions for cargo and passenger space.
 	conditions["cargo space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
@@ -4175,6 +4187,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		return Random::Int(value);
 	});
 
+	// Gamerule condition getter:
+	conditions["gamerule: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
+		return GameData::GetGamerules().GetValue(ce.NameWithoutPrefix());
+	});
+
 	// Global conditions setters and getters:
 	conditions["global: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
 		string globalCondition = ce.NameWithoutPrefix();
@@ -4248,9 +4265,9 @@ void PlayerInfo::StepMissions(UI *ui)
 	const Ship *flag = Flagship();
 	if(flag)
 	{
-		substitutions["<ship>"] = flag->Name();
+		substitutions["<ship>"] = flag->GivenName();
 		substitutions["<model>"] = flag->DisplayModelName();
-		substitutions["<flagship>"] = flag->Name();
+		substitutions["<flagship>"] = flag->GivenName();
 		substitutions["<flagship model>"] = flag->DisplayModelName();
 	}
 
@@ -4723,7 +4740,7 @@ void PlayerInfo::Fine(UI *ui)
 				ui->Push(new ConversationPanel(*this, *conversation));
 			else
 			{
-				message = "Before you can leave your ship, the " + gov->GetName()
+				message = "Before you can leave your ship, the " + gov->DisplayName()
 					+ " authorities show up and begin scanning it. They say, \"Captain "
 					+ LastName()
 					+ ", we detect highly illegal material on your ship.\""
@@ -4814,7 +4831,7 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 void PlayerInfo::AddStockShip(const Ship *model, const string &name)
 {
 	ships.push_back(make_shared<Ship>(*model));
-	ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
+	ships.back()->SetGivenName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
 	ships.back()->SetSystem(system);
 	ships.back()->SetPlanet(planet);
 	ships.back()->SetIsSpecial();

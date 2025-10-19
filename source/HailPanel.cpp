@@ -53,10 +53,10 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	UI::PlaySound(UI::UISound::SOFT);
 
 	const Government *gov = ship->GetGovernment();
-	if(!ship->Name().empty())
-		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
+	if(!ship->GivenName().empty())
+		header = gov->DisplayName() + " " + ship->Noun() + " \"" + ship->GivenName() + "\":";
 	else
-		header = ship->DisplayModelName() + " (" + gov->GetName() + "):";
+		header = ship->DisplayModelName() + " (" + gov->DisplayName() + "):";
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
 	hasLanguage = !isMute && (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
@@ -143,7 +143,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 
 	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
 	if(planet)
-		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->DisplayName() + "\":";
+		header = gov->DisplayName() + " " + planet->Noun() + " \"" + planet->DisplayName() + "\":";
 	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 
 	// If the player is hailing a planet, determine if a mission grants them clearance before checking
@@ -163,7 +163,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	else if(planet && player.Flagship())
 	{
 		if(planet->CanLand())
-			SetMessage("You are cleared to land, " + player.Flagship()->Name() + ".");
+			SetMessage("You are cleared to land, " + player.Flagship()->GivenName() + ".");
 		else
 		{
 			SetBribe(planet->GetBribeFraction());
@@ -251,6 +251,8 @@ void HailPanel::Draw()
 					Point(),
 					facing + hardpoint.GetAngle(),
 					zoom);
+				if(body.InheritsParentSwizzle())
+					body.SetSwizzle(ship->GetSwizzle());
 				draw.Add(body);
 			}
 		};
@@ -399,7 +401,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				{
 					bribed = ship->GetGovernment();
 					bribed->Bribe();
-					Messages::Add("You bribed a " + bribed->GetName() + " ship "
+					Messages::Add("You bribed a " + bribed->DisplayName() + " ship "
 						+ Format::CreditString(bribe) + " to refrain from attacking you today."
 							, Messages::Importance::High);
 				}

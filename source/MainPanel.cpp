@@ -251,8 +251,16 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool MainPanel::Click(int x, int y, int clicks)
+bool MainPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button == MouseButton::RIGHT)
+	{
+		engine.RClick(Point(x, y));
+		return true;
+	}
+	if(button != MouseButton::LEFT)
+		return false;
+
 	// Don't respond to clicks if another panel is active.
 	if(!canClick)
 		return true;
@@ -273,15 +281,6 @@ bool MainPanel::Click(int x, int y, int clicks)
 
 
 
-bool MainPanel::RClick(int x, int y)
-{
-	engine.RClick(Point(x, y));
-
-	return true;
-}
-
-
-
 bool MainPanel::Drag(double dx, double dy)
 {
 	if(!canDrag)
@@ -294,8 +293,11 @@ bool MainPanel::Drag(double dx, double dy)
 
 
 
-bool MainPanel::Release(int x, int y)
+bool MainPanel::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	if(isDragging)
 	{
 		dragPoint = Point(x, y);

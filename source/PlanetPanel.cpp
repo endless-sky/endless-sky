@@ -93,6 +93,8 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
+		if(selectedPanel)
+			GetUI()->Pop(selectedPanel);
 		GetUI()->Pop(this);
 		return;
 	}
@@ -167,7 +169,7 @@ void PlanetPanel::Draw()
 		if(planet.HasNamedPort())
 		{
 			info.SetCondition("has port");
-			info.SetString("port name", port.Name());
+			info.SetString("port name", port.DisplayName());
 		}
 
 		if(hasShipyard)
@@ -335,7 +337,7 @@ void PlanetPanel::TakeOffIfReady()
 				// record and report all absent ships later.
 				if(result.first->GetSystem() != &system)
 				{
-					out << result.first->Name() << ", ";
+					out << result.first->GivenName() << ", ";
 					absentCannotFly.push_back(result.first);
 				}
 				else

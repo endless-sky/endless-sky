@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
+#include "orders/OrderSet.h"
 #include "Point.h"
 
 #include <cstdint>
@@ -31,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Angle;
 class AsteroidField;
 class Body;
+class ConditionsStore;
 class Flotsam;
 class Government;
 class Minable;
@@ -51,11 +53,10 @@ class System;
 class AI {
 public:
 	// Any object that can be a ship's target is in a list of this type:
-template <class Type>
+	template<class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(const PlayerInfo &player, const List<Ship> &ships,
-			const List<Minable> &minables, const List<Flotsam> &flotsam);
+	AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
 	void IssueFormationChange(PlayerInfo &player);
@@ -124,7 +125,8 @@ private:
 	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
 	static bool MoveToPlanet(const Ship &ship, Command &command, double cruiseSpeed = 0.);
 	static bool MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
-		const Point &targetVelocity, double radius, double slow, double cruiseSpeed = 0.);
+		const Point &targetVelocity, double radius, double slow, double cruiseSpeed = 0.,
+		const Point &finalDirection = Point());
 	static bool Stop(const Ship &ship, Command &command, double maxSpeed = 0., const Point &direction = Point());
 	static void PrepareForHyperspace(const Ship &ship, Command &command);
 	static void CircleAround(const Ship &ship, Command &command, const Body &target);
@@ -181,46 +183,21 @@ private:
 	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
 	void CacheShipLists();
 
-
-private:
-	class Orders {
-	public:
-		static const int HOLD_POSITION = 0x000;
-		// Hold active is the same command as hold position, but it is given when a ship
-		// actively needs to move back to the position it was holding.
-		static const int HOLD_ACTIVE = 0x001;
-		static const int MOVE_TO = 0x002;
-		// HARVEST is related to MINE and is for picking up flotsam after
-		// ATTACK.
-		static const int HARVEST = 0x003;
-		static const int KEEP_STATION = 0x100;
-		static const int GATHER = 0x101;
-		static const int ATTACK = 0x102;
-		static const int FINISH_OFF = 0x103;
-		// MINE is for fleet targeting the asteroid for mining. ATTACK is used
-		// to chase and attack the asteroid.
-		static const int MINE = 0x104;
-		// Bit mask to figure out which orders are canceled if their target
-		// ceases to be targetable or present.
-		static const int REQUIRES_TARGET = 0x100;
-
-		int type = 0;
-		std::weak_ptr<Ship> target;
-		std::weak_ptr<Minable> targetAsteroid;
-		Point point;
-		const System *targetSystem = nullptr;
-	};
+	/// Register autoconditions that use the current AI state (ships in the system, strengths, etc.)
+	/// These conditions may be a frame behind, depending on where the conditions are queried from,
+	/// but that shouldn't really matter.
+	void RegisterDerivedConditions(ConditionsStore &conditions);
 
 
 private:
-	void IssueOrders(const Orders &newOrders, const std::string &description);
+	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
 
 
 private:
 	// TODO: Figure out a way to remove the player dependency.
-	const PlayerInfo &player;
+	PlayerInfo &player;
 	// Data from the game engine.
 	const List<Ship> &ships;
 	const List<Minable> &minables;
@@ -250,7 +227,7 @@ private:
 	// Current orders for the player's ships. Because this map only applies to
 	// player ships, which are never deleted except when landed, it can use
 	// ordinary pointers instead of weak pointers.
-	std::map<const Ship *, Orders> orders;
+	std::map<const Ship *, OrderSet> orders;
 
 	// Records of what various AI ships and factions have done.
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;

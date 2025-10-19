@@ -120,6 +120,28 @@ public:
 		ALWAYS_ON
 	};
 
+	enum class FlagshipSpacePriority : int_fast8_t {
+		NONE = 0,
+		PASSENGERS,
+		CARGO,
+		BOTH
+	};
+
+#ifdef _WIN32
+	enum class TitleBarTheme : int_fast8_t {
+		DEFAULT,
+		LIGHT,
+		DARK
+	};
+
+	enum class WindowRounding : int_fast8_t {
+		DEFAULT,
+		OFF,
+		LARGE,
+		SMALL
+	};
+#endif
+
 
 public:
 	static void Load();
@@ -145,6 +167,9 @@ public:
 	// Scroll speed preference.
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
+
+	static int TooltipActivation();
+	static void SetTooltipActivation(int steps);
 
 	static double ViewZoom();
 	static bool ZoomViewIn();
@@ -217,5 +242,20 @@ public:
 	static MinimapDisplay GetMinimapDisplay();
 	static const std::string &MinimapSetting();
 
+	/// Flagship space priority setting.
+	static void ToggleFlagshipSpacePriority();
+	static FlagshipSpacePriority GetFlagshipSpacePriority();
+	static const std::string &FlagshipSpacePrioritySetting();
+
 	static int GetPreviousSaveCount();
+
+#ifdef _WIN32
+	static void ToggleTitleBarTheme();
+	static TitleBarTheme GetTitleBarTheme();
+	static const std::string &TitleBarThemeSetting();
+
+	static void ToggleWindowRounding();
+	static WindowRounding GetWindowRounding();
+	static const std::string &WindowRoundingSetting();
+#endif
 };
