@@ -87,6 +87,11 @@ namespace {
 		// Return the angle, plus the length as a tie-breaker.
 		return make_pair(angle, length);
 	}
+
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+	};
 }
 
 double MapDetailPanel::planetPanelHeight = 0.;
@@ -199,6 +204,27 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 		return true;
 	}
 	return MapPanel::Scroll(dx, dy);
+}
+
+
+
+bool MapDetailPanel::GamePadState(GamePad &controller)
+{
+	if(isStars)
+	{
+		if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSHOULDER))
+			DoKey('p');
+	}
+	else
+	{
+		if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSHOULDER))
+			DoKey('i');
+		else if(controller.Held(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
+			DoKey('t');
+	}
+	controller.Clear(CONTROLLER_BUTTONS);
+
+	return Panel::GamePadState(controller);
 }
 
 
