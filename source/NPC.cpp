@@ -331,7 +331,7 @@ void NPC::Save(DataWriter &out) const
 			it.second.Save(out);
 
 		if(government)
-			out.Write("government", government->GetTrueName());
+			out.Write("government", government->TrueName());
 		personality.Save(out);
 
 		if(!dialogText.empty())
@@ -405,7 +405,7 @@ string NPC::Validate(bool asTemplate) const
 	// Ships must always be valid.
 	for(auto &&ship : ships)
 		if(!ship->IsValid())
-			return "ship \"" + ship->Name() + "\"";
+			return "ship \"" + ship->GivenName() + "\"";
 	for(auto &&ship : stockShips)
 		if(!ship->IsValid())
 			return "stock model \"" + ship->VariantName() + "\"";
@@ -526,7 +526,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
-		Messages::Add("Mission failed" + (caller ? ": \"" + caller->Name() + "\"" : "") + ".",
+		Messages::Add("Mission failed" + (caller ? ": \"" + caller->DisplayName() + "\"" : "") + ".",
 			Messages::Importance::Highest);
 	else if(ui && !alreadySucceeded && HasSucceeded(player.GetSystem(), false))
 	{
@@ -702,7 +702,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
 	{
 		result.ships.push_back(make_shared<Ship>(**shipIt));
-		result.ships.back()->SetName(Format::Replace(Format::Replace(
+		result.ships.back()->SetGivenName(Format::Replace(Format::Replace(
 			Phrase::ExpandPhrases(*nameIt), subs), playerSubs));
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
@@ -736,7 +736,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	// String replacement:
 	if(!result.ships.empty())
 	{
-		subs["<npc>"] = result.ships.front()->Name();
+		subs["<npc>"] = result.ships.front()->GivenName();
 		subs["<npc model>"] = result.ships.front()->DisplayModelName();
 	}
 	// Do string replacement on any dialog or conversation.

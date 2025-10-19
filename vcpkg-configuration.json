@@ -3,5 +3,6 @@
 		"kind": "builtin",
 		"baseline": "b02e341c927f16d991edbd915d8ea43eac52096c"
 	},
-	"overlay-triplets": [ "./overlays" ]
+	"overlay-triplets": [ "./overlays" ],
+	"overlay-ports": [ "./overlays/openal-soft-gcc-15-fix"]
 }
