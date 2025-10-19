@@ -50,8 +50,12 @@ protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	virtual void Resize() override;
+
 
 private:
+	void InitTextArea();
+	void ResizeTextArea() const;
 	// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem.
 	// CenterOnSystem will either pan to the system or immediately jump to it.
 	void SetSelectedScrollAndCenter(bool immediate = false);
