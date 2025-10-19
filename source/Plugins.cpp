@@ -320,7 +320,8 @@ bool Plugins::IsPlugin(const filesystem::path &path)
 {
 	// A folder is a valid plugin if it contains one (or more) of the assets folders.
 	// (They can be empty too).
-	return Files::Exists(path / "data") || Files::Exists(path / "images") || Files::Exists(path / "sounds");
+	return Files::Exists(path / "data") || Files::Exists(path / "images")
+		|| Files::Exists(path / "sounds") || Files::Exists(path / "shaders");
 }
 
 

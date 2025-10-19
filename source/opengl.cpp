@@ -25,8 +25,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstring>
 
-#if defined(ES_GLES) || defined(_WIN32)
 namespace {
+	bool hasOpenGL3Support = true;
+
+#if defined(ES_GLES) || defined(_WIN32)
 	bool HasOpenGLExtension(const char *name)
 	{
 #ifndef __APPLE__
@@ -44,8 +46,15 @@ namespace {
 		return value;
 #endif
 	}
-}
 #endif
+}
+
+
+
+void OpenGL::DisableOpenGL3()
+{
+	hasOpenGL3Support = false;
+}
 
 
 
@@ -61,4 +70,18 @@ bool OpenGL::HasAdaptiveVSyncSupport()
 #else
 	return GLX_EXT_swap_control_tear;
 #endif
+}
+
+
+
+bool OpenGL::HasVaoSupport()
+{
+	return hasOpenGL3Support;
+}
+
+
+
+bool OpenGL::HasTexture2DArraySupport()
+{
+	return hasOpenGL3Support;
 }
