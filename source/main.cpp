@@ -339,7 +339,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// The window has been resized. Adjust the raw screen size
 				// and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
-				activeUI.AdjustViewport();
+				menuPanels.AdjustViewport();
+				gamePanels.AdjustViewport();
 			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
