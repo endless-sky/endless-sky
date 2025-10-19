@@ -589,34 +589,6 @@ outfit "R-720 RCS Thrusters"
 	description "This large set of 'teakettle' style reaction control thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."
 
 
-outfit `Z-3600 "Beam" Amat Torch`
-	category "Engines"
-	series "Engines"
-	index 07080
-	"cost" 300000000
-	thumbnail "outfit/beam antimatter torch"
-	"mass" 3600
-	"outfit space" -360
-	"engine capacity" -360
-	"thrust" 600
-	"thrusting energy" 15
-	"thrusting heat" 90
-	"thrusting fuel" 0.6
-	"drag reduction" 9
-	"flare sprite" "effect/avgi flare/antimatter"
-		"frame rate" 15
-	"flare sound" "fusion torch"
-	"turn" 6000
-	"turning energy" 9
-	"turning heat" 54
-	"steering flare sprite" "effect/avgi flare/rcs"
-		"frame rate" 15
-		"scale" 0.5
-	"steering flare sound" "remnant afterburner"
-	"magnetic nozzle" 18
-	description "The fastest Avgi starships were propelled not just by their engines, but also by immense banks of lasers and particle beams stationed in the Anax system, pushing ships to velocities in excess of 0.2c before braking with a magsail or plasma magnet. Just before the invention of the hyperdrive, however, the Avgi perfected this beam-core antimatter drive, capable of pushing a starship with sufficient antimatter fuel to 0.4c and perhaps beyond. Requiring immense quantities of antimatter, the amat farms around Anax such as Antivli Station would have been strained to their limits had this design entered mass production, but the surprise invention of the hyperdrive rendered it laughably obsolete overnight."
-
-
 # Special:
 
 
