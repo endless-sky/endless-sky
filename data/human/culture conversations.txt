@@ -1663,7 +1663,7 @@ mission "Three Card Monte"
 	on offer
 		conversation
 			`${three card monte opening}"The game's simple. Stake 1,000 credits and find the ace to double your money."`
-			`	The dealer tips a weathered hat, "Always a pleasure to see another captain of fortune." His gaze never leaves your wallet`
+			`	The dealer tips a weathered hat. "Always a pleasure to see another captain of fortune." His gaze never leaves your wallet.`
 				to display
 					"reputation: Pirate" > 100
 			action
@@ -1824,7 +1824,6 @@ mission "Three Card Monte"
 			choice
 				`	"Fine. But I'm watching you."`
 					to display
-						and
 							credits > 1000
 					goto newgame
 				`	"And get scammed again? I don't think so."`
