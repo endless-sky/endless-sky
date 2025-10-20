@@ -885,7 +885,7 @@ mission "Exotic Life: Buccaneer Bay"
 		credits > 379
 	on offer
 		conversation
-			`You wander the planet's sun-bleached boardwalk, passing dozens of rum-soaked bars. Eventually, you see a cramped restaurant squeezed between a closed souvenir shop and yet another bar. Painted coral with a battered tin awning, a hand-written board dangles above the door with the words "Fresh Delish Dish Fish."`
+			`You wander the planet's sun-bleached boardwalk, passing dozens of rum-soaked bars. Eventually, you see a cramped restaurant squeezed between a closed souvenir shop and yet another bar. The building is painted coral with a battered tin awning, and a hand-written board dangles above the door with the words "Fresh Delish Dish Fish."`
 			`	A lanky waiter with a braided silver beard and cybernetic left eye aggressively waves you in and gives a practiced yell: "Best Dish Fish in town! Once-in-a-lifetime experience, plus a worlds-renowned souvenir! Try the Dish Fish - the fish that's a dish!"`
 			choice
 				`	"What?"`
@@ -902,7 +902,7 @@ mission "Exotic Life: Buccaneer Bay"
 					decline
 			action
 				payment -379
-			`	"Great! Service fee's included," the waiter snatches your credits, slaps a laminated menu and receipt into your hands, and shoves you into a cramped table before hurrying away towards the kitchen. You look at the receipt to find that you've been charged 20 credits for a 'seating fee,' 30 credits for a 'convenience fee,' 50 credits for 'fish cleaning,' 80 credits for 'dish assembly,' and 100 credits for a 'service charge' - a total of 379 credits.`
+			`	"Great! Service fee's included." The waiter snatches your credits, slaps a laminated menu and receipt into your hands, and shoves you into a cramped booth before hurrying away towards the kitchen. You look at the receipt to find that you've been charged 20 credits for a 'seating fee,' 30 credits for a 'convenience fee,' 50 credits for 'fish cleaning,' 80 credits for 'dish assembly,' and 100 credits for a 'service charge' - a total of 379 credits.`
 			`	Seated inside, the restaurant is even tighter than it looked from outdoors. There's a single row of tiny tables, a low ceiling, and a handful of other patrons who look like clueless tourists. The menu itself covers seafood and sea-adjacent food like Nine-Eye Pie, Hand-Mashed Helmet, Hydrozoan Lasanga, and a suspiciously named 'Captain's Catch.' The top of the menu has a headline dish written in sloppy cursive with a prominent infobox beneath taking up a full third of the menu:`
 			``
 			`		Dish Fish: Natural Wonder and Souvenir - 99 credits`
