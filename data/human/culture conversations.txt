@@ -1676,6 +1676,10 @@ mission "Three Card Monte"
 				`	(Put down 1,000 credits to play the game.)`
 					to display
 						credits > 1000
+				`	(Pat your empty pockets. Can't play today.)`
+					decline
+					to display
+						credits < 1000
 				`	(Skip the game.)`
 					decline
 			action
@@ -1850,7 +1854,7 @@ mission "Three Card Monte"
 				clear "monte: step"
 				clear "monte: not scam chance"
 				clear "monte: scammed"
-				"reputation: Pirate" -= 10
+				"reputation: Pirate" -= 2.5
 			`	You bolt for the <ship>.`
 			`	"After them!" the dealer shouts, while his men leap into pursuit, curses and boots echoing behind you. The sound of commotion behind you dissolves as you make it aboard your ship before they can catch up.`
 				launch
