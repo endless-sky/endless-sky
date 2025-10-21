@@ -349,7 +349,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
-				"Abort mission \"" + acceptedIt->Name() + "\"?"));
+				"Abort mission \"" + acceptedIt->DisplayName() + "\"?"));
 		return true;
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
@@ -915,7 +915,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 				color = &unselected;
 		}
 
-		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
+		font.Draw({it->DisplayName(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
 	}
 
 	return pos;
