@@ -6,6 +6,7 @@ Version 0.10.16
       * Coalition Yottrite missions will no longer offer on uninhabited gas giants. (@Arachi-Lover)
       * Fixed the "on visit" message of "Dangerous Games 1" to account for the possibility that the player has reached the destination with all the passengers but not visited the stopover. (@warp-core)
       * Having a Tiny or Small VLS will now also enable resupplying Nettle missiles, in addition to the Medium VLS. (@Azure3141)
+      * The mission "Care Package to South 1" can no longer choose stations, Harmony, or Humanika as a destination, as it doesn't make sense for these places to have a militia base. (@warp-core)
     * Engine bugs:
       * Fixed an issue where the fuel and heat costs of repairing shields and hull on docked fighters were applied incorrectly. (@TomGoodIdea)
       * Messages about multiple identical player owned ships being destroyed will no longer be suppressed as duplicates. (@TomGoodIdea)
@@ -20,6 +21,8 @@ Version 0.10.16
       * Planetary security will no longer scan parked ships, so the player can no longer receive fines for illegal outfits on those ships. (@Amazinite)
       * Fixed various recent issues with ship AI movement. (@tibetiroka)
       * The game will now recognize and load plugins that only modify shaders. (@TomGoodIdea)
+      * The default state of the "system arrival min" gamerule is now "unset", so negative arrival values in system definitions will now work again. (@warp-core)
+      * Fixed an issue where Person ships were not being properly restored when loading a save. (@TomGoodIdea)
   * Game content:
     * New content:
       * Added descriptions for the Tiny and Small VLS. (@Azure3141)
@@ -27,6 +30,7 @@ Version 0.10.16
     * Mission changes:
       * Lowered the offer precedence of culture conversations so they never block story missions. (@reticent-rem)
       * Added system markers to "Wanderers: Alpha Surveillance D" to indicate the next system(s) to search. (@Anarchist2)
+      * The mission "Expanding Business: shipyard complete" no longer contains a dialog. (@Amazinite)
     * Sprites:
       * Added a new and improved image for the Esquiline reveal scene. (@beccabunny)
       * Renamed the duplicate "fog12" and "lava14" jpeg landscapes to "fog15" and "lava15" to avoid name collision, and added copyright entries for various previously unlisted landscapes. (@warp-core)
@@ -36,7 +40,7 @@ Version 0.10.16
     * Other:
       * "Acorn Delights: Part 1" no longer allows the same conversation choices to be selected repeatedly. (@TheGiraffe3)
   * Graphics:
-    * Animated elements on the HUD will no longer freeze when using the "pause" command. (@TomGoodIdea)
+    * Animated elements on the HUD will no longer freeze when using the "pause" command, and will no longer speed up when using the "fast-forward" command. (@TomGoodIdea)
     * On Windows 10 and 11, the window theme and corner rounding can now be customized. (@TomGoodIdea)
   * Audio:
     * An error is now reported when loading wave files with incorrect sample rates (anything but 44.1 kHz). (@tibetiroka)
@@ -45,6 +49,7 @@ Version 0.10.16
       * New autocondition: "gamerule: <gamerule>" which gives the value of the given gamerule. (@Amazinite)
     * Mechanics changes:
       * Ship variants that inherit outfits and weapon hardpoint layouts from their bases will now also inherit the installed weapon layouts. (@warp-core)
+      * There is now a gamerule for enabling or disabling ammunition resupplying. (@Amazinite)
   * User interface:
     * The shipyard panel no longer lists cargo capacity when no player ship is selected. (@TomGoodIdea)
     * Tooltip activation time can now be customized. (@TomGoodIdea)
@@ -53,10 +58,12 @@ Version 0.10.16
     * Added a plaintext description for the stop command. (@thewierdnut)
     * Buttons in the shop panels now use ClickZones. (@xobes)
     * The Interface class now stores Elements via unique_ptrs, instead of raw pointers. This also fixes a small memory leak. (@warp-core)
+    * Standardized "trueName" and "displayName" convention to methods and fields in classes across the whole code base. (@Amazinite)
   * Documentation:
     * Updated the system requirements and listed minimum supported operating systems. (@TomGoodIdea)
   * CI/CD and development environment:
     * Added an alternate libflac detection method for systems where it doesn't provide a CMake configuration. (@thewierdnut)
+    * Added an vcpkg overlay port for openal-soft with a patch for v1.23.1 that fixes compilation errors on gcc 15. (@warp-core)
 
 Version 0.10.15
   * Bug fixes:
