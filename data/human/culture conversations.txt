@@ -911,12 +911,12 @@ mission "Exotic Life: Buccaneer Bay"
 			`			- Ecologically, they are commonly filter feeders, deposit feeders, and grazers, consuming tiny organisms or detritus from the water, sediment, or ocean floor.`
 			`			- Dish Fish differ from other Buccaneer Bay Boneheads: they have a nearly perfectly circular head-plate, three small horns to fend off predators, and no eyes because they live on deep, low-light ocean floors.`
 			`			- These traits make a Dish Fish head-plate the perfect souvenir dish: round, sealed, with a built-in tripod. Get yours today!`
-			`	The waiter returns, and the plate is immediately obvious. He brings out a sizable ivory disc, the bone smooth and polished, balanced by three tapering horns on the table. On the plate itself sits a single charred tail, skewered and grilled until the skin crackles. It looks both impressive and appetizing.`
+			`	The waiter returns, and the plate is distinctive. He brings out a sizable ivory disc, the bone smooth and polished, balanced by three tapering horns on the table. On the plate itself sits a single charred tail, skewered and grilled until the skin crackles. It looks both impressive and appetizing.`
 			choice
 				`	(Take a bite.)`
 				`	(Thank the waiter and leave.)`
 					goto thanks
-			`	You take a bite. The meat is... an attempt at food. By all accounts it is terrible. There's a musty, sulfurous note at the beginning, like wet compost, while beneath it is an almost-rotten tang that belies the visual freshness of the fish. The closest thing to a redeeming flavor is a faint, earthy aftertaste of salty mud.`
+			`	You take a bite. The meat is... an awful attempt at food. There's a musty, sulfurous note at the beginning, like wet compost, while beneath it is an almost-rotten tang that belies the visual freshness of the fish. The closest thing to a redeeming flavor is a faint, earthy aftertaste of salty mud.`
 			label thanks
 			`	The waiter comes to flick the Dish Fish clean with a rag, thanks you for patronizing the establishment, and jerks a thumb towards the door - a punctuated close to your 'meal of a lifetime.'`
 				decline
