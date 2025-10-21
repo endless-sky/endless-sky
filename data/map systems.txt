@@ -2419,7 +2419,7 @@ system Actannka
 
 system Adhara
 	pos -669 -200
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 680
 	habitable 680
@@ -5338,7 +5338,7 @@ system Altair
 
 system Aludra
 	pos -606 -374
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 500
 	habitable 450
@@ -7081,7 +7081,7 @@ system Asio
 
 system Aspidiske
 	pos -690 -282
-	government Republic
+	government Deep
 	attributes "bright star" "deep" "notable star" "supergiant star"
 	arrival 5000
 	habitable 11850
@@ -7343,7 +7343,7 @@ system Avasaa-Novaa
 
 system Avior
 	pos -658 -317
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 1215
 	habitable 1215
@@ -13359,7 +13359,7 @@ system Dschubba
 
 system Dubhe
 	pos -577 -103
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 500
 	habitable 320
@@ -15051,7 +15051,7 @@ system Eogho
 
 system "Epsilon Leonis"
 	pos -619 -229
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 1450
 	habitable 1450
@@ -18639,7 +18639,7 @@ system Glubatub
 
 system Gomeisa
 	pos -600 -161
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 980
 	habitable 980
@@ -26016,7 +26016,7 @@ system Markab
 
 system Markeb
 	pos -602 -305
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 500
 	habitable 450
@@ -28765,7 +28765,7 @@ system Na-23
 
 system Naos
 	pos -653 -396
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 1310
 	habitable 1310
@@ -33732,7 +33732,7 @@ system "Ravu Kon"
 
 system Regor
 	pos -702 -335
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 500
 	habitable 450
@@ -38229,7 +38229,7 @@ system Stream
 
 system Suhail
 	pos -774 -338
-	government Republic
+	government Deep
 	attributes "deep" "giant star" "notable star"
 	arrival 3000
 	habitable 3000
@@ -42182,7 +42182,7 @@ system Wei
 
 system Wezen
 	pos -664 -433
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 2710
 	habitable 2710
@@ -43255,7 +43255,7 @@ system Zolpulti
 
 system Zosma
 	pos -640 -123
-	government Republic
+	government Deep
 	attributes "deep"
 	arrival 500
 	habitable 450
