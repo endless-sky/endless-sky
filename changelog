@@ -38,6 +38,8 @@ Version 0.10.16
   * Graphics:
     * Animated elements on the HUD will no longer freeze when using the "pause" command. (@TomGoodIdea)
     * On Windows 10 and 11, the window theme and corner rounding can now be customized. (@TomGoodIdea)
+  * Audio:
+    * An error is now reported when loading wave files with incorrect sample rates (anything but 44.1 kHz). (@tibetiroka)
   * Game mechanics:
     * New mechanics:
       * New autocondition: "gamerule: <gamerule>" which gives the value of the given gamerule. (@Amazinite)
@@ -47,7 +49,6 @@ Version 0.10.16
     * The shipyard panel no longer lists cargo capacity when no player ship is selected. (@TomGoodIdea)
     * Tooltip activation time can now be customized. (@TomGoodIdea)
   * Under the hood:
-    * An error is now reported when loading wave files with incorrect sample rates (anything but 44.1 kHz). (@tibetiroka)
     * Slightly improved performance when drawing the loading ring. (@TomGoodIdea)
     * Added a plaintext description for the stop command. (@thewierdnut)
     * Buttons in the shop panels now use ClickZones. (@xobes)
