@@ -36,7 +36,7 @@ Version 0.10.16
     * Other:
       * "Acorn Delights: Part 1" no longer allows the same conversation choices to be selected repeatedly. (@TheGiraffe3)
   * Graphics:
-    * Animated elements on the HUD will no longer freeze when using the "pause" command.
+    * Animated elements on the HUD will no longer freeze when using the "pause" command. (@TomGoodIdea)
     * On Windows 10 and 11, the window theme and corner rounding can now be customized. (@TomGoodIdea)
   * Game mechanics:
     * New mechanics:
@@ -55,7 +55,7 @@ Version 0.10.16
   * Documentation:
     * Updated the system requirements and listed minimum supported operating systems. (@TomGoodIdea)
   * CI/CD and development environment:
-    * Added an alternate libflac detection method for systems where it doesn't provide a Cmake configuration. (@thewierdnut)
+    * Added an alternate libflac detection method for systems where it doesn't provide a CMake configuration. (@thewierdnut)
 
 Version 0.10.15
   * Bug fixes:
