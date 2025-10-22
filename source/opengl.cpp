@@ -57,8 +57,8 @@ bool OpenGL::HasAdaptiveVSyncSupport()
 #elif defined(ES_GLES)
 	return HasOpenGLExtension("_swap_control_tear");
 #elif defined(_WIN32)
-	return WGL_EXT_swap_control_tear || HasOpenGLExtension("_swap_control_tear");
+	return WGLEW_EXT_swap_control_tear || HasOpenGLExtension("_swap_control_tear");
 #else
-	return GLX_EXT_swap_control_tear;
+	return GLXEW_EXT_swap_control_tear || HasOpenGLExtension("_swap_control_tear");
 #endif
 }
