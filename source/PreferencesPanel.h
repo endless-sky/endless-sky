@@ -53,6 +53,8 @@ protected:
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Drag(double dx, double dy) override;
 
+	virtual void Resize() override;
+
 	virtual void EndEditing() override;
 
 
