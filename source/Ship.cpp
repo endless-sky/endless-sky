@@ -3126,10 +3126,15 @@ double Ship::TurnRate() const
 
 double Ship::TrueTurnRate() const
 {
+	return TurnRate() * 1. / (1. + slowness * .05);
+}
+
+
+
+double Ship::CrewTurnRate() const
+{
 	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
-	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
-	double slownessMultiplier = 1. / (1. + slowness * .05);
-	return TurnRate() * crewMultiplier * slownessMultiplier;
+	return TurnRate() * min(1., static_cast<double>(Crew()) / RequiredCrew());
 }
 
 
@@ -3145,10 +3150,15 @@ double Ship::Acceleration() const
 
 double Ship::TrueAcceleration() const
 {
+	return Acceleration() * 1. / (1. + slowness * .05);
+}
+
+
+
+double Ship::CrewAcceleration() const
+{
 	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
-	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
-	double slownessMultiplier = 1. / (1. + slowness * .05);
-	return Acceleration() * crewMultiplier * slownessMultiplier;
+	return Acceleration() * min(1., static_cast<double>(Crew()) / RequiredCrew());
 }
 
 
@@ -3169,16 +3179,6 @@ double Ship::ReverseAcceleration() const
 {
 	return attributes.Get("reverse thrust") / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
-}
-
-
-
-double Ship::TrueReverseAcceleration() const
-{
-	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
-	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
-	double slownessMultiplier = 1. / (1. + slowness * .05);
-	return ReverseAcceleration() * crewMultiplier * slownessMultiplier;
 }
 
 
@@ -5003,11 +5003,11 @@ void Ship::StepTargeting()
 
 			// Check if the ship will still be pointing to the same side of the target
 			// angle if it turns by this amount.
-			facing += TrueTurnRate() * turn;
+			facing += TurnRate() * turn;
 			bool stillLeft = target->Unit().Cross(facing.Unit()) < 0.;
 			if(left != stillLeft)
 				turn = 0.;
-			angle += TrueTurnRate() * turn;
+			angle += TurnRate() * turn;
 
 			velocity += dv.Unit() * .1;
 			position += dp.Unit() * .5;

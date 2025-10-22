@@ -504,12 +504,26 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 
 
 
+void MapDetailPanel::Resize()
+{
+	ResizeTextArea();
+}
+
+
+
 void MapDetailPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("medium"));
 	description->SetAlignment(Alignment::JUSTIFIED);
+	ResizeTextArea();
+}
+
+
+
+void MapDetailPanel::ResizeTextArea()
+{
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	descriptionXOffset = mapInterface->GetValue("description x offset");
 	int descriptionWidth = mapInterface->GetValue("description width");
