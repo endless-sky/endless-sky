@@ -125,8 +125,7 @@ private:
 	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
 	static bool MoveToPlanet(const Ship &ship, Command &command, double cruiseSpeed = 0.);
 	static bool MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
-		const Point &targetVelocity, double radius, double slow, double cruiseSpeed = 0.,
-		const Point &finalDirection = Point());
+		const Point &targetVelocity, double radius, double slow, double cruiseSpeed = 0.);
 	static bool Stop(const Ship &ship, Command &command, double maxSpeed = 0., const Point &direction = Point());
 	static void PrepareForHyperspace(const Ship &ship, Command &command);
 	static void CircleAround(const Ship &ship, Command &command, const Body &target);
