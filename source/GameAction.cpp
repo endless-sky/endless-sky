@@ -297,7 +297,7 @@ void GameAction::Save(DataWriter &out) const
 		out.EndChild();
 	}
 	for(auto &&it : events)
-		out.Write("event", it.first->Name(), it.second.first, it.second.second);
+		out.Write("event", it.first->TrueName(), it.second.first, it.second.second);
 	for(const System *system : mark)
 		out.Write("mark", system->TrueName());
 	for(const System *system : unmark)
@@ -328,7 +328,7 @@ string GameAction::Validate() const
 	{
 		string reason = event.first->IsValid();
 		if(!reason.empty())
-			return "event \"" + event.first->Name() + "\" - Reason: " + reason;
+			return "event \"" + event.first->TrueName() + "\" - Reason: " + reason;
 	}
 
 	// Transferred content must be defined & valid.
@@ -456,7 +456,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		// mission as failed. It will not be removed from the player's mission
 		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
-			if(fail.contains(mission.Identifier()))
+			if(fail.contains(mission.TrueName()))
 				player.FailMission(mission);
 	}
 	if(failCaller && caller)

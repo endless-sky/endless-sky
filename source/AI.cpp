@@ -455,7 +455,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	else if(!multiplePatternsSet)
 	{
 		// If only one pattern was found, then select the next pattern (or clear the pattern if there is no next).
-		auto it = formationPatterns.find(toSet->Name());
+		auto it = formationPatterns.find(toSet->TrueName());
 		if(it != formationPatterns.end())
 			++it;
 		toSet = (it == formationPatterns.end() ? nullptr : &(it->second));
@@ -473,7 +473,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 
 	unsigned int count = targetShips.size();
 	string message = to_string(count) + (count == 1 ? " ship" : " ships") + " will ";
-	message += toSet ? ("assume \"" + toSet->Name() + "\" formation.") : "no longer fly in formation.";
+	message += toSet ? ("assume \"" + toSet->TrueName() + "\" formation.") : "no longer fly in formation.";
 	Messages::Add(message, Messages::Importance::Low);
 }
 
@@ -488,7 +488,7 @@ void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 		: Orders::Types::KEEP_STATION);
 	newOrder.SetTargetShip(target);
 	IssueOrder(newOrder,
-		(isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\"."));
+		(isEnemy ? "focusing fire on" : "following") + (" \"" + target->GivenName() + "\"."));
 }
 
 
@@ -575,7 +575,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	{
 		OrderSingle newOrder{target->IsDisabled() ? Orders::Types::FINISH_OFF : Orders::Types::ATTACK};
 		newOrder.SetTargetShip(target);
-		IssueOrder(newOrder, "focusing fire on \"" + target->Name() + "\".");
+		IssueOrder(newOrder, "focusing fire on \"" + target->GivenName() + "\".");
 	}
 	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
@@ -939,7 +939,8 @@ void AI::Step(Command &activeCommands)
 			}
 			else if(!it->IsBoarding())
 			{
-				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8);
+				MoveTo(*it, command, shipToAssist->Position(), shipToAssist->Velocity(), 40., .8, 0.,
+					shipToAssist->Facing().Unit());
 				command |= Command::BOARD;
 			}
 
@@ -1132,7 +1133,7 @@ void AI::Step(Command &activeCommands)
 			else if(parentHasSpace && ShouldDock(*it, *parent, playerSystem))
 			{
 				it->SetTargetShip(parent);
-				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8);
+				MoveTo(*it, command, parent->Position(), parent->Velocity(), 40., .8, 0., parent->Facing().Unit());
 				command |= Command::BOARD;
 				it->SetCommands(command);
 				it->SetCommands(firingCommands);
@@ -1837,7 +1838,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 	const double POSITION_DEADBAND = ship.Radius() * 1.25;
 	constexpr double VELOCITY_DEADBAND = .1;
 	bool inPosition = MoveTo(ship, command, it->second.Position(&ship), formationLead->Velocity(), POSITION_DEADBAND,
-		VELOCITY_DEADBAND);
+		VELOCITY_DEADBAND, 0., formationLead->Facing().Unit());
 
 	// If we match the position and velocity, then also match the facing angle within some limits.
 	constexpr double FACING_TOLERANCE_DEGREES = 3;
@@ -2452,7 +2453,7 @@ bool AI::MoveToPlanet(const Ship &ship, Command &command, double cruiseSpeed)
 
 // Instead of moving to a point with a fixed location, move to a moving point (Ship = position + velocity)
 bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
-	const Point &targetVelocity, double radius, double slow, double cruiseSpeed)
+	const Point &targetVelocity, double radius, double slow, double cruiseSpeed, const Point &finalDirection)
 {
 	const Point &position = ship.Position();
 	const Point &velocity = ship.Velocity();
@@ -2473,6 +2474,7 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	double turnRate = TO_RAD * ship.TrueTurnRate();
 	Point wantedAcceleration = dp + dv;
 	double relativeFacing = acos(clamp(wantedAcceleration.Unit().Dot(angle.Unit()), -1., 1.));
+	double relativeFinalFacing = finalDirection ? acos(clamp(wantedAcceleration.Unit().Dot(finalDirection), -1., 1.)) : 0.;
 
 	// How long it takes for a ship to match both position and velocity with a given target.
 	const auto interceptTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
@@ -2488,8 +2490,10 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	};
 
 	// Approximate intersect time without factoring in maximum velocities
-	double forwardTime = interceptTime(speed, relativeFacing, ship.TrueAcceleration(), turnRate, distance);
-	double reverseTime = interceptTime(speed, PI - relativeFacing, ship.TrueReverseAcceleration(), turnRate, distance);
+	double forwardTime = interceptTime(speed, relativeFacing + relativeFinalFacing,
+		ship.TrueAcceleration(), turnRate, distance);
+	double reverseTime = interceptTime(speed, PI - relativeFacing + (finalDirection ? PI - relativeFinalFacing : 0.),
+		ship.TrueReverseAcceleration(), turnRate, distance);
 
 	bool movingTowardsTarget = velocity.Unit().Dot(wantedAcceleration.Unit()) > .9;
 	bool facingTowardsTarget = angle.Unit().Dot(wantedAcceleration.Unit()) > .9;
@@ -2567,9 +2571,9 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	else
 		command.SetTurn(TurnToward(ship, velocity));
 	double currentRelFacing = velocity.Unit().Dot(angle.Unit());
-	if(currentRelFacing < -limit(forwardTime))
+	if(currentRelFacing < -limit((speed - maxSpeed) / ship.TrueAcceleration()))
 		command |= Command::FORWARD;
-	else if(currentRelFacing > limit(reverseTime))
+	else if(currentRelFacing > limit((speed - maxSpeed) / ship.TrueReverseAcceleration()))
 		command |= Command::BACK;
 	return false;
 }
@@ -2594,7 +2598,7 @@ void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 	if(ship.Position().LengthSquared() < squaredDeparture)
 	{
 		Point closestDeparturePoint = ship.Position().Unit() * (departure + SAFETY_OFFSET);
-		MoveTo(ship, command, closestDeparturePoint, Point(), 0., 0.);
+		MoveTo(ship, command, closestDeparturePoint, Point(), 0., 0., 0., direction.Unit());
 	}
 	else if(!isJump && scramThreshold)
 	{
@@ -2605,8 +2609,9 @@ void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 		if(fabs(deviation) > scramThreshold)
 		{
 			// Need to maneuver; not ready to jump
-			Point goodVelocity = direction * max(ship.Velocity().Unit().Dot(direction), 0.);
-			MoveTo(ship, command, ship.Position() + goodVelocity, goodVelocity, 1., .1);
+			// It would often be faster to just stop, but ships with scram drives are often running away.
+			Point goodVelocity = direction * ship.Velocity().Length();
+			MoveTo(ship, command, ship.Position(), goodVelocity, 1000., .1, 0, direction);
 		}
 		else
 			command.SetTurn(TurnToward(ship, direction));
@@ -2922,7 +2927,7 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 	const Government *government = ship->GetGovernment();
 	const string &language = government->Language();
 	if(language.empty() || player.Conditions().Get("language: " + language))
-		Messages::Add(government->GetName() + " " + ship->Noun() + " \"" + ship->Name()
+		Messages::Add(government->DisplayName() + " " + ship->Noun() + " \"" + ship->GivenName()
 			+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
 
 }

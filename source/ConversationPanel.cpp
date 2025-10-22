@@ -90,7 +90,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs[it.first].swap(it.second);
 	if(ship)
 	{
-		subs["<ship>"] = ship->Name();
+		subs["<ship>"] = ship->GivenName();
 		subs["<model>"] = ship->DisplayModelName();
 	}
 
