@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #endif
 #endif
 
+#include <cstring>
+
 #if defined(ES_GLES) || defined(_WIN32)
 namespace {
 	bool HasOpenGLExtension(const char *name)
