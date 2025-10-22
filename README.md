@@ -22,7 +22,8 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 |Graphics | OpenGL 2.0* | OpenGL 3.0 |
 |Screen Resolution | 1024x768 | 1920x1080 |
 |Storage Free | 400 MB | 1.5 GB |
-*For OpenGL 2 devices, [custom shaders](https://github.com/endless-sky/endless-sky/wiki/CreatingPlugins#shaders) are needed.
+
+\* For OpenGL 2 devices, [custom shaders](https://github.com/endless-sky/endless-sky/wiki/CreatingPlugins#shaders) are needed.
 
 |Operating System | Minimum Version |
 |---|---|
