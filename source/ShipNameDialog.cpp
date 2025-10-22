@@ -31,7 +31,7 @@ using namespace std;
 
 void ShipNameDialog::Draw()
 {
-	Dialog::Draw();
+	DialogPanel::Draw();
 
 	randomPos = cancelPos - Point(100., 0.);
 	SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
@@ -47,7 +47,7 @@ void ShipNameDialog::Draw()
 bool ShipNameDialog::Click(int x, int y, MouseButton button, int clicks)
 {
 	if(button != MouseButton::LEFT)
-		return Dialog::Click(x, y, button, clicks);
+		return DialogPanel::Click(x, y, button, clicks);
 	Point off = Point(x, y) - randomPos;
 	if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)
 	{
@@ -55,5 +55,5 @@ bool ShipNameDialog::Click(int x, int y, MouseButton button, int clicks)
 		input = GameData::Phrases().Get("civilian")->Get();
 		return true;
 	}
-	return Dialog::Click(x, y, button, clicks);
+	return DialogPanel::Click(x, y, button, clicks);
 }
