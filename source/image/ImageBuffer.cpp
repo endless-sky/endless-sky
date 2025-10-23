@@ -258,7 +258,7 @@ namespace {
 		{
 			png_destroy_read_struct(&png, &info, nullptr);
 			const string message = "Failed to allocate contiguous memory for \"" + path.string() + "\"";
-			Logger::LogError(message);
+			Logger::Log(message, Logger::Level::ERROR);
 			throw runtime_error(message);
 		}
 		// Make sure this frame's dimensions are valid.
@@ -267,9 +267,11 @@ namespace {
 			png_destroy_read_struct(&png, &info, nullptr);
 			string message = "Skipped processing \"" + path.string() + "\":\n\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::Log(message + "width: expected " + to_string(buffer.Width())
+					+ " but was " + to_string(width), Logger::Level::WARNING);
 			if(height && height != buffer.Height())
-				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::Log(message + "height: expected " + to_string(buffer.Height())
+					+ " but was " + to_string(height), Logger::Level::WARNING);
 			return false;
 		}
 
@@ -348,7 +350,7 @@ namespace {
 		{
 			jpeg_destroy_decompress(&cinfo);
 			const string message = "Failed to allocate contiguous memory for \"" + path.string() + "\"";
-			Logger::LogError(message);
+			Logger::Log(message, Logger::Level::ERROR);
 			throw runtime_error(message);
 		}
 		// Make sure this frame's dimensions are valid.
@@ -357,9 +359,11 @@ namespace {
 			jpeg_destroy_decompress(&cinfo);
 			string message = "Skipped processing \"" + path.string() + "\":\t\tAll image frames must have equal ";
 			if(width && width != buffer.Width())
-				Logger::LogError(message + "width: expected " + to_string(buffer.Width()) + " but was " + to_string(width));
+				Logger::Log(message + "width: expected " + to_string(buffer.Width())
+					+ " but was " + to_string(width), Logger::Level::WARNING);
 			if(height && height != buffer.Height())
-				Logger::LogError(message + "height: expected " + to_string(buffer.Height()) + " but was " + to_string(height));
+				Logger::Log(message + "height: expected " + to_string(buffer.Height())
+					+ " but was " + to_string(height), Logger::Level::WARNING);
 			return false;
 		}
 
@@ -391,7 +395,7 @@ namespace {
 		unique_ptr<avifDecoder, void(*)(avifDecoder *)> decoder(avifDecoderCreate(), avifDecoderDestroy);
 		if(!decoder)
 		{
-			Logger::LogError("Could not create avif decoder");
+			Logger::Log("Could not create avif decoder.", Logger::Level::WARNING);
 			return 0;
 		}
 		// Maintenance note: this is where decoder defaults should be overwritten (codec, exif/xmp, etc.)
@@ -401,14 +405,14 @@ namespace {
 			data.size());
 		if(result != AVIF_RESULT_OK)
 		{
-			Logger::LogError("Could not read file: " + path.generic_string());
+			Logger::Log("Could not read file: " + path.generic_string(), Logger::Level::WARNING);
 			return 0;
 		}
 
 		result = avifDecoderParse(decoder.get());
 		if(result != AVIF_RESULT_OK)
 		{
-			Logger::LogError(string("Failed to decode image: ") + avifResultToString(result));
+			Logger::Log(string("Failed to decode image: ") + avifResultToString(result), Logger::Level::WARNING);
 			return 0;
 		}
 		// Generic image information is now available (width, height, depth, color profile, metadata, alpha, etc.),
@@ -424,7 +428,8 @@ namespace {
 			result = avifDecoderNthImageTiming(decoder.get(), i, &timing);
 			if(result != AVIF_RESULT_OK)
 			{
-				Logger::LogError("Could not get image timing for '" + path.generic_string() + "': " + avifResultToString(result));
+				Logger::Log("Could not get image timing for '" + path.generic_string() + "': "
+					+ avifResultToString(result), Logger::Level::WARNING);
 				return 0;
 			}
 			if(frameTimeUnit < 0 || (frameTimeUnit > timing.duration && timing.duration))
@@ -438,7 +443,8 @@ namespace {
 			result = avifDecoderNthImageTiming(decoder.get(), i, &timing);
 			if(result != AVIF_RESULT_OK)
 			{
-				Logger::LogError("Could not get image timing for \"" + path.generic_string() + "\": " + avifResultToString(result));
+				Logger::Log("Could not get image timing for \"" + path.generic_string() + "\": "
+					+ avifResultToString(result), Logger::Level::WARNING);
 				return 0;
 			}
 			repeats[i] = round(timing.duration / frameTimeUnit);
@@ -455,13 +461,13 @@ namespace {
 		catch(const bad_alloc &)
 		{
 			const string message = "Failed to allocate contiguous memory for \"" + path.generic_string() + "\"";
-			Logger::LogError(message);
+			Logger::Log(message, Logger::Level::ERROR);
 			throw runtime_error(message);
 		}
 		if(static_cast<unsigned>(buffer.Width()) != decoder->image->width
 			|| static_cast<unsigned>(buffer.Height()) != decoder->image->height)
 		{
-			Logger::LogError("Invalid dimensions for \"" + path.generic_string() + "\"");
+			Logger::Log("Invalid dimensions for \"" + path.generic_string() + "\"", Logger::Level::WARNING);
 			return 0;
 		}
 
@@ -484,7 +490,8 @@ namespace {
 			result = avifImageYUVToRGB(decoder->image, &image);
 			if(result != AVIF_RESULT_OK)
 			{
-				Logger::LogError("Conversion from YUV failed for \"" + path.generic_string() + "\": " + avifResultToString(result));
+				Logger::Log("Conversion from YUV failed for \"" + path.generic_string() + "\": "
+					+ avifResultToString(result), Logger::Level::WARNING);
 				return bufferFrame;
 			}
 
@@ -501,7 +508,7 @@ namespace {
 		}
 
 		if(avifFrameIndex != decoder->imageCount || bufferFrame != bufferFrameCount)
-			Logger::LogError("Skipped corrupted frames for \"" + path.generic_string() + "\"");
+			Logger::Log("Skipped corrupted frames for \"" + path.generic_string() + "\"", Logger::Level::WARNING);
 
 		return bufferFrameCount;
 	}

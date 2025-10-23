@@ -46,7 +46,7 @@ void SpriteSet::CheckReferences()
 		if(sprite.Height() == 0 && sprite.Width() == 0)
 			// Landscapes are allowed to still be empty.
 			if(!pair.first.starts_with("land/"))
-				Logger::LogError("Warning: image \"" + pair.first + "\" is referred to, but has no pixels.");
+				Logger::Log("Image \"" + pair.first + "\" is referred to, but has no pixels.", Logger::Level::WARNING);
 	}
 }
 

@@ -50,15 +50,15 @@ namespace {
 		// TODO: Remove SDL version check after Ubuntu 20.04 reaches end of life
 #if SDL_VERSION_ATLEAST(2, 0, 14)
 		if(SDL_OpenURL(("file://" + path.string()).c_str()))
-			Logger::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
+			Logger::Log("SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"", Logger::Level::WARNING);
 #elif defined(__linux__)
 		// Some supported distributions do not have an up-to-date SDL.
 		cout.flush();
 		if(int result = WEXITSTATUS(system(("xdg-open file://" + path.string()).c_str())))
-			Logger::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
+			Logger::Log("xdg-open failed with error code " + to_string(result) + ".", Logger::Level::WARNING);
 #else
 #warning SDL 2.0.14 or higher is needed for opening folders!
-		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
+		Logger::Log("No handler found to open \"" + path + "\" in a new window.", Logger::Level::WARNING);
 #endif
 	}
 
