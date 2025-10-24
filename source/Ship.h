@@ -132,6 +132,38 @@ public:
 		CAN_FIRE
 	};
 
+	// Since having ShipEvent here would create a dependency cycle, use a simplified version.
+	class ShipEventInternal {
+	// TODO: Remove once our GitHub Actions runners have Apple Clang 16 or newer.
+#ifdef __APPLE__
+	public:
+		ShipEventInternal(const Government *actor = nullptr, int type = 0) : actor{actor}, type{type} {}
+#endif
+	public:
+		const Government *actor = nullptr;
+		int type = 0;
+	};
+
+	// A class remembering sources of damage.
+	class DamageLog {
+	public:
+		// Add the specified amount of damage to the log. If the damage comes from
+		// the ship itself, pass nullptr as the source.
+		void Add(double amount, const Government *source = nullptr);
+		// Add damage over time specified by another log and copy its source.
+		void Add(const DamageLog &damageOverTime);
+		// Set the given amount of damage without changing the source.
+		void Set(double amount);
+		// Get the total amount of damage.
+		operator double() const;
+		// Get the most recent source of damage.
+		const Government *Source() const;
+
+	private:
+		double amount = 0.;
+		const Government *source = nullptr;
+	};
+
 
 public:
 	// Functions provided by the Body base class:
@@ -351,6 +383,8 @@ public:
 	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
 	void ClearTargetsAndOrders();
+	// Move events that happened recently, but haven't been handled by the Engine yet.
+	std::list<ShipEventInternal> HandleEvents();
 
 	// Get characteristics of this ship, as a fraction between 0 and 1.
 	double Shields() const;
@@ -685,12 +719,14 @@ private:
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
 
-	// Various energy levels:
+	// Various energy levels; damage logs should be kept for those that can result
+	// in events with a need to determine the actor (for example, the ship being disabled)
+	// outside taking direct damage.
 	double shields = 0.;
 	double hull = 0.;
 	double fuel = 0.;
 	double energy = 0.;
-	double heat = 0.;
+	DamageLog heat;
 	// Accrued "ion damage" that will affect this ship's energy over time.
 	double ionization = 0.;
 	// Accrued "scrambling damage" that will affect this ship's weaponry over time.
@@ -702,11 +738,11 @@ private:
 	// Accrued "discharge damage" that will affect this ship's shields over time.
 	double discharge = 0.;
 	// Accrued "corrosion damage" that will affect this ship's hull over time.
-	double corrosion = 0.;
+	DamageLog corrosion;
 	// Accrued "leak damage" that will affect this ship's fuel over time.
 	double leakage = 0.;
 	// Accrued "burn damage" that will affect this ship's heat over time.
-	double burning = 0.;
+	DamageLog burning;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
@@ -773,4 +809,6 @@ private:
 	std::weak_ptr<Ship> parent;
 
 	bool removeBays = false;
+
+	std::list<ShipEventInternal> unhandledEvents;
 };
