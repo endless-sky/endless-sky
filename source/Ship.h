@@ -147,33 +147,21 @@ public:
 	// A class remembering sources of damage.
 	class DamageLog {
 	public:
-		class Entry {
-		// TODO: Remove once our GitHub Actions runners have Apple Clang 16 or newer.
-#ifdef __APPLE__
-		public:
-			Entry(double amount = 0., const Government *source = nullptr) : amount{amount}, source{source} {}
-#endif
-		public:
-			double amount = 0.;
-			const Government *source = nullptr;
-		};
-
-	public:
-		// Add the specified amount of damage to the log.
-		void Add(double amount, const Government *source);
-		// Add damage over time specified by another log, so that the sources
-		// get transferred proportionally.
-		void AddDamageOverTime(const DamageLog &damageOverTime);
-		// Wear off the specified amount of damage, starting from the oldest entries.
-		void Remove(double amount);
-		void Clear();
-		// Get the total amount of damage, along with the most dominant source government.
-		Entry Get() const;
-		// Get the total damage. Use this for better performance if you don't need the government.
-		double GetAmount() const;
+		// Add the specified amount of damage to the log. If the damage comes from
+		// the ship itself, pass nullptr as the source.
+		void Add(double amount, const Government *source = nullptr);
+		// Add damage over time specified by another log and copy its source.
+		void Add(const DamageLog &damageOverTime);
+		// Set the given amount of damage without changing the source.
+		void Set(double amount);
+		// Get the total amount of damage.
+		operator double() const;
+		// Get the most recent source of damage.
+		const Government *Source() const;
 
 	private:
-		std::list<Entry> entries;
+		double amount = 0.;
+		const Government *source = nullptr;
 	};
 
 
