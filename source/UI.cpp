@@ -123,6 +123,13 @@ void UI::DrawAll()
 
 
 
+const vector<shared_ptr<Panel>> &UI::Stack() const
+{
+	return stack;
+}
+
+
+
 // Add the given panel to the stack. UI is responsible for deleting it.
 void UI::Push(Panel *panel)
 {
@@ -252,6 +259,14 @@ bool UI::IsDone() const
 bool UI::IsEmpty() const
 {
 	return stack.empty() && toPush.empty();
+}
+
+
+
+void UI::AdjustViewport() const
+{
+	for(auto &it : stack)
+		it->DoResize();
 }
 
 
