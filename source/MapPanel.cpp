@@ -252,8 +252,6 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	// bought a map since the last time they viewed the map.
 	FogShader::Redraw();
 
-	zoom.Set(1.0, 0);
-
 	// Recalculate escort positions every time the map is opened, as they may
 	// be changing systems even if the player does not.
 	// The player cannot toggle any preferences without closing the map panel.
@@ -305,6 +303,7 @@ void MapPanel::Step()
 
 	// The mouse should be pointing to the same map position before and after zooming.
 	bool needsRecenter = !zoom.IsAnimationDone();
+	needsRecenter = needsRecenter && !zoom_is_from_pinch_gesture;
 	Point mouse, anchor;
 	if(needsRecenter)
 	{
@@ -327,7 +326,7 @@ void MapPanel::Step()
 			center -= joyDir / 4000;
 			UpdateGamepadMapCursor();
 		}
-}
+	}
 }
 
 
@@ -636,26 +635,28 @@ bool MapPanel::FingerMove(int x, int y, int fid)
 {
 	if(zoomGesture.FingerMove(Point(x, y), fid))
 	{
+		zoom_is_from_pinch_gesture = true;
 		const Interface *mapInterface = GameData::Interfaces().Get("map");
 
-		// We want to support arbitrary zoom levels, but the upstream zoom config
-		// is an integer power of 1.5, so we have to convert it when we store it
-		// in the player object or check the bounds.
-
 		center += zoomGesture.CenterDelta();
-		zoom = zoom * zoomGesture.Zoom();
-		int player_zoom_level = log(zoom) / log(1.5);
-		if(player_zoom_level >= mapInterface->GetValue("max zoom"))
+
+		// zoom is a power of 1.5 (so zero is 100% zoom), but zoomGesture.Zoom()
+		// returns a multiplier between 0 and infinity. We need to convert
+		// between them.
+		double pow_zoom = pow(1.5, zoom) * zoomGesture.Zoom();
+		SDL_Log("Zoom %f = %f * %f", pow_zoom * zoomGesture.Zoom(), pow_zoom, zoomGesture.Zoom());
+		double target_zoom = log(pow_zoom) / log(1.5);
+		if(target_zoom >= mapInterface->GetValue("max zoom"))
 		{
-			player_zoom_level = mapInterface->GetValue("max zoom");
-			zoom = pow(1.5, player_zoom_level);
+			target_zoom = mapInterface->GetValue("max zoom");
 		}
-		else if(player_zoom_level <= mapInterface->GetValue("min zoom"))
+		else if(target_zoom <= mapInterface->GetValue("min zoom"))
 		{
-			player_zoom_level = mapInterface->GetValue("min zoom");
-			zoom = pow(1.5, player_zoom_level);
+			target_zoom = mapInterface->GetValue("min zoom");
 		}
-		player.SetMapZoom(player_zoom_level);
+		zoom.Set(target_zoom);
+		player.SetMapZoom(target_zoom);
+		
 		return true;
 	}
 	return false;
@@ -1625,6 +1626,8 @@ void MapPanel::IncrementZoom()
 	double newZoom = min<double>(mapInterface->GetValue("max zoom"), player.MapZoom() + 1);
 	zoom.Set(newZoom, mapInterface->GetValue("zoom animation duration"));
 	player.SetMapZoom(newZoom);
+
+	zoom_is_from_pinch_gesture = false;
 }
 
 
@@ -1634,6 +1637,8 @@ void MapPanel::DecrementZoom()
 	double newZoom = max<double>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1);
 	zoom.Set(newZoom, mapInterface->GetValue("zoom animation duration"));
 	player.SetMapZoom(newZoom);
+
+	zoom_is_from_pinch_gesture = false;
 }
 
 

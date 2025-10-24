@@ -239,4 +239,5 @@ private:
 	ZoomGesture zoomGesture;
 
 	size_t controllerSelected = -1;
+	bool zoom_is_from_pinch_gesture = false;
 };
