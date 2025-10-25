@@ -7,6 +7,7 @@ Version 0.10.16
       * Fixed the "on visit" message of "Dangerous Games 1" to account for the possibility that the player has reached the destination with all the passengers but not visited the stopover. (@warp-core)
       * Having a Tiny or Small VLS will now also enable resupplying Nettle missiles, in addition to the Medium VLS. (@Azure3141)
       * The mission "Care Package to South 1" can no longer choose stations, Harmony, or Humanika as a destination, as it doesn't make sense for these places to have a militia base. (@warp-core)
+      * Bunrodea steering engines now have steering flares and sounds. (@Amazinite)
     * Engine bugs:
       * Fixed an issue where the fuel and heat costs of repairing shields and hull on docked fighters were applied incorrectly. (@TomGoodIdea)
       * Messages about multiple identical player owned ships being destroyed will no longer be suppressed as duplicates. (@TomGoodIdea)
@@ -48,11 +49,11 @@ Version 0.10.16
       * New autocondition: "gamerule: <gamerule>" which gives the value of the given gamerule. (@Amazinite)
     * Mechanics changes:
       * Ship variants that inherit outfits and weapon hardpoint layouts from their bases will now also inherit the installed weapon layouts. (@warp-core)
-      * There is now a gamerule for enabling or disabling ammunition resupplying. (@Amazinite)
+      * There is now a gamerule for enabling or disabling the ability to resupply most secondary weapons at all outfitters. (@Amazinite)
       * Reverted changes to movement AI logic in the previews release aimed at improving reverse thrust use due to the introduction of various other issues. (@warp-core)
   * User interface:
     * The shipyard panel no longer lists cargo capacity when no player ship is selected. (@TomGoodIdea)
-    * Tooltip activation time can now be customized. (@TomGoodIdea)
+    * Tooltip activation time can now be customized by a preference. (@TomGoodIdea)
   * Under the hood:
     * Slightly improved performance when drawing the loading ring. (@TomGoodIdea)
     * Added a plaintext description for the stop command. (@thewierdnut)
