@@ -22,7 +22,7 @@ Version 0.10.16
       * Fixed various recent issues with ship AI movement. (@tibetiroka)
       * The game will now recognize and load plugins that only modify shaders. (@TomGoodIdea)
       * The default state of the "system arrival min" gamerule is now "unset", so negative arrival values in system definitions will now work again. (@warp-core)
-      * Fixed an issue where Person ships were not being properly restored when loading a save. (@TomGoodIdea)
+      * Fixed an issue where person ships were not being properly restored when loading a save. (@TomGoodIdea)
   * Game content:
     * New content:
       * Added descriptions for the Tiny and Small VLS. (@Azure3141)
