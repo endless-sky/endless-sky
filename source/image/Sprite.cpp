@@ -35,22 +35,25 @@ namespace {
 			buffer.ShrinkToHalfSize();
 
 		// Upload the images as a single array texture.
+		int type = OpenGL::HasTexture2DArraySupport() ? GL_TEXTURE_2D_ARRAY : GL_TEXTURE_3D;
 		glGenTextures(1, target);
-		glBindTexture(GL_TEXTURE_2D_ARRAY, *target);
+		glBindTexture(type, *target);
 
 		// Use linear interpolation and no wrapping.
-		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		if(type == GL_TEXTURE_3D)
+			glTexParameteri(type, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
 		// Upload the image data.
-		glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
+		glTexImage3D(type, 0, GL_RGBA8, // target, mipmap level, internal format,
 			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
 			0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
 
 		// Unbind the texture.
-		glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
+		glBindTexture(type, 0);
 
 		// Free the ImageBuffer memory.
 		buffer.Clear();
