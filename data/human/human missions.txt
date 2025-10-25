@@ -6362,9 +6362,9 @@ mission "Care Package to South 1"
 		not attributes "station"
 	destination
 		attributes "rim" "south"
-		not government "Pirate"
-		not system "Alniyat" "Atria" "Han"
-		not planet "Glaze"
+		not attributes "station"
+		government "Republic" "Independent"
+		not planet "Glaze" "Harmony"
 	to offer
 		not "event: war begins"
 		random < 65
