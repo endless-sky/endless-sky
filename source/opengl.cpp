@@ -51,10 +51,12 @@ namespace {
 
 
 
+#ifndef ES_GLES
 void OpenGL::DisableOpenGL3()
 {
 	hasOpenGL3Support = false;
 }
+#endif
 
 
 
@@ -76,12 +78,21 @@ bool OpenGL::HasAdaptiveVSyncSupport()
 
 bool OpenGL::HasVaoSupport()
 {
+	// TODO: Add an extension check if we want to enable VAOs on more devices.
 	return hasOpenGL3Support;
 }
 
 
 
 bool OpenGL::HasTexture2DArraySupport()
+{
+	// TODO: Add an extension check if we want to enable texture arrays on more devices.
+	return hasOpenGL3Support;
+}
+
+
+
+bool OpenGL::HasClearBufferSupport()
 {
 	return hasOpenGL3Support;
 }

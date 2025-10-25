@@ -179,7 +179,7 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	glViewport(0, 0, scaledSize.X(), scaledSize.Y());
 
 	static const float CLEAR[] = {0, 0, 0, 0};
-	if(glClearBufferfv)
+	if(OpenGL::HasClearBufferSupport())
 		glClearBufferfv(GL_COLOR, 0, CLEAR);
 	else
 	{
