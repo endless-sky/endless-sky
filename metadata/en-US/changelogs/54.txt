@@ -1,0 +1,3 @@
+* Bump to upstream 0.10.16
+* Fix job panel back key
+* Fix map panel pinch zoom
