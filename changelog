@@ -23,6 +23,7 @@ Version 0.10.16
       * The game will now recognize and load plugins that only modify shaders. (@TomGoodIdea)
       * The default state of the "system arrival min" gamerule is now "unset", so negative arrival values in system definitions will now work again. (@warp-core)
       * Fixed an issue where person ships were not being properly restored when loading a save. (@TomGoodIdea)
+      * Fixed issues where resizing would cause text to be drawn at incorrect locations and/or scales in the plugin and map panels. (@TomGoodIdea)
   * Game content:
     * New content:
       * Added descriptions for the Tiny and Small VLS. (@Azure3141)
@@ -50,6 +51,7 @@ Version 0.10.16
     * Mechanics changes:
       * Ship variants that inherit outfits and weapon hardpoint layouts from their bases will now also inherit the installed weapon layouts. (@warp-core)
       * There is now a gamerule for enabling or disabling ammunition resupplying. (@Amazinite)
+      * Reverted changes to movement AI logic in the previews release aimed at improving reverse thrust use due to the introduction of various other issues. (@warp-core)
   * User interface:
     * The shipyard panel no longer lists cargo capacity when no player ship is selected. (@TomGoodIdea)
     * Tooltip activation time can now be customized. (@TomGoodIdea)
