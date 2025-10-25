@@ -39,6 +39,8 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	virtual void UpdateTooltipActivation() override;
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -50,8 +52,12 @@ protected:
 	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
 	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
 
+	virtual void Resize() override;
+
 
 private:
+	void InitTextArea();
+	void ResizeTextArea() const;
 	// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem.
 	// CenterOnSystem will either pan to the system or immediately jump to it.
 	void SetSelectedScrollAndCenter(bool immediate = false);

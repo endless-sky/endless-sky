@@ -403,26 +403,11 @@ bool Dialog::FingerUp(int x, int y, int fid)
 
 
 
-// Common code from all three constructors:
-void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
+void Dialog::Resize()
 {
-	Audio::Pause();
-	SetInterruptible(isMission);
-
-	this->isMission = isMission;
-	this->canCancel = canCancel;
-	okIsActive = true;
 	isWide = false;
-
 	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
-	text = std::make_shared<TextArea>();
-	text->SetAlignment(Alignment::JUSTIFIED);
 	text->SetRect(Rectangle(Point(), textRectSize));
-	text->SetFont(FontSet::Get(14));
-	text->SetTruncate(truncate);
-	text->SetText(message);
-	AddChild(text);
-
 	const Sprite *top = SpriteSet::Get("ui/dialog top");
 	// If the dialog is too tall, then switch to wide mode.
 	int maxHeight = Screen::Height() * 3 / 4;
@@ -475,6 +460,27 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
+}
+
+
+
+// Common code from all three constructors:
+void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
+{
+	Audio::Pause();
+	SetInterruptible(isMission);
+
+	this->isMission = isMission;
+	this->canCancel = canCancel;
+	okIsActive = true;
+
+	text = std::make_shared<TextArea>();
+	text->SetAlignment(Alignment::JUSTIFIED);
+	text->SetFont(FontSet::Get(14));
+	text->SetTruncate(truncate);
+	text->SetText(message);
+	Resize();
+	AddChild(text);
 }
 
 

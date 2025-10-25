@@ -44,6 +44,8 @@ public:
 	// Draw this panel.
 	virtual void Draw() override;
 
+	virtual void UpdateTooltipActivation() override;
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -57,6 +59,8 @@ protected:
 	virtual bool FingerUp(int x, int y, int fid) override;
 	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
 	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
+
+	virtual void Resize() override;
 
 	virtual void EndEditing() override;
 

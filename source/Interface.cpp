@@ -69,15 +69,6 @@ namespace {
 
 
 
-// Destructor, which frees the memory used by the polymorphic list of elements.
-Interface::~Interface()
-{
-	for(Element *element : elements)
-		delete element;
-}
-
-
-
 // Load an interface.
 void Interface::Load(const DataNode &node)
 {
@@ -129,11 +120,11 @@ void Interface::Load(const DataNode &node)
 		{
 			// Check if this node specifies a known element type.
 			if(key == "sprite" || key == "image" || key == "outline")
-				elements.push_back(new ImageElement(child, anchor));
+				elements.push_back(make_unique<ImageElement>(child, anchor));
 			else if(key == "label" || key == "string" || key == "button" || key == "dynamic button")
 			{
 				TextElement* te = new BasicTextElement(child, anchor);
-				elements.push_back(te);
+				elements.emplace_back(te);
 				// If we already have a value of the same name, let it take
 				// precedence.
 				auto it = points.find(te->Text());
@@ -144,7 +135,7 @@ void Interface::Load(const DataNode &node)
 					|| key == "wrapped button" || key == "wrapped dynamic button")
 			{
 				TextElement* te = new WrappedTextElement(child, anchor);
-				elements.push_back(te);
+				elements.emplace_back(te);
 				// If we already have a value of the same name, let it take
 				// precedence.
 				auto it = points.find(te->Text());
@@ -152,15 +143,15 @@ void Interface::Load(const DataNode &node)
 					points[te->Text()].SetBounds(*te);
 			}
 			else if(key == "bar" || key == "ring")
-				elements.push_back(new BarElement(child, anchor));
+				elements.push_back(make_unique<BarElement>(child, anchor));
 			else if(key == "pointer")
-				elements.push_back(new PointerElement(child, anchor));
+				elements.push_back(make_unique<PointerElement>(child, anchor));
 			else if(key == "line")
-				elements.push_back(new LineElement(child, anchor));
+				elements.push_back(make_unique<LineElement>(child, anchor));
 			else if(key == "uirect")
-				elements.push_back(new UiRectElement(child, anchor));
+				elements.emplace_back(new UiRectElement(child, anchor));
 			else if(key == "radial")
-				elements.push_back(new RadialSelectionElement(child, anchor));
+				elements.emplace_back(new RadialSelectionElement(child, anchor));
 			else
 			{
 				child.PrintTrace("Skipping unrecognized element:");
@@ -178,7 +169,7 @@ void Interface::Load(const DataNode &node)
 // Draw this interface.
 void Interface::Draw(const Information &info, Panel *panel) const
 {
-	for(const Element *element : elements)
+	for(const unique_ptr<Element> &element : elements)
 		element->Draw(info, panel);
 }
 

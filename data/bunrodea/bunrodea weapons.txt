@@ -125,7 +125,7 @@ outfit "Thorax Cannon"
 		"inaccuracy" 0
 		"velocity" 15
 		"lifetime" 120
-		"reload" 120
+		"reload" 240
 		"firing energy" 3150
 		"firing force" 1875
 		"firing heat" 1905
@@ -237,6 +237,8 @@ outfit "Swarm Pod"
 		"stream"
 	description "The Swarm Pod proved to be an effective weapon in early conflicts with the Korath by overpowering early Korath anti-missile defenses. But just as the Bunrodea developed technology to combat Korath weaponry, the Korath did the same, prompting them to create their own rapid-fire anti-missile turret that limited the usefulness of the Swarm Pod against some Korath targets."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "swarm flare"
 	sprite "effect/swarm"
@@ -257,6 +259,7 @@ effect "swarm impact"
 
 outfitter "Swarm Missile Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Swarm Pod"
 			has "outfit: Swarm Clip"

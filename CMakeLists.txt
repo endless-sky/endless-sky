@@ -64,7 +64,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.15
+project("Endless Sky" VERSION 0.10.16
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -110,10 +110,18 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 
 # FLAC's config is missing find_dependency(Threads), so include it here.
 find_package(Threads REQUIRED)
-# find_package(Flac CONFIG REQUIRED)
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(flac++ REQUIRED IMPORTED_TARGET flac++)
-add_library(FLAC::FLAC++ ALIAS PkgConfig::flac++)
+if(UNIX AND NOT APPLE AND NOT ES_USE_VCPKG)
+	find_package(FLAC CONFIG QUIET)
+	if(NOT FLAC_FOUND)
+		# Many linux distros use the autotools build of flac, which does not
+		# package the flac-config.cmake. Use PkgConfig instead.
+		find_package(PkgConfig REQUIRED)
+		pkg_check_modules(flac++ REQUIRED IMPORTED_TARGET flac++)
+		add_library(FLAC::FLAC++ ALIAS PkgConfig::flac++)
+	endif()
+else()
+	find_package(FLAC CONFIG REQUIRED)
+endif()
 
 # Find the zip-reading component of zlib.
 find_package(ZLIB REQUIRED)

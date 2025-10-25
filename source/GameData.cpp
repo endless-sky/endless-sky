@@ -477,6 +477,8 @@ void GameData::Revert()
 	objects.substitutions.Revert(defaultSubstitutions);
 	objects.wormholes.Revert(defaultWormholes);
 	objects.persons.Revert(defaultPersons);
+	for(auto &it : objects.persons)
+		it.second.Restore();
 
 	politics.Reset();
 	purchases.clear();

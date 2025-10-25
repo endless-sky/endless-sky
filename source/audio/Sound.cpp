@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sound.h"
 
 #include "../Files.h"
+#include "../Logger.h"
 #include "supplier/WavSupplier.h"
 
 #include <cstdint>
@@ -38,7 +39,7 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t &frequency);
+	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t frequency);
 	uint32_t Read4(const shared_ptr<iostream> &in);
 	uint16_t Read2(const shared_ptr<iostream> &in);
 
@@ -58,23 +59,27 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 	shared_ptr<iostream> in = Files::Open(path);
 	if(!in)
 		return false;
-	uint32_t frequency = 0;
 	vector<char> data;
 
 	if(path.extension() == ".wav")
 	{
-		uint32_t bytes = ReadHeader(in, frequency);
+		uint32_t bytes = ReadHeader(in, AudioSupplier::SAMPLE_RATE);
 		if(!bytes)
+		{
+			Logger::LogError("WAV file uses an unsupported format. Only 44100Hz little-endian 16-bit PCM is supported.");
 			return false;
-
+		}
 		data.resize(bytes);
 		if (!in->read(data.data(), bytes))
 			return false;
 	}
 	else if(path.extension() == ".mp3")
 	{
-		if(!ReadMP3(in, data, frequency))
+		if(!ReadMP3(in, data, AudioSupplier::SAMPLE_RATE))
+		{
+			Logger::LogError("MP3 file uses an unsupported format. Only 44100Hz mono is supported.");
 			return false;
+		}
 	}
 	else
 	{
@@ -132,7 +137,7 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t &frequency)
+	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t frequency)
 	{
 		uint32_t chunkID = Read4(in);
 		if(chunkID != 0x46464952) // "RIFF" in big endian.
@@ -158,7 +163,7 @@ namespace {
 
 				uint16_t audioFormat = Read2(in);
 				uint16_t numChannels = Read2(in);
-				frequency = Read4(in);
+				uint32_t fileFrequency = Read4(in);
 				uint32_t byteRate = Read4(in);
 				uint32_t blockAlign = Read2(in);
 				uint32_t bitsPerSample = Read2(in);
@@ -172,6 +177,8 @@ namespace {
 				if(numChannels != 1)
 					return 0;
 				if(bitsPerSample != 16)
+					return 0;
+				if(fileFrequency != frequency)
 					return 0;
 				if(byteRate != frequency * numChannels * bitsPerSample / 8)
 					return 0;
@@ -219,7 +226,7 @@ namespace {
 
 
 
-	bool ReadMP3(const shared_ptr<iostream>& in, vector<char>& data, uint32_t& frequency)
+	bool ReadMP3(const shared_ptr<iostream>& in, vector<char>& data, uint32_t frequency)
 	{
 		mp3dec_t mp3d;
 		mp3dec_init(&mp3d);
@@ -229,7 +236,6 @@ namespace {
 		const uint8_t* pend = p + raw_data.size();
 
 		size_t size = 0;
-		frequency = 0;
 		while(p < pend)
 		{
 			data.resize(size + MINIMP3_MAX_SAMPLES_PER_FRAME * sizeof(int16_t));
@@ -240,8 +246,8 @@ namespace {
 			if(info.frame_bytes <= 0) // insufficient data... but we gave it the
 				break;                 // whole buffer.
 			size += sample_count * 2;
-			if(frequency == 0)
-				frequency = static_cast<uint32_t>(info.hz);
+			if(frequency != static_cast<uint32_t>(info.hz);
+				return false;
 			else if(frequency != static_cast<uint32_t>(info.hz))
 				return false;          // file is not fixed frequency.
 			else if(info.channels != 1)

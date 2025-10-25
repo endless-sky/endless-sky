@@ -94,9 +94,7 @@ public:
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
 
-	// TODO: delete this when DropDown gets rewritten
-	// Return UI associated with this panel
-	UI *GetUI() const noexcept;
+	virtual void UpdateTooltipActivation();
 
 
 protected:
@@ -117,6 +115,9 @@ protected:
 	virtual bool ControllerAxis(SDL_GameControllerAxis axis, int position);
 	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive);
 	virtual bool ControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive);
+
+	virtual void Resize();
+
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
 	virtual void EndEditing() {}
@@ -128,8 +129,7 @@ protected:
 	// Dim the background of this panel.
 	void DrawBackdrop() const;
 
-	// TODO: put this back after DropDown gets rewritten
-	//UI *GetUI() const noexcept;
+	UI *GetUI() const noexcept;
 	void SetUI(UI *ui);
 
 	// This is not for overriding, but for calling KeyDown with only one or two
@@ -271,6 +271,8 @@ private:
 	bool DoControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive);
 
 	void DoDraw();
+
+	void DoResize();
 
 	// Call a method on all the children in reverse order, and then on this
 	// object. Recursion stops as soon as any child returns true.

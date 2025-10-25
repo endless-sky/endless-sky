@@ -360,21 +360,6 @@ namespace {
 		return true;
 	}
 
-	// The minimum and maximum weapon range of the ship.
-	// If the ship has no weapons, return {0, inf}.
-	pair<double, double> WeaponsRange(const Ship &ship)
-	{
-		double minRange = numeric_limits<double>::infinity();
-		double maxRange = 0.;
-		for(const Hardpoint &hardpoint : ship.Weapons())
-			if(hardpoint.GetOutfit() && !hardpoint.IsSpecial())
-			{
-				minRange = min(hardpoint.GetOutfit()->Range(), minRange);
-				maxRange = max(hardpoint.GetOutfit()->Range(), maxRange);
-			}
-		return minRange < maxRange ? pair{minRange, maxRange} : pair{maxRange, minRange};
-	}
-
 	// Constants for the invisible fence timer.
 	const int FENCE_DECAY = 4;
 	const int FENCE_MAX = 600;
@@ -391,8 +376,7 @@ namespace {
 
 
 
-AI::AI(PlayerInfo &player, const List<Ship> &ships,
-		const List<Minable> &minables, const List<Flotsam> &flotsam)
+AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
 	// Allocate a starting amount of hardpoints for ships.
@@ -445,7 +429,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	else if(!multiplePatternsSet)
 	{
 		// If only one pattern was found, then select the next pattern (or clear the pattern if there is no next).
-		auto it = formationPatterns.find(toSet->Name());
+		auto it = formationPatterns.find(toSet->TrueName());
 		if(it != formationPatterns.end())
 			++it;
 		toSet = (it == formationPatterns.end() ? nullptr : &(it->second));
@@ -463,7 +447,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 
 	unsigned int count = targetShips.size();
 	string message = to_string(count) + (count == 1 ? " ship" : " ships") + " will ";
-	message += toSet ? ("assume \"" + toSet->Name() + "\" formation.") : "no longer fly in formation.";
+	message += toSet ? ("assume \"" + toSet->TrueName() + "\" formation.") : "no longer fly in formation.";
 	Messages::Add(message, Messages::Importance::Low);
 }
 
@@ -478,7 +462,7 @@ void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 		: Orders::Types::KEEP_STATION);
 	newOrder.SetTargetShip(target);
 	IssueOrder(newOrder,
-		(isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\"."));
+		(isEnemy ? "focusing fire on" : "following") + (" \"" + target->GivenName() + "\"."));
 }
 
 
@@ -522,7 +506,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	autoPilot |= activeCommands;
 	if(activeCommands.Has(AutopilotCancelCommands()))
 	{
-		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
+		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP | Command::FLEET_JUMP));
 		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
 		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
 		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
@@ -568,7 +552,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	{
 		OrderSingle newOrder{target->IsDisabled() ? Orders::Types::FINISH_OFF : Orders::Types::ATTACK};
 		newOrder.SetTargetShip(target);
-		IssueOrder(newOrder, "focusing fire on \"" + target->Name() + "\".");
+		IssueOrder(newOrder, "focusing fire on \"" + target->GivenName() + "\".");
 	}
 	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
@@ -2462,52 +2446,45 @@ bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	bool shouldReverse = false;
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
 
-	double distance = dp.Length();
-	double turnRate = TO_RAD * ship.TrueTurnRate();
-	Point wantedAcceleration = dp + dv;
-	double relativeFacing = acos(clamp(wantedAcceleration.Unit().Dot(angle.Unit()), -1., 1.));
-
-	// How long it takes for a ship to match both position and velocity with a given target.
-	const auto interceptTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
-		double distance)
-	{
-		if(!acceleration)
-			return numeric_limits<double>::infinity();
-		double timeToTurn = facingAngle / turningRate;
-		// Calculate the intersection time assuming maximum acceleration. This won't be exact, as it ignores the
-		// other body's movement while we are turning, but usually it's close enough.
-		double timeToIntersect = (-velocity + sqrt(velocity * velocity + 2 * acceleration * distance)) / acceleration;
-		return timeToTurn + timeToIntersect;
-	};
-
-	// Approximate intersect time without factoring in maximum velocities
-	double forwardTime = interceptTime(speed, relativeFacing, ship.TrueAcceleration(), turnRate, distance);
-	double reverseTime = interceptTime(speed, PI - relativeFacing, ship.TrueReverseAcceleration(), turnRate, distance);
-
-	bool movingTowardsTarget = velocity.Unit().Dot(wantedAcceleration.Unit()) > .9;
-	bool facingTowardsTarget = angle.Unit().Dot(wantedAcceleration.Unit()) > .9;
-	bool facingAgainstTarget = angle.Unit().Dot(-wantedAcceleration.Unit()) > .9;
+	// Calculate target vector required to get where we want to be.
+	Point tv = dp;
 	bool hasCruiseSpeed = (cruiseSpeed > 0.);
-
-	if(reverseTime < forwardTime)
-		command.SetTurn(TurnToward(ship, -wantedAcceleration));
-	else
-		command.SetTurn(TurnToward(ship, wantedAcceleration));
-
-	if(facingTowardsTarget)
+	if(hasCruiseSpeed)
 	{
-		double maxSpeed = min(hasCruiseSpeed ? cruiseSpeed : numeric_limits<double>::infinity(),
-			ship.MaxVelocity() * .99);
-		if(!movingTowardsTarget || velocity.Length() < maxSpeed)
+		// The ship prefers a velocity at cruise-speed towards the target, so we need
+		// to compare this preferred velocity to the current velocity and apply the
+		// delta to get to the preferred velocity.
+		tv = (dp.Unit() * cruiseSpeed) - velocity;
+		// If we are moving close to our preferred velocity, then face towards the target.
+		if(tv.LengthSquared() < .01)
+			tv = dp;
+	}
+
+	bool isFacing = (tv.Unit().Dot(angle.Unit()) > .95);
+	if(!isClose || (!isFacing && !shouldReverse))
+		command.SetTurn(TurnToward(ship, tv));
+
+	// Drag is not applied when not thrusting, so stop thrusting when close to max speed
+	// to save energy. Work with a slightly lower maximum velocity to avoid border cases.
+	// In order for a ship to use their afterburner, they must also have the forward
+	// command active. Therefore, if this ship should use its afterburner, use the
+	// max velocity with afterburner thrust included.
+	double maxVelocity = ship.MaxVelocity(ShouldUseAfterburner(ship)) * .99;
+	if(isFacing && (velocity.LengthSquared() <= maxVelocity * maxVelocity
+			|| dp.Unit().Dot(velocity.Unit()) < .95))
+	{
+		// We set full forward power when we don't have a cruise-speed, when we are below
+		// cruise-speed or when we need to do course corrections.
+		bool movingTowardsTarget = (velocity.Unit().Dot(dp.Unit()) > .95);
+		if(!hasCruiseSpeed || !movingTowardsTarget || velocity.Length() < cruiseSpeed)
 			command |= Command::FORWARD;
 	}
-	else if(facingAgainstTarget)
+	else if(shouldReverse)
 	{
-		double maxSpeed = min(hasCruiseSpeed ? cruiseSpeed : numeric_limits<double>::infinity(),
-			ship.MaxReverseVelocity() * .99);
-		if(!movingTowardsTarget || velocity.Length() < maxSpeed)
-			command |= Command::BACK;
+		command.SetTurn(TurnToward(ship, velocity));
+		command |= Command::BACK;
 	}
+
 	return false;
 }
 
@@ -2531,36 +2508,49 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	// This is a fudge factor for how straight you must be facing: it increases
 	// from 0.8 when it will take many frames to stop, to nearly 1 when it will
 	// take less than 1 frame to stop.
-	const auto limit = [](double stopTime)
+	double stopTime = speed / ship.Acceleration();
+	double limit = .8 + .2 / (1. + stopTime * stopTime * stopTime * .001);
+
+	// If you have a reverse thruster, figure out whether using it is faster
+	// than turning around and using your main thruster.
+	if(ship.Attributes().Get("reverse thrust"))
 	{
-		return .8 + .2 / (1. + stopTime * stopTime * stopTime * .001);
-	};
+		// Figure out your stopping time using your main engine:
+		double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
+		double forwardTime = degreesToTurn / ship.TurnRate();
+		forwardTime += stopTime;
 
-	double relativeFacing = acos(clamp(-velocity.Unit().Dot(angle.Unit()), -1., 1.));
-	double finalFacing = direction ? acos(clamp(direction.Unit().Dot(-velocity.Unit()), -1., 1.)) : 0.;
-	double finalReverseFacing = direction ? acos(clamp(direction.Unit().Dot(velocity.Unit()), -1., 1.)) : 0.;
-	double turnRate = TO_RAD * ship.TrueTurnRate();
+		// Figure out your reverse thruster stopping time:
+		double reverseTime = (180. - degreesToTurn) / ship.TurnRate();
+		reverseTime += speed / ship.ReverseAcceleration();
 
-	// How long it takes for a ship to stop, given a facing angle and final angle relative to its velocity.
-	const auto stoppingTime = [](double velocity, double facingAngle, double acceleration, double turningRate,
-		double finalFacing)
-	{
-		return velocity / acceleration + (abs(facingAngle) + abs(finalFacing)) / turningRate;
-	};
+		// If you want to end up facing a specific direction, add the extra turning time.
+		if(direction)
+		{
+			// Time to turn from facing backwards to target:
+			double degreesFromBackwards = TO_DEG * acos(min(1., max(-1., direction.Unit().Dot(-velocity.Unit()))));
+			double turnFromBackwardsTime = degreesFromBackwards / ship.TurnRate();
+			forwardTime += turnFromBackwardsTime;
 
-	double forwardTime = stoppingTime(speed, relativeFacing, ship.TrueAcceleration(), turnRate, finalFacing);
-	double reverseTime = stoppingTime(speed, PI - relativeFacing, ship.TrueReverseAcceleration(), turnRate,
-		finalReverseFacing);
+			// Time to turn from facing forwards to target:
+			double degreesFromForward = TO_DEG * acos(min(1., max(-1., direction.Unit().Dot(angle.Unit()))));
+			double turnFromForwardTime = degreesFromForward / ship.TurnRate();
+			reverseTime += turnFromForwardTime;
+		}
 
-	if(forwardTime < reverseTime)
-		command.SetTurn(TurnToward(ship, -velocity));
-	else
-		command.SetTurn(TurnToward(ship, velocity));
-	double currentRelFacing = velocity.Unit().Dot(angle.Unit());
-	if(currentRelFacing < -limit(forwardTime))
+		if(reverseTime < forwardTime)
+		{
+			command.SetTurn(TurnToward(ship, velocity));
+			if(velocity.Unit().Dot(angle.Unit()) > limit)
+				command |= Command::BACK;
+			return false;
+		}
+	}
+
+	command.SetTurn(TurnBackward(ship));
+	if(velocity.Unit().Dot(angle.Unit()) < -limit)
 		command |= Command::FORWARD;
-	else if(currentRelFacing > limit(reverseTime))
-		command |= Command::BACK;
+
 	return false;
 }
 
@@ -2595,11 +2585,27 @@ void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 		if(fabs(deviation) > scramThreshold)
 		{
 			// Need to maneuver; not ready to jump
-			Point goodVelocity = direction * max(ship.Velocity().Unit().Dot(direction), 0.);
-			MoveTo(ship, command, ship.Position() + goodVelocity, goodVelocity, 1., .1);
+			if((ship.Facing().Unit().Dot(normal) < 0) == (deviation < 0))
+				// Thrusting from this angle is counterproductive
+				direction = -deviation * normal;
+			else
+			{
+				command |= Command::FORWARD;
+
+				// How much correction will be applied to deviation by thrusting
+				// as I turn back toward the jump direction.
+				double turnRateRadians = ship.TurnRate() * TO_RAD;
+				double cos = ship.Facing().Unit().Dot(direction);
+				// integral(t*sin(r*x), angle/r, 0) = t/r * (1 - cos(angle)), so:
+				double correctionWhileTurning = fabs(1 - cos) * ship.Acceleration() / turnRateRadians;
+				// (Note that this will always underestimate because thrust happens before turn)
+
+				if(fabs(deviation) - correctionWhileTurning > scramThreshold)
+					// Want to thrust from an even sharper angle
+					direction = -deviation * normal;
+			}
 		}
-		else
-			command.SetTurn(TurnToward(ship, direction));
+		command.SetTurn(TurnToward(ship, direction));
 	}
 	// If we're a jump drive, just stop.
 	else if(isJump)
@@ -2614,17 +2620,17 @@ void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 void AI::CircleAround(const Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
+	command.SetTurn(TurnToward(ship, direction));
+
 	double length = direction.Length();
-	if(length > 200.)
+	if(length > 200. && ship.Facing().Unit().Dot(direction) >= 0.)
 	{
-		MoveTo(ship, command, direction.Unit() * 200. + ship.Position(), target.Velocity(), 1., .1);
-		if(length > 750. && ShouldUseAfterburner(ship) && ship.Facing().Unit().Dot(direction) > 0.)
+		command |= Command::FORWARD;
+
+		// If the ship is far away enough the ship should use the afterburner.
+		if(length > 750. && ShouldUseAfterburner(ship))
 			command |= Command::AFTERBURNER;
 	}
-	else
-		// This will look goofy for reverse-only ships, as they face the other way when thrusting.
-		// This can also happen with mixed-thrust ships, so we can't easily fix it.
-		command.SetTurn(TurnToward(ship, direction));
 }
 
 
@@ -2632,7 +2638,7 @@ void AI::CircleAround(const Ship &ship, Command &command, const Body &target)
 void AI::Swarm(const Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
-	double maxSpeed = max(ship.MaxVelocity(), ship.MaxReverseVelocity());
+	double maxSpeed = ship.MaxVelocity();
 	double rendezvousTime = RendezvousTime(direction, target.Velocity(), maxSpeed);
 	if(std::isnan(rendezvousTime) || rendezvousTime > 600.)
 		rendezvousTime = 600.;
@@ -2653,12 +2659,9 @@ void AI::KeepStation(const Ship &ship, Command &command, const Body &target)
 	static const double THRUST_DEADBAND = .5;
 
 	// Current properties of the two ships:
-	double forwardV = ship.MaxVelocity();
-	double reverseV = ship.MaxReverseVelocity();
-	bool useReverse = reverseV > forwardV;
-	double maxV = max(forwardV, reverseV);
-	double accel = useReverse ? ship.TrueReverseAcceleration() : ship.TrueAcceleration();
-	double turn = ship.TrueTurnRate();
+	double maxV = ship.MaxVelocity();
+	double accel = ship.Acceleration();
+	double turn = ship.TurnRate();
 	double mass = ship.InertialMass();
 	Point unit = ship.Facing().Unit();
 	double currentAngle = ship.Facing().Degrees();
@@ -2700,8 +2703,6 @@ void AI::KeepStation(const Ship &ship, Command &command, const Body &target)
 	Point facingGoal = rendezvous.Unit() * positionWeight
 		+ velocityDelta.Unit() * velocityWeight
 		+ target.Facing().Unit() * facingWeight;
-	if(useReverse)
-		facingGoal = -facingGoal;
 	double targetAngle = Angle(facingGoal).Degrees() - currentAngle;
 	if(abs(targetAngle) > 180.)
 		targetAngle += (targetAngle < 0. ? 360. : -360.);
@@ -2788,7 +2789,7 @@ void AI::Attack(const Ship &ship, Command &command, const Ship &target)
 		bool useReverse = reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
 				|| target.Velocity().Dot(-direction.Unit()) <= reverseSpeed);
 		slowdownDistance = approachSpeed * approachSpeed / (useReverse ?
-			ship.TrueReverseAcceleration() : (ship.TrueAcceleration() + 160. / ship.TrueTurnRate())) / 2.;
+			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate())) / 2.;
 
 		// If we're too close, run away.
 		if(direction.Length() <
@@ -2836,24 +2837,64 @@ void AI::AimToAttack(const Ship &ship, Command &command, const Body &target)
 
 void AI::MoveToAttack(const Ship &ship, Command &command, const Body &target)
 {
-	const auto [minRange, maxRange] = WeaponsRange(ship);
-	MoveTo(ship, command, target.Position(), target.Velocity(), minRange, 10.);
-	if(ship.Position().DistanceSquared(target.Position()) < maxRange * maxRange)
-		AimToAttack(ship, command, target);
-	else if(ship.Facing().Unit().Dot((target.Position() - ship.Position()).Unit()) > .9 && ShouldUseAfterburner(ship))
-		command |= Command::AFTERBURNER;
+	Point direction = target.Position() - ship.Position();
+
+	// First of all, aim in the direction that will hit this target.
+	AimToAttack(ship, command, target);
+
+	// Calculate this ship's "turning radius"; that is, the smallest circle it
+	// can make while at its current speed.
+	double stepsInFullTurn = 360. / ship.TurnRate();
+	double circumference = stepsInFullTurn * ship.Velocity().Length();
+	double diameter = max(200., circumference / PI);
+
+	const auto facing = ship.Facing().Unit().Dot(direction.Unit());
+	// If the ship has reverse thrusters and the target is behind it, we can
+	// use them to reach the target more quickly.
+	if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
+		command |= Command::BACK;
+	// Only apply thrust if either:
+	// This ship is within 90 degrees of facing towards its target and far enough away not to overshoot
+	// if it accelerates while needing to turn further, or:
+	// This ship is moving away from its target but facing mostly towards it.
+	else if((facing >= 0. && direction.Length() > diameter)
+			|| (ship.Velocity().Dot(direction) < 0. && facing >= .9))
+	{
+		command |= Command::FORWARD;
+		// Use afterburner, if applicable.
+		if(direction.Length() > 600. && ShouldUseAfterburner(ship))
+			command |= Command::AFTERBURNER;
+	}
 }
 
 
 
 void AI::PickUp(const Ship &ship, Command &command, const Body &target)
 {
-	MoveTo(ship, command, target.Position(), (target.Velocity() + ship.Velocity()) / 2.,
-		ship.Radius(), 100.);
-	if(ship.Position().DistanceSquared(target.Position()) > 600. * 600. &&
-			ship.Facing().Unit().Dot((target.Position() - ship.Position()).Unit()) > .9 &&
-			ShouldUseAfterburner(ship))
-		command |= Command::AFTERBURNER;
+	// Figure out the target's velocity relative to the ship.
+	Point p = target.Position() - ship.Position();
+	Point v = target.Velocity() - ship.Velocity();
+	double vMax = ship.MaxVelocity();
+
+	// Estimate where the target will be by the time we reach it.
+	double time = RendezvousTime(p, v, vMax);
+	if(std::isnan(time))
+		time = p.Length() / vMax;
+	double degreesToTurn = TO_DEG * acos(min(1., max(-1., p.Unit().Dot(ship.Facing().Unit()))));
+	time += degreesToTurn / ship.TurnRate();
+	p += v * time;
+
+	// Move toward the target.
+	command.SetTurn(TurnToward(ship, p));
+	double dp = p.Unit().Dot(ship.Facing().Unit());
+	if(dp > .7)
+		command |= Command::FORWARD;
+
+	// Use the afterburner if it will not cause you to miss your target.
+	double squareDistance = p.LengthSquared();
+	if(command.Has(Command::FORWARD) && ShouldUseAfterburner(ship))
+		if(dp > max(.9, min(.9999, 1. - squareDistance / 10000000.)))
+			command |= Command::AFTERBURNER;
 }
 
 
@@ -2912,7 +2953,7 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 	const Government *government = ship->GetGovernment();
 	const string &language = government->Language();
 	if(language.empty() || player.Conditions().Get("language: " + language))
-		Messages::Add(government->GetName() + " " + ship->Noun() + " \"" + ship->Name()
+		Messages::Add(government->DisplayName() + " " + ship->Noun() + " \"" + ship->GivenName()
 			+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
 
 }
@@ -3159,8 +3200,6 @@ void AI::DoMining(Ship &ship, Command &command)
 	command.SetTurn(TurnToward(ship, heading));
 	if(ship.Velocity().Dot(heading.Unit()) < .7 * ship.MaxVelocity())
 		command |= Command::FORWARD;
-	else if(ship.Velocity().Dot(-heading.Unit()) < .7 * ship.MaxReverseVelocity())
-		command |= Command::BACK;
 }
 
 
@@ -3199,15 +3238,13 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 
 			// Estimate how long it would take to intercept this flotsam.
 			Point v = it->Velocity() - ship.Velocity();
-			double vMax = max(ship.MaxVelocity(), ship.MaxReverseVelocity());
+			double vMax = ship.MaxVelocity();
 			double time = RendezvousTime(p, v, vMax);
 			if(std::isnan(time))
 				continue;
 
 			double degreesToTurn = TO_DEG * acos(min(1., max(-1., p.Unit().Dot(ship.Facing().Unit()))));
-			if(ship.MaxReverseVelocity() > ship.MaxVelocity())
-				degreesToTurn = 180. - degreesToTurn;
-			time += degreesToTurn / ship.TrueTurnRate();
+			time += degreesToTurn / ship.TurnRate();
 			if(time < bestTime)
 			{
 				bestTime = time;
@@ -3404,7 +3441,7 @@ void AI::DoScatter(const Ship &ship, Command &command) const
 
 	double flip = command.Has(Command::BACK) ? -1 : 1;
 	double turnRate = ship.TurnRate();
-	double acceleration = flip ? ship.TrueReverseAcceleration() : ship.TrueAcceleration();
+	double acceleration = ship.Acceleration();
 	// TODO: If there are many ships, use CollisionSet::Circle or another
 	// suitable method to limit which ships are checked.
 	for(const shared_ptr<Ship> &other : ships)
@@ -3418,15 +3455,13 @@ void AI::DoScatter(const Ship &ship, Command &command) const
 		Point offset = other->Position() - ship.Position();
 		if(offset.LengthSquared() > 400.)
 			continue;
-		if(fabs(other->TrueTurnRate() / turnRate - 1.) > .05)
+		if(fabs(other->TurnRate() / turnRate - 1.) > .05)
 			continue;
-
-		double otherFlip = other->Commands().Has(Command::BACK) ? -1 : 1;
-		if(fabs((otherFlip < 0 ? other->TrueReverseAcceleration() : other->ReverseAcceleration()) / acceleration - 1.) > .05)
+		if(fabs(other->Acceleration() / acceleration - 1.) > .05)
 			continue;
 
 		// We are too close to this ship. Turn away from it if we aren't already facing away.
-		if(fabs((other->Facing().Unit() * otherFlip).Dot(flip * ship.Facing().Unit())) > 0.99) // 0.99 => 8 degrees
+		if(fabs(other->Facing().Unit().Dot(ship.Facing().Unit())) > 0.99) // 0.99 => 8 degrees
 			command.SetTurn(flip * offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
 		return;
 	}
@@ -3480,6 +3515,8 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	Point position = ship.Position();
 	Point velocity = ship.Velocity() - targetVelocity;
 	Angle angle = ship.Facing();
+	double acceleration = ship.CrewAcceleration();
+	double turnRate = ship.CrewTurnRate();
 	shouldReverse = false;
 
 	// If I were to turn around and stop now the relative movement, where would that put me?
@@ -3498,21 +3535,29 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 		v = maxVelocity;
 	}
 
-	const auto stopDistance = [](double v, double angle, double acceleration, double turn)
+	// This assumes you're facing exactly the wrong way.
+	double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
+	double stopDistance = v * (degreesToTurn / turnRate);
+	// Sum of: v + (v - a) + (v - 2a) + ... + 0.
+	// The number of terms will be v / a.
+	// The average term's value will be v / 2. So:
+	stopDistance += .5 * v * v / acceleration;
+
+	if(ship.Attributes().Get("reverse thrust"))
 	{
-		// Sum of: v + (v - a) + (v - 2a) + ... + 0.
-		// The number of terms will be v / a.
-		// The average term's value will be v / 2. So:
-		return v * (angle / turn) + .5 * v * v / acceleration;
-	};
-	double relativeFacing = acos(clamp(-velocity.Unit().Dot(angle.Unit()), -1., 1.));
-	double turnRate = TO_RAD * ship.TrueTurnRate();
+		// Figure out your reverse thruster stopping distance:
+		double reverseAcceleration = ship.Attributes().Get("reverse thrust") / ship.InertialMass();
+		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
+		reverseDistance += .5 * v * v / reverseAcceleration;
 
-	double forwardDistance = stopDistance(v, relativeFacing, ship.TrueAcceleration(), turnRate);
-	double reverseDistance = stopDistance(v, PI - relativeFacing, ship.TrueReverseAcceleration(), turnRate);
+		if(reverseDistance < stopDistance)
+		{
+			shouldReverse = true;
+			stopDistance = reverseDistance;
+		}
+	}
 
-	shouldReverse = reverseDistance < forwardDistance;
-	return position + min(reverseDistance, forwardDistance) * velocity.Unit();
+	return position + stopDistance * velocity.Unit();
 }
 
 
@@ -4258,12 +4303,17 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			else if(selectNext && isPlayer == shift && other->IsTargetable())
 			{
 				ship.SetTargetShip(other);
+				if(isPlayer)
+					player.SelectShip(other.get(), false);
 				selectNext = false;
 				break;
 			}
 		}
 		if(selectNext)
+		{
 			ship.SetTargetShip(shared_ptr<Ship>());
+			player.SelectShip(nullptr, false);
+		}
 		else
 			UI::PlaySound(UI::UISound::TARGET);
 	}
@@ -4546,8 +4596,12 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				name = ship.GetTargetSystem()->DisplayName();
 
 			if(activeCommands.Has(Command::FLEET_JUMP))
-				Messages::Add("Engaging fleet autopilot to jump to the " + name + " system."
-					" Your fleet will jump when ready.", Messages::Importance::High);
+			{
+				// Note: also has command JUMP on only the first call.
+				if(activeCommands.Has(Command::JUMP))
+					Messages::Add("Engaging fleet autopilot to jump to the " + name + " system."
+						" Your fleet will jump when ready.", Messages::Importance::High);
+			}
 			else
 				Messages::Add("Engaging autopilot to jump to the " + name + " system.", Messages::Importance::High);
 		}

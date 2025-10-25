@@ -248,6 +248,12 @@ bool Panel::AllowsFastForward() const noexcept
 
 
 
+void Panel::UpdateTooltipActivation()
+{
+}
+
+
+
 void Panel::AddOrRemove()
 {
 	for(auto &panel : childrenToAdd)
@@ -313,6 +319,12 @@ bool Panel::Scroll(double dx, double dy)
 bool Panel::Release(int x, int y, MouseButton button)
 {
 	return false;
+}
+
+
+
+void Panel::Resize()
+{
 }
 
 
@@ -561,6 +573,15 @@ bool Panel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
 bool Panel::ControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive)
 {
 	return false;
+}
+
+
+
+void Panel::DoResize()
+{
+	Resize();
+	for(auto &child : children)
+		child->DoResize();
 }
 
 
