@@ -342,7 +342,7 @@ outfit "Chiisana Rift Steering"
 		"frame rate" 1
 		"rewind"
 		"scale" 0.3
-	"flare sound" "ion tiny"
+	"steering flare sound" "ion tiny"
 	description "Given that Bunrodean ships are typically focused on making heavy use of their forward facing guns, the Bunrodea favor high turn rates much more than high speeds. As such, rift steering systems are larger than the respective thruster systems of the same size category."
 
 outfit "Nami Rift Steering"
@@ -361,7 +361,7 @@ outfit "Nami Rift Steering"
 		"frame rate" 1
 		"rewind"
 		"scale" 0.6
-	"flare sound" "ion small"
+	"steering flare sound" "ion small"
 	description "As with many Bunrodean systems, rift engines produce very little heat. This allows their ships to forgo the use of any significant cooling systems, leaving more room for other systems, be they defensive or offensive."
 
 outfit "Ookii Rift Steering"
@@ -380,7 +380,7 @@ outfit "Ookii Rift Steering"
 		"frame rate" 1
 		"rewind"
 		"scale" 0.8
-	"flare sound" "ion medium"
+	"steering flare sound" "ion medium"
 	description "Although the focus on steering over thrust makes Bunrodean ships easy targets to track, the power of their weapons systems would leave anyone foolish to believe that they are sitting ducks."
 
 outfit "Subarashii Rift Steering"
@@ -398,5 +398,5 @@ outfit "Subarashii Rift Steering"
 	"steering flare sprite" "effect/bunrodea flare/large"
 		"frame rate" 1
 		"rewind"
-	"flare sound" "ion large"
+	"steering flare sound" "ion large"
 	description "The largest of the rift steering systems, these engines are what allow the Bunrodea's heavy gunships to bear their many guns toward their unfortunate target."
