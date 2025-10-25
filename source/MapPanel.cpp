@@ -461,6 +461,13 @@ bool MapPanel::AllowsFastForward() const noexcept
 
 
 
+void MapPanel::UpdateTooltipActivation()
+{
+	tooltip.UpdateActivationCount();
+}
+
+
+
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	// When changing the map mode, explicitly close all child panels (for example, scrollable text boxes).
@@ -1353,7 +1360,7 @@ void MapPanel::DrawSystems()
 			}
 		}
 
-		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
+		if(commodity == SHOW_GOVERNMENT && node.government && node.government->DisplayName() != "Uninhabited")
 		{
 			// For every government that is drawn, keep track of how close it
 			// is to the center of the view. The four closest governments

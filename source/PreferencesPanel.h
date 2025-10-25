@@ -42,6 +42,8 @@ public:
 	// Draw this panel.
 	virtual void Draw() override;
 
+	virtual void UpdateTooltipActivation() override;
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -50,6 +52,8 @@ protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Drag(double dx, double dy) override;
+
+	virtual void Resize() override;
 
 	virtual void EndEditing() override;
 
