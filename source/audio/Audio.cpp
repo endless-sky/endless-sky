@@ -108,8 +108,8 @@ namespace {
 	// The number of Pause vs Resume requests received.
 	int pauseChangeCount = 0;
 	// If we paused the audio multiple times, only resume it after the same number of Resume() calls.
-	// We start with -2, so when MenuPanel and PlanetPanel opens up the first time, it doesn't pause the loading sounds.
-	int pauseCount = -2;
+	// We start with -1, so when MenuPanel opens up the first time, it doesn't pause the loading sounds.
+	int pauseCount = -1;
 }
 
 
