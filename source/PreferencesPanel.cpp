@@ -292,6 +292,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 		// Reset the render buffers in case the UI scale has changed.
 		Resize();
+		controlTypeDropdown->SetVisible(page == 'c');
 	}
 #ifdef __ANDROID__
 	else if (page == 'p' && key == 'i')

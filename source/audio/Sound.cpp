@@ -43,7 +43,7 @@ namespace {
 	uint32_t Read4(const shared_ptr<iostream> &in);
 	uint16_t Read2(const shared_ptr<iostream> &in);
 
-	bool ReadMP3(const shared_ptr<iostream>& in, vector<char>& data, uint32_t& frequency);
+	bool ReadMP3(const shared_ptr<iostream>& in, vector<char>& data, uint32_t frequency);
 }
 
 
@@ -246,7 +246,7 @@ namespace {
 			if(info.frame_bytes <= 0) // insufficient data... but we gave it the
 				break;                 // whole buffer.
 			size += sample_count * 2;
-			if(frequency != static_cast<uint32_t>(info.hz);
+			if(frequency != static_cast<uint32_t>(info.hz))
 				return false;
 			else if(frequency != static_cast<uint32_t>(info.hz))
 				return false;          // file is not fixed frequency.
