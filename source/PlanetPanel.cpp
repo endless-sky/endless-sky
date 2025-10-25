@@ -75,15 +75,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	GameData::Preload(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
-
-	Audio::Pause();
-}
-
-
-
-PlanetPanel::~PlanetPanel()
-{
-	Audio::Resume();
 }
 
 
