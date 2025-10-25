@@ -179,7 +179,15 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	glViewport(0, 0, scaledSize.X(), scaledSize.Y());
 
 	static const float CLEAR[] = {0, 0, 0, 0};
-	glClearBufferfv(GL_COLOR, 0, CLEAR);
+	if(glClearBufferfv)
+		glClearBufferfv(GL_COLOR, 0, CLEAR);
+	else
+	{
+		GLenum drawBuffers = GL_COLOR_ATTACHMENT0;
+		glDrawBuffers(1, &drawBuffers);
+		glClearColor(CLEAR[0], CLEAR[1], CLEAR[2], CLEAR[3]);
+		glClear(GL_COLOR_BUFFER_BIT);
+	}
 
 	return RenderTargetGuard(*this, size.X(), size.Y());
 }
