@@ -56,6 +56,7 @@ namespace {
 		MERCIFUL,
 		TARGET,
 		MARKED,
+		TRACKED,
 		LAUNCHING,
 		LINGERING,
 		DARING,
@@ -100,6 +101,7 @@ namespace {
 		{"merciful", MERCIFUL},
 		{"target", TARGET},
 		{"marked", MARKED},
+		{"tracked", TRACKED},
 		{"launching", LAUNCHING},
 		{"lingering", LINGERING},
 		{"daring", DARING},
@@ -426,6 +428,13 @@ bool Personality::IsTarget() const
 bool Personality::IsMarked() const
 {
 	return flags.test(MARKED);
+}
+
+
+
+bool Personality::IsTracked() const
+{
+	return flags.test(TRACKED);
 }
 
 

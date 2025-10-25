@@ -450,6 +450,13 @@ bool NPC::ShouldSpawn() const
 
 
 
+const Personality &NPC::GetPersonality() const
+{
+	return personality;
+}
+
+
+
 // Get the ships associated with this set of NPCs.
 const list<shared_ptr<Ship>> NPC::Ships() const
 {

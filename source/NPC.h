@@ -95,6 +95,8 @@ public:
 	void UpdateSpawning(const PlayerInfo &player);
 	bool ShouldSpawn() const;
 
+	// Get the personality that dictates the behavior of the ships associated with this set of NPCs.
+	const Personality &GetPersonality() const;
 	// Get the ships associated with this set of NPCs.
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 

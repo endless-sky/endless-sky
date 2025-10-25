@@ -764,6 +764,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 {
 	auto toVisit = set<const System *>{mission.Waypoints()};
 	toVisit.insert(mission.MarkedSystems().begin(), mission.MarkedSystems().end());
+	toVisit.insert(mission.TrackedSystems().begin(), mission.TrackedSystems().end());
 	for(const Planet *planet : mission.Stopovers())
 		toVisit.insert(planet->GetSystem());
 	auto hasVisited = set<const System *>{mission.VisitedWaypoints()};
@@ -1236,6 +1237,13 @@ void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 		}
 
 	for(const System *mark : mission.MarkedSystems())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(mark);
+			return;
+		}
+
+	for(const System *mark : mission.TrackedSystems())
 		if(++index == cycleInvolvedIndex)
 		{
 			CenterOnSystem(mark);
