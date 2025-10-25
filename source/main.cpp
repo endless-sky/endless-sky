@@ -337,8 +337,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 			{
 				// The window has been resized. Adjust the raw screen size
-				// and the OpenGL viewport to match.
+				// and the OpenGL viewport to match. The order (window first, then UI panels)
+				// matters as window changes can adjust the zoom factor.
 				GameWindow::AdjustViewport();
+				menuPanels.AdjustViewport();
+				gamePanels.AdjustViewport();
 			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
