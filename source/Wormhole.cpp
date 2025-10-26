@@ -39,7 +39,7 @@ Wormhole::Wormhole()
 
 
 // Load a wormhole's description from a file.
-void Wormhole::Load(const DataNode &node)
+void Wormhole::Load(const DataNode &node, bool dryRun)
 {
 	if(node.Size() < 2)
 		return;
@@ -92,7 +92,7 @@ void Wormhole::Load(const DataNode &node)
 				auto it = links.find(from);
 				if(it != links.end() && it->second == to)
 					links.erase(from);
-				else
+				else if(!dryRun)
 					child.PrintTrace("Unable to remove non-existent link:");
 			}
 			else

@@ -33,7 +33,7 @@ public:
 	// Define the constructor to set "linkColor" to the desired default color.
 	Wormhole();
 	// Load a wormhole's description from a file.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, bool dryRun);
 	// Load a wormhole from a given planet.
 	void LoadFromPlanet(const Planet &planet);
 	// Check if this wormhole has been defined.

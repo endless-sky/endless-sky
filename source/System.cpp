@@ -91,7 +91,7 @@ double System::Asteroid::Energy() const
 
 
 // Load a system's description.
-void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsStore *playerConditions)
+void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsStore *playerConditions, bool dryRun)
 {
 	if(node.Size() < 2)
 		return;
@@ -350,7 +350,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 
 				if(removeIt == objects.end())
 				{
-					child.PrintTrace("Warning: Did not find matching object for specified operation:");
+					if(!dryRun)
+						child.PrintTrace("Warning: Did not find matching object for specified operation:");
 					continue;
 				}
 

@@ -51,14 +51,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Fleet::Fleet(const DataNode &node)
+Fleet::Fleet(const DataNode &node, bool dryRun)
 {
-	Load(node);
+	Load(node, dryRun);
 }
 
 
 
-void Fleet::Load(const DataNode &node)
+void Fleet::Load(const DataNode &node, bool dryRun)
 {
 	if(node.Size() >= 2)
 		fleetName = node.Token(1);
@@ -127,7 +127,7 @@ void Fleet::Load(const DataNode &node)
 			// If given a full definition of one of this fleet's variant members, remove the variant.
 			Variant toRemove(child);
 			int count = erase(variants, toRemove);
-			if(!count)
+			if(!count && !dryRun)
 				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
 		}
 		else

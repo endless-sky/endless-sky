@@ -37,10 +37,10 @@ class Shop {
 public:
 	Shop();
 	Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
-		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets, bool dryRun);
 
 	void Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
-		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets, bool dryRun);
 
 	// This shop's name.
 	const std::string &Name() const;
@@ -71,16 +71,16 @@ Shop<Item>::Shop()
 
 template<class Item>
 Shop<Item>::Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
-	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
+	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets, bool dryRun)
 {
-	Load(node, items, playerConditions, visitedSystems, visitedPlanets);
+	Load(node, items, playerConditions, visitedSystems, visitedPlanets, dryRun);
 }
 
 
 
 template<class Item>
 void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
-	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
+	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets, bool dryRun)
 {
 	name = node.Token(1);
 	// If an event or second definition updates this shop, clear the stock
@@ -99,7 +99,10 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 		if(key == "to" && hasValue && child.Token(valueIndex) == "sell")
 		{
 			if(add && !toSell.IsEmpty())
-				child.PrintTrace("Error: Cannot \"add\" to an existing condition set:");
+			{
+				if(!dryRun)
+					child.PrintTrace("Error: Cannot \"add\" to an existing condition set:");
+			}
 			else if(remove)
 			{
 				toSell = ConditionSet{};
@@ -112,7 +115,10 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 		else if(key == "location")
 		{
 			if(add && !location.IsEmpty())
-				child.PrintTrace("Error: Cannot \"add\" to an existing location filter:");
+			{
+				if(!dryRun)
+					child.PrintTrace("Error: Cannot \"add\" to an existing location filter:");
+			}
 			else if(remove)
 			{
 				location = LocationFilter{};

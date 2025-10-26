@@ -26,7 +26,7 @@ using namespace std;
 
 
 void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
-	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets, bool dryRun)
 {
 	for(const DataNode &child : node)
 	{
@@ -46,7 +46,10 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		if(tag == "location")
 		{
 			if(add && !location.IsEmpty())
-				child.PrintTrace("Error: Cannot \"add\" to an existing location filter:");
+			{
+				if(!dryRun)
+					child.PrintTrace("Error: Cannot \"add\" to an existing location filter:");
+			}
 			else if(remove)
 			{
 				location = LocationFilter{};
@@ -105,7 +108,10 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		else if(tag == "to" && hasValue && child.Token(valueIndex) == "show")
 		{
 			if(add && !toShow.IsEmpty())
-				child.PrintTrace("Error: Cannot \"add\" to an existing condition set:");
+			{
+				if(!dryRun)
+					child.PrintTrace("Error: Cannot \"add\" to an existing condition set:");
+			}
 			else if(remove)
 			{
 				toShow = ConditionSet{};
