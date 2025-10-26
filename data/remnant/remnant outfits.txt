@@ -282,7 +282,8 @@ outfit "EMP Torpedo Bay"
 		"acceleration" .7
 		"drag" .1
 		"turn" 2
-		"homing" 3
+		"homing"
+			"throttle control"
 		"infrared tracking" .7
 		"radar tracking" .8
 		"trigger radius" 50
@@ -295,9 +296,12 @@ outfit "EMP Torpedo Bay"
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfitter "EMP Torpedo Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: EMP Torpedo Bay"
 			has "outfit: Ka'het EMP Deployer"
@@ -372,7 +376,8 @@ outfit "Teciimach Bay"
 		"acceleration" .7
 		"drag" .1
 		"turn" 2.5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"infrared tracking" .8
 		"radar tracking" .9
 		"trigger radius" 50
@@ -388,6 +393,8 @@ outfit "Teciimach Bay"
 	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 	description "Centuries later, the Teciimach revision includes a range of upgrades to their effectiveness, efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Teciimach Pod"
 	category "Secondary Weapons"
@@ -427,7 +434,8 @@ outfit "Teciimach Pod"
 		"acceleration" .7
 		"drag" .1
 		"turn" 2.5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"infrared tracking" .8
 		"radar tracking" .9
 		"trigger radius" 50
@@ -443,6 +451,8 @@ outfit "Teciimach Pod"
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor-class vessels."
 	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "emp torpedo fire"
 	sprite "effect/emp torpedo fire"
@@ -476,6 +486,7 @@ effect "emp spark"
 
 outfitter "Teciimach Canister Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Teciimach Bay"
 			has "outfit: Teciimach Pod"
