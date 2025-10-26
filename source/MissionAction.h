@@ -108,6 +108,7 @@ private:
 	std::string trigger;
 	std::string location;
 	LocationFilter systemFilter;
+	LocationFilter planetFilter;
 
 	// Dialog text of instantiated missions, or missions with pure-text dialog (no conditions or phrase blocks)
 	std::string dialogText;

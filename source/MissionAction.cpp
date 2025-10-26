@@ -185,6 +185,13 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 		else
 			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
 	}
+	else if(key == "planet")
+	{
+		if(location.empty() && child.HasChildren())
+			planetFilter.Load(child, visitedSystems, visitedPlanets);
+		else
+			child.PrintTrace("Error: Unsupported use of \"planet\" LocationFilter:");
+	}
 	else if(key == "can trigger after failure")
 		runsWhenFailed = true;
 	else
@@ -218,6 +225,12 @@ void MissionAction::SaveBody(DataWriter &out) const
 		// LocationFilter indentation is handled by its Save method.
 		systemFilter.Save(out);
 	}
+	if(!planetFilter.IsEmpty())
+	{
+		out.Write("planet");
+		// LocationFilter indentation is handled by its Save method.
+		planetFilter.Save(out);
+	}
 	if(runsWhenFailed)
 		out.Write("can trigger after failure");
 	if(!dialogText.empty())
@@ -248,6 +261,8 @@ string MissionAction::Validate() const
 	// Any filter used to control where this action triggers must be valid.
 	if(!systemFilter.IsValid())
 		return "system location filter";
+	if(!planetFilter.IsValid())
+		return "planet location filter";
 
 	// Stock conversations must be defined.
 	if(conversation.IsStock() && conversation->IsEmpty())
@@ -347,9 +362,11 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const sha
 		}
 	}
 
-	// An `on enter` MissionAction may have defined a LocationFilter that
-	// specifies the systems in which it can occur.
+	// An `on enter` or `on land` MissionAction may have defined a LocationFilter
+	// that specifies the systems or planets in which it can occur.
 	if(!systemFilter.IsEmpty() && !systemFilter.Matches(player.GetSystem()))
+		return false;
+	if(!planetFilter.IsEmpty() && !planetFilter.Matches(player.GetPlanet()))
 		return false;
 	return true;
 }
@@ -417,6 +434,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.location = location;
 	// Convert any "distance" specifiers into "near <system>" specifiers.
 	result.systemFilter = systemFilter.SetOrigin(origin);
+	result.planetFilter = planetFilter.SetOrigin(origin);
 
 	result.requiredOutfits = requiredOutfits;
 
