@@ -264,7 +264,6 @@ private:
 	std::map<const Ship *, Angle> miningAngle;
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
-	std::map<const Ship *, int> kitingTime;
 	std::map<const Ship *, double> appeasementThreshold;
 
 	// Records for formations flying around leadships and other objects.

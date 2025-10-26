@@ -376,12 +376,6 @@ namespace {
 
 	// The minimum speed advantage a ship has to have to consider running away.
 	const double SAFETY_MULTIPLIER = 1.1;
-
-	// Constants for the kiting detector.
-	const int KITING_GROWTH = 4;
-	const int KITING_DECAY = 1;
-	const int KITING_THRESHOLD = 1000;
-	const int KITING_MAXIMUM = 2000;
 }
 
 
@@ -662,7 +656,6 @@ void AI::Clean()
 	miningAngle.clear();
 	miningRadius.clear();
 	miningTime.clear();
-	kitingTime.clear();
 	appeasementThreshold.clear();
 	// Records for formations flying around lead ships and other objects.
 	formations.clear();
@@ -711,15 +704,6 @@ void AI::Step(Command &activeCommands)
 			int &value = fenceCount[&*it];
 			value = min(FENCE_MAX, value + FENCE_DECAY + 1);
 		}
-	}
-	// Update the kiting timer.
-	for(auto it = kitingTime.begin(); it != kitingTime.end(); )
-	{
-		it->second = min(it->second - KITING_DECAY, KITING_MAXIMUM);
-		if(it->second < 0)
-			it = kitingTime.erase(it);
-		else
-			++it;
 	}
 
 	// Allow all formation-positioners to handle their internal administration to
@@ -848,14 +832,6 @@ void AI::Step(Command &activeCommands)
 				if(it->OutfitScanFraction() == 1.)
 					outfitScans[&*it].insert(&*target);
 			}
-		}
-		if(isPresent && target && !target->IsDisabled() && target->GetGovernment()->IsEnemy(gov))
-		{
-			// Keep track of the time this ship's target has been moving away from it.
-			// This is used by the AI to determine if it is being kited.
-			bool isMovingAway = (target->Position() - it->Position()).Dot(target->Velocity() - it->Velocity()) >= 0;
-			if(isMovingAway)
-				kitingTime[&*target] += KITING_GROWTH;
 		}
 		if(isPresent && !personality.IsSwarming())
 		{
@@ -1319,26 +1295,12 @@ const StellarObject *AI::FindLandingLocation(const Ship &ship, const bool refuel
 // Check if the given target can be pursued by this ship.
 bool AI::CanPursue(const Ship &ship, const Ship &target) const
 {
-	// Owned ships ignore fence.
-	if(ship.IsYours())
-		return true;
-
-	// Track time spent chasing a kiting target.
-	bool isDaring = ship.GetPersonality().IsDaring();
-	int maxChaseTime = isDaring ? KITING_THRESHOLD : 2 * KITING_THRESHOLD;
-	auto targetKitingTime = kitingTime.find(&target)->second;
-	bool isKiting = targetKitingTime >= maxChaseTime;
-
-	const ShipAICache &shipAICache = ship.GetAICache();
-	const ShipAICache &targetAICache = target.GetAICache();
-	bool canOutrange = shipAICache.LongestRange() > targetAICache.LongestRange();
-	bool canChase = ship.MaxVelocity() > target.MaxVelocity();
-
-	if(isKiting && !(canChase || canOutrange))
-		return false;
-
 	// If this ship does not care about the "invisible fence", it can always pursue.
 	if(ship.GetPersonality().IsUnconstrained())
+		return true;
+
+	// Owned ships ignore fence.
+	if(ship.IsYours())
 		return true;
 
 	// Check if the target is beyond the "invisible fence" for this system.
@@ -1347,7 +1309,6 @@ bool AI::CanPursue(const Ship &ship, const Ship &target) const
 		return true;
 	else
 		return (fit->second != FENCE_MAX);
-
 }
 
 
@@ -1582,19 +1543,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
 				&& foe->IsDisabled() && (!canPlunder || Has(ship, foe->shared_from_this(), ShipEvent::BOARD)))
 			continue;
-
-		ShipAICache foeAICache = foe->GetAICache();
-		double foeMaxRange = 0;
-		if(foeAICache.GunRange() || foeAICache.TurretRange())
-			foeMaxRange = max(foeAICache.GunRange(), foeAICache.TurretRange());
-
-		bool isDiverging = (foe->Position() - ship.Position()).Dot(foe->Velocity() - ship.Velocity()) >= 0;
-		auto targetKitingTime = kitingTime.find(foe)->second;
-
-		// Avoid foes (i.e. players) that are kiting you.
-		// This means enemies that are faster, have longer-ranged weapons, and are moving away.
-		if(foe->MaxVelocity() > ship.MaxVelocity() && isDiverging && foeMaxRange > maxRange)
-			range += targetKitingTime / 2;
 
 		foe->UpdateTargeterStrength();
 		double targeterStrength = foe->GetTargeterStrength();
