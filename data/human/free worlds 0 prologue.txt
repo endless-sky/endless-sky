@@ -332,12 +332,6 @@ mission "FW Recon 1"
 	source "Glaze"
 	to offer
 		has "FW Recon 0: done"
-		or
-			not "FW Recon 1: offered"
-			and
-				has "FW Katya 7C: done"
-				not "FW Recon 1: active"
-				not "FW Recon 1: done"
 	to fail
 		has "chosen sides"
 	on abort
