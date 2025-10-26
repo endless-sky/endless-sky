@@ -31,7 +31,7 @@
 "message category" "low"
 	"main color" "message category low"
 	"log color" "message log category low"
-	"aggressive deduplication"
+	"main duplicates" "keep old"
 
 # The category used for system messages that require more attention.
 "message category" "info"
@@ -49,7 +49,7 @@
 "message category" "force log"
 	"main color" "message category normal"
 	"log color" "message log category normal"
-	"no log deduplication"
+	"log duplicates" "keep both"
 
 # Same as the default one, but does not add the message to the main panel's list.
 "message category" "log only"
@@ -61,7 +61,15 @@
 	"main color" "message category high"
 	"log color" "message log category high"
 	important
-	"aggressive deduplication"
+	"main duplicates" "keep old"
+
+# A high importance category that allows duplicates everywhere.
+"message category" "high duplicating"
+	"main color" "message category high"
+	"log color" "message log category high"
+	important
+	"main duplicates" "keep both"
+	"log duplicates" "keep both"
 
 
 
@@ -108,7 +116,7 @@ message "undercrewed flagship"
 
 message "cannot board while cloaked"
 	text "You cannot board a ship while cloaked."
-	category "high"
+	category "high no repeat"
 
 message "overheated"
 	text "Your ship has overheated."

@@ -41,7 +41,8 @@ void Messages::Add(const Message &message)
 	if(!category)
 		return;
 	string text = message.Text();
-	if(!category->LogDeduplication() || logged.empty() || text != logged.front().first)
+
+	if(category->AllowsLogDuplicates() || logged.empty() || text != logged.front().first)
 	{
 		logged.emplace_front(text, category);
 		if(logged.size() > MAX_LOG)
@@ -78,7 +79,7 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 	{
 		// If this message is not important and it is already being shown in the
 		// list, ignore it.
-		if(category->AggressiveDeduplication())
+		if(category->MainDuplicatesStrategy() == Message::Category::DuplicatesStrategy::KEEP_OLD)
 		{
 			bool skip = false;
 			for(const Messages::Entry &entry : recent)
@@ -96,7 +97,8 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 				it.step -= 60;
 			// For each incoming message, if it exactly matches an existing message,
 			// replace that one with this new one by scheduling the old one for removal.
-			if(!category->AggressiveDeduplication() && it.message == message && it.deathStep < 0)
+			if(category->MainDuplicatesStrategy() == Message::Category::DuplicatesStrategy::KEEP_NEW
+					&& it.message == message && it.deathStep < 0)
 				it.deathStep = step + animationDuration;
 		}
 		recent.emplace_back(step, message, category);

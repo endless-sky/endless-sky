@@ -52,14 +52,32 @@ void Message::Category::Load(const DataNode &node)
 			setColor(child, mainColor);
 		else if(key == "log color" && hasValue)
 			setColor(child, logColor);
-		else if(key == "aggressive deduplication")
-			aggressiveDeduplication = true;
-		else if(key == "no log deduplication")
-			logDeduplication = false;
+		else if(key == "main duplicates" && hasValue)
+		{
+			const string &value = child.Token(1);
+			if(value == "keep new")
+				mainDuplicates = DuplicatesStrategy::KEEP_NEW;
+			else if(value == "keep old")
+				mainDuplicates = DuplicatesStrategy::KEEP_OLD;
+			else if(value == "keep both")
+				mainDuplicates = DuplicatesStrategy::KEEP_BOTH;
+		}
+		else if(key == "log duplicates" && hasValue)
+		{
+			const string &value = child.Token(1);
+			if(value == "keep old")
+				allowsLogDuplicates = false;
+			else if(value == "keep both")
+				allowsLogDuplicates = true;
+		}
 		else if(key == "important")
-			isImportant = true;
+			// By default this doesn't need a value, but support
+			// explicit false if a plugin wants to override base data.
+			isImportant = !hasValue || child.BoolValue(1);
 		else if(key == "log only")
-			logOnly = true;
+			// By default this doesn't need a value, but support
+			// explicit false if a plugin wants to override base data.
+			logOnly = !hasValue || child.BoolValue(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -95,16 +113,16 @@ const Color &Message::Category::LogColor() const
 
 
 
-bool Message::Category::AggressiveDeduplication() const
+Message::Category::DuplicatesStrategy Message::Category::MainDuplicatesStrategy() const
 {
-	return aggressiveDeduplication;
+	return mainDuplicates;
 }
 
 
 
-bool Message::Category::LogDeduplication() const
+bool Message::Category::AllowsLogDuplicates() const
 {
-	return logDeduplication;
+	return allowsLogDuplicates;
 }
 
 

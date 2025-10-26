@@ -30,14 +30,21 @@ class Message {
 public:
 	class Category {
 	public:
+		enum class DuplicatesStrategy {
+			KEEP_NEW,
+			KEEP_OLD,
+			KEEP_BOTH
+		};
+
+	public:
 		void Load(const DataNode &node);
 		bool IsLoaded() const;
 
 		const std::string &Name() const;
 		const Color &MainColor() const;
 		const Color &LogColor() const;
-		bool AggressiveDeduplication() const;
-		bool LogDeduplication() const;
+		DuplicatesStrategy MainDuplicatesStrategy() const;
+		bool AllowsLogDuplicates() const;
 		bool IsImportant() const;
 		bool LogOnly() const;
 
@@ -49,9 +56,9 @@ public:
 		// The color used in the message log panel.
 		ExclusiveItem<Color> logColor;
 		// Avoid duplicates in the list on the main panel.
-		bool aggressiveDeduplication = false;
+		DuplicatesStrategy mainDuplicates = DuplicatesStrategy::KEEP_NEW;
 		// Avoid duplicating the last log entry.
-		bool logDeduplication = true;
+		bool allowsLogDuplicates = false;
 		// Whether to include this category in the message log panel's filter.
 		bool isImportant = false;
 		// Save this message to the log, but don't show it in the main view.
