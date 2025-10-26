@@ -470,13 +470,13 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			set<Ship *> selected;
 			for(int i : panelState.AllSelected())
 				selected.insert(panelState.Ships()[i].get());
-			player.SetGroup(group, &selected);
+			player.SetEscortGroup(group, &selected);
 		}
 		else
 		{
 			// Convert ship pointers into indices in the ship list.
 			set<int> added;
-			for(Ship *ship : player.GetGroup(group))
+			for(Ship *ship : player.GetEscortGroup(group))
 				for(size_t i = 0; i < panelState.Ships().size(); ++i)
 					if(panelState.Ships()[i].get() == ship)
 						added.insert(i);

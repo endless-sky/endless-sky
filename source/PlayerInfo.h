@@ -329,19 +329,19 @@ public:
 	void ToggleAnySecondary(const Outfit *outfit);
 
 	// Escorts currently selected for giving orders.
-	const std::vector<std::weak_ptr<Ship>> &SelectedShips() const;
+	const std::vector<std::weak_ptr<Ship>> &SelectedEscorts() const;
 	// Select any of the ships that the player owns that are located within the given box
 	// on screen. Return true if any were selected.
-	bool SelectShips(const Rectangle &box, bool hasShift);
+	bool SelectEscorts(const Rectangle &box, bool hasShift);
 	// Select any ships in the given stack, provided by the EscortDisplay. This may contain
 	// mission NPCs that are in the EscortDisplay.
 	bool SelectShips(const std::vector<std::weak_ptr<Ship>> &stack, bool hasShift);
 	// Select one of the ships that the player owns.
-	void SelectShip(const Ship *ship, bool hasShift);
-	void DeselectShip(const Ship *ship);
-	void SelectGroup(int group, bool hasShift);
-	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
-	std::set<Ship *> GetGroup(int group);
+	void SelectEscort(const Ship *ship, bool hasShift);
+	void DeselectEscort(const Ship *ship);
+	void SelectEscortGroup(int group, bool hasShift);
+	void SetEscortGroup(int group, const std::set<Ship *> *newShips = nullptr);
+	std::set<Ship *> GetEscortGroup(int group);
 
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
@@ -397,7 +397,7 @@ private:
 	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip);
 
 	// Helper function to update the ship selection.
-	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
+	void SelectEscort(const std::shared_ptr<Ship> &ship, bool *first);
 
 	// Instantiate the given model and add it to the player's fleet.
 	void AddStockShip(const Ship *model, const std::string &name);
@@ -435,7 +435,7 @@ private:
 
 	std::shared_ptr<Ship> flagship;
 	std::vector<std::shared_ptr<Ship>> ships;
-	std::vector<std::weak_ptr<Ship>> selectedShips;
+	std::vector<std::weak_ptr<Ship>> selectedEscorts;
 	std::map<const Ship *, int> groups;
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;

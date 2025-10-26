@@ -672,7 +672,7 @@ void Engine::Step(bool isActive)
 		{
 			// Check if this escort is selected.
 			bool isSelected = false;
-			for(const weak_ptr<Ship> &ptr : player.SelectedShips())
+			for(const weak_ptr<Ship> &ptr : player.SelectedEscorts())
 				if(ptr.lock() == escort)
 				{
 					isSelected = true;
@@ -1001,9 +1001,9 @@ void Engine::Step(bool isActive)
 	{
 		// This has to be done in Step() to avoid race conditions.
 		if(hasControl)
-			player.SetGroup(groupSelect);
+			player.SetEscortGroup(groupSelect);
 		else
-			player.SelectGroup(groupSelect, hasShift);
+			player.SelectEscortGroup(groupSelect, hasShift);
 		groupSelect = -1;
 	}
 	if(doClickNextStep)
@@ -1022,7 +1022,7 @@ void Engine::Step(bool isActive)
 			doClick = !ammoDisplay.Click(uiClickBox);
 		else
 			doClick = !ammoDisplay.Click(clickPoint, hasControl);
-		doClick = doClick && !player.SelectShips(clickBox, hasShift);
+		doClick = doClick && !player.SelectEscorts(clickBox, hasShift);
 		if(doClick)
 		{
 			const vector<weak_ptr<Ship>> &stack = escorts.Click(clickPoint);
@@ -1034,7 +1034,7 @@ void Engine::Step(bool isActive)
 	}
 
 	// Draw crosshairs on all the selected ships.
-	for(const weak_ptr<Ship> &selected : player.SelectedShips())
+	for(const weak_ptr<Ship> &selected : player.SelectedEscorts())
 	{
 		shared_ptr<Ship> ship = selected.lock();
 		if(ship && ship != target && !ship->IsParked() && ship->GetSystem() == player.GetSystem()
@@ -1910,7 +1910,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 					eventQueue.emplace_back(nullptr, bay.ship, ShipEvent::DESTROY);
 			// If this is a player ship, make sure it's no longer selected.
 			if(ship->IsYours())
-				player.DeselectShip(ship.get());
+				player.DeselectEscort(ship.get());
 		}
 		return;
 	}
@@ -2306,7 +2306,7 @@ void Engine::HandleMouseClicks()
 			{
 				flagship->SetTargetShip(clickTarget);
 				if(clickTarget->IsYours())
-					player.SelectShip(clickTarget.get(), hasShift);
+					player.SelectEscort(clickTarget.get(), hasShift);
 			}
 		}
 	}

@@ -3023,18 +3023,18 @@ void PlayerInfo::ToggleAnySecondary(const Outfit *outfit)
 
 
 // Escorts currently selected for giving orders.
-const vector<weak_ptr<Ship>> &PlayerInfo::SelectedShips() const
+const vector<weak_ptr<Ship>> &PlayerInfo::SelectedEscorts() const
 {
-	return selectedShips;
+	return selectedEscorts;
 }
 
 
 
-bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
+bool PlayerInfo::SelectEscorts(const Rectangle &box, bool hasShift)
 {
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
-		selectedShips.clear();
+		selectedEscorts.clear();
 	// If shift is not held, the first ship in the box will also become the
 	// player's flagship's target.
 	bool first = !hasShift;
@@ -3045,7 +3045,7 @@ bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
 				&& box.Contains(ship->Position()))
 		{
 			matched = true;
-			SelectShip(ship, &first);
+			SelectEscort(ship, &first);
 		}
 	return matched;
 }
@@ -3056,7 +3056,7 @@ bool PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 {
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
-		selectedShips.clear();
+		selectedEscorts.clear();
 	// If shift is not held, the first ship in the stack will also become the
 	// player's flagship's target.
 	bool first = !hasShift;
@@ -3068,7 +3068,10 @@ bool PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 		if(shipPtr)
 		{
 			matched = true;
-			SelectShip(shipPtr, &first);
+			// TODO: The stack can contain non-owned escorts, which will cause the assert in SelectEscort to fail.
+			//  This function should behavior differently if given mission NPCs, or a separate function should be
+			//  used.
+			SelectEscort(shipPtr, &first);
 		}
 	}
 	if(matched)
@@ -3078,33 +3081,33 @@ bool PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 
 
 
-void PlayerInfo::SelectShip(const Ship *ship, bool hasShift)
+void PlayerInfo::SelectEscort(const Ship *ship, bool hasShift)
 {
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
-		selectedShips.clear();
+		selectedEscorts.clear();
 
 	bool first = !hasShift;
 	for(const shared_ptr<Ship> &it : ships)
 		if(it.get() == ship)
-			SelectShip(it, &first);
+			SelectEscort(it, &first);
 }
 
 
 
-void PlayerInfo::DeselectShip(const Ship *ship)
+void PlayerInfo::DeselectEscort(const Ship *ship)
 {
-	for(auto it = selectedShips.begin(); it != selectedShips.end(); ++it)
+	for(auto it = selectedEscorts.begin(); it != selectedEscorts.end(); ++it)
 		if(it->lock().get() == ship)
 		{
-			selectedShips.erase(it);
+			selectedEscorts.erase(it);
 			return;
 		}
 }
 
 
 
-void PlayerInfo::SelectGroup(int group, bool hasShift)
+void PlayerInfo::SelectEscortGroup(int group, bool hasShift)
 {
 	int bit = (1 << group);
 	// If the shift key is held down and all the ships in the given group are
@@ -3123,12 +3126,12 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 		for(const shared_ptr<Ship> &ship : ships)
 			if(groups[ship.get()] & bit)
 			{
-				auto it = selectedShips.begin();
-				for( ; it != selectedShips.end(); ++it)
+				auto it = selectedEscorts.begin();
+				for( ; it != selectedEscorts.end(); ++it)
 					if(it->lock() == ship)
 						break;
-				if(it != selectedShips.end())
-					selectedShips.erase(it);
+				if(it != selectedEscorts.end())
+					selectedEscorts.erase(it);
 				else
 					allWereSelected = false;
 			}
@@ -3136,14 +3139,14 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 			return;
 	}
 	else
-		selectedShips.clear();
+		selectedEscorts.clear();
 
 	// Now, go through and add any ships in the group to the selection. Even if
 	// shift is held they won't be added twice, because we removed them above.
 	for(const shared_ptr<Ship> &ship : ships)
 		if(groups[ship.get()] & bit)
 		{
-			selectedShips.push_back(ship);
+			selectedEscorts.push_back(ship);
 			if(ship.get() == oldTarget)
 				Flagship()->SetTargetShip(ship);
 		}
@@ -3151,7 +3154,7 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 
 
 
-void PlayerInfo::SetGroup(int group, const set<Ship *> *newShips)
+void PlayerInfo::SetEscortGroup(int group, const set<Ship *> *newShips)
 {
 	int bit = (1 << group);
 	int mask = ~bit;
@@ -3166,7 +3169,7 @@ void PlayerInfo::SetGroup(int group, const set<Ship *> *newShips)
 	}
 	else
 	{
-		for(const weak_ptr<Ship> &ptr : selectedShips)
+		for(const weak_ptr<Ship> &ptr : selectedEscorts)
 		{
 			shared_ptr<Ship> ship = ptr.lock();
 			if(ship)
@@ -3177,7 +3180,7 @@ void PlayerInfo::SetGroup(int group, const set<Ship *> *newShips)
 
 
 
-set<Ship *> PlayerInfo::GetGroup(int group)
+set<Ship *> PlayerInfo::GetEscortGroup(int group)
 {
 	int bit = (1 << group);
 	set<Ship *> result;
@@ -4775,11 +4778,11 @@ void PlayerInfo::SetFlagship(Ship &other)
 	MoveFlagshipBegin(ships, flagship);
 
 	// Make sure your flagship is not included in the escort selection.
-	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
+	for(auto it = selectedEscorts.begin(); it != selectedEscorts.end(); )
 	{
 		shared_ptr<Ship> ship = it->lock();
 		if(!ship || ship == flagship)
-			it = selectedShips.erase(it);
+			it = selectedEscorts.erase(it);
 		else
 			++it;
 	}
@@ -4801,17 +4804,18 @@ void PlayerInfo::HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip)
 
 
 // Helper function to update the ship selection.
-void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
+void PlayerInfo::SelectEscort(const shared_ptr<Ship> &ship, bool *first)
 {
+	assert(ship->IsYours() && "Attempted to select a ship that is not an owned escort.");
 	// Make sure this ship is not already selected.
-	auto it = selectedShips.begin();
-	for( ; it != selectedShips.end(); ++it)
+	auto it = selectedEscorts.begin();
+	for( ; it != selectedEscorts.end(); ++it)
 		if(it->lock() == ship)
 			break;
-	if(it == selectedShips.end())
+	if(it == selectedEscorts.end())
 	{
 		// This ship is not yet selected.
-		selectedShips.push_back(ship);
+		selectedEscorts.push_back(ship);
 		Ship *flagship = Flagship();
 		if(*first && flagship && ship.get() != flagship)
 		{

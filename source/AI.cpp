@@ -183,7 +183,7 @@ namespace {
 	{
 		// Figure out what ships we are giving orders to.
 		vector<Ship *> targetShips;
-		auto &selectedShips = player.SelectedShips();
+		auto &selectedShips = player.SelectedEscorts();
 		// If selectedShips is empty, this applies to the whole fleet.
 		if(selectedShips.empty())
 		{
@@ -227,10 +227,10 @@ namespace {
 		}
 
 		// First, check if the player selected any carried ships.
-		for(const weak_ptr<Ship> &it : player.SelectedShips())
+		for(const weak_ptr<Ship> &it : player.SelectedEscorts())
 		{
 			shared_ptr<Ship> ship = it.lock();
-			if(ship && ship->IsYours() && isCandidate(ship))
+			if(ship && isCandidate(ship))
 				(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
 		}
 		// If needed, check the player's fleet for deployable ships.
@@ -4274,7 +4274,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			{
 				ship.SetTargetShip(other);
 				if(isPlayer)
-					player.SelectShip(other.get(), false);
+					player.SelectEscort(other.get(), false);
 				selectNext = false;
 				break;
 			}
@@ -4282,7 +4282,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		if(selectNext)
 		{
 			ship.SetTargetShip(shared_ptr<Ship>());
-			player.SelectShip(nullptr, false);
+			player.SelectEscort(nullptr, false);
 		}
 		else
 			UI::PlaySound(UI::UISound::TARGET);
@@ -4950,10 +4950,11 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 	string who;
 	vector<const Ship *> ships;
 	size_t destroyedCount = 0;
-	// A "hold fire" order can used on the flagship to temporarily block autofire.
+	// A "hold fire" order can be used on the flagship to temporarily block autofire.
 	// Other orders can be issued only to escorts.
 	bool includeFlagship = newOrder.type == Orders::Types::HOLD_FIRE;
-	if(player.SelectedShips().empty())
+	const vector<weak_ptr<Ship>> &selected = player.SelectedEscorts();
+	if(selected.empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
 			if((includeFlagship || it.get() != player.Flagship()) && !it->IsParked())
@@ -4968,7 +4969,7 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 	}
 	else
 	{
-		for(const weak_ptr<Ship> &it : player.SelectedShips())
+		for(const weak_ptr<Ship> &it : selected)
 		{
 			shared_ptr<Ship> ship = it.lock();
 			if(!ship)
