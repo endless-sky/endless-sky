@@ -66,28 +66,6 @@ namespace {
 		return ship.GetPlanet() == here;
 	}
 
-	const int HOVER_TIME = 60;
-
-	void DrawTooltip(const string &text, const Point &hoverPoint, const Color &textColor, const Color &backColor)
-	{
-		constexpr int WIDTH = 250;
-		constexpr int PAD = 10;
-		WrappedText wrap(FontSet::Get(14));
-		wrap.SetWrapWidth(WIDTH - 2 * PAD);
-		wrap.Wrap(text);
-		int longest = wrap.LongestLineWidth();
-		if(longest < wrap.WrapWidth())
-		{
-			wrap.SetWrapWidth(longest);
-			wrap.Wrap(text);
-		}
-
-		Point textSize(wrap.WrapWidth() + 2 * PAD, wrap.Height() + 2 * PAD - wrap.ParagraphBreak());
-		Point anchor = Point(hoverPoint.X(), min<double>(hoverPoint.Y() + textSize.Y(), Screen::Bottom()));
-		FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
-		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
-	}
-
 	constexpr auto ScrollbarMaybeUpdate = [](const auto &op, ScrollBar &scrollbar,
 		ScrollVar<double> &scroll, bool animate)
 	{
@@ -104,7 +82,15 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
 	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
-	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
+	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard")),
+	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_LEFT, Tooltip::Corner::TOP_RIGHT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	hover(*GameData::Colors().Get("hover")),
+	active(*GameData::Colors().Get("active")),
+	inactive(*GameData::Colors().Get("inactive")),
+	back(*GameData::Colors().Get("panel background"))
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -163,10 +149,10 @@ void ShopPanel::Draw()
 		string text = shipName;
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
-		const Color &textColor = *GameData::Colors().Get("medium");
-		const Color &backColor = *GameData::Colors().Get(warningType.empty() ? "tooltip background"
-					: (warningType.back() == '!' ? "error back" : "warning back"));
-		DrawTooltip(text, hoverPoint, textColor, backColor);
+		shipsTooltip.SetText(text, true);
+		shipsTooltip.SetBackgroundColor(GameData::Colors().Get(warningType.empty() ? "tooltip background"
+			: (warningType.back() == '!' ? "error back" : "warning back")));
+		shipsTooltip.Draw(true);
 	}
 
 	if(dragShip && isDraggingShip && dragShip->GetSprite())
@@ -199,6 +185,14 @@ void ShopPanel::Draw()
 
 
 
+void ShopPanel::UpdateTooltipActivation()
+{
+	shipsTooltip.UpdateActivationCount();
+	creditsTooltip.UpdateActivationCount();
+}
+
+
+
 void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 {
 	const Sprite *back = SpriteSet::Get(
@@ -220,7 +214,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
-	const string &name = ship.Name().empty() ? ship.DisplayModelName() : ship.Name();
+	const string &name = ship.GivenName().empty() ? ship.DisplayModelName() : ship.GivenName();
 	Point offset(-SIDEBAR_CONTENT / 2, -.5f * SHIP_SIZE + 10.f);
 	font.Draw({name, {SIDEBAR_CONTENT, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
@@ -495,25 +489,28 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool ShopPanel::Click(int x, int y, int clicks)
+bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 {
-	dragShip = nullptr;
-	// Handle clicks on the buttons.
-	char button = CheckButton(x, y);
-	if(button)
-		return DoKey(button);
-
-	auto ScrollbarClick = [x, y, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
+	auto ScrollbarClick = [x, y, button, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
 	{
-		return ScrollbarMaybeUpdate([x, y, clicks](ScrollBar &scrollbar)
+		return ScrollbarMaybeUpdate([x, y, button, clicks](ScrollBar &scrollbar)
 			{
-				return scrollbar.Click(x, y, clicks);
+				return scrollbar.Click(x, y, button, clicks);
 			}, scrollbar, scroll, true);
 	};
 	if(ScrollbarClick(mainScrollbar, mainScroll)
 			|| ScrollbarClick(sidebarScrollbar, sidebarScroll)
 			|| ScrollbarClick(infobarScrollbar, infobarScroll))
 		return true;
+
+	if(button != MouseButton::LEFT)
+		return false;
+
+	dragShip = nullptr;
+	// Handle clicks on the buttons.
+	char zoneButton = CheckButton(x, y);
+	if(zoneButton)
+		return DoKey(zoneButton);
 
 	const Point clickPoint(x, y);
 
@@ -659,8 +656,11 @@ bool ShopPanel::Drag(double dx, double dy)
 
 
 
-bool ShopPanel::Release(int x, int y)
+bool ShopPanel::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	dragShip = nullptr;
 	isDraggingShip = false;
 	return true;
@@ -832,8 +832,8 @@ void ShopPanel::DrawShipsSidebar()
 
 		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
-			shipName = ship->Name() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
-			hoverPoint = shipZones.back().TopLeft();
+			shipName = ship->GivenName() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
+			shipsTooltip.SetZone(shipZones.back());
 		}
 
 		const auto checkIt = flightChecks.find(ship);
@@ -871,7 +871,7 @@ void ShopPanel::DrawShipsSidebar()
 		const int detailHeight = DrawPlayerShipInfo(point + offset);
 		point.Y() += detailHeight + SHIP_SIZE / 2;
 	}
-	else if(player.Cargo().Size())
+	else if(isOutfitter && player.Cargo().Size())
 	{
 		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
 		font.Draw("cargo space:", point, medium);
@@ -944,7 +944,6 @@ void ShopPanel::DrawButtons()
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
-	const Color &back = *GameData::Colors().Get("panel background");
 
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
@@ -954,44 +953,32 @@ void ShopPanel::DrawButtons()
 	const auto credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
-	const Font &bigFont = FontSet::Get(18);
-	const Color &hover = *GameData::Colors().Get("hover");
-	const Color &active = *GameData::Colors().Get("active");
-	const Color &inactive = *GameData::Colors().Get("inactive");
+	// Clear the buttonZones, they will be populated again as buttons are drawn.
+	buttonZones.clear();
 
 	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
-	FillShader::Fill(buyCenter, Point(60, 30), back);
 	bool isOwned = IsAlreadyOwned();
-	const Color *buyTextColor;
-	if(!CanBuy(isOwned))
-		buyTextColor = &inactive;
-	else if(hoverButton == (isOwned ? 'i' : 'b'))
-		buyTextColor = &hover;
+
+	if(isOwned)
+		ShopPanel::DrawButton(playerShip ? "_Install" : "_Cargo", Rectangle(buyCenter, Point(60, 30)),
+			static_cast<bool>(CanBuy(isOwned)), hoverButton == 'i', 'i');
 	else
-		buyTextColor = &active;
-	string BUY = isOwned ? (playerShip ? "_Install" : "_Cargo") : "_Buy";
-	bigFont.Draw(BUY,
-		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		*buyTextColor);
+		ShopPanel::DrawButton("_Buy", Rectangle(buyCenter, Point(60, 30)),
+			static_cast<bool>(CanBuy(isOwned)), hoverButton == 'b', 'b');
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	FillShader::Fill(sellCenter, Point(60, 30), back);
-	static const string SELL = "_Sell";
-	bigFont.Draw(SELL,
-		sellCenter - .5 * Point(bigFont.Width(SELL), bigFont.Height()),
-		CanSell() ? hoverButton == 's' ? hover : active : inactive);
+	ShopPanel::DrawButton("_Sell", Rectangle(sellCenter, Point(60, 30)),
+		static_cast<bool>(CanSell()), hoverButton == 's', 's');
 
 	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-	FillShader::Fill(leaveCenter, Point(70, 30), back);
-	static const string LEAVE = "_Leave";
-	bigFont.Draw(LEAVE,
-		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
-		hoverButton == 'l' ? hover : active);
+	ShopPanel::DrawButton("_Leave", Rectangle(leaveCenter, Point(70, 30)),
+		true, hoverButton == 'l', 'l');
 
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
 	const Sprite *findIcon =
 		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
 	SpriteShader::Draw(findIcon, findCenter);
+	buttonZones.emplace_back(Rectangle(findCenter, {findIcon->Width(), findIcon->Height()}), 'f');
 	static const string FIND = "_Find";
 
 	int modifier = Modifier();
@@ -1007,14 +994,15 @@ void ShopPanel::DrawButtons()
 	// Draw the tooltip for your full number of credits.
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
 	if(creditsBox.Contains(hoverPoint))
-		hoverCount += hoverCount < HOVER_TIME;
-	else if(hoverCount)
-		--hoverCount;
+		creditsTooltip.IncrementCount();
+	else
+		creditsTooltip.DecrementCount();
 
-	if(hoverCount == HOVER_TIME)
+	if(creditsTooltip.ShouldDraw())
 	{
-		string text = Format::Number(player.Accounts().Credits()) + " credits";
-		DrawTooltip(text, hoverPoint, dim, *GameData::Colors().Get("tooltip background"));
+		creditsTooltip.SetZone(creditsBox);
+		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits", true);
+		creditsTooltip.Draw();
 	}
 }
 
@@ -1459,6 +1447,21 @@ void ShopPanel::MainDown()
 
 
 
+void ShopPanel::DrawButton(const string &name, const Rectangle &buttonShape, bool isActive,
+	bool hovering, char keyCode)
+{
+	const Font &bigFont = FontSet::Get(18);
+	const Color *color = !isActive ? &inactive : hovering ? &hover : &active;
+
+	FillShader::Fill(buttonShape, back);
+	bigFont.Draw(name, buttonShape.Center() - .5 * Point(bigFont.Width(name), bigFont.Height()), *color);
+
+	// Add this button to the buttonZones:
+	buttonZones.emplace_back(buttonShape, keyCode);
+}
+
+
+
 // If the selected item is no longer displayed, advance selection until we find something that is.
 void ShopPanel::CheckSelection()
 {
@@ -1576,32 +1579,20 @@ vector<ShopPanel::Zone>::const_iterator ShopPanel::Selected() const
 
 
 
-// Check if the given point is within the button zone, and if so return the
-// letter of the button (or ' ' if it's not on a button).
+// Check if the given point is within the button zone, and if so return the letter of the button.
+// Returns '\0' if the click is not within the panel, and ' ' if it's within the panel but not on a button.
 char ShopPanel::CheckButton(int x, int y)
 {
-	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
-		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
-		return 'f';
+	const Point clickPoint(x, y);
+
+	// Check all the buttonZones.
+	for(const ClickZone<char> zone : buttonZones)
+		if(zone.Contains(clickPoint))
+			return zone.Value();
 
 	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
 		return '\0';
 
-	if(y < Screen::Bottom() - 40 || y >= Screen::Bottom() - 10)
-		return ' ';
-
-	x -= Screen::Right() - SIDEBAR_WIDTH;
-	if(x > 9 && x < 70)
-	{
-		if(!IsAlreadyOwned())
-			return 'b';
-		else
-			return 'i';
-	}
-	else if(x > 89 && x < 150)
-		return 's';
-	else if(x > 169 && x < 240)
-		return 'l';
-
+	// Returning space here ensures that hover text for the ship info panel is supressed.
 	return ' ';
 }

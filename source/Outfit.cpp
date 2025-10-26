@@ -195,7 +195,7 @@ namespace {
 
 	// Used to add the contents of one outfit's map to another, while also
 	// erasing any key with a value of zero.
-	template <class T>
+	template<class T>
 	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
 	{
 		for(const auto &it : otherMap)
@@ -419,16 +419,16 @@ const string &Outfit::TrueName() const
 
 
 
-const string &Outfit::DisplayName() const
+void Outfit::SetTrueName(const string &name)
 {
-	return displayName;
+	this->trueName = name;
 }
 
 
 
-void Outfit::SetName(const string &name)
+const string &Outfit::DisplayName() const
 {
-	this->trueName = name;
+	return displayName;
 }
 
 
