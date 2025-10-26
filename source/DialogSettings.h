@@ -57,8 +57,8 @@ private:
 	// For individual lines under the dialog.
 	class DialogLine {
 	public:
-		DialogLine(std::string text);
-		DialogLine(const ExclusiveItem<Phrase> &phrase);
+		explicit DialogLine(std::string text);
+		explicit DialogLine(const ExclusiveItem<Phrase> &phrase);
 		DialogLine(const DataNode &node, const ConditionsStore *playerConditions);
 
 		std::string text;
