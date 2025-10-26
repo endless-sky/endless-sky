@@ -129,7 +129,7 @@ void MissionAction::Load(const DataNode &node, const ConditionsStore *playerCond
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
 	if(node.Size() >= 3)
-		system = node.Token(2);
+		location = node.Token(2);
 
 	for(const DataNode &child : node)
 		LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
@@ -180,7 +180,7 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 	}
 	else if(key == "system")
 	{
-		if(system.empty() && child.HasChildren())
+		if(location.empty() && child.HasChildren())
 			systemFilter.Load(child, visitedSystems, visitedPlanets);
 		else
 			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
@@ -197,10 +197,10 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 // a template, so it only has to save a subset of the data.
 void MissionAction::Save(DataWriter &out) const
 {
-	if(system.empty())
+	if(location.empty())
 		out.Write("on", trigger);
 	else
-		out.Write("on", trigger, system);
+		out.Write("on", trigger, location);
 	out.BeginChild();
 	{
 		SaveBody(out);
@@ -414,7 +414,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 {
 	MissionAction result;
 	result.trigger = trigger;
-	result.system = system;
+	result.location = location;
 	// Convert any "distance" specifiers into "near <system>" specifiers.
 	result.systemFilter = systemFilter.SetOrigin(origin);
 

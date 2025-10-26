@@ -106,7 +106,7 @@ private:
 	bool runsWhenFailed = false;
 
 	std::string trigger;
-	std::string system;
+	std::string location;
 	LocationFilter systemFilter;
 
 	// Dialog text of instantiated missions, or missions with pure-text dialog (no conditions or phrase blocks)
