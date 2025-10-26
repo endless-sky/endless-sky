@@ -169,7 +169,7 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
-	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 winmm ntdll)
 elseif(ES_LINK_LIBATOMIC)
 	target_link_libraries(ExternalLibraries INTERFACE pthread atomic)
 else()
