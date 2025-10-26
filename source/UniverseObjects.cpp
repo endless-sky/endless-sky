@@ -209,7 +209,7 @@ void UniverseObjects::CheckReferences()
 	auto NameIfDeferred = [](const set<string> &deferred, auto &it)
 	{
 		if(deferred.contains(it.first))
-			it.second.SetName(it.first);
+			it.second.SetTrueName(it.first);
 		else
 			return false;
 
@@ -218,7 +218,7 @@ void UniverseObjects::CheckReferences()
 	// Set the name of an "undefined" class object, so that it can be written to the player's save.
 	auto NameAndWarn = [=](const string &noun, auto &it)
 	{
-		it.second.SetName(it.first);
+		it.second.SetTrueName(it.first);
 		Warn(noun, it.first);
 	};
 	// Parse all GameEvents for object definitions.
@@ -226,7 +226,7 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : events)
 	{
 		// Stock GameEvents are serialized in MissionActions by name.
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("event", it);
 		else
 		{
@@ -246,7 +246,7 @@ void UniverseObjects::CheckReferences()
 		Logger::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
 	// Effects are serialized as a part of ships.
 	for(auto &&it : effects)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("effect", it);
 	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
 	for(auto &&it : fleets)
@@ -259,7 +259,7 @@ void UniverseObjects::CheckReferences()
 	}
 	// Government names are used in mission NPC blocks and LocationFilters.
 	for(auto &&it : governments)
-		if(it.second.GetTrueName().empty() && !NameIfDeferred(deferred["government"], it))
+		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["government"], it))
 			NameAndWarn("government", it);
 	// Minables are not serialized.
 	for(const auto &it : minables)
@@ -268,7 +268,7 @@ void UniverseObjects::CheckReferences()
 	// Stock missions are never serialized, and an accepted mission is
 	// always fully defined (though possibly not "valid").
 	for(const auto &it : missions)
-		if(it.second.Name().empty())
+		if(it.second.DisplayName().empty())
 			Warn("mission", it.first);
 
 	// News are never serialized or named, except by events (which would then define them).
@@ -306,7 +306,7 @@ void UniverseObjects::CheckReferences()
 			Warn("wormhole", it.first);
 	// Formation patterns are not serialized, but their usage is.
 	for(auto &&it : formations)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("formation", it);
 	// Any stock colors should have been loaded from game data files.
 	for(const auto &it : colors)
@@ -351,7 +351,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		{
 			Color *color = colors.Get(node.Token(1));
 			color->Load(node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
-			color->SetName(node.Token(1));
+			color->SetTrueName(node.Token(1));
 		}
 		else if(key == "swizzle" && hasValue)
 			swizzles.Get(node.Token(1))->Load(node);

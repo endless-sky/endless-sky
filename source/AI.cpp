@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "Command.h"
+#include "ConditionsStore.h"
 #include "DistanceMap.h"
 #include "FighterHitHelper.h"
 #include "Flotsam.h"
@@ -388,12 +389,12 @@ namespace {
 
 
 
-AI::AI(const PlayerInfo &player, const List<Ship> &ships,
-		const List<Minable> &minables, const List<Flotsam> &flotsam)
+AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
 	: player(player), ships(ships), minables(minables), flotsam(flotsam)
 {
 	// Allocate a starting amount of hardpoints for ships.
 	firingCommands.SetHardpoints(12);
+	RegisterDerivedConditions(player.Conditions());
 }
 
 
@@ -441,7 +442,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	else if(!multiplePatternsSet)
 	{
 		// If only one pattern was found, then select the next pattern (or clear the pattern if there is no next).
-		auto it = formationPatterns.find(toSet->Name());
+		auto it = formationPatterns.find(toSet->TrueName());
 		if(it != formationPatterns.end())
 			++it;
 		toSet = (it == formationPatterns.end() ? nullptr : &(it->second));
@@ -459,7 +460,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 
 	unsigned int count = targetShips.size();
 	string message = to_string(count) + (count == 1 ? " ship" : " ships") + " will ";
-	message += toSet ? ("assume \"" + toSet->Name() + "\" formation.") : "no longer fly in formation.";
+	message += toSet ? ("assume \"" + toSet->TrueName() + "\" formation.") : "no longer fly in formation.";
 	Messages::Add({message, GameData::MessageCategories().Get("low")});
 }
 
@@ -474,7 +475,7 @@ void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 		: Orders::Types::KEEP_STATION);
 	newOrder.SetTargetShip(target);
 	IssueOrder(newOrder,
-		(isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\"."));
+		(isEnemy ? "focusing fire on" : "following") + (" \"" + target->GivenName() + "\"."));
 }
 
 
@@ -518,7 +519,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	autoPilot |= activeCommands;
 	if(activeCommands.Has(AutopilotCancelCommands()))
 	{
-		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
+		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP | Command::FLEET_JUMP));
 		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
 		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
 		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
@@ -561,11 +562,16 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	{
 		OrderSingle newOrder{target->IsDisabled() ? Orders::Types::FINISH_OFF : Orders::Types::ATTACK};
 		newOrder.SetTargetShip(target);
-		IssueOrder(newOrder, "focusing fire on \"" + target->Name() + "\".");
+		IssueOrder(newOrder, "focusing fire on \"" + target->GivenName() + "\".");
 	}
 	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
-	if(activeCommands.Has(Command::HOLD) && !shift)
+	if(activeCommands.Has(Command::HOLD_FIRE) && !shift)
+	{
+		OrderSingle newOrder{Orders::Types::HOLD_FIRE};
+		IssueOrder(newOrder, "holding fire.");
+	}
+	if(activeCommands.Has(Command::HOLD_POSITION) && !shift)
 	{
 		OrderSingle newOrder{Orders::Types::HOLD_POSITION};
 		IssueOrder(newOrder, "holding position.");
@@ -1442,8 +1448,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(isYours)
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && (it->second.Has(Orders::Types::ATTACK) || it->second.Has(Orders::Types::FINISH_OFF)))
-			return it->second.GetTargetShip();
+		if(it != orders.end())
+		{
+			if(it->second.Has(Orders::Types::ATTACK) || it->second.Has(Orders::Types::FINISH_OFF))
+				return it->second.GetTargetShip();
+			if(it->second.Has(Orders::Types::HOLD_FIRE))
+				return target;
+		}
 	}
 
 	// If this ship is not armed, do not make it fight.
@@ -2952,7 +2963,7 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 	const Government *government = ship->GetGovernment();
 	const string &language = government->Language();
 	if(language.empty() || player.Conditions().Get("language: " + language))
-		Messages::Add({government->GetName() + " " + ship->Noun() + " \"" + ship->Name()
+		Messages::Add({government->DisplayName() + " " + ship->Noun() + " \"" + ship->GivenName()
 			+ "\": Please, just take my cargo and leave me alone.",
 			GameData::MessageCategories().Get("low")});
 
@@ -3832,10 +3843,15 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && it->second.GetTargetShip() == currentTarget)
+		if(it != orders.end())
 		{
-			disabledOverride = it->second.Has(Orders::Types::FINISH_OFF);
-			friendlyOverride = disabledOverride || it->second.Has(Orders::Types::ATTACK);
+			if(it->second.Has(Orders::Types::HOLD_FIRE))
+				return;
+			if(it->second.GetTargetShip() == currentTarget)
+			{
+				disabledOverride = it->second.Has(Orders::Types::FINISH_OFF);
+				friendlyOverride = disabledOverride || it->second.Has(Orders::Types::ATTACK);
+			}
 		}
 	}
 	bool currentIsEnemy = currentTarget
@@ -4298,12 +4314,17 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			else if(selectNext && isPlayer == shift && other->IsTargetable())
 			{
 				ship.SetTargetShip(other);
+				if(isPlayer)
+					player.SelectShip(other.get(), false);
 				selectNext = false;
 				break;
 			}
 		}
 		if(selectNext)
+		{
 			ship.SetTargetShip(shared_ptr<Ship>());
+			player.SelectShip(nullptr, false);
+		}
 		else
 			UI::PlaySound(UI::UISound::TARGET);
 	}
@@ -4587,9 +4608,13 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				name = ship.GetTargetSystem()->DisplayName();
 
 			if(activeCommands.Has(Command::FLEET_JUMP))
-				Messages::Add({"Engaging fleet autopilot to jump to the " + name + " system."
-					" Your fleet will jump when ready.",
-					GameData::MessageCategories().Get("normal")});
+			{
+				// Note: also has command JUMP on only the first call.
+				if(activeCommands.Has(Command::JUMP))
+					Messages::Add({"Engaging fleet autopilot to jump to the " + name + " system."
+						" Your fleet will jump when ready.",
+						GameData::MessageCategories().Get("normal")});
+			}
 			else
 				Messages::Add({"Engaging autopilot to jump to the " + name + " system.",
 					GameData::MessageCategories().Get("normal")});
@@ -4935,16 +4960,48 @@ void AI::CacheShipLists()
 
 
 
+void AI::RegisterDerivedConditions(ConditionsStore &conditions)
+{
+	// Special conditions about system hostility.
+	conditions["government strength: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Government *gov = GameData::Governments().Get(ce.NameWithoutPrefix());
+		int64_t strength = 0;
+		for(const Ship *ship : governmentRosters[gov])
+			if(ship)
+				strength += ship->Strength();
+		return strength;
+	});
+	conditions["ally strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return allyStrength[GameData::PlayerGovernment()];
+	});
+	conditions["enemy strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return enemyStrength[GameData::PlayerGovernment()];
+	});
+	conditions["ally strength: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Government *gov = GameData::Governments().Get(ce.NameWithoutPrefix());
+		return gov ? allyStrength[gov] : 0.;
+	});
+	conditions["enemy strength: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Government *gov = GameData::Governments().Get(ce.NameWithoutPrefix());
+		return gov ? enemyStrength[gov] : 0.;
+	});
+}
+
+
+
 void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 {
 	// Figure out what ships we are giving orders to.
 	string who;
 	vector<const Ship *> ships;
 	size_t destroyedCount = 0;
+	// A "hold fire" order can used on the flagship to temporarily block autofire.
+	// Other orders can be issued only to escorts.
+	bool includeFlagship = newOrder.type == Orders::Types::HOLD_FIRE;
 	if(player.SelectedShips().empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
-			if(it.get() != player.Flagship() && !it->IsParked())
+			if((includeFlagship || it.get() != player.Flagship()) && !it->IsParked())
 			{
 				if(it->IsDestroyed())
 					++destroyedCount;
@@ -4952,7 +5009,7 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 					ships.push_back(it.get());
 			}
 		who = (ships.empty() ? destroyedCount : ships.size()) > 1
-			? "Your fleet is " : "Your escort is ";
+			? "Your fleet is " : includeFlagship ? "Your flagship is " : "Your escort is ";
 	}
 	else
 	{

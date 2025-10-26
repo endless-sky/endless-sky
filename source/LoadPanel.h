@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Rectangle.h"
 #include "SavedGame.h"
+#include "Tooltip.h"
 
 #include <ctime>
 #include <filesystem>
@@ -41,6 +42,8 @@ public:
 	LoadPanel(PlayerInfo &player, UI &gamePanels);
 
 	virtual void Draw() override;
+
+	virtual void UpdateTooltipActivation() override;
 
 
 protected:
@@ -80,7 +83,7 @@ private:
 	const Rectangle snapshotBox;
 
 	Point hoverPoint;
-	int hoverCount = 0;
+	Tooltip tooltip;
 	bool hasHover = false;
 	bool sideHasFocus = false;
 	double sideScroll = 0;

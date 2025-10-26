@@ -123,9 +123,9 @@ namespace {
 
 		// If this ship has no name, show its model name instead.
 		string tag;
-		const string &gov = ship->GetGovernment()->GetName();
-		if(!ship->Name().empty())
-			tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
+		const string &gov = ship->GetGovernment()->DisplayName();
+		if(!ship->GivenName().empty())
+			tag = gov + " " + ship->Noun() + " \"" + ship->GivenName() + "\": ";
 		else
 			tag = ship->DisplayModelName() + " (" + gov + "): ";
 
@@ -375,7 +375,7 @@ void Engine::Place()
 		else if(!ship->GetSystem())
 		{
 			// Log this error.
-			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
+			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->GivenName() + "\" as it had no system");
 			ship->SetSystem(system);
 		}
 
@@ -526,6 +526,9 @@ void Engine::Step(bool isActive)
 
 		minimap.Step(flagship);
 	}
+	else
+		// If there is no flagship, stop the camera.
+		camera.SnapTo(camera.Center());
 	ai.UpdateEvents(events);
 	if(isActive)
 	{
@@ -746,7 +749,7 @@ void Engine::Step(bool isActive)
 	if(flagship)
 	{
 		// Have an alarm label flash up when enemy ships are in the system
-		if(alarmTime && step / 20 % 2 && Preferences::DisplayVisualAlert())
+		if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
 			info.SetCondition("red alert");
 		double fuelCap = flagship->Attributes().Get("fuel capacity");
 		// If the flagship has a large amount of fuel, display a solid bar.
@@ -762,7 +765,7 @@ void Engine::Step(bool isActive)
 		// total heat level.
 		if(heat > 1.)
 			info.SetBar("overheat", min(1., heat - 1.));
-		if(flagship->IsOverheated() && (step / 20) % 2)
+		if(flagship->IsOverheated() && (uiStep / 20) % 2)
 			info.SetBar("overheat blink", min(1., heat));
 		info.SetBar("shields", flagship->Shields());
 		info.SetBar("hull", flagship->Hull(), 20.);
@@ -844,17 +847,17 @@ void Engine::Step(bool isActive)
 			targetUnit = target->Facing().Unit();
 		targetSwizzle = target->GetSwizzle();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step), targetSwizzle);
-		info.SetString("target name", target->Name());
+		info.SetString("target name", target->GivenName());
 		info.SetString("target type", target->DisplayModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
-			info.SetString("target government", target->GetGovernment()->GetName());
+			info.SetString("target government", target->GetGovernment()->DisplayName());
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 
 		// Only update the "active" state shown for the target if it is
 		// in the current system and targetable, or owned by the player.
-		int targetType = RadarType(*target, step);
+		int targetType = RadarType(*target, uiStep);
 		const bool blinking = targetType == Radar::BLINK;
 		if(!blinking && ((target->GetSystem() == player.GetSystem() && target->IsTargetable()) || target->IsYours()))
 			lastTargetType = targetType;
@@ -1143,6 +1146,8 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
+	++uiStep;
+
 	Point motionBlur = camera.Velocity();
 	double baseBlur = Preferences::Has("Render motion blur") ? 1. : 0.;
 
@@ -1229,7 +1234,7 @@ void Engine::Draw() const
 	}
 
 	if(flash)
-		FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), Color(flash, flash));
+		FillShader::Fill(Point(), Screen::Dimensions(), Color(flash, flash));
 
 	// Draw messages. Draw the most recent messages first, as some messages
 	// may be wrapped onto multiple lines.
@@ -1237,7 +1242,7 @@ void Engine::Draw() const
 	Rectangle messageBox = hud->GetBox("messages");
 	bool messagesReversed = hud->GetValue("messages reversed");
 	double animationDuration = hud->GetValue("message animation duration");
-	const vector<Messages::Entry> &messages = Messages::Get(step, animationDuration);
+	const vector<Messages::Entry> &messages = Messages::Get(uiStep, animationDuration);
 	auto messageAnimation = [animationDuration](double age) -> double
 	{
 		return max(0., 1. - pow((age - animationDuration) / animationDuration, 2));
@@ -1258,9 +1263,9 @@ void Engine::Draw() const
 			messagePoint.Y() -= height;
 		// Dying messages are those scheduled for removal as duplicates.
 		bool isDying = it->deathStep >= 0;
-		int naturalAge = step - it->step;
+		int naturalAge = uiStep - it->step;
 		// New messages should fade in, while dying ones should fade out.
-		int age = isDying ? it->deathStep - step : naturalAge;
+		int age = isDying ? it->deathStep - uiStep : naturalAge;
 		bool isAnimating = age < animationDuration;
 		if(isAnimating)
 			height *= messageAnimation(age);
@@ -1327,7 +1332,7 @@ void Engine::Draw() const
 	}
 
 	// Draw the systems mini-map.
-	minimap.Draw(step);
+	minimap.Draw(uiStep);
 
 	// Draw ammo status.
 	double ammoIconWidth = hud->GetValue("ammo icon width");
@@ -1539,7 +1544,7 @@ void Engine::EnterSystem()
 				{
 					raidFleet.GetFleet()->Place(*system, newShips);
 					Messages::Add({"Your fleet has attracted the interest of a "
-						+ raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
+						+ raidFleet.GetFleet()->GetGovernment()->DisplayName() + " raiding party.",
 						GameData::MessageCategories().Get("high")});
 				}
 	}
@@ -2058,8 +2063,8 @@ void Engine::SpawnPersons()
 			for(const shared_ptr<Ship> &ship : person.Ships())
 			{
 				ship->Recharge();
-				if(ship->Name().empty())
-					ship->SetName(it.first);
+				if(ship->GivenName().empty())
+					ship->SetGivenName(it.first);
 				ship->SetGovernment(person.GetGovernment());
 				ship->SetPersonality(person.GetPersonality());
 				ship->SetHailPhrase(person.GetHail());
@@ -2647,7 +2652,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 
 	// One of your ships picked up this flotsam. Describe who it was.
 	string name = (collectorIsFlagship ? "You" :
-			"Your " + collector->Noun() + " \"" + collector->Name() + "\"") + " picked up ";
+			"Your " + collector->Noun() + " \"" + collector->GivenName() + "\"") + " picked up ";
 	// Describe what they collected from this flotsam.
 	string commodity;
 	string message;
@@ -2757,7 +2762,7 @@ void Engine::FillRadar()
 
 			// Figure out what radar color should be used for this ship.
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
-			int type = isYourTarget ? Radar::SPECIAL : RadarType(*ship, step);
+			int type = isYourTarget ? Radar::SPECIAL : RadarType(*ship, uiStep);
 			// Calculate how big the radar dot should be.
 			double size = sqrt(ship->Width() + ship->Height()) * .14 + .5;
 
@@ -2855,11 +2860,11 @@ void Engine::DrawShipSprites(const Ship &ship)
 	};
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.IsUnder())
+		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
 			drawHardpoint(hardpoint);
 	drawObject(ship);
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(!hardpoint.IsUnder())
+		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
 			drawHardpoint(hardpoint);
 
 	DrawEngineFlares(Ship::EnginePoint::OVER);
@@ -2939,7 +2944,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message = "Please assist us in ";
 		message += (target->GetPersonality().Disables() ? "disabling " : "destroying ");
 		message += (attackerCount == 1 ? "this " : "these ");
-		message += attacker->GetName();
+		message += attacker->DisplayName();
 		message += (attackerCount == 1 ? " ship." : " ships.");
 	}
 	else
@@ -2947,7 +2952,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message = "We are under attack by ";
 		if(attackerCount == 1)
 			message += "a ";
-		message += attacker->GetName();
+		message += attacker->DisplayName();
 		message += (attackerCount == 1 ? " ship" : " ships");
 		message += ". Please assist us!";
 	}

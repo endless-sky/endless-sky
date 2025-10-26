@@ -129,7 +129,7 @@ jobs:
 
   cd_macos_x64:
     name: MacOS
-    runs-on: macos-13
+    runs-on: macos-14
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

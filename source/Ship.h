@@ -168,7 +168,8 @@ public:
 	void SetUUID(const EsUuid &id);
 
 	// Get the name of this particular ship.
-	const std::string &Name() const;
+	const std::string &GivenName() const;
+	void SetGivenName(const std::string &name);
 
 	// Set / Get the name of this model of ship.
 	void SetTrueModelName(const std::string &model);
@@ -202,7 +203,6 @@ public:
 	void SetVelocity(Point velocity);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
-	void SetName(const std::string &name);
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
@@ -618,7 +618,7 @@ private:
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	EsUuid uuid;
-	std::string name;
+	std::string givenName;
 	bool canBeCarried = false;
 
 	int forget = 0;

@@ -504,12 +504,26 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 
 
 
+void MapDetailPanel::Resize()
+{
+	ResizeTextArea();
+}
+
+
+
 void MapDetailPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("medium"));
 	description->SetAlignment(Alignment::JUSTIFIED);
+	ResizeTextArea();
+}
+
+
+
+void MapDetailPanel::ResizeTextArea()
+{
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	descriptionXOffset = mapInterface->GetValue("description x offset");
 	int descriptionWidth = mapInterface->GetValue("description width");
@@ -636,7 +650,7 @@ void MapDetailPanel::DrawKey()
 		vector<pair<string, Color>> alreadyDisplayed;
 		for(const auto &it : distances)
 		{
-			const string &displayName = it.second->GetName();
+			const string &displayName = it.second->DisplayName();
 			const Color &displayColor = it.second->GetColor();
 			auto foundIt = find(alreadyDisplayed.begin(), alreadyDisplayed.end(),
 					make_pair(displayName, displayColor));
@@ -737,8 +751,7 @@ void MapDetailPanel::DrawInfo()
 		(planetCards.size()) * planetCardHeight) : 0.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
-	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
-		size, back);
+	FillShader::Fill(Rectangle::FromCorner(Screen::TopLeft(), size), back);
 
 	const double startingX = mapInterface->GetValue("starting X");
 	Point uiPoint(Screen::Left() + startingX, Screen::Top());
@@ -800,7 +813,7 @@ void MapDetailPanel::DrawInfo()
 	font.Draw({systemName, alignLeft}, uiPoint + Point(0., -7.), medium);
 
 	governmentY = uiPoint.Y() + textMargin;
-	string gov = canView ? selectedSystem->GetGovernment()->GetName() : "Unknown Government";
+	string gov = canView ? selectedSystem->GetGovernment()->DisplayName() : "Unknown Government";
 	font.Draw({gov, alignLeft}, uiPoint + Point(0., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.),
