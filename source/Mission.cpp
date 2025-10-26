@@ -336,6 +336,18 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			else
 				genericOnEnter.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
 		}
+		else if(key == "on" && hasValue && child.Token(1) == "land")
+		{
+			// "on land" nodes may either name a specific planet or use a LocationFilter
+			// to control the triggering planet.
+			if(child.Size() >= 3)
+			{
+				MissionAction &action = onLand[GameData::Planets().Get(child.Token(2))];
+				action.Load(child, playerConditions, visitedSystems, visitedPlanets);
+			}
+			else
+				genericOnLand.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
+		}
 		else if(key == "on" && hasValue)
 		{
 			static const map<string, Trigger> trigger = {
@@ -549,6 +561,12 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		for(const MissionAction &action : genericOnEnter)
 			if(!didEnter.contains(&action))
 				action.Save(out);
+		for(const auto &[planet, action] : onLand)
+			if(!didLand.contains(&action))
+				action.Save(out);
+		for(const MissionAction &action : genericOnLand)
+			if(!didLand.contains(&action))
+				action.Save(out);
 	}
 	out.EndChild();
 }
@@ -667,11 +685,17 @@ bool Mission::IsValid() const
 	for(auto &&it : onEnter)
 		if(!it.first->IsValid() || !it.second.Validate().empty())
 			return false;
+	for(const auto &[planet, action] : onLand)
+		if(!planet->IsValid() || !action.Validate().empty())
+			return false;
 	for(auto &&it : actions)
 		if(!it.second.Validate().empty())
 			return false;
-	// Generic "on enter" may use a LocationFilter that exclusively references invalid content.
+	// Generic "on enter" or "on land" may use a LocationFilter that exclusively references invalid content.
 	for(auto &&action : genericOnEnter)
+		if(!action.Validate().empty())
+			return false;
+	for(const auto &action : genericOnLand)
 		if(!action.Validate().empty())
 			return false;
 	if(!clearanceFilter.IsValid())
@@ -1176,7 +1200,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		// not the very last one that must be visited, do nothing.
 		auto it = stopovers.find(player.GetPlanet());
 		if(it == stopovers.end())
-			return false;
+			return Land(player.GetPlanet(), player, ui);
 
 		for(const NPC &npc : npcs)
 			if(npc.IsLeftBehind(player.GetSystem()))
@@ -1634,6 +1658,12 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	for(const auto &it : onEnter)
 		result.onEnter[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
+	for(const auto &[planet, action] : onLand)
+	{
+		reason = planet->IsValid() ? action.Validate() : "trigger planet";
+	}
+	for(const auto &[planet, action] : onLand)
+		result.onLand[planet] = action.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto eit = genericOnEnter.begin();
 	for( ; eit != genericOnEnter.end(); ++eit)
@@ -1650,6 +1680,18 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	for(const MissionAction &action : genericOnEnter)
 		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
+	for(const MissionAction &action : genericOnLand)
+	{
+		reason = action.Validate();
+		if(!reason.empty())
+		{
+			Logger::LogError("Instantiation Error: Generic \"on land\" action in mission \""
+				+ TrueName() + "\" uses invalid " + reason);
+			return result;
+		}
+	}
+	for(const MissionAction &action : genericOnLand)
+		result.genericOnLand.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
@@ -1738,6 +1780,29 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 			}
 
 	return didEnter.size() > originalSize;
+}
+
+
+
+bool Mission::Land(const Planet *planet, PlayerInfo &player, UI *ui)
+{
+	const auto lit = onLand.find(planet);
+	const auto originalSize = didLand.size();
+	if(lit != onLand.end() && !didLand.contains(&lit->second) && lit->second.CanBeDone(player, IsFailed()))
+	{
+		lit->second.Do(player, ui, this);
+		didLand.insert(&lit->second);
+	}
+	else
+		for(MissionAction &action : genericOnLand)
+			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
+			{
+				action.Do(player, ui, this);
+				didLand.insert(&action);
+				break;
+			}
+
+	return didLand.size() > originalSize;
 }
 
 

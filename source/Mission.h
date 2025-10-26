@@ -201,6 +201,7 @@ public:
 
 private:
 	bool Enter(const System *system, PlayerInfo &player, UI *ui);
+	bool Land(const Planet *planet, PlayerInfo &player, UI *ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
@@ -290,10 +291,14 @@ private:
 
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;
-	// "on enter" actions may name a specific system, or rely on matching a
-	// LocationFilter in order to designate the matched system.
+	// "on enter" and "on land" actions may name a specific system or planet,
+	// or rely on matching a LocationFilter in order to designate the matched
+	// system or planet.
 	std::map<const System *, MissionAction> onEnter;
 	std::list<MissionAction> genericOnEnter;
-	// Track which `on enter` MissionActions have triggered.
+	std::map<const Planet *, MissionAction> onLand;
+	std::list<MissionAction> genericOnLand;
+	// Track which `on enter` and `on land` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
+	std::set<const MissionAction *> didLand;
 };
