@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPlanetCard.h"
 
 #include "Color.h"
+#include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -27,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "shader/PointerShader.h"
 #include "Screen.h"
+#include "image/Sprite.h"
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -285,8 +287,8 @@ void MapPlanetCard::Highlight(double availableSpace) const
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double width = planetCardInterface->GetValue("width");
 
-	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
-		Point(width, availableSpace), *GameData::Colors().Get("item selected"));
+	Rectangle highlightRegion = Rectangle::FromCorner(Point(Screen::Left(), yCoordinate), Point(width, availableSpace));
+	FillShader::Fill(highlightRegion, *GameData::Colors().Get("item selected"));
 }
 
 

@@ -16,14 +16,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FillShader.h"
 
 #include "../Color.h"
-#include "../Point.h"
+#include "../GameData.h"
+#include "../Rectangle.h"
 #include "../Screen.h"
 #include "Shader.h"
 
 #include <stdexcept>
 
 namespace {
-	Shader shader;
+	const Shader *shader;
 	GLint scaleI;
 	GLint centerI;
 	GLint sizeI;
@@ -37,34 +38,13 @@ namespace {
 
 void FillShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex fill shader\n"
-		"uniform vec2 scale;\n"
-		"uniform vec2 center;\n"
-		"uniform vec2 size;\n"
-
-		"in vec2 vert;\n"
-
-		"void main() {\n"
-		"  gl_Position = vec4((center + vert * size) * scale, 0, 1);\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment fill shader\n"
-		"precision mediump float;\n"
-		"uniform vec4 color;\n"
-
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  finalColor = color;\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
-	scaleI = shader.Uniform("scale");
-	centerI = shader.Uniform("center");
-	sizeI = shader.Uniform("size");
-	colorI = shader.Uniform("color");
+	shader = GameData::Shaders().Find("fill");
+	if(!shader->Object())
+		throw std::runtime_error("Could not find fill shader!");
+	scaleI = shader->Uniform("scale");
+	centerI = shader->Uniform("center");
+	sizeI = shader->Uniform("size");
+	colorI = shader->Uniform("color");
 
 	// Generate the vertex data for drawing sprites.
 	glGenVertexArrays(1, &vao);
@@ -81,8 +61,8 @@ void FillShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader.Attrib("vert"));
-	glVertexAttribPointer(shader.Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	glEnableVertexAttribArray(shader->Attrib("vert"));
+	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -91,12 +71,19 @@ void FillShader::Init()
 
 
 
+void FillShader::Fill(const Rectangle &area, const Color &color)
+{
+	Fill(area.Center(), area.Dimensions(), color);
+}
+
+
+
 void FillShader::Fill(const Point &center, const Point &size, const Color &color)
 {
-	if(!shader.Object())
+	if(!shader || !shader->Object())
 		throw std::runtime_error("FillShader: Draw() called before Init().");
 
-	glUseProgram(shader.Object());
+	glUseProgram(shader->Object());
 	glBindVertexArray(vao);
 
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};

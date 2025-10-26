@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PlayerInfoPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Command.h"
 #include "text/Font.h"
@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "InfoPanelState.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "LogbookPanel.h"
 #include "MissionPanel.h"
 #include "Planet.h"
@@ -36,7 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoPanel.h"
 #include "System.h"
 #include "text/Table.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -50,7 +50,7 @@ namespace {
 	const int LINES_PER_PAGE = 26;
 
 	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
+	void DrawList(vector<pair<int64_t, string>> &list, const Table &table, const string &title,
 		int64_t titleValue, int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
@@ -132,7 +132,7 @@ namespace {
 	}
 
 	// A helper function for reversing the arguments of the given function F.
-	template <InfoPanelState::ShipComparator &F>
+	template<InfoPanelState::ShipComparator &F>
 	bool ReverseCompare(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
 		return F(rhs, lhs);
@@ -511,8 +511,11 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 
 
 
-bool PlayerInfoPanel::Click(int x, int y, int clicks)
+bool PlayerInfoPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	// Sort the ships if the click was on one of the column headers.
 	Point mouse = Point(x, y);
 	for(auto &zone : menuZones)
@@ -579,8 +582,10 @@ bool PlayerInfoPanel::Drag(double dx, double dy)
 
 
 
-bool PlayerInfoPanel::Release(int /* x */, int /* y */)
+bool PlayerInfoPanel::Release(int /* x */, int /* y */, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	if(!isDragging)
 		return true;
 	isDragging = false;
