@@ -277,7 +277,7 @@ private:
 
 	int step = 0;
 	// Count steps for UI elements separately, because they shouldn't be affected by pausing.
-	int uiStep = 0;
+	mutable int uiStep = 0;
 	bool timePaused = false;
 
 	std::list<ShipEvent> eventQueue;
