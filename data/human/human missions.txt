@@ -6456,7 +6456,6 @@ mission "Lost Racer 1"
 	to offer
 		"combat rating" > 40
 		random < 80
-		not "outfit: Jump Drive"
 	on offer
 		conversation
 			`While wandering the <origin> spaceport, waiting for your ship to be refueled, you notice a commotion near one of the other hangars; someone appears to be shouting. As you approach the disturbance, you see a well-dressed older man engaged in a heated discussion with a Navy officer beside a parked Frigate being loaded with supplies. After a few more shouts and a dismissive wave by the officer, the man turns away, exasperated - then spots you and walks over.`
@@ -6551,7 +6550,7 @@ mission "Lost Racer 2 - Continued"
 	name "Search for Artemis Renard"
 	description "Search the system of <system> for Artemis Renard, especially <planet>."
 	source "Sunracer"
-	waypoint "Acamar"
+	mark "Acamar"
 	destination "Sandswell"
 	passengers 1
 	deadline
@@ -6621,6 +6620,7 @@ mission "Lost Racer 2 - Continued"
 			`	"Thank you, Captain. We need to get moving immediately."`
 				launch
 	on enter Acamar
+		unmark Acamar
 		conversation
 			`Upon entering the Acamar system, your sensors detect a faint radio signal coming from the third planet in the system, but you realize that the radio signal is a result of the electrical discharges from the planet's atmosphere produced by the many volcanoes on the surface. After calibrating your sensors to account for this, you are unable to detect any transponder signal matching Artemis' ship.`
 			`	Mr. Renard paces around the bridge of the <ship>, prodding at consoles. "Are you sure you checked it? Is that the right frequency?"`
@@ -6658,8 +6658,8 @@ mission "Lost Racer 2 - Continued"
 			action
 				set "lost racer august to glory"
 				fail
-
 	on enter Kugel
+		unmark Acamar
 		dialog
 			"As soon as you enter the Kugel system, your sensors begin to pick up a weak radio signal coming from the second planet, this time matching exactly the frequency of Artemis Renard's transponder. It seems you have arrived in the correct system."
 	on visit
