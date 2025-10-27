@@ -6664,7 +6664,7 @@ mission "Lost Racer 2 - Continued"
 			"As soon as you enter the Kugel system, your sensors begin to pick up a weak radio signal coming from the second planet, this time matching exactly the frequency of Artemis Renard's transponder. It seems you have arrived in the correct system."
 	on visit
 		dialog
-			"Either not all of your passengers are in the system, or you need to fly through Acamar before landing here."
+			"August Renard is not in the system."
 
 mission "Lost Racer 2 - Failed"
 	entering
