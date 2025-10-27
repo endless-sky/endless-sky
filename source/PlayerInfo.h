@@ -234,7 +234,7 @@ public:
 	// - Determine which systems any tracked NPCs are located in.
 	void CacheMissionInformation(bool onlyDeadlines = false);
 	// Cache information for a mission that was just accepted.
-	void CacheMissionInformation(const Mission &mission, const DistanceMap &here, bool onlyDeadlines = false);
+	void CacheMissionInformation(Mission &mission, const DistanceMap &here, bool onlyDeadlines = false);
 	// The number of days left before this mission's deadline has elapsed, or,
 	// if the "Deadline blink by distance" preference is true, before the player
 	// doesn't have enough days left to complete the mission before the deadline

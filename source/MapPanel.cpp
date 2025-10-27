@@ -268,9 +268,12 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	if(systemRange || playerRange)
 		playerJumpDistance = systemRange ? systemRange : playerRange;
 
-	// Recache the remaining number of days for all deadline missions and
-	// the location of tracked NPCs.
-	player.CacheMissionInformation();
+	// Recalculate any mission deadlines if the player is landed in case
+	// changes to the player's flagship have changed the deadline calculations.
+	// If the player is not landed, then the deadlines will have already been
+	// recalculated on the day change.
+	if(player.GetPlanet())
+		player.CacheMissionInformation(true);
 
 	CenterOnSystem(selectedSystem, true);
 }

@@ -787,21 +787,31 @@ const set<const System *> &Mission::UnmarkedSystems() const
 
 
 
-const set<const System *> &Mission::TrackedSystems(bool recalculate) const
+const set<const System *> &Mission::TrackedSystems() const
 {
-	if(hasTrackedNpcs && recalculate)
-	{
-		trackedSystems.clear();
-		for(const NPC &npc : npcs)
-		{
-			if(!npc.GetPersonality().IsTracked())
-				continue;
-			for(const auto &ship : npc.Ships())
-				if(!ship->IsDestroyed() && ship->GetSystem())
-					trackedSystems.insert(ship->GetSystem());
-		}
-	}
 	return trackedSystems;
+}
+
+
+
+void Mission::RecalculateTrackedSystems()
+{
+	if(!hasTrackedNpcs)
+		return;
+
+	trackedSystems.clear();
+	for(const NPC &npc : npcs)
+	{
+		if(!npc.GetPersonality().IsTracked())
+			continue;
+		for(const auto &ship : npc.Ships())
+			if(!ship->IsDestroyed() && ship->GetSystem())
+				trackedSystems.insert(ship->GetSystem());
+	}
+	// If all tracked NPCs are destroyed, then we can ignore
+	// future calls to recalculate the tracked systems.
+	if(trackedSystems.empty())
+		hasTrackedNpcs = false;
 }
 
 
@@ -1378,8 +1388,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	if((event.Type() & ShipEvent::DISABLE) && event.Target() == player.FlagshipPtr())
 		Do(DISABLED, player, ui);
 
-	// Jump events are only created for the player's flagship.
-	if((event.Type() & ShipEvent::JUMP) && event.Actor())
+	const Ship *flagship = player.Flagship();
+	if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
 	{
 		const System *system = event.Actor()->GetSystem();
 		// If this was a waypoint, clear it.
@@ -1396,7 +1406,13 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	}
 
 	for(NPC &npc : npcs)
-		npc.Do(event, player, ui, this, isVisible);
+	{
+		bool isTarget = npc.Do(event, player, ui, this, isVisible);
+		// If this event is a JUMP event for one of the NPCs in this mission, then
+		// recalculate all tracked NPC locations.
+		if((event.Type() & ShipEvent::JUMP) && isTarget)
+			RecalculateTrackedSystems();
+	}
 }
 
 

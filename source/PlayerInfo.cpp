@@ -2020,16 +2020,16 @@ void PlayerInfo::CacheMissionInformation(bool onlyDeadlines)
 {
 	remainingDeadlines.clear();
 	DistanceMap here(*this, system);
-	for(const Mission &mission : missions)
+	for(Mission &mission : missions)
 		CacheMissionInformation(mission, here, onlyDeadlines);
 }
 
 
 
-void PlayerInfo::CacheMissionInformation(const Mission &mission, const DistanceMap &here, bool onlyDeadlines)
+void PlayerInfo::CacheMissionInformation(Mission &mission, const DistanceMap &here, bool onlyDeadlines)
 {
 	if(!onlyDeadlines)
-		mission.TrackedSystems(true);
+		mission.RecalculateTrackedSystems();
 
 	if(!mission.Deadline())
 		return;
