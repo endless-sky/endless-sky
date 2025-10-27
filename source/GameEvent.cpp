@@ -136,35 +136,24 @@ void GameEvent::Save(DataWriter &out) const
 	if(isDisabled)
 		return;
 
-	bool hasName = !trueName.empty();
-	if(hasName)
-		out.Write("event", trueName);
-	else
-		out.Write("event");
+	out.Write("event");
 	out.BeginChild();
 	{
-		if(date)
-			out.Write("date", date.Day(), date.Month(), date.Year());
-		// Named events only need to save their name and the date that they occur on.
-		// The remaining information will be retrieved from the definition when the
-		// game is next loaded.
-		if(!hasName)
-		{
-			conditionsToApply.Save(out);
+		out.Write("date", date.Day(), date.Month(), date.Year());
+		conditionsToApply.Save(out);
 
-			for(auto &&system : systemsToUnvisit)
-				out.Write("unvisit", system->TrueName());
-			for(auto &&planet : planetsToUnvisit)
-				out.Write("unvisit planet", planet->TrueName());
+		for(auto &&system : systemsToUnvisit)
+			out.Write("unvisit", system->TrueName());
+		for(auto &&planet : planetsToUnvisit)
+			out.Write("unvisit planet", planet->TrueName());
 
-			for(auto &&system : systemsToVisit)
-				out.Write("visit", system->TrueName());
-			for(auto &&planet : planetsToVisit)
-				out.Write("visit planet", planet->TrueName());
+		for(auto &&system : systemsToVisit)
+			out.Write("visit", system->TrueName());
+		for(auto &&planet : planetsToVisit)
+			out.Write("visit planet", planet->TrueName());
 
-			for(auto &&change : changes)
-				out.Write(change);
-		}
+		for(auto &&change : changes)
+			out.Write(change);
 	}
 	out.EndChild();
 }
