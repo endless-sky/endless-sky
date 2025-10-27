@@ -52,6 +52,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	: Body(weapon->WeaponSprite(), position, parent.Velocity(), angle),
 	weapon(weapon), targetShip(parent.GetTargetShip()), lifetime(weapon->Lifetime())
 {
+	parentShip = &parent;
 	government = parent.GetGovernment();
 	hitsRemaining = weapon->PenetrationCount();
 
@@ -85,6 +86,7 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	parent.velocity, parent.angle + angle),
 	weapon(weapon), targetShip(parent.targetShip), lifetime(weapon->Lifetime())
 {
+	parentShip = parent.parentShip;
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
 	targetDisabled = parent.targetDisabled;
@@ -349,6 +351,13 @@ Projectile::ImpactInfo Projectile::GetInfo(double intersection) const
 	// Account for the distance that this projectile traveled before intersecting
 	// with the target.
 	return ImpactInfo(*weapon, position, distanceTraveled + dV.Length() * intersection);
+}
+
+
+
+const Ship *Projectile::ParentShip() const
+{
+	return parentShip;
 }
 
 

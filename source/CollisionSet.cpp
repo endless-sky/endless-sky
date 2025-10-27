@@ -23,8 +23,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Projectile.h"
 #include "Ship.h"
+#include "Random.h"
 
 #include <algorithm>
+#include <cmath>
 #include <cstdlib>
 #include <numeric>
 #include <set>
@@ -139,13 +141,14 @@ void CollisionSet::Finish()
 // sorted by distance.
 void CollisionSet::Line(const Projectile &projectile, vector<Collision> &result) const
 {
-	// What objects the projectile hits depends on its government.
+	// What objects the projectile hits depends on its parent ship and government.
+	const Ship *pShip = projectile.ParentShip();
 	const Government *pGov = projectile.GetGovernment();
 
 	// Convert the projectile to a line represented by its start and end points.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
-	Line(from, to, result, pGov, projectile.Target());
+	Line(from, to, result, pShip, pShip->GetParent().get(), pGov, projectile.Target());
 }
 
 
@@ -153,7 +156,7 @@ void CollisionSet::Line(const Projectile &projectile, vector<Collision> &result)
 // Get all possible collisions along a line. Collisions are not necessarily sorted by
 // distance.
 void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &lineResult,
-		const Government *pGov, const Body *target) const
+		const Body *pShip, const Body *grandShip, const Government *pGov, const Body *target) const
 {
 	const int x = from.X();
 	const int y = from.Y();
@@ -165,6 +168,8 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 	int gy = y >> SHIFT;
 	const int endGX = endX >> SHIFT;
 	const int endGY = endY >> SHIFT;
+
+	const Point pVelocity = (to - from);
 
 	// Special case, very common: the projectile is contained in one grid cell.
 	// In this case, all the complicated code below can be skipped.
@@ -181,10 +186,16 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 			if(it->x != gx || it->y != gy)
 				continue;
 
+			// Get the base probability of a friendly fire hit.
+			const double friendlyFire = pShip->CanBeCarried() || it->body->CanBeCarried() ? .0 : .5;
+
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
 			const Government *iGov = it->body->GetGovernment();
-			if(it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
+			const double relativeVelocity = abs(pVelocity.Distance(it->body->Velocity()));
+			if(it->body == pShip || it->body == grandShip || (it->body != target && iGov && pGov &&
+					!iGov->IsEnemy(pGov) && (iGov != pGov || Random::Real() < pow(1. - friendlyFire,
+					min(1., relativeVelocity / 150.)))))
 				continue;
 
 			const Mask &mask = it->body->GetMask(step);
@@ -198,7 +209,6 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 		return;
 	}
 
-	const Point pVelocity = (to - from);
 	if(pVelocity.Length() > MAX_VELOCITY)
 	{
 		// Cap projectile velocity to prevent integer overflows.
@@ -209,7 +219,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
 
-		Line(from, newEnd, lineResult, pGov, target);
+		Line(from, newEnd, lineResult, pShip, grandShip, pGov, target);
 		return;
 	}
 
@@ -254,10 +264,16 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 				continue;
 			seen[it->seenIndex] = true;
 
+			// Get the base probability of a friendly fire hit.
+			const double friendlyFire = pShip->CanBeCarried() || it->body->CanBeCarried() ? .0 : .5;
+
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
 			const Government *iGov = it->body->GetGovernment();
-			if(it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
+			const double relativeVelocity = abs(pVelocity.Distance(it->body->Velocity()));
+			if(it->body == pShip || it->body == grandShip || (it->body != target && iGov && pGov &&
+					!iGov->IsEnemy(pGov) && (iGov != pGov || Random::Real() < pow(1. - friendlyFire,
+					min(1., relativeVelocity / 150.)))))
 				continue;
 
 			const Mask &mask = it->body->GetMask(step);
