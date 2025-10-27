@@ -41,6 +41,10 @@ public:
 	virtual void Draw() override;
 
 
+protected:
+	virtual void Resize() override;
+
+
 private:
 	const News *PickNews() const;
 
@@ -49,7 +53,6 @@ private:
 	PlayerInfo &player;
 	std::shared_ptr<TextArea> description;
 	const Port &port;
-	const Interface &ui;
 
 	// Current news item (if any):
 	bool hasNews = false;

@@ -120,7 +120,6 @@ public:
 	};
 
 	enum class CanFireResult {
-		INVALID,
 		NO_AMMO,
 		NO_ENERGY,
 		NO_FUEL,
@@ -168,7 +167,8 @@ public:
 	void SetUUID(const EsUuid &id);
 
 	// Get the name of this particular ship.
-	const std::string &Name() const;
+	const std::string &GivenName() const;
+	void SetGivenName(const std::string &name);
 
 	// Set / Get the name of this model of ship.
 	void SetTrueModelName(const std::string &model);
@@ -202,7 +202,6 @@ public:
 	void SetVelocity(Point velocity);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
-	void SetName(const std::string &name);
 	void SetSystem(const System *system);
 	void SetPlanet(const Planet *planet);
 	void SetGovernment(const Government *government);
@@ -337,11 +336,6 @@ public:
 	bool IsDamaged() const;
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
-	// Land/Check if this ship has permanently landed.
-	void LandForever();
-	bool HasLanded() const;
-	// Check if this ship has permanently landed or been destroyed.
-	bool LandedOrDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
@@ -433,6 +427,10 @@ public:
 	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
 	double TrueAcceleration() const;
 	double TrueTurnRate() const;
+	// These two values are the ship's effective maximum acceleration and turn rate,
+	// accounting for the effects of insufficient crew.
+	double CrewAcceleration() const;
+	double CrewTurnRate() const;
 	// The ship's current speed right now
 	double CurrentSpeed() const;
 
@@ -495,6 +493,7 @@ public:
 	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
+	// Assume the weapon is valid.
 	CanFireResult CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates). Assume that CanFire() is true.
@@ -507,14 +506,6 @@ public:
 	const StellarObject *GetTargetStellar() const;
 	// Get ship's target system (it should always be one jump / wormhole pass away).
 	const System *GetTargetSystem() const;
-	// Targets for persistent ships (i.e. mission NPCs).
-	bool HasTravelDirective() const;
-	const std::map<const Planet *, bool> &GetStopovers() const;
-	bool AllStopoversVisited() const;
-	const Planet *GetDestinationPlanet() const;
-	const System *GetDestinationSystem() const;
-	bool ContinueAfterDestination() const;
-
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
@@ -531,13 +522,6 @@ public:
 	void SetTargetStellar(const StellarObject *object);
 	// Set ship's target system (it should always be one jump / wormhole pass away).
 	void SetTargetSystem(const System *system);
-	// Persistent targets associated with mission NPCs.
-	void SetDestination(const Planet *destination);
-	void SetStopovers(const std::vector<const Planet *> &stopovers);
-	void SetWaypoints(const std::vector<const System *> &waypoints);
-	const System *NextWaypoint();
-	void EraseWaypoint(const System *system);
-
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
@@ -611,9 +595,6 @@ private:
 	// Helper function for jettisoning flotsam.
 	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
-	// Mark all stopovers as incomplete.
-	void ResetStopovers();
-
 
 private:
 	// Protected member variables of the Body class:
@@ -637,14 +618,13 @@ private:
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	EsUuid uuid;
-	std::string name;
+	std::string givenName;
 	bool canBeCarried = false;
 
 	int forget = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
-	// continue to exist and refuel instead of being deleted, unless explicitly
-	// designed to do so by a mission's NPC specification.
+	// continue to exist and refuel instead of being deleted.
 	bool isSpecial = false;
 	bool isYours = false;
 	bool isParked = false;
@@ -661,7 +641,6 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
-	bool hasLanded = false;
 	const Swizzle *customSwizzle = nullptr;
 	std::string customSwizzleName;
 	double cloak = 0.;
@@ -691,7 +670,7 @@ private:
 	Outfit attributes;
 	Outfit baseAttributes;
 	bool addAttributes = false;
-	const Outfit *explosionWeapon = nullptr;
+	const Weapon *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
@@ -788,17 +767,6 @@ private:
 	std::weak_ptr<Flotsam> targetFlotsam;
 	std::set<const Flotsam *> tractorFlotsam;
 	const FormationPattern *formationPattern = nullptr;
-
-	// NPC travel directives
-	const System *destinationSystem = nullptr;
-	// The list of consecutive NPC destination systems.
-	std::vector<const System *> waypoints;
-	size_t waypoint = 0;
-	// The list of stopover planets this NPC should try to land on, and if
-	// they have already been landed on in this sequence.
-	std::map<const Planet *, bool> stopovers;
-	// The final destination of this NPC after it has landed on all its stopovers.
-	const Planet *destinationPlanet = nullptr;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;

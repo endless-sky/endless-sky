@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+#include "Weapon.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -50,12 +51,13 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 {
 	Audio::Pause();
 	SetInterruptible(false);
+	UI::PlaySound(UI::UISound::SOFT);
 
 	const Government *gov = ship->GetGovernment();
-	if(!ship->Name().empty())
-		header = gov->GetName() + " " + ship->Noun() + " \"" + ship->Name() + "\":";
+	if(!ship->GivenName().empty())
+		header = gov->DisplayName() + " " + ship->Noun() + " \"" + ship->GivenName() + "\":";
 	else
-		header = ship->DisplayModelName() + " (" + gov->GetName() + "):";
+		header = ship->DisplayModelName() + " (" + gov->DisplayName() + "):";
 	// Drones are always unpiloted, so they never respond to hails.
 	bool isMute = ship->GetPersonality().IsMute() || (ship->Attributes().Category() == "Drone");
 	hasLanguage = !isMute && (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
@@ -138,10 +140,11 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 {
 	Audio::Pause();
 	SetInterruptible(false);
+	UI::PlaySound(UI::UISound::SOFT);
 
 	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
 	if(planet)
-		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->DisplayName() + "\":";
+		header = gov->DisplayName() + " " + planet->Noun() + " \"" + planet->DisplayName() + "\":";
 	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 
 	// If the player is hailing a planet, determine if a mission grants them clearance before checking
@@ -161,10 +164,11 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	else if(planet && player.Flagship())
 	{
 		if(planet->CanLand())
-			SetMessage("You are cleared to land, " + player.Flagship()->Name() + ".");
+			SetMessage("You are cleared to land, " + player.Flagship()->GivenName() + ".");
 		else
 		{
-			SetBribe(planet->GetBribeFraction());
+			if(planet->CanBribe())
+				SetBribe(planet->GetBribeFraction());
 			if(bribe)
 				SetMessage("If you want to land here, it'll cost you "
 					+ Format::CreditString(bribe) + ".");
@@ -241,16 +245,21 @@ void HailPanel::Draw()
 		bool hasFighters = ship->PositionFighters();
 		auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void
 		{
-			if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
-			{
-				Body body(
-					hardpoint.GetOutfit()->HardpointSprite(),
-					center + zoom * facing.Rotate(hardpoint.GetPoint()),
-					Point(),
-					facing + hardpoint.GetAngle(),
-					zoom);
-				draw.Add(body);
-			}
+			const Weapon *weapon = hardpoint.GetWeapon();
+			if(!weapon)
+				return;
+			const Body &sprite = weapon->HardpointSprite();
+			if(!sprite.HasSprite())
+				return;
+			Body body(
+				sprite,
+				center + zoom * facing.Rotate(hardpoint.GetPoint()),
+				Point(),
+				facing + hardpoint.GetAngle(),
+				zoom);
+			if(body.InheritsParentSwizzle())
+				body.SetSwizzle(ship->GetSwizzle());
+			draw.Add(body);
 		};
 		auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void
 		{
@@ -271,11 +280,11 @@ void HailPanel::Draw()
 				if(bay.side == Ship::Bay::UNDER)
 					addFighter(bay);
 		for(const Hardpoint &hardpoint : ship->Weapons())
-			if(hardpoint.IsUnder())
+			if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
 				addHardpoint(hardpoint);
 		draw.Add(Body(*ship, center, Point(), facing, zoom));
 		for(const Hardpoint &hardpoint : ship->Weapons())
-			if(!hardpoint.IsUnder())
+			if(hardpoint.GetSide() == Hardpoint::Side::OVER)
 				addHardpoint(hardpoint);
 		if(hasFighters)
 			for(const Ship::Bay &bay : ship->Bays())
@@ -302,6 +311,7 @@ void HailPanel::Draw()
 
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
@@ -309,6 +319,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(bribeCallback && bribed)
 			bribeCallback(bribed);
 		GetUI()->Pop(this);
+		sound = UI::UISound::SOFT;
 	}
 	else if(key == 't' && hasLanguage && planet)
 	{
@@ -327,6 +338,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				Truncate::NONE, true, false));
 		else
 			SetMessage(planet->DemandTribute(player));
+		UI::PlaySound(UI::UISound::NORMAL);
 		return true;
 	}
 	else if(key == 'h' && hasLanguage && ship && canAssistPlayer)
@@ -394,7 +406,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				{
 					bribed = ship->GetGovernment();
 					bribed->Bribe();
-					Messages::Add("You bribed a " + bribed->GetName() + " ship "
+					Messages::Add("You bribed a " + bribed->DisplayName() + " ship "
 						+ Format::CreditString(bribe) + " to refrain from attacking you today."
 							, Messages::Importance::High);
 				}
@@ -410,7 +422,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		else
 			SetMessage("I do not want your money.");
 	}
+	else
+		sound = UI::UISound::NONE;
 
+	UI::PlaySound(sound);
 	return true;
 }
 

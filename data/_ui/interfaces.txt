@@ -212,6 +212,7 @@ color "map route error shadow" 0. 0. 0. 1.
 
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
+color "wormholes: beyond Patir" .19 .27 .69
 
 # Color of warning message when users enable or disable plugins via in-game UI.
 color "plugin reload required" .75 .1 .1 0.
@@ -259,6 +260,11 @@ interface "menu background"
 
 
 interface "main menu"
+	# Background animation:
+	value "x speed" -.4
+	value "y speed" .02
+	value "y amplitude" .6
+
 	# Credits:
 	sprite "_menu/side panel"
 		center -360 0
@@ -596,7 +602,7 @@ interface "plugins"
 		align top left
 		color bright
 	visible
-	line
+	fill
 		from -230 -222 to -10 -221
 	box "plugin list"
 		from -250 -216 to -10 184
@@ -632,7 +638,7 @@ interface "audio"
 	label "Music"
 		center -129.5 -228
 		color bright
-	line
+	fill
 		center -117.5 -208.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -662,7 +668,7 @@ interface "audio"
 	label "UI"
 		center -129.5 -168
 		color bright
-	line
+	fill
 		center -117.5 -148.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -692,7 +698,7 @@ interface "audio"
 	label "Anti-Missiles"
 		center -129.5 -108
 		color bright
-	line
+	fill
 		center -117.5 -88.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -722,7 +728,7 @@ interface "audio"
 	label "Weapons"
 		center -129.5 -48
 		color bright
-	line
+	fill
 		center -117.5 -28.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -752,7 +758,7 @@ interface "audio"
 	label "Engines"
 		center -129.5 12
 		color bright
-	line
+	fill
 		center -117.5 32.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -782,7 +788,7 @@ interface "audio"
 	label "Afterburners"
 		center -129.5 72
 		color bright
-	line
+	fill
 		center -117.5 92.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -812,7 +818,7 @@ interface "audio"
 	label "Hyperdrives"
 		center -129.5 132
 		color bright
-	line
+	fill
 		center -117.5 152.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -842,7 +848,7 @@ interface "audio"
 	label "Explosions"
 		center 129.5 -228
 		color bright
-	line
+	fill
 		center 117.5 -208.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -872,7 +878,7 @@ interface "audio"
 	label "Scans"
 		center 129.5 -168
 		color bright
-	line
+	fill
 		center 117.5 -148.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -902,7 +908,7 @@ interface "audio"
 	label "Environment"
 		center 129.5 -108
 		color bright
-	line
+	fill
 		center 117.5 -88.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -932,7 +938,7 @@ interface "audio"
 	label "Alerts"
 		center 129.5 -48
 		color bright
-	line
+	fill
 		center 117.5 -28.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -965,7 +971,7 @@ interface "preferences"
 		center 195 210
 		dimensions 120 30
 	value "master volume bar size" 220
-	line
+	fill
 		center 280.5 -97
 		dimensions 10.5 235
 		color "volume bar background"
@@ -1259,6 +1265,7 @@ interface "hud"
 		from 120 0 bottom left
 		to -110 -200 bottom right
 	value "messages reversed" 0
+	value "message animation duration" 30
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
@@ -1283,8 +1290,12 @@ interface "main view"
 
 
 interface "starfield"
+	# Fixed starfield zoom preference constants:
 	value "fixed zoom" .35
 	value "velocity reducer" 1.4
+	# Starfield zoom behavior constants:
+	value "start clamping zoom" .25
+	value "minimum zoom" .15
 
 
 
@@ -1417,16 +1428,110 @@ interface "escort element"
 
 interface "planet"
 	image "land"
+		center 0 -140
+	sprite "ui/planet dialog"
+		center 0 0
+	button l
+		center 0 -140
+		dimensions 720 360
+	
+	box "content"
+		from -240 80 to 240 320
+	
+	visible if "has shipyard"
+	sprite "ui/planet dialog button"
+		center 340 90
+	button s "_Shipyard"
+		center 340 90
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+	
+	visible if "has outfitter"
+	sprite "ui/planet dialog button"
+		center 340 150
+	button o "_Outfitter"
+		center 340 150
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+	
+	visible if "has job board"
+	sprite "ui/planet dialog button"
+		center -340 150
+	button j "_Job Board"
+		center -340 150
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	visible if "can hire crew"
+	sprite "ui/planet dialog button"
+		center 340 210
+	button h "_Hire Crew"
+		center 340 210
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+	
+	visible if "has trade"
+	sprite "ui/planet dialog button"
+		center -340 90
+	button t "_Trading"
+		center -340 90
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has bank"
+	sprite "ui/planet dialog button"
+		center -340 210
+	button b "_Bank"
+		center -340 210
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
+	visible if "has port"
+	sprite "ui/planet dialog button"
+		center -340 270
+	"dynamic button" p "port name"
+		center -340 270
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	visible
+	
+	active if "has ship"
+	sprite "ui/planet dialog button"
+		center 340 270
+	button d "_Depart"
+		center 340 270
+		dimensions 140 40
+		size 18
+		align right
+		pad 10 0
+
+
+
+interface "planet (small screen)"
+	image "land"
 		center -60 -140
 	sprite "ui/planet dialog"
 		center -60 0
 	button l
 		center -60 -140
 		dimensions 720 360
-
+	
 	box "content"
 		from -300 80 to 180 320
-
+	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 280 90
@@ -1511,11 +1616,35 @@ interface "planet"
 
 interface "spaceport"
 	box "content"
+		from -240 80 to 240 320
+
+
+
+interface "spaceport (small screen)"
+	box "content"
 		from -300 80 to 180 320
 
 
 
 interface "news"
+	sprite "ui/news"
+		center -100 -45
+	image "portrait"
+		center 80 -40
+	string "name"
+		from -340 -100
+		align center left
+		color "bright"
+	box "message portrait"
+		from -340 -80
+		to -50 10
+	box "message"
+		from -340 -80
+		to 80 10
+
+
+
+interface "news (small screen)"
 	sprite "ui/news"
 		center -160 -45
 	image "portrait"
@@ -1645,6 +1774,103 @@ interface "boarding"
 # The top of the text panel is the planet dialog is at +70, and it is 500 x 260.
 interface "hiring"
 	label "flagship"
+		center -10 85
+		color "bright"
+		align right
+	label "entire fleet"
+		center 110 85
+		color "bright"
+		align right
+	label "salary"
+		center 230 85
+		color "bright"
+		align right
+	
+	fill
+		center 0 95
+		dimensions 480 1
+	
+	label "bunks"
+		center -230 110
+		align left
+	string "flagship bunks"
+		center -10 110
+		align right
+	string "fleet bunks"
+		center 110 110
+		align right
+	
+	label "required crew"
+		center -230 130
+		align left
+	string "flagship required"
+		center -10 130
+		align right
+	string "fleet required"
+		center 110 130
+		align right
+	string "salary required"
+		center 230 130
+		align right
+	
+	label "extra crew"
+		center -230 150
+		align left
+	string "flagship extra"
+		center -10 150
+		align right
+	string "salary extra"
+		center 230 150
+		align right
+	
+	active if "can hire"
+	sprite "ui/dialog cancel"
+		center 200 355
+	button h "_Hire"
+		center 200 355
+		dimensions 80 40
+	
+	active if "can fire"
+	sprite "ui/dialog cancel"
+		center 120 355
+	button f "_Fire"
+		center 120 355
+		dimensions 80 40
+	
+	active
+	string "modifier"
+		from -5 150
+		color "dim"
+		align left
+	
+	label "passenger space"
+		center -230 180
+		align left
+	string "flagship unused"
+		center -10 180
+		align right
+	string "fleet unused"
+		center 110 180
+		align right
+	
+	label "passengers"
+		center -230 200
+		align left
+	string "passengers"
+		center 110 200
+		align right
+	
+	label "(Extra crew for your flagship increases your odds of capturing ships,"
+		center 0 290
+	label "and once you capture a ship you need crew members to serve on it.)"
+		center 0 310
+
+
+
+
+# The top of the text panel is the planet dialog is at +70, and it is 500 x 260.
+interface "hiring (small screen)"
+	label "flagship"
 		center -70 85
 		color "bright"
 		align right
@@ -1657,10 +1883,10 @@ interface "hiring"
 		color "bright"
 		align right
 	
-	line
+	fill
 		center -60 95
 		dimensions 480 1
-
+	
 	label "bunks"
 		center -290 110
 		align left
@@ -1740,12 +1966,44 @@ interface "hiring"
 
 interface "trade"
 	box "content"
-		from -310 80 to 190 355
+		from -240 80 to 250 355
+	
+	fill
+		center 0 95
+		dimensions 480 1
+	
+	active if "can buy"
+	sprite "ui/dialog cancel"
+		center 100 355
+	button u "B_uy All"
+		center 100 355
+		dimensions 70 30
+	
+	sprite "ui/wide button"
+		center 190 355
+	
+	active if "can sell"
+	visible if "!can sell outfits"
+	button e "S_ell All"
+		center 190 355
+		dimensions 90 30
+	
+	active if "can sell outfits"
+	visible if "can sell outfits"
+	button e "S_ell Outfits"
+		center 190 355
+		dimensions 90 30
 
-	line
+
+
+interface "trade (small screen)"
+	box "content"
+		from -310 80 to 190 355
+	
+	fill
 		center -60 95
 		dimensions 480 1
-
+	
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 40 355
@@ -1772,12 +2030,29 @@ interface "trade"
 
 interface "bank"
 	box "content"
-		from -310 78 to 190 355
+		from -250 78 to 250 355
+	
+	fill
+		center 0 95
+		dimensions 480 1
+	
+	active if "can pay"
+	sprite "ui/dialog cancel"
+		center 200 355
+	button a "Pay _All"
+		center 200 355
+		dimensions 80 40
 
-	line
+
+
+interface "bank (small screen)"
+	box "content"
+		from -310 78 to 190 355
+	
+	fill
 		center -60 95
 		dimensions 480 1
-
+	
 	active if "can pay"
 	sprite "ui/dialog cancel"
 		center 140 355
@@ -1939,6 +2214,7 @@ interface "map buttons (small screen)" bottom right
 interface "map"
 	value "max zoom" 2
 	value "min zoom" -2
+	value "zoom animation duration" 10
 
 	anchor top
 	string "route error"
@@ -2092,6 +2368,12 @@ interface "info panel"
 interface "message log"
 	value "width" 570
 
+	button d ""
+		from 570 0 top left
+		to 0 0 bottom right
+	button "A" ""
+		center 710 -30 bottom left
+		dimensions 200 60
 	sprite "ui/message log key"
 		center 710 -30 bottom left
 	visible if "!important messages only"

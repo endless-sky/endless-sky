@@ -126,10 +126,10 @@ int TextArea::GetLongestLineWidth()
 
 void TextArea::Draw()
 {
-	Validate(scrollHeightIncludesTrailingBreak);
 	if(!buffer)
 		buffer = std::make_unique<RenderBuffer>(size);
 
+	Validate(scrollHeightIncludesTrailingBreak);
 	if(!bufferIsValid || !scroll.IsAnimationDone())
 	{
 		scroll.Step();
@@ -162,13 +162,15 @@ void TextArea::Draw()
 
 
 
-bool TextArea::Click(int x, int y, int clicks)
+bool TextArea::Click(int x, int y, MouseButton button, int clicks)
 {
-	if(scroll.Scrollable() && scrollBar.SyncClick(scroll, x, y, clicks))
+	if(scroll.Scrollable() && scrollBar.SyncClick(scroll, x, y, button, clicks))
 	{
 		bufferIsValid = false;
 		return true;
 	}
+	if(button != MouseButton::LEFT)
+		return false;
 
 	if(!buffer)
 		return false;
@@ -197,8 +199,11 @@ bool TextArea::Drag(double dx, double dy)
 
 
 
-bool TextArea::Release(int x, int y)
+bool TextArea::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	bool ret = dragging;
 	dragging = false;
 	return ret;
@@ -235,23 +240,12 @@ void TextArea::Invalidate()
 {
 	bufferIsValid = false;
 	textIsValid = false;
-	scrollable = false;
 }
 
 
 
 void TextArea::Validate(bool trailingBreak)
 {
-	if(scrollable != scroll.Scrollable())
-	{
-		const Point offset{4, 0};
-		scrollable = scroll.Scrollable();
-		if(scrollable)
-			SetRect({position - offset, size - 2 * offset});
-		else
-			SetRect({position + offset, size + 2 * offset});
-	}
-
 	if(!textIsValid || trailingBreak != scrollHeightIncludesTrailingBreak)
 	{
 		wrappedText.Wrap(text);

@@ -74,7 +74,11 @@ public:
 
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
-	const std::string &Name() const;
+	// Get the internal name used for this mission. This name is unique and is
+	// never modified by string substitution, so it can be used in condition
+	// variables, etc.
+	const std::string &TrueName() const;
+	const std::string &DisplayName() const;
 	const std::string &Description() const;
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
@@ -87,12 +91,12 @@ public:
 	// Check if this mission should be quarantined due to requiring currently-
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
-	// Check if this mission has high priority. If any high-priority missions
-	// are available, no others will be shown at landing or in the spaceport.
-	// This is to be used for missions that are part of a series.
+	// Check if this mission has high priority. If any priority missions
+	// are available, only other priority missions and non-blocking ones can offer alongside it.
 	bool HasPriority() const;
 	// Check if this mission is a "non-blocking" mission.
-	// Such missions will not prevent minor missions from being offered alongside them.
+	// Such missions will not prevent minor missions from being offered alongside them,
+	// and will not be prevented from offering by priority missions.
 	bool IsNonBlocking() const;
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other non-blocking missions (minor or otherwise) are being offered.
@@ -100,7 +104,7 @@ public:
 	int OfferPrecedence() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD, ENTERING};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
@@ -185,10 +189,6 @@ public:
 	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
 	bool RequiresGiftedShip(const std::string &shipId) const;
 
-	// Get the internal name used for this mission. This name is unique and is
-	// never modified by string substitution, so it can be used in condition
-	// variables, etc.
-	const std::string &Identifier() const;
 	// Get a specific mission action from this mission.
 	// If the mission action is not found for the given trigger, returns an empty
 	// mission action.
@@ -207,7 +207,7 @@ private:
 
 
 private:
-	std::string name;
+	std::string trueName;
 	std::string displayName;
 	std::string description;
 	std::string blocked;
