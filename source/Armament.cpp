@@ -30,19 +30,17 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes,
-	bool isUnder, const Outfit *outfit)
+void Armament::AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, attributes, false, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, false, outfit);
 }
 
 
 
 // Add a turret hardpoint.
-void Armament::AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes,
-	bool isUnder, const Outfit *outfit)
+void Armament::AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, attributes, true, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, true, outfit);
 }
 
 

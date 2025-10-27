@@ -138,11 +138,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
-	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
-	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetRect(missionInterface->GetBox("description"));
+	InitTextArea();
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -182,11 +178,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
-	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
-	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetRect(missionInterface->GetBox("description"));
+	InitTextArea();
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -349,7 +341,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
-				"Abort mission \"" + acceptedIt->Name() + "\"?"));
+				"Abort mission \"" + acceptedIt->DisplayName() + "\"?"));
 		return true;
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
@@ -671,6 +663,31 @@ bool MissionPanel::Scroll(double dx, double dy)
 
 
 
+void MissionPanel::Resize()
+{
+	ResizeTextArea();
+}
+
+
+
+void MissionPanel::InitTextArea()
+{
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetColor(*GameData::Colors().Get("bright"));
+	ResizeTextArea();
+}
+
+
+
+void MissionPanel::ResizeTextArea() const
+{
+	description->SetRect(missionInterface->GetBox("description"));
+}
+
+
+
 void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 {
 	// Auto select the destination system for the current mission.
@@ -915,7 +932,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 				color = &unselected;
 		}
 
-		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
+		font.Draw({it->DisplayName(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
 	}
 
 	return pos;

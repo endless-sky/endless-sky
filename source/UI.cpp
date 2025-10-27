@@ -263,6 +263,14 @@ bool UI::IsEmpty() const
 
 
 
+void UI::AdjustViewport() const
+{
+	for(auto &it : stack)
+		it->DoResize();
+}
+
+
+
 // Get the current mouse position.
 Point UI::GetMouse()
 {

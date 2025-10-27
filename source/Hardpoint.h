@@ -34,6 +34,12 @@ class Weapon;
 // which may or may not have a weapon installed.
 class Hardpoint {
 public:
+	enum class Side {
+		OVER,
+		INSIDE,
+		UNDER
+	};
+
 	// The base attributes of a hardpoint, without considering additional limitations of the installed outfit.
 	struct BaseAttributes {
 		// The angle that this weapon is aimed at (without harmonization/convergence), relative to the ship.
@@ -43,6 +49,8 @@ public:
 		bool isParallel;
 		// An omnidirectional turret can rotate infinitely.
 		bool isOmnidirectional;
+		// Whether the hardpoint should be drawn over the ship, under it, or not at all.
+		Side side;
 		// Range over which the turret can turn, from leftmost position to rightmost position.
 		// (directional turret only)
 		Angle minArc;
@@ -56,7 +64,7 @@ public:
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
 	Hardpoint(const Point &point, const BaseAttributes &attributes,
-		bool isTurret, bool isUnder, const Outfit *outfit = nullptr);
+		bool isTurret, const Outfit *outfit = nullptr);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	// The Outfit is guaranteed to have a Weapon.
@@ -83,7 +91,7 @@ public:
 	bool IsTurret() const;
 	bool IsParallel() const;
 	bool IsOmnidirectional() const;
-	bool IsUnder() const;
+	Side GetSide() const;
 	bool IsHoming() const;
 	bool IsSpecial() const;
 	bool CanAim(const Ship &ship) const;
@@ -155,8 +163,6 @@ private:
 	bool isParallel = false;
 	// Indicates if this hardpoint is omnidirectional (turret only).
 	bool isOmnidirectional = true;
-	// Indicates whether the hardpoint sprite is drawn under the ship.
-	bool isUnder = false;
 
 	// Angle adjustment for convergence.
 	Angle angle;

@@ -270,7 +270,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "name" && hasValue)
-			name = child.Token(1);
+			givenName = child.Token(1);
 		else if(key == "display name" && hasValue)
 			displayModelName = child.Token(1);
 		else if(key == "plural" && hasValue)
@@ -359,7 +359,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			attributes.isParallel = false;
 			attributes.isOmnidirectional = true;
 			attributes.turnMultiplier = 0.;
-			bool drawUnder = (key == "gun");
+			if(key == "gun")
+				attributes.side = Hardpoint::Side::UNDER;
 			if(child.HasChildren())
 			{
 				bool defaultBaseAngle = true;
@@ -389,9 +390,11 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					else if(grandKey == "turret turn multiplier")
 						attributes.turnMultiplier = grand.Value(1);
 					else if(grandKey == "under")
-						drawUnder = true;
+						attributes.side = Hardpoint::Side::UNDER;
+					else if(grandKey == "inside")
+						attributes.side = Hardpoint::Side::INSIDE;
 					else if(grandKey == "over")
-						drawUnder = false;
+						attributes.side = Hardpoint::Side::OVER;
 					else
 						grand.PrintTrace("Warning: Child nodes of \"" + key
 							+ "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
@@ -410,9 +413,9 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				}
 			}
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, attributes, drawUnder, outfit);
+				armament.AddGunPort(hardpoint, attributes, outfit);
 			else
-				armament.AddTurret(hardpoint, attributes, drawUnder, outfit);
+				armament.AddTurret(hardpoint, attributes, outfit);
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -692,7 +695,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAttributes(), bit->IsUnder(), outfit);
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAttributes(), outfit);
 					if(nextGun != end)
 						++nextGun;
 				}
@@ -701,7 +704,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					merged.AddTurret(bit->GetPoint() * 2., bit->GetBaseAttributes(), bit->IsUnder(), outfit);
+					merged.AddTurret(bit->GetPoint() * 2., bit->GetBaseAttributes(), outfit);
 					if(nextTurret != end)
 						++nextTurret;
 				}
@@ -727,14 +730,14 @@ void Ship::FinishLoading(bool isNewInstance)
 			armament.Add(it.first, -excess);
 			it.second -= excess;
 
-			LogWarning(VariantName(), Name(),
+			LogWarning(VariantName(), GivenName(),
 					"outfit \"" + it.first->TrueName() + "\" equipped but not included in outfit list.");
 		}
 		else if(!it.first->GetWeapon())
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
-			LogWarning(VariantName(), Name(),
+			LogWarning(VariantName(), GivenName(),
 					"outfit \"" + it.first->TrueName() + "\" is not a weapon, but is installed as one.");
 	}
 
@@ -779,7 +782,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			{
 				count -= armament.Add(it.first, count);
 				if(count)
-					LogWarning(VariantName(), Name(),
+					LogWarning(VariantName(), GivenName(),
 						"weapon \"" + it.first->TrueName() + "\" installed, but insufficient slots to use it.");
 			}
 		}
@@ -792,7 +795,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		string message;
 		if(isYours)
 		{
-			message = "Player ship " + trueModelName + " \"" + name + "\":";
+			message = "Player ship " + trueModelName + " \"" + givenName + "\":";
 			string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
 			for(auto &&outfit : undefinedOutfits)
 				message += PREFIX + outfit;
@@ -817,8 +820,8 @@ void Ship::FinishLoading(bool isNewInstance)
 				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
 		{
 			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : trueModelName;
-			if(!name.empty())
-				warning += " \"" + name + "\"";
+			if(!givenName.empty())
+				warning += " \"" + givenName + "\"";
 			warning += ": outfit \"" + outfit->TrueName() + "\" installed as a ";
 			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
@@ -886,7 +889,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		// This check is mostly useful for variants and stock ships, which have
 		// no names. Print the outfits to facilitate identifying this ship definition.
-		string message = (!name.empty() ? "Ship \"" + name + "\" " : "") + "(" + VariantName() + "):\n";
+		string message = (!givenName.empty() ? "Ship \"" + givenName + "\" " : "") + "(" + VariantName() + "):\n";
 		ostringstream outfitNames;
 		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
@@ -909,7 +912,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(!isNewInstance && targetSystem)
 	{
 		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ")
-			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->TrueName();
+			+ trueModelName + " \"" + givenName + "\": Cannot reach target system \"" + targetSystem->TrueName();
 		if(!currentSystem)
 		{
 			Logger::LogError(message + "\" (no current system).");
@@ -927,7 +930,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		customSwizzle = GameData::Swizzles().Get(customSwizzleName);
 		if(!customSwizzle->IsLoaded())
-			Logger::LogError("Warning: ship \"" + Name() + "\" refers to nonexistent swizzle \"" + customSwizzleName + "\".");
+			Logger::LogError("Warning: ship \"" + GivenName() + "\" refers to nonexistent swizzle \""
+				+ customSwizzleName + "\".");
 	}
 }
 
@@ -951,7 +955,7 @@ void Ship::Save(DataWriter &out) const
 	out.Write("ship", trueModelName);
 	out.BeginChild();
 	{
-		out.Write("name", name);
+		out.Write("name", givenName);
 		if(displayModelName != trueModelName)
 			out.Write("display name", displayModelName);
 		if(pluralModelName != displayModelName + 's')
@@ -997,10 +1001,10 @@ void Ship::Save(DataWriter &out) const
 					out.Write("steering flare sound", it.first->Name());
 			for(const auto &it : baseAttributes.AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
-					out.Write("afterburner effect", it.first->Name());
+					out.Write("afterburner effect", it.first->TrueName());
 			for(const auto &it : baseAttributes.JumpEffects())
 				for(int i = 0; i < it.second; ++i)
-					out.Write("jump effect", it.first->Name());
+					out.Write("jump effect", it.first->TrueName());
 			for(const auto &it : baseAttributes.JumpSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("jump sound", it.first->Name());
@@ -1111,10 +1115,12 @@ void Ship::Save(DataWriter &out) const
 					out.Write("blindspot", blindspot.first.Degrees(), blindspot.second.Degrees());
 				if(attributes.turnMultiplier)
 					out.Write("turret turn multiplier", attributes.turnMultiplier);
-				if(hardpoint.IsUnder())
-					out.Write("under");
-				else
+				if(hardpoint.GetSide() == Hardpoint::Side::OVER)
 					out.Write("over");
+				else if(hardpoint.GetSide() == Hardpoint::Side::INSIDE)
+					out.Write("inside");
+				else
+					out.Write("under");
 			}
 			out.EndChild();
 		}
@@ -1134,29 +1140,29 @@ void Ship::Save(DataWriter &out) const
 					if(bay.side)
 						out.Write(BAY_SIDE[bay.side]);
 					for(const Effect *effect : bay.launchEffects)
-						out.Write("launch effect", effect->Name());
+						out.Write("launch effect", effect->TrueName());
 				}
 				out.EndChild();
 			}
 		}
 		for(const Leak &leak : leaks)
-			out.Write("leak", leak.effect->Name(), leak.openPeriod, leak.closePeriod);
+			out.Write("leak", leak.effect->TrueName(), leak.openPeriod, leak.closePeriod);
 
 		using EffectElement = pair<const Effect *const, int>;
 		auto effectSort = [](const EffectElement *lhs, const EffectElement *rhs)
-			{ return lhs->first->Name() < rhs->first->Name(); };
+			{ return lhs->first->TrueName() < rhs->first->TrueName(); };
 		WriteSorted(explosionEffects, effectSort, [&out](const EffectElement &it)
 		{
 			if(it.second)
-				out.Write("explode", it.first->Name(), it.second);
+				out.Write("explode", it.first->TrueName(), it.second);
 		});
 		WriteSorted(finalExplosions, effectSort, [&out](const EffectElement &it)
 		{
 			if(it.second)
-				out.Write("final explode", it.first->Name(), it.second);
+				out.Write("final explode", it.first->TrueName(), it.second);
 		});
 		if(formationPattern)
-			out.Write("formation", formationPattern->Name());
+			out.Write("formation", formationPattern->TrueName());
 		if(currentSystem)
 			out.Write("system", currentSystem->TrueName());
 		else
@@ -1192,9 +1198,17 @@ void Ship::SetUUID(const EsUuid &id)
 
 
 
-const string &Ship::Name() const
+const string &Ship::GivenName() const
 {
-	return name;
+	return givenName;
+}
+
+
+
+// Set the name of this particular ship.
+void Ship::SetGivenName(const string &name)
+{
+	this->givenName = name;
 }
 
 
@@ -1330,9 +1344,12 @@ vector<string> Ship::FlightCheck() const
 	double turnHeat = attributes.Get("turning heat");
 	double hyperDrive = navigation.HasHyperdrive();
 	double jumpDrive = navigation.HasJumpDrive();
+	int bunks = attributes.Get("bunks");
 
 	// Report the first error condition that will prevent takeoff:
-	if(IdleHeat() >= MaximumHeat())
+	if(!bunks && RequiredCrew())
+		checks.emplace_back("no bunks!");
+	else if(IdleHeat() >= MaximumHeat())
 		checks.emplace_back("overheating!");
 	else if(energy <= 0.)
 		checks.emplace_back("no energy!");
@@ -1346,7 +1363,7 @@ vector<string> Ship::FlightCheck() const
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
 	{
-		if(RequiredCrew() > attributes.Get("bunks"))
+		if(RequiredCrew() > bunks)
 			checks.emplace_back("insufficient bunks?");
 		if(IdleHeat() <= 0. && (thrustHeat < 0. || turnHeat < 0.))
 			checks.emplace_back("insufficient heat?");
@@ -1455,14 +1472,6 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 				bay.ship->SetSwizzle(bay.ship->customSwizzle ? bay.ship->customSwizzle : swizzle);
 		}
 	}
-}
-
-
-
-// Set the name of this particular ship.
-void Ship::SetName(const string &name)
-{
-	this->name = name;
 }
 
 
@@ -1584,7 +1593,7 @@ string Ship::GetHail(map<string, string> &&subs) const
 	if(hailStr.empty())
 		return hailStr;
 
-	subs["<npc>"] = Name();
+	subs["<npc>"] = GivenName();
 	return Format::Replace(hailStr, subs);
 }
 
@@ -2009,8 +2018,8 @@ int Ship::Scan(const PlayerInfo &player)
 
 	if(startedScanning && isYours)
 	{
-		if(!target->Name().empty())
-			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\"."
+		if(!target->GivenName().empty())
+			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->GivenName() + "\"."
 				, Messages::Importance::Low);
 		else
 			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
@@ -2020,9 +2029,9 @@ int Ship::Scan(const PlayerInfo &player)
 		{
 			// If this ship has no name, show its model name instead.
 			string tag;
-			const string &gov = target->GetGovernment()->GetName();
-			if(!target->Name().empty())
-				tag = gov + " " + target->Noun() + " \"" + target->Name() + "\": ";
+			const string &gov = target->GetGovernment()->DisplayName();
+			if(!target->GivenName().empty())
+				tag = gov + " " + target->Noun() + " \"" + target->GivenName() + "\": ";
 			else
 				tag = target->DisplayModelName() + " (" + gov + "): ";
 			Messages::Add(tag + "Please refrain from scanning us or we will be forced to take action.",
@@ -2030,19 +2039,19 @@ int Ship::Scan(const PlayerInfo &player)
 		}
 	}
 	else if(startedScanning && target->isYours && isImportant)
-		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-				+ Name() + "\" is attempting to scan your ship \"" + target->Name() + "\".",
+		Messages::Add("The " + government->DisplayName() + " " + Noun() + " \""
+				+ GivenName() + "\" is attempting to scan your ship \"" + target->GivenName() + "\".",
 				Messages::Importance::Low);
 
 	if(target->isYours && !isYours && isImportant)
 	{
 		if(result & ShipEvent::SCAN_CARGO)
-			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its cargo scan of your ship \"" + target->Name() + "\".",
+			Messages::Add("The " + government->DisplayName() + " " + Noun() + " \""
+					+ GivenName() + "\" completed its cargo scan of your ship \"" + target->GivenName() + "\".",
 					Messages::Importance::High);
 		if(result & ShipEvent::SCAN_OUTFITS)
-			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its outfit scan of your ship \"" + target->Name()
+			Messages::Add("The " + government->DisplayName() + " " + Noun() + " \""
+					+ GivenName() + "\" completed its outfit scan of your ship \"" + target->GivenName()
 					+ (target->Attributes().Get("inscrutable") > 0. ? "\" with no useful results." : "\"."),
 					Messages::Importance::High);
 	}
@@ -3133,10 +3142,15 @@ double Ship::TurnRate() const
 
 double Ship::TrueTurnRate() const
 {
+	return TurnRate() * 1. / (1. + slowness * .05);
+}
+
+
+
+double Ship::CrewTurnRate() const
+{
 	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
-	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
-	double slownessMultiplier = 1. / (1. + slowness * .05);
-	return TurnRate() * crewMultiplier * slownessMultiplier;
+	return TurnRate() * min(1., static_cast<double>(Crew()) / RequiredCrew());
 }
 
 
@@ -3152,10 +3166,15 @@ double Ship::Acceleration() const
 
 double Ship::TrueAcceleration() const
 {
+	return Acceleration() * 1. / (1. + slowness * .05);
+}
+
+
+
+double Ship::CrewAcceleration() const
+{
 	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
-	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
-	double slownessMultiplier = 1. / (1. + slowness * .05);
-	return Acceleration() * crewMultiplier * slownessMultiplier;
+	return Acceleration() * min(1., static_cast<double>(Crew()) / RequiredCrew());
 }
 
 
@@ -3176,16 +3195,6 @@ double Ship::ReverseAcceleration() const
 {
 	return attributes.Get("reverse thrust") / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
-}
-
-
-
-double Ship::TrueReverseAcceleration() const
-{
-	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
-	double crewMultiplier = min(1., static_cast<double>(Crew()) / RequiredCrew());
-	double slownessMultiplier = 1. / (1. + slowness * .05);
-	return ReverseAcceleration() * crewMultiplier * slownessMultiplier;
 }
 
 
@@ -3284,7 +3293,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 
 		if(IsYours())
 			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::HighestDuplicating);
+				" \"" + GivenName() + "\" has been destroyed.", Messages::Importance::HighestDuplicating);
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -4563,7 +4572,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			{
 				for(const StellarObject &object : currentSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet()
-							&& object.GetPlanet()->HasServices())
+							&& object.GetPlanet()->HasServices(isYours))
 					{
 						target = object.Position();
 						break;
@@ -4699,7 +4708,8 @@ bool Ship::DoLandingLogic()
 	}
 	// Only refuel if this planet has a spaceport.
 	else if(fuel >= attributes.Get("fuel capacity")
-			|| !landingPlanet || !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
+			|| !landingPlanet
+			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel, isYours))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
 		SetTargetStellar(nullptr);
@@ -4758,7 +4768,7 @@ void Ship::StepPilot()
 				Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
 					, Messages::Importance::Low);
 			else if(Preferences::Has("Extra fleet status messages"))
-				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
+				Messages::Add("The " + givenName + " is moving erratically because there are not enough crew to pilot it."
 					, Messages::Importance::Low);
 		}
 	}
@@ -5008,11 +5018,11 @@ void Ship::StepTargeting()
 
 			// Check if the ship will still be pointing to the same side of the target
 			// angle if it turns by this amount.
-			facing += TrueTurnRate() * turn;
+			facing += TurnRate() * turn;
 			bool stillLeft = target->Unit().Cross(facing.Unit()) < 0.;
 			if(left != stillLeft)
 				turn = 0.;
-			angle += TrueTurnRate() * turn;
+			angle += TurnRate() * turn;
 
 			velocity += dv.Unit() * .1;
 			position += dp.Unit() * .5;
@@ -5033,7 +5043,7 @@ void Ship::StepTargeting()
 					bool isEnemy = government->IsEnemy(target->government);
 					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 					{
-						Messages::Add("The " + target->DisplayModelName() + " \"" + target->Name()
+						Messages::Add("The " + target->DisplayModelName() + " \"" + target->GivenName()
 							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
 						GetTargetShip()->SelfDestruct();
 					}
