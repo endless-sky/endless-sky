@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Color.h"
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
 #include "RaidFleet.h"
