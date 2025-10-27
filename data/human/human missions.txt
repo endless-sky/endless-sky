@@ -6456,6 +6456,7 @@ mission "Lost Racer 1"
 	to offer
 		"combat rating" > 40
 		random < 80
+		not "outfit: Jump Drive"
 	on offer
 		conversation
 			`While wandering the <origin> spaceport, waiting for your ship to be refueled, you notice a commotion near one of the other hangars; someone appears to be shouting. As you approach the disturbance, you see a well-dressed older man engaged in a heated discussion with a Navy officer beside a parked Frigate being loaded with supplies. After a few more shouts and a dismissive wave by the officer, the man turns away, exasperated - then spots you and walks over.`
