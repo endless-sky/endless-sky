@@ -4566,7 +4566,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			{
 				for(const StellarObject &object : currentSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet()
-							&& object.GetPlanet()->HasServices())
+							&& object.GetPlanet()->HasServices(isYours))
 					{
 						target = object.Position();
 						break;
@@ -4702,7 +4702,8 @@ bool Ship::DoLandingLogic()
 	}
 	// Only refuel if this planet has a spaceport.
 	else if(fuel >= attributes.Get("fuel capacity")
-			|| !landingPlanet || !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
+			|| !landingPlanet
+			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel, isYours))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
 		SetTargetStellar(nullptr);
