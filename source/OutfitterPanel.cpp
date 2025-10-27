@@ -57,7 +57,7 @@ namespace {
 		{
 			const Weapon *weapon = it.GetWeapon();
 			if(weapon && weapon->Ammo() && weapon->AmmoUsage() > 0)
-					toRefill.emplace(weapon->Ammo());
+				toRefill.emplace(weapon->Ammo());
 		}
 
 		// Carriers may be configured to supply ammunition for carried ships found
