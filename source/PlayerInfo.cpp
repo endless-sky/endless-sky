@@ -160,8 +160,8 @@ PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const Condition
 	date = nodeEvent.GetDate();
 
 	string eventName;
-	if(!nodeEvent.Name().empty())
-		eventName = nodeEvent.Name();
+	if(!nodeEvent.TrueName().empty())
+		eventName = nodeEvent.TrueName();
 	else
 	{
 		// Old save files may contain unnamed events. In that case, the event's name can be found by
@@ -3570,7 +3570,7 @@ void PlayerInfo::ValidateLoad()
 	// player about.
 	for(const ScheduledEvent &event : gameEvents)
 		if(!event.event->IsValid().empty())
-			invalidEvents.insert(event.event->Name());
+			invalidEvents.insert(event.event->TrueName());
 	for(const string &event : triggeredEvents)
 		if(!GameData::Events().Get(event)->IsValid().empty())
 			invalidEvents.insert(event);
@@ -4313,7 +4313,7 @@ void PlayerInfo::MarkChangesToday()
 
 void PlayerInfo::TriggerEvent(GameEvent event, std::list<DataNode> &eventChanges)
 {
-	const string &name = event.Name();
+	const string &name = event.TrueName();
 	list<DataNode> changes = event.Apply(*this);
 	if(!name.empty() || !changes.empty())
 		MarkChangesToday();
@@ -4326,7 +4326,7 @@ void PlayerInfo::TriggerEvent(GameEvent event, std::list<DataNode> &eventChanges
 		// Named events that don't save their raw changes get saved as just an event name.
 		DataNode eventNode;
 		eventNode.AddToken("event");
-		eventNode.AddToken(event.Name());
+		eventNode.AddToken(event.TrueName());
 		dataChanges.push_back(std::move(eventNode));
 	}
 	if(!name.empty())
@@ -4732,9 +4732,9 @@ void PlayerInfo::Save(DataWriter &out) const
 	{
 		const ExclusiveItem<GameEvent> &event = it.event;
 		const Date &date = it.date;
-		if(!event->Name().empty())
+		if(!event->TrueName().empty())
 		{
-			out.Write("event", event->Name());
+			out.Write("event", event->TrueName());
 			out.BeginChild();
 			{
 				out.Write("date", date.Day(), date.Month(), date.Year());

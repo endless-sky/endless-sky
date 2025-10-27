@@ -136,9 +136,9 @@ void GameEvent::Save(DataWriter &out) const
 	if(isDisabled)
 		return;
 
-	bool hasName = !name.empty();
+	bool hasName = !trueName.empty();
 	if(hasName)
-		out.Write("event", name);
+		out.Write("event", trueName);
 	else
 		out.Write("event");
 	out.BeginChild();
