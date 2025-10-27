@@ -26,6 +26,7 @@ class Outfit;
 class Projectile;
 class Ship;
 class Visual;
+class Weapon;
 
 
 
@@ -66,7 +67,9 @@ public:
 		bool isTurret, const Outfit *outfit = nullptr);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
+	// The Outfit is guaranteed to have a Weapon.
 	const Outfit *GetOutfit() const;
+	const Weapon *GetWeapon() const;
 	// Get the location, relative to the center of the ship, from which
 	// projectiles of this weapon should originate. This point must be
 	// rotated to take the ship's current facing direction into account.
@@ -142,7 +145,7 @@ private:
 
 
 private:
-	// The weapon installed in this hardpoint.
+	// The Outfit installed in this hardpoint is guaranteed to have a Weapon.
 	const Outfit *outfit = nullptr;
 	// Hardpoint location, in world coordinates relative to the ship's center.
 	Point point;
