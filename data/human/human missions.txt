@@ -6761,7 +6761,7 @@ mission "Lost Racer 3"
 					goto crash
 				`	"I have no more questions."`
 			label noquestions
-			`	Artemis nods. "Well, could we head back to <planet> now? It'll be nice to get home after all this commotion and uncomfortableness."`
+			`	Artemis nods. "Well, could we head back to <planet> now? It'll be nice to get home after all this commotion and discomfort."`
 			`	Artemis and her father head off to their bunks, talking all the way. You chart a course for <destination>.`
 				accept
 	on complete
