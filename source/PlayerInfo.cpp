@@ -3052,31 +3052,48 @@ bool PlayerInfo::SelectEscorts(const Rectangle &box, bool hasShift)
 
 
 
-bool PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
+void PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 {
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
 		selectedEscorts.clear();
-	// If shift is not held, the first ship in the stack will also become the
-	// player's flagship's target.
-	bool first = !hasShift;
 
-	bool matched = false;
+	// If shift is not held down, then locate a new target for the flagship.
+	// If the given stack only contains a single ship, then that should become the new target.
+	bool findTarget = !hasShift && flagship;
+	bool hasNewTarget = !findTarget;
+	shared_ptr<Ship> target = flagship && stack.size() > 1 ? flagship->GetTargetShip() : nullptr;
+
+	// SelectEscort does not need to set the flagship target, as this function takes care of that.
+	bool first = false;
 	for(const weak_ptr<Ship> &ship : stack)
 	{
 		const shared_ptr<Ship> shipPtr = ship.lock();
-		if(shipPtr)
+		if(!shipPtr)
+			continue;
+		if(!hasNewTarget)
 		{
-			matched = true;
-			// TODO: The stack can contain non-owned escorts, which will cause the assert in SelectEscort to fail.
-			//  This function should behavior differently if given mission NPCs, or a separate function should be
-			//  used.
-			SelectEscort(shipPtr, &first);
+			// If the current target is null or its sprite doesn't match the sprite of the ships in the given stack,
+			// then the next available ship becomes the new target for the flagship.
+			if(!target || target->GetSprite() != shipPtr->GetSprite())
+			{
+				target = shipPtr;
+				hasNewTarget = true;
+			}
+			// If the current target is in the stack, then set the current target to null so that the next ship in
+			// the stack becomes the new target. If this is the last ship in the stack, this will cause the flagship
+			// to have no target.
+			else if(target == shipPtr)
+				target = nullptr;
 		}
+		// If this ship is one of your owned escorts, then select it so that orders can be given to it.
+		if(shipPtr->IsYours())
+			SelectEscort(shipPtr, &first);
 	}
-	if(matched)
-		UI::PlaySound(UI::UISound::TARGET);
-	return matched;
+	if(flagship && findTarget)
+		flagship->SetTargetShip(target);
+
+	UI::PlaySound(UI::UISound::TARGET);
 }
 
 
