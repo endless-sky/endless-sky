@@ -336,7 +336,9 @@ public:
 	// Select ships in the given stack, provided by the EscortDisplay. All ships in the stack should share the same
 	// sprite. If the player clicks on the same escort icon multiple times, the ship targeted by the player's flagship
 	// will cycle through the stack. Only escorts that the player owns will be selected for the giving of orders.
-	void SelectShips(const std::vector<std::weak_ptr<Ship>> &stack, bool hasShift);
+	// Return true if a selection was made. (This only won't be the case when shift is held and a stack is provided
+	// with no owned escorts.)
+	bool SelectShips(const std::vector<std::weak_ptr<Ship>> &stack, bool hasShift);
 	// Select one of the ships that the player owns.
 	void SelectEscort(const Ship *ship, bool hasShift);
 	void DeselectEscort(const Ship *ship);

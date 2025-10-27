@@ -3052,7 +3052,7 @@ bool PlayerInfo::SelectEscorts(const Rectangle &box, bool hasShift)
 
 
 
-void PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
+bool PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 {
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
@@ -3066,6 +3066,7 @@ void PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 
 	// SelectEscort does not need to set the flagship target, as this function takes care of that.
 	bool first = false;
+	bool matched = false;
 	for(const weak_ptr<Ship> &ship : stack)
 	{
 		const shared_ptr<Ship> shipPtr = ship.lock();
@@ -3088,12 +3089,19 @@ void PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 		}
 		// If this ship is one of your owned escorts, then select it so that orders can be given to it.
 		if(shipPtr->IsYours())
+		{
+			matched = true;
 			SelectEscort(shipPtr, &first);
+		}
 	}
 	if(flagship && findTarget)
+	{
+		matched = true;
 		flagship->SetTargetShip(target);
-
-	UI::PlaySound(UI::UISound::TARGET);
+	}
+	if(matched)
+		UI::PlaySound(UI::UISound::TARGET);
+	return matched;
 }
 
 

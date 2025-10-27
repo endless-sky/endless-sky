@@ -1027,10 +1027,7 @@ void Engine::Step(bool isActive)
 		{
 			const vector<weak_ptr<Ship>> &stack = escorts.Click(clickPoint);
 			if(!stack.empty())
-			{
-				player.SelectShips(stack, hasShift);
-				doClick = false;
-			}
+				doClick = !player.SelectShips(stack, hasShift);
 			else
 				clickPoint /= isRadarClick ? RADAR_SCALE : zoom;
 		}
