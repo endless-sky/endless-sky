@@ -1890,7 +1890,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 	bool isJump = ship->IsUsingJumpDrive();
 	const System *oldSystem = ship->GetSystem();
-	bool wasHere = (flagship && ship->GetSystem() == oldSystem);
+	bool wasHere = (flagship && oldSystem == flagship->GetSystem());
 	bool wasHyperspacing = ship->IsHyperspacing();
 	bool wasDisabled = ship->IsDisabled();
 	// Give the ship the list of visuals so that it can draw explosions,

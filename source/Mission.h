@@ -116,8 +116,6 @@ public:
 	const std::set<const Planet *> &VisitedStopovers() const;
 	const std::set<const System *> &MarkedSystems() const;
 	const std::set<const System *> &UnmarkedSystems() const;
-	// Tracked systems do not need to be recalculated if the panel that is displaying
-	// them has all ship movement paused.
 	const std::set<const System *> &TrackedSystems() const;
 	void RecalculateTrackedSystems();
 	void Mark(const System *system) const;
