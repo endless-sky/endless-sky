@@ -227,7 +227,7 @@ public:
 	bool HasAvailableEnteringMissions() const;
 
 	// For all active missions, cache information that can be requested often but does not change often,
-	// or needs calculated at least once.
+	// or needs to be calculated at least once.
 	// - Determine how many days left the player has for each mission with a deadline, for
 	// the purpose of determining how frequently the MapPanel should blink the mission
 	// marker.
