@@ -311,6 +311,8 @@ void PlayerInfo::Load(const filesystem::path &path)
 		}
 		else if(key == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(key == "marked event changes today")
+			markedChangesToday = true;
 		else if(key == "system entry method" && hasValue)
 			entry = StringToEntry(child.Token(1));
 		else if(key == "previous system" && hasValue)
@@ -4509,6 +4511,8 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Pilot information:
 	out.Write("pilot", firstName, lastName);
 	out.Write("date", date.Day(), date.Month(), date.Year());
+	if(markedChangesToday)
+		out.Write("marked event changes today");
 	out.Write("system entry method", EntryToString(entry));
 	if(previousSystem)
 		out.Write("previous system", previousSystem->TrueName());
