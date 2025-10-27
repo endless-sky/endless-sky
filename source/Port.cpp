@@ -47,7 +47,7 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	loaded = true;
 	const int nameIndex = 1 + (node.Token(0) == "add");
 	if(node.Size() > nameIndex)
-		name = node.Token(nameIndex);
+		displayName = node.Token(nameIndex);
 
 	// The "to recharge" and "to service" condition set maps should be cleared
 	// if a new condition set is provided.
@@ -109,8 +109,8 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			description.Load(child, playerConditions);
 
 			// If we have a description but no name then use the default spaceport name.
-			if(name.empty())
-				name = SPACEPORT;
+			if(displayName.empty())
+				displayName = SPACEPORT;
 		}
 		else if(key == "to" && child.Size() >= 2)
 		{
@@ -194,7 +194,7 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 void Port::LoadDefaultSpaceport()
 {
-	name = SPACEPORT;
+	displayName = SPACEPORT;
 	recharge = RechargeType::All;
 	services = ServicesType::All;
 	hasNews = true;
@@ -204,7 +204,7 @@ void Port::LoadDefaultSpaceport()
 
 void Port::LoadUninhabitedSpaceport()
 {
-	name = SPACEPORT;
+	displayName = SPACEPORT;
 	recharge = RechargeType::All;
 	services = ServicesType::OffersMissions;
 	hasNews = true;
@@ -226,9 +226,9 @@ bool Port::CustomLoaded() const
 
 
 
-const string &Port::Name() const
+const string &Port::DisplayName() const
 {
-	return name;
+	return displayName;
 }
 
 

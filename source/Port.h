@@ -73,7 +73,7 @@ public:
 	// Whether this port was loaded from the Load function.
 	bool CustomLoaded() const;
 
-	const std::string &Name() const;
+	const std::string &DisplayName() const;
 	const Paragraphs &Description() const;
 
 	// Whether the player is required to bribe before landing due to their conditions.
@@ -99,7 +99,7 @@ private:
 	bool loaded = false;
 
 	// The name of this port.
-	std::string name;
+	std::string displayName;
 
 	// The description of this port. Shown when clicking on the
 	// port button on the planet panel.

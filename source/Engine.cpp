@@ -123,9 +123,9 @@ namespace {
 
 		// If this ship has no name, show its model name instead.
 		string tag;
-		const string &gov = ship->GetGovernment()->GetName();
-		if(!ship->Name().empty())
-			tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
+		const string &gov = ship->GetGovernment()->DisplayName();
+		if(!ship->GivenName().empty())
+			tag = gov + " " + ship->Noun() + " \"" + ship->GivenName() + "\": ";
 		else
 			tag = ship->DisplayModelName() + " (" + gov + "): ";
 
@@ -375,7 +375,7 @@ void Engine::Place()
 		else if(!ship->GetSystem())
 		{
 			// Log this error.
-			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
+			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->GivenName() + "\" as it had no system");
 			ship->SetSystem(system);
 		}
 
@@ -847,12 +847,12 @@ void Engine::Step(bool isActive)
 			targetUnit = target->Facing().Unit();
 		targetSwizzle = target->GetSwizzle();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step), targetSwizzle);
-		info.SetString("target name", target->Name());
+		info.SetString("target name", target->GivenName());
 		info.SetString("target type", target->DisplayModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
-			info.SetString("target government", target->GetGovernment()->GetName());
+			info.SetString("target government", target->GetGovernment()->DisplayName());
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 
 		// Only update the "active" state shown for the target if it is
@@ -1112,7 +1112,6 @@ void Engine::Go()
 {
 	if(!timePaused)
 		++step;
-	++uiStep;
 	currentCalcBuffer = currentCalcBuffer ? 0 : 1;
 	queue.Run([this] { CalculateStep(); });
 }
@@ -1147,6 +1146,8 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
+	++uiStep;
+
 	Point motionBlur = camera.Velocity();
 	double baseBlur = Preferences::Has("Render motion blur") ? 1. : 0.;
 
@@ -1542,7 +1543,7 @@ void Engine::EnterSystem()
 				{
 					raidFleet.GetFleet()->Place(*system, newShips);
 					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
+							+ raidFleet.GetFleet()->GetGovernment()->DisplayName() + " raiding party.",
 							Messages::Importance::Highest);
 				}
 	}
@@ -2061,8 +2062,8 @@ void Engine::SpawnPersons()
 			for(const shared_ptr<Ship> &ship : person.Ships())
 			{
 				ship->Recharge();
-				if(ship->Name().empty())
-					ship->SetName(it.first);
+				if(ship->GivenName().empty())
+					ship->SetGivenName(it.first);
 				ship->SetGovernment(person.GetGovernment());
 				ship->SetPersonality(person.GetPersonality());
 				ship->SetHailPhrase(person.GetHail());
@@ -2650,7 +2651,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 
 	// One of your ships picked up this flotsam. Describe who it was.
 	string name = (collectorIsFlagship ? "You" :
-			"Your " + collector->Noun() + " \"" + collector->Name() + "\"") + " picked up ";
+			"Your " + collector->Noun() + " \"" + collector->GivenName() + "\"") + " picked up ";
 	// Describe what they collected from this flotsam.
 	string commodity;
 	string message;
@@ -2858,11 +2859,11 @@ void Engine::DrawShipSprites(const Ship &ship)
 	};
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.IsUnder())
+		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
 			drawHardpoint(hardpoint);
 	drawObject(ship);
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(!hardpoint.IsUnder())
+		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
 			drawHardpoint(hardpoint);
 
 	DrawEngineFlares(Ship::EnginePoint::OVER);
@@ -2942,7 +2943,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message = "Please assist us in ";
 		message += (target->GetPersonality().Disables() ? "disabling " : "destroying ");
 		message += (attackerCount == 1 ? "this " : "these ");
-		message += attacker->GetName();
+		message += attacker->DisplayName();
 		message += (attackerCount == 1 ? " ship." : " ships.");
 	}
 	else
@@ -2950,7 +2951,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message = "We are under attack by ";
 		if(attackerCount == 1)
 			message += "a ";
-		message += attacker->GetName();
+		message += attacker->DisplayName();
 		message += (attackerCount == 1 ? " ship" : " ships");
 		message += ". Please assist us!";
 	}

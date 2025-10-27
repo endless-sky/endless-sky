@@ -56,8 +56,8 @@ public:
 	// If disabled, an event will not Apply() or Save().
 	void Disable();
 
-	const std::string &Name() const;
-	void SetName(const std::string &name);
+	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
 
 	// Check if this GameEvent has been loaded (vs. simply referred to) and
 	// if it references any items that have not been defined.
@@ -78,7 +78,7 @@ public:
 
 private:
 	Date date;
-	std::string name;
+	std::string trueName;
 	bool isDisabled = false;
 	bool isDefined = false;
 

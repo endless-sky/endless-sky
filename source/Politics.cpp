@@ -262,6 +262,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		const Planet *planet = player.GetPlanet();
 		if(planet && ship->GetPlanet() != planet)
 			continue;
+		// Skip parked ships. The spaceport authorities are only scanning the ships you just landed with.
+		if(ship->IsParked())
+			continue;
 
 		int failedMissions = 0;
 
@@ -361,7 +364,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		if(!scan)
 			reason = "atrocity";
 		else
-			reason = "After scanning your ship, the " + gov->GetName()
+			reason = "After scanning your ship, the " + gov->DisplayName()
 				+ " captain hails you with a grim expression on his face. He says, "
 				"\"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
 	}
@@ -369,7 +372,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	{
 		// Scale the fine based on how lenient this government is.
 		maxFine = lround(maxFine * gov->GetFineFraction());
-		reason = "The " + gov->GetName() + " authorities fine you "
+		reason = "The " + gov->DisplayName() + " authorities fine you "
 			+ Format::CreditString(maxFine) + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
