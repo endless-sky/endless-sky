@@ -1408,9 +1408,9 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	for(NPC &npc : npcs)
 	{
 		bool isTarget = npc.Do(event, player, ui, this, isVisible);
-		// If this event is a JUMP event for one of the NPCs in this mission, then
+		// If this event is a DESTROY or JUMP event for one of the NPCs in this mission, then
 		// recalculate all tracked NPC locations.
-		if((event.Type() & ShipEvent::JUMP) && isTarget)
+		if((event.Type() & (ShipEvent::JUMP | ShipEvent::DESTROY)) && isTarget)
 			RecalculateTrackedSystems();
 	}
 }
