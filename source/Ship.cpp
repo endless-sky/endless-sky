@@ -1343,9 +1343,12 @@ vector<string> Ship::FlightCheck() const
 	double turnHeat = attributes.Get("turning heat");
 	double hyperDrive = navigation.HasHyperdrive();
 	double jumpDrive = navigation.HasJumpDrive();
+	int bunks = attributes.Get("bunks");
 
 	// Report the first error condition that will prevent takeoff:
-	if(IdleHeat() >= MaximumHeat())
+	if(!bunks && RequiredCrew())
+		checks.emplace_back("no bunks!");
+	else if(IdleHeat() >= MaximumHeat())
 		checks.emplace_back("overheating!");
 	else if(energy <= 0.)
 		checks.emplace_back("no energy!");
@@ -1359,7 +1362,7 @@ vector<string> Ship::FlightCheck() const
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
 	{
-		if(RequiredCrew() > attributes.Get("bunks"))
+		if(RequiredCrew() > bunks)
 			checks.emplace_back("insufficient bunks?");
 		if(IdleHeat() <= 0. && (thrustHeat < 0. || turnHeat < 0.))
 			checks.emplace_back("insufficient heat?");
