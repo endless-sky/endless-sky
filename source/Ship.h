@@ -148,7 +148,6 @@ public:
 	// Point Unit() const;
 	// double Zoom() const;
 	// const Government *GetGovernment() const;
-	// bool CanBecarried() const;
 
 	Ship() = default;
 	// Construct and Load() at the same time.
@@ -458,6 +457,8 @@ public:
 	// Check if this ship has a bay free for the given other ship, and the
 	// bay is not reserved for one of its existing escorts.
 	bool CanCarry(const Ship &ship) const;
+	// Check if this is a ship of a type that can be carried.
+	bool CanBeCarried() const;
 	// Move the given ship into one of the bays, if possible.
 	bool Carry(const std::shared_ptr<Ship> &ship);
 	// Empty the bays. If the carried ships are not special ships that are
@@ -603,7 +604,6 @@ private:
 	// double zoom;
 	// int swizzle;
 	// const Government *government;
-	// bool canBeCarried;
 
 	// Characteristics of the chassis:
 	bool isDefined = false;
@@ -619,6 +619,7 @@ private:
 	// Characteristics of this particular ship:
 	EsUuid uuid;
 	std::string givenName;
+	bool canBeCarried = false;
 
 	int forget = 0;
 	bool isInSystem = true;

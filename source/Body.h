@@ -68,10 +68,9 @@ public:
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
 
-	// Store the government and whether this body can be carried here too, so that collision
-	// detection that is based on the Body class can figure out which objects will collide.
+	// Store the government here too, so that collision detection that is based
+	// on the Body class can figure out which objects will collide.
 	const Government *GetGovernment() const;
-	const bool &CanBeCarried() const;
 
 	// Sprite serialization.
 	void LoadSprite(const DataNode &node);
@@ -119,9 +118,8 @@ protected:
 	double distanceVisible = 0.;
 	double distanceInvisible = 0.;
 
-	// Government and whether this body can be carried, for use in collision checks.
+	// Government, for use in collision checks.
 	const Government *government = nullptr;
-	bool canBeCarried = false;
 
 
 private:

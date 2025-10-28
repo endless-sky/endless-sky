@@ -28,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 
 #include <algorithm>
-#include <cmath>
 #include <cstdlib>
 #include <numeric>
 #include <set>
@@ -143,7 +142,7 @@ void CollisionSet::Finish()
 // sorted by distance.
 void CollisionSet::Line(const Projectile &projectile, vector<Collision> &result) const
 {
-	// What objects the projectile hits depends on its parent ship and government.
+	// What objects the projectile hits depends on its government.
 	const Government *pGov = projectile.GetGovernment();
 
 	// Convert the projectile to a line represented by its start and end points.

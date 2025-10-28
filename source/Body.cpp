@@ -214,13 +214,6 @@ const Government *Body::GetGovernment() const
 
 
 
-const bool &Body::CanBeCarried() const
-{
-	return canBeCarried;
-}
-
-
-
 // Load the sprite specification, including all animation attributes.
 void Body::LoadSprite(const DataNode &node)
 {

@@ -3403,6 +3403,13 @@ bool Ship::CanCarry(const Ship &ship) const
 
 
 
+bool Ship::CanBeCarried() const
+{
+	return canBeCarried;
+}
+
+
+
 bool Ship::Carry(const shared_ptr<Ship> &ship)
 {
 	if(!ship || !ship->CanBeCarried() || ship->IsDisabled())
