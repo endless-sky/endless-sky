@@ -355,6 +355,7 @@ Projectile::ImpactInfo Projectile::GetInfo(double intersection) const
 
 
 
+// Get the ship that initially fired this projectile.
 const Ship *Projectile::ParentShip() const
 {
 	return parentShip;
