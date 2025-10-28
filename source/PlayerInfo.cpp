@@ -180,9 +180,7 @@ PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const Condition
 	else
 	{
 		// Fall back onto saving the full definition if we somehow didn't find a name.
-		// This event will still properly apply its changes, but they may be applied
-		// out of order.
-		node.PrintTrace("Warning: Could not determine name of unnamed event.");
+		node.PrintTrace("Warning: Could not determine name of scheduled event.");
 		event = ExclusiveItem<GameEvent>(std::move(nodeEvent));
 	}
 }
@@ -445,7 +443,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
 		}
 		else if(key == "event")
-			gameEvents.emplace(child, &conditions);
+			scheduledEvents.emplace(child, &conditions);
 		else if(key == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -693,7 +691,7 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 	else
 	{
 		event.SetDate(date);
-		gameEvents.emplace(std::move(event), date);
+		scheduledEvents.emplace(std::move(event), date);
 	}
 }
 
@@ -818,12 +816,12 @@ void PlayerInfo::AdvanceDate(int amount)
 
 		// Check if any special events should happen today.
 		markedChangesToday = false;
-		auto it = gameEvents.begin();
+		auto it = scheduledEvents.begin();
 		list<DataNode> eventChanges;
-		while(it != gameEvents.end() && date >= it->date)
+		while(it != scheduledEvents.end() && date >= it->date)
 		{
 			TriggerEvent(*(it->event), eventChanges);
-			it = gameEvents.erase(it);
+			it = scheduledEvents.erase(it);
 		}
 		if(!eventChanges.empty())
 			AddChanges(eventChanges);
@@ -3570,7 +3568,7 @@ void PlayerInfo::ValidateLoad()
 
 	// Validate past events that were applied. Invalid events are recorded to warn the
 	// player about.
-	for(const ScheduledEvent &event : gameEvents)
+	for(const ScheduledEvent &event : scheduledEvents)
 		if(!event.event->IsValid().empty())
 			invalidEvents.insert(event.event->TrueName());
 	for(const string &event : triggeredEvents)
@@ -4297,28 +4295,24 @@ void PlayerInfo::RegisterDerivedConditions()
 
 
 
-void PlayerInfo::MarkChangesToday()
-{
-	if(markedChangesToday)
-		return;
-	markedChangesToday = true;
-
-	DataNode todayNode;
-	todayNode.AddToken("date");
-	todayNode.AddToken(to_string(date.Day()));
-	todayNode.AddToken(to_string(date.Month()));
-	todayNode.AddToken(to_string(date.Year()));
-	dataChanges.push_back(std::move(todayNode));
-}
-
-
-
 void PlayerInfo::TriggerEvent(GameEvent event, std::list<DataNode> &eventChanges)
 {
 	const string &name = event.TrueName();
 	list<DataNode> changes = event.Apply(*this);
-	if(!name.empty() || !changes.empty())
-		MarkChangesToday();
+	// If this is the first event that has triggered today that is named or
+	// has changes that must be applied to the universe, add a note to the
+	// data changes to record today's date.
+	if((!name.empty() || !changes.empty()) && !markedChangesToday)
+	{
+		markedChangesToday = true;
+
+		DataNode todayNode;
+		todayNode.AddToken("date");
+		todayNode.AddToken(to_string(date.Day()));
+		todayNode.AddToken(to_string(date.Month()));
+		todayNode.AddToken(to_string(date.Year()));
+		dataChanges.push_back(std::move(todayNode));
+	}
 	// Unnamed events must have their changes stored in the save file.
 	// Also store event changes in the save file if SaveRawChanges is true.
 	if(!changes.empty() && (name.empty() || event.SaveRawChanges()))
@@ -4732,7 +4726,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	}
 
 	// Save pending events, and changes that have happened due to past events.
-	for(const auto &it : gameEvents)
+	for(const auto &it : scheduledEvents)
 	{
 		const ExclusiveItem<GameEvent> &event = it.event;
 		const Date &date = it.date;

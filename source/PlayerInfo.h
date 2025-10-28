@@ -395,10 +395,6 @@ private:
 	// Helper to register derived conditions.
 	void RegisterDerivedConditions();
 
-	// If changes have occurred due to the triggering of an event, add a note to the
-	// data changes to record today's date. If today's date was already recorded,
-	// do nothing.
-	void MarkChangesToday();
 	// Helper for triggering events.
 	void TriggerEvent(GameEvent event, std::list<DataNode> &eventChanges);
 
@@ -526,7 +522,7 @@ private:
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future (sorted by date for easy chronological access):
-	std::multiset<ScheduledEvent> gameEvents;
+	std::multiset<ScheduledEvent> scheduledEvents;
 	// The names of events that were triggered in the past. Only needed when loading the game to determine
 	// if an invalid event is referenced in the save file that the player should be warned about.
 	std::set<std::string> triggeredEvents;
