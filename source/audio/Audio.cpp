@@ -110,7 +110,8 @@ namespace {
 	// If we paused the audio multiple times, only resume it after the same number of Resume() calls.
 	// We start with -1, so when MenuPanel opens up the first time, it doesn't pause the loading sounds.
 	int pauseCount = -1;
-	// Prevent incrementing "pauseChangeCount" when true, so a panel can prevent others appearing on top of it from pausing its sounds.
+	// "Audio::Pause" and "Audio::Resume" have no effect when this is "true",
+	// so a panel can prevent others appearing on top of it from pausing its sounds.
 	bool pausingBlocked = false;
 }
 
