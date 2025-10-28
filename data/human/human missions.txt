@@ -6555,6 +6555,8 @@ mission "Lost Racer 2 - Continued"
 	passengers 1
 	deadline
 	to offer
+		has "Lost Racer 1: done"
+	to accept
 		has "Lost Racer 2 - Ended: declined"
 		not "abandoned lost racer"
 	on offer
