@@ -2474,7 +2474,8 @@ void Engine::DoCollisions(Projectile &projectile)
 			bool hitCarry = shipHit.get()->CanBeCarried();
 
 			if(pShip == shipHit.get() || ((pShip == parentHit.get() && hitCarry) ||
-					((grandShip == shipHit || (grandShip == parentHit && hitCarry)) && shipCarry)))
+					((grandShip == shipHit || (grandShip == parentHit && hitCarry)) && shipCarry))
+					|| isSafe)
 				continue;
 
 			double friendlyFireOdds = shipCarry || hitCarry
