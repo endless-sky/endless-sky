@@ -1226,24 +1226,15 @@ void ShopPanel::DrawButtons()
 	else
 		ShopPanel::DrawButton("_Buy", Rectangle(buyCenter, Point(60, 30)),
 			static_cast<bool>(CanBuy(isOwned)), hoverButton == 'b', 'b');
-	char keyToPress = isOwned ? (playerShip ? 'i' : 'c') : 'b';	
-	AddZone(Rectangle(buyCenter, Point(60, 30)), [this, keyToPress]() {
-		KeyDown(keyToPress, 0, Command(), true);
-	});
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	ShopPanel::DrawButton("_Sell", Rectangle(sellCenter, Point(60, 30)),
+	const string SELL = outfit_disposition->GetSelected() == MOVE_TO_STORAGE ? "Move" : "_Sell";
+	ShopPanel::DrawButton(SELL, Rectangle(sellCenter, Point(60, 30)),
 		static_cast<bool>(CanSell()), hoverButton == 's', 's');
-	AddZone(Rectangle(sellCenter, Point(60, 30)), [this]() {
-		KeyDown('s', 0, Command(), true);
-	});
 
 	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
 	ShopPanel::DrawButton("_Leave", Rectangle(leaveCenter, Point(70, 30)),
 		true, hoverButton == 'l', 'l');
-	AddZone(Rectangle(leaveCenter, Point(70, 30)), [this]() {
-		KeyDown(SDLK_ESCAPE, 0, Command(), true);
-	});
 
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
 	const Sprite *findIcon =
@@ -1763,6 +1754,11 @@ void ShopPanel::DrawButton(const string &name, const Rectangle &buttonShape, boo
 
 	// Add this button to the buttonZones:
 	buttonZones.emplace_back(buttonShape, keyCode);
+
+	// Also add it to the global zone list, where it can be seen by the gamepad.
+	AddZone(buttonShape, [this, keyCode]() {
+		KeyDown(keyCode, 0, Command(), true);
+	});
 }
 
 
