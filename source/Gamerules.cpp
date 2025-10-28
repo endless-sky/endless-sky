@@ -77,11 +77,11 @@ void Gamerules::Load(const DataNode &node)
 		}
 		else if(key == "fleet multiplier")
 			fleetMultiplier = max<double>(0., child.Value(1));
-		else if(key == "friendly-fire probability")
+		else if(key == "friendly fire probability")
 			friendlyFireProbability = min<double>(1., max<double>(0., child.Value(1)));
-		else if(key == "fighter friendly-fire probability")
+		else if(key == "fighter friendly fire probability")
 			fighterFriendlyFireProbability = min<double>(1., max<double>(0., child.Value(1)));
-		else if(key == "friendly-fire damage multiplier")
+		else if(key == "friendly fire damage multiplier")
 			friendlyFireDamageMultiplier = child.Value(1);
 		else
 			miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
@@ -118,11 +118,11 @@ int Gamerules::GetValue(const string &rule) const
 		return systemArrivalMin.value_or(0.) * 1000;
 	if(rule == "fleet multiplier")
 		return fleetMultiplier * 1000;
-	if(rule == "friendly-fire probability")
+	if(rule == "friendly fire probability")
 		return friendlyFireProbability * 1000;
-	if(rule == "fighter friendly-fire probability")
+	if(rule == "fighter friendly fire probability")
 		return fighterFriendlyFireProbability * 1000;
-	if(rule == "friendly-fire damage multiplier")
+	if(rule == "friendly fire damage multiplier")
 		return friendlyFireDamageMultiplier * 1000;
 
 	auto it = miscRules.find(rule);

@@ -117,20 +117,20 @@ gamerules
 	# "safe" attribute cannot cause friendly fire.
 	# DEFAULT: .0 (0 percent)
 	# ALLOWABLE VALUES: any value betweeen 0. and 1.
-	"friendly-fire probability" 0.
+	"friendly fire probability" 0.
 
 	# Projectiles that are fired by or intersect with fighters and drones use this value to
-	# determine friendly-fire instead.
+	# determine friendly fire instead.
 	# DEFAULT: .0 (0 percent)
 	# ALLOWABLE VALUES: any value betweeen 0. and 1.
-	"fighter friendly-fire probability" 0.
+	"fighter friendly fire probability" 0.
 
 	# This multiplier is applied to damage done between ships belonging to the same government as
 	# a result of random friendly fire. Blast damage, damage against ships being actively targeted
 	# and damage against friendly ships belonging to a different government are not affected.
 	# DEFAULT: 1. (100 percent)
 	# ALLOWABLE VALUES: any real number
-	"friendly-fire damage multiplier" 1.
+	"friendly fire damage multiplier" 1.
 
 	# Determines whether ammo for most secondary weapons can be restocked at any outfitter.
 	# DEFAULT: true
