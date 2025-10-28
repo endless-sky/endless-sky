@@ -320,7 +320,7 @@ void Audio::Pause()
 // you have to call Resume() the same number of times to resume the sound sources.
 void Audio::Resume()
 {
-	pauseChangeCount--;
+	pauseChangeCount -= !pausingBlocked;
 }
 
 
