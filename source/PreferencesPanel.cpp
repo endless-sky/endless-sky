@@ -106,7 +106,7 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
-	const int SETTINGS_PAGE_COUNT = 2;
+	const int SETTINGS_PAGE_COUNT = 3;
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -1020,7 +1020,7 @@ void PreferencesPanel::DrawSettings()
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
 #endif
-		, "",
+		, "\n",
 		"Touchscreen",
 		"Automatic chase",
 		"Show buttons on map",
