@@ -2481,7 +2481,7 @@ void Engine::DoCollisions(Projectile &projectile)
 					? GameData::GetGamerules().FighterFriendlyFireProbability()
 					: GameData::GetGamerules().FriendlyFirePrbability();
 
-			// To compensate for how slower projectiles get multiple chances to trigger friendly-fire,
+			// To compensate for how slower projectiles get multiple chances to trigger friendly fire,
 			// scale the likelihood of a collision based on the projectile's velocity.
 			double relativeVelocity = abs(projectile.Velocity().Distance(hit->Velocity()));
 			if(Random::Real() < pow(1. - friendlyFireOdds, min(1., relativeVelocity / VELOCITY_SCALE)))

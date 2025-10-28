@@ -112,9 +112,9 @@ gamerules
 	"fleet multiplier" 1.
 
 	# The probability that a projectile will collide with a ship with the same government.
-	# Friendly-fire will not occur with a ship's own projectiles, between carriers and all
+	# Friendly fire will not occur with a ship's own projectiles, between a carrier and each
 	# of its fighters, and with friendly ships of a different government. Weapons with the
-	# "safe" attribute cannot cause friendly-fire.
+	# "safe" attribute cannot cause friendly fire.
 	# DEFAULT: .0 (0 percent)
 	# ALLOWABLE VALUES: any value betweeen 0. and 1.
 	"friendly-fire probability" 0.
@@ -125,10 +125,10 @@ gamerules
 	# ALLOWABLE VALUES: any value betweeen 0. and 1.
 	"fighter friendly-fire probability" 0.
 
-	# The multiplier applied to damage done between ships belonging to the same government.
-	# This affects damage from random friendly-fire and blast damage of all types. Actively
-	# targeted ships and friendly ships belonging to a different government will always
-	# take full damage.
+	# This multiplier is applied to damage done between ships belonging to the same government.
+	# This affects damage from random friendly fire and blast damage. Ships that are being
+	# actively targeted and friendly ships belonging to a different government will always take
+	# full damage.
 	# DEFAULT: 1. (100 percent)
 	# ALLOWABLE VALUES: any real number
 	"friendly-fire damage multiplier" 1.
