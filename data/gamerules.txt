@@ -127,7 +127,7 @@ gamerules
 
 	# This multiplier is applied to damage done between ships belonging to the same government as
 	# a result of random friendly fire. Blast damage, damage against ships being actively targeted
-	# and damage against friendly ships belonging to a different government is not affected.
+	# and damage against friendly ships belonging to a different government are not affected.
 	# DEFAULT: 1. (100 percent)
 	# ALLOWABLE VALUES: any real number
 	"friendly-fire damage multiplier" 1.
