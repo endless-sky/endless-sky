@@ -2465,16 +2465,16 @@ void Engine::DoCollisions(Projectile &projectile)
 		// it, is trying to hit the firing ship's carrier, or is trying it hit a fighter
 		// launched from the same carrier.
 		bool isSafe = weapon.IsSafe();
-		if(shipHit && pShip && shipHit.get()->GetGovernment() == gov)
+		if(shipHit && pShip && shipHit.get()->GetGovernment() == gov
+				&& shipHit.get() != projectile.Target())
 		{
 			shared_ptr<Ship> grandShip = pShip->GetParent();
 			shared_ptr<Ship> parentHit = shipHit.get()->GetParent();
 			bool shipCarry = pShip->CanBeCarried();
 			bool hitCarry = shipHit.get()->CanBeCarried();
 
-			if(pShip == shipHit.get() || (((pShip == parentHit.get() && hitCarry) ||
-					((grandShip == shipHit || (grandShip == parentHit && hitCarry)) && shipCarry))
-					&& shipHit.get() != projectile.Target()))
+			if(pShip == shipHit.get() || ((pShip == parentHit.get() && hitCarry) ||
+					((grandShip == shipHit || (grandShip == parentHit && hitCarry)) && shipCarry)))
 				continue;
 
 			double friendlyFireOdds = shipCarry || hitCarry
@@ -2486,6 +2486,8 @@ void Engine::DoCollisions(Projectile &projectile)
 			double relativeVelocity = abs(projectile.Velocity().Distance(hit->Velocity()));
 			if(Random::Real() < pow(1. - friendlyFireOdds, min(1., relativeVelocity / VELOCITY_SCALE)))
 				continue;
+			else if(gov == GameData::PlayerGovernment())
+				player.SetFriendlyFireHelp();
 		}
 
 		// Create the explosion the given distance along the projectile's
@@ -2509,15 +2511,16 @@ void Engine::DoCollisions(Projectile &projectile)
 			{
 				Ship *ship = reinterpret_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
+				bool directHit = ship == hit;
 				// Phasing cloaked ship will have a chance to ignore the effects of the explosion.
 				if((isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
 					continue;
 
-				double multiplier = gov == ship->GetGovernment() && !targeted
+				double multiplier = gov == ship->GetGovernment() && !targeted && directHit
 						? GameData::GetGamerules().FriendlyFireDamageMultiplier() : 1.;
 
 				// Only directly targeted ships get provoked by blast weapons.
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, multiplier, ship == hit),
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, multiplier, directHit),
 					targeted ? gov : nullptr);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);

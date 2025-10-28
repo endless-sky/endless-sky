@@ -125,10 +125,9 @@ gamerules
 	# ALLOWABLE VALUES: any value betweeen 0. and 1.
 	"fighter friendly-fire probability" 0.
 
-	# This multiplier is applied to damage done between ships belonging to the same government.
-	# This affects damage from random friendly fire and blast damage. Ships that are being
-	# actively targeted and friendly ships belonging to a different government will always take
-	# full damage.
+	# This multiplier is applied to damage done between ships belonging to the same government as
+	# a result of random friendly fire. Blast damage, damage against ships being actively targeted
+	# and damage against friendly ships belonging to a different government is not affected.
 	# DEFAULT: 1. (100 percent)
 	# ALLOWABLE VALUES: any real number
 	"friendly-fire damage multiplier" 1.

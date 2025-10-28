@@ -366,8 +366,10 @@ public:
 	void SetMapZoom(int level);
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
-	// Should help dialogs relating to carriers be displayed?
+	// Should help dialogs be displayed?
 	bool DisplayCarrierHelp() const;
+	bool DisplayFriendlyFireHelp() const;
+	void SetFriendlyFireHelp();
 
 
 private:
@@ -422,6 +424,7 @@ private:
 	bool shouldLaunch = false;
 	bool isDead = false;
 	bool displayCarrierHelp = false;
+	bool displayFriendlyFireHelp = false;
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;
