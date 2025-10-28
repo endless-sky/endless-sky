@@ -244,6 +244,7 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 3000.;
+	const double VELOCITY_SCALE = 150.;
 }
 
 
@@ -2385,6 +2386,7 @@ void Engine::DoCollisions(Projectile &projectile)
 	vector<Collision> collisions;
 	const Government *gov = projectile.GetGovernment();
 	const Weapon &weapon = projectile.GetWeapon();
+	const Ship *pShip = projectile.ParentShip();
 
 	if(projectile.ShouldExplode())
 		collisions.emplace_back(nullptr, CollisionType::NONE, 0.);
@@ -2458,6 +2460,33 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(shipHit && shipHit->Phases(projectile))
 			continue;
 
+		// If this projectile has the same government as the ship, it has a random chance
+		// to collide, unless it is a "safe" weapon, is trying to hit the ship that fired
+		// it, is trying to hit the firing ship's carrier, or is trying it hit a fighter
+		// launched from the same carrier.
+		bool isSafe = weapon.IsSafe();
+		if(shipHit && pShip && shipHit.get()->GetGovernment() == gov)
+		{
+			shared_ptr<Ship> grandShip = pShip->GetParent();
+			shared_ptr<Ship> parentHit = shipHit.get()->GetParent();
+			bool shipCarry = pShip->CanBeCarried();
+			bool hitCarry = shipHit.get()->CanBeCarried();
+
+			if(pShip == shipHit.get() || (pShip == parentHit.get() && hitCarry) || ((grandShip == shipHit ||
+					(grandShip == parentHit && hitCarry)) && shipCarry))
+				continue;
+
+			double friendlyFireOdds = shipCarry || hitCarry
+					? GameData::GetGamerules().FighterFriendlyFireProbability()
+					: GameData::GetGamerules().FriendlyFirePrbability();
+
+			// To compensate for how slower projectiles get multiple chances to trigger friendly-fire,
+			// scale the likelihood of a collision based on the projectile's velocity.
+			double relativeVelocity = abs(projectile.Velocity().Distance(hit->Velocity()));
+			if(Random::Real() < pow(1. - friendlyFireOdds, min(1., relativeVelocity / VELOCITY_SCALE)))
+				continue;
+		}
+
 		// Create the explosion the given distance along the projectile's
 		// motion path for this step.
 		projectile.Explode(visuals, range, hit ? hit->Velocity() : Point());
@@ -2472,7 +2501,6 @@ void Engine::DoCollisions(Projectile &projectile)
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
-			bool isSafe = weapon.IsSafe();
 			vector<Body *> blastCollisions;
 			blastCollisions.reserve(32);
 			shipCollisions.Circle(hitPos, blastRadius, blastCollisions);
@@ -2484,8 +2512,11 @@ void Engine::DoCollisions(Projectile &projectile)
 				if((isSafe && !targeted && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
 					continue;
 
+				double multiplier = gov == ship->GetGovernment() && !targeted
+						? GameData::GetGamerules().FriendlyFireDamageMultiplier() : 1.;
+
 				// Only directly targeted ships get provoked by blast weapons.
-				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, ship == hit),
+				int eventType = ship->TakeDamage(visuals, damage.CalculateDamage(*ship, multiplier, ship == hit),
 					targeted ? gov : nullptr);
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
@@ -2502,7 +2533,10 @@ void Engine::DoCollisions(Projectile &projectile)
 		{
 			if(collisionType == CollisionType::SHIP)
 			{
-				int eventType = shipHit->TakeDamage(visuals, damage.CalculateDamage(*shipHit), gov);
+				double multiplier = gov == shipHit->GetGovernment() && projectile.Target() != shipHit.get()
+						? GameData::GetGamerules().FriendlyFireDamageMultiplier() : 1.;
+
+				int eventType = shipHit->TakeDamage(visuals, damage.CalculateDamage(*shipHit, multiplier), gov);
 				if(eventType)
 					eventQueue.emplace_back(gov, shipHit, eventType);
 			}
