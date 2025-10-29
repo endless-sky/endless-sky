@@ -442,8 +442,10 @@ void GameData::Revert()
 	objects.wormholes.Revert(defaultWormholes);
 	objects.persons.Revert(defaultPersons);
 	objects.substitutions.Revert(defaultSubstitutions);
-
 	activeGamerules = defaultGamerules;
+
+	for(auto &it : objects.persons)
+		it.second.Restore();
 
 	politics.Reset();
 	purchases.clear();

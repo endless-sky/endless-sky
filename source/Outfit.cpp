@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "GameData.h"
 #include "image/SpriteSet.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -216,6 +217,8 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 	isDefined = true;
 
+	shared_ptr<Weapon> newWeapon;
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -277,14 +280,9 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "weapon")
-			LoadWeapon(child);
+			newWeapon = shared_ptr<Weapon>{new Weapon(child)};
 		else if(key == "ammo" && hasValue)
-		{
-			// Non-weapon outfits can have ammo so that storage outfits
-			// properly remove excess ammo when the storage is sold, instead
-			// of blocking the sale of the outfit until the ammo is sold first.
-			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
-		}
+			ammoStored = GameData::Outfits().Get(child.Token(1));
 		else if(key == "description" && hasValue)
 			description.Load(child, playerConditions);
 		else if(key == "cost" && hasValue)
@@ -355,13 +353,19 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	if(isJumpDrive && attributes.Get("jump range"))
 		GameData::AddJumpRange(attributes.Get("jump range"));
 
-	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn()
-		&& !AntiMissile() && !TractorBeam())
+	if(newWeapon)
 	{
-		SetTurretTurn(4.);
-		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
+		// Legacy support for turrets that don't specify a turn rate:
+		if(attributes.Get("turret mounts") && !newWeapon->TurretTurn()
+			&& !newWeapon->AntiMissile() && !newWeapon->TractorBeam())
+		{
+			newWeapon->turretTurn = 4.;
+			node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
+		}
+
+		weapon = std::move(newWeapon);
 	}
+
 	// Convert any legacy cargo / outfit scan definitions into power & speed,
 	// so no runtime code has to check for both.
 	auto convertScan = [&](string &&kind) -> void
@@ -419,16 +423,16 @@ const string &Outfit::TrueName() const
 
 
 
-const string &Outfit::DisplayName() const
+void Outfit::SetTrueName(const string &name)
 {
-	return displayName;
+	this->trueName = name;
 }
 
 
 
-void Outfit::SetName(const string &name)
+const string &Outfit::DisplayName() const
 {
-	this->trueName = name;
+	return displayName;
 }
 
 
@@ -588,6 +592,20 @@ void Outfit::AddLicenses(const Outfit &other)
 void Outfit::Set(const char *attribute, double value)
 {
 	attributes[attribute] = value;
+}
+
+
+
+const Outfit *Outfit::AmmoStored() const
+{
+	return ammoStored;
+}
+
+
+
+const Outfit *Outfit::AmmoStoredOrUsed() const
+{
+	return weapon ? weapon->Ammo() : ammoStored;
 }
 
 

@@ -140,6 +140,7 @@ int main(int argc, char *argv[])
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
 	try {
+
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
@@ -337,8 +338,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 			{
 				// The window has been resized. Adjust the raw screen size
-				// and the OpenGL viewport to match.
+				// and the OpenGL viewport to match. The order (window first, then UI panels)
+				// matters as window changes can adjust the zoom factor.
 				GameWindow::AdjustViewport();
+				menuPanels.AdjustViewport();
+				gamePanels.AdjustViewport();
 			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
@@ -540,7 +544,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.16-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.17-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

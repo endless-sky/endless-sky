@@ -1268,7 +1268,7 @@ event "Patir moves"
 	system Patir
 		pos 10059.5 10.5
 		remove haze
-		set "ka'het: beyond Patir"
+	set "ka'het: beyond Patir"
 
 event "Patir spaceport"
 	planet "Builder Settlement"
@@ -1997,7 +1997,7 @@ event "Patir returns"
 	system Patir
 		pos -38 553
 		haze _menu/haze-red
-		clear "ka'het: beyond Patir"
+	clear "ka'het: beyond Patir"
 
 
 conversation "end of Patir 2 - on enter"

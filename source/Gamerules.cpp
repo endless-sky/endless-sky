@@ -81,11 +81,16 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "system departure min")
 			systemDepartureMin = max<double>(0., child.Value(1));
 		else if(key == "system arrival min")
-			systemArrivalMin = max<double>(0., child.Value(1));
+		{
+			if(child.Token(1) == "unset")
+				systemArrivalMin.reset();
+			else
+				systemArrivalMin = child.Value(1);
+		}
 		else if(key == "fleet multiplier")
 			fleetMultiplier = max<double>(0., child.Value(1));
 		else
-			child.PrintTrace("Skipping unrecognized gamerule:");
+			miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
 }
 
@@ -166,10 +171,14 @@ int Gamerules::GetValue(const string &rule) const
 	if(rule == "system departure min")
 		return systemDepartureMin * 1000;
 	if(rule == "system arrival min")
-		return systemArrivalMin * 1000;
+		return systemArrivalMin.value_or(0.) * 1000;
 	if(rule == "fleet multiplier")
 		return fleetMultiplier * 1000;
-	return 0;
+
+	auto it = miscRules.find(rule);
+	if(it == miscRules.end())
+		return 0;
+	return it->second;
 }
 
 
@@ -251,7 +260,7 @@ double Gamerules::SystemDepartureMin() const
 
 
 
-double Gamerules::SystemArrivalMin() const
+optional<double> Gamerules::SystemArrivalMin() const
 {
 	return systemArrivalMin;
 }
