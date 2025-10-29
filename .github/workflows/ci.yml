@@ -176,6 +176,7 @@ jobs:
         ctest --preset mingw-ci
       env:
         VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      shell: cmd
     - name: Run Benchmarks
       run: ctest --preset mingw-ci-benchmark
     - name: Upload binary
