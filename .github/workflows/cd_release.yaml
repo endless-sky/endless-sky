@@ -106,7 +106,7 @@ jobs:
         with:
           vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
       - name: Add msys2 to PATH
-        run: setx /m PATH C:\msys2\mingw64\bin;%PATH%
+        run: setx GITHUB_PATH "C:\msys2\mingw64\bin;%GITHUB_PATH%"
         shell: cmd
       - name: Run CMake
         run: |
@@ -165,7 +165,7 @@ jobs:
         with:
           vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
       - name: Add msys2 to PATH
-        run: setx /m PATH C:\msys2\mingw64\bin;%PATH%
+        run: setx GITHUB_PATH "C:\msys2\mingw64\bin;%GITHUB_PATH%"
         shell: cmd
       - name: Run CMake
         run: |
