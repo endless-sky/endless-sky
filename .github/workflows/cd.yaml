@@ -85,7 +85,7 @@ jobs:
           show-progress: false
           fetch-depth: '10'
       - name: msys2 test
-        run: tree C:\msys64
+        run: tree /f C:\msys64
         shell: cmd
       - name: Find cache keys
         run: |
