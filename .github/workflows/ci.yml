@@ -137,6 +137,7 @@ jobs:
     runs-on: windows-2025
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      MSYSTEM: mingw64
     steps:
     - uses: actions/checkout@v5
       with:
@@ -175,6 +176,7 @@ jobs:
         ctest --preset mingw-ci
       env:
         VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+      shell: msys2
     - name: Run Benchmarks
       run: ctest --preset mingw-ci-benchmark
     - name: Upload binary
