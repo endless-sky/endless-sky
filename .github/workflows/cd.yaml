@@ -111,14 +111,15 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+      - name: Add msys2 to PATH
+        run: setx PATH=C:\msys2\mingw64\bin;%PATH%
+        shell: cmd
       - name: Run CMake
         run: |
-          set PATH=C:\msys2\mingw64\bin;%PATH%
           cmake --preset mingw-release
           cmake --build build --preset mingw-ci-release
         env:
           VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
-        shell: cmd
       - name: Package Application
         run: |
           cmake --install build/release
