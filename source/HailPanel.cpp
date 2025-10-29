@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+#include "Weapon.h"
 #include "text/WrappedText.h"
 
 #include <algorithm>
@@ -166,7 +167,8 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 			SetMessage("You are cleared to land, " + player.Flagship()->GivenName() + ".");
 		else
 		{
-			SetBribe(planet->GetBribeFraction());
+			if(planet->CanBribe())
+				SetBribe(planet->GetBribeFraction());
 			if(bribe)
 				SetMessage("If you want to land here, it'll cost you "
 					+ Format::CreditString(bribe) + ".");
@@ -243,18 +245,21 @@ void HailPanel::Draw()
 		bool hasFighters = ship->PositionFighters();
 		auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void
 		{
-			if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
-			{
-				Body body(
-					hardpoint.GetOutfit()->HardpointSprite(),
-					center + zoom * facing.Rotate(hardpoint.GetPoint()),
-					Point(),
-					facing + hardpoint.GetAngle(),
-					zoom);
-				if(body.InheritsParentSwizzle())
-					body.SetSwizzle(ship->GetSwizzle());
-				draw.Add(body);
-			}
+			const Weapon *weapon = hardpoint.GetWeapon();
+			if(!weapon)
+				return;
+			const Body &sprite = weapon->HardpointSprite();
+			if(!sprite.HasSprite())
+				return;
+			Body body(
+				sprite,
+				center + zoom * facing.Rotate(hardpoint.GetPoint()),
+				Point(),
+				facing + hardpoint.GetAngle(),
+				zoom);
+			if(body.InheritsParentSwizzle())
+				body.SetSwizzle(ship->GetSwizzle());
+			draw.Add(body);
 		};
 		auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void
 		{

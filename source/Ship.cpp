@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Swizzle.h"
 #include "System.h"
 #include "Visual.h"
+#include "Weapon.h"
 #include "Wormhole.h"
 
 #include <algorithm>
@@ -626,7 +627,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(GameData::Ships().Has(trueModelName))
 	{
 		const Ship *model = GameData::Ships().Get(trueModelName);
-		explosionWeapon = &model->BaseAttributes();
+		explosionWeapon = model->BaseAttributes().GetWeapon().get();
 		if(displayModelName.empty())
 			displayModelName = model->displayModelName;
 		if(pluralModelName.empty())
@@ -732,7 +733,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			LogWarning(VariantName(), GivenName(),
 					"outfit \"" + it.first->TrueName() + "\" equipped but not included in outfit list.");
 		}
-		else if(!it.first->IsWeapon())
+		else if(!it.first->GetWeapon())
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
@@ -770,7 +771,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		// Some ship variant definitions do not specify which weapons
 		// are placed in which hardpoint. Add any weapons that are not
 		// yet installed to the ship's armament.
-		if(it.first->IsWeapon())
+		if(it.first->GetWeapon())
 		{
 			int count = it.second;
 			auto eit = equipped.find(it.first);
@@ -1343,9 +1344,12 @@ vector<string> Ship::FlightCheck() const
 	double turnHeat = attributes.Get("turning heat");
 	double hyperDrive = navigation.HasHyperdrive();
 	double jumpDrive = navigation.HasJumpDrive();
+	int bunks = attributes.Get("bunks");
 
 	// Report the first error condition that will prevent takeoff:
-	if(IdleHeat() >= MaximumHeat())
+	if(!bunks && RequiredCrew())
+		checks.emplace_back("no bunks!");
+	else if(IdleHeat() >= MaximumHeat())
 		checks.emplace_back("overheating!");
 	else if(energy <= 0.)
 		checks.emplace_back("no energy!");
@@ -1359,7 +1363,7 @@ vector<string> Ship::FlightCheck() const
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
 	{
-		if(RequiredCrew() > attributes.Get("bunks"))
+		if(RequiredCrew() > bunks)
 			checks.emplace_back("insufficient bunks?");
 		if(IdleHeat() <= 0. && (thrustHeat < 0. || turnHeat < 0.))
 			checks.emplace_back("insufficient heat?");
@@ -1385,11 +1389,14 @@ vector<string> Ship::FlightCheck() const
 				checks.emplace_back("no fuel?");
 		}
 		for(const auto &it : outfits)
-			if(it.first->IsWeapon() && it.first->FiringEnergy() > energy)
+		{
+			const Weapon *weapon = it.first->GetWeapon().get();
+			if(weapon && weapon->FiringEnergy() > energy)
 			{
 				checks.emplace_back("insufficient energy to fire?");
 				break;
 			}
+		}
 	}
 
 	return checks;
@@ -2101,7 +2108,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Weapon *weapon = hardpoints[i].GetOutfit();
+		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(!weapon)
 			continue;
 		CanFireResult canFire = CanFire(weapon);
@@ -2164,8 +2171,10 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
+		const Weapon *weapon = hardpoints[i].GetWeapon();
+		if(!weapon)
+			continue;
+		if(CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
@@ -2204,8 +2213,10 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
+		const Weapon *weapon = hardpoints[i].GetWeapon();
+		if(!weapon)
+			continue;
+		if(CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
@@ -3619,7 +3630,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		}
 		int after = outfits.count(outfit);
 		attributes.Add(*outfit, count);
-		if(outfit->IsWeapon())
+		if(outfit->GetWeapon())
 		{
 			armament.Add(outfit, count);
 			// Only the player's ships make use of attraction and deterrence.
@@ -3668,11 +3679,9 @@ const vector<Hardpoint> &Ship::Weapons() const
 
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
+// Assume the weapon is valid.
 Ship::CanFireResult Ship::CanFire(const Weapon *weapon) const
 {
-	if(!weapon || !weapon->IsWeapon())
-		return CanFireResult::INVALID;
-
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
@@ -3729,7 +3738,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
 		// Recalculate the AI to account for the loss of this weapon.
-		if(!OutfitCount(ammo) && ammo->AmmoUsage())
+		if(!OutfitCount(ammo) && ammo->GetWeapon() && ammo->GetWeapon()->AmmoUsage())
 			aiCache.Calibrate(*this);
 	}
 
@@ -4563,7 +4572,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			{
 				for(const StellarObject &object : currentSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet()
-							&& object.GetPlanet()->HasServices())
+							&& object.GetPlanet()->HasServices(isYours))
 					{
 						target = object.Position();
 						break;
@@ -4699,7 +4708,8 @@ bool Ship::DoLandingLogic()
 	}
 	// Only refuel if this planet has a spaceport.
 	else if(fuel >= attributes.Get("fuel capacity")
-			|| !landingPlanet || !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
+			|| !landingPlanet
+			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel, isYours))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
 		SetTargetStellar(nullptr);
@@ -5204,9 +5214,10 @@ double Ship::CalculateDeterrence() const
 {
 	double tempDeterrence = 0.;
 	for(const Hardpoint &hardpoint : Weapons())
-		if(hardpoint.GetOutfit())
+	{
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon)
 		{
-			const Outfit *weapon = hardpoint.GetOutfit();
 			// 1 DoT damage of type X = 100 damage of type X over an extended period of time
 			// (~95 damage after 5 seconds, ~99 damage after 8 seconds). Therefore, multiply
 			// DoT damage types by 100. Disruption, scrambling, and slowing don't have an
@@ -5246,6 +5257,7 @@ double Ship::CalculateDeterrence() const
 					+ scramblingFactor + slowingFactor + disruptionFactor);
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
+	}
 	return tempDeterrence;
 }
 
