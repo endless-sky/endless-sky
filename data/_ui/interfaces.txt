@@ -1019,7 +1019,7 @@ interface "gamerules presets"
 		from -225 -236
 		align top left
 		color bright
-	line
+	fill
 		from -230 -222 to -10 -221
 	box "preset list"
 		from -250 -216 to -10 184
