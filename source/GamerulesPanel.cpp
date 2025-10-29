@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GamerulesPanel.h"
 
-#include "text/Alignment.h"
 #include "Color.h"
 #include "Command.h"
 #include "text/Font.h"
@@ -45,8 +44,9 @@ using namespace std;
 
 
 
-GamerulesPanel::GamerulesPanel(const Gamerules *preset)
-	: chosenPreset(preset), presetUi(GameData::Interfaces().Get("gamerules presets"))
+// TODO: Allow for the customization of individual gamerules.
+GamerulesPanel::GamerulesPanel(Gamerules &gamerules)
+	: gamerules(gamerules), presetUi(GameData::Interfaces().Get("gamerules presets"))
 {
 	// Set the initial preset list and description scroll ranges.
 	Rectangle presetListBox = presetUi->GetBox("preset list");
@@ -57,12 +57,12 @@ GamerulesPanel::GamerulesPanel(const Gamerules *preset)
 	selectedIndex = 0;
 	for(const auto &it : presets)
 	{
-		if(&it.second != chosenPreset)
+		if(it.second.Name() != gamerules.Name())
 			++selectedIndex;
 		else
 			break;
 	}
-	selectedName = chosenPreset->Name();
+	selectedName = gamerules.Name();
 
 	presetListScroll.SetDisplaySize(presetListBox.Height());
 	presetListScroll.SetMaxValue(presetListHeight);
@@ -70,7 +70,7 @@ GamerulesPanel::GamerulesPanel(const Gamerules *preset)
 	presetDescriptionScroll.SetDisplaySize(presetDescriptionBox.Height());
 
 	presetListClip = std::make_unique<RenderBuffer>(presetListBox.Dimensions());
-	RenderPresetDescription(*chosenPreset);
+	RenderPresetDescription(gamerules);
 }
 
 
@@ -106,11 +106,7 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	else if(key == SDLK_UP)
 		HandleUp();
 	else if(key == 'c' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-	{
-		if(key == 'c' && callback)
-			callback(chosenPreset);
 		GetUI()->Pop(this);
-	}
 	else
 		return false;
 
@@ -248,7 +244,7 @@ void GamerulesPanel::DrawPresets()
 		if(isSelected || name == hoverItem)
 			table.DrawHighlight(back);
 
-		const Sprite *sprite = box[&preset == chosenPreset];
+		const Sprite *sprite = box[preset.Name() == gamerules.Name()];
 		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, spriteBounds.Center());
@@ -416,7 +412,7 @@ void GamerulesPanel::HandleDown()
 
 void GamerulesPanel::SelectPreset(const string &name)
 {
-	chosenPreset = GameData::GamerulesPresets().Get(name);
+	gamerules.Replace(*GameData::GamerulesPresets().Get(name));
 }
 
 

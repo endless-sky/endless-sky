@@ -179,7 +179,7 @@ bool PlayerInfo::IsLoaded() const
 
 
 // Make a new player.
-void PlayerInfo::New(const StartConditions &start, const Gamerules *gamerules)
+void PlayerInfo::New(const StartConditions &start, const Gamerules &gamerules)
 {
 	// Clear any previously loaded data.
 	Clear();
@@ -209,7 +209,7 @@ void PlayerInfo::New(const StartConditions &start, const Gamerules *gamerules)
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
 	start.GetConditions().Apply();
-	this->gamerules = gamerules;
+	this->gamerules.Replace(gamerules);
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -448,7 +448,20 @@ void PlayerInfo::Load(const filesystem::path &path)
 			}
 		}
 		else if(key == "gamerules preset" && hasValue)
-			gamerules = GameData::GamerulesPresets().Get(child.Token(1));
+		{
+			const string &presetName = child.Token(1);
+			const Gamerules *preset = GameData::GamerulesPresets().Find(presetName);
+			if(!preset)
+			{
+				child.PrintTrace("Warning: The gamerule preset \"" + presetName + "\" does not exist. "
+					"Falling back to the default gamerules.");
+				preset = &GameData::DefaultGamerules();
+			}
+			// Set the player's gamerules to be an exact copy of the selected preset,
+			// then load the stored customizations on top of that.
+			gamerules.Replace(*preset);
+			gamerules.Load(child);
+		}
 		else if(key == "start")
 			startData.Load(child);
 	}
@@ -2616,17 +2629,9 @@ const ConditionsStore &PlayerInfo::Conditions() const
 
 
 
-const Gamerules *PlayerInfo::GetGamerules() const
+Gamerules &PlayerInfo::GetGamerules()
 {
 	return gamerules;
-}
-
-
-
-void PlayerInfo::SetGamerules(const Gamerules *gamerules)
-{
-	this->gamerules = gamerules;
-	GameData::SetGamerules(gamerules);
 }
 
 
@@ -3382,9 +3387,9 @@ void PlayerInfo::ApplyChanges()
 	// Set the active gamerules to the rules from this player.
 	// If the player's gamerules were never loaded, then this is an
 	// old pilot that was implicitly using the default gamerules before.
-	if(!gamerules)
-		gamerules = GameData::DefaultGamerules();
-	GameData::SetGamerules(gamerules);
+	if(gamerules.Name().empty())
+		gamerules.Replace(GameData::DefaultGamerules());
+	GameData::SetGamerules(&gamerules);
 
 	// Make sure all stellar objects are correctly positioned. This is needed
 	// because EnterSystem() is not called the first time through.
@@ -4729,16 +4734,19 @@ void PlayerInfo::Save(DataWriter &out) const
 	}
 	out.EndChild();
 
-	if(gamerules)
-	{
-		out.Write();
-		out.WriteComment("The rules you play by:");
-		out.Write("gamerules preset", gamerules->Name());
-	}
-
 	out.Write();
 	out.WriteComment("How you began:");
 	startData.Save(out);
+
+	out.Write();
+	out.WriteComment("The rules you play by:");
+	// Only save gamerules that were customized to be different from the defaults of the chosen preset.
+	// If the chosen preset that the gamerules refer to doesn't exist, compare against the default
+	// gamerules. A warning will have already been printed for this when the save file was loaded.
+	const Gamerules *preset = GameData::GamerulesPresets().Find(gamerules.Name());
+	if(!preset)
+		preset = &GameData::DefaultGamerules();
+	gamerules.Save(out, *preset);
 
 	// Write plugins to player's save file for debugging.
 	out.Write();

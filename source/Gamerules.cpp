@@ -26,7 +26,6 @@ using namespace std;
 
 
 
-// Load a gamerules node.
 void Gamerules::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
@@ -96,31 +95,79 @@ void Gamerules::Load(const DataNode &node)
 
 
 
-void Gamerules::Save(DataWriter &out) const
+void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 {
 	out.Write("gamerules", name);
 	out.BeginChild();
 	{
-		out.Write("universal ramscoop", universalRamscoop ? 1 : 0);
-		out.Write("person spawn period", personSpawnPeriod);
-		out.Write("no person spawn weight", noPersonSpawnWeight);
-		out.Write("npc max mining time", npcMaxMiningTime);
-		out.Write("universal frugal threshold", universalFrugalThreshold);
-		out.Write("depreciation min", depreciationMin);
-		out.Write("depreciation daily", depreciationDaily);
-		out.Write("depreciation grace period", depreciationGracePeriod);
-		out.Write("depreciation max age", depreciationMaxAge);
-		if(fighterHitPolicy == FighterDodgePolicy::ALL)
-			out.Write("disabled fighters avoid projectiles", "all");
-		else if(fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
-			out.Write("disabled fighters avoid projectiles", "only player");
-		else
-			out.Write("disabled fighters avoid projectiles", "none");
-		out.Write("system departure min", systemDepartureMin);
-		out.Write("system arrival min", systemArrivalMin);
-		out.Write("fleet multiplier", fleetMultiplier);
+		if(universalRamscoop != preset.universalRamscoop)
+			out.Write("universal ramscoop", universalRamscoop ? 1 : 0);
+		if(personSpawnPeriod != preset.personSpawnPeriod)
+			out.Write("person spawn period", personSpawnPeriod);
+		if(noPersonSpawnWeight != preset.noPersonSpawnWeight)
+			out.Write("no person spawn weight", noPersonSpawnWeight);
+		if(npcMaxMiningTime != preset.npcMaxMiningTime)
+			out.Write("npc max mining time", npcMaxMiningTime);
+		if(universalFrugalThreshold != preset.universalFrugalThreshold)
+			out.Write("universal frugal threshold", universalFrugalThreshold);
+		if(depreciationMin != preset.depreciationMin)
+			out.Write("depreciation min", depreciationMin);
+		if(depreciationDaily != preset.depreciationDaily)
+			out.Write("depreciation daily", depreciationDaily);
+		if(depreciationGracePeriod != preset.depreciationGracePeriod)
+			out.Write("depreciation grace period", depreciationGracePeriod);
+		if(depreciationMaxAge != preset.depreciationMaxAge)
+			out.Write("depreciation max age", depreciationMaxAge);
+		if(fighterHitPolicy != preset.fighterHitPolicy)
+		{
+			if(fighterHitPolicy == FighterDodgePolicy::ALL)
+				out.Write("disabled fighters avoid projectiles", "all");
+			else if(fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
+				out.Write("disabled fighters avoid projectiles", "only player");
+			else
+				out.Write("disabled fighters avoid projectiles", "none");
+		}
+		if(systemDepartureMin != preset.systemDepartureMin)
+			out.Write("system departure min", systemDepartureMin);
+		if(systemArrivalMin !=  preset.systemArrivalMin)
+		{
+			if(systemArrivalMin.has_value())
+				out.Write("system arrival min", *systemArrivalMin);
+			else
+				out.Write("system arrival min", "unset");
+		}
+		if(fleetMultiplier != preset.fleetMultiplier)
+			out.Write("fleet multiplier", fleetMultiplier);
+		const map<std::string, int> &otherMiscRules = preset.miscRules;
+		for(const auto &[rule, value] : miscRules)
+		{
+			auto sit = otherMiscRules.find(rule);
+			if(sit == otherMiscRules.end() || sit->second != value)
+				out.Write(rule, value);
+		}
 	}
 	out.EndChild();
+}
+
+
+
+void Gamerules::Replace(const Gamerules &preset)
+{
+	name = preset.name;
+	universalRamscoop = preset.universalRamscoop;
+	personSpawnPeriod = preset.personSpawnPeriod;
+	noPersonSpawnWeight = preset.noPersonSpawnWeight;
+	npcMaxMiningTime = preset.npcMaxMiningTime;
+	universalFrugalThreshold = preset.universalFrugalThreshold;
+	depreciationMin = preset.depreciationMin;
+	depreciationDaily = preset.depreciationDaily;
+	depreciationGracePeriod = preset.depreciationGracePeriod;
+	depreciationMaxAge = preset.depreciationMaxAge;
+	fighterHitPolicy = preset.fighterHitPolicy;
+	systemDepartureMin = preset.systemDepartureMin;
+	systemArrivalMin = preset.systemArrivalMin;
+	fleetMultiplier = preset.fleetMultiplier;
+	miscRules = preset.miscRules;
 }
 
 

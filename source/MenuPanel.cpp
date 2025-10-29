@@ -202,11 +202,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
 	else if(key == 'g' && player.IsLoaded() && !player.IsDead())
-	{
-		GamerulesPanel *panel = new GamerulesPanel(player.GetGamerules());
-		panel->SetCallback(&player, &PlayerInfo::SetGamerules);
-		GetUI()->Push(panel);
-	}
+		GetUI()->Push(new GamerulesPanel(player.GetGamerules()));
 	else if(key == 'q')
 	{
 		GetUI()->Quit();

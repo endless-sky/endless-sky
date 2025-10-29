@@ -37,14 +37,11 @@ class RenderBuffer;
 // UI panel for editing preferences, especially the key mappings.
 class GamerulesPanel : public Panel {
 public:
-	GamerulesPanel(const Gamerules *preset);
+	GamerulesPanel(Gamerules &gamerules);
 	virtual ~GamerulesPanel();
 
 	// Draw this panel.
 	virtual void Draw() override;
-
-	template <class T>
-	void SetCallback(T *t, void (T::*fun)(const Gamerules *));
 
 
 protected:
@@ -71,10 +68,8 @@ private:
 
 
 private:
-	// The currently chosen gamerule preset.
-	const Gamerules *chosenPreset;
-	// Called on exit to provide the chosen preset to the callback.
-	std::function<void(const Gamerules *)> callback;
+	// The gamerules being modified.
+	Gamerules &gamerules;
 
 	const Interface *presetUi;
 
@@ -92,12 +87,3 @@ private:
 	ScrollVar<double> presetDescriptionScroll;
 	int presetListHeight = 0;
 };
-
-
-
-// Allow the callback function to be a member of any class.
-template <class T>
-void GamerulesPanel::SetCallback(T *t, void (T::*fun)(const Gamerules *))
-{
-	callback = std::bind(fun, t, std::placeholders::_1);
-}

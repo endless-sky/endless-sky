@@ -1022,9 +1022,10 @@ void GameData::SetGamerules(const Gamerules *gamerules)
 
 
 
-const Gamerules *GameData::DefaultGamerules()
+const Gamerules &GameData::DefaultGamerules()
 {
-	return defaultGamerules;
+	assert(defaultGamerules != nullptr && "defaultGamerules may not be nullptr");
+	return *defaultGamerules;
 }
 
 

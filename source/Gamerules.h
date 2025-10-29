@@ -43,7 +43,12 @@ public:
 
 	// Load a gamerules node.
 	void Load(const DataNode &node);
-	void Save(DataWriter &out) const;
+	// Save these gamerules by saving the name and any individual values that differ from the original preset.
+	// By saving only the difference, newly added gamerules or modified default gamerules will be applied to
+	// existing save files, but any customizations that a player made to their gamerules will remain.
+	void Save(DataWriter &out, const Gamerules &preset) const;
+	// Replace the name and all the rule values with those of the given preset.
+	void Replace(const Gamerules &preset);
 
 	const std::string &Name() const;
 	const std::string &Description() const;
@@ -85,6 +90,6 @@ private:
 	std::optional<double> systemArrivalMin;
 	double fleetMultiplier = 1.;
 
-	// Miscellanous rules that are only used by the gamedata and not by the engine.
+	// Miscellaneous rules that are only used by the game data and not by the engine.
 	std::map<std::string, int> miscRules;
 };

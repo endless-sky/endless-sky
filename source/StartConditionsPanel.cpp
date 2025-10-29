@@ -48,7 +48,7 @@ using namespace std;
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	const StartConditionsList &allScenarios, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent),
+	: player(player), gamePanels(gamePanels), parent(parent), gamerules(GameData::DefaultGamerules()),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
 	selectedBackground(*GameData::Colors().Get("faint")),
 	description(FontSet::Get(14))
@@ -62,7 +62,6 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 		}
 
 	startIt = scenarios.begin();
-	preset = GameData::DefaultGamerules();
 
 	const Interface *startConditionsMenu = GameData::Interfaces().Find("start conditions menu");
 	if(startConditionsMenu)
@@ -134,23 +133,12 @@ void StartConditionsPanel::Draw()
 
 
 
-void StartConditionsPanel::SetChosenPreset(const Gamerules *preset)
-{
-	this->preset = preset;
-}
-
-
-
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == 'g')
-	{
-		GamerulesPanel *panel = new GamerulesPanel(preset);
-		panel->SetCallback(this, &StartConditionsPanel::SetChosenPreset);
-		GetUI()->Push(panel);
-	}
+		GetUI()->Push(new GamerulesPanel(gamerules));
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
 		// Move up / down an entry, or a page. If at the bottom / top, wrap around.
@@ -176,7 +164,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 	else if(startIt != scenarios.end() && (key == 's' || key == 'n' || key == SDLK_KP_ENTER || key == SDLK_RETURN)
 		&& info.HasCondition("unlocked start"))
 	{
-		player.New(*startIt, preset);
+		player.New(*startIt, gamerules);
 
 		ConversationPanel *panel = new ConversationPanel(
 			player, startIt->GetConversation());

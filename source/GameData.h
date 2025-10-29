@@ -187,7 +187,7 @@ public:
 
 	static const Gamerules &GetGamerules();
 	static void SetGamerules(const Gamerules *gamerules);
-	static const Gamerules *DefaultGamerules();
+	static const Gamerules &DefaultGamerules();
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);
