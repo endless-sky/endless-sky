@@ -495,7 +495,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "gamerules" && node.HasChildren())
 		{
 			node.PrintTrace("Warning: \"gamerules\" root node is deprecated. "
-				   "Use `\"gamerules preset\" \"Default\"` instead");
+				"Use `\"gamerules preset\" \"Default\"` instead");
 			gamerulesPresets.Get("Default")->Load(node);
 		}
 		else if(key == "disable" && hasValue)

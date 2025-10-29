@@ -129,7 +129,7 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		}
 		if(systemDepartureMin != preset.systemDepartureMin)
 			out.Write("system departure min", systemDepartureMin);
-		if(systemArrivalMin !=  preset.systemArrivalMin)
+		if(systemArrivalMin != preset.systemArrivalMin)
 		{
 			if(systemArrivalMin.has_value())
 				out.Write("system arrival min", *systemArrivalMin);
