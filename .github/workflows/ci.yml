@@ -137,7 +137,7 @@ jobs:
     runs-on: windows-2025
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      PATH: C:\msys2\mingw64\bin;%PATH%
+      PATH: C:\msys2\mingw64\bin;${{ env.PATH }}
     steps:
     - uses: actions/checkout@v5
       with:
