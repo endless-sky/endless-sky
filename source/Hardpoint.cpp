@@ -542,7 +542,7 @@ void Hardpoint::UpdateArc(bool isNewlyConstructed)
 
 	// The installed weapon restricts the arc of fire.
 	const double hardpointsArc = (maxArc - minArc).AbsDegrees();
-	const double weaponsArc = isNewlyConstructed ? 0. : outfit->GetWeapon()->Arc();
+	const double weaponsArc = isNewlyConstructed ? 360. : outfit->GetWeapon()->Arc();
 	if(weaponsArc < 360. && (isOmnidirectional || weaponsArc < hardpointsArc))
 	{
 		isOmnidirectional = false;
