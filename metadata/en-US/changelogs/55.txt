@@ -1,0 +1,2 @@
+* Fix shop buttons
+* Fix settings overflow
