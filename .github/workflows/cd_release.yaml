@@ -81,6 +81,9 @@ jobs:
       - name: Install dependencies
         run: |
           choco install nsis.portable
+      - name: Add msys2 to PATH
+        run: setx GITHUB_PATH "C:\msys2\mingw64\bin;%GITHUB_PATH%"
+        shell: cmd
       - name: Find cache keys
         run: |
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
@@ -105,9 +108,6 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
-      - name: Add msys2 to PATH
-        run: setx GITHUB_PATH "C:\msys2\mingw64\bin;%GITHUB_PATH%"
-        shell: cmd
       - name: Run CMake
         run: |
           cmake --preset mingw-release -DCPACK_PACKAGE_FILE_NAME="EndlessSky-${{ inputs.release_version }}-win64-setup"
@@ -152,9 +152,9 @@ jobs:
       - name: Install dependencies
         run: |
           choco install nsis.portable
-      - name: Add Mingw to PATH
-        run: |
-          echo (Join-Path C: mingw32 bin) >> $env:GITHUB_PATH
+      - name: Add msys2 to PATH
+        run: setx GITHUB_PATH "C:\msys2\mingw32\bin;%GITHUB_PATH%"
+        shell: cmd
       - name: Setup vcpkg cache
         uses: TAServers/vcpkg-cache@v3
         id: vcpkg-cache
@@ -164,9 +164,6 @@ jobs:
       - uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
-      - name: Add msys2 to PATH
-        run: setx GITHUB_PATH "C:\msys2\mingw64\bin;%GITHUB_PATH%"
-        shell: cmd
       - name: Run CMake
         run: |
           cmake --preset mingw32-release -DCPACK_PACKAGE_FILE_NAME="EndlessSky-${{ inputs.release_version }}-win32-setup"
