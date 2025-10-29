@@ -37,14 +37,12 @@ We recommend using Visual Studio 2022 or newer. If you are unsure of which editi
 We recommend the [MinGW Winlibs](https://winlibs.com/#download-release) distribution, which also includes various tools you'll need to build the game as well. It is possible to use other MinGW distributions too (like Msys2 for example), but you'll need to make sure to install [CMake](https://cmake.org/) (3.21 or later) and [Ninja](https://ninja-build.org/).
 
 When installing MinGW, use the following settings:
-- Version: `8.1.0` (or greater; this document assumes 8.1.0)
-- Architecture: `x86_64`
+- Version: `14.2` (or greater; this document assumes 14.2)
+- Architecture: `x86_64` (`i686` for 32-bit builds)
 - Threads: `posix`
-- Exception: `seh`
+- Exception: `seh` (`dwarf` for 32-bit builds)
 
-You'll need the POSIX version of MinGW. If you want your builds to have the same runtime library requirements as the official releases of Endless Sky, choose a version that links to the UCRT. For the Winlibs distribution mentioned above, the latest version is currently gcc 14 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/14.2.0posix-18.1.8-12.0.0-ucrt-r1/winlibs-x86_64-posix-seh-gcc-14.2.0-mingw-w64ucrt-12.0.0-r1.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it to the list).
-
-Endless Sky requires precompiled libraries to compile and play: [Download link](https://endless-sky.github.io/win64-dev.zip)
+You'll need the POSIX version of MinGW. If you want your builds to have the same runtime library requirements as the official releases of Endless Sky, choose a version that links to the MSVCRT. For the Winlibs distribution mentioned above, the latest compatible version is currently gcc 14 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/14.2.0posix-19.1.7-12.0.0-msvcrt-r3/winlibs-x86_64-posix-seh-gcc-14.2.0-mingw-w64msvcrt-12.0.0-r3.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it to the list).
 
 ### MacOS
 
