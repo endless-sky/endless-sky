@@ -104,9 +104,9 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 {
 	if(node.Size() >= 2)
 	{
-		name = node.Token(1);
+		trueName = node.Token(1);
 		if(displayName.empty())
-			displayName = name;
+			displayName = trueName;
 	}
 
 	// For the following keys, if this data node defines a new value for that
@@ -155,7 +155,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			else if(key == "raid")
 				raidFleets.clear();
 			else if(key == "display name")
-				displayName = name;
+				displayName = trueName;
 			else if(key == "death sentence")
 				deathSentence = nullptr;
 			else if(key == "friendly hail")
@@ -422,24 +422,24 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 
 
 // Get the display name of this government.
-const string &Government::GetName() const
+const string &Government::DisplayName() const
 {
 	return displayName;
 }
 
 
 
-// Set / Get the name used for this government in the data files.
-void Government::SetName(const string &trueName)
+// Set / Get the true name used for this government in the data files.
+void Government::SetTrueName(const string &trueName)
 {
-	this->name = trueName;
+	this->trueName = trueName;
 }
 
 
 
-const string &Government::GetTrueName() const
+const string &Government::TrueName() const
 {
-	return name;
+	return trueName;
 }
 
 
