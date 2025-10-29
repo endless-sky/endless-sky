@@ -143,8 +143,8 @@ jobs:
         show-progress: false
         fetch-depth: '10'
     - name: Add msys2 to PATH
-      run: setx GITHUB_PATH "C:\msys64\mingw64\bin;%GITHUB_PATH%"
-      shell: cmd
+      run: echo "C:\msys64\mingw64\bin;$(cat $GITHUB_PATH)" > $GITHUB_PATH
+      shell: bash
     - name: Find cache keys
       run: |
         echo 'RESTORE_KEYS<<EOF' > restore_keys.txt

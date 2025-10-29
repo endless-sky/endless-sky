@@ -82,8 +82,8 @@ jobs:
         run: |
           choco install nsis.portable
       - name: Add msys2 to PATH
-        run: setx GITHUB_PATH "C:\msys64\mingw64\bin;%GITHUB_PATH%"
-        shell: cmd
+        run: echo "C:\msys64\mingw64\bin;$(cat $GITHUB_PATH)" > $GITHUB_PATH
+        shell: bash
       - name: Find cache keys
         run: |
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
@@ -153,8 +153,8 @@ jobs:
         run: |
           choco install nsis.portable
       - name: Add msys2 to PATH
-        run: setx GITHUB_PATH "C:\msys64\mingw32\bin;%GITHUB_PATH%"
-        shell: cmd
+        run: echo "C:\msys64\mingw32\bin;$(cat $GITHUB_PATH)" > $GITHUB_PATH
+        shell: bash
       - name: Setup vcpkg cache
         uses: TAServers/vcpkg-cache@v3
         id: vcpkg-cache
