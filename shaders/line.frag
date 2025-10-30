@@ -19,7 +19,7 @@ precision mediump int;
 uniform highp vec2 start;
 uniform highp vec2 end;
 uniform float width;
-uniform int cap;
+uniform mediump int cap;
 
 in vec2 pos;
 in vec4 color;
