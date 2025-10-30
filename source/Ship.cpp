@@ -2292,11 +2292,14 @@ bool Ship::IsIonized() const
 
 	bool firingEnergy = false;
 	for(const auto &it : outfits)
-		if(it.first->IsWeapon() && it.first->FiringEnergy() > 0)
+	{
+		const Weapon *weapon = it.first->GetWeapon().get();
+		if(weapon && weapon->FiringEnergy() > 0)
 		{
 			firingEnergy = true;
 			break;
 		}
+	}
 
 	return movementEnergy || firingEnergy ? ionization > energy : false;
 }
