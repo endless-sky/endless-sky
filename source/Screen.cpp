@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Screen.h"
 
+#include "CustomEvents.h"
+
 #include <algorithm>
 
 using namespace std;
@@ -84,6 +86,8 @@ int Screen::Zoom()
 
 void Screen::SetZoom(int percent)
 {
+	CustomEvents::SendResize();
+
 	USER_ZOOM = max(100, min(200, percent));
 
 	// Make sure the zoom factor is not set too high for the full UI to fit.
