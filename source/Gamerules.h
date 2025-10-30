@@ -47,8 +47,10 @@ public:
 	// By saving only the difference, newly added gamerules or modified default gamerules will be applied to
 	// existing save files, but any customizations that a player made to their gamerules will remain.
 	void Save(DataWriter &out, const Gamerules &preset) const;
-	// Replace the name and all the rule values with those of the given preset.
-	void Replace(const Gamerules &preset);
+	// Replace the name and all the rule values with those of the given gamerules.
+	void Replace(const Gamerules &rules);
+	// Reset a particular value to the value used by the preset.
+	void Reset(const std::string &rule, const Gamerules &preset);
 
 	const std::string &Name() const;
 	const std::string &Description() const;

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
+#include "Dialog.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -40,39 +41,47 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 
+#include "text/Format.h"
+
 using namespace std;
+
+namespace {
+	const string DEPRECIATION_MIN = "Minimum value";
+	const string DEPRECIATION_GRACE_PERIOD = "Grace period";
+	const string DEPRECIATION_MAX_AGE = "Maximum age";
+	const string DEPRECIATION_DAILY = "Daily depreciation";
+	const string PERSON_SPAWN_PERIOD = "Spawn period";
+	const string NO_PERSON_SPAWN_WEIGHT = "No spawn weight";
+	const string NPC_MAX_MINING_TIME = "NPC max mining time";
+	const string UNIVERSAL_FRUGAL_THRESHOLD = "Universal frugal threshold";
+	const string UNIVERSAL_RAMSCOOP = "Universal ramscoop";
+	const string SYSTEM_DEPARTURE_MIN = "Minimum departure distance";
+	const string SYSTEM_ARRIVAL_MIN = "Minimum arrival distance";
+	const string FLEET_MULTIPLIER = "Fleet multiplier";
+	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
+	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
+
+	const int GAMERULES_PAGE_COUNT = 1;
+}
 
 
 
 // TODO: Allow for the customization of individual gamerules.
 GamerulesPanel::GamerulesPanel(Gamerules &gamerules)
-	: gamerules(gamerules), presetUi(GameData::Interfaces().Get("gamerules presets"))
+	: gamerules(gamerules),
+	gamerulesUi(GameData::Interfaces().Get("gamerules")),
+	presetUi(GameData::Interfaces().Get("gamerules presets")),
+	selectedIndex(0), hoverIndex(-1), oldSelectedIndex(0), oldHoverIndex(0), latestIndex(0),
+	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+			GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	selectedPreset(gamerules.Name())
 {
-	// Set the initial preset list and description scroll ranges.
 	Rectangle presetListBox = presetUi->GetBox("preset list");
-
-	auto presets = GameData::GamerulesPresets();
-	presetListHeight = presets.size() * 20;
-
-	selectedIndex = 0;
-	for(const auto &it : presets)
-	{
-		if(it.second.Name() != gamerules.Name())
-			++selectedIndex;
-		else
-			break;
-	}
-	selectedName = gamerules.Name();
-
 	presetListScroll.SetDisplaySize(presetListBox.Height());
-	presetListScroll.SetMaxValue(presetListHeight);
+	presetListScroll.SetMaxValue(GameData::GamerulesPresets().size() * 20);
 	Rectangle presetDescriptionBox = presetUi->GetBox("preset description");
 	presetDescriptionScroll.SetDisplaySize(presetDescriptionBox.Height());
-
-	presetListClip = std::make_unique<RenderBuffer>(presetListBox.Dimensions());
-	RenderPresetDescription(gamerules);
 }
-
 
 
 // Stub, for unique_ptr destruction to be defined in the right compilation unit.
@@ -90,11 +99,32 @@ void GamerulesPanel::Draw()
 
 	Information info;
 
-	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	presetUi->Draw(info, this);
+	if(GAMERULES_PAGE_COUNT > 1)
+		info.SetCondition("multiple gamerules pages");
+	if(currentGamerulesPage > 0)
+		info.SetCondition("show previous gamerules");
+	if(currentGamerulesPage + 1 < GAMERULES_PAGE_COUNT)
+		info.SetCondition("show next gamerules");
 
+	GameData::Interfaces().Get("menu background")->Draw(info, this);
+	(page == 'g' ? gamerulesUi : presetUi)->Draw(info, this);
+
+	gameruleZones.clear();
 	presetZones.clear();
-	DrawPresets();
+	if(page == 'g')
+	{
+		DrawGamerules();
+		DrawTooltips();
+	}
+	else if(page == 'p')
+		DrawPresets();
+}
+
+
+
+void GamerulesPanel::UpdateTooltipActivation()
+{
+	tooltip.UpdateActivationCount();
 }
 
 
@@ -105,8 +135,32 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		HandleDown();
 	else if(key == SDLK_UP)
 		HandleUp();
-	else if(key == 'c' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	else if(key == SDLK_RETURN)
+		HandleConfirm();
+	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
+	else if(key == 'g' || key == 'p')
+	{
+		page = key;
+		hoverItem.clear();
+		selectedIndex = 0;
+
+		Resize();
+	}
+	else if((key == 'n' || key == SDLK_PAGEUP) && (page == 'g' && currentGamerulesPage < GAMERULES_PAGE_COUNT - 1))
+	{
+		++currentGamerulesPage;
+		selectedIndex = 0;
+		selectedItem.clear();
+	}
+	else if((key == 'r' || key == SDLK_PAGEDOWN) && (page == 'g' && currentGamerulesPage > 0))
+	{
+		--currentGamerulesPage;
+		selectedIndex = 0;
+		selectedItem.clear();
+	}
+	else if((key == 'x' || key == SDLK_DELETE) && (page == 'g'))
+		gamerules.Reset(gameruleZones[latestIndex].Value(), *GameData::GamerulesPresets().Get(gamerules.Name()));
 	else
 		return false;
 
@@ -122,21 +176,31 @@ bool GamerulesPanel::Click(int x, int y, MouseButton button, int clicks)
 
 	Point point(x, y);
 
-	// Don't handle clicks outside of the clipped area.
-	Rectangle presetListBox = presetUi->GetBox("preset list");
-	if(presetListBox.Contains(point))
-	{
-		int index = 0;
-		for(const auto &zone : presetZones)
+	for(const auto &zone : gameruleZones)
+		if(zone.Contains(point))
 		{
-			if(zone.Contains(point) && selectedName != zone.Value())
+			HandleGamerulesString(zone.Value(), point);
+			break;
+		}
+
+	if(page == 'p')
+	{
+		// Don't handle clicks outside of the clipped area.
+		Rectangle presetListBox = presetUi->GetBox("preset list");
+		if(presetListBox.Contains(point))
+		{
+			int index = 0;
+			for(const auto &zone : presetZones)
 			{
-				selectedName = zone.Value();
-				selectedIndex = index;
-				RenderPresetDescription(selectedName);
-				break;
+				if(zone.Contains(point) && selectedPreset != zone.Value())
+				{
+					selectedPreset = zone.Value();
+					selectedIndex = index;
+					RenderPresetDescription(selectedPreset);
+					break;
+				}
+				index++;
 			}
-			index++;
 		}
 	}
 
@@ -148,11 +212,24 @@ bool GamerulesPanel::Click(int x, int y, MouseButton button, int clicks)
 bool GamerulesPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
+
 	hoverItem.clear();
+	tooltip.Clear();
+
+	hoverIndex = -1;
+	for(const auto &zone : gameruleZones)
+		if(zone.Contains(hoverPoint))
+		{
+			hoverItem = zone.Value();
+			tooltip.SetZone(zone);
+		}
 
 	for(const auto &zone : presetZones)
 		if(zone.Contains(hoverPoint))
+		{
 			hoverItem = zone.Value();
+			tooltip.SetZone(zone);
+		}
 
 	return true;
 }
@@ -165,18 +242,26 @@ bool GamerulesPanel::Scroll(double dx, double dy)
 	if(!dy)
 		return false;
 
-	const Rectangle &presetBox = presetUi->GetBox("preset list");
-	if(presetBox.Contains(hoverPoint))
+	if(page == 'g' && !hoverItem.empty())
 	{
-		presetListScroll.Scroll(-dy * Preferences::ScrollSpeed());
+		// TODO: Which gamerules should change when scrolled over?
 		return true;
 	}
-
-	const Rectangle &descriptionBox = presetUi->GetBox("preset description");
-	if(descriptionBox.Contains(hoverPoint) && presetDescriptionBuffer)
+	else if(page == 'p')
 	{
-		presetDescriptionScroll.Scroll(-dy * Preferences::ScrollSpeed());
-		return true;
+		const Rectangle &presetBox = presetUi->GetBox("preset list");
+		if(presetBox.Contains(hoverPoint))
+		{
+			presetListScroll.Scroll(-dy * Preferences::ScrollSpeed());
+			return true;
+		}
+
+		const Rectangle &descriptionBox = presetUi->GetBox("preset description");
+		if(descriptionBox.Contains(hoverPoint) && presetDescriptionBuffer)
+		{
+			presetDescriptionScroll.Scroll(-dy * Preferences::ScrollSpeed());
+			return true;
+		}
 	}
 	return false;
 }
@@ -185,22 +270,216 @@ bool GamerulesPanel::Scroll(double dx, double dy)
 
 bool GamerulesPanel::Drag(double dx, double dy)
 {
-	const Rectangle &presetBox = presetUi->GetBox("preset list");
-	const Rectangle &descriptionBox = presetUi->GetBox("preset description");
+	if(page == 'p')
+	{
+		const Rectangle &presetBox = presetUi->GetBox("preset list");
+		const Rectangle &descriptionBox = presetUi->GetBox("preset description");
 
-	if(presetBox.Contains(hoverPoint))
-	{
-		// Steps is zero so that we don't animate mouse drags.
-		presetListScroll.Scroll(-dy, 0);
-		return true;
-	}
-	if(descriptionBox.Contains(hoverPoint))
-	{
-		// Steps is zero so that we don't animate mouse drags.
-		presetDescriptionScroll.Scroll(-dy, 0);
-		return true;
+		if(presetBox.Contains(hoverPoint))
+		{
+			// Steps is zero so that we don't animate mouse drags.
+			presetListScroll.Scroll(-dy, 0);
+			return true;
+		}
+		if(descriptionBox.Contains(hoverPoint))
+		{
+			// Steps is zero so that we don't animate mouse drags.
+			presetDescriptionScroll.Scroll(-dy, 0);
+			return true;
+		}
 	}
 	return false;
+}
+
+
+
+void GamerulesPanel::Resize()
+{
+	if(page == 'p')
+	{
+		Rectangle presetListBox = presetUi->GetBox("preset list");
+		presetListClip = std::make_unique<RenderBuffer>(presetListBox.Dimensions());
+		RenderPresetDescription(selectedPreset);
+	}
+}
+
+
+
+void GamerulesPanel::DrawGamerules()
+{
+	const Color &back = *GameData::Colors().Get("faint");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
+
+	if(selectedIndex != oldSelectedIndex)
+		latestIndex = selectedIndex;
+	if(hoverIndex != oldHoverIndex)
+		latestIndex = hoverIndex;
+
+	oldSelectedIndex = selectedIndex;
+	oldHoverIndex = hoverIndex;
+
+	Table table;
+	table.AddColumn(-115, {230, Alignment::LEFT});
+	table.AddColumn(115, {230, Alignment::RIGHT});
+	table.SetUnderline(-120, 120);
+
+	int firstY = -248;
+	table.DrawAt(Point(-130, firstY));
+
+	// About GAMERULES pagination
+	// * An empty string indicates that a category has ended.
+	// * A '\t' character indicates that the first column on this page has
+	//   ended, and the next line should be drawn at the start of the next
+	//   column.
+	// * A '\n' character indicates that this page is complete, no further lines
+	//   should be drawn on this page.
+	// * In all three cases, the first non-special string will be considered the
+	//   category heading and will be drawn differently to normal setting
+	//   entries.
+	// * The namespace variable GAMERULES_PAGE_COUNT should be updated to the max
+	//   page count (count of '\n' characters plus one).
+	static const string GAMERULES[] = {
+		"Depreciation",
+		DEPRECIATION_MIN,
+		DEPRECIATION_GRACE_PERIOD,
+		DEPRECIATION_MAX_AGE,
+		DEPRECIATION_DAILY,
+		"",
+		"Person Ships",
+		PERSON_SPAWN_PERIOD,
+		NO_PERSON_SPAWN_WEIGHT,
+		"",
+		"NPC Behavior",
+		NPC_MAX_MINING_TIME,
+		UNIVERSAL_FRUGAL_THRESHOLD,
+		"\t",
+		"System Behavior",
+		UNIVERSAL_RAMSCOOP,
+		SYSTEM_ARRIVAL_MIN,
+		SYSTEM_DEPARTURE_MIN,
+		FLEET_MULTIPLIER,
+		"",
+		"Miscellaneous",
+		FIGHTERS_HIT_WHEN_DISABLED,
+		UNIVERSAL_AMMO_STOCKING
+	};
+
+
+	bool isCategory = true;
+	int page = 0;
+	for(const string &gamerule : GAMERULES)
+	{
+		// Check if this is a page break.
+		if(gamerule == "\n")
+		{
+			++page;
+			continue;
+		}
+		// Check if this gamerule is on the page being displayed.
+		// If this gamerule isn't on the page being displayed, check if it is on an earlier page.
+		// If it is, continue to the next gamerule.
+		// Otherwise, this gamerule is on a later page,
+		// do not continue as no further gamerules are to be displayed.
+		if(page < currentGamerulesPage)
+			continue;
+		else if(page > currentGamerulesPage)
+			break;
+		// Check if this is a category break or column break.
+		if(gamerule.empty() || gamerule == "\t")
+		{
+			isCategory = true;
+			if(!gamerule.empty())
+				table.DrawAt(Point(130, firstY));
+			continue;
+		}
+
+		if(isCategory)
+		{
+			isCategory = false;
+			table.DrawGap(10);
+			table.DrawUnderline(medium);
+			table.Draw(gamerule, bright);
+			table.Advance();
+			table.DrawGap(5);
+			continue;
+		}
+
+		// Record where this setting is displayed, so the user can click on it.
+		// Temporarily reset the row's size so the click zone can cover the entire gamerule.
+		table.SetHighlight(-120, 120);
+		gameruleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), gamerule);
+
+		// Setting "isOn" draws the setting "bright" (i.e. the setting is active).
+		bool isOn = true;
+		string text;
+		if(gamerule == DEPRECIATION_MIN)
+			text = Format::Percentage(gamerules.DepreciationMin(), 0);
+		else if(gamerule == DEPRECIATION_GRACE_PERIOD)
+			text = Format::Credits(gamerules.DepreciationGracePeriod());
+		else if(gamerule == DEPRECIATION_MAX_AGE)
+			text = Format::Credits(gamerules.DepreciationMaxAge());
+		else if(gamerule == DEPRECIATION_DAILY)
+			text = Format::Percentage(gamerules.DepreciationDaily(), 0);
+		else if(gamerule == PERSON_SPAWN_PERIOD)
+			text = Format::Credits(gamerules.PersonSpawnPeriod());
+		else if(gamerule == NO_PERSON_SPAWN_WEIGHT)
+			text = Format::Credits(gamerules.NoPersonSpawnWeight());
+		else if(gamerule == NPC_MAX_MINING_TIME)
+			text = Format::Credits(gamerules.NPCMaxMiningTime());
+		else if(gamerule == UNIVERSAL_FRUGAL_THRESHOLD)
+			text = Format::Percentage(gamerules.UniversalFrugalThreshold(), 0);
+		else if(gamerule == UNIVERSAL_RAMSCOOP)
+			text = gamerules.UniversalRamscoopActive() ? "true" : "false";
+		else if(gamerule == SYSTEM_ARRIVAL_MIN)
+		{
+			if(!gamerules.SystemArrivalMin().has_value())
+				text = "(unset)";
+			else
+				text = Format::Number(*gamerules.SystemArrivalMin());
+		}
+		else if(gamerule == SYSTEM_DEPARTURE_MIN)
+			text = Format::Number(gamerules.SystemDepartureMin());
+		else if(gamerule == FLEET_MULTIPLIER)
+			text = Format::Percentage(gamerules.FleetMultiplier(), 0);
+		else if(gamerule == FIGHTERS_HIT_WHEN_DISABLED)
+		{
+			switch(gamerules.FightersHitWhenDisabled())
+			{
+			case Gamerules::FighterDodgePolicy::ALL:
+				text = "all";
+				break;
+			case Gamerules::FighterDodgePolicy::ONLY_PLAYER:
+				text = "only player";
+				break;
+			case Gamerules::FighterDodgePolicy::NONE:
+				text = "none";
+				break;
+			}
+		}
+		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
+			text = gamerules.GetValue("universal ammo restocking") ? "true" : "false";
+
+		if(gamerule == hoverItem)
+		{
+			table.SetHighlight(-120, 120);
+			table.DrawHighlight(back);
+		}
+		else if(gamerule == selectedItem)
+		{
+			auto width = FontSet::Get(14).Width(gamerule);
+			table.SetHighlight(-120, width - 110);
+			table.DrawHighlight(back);
+		}
+
+		table.Draw(gamerule, isOn ? medium : dim);
+		table.Draw(text, isOn ? bright : medium);
+	}
+
+	// Sync the currently selected item after the preferences map has been populated.
+	if(selectedItem.empty())
+		selectedItem = gameruleZones.at(selectedIndex).Value();
 }
 
 
@@ -240,7 +519,7 @@ void GamerulesPanel::DrawPresets()
 
 		presetZones.emplace_back(presetListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), name);
 
-		bool isSelected = (name == selectedName);
+		bool isSelected = (name == selectedPreset);
 		if(isSelected || name == hoverItem)
 			table.DrawHighlight(back);
 
@@ -390,22 +669,28 @@ void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 
 
 
-void GamerulesPanel::HandleUp()
+void GamerulesPanel::DrawTooltips()
 {
-	selectedIndex = max(0, selectedIndex - 1);
-	selectedName = presetZones.at(selectedIndex).Value();
-	RenderPresetDescription(selectedName);
-	ScrollSelectedPreset();
+	if(hoverItem.empty())
+	{
+		tooltip.DecrementCount();
+		return;
+	}
+	tooltip.IncrementCount();
+	if(!tooltip.ShouldDraw())
+		return;
+
+	if(!tooltip.HasText())
+		tooltip.SetText(GameData::Tooltip(hoverItem));
+
+	tooltip.Draw();
 }
 
 
 
-void GamerulesPanel::HandleDown()
+void GamerulesPanel::HandleGamerulesString(const std::string &str, Point cursorPosition)
 {
-	selectedIndex = min(selectedIndex + 1, static_cast<int>(presetZones.size() - 1));
-	selectedName = presetZones.at(selectedIndex).Value();
-	RenderPresetDescription(selectedName);
-	ScrollSelectedPreset();
+	// TODO: Implement.
 }
 
 
@@ -413,6 +698,64 @@ void GamerulesPanel::HandleDown()
 void GamerulesPanel::SelectPreset(const string &name)
 {
 	gamerules.Replace(*GameData::GamerulesPresets().Get(name));
+}
+
+
+
+void GamerulesPanel::HandleUp()
+{
+	selectedIndex = max(0, selectedIndex - 1);
+	switch(page)
+	{
+	case 'g':
+		selectedItem = gameruleZones.at(selectedIndex).Value();
+		break;
+	case 'p':
+		selectedPreset = presetZones.at(selectedIndex).Value();
+		RenderPresetDescription(selectedPreset);
+		ScrollSelectedPreset();
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+void GamerulesPanel::HandleDown()
+{
+	switch(page)
+	{
+	case 'g':
+		selectedIndex = min(selectedIndex + 1, static_cast<int>(gameruleZones.size() - 1));
+		selectedItem = gameruleZones.at(selectedIndex).Value();
+		break;
+	case 'p':
+		selectedIndex = min(selectedIndex + 1, static_cast<int>(presetZones.size() - 1));
+		selectedPreset = presetZones.at(selectedIndex).Value();
+		RenderPresetDescription(selectedPreset);
+		ScrollSelectedPreset();
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+void GamerulesPanel::HandleConfirm()
+{
+	switch(page)
+	{
+	case 'g':
+		HandleGamerulesString(selectedItem, Screen::Dimensions() / 2.);
+		break;
+	case 'p':
+		SelectPreset(selectedPreset);
+		break;
+	default:
+		break;
+	}
 }
 
 

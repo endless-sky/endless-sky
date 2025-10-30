@@ -20,12 +20,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ClickZone.h"
 #include "Point.h"
 #include "ScrollVar.h"
-#include "text/WrappedText.h"
+#include "Tooltip.h"
 
-#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
+
 
 class Command;
 class Gamerules;
@@ -43,6 +43,8 @@ public:
 	// Draw this panel.
 	virtual void Draw() override;
 
+	virtual void UpdateTooltipActivation() override;
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -52,17 +54,24 @@ protected:
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Drag(double dx, double dy) override;
 
+	virtual void Resize() override;
+
 
 private:
+	void DrawGamerules();
 	void DrawPresets();
 	void RenderPresetDescription(const std::string &name);
 	void RenderPresetDescription(const Gamerules &preset);
 
-	void HandleUp();
-	void HandleDown();
+	void DrawTooltips();
 
+	void HandleGamerulesString(const std::string &str, Point cursorPosition);
 	// Scroll the preset list until the selected preset is visible.
 	void ScrollSelectedPreset();
+
+	void HandleUp();
+	void HandleDown();
+	void HandleConfirm();
 
 	void SelectPreset(const std::string &name);
 
@@ -71,19 +80,31 @@ private:
 	// The gamerules being modified.
 	Gamerules &gamerules;
 
+	const Interface *gamerulesUi;
 	const Interface *presetUi;
 
 	int selectedIndex;
-	std::string selectedName;
+	int hoverIndex;
+	int oldSelectedIndex;
+	int oldHoverIndex;
+	int latestIndex;
+	// Which page we're on. g = gamerules, p = presets.
+	char page = 'g';
 
 	Point hoverPoint;
+	Tooltip tooltip;
+	std::string selectedItem;
 	std::string hoverItem;
 
+	int currentGamerulesPage = 0;
+
+	std::string selectedPreset;
+
+	std::vector<ClickZone<std::string>> gameruleZones;
 	std::vector<ClickZone<std::string>> presetZones;
 
 	std::unique_ptr<RenderBuffer> presetListClip;
 	std::unique_ptr<RenderBuffer> presetDescriptionBuffer;
 	ScrollVar<double> presetListScroll;
 	ScrollVar<double> presetDescriptionScroll;
-	int presetListHeight = 0;
 };

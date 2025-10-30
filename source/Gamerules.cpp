@@ -151,23 +151,66 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 
 
 
-void Gamerules::Replace(const Gamerules &preset)
+void Gamerules::Replace(const Gamerules &rules)
 {
-	name = preset.name;
-	universalRamscoop = preset.universalRamscoop;
-	personSpawnPeriod = preset.personSpawnPeriod;
-	noPersonSpawnWeight = preset.noPersonSpawnWeight;
-	npcMaxMiningTime = preset.npcMaxMiningTime;
-	universalFrugalThreshold = preset.universalFrugalThreshold;
-	depreciationMin = preset.depreciationMin;
-	depreciationDaily = preset.depreciationDaily;
-	depreciationGracePeriod = preset.depreciationGracePeriod;
-	depreciationMaxAge = preset.depreciationMaxAge;
-	fighterHitPolicy = preset.fighterHitPolicy;
-	systemDepartureMin = preset.systemDepartureMin;
-	systemArrivalMin = preset.systemArrivalMin;
-	fleetMultiplier = preset.fleetMultiplier;
-	miscRules = preset.miscRules;
+	name = rules.name;
+	universalRamscoop = rules.universalRamscoop;
+	personSpawnPeriod = rules.personSpawnPeriod;
+	noPersonSpawnWeight = rules.noPersonSpawnWeight;
+	npcMaxMiningTime = rules.npcMaxMiningTime;
+	universalFrugalThreshold = rules.universalFrugalThreshold;
+	depreciationMin = rules.depreciationMin;
+	depreciationDaily = rules.depreciationDaily;
+	depreciationGracePeriod = rules.depreciationGracePeriod;
+	depreciationMaxAge = rules.depreciationMaxAge;
+	fighterHitPolicy = rules.fighterHitPolicy;
+	systemDepartureMin = rules.systemDepartureMin;
+	systemArrivalMin = rules.systemArrivalMin;
+	fleetMultiplier = rules.fleetMultiplier;
+	miscRules = rules.miscRules;
+}
+
+
+
+void Gamerules::Reset(const string &rule, const Gamerules &preset)
+{
+	if(rule == "universal ramscoop")
+		universalRamscoop = preset.universalRamscoop;
+	else if(rule == "person spawn period")
+		personSpawnPeriod = preset.personSpawnPeriod;
+	else if(rule == "no person spawn weight")
+		noPersonSpawnWeight = preset.noPersonSpawnWeight;
+	else if(rule == "npc max mining time")
+		npcMaxMiningTime = preset.npcMaxMiningTime;
+	else if(rule == "universal frugal threshold")
+		universalFrugalThreshold = preset.universalFrugalThreshold;
+	else if(rule == "depreciation min")
+		depreciationMin = preset.depreciationMin;
+	else if(rule == "depreciation daily")
+		depreciationDaily = preset.depreciationDaily;
+	else if(rule == "depreciation grace period")
+		depreciationGracePeriod = preset.depreciationGracePeriod;
+	else if(rule == "depreciation max age")
+		depreciationMaxAge = preset.depreciationMaxAge;
+	else if(rule == "disabled fighters avoid projectiles")
+		fighterHitPolicy = preset.fighterHitPolicy;
+	else if(rule == "system departure min")
+		systemDepartureMin = preset.systemDepartureMin;
+	else if(rule == "system arrival min")
+	{
+		if(systemArrivalMin == preset.systemArrivalMin)
+			systemArrivalMin.reset();
+		else
+			systemArrivalMin = preset.systemArrivalMin;
+	}
+	else if(rule == "fleet multiplier")
+		fleetMultiplier = preset.fleetMultiplier;
+	else
+	{
+		auto it = preset.miscRules.find(rule);
+		if(it != preset.miscRules.end())
+			miscRules[rule] = it->second;
+	}
 }
 
 

@@ -1008,13 +1008,53 @@ interface "preferences"
 		center 281 35
 
 
+interface "gamerules"
+	sprite "ui/settings panel"
+		center -20 -20
+	button b "_Back to Menu..."
+		center 195 210
+		dimensions 120 30
+	button g "_Gamerules"
+		center -305 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Presets"
+		center -305 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	visible if "multiple settings pages"
+	sprite "ui/dialog cancel"
+		center -115 210
+	active if "show next settings"
+	button n "_Next"
+		center -115 210
+		dimensions 70 30
+	sprite "ui/wide button"
+		center -210 210
+	active if "show previous settings"
+	button r "P_revious"
+		center -210 210
+		dimensions 90 30
+
 
 interface "gamerules presets"
 	sprite "ui/settings panel"
 		center -20 -20
-	button c "_Confirm Selection"
+	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30
+	button g "_Gamerules"
+		center -305 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Presets"
+		center -305 -190
+		dimensions 90 30
+		color medium
+		hover bright
 	label "Gamerule Presets:"
 		from -225 -236
 		align top left
