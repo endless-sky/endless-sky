@@ -67,37 +67,18 @@ void ShipAICache::Calibrate(const Ship &ship)
 		// Exploding weaponry that can damage this ship requires special consideration.
 		if(weapon->SafeRange())
 		{
-			hasWeapons = true;
-			bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship.OutfitCount(weapon->Ammo()));
-			// Weapons without ammo might as well not exist, so don't even consider them
-			if(lackingAmmo)
-				continue;
-			canFight = true;
+			minSafeDistance = max(weapon->SafeRange(), minSafeDistance);
+			splashDPS += DPS;
+		}
 
-			// Calculate the damage per second,
-			// ignoring any special effects. (could be improved to account for those, maybe be based on cost instead)
-			double DPS = (weapon->ShieldDamage() + weapon->HullDamage()
-				+ (weapon->RelativeShieldDamage() * ship.MaxShields())
-				+ (weapon->RelativeHullDamage() * ship.MaxHull()))
-				/ weapon->Reload();
-			totalDPS += DPS;
-
-			// Exploding weaponry that can damage this ship requires special consideration.
-			if(weapon->SafeRange())
-			{
-				minSafeDistance = max(weapon->SafeRange(), minSafeDistance);
-				splashDPS += DPS;
-			}
-
-			// The artillery AI should be applied at 1000 pixels range, or 500 if the weapon is homing.
-			double range = weapon->Range();
-			shortestRange = min(range, shortestRange);
-			longestRange = max(range, longestRange);
-			if(range >= 1000. || (weapon->Homing() && range >= 500.))
-			{
-				shortestArtillery = min(range, shortestArtillery);
-				artilleryDPS += DPS;
-			}
+		// The artillery AI should be applied at 1000 pixels range, or 500 if the weapon is homing.
+		double range = weapon->Range();
+		shortestRange = min(range, shortestRange);
+		longestRange = max(range, longestRange);
+		if(range >= 1000. || (weapon->Homing() && range >= 500.))
+		{
+			shortestArtillery = min(range, shortestArtillery);
+			artilleryDPS += DPS;
 		}
 	}
 
