@@ -61,11 +61,11 @@ void Screen::ScreenDimensionsGuard::Deactivate()
 
 
 
-void Screen::SetRaw(int width, int height)
+void Screen::SetRaw(int width, int height, bool noResizeEvent)
 {
 	RAW_WIDTH = width;
 	RAW_HEIGHT = height;
-	SetZoom(USER_ZOOM);
+	SetZoom(USER_ZOOM, noResizeEvent);
 }
 
 
@@ -84,9 +84,10 @@ int Screen::Zoom()
 
 
 
-void Screen::SetZoom(int percent)
+void Screen::SetZoom(int percent, bool noEvent)
 {
-	CustomEvents::SendResize();
+	if(!noEvent)
+		CustomEvents::SendResize();
 
 	USER_ZOOM = max(100, min(200, percent));
 

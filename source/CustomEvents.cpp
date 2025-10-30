@@ -32,7 +32,7 @@ void CustomEvents::Init()
 
 Uint32 CustomEvents::GetResize()
 {
-	assert(resize != -1 && "Custom events must be registered");
+	assert(resize != static_cast<Uint32>(-1) && "Custom events must be registered");
 	return resize;
 }
 
