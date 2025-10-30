@@ -47,7 +47,12 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	loaded = true;
 	const int nameIndex = 1 + (node.Token(0) == "add");
 	if(node.Size() > nameIndex)
-		name = node.Token(nameIndex);
+		displayName = node.Token(nameIndex);
+
+	// The "to recharge" and "to service" condition set maps should be cleared
+	// if a new condition set is provided.
+	bool overwriteToRecharge = true;
+	bool overwriteToService = true;
 
 	for(const DataNode &child : node)
 	{
@@ -104,8 +109,81 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			description.Load(child, playerConditions);
 
 			// If we have a description but no name then use the default spaceport name.
-			if(name.empty())
-				name = SPACEPORT;
+			if(displayName.empty())
+				displayName = SPACEPORT;
+		}
+		else if(key == "to" && child.Size() >= 2)
+		{
+			const string &conditional = child.Token(1);
+			if(conditional == "bribe")
+				toRequireBribe.Load(child, playerConditions);
+			else if(conditional == "access")
+				toAccess.Load(child, playerConditions);
+			else if(conditional == "recharge" && child.Size() >= 3)
+			{
+				if(overwriteToRecharge)
+				{
+					overwriteToRecharge = false;
+					toRecharge.clear();
+				}
+				ConditionSet conditionSet(child, playerConditions);
+				for(int i = 2; i < child.Size(); ++i)
+				{
+					const string &listValue = child.Token(i);
+					if(listValue == "all")
+					{
+						toRecharge[RechargeType::Shields] = conditionSet;
+						toRecharge[RechargeType::Hull] = conditionSet;
+						toRecharge[RechargeType::Energy] = conditionSet;
+						toRecharge[RechargeType::Fuel] = conditionSet;
+					}
+					else if(listValue == "shields")
+						toRecharge[RechargeType::Shields] = conditionSet;
+					else if(listValue == "hull")
+						toRecharge[RechargeType::Hull] = conditionSet;
+					else if(listValue == "energy")
+						toRecharge[RechargeType::Energy] = conditionSet;
+					else if(listValue == "fuel")
+						toRecharge[RechargeType::Fuel] = conditionSet;
+					else
+						child.PrintTrace("Skipping unrecognized attribute:");
+				}
+			}
+			else if(conditional == "service" && child.Size() >= 3)
+			{
+				if(overwriteToService)
+				{
+					overwriteToService = false;
+					toService.clear();
+				}
+				ConditionSet conditionSet(child, playerConditions);
+				for(int i = 2; i < child.Size(); ++i)
+				{
+					const string &listValue = child.Token(i);
+					if(listValue == "all")
+					{
+						toService[ServicesType::Trading] = conditionSet;
+						toService[ServicesType::JobBoard] = conditionSet;
+						toService[ServicesType::Bank] = conditionSet;
+						toService[ServicesType::HireCrew] = conditionSet;
+						toService[ServicesType::OffersMissions] = conditionSet;
+					}
+					else if(listValue == "trading")
+						toService[ServicesType::Trading] = conditionSet;
+					else if(listValue == "job board")
+						toService[ServicesType::JobBoard] = conditionSet;
+					else if(listValue == "bank")
+						toService[ServicesType::Bank] = conditionSet;
+					else if(listValue == "hire crew")
+						toService[ServicesType::HireCrew] = conditionSet;
+					else if(listValue == "offers missions")
+						toService[ServicesType::OffersMissions] = conditionSet;
+					else
+						child.PrintTrace("Skipping unrecognized attribute:");
+				}
+			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -116,7 +194,7 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 void Port::LoadDefaultSpaceport()
 {
-	name = SPACEPORT;
+	displayName = SPACEPORT;
 	recharge = RechargeType::All;
 	services = ServicesType::All;
 	hasNews = true;
@@ -126,7 +204,7 @@ void Port::LoadDefaultSpaceport()
 
 void Port::LoadUninhabitedSpaceport()
 {
-	name = SPACEPORT;
+	displayName = SPACEPORT;
 	recharge = RechargeType::All;
 	services = ServicesType::OffersMissions;
 	hasNews = true;
@@ -148,25 +226,9 @@ bool Port::CustomLoaded() const
 
 
 
-// Whether this port has any services available.
-bool Port::HasServices() const
+const string &Port::DisplayName() const
 {
-	return services;
-}
-
-
-
-// Get all the possible sources that can get recharged at this port.
-int Port::GetRecharges() const
-{
-	return recharge;
-}
-
-
-
-const string &Port::Name() const
-{
-	return name;
+	return displayName;
 }
 
 
@@ -178,18 +240,83 @@ const Paragraphs &Port::Description() const
 
 
 
-// Check whether the given recharging is possible.
-bool Port::CanRecharge(int type) const
+bool Port::RequiresBribe() const
 {
-	return (recharge & type);
+	return !toRequireBribe.IsEmpty() && toRequireBribe.Test();
+}
+
+
+
+bool Port::CanAccess() const
+{
+	return toAccess.Test();
+}
+
+
+
+// Get all the possible sources that can get recharged at this port.
+int Port::GetRecharges(bool isPlayer) const
+{
+	if(!isPlayer || !recharge)
+		return recharge;
+
+	int retVal = RechargeType::None;
+	if(CanRecharge(RechargeType::Shields))
+		retVal |= RechargeType::Shields;
+	if(CanRecharge(RechargeType::Hull))
+		retVal |= RechargeType::Hull;
+	if(CanRecharge(RechargeType::Energy))
+		retVal |= RechargeType::Energy;
+	if(CanRecharge(RechargeType::Fuel))
+		retVal |= RechargeType::Fuel;
+	return retVal;
+}
+
+
+
+// Check whether the given recharging is possible.
+bool Port::CanRecharge(int type, bool isPlayer) const
+{
+	bool hasType = (recharge & type);
+	// The All type shouldn't be used when isPlayer is true.
+	// If for some reason it is, behave as if isPlayer was false.
+	if(!hasType || !isPlayer || type == RechargeType::All)
+		return hasType;
+	if(!CanAccess())
+		return false;
+	auto it = toRecharge.find(type);
+	return it == toRecharge.end() || it->second.Test();
+}
+
+
+
+// Whether this port has any services available.
+bool Port::HasServices(bool isPlayer) const
+{
+	if(!isPlayer || !services)
+		return services;
+
+	return HasService(ServicesType::Trading)
+			|| HasService(ServicesType::JobBoard)
+			|| HasService(ServicesType::Bank)
+			|| HasService(ServicesType::HireCrew)
+			|| HasService(ServicesType::OffersMissions);
 }
 
 
 
 // Check whether the given service is available.
-bool Port::HasService(int type) const
+bool Port::HasService(int type, bool isPlayer) const
 {
-	return (services & type);
+	bool hasType = (services & type);
+	// The All type shouldn't be used when isPlayer is true.
+	// If for some reason it is, behave as if isPlayer was false.
+	if(!hasType || !isPlayer || type == ServicesType::All)
+		return hasType;
+	if(!CanAccess())
+		return false;
+	auto it = toService.find(type);
+	return it == toService.end() || it->second.Test();
 }
 
 
