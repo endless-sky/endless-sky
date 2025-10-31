@@ -59,6 +59,7 @@ namespace {
 	const string SYSTEM_DEPARTURE_MIN = "Minimum departure distance";
 	const string SYSTEM_ARRIVAL_MIN = "Minimum arrival distance";
 	const string FLEET_MULTIPLIER = "Fleet multiplier";
+	const string LOCK_GAMERULES = "Lock gamerules";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
 
@@ -77,6 +78,7 @@ namespace {
 		{SYSTEM_DEPARTURE_MIN, "system departure min"},
 		{SYSTEM_ARRIVAL_MIN, "system arrival min"},
 		{FLEET_MULTIPLIER, "fleet multiplier"},
+		{LOCK_GAMERULES, "lock gamerules"},
 		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
 		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
 	};
@@ -86,7 +88,6 @@ namespace {
 
 
 
-// TODO: Allow for the customization of individual gamerules.
 GamerulesPanel::GamerulesPanel(Gamerules &gamerules)
 	: gamerules(gamerules),
 	gamerulesUi(GameData::Interfaces().Get("gamerules")),
@@ -358,7 +359,7 @@ void GamerulesPanel::DrawGamerules()
 	// * A '\n' character indicates that this page is complete, no further lines
 	//   should be drawn on this page.
 	// * In all three cases, the first non-special string will be considered the
-	//   category heading and will be drawn differently to normal setting
+	//   category heading and will be drawn differently to normal gamerule
 	//   entries.
 	// * The namespace variable GAMERULES_PAGE_COUNT should be updated to the max
 	//   page count (count of '\n' characters plus one).
@@ -384,6 +385,7 @@ void GamerulesPanel::DrawGamerules()
 		FLEET_MULTIPLIER,
 		"",
 		"Miscellaneous",
+		LOCK_GAMERULES,
 		FIGHTERS_HIT_WHEN_DISABLED,
 		UNIVERSAL_AMMO_STOCKING
 	};
@@ -428,12 +430,12 @@ void GamerulesPanel::DrawGamerules()
 			continue;
 		}
 
-		// Record where this setting is displayed, so the user can click on it.
+		// Record where this gamerule is displayed, so the user can click on it.
 		// Temporarily reset the row's size so the click zone can cover the entire gamerule.
 		table.SetHighlight(-120, 120);
 		gameruleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), gamerule);
 
-		// Setting "isOn" draws the setting "bright" (i.e. the setting is active).
+		// Setting "isOn" draws the gamerule "bright" (i.e. the gamerule is active).
 		bool isOn = true;
 		string text;
 		if(gamerule == DEPRECIATION_MIN)
@@ -465,6 +467,8 @@ void GamerulesPanel::DrawGamerules()
 			text = Format::Number(gamerules.SystemDepartureMin());
 		else if(gamerule == FLEET_MULTIPLIER)
 			text = Format::Percentage(gamerules.FleetMultiplier(), 2);
+		else if(gamerule == LOCK_GAMERULES)
+			text = gamerules.LockGamerules() ? "true" : "false";
 		else if(gamerule == FIGHTERS_HIT_WHEN_DISABLED)
 		{
 			switch(gamerules.FightersHitWhenDisabled())
@@ -499,7 +503,7 @@ void GamerulesPanel::DrawGamerules()
 		table.Draw(text, isOn ? bright : medium);
 	}
 
-	// Sync the currently selected item after the preferences map has been populated.
+	// Sync the currently selected item after the gamerules map has been populated.
 	if(selectedItem.empty())
 		selectedItem = gameruleZones.at(selectedIndex).Value();
 }
@@ -792,6 +796,8 @@ void GamerulesPanel::HandleGamerulesString(const std::string &str)
 		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetFleetMultiplier, message,
 			validate, Format::Decimal(gamerules.FleetMultiplier(), 4)));
 	}
+	else if(str == LOCK_GAMERULES)
+		gamerules.SetLockGamerules(!gamerules.LockGamerules());
 	else if(str == FIGHTERS_HIT_WHEN_DISABLED)
 	{
 		Gamerules::FighterDodgePolicy value = gamerules.FightersHitWhenDisabled();

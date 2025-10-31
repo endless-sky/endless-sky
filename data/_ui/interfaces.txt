@@ -281,6 +281,7 @@ interface "main menu"
 		dimensions 90 30
 	sprite "ui/wide button"
 		center 435 195
+	visible if "gamerules unlocked"
 	button g "_Gamerules"
 		center 435 195
 		dimensions 120 30

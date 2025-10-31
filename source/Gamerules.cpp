@@ -46,6 +46,8 @@ void Gamerules::Load(const DataNode &node)
 			description = child.Token(1);
 		else if(key == "thumbnail")
 			thumbnail = SpriteSet::Get(child.Token(1));
+		else if(key == "lock gamerules")
+			lockGamerules = child.BoolValue(1);
 		else if(key == "universal ramscoop")
 			universalRamscoop = child.BoolValue(1);
 		else if(key == "person spawn period")
@@ -99,6 +101,8 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 	out.Write("gamerules", name);
 	out.BeginChild();
 	{
+		if(lockGamerules != preset.lockGamerules)
+			out.Write("lock gamerules", lockGamerules ? 1 : 0);
 		if(universalRamscoop != preset.universalRamscoop)
 			out.Write("universal ramscoop", universalRamscoop ? 1 : 0);
 		if(personSpawnPeriod != preset.personSpawnPeriod)
@@ -137,6 +141,7 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		}
 		if(fleetMultiplier != preset.fleetMultiplier)
 			out.Write("fleet multiplier", fleetMultiplier);
+
 		const map<std::string, int> &otherMiscRules = preset.miscRules;
 		for(const auto &[rule, value] : miscRules)
 		{
@@ -153,6 +158,7 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 void Gamerules::Replace(const Gamerules &rules)
 {
 	name = rules.name;
+	lockGamerules = rules.lockGamerules;
 	universalRamscoop = rules.universalRamscoop;
 	personSpawnPeriod = rules.personSpawnPeriod;
 	noPersonSpawnWeight = rules.noPersonSpawnWeight;
@@ -173,7 +179,9 @@ void Gamerules::Replace(const Gamerules &rules)
 
 void Gamerules::Reset(const string &rule, const Gamerules &preset)
 {
-	if(rule == "universal ramscoop")
+	if(rule == "lock gamerules")
+		lockGamerules = preset.lockGamerules;
+	else if(rule == "universal ramscoop")
 		universalRamscoop = preset.universalRamscoop;
 	else if(rule == "person spawn period")
 		personSpawnPeriod = preset.personSpawnPeriod;
@@ -231,6 +239,13 @@ const string &Gamerules::Description() const
 const Sprite *Gamerules::Thumbnail() const
 {
 	return thumbnail;
+}
+
+
+
+void Gamerules::SetLockGamerules(bool value)
+{
+	lockGamerules = value;
 }
 
 
@@ -335,6 +350,8 @@ void Gamerules::SetMiscValue(const string &rule, int value)
 
 int Gamerules::GetValue(const string &rule) const
 {
+	if(rule == "lock gamerules")
+		return lockGamerules;
 	if(rule == "universal ramscoop")
 		return universalRamscoop;
 	if(rule == "person spawn period")
@@ -366,6 +383,13 @@ int Gamerules::GetValue(const string &rule) const
 	if(it == miscRules.end())
 		return 0;
 	return it->second;
+}
+
+
+
+bool Gamerules::LockGamerules() const
+{
+	return lockGamerules;
 }
 
 

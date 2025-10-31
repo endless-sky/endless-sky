@@ -19,6 +19,10 @@
 
 	# DEFAULT: true
 	# ALLOWABLE VALUES: false, true, 0, 1
+	"lock gamerules" true
+
+	# DEFAULT: true
+	# ALLOWABLE VALUES: false, true, 0, 1
 	"universal ramscoop" true
 	
 	# DEFAULT: 72000 frames (twenty minutes)

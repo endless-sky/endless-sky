@@ -145,6 +145,8 @@ void MenuPanel::Draw()
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
+		if(!player.GetGamerules().LockGamerules())
+			info.SetCondition("gamerules unlocked");
 		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		if(player.Flagship())
 		{
