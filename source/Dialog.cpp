@@ -285,7 +285,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		else if(intFun && c >= '1' && c <= '9')
 			input += c;
 		// Double input should only allow a single decimal point, and it can't be the leading character.
-		else if(doubleFun && c == '.' && !input.empty() && !std::ranges::count(input, '.'))
+		else if(doubleFun && c == '.' && !input.empty() && !std::count(input.begin(), input.end(), '.'))
 			input += c;
 		else if(doubleFun && c >= '0' && c <= '9')
 			input += c;
