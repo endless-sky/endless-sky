@@ -65,8 +65,8 @@ public:
 	// Format the given value as a number with exactly the given number of
 	// decimal places (even if they are all 0).
 	static std::string Decimal(double value, int places);
-	// Format the given values as a percentage, with an optional additional number of
-	// decimal places.
+	// Format the given value as a percentage, with an optional additional number of
+	// decimal places. An input value of 1 will be formatted as 100%.
 	static std::string Percentage(double value, int places);
 	// Convert numbers to word forms. Capitalize the first letter if at the start of a sentence.
 	static std::string WordForm(int64_t value, bool startOfSentence = false);
