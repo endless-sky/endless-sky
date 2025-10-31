@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -40,6 +41,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Truncate.h"
 #include "UI.h"
 #include "text/WrappedText.h"
+
+#ifdef _WIN32
+#include "windows/WinVersion.h"
+#endif
 
 #include "opengl.h"
 
@@ -73,6 +78,7 @@ namespace {
 	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
+	const string TOOLTIP_ACTIVATION = "Tooltip activation time";
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship use";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
@@ -85,6 +91,10 @@ namespace {
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
+#ifdef _WIN32
+	const string TITLE_BAR_THEME = "Title bar theme";
+	const string WINDOW_ROUNDING = "Window rounding";
+#endif
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -211,6 +221,13 @@ void PreferencesPanel::Draw()
 
 
 
+void PreferencesPanel::UpdateTooltipActivation()
+{
+	tooltip.UpdateActivationCount();
+}
+
+
+
 bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	if(static_cast<unsigned>(editing) < zones.size())
@@ -234,14 +251,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		hoverItem.clear();
 		selected = 0;
 
-		if(page == 'p')
-		{
-			// Reset the render buffers in case the UI scale has changed.
-			const Interface *pluginUi = GameData::Interfaces().Get("plugins");
-			Rectangle pluginListBox = pluginUi->GetBox("plugin list");
-			pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
-			RenderPluginDescription(selectedPlugin);
-		}
+		// Reset the render buffers in case the UI scale has changed.
+		Resize();
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
@@ -444,6 +455,17 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 				speed = min(60, speed + 10);
 			Preferences::SetScrollSpeed(speed);
 		}
+		else if(hoverItem == TOOLTIP_ACTIVATION)
+		{
+			int steps = Preferences::TooltipActivation();
+			if(dy < 0.)
+				steps = max(0, steps - 20);
+			else
+				steps = min(120, steps + 20);
+			Preferences::SetTooltipActivation(steps);
+			for(auto &panel : GetUI()->Stack())
+				panel->UpdateTooltipActivation();
+		}
 		return true;
 	}
 	else if(page == 'p')
@@ -490,6 +512,19 @@ bool PreferencesPanel::Drag(double dx, double dy)
 		}
 	}
 	return false;
+}
+
+
+
+void PreferencesPanel::Resize()
+{
+	if(page == 'p')
+	{
+		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
+		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
+		pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
+		RenderPluginDescription(selectedPlugin);
+	}
 }
 
 
@@ -783,9 +818,16 @@ void PreferencesPanel::DrawSettings()
 		"Interrupt fast-forward",
 		"Landing zoom",
 		SCROLL_SPEED,
+		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
 		"Show parenthesis",
 		NOTIFY_ON_DEST
+#ifdef _WIN32
+		, "",
+		"Windows Options",
+		TITLE_BAR_THEME,
+		WINDOW_ROUNDING
+#endif
 	};
 
 	bool isCategory = true;
@@ -1004,6 +1046,11 @@ void PreferencesPanel::DrawSettings()
 			isOn = true;
 			text = to_string(Preferences::ScrollSpeed());
 		}
+		else if(setting == TOOLTIP_ACTIVATION)
+		{
+			isOn = true;
+			text = Format::StepsToSeconds(Preferences::TooltipActivation());
+		}
 		else if(setting == ALERT_INDICATOR)
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
@@ -1014,6 +1061,18 @@ void PreferencesPanel::DrawSettings()
 			isOn = Preferences::GetMinimapDisplay() != Preferences::MinimapDisplay::OFF;
 			text = Preferences::MinimapSetting();
 		}
+#ifdef _WIN32
+		else if(setting == TITLE_BAR_THEME)
+		{
+			isOn = WinVersion::SupportsDarkTheme();
+			text = isOn ? Preferences::TitleBarThemeSetting() : "N/A";
+		}
+		else if(setting == WINDOW_ROUNDING)
+		{
+			isOn = WinVersion::SupportsWindowRounding();
+			text = isOn ? Preferences::WindowRoundingSetting() : "N/A";
+		}
+#endif
 		else
 			text = isOn ? "on" : "off";
 
@@ -1252,7 +1311,7 @@ void PreferencesPanel::Exit()
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	if(recacheDeadlines)
-		player.CalculateRemainingDeadlines();
+		player.CacheMissionInformation(true);
 
 	GetUI()->Pop(this);
 }
@@ -1340,6 +1399,15 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			speed = 10;
 		Preferences::SetScrollSpeed(speed);
 	}
+	else if(str == TOOLTIP_ACTIVATION)
+	{
+		int steps = Preferences::TooltipActivation() + 20;
+		if(steps > 120)
+			steps = 0;
+		Preferences::SetTooltipActivation(steps);
+		for(auto &panel : GetUI()->Stack())
+			panel->UpdateTooltipActivation();
+	}
 	else if(str == FLAGSHIP_SPACE_PRIORITY)
 		Preferences::ToggleFlagshipSpacePriority();
 	else if(str == DATE_FORMAT)
@@ -1350,6 +1418,12 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleAlert();
 	else if(str == MINIMAP_DISPLAY)
 		Preferences::ToggleMinimapDisplay();
+#ifdef _WIN32
+	else if(str == TITLE_BAR_THEME)
+		Preferences::ToggleTitleBarTheme();
+	else if(str == WINDOW_ROUNDING)
+		Preferences::ToggleWindowRounding();
+#endif
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));

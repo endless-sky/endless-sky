@@ -1213,6 +1213,9 @@ tip "mining precision:"
 
 
 # Flight checks:
+tip "no bunks!"
+	`This ship needs crew to operate, but has no bunks.`
+
 tip "overheating!"
 	`This ship's outfits are producing so much heat that it will overheat the moment it takes off. You must either add more cooling or remove some of the outfits that are producing heat.`
 
@@ -1565,6 +1568,9 @@ tip "Landing zoom"
 tip "Scroll speed"
 	`The speed of scrolling in panels that can scroll.`
 
+tip "Tooltip activation time"
+	`For how long you need to hover over an item to show its tooltip.`
+
 tip "Date format"
 	`The format that dates in the game are displayed in.`
 
@@ -1573,3 +1579,9 @@ tip "Show parenthesis"
 
 tip "Notify on destination"
 	`If you enter a system with a planet you must land on for a mission, plays a notification sound.`
+
+tip "Title bar theme"
+	`Choose the theme of the title bar, or leave "system default" to use system settings. (Available on Windows 10 or newer; on Windows 10, the game window must be resized or restarted in order for the change to take effect.)`
+
+tip "Window rounding"
+	`Control the appearance of window corners. (Available on Windows 11.)`
