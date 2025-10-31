@@ -11,80 +11,25 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# A set of constants and booleans that determine game behavior.
-# If the game data does not specify a value for a certain gamerule, then its default
-# value is used.
 "gamerules preset" "Default"
 	description "The default set of gamerules around which the game is developed."
-
-	# DEFAULT: true
-	# ALLOWABLE VALUES: false, true, 0, 1
-	"lock gamerules" true
-
-	# DEFAULT: true
-	# ALLOWABLE VALUES: false, true, 0, 1
-	"universal ramscoop" true
 	
-	# DEFAULT: 72000 frames (twenty minutes)
-	# ALLOWABLE VALUES: any integer >= 1
+	"depreciation min" 0.25
+	"depreciation grace period" 7
+	"depreciation max age" 1000
+	"depreciation daily" 0.997
+	
 	"person spawn period" 72000
-	
-	# DEFAULT: 1000
-	# ALLOWABLE VALUES: any integer >= 0
 	"no person spawn weight" 1000
 	
-	# DEFAULT: 3600 frames (one minute)
-	# ALLOWABLE VALUES: any integer >= 0
 	"npc max mining time" 3600
-	
-	# DEFAULT: .75 (75 percent)
-	# ALLOWABLE VALUES: any value between 0. and 1.
 	"universal frugal threshold" 0.75
-
-	# DEFAULT: all
-	# ALLOWABLE VALUES: all, none, only player
-	"disabled fighters avoid projectiles" "all"
-
-	# Depreciation related game rules:
-
-	# The depreciated value of an item that is "age" days old is calculated with the following equation:
-	# Where: "base value" is the undepreciated value of the item;
-	# min is "depreciation min";
-	# "grace period" is "depreciation grace period";
-	# daily is "depreciation daily"; and
-	# "max age" is "depreciation max age", and
-	# age is at greater than "grace period" and less than "max age".
-	# "depreciated value" = "base value" *
-	#   (min + (1 - min) * (daily ^ (age - "grace period")) * ("max age" + "grace period" - age) / "max age")
-
-	# DEFAULT: 0.25 (25 percent)
-	# ALLOWABLE VALUES: any value between 0. and 1.
-	"depreciation min" 0.25
-
-	# DEFAULT: 7 (7 days)
-	# ALLOWABLE VALUES: any integer >= 0.
-	"depreciation grace period" 7
-
-	# DEFAULT: .997 (99.7 percent)
-	# ALLOWABLE VALUES: any value between 0. and 1.
-	"depreciation daily" 0.997
-
-	# DEFAULT: 1000 (1000 days)
-	# ALLOWABLE VALUES: any integer >= 0.
-	"depreciation max age" 1000
 	
-	# DEFAULT: 0 (no minimum)
-	# ALLOWABLE VALUES: any value >= 0.
-	"system departure min" 0.
-	
-	# DEFAULT: "unset" (no minimum)
-	# ALLOWABLE VALUES: any real number, or "unset"
+	"universal ramscoop" true
 	"system arrival min" unset
-	
-	# DEFAULT: 1.0 (no changes)
-	# ALLOWABLE VALUES: any value >= 0.
+	"system departure min" 0.
 	"fleet multiplier" 1.
-
-	# DEFAULT: true
-	# ALLOWABLE VALUES: false, true, 0, 1
+	
+	"lock gamerules" true
+	"disabled fighters avoid projectiles" "all"
 	"universal ammo restocking" true
