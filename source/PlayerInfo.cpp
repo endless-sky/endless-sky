@@ -447,7 +447,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				}
 			}
 		}
-		else if(key == "gamerules preset" && hasValue)
+		else if(key == "gamerules" && hasValue)
 		{
 			const string &presetName = child.Token(1);
 			const Gamerules *preset = GameData::GamerulesPresets().Find(presetName);
@@ -458,9 +458,10 @@ void PlayerInfo::Load(const filesystem::path &path)
 				preset = &GameData::DefaultGamerules();
 			}
 			// Set the player's gamerules to be an exact copy of the selected preset,
-			// then load the stored customizations on top of that.
+			// then load any stored customizations on top of that.
 			gamerules.Replace(*preset);
-			gamerules.Load(child);
+			if(child.HasChildren())
+				gamerules.Load(child);
 		}
 		else if(key == "start")
 			startData.Load(child);
