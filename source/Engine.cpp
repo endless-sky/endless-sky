@@ -244,7 +244,6 @@ namespace {
 
 	const double RADAR_SCALE = .025;
 	const double MAX_FUEL_DISPLAY = 3000.;
-	const double VELOCITY_SCALE = 150.;
 }
 
 

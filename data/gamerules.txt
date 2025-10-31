@@ -114,13 +114,13 @@ gamerules
 	# The probability that a projectile will collide with a ship with the same government.
 	# Weapons with the "safe" attribute cannot cause friendly fire.
 	# DEFAULT: .0 (0 percent)
-	# ALLOWABLE VALUES: any value betweeen 0. and 1.
+	# ALLOWABLE VALUES: any value between 0. and 1.
 	"friendly fire probability" 0.
 
 	# The probability that a projectile will collide with a friendly ship of the same government.
 	# Ships hit this way will not be provoked.
 	# DEFAULT: .0 (0 percent)
-	# ALLOWABLE VALUES: any value betweeen 0. and 1.
+	# ALLOWABLE VALUES: any value between 0. and 1.
 	"ally friendly fire probability" 0.
 
 	# Projectiles that are fired by or intersect with fighters and drones have their chance to cause
