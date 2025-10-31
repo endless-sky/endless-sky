@@ -170,6 +170,7 @@ template<class T>
 Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text,
 	int initialValue, Truncate truncate, bool allowsFastForward)
 	: intFun(std::bind(fun, t, std::placeholders::_1)),
+	validateIntFun([](int value) -> bool { return value > 0; }),
 	allowsFastForward(allowsFastForward),
 	input(std::to_string(initialValue))
 {

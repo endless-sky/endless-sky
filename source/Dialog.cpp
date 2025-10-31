@@ -279,15 +279,14 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 
 		if(stringFun)
 			input += c;
-		// Integer input should not allow leading zeros.
-		else if(intFun && c == '0' && !input.empty())
+		// Integer and double inputs only allow certain characters.
+		else if((intFun || doubleFun) && c >= '0' && c <= '9')
 			input += c;
-		else if(intFun && c >= '1' && c <= '9')
+		// Both integer and double input can start with a minus sign.
+		else if((intFun || doubleFun) && c == '-' && input.empty())
 			input += c;
-		// Double input should only allow a single decimal point, and it can't be the leading character.
-		else if(doubleFun && c == '.' && !input.empty() && !std::count(input.begin(), input.end(), '.'))
-			input += c;
-		else if(doubleFun && c >= '0' && c <= '9')
+		// Double input should only allow a single decimal point.
+		else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))
 			input += c;
 
 		isOkDisabled = !ValidateInput();
