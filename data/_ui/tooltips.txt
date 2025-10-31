@@ -1626,7 +1626,7 @@ tip "Fleet multiplier"
 	`A global fleet spawn rate multiplier for random fleet spawns within systems.`
 
 tip "Lock gamerules"
-	`Controls whether gamerules can be altered after a pilot has been created. If true, the gamerules button will not appear on the main menu for this pilot.`
+	`Controls whether gamerules can be altered after a pilot has been created. If true, the gamerules button will not appear on the main menu for this pilot. If you set this to true on an existing pilot, you will not be able to return to this menu after leaving.`
 
 tip "Fighters hit when disabled"
 	`Controls which carried ships (fighters and drones), when disabled, will not be hit by projectiles unless they are directly targeted. Fighters and drones are fragile ships that can be difficult and/or tedious to replace for the player, so this gamerule is a means of increasing their survivability without increasing their combat effectiveness. Disabled carried ships can still be hit by explosions, whether from weapons or exploding ships.`
