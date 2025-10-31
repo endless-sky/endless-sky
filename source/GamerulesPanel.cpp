@@ -506,6 +506,19 @@ void GamerulesPanel::DrawGamerules()
 	// Sync the currently selected item after the gamerules map has been populated.
 	if(selectedItem.empty())
 		selectedItem = gameruleZones.at(selectedIndex).Value();
+
+	Table infoTable;
+	infoTable.AddColumn(125, {150, Alignment::RIGHT});
+	infoTable.SetUnderline(0, 130);
+	infoTable.DrawAt(Point(-400, 32));
+
+	infoTable.DrawUnderline(medium);
+	infoTable.Draw("Additional info", bright);
+	infoTable.DrawGap(5);
+	infoTable.Draw("Press '_x' over a rule", medium);
+	infoTable.Draw("to reset it to", medium);
+	infoTable.Draw("the value from", medium);
+	infoTable.Draw("the chosen preset.", medium);
 }
 
 
@@ -630,6 +643,18 @@ void GamerulesPanel::DrawPresets()
 			AddZone(bottomRight, [&]() { presetDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
 		}
 	}
+
+	Table infoTable;
+	infoTable.AddColumn(125, {150, Alignment::RIGHT});
+	infoTable.SetUnderline(0, 130);
+	infoTable.DrawAt(Point(-400, 32));
+
+	infoTable.DrawUnderline(medium);
+	infoTable.Draw("Additional info", bright);
+	infoTable.DrawGap(5);
+	infoTable.Draw("Click the checkbox", medium);
+	infoTable.Draw("next to a preset", medium);
+	infoTable.Draw("to activate it.", medium);
 }
 
 
