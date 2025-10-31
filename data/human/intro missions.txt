@@ -1,4 +1,5 @@
 # Copyright (c) 2014 by Michael Zahniser
+# Copyright (c) 2025 by Anarchist2
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -98,14 +99,13 @@ conversation "intro mission"
 	label end
 	`	"Great," he says. "My name is James, by the way."`
 	`	"<first> <last>," you say.`
-	branch MZ
-		has "name: Michael Zahniser"
 	`	"I'm looking forward to traveling with you, Captain <last>," says James.`
-		goto advice
-	label MZ
+		to display
+			not "name: Michael Zahniser"
 	`	"<first> <last>?" he stops for a moment. "I've heard that name before. Reminds me of someone famous, I think," says James. "Anyways, I'm looking forward to traveling with you."`
+		to display
+			has "name: Michael Zahniser"
 	
-	label advice
 	`	As you're helping him wheel his luggage aboard and showing him his bunk, he says, "Before we take off, you might head on over to the trading center and <trade>; we can sell those for a good profit on <planet>. Also make sure to visit the local outfitter. <while>, every world with an outfitter will at least carry a map with information on the neighboring systems. Buying them can help if you're not quite sure where you're going."`
 		accept
 

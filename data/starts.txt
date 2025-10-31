@@ -1,6 +1,7 @@
 # Copyright (c) 2015 by Michael Zahniser
 # Copyright (c) 2021 by Amazinite
 # Copyright (c) 2024 by Hurleveur
+# Copyright (c) 2025 by Anarchist2
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
