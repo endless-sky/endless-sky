@@ -1016,7 +1016,7 @@ void Engine::Step(bool isActive)
 	else
 		doClick = false;
 
-	if(doClick && !isRightClick)
+	if(doClick && mouseButton == MouseButton::LEFT)
 	{
 		if(uiClickBox.Dimensions())
 			doClick = !ammoDisplay.Click(uiClickBox);
@@ -1360,7 +1360,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	doClickNextStep = true;
 	this->hasShift = hasShift;
 	this->hasControl = hasControl;
-	isRightClick = false;
+	mouseButton = MouseButton::LEFT;
 
 	// Determine if the left-click was within the radar display.
 	const Interface *hud = GameData::Interfaces().Get("hud");
@@ -1383,13 +1383,13 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 
 
 
-void Engine::RClick(const Point &point)
+void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
 {
 	doClickNextStep = true;
 	hasShift = false;
-	isRightClick = true;
+	mouseButton = button;
 
-	// Determine if the right-click was within the radar display, and if so, rescale.
+	// Determine if the right/middle-click was within the radar display, and if so, rescale.
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
@@ -2241,7 +2241,7 @@ void Engine::HandleMouseClicks()
 	// flagship must not be in the process of landing or taking off.
 	bool clickedPlanet = false;
 	const System *playerSystem = player.GetSystem();
-	if(!isRightClick && flagship->Zoom() == 1.)
+	if(mouseButton == MouseButton::LEFT && flagship->Zoom() == 1.)
 		for(const StellarObject &object : playerSystem->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
@@ -2296,7 +2296,7 @@ void Engine::HandleMouseClicks()
 	if(clickTarget)
 	{
 		UI::PlaySound(UI::UISound::TARGET);
-		if(isRightClick)
+		if(mouseButton == MouseButton::RIGHT)
 			ai.IssueShipTarget(clickTarget);
 		else
 		{
@@ -2327,19 +2327,20 @@ void Engine::HandleMouseClicks()
 				clickedAsteroid = true;
 				clickRange = range;
 				flagship->SetTargetAsteroid(minable);
-				if(isRightClick)
+				if(mouseButton == MouseButton::RIGHT)
 					ai.IssueAsteroidTarget(minable);
 			}
 		}
 	}
-	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
+	if(!clickTarget && !clickedAsteroid
+		&& mouseButton == (isMouseTurningEnabled ? MouseButton::MIDDLE : MouseButton::RIGHT))
 	{
 		UI::PlaySound(UI::UISound::TARGET);
 		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
 	}
 
 	// Treat an "empty" click as a request to clear targets.
-	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
+	if(!clickTarget && mouseButton == MouseButton::LEFT && !clickedAsteroid && !clickedPlanet)
 		flagship->SetTargetShip(nullptr);
 }
 
