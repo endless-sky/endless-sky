@@ -1011,19 +1011,17 @@ interface "preferences"
 
 interface "gamerules"
 	sprite "ui/gamerules panel"
-		center -20 -20
-	sprite "ui/keys panel"
 		center -65 -20
 	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30
 	button g "_Gamerules"
-		center -305 -230
+		center -304 -230
 		dimensions 90 30
 		color medium
 		hover bright
 	button p "_Presets"
-		center -305 -190
+		center -304 -190
 		dimensions 90 30
 		color medium
 		hover bright
@@ -1044,19 +1042,17 @@ interface "gamerules"
 
 interface "gamerules presets"
 	sprite "ui/gamerules panel"
-		center -20 -20
-	sprite "ui/keys panel"
 		center -65 -20
 	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30
 	button g "_Gamerules"
-		center -305 -230
+		center -304 -230
 		dimensions 90 30
 		color medium
 		hover bright
 	button p "_Presets"
-		center -305 -190
+		center -304 -190
 		dimensions 90 30
 		color medium
 		hover bright
