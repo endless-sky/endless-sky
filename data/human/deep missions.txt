@@ -885,6 +885,7 @@ conversation "deep: questioning"
 	
 	label foster
 	`	"My first question to you: what exactly were you doing with Albert Foster?"`
+	label first
 	choice
 		`	"You can't interrogate me. I'm a citizen of the Deep."`
 			to display
