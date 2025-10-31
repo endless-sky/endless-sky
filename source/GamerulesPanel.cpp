@@ -549,7 +549,9 @@ void GamerulesPanel::DrawPresets()
 		if(isSelected || name == hoverItem)
 			table.DrawHighlight(back);
 
-		const Sprite *sprite = box[preset.Name() == gamerules.Name()];
+		// If the player's current gamerules are an exact copy of a preset, then check that preset's box
+		// to show that it is what is currently active.
+		const Sprite *sprite = box[preset == gamerules];
 		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
 		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
 		SpriteShader::Draw(sprite, spriteBounds.Center());

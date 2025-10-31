@@ -482,3 +482,48 @@ double Gamerules::FleetMultiplier() const
 {
 	return fleetMultiplier;
 }
+
+
+
+bool Gamerules::operator==(const Gamerules &other) const
+{
+	if(name != other.name)
+		return false;
+	if(lockGamerules != other.lockGamerules)
+		return false;
+	if(personSpawnPeriod != other.personSpawnPeriod)
+		return false;
+	if(noPersonSpawnWeight != other.noPersonSpawnWeight)
+		return false;
+	if(npcMaxMiningTime != other.npcMaxMiningTime)
+		return false;
+	if(universalFrugalThreshold != other.universalFrugalThreshold)
+		return false;
+	if(depreciationMin != other.depreciationMin)
+		return false;
+	if(depreciationDaily != other.depreciationDaily)
+		return false;
+	if(depreciationGracePeriod != other.depreciationGracePeriod)
+		return false;
+	if(depreciationMaxAge != other.depreciationMaxAge)
+		return false;
+	if(fighterHitPolicy != other.fighterHitPolicy)
+		return false;
+	if(systemDepartureMin != other.systemDepartureMin)
+		return false;
+	if(systemArrivalMin != other.systemArrivalMin)
+		return false;
+	if(fleetMultiplier != other.fleetMultiplier)
+		return false;
+	if(miscRules.size() != other.miscRules.size())
+		return false;
+	for(const auto &rule : miscRules)
+	{
+		const auto &otherRule = other.miscRules.find(rule.first);
+		if(otherRule == other.miscRules.end())
+			return false;
+		if(rule.second != otherRule->second)
+			return false;
+	}
+	return true;
+}

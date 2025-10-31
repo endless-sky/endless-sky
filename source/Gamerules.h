@@ -90,6 +90,8 @@ public:
 	std::optional<double> SystemArrivalMin() const;
 	double FleetMultiplier() const;
 
+	bool operator==(const Gamerules &other) const;
+
 
 private:
 	std::string name;
