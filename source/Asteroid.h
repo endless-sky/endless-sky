@@ -24,8 +24,8 @@ class Minable;
 
 
 
-// Class representing an asteroid or minable in a star system ("asteroids" and "minables" keywords).
-// Note: Not to be confused with AsteroidField::Asteroid.
+/// Class representing an asteroid or minable in a star system ("asteroids" and "minables" keywords).
+/// Note: Not to be confused with AsteroidField::Asteroid.
 class Asteroid {
 public:
 	Asteroid(const std::string &name, const DataNode &node, int valueIndex, const ConditionsStore *conditions);
@@ -38,10 +38,10 @@ public:
 	double Energy() const;
 	int Belt() const;
 
-	// Load an asteroids/minables description. Note the node is the one holding the "[add] (asteroids|minables)" tokens.
+	/// Load an asteroids/minables description. Note the node is the one holding the "[add] (asteroids|minables)" tokens.
 	void Load(const DataNode &node, int valueIndex, std::size_t beltCount, const ConditionsStore *conditions);
 
-	// Determine whether this minable should be placed according to the "to spawn" conditions. Un-cached.
+	/// Determine whether this minable should be placed according to the "to spawn" conditions. Un-cached.
 	bool ShouldSpawn() const;
 
 

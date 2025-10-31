@@ -19,7 +19,7 @@ class DataNode;
 
 
 
-// Class defining the geometry of one asteroid belt, including radius and eccentricity parameters.
+/// Class defining the geometry of one asteroid belt, including radius and eccentricity parameters.
 class AsteroidBelt {
 public:
 	AsteroidBelt(double radius) : radius(radius) {}
@@ -46,15 +46,15 @@ private:
 
 
 
-// Average radius for this belt, also used as lookup key for "remove".
+/// Average radius for this belt, also used as lookup key for "remove".
 inline double AsteroidBelt::Radius() const { return radius; }
-// Maximum eccentricity (default 0.6).
+/// Maximum eccentricity (default 0.6).
 inline double AsteroidBelt::MaxEccentricity() const { return maxEccentricity; }
-// Factor determining periapsis closest distance relative to radius at high eccentricities (default 0.4).
+/// Factor determining periapsis closest distance relative to radius at high eccentricities (default 0.4).
 inline double AsteroidBelt::ScaleFactorClosestPeriapsis() const { return scaleFactorClosestPeriapsis; }
-// Factor determining apoapsis closest distance relative to radius at low eccentricities (default 0.8).
+/// Factor determining apoapsis closest distance relative to radius at low eccentricities (default 0.8).
 inline double AsteroidBelt::ScaleFactorClosestApoapsis() const { return scaleFactorClosestApoapsis; }
-// Factor determining periapsis farthest distance relative to radius at low eccentricities (default 1.3).
+/// Factor determining periapsis farthest distance relative to radius at low eccentricities (default 1.3).
 inline double AsteroidBelt::ScaleFactorFarthestPeriapsis() const { return scaleFactorFarthestPeriapsis; }
-// Factor determining apoapsis farthest distance relative to radius at high eccentricities (default 4).
+/// Factor determining apoapsis farthest distance relative to radius at high eccentricities (default 4).
 inline double AsteroidBelt::ScaleFactorFarthestApoapsis() const { return scaleFactorFarthestApoapsis; }
