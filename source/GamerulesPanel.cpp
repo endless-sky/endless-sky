@@ -46,11 +46,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Gamerule display names.
 	const string DEPRECIATION_MIN = "Minimum value";
 	const string DEPRECIATION_GRACE_PERIOD = "Grace period";
 	const string DEPRECIATION_MAX_AGE = "Maximum age";
 	const string DEPRECIATION_DAILY = "Daily depreciation";
-	const string PERSON_SPAWN_PERIOD = "Spawn period";
+	const string PERSON_SPAWN_PERIOD = "Spawn attempt period";
 	const string NO_PERSON_SPAWN_WEIGHT = "No spawn weight";
 	const string NPC_MAX_MINING_TIME = "NPC max mining time";
 	const string UNIVERSAL_FRUGAL_THRESHOLD = "Universal frugal threshold";
@@ -60,6 +61,25 @@ namespace {
 	const string FLEET_MULTIPLIER = "Fleet multiplier";
 	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
 	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
+
+	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
+
+	const auto DISPLAY_NAME_TO_RULE_NAME = map<string, string>{
+		{DEPRECIATION_MIN, "depreciation min"},
+		{DEPRECIATION_GRACE_PERIOD, "depreciation grace period"},
+		{DEPRECIATION_MAX_AGE, "depreciation max age"},
+		{DEPRECIATION_DAILY, "depreciation daily"},
+		{PERSON_SPAWN_PERIOD, "person spawn period"},
+		{NO_PERSON_SPAWN_WEIGHT, "no person spawn weight"},
+		{NPC_MAX_MINING_TIME, "npc max mining time"},
+		{UNIVERSAL_FRUGAL_THRESHOLD, "universal frugal threshold"},
+		{UNIVERSAL_RAMSCOOP, "universal ramscoop"},
+		{SYSTEM_DEPARTURE_MIN, "system departure min"},
+		{SYSTEM_ARRIVAL_MIN, "system arrival min"},
+		{FLEET_MULTIPLIER, "fleet multiplier"},
+		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
+		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
+	};
 
 	const int GAMERULES_PAGE_COUNT = 1;
 }
@@ -159,8 +179,11 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		selectedIndex = 0;
 		selectedItem.clear();
 	}
-	else if((key == 'x' || key == SDLK_DELETE) && (page == 'g'))
-		gamerules.Reset(gameruleZones[latestIndex].Value(), *GameData::GamerulesPresets().Get(gamerules.Name()));
+	else if((key == 'x' || key == SDLK_DELETE) && (page == 'g') && latestIndex >= 0)
+	{
+		const std::string &rule = DISPLAY_NAME_TO_RULE_NAME.at(gameruleZones[latestIndex].Value());
+		gamerules.Reset(rule, *GameData::GamerulesPresets().Get(gamerules.Name()));
+	}
 	else
 		return false;
 
@@ -179,7 +202,7 @@ bool GamerulesPanel::Click(int x, int y, MouseButton button, int clicks)
 	for(const auto &zone : gameruleZones)
 		if(zone.Contains(point))
 		{
-			HandleGamerulesString(zone.Value(), point);
+			HandleGamerulesString(zone.Value());
 			break;
 		}
 
@@ -217,12 +240,16 @@ bool GamerulesPanel::Hover(int x, int y)
 	tooltip.Clear();
 
 	hoverIndex = -1;
-	for(const auto &zone : gameruleZones)
+	for(unsigned index = 0; index < gameruleZones.size(); ++index)
+	{
+		const auto &zone = gameruleZones[index];
 		if(zone.Contains(hoverPoint))
 		{
+			hoverIndex = index;
 			hoverItem = zone.Value();
 			tooltip.SetZone(zone);
 		}
+	}
 
 	for(const auto &zone : presetZones)
 		if(zone.Contains(hoverPoint))
@@ -242,12 +269,7 @@ bool GamerulesPanel::Scroll(double dx, double dy)
 	if(!dy)
 		return false;
 
-	if(page == 'g' && !hoverItem.empty())
-	{
-		// TODO: Which gamerules should change when scrolled over?
-		return true;
-	}
-	else if(page == 'p')
+	if(page == 'p')
 	{
 		const Rectangle &presetBox = presetUi->GetBox("preset list");
 		if(presetBox.Contains(hoverPoint))
@@ -415,13 +437,13 @@ void GamerulesPanel::DrawGamerules()
 		bool isOn = true;
 		string text;
 		if(gamerule == DEPRECIATION_MIN)
-			text = Format::Percentage(gamerules.DepreciationMin(), 0);
+			text = Format::Percentage(gamerules.DepreciationMin(), 2);
 		else if(gamerule == DEPRECIATION_GRACE_PERIOD)
 			text = Format::Credits(gamerules.DepreciationGracePeriod());
 		else if(gamerule == DEPRECIATION_MAX_AGE)
 			text = Format::Credits(gamerules.DepreciationMaxAge());
 		else if(gamerule == DEPRECIATION_DAILY)
-			text = Format::Percentage(gamerules.DepreciationDaily(), 0);
+			text = Format::Percentage(gamerules.DepreciationDaily(), 2);
 		else if(gamerule == PERSON_SPAWN_PERIOD)
 			text = Format::Credits(gamerules.PersonSpawnPeriod());
 		else if(gamerule == NO_PERSON_SPAWN_WEIGHT)
@@ -429,7 +451,7 @@ void GamerulesPanel::DrawGamerules()
 		else if(gamerule == NPC_MAX_MINING_TIME)
 			text = Format::Credits(gamerules.NPCMaxMiningTime());
 		else if(gamerule == UNIVERSAL_FRUGAL_THRESHOLD)
-			text = Format::Percentage(gamerules.UniversalFrugalThreshold(), 0);
+			text = Format::Percentage(gamerules.UniversalFrugalThreshold(), 2);
 		else if(gamerule == UNIVERSAL_RAMSCOOP)
 			text = gamerules.UniversalRamscoopActive() ? "true" : "false";
 		else if(gamerule == SYSTEM_ARRIVAL_MIN)
@@ -442,7 +464,7 @@ void GamerulesPanel::DrawGamerules()
 		else if(gamerule == SYSTEM_DEPARTURE_MIN)
 			text = Format::Number(gamerules.SystemDepartureMin());
 		else if(gamerule == FLEET_MULTIPLIER)
-			text = Format::Percentage(gamerules.FleetMultiplier(), 0);
+			text = Format::Percentage(gamerules.FleetMultiplier(), 2);
 		else if(gamerule == FIGHTERS_HIT_WHEN_DISABLED)
 		{
 			switch(gamerules.FightersHitWhenDisabled())
@@ -451,7 +473,7 @@ void GamerulesPanel::DrawGamerules()
 				text = "all";
 				break;
 			case Gamerules::FighterDodgePolicy::ONLY_PLAYER:
-				text = "only player";
+				text = "player";
 				break;
 			case Gamerules::FighterDodgePolicy::NONE:
 				text = "none";
@@ -459,7 +481,7 @@ void GamerulesPanel::DrawGamerules()
 			}
 		}
 		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
-			text = gamerules.GetValue("universal ammo restocking") ? "true" : "false";
+			text = gamerules.GetValue(AMMO_RESTOCKING_NAME) ? "true" : "false";
 
 		if(gamerule == hoverItem)
 		{
@@ -688,9 +710,101 @@ void GamerulesPanel::DrawTooltips()
 
 
 
-void GamerulesPanel::HandleGamerulesString(const std::string &str, Point cursorPosition)
+void GamerulesPanel::HandleGamerulesString(const std::string &str)
 {
-	// TODO: Implement.
+	if(str == DEPRECIATION_MIN)
+	{
+		string message = "Set the minimum deprecation value. This should be a number between 0 and 1.";
+		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetDepreciationMin, message,
+			validate, Format::Decimal(gamerules.DepreciationMin(), 4)));
+	}
+	else if(str == DEPRECIATION_GRACE_PERIOD)
+	{
+		string message = "Set the depreciation grace period. This should be an integer greater than or equal to 0.";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetDepreciationGracePeriod, message,
+			validate, to_string(gamerules.DepreciationGracePeriod())));
+	}
+	else if(str == DEPRECIATION_MAX_AGE)
+	{
+		string message = "Set the depreciation maximum age. This should be an integer greater than or equal to 0.";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetDepreciationMaxAge, message,
+			validate, to_string(gamerules.DepreciationMaxAge())));
+	}
+	else if(str == DEPRECIATION_DAILY)
+	{
+		string message = "Set the daily deprecation value. This should be a number between 0 and 1.";
+		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetDepreciationDaily, message,
+			validate, Format::Decimal(gamerules.DepreciationDaily(), 4)));
+	}
+	else if(str == PERSON_SPAWN_PERIOD)
+	{
+		string message = "Set the person ship spawn attempt period. This should be an integer greater than or equal to 1.";
+		auto validate = [](int value) -> bool { return value >= 1; };
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetPersonSpawnPeriod, message,
+			validate, to_string(gamerules.PersonSpawnPeriod())));
+	}
+	else if(str == NO_PERSON_SPAWN_WEIGHT)
+	{
+		string message = "Set the no person ship spawn weight. This should be an integer greater than or equal to 0.";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetNoPersonSpawnWeight, message,
+			validate, to_string(gamerules.NoPersonSpawnWeight())));
+	}
+	else if(str == NPC_MAX_MINING_TIME)
+	{
+		string message = "Set the NPC max mining time. This should be an integer greater than or equal to 0.";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetNPCMaxMiningTime, message,
+			validate, to_string(gamerules.NPCMaxMiningTime())));
+	}
+	else if(str == UNIVERSAL_FRUGAL_THRESHOLD)
+	{
+		string message = "Set the universal frugal threshold. This should be a number between 0 and 1.";
+		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetUniversalFrugalThreshold, message,
+			validate, Format::Decimal(gamerules.UniversalFrugalThreshold(), 4)));
+	}
+	else if(str == UNIVERSAL_RAMSCOOP)
+		gamerules.SetUniversalRamscoopActive(!gamerules.UniversalRamscoopActive());
+	else if(str == SYSTEM_DEPARTURE_MIN)
+	{
+		string message = "Set the minimum system departure distance. This should be any number.";
+		auto validate = [](double value) -> bool { return true; };
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetSystemDepartureMin, message,
+			validate, Format::Decimal(gamerules.SystemDepartureMin(), 1)));
+	}
+	else if(str == SYSTEM_ARRIVAL_MIN)
+	{
+		string message = "Set the minimum system arrival distance. This should be a number greater than or equal to 0.";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		optional<double> value = gamerules.SystemArrivalMin();
+		std::string initial = value.has_value() ? Format::Decimal(*value, 1) : "";
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetSystemArrivalMin, message, validate, initial));
+	}
+	else if(str == FLEET_MULTIPLIER)
+	{
+		string message = "Set the fleet spawn multiplier. This should be a number greater than 0.";
+		auto validate = [](double value) -> bool { return value >= 0.0; };
+		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetFleetMultiplier, message,
+			validate, Format::Decimal(gamerules.FleetMultiplier(), 4)));
+	}
+	else if(str == FIGHTERS_HIT_WHEN_DISABLED)
+	{
+		Gamerules::FighterDodgePolicy value = gamerules.FightersHitWhenDisabled();
+		if(value == Gamerules::FighterDodgePolicy::ALL)
+			value = Gamerules::FighterDodgePolicy::NONE;
+		else if(value == Gamerules::FighterDodgePolicy::NONE)
+			value = Gamerules::FighterDodgePolicy::ONLY_PLAYER;
+		else if(value == Gamerules::FighterDodgePolicy::ONLY_PLAYER)
+			value = Gamerules::FighterDodgePolicy::ALL;
+		gamerules.SetFighterDodgePolicy(value);
+	}
+	else if(str == UNIVERSAL_AMMO_STOCKING)
+		gamerules.SetMiscValue(AMMO_RESTOCKING_NAME, !gamerules.GetValue(AMMO_RESTOCKING_NAME));
 }
 
 
@@ -748,7 +862,7 @@ void GamerulesPanel::HandleConfirm()
 	switch(page)
 	{
 	case 'g':
-		HandleGamerulesString(selectedItem, Screen::Dimensions() / 2.);
+		HandleGamerulesString(selectedItem);
 		break;
 	case 'p':
 		SelectPreset(selectedPreset);

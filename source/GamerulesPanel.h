@@ -65,7 +65,7 @@ private:
 
 	void DrawTooltips();
 
-	void HandleGamerulesString(const std::string &str, Point cursorPosition);
+	void HandleGamerulesString(const std::string &str);
 	// Scroll the preset list until the selected preset is visible.
 	void ScrollSelectedPreset();
 

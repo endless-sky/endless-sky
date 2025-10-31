@@ -216,7 +216,7 @@ void Dialog::Draw()
 	}
 
 	// Draw the input, if any.
-	if(!isMission && (intFun || stringFun))
+	if(AcceptsInput())
 	{
 		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
 
@@ -269,7 +269,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 	{
 		// Input handled by Clipboard.
 	}
-	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
+	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && AcceptsInput() && !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
@@ -284,15 +284,18 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			input += c;
 		else if(intFun && c >= '1' && c <= '9')
 			input += c;
+		// Double input should only allow a single decimal point, and it can't be the leading character.
+		else if(doubleFun && c == '.' && !input.empty() && !std::ranges::count(input, '.'))
+			input += c;
+		else if(doubleFun && c >= '0' && c <= '9')
+			input += c;
 
-		if(validateFun)
-			isOkDisabled = !validateFun(input);
+		isOkDisabled = !ValidateInput();
 	}
 	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !input.empty())
 	{
 		input.erase(input.length() - 1);
-		if(validateFun)
-			isOkDisabled = !validateFun(input);
+		isOkDisabled = !ValidateInput();
 	}
 	else if(key == SDLK_TAB && canCancel)
 		okIsActive = !okIsActive;
@@ -404,7 +407,7 @@ void Dialog::Resize()
 	const int realBottomHeight = bottom->Height() - cancel->Height();
 
 	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
-			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
+			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
 	// Determine how many extension panels we need.
 	if(height <= realBottomHeight + top->Height())
 		extensionCount = 0;
@@ -421,7 +424,7 @@ void Dialog::Resize()
 	// be rounded up from the actual text height by the number of panels that
 	// were added. This helps correctly position the TextArea scroll buttons.
 	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
-			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
+			(realBottomHeight - BOTTOM_PADDING) * AcceptsInput();
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
@@ -472,6 +475,18 @@ void Dialog::DoCallback(const bool isOk) const
 		}
 	}
 
+	if(doubleFun)
+	{
+		// Only call the callback if the input can be converted to a double.
+		// Otherwise treat this as if the player clicked "cancel."
+		try {
+			doubleFun(stod(input));
+		}
+		catch(...)
+		{
+		}
+	}
+
 	if(stringFun)
 		stringFun(input);
 
@@ -488,4 +503,32 @@ int Dialog::Width() const
 {
 	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
 	return top->Width() - HORIZONTAL_MARGIN;
+}
+
+
+
+bool Dialog::AcceptsInput() const
+{
+	return !isMission && (intFun || doubleFun || stringFun);
+}
+
+
+
+bool Dialog::ValidateInput() const
+{
+	if(validateStringFun)
+		return validateStringFun(input);
+
+	try {
+		if(validateIntFun)
+			return validateIntFun(stoi(input));
+		if(validateDoubleFun)
+			return validateDoubleFun(stod(input));
+	}
+	catch(...)
+	{
+		return false;
+	}
+
+	return true;
 }

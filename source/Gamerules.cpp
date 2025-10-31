@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "image/Sprite.h"
 #include "image/SpriteSet.h"
 
 #include <algorithm>
@@ -232,6 +231,104 @@ const string &Gamerules::Description() const
 const Sprite *Gamerules::Thumbnail() const
 {
 	return thumbnail;
+}
+
+
+
+void Gamerules::SetUniversalRamscoopActive(bool value)
+{
+	universalRamscoop = value;
+}
+
+
+
+void Gamerules::SetPersonSpawnPeriod(int value)
+{
+	personSpawnPeriod = max(1, value);
+}
+
+
+
+void Gamerules::SetNoPersonSpawnWeight(int value)
+{
+	noPersonSpawnWeight = max(0, value);
+}
+
+
+
+void Gamerules::SetNPCMaxMiningTime(int value)
+{
+	npcMaxMiningTime = max(0, value);
+}
+
+
+
+void Gamerules::SetUniversalFrugalThreshold(double value)
+{
+	universalFrugalThreshold = min(1., max(0., value));
+}
+
+
+
+void Gamerules::SetDepreciationMin(double value)
+{
+	depreciationMin = min(1., max(0., value));
+}
+
+
+
+void Gamerules::SetDepreciationDaily(double value)
+{
+	depreciationDaily = min(1., max(0., value));
+}
+
+
+
+void Gamerules::SetDepreciationGracePeriod(int value)
+{
+	depreciationGracePeriod = max(0, value);
+}
+
+
+
+void Gamerules::SetDepreciationMaxAge(int value)
+{
+	depreciationMaxAge = max(0, value);
+}
+
+
+
+void Gamerules::SetFighterDodgePolicy(FighterDodgePolicy value)
+{
+	fighterHitPolicy = value;
+}
+
+
+
+void Gamerules::SetSystemDepartureMin(double value)
+{
+	systemDepartureMin = max(0., value);
+}
+
+
+
+void Gamerules::SetSystemArrivalMin(double value)
+{
+	systemArrivalMin = value;
+}
+
+
+
+void Gamerules::SetFleetMultiplier(double value)
+{
+	fleetMultiplier = max(0., value);
+}
+
+
+
+void Gamerules::SetMiscValue(const string &rule, int value)
+{
+	miscRules[rule] = value;
 }
 
 

@@ -56,6 +56,21 @@ public:
 	const std::string &Description() const;
 	const Sprite *Thumbnail() const;
 
+	void SetUniversalRamscoopActive(bool value);
+	void SetPersonSpawnPeriod(int value);
+	void SetNoPersonSpawnWeight(int value);
+	void SetNPCMaxMiningTime(int value);
+	void SetUniversalFrugalThreshold(double value);
+	void SetDepreciationMin(double value);
+	void SetDepreciationDaily(double value);
+	void SetDepreciationGracePeriod(int value);
+	void SetDepreciationMaxAge(int value);
+	void SetFighterDodgePolicy(FighterDodgePolicy value);
+	void SetSystemDepartureMin(double value);
+	void SetSystemArrivalMin(double value);
+	void SetFleetMultiplier(double value);
+	void SetMiscValue(const std::string &rule, int value);
+
 	int GetValue(const std::string &rule) const;
 
 	bool UniversalRamscoopActive() const;
