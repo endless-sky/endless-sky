@@ -724,6 +724,8 @@ void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 
 void GamerulesPanel::DrawTooltips()
 {
+	if(!GetUI()->IsTop(this))
+		return;
 	if(hoverItem.empty())
 	{
 		tooltip.DecrementCount();
