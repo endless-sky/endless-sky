@@ -79,8 +79,12 @@ void Gamerules::Load(const DataNode &node)
 			fleetMultiplier = max<double>(0., child.Value(1));
 		else if(key == "friendly fire probability")
 			friendlyFireProbability = min<double>(1., max<double>(0., child.Value(1)));
-		else if(key == "fighter friendly fire probability")
-			fighterFriendlyFireProbability = min<double>(1., max<double>(0., child.Value(1)));
+		else if(key == "ally friendly fire probability")
+			allyFriendlyFireProbability = min<double>(1., max<double>(0., child.Value(1)));
+		else if(key == "fighter friendly fire multiplier")
+			fighterFriendlyFireMultiplier = max<double>(0., child.Value(1));
+		else if(key == "carrier friendly fire exception")
+			carrierFriendlyFireException = child.BoolValue(1);
 		else if(key == "friendly fire damage multiplier")
 			friendlyFireDamageMultiplier = child.Value(1);
 		else
@@ -120,8 +124,12 @@ int Gamerules::GetValue(const string &rule) const
 		return fleetMultiplier * 1000;
 	if(rule == "friendly fire probability")
 		return friendlyFireProbability * 1000;
-	if(rule == "fighter friendly fire probability")
-		return fighterFriendlyFireProbability * 1000;
+	if(rule == "ally friendly fire probability")
+		return allyFriendlyFireProbability * 1000;
+	if(rule == "fighter friendly fire multiplier")
+		return fighterFriendlyFireMultiplier * 1000;
+	if(rule == "carrier friendly fire exception")
+		return carrierFriendlyFireException;
 	if(rule == "friendly fire damage multiplier")
 		return friendlyFireDamageMultiplier * 1000;
 
@@ -231,9 +239,23 @@ double Gamerules::FriendlyFirePrbability() const
 
 
 
-double Gamerules::FighterFriendlyFireProbability() const
+double Gamerules::AllyFriendlyFireProbability() const
 {
-	return fighterFriendlyFireProbability;
+	return allyFriendlyFireProbability;
+}
+
+
+
+double Gamerules::FighterFriendlyFireMultiplier() const
+{
+	return fighterFriendlyFireMultiplier;
+}
+
+
+
+bool Gamerules::CarrierFriendlyFireException() const
+{
+	return fighterFriendlyFireMultiplier;
 }
 
 
