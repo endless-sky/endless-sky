@@ -1438,6 +1438,12 @@ interface "planet"
 	box "content"
 		from -240 80 to 240 320
 	
+	sprite "ui/wide button"
+		center -316 316
+	button i "Player _Info..."
+		center -316 316
+		dimensions 90 30
+	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 340 90
@@ -1531,6 +1537,12 @@ interface "planet (small screen)"
 	
 	box "content"
 		from -300 80 to 180 320
+	
+	sprite "ui/wide button"
+		center -376 316
+	button i "Player _Info..."
+		center -376 316
+		dimensions 90 30
 	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
