@@ -123,7 +123,8 @@ outfit "Star Tail"
 		"range override" 3000
 		
 		# To make the AI fire even if the ship is not directly in front.
-		"homing" 1
+		"homing"
+			"blindspot"
 		"optical tracking" 1
 		"turn" 0.5
 
@@ -131,6 +132,9 @@ outfit "Star Tail"
 		"submunition" "Star Tail Projectile" 1
 	description "Little to no information about this weapon has ever been made public. Rumors are that it shoots highly volatile plasma chunks."
 	description "	Captains that have used this weapon say that its projectiles could change direction mid-flight, and were able to follow their targets despite attempts by their victims to dodge the shots."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Star Tail Projectile"
 	weapon
@@ -144,7 +148,8 @@ outfit "Star Tail Projectile"
 		"lifetime" 120
 		"shield damage" 410
 		"hull damage" 430
-		"homing" 1
+		"homing"
+			"blindspot"
 		"optical tracking" 1
 		"turn" .5
 
@@ -185,6 +190,7 @@ outfit "Star Tail Storage"
 
 outfitter "Star Tail Cell Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Star Tail"
 			has "outfit: Star Tail Storage"
