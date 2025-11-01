@@ -217,8 +217,6 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 	isDefined = true;
 
-	shared_ptr<Weapon> newWeapon;
-
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -280,7 +278,13 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "weapon")
-			newWeapon = shared_ptr<Weapon>{new Weapon(child)};
+		{
+			if(!weapon)
+				weapon = make_shared<Weapon>();
+			Weapon newWeapon = *weapon;
+			newWeapon.Load(child);
+			weapon = make_shared<Weapon>(std::move(newWeapon));
+		}
 		else if(key == "ammo" && hasValue)
 			ammoStored = GameData::Outfits().Get(child.Token(1));
 		else if(key == "description" && hasValue)
@@ -353,17 +357,14 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	if(isJumpDrive && attributes.Get("jump range"))
 		GameData::AddJumpRange(attributes.Get("jump range"));
 
-	if(newWeapon)
+	// Legacy support for turrets that don't specify a turn rate:
+	if(weapon && attributes.Get("turret mounts") && !weapon->TurretTurn()
+		&& !weapon->AntiMissile() && !weapon->TractorBeam())
 	{
-		// Legacy support for turrets that don't specify a turn rate:
-		if(attributes.Get("turret mounts") && !newWeapon->TurretTurn()
-			&& !newWeapon->AntiMissile() && !newWeapon->TractorBeam())
-		{
-			newWeapon->turretTurn = 4.;
-			node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
-		}
-
-		weapon = std::move(newWeapon);
+		Weapon newWeapon = *weapon;
+		newWeapon.turretTurn = 4.;
+		weapon = make_shared<Weapon>(std::move(newWeapon));
+		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
 	}
 
 	// Convert any legacy cargo / outfit scan definitions into power & speed,
