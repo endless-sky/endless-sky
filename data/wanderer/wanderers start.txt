@@ -1313,7 +1313,6 @@ mission "Wanderers: Alpha Surveillance D"
 		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
 	on enter "Host"
 		dialog `When you enter this system, your sensors pick up a Navy Carrier in orbit around an Earth-like planet. It appears that you have found the Alpha base. "That's them," says Hanover. "I hope you're strong enough to destroy them." The Carrier starts to launch fighters: Korath ones, not human ships. This might be a difficult fight...`
-		unmark "Host"
 	
 	npc
 		government "Kor Sestor"
@@ -1330,7 +1329,9 @@ mission "Wanderers: Alpha Surveillance D"
 		system "Host"
 		personality heroic nemesis staying vindictive target
 		ship "Carrier (Alpha)" "Giftbringer"
-		dialog "The Alpha Carrier has been destroyed. You can now return to the Quarg ringworld and plan your next steps."
+		on kill
+			unmark "Host"
+			dialog "The Alpha Carrier has been destroyed. You can now return to the Quarg ringworld and plan your next steps."
 	npc
 		government "Alpha"
 		system "Host"
