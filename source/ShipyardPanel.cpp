@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
 #include "Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -315,10 +315,10 @@ void ShipyardPanel::Sell(bool toStorage)
 	if(toStorage)
 	{
 		message += " Any outfits will be placed in storage.";
-		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
+		GetUI()->Push(new DialogPanel(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
 	}
 	else
-		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
+		GetUI()->Push(new DialogPanel(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
 }
 
 

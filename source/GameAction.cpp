@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
@@ -110,7 +110,7 @@ namespace {
 				special += " put in your cargo hold because there is not enough space to install ";
 				special += (isSingle ? "it" : "them");
 				special += " in your ship.";
-				ui->Push(new Dialog(special));
+				ui->Push(new DialogPanel(special));
 			}
 		}
 		if(didCargo && didShip)
@@ -158,9 +158,20 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	else if(key == "log")
 	{
 		bool isSpecial = (child.Size() >= 3);
-		string &text = (isSpecial ?
-			specialLogText[child.Token(1)][child.Token(2)] : logText);
-		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+		string &text = (isSpecial ? specialLogText[child.Token(1)][child.Token(2)] : logText);
+		for(int i = isSpecial ? 3 : 1; i < child.Size(); ++i)
+		{
+			if(!text.empty())
+				text += "\n\t";
+			text += child.Token(i);
+		}
+		for(const DataNode &grand : child)
+			for(int i = 0; i < grand.Size(); ++i)
+			{
+				if(!text.empty())
+					text += "\n\t";
+				text += grand.Token(i);
+			}
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
