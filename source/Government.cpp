@@ -100,7 +100,7 @@ Government::Government()
 
 // Load a government's definition from a file.
 void Government::Load(const DataNode &node, const set<const System *> *visitedSystems,
-	const set<const Planet *> *visitedPlanets)
+	const set<const Planet *> *visitedPlanets, bool dryRun)
 {
 	if(node.Size() >= 2)
 	{
@@ -295,10 +295,10 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				{
 					if(grand.Token(1) == "ship" && grand.Size() >= 3)
 					{
-						if(!illegalShips.erase(grand.Token(2)))
+						if(!illegalShips.erase(grand.Token(2)) && !dryRun)
 							grand.PrintTrace("Invalid remove, ship not found in existing illegals:");
 					}
-					else if(!illegalOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
+					else if(!illegalOutfits.erase(GameData::Outfits().Get(grand.Token(1))) && !dryRun)
 						grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
 				}
 				else if(grandKey == "ignore")
@@ -330,10 +330,10 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				{
 					if(grand.Token(1) == "ship" && grand.Size() >= 3)
 					{
-						if(!atrocityShips.erase(grand.Token(2)))
+						if(!atrocityShips.erase(grand.Token(2)) && !dryRun)
 							grand.PrintTrace("Invalid remove, ship not found in existing atrocities:");
 					}
-					else if(!atrocityOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
+					else if(!atrocityOutfits.erase(GameData::Outfits().Get(grand.Token(1))) && !dryRun)
 						grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
 				}
 				else if(grandKey == "ignore")

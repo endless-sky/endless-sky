@@ -136,7 +136,7 @@ void UniverseObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
+void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player, bool dryRun)
 {
 	const ConditionsStore *playerConditions = &player.Conditions();
 	const set<const System *> *visitedSystems = &player.VisitedSystems();
@@ -145,21 +145,21 @@ void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
 	const string &key = node.Token(0);
 	bool hasValue = node.Size() >= 2;
 	if(key == "fleet" && hasValue)
-		fleets.Get(node.Token(1))->Load(node);
+		fleets.Get(node.Token(1))->Load(node, dryRun);
 	else if(key == "galaxy" && hasValue)
 		galaxies.Get(node.Token(1))->Load(node);
 	else if(key == "government" && hasValue)
-		governments.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets);
+		governments.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets, dryRun);
 	else if(key == "outfitter" && hasValue)
-		outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets);
+		outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets, dryRun);
 	else if(key == "planet" && hasValue)
 		planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
 	else if(key == "shipyard" && hasValue)
-		shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets);
+		shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets, dryRun);
 	else if(key == "system" && hasValue)
-		systems.Get(node.Token(1))->Load(node, planets, playerConditions);
+		systems.Get(node.Token(1))->Load(node, planets, playerConditions, dryRun);
 	else if(key == "news" && hasValue)
-		news.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
+		news.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets, dryRun);
 	else if(key == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(key == "unlink" && node.Size() >= 3)
@@ -167,7 +167,7 @@ void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
 	else if(key == "substitutions" && node.HasChildren())
 		substitutions.Load(node, playerConditions);
 	else if(key == "wormhole" && hasValue)
-		wormholes.Get(node.Token(1))->Load(node);
+		wormholes.Get(node.Token(1))->Load(node, dryRun);
 	else
 		node.PrintTrace("Error: Invalid \"event\" data:");
 }
@@ -200,6 +200,22 @@ void UniverseObjects::UpdateSystems()
 // planets) are written to the player's save and need a name to prevent data loss.
 void UniverseObjects::CheckReferences()
 {
+	// Temporarily apply event changes to check them for data errors.
+	Set<Fleet> backupFleets = fleets;
+	Set<Galaxy> backupGalaxies = galaxies;
+	Set<Government> backupGovernments = governments;
+	Set<Shop<Outfit>> backupOutfitSales = outfitSales;
+	Set<Planet> backupPlanets = planets;
+	Set<Shop<Ship>> backupShipSales = shipSales;
+	Set<System> backupSystems = systems;
+	Set<News> backupNews = news;
+	TextReplacements backupSubstitutions = substitutions;
+	Set<Wormhole> backupWormholes = wormholes;
+	PlayerInfo dummy;
+	for(auto &it : events)
+		for(auto &change : it.second.Changes())
+			Change(change, dummy, true);
+
 	// Log a warning for an "undefined" class object that was never loaded from disk.
 	auto Warn = [](const string &noun, const string &name)
 	{
@@ -319,6 +335,17 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : persons)
 		if(!it.second.IsLoaded())
 			Warn("person", it.first);
+
+	fleets = backupFleets;
+	galaxies = backupGalaxies;
+	governments = backupGovernments;
+	outfitSales = backupOutfitSales;
+	planets = backupPlanets;
+	shipSales = backupShipSales;
+	systems = backupSystems;
+	news = backupNews;
+	substitutions = backupSubstitutions;
+	wormholes = backupWormholes;
 }
 
 
@@ -356,13 +383,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "event" && hasValue)
 			events.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "fleet" && hasValue)
-			fleets.Get(node.Token(1))->Load(node);
+			fleets.Get(node.Token(1))->Load(node, false);
 		else if(key == "formation" && hasValue)
 			formations.Get(node.Token(1))->Load(node);
 		else if(key == "galaxy" && hasValue)
 			galaxies.Get(node.Token(1))->Load(node);
 		else if(key == "government" && hasValue)
-			governments.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets);
+			governments.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets, false);
 		else if(key == "hazard" && hasValue)
 			hazards.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && hasValue)
@@ -384,7 +411,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "outfit" && hasValue)
 			outfits.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "outfitter" && hasValue)
-			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets);
+			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets, false);
 		else if(key == "person" && hasValue)
 			persons.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "phrase" && hasValue)
@@ -398,7 +425,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			ships.Get(name)->Load(node, playerConditions);
 		}
 		else if(key == "shipyard" && hasValue)
-			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets);
+			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets, false);
 		else if(key == "start" && node.HasChildren())
 		{
 			// This node may either declare an immutable starting scenario, or one that is open to extension
@@ -417,7 +444,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 		}
 		else if(key == "system" && hasValue)
-			systems.Get(node.Token(1))->Load(node, planets, playerConditions);
+			systems.Get(node.Token(1))->Load(node, planets, playerConditions, false);
 		else if(key == "test" && hasValue)
 			tests.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "test-data" && hasValue)
@@ -447,7 +474,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 		}
 		else if(key == "news" && hasValue)
-			news.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
+			news.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets, false);
 		else if(key == "rating" && hasValue)
 		{
 			vector<string> &list = ratings[node.Token(1)];
@@ -489,7 +516,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "substitutions" && node.HasChildren())
 			substitutions.Load(node, playerConditions);
 		else if(key == "wormhole" && hasValue)
-			wormholes.Get(node.Token(1))->Load(node);
+			wormholes.Get(node.Token(1))->Load(node, false);
 		else if(key == "gamerules" && node.HasChildren())
 			gamerules.Load(node);
 		else if(key == "disable" && hasValue)

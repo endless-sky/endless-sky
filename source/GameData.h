@@ -84,7 +84,7 @@ public:
 		bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
-	static void CheckReferences();
+	static void CheckReferences(bool audioParseOnly = false);
 	static void LoadSettings();
 	static void LoadShaders();
 	static double GetProgress();

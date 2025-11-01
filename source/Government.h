@@ -53,7 +53,7 @@ public:
 
 	// Load a government's definition from a file.
 	void Load(const DataNode &node, const std::set<const System *> *visitedSystems,
-		const std::set<const Planet *> *visitedPlanets);
+		const std::set<const Planet *> *visitedPlanets, bool dryRun);
 
 	// Get the display name of this government.
 	const std::string &DisplayName() const;
