@@ -116,6 +116,8 @@ public:
 	const std::set<const Planet *> &VisitedStopovers() const;
 	const std::set<const System *> &MarkedSystems() const;
 	const std::set<const System *> &UnmarkedSystems() const;
+	const std::set<const System *> &TrackedSystems() const;
+	void RecalculateTrackedSystems();
 	void Mark(const System *system) const;
 	void Unmark(const System *system) const;
 	const std::string &Cargo() const;
@@ -281,6 +283,9 @@ private:
 	// wants to highlight for the player.
 	mutable std::set<const System *> markedSystems;
 	mutable std::set<const System *> unmarkedSystems;
+	// Systems that are marked because a "tracked" mission NPC is in them.
+	bool hasTrackedNpcs = false;
+	std::set<const System *> trackedSystems;
 
 	// User-defined text replacements unique to this mission:
 	TextReplacements substitutions;
