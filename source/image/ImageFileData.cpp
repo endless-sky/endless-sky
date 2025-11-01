@@ -41,6 +41,12 @@ ImageFileData::ImageFileData(const filesystem::path &path, const filesystem::pat
 	if(name.ends_with("@2x"))
 	{
 		is2x = true;
+		noReduction = true;
+		name.resize(name.size() - 3);
+	}
+	if(name.ends_with("@1x"))
+	{
+		noReduction = true;
 		name.resize(name.size() - 3);
 	}
 	if(name.ends_with("@sw"))

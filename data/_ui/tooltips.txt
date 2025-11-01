@@ -1419,7 +1419,7 @@ tip "Render motion blur"
 	`Toggle whether motion blur is rendered for all moving objects.`
 
 tip "Reduce large graphics"
-	`Reduce the size of very large graphics (images with >= 1 million pixels) to half their size. May be used to free up memory.`
+	`Reduce the size of very large (images with >= 1 million pixels) or all graphics to half their dimensions. UI sprites are excluded. (Not recommended for high-resolution displays, but may be used to free up memory. Requires game restart.)`
 
 tip "Draw background haze"
 	`Draw the background haze when in flight.`
