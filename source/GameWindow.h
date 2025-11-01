@@ -30,7 +30,7 @@ public:
 	static void Step();
 
 	// Handle resize events of the main window.
-	static void AdjustViewport();
+	static void AdjustViewport(bool noResizeEvent = false);
 
 	// Attempt to set the game's VSync setting.
 	static bool SetVSync(Preferences::VSync state);
