@@ -762,7 +762,7 @@ mission "FW Plasma Testing 1B"
 	name "Weapons Testing"
 	description "As a test for the new Plasma Turret, assist the Walloping Window-Blind in destroying the Red Nile, a pirate ship that is probably in the <waypoints> system. Then return to <planet>."
 	source "Rust"
-	waypoint "Ildaria"
+	mark "Ildaria"
 	to offer
 		has "FW Plasma Testing 1: done"
 	on fail
@@ -830,7 +830,9 @@ mission "FW Plasma Testing 1B"
 		personality plunders staying target
 		system "Ildaria"
 		ship "Leviathan (Heavy)" "Red Nile"
-		dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
+		on kill
+			unmark "Ildaria"
+			dialog `The <npc> has been eliminated. Time to return to <destination> and report to Barmy Edward.`
 	
 	on visit
 		dialog `You have returned to <planet>, but your mission is not complete - either the Red Nile is not destroyed, or you have left the Walloping Window-Blind behind.`
