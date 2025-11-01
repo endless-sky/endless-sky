@@ -2306,7 +2306,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				"Frigate (Mark II)" 3
 	npc evade
 		government "Kor Sestor"
-		personality heroic staying
+		personality heroic staying tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2432,7 +2432,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Alnitak"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2446,7 +2446,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Canopus"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2460,7 +2460,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Betelgeuse"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2483,7 +2483,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Capella"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2498,7 +2498,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Mebsuta"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2513,7 +2513,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Rigel"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2528,7 +2528,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Castor"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2541,7 +2541,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Wazn"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2554,7 +2554,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Miaplacidus"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2566,7 +2566,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Kursa"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
@@ -2582,7 +2582,7 @@ mission "Wanderers: Sestor: Scattered Remnant"
 	npc kill
 		system "Saiph"
 		government "Kor Sestor"
-		personality heroic staying target
+		personality heroic staying target tracked
 		fleet
 			names "kor sestor"
 			fighters
