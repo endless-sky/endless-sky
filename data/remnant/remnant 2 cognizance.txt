@@ -245,7 +245,7 @@ mission "Remnant: Cognizance 5"
 				"Palavret (Ember)" 4
 				"'olofez" 12
 		on kill
-			unmark "nenia"
+			unmark "Nenia"
 			dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
 	npc
 		government "Remnant"
