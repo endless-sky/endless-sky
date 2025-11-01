@@ -264,7 +264,7 @@ mission "Remnant: Cognizance 5"
 		unmark "Aescolanus"
 		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... quickly.`
 	on enter "Nenia"
-		unmark "Aescolanus
+		unmark "Aescolanus"
 		mark "Nenia"
 		dialog `You have found the Korath fleet. Time to destroy them all as Prefect Chilia requested.`
 	on complete
