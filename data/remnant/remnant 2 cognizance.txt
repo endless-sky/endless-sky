@@ -244,7 +244,9 @@ mission "Remnant: Cognizance 5"
 				"Rano'erek"
 				"Palavret (Ember)" 4
 				"'olofez" 12
-		dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
+		on kill
+			unmark "nenia"
+			dialog "You have destroyed all the Korath that appeared to be hunting void sprites."
 	npc
 		government "Remnant"
 		personality escort launching appeasing unconstrained plunders
@@ -263,6 +265,7 @@ mission "Remnant: Cognizance 5"
 		dialog `The Korath fleet is gone. Given the urgency Prefect Chilia put on this mission, the onus is on you to find it... quickly.`
 	on enter "Nenia"
 		unmark "Aescolanus
+		mark "Nenia"
 		dialog `You have found the Korath fleet. Time to destroy them all as Prefect Chilia requested.`
 	on complete
 		event "korath rescue: nenia medium"
