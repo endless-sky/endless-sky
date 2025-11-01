@@ -14,7 +14,7 @@
 mission "Raid Warning"
 	invisible
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		"pirate attraction" >= 5
 	on offer
@@ -58,7 +58,7 @@ mission "Raid Warning"
 mission "Hunted Warning"
 	invisible
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	to offer
 		"combat rating" > 8103
@@ -102,7 +102,7 @@ mission "Hunted"
 	repeat
 	deadline 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	to offer
 		"combat rating" > 8103
@@ -665,7 +665,7 @@ event "smuggler's den: payment"
 mission "Smuggler's Den: Payment"
 	landing
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 		near Sol 100
 	to offer
 		has "event: smuggler's den: payment"
@@ -891,7 +891,7 @@ mission "WR Star 1"
 	description "Fly through the <waypoints> system with a team of <bunks> scientists and <cargo>, then return them to <destination>."
 	minor
 	source
-		attributes "deep"
+		government "Deep"
 		attributes "urban" "research"
 	waypoint "Ildaria"
 	to offer
@@ -916,7 +916,7 @@ mission "There Might Be Riots 1"
 	minor
 	source
 		near Tarazed 5 10
-		government "Republic" "Free Worlds" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Neutral"
 	destination "Wayfarer"
 	cargo "musical equipment" 4
 	passengers 8
@@ -1049,7 +1049,7 @@ mission "There Might Be Riots part 3A"
 	minor
 	source
 		attributes "dirt belt" "south" "rim"
-		government "Republic" "Free Worlds" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Neutral"
 	destination "Pilot"
 	clearance
 	infiltrating
@@ -1380,7 +1380,7 @@ mission "Shady passenger transport 1"
 	repeat
 	infiltrating
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "near earth" "core" "urban"
 	destination
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
@@ -1418,7 +1418,7 @@ mission "Shady passenger transport 2"
 	repeat
 	infiltrating
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "near earth" "core" "urban"
 	destination
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
@@ -1702,10 +1702,10 @@ mission "Courier 1"
 	to offer
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
 		dialog `As you are walking through the spaceport, a man approaches you and says, "Excuse me, Captain. I took on a rush delivery of <cargo> to <planet>, but my ship needs repairs and there's no way I can make it there before <day>. Can you take this job for me? The payment for the job is <payment>."`
 	on visit
@@ -1769,10 +1769,10 @@ mission "Courier 2"
 	to offer
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 7 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
 		dialog phrase "generic human package offer"
 	on visit
@@ -1793,10 +1793,10 @@ mission "Courier 3"
 	to offer
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 7 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	on offer
 		dialog `A woman in a suit walks up to you and says, "Pardon me, Captain. I represent a recently deceased client here on <origin> whose legal papers need to be delivered to his next of kin on <destination>. Would you be willing to do some courier work? The papers must be delivered by <day>, and you will be paid <payment>."`
 	on visit
@@ -1816,10 +1816,10 @@ mission "Courier 4"
 	to offer
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		distance 7 14
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 		attributes "rich"
 	on offer
 		conversation
@@ -1890,7 +1890,7 @@ mission "Humanitarian 1"
 		random < 5
 		"combat rating" > 0
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		government "Pirate"
 		distance 2 10
@@ -1930,7 +1930,7 @@ mission "Humanitarian 2"
 		random < 5
 		"combat rating" > 0
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Quarg" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Quarg" "Neutral"
 	destination
 		government "Pirate"
 		distance 2 10
@@ -2194,7 +2194,6 @@ mission "Terraforming 6"
 	source
 		government "Republic"
 		attributes "spaceport"
-		not attributes "deep"
 		not system "Sol"
 	destination "Earth"
 	deadline
@@ -2483,7 +2482,7 @@ event "terraforming timer 2"
 mission "Terraforming Follow-up"
 	landing
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		near "Sol" 100
 		attributes spaceport
 	to offer
@@ -2527,10 +2526,10 @@ mission "A wolf, a goat, and a cabbage"
 		"day" == 1
 		"month" == 4
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	destination
 		distance 3 5
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	cargo "wolf" 1
 	
 	on enter
@@ -3348,7 +3347,7 @@ mission "Inheritance Redirection"
 		attributes "frontier"
 	destination
 		distance 7 9
-		government "Republic" "Free Worlds" "Syndicate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate"
 	to offer
 		credits >= 400000
 	on accept
@@ -3584,7 +3583,7 @@ mission "Pirate Duel"
 	deadline 5 1
 	source
 		near "Tarazed" 1 5
-		government "Republic" "Free Worlds"
+		government "Republic" "Deep" "Free Worlds"
 	mark "Umbral"
 	destination "Wayfarer"
 	to offer
@@ -3793,10 +3792,10 @@ mission "Spacediving professionals"
 	description "Head to <destination> with <bunks> professionally equipped skydivers and drop them from the edge of space. They've agreed to pay <payment> when they land."
 	passengers 5 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "station" "research" "moon"
 	to offer
 		random < 14
@@ -3816,10 +3815,10 @@ mission "Spacediving professionals accident"
 	"apparent payment" 120000
 	passengers 5 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "station" "research" "moon"
 	to offer
 		"Spacediving professionals: done" > 7
@@ -3839,10 +3838,10 @@ mission "Spacediving professionals disaster"
 	"apparent payment" 120000
 	passengers 5 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "station" "research" "moon"
 	to offer
 		has "Spacediving professionals accident: done"
@@ -3864,10 +3863,10 @@ mission "Spacediving amateurs"
 	"apparent payment" 120000
 	passengers 5 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 7
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "station" "research" "moon"
 	to offer
 		"Spacediving professionals: done" > 3
@@ -3882,7 +3881,7 @@ mission "Spacediving amateurs"
 mission "Human to Hai Space - No Contact"
 	minor
 	source
-		government "Republic" "Syndicate" "Free Worlds"
+		government "Republic" "Deep" "Syndicate" "Free Worlds"
 		attributes "tourism" "urban"
 	to offer
 		random < 2
@@ -3909,7 +3908,7 @@ mission "Human to Hai Space"
 	description "Bring a human passenger to <destination> in Hai space."
 	passengers 1
 	source
-		government "Republic" "Syndicate" "Free Worlds"
+		government "Republic" "Deep" "Syndicate" "Free Worlds"
 		attributes "tourism" "urban"
 	destination "Greenwater"
 	to offer
@@ -4374,7 +4373,7 @@ mission "Spaceport Reminder Resetter"
 mission "Spaceport Reminder"
 	landing
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "uninhabited"
 	to offer
 		not "chosen sides"
@@ -4582,11 +4581,11 @@ mission "Laborer"
 	description "A man down on his luck needs to get to <destination>. He has promised to send you payment as soon as he has it."
 	passengers 1
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	destination
 		distance 1 100
-		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		attributes "mining"
 	to offer
 		random < 15
@@ -4651,7 +4650,7 @@ event "laborer payment"
 mission "Laborer Payment"
 	landing
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Independent" "Neutral"
 	to offer
 		has "event: laborer payment"
 	on offer
@@ -4678,7 +4677,6 @@ mission "Hai Wormhole Warning"
 	landing
 	source
 		government "Republic"
-		not attributes "deep"
 	to offer
 		or
 			has "First Contact: Hai: offered"
@@ -5359,7 +5357,7 @@ mission "Riley"
 	description "Take a woman named Riley to see her ailing father on <destination> before it's too late."
 	minor
 	source
-		attributes "deep"
+		government "Deep"
 		attributes "urban"
 		not planet "Memory"
 	destination "Memory"
@@ -7520,7 +7518,7 @@ mission "Lost Dog: Homeward Bound"
 	minor
 	invisible
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		has "event: lost dog: homeward bound"
 	on offer
@@ -9580,7 +9578,7 @@ mission "Timothy Radrickson 1: Stowaway"
 	landing
 	source
 		near "Zeta Aquilae" 3 10
-		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Independent" "Pirate" "Neutral"
 	destination "Rand"
 	to offer
 		has "event: remembrance day"
@@ -9704,7 +9702,7 @@ mission "Timothy Radrickson 2: Interlude"
 		has "Timothy Radrickson 1: Stowaway: failed"
 		has "timothy radrickson: port"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on offer
 		conversation
 			`Blinking at the light, Timothy shuffles toward the exit. "Th-th-thank you. Thank you so much," Timothy mumbles.`
@@ -9714,7 +9712,7 @@ mission "Timothy Radrickson 2: Interlude"
 
 mission "Timothy Radrickson 2: Good Interlude"
 	source
-		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Independent" "Pirate" "Neutral"
 	landing
 	invisible
 	to offer
@@ -10198,7 +10196,7 @@ mission "Timothy Radrickson 4: Imprisoned"
 	to offer
 		has "event: timothy radrickson imprisoned"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Oblivion"
 	deadline 1800
 	invisible
@@ -11151,7 +11149,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 
 mission "Timothy Radrickson 6: News of Death"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "urban"
 	to offer
 		has "Timothy Radrickson 5e: Back to Oblivion: offered"
@@ -11929,7 +11927,7 @@ mission "Ice Queen 5"
 	name "Visit Ildico"
 	description "Ildico has asked you to visit her on <destination>."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Chiron"
 	to offer
 		has "event: deoricdeeds"
@@ -12074,7 +12072,7 @@ mission "Ice Queen 7"
 	name "Meet Ildy on <planet>"
 	description "See what Ildico needs on <destination>."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Haven"
 	to offer
 		has "event: pirateildy"
@@ -12213,7 +12211,7 @@ mission "Ice Queen 8"
 
 mission "Ice Queen: News"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		near "Arneb" 10
 	to offer
 		has "Ice Queen 8: done"
