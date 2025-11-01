@@ -68,10 +68,15 @@ public:
 	static void PlayMusic(const std::string &name);
 
 	// Pause all active sound sources. Doesn't cause new streams to be paused, and doesn't pause the music source.
+	// Has no effect following a call to "Audio::BlockPausing" until "Audio::UnblockPausing" is called.
 	static void Pause();
 	// Resumes all paused sound sources. If Pause() was called multiple times,
 	// you have to call Resume() the same number of times to resume the sound sources.
+	// Has no effect following a call to "Audio::BlockPausing" until "Audio::UnblockPausing" is called.
 	static void Resume();
+	// While pausing is blocked, "Audio::Pause" and "Audio::resume" have no effect.
+	static void BlockPausing();
+	static void UnblockPausing();
 
 	/// Begin playing all the sounds that have been added since the last time
 	/// this function was called.

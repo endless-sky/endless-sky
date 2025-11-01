@@ -110,6 +110,9 @@ namespace {
 	// If we paused the audio multiple times, only resume it after the same number of Resume() calls.
 	// We start with -1, so when MenuPanel opens up the first time, it doesn't pause the loading sounds.
 	int pauseCount = -1;
+	// "Audio::Pause" and "Audio::Resume" have no effect when this is "true",
+	// so a panel can prevent others appearing on top of it from pausing its sounds.
+	bool pausingBlocked = false;
 }
 
 
@@ -309,7 +312,7 @@ void Audio::PlayMusic(const string &name)
 // Pause all active playback streams. Doesn't cause new streams to be paused, and doesn't pause the music source.
 void Audio::Pause()
 {
-	pauseChangeCount++;
+	pauseChangeCount += !pausingBlocked;
 }
 
 
@@ -318,7 +321,21 @@ void Audio::Pause()
 // you have to call Resume() the same number of times to resume the sound sources.
 void Audio::Resume()
 {
-	pauseChangeCount--;
+	pauseChangeCount -= !pausingBlocked;
+}
+
+
+
+void Audio::BlockPausing()
+{
+	pausingBlocked = true;
+}
+
+
+
+void Audio::UnblockPausing()
+{
+	pausingBlocked = false;
 }
 
 
