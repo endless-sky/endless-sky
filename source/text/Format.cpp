@@ -585,13 +585,22 @@ string Format::Decimal(double value, int places)
 	double integer;
 	double fraction = fabs(modf(value, &integer));
 
-	string result = to_string(static_cast<int>(integer)) + ".";
+	string result = to_string(static_cast<int>(integer));
+	if(places)
+		result += ".";
 	while(places--)
 	{
 		fraction = modf(fraction * 10., &integer);
 		result += ('0' + static_cast<int>(integer));
 	}
 	return result;
+}
+
+
+
+std::string Format::Percentage(double value, int places)
+{
+	return Decimal(100. * value, places) + "%";
 }
 
 

@@ -147,6 +147,7 @@ public:
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
+	static const Set<Gamerules> &GamerulesPresets();
 
 	static ConditionsStore &GlobalConditions();
 
@@ -185,6 +186,8 @@ public:
 	static const TextReplacements &GetTextReplacements();
 
 	static const Gamerules &GetGamerules();
+	static void SetGamerules(const Gamerules *gamerules);
+	static const Gamerules &DefaultGamerules();
 
 	// Thread-safe way to draw the menu background.
 	static void DrawMenuBackground(Panel *panel);

@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Gamerules.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 
@@ -23,9 +25,13 @@ using namespace std;
 
 
 
-// Load a gamerules node.
 void Gamerules::Load(const DataNode &node)
 {
+	if(node.Size() >= 2)
+		name = node.Token(1);
+	else
+		name = "Default";
+
 	for(const DataNode &child : node)
 	{
 		if(child.Size() < 2)
@@ -36,7 +42,13 @@ void Gamerules::Load(const DataNode &node)
 
 		const string &key = child.Token(0);
 
-		if(key == "universal ramscoop")
+		if(key == "description")
+			description = child.Token(1);
+		else if(key == "thumbnail")
+			thumbnail = SpriteSet::Get(child.Token(1));
+		else if(key == "lock gamerules")
+			lockGamerules = child.BoolValue(1);
+		else if(key == "universal ramscoop")
 			universalRamscoop = child.BoolValue(1);
 		else if(key == "person spawn period")
 			personSpawnPeriod = max<int>(1, child.Value(1));
@@ -84,8 +96,262 @@ void Gamerules::Load(const DataNode &node)
 
 
 
+void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
+{
+	out.Write("gamerules", name);
+	out.BeginChild();
+	{
+		if(lockGamerules != preset.lockGamerules)
+			out.Write("lock gamerules", lockGamerules ? 1 : 0);
+		if(universalRamscoop != preset.universalRamscoop)
+			out.Write("universal ramscoop", universalRamscoop ? 1 : 0);
+		if(personSpawnPeriod != preset.personSpawnPeriod)
+			out.Write("person spawn period", personSpawnPeriod);
+		if(noPersonSpawnWeight != preset.noPersonSpawnWeight)
+			out.Write("no person spawn weight", noPersonSpawnWeight);
+		if(npcMaxMiningTime != preset.npcMaxMiningTime)
+			out.Write("npc max mining time", npcMaxMiningTime);
+		if(universalFrugalThreshold != preset.universalFrugalThreshold)
+			out.Write("universal frugal threshold", universalFrugalThreshold);
+		if(depreciationMin != preset.depreciationMin)
+			out.Write("depreciation min", depreciationMin);
+		if(depreciationDaily != preset.depreciationDaily)
+			out.Write("depreciation daily", depreciationDaily);
+		if(depreciationGracePeriod != preset.depreciationGracePeriod)
+			out.Write("depreciation grace period", depreciationGracePeriod);
+		if(depreciationMaxAge != preset.depreciationMaxAge)
+			out.Write("depreciation max age", depreciationMaxAge);
+		if(fighterHitPolicy != preset.fighterHitPolicy)
+		{
+			if(fighterHitPolicy == FighterDodgePolicy::ALL)
+				out.Write("disabled fighters avoid projectiles", "all");
+			else if(fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
+				out.Write("disabled fighters avoid projectiles", "only player");
+			else
+				out.Write("disabled fighters avoid projectiles", "none");
+		}
+		if(systemDepartureMin != preset.systemDepartureMin)
+			out.Write("system departure min", systemDepartureMin);
+		if(systemArrivalMin != preset.systemArrivalMin)
+		{
+			if(systemArrivalMin.has_value())
+				out.Write("system arrival min", *systemArrivalMin);
+			else
+				out.Write("system arrival min", "unset");
+		}
+		if(fleetMultiplier != preset.fleetMultiplier)
+			out.Write("fleet multiplier", fleetMultiplier);
+
+		const map<std::string, int> &otherMiscRules = preset.miscRules;
+		for(const auto &[rule, value] : miscRules)
+		{
+			auto sit = otherMiscRules.find(rule);
+			if(sit == otherMiscRules.end() || sit->second != value)
+				out.Write(rule, value);
+		}
+	}
+	out.EndChild();
+}
+
+
+
+void Gamerules::Replace(const Gamerules &rules)
+{
+	name = rules.name;
+	lockGamerules = rules.lockGamerules;
+	universalRamscoop = rules.universalRamscoop;
+	personSpawnPeriod = rules.personSpawnPeriod;
+	noPersonSpawnWeight = rules.noPersonSpawnWeight;
+	npcMaxMiningTime = rules.npcMaxMiningTime;
+	universalFrugalThreshold = rules.universalFrugalThreshold;
+	depreciationMin = rules.depreciationMin;
+	depreciationDaily = rules.depreciationDaily;
+	depreciationGracePeriod = rules.depreciationGracePeriod;
+	depreciationMaxAge = rules.depreciationMaxAge;
+	fighterHitPolicy = rules.fighterHitPolicy;
+	systemDepartureMin = rules.systemDepartureMin;
+	systemArrivalMin = rules.systemArrivalMin;
+	fleetMultiplier = rules.fleetMultiplier;
+	miscRules = rules.miscRules;
+}
+
+
+
+void Gamerules::Reset(const string &rule, const Gamerules &preset)
+{
+	if(rule == "lock gamerules")
+		lockGamerules = preset.lockGamerules;
+	else if(rule == "universal ramscoop")
+		universalRamscoop = preset.universalRamscoop;
+	else if(rule == "person spawn period")
+		personSpawnPeriod = preset.personSpawnPeriod;
+	else if(rule == "no person spawn weight")
+		noPersonSpawnWeight = preset.noPersonSpawnWeight;
+	else if(rule == "npc max mining time")
+		npcMaxMiningTime = preset.npcMaxMiningTime;
+	else if(rule == "universal frugal threshold")
+		universalFrugalThreshold = preset.universalFrugalThreshold;
+	else if(rule == "depreciation min")
+		depreciationMin = preset.depreciationMin;
+	else if(rule == "depreciation daily")
+		depreciationDaily = preset.depreciationDaily;
+	else if(rule == "depreciation grace period")
+		depreciationGracePeriod = preset.depreciationGracePeriod;
+	else if(rule == "depreciation max age")
+		depreciationMaxAge = preset.depreciationMaxAge;
+	else if(rule == "disabled fighters avoid projectiles")
+		fighterHitPolicy = preset.fighterHitPolicy;
+	else if(rule == "system departure min")
+		systemDepartureMin = preset.systemDepartureMin;
+	else if(rule == "system arrival min")
+	{
+		if(systemArrivalMin == preset.systemArrivalMin)
+			systemArrivalMin.reset();
+		else
+			systemArrivalMin = preset.systemArrivalMin;
+	}
+	else if(rule == "fleet multiplier")
+		fleetMultiplier = preset.fleetMultiplier;
+	else
+	{
+		auto it = preset.miscRules.find(rule);
+		if(it != preset.miscRules.end())
+			miscRules[rule] = it->second;
+	}
+}
+
+
+
+const string &Gamerules::Name() const
+{
+	return name;
+}
+
+
+
+const string &Gamerules::Description() const
+{
+	return description;
+}
+
+
+
+const Sprite *Gamerules::Thumbnail() const
+{
+	return thumbnail;
+}
+
+
+
+void Gamerules::SetLockGamerules(bool value)
+{
+	lockGamerules = value;
+}
+
+
+
+void Gamerules::SetUniversalRamscoopActive(bool value)
+{
+	universalRamscoop = value;
+}
+
+
+
+void Gamerules::SetPersonSpawnPeriod(int value)
+{
+	personSpawnPeriod = max(1, value);
+}
+
+
+
+void Gamerules::SetNoPersonSpawnWeight(int value)
+{
+	noPersonSpawnWeight = max(0, value);
+}
+
+
+
+void Gamerules::SetNPCMaxMiningTime(int value)
+{
+	npcMaxMiningTime = max(0, value);
+}
+
+
+
+void Gamerules::SetUniversalFrugalThreshold(double value)
+{
+	universalFrugalThreshold = min(1., max(0., value));
+}
+
+
+
+void Gamerules::SetDepreciationMin(double value)
+{
+	depreciationMin = min(1., max(0., value));
+}
+
+
+
+void Gamerules::SetDepreciationDaily(double value)
+{
+	depreciationDaily = min(1., max(0., value));
+}
+
+
+
+void Gamerules::SetDepreciationGracePeriod(int value)
+{
+	depreciationGracePeriod = max(0, value);
+}
+
+
+
+void Gamerules::SetDepreciationMaxAge(int value)
+{
+	depreciationMaxAge = max(0, value);
+}
+
+
+
+void Gamerules::SetFighterDodgePolicy(FighterDodgePolicy value)
+{
+	fighterHitPolicy = value;
+}
+
+
+
+void Gamerules::SetSystemDepartureMin(double value)
+{
+	systemDepartureMin = max(0., value);
+}
+
+
+
+void Gamerules::SetSystemArrivalMin(double value)
+{
+	systemArrivalMin = value;
+}
+
+
+
+void Gamerules::SetFleetMultiplier(double value)
+{
+	fleetMultiplier = max(0., value);
+}
+
+
+
+void Gamerules::SetMiscValue(const string &rule, int value)
+{
+	miscRules[rule] = value;
+}
+
+
+
 int Gamerules::GetValue(const string &rule) const
 {
+	if(rule == "lock gamerules")
+		return lockGamerules;
 	if(rule == "universal ramscoop")
 		return universalRamscoop;
 	if(rule == "person spawn period")
@@ -117,6 +383,13 @@ int Gamerules::GetValue(const string &rule) const
 	if(it == miscRules.end())
 		return 0;
 	return it->second;
+}
+
+
+
+bool Gamerules::LockGamerules() const
+{
+	return lockGamerules;
 }
 
 
@@ -208,4 +481,49 @@ optional<double> Gamerules::SystemArrivalMin() const
 double Gamerules::FleetMultiplier() const
 {
 	return fleetMultiplier;
+}
+
+
+
+bool Gamerules::operator==(const Gamerules &other) const
+{
+	if(name != other.name)
+		return false;
+	if(lockGamerules != other.lockGamerules)
+		return false;
+	if(personSpawnPeriod != other.personSpawnPeriod)
+		return false;
+	if(noPersonSpawnWeight != other.noPersonSpawnWeight)
+		return false;
+	if(npcMaxMiningTime != other.npcMaxMiningTime)
+		return false;
+	if(universalFrugalThreshold != other.universalFrugalThreshold)
+		return false;
+	if(depreciationMin != other.depreciationMin)
+		return false;
+	if(depreciationDaily != other.depreciationDaily)
+		return false;
+	if(depreciationGracePeriod != other.depreciationGracePeriod)
+		return false;
+	if(depreciationMaxAge != other.depreciationMaxAge)
+		return false;
+	if(fighterHitPolicy != other.fighterHitPolicy)
+		return false;
+	if(systemDepartureMin != other.systemDepartureMin)
+		return false;
+	if(systemArrivalMin != other.systemArrivalMin)
+		return false;
+	if(fleetMultiplier != other.fleetMultiplier)
+		return false;
+	if(miscRules.size() != other.miscRules.size())
+		return false;
+	for(const auto &rule : miscRules)
+	{
+		const auto &otherRule = other.miscRules.find(rule.first);
+		if(otherRule == other.miscRules.end())
+			return false;
+		if(rule.second != otherRule->second)
+			return false;
+	}
+	return true;
 }
