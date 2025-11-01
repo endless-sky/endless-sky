@@ -381,7 +381,7 @@ outfit "High-Velocity Spike Rack"
 	category "Ammunition"
 	series "Ammunition"
 	index 11020
-	cost 350000
+	cost 50000
 	licenses
 		"High Houses"
 	thumbnail "outfit/hv spike rack"
