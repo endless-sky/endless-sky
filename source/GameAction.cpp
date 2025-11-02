@@ -459,30 +459,29 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		caller->Mark(mark);
 		caller->Unmark(unmark);
 	}
-	for(const Mission &mission : player.Missions())
-	{
-		auto it = markOther.find(mission.TrueName());
-		if(it == markOther.end())
-			continue;
-		mission.Mark(it->second);
-	}
-	for(const Mission &mission : player.Missions())
-	{
-		auto it = unmarkOther.find(mission.TrueName());
-		if(it == unmarkOther.end())
-			continue;
-		mission.Unmark(it->second);
-	}
 
-	if(!fail.empty())
+	if(!fail.empty() || !markOther.empty() || !unmarkOther.empty())
 	{
-		// If this action causes this or any other mission to fail, mark that
-		// mission as failed. It will not be removed from the player's mission
-		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
+		{
+			// If this action causes another mission to fail, mark that
+			// mission as failed. It will not be removed from the player's mission
+			// list until it is safe to do so.
 			if(fail.contains(mission.TrueName()))
 				player.FailMission(mission);
+
+			auto mit = markOther.find(mission.TrueName());
+			if(mit != markOther.end())
+				mission.Mark(mit->second);
+
+			auto uit = unmarkOther.find(mission.TrueName());
+			if(uit != unmarkOther.end())
+				mission.Unmark(uit->second);
+		}
 	}
+
+	// If this action causes this mission to fail, mark it as failed.
+	// It will not be removed from the player's mission list until it is safe to do so.
 	if(failCaller && caller)
 		player.FailMission(*caller);
 	if(music.has_value())
