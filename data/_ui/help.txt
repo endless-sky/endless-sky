@@ -142,10 +142,6 @@ help "try out fighters transfer cargo"
 	``
 	`	In Preferences and Settings under the Gameplay section, turn on "Fighters transfer cargo" to learn more.`
 
-help "friendly fire"
-	`Whenever a ship attempts to fire through an allied ship, there is a chance for that ship to be hit.`
-	`Friendly ships will overlook friendly fire incidents.`
-
 help "navigation"
 	`Welcome to the sky! To travel to another star system, press <View star map> to view your map, and click on the system you want to travel to. Your hyperdrive can only travel along the "links" shown on your map. After selecting a destination, close your map and press <Initiate hyperspace jump> to jump to that system.`
 	`Your ship does not jump until you release the jump key. Once you have escorts, you can hold the key to get them ready to jump, then release it to have them all jump simultaneously.`

@@ -587,13 +587,6 @@ bool MainPanel::ShowHelp(bool force)
 		else if(DoHelp("fighters transfer cargo"))
 			return true;
 	}
-	if(player.DisplayFriendlyFireHelp())
-	{
-		if(force)
-			forced.push_back("friendly fire");
-		else if(DoHelp("friendly fire"))
-			return true;
-	}
 	if(!flagship->IsHyperspacing() && flagship->Position().Length() > 10000.
 			&& player.GetDate() <= player.StartData().GetDate() + 4)
 	{

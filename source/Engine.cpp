@@ -2466,10 +2466,6 @@ void Engine::DoCollisions(Projectile &projectile)
 		if(alliedGov && isSafe && !targetedHit)
 			continue;
 
-		// Display the "friendly fire" help message if a ship owned by the player was hit this way.
-		if(hit && alliedGov && hit->GetGovernment() == GameData::PlayerGovernment() && !targetedHit)
-			player.SetFriendlyFireHelp();
-
 		// Create the explosion the given distance along the projectile's
 		// motion path for this step.
 		projectile.Explode(visuals, range, hit ? hit->Velocity() : Point());

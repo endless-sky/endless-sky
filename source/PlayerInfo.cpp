@@ -3344,20 +3344,6 @@ bool PlayerInfo::DisplayCarrierHelp() const
 
 
 
-bool PlayerInfo::DisplayFriendlyFireHelp() const
-{
-	return displayFriendlyFireHelp;
-}
-
-
-
-void PlayerInfo::SetFriendlyFireHelp()
-{
-	displayFriendlyFireHelp = true;
-}
-
-
-
 // Apply any "changes" saved in this player info to the global game state.
 void PlayerInfo::ApplyChanges()
 {
