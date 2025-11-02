@@ -329,7 +329,6 @@ void GameData::LoadShaders()
 		if(Files::Exists(base))
 			for(filesystem::path shaderFile : Files::RecursiveList(base))
 			{
-				Files::LogErrorToFile("Reading shader from " + shaderFile.string());
 				filesystem::path shader = shaderFile;
 #ifdef ES_GLES
 				// Allow specifying different shaders for GL and GLES.
@@ -351,17 +350,8 @@ void GameData::LoadShaders()
 	// If there is both a fragment and a vertex shader available,
 	// it can be turned into a shader object.
 	for(const auto &[key, s] : loaded)
-	{
 		if(!s.first.empty() && !s.second.empty())
-		{
-			Files::LogErrorToFile("Compiling shader " + key);
 			objects.shaders.Get(key)->Load(Files::Read(s.first).c_str(), Files::Read(s.second).c_str());
-		}
-		else
-		{
-			Files::LogErrorToFile("Dropping shader " + key + " [" + s.first + "] [" + s.second + "]");
-		}
-	}
 
 	FillShader::Init();
 	FogShader::Init();
