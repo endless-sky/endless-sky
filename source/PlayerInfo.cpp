@@ -2569,10 +2569,10 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 // Mark a mission as failed, but do not remove it from the mission list yet.
 void PlayerInfo::FailMission(const Mission &mission)
 {
-	for(auto &it : missions)
-		if(&it == &mission)
+	for(Mission &activeMission : missions)
+		if(&activeMission == &mission)
 		{
-			it.Fail();
+			activeMission.Fail();
 			return;
 		}
 }
