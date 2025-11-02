@@ -456,24 +456,22 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 
 	if(caller)
 	{
-		for(const System *system : mark)
-			caller->Mark(system);
-		for(const System *system : unmark)
-			caller->Unmark(system);
+		caller->Mark(mark);
+		caller->Unmark(unmark);
 	}
 	for(const Mission &mission : player.Missions())
 	{
 		auto it = markOther.find(mission.TrueName());
 		if(it == markOther.end())
 			continue;
-		player.MarkForMission(mission, it->second);
+		mission.Mark(it->second);
 	}
 	for(const Mission &mission : player.Missions())
 	{
 		auto it = unmarkOther.find(mission.TrueName());
 		if(it == unmarkOther.end())
 			continue;
-		player.UnmarkForMission(mission, it->second);
+		mission.Unmark(it->second);
 	}
 
 	if(!fail.empty())
