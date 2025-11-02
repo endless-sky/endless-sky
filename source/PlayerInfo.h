@@ -278,9 +278,6 @@ public:
 	void RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui);
 	// Mark a mission as failed, but do not remove it from the mission list yet.
 	void FailMission(const Mission &mission);
-	// Add or remove marked systems from the given mission.
-	void MarkForMission(const Mission &mission, const std::set<const System *> &marks);
-	void UnmarkForMission(const Mission &mission, const std::set<const System *> &unmarks);
 	// Update mission status based on an event.
 	void HandleEvent(const ShipEvent &event, UI *ui);
 

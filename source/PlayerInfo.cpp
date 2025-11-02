@@ -2579,34 +2579,6 @@ void PlayerInfo::FailMission(const Mission &mission)
 
 
 
-// Add marked systems from the given mission.
-void PlayerInfo::MarkForMission(const Mission &mission, const std::set<const System *> &marks)
-{
-	for(Mission &activeMission : missions)
-		if(&activeMission == &mission)
-		{
-			for(const System *system : marks)
-				activeMission.Mark(system);
-			return;
-		}
-}
-
-
-
-// Remove marked systems from the given mission.
-void PlayerInfo::UnmarkForMission(const Mission &mission, const std::set<const System *> &unmarks)
-{
-	for(Mission &activeMission : missions)
-		if(&activeMission == &mission)
-		{
-			for(const System *system : unmarks)
-				activeMission.Unmark(system);
-			return;
-		}
-}
-
-
-
 // Update mission status based on an event.
 void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 {
