@@ -819,15 +819,10 @@ void Mission::RecalculateTrackedSystems()
 void Mission::Mark(const set<const System *> &systems) const
 {
 	for(const System *system : systems)
-		Mark(system);
-}
-
-
-
-void Mission::Mark(const System *system) const
-{
-	markedSystems.insert(system);
-	unmarkedSystems.erase(system);
+	{
+		markedSystems.insert(system);
+		unmarkedSystems.erase(system);
+	}
 }
 
 
@@ -835,15 +830,8 @@ void Mission::Mark(const System *system) const
 void Mission::Unmark(const set<const System *> &systems) const
 {
 	for(const System *system : systems)
-		Unmark(system);
-}
-
-
-
-void Mission::Unmark(const System *system) const
-{
-	if(markedSystems.erase(system))
-		unmarkedSystems.insert(system);
+		if(markedSystems.erase(system))
+			unmarkedSystems.insert(system);
 }
 
 
