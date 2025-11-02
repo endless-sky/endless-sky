@@ -454,8 +454,13 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 
-	for(const System *system : mark)
-		caller->Mark(system);
+	if(caller)
+	{
+		for(const System *system : mark)
+			caller->Mark(system);
+		for(const System *system : unmark)
+			caller->Unmark(system);
+	}
 	for(const Mission &mission : player.Missions())
 	{
 		auto it = markOther.find(mission.TrueName());
@@ -463,8 +468,6 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 			continue;
 		player.MarkForMission(mission, it->second);
 	}
-	for(const System *system : unmark)
-		caller->Unmark(system);
 	for(const Mission &mission : player.Missions())
 	{
 		auto it = unmarkOther.find(mission.TrueName());
