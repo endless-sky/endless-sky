@@ -331,7 +331,7 @@ void NPC::Save(DataWriter &out) const
 			it.second.Save(out);
 
 		if(government)
-			out.Write("government", government->GetTrueName());
+			out.Write("government", government->TrueName());
 		personality.Save(out);
 
 		if(!dialogText.empty())
@@ -405,7 +405,7 @@ string NPC::Validate(bool asTemplate) const
 	// Ships must always be valid.
 	for(auto &&ship : ships)
 		if(!ship->IsValid())
-			return "ship \"" + ship->Name() + "\"";
+			return "ship \"" + ship->GivenName() + "\"";
 	for(auto &&ship : stockShips)
 		if(!ship->IsValid())
 			return "stock model \"" + ship->VariantName() + "\"";
@@ -450,6 +450,13 @@ bool NPC::ShouldSpawn() const
 
 
 
+const Personality &NPC::GetPersonality() const
+{
+	return personality;
+}
+
+
+
 // Get the ships associated with this set of NPCs.
 const list<shared_ptr<Ship>> NPC::Ships() const
 {
@@ -458,8 +465,8 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 
 
 
-// Handle the given ShipEvent.
-void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *caller, bool isVisible)
+// Handle the given ShipEvent. Return true if the event target is within this NPC.
+bool NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *caller, bool isVisible)
 {
 	// First, check if this ship is part of this NPC. If not, do nothing. If it
 	// is an NPC and it just got captured, replace it with a destroyed copy of
@@ -489,7 +496,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 			break;
 		}
 	if(!ship)
-		return;
+		return false;
 
 	// Determine if this NPC is already in the succeeded state,
 	// regardless of whether it will despawn on the next landing.
@@ -519,7 +526,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 
 	// Check if the success status has changed. If so, display a message.
 	if(isVisible && !alreadyFailed && HasFailed())
-		Messages::Add("Mission failed" + (caller ? ": \"" + caller->Name() + "\"" : "") + ".",
+		Messages::Add("Mission failed" + (caller ? ": \"" + caller->DisplayName() + "\"" : "") + ".",
 			Messages::Importance::Highest);
 	else if(ui && !alreadySucceeded && HasSucceeded(player.GetSystem(), false))
 	{
@@ -530,6 +537,8 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 		if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}
+
+	return true;
 }
 
 
@@ -695,7 +704,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
 	{
 		result.ships.push_back(make_shared<Ship>(**shipIt));
-		result.ships.back()->SetName(Format::Replace(Format::Replace(
+		result.ships.back()->SetGivenName(Format::Replace(Format::Replace(
 			Phrase::ExpandPhrases(*nameIt), subs), playerSubs));
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
@@ -729,7 +738,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	// String replacement:
 	if(!result.ships.empty())
 	{
-		subs["<npc>"] = result.ships.front()->Name();
+		subs["<npc>"] = result.ships.front()->GivenName();
 		subs["<npc model>"] = result.ships.front()->DisplayModelName();
 	}
 	// Do string replacement on any dialog or conversation.

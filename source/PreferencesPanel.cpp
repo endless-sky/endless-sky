@@ -251,14 +251,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		hoverItem.clear();
 		selected = 0;
 
-		if(page == 'p')
-		{
-			// Reset the render buffers in case the UI scale has changed.
-			const Interface *pluginUi = GameData::Interfaces().Get("plugins");
-			Rectangle pluginListBox = pluginUi->GetBox("plugin list");
-			pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
-			RenderPluginDescription(selectedPlugin);
-		}
+		// Reset the render buffers in case the UI scale has changed.
+		Resize();
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
@@ -518,6 +512,19 @@ bool PreferencesPanel::Drag(double dx, double dy)
 		}
 	}
 	return false;
+}
+
+
+
+void PreferencesPanel::Resize()
+{
+	if(page == 'p')
+	{
+		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
+		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
+		pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
+		RenderPluginDescription(selectedPlugin);
+	}
 }
 
 
@@ -1304,7 +1311,7 @@ void PreferencesPanel::Exit()
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	if(recacheDeadlines)
-		player.CalculateRemainingDeadlines();
+		player.CacheMissionInformation(true);
 
 	GetUI()->Pop(this);
 }

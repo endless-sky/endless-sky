@@ -66,6 +66,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
+	Resize();
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -74,15 +75,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	GameData::Preload(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
-
-	Audio::Pause();
-}
-
-
-
-PlanetPanel::~PlanetPanel()
-{
-	Audio::Resume();
 }
 
 
@@ -169,7 +161,7 @@ void PlanetPanel::Draw()
 		if(planet.HasNamedPort())
 		{
 			info.SetCondition("has port");
-			info.SetString("port name", port.Name());
+			info.SetString("port name", port.DisplayName());
 		}
 
 		if(hasShipyard)
@@ -185,10 +177,7 @@ void PlanetPanel::Draw()
 	// The description text needs to be updated because player conditions can be changed
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
-	{
-		description->SetRect(ui->GetBox("content"));
 		description->SetText(planet.Description().ToString());
-	}
 }
 
 
@@ -291,6 +280,15 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 
 
 
+void PlanetPanel::Resize()
+{
+	const Interface &planetInterface = *GameData::Interfaces().Get(
+		Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	description->SetRect(planetInterface.GetBox("content"));
+}
+
+
+
 void PlanetPanel::TakeOffIfReady()
 {
 	// If we're currently showing a conversation or dialog, wait for it to close.
@@ -337,7 +335,7 @@ void PlanetPanel::TakeOffIfReady()
 				// record and report all absent ships later.
 				if(result.first->GetSystem() != &system)
 				{
-					out << result.first->Name() << ", ";
+					out << result.first->GivenName() << ", ";
 					absentCannotFly.push_back(result.first);
 				}
 				else

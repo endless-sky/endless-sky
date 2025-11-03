@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Messages.h"
@@ -44,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cassert>
@@ -451,8 +453,9 @@ void PlayerInfo::Load(const filesystem::path &path)
 	ApplyChanges();
 	// Ensure the player is in a valid state after loading & applying changes.
 	ValidateLoad();
-	// Cache the remaining number of days for all deadline missions.
-	CalculateRemainingDeadlines();
+	// Cache the remaining number of days for all deadline missions and
+	// the location of tracked NPCs.
+	CacheMissionInformation();
 
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
@@ -619,7 +622,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		// Update the deadline calculations for missions in case the system
 		// changes resulted in a change in DistanceMap calculations.
 		if(instantChanges)
-			CalculateRemainingDeadlines();
+			CacheMissionInformation(true);
 	}
 
 	// Only move the changes into my list if they are not already there.
@@ -783,7 +786,7 @@ void PlayerInfo::AdvanceDate(int amount)
 		for(Mission &mission : missions)
 		{
 			if(mission.CheckDeadline(date) && mission.IsVisible())
-				Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
+				Messages::Add("You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
 					Messages::Importance::Highest);
 			if(!mission.IsFailed())
 				mission.Do(Mission::DAILY, *this);
@@ -799,7 +802,7 @@ void PlayerInfo::AdvanceDate(int amount)
 	// We need to fully recalculate the number of days remaining instead of
 	// just reducing the cached values by 1 because the player may have
 	// explored new systems that change the DistanceMap calculations.
-	CalculateRemainingDeadlines();
+	CacheMissionInformation(true);
 }
 
 
@@ -1072,7 +1075,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 
 	auto flightChecks = map<const shared_ptr<Ship>, vector<string>>{};
 	for(const auto &ship : ships)
-		if(ship->GetSystem() && !ship->IsDisabled() && !ship->IsParked())
+		if(ship->GetSystem() && ship->GetPlanet() && !ship->IsParked())
 		{
 			auto checks = ship->FlightCheck();
 			if(!checks.empty())
@@ -1097,7 +1100,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
-					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->Name());
+					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->GivenName());
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
@@ -1303,7 +1306,7 @@ void PlayerInfo::RenameShip(const Ship *selected, const string &name)
 	for(auto &ship : ships)
 		if(ship.get() == selected)
 		{
-			ship->SetName(name);
+			ship->SetGivenName(name);
 			return;
 		}
 }
@@ -1610,7 +1613,7 @@ void PlayerInfo::Land(UI *ui)
 		int named = 0;
 		while(mit != inactiveMissions.rend() && (++named < 10))
 		{
-			message += "\t\"" + mit->Name() + "\"\n";
+			message += "\t\"" + mit->DisplayName() + "\"\n";
 			++mit;
 		}
 		if(mit != inactiveMissions.rend())
@@ -1769,7 +1772,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		if(it.second)
 		{
 			if(it.first->IsVisible())
-				Messages::Add("Mission \"" + it.first->Name()
+				Messages::Add("Mission \"" + it.first->DisplayName()
 					+ "\" aborted because you do not have space for the cargo."
 						, Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
@@ -1778,7 +1781,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		if(it.second)
 		{
 			if(it.first->IsVisible())
-				Messages::Add("Mission \"" + it.first->Name()
+				Messages::Add("Mission \"" + it.first->DisplayName()
 					+ "\" aborted because you do not have enough passenger bunks free."
 						, Messages::Importance::Highest);
 			missionsToRemove.push_back(it.first);
@@ -2014,18 +2017,21 @@ bool PlayerInfo::HasAvailableEnteringMissions() const
 
 
 
-void PlayerInfo::CalculateRemainingDeadlines()
+void PlayerInfo::CacheMissionInformation(bool onlyDeadlines)
 {
 	remainingDeadlines.clear();
 	DistanceMap here(*this, system);
-	for(const Mission &mission : missions)
-		CalculateRemainingDeadline(mission, here);
+	for(Mission &mission : missions)
+		CacheMissionInformation(mission, here, onlyDeadlines);
 }
 
 
 
-void PlayerInfo::CalculateRemainingDeadline(const Mission &mission, DistanceMap &here)
+void PlayerInfo::CacheMissionInformation(Mission &mission, const DistanceMap &here, bool onlyDeadlines)
 {
+	if(!onlyDeadlines)
+		mission.RecalculateTrackedSystems();
+
 	if(!mission.Deadline())
 		return;
 
@@ -2245,9 +2251,9 @@ void PlayerInfo::SortAvailable()
 			// Tiebreaker for equal PAY is ABC.
 			case ABC:
 			{
-				if(lhs.Name() < rhs.Name())
+				if(lhs.DisplayName() < rhs.DisplayName())
 					return true;
-				else if(lhs.Name() > rhs.Name())
+				else if(lhs.DisplayName() > rhs.DisplayName())
 					return false;
 			}
 			// Tiebreaker fallback to keep sorting consistent is unique UUID:
@@ -2636,9 +2642,9 @@ void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 	const Ship *flag = Flagship();
 	if(flag)
 	{
-		subs["<ship>"] = flag->Name();
+		subs["<ship>"] = flag->GivenName();
 		subs["<model>"] = flag->DisplayModelName();
-		subs["<flagship>"] = flag->Name();
+		subs["<flagship>"] = flag->GivenName();
 		subs["<flagship model>"] = flag->DisplayModelName();
 	}
 
@@ -2975,12 +2981,15 @@ void PlayerInfo::SelectNextSecondary()
 
 	// Find the next secondary weapon.
 	for( ; it != flagship->Outfits().end(); ++it)
-		if(it->first->Icon())
+	{
+		const Weapon *weapon = it->first->GetWeapon().get();
+		if(weapon && weapon->Icon())
 		{
 			selectedWeapons.clear();
 			selectedWeapons.insert(it->first);
 			return;
 		}
+	}
 
 	// If no weapon was selected and we didn't find any weapons at this point,
 	// then the player just doesn't have any secondary weapons.
@@ -2990,8 +2999,11 @@ void PlayerInfo::SelectNextSecondary()
 	// Reached the end of the list. Select all possible secondary weapons here.
 	it = flagship->Outfits().begin();
 	for( ; it != flagship->Outfits().end(); ++it)
-		if(it->first->Icon())
+	{
+		const Weapon *weapon = it->first->GetWeapon().get();
+		if(weapon && weapon->Icon())
 			selectedWeapons.insert(it->first);
+	}
 
 	// If we have only one weapon selected at this point, then the player
 	// only has a single secondary weapon. Clear the list, since the weapon
@@ -3406,7 +3418,7 @@ void PlayerInfo::ValidateLoad()
 		{
 			planet = (*it)->GetPlanet();
 			system = (*it)->GetSystem();
-			warning += ". Defaulting to location of flagship \"" + (*it)->Name() + "\", " + planet->TrueName() + ".";
+			warning += ". Defaulting to location of flagship \"" + (*it)->GivenName() + "\", " + planet->TrueName() + ".";
 		}
 		else
 			warning += " (no ships could supply a valid player location).";
@@ -3435,7 +3447,7 @@ void PlayerInfo::ValidateLoad()
 		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
 		{
 			ship->SetSystem(system);
-			Logger::LogError("Warning: player ship \"" + ship->Name()
+			Logger::LogError("Warning: player ship \"" + ship->GivenName()
 				+ "\" did not specify a valid system. Defaulting to the player's system.");
 		}
 		// In-system ships that aren't on a valid planet should get moved to the player's planet
@@ -3443,7 +3455,7 @@ void PlayerInfo::ValidateLoad()
 		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
 		{
 			ship->SetPlanet(planet);
-			Logger::LogError("Warning: in-system player ship \"" + ship->Name()
+			Logger::LogError("Warning: in-system player ship \"" + ship->GivenName()
 				+ "\" specified an invalid planet. Defaulting to the player's planet.");
 		}
 		// Owned ships that are not in the player's system always start in flight.
@@ -4148,6 +4160,16 @@ void PlayerInfo::RegisterDerivedConditions()
 		return HyperspaceTravelDays(this->GetSystem(), system);
 	});
 
+	// A condition to check whether the given government is an enemy. This includes whether
+	// your reputation with the government is negative or if the government has been provoked.
+	// Governments that have been bribed will not count as an enemy.
+	conditions["enemy: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
+		string govName = ce.NameWithoutPrefix();
+		auto gov = GameData::Governments().Get(govName);
+		if(!gov)
+			return 0;
+		return gov->IsEnemy();
+	});
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	conditions["reputation: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
@@ -4184,6 +4206,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(value <= 1)
 			return 0;
 		return Random::Int(value);
+	});
+
+	// Gamerule condition getter:
+	conditions["gamerule: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
+		return GameData::GetGamerules().GetValue(ce.NameWithoutPrefix());
 	});
 
 	// Global conditions setters and getters:
@@ -4259,9 +4286,9 @@ void PlayerInfo::StepMissions(UI *ui)
 	const Ship *flag = Flagship();
 	if(flag)
 	{
-		substitutions["<ship>"] = flag->Name();
+		substitutions["<ship>"] = flag->GivenName();
 		substitutions["<model>"] = flag->DisplayModelName();
-		substitutions["<flagship>"] = flag->Name();
+		substitutions["<flagship>"] = flag->GivenName();
 		substitutions["<flagship model>"] = flag->DisplayModelName();
 	}
 
@@ -4734,7 +4761,7 @@ void PlayerInfo::Fine(UI *ui)
 				ui->Push(new ConversationPanel(*this, *conversation));
 			else
 			{
-				message = "Before you can leave your ship, the " + gov->GetName()
+				message = "Before you can leave your ship, the " + gov->DisplayName()
 					+ " authorities show up and begin scanning it. They say, \"Captain "
 					+ LastName()
 					+ ", we detect highly illegal material on your ship.\""
@@ -4825,7 +4852,7 @@ void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
 void PlayerInfo::AddStockShip(const Ship *model, const string &name)
 {
 	ships.push_back(make_shared<Ship>(*model));
-	ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
+	ships.back()->SetGivenName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
 	ships.back()->SetSystem(system);
 	ships.back()->SetPlanet(planet);
 	ships.back()->SetIsSpecial();
