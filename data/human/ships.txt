@@ -21,9 +21,9 @@ ship "Aerie"
 		"hull" 1900
 		"required crew" 10
 		"bunks" 28
-		"mass" 130
-		"drag" 4.1
-		"heat dissipation" .7
+		"mass" 390
+		"drag" 6.15
+		"heat dissipation" .47
 		"fuel capacity" 500
 		"cargo space" 50
 		"outfit space" 390
@@ -62,6 +62,10 @@ ship "Aerie"
 		"launch effect" "human internal"
 	bay "Fighter" 43.5 2
 		"launch effect" "human internal"
+	bay "Fighter" -43.5 2
+		"launch effect" "human internal"
+	bay "Fighter" 43.5 2
+		"launch effect" "human internal"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -70,7 +74,7 @@ ship "Aerie"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "The Lionheart Aerie is a light carrier, designed to be just big enough for two fighter bays plus a decent armament of its own. Variations on this same ship design have been in use in the Deep for almost half a millennium, but this model comes with the very latest in generator and weapon technology."
+	description "The Lionheart Aerie is a light carrier, designed to be just big enough for four fighter bays plus a decent armament of its own. Variations on this same ship design have been in use in the Deep for almost half a millennium, but this model comes with the very latest in generator and weapon technology."
 
 
 
@@ -85,9 +89,9 @@ ship "Argosy"
 		"hull" 2600
 		"required crew" 4
 		"bunks" 14
-		"mass" 330
-		"drag" 5.9
-		"heat dissipation" .7
+		"mass" 480
+		"drag" 7.4
+		"heat dissipation" .56
 		"fuel capacity" 400
 		"cargo space" 120
 		"outfit space" 270
@@ -146,9 +150,9 @@ ship "Arrow"
 		"hull" 400
 		"required crew" 1
 		"bunks" 5
-		"mass" 130
-		"drag" 2.0
-		"heat dissipation" .85
+		"mass" 180
+		"drag" 2.3
+		"heat dissipation" .74
 		"fuel capacity" 600
 		"cargo space" 10
 		"outfit space" 180
@@ -161,7 +165,7 @@ ship "Arrow"
 			"hit force" 360
 	outfits
 		"Sidewinder Missile Pod" 2
-		"Sidewinder Missile" 8
+		"Sidewinder Missile" 12
 		"Anti-Missile Turret"
 		
 		"Dwarf Core"
@@ -201,9 +205,9 @@ ship "Auxiliary"
 		"hull" 5900
 		"required crew" 87
 		"bunks" 250
-		"mass" 820
-		"drag" 13.3
-		"heat dissipation" .45
+		"mass" 1900
+		"drag" 22.6
+		"heat dissipation" .27
 		"fuel capacity" 900
 		"cargo space" 250
 		"outfit space" 720
@@ -318,9 +322,9 @@ ship "Bactrian"
 		"hull" 8600
 		"required crew" 70
 		"bunks" 245
-		"mass" 940
-		"drag" 16.1
-		"heat dissipation" .4
+		"mass" 2450
+		"drag" 30.6
+		"heat dissipation" .22
 		"fuel capacity" 700
 		"cargo space" 530
 		"outfit space" 740
@@ -431,13 +435,13 @@ ship "Bastion"
 	attributes
 		category "Medium Warship"
 		"cost" 3860000
-		"shields" 7500
-		"hull" 4700
+		"shields" 8600
+		"hull" 5300
 		"required crew" 17
 		"bunks" 40
-		"mass" 580
-		"drag" 10.3
-		"heat dissipation" .5
+		"mass" 1100
+		"drag" 15.5
+		"heat dissipation" .34
 		"fuel capacity" 500
 		"cargo space" 110
 		"outfit space" 470
@@ -499,9 +503,9 @@ ship "Behemoth"
 		"hull" 6300
 		"required crew" 12
 		"bunks" 30
-		"mass" 540
-		"drag" 11.7
-		"heat dissipation" .4
+		"mass" 1120
+		"drag" 14.6
+		"heat dissipation" .26
 		"fuel capacity" 600
 		"cargo space" 490
 		"outfit space" 510
@@ -561,9 +565,9 @@ ship "Berserker"
 		"hull" 500
 		"required crew" 1
 		"bunks" 2
-		"mass" 90
-		"drag" 2.2
-		"heat dissipation" .85
+		"mass" 130
+		"drag" 2.5
+		"heat dissipation" .74
 		"fuel capacity" 400
 		"cargo space" 10
 		"outfit space" 200
@@ -577,7 +581,7 @@ ship "Berserker"
 	outfits
 		"Energy Blaster" 2
 		"Javelin Mini Pod" 2
-		"Javelin" 80
+		"Javelin" 60
 		
 		"nGVF-CC Fuel Cell"
 		"LP072a Battery Pack"
@@ -612,9 +616,9 @@ ship "Blackbird"
 		"hull" 900
 		"required crew" 3
 		"bunks" 28
-		"mass" 220
-		"drag" 5.0
-		"heat dissipation" .7
+		"mass" 360
+		"drag" 6.2
+		"heat dissipation" .56
 		"fuel capacity" 700
 		"cargo space" 60
 		"outfit space" 350
@@ -665,9 +669,9 @@ ship "Bounder"
 		"hull" 700
 		"required crew" 1
 		"bunks" 17
-		"mass" 130
-		"drag" 3.7
-		"heat dissipation" .8
+		"mass" 200
+		"drag" 4.4
+		"heat dissipation" .67
 		"fuel capacity" 800
 		"cargo space" 40
 		"outfit space" 220
@@ -713,9 +717,9 @@ ship "Boxwing"
 		"hull" 800
 		"required crew" 1
 		"bunks" 1
-		"mass" 45
-		"drag" .59
-		"heat dissipation" .27
+		"mass" 54
+		"drag" .65
+		"heat dissipation" .25
 		"outfit space" 45
 		"engine capacity" 28
 		"cargo space" 80
@@ -751,9 +755,9 @@ ship "Bulk Freighter"
 		"hull" 7600
 		"required crew" 12
 		"bunks" 21
-		"mass" 870
-		"drag" 14
-		"heat dissipation" .4
+		"mass" 1510
+		"drag" 16.8
+		"heat dissipation" .27
 		"fuel capacity" 900
 		"cargo space" 640
 		"outfit space" 410
@@ -808,13 +812,13 @@ ship "Bulwark"
 	attributes
 		category "Medium Warship"
 		"cost" 4360000
-		"shields" 7000
-		"hull" 5600
+		"shields" 8000
+		"hull" 6500
 		"required crew" 19
 		"bunks" 31
-		"mass" 881
-		"drag" 13.4
-		"heat dissipation" .35
+		"mass" 1582
+		"drag" 20.1
+		"heat dissipation" .28
 		"fuel capacity" 500
 		"cargo space" 12
 		"outfit space" 521
@@ -822,10 +826,10 @@ ship "Bulwark"
 		"engine capacity" 120
 		"threshold percentage" .08
 		weapon
-			"blast radius" 120
-			"shield damage" 1200
-			"hull damage" 600
-			"hit force" 1800
+			"blast radius" 145
+			"shield damage" 1450
+			"hull damage" 725
+			"hit force" 2175
 	outfits
 		"Plasma Cannon" 2
 		"Heavy Rocket Launcher" 2
@@ -840,6 +844,7 @@ ship "Bulwark"
 		"Water Coolant System"
 		"Tactical Scanner"
 		"Laser Rifle" 19
+		"Nerve Gas" 3
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -855,11 +860,10 @@ ship "Bulwark"
 	turret -35.5 29.5 "Quad Blaster Turret"
 	turret 35.5 29.5 "Quad Blaster Turret"
 	leak "leak" 40 50
-	leak "flame" 40 80
-	leak "big leak" 70 30
-	explode "tiny explosion" 5
+	leak "flame" 50 80
+	leak "big leak" 70 40
 	explode "small explosion" 15
-	explode "medium explosion" 30
+	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
 	description `The Bulwark is basically what you get by welding a bunch of scrap metal on to a Bastion. It is a tough, slow brawler that is most often used by warlords to protect their properties, whether it'd be their ships or hideouts from raids by either the authorities or their rivals. Due to their lack of speed and cargo space these ships rarely participate in raiding merchant convoys outside their home system.`
@@ -878,13 +882,13 @@ ship "Carrier"
 		"hull" 8300
 		"required crew" 111
 		"bunks" 184
-		"mass" 910
-		"drag" 17.7
-		"heat dissipation" .45
+		"mass" 2640
+		"drag" 35.4
+		"heat dissipation" .23
 		"fuel capacity" 700
 		"cargo space" 100
 		"outfit space" 820
-		"weapon capacity" 370
+		"weapon capacity" 240
 		"engine capacity" 210
 		weapon
 			"blast radius" 300
@@ -892,44 +896,50 @@ ship "Carrier"
 			"hull damage" 1500
 			"hit force" 4500
 	outfits
-		"Particle Cannon" 4
-		"Meteor Missile Launcher" 4
-		"Meteor Missile" 120
-		"Heavy Laser Turret" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Sidewinder Missile Rack" 8
+		"Sidewinder Missile" 184
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret"
 		"Heavy Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
-		"D94-YV Shield Generator"
+		"D94-YV Shield Generator" 2
 		"Large Radar Jammer" 2
 		"Water Coolant System"
 		"Brig"
 		"Laser Rifle" 40
 		"Fragmentation Grenades" 40
-		"Security Station"
+		"Security Station" 2
 		"Tactical Scanner"
 		
 		"X5700 Ion Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
-		
+
 	engine -36.5 200 0.65
 	engine 36.5 200 0.65
-	gun -17.5 -176.5 "Particle Cannon"
-	gun 17.5 -176.5 "Particle Cannon"
-	gun -17.5 -176.5 "Meteor Missile Launcher"
-	gun 17.5 -176.5 "Meteor Missile Launcher"
-	gun -26 -167.5 "Particle Cannon"
-	gun 26 -167.5 "Particle Cannon"
+	gun -17.5 -176.5 "Torpedo Launcher"
+	gun 17.5 -176.5 "Torpedo Launcher"
 	gun -26 -167.5 "Meteor Missile Launcher"
 	gun 26 -167.5 "Meteor Missile Launcher"
 	turret 0 -49 "Heavy Laser Turret"
-	turret 0 14 "Heavy Laser Turret"
 	turret -22 22 "Heavy Anti-Missile Turret"
 	turret 22 22 "Heavy Anti-Missile Turret"
 	bay "Fighter" -38.5 -64.5
 		"launch effect" "human internal"
 	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" -38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" -50 40.5
+		"launch effect" "human internal"
+	bay "Fighter" 50 40.5
 		"launch effect" "human internal"
 	bay "Fighter" -50 40.5
 		"launch effect" "human internal"
@@ -970,9 +980,9 @@ ship "Class C Freighter"
 		"hull" 7600
 		"required crew" 18
 		"bunks" 43
-		"mass" 880
-		"drag" 14
-		"heat dissipation" .4
+		"mass" 1525
+		"drag" 16.8
+		"heat dissipation" .27
 		"fuel capacity" 900
 		"cargo space" 20
 		"outfit space" 410
@@ -1061,9 +1071,9 @@ ship "Clipper"
 		"hull" 800
 		"required crew" 3
 		"bunks" 9
-		"mass" 150
-		"drag" 3.7
-		"heat dissipation" .8
+		"mass" 210
+		"drag" 4.3
+		"heat dissipation" .7
 		"fuel capacity" 500
 		"cargo space" 70
 		"outfit space" 260
@@ -1077,7 +1087,7 @@ ship "Clipper"
 	outfits
 		"Beam Laser" 2
 		"Javelin Mini Pod" 2
-		"Javelin" 80
+		"Javelin" 60
 		
 		"nGVF-DD Fuel Cell"
 		"LP072a Battery Pack"
@@ -1110,7 +1120,7 @@ ship "Combat Drone"
 		category "Drone"
 		licenses
 			Navy
-		"cost" 83000
+		"cost" 63000
 		"hull" 700
 		"automaton" 1
 		"mass" 20
@@ -1152,9 +1162,9 @@ ship "Container Transport"
 		"hull" 8000
 		"required crew" 6
 		"bunks" 18
-		"mass" 880
-		"drag" 17.6
-		"heat dissipation" .6
+		"mass" 1525
+		"drag" 21.1
+		"heat dissipation" .4
 		"fuel capacity" 600
 		"cargo space" 550
 		"outfit space" 410
@@ -1213,9 +1223,9 @@ ship "Corvette"
 		"hull" 800
 		"required crew" 8
 		"bunks" 32
-		"mass" 150
-		"drag" 3.5
-		"heat dissipation" .7
+		"mass" 380
+		"drag" 4.9
+		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 420
@@ -1277,9 +1287,9 @@ ship "Cruiser"
 		"hull" 6400
 		"required crew" 81
 		"bunks" 136
-		"mass" 680
-		"drag" 10.1
-		"heat dissipation" .45
+		"mass" 1910
+		"drag" 18.7
+		"heat dissipation" .25
 		"fuel capacity" 600
 		"cargo space" 60
 		"outfit space" 760
@@ -1352,33 +1362,30 @@ ship "Cutthroat"
 	attributes
 		category "Light Warship"
 		"cost" 1100000
-		"shields" 2800
-		"hull" 600
-		"required crew" 4
-		"bunks" 6
-		"mass" 182
-		"drag" 3.4
-		"heat dissipation" .8
-		"fuel capacity" 500
-		"cargo space" 27
-		"outfit space" 282
-		"weapon capacity" 60
+		"shields" 3000
+		"hull" 1000
+		"required crew" 3
+		"bunks" 5
+		"mass" 202
+		"drag" 3.9
+		"heat dissipation" .7
+		"fuel capacity" 800
+		"cargo space" 82
+		"outfit space" 255
+		"weapon capacity" 32
 		"engine capacity" 111
-		weapon
-			"blast radius" 36
-			"shield damage" 360
-			"hull damage" 180
-			"hit force" 540
+#		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
 	outfits
-		"Twin Modified Blaster" 2
-		"Torpedo Pod" 2
-		"Torpedo Storage Rack"
-		"Torpedo" 21
+		"Gatling Gun" 4
+		"Gatling Gun Ammo" 12000
 		
-		"Fission Reactor"
+		"S3 Thermionic"
 		"LP036a Battery Pack"
-		"Water Coolant System"
-		"D23-QP Shield Generator"
+		"D41-HY Shield Generator"
 		"Laser Rifle" 5
 		
 		"A370 Atomic Thruster"
@@ -1390,17 +1397,17 @@ ship "Cutthroat"
 	engine 22 47
 	engine -13 43.5 .7
 	engine 13 43.5 .7
-	gun -21.5 -18 "Torpedo Pod"
-	gun 21.5 -18 "Torpedo Pod"
-	gun -11 -8.5 "Twin Modified Blaster"
-	gun 11 -8.5 "Twin Modified Blaster"
-	leak "leak" 60 50
-	leak "flame" 50 80
-	explode "tiny explosion" 15
-	explode "small explosion" 20
+	gun -21.5 -18 "Gatling Gun"
+	gun 21.5 -18 "Gatling Gun"
+	gun -11 -8.5 "Gatling Gun"
+	gun 11 -8.5 "Gatling Gun"
+	leak "leak" 70 50
+	leak "flame" 60 80
+	explode "tiny explosion" 10
+	explode "small explosion" 25
 	explode "medium explosion" 10
 	"final explode" "final explosion small"
-	description `Pirates call this heavily modified Clipper the "Cutthroat." With an extra pair of engine pods bolted on for the sole purpose of maximizing speed, it can catch or outrun all but the most fine-tuned ships in the sky.`
+	description `Pirates call this heavily modified Clipper the "Cutthroat." With an extra pair of engine pods bolted on for the sole purpose of maximizing speed, it can outrun all but the most fine-tuned ships in the sky, allowing its users to run almost any blockade.`
 
 
 
@@ -1428,7 +1435,7 @@ ship "Dagger"
 	outfits
 		"Beam Laser"
 		"Javelin Mini Pod" 2
-		"Javelin" 80
+		"Javelin" 60
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
@@ -1463,9 +1470,9 @@ ship "Dreadnought"
 		"hull" 7300
 		"required crew" 84
 		"bunks" 147
-		"mass" 630
-		"drag" 10.1
-		"heat dissipation" .65
+		"mass" 1840
+		"drag" 18.7
+		"heat dissipation" .36
 		"fuel capacity" 600
 		"cargo space" 100
 		"outfit space" 790
@@ -1575,9 +1582,9 @@ ship "Enforcer"
 		"hull" 1100
 		"required crew" 3
 		"bunks" 5
-		"mass" 130
-		"drag" 2.9
-		"heat dissipation" .7
+		"mass" 180
+		"drag" 3.3
+		"heat dissipation" .61
 		"fuel capacity" 400
 		"cargo space" 30
 		"outfit space" 210
@@ -1626,9 +1633,9 @@ ship "Falcon"
 		"hull" 3700
 		"required crew" 52
 		"bunks" 91
-		"mass" 510
-		"drag" 6.7
-		"heat dissipation" .7
+		"mass" 1260
+		"drag" 11.4
+		"heat dissipation" .42
 		"fuel capacity" 600
 		"cargo space" 130
 		"outfit space" 560
@@ -1692,9 +1699,9 @@ ship "Finch"
 		"hull" 200
 		"required crew" 1
 		"bunks" 1
-		"mass" 40
-		"drag" .83
-		"heat dissipation" .85
+		"mass" 50
+		"drag" .87
+		"heat dissipation" .81
 		"outfit space" 110
 		"weapon capacity" 20
 		"engine capacity" 40
@@ -1707,7 +1714,7 @@ ship "Finch"
 		"Beam Laser"
 		"Javelin Mini Pod" 2
 		"Javelin Storage Crate"
-		"Javelin" 180
+		"Javelin" 160
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
@@ -1739,9 +1746,9 @@ ship "Firebird"
 		"hull" 3400
 		"required crew" 7
 		"bunks" 22
-		"mass" 290
-		"drag" 4.5
-		"heat dissipation" .6
+		"mass" 630
+		"drag" 6.75
+		"heat dissipation" .4
 		"fuel capacity" 400
 		"cargo space" 50
 		"outfit space" 400
@@ -1798,9 +1805,9 @@ ship "Flivver"
 		"hull" 200
 		"required crew" 1
 		"bunks" 3
-		"mass" 40
-		"drag" 1.0
-		"heat dissipation" .9
+		"mass" 50
+		"drag" 1.05
+		"heat dissipation" .86
 		"fuel capacity" 500
 		"cargo space" 15
 		"outfit space" 130
@@ -1844,9 +1851,9 @@ ship "Freighter"
 		"hull" 2000
 		"required crew" 2
 		"bunks" 7
-		"mass" 240
-		"drag" 5.6
-		"heat dissipation" .6
+		"mass" 410
+		"drag" 7.6
+		"heat dissipation" .45
 		"fuel capacity" 600
 		"cargo space" 150
 		"outfit space" 250
@@ -1898,9 +1905,9 @@ ship "Frigate"
 		"hull" 2500
 		"required crew" 21
 		"bunks" 44
-		"mass" 310
-		"drag" 5.2
-		"heat dissipation" .7
+		"mass" 710
+		"drag" 8.1
+		"heat dissipation" .46
 		"fuel capacity" 500
 		"cargo space" 35
 		"outfit space" 410
@@ -1963,9 +1970,9 @@ ship "Fury"
 		"hull" 400
 		"required crew" 1
 		"bunks" 3
-		"mass" 70
-		"drag" 1.6
-		"heat dissipation" .9
+		"mass" 105
+		"drag" 1.8
+		"heat dissipation" .79
 		"fuel capacity" 600
 		"cargo space" 15
 		"outfit space" 160
@@ -2017,9 +2024,9 @@ ship "Gunboat"
 		"hull" 1400
 		"required crew" 7
 		"bunks" 12
-		"mass" 150
-		"drag" 3.1
-		"heat dissipation" .8
+		"mass" 280
+		"drag" 4.0
+		"heat dissipation" .62
 		"fuel capacity" 600
 		"cargo space" 50
 		"outfit space" 270
@@ -2072,9 +2079,9 @@ ship "Hauler"
 		"hull" 3700
 		"required crew" 3
 		"bunks" 12
-		"mass" 250
-		"drag" 10.5
-		"heat dissipation" .6
+		"mass" 490
+		"drag" 9.8
+		"heat dissipation" .43
 		"fuel capacity" 400
 		"cargo space" 130
 		"outfit space" 350
@@ -2131,9 +2138,9 @@ ship "Hauler II"
 		"hull" 5200
 		"required crew" 3
 		"bunks" 12
-		"mass" 360
-		"drag" 11.5
-		"heat dissipation" .6
+		"mass" 640
+		"drag" 10.7
+		"heat dissipation" .43
 		"fuel capacity" 400
 		"cargo space" 260
 		"outfit space" 350
@@ -2192,9 +2199,9 @@ ship "Hauler III"
 		"hull" 6700
 		"required crew" 3
 		"bunks" 12
-		"mass" 470
-		"drag" 12.5
-		"heat dissipation" .6
+		"mass" 790
+		"drag" 11.6
+		"heat dissipation" .43
 		"fuel capacity" 400
 		"cargo space" 390
 		"outfit space" 350
@@ -2253,9 +2260,9 @@ ship "Hawk"
 		"hull" 500
 		"required crew" 1
 		"bunks" 4
-		"mass" 110
-		"drag" 2.1
-		"heat dissipation" .8
+		"mass" 170
+		"drag" 2.5
+		"heat dissipation" .67
 		"fuel capacity" 300
 		"cargo space" 20
 		"outfit space" 200
@@ -2301,9 +2308,9 @@ ship "Headhunter"
 		"hull" 700
 		"required crew" 2
 		"bunks" 4
-		"mass" 120
-		"drag" 2.6
-		"heat dissipation" .8
+		"mass" 175
+		"drag" 3.0
+		"heat dissipation" .7
 		"fuel capacity" 400
 		"cargo space" 50
 		"outfit space" 250
@@ -2354,9 +2361,9 @@ ship "Heavy Shuttle"
 		"hull" 700
 		"required crew" 1
 		"bunks" 10
-		"mass" 90
-		"drag" 1.9
-		"heat dissipation" .8
+		"mass" 110
+		"drag" 2.1
+		"heat dissipation" .73
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 130
@@ -2397,9 +2404,9 @@ ship "Hogshead"
 		"hull" 1900
 		"required crew" 18
 		"bunks" 84
-		"mass" 210
-		"drag" 4.3
-		"heat dissipation" .55
+		"mass" 450
+		"drag" 6.2
+		"heat dissipation" .38
 		"fuel capacity" 600
 		"cargo space" 45
 		"outfit space" 320
@@ -2444,6 +2451,55 @@ ship "Hogshead"
 
 
 
+ship "Jackal"
+	sprite "ship/jackal"
+	thumbnail "thumbnail/jackal"
+	attributes
+		category "Interceptor"
+		"cost" 320000
+		"shields" 1600
+		"hull" 500
+		"required crew" 1
+		"bunks" 2
+		"mass" 100
+		"drag" .95
+		"heat dissipation" .68
+		"fuel capacity" 500
+		"cargo space" 10
+		"outfit space" 155
+		"weapon capacity" 25
+		"engine capacity" 40
+		weapon
+			"blast radius" 21
+			"shield damage" 210
+			"hull damage" 105
+			"hit force" 315
+	outfits
+		"Modified Blaster" 4
+		
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		
+		"Chipmunk Plasma Thruster"
+		"Chipmunk Plasma Steering"
+		"Hyperdrive"
+
+	engine -10 35
+	engine 10 35
+	gun -17 -8.5
+	gun 17 -8.5
+	gun -25 -6
+	gun 25 -6
+	leak "leak" 50 40
+	leak "flame" 70 80
+	explode "tiny explosion" 10
+	explode "small explosion" 10
+	"final explode" "final explosion small"
+	description `The Jackal is notable for being one of the earliest warships that was designed with "freelancer" pilots in mind, rather than for corporate or law enforcement use. In its heyday, the Jackal contended with the Berserker for the title of the most popular Interceptor-class ship in human space. However, the Jackal's age and inflexibility regarding new developments in weaponry led to a decline in sales that eventually saw its manufacturer absorbed by the shipyard of its age-old rival, the Betelgeuse Shipyards Berserker.`
+
+
+
 ship "Lance"
 	sprite "ship/lance"
 	thumbnail "thumbnail/lance"
@@ -2468,8 +2524,7 @@ ship "Lance"
 	outfits
 		"Energy Blaster"
 		"Sidewinder Missile Pod" 2
-		"Sidewinder Missile Rack"
-		"Sidewinder Missile" 31
+		"Sidewinder Missile" 12
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor" 4
@@ -2479,8 +2534,8 @@ ship "Lance"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -14.5 30.5 0.5
-	engine 14.5 30.5 0.5
+	engine -14.5 30.5
+	engine 14.5 30.5
 	gun 0 -34 "Energy Blaster"
 	gun -13.5 -6.5 "Sidewinder Missile Pod"
 	gun 13.5 -6.5 "Sidewinder Missile Pod"
@@ -2501,9 +2556,9 @@ ship "Leviathan"
 		"hull" 5000
 		"required crew" 43
 		"bunks" 64
-		"mass" 600
-		"drag" 8.1
-		"heat dissipation" .5
+		"mass" 1515
+		"drag" 14.2
+		"heat dissipation" .3
 		"fuel capacity" 500
 		"cargo space" 80
 		"outfit space" 620
@@ -2561,9 +2616,9 @@ ship "Mammoth"
 		"hull" 7400
 		"required crew" 18
 		"bunks" 30
-		"mass" 688
-		"drag" 11.9
-		"heat dissipation" .32
+		"mass" 1361
+		"drag" 18.5
+		"heat dissipation" .21
 		"fuel capacity" 1000
 		"cargo space" 400
 		"outfit space" 536
@@ -2571,10 +2626,10 @@ ship "Mammoth"
 		"engine capacity" 114
 		"scan interference" 2
 		weapon
-			"blast radius" 140
-			"shield damage" 1400
-			"hull damage" 780
-			"hit force" 2100
+			"blast radius" 136
+			"shield damage" 1360
+			"hull damage" 680
+			"hit force" 2040
 	outfits
 		"Sidewinder Missile Launcher" 2
 		"Sidewinder Missile" 90
@@ -2612,15 +2667,15 @@ ship "Mammoth"
 	turret 47.5 33.5 "Proton Turret"
 	turret -22 66.5 "Anti-Missile Turret"
 	turret 22 66.5 "Anti-Missile Turret"
-	leak "leak" 30 50
-	leak "flame" 30 80
+	leak "leak" 40 50
+	leak "flame" 40 80
 	leak "big leak" 50 30
 	explode "small explosion" 15
-	explode "medium explosion" 25
-	explode "large explosion" 35
+	explode "medium explosion" 20
+	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "This is a rare, extensively modified Behemoth used by some pirates and smugglers to transport large amounts of goods. It is armed well enough to handle even a Navy Frigate if caught and fast enough to dash away from anything bigger."
+	description "This is a rare, extensively modified Behemoth used by some pirates and smugglers to transport large amounts of goods to systems both near and far. It is armed well enough to handle even a Navy Frigate if caught and fast enough to dash away from anything bigger."
 
 
 
@@ -2634,9 +2689,9 @@ ship "Manta"
 		"hull" 1500
 		"required crew" 6
 		"bunks" 10
-		"mass" 170
-		"drag" 4.7
-		"heat dissipation" .8
+		"mass" 352
+		"drag" 6.3
+		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 20
 		"outfit space" 350
@@ -2727,9 +2782,9 @@ ship "Modified Argosy"
 		"hull" 1900
 		"required crew" 5
 		"bunks" 12
-		"mass" 250
-		"drag" 6.2
-		"heat dissipation" .6
+		"mass" 400
+		"drag" 7.8
+		"heat dissipation" .48
 		"fuel capacity" 400
 		"cargo space" 60
 		"outfit space" 340
@@ -2752,7 +2807,7 @@ ship "Modified Argosy"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
 		"Brig"
-		"Laser Rifle" 2
+		"Laser Rifle" 12
 		
 		"Greyhound Plasma Thruster"
 		"X3200 Ion Steering"
@@ -2779,6 +2834,66 @@ ship "Modified Argosy"
 
 
 
+ship "Monitor"
+	sprite "ship/monitor"
+	thumbnail "thumbnail/monitor"
+	attributes
+		category "Medium Warship"
+		"cost" 2900000
+		"shields" 4900
+		"hull" 2400
+		"required crew" 20
+		"bunks" 32
+		"mass" 690
+		"drag" 8.4
+		"heat dissipation" .32
+		"fuel capacity" 500
+		"cargo space" 20
+		"outfit space" 330
+		"weapon capacity" 130
+		"engine capacity" 90
+		weapon
+			"blast radius" 73
+			"shield damage" 730
+			"hull damage" 365
+			"hit force" 1095
+	outfits
+		"Heavy Blaster" 3
+		"Laser Turret" 2
+		"Anti-Missile Turret"
+		
+		"KP-6 Photovoltaic Array" 3
+		"nGVF-BB Fuel Cell"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Laser Rifle" 6
+		"Fragmentation Grenades" 4
+		
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -20.5 92
+	engine 20.5 92
+	gun 0 -94.5 "Heavy Blaster"
+	gun -11 -86 "Heavy Blaster"
+	gun 11 -86 "Heavy Blaster"
+	turret -17.5 -19.5 "Laser Turret"
+	turret 17.5 -19.5 "Laser Turret"
+	turret 0 17 "Anti-Missile Turret"
+	leak "leak" 30 40
+	leak "flame" 40 80
+	leak "big leak" 70 30
+	explode "tiny explosion" 20
+	explode "small explosion" 40
+	explode "medium explosion" 20
+	explode "large explosion" 5
+	"final explode" "final explosion medium"
+	description `When the Republic first formed, planetary governments and corporations often fielded their own fleets; only the Deep had any form of a combined navy. Earth often found itself inefficiently directing those fleets to fight against pirates or defiant worlds. With a need to bring "peace among the stars," per the Republic motto, the newly formed Republic Navy commissioned the shipyards on Luna to design a robust warship that would be able to project the power of a united Republic. The resulting ship, the Monitor, served as the mainstay of the Navy fleets until the introduction of the more advanced Frigate.`
+	description `The few Monitors that still fly today are remnants of those sold by the Navy to the government of Betelgeuse, before they joined the Republic. Of the Monitors that made it into private hands, some eventually found themselves passing through the black markets of the Far North.`
+
+
+
 ship "Mule"
 	sprite "ship/mule"
 	thumbnail "thumbnail/mule"
@@ -2789,9 +2904,9 @@ ship "Mule"
 		"hull" 4400
 		"required crew" 14
 		"bunks" 43
-		"mass" 320
-		"drag" 5.7
-		"heat dissipation" .5
+		"mass" 780
+		"drag" 9.1
+		"heat dissipation" .32
 		"fuel capacity" 600
 		"cargo space" 170
 		"outfit space" 440
@@ -2853,9 +2968,9 @@ ship "Nest"
 		"hull" 3700
 		"required crew" 5
 		"bunks" 14
-		"mass" 250
-		"drag" 10.5
-		"heat dissipation" .67
+		"mass" 510
+		"drag" 9.8
+		"heat dissipation" .48
 		"fuel capacity" 500
 		"cargo space" 40
 		"outfit space" 400
@@ -2911,36 +3026,37 @@ ship "Nighthawk"
 	thumbnail "thumbnail/pirate nighthawk"
 	attributes
 		category "Transport"
-		"cost" 2530000
+		"cost" 2630000
 		"shields" 4000
 		"hull" 1100
-		"required crew" 4
-		"bunks" 28
-		"mass" 267
-		"drag" 5.2
-		"heat dissipation" .65
+		"required crew" 6
+		"bunks" 39
+		"mass" 400
+		"drag" 6.5
+		"heat dissipation" .52
 		"fuel capacity" 700
 		"cargo space" 16
-		"outfit space" 362
-		"weapon capacity" 102
+		"outfit space" 340
+		"weapon capacity" 72
 		"engine capacity" 123
+		"outfit scan opacity" 200
 		weapon
-			"blast radius" 60
-			"shield damage" 600
-			"hull damage" 300
-			"hit force" 900
+			"blast radius" 51
+			"shield damage" 510
+			"hull damage" 255
+			"hit force" 765
 	outfits
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret"
+		"Quad Blaster Turret"
+		"Anti-Missile Turret" 2
 		
 		"RT-I Radiothermal"
 		"KP-6 Photovoltaic Array" 3
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Large Radar Jammer"
-		"Tactical Scanner"
 		"Laser Rifle" 24
 		"Nerve Gas" 10
+		"Brig" 1
 		
 		"Impala Plasma Thruster"
 		"Impala Plasma Steering"
@@ -2950,17 +3066,17 @@ ship "Nighthawk"
 	engine 42.5 63 .8
 	engine -24 68 .6
 	engine 24 68 .6
-	turret 0 -6 "Heavy Anti-Missile Turret"
-	turret -26 15 "Quad Blaster Turret"
-	turret 26 15 "Quad Blaster Turret"
-	leak "leak" 50 50
+	turret 0 -6 "Quad Blaster Turret"
+	turret -26 15 "Anti-Missile Turret"
+	turret 26 15 "Anti-Missile Turret"
+	leak "leak" 40 50
 	leak "flame" 70 80
-	explode "tiny explosion" 15
-	explode "small explosion" 34
-	explode "medium explosion" 18
+	explode "tiny explosion" 20
+	explode "small explosion" 30
+	explode "medium explosion" 15
 	explode "large explosion" 2
 	"final explode" "final explosion small"
-	description "This is a modified Blackbird for ground raids and slave trading. It comes with an extra turret mount for suppressive fire on ground operations and additional hull reinforcement to resist returning fire."
+	description "The Nighthawk is the result of modifications to increase a Blackbird's passenger capacity for transportation of both lawless individuals and slavery, sacrificing much of the original cargo space. Additionally, at the cost of some shield strength, hull conversions have given the ship a bit more armor plating, along with another turret mount. This gives Nighthawks a bit more defense for combat situations that a Blackbird would not want to find itself in."
 
 
 
@@ -2974,9 +3090,9 @@ ship "Osprey"
 		"hull" 1600
 		"required crew" 9
 		"bunks" 24
-		"mass" 270
-		"drag" 5.9
-		"heat dissipation" .8
+		"mass" 630
+		"drag" 8.9
+		"heat dissipation" .54
 		"fuel capacity" 600
 		"cargo space" 40
 		"outfit space" 450
@@ -3035,9 +3151,9 @@ ship "Protector"
 		"hull" 7800
 		"required crew" 30
 		"bunks" 69
-		"mass" 500
-		"drag" 10.3
-		"heat dissipation" .6
+		"mass" 1150
+		"drag" 16.5
+		"heat dissipation" .38
 		"fuel capacity" 400
 		"cargo space" 50
 		"outfit space" 590
@@ -3099,13 +3215,13 @@ ship "Quicksilver"
 		"hull" 800
 		"required crew" 3
 		"bunks" 6
-		"mass" 120
-		"drag" 2.7
-		"heat dissipation" .8
+		"mass" 170
+		"drag" 3.1
+		"heat dissipation" .7
 		"fuel capacity" 400
 		"cargo space" 15
 		"outfit space" 240
-		"weapon capacity" 60
+		"weapon capacity" 80
 		"engine capacity" 70
 		weapon
 			"blast radius" 40
@@ -3117,8 +3233,8 @@ ship "Quicksilver"
 		
 		"nGVF-DD Fuel Cell"
 		"LP036a Battery Pack"
-		"D23-QP Shield Generator"
-		
+
+		"Capybara Reverse Thruster"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Hyperdrive"
@@ -3131,7 +3247,7 @@ ship "Quicksilver"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	"final explode" "final explosion small"
-	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two Particle Cannons. Because of its speed and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed. Unfortunately the Headhunter eventually surpassed the original design intent, but the Quicksilver's better durability to cost ratio, and the existence of long-term contracts, has kept it in use with Syndicate security forces."
+	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two Particle Cannons. Because of its speed, reverse thrusters, and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed. The focus on its weaponry left the Quicksilver with no room for even the most basic shield generator. Unfortunately the Headhunter eventually surpassed the original design intent, but the Quicksilver's better durability to cost ratio, and the existence of long-term contracts, has kept it in use with Syndicate security forces."
 
 
 
@@ -3147,9 +3263,9 @@ ship "Rainmaker"
 		"hull" 1200
 		"required crew" 3
 		"bunks" 7
-		"mass" 180
-		"drag" 3.8
-		"heat dissipation" .6
+		"mass" 260
+		"drag" 4.6
+		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 25
 		"outfit space" 240
@@ -3203,9 +3319,9 @@ ship "Raven"
 		"hull" 1400
 		"required crew" 6
 		"bunks" 13
-		"mass" 130
-		"drag" 3.7
-		"heat dissipation" .8
+		"mass" 250
+		"drag" 4.8
+		"heat dissipation" .62
 		"fuel capacity" 500
 		"cargo space" 30
 		"outfit space" 280
@@ -3260,9 +3376,9 @@ ship "Roost"
 		"hull" 5200
 		"required crew" 7
 		"bunks" 16
-		"mass" 360
-		"drag" 11.5
-		"heat dissipation" .67
+		"mass" 680
+		"drag" 10.7
+		"heat dissipation" .48
 		"fuel capacity" 600
 		"cargo space" 80
 		"outfit space" 450
@@ -3328,9 +3444,9 @@ ship "Saber"
 		"hull" 2600
 		"required crew" 16
 		"bunks" 25
-		"mass" 370
-		"drag" 6
-		"heat dissipation" .5
+		"mass" 660
+		"drag" 8.7
+		"heat dissipation" .35
 		"fuel capacity" 600
 		"cargo space" 30
 		"outfit space" 280
@@ -3385,9 +3501,9 @@ ship "Scout"
 		"hull" 400
 		"required crew" 1
 		"bunks" 12
-		"mass" 110
-		"drag" 3.4
-		"heat dissipation" .7
+		"mass" 160
+		"drag" 3.9
+		"heat dissipation" .61
 		"fuel capacity" 800
 		"cargo space" 55
 		"outfit space" 220
@@ -3437,9 +3553,9 @@ ship "Scrapper"
 		"hull" 520
 		"required crew" 1
 		"bunks" 4
-		"mass" 62
-		"drag" 1.4
-		"heat dissipation" .8
+		"mass" 71
+		"drag" 1.5
+		"heat dissipation" .77
 		"fuel capacity" 300
 		"cargo space" 21
 		"outfit space" 125
@@ -3483,9 +3599,9 @@ ship "Shuttle"
 		"hull" 600
 		"required crew" 1
 		"bunks" 6
-		"mass" 70
-		"drag" 1.7
-		"heat dissipation" .8
+		"mass" 80
+		"drag" 1.8
+		"heat dissipation" .77
 		"fuel capacity" 400
 		"cargo space" 20
 		"outfit space" 120
@@ -3528,9 +3644,9 @@ ship "Skein"
 		"hull" 6700
 		"required crew" 7
 		"bunks" 18
-		"mass" 470
-		"drag" 12.5
-		"heat dissipation" .71
+		"mass" 850
+		"drag" 11.6
+		"heat dissipation" .51
 		"fuel capacity" 700
 		"cargo space" 120
 		"outfit space" 500
@@ -3588,7 +3704,7 @@ ship "Skein"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F," "Skein" to its Militia only.`
+	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry almost as many fighters as the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F," "Skein" to its Militia only.`
 
 
 
@@ -3602,9 +3718,9 @@ ship "Sparrow"
 		"hull" 300
 		"required crew" 1
 		"bunks" 3
-		"mass" 50
-		"drag" .9
-		"heat dissipation" .8
+		"mass" 60
+		"drag" .95
+		"heat dissipation" .77
 		"fuel capacity" 300
 		"cargo space" 15
 		"outfit space" 130
@@ -3650,9 +3766,9 @@ ship "Splinter"
 		"hull" 1700
 		"required crew" 7
 		"bunks" 21
-		"mass" 250
-		"drag" 4.0
-		"heat dissipation" .7
+		"mass" 510
+		"drag" 5.6
+		"heat dissipation" .5
 		"fuel capacity" 600
 		"cargo space" 75
 		"outfit space" 400
@@ -3708,9 +3824,9 @@ ship "Star Barge"
 		"hull" 1000
 		"required crew" 1
 		"bunks" 3
-		"mass" 70
-		"drag" 2.1
-		"heat dissipation" .8
+		"mass" 80
+		"drag" 2.2
+		"heat dissipation" .77
 		"fuel capacity" 300
 		"cargo space" 50
 		"outfit space" 130
@@ -3753,9 +3869,9 @@ ship "Star Queen"
 		"hull" 2200
 		"required crew" 33
 		"bunks" 112
-		"mass" 230
-		"drag" 4.5
-		"heat dissipation" .65
+		"mass" 525
+		"drag" 6.7
+		"heat dissipation" .44
 		"fuel capacity" 700
 		"cargo space" 60
 		"outfit space" 360
@@ -3815,9 +3931,9 @@ ship "Sunder"
 		"hull" 1600
 		"required crew" 3
 		"bunks" 5
-		"mass" 160
-		"drag" 3.8
-		"heat dissipation" .7
+		"mass" 260
+		"drag" 4.7
+		"heat dissipation" .56
 		"fuel capacity" 600
 		"cargo space" 80
 		"outfit space" 230
@@ -3909,20 +4025,20 @@ ship "Valkyrie"
 		"shields" 4800
 		"hull" 2800
 		"required crew" 9
-		"bunks" 26
-		"mass" 157
-		"drag" 4.9
-		"heat dissipation" .63
+		"bunks" 19
+		"mass" 436
+		"drag" 7.4
+		"heat dissipation" .42
 		"fuel capacity" 500
-		"cargo space" 41
+		"cargo space" 81
 		"outfit space" 400
-		"weapon capacity" 170
-		"engine capacity" 76
+		"weapon capacity" 180
+		"engine capacity" 105
 		weapon
-			"blast radius" 80
-			"shield damage" 800
-			"hull damage" 400
-			"hit force" 1200
+			"blast radius" 76
+			"shield damage" 760
+			"hull damage" 380
+			"hit force" 1140
 	outfits
 		"Quad Blaster Turret" 2
 		"Particle Cannon" 2
@@ -3932,12 +4048,13 @@ ship "Valkyrie"
 		"NT-200 Nucleovoltaic"
 		"KP-6 Photovoltaic Panel" 3
 		"LP072a Battery Pack"
-		"D67-TM Shield Generator"
-		"Large Radar Jammer"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
 		"Laser Rifle" 18
+		"Nerve Gas" 3
 		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
 		"Hyperdrive"
 		
 	engine 15 97
@@ -3958,7 +4075,7 @@ ship "Valkyrie"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "Valkyries are pirate Aeries converted into more of a standalone warship than a support carrier. Losing a turret and a few bunks in place of increased armor protection, as well as boasting two more gun mounts, allows Valkyries to both take and put out noticeable amounts of damage. However, due to the extra weight, they are somewhat slower and lose a bit of shield efficiency."
+	description "Valkyries are modified Aeries that convert two of their bays and bunk space into more cargo space for smuggling goods, as well as more room to boast two extra gun mounts and increased armor protection. This allows Valkyries to both take and put out noticeable amounts of damage, however, due to the extra weight, they are somewhat slower and lose a bit of shield efficiency."
 
 
 
@@ -3972,9 +4089,9 @@ ship "Vanguard"
 		"hull" 6000
 		"required crew" 23
 		"bunks" 45
-		"mass" 500
-		"drag" 8
-		"heat dissipation" .6
+		"mass" 1030
+		"drag" 12
+		"heat dissipation" .4
 		"fuel capacity" 400
 		"cargo space" 50
 		"outfit space" 560
@@ -4037,9 +4154,9 @@ ship "Wasp"
 		"hull" 500
 		"required crew" 1
 		"bunks" 2
-		"mass" 60
-		"drag" 1.2
-		"heat dissipation" .8
+		"mass" 80
+		"drag" 1.3
+		"heat dissipation" .73
 		"fuel capacity" 400
 		"cargo space" 10
 		"outfit space" 150
@@ -4053,7 +4170,7 @@ ship "Wasp"
 	outfits
 		"Energy Blaster" 2
 		"Sidewinder Missile Pod"
-		"Sidewinder Missile" 4
+		"Sidewinder Missile" 6
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"

@@ -75,7 +75,8 @@ Files:
  images/land/canyon9*
 Copyright: Emily Mell <hasmidas@gmail.com>
 License: public-domain
- Based on public domain images taken from unsplash.com
+ Based on images taken from unsplash.com before June 2017, when all images
+ uploaded to that site were donated to the public domain.
 
 Files:
  images/icon/gat*
@@ -147,10 +148,18 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso, Darcy Manoel, and Michael Zahniser (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ images/land/moon0*
+Copyright: NASA/GSFC/Arizona State University
+License: public-domain
+ From NASA, and therefore in the public domain because they were created by
+ government employees while doing work for the government.
+
+Files:
  images/land/enceladus_1*
  images/land/enceladus_2*
  images/land/enceladus_3*
  images/land/enceladus_4*
+ images/land/moon1*
  images/ui/galaxy*
  images/ui/pleiades*
  images/planet/callisto*
@@ -213,6 +222,18 @@ License: public-domain
  a NASA mission, it is in the public domain.
 
 Files:
+ images/land/haze0*
+Copyright: Matt Bango
+License: CC0
+ Taken from https://archive.md/6S9KR. Cropped.
+
+Files:
+ images/land/haze1*
+Copyright: lydia harper
+License: CC0
+ Taken from https://archive.md/RVDAB. Cropped.
+
+Files:
  images/land/sea23*
 Copyright: Dan Stark
 License: public-domain
@@ -263,7 +284,8 @@ License: CC-BY-SA-4.0
 Files: images/land/sivael*
 Copyright: Tymoteusz Kapuściński (Sivael)
 License: CC-BY-SA-4.0
-Comment: Screenshots of environments created with assets purchased by Tymoteusz
+Comment:
+ Screenshots of environments created with assets purchased by Tymoteusz
  Kapuściński from the Unity Asset Store. Post-processing applied by Michael
  Zahniser to make the images look less artificial.
 
@@ -325,12 +347,6 @@ Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Iaz Poolar (under the same license).
 
-Files: images/portrait/*
-Copyright: Various
-License: public-domain
- Taken from unsplash.com, a collection of photographs that have been donated and
- placed in the public domain.
-
 Files:
  images/outfit/quarg*
  images/hardpoint/quarg*
@@ -350,6 +366,13 @@ Files:
 Copyright: Evan Fluharty (Evanfluharty@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
+
+Files:
+ images/hardpoint/quarg?ribault*
+ images/outfit/quarg?ribault*
+Copyright: Saugia (https://github.com/Saugia)
+License: CC-BY-SA-4.0
+Comment: Derived and completed from works by Evan Fluharty, Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
 
 Files:
  images/outfit/enforcer?riot?staff*
@@ -405,84 +428,62 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Rob Lavinsky (under the same license).
 
 Files:
+ images/scene/hai?bank*
+Copyright: Tomasz Frankowski
+License: public-domain
+ Taken from https://archive.is/uZuiY. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/scene/hai?shipyard*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/mw1rC. Cropped.
+
+Files:
+ images/scene/hai?start*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/GYsIK. Cropped.
+
+Files:
  images/land/badlands0*
- images/land/badlands1*
- images/land/badlands2*
  images/land/badlands5*
- images/land/badlands6*
  images/land/badlands7*
  images/land/badlands8*
- images/land/badlands10*
- images/land/badlands11*
- images/land/badlands12*
  images/land/beach0*
  images/land/beach2*
  images/land/beach3*
  images/land/beach5*
  images/land/beach6*
- images/land/beach13*
- images/land/beach14*
  images/land/canyon0*
- images/land/canyon1*
  images/land/canyon7*
- images/land/canyon8*
- images/land/canyon13*
- images/land/canyon14*
- images/land/canyon15*
- images/land/city2*
  images/land/city4*
  images/land/city6*
- images/land/city7*
  images/land/city8*
  images/land/city9*
  images/land/city10*
- images/land/city11*
- images/land/city12*
  images/land/desert1*
  images/land/desert2*
- images/land/desert11*
- images/land/desert12*
- images/land/desert13*
- images/land/dune1*
  images/land/fields1*
  images/land/fields2*
- images/land/fields3*
  images/land/fields5*
  images/land/fields6*
  images/land/fields7*
  images/land/fields9*
- images/land/fields13*
- images/land/fields14*
- images/land/fields15*
  images/land/fog0*
- images/land/fog1*
  images/land/fog2*
  images/land/fog4*
- images/land/fog6*
- images/land/fog8*
- images/land/fog9*
- images/land/fog10*
- images/land/fog11*
  images/land/forest1*
  images/land/forest2*
  images/land/forest3*
  images/land/forest4*
- images/land/forest5*
- images/land/forest6*
- images/land/forest7*
- images/land/forest8*
- images/land/forest9*
- images/land/garden1*
- images/land/hills0*
  images/land/hills2*
- images/land/hills8*
  images/land/lava1*
  images/land/lava2*
  images/land/lava6*
- images/land/lava12*
- images/land/lava13*
- images/land/loc3*
- images/land/mountain0*
  images/land/mountain1*
  images/land/mountain3*
  images/land/mountain4*
@@ -491,122 +492,784 @@ Files:
  images/land/mountain7*
  images/land/mountain8*
  images/land/mountain9*
- images/land/sea1*
- images/land/sea5*
- images/land/sea7*
  images/land/sea8*
- images/land/sea18*
- images/land/sea19*
  images/land/sky0*
  images/land/sky3*
- images/land/sky4*
- images/land/sky5*
  images/land/sky7*
  images/land/sky8*
  images/land/sky9*
- images/land/sky10*
- images/land/sky11*
  images/land/snow0*
  images/land/snow1*
  images/land/snow2*
  images/land/snow3*
  images/land/snow4*
- images/land/snow5*
  images/land/snow6*
  images/land/snow7*
- images/land/snow10*
- images/land/snow14*
- images/land/snow15*
- images/land/snow16*
- images/land/snow17*
- images/land/snow18*
- images/land/snow19*
- images/land/snow20*
- images/land/snow21*
  images/land/space2*
- images/land/station4*
- images/land/station6*
- images/land/station9*
- images/land/station10*
- images/land/station11*
- images/land/station13*
- images/land/station14*
- images/land/station16*
- images/land/station17*
- images/land/station18*
- images/land/station19*
- images/land/station20*
- images/land/station21*
- images/land/station22*
- images/land/station23*
- images/land/station24*
- images/land/station25*
- images/land/station26*
- images/land/station29*
- images/land/station30*
- images/land/station31*
- images/land/station32*
- images/land/station33*
- images/land/station34*
- images/land/station35*
- images/land/station36*
- images/land/station37*
- images/land/station38*
- images/land/station39*
- images/land/station40*
- images/land/station41*
- images/land/station42*
- images/land/station43*
- images/land/station44*
- images/land/station45*
  images/land/water0*
- images/land/water3*
- images/land/water4*
  images/land/water8*
- images/land/water12*
- images/land/water13*
 Copyright: Various
 License: public-domain
- Taken from unsplash.com, a collection of photographs that have been donated and
- placed in the public domain.
+ Taken from unsplash.com and added to the game before June 2017, when it was
+ a collection of photographs that had been donated and placed in the public domain.
+
+Files:
+ images/land/badlands1*
+Copyright: Jason Thompson
+License: public-domain
+ Taken from https://archive.is/arYCs. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/badlands2*
+Copyright: Tim de Groot
+License: CC0
+Comment:
+ Taken from https://archive.md/hetsv. Cropped.
+
+Files:
+ images/land/badlands6*
+Copyright: Darryl
+License: CC0
+Comment:
+ Taken from https://archive.md/I0k1p. Cropped.
+
+Files:
+ images/land/canyon1*
+Copyright: Ana Filipa Neves
+License: public-domain
+ Taken from https://archive.is/cFMrt. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/canyon8*
+Copyright: Benjaimn Esteves
+License: public-domain
+ Taken from https://archive.is/uHKHC. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/city2*
+Copyright: Bango Architecture & Design
+License: CC0
+Comment:
+ Taken from https://archive.md/0od2q. Cropped.
+
+Files:
+ images/land/city7*
+Copyright: Sawyer Bengston
+License: CC0
+Comment:
+ Taken from https://archive.md/b7yVx. Cropped.
+
+Files:
+ images/land/city11*
+Copyright: Burst
+License: CC0
+Comment:
+ Taken from https://archive.md/Q5zlt. Cropped.
+
+Files:
+ images/land/dune1*
+Copyright: Wilson Ye
+License: public-domain
+ Taken from https://archive.is/qmRn7. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fields3*
+Copyright: Doan Tuan
+License: public-domain
+ Taken from https://archive.is/yH9tF. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fog1*
+Copyright: Bob Richards
+License: CC0
+Comment:
+ Taken from https://archive.md/25whZ. Cropped.
+
+Files:
+ images/land/fog6*
+Copyright: Michael Dam
+License: public-domain
+ Taken from https://archive.is/vhrne. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest5*
+Copyright: Wei Pan
+License: public-domain
+ Taken from https://archive.is/zr5p0. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/hills0*
+Copyright: Levi Bare
+License: CC0
+Comment:
+ Taken from https://archive.md/Sh742. Cropped.
+
+Files:
+ images/land/mountain0*
+Copyright: Karsten Wurth
+License: public-domain
+ Taken from https://archive.is/QroFs. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/sea1*
+Copyright: Christian Joudrey
+License: public-domain
+ Taken from https://archive.is/uYIiS. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/sea5*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from
+ https://web.archive.org/web/20230717053928/https://www.pexels.com/photo/lightning-over-sea-against-storm-clouds-248775/.
+ Cropped.
+
+Files:
+ images/land/sea7*
+Copyright: Johannes Plenio
+License: public-domain
+ Taken from https://archive.is/Ab1ml. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/sky4*
+Copyright: Elliot Chau
+License: CC0
+Comment:
+ Taken from https://archive.md/M4D1k. Cropped.
+
+Files:
+ images/land/sky5*
+Copyright: Nathan Hulsey
+License: public-domain
+ Taken from https://archive.is/J1nTb. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/snow5*
+Copyright: Jay Ruzesky
+License: public-domain
+ Taken from https://archive.is/cMHkC. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/snow10*
+Copyright: Mary
+License: CC0
+Comment:
+ Taken from https://archive.md/xeS7l. Cropped.
+
+Files:
+ images/land/water3*
+Copyright: Jacek Smoter
+License: public-domain
+ Taken from https://archive.is/9lZeb. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/water4*
+Copyright: Bonnie Moreland
+License: CC0
+Comment:
+ Taken from https://archive.md/BM15F. Cropped.
+
+Files:
+ images/land/badlands10*
+Copyright: Bernard Spragg
+License: CC0
+Comment:
+ Taken from https://archive.md/iGhNS. Cropped.
+
+Files:
+ images/land/badlands11*
+Copyright: Thomas Shellberg
+License: CC0
+Comment:
+ Taken from https://archive.md/NkUwS. Cropped.
+
+Files:
+ images/land/badlands12*
+Copyright: kallerna
+License: CC-BY-SA-4.0
+Comment:
+ Taken from https://archive.md/yHGCD. Cropped.
+
+Files:
+ images/land/beach13*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment:
+ Taken from https://archive.md/KrVlw. Cropped.
+
+Files:
+ images/land/beach14*
+Copyright: JJ Skys the Limit
+License: CC0
+Comment:
+ Taken from https://archive.md/fMNOf. Cropped.
+
+Files:
+ images/land/canyon13*
+Copyright: Burst
+License: CC0
+Comment:
+ Taken from https://archive.md/vxrjb. Cropped.
+
+Files:
+ images/land/canyon14*
+Copyright: John Towner
+License: public-domain
+ Taken from https://archive.is/3euXE. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/canyon15*
+Copyright: Nathan Anderson
+License: public-domain
+ Taken from https://archive.is/8rN07. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/desert11*
+Copyright: Robert Murray
+License: public-domain
+ Taken from https://archive.is/DirtW. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/desert12*
+Copyright: Joe Mania
+License: public-domain
+ Taken from https://archive.is/3FHPD. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/desert13*
+Copyright: Pete Johnson
+License: CC0
+Comment:
+ Taken from https://archive.md/nBACw. Cropped.
+
+Files:
+ images/land/fields13*
+Copyright: Jeff King
+License: public-domain
+ Taken from https://archive.is/b9tIO. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fields14*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/JIa0D. Cropped.
+
+Files:
+ images/land/fields15*
+Copyright: Ales Krivec
+License: public-domain
+ Taken from https://archive.is/i9nJj. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fog8*
+Copyright: Dawid Zawila
+License: public-domain
+ Taken from https://archive.is/XGHmJ. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/fog9*
+Copyright: Matt Bango
+License: CC0
+Comment:
+ Taken from https://archive.md/0IdLB. Cropped.
+
+Files:
+ images/land/fog10*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/gJ7ZQ. Cropped.
+
+Files:
+ images/land/fog11*
+Copyright: Jay Mantri
+License: public-domain
+ Taken from https://archive.is/t72LL. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest6*
+Copyright: Inggrid Koe
+License: public-domain
+ Taken from https://archive.is/yiGOx. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest7*
+Copyright: Eutah Mizushima
+License: public-domain
+ Taken from https://archive.is/fXZt2. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest8*
+Copyright: Gez Xavier Mansfield
+License: public-domain
+ Taken from https://archive.is/WAC8Q. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/forest9*
+Copyright: JJ Skys the Limit
+License: CC0
+Comment:
+ Taken from https://archive.md/vS0d1. Cropped.
+
+Files:
+ images/land/garden1*
+Copyright: Bonnie Moreland
+License: CC0
+Comment:
+ Taken from . Cropped.
+
+Files:
+ images/land/hills8*
+Copyright: Joshua Sortino
+License: public-domain
+ Taken from https://archive.is/SRbX3. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/lava12*
+Copyright: Ashley Knedler
+License: CC0
+Comment:
+ Taken from https://archive.md/d9pun. Cropped.
+
+Files:
+ images/land/lava13*
+Copyright: Matt Bango
+License: CC0
+Comment:
+ Taken from https://archive.md/Z7P0h. Cropped.
+
+Files:
+ images/land/loc3*
+Copyright: James E. Scarborough
+License: CC-BY-SA-3.0
+Comment:
+ Taken from https://archive.md/5OCc6. Cropped.
+
+Files:
+ images/land/sea18*
+Copyright: Bonnie Moreland
+License: CC0
+Comment:
+ Taken from https://archive.md/IlMHP. Cropped.
+
+Files:
+ images/land/sea19*
+Copyright: Joe deSousa
+License: CC0
+Comment:
+ Taken from https://archive.md/tZIGh. Cropped.
+
+Files:
+ images/land/sky10*
+Copyright: Sergey Pesterev
+License: CC0
+Comment:
+ Taken from https://archive.md/YElph. Cropped.
+
+Files:
+ images/land/sky11*
+Copyright: eberhard grossgasteiger
+License: CC0
+Comment:
+ Taken from https://archive.md/bre8R. Cropped.
+
+Files:
+ images/land/snow14*
+Copyright: Travel Photographer
+License: CC0
+Comment:
+ Taken from https://archive.md/g7ZBR. Cropped.
+
+Files:
+ images/land/snow16*
+Copyright: Alberto Restifo
+License: public-domain
+ Taken from https://archive.is/tmlmk. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/snow17*
+Copyright: Bonnie Moreland
+License: CC0
+Comment:
+ Taken from https://archive.md/SUw4x. Cropped.
+
+Files:
+ images/land/snow18*
+Copyright: Jeremy Bishop
+License: public-domain
+ Taken from https://archive.is/d9C3U. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/snow19*
+Copyright: Denis Linine
+License: CC0
+Comment:
+ Taken from https://archive.md/JuOvc. Cropped.
+
+Files:
+ images/land/snow20*
+Copyright: Ezra Jeffrey
+License: CC0
+Comment:
+ Taken from https://archive.md/yyvJi. Cropped.
+
+Files:
+ images/land/snow21*
+Copyright: Gabriel Santiago
+License: CC0
+Comment:
+ Taken from https://archive.md/Bxclr. Cropped.
+
+Files:
+ images/land/station4*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/mrcny. Cropped.
+
+Files:
+ images/land/station5*
+Copyright: Damien Jemison
+License: CC-BY-SA-3.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Preamplifier_at_the_National_Ignition_Facility.jpg
+
+Files:
+ images/land/station6*
+Copyright: HD Wallpapers
+License: CC0
+Comment:
+ Taken from https://archive.md/AgK7P. Cropped.
+
+Files:
+ images/land/station9*
+Copyright: Dominik Martin
+License: CC0
+Comment:
+ Taken from https://archive.md/WfBdP. Cropped.
+
+Files:
+ images/land/station10*
+Copyright: Thomas
+License: CC0
+Comment:
+ Taken from https://archive.md/IFeBI. Cropped.
+
+Files:
+ images/land/station11*
+Copyright: Burst
+License: CC0
+Comment:
+ Taken from https://archive.md/ZFH1k. Cropped.
+
+Files:
+ images/land/station13*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/vdlNe. Cropped.
+
+Files:
+ images/land/station14*
+Copyright: Ferdinand Stohr
+License: public-domain
+ Taken from https://archive.is/ZtRLf. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/station16*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment:
+ Taken from https://archive.md/Z4Cb8. Cropped.
+
+Files:
+ images/land/station17*
+Copyright: Bob Richards
+License: CC0
+Comment:
+ Taken from https://archive.md/YuOX5. Cropped.
+
+Files:
+ images/land/station18*
+Copyright: Eric Haidara
+License: CC0
+Comment:
+ Taken from https://archive.md/PO2k5. Cropped.
+
+Files:
+ images/land/station19*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/BlOxH. Cropped.
+
+Files:
+ images/land/station20
+Copyright: Easswar Kaylan
+License: CC0
+Comment:
+ Taken from https://archive.md/CyUvl. Cropped.
+
+Files:
+ images/land/station21*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/QtFR8. Cropped.
+
+Files:
+ images/land/station22*
+Copyright: Matthew Henry
+License: CC0
+Comment:
+ Taken from https://archive.md/6oSrP. Cropped.
+
+Files:
+ images/land/station23*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/NqDHu. Cropped.
+
+Files:
+ images/land/station24*
+Copyright: Tomasz Frankowski
+License: public-domain
+ Taken from https://archive.is/uZuiY. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/station25*
+Copyright: Claudia Soraya
+License: public-domain
+ Taken from https://archive.is/fk8aQ. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/station26*
+Copyright: Brandon Mowinkel
+License: CC0
+Comment:
+ Taken from https://archive.md/MEWh3. Cropped.
+
+Files:
+ images/land/station29*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/h5aw2. Cropped.
+
+Files:
+ images/land/station30*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/gOPcS. Cropped.
+
+Files:
+ images/land/station31*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/K2Gow. Cropped.
+
+Files:
+ images/land/station32*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/fQ63C. Cropped.
+
+Files:
+ images/land/station33*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/wip/NNX5q. Cropped.
+
+Files:
+ images/land/station34*
+Copyright: Monty Lov
+License: public-domain
+ Taken from https://archive.is/c1AWT. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
+
+Files:
+ images/land/station35*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/mw1rC. Cropped.
+
+Files:
+ images/land/station36*
+Copyright: Flickr
+License: CC0
+Comment:
+ Taken from https://archive.md/P8ueY. Cropped.
+
+Files:
+ images/land/station37*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/JGvqZ. Cropped.
+
+Files:
+ images/land/station38*
+Copyright: Txllxt TxllxT
+License: CC0
+Comment:
+ Taken from https://archive.md/niFgJ. Cropped.
+
+Files:
+ images/land/station39*
+Copyright: Silvio Kundt
+License: public-domain
+ Taken from https://archive.is/OCfcl. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
+
+Files:
+ images/land/station40*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/0U0OB. Cropped.
+
+Files:
+ images/land/station41*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/Onjdb. Cropped.
+
+Files:
+ images/land/station42*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/GBHNf. Cropped.
+
+Files:
+ images/land/station43*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/wip/xbZdU. Cropped.
+
+Files:
+ images/land/station44*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/nXc00. Cropped.
+
+Files:
+ images/land/station45*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/7f4rj. Cropped.
+
+Files:
+ images/land/water12*
+Copyright: Tricia Gray
+License: CC0
+Comment:
+ Taken from https://archive.md/lG5ki. Cropped.
+
+Files:
+ images/land/water13*
+Copyright: JuniperPhoton
+License: public-domain
+ Taken from https://archive.is/mvzhX. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
 
 Files:
  images/land/station46*
-Copyright: Bruno Thethe
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/FpG3p. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/g3sWr. Cropped.
 
 Files:
  images/land/station47*
-Copyright: Adrien Olichon
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/zTEVA. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/UO5aq. Cropped.
 
 Files:
  images/land/station48*
-Copyright: Miquel Parera
-License: Unsplash
+Copyright: Pixabay
+License: CC0
 Comment:
- Taken from https://archive.is/UjGht. This image was uploaded to
- unsplash.com after June 2017, so it is subject to the
- Unsplash License. It was also uploaded after February 2018,
- so it is subject to an additional restriction limiting the
- sale of unaltered copies.
+ Taken from https://archive.md/JLfrG. Cropped.
+
+Files:
+ images/land/station49*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/5kZGE. Cropped.
+
+Files:
+ images/land/station50*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment:
+ Taken from https://archive.md/mm8MA. Cropped.
+
+Files:
+ images/land/station60*
+Copyright: Adrien Olichon
+License: CC0
+Comment:
+ Taken from https://www.pexels.com/photo/building-interior-2817472/. Cropped and edited.
 
 Files: images/land/lava11*
 Copyright: National Archives and Records Administration
 License: public-domain
  Taken from Wikimedia Commons. Cropped and edited.
+
+Files:
+ images/land/snow15*
+Copyright: US NOAA
+License: public-domain
+ From US NOAA, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
 
 Files:
  images/land/lava0*
@@ -617,57 +1280,45 @@ License: public-domain
 
 Files:
  images/land/station8*
-Copyright: MTA of the State of New York
-License: CC-BY-2.0
-Comment: Taken from https://www.flickr.com/photos/61135621@N03/5836687124 and cropped.
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/rfXiB. Cropped.
 
 Files:
  images/land/station27*
-Copyright: Sebastian Sinisterra
-License: CC-BY-2.0
-Comment: Taken from https://www.flickr.com/photos/61135621@N03/17755765778 and cropped.
+Copyright: Flickr
+License: CC0
+Comment:
+ Taken from https://archive.md/Lt8lB. Cropped.
 
 Files:
  images/land/station28*
 Copyright: N/A (CC0 Public Domain)
 License: CC0
-Comment: Taken from https://pxhere.com/en/photo/1071635 and cropped.
+Comment:
+ Taken from https://pxhere.com/en/photo/1071635 and cropped.
 
 Files:
  images/land/station7*
 Copyright: N/A (CC0 Public Domain)
 License: CC0
-Comment: Taken from https://pxhere.com/en/photo/119196 and cropped.
+Comment:
+ Taken from https://pxhere.com/en/photo/119196 and cropped.
 
 Files:
  images/land/station15*
 Copyright: N/A (CC0 Public Domain)
 License: CC0
-Comment: Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
+Comment:
+ Taken from https://pixabay.com/photos/step-industry-steel-3104846/ and cropped.
  According to Section 3 of the Pixabay Terms of Service, all images with a
  "published date" earlier than January 9, 2019 have the CC0 license.
-
-Files:
- images/land/station5.jpg
-Copyright: Damien Jemison
-License: CC-BY-SA-3.0
-Comment: Taken from https://commons.wikimedia.org/wiki/File:Preamplifier_at_the_National_Ignition_Facility.jpg
 
 Files:
  images/land/lava5*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
-
-Files:
- images/planet/nebula1*
-Copyright: Azure
-License: CC-BY-SA-4.0
-
-Files:
-  images/ui/milky?way*
-Copyright: Azure
-License: CC-BY-SA-4.0
-Comment: Derived from works by NASA and Michael Zahniser.
 
 Files: sounds/*
 Copyright: Various
@@ -900,7 +1551,25 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
 
 Files:
+ images/effect/asteroid?adult?flare*
+ images/effect/asteroid?adult?2?flare*
+ images/effect/asteroid?adult?3?flare*
+ images/effect/asteroid?adult?4?flare*
+ images/effect/asteroid?adult?5?flare*
+ images/effect/asteroid?medium?flare*
+ images/effect/asteroid?young?flare*
+ images/effect/asteroid?young?2?flare*
+ images/effect/asteroid?young?3?flare*
+ images/effect/asteroid?young?4?flare*
+ images/effect/asteroid?am?circle?defense*
+ images/effect/asteroid?am?fire*
+ images/effect/asteroid?circle?trail*
+ images/effect/asteroid?glow*
+ images/effect/asteroid?laser*
+ images/effect/asteroid?projectile?print*
+ images/effect/asteroid?projectile?static*
  images/hardpoint/javelin?turret*
+ images/hardpoint/asteroid?am?circle*
  images/planet/station1*
  images/planet/station2*
  images/planet/station3*
@@ -916,6 +1585,9 @@ Files:
  images/planet/station16*
  images/planet/station17*
  images/planet/station-bunrodea*
+ images/planet/station-chanai*
+ images/planet/penrose-machine*
+ images/planet/base*
  images/ship/maeri'het*
  images/ship/subsidurial*
  images/ship/telis'het*
@@ -923,6 +1595,7 @@ Files:
  images/ship/selii'mar*
  images/ship/vareti'het*
  images/ship/fetri'sei*
+ images/ship/builder?satellite*
  images/ship/ember?waste?node/*
  images/ship/void?sprite/*
  images/ship/ararebo*
@@ -968,6 +1641,7 @@ Files:
  images/outfit/ka'het?reserve?accumulator*
  images/outfit/ka'het?nullifier*
  images/outfit/ka'het?mhd?deployer*
+ images/outfit/ka'het?taser*
  images/outfit/mouthparts*
  images/outfit/excavator*
  images/outfit/fuel?pod*
@@ -1032,7 +1706,18 @@ Files:
  images/outfit/swatter*
  images/outfit/thorax?cannon*
  images/outfit/*rift*
+ images/outfit/pollen?particle*
+ images/outfit/jamfruit?pod*
+ images/outfit/anomalous?mass*
  images/outfit/decoy?plating*
+ images/outfit/asteroid?weapon?1*
+ images/outfit/asteroid?weapon?2*
+ images/outfit/asteroid?weapon?3*
+ images/outfit/asteroid?weapon?4*
+ images/outfit/asteroid?weapon?5*
+ images/outfit/asteroid?weapon?6*
+ images/outfit/asteroid?weapon?7*
+ images/outfit/asteroid?weapon?8*
  images/planet/dyson1*
  images/planet/dyson2*
  images/planet/dyson3*
@@ -1047,15 +1732,131 @@ Files:
  images/projectile/annihilator*
  images/projectile/ravager?beam*
  images/projectile/mhd*
+ images/projectile/asteroid?missile*
+ images/projectile/asteroid?twin?projectile*
+ images/projectile/asteroid?weapon?circle*
+ images/projectile/asteroid?weapon?live*
+ images/projectile/asteroid?weapon?swarm*
  images/scene/ringworld?debris*
  images/scene/remnant?station*
  images/scene/asteroid?scene*
+ images/scene/lab?scene*
+ images/planet/debris0*
+ images/planet/debris1*
+ images/planet/desert11*
+ images/planet/desert12*
+ images/planet/desert13*
+ images/planet/dust8*
+ images/planet/dust9*
+ images/planet/forest7*
+ images/planet/forest8*
+ images/planet/forest9*
+ images/planet/forest10*
+ images/planet/forest11*
+ images/planet/forest12*
+ images/planet/ice9*
+ images/planet/ice10*
+ images/planet/ice11*
+ images/planet/ice12*
+ images/planet/ocean10*
+ images/planet/rock21*
+ images/planet/gateway-active*
+ images/planet/gateway-frozen*
+ images/planet/gateway-inactive*
+ images/planet/station-accelerator-broken*
+ images/planet/station-accelerator*
+ images/planet/station-asteroid-a0*
+ images/planet/station-asteroid-a1*
+ images/planet/station-asteroid-a2*
+ images/planet/station-asteroid-a3*
+ images/planet/station-cylinder-a0-broken*
+ images/planet/station-cylinder-a0-incomplete*
+ images/planet/station-cylinder-a0*
+ images/planet/station-depot-a0*
+ images/planet/station-depot-a1*
+ images/planet/station-depot-a2*
+ images/planet/station-disk*
+ images/planet/station-outpost-a0*
+ images/planet/station-outpost-a1*
+ images/planet/station-outpost-a2*
+ images/planet/station-outpost-a3*
+ images/planet/station-platform-a0*
+ images/planet/station-platform-a1*
+ images/planet/station-platform-a2*
+ images/planet/station-platform-a3*
+ images/planet/station-platform-a4*
+ images/planet/station-reflector-a0*
+ images/planet/station-reflector-a1*
+ images/planet/station-reflector-a2*
+ images/planet/station-shipyard-a0*
+ images/planet/station-shipyard-a1*
+ images/planet/station-shipyard-a2*
+ images/planet/station-solar-a0*
+ images/planet/station-solar-a1*
+ images/planet/station-solar-a2*
+ images/planet/station-solar-a3*
+ images/planet/station-solar-a4*
+ images/planet/station-solar-a0-broken*
+ images/planet/station-solar-a1-broken*
+ images/planet/station-weapon-a0*
+ images/planet/station-weapon-a1*
+ images/planet/station-weapon-a2*
+ images/planet/station-weapon-a3*
+ images/planet/station-telescope-a0*
+ images/planet/station-telescope-a1*
+ images/projectile/avgi?laser?blue*
+ images/ship/aberrant?chomper*
+ images/ship/aberrant?dancer*
+ images/ship/aberrant?hugger*
+ images/ship/aberrant?junior*
+ images/ship/aberrant?latte*
+ images/ship/aberrant?longfellow*
+ images/ship/aberrant?mole*
+ images/ship/aberrant?pike*
+ images/ship/aberrant?pileup*
+ images/ship/aberrant?traincar*
+ images/ship/aberrant?trip*
+ images/ship/aberrant?triplet*
+ images/ship/aberrant?whiskers*
+ images/thumbnail/aberrant?chomper*
+ images/thumbnail/aberrant?dancer*
+ images/thumbnail/aberrant?hugger*
+ images/thumbnail/aberrant?junior*
+ images/thumbnail/aberrant?latte*
+ images/thumbnail/aberrant?longfellow*
+ images/thumbnail/aberrant?mole*
+ images/thumbnail/aberrant?pike*
+ images/thumbnail/aberrant?pileup*
+ images/thumbnail/aberrant?traincar*
+ images/thumbnail/aberrant?trip*
+ images/thumbnail/aberrant?triplet*
+ images/thumbnail/aberrant?whiskers*
+ images/ship/bluejacket*
+ images/ship/pollen*
+ images/ship/windjammer*
+ images/_menu/haze-ghila*
+ images/_menu/haze-lathia*
+ images/_menu/haze-maithi*
+ images/_menu/haze-mitera*
+ images/_menu/haze-sarifa*
+ images/_menu/haze-chanai*
+ images/map/big?black?hole*
+ images/map/black?hole?3*
+ images/map/black?hole?4*
+ images/map/black?hole?5*
+ images/map/black?hole?6*
+ images/map/black?hole?corona*
+ images/map/black?hole?star*
+ images/map/black-hole-still*
+ images/effect/flotsam?pollen?particle*
+ images/effect/flotsam?jamfruit?pod*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
 Files:
  images/effect/remnant?afterburner/remnant?afterburner*
  images/effect/mhd?spark*
+ images/effect/jd?detainer*
  images/land/nasa9*
  images/hardpoint/annihilator?turret*
  images/hardpoint/hai?ionic?turret*
@@ -1145,6 +1946,7 @@ Files:
  images/outfit/rock?4*
  images/scene/penguinscene*
  images/ship/hai?sea?scorpion*
+ images/ship/hai?anomalocaris*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/merganser*
@@ -1156,7 +1958,19 @@ Files:
  images/ship/pug?enfolta*
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
+ images/ship/asteroid?adult*
+ images/ship/asteroid?adult?2*
+ images/ship/asteroid?adult?3*
+ images/ship/asteroid?adult?4*
+ images/ship/asteroid?adult?5*
+ images/ship/asteroid?medium*
+ images/ship/asteroid?young*
+ images/ship/asteroid?young?2*
+ images/ship/asteroid?young?3*
+ images/ship/asteroid?young?4*
+ images/ship/remnant?satellite*
  images/thumbnail/hai?sea?scorpion*
+ images/thumbnail/hai?anomalocaris*
  images/thumbnail/ibis*
  images/thumbnail/merganser*
  images/thumbnail/penguin*
@@ -1179,6 +1993,304 @@ Files:
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/map/a-dwarf-star*
+ images/map/a-giant-star*
+ images/map/a-large-star*
+ images/map/a-small-star*
+ images/map/a-star*
+ images/map/a-supergiant-star*
+ images/map/b-dwarf-star*
+ images/map/b-giant-star*
+ images/map/b-large-star*
+ images/map/b-small-star*
+ images/map/b-star*
+ images/map/b-supergiant-star*
+ images/map/f-dwarf-star*
+ images/map/f-giant-star*
+ images/map/f-large-star*
+ images/map/f-old-star*
+ images/map/f-small-star*
+ images/map/f-star*
+ images/map/f-supergiant-star*
+ images/map/g-dwarf-star*
+ images/map/g-giant-star*
+ images/map/g-large-star*
+ images/map/g-old-star*
+ images/map/g-small-star*
+ images/map/g-star*
+ images/map/g-supergiant-star*
+ images/map/k-dwarf-star*
+ images/map/k-giant-star*
+ images/map/k-large-star*
+ images/map/k-old-star*
+ images/map/k-small-star*
+ images/map/k-star*
+ images/map/k-supergiant-star*
+ images/map/m-dwarf-star*
+ images/map/m-giant-star*
+ images/map/m-large-star*
+ images/map/m-small-star*
+ images/map/m-star*
+ images/map/m-supergiant-star*
+ images/map/o-dwarf-star*
+ images/map/o-giant-star*
+ images/map/o-large-star*
+ images/map/o-small-star*
+ images/map/o-star*
+ images/map/o-supergiant-star*
+ images/map/unexplored-star*
+ images/_menu/haze-twilight*
+ images/_menu/haze-twilight-thick*
+ images/_menu/haze-twilight-thin*
+ images/_menu/haze-twilit-embers*
+ images/asteroid/integral?tree/tree*
+ images/asteroid/water?droplet/*
+ images/effect/avgi?flare/antimatter*
+ images/effect/avgi?flare/fusion*
+ images/effect/avgi?flare/ntr*
+ images/effect/avgi?flare/remass*
+ images/effect/avgi?flare/rcs*
+ images/effect/blue?optical?laser?glare*
+ images/effect/green?optical?laser?glare*
+ images/effect/uv?excimer?laser?glare*
+ images/effect/flotsam?integral?wood*
+ images/effect/flotsam?voidfish*
+ images/hardpoint/ureb?turret*
+ images/icon/nettle*
+ images/icon/orchid*
+ images/label/outer?limits*
+ images/label/tangled?shroud*
+ images/label/twilight*
+ images/outfit/concentrating?solar?array*
+ images/outfit/concentrating?solar?cell*
+ images/outfit/cryogenic?deuterium?tank*
+ images/outfit/integral?wood*
+ images/outfit/nettle?kkv*
+ images/outfit/nettle?magazine*
+ images/outfit/ophrys?stockpile*
+ images/outfit/optical?laser?rifle*
+ images/outfit/optical?lasing?generator*
+ images/outfit/orchid?magazine*
+ images/outfit/orchid?missile*
+ images/outfit/remass?injector*
+ images/outfit/trefoil?board*
+ images/outfit/ureb?turret*
+ images/outfit/voidfish*
+ images/planet/aviskir*
+ images/planet/nebula1*
+ images/projectile/blue?optical?laser*
+ images/projectile/nettle*
+ images/projectile/nucleolysis*
+ images/projectile/orchid?boost*
+ images/projectile/orchid?boost?stage*
+ images/projectile/orchid?coast*
+ images/projectile/orchid?divert*
+ images/projectile/orchid?divert?stage*
+ images/projectile/orchid?inactive*
+ images/projectile/orchid?terminal*
+ images/scene?trefoil?board*
+Copyright: Azure
+License: CC-BY-SA-4.0
+
+Files:
+ images/hardpoint/blue?optical?laser*
+ images/hardpoint/green?optical?laser*
+ images/hardpoint/plasmadyne?scoop*
+ images/hardpoint/speckle?turret*
+ images/hardpoint/tiny?vls*
+ images/hardpoint/small?vls*
+ images/hardpoint/medium?vls*
+ images/outfit/anomalous?shield?restorer*
+ images/outfit/antimatter?power?cell*
+ images/outfit/arc?fusion?torch*
+ images/outfit/blue?optical?laser*
+ images/outfit/green?optical?laser*
+ images/outfit/beam?antimatter?drive*
+ images/outfit/concealment?lamina*
+ images/outfit/deuterium?slush?tank*
+ images/outfit/diffuse?deflector*
+ images/outfit/external?launch?rail*
+ images/outfit/external?launch?tube*
+ images/outfit/heatsink?partition*
+ images/outfit/inductive?extractor*
+ images/outfit/lantern?fission?core*
+ images/outfit/vapor?nuclear?rocket*
+ images/outfit/magnetic?scoop*
+ images/outfit/magnetoplasma?drive*
+ images/outfit/multispectral?scanner*
+ images/outfit/nucleolysis?beam*
+ images/outfit/ophrys?torpedo*
+ images/outfit/photoelectric?lamina*
+ images/outfit/plasmadyne?scoop*
+ images/outfit/radiative?lamina*
+ images/outfit/rcs?large*
+ images/outfit/rcs?medium*
+ images/outfit/rcs?small*
+ images/outfit/spark?fusion?torch*
+ images/outfit/speck?magazine*
+ images/outfit/speck?round*
+ images/outfit/speckle?coilgun*
+ images/outfit/speckle?turret*
+ images/outfit/spectrometer?array*
+ images/outfit/specular?deflector*
+ images/outfit/telescopic?antimissile*
+ images/outfit/ultracapacitor?bank*
+ images/outfit/ultracapacitor?cell*
+ images/outfit/tiny?vls*
+ images/outfit/small?vls*
+ images/outfit/medium?vls*
+ images/outfit/zap?fusion?torch*
+ images/effect/flotsam?telescopic?antimissile*
+ images/effect/flotsam?nucleolysis?beam*
+ images/effect/flotsam?antimatter?power?cell*
+ images/effect/flotsam?anomalous?shield?restorer*
+ images/effect/flotsam?anomalous?mass*
+ images/planet/station0b*
+ images/projectile/aberrant?spike*
+ images/projectile/fleck*
+ images/projectile/speck*
+ images/ship/avgi?akoustiki*
+ images/ship/avgi?atenuatia*
+ images/ship/avgi?atenuatia@sw*
+ images/ship/avgi?avlaki*
+ images/ship/avgi?avlaki@sw*
+ images/ship/avgi?diaspersi*
+ images/ship/avgi?diaspersi@sw*
+ images/ship/avgi?difraktos*
+ images/ship/avgi?difraktos@sw*
+ images/ship/avgi?entasi*
+ images/ship/avgi?entasi@sw*
+ images/ship/avgi?frequentia*
+ images/ship/avgi?frequentia@sw*
+ images/ship/avgi?harmonikos*
+ images/ship/avgi?harmonikos@sw*
+ images/ship/avgi?intereros*
+ images/ship/avgi?interferos@sw*
+ images/ship/avgi?koryfi/*
+ images/ship/avgi?melodikos/*
+ images/ship/avgi?melodikos@sw*
+ images/ship/avgi?optikon*
+ images/ship/avgi?phononos*
+ images/ship/avgi?photikon*
+ images/ship/avgi?polari*
+ images/ship/avgi?polari@sw*
+ images/ship/avgi?prismaios*
+ images/ship/avgi?prismaios@sw*
+ images/ship/avgi?refraktos*
+ images/ship/avgi?refraktos@sw*
+ images/ship/avgi?sonikis*
+ images/ship/avgi?tachytia/*
+ images/ship/avgi?tachytia/tachytia@sw*
+ images/ship/avgi?tremoros*
+ images/ship/avgi?undsyni*
+ images/ship/avgi?undsyni@sw*
+ images/ship/avgi?undulon*
+ images/ship/avgi?vibratia*
+ images/thumbnail/avgi?akoustiki*
+ images/thumbnail/avgi?atenuatia*
+ images/thumbnail/avgi?atenuatia@sw
+ images/thumbnail/avgi?avlaki*
+ images/thumbnail/avgi?avlaki@sw*
+ images/thumbnail/avgi?diaspersi*
+ images/thumbnail/avgi?difraktos*
+ images/thumbnail/avgi?entasi*
+ images/thumbnail/avgi?frequentia*
+ images/thumbnail/avgi?harmonikos*
+ images/thumbnail/avgi?harmonikos@sw*
+ images/thumbnail/avgi?intereros*
+ images/thumbnail/avgi?koryfi/*
+ images/thumbnail/avgi?melodikos/*
+ images/thumbnail/avgi?melodikos@sw*
+ images/thumbnail/avgi?optikon*
+ images/thumbnail/avgi?phononos*
+ images/thumbnail/avgi?photikon*
+ images/thumbnail/avgi?polari*
+ images/thumbnail/avgi?prismaios*
+ images/thumbnail/avgi?refraktos*
+ images/thumbnail/avgi?sonikis*
+ images/thumbnail/avgi?tachytia/*
+ images/thumbnail/avgi?tremoros*
+ images/thumbnail/avgi?undsyni*
+ images/thumbnail/avgi?undulon*
+ images/thumbnail/avgi?vibratia*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso.
+
+Files:
+ images/map/milky?way*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA and Michael Zahniser.
+
+Files:
+ images/star/smoke?ring*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by RisingLeaf.
+
+Files:
+ images/land/station59*
+ images/scene/ranger?baker*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Lawrence Livermore National Laboratory.
+
+Files:
+ images/land/dokimi*
+ images/scene/dokimi?range*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by the National Nuclear Security Administration.
+
+Files:
+ images/map/small-neutron-star*
+ images/map/magnetar-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by RisingLeaf.
+
+Files:
+ images/map/coal-black-hole-star*
+ images/map/neutron-star*
+ images/map/small-black-hole-star*
+ images/map/twilight-black-hole-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Gefüllte Taubenbrust.
+
+Files:
+ images/map/black-hole-star*
+ images/map/carbon-star*
+ images/map/nova-old-star*
+ images/map/nova-small-star*
+ images/map/wr-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Matteo "Lead" M.
+
+Files:
+ images/map/nova-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser.
+
+Files:
+ sounds/bounce*
+ sounds/clink*
+ sounds/fusion?torch*
+ sounds/optical?laser*
+ sounds/speckle*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from public domain sounds taken from freesound.org.
+
+Files:
+ images/effect/graviton?flare/*
+Copyright: Jack George
+License: CC-BY-SA-4.0
 
 Files:
  images/outfit/*battery?hai*
@@ -1386,6 +2498,8 @@ Files:
  images/effect/fissionflare*
  images/effect/pwtflare*
  images/effect/explosions/nuke*
+ images/effect/culverin*
+ images/effect/ranseur*
  images/icon/dragonflame*
  images/icon/shard*
  images/outfit/dragonflame*
@@ -1405,6 +2519,7 @@ Files:
  images/projectile/shardactive*
  images/projectile/shardinactive*
  images/projectile/ionball*
+ images/projectile/ribault*
  images/scene/emeraldswordderelict*
  images/ship/emeraldsword*
  images/ship/blackdiamond*
@@ -1430,6 +2545,12 @@ Files: sounds/pwave*
 Copyright: aust_paul
 License: public-domain
  Taken from https://freesound.org/people/aust_paul/sounds/30935/
+
+Files: sound/ranseur*
+Copyright: harrisonlace
+License: public-domain
+ Taken from https://freesound.org/people/harrisonlace/sounds/634884/
+Comment: Modified by @Karirawri (crim@live.no) under the same license.
 
 Files: sounds/hion*
 Copyright: michael_kur95
@@ -1515,6 +2636,12 @@ Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
 
 Files:
+ images/ui/patir?cluster*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA (public domain)
+
+Files:
  images/star/a-dwarf*
  images/star/a-giant*
  images/star/a-supergiant*
@@ -1580,90 +2707,76 @@ License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/livecrystal/livecrystal*
- images/effect/atomic?flare/*
  images/effect/burning?spark*
- images/effect/coalition?flare/*
  images/effect/corrosion?spark*
  images/effect/efreti?flare/*
  images/effect/explosion/pug/*
  images/effect/finisher?impact*
- images/effect/ion?flare/*
- images/effect/korath?flare/*
  images/effect/plasma?cloud*
- images/effect/plasma?flare/*
  images/effect/plasma?fire*
  images/effect/plasma?impact*
  images/effect/pug?flare/*
- images/effect/tracker?cloud*
  images/effect/wanderer?flare/*
  images/effect/zapper?impact*
- images/hardpoint/dual?sunbeam?turret*
- images/hardpoint/moonbeam?turret*
  images/hardpoint/nuke*
- images/hardpoint/sunbeam?turret*
- images/hardpoint/wanderer?anti-missile*
  images/_menu/haze-coal*
  images/outfit/*?korath?afterburner*
- images/outfit/afterburner*
  images/outfit/asteroid?scanner*
- images/outfit/blue?sun*
- images/outfit/bright?cloud*
- images/outfit/caldera?afterburner*
- images/outfit/dark?storm*
- images/outfit/double?plasma?core*
- images/outfit/dual?sunbeam?turret*
  images/outfit/*efreti?steering*
  images/outfit/*efreti?thruster*
- images/outfit/finisher?maegrolain*
  images/outfit/fusion?cannon*
- images/outfit/moonbeam*
- images/outfit/moonbeam?turret*
  images/outfit/nuke*
- images/outfit/plasma?core*
- images/outfit/red?sun*
- images/outfit/sunbeam*
- images/outfit/sunbeam?turret*
- images/outfit/thunderhead?launcher*
- images/outfit/thunderhead?storage*
- images/outfit/triple?plasma?core*
- images/outfit/wanderer?anti-missile*
- images/outfit/wanderer?heat?sink*
- images/outfit/white?sun*
- images/outfit/yellow?sun*
- images/planet/ringworld*
- images/planet/ringworld?broken?debris*
- images/planet/ringworld?broken?debris?small*
- images/planet/ringworld?broken?left*
- images/planet/ringworld?broken?right*
- images/planet/ringworld?left*
- images/planet/ringworld?right*
+ images/planet/pontes*
+ images/planet/wormhole?blue*
  images/projectile/fire-lance*
  images/projectile/fusion?gun?bolt*
  images/projectile/blaze-pike*
  images/projectile/korath?inferno*
  images/projectile/missile-0*
  images/projectile/missile-1*
+ images/projectile/slipstream?projector*
  images/ship/battleship*
- images/ship/corvette*
- images/ship/dagger*
- images/ship/flivver*
- images/ship/mraven*
- images/ship/msplinter*
- images/ship/raven*
- images/ship/splinter*
+ images/ship/cirrus*
+ images/ship/gero*
+ images/ship/nimbus*
+ images/ship/silent?harvester*
+ images/ship/stratus*
+ images/ship/venta*
+ images/thumbnail/cirrus*
+ images/thumbnail/gero*
+ images/thumbnail/nimbus*
+ images/thumbnail/stratus*
+ images/thumbnail/venta*
  images/star/coal-black-hole*
  images/star/neutron*
  images/star/small-black-hole*
+ images/star/big?black?hole?core*
+ images/star/big?black?hole*
+ images/star/black?hole?3?core*
+ images/star/black?hole?3*
+ images/star/black?hole?4?core*
+ images/star/black?hole?4*
+ images/star/black?hole?5?core*
+ images/star/black?hole?5*
+ images/star/black?hole?6?core*
+ images/star/black?hole?6*
+ images/star/black?hole?corona?core*
+ images/star/black?hole?corona*
+ images/star/black-hole-still-core*
+ images/star/black-hole-still*
+ images/star/black?hole?star?core*
+ images/star/black?hole?star*
+ images/star/twilight-black-hole*
  images/thumbnail/battleship*
- images/thumbnail/corvette*
- images/thumbnail/dagger*
- images/thumbnail/flivver*
- images/thumbnail/mraven*
- images/thumbnail/msplinter*
- images/thumbnail/raven*
- images/thumbnail/splinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
+
+Files:
+ images/star/patir*
+ images/star/patir?core*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA (public domain); picture taken by the James Webb Space Telescope (https://www.flickr.com/photos/nasawebbtelescope/54451311621/in/album-72177720323168468)
 
 Files:
  images/outfit/small?photovoltaic*
@@ -1675,8 +2788,12 @@ Comment: Derived from works by Michael Zahniser <mzahniser@gmail.com>, David Mon
 Files:
  images/ship/manta*
  images/ship/mmanta*
+ images/ship/mraven*
+ images/ship/msplinter*
  images/thumbnail/manta*
  images/thumbnail/mmanta*
+ images/thumbnail/mraven*
+ images/thumbnail/msplinter*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser and Maximilian Korber (under the same license).
@@ -1715,22 +2832,72 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
+ images/effect/atomic?flare/*
+ images/effect/coalition?flare/*
+ images/effect/ion?flare/*
+ images/effect/korath?flare/*
+ images/effect/plasma?flare/*
+ images/effect/tracker?cloud*
+ images/hardpoint/dual?sunbeam?turret*
+ images/hardpoint/moonbeam?turret*
+ images/hardpoint/sunbeam?turret*
+ images/hardpoint/wanderer?anti-missile*
+ images/outfit/afterburner*
+ images/outfit/blue?sun*
+ images/outfit/bright?cloud*
+ images/outfit/caldera?afterburner*
+ images/outfit/dark?storm*
+ images/outfit/double?plasma?core*
+ images/outfit/dual?sunbeam?turret*
+ images/outfit/finisher?maegrolain*
+ images/outfit/moonbeam*
+ images/outfit/moonbeam?turret*
+ images/outfit/plasma?core*
+ images/outfit/red?sun*
  images/outfit/shield?refactor?module*
+ images/outfit/sunbeam*
+ images/outfit/sunbeam?turret*
+ images/outfit/thunderhead?launcher*
+ images/outfit/thunderhead?storage*
+ images/outfit/triple?plasma?core*
+ images/outfit/wanderer?anti-missile*
+ images/outfit/wanderer?heat?sink*
+ images/outfit/white?sun*
+ images/outfit/yellow?sun*
+ images/planet/ringworld*
+ images/planet/ringworld?broken?debris*
+ images/planet/ringworld?broken?debris?small*
+ images/planet/ringworld?broken?left*
+ images/planet/ringworld?broken?right*
+ images/planet/ringworld?left*
+ images/planet/ringworld?right*
  images/ship/carrier*
  images/ship/combat?drone*
+ images/ship/corvette*
  images/ship/cruiser*
+ images/ship/dagger*
+ images/ship/flivver*
  images/ship/frigate*
  images/ship/gunboat*
  images/ship/lance*
+ images/ship/modified?carrier*
  images/ship/rainmaker*
+ images/ship/raven*
+ images/ship/splinter*
  images/ship/surveillance?drone*
  images/thumbnail/carrier*
  images/thumbnail/combat?drone*
+ images/thumbnail/corvette*
  images/thumbnail/cruiser*
+ images/thumbnail/dagger*
+ images/thumbnail/flivver*
  images/thumbnail/frigate*
  images/thumbnail/gunboat*
  images/thumbnail/lance*
+ images/thumbnail/modified?carrier*
  images/thumbnail/rainmaker*
+ images/thumbnail/raven*
+ images/thumbnail/splinter*
  images/thumbnail/surveillance?drone*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
@@ -1746,9 +2913,60 @@ Comment: Derived from works by Evan Fluharty (under the same license).
 Files:
  images/outfit/gat?turret?hardpoint*
  images/outfit/gat?turret*
-Copyright: bene_dictator <benstaples8068@gmail.com>
+ images/ship/jackal*
+ images/thumbnail/jackal*
+Copyright: bene-dictator <benstaples8068@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license), detailed by Saugia.
+
+Files:
+ images/outfit/surtrblood*
+Copyright: bene_dictator <benstaples8068@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Anarchist2 (under the same license).
+
+Files:
+ images/planet/station19*
+Copyright: bene-dictator <benstaples8068@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/_menu/haze-dark-nebula*
+ images/effect/incipias?flare/*
+ images/effect/horizon?grappler*
+ images/effect/plasma?exhaust*
+ images/effect/plasma?particle*
+ images/effect/stagnation?beam?impact*
+ images/effect/star?tail*
+ images/hardpoint/horizon?grappler*
+ images/hardpoint/stagnation?beam*
+ images/outfit/gas?class?shield*
+ images/outfit/horizon?grappler*
+ images/outfit/liquid?class?shield*
+ images/outfit/metallic?hydrogen?cell*
+ images/outfit/mh?*
+ images/outfit/plasma?discharger*
+ images/outfit/stagnation?beamx*
+ images/outfit/star?tail?*
+ images/outfit/sword*
+ images/planet/aera*
+ images/planet/gliese*
+ images/planet/redias*
+ images/planet/treser*
+ images/planet/vulpa*
+ images/projectile/ionic?turret*
+ images/projectile/plasma?discharge*
+ images/projectile/stagnation?beam*
+ images/projectile/star?tail*
+ images/projectile/strange?ray*
+ images/scene/incipias?message*
+ images/star/a-eater*
+ images/star/magnetar*
+ images/star/neutron-small*
+ images/star/proto-planetary-disk*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
 
 Files:
  images/asteroid/*bioroid*
@@ -1774,6 +2992,8 @@ Files:
  images/hardpoint/ion?torch*
  images/hardpoint/irate*
  images/hardpoint/tractor?beam*
+ images/label/gegno*
+ images/label/umbral*
  images/outfit/acuit*
  images/outfit/acumen*
  images/outfit/ameliorate?cell*
@@ -1853,6 +3073,7 @@ Files:
  images/ship/gegno?kyanite*
  images/ship/gegno?mica*
  images/ship/gegno?protolith*
+ images/ship/gegno?rhyolite*
  images/ship/gegno?schist*
  images/ship/gegno?shale*
  images/ship/gegno?slate*
@@ -1880,6 +3101,8 @@ Files:
  images/thumbnail/gegno?halite*
  images/thumbnail/gegno?kyanite*
  images/thumbnail/gegno?mica*
+ images/thumbnail/gegno?protolith*
+ images/thumbnail/gegno?rhyolite*
  images/thumbnail/gegno?schist*
  images/thumbnail/gegno?shale*
  images/thumbnail/gegno?slate*
@@ -1905,8 +3128,10 @@ Files:
  images/ship/arch-carrack*
  images/ship/charm-shallop*
  images/ship/echo-galleon*
+ images/ship/hauler?vi*
  images/ship/heavy?gust*
  images/ship/mining?drone*
+ images/ship/monitor*
  images/ship/mule*
  images/ship/squall*
  images/ship/sunder*
@@ -1917,8 +3142,10 @@ Files:
  images/thumbnail/arch-carrack*
  images/thumbnail/charm-shallop*
  images/thumbnail/echo-galleon*
+ images/thumbnail/hauler?vi*
  images/thumbnail/heavy?gust*
  images/thumbnail/mining?drone*
+ images/thumbnail/monitor*
  images/thumbnail/mule*
  images/thumbnail/squall*
  images/thumbnail/sunder*
@@ -1929,6 +3156,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/quarg?drake*
+ images/thumbnail/quarg?drake*
+Copyright: Saugia (https://github.com/Saugia)
+License: CC-BY-SA-4.0
+Comment: Derived from works by 1010todd, under the same license.
+
+Files:
  images/ship/pirate?valkyrie*
  images/thumbnail/pirate?valkyrie*
 Copyright: Saugia <https://github.com/Saugia>
@@ -1936,8 +3170,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and 1010todd (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ sounds/avgi?launch?external*
+ sounds/avgi?launch?internal*
  sounds/bunrodea?am*
  sounds/coalition?launch*
+ sounds/culverin?
  sounds/drill*
  sounds/ember?tear*
  sounds/ember?tear?hit*
@@ -1950,14 +3187,22 @@ Files:
  sounds/korath?afterburner*
  sounds/korath?launch*
  sounds/korath?launch?external*
+ sounds/*incip?plasma*
  sounds/locust?blaster*
+ sounds/magic*
  sounds/mandible?cannon*
+ sounds/plasma?discharger*
  sounds/remnant?afterburner*
  sounds/remnant?launch*
  sounds/remnant?launch?external*
+ sounds/ribault*
  sounds/neutron?bolt*
  sounds/scin?launch*
  sounds/sheragi?launch*
+ sounds/sjeja?lance*
+ sounds/stagnation?beam*
+ sounds/star?tail*
+ sounds/*successor?afterburner*
  sounds/swarm?missile*
  sounds/thorax?cannon*
  sounds/tractor?beam*
@@ -2130,24 +3375,117 @@ License: CC-BY-SA-4.0
 
 Files:
  images/scene/citydark*
- images/scene/buildings*
- images/scene/busystreet*
- images/scene/iceplains*
- images/scene/iceplains2*
- images/scene/iceplains3*
- images/scene/lonelyrock*
- images/scene/redrocks*
- images/scene/seasidecliffs*
- images/scene/Seasunset*
- images/scene/smeer*
- images/scene/snowfield*
- images/scene/snowvillage*
- images/scene/sunset*
- images/scene/tower*
- images/scene/icepicture*
- images/scene/snowplain*
-Copyright: unsplash.com/
+Copyright: N/A (CC0 Public Domain)
 License: CC0
+Comment:
+ Taken from pixwizard.com. Archived at https://archive.is/JPrU9.
+
+Files:
+ images/scene/buildings*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment:
+ Taken from pixwizard.com. Archived at https://archive.is/x993H.
+
+Files:
+ images/scene/lonelyrock*
+Copyright: US NOAA
+License: public-domain
+ From US NOAA, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
+
+Files:
+ images/scene/snowplain*
+Copyright: US NOAA
+License: public-domain
+ From US NOAA, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
+
+Files:
+ images/scene/busystreet*
+Copyright: Gabriel Del Fiaco
+License: public-domain
+ Taken from https://archive.is/29hj9. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
+
+Files:
+ images/scene/iceplains*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/sWxGN.
+
+Files:
+ images/scene/iceplains2*
+Copyright: Teddy Kelley
+License: CC0
+Comment:
+ Taken from https://archive.md/SLxh7.
+
+Files:
+ images/scene/redrocks*
+Copyright: Matt Bango
+License: CC0
+Comment:
+ Taken from https://archive.md/SH0lV.
+
+Files:
+ images/scene/seasidecliffs*
+Copyright: Matt Bango
+License: CC0
+Comment:
+ Taken from https://archive.md/Bocy1.
+
+Files:
+ images/scene/Seasunset*
+Copyright: Matt Bango
+License: CC0
+Comment:
+ Taken from https://archive.md/kU22Z. Cropped.
+
+Files:
+ images/scene/smeer*
+Copyright: Yosh Ginsu
+License: CC0
+Comment:
+ Taken from https://archive.md/2thP6. Cropped.
+
+Files:
+ images/scene/snowfield*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/Sr673. Cropped.
+
+Files:
+ images/scene/snowvillage*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/dPu5l. Cropped.
+
+Files:
+ images/scene/sunset*
+Copyright: JJ Skys the Limit
+License: CC0
+Comment:
+ Taken from https://archive.md/35hYy. Cropped.
+
+Files:
+ images/scene/tower*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/XakPu.
+
+Files:
+ images/scene/icepicture*
+Copyright: Alberto Restifo
+License: public-domain
+ Taken from https://archive.is/d4jre. This image was uploaded
+ to unsplash.com before June 2017, so it is in the public
+ domain.
 
 Files:
  images/scene/hroar*
@@ -2168,11 +3506,24 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/outfit/anti-materiel?gun*
+ images/outfit/cloud?piercer*
+ images/outfit/heavy?blaster*
+ images/ship/quarg?guivre*
+ images/ship/quarg?hydra*
+ images/ship/quarg?lindwyrm*
+ images/ship/quarg?wardragon*
+ images/ship/quarg?wyvern*
+ images/thumbnail/quarg?guivre*
+ images/thumbnail/quarg?hydra*
+ images/thumbnail/quarg?lindwyrm*
+ images/thumbnail/quarg?wardragon*
+ images/thumbnail/quarg?wyvern*
 Copyright: 1010todd
 License: CC-BY-SA-4.0
 
 Files:
  images/outfit/android*
+ images/outfit/collar*
  images/outfit/mug*
  images/outfit/skadetear*
 Copyright: Anarchist2
@@ -2199,6 +3550,7 @@ License: CC-BY-SA-4.0
 Comment: Image data: NASA/JPL-Caltech/SwRI/MSSS and Image processing by Brian Swift.
 
 Files:
+ images/icon/swarm*
  images/outfit/twin?blaster*
  images/outfit/twin?mod?blaster*
  images/outfit/repeater*
@@ -2208,32 +3560,181 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
 
 Files:
+ images/ship/racing?flivver*
+ images/thumbnail/racing?flivver*
+ images/scene/flivver?crash*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Gefüllte Taubenbrust (under the same license).
+
+Files:
  images/land/badlands13*
- images/land/beach15*
- images/land/city19*
- images/land/city20*
- images/land/city21*
- images/land/city22*
- images/land/city23*
- images/land/city24*
- images/land/city25*
- images/land/desert14*
- images/land/desert15*
- images/land/forest10*
- images/land/mountain27*
- images/land/mountain28*
- images/land/mountain29*
- images/land/mountain30*
- images/land/sea22*
- images/land/snow22*
-Copyright: Various
+Copyright: Jeff Hollett
 License: CC0
-Comment: Taken from unsplash.com and cropped.
+Comment:
+ Taken from https://archive.md/5vajd. Cropped.
+
+Files:
+ images/land/beach15*
+Copyright: Mike Wilson
+License: CC0
+Comment:
+ Taken from https://archive.md/ZA6HK. Cropped.
+
+Files:
+ images/land/city19*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/B9Iby. Cropped.
+
+Files:
+ images/land/city20*
+Copyright: Andrew Guan
+License: CC0
+Comment:
+ Taken from https://archive.md/gRTDV. Cropped.
+
+Files:
+ images/land/city21*
+Copyright: Pedro Lastra
+License: CC0
+Comment:
+ Taken from https://archive.md/izxJw. Cropped.
+
+Files:
+ images/land/city22*
+Copyright: Josh Rose
+License: CC0
+Comment:
+ Taken from https://archive.md/cSoHE. Cropped.
+
+Files:
+ images/land/city23*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment:
+ Taken from https://archive.md/P6xEX. Cropped.
+
+Files:
+ images/land/city24*
+Copyright: Paolostefano1412
+License: CC0
+Comment:
+ Taken from https://archive.md/IYMin. Cropped.
+
+Files:
+ images/land/city25*
+Copyright: Julia Caesar
+License: CC0
+Comment:
+ Taken from https://archive.md/LelAu. Cropped.
+
+Files:
+ images/land/desert14*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment:
+ Taken from https://archive.md/dzfDD. Cropped.
+
+Files:
+ images/land/desert15*
+Copyright: N/A (CC0 Public Domain)
+License: CC0
+Comment:
+ Taken from https://archive.md/epTUv. Cropped.
+
+Files:
+ images/land/forest10*
+Copyright: Sarah Humer
+License: public-domain
+ Taken from https://archive.is/bzVwX. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/land/mountain27*
+Copyright: Matt Bango
+License: CC0
+Comment:
+ Taken from https://archive.md/zfmFh. Cropped.
+
+Files:
+ images/land/mountain28*
+Copyright: Matt Bango
+License: CC0
+Comment:
+ Taken from https://archive.md/cZdqa. Cropped.
+
+Files:
+ images/land/sea22*
+Copyright: Sergei Gussev
+License: CC0
+Comment:
+ Taken from https://archive.md/qxIbc. Cropped.
+
+Files:
+ images/land/city26*
+ images/land/city27*
+ images/land/city28*
+ images/land/clouds9*
+ images/land/clouds10*
+ images/land/fields28*
+ images/land/fields29*
+ images/land/forest11*
+ images/land/forest12*
+ images/land/path1*
+ images/land/path2*
+ images/land/path3*
+ images/land/path4*
+ images/land/sea24*
+ images/land/sky12*
+ images/land/sky13*
+ images/land/water21*
+ images/land/water22*
+ images/land/water23*
+ images/land/water24*
+ images/land/water25*
+Copyright: DAK (4robits@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/land/snow22*
+Copyright: Pixabay
+License: CC0
+Comment:
+ Taken from https://archive.md/R5Sbl. Cropped.
+
+Files:
+ images/land/snow23*
+Copyright: Chris Marquardt
+License: CC0
+Comment:
+ Taken from https://archive.md/UhUxg. Cropped.
 
 Files:
  images/ui/red?alert*
+ images/ui/tactical/acceleration*
+ images/ui/tactical/gun?range*
+ images/ui/tactical/turret?range*
+ images/ui/tactical/turn*
+ images/ui/tactical/velocity*
 Copyright: Zitchas (zitchas.jma@gmail.com)
 License: CC-BY-SA-4.0
+
+Files:
+ images/ui/tactical/crew*
+ images/ui/tactical/energy*
+ images/ui/tactical/fuel*
+ images/ui/tactical/thermal*
+Copyright: Michael Zahniser <mzahniser@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Cropped and split into four new files by Zitchas (zitchas.jma@gmail.com)
+
+Files:
+ images/scene/cave?scene*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
  images/_menu/haze-brown*
@@ -2242,10 +3743,10 @@ License: CC-BY-SA-4.0
 Comment: Derived from _menu/haze-133 (no copyright given).
 
 Files:
- images/star/proto-planetary-disk*
- images/projectile/ionic?turret*
+ images/scene/emerging?ladybug*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
+Comment: Derived from public domain works previously submitted to Endless Sky.
 
 Files:
  images/effect/ionic?impact*
@@ -2276,13 +3777,207 @@ Copyright: Daeridanii (https://github.com/Daeridanii1)
 License: CC0
 Comment: selected and unselected versions of images/ui/find, by Ember369 (https://github.com/Ember369)
 
+Files:
+ images/land/mars4*
+Copyright: NASA
+License: public-domain
+ Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
+
+Files:
+ images/ship/escape?shuttle*
+Copyright: mOctave (https://github.com/mOctave)
+License: CC-BY-SA-4.0
+
+Files:
+ images/effect/bimodal?impact*
+ images/effect/bimodal?switch?impact*
+ images/effect/drag?cannon?impact*
+ images/effect/overcharged?pulse?laser?impact*
+ images/effect/successor?flare/*
+ images/effect/successor?pulse?laser?impact*
+ images/effect/void?spark*
+ images/hardpoint/bimodal?turret*
+ images/hardpoint/overcharged?pulse?laser?turret*
+ images/hardpoint/successor?pulse?laser?turret*
+ images/icon/hv?spike*
+ images/label/successors*
+ images/outfit/bimodal?coilgun?turret*
+ images/outfit/bimodal?coilgun*
+ images/outfit/drag?cannon*
+ images/outfit/fuel?sail*
+ images/outfit/hv?spike?rack*
+ images/outfit/hv?spike*
+ images/outfit/large?betavoltaic*
+ images/outfit/large?successor?battery*
+ images/outfit/large?successor?reactor*
+ images/outfit/large?successor?reverse*
+ images/outfit/large?successor?shield*
+ images/outfit/large?successor?steering*
+ images/outfit/large?successor?thruster*
+ images/outfit/medium?betavoltaic*
+ images/outfit/medium?successor?reactor*
+ images/outfit/medium?successor?repair*
+ images/outfit/medium?successor?reverse*
+ images/outfit/medium?successor?shield*
+ images/outfit/medium?successor?steering*
+ images/outfit/medium?successor?thruster*
+ images/outfit/overcharged?betavoltaic*
+ images/outfit/overcharged?pulse?laser?turret*
+ images/outfit/overcharged?pulse?laser*
+ images/outfit/railgun?h2h*
+ images/outfit/shield?cortex?interface*
+ images/outfit/sjeja?kinetic?lance*
+ images/outfit/small?betavoltaic*
+ images/outfit/small?successor?battery*
+ images/outfit/small?successor?reactor*
+ images/outfit/small?successor?repair*
+ images/outfit/small?successor?reverse*
+ images/outfit/small?successor?shield*
+ images/outfit/small?successor?steering*
+ images/outfit/small?successor?thruster*
+ images/outfit/successor?armor*
+ images/outfit/successor?cooling*
+ images/outfit/successor?engines?tiny*
+ images/outfit/successor?license*
+ images/outfit/successor?pulse?laser?turret*
+ images/outfit/successor?pulse?laser*
+ images/outfit/tiny?successor?shield*
+ images/outfit/tuur?scanning?suite*
+ images/outfit/veldt?combat?scanner*
+ images/planet/station?successor*
+ images/projectile/bimodal?switch*
+ images/projectile/bimodal*
+ images/projectile/drag?cannon*
+ images/projectile/sjeja?kinetic?lance*
+ images/projectile/successor?pulse?laser*
+ images/ship/aaulqra*
+ images/ship/ejniisde*
+ images/ship/kaskhorade*
+ images/ship/kvelqde-khora*
+ images/ship/kvelqde*
+ images/ship/myaede*
+ images/ship/nnesaarau*
+ images/ship/ojde*
+ images/ship/seiitej*
+ images/ship/stolsaqra*
+ images/ship/veusade*
+ images/ship/vujlet*
+ images/thumbnail/aaulqra*
+ images/thumbnail/ejniisde*
+ images/thumbnail/kaskhorade*
+ images/thumbnail/kvelqde-khora*
+ images/thumbnail/kvelqde*
+ images/thumbnail/myaede*
+ images/thumbnail/nnesaarau*
+ images/thumbnail/ojde*
+ images/thumbnail/seiitej*
+ images/thumbnail/stolsaqra*
+ images/thumbnail/veusade*
+ images/thumbnail/vujlet*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+
+Files:
+  sounds/bimodal*
+  sounds/drag?cannon*
+  sounds/overcharged?pulse?laser*
+  sounds/successor?pulse?laser*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+Comment: Sound effects generated with Labchirp v1.60 (https://labbed.net/software/labchirp/).
+
+Files:
+ images/_menu/haze-tear*
+ images/star/void-scar*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC0
+Comment: Derived from works by NASA in the public domain.
+
+Files:
+ images/land/fog12*
+Copyright: US National Park Service
+License: public-domain
+ From the US National Park Service, and therefore in the public domain
+ because it was created by government employees while doing work for the government.
+
+Files:
+ images/land/snow24*
+Copyright: NPS Photo / Kent Miller
+License: public-domain
+ From the US National Park Service, and therefore in the public domain
+ because it was created by government employees while doing work for the government.
+
+Files:
+ images/land/snow25*
+Copyright: DCheretovich
+License: CC0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Vatnajökull_glacier.jpg and cropped.
+
+Files:
+ images/land/lava14*
+Copyright: USGS
+License: public-domain
+ From the USGS, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
+
+Files:
+ images/holovid?zone*
+ images/phantom?pallet*
+Copyright: None (placed in public domain by an anonymous author)
+License: CC0
+Comment: Uses public domain textures from texture.ninja. Meshes were made by an anonymous author in 2023-2024.
+
+Files:
+ images/ui/paused*
+Copyright: David Stark (zarkonnen@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
+ images/land/beach18*
+ images/land/canyon16*
+ images/land/clouds11*
+ images/land/clouds14*
+ images/land/clouds15*
+ images/land/desert19*
+ images/land/fog15*
+ images/land/forest13*
+ images/land/forest14*
+ images/land/forest15*
+ images/land/hills13*
+ images/land/lava15*
+ images/land/mountain33*
+ images/land/mountain38*
+ images/land/mountain41*
+ images/land/mountain45*
+ images/land/peripheria*
+ images/land/sky14*
+ images/land/snow26*
+ images/land/snow27*
+ images/land/snow28*
+ images/land/snow29*
+ images/land/snow30*
+ images/land/snow33*
+ images/land/snow36*
+ images/land/snow37*
+ images/land/snow38*
+ images/land/snow39*
+ images/land/station53*
+ images/land/station54*
+ images/land/station55*
+ images/land/station56*
+ images/land/station57*
+ images/land/water28*
+ images/land/water30*
+ images/land/water31*
+ images/land/water32*
+Copyright: Various
 License: Unsplash
- Unsplash grants you an irrevocable, nonexclusive, worldwide copyright
- license to download, copy, modify, distribute, perform, and use photos
- from Unsplash for free, including for commercial purposes, without
- permission  from or attributing the photographer or Unsplash. This
- license does not include the right to compile photos from Unsplash to
- replicate a similar or competing service.
+Comment:
+ From unsplash.com. These images were most likely uploaded to
+ unsplash.com after June 2017, so are subject to the
+ Unsplash License. They were also most likely uploaded after
+ February 2018, so they are subject to an additional restriction
+ limiting the sale of unaltered copies.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
@@ -3673,56 +5368,10 @@ License: CC0
  Affirmer disclaims responsibility for clearing rights of other persons that may apply to the Work or any use thereof, including without limitation any person's Copyright and Related Rights in the Work. Further, Affirmer disclaims responsibility for obtaining any necessary consents, permissions or other rights required for any use of the Work.
  Affirmer understands and acknowledges that Creative Commons is not a party to this document and has no duty or obligation with respect to this CC0 or use of the Work.
 
-License: CC-BY-2.0
- THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS CREATIVE COMMONS PUBLIC LICENSE ("CCPL" OR "LICENSE"). THE WORK IS PROTECTED BY COPYRIGHT AND/OR OTHER APPLICABLE LAW. ANY USE OF THE WORK OTHER THAN AS AUTHORIZED UNDER THIS LICENSE OR COPYRIGHT LAW IS PROHIBITED.
- .
- BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND AGREE TO BE BOUND BY THE TERMS OF THIS LICENSE. THE LICENSOR GRANTS YOU THE RIGHTS CONTAINED HERE IN CONSIDERATION OF YOUR ACCEPTANCE OF SUCH TERMS AND CONDITIONS.
- .
- 1. Definitions
- .
- "Collective Work" means a work, such as a periodical issue, anthology or encyclopedia, in which the Work in its entirety in unmodified form, along with a number of other contributions, constituting separate and independent works in themselves, are assembled into a collective whole. A work that constitutes a Collective Work will not be considered a Derivative Work (as defined below) for the purposes of this License.
- "Derivative Work" means a work based upon the Work or upon the Work and other pre-existing works, such as a translation, musical arrangement, dramatization, fictionalization, motion picture version, sound recording, art reproduction, abridgment, condensation, or any other form in which the Work may be recast, transformed, or adapted, except that a work that constitutes a Collective Work will not be considered a Derivative Work for the purpose of this License. For the avoidance of doubt, where the Work is a musical composition or sound recording, the synchronization of the Work in timed-relation with a moving image ("synching") will be considered a Derivative Work for the purpose of this License.
- "Licensor" means the individual or entity that offers the Work under the terms of this License.
- "Original Author" means the individual or entity who created the Work.
- "Work" means the copyrightable work of authorship offered under the terms of this License.
- "You" means an individual or entity exercising rights under this License who has not previously violated the terms of this License with respect to the Work, or who has received express permission from the Licensor to exercise rights under this License despite a previous violation.
- .
- 2. Fair Use Rights. Nothing in this license is intended to reduce, limit, or restrict any rights arising from fair use, first sale or other limitations on the exclusive rights of the copyright owner under copyright law or other applicable laws.
- .
- 3. License Grant. Subject to the terms and conditions of this License, Licensor hereby grants You a worldwide, royalty-free, non-exclusive, perpetual (for the duration of the applicable copyright) license to exercise the rights in the Work as stated below:
- .
- to reproduce the Work, to incorporate the Work into one or more Collective Works, and to reproduce the Work as incorporated in the Collective Works;
- to create and reproduce Derivative Works;
- to distribute copies or phonorecords of, display publicly, perform publicly, and perform publicly by means of a digital audio transmission the Work including as incorporated in Collective Works;
- to distribute copies or phonorecords of, display publicly, perform publicly, and perform publicly by means of a digital audio transmission Derivative Works.
- .
- For the avoidance of doubt, where the work is a musical composition:
- Performance Royalties Under Blanket Licenses. Licensor waives the exclusive right to collect, whether individually or via a performance rights society (e.g. ASCAP, BMI, SESAC), royalties for the public performance or public digital performance (e.g. webcast) of the Work.
- Mechanical Rights and Statutory Royalties. Licensor waives the exclusive right to collect, whether individually or via a music rights agency or designated agent (e.g. Harry Fox Agency), royalties for any phonorecord You create from the Work ("cover version") and distribute, subject to the compulsory license created by 17 USC Section 115 of the US Copyright Act (or the equivalent in other jurisdictions).
- Webcasting Rights and Statutory Royalties. For the avoidance of doubt, where the Work is a sound recording, Licensor waives the exclusive right to collect, whether individually or via a performance-rights society (e.g. SoundExchange), royalties for the public digital performance (e.g. webcast) of the Work, subject to the compulsory license created by 17 USC Section 114 of the US Copyright Act (or the equivalent in other jurisdictions).
- .
- The above rights may be exercised in all media and formats whether now known or hereafter devised. The above rights include the right to make such modifications as are technically necessary to exercise the rights in other media and formats. All rights not expressly granted by Licensor are hereby reserved.
- .
- 4. Restrictions.The license granted in Section 3 above is expressly made subject to and limited by the following restrictions:
- .
- You may distribute, publicly display, publicly perform, or publicly digitally perform the Work only under the terms of this License, and You must include a copy of, or the Uniform Resource Identifier for, this License with every copy or phonorecord of the Work You distribute, publicly display, publicly perform, or publicly digitally perform. You may not offer or impose any terms on the Work that alter or restrict the terms of this License or the recipients' exercise of the rights granted hereunder. You may not sublicense the Work. You must keep intact all notices that refer to this License and to the disclaimer of warranties. You may not distribute, publicly display, publicly perform, or publicly digitally perform the Work with any technological measures that control access or use of the Work in a manner inconsistent with the terms of this License Agreement. The above applies to the Work as incorporated in a Collective Work, but this does not require the Collective Work apart from the Work itself to be made subject to the terms of this License. If You create a Collective Work, upon notice from any Licensor You must, to the extent practicable, remove from the Collective Work any reference to such Licensor or the Original Author, as requested. If You create a Derivative Work, upon notice from any Licensor You must, to the extent practicable, remove from the Derivative Work any reference to such Licensor or the Original Author, as requested.
- If you distribute, publicly display, publicly perform, or publicly digitally perform the Work or any Derivative Works or Collective Works, You must keep intact all copyright notices for the Work and give the Original Author credit reasonable to the medium or means You are utilizing by conveying the name (or pseudonym if applicable) of the Original Author if supplied; the title of the Work if supplied; to the extent reasonably practicable, the Uniform Resource Identifier, if any, that Licensor specifies to be associated with the Work, unless such URI does not refer to the copyright notice or licensing information for the Work; and in the case of a Derivative Work, a credit identifying the use of the Work in the Derivative Work (e.g., "French translation of the Work by Original Author," or "Screenplay based on original Work by Original Author"). Such credit may be implemented in any reasonable manner; provided, however, that in the case of a Derivative Work or Collective Work, at a minimum such credit will appear where any other comparable authorship credit appears and in a manner at least as prominent as such other comparable authorship credit.
- .
- 5. Representations, Warranties and Disclaimer
- .
- UNLESS OTHERWISE MUTUALLY AGREED TO BY THE PARTIES IN WRITING, LICENSOR OFFERS THE WORK AS-IS AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND CONCERNING THE WORK, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF TITLE, MERCHANTIBILITY, FITNESS FOR A PARTICULAR PURPOSE, NONINFRINGEMENT, OR THE ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OF ABSENCE OF ERRORS, WHETHER OR NOT DISCOVERABLE. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES, SO SUCH EXCLUSION MAY NOT APPLY TO YOU.
- .
- 6. Limitation on Liability. EXCEPT TO THE EXTENT REQUIRED BY APPLICABLE LAW, IN NO EVENT WILL LICENSOR BE LIABLE TO YOU ON ANY LEGAL THEORY FOR ANY SPECIAL, INCIDENTAL, CONSEQUENTIAL, PUNITIVE OR EXEMPLARY DAMAGES ARISING OUT OF THIS LICENSE OR THE USE OF THE WORK, EVEN IF LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
- .
- 7. Termination
- .
- This License and the rights granted hereunder will terminate automatically upon any breach by You of the terms of this License. Individuals or entities who have received Derivative Works or Collective Works from You under this License, however, will not have their licenses terminated provided such individuals or entities remain in full compliance with those licenses. Sections 1, 2, 5, 6, 7, and 8 will survive any termination of this License.
- Subject to the above terms and conditions, the license granted here is perpetual (for the duration of the applicable copyright in the Work). Notwithstanding the above, Licensor reserves the right to release the Work under different license terms or to stop distributing the Work at any time; provided, however that any such election will not serve to withdraw this License (or any other license that has been, or is required to be, granted under the terms of this License), and this License will continue in full force and effect unless terminated as stated above.
- .
- 8. Miscellaneous
- .
- Each time You distribute or publicly digitally perform the Work or a Collective Work, the Licensor offers to the recipient a license to the Work on the same terms and conditions as the license granted to You under this License.
- Each time You distribute or publicly digitally perform a Derivative Work, Licensor offers to the recipient a license to the original Work on the same terms and conditions as the license granted to You under this License.
- If any provision of this License is invalid or unenforceable under applicable law, it shall not affect the validity or enforceability of the remainder of the terms of this License, and without further action by the parties to this agreement, such provision shall be reformed to the minimum extent necessary to make such provision valid and enforceable.
- No term or provision of this License shall be deemed waived and no breach consented to unless such waiver or consent shall be in writing and signed by the party to be charged with such waiver or consent.
- This License constitutes the entire agreement between the parties with respect to the Work licensed here. There are no understandings, agreements or representations with respect to the Work not specified here. Licensor shall not be bound by any additional provisions that may appear in any communication from You. This License may not be modified without the mutual written agreement of the Licensor and You.
+License: Unsplash
+ Unsplash grants you an irrevocable, nonexclusive, worldwide copyright
+ license to download, copy, modify, distribute, perform, and use photos
+ from Unsplash for free, including for commercial purposes, without
+ permission from or attributing the photographer or Unsplash. This
+ license does not include the right to compile photos from Unsplash to
+ replicate a similar or competing service.

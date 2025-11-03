@@ -13,14 +13,15 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_DATA_H_
-#define GAME_DATA_H_
+#pragma once
 
-#include "CategoryTypes.h"
-#include "Sale.h"
+#include "CategoryType.h"
 #include "Set.h"
+#include "Shop.h"
+#include "Swizzle.h"
 #include "Trade.h"
 
+#include <filesystem>
 #include <future>
 #include <map>
 #include <memory>
@@ -53,7 +54,10 @@ class Panel;
 class Person;
 class Phrase;
 class Planet;
+class PlayerInfo;
+class Point;
 class Politics;
+class Shader;
 class Ship;
 class Sprite;
 class StarField;
@@ -76,7 +80,8 @@ class Wormhole;
 // universe.
 class GameData {
 public:
-	static std::shared_future<void> BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload);
+	static std::shared_future<void> BeginLoad(TaskQueue &queue, const PlayerInfo &player,
+		bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
@@ -90,7 +95,7 @@ public:
 	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
-	static const std::vector<std::string> &Sources();
+	static const std::vector<std::filesystem::path> &Sources();
 
 	// Get a reference to the UniverseObjects object.
 	static UniverseObjects &Objects();
@@ -104,7 +109,7 @@ public:
 	static void StepEconomy();
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
-	static void Change(const DataNode &node);
+	static void Change(const DataNode &node, const PlayerInfo &player);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
@@ -117,6 +122,7 @@ public:
 	static void DestroyPersons(std::vector<std::string> &names);
 
 	static const Set<Color> &Colors();
+	static const Set<Swizzle> &Swizzles();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
@@ -130,12 +136,13 @@ public:
 	static const Set<Mission> &Missions();
 	static const Set<News> &SpaceportNews();
 	static const Set<Outfit> &Outfits();
-	static const Set<Sale<Outfit>> &Outfitters();
+	static const Set<Shop<Outfit>> &Outfitters();
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
+	static const Set<Shader> &Shaders();
 	static const Set<Ship> &Ships();
-	static const Set<Sale<Ship>> &Shipyards();
+	static const Set<Shop<Ship>> &Shipyards();
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
@@ -156,6 +163,7 @@ public:
 	// Get the solar power and wind output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
+	static const Sprite *StarIcon(const Sprite *sprite);
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
@@ -163,6 +171,9 @@ public:
 	static const CategoryList &GetCategory(const CategoryType type);
 
 	static const StarField &Background();
+	static void StepBackground(const Point &vel, double zoom = 1.);
+	static const Point &GetBackgroundPosition();
+	static void SetBackgroundPosition(const Point &position);
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 
 	static const std::string &Tooltip(const std::string &label);
@@ -183,7 +194,3 @@ private:
 	static void LoadSources(TaskQueue &queue);
 	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 };
-
-
-
-#endif

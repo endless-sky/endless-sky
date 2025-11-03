@@ -158,7 +158,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 				set "WR: Captains: aliens"
 			`	"Only the usual assortment of hoaxes," says Rain. They both laugh at this.`
 			`	"Seriously, though, both the Free Worlds Senate and Republic Parliament are up in arms over fear of aliens," says Fiona. Rain adds, "Only metaphorically up in arms, this time.`
-			`	"If we find new aliens, we'll let the necessary authorities know as soon as possible. You should do the same. Be discrete, avoid conflicts, and seek help if you need it."`
+			`	"If we find new aliens, we'll let the necessary authorities know as soon as possible. You should do the same. Be discreet, avoid conflicts, and seek help if you need it."`
 				goto questions
 			
 			label sister
@@ -173,7 +173,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 			action
 				set "WR: Captains: opposite"
 			`	"Well, Rain went off to Earth to join the Navy Academy years ago," says Captain Fiona.`
-			`	"And Fiona stayed on Longjump and joined the local militia before the Free Worlds was formed," says Captain Rain. "It's not that we wanted to fight each other, but we both believed in our own sides."`
+			`	"And Fiona stayed on Longjump and joined the local militia before the Free Worlds were formed," says Captain Rain. "It's not that we wanted to fight each other, but we both believed in our own sides."`
 				goto questions
 
 

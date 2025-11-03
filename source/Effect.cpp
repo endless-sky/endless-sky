@@ -15,23 +15,40 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Effect.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "DataNode.h"
+
+#include <map>
 
 using namespace std;
 
-
-
-const string &Effect::Name() const
-{
-	return name;
+namespace {
+	const map<string, SoundCategory> categoryNames = {
+		{"ui", SoundCategory::UI},
+		{"anti-missile", SoundCategory::ANTI_MISSILE},
+		{"weapon", SoundCategory::WEAPON},
+		{"engine", SoundCategory::ENGINE},
+		{"afterburner", SoundCategory::AFTERBURNER},
+		{"jump", SoundCategory::JUMP},
+		{"explosion", SoundCategory::EXPLOSION},
+		{"scan", SoundCategory::SCAN},
+		{"environment", SoundCategory::ENVIRONMENT},
+		{"alert", SoundCategory::ALERT}
+	};
 }
 
 
 
-void Effect::SetName(const string &name)
+const string &Effect::TrueName() const
 {
-	this->name = name;
+	return trueName;
+}
+
+
+
+void Effect::SetTrueName(const string &name)
+{
+	this->trueName = name;
 }
 
 
@@ -39,34 +56,45 @@ void Effect::SetName(const string &name)
 void Effect::Load(const DataNode &node)
 {
 	if(node.Size() > 1)
-		name = node.Token(1);
+		trueName = node.Token(1);
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "sprite")
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "sprite")
 			LoadSprite(child);
-		else if(child.Token(0) == "sound" && child.Size() >= 2)
+		else if(key == "zooms")
+			inheritsZoom = true;
+		else if(key == "sound" && hasValue)
 			sound = Audio::Get(child.Token(1));
-		else if(child.Token(0) == "lifetime" && child.Size() >= 2)
+		else if(key == "sound category" && hasValue)
+		{
+			if(categoryNames.contains(child.Token(1)))
+				soundCategory = categoryNames.at(child.Token(1));
+			else
+				child.PrintTrace("Unknown sound category \"" + child.Token(1) + "\"");
+		}
+		else if(key == "lifetime" && hasValue)
 			lifetime = child.Value(1);
-		else if(child.Token(0) == "random lifetime" && child.Size() >= 2)
+		else if(key == "random lifetime" && hasValue)
 			randomLifetime = child.Value(1);
-		else if(child.Token(0) == "velocity scale" && child.Size() >= 2)
+		else if(key == "velocity scale" && hasValue)
 			velocityScale = child.Value(1);
-		else if(child.Token(0) == "random velocity" && child.Size() >= 2)
+		else if(key == "random velocity" && hasValue)
 			randomVelocity = child.Value(1);
-		else if(child.Token(0) == "random angle" && child.Size() >= 2)
+		else if(key == "random angle" && hasValue)
 			randomAngle = child.Value(1);
-		else if(child.Token(0) == "random spin" && child.Size() >= 2)
+		else if(key == "random spin" && hasValue)
 			randomSpin = child.Value(1);
-		else if(child.Token(0) == "random frame rate" && child.Size() >= 2)
+		else if(key == "random frame rate" && hasValue)
 			randomFrameRate = child.Value(1);
-		else if(child.Token(0) == "absolute angle" && child.Size() >= 2)
+		else if(key == "absolute angle" && hasValue)
 		{
 			absoluteAngle = Angle(child.Value(1));
 			hasAbsoluteAngle = true;
 		}
-		else if(child.Token(0) == "absolute velocity" && child.Size() >= 2)
+		else if(key == "absolute velocity" && hasValue)
 		{
 			absoluteVelocity = child.Value(1);
 			hasAbsoluteVelocity = true;

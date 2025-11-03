@@ -13,15 +13,15 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_PANEL_H_
-#define MAP_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
+#include "Animate.h"
 #include "Color.h"
 #include "DistanceMap.h"
 #include "Point.h"
-#include "text/WrappedText.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <string>
@@ -51,7 +51,9 @@ public:
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
 	static const int SHOW_DANGER = -7;
+	static const int SHOW_STARS = -8;
 
+	static const unsigned MAX_MISSION_POINTERS_DRAWN;
 	static const float OUTER;
 	static const float INNER;
 	static const float LINK_WIDTH;
@@ -68,26 +70,35 @@ public:
 	};
 
 
+public:
+	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
+		bool drawBack = true, bool bigger = false);
+	static std::pair<bool, bool> BlinkMissionIndicator(const PlayerInfo &player, const Mission &mission, int step);
+
 
 public:
-	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
+	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION,
+		const System *special = nullptr, bool fromMission = false);
+	virtual ~MapPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
 
-	// Draw map mode buttons, escort/storage tooltips, and the non-routable system warning.
+	// Draw elements common for all map panels that need to be placed
+	// on top of everything else. This includes distance info, map mode buttons,
+	// escort/storage tooltips, and the non-routable system warning.
 	void FinishDrawing(const std::string &buttonCondition);
-
-	static void DrawMiniMap(const PlayerInfo &player, float alpha, const System *const jump[2], int step);
 
 	// Map panels allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
+
+	virtual void UpdateTooltipActivation() override;
 
 
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
@@ -136,6 +147,7 @@ protected:
 	Point center;
 	Point recenterVector;
 	int recentering = 0;
+	Animate<double> zoom;
 	int commodity;
 	int step = 0;
 	std::string buttonCondition;
@@ -154,14 +166,42 @@ protected:
 	void UpdateCache();
 
 	// For tooltips:
-	int hoverCount = 0;
 	const System *hoverSystem = nullptr;
-	std::string tooltip;
-	WrappedText hoverText;
+	Tooltip tooltip;
 
 	// An X offset in pixels to be applied to the selected system UI if something
 	// else gets in the way of its default position.
 	int selectedSystemOffset = 0;
+
+	bool fromMission = false;
+
+
+private:
+	class Node {
+	public:
+		Node(const Point &position, const Color &color, const std::string &name,
+			const Color &nameColor, const Government *government, const std::vector<const Sprite *> &mapIcons)
+			: position(position), color(color), name(name), nameColor(nameColor),
+			government(government), mapIcons(mapIcons) {}
+
+		Point position;
+		Color color;
+		std::string name;
+		Color nameColor;
+		const Government *government;
+		std::vector<const Sprite *> mapIcons;
+	};
+
+	class Link {
+	public:
+		Link(const Point &start, const Point &end, const Color &color)
+			: start(start), end(end), color(color) {}
+
+		Point start;
+		Point end;
+		Color color;
+	};
+
 
 private:
 	void DrawTravelPlan();
@@ -175,41 +215,16 @@ private:
 	void DrawSystems();
 	void DrawNames();
 	void DrawMissions();
-	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
-	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
-		bool drawBack = true, bool bigger = false);
+	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
+
+	void IncrementZoom();
+	void DecrementZoom();
 
 
 private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
 
-	class Node {
-	public:
-		Node(const Point &position, const Color &color, const std::string &name,
-			const Color &nameColor, const Government *government)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
-
-		Point position;
-		Color color;
-		std::string name;
-		Color nameColor;
-		const Government *government;
-	};
 	std::vector<Node> nodes;
-
-	class Link {
-	public:
-		Link(const Point &start, const Point &end, const Color &color)
-			: start(start), end(end), color(color) {}
-
-		Point start;
-		Point end;
-		Color color;
-	};
 	std::vector<Link> links;
 };
-
-
-
-#endif

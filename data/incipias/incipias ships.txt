@@ -1,0 +1,263 @@
+# Copyright (c) 2023 by RisingLeaf (https://github.com/RisingLeaf)
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+ship "Venta"
+	"plural" "Ventae"
+	"sprite" ship/venta
+	"thumbnail" thumbnail/venta
+	"swizzle" 0
+	attributes
+		category "Heavy Warship"
+		licenses
+			"Hicemus Conflict"
+		"cost" 25000000
+		"hull" 9600
+		"shields" 12800
+		"required crew" 40
+		"bunks" 45
+		"mass" 2400
+		"drag" 10.2
+		"heat dissipation" .42
+		"cargo space" 20
+		"outfit space" 552
+		"weapon capacity" 240
+		"engine capacity" 130
+		"gaslining" 1
+		"fuel capacity" 200
+		weapon
+			"blast radius" 224
+			"shield damage" 2240
+			"hull damage" 1120
+			"hit force" 3360
+	outfits
+		"Liquid-Class Shield"
+		"Liquid-Class Shield"
+		"Metallic Hydrogen Cell"
+		"Plasma Discharger" 2
+		"Star Tail" 4
+		"Star Tail Cell" 120
+		"Star Tail Storage" 2
+		"Cloud Piercer" 40
+
+		"MH Red-Class Thruster"
+		"MH Red-Class Steering"
+
+	engine -90.5 42
+	engine 0 42
+		"over"
+	engine 90 42
+	gun 58.5 -76.5 "Plasma Discharger"
+	gun 29 -76.5 "Star Tail"
+	gun 29 -76.5 "Star Tail"
+	gun -28 -76.5 "Star Tail"
+	gun -28 -76.5 "Star Tail"
+	gun -57.5 -76.5 "Plasma Discharger"
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "When the Hicemus came to power they needed a ship to symbolize their strength. With six guns, the Venta is the most powerful ship in the Incipias' history. Thanks to its sleek and aerodynamic design it is as comfortable hunting down outlaws in space as in the clouds of a gas giant."
+
+ship "Nimbus"
+	"plural" "Nimbi"
+	"sprite" ship/nimbus
+	"thumbnail" thumbnail/nimbus
+	"swizzle" 0
+	attributes
+		category "Medium Warship"
+		licenses
+			"Hicemus Conflict"
+		"cost" 3250000
+		"hull" 4000
+		"shields" 6000
+		"required crew" 20
+		"bunks" 40
+		"mass" 1640
+		"drag" 10.8
+		"heat dissipation" .46
+		"cargo space" 75
+		"outfit space" 450
+		"weapon capacity" 120
+		"engine capacity" 85
+		"gaslining" 1
+		"fuel capacity" 200
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Liquid-Class Shield"
+		"Metallic Hydrogen Cell"
+		"Plasma Discharger" 4
+		"Stagnation Beam"
+		"Cloud Piercer" 20
+
+		"MH Red-Class Thruster"
+		"MH Red-Class Steering"
+
+	engine 0 120
+	engine 0 120
+	engine -30.5 120
+	engine 30.5 120
+	gun -15 -117
+	gun 15 -117
+	gun 0 -117
+	gun 0 -117
+	turret 0 31.5
+	explode "medium explosion" 50
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Nimbus is the first spaceship that the Incipias built that was truly able to navigate through a system. Since it was first manufactured it has been cherished among wealthier captains and a dream of captains just starting out."
+	description "	Although the Nimbus is labeled as a medium warship, it is multipurpose; whether one uses it for mining, passenger transport or cargo, it will perform its job nicely. It is only occasionally used in combat because the Incipias are not currently fighting open wars."
+
+ship "Nimbus" "Nimbus (Civilian)"
+	outfits
+		"Liquid-Class Shield"
+		"Metallic Hydrogen Cell"
+
+		"MH Red-Class Thruster"
+		"MH Red-Class Steering"
+
+ship "Nimbus" "Nimbus (Mining)"
+	outfits
+		"Liquid-Class Shield"
+		"Metallic Hydrogen Cell"
+		"Plasma Discharger" 4
+		"Horizon Grappler"
+		"Cloud Piercer" 20
+
+		"MH Red-Class Thruster"
+		"MH Red-Class Steering"
+
+ship "Nimbo Stratus"
+	"plural" "Nimbo Strati"
+	"sprite" ship/stratus
+	"thumbnail" thumbnail/stratus
+	"swizzle" 0
+	attributes
+		category "Utility"
+		"cost" 460000
+		"hull" 500
+		"shields" 700
+		"required crew" 5
+		"bunks" 10
+		"mass" 534
+		"drag" 8.4
+		"heat dissipation" .67
+		"cargo space" 50
+		"outfit space" 270
+		"weapon capacity" 50
+		"engine capacity" 60
+		"gaslining" 1
+		"fuel capacity" 200
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 60
+			"hit force" 180
+	outfits
+		"Gas-Class Shield"
+		"Metallic Hydrogen Cell"
+		"Plasma Discharger" 2
+
+		"MH Blue-Class Thruster"
+		"MH Blue-Class Steering"
+
+	gun -13 -48.5
+	gun 13 -48.5
+	engine 0 61.5
+	explode "medium explosion" 10
+	explode "large explosion" 20
+	"final explode" "final explosion medium"
+	description "Mining has always been a big business in Incipias society, which is why the Nimbo Stratus is the most common ship for beginning captains. Its cheap price tag and ability to bring money in quickly ensure its continuing popularity. While the Stratus could theoretically be used in combat, it stands no chance against the Nimbus and therefore has never been used by the Hicemus military forces."
+
+ship "Nimbo Cirrus"
+	"plural" "Nimbo Cirri"
+	"sprite" ship/cirrus
+	"thumbnail" thumbnail/cirrus
+	"swizzle" 0
+	attributes
+		category "Light Freighter"
+		"cost" 330000
+		"hull" 750
+		"shields" 1500
+		"required crew" 7
+		"bunks" 14
+		"mass" 800
+		"drag" 8.7
+		"heat dissipation" .6
+		"cargo space" 200
+		"outfit space" 160
+		"engine capacity" 60
+		"gaslining" 1
+		"fuel capacity" 200
+		weapon
+			"blast radius" 22.5
+			"shield damage" 225
+			"hull damage" 113
+			"hit force" 350
+	outfits
+		"Gas-Class Shield"
+		"Metallic Hydrogen Cell"
+
+		"MH Green-Class Thruster"
+		"MH Green-Class Steering"
+
+	engine -32 80
+	engine 32 80
+	engine 0 80
+	explode "medium explosion" 20
+	explode "large explosion" 30
+	"final explode" "final explosion medium"
+	description "When Pon'tes was built, the need arose for a ship that could carry large amounts of material and supplies into orbit. When the Nimbus proved insufficient at this task, the Nimbo Cirrus, a specialized cargo ship, was built. The inhabitants of Pon'tes rely on its regular deliveries for basic goods and equipment."
+
+ship "Gero"
+	"sprite" ship/gero
+	"thumbnail" thumbnail/gero
+	"swizzle" 0
+	attributes
+		category "Transport"
+		"cost" 985000
+		"hull" 850
+		"shields" 1700
+		"required crew" 10
+		"bunks" 72
+		"mass" 760
+		"drag" 8.4
+		"heat dissipation" .58
+		"cargo space" 20
+		"outfit space" 158
+		"engine capacity" 54
+		"gaslining" 1
+		"fuel capacity" 200
+		weapon
+			"blast radius" 26.5
+			"shield damage" 265
+			"hull damage" 133
+			"hit force" 400
+	outfits
+		"Gas-Class Shield"
+		"Metallic Hydrogen Cell"
+
+		"MH Blue-Class Thruster"
+		"MH Blue-Class Steering"
+
+	engine -41 76.5
+	engine 0 76.5
+	engine 41 76.5
+	explode "medium explosion" 20
+	explode "large explosion" 30
+	"final explode" "final explosion medium"
+	description "The completion of Pon'tes caused a huge increase in travel between the station and Redias. Designers from Alto Shipyards quickly saw an opportunity and so the Incipias' first transport ship was built."

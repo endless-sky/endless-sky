@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIPYARD_PANEL_H_
-#define SHIPYARD_PANEL_H_
+#pragma once
 
 #include "ShopPanel.h"
 
@@ -35,7 +34,7 @@ class Ship;
 // a government that is particularly repressive of independent pilots.)
 class ShipyardPanel : public ShopPanel {
 public:
-	explicit ShipyardPanel(PlayerInfo &player);
+	explicit ShipyardPanel(PlayerInfo &player, Sale<Ship> stock);
 
 	virtual void Step() override;
 
@@ -67,6 +66,3 @@ private:
 
 	Sale<Ship> shipyard;
 };
-
-
-#endif

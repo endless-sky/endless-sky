@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFITTER_PANEL_H_
-#define OUTFITTER_PANEL_H_
+#pragma once
 
 #include "ShopPanel.h"
 
@@ -41,7 +40,7 @@ class Ship;
 // configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
 public:
-	explicit OutfitterPanel(PlayerInfo &player);
+	explicit OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock);
 
 	virtual void Step() override;
 
@@ -97,6 +96,3 @@ private:
 
 	int shipsHere = 0;
 };
-
-
-#endif

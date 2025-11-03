@@ -119,6 +119,10 @@ mission "Remnant: Expanded Horizons Astral job"
 	waypoint
 		not attributes "pleiades"
 		not attributes "inaccessible"
+		not attributes "tangled shroud"
+		not attributes "twilight"
+		not attributes "outer limits"
+		not attributes "beyond patir"
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
 		random < 50
@@ -217,6 +221,7 @@ mission "Remnant: Bounty 5"
 			attributes "ember waste"
 			not attributes "graveyard"
 			not attributes "inaccessible"
+			not attributes "twilight"
 		fleet
 			names "korath"
 			cargo 3
@@ -269,7 +274,7 @@ mission "Remnant: Logistics Industrial Delivery"
 	to offer
 		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
-		has "Remnant: Logistics Civil Engineering: done" >= 9
+		"Remnant: Logistics Civil Engineering: done" >= 9
 		random < 76
 	source
 		government "Remnant"
@@ -297,7 +302,7 @@ mission "Remnant: Logistics Outfitter Delivery"
 		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
 		has "license: Remnant"
-		has "Remnant: Logistics Industrial Delivery: done" >= 9
+		"Remnant: Logistics Industrial Delivery: done" >= 9
 		random < 30
 	source
 		government "Remnant"
@@ -325,7 +330,7 @@ mission "Remnant: Logistics Salvage Delivery"
 		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
 		has "license: Remnant Capital"
-		has "Remnant: Logistics Outfitter Delivery: done" >= 9
+		"Remnant: Logistics Outfitter Delivery: done" >= 9
 		random < 11
 	source
 		government "Remnant"
@@ -360,6 +365,8 @@ mission "Remnant: Rescue"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -383,6 +390,7 @@ mission "Remnant: Rescue"
 ship "Rescue Dummy"
 	# sprite "ship/behemoth"
 	attributes
+		category "Game Mechanics"
 		"heat dissipation" 1
 		"hull" 1
 		"mass" 10
@@ -396,7 +404,7 @@ ship "Rescue Dummy"
 	gun 0 0
 
 outfit "Suicide Gun"
-	"category" guns
+	category "Guns"
 	thumbnail "outfit/unknown"
 	"gun ports" -1
 	weapon
@@ -427,6 +435,8 @@ mission "Remnant: Rescue 1B"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -464,6 +474,8 @@ mission "Remnant: Rescue 2"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -503,6 +515,8 @@ mission "Remnant: Rescue 2B"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -540,6 +554,8 @@ mission "Remnant: Rescue 3"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -577,6 +593,8 @@ mission "Remnant: Rescue 3B"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -667,8 +685,8 @@ mission "Remnant: Rescue 5"
 mission "Remnant: Disable 1"
 	job
 	repeat
-	name "Disable Damaged Kas'lor Ik 582"
-	description "A damaged Kas'lor Ik 582 is stuck in a newly accessible system, near Postverta. It has a large civilian population so we ask you to only disable it to avoid an atrocity. Once you return to <planet> you will receive a logistics adjustment of <payment>."
+	name "Disable Damaged Dathnak A'awoj"
+	description "A damaged Dathnak A'awoj is stuck in a newly accessible system, near Postverta. It has a large civilian population so we ask you to only disable it to avoid an atrocity. Once you return to <planet> you will receive a logistics adjustment of <payment>."
 	source
 		government "Remnant"
 	to offer
@@ -685,15 +703,15 @@ mission "Remnant: Disable 1"
 			names "korath"
 			variant
 				"Kas'lor Ik 582 (Stranded)"
-		dialog `You have disabled the Kas'lor Ik 582. Time to report back to <planet>.`
+		dialog `You have disabled the Dathnak A'awoj. Time to report back to <planet>.`
 	on visit
-		dialog `You've landed on <planet>, but the stuck Kas'lor Ik 582 has not been disabled yet. Hunt it down and disable it before returning.`
+		dialog `You've landed on <planet>, but the stuck Dathnak A'awoj has not been disabled yet. Hunt it down and disable it before returning.`
 	on abort
 		dialog `The Remnant are puzzled at your aborting of this mission, but they tell you they will send someone else to do this work. They advise you they will prioritize other teams for these missions in the future.`
 	on fail
 		"reputation: Remnant" -= 250
-		dialog `You were unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
+		dialog `You were unable to disable the Dathnak A'awoj without destroying it... The Remnant will not be pleased...`
 	on complete
 		"remnant: disable and save count" ++
 		payment 2000000
-		dialog "A Remnant military prefect thanks you for disabling down the Kas'lor Ik 582 <npc>, and gives you the agreed-upon logistics adjustment of <payment>."
+		dialog "A Remnant military prefect thanks you for disabling the Dathnak A'awoj <npc>, and gives you the agreed-upon logistics adjustment of <payment>."

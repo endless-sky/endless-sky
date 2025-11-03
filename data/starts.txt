@@ -1,0 +1,229 @@
+# Copyright (c) 2015 by Michael Zahniser
+# Copyright (c) 2024 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+start "default"
+	name "Endless Sky"
+	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning a starship ever since your first visit to the spaceport at the age of fifteen. After many long years of working at a textile mill, you've finally saved enough credits to apply for a pilot's license from the Republic.`
+	description `	After receiving the license and with freedom from this planet at your fingertips, you travel to the bank to take out a loan on your first ship...`
+	thumbnail "scene/lobby"
+	date 16 11 3013
+	system "Rutilicus"
+	planet "New Boston"
+	conversation "default intro"
+	account
+		credits 480000
+		score 400
+		mortgage Mortgage
+			principal 480000
+			interest 0.004
+			term 365
+	set "license: Pilot's"
+	set "species: human"
+	set "human space start"
+
+
+# Patch for if the player started a game before 0.10.11
+mission "Default Start Patch"
+	invisible
+	landing
+	to offer
+		has "Intro [0]: offered"
+		not "human space start"
+	on offer
+		set "species: human"
+		set "human space start"
+		fail
+
+
+conversation "default intro"
+	scene "scene/lobby"
+	`The bank's architecture is what you would have called "futuristic" back when you dreamed that the future would be less squalid than the present: story above story of curves and spires and balconies, all in gleaming metal. A doorman stands by each of the heavy glass doors. You are wearing your very best clothes, but you feel shabby next to them.`
+	`	The loan broker's office is equally intimidating. Large computer monitors fill the walls, with stock quotes and other information spilling down them almost too fast to read. You occasionally glimpse the names of places that you have only seen in movies: Aldebaran. Tarazed. Earth.`
+	`	The pen is heavy as lead but glides almost without friction as you print your initials on the bottom of page after page of ominous legal documents and sign several dozen statements, notices, and agreements. The banker, a balding middle-aged man in a suit that you suspect costs more than the spaceship you are about to purchase, flips the pages past you quickly, uttering a curt, "Sign here. Now here," as he points to each page. He moves swiftly, mechanically.`
+	`	The only moment when he becomes truly animated is when explaining the Truth in Lending statement to you. "You are borrowing 480,000 credits," he says, "to be repaid over the course of one year. Your daily interest rate is 0.4%, which means that your daily payments are 2,503 credits, and by the end of the year you will have paid... 433,567 credits in interest. Sign here." He grins.`
+	`	You sign your name one final time:`
+	name
+	`	The elevator is so well-tuned that you do not even realize it is moving until it has deposited you back in the lobby. But as you leave the bank, you are smiling. This crazy adventure suddenly feels real to you. You are going to do it. You are finally going to get off this planet.`
+	`	Compared to the bank, you feel much more at home in the shipyard, walking among the rusted out hulks and newer ships that gleam in the sunlight. You smell grease and dirt and rocket fuel; wonderful smells. There are three ship models within your price range. Which one you choose will determine your future...`
+
+
+
+start "hai space"
+	name "Hai Origins"
+	description `You grew up on Greenwater, a Hai world with a rich and mixed culture thanks to its climate. You've dreamed of owning your own fleet since you were given toy spaceships as a small child. To reach that goal, you worked hard at a travel company, recommending locations in human space.`
+	description `	Now, as your ferry docks at the main spaceport, you feel like this is the start of a new life as a captain.`
+	thumbnail "scene/hai start"
+	system "Fah Soom"
+	planet "Greenwater"
+	date 16 11 3013
+	on display
+		description `This start is locked.`
+	to reveal
+		has "Ask the Hai about the Unfettered"
+	on reveal
+		name "Hai Origins"
+		description `You grew up on Greenwater, a Hai world with a rich and mixed culture thanks to its climate. You've dreamed of owning your own fleet since you were given toy spaceships as a small child, and you've worked hard at a travel company to reach this goal.`
+		description `	Now, as your ferry docks at the main spaceport, you feel like this is the start of a new life as a captain.`
+		description `	To unlock this start, you must complete the main human campaign.`
+		system "Fah Soom"
+		planet "Greenwater"
+		date 16 11 3013
+		credits 1431000
+		debt 1431000
+	to unlock
+		has "Hai Start Unlocked"
+		# TODO: think about what point of HR should unlock this once it's back in the game, if any
+		# has "event: hai-human resolution announced"
+	conversation "hai intro"
+	account
+		credits 1431000
+		score 400
+		mortgage Mortgage
+			principal 1431000
+			interest 0.003
+			term 730
+	set "species: human"
+	set "hai space start"
+	# need to set it here to not have it trigger alongside the invisible mission
+	set "First Contact: Hai: offered"
+	set "First Contact: Hai: declined"
+	set "First Contact: Unfettered: offered"
+	set "First Contact: Unfettered: declined"
+	set "Ask the Hai about the Unfettered: offered"
+	set "Ask the Hai about the Unfettered: declined"
+
+
+conversation "hai intro"
+	scene "scene/hai shipyard"
+	action
+		event "not from boston" 0
+		event "grew up on greenwater" 0
+		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
+		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
+			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
+		log "Factions" "Syndicate" `The Syndicate is a megacorporation, the largest employer in human space. People who cannot find steady work elsewhere flock to the Syndicate factory worlds, where they are almost guaranteed to find a job. Although the Syndicate is technically part of the Republic, Syndicate worlds are governed directly by the corporation.`
+			`The Syndicate is a central part of the Republic's economy, but they are also well known for selling shoddy products and for doing damage to the environment on the worlds they control. Their treatment of workers is questionable, and their opposition to organized labor is legendary. Some Syndicate factory towns have even been accused of human rights abuses.`
+		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
+		log "Factions" "Hai" `The Hai are a species of giant, intelligent rodents, who live to the north of human space. They allow any humans who discover their territory to live alongside them, and to trade with them and purchase their technology.`
+		log "Factions" "Unfettered Hai" `The "Unfettered" are a faction within the Hai species who are not as peaceful as the rest, and are normally not friendly toward humans. They claim that long ago the Drak altered the Hai to make them docile and peaceful, and that the Unfettered are descendants of those Hai who avoided undergoing that alteration. They are seeking jump drives so that they can escape the "prison" they are now stuck in: a few deteriorating worlds on the far northern edge of Hai space.`
+		log "Factions" "Sheragi" `A long extinct dragon-like species called the "Sheragi" used to live in human space, back when much of what is now human territory was occupied by the Hai.`
+	
+	`Going to the North Pole already makes you feel as if you're on another world; even within the berth for your ferry, you can see more Hai than there are in your entire hometown. After some parting words from the PA system, you and your fellow passengers disembark, the flow of humanity breaking against the Hai crowd.`
+	`	Making your way towards the shipyard, you pull up the human-language version of your loan agreement to review: You have borrowed 1.431 million credits to be repaid over the course of two years. Your interest rate is 0.3%, making your repayments 4,836 credits per day.`
+	`	You look up from your tablet just before running head-on into a gray-furred Hai wearing a flight suit, knocking him over. As you bend over to help, he takes a glance at your mortgage documents. "You're about to become a captain, aren't you?" he says after dusting himself off.`
+	
+	choice
+		`	"Yes, I am."`
+		`	"How could you tell?"`
+			goto tell
+		`	"Who said you could look at that?"`
+			goto look
+	
+	`	"Then maybe I can help. Follow me."`
+		goto help
+	
+	label tell
+	`	"From your loan," he replies. "There's only one reason to have that exact number of credits. Speaking of which, I think I can help you."`
+		goto help
+	
+	label look
+	`	He scratches the back of his head. "Sorry. I was just trying to help, but if I'm causing too much trouble, I'll get out of your way.`
+	choice
+		`	"I don't mind."`
+			goto happy
+		`	"I'd rather handle things myself."`
+			goto leave
+	label happy
+	`	He bows. "Thank you."`
+	
+	label help
+	`	The Hai brings you to the landing pads of Greenwater, where a large number of humans and Hai are gathered around several vessels. From the crowd, another Hai approaches your companion, talking to him in Hai. The gray-furred Hai simply nods and hands the other Hai a set of keys in exchange for a credit chip. The other Hai quickly bows before dashing towards one of the landed ships.`
+	`	"I'm selling off my fleet before retiring," the Hai says. "Sure, I could just go to the shipyard, but I could never have started if it weren't for another retiring captain selling me a ship for cheap when I was young. So, I've decided to pay it forward and help out other captains-to-be."`
+	`	The Hai walks up to one of the smaller ships in the fleet, a Grasshopper interceptor. "This is the Pristine Jewel. She's served me well over the past century, but I'm sure she'll be safe in your hands."`
+	choice
+		`	"You're giving it to me?"`
+		`	"Is there a freighter I could take instead?"`
+			goto freighter
+		`	"What about the other people here? Shouldn't they get first pick?"`
+			goto pick
+	
+	`	The Hai chuckles. "That would be nice, wouldn't it? Unfortunately, retirement isn't cheap. I'd be happy to part with her for 1.132 million credits, though; that's less than a Aphid, let alone a new Grasshopper.`
+		goto deal
+	
+	label freighter
+	`	"Unfortunately, all my Aphids were bought earlier today. Still, I'm sure you can survive; the Unfettered'll be a tough ask, but pirates in human space won't be much of a match. Plus, if you still can't handle it, you can always sell her. She'll only cost you 1.132 million credits, and you'll be able to use the old parts of the Pristine Jewel to buy an Aphid at a discount.`
+		goto deal
+	
+	label pick
+	`	The Hai shakes his head. "Don't worry. Most of the crowd are just spectators. Usually it'd be a human captain pulling a stunt like selling their fleet publicly; most retiring Hai just donate their fleets to the government. I'm not exactly handing these ships out for free either. If you want her, the Pristine Jewel's 1.132 million credits.`
+	
+	label deal
+	`	"So, do we have a deal?"`
+	choice
+		`	"We do!"`
+		`	"I think I'd be better off buying from the shipyard."`
+			goto leave
+	
+	`	"Great!" He holds out a data tablet. "Just sign here, and she's yours."`
+	name
+	action
+		set "hai space start: Grasshopper"
+		give ship "Grasshopper (Hai Start)" "Pristine Jewel"
+		payment -1132000
+	`	The Hai gives you the keys to the Grasshopper after you hand over the tablet and your payment. "Looks like this your first step to becoming an interstellar entrepreneur. I'd say we'll meet again someday, but I'd rather not lie. In all my years, I never did meet the captain who sold me my first ship again. Not that that should matter, anyway; this is your story, not mine."`
+	`	He gives you one last salute before returning to the crowd to sell yet another ship.`
+		decline
+	
+	label leave
+	`	He nods as you head towards the shipyard.`
+	`	At its entrance is an automated security kiosk. You quickly fill out the form on the screen before picking up the stylus and signing your name:`
+	name
+	`	You step through glass sliding doors into Greenwater's shipyard. In most of the berths, workers are busy refurbishing old vessels for resale, but in some of the more distant bays, you can see the flash of welding torches on brand-new ship skeletons. Vessels of all sizes are lined up within the yard, but for you, there's only one option...`
+
+
+
+# This ship uses the most expensive loadout possible so its sell price is roughly equal to the buy price.
+ship "Grasshopper" "Grasshopper (Hai Start)"
+	outfits
+		`"Benga" Atomic Thruster`
+		`"Biroo" Atomic Steering`
+		"Fuel Pod"
+		"Hai Chasm Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		Hyperdrive
+		"Ion Cannon"
+		"Pebble Core"
+		"Pulse Rifle"
+		"Quantum Keystone" 2
+
+
+
+event "not from boston"
+	planet "New Boston"
+		description `New Boston is a completely unremarkable world. Most of the land here is wet and marshy, and the coastal regions are prone to flooding. The planet's economy is largely agricultural; some of the farms here grow food for export to Earth and elsewhere, but a significant portion of farming land is devoted to growing fiber crops, which is then processed in the textile mills in the spaceport city.`
+		spaceport `New Boston's shabby spaceport is as about as basic as a spaceport can be. Many of the concrete landing pads are tilted and uneven, having sunk into the muddy soil since they were poured, and you have to be careful landing on them.`
+		spaceport `	The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain. Loads are brought in and out by trucks and the occasional hovercraft. Here some enterprising local mechanics have set up not only a repair shop and outfitter, but also a shipyard with several small, refurbished ships for sale.`
+
+event "grew up on greenwater"
+	planet "Greenwater"
+		description `Greenwater is unique among Hai worlds, not only in that it is home to a sizable human population, but also because it happens to be the world where you grew up.`
+		description `	Most of the humans here live as fishers and farmers on islands and archipelagoes across the equator of Greenwater, where the Hai seldom visit on account of their heavy fur coats. According to those beyond the wormhole, the climate here is like a Paradise Planet, even though it lacks the extensive terraforming common to those worlds.`
+		description `	Thanks to its high human population, the human language is dominant on Greenwater, with the Hai language limited to the poles of the planet where Hai merchants are more frequent.`
+		spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
+
+substitutions
+	"<starting planet>" "New Boston"
+	"<starting planet>" "Greenwater"
+		has "hai space start"

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UI_H_
-#define UI_H_
+#pragma once
 
 #include "Point.h"
 
@@ -33,6 +32,18 @@ class Panel;
 // starting with whichever one is on the bottom.
 class UI {
 public:
+	enum class UISound
+	{
+		NONE,
+		SOFT,
+		NORMAL,
+		SOFT_BUZZ,
+		TARGET,
+		FAILURE
+	};
+
+
+public:
 	// Handle an event. The event is handed to each panel on the stack until one
 	// of them handles it. If none do, this returns false.
 	bool Handle(const SDL_Event &event);
@@ -41,6 +52,9 @@ public:
 	void StepAll();
 	// Draw all the panels.
 	void DrawAll();
+
+	// Get the current panel stack.
+	const std::vector<std::shared_ptr<Panel>> &Stack() const;
 
 	// Add the given panel to the stack. If you do not want a panel to be
 	// deleted when it is popped, save a copy of its shared pointer elsewhere.
@@ -74,8 +88,12 @@ public:
 	// Check if there are no panels left.
 	bool IsEmpty() const;
 
+	void AdjustViewport() const;
+
 	// Get the current mouse position.
 	static Point GetMouse();
+
+	static void PlaySound(UISound sound);
 
 
 private:
@@ -93,7 +111,3 @@ private:
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
 };
-
-
-
-#endif

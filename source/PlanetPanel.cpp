@@ -17,7 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Information.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
+#include "audio/Audio.h"
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
@@ -35,11 +36,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Port.h"
+#include "Screen.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
+#include "Shop.h"
 #include "SpaceportPanel.h"
 #include "System.h"
 #include "TaskQueue.h"
+#include "TextArea.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -51,35 +55,69 @@ using namespace std;
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
-	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get("planet"))
+	planet(*player.GetPlanet()), system(*player.GetSystem())
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
 
-	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(480);
-	text.Wrap(planet.Description());
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetColor(*GameData::Colors().Get("bright"));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	Resize();
+	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	TaskQueue queue;
 	GameData::Preload(queue, planet.Landscape());
+	queue.Wait();
+	queue.ProcessSyncTasks();
 }
 
 
 
 void PlanetPanel::Step()
 {
+	// If the player is dead, pop the planet panel.
+	if(player.IsDead())
+	{
+		player.SetPlanet(nullptr);
+		if(selectedPanel)
+			GetUI()->Pop(selectedPanel);
+		GetUI()->Pop(this);
+		return;
+	}
+
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
 	{
 		TakeOffIfReady();
 		return;
+	}
+
+	// Determine which shops are conditionally available.
+	// This needs to wait until the first Step call instead of being
+	// done in the constructor because the constructor is created
+	// before all of the player's landing logic is completed, which
+	// can cause certain conditions to return unexpected results.
+	// TODO: Determine stock on the fly after condition entries can be subscribed to.
+	if(!initializedShops)
+	{
+		initializedShops = true;
+		for(const Shop<Ship> *shop : planet.Shipyards())
+		{
+			hasShipyard = true;
+			shipyardStock.Add(shop->Stock());
+		}
+		for(const Shop<Outfit> *shop : planet.Outfitters())
+		{
+			hasOutfitter = true;
+			outfitterStock.Add(shop->Stock());
+		}
 	}
 
 	// Handle missions for locations that aren't handled separately,
@@ -101,9 +139,6 @@ void PlanetPanel::Step()
 
 void PlanetPanel::Draw()
 {
-	if(player.IsDead())
-		return;
-
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 
@@ -126,28 +161,23 @@ void PlanetPanel::Draw()
 		if(planet.HasNamedPort())
 		{
 			info.SetCondition("has port");
-			info.SetString("port name", port.Name());
+			info.SetString("port name", port.DisplayName());
 		}
 
-		if(planet.HasShipyard())
+		if(hasShipyard)
 			info.SetCondition("has shipyard");
 
-		if(planet.HasOutfitter())
+		if(hasOutfitter)
 			info.SetCondition("has outfitter");
 	}
 
-	ui.Draw(info, this);
+	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	ui->Draw(info, this);
 
+	// The description text needs to be updated because player conditions can be changed
+	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
-	{
-		Rectangle box = ui.GetBox("content");
-		if(box.Width() != text.WrapWidth())
-		{
-			text.SetWrapWidth(box.Width());
-			text.Wrap(planet.Description());
-		}
-		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
-	}
+		description->SetText(planet.Description().ToString());
 }
 
 
@@ -155,9 +185,13 @@ void PlanetPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	if(player.IsDead())
+		return true;
+
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 
+	UI::UISound sound = UI::UISound::NORMAL;
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
@@ -165,7 +199,10 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return true;
 	}
 	else if(key == 'l')
+	{
+		sound = UI::UISound::NONE;
 		selectedPanel = nullptr;
+	}
 	else if(key == 't' && hasAccess
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
@@ -184,14 +221,16 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
-	else if(key == 's' && hasAccess && planet.HasShipyard())
+	else if(key == 's' && hasAccess && hasShipyard)
 	{
-		GetUI()->Push(new ShipyardPanel(player));
+		UI::PlaySound(UI::UISound::NORMAL);
+		GetUI()->Push(new ShipyardPanel(player, shipyardStock));
 		return true;
 	}
-	else if(key == 'o' && hasAccess && planet.HasOutfitter())
+	else if(key == 'o' && hasAccess && hasOutfitter)
 	{
-		GetUI()->Push(new OutfitterPanel(player));
+		UI::PlaySound(UI::UISound::NORMAL);
+		GetUI()->Push(new OutfitterPanel(player, outfitterStock));
 		return true;
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
@@ -211,11 +250,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(command.Has(Command::INFO))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
 	else if(command.Has(Command::MESSAGE_LOG))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
@@ -227,7 +268,23 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
 
+	UI::PlaySound(sound);
+
+	if(selectedPanel)
+		RemoveChild(description.get());
+	else if(oldPanel)
+		AddChild(description);
+
 	return true;
+}
+
+
+
+void PlanetPanel::Resize()
+{
+	const Interface &planetInterface = *GameData::Interfaces().Get(
+		Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	description->SetRect(planetInterface.GetBox("content"));
 }
 
 
@@ -278,7 +335,7 @@ void PlanetPanel::TakeOffIfReady()
 				// record and report all absent ships later.
 				if(result.first->GetSystem() != &system)
 				{
-					out << result.first->Name() << ", ";
+					out << result.first->GivenName() << ", ";
 					absentCannotFly.push_back(result.first);
 				}
 				else
@@ -296,7 +353,7 @@ void PlanetPanel::TakeOffIfReady()
 			shipNames.pop_back();
 			shipNames.pop_back();
 			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
-				"Some of your ships in other systems are not be able to fly:\n" + shipNames +
+				"Some of your ships in other systems are not able to fly:\n" + shipNames +
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
 		}
@@ -347,7 +404,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		};
 		for(const auto &result : flightChecks)
 			for(const auto &warning : result.second)
-				if(jumpWarnings.count(warning))
+				if(jumpWarnings.contains(warning))
 				{
 					++nonJumpCount;
 					break;
@@ -399,7 +456,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		if(outfitsToSell > 0)
 		{
 			out << "\n- ";
-			out << (planet.HasOutfitter() ? "store " : "sell ") << outfitsToSell << " outfit";
+			out << (hasOutfitter ? "store " : "sell ") << outfitsToSell << " outfit";
 			out << (outfitsToSell > 1 ? "s" : "");
 			out << " that none of your ships can hold.";
 			if(!uniquesToSell.empty())
@@ -431,6 +488,9 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			out << " that you do not have space for.";
 		}
 		out << "\nAre you sure you want to continue?";
+		// Pool cargo together, so that the cargo number on the trading panel
+		// is still accurate while the popup is active.
+		player.PoolCargo();
 		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
@@ -445,9 +505,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 void PlanetPanel::WarningsDialogCallback(const bool isOk)
 {
 	if(isOk)
-		TakeOff(false);
-	else
-		player.PoolCargo();
+		TakeOff(true);
 }
 
 

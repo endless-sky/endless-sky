@@ -13,12 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FLEET_H_
-#define FLEET_H_
+#pragma once
 
 #include "FleetCargo.h"
 #include "Personality.h"
-#include "Sale.h"
 #include "Variant.h"
 #include "WeightedList.h"
 
@@ -30,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class DataNode;
+class FormationPattern;
 class Government;
 class Outfit;
 class Phrase;
@@ -79,7 +78,7 @@ public:
 private:
 	static std::pair<Point, double> ChooseCenter(const System &system);
 	std::vector<std::shared_ptr<Ship>> Instantiate(const std::vector<const Ship *> &ships) const;
-	bool PlaceFighter(std::shared_ptr<Ship> fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
+	bool PlaceFighter(const std::shared_ptr<Ship> &fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
 
 
 private:
@@ -87,6 +86,7 @@ private:
 	const Government *government = nullptr;
 	const Phrase *names = nullptr;
 	const Phrase *fighterNames = nullptr;
+	const FormationPattern *formation = nullptr;
 	WeightedList<Variant> variants;
 	// The cargo ships in this fleet will carry.
 	FleetCargo cargo;
@@ -94,7 +94,3 @@ private:
 	Personality personality;
 	Personality fighterPersonality;
 };
-
-
-
-#endif

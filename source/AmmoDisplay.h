@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef AMMO_DISPLAY_H_
-#define AMMO_DISPLAY_H_
+#pragma once
 
 #include "ClickZone.h"
 
@@ -33,6 +32,7 @@ class Ship;
 class AmmoDisplay {
 public:
 	explicit AmmoDisplay(PlayerInfo &player);
+	void Reset();
 	void Update(const Ship &flagship);
 	void Draw(const Rectangle &ammoBox, const Point &iconDimensions) const;
 	bool Click(const Point &clickPoint, bool control);
@@ -43,7 +43,3 @@ private:
 	mutable std::vector<ClickZone<const Outfit *>> ammoIconZones;
 	PlayerInfo &player;
 };
-
-
-
-#endif

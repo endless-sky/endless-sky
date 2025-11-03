@@ -66,10 +66,11 @@ event "remnant: puffin"
 
 
 
-# Replaced by the "remnant: puffin" event but the listed here so older versions of the "Remnant: Void Sprites 3" mission in their save file when they update do not have issues with this event being undefined.
+# Replaced by the "remnant: puffin" event but still listed here so older versions of the "Remnant: Void Sprites 3" mission already instantiated in save file when
+# players update do not have issues with this event being undefined.
 # The actual content of the event is not strictly necessary, since a patch mission already exists that applies the new event if the condition for this event is present.
 # But the event still needs to be declared so it can be considered "defined" by the game, otherwise, it will disable the mission referring to it.
-# If we ever do something that makes save files from an older version of the game incompatible, this can be removed.
+# TODO: This can be safely removed if we ever stop supporting save files from older versions of the game.
 event "remnant: gascraft"
 
 
@@ -83,6 +84,10 @@ event "remnant: sign studies complete"
 
 
 event "remnant: return the samples timer"
+	government "Remnant"
+		remove "travel restrictions"
+	government "Remnant (Research)"
+		remove "travel restrictions"
 
 
 
@@ -214,7 +219,7 @@ event "remnant: pantica void sprites"
 		add attributes remnant
 		remove attributes uninhabited
 		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station studying void sprites.`
-		add spaceport `Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
+		spaceport `Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
 
 
 
@@ -346,7 +351,7 @@ event "remnant: ssil vida activation"
 	planet Fertriery
 		attributes "requires: gaslining" uninhabited
 		landscape land/nasa8
-		description `You are not quite sure what Fetriery is. It lacks cohesive edges, and yet it has sufficient atmospheric pressure to threaten the hull integrity of ships not designed for high pressure environments. Despite such density, which would indicate a strong gravitational presence, your sensors are unable to find any kind of core.`
+		description `You are not quite sure what Fertriery is. It lacks cohesive edges, and yet it has sufficient atmospheric pressure to threaten the hull integrity of ships not designed for high pressure environments. Despite such density, which would indicate a strong gravitational presence, your sensors are unable to find any kind of core.`
 		spaceport `Delving further into the clouds, it becomes obvious that the entire planet appears to be a mix of gases, aerosols, and suspended particles. Despite this, or perhaps because of it, void sprites appear to thrive in its depths, where they can be seen dancing among energy currents reminiscent of the ion storms.`
 		government "Ember Waste"
 		bribe 0
@@ -815,10 +820,9 @@ event "remnant: ssil vida activation"
 
 
 
-# The default value of a system's "jump range" is 0. In this state, the global default will be used.
-# When the bug preventing ships from jumping when the destination system has too little jump range is fixed,
-# the resetting of jump range on deactivation can be removed. Instead, jump range of other systems nearby
-# may need to be reduced on activation to prevent escorts outside the Postverta cluster jumping into that region.
+# TODO: Jump range of other systems nearby may need to be reduced on activation
+# to prevent escorts outside the Postverta cluster jumping into that region.
+# Or create an entire new system to handle this "dimensional bubble"
 event "remnant: ssil vida deactivation"
 	clear "remnant: ssil vida active"
 	planet Fertriery
@@ -837,7 +841,6 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 1505.92
 		haze _menu/haze-red
-		"jump range" 0
 		link Statina
 		link Vaticanus
 		asteroids "small rock" 1 8
@@ -886,7 +889,6 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 534.375
 		haze _menu/haze-red
-		"jump range" 0
 		link Statina
 		link Postverta
 		asteroids "small rock" 65 3
@@ -941,7 +943,6 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
-		"jump range" 0
 		link Diespiter
 		link Prosa
 		link Statina
@@ -987,7 +988,6 @@ event "remnant: ssil vida deactivation"
 		habitable 2372.76
 		belt 2000
 		haze _menu/haze-red
-		"jump range" 0
 		link Vaticanus
 		link Postverta
 		asteroids "medium metal" 11 2
@@ -1042,7 +1042,6 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 135
 		haze _menu/haze-red
-		"jump range" 0
 		link Diespiter
 		link Egeria
 		link Postverta
@@ -1094,7 +1093,6 @@ event "remnant: ssil vida deactivation"
 		belt 2000
 		habitable 320
 		haze _menu/haze-red
-		"jump range" 0
 		link Egeria
 		link Prosa
 		asteroids "small rock" 3 6
@@ -1182,6 +1180,9 @@ event "remnant: teciimach deployment"
 		add "Teciimach Pod"
 		add "Teciimach Canister"
 		add "Teciimach Canister Rack"
+	outfitter "Remnant Core"
+		remove "EMP Torpedo"
+		add "Teciimach Canister"
 	fleet "Small Remnant"
 		add variant 5
 			"Merganser (II)" 2

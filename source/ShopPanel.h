@@ -13,24 +13,26 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHOP_PANEL_H_
-#define SHOP_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
-#include "CategoryList.h"
 #include "ClickZone.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "Rectangle.h"
+#include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <set>
 #include <string>
 #include <vector>
 
+class CategoryList;
 class Outfit;
 class Planet;
 class PlayerInfo;
@@ -46,6 +48,8 @@ public:
 
 	virtual void Step() override;
 	virtual void Draw() override;
+
+	virtual void UpdateTooltipActivation() override;
 
 
 protected:
@@ -99,10 +103,10 @@ protected:
 
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
-	virtual bool Release(int x, int y) override;
+	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Scroll(double dx, double dy) override;
 
 	void DoFind(const std::string &text);
@@ -110,6 +114,7 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
+	void DrawButton(const std::string &name, const Rectangle &buttonShape, bool isActive, bool hovering, char keyCode);
 	void CheckSelection();
 
 
@@ -134,12 +139,14 @@ protected:
 
 
 protected:
-	static const int SIDEBAR_WIDTH = 250;
-	static const int INFOBAR_WIDTH = 300;
-	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static const int BUTTON_HEIGHT = 70;
-	static const int SHIP_SIZE = 250;
-	static const int OUTFIT_SIZE = 183;
+	static constexpr int SIDEBAR_PADDING = 5;
+	static constexpr int SIDEBAR_CONTENT = 250;
+	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
+	static constexpr int INFOBAR_WIDTH = 300;
+	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
+	static constexpr int BUTTON_HEIGHT = 70;
+	static constexpr int SHIP_SIZE = 250;
+	static constexpr int OUTFIT_SIZE = 183;
 
 
 protected:
@@ -170,9 +177,14 @@ protected:
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
 
+	ScrollBar mainScrollbar;
+	ScrollBar sidebarScrollbar;
+	ScrollBar infobarScrollbar;
+
 	double previousX = 0.;
 
 	std::vector<Zone> zones;
+	std::vector<ClickZone<char>> buttonZones;
 	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
@@ -196,7 +208,7 @@ private:
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
 	void SideSelect(int count);
-	void SideSelect(Ship *ship);
+	void SideSelect(Ship *ship, int clicks = 1);
 	void MainAutoScroll(const std::vector<Zone>::const_iterator &selected);
 	void MainLeft();
 	void MainRight();
@@ -215,9 +227,14 @@ private:
 	Point hoverPoint;
 	std::string shipName;
 	std::string warningType;
-	int hoverCount = 0;
+	Tooltip shipsTooltip;
+	Tooltip creditsTooltip;
+
+	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
+	const Color &hover;
+	const Color &active;
+	const Color &inactive;
+	const Color &back;
+
+	bool checkedHelp = false;
 };
-
-
-
-#endif

@@ -1,5 +1,5 @@
 /* test_formationPattern.cpp
-Copyright (c) 2021 by Peter van der Meer
+Copyright (c) 2021-2024 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -30,16 +30,8 @@ namespace { // test namespace
 // #region mock data
 bool Near(const Point a, const Point b)
 {
-	if(!(a.Distance(b) == Approx(0.)))
-	{
-		if(a.Distance(b) < 0.001)
-		{
-			INFO("Distance under 0.001, but beyond Approx range!");
-			return true;
-		}
-		return false;
-	}
-	return true;
+	double d = a.Distance(b);
+	return Catch::Matchers::WithinAbs(0, 0.001).match(d) || Catch::Matchers::WithinRel(0.001).match(d);
 }
 
 
@@ -83,9 +75,10 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		auto emptyNode = AsDataNode(formation_empty);
 		FormationPattern emptyFormation;
 		emptyFormation.Load(emptyNode);
-		REQUIRE( emptyFormation.Name() == "Empty");
+		REQUIRE( emptyFormation.TrueName() == "Empty");
+		double centerBodyRadius = 0.;
 		WHEN( "positions are requested") {
-			auto it = emptyFormation.begin();
+			auto it = emptyFormation.begin(centerBodyRadius);
 			THEN ( "all returned positions are near Point(0,0)" ) {
 				CHECK( Near(*it, Point(0, 0)) );
 				++it;
@@ -101,9 +94,10 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 		auto tailNode = AsDataNode(formation_tail_px_point);
 		FormationPattern tailFormation;
 		tailFormation.Load(tailNode);
-		REQUIRE( tailFormation.Name() == "Tail (px point)");
+		REQUIRE( tailFormation.TrueName() == "Tail (px point)");
 		WHEN( "positions are requested") {
-			auto it = tailFormation.begin();
+			double centerBodyRadius = 0.;
+			auto it = tailFormation.begin(centerBodyRadius);
 			THEN ( "all returned positions are as expected" ) {
 				CHECK( Near(*it, Point(-100, 0)) );
 				++it;
@@ -122,17 +116,36 @@ SCENARIO( "Loading and using of a formation pattern", "[formationPattern][Positi
 				CHECK( Near(*it, Point(-800, 0)) );
 			}
 		}
+		WHEN( "a centerbody radius is set" )
+		{
+			double centerBodyRadius = 250.;
+			auto it = tailFormation.begin(centerBodyRadius);
+			THEN ( "the points in the center are skipped" ) {
+				CHECK( Near(*it, Point(-300, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-400, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-500, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-600, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-700, 0)) );
+				++it;
+				CHECK( Near(*it, Point(-800, 0)) );
+			}
+		}
 	}
 	GIVEN( "a formation pattern loaded in px" ) {
 		auto delta_pxNode = AsDataNode(formation_delta_tail_px);
 		FormationPattern delta_px;
 		delta_px.Load(delta_pxNode);
-		REQUIRE( delta_px.Name() == "Delta Tail (px)" );
+		double centerBodyRadius = 0.;
+		REQUIRE( delta_px.TrueName() == "Delta Tail (px)" );
 		WHEN( "positions are requested") {
 			THEN ( "the correct positions are calculated" ) {
 				// No exact comparisons due to doubles, but we check if
 				// the given points are very close to what they should be.
-				auto it = delta_px.begin();
+				auto it = delta_px.begin(centerBodyRadius);
 				REQUIRE( Near(*it, Point(-100, 200)) );
 				++it;
 				REQUIRE( Near(*it, Point(100, 200)) );

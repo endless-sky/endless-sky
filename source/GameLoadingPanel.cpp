@@ -16,19 +16,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameLoadingPanel.h"
 
 #include "Angle.h"
-#include "Audio.h"
+#include "audio/Audio.h"
+#include "Color.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "GameData.h"
-#include "MaskManager.h"
+#include "image/MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Ship.h"
-#include "SpriteSet.h"
-#include "StarField.h"
+#include "image/SpriteSet.h"
+#include "shader/StarField.h"
 #include "System.h"
 #include "TaskQueue.h"
 #include "UI.h"
@@ -93,7 +94,7 @@ void GameLoadingPanel::Step()
 void GameLoadingPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	GameData::DrawMenuBackground(this);
 

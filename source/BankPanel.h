@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BANK_PANEL_H_
-#define BANK_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -38,7 +37,7 @@ public:
 protected:
 	// Overrides from Panel.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
 
 private:
@@ -57,7 +56,3 @@ private:
 	bool mergedMortgages = false;
 	int mortgageRows = 0;
 };
-
-
-
-#endif

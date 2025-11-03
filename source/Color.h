@@ -13,8 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_COLOR_H_
-#define ES_COLOR_H_
+#pragma once
+
+#include <string>
 
 
 
@@ -25,9 +26,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // zero the color's components will be added to whatever is underneath them.
 class Color {
 public:
-	// Constructor for shades of gray, opaque unless an alpha is also given.
+	// Constructor for shades of gray. Opaque unless an alpha is also given.
+	// IsLoaded is false when using this constructor.
 	explicit Color(float i = 1.f, float a = 1.f);
-	// Constructor for colors, opaque unless an alpha is also given.
+	// Constructor for colors. Opaque unless an alpha is also given.
 	Color(float r, float g, float b, float a = 1.f);
 
 	bool operator==(const Color &other) const;
@@ -37,6 +39,8 @@ public:
 	void Load(double r, double g, double b, double a);
 	// Check if Load() has been called for this color.
 	bool IsLoaded() const;
+	void SetTrueName(const std::string &name);
+	const std::string &TrueName() const;
 	// Get the color as a float vector, suitable for use by OpenGL.
 	const float *Get() const;
 
@@ -61,9 +65,6 @@ private:
 	// Store the color as a float vector for easy interfacing with OpenGL.
 	float color[4];
 
+	std::string trueName;
 	bool isLoaded = false;
 };
-
-
-
-#endif

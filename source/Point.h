@@ -13,11 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef POINT_H_
-#define POINT_H_
+#pragma once
 
 #ifdef __SSE3__
 #include <pmmintrin.h>
+#elif defined(__SSE2__)
+#include <xmmintrin.h>
 #endif
 
 
@@ -37,9 +38,8 @@ public:
 	explicit operator bool() const noexcept;
 	bool operator!() const noexcept;
 
-	// No comparison operators are provided because I never expect to use them
-	// and because comparisons with doubles are inherently unsafe due to the
-	// possibility of rounding errors and imprecision.
+	bool operator==(const Point &other) const noexcept;
+	bool operator!=(const Point &other) const noexcept;
 
 	Point operator+(const Point &point) const;
 	Point &operator+=(const Point &point);
@@ -75,6 +75,8 @@ public:
 	double Distance(const Point &point) const;
 	double DistanceSquared(const Point &point) const;
 
+	Point Lerp(const Point &to, const double c) const;
+
 	// Take the absolute value of both coordinates.
 	friend Point abs(const Point &p);
 	// Use the min of each x and each y coordinates.
@@ -84,7 +86,7 @@ public:
 
 
 private:
-#ifdef __SSE3__
+#ifdef __SSE2__
 	// Private constructor, using a vector.
 	explicit Point(const __m128d &v);
 
@@ -109,7 +111,7 @@ private:
 // Inline accessor functions, for speed:
 inline double &Point::X()
 {
-#ifdef __SSE3__
+#ifdef __SSE2__
 	return val.x;
 #else
 	return x;
@@ -120,7 +122,7 @@ inline double &Point::X()
 
 inline const double &Point::X() const noexcept
 {
-#ifdef __SSE3__
+#ifdef __SSE2__
 	return val.x;
 #else
 	return x;
@@ -131,7 +133,7 @@ inline const double &Point::X() const noexcept
 
 inline double &Point::Y()
 {
-#ifdef __SSE3__
+#ifdef __SSE2__
 	return val.y;
 #else
 	return y;
@@ -142,13 +144,9 @@ inline double &Point::Y()
 
 inline const double &Point::Y() const noexcept
 {
-#ifdef __SSE3__
+#ifdef __SSE2__
 	return val.y;
 #else
 	return y;
 #endif
 }
-
-
-
-#endif

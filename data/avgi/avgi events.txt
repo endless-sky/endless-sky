@@ -1,0 +1,95 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+event "twilight label"
+	galaxy "label twilight"
+		sprite label/twilight
+
+event "tangled shroud label"
+	galaxy "label tangled shroud"
+		sprite "label/tangled shroud"
+
+event "outer limits label"
+	galaxy "label outer limits"
+		sprite "label/outer limits"
+
+
+mission "Avgi: Aberrant Blockade"
+	invisible
+	landing
+	repeat
+	to offer
+		has "avgi: aberrant siege"
+		not "avgi: aberrant siege respite"
+	source
+		attributes "aberrant siege"
+	on offer
+		conversation
+			`As you attempt to land, your sensors warn you of an approaching pod of Aberrant over the horizon, intent on destroying anything that approaches or tries to launch from <origin>. It seems you'll have to fight if you want to land here.`
+				launch
+	on complete
+		dialog "With the area cleared of Aberrant, you manage to slip through the blockade and land on <origin>."
+
+	npc kill
+		government "Aberrant"
+		personality hunting vindictive secretive target waiting staying
+		fleet "Small Aberrant" 2
+		fleet "Large Aberrant"
+		on kill
+			set "avgi: aberrant siege respite"
+			event "avgi: siege respite timer" 1 3
+
+event "avgi: siege respite timer"
+	clear "avgi: aberrant siege respite"
+
+
+mission "Avgi: Initial Wandering Fleet"
+	invisible
+	landing
+	repeat
+	to offer
+		not "Avgi: Initial Wandering Fleet: active"
+		not "avgi: wandering fleet refit 1"
+		not "avgi: wandering fleet despawn"
+	to complete
+		never
+	npc save
+		government "Avgi (Wandering Fleet)"
+		personality coward quiet secretive timid fleeing unconstrained uninterested restricted
+		system Ne-20
+		ship "Modified Tachytia" "Prudent Voyager"
+		ship "Undsyni (Plasmadyne)" "Vitrified Carbon"
+		ship "Polari" "Forward Waves"
+		ship "Optikon" "Oki-101"
+		ship "Optikon" "Oki-102"
+		ship "Optikon" "Oki-103"
+		ship "Optikon" "Oki-104"
+		ship "Optikon" "Oki-105"
+		ship "Optikon" "Oki-106"
+		ship "Sonikis (Tanker)" "Sek-201"
+		ship "Sonikis (Tanker)" "Sek-202"
+		ship "Sonikis (Tanker)" "Sek-203"
+		ship "Sonikis (Tanker)" "Sek-204"
+		ship "Akoustiki" "Alkos-301"
+		ship "Akoustiki" "Alkos-302"
+		ship "Akoustiki" "Alkos-303"
+		ship "Akoustiki" "Alkos-304"
+		ship "Akoustiki" "Alkos-305"
+		ship "Akoustiki" "Alkos-306"
+		ship "Photikon" "Pilos-401"
+		ship "Photikon" "Pilos-402"
+		ship "Photikon" "Pilos-403"
+		to despawn
+			has "avgi: wandering fleet despawn"
+

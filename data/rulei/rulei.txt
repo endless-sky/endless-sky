@@ -90,8 +90,28 @@ mission "Rulei Planet"
 			`	It's best you don't remain here for too long.`
 				decline
 
+mission "Rulei: You Are (Not) Alone"
+	invisible
+	landing
+	to complete
+		never
+	on enter "L-118"
+		log `Discovered a region of emptiness east of the core, where systems are shrouded by a vast, eerie darkness. Other than dim stars and a few planets, nothing exists.`
+		conversation
+			`Upon arriving into this system, you notice a strange murkiness curtaining the stars beyond, and your scanners are having trouble making sense of it. The few stellar objects present are eerily blotted out by a vast, nebulous shade. Aside from them, it's as if there is nothing here. Even the shade itself is nothing more than the emptiness of space, and throughout it, no one. Nothing.`
 
-mission "Umbral Reach"
+	on enter "L-6181"
+		fail
+		conversation
+			`As you continue through this empty space, you come across nothing but diminished stars and planets of silence. However, upon entering this system, you are met with what appears to be a creature of some kind. Strangely, your scanners don't read it as any sort of lifeform, categorizing it only as a mere "collection" of matter. It blends with space itself, as if it were simply a reflection of the darkness beyond.`
+
+	npc
+		government "Indigenous Lifeform (Acheron)"
+		personality mute timid unconstrained uninterested
+		system "L-6181"
+		ship "Jje" ""
+
+mission "Rulei: Umbral Reach"
 	invisible
 	landing
 	to complete
@@ -100,12 +120,20 @@ mission "Umbral Reach"
 		has "First Contact: Rulei: offered"
 		has "visited system: L-118"
 	on enter "Kanguwa"
+		event "umbral reach label"
+		log "Factions" "Rulei" `The Rulei seem to acknowledge the void of systems east of the core as the "Umbral Reach", and appear to have some sort of emotional connection to the region. Other than stating to "beware" the area, they will not further comment on it.`
 		conversation
 			`Out of nowhere, the mysterious whispers of the Rulei seep into your mind once more. They murmur slowly at first, but grow faster and louder from the direction of the ancient vessel, eventually coalescing into one spoken phrase.`
 			`	"Beware..."`
-			`	"...Umbral Reach."`
+			`	"...Umbral Reach..."`
 			`	You feel tremendous weight behind the expression, as if it shook your mind itself. It's as though every emotion has flooded into your head at once - sadness, anger, joy, disgust, even some you can't seem to understand. Before you can respond to them, the voices quickly dissipate, and you're left alone in an uncomfortable silence.`
+			`	The only thing you can think of is the nearby void of desolate systems. Considering your previous experience with the Rulei, they could have somehow psionically connected to the memories of your visit. However, much like those systems, they continue with their unabated silence.`
 				decline
+
+event "umbral reach label"
+	galaxy "label umbral"
+		sprite "label/umbral"
+
 
 phrase "rulei hostile"
 	word

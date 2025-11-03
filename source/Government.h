@@ -13,13 +13,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GOVERNMENT_H_
-#define GOVERNMENT_H_
+#pragma once
 
 #include "Color.h"
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
 #include "RaidFleet.h"
+#include "Swizzle.h"
 
 #include <limits>
 #include <map>
@@ -31,17 +31,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Conversation;
 class DataNode;
 class Fleet;
+class Outfit;
 class Phrase;
 class Planet;
 class PlayerInfo;
-class Outfit;
 class Ship;
 class System;
 
 
 
 // Class representing a government. Each ship belongs to some government, and
-// attacking that ship will provoke its ally governments and reduce your
+// attacking that ship will provoke its allied governments and reduce your
 // reputation with them, but increase your reputation with that ship's enemies.
 // The ships for each government are identified by drawing them with a different
 // color "swizzle." Some government's ships can also be easier or harder to
@@ -52,15 +52,16 @@ public:
 	Government();
 
 	// Load a government's definition from a file.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
 
 	// Get the display name of this government.
-	const std::string &GetName() const;
-	// Set / Get the name used for this government in the data files.
-	void SetName(const std::string &trueName);
-	const std::string &GetTrueName() const;
+	const std::string &DisplayName() const;
+	// Set / Get the true name used for this government in the data files.
+	void SetTrueName(const std::string &trueName);
+	const std::string &TrueName() const;
 	// Get the color swizzle to use for ships of this government.
-	int GetSwizzle() const;
+	const Swizzle *GetSwizzle() const;
 	// Get the color to use for displaying this government on the map.
 	const Color &GetColor() const;
 
@@ -149,9 +150,9 @@ public:
 
 private:
 	unsigned id;
-	std::string name;
+	std::string trueName;
 	std::string displayName;
-	int swizzle = 0;
+	const Swizzle *swizzle = Swizzle::None();
 	ExclusiveItem<Color> color;
 
 	std::vector<double> attitudeToward;
@@ -183,10 +184,6 @@ private:
 	bool provokedOnScan = false;
 	// If a government appears in this set, and the reputation with this government is affected by actions,
 	// and events performed against that government, use the penalties that government applies for the
-	// action instead of this governments own penalties.
+	// action instead of this government's own penalties.
 	std::set<unsigned> useForeignPenaltiesFor;
 };
-
-
-
-#endif

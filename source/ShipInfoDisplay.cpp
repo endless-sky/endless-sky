@@ -15,19 +15,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipInfoDisplay.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Color.h"
 #include "Depreciation.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "text/layout.hpp"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "text/Table.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <map>
@@ -136,7 +136,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed,
 		bool scrollingPanel)
 {
-	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
+	bool isGeneric = ship.GivenName().empty() || ship.GetPlanet();
 
 	attributeHeaderLabels.clear();
 	attributeHeaderValues.clear();
@@ -366,11 +366,14 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double firingEnergy = 0.;
 	double firingHeat = 0.;
 	for(const auto &it : ship.Outfits())
-		if(it.first->IsWeapon() && it.first->Reload())
+	{
+		const Weapon *weapon = it.first->GetWeapon().get();
+		if(weapon && weapon->Reload())
 		{
-			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
-			firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
+			firingEnergy += it.second * weapon->FiringEnergy() / weapon->Reload();
+			firingHeat += it.second * weapon->FiringHeat() / weapon->Reload();
 		}
+	}
 	tableLabels.push_back("firing:");
 	energyTable.push_back(Format::Number(-60. * firingEnergy));
 	heatTable.push_back(Format::Number(60. * firingHeat));
@@ -434,7 +437,8 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 
 	map<string, map<string, int>> listing;
 	for(const auto &it : ship.Outfits())
-		listing[it.first->Category()][it.first->DisplayName()] += it.second;
+		if(it.first->IsDefined() && !it.first->Category().empty() && !it.first->DisplayName().empty())
+			listing[it.first->Category()][it.first->DisplayName()] += it.second;
 
 	for(const auto &cit : listing)
 	{

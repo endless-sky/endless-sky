@@ -31,12 +31,16 @@ scons-local*
 # Test Reports
 test-report.xml
 
+# Generated documentation
+docs/api/
+
 # User-installed plugins
 /plugins/
 
 # OS-specific generated files
 .DS_Store
 *.db
+desktop.ini
 
 # IDEs (no support implied)
 .cache
