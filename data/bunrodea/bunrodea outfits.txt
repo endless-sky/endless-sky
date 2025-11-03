@@ -13,6 +13,8 @@
 
 outfit "Shield Relay Booster"
 	category "Systems"
+	series "Shields"
+	index 10098
 	cost 59000
 	thumbnail "outfit/shield booster"
 	"mass" 2
@@ -24,6 +26,8 @@ outfit "Shield Relay Booster"
 
 outfit "Shield Relay Limiter"
 	category "Systems"
+	series "Shields"
+	index 10099
 	cost 12000
 	thumbnail "outfit/shield limiter"
 	"mass" 1
@@ -35,6 +39,8 @@ outfit "Shield Relay Limiter"
 
 outfit "Small Shield Relay"
 	category "Systems"
+	series "Shields"
+	index 10010
 	cost 172000
 	thumbnail "outfit/small shield relay"
 	"mass" 21
@@ -50,6 +56,8 @@ outfit "Small Shield Relay"
 
 outfit "Large Shield Relay"
 	category "Systems"
+	series "Shields"
+	index 10020
 	cost 593000
 	thumbnail "outfit/large shield relay"
 	"mass" 56
@@ -66,6 +74,8 @@ outfit "Large Shield Relay"
 
 outfit "Nanite Enhancer"
 	category "Systems"
+	series "Repair"
+	index 10098
 	cost 76000
 	thumbnail "outfit/nanite enhancer"
 	"mass" 5
@@ -77,6 +87,8 @@ outfit "Nanite Enhancer"
 
 outfit "Nanite Limiter"
 	category "Systems"
+	series "Repair"
+	index 10099
 	cost 21000
 	thumbnail "outfit/nanite limiter"
 	"mass" 2
@@ -88,6 +100,8 @@ outfit "Nanite Limiter"
 
 outfit "Small Nanite Fabricator"
 	category "Systems"
+	series "Repair"
+	index 10010
 	cost 650000
 	thumbnail "outfit/small nanite fabricator"
 	"mass" 23
@@ -102,6 +116,8 @@ outfit "Small Nanite Fabricator"
 
 outfit "Large Nanite Fabricator"
 	category "Systems"
+	series "Repair"
+	index 10020
 	cost 1940000
 	thumbnail "outfit/large nanite fabricator"
 	"mass" 58
@@ -119,6 +135,8 @@ outfit "Large Nanite Fabricator"
 outfit "Solar Battery"
 	plural "Solar Batteries"
 	category "Power"
+	series "Batteries"
+	index 10010
 	cost 49000
 	thumbnail "outfit/solar battery"
 	"mass" 7
@@ -130,6 +148,8 @@ outfit "Solar Battery"
 
 outfit "Solar Cell"
 	category "Power"
+	series "Batteries"
+	index 10020
 	cost 17000
 	thumbnail "outfit/solar cell"
 	"mass" 1
@@ -144,6 +164,8 @@ outfit "Solar Cell"
 
 outfit "Reactor Overclocker"
 	category "Power"
+	series "Generators"
+	index 10098
 	cost 142000
 	thumbnail "outfit/reactor overclocker"
 	"mass" 4
@@ -155,6 +177,8 @@ outfit "Reactor Overclocker"
 
 outfit "Reactor Limiter"
 	category "Power"
+	series "Generators"
+	index 10099
 	cost 26000
 	thumbnail "outfit/reactor limiter"
 	"mass" 2
@@ -166,6 +190,8 @@ outfit "Reactor Limiter"
 
 outfit "Quark Reactor"
 	category "Power"
+	series "Generators"
+	index 10010
 	cost 3367000
 	thumbnail "outfit/quark reactor"
 	"mass" 61
@@ -180,6 +206,8 @@ outfit "Quark Reactor"
 
 outfit "Electroweak Reactor"
 	category "Power"
+	series "Generators"
+	index 10020
 	cost 8393000
 	thumbnail "outfit/electroweak reactor"
 	"mass" 106
@@ -194,6 +222,8 @@ outfit "Electroweak Reactor"
 
 outfit "Dark Reactor"
 	category "Power"
+	series "Generators"
+	index 10030
 	cost 15022000
 	thumbnail "outfit/dark reactor"
 	"mass" 142
@@ -210,6 +240,8 @@ outfit "Dark Reactor"
 
 outfit "Lasher Pistol"
 	category "Hand to Hand"
+	series "H2H"
+	index 10010
 	cost 47000
 	thumbnail "outfit/lasher pistol"
 	"capture attack" 1.1
@@ -221,6 +253,8 @@ outfit "Lasher Pistol"
 
 outfit "Chiisana Rift Thruster"
 	category "Engines"
+	series "Engines"
+	index 10011
 	cost 130000
 	thumbnail "outfit/chiisana rift thruster"
 	"mass" 11
@@ -238,6 +272,8 @@ outfit "Chiisana Rift Thruster"
 
 outfit "Nami Rift Thruster"
 	category "Engines"
+	series "Engines"
+	index 10021
 	cost 262000
 	thumbnail "outfit/nami rift thruster"
 	"mass" 19
@@ -255,6 +291,8 @@ outfit "Nami Rift Thruster"
 
 outfit "Ookii Rift Thruster"
 	category "Engines"
+	series "Engines"
+	index 10031
 	cost 512000
 	thumbnail "outfit/ookii rift thruster"
 	"mass" 32
@@ -272,6 +310,8 @@ outfit "Ookii Rift Thruster"
 
 outfit "Subarashii Rift Thruster"
 	category "Engines"
+	series "Engines"
+	index 10041
 	cost 1004000
 	thumbnail "outfit/subarashii rift thruster"
 	"mass" 55
@@ -288,6 +328,8 @@ outfit "Subarashii Rift Thruster"
 
 outfit "Chiisana Rift Steering"
 	category "Engines"
+	series "Engines"
+	index 10010
 	cost 201000
 	thumbnail "outfit/chiisana rift steering"
 	"mass" 17
@@ -296,10 +338,17 @@ outfit "Chiisana Rift Steering"
 	"turn" 808.5
 	"turning energy" 2.6
 	"turning heat" 1
+	"steering flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.3
+	"steering flare sound" "ion tiny"
 	description "Given that Bunrodean ships are typically focused on making heavy use of their forward facing guns, the Bunrodea favor high turn rates much more than high speeds. As such, rift steering systems are larger than the respective thruster systems of the same size category."
 
 outfit "Nami Rift Steering"
 	category "Engines"
+	series "Engines"
+	index 10020
 	cost 442000
 	thumbnail "outfit/nami rift steering"
 	"mass" 31
@@ -308,10 +357,17 @@ outfit "Nami Rift Steering"
 	"turn" 1705.5
 	"turning energy" 5.3
 	"turning heat" 2.1
+	"steering flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.6
+	"steering flare sound" "ion small"
 	description "As with many Bunrodean systems, rift engines produce very little heat. This allows their ships to forgo the use of any significant cooling systems, leaving more room for other systems, be they defensive or offensive."
 
 outfit "Ookii Rift Steering"
 	category "Engines"
+	series "Engines"
+	index 10030
 	cost 940000
 	thumbnail "outfit/ookii rift steering"
 	"mass" 53
@@ -320,10 +376,17 @@ outfit "Ookii Rift Steering"
 	"turn" 3148.5
 	"turning energy" 9.2
 	"turning heat" 3.65
+	"steering flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.8
+	"steering flare sound" "ion medium"
 	description "Although the focus on steering over thrust makes Bunrodean ships easy targets to track, the power of their weapons systems would leave anyone foolish to believe that they are sitting ducks."
 
 outfit "Subarashii Rift Steering"
 	category "Engines"
+	series "Engines"
+	index 10040
 	cost 1577000
 	thumbnail "outfit/subarashii rift steering"
 	"mass" 90
@@ -332,4 +395,8 @@ outfit "Subarashii Rift Steering"
 	"turn" 5850
 	"turning energy" 17.1
 	"turning heat" 6.5
+	"steering flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+	"steering flare sound" "ion large"
 	description "The largest of the rift steering systems, these engines are what allow the Bunrodea's heavy gunships to bear their many guns toward their unfortunate target."

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 
 #include "audio/Audio.h"
+#include "text/Clipboard.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -33,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
+#include "TextArea.h"
 #include "UI.h"
 
 #include <cmath>
@@ -263,7 +265,11 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
-	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
+	if(stringFun && Clipboard::KeyDown(input, key, mod))
+	{
+		// Input handled by Clipboard.
+	}
+	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
@@ -330,8 +336,10 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 
 
 
-bool Dialog::Click(int x, int y, int clicks)
+bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	Point clickPos(x, y);
 
 	const Sprite *sprite = SpriteSet::Get("ui/dialog cancel");
@@ -360,26 +368,11 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 
-// Common code from all three constructors:
-void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
+void Dialog::Resize()
 {
-	Audio::Pause();
-	SetInterruptible(isMission);
-
-	this->isMission = isMission;
-	this->canCancel = canCancel;
-	okIsActive = true;
 	isWide = false;
-
 	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
-	text = std::make_shared<TextArea>();
-	text->SetAlignment(Alignment::JUSTIFIED);
 	text->SetRect(Rectangle(Point(), textRectSize));
-	text->SetFont(FontSet::Get(14));
-	text->SetTruncate(truncate);
-	text->SetText(message);
-	AddChild(text);
-
 	const Sprite *top = SpriteSet::Get("ui/dialog top");
 	// If the dialog is too tall, then switch to wide mode.
 	int maxHeight = Screen::Height() * 3 / 4;
@@ -432,6 +425,27 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
+}
+
+
+
+// Common code from all three constructors:
+void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
+{
+	Audio::Pause();
+	SetInterruptible(isMission);
+
+	this->isMission = isMission;
+	this->canCancel = canCancel;
+	okIsActive = true;
+
+	text = std::make_shared<TextArea>();
+	text->SetAlignment(Alignment::JUSTIFIED);
+	text->SetFont(FontSet::Get(14));
+	text->SetTruncate(truncate);
+	text->SetText(message);
+	Resize();
+	AddChild(text);
 }
 
 

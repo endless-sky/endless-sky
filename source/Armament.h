@@ -43,10 +43,8 @@ class Visual;
 class Armament {
 public:
 	// Add a gun or turret hard-point.
-	void AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes,
-		bool isUnder, const Outfit *outfit = nullptr);
-	void AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes,
-		bool isUnder, const Outfit *outfit = nullptr);
+	void AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes, const Outfit *outfit = nullptr);
+	void AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes, const Outfit *outfit = nullptr);
 	// This must be called after all the outfit data is loaded. If you add more
 	// of a given weapon than there are slots for it, the extras will not fire.
 	// But, the "gun ports" attribute should keep that from happening. To
@@ -71,7 +69,7 @@ public:
 	std::set<const Outfit *> RestockableAmmo() const;
 
 	// Adjust the aim of the turrets.
-	void Aim(const FireCommand &command);
+	void Aim(const Ship &ship, const FireCommand &command);
 	// Fire the given weapon, if it is ready.
 	void Fire(unsigned index, Ship &ship, std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, bool jammed);
 	// Fire the given anti-missile system.

@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <memory>
 
+class ConditionsStore;
 class DataNode;
 class FormationPattern;
 class Government;
@@ -33,9 +34,11 @@ class System;
 // A unique individual who may appear at random times in the game.
 class Person {
 public:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Finish loading all the ships in this person specification.
 	void FinishLoading();
+	bool IsLoaded() const;
 	// Prevent this person from being spawned in any system.
 	void NeverSpawn();
 
@@ -62,6 +65,7 @@ public:
 
 
 private:
+	bool isLoaded = false;
 	LocationFilter location;
 	int frequency = 100;
 

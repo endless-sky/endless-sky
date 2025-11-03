@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "OutfitterPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "comparators/BySeriesAndIndex.h"
 #include "Color.h"
 #include "Dialog.h"
@@ -35,8 +35,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <limits>
@@ -52,15 +53,12 @@ namespace {
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
 	{
 		auto toRefill = set<const Outfit *>{};
-		auto armed = set<const Outfit *>{};
 		for(auto &&it : ship.Weapons())
-			if(it.GetOutfit())
-			{
-				const Outfit *weapon = it.GetOutfit();
-				armed.emplace(weapon);
-				if(weapon->Ammo() && weapon->AmmoUsage() > 0)
-					toRefill.emplace(weapon->Ammo());
-			}
+		{
+			const Weapon *weapon = it.GetWeapon();
+			if(weapon && weapon->Ammo() && weapon->AmmoUsage() > 0)
+				toRefill.emplace(weapon->Ammo());
+		}
 
 		// Carriers may be configured to supply ammunition for carried ships found
 		// within the fleet. Since a particular ammunition outfit is not bound to
@@ -69,8 +67,8 @@ namespace {
 		for(auto &&it : ship.Outfits())
 		{
 			const Outfit *outfit = it.first;
-			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.contains(outfit))
-				toRefill.emplace(outfit->Ammo());
+			if(!outfit->GetWeapon() && outfit->AmmoStored())
+				toRefill.emplace(outfit->AmmoStored());
 		}
 		return toRefill;
 	}
@@ -78,17 +76,14 @@ namespace {
 
 
 
-OutfitterPanel::OutfitterPanel(PlayerInfo &player)
-	: ShopPanel(player, true)
+OutfitterPanel::OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock)
+	: ShopPanel(player, true), outfitter(stock)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].push_back(it.first);
 
 	for(pair<const string, vector<string>> &it : catalog)
 		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
-
-	if(player.GetPlanet())
-		outfitter = player.GetPlanet()->Outfitter();
 
 	for(auto &ship : player.Ships())
 		if(ship->GetPlanet() == planet)
@@ -178,7 +173,10 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		if(isLicense)
 			minCount = maxCount = player.HasLicense(LicenseRoot(name));
 		else if(mapSize)
-			minCount = maxCount = player.HasMapped(mapSize);
+		{
+			bool mapMinables = outfit->Get("map minables");
+			minCount = maxCount = player.HasMapped(mapSize, mapMinables);
+		}
 		else
 		{
 			highlightDifferences = true;
@@ -281,7 +279,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 		const Point thumbnailCenter(center.X(), center.Y() + 20 + static_cast<int>(tileSize / 2));
 		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
-		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
+		const Sprite *background = SpriteSet::Get("ui/outfitter unselected");
 		SpriteShader::Draw(background, thumbnailCenter);
 		if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);
@@ -339,7 +337,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 	// Check special unique outfits, if you already have them.
 	int mapSize = selectedOutfit->Get("map");
-	if(mapSize > 0 && player.HasMapped(mapSize))
+	bool mapMinables = selectedOutfit->Get("map minables");
+	if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
 		return "You have already mapped all the systems shown by this map, "
 			"so there is no reason to buy another.";
 
@@ -403,13 +402,13 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 		if(cost > credits)
 			errors.push_back("You do not have enough money to buy this outfit. You need a further " +
-				Format::CreditString(cost - credits));
+				Format::CreditString(cost - credits) + ".");
 
 		// Add the cost to buy the required license.
 		else if(cost + licenseCost > credits)
 			errors.push_back("You do not have enough money to buy this outfit because you also need "
 				"to buy a license for it. You need a further " +
-				Format::CreditString(cost + licenseCost - credits));
+				Format::CreditString(cost + licenseCost - credits) + ".");
 	}
 
 	bool anyShipCanInstall = true;
@@ -523,7 +522,8 @@ void OutfitterPanel::Buy(bool onlyOwned)
 	int mapSize = selectedOutfit->Get("map");
 	if(mapSize)
 	{
-		player.Map(mapSize);
+		bool mapMinables = selectedOutfit->Get("map minables");
+		player.Map(mapSize, mapMinables);
 		player.Accounts().AddCredits(-selectedOutfit->Cost());
 		return;
 	}
@@ -668,7 +668,7 @@ void OutfitterPanel::Sell(bool toStorage)
 				player.AddStock(selectedOutfit, 1);
 			}
 
-			const Outfit *ammo = selectedOutfit->Ammo();
+			const Outfit *ammo = selectedOutfit->AmmoStoredOrUsed();
 			if(ammo && ship->OutfitCount(ammo))
 			{
 				// Determine how many of this ammo I must sell to also sell the launcher.
@@ -849,7 +849,7 @@ bool OutfitterPanel::ShipCanSell(const Ship *ship, const Outfit *outfit)
 
 	// If this outfit requires ammo, check if we could sell it if we sold all
 	// the ammo for it first.
-	const Outfit *ammo = outfit->Ammo();
+	const Outfit *ammo = outfit->AmmoStoredOrUsed();
 	if(ammo && ship->OutfitCount(ammo))
 	{
 		Outfit attributes = ship->Attributes();
@@ -883,13 +883,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 
 bool OutfitterPanel::IsLicense(const string &name) const
 {
-	static const string &LICENSE = " License";
-	if(name.length() < LICENSE.length())
-		return false;
-	if(name.compare(name.length() - LICENSE.length(), LICENSE.length(), LICENSE))
-		return false;
-
-	return true;
+	return name.ends_with(" License");
 }
 
 

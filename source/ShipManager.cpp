@@ -45,7 +45,7 @@ void ShipManager::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
-		bool hasValue = child.Size() > 1;
+		bool hasValue = child.Size() >= 2;
 
 		if(key == "id" && hasValue)
 			id = child.Token(1);
@@ -115,13 +115,13 @@ void ShipManager::Do(PlayerInfo &player) const
 	if(Giving())
 	{
 		for(int i = 0; i < count; ++i)
-			shipName = player.GiftShip(model, name, id)->Name();
+			shipName = player.GiftShip(model, name, id)->GivenName();
 	}
 	else
 	{
 		auto toTake = SatisfyingShips(player);
 		if(toTake.size() == 1)
-			shipName = toTake.begin()->get()->Name();
+			shipName = toTake.begin()->get()->GivenName();
 		for(const auto &ship : toTake)
 			player.TakeShip(ship.get(), model, takeOutfits);
 	}
@@ -189,7 +189,7 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 			if(ship->UUID() != shipToTakeId->second)
 				continue;
 		}
-		if(!name.empty() && name != ship->Name())
+		if(!name.empty() && name != ship->GivenName())
 			continue;
 		bool hasRequiredOutfits = true;
 		// If "with outfits" or "requires outfits" is specified,

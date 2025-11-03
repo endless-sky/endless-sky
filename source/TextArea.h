@@ -53,14 +53,14 @@ public:
 
 protected:
 	virtual void Draw() override;
-	virtual bool Click(int x, int y, int clicks) override;
-	virtual bool Release(int x, int y) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
 	void Invalidate();
-	void Validate();
+	void Validate(bool trailingBreak);
 
 
 private:
@@ -78,4 +78,5 @@ private:
 	bool hovering = false;
 
 	ScrollBar scrollBar;
+	bool scrollHeightIncludesTrailingBreak = false;
 };

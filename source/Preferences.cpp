@@ -26,6 +26,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Screen.h"
 
+#ifdef _WIN32
+#include "windows/WinVersion.h"
+#endif
+
 #include <algorithm>
 #include <cstddef>
 #include <map>
@@ -35,6 +39,7 @@ using namespace std;
 namespace {
 	map<string, bool> settings;
 	int scrollSpeed = 60;
+	int tooltipActivation = 60;
 
 	// Strings for ammo expenditure:
 	const string EXPEND_AMMO = "Escorts expend ammo";
@@ -139,6 +144,9 @@ namespace {
 		{Preferences::OverlayType::NEUTRAL, Preferences::OverlayState::OFF},
 	};
 
+	const vector<string> TURRET_OVERLAYS_SETTINGS = {"off", "always on", "blindspots only"};
+	int turretOverlaysIndex = 2;
+
 	const vector<string> AUTO_AIM_SETTINGS = {"off", "always on", "when firing"};
 	int autoAimIndex = 2;
 
@@ -161,7 +169,21 @@ namespace {
 	const vector<string> ALERT_INDICATOR_SETTING = {"off", "audio", "visual", "both"};
 	int alertIndicatorIndex = 3;
 
+	const vector<string> MINIMAP_DISPLAY_SETTING = {"off", "when jumping", "always on"};
+	int minimapDisplayIndex = 1;
+
+	const vector<string> FLAGSHIP_SPACE_PRIORITY_SETTINGS = {"none", "passengers", "cargo", "both"};
+	int flagshipSpacePriorityIndex = 1;
+
 	int previousSaveCount = 3;
+
+#ifdef _WIN32
+	const vector<string> TITLE_BAR_THEME_SETTINGS = {"system default", "light", "dark"};
+	int titleBarThemeIndex = 0;
+
+	const vector<string> WINDOW_ROUNDING_SETTINGS = {"system default", "off", "large", "small"};
+	int windowRoundingIndex = 0;
+#endif
 }
 
 
@@ -178,72 +200,89 @@ void Preferences::Load()
 	settings["Damaged fighters retreat"] = true;
 	settings["Show escort systems on map"] = true;
 	settings["Show stored outfits on map"] = true;
-	settings["Show mini-map"] = true;
 	settings["Show planet labels"] = true;
 	settings["Show asteroid scanner overlay"] = true;
 	settings["Show hyperspace flash"] = true;
 	settings["Draw background haze"] = true;
 	settings["Draw starfield"] = true;
+	settings["Animate main menu background"] = true;
 	settings["Hide unexplored map regions"] = true;
 	settings["Turrets focus fire"] = true;
 	settings["Ship outlines in shops"] = true;
 	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
+	settings["Deadline blink by distance"] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
 	{
-		if(node.Token(0) == "window size" && node.Size() >= 3)
+		const string &key = node.Token(0);
+		bool hasValue = node.Size() >= 2;
+		if(key == "window size" && node.Size() >= 3)
 			Screen::SetRaw(node.Value(1), node.Value(2));
-		else if(node.Token(0) == "zoom" && node.Size() >= 2)
+		else if(key == "zoom" && hasValue)
 			Screen::SetZoom(node.Value(1));
-		else if(VOLUME_SETTINGS.contains(node.Token(0)) && node.Size() >= 2)
-			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(node.Token(0)));
-		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
+		else if(VOLUME_SETTINGS.contains(key) && hasValue)
+			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(key));
+		else if(key == "scroll speed" && hasValue)
 			scrollSpeed = node.Value(1);
-		else if(node.Token(0) == "boarding target")
+		else if(key == "Tooltip activation time" && hasValue)
+			tooltipActivation = node.Value(1);
+		else if(key == "boarding target")
 			boardingIndex = max<int>(0, min<int>(node.Value(1), BOARDING_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Flotsam collection")
+		else if(key == "Flotsam collection")
 			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
-		else if(node.Token(0) == "view zoom")
+		else if(key == "view zoom")
 			zoomIndex = max(0., node.Value(1));
-		else if(node.Token(0) == "vsync")
+		else if(key == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
-		else if(node.Token(0) == "camera acceleration")
+		else if(key == "camera acceleration")
 			cameraAccelerationIndex = max<int>(0, min<int>(node.Value(1), CAMERA_ACCELERATION_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Show all status overlays")
+		else if(key == "Show all status overlays")
 			statusOverlaySettings[OverlayType::ALL].SetState(node.Value(1));
-		else if(node.Token(0) == "Show flagship overlay")
+		else if(key == "Show flagship overlay")
 			statusOverlaySettings[OverlayType::FLAGSHIP].SetState(node.Value(1));
-		else if(node.Token(0) == "Show escort overlays")
+		else if(key == "Show escort overlays")
 			statusOverlaySettings[OverlayType::ESCORT].SetState(node.Value(1));
-		else if(node.Token(0) == "Show enemy overlays")
+		else if(key == "Show enemy overlays")
 			statusOverlaySettings[OverlayType::ENEMY].SetState(node.Value(1));
-		else if(node.Token(0) == "Show neutral overlays")
+		else if(key == "Show neutral overlays")
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
-		else if(node.Token(0) == "Automatic aiming")
+		else if(key == "Turret overlays")
+			turretOverlaysIndex = clamp<int>(node.Value(1), 0, TURRET_OVERLAYS_SETTINGS.size() - 1);
+		else if(key == "Automatic aiming")
 			autoAimIndex = max<int>(0, min<int>(node.Value(1), AUTO_AIM_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Automatic firing")
+		else if(key == "Automatic firing")
 			autoFireIndex = max<int>(0, min<int>(node.Value(1), AUTO_FIRE_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Parallax background")
+		else if(key == "Parallax background")
 			parallaxIndex = max<int>(0, min<int>(node.Value(1), PARALLAX_SETTINGS.size() - 1));
-		else if(node.Token(0) == "Extended jump effects")
+		else if(key == "Extended jump effects")
 			extendedJumpEffectIndex = max<int>(0, min<int>(node.Value(1), EXTENDED_JUMP_EFFECT_SETTINGS.size() - 1));
-		else if(node.Token(0) == "fullscreen")
+		else if(key == "fullscreen")
 			screenModeIndex = max<int>(0, min<int>(node.Value(1), SCREEN_MODE_SETTINGS.size() - 1));
-		else if(node.Token(0) == "date format")
+		else if(key == "date format")
 			dateFormatIndex = max<int>(0, min<int>(node.Value(1), DATEFMT_OPTIONS.size() - 1));
-		else if(node.Token(0) == "alert indicator")
+		else if(key == "alert indicator")
 			alertIndicatorIndex = max<int>(0, min<int>(node.Value(1), ALERT_INDICATOR_SETTING.size() - 1));
-		else if(node.Token(0) == "previous saves" && node.Size() >= 2)
+		else if(key == "Show mini-map")
+			minimapDisplayIndex = max<int>(0, min<int>(node.Value(1), MINIMAP_DISPLAY_SETTING.size() - 1));
+		else if(key == "Prioritize flagship use")
+			flagshipSpacePriorityIndex = clamp<int>(node.Value(1), 0, FLAGSHIP_SPACE_PRIORITY_SETTINGS.size() - 1);
+		else if(key == "previous saves" && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
-		else if(node.Token(0) == "alt-mouse turning")
-			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
-		else if(node.Token(0) == "notification settings")
+		else if(key == "alt-mouse turning")
+			settings["Control ship with mouse"] = (!hasValue || node.Value(1));
+		else if(key == "notification settings")
 			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
+#ifdef _WIN32
+		else if(key == "Title bar theme")
+			titleBarThemeIndex = clamp<int>(node.Value(1), 0, TITLE_BAR_THEME_SETTINGS.size() - 1);
+		else if(key == "Window rounding")
+			windowRoundingIndex = clamp<int>(node.Value(1), 0, WINDOW_ROUNDING_SETTINGS.size() - 1);
+#endif
 		else
-			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
+			settings[key] = (node.Size() == 1 || node.Value(1));
 	}
 
 	// For people updating from a version before the visual red alert indicator,
@@ -288,6 +327,7 @@ void Preferences::Save()
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
+	out.Write("Tooltip activation time", tooltipActivation);
 	out.Write("boarding target", boardingIndex);
 	out.Write("Flotsam collection", flotsamIndex);
 	out.Write("view zoom", zoomIndex);
@@ -300,12 +340,21 @@ void Preferences::Save()
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
 	out.Write("Show enemy overlays", statusOverlaySettings[OverlayType::ENEMY].ToInt());
 	out.Write("Show neutral overlays", statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
+	out.Write("Turret overlays", turretOverlaysIndex);
 	out.Write("Automatic aiming", autoAimIndex);
 	out.Write("Automatic firing", autoFireIndex);
 	out.Write("Parallax background", parallaxIndex);
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
+	out.Write("Show mini-map", minimapDisplayIndex);
+	out.Write("Prioritize flagship use", flagshipSpacePriorityIndex);
 	out.Write("previous saves", previousSaveCount);
+#ifdef _WIN32
+	if(WinVersion::SupportsDarkTheme())
+		out.Write("Title bar theme", titleBarThemeIndex);
+	if(WinVersion::SupportsWindowRounding())
+		out.Write("Window rounding", windowRoundingIndex);
+#endif
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -404,6 +453,20 @@ int Preferences::ScrollSpeed()
 void Preferences::SetScrollSpeed(int speed)
 {
 	scrollSpeed = speed;
+}
+
+
+
+int Preferences::TooltipActivation()
+{
+	return tooltipActivation;
+}
+
+
+
+void Preferences::SetTooltipActivation(int steps)
+{
+	tooltipActivation = steps;
 }
 
 
@@ -637,6 +700,27 @@ const string &Preferences::StatusOverlaysSetting(Preferences::OverlayType type)
 
 
 
+void Preferences::ToggleTurretOverlays()
+{
+	turretOverlaysIndex = (turretOverlaysIndex + 1) % TURRET_OVERLAYS_SETTINGS.size();
+}
+
+
+
+Preferences::TurretOverlays Preferences::GetTurretOverlays()
+{
+	return static_cast<TurretOverlays>(turretOverlaysIndex);
+}
+
+
+
+const string &Preferences::TurretOverlaysSetting()
+{
+	return TURRET_OVERLAYS_SETTINGS[turretOverlaysIndex];
+}
+
+
+
 void Preferences::ToggleAutoAim()
 {
 	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
@@ -776,3 +860,95 @@ int Preferences::GetPreviousSaveCount()
 {
 	return previousSaveCount;
 }
+
+
+
+void Preferences::ToggleMinimapDisplay()
+{
+	if(++minimapDisplayIndex >= static_cast<int>(MINIMAP_DISPLAY_SETTING.size()))
+		minimapDisplayIndex = 0;
+}
+
+
+
+Preferences::MinimapDisplay Preferences::GetMinimapDisplay()
+{
+	return static_cast<MinimapDisplay>(minimapDisplayIndex);
+}
+
+
+
+const std::string &Preferences::MinimapSetting()
+{
+	return MINIMAP_DISPLAY_SETTING[minimapDisplayIndex];
+}
+
+
+
+void Preferences::ToggleFlagshipSpacePriority()
+{
+	if(++flagshipSpacePriorityIndex >= static_cast<int>(FLAGSHIP_SPACE_PRIORITY_SETTINGS.size()))
+		flagshipSpacePriorityIndex = 0;
+}
+
+
+
+Preferences::FlagshipSpacePriority Preferences::GetFlagshipSpacePriority()
+{
+	return static_cast<FlagshipSpacePriority>(flagshipSpacePriorityIndex);
+}
+
+
+
+const string &Preferences::FlagshipSpacePrioritySetting()
+{
+	return FLAGSHIP_SPACE_PRIORITY_SETTINGS[flagshipSpacePriorityIndex];
+}
+
+
+
+#ifdef _WIN32
+void Preferences::ToggleTitleBarTheme()
+{
+	if(++titleBarThemeIndex >= static_cast<int>(TITLE_BAR_THEME_SETTINGS.size()))
+		titleBarThemeIndex = 0;
+	GameWindow::UpdateTitleBarTheme();
+}
+
+
+
+Preferences::TitleBarTheme Preferences::GetTitleBarTheme()
+{
+	return static_cast<TitleBarTheme>(titleBarThemeIndex);
+}
+
+
+
+const string &Preferences::TitleBarThemeSetting()
+{
+	return TITLE_BAR_THEME_SETTINGS[titleBarThemeIndex];
+}
+
+
+
+void Preferences::ToggleWindowRounding()
+{
+	if(++windowRoundingIndex >= static_cast<int>(WINDOW_ROUNDING_SETTINGS.size()))
+		windowRoundingIndex = 0;
+	GameWindow::UpdateWindowRounding();
+}
+
+
+
+Preferences::WindowRounding Preferences::GetWindowRounding()
+{
+	return static_cast<WindowRounding>(windowRoundingIndex);
+}
+
+
+
+const string &Preferences::WindowRoundingSetting()
+{
+	return WINDOW_ROUNDING_SETTINGS[windowRoundingIndex];
+}
+#endif

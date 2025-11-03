@@ -23,9 +23,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "Outfit.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Port.h"
 #include "Ship.h"
+#include "Shop.h"
 #include "System.h"
+#include "Weapon.h"
 
 #include <iostream>
 #include <map>
@@ -37,25 +40,25 @@ namespace {
 	// For getting the name of a ship model or outfit.
 	// The relevant method for each class has a different signature,
 	// so use template specialisation to select the appropriate version of the method.
-	template <class Type>
+	template<class Type>
 	string ObjectName(const Type &object) = delete;
 
-	template <>
+	template<>
 	string ObjectName(const Ship &object) { return object.TrueModelName(); }
 
-	template <>
+	template<>
 	string ObjectName(const Outfit &object) { return object.TrueName(); }
 
 
 	// Take a set of items and a set of sales and print a list of each item followed by the sales it appears in.
-	template <class Type>
-	void PrintItemSales(const Set<Type> &items, const Set<Sale<Type>> &sales,
+	template<class Type>
+	void PrintItemSales(const Set<Type> &items, const Set<Shop<Type>> &sales,
 		const string &itemNoun, const string &saleNoun)
 	{
 		cout << DataWriter::Quote(itemNoun) << ',' << DataWriter::Quote(saleNoun) << '\n';
 		map<string, set<string>> itemSales;
 		for(auto &saleIt : sales)
-			for(auto &itemIt : saleIt.second)
+			for(auto &itemIt : saleIt.second.Stock())
 				itemSales[ObjectName(*itemIt)].insert(saleIt.first);
 		for(auto &itemIt : items)
 		{
@@ -70,15 +73,15 @@ namespace {
 
 	// Take a set of sales and print a list of each followed by the items it contains.
 	// Will fail to compile for items not of type Ship or Outfit.
-	template <class Type>
-	void PrintSales(const Set<Sale<Type>> &sales, const string &saleNoun, const string &itemNoun)
+	template<class Type>
+	void PrintSales(const Set<Shop<Type>> &sales, const string &saleNoun, const string &itemNoun)
 	{
 		cout << DataWriter::Quote(saleNoun) << ';' << DataWriter::Quote(itemNoun) << '\n';
 		for(auto &saleIt : sales)
 		{
 			cout << DataWriter::Quote(saleIt.first);
 			int index = 0;
-			for(auto &item : saleIt.second)
+			for(auto &item : saleIt.second.Stock())
 				cout << (index++ ? ';' : ',') << DataWriter::Quote(ObjectName(*item));
 			cout << '\n';
 		}
@@ -86,7 +89,7 @@ namespace {
 
 
 	// Take a Set and print a list of the names (keys) it contains.
-	template <class Type>
+	template<class Type>
 	void PrintObjectList(const Set<Type> &objects, const string &name)
 	{
 		cout << DataWriter::Quote(name) << '\n';
@@ -96,7 +99,7 @@ namespace {
 
 	// Takes a Set of objects and prints the key for each, followed by a list of its attributes.
 	// The class 'Type' must have an accessible 'Attributes()' member method which returns a collection of strings.
-	template <class Type>
+	template<class Type>
 	void PrintObjectAttributes(const Set<Type> &objects, const string &name)
 	{
 		cout << DataWriter::Quote(name) << ',' << DataWriter::Quote("attributes") << '\n';
@@ -113,7 +116,7 @@ namespace {
 
 	// Takes a Set of objects, which must have an accessible member `Attributes()`, returning a collection of strings.
 	// Prints a list of all those string attributes and, for each, the list of keys of objects with that attribute.
-	template <class Type>
+	template<class Type>
 	void PrintObjectsByAttribute(const Set<Type> &objects, const string &name)
 	{
 		cout << DataWriter::Quote("attribute") << ',' << DataWriter::Quote(name) << '\n';
@@ -259,12 +262,15 @@ namespace {
 					+ attributes.Get("cloaking heat");
 
 				for(const auto &oit : ship.Outfits())
-					if(oit.first->IsWeapon() && oit.first->Reload())
+				{
+					const Weapon *weapon = oit.first->GetWeapon().get();
+					if(weapon && weapon->Reload())
 					{
-						double reload = oit.first->Reload();
-						energyConsumed += oit.second * oit.first->FiringEnergy() / reload;
-						heatProduced += oit.second * oit.first->FiringHeat() / reload;
+						double reload = weapon->Reload();
+						energyConsumed += oit.second * weapon->FiringEnergy() / reload;
+						heatProduced += oit.second * weapon->FiringHeat() / reload;
 					}
+				}
 				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
 				cout << 60. * energyConsumed << ',';
 				cout << attributes.Get("energy capacity") << ',';
@@ -290,9 +296,10 @@ namespace {
 
 				double deterrence = 0.;
 				for(const Hardpoint &hardpoint : ship.Weapons())
-					if(hardpoint.GetOutfit())
+				{
+					const Weapon *weapon = hardpoint.GetWeapon();
+					if(weapon)
 					{
-						const Outfit *weapon = hardpoint.GetOutfit();
 						if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 							continue;
 						double damage = weapon->ShieldDamage() + weapon->HullDamage()
@@ -300,6 +307,7 @@ namespace {
 							+ (weapon->RelativeHullDamage() * ship.MaxHull());
 						deterrence += .12 * damage / weapon->Reload();
 					}
+				}
 				cout << deterrence << '\n';
 			}
 		};
@@ -356,38 +364,39 @@ namespace {
 				<< DataWriter::Quote("energy dmg/s") << ',' << DataWriter::Quote("ion dmg/s") << ','
 				<< DataWriter::Quote("scrambling dmg/s") << ',' << DataWriter::Quote("slow dmg/s") << ','
 				<< DataWriter::Quote("disruption dmg/s") << ',' << "piercing" << ',' << DataWriter::Quote("fuel dmg/s") << ','
-				<< DataWriter::Quote("leak dmg/s") << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
+				<< DataWriter::Quote("leak dmg/s") << ',' << "push/s" << ',' << ',' << "strength" << ','
 				<< "deterrence" << '\n';
 
 			for(auto &it : GameData::Outfits())
 			{
 				// Skip non-weapons and submunitions.
-				if(!it.second.IsWeapon() || it.second.Category().empty())
+				const Outfit &outfit = it.second;
+				const Weapon *weapon = outfit.GetWeapon().get();
+				if(!weapon || outfit.Category().empty())
 					continue;
 
-				const Outfit &outfit = it.second;
 				cout << DataWriter::Quote(it.first)<< ',';
 				cout << DataWriter::Quote(outfit.Category()) << ',';
 				cout << outfit.Cost() << ',';
 				cout << -outfit.Get("weapon capacity") << ',';
 
-				cout << outfit.Range() << ',';
+				cout << weapon->Range() << ',';
 
-				double reload = outfit.Reload();
+				double reload = weapon->Reload();
 				cout << reload << ',';
-				cout << outfit.BurstCount() << ',';
-				cout << outfit.BurstReload() << ',';
-				cout << outfit.TotalLifetime() << ',';
+				cout << weapon->BurstCount() << ',';
+				cout << weapon->BurstReload() << ',';
+				cout << weapon->TotalLifetime() << ',';
 				double fireRate = 60. / reload;
 				cout << fireRate << ',';
 
-				double firingEnergy = outfit.FiringEnergy();
+				double firingEnergy = weapon->FiringEnergy();
 				cout << firingEnergy << ',';
 				firingEnergy *= fireRate;
-				double firingHeat = outfit.FiringHeat();
+				double firingHeat = weapon->FiringHeat();
 				cout << firingHeat << ',';
 				firingHeat *= fireRate;
-				double firingForce = outfit.FiringForce();
+				double firingForce = weapon->FiringForce();
 				cout << firingForce << ',';
 				firingForce *= fireRate;
 
@@ -395,42 +404,41 @@ namespace {
 				cout << firingHeat << ',';
 				cout << firingForce << ',';
 
-				double shieldDmg = outfit.ShieldDamage() * fireRate;
+				double shieldDmg = weapon->ShieldDamage() * fireRate;
 				cout << shieldDmg << ',';
-				double dischargeDmg = outfit.DischargeDamage() * 100. * fireRate;
+				double dischargeDmg = weapon->DischargeDamage() * 100. * fireRate;
 				cout << dischargeDmg << ',';
-				double hullDmg = outfit.HullDamage() * fireRate;
+				double hullDmg = weapon->HullDamage() * fireRate;
 				cout << hullDmg << ',';
-				double corrosionDmg = outfit.CorrosionDamage() * 100. * fireRate;
+				double corrosionDmg = weapon->CorrosionDamage() * 100. * fireRate;
 				cout << corrosionDmg << ',';
-				double heatDmg = outfit.HeatDamage() * fireRate;
+				double heatDmg = weapon->HeatDamage() * fireRate;
 				cout << heatDmg << ',';
-				double burnDmg = outfit.BurnDamage() * 100. * fireRate;
+				double burnDmg = weapon->BurnDamage() * 100. * fireRate;
 				cout << burnDmg << ',';
-				double energyDmg = outfit.EnergyDamage() * fireRate;
+				double energyDmg = weapon->EnergyDamage() * fireRate;
 				cout << energyDmg << ',';
-				double ionDmg = outfit.IonDamage() * 100. * fireRate;
+				double ionDmg = weapon->IonDamage() * 100. * fireRate;
 				cout << ionDmg << ',';
-				double scramblingDmg = outfit.ScramblingDamage() * 100. * fireRate;
+				double scramblingDmg = weapon->ScramblingDamage() * 100. * fireRate;
 				cout << scramblingDmg << ',';
-				double slowDmg = outfit.SlowingDamage() * fireRate;
+				double slowDmg = weapon->SlowingDamage() * fireRate;
 				cout << slowDmg << ',';
-				double disruptDmg = outfit.DisruptionDamage() * fireRate;
+				double disruptDmg = weapon->DisruptionDamage() * fireRate;
 				cout << disruptDmg << ',';
-				cout << outfit.Piercing() << ',';
-				double fuelDmg = outfit.FuelDamage() * fireRate;
+				cout << weapon->Piercing() << ',';
+				double fuelDmg = weapon->FuelDamage() * fireRate;
 				cout << fuelDmg << ',';
-				double leakDmg = outfit.LeakDamage() * 100. * fireRate;
+				double leakDmg = weapon->LeakDamage() * 100. * fireRate;
 				cout << leakDmg << ',';
-				double hitforce = outfit.HitForce() * fireRate;
+				double hitforce = weapon->HitForce() * fireRate;
 				cout << hitforce << ',';
 
-				cout << outfit.Homing() << ',';
-				double strength = outfit.MissileStrength() + outfit.AntiMissile();
+				double strength = weapon->MissileStrength() + weapon->AntiMissile();
 				cout << strength << ',';
 
-				double damage = outfit.ShieldDamage() + outfit.HullDamage();
-				double deterrence = .12 * damage / outfit.Reload();
+				double damage = weapon->ShieldDamage() + weapon->HullDamage();
+				double deterrence = .12 * damage / weapon->Reload();
 				cout << deterrence << '\n';
 			}
 
@@ -654,24 +662,28 @@ namespace {
 			PrintObjectList(GameData::Systems(), "system");
 	}
 
-	void LocationFilterMatches(const char *const *argv)
+	void LocationFilterMatches(const char *const *argv, const PlayerInfo &player)
 	{
+		StellarObject::UsingMatchesCommand();
 		DataFile file(cin);
 		LocationFilter filter;
+		const set<const System *> *visitedSystems = &player.VisitedSystems();
+		const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
 		for(const DataNode &node : file)
 		{
-			if(node.Token(0) == "changes" || (node.Token(0) == "event" && node.Size() == 1))
+			const string &key = node.Token(0);
+			if(key == "changes" || (key == "event" && node.Size() == 1))
 				for(const DataNode &child : node)
-					GameData::Change(child);
-			else if(node.Token(0) == "event")
+					GameData::Change(child, player);
+			else if(key == "event")
 			{
 				const auto *event = GameData::Events().Get(node.Token(1));
 				for(const auto &change : event->Changes())
-					GameData::Change(change);
+					GameData::Change(change, player);
 			}
-			else if(node.Token(0) == "location")
+			else if(key == "location")
 			{
-				filter.Load(node);
+				filter.Load(node, visitedSystems, visitedPlanets);
 				break;
 			}
 		}
@@ -722,7 +734,7 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 
 
 
-void PrintData::Print(const char *const *argv)
+void PrintData::Print(const char *const *argv, const PlayerInfo &player)
 {
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -747,7 +759,7 @@ void PrintData::Print(const char *const *argv)
 		else if(arg == "--systems")
 			Systems(argv);
 		else if(arg == "--matches")
-			LocationFilterMatches(argv);
+			LocationFilterMatches(argv, player);
 	}
 	cout.flush();
 }

@@ -42,14 +42,14 @@ public:
 	// Point Unit() const;
 	// double Zoom() const;
 
-	const std::string &Name() const;
-	void SetName(const std::string &name);
+	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
 
 	void Load(const DataNode &node);
 
 
 private:
-	std::string name;
+	std::string trueName;
 
 	const Sound *sound = nullptr;
 	SoundCategory soundCategory = SoundCategory::EXPLOSION;
@@ -70,6 +70,10 @@ private:
 
 	int lifetime = 0;
 	int randomLifetime = 0;
+
+	// If set, this effect's scale can be modified based on the "zoom" of the object it is used on.
+	// For example, engine points for afterburner effects.
+	bool inheritsZoom = false;
 
 	// Allow the Visual class to access all these private members.
 	friend class Visual;

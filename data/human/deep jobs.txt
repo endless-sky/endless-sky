@@ -323,7 +323,7 @@ mission "Transport scientists"
 	source
 		attributes "deep"
 	stopover
-		attributes "research"
+		attributes "education" "research"
 		not attributes "uninhabited"
 		distance 2 50
 	passengers 3 4 .43
@@ -346,7 +346,7 @@ mission "Transport science department"
 	source
 		attributes "deep"
 	stopover
-		attributes "research"
+		attributes "education" "research"
 		not attributes "uninhabited"
 		distance 2 50
 	passengers 20 4 .1
@@ -368,7 +368,7 @@ mission "Escort science vessel"
 	source
 		attributes "research"
 	stopover
-		attributes "quarg" "pirate" "volcanic" "frontier" "dirt belt" "north" "south"
+		attributes "education" "quarg" "pirate" "volcanic" "frontier" "dirt belt" "north" "south"
 		distance 6 50
 	to offer
 		random < 15
@@ -419,7 +419,7 @@ mission "Record academic conference"
 	source
 		attributes "deep"
 	destination
-		attributes "research" "quarg" "rich" "paradise"
+		attributes "education" "research" "quarg" "rich" "paradise"
 		distance 4 10
 	cargo "recording equipment" 1
 	to offer
@@ -675,12 +675,12 @@ mission "Deep Security Package Reveal"
 			`	As you sit down, the man smiles at you before directing his attention back to those passing by as he speaks. "My name is Wayde, Agent Wayde if you will. Don't mind the title though, I... well I work in the logistics division for Deep Security. You've transported a large number of secure packages recently, and several of them were mine."`
 			choice
 				`	"If it pays, it pays."`
-					goto blindacceptance
+					goto "blind acceptance"
 				`	"Ah, yes."`
-					goto blindacceptance
+					goto "blind acceptance"
 				`	"Do all the secure packages belong to Deep Security?"`
 			`	"Oh no, plenty of tech businesses and wealthy individuals use the same secure package shipping channels. We do monitor all of them though just to make sure our own channels don't get compromised by something ill-advised... or illegal." He shrugs, giving you a measured look.`
-			label blindacceptance
+			label "blind acceptance"
 			`	"Well, I looked at your record and it seems you've done quite a lot for the Deep, and you're well-regarded. We like to keep a list of pilots that we can call on if we need something delivered with either urgency or discretion, and it seems like you qualified. You passed the background check at any rate.`
 			`	"So at any rate, I'm authorized to give you a one-time offer to join that list. Don't worry, I'm not asking anything of you right now."`
 			`	He stops keeping an eye on passers-by for a moment to look directly at you. "So, are you interested?"`
@@ -1102,6 +1102,7 @@ mission "Lionheart Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Valhalla"
 	source
 		near "Epsilon Leonis" 2 10
 		attributes factory
@@ -1120,6 +1121,7 @@ mission "Lionheart Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Valhalla"
 	source
 		near "Epsilon Leonis" 2 10
 		attributes factory research
@@ -1138,6 +1140,7 @@ mission "Lionheart Shipment [2]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Valhalla"
 	source
 		near "Epsilon Leonis" 2 10
 		attributes factory mining
@@ -1156,6 +1159,7 @@ mission "Deep Sky Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Asgard"
 	source
 		near Naos 2 15
 		attributes factory
@@ -1174,6 +1178,7 @@ mission "Deep Sky Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Asgard"
 	source
 		near Naos 2 15
 		attributes factory research
@@ -1183,3 +1188,47 @@ mission "Deep Sky Shipment [1]"
 	on complete
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
+
+mission "Deep Hovercraft Racer Transport"
+	name "Transport racer to <planet>"
+	description "Deliver a pilot and their hovercraft to <destination> to attend a race by <date>."
+	passengers 1
+	cargo "Deep hovercraft" 1
+	job
+	repeat
+	deadline
+	deadline 8
+	to offer
+		random < 6
+		has "landing access: Sunracer"
+	source
+		attributes "deep"
+	destination Sunracer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 11000
+		dialog `You drop off the pilot with their hovercraft and collect your payment of <payment>.`
+
+mission "Deep Hovercraft Large Racer Transport"
+	name "Transport team to <planet>"
+	description "Deliver this <passengers>-member racing team and their set of <cargo> to <destination> to attend a race by <date>."
+	passengers 50 100 .9
+	cargo "Deep hovercraft" 50
+	job
+	repeat
+	deadline
+	deadline 8
+	to offer
+		random < 1
+		has "landing access: Sunracer"
+	source
+		attributes "deep"
+	destination Sunracer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 23000
+		dialog `You drop off the racing team with their hovercraft and collect your payment of <payment>.`
