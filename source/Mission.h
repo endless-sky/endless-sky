@@ -118,8 +118,8 @@ public:
 	const std::set<const System *> &UnmarkedSystems() const;
 	const std::set<const System *> &TrackedSystems() const;
 	void RecalculateTrackedSystems();
-	void Mark(const System *system) const;
-	void Unmark(const System *system) const;
+	void Mark(const std::set<const System *> &systems) const;
+	void Unmark(const std::set<const System *> &system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int Fine() const;

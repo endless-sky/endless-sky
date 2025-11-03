@@ -220,9 +220,15 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	else if(key == "mute")
 		music = "";
 	else if(key == "mark" && hasValue)
-		mark.insert(GameData::Systems().Get(child.Token(1)));
+	{
+		set<const System *> &toMark = child.Size() == 2 ? mark : markOther[child.Token(2)];
+		toMark.insert(GameData::Systems().Get(child.Token(1)));
+	}
 	else if(key == "unmark" && hasValue)
-		unmark.insert(GameData::Systems().Get(child.Token(1)));
+	{
+		set<const System *> &toUnmark = (child.Size() == 2) ? unmark : unmarkOther[child.Token(2)];
+		toUnmark.insert(GameData::Systems().Get(child.Token(1)));
+	}
 	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
@@ -289,8 +295,14 @@ void GameAction::Save(DataWriter &out) const
 		out.Write("event", it.first->TrueName(), it.second.first, it.second.second);
 	for(const System *system : mark)
 		out.Write("mark", system->TrueName());
+	for(const auto &[mission, marks] : markOther)
+		for(const System *system : marks)
+			out.Write("mark", system->TrueName(), mission);
 	for(const System *system : unmark)
 		out.Write("unmark", system->TrueName());
+	for(const auto &[mission, unmarks] : unmarkOther)
+		for(const System *system : unmarks)
+			out.Write("unmark", system->TrueName(), mission);
 	for(const string &name : fail)
 		out.Write("fail", name);
 	if(failCaller)
@@ -332,9 +344,17 @@ string GameAction::Validate() const
 	for(auto &&system : mark)
 		if(!system->IsValid())
 			return "system \"" + system->TrueName() + "\"";
+	for(const auto &[mission, marks] : markOther)
+		for(const System *system : marks)
+			if(!system->IsValid())
+				return "system \"" + system->TrueName() + "\"";
 	for(auto &&system : unmark)
 		if(!system->IsValid())
 			return "system \"" + system->TrueName() + "\"";
+	for(const auto &[mission, unmarks] : unmarkOther)
+		for(const System *system : unmarks)
+			if(!system->IsValid())
+				return "system \"" + system->TrueName() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
@@ -434,20 +454,34 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 
-	for(const System *system : mark)
-		caller->Mark(system);
-	for(const System *system : unmark)
-		caller->Unmark(system);
-
-	if(!fail.empty())
+	if(caller)
 	{
-		// If this action causes this or any other mission to fail, mark that
-		// mission as failed. It will not be removed from the player's mission
-		// list until it is safe to do so.
+		caller->Mark(mark);
+		caller->Unmark(unmark);
+	}
+
+	if(!fail.empty() || !markOther.empty() || !unmarkOther.empty())
+	{
 		for(const Mission &mission : player.Missions())
+		{
+			// If this action causes another mission to fail, mark that
+			// mission as failed. It will not be removed from the player's mission
+			// list until it is safe to do so.
 			if(fail.contains(mission.TrueName()))
 				player.FailMission(mission);
+
+			auto mit = markOther.find(mission.TrueName());
+			if(mit != markOther.end())
+				mission.Mark(mit->second);
+
+			auto uit = unmarkOther.find(mission.TrueName());
+			if(uit != unmarkOther.end())
+				mission.Unmark(uit->second);
+		}
 	}
+
+	// If this action causes this mission to fail, mark it as failed.
+	// It will not be removed from the player's mission list until it is safe to do so.
 	if(failCaller && caller)
 		player.FailMission(*caller);
 	if(music.has_value())
@@ -512,7 +546,9 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.conditions = conditions;
 
 	result.mark = mark;
+	result.markOther = markOther;
 	result.unmark = unmark;
+	result.unmarkOther = unmarkOther;
 
 	return result;
 }
