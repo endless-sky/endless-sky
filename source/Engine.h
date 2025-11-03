@@ -330,6 +330,7 @@ private:
 	Rectangle clickBox;
 	int groupSelect = -1;
 	std::chrono::steady_clock::time_point last_tap_stamp;
+	std::chrono::steady_clock::time_point last_virtual_joystick_tap_stamp;
 	bool touchMoveActive = false;
 	Point touchMoveVector;
 

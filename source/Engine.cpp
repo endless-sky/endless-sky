@@ -1374,9 +1374,9 @@ void Engine::Draw() const
 		bool joystickMax = touchMoveVector.LengthSquared() > 1;
 		Point jsPos = joystickMax ? touchMoveVector.Unit() : touchMoveVector;
 		if(touchMoveActive)
-			colorStr = joystickMax ? "dim" : "dimmer";
+			colorStr = isDoubleTap ? "dim" : "dimmer";
 		const Color &color = *GameData::Colors().Get(colorStr);
-		RingShader::Draw(bounds.Center(), bounds.Width()/2, joystickMax ? 4.0 : 2.0, 1.0, color);
+		RingShader::Draw(bounds.Center(), bounds.Width()/2, isDoubleTap ? 4.0 : 2.0, 1.0, color);
 
 		if(touchMoveActive)
 		{
@@ -1532,7 +1532,6 @@ bool Engine::FingerMove(const Point &p, int fid)
 
 	return true;
 }
-
 
 
 
@@ -2526,10 +2525,13 @@ void Engine::HandleTouchEvents()
 		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
 		Rectangle bounds = mapButtonUi->GetBox("onscreen joystick");
 
-		bool doubleRadius = touchMoveActive;
+		bool touchMoveWasActive = touchMoveActive;
 		touchMoveActive = false;
 		touchMoveVector = Point();
-		for(const Point& p: TouchScreen::Points())
+		auto fingers = TouchScreen::Points();
+		if(fingers.empty())
+			isDoubleTap = false;
+		for(const Point& p: fingers)
 		{
 			// We want the initial touch event to be strictly within the
 			// bounds of the joystick ring, but afterwards, allow it to
@@ -2537,14 +2539,20 @@ void Engine::HandleTouchEvents()
 			// Don't let the point leave the bounds of the ring
 			Point jspos = p - bounds.Center();
 			double radius = bounds.Width() / 2;
-			if(jspos.LengthSquared() < (doubleRadius ? radius * radius * 4 : radius * radius))
+			if(jspos.LengthSquared() < (touchMoveWasActive ? radius * radius * 4 : radius * radius))
 			{
 				touchMoveVector = jspos / radius;
+				if(!touchMoveWasActive)
+				{
+					auto now = std::chrono::steady_clock::now();
+					isDoubleTap = now - last_virtual_joystick_tap_stamp < std::chrono::milliseconds(500);
+					last_virtual_joystick_tap_stamp = now;
+				}
 				touchMoveActive = true;
 				HandleJoystickMovement(touchMoveVector * 32767);
 
 				// If we are outside the ring bounds, activate the afterburner
-				if(touchMoveVector.LengthSquared() > 1)
+				if(isDoubleTap)
 					activeCommands |= Command::AFTERBURNER;
 
 				break; // only consider the first point we find
