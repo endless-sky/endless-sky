@@ -1025,6 +1025,19 @@ interface "gamerules"
 		dimensions 90 30
 		color medium
 		hover bright
+	
+	label "Additional info"
+		from -275 34
+		align top right
+		color bright
+	fill
+		from -400 48 to -270 49
+		color medium
+	"wrapped label" "Press '_x' over a rule to reset it to the value from the chosen preset."
+		from -400 60 to -275 130
+		alignment right
+		color medium
+	
 	visible if "multiple settings pages"
 	sprite "ui/dialog cancel"
 		center -115 210
@@ -1066,6 +1079,18 @@ interface "gamerules presets"
 		from -250 -216 to -10 184
 	box "preset description"
 		from 250 -244 to 10 184
+	
+	label "Additional info"
+		from -275 34
+		align top right
+		color bright
+	fill
+		from -400 48 to -270 49
+		color medium
+	"wrapped label" "Click the checkbox next to a preset to activate it."
+		from -400 50 to -275 120
+		alignment right
+		color medium
 
 
 

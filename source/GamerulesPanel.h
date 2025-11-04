@@ -36,7 +36,7 @@ class RenderBuffer;
 // UI panel for editing preferences, especially the key mappings.
 class GamerulesPanel : public Panel {
 public:
-	GamerulesPanel(Gamerules &gamerules);
+	explicit GamerulesPanel(Gamerules &gamerules);
 	virtual ~GamerulesPanel();
 
 	// Draw this panel.
@@ -82,11 +82,11 @@ private:
 	const Interface *gamerulesUi;
 	const Interface *presetUi;
 
-	int selectedIndex;
-	int hoverIndex;
-	int oldSelectedIndex;
-	int oldHoverIndex;
-	int latestIndex;
+	int selectedIndex = 0;
+	int hoverIndex = -1;
+	int oldSelectedIndex = 0;
+	int oldHoverIndex = 0;
+	int latestIndex = 0;
 	// Which page we're on. g = gamerules, p = presets.
 	char page = 'g';
 

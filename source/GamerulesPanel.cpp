@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Information.h"
@@ -40,8 +41,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <algorithm>
-
-#include "text/Format.h"
 
 using namespace std;
 
@@ -92,9 +91,8 @@ GamerulesPanel::GamerulesPanel(Gamerules &gamerules)
 	: gamerules(gamerules),
 	gamerulesUi(GameData::Interfaces().Get("gamerules")),
 	presetUi(GameData::Interfaces().Get("gamerules presets")),
-	selectedIndex(0), hoverIndex(-1), oldSelectedIndex(0), oldHoverIndex(0), latestIndex(0),
 	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
-	GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
 	selectedPreset(gamerules.Name())
 {
 	Rectangle presetListBox = presetUi->GetBox("preset list");
@@ -322,7 +320,7 @@ void GamerulesPanel::Resize()
 	if(page == 'p')
 	{
 		Rectangle presetListBox = presetUi->GetBox("preset list");
-		presetListClip = std::make_unique<RenderBuffer>(presetListBox.Dimensions());
+		presetListClip = make_unique<RenderBuffer>(presetListBox.Dimensions());
 		RenderPresetDescription(selectedPreset);
 	}
 }
@@ -506,19 +504,6 @@ void GamerulesPanel::DrawGamerules()
 	// Sync the currently selected item after the gamerules map has been populated.
 	if(selectedItem.empty())
 		selectedItem = gameruleZones.at(selectedIndex).Value();
-
-	Table infoTable;
-	infoTable.AddColumn(125, {150, Alignment::RIGHT});
-	infoTable.SetUnderline(0, 130);
-	infoTable.DrawAt(Point(-400, 32));
-
-	infoTable.DrawUnderline(medium);
-	infoTable.Draw("Additional info", bright);
-	infoTable.DrawGap(5);
-	infoTable.Draw("Press '_x' over a rule", medium);
-	infoTable.Draw("to reset it to", medium);
-	infoTable.Draw("the value from", medium);
-	infoTable.Draw("the chosen preset.", medium);
 }
 
 
@@ -643,18 +628,6 @@ void GamerulesPanel::DrawPresets()
 			AddZone(bottomRight, [&]() { presetDescriptionScroll.Scroll(Preferences::ScrollSpeed()); });
 		}
 	}
-
-	Table infoTable;
-	infoTable.AddColumn(125, {150, Alignment::RIGHT});
-	infoTable.SetUnderline(0, 130);
-	infoTable.DrawAt(Point(-400, 32));
-
-	infoTable.DrawUnderline(medium);
-	infoTable.Draw("Additional info", bright);
-	infoTable.DrawGap(5);
-	infoTable.Draw("Click the checkbox", medium);
-	infoTable.Draw("next to a preset", medium);
-	infoTable.Draw("to activate it.", medium);
 }
 
 
@@ -702,7 +675,7 @@ void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 	if(descriptionHeight < box.Height())
 		descriptionHeight = box.Height();
 	presetDescriptionScroll.SetMaxValue(descriptionHeight);
-	presetDescriptionBuffer = std::make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
+	presetDescriptionBuffer = make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
 	// Redirect all drawing commands into the offscreen buffer.
 	auto target = presetDescriptionBuffer->SetTarget();
 
@@ -815,7 +788,7 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		string message = "Set the minimum system arrival distance. This should be a number greater than or equal to 0.";
 		auto validate = [](double value) -> bool { return value >= 0.0; };
 		optional<double> value = gamerules.SystemArrivalMin();
-		std::string initial = value.has_value() ? Format::Decimal(*value, 1) : "";
+		string initial = value.has_value() ? Format::Decimal(*value, 1) : "";
 		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetSystemArrivalMin, message, validate, initial));
 	}
 	else if(str == FLEET_MULTIPLIER)
