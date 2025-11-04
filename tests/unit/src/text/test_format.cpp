@@ -277,42 +277,42 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 	}
 }
 
-TEST_CASE( "Format::Credits", "[Format][Credits]") {
-	SECTION( "1 credit" ) {
-		CHECK( Format::Credits(1) == "1" );
+TEST_CASE( "Format::AbbreviatedNumber", "[Format][AbbreviatedNumber]") {
+	SECTION( "1" ) {
+		CHECK( Format::AbbreviatedNumber(1) == "1" );
 	}
-	SECTION( "0 credits" ) {
-		CHECK( Format::Credits(0) == "0" );
+	SECTION( "0" ) {
+		CHECK( Format::AbbreviatedNumber(0) == "0" );
 	}
-	SECTION( "Positive credits" ) {
-		CHECK( Format::Credits(2) == "2" );
-		CHECK( Format::Credits(1000) == "1,000" );
-		CHECK( Format::Credits(2200) == "2,200" );
-		CHECK( Format::Credits(2200) == "2,200" );
-		CHECK( Format::Credits(1000000) == "1,000,000" );
-		CHECK( Format::Credits(4361000) == "4.361M" );
-		CHECK( Format::Credits(1000000000) == "1,000.000M" );
-		CHECK( Format::Credits(4361000000) == "4.361B" );
-		CHECK( Format::Credits(1000000000000) == "1,000.000B" );
-		CHECK( Format::Credits(4361000000000) == "4.361T" );
-		CHECK( Format::Credits(1000000000000000ll) == "1,000.000T");
-		CHECK( Format::Credits(1000000000000001ll) == "1e+15");
-		CHECK( Format::Credits(4361000000000000ll) == "4.36e+15");
+	SECTION( "Positive" ) {
+		CHECK( Format::AbbreviatedNumber(2) == "2" );
+		CHECK( Format::AbbreviatedNumber(1000) == "1,000" );
+		CHECK( Format::AbbreviatedNumber(2200) == "2,200" );
+		CHECK( Format::AbbreviatedNumber(2200) == "2,200" );
+		CHECK( Format::AbbreviatedNumber(1000000) == "1,000,000" );
+		CHECK( Format::AbbreviatedNumber(4361000) == "4.361M" );
+		CHECK( Format::AbbreviatedNumber(1000000000) == "1,000.000M" );
+		CHECK( Format::AbbreviatedNumber(4361000000) == "4.361B" );
+		CHECK( Format::AbbreviatedNumber(1000000000000) == "1,000.000B" );
+		CHECK( Format::AbbreviatedNumber(4361000000000) == "4.361T" );
+		CHECK( Format::AbbreviatedNumber(1000000000000000ll) == "1,000.000T");
+		CHECK( Format::AbbreviatedNumber(1000000000000001ll) == "1e+15");
+		CHECK( Format::AbbreviatedNumber(4361000000000000ll) == "4.36e+15");
 	}
-	SECTION( "Negative credits" ) {
-		CHECK( Format::Credits(-2) == "-2" );
-		CHECK( Format::Credits(-1000) == "-1,000" );
-		CHECK( Format::Credits(-2200) == "-2,200" );
-		CHECK( Format::Credits(-2200) == "-2,200" );
-		CHECK( Format::Credits(-1000000) == "-1,000,000" );
-		CHECK( Format::Credits(-4361000) == "-4.361M" );
-		CHECK( Format::Credits(-1000000000) == "-1,000.000M" );
-		CHECK( Format::Credits(-4361000000) == "-4.361B" );
-		CHECK( Format::Credits(-1000000000000) == "-1,000.000B" );
-		CHECK( Format::Credits(-4361000000000) == "-4.361T" );
-		CHECK( Format::Credits(-1000000000000000ll) == "-1,000.000T");
-		CHECK( Format::Credits(-1000000000000001ll) == "-1e+15");
-		CHECK( Format::Credits(-4361000000000000ll) == "-4.36e+15");
+	SECTION( "Negative" ) {
+		CHECK( Format::AbbreviatedNumber(-2) == "-2" );
+		CHECK( Format::AbbreviatedNumber(-1000) == "-1,000" );
+		CHECK( Format::AbbreviatedNumber(-2200) == "-2,200" );
+		CHECK( Format::AbbreviatedNumber(-2200) == "-2,200" );
+		CHECK( Format::AbbreviatedNumber(-1000000) == "-1,000,000" );
+		CHECK( Format::AbbreviatedNumber(-4361000) == "-4.361M" );
+		CHECK( Format::AbbreviatedNumber(-1000000000) == "-1,000.000M" );
+		CHECK( Format::AbbreviatedNumber(-4361000000) == "-4.361B" );
+		CHECK( Format::AbbreviatedNumber(-1000000000000) == "-1,000.000B" );
+		CHECK( Format::AbbreviatedNumber(-4361000000000) == "-4.361T" );
+		CHECK( Format::AbbreviatedNumber(-1000000000000000ll) == "-1,000.000T");
+		CHECK( Format::AbbreviatedNumber(-1000000000000001ll) == "-1e+15");
+		CHECK( Format::AbbreviatedNumber(-4361000000000000ll) == "-4.36e+15");
 	}
 }
 

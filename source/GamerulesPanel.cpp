@@ -439,17 +439,17 @@ void GamerulesPanel::DrawGamerules()
 		if(gamerule == DEPRECIATION_MIN)
 			text = Format::Percentage(gamerules.DepreciationMin(), 2);
 		else if(gamerule == DEPRECIATION_GRACE_PERIOD)
-			text = Format::Credits(gamerules.DepreciationGracePeriod());
+			text = Format::AbbreviatedNumber(gamerules.DepreciationGracePeriod());
 		else if(gamerule == DEPRECIATION_MAX_AGE)
-			text = Format::Credits(gamerules.DepreciationMaxAge());
+			text = Format::AbbreviatedNumber(gamerules.DepreciationMaxAge());
 		else if(gamerule == DEPRECIATION_DAILY)
 			text = Format::Percentage(gamerules.DepreciationDaily(), 2);
 		else if(gamerule == PERSON_SPAWN_PERIOD)
-			text = Format::Credits(gamerules.PersonSpawnPeriod());
+			text = Format::AbbreviatedNumber(gamerules.PersonSpawnPeriod());
 		else if(gamerule == NO_PERSON_SPAWN_WEIGHT)
-			text = Format::Credits(gamerules.NoPersonSpawnWeight());
+			text = Format::AbbreviatedNumber(gamerules.NoPersonSpawnWeight());
 		else if(gamerule == NPC_MAX_MINING_TIME)
-			text = Format::Credits(gamerules.NPCMaxMiningTime());
+			text = Format::AbbreviatedNumber(gamerules.NPCMaxMiningTime());
 		else if(gamerule == UNIVERSAL_FRUGAL_THRESHOLD)
 			text = Format::Percentage(gamerules.UniversalFrugalThreshold(), 2);
 		else if(gamerule == UNIVERSAL_RAMSCOOP)

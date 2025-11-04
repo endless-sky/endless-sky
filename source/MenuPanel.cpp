@@ -158,7 +158,7 @@ void MenuPanel::Draw()
 			info.SetString("system", player.GetSystem()->DisplayName());
 		if(player.GetPlanet())
 			info.SetString("planet", player.GetPlanet()->DisplayName());
-		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
+		info.SetString("credits", Format::AbbreviatedNumber(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
 	}

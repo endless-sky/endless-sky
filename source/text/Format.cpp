@@ -247,7 +247,7 @@ namespace {
 		else if(IsFormat("credits"))
 			result.append(Format::CreditString(value)); // 1 credit, 2 credits, etc.
 		else if(IsFormat("scaled"))
-			result.append(Format::Credits(value)); // 35, 35k, 35M, etc.
+			result.append(Format::AbbreviatedNumber(value)); // 35, 35k, 35M, etc.
 		else if(IsFormat("tons"))
 			result.append(Format::MassString(value)); // X tons or X ton
 		else if(IsFormat("playtime"))
@@ -298,7 +298,7 @@ namespace {
 // Convert the given number into abbreviated format with a suffix like
 // "M" for million, "B" for billion, or "T" for trillion. Any number
 // above 1 quadrillion is instead shown in scientific notation.
-string Format::Credits(int64_t value)
+string Format::AbbreviatedNumber(int64_t value)
 {
 	bool isNegative = (value < 0);
 
@@ -352,7 +352,7 @@ string Format::CreditString(int64_t value)
 	if(value == 1)
 		return "1 credit";
 	else
-		return Credits(value) + " credits";
+		return AbbreviatedNumber(value) + " credits";
 }
 
 
