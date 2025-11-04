@@ -2280,6 +2280,25 @@ bool Ship::IsOverheated() const
 
 
 
+bool Ship::IsIonized() const
+{
+	if(!ionization)
+		return false;
+
+	// A ship can only be fully ionized if its engines or weapons require energy.
+	bool usesEnergy = attributes.Get("thrusting energy") > 0
+		|| attributes.Get("reverse thrusting energy") > 0
+		|| attributes.Get("turning energy") > 0
+		|| any_of(outfits.begin(), outfits.end(), [](const auto &it) -> bool {
+			const Weapon *weapon = it.first->GetWeapon().get();
+			return weapon && weapon->FiringEnergy() > 0;
+		});
+
+	return usesEnergy ? ionization > energy : false;
+}
+
+
+
 bool Ship::IsDisabled() const
 {
 	if(!isDisabled)
