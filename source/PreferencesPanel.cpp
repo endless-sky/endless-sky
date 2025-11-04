@@ -250,6 +250,9 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		page = key;
 		hoverItem.clear();
 		selected = 0;
+
+		// Make sure the render buffers are initialized and are aware of the current UI scale.
+		Resize();
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
