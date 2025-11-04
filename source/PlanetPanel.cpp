@@ -94,6 +94,8 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
+		if(callback)
+			callback();
 		if(selectedPanel)
 			GetUI()->Pop(selectedPanel);
 		GetUI()->Pop(this);
