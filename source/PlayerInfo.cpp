@@ -658,7 +658,12 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 	isDead = true;
 	// The player loses access to all their ships if they die on a planet.
 	if(GetPlanet() || !flagship)
+	{
+		// Zero out the flagship's velocity to prevent camera drift.
+		if(flagship)
+			flagship.get()->SetVelocity(Point());
 		ships.clear();
+	}
 	// If the flagship should explode due to choices made in a mission's
 	// conversation, it should still appear in the player's ship list (but
 	// will be red, because it is dead). The player's escorts will scatter

@@ -4889,7 +4889,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 		if(it->GetGovernment() && it->GetSystem() == playerSystem)
 		{
 			governmentRosters[it->GetGovernment()].emplace_back(it.get());
-			if(!it->IsDisabled())
+			if(!it->IsDisabled() && !it->IsOverheated() && !it->IsIonized())
 				strength[it->GetGovernment()] += it->Strength();
 		}
 
