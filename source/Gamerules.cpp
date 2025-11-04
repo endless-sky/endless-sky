@@ -47,50 +47,50 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "thumbnail")
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "lock gamerules")
-			lockGamerules = child.BoolValue(1);
+			storage.lockGamerules = child.BoolValue(1);
 		else if(key == "universal ramscoop")
-			universalRamscoop = child.BoolValue(1);
+			storage.universalRamscoop = child.BoolValue(1);
 		else if(key == "person spawn period")
-			personSpawnPeriod = max<int>(1, child.Value(1));
+			storage.personSpawnPeriod = max<int>(1, child.Value(1));
 		else if(key == "no person spawn weight")
-			noPersonSpawnWeight = max<int>(0, child.Value(1));
+			storage.noPersonSpawnWeight = max<int>(0, child.Value(1));
 		else if(key == "npc max mining time")
-			npcMaxMiningTime = max<int>(0, child.Value(1));
+			storage.npcMaxMiningTime = max<int>(0, child.Value(1));
 		else if(key == "universal frugal threshold")
-			universalFrugalThreshold = min<double>(1., max<double>(0., child.Value(1)));
+			storage.universalFrugalThreshold = min<double>(1., max<double>(0., child.Value(1)));
 		else if(key == "depreciation min")
-			depreciationMin = min<double>(1., max<double>(0., child.Value(1)));
+			storage.depreciationMin = min<double>(1., max<double>(0., child.Value(1)));
 		else if(key == "depreciation daily")
-			depreciationDaily = min<double>(1., max<double>(0., child.Value(1)));
+			storage.depreciationDaily = min<double>(1., max<double>(0., child.Value(1)));
 		else if(key == "depreciation grace period")
-			depreciationGracePeriod = max<int>(0, child.Value(1));
+			storage.depreciationGracePeriod = max<int>(0, child.Value(1));
 		else if(key == "depreciation max age")
-			depreciationMaxAge = max<int>(0, child.Value(1));
+			storage.depreciationMaxAge = max<int>(0, child.Value(1));
 		else if(key == "disabled fighters avoid projectiles")
 		{
 			const string &value = child.Token(1);
 			if(value == "all")
-				fighterHitPolicy = FighterDodgePolicy::ALL;
+				storage.fighterHitPolicy = FighterDodgePolicy::ALL;
 			else if(value == "none")
-				fighterHitPolicy = FighterDodgePolicy::NONE;
+				storage.fighterHitPolicy = FighterDodgePolicy::NONE;
 			else if(value == "only player")
-				fighterHitPolicy = FighterDodgePolicy::ONLY_PLAYER;
+				storage.fighterHitPolicy = FighterDodgePolicy::ONLY_PLAYER;
 			else
 				child.PrintTrace("Skipping unrecognized value for gamerule:");
 		}
 		else if(key == "system departure min")
-			systemDepartureMin = max<double>(0., child.Value(1));
+			storage.systemDepartureMin = max<double>(0., child.Value(1));
 		else if(key == "system arrival min")
 		{
 			if(child.Token(1) == "unset")
-				systemArrivalMin.reset();
+				storage.systemArrivalMin.reset();
 			else
-				systemArrivalMin = child.Value(1);
+				storage.systemArrivalMin = child.Value(1);
 		}
 		else if(key == "fleet multiplier")
-			fleetMultiplier = max<double>(0., child.Value(1));
+			storage.fleetMultiplier = max<double>(0., child.Value(1));
 		else
-			miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
+			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
 }
 
@@ -101,49 +101,49 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 	out.Write("gamerules", name);
 	out.BeginChild();
 	{
-		if(lockGamerules != preset.lockGamerules)
-			out.Write("lock gamerules", lockGamerules ? 1 : 0);
-		if(universalRamscoop != preset.universalRamscoop)
-			out.Write("universal ramscoop", universalRamscoop ? 1 : 0);
-		if(personSpawnPeriod != preset.personSpawnPeriod)
-			out.Write("person spawn period", personSpawnPeriod);
-		if(noPersonSpawnWeight != preset.noPersonSpawnWeight)
-			out.Write("no person spawn weight", noPersonSpawnWeight);
-		if(npcMaxMiningTime != preset.npcMaxMiningTime)
-			out.Write("npc max mining time", npcMaxMiningTime);
-		if(universalFrugalThreshold != preset.universalFrugalThreshold)
-			out.Write("universal frugal threshold", universalFrugalThreshold);
-		if(depreciationMin != preset.depreciationMin)
-			out.Write("depreciation min", depreciationMin);
-		if(depreciationDaily != preset.depreciationDaily)
-			out.Write("depreciation daily", depreciationDaily);
-		if(depreciationGracePeriod != preset.depreciationGracePeriod)
-			out.Write("depreciation grace period", depreciationGracePeriod);
-		if(depreciationMaxAge != preset.depreciationMaxAge)
-			out.Write("depreciation max age", depreciationMaxAge);
-		if(fighterHitPolicy != preset.fighterHitPolicy)
+		if(storage.lockGamerules != preset.storage.lockGamerules)
+			out.Write("lock gamerules", storage.lockGamerules ? 1 : 0);
+		if(storage.universalRamscoop != preset.storage.universalRamscoop)
+			out.Write("universal ramscoop", storage.universalRamscoop ? 1 : 0);
+		if(storage.personSpawnPeriod != preset.storage.personSpawnPeriod)
+			out.Write("person spawn period", storage.personSpawnPeriod);
+		if(storage.noPersonSpawnWeight != preset.storage.noPersonSpawnWeight)
+			out.Write("no person spawn weight", storage.noPersonSpawnWeight);
+		if(storage.npcMaxMiningTime != preset.storage.npcMaxMiningTime)
+			out.Write("npc max mining time", storage.npcMaxMiningTime);
+		if(storage.universalFrugalThreshold != preset.storage.universalFrugalThreshold)
+			out.Write("universal frugal threshold", storage.universalFrugalThreshold);
+		if(storage.depreciationMin != preset.storage.depreciationMin)
+			out.Write("depreciation min", storage.depreciationMin);
+		if(storage.depreciationDaily != preset.storage.depreciationDaily)
+			out.Write("depreciation daily", storage.depreciationDaily);
+		if(storage.depreciationGracePeriod != preset.storage.depreciationGracePeriod)
+			out.Write("depreciation grace period", storage.depreciationGracePeriod);
+		if(storage.depreciationMaxAge != preset.storage.depreciationMaxAge)
+			out.Write("depreciation max age", storage.depreciationMaxAge);
+		if(storage.fighterHitPolicy != preset.storage.fighterHitPolicy)
 		{
-			if(fighterHitPolicy == FighterDodgePolicy::ALL)
+			if(storage.fighterHitPolicy == FighterDodgePolicy::ALL)
 				out.Write("disabled fighters avoid projectiles", "all");
-			else if(fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
+			else if(storage.fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
 				out.Write("disabled fighters avoid projectiles", "only player");
 			else
 				out.Write("disabled fighters avoid projectiles", "none");
 		}
-		if(systemDepartureMin != preset.systemDepartureMin)
-			out.Write("system departure min", systemDepartureMin);
-		if(systemArrivalMin != preset.systemArrivalMin)
+		if(storage.systemDepartureMin != preset.storage.systemDepartureMin)
+			out.Write("system departure min", storage.systemDepartureMin);
+		if(storage.systemArrivalMin != preset.storage.systemArrivalMin)
 		{
-			if(systemArrivalMin.has_value())
-				out.Write("system arrival min", *systemArrivalMin);
+			if(storage.systemArrivalMin.has_value())
+				out.Write("system arrival min", *storage.systemArrivalMin);
 			else
 				out.Write("system arrival min", "unset");
 		}
-		if(fleetMultiplier != preset.fleetMultiplier)
-			out.Write("fleet multiplier", fleetMultiplier);
+		if(storage.fleetMultiplier != preset.storage.fleetMultiplier)
+			out.Write("fleet multiplier", storage.fleetMultiplier);
 
-		const map<std::string, int> &otherMiscRules = preset.miscRules;
-		for(const auto &[rule, value] : miscRules)
+		const map<std::string, int> &otherMiscRules = preset.storage.miscRules;
+		for(const auto &[rule, value] : storage.miscRules)
 		{
 			auto sit = otherMiscRules.find(rule);
 			if(sit == otherMiscRules.end() || sit->second != value)
@@ -158,21 +158,7 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 void Gamerules::Replace(const Gamerules &rules)
 {
 	name = rules.name;
-	lockGamerules = rules.lockGamerules;
-	universalRamscoop = rules.universalRamscoop;
-	personSpawnPeriod = rules.personSpawnPeriod;
-	noPersonSpawnWeight = rules.noPersonSpawnWeight;
-	npcMaxMiningTime = rules.npcMaxMiningTime;
-	universalFrugalThreshold = rules.universalFrugalThreshold;
-	depreciationMin = rules.depreciationMin;
-	depreciationDaily = rules.depreciationDaily;
-	depreciationGracePeriod = rules.depreciationGracePeriod;
-	depreciationMaxAge = rules.depreciationMaxAge;
-	fighterHitPolicy = rules.fighterHitPolicy;
-	systemDepartureMin = rules.systemDepartureMin;
-	systemArrivalMin = rules.systemArrivalMin;
-	fleetMultiplier = rules.fleetMultiplier;
-	miscRules = rules.miscRules;
+	storage = rules.storage;
 }
 
 
@@ -180,43 +166,43 @@ void Gamerules::Replace(const Gamerules &rules)
 void Gamerules::Reset(const string &rule, const Gamerules &preset)
 {
 	if(rule == "lock gamerules")
-		lockGamerules = preset.lockGamerules;
+		storage.lockGamerules = preset.storage.lockGamerules;
 	else if(rule == "universal ramscoop")
-		universalRamscoop = preset.universalRamscoop;
+		storage.universalRamscoop = preset.storage.universalRamscoop;
 	else if(rule == "person spawn period")
-		personSpawnPeriod = preset.personSpawnPeriod;
+		storage.personSpawnPeriod = preset.storage.personSpawnPeriod;
 	else if(rule == "no person spawn weight")
-		noPersonSpawnWeight = preset.noPersonSpawnWeight;
+		storage.noPersonSpawnWeight = preset.storage.noPersonSpawnWeight;
 	else if(rule == "npc max mining time")
-		npcMaxMiningTime = preset.npcMaxMiningTime;
+		storage.npcMaxMiningTime = preset.storage.npcMaxMiningTime;
 	else if(rule == "universal frugal threshold")
-		universalFrugalThreshold = preset.universalFrugalThreshold;
+		storage.universalFrugalThreshold = preset.storage.universalFrugalThreshold;
 	else if(rule == "depreciation min")
-		depreciationMin = preset.depreciationMin;
+		storage.depreciationMin = preset.storage.depreciationMin;
 	else if(rule == "depreciation daily")
-		depreciationDaily = preset.depreciationDaily;
+		storage.depreciationDaily = preset.storage.depreciationDaily;
 	else if(rule == "depreciation grace period")
-		depreciationGracePeriod = preset.depreciationGracePeriod;
+		storage.depreciationGracePeriod = preset.storage.depreciationGracePeriod;
 	else if(rule == "depreciation max age")
-		depreciationMaxAge = preset.depreciationMaxAge;
+		storage.depreciationMaxAge = preset.storage.depreciationMaxAge;
 	else if(rule == "disabled fighters avoid projectiles")
-		fighterHitPolicy = preset.fighterHitPolicy;
+		storage.fighterHitPolicy = preset.storage.fighterHitPolicy;
 	else if(rule == "system departure min")
-		systemDepartureMin = preset.systemDepartureMin;
+		storage.systemDepartureMin = preset.storage.systemDepartureMin;
 	else if(rule == "system arrival min")
 	{
-		if(systemArrivalMin == preset.systemArrivalMin)
-			systemArrivalMin.reset();
+		if(storage.systemArrivalMin == preset.storage.systemArrivalMin)
+			storage.systemArrivalMin.reset();
 		else
-			systemArrivalMin = preset.systemArrivalMin;
+			storage.systemArrivalMin = preset.storage.systemArrivalMin;
 	}
 	else if(rule == "fleet multiplier")
-		fleetMultiplier = preset.fleetMultiplier;
+		storage.fleetMultiplier = preset.storage.fleetMultiplier;
 	else
 	{
-		auto it = preset.miscRules.find(rule);
-		if(it != preset.miscRules.end())
-			miscRules[rule] = it->second;
+		auto it = preset.storage.miscRules.find(rule);
+		if(it != preset.storage.miscRules.end())
+			storage.miscRules[rule] = it->second;
 	}
 }
 
@@ -245,105 +231,105 @@ const Sprite *Gamerules::Thumbnail() const
 
 void Gamerules::SetLockGamerules(bool value)
 {
-	lockGamerules = value;
+	storage.lockGamerules = value;
 }
 
 
 
 void Gamerules::SetUniversalRamscoopActive(bool value)
 {
-	universalRamscoop = value;
+	storage.universalRamscoop = value;
 }
 
 
 
 void Gamerules::SetPersonSpawnPeriod(int value)
 {
-	personSpawnPeriod = max(1, value);
+	storage.personSpawnPeriod = max(1, value);
 }
 
 
 
 void Gamerules::SetNoPersonSpawnWeight(int value)
 {
-	noPersonSpawnWeight = max(0, value);
+	storage.noPersonSpawnWeight = max(0, value);
 }
 
 
 
 void Gamerules::SetNPCMaxMiningTime(int value)
 {
-	npcMaxMiningTime = max(0, value);
+	storage.npcMaxMiningTime = max(0, value);
 }
 
 
 
 void Gamerules::SetUniversalFrugalThreshold(double value)
 {
-	universalFrugalThreshold = min(1., max(0., value));
+	storage.universalFrugalThreshold = min(1., max(0., value));
 }
 
 
 
 void Gamerules::SetDepreciationMin(double value)
 {
-	depreciationMin = min(1., max(0., value));
+	storage.depreciationMin = min(1., max(0., value));
 }
 
 
 
 void Gamerules::SetDepreciationDaily(double value)
 {
-	depreciationDaily = min(1., max(0., value));
+	storage.depreciationDaily = min(1., max(0., value));
 }
 
 
 
 void Gamerules::SetDepreciationGracePeriod(int value)
 {
-	depreciationGracePeriod = max(0, value);
+	storage.depreciationGracePeriod = max(0, value);
 }
 
 
 
 void Gamerules::SetDepreciationMaxAge(int value)
 {
-	depreciationMaxAge = max(0, value);
+	storage.depreciationMaxAge = max(0, value);
 }
 
 
 
 void Gamerules::SetFighterDodgePolicy(FighterDodgePolicy value)
 {
-	fighterHitPolicy = value;
+	storage.fighterHitPolicy = value;
 }
 
 
 
 void Gamerules::SetSystemDepartureMin(double value)
 {
-	systemDepartureMin = max(0., value);
+	storage.systemDepartureMin = max(0., value);
 }
 
 
 
 void Gamerules::SetSystemArrivalMin(double value)
 {
-	systemArrivalMin = value;
+	storage.systemArrivalMin = value;
 }
 
 
 
 void Gamerules::SetFleetMultiplier(double value)
 {
-	fleetMultiplier = max(0., value);
+	storage.fleetMultiplier = max(0., value);
 }
 
 
 
 void Gamerules::SetMiscValue(const string &rule, int value)
 {
-	miscRules[rule] = value;
+	storage.miscRules[rule] = value;
 }
 
 
@@ -351,36 +337,36 @@ void Gamerules::SetMiscValue(const string &rule, int value)
 int Gamerules::GetValue(const string &rule) const
 {
 	if(rule == "lock gamerules")
-		return lockGamerules;
+		return storage.lockGamerules;
 	if(rule == "universal ramscoop")
-		return universalRamscoop;
+		return storage.universalRamscoop;
 	if(rule == "person spawn period")
-		return personSpawnPeriod;
+		return storage.personSpawnPeriod;
 	if(rule == "no person spawn weight")
-		return noPersonSpawnWeight;
+		return storage.noPersonSpawnWeight;
 	if(rule == "npc max mining time")
-		return npcMaxMiningTime;
+		return storage.npcMaxMiningTime;
 	if(rule == "universal frugal threshold")
-		return universalFrugalThreshold * 1000;
+		return storage.universalFrugalThreshold * 1000;
 	if(rule == "depreciation min")
-		return depreciationMin * 1000;
+		return storage.depreciationMin * 1000;
 	if(rule == "depreciation daily")
-		return depreciationDaily * 1000;
+		return storage.depreciationDaily * 1000;
 	if(rule == "depreciation grace period")
-		return depreciationGracePeriod;
+		return storage.depreciationGracePeriod;
 	if(rule == "depreciation max age")
-		return depreciationMaxAge;
+		return storage.depreciationMaxAge;
 	if(rule == "disabled fighters avoid projectiles")
-		return static_cast<int>(fighterHitPolicy);
+		return static_cast<int>(storage.fighterHitPolicy);
 	if(rule == "system departure min")
-		return systemDepartureMin * 1000;
+		return storage.systemDepartureMin * 1000;
 	if(rule == "system arrival min")
-		return systemArrivalMin.value_or(0.) * 1000;
+		return storage.systemArrivalMin.value_or(0.) * 1000;
 	if(rule == "fleet multiplier")
-		return fleetMultiplier * 1000;
+		return storage.fleetMultiplier * 1000;
 
-	auto it = miscRules.find(rule);
-	if(it == miscRules.end())
+	auto it = storage.miscRules.find(rule);
+	if(it == storage.miscRules.end())
 		return 0;
 	return it->second;
 }
@@ -389,141 +375,103 @@ int Gamerules::GetValue(const string &rule) const
 
 bool Gamerules::LockGamerules() const
 {
-	return lockGamerules;
+	return storage.lockGamerules;
 }
 
 
 
 bool Gamerules::UniversalRamscoopActive() const
 {
-	return universalRamscoop;
+	return storage.universalRamscoop;
 }
 
 
 
 int Gamerules::PersonSpawnPeriod() const
 {
-	return personSpawnPeriod;
+	return storage.personSpawnPeriod;
 }
 
 
 
 int Gamerules::NoPersonSpawnWeight() const
 {
-	return noPersonSpawnWeight;
+	return storage.noPersonSpawnWeight;
 }
 
 
 
 int Gamerules::NPCMaxMiningTime() const
 {
-	return npcMaxMiningTime;
+	return storage.npcMaxMiningTime;
 }
 
 
 
 double Gamerules::UniversalFrugalThreshold() const
 {
-	return universalFrugalThreshold;
+	return storage.universalFrugalThreshold;
 }
 
 
 
 double Gamerules::DepreciationMin() const
 {
-	return depreciationMin;
+	return storage.depreciationMin;
 }
 
 
 
 double Gamerules::DepreciationDaily() const
 {
-	return depreciationDaily;
+	return storage.depreciationDaily;
 }
 
 
 
 int Gamerules::DepreciationGracePeriod() const
 {
-	return depreciationGracePeriod;
+	return storage.depreciationGracePeriod;
 }
 
 
 
 int Gamerules::DepreciationMaxAge() const
 {
-	return depreciationMaxAge;
+	return storage.depreciationMaxAge;
 }
 
 
 
 Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
 {
-	return fighterHitPolicy;
+	return storage.fighterHitPolicy;
 }
 
 
 
 double Gamerules::SystemDepartureMin() const
 {
-	return systemDepartureMin;
+	return storage.systemDepartureMin;
 }
 
 
 
 optional<double> Gamerules::SystemArrivalMin() const
 {
-	return systemArrivalMin;
+	return storage.systemArrivalMin;
 }
 
 
 
 double Gamerules::FleetMultiplier() const
 {
-	return fleetMultiplier;
+	return storage.fleetMultiplier;
 }
 
 
 
 bool Gamerules::operator==(const Gamerules &other) const
 {
-	if(name != other.name)
-		return false;
-	if(lockGamerules != other.lockGamerules)
-		return false;
-	if(personSpawnPeriod != other.personSpawnPeriod)
-		return false;
-	if(noPersonSpawnWeight != other.noPersonSpawnWeight)
-		return false;
-	if(npcMaxMiningTime != other.npcMaxMiningTime)
-		return false;
-	if(universalFrugalThreshold != other.universalFrugalThreshold)
-		return false;
-	if(depreciationMin != other.depreciationMin)
-		return false;
-	if(depreciationDaily != other.depreciationDaily)
-		return false;
-	if(depreciationGracePeriod != other.depreciationGracePeriod)
-		return false;
-	if(depreciationMaxAge != other.depreciationMaxAge)
-		return false;
-	if(fighterHitPolicy != other.fighterHitPolicy)
-		return false;
-	if(systemDepartureMin != other.systemDepartureMin)
-		return false;
-	if(systemArrivalMin != other.systemArrivalMin)
-		return false;
-	if(fleetMultiplier != other.fleetMultiplier)
-		return false;
-	if(miscRules.size() != other.miscRules.size())
-		return false;
-	for(const auto &rule : miscRules)
-	{
-		const auto &otherRule = other.miscRules.find(rule.first);
-		if(otherRule == other.miscRules.end())
-			return false;
-		if(rule.second != otherRule->second)
-			return false;
-	}
-	return true;
+	return name == other.name && storage == other.storage;
 }

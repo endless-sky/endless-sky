@@ -94,25 +94,37 @@ public:
 
 
 private:
+	// Rule values are stored in this Storage class for easy replacement
+	// and comparison via the default equality operator.
+	class Storage {
+	public:
+		bool operator==(const Storage &other) const = default;
+
+
+	public:
+		bool lockGamerules = true;
+		bool universalRamscoop = true;
+		int personSpawnPeriod = 36000;
+		int noPersonSpawnWeight = 1000;
+		int npcMaxMiningTime = 3600;
+		double universalFrugalThreshold = .75;
+		double depreciationMin = 0.25;
+		double depreciationDaily = 0.997;
+		int depreciationGracePeriod = 7;
+		int depreciationMaxAge = 1000;
+		FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
+		double systemDepartureMin = 0.;
+		std::optional<double> systemArrivalMin;
+		double fleetMultiplier = 1.;
+
+		// Miscellaneous rules that are only used by the game data and not by the engine.
+		std::map<std::string, int> miscRules;
+	};
+
+
+private:
 	std::string name;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
-
-	bool lockGamerules = true;
-	bool universalRamscoop = true;
-	int personSpawnPeriod = 36000;
-	int noPersonSpawnWeight = 1000;
-	int npcMaxMiningTime = 3600;
-	double universalFrugalThreshold = .75;
-	double depreciationMin = 0.25;
-	double depreciationDaily = 0.997;
-	int depreciationGracePeriod = 7;
-	int depreciationMaxAge = 1000;
-	FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
-	double systemDepartureMin = 0.;
-	std::optional<double> systemArrivalMin;
-	double fleetMultiplier = 1.;
-
-	// Miscellaneous rules that are only used by the game data and not by the engine.
-	std::map<std::string, int> miscRules;
+	Storage storage;
 };
