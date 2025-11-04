@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "MiniMap.h"
 #include "PlanetLabel.h"
 #include "Point.h"
 #include "Preferences.h"
@@ -269,12 +270,14 @@ private:
 	std::vector<AlertLabel> missileLabels;
 	std::vector<TurretOverlay> turretOverlays;
 	std::vector<std::pair<const Outfit *, int>> ammo;
-	int jumpCount = 0;
-	const System *jumpInProgress[2] = {nullptr, nullptr};
 	// Flagship's hyperspace percentage converted to a [0, 1] double.
 	double hyperspacePercentage = 0.;
 
+	MiniMap minimap;
+
 	int step = 0;
+	// Count steps for UI elements separately, because they shouldn't be affected by pausing.
+	mutable int uiStep = 0;
 	bool timePaused = false;
 
 	std::list<ShipEvent> eventQueue;

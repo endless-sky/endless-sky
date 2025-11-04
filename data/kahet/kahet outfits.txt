@@ -269,7 +269,8 @@ outfit "Ka'het EMP Deployer"
 		"acceleration" .7
 		"drag" .1
 		"turn" 2
-		"homing" 3
+		"homing"
+			"throttle control"
 		"infrared tracking" .7
 		"radar tracking" .8
 		"trigger radius" 50
@@ -282,6 +283,8 @@ outfit "Ka'het EMP Deployer"
 		"missile strength" 80
 	description "Eons ago, the Builders were attacked by alien ships which used weapons that ignored their hull and damaged their reactors. Although they never did recover any of these weapons, after years of research they managed to replicate their effects."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Ka'het Emergency Deployer"
 	category "Secondary Weapons"

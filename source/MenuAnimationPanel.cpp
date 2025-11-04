@@ -47,10 +47,12 @@ void MenuAnimationPanel::Draw()
 	// Draw the shrinking loading circle.
 	Angle da(6.);
 	Angle a(0.);
+	Color color(.5f * alpha, 0.f);
+	PointerShader::Bind();
 	for(int i = 0; i < 60; ++i)
 	{
-		Color color(.5f * alpha, 0.f);
-		PointerShader::Draw(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
+		PointerShader::Add(Point(), a.Unit(), 8.f, 20.f, 140.f * alpha, color);
 		a += da;
 	}
+	PointerShader::Unbind();
 }

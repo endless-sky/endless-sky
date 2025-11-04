@@ -27,7 +27,7 @@ mission "Avgi: Lost in Twilight"
 
 phrase "lost in twilight"
 	word
-		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your jump drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. Your computer indicates that the system you came from is out of range, and that you cannot jump back to it. It appears you are stuck in this region for now.`
+		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your jump drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. Your computer indicates that the system you came from is out of range, and that you cannot jump back to it. It appears you are stuck in this region for now. If you didn't bring a ramscoop, you may wish to reload a previous save and install one before returning.`
 
 mission "Avgi: First Contact"
 	landing
@@ -46,7 +46,7 @@ mission "Avgi: First Contact"
 		conversation
 			branch aviskir
 				has "flagship planet: Aviskir"
-			branch coreworld
+			branch "core world"
 				has "flagship planet attribute: avgi core"
 			branch station
 				has "flagship planet attribute: station"
@@ -75,7 +75,7 @@ mission "Avgi: First Contact"
 				`	(Move to a higher orbit.)`
 					goto orbit
 
-			label coreworld
+			label "core world"
 			`The first thing you notice about this habitable world is the utter devastation in orbit. Your ship's sensors pick up the remains of what appear to be a handful of wrecked stations and countless destroyed satellites, forming a large swath of debris scattered in various orbits. A few larger objects are mostly intact, but lifeless, with no signal emissions or heat signatures. As your ship touches the upper atmosphere, you can see the tumbling remains of what looks like half of an enormous starship with an equally large drive, splintered and broken along its spine.`
 			`	Your observations are interrupted by a blared warning from your console. You barely manage to yank your ship aside as a bright trail of plasma nearly clips you, the wake of a hypervelocity projectile fired from the ground. Clearly, someone is still alive down there, despite the destruction in orbit. Proceeding could be dangerous if your ship isn't able to withstand a direct hit from those planetary defense batteries.`
 			action
@@ -319,7 +319,7 @@ mission "Avgi: Humans From the Deep"
 				set "avgi: asked about humans"
 			`	Prasinos thinks for a moment, then says, "Hesitance. It may come as a surprise to you, but you are not the first human to come to our space. Three- no, that would be six of your years ago, an alien ship was found drifting around a star in our space, swarmed by Aberrations. By some miracle they were driven away, and the ship recovered. And those were the first, and until now, the only humans we have had the honor of meeting. A crew of explorers from, I believe they said, 'the depths,' though I am not quite sure if that is a planet or a region of space."`
 			`	"Appreciation. They have told us much of humanity, and developed these devices so as to allow us to more easily communicate. And without the ability to return home, they now live among us, helping where they can with their knowledge of humanity's advanced technologies."`
-			label humanquestions
+			label "human questions"
 			choice
 				`	"What are these 'Aberrations?'"`
 					goto aberrant
@@ -340,7 +340,7 @@ mission "Avgi: Humans From the Deep"
 			action
 				set "avgi: asked about human tech"
 			`	Galano speaks. "Appreciation. Perhaps not to you, but humanity has had the hyperdrive since long before we reached our homeworld's moon. I have seen the changes and advancements even a handful of decades can bring, and your species' advantage over us of centuries has brought you miracles such as shields and repulsors."`
-				goto humanquestions
+				goto "human questions"
 
 			label aberrant
 			action
@@ -374,11 +374,11 @@ mission "Avgi: Humans From the Deep"
 			`	"Reservation. Perhaps Captain <last> will be able to find a solution." says Galano. "I would not dismiss the possibility too quickly."`
 			choice
 				`	"While I'm here, can I buy your technology?"`
-					goto buystuff
+					goto "buy stuff"
 				`	"Is there anything I can do to help in the meantime?"`
 
 			`	"Consideration. As an alien, you will inevitably be a novelty to most of us, but the existence of humans is well-known among the public enough for you to walk among us without issue. I will speak to others about a more formal role, but until then I am unsure if we can ask anything of you beyond keeping the peace."`
-			label buystuff
+			label "buy stuff"
 			`	Galano says, "Interest. I would expect human technology to be superior to our own in most aspects, but we will of course allow you to purchase our items with the agreement of the Assembly. In the event that it becomes possible to open trade relations with your human government, we may find it useful to have prior transactions."`
 			`	"Amusement. Not to mention the goodwill such a gesture could buy us," says Asime.`
 			`	Prasinos says, more seriously, "Reservation. Our material resources are quite limited at the moment, so for now I would only support providing for the requisition of small items that do not strain the needs of the Guard."`
@@ -496,9 +496,12 @@ mission "Avgi: Defend Ensemble 1"
 			`	You sit together in silence for a few more minutes, when Darius seems to receive a message on his communicator. "I get patched in to the emergency alert system," he explains as he reads it. Suddenly, he pales. "A scout is reporting a massive invasion headed towards the Ensemble system. Dozens of Aberrations, flying straight through the Shroud." He looks up at you. "They don't normally try to go too deep in the Shroud. Something about it spooks them, I think, but Ensemble is shallow enough that they've attacked it before. Nothing of this scale though, and... damn, Sora's on Weledos, the moon in the Ensemble system."`
 			`	He looks at you, hopeful. "We've got to do something. The Avgi are assembling a relief force around the Navigeo Yards, their big shipyard not too far from here. Come on, let's join it."`
 				accept
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Darius hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 mission "Avgi: Defend Ensemble 2"
+	autosave
 	landing
 	name "Ensemble Defense"
 	description "Help the Avgi in the Ensemble system hold off an Aberrant raid until help arrives."
@@ -539,7 +542,7 @@ mission "Avgi: Defend Ensemble 2"
 			names "avgi military names"
 			variant
 				"Prismaios"
-				"Prismaios (Atomic)" 2
+				"Prismaios (Orchid)" 2
 				"Tremoros" 3
 	npc
 		government "Avgi (Twilight Guard)"
@@ -547,11 +550,11 @@ mission "Avgi: Defend Ensemble 2"
 		fleet
 			names "avgi military names"
 			variant
-				"Difraktos (Atomic)"
+				"Difraktos (Orchid)"
 				"Refraktos"
-				"Atenuatia (Atomic)"
+				"Atenuatia (Orchid)"
 				"Vibratia" 20
-				"Photikon (Atomic)" 6
+				"Photikon (Ophrys)" 6
 	npc
 		government "Avgi (Twilight Guard)"
 		personality heroic staying waiting
@@ -579,7 +582,7 @@ mission "Avgi: Defend Ensemble 2"
 		government "Aberrant"
 		personality
 			confusion 40
-			coward hunting secretive staying unconstrained vindictive target
+			coward hunting secretive staying vindictive target
 		system "Ensemble"
 		fleet
 			names "aberrant names"
@@ -728,7 +731,7 @@ mission "Avgi: Scout Rescue"
 		dialog `You've reached the Twirl system, but there is no sign of the Silver Albedo. Perhaps you should check the rest of this star cluster.`
 
 	npc assist
-		government "Avgi"
+		government "Avgi (Twilight Guard)"
 		personality derelict mute pacifist target
 		system Whirlwind
 		ship "Polari" "Silver Albedo"
@@ -754,6 +757,8 @@ mission "Avgi: Scout Rescue"
 			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
 			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
 			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. Meet me in the spaceport in an hour and we'll get this trip sorted out."`
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying the rescued crew hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 mission "Avgi: Frontline Combat"
@@ -782,12 +787,14 @@ mission "Avgi: Frontline Combat"
 				accept
 	on accept
 		log `Agreed to help Kokkino by clearing out Aberrant stragglers infesting a cluster of systems behind the front lines.`
+	on visit
+		dialog `You've landed on <planet>, but there are still Aberrant left in the systems to the north. Return once you've killed them all.`
 
 	npc kill
 		government "Aberrant"
 		personality
 			confusion 40
-			coward secretive staying target unconstrained uninterested vindictive
+			coward secretive staying target uninterested vindictive
 		system "Corporeal"
 		fleet
 			names "aberrant names"
@@ -798,7 +805,7 @@ mission "Avgi: Frontline Combat"
 		government "Aberrant"
 		personality
 			confusion 40
-			coward secretive staying target unconstrained uninterested vindictive
+			coward secretive staying target uninterested vindictive
 		system "Empyrean"
 		fleet
 			names "aberrant names"
@@ -809,7 +816,7 @@ mission "Avgi: Frontline Combat"
 		government "Aberrant"
 		personality
 			confusion 40
-			coward secretive staying target unconstrained uninterested vindictive
+			coward secretive staying target uninterested vindictive
 		system "Firmament"
 		fleet
 			names "aberrant names"
@@ -819,7 +826,7 @@ mission "Avgi: Frontline Combat"
 		government "Aberrant"
 		personality
 			confusion 40
-			coward secretive staying target unconstrained uninterested vindictive
+			coward secretive staying target uninterested vindictive
 		system "Lumine"
 		fleet
 			names "aberrant names"
@@ -848,6 +855,8 @@ mission "Avgi: Dissonance Outreach 0.5"
 	on complete
 		dialog
 			`As you take the <ship> in for a landing in one of the hangars, Darius says, "I'll get in contact with Hriso and have him meet us in the spaceport."`
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Darius and Sora hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 mission "Avgi: Dissonance Outreach"
@@ -938,7 +947,7 @@ mission "Avgi: Twilight Escape 1"
 			`	You open your mouth to reply, but Darius beats you to the punch. "Of course, Leon."`
 
 			label agreed
-			`	"Good. Well, it more or less comes down to this: the Incursion didn't come out of nowhere. Everyone says they came from beyond the furthest reaches of Avgi exploration, but that's not quite true. The first to encounter them was a scout ship, which went down within minutes against their weapons. But not before they sent out a single transmission, garbled and not making a lot of sense."`
+			`	"Good. Well, it more or less comes down to this: the Incursion didn't come out of nowhere. Everyone says they came from beyond the furthest reaches of Avgi exploration, but that's not quite true. The first to encounter them was a scout ship, which went down within minutes against their weapons. But not before they sent out a single garbled transmission to their sister ship, which fled back to the rest of the Avgi."`
 			`	He pauses, taking a drink of what looks like water. "They said they had found a gateway of sorts, an ancient alien artifact built by an unknown Antecessor species. Somehow, they had activated it, and that's where the first Aberrant came from."`
 			choice
 				`	"And you want to use this gateway as a way out?"`
@@ -988,6 +997,8 @@ mission "Avgi: Twilight Escape 1"
 
 			`	"No, really. I was expecting to die back there, with those Avgi. Six years... I don't know how to thank you, but if you're ever in the area and you need anything don't hesitate to give me a call." With that, he shakes your hand and sets off in the direction Sora and Darius went, toward Vinci's spaceport.`
 			`	Remember to meet Darius and Sora in the spaceport before you leave Vinci.`
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Darius, Sora, and Leon hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 mission "Avgi: Twilight Escape 2"
@@ -1015,6 +1026,8 @@ mission "Avgi: Twilight Escape 2"
 	on accept
 		log `Agreed to take Sora to her parents' farm on Memory, as she has nowhere else to go.`
 		log "People" "Darius Caldwell" `Despite escaping the Twilight, Darius still feels guilty over his crew members that lost their lives to the Aberrant.`
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Darius and Sora hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 mission "Avgi: Twilight Escape 3"
@@ -1081,3 +1094,5 @@ mission "Avgi: Twilight Escape 3"
 			`	She bursts out laughing. "I wouldn't believe it if anyone else had told me. I mean, men come up with all sorts of excuses for coming home late, but this is something else!" Her tone suddenly turns serious. "It'll be a headache, working all this out with the government. They gave me the money for this place as recompense for your supposed 'death,' no matter how much I insisted you were still alive."`
 			`	"We'll work it out. They owe me backpay anyway," jokes Darius, still in Katrina's arms.`
 			`	As the pair move to the door, you say your goodbyes, and Darius promises he will keep in touch with you about the Avgi. Neither of you have forgotten the aliens fighting to survive at the edge of the galaxy, and now that you know of a safe way in and out of their space, you can go back without fear of becoming trapped.`
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Darius hasn't entered the system yet. Better depart and wait for it to arrive.`
