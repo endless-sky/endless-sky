@@ -37,7 +37,7 @@ if(ES_USE_VCPKG)
 	endif()
 
 	set(VCPKG_BOOTSTRAP_OPTIONS "-disableMetrics")
-	set(VCPKG_INSTALL_OPTIONS "--no-print-usage;--x-abi-tools-use-exact-versions")
+	set(VCPKG_INSTALL_OPTIONS "--no-print-usage")
 	set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 	set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
 endif()
