@@ -94,7 +94,7 @@ GamerulesPanel::GamerulesPanel(Gamerules &gamerules)
 	presetUi(GameData::Interfaces().Get("gamerules presets")),
 	selectedIndex(0), hoverIndex(-1), oldSelectedIndex(0), oldHoverIndex(0), latestIndex(0),
 	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
-			GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
 	selectedPreset(gamerules.Name())
 {
 	Rectangle presetListBox = presetUi->GetBox("preset list");
@@ -103,6 +103,7 @@ GamerulesPanel::GamerulesPanel(Gamerules &gamerules)
 	Rectangle presetDescriptionBox = presetUi->GetBox("preset description");
 	presetDescriptionScroll.SetDisplaySize(presetDescriptionBox.Height());
 }
+
 
 
 // Stub, for unique_ptr destruction to be defined in the right compilation unit.
@@ -182,7 +183,7 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	}
 	else if((key == 'x' || key == SDLK_DELETE) && (page == 'g') && latestIndex >= 0)
 	{
-		const std::string &rule = DISPLAY_NAME_TO_RULE_NAME.at(gameruleZones[latestIndex].Value());
+		const string &rule = DISPLAY_NAME_TO_RULE_NAME.at(gameruleZones[latestIndex].Value());
 		gamerules.Reset(rule, *GameData::GamerulesPresets().Get(gamerules.Name()));
 	}
 	else
@@ -389,7 +390,6 @@ void GamerulesPanel::DrawGamerules()
 		FIGHTERS_HIT_WHEN_DISABLED,
 		UNIVERSAL_AMMO_STOCKING
 	};
-
 
 	bool isCategory = true;
 	int page = 0;
@@ -660,7 +660,7 @@ void GamerulesPanel::DrawPresets()
 
 
 // Render the named preset description into the presetDescriptionBuffer.
-void GamerulesPanel::RenderPresetDescription(const std::string &name)
+void GamerulesPanel::RenderPresetDescription(const string &name)
 {
 	const Gamerules *preset = GameData::GamerulesPresets().Find(name);
 	if(preset)
@@ -743,7 +743,7 @@ void GamerulesPanel::DrawTooltips()
 
 
 
-void GamerulesPanel::HandleGamerulesString(const std::string &str)
+void GamerulesPanel::HandleGamerulesString(const string &str)
 {
 	if(str == DEPRECIATION_MIN)
 	{
