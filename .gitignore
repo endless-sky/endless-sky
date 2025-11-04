@@ -40,6 +40,7 @@ docs/api/
 # OS-specific generated files
 .DS_Store
 *.db
+desktop.ini
 
 # IDEs (no support implied)
 .cache
