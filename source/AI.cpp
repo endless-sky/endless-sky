@@ -651,6 +651,7 @@ void AI::Clean()
 	miningRadius.clear();
 	miningTime.clear();
 	appeasementThreshold.clear();
+	boarders.clear();
 	// Records for formations flying around lead ships and other objects.
 	formations.clear();
 	// Records that affect the combat behavior of various governments.
@@ -1548,9 +1549,12 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			range += 5000. * foe->IsDisabled();
 		// While those that do, do so only if no "live" enemies are nearby.
 		else
-			range += 2000. * (2 * foe->IsDisabled() - !Has(ship, foe->shared_from_this(), ShipEvent::BOARD)
-				+ 10 * count_if(boarders.begin(), boarders.end(), [&ship, &foe](auto &it)
-				{ return it.first != &ship && it.second == foe; }));
+		{
+			if(any_of(boarders.begin(), boarders.end(), [&ship, &foe](auto &it)
+					{ return it.first != &ship && it.second == foe; }))
+				continue;
+			range += 2000. * (2 * foe->IsDisabled() - !Has(ship, foe->shared_from_this(), ShipEvent::BOARD));
+		}
 
 		// Prefer to go after armed targets, especially if you're not a pirate.
 		range += 1000. * (!IsArmed(*foe) * (1 + !person.Plunders()));
@@ -1910,17 +1914,13 @@ void AI::MoveIndependent(Ship &ship, Command &command)
 		else
 		{
 			Attack(ship, command, *target);
-			auto it = boarders.find(&ship);
-			if(it != boarders.end())
-				boarders.erase(it);
+			boarders.erase(&ship);
 		}
 		return;
 	}
 	else
 	{
-		auto it = boarders.find(&ship);
-		if(it != boarders.end())
-			boarders.erase(it);
+		boarders.erase(&ship);
 		if(target)
 		{
 			// An AI ship that is targeting a non-hostile ship should scan it, or move on.
