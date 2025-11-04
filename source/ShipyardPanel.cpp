@@ -219,7 +219,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 		// Check if the license cost is the tipping point.
 		if(player.Accounts().Credits() >= cost - licenseCost)
 			return "You do not have enough credits to buy this ship, "
-				"because it will cost you an extra " + Format::CreditsString(licenseCost) +
+				"because it will cost you an extra " + Format::CreditString(licenseCost) +
 				" to buy the necessary licenses. "
 				"Consider checking if the bank will offer you a loan.";
 
