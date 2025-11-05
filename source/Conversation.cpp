@@ -440,7 +440,7 @@ int Conversation::Choices(int node) const
 
 bool Conversation::ChoiceIsActive(int node, int element) const
 {
-	if(!NodeIsValid(node) || !IsChoice(node)  || !ElementIsValid(node, element))
+	if(!NodeIsValid(node) || !IsChoice(node) || !ElementIsValid(node, element))
 		return false;
 
 	return nodes[node].elements[element].toActivate.Test();
