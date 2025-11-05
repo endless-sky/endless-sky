@@ -338,14 +338,14 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	}
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
 	{
-		if(conversation.ChoiceIsActive(node, MapChoice(choice)))
+		if(conversation.ChoiceIsActive(node, MapChoice(key - '1')))
 			Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
 		else
 			sound = UI::UISound::FAILURE;
 	}
 	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
 	{
-		if(conversation.ChoiceIsActive(node, MapChoice(choice)))
+		if(conversation.ChoiceIsActive(node, MapChoice(key - SDLK_KP_1)))
 			Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
 		else
 			sound = UI::UISound::FAILURE;
