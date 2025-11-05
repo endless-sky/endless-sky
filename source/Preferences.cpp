@@ -223,9 +223,9 @@ void Preferences::Load()
 		const string &key = node.Token(0);
 		bool hasValue = node.Size() >= 2;
 		if(key == "window size" && node.Size() >= 3)
-			Screen::SetRaw(node.Value(1), node.Value(2));
+			Screen::SetRaw(node.Value(1), node.Value(2), true);
 		else if(key == "zoom" && hasValue)
-			Screen::SetZoom(node.Value(1));
+			Screen::SetZoom(node.Value(1), true);
 		else if(VOLUME_SETTINGS.contains(key) && hasValue)
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(key));
 		else if(key == "scroll speed" && hasValue)

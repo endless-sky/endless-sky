@@ -51,7 +51,7 @@ const Hazard *Weather::GetHazard() const
 // Whether the hazard of this weather deals damage or not.
 bool Weather::HasWeapon() const
 {
-	return hazard->IsWeapon();
+	return hazard->Weapon::IsLoaded();
 }
 
 
