@@ -523,6 +523,19 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
+	
+	label "Additional info"
+		from -275 34
+		align top right
+		color bright
+	fill
+		from -400 48 to -270 49
+		color medium
+	"wrapped label" "Press '_x' over controls to unbind them. Controls can share the same keybind."
+		from -420 70 to -270 130
+		alignment right
+		color medium
+	
 	visible if "multiple controls pages"
 	sprite "ui/dialog cancel"
 		center -115 210
