@@ -163,9 +163,6 @@ void PlayerInfo::Clear()
 	Random::Seed(time(nullptr));
 	GameData::Revert();
 	Messages::Reset();
-
-	delete transactionSnapshot;
-	transactionSnapshot = nullptr;
 }
 
 
@@ -580,7 +577,7 @@ void PlayerInfo::StartTransaction()
 	assert(!transactionSnapshot && "Starting PlayerInfo transaction while one is already active");
 
 	// Create in-memory DataWriter and save to it.
-	transactionSnapshot = new DataWriter();
+	transactionSnapshot = make_unique<DataWriter>();
 	Save(*transactionSnapshot);
 }
 
@@ -589,8 +586,7 @@ void PlayerInfo::StartTransaction()
 void PlayerInfo::FinishTransaction()
 {
 	assert(transactionSnapshot && "Finishing PlayerInfo while one hasn't been started");
-	delete transactionSnapshot;
-	transactionSnapshot = nullptr;
+	transactionSnapshot.reset();
 }
 
 
