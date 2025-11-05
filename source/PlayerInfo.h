@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionsStore.h"
 #include "CoreStartData.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "Date.h"
 #include "Depreciation.h"
 #include "EsUuid.h"
@@ -519,5 +520,5 @@ private:
 	// Basic information about the player's starting scenario.
 	CoreStartData startData;
 
-	DataWriter *transactionSnapshot = nullptr;
+	std::unique_ptr<DataWriter> transactionSnapshot;
 };
