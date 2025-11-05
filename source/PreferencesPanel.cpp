@@ -75,7 +75,6 @@ namespace {
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
-	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string TOOLTIP_ACTIVATION = "Tooltip activation time";
@@ -119,7 +118,7 @@ namespace {
 
 
 PreferencesPanel::PreferencesPanel(PlayerInfo &player)
-	: player(player), editing(-1), selected(0), hover(-1),
+	: player(player),
 	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
@@ -137,7 +136,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 
-	pluginListHeight = 0;
+	int pluginListHeight = 0;
 	for(const auto &plugin : Plugins::Get())
 		if(plugin.second.IsValid())
 			pluginListHeight += 20;
@@ -522,7 +521,7 @@ void PreferencesPanel::Resize()
 	{
 		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
-		pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
+		pluginListClip = make_unique<RenderBuffer>(pluginListBox.Dimensions());
 		RenderPluginDescription(selectedPlugin);
 	}
 }
@@ -705,19 +704,6 @@ void PreferencesPanel::DrawControls()
 			table.Draw(command.KeyName(), isEditing ? bright : medium);
 		}
 	}
-
-	Table infoTable;
-	infoTable.AddColumn(125, {150, Alignment::RIGHT});
-	infoTable.SetUnderline(0, 130);
-	infoTable.DrawAt(Point(-400, 32));
-
-	infoTable.DrawUnderline(medium);
-	infoTable.Draw("Additional info", bright);
-	infoTable.DrawGap(5);
-	infoTable.Draw("Press '_x' over controls", medium);
-	infoTable.Draw("to unbind them.", medium);
-	infoTable.Draw("Controls can share", medium);
-	infoTable.Draw("the same keybind.", medium);
 }
 
 
@@ -1223,7 +1209,7 @@ void PreferencesPanel::DrawPlugins()
 
 
 // Render the named plugin description into the pluginDescriptionBuffer.
-void PreferencesPanel::RenderPluginDescription(const std::string &pluginName)
+void PreferencesPanel::RenderPluginDescription(const string &pluginName)
 {
 	const Plugin *plugin = Plugins::Get().Find(pluginName);
 	if(plugin)
@@ -1263,7 +1249,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	if(descriptionHeight < box.Height())
 		descriptionHeight = box.Height();
 	pluginDescriptionScroll.SetMaxValue(descriptionHeight);
-	pluginDescriptionBuffer = std::make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
+	pluginDescriptionBuffer = make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
 	// Redirect all drawing commands into the offscreen buffer.
 	auto target = pluginDescriptionBuffer->SetTarget();
 
