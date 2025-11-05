@@ -95,11 +95,13 @@ public:
 	void UpdateSpawning(const PlayerInfo &player);
 	bool ShouldSpawn() const;
 
+	// Get the personality that dictates the behavior of the ships associated with this set of NPCs.
+	const Personality &GetPersonality() const;
 	// Get the ships associated with this set of NPCs.
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 
-	// Handle the given ShipEvent.
-	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr,
+	// Handle the given ShipEvent. Return true if the event target is within this NPC.
+	bool Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr,
 		const Mission *caller = nullptr, bool isVisible = true);
 	// Determine if the NPC is in a successful state, assuming the player is in the given system.
 	// (By default, a despawnable NPC has succeeded and is not actually checked.)

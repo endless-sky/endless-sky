@@ -251,7 +251,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		hoverItem.clear();
 		selected = 0;
 
-		// Reset the render buffers in case the UI scale has changed.
+		// Make sure the render buffers are initialized and are aware of the current UI scale.
 		Resize();
 	}
 	else if(key == 'o' && page == 'p')
@@ -1311,7 +1311,7 @@ void PreferencesPanel::Exit()
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	if(recacheDeadlines)
-		player.CalculateRemainingDeadlines();
+		player.CacheMissionInformation(true);
 
 	GetUI()->Pop(this);
 }
