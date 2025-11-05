@@ -224,7 +224,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// If a system is selected that is not at the end of the travel plan, then the player selected it
 		// by either using the Find function, or by ctrl+clicking on it. If the player then hits jump while this
 		// other system is selected, it should be added to the travel plan.
-		if((plan.empty() && selectedSystem != player.GetSystem()) || (!plan.empty() && selectedSystem != plan.front()))
+		if(selectedSystem != (plan.empty() ? player.GetSystem() : plan.front()))
 		{
 			Select(selectedSystem);
 			return true;
