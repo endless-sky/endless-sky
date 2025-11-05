@@ -293,14 +293,27 @@ void Conversation::Save(DataWriter &out) const
 					// If the conditions are the same, output them for each
 					// paragraph. (We currently don't merge paragraphs with
 					// identical ConditionSets, but some day we might.)
-					if(!it.conditions.IsEmpty())
+					if(!it.toDisplay.IsEmpty())
 					{
 						out.BeginChild();
 						{
 							out.Write("to", "display");
 							out.BeginChild();
 							{
-								it.conditions.Save(out);
+								it.toDisplay.Save(out);
+							}
+							out.EndChild();
+						}
+						out.EndChild();
+					}
+					if(!it.toActivate.IsEmpty())
+					{
+						out.BeginChild();
+						{
+							out.Write("to", "activate");
+							out.BeginChild();
+							{
+								it.toActivate.Save(out);
 							}
 							out.EndChild();
 						}
@@ -403,9 +416,9 @@ bool Conversation::HasAnyChoices(int node) const
 
 	for(const auto &data : nodes[node].elements)
 	{
-		if(data.conditions.IsEmpty())
+		if(data.toDisplay.IsEmpty())
 			return true;
-		if(data.conditions.Test())
+		if(data.toDisplay.Test())
 			return true;
 	}
 
@@ -421,6 +434,16 @@ int Conversation::Choices(int node) const
 		return 0;
 
 	return nodes[node].isChoice ? nodes[node].elements.size() : 0;
+}
+
+
+
+bool Conversation::ChoiceIsActive(int node, int element) const
+{
+	if(!NodeIsValid(node) || !IsChoice(node)  || !ElementIsValid(node, element))
+		return false;
+
+	return nodes[node].elements[element].toActivate.Test();
 }
 
 
@@ -527,9 +550,9 @@ bool Conversation::ShouldDisplayNode(int node, int element) const
 	else if(IsChoice(node) ? !ElementIsValid(node, element) : element != 0)
 		return false;
 	const auto &data = nodes[node].elements[element];
-	if(data.conditions.IsEmpty())
+	if(data.toDisplay.IsEmpty())
 		return true;
-	return data.conditions.Test();
+	return data.toDisplay.Test();
 }
 
 
@@ -565,7 +588,8 @@ bool Conversation::ElementIsValid(int node, int element) const
 bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	bool hasGoto = false;
-	bool hasCondition = false;
+	bool hasDisplayCondition = false;
+	bool hasActivationCondition = false;
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -582,12 +606,22 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 		}
 		else if(key == "to" && hasValue && child.Token(1) == "display")
 		{
-			if(hasCondition)
+			if(hasDisplayCondition)
 				child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
 			else
 			{
-				nodes.back().elements.back().conditions.Load(child, playerConditions);
-				hasCondition = true;
+				nodes.back().elements.back().toDisplay.Load(child, playerConditions);
+				hasDisplayCondition = true;
+			}
+		}
+		else if(key == "to" && hasValue && child.Token(1) == "activate")
+		{
+			if(hasActivationCondition)
+				child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
+			else
+			{
+				nodes.back().elements.back().toActivate.Load(child, playerConditions);
+				hasActivationCondition = true;
 			}
 		}
 		else
@@ -608,7 +642,7 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 				child.PrintTrace("Warning: Expected goto, to display, or endpoint in conversation, found this:");
 		}
 	}
-	return hasGoto || hasCondition;
+	return hasGoto || hasDisplayCondition;
 }
 
 
