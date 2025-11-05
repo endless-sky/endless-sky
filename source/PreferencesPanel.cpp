@@ -64,6 +64,7 @@ namespace {
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
 	const string CAMERA_ACCELERATION = "Camera acceleration";
+	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
 	const string CLOAK_OUTLINE = "Cloaked ship outlines";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
@@ -746,7 +747,7 @@ void PreferencesPanel::DrawSettings()
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
-		"Reduce large graphics",
+		LARGE_GRAPHICS_REDUCTION,
 		"Draw background haze",
 		"Draw starfield",
 		"Fixed starfield zoom",
@@ -892,6 +893,11 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == CAMERA_ACCELERATION)
 		{
 			text = Preferences::CameraAccelerationSetting();
+			isOn = text != "off";
+		}
+		else if(setting == LARGE_GRAPHICS_REDUCTION)
+		{
+			text = Preferences::LargeGraphicsReductionSetting();
 			isOn = text != "off";
 		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
@@ -1350,6 +1356,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	}
 	else if(str == CAMERA_ACCELERATION)
 		Preferences::ToggleCameraAcceleration();
+	else if(str == LARGE_GRAPHICS_REDUCTION)
+		Preferences::ToggleLargeGraphicsReduction();
 	else if(str == STATUS_OVERLAYS_ALL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
 	else if(str == STATUS_OVERLAYS_FLAGSHIP)
