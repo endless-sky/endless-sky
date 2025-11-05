@@ -520,7 +520,7 @@ interface "controls"
 		from -400 48 to -270 49
 		color medium
 	"wrapped label" "Press '_x' over controls to unbind them. Controls can share the same keybind."
-		from -425 70 to -270 130
+		from -420 70 to -270 130
 		alignment right
 		color medium
 	
