@@ -2356,7 +2356,8 @@ mission "Ka'het: Patir Mystery 19"
 				`	(Join Chilia.)`
 					goto chilia
 				`	(Speak with the Remnant researchers.)`
-			`	As soon as you approach them, they shoot their shot with a few questions about your mission here. Just as you have seen Chilia do, you dodge most of them with generic answer and soon enough, the conversation veers back to Patir itself. They sign a bit too fast for your abilities, but you're able to follow most of it. What catches your attention their description of the structure of the Builder settlement: according to them, the living quarters are extremely limited compared to the size of the outpost, suggesting that there must have been a separate vehicle to house them at some point. While unlikely to be of much use, you take note of it just as Chilia joins the table.`
+			`	After some chitchat, one of them catches the opportunity to ask you about your own mission, but you follow what you have seen Chilia do and you dodge the questions with vague answers. Soon enough, the conversation veers back to Patir and its surroundings. They sign a bit too fast for your abilities, but you're able to follow most of it.`
+			`	What catches your attention their description of the structure of the Builder settlement: according to them, the living quarters are extremely limited compared to the size of the outpost, suggesting that there must have been a separate vehicle to house them at some point. While unlikely to be of much use, you take note of it just as Chilia joins the table.`
 			`	Sharing a drink with the rest of you, he commends all of you for your efforts, careful not to go into any specifics. "Given the results obtained, I say we can classify this as mission accomplished on both sides," he concludes. "Once our glasses are empty, it is time to move back to <destination> for the analysis of our data."`
 				accept
 			label chilia
@@ -2369,16 +2370,16 @@ mission "Ka'het: Patir Mystery 19"
 		outfit "Asteroid Weapon Small" -1
 		conversation
 			`The first to leave your ship are the three researchers, who make you various gestures of farewell as they disappear into the starport. Chilia hangs around for a while longer, but after your cargo gets unloaded, still hidden inside standard packages, he signs that it is time for him to leave as well.`
-			`	"As you might have figured out, our next objective is to study these items and their technology in depth, hoping to reverse engineer them or, at least, figure out their inner workings." You offer to give him a hand, but he shakes his head. "Your help has been inestimable, but you cannot follow me where these, and I, are going. You have seen yourself how complicated maintaining some secrecy around this project is proving to be."`
+			`	"As you might have figured out, our next objective is to study these items and their technology in depth, hoping to reverse engineer them or, at least, figure out their inner workings." You offer to give him a hand, but he shakes his head. "Your help has been inestimable, but you cannot follow me where these, and I, are going. You have seen for yourself how complicated maintaining proper secrecy around this project is proving to be."`
 			choice
 				`	"Is there nothing I can do then?"`
 					goto patir
 				`	"I understand."`
 					goto patir
 				`	"I was hoping to keep those for myself."`
-			`	He grins. "Do not feel too disappointed, activating these outfits is going to be complicated than connecting some wires to it and pressing a button. I have a hard time believing you - or anyone, for that matter - could get them to fire by themselves, even if I have just begun studying them.`
+			`	He grins. "Do not feel too conflicted, activating these outfits is going to be complicated than connecting some wires to it and pressing a button. Even if I have just begun studying them. I have a hard time believing you - or anyone, for that matter - could get them to fire easily.`
 			label patir
-			`	"If you continue like in the past weeks, I doubt it will take you too long to get the authorizations for this project," he gestures pleased. "But as I have found, even right now there are other projects about Patir that would like your participation. During our return, I have informed Dusk that you are free from your obligations with my research; if you would like to meet him, just remain nearby your landing pad." He bows, and you return it as he follows the cargo deeper into the starport. You catch the opportunity to clean up the cockpit and the empty bunks. Some Remnant nearby soon notice you taking out the trash, and offer you a hand.`
+			`	"Still, it should not you too long to get the authorizations for this project, if you continue like this," he gestures pleased. "It has come to my attention that even right now there are other projects about Patir that desire your participation. During our return, I have informed Dusk that you are free from your obligations with my research; if you would like to meet him, he should be here shortly." He bows, and you return it as he follows the cargo deeper into the starport. You catch the opportunity to clean up the cockpit and the empty bunks. Some Remnant nearby soon notice you taking out the trash, and offer you a hand.`
 			`	By the time Dusk arrives, your ship's interior look as good as new. You greet and invite him to take a seat, which he warmly accepts. "It is nice to see you again, <first>. I heard your travels in Patir with Chilia went... well, at least better than ours," he quips.`
 			choice
 				`	"What do you know about it?"`
@@ -2389,8 +2390,8 @@ mission "Ka'het: Patir Mystery 19"
 			`	"About the same as you, I imagine. Right now, you and I have the same level of authorization, at least for what concerns Patir and the related systems. Prefect Chilia, of course, is going to be far more involved than us in the matters related to its military potential."`
 			label chat
 			`	Your chat with Dusk goes on for some time, discussing with him the details of your previous trips. For his part, he describes you his progress over the past months: his focus expanded from Patir itself to the worlds that lie beyond it, and on how to use Ssil Vida to reach it.`
-			`	"Given our progress, we now feel ready for a new expedition. At first a short, single-day one, to test our systems in a practical scenario. If all goes well, after that we will be able to progressively increase our stay to any length of time," he asserts. You follow him out of your ship as he prepares to leave. "Before we can go, I need you to prepare a ship capable of carrying a fighter, and outfit it with a Jump Drive and a Key Stone. One of our Ibis should more than suffice, if you do not have one already.`
-			`	"It is more important to do things right than to do them quickly," he concludes stoically. "We will be time-limited once we start, so come meet me here only when you are ready."`
+			`	"Given our progress, we now feel ready for a new expedition. At first a short, single-day one, to test our systems in a practical scenario. If all goes well, after that we will be able to progressively increase our stay to any length of time," he asserts. You follow him out of your ship as he prepares to leave. "Before we can start, I need you to prepare a ship capable of carrying a fighter, and to outfit it with one of your Jump Drives. One of our Ibis should more than suffice, if you do not have one already.`
+			`	"We will be fairly time-limited once we depart, so feel free to wait until you are ready for the mission before you search for me in this planet's starport. It is more important to do things right than to do them quickly," he concludes stoically.`
 
 mission "Ka'het: Patir Mystery 20"
 	name "Explore <system> again"
@@ -2402,11 +2403,55 @@ mission "Ka'het: Patir Mystery 20"
 	to offer
 		has "Ka'het: Patir Mystery 19: done"
 	on offer
+		conversation
+			`After asking for directions to a few locals, you meet up with Dusk again. In the background, you see a half-open Petrel suspended by some wires a few meters above the ground. "<first>, were you able to prepare the Jump-capable carrier I mentioned the last time?" Dusk asks. "Is it nearby?"`
+			choice
+				`	"Yes, it is."`
+					goto good
+				`	"Sorry, but I do not own one."`
+					goto broke
+				`	"No, it's in another system."`
+			`	"It is best to bring it here then," he asserts. "I will be here when you are ready."`
+				defer
+			label broke
+			`	"It is imperative we use one, <first>," he signs disappointed. "I can request for us to be assigned one, but taking Jump Drive equipped vehicles is not a quick process for someone at my level. Certainly more time intensive than if you were able to give one to us," he concludes with a low tone.`
+				defer
+			label good
+			`	"Very well then!" he signs excited, and you follow him in the direction of the Petrel. Once you come closer, you recognize that the technicians are completing outfit installations of all sorts, from additional bunks to a Korath reactor of the smaller kind. "This is going to be the cargo you need to carry to our destination: a lifeboat to escape from our laboratory around Patir, if there will ever be a need.`
+			`	"As you might know, the Smew is our typical lifeboat, but this time the requirements are fairly different. Giving a Jump Drive to a fighter is often impractical, especially for an expedition like this; rather, our strategy will be to use it to hide deep beneath the gas giant in Patir for as long as is necessary for a rescue ship to arrive. Thankfully, only a few outfit changes turned out to be necessary to use the Calm Sea Afire for such a job."`
+			choice
+				`	"That still sounds fairly dangerous."`
+					goto danger
+				`	"What is the interest of the Remnant in Patir to justify such an effort?"`
+				`	"Are we ready to go?"`
+					goto skip
+			`	"Well, if you ask ten people, you will probably hear ten different answers. For some, it is simply a potential source of new and exciting technology, military or otherwise; for others, it is the potential gateway into a new galaxy, with its own dangers and opportunities." He sits down, acquiring a more pensive look. "But there at least a couple broader philosophies that come in play beyond simple exploration.`
+			`	"One is related to the control that these creatures seem to impose over the Ka'sei. The Graveyard as whole right now is a sleeping giant, after all: if some Ka'het was able to escape its bounds, as we know they have in the past, it would pose open a second front on top of the Korath threat."`
+			choice
+				`	"What are the other philosophies?"`
+					goto philosophies
+				`	"Is that a serious risk?"`
+					goto risk
+				`	"I am stronger than the Ka'het."`
+			`	"I hope you are," he signs after a brief pause. He seems unenthused by your remark.`
+					goto skip
+			label philosophies
+			`	"See, <first>, the extinction of an interstellar species is a relatively rare occurrence in the galaxy. Empires will shrink and grow, sometimes even ceasing to be spacefaring; but it takes incredible circumstances to completely erase such a civilization. It is only natural for other civilizations to want to find out what was able to make the unthinkable happen.`
+			`	"The mistakes done by the Builders, for example, seem trivial from our perspective. This could mean that they made profoundly stupid decisions, or that we have not understood enough of the situation to put all the pieces together and actually comprehend their mistakes. And now we have indications of another, much older extinct species in the space that lies beyond Patir."`
+				goto skip
+			label risk
+			`	He seems dubious. "Answering this question is... more complicated than it looks. We are not certain of how the Ka'het gained keystones the first time, nor how many of them were able to do so. We know that it is a possibility, that the Ka'het as whole are likely stronger than our fleets, and that no Ka'het has moved past the Graveyard since the Exodus. The truth, <first>, is that risk posturing is a very complex subject, and, for that matter, the same can be said with our mission.`
+			label danger
+			`	He passes his hand over the hull of Calm Sea Afire, thoughtful. "Only time will tell, but I stand by the decisions we have made. A standard Smew is simple to repair and to keep in storage, but not too useful outside of the Ember Wastes. A large, jump-capable starship is complicated to keep in flight-status for months at a time, and more likely to attract unwanted attention. And worse of all, it might not even be of much use if Patir was not in the Milky Way when the emergency happens!"`
+			label skip
+			`	The buzz of Dusk's commlink draws his attention. He smiles, and his tone changes almost instantly. "Ssil Vida is ready to cut the signal. Once they do so, it will take six days for this to reach Patir; at that point, it will instantly disappear, possibly to move into the the same cluster we visited the last time. You, I, and four of our researchers must be there when this happens." He rights up and clears his throat. "Captain," he sings boastfully, "shall I give the order?"`
+			choice
+				`	"Do it."`
+			`	He types on his commlink, and a minute passes. When the commlink buzzes again, Dusk makes an uncharacteristic cheer and quickly bids farewell to the people in the hangar. While he gathers a group of people, presumably the researchers that will follow you in the expedition, one of the spaceport workers takes a small crystal out of the assembled Petrel and hands it to you. "The Calm Sea Afire is now in your hands, Captain," she signs thereafter. "Treat her well."`
+				accept
+	on accept
 		give ship "Petrel (Lifeboat)" "Calm Sea Afire"
 			id 551551
-		conversation
-			`You find Dusk, who asks you if you have the jumping carrier he asked (option to tell him you have the carrier, but not the JD? Upon which he gives you one?). If you say yes, he explains the rest: you'll bring a Smew to act as lifeboat to station on the Patir lab, but more importantly, this will be a test to attempt to move Patir again to that place you went before, only intentionally (and for just 1 day). Dusk gives a call to Ssil Vida, and they launch a signal that will reach Patir in 6 days.`
-				accept
 	on visit
 		dialog "You've arrived at <planet>, but either your passengers or the Calm Sea Afire are not with you!"
 	on complete
@@ -2417,6 +2462,7 @@ mission "Ka'het: Patir Mystery 20"
 		conversation
 			`You did it! Sit back and enjoy the show. You see the stars move, n stuff. Meet in a few hours.`
 # add patir moves event, even if you fail the deadline.
+# add deadline
 
 # add petrel lifeboat (see discord)
 
@@ -2430,7 +2476,7 @@ mission "Ka'het: Patir Mystery 21"
 		has "Ka'het: Patir Mystery 20: done"
 	on offer
 		conversation
-			`They set up apollo-style surface experiments and all. Dusk wants to make a test run of the lifeboat; accompany them to the nearby gas giant to test the procedure. You don't need a gaslining ship, you can just stay in the upper atmosphere like the pelicans of those old missions. You watch the lifeboat launch, and follow them. However, some of the Ka'sei get mad again! But don't kill them - shield the Petrel with your ship instead!`
+			`They set up apollo-style surface experiments and all. Dusk wants to make a test run of the lifeboat; accompany them to the nearby gas giant to test the procedure. You don't need a gaslining ship, you can just stay in the upper atmosphere like the pelicans of those old missions. You watch the lifeboat launch, and follow them. However, some of the Ka'sei get mad again! But don't kill them - shield the Petrel with your ship instead! EDIT: REMOVE THE KA'SEI ANGER PART`
 				launch
 	npc save
 		government "Remnant"
