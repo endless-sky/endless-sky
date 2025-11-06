@@ -174,7 +174,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 	const int endGX = endX >> SHIFT;
 	const int endGY = endY >> SHIFT;
 
-	const Point pVelocity = (to - from);
+	const Point pVelocity = to - from;
 
 	// Special case, very common: the projectile is contained in one grid cell.
 	// In this case, all the complicated code below can be skipped.
@@ -191,7 +191,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 			if(it->x != gx || it->y != gy)
 				continue;
 
-			const double relativeSpeed = abs(pVelocity.Distance(it->body->Velocity()));
+			const double relativeSpeed = pVelocity.Distance(it->body->Velocity());
 
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
@@ -264,7 +264,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 				continue;
 			seen[it->seenIndex] = true;
 
-			const double relativeSpeed = abs(pVelocity.Distance(it->body->Velocity()));
+			const double relativeSpeed = pVelocity.Distance(it->body->Velocity());
 
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
@@ -345,8 +345,7 @@ bool CollisionSet::ValidCollision(const Body *parent, const Body *hit, const Gov
 	const Ship *firingShip = parent ? reinterpret_cast<const Ship *>(parent) : nullptr;
 	const Ship *shipHit = hit ? reinterpret_cast<const Ship *>(hit) : nullptr;
 
-	shared_ptr<Ship> firingParent = firingShip ? firingShip->GetParent()
-		: nullptr;
+	shared_ptr<Ship> firingParent = firingShip ? firingShip->GetParent() : nullptr;
 	shared_ptr<Ship> parentHit = shipHit ? shipHit->GetParent() : nullptr;
 
 	// If the ship that fired the projectile no longer exists, default to the

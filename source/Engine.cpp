@@ -2445,7 +2445,7 @@ void Engine::DoCollisions(Projectile &projectile)
 		CollisionType collisionType = collision.GetCollisionType();
 		double range = collision.IntersectionRange();
 		bool targetedHit = (hit == projectile.Target());
-		bool alliedGov = hit ? !gov->IsEnemy(hit->GetGovernment()) : false;
+		bool alliedGov = hit && !gov->IsEnemy(hit->GetGovernment());
 		bool isSafe = weapon.IsSafe();
 
 		shared_ptr<Ship> shipHit;

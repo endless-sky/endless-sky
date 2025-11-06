@@ -78,9 +78,9 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "fleet multiplier")
 			fleetMultiplier = max<double>(0., child.Value(1));
 		else if(key == "friendly fire probability")
-			friendlyFireProbability = min<double>(1., max<double>(0., child.Value(1)));
+			friendlyFireProbability = clamp(child.Value(1), 0., 1.);
 		else if(key == "ally friendly fire probability")
-			allyFriendlyFireProbability = min<double>(1., max<double>(0., child.Value(1)));
+			allyFriendlyFireProbability = clamp(child.Value(1), 0., 1.);
 		else if(key == "fighter friendly fire multiplier")
 			fighterFriendlyFireMultiplier = max<double>(0., child.Value(1));
 		else if(key == "carrier friendly fire exception")
