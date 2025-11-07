@@ -2400,6 +2400,7 @@ mission "Ka'het: Patir Mystery 20"
 	source "Caelian"
 	destination "Builder Settlement"
 	passengers 5
+	cargo 9
 	to offer
 		has "Ka'het: Patir Mystery 19: done"
 	on offer
@@ -2442,7 +2443,7 @@ mission "Ka'het: Patir Mystery 20"
 			label risk
 			`	He seems dubious. "Answering this question is... more complicated than it looks. We are not certain of how the Ka'het gained keystones the first time, nor how many of them were able to do so. We know that it is a possibility, that the Ka'het as whole are likely stronger than our fleets, and that no Ka'het has moved past the Graveyard since the Exodus. The truth, <first>, is that risk posturing is a very complex subject, and, for that matter, the same can be said with our mission.`
 			label danger
-			`	He passes his hand over the hull of Calm Sea Afire, thoughtful. "Only time will tell, but I stand by the decisions we have made. A standard Smew is simple to repair and to keep in storage, but not too useful outside of the Ember Wastes. A large, jump-capable starship is complicated to keep in flight-status for months at a time, and more likely to attract unwanted attention. And worse of all, it might not even be of much use if Patir was not in the Milky Way when the emergency happens!"`
+			`	He passes his hand over the hull of Calm Sea Afire, thoughtful. "Only time will tell, but I stand by the decisions we have made. A standard Smew is simple to repair and to keep in storage, but not too useful outside of the Ember Wastes. A large, jump-capable starship is complicated to keep in flight-status for months at a time, not to mention the maintenance needs of a cloaking system. And worse of all, it might not even be of much use if Patir was not in the Milky Way when the emergency happens!"`
 			label skip
 			`	The buzz of Dusk's commlink draws his attention. He smiles, and his tone changes almost instantly. "Ssil Vida is ready to cut the signal. Once they do so, it will take six days for this to reach Patir; at that point, it will instantly disappear, possibly to move into the the same cluster we visited the last time. You, I, and four of our researchers must be there when this happens." He rights up and clears his throat. "Captain," he sings boastfully, "shall I give the order?"`
 			choice
@@ -2459,16 +2460,15 @@ mission "Ka'het: Patir Mystery 20"
 			id 551551
 			"require outfits"
 			"with outfits"
-		conversation
-			`You did it! Sit back and enjoy the show. You see the stars move, n stuff. Meet in a few hours.`
 # add patir moves event, even if you fail the deadline.
 # add deadline
 
-# add petrel lifeboat (see discord)
+# add petrel lifeboat (see discord) also never disabled because of the next mission
 
 mission "Ka'het: Patir Mystery 21"
+	landing
 	name "Gaslined test run"
-	description "Escort the Petrel lifeboat to <destination> safely, trying not to harm the Ka'sei."
+	description "Follow the Petrel lifeboat to <destination>, a gas giant in the same system."
 	deadline 1
 	source "Builder Settlement"
 	destination "Pacili"
@@ -2476,12 +2476,46 @@ mission "Ka'het: Patir Mystery 21"
 		has "Ka'het: Patir Mystery 20: done"
 	on offer
 		conversation
-			`They set up apollo-style surface experiments and all. Dusk wants to make a test run of the lifeboat; accompany them to the nearby gas giant to test the procedure. You don't need a gaslining ship, you can just stay in the upper atmosphere like the pelicans of those old missions. You watch the lifeboat launch, and follow them. However, some of the Ka'sei get mad again! But don't kill them - shield the Petrel with your ship instead! EDIT: REMOVE THE KA'SEI ANGER PART`
+			`The hectic atmosphere in the bridge, after gradually increasing during the entire trip, comes to a stop a few minutes away from the outpost. One by one, the stars in front of you dim and disappear, until the sky is black once again. And in a few seconds more, the first lights begin their strange dance, soon followed by more and more of them.`
+			choice
+				`	(Prepare for landing.)`
+					goto land
+				`	(Set the autopilot to loiter, so as to take a better look.)`
+			`	The Remnant have scattered their own machines all around your ship while you were busy piloting. Every one of your windows has at least one contraption mounted in front of it, often with some tape keeping it in place, all of which are now buzzing cheerfully and scanning the spectacle happening above them. You stop next to one of the Remnant of the crew, busy looking into a three-barrel telescope. You don't recognize him as someone who was in either of your past expeditions, however.`
+				goto lab
+			label land
+			`	By the time you have almost reached the outpost, one of the Remnant of the crew takes a seat next to you. At her suggestion, you keep your ship at altitude for a minute more to give them a better view of the ongoing spectacle. You don't recognize her as someone who was in either of your past expeditions, however.`
+			label lab
+			`	The show soon comes to an end, and you bring the ship down into the makeshift pad next to the Remnant laboratory. It takes a couple hours to deploy on the surface the dozens of experiments you have carried here; you help them connect them to some of their radioisotope cells, much smaller than the generators you are used to.`
+			`	"Our stay in this galaxy will not last more than a few hours more," signs one of the Remnant once back inside the habitat. The six of you, sitting around the main table, are sharing a quick meal after the effort. "We should get going if we want to complete the whole schedule."`
+			choice
+				`	"Which is?"`
+					goto lifeboat
+				`	"Why not stay for longer?"`
+			`	"That was the verdict made in Ssil Vida", she replies.`
+			`	"It was decided that the first intentional mission should be as short as reasonably possible," Dusk intervenes in a slightly sour tone. "Much like the first trips into space, we will be able to do little beyond staying here and observing our surroundings." He pauses, glancing at the Petrel connected with the laboratory by a short tunnel.`
+			label lifeboat
+			`	"We should put our lifeboat under some stress testing," declares Dusk. "Most of our experiments are up and running, and you two are the only ones with instruments that require human intervention. If we move our remaining tasks here to your schedules, the rest of us can take the Calm Sea Afire on a test run," he concludes, indicating the two members of the crew opposite to him. They give each other an ambiguous glance, then nod in response.`
+			`	"The three of us will get aboard the Petrel and simulate an emergency and a mission abort, abandoning this place at high Gs to seek the safety of the nearby gas giant. You, <first>, will instead act as the danger: your objective will be to hit us with one of your weapons before we can get to safety, if you can. Nothing high caliber, of course, it is just a simulation; still, I bet it will be more difficult than you think."`
+			choice
+				`	"I bet it will not be."`
+					goto lifeboat
+				`	"I will try."`
+					goto liftoff
+				`	"That does not seem very appropriate."`
+			`	He shrugs. "You are the one with the 'fire' button here, after all. You can follow us without shooting, if you prefer so."`
+				goto liftoff
+			label lifeboat
+			`	He smiles. "We will see soon! She is more fast and nimble than she might appear on the ground, or we would have not chosen her as our lifeboat."`
+			label liftoff
+			`	"Oh, by the way," he recalls before climbing aboard the Petrel, "once we are at the gas giant you will not need to go more than a few kilometers deep. You can stay up, near the very edge of the atmosphere, while we delve deep below to test our craft further; you should not need a gaslining ship for such a task." He bows, and closes the hatches separating the outpost and the lifeboat.`
+			`	You don your suit right as the emergency alarm signals the start of the simulation. The Petrel zooms up in the sky at an incredible speed, disappearing into the night, and you hurry up to prepare your ship to follow it.`
 				launch
 	npc save
 		government "Remnant"
 		personality escort staying launching
 		ship "Smew" "Calm Sea Afire"
+# make it never disabled, and use on provoke to see if you hit it?
 # add event to make Pacili landable for non-gaslined ships
 
 mission "Ka'het: Patir Mystery 22"
@@ -2570,7 +2604,7 @@ mission "Ka'het: Patir Mystery 26A"
 		not "Ka'het: Patir Mystery 12.2A: done"
 	on offer
 		conversation
-			`Explore, use the balls, find stuff. Theories. Is it a replica? Go back.`
+			`Explore, use the balls, find stuff. The asteroids repaired the holes you had made the last time? Theories. Is it a replica? Go back.`
 				accept
 	on complete
 # add patir returns event
@@ -2660,7 +2694,7 @@ mission "Ka'het: Patir Mystery 30"
 			`The raider is now empty; everyone has boarded the big ship next to it. You see the markings, and you recognize it to be a hospital ship. What to do now?`
 	on complete
 		conversation
-			`What the fuck did you just do, you little shit?!? Get lost!!!! But thanks for keeping our secrecy, of course.`
+			`What the fuck did you just do, you little shit?!? Get lost! But thanks for keeping our secrecy, of course.`
 			`Make Chilia the one that wants you dead and Dusk the one who is more understanding to make it more interesting. Both of them know who Torza would side with (Dusk).`
 
 
