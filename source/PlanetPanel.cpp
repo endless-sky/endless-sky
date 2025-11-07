@@ -76,14 +76,14 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
-	Audio::Pause();
+	Audio::BlockPausing();
 }
 
 
 
 PlanetPanel::~PlanetPanel()
 {
-	Audio::Resume();
+	Audio::UnblockPausing();
 }
 
 
@@ -94,6 +94,8 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
+		if(callback)
+			callback();
 		if(selectedPanel)
 			GetUI()->Pop(selectedPanel);
 		GetUI()->Pop(this);
