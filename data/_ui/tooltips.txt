@@ -82,7 +82,7 @@ tip "bunks:"
 	`The number of people (passengers or crew) your ship can hold.`
 
 tip "burn protection:"
-	`Protection provided against burning damage. Modifies how difficult a ship is to burn by a percentage equal to the given factor: a total value of 50 allows a ship to withstand 50% more burning damage to be burned as much as an unprotected ship.`
+	`Protection provided against burn damage. Modifies how difficult a ship is to burn by a percentage equal to the given factor: a total value of 50 allows a ship to withstand 50% more burn damage before its heat rises as much as an unprotected ship.`
 
 tip "burn resistance:"
 	`Burn damage resisted per second.`
@@ -295,7 +295,7 @@ tip "heat generation:"
 	`Heat generated per second. Heat generation can be offset by "cooling" outfits. If your ship exceeds its maximum heat, it must temporarily shut down to cool itself off.`
 
 tip "heat protection:"
-	`Protection provided against heat damage. Modifies how difficult a ship is to heat with weapons by a percentage equal to the given factor: a total value of 50 makes a ship 50% more difficult to heat with weapons.`
+	`Protection provided against heat damage. Modifies how difficult a ship is to heat with weapons by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more heat damage before its heat rises as much as an unprotected ship.`
 
 tip "heat capacity:"
 	`Increases the maximum heat this ship is able to withstand before becoming overheated. A value of one has the same influence on a ship's maximum heat as one ton of mass, without the effects that mass has on movement.`
@@ -685,7 +685,7 @@ tip "silent scans:"
 	`Prevents a ship from emitting scan sounds.`
 
 tip "slowing protection:"
-	`Protection provided against slowing damage. Modifies how difficult a ship is to slow by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more slowing damage to be slowed as much as an unprotected ship.`
+	`Protection provided against slowing damage. Modifies how difficult a ship is to slow by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more slowing damage before it is slowed as much as an unprotected ship.`
 
 tip "slowing resistance:"
 	`Slowing damage resisted per second.`
