@@ -4655,6 +4655,8 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 
 	if(hyperspaceCount == HYPER_C)
 	{
+		if(isSpecial && !isYours)
+			unhandledEvents.emplace_back(nullptr, ShipEvent::JUMP);
 		SetSystem(hyperspaceSystem);
 		hyperspaceSystem = nullptr;
 		targetSystem = nullptr;
