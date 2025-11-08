@@ -2522,8 +2522,8 @@ mission "Ka'het: Patir Mystery 22"
 	landing
 	name "Lifeboat return"
 	description "Return the Petrel 'Calm Sea Afire' to the <destination> safely."
-	source "Builder Settlement"
-	destination "Pacili"
+	source "Pacili"
+	destination "Builder Settlement"
 	to offer
 		has "Ka'het: Patir Mystery 21: done"
 	on offer
