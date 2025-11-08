@@ -5199,13 +5199,13 @@ void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amou
 
 void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
 {
-	if(forget)
+	if(forget || amount <= 0.)
 		return;
 
 	// Limit the number of sparks, depending on the size of the sprite.
 	amount = min(amount, Width() * Height() * .0006);
 	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
-	visuals.reserve(visuals.size() + static_cast<int>(amount));
+	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
 
 	while(true)
 	{
