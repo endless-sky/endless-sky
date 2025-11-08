@@ -5203,7 +5203,8 @@ void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double am
 		return;
 
 	// Limit the number of sparks, depending on the size of the sprite.
-	amount = min(amount, Width() * Height() * .0006);
+	// The limit needs to be the first argument in case amount is NaN.
+	amount = min(Width() * Height() * .0006, amount);
 	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
 	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
 
