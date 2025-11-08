@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Swizzle.h"
 #include "System.h"
 #include "Visual.h"
+#include "Weapon.h"
 #include "Wormhole.h"
 
 #include <algorithm>
@@ -427,7 +428,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			attributes.isParallel = false;
 			attributes.isOmnidirectional = true;
 			attributes.turnMultiplier = 0.;
-			bool drawUnder = (key == "gun");
+			if(key == "gun")
+				attributes.side = Hardpoint::Side::UNDER;
 			if(child.HasChildren())
 			{
 				bool defaultBaseAngle = true;
@@ -457,9 +459,11 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					else if(grandKey == "turret turn multiplier")
 						attributes.turnMultiplier = grand.Value(1);
 					else if(grandKey == "under")
-						drawUnder = true;
+						attributes.side = Hardpoint::Side::UNDER;
+					else if(grandKey == "inside")
+						attributes.side = Hardpoint::Side::INSIDE;
 					else if(grandKey == "over")
-						drawUnder = false;
+						attributes.side = Hardpoint::Side::OVER;
 					else
 						grand.PrintTrace("Warning: Child nodes of \"" + key
 							+ "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
@@ -478,9 +482,9 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				}
 			}
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, attributes, drawUnder, outfit);
+				armament.AddGunPort(hardpoint, attributes, outfit);
 			else
-				armament.AddTurret(hardpoint, attributes, drawUnder, outfit);
+				armament.AddTurret(hardpoint, attributes, outfit);
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -692,7 +696,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(GameData::Ships().Has(trueModelName))
 	{
 		const Ship *model = GameData::Ships().Get(trueModelName);
-		explosionWeapon = &model->BaseAttributes();
+		explosionWeapon = model->BaseAttributes().GetWeapon().get();
 		if(displayModelName.empty())
 			displayModelName = model->displayModelName;
 		if(pluralModelName.empty())
@@ -760,7 +764,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextGun != end && nextGun->IsTurret())
 						++nextGun;
 					const Outfit *outfit = (nextGun == end) ? nullptr : nextGun->GetOutfit();
-					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAttributes(), bit->IsUnder(), outfit);
+					merged.AddGunPort(bit->GetPoint() * 2., bit->GetBaseAttributes(), outfit);
 					if(nextGun != end)
 						++nextGun;
 				}
@@ -769,7 +773,7 @@ void Ship::FinishLoading(bool isNewInstance)
 					while(nextTurret != end && !nextTurret->IsTurret())
 						++nextTurret;
 					const Outfit *outfit = (nextTurret == end) ? nullptr : nextTurret->GetOutfit();
-					merged.AddTurret(bit->GetPoint() * 2., bit->GetBaseAttributes(), bit->IsUnder(), outfit);
+					merged.AddTurret(bit->GetPoint() * 2., bit->GetBaseAttributes(), outfit);
 					if(nextTurret != end)
 						++nextTurret;
 				}
@@ -798,7 +802,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			LogWarning(VariantName(), GivenName(),
 					"outfit \"" + it.first->TrueName() + "\" equipped but not included in outfit list.");
 		}
-		else if(!it.first->IsWeapon())
+		else if(!it.first->GetWeapon())
 			// This ship was specified with a non-weapon outfit in a
 			// hardpoint. Hardpoint::Install removes it, but issue a
 			// warning so the definition can be fixed.
@@ -836,7 +840,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		// Some ship variant definitions do not specify which weapons
 		// are placed in which hardpoint. Add any weapons that are not
 		// yet installed to the ship's armament.
-		if(it.first->IsWeapon())
+		if(it.first->GetWeapon())
 		{
 			int count = it.second;
 			auto eit = equipped.find(it.first);
@@ -1180,10 +1184,12 @@ void Ship::Save(DataWriter &out) const
 					out.Write("blindspot", blindspot.first.Degrees(), blindspot.second.Degrees());
 				if(attributes.turnMultiplier)
 					out.Write("turret turn multiplier", attributes.turnMultiplier);
-				if(hardpoint.IsUnder())
-					out.Write("under");
-				else
+				if(hardpoint.GetSide() == Hardpoint::Side::OVER)
 					out.Write("over");
+				else if(hardpoint.GetSide() == Hardpoint::Side::INSIDE)
+					out.Write("inside");
+				else
+					out.Write("under");
 			}
 			out.EndChild();
 		}
@@ -1407,9 +1413,12 @@ vector<string> Ship::FlightCheck() const
 	double turnHeat = attributes.Get("turning heat");
 	double hyperDrive = navigation.HasHyperdrive();
 	double jumpDrive = navigation.HasJumpDrive();
+	int bunks = attributes.Get("bunks");
 
 	// Report the first error condition that will prevent takeoff:
-	if(IdleHeat() >= MaximumHeat())
+	if(!bunks && RequiredCrew())
+		checks.emplace_back("no bunks!");
+	else if(IdleHeat() >= MaximumHeat())
 		checks.emplace_back("overheating!");
 	else if(energy <= 0.)
 		checks.emplace_back("no energy!");
@@ -1423,7 +1432,7 @@ vector<string> Ship::FlightCheck() const
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
 	{
-		if(RequiredCrew() > attributes.Get("bunks"))
+		if(RequiredCrew() > bunks)
 			checks.emplace_back("insufficient bunks?");
 		if(IdleHeat() <= 0. && (thrustHeat < 0. || turnHeat < 0.))
 			checks.emplace_back("insufficient heat?");
@@ -1449,11 +1458,14 @@ vector<string> Ship::FlightCheck() const
 				checks.emplace_back("no fuel?");
 		}
 		for(const auto &it : outfits)
-			if(it.first->IsWeapon() && it.first->FiringEnergy() > energy)
+		{
+			const Weapon *weapon = it.first->GetWeapon().get();
+			if(weapon && weapon->FiringEnergy() > energy)
 			{
 				checks.emplace_back("insufficient energy to fire?");
 				break;
 			}
+		}
 	}
 
 	return checks;
@@ -2166,7 +2178,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Weapon *weapon = hardpoints[i].GetOutfit();
+		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(!weapon)
 			continue;
 		CanFireResult canFire = CanFire(weapon);
@@ -2229,8 +2241,10 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
+		const Weapon *weapon = hardpoints[i].GetWeapon();
+		if(!weapon)
+			continue;
+		if(CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
@@ -2269,8 +2283,10 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
-		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
+		const Weapon *weapon = hardpoints[i].GetWeapon();
+		if(!weapon)
+			continue;
+		if(CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
@@ -2330,6 +2346,25 @@ bool Ship::IsTargetable() const
 bool Ship::IsOverheated() const
 {
 	return isOverheated;
+}
+
+
+
+bool Ship::IsIonized() const
+{
+	if(!ionization)
+		return false;
+
+	// A ship can only be fully ionized if its engines or weapons require energy.
+	bool usesEnergy = attributes.Get("thrusting energy") > 0
+		|| attributes.Get("reverse thrusting energy") > 0
+		|| attributes.Get("turning energy") > 0
+		|| any_of(outfits.begin(), outfits.end(), [](const auto &it) -> bool {
+			const Weapon *weapon = it.first->GetWeapon().get();
+			return weapon && weapon->FiringEnergy() > 0;
+		});
+
+	return usesEnergy ? ionization > energy : false;
 }
 
 
@@ -3696,7 +3731,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		}
 		int after = outfits.count(outfit);
 		attributes.Add(*outfit, count);
-		if(outfit->IsWeapon())
+		if(outfit->GetWeapon())
 		{
 			armament.Add(outfit, count);
 			// Only the player's ships make use of attraction and deterrence.
@@ -3745,11 +3780,9 @@ const vector<Hardpoint> &Ship::Weapons() const
 
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
+// Assume the weapon is valid.
 Ship::CanFireResult Ship::CanFire(const Weapon *weapon) const
 {
-	if(!weapon || !weapon->IsWeapon())
-		return CanFireResult::INVALID;
-
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
@@ -3806,7 +3839,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 		heat.Add(-weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat());
 		AddOutfit(ammo, -weapon.AmmoUsage());
 		// Recalculate the AI to account for the loss of this weapon.
-		if(!OutfitCount(ammo) && ammo->AmmoUsage())
+		if(!OutfitCount(ammo) && ammo->GetWeapon() && ammo->GetWeapon()->AmmoUsage())
 			aiCache.Calibrate(*this);
 	}
 
@@ -4656,7 +4689,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			{
 				for(const StellarObject &object : currentSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet()
-							&& object.GetPlanet()->HasServices())
+							&& object.GetPlanet()->HasServices(isYours))
 					{
 						target = object.Position();
 						break;
@@ -4792,7 +4825,8 @@ bool Ship::DoLandingLogic()
 	}
 	// Only refuel if this planet has a spaceport.
 	else if(fuel >= attributes.Get("fuel capacity")
-			|| !landingPlanet || !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel))
+			|| !landingPlanet
+			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel, isYours))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
 		SetTargetStellar(nullptr);
@@ -5297,9 +5331,10 @@ double Ship::CalculateDeterrence() const
 {
 	double tempDeterrence = 0.;
 	for(const Hardpoint &hardpoint : Weapons())
-		if(hardpoint.GetOutfit())
+	{
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon)
 		{
-			const Outfit *weapon = hardpoint.GetOutfit();
 			// 1 DoT damage of type X = 100 damage of type X over an extended period of time
 			// (~95 damage after 5 seconds, ~99 damage after 8 seconds). Therefore, multiply
 			// DoT damage types by 100. Disruption, scrambling, and slowing don't have an
@@ -5339,6 +5374,7 @@ double Ship::CalculateDeterrence() const
 					+ scramblingFactor + slowingFactor + disruptionFactor);
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
+	}
 	return tempDeterrence;
 }
 
