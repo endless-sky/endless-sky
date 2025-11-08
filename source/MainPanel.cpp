@@ -99,6 +99,8 @@ void MainPanel::Step()
 		GetUI()->Push(new MessageLogPanel());
 		isActive = false;
 	}
+	else if(show.Has(Command::HAIL_PLANET)) // Mobile specific
+		isActive = !ShowHailPanel(true);
 	else if(show.Has(Command::HAIL))
 		isActive = !ShowHailPanel();
 	else if(show.Has(Command::HELP))
@@ -373,6 +375,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return true;
 
 	if(command.Has(Command::MAP | Command::INFO | Command::MESSAGE_LOG | Command::HAIL | Command::HELP))
+		show = command;
+	else if (command.Has(Command::HAIL_PLANET))
 		show = command;
 	else if(command.Has(Command::TURRET_TRACKING))
 	{
@@ -723,8 +727,9 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 
 
 
-bool MainPanel::ShowHailPanel()
+bool MainPanel::ShowHailPanel(bool planet_only)
 {
+	// planet_only is for mobile, to implement TALK_PLANET command.
 	// An exploding ship cannot communicate.
 	const Ship *flagship = player.Flagship();
 	if(!flagship || flagship->IsDestroyed())
@@ -742,7 +747,7 @@ bool MainPanel::ShowHailPanel()
 		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::Highest);
 	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
 		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::Highest);
-	else if(target)
+	else if(target && !planet_only)
 	{
 		// If the target is out of system, always report a generic response
 		// because the player has no way of telling if it's presently jumping or

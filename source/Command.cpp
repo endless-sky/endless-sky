@@ -101,6 +101,7 @@ const Command Command::SHIFT(ONE << 39, "");
 
 // Mobile specific commands and icons.
 const Command Command::FLEET_FORMATION(ONE << 63, "Fleet: Toggle Formation");
+const Command Command::HAIL_PLANET(ONE << 62, "Talk to selected planet");
 void Command::InitIcons()
 {
 	iconName[Command::MENU] = "ui/icon_exit";
@@ -109,6 +110,7 @@ void Command::InitIcons()
 	iconName[Command::LAND] = "ui/icon_land";
 	iconName[Command::BOARD] = "ui/icon_board";
 	iconName[Command::HAIL] = "ui/icon_talk";
+	iconName[Command::HAIL_PLANET] = "ui/icon_talk_planet";
 	iconName[Command::SCAN] = "ui/icon_scan";
 	iconName[Command::JUMP] = "ui/icon_jump";
 	iconName[Command::FLEET_JUMP] = "ui/icon_fleet_jump";

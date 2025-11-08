@@ -2856,7 +2856,7 @@ interface "main buttons" bottom right
 		center -240 -30
 		radius 22
 		selection_angles -1.5 1.5
-		selection_radius 175
+		selection_radius 185
 
 		"Show main menu"
 		"Toggle fast-forward"
@@ -2868,6 +2868,7 @@ interface "main buttons" bottom right
 		"View message log"
 		visible if "can hail"
 		"Talk to selected ship"
+		"Talk to selected planet"
 		visible if "can scan asteroids"
 		"Select nearest asteroid" "asteroid/small rock/spin"
 

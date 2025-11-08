@@ -102,6 +102,7 @@ public:
 	// Mobile specific
 	static void InitIcons();
 	static const Command FLEET_FORMATION;
+	static const Command HAIL_PLANET;
 
 public:
 	// In the given text, replace any instances of command names (in angle

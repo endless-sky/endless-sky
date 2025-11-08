@@ -68,7 +68,7 @@ protected:
 
 private:
 	void ShowScanDialog(const ShipEvent &event);
-	bool ShowHailPanel();
+	bool ShowHailPanel(bool planet_only = false);
 	bool ShowHelp(bool force);
 	void StepEvents(bool &isActive);
 
