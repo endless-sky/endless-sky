@@ -2508,14 +2508,14 @@ mission "Ka'het: Patir Mystery 21"
 			label lifeboat
 			`	He smiles. "We will see soon! She is more fast and nimble than she might appear on the ground, or we would have not chosen her as our lifeboat."`
 			label liftoff
-			`	"Oh, by the way," he recalls before climbing aboard the Petrel, "once we are at the gas giant you will not need to go more than a few kilometers deep. You can stay up, near the very edge of the atmosphere, while we delve deep below to test our craft further; you should not need a gaslining ship for such a task." He bows, and closes the hatches separating the outpost and the lifeboat.`
+			`	"Oh, to be clear," he recalls before climbing aboard the Petrel, "once we are at the gas giant, Pacili, you will not need to go more than a few kilometers deep. You can stay up, near the very edge of the atmosphere, while we delve deep below to test our craft further; you should not need a gaslining ship for such a task." He bows, and closes the hatches separating the outpost and the lifeboat.`
 			`	You don your suit right as the emergency alarm signals the start of the simulation. The Petrel zooms up in the sky at an incredible speed, disappearing into the night, and you hurry up to prepare your ship to follow it.`
 				launch
 	npc save
 		government "Remnant"
 		personality escort staying launching
-		ship "Smew" "Calm Sea Afire"
-# make it never disabled, and use on provoke to see if you hit it?
+		ship "Petrel (Lifeboat)" "Calm Sea Afire"
+# make it never disabled, and use on provoke to see if you hit it? set the condition 'Remnant: Patir Mystery 21 hit'
 # add event to make Pacili landable for non-gaslined ships
 
 mission "Ka'het: Patir Mystery 22"
@@ -2529,16 +2529,54 @@ mission "Ka'het: Patir Mystery 22"
 	on offer
 # add patir returns event
 		conversation
-			`They descend deep below your eyesight, though you can hear them in the radio, and the Ka'sei stop following you. You see the stars move, n stuff; you realize that they are probably missing the spectacle, and you're the only one seeing it. They come back up and follow you back to the Builder Settlement after verifying the Ka'sei calmed down.`
+			branch hit
+				has "Remnant: Patir Mystery 21 hit"
+			`You meet up with the Calm Sea Afire just above the uppermost cloud layer of <planet>. "<first, what happened to your weapons? We did not record any of them hitting us on the way here!" questions Dusk through the radio. The chanting tone makes you unsure of whether it was a taunt or a genuine worry about your weaponry.`
+			choice
+				`	"I was not prepared well."`
+					goto prepared
+				`	"I chose not to shoot, so as not to put you all in danger."`
+					goto shoot
+				`	"You might not be as lucky next time."`
+					goto luck
+			label hit
+			`You meet up with the Calm Sea Afire just above the uppermost cloud layer of <planet>. You call them on the radio to inform them of the shots you landed. "You did well," replies Dusk with an undecided tone. "We will review the results on the way back in a few days to get a better idea."`
+			choice
+				`	"The escape plan certainly needs improvements."`
+					goto improvement
+				`	"It was quite fun."`
+					goto fun
+				`	"Most of it was luck on my part."`
+			label luck
+			`	"Embers help those who help themselves," he chants in a somber tone. "Still, I will take note of the feedback for posterity. We are almost ready for our descent now. We should be back in about an hour, but feel free to fly around here in the meantime."`
+				goto descent
+			label prepared
+			`	"Don't be too hard on yourself," he reassures you. "We would not have chosen her if we didn't think she could escape such an attack!" The radio turns silent for a few seconds, then he returns. "Captain, we are almost ready for our descent now. We should be back in about an hour, but feel free to fly around here in the meantime."`
+				goto descent
+			label shoot
+			`	"Oh," comes the somber response. "I will take note. At least the rest of the simulation went well," he decides at last. "We are almost ready for our descent now. We should be back in about an hour."`
+				goto descent
+			label improvement
+			`	"There's a reason for these simulations," he reasons through the communicator, "and there are some certainly quirks to iron out. Our descent now will be the last part that we need to demonstrate. We should be back in about an hour, but feel free to fly around here in the meantime."`
+				goto descent
+			label fun
+			`	"It would not have been as fun if the attack was not simulated," he replies. It takes a minute for the next transmission to come. "We are almost ready for our descent now. We should be back in about an hour."`
+			label descent
+			`	The Petrel leaves your wing and falls like a stone through the cloud layer. Irregular updates from the crew reassure you that their test is continuing, and that their ship is holding up well. You follow their trip on your radar screen until they move beyond the range of your instruments.`
+			`	The stars above you are barely visible in the atmosphere of <planet>; it's for this reason that you only figure out Patir is moving halfway through the process. There is no way that the other Remnant can see it from deep below, and the ones who remained at the Builder settlement are probably too busy with their experiments to watch it. Chances are that, this time, you are the only person who can stop and take a look at the spectacle. You recline your seat to watch through your cockpit the faint dance above the planet.`
+			`	The sequence you have now seen twice repeats at the reverse: most of the show now sees the number of stars grow continuously, spinning or moving erratically left and right. In the last few seconds most of those lights condense into a shrinking mass of light, until it appears to have become just another star. Still, you can confidently say that you can see far more stars around you than before Patir started moving.`
+			`	The show is already starting to become less enchanting than the first times. It was a blessing that you were able to experience it alone at least once, before the questions turns into frustration: you can sense it is happening, to an extent, in some of the Remnant. But soon enough, the fruitful return of their lifeboat puts an end to your thoughts. Now that you are back in the Milky Way, it's time to pack things up in the Remnant laboratory and make the trip back to the Ember Wastes.`
 				accept
 	npc save
 		government "Remnant"
 		personality escort staying launching
-		ship "Smew" "Calm Sea Afire"
+		ship "Petrel (Lifeboat)" "Calm Sea Afire"
 # add event to make Pacili unlandable for non-gaslined ships
 	on complete
 		conversation
-			`There's certainly hiccups to iron out, they say, but best to know now than in a real emergency. See them in a few hours after they have set up the lifeboat again for future use. Still, there's a thing they do first: send a communication to the Remnant that they're back, otherwise they would send Patir back there again in a contingency.`
+			`You precede the Petrel to the outpost, and stand next to your ship watching it make a fairly decent landing right next to the facility. Despite the imprecision, a tunnel grows out of the habitat and toward the ship's hatch, locking the two of them together. When you enter the laboratory, the three Remnant is giving a rundown of their results to the other two, and vice versa. Both groups seem satisfied, though you feel the pair who stayed in the hab is more than the other three.`
+			`	"We will be ready to leave soon," announces Dusk at last. "After a few hours of sleep, and a couple more to finish setting up the lab. I suggest you take the chance to sleep a bit as well, <first>." He hands you a small crystal, enclosed in a metallic container.`
+			`	"But first, make sure to transmit back to Ssil Vida the contents of this chip. You can think of it as a passphrase: if they do not receive it, it will be a sign that we have been stuck in the other galaxy, and they will move Patir back there as soon as possible for a few days so that we can catch the ride." You nod, and leave them to their rest in the outpost.`
 
 mission "Ka'het: Patir Mystery 23"
 	name "Return to <planet>"
@@ -2839,7 +2877,7 @@ mission "Ka'het: Patir Mystery 37"
 		has "Ka'het: Patir Mystery 36: done"
 	on offer
 		conversation
-			`Swans go well, Taely asks for a ride back. Mention Korath in Ssil Vida? You can ask her about Peregrines.`
+			`Swans go well, Taely asks for a ride back. Mention Korath in Ssil Vida? You can ask her about Peregrines. Also, clock in Ssil Vida marking the days before Patir disappears, and she adds a light to your ship signaling whether Patir is here or in the other galaxy.`
 				accept
 
 mission "Ka'het: Patir Mystery 38"
