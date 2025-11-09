@@ -1240,9 +1240,9 @@ mission "FW Bounty 3"
 		not "chosen sides"
 		random < 30 + 5 * "assisted free worlds" * "assisted free worlds"
 	on decline
+		log "Told a militia officer that I wouldn't do any more bounty hunting for the Free Worlds."
 		dialog phrase "free worlds declined"
 	on fail
-		log "Told a militia officer that I wouldn't do any more bounty hunting for the Free Worlds."
 		clear "FW Bounty 3: offered"
 	
 	on offer
