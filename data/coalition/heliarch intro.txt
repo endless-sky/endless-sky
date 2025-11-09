@@ -300,6 +300,8 @@ mission "Heliarch Investigation 2 - Shifting Sand"
 	destination "Shifting Sand"
 	to offer
 		has "Heliarch Investigation 1: done"
+		not "joined the lunarium"
+		not "assisting lunarium"
 	to fail
 		or
 			has "Heliarch Investigation 2: declined"
