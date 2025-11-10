@@ -97,6 +97,8 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
+	virtual void Resize() override;
+
 
 private:
 	// Common code from all three constructors:

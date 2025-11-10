@@ -1213,6 +1213,9 @@ tip "mining precision:"
 
 
 # Flight checks:
+tip "no bunks!"
+	`This ship needs crew to operate, but has no bunks.`
+
 tip "overheating!"
 	`This ship's outfits are producing so much heat that it will overheat the moment it takes off. You must either add more cooling or remove some of the outfits that are producing heat.`
 
@@ -1416,7 +1419,7 @@ tip "Render motion blur"
 	`Toggle whether motion blur is rendered for all moving objects.`
 
 tip "Reduce large graphics"
-	`Reduce the size of very large graphics (images with >= 1 million pixels) to half their size. May be used to free up memory.`
+	`Reduce the size of very large (images with >= 1 million pixels) or all graphics to half their dimensions. UI sprites are excluded. (Not recommended for high-resolution displays, but may be used to free up memory. Requires game restart.)`
 
 tip "Draw background haze"
 	`Draw the background haze when in flight.`
@@ -1531,6 +1534,9 @@ tip "Rehire extra crew when lost"
 
 tip "Automatically unpark flagship"
 	`Automatically unpark a ship dragged to the first position in the ship list, and make it your flagship.`
+
+tip "Prioritize flagship use"
+	`When distributing cargo and passengers among your ships on takeoff, prioritize the flagship over your escorts. (When your flagship does not have enough space, some mission cargo or passengers may still be moved to your other ships.)`
 	
 tip "Deadline blink by distance"
 	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
@@ -1562,6 +1568,9 @@ tip "Landing zoom"
 tip "Scroll speed"
 	`The speed of scrolling in panels that can scroll.`
 
+tip "Tooltip activation time"
+	`For how long you need to hover over an item to show its tooltip.`
+
 tip "Date format"
 	`The format that dates in the game are displayed in.`
 
@@ -1570,3 +1579,9 @@ tip "Show parenthesis"
 
 tip "Notify on destination"
 	`If you enter a system with a planet you must land on for a mission, plays a notification sound.`
+
+tip "Title bar theme"
+	`Choose the theme of the title bar, or leave "system default" to use system settings. (Available on Windows 10 or newer; on Windows 10, the game window must be resized or restarted in order for the change to take effect.)`
+
+tip "Window rounding"
+	`Control the appearance of window corners. (Available on Windows 11.)`

@@ -5,6 +5,12 @@
 			"platform": "osx"
 		}
 	],
+	"overrides": [
+		{
+			"name": "openal-soft",
+			"version": "1.23.1#2"
+		}
+	],
 	"features": {
 		"system-libs": {
 			"description": "System libraries required to build ES.",

@@ -30,7 +30,7 @@ public:
 	static void Step();
 
 	// Handle resize events of the main window.
-	static void AdjustViewport();
+	static void AdjustViewport(bool noResizeEvent = false);
 
 	// Attempt to set the game's VSync setting.
 	static bool SetVSync(Preferences::VSync state);
@@ -50,4 +50,10 @@ public:
 	// Print the error message in the terminal, error file, and message box.
 	// Checks for video system errors and records those as well.
 	static void ExitWithError(const std::string &message, bool doPopUp = true);
+
+#ifdef _WIN32
+	// Set attributes of the main window according to the current preferences.
+	static void UpdateTitleBarTheme();
+	static void UpdateWindowRounding();
+#endif
 };

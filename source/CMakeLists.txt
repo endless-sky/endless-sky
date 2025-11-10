@@ -70,6 +70,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConversationPanel.h
 	CoreStartData.cpp
 	CoreStartData.h
+	CustomEvents.cpp
+	CustomEvents.h
 	DamageDealt.h
 	DamageProfile.cpp
 	DamageProfile.h
@@ -308,6 +310,8 @@ target_sources(EndlessSkyLib PRIVATE
 	TextArea.h
 	TextReplacements.cpp
 	TextReplacements.h
+	Tooltip.cpp
+	Tooltip.h
 	Trade.cpp
 	Trade.h
 	TradingPanel.cpp
@@ -440,5 +444,7 @@ if(WIN32)
 	target_sources(EndlessSkyLib PRIVATE
 		windows/TimerResolutionGuard.cpp
 		windows/TimerResolutionGuard.h
+		windows/WinVersion.cpp
+		windows/WinVersion.h
 	)
 endif()
