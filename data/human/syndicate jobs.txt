@@ -786,7 +786,7 @@ mission "Syndicate Hovercraft Racer Transport"
 		has "landing access: Sunracer"
 	source
 		government "Syndicate"
-		not near "Mirfak" 1 4
+		not near "Mirfak" 4
 	destination Sunracer
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
