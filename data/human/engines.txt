@@ -21,7 +21,7 @@ outfit "Volcano Afterburner"
 	"outfit space" -10
 	"engine capacity" -10
 	"afterburner thrust" 40.65
-	"afterburner fuel" .125
+	"afterburner fuel" .1875
 	"afterburner heat" 10.0
 	"afterburner effect" "afterburner"
 	description "An afterburner works by dumping hyperspace fuel into your engines and igniting it, producing a large amount of thrust. This can be very useful for dodging missiles or briefly escaping from faster opponents, but you must be careful to avoid using up so much fuel that you do not have enough left for hyperspace travel."
@@ -47,8 +47,8 @@ outfit "Caldera Afterburner"
 	"mass" 37
 	"outfit space" -37
 	"engine capacity" -37
-	"afterburner thrust" 180.0
-	"afterburner fuel" .5
+	"afterburner thrust" 165
+	"afterburner fuel" .75
 	"afterburner heat" 42.0
 	"afterburner effect" "caldera afterburner" 5
 	description "The Caldera Afterburner is designed for heavy warships, allowing otherwise slow ships to gain a burst of speed to catch up to a faster target or flee from the heat of battle."
@@ -76,7 +76,7 @@ outfit "Ionic Afterburner"
 	"outfit space" -16
 	"engine capacity" -16
 	"afterburner thrust" 47.1
-	"afterburner fuel" .03
+	"afterburner fuel" .045
 	"afterburner energy" 5.1
 	"afterburner heat" 4.0
 	"afterburner effect" "ionic afterburner"

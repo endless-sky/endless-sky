@@ -159,8 +159,8 @@ mission "lost in coalition"
 		government "Coalition" "Heliarch"
 	to offer
 		has "license: Coalition"
+		not "ship attribute: jump drive"
 	on offer
-		require "Jump Drive" 0
 		event "lost in coalition" 14
 		fail
 
@@ -243,6 +243,7 @@ mission "Coalition Yottrite 1"
 		has "Coalition Yottrite 2: offered"
 	source
 		near "Bloptab" 1 100
+		government "Coalition" "Heliarch"
 	destination "Bloptab's Furnace"
 	on offer
 		conversation

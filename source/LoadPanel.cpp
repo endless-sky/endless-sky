@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
@@ -49,44 +50,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Return a pair containing settings to use for time formatting.
-	pair<const char*, const char*> TimestampFormatString(Preferences::DateFormat format)
-	{
-		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
-		switch(format)
-		{
-			case Preferences::DateFormat::YMD:
-				return make_pair("%F %T", "%F %T");
-			case Preferences::DateFormat::MDY:
-				return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
-			case Preferences::DateFormat::DMY:
-			default:
-				return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
-		}
-	}
-
-	// Convert a file_time_type to a human-readable time and date.
-	string TimestampString(filesystem::file_time_type time)
-	{
-		// TODO: Replace with chrono formatting when it is properly supported.
-		auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
-				+ chrono::system_clock::now());
-		time_t timestamp = chrono::system_clock::to_time_t(sctp);
-
-		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
-		static const size_t BUF_SIZE = 25;
-		char str[BUF_SIZE];
-
-#ifdef _WIN32
-		tm date;
-		localtime_s(&date, &timestamp);
-		return string(str, std::strftime(str, BUF_SIZE, format.second, &date));
-#else
-		const tm *date = localtime(&timestamp);
-		return string(str, std::strftime(str, BUF_SIZE, format.first, date));
-#endif
-	}
-
 	// Extract the date from this pilot's most recent save.
 	string FileDate(const filesystem::path &filename)
 	{
@@ -243,7 +206,7 @@ void LoadPanel::Draw()
 				tooltip.IncrementCount();
 				if(tooltip.ShouldDraw())
 				{
-					tooltip.SetText(TimestampString(it.second), true);
+					tooltip.SetText(Format::TimestampString(it.second), true);
 					tooltip.SetZone(zone);
 				}
 			}
@@ -266,6 +229,13 @@ void LoadPanel::Draw()
 		tooltip.DecrementCount();
 	else
 		tooltip.Draw();
+}
+
+
+
+void LoadPanel::UpdateTooltipActivation()
+{
+	tooltip.UpdateActivationCount();
 }
 
 

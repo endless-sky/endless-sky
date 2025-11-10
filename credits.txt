@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.15-alpha
+version 0.10.17-alpha
 
 The player's manual and other
 resources are available at:
@@ -348,6 +348,7 @@ contributed to Endless Sky:
   Matteo Mazzitti
   mattsoulanille
   maxrd2
+  mbartlett21
   McloughlinGuy
   MCOfficer
   MessyMix
@@ -367,6 +368,7 @@ contributed to Endless Sky:
   Nescio0
   neurotrope
   nickshanks
+  NobodyIII
   nobodywasishere
   NomadicVolcano
   nothing-but-the-rain
@@ -378,6 +380,7 @@ contributed to Endless Sky:
   Ornok
   ovari
   OverYrPaygrade
+  pakyinwww
   palant
   PaulBlay
   PeacefulPotato
@@ -399,6 +402,8 @@ contributed to Endless Sky:
   pythonmcpi
   Quantumshark
   quyykk
+  qxxt
+  r41k0u
   Rakete1111
   ravenshining
   real-dam
@@ -502,6 +507,7 @@ contributed to Endless Sky:
   wjbotham
   wjp
   Wrzlprnft
+  Xcyiterr
   xobes
   xxxyyyqqq12345
   YellowApple
