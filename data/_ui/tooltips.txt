@@ -1560,7 +1560,7 @@ tip "Interrupt fast-forward"
 	`Disable fast-forward whenever you land or when a conversation, dialog, or other panel appears while in flight.`
 
 tip "'Sell Outfits' without outfitter"
-	`In the Trading panel, controls whether the 'Sell Outfits' button will allow selling outfits even when there is not Outfitter at which to buy them back.`
+	`In the Trading panel, controls whether the 'Sell Outfits' button will allow selling outfits even when there is no Outfitter at which to buy them back.`
 
 tip "Confirm 'Sell Outfits' button"
 	`In the Trading panel, controls whether or not to confirm sales of all outfits in cargo.`
