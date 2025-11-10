@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -814,9 +813,6 @@ void PreferencesPanel::DrawSettings()
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
 		NOTIFY_ON_DEST
-		// TODO: There is room for one more option in this second column given this Windows-only subsection
-		//  and experimentation has shown that there is a bug trying to add a third page is not properly working
-		//  at this time.
 #ifdef _WIN32
 		, "",
 		"Windows Options",
