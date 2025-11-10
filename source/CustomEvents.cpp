@@ -1,5 +1,5 @@
-/* ImageFileData.h
-Copyright (c) 2024 by tibetiroka
+/* CustomEvents.cpp
+Copyright (c) 2025 by TomGoodIdea
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,29 +13,34 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#pragma once
+#include "CustomEvents.h"
 
-#include "BlendingMode.h"
+#include <cassert>
 
-#include <filesystem>
-#include <string>
-
-
-
-class ImageFileData {
-public:
-	// Computes the image file data from a path. If the path has a source directory,
-	// it has to be specified here.
-	ImageFileData(const std::filesystem::path &path, const std::filesystem::path &source = {});
+namespace {
+	Uint32 resize = -1;
+}
 
 
-public:
-	std::filesystem::path path;
-	std::string extension;
-	std::string name;
-	bool is2x = false;
-	bool noReduction = false;
-	bool isSwizzleMask = false;
-	BlendingMode blendingMode = BlendingMode::ALPHA;
-	size_t frameNumber = 0;
-};
+
+void CustomEvents::Init()
+{
+	resize = SDL_RegisterEvents(1);
+}
+
+
+
+Uint32 CustomEvents::GetResize()
+{
+	assert(resize != static_cast<Uint32>(-1) && "Custom events must be registered");
+	return resize;
+}
+
+
+
+void CustomEvents::SendResize()
+{
+	SDL_Event event;
+	event.type = GetResize();
+	SDL_PushEvent(&event);
+}

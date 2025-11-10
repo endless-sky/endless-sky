@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
+#include "CustomEvents.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Engine.h"
@@ -140,6 +141,7 @@ int main(int argc, char *argv[])
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
 	try {
+
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
@@ -235,6 +237,7 @@ int main(int argc, char *argv[])
 		if(isTesting && !noTestMute)
 			Audio::SetVolume(0, SoundCategory::MASTER);
 
+		CustomEvents::Init();
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
 	}
@@ -252,7 +255,7 @@ int main(int argc, char *argv[])
 	// Remember the window state and preferences if quitting normally.
 	Preferences::Set("maximized", GameWindow::IsMaximized());
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
-	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
+	Screen::SetRaw(GameWindow::Width(), GameWindow::Height(), true);
 	Preferences::Save();
 	Plugins::Save();
 
@@ -335,11 +338,10 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
 			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-			{
-				// The window has been resized. Adjust the raw screen size
-				// and the OpenGL viewport to match. The order (window first, then UI panels)
-				// matters as window changes can adjust the zoom factor.
+				// The window has been resized. Adjust the raw screen size and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
+			else if(event.type == CustomEvents::GetResize())
+			{
 				menuPanels.AdjustViewport();
 				gamePanels.AdjustViewport();
 			}
