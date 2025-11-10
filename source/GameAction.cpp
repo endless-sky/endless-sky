@@ -164,9 +164,9 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		// This means that there can never be a special category named 'scene' or there will be problems with the
 		// player logbook format.
 		if(child.Size() < 3 || (child.Size() == 3 && child.Token(1) == "scene"))
-			logEntries.Read(child, 1);
+			logEntries.Load(child, 1);
 		else if(child.Size() >= 3)
-			specialLogEntries[child.Token(1)][child.Token(2)].Read(child, 3);
+			specialLogEntries[child.Token(1)][child.Token(2)].Load(child, 3);
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
@@ -241,7 +241,7 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 
 void GameAction::Save(DataWriter &out) const
 {
-	if(!logEntries.Empty())
+	if(!logEntries.IsEmpty())
 	{
 		out.Write("log");
 		logEntries.Save(out);
@@ -249,7 +249,7 @@ void GameAction::Save(DataWriter &out) const
 	for(const auto &[category, headings] : specialLogEntries)
 		for(const auto &[heading, specialLogEntry] : headings)
 		{
-			if(!specialLogEntry.Empty())
+			if(!specialLogEntry.IsEmpty())
 			{
 				out.Write("log", category, heading);
 				specialLogEntry.Save(out);

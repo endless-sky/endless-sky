@@ -27,7 +27,7 @@ using namespace std;
 
 
 
-bool BookEntry::Empty() const
+bool BookEntry::IsEmpty() const
 {
 	return all_of(items.begin(), items.end(),
 		[](const Item &item) { return holds_alternative<std::monostate>(item); });
@@ -35,13 +35,13 @@ bool BookEntry::Empty() const
 
 
 
-void BookEntry::Read(const DataNode &node, int startAt)
+void BookEntry::Load(const DataNode &node, int startAt)
 {
 	if(startAt < node.Size())
-		ReadItem(node, startAt);
+		LoadSingle(node, startAt);
 
 	for(const DataNode &child : node)
-		ReadItem(child);
+		LoadSingle(child);
 }
 
 
@@ -112,7 +112,7 @@ int BookEntry::Draw(const Point &topLeft, WrappedText &wrap, const Color &color)
 
 
 
-void BookEntry::ReadItem(const DataNode &node, int startAt)
+void BookEntry::LoadSingle(const DataNode &node, int startAt)
 {
 	if(node.Size() - startAt == 2 && node.Token(startAt) == "scene")
 		items.emplace_back(SpriteSet::Get(node.Token(startAt + 1)));

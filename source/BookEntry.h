@@ -36,11 +36,11 @@ public:
 
 
 public:
-	bool Empty() const;
-	void Read(const DataNode &node, int startAt = 0);
+	bool IsEmpty() const;
+	void Load(const DataNode &node, int startAt = 0);
 	void Add(const BookEntry &other);
 
-	// When a GameAction is triggered, substitutions are performed.
+	// When a GameAction is instantiated, substitutions are performed.
 	BookEntry Instantiate(const std::map<std::string, std::string> &subs) const;
 
 	void Save(DataWriter &out) const;
@@ -50,7 +50,7 @@ public:
 
 
 private:
-	void ReadItem(const DataNode &node, int startAt = 0);
+	void LoadSingle(const DataNode &node, int startAt = 0);
 
 
 private:

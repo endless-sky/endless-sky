@@ -424,13 +424,13 @@ void PlayerInfo::Load(const filesystem::path &path)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
 					for(const DataNode &great : grand)
-						logbook[date].Read(great);
+						logbook[date].Load(great);
 				}
 				else if(grand.Size() >= 2)
 				{
 					for(const DataNode &great : grand)
 					{
-						specialLogs[grand.Token(0)][grand.Token(1)].Read(great);
+						specialLogs[grand.Token(0)][grand.Token(1)].Load(great);
 					}
 				}
 			}
@@ -4644,14 +4644,14 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		for(const auto &[date, logbookEntry] : logbook)
-			if(!logbookEntry.Empty())
+			if(!logbookEntry.IsEmpty())
 			{
 				out.Write(date.Day(), date.Month(), date.Year());
 				logbookEntry.Save(out);
 			}
 		for(const auto &[category, nextMap] : specialLogs)
 			for(const auto &[heading, logbookEntry] : nextMap)
-				if(!logbookEntry.Empty())
+				if(!logbookEntry.IsEmpty())
 				{
 					out.Write(category, heading);
 					logbookEntry.Save(out);
