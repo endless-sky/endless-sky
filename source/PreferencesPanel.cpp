@@ -777,17 +777,19 @@ void PreferencesPanel::DrawSettings()
 		"Show stored outfits on map",
 		"System map sends move orders",
 		"",
+		"Trading",
+		"'Sell Outfits' without outfitter",
+		"Confirm 'Sell Outfits' button",
+		"Confirm 'Sell Flotsam' button",
+		"Show parenthesis",
+		"",
 		"Other",
 		"Always underline shortcuts",
 		REACTIVATE_HELP,
 		"Interrupt fast-forward",
-		"'Sell Outfits' without outfitter",
-		"Confirm 'Sell Outfits' button",
-		"Confirm 'Sell Flotsam' button",
 		"Landing zoom",
 		SCROLL_SPEED,
 		DATE_FORMAT,
-		"Show parenthesis",
 		NOTIFY_ON_DEST
 	};
 
