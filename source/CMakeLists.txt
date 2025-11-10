@@ -70,6 +70,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConversationPanel.h
 	CoreStartData.cpp
 	CoreStartData.h
+	CustomEvents.cpp
+	CustomEvents.h
 	DamageDealt.h
 	DamageProfile.cpp
 	DamageProfile.h
@@ -444,5 +446,7 @@ if(WIN32)
 	target_sources(EndlessSkyLib PRIVATE
 		windows/TimerResolutionGuard.cpp
 		windows/TimerResolutionGuard.h
+		windows/WinVersion.cpp
+		windows/WinVersion.h
 	)
 endif()

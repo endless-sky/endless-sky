@@ -33,7 +33,7 @@ class PlayerInfo;
 // the panel closes, to report the outcome of the conversation.
 class LogbookPanel : public Panel {
 public:
-	LogbookPanel(PlayerInfo &player);
+	explicit LogbookPanel(PlayerInfo &player);
 
 	// Draw this panel.
 	virtual void Draw() override;

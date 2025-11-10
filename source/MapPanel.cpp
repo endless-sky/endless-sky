@@ -273,7 +273,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	// If the player is not landed, then the deadlines will have already been
 	// recalculated on the day change.
 	if(player.GetPlanet())
-		player.CalculateRemainingDeadlines();
+		player.CacheMissionInformation(true);
 
 	CenterOnSystem(selectedSystem, true);
 }
@@ -457,6 +457,13 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 bool MapPanel::AllowsFastForward() const noexcept
 {
 	return true;
+}
+
+
+
+void MapPanel::UpdateTooltipActivation()
+{
+	tooltip.UpdateActivationCount();
 }
 
 
@@ -1010,10 +1017,11 @@ void MapPanel::UpdateCache()
 					if(object.HasSprite() && object.HasValidPlanet())
 					{
 						const Planet *planet = object.GetPlanet();
-						hasSpaceport |= !planet->IsWormhole() && planet->HasServices();
+						bool hasServices = planet->HasServices();
+						hasSpaceport |= !planet->IsWormhole() && hasServices;
 						if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()))
 							continue;
-						canLand |= planet->CanLand() && planet->HasServices();
+						canLand |= planet->CanLand() && hasServices;
 						isInhabited |= planet->IsInhabited();
 						hasDominated &= (!planet->IsInhabited()
 							|| GameData::GetPolitics().HasDominated(planet));
@@ -1353,7 +1361,7 @@ void MapPanel::DrawSystems()
 			}
 		}
 
-		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
+		if(commodity == SHOW_GOVERNMENT && node.government && node.government->DisplayName() != "Uninhabited")
 		{
 			// For every government that is drawn, keep track of how close it
 			// is to the center of the view. The four closest governments
@@ -1450,6 +1458,8 @@ void MapPanel::DrawMissions()
 			DrawPointer(stopoverSystem, counts.drawn, counts.MaximumActive(), waypointColor);
 		}
 		for(const System *mark : mission.MarkedSystems())
+			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
+		for(const System *mark : mission.TrackedSystems())
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
 	// Draw the available and unavailable jobs.
