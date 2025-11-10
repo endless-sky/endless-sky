@@ -50,6 +50,9 @@ public:
 	bool CanLand(const Ship &ship, const Planet *planet) const;
 	// Check if the player can land on the given planet.
 	bool CanLand(const Planet *planet) const;
+	// Check if the player has been granted clearance to land on this planet, either
+	// through bribes or domination.
+	bool HasClearance(const Planet *planet) const;
 	bool CanUseServices(const Planet *planet) const;
 	// Bribe a planet to let the player's ships land there.
 	void BribePlanet(const Planet *planet, bool fullAccess);

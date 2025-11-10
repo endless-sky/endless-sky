@@ -36,7 +36,8 @@ TextArea::TextArea()
 
 
 
-TextArea::TextArea(const Rectangle &r): TextArea()
+TextArea::TextArea(const Rectangle &r)
+	: TextArea()
 {
 	SetRect(r);
 }

@@ -614,8 +614,8 @@ pair<int, const Conversation *> CargoHold::IllegalCargoFine(const Government *go
 	{
 		int fine = it.first->Fine();
 		if(fine < 0)
-			return {fine, nullptr};
-		if(!it.first->IsFailed())
+			return {-1 * !government->IgnoresUniversalAtrocities(), nullptr};
+		if(!it.first->IsFailed() && !government->IgnoresUniversalIllegals())
 			totalFine += fine;
 	}
 
@@ -631,8 +631,8 @@ int CargoHold::IllegalPassengersFine(const Government *government) const
 	{
 		int fine = it.first->Fine();
 		if(fine < 0)
-			return fine;
-		if(!it.first->IsFailed())
+			return -1 * !government->IgnoresUniversalAtrocities();
+		if(!it.first->IsFailed() && !government->IgnoresUniversalIllegals())
 			totalFine += fine;
 	}
 
