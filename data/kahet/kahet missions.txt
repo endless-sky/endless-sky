@@ -2400,7 +2400,7 @@ mission "Ka'het: Patir Mystery 20"
 	source "Caelian"
 	destination "Builder Settlement"
 	passengers 5
-	cargo 9
+	cargo "Patir surface payload" 9
 	to offer
 		has "Ka'het: Patir Mystery 19: done"
 	on offer
@@ -2467,7 +2467,7 @@ mission "Ka'het: Patir Mystery 20"
 
 mission "Ka'het: Patir Mystery 21"
 	landing
-	name "Gaslined test run"
+	name "Lifeboat on the run"
 	description "Follow the Petrel lifeboat to <destination>, a gas giant in the same system."
 	deadline 1
 	source "Builder Settlement"
@@ -2520,7 +2520,7 @@ mission "Ka'het: Patir Mystery 21"
 
 mission "Ka'het: Patir Mystery 22"
 	landing
-	name "Lifeboat return"
+	name "End of the tests"
 	description "Return the Petrel 'Calm Sea Afire' to the <destination> safely."
 	source "Pacili"
 	destination "Builder Settlement"
@@ -2583,15 +2583,62 @@ mission "Ka'het: Patir Mystery 23"
 	description "Bring the Remnant researchers back to <destination> to evaluate the results of the test."
 	source "Builder Settlement"
 	destination "Caelian"
+	passengers 5
+	cargo "Patir samples" 8
 	to offer
 		has "Ka'het: Patir Mystery 22: done"
 	on offer
 		conversation
-			`less go`
+			`You enter the outpost once again, only to discovery that no one is inside. A glance out of the small windows does not reveal any activity, and the Calm Sea Afire, still docked to the side of the laboratory, appears to be just as empty as the rest of the outpost. It does not take you long to decide that if the Remnant are not here and you did not see them outside, they must have entered into the Builder settlement.`
+			choice
+				`	(Follow them inside.)`
+					goto inside
+				`	(Wait for them here.)`
+					goto wait
+				`	(Get back to your ship and wait for them there.)`
+			`	Over half an hour passes before the Remnant show up outside of the outpost. You watch them from the cockpit as they tow and then load unidentifiable cargo into your payload bay; eventually, they all climb into the pressurized section of your ship, signaling you that they are ready to go back to <destination>.`
+				accept
+			label wait
+			`	Half an hour passes before the airlock opens and the first Remnant comes in. They are carrying with them dozens of heavy-looking containers, certainly containing artifacts found inside the facility. To make their life easier, and to expedite the process, you go back outside and fly your ship closer to the entrance. After some more help, and with their thanks, you move back to the bridge at last and prepare for your flight back to <destination>.`
+				accept
+			label inside
+			`	The space inside the settlement has changed remarkably since your first encounter with the Ka'sei. Much like on the outside of the outpost, an army of small, autonomous scientific stations has been scattered all over the floor, each with its own generator and control system. Near them, you find that a section of the floor has been opened, and a makeshift tent has been erected over it.`
+			`	In the general mess, you try to contact the Remnant with your commlink, and soon enough one of the researchers replies with indications on how to reach their position. A lift of clear Remnant design takes you down a couple floors, and in front of a second map. A stroke of luck: some translations have been taped next to the original Builder writing!`
+			`	'Branch of Leaf,' 'Water Moon (?)', 'Exit Lane (?)', and 'Blue To Orange (??)' appear prominently on the map. A thick line labelled 'Safe Hull' surrounds the floor: it appears that despite the look, the complex was well protected. You compare the message of the Remnant with the rooms shown in front of you. Based on the indications, it appears that your destination is the Exit Lane. It only takes you a few minutes more to reach it. "Captain!" comes the voice of one of the Remnant, "come help us!"`
+			`	You join them in towing a pile of metallic containers, held together inside something best described as an incredibly thin fishing net. Despite the low gravity, the effort exhausts you before you have even passed the gate of the 'Exit lane'; the load certainly has to weight multiple tons. The Remnant explain you that they contain the many archeological artifacts gathered here during your past trip beyond Patir, which were left behind in the hurry after the return to the Milky Way. "Amusingly enough," concludes one of them, "most of this mass is not in the samples themselves - it is in the padding to keep them safe."`
+			choice
+				`	"What is this room?"`
+					goto place
+				`	"It does not sound that amusing right now."`
+				`	(Put all your efforts in bringing them to the lift.)`
+					goto lift
+			`	Your reply makes him grin briefly. "We really ought to bring some trailers with us the next time. Perhaps even a camel, or three..."`
+				goto lift
+			label place
+			`	"Just a telecommunication center," replies Dusk. "Pristine, much like the rest of the settlement, and for us mainly of interest for its electronics - as well as for being an open, spacious room where we could amass our equipment." You look around the room in search of any identifiable feature. Besides pavement-mounted screens and sets of clearly recognizable speakers, both on top and at the bottom of the room's walls, you cannot see anything that could give information on the Builders' appearance.`
+			label lift
+			`	After much hard work and a short break, the mass of containers sits atop the lift. Four Remnant climb with the equipment back to the surface in order to unload it. Dusk, instead, waits with you at the bottom of the lift, ready to intervene if it were to malfunction carrying such a heavy mass.`
+			`	Dusk, after glancing at his data pad for some time, breaks the silence. "<first>, has anybody taught you the Builder written language?" You shake your head, and he shows you a picture on his pad. It shows a room with a series of circular mattresses, with a curtain separating each other. You recognize the sign above them: it was the one marked as Water Moon in the map. "In the context here, what do you believe the sign is about?"`
+			choice
+				`	"I feel that it says 'Water Moon.'"`
+					goto loud_error_buzzer
+				`	"Something about bunks?"
+					goto loud_error_buzzer_2
+				`	"What is this about?"`
+			`	"Oh, it is nothing of particular importance," he replies slightly flustered. "Just some bits of information that I find interesting, but really do not help much compose the bigger picture."`
+				goto focus
+			label loud_error_buzzer
+			`	He smiles broadly. "I see that you have stopped to read the map on the way here. Yes, literally that is correct. But what does Water Moon have to do with what is clearly a bunk room - and, in fact, the only one we have encountered in the complex? Neither this, nor most other signs around this floor, seem to make any sense based on our understanding of Builder. It is far from the first time this happens, especially with texts longer than a phrase or two. Some rules or characteristics of their language is still far beyond our understanding its literal meaning, it seems."`
+				goto focus
+			label loud_error_buzzer_2
+			`	"Logical, and yet the literal translation of these signs would be 'Water Moon', or 'Water Sky'. And the same disconnect between the text in the signs and the actual content of the room repeats more or less in this entire zone, unlike the floors above us. Truthfully, Patir is not the first place where we saw this happen, even if it usually happens in longer phrases than signs. Some rules or characteristics of their language is still far beyond our understanding its literal meaning, it seems."`
+			label focus
+			`	The lift returns to pick you two back up, and you follow Dusk inside the bucket. "It is customary that anyone who intends to work near Korath or Builder worlds learn the basics of the respective languages, but I used to spend some of my free time learning of more specific jargon. You may have heard I had to give up my responsibilities at Ssil Vida recently to have some of my spare time back; perhaps I will be able to use some of it to help with the recent xenolinguistic developments. I have yet to decide if to focus on Patir itself or in what lies beyond it for my researches."`
+			`	The discussion while moving the containers bit by bit into the outpost and then into your ship. Much of the cargo has been loaded by the time they let you leave for some rest and to prepare your ship for liftoff, which you graciously accept.`
 				accept
 	on complete
 		conversation
-			`They are surprisingly happy despite being almost killed, both the researchers you transported and the people who review it. Time to hear about the next one.`
+			`The Remnant leave the ship in joyful mood, despite the effort and the complications along the way. While a carriage leaves with the cargo you bought back from Patir, Dusk informs you that the next step will depend on the review of this test flight directly by the Prefects. "If all goes well, you will find us at a table of the nearby cafeteria as soon as we have taken some rest," he concludes with a hopeful bow.`
 
 mission "Ka'het: Patir Mystery 24"
 	name "Beyond <system> again"
@@ -2843,7 +2890,7 @@ mission "Ka'het: Patir Mystery 35"
 	on offer
 		conversation
 # two branches: if you made it escape, and if you did everything right
-			`Chilia stuff. Meet Dusk the spaceport at the end`
+			`Chilia stuff. Meet Dusk the spaceport at the end. Include here discussion with Dusk about militarization?`
 				decline
 
 mission "Ka'het: Patir Mystery 36"
@@ -2909,7 +2956,7 @@ mission "Ka'het: Patir Mystery 39"
 	on offer
 # give the player the terns
 		conversation
-			`The team this time is big. The Terns are many. The cargo heavy. But you can do it! Maybe add Dawn among the people who stay in the lab in Patir?`
+			`The team this time is big. The Terns are many. The cargo heavy. But you can do it! Maybe add Dawn among the people who stay in the lab in Patir? Actually could be more interesting in Patir 4`
 				accept
 	on complete
 # take from the player the terns
@@ -2977,7 +3024,7 @@ mission "Ka'het: Patir Mystery 42"
 # add dead asteroid NPC. If you board it Dusk is displeased
 	on complete
 		conversation
-			`Goodbye Dusk. Before you leave, you get a note from Chilia to see him in the spaceport for a quick announcement.`
+			`Goodbye Dusk. Makes it clear he wants to focus more on the Builders for the time being, setting up Patir 4? Before you leave, you get a note from Chilia to see him in the spaceport for a quick announcement.`
 
 mission "Ka'het: Patir Mystery 43"
 	landing
