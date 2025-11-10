@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "text/Truncate.h"
 #include "UI.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <limits>
@@ -59,15 +60,12 @@ namespace {
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
 	{
 		auto toRefill = set<const Outfit *>{};
-		auto armed = set<const Outfit *>{};
 		for(auto &&it : ship.Weapons())
-			if(it.GetOutfit())
-			{
-				const Outfit *weapon = it.GetOutfit();
-				armed.emplace(weapon);
-				if(weapon->Ammo() && weapon->AmmoUsage() > 0)
-					toRefill.emplace(weapon->Ammo());
-			}
+		{
+			const Weapon *weapon = it.GetWeapon();
+			if(weapon && weapon->Ammo() && weapon->AmmoUsage() > 0)
+				toRefill.emplace(weapon->Ammo());
+		}
 
 		// Carriers may be configured to supply ammunition for carried ships found
 		// within the fleet. Since a particular ammunition outfit is not bound to
@@ -76,8 +74,8 @@ namespace {
 		for(auto &&it : ship.Outfits())
 		{
 			const Outfit *outfit = it.first;
-			if(outfit->Ammo() && !outfit->IsWeapon() && !armed.contains(outfit))
-				toRefill.emplace(outfit->Ammo());
+			if(!outfit->GetWeapon() && outfit->AmmoStored())
+				toRefill.emplace(outfit->AmmoStored());
 		}
 		return toRefill;
 	}
@@ -453,7 +451,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 										string("\"") + it.first + "\" value would be reduced to less than zero");
 							}
 						if(!errorDetails.empty())
-							dependentOutfitErrors.emplace_back(ship->Name(), std::move(errorDetails));
+							dependentOutfitErrors.emplace_back(ship->GivenName(), std::move(errorDetails));
 					}
 
 				// Return the errors in the appropriate format.
@@ -825,7 +823,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 				// Move ammo to storage.
 				// Since some outfits have ammo, remove any ammo that must also be moved as there
 				// aren't enough supporting slots for said ammo once this outfit is removed.
-				const Outfit *ammo = selectedOutfit->Ammo();
+				const Outfit *ammo = selectedOutfit->AmmoStoredOrUsed();
 				if(ammo && ship->OutfitCount(ammo))
 				{
 					// Determine how many of this ammo we must uninstall to also uninstall the launcher.
@@ -1051,7 +1049,7 @@ bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
 
 	// If this outfit requires ammo, check if we could sell it if we sold all
 	// the ammo for it first.
-	const Outfit *ammo = outfit->Ammo();
+	const Outfit *ammo = outfit->AmmoStoredOrUsed();
 	if(ammo && ship->OutfitCount(ammo))
 	{
 		Outfit attributes = ship->Attributes();

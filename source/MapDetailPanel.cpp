@@ -220,10 +220,18 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// Clear the selected planet, if any.
 		selectedPlanet = nullptr;
 		scroll.Set(0);
+		vector<const System *> &plan = player.TravelPlan();
+		// If a system is selected that is not at the end of the travel plan, then the player selected it
+		// by either using the Find function, or by ctrl+clicking on it. If the player then hits jump while this
+		// other system is selected, it should be added to the travel plan.
+		if(selectedSystem != (plan.empty() ? player.GetSystem() : plan.front()))
+		{
+			Select(selectedSystem);
+			return true;
+		}
 		// Toggle to the next link connected to the "source" system. If the
 		// shift key is down, the source is the end of the travel plan; otherwise
 		// it is one step before the end.
-		vector<const System *> &plan = player.TravelPlan();
 		const System *source = plan.empty() ? player.GetSystem() : plan.front();
 		const System *next = nullptr;
 		Point previousUnit = Point(0., -1.);
@@ -504,12 +512,26 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 
 
 
+void MapDetailPanel::Resize()
+{
+	ResizeTextArea();
+}
+
+
+
 void MapDetailPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("medium"));
 	description->SetAlignment(Alignment::JUSTIFIED);
+	ResizeTextArea();
+}
+
+
+
+void MapDetailPanel::ResizeTextArea()
+{
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	descriptionXOffset = mapInterface->GetValue("description x offset");
 	int descriptionWidth = mapInterface->GetValue("description width");
@@ -636,7 +658,7 @@ void MapDetailPanel::DrawKey()
 		vector<pair<string, Color>> alreadyDisplayed;
 		for(const auto &it : distances)
 		{
-			const string &displayName = it.second->GetName();
+			const string &displayName = it.second->DisplayName();
 			const Color &displayColor = it.second->GetColor();
 			auto foundIt = find(alreadyDisplayed.begin(), alreadyDisplayed.end(),
 					make_pair(displayName, displayColor));
@@ -799,7 +821,7 @@ void MapDetailPanel::DrawInfo()
 	font.Draw({systemName, alignLeft}, uiPoint + Point(0., -7.), medium);
 
 	governmentY = uiPoint.Y() + textMargin;
-	string gov = canView ? selectedSystem->GetGovernment()->GetName() : "Unknown Government";
+	string gov = canView ? selectedSystem->GetGovernment()->DisplayName() : "Unknown Government";
 	font.Draw({gov, alignLeft}, uiPoint + Point(0., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.),

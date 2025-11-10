@@ -15,7 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <chrono>
 #include <cstdint>
+#include <filesystem>
 #include <functional>
 #include <map>
 #include <string>
@@ -51,6 +53,9 @@ public:
 	static std::string StepsToSeconds(size_t steps);
 	// Convert a time in seconds to years/days/hours/minutes/seconds
 	static std::string PlayTime(double timeVal);
+	// Convert a time point to a human-readable time and date.
+	static std::string TimestampString(std::chrono::time_point<std::chrono::system_clock> time);
+	static std::string TimestampString(std::filesystem::file_time_type time);
 	// Convert an ammo count into a short string for use in the ammo display.
 	// Only the absolute value of a negative number is considered.
 	static std::string AmmoCount(int64_t value);

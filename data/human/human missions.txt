@@ -4974,7 +4974,7 @@ mission "Dangerous Games 1"
 			`	You're treated to some jeering and rude looks as you leave the bar.`
 				decline
 	on visit
-		dialog `You land on <planet>, but realize that your escort carrying the passengers hasn't entered this system yet. Better depart and wait for it.`
+		dialog phrase "generic missing stopover or passengers"
 	on stopover
 		conversation
 			`Karengo directs you down through the atmosphere of Skymoot, steering clear of the usual tourist areas and, you realize, of the local law enforcement. As you're putting down in a clearing halfway up a mountain, you hear an otherworldly screech as your ship lurches violently to one side. You would have been thrown to the floor if you hadn't been strapped in.`
@@ -6362,9 +6362,9 @@ mission "Care Package to South 1"
 		not attributes "station"
 	destination
 		attributes "rim" "south"
-		not government "Pirate"
-		not system "Alniyat" "Atria" "Han"
-		not planet "Glaze"
+		not attributes "station"
+		government "Republic" "Independent"
+		not planet "Glaze" "Harmony"
 	to offer
 		not "event: war begins"
 		random < 65
@@ -6507,7 +6507,7 @@ mission "Lost Racer 2 - Ended"
 	on offer
 		conversation
 			`You were unable to find Artemis Renard in any of the three uninhabited systems, and you have watched hope fade into desperation in her father with each successive failure. You can't imagine he's been getting much sleep.`
-			`	During the landing on <planet>, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of ships in racing livery. A mostly depleted Navy contingent remains, empty areas testifying to the ongoing hunt, while the few remaining officers interview racers, organizers, and spectators. The spaceport seems busier and more hectic than usual.`
+			`	During the landing on <origin>, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of ships in racing livery. A mostly depleted Navy contingent remains, empty areas testifying to the ongoing hunt, while the few remaining officers interview racers, organizers, and spectators. The spaceport seems busier and more hectic than usual.`
 			`	"I've got to speak with the race coordinators here," says Mr. Renard, striding towards the marshal station. "I see the marshals are back from searching. Syndicate idiots, probably didn't even notice she was missing 'til it was on the news. We've got to keep looking. Will you meet me back here in the spaceport in an hour or two? I'll double your fee."`
 			choice
 				`	"Of course. We're going to find her."`
@@ -6550,11 +6550,14 @@ mission "Lost Racer 2 - Continued"
 	name "Search for Artemis Renard"
 	description "Search the system of <system> for Artemis Renard, especially <planet>."
 	source "Sunracer"
-	waypoint "Acamar"
+	mark "Acamar"
 	destination "Sandswell"
 	passengers 1
 	deadline
 	to offer
+		has "Lost Racer 1: done"
+		not "abandoned lost racer"
+	to accept
 		has "Lost Racer 2 - Ended: declined"
 		not "abandoned lost racer"
 	on offer
@@ -6620,6 +6623,7 @@ mission "Lost Racer 2 - Continued"
 			`	"Thank you, Captain. We need to get moving immediately."`
 				launch
 	on enter Acamar
+		unmark Acamar
 		conversation
 			`Upon entering the Acamar system, your sensors detect a faint radio signal coming from the third planet in the system, but you realize that the radio signal is a result of the electrical discharges from the planet's atmosphere produced by the many volcanoes on the surface. After calibrating your sensors to account for this, you are unable to detect any transponder signal matching Artemis' ship.`
 			`	Mr. Renard paces around the bridge of the <ship>, prodding at consoles. "Are you sure you checked it? Is that the right frequency?"`
@@ -6657,13 +6661,13 @@ mission "Lost Racer 2 - Continued"
 			action
 				set "lost racer august to glory"
 				fail
-
 	on enter Kugel
+		unmark Acamar
 		dialog
 			"As soon as you enter the Kugel system, your sensors begin to pick up a weak radio signal coming from the second planet, this time matching exactly the frequency of Artemis Renard's transponder. It seems you have arrived in the correct system."
 	on visit
 		dialog
-			"Either not all of your passengers are in the system, or you need to fly through Acamar before landing here."
+			"You have reached <planet>, but August Renard is not in the system! Better depart and wait for your escorts to arrive in this star system."
 
 mission "Lost Racer 2 - Failed"
 	entering
@@ -6761,7 +6765,7 @@ mission "Lost Racer 3"
 					goto crash
 				`	"I have no more questions."`
 			label noquestions
-			`	Artemis nods. "Well, could we head back to <planet> now? It'll be nice to get home after all this commotion and uncomfortableness."`
+			`	Artemis nods. "Well, could we head back to <planet> now? It'll be nice to get home after all this commotion and discomfort."`
 			`	Artemis and her father head off to their bunks, talking all the way. You chart a course for <destination>.`
 				accept
 	on complete
