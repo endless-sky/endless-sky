@@ -29,19 +29,15 @@ using namespace std;
 
 bool BookEntry::Empty() const
 {
-	if(items.empty())
-		return true;
-	for(const Item &item : items)
-		if(!std::holds_alternative<std::monostate>(item))
-			return false;
-	return true;
+	return all_of(items.begin(), items.end(),
+		[](const Item &item) { return holds_alternative<std::monostate>(item); });
 }
 
 
 
 void BookEntry::Read(const DataNode &node, int startAt)
 {
-	if(startAt <= node.Size())
+	if(startAt < node.Size())
 		ReadItem(node, startAt);
 
 	for(const DataNode &child : node)
