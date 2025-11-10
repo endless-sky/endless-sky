@@ -220,10 +220,18 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// Clear the selected planet, if any.
 		selectedPlanet = nullptr;
 		scroll.Set(0);
+		vector<const System *> &plan = player.TravelPlan();
+		// If a system is selected that is not at the end of the travel plan, then the player selected it
+		// by either using the Find function, or by ctrl+clicking on it. If the player then hits jump while this
+		// other system is selected, it should be added to the travel plan.
+		if(selectedSystem != (plan.empty() ? player.GetSystem() : plan.front()))
+		{
+			Select(selectedSystem);
+			return true;
+		}
 		// Toggle to the next link connected to the "source" system. If the
 		// shift key is down, the source is the end of the travel plan; otherwise
 		// it is one step before the end.
-		vector<const System *> &plan = player.TravelPlan();
 		const System *source = plan.empty() ? player.GetSystem() : plan.front();
 		const System *next = nullptr;
 		Point previousUnit = Point(0., -1.);
@@ -364,10 +372,39 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 
 
 
-bool MapDetailPanel::Click(int x, int y, int clicks)
+bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 {
-	if(scroll.Scrollable() && scrollbar.SyncClick(scroll, x, y, clicks))
+	if(scroll.Scrollable() && scrollbar.SyncClick(scroll, x, y, button, clicks))
 		return true;
+
+	if(button == MouseButton::RIGHT)
+	{
+		if(!Preferences::Has("System map sends move orders"))
+			return true;
+		// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
+		// positions aren't hard-coded.
+		else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
+		{
+			// Only handle clicks on the actual orbits element, rather than the whole UI region.
+			// (Note: this isn't perfect, and the clickable area extends into the angled sides a bit.)
+			const Point orbitCenter(Screen::TopRight() + Point(-120., 160.));
+			auto uiClick = Point(x, y) - orbitCenter;
+			if(uiClick.Length() > 130)
+				return true;
+
+			// Only issue movement orders if the player is in-flight.
+			if(player.GetPlanet())
+				GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
+			else if(!player.CanView(*selectedSystem))
+				GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
+			else
+				player.SetEscortDestination(selectedSystem, uiClick / scale);
+		}
+		return true;
+	}
+
+	if(button != MouseButton::LEFT)
+		return MapPanel::Click(x, y, button, clicks);
 
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double planetCardWidth = planetCardInterface->GetValue("width");
@@ -466,7 +503,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	}
 
 	// The click was not on an interface element, so check if it was on a system.
-	MapPanel::Click(x, y, clicks);
+	MapPanel::Click(x, y, button, clicks);
 	// If the system just changed, the selected planet is no longer valid.
 	if(selectedPlanet && !selectedPlanet->IsInSystem(selectedSystem))
 		selectedPlanet = nullptr;
@@ -475,31 +512,9 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 
 
 
-bool MapDetailPanel::RClick(int x, int y)
+void MapDetailPanel::Resize()
 {
-	if(!Preferences::Has("System map sends move orders"))
-		return true;
-	// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
-	// positions aren't hard-coded.
-	else if(x >= Screen::Right() - 240 && y >= Screen::Top() + 10 && y <= Screen::Top() + 270)
-	{
-		// Only handle clicks on the actual orbits element, rather than the whole UI region.
-		// (Note: this isn't perfect, and the clickable area extends into the angled sides a bit.)
-		const Point orbitCenter(Screen::TopRight() + Point(-120., 160.));
-		auto uiClick = Point(x, y) - orbitCenter;
-		if(uiClick.Length() > 130)
-			return true;
-
-		// Only issue movement orders if the player is in-flight.
-		if(player.GetPlanet())
-			GetUI()->Push(new Dialog("You cannot issue fleet movement orders while docked."));
-		else if(!player.CanView(*selectedSystem))
-			GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
-		else
-			player.SetEscortDestination(selectedSystem, uiClick / scale);
-	}
-
-	return true;
+	ResizeTextArea();
 }
 
 
@@ -510,6 +525,13 @@ void MapDetailPanel::InitTextArea()
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("medium"));
 	description->SetAlignment(Alignment::JUSTIFIED);
+	ResizeTextArea();
+}
+
+
+
+void MapDetailPanel::ResizeTextArea()
+{
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	descriptionXOffset = mapInterface->GetValue("description x offset");
 	int descriptionWidth = mapInterface->GetValue("description width");
@@ -636,7 +658,7 @@ void MapDetailPanel::DrawKey()
 		vector<pair<string, Color>> alreadyDisplayed;
 		for(const auto &it : distances)
 		{
-			const string &displayName = it.second->GetName();
+			const string &displayName = it.second->DisplayName();
 			const Color &displayColor = it.second->GetColor();
 			auto foundIt = find(alreadyDisplayed.begin(), alreadyDisplayed.end(),
 					make_pair(displayName, displayColor));
@@ -737,8 +759,7 @@ void MapDetailPanel::DrawInfo()
 		(planetCards.size()) * planetCardHeight) : 0.;
 	Point size(planetWidth, planetPanelHeight);
 	// This needs to fill from the start of the screen.
-	FillShader::Fill(Screen::TopLeft() + Point(size.X() / 2., size.Y() / 2.),
-		size, back);
+	FillShader::Fill(Rectangle::FromCorner(Screen::TopLeft(), size), back);
 
 	const double startingX = mapInterface->GetValue("starting X");
 	Point uiPoint(Screen::Left() + startingX, Screen::Top());
@@ -800,7 +821,7 @@ void MapDetailPanel::DrawInfo()
 	font.Draw({systemName, alignLeft}, uiPoint + Point(0., -7.), medium);
 
 	governmentY = uiPoint.Y() + textMargin;
-	string gov = canView ? selectedSystem->GetGovernment()->GetName() : "Unknown Government";
+	string gov = canView ? selectedSystem->GetGovernment()->DisplayName() : "Unknown Government";
 	font.Draw({gov, alignLeft}, uiPoint + Point(0., 13.), (commodity == SHOW_GOVERNMENT) ? medium : dim);
 	if(commodity == SHOW_GOVERNMENT)
 		PointerShader::Draw(uiPoint + Point(0., 20.), Point(1., 0.),

@@ -27,6 +27,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "MiniMap.h"
+#include "MouseButton.h"
 #include "PlanetLabel.h"
 #include "Point.h"
 #include "Preferences.h"
@@ -94,7 +96,7 @@ public:
 
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
-	void RClick(const Point &point);
+	void RightOrMiddleClick(const Point &point, MouseButton button);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
 	// Break targeting on all projectiles between the player and the given
@@ -269,19 +271,14 @@ private:
 	std::vector<AlertLabel> missileLabels;
 	std::vector<TurretOverlay> turretOverlays;
 	std::vector<std::pair<const Outfit *, int>> ammo;
-	// How many frames the mini-map should be displayed for when it is set to only appear
-	// when jumping.
-	int displayMinimap = 0;
-	// Controls the fading in and out of the minimap. The minimap should fade in and out over
-	// the course of 30 frames (0.5 seconds).
-	int fadeMinimap = 0;
-	// The two primary systems to display in the minimap, along with all their linked neighbors.
-	// If either are null, then only the player's current system is drawn.
-	const System *minimapSystems[2] = {nullptr, nullptr};
 	// Flagship's hyperspace percentage converted to a [0, 1] double.
 	double hyperspacePercentage = 0.;
 
+	MiniMap minimap;
+
 	int step = 0;
+	// Count steps for UI elements separately, because they shouldn't be affected by pausing.
+	mutable int uiStep = 0;
 	bool timePaused = false;
 
 	std::list<ShipEvent> eventQueue;
@@ -315,7 +312,7 @@ private:
 	bool doClick = false;
 	bool hasShift = false;
 	bool hasControl = false;
-	bool isRightClick = false;
+	MouseButton mouseButton = MouseButton::NONE;
 	bool isRadarClick = false;
 	Point clickPoint;
 	Rectangle uiClickBox;

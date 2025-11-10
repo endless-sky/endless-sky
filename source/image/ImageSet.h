@@ -74,4 +74,5 @@ private:
 	// Data loaded from the images:
 	ImageBuffer buffer[4];
 	std::vector<Mask> masks;
+	bool noReduction = false;
 };

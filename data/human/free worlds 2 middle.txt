@@ -1692,7 +1692,7 @@ mission "FW Bloodsea 1.2A"
 
 
 
-mission "Pirates Use Cutthroat"
+mission "Pirates Use Cutthroats"
 	landing
 	invisible
 	to offer
@@ -1702,7 +1702,7 @@ mission "Pirates Use Cutthroat"
 		fail
 
 event "pirates use cutthroat"
-	fleet "Large Southern Pirate"
+	fleet "Large Southern Pirates"
 		add variant 2
 			"Cutthroat" 3
 		add variant 1
@@ -1767,12 +1767,12 @@ mission "FW Albatross 1"
 				`	"Okay, I feel silly for even asking. Let's go meet up with JJ!"`
 					accept
 				`	"Actually, I'm gay too."`
-					goto metoo
+					goto "me too"
 				`	"Ah. That certainly explains some things."`
 				`	"It seems crazy that anyone would be bothered by that in this day and age."`
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
-			label metoo
+			label "me too"
 			action
 				set "gay"
 			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so you'll need to be the one to transport JJ. Stay safe."`
@@ -1861,17 +1861,33 @@ mission "FW Albatross 2A"
 		dialog `You land on <planet>, but realize that you either haven't destroyed Ryk Bartlett's ship, the Dread, or your escort carrying JJ hasn't entered the system yet. Better depart and make sure that you've done everything you need to do to complete this mission.`
 	
 	npc kill
-		personality staying plunders disables heroic nemesis target
-		system Orvala
-		government Pirate
-		ship "Bastion (Heavy)" "Dread"
+		personality staying plunders disables heroic marked target
+		system "Orvala"
+		government "Pirate"
+		ship "Bulwark (Heavy)" "Dread"
 		dialog "You have destroyed Ryk Bartlett's ship. Hopefully now the elders on Albatross will be more inclined to bargain with the Free Worlds."
 	
 	npc
-		personality staying plunders disables
-		system Orvala
-		government Pirate
-		fleet "Small Southern Pirates" 3
+		personality staying plunders disables marked
+		system "Orvala"
+		government "Pirate"
+		fleet
+			names "pirate"
+			variant
+				"Modified Argosy (Gatling)"
+				"Hawk (Plasma)"
+				"Hawk"
+				"Sparrow" 3
+	npc
+		personality timid staying plunders coward disables marked
+		system "Orvala"
+		government "Pirate"
+		"cargo settings"
+			commodities "Heavy Metals"
+		fleet
+			names "pirate"
+			variant
+				"Argosy (Proton)"
 
 
 

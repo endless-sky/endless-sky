@@ -59,7 +59,7 @@ jobs:
       ci_config: ${{ steps.filter.outputs.ci_config }}
       projects_check_config: ${{ steps.filter.outputs.projects_check_config }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         fetch-depth: 2
         show-progress: false

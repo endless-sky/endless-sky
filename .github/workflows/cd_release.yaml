@@ -20,14 +20,14 @@ jobs:
       OUTPUT: Endless_Sky-${{ inputs.release_version  }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
           fetch-depth: '10'
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2
+          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2 autoconf autoconf-archive automake libtool
       - name: Find cache keys
         run: |
           echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
@@ -74,7 +74,7 @@ jobs:
       OUTPUT_EXE: EndlessSky-${{ inputs.release_version }}-win64-setup.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
           fetch-depth: '10'
@@ -143,7 +143,7 @@ jobs:
       OUTPUT_EXE: EndlessSky-${{ inputs.release_version }}-win32-setup.exe
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
       - name: Install dependencies
@@ -193,11 +193,11 @@ jobs:
 
   release_macos_x64:
     name: MacOS x64
-    runs-on: macos-13
+    runs-on: macos-14
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
           fetch-depth: '10'
@@ -243,11 +243,11 @@ jobs:
 
   release_macos_arm:
     name: MacOS ARM
-    runs-on: macos-13
+    runs-on: macos-14
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
           fetch-depth: '10'
@@ -293,7 +293,7 @@ jobs:
 
   release_macos:
     name: MacOS Universal
-    runs-on: macos-13
+    runs-on: macos-14
     needs: [release_macos_arm, release_macos_x64]
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -349,7 +349,7 @@ jobs:
     name: Steam Linux
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - name: Build Endless Sky
@@ -371,7 +371,7 @@ jobs:
     env:
       data: steam-data-depot
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - name: Upload Steam Data Depot
@@ -382,7 +382,6 @@ jobs:
           changelog
           copyright
           credits.txt
-          icon.png
           keys.txt
           license.txt
           data/
