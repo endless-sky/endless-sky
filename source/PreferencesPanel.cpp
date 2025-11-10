@@ -791,6 +791,12 @@ void PreferencesPanel::DrawSettings()
 		"Rehire extra crew when lost",
 		"Automatically unpark flagship",
 		FLAGSHIP_SPACE_PRIORITY,
+		"",
+		"Trading",
+		"'Sell Outfits' without outfitter",
+		"Confirm 'Sell Outfits' button",
+		"Confirm 'Sell Flotsam' button",
+		"Show parenthesis",
 		"\t",
 		"Map",
 		"Deadline blink by distance",
@@ -798,12 +804,6 @@ void PreferencesPanel::DrawSettings()
 		"Show escort systems on map",
 		"Show stored outfits on map",
 		"System map sends move orders",
-		"",
-		"Trading",
-		"'Sell Outfits' without outfitter",
-		"Confirm 'Sell Outfits' button",
-		"Confirm 'Sell Flotsam' button",
-		"Show parenthesis",
 		"",
 		"Other",
 		"Always underline shortcuts",
@@ -814,6 +814,9 @@ void PreferencesPanel::DrawSettings()
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
 		NOTIFY_ON_DEST
+		// TODO: There is room for one more option in this second column given this Windows-only subsection
+		//  and experimentation has shown that there is a bug trying to add a third page is not properly working
+		//  at this time.
 #ifdef _WIN32
 		, "",
 		"Windows Options",
