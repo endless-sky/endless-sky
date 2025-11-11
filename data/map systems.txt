@@ -4196,7 +4196,7 @@ system Alhena
 	minables lead 1 14.4573
 	minables uranium 2 7.51131
 	trade Clothing 315
-	trade Electronics 788
+	trade Electronics 738
 	trade Equipment 654
 	trade Food 455
 	trade "Heavy Metals" 1071
@@ -42070,7 +42070,7 @@ system Wazn
 	minables iron 2 4.91227
 	minables silicon 4 2.82661
 	trade Clothing 286
-	trade Electronics 800
+	trade Electronics 830
 	trade Equipment 662
 	trade Food 479
 	trade "Heavy Metals" 941

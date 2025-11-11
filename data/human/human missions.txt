@@ -826,11 +826,19 @@ mission "Transport Workers B"
 				`	"I'd be glad to take you there."`
 					goto thanks
 				`	"Are you sure about that? I've heard some bad things about the Syndicate's company towns."`
-					goto towns
+					to display
+						not "start: syndicate"
+				`	"Just because there's jobs doesn't mean it's going to be easy pay. Trust me, I've been there before."`
+					to display
+						has "start: syndicate"
+					goto "towns syndicate"
 				`	"Do you really think she's going to wait around for you?"`
 					goto wait
 			label towns
 			`	"Me too," he says, "but it's a lifetime of steady work, and you know how hard that is to come by in this part of the galaxy. Can you help me out?"`
+				goto choice
+			label "towns syndicate"
+			`	"I know," he says, "but it's still better than trying to find work in this part of the galaxy. Can you help me out?"`
 				goto choice
 			label wait
 			`	"She'll be true to me," he says, with absolute confidence.`
@@ -2840,6 +2848,9 @@ mission "Paradise Fortune 2"
 		conversation
 			`"You need to explain what is going on here," you say just after setting your ship down.`
 			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents of thousands of credit chips, "this is part of my family fortune, about half a billion credits of it. Don't worry, my father should be able to make this back in a few months' time."`
+			`	You faintly recall the name 'Howl' as belonging to the owners of a large island on Mainsail.`
+				to display
+					has "start: paradise"
 			choice
 				`	"Why have you stolen all this?"`
 					goto story
@@ -2864,11 +2875,69 @@ mission "Paradise Fortune 2"
 					goto decline
 			
 			label accept
+			branch "paradise accept"
+				has "start: paradise"
+				has "event: joined the free worlds"
 			`	"Excellent!" Diana yells out. She drops the bag of credits on the floor and gives you a hug. "We'll have to leave immediately, for I fear that the spaceport authorities here might be searching for us."`
+				launch
+
+			label "paradise accept"
+			`	"Excellent!" Diana yells out. She drops the bag of credits on the floor and gives you a hug. "Thank you so much, Captain <last>."`
+			choice
+				`	"No need to thank me."`
+					goto leave
+				`	"Wait, how do you know my name?"`
+			`	"I saw you on the news," Diana replies. "They said that, even though you were born on Mainsail, you decided to join the Free Worlds and fight against the Paradise Planets."`
+			label leave
+			`	Eventually, Diana pulls herself away and says, "We'll have to leave immediately, for I fear that the spaceport authorities here might be searching for us."`
 				launch
 			
 			label decline
+			branch paradise
+				has "start: paradise"
+				has "event: joined the free worlds"
 			`	You call the spaceport authorities and tell them that Diana Howl is on your ship. Moments later when they arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
+				decline
+			
+			label paradise
+			`	You move to re-enter your cockpit and call the authorities, but Diana thrusts her arms out, blocking your way. "Wait! You're <first> <last>, aren't you? The war hero who fought and defeated the Pug?"`
+			choice
+				`	"Yes, I am."`
+					goto plead
+				`	"Sorry, but you have the wrong person."`
+			`	"No, I know you're <first>! You look just like the videos in all the news reports!"`
+			`	"And what of it?" you reply.`
+			
+			label plead
+			`	"The news said that, even though you were born and raised on Mainsail, you decided to join the Free Worlds and fight the Republic for the sake of the people!" Diana balls her hands into fists. "When I first heard about you, I thought that, maybe, I could make my own difference in the galaxy, and use my privilege for good instead of evil. But now you're acting like that never happened! Like the Republic is suddenly the best thing ever, and that everyone in poverty deserves to be that way!"`
+			choice
+				`	"Yes, I fought against the Republic, and I almost died several times because of that. I don't want to put you in danger."`
+					goto danger
+				`	"That's because I was fighting a war of independence. What you're doing is a random, poorly-planned robbery."`
+					goto robbery
+				`	"I was only ever in the Free Worlds for the fame and glory. I'm not about to have that ruined by helping some wannabe Robin Hood."`
+			
+			`	Diana is left stunned by your bitter words, giving you an opportunity to push her aside and flick on your ship's speakers to call for help. Moments later, when the spaceport authorities arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
+				decline
+			
+			label danger
+			`	She grits her teeth. "And what if I don't care? If risking my life means bettering the lives of thousands more, then why shouldn't I take that risk?"`
+				goto final
+			
+			label robbery
+			`	Diana stutters. "S-so what? Every change needs to start from somewhere, and even if things aren't going well right now, this could eventually lead to a real difference! Please, just give me a chance."`
+			
+			label final
+			choice
+				`	"Okay, you've convinced me. I'll take you to <planet>"`
+				`	"That's not good enough. I'm turning you in."`
+					goto "final decline"
+
+			`	Diana turns her face in a poor attempt to hide her relief. "We'll have to leave immediately," she says, "for I fear that the spaceport authorities here might be searching for us."`
+				launch
+			
+			label "final decline"
+			`	You push Diana aside and call the spaceport authorities. Moments later when they arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
 				decline
 			
 	on decline
@@ -4783,6 +4852,11 @@ mission "Saving Artifacts 1"
 			`As you wander around the spaceport, a harried-looking academic approaches you. "You're a captain, right? Can you take a transport mission to <planet>? A local museum can't care for some priceless historical artifacts anymore due to budget cuts, so they need to be transported somewhere that they can be properly cared for. We can pay you <payment>."`
 			choice
 				`	"Why can't you just bring them to another Earth museum?"`
+					to display
+						not "start: syndicate"
+				`	"Isn't there some other place planetside that'll take them in?"`
+					to display
+						has "start: syndicate"
 				`	"Sorry, I can't take on this job right now. Ask someone else."`
 					decline
 				`	"Sure, I'll take them there."`
@@ -5058,6 +5132,9 @@ mission "Dangerous Games 2"
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
 			`	Karengo laughs. "If they can handle space, I think they can handle some water. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
+			`	You spot someone behind Karengo working on one of the subpods; your time on the aquatic world of <starting planet> lets you identify the sub's manufacturer as one more well known for scandal than reliability.`
+				to display
+					has "start: paradise"
 			`	"Oh, nearly forgot. We're headed to <destination>, and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and your shields up. We leave at noon!"`
 				accept
 	on complete

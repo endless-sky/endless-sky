@@ -1277,7 +1277,7 @@ mission "Deep: Project Hawking: Prime"
 				to display
 					not "start: deep"
 					not "start: paradise"
-			`	"So you're native to the Deep," Pierre remarks. "I felt like an outsider when I first arrived. Compared to how welcoming the Dirt Belt is, it seemed like nobody wanted to talk to me. I've gotten over that since, of course. Thanks for sharing, <first>."`
+			`	"So you're native to the Deep," Pierre remarks. "I felt like an outsider when I first arrived. Compared to how welcoming people in the Dirt Belt are, it seemed like nobody wanted to talk to me. I've gotten over that since, of course. Thanks for sharing, <first>."`
 				to display
 					has "start: deep"
 			`	"So you're from the Paradise Worlds," Pierre remarks. "Most people from there choose to settle down and take up their parents' businesses. Very few go out on their own as a merchant. Thanks for sharing, <first>."`
