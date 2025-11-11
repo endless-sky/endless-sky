@@ -910,7 +910,7 @@ void MapDetailPanel::DrawInfo()
 					v = value / abs(lowCompare);
 				else if(value > 0)
 					v = value / highCompare;
-				double arrowSize = (value == 0) ? 0 : (v / abs(v) * MIN_ARROW) + (MAX_ARROW - MIN_ARROW) * v;
+				double arrowSize = (value == 0) ? 0 : (copysign(1., v) * MIN_ARROW) + (MAX_ARROW - MIN_ARROW) * v;
 				// Draw up/down arrows based on price delta (value).
 				PointerShader::Draw(uiPoint + Point(143, 7. - .5 * arrowSize), Point(0., -1), 20.f,
 					static_cast<float>(arrowSize), 0.f, MapColor(v));
