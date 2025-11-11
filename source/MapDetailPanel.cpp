@@ -64,6 +64,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Commodity comparison arrow min/max sizes
+	const double MIN_ARROW = 4;
+	const double MAX_ARROW = 14;
+
 	// Convert the angle between two vectors into a sortable angle, i.e. an angle
 	// plus a length that is used as a tie-breaker.
 	pair<double, double> SortAngle(const Point &reference, const Point &point)
@@ -898,9 +902,10 @@ void MapDetailPanel::DrawInfo()
 					v = value / abs(lowCompare);
 				else if(value > 0)
 					v = value / highCompare;
-				// Draw up/down/equals arrows based on price delta (value).
-				PointerShader::Draw(uiPoint + Point(143, 7. - 7 * v), Point(0., 1), 20.f,
-					static_cast<float>(-14. * v), 0.f, MapColor(v));
+				double arrowSize = (value == 0) ? 0 : (v / abs(v) * MIN_ARROW) + (MAX_ARROW - MIN_ARROW) * v;
+				// Draw up/down arrows based on price delta (value).
+				PointerShader::Draw(uiPoint + Point(143, 7. - .5 * arrowSize), Point(0., -1), 20.f,
+					static_cast<float>(arrowSize), 0.f, MapColor(v));
 			}
 			else
 			{
