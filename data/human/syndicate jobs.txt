@@ -775,7 +775,7 @@ mission "Megaparsec Shipment [2]"
 
 mission "Syndicate Hovercraft Racer Transport"
 	name "Transport racer to <planet>"
-	description "Deliver a pilot and their hovercraft to <destination> to attend a race by <date>."
+	description "Deliver a pilot and their hovercraft to <destination> to attend a race by <date> for <payment>."
 	passengers 1
 	cargo "Syndicate hovercraft" 1
 	job
@@ -786,7 +786,7 @@ mission "Syndicate Hovercraft Racer Transport"
 		has "landing access: Sunracer"
 	source
 		government "Syndicate"
-		not near "Mirfak" 1 4
+		not near "Mirfak" 4
 	destination Sunracer
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
@@ -796,7 +796,7 @@ mission "Syndicate Hovercraft Racer Transport"
 
 mission "Syndicate Hovercraft Large Racer Transport"
 	name "Transport team to <planet>"
-	description "Deliver this <passengers>-member racing team and their set of <cargo> to <destination> to attend a race by <date>."
+	description "Deliver this <passengers>-member racing team and their set of <cargo> to <destination> to attend a race by <date> for <payment>."
 	passengers 50 100 .9
 	cargo "Syndicate hovercraft" 50
 	job
@@ -808,7 +808,7 @@ mission "Syndicate Hovercraft Large Racer Transport"
 		has "landing access: Sunracer"
 	source
 		government "Syndicate"
-		not near "Mirfak" 1 4
+		not near "Mirfak" 4
 	destination Sunracer
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
