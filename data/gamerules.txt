@@ -96,16 +96,22 @@ gamerules
 	# ALLOWABLE VALUES: any value >= 0.
 	"system departure min" 0.
 	
-	# The minimum arrival distance for all systems. Ships entering a system will exit hyperspace
-	# this distance away from their landing target, or the system center if no landing target
-	# is selected. If a system has a defined arrival distance greater than this value,
-	# that value will be used instead.
-	# DEFAULT: 0 (no minimum)
-	# ALLOWABLE VALUES: any value >= 0.
-	"system arrival min" 0.
+	# Minimum value for the "arrival" property of systems (both "link" and "jump").
+	# If the "arrival" value in the system definition is less than the value set here,
+	# the gamerule value will be used. If the system defined value is larger than this value,
+	# that value will be used. If the gamerule is "unset",
+	# the value defined by the system will be used.
+	# DEFAULT: "unset" (no minimum)
+	# ALLOWABLE VALUES: any real number, or "unset"
+	"system arrival min" unset
 	
 	# The global fleet spawn rate multiplier. A value of 2.0 means twice as many random fleets spawn
 	# in all systems, while a value of 0.5 means half as many fleets spawn.
 	# DEFAULT: 1.0 (no changes)
 	# ALLOWABLE VALUES: any value >= 0.
 	"fleet multiplier" 1.
+
+	# Determines whether ammo for most secondary weapons can be restocked at any outfitter.
+	# DEFAULT: true
+	# ALLOWABLE VALUES: false, true, 0, 1
+	"universal ammo restocking" true
