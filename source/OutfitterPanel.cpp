@@ -458,14 +458,14 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				if(!dependentOutfitErrors.empty())
 				{
 					string errorMessage = "You cannot " + actionName + " this from " +
-						(playerShips.size() > 1 ? "any of the selected ships" : "your ship") + " because:\n";
-					int i = 1;
+						(playerShips.size() > 1 ? "any of the selected ships" : "your ship") + ", because:\n";
+					int i = 0;
 					for(const auto &[shipName, errors] : dependentOutfitErrors)
 					{
 						if(playerShips.size() > 1)
 						{
-							errorMessage += to_string(i++) + ". You cannot " + actionName + " this outfit from \"";
-							errorMessage += shipName + "\" because:\n";
+							errorMessage += to_string(++i) + ". You cannot " + actionName + " this outfit from \""
+								+ shipName + "\", because:\n";
 						}
 						for(const string &error : errors)
 							errorMessage += "- " + error + "\n";
@@ -480,7 +480,6 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			// If outfit is not available in the Outfitter, respond that it can't be bought here.
 			if(!(outfitter.Has(selectedOutfit) || player.Stock(selectedOutfit) > 0))
 			{
-				// The store doesn't have it.
 				return "You cannot buy this outfit here. It is only being shown in the list because you already have one, "
 					"but this " + planet->Noun() + " does not sell them.";
 			}
@@ -619,7 +618,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 						double outfitRequires = -it.second;
 						if(shipAvailable < outfitRequires)
 							errors.push_back("You cannot install this outfit, because it requires "
-								+ Format::SimplePluralization(outfitRequires, "'" + static_cast<string>(it.first) + "'")
+								+ Format::SimplePluralization(outfitRequires, '\'' + string(it.first) + '\'')
 								+ ", and this ship has " + Format::Number(shipAvailable) + " free.");
 					}
 
