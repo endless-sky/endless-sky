@@ -103,7 +103,9 @@ private:
 	std::optional<std::string> music;
 
 	std::set<const System *> mark;
+	std::map<std::string, std::set<const System *>> markOther;
 	std::set<const System *> unmark;
+	std::map<std::string, std::set<const System *>> unmarkOther;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;

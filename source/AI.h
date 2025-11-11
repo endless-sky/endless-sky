@@ -106,7 +106,7 @@ private:
 
 	bool FollowOrders(Ship &ship, Command &command);
 	void MoveInFormation(Ship &ship, Command &command);
-	void MoveIndependent(Ship &ship, Command &command) const;
+	void MoveIndependent(Ship &ship, Command &command);
 	void MoveWithParent(Ship &ship, Command &command, const Ship &parent);
 	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
@@ -140,7 +140,7 @@ private:
 	// Special personality behaviors.
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
-	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
+	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(const Ship &ship, Command &command) const;
@@ -245,6 +245,7 @@ private:
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasementThreshold;
+	std::map<const Ship *, const Ship *> boarders;
 
 	// Records for formations flying around leadships and other objects.
 	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
