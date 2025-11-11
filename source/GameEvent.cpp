@@ -87,11 +87,11 @@ void GameEvent::Load(const DataNode &node, const ConditionsStore *playerConditio
 	// represents the fact that this event has occurred.
 	if(node.Size() >= 2)
 	{
-		name = node.Token(1);
-		if(!DataNode::IsConditionName(name))
+		trueName = node.Token(1);
+		if(!DataNode::IsConditionName(trueName))
 			node.PrintTrace("Invalid event/condition name:");
 
-		conditionsToApply.AddSetCondition("event: " + name, playerConditions);
+		conditionsToApply.AddSetCondition("event: " + trueName, playerConditions);
 	}
 	isDefined = true;
 
@@ -169,17 +169,17 @@ void GameEvent::Disable()
 
 
 // All events held by GameData have a name, but those loaded from a save do not.
-const string &GameEvent::Name() const
+const string &GameEvent::TrueName() const
 {
-	return name;
+	return trueName;
 }
 
 
 
 // "Stock" GameEvents require a name to be serialized with an accepted mission.
-void GameEvent::SetName(const string &name)
+void GameEvent::SetTrueName(const string &name)
 {
-	this->name = name;
+	this->trueName = name;
 }
 
 

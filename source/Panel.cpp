@@ -218,6 +218,12 @@ bool Panel::Release(int x, int y, MouseButton button)
 
 
 
+void Panel::Resize()
+{
+}
+
+
+
 bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	return EventVisit(&Panel::KeyDown, key, mod, command, isNewPress);
@@ -265,6 +271,15 @@ void Panel::DoDraw()
 	Draw();
 	for(auto &child : children)
 		child->DoDraw();
+}
+
+
+
+void Panel::DoResize()
+{
+	Resize();
+	for(auto &child : children)
+		child->DoResize();
 }
 
 
