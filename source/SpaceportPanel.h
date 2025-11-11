@@ -41,6 +41,10 @@ public:
 	virtual void Draw() override;
 
 
+protected:
+	virtual void Resize() override;
+
+
 private:
 	const News *PickNews() const;
 
