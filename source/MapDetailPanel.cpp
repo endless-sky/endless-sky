@@ -64,6 +64,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Commodity comparison arrow min/max sizes
+	const double MIN_ARROW = 4;
+	const double MAX_ARROW = 14;
+
 	// Convert the angle between two vectors into a sortable angle, i.e. an angle
 	// plus a length that is used as a tie-breaker.
 	pair<double, double> SortAngle(const Point &reference, const Point &point)
@@ -220,10 +224,18 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 		// Clear the selected planet, if any.
 		selectedPlanet = nullptr;
 		scroll.Set(0);
+		vector<const System *> &plan = player.TravelPlan();
+		// If a system is selected that is not at the end of the travel plan, then the player selected it
+		// by either using the Find function, or by ctrl+clicking on it. If the player then hits jump while this
+		// other system is selected, it should be added to the travel plan.
+		if(selectedSystem != (plan.empty() ? player.GetSystem() : plan.front()))
+		{
+			Select(selectedSystem);
+			return true;
+		}
 		// Toggle to the next link connected to the "source" system. If the
 		// shift key is down, the source is the end of the travel plan; otherwise
 		// it is one step before the end.
-		vector<const System *> &plan = player.TravelPlan();
 		const System *source = plan.empty() ? player.GetSystem() : plan.front();
 		const System *next = nullptr;
 		Point previousUnit = Point(0., -1.);
@@ -830,6 +842,33 @@ void MapDetailPanel::DrawInfo()
 	// Adapt the coordinates for the text (the sprite is drawn from a center coordinate).
 	uiPoint.X() -= (tradeSprite->Width() / 2. - textMargin);
 	uiPoint.Y() -= (tradeSprite->Height() / 2. - textMargin);
+
+	// Don't "compare" prices if the current system is uninhabited and thus has no prices to compare to.
+	bool noCompare = !player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship());
+	int value = 0;
+	double lowCompare = 0;
+	double highCompare = 0;
+
+	// When comparing prices, determine min/max deltas in order to represent commodity delta prices for displayed
+	// commodities as a gradient.
+	bool otherIsInhabited = selectedSystem->IsInhabited(player.Flagship());
+	if(!noCompare && canView && otherIsInhabited)
+	{
+		for(const Trade::Commodity &commodity : GameData::Commodities())
+		{
+			value = selectedSystem->Trade(commodity.name);
+			int localValue = player.GetSystem()->Trade(commodity.name);
+			if(value && localValue)
+			{
+				value -= localValue;
+				if(value < lowCompare)
+					lowCompare = value;
+				if(value > highCompare)
+					highCompare = value;
+			}
+		}
+	}
+
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		bool isSelected = false;
@@ -840,13 +879,10 @@ void MapDetailPanel::DrawInfo()
 		font.Draw(commodity.name, uiPoint, color);
 
 		string price;
-		if(canView && selectedSystem->IsInhabited(player.Flagship()))
+		if(canView && otherIsInhabited)
 		{
-			int value = selectedSystem->Trade(commodity.name);
+			value = selectedSystem->Trade(commodity.name);
 			int localValue = (player.GetSystem() ? player.GetSystem()->Trade(commodity.name) : 0);
-			// Don't "compare" prices if the current system is uninhabited and
-			// thus has no prices to compare to.
-			bool noCompare = (!player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship()));
 			if(!value)
 				price = "----";
 			else if(noCompare || player.GetSystem() == selectedSystem || !localValue)
@@ -862,11 +898,37 @@ void MapDetailPanel::DrawInfo()
 				if(Preferences::Has("Show parenthesis"))
 					price += ")";
 			}
+
+			// Draw colored icons when values are displayed.
+			if(!noCompare && player.GetSystem() != selectedSystem)
+			{
+				// Determine the relative negativeness or positiveness of the value compared to low/high.
+				// Note: if value is negative, lowCompare will be negative and if value is positive, highCompare will be
+				// positive.
+				double v = 0;
+				if(value < 0)
+					v = value / abs(lowCompare);
+				else if(value > 0)
+					v = value / highCompare;
+				double arrowSize = (value == 0) ? 0 : (copysign(1., v) * MIN_ARROW) + (MAX_ARROW - MIN_ARROW) * v;
+				// Draw up/down arrows based on price delta (value).
+				PointerShader::Draw(uiPoint + Point(143, 7. - .5 * arrowSize), Point(0., -1), 20.f,
+					static_cast<float>(arrowSize), 0.f, MapColor(v));
+			}
+			else
+			{
+				double halfCompare = .5 * (commodity.high - commodity.low);
+				// Avoid divide by zero, though this really shouldn't be a problem.
+				if(halfCompare < 1)
+					halfCompare = 1;
+				RingShader::Draw(uiPoint + Point(143, 8), OUTER, INNER,
+					MapColor((value - (commodity.low + halfCompare)) / halfCompare));
+			}
 		}
 		else
 			price = (canView ? "n/a" : "?");
 
-		const auto alignRight = Layout(140, Alignment::RIGHT, Truncate::BACK);
+		const auto alignRight = Layout(130, Alignment::RIGHT, Truncate::BACK);
 		font.Draw({price, alignRight}, uiPoint, color);
 
 		if(isSelected)

@@ -450,6 +450,13 @@ bool NPC::ShouldSpawn() const
 
 
 
+const Personality &NPC::GetPersonality() const
+{
+	return personality;
+}
+
+
+
 // Get the ships associated with this set of NPCs.
 const list<shared_ptr<Ship>> NPC::Ships() const
 {
@@ -458,8 +465,8 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 
 
 
-// Handle the given ShipEvent.
-void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *caller, bool isVisible)
+// Handle the given ShipEvent. Return true if the event target is within this NPC.
+bool NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *caller, bool isVisible)
 {
 	// First, check if this ship is part of this NPC. If not, do nothing. If it
 	// is an NPC and it just got captured, replace it with a destroyed copy of
@@ -489,7 +496,7 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 			break;
 		}
 	if(!ship)
-		return;
+		return false;
 
 	// Determine if this NPC is already in the succeeded state,
 	// regardless of whether it will despawn on the next landing.
@@ -530,6 +537,8 @@ void NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 		if(!dialogText.empty())
 			ui->Push(new Dialog(dialogText));
 	}
+
+	return true;
 }
 
 
