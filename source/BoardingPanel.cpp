@@ -302,7 +302,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			plunder.erase(plunder.begin() + selected);
 			if(plunder.size() && selected == static_cast<int>(plunder.size()))
 				--selected;
-			scroll.SetMaxValue(max(0., 20. * plunder.size() - 220.));
+			scroll.SetMaxValue(max(0., 20. * plunder.size()));
 		}
 		else
 			plunder[selected].Take(count);
