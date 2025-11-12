@@ -34,6 +34,7 @@ public:
 	std::string extension;
 	std::string name;
 	bool is2x = false;
+	bool noReduction = false;
 	bool isSwizzleMask = false;
 	BlendingMode blendingMode = BlendingMode::ALPHA;
 	size_t frameNumber = 0;

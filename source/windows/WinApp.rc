@@ -1,0 +1,28 @@
+#include <winver.h>
+
+AppIcon ICON "../../icons/WinApp.ico"
+
+VS_VERSION_INFO VERSIONINFO
+	FILEVERSION 0,10,17,0
+	PRODUCTVERSION 0,10,17,0
+{
+	BLOCK "StringFileInfo"
+	{
+		// U.S. English
+		BLOCK "040904B0"
+		{
+			VALUE "CompanyName", "\0"
+			VALUE "FileDescription", "Endless Sky\0"
+			VALUE "FileVersion", "0.10.17-alpha\0"
+			VALUE "InternalName", "Endless Sky\0"
+			VALUE "OriginalFilename", "Endless Sky.exe\0"
+			VALUE "ProductName", "Endless Sky\0"
+			VALUE "ProductVersion", "0.10.17-alpha\0"
+		}
+	}
+	BLOCK "VarFileInfo"
+	{
+		// U.S. English
+		VALUE "Translation", 0x409, 1200
+	}
+}

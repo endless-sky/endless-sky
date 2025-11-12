@@ -44,19 +44,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-namespace {
-	// Format the given double with one decimal place.
-	string Round(double value)
-	{
-		int integer = round(value * 10.);
-		string result = to_string(integer / 10);
-		result += ".0";
-		result.back() += integer % 10;
-
-		return result;
-	}
-}
-
 
 
 // Constructor.
@@ -116,6 +103,11 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
+
+	// The list is 240 pixels tall, and there are 10 pixels padding on the top
+	// and the bottom, so:
+	scroll.SetDisplaySize(220.);
+	scroll.SetMaxValue(max(0., 20. * plunder.size()));
 }
 
 
@@ -123,6 +115,13 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 BoardingPanel::~BoardingPanel()
 {
 	Audio::Resume();
+}
+
+
+
+void BoardingPanel::Step()
+{
+	scroll.Step();
 }
 
 
@@ -139,10 +138,11 @@ void BoardingPanel::Draw()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	FillShader::Fill(Point(-155., -60.), Point(360., 250.), opaque);
+	const Rectangle plunderList{{-155., -60.}, {360., 250.}};
+	FillShader::Fill(plunderList, opaque);
 
-	int index = (scroll - 10) / 20;
-	int y = -170 - scroll + 20 * index;
+	int index = (scroll.AnimatedValue() - 10) / 20;
+	int y = -170 - scroll.AnimatedValue() + 20 * index;
 	int endY = 60;
 
 	const Font &font = FontSet::Get(14);
@@ -186,18 +186,18 @@ void BoardingPanel::Draw()
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
 		info.SetString("your crew", to_string(crew));
 		info.SetString("your attack",
-			Round(attackOdds.AttackerPower(crew)));
+			Format::Decimal(attackOdds.AttackerPower(crew), 1));
 		info.SetString("your defense",
-			Round(defenseOdds.DefenderPower(crew)));
+			Format::Decimal(defenseOdds.DefenderPower(crew), 1));
 	}
 	int vCrew = victim ? victim->Crew() : 0;
 	if(victim && (canCapture || victim->IsYours()))
 	{
 		info.SetString("enemy crew", to_string(vCrew));
 		info.SetString("enemy attack",
-			Round(defenseOdds.AttackerPower(vCrew)));
+			Format::Decimal(defenseOdds.AttackerPower(vCrew), 1));
 		info.SetString("enemy defense",
-			Round(attackOdds.DefenderPower(vCrew)));
+			Format::Decimal(attackOdds.DefenderPower(vCrew), 1));
 	}
 	if(victim && canCapture && !victim->IsYours())
 	{
@@ -208,17 +208,21 @@ void BoardingPanel::Draw()
 		if(!isCapturing)
 			odds *= (1. - victim->Attributes().Get("self destruct"));
 		info.SetString("attack odds",
-			Round(100. * odds) + "%");
+			Format::Decimal(100. * odds, 1) + "%");
 		info.SetString("attack casualties",
-			Round(attackOdds.AttackerCasualties(crew, vCrew)));
+			Format::Decimal(attackOdds.AttackerCasualties(crew, vCrew), 1));
 		info.SetString("defense odds",
-			Round(100. * (1. - defenseOdds.Odds(vCrew, crew))) + "%");
+			Format::Decimal(100. * (1. - defenseOdds.Odds(vCrew, crew)), 1) + "%");
 		info.SetString("defense casualties",
-			Round(defenseOdds.DefenderCasualties(vCrew, crew)));
+			Format::Decimal(defenseOdds.DefenderCasualties(vCrew, crew), 1));
 	}
 
 	const Interface *boarding = GameData::Interfaces().Get("boarding");
 	boarding->Draw(info, this);
+
+	if(scroll.Scrollable())
+		scrollBar.SyncDraw(scroll,
+			plunderList.TopRight() + Point{0., 10.}, plunderList.BottomRight() - Point{0., 10.});
 
 	// Draw the status messages from hand to hand combat.
 	Point messagePos(50., 55.);
@@ -274,7 +278,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			// Keep track of how many you actually took.
 			count = 0;
 			for(const auto &it : you->Outfits())
-				if(it.first != outfit && it.first->Ammo() == outfit)
+				if(it.first != outfit && it.first->AmmoStoredOrUsed() == outfit)
 				{
 					// Figure out how many of these outfits you can install.
 					count = you->Attributes().CanAdd(*outfit, available);
@@ -298,6 +302,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			plunder.erase(plunder.begin() + selected);
 			if(plunder.size() && selected == static_cast<int>(plunder.size()))
 				--selected;
+			scroll.SetMaxValue(max(0., 20. * plunder.size()));
 		}
 		else
 			plunder[selected].Take(count);
@@ -480,12 +485,18 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 
 // Handle mouse clicks.
-bool BoardingPanel::Click(int x, int y, int clicks)
+bool BoardingPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(scroll.Scrollable() && scrollBar.SyncClick(scroll, x, y, button, clicks))
+		return true;
+
+	if(button != MouseButton::LEFT)
+		return false;
+
 	// Was the click inside the plunder list?
 	if(x >= -330 && x < 20 && y >= -180 && y < 60)
 	{
-		int index = (scroll + y - -170) / 20;
+		int index = (scroll.AnimatedValue() + y - -170) / 20;
 		if(static_cast<unsigned>(index) < plunder.size())
 			selected = index;
 		return true;
@@ -496,14 +507,21 @@ bool BoardingPanel::Click(int x, int y, int clicks)
 
 
 
+bool BoardingPanel::Hover(int x, int y)
+{
+	scrollBar.Hover(x, y);
+	return true;
+}
+
+
+
 // Allow dragging of the plunder list.
 bool BoardingPanel::Drag(double dx, double dy)
 {
-	// The list is 240 pixels tall, and there are 10 pixels padding on the top
-	// and the bottom, so:
-	double maximumScroll = max(0., 20. * plunder.size() - 220.);
-	scroll = max(0., min(maximumScroll, scroll - dy));
+	if(scroll.Scrollable() && scrollBar.SyncDrag(scroll, dx, dy))
+		return true;
 
+	scroll.Set(scroll - dy);
 	return true;
 }
 
@@ -608,7 +626,7 @@ bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 	// you can install it as an outfit.
 	if(outfit)
 		for(const auto &it : ship.Outfits())
-			if(it.first != outfit && it.first->Ammo() == outfit && ship.Attributes().CanAdd(*outfit))
+			if(it.first != outfit && it.first->AmmoStoredOrUsed() == outfit && ship.Attributes().CanAdd(*outfit))
 				return true;
 
 	return false;
@@ -724,5 +742,5 @@ void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
 	// Scroll down at least far enough to view the current item.
 	double minimumScroll = max(0., 20. * selected - 200.);
 	double maximumScroll = 20. * selected;
-	scroll = max(minimumScroll, min(maximumScroll, scroll));
+	scroll.Set(clamp<double>(scroll, minimumScroll, maximumScroll));
 }

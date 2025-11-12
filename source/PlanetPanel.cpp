@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Port.h"
+#include "Screen.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Shop.h"
@@ -54,8 +55,7 @@ using namespace std;
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
-	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get("planet"))
+	planet(*player.GetPlanet()), system(*player.GetSystem())
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
@@ -66,7 +66,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetRect(ui.GetBox("content"));
+	Resize();
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -76,14 +76,14 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
-	Audio::Pause();
+	Audio::BlockPausing();
 }
 
 
 
 PlanetPanel::~PlanetPanel()
 {
-	Audio::Resume();
+	Audio::UnblockPausing();
 }
 
 
@@ -94,6 +94,10 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
+		if(callback)
+			callback();
+		if(selectedPanel)
+			GetUI()->Pop(selectedPanel);
 		GetUI()->Pop(this);
 		return;
 	}
@@ -168,7 +172,7 @@ void PlanetPanel::Draw()
 		if(planet.HasNamedPort())
 		{
 			info.SetCondition("has port");
-			info.SetString("port name", port.Name());
+			info.SetString("port name", port.DisplayName());
 		}
 
 		if(hasShipyard)
@@ -178,7 +182,8 @@ void PlanetPanel::Draw()
 			info.SetCondition("has outfitter");
 	}
 
-	ui.Draw(info, this);
+	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	ui->Draw(info, this);
 
 	// The description text needs to be updated because player conditions can be changed
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
@@ -197,6 +202,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 
+	UI::UISound sound = UI::UISound::NORMAL;
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
@@ -204,7 +210,10 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return true;
 	}
 	else if(key == 'l')
+	{
+		sound = UI::UISound::NONE;
 		selectedPanel = nullptr;
+	}
 	else if(key == 't' && hasAccess
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
@@ -225,11 +234,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new ShipyardPanel(player, shipyardStock));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && hasOutfitter)
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new OutfitterPanel(player, outfitterStock));
 		return true;
 	}
@@ -250,11 +261,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(command.Has(Command::INFO))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
 	else if(command.Has(Command::MESSAGE_LOG))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
@@ -266,12 +279,23 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
 
+	UI::PlaySound(sound);
+
 	if(selectedPanel)
 		RemoveChild(description.get());
 	else if(oldPanel)
 		AddChild(description);
 
 	return true;
+}
+
+
+
+void PlanetPanel::Resize()
+{
+	const Interface &planetInterface = *GameData::Interfaces().Get(
+		Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	description->SetRect(planetInterface.GetBox("content"));
 }
 
 
@@ -322,7 +346,7 @@ void PlanetPanel::TakeOffIfReady()
 				// record and report all absent ships later.
 				if(result.first->GetSystem() != &system)
 				{
-					out << result.first->Name() << ", ";
+					out << result.first->GivenName() << ", ";
 					absentCannotFly.push_back(result.first);
 				}
 				else
@@ -340,7 +364,7 @@ void PlanetPanel::TakeOffIfReady()
 			shipNames.pop_back();
 			shipNames.pop_back();
 			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
-				"Some of your ships in other systems are not be able to fly:\n" + shipNames +
+				"Some of your ships in other systems are not able to fly:\n" + shipNames +
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
 		}

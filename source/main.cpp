@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
+#include "CustomEvents.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Engine.h"
@@ -43,6 +44,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "test/TestContext.h"
 #include "UI.h"
 
+#ifdef _WIN32
+#include "windows/TimerResolutionGuard.h"
+#include "windows/WinVersion.h"
+#endif
+
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -56,9 +62,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#include <mmsystem.h>
 #endif
-
 
 using namespace std;
 
@@ -77,8 +81,9 @@ void InitConsole();
 // Entry point for the EndlessSky executable
 int main(int argc, char *argv[])
 {
-	// Handle command-line arguments
 #ifdef _WIN32
+	WinVersion::Init();
+	// Handle command-line arguments
 	if(argc > 1)
 		InitConsole();
 #endif
@@ -136,6 +141,7 @@ int main(int argc, char *argv[])
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
 	try {
+
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
@@ -201,12 +207,6 @@ int main(int argc, char *argv[])
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 
-		// On Windows, make sure that the sleep timer has at least 1 ms resolution
-		// to avoid irregular frame rates.
-#ifdef _WIN32
-		timeBeginPeriod(1);
-#endif
-
 		Preferences::Load();
 
 		// Load global conditions:
@@ -219,6 +219,10 @@ int main(int argc, char *argv[])
 			return 1;
 
 		GameData::LoadSettings();
+
+#ifdef _WIN32
+		TimerResolutionGuard windowsTimerGuard;
+#endif
 
 		if(!isTesting || debugMode)
 		{
@@ -233,6 +237,7 @@ int main(int argc, char *argv[])
 		if(isTesting && !noTestMute)
 			Audio::SetVolume(0, SoundCategory::MASTER);
 
+		CustomEvents::Init();
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
 	}
@@ -250,7 +255,7 @@ int main(int argc, char *argv[])
 	// Remember the window state and preferences if quitting normally.
 	Preferences::Set("maximized", GameWindow::IsMaximized());
 	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
-	Screen::SetRaw(GameWindow::Width(), GameWindow::Height());
+	Screen::SetRaw(GameWindow::Width(), GameWindow::Height(), true);
 	Preferences::Save();
 	Plugins::Save();
 
@@ -328,14 +333,17 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// User pressed the Menu key.
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
+				UI::PlaySound(UI::UISound::NORMAL);
 			}
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
 			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-			{
-				// The window has been resized. Adjust the raw screen size
-				// and the OpenGL viewport to match.
+				// The window has been resized. Adjust the raw screen size and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
+			else if(event.type == CustomEvents::GetResize())
+			{
+				menuPanels.AdjustViewport();
+				gamePanels.AdjustViewport();
 			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
@@ -537,7 +545,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.13-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.17-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -575,6 +583,8 @@ Conversation LoadConversation(const PlayerInfo &player)
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
 		{"<model>", "[Ship Model]"},
+		{"<flagship>", "[Flagship]"},
+		{"<flagship model>", "[Flagship Model]"},
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};

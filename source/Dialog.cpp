@@ -170,54 +170,9 @@ void Dialog::Draw()
 	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
 	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
 
-	// If the dialog is too tall, then switch to wide mode.
-	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
-	int maxHeight = Screen::Height() * 3 / 4;
-	if(text->GetTextHeight(false) > maxHeight)
-	{
-		textRectSize.Y() = maxHeight;
-		isWide = true;
-		// Re-wrap with the new width.
-		textRectSize.X() = Width() - HORIZONTAL_PADDING;
-		text->SetRect(Rectangle(Point{}, textRectSize));
-
-		if(text->GetLongestLineWidth() <= top->Width() - HORIZONTAL_MARGIN - HORIZONTAL_PADDING)
-		{
-			// Formatted text is long and skinny (e.g. scan result dialog). Go back
-			// to using the default width, since the wide width doesn't help.
-			isWide = false;
-			textRectSize.X() = Width() - HORIZONTAL_PADDING;
-			text->SetRect(Rectangle(Point{}, textRectSize));
-		}
-	}
-	else
-		textRectSize.Y() = text->GetTextHeight(false);
-
-	// The height of the bottom sprite without the included button's height.
-	const int realBottomHeight = bottom->Height() - cancel->Height();
-
-	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
-			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
-	// Determine how many extension panels we need.
-	if(height <= realBottomHeight + top->Height())
-		extensionCount = 0;
-	else
-		extensionCount = (height - middle->Height()) / middle->Height();
-
-	// Now that we know how big we want to render the text, position the text area.
-
 	// Get the position of the top of this dialog, and of the input.
-	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5f);
+	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5);
 	Point inputPos = Point(0., -(cancel->Height() + INPUT_HEIGHT)) - pos;
-	// Resize textRectSize to match the visual height of the dialog, which will
-	// be rounded up from the actual text height by the number of panels that
-	// were added. This helps correctly position the TextArea scroll buttons.
-	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
-			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
-
-	Point textPos(Width() * -.5 + LEFT_PADDING, pos.Y() + VERTICAL_PADDING);
-	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
-	text->SetRect(textRect);
 
 	// Draw the top section of the dialog box.
 	pos.Y() += top->Height() * .5;
@@ -381,8 +336,10 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 
 
 
-bool Dialog::Click(int x, int y, int clicks)
+bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
 	Point clickPos(x, y);
 
 	const Sprite *sprite = SpriteSet::Get("ui/dialog cancel");
@@ -411,6 +368,67 @@ bool Dialog::Click(int x, int y, int clicks)
 
 
 
+void Dialog::Resize()
+{
+	isWide = false;
+	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
+	text->SetRect(Rectangle(Point(), textRectSize));
+	const Sprite *top = SpriteSet::Get("ui/dialog top");
+	// If the dialog is too tall, then switch to wide mode.
+	int maxHeight = Screen::Height() * 3 / 4;
+	if(text->GetTextHeight(false) > maxHeight)
+	{
+		textRectSize.Y() = maxHeight;
+		isWide = true;
+		// Re-wrap with the new width
+		textRectSize.X() = Width() - HORIZONTAL_PADDING;
+		text->SetRect(Rectangle(Point{}, textRectSize));
+
+		if(text->GetLongestLineWidth() <= top->Width() - HORIZONTAL_MARGIN - HORIZONTAL_PADDING)
+		{
+			// Formatted text is long and skinny (e.g. scan result dialog). Go back
+			// to using the default width, since the wide width doesn't help.
+			isWide = false;
+			textRectSize.X() = Width() - HORIZONTAL_PADDING;
+			text->SetRect(Rectangle(Point{}, textRectSize));
+		}
+	}
+	else
+		textRectSize.Y() = text->GetTextHeight(false);
+
+	top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
+	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
+	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
+	// The height of the bottom sprite without the included button's height.
+	const int realBottomHeight = bottom->Height() - cancel->Height();
+
+	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
+			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
+	// Determine how many extension panels we need.
+	if(height <= realBottomHeight + top->Height())
+		extensionCount = 0;
+	else
+		extensionCount = (height - middle->Height()) / middle->Height();
+
+	// Now that we know how big we want to render the text, position the text
+	// area and add it to the UI.
+
+	// Get the position of the top of this dialog, and of the text and input.
+	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5f);
+	Point textPos(Width() * -.5 + LEFT_PADDING, pos.Y() + VERTICAL_PADDING);
+	// Resize textRectSize to match the visual height of the dialog, which will
+	// be rounded up from the actual text height by the number of panels that
+	// were added. This helps correctly position the TextArea scroll buttons.
+	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
+			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
+
+	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
+	text->SetRect(textRect);
+}
+
+
+
 // Common code from all three constructors:
 void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
@@ -420,15 +438,13 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
-	isWide = false;
 
-	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
 	text = std::make_shared<TextArea>();
 	text->SetAlignment(Alignment::JUSTIFIED);
-	text->SetRect(Rectangle(Point(), textRectSize));
 	text->SetFont(FontSet::Get(14));
 	text->SetTruncate(truncate);
 	text->SetText(message);
+	Resize();
 	AddChild(text);
 }
 

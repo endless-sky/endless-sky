@@ -65,15 +65,6 @@ namespace {
 
 
 
-// Destructor, which frees the memory used by the polymorphic list of elements.
-Interface::~Interface()
-{
-	for(Element *element : elements)
-		delete element;
-}
-
-
-
 // Load an interface.
 void Interface::Load(const DataNode &node)
 {
@@ -125,18 +116,22 @@ void Interface::Load(const DataNode &node)
 		{
 			// Check if this node specifies a known element type.
 			if(key == "sprite" || key == "image" || key == "outline")
-				elements.push_back(new ImageElement(child, anchor));
+				elements.push_back(make_unique<ImageElement>(child, anchor));
 			else if(key == "label" || key == "string" || key == "button" || key == "dynamic button")
-				elements.push_back(new BasicTextElement(child, anchor));
+				elements.push_back(make_unique<BasicTextElement>(child, anchor));
 			else if(key == "wrapped label" || key == "wrapped string"
 					|| key == "wrapped button" || key == "wrapped dynamic button")
-				elements.push_back(new WrappedTextElement(child, anchor));
+				elements.push_back(make_unique<WrappedTextElement>(child, anchor));
 			else if(key == "bar" || key == "ring")
-				elements.push_back(new BarElement(child, anchor));
+				elements.push_back(make_unique<BarElement>(child, anchor));
 			else if(key == "pointer")
-				elements.push_back(new PointerElement(child, anchor));
-			else if(key == "line")
-				elements.push_back(new LineElement(child, anchor));
+				elements.push_back(make_unique<PointerElement>(child, anchor));
+			else if(key == "fill" || key == "line")
+			{
+				if(key == "line")
+					child.PrintTrace("\"line\" is deprecated, use \"fill\" instead:");
+				elements.push_back(make_unique<FillElement>(child, anchor));
+			}
 			else
 			{
 				child.PrintTrace("Skipping unrecognized element:");
@@ -154,7 +149,7 @@ void Interface::Load(const DataNode &node)
 // Draw this interface.
 void Interface::Draw(const Information &info, Panel *panel) const
 {
-	for(const Element *element : elements)
+	for(const unique_ptr<Element> &element : elements)
 		element->Draw(info, panel);
 }
 
@@ -899,10 +894,10 @@ void Interface::PointerElement::Draw(const Rectangle &rect, const Information &i
 
 
 
-// Members of the LineElement class:
+// Members of the FillElement class:
 
 // Constructor.
-Interface::LineElement::LineElement(const DataNode &node, const Point &globalAnchor)
+Interface::FillElement::FillElement(const DataNode &node, const Point &globalAnchor)
 {
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
@@ -916,7 +911,7 @@ Interface::LineElement::LineElement(const DataNode &node, const Point &globalAnc
 
 // Parse the given data line: one that is not recognized by Element
 // itself. This returns false if it does not recognize the line, either.
-bool Interface::LineElement::ParseLine(const DataNode &node)
+bool Interface::FillElement::ParseLine(const DataNode &node)
 {
 	if(node.Token(0) == "color" && node.Size() >= 2)
 		color = GameData::Colors().Get(node.Token(1));
@@ -929,10 +924,10 @@ bool Interface::LineElement::ParseLine(const DataNode &node)
 
 
 // Draw this element in the given rectangle.
-void Interface::LineElement::Draw(const Rectangle &rect, const Information &info, int state) const
+void Interface::FillElement::Draw(const Rectangle &rect, const Information &info, int state) const
 {
 	// Avoid crashes for malformed interface elements that are not fully loaded.
 	if(!from.Get() && !to.Get())
 		return;
-	FillShader::Fill(rect.Center(), rect.Dimensions(), *color);
+	FillShader::Fill(rect, *color);
 }

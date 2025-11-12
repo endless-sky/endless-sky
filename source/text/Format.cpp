@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Format.h"
 
+#include "../Preferences.h"
+
 #include <algorithm>
 #include <array>
 #include <cctype>
@@ -266,6 +268,29 @@ namespace {
 			// "number" or unsupported format
 			result.append(Format::Number(value));
 	}
+
+	// Return a string containing the setting to use for time formatting.
+	const char *TimestampFormatString()
+	{
+		switch(Preferences::GetDateFormat())
+		{
+			case Preferences::DateFormat::YMD:
+				return "%F %T";
+			case Preferences::DateFormat::MDY:
+#ifdef _WIN32
+				return "%#I:%M:%S %p on %b %#d, %Y";
+#else
+				return "%-I:%M:%S %p on %b %-d, %Y";
+#endif
+			case Preferences::DateFormat::DMY:
+			default:
+#ifdef _WIN32
+				return "%#I:%M:%S %p on %#d %b %Y";
+#else
+				return "%-I:%M:%S %p on %-d %b %Y";
+#endif
+		}
+	}
 }
 
 
@@ -351,6 +376,24 @@ string Format::CargoString(double amount, const string &cargo)
 
 
 
+// Converts the integer to string, and adds the noun, pluralized if needed.
+string Format::SimplePluralization(int amount, const string &noun)
+{
+	string result = to_string(amount) + ' ' + noun;
+	if(amount != 1 && amount != -1)
+		result += 's';
+	return result;
+}
+
+
+
+string Format::StepsToSeconds(size_t steps)
+{
+	return Number(steps / 60.) + " s";
+}
+
+
+
 // Convert a time in seconds to years/days/hours/minutes/seconds
 string Format::PlayTime(double timeVal)
 {
@@ -376,6 +419,37 @@ string Format::PlayTime(double timeVal)
 
 	reverse(result.begin(), result.end());
 	return result;
+}
+
+
+
+string Format::TimestampString(chrono::time_point<chrono::system_clock> time)
+{
+	// TODO: Replace with chrono formatting when it is properly supported.
+	time_t timestamp = chrono::system_clock::to_time_t(time);
+
+	const char *format = TimestampFormatString();
+	static const size_t BUF_SIZE = 28;
+	char str[BUF_SIZE];
+
+#ifdef _MSC_VER
+	// Use the "safe" function with MSVC.
+	tm date;
+	localtime_s(&date, &timestamp);
+	return string(str, std::strftime(str, BUF_SIZE, format, &date));
+#else
+	const tm *date = localtime(&timestamp);
+	return string(str, std::strftime(str, BUF_SIZE, format, date));
+#endif
+}
+
+
+
+string Format::TimestampString(filesystem::file_time_type time)
+{
+	auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
+		+ chrono::system_clock::now());
+	return TimestampString(sctp);
 }
 
 
