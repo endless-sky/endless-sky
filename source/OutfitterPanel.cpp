@@ -409,8 +409,10 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			vector<pair<string, vector<string>>> dependentOutfitErrors;
 			vector<string> errorDetails;
 			bool foundOutfit = false;
-			for(const Ship *ship : playerShips) {
-				if(ship->OutfitCount(selectedOutfit) > 0) {
+			for(const Ship *ship : playerShips)
+			{
+				if(ship->OutfitCount(selectedOutfit) > 0)
+				{
 					foundOutfit = true;
 					Outfit attributes = ship->Attributes();
 					// If this outfit requires ammo, check if we could sell it if we sold all the ammo for it first.
