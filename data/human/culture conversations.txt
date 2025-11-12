@@ -1798,7 +1798,7 @@ mission "Three Card Monte"
 				goto again
 			label scammed
 			action
-				"monte: scammed" = 1
+				set "monte: scammed"
 			`	The dealer shrugs, "Better luck next time."`
 				goto again
 			label correct
