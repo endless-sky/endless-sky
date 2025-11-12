@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "GameData.h"
 #include "Logger.h"
-#include "MissionAction.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
@@ -47,7 +46,7 @@ namespace {
 
 
 MissionTimer::MissionTimer(const DataNode &node, const ConditionsStore *playerConditions,
-		const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
@@ -55,7 +54,7 @@ MissionTimer::MissionTimer(const DataNode &node, const ConditionsStore *playerCo
 
 
 void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerConditions,
-		const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() < 2)
 	{
@@ -177,7 +176,7 @@ void MissionTimer::Save(DataWriter &out) const
 					out.Write("peaceful");
 				if(requireCloaked)
 					out.Write("cloaked");
-				if(requireUncloaked)
+				else if(requireUncloaked)
 					out.Write("uncloaked");
 				if(requireSolo)
 					out.Write("solo");
@@ -312,15 +311,15 @@ bool MissionTimer::CanActivate(const Ship *flagship, const PlayerInfo &player) c
 		return true;
 
 	// Does the player's system match the system filter?
-	if((system && flagship->GetSystem() != system) ||
-			(!systems.IsEmpty() && !systems.Matches(flagship->GetSystem())))
+	const System *flagshipSystem = flagship->GetSystem();
+	if((system && flagshipSystem != system) ||
+			(!systems.IsEmpty() && !systems.Matches(flagshipSystem)))
 		return false;
 
 	// Does this timer require that the player is solo (i.e. there are
 	// no escorts in the system with the player)?
 	if(requireSolo)
 	{
-		const System *flagshipSystem = flagship->GetSystem();
 		for(const auto &escort : player.Ships())
 		{
 			// Using GetSystem instead of GetActualSystem so that docked
@@ -376,11 +375,10 @@ void MissionTimer::Deactivate(PlayerInfo &player, UI *ui, const Mission &mission
 		timeElapsed = 0;
 
 	// Perform the DEACTIVATION action, if there is one, assuming it hasn't fired yet.
-	if(!triggeredActions.contains(TimerTrigger::DEACTIVATION))
+	if(triggeredActions.insert(TimerTrigger::DEACTIVATION).second)
 	{
 		auto it = actions.find(TimerTrigger::DEACTIVATION);
 		if(it != actions.end())
 			it->second.Do(player, ui, &mission);
-		triggeredActions.insert(TimerTrigger::DEACTIVATION);
 	}
 }
