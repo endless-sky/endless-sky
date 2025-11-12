@@ -416,7 +416,7 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 	const double arrowOffset = mapInterface->GetValue("arrow x offset");
 	const double planetCardHeight = MapPlanetCard::Height();
 
-	if(x < Screen::Left() + 160)
+	if(x < Screen::Left() + 170)
 	{
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
