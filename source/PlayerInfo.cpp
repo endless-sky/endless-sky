@@ -1341,7 +1341,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 {
 	// Check if the incoming vector contains the same elements
-	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
+	if(is_permutation(ships.begin(), ships.end(), newOrder.begin()))
 	{
 		Ship *oldFirstShip = ships.front().get();
 		ships = newOrder;
