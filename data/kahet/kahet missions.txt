@@ -2633,14 +2633,14 @@ mission "Ka'het: Patir Mystery 23"
 			label loud_error_buzzer_2
 			`	"Logical, and yet the literal translation of these signs would be 'Water Moon', or 'Water Sky'. And the same disconnect between the text in the signs and the actual content of the room repeats more or less in this entire zone, unlike the floors above us. Truthfully, Patir is not the first place where we saw this happen, even if it usually happens in longer phrases than signs. Some rules or characteristics of their language is still far beyond our understanding its literal meaning, it seems."`
 			label focus
-			`	The lift returns to pick you two back up, and you follow Dusk inside the bucket. "It is customary that anyone who intends to work near Korath or Builder worlds learn the basics of the respective languages, but I used to spend some of my free time learning of more specific jargon. You may have heard I had to give up my responsibilities at Ssil Vida recently to have some of my spare time back; perhaps I will be able to use some of it to help with the recent xenolinguistic developments. I have yet to decide if to focus on Patir itself or in what lies beyond it for my researches."`
-			`	The discussion while moving the containers bit by bit into the outpost and then into your ship. Much of the cargo has been loaded by the time they let you leave for some rest and to prepare your ship for liftoff, which you graciously accept.`
+			`	The lift returns to pick you two back up, and you follow Dusk inside the bucket. "It is customary that anyone who intends to work near Korath or Builder worlds learn the basics of the respective languages, but I used to spend some of my free time learning of more specific jargon. I had to give up my responsibilities at Ssil Vida recently to have some of my spare time back; perhaps I will be able to use some of it to help with the recent xenolinguistic developments."`
+			`	The discussion continues while moving the containers bit by bit, first into the outpost, and then into your ship. Much of the cargo has been loaded by the time they let you leave for some rest and to prepare your ship for liftoff, which you graciously accept.`
 				accept
 	on complete
 		conversation
 			`The Remnant leave the ship in joyful mood, despite the effort and the complications along the way. While a carriage leaves with the cargo you bought back from Patir, Dusk informs you that the next step will depend on the review of this test flight directly by the Prefects. "If all goes well, you will find us at a table of the nearby cafeteria as soon as we have taken some rest," he concludes with a hopeful bow.`
 
-mission "Ka'het: Patir Mystery 24"
+mission "Ka'het: Patir Mystery 24A"
 	name "Beyond <system> again"
 	description "Return to <system> again with the same research team, this time with the intention of exploring the systems that it can access. Be there exactly on <date>"
 	deadline 6
@@ -2652,9 +2652,46 @@ mission "Ka'het: Patir Mystery 24"
 		has "Ka'het: Patir Mystery 23: done"
 	on offer
 		conversation
-			`The plan is authorized; you will explore those systems again, with a special focus on the Chanai structure but also general science. Lots of cargo, with your vehicle practically turned into a Spacelab. They are bigger than the lab you took there originally! To work around the lifeboat issue, the flight will not explore the Builder Settlement, and they will all come with you everywhere. The last expedition later on (magic asteroid) will finally do a full mission plan, with some of your passengers staying in the lab with the lifeboat (mitigated by bringing a flock of Terns) and others coming with you for the ground expedition. Be there in 6 days.`
-			`This is what they will call a "medium endurance" Patir trip - enough to visit Chanai or Ghila. A "Long Endurance" trip allows you to visit the whole system, and will be done in the expedition after.`
-				accept
+			`The spaceport cafeteria is brimming with excitement. You take a seat at the table of the Remnant who were in your expedition, who seem to be almost done with their meal. "The first expedition into a new land is always something that deserves celebration," signs one of them, offering you a bowl with a mix of their food. "Granted, after going there already by accident already. Still, this is going to be the first proper exploration, carrying the scientific equipment to determine what it is actually like."`
+			choice
+				`	"What kind of equipment?"`
+				`	"Sorry, but I already ate."`
+					goto ate
+			`	"The ones I am trained for are the UV photo-polarimeter and the imaging telescope. And the broad-band X-ray telescope, but that requires little intervention," she replies. "But the full complement is much more than this, such a millimeter-wave sounder and a trace molecule spectroscope to use near those creatures. What we have tried to assemble is a true research center, far more capable than the standard 6-tons laboratories."`
+				goto payload
+			label ate
+			`	She retracts the bowl defeated, taking some of it in her tray.`
+			label payload
+			`	"This time, the payload is going to be very large," intervenes Dusk. "Even larger than the outpost set up in Patir, though it will not be removed from your ship this time. We will stay in your payload bay for our research as you fly toward our destination, trying to make the best use of our time."`
+			`	"What destination?", you ask him while he takes the last bite out of his plate.`
+			`	"We have chosen as our first target the station in Chanai. This will be what we defined as a Medium Endurance trip - a week-long stay in the space beyond Patir, enough to reach the lower cluster but not to make a full tour of it before Ssil Vida's signal reaches Patir again and brings it back. The Long Endurance trips will be what allows us to reach Lathia again, hopefully a couple months from now.`
+			`	"I need to know if you have a fleet that can carry a 135 ton payload to Patir stationed on this very planet. If you do, I will call Postverta to send the signal and begin the countdown; if you do not, we can wait for a couple days for you to gather it here before we start. As you have seen, we do not have the time to stop anywhere if we want to be in Patir when it moves away."`
+			choice
+				`	"I do."`
+					accept
+				`	"It will be here within a few days."`
+			`	He nods. "We will wait then. When you are ready, you know where to find us."`
+				decline
+
+mission "Ka'het: Patir Mystery 24B"
+	name "Beyond <system> again"
+	description "Return to <system> again with the same research team, this time with the intention of exploring the systems that it can access. Be there exactly on <date>"
+	deadline 6
+	source "Caelian"
+	destination "Builder Settlement"
+	passengers 5
+	cargo "Scientific payload" 135
+	to offer
+		has "Ka'het: Patir Mystery 24A: declined"
+	on offer
+		conversation
+			`You find the five Remnant waiting for you at the edge of the starport, noticeably showing their trepidation. "Welcome back, <first>. Is your fleet ready for our new Patir trip now?"`
+			choice
+				`	"It is."`
+					accept
+				`	"Sorry, I need a few more days still."`
+			`	Their disappointment is clear. "We will be here when your ships come."`
+				decline
 
 mission "Ka'het: Patir Mystery 25"
 	landing
@@ -2666,7 +2703,9 @@ mission "Ka'het: Patir Mystery 25"
 	passengers 5
 	cargo "Scientific payload" 135
 	to offer
-		has "Ka'het: Patir Mystery 24: done"
+		or
+			has "Ka'het: Patir Mystery 24A: done"
+			has "Ka'het: Patir Mystery 24B: done"
 	on offer
 # add patir moves event
 		conversation
@@ -2738,6 +2777,203 @@ mission "Ka'het: Patir Mystery 27"
 	on complete
 		conversation
 			`You land past the Korath fight, and you unload the outfits in the place Chilia had led you previously, and they disappear again deep inside the complex. Meet in spaceport`
+
+mission "Ka'het: Patir Mystery 28"
+	name "Tanker fleet"
+	description "Escort the Swan fleet to <destination> for fit checks."
+	source "Caelian"
+	destination "Ssil Vida"
+	passengers 1
+	to offer
+		has "Ka'het: Patir Mystery 27: done"
+	on offer
+		conversation
+			`You meet up with Dusk; this mission must work independently from whether you did the PM 30 to 35 mission set or not. Meet up with Taely; introduce Swan. The Swans here are actually quite old prototypes; the objective is to test them as huge hyperspace fuel scooper from the gas giant in Postverta and the surrounding systems. Either way, it's time for the expedition, escort tankers to Ssil Vida for preparations. First long stay, first complete mission plan.`
+				accept
+# add Remnant Swan NPCs
+	on complete
+		`Taely watches the Swans dwell into the atmosphere of the gas giant. Meet in the spaceport after she evaluates them.`
+# add permanent Swan fleet to Postverta
+
+
+mission "Ka'het: Patir Mystery 29"
+	name "Taely to <planet>"
+	description "Accompany Taely to <destination> so that she can return to her work."
+	source "Ssil Vida"
+	destination "Aventine"
+	passengers 1
+	to offer
+		has "Ka'het: Patir Mystery 28: done"
+	on offer
+		conversation
+			`Swans go well, Taely asks for a ride back. Mention Korath in Ssil Vida? You can ask her about Peregrines. Also, clock in Ssil Vida marking the days before Patir disappears, and she adds a light to your ship signaling whether Patir is here or in the other galaxy.`
+				accept
+
+mission "Ka'het: Patir Mystery 30"
+	landing
+	name "Patir preparations"
+	description "Return to <destination> to meet up with Dusk. According to Taely, your next mission will require you to carry a flock of Terns."
+	source "Aventine"
+	destination "Caelian"
+	to offer
+		has "Ka'het: Patir Mystery 29: done"
+	on offer
+		conversation
+			`As you drop off Taely, Dusk sends you a notice to show up in Caelian for the next Patir sortie. Taely gives you a preview of your next mission: she briefly helped manage a flock of Terns right for a Patir expedition before leaving.`
+				accept
+	on complete
+		conversation
+			`The flock of Terns is there, and Dusk confirms everything. To continue, you will need a carrier that can transport them to Patir, where they will serve as aids as well as decoys for the lifeboat issues.`
+
+mission "Ka'het: Patir Mystery 31"
+	name "Logistics of a first contact"
+	description "Accompany the Remnant team to <system>. Together with them will come <cargo> tons of cargo and 6 Terns."
+# add deadline
+	source "Caelian"
+	destination "Builder Settlement"
+	passengers 10
+	cargo "Scientific payload" 215
+	to offer
+		has "Ka'het: Patir Mystery 30: done"
+	on offer
+# give the player the terns
+		conversation
+			`The team this time is big. The Terns are many. The cargo heavy. But you can do it! Maybe add Dawn among the people who stay in the lab in Patir? Actually could be more interesting in Patir 4`
+				accept
+	on complete
+# take from the player the terns
+# patir moves event
+# add terns to system
+		conversation
+			`The flock of terns cheerfully separate from the group, moving around the system freely. Lab crew leaves right as stars start moving again, which they stare to in awe. But you're too cool to do so.`
+
+mission "Ka'het: Patir Mystery 32"
+	name "First contact"
+	description "Conduct a first contact with the largest asteroid in <planet by landing on its surface."
+# add deadline
+	source "Builder Settlement"
+	destination "Magic Asteroid Planet"
+	passengers 5
+	cargo "Scientific payload" 95
+	to offer
+		has "Ka'het: Patir Mystery 31: done"
+	on offer
+		conversation
+			`Get 'em tiger`
+				accept
+# add NPC for asteroids that follow you
+	on enter Lathia
+		dialog "Dusk follows protocol and tries to communicates with the planetoid in all known languages and frequencies, then directs you to land."
+	on complete
+		conversation
+			`You know what happens.`
+
+mission "Ka'het: Patir Mystery 33"
+	landing
+	name "Bad contact"
+	description "Return to <system> with the Remnant team, leaving alone the asteroids on the way."
+# add deadline
+	source "Magic Asteroid Planet"
+	destination "Builder Settlement"
+	passengers 5
+	cargo "Scientific payload" 95
+	to offer
+		has "Ka'het: Patir Mystery 32: done"
+	on offer
+# Lathia becomes an enemy as soon as you leave it
+		conversation
+			`You know what happens.`
+				accept
+	on complete
+# Patir returns event
+		conversation
+			`People are attaching new payloads to Terns. Lots of talks, Dusk reveals his vision, stars have moved by the time you return.`
+
+mission "Ka'het: Patir Mystery 34"
+	landing
+	name "End of the voyage"
+	description "Return to <destination> with the Remnant and their scientific payload."
+	source "Builder Settlement"
+	destination "Caelian"
+	passengers 10
+	cargo "Scientific payload" 95
+	to offer
+		has "Ka'het: Patir Mystery 33: done"
+	on offer
+		conversation
+			`Dusk feels strange. He says there was an asteroid when we returned once again, and once again it died instantly. However, he tells you to leave it alone, because of the first contact and because of the Korath risk`
+				accept
+# add dead asteroid NPC. If you board it Dusk is displeased
+	on complete
+		conversation
+			`Goodbye Dusk. Makes it clear he wants to focus more on the Builders for the time being, setting up Patir 4? Before you leave, you get a note from Chilia to see him in the spaceport for a quick announcement.`
+
+mission "Ka'het: Patir Mystery 35"
+	landing
+	name "The far side"
+	description "Return to <destination> with the Remnant and their scientific payload."
+	source "Caelian"
+	waypoint "Equus"
+	cargo "Communication equipment" 15
+	to offer
+		has "Ka'het: Patir Mystery 34: done"
+	on offer
+# make Caelian offer Patir expedition missions on the job board
+		conversation
+# branch: if you have let the ship go you only get told that you can now activate Patir by yourself (decline), otherwise you get the full thing
+			`You can now use Patir by yourself! On top of this, given the increasing usefulness you are showing, you are going to be trusted with one more thing - the knowledge of Remnant use of extremely distant listening posts to see the past. Many species do this, but the Remnant can cloak, and so do it even in other's people territories. With this, plus stellar lensing, they were able to determine Postverta and Patir's appearance dates. Want to go take its data? Make it clear it's the end for now tho.`
+				accept
+	on enter Equus
+		conversation
+			`A tiny, cloaked ship moves back and forth from the gas giant Methuselah to scoop fuel up and deliver it to the outpost. You cannot see either, but your display allows you to see them move; you use the communicator and gather their data.`
+# read again the dialog that appears when you enter Incipias territory
+	on complete
+		conversation
+			`Goodbye Chilia.`
+
+
+
+# They then tell you to carry it cloaked in the future; by Patir 4, the Korath will have known enough enough for the Remnant to accept carrying it normally
+
+# When you are doing the magic asteroid first contact, the asteroids follow you from Patir to Lathia
+
+# the magic asteroid trip will be the first one with the full complement of Patir crew + boarding crew. Take there Terns too!
+
+# move the gas giant further away in Patir
+
+# Ka'het were chosen to be intentionally dumber (a better word is less capable) to make them better at war; and so a Ka'het in the wild will eventually die, while a Ka'sei in the wild will eventually create more and more Ka'sei until a whole system is exhausted. The Remnant understand this because the Ka'het were created right before the destruction of the Builders, and so the Ka'sei must be older.
+
+# NOTE: the Builder settlement itself should NOT house 500 people; the interstellar ship has everything they need to survive for many years. Its function is host everything they will NOT carry on their main ship - it is only the mining outpost, while the near entirety of the living quarters are and will remain on the interstellar ship itself. The top of the dome would be a docking system. Mention this in some part of Patir 3
+
+# ADD SAFETY NETS IF YOU MISS YOUR PASSAGE BACK
+# CHANGE DEATH IN THE GRAVEYARD SO THAT YOU CAN COME BACK WITHOUT PLUME IF YOU DON'T FIND HIM
+# ADD ASTEROID IN PATIR AT THE END OF THE CHANAI MISSION YOU CAN BOARD
+# ADD ANOTHER AT THE END OF THE FIRST CONTACT; BUT HERE, DUSK TELLS YOU TO LEAVE IT ALONE, AND IF YOU DO BOARD IT HE FEELS DISAPPOINTED
+
+# The lifeboat has to be a Petrel; the traditional Remnant one is the Smew, but it does not have gaslining. Here the lifeboating consists in not just leaving the lab asap, but, since there is a gas giant around Patir, to land in it where the Ka'sei can't reach you and sit and wait. So, make that gas giant landable at that point, perhaps making a stop there in the first mission before bringing the lifeboat.
+# Petrel setup (11 bunks!): https://discord.com/channels/828297875833487380/951151933220077719/1378615103976374353
+# Mention how it has Korath outfits, and why the Smew isn't the lifeboat here.
+
+# Possibility: mention Postverta needing a lot of hyperspace fuel to operate Patir; the current fleets can make do, but it gives the opportunity to introduce the Swan in the near future (end of Patir 3? Not buyable, just to fleets/escort) to improve logistics
+
+# Postverta story: Postverta was originally a system much alike Patir; it was encountered by the Sheragi (how they got there is unclear; the Pug may have taken them there to save an enclave of them) and they built the Ssil Vida to attempt controlling it, which failed
+# The Sheragi died out, and 100,000 years pass. A Korath faction discovers Postverta and Ssil Vida, and wrongly believe that the species that built the station also made the system act the way it does; they take over their work and succeed thanks to their far greater knowledge, making it the way it is today. Eventually, the civil war happens, and the Korath abandon all the effort there - just a few centuries ago!
+
+# In the story, this will show up in multiple ways: Patir 3 will describe the Korath involvement in Ssil Vida when you visit it (it would be interesting to mention the Korath probably did not know the Sheragi were tier 1, and based their effort on tech that probably never worked); Patir 4, when they detect more systems, will describe how not even the Korath probably understood the full workings of Postverta and similar, and that the system may have acted like this from the start. Mention also that it would be strange to try to hide multiple systems, there are easier ways to hide from other factions; they were hiding from something more impactful (i.e. Maudrakoi defending themselves from the events that made the Ember Waste how it is like)
+
+# interesting way to introduce the Korath involvement in Ssil Vida: mention the work done decrypting postverta's code, and the fact that it was unexpectedly easy: it resembled in a number of ways the same technology used aboard Korath vessels.
+
+# last mention: that the Remnant don't know how the Sheragi got here, but that many strange things can happen when a species nears the end of their life; the wildest and riskiest plans are put into action, and even more powerful species often try to intervene in strange ways.
+
+# maybe use Dawn to talk about the black holes (black hole merge, the two miniquasars, non-rotating black hole, bh eating star)
+# On top of this, Patir is an intermediate mass black hole. https://en.wikipedia.org/wiki/Intermediate-mass_black_hole and the result of what happens when a wormhole falls in a black hole
+# And also mention this galaxy being the result of at least one galactic merger
+
+# a number of things in the station *are* still Sheragi - for instance, the perfectly squished icosahedron at the center of the station was their making
+
+# Void Elder: comes from Postverta, appears in the first mission there, settles in Nasqueron and speaks telepathically with the player. Involve it again? Maybe try to ask it for how long postverta was hidden (cryptic but potentially relevant answer like "475 the first time, and 2 the second", i.e. it disappeared twice and the first time was much, much longer despite the time system being incomprehensible)
+# Could happen in a Swan test mission? And/or to scoop void sprite stuff?
+
 
 mission "Ka'het: Patir Mystery 28"
 	invisible
@@ -2892,202 +3128,3 @@ mission "Ka'het: Patir Mystery 35"
 # two branches: if you made it escape, and if you did everything right
 			`Chilia stuff. Meet Dusk the spaceport at the end. Include here discussion with Dusk about militarization?`
 				decline
-
-mission "Ka'het: Patir Mystery 36"
-	name "Tanker fleet"
-	description "Escort the Swan fleet to <destination> for fit checks."
-	source "Caelian"
-	destination "Ssil Vida"
-	passengers 1
-	to offer
-		or
-			has "Ka'het: Patir Mystery 35: declined"
-			has "Ka'het: Patir Mystery 28: done"
-			has "Ka'het: Patir Mystery 29: done"
-	on offer
-		conversation
-			`You meet up with Dusk; this mission must work independently from whether you did the PM 30 to 35 mission set or not. Meet up with Taely; introduce Swan. The Swans here are actually quite old prototypes; the objective is to test them as huge hyperspace fuel scooper from the gas giant in Postverta and the surrounding systems. Either way, it's time for the expedition, escort tankers to Ssil Vida for preparations. First long stay, first complete mission plan.`
-				accept
-# add Remnant Swan NPCs
-	on complete
-		`Taely watches the Swans dwell into the atmosphere of the gas giant. Meet in the spaceport after she evaluates them.`
-# add permanent Swan fleet to Postverta
-
-
-mission "Ka'het: Patir Mystery 37"
-	name "Taely to <planet>"
-	description "Accompany Taely to <destination> so that she can return to her work."
-	source "Ssil Vida"
-	destination "Aventine"
-	passengers 1
-	to offer
-		has "Ka'het: Patir Mystery 36: done"
-	on offer
-		conversation
-			`Swans go well, Taely asks for a ride back. Mention Korath in Ssil Vida? You can ask her about Peregrines. Also, clock in Ssil Vida marking the days before Patir disappears, and she adds a light to your ship signaling whether Patir is here or in the other galaxy.`
-				accept
-
-mission "Ka'het: Patir Mystery 38"
-	landing
-	name "Patir preparations"
-	description "Return to <destination> to meet up with Dusk. According to Taely, your next mission will require you to carry a flock of Terns."
-	source "Aventine"
-	destination "Caelian"
-	to offer
-		has "Ka'het: Patir Mystery 37: done"
-	on offer
-		conversation
-			`As you drop off Taely, Dusk sends you a notice to show up in Caelian for the next Patir sortie. Taely gives you a preview of your next mission: she briefly helped manage a flock of Terns right for a Patir expedition before leaving.`
-				accept
-	on complete
-		conversation
-			`The flock of Terns is there, and Dusk confirms everything. To continue, you will need a carrier that can transport them to Patir, where they will serve as aids as well as decoys for the lifeboat issues.`
-
-mission "Ka'het: Patir Mystery 39"
-	name "Logistics of a first contact"
-	description "Accompany the Remnant team to <system>. Together with them will come <cargo> tons of cargo and 6 Terns."
-# add deadline
-	source "Caelian"
-	destination "Builder Settlement"
-	passengers 10
-	cargo "Scientific payload" 215
-	to offer
-		has "Ka'het: Patir Mystery 38: done"
-	on offer
-# give the player the terns
-		conversation
-			`The team this time is big. The Terns are many. The cargo heavy. But you can do it! Maybe add Dawn among the people who stay in the lab in Patir? Actually could be more interesting in Patir 4`
-				accept
-	on complete
-# take from the player the terns
-# patir moves event
-# add terns to system
-		conversation
-			`The flock of terns cheerfully separate from the group, moving around the system freely. Lab crew leaves right as stars start moving again, which they stare to in awe. But you're too cool to do so.`
-
-mission "Ka'het: Patir Mystery 40"
-	name "First contact"
-	description "Conduct a first contact with the largest asteroid in <planet by landing on its surface."
-# add deadline
-	source "Builder Settlement"
-	destination "Magic Asteroid Planet"
-	passengers 5
-	cargo "Scientific payload" 95
-	to offer
-		has "Ka'het: Patir Mystery 39: done"
-	on offer
-		conversation
-			`Get 'em tiger`
-				accept
-# add NPC for asteroids that follow you
-	on enter Lathia
-		dialog "Dusk follows protocol and tries to communicates with the planetoid in all known languages and frequencies, then directs you to land."
-	on complete
-		conversation
-			`You know what happens.`
-
-mission "Ka'het: Patir Mystery 41"
-	landing
-	name "Bad contact"
-	description "Return to <system> with the Remnant team, leaving alone the asteroids on the way."
-# add deadline
-	source "Magic Asteroid Planet"
-	destination "Builder Settlement"
-	passengers 5
-	cargo "Scientific payload" 95
-	to offer
-		has "Ka'het: Patir Mystery 40: done"
-	on offer
-# Lathia becomes an enemy as soon as you leave it
-		conversation
-			`You know what happens.`
-				accept
-	on complete
-# Patir returns event
-		conversation
-			`People are attaching new payloads to Terns. Lots of talks, Dusk reveals his vision, stars have moved by the time you return.`
-
-mission "Ka'het: Patir Mystery 42"
-	landing
-	name "End of the voyage"
-	description "Return to <destination> with the Remnant and their scientific payload."
-	source "Builder Settlement"
-	destination "Caelian"
-	passengers 10
-	cargo "Scientific payload" 95
-	to offer
-		has "Ka'het: Patir Mystery 41: done"
-	on offer
-		conversation
-			`Dusk feels strange. He says there was an asteroid when we returned once again, and once again it died instantly. However, he tells you to leave it alone, because of the first contact and because of the Korath risk`
-				accept
-# add dead asteroid NPC. If you board it Dusk is displeased
-	on complete
-		conversation
-			`Goodbye Dusk. Makes it clear he wants to focus more on the Builders for the time being, setting up Patir 4? Before you leave, you get a note from Chilia to see him in the spaceport for a quick announcement.`
-
-mission "Ka'het: Patir Mystery 43"
-	landing
-	name "The far side"
-	description "Return to <destination> with the Remnant and their scientific payload."
-	source "Caelian"
-	waypoint "Equus"
-	cargo "Communication equipment" 15
-	to offer
-		has "Ka'het: Patir Mystery 42: done"
-	on offer
-# make Caelian offer Patir expedition missions on the job board
-		conversation
-# branch: if you have let the ship go you only get told that you can now activate Patir by yourself (decline), otherwise you get the full thing
-			`You can now use Patir by yourself! On top of this, given the increasing usefulness you are showing, you are going to be trusted with one more thing - the knowledge of Remnant use of extremely distant listening posts to see the past. Many species do this, but the Remnant can cloak, and so do it even in other's people territories. With this, plus stellar lensing, they were able to determine Postverta and Patir's appearance dates. Want to go take its data? Make it clear it's the end for now tho.`
-				accept
-	on enter Equus
-		conversation
-			`A tiny, cloaked ship moves back and forth from the gas giant Methuselah to scoop fuel up and deliver it to the outpost. You cannot see either, but your display allows you to see them move; you use the communicator and gather their data.`
-# read again the dialog that appears when you enter Incipias territory
-	on complete
-		conversation
-			`Goodbye Chilia.`
-
-
-
-# They then tell you to carry it cloaked in the future; by Patir 4, the Korath will have known enough enough for the Remnant to accept carrying it normally
-
-# When you are doing the magic asteroid first contact, the asteroids follow you from Patir to Lathia
-
-# the magic asteroid trip will be the first one with the full complement of Patir crew + boarding crew. Take there Terns too!
-
-# move the gas giant further away in Patir
-
-# Ka'het were chosen to be intentionally dumber (a better word is less capable) to make them better at war; and so a Ka'het in the wild will eventually die, while a Ka'sei in the wild will eventually create more and more Ka'sei until a whole system is exhausted. The Remnant understand this because the Ka'het were created right before the destruction of the Builders, and so the Ka'sei must be older.
-
-# NOTE: the Builder settlement itself should NOT house 500 people; the interstellar ship has everything they need to survive for many years. Its function is host everything they will NOT carry on their main ship - it is only the mining outpost, while the near entirety of the living quarters are and will remain on the interstellar ship itself. The top of the dome would be a docking system. Mention this in some part of Patir 3
-
-# ADD SAFETY NETS IF YOU MISS YOUR PASSAGE BACK
-# CHANGE DEATH IN THE GRAVEYARD SO THAT YOU CAN COME BACK WITHOUT PLUME IF YOU DON'T FIND HIM
-# ADD ASTEROID IN PATIR AT THE END OF THE CHANAI MISSION YOU CAN BOARD
-# ADD ANOTHER AT THE END OF THE FIRST CONTACT; BUT HERE, DUSK TELLS YOU TO LEAVE IT ALONE, AND IF YOU DO BOARD IT HE FEELS DISAPPOINTED
-
-# The lifeboat has to be a Petrel; the traditional Remnant one is the Smew, but it does not have gaslining. Here the lifeboating consists in not just leaving the lab asap, but, since there is a gas giant around Patir, to land in it where the Ka'sei can't reach you and sit and wait. So, make that gas giant landable at that point, perhaps making a stop there in the first mission before bringing the lifeboat.
-# Petrel setup (11 bunks!): https://discord.com/channels/828297875833487380/951151933220077719/1378615103976374353
-# Mention how it has Korath outfits, and why the Smew isn't the lifeboat here.
-
-# Possibility: mention Postverta needing a lot of hyperspace fuel to operate Patir; the current fleets can make do, but it gives the opportunity to introduce the Swan in the near future (end of Patir 3? Not buyable, just to fleets/escort) to improve logistics
-
-# Postverta story: Postverta was originally a system much alike Patir; it was encountered by the Sheragi (how they got there is unclear; the Pug may have taken them there to save an enclave of them) and they built the Ssil Vida to attempt controlling it, which failed
-# The Sheragi died out, and 100,000 years pass. A Korath faction discovers Postverta and Ssil Vida, and wrongly believe that the species that built the station also made the system act the way it does; they take over their work and succeed thanks to their far greater knowledge, making it the way it is today. Eventually, the civil war happens, and the Korath abandon all the effort there - just a few centuries ago!
-
-# In the story, this will show up in multiple ways: Patir 3 will describe the Korath involvement in Ssil Vida when you visit it (it would be interesting to mention the Korath probably did not know the Sheragi were tier 1, and based their effort on tech that probably never worked); Patir 4, when they detect more systems, will describe how not even the Korath probably understood the full workings of Postverta and similar, and that the system may have acted like this from the start. Mention also that it would be strange to try to hide multiple systems, there are easier ways to hide from other factions; they were hiding from something more impactful (i.e. Maudrakoi defending themselves from the events that made the Ember Waste how it is like)
-
-# interesting way to introduce the Korath involvement in Ssil Vida: mention the work done decrypting postverta's code, and the fact that it was unexpectedly easy: it resembled in a number of ways the same technology used aboard Korath vessels.
-
-# last mention: that the Remnant don't know how the Sheragi got here, but that many strange things can happen when a species nears the end of their life; the wildest and riskiest plans are put into action, and even more powerful species often try to intervene in strange ways.
-
-# maybe use Dawn to talk about the black holes (black hole merge, the two miniquasars, non-rotating black hole, bh eating star)
-# On top of this, Patir is an intermediate mass black hole. https://en.wikipedia.org/wiki/Intermediate-mass_black_hole and the result of what happens when a wormhole falls in a black hole
-# And also mention this galaxy being the result of at least one galactic merger
-
-# a number of things in the station *are* still Sheragi - for instance, the perfectly squished icosahedron at the center of the station was their making
-
-# Void Elder: comes from Postverta, appears in the first mission there, settles in Nasqueron and speaks telepathically with the player. Involve it again? Maybe try to ask it for how long postverta was hidden (cryptic but potentially relevant answer like "475 the first time, and 2 the second", i.e. it disappeared twice and the first time was much, much longer despite the time system being incomprehensible)
-# Could happen in a Swan test mission? And/or to scoop void sprite stuff?
