@@ -1809,7 +1809,7 @@ mission "Three Card Monte"
 			branch cutoff
 				"monte: games played" < 3
 			`	He prepares to lay out a new set of cards, only to suddenly shoo you away after appearing to be spooked by some unseen authorities. The dealer quickly packs up and disappears into the spaceport.`
-				goto trueending
+				goto "true ending"
 			label cutoff
 			`	Then he gives you a look. "Fancy another game?"`
 			action
