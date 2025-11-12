@@ -375,13 +375,13 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 		throw "unreachable; unsupported to/from combination";
 
 	// Handle special cases such as maps and licenses.
-	if(selectedOutfit->Get("map"))
+	int mapSize = selectedOutfit->Get("map");
+	if(mapSize)
 	{
 		if(fromLocation != OutfitLocation::Shop)
 			return "You cannot " + actionName + " maps. Once you buy one, it is yours permanently.";
 		if(toLocation == OutfitLocation::Cargo || toLocation == OutfitLocation::Storage)
 			return "You cannot place maps into " + LocationName(toLocation) + ".";
-		int mapSize = selectedOutfit->Get("map");
 		bool mapMinables = selectedOutfit->Get("map minables");
 		if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
 			return "You have already mapped all the systems shown by this map, so there is no reason to buy another.";
@@ -406,73 +406,74 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			if(!playerShip)
 				return "No ship selected.";
 
-			// Short-circuit, if true, can
-			for(const Ship *ship : playerShips)
-				if(ShipCanRemove(ship, selectedOutfit))
-				{
-					canSource = true;
-					break;
-				}
-
-			if(!canSource)
-			{
-				// None of the selected ships have any of this outfit in a state where it could be sold.
-				bool hasOutfit = false;
-				for(const Ship *ship : playerShips)
-					if(ship->OutfitCount(selectedOutfit))
+			vector<pair<string, vector<string>>> dependentOutfitErrors;
+			vector<string> errorDetails;
+			bool foundOutfit = false;
+			for(const Ship *ship : playerShips) {
+				if(ship->OutfitCount(selectedOutfit) > 0) {
+					foundOutfit = true;
+					Outfit attributes = ship->Attributes();
+					// If this outfit requires ammo, check if we could sell it if we sold all the ammo for it first.
+					const Outfit *ammo = selectedOutfit->AmmoStoredOrUsed();
+					if(ammo && ship->OutfitCount(ammo))
 					{
-						hasOutfit = true;
+						attributes.Add(*ammo, -ship->OutfitCount(ammo));
+					}
+					// Ammo is not a factor (now), check whether this ship can uninstall this outfit.
+					canSource = attributes.CanAdd(*selectedOutfit, -1);
+
+					// If we have an outfit that can be sourced, break out, otherwise return an appropriate error.
+					if(canSource)
 						break;
-					}
 
-				if(!hasOutfit)
-					return "You don't have any " + selectedOutfit->PluralName() + " to " + actionName + ".";
-
-				// At least one of the outfit is installed on at least one of the selected ships.
-				// Create a complete summary of reasons why none of this outfit were able to be <verb>'d:
-				// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
-				// <verb>'d. Make a list of ship to errors to assemble into a string afterward.
-				vector<pair<string, vector<string>>> dependentOutfitErrors;
-				for(const Ship *ship : playerShips)
-					if(ship->OutfitCount(selectedOutfit))
-					{
-						vector<string> errorDetails;
-						for(const pair<const char *, double> &it : selectedOutfit->Attributes())
-							if(ship->Attributes().Get(it.first) < it.second)
-							{
-								for(const auto &sit : ship->Outfits())
-								{
-									if(sit.first->Get(it.first) < 0.)
-										errorDetails.emplace_back(string("the \"") + sit.first->DisplayName() + "\" "
-											"depends on this outfit and must be uninstalled first");
-								}
-								if(errorDetails.empty())
-									errorDetails.emplace_back(
-										string("\"") + it.first + "\" value would be reduced to less than zero");
-							}
-						if(!errorDetails.empty())
-							dependentOutfitErrors.emplace_back(ship->GivenName(), std::move(errorDetails));
-					}
-
-				// Return the errors in the appropriate format.
-				if(!dependentOutfitErrors.empty())
-				{
-					string errorMessage = "You cannot " + actionName + " this from " +
-						(playerShips.size() > 1 ? "any of the selected ships" : "your ship") + " because:\n";
-					int i = 1;
-					for(const auto &[shipName, errors] : dependentOutfitErrors)
-					{
-						if(playerShips.size() > 1)
+					// At least one of the outfit is installed on at least one of the selected ships.
+					// Create a complete summary of reasons why none of this outfit were able to be <verb>'d:
+					// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
+					// <verb>'d. Make a list of ship to errors to assemble into a string afterward.
+					// TODO: when there are multiples of the same better verbiage could be used rather than restating.
+					for(const pair<const char *, double> &it : selectedOutfit->Attributes())
+						if(attributes.Get(it.first) < it.second)
 						{
-							errorMessage += to_string(i++) + ". You cannot " + actionName + " this outfit from \"";
-							errorMessage += shipName + "\" because:\n";
+							for(const auto &sit : ship->Outfits())
+								if(sit.first->Get(it.first) < 0.)
+									errorDetails.emplace_back(string("the \"") + sit.first->DisplayName() + "\" "
+										"depends on this outfit and must be uninstalled first");
+							if(errorDetails.empty())
+								errorDetails.emplace_back(
+									string("\"") + it.first + "\" value would be reduced to less than zero");
 						}
-						for(const string &error : errors)
-							errorMessage += "- " + error + "\n";
-					}
-					return errorMessage;
+
+					if(!errorDetails.empty())
+						dependentOutfitErrors.emplace_back(ship->GivenName(), std::move(errorDetails));
 				}
 			}
+
+			if(canSource)
+				break;
+
+			// The outfit cannot be installed from any ship
+			if(!foundOutfit)
+				return "You don't have any " + selectedOutfit->PluralName() + " to " + actionName + ".";
+
+			// Return the errors in the appropriate format.
+			if(!dependentOutfitErrors.empty())
+			{
+				string errorMessage = "You cannot " + actionName + " this from " +
+					(playerShips.size() > 1 ? "any of the selected ships" : "your ship") + " because:\n";
+				int i = 1;
+				for(const auto &[shipName, errors] : dependentOutfitErrors)
+				{
+					if(playerShips.size() > 1)
+					{
+						errorMessage += to_string(i++) + ". You cannot " + actionName + " this outfit from \"";
+						errorMessage += shipName + "\" because:\n";
+				 	}
+					for(const string &error : errors)
+						errorMessage += "- " + error + "\n";
+				}
+				return errorMessage;
+			}
+
 			break;
 		}
 		case OutfitLocation::Shop:
@@ -489,7 +490,6 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			// Skip this for speed if this action is not a buy and install action.
 			if(toLocation != OutfitLocation::Ship)
 			{
-				int mapSize = selectedOutfit->Get("map");
 				bool mapMinables = selectedOutfit->Get("map minables");
 				if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
 					return "You have already mapped all the systems shown by this map, "
@@ -630,7 +630,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					return errors[0];
 				else if(errors.size() > 1)
 				{
-					string errorMessage = "There are several reasons why you cannot buy this outfit:\n";
+					string errorMessage = "There are several reasons why you cannot " + actionName + " this outfit:\n";
 					for(const string &error : errors)
 						errorMessage += "- " + error + "\n";
 					return errorMessage;

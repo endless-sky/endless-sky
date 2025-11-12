@@ -38,10 +38,6 @@ class Ship;
 // configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
 public:
-	explicit OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock);
-
-	virtual void Step() override;
-
 	// Define locations which items may move to and from within the outfitter.
 	enum class OutfitLocation {
 		Ship,
@@ -49,6 +45,12 @@ public:
 		Cargo,
 		Storage,
 	};
+
+
+public:
+	explicit OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock);
+
+	virtual void Step() override;
 
 
 protected:

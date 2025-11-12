@@ -214,7 +214,7 @@ void ShipyardPanel::DrawButtons()
 		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
 	DrawButton("_Sell",
 		Rectangle(Screen::BottomRight() - Point(130, 25), Point(60, 30)),
-		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
+		!playerShips.empty(), hoverButton == 's', 's');
 
 	// TODO: Add button for sell but retain outfits.
 
