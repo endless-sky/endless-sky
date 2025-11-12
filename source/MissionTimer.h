@@ -26,6 +26,7 @@ class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Mission;
+class MissionAction;
 class Planet;
 class PlayerInfo;
 class Ship;
