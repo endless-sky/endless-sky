@@ -1641,10 +1641,17 @@ phrase "three card monte opening"
 		"when a sharp laugh draws your attention to a small card game on a crate. "
 		"and see a tight cluster of faces leaning in around a makeshift table as quick hands shuffle three tired cards. "
 	word
-		"The dealer looks up, grins, and offers a simple challenge: "
-		"The dealer glances up, eyebrows arched, as he spreads his arms over the cards in invitation: "
-		"The dealer's gaze lingers on you, one hand resting on the cards as though daring you to step closer: "
-		"The dealer finally notices you, his grin widening as he gestures grandly at the three waiting cards: "
+		"The dealer looks up and grins. "
+		"The dealer glances up, eyebrows arched. "
+		"The dealer's gaze lingers on you, one hand resting on the cards as though daring you to step closer. "
+		"The dealer finally notices you, and his grin widens. "
+
+phrase "three card monte opening 2"
+	word
+		"He offers a simple challenge: "
+		"He spreads his arms over the cards in invitation: "
+		" "
+		"He grandly gestures at the three waiting cards: "
 
 
 mission "Three Card Monte"
@@ -1660,10 +1667,11 @@ mission "Three Card Monte"
 		not attributes "deep" "station"
 	on offer
 		conversation
-			`${three card monte opening}"The game's simple. Stake 1,000 credits and find the ace to double your money."`
+			`${three card monte opening}`
 			`	The dealer tips a weathered hat. "Always a pleasure to see another captain of fortune." His gaze never leaves your wallet.`
 				to display
 					"reputation: Pirate" > 100
+			`	${three card monte opening 2}"The game's simple. Stake 1,000 credits and find the ace to double your money."`
 			action
 				"monte: not scam chance" = "reputation: Pirate" / 10 + 100
 				"monte: not scam chance" >?= 60 # There's always at least a 60% of not being scammed first round, meaning the player always comes out ahead in the first game
@@ -1837,6 +1845,8 @@ mission "Three Card Monte"
 						credits > 10000
 				`	(Book it for my ship.)`
 					goto "book it"
+			action
+				payment -10000
 			`	Your credit chips thud as they land on the table, and you see the dealer's grin widen while you're fleeced and embarrassed.`
 				goto "true ending"
 			label "book it"
