@@ -1343,10 +1343,10 @@ mission "Exotic Life: Mainsail"
 					goto seen
 				`	(Avert your gaze and get back to your ship.)`
 					decline
-			`	"Ah, that, my friend, is a Mainsail Seadog, the premier water-sporting hound of the Paradise Planets. Bred some four centuries ago in the ateliers of this very planet, they marry old water-dog stock with dolphin and otter blood, with a touch of beaver for the tail, crocodile for the jaws, and barracuda for the strike," he says with a wink. "They'll nose out a school, haul in the finest fish, and lay a damp, grateful head upon your boots - a prized rarity since the Republic put a lid on the gene labs."`
 			action
 				set "exotic animals: mainsail seadog known"
-			goto ending
+			`	"Ah, that, my friend, is a Mainsail Seadog, the premier water-sporting hound of the Paradise Planets. Bred some four centuries ago in the ateliers of this very planet, they marry old water-dog stock with dolphin and otter blood, with a touch of beaver for the tail, crocodile for the jaws, and barracuda for the strike," he says with a wink. "They'll nose out a school, haul in the finest fish, and lay a damp, grateful head upon your boots - a prized rarity since the Republic put a lid on the gene labs."`
+				goto ending
 			label seen
 			`	"Glad to hear that, my friend! Too few have seen the prized rarity of a Mainsail Seadog nowadays, since the Republic put a lid on the labs."`
 			label ending
