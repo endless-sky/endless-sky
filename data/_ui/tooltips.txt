@@ -394,7 +394,7 @@ tip "threshold percentage:"
 	`Modifies the percentage of the remaining hull strength at which the ship will become disabled.`
 
 tip "hull protection:"
-	`Protection provided against hull damage. Modifies the total amount of damage a ship's hull can withstand by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more damage to its hull before it is destroyed.`
+	`Protection provided against direct hull damage. Modifies the total amount of damage a ship's hull can withstand by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more damage to its hull before it is destroyed.`
 
 tip "hull repair multiplier:"
 	`Modifies the amount of hull strength repaired per second by the given factor.`
