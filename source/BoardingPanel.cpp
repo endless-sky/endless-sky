@@ -100,6 +100,11 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
+	else
+	{
+		attackOdds.Calculate();
+		defenseOdds.Calculate();
+	}
 
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());

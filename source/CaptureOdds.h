@@ -32,8 +32,12 @@ class Ship;
 class CaptureOdds {
 public:
 	// Calculate odds that the first given ship can capture the second, assuming
-	// the first ship always attacks and the second one always defends.
+	// the first ship always attacks and the second one always defends. Odds
+	// are only calculated once Calculate is called.
 	CaptureOdds(const Ship &attacker, const Ship &defender);
+
+	// Generate the lookup table.
+	void Calculate();
 
 	// Get the odds of the attacker winning if the two ships have the given
 	// number of crew members remaining.
@@ -50,8 +54,6 @@ public:
 
 
 private:
-	// Generate the lookup table.
-	void Calculate();
 	// Map crew numbers into an index in the lookup table.
 	int Index(int attackingCrew, int defendingCrew) const;
 
