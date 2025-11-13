@@ -2622,7 +2622,7 @@ mission "Ka'het: Patir Mystery 23"
 			choice
 				`	"I feel that it says 'Water Moon.'"`
 					goto loud_error_buzzer
-				`	"Something about bunks?"
+				`	"Something about bunks?"`
 					goto loud_error_buzzer_2
 				`	"What is this about?"`
 			`	"Oh, it is nothing of particular importance," he replies slightly flustered. "Just some bits of information that I find interesting, but really do not help much compose the bigger picture."`
@@ -2642,7 +2642,7 @@ mission "Ka'het: Patir Mystery 23"
 
 mission "Ka'het: Patir Mystery 24A"
 	name "Beyond <system> again"
-	description "Return to <system> again with the same research team, this time with the intention of exploring the systems that it can access. Be there exactly on <date>"
+	description "Return to <system> again with the same research team, this time with the intention of exploring the systems that it can access. Be there exactly on <date>."
 	deadline 6
 	source "Caelian"
 	destination "Builder Settlement"
@@ -2664,7 +2664,7 @@ mission "Ka'het: Patir Mystery 24A"
 			label payload
 			`	"This time, the payload is going to be very large," intervenes Dusk. "Even larger than the outpost set up in Patir, though it will not be removed from your ship this time. We will stay in your payload bay for our research as you fly toward our destination, trying to make the best use of our time."`
 			`	"What destination?", you ask him while he takes the last bite out of his plate.`
-			`	"We have chosen as our first target the station in Chanai. This will be what we defined as a Medium Endurance trip - a week-long stay in the space beyond Patir, enough to reach the lower cluster but not to make a full tour of it before Ssil Vida's signal reaches Patir again and brings it back. The Long Endurance trips will be what allows us to reach Lathia again, hopefully a couple months from now.`
+			`	"Our first target will be the station in Chanai. This will be what we defined as a Medium Endurance trip - a week-long stay in the space beyond Patir, enough to reach the lower cluster but not to make a full tour of it before Ssil Vida's signal reaches Patir again and brings it back. The Long Endurance trips will be what allows us to reach Lathia again, hopefully a couple months from now.`
 			`	"I need to know if you have a fleet that can carry a 135 ton payload to Patir stationed on this very planet. If you do, I will call Postverta to send the signal and begin the countdown; if you do not, we can wait for a couple days for you to gather it here before we start. As you have seen, we do not have the time to stop anywhere if we want to be in Patir when it moves away."`
 			choice
 				`	"I do."`
@@ -2675,7 +2675,7 @@ mission "Ka'het: Patir Mystery 24A"
 
 mission "Ka'het: Patir Mystery 24B"
 	name "Beyond <system> again"
-	description "Return to <system> again with the same research team, this time with the intention of exploring the systems that it can access. Be there exactly on <date>"
+	description "Return to <system> again with the same research team, this time with the intention of exploring the systems that it can access. Be there exactly on <date>."
 	deadline 6
 	source "Caelian"
 	destination "Builder Settlement"
@@ -2709,10 +2709,11 @@ mission "Ka'het: Patir Mystery 25"
 	on offer
 # add patir moves event
 		conversation
-			`You watch the stars move, but this time it's not special. To save on time, you launch right away! You have a deadline to maintain.`
-				accept
+			`For once, your ship's bridge is unusually quiet. The same cannot be said about the laboratory in the back of your ship: the Remnant have all moved there already, in order to activate the equipment for the mission. Each of them stands at their console setting up small computers and strange pieces of machinery, like a well oiled machine where everyone knows exactly what to do.`
+			`	In a matter of minutes, the stars will move once again. After briefly consulting with the crew, you decide to save some time by launching back to orbit straight away while they finish their preparations. After all, a new countdown has begun: in seven days, Patir will move back the Milky Way, with or without you.`
+				launch
 	on enter
-		dialog "As soon as you're in orbit they start scanning stuff all busy. Very different vibes to the first time you were here."
+		dialog "By the time you reach orbit, the light show has come to an end and the Remnant have begun their research. A small satellite is quietly released from of your payload bay, as it will in every system you pass through."
 
 mission "Ka'het: Patir Mystery 26A"
 	landing
@@ -2733,7 +2734,7 @@ mission "Ka'het: Patir Mystery 26A"
 	on complete
 # add patir returns event
 		conversation
-			`The people return to the outpost, you help them unload tons and tons of instruments that will become a permanent feature. Meet them later while they set them up; just as you leave, the stars move...`
+			`The people return to the outpost, you help them unload tons and tons of instruments that will become a permanent feature. Meet them later while they set them up; just as you leave, the stars move...(add scene with new remnant outpost)`
 
 mission "Ka'het: Patir Mystery 26B"
 	landing
@@ -2756,7 +2757,7 @@ mission "Ka'het: Patir Mystery 26B"
 # add patir returns event
 # while you're at it, make the magic asteroid planet landable for the later expedition
 		conversation
-			`The people return to the outpost, you help them unload tons and tons of instruments that will become a permanent feature. Meet them later while they set them up; just as you leave, the stars move...`
+			`The people return to the outpost, you help them unload tons and tons of instruments that will become a permanent feature. Meet them later while they set them up; just as you leave, the stars move...(add scene with new remnant outpost)`
 
 mission "Ka'het: Patir Mystery 27"
 	name "Another asteroid"
@@ -2973,6 +2974,7 @@ mission "Ka'het: Patir Mystery 35"
 
 # Void Elder: comes from Postverta, appears in the first mission there, settles in Nasqueron and speaks telepathically with the player. Involve it again? Maybe try to ask it for how long postverta was hidden (cryptic but potentially relevant answer like "475 the first time, and 2 the second", i.e. it disappeared twice and the first time was much, much longer despite the time system being incomprehensible)
 # Could happen in a Swan test mission? And/or to scoop void sprite stuff?
+SEE NOTES ON DISCORD
 
 
 mission "Ka'het: Patir Mystery 28"
