@@ -103,15 +103,6 @@ mission "Incipias: First Contact"
 				to display
 					has "Visit Quarg in Incipias Space: offered"
 
-mission "First Contact: Incipias"
-	landing
-	invisible
-	to offer
-		has "Incipias: First Contact: done"
-	on offer
-		set "First Contact: Incipias: done"
-		fail
-
 
 
 mission "Visit Quarg in Incipias Space"
