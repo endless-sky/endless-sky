@@ -1365,7 +1365,7 @@ mission "Easter Celebrations: Deep"
 			`	On your way out of the room, you notice a bulletin board near the door documenting several church events - a potluck on Wednesday, a notification of an off-planet trip for the next weekend, and several other items blocked by a set of people in the process of a furious debate.`
 			`	Once outside on the wide lawns, you notice a group of children gathered around an old man. He says something that you cannot hear, and the children scatter, each heading in a different direction. You notice that they carry plastic baskets under one arm.`
 			`	The adult fires a starting pistol, and immediately each child begins looking in the shrubs nearby. One of them holds up a plastic egg with a shout of triumph.`
-        decline
+				decline
 
 mission "Struggling Author Gone Missing"
 	minor
