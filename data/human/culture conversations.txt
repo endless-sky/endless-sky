@@ -1653,6 +1653,22 @@ phrase "three card monte opening 2"
 		""
 		"He grandly gestures at the three waiting cards: "
 
+phrase "card anything but an ace"
+	word
+		"king"
+		"queen"
+		"jack"
+		"ten"
+		"two"
+	word
+		" of"
+
+phrase "card suits"
+	word
+		"hearts"
+		"spades"
+		"clubs"
+		"diamonds"
 
 mission "Three Card Monte"
 	minor
@@ -1695,7 +1711,7 @@ mission "Three Card Monte"
 				"monte: step" = 1
 				clear "monte: scammed"
 				payment -1000
-			`	You drop a 1,000 credit chip to play. "All you need to do is find the ace," the dealer says, flashing the ace faceup towards you, then setting it down between two other facedown cards in the center. He starts shuffling with a practiced twist.`
+			`	You drop a 1,000 credit chip to play. "All you need to do is find the ace," the dealer says, flashing the ace of ${card suits} faceup towards you, then setting it down between two other facedown cards in the center. He starts shuffling with a practiced twist.`
 				goto begin
 			label "next decision"
 			branch ending
@@ -1770,7 +1786,7 @@ mission "Three Card Monte"
 				and
 					"monte: card spot" == "monte: guess"
 					random < "monte: not scam chance" - 25 * "monte: games played"
-			`	And flips your chosen, decidedly non-ace card. You've lost 1,000 credits this round.`
+			`	And flips your chosen, decidedly non-ace card, a ${card anything but an ace} ${card suits}. You've lost 1,000 credits this round.`
 			`	Then he playfully reveals the left card: the ace.`
 				to display
 					or
