@@ -39,6 +39,8 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	virtual void UpdateTooltipActivation() override;
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -48,8 +50,12 @@ protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	virtual void Resize() override;
+
 
 private:
+	void InitTextArea();
+	void ResizeTextArea() const;
 	// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem.
 	// CenterOnSystem will either pan to the system or immediately jump to it.
 	void SetSelectedScrollAndCenter(bool immediate = false);
@@ -81,6 +87,7 @@ private:
 	// Centers on the next involved system for the clicked mission from the mission list
 	void CycleInvolvedSystems(const Mission &mission);
 
+
 private:
 	const Interface *missionInterface;
 
@@ -95,8 +102,11 @@ private:
 	bool canDrag = true;
 
 	int dragSide = 0;
-	int hoverSortCount = 0;
-	int hoverSort = -1; // 0 to 3 for each UI element
+
+	// 0 to 3 for each UI element
+	int hoverSort = -1;
+	mutable Tooltip tooltip;
+
 	std::shared_ptr<TextArea> description;
 	bool descriptionVisible = false;
 };
