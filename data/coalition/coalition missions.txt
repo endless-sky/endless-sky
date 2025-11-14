@@ -103,6 +103,15 @@ event "label coalition space"
 	galaxy "label arachi"
 		sprite "label/arachi"
 
+mission "First Contact: Coalition"
+	landing
+	invisible
+	to offer
+		has "Coalition: First Contact: done"
+	on offer
+		set "First Contact: Coalition: done"
+		fail
+
 
 
 mission "Coalition: Contributor"
