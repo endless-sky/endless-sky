@@ -231,15 +231,6 @@ mission "Avgi: First Contact"
 		set "discovered avgi"
 		event "outer limits label"
 
-mission "First Contact: Avgi"
-	landing
-	invisible
-	to offer
-		has "Avgi: First Contact: done"
-	on offer
-		set "First Contact: Avgi: done"
-		fail
-
 
 
 mission "Avgi: Humans From the Deep"
