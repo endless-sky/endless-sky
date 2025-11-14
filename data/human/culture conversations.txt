@@ -1317,7 +1317,7 @@ mission "Exotic Life: New Greenland"
 			`	A grizzled man emerges from the fog with an easy, unhurried gait, a laser rifle slung over one shoulder. A hulking beast lumbers at his side: a horse-sized hound cloaked in heavy, wooly fur rimmed with frost. Two enormous tusks thrust from its muzzle like pale sabers. Steam billows from its flared nostrils as it turns its head almost lazily toward you. Its eyes carry a grim patience.`
 			`	The man sees you and grunts, "Don't stare at a Mammoth Mastiff."`
 			choice
-				`	"What's a Mammoth mastiff?"`
+				`	"What's a Mammoth Mastiff?"`
 				`	"Don't tell me what to do!"`
 					goto ending
 				`	(Avert your gaze and get back to your ship.)`
@@ -1334,7 +1334,7 @@ mission "Exotic Life: Mainsail"
 		random < 10
 	on offer
 		conversation
-			`You steady yourself on the floating city-ship as the necklace of barges, docks, and gantries creak and sway with Mainsail's endless ocean. Salt spray stings your face as you head out towards the ring. One barge rocks close, its deck slick with algae, while a local fearlessly walks a four-legged whale-like creature on a leash - a seal-sized mass of compact muscle under slate fur, with webbed paws that click on the planks, a long whiskered snout bristling with needlelike teeth and a broad, flattened tail that wags with anticipation.`
+			`You steady yourself on the floating city-ship as the necklace of barges, docks, and gantries creak and sway under the influence of Mainsail's endless ocean waves. Salt spray stings your face as you head out towards the ring. One barge rocks close, its deck slick with algae, while a local fearlessly walks a four-legged whale-like creature on a leash - a seal-sized mass of compact muscle under slate fur, with webbed paws that click on the planks, a long whiskered snout bristling with needlelike teeth and a broad, flattened tail that wags with anticipation.`
 			`	The local catches you gawking, flashes a salt-creased grin and calls, "Never seen a seadog before?`
 			choice
 				`	"Can't say I have!"`
