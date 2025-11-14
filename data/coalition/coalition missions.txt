@@ -3232,7 +3232,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 	stopover "Alexandria"
 	destination "Ki Patek Ka"
 	to offer
-		has "First Contact: Coalition: done"
+		has "Coalition: First Contact: done"
 	on offer
 		conversation
 			`As you walk through the spaceport, you see a group of Kimek and an Arachi seated at a table, deep in conversation. One of them glances toward you. As if something suddenly clicked, the group quickly rises from their seats and begin approaching you.`
