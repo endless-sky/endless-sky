@@ -3279,7 +3279,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 			`	"A group who likes to read books together, we are. Science fiction, I believe the term is, especially."`
 				goto decision
 			label "don't have"
-			`	On <stopovers> there is a library with complete copies of all human history. You return to your ship and prepare for the journey there to acquire one.`
+			`	A quick search of the Worlds Wide Web reveals that the library of <stopovers> has data chips containing a complete database of all human culture and history. You return to your ship and prepare for the journey there to acquire one.`
 				accept
 	on decline
 		clear "coalition: asked about kachachee"
