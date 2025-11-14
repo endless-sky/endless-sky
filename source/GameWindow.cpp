@@ -26,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 #ifdef _WIN32
+#include "windows/WinVersion.h"
+
 #include <windows.h>
 
 #include <dwmapi.h>
@@ -159,7 +161,7 @@ bool GameWindow::Init(bool headless)
 	{
 		width = windowWidth;
 		height = windowHeight;
-		Screen::SetRaw(width, height);
+		Screen::SetRaw(width, height, true);
 		return true;
 	}
 
@@ -248,30 +250,11 @@ bool GameWindow::Init(bool headless)
 		Preferences::ToggleVSync();
 
 	// Make sure the screen size and view-port are set correctly.
-	AdjustViewport();
+	AdjustViewport(true);
 
 #ifdef _WIN32
-	// Set up a dark title bar on Windows versions that support it
-	// without having to draw it manually.
-	HMODULE ntdll = LoadLibraryW(L"ntdll.dll");
-	auto rtlGetVersion = reinterpret_cast<NTSTATUS (*)(PRTL_OSVERSIONINFOW)>(GetProcAddress(ntdll, "RtlGetVersion"));
-	RTL_OSVERSIONINFOW versionInfo = {};
-	if(rtlGetVersion)
-		rtlGetVersion(&versionInfo);
-	FreeLibrary(ntdll);
-	if(versionInfo.dwBuildNumber >= 19041)
-	{
-		SDL_SysWMinfo windowInfo;
-		SDL_VERSION(&windowInfo.version);
-		SDL_GetWindowWMInfo(mainWindow, &windowInfo);
-		BOOL value = 1;
-
-		HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
-		auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
-			GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
-		dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
-		FreeLibrary(dwmapi);
-	}
+	UpdateTitleBarTheme();
+	UpdateWindowRounding();
 #endif
 
 	return true;
@@ -303,7 +286,7 @@ void GameWindow::Step()
 
 
 
-void GameWindow::AdjustViewport()
+void GameWindow::AdjustViewport(bool noResizeEvent)
 {
 	if(!mainWindow)
 		return;
@@ -323,7 +306,7 @@ void GameWindow::AdjustViewport()
 	// means one pixel of the display will be clipped.
 	int roundWidth = (windowWidth + 1) & ~1;
 	int roundHeight = (windowHeight + 1) & ~1;
-	Screen::SetRaw(roundWidth, roundHeight);
+	Screen::SetRaw(roundWidth, roundHeight, noResizeEvent);
 
 	// Find out the drawable dimensions. If this is a high- DPI display, this
 	// may be larger than the window.
@@ -466,3 +449,67 @@ void GameWindow::ExitWithError(const string &message, bool doPopUp)
 
 	GameWindow::Quit();
 }
+
+
+
+#ifdef _WIN32
+void GameWindow::UpdateTitleBarTheme()
+{
+	if(!WinVersion::SupportsDarkTheme())
+		return;
+
+	SDL_SysWMinfo windowInfo;
+	SDL_VERSION(&windowInfo.version);
+	SDL_GetWindowWMInfo(mainWindow, &windowInfo);
+
+	BOOL value;
+	Preferences::TitleBarTheme themePreference = Preferences::GetTitleBarTheme();
+	// If the default option is selected, check the system-wide preference.
+	if(themePreference == Preferences::TitleBarTheme::DEFAULT)
+	{
+		HKEY systemPreference;
+		if(RegOpenKeyExW(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+			0, KEY_READ, &systemPreference) == ERROR_SUCCESS)
+		{
+			DWORD size = sizeof(value);
+			if(RegQueryValueExW(systemPreference, L"AppsUseLightTheme", 0, nullptr,
+					reinterpret_cast<LPBYTE>(&value), &size) == ERROR_SUCCESS)
+				// The key says about light theme, while DWM expects information about dark theme.
+				value = !value;
+			else
+				value = 1;
+			RegCloseKey(systemPreference);
+		}
+		else
+			value = 1;
+	}
+	else
+		value = themePreference == Preferences::TitleBarTheme::DARK;
+
+	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
+	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
+		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
+	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
+	FreeLibrary(dwmapi);
+}
+
+
+
+void GameWindow::UpdateWindowRounding()
+{
+	if(!WinVersion::SupportsWindowRounding())
+		return;
+
+	SDL_SysWMinfo windowInfo;
+	SDL_VERSION(&windowInfo.version);
+	SDL_GetWindowWMInfo(mainWindow, &windowInfo);
+
+	auto value = static_cast<DWM_WINDOW_CORNER_PREFERENCE>(Preferences::GetWindowRounding());
+
+	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
+	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
+		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
+	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_WINDOW_CORNER_PREFERENCE, &value, sizeof(value));
+	FreeLibrary(dwmapi);
+}
+#endif

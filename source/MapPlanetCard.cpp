@@ -50,8 +50,8 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	hasSpaceport = planet->HasServices();
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
-	governmentName = planet->GetGovernment()->GetName();
-	string systemGovernmentName = planet->GetSystem()->GetGovernment()->GetName();
+	governmentName = planet->GetGovernment()->DisplayName();
+	string systemGovernmentName = planet->GetSystem()->GetGovernment()->DisplayName();
 	if(governmentName != "Uninhabited" && governmentName != systemGovernmentName)
 		hasGovernments = true;
 

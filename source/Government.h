@@ -56,10 +56,10 @@ public:
 		const std::set<const Planet *> *visitedPlanets);
 
 	// Get the display name of this government.
-	const std::string &GetName() const;
-	// Set / Get the name used for this government in the data files.
-	void SetName(const std::string &trueName);
-	const std::string &GetTrueName() const;
+	const std::string &DisplayName() const;
+	// Set / Get the true name used for this government in the data files.
+	void SetTrueName(const std::string &trueName);
+	const std::string &TrueName() const;
 	// Get the color swizzle to use for ships of this government.
 	const Swizzle *GetSwizzle() const;
 	// Get the color to use for displaying this government on the map.
@@ -124,9 +124,11 @@ public:
 	// Check to see if the items are condemnable (atrocities) or warrant a fine.
 	bool Condemns(const Outfit *outfit) const;
 	bool Condemns(const Ship *ship) const;
+	bool IgnoresUniversalAtrocities() const;
 	// Returns the fine for given item for this government.
 	int Fines(const Outfit *outfit) const;
 	int Fines(const Ship *ship) const;
+	bool IgnoresUniversalIllegals() const;
 	// Check if given ship has illegal outfits or cargo.
 	bool FinesContents(const Ship *ship) const;
 
@@ -150,7 +152,7 @@ public:
 
 private:
 	unsigned id;
-	std::string name;
+	std::string trueName;
 	std::string displayName;
 	const Swizzle *swizzle = Swizzle::None();
 	ExclusiveItem<Color> color;
@@ -165,8 +167,10 @@ private:
 	std::map<int, double> penaltyFor;
 	std::map<const Outfit*, int> illegalOutfits;
 	std::map<std::string, int> illegalShips;
+	bool ignoreUniversalIllegals = false;
 	std::map<const Outfit*, bool> atrocityOutfits;
 	std::map<std::string, bool> atrocityShips;
+	bool ignoreUniversalAtrocities = false;
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
