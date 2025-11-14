@@ -3425,13 +3425,13 @@ mission "Coalition: Struggling Author 1"
 			choice
 				`	"They will, hopefully."`
 				`	"Well, it's better to try than to just give up."`
-			`	"These stories might just inspire my next novel. But, they wouldn't speak our language. How are they going to read my books?" You reply, "They have a translation device."`
+			`	"These stories might just inspire my next novel. But they wouldn't speak our language. How are they going to read my books?" You reply, "They have a translation device."`
 			`	"That's reassuring... but, how am I even going to get there?" she queries.`
 			choice
 				`	"I'll take you there."`
 				`	"I don't think you can."`
 					goto decline
-			`	"Do I have to pay anything? I can't afford off-world transport at all, let alone to a completely different segment of the galaxy! Actually, I know - I'll give you a copy of Beyond the Hyperdrive! Thank you so much! Just wait for a while. I'll go over to my house and bring what I'll need for the trip, and then we can go to whatever this Coalition thing is," says Anna.`
+			`	Her tone of voice becomes much more excited. "Do I have to pay anything? I can't afford off-world transport at all, let alone to a completely different segment of the galaxy! Actually, I know - I'll give you a copy of Beyond the Hyperdrive! Thank you so much! Just wait for a while. I'll go over to my house and bring what I'll need for the trip, and then we can go to whatever this Coalition thing is," says Anna.`
 			`	As you wait for Anna, you look over your maps of Coalition space to double-check what planet the Coalition book club is on. After a quick look, you find <destination>.`
 			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open it to let her inside and prepare to leave the spaceport.`
 				accept
@@ -3457,7 +3457,7 @@ mission "Coalition: Struggling Author 1"
 				`	"That was a jump drive."`
 				`	"That's what happens every time I go to Coalition space with a jump drive."`
 			`	"Wow. I can't believe this is happening!" Anna looks out the window, then turns back.`
-			`	"Can I take a look at your jump drive? I'm interested to see how it works," Anna says. You take her to the engine room of <ship>, where she begins taking notes and pictures of the drive.`
+			`	"Can I take a look at your jump drive? I'm interested to see how it works," Anna says. You take her to the engine room of the <ship>, where she begins taking notes and pictures of the drive.`
 			`	"Well, thank you for bringing me here," Anna says when she finishes. "I didn't sleep too well, so I'll see you later. Goodbye!" She heads back into her cabin, and you settle back into the controls.`
 	npc
 		government "Heliarch"
@@ -3466,7 +3466,7 @@ mission "Coalition: Struggling Author 1"
 	on complete
 		set "coalition: struggling author - beyond the hyperdrive"
 		conversation
-			`Anna gives you the book before you both exit the <ship>. The moment you are out, three Kimek approach you and Anna.`
+			`Anna gives you the book before you both exit the <ship>. The moment you are out, three Kimek with golden circlets on their heads approach you and Anna.`
 			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"`
 			`	"Oh, I write science fiction novels," replies Anna, only mildly taken aback by the sight of giant beetles.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
@@ -3493,7 +3493,7 @@ mission "Coalition: Book Discovered 2"
 					decline
 			action
 				set "struggling author: asked for another copy of beyond the hyperdrive"
-			`	You call Anna, and ask her for another copy of Beyond the Hyperdrive for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, there probably won't even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." You should head there to receive and gift it to Kachachee.`
+			`	You call Anna, and ask her for another copy of Beyond the Hyperdrive for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, there probably won't even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." You should head there to receive it and gift it to Kachachee.`
 				accept
 	on complete
 		payment 7000
@@ -3505,7 +3505,7 @@ mission "Coalition: Book Discovered 2"
 			label owncopy
 			`When you land on <planet>, you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
 			label gift
-			`	Walking over to the aforementioned public square, you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
+			`	Walking over to the aforementioned public square, you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip and walk away, blending back into the crowd.`
 
 mission "Coalition: Struggling Author 2"
 	name "Help Anna register with the Heliarchy"
@@ -3621,7 +3621,7 @@ mission "Coalition: Struggling Author 4"
 		has "Coalition: Struggling Author 3: done"
 	on offer
 		conversation
-			`The spaceport of Ki Patek Ka is vast, and would normally prove a nightmarish place to look for just one person. Thankfully, Anna being the only other human within the Coalition makes your search relatively quick. She has chosen to settle in a cafeteria with her laptop. She is typing away at the keyboard, presumably writing a short story to post.`
+			`The spaceport of Ki Patek Ka is vast, and would normally prove a nightmarish place to look for just one person. Thankfully, Anna being the only other human within the Coalition makes your search relatively quick. She has chosen to settle in a cafeteria with her laptop, typing away at the keyboard, presumably writing a short story to post.`
 			`	"<first>! I found a company who's willing to publish me! I sent them a digital copy of my book and they instructed me to visit their office on <planet>," explains Anna, once again enthusiastic. At a table behind her you notice the figure of Temporo, speaking to a waiter.`
 			choice
 				`	"Great!"`
@@ -3664,7 +3664,7 @@ mission "Coalition: Struggling Author 4"
 				`	"Should I stay here to accompany Anna?`
 					goto accompany
 			label "wait time"
-			`	"Wait a few hours, you must, but for the entire process, perhaps half a year, wait Anna must," explains Ikiyachee.`
+			`	"Wait a few hours during our preliminary interview, you must.`
 			choice
 				`	"A few hours? That's quite boring, isn't it?"`
 				`	"Should I stay here to accompany Anna?"`
