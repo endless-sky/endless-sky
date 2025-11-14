@@ -1648,9 +1648,9 @@ phrase "three card monte opening"
 
 phrase "three card monte opening 2"
 	word
-		"He offers a simple challenge: "
+		"He offers an easy challenge: "
 		"He spreads his arms over the cards in invitation: "
-		" "
+		""
 		"He grandly gestures at the three waiting cards: "
 
 
@@ -1687,6 +1687,7 @@ mission "Three Card Monte"
 						credits < 1000
 				`	(Skip the game.)`
 					decline
+			label "new game start"
 			action
 				"monte: multiplication" = 1 + "roll: 2"
 				"monte: addition" = "roll: 3"
@@ -1779,7 +1780,7 @@ mission "Three Card Monte"
 						and
 							"monte: guess" != 0
 							"monte: card spot" == "monte: guess"
-			`	With a single, clean motion he shows that the middle card was the ace.`
+			`	With a single, clean motion, he shows that the middle card was the ace.`
 				to display
 					or
 						and
@@ -1794,12 +1795,12 @@ mission "Three Card Monte"
 					"monte: card spot" != "monte: guess"
 			branch scammed
 				"monte: card spot" == "monte: guess"
-			`	"Better luck next time."`
+			`	The dealer shrugs. "Better luck next time."`
 				goto again
 			label scammed
 			action
 				set "monte: scammed"
-			`	The dealer shrugs, "Better luck next time."`
+			`	The dealer shrugs. "Better luck next time."`
 				goto again
 			label correct
 			`	And flips over an ace! The dealer seems bewildered, but begrudgingly hands over 2,000 credits, doubling your money.`
@@ -1817,9 +1818,8 @@ mission "Three Card Monte"
 			choice
 				`	"Of course!"`
 					to display
-						and
-							credits > 1000
-					goto "new game"
+						credits > 1000
+					goto "new game start"
 				`	"You cheated!"`
 					to display
 						has "monte: scammed"
@@ -1832,7 +1832,11 @@ mission "Three Card Monte"
 				`	"Fine. But I'm watching you."`
 					to display
 							credits > 1000
-					goto "new game"
+					goto "new game start"
+				`	"Sorry, but I don't have enough money."`
+					goto "true ending"
+					to display
+						credits < 1000
 				`	"And get scammed again? I don't think so."`
 					goto "true ending"
 			label "pirate world"
@@ -1861,7 +1865,7 @@ mission "Three Card Monte"
 				clear "monte: scammed"
 				"reputation: Pirate" -= 2.5
 			`	You bolt for the <ship>.`
-			`	"After them!" the dealer shouts, while his men leap into pursuit, curses and boots echoing behind you. The sound of commotion behind you dissolves as you make it aboard your ship before they can catch up.`
+			`	"After them!" the dealer shouts, while his men leap into pursuit, their curses and boots echoing behind you. The sound of commotion behind you dissolves as you make it aboard your ship before they can catch up.`
 				flee
 			label "true ending"
 			`	You leave the gambling game for your ship.`
