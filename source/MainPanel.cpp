@@ -694,7 +694,7 @@ void MainPanel::StepEvents(bool &isActive)
 			}
 			else if(event.TargetGovernment() && event.TargetGovernment()->IsPlayer())
 			{
-				string message = actor->Fine(player, event.Type(), &*event.Target());
+				string message = actor->Fine(player, event.Type(), &*event.Target()).second;
 				if(!message.empty())
 				{
 					GetUI()->Push(new DialogPanel(message));
