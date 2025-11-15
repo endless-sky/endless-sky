@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Messages.h"
 
-#include "Color.h"
+#include "DataWriter.h"
 #include "GameData.h"
 
 #include <mutex>
@@ -116,6 +116,13 @@ const deque<pair<string, const Message::Category *>> &Messages::GetLog()
 
 
 
+void Messages::ClearLog()
+{
+	logged.clear();
+}
+
+
+
 // Reset the messages (i.e. because a new game was loaded).
 void Messages::Reset()
 {
@@ -123,4 +130,29 @@ void Messages::Reset()
 	incoming.clear();
 	recent.clear();
 	logged.clear();
+}
+
+
+
+void Messages::LoadLog(const DataNode &node)
+{
+	for(const DataNode &child : node)
+	{
+		if(child.Size() < 2)
+			child.PrintTrace("Skipping message log entry without category:");
+		logged.emplace_front(child.Token(1), GameData::MessageCategories().Get(child.Token(0)));
+	}
+}
+
+
+
+void Messages::SaveLog(DataWriter &out)
+{
+	out.Write("message log");
+	out.BeginChild();
+	{
+		for(auto it = logged.rbegin(); it != logged.rend(); ++it)
+			out.Write(it->second->Name(), it->first);
+	}
+	out.EndChild();
 }

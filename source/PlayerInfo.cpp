@@ -445,6 +445,8 @@ void PlayerInfo::Load(const filesystem::path &path)
 		}
 		else if(key == "start")
 			startData.Load(child);
+		else if(key == "message log")
+			Messages::LoadLog(child);
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -4728,6 +4730,12 @@ void PlayerInfo::Save(DataWriter &out) const
 			out.Write(plugin.name);
 	}
 	out.EndChild();
+
+	if(Preferences::Has("Save message log"))
+	{
+		out.Write();
+		Messages::SaveLog(out);
+	}
 }
 
 
