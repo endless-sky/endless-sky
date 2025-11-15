@@ -91,6 +91,11 @@ public:
 	// Get a hail message (which depends on whether this is an enemy government
 	// and if the ship is disabled).
 	std::string GetHail(bool isDisabled) const;
+	// Get a hail message that the government responds with if it accepts a bribe.
+	std::string GetBribeAcceptanceHail() const;
+	// Get a hail message that the government responds with if it rejects a bribe.
+	std::string GetBribeRejectionHail() const;
+
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
 	// Find out if this government should send custom hails even if the player does not know its language.
@@ -180,6 +185,8 @@ private:
 	const Phrase *friendlyDisabledHail = nullptr;
 	const Phrase *hostileHail = nullptr;
 	const Phrase *hostileDisabledHail = nullptr;
+	const Phrase *bribeAcceptanceHail = nullptr;
+	const Phrase *bribeRejectionHail = nullptr;
 	std::string language;
 	bool sendUntranslatedHails = false;
 	std::vector<RaidFleet> raidFleets;
