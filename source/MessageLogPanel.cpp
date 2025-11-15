@@ -130,8 +130,7 @@ bool MessageLogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	else if(key == 'i')
 		importantOnly = !importantOnly;
 	else if(key == 'c' && !messages.empty())
-		GetUI()->Push(new Dialog{&Messages::ClearLog, "Clear the message log?",
-			Truncate::NONE, true, false});
+		GetUI()->Push(new Dialog{&Messages::ClearLog, "Clear the message log?", Truncate::NONE, true, false});
 
 	return true;
 }
