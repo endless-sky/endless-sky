@@ -38,7 +38,7 @@ CaptureOdds::CaptureOdds(const Ship &attacker, const Ship &defender)
 // Generate the lookup tables.
 void CaptureOdds::Calculate()
 {
-	if(powerD.empty() || powerA.empty())
+	if(powerD.empty() || powerA.empty() || !capture.empty())
 		return;
 
 	// The first row represents the case where the attacker has only one crew left.

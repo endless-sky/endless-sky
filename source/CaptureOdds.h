@@ -31,9 +31,9 @@ class Ship;
 // is attacking or defending; defending crew get a +1 power bonus.
 class CaptureOdds {
 public:
-	// Calculate odds that the first given ship can capture the second, assuming
-	// the first ship always attacks and the second one always defends. Odds
-	// are only calculated once Calculate is called.
+	// Store the hand-to-hand combat power of the attacker and defender.
+	// Since calculating the capture odds can be expensive, the odds
+	// are only calculated when needed by calling the Calculate function.
 	CaptureOdds(const Ship &attacker, const Ship &defender);
 
 	// Generate the lookup table.
