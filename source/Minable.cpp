@@ -289,10 +289,16 @@ double Minable::MaxHull() const
 
 
 
-double Minable::Heat() const
+double Minable::Mass() const
 {
-	double maxHeat = MAXIMUM_TEMPERATURE * (attributes.Mass() + attributes.Get("heat capacity"));
-	return maxHeat ? heat / maxHeat : 1.;
+	return attributes.Mass();
+}
+
+
+
+double Minable::MaximumHeat() const
+{
+	return MAXIMUM_TEMPERATURE * (attributes.Mass() + attributes.Get("heat capacity"));
 }
 
 

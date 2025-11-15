@@ -434,7 +434,7 @@ void Projectile::CheckLock(const Entity *target, bool targetIsShip)
 			double rangeFraction = min(1., distance / jammingRange);
 			opticalJamming = (1. - rangeFraction) * opticalJamming;
 		}
-		double targetMass = targetIsShip ? static_cast<const Ship *>(target)->Mass() : target->Attributes().Mass();
+		double targetMass = target->Mass();
 		double weight = targetMass * targetMass * targetMass / 1e9;
 		double lockChance = weapon->OpticalTracking() * weight / ((1. + weight) * (1. + opticalJamming));
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
@@ -452,9 +452,7 @@ void Projectile::CheckLock(const Entity *target, bool targetIsShip)
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double lockChance = weapon->InfraredTracking() * min(1.,
-			(targetIsShip ? static_cast<const Ship *>(target)->Heat()
-			: static_cast<const Minable *>(target)->Heat()) * multiplier);
+		double lockChance = weapon->InfraredTracking() * min(1., target->Heat() * multiplier);
 		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}

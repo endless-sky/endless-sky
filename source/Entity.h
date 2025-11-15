@@ -26,6 +26,11 @@ class Entity : public Body {
 public:
 	// Get the current attributes of this entity.
 	const Outfit &Attributes() const;
+	virtual double Mass() const = 0;
+	// A value typically between 0 and 1, but can be higher in case of overheat.
+	double Heat() const;
+	// Get the maximum heat level, in heat units (not temperature).
+	virtual double MaximumHeat() const = 0;
 
 
 protected:
@@ -34,4 +39,6 @@ protected:
 
 protected:
 	Outfit attributes;
+	// The current heat value of this entity.
+	double heat = 0.;
 };

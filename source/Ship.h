@@ -357,9 +357,6 @@ public:
 	double Hull() const;
 	double Fuel() const;
 	double Energy() const;
-	// A ship's heat is generally between 0 and 1, but if it receives
-	// heat damage the value can increase above 1.
-	double Heat() const;
 	// Get the ship's "health," where <=0 is disabled and 1 means full health.
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
@@ -398,7 +395,7 @@ public:
 	// Get the heat dissipation, in heat units per heat unit per frame.
 	double HeatDissipation() const;
 	// Get the maximum heat level, in heat units (not temperature).
-	double MaximumHeat() const;
+	double MaximumHeat() const override;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
 	// Calculate the drag on this ship. The drag can be no greater than the mass.
@@ -418,7 +415,7 @@ public:
 	bool CanBeFlagship() const;
 
 	// Get this ship's movement characteristics.
-	double Mass() const;
+	double Mass() const override;
 	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
@@ -688,7 +685,6 @@ private:
 	double hull = 0.;
 	double fuel = 0.;
 	double energy = 0.;
-	double heat = 0.;
 	// Accrued "ion damage" that will affect this ship's energy over time.
 	double ionization = 0.;
 	// Accrued "scrambling damage" that will affect this ship's weaponry over time.

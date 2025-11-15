@@ -93,10 +93,8 @@ public:
 	// Get the maximum hull value of this asteroid.
 	double MaxHull() const;
 
-	// The current heat value of this minable, as a fraction between 0 and 1
-	// (or above 1 in case of overheat). Overheating does not have any effect
-	// on the minable, but we want this value to have the same scale as ship heat.
-	double Heat() const;
+	double Mass() const override;
+	double MaximumHeat() const override;
 
 
 private:
@@ -146,8 +144,6 @@ private:
 	// How much prospecting has been done on this object. Used to increase the
 	// payload drop rate.
 	double prospecting = 0.;
-	// The current heat value of this minable.
-	double heat = 0.;
 	// Material released when this object is destroyed.
 	std::vector<Payload> payload;
 	std::vector<LiveEffect> liveEffects;

@@ -21,3 +21,11 @@ const Outfit &Entity::Attributes() const
 {
 	return attributes;
 }
+
+
+
+double Entity::Heat() const
+{
+	double maximum = this->MaximumHeat();
+	return maximum ? heat / maximum : 1.;
+}

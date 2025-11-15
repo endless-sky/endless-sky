@@ -2812,16 +2812,6 @@ double Ship::Energy() const
 
 
 
-// Allow returning a heat value greater than 1 (i.e. conveying how overheated
-// this ship has become).
-double Ship::Heat() const
-{
-	double maximum = MaximumHeat();
-	return maximum ? heat / maximum : 1.;
-}
-
-
-
 // Get the ship's "health," where <=0 is disabled and 1 means full health.
 double Ship::Health() const
 {
