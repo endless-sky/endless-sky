@@ -129,6 +129,7 @@ void ImageSet::Add(ImageFileData data)
 	// Determine which frame of the sprite this image will be.
 	// Store the requested path.
 	framePaths[data.is2x + (2 * data.isSwizzleMask)][data.frameNumber].swap(data.path);
+	noReduction |= data.noReduction;
 }
 
 
@@ -281,10 +282,10 @@ void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 			it.Clear();
 
 	// Load the frames (this will clear the buffers).
-	sprite->AddFrames(buffer[0], false);
-	sprite->AddFrames(buffer[1], true);
-	sprite->AddSwizzleMaskFrames(buffer[2], false);
-	sprite->AddSwizzleMaskFrames(buffer[3], true);
+	sprite->AddFrames(buffer[0], false, noReduction);
+	sprite->AddFrames(buffer[1], true, noReduction);
+	sprite->AddSwizzleMaskFrames(buffer[2], false, noReduction);
+	sprite->AddSwizzleMaskFrames(buffer[3], true, noReduction);
 
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();

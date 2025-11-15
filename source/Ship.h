@@ -120,7 +120,6 @@ public:
 	};
 
 	enum class CanFireResult {
-		INVALID,
 		NO_AMMO,
 		NO_ENERGY,
 		NO_FUEL,
@@ -281,6 +280,7 @@ public:
 	bool IsCapturable() const;
 	bool IsTargetable() const;
 	bool IsOverheated() const;
+	bool IsIonized() const;
 	bool IsDisabled() const;
 	bool IsBoarding() const;
 	bool IsLanding() const;
@@ -425,11 +425,13 @@ public:
 	double MaxVelocity(bool withAfterburner = false) const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
-	// These values are the ship's current maximum acceleration and turn rate,
-	// accounting for factors such as slowing and crew count.
+	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
 	double TrueAcceleration() const;
 	double TrueTurnRate() const;
-	double TrueReverseAcceleration() const;
+	// These two values are the ship's effective maximum acceleration and turn rate,
+	// accounting for the effects of insufficient crew.
+	double CrewAcceleration() const;
+	double CrewTurnRate() const;
 	// The ship's current speed right now
 	double CurrentSpeed() const;
 
@@ -492,6 +494,7 @@ public:
 	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
+	// Assume the weapon is valid.
 	CanFireResult CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates). Assume that CanFire() is true.
@@ -668,7 +671,7 @@ private:
 	Outfit attributes;
 	Outfit baseAttributes;
 	bool addAttributes = false;
-	const Outfit *explosionWeapon = nullptr;
+	const Weapon *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;

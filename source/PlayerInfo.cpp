@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cassert>
@@ -162,9 +163,6 @@ void PlayerInfo::Clear()
 	Random::Seed(time(nullptr));
 	GameData::Revert();
 	Messages::Reset();
-
-	delete transactionSnapshot;
-	transactionSnapshot = nullptr;
 }
 
 
@@ -452,8 +450,9 @@ void PlayerInfo::Load(const filesystem::path &path)
 	ApplyChanges();
 	// Ensure the player is in a valid state after loading & applying changes.
 	ValidateLoad();
-	// Cache the remaining number of days for all deadline missions.
-	CalculateRemainingDeadlines();
+	// Cache the remaining number of days for all deadline missions and
+	// the location of tracked NPCs.
+	CacheMissionInformation();
 
 	// Restore access to services, if it was granted previously.
 	if(planet && hasFullClearance)
@@ -578,7 +577,7 @@ void PlayerInfo::StartTransaction()
 	assert(!transactionSnapshot && "Starting PlayerInfo transaction while one is already active");
 
 	// Create in-memory DataWriter and save to it.
-	transactionSnapshot = new DataWriter();
+	transactionSnapshot = make_unique<DataWriter>();
 	Save(*transactionSnapshot);
 }
 
@@ -587,8 +586,7 @@ void PlayerInfo::StartTransaction()
 void PlayerInfo::FinishTransaction()
 {
 	assert(transactionSnapshot && "Finishing PlayerInfo while one hasn't been started");
-	delete transactionSnapshot;
-	transactionSnapshot = nullptr;
+	transactionSnapshot.reset();
 }
 
 
@@ -620,7 +618,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		// Update the deadline calculations for missions in case the system
 		// changes resulted in a change in DistanceMap calculations.
 		if(instantChanges)
-			CalculateRemainingDeadlines();
+			CacheMissionInformation(true);
 	}
 
 	// Only move the changes into my list if they are not already there.
@@ -656,7 +654,12 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 	isDead = true;
 	// The player loses access to all their ships if they die on a planet.
 	if(GetPlanet() || !flagship)
+	{
+		// Zero out the flagship's velocity to prevent camera drift.
+		if(flagship)
+			flagship.get()->SetVelocity(Point());
 		ships.clear();
+	}
 	// If the flagship should explode due to choices made in a mission's
 	// conversation, it should still appear in the player's ship list (but
 	// will be red, because it is dead). The player's escorts will scatter
@@ -800,7 +803,7 @@ void PlayerInfo::AdvanceDate(int amount)
 	// We need to fully recalculate the number of days remaining instead of
 	// just reducing the cached values by 1 because the player may have
 	// explored new systems that change the DistanceMap calculations.
-	CalculateRemainingDeadlines();
+	CacheMissionInformation(true);
 }
 
 
@@ -1073,7 +1076,7 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 
 	auto flightChecks = map<const shared_ptr<Ship>, vector<string>>{};
 	for(const auto &ship : ships)
-		if(ship->GetSystem() && !ship->IsDisabled() && !ship->IsParked())
+		if(ship->GetSystem() && ship->GetPlanet() && !ship->IsParked())
 		{
 			auto checks = ship->FlightCheck();
 			if(!checks.empty())
@@ -2016,18 +2019,21 @@ bool PlayerInfo::HasAvailableEnteringMissions() const
 
 
 
-void PlayerInfo::CalculateRemainingDeadlines()
+void PlayerInfo::CacheMissionInformation(bool onlyDeadlines)
 {
 	remainingDeadlines.clear();
 	DistanceMap here(*this, system);
-	for(const Mission &mission : missions)
-		CalculateRemainingDeadline(mission, here);
+	for(Mission &mission : missions)
+		CacheMissionInformation(mission, here, onlyDeadlines);
 }
 
 
 
-void PlayerInfo::CalculateRemainingDeadline(const Mission &mission, DistanceMap &here)
+void PlayerInfo::CacheMissionInformation(Mission &mission, const DistanceMap &here, bool onlyDeadlines)
 {
+	if(!onlyDeadlines)
+		mission.RecalculateTrackedSystems();
+
 	if(!mission.Deadline())
 		return;
 
@@ -2977,12 +2983,15 @@ void PlayerInfo::SelectNextSecondary()
 
 	// Find the next secondary weapon.
 	for( ; it != flagship->Outfits().end(); ++it)
-		if(it->first->Icon())
+	{
+		const Weapon *weapon = it->first->GetWeapon().get();
+		if(weapon && weapon->Icon())
 		{
 			selectedWeapons.clear();
 			selectedWeapons.insert(it->first);
 			return;
 		}
+	}
 
 	// If no weapon was selected and we didn't find any weapons at this point,
 	// then the player just doesn't have any secondary weapons.
@@ -2992,8 +3001,11 @@ void PlayerInfo::SelectNextSecondary()
 	// Reached the end of the list. Select all possible secondary weapons here.
 	it = flagship->Outfits().begin();
 	for( ; it != flagship->Outfits().end(); ++it)
-		if(it->first->Icon())
+	{
+		const Weapon *weapon = it->first->GetWeapon().get();
+		if(weapon && weapon->Icon())
 			selectedWeapons.insert(it->first);
+	}
 
 	// If we have only one weapon selected at this point, then the player
 	// only has a single secondary weapon. Clear the list, since the weapon
@@ -4156,6 +4168,16 @@ void PlayerInfo::RegisterDerivedConditions()
 		return HyperspaceTravelDays(this->GetSystem(), system);
 	});
 
+	// A condition to check whether the given government is an enemy. This includes whether
+	// your reputation with the government is negative or if the government has been provoked.
+	// Governments that have been bribed will not count as an enemy.
+	conditions["enemy: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
+		string govName = ce.NameWithoutPrefix();
+		auto gov = GameData::Governments().Get(govName);
+		if(!gov)
+			return 0;
+		return gov->IsEnemy();
+	});
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	conditions["reputation: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {

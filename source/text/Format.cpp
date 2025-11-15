@@ -445,6 +445,15 @@ string Format::TimestampString(chrono::time_point<chrono::system_clock> time)
 
 
 
+string Format::TimestampString(filesystem::file_time_type time)
+{
+	auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
+		+ chrono::system_clock::now());
+	return TimestampString(sctp);
+}
+
+
+
 // Convert an ammo count into a short string for use in the ammo display.
 // Only the absolute value of a negative number is considered.
 string Format::AmmoCount(int64_t value)

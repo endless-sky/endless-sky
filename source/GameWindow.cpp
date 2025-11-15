@@ -157,7 +157,7 @@ bool GameWindow::Init(bool headless)
 	{
 		width = windowWidth;
 		height = windowHeight;
-		Screen::SetRaw(width, height);
+		Screen::SetRaw(width, height, true);
 		return true;
 	}
 
@@ -246,7 +246,7 @@ bool GameWindow::Init(bool headless)
 		Preferences::ToggleVSync();
 
 	// Make sure the screen size and view-port are set correctly.
-	AdjustViewport();
+	AdjustViewport(true);
 
 #ifdef _WIN32
 	UpdateTitleBarTheme();
@@ -282,7 +282,7 @@ void GameWindow::Step()
 
 
 
-void GameWindow::AdjustViewport()
+void GameWindow::AdjustViewport(bool noResizeEvent)
 {
 	if(!mainWindow)
 		return;
@@ -302,7 +302,7 @@ void GameWindow::AdjustViewport()
 	// means one pixel of the display will be clipped.
 	int roundWidth = (windowWidth + 1) & ~1;
 	int roundHeight = (windowHeight + 1) & ~1;
-	Screen::SetRaw(roundWidth, roundHeight);
+	Screen::SetRaw(roundWidth, roundHeight, noResizeEvent);
 
 	// Find out the drawable dimensions. If this is a high- DPI display, this
 	// may be larger than the window.

@@ -732,7 +732,10 @@ System::SolarGeneration System::GetSolarGeneration(const Point &shipPosition,
 // Additional travel distance to target for ships entering through hyperspace.
 double System::ExtraHyperArrivalDistance() const
 {
-	return max(extraHyperArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
+	const optional<double> arrivalGamerule = GameData::GetGamerules().SystemArrivalMin();
+	if(arrivalGamerule.has_value())
+		return max(extraHyperArrivalDistance, *arrivalGamerule);
+	return extraHyperArrivalDistance;
 }
 
 
@@ -740,7 +743,10 @@ double System::ExtraHyperArrivalDistance() const
 // Additional travel distance to target for ships entering using a jumpdrive.
 double System::ExtraJumpArrivalDistance() const
 {
-	return max(extraJumpArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
+	const optional<double> arrivalGamerule = GameData::GetGamerules().SystemArrivalMin();
+	if(arrivalGamerule.has_value())
+		return max(extraJumpArrivalDistance, *arrivalGamerule);
+	return extraJumpArrivalDistance;
 }
 
 

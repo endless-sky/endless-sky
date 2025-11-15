@@ -55,6 +55,7 @@ public:
 	static std::string PlayTime(double timeVal);
 	// Convert a time point to a human-readable time and date.
 	static std::string TimestampString(std::chrono::time_point<std::chrono::system_clock> time);
+	static std::string TimestampString(std::filesystem::file_time_type time);
 	// Convert an ammo count into a short string for use in the ammo display.
 	// Only the absolute value of a negative number is considered.
 	static std::string AmmoCount(int64_t value);

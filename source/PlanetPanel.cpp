@@ -66,6 +66,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
+	Resize();
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -75,14 +76,14 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
-	Audio::Pause();
+	Audio::BlockPausing();
 }
 
 
 
 PlanetPanel::~PlanetPanel()
 {
-	Audio::Resume();
+	Audio::UnblockPausing();
 }
 
 
@@ -93,6 +94,8 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
+		if(callback)
+			callback();
 		if(selectedPanel)
 			GetUI()->Pop(selectedPanel);
 		GetUI()->Pop(this);
@@ -185,10 +188,7 @@ void PlanetPanel::Draw()
 	// The description text needs to be updated because player conditions can be changed
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
-	{
-		description->SetRect(ui->GetBox("content"));
 		description->SetText(planet.Description().ToString());
-	}
 }
 
 
@@ -287,6 +287,15 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		AddChild(description);
 
 	return true;
+}
+
+
+
+void PlanetPanel::Resize()
+{
+	const Interface &planetInterface = *GameData::Interfaces().Get(
+		Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	description->SetRect(planetInterface.GetBox("content"));
 }
 
 
