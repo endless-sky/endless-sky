@@ -748,14 +748,6 @@ void MapDetailPanel::DrawInfo()
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Rectangle::FromCorner(Screen::TopLeft(), size), back);
 
-	////////////////////////////////////////
-	const double planetCardWidth = planetCardInterface->GetValue("width");
-	const double arrowOffset = mapInterface->GetValue("arrow x offset");
-	FillShader::Fill(Rectangle::FromCorner(Screen::TopLeft(),
-		Point(planetCardWidth + arrowOffset + 10, planetPanelHeight + 30)),
-		Color(0.15,0,.15,.1));
-	////////////////////////////////////////
-
 		const double startingX = mapInterface->GetValue("starting X");
 	Point uiPoint(Screen::Left() + startingX, Screen::Top());
 
@@ -833,21 +825,15 @@ void MapDetailPanel::DrawInfo()
 	uiPoint.Y() -= (tradeSprite->Height() / 2. - textMargin);
 
 	// Add the danger icon click zone.
-	FillShader::Fill(Rectangle::FromCorner(Point(Screen::Left(), governmentY - 30),
-		Point(mapInterface->GetValue("text margin"), 30)), Color(.1,0,0,0.01));
 	clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), governmentY - 30),
 		Point(mapInterface->GetValue("text margin"), 30)), 1 * SHOW_DANGER);
 
 	// Add the reputation click zone.
-	FillShader::Fill(Rectangle::FromCorner(
-		Point(Screen::Left() + mapInterface->GetValue("text margin"), governmentY - 30),
-		Point(160 - mapInterface->GetValue("text margin"), 30)), Color(0,.1,.1,0.01));
 	clickZones.emplace_back(Rectangle::FromCorner(
 		Point(Screen::Left() + mapInterface->GetValue("text margin"), governmentY - 30),
 		Point(160 - mapInterface->GetValue("text margin"), 30)), 1 * SHOW_REPUTATION);
 
 	// Add the government click zone.
-	FillShader::Fill(Rectangle::FromCorner(Point(Screen::Left(), governmentY), Point(160, 25)), Color(.1,0,.1,0.01));
 	clickZones.emplace_back(Rectangle::FromCorner( Point(Screen::Left(), governmentY),
 		Point(160, 25)), 1 * SHOW_GOVERNMENT);
 
@@ -887,8 +873,6 @@ void MapDetailPanel::DrawInfo()
 
 		// The player clicked on a tradable commodity. Color the map by its price.
 		// Add the click zone for this commodity.
-		FillShader::Fill(Rectangle::FromCorner(Point(Screen::Left(), uiPoint.Y()), Point(170, 20)),
-			Color(1 - (.05 * i), .05 * i, 0, 0.01));
 		clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), uiPoint.Y()), Point(170, 20)), i);
 
 		font.Draw(commodity.name, uiPoint, color);
