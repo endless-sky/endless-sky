@@ -67,7 +67,7 @@ void FogShader::Init()
 	// Compile the shader and store indices to its variables.
 	shader = GameData::Shaders().Get("fog");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find fog shader!");
+		throw runtime_error("Could not find fog shader!");
 	cornerI = shader->Uniform("corner");
 	dimensionsI = shader->Uniform("dimensions");
 
