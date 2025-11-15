@@ -1287,16 +1287,28 @@ mission "Wanderers: Alpha Surveillance D"
 			`	You thank the Quarg for being willing to help you, and you and Elias return to your ship.`
 				accept
 	
+	mark "Hi Yahr"
 	on enter "Hi Yahr"
 		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space."`
+		unmark "Hi Yahr"
+		mark "Celeborim"
 	on enter "Celeborim"
 		dialog `Elias checks the tracker again. "Southeast, from here," he says. Meanwhile, your ship's warning sirens begin going off; there are alien ships here, and they don't seem friendly.`
+		unmark "Celeborim"
+		mark "Asikafarnut"
 	on enter "Asikafarnut"
 		dialog `Elias checks the tracker. "Still due southeast," he says. "And I hope those Korath ships aren't on the same side as the Alphas."`
+		unmark "Asikafarnut"
+		mark "Sobarati"
+		mark "Ferukistek"
 	on enter "Sobarati"
 		dialog `Elias fiddles with his tracking device for a while, and then gives up. "Sorry, I'm not reading any signals here. Maybe they jumped right over this system?"`
+		unmark "Sobarati"
 	on enter "Ferukistek"
 		dialog `Elias says, "Found their trail. They've turned and headed east again, and maybe a little bit north."`
+		unmark "Ferukistek"
+		unmark "Sobarati"
+		mark "Host"
 	on enter "Makferuti"
 		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
 	on enter "Host"
@@ -1317,7 +1329,9 @@ mission "Wanderers: Alpha Surveillance D"
 		system "Host"
 		personality heroic nemesis staying vindictive target
 		ship "Carrier (Alpha)" "Giftbringer"
-		dialog "The Alpha Carrier has been destroyed. You can now return to the Quarg ringworld and plan your next steps."
+		on kill
+			unmark "Host"
+			dialog "The Alpha Carrier has been destroyed. You can now return to the Quarg ringworld and plan your next steps."
 	npc
 		government "Alpha"
 		system "Host"
@@ -2183,6 +2197,7 @@ mission "Wanderers Solifuge Recon 2"
 	description "Unfettered ships of an unknown design have been spotted in the Prakacha'a system. Destroy them, then return to <destination>."
 	autosave
 	source "Vara Ke'sok"
+	mark "Prakacha'a"
 	to offer
 		not "Wanderers Pond Strider Recon 2: offered"
 		or
@@ -2197,7 +2212,6 @@ mission "Wanderers Solifuge Recon 2"
 			`	"The other news is even better!" he says. "We have [saved, set aside] a fight for you. Unfettered ships of unknown design have been [spotted, discovered] in the Prakacha'a system. I ask you to destroy all these ships, then report to me what their [capabilities, strengths] are. I will discuss the [situation? troubles?] of the Unfettered with Sayari while you are gone."`
 			`	You tell him that you will do your best. Now that you are able to purchase Wanderer warships, you should be able to match anything the Unfettered throw at you.`
 				accept
-	waypoint "Prakacha'a"
 	npc kill
 		personality staying heroic target
 		government "Hai (Unfettered)"
@@ -2209,7 +2223,9 @@ mission "Wanderers Solifuge Recon 2"
 				"Solifuge (Tracker)"
 				"Violin Spider" 6
 				"Violin Spider (Pulse)" 6
-		dialog "That was the last of the new Unfettered ships. You can now report back to Tele'ek on <planet>."
+		on kill
+			unmark "Prakacha'a"
+			dialog "That was the last of the new Unfettered ships. You can now report back to Tele'ek on <planet>."
 	on visit
 		dialog `Tele'ek approaches you when you land. "I have [reports, word] that the Unfettered ships are still [present, alive] within Prakacha'a. Please destroy them all before returning."`
 
@@ -2248,11 +2264,11 @@ mission "Wanderers Solifuge Recon 4"
 		conversation "solifuge conversation"
 
 conversation "solifuge conversation"
-	branch altStart
+	branch "alt start"
 		has "Strider Alt Start: done"
 	`You give the message from Sayari to the spaceport authorities so that they can deliver it to the council of elders. After the message has been delivered, the council requests that you meet with them.`
 		goto start
-	label altStart
+	label "alt start"
 	`	When you arrive on <planet>, you are quickly escorted from the spaceport to the council chambers.`
 	label start
 	`	"Greetings again, <first> <last>," one of the elders says to you. "It is our understanding that our Unfettered brothers and sisters have created a carrier ship. How difficult was it for you to combat it?"`
@@ -2278,7 +2294,7 @@ conversation "solifuge conversation"
 	`	The elders once again mumble among themselves. They continue to ask Osen a number of questions about this new carrier. How difficult is one to produce? How much does it cost? What are the capabilities of the drones? How useful would it be without being able to repair the hull of its drones?`
 	`	After having all their questions answered, the elders seem to be interested in the idea of Osen's new ship. "This hull repair technology indeed sounds necessary," an elder says. "We will provide what funding we can to help fast track its development."`
 	`	Osen's father turns to you. "You have traveled many systems, <first> <last>. Perhaps you might be able to help. If you know of any peoples who have such technology from elsewhere in the galaxy, should it exist, then perhaps we could meet with them."`
-	branch altEnd
+	branch "alt end"
 		has "Strider Alt Start: done"
 	choice
 		`	"I'm sorry, but I can't help right now. I need to return to the Wanderers."`
@@ -2292,7 +2308,7 @@ conversation "solifuge conversation"
 	`	"This is understandable," Osen's father responds. "Return to where you are needed, but when you are able to help, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you safe travels back to <planet>.`
 		accept
 	
-	label altEnd
+	label "alt end"
 	choice
 		`	"I'd be glad to help. I'm sure I could find someone with hull repair technology that could help."`
 			goto glad

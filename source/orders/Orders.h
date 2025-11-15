@@ -40,6 +40,7 @@ public:
 		GATHER,
 		ATTACK,
 		FINISH_OFF,
+		HOLD_FIRE,
 		// MINE is for fleet targeting the asteroid for mining. ATTACK is used
 		// to chase and attack the asteroid.
 		MINE,

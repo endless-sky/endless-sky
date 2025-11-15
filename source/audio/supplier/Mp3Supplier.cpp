@@ -17,9 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <mad.h>
 
+#include <array>
 #include <cmath>
 #include <cstring>
-#include <thread>
 #include <utility>
 
 using namespace std;
@@ -27,57 +27,8 @@ using namespace std;
 
 
 Mp3Supplier::Mp3Supplier(shared_ptr<iostream> data, bool looping)
-	: data(std::move(data)), looping(looping)
+	: AsyncAudioSupplier(std::move(data), looping)
 {
-	// Don't start the thread until this object is fully constructed.
-	thread = std::thread(&Mp3Supplier::Decode, this);
-}
-
-
-
-Mp3Supplier::~Mp3Supplier()
-{
-	// Tell the decoding thread to stop.
-	{
-		lock_guard<mutex> lock(decodeMutex);
-		done = true;
-	}
-	condition.notify_all();
-	thread.join();
-}
-
-
-
-size_t Mp3Supplier::MaxChunks() const
-{
-	if(done && buffer.size() < OUTPUT_CHUNK)
-		return 0;
-
-	return max(static_cast<size_t>(2), AvailableChunks());
-}
-
-
-
-size_t Mp3Supplier::AvailableChunks() const
-{
-	return buffer.size() / OUTPUT_CHUNK;
-}
-
-
-
-vector<AudioSupplier::sample_t> Mp3Supplier::NextDataChunk()
-{
-	if(AvailableChunks())
-	{
-		lock_guard<mutex> lock(decodeMutex);
-
-		vector<sample_t> temp{buffer.begin(), buffer.begin() + OUTPUT_CHUNK};
-		buffer.erase(buffer.begin(), buffer.begin() + OUTPUT_CHUNK);
-		condition.notify_all();
-		return temp;
-	}
-	else
-		return vector<sample_t>(OUTPUT_CHUNK);
 }
 
 
@@ -85,7 +36,8 @@ vector<AudioSupplier::sample_t> Mp3Supplier::NextDataChunk()
 void Mp3Supplier::Decode()
 {
 	// This vector will store the input from the file.
-	vector<unsigned char> input(INPUT_CHUNK, 0);
+	array<unsigned char, INPUT_CHUNK> input{};
+	vector<sample_t> samples;
 	// Objects for MP3 decoding:
 	mad_stream stream;
 	mad_frame frame;
@@ -102,15 +54,13 @@ void Mp3Supplier::Decode()
 		// If the "next" buffer has filled up, wait until it is retrieved.
 		// Generally try to queue up two chunks worth of samples in it, just
 		// in case NextChunk() gets called twice in rapid succession.
-		unique_lock<mutex> lock(decodeMutex);
-		while(!done && buffer.size() >= BUFFER_CHUNK_SIZE * OUTPUT_CHUNK)
-			condition.wait(lock);
+		AwaitBufferSpace();
 		// Check if we're done.
 		if(done)
+		{
+			PadBuffer();
 			break;
-
-		// The lock can be freed until we start filling the output buffer.
-		lock.unlock();
+		}
 
 		// See if any input data is left undecoded in the stream. Typically
 		// this is because the last block of input contained a fraction of a
@@ -122,24 +72,18 @@ void Mp3Supplier::Decode()
 			memcpy(input.data(), stream.next_frame, remainder);
 
 		// Now, read a chunk of data from the file.
-		data->read(reinterpret_cast<char *>(input.data() + remainder), INPUT_CHUNK - remainder);
-		// If you get the end of the file, loop around to the beginning.
-		size_t read = data->gcount();
-		if(data->eof() && looping)
-		{
-			data->clear();
-			data->seekg(0, iostream::beg);
-		}
-		else if(data->eof())
-		{
-			done = true;
-			// Make sure there are full chunks of data available.
-			buffer.resize(OUTPUT_CHUNK * ceil(static_cast<double>(buffer.size()) / static_cast<double>(OUTPUT_CHUNK)));
-		}
+		size_t read = ReadInput(reinterpret_cast<char *>(input.data() + remainder), INPUT_CHUNK - remainder);
 
 		// If there is nothing to decode, return to the top of this loop.
 		if(!(read + remainder))
+		{
+			if(done)
+			{
+				AddBufferData(samples);
+				break;
+			}
 			continue;
+		}
 
 		// Hand the input to the stream decoder.
 		mad_stream_buffer(&stream, &input.front(), read + remainder);
@@ -166,11 +110,6 @@ void Mp3Supplier::Decode()
 				synth.pcm.samples[synth.pcm.channels > 1]
 			};
 
-			// For this part, we need access to the output buffer.
-			lock.lock();
-			if(done)
-				break;
-
 			// We'll alternate what channel we read from each time through the loop.
 			bool channel = false;
 			for(unsigned i = 0; i < 2 * synth.pcm.length; ++i)
@@ -182,13 +121,10 @@ void Mp3Supplier::Decode()
 				// Clip and scale the sample to 16 bits.
 				sample += (1L << (MAD_F_FRACBITS - 16));
 				sample = max(-MAD_F_ONE, min(MAD_F_ONE - 1, sample));
-				buffer.emplace_back(sample >> (MAD_F_FRACBITS + 1 - 16));
+				samples.emplace_back(sample >> (MAD_F_FRACBITS + 1 - 16));
 			}
-			// Now, the buffer can be used by others. In theory, the
-			// NextChunk() function could take what's in that buffer while
-			// we are right in the middle of this decoding cycle.
-			lock.unlock();
 		}
+		AddBufferData(samples);
 	}
 
 	// Clean up.

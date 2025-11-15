@@ -29,6 +29,7 @@ using namespace std;
 void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
+	isLoaded = true;
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -47,7 +48,7 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			bool setName = !ships.empty() && child.Size() >= 3;
 			ships.emplace_back(make_shared<Ship>(child, playerConditions));
 			if(setName)
-				ships.back()->SetName(child.Token(2));
+				ships.back()->SetGivenName(child.Token(2));
 		}
 		else if(key == "government" && hasValue)
 			government = GameData::Governments().Get(child.Token(1));
@@ -71,6 +72,13 @@ void Person::FinishLoading()
 		if(formationPattern)
 			ship->SetFormationPattern(formationPattern);
 	}
+}
+
+
+
+bool Person::IsLoaded() const
+{
+	return isLoaded;
 }
 
 
