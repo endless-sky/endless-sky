@@ -748,7 +748,7 @@ void MapDetailPanel::DrawInfo()
 	// This needs to fill from the start of the screen.
 	FillShader::Fill(Rectangle::FromCorner(Screen::TopLeft(), size), back);
 
-		const double startingX = mapInterface->GetValue("starting X");
+	const double startingX = mapInterface->GetValue("starting X");
 	Point uiPoint(Screen::Left() + startingX, Screen::Top());
 
 	// Draw the basic information for visitable planets in this system.
@@ -828,7 +828,7 @@ void MapDetailPanel::DrawInfo()
 
 	// Add the danger icon click zone.
 	clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), governmentY - 30),
-		Point(mapInterface->GetValue("text margin"), 30)), 1 * SHOW_DANGER);
+		Point(mapInterface->GetValue("text margin"), 30)), SHOW_DANGER);
 
 	// Add the reputation click zone.
 	clickZones.emplace_back(Rectangle::FromCorner(
