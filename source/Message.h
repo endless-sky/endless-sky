@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "ExclusiveItem.h"
 
+#include <map>
 #include <string>
 
 class DataNode;
@@ -69,11 +70,12 @@ public:
 public:
 	Message() = default;
 	Message(const std::string &text, const Category *category);
+	explicit Message(const DataNode &node);
 	void Load(const DataNode &node);
 	bool IsLoaded() const;
 
 	const std::string &Name() const;
-	std::string Text() const;
+	std::string Text(std::map<std::string, std::string> subs = {}) const;
 	const Category *GetCategory() const;
 
 

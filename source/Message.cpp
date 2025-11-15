@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Command.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Phrase.h"
@@ -148,6 +149,13 @@ Message::Message(const string &text, const Category *category)
 
 
 
+Message::Message(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void Message::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
@@ -195,12 +203,11 @@ const string &Message::Name() const
 
 
 
-string Message::Text() const
+string Message::Text(map<string, string> subs) const
 {
 	if(isPhrase)
 		return GameData::Phrases().Get(text)->Get();
 
-	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs);
 	for(const auto &[key, value] : subs)
 		subs[key] = Phrase::ExpandPhrases(value);
