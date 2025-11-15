@@ -8719,7 +8719,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			`		"Nothing major to flag, just routine updates. Steady progress and business as usual. Just like I predicted, we're seeing some solid returns that aren't making headlines. And the higher ups like the consistency - keeps me in their good graces.`
 				goto "howard bye"
 			label "good choice"
-			`		"Returns are about what we projected, a little slow, but here's the kicker: we're saving a chunk of provisions for expected environmental lawsuits and employee morale at the expansion is through the roof. Looks like we're building more than just profits. My bosses are thrilled - they think I'm working magic here.`
+			`		"Returns are about what we projected, a little slow, but here's the kicker: we're saving a chunk in provisions for expected environmental lawsuits and employee morale at the expansion is through the roof. Looks like we're building more than just profits. My bosses are thrilled - they think I'm working magic here.`
 				goto "howard bye"
 			label "evil choice"
 			`		"There was a... noteworthy incident involving some employees, so it might draw more attention than we'd like. Nothing that'll derail the returns, though, just some bad press to manage. Everything's still on track, and either way, no one can argue with the numbers.`
