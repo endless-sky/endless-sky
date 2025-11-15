@@ -64,7 +64,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 
 	// If you are boarding your target, do not fire on it.
 	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
-		targetShip.reset();
+		target.reset();
 
 	cachedTarget = TargetPtr().get();
 	if(cachedTarget && targetIsShip)
