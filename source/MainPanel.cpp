@@ -235,8 +235,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		Preferences::ToggleAmmoUsage();
 		Messages::Add(*GameData::Messages().Get(
-			Preferences::Has("Escorts expend ammo") ? Preferences::Has("Escorts use ammo frugally") ?
-			"expend ammo frugally" : "expend ammo always" : "expend ammo never"));
+			Preferences::Has("Escorts expend ammo") ? (Preferences::Has("Escorts use ammo frugally") ?
+			"expend ammo frugally" : "expend ammo always") : "expend ammo never"));
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();

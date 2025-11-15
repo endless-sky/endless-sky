@@ -39,7 +39,7 @@
 	"log color" "message log category info"
 	important
 
-# The special category used to mark day beginning for easier navigation in the log.
+# The special category used to mark the day beginning for easier navigation in the log.
 "message category" "daily"
 	"main color" "message category daily"
 	"log color" "message log category daily"
