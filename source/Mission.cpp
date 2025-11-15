@@ -383,6 +383,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 
 	if(displayName.empty())
 		displayName = trueName;
+	hasTrackedNpcs = ranges::any_of(npcs, [](const NPC &npc) { return npc.GetPersonality().IsTracked(); });
 }
 
 
@@ -787,18 +788,51 @@ const set<const System *> &Mission::UnmarkedSystems() const
 
 
 
-void Mission::Mark(const System *system) const
+const set<const System *> &Mission::TrackedSystems() const
 {
-	markedSystems.insert(system);
-	unmarkedSystems.erase(system);
+	return trackedSystems;
 }
 
 
 
-void Mission::Unmark(const System *system) const
+void Mission::RecalculateTrackedSystems()
 {
-	if(markedSystems.erase(system))
-		unmarkedSystems.insert(system);
+	if(!hasTrackedNpcs)
+		return;
+
+	trackedSystems.clear();
+	for(const NPC &npc : npcs)
+	{
+		if(!npc.GetPersonality().IsTracked())
+			continue;
+		for(const auto &ship : npc.Ships())
+			if(!ship->IsDestroyed() && ship->GetSystem())
+				trackedSystems.insert(ship->GetSystem());
+	}
+	// If all tracked NPCs are destroyed, then we can ignore
+	// future calls to recalculate the tracked systems.
+	if(trackedSystems.empty())
+		hasTrackedNpcs = false;
+}
+
+
+
+void Mission::Mark(const set<const System *> &systems) const
+{
+	for(const System *system : systems)
+	{
+		markedSystems.insert(system);
+		unmarkedSystems.erase(system);
+	}
+}
+
+
+
+void Mission::Unmark(const set<const System *> &systems) const
+{
+	for(const System *system : systems)
+		if(markedSystems.erase(system))
+			unmarkedSystems.insert(system);
 }
 
 
@@ -1229,13 +1263,10 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		++player.Conditions()[trueName + ": offered"];
 		++player.Conditions()[trueName + ": active"];
 		// Any potential on offer conversation has been finished, so update
-		// the active NPCs for the first time.
+		// the active NPCs for the first time and cache any necessary information.
 		UpdateNPCs(player);
-		if(deadline)
-		{
-			DistanceMap here(player);
-			player.CalculateRemainingDeadline(*this, here);
-		}
+		DistanceMap here(player);
+		player.CacheMissionInformation(*this, here);
 	}
 	else if(trigger == DECLINE)
 	{
@@ -1355,15 +1386,16 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		{
 			hasFailed = true;
 			if(isVisible)
-				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
+				Messages::Add({message + "Mission failed: \"" + displayName + "\".",
+					GameData::MessageCategories().Get("high")});
 		}
 	}
 
 	if((event.Type() & ShipEvent::DISABLE) && event.Target() == player.FlagshipPtr())
 		Do(DISABLED, player, ui);
 
-	// Jump events are only created for the player's flagship.
-	if((event.Type() & ShipEvent::JUMP) && event.Actor())
+	const Ship *flagship = player.Flagship();
+	if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
 	{
 		const System *system = event.Actor()->GetSystem();
 		// If this was a waypoint, clear it.
@@ -1380,7 +1412,13 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 	}
 
 	for(NPC &npc : npcs)
-		npc.Do(event, player, ui, this, isVisible);
+	{
+		bool isTarget = npc.Do(event, player, ui, this, isVisible);
+		// If this event is a DESTROY or JUMP event for one of the NPCs in this mission, then
+		// recalculate all tracked NPC locations.
+		if((event.Type() & (ShipEvent::JUMP | ShipEvent::DESTROY)) && isTarget)
+			RecalculateTrackedSystems();
+	}
 }
 
 
@@ -1601,6 +1639,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
+	result.hasTrackedNpcs = hasTrackedNpcs;
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.

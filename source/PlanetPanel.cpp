@@ -75,6 +75,15 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	GameData::Preload(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
+
+	Audio::BlockPausing();
+}
+
+
+
+PlanetPanel::~PlanetPanel()
+{
+	Audio::UnblockPausing();
 }
 
 
@@ -85,6 +94,8 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
+		if(callback)
+			callback();
 		if(selectedPanel)
 			GetUI()->Pop(selectedPanel);
 		GetUI()->Pop(this);

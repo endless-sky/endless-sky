@@ -48,11 +48,11 @@ namespace {
 // Constructor.
 Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes,
 	bool isTurret, const Outfit *outfit)
-	: outfit(outfit && outfit->GetWeapon() ? outfit : nullptr), point(point * .5),
+	: outfit(outfit), point(point * .5),
 	baseAngle(attributes.baseAngle), baseAttributes(attributes),
 	isTurret(isTurret), isParallel(baseAttributes.isParallel)
 {
-	UpdateArc();
+	UpdateArc(true);
 }
 
 
@@ -339,7 +339,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 
 
 // Fire a tractor beam. Returns true if the flotsam was hit.
-bool Hardpoint::FireTractorBeam(Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals)
+bool Hardpoint::FireTractorBeam(Ship &ship, const Flotsam &flotsam, vector<Visual> &visuals)
 {
 	// Make sure this hardpoint really is a tractor beam.
 	double strength = outfit->GetWeapon()->TractorBeam();
@@ -438,7 +438,7 @@ const Hardpoint::BaseAttributes &Hardpoint::GetBaseAttributes() const
 
 // Check whether a projectile or flotsam is within the range of the anti-missile
 // or tractor beam system and create visuals if it is.
-bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visual> &visuals)
+bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, vector<Visual> &visuals)
 {
 	const Weapon *weapon = outfit->GetWeapon().get();
 
@@ -520,7 +520,7 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 
 
 // The arc depends on both the base hardpoint and the installed outfit.
-void Hardpoint::UpdateArc()
+void Hardpoint::UpdateArc(bool isNewlyConstructed)
 {
 	if(!outfit)
 		return;
@@ -542,7 +542,7 @@ void Hardpoint::UpdateArc()
 
 	// The installed weapon restricts the arc of fire.
 	const double hardpointsArc = (maxArc - minArc).AbsDegrees();
-	const double weaponsArc = outfit->GetWeapon()->Arc();
+	const double weaponsArc = isNewlyConstructed ? 360. : outfit->GetWeapon()->Arc();
 	if(weaponsArc < 360. && (isOmnidirectional || weaponsArc < hardpointsArc))
 	{
 		isOmnidirectional = false;
