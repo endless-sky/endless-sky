@@ -411,12 +411,6 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 	if(button != MouseButton::LEFT)
 		return MapPanel::Click(x, y, button, clicks);
 
-	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
-	const double planetCardWidth = planetCardInterface->GetValue("width");
-	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	const double arrowOffset = mapInterface->GetValue("arrow x offset");
-	const double planetCardHeight = MapPlanetCard::Height();
-
 	// Check all the click zones.
 	Point clickPoint(x, y);
 	for(const ClickZone<int> zone : clickZones)
@@ -427,6 +421,10 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 		}
 
 	// Check the planet cards.
+	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
+	const double planetCardWidth = planetCardInterface->GetValue("width");
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	const double arrowOffset = mapInterface->GetValue("arrow x offset");
 	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
 	{
 		for(auto &card : planetCards)
@@ -465,6 +463,7 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 		isStars = false;
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
+		const double planetCardHeight = MapPlanetCard::Height();
 		double distance = numeric_limits<double>::infinity();
 		for(const auto &it : planets)
 		{
@@ -833,11 +832,11 @@ void MapDetailPanel::DrawInfo()
 	// Add the reputation click zone.
 	clickZones.emplace_back(Rectangle::FromCorner(
 		Point(Screen::Left() + mapInterface->GetValue("text margin"), governmentY - 30),
-		Point(160 - mapInterface->GetValue("text margin"), 30)), 1 * SHOW_REPUTATION);
+		Point(160 - mapInterface->GetValue("text margin"), 30)), SHOW_REPUTATION);
 
 	// Add the government click zone.
 	clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), governmentY),
-		Point(160, 25)), 1 * SHOW_GOVERNMENT);
+		Point(160, 25)), SHOW_GOVERNMENT);
 
 	// Don't "compare" prices if the current system is uninhabited and thus has no prices to compare to.
 	bool noCompare = !player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship());
