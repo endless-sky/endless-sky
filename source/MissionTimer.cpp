@@ -101,12 +101,20 @@ void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerCondi
 				else if(grandKey == "cloaked")
 				{
 					requireCloaked = true;
-					requireUncloaked = false;
+					if(requireUncloaked)
+					{
+						requireUncloaked = false;
+						grand.PrintTrace("Warning: Disabling previously declared \"uncloaked\" requirement.");
+					}
 				}
 				else if(grandKey == "uncloaked")
 				{
 					requireUncloaked = true;
-					requireCloaked = false;
+					if(requireCloaked)
+					{
+						requireCloaked = false;
+						grand.PrintTrace("Warning: Disabling previously declared \"cloaked\" requirement.");
+					}
 				}
 				else if(grandKey == "solo")
 					requireSolo = true;
