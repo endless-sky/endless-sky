@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 
 #include <algorithm>
+#include <cstdint>
 #include <numeric>
 #include <sstream>
 
@@ -159,6 +160,9 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 {
 	ostringstream out;
 
+	// Clear total from previous Step.
+	totalPreviousPayment = 0;
+
 	// Keep track of what payments were made and whether any could not be made.
 	crewSalariesOwed += salaries;
 	maintenanceDue += maintenance;
@@ -274,6 +278,10 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		typesPaid["fines"] = finesPaid;
 	if(debtPaid)
 		typesPaid["debt"] = debtPaid;
+
+	// Calculate and store the total amount paid.
+	for(const auto &paid : typesPaid)
+		totalPreviousPayment += paid.second;
 
 	out << Format::List<map, string, int64_t>(typesPaid,
 		[](const pair<string, int64_t> &it)
@@ -435,6 +443,13 @@ int64_t Account::TotalDebt(const string &type) const
 			total += mortgage.Principal();
 
 	return total;
+}
+
+
+
+int64_t Account::TotalPreviousPayment() const
+{
+	return totalPreviousPayment;
 }
 
 
