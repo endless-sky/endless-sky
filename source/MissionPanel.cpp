@@ -874,7 +874,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 
 
-Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
+Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const list<Mission>::const_iterator &selectIt,
 	bool separateDeadlineOrPossible) const
 {
 	const Font &font = FontSet::Get(14);
@@ -885,7 +885,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 	bool separated = false;
 
-	for(auto it = list.begin(); it != list.end(); ++it)
+	for(auto it = missionList.begin(); it != missionList.end(); ++it)
 	{
 		if(!it->IsVisible())
 			continue;
@@ -910,7 +910,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 			SpriteShader::Draw(fast, pos + Point(-4., 8.));
 
 		const Color *color = nullptr;
-		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
+		bool canAccept = (&missionList == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		if(!canAccept)
 		{
 			if(it->Unavailable().IsLoaded())

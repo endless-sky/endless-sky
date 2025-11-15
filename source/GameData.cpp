@@ -708,6 +708,20 @@ const Set<Interface> &GameData::Interfaces()
 
 
 
+const Set<Message::Category> &GameData::MessageCategories()
+{
+	return objects.messageCategories;
+}
+
+
+
+const Set<Message> &GameData::Messages()
+{
+	return objects.messages;
+}
+
+
+
 const Set<Minable> &GameData::Minables()
 {
 	return objects.minables;
