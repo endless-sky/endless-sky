@@ -752,9 +752,11 @@ void MapDetailPanel::DrawInfo()
 	Point uiPoint(Screen::Left() + startingX, Screen::Top());
 
 	// Draw the basic information for visitable planets in this system.
-	if (canView && !planetCards.empty()) {
+	if(canView && !planetCards.empty())
+	{
 		uiPoint.Y() -= scroll.AnimatedValue();
-		for (auto &card: planetCards) {
+		for(auto &card : planetCards)
+		{
 			// Fit another planet, if we can, also give scrolling freedom to reach the planets at the end.
 			// This updates the location of the card so it needs to be called before AvailableSpace().
 			card.DrawIfFits(uiPoint);
@@ -834,7 +836,7 @@ void MapDetailPanel::DrawInfo()
 		Point(160 - mapInterface->GetValue("text margin"), 30)), 1 * SHOW_REPUTATION);
 
 	// Add the government click zone.
-	clickZones.emplace_back(Rectangle::FromCorner( Point(Screen::Left(), governmentY),
+	clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), governmentY),
 		Point(160, 25)), 1 * SHOW_GOVERNMENT);
 
 	// Don't "compare" prices if the current system is uninhabited and thus has no prices to compare to.
