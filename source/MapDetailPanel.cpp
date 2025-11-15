@@ -110,7 +110,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel, bool isStars)
 	Audio::Pause();
 
 	// Use whatever map coloring is specified in the PlayerInfo.
-	commodity = isStars ? -8 : player.MapColoring();
+	commodity = isStars ? SHOW_STARS : player.MapColoring();
 
 	InitTextArea();
 }
