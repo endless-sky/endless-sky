@@ -4755,29 +4755,28 @@ void PlayerInfo::Fine(UI *ui)
 	if(!gov->CanEnforce(planet))
 		return;
 
-	string message = gov->Fine(*this, 0, nullptr, planet->Security());
-	if(!message.empty())
+	pair<const Conversation *, string> message = gov->Fine(*this, 0, nullptr, planet->Security());
+	if(!message.second.empty())
 	{
-		if(message == "atrocity")
+		if(message.second == "atrocity")
 		{
-			const Conversation *conversation = gov->DeathSentence();
-			if(conversation)
-				ui->Push(new ConversationPanel(*this, *conversation));
+			if(message.first)
+				ui->Push(new ConversationPanel(*this, *message.first));
 			else
 			{
-				message = "Before you can leave your ship, the " + gov->DisplayName()
+				message.second = "Before you can leave your ship, the " + gov->DisplayName()
 					+ " authorities show up and begin scanning it. They say, \"Captain "
 					+ LastName()
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui->Push(new Dialog(message));
+				ui->Push(new Dialog(message.second));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui->Push(new Dialog(message));
+			ui->Push(new Dialog(message.second));
 	}
 }
 
