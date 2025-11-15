@@ -787,8 +787,8 @@ void PlayerInfo::AdvanceDate(int amount)
 		for(Mission &mission : missions)
 		{
 			if(mission.CheckDeadline(date) && mission.IsVisible())
-				Messages::Add("You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
-					Messages::Importance::Highest);
+				Messages::Add({"You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
+					GameData::MessageCategories().Get("high")});
 			if(!mission.IsFailed())
 				mission.Do(Mission::DAILY, *this);
 		}
@@ -1632,9 +1632,10 @@ void PlayerInfo::Land(UI *ui)
 		if(added > 0)
 		{
 			flagship->AddCrew(added);
-			Messages::Add("You hire " + to_string(added) + (added == 1
-					? " extra crew member to fill your now-empty bunk."
-					: " extra crew members to fill your now-empty bunks."), Messages::Importance::High);
+			Messages::Add({"You hire " + to_string(added) + (added == 1
+				? " extra crew member to fill your now-empty bunk."
+				: " extra crew members to fill your now-empty bunks."),
+				GameData::MessageCategories().Get("normal")});
 		}
 	}
 
@@ -1702,10 +1703,11 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			flagship->AddCrew(-extra);
 			if(extra == 1)
-				Messages::Add("You fired a crew member to free up a bunk for a passenger.", Messages::Importance::High);
+				Messages::Add({"You fired a crew member to free up a bunk for a passenger.",
+					GameData::MessageCategories().Get("normal")});
 			else
-				Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
-						Messages::Importance::High);
+				Messages::Add({"You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
+					GameData::MessageCategories().Get("normal")});
 			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 			cargo.TransferAll(flagship->Cargo());
 		}
@@ -1716,10 +1718,11 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	{
 		flagship->AddCrew(-extra);
 		if(extra == 1)
-			Messages::Add("You fired a crew member because you have no bunk for them.", Messages::Importance::High);
+			Messages::Add({"You fired a crew member because you have no bunk for them.",
+				GameData::MessageCategories().Get("normal")});
 		else
-			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.",
-					Messages::Importance::High);
+			Messages::Add({"You fired " + to_string(extra) + " crew members because you have no bunks for them.",
+				GameData::MessageCategories().Get("normal")});
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 
@@ -1761,7 +1764,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			// The remaining uncarried ships are launched alongside the player.
 			string message = (uncarried > 1) ? "Some escorts were" : "One escort was";
-			Messages::Add(message + " unable to dock with a carrier.", Messages::Importance::High);
+			Messages::Add({message + " unable to dock with a carrier.", GameData::MessageCategories().Get("normal")});
 		}
 	}
 
@@ -1773,18 +1776,18 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		if(it.second)
 		{
 			if(it.first->IsVisible())
-				Messages::Add("Mission \"" + it.first->DisplayName()
-					+ "\" aborted because you do not have space for the cargo."
-						, Messages::Importance::Highest);
+				Messages::Add({"Mission \"" + it.first->DisplayName()
+					+ "\" aborted because you do not have space for the cargo.",
+					GameData::MessageCategories().Get("high")});
 			missionsToRemove.push_back(it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
 		if(it.second)
 		{
 			if(it.first->IsVisible())
-				Messages::Add("Mission \"" + it.first->DisplayName()
-					+ "\" aborted because you do not have enough passenger bunks free."
-						, Messages::Importance::Highest);
+				Messages::Add({"Mission \"" + it.first->DisplayName()
+					+ "\" aborted because you do not have enough passenger bunks free.",
+					GameData::MessageCategories().Get("high")});
 			missionsToRemove.push_back(it.first);
 
 		}
@@ -1864,7 +1867,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 			out << "stored " << Format::CargoString(stored, "outfits") << " you could not carry";
 		}
 		out << ".";
-		Messages::Add(out.str(), Messages::Importance::High);
+		Messages::Add({out.str(), GameData::MessageCategories().Get("normal")});
 	}
 
 	return true;
@@ -4910,7 +4913,7 @@ void PlayerInfo::DoAccounting()
 			{
 				return Format::CreditString(it.second) + ' ' + it.first;
 			}) + '.';
-		Messages::Add(message, Messages::Importance::High, true);
+		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
 	}
 
@@ -4924,7 +4927,7 @@ void PlayerInfo::DoAccounting()
 	// summarizes the payments that were made.
 	string message = accounts.Step(assets, Salaries(), balance.maintenanceCosts);
 	if(!message.empty())
-		Messages::Add(message, Messages::Importance::High, true);
+		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 }
 
 
