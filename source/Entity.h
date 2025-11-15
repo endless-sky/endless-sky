@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // A class containing common elements for objects like ships and minable asteroids.
 class Entity : public Body {
 public:
+	virtual ~Entity() {};
 	// Get the current attributes of this entity.
 	const Outfit &Attributes() const;
 	virtual double Mass() const = 0;
