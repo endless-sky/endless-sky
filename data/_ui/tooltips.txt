@@ -82,7 +82,7 @@ tip "bunks:"
 	`The number of people (passengers or crew) your ship can hold.`
 
 tip "burn protection:"
-	`Protection provided against burn damage. Modifies how difficult a ship is to burn by a percentage equal to the given factor: a total value of 50 allows a ship to withstand 50% more burn damage before its heat rises as much as an unprotected ship.`
+	`Protection provided against burn damage. Modifies by the given factor how much burn damage a ship can withstand before its heat rises as much as an unprotected ship.`
 
 tip "burn resistance:"
 	`Burn damage resisted per second.`
@@ -154,10 +154,10 @@ tip "cloaking repair delay:"
 	`This ship is unable to regenerate hull whilst cloaked, instead its hull regeneration will suffer a delay that will grow the longer it is cloaked.`
 
 tip "cloak hull protection:"
-	`Protection provided against weapons that do hull damage when the cloak is active. Modifies the total amount of damage a ship's hull can withstand by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more damage to its hull before it is destroyed.`
+	`Protection provided against weapons that do hull damage when the cloak is active. Modifies by the given factor how much hull damage a ship can withstand before it loses as much energy as an unprotected ship.`
 
 tip "cloak shield protection:"
-	`Protection provided against weapons that do shield damage when the cloak is active. Modifies the total amount of damage a ship's shields can withstand by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more damage to its shields before they are depleted.`
+	`Protection provided against weapons that do shield damage when the cloak is active. Modifies by the given factor how much shield damage a ship can withstand before it loses as much energy as an unprotected ship.`
 
 tip "cloak phasing:"
 	`When cloaked, weapons cannot affect this ship, and pass right through.`
@@ -178,7 +178,7 @@ tip "cooling inefficiency:"
 	`Interference with your ship's cooling abilities. Its cooling systems will only be about 75% effective at a cooling inefficiency of 5, and 30% at an inefficiency of 10.`
 
 tip "corrosion protection:"
-	`Protection provided against corrosion damage. Modifies how difficult a ship is to corrode by a percentage equal to the given factor: a total value of 50 allows a ship to withstand 50% more corrosion damage before it is as corroded as an unprotected ship.`
+	`Protection provided against corrosion damage. Modifies by the given factor how much corrosion damage a ship can withstand before it loses as much hull as an unprotected ship.`
 
 tip "corrosion resistance:"
 	`Corrosion damage resisted per second.`
@@ -196,7 +196,7 @@ tip "cost:"
 	`Cost, in credits. If you have sold any used (depreciated) items today, you can buy them back for the same price you sold them for.`
 
 tip "discharge protection:"
-	`Protection provided against shield discharge damage. Modifies how difficult a ship's shields are to discharge by a percentage equal to the given factor: a total value of 50 allows a ship's shields to withstand 50% more discharge damage before they are as drained as those of an unprotected ship.`
+	`Protection provided against shield discharge damage. Modifies by the given factor how much discharge damage a ship can withstand before it loses as much shielding as an unprotected ship.`
 
 tip "discharge resistance:"
 	`How much shield discharge damage this ship can resist per second.`
@@ -211,7 +211,7 @@ tip "discharge resistance heat:"
 	`Heat generated per second when resisting discharge damage.`
 
 tip "disruption protection:"
-	`Protection provided against shield disruption damage. Modifies how difficult a ship's shields are to disrupt by a percentage equal to the given factor: a total value of 50 allows a ship's shields to withstand 50% more disruption damage before they are as disrupted as those of an unprotected ship.`
+	`Protection provided against shield disruption damage. Modifies by the given factor how much disruption damage a ship can withstand before its shields are as disrupted as those of an unprotected ship.`
 
 tip "disruption resistance:"
 	`Shield disruption damage resisted per second.`
@@ -229,7 +229,7 @@ tip "drag:"
 	`Limits the maximum speed of a ship.`
 	
 tip "drag reduction:"
-	`Reduces drag. Modifies the top speed of a ship by a percentage equal to the given factor: a total value of 50 allows a ship to reach a 50% higher top speed with the same amount of thrust as an unmodified ship.`
+	`Reduces drag. Modifies the top speed of a ship by the given factor.`
 
 tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
@@ -250,7 +250,7 @@ tip "    engine capacity:"
 	`Tons of engines this ship can hold. (To install an engine, you must also have enough total outfit space available.)`
 
 tip "energy protection:"
-	`Protection provided against energy damage. Modifies how difficult a ship's batteries are to drain with energy damage by a percentage equal to the given factor: a total value of 50 allows a ship to withstand 50% more energy damage before it loses as much energy as an unprotected ship.`
+	`Protection provided against energy damage. Modifies by the given factor how much energy damage a ship can withstand before it loses as much energy as an unprotected ship.`
 
 tip "fighter bays:"
 	`The number of ships from the "Fighter" category that this ship can carry.`
@@ -259,7 +259,7 @@ tip "flotsam chance:"
 	`The chance that this outfit will drop as flotsam when the ship it is installed on is destroyed.`
 
 tip "force protection:"
-	`Protection provided against hit force from weapons. Modifies how difficult a ship is to move with external force by a percentage equal to the given factor: a total value of 50 allows a ship to withstand 50% more hit force before it is moved as much as an unprotected ship.`
+	`Protection provided against hit force from weapons. Modifies by the given factor how much external force a ship can withstand before it is moved as much as an unprotected ship.`
 
 tip "fuel:"
 	`This ship's current fuel amount. An ordinary hyperdrive jump consumes 100 fuel.`
@@ -280,7 +280,7 @@ tip "fuel heat:"
 	`Heat produced per second when consuming fuel.`
 
 tip "fuel protection:"
-	`Protection provided against fuel damage. Modifies how difficult a ship's fuel tanks are to drain with fuel damage by a percentage equal to the given factor: a total value of 50 allows a ship to withstand 50% more fuel damage before it loses as much fuel as an unprotected ship.`
+	`Protection provided against fuel damage. Modifies by the given factor how much fuel damage a ship can withstand before it loses as much fuel as an unprotected ship.`
 
 tip "gun ports needed:"
 	`This weapon uses up a gun port. Guns always fire straight forward; turrets fire in the direction of your currently selected target.`
@@ -295,7 +295,7 @@ tip "heat generation:"
 	`Heat generated per second. Heat generation can be offset by "cooling" outfits. If your ship exceeds its maximum heat, it must temporarily shut down to cool itself off.`
 
 tip "heat protection:"
-	`Protection provided against heat damage. Modifies how difficult a ship is to heat with weapons by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more heat damage before its heat rises as much as an unprotected ship.`
+	`Protection provided against heat damage. Modifies by the given factor how much heat damage a ship can withstand before its heat rises as much as an unprotected ship.`
 
 tip "heat capacity:"
 	`Increases the maximum heat this ship is able to withstand before becoming overheated. A value of one has the same influence on a ship's maximum heat as one ton of mass, without the effects that mass has on movement.`
@@ -394,7 +394,7 @@ tip "threshold percentage:"
 	`Modifies the percentage of the remaining hull strength at which the ship will become disabled.`
 
 tip "hull protection:"
-	`Protection provided against direct hull damage. Modifies the total amount of damage a ship's hull can withstand by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more damage to its hull before it is destroyed.`
+	`Protection provided against direct hull damage. Modifies by the given factor how much hull damage a ship can withstand before it loses as much hull as an unprotected ship.`
 
 tip "hull repair multiplier:"
 	`Modifies the amount of hull strength repaired per second by the given factor.`
@@ -409,13 +409,13 @@ tip "income:"
 	`Amount of credits received per day when you own this outfit, even if it is not in active use.`
 	
 tip "inertia reduction:"
-	`Reduces effective ship mass. Modifies how quickly a ship accelerates by a percentage equal to the given factor: a total value of 50 allows a ship to accelerate 50% more quickly under the same thrust compared to an unmodified ship.`
+	`Reduces effective ship mass. Modifies how quickly a ship accelerates by the given factor.`
 
 tip "ion protection:"
-	`Protection provided against ion damage. Modifies how difficult a ship's batteries are to drain with ion damage by a percentage equal to the given factor: a total value of 50 allows a ship to withstand 50% more ion damage before it loses as much energy as an unprotected ship.`
+	`Protection provided against ion damage. Modifies by the given factor how much ion damage a ship can withstand before it loses as much energy as an unprotected ship.`
 
 tip "scramble protection:"
-	`Protection provided against weapon scrambling damage. Modifies how difficult a ship's weapons are to scramble by a percentage equal to the given factor: a total value of 50 allows a ship to withstand 50% more scrambling damage before its weapons are as scrambled as those of an unprotected ship.`
+	`Protection provided against weapon scrambling damage. Modifies by the given factor how much scramble damage a ship can withstand before its weapons are as scrambled as those of an unprotected ship.`
 
 tip "ion resistance:"
 	`Ion damage resisted per second.`
@@ -463,7 +463,7 @@ tip "jump base mass:"
 	`Modifies the impact your ship's mass has on the jump mass cost. Ships below this mass will have a cheaper jump cost than the base jump fuel cost, while ships above this mass will have more expensive jumps.`
 
 tip "leak protection:"
-	`Protection provided against leak damage. Modifies how difficult a ship's fuel tanks are to drain with leak damage by a percentage equal to the given factor: a total value of 50 allows a ship to withstand 50% more leak damage before it has lost as much fuel as an unprotected ship.`
+	`Protection provided against leak damage. Modifies by the given factor how much leak damage a ship can withstand before it loses as much fuel as an unprotected ship.`
 
 tip "leak resistance:"
 	`Leak damage resisted per second.`
@@ -541,7 +541,7 @@ tip "piercing:"
 	`Percentage of this weapon's damage that leaks through to the hull while the target's shields are still active.`
 
 tip "piercing protection:"
-	`Protection provided against piercing weapons. Modifies how difficult a ship's shields are to pierce by a percentage equal to the given factor: a total value of 50 allows a ship's shields to treat a weapon with 15% piercing as if it only had 10%, or a weapon with 60% piercing as if it only had 40%.`
+	`Protection provided against piercing weapons. Modifies how difficult a ship's shields are to pierce by the given factor.`
 
 tip "piercing resistance:"
 	`Piercing damage resisted on all incoming projectiles, preventing damage from leaking through the shields to the hull.`
@@ -676,7 +676,7 @@ tip "depleted shield delay:"
 	`The number of seconds it takes for additional shield generation to begin after your shields have been depleted.`
 
 tip "shield protection:"
-	`Protection provided against shield damage. Modifies the total amount of damage a ship's shields can withstand by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more damage to its shields before they are depleted.`
+	`Protection provided against shield damage. Modifies by the given factor how much shield damage a ship can withstand before it loses as much shields as an unprotected ship.`
 
 tip "silent jumps:"
 	`Prevents a ship from making hyperdrive or jump drive sounds when entering or leaving a system.`
@@ -685,7 +685,7 @@ tip "silent scans:"
 	`Prevents a ship from emitting scan sounds.`
 
 tip "slowing protection:"
-	`Protection provided against slowing damage. Modifies how difficult a ship is to slow by a percentage equal to the given factor: a total value of 50 allows a ship to take 50% more slowing damage before it is slowed as much as an unprotected ship.`
+	`Protection provided against slowing damage. Modifies by the given factor how much slowing damage a ship can withstand before it as slowed as an unprotected ship.`
 
 tip "slowing resistance:"
 	`Slowing damage resisted per second.`
