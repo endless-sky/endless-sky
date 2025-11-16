@@ -102,10 +102,16 @@ void DataNode::AddToken(const string &token)
 
 
 
-// Get the token with the given index. No bounds checking is done.
-// DataFile loading guarantees index 0 always exists.
+// Get the token at the given index. DataFile loading guarantees index 0 always exists.
+// This returns an empty string and prints an error if the index is out of range.
 const string &DataNode::Token(int index) const
 {
+	static const string ERROR = "";
+	if(static_cast<size_t>(index) >= tokens.size())
+	{
+		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
+		return ERROR;
+	}
 	return tokens[index];
 }
 
