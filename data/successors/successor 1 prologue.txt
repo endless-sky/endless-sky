@@ -319,7 +319,7 @@ mission "Successors: First Contact 2"
 			`	As you exit, the door closes behind you, reforming into solid metal.`
 				flee
 			label end
-				decline
+				accept
 
 mission "Successors: First Contact 3"
 	name "Capture an animal for House Sioeora"
