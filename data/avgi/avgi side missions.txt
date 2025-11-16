@@ -852,7 +852,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				goto shields
 
 			label technology
-				`	"Oh, yes, appreciation. But they don't use it to its full extent, probably because they aren't intelligent beings in their own right. They just make more of each other, without any changes other than occasional mistakes. And their weapons don't seem like they were meant to be weapons, if that makes sense. More of a cutting beam than a true weaponized laser."`
+			`	"Oh, yes, appreciation. But they don't use it to its full extent, probably because they aren't intelligent beings in their own right. They just make more of each other, without any changes other than occasional mistakes. And their weapons don't seem like they were meant to be weapons, if that makes sense. More of a cutting beam than a true weaponized laser."`
 
 			label shields
 			`	"That's why things really were desperate, until you humans came around. That changed everything, knowing there was a non-hostile, if not outright friendly, alien power nearby. Even though it sounds like your government isn't able to help directly, given the lack of connecting starways, technological support from a more advanced species could be enough for us to win. Shields, shared by your people, were already a game changer by themselves."`
