@@ -29,7 +29,7 @@ class WrappedText;
 
 
 
-// Implement a collection of text and image nodes which form a singular Logbook entry
+// Implement a collection of text and image nodes which form a singular Logbook entry.
 class BookEntry {
 public:
 	typedef std::variant<std::monostate, const Sprite *, std::string> Item;

@@ -428,9 +428,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				else if(grand.Size() >= 2)
 				{
 					for(const DataNode &great : grand)
-					{
 						specialLogs[grand.Token(0)][grand.Token(1)].Load(great);
-					}
 				}
 			}
 		}
@@ -1924,7 +1922,6 @@ void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
 }
 
 
-// TODO: move to own book class so that help can be it's own book.
 // Get the player's logbook.
 const map<Date, BookEntry> &PlayerInfo::Logbook() const
 {

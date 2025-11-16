@@ -399,7 +399,8 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 // Perform the specified tasks.
 void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 {
-	player.AddLogEntry(logEntries);
+	if(!logEntries.IsEmpty())
+		player.AddLogEntry(logEntries);
 	for(const auto &[category, nextMap] : specialLogEntries)
 		for(const auto &[heading, specialLogEntry] : nextMap)
 			player.AddSpecialLog(category, heading, specialLogEntry);

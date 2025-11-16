@@ -72,8 +72,8 @@ BookEntry BookEntry::Instantiate(const map<string, string> &subs) const
 void BookEntry::Save(DataWriter &out) const
 {
 	out.BeginChild();
-	for(const Item &item : items)
 	{
+		for(const Item &item : items)
 		{
 			// Break the text up into paragraphs.
 			if(holds_alternative<string>(item))
