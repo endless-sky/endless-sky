@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionAssignments.h"
 #include "ShipManager.h"
 
+#include <cstdint>
 #include <map>
 #include <optional>
 #include <set>
