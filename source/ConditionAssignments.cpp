@@ -144,7 +144,7 @@ set<string> ConditionAssignments::RelevantConditions() const
 
 
 
-void ConditionAssignments::AddSetCondition(const std::string &name, const ConditionsStore *conditions)
+void ConditionAssignments::AddSetCondition(const string &name, const ConditionsStore *conditions)
 {
 	this->conditions = conditions;
 	assignments.emplace_back(name, AssignOp::ASSIGN, ConditionSet(1, conditions));
@@ -182,7 +182,7 @@ void ConditionAssignments::Add(const DataNode &node, const ConditionsStore *cond
 		AssignOp ao = AssignOp::ASSIGN;
 		const string assignOpString = node.Token(1);
 		auto it = find_if(ASSIGN_OP_TO_TEXT.begin(), ASSIGN_OP_TO_TEXT.end(),
-			[&assignOpString](const std::pair<AssignOp, const string> &e) {
+			[&assignOpString](const pair<AssignOp, const string> &e) {
 				return e.second == assignOpString;
 			});
 		if(it != ASSIGN_OP_TO_TEXT.end())

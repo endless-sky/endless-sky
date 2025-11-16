@@ -89,7 +89,7 @@ namespace {
 
 		const bool IsActive() const { return state != Preferences::OverlayState::DISABLED; }
 
-		const std::string &ToString() const
+		const string &ToString() const
 		{
 			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
 		}
@@ -829,7 +829,7 @@ Preferences::AlertIndicator Preferences::GetAlertIndicator()
 
 
 
-const std::string &Preferences::AlertSetting()
+const string &Preferences::AlertSetting()
 {
 	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
 }
@@ -884,7 +884,7 @@ Preferences::MinimapDisplay Preferences::GetMinimapDisplay()
 
 
 
-const std::string &Preferences::MinimapSetting()
+const string &Preferences::MinimapSetting()
 {
 	return MINIMAP_DISPLAY_SETTING[minimapDisplayIndex];
 }
