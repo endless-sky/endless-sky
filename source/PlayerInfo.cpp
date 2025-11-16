@@ -1922,6 +1922,7 @@ void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
 }
 
 
+
 // Get the player's logbook.
 const map<Date, BookEntry> &PlayerInfo::Logbook() const
 {
@@ -1937,7 +1938,7 @@ void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 
 
 
-const map<string, map<string, BookEntry>> &PlayerInfo::SpecialLogs()
+const map<string, map<string, BookEntry>> &PlayerInfo::SpecialLogs() const
 {
 	return specialLogs;
 }
