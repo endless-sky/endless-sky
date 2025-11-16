@@ -1632,7 +1632,7 @@ mission "A Sunracer Hovercraft Racing"
 phrase "three card monte opening"
 	word
 		"You step down from your ship onto the main concourse of the spaceport, "
-		"Strolling past the smoky glow of the spaceport bar, you drift into the main area, "
+		"Strolling past the smoky glow of the spaceport bar, you head along the port's main street "
 		"After a quiet walk around the area, you find yourself back in the heart of the spaceport, "
 		"You descend from your ship to enter the spaceport, "
 	word
@@ -1697,12 +1697,14 @@ mission "Three Card Monte"
 				`	(Put down 1,000 credits to play the game.)`
 					to display
 						credits > 1000
-				`	(Pat my empty pockets. Can't play today.)`
+				`	(Pat my empty pockets.)`
 					decline
 					to display
 						credits < 1000
 				`	(Skip the game.)`
 					decline
+					to display
+						credits >= 1000
 			label "new game start"
 			action
 				"monte: multiplication" = 1 + "roll: 2"
@@ -1884,7 +1886,7 @@ mission "Three Card Monte"
 			`	"After them!" the dealer shouts, while his men leap into pursuit, their curses and boots echoing behind you. The sound of commotion behind you dissolves as you make it aboard your ship before they can catch up.`
 				flee
 			label "true ending"
-			`	You leave the gambling game for your ship.`
+			`	You leave the gambling table for your ship.`
 			action
 				clear "monte: games played"
 				clear "monte: multiplication"
