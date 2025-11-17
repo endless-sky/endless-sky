@@ -3621,7 +3621,8 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 			continue;
 
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
-		Point p = target.Position() - start + ship.GetPersonality().Confusion();
+		Angle confusion = ship.GetPersonality().Confusion() * -1.;
+		Point p = confusion.Rotate(target.Position() - start);
 		Point v = target.Velocity() - ship.Velocity();
 		double steps = RendezvousTime(p, v, weapon->WeightedVelocity() + .5 * weapon->RandomVelocity());
 		if(std::isnan(steps))
@@ -3732,12 +3733,12 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 	for(const Hardpoint &hardpoint : ship.Weapons())
 		if(hardpoint.CanAim(ship))
 		{
-			// This is where this projectile fires from. Add some randomness
-			// based on how skilled the pilot is.
+			// This is where this projectile fires from.
 			Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
-			start += ship.GetPersonality().Confusion();
-			// Get the turret's current facing, in absolute coordinates:
-			Angle aim = ship.Facing() + hardpoint.GetAngle();
+			// Get the turret's current facing, in absolute coordinates. Add
+			// some randomness based on how skilled the pilot is.
+			Angle aim = ship.Facing() + hardpoint.GetAngle()
+				+ ship.GetPersonality().Confusion();
 			// Get this projectile's average velocity.
 			const Weapon *weapon = hardpoint.GetWeapon();
 			double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
@@ -3954,16 +3955,14 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			if(!secondary || fuel < (isStaying ? 0. : ship.JumpNavigation().JumpFuel()))
 				continue;
 		}
-		// Figure out where this weapon will fire from, but add some randomness
-		// depending on how accurate this ship's pilot is.
+		// Figure out where this weapon will fire from.
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
-		start += person.Confusion();
 
 		double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 		double lifetime = weapon->TotalLifetime();
 
 		// Homing weapons revert to "dumb firing" if they have no target.
-		if(weapon->Homing() && currentTarget)
+		if(weapon->Homing() && !weapon->HasBlindspot() && currentTarget)
 		{
 			// NPCs shoot ships that they just plundered.
 			bool hasBoarded = !ship.IsYours() && Has(ship, currentTarget, ShipEvent::BOARD);
@@ -4026,8 +4025,9 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			if(!weapon->IsSafe() && p.Length() <= (weapon->BlastRadius() + weapon->TriggerRadius()))
 				continue;
 
-			// Get the vector the weapon will travel along.
-			v = (ship.Facing() + hardpoint.GetAngle()).Unit() * vp - v;
+			// Get the vector the weapon will travel along. Add some randomness
+			// depending on how accurate this ship's pilot is.
+			v = (ship.Facing() + hardpoint.GetAngle() + person.Confusion()).Unit() * vp - v;
 			// Extrapolate over the lifetime of the projectile.
 			v *= lifetime;
 
@@ -4056,10 +4056,8 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, const Body &target) co
 		if(weapon->Icon() || weapon->Ammo())
 			continue;
 
-		// Figure out where this weapon will fire from, but add some randomness
-		// depending on how accurate this ship's pilot is.
+		// Figure out where this weapon will fire from.
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
-		start += ship.GetPersonality().Confusion();
 
 		double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 		double lifetime = weapon->TotalLifetime();
@@ -4074,8 +4072,10 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, const Body &target) co
 		// forward one time step.
 		p += v;
 
-		// Get the vector the weapon will travel along.
-		v = (ship.Facing() + hardpoint.GetAngle()).Unit() * vp - v;
+		// Get the vector the weapon will travel along. Add some randomness
+		// depending on how accurate this ship's pilot is.
+		v = (ship.Facing() + hardpoint.GetAngle()
+			+ ship.GetPersonality().Confusion()).Unit() * vp - v;
 		// Extrapolate over the lifetime of the projectile.
 		v *= lifetime;
 

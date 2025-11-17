@@ -460,9 +460,9 @@ bool Personality::IsQuiet() const
 
 
 
-const Point &Personality::Confusion() const
+const double &Personality::Confusion() const
 {
-	return confusion;
+	return confusion.X();
 }
 
 

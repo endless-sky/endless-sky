@@ -178,7 +178,7 @@ Hardpoint::Side Hardpoint::GetSide() const
 // Find out if this hardpoint has a homing weapon installed.
 bool Hardpoint::IsHoming() const
 {
-	return outfit && outfit->GetWeapon()->Homing();
+	return outfit && outfit->GetWeapon()->Homing() && !outfit->GetWeapon()->HasBlindspot();
 }
 
 
