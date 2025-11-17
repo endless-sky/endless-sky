@@ -343,7 +343,7 @@ mission "Ka'het: Death in the Graveyard 1"
 			label attack
 			`	You hurriedly warm up your weapons and set the targeting computer toward the enemy. With the press of a button, you unleash all your wrath on the Ka'het - so much that the first shot that hits does not seem to encounter any shield, penetrating deep below the skin of the slug. The Maeri'het inclines on the starboard side and starts falling rapidly; a few metallic panels detach from its shell right before it reaches the ground, and a set of balloons rapidly inflate out of the resulting holes.`
 			label dead
-			`	The Ka'het at last emits an uncomfortably loud whistle, reducing in intensity over the minutes pass until disappearing completely. The Ka'het sits motionless at the bottom of what looks like a dry riverbed, surrounded by nothing but you and the calm night sky.`
+			`	The Ka'het at last emits an uncomfortably loud whistle, reducing in intensity over the minutes pass until disappearing completely. It sits motionless at the bottom of what looks like a dry riverbed, surrounded by nothing but you and the calm night sky.`
 			choice
 				`	(Report it to the Remnant.)`
 					goto report
@@ -388,24 +388,29 @@ mission "Ka'het: Death in the Graveyard 2"
 				`	"What happened with that Maeri'het?"`
 					goto what
 				`	"My fleet would have sufficed."`
+					to display
+						"total ships" > 1
+				`	"My ship would have sufficed."`
+					to display
+						"total ships" == 1
 			`	"Oh, I can believe that!" he replies, quickly glancing around the payload bay. "Simply, outfitting a ship for the mission would take time that we do not have right now.`
 			label what
 			`	"The Ka'het, as you know, are part mechanical and part biological. What may be news to you, however, is their biological self is suppressed most of the time: we have been able to determine that their stellar navigation and system management is completely left to their programming," he signs, with an unusual look of aversion in his eyes.`
 			`	"Still, like most biological beings, after their nominal lifetime of hundreds of years, they can start dying of old age. When this happens, they enter a hibernation state, calling for a Builder in the hope of being rescued. Of course, no help is coming.`
 			`	"We have observed," he continues while reading from a datapad, "other Ka'het try to patch them up as best as they can after some time, presumably following their own programming to do so. It is very unusual to find the corpse of one just laying there alone. We are interested in more or less anything that cannot be extracted from the carcass of one of their kind. Memory banks, logic terminals, and in general, all parts of their mechanical brain that usually will not survive critical battle damage."`
-			`	Despite the sign language, you notice that he seemed strikingly halfhearted compared to the previous times you have encountered him. As he heads toward his Gull, the Late Season Dancing, you can't help but wonder why.`
+			`	Despite the sign language, you notice that he seems strikingly halfhearted compared to the previous times you have encountered him. As he heads toward his Gull, the Late Season Dancing, you can't help but wonder why.`
 				decline
 
 mission "Ka'het: Death in the Graveyard 3"
 	landing
 	name "Angry Ka'het"
-	description "Destroy the Telis'het in <system> to prevent it from destroying the Ka'het on the surface."
+	description "Destroy the Telis'het in <system> to prevent it from destroying the Maeri'het on the surface of <planet>."
 	to offer
 		has "Ka'het: Death in the Graveyard 1: done"
 	on offer
 		conversation
 			`It's daytime now. Flying in formation with the Late Season Dancing, you spot the Maeri'het on the ground easily: it has spread a pair of enormous solar wings, at least thrice as long as the body of the Ka'het itself. A look at your radar reveals more, however. There is a second Ka'het standing above the downed one, classified by your IFF as a Telis.`
-			`	"It is trying to reanimate the Maeri'het," Plume chants over the intercom, "but I do not think it can do so. It has been too long since you found it for repairs to have any effect." Among the smoke clouds you distinguish pairs of tiny arms protrude from the bottom of the Telis'het, pressing all over the corpse below it. You record some electric shocks move between the two, but the Maeri'het does not react.`
+			`	"It is trying to reanimate the Maeri'het," Plume chants over the intercom, "but I do not think it can do so. It has been too long since you found it for repairs to have any effect." Among the smoke clouds you distinguish pairs of tiny arms protrude from the bottom of the Telis'het, pressing all over the corpse below it. Your ship records some electric shocks move between the two, but the Maeri'het does not react.`
 			choice
 				`	"Let's wait for it to leave then."`
 				`	"Should I engage it?"`
@@ -480,7 +485,7 @@ mission "Ka'het: Death in the Graveyard 4A"
 			label skip
 			`	He seems amused. "I had a feeling you would wonder about that. No need to worry, <first>, we have left something for you as well."`
 			label outfit
-			`	He accompanies you toward two large containers, conveniently placed next to your ship. He unlocks the doors: one contains a pair of MHD Generators, and the other a pair of Shield Restorers. "We had to uninstall a number of systems to gain access to the ones we were looking for. Most of them were damaged in the process, but we made sure to keep these intact as a way to thank you for your contribution before leaving for <planet>."`
+			`	He accompanies you toward two large containers, conveniently placed next to your ship, and unlocks the doors: one contains a pair of MHD Generators, and the other a pair of Shield Restorers. "We had to uninstall a number of systems to gain access to the ones we were looking for. Most of them were damaged in the process, but we made sure to keep these intact as a way to thank you for your contribution before leaving for <planet>."`
 			action
 				outfit "Ka'het MHD Generator" 2
 				outfit "Ka'het Shield Restorer" 2
@@ -497,7 +502,7 @@ mission "Ka'het: Death in the Graveyard 4A"
 			`You wait for Plume next to the ramp of his Gull. When you see him, he is discussing the destination of the Ka'het machinery with another Remnant. "Oh, Captain," he signs contentedly, "Thank you once again for your help. I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted the job of putting their machinery in safe storage whenever you bring more of it."`
 				goto how
 			label rifle
-			`You wait for Plume next to the ramp of his Gull. When you see him, he is discussing the destination of the Ka'het machinery with another Remnant. You recognize him as the man who had previously helped you with your Void Rifle. "Oh, Captain," Plume signs contentedly, "Thank you for your help, once again! I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted the job of putting their machinery in safe storage whenever you bring more of it."`
+			`You wait for Plume next to the ramp of his Gull. When you see him, he is discussing the destination of the Ka'het machinery with another Remnant, whom you recognize as the man who had helped you with your Void Rifle. "Oh, Captain," Plume signs contentedly, "Thank you for your help, once again! I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted the job of putting their machinery in safe storage whenever you bring more of it."`
 			label how
 			`	He hands you a small data crystal, shaped like an icosahedron. "This contains a series of short videos on how to use the tools in a Research Laboratory, if you were to be carrying one aboard, to extract some of the most essential components out of a hibernated Ka'het. You will need practice, of course, but the procedure is really not too dissimilar from that of looting a standard ship. If it happens again, as long as you leave 40 to 50 tons of space in your payload bay, you will be able to do most of what we did today without wasting a second to call us!"`
 			`	After spending some more time discussing the procedure to follow the next time you encounter a hibernated Ka'het, you bid each other farewell with a short bow and part ways.`
@@ -570,7 +575,7 @@ mission "Ka'het: Another Death in the Graveyard 1A"
 			branch vareti
 				random < 10
 			branch telis
-					random < 75
+				random < 75
 			action
 				set "ka'het: maeri"
 			`A glare from the ground catches your attention. In the distance, you notice what looks like a Maeri'het lying down at the bottom of a dried riverbed, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume gave you, you could use your Research Laboratory to significantly help the Remnant efforts.`
@@ -648,7 +653,7 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				outfit "Neodymium"
 				outfit "Iron" 4
 				outfit "Copper" 2
-			`	You are about halfway through the outfit list when, without warning, the entire structure starts pulsating in an increasingly more violent manner. You leap toward your ship, but the entire slug implodes in front of you! You make it through unscathed, but most of the outfits you had extracted have been critically damaged by the flying debris. The only things that are left intact among the scrap is a single Reserve Accumulator and some precious metals.`
+			`	You are about halfway through the outfit list when, without warning, the entire structure starts pulsating in an increasingly more violent manner. You leap toward your ship, but the entire slug implodes in front of you! You make it through unscathed, but most of the outfits you had extracted have been critically damaged by the flying debris. The only things left intact among the scrap are a single Reserve Accumulator and some precious metals.`
 				decline
 
 			label all_lucky
