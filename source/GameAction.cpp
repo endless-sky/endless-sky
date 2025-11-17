@@ -45,7 +45,7 @@ namespace {
 			bool mapMinables = outfit->Get("map minables");
 			if(!player.HasMapped(mapSize, mapMinables))
 				player.Map(mapSize, mapMinables);
-			Messages::Add("You received a map of nearby systems.", Messages::Importance::High);
+			Messages::Add(*GameData::Messages().Get("map received"));
 			return;
 		}
 
@@ -119,7 +119,7 @@ namespace {
 			message += "cargo hold.";
 		else
 			message += "flagship.";
-		Messages::Add(message, Messages::Importance::High);
+		Messages::Add({message, GameData::MessageCategories().Get("normal")});
 	}
 }
 
@@ -157,10 +157,16 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	}
 	else if(key == "log")
 	{
-		bool isSpecial = (child.Size() >= 3);
-		string &text = (isSpecial ?
-			specialLogText[child.Token(1)][child.Token(2)] : logText);
-		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+		// Special log format: log <category> <heading> [<log message>|scene <sprite>]
+		// Normal log format: log [<log message>|scene <sprite>]
+		// Note: the key of `log` or `log <category> <heading>` may be on a line unto itself, with the child nodes
+		// distributed beneath it. But this must be distinguished from `log scene <image_name>`.
+		// This means that there can never be a special category named 'scene' or there will be problems with the
+		// player logbook format.
+		if(child.Size() < 3 || (child.Size() == 3 && child.Token(1) == "scene"))
+			logEntries.Load(child, 1);
+		else if(child.Size() >= 3)
+			specialLogEntries[child.Token(1)][child.Token(2)].Load(child, 3);
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
@@ -220,9 +226,15 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	else if(key == "mute")
 		music = "";
 	else if(key == "mark" && hasValue)
-		mark.insert(GameData::Systems().Get(child.Token(1)));
+	{
+		set<const System *> &toMark = child.Size() == 2 ? mark : markOther[child.Token(2)];
+		toMark.insert(GameData::Systems().Get(child.Token(1)));
+	}
 	else if(key == "unmark" && hasValue)
-		unmark.insert(GameData::Systems().Get(child.Token(1)));
+	{
+		set<const System *> &toUnmark = (child.Size() == 2) ? unmark : unmarkOther[child.Token(2)];
+		toUnmark.insert(GameData::Systems().Get(child.Token(1)));
+	}
 	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
@@ -235,28 +247,19 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 
 void GameAction::Save(DataWriter &out) const
 {
-	if(!logText.empty())
+	if(!logEntries.IsEmpty())
 	{
 		out.Write("log");
-		out.BeginChild();
-		{
-			// Break the text up into paragraphs.
-			for(const string &line : Format::Split(logText, "\n\t"))
-				out.Write(line);
-		}
-		out.EndChild();
+		logEntries.Save(out);
 	}
-	for(auto &&it : specialLogText)
-		for(auto &&eit : it.second)
+	for(const auto &[category, headings] : specialLogEntries)
+		for(const auto &[heading, specialLogEntry] : headings)
 		{
-			out.Write("log", it.first, eit.first);
-			out.BeginChild();
+			if(!specialLogEntry.IsEmpty())
 			{
-				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(eit.second, "\n\t"))
-					out.Write(line);
+				out.Write("log", category, heading);
+				specialLogEntry.Save(out);
 			}
-			out.EndChild();
 		}
 	for(auto &&it : specialLogClear)
 	{
@@ -286,11 +289,17 @@ void GameAction::Save(DataWriter &out) const
 		out.EndChild();
 	}
 	for(auto &&it : events)
-		out.Write("event", it.first->Name(), it.second.first, it.second.second);
+		out.Write("event", it.first->TrueName(), it.second.first, it.second.second);
 	for(const System *system : mark)
 		out.Write("mark", system->TrueName());
+	for(const auto &[mission, marks] : markOther)
+		for(const System *system : marks)
+			out.Write("mark", system->TrueName(), mission);
 	for(const System *system : unmark)
 		out.Write("unmark", system->TrueName());
+	for(const auto &[mission, unmarks] : unmarkOther)
+		for(const System *system : unmarks)
+			out.Write("unmark", system->TrueName(), mission);
 	for(const string &name : fail)
 		out.Write("fail", name);
 	if(failCaller)
@@ -317,7 +326,7 @@ string GameAction::Validate() const
 	{
 		string reason = event.first->IsValid();
 		if(!reason.empty())
-			return "event \"" + event.first->Name() + "\" - Reason: " + reason;
+			return "event \"" + event.first->TrueName() + "\" - Reason: " + reason;
 	}
 
 	// Transferred content must be defined & valid.
@@ -332,15 +341,24 @@ string GameAction::Validate() const
 	for(auto &&system : mark)
 		if(!system->IsValid())
 			return "system \"" + system->TrueName() + "\"";
+	for(const auto &[mission, marks] : markOther)
+		for(const System *system : marks)
+			if(!system->IsValid())
+				return "system \"" + system->TrueName() + "\"";
 	for(auto &&system : unmark)
 		if(!system->IsValid())
 			return "system \"" + system->TrueName() + "\"";
+	for(const auto &[mission, unmarks] : unmarkOther)
+		for(const System *system : unmarks)
+			if(!system->IsValid())
+				return "system \"" + system->TrueName() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
 
 	return "";
 }
+
 
 
 bool GameAction::IsEmpty() const noexcept
@@ -381,11 +399,11 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 // Perform the specified tasks.
 void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 {
-	if(!logText.empty())
-		player.AddLogEntry(logText);
-	for(auto &&it : specialLogText)
-		for(auto &&eit : it.second)
-			player.AddSpecialLog(it.first, eit.first, eit.second);
+	if(!logEntries.IsEmpty())
+		player.AddLogEntry(logEntries);
+	for(const auto &[category, nextMap] : specialLogEntries)
+		for(const auto &[heading, specialLogEntry] : nextMap)
+			player.AddSpecialLog(category, heading, specialLogEntry);
 	for(auto &&it : specialLogClear)
 	{
 		if(it.second.empty())
@@ -434,20 +452,34 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(const auto &it : events)
 		player.AddEvent(*it.first, player.GetDate() + it.second.first);
 
-	for(const System *system : mark)
-		caller->Mark(system);
-	for(const System *system : unmark)
-		caller->Unmark(system);
-
-	if(!fail.empty())
+	if(caller)
 	{
-		// If this action causes this or any other mission to fail, mark that
-		// mission as failed. It will not be removed from the player's mission
-		// list until it is safe to do so.
-		for(const Mission &mission : player.Missions())
-			if(fail.contains(mission.Identifier()))
-				player.FailMission(mission);
+		caller->Mark(mark);
+		caller->Unmark(unmark);
 	}
+
+	if(!fail.empty() || !markOther.empty() || !unmarkOther.empty())
+	{
+		for(const Mission &mission : player.Missions())
+		{
+			// If this action causes another mission to fail, mark that
+			// mission as failed. It will not be removed from the player's mission
+			// list until it is safe to do so.
+			if(fail.contains(mission.TrueName()))
+				player.FailMission(mission);
+
+			auto mit = markOther.find(mission.TrueName());
+			if(mit != markOther.end())
+				mission.Mark(mit->second);
+
+			auto uit = unmarkOther.find(mission.TrueName());
+			if(uit != unmarkOther.end())
+				mission.Unmark(uit->second);
+		}
+	}
+
+	// If this action causes this mission to fail, mark it as failed.
+	// It will not be removed from the player's mission list until it is safe to do so.
 	if(failCaller && caller)
 		player.FailMission(*caller);
 	if(music.has_value())
@@ -499,11 +531,10 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.debt = debt;
 
-	if(!logText.empty())
-		result.logText = Format::Replace(logText, subs);
-	for(auto &&it : specialLogText)
-		for(auto &&eit : it.second)
-			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
+	result.logEntries = logEntries.Instantiate(subs);
+	for(const auto &[category, headings] : specialLogEntries)
+		for(const auto &[heading, specialLogEntry] : headings)
+			result.specialLogEntries[category][heading] = specialLogEntry.Instantiate(subs);
 	result.specialLogClear = specialLogClear;
 
 	result.fail = fail;
@@ -512,7 +543,9 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.conditions = conditions;
 
 	result.mark = mark;
+	result.markOther = markOther;
 	result.unmark = unmark;
+	result.unmarkOther = unmarkOther;
 
 	return result;
 }

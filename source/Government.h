@@ -48,6 +48,14 @@ class System;
 // bribe than others.
 class Government {
 public:
+	struct Atrocity {
+		// False if a global atrocity is ignored by this government.
+		bool isAtrocity = true;
+		const Conversation *customDeathSentence = nullptr;
+	};
+
+
+public:
 	// Default constructor.
 	Government();
 
@@ -56,10 +64,10 @@ public:
 		const std::set<const Planet *> *visitedPlanets);
 
 	// Get the display name of this government.
-	const std::string &GetName() const;
-	// Set / Get the name used for this government in the data files.
-	void SetName(const std::string &trueName);
-	const std::string &GetTrueName() const;
+	const std::string &DisplayName() const;
+	// Set / Get the true name used for this government in the data files.
+	void SetTrueName(const std::string &trueName);
+	const std::string &TrueName() const;
 	// Get the color swizzle to use for ships of this government.
 	const Swizzle *GetSwizzle() const;
 	// Get the color to use for displaying this government on the map.
@@ -120,13 +128,16 @@ public:
 	void Bribe() const;
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
-	std::string Fine(PlayerInfo &player, int scan = 0, const Ship *target = nullptr, double security = 1.) const;
+	std::pair<const Conversation *, std::string> Fine(PlayerInfo &player, int scan = 0,
+		const Ship *target = nullptr, double security = 1.) const;
 	// Check to see if the items are condemnable (atrocities) or warrant a fine.
-	bool Condemns(const Outfit *outfit) const;
-	bool Condemns(const Ship *ship) const;
+	Atrocity Condemns(const Outfit *outfit) const;
+	Atrocity Condemns(const Ship *ship) const;
+	bool IgnoresUniversalAtrocities() const;
 	// Returns the fine for given item for this government.
 	int Fines(const Outfit *outfit) const;
 	int Fines(const Ship *ship) const;
+	bool IgnoresUniversalIllegals() const;
 	// Check if given ship has illegal outfits or cargo.
 	bool FinesContents(const Ship *ship) const;
 
@@ -150,7 +161,7 @@ public:
 
 private:
 	unsigned id;
-	std::string name;
+	std::string trueName;
 	std::string displayName;
 	const Swizzle *swizzle = Swizzle::None();
 	ExclusiveItem<Color> color;
@@ -163,10 +174,12 @@ private:
 	double reputationMax = std::numeric_limits<double>::max();
 	double reputationMin = std::numeric_limits<double>::lowest();
 	std::map<int, double> penaltyFor;
-	std::map<const Outfit*, int> illegalOutfits;
+	std::map<const Outfit *, int> illegalOutfits;
 	std::map<std::string, int> illegalShips;
-	std::map<const Outfit*, bool> atrocityOutfits;
-	std::map<std::string, bool> atrocityShips;
+	bool ignoreUniversalIllegals = false;
+	std::map<const Outfit *, Atrocity> atrocityOutfits;
+	std::map<std::string, Atrocity> atrocityShips;
+	bool ignoreUniversalAtrocities = false;
 	double bribe = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;

@@ -21,9 +21,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "Rectangle.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <set>
@@ -46,6 +48,8 @@ public:
 
 	virtual void Step() override;
 	virtual void Draw() override;
+
+	virtual void UpdateTooltipActivation() override;
 
 
 protected:
@@ -110,6 +114,7 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
+	void DrawButton(const std::string &name, const Rectangle &buttonShape, bool isActive, bool hovering, char keyCode);
 	void CheckSelection();
 
 
@@ -179,6 +184,7 @@ protected:
 	double previousX = 0.;
 
 	std::vector<Zone> zones;
+	std::vector<ClickZone<char>> buttonZones;
 	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
@@ -221,7 +227,14 @@ private:
 	Point hoverPoint;
 	std::string shipName;
 	std::string warningType;
-	int hoverCount = 0;
+	Tooltip shipsTooltip;
+	Tooltip creditsTooltip;
+
+	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
+	const Color &hover;
+	const Color &active;
+	const Color &inactive;
+	const Color &back;
 
 	bool checkedHelp = false;
 };

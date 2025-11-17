@@ -91,7 +91,7 @@ void MaskManager::ScaleMasks()
 
 // Get the masks for the given sprite at the given scale. If a
 // sprite has no masks, an empty mask is returned.
-const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, Point scale) const
+const vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, Point scale) const
 {
 	static const vector<Mask> EMPTY;
 	const auto scalesIt = spriteMasks.find(sprite);
