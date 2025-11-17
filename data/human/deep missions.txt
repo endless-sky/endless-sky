@@ -890,11 +890,14 @@ conversation "deep: questioning"
 		`	"You can't interrogate me. I'm a citizen of the Deep."`
 			to display
 				has "start: deep"
+				not "questioning: citizen"
 		`	"We were scanning Midgard with gravitational field mapping equipment and spotted an artificial singularity before we fled."`
 			goto honest
 		`	"He told me he was researching the Deep and he needed help conducting his research."`
 			goto work
 	
+	action
+		set "questioning: citizen"
 	`	She frowns. "That does not give you immunity from our investigation.`
 	`	"Now again: what exactly were you doing with Albert Foster?"`
 		goto first
@@ -931,6 +934,8 @@ conversation "deep: questioning"
 	`	"See? That wasn't so hard to admit, now was it?"`
 	
 	label honest
+	action
+		clear "questioning: citizen"
 	branch helped
 		has "Deep: Mystery Cubes 4: done"
 	

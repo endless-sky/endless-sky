@@ -533,7 +533,7 @@ mission "Intro [3 Transport]"
 	priority
 	name "Bring James to <planet>"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -625,7 +625,7 @@ mission "Intro [3 Freighter]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Ingot"
 	destination "Hestia"
@@ -753,7 +753,7 @@ mission "Intro [3 Interceptor]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "New Sahara"
 	destination "Hestia"
@@ -877,7 +877,7 @@ mission "Midgard Intro [3 Transport]"
 	priority
 	name "Bring James to <planet>"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Calda"
 	destination "Hestia"
@@ -980,7 +980,7 @@ mission "Midgard Intro [3 Transport Alt]"
 	priority
 	name "Bring James to <planet>"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -1074,7 +1074,7 @@ mission "Midgard Intro [3 Freighter]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Ingot"
 	destination "Hestia"
@@ -1172,7 +1172,7 @@ mission "Midgard Intro [2 Interceptor]"
 	
 	on offer
 		conversation
-			`The landscape of <origin> is beyond even the urban sprawls of Midgard and Asgard. Beyond the spaceport's glass walls is a vast forest of skyscrapers reaching out to the edge of your vision. Far away, the lights of distant buildings blend together, as though the horizon is ablaze.`
+			`The landscape of <origin> beats even the urban sprawls of Midgard and Asgard. Beyond the spaceport's glass walls is a vast forest of skyscrapers reaching out to the edge of your vision. Far away, the lights of distant buildings blend together, as though the horizon is ablaze.`
 			`	You find James standing on a landing pad underneath a large freighter, chatting with a person you assume is the captain. "There you are!" he says. "Captain McLain here says their two ships have always had troubles with pirates when venturing outside of the Deep, and they're looking for an escort to get them safely to Gemstone. Are you interested?"`
 			choice
 				`	"Of course!"`
@@ -1217,7 +1217,7 @@ mission "Midgard Intro [3 Interceptor]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "New Sahara"
 	destination "Hestia"
@@ -1341,7 +1341,7 @@ mission "Mainsail Intro [3 Transport]"
 	priority
 	name "Bring James to <planet>"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -1439,7 +1439,7 @@ mission "Mainsail Intro [3 Transport Alt]"
 	priority
 	name "Bring James to <planet>"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -1532,7 +1532,7 @@ mission "Mainsail Intro [3 Freighter]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Hermes"
 	destination "Hestia"
@@ -1692,7 +1692,7 @@ mission "Mainsail Intro [3 Interceptor]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Pearl"
 	destination "Hestia"
@@ -1841,7 +1841,7 @@ mission "Delve Intro [3 Transport]"
 	priority
 	name "Bring James to <planet>"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -1942,7 +1942,7 @@ mission "Delve Intro [3 Freighter]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Relic"
 	destination "Hestia"
@@ -2089,7 +2089,7 @@ mission "Delve Intro [3 Interceptor]"
 	priority
 	name "Bring James to <planet>"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
-	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
+	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Relic"
 	destination "Hestia"
