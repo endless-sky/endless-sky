@@ -2713,7 +2713,7 @@ mission "Ka'het: Patir Mystery 25"
 			`	In a matter of minutes, the stars will move once again. After briefly consulting with the crew, you decide to save some time by launching back to orbit straight away while they finish their preparations. After all, a new countdown has begun: in seven days, Patir will move back the Milky Way, with or without you.`
 				launch
 	on enter
-		dialog "By the time you reach orbit, the light show has come to an end and the Remnant have begun their research. A small satellite is quietly released from of your payload bay, as it will in every system you pass through."
+		dialog "By the time you reach orbit, the light show has come to an end and the Remnant have begun their research. A small satellite is quietly released from of the back of your payload bay, as it will in every system you pass through."
 
 mission "Ka'het: Patir Mystery 26A"
 	landing
@@ -2729,7 +2729,39 @@ mission "Ka'het: Patir Mystery 26A"
 		not "Ka'het: Patir Mystery 12.2A: done"
 	on offer
 		conversation
-			`
+			`"Watch your step, everyone," advises Dusk as you step into the station. In front of you, a wide, dark and roughly cylindrical room houses sets of lifts, pumps and all sorts of tools all over the walls. The analysis the Remnant have done of your scans must have paid off: this time, you are entering the station from a hangar rather than the fuel tanks. You follow the Remnant to the aft end, where a circular half-open hatch seems to be waiting for your arrival; however, as you all come together to try pulling it open, it does not want to move.`
+			`	"There is something very strange with the mechanism," notes one of the researchers, passing his hands over the side of the door. You come closer to take a look. Despite your best efforts, you don't find the hinges of the hatch: rather, it seems to be attached to the wall by three pieces of solid metal. In the meanwhile, however, some Remnant have taken out of their backpacks four drones. Each is roughly as small as a rugby ball and similarly shaped, except for a white belly, a small wing and a set of mechanical eyes in front of it. One by one, they fly into the small gap, disappearing into the darkness at an unexpected speed.`
+			`	"We call them Sandpipers. They are only suitable for zero gravity, and they have a frustrating tendency at getting stuck into a loop, but I cannot complain about the quality of their work. If only we had them the first time..." informs you Dusk heartily. "The only way for us to get through as well is by melting the attachments of this hatch, which will take the better part of an hour even with our improved equipment."`
+			choice
+				`	"I will try to help."`
+					goto help
+				`	"We could look into another hangar."`
+					goto hangar
+				`	"I bet I could shoot it away from my ship much quicker."`
+					goto bet
+				`	"I think it would be easier to get back to the opening we left last time."`
+			`	"Oh, that is a good idea. Perhaps you could fly by that spot with your ship to check it out while we begin cutting through the door, so that we cover both grounds at the same time."`
+			`	After a couple minutes of flying, you believe you have identified the tanks you went through last time. A closer look, however, reveals no holes of any kind into its hull. Confused, you bring up your navigation log from your previous expedition. There is no doubt that those are the very same tanks that you have cut through with the Remnant last time, and yet there is also no doubt that they are as pristine as they have ever been. At last, you are left no option but to give up and return to the Remnant to inform them of your findings.`
+				goto help
+			label bet
+			`	"That is really not the way to go!" he replies alarmed. "It would be just as likely to be ineffective as it would to compromise the structure of the station." He gives you a questioning look. "If you want to help us, you can do it from here."`
+				goto help
+			label hangar
+			`	"I thought of that too. You could take a look around with one of us while we begin cutting through the door, so that we cover both grounds at the same time." You follow the indications of the Remnant around the nearby hangars, in search of open hatches. By the time you get to the eighth, however, the lack of results helps convince the two of you to give up and come back to the group.`
+			label help
+			`	The flash of the blowtorches only becomes tolerable after you lower the sunshade of your helmet. Once the passage is clear, a holographic map comes out of one of their many instruments. "The Sandpipers have mapped some of the structure by now, including the sections we saw in our last visit. Our priority should be to find a navigation room, in the hope of understanding the function of this settlement or its connection with Patir; three of us should dedicate to that. <first>, another of the items on our schedule is to see the plants you had found nearby. We could take care of that for now, and then join the rest for their search."`
+			`	The walk to plants ends up being shorter than you imagined, no doubt thanks to the routes found by the Sandpipers. Without wasting time, Dusk sticks the five tips of a scanner inside its crimson-colored trunk. "Iron oxide!" he exclaims enthusiastic once the results come in. "Right as we suspected!"`
+			choice
+				`	"What?"`
+				`	"How can a plant be made of iron oxide?"`
+			`	"I am willing to bend our knowledge of plant workings, given everything else we have seen," he replies half-serious. "It certainly does not seem to be alive now, however. And as far as I can tell," he glances inside the holes he made, "it does not have any of the stele necessary for such a plant to function."`
+			`	"It could be a fake plant," you suggest.`
+			`	"It might. But look at the top: has overgrown for the size of this room, and its branches had to bend against the roof. A peculiar stylistic choice, if that is what it is." His eyes light up, as if he just made a new connection. "There is another peculiarity we have discovered in our data back home. Do you remember the propellant sphere we passed around inside the tanks? The one that could not be deuterium, as hyperspace fuel is liquid in a vacuum?" You nod. "I wanted to wait before we had some sort of explanation, but what based on our analysis, the only reading that comes anywhere close is none other than liquid deuterium." He grins. "In other words, a fake sphere of hyperspace fuel."`
+			choice
+				`	"What does that mean?"`
+				`	"How is that possible?"`
+
+
 			`Explore, use the balls, find stuff. The asteroids repaired the holes you had made the last time? Theories. Is it a replica? Go back.`
 				accept
 	on complete
@@ -2752,7 +2784,7 @@ mission "Ka'het: Patir Mystery 26B"
 	on offer
 		conversation
 			`Explore, use balls, find stuff. Theories. Is it a replica? Go back.`
-			`Difference is that this one has them visit it for the first time, though you access from the same entry point as 26A instead of the tanks.`
+			`Difference is that this one has them visit it for the first time, though you access from the same entry point as 26A instead of the tanks. Bring with you extra oxygen tanks for a super long visit; by the time you return, the hatch has been locked again in place by the asteroids.`
 				accept
 	on complete
 # add patir returns event
