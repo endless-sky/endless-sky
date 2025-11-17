@@ -450,7 +450,7 @@ mission "Intro [0]"
 	
 	on accept
 		log "Getting some basic instructions on making a living as a merchant from an old captain named James."
-		log "Minor People" "James" `A old man who accompanied you on your first few jobs as a starship captain.`
+		log "Minor People" "James" `An old man who accompanied you on your first few jobs as a starship captain.`
 	
 	on complete
 		payment 10000
