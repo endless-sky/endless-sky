@@ -499,10 +499,10 @@ mission "Ka'het: Death in the Graveyard 4A"
 		conversation
 			branch rifle
 				has "Remnant: Face to Maw 2B: offered"
-			`You wait for Plume next to the ramp of his Gull. When you see him, he is discussing the destination of the Ka'het machinery with another Remnant. "Oh, Captain," he signs contentedly, "Thank you once again for your help. I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted the job of putting their machinery in safe storage whenever you bring more of it."`
+			`You wait for Plume next to the ramp of his Gull. When you see him, he is discussing the destination of the Ka'het machinery with another Remnant. "Oh, Captain," he turns to you contentedly, "Thank you once again for your help. I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted the job of putting their machinery in safe storage whenever you bring more of it."`
 				goto how
 			label rifle
-			`You wait for Plume next to the ramp of his Gull. When you see him, he is discussing the destination of the Ka'het machinery with another Remnant, whom you recognize as the man who had helped you with your Void Rifle. "Oh, Captain," Plume signs contentedly, "Thank you for your help, once again! I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted the job of putting their machinery in safe storage whenever you bring more of it."`
+			`You wait for Plume next to the ramp of his Gull. When you see him, he is discussing the destination of the Ka'het machinery with another Remnant, whom you recognize as the man who had helped you with your Void Rifle. "Oh, Captain," Plume turns to you contentedly, "Thank you once again for your help. I have been trying to make some arrangements in order to simplify things in the future. The technician I was just speaking with has shown interest in the Ka'het, and kindly accepted the job of putting their machinery in safe storage whenever you bring more of it."`
 			label how
 			`	He hands you a small data crystal, shaped like an icosahedron. "This contains a series of short videos on how to use the tools in a Research Laboratory, if you were to be carrying one aboard, to extract some of the most essential components out of a hibernated Ka'het. You will need practice, of course, but the procedure is really not too dissimilar from that of looting a standard ship. If it happens again, as long as you leave 40 to 50 tons of space in your payload bay, you will be able to do most of what we did today without wasting a second to call us!"`
 			`	After spending some more time discussing the procedure to follow the next time you encounter a hibernated Ka'het, you bid each other farewell with a short bow and part ways.`
@@ -578,17 +578,17 @@ mission "Ka'het: Another Death in the Graveyard 1A"
 				random < 75
 			action
 				set "ka'het: maeri"
-			`A glare from the ground catches your attention. In the distance, you notice what looks like a Maeri'het lying down at the bottom of a dried riverbed, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume gave you, you could use your Research Laboratory to significantly help the Remnant efforts.`
+			`A glare from the ground catches your attention. In the distance, you notice what looks like a Maeri'het lying down at the bottom of a dried riverbed, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume gave you, you could use your Research Laboratory to significantly help the Remnant xenobiological research efforts.`
 				goto choice
 			label telis
 			action
 				set "ka'het: telis"
-			`A glare from the ground catches your attention. In the distance, you notice what looks like a Telis'het lying down at the bottom of a dry lake bed, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume gave you, you could use your Research Laboratory to significantly help the Remnant efforts.`
+			`A glare from the ground catches your attention. In the distance, you notice what looks like a Telis'het lying down at the bottom of a dry lake bed, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume gave you, you could use your Research Laboratory to significantly help the Remnant xenobiological research efforts.`
 				goto choice
 			label vareti
 			action
 				set "ka'het: vareti"
-			`A glare from the ground catches your attention. In the distance, you notice what looks like a Vareti'het lying down at the bottom of a dried basin, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume gave you, you could use your Research Laboratory to significantly help the Remnant efforts.`
+			`A glare from the ground catches your attention. In the distance, you notice what looks like a Vareti'het lying down at the bottom of a dried basin, with large solar wings coming out of its sides - all clear signs of a slug that has gone into hibernation, and is going to die soon. With the guides that Plume gave you, you could use your Research Laboratory to significantly help the Remnant xenobiological research efforts.`
 			label choice
 			choice
 				`	(Descend and try to remove its machinery.)`
