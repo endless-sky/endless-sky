@@ -212,7 +212,7 @@ void ShipyardPanel::DrawButtons()
 		Screen::Bottom() - ButtonPanelHeight() + 10);
 	font.Draw("You have:", creditsPoint, dim);
 
-	const auto credits = Format::CreditString(player.Accounts().Credits());
+	const string credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
 	// Clear the buttonZones, they will be populated again as buttons are drawn.
