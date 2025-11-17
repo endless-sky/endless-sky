@@ -3962,7 +3962,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		double lifetime = weapon->TotalLifetime();
 
 		// Homing weapons revert to "dumb firing" if they have no target.
-		if(weapon->Homing() && !weapon->HasBlindspot() && currentTarget)
+		if(weapon->Homing() && currentTarget)
 		{
 			// NPCs shoot ships that they just plundered.
 			bool hasBoarded = !ship.IsYours() && Has(ship, currentTarget, ShipEvent::BOARD);
