@@ -757,7 +757,7 @@ mission "FW Escort 1"
 		fleet "Large Southern Pirates" 2
 	
 	on abort
-		log "Flaked off escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Aborted some escort work from the Free Worlds."
 		fail "FW Escort: Escorts"
 	on fail
 		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
@@ -818,7 +818,7 @@ mission "FW Escort 1B"
 		fleet "Large Southern Pirates" 2
 	
 	on abort
-		log "Flaked off escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Aborted some escort work from the Free Worlds."
 		fail "FW Escort: Escorts"
 	on fail
 		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
@@ -886,7 +886,7 @@ mission "FW Escort 2"
 		fleet "Large Southern Pirates" 3
 	
 	on abort
-		log "Flaked off escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Aborted some escort work from the Free Worlds."
 		fail "FW Escort: Escorts"
 	on fail
 		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
@@ -945,7 +945,7 @@ mission "FW Escort 2B"
 		fleet "Small Southern Pirates" 2
 	
 	on abort
-		log "Flaked off escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Aborted some escort work from the Free Worlds."
 		fail "FW Escort: Escorts"
 	on fail
 		log "Failed to protect a convoy of Free Worlds freighters. Their commanding officer won't be happy about this."
@@ -994,7 +994,7 @@ mission "FW Escort 3"
 	on decline
 		log "Declined an offer for more escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
 	on abort
-		log "Flaked off escort work from Tomek Voigt, commanding officer of the Free Worlds militia."
+		log "Aborted some escort work from the Free Worlds."
 	on fail
 		log "Failed a mission to save a Free Worlds freighter. Tomek won't be happy about this."
 		set "fw intro escort failed"
