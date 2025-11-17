@@ -614,7 +614,7 @@ mission "Ka'het: Another Death in the Graveyard 1A"
 		payment 100000
 		dialog
 			`You meet up with the Remnant technician at the indicated coordinates and drop the cargo you have gathered one by one. After you're done, he thanks you with a short bow and quickly disappears behind a hangar door.`
-	on abort
+	on fail
 		clear "ka'het: maeri"
 		clear "ka'het: telis"
 		clear "ka'het: vareti"
