@@ -1451,11 +1451,14 @@ interface "planet"
 	box "content"
 		from -240 80 to 240 320
 	
-	sprite "ui/wide button"
-		center -316 316
-	button i "Player _Info..."
-		center -316 316
-		dimensions 90 30
+	sprite "ui/planet dialog button"
+		center -340 310
+	button i "Player _Info"
+		center -340 310
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
 	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
@@ -1469,9 +1472,9 @@ interface "planet"
 	
 	visible if "has outfitter"
 	sprite "ui/planet dialog button"
-		center 340 150
+		center 340 145
 	button o "_Outfitter"
-		center 340 150
+		center 340 145
 		dimensions 140 40
 		size 18
 		align right
@@ -1479,18 +1482,18 @@ interface "planet"
 	
 	visible if "has job board"
 	sprite "ui/planet dialog button"
-		center -340 150
+		center -340 145
 	button j "_Job Board"
-		center -340 150
+		center -340 145
 		dimensions 140 40
 		size 18
 		align left
 		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
-		center 340 210
+		center 340 200
 	button h "_Hire Crew"
-		center 340 210
+		center 340 200
 		dimensions 140 40
 		size 18
 		align right
@@ -1508,9 +1511,9 @@ interface "planet"
 	
 	visible if "has bank"
 	sprite "ui/planet dialog button"
-		center -340 210
+		center -340 200
 	button b "_Bank"
-		center -340 210
+		center -340 200
 		dimensions 140 40
 		size 18
 		align left
@@ -1518,9 +1521,9 @@ interface "planet"
 	
 	visible if "has port"
 	sprite "ui/planet dialog button"
-		center -340 270
+		center -340 255
 	"dynamic button" p "port name"
-		center -340 270
+		center -340 255
 		dimensions 140 40
 		size 18
 		align left
@@ -1529,9 +1532,9 @@ interface "planet"
 	
 	active if "has ship"
 	sprite "ui/planet dialog button"
-		center 340 270
+		center 340 310
 	button d "_Depart"
-		center 340 270
+		center 340 310
 		dimensions 140 40
 		size 18
 		align right
@@ -1551,11 +1554,14 @@ interface "planet (small screen)"
 	box "content"
 		from -300 80 to 180 320
 	
-	sprite "ui/wide button"
-		center -376 316
-	button i "Player _Info..."
-		center -376 316
-		dimensions 90 30
+	sprite "ui/planet dialog button"
+		center -400 310
+	button i "Player _Info"
+		center -400 310
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
 	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
@@ -1569,9 +1575,9 @@ interface "planet (small screen)"
 	
 	visible if "has outfitter"
 	sprite "ui/planet dialog button"
-		center 280 150
+		center 280 145
 	button o "_Outfitter"
-		center 280 150
+		center 280 145
 		dimensions 140 40
 		size 18
 		align right
@@ -1579,18 +1585,18 @@ interface "planet (small screen)"
 	
 	visible if "has job board"
 	sprite "ui/planet dialog button"
-		center -400 150
+		center -400 145
 	button j "_Job Board"
-		center -400 150
+		center -400 145
 		dimensions 140 40
 		size 18
 		align left
 		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
-		center 280 210
+		center 280 200
 	button h "_Hire Crew"
-		center 280 210
+		center 280 200
 		dimensions 140 40
 		size 18
 		align right
@@ -1608,9 +1614,9 @@ interface "planet (small screen)"
 	
 	visible if "has bank"
 	sprite "ui/planet dialog button"
-		center -400 210
+		center -400 200
 	button b "_Bank"
-		center -400 210
+		center -400 200
 		dimensions 140 40
 		size 18
 		align left
@@ -1618,9 +1624,9 @@ interface "planet (small screen)"
 	
 	visible if "has port"
 	sprite "ui/planet dialog button"
-		center -400 270
+		center -400 255
 	"dynamic button" p "port name"
-		center -400 270
+		center -400 255
 		dimensions 140 40
 		size 18
 		align left
@@ -1629,9 +1635,9 @@ interface "planet (small screen)"
 	
 	active if "has ship"
 	sprite "ui/planet dialog button"
-		center 280 270
+		center 280 310
 	button d "_Depart"
-		center 280 270
+		center 280 310
 		dimensions 140 40
 		size 18
 		align right
