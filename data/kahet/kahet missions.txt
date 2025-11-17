@@ -594,7 +594,7 @@ mission "Ka'het: Another Death in the Graveyard 1A"
 				`	(Descend and try to remove its machinery.)`
 				`	(Ignore it and find another place to land.)`
 					decline
-			`	Following Plume's videos step by step, the whole procedure turns out to be quite straightforward and clean. After a little more than an hour your cargo bay has filled with Ka'het machinery of all kinds, connected to the Research Laboratory with a series of increasingly cumbersome adapters. Now that the job is done, you could spend some more time looting the slug's conventional outfits - with the caveat that the chances of another Ka'het noticing your presence would be quite high.`
+			`	Following Plume's videos step by step, the whole procedure turns out to be quite straightforward and clean. After a little more than an hour your cargo bay has filled with Ka'het machinery of all kinds, connected to the Research Laboratory with a series of increasingly cumbersome adapters. You label them with the name of the Ka'het, which appears to have been ${ka'het}. Now that the job is done, you could spend some more time looting the slug's conventional outfits - with the caveat that the chances of another Ka'het noticing your presence would be quite high.`
 			choice
 				`	(Depart and bring the machinery to Aventine.)`
 					launch
