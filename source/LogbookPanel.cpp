@@ -26,9 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "shader/SpriteShader.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -134,27 +132,25 @@ void LogbookPanel::Draw()
 	if(selectedDate && begin != end)
 	{
 		const auto layout = Layout(static_cast<int>(TEXT_WIDTH - 2. * PAD), Alignment::RIGHT);
-		for(auto it = begin; it != end; ++it)
+		for(auto datedEntry = begin; datedEntry != end; ++datedEntry)
 		{
-			string date = it->first.ToString();
+			string date = datedEntry->first.ToString();
 			font.Draw({date, layout}, pos + Point(0., textOffset.Y()), dim);
 			pos.Y() += LINE_HEIGHT;
 
-			wrap.Wrap(it->second);
-			wrap.Draw(pos, medium);
-			pos.Y() += wrap.Height() + GAP;
+			pos.Y() += datedEntry->second.Draw(pos, wrap, medium);
+			pos.Y() += GAP;
 		}
 	}
 	else if(!selectedDate && pit != player.SpecialLogs().end())
 	{
-		for(const auto &it : pit->second)
+		for(const auto &[heading, entry] : pit->second)
 		{
-			font.Draw(it.first, pos + textOffset, bright);
+			font.Draw(heading, pos + textOffset, bright);
 			pos.Y() += LINE_HEIGHT;
 
-			wrap.Wrap(it.second);
-			wrap.Draw(pos, medium);
-			pos.Y() += wrap.Height() + GAP;
+			pos.Y() += entry.Draw(pos, wrap, medium);
+			pos.Y() += GAP;
 		}
 	}
 

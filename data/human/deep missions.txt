@@ -3861,11 +3861,9 @@ conversation "land at windblain"
 	`	"We are Skadenga, daughters of Skade. Mistresses of ice, mountain, and cold. But, I think now, she sends us to her sister Ran." The Ondurdis replies.`
 	`	Aldfrith nods slowly. "We are the folk of Ran; the offspring of the surf, the students of the wind, and the watchers of the storm. We welcome you and your people here. Though there are few here at present, many more of our number can be found out amongst the surging seas." He glances at the growing number of Skadenga. "If you follow me, I will escort you to our village and show you what buildings you may use. Though I fear we can not house so many."`
 	`	The Ondurdis smiles. "We thank you for your hospitality. It is good to find others who remember the old ways. Fear not, though; we are resourceful lot." Turning to you, she continues, "Meet me near the ships at makeshift spaceport in a few hours. I have much to do at moment." She and many others then follow Aldfrith and his group to the halls of Hrithfjall.`
-	branch self
-		has "refusedhroar"
 	`	As you watch them leave, you hear the sound of Hroar's fleet taking off and heading back to Nifel to pick up the rest of the Skadenga.`
-	label self
-		decline
+		to display
+			not "refusedhroar"
 
 
 
