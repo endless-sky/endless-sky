@@ -1695,16 +1695,21 @@ mission "Three Card Monte"
 			`	The dealer waits expectantly.`
 			choice
 				`	(Put down 1,000 credits to play the game.)`
+					goto "new game start"
 					to display
 						credits > 1000
 				`	(Pat my empty pockets.)`
-					decline
 					to display
 						credits < 1000
 				`	(Skip the game.)`
-					decline
+					goto "skipped game"
 					to display
 						credits >= 1000
+			`	"No credits? Scram, this ain't a charity."`
+				decline
+			label "skipped game"
+			`	"What a shame..." His eyes follow your movements as you turn and walk back to your ship.`
+				decline
 			label "new game start"
 			action
 				"monte: multiplication" = 1 + "roll: 2"
@@ -1867,10 +1872,51 @@ mission "Three Card Monte"
 						credits > 10000
 				`	(Book it for my ship.)`
 					goto "book it"
+				`	(Reach for your gun.)`
+					goto gun
+				`	(Whistle for your crew.)`
+					goto whistle
+					to display
+						"flagship crew" > 1
 			action
 				payment -10000
 			`	Your credit chips thud as they land on the table, and you see the dealer's grin widen while you're fleeced and embarrassed.`
 				goto "true ending"
+			label gun
+			action
+				clear "monte: games played"
+				clear "monte: multiplication"
+				clear "monte: addition"
+				clear "monte: card spot"
+				clear "monte: guess"
+				clear "monte: step"
+				clear "monte: not scam chance"
+				clear "monte: scammed"
+			branch "gun death"
+				random < 80 - ( "flagship attribute: capture attack" / "flagship crew" ) / 50 # 20X average capture attack
+			`	You draw and fire. The dealer's smirk vanishes - he staggers, then collapses. His men scatter, and you quickly make it back to your ship.`
+				flee
+			label "gun death"
+			`	You move for your weapon but the pirates move first. Hot pain blooms in your chest, your hands go numb as your gun clatters away. You look down and see red, then nothing at all.`
+				die
+			label whistle
+			`	You whisle once. Your crew burst from the crowd, weapons blazing, and a chaotic brawl erupts.`
+			action
+				clear "monte: games played"
+				clear "monte: multiplication"
+				clear "monte: addition"
+				clear "monte: card spot"
+				clear "monte: guess"
+				clear "monte: step"
+				clear "monte: not scam chance"
+				clear "monte: scammed"
+			branch "whistle death"
+				random < 90 - "flagship crew"
+			`	 You slip away to your <ship> to take off in the confusion.`
+				flee
+			label "whistle death"
+			`	A sharp strike to the back of your head dazes you - the chaos blurs as the world fades away.`
+				die
 			label "book it"
 			action
 				clear "monte: games played"
