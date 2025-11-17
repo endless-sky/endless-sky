@@ -422,24 +422,13 @@ void PlayerInfo::Load(const filesystem::path &path)
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
-					string text;
 					for(const DataNode &great : grand)
-					{
-						if(!text.empty())
-							text += "\n\t";
-						text += great.Token(0);
-					}
-					logbook.emplace(date, text);
+						logbook[date].Load(great);
 				}
 				else if(grand.Size() >= 2)
 				{
-					string &text = specialLogs[grand.Token(0)][grand.Token(1)];
 					for(const DataNode &great : grand)
-					{
-						if(!text.empty())
-							text += "\n\t";
-						text += great.Token(0);
-					}
+						specialLogs[grand.Token(0)][grand.Token(1)].Load(great);
 				}
 			}
 		}
@@ -787,8 +776,8 @@ void PlayerInfo::AdvanceDate(int amount)
 		for(Mission &mission : missions)
 		{
 			if(mission.CheckDeadline(date) && mission.IsVisible())
-				Messages::Add("You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
-					Messages::Importance::Highest);
+				Messages::Add({"You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
+					GameData::MessageCategories().Get("high")});
 			if(!mission.IsFailed())
 				mission.Do(Mission::DAILY, *this);
 		}
@@ -1341,7 +1330,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 {
 	// Check if the incoming vector contains the same elements
-	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
+	if(is_permutation(ships.begin(), ships.end(), newOrder.begin()))
 	{
 		Ship *oldFirstShip = ships.front().get();
 		ships = newOrder;
@@ -1632,9 +1621,10 @@ void PlayerInfo::Land(UI *ui)
 		if(added > 0)
 		{
 			flagship->AddCrew(added);
-			Messages::Add("You hire " + to_string(added) + (added == 1
-					? " extra crew member to fill your now-empty bunk."
-					: " extra crew members to fill your now-empty bunks."), Messages::Importance::High);
+			Messages::Add({"You hire " + to_string(added) + (added == 1
+				? " extra crew member to fill your now-empty bunk."
+				: " extra crew members to fill your now-empty bunks."),
+				GameData::MessageCategories().Get("normal")});
 		}
 	}
 
@@ -1702,10 +1692,11 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			flagship->AddCrew(-extra);
 			if(extra == 1)
-				Messages::Add("You fired a crew member to free up a bunk for a passenger.", Messages::Importance::High);
+				Messages::Add({"You fired a crew member to free up a bunk for a passenger.",
+					GameData::MessageCategories().Get("normal")});
 			else
-				Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
-						Messages::Importance::High);
+				Messages::Add({"You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
+					GameData::MessageCategories().Get("normal")});
 			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 			cargo.TransferAll(flagship->Cargo());
 		}
@@ -1716,10 +1707,11 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	{
 		flagship->AddCrew(-extra);
 		if(extra == 1)
-			Messages::Add("You fired a crew member because you have no bunk for them.", Messages::Importance::High);
+			Messages::Add({"You fired a crew member because you have no bunk for them.",
+				GameData::MessageCategories().Get("normal")});
 		else
-			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.",
-					Messages::Importance::High);
+			Messages::Add({"You fired " + to_string(extra) + " crew members because you have no bunks for them.",
+				GameData::MessageCategories().Get("normal")});
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 
@@ -1761,7 +1753,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			// The remaining uncarried ships are launched alongside the player.
 			string message = (uncarried > 1) ? "Some escorts were" : "One escort was";
-			Messages::Add(message + " unable to dock with a carrier.", Messages::Importance::High);
+			Messages::Add({message + " unable to dock with a carrier.", GameData::MessageCategories().Get("normal")});
 		}
 	}
 
@@ -1773,18 +1765,18 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		if(it.second)
 		{
 			if(it.first->IsVisible())
-				Messages::Add("Mission \"" + it.first->DisplayName()
-					+ "\" aborted because you do not have space for the cargo."
-						, Messages::Importance::Highest);
+				Messages::Add({"Mission \"" + it.first->DisplayName()
+					+ "\" aborted because you do not have space for the cargo.",
+					GameData::MessageCategories().Get("high")});
 			missionsToRemove.push_back(it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
 		if(it.second)
 		{
 			if(it.first->IsVisible())
-				Messages::Add("Mission \"" + it.first->DisplayName()
-					+ "\" aborted because you do not have enough passenger bunks free."
-						, Messages::Importance::Highest);
+				Messages::Add({"Mission \"" + it.first->DisplayName()
+					+ "\" aborted because you do not have enough passenger bunks free.",
+					GameData::MessageCategories().Get("high")});
 			missionsToRemove.push_back(it.first);
 
 		}
@@ -1864,7 +1856,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 			out << "stored " << Format::CargoString(stored, "outfits") << " you could not carry";
 		}
 		out << ".";
-		Messages::Add(out.str(), Messages::Importance::High);
+		Messages::Add({out.str(), GameData::MessageCategories().Get("normal")});
 	}
 
 	return true;
@@ -1935,44 +1927,41 @@ void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
 
 
 // Get the player's logbook.
-const multimap<Date, string> &PlayerInfo::Logbook() const
+const map<Date, BookEntry> &PlayerInfo::Logbook() const
 {
 	return logbook;
 }
 
 
 
-void PlayerInfo::AddLogEntry(const string &text)
+void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 {
-	logbook.emplace(date, text);
+	logbook[date].Add(logbookEntry);
 }
 
 
 
-const map<string, map<string, string>> &PlayerInfo::SpecialLogs() const
+const map<string, map<string, BookEntry>> &PlayerInfo::SpecialLogs() const
 {
 	return specialLogs;
 }
 
 
 
-void PlayerInfo::AddSpecialLog(const string &type, const string &name, const string &text)
+void PlayerInfo::AddSpecialLog(const string &category, const string &heading, const BookEntry &logbookEntry)
 {
-	string &entry = specialLogs[type][name];
-	if(!entry.empty())
-		entry += "\n\t";
-	entry += text;
+	specialLogs[category][heading].Add(logbookEntry);
 }
 
 
 
-void PlayerInfo::RemoveSpecialLog(const string &type, const string &name)
+void PlayerInfo::RemoveSpecialLog(const string &category, const string &heading)
 {
-	auto it = specialLogs.find(type);
+	auto it = specialLogs.find(category);
 	if(it == specialLogs.end())
 		return;
 	auto &nameMap = it->second;
-	auto eit = nameMap.find(name);
+	auto eit = nameMap.find(heading);
 	if(eit != nameMap.end())
 		nameMap.erase(eit);
 }
@@ -4683,29 +4672,19 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.Write("logbook");
 	out.BeginChild();
 	{
-		for(auto &&it : logbook)
-		{
-			out.Write(it.first.Day(), it.first.Month(), it.first.Year());
-			out.BeginChild();
+		for(const auto &[date, logbookEntry] : logbook)
+			if(!logbookEntry.IsEmpty())
 			{
-				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(it.second, "\n\t"))
-					out.Write(line);
+				out.Write(date.Day(), date.Month(), date.Year());
+				logbookEntry.Save(out);
 			}
-			out.EndChild();
-		}
-		for(auto &&it : specialLogs)
-			for(auto &&eit : it.second)
-			{
-				out.Write(it.first, eit.first);
-				out.BeginChild();
+		for(const auto &[category, nextMap] : specialLogs)
+			for(const auto &[heading, logbookEntry] : nextMap)
+				if(!logbookEntry.IsEmpty())
 				{
-					// Break the text up into paragraphs.
-					for(const string &line : Format::Split(eit.second, "\n\t"))
-						out.Write(line);
+					out.Write(category, heading);
+					logbookEntry.Save(out);
 				}
-				out.EndChild();
-			}
 	}
 	out.EndChild();
 
@@ -4752,29 +4731,28 @@ void PlayerInfo::Fine(UI *ui)
 	if(!gov->CanEnforce(planet))
 		return;
 
-	string message = gov->Fine(*this, 0, nullptr, planet->Security());
-	if(!message.empty())
+	pair<const Conversation *, string> message = gov->Fine(*this, 0, nullptr, planet->Security());
+	if(!message.second.empty())
 	{
-		if(message == "atrocity")
+		if(message.second == "atrocity")
 		{
-			const Conversation *conversation = gov->DeathSentence();
-			if(conversation)
-				ui->Push(new ConversationPanel(*this, *conversation));
+			if(message.first)
+				ui->Push(new ConversationPanel(*this, *message.first));
 			else
 			{
-				message = "Before you can leave your ship, the " + gov->DisplayName()
+				message.second = "Before you can leave your ship, the " + gov->DisplayName()
 					+ " authorities show up and begin scanning it. They say, \"Captain "
 					+ LastName()
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui->Push(new Dialog(message));
+				ui->Push(new Dialog(message.second));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui->Push(new Dialog(message));
+			ui->Push(new Dialog(message.second));
 	}
 }
 
@@ -4910,7 +4888,7 @@ void PlayerInfo::DoAccounting()
 			{
 				return Format::CreditString(it.second) + ' ' + it.first;
 			}) + '.';
-		Messages::Add(message, Messages::Importance::High, true);
+		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
 	}
 
@@ -4924,7 +4902,7 @@ void PlayerInfo::DoAccounting()
 	// summarizes the payments that were made.
 	string message = accounts.Step(assets, Salaries(), balance.maintenanceCosts);
 	if(!message.empty())
-		Messages::Add(message, Messages::Importance::High, true);
+		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 }
 
 

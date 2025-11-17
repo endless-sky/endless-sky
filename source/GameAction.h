@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "BookEntry.h"
 #include "ConditionAssignments.h"
 #include "ShipManager.h"
 
@@ -87,8 +88,8 @@ private:
 
 private:
 	bool isEmpty = true;
-	std::string logText;
-	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	BookEntry logEntries;
+	std::map<std::string, std::map<std::string, BookEntry>> specialLogEntries;
 	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;

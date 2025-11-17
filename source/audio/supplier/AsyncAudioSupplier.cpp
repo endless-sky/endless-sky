@@ -27,7 +27,7 @@ AsyncAudioSupplier::AsyncAudioSupplier(shared_ptr<iostream> data, bool looping)
 	: looping(looping), data(std::move(data))
 {
 	// Don't start the thread until this object is fully constructed.
-	thread = std::thread(&AsyncAudioSupplier::Decode, this);
+	audioThread = thread(&AsyncAudioSupplier::Decode, this);
 }
 
 
@@ -40,7 +40,7 @@ AsyncAudioSupplier::~AsyncAudioSupplier()
 		done = true;
 	}
 	bufferCondition.notify_all();
-	thread.join();
+	audioThread.join();
 }
 
 

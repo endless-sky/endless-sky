@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
@@ -36,9 +35,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
-#include "Politics.h"
 #include "Preferences.h"
 #include "Radar.h"
+#include "Rectangle.h"
 #include "shader/RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
@@ -111,7 +110,7 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel, bool isStars)
 	Audio::Pause();
 
 	// Use whatever map coloring is specified in the PlayerInfo.
-	commodity = isStars ? -8 : player.MapColoring();
+	commodity = isStars ? SHOW_STARS : player.MapColoring();
 
 	InitTextArea();
 }
@@ -142,6 +141,8 @@ void MapDetailPanel::Step()
 void MapDetailPanel::Draw()
 {
 	MapPanel::Draw();
+
+	clickZones.clear();
 
 	DrawInfo();
 	DrawOrbits();
@@ -410,40 +411,20 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 	if(button != MouseButton::LEFT)
 		return MapPanel::Click(x, y, button, clicks);
 
+	// Check all the click zones.
+	Point clickPoint(x, y);
+	for(const ClickZone<int> zone : clickZones)
+		if(zone.Contains(clickPoint))
+		{
+			SetCommodity(zone.Value());
+			return true;
+		}
+
+	// Check the planet cards.
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double planetCardWidth = planetCardInterface->GetValue("width");
 	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 	const double arrowOffset = mapInterface->GetValue("arrow x offset");
-	const double planetCardHeight = MapPlanetCard::Height();
-
-	if(x < Screen::Left() + 160)
-	{
-		// The player clicked in the left-hand interface. This could be the system
-		// name, the system government, a planet box, the commodity listing, or nothing.
-		if(y >= tradeY && y < tradeY + 200)
-		{
-			// The player clicked on a tradable commodity. Color the map by its price.
-			isStars = false;
-			SetCommodity((y - tradeY) / 20);
-			return true;
-		}
-		// Clicking the system name activates the view of the player's reputation with various governments.
-		// But the bit to the left will show danger of pirate/raid fleets instead.
-		else if(y < governmentY && y > governmentY - 30)
-		{
-			isStars = false;
-			SetCommodity(x < Screen::Left() + mapInterface->GetValue("text margin") ?
-				SHOW_DANGER : SHOW_REPUTATION);
-		}
-
-		// Clicking the government name activates the view of system / planet ownership.
-		else if(y >= governmentY && y < governmentY + 25)
-		{
-			isStars = false;
-			SetCommodity(SHOW_GOVERNMENT);
-		}
-
-	}
 	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
 	{
 		for(auto &card : planetCards)
@@ -482,6 +463,7 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 		isStars = false;
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
+		const double planetCardHeight = MapPlanetCard::Height();
 		double distance = numeric_limits<double>::infinity();
 		for(const auto &it : planets)
 		{
@@ -843,6 +825,19 @@ void MapDetailPanel::DrawInfo()
 	uiPoint.X() -= (tradeSprite->Width() / 2. - textMargin);
 	uiPoint.Y() -= (tradeSprite->Height() / 2. - textMargin);
 
+	// Add the danger icon click zone.
+	clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), governmentY - 30),
+		Point(mapInterface->GetValue("text margin"), 30)), SHOW_DANGER);
+
+	// Add the reputation click zone.
+	clickZones.emplace_back(Rectangle::FromCorner(
+		Point(Screen::Left() + mapInterface->GetValue("text margin"), governmentY - 30),
+		Point(160 - mapInterface->GetValue("text margin"), 30)), SHOW_REPUTATION);
+
+	// Add the government click zone.
+	clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), governmentY),
+		Point(160, 25)), SHOW_GOVERNMENT);
+
 	// Don't "compare" prices if the current system is uninhabited and thus has no prices to compare to.
 	bool noCompare = !player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship());
 	int value = 0;
@@ -869,12 +864,17 @@ void MapDetailPanel::DrawInfo()
 		}
 	}
 
+	int i = 0;
 	for(const Trade::Commodity &commodity : GameData::Commodities())
 	{
 		bool isSelected = false;
 		if(static_cast<unsigned>(this->commodity) < GameData::Commodities().size())
 			isSelected = (&commodity == &GameData::Commodities()[this->commodity]);
 		const Color &color = isSelected ? medium : dim;
+
+		// The player clicked on a tradable commodity. Color the map by its price.
+		// Add the click zone for this commodity.
+		clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), uiPoint.Y()), Point(170, 20)), i);
 
 		font.Draw(commodity.name, uiPoint, color);
 
@@ -935,6 +935,7 @@ void MapDetailPanel::DrawInfo()
 			PointerShader::Draw(uiPoint + Point(0., 7.), Point(1., 0.), 10.f, 10.f, 0.f, color);
 
 		uiPoint.Y() += 20.;
+		++i;
 	}
 
 	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor()
