@@ -183,14 +183,21 @@ bool Politics::CanLand(const Planet *planet) const
 		return false;
 	if(!planet->IsInhabited())
 		return true;
-	if(dominatedPlanets.contains(planet))
-		return true;
-	if(bribedPlanets.contains(planet))
+	if(HasClearance(planet))
 		return true;
 	if(provoked.contains(planet->GetGovernment()))
 		return false;
 
 	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
+}
+
+
+
+// Check if the player has been granted clearance to land on this planet, either
+// through bribes, domination, or mission clearance.
+bool Politics::HasClearance(const Planet *planet) const
+{
+	return dominatedPlanets.contains(planet) || bribedPlanets.contains(planet);
 }
 
 
@@ -237,13 +244,15 @@ bool Politics::HasDominated(const Planet *planet) const
 
 
 // Check to see if the player has done anything they should be fined for.
-string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const Ship *target, double security)
+pair<const Conversation *, string> Politics::Fine(PlayerInfo &player,
+	const Government *gov, int scan, const Ship *target, double security)
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
-	if(fined.contains(gov) || Random::Real() > security || !gov->GetFineFraction())
-		return "";
+	if(fined.contains(gov) || Random::Real() > security)
+		return {};
 
+	const Conversation *deathSentence = nullptr;
 	string reason;
 	int64_t maxFine = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -254,6 +263,9 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			continue;
 		const Planet *planet = player.GetPlanet();
 		if(planet && ship->GetPlanet() != planet)
+			continue;
+		// Skip parked ships. The spaceport authorities are only scanning the ships you just landed with.
+		if(ship->IsParked())
 			continue;
 
 		int failedMissions = 0;
@@ -289,10 +301,12 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		}
 		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
-			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
-			if((fine > maxFine && maxFine >= 0) || fine < 0)
+			pair<int, const Conversation *> fine = ship->Cargo().IllegalCargoFine(gov);
+			if(fine.second)
+				deathSentence = fine.second;
+			if((fine.first > maxFine && maxFine >= 0) || fine.first < 0)
 			{
-				maxFine = fine;
+				maxFine = fine.first;
 				reason = " for carrying illegal cargo.";
 
 				for(const Mission &mission : player.Missions())
@@ -322,8 +336,12 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				if(it.second)
 				{
 					int fine = gov->Fines(it.first);
-					if(gov->Condemns(it.first))
+					Government::Atrocity atrocity = gov->Condemns(it.first);
+					if(atrocity.isAtrocity)
+					{
+						deathSentence = atrocity.customDeathSentence;
 						fine = -1;
+					}
 					if((fine > maxFine && maxFine >= 0) || fine < 0)
 					{
 						maxFine = fine;
@@ -332,8 +350,12 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 				}
 
 			int shipFine = gov->Fines(ship.get());
-			if(gov->Condemns(ship.get()))
+			Government::Atrocity atrocity = gov->Condemns(ship.get());
+			if(atrocity.isAtrocity)
+			{
+				deathSentence = atrocity.customDeathSentence;
 				shipFine = -1;
+			}
 			if((shipFine > maxFine && maxFine >= 0) || shipFine < 0)
 			{
 				maxFine = shipFine;
@@ -352,9 +374,13 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	{
 		gov->Offend(ShipEvent::ATROCITY);
 		if(!scan)
+		{
 			reason = "atrocity";
+			if(!deathSentence)
+				deathSentence = gov->DeathSentence();
+		}
 		else
-			reason = "After scanning your ship, the " + gov->GetName()
+			reason = "After scanning your ship, the " + gov->DisplayName()
 				+ " captain hails you with a grim expression on his face. He says, "
 				"\"I'm afraid we're going to have to put you to death " + reason + " Goodbye.\"";
 	}
@@ -362,12 +388,12 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	{
 		// Scale the fine based on how lenient this government is.
 		maxFine = lround(maxFine * gov->GetFineFraction());
-		reason = "The " + gov->GetName() + " authorities fine you "
+		reason = "The " + gov->DisplayName() + " authorities fine you "
 			+ Format::CreditString(maxFine) + reason;
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}
-	return reason;
+	return {deathSentence, reason};
 }
 
 

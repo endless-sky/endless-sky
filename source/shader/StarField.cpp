@@ -51,7 +51,7 @@ namespace {
 	const double STAR_ZOOM = 0.70;
 	const double HAZE_ZOOM = 0.90;
 
-	void AddHaze(DrawList &drawList, const std::vector<Body> &haze,
+	void AddHaze(DrawList &drawList, const vector<Body> &haze,
 		const Point &topLeft, const Point &bottomRight, double transparency)
 	{
 		for(auto &&it : haze)
@@ -293,7 +293,7 @@ void StarField::SetUpGraphics()
 {
 	shader = GameData::Shaders().Get("starfield");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find starfield shader!");
+		throw runtime_error("Could not find starfield shader!");
 
 	// make and bind the VAO
 	glGenVertexArrays(1, &vao);

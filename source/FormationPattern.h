@@ -82,8 +82,8 @@ public:
 	void Load(const DataNode &node);
 
 	// Returns the name of this pattern.
-	const std::string &Name() const;
-	void SetName(const std::string &name);
+	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
 
 	// Get an iterator to iterate over the formation positions in this pattern.
 	PositionIterator begin(double centerBodyRadius) const;
@@ -143,7 +143,7 @@ private:
 
 private:
 	// Name of the formation pattern.
-	std::string name;
+	std::string trueName;
 	// Indicates if the formation is rotatable. A value of -1 means not
 	// rotatable, while a positive value is taken as the rotation angle
 	// in relation to the full 360 degrees full angle:
