@@ -45,7 +45,7 @@ namespace {
 			bool mapMinables = outfit->Get("map minables");
 			if(!player.HasMapped(mapSize, mapMinables))
 				player.Map(mapSize, mapMinables);
-			Messages::Add("You received a map of nearby systems.", Messages::Importance::High);
+			Messages::Add(*GameData::Messages().Get("map received"));
 			return;
 		}
 
@@ -119,7 +119,7 @@ namespace {
 			message += "cargo hold.";
 		else
 			message += "flagship.";
-		Messages::Add(message, Messages::Importance::High);
+		Messages::Add({message, GameData::MessageCategories().Get("normal")});
 	}
 }
 

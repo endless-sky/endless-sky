@@ -245,7 +245,7 @@ void ConditionSet::SaveSubset(DataWriter &out) const
 {
 	string opTxt = "";
 	auto it = find_if(CS_TOKEN_CONVERSION.begin(), CS_TOKEN_CONVERSION.end(),
-		[this](const std::pair<const string, ConditionSet::ExpressionOp> &e) {
+		[this](const pair<const string, ConditionSet::ExpressionOp> &e) {
 			return e.second == expressionOperator;
 		});
 	if(it != CS_TOKEN_CONVERSION.end())

@@ -67,7 +67,7 @@ private:
 	std::vector<sample_t> buffer;
 
 	// Sync management
-	std::thread thread;
+	std::thread audioThread;
 	std::mutex bufferMutex;
 	std::condition_variable bufferCondition;
 };
