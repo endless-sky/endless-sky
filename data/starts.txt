@@ -36,7 +36,7 @@ start "default"
 	set "start: default"
 
 
-# Patch for if the player started a game before 0.10.15
+# Patch for if the player started a game before 0.10.17
 mission "Start: Default Patch"
 	invisible
 	landing
@@ -101,7 +101,7 @@ conversation "deep intro"
 		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
 	scene "scene/train"
 	`The train from your hometown rocks side-to-side at a steady rhythm, bringing you ever closer to the capital. Several seats forward, a young couple close to your age eagerly discuss their move to a new apartment as their legs kick their luggage. Behind you, a much older man in greasy overalls exchanges farewells with an acquaintance.`
-	`	Before long, you arrive in New Reykjavik and at the government office responsible for handling starship loans. The reception is buzzing with activity as other fresh-faced graduates chat among themselves while waiting for their turn. Sunlight falls through the slitted ceiling windows onto a three-dimensional representation of the Deep's insignia in the lobby's center, a red tree with branches forming the shape of a brain. A circle of text surrounds the sculpture, proclaiming the Deep's core values: Peace. Prosperity. Progress.`
+	`	Before long, you arrive in New Reykjavik at the government office responsible for handling starship loans. The reception is buzzing with activity as other fresh-faced graduates chat among themselves while waiting for their turn. Sunlight falls through the slitted ceiling windows onto a three-dimensional representation of the Deep's insignia in the lobby's center, a red tree with branches forming the shape of a brain. A circle of text surrounds the sculpture, proclaiming the Deep's core values: Peace. Prosperity. Progress.`
 	`	Eventually your number is called, and after reading over your application the office worker hands you two cards. One of them is your Certificate of Eligibility for a low-interest loan at a nearby bank. The other is your pilot's license, fully paid for. Your ticket to the stars.`
 	`	You insert the card into an automatic clerk at the bank, and after a soft ping, a large document fills its screen. A synthesized voice says, "You are borrowing 680,000 credits to be repaid over the course of a year. Your daily interest rate is 0.2%, which means that your daily payments are 2,627 credits, and by the end of the year you will have paid 278,760 credits in interest. Please sign your name on the screen when you are ready."`
 	`	After carefully rereading every page of the loan agreement, you sign your name:`
@@ -114,7 +114,7 @@ conversation "deep intro"
 start "paradise"
 	name "Birthday Surprise"
 	description `You grew up on Mainsail, an oceanic Paradise World terraformed to perfection. Only the richest live on such worlds; luckily, your father is a wealthy financier. But you've always found your pampered life boring, and are more interested in living a life among the stars. As your eighteenth birthday party winds down, your father takes you aside to talk...`
-	description `This start has has no mortgage, leaving you free to explore the galaxy at your own pace.`
+	description `	This start has has no mortgage, leaving you free to explore the galaxy at your own pace.`
 	thumbnail "scene/mainsail"
 	date 16 11 3013
 	system "Alhena"
@@ -235,7 +235,7 @@ start "hai space"
 	set "Ask the Hai about the Unfettered: declined"
 
 
-# Patch for if the player started a Hai space game before 0.10.13
+# Patch for if the player started a Hai space game before 0.10.17
 mission "Start: Hai Patch"
 	invisible
 	landing

@@ -462,7 +462,7 @@ mission "Ask Quarg About Coalition Late"
 				clear "ask quarg coalition late: aid"
 			`	You get up and are just about to leave when it says, "<first> <last>." The Quarg's gaze pierces you, its eye on the same level as your own. "Where is your home?"`
 			choice
-				`	"I come from New Boston, on the Dirt Belt."`
+				`	"I come from New Boston, in the Dirt Belt."`
 					to display
 						has "start: default"
 				`	"I come from Midgard, in the Deep."`

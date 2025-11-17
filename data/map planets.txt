@@ -265,7 +265,7 @@ planet Antipode
 	description `Antipode is a frozen, unforgiving world, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
 		to display
 			has "start: syndicate"
-	description `	What little amenites are available for the people living here are of subpar quality; a third of the houses lack a dedicated heating system, and it can take months before a store is able to restock its goods.`
+	description `	What little amenities are available for the people living here are of subpar quality; a third of the houses lack a dedicated heating system, and it can take months before a store is able to restock its goods.`
 		to display
 			has "start: syndicate"
 	description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile, and living conditions so squalid, that they have had very little success.`
@@ -1418,7 +1418,7 @@ planet Earth
 	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
 		to display
 			not "start: syndicate"
-	description `The ancestral home world of humanity, as well as your own birthplace, Earth has a population twice that of any other planet. Sprawling cities cover its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
+	description `The ancestral home world of humanity, as well as your own birthplace, Earth has a population twice that of any other planet. Sprawling cities cover its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
 		to display
 			has "start: syndicate"
 	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, smaller settlements are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
@@ -2354,7 +2354,7 @@ planet Greenwater
 	description `Greenwater is unique among Hai worlds, not only in that it is home to a sizable human population, but also because it happens to be the world where you grew up.`
 		to display
 			has "start: hai"
-	description `	Most of the humans here live as fishers and farmers on islands and archipelagoes across the equator of Greenwater, where the Hai seldom visit on account of their heavy fur coats. According to those beyond the wormhole, the climate here is like a Paradise Planet, even though it lacks the extensive terraforming common to those worlds.`
+	description `	Most of the humans here live as fishers and farmers on islands and archipelagoes across the equator of Greenwater, where the Hai seldom visit on account of their heavy fur coats. According to those from beyond the wormhole, the climate here is like a Paradise Planet, even though it lacks the extensive terraforming common to those worlds.`
 		to display
 			has "start: hai"
 	description `	Thanks to its high human population, the human language is dominant on Greenwater, with the Hai language limited to the poles of the planet where Hai merchants are more frequent.`
@@ -3732,7 +3732,7 @@ planet Muspel
 	spaceport `	Inside, people move at a slower and calmer pace than you have seen elsewhere in the Deep.`
 		to display
 			not "start: deep"
-	spaceport `	Inside, people move at a slower and calmer pace, something more likely to appear friendlier to tourists than other parts of the Deep.`
+	spaceport `	Inside, people move at a slower and calmer pace, something which appears friendlier to tourists than other parts of the Deep.`
 		to display
 			has "start: deep"
 	bribe 0.03
@@ -3901,7 +3901,7 @@ planet "New Boston"
 	spaceport `Someday New Boston may be a prosperous enough planet to afford a better spaceport, but not yet. Many of the concrete landing pads have sunk into the muddy soil over the years since they were poured, and are now tilted and uneven.`
 		to display
 			has "start: default"
-	spaceport `New Boston's shabby spaceport is about as basic as a spaceport can be. Many of the concrete landing pads are tilted and uneven, sunken into the muddy soil over time, and you have to be careful when landing on them.`
+	spaceport `New Boston's shabby spaceport is about as basic as a spaceport can be. Many of the concrete landing pads are tilted and uneven, sunken into the muddy soil over time, and you have to be careful when touching down.`
 		to display
 			not "start: default"
 	spaceport `	The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain. Loads are brought in and out by trucks and the occasional hovercraft. Here some enterprising local mechanics have set up not only a repair shop and outfitter, but also a shipyard with several small, refurbished ships for sale.`

@@ -2929,7 +2929,7 @@ mission "Paradise Fortune 2"
 			
 			label final
 			choice
-				`	"Okay, you've convinced me. I'll take you to <planet>"`
+				`	"Okay, you've convinced me. I'll take you to <planet>."`
 				`	"That's not good enough. I'm turning you in."`
 					goto "final decline"
 
@@ -2937,7 +2937,7 @@ mission "Paradise Fortune 2"
 				launch
 			
 			label "final decline"
-			`	You push Diana aside and call the spaceport authorities. Moments later when they arrive, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
+			`	You push Diana aside and call the spaceport authorities. Moments later, they take Diana kicking and screaming off of your ship. She yells harsh profanities at you as she is taken away, one among them being "Syndicate lover." As a reward for "catching" Diana, the spaceport authorities transfer 150,000 credits to your account.`
 				decline
 			
 	on decline
