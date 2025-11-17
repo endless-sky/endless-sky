@@ -214,12 +214,12 @@ public:
 	void AddPlayTime(std::chrono::nanoseconds timeVal);
 
 	// Get the player's logbook.
-	const std::multimap<Date, std::string> &Logbook() const;
-	void AddLogEntry(const std::string &text);
-	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
-	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
-	void RemoveSpecialLog(const std::string &type, const std::string &name);
-	void RemoveSpecialLog(const std::string &type);
+	const std::map<Date, BookEntry> &Logbook() const;
+	void AddLogEntry(const BookEntry &logbookEntry);
+	const std::map<std::string, std::map<std::string, BookEntry>> &SpecialLogs() const;
+	void AddSpecialLog(const std::string &category, const std::string &heading, const BookEntry &logbookEntry);
+	void RemoveSpecialLog(const std::string &category, const std::string &heading);
+	void RemoveSpecialLog(const std::string &category);
 	bool HasLogs() const;
 
 	// Get mission information.
@@ -442,8 +442,8 @@ private:
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
 
-	std::multimap<Date, std::string> logbook;
-	std::map<std::string, std::map<std::string, std::string>> specialLogs;
+	std::map<Date, BookEntry> logbook;
+	std::map<std::string, std::map<std::string, BookEntry>> specialLogs;
 
 	// A list of the player's active, accepted missions.
 	std::list<Mission> missions;
