@@ -2007,7 +2007,7 @@ mission "Three Card Monte"
 			choice
 				`	"Fine. But I'm watching you."`
 					to display
-							credits > 1000
+						credits > 1000
 					goto "new game start"
 				`	"Sorry, but I don't have enough money."`
 					goto "true ending"
@@ -2065,7 +2065,7 @@ mission "Three Card Monte"
 				clear "monte: scammed"
 			branch "whistle death"
 				random < 90 - "flagship crew"
-			`	 You slip away to your <ship> to take off in the confusion.`
+			`	You slip away to your <ship> to take off in the confusion.`
 				flee
 			label "whistle death"
 			`	A sharp strike to the back of your head dazes you - the chaos blurs as the world fades away.`
