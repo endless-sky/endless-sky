@@ -371,8 +371,8 @@ mission "FW Recon 1"
 			`	He pauses, then adds, "They pay me a thousand credits every time I say that."`
 				goto close
 			label equipment
-			`	He looks awfully pleased with himself. "Yes, I suppose a ship like this is sure to turn a few heads. Next time we're on the same planet, stop by my berth and I'd be glad to give you a... private tour." He winks at you. You feel a little bit creepy.`
-				goto close
+			`	He looks awfully pleased with himself. "Yes, I suppose a ship like this is sure to turn a few heads. Next time we're on the same planet, stop by my berth and I'd be glad to give you a... private tour." He winks at you.`
+
 			label close
 			`	You cut the commlink and breathe a sigh of relief that the conversation is over.`
 	
@@ -1038,7 +1038,7 @@ mission "FW Escort Second Chance"
 mission "FW Bounty 1"
 	minor
 	name "Free Worlds Bounty Hunting"
-	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny" who have been harassing merchants in Free Worlds space. They were last seen attacking freighters in the Seginus system.`
+	description `Hunt down and destroy the "Rat Pack," a gang of pirate ships led by a flagship named "Cluny" who have been harassing merchants in Free Worlds space. They were last seen attacking freighters in the Seginus system. After defeating them, return to <destination>.`
 	source
 		government "Free Worlds"
 	to offer

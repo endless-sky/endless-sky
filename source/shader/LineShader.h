@@ -28,4 +28,8 @@ public:
 	static void Draw(const Point &from, const Point &to, float width, const Color &color, bool roundCap = true);
 	static void DrawDashed(const Point &from, const Point &to, const Point &unit, float width, const Color &color,
 		double dashLength, double spaceLength, bool roundCap = true);
+	static void DrawGradient(const Point &from, const Point &to, float width,
+		const Color &fromColor, const Color &toColor, bool roundCap = true);
+	static void DrawGradientDashed(const Point &from, const Point &to, const Point &unit, float width,
+		const Color &fromColor, const Color &toColor, double dashLength, double spaceLength, bool roundCap = true);
 };

@@ -129,7 +129,7 @@ void Flotsam::Move(vector<Visual> &visuals)
 
 
 
-void Flotsam::SetVelocity(Point velocity)
+void Flotsam::SetVelocity(const Point &velocity)
 {
 	this->velocity = velocity;
 }

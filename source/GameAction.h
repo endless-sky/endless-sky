@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "BookEntry.h"
 #include "ConditionAssignments.h"
 #include "ShipManager.h"
 
@@ -49,11 +50,11 @@ class GameAction {
 public:
 	GameAction() = default;
 	// Construct and Load() at the same time.
-	GameAction(const DataNode &node);
+	GameAction(const DataNode &node, const ConditionsStore *playerConditions);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Process a single sibling node.
-	void LoadSingle(const DataNode &child);
+	void LoadSingle(const DataNode &child, const ConditionsStore *playerConditions);
 	void Save(DataWriter &out) const;
 
 	// Determine if this GameAction references content that is not fully defined.
@@ -87,8 +88,8 @@ private:
 
 private:
 	bool isEmpty = true;
-	std::string logText;
-	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	BookEntry logEntries;
+	std::map<std::string, std::map<std::string, BookEntry>> specialLogEntries;
 	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
@@ -103,7 +104,9 @@ private:
 	std::optional<std::string> music;
 
 	std::set<const System *> mark;
+	std::map<std::string, std::set<const System *>> markOther;
 	std::set<const System *> unmark;
+	std::map<std::string, std::set<const System *>> unmarkOther;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;

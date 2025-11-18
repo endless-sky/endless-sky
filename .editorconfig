@@ -12,10 +12,13 @@ trim_trailing_whitespace = false
 indent_style = tab
 
 # Code files
-[{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
+[*.{cpp,h,rc,hpp}]
 indent_style = tab
 cpp_space_pointer_reference_alignment = right
 cpp_space_after_keywords_in_control_flow_statements = false
+
+[**/CMakeLists.txt]
+indent_style = tab
 
 # Changelog file
 [changelog]
@@ -40,6 +43,10 @@ trim_trailing_whitespace = false
 [*.{sh,ps1}]
 indent_style = space
 indent_size = 2
+
+# OpenGL shaders
+[*.{frag,vert}]
+indent_style = tab
 
 [*.py]
 indent_style = tab

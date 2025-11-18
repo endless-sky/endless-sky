@@ -90,15 +90,15 @@ bool Conversation::RequiresLaunch(int outcome)
 
 
 // Construct and Load() at the same time.
-Conversation::Conversation(const DataNode &node)
+Conversation::Conversation(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
 // Load a conversation from file.
-void Conversation::Load(const DataNode &node)
+void Conversation::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// Make sure this really is a conversation specification.
 	if(node.Token(0) != "conversation")
@@ -109,20 +109,22 @@ void Conversation::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "scene" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "scene" && hasValue)
 		{
 			// A scene always starts a new text node.
 			AddNode();
 			nodes.back().scene = SpriteSet::Get(child.Token(1));
 		}
-		else if(child.Token(0) == "label" && child.Size() >= 2)
+		else if(key == "label" && hasValue)
 		{
 			// You cannot merge text above a label with text below it.
 			if(!nodes.empty())
 				nodes.back().canMergeOnto = false;
 			AddLabel(child.Token(1), child);
 		}
-		else if(child.Token(0) == "choice")
+		else if(key == "choice")
 		{
 			// Create a new node with one or more choices in it.
 			nodes.emplace_back(true);
@@ -141,7 +143,7 @@ void Conversation::Load(const DataNode &node)
 				// just bring you to the next node in the script.
 				nodes.back().elements.emplace_back(grand.Token(0) + '\n', nodes.size());
 
-				LoadDestinations(grand);
+				LoadDestinations(grand, playerConditions);
 			}
 			if(nodes.back().elements.empty())
 			{
@@ -150,12 +152,12 @@ void Conversation::Load(const DataNode &node)
 				nodes.pop_back();
 			}
 		}
-		else if(child.Token(0) == "name")
+		else if(key == "name")
 		{
 			// A name entry field is just represented as an empty choice node.
 			nodes.emplace_back(true);
 		}
-		else if(child.Token(0) == "branch")
+		else if(key == "branch")
 		{
 			// Don't merge "branch" nodes with any other nodes.
 			nodes.emplace_back();
@@ -163,7 +165,7 @@ void Conversation::Load(const DataNode &node)
 			// Maintenance note: empty conditions might have to be removed in the future,
 			// so their support is unofficial.
 			if(child.HasChildren())
-				nodes.back().conditions.Load(child);
+				nodes.back().conditions.Load(child, playerConditions);
 			// A branch should always specify what node to go to if the test is
 			// true, and may also specify where to go if it is false.
 			for(int i = 1; i <= 2; ++i)
@@ -180,17 +182,17 @@ void Conversation::Load(const DataNode &node)
 				}
 			}
 		}
-		else if(child.Token(0) == "action" || child.Token(0) == "apply")
+		else if(key == "action" || key == "apply")
 		{
-			if(child.Token(0) == "apply")
+			if(key == "apply")
 				child.PrintTrace("Warning: `apply` is deprecated syntax. Use `action` instead to ensure future compatibility.");
 			// Don't merge "action" nodes with any other nodes. Allow the legacy keyword "apply," too.
 			AddNode();
 			nodes.back().canMergeOnto = false;
-			nodes.back().actions.Load(child);
+			nodes.back().actions.Load(child, playerConditions);
 		}
 		// Check for common errors such as indenting a goto incorrectly:
-		else if(child.Size() > 1)
+		else if(hasValue)
 			child.PrintTrace("Error: Conversation text should be a single token:");
 		else
 		{
@@ -203,11 +205,11 @@ void Conversation::Load(const DataNode &node)
 				AddNode();
 
 			// Always append a newline to the end of the text.
-			nodes.back().elements.back().text += child.Token(0) + '\n';
+			nodes.back().elements.back().text += key + '\n';
 
 			// Check whether there is a goto attached to this block of text. If
 			// so, future nodes can't merge onto this one.
-			if(LoadDestinations(child))
+			if(LoadDestinations(child, playerConditions))
 				nodes.back().canMergeOnto = false;
 		}
 	}
@@ -291,14 +293,27 @@ void Conversation::Save(DataWriter &out) const
 					// If the conditions are the same, output them for each
 					// paragraph. (We currently don't merge paragraphs with
 					// identical ConditionSets, but some day we might.)
-					if(!it.conditions.IsEmpty())
+					if(!it.toDisplay.IsEmpty())
 					{
 						out.BeginChild();
 						{
 							out.Write("to", "display");
 							out.BeginChild();
 							{
-								it.conditions.Save(out);
+								it.toDisplay.Save(out);
+							}
+							out.EndChild();
+						}
+						out.EndChild();
+					}
+					if(!it.toActivate.IsEmpty())
+					{
+						out.BeginChild();
+						{
+							out.Write("to", "activate");
+							out.BeginChild();
+							{
+								it.toActivate.Save(out);
 							}
 							out.EndChild();
 						}
@@ -387,7 +402,7 @@ bool Conversation::IsChoice(int node) const
 
 
 // Check if the given conversation node is a choice node.
-bool Conversation::HasAnyChoices(const ConditionsStore &vars, int node) const
+bool Conversation::HasAnyChoices(int node) const
 {
 	if(!NodeIsValid(node))
 		return false;
@@ -401,9 +416,9 @@ bool Conversation::HasAnyChoices(const ConditionsStore &vars, int node) const
 
 	for(const auto &data : nodes[node].elements)
 	{
-		if(data.conditions.IsEmpty())
+		if(data.toDisplay.IsEmpty())
 			return true;
-		if(data.conditions.Test(vars))
+		if(data.toDisplay.Test())
 			return true;
 	}
 
@@ -419,6 +434,16 @@ int Conversation::Choices(int node) const
 		return 0;
 
 	return nodes[node].isChoice ? nodes[node].elements.size() : 0;
+}
+
+
+
+bool Conversation::ChoiceIsActive(int node, int element) const
+{
+	if(!NodeIsValid(node) || !IsChoice(node) || !ElementIsValid(node, element))
+		return false;
+
+	return nodes[node].elements[element].toActivate.Test();
 }
 
 
@@ -518,16 +543,16 @@ int Conversation::StepToNextNode(int node) const
 
 
 // Returns whether the given node should be displayed.
-bool Conversation::ShouldDisplayNode(const ConditionsStore &vars, int node, int element) const
+bool Conversation::ShouldDisplayNode(int node, int element) const
 {
 	if(!NodeIsValid(node))
 		return false;
 	else if(IsChoice(node) ? !ElementIsValid(node, element) : element != 0)
 		return false;
 	const auto &data = nodes[node].elements[element];
-	if(data.conditions.IsEmpty())
+	if(data.toDisplay.IsEmpty())
 		return true;
-	return data.conditions.Test(vars);
+	return data.toDisplay.Test();
 }
 
 
@@ -560,36 +585,50 @@ bool Conversation::ElementIsValid(int node, int element) const
 // Parse the children of the given node to see if then contain any "goto" or
 // "to display" nodes. If so, link them up properly. Return true if gotos or
 // conditions were found.
-bool Conversation::LoadDestinations(const DataNode &node)
+bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	bool hasGoto = false;
-	bool hasCondition = false;
+	bool hasDisplayCondition = false;
+	bool hasActivationCondition = false;
 	for(const DataNode &child : node)
 	{
-		if(child.Size() == 2 && child.Token(0) == "goto" && hasGoto)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "goto" && hasValue)
 		{
-			child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
+			if(hasGoto)
+				child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
+			else
+			{
+				Goto(child.Token(1), nodes.size() - 1, nodes.back().elements.size() - 1);
+				hasGoto = true;
+			}
 		}
-		else if(child.Size() == 2 && child.Token(0) == "goto")
+		else if(key == "to" && hasValue && child.Token(1) == "display")
 		{
-			Goto(child.Token(1), nodes.size() - 1, nodes.back().elements.size() - 1);
-			hasGoto = true;
+			if(hasDisplayCondition)
+				child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
+			else
+			{
+				nodes.back().elements.back().toDisplay.Load(child, playerConditions);
+				hasDisplayCondition = true;
+			}
 		}
-		else if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display" && hasCondition)
+		else if(key == "to" && hasValue && child.Token(1) == "activate")
 		{
-			// Each choice can only have one condition
-			child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
-		}
-		else if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")
-		{
-			nodes.back().elements.back().conditions.Load(child);
-			hasCondition = true;
+			if(hasActivationCondition)
+				child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
+			else
+			{
+				nodes.back().elements.back().toActivate.Load(child, playerConditions);
+				hasActivationCondition = true;
+			}
 		}
 		else
 		{
 			// Check if this is a recognized endpoint name.
-			int index = TokenIndex(child.Token(0));
-			if(child.Size() == 1 && index < 0)
+			int index = TokenIndex(key);
+			if(!hasValue && index < 0)
 			{
 				if(hasGoto)
 					child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
@@ -603,7 +642,7 @@ bool Conversation::LoadDestinations(const DataNode &node)
 				child.PrintTrace("Warning: Expected goto, to display, or endpoint in conversation, found this:");
 		}
 	}
-	return hasGoto || hasCondition;
+	return hasGoto || hasDisplayCondition;
 }
 
 
@@ -611,7 +650,7 @@ bool Conversation::LoadDestinations(const DataNode &node)
 bool Conversation::HasDisplayRestriction(const DataNode &node)
 {
 	for(const DataNode &child : node)
-		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")
+		if(child.Token(0) == "to" && child.Size() >= 2 && child.Token(1) == "display")
 			return true;
 
 	return false;

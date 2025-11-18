@@ -36,7 +36,7 @@ public:
 
 public:
 	// Load one line of text and possible conditions from the given node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Discard all description lines.
 	void Clear();
@@ -45,10 +45,10 @@ public:
 	bool IsEmpty() const;
 
 	// Are there any lines which match these vars?
-	bool IsEmptyFor(const ConditionsStore &vars) const;
+	bool IsEmptyFor() const;
 
 	// Concatenate all lines which match these vars.
-	std::string ToString(const ConditionsStore &vars) const;
+	std::string ToString() const;
 
 	// Iterate over all text. Needed to support PrintData.
 	// These must use standard naming conventions (begin, end) for compatibility with range-based for loops.

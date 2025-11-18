@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class Ship;
 class Sprite;
@@ -48,7 +49,7 @@ public:
 	class StartInfo {
 	public:
 		const Sprite *thumbnail = nullptr;
-		std::string name;
+		std::string displayName;
 		std::string description;
 		// StartInfo stores the name of the provided system and planet instead of a pointer to them
 		// so that the names don't need to be actual systems or planets in the game for the VISIBLE
@@ -65,9 +66,11 @@ public:
 
 public:
 	StartConditions() = default;
-	explicit StartConditions(const DataNode &node);
+	explicit StartConditions(const DataNode &node, const ConditionsStore *globalConditions,
+		const ConditionsStore *playerConditions);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *globalConditions,
+		const ConditionsStore *playerConditions);
 	// Finish loading the ship definitions.
 	void FinishLoading();
 
@@ -92,10 +95,10 @@ public:
 	const std::string &GetDebt() const noexcept;
 
 	// Determine whether this StartConditions should be displayed to the player.
-	bool Visible(const ConditionsStore &conditionsStore) const;
+	bool Visible() const;
 	// Set the current state of this StartConditions. This influences what
 	// information from the above getters is returned.
-	void SetState(const ConditionsStore &conditionsStore);
+	void SetState();
 	bool IsUnlocked() const;
 
 

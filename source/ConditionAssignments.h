@@ -47,10 +47,10 @@ public:
 	ConditionAssignments() = default;
 
 	// Construct and Load() at the same time.
-	explicit ConditionAssignments(const DataNode &node);
+	explicit ConditionAssignments(const DataNode &node, const ConditionsStore *conditions);
 
 	// Load a set of assignment expressions from the children of this node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *conditions);
 
 	// Save a set of assignment expressions.
 	void Save(DataWriter &out) const;
@@ -58,18 +58,18 @@ public:
 	// Check if there are any entries in this set.
 	bool IsEmpty() const;
 
-	// Modify the given set of conditions with the assignments in this class.
+	// Modify the conditions with the assignments in this class.
 	// Order of operations is the order of specification: assignments are applied in the order given.
-	void Apply(ConditionsStore &conditions) const;
+	void Apply() const;
 
 	// Get the names of the conditions that are modified by this ConditionSet.
 	std::set<std::string> RelevantConditions() const;
 
 	// Add an extra assignment to set a condition.
-	void AddSetCondition(const std::string &name);
+	void AddSetCondition(const std::string &name, const ConditionsStore *conditions);
 
 	// Add an extra condition assignment from a data node.
-	void Add(const DataNode &node);
+	void Add(const DataNode &node, const ConditionsStore *conditions);
 
 
 private:
@@ -87,5 +87,8 @@ private:
 
 
 private:
+	// A pointer to the ConditionsStore that this assignment is applied to.
+	const ConditionsStore *conditions;
+
 	std::vector<Assignment> assignments;
 };

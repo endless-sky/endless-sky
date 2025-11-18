@@ -63,6 +63,12 @@ public:
 		NEUTRAL
 	};
 
+	enum class TurretOverlays : int_fast8_t {
+		OFF = 0,
+		ALWAYS_ON,
+		BLINDSPOTS_ONLY
+	};
+
 	enum class AutoAim : int_fast8_t {
 		OFF = 0,
 		ALWAYS_ON,
@@ -108,6 +114,40 @@ public:
 		BOTH
 	};
 
+	enum class MinimapDisplay : int_fast8_t {
+		OFF = 0,
+		WHEN_JUMPING,
+		ALWAYS_ON
+	};
+
+	enum class FlagshipSpacePriority : int_fast8_t {
+		NONE = 0,
+		PASSENGERS,
+		CARGO,
+		BOTH
+	};
+
+	enum class LargeGraphicsReduction : int_fast8_t {
+		OFF,
+		LARGEST_ONLY,
+		ALL
+	};
+
+#ifdef _WIN32
+	enum class TitleBarTheme : int_fast8_t {
+		DEFAULT,
+		LIGHT,
+		DARK
+	};
+
+	enum class WindowRounding : int_fast8_t {
+		DEFAULT,
+		OFF,
+		LARGE,
+		SMALL
+	};
+#endif
+
 
 public:
 	static void Load();
@@ -134,6 +174,9 @@ public:
 	static int ScrollSpeed();
 	static void SetScrollSpeed(int speed);
 
+	static int TooltipActivation();
+	static void SetTooltipActivation(int steps);
+
 	static double ViewZoom();
 	static bool ZoomViewIn();
 	static bool ZoomViewOut();
@@ -156,6 +199,11 @@ public:
 	static void CycleStatusOverlays(OverlayType type);
 	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
+
+	/// Turret overlays setting, either "off", "always on", or "blindspots only".
+	static void ToggleTurretOverlays();
+	static TurretOverlays GetTurretOverlays();
+	static const std::string &TurretOverlaysSetting();
 
 	/// Auto aim setting, either "off", "always on", or "when firing".
 	static void ToggleAutoAim();
@@ -187,7 +235,7 @@ public:
 	static FlotsamCollection GetFlotsamCollection();
 	static const std::string &FlotsamSetting();
 
-	/// Red alert siren and symbol
+	/// Red alert siren and symbol.
 	static void ToggleAlert();
 	static AlertIndicator GetAlertIndicator();
 	static const std::string &AlertSetting();
@@ -195,5 +243,29 @@ public:
 	static bool DisplayVisualAlert();
 	static bool DoAlertHelper(AlertIndicator toDo);
 
+	/// Minimap display settings.
+	static void ToggleMinimapDisplay();
+	static MinimapDisplay GetMinimapDisplay();
+	static const std::string &MinimapSetting();
+
+	/// Flagship space priority setting.
+	static void ToggleFlagshipSpacePriority();
+	static FlagshipSpacePriority GetFlagshipSpacePriority();
+	static const std::string &FlagshipSpacePrioritySetting();
+
+	static void ToggleLargeGraphicsReduction();
+	static LargeGraphicsReduction GetLargeGraphicsReduction();
+	static const std::string &LargeGraphicsReductionSetting();
+
 	static int GetPreviousSaveCount();
+
+#ifdef _WIN32
+	static void ToggleTitleBarTheme();
+	static TitleBarTheme GetTitleBarTheme();
+	static const std::string &TitleBarThemeSetting();
+
+	static void ToggleWindowRounding();
+	static WindowRounding GetWindowRounding();
+	static const std::string &WindowRoundingSetting();
+#endif
 };

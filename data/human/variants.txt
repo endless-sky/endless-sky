@@ -1428,29 +1428,6 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 
 
 
-ship "Cutthroat" "Cutthroat (Jousting)"
-	outfits
-		"Twin Modified Blaster" 2
-		"Heavy Rocket Pod" 2
-		"Heavy Rocket Rack"
-		"Heavy Rocket" 14
-		
-		"Fission Reactor"
-		"Supercapacitor"
-		"Water Coolant System"
-		"D23-QP Shield Generator"
-		"Laser Rifle" 5
-		
-		"A520 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-	gun -21.5 -18 "Heavy Rocket Pod"
-	gun 21.5 -18 "Heavy Rocket Pod"
-	gun -11 -8.5 "Twin Modified Blaster"
-	gun 11 -8.5 "Twin Modified Blaster"
-
-
-
 ship "Dagger" "Dagger (Miner)"
 	outfits
 		"Mining Laser"
@@ -1777,6 +1754,21 @@ ship "Firebird" "Firebird (Plasma)"
 		"Laser Rifle" 3
 		"X3700 Ion Thruster"
 		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Firebird" "Firebird (Heavy Blaster)"
+	outfits
+		"Heavy Blaster" 4
+		"Quad Blaster Turret"
+		"Heavy Anti-Missile Turret"
+		"RT-I Radiothermal"
+		"nGVF-AA Fuel Cell"
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Laser Rifle" 3
+		"X3700 Ion Thruster"
+		"X3200 Ion Steering"
 		"Hyperdrive"
 
 
@@ -2944,45 +2936,6 @@ ship "Nest" "Nest (Sidewinder)"
 		"Laser Rifle" 2
 		"A250 Atomic Thruster"
 		"A375 Atomic Steering"
-		"Hyperdrive"
-
-
-
-ship "Nighthawk" "Nighthawk (Raider)"
-	crew 28
-	outfits
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret"
-		
-		"RT-I Radiothermal"
-		"KP-6 Photovoltaic Array" 3
-		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
-		"Large Radar Jammer"
-		"Tactical Scanner"
-		"Laser Rifle" 28
-		"Nerve Gas" 10
-		
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
-ship "Nighthawk" "Nighthawk (Slaver)"
-	outfits
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret"
-		
-		"RT-I Radiothermal"
-		"KP-6 Photovoltaic Array" 3
-		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
-		"Large Radar Jammer"
-		"Laser Rifle" 6
-		"Brig"
-		
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
 		"Hyperdrive"
 
 

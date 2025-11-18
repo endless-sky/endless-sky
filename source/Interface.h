@@ -15,14 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Color.h"
 #include "Point.h"
 #include "Rectangle.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "text/WrappedText.h"
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -37,10 +38,6 @@ class Sprite;
 // the contents of an Information object.
 class Interface {
 public:
-	// A destructor is needed to clean up the polymorphic list of elements.
-	Interface() = default;
-	~Interface();
-
 	void Load(const DataNode &node);
 
 	// Draw this interface. If the given panel is not null, also register any
@@ -228,7 +225,8 @@ private:
 
 	private:
 		std::string name;
-		const Color *color = nullptr;
+		const Color *fromColor = nullptr;
+		const Color *toColor = nullptr;
 		float width = 2.f;
 		bool reversed = false;
 		bool isRing = false;
@@ -255,10 +253,10 @@ private:
 	};
 
 
-	// This class handles "line" elements.
-	class LineElement : public Element {
+	// This class handles "fill" elements.
+	class FillElement : public Element {
 	public:
-		LineElement(const DataNode &node, const Point &globalAnchor);
+		FillElement(const DataNode &node, const Point &globalAnchor);
 
 	protected:
 		// Parse the given data line: one that is not recognized by Element
@@ -273,7 +271,7 @@ private:
 
 
 private:
-	std::vector<Element *> elements;
+	std::vector<std::unique_ptr<Element>> elements;
 	std::map<std::string, Element> points;
 	std::map<std::string, double> values;
 	std::map<std::string, std::vector<double>> lists;

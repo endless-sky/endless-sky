@@ -211,7 +211,6 @@ mission "FW Southern Recon 1B"
 	
 	on offer
 		log "It looks like the Navy has begun using some more powerful beam weapons and torpedoes. Tasked with plundering one of the electron beam weapons so Freya can get a closer look at it."
-		event "gunboats in Alnasl"
 		conversation
 			`Freya thanks you for performing the scouting mission, and you give her a copy of your ship's logs to analyze. As she looks through them, almost immediately something catches her eye. "Looks like the Navy is fielding some new weapons," she says. "Some higher-yield torpedoes, and a beam weapon even more powerful than Heavy Lasers. Those beam weapons in particular worry me."`
 			choice
@@ -224,8 +223,35 @@ mission "FW Southern Recon 1B"
 			`	"We're going to have to fight them eventually, but first we need as much information as we can get on their new weapon systems. I'd like you to find one of their Gunboats that has the new electron beams installed, steal one of them, and bring it back here. I imagine one of them can't be much bigger than twenty or thirty tons, so you ought to be able to find space for it. Think you can do that?"`
 			choice
 				`	"How can I find a Gunboat that's all by itself? They're usually a part of a bigger fleet."`
+				`	"I already plundered one of these new guns previously. I can give it to you now."`
+					goto gun
+					to display
+						has "outfit: Electron Beam"
+				`	"I already plundered one of these new turrets previously. I can give it to you now."`
+					goto turret
+					to display
+						has "outfit: Electron Turret"
+			
 			`	She thinks about that for a moment, then says, "The Navy has shifted most of their capital ships to the defecting systems in the south. That means that some of the systems up north will have lighter defenses. You might try Wei or Alnasl. Good luck, Captain."`
 				accept
+			
+			label gun
+			action
+				outfit "Electron Beam" -1
+				set "FW Southern Recon 1B: done"
+			branch end
+			
+			label turret
+			action
+				outfit "Electron Turret" -1
+				set "FW Southern Recon 1B (Turret): done"
+			
+			label end
+			`	"Oh! That's great to hear. I'll get my team to take it off your hands right away."`
+			`	You hand off the weapon to Freya's science team once they arrive. Freya tells you that she'll be waiting for you in a cafe in the spaceport after she's had a chance to look at it more closely.`
+				decline
+	on accept
+		event "gunboats in Alnasl"
 	npc
 		government "Republic"
 		system "Alnasl"
@@ -234,10 +260,10 @@ mission "FW Southern Recon 1B"
 			names "republic small"
 			variant
 				"Gunboat (Mark II)"
-	on enter Alnasl
-		unmark Alnasl
-	on enter Wei
-		unmark Wei
+	on enter "Alnasl"
+		unmark "Alnasl"
+	on enter "Wei"
+		unmark "Wei"
 	to complete
 		not "FW Southern Recon 1B (Turret): done"
 	to fail
@@ -247,6 +273,7 @@ mission "FW Southern Recon 1B"
 	on complete
 		fail "FW Southern Recon 1B (Turret)"
 		outfit "Electron Beam" -1
+		event "normal in Alnasl"
 		dialog `You hand off the Electron Beam to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
 
 
@@ -265,6 +292,7 @@ mission "FW Southern Recon 1B (Turret)"
 	on complete
 		fail "FW Southern Recon 1B"
 		outfit "Electron Turret" -1
+		event "normal in Alnasl"
 		dialog `You hand off the Electron Turret to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
 
 
@@ -310,6 +338,8 @@ mission "FW Southern Battle 1"
 	source Trinket
 	destination Zug
 	to offer
+		has "FW Southern Recon 1: done"
+	to accept
 		or
 			has "FW Southern Recon 1B: done"
 			has "FW Southern Recon 1B (Turret): done"
@@ -317,7 +347,6 @@ mission "FW Southern Battle 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		event "normal in Alnasl"
 		conversation
 			`Because this world is a tourist destination, there are innumerable fancy cafes in the spaceport. You meet up with Freya in one of the smaller ones. "Thank you for acquiring that weapon sample for us," she says. "It's typical Republic weaponry: far more efficient than anything we're able to make, and very well designed. My engineers were kind of in awe as they disassembled it."`
 			choice
@@ -1663,25 +1692,26 @@ mission "FW Bloodsea 1.2A"
 
 
 
-mission "Pirate Use Jousting Cutthroat"
+mission "Pirates Use Cutthroats"
 	landing
 	invisible
 	to offer
 		has "fw bloodsea done"
 	on offer
-		event "pirate use jousting cutthroat"
+		event "pirates use cutthroat"
 		fail
 
-event "pirate use jousting cutthroat"
-	fleet "Large Southern Pirate"
+event "pirates use cutthroat"
+	fleet "Large Southern Pirates"
 		add variant 2
-			"Cutthroat" 2
-			"Cutthroat (Jousting)"
+			"Cutthroat" 3
 		add variant 1
 			"Modified Argosy (Blaster)"
 			"Fury (Gatling)"
-			"Cutthroat (Jousting)"
+			"Cutthroat"
 
+# For save files which have the "Pirate Use Jousting Cutthroat" mission active prior to its removal in v0.10.14.
+event "pirate use jousting cutthroat"
 
 
 
@@ -1737,12 +1767,12 @@ mission "FW Albatross 1"
 				`	"Okay, I feel silly for even asking. Let's go meet up with JJ!"`
 					accept
 				`	"Actually, I'm gay too."`
-					goto metoo
+					goto "me too"
 				`	"Ah. That certainly explains some things."`
 				`	"It seems crazy that anyone would be bothered by that in this day and age."`
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
-			label metoo
+			label "me too"
 			action
 				set "gay"
 			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so you'll need to be the one to transport JJ. Stay safe."`
@@ -1831,17 +1861,33 @@ mission "FW Albatross 2A"
 		dialog `You land on <planet>, but realize that you either haven't destroyed Ryk Bartlett's ship, the Dread, or your escort carrying JJ hasn't entered the system yet. Better depart and make sure that you've done everything you need to do to complete this mission.`
 	
 	npc kill
-		personality staying plunders disables heroic nemesis target
-		system Orvala
-		government Pirate
-		ship "Bastion (Heavy)" "Dread"
+		personality staying plunders disables heroic marked target
+		system "Orvala"
+		government "Pirate"
+		ship "Bulwark (Heavy)" "Dread"
 		dialog "You have destroyed Ryk Bartlett's ship. Hopefully now the elders on Albatross will be more inclined to bargain with the Free Worlds."
 	
 	npc
-		personality staying plunders disables
-		system Orvala
-		government Pirate
-		fleet "Small Southern Pirates" 3
+		personality staying plunders disables marked
+		system "Orvala"
+		government "Pirate"
+		fleet
+			names "pirate"
+			variant
+				"Modified Argosy (Gatling)"
+				"Hawk (Plasma)"
+				"Hawk"
+				"Sparrow" 3
+	npc
+		personality timid staying plunders coward disables marked
+		system "Orvala"
+		government "Pirate"
+		"cargo settings"
+			commodities "Heavy Metals"
+		fleet
+			names "pirate"
+			variant
+				"Argosy (Proton)"
 
 
 

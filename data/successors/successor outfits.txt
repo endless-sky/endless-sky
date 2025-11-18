@@ -538,18 +538,45 @@ outfit `"Veusa" Inductive Reverser`
 	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
 
 
-outfit "Multimodal Armor: Heavy"
+outfit "Multimodal Armor: Light"
 	category "Systems"
 	series "Special Systems"
 	index 11010
+	thumbnail "outfit/successor armor light"
+	licenses
+		"High Houses"
+	"hull protection" .1
+	"inertia reduction" .15
+	"multimodal armor" -1
+	"unplunderable" 1
+	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
+	description "	This configuration introduces well-ordered nanoscale voids into the armor's structure, reducing a warship's mass without compromising structural integrity."
+
+outfit "Multimodal Armor: Heavy"
+	category "Systems"
+	series "Special Systems"
+	index 11020
 	thumbnail "outfit/successor armor heavy"
 	licenses
 		"High Houses"
-	"hull protection" .20
+	"hull protection" .2
 	"multimodal armor" -1
 	"unplunderable" 1
 	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
 	description "	This configuration strengthens the bonds between the atoms making up the armor, increasing its resistance to direct damage."
+
+outfit "Multimodal Armor: Regen"
+	category "Systems"
+	series "Special Systems"
+	index 11030
+	thumbnail "outfit/successor armor regen"
+	licenses
+		"High Houses"
+	"hull repair multiplier" .75
+	"multimodal armor" -1
+	"unplunderable" 1
+	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
+	description "	This configuration increases the plasticity of the armor, greatly increasing the effectiveness of in-combat repair efforts."
 
 outfit "Multimodal Armor: Keystone"
 	category "Systems"
@@ -565,33 +592,6 @@ outfit "Multimodal Armor: Keystone"
 	"unplunderable" 1
 	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
 	description "	This configuration allows a vessel equipped with it to safely pass through unstable wormholes. As a side effect, it also substantially interferes with external scans of a vessel's cargo or outfits."
-
-outfit "Multimodal Armor: Regen"
-	category "Systems"
-	series "Special Systems"
-	index 11020
-	thumbnail "outfit/successor armor regen"
-	licenses
-		"High Houses"
-	"hull repair multiplier" 0.75
-	"multimodal armor" -1
-	"unplunderable" 1
-	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
-	description "	This configuration increases the plasticity of the armor, greatly increasing the effectiveness of in-combat repair efforts."
-
-outfit "Multimodal Armor: Resilient"
-	category "Systems"
-	series "Special Systems"
-	index 11030
-	thumbnail "outfit/successor armor resilient"
-	licenses
-		"High Houses"
-	"slowing protection" 0.5
-	"corrosion protection" 0.5
-	"multimodal armor" -1
-	"unplunderable" 1
-	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
-	description "	This configuration is designed for exploring hazardous areas, substantially increasing the armor's ability to resist engine-dampening effects and long-term degradation."
 
 
 outfit "Kinetic Rail Rifle"

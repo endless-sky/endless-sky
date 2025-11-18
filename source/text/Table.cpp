@@ -253,7 +253,7 @@ void Table::DrawHighlight() const
 
 void Table::DrawHighlight(const Color &color) const
 {
-	FillShader::Fill(GetCenterPoint(), GetRowSize(), color);
+	FillShader::Fill(GetRowBounds(), color);
 }
 
 

@@ -31,12 +31,13 @@ class PlanetLabel {
 public:
 	PlanetLabel(const std::vector<PlanetLabel> &labels, const System &system, const StellarObject &object);
 
-	void Update(const Point &center, double zoom);
+	void Update(const Point &center, double zoom, const std::vector<PlanetLabel> &labels, const System &system);
 
 	void Draw() const;
 
 
 private:
+	void UpdateData(const std::vector<PlanetLabel> &labels, const System &system);
 	// Overlap detection.
 	void SetBoundingBox(const Point &labelDimensions, double angle);
 	Rectangle GetBoundingBox(double zoom) const;

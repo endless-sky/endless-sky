@@ -40,7 +40,7 @@ class Ship;
 // configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
 public:
-	explicit OutfitterPanel(PlayerInfo &player);
+	explicit OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock);
 
 	virtual void Step() override;
 

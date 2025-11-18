@@ -2117,6 +2117,53 @@ fleet "CCOR Logistics"
 		"Hogshead (CCOR)"
 		"Enforcer (CCOR)"
 
+fleet "Old Northern Pirates"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		plunders harvests getaway
+	variant 3
+		"Monitor"
+	variant 2
+		"Monitor"
+		"Corvette"
+	variant 2
+		"Monitor"
+		"Fury"
+	variant 2
+		"Monitor"
+		"Hawk"
+		"Jackal"
+	variant
+		"Jackal"
+		"Scrapper" 2
+	variant
+		"Jackal"
+		"Berserker"
+
+fleet "Old Southern Pirates"
+	government "Pirate"
+	names "pirate"
+	cargo 1
+	personality
+		disables plunders harvests getaway
+	variant 4
+		"Jackal"
+	variant
+		"Jackal"
+		"Sparrow"
+	variant
+		"Jackal"
+		"Fury"
+	variant
+		"Jackal"
+		"Fury"
+		"Sparrow"
+	variant
+		"Jackal"
+		"Scrapper"
+
 fleet "Small Independent"
 	government "Independent"
 	names "pirate"
@@ -2328,9 +2375,9 @@ fleet "Large Core Pirates"
 		"Splinter (Proton)"
 		"Quicksilver"
 	variant 4
-		"Manta (Proton)"
-	variant 2
-		"Manta"
+		"Manta (Proton)" 2
+	variant 3
+		"Manta" 2
 	variant 2
 		"Splinter" 2
 	variant 1
@@ -2339,14 +2386,8 @@ fleet "Large Core Pirates"
 		"Splinter (Proton)" 2
 	variant 1
 		"Splinter (Tractor Beam)"
-	variant 2
-		"Falcon"
 	variant 1
-		"Falcon (Heavy)"
-	variant 1
-		"Falcon (Laser)"
-	variant 1
-		"Falcon (Tractor Beam)"
+		"Leviathan"
 	variant 2
 		"Firebird"
 	variant 2
@@ -2359,15 +2400,15 @@ fleet "Large Core Pirates"
 		"Vanguard (Particle)"
 	variant 1
 		"Vanguard (Missile)"
-	variant 1
+	variant 2
 		"Vanguard"
 	variant 1
 		"Protector (Laser)"
-	variant 1
+	variant 2
 		"Protector (Proton)"
 	variant 1
 		"Protector (Tractor Beam)"
-	variant 1
+	variant 2
 		"Protector"
 
 fleet "Small Northern Pirates"
@@ -2457,6 +2498,8 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Firebird"
 		"Corvette"
+	variant 2
+		"Firebird (Heavy Blaster)"
 	variant 8
 		"Firebird (Plasma)"
 		"Corvette (Speedy)"
@@ -2478,6 +2521,11 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Firebird (Missile)"
 		"Fury (Bomber)"
+	variant 2
+		"Firebird (Heavy Blaster)"
+		"Berserker"
+	variant 2
+		"Firebird (Heavy Blaster)" 2
 	variant 6
 		"Raven (Afterburner)" 2
 	variant 2

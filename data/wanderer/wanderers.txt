@@ -783,6 +783,30 @@ event "wanderers: unfettered invasion starts"
 	planet "Varu Mer'ek"
 		add attributes "evacuation"
 
+event "wanderers: heavy gust mass production"
+	shipyard "Wanderer Advanced"
+		"Heavy Gust"
+	fleet "Wanderer Defense"
+		add variant 2
+			"Heavy Gust"
+			"Autumn Leaf"
+		add variant 3
+			"Heavy Gust"
+			"Autumn Leaf" 2
+		add variant 2
+			"Heavy Gust" 2
+		add variant 1
+			"Heavy Gust" 3
+		add variant 1
+			"Strong Wind"
+			"Heavy Gust"
+		remove variant
+			"Strong Wind"
+			"Summer Leaf"
+		remove variant
+			"Strong Wind"
+			"Summer Leaf" 3
+
 event "wanderers: riptide mass production"
 	fleet "Wanderer Freight"
 		add variant 3
@@ -806,7 +830,10 @@ event "wanderers: tempest mass production"
 			"Tempest"
 			"Summer Leaf"
 			"Autumn Leaf"
-		add variant 4
+		add variant 3
+			"Tempest (Heavy)"
+			"Heavy Gust"
+		add variant 1
 			"Tempest (Heavy)"
 			"Strong Wind"
 		add variant 1
@@ -819,20 +846,11 @@ event "wanderers: tempest mass production"
 		add variant 1
 			"Tempest (Missile)" 2
 		add variant 2
-			"Strong Wind"
-			"Autumn Leaf"
-		add variant 2
 			"Autumn Leaf" 3
 		add variant 1
 			"Summer Leaf" 4
 		remove variant
 			"Summer Leaf" 5
-		remove variant
-			"Strong Wind"
-			"Summer Leaf"
-		remove variant
-			"Strong Wind"
-			"Summer Leaf" 3
 		remove variant
 			"Autumn Leaf" 2
 		remove variant
@@ -958,7 +976,8 @@ event "wanderers: derecho mass production"
 			"Tempest (Heavy)"
 		add variant 4
 			"Derecho"
-			"Strong Wind" 2
+			"Heavy Gust"
+			"Strong Wind"
 		add variant 3
 			"Derecho (Tough)"
 			"Autumn Leaf"
@@ -1011,6 +1030,9 @@ event "wanderers: hurricane mass production"
 		add variant 2
 			"Hurricane (Tough)"
 			"Tempest (Missile)" 2
+		add variant 2
+			"Hurricane"
+			"Heavy Gust" 2
 	shipyard "Wanderer Advanced"
 		"Hurricane"
 
@@ -1043,6 +1065,9 @@ event "wanderers: moonbeam mass production"
 		add variant
 			"Derecho"
 			"Autumn Leaf (Heavy)" 2
+		add variant 2
+			"Heavy Gust"
+			"Heavy Gust (Moonbeam)" 2
 	outfitter "Wanderer Advanced"
 		"Moonbeam"
 		"Moonbeam Turret"

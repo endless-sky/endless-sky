@@ -2307,8 +2307,9 @@ ship "Model 512"
 		"Small Heat Shunt" 2
 		"Reasoning Node" 3
 		
+		"Thruster (Lunar Class)"
 		"Thruster (Planetary Class)"
-		"Steering (Stellar Class)"
+		"Steering (Planetary Class)"
 		Hyperdrive
 
 	engine -145 97

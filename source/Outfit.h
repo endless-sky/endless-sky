@@ -15,20 +15,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Weapon.h"
-
 #include "Dictionary.h"
+#include "Paragraphs.h"
 
 #include <map>
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
 
 class Body;
+class ConditionsStore;
 class DataNode;
 class Effect;
 class Sound;
 class Sprite;
+class Weapon;
 
 
 
@@ -38,7 +40,7 @@ class Sprite;
 // set of attributes unique to them, and outfits can also specify additional
 // information like the sprite to use in the outfitter panel for selling them,
 // or the sprite or sound to be used for an engine flare.
-class Outfit : public Weapon {
+class Outfit {
 public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
@@ -51,17 +53,17 @@ public:
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	bool IsDefined() const;
 
 	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
 	const std::string &DisplayName() const;
-	void SetName(const std::string &name);
 	const std::string &PluralName() const;
 	const std::string &Category() const;
 	const std::string &Series() const;
 	const int Index() const;
-	const std::string &Description() const;
+	std::string Description() const;
 	int64_t Cost() const;
 	double Mass() const;
 	// Get the licenses needed to buy or operate this ship.
@@ -85,6 +87,12 @@ public:
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
+
+	const std::shared_ptr<const Weapon> &GetWeapon() const;
+	// Get the ammo if this is an ammo storage outfit.
+	const Outfit *AmmoStored() const;
+	// Get the ammo used if this is a weapon, or stored ammo if this is a storage.
+	const Outfit *AmmoStoredOrUsed() const;
 
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
@@ -124,8 +132,8 @@ private:
 	// The series that this outfit is a part of and its index within that series.
 	// Used for sorting within shops.
 	std::string series;
-	int index;
-	std::string description;
+	int index = 0;
+	Paragraphs description;
 	const Sprite *thumbnail = nullptr;
 	int64_t cost = 0;
 	double mass = 0.;
@@ -133,6 +141,12 @@ private:
 	std::vector<std::string> licenses;
 
 	Dictionary attributes;
+
+	std::shared_ptr<const Weapon> weapon;
+	// Non-weapon outfits can have ammo so that storage outfits
+	// properly remove excess ammo when the storage is sold, instead
+	// of blocking the sale of the outfit until the ammo is sold first.
+	const Outfit *ammoStored = nullptr;
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.
@@ -160,3 +174,4 @@ private:
 // These get called a lot, so inline them for speed.
 inline int64_t Outfit::Cost() const { return cost; }
 inline double Outfit::Mass() const { return mass; }
+inline const std::shared_ptr<const Weapon> &Outfit::GetWeapon() const { return weapon; }

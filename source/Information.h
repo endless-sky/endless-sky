@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Point.h"
 #include "Rectangle.h"
+#include "Swizzle.h"
 
 #include <map>
 #include <set>
@@ -36,11 +37,11 @@ public:
 	bool HasCustomRegion() const;
 
 	void SetSprite(const std::string &name, const Sprite *sprite, const Point &unit = Point(0., -1.), float frame = 0.f,
-		int swizzle = 0);
+		const Swizzle *swizzle = Swizzle::None());
 	const Sprite *GetSprite(const std::string &name) const;
 	const Point &GetSpriteUnit(const std::string &name) const;
 	float GetSpriteFrame(const std::string &name) const;
-	int GetSwizzle(const std::string &name) const;
+	const Swizzle *GetSwizzle(const std::string &name) const;
 
 	void SetString(const std::string &name, const std::string &value);
 	const std::string &GetString(const std::string &name) const;
@@ -63,7 +64,7 @@ private:
 	std::map<std::string, const Sprite *> sprites;
 	std::map<std::string, Point> spriteUnits;
 	std::map<std::string, float> spriteFrames;
-	std::map<std::string, int> spriteSwizzles;
+	std::map<std::string, const Swizzle *> spriteSwizzles;
 	std::map<std::string, std::string> strings;
 	std::map<std::string, double> bars;
 	std::map<std::string, double> barSegments;

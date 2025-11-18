@@ -106,11 +106,26 @@ void MainPanel::Step()
 		isActive = false;
 	}
 
+	// Offer the next available entering mission.
+	if(isActive && player.HasAvailableEnteringMissions() && player.Flagship())
+	{
+		Mission *mission = player.EnteringMission();
+		if(mission)
+			mission->Do(Mission::OFFER, player, GetUI());
+		else
+			player.HandleBlockedEnteringMissions(GetUI());
+		// Determine if a Dialog or ConversationPanel is being drawn next frame.
+		isActive = (GetUI()->Top().get() == this);
+	}
+
 	// Display any relevant help/tutorial messages.
 	if(isActive)
 		isActive = !ShowHelp(false);
 
 	engine.Step(isActive);
+
+	if(isActive && !engine.IsPaused())
+		player.StepMissionTimers(GetUI());
 
 	// Splice new events onto the eventQueue for (eventual) handling. No
 	// other classes use Engine::Events() after Engine::Step() completes.
@@ -216,14 +231,15 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		bool newValue = !Preferences::Has("Turrets focus fire");
 		Preferences::Set("Turrets focus fire", newValue);
-		Messages::Add("Turret tracking mode set to: " + string(newValue ? "focused" : "opportunistic") + ".",
-			Messages::Importance::High);
+		Messages::Add(*GameData::Messages().Get(newValue ?
+			"turret tracking focused" : "turret tracking opportunistic"));
 	}
 	else if(command.Has(Command::AMMO))
 	{
 		Preferences::ToggleAmmoUsage();
-		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + "."
-			, Messages::Importance::High);
+		Messages::Add(*GameData::Messages().Get(
+			Preferences::Has("Escorts expend ammo") ? (Preferences::Has("Escorts use ammo frugally") ?
+			"expend ammo frugally" : "expend ammo always") : "expend ammo never"));
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
@@ -239,8 +255,20 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool MainPanel::Click(int x, int y, int clicks)
+bool MainPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	switch(button)
+	{
+		case MouseButton::MIDDLE:
+		case MouseButton::RIGHT:
+			engine.RightOrMiddleClick(Point(x, y), button);
+			return true;
+		case MouseButton::LEFT:
+			break;
+		default:
+			return false;
+	}
+
 	// Don't respond to clicks if another panel is active.
 	if(!canClick)
 		return true;
@@ -261,15 +289,6 @@ bool MainPanel::Click(int x, int y, int clicks)
 
 
 
-bool MainPanel::RClick(int x, int y)
-{
-	engine.RClick(Point(x, y));
-
-	return true;
-}
-
-
-
 bool MainPanel::Drag(double dx, double dy)
 {
 	if(!canDrag)
@@ -282,8 +301,11 @@ bool MainPanel::Drag(double dx, double dy)
 
 
 
-bool MainPanel::Release(int x, int y)
+bool MainPanel::Release(int x, int y, MouseButton button)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	if(isDragging)
 	{
 		dragPoint = Point(x, y);
@@ -431,9 +453,9 @@ bool MainPanel::ShowHailPanel()
 		target.reset();
 
 	if(flagship->IsEnteringHyperspace())
-		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::Highest);
+		Messages::Add(*GameData::Messages().Get("cannot hail while jumping"));
 	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
-		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::Highest);
+		Messages::Add(*GameData::Messages().Get("cannot hail while cloaked"));
 	else if(target)
 	{
 		// If the target is out of system, always report a generic response
@@ -441,10 +463,10 @@ bool MainPanel::ShowHailPanel()
 		// not. If it's in system and jumping, report that.
 		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
 				|| target->IsCloaked())
-			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::Highest);
+			Messages::Add({"Unable to hail target " + target->Noun() + ".", GameData::MessageCategories().Get("high")});
 		else if(target->IsEnteringHyperspace())
-			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace.",
-				Messages::Importance::Highest);
+			Messages::Add({"Unable to send hail: " + target->Noun() + " is entering hyperspace.",
+				GameData::MessageCategories().Get("high")});
 		else
 		{
 			GetUI()->Push(new HailPanel(player, target,
@@ -456,23 +478,20 @@ bool MainPanel::ShowHailPanel()
 	{
 		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
 		if(!planet)
-			Messages::Add("Unable to send hail.", Messages::Importance::Highest);
+			Messages::Add(*GameData::Messages().Get("cannot hail"));
 		else if(planet->IsWormhole())
-		{
-			static const Phrase *wormholeHail = GameData::Phrases().Get("wormhole hail");
-			Messages::Add(wormholeHail->Get(), Messages::Importance::Highest);
-		}
+			Messages::Add(*GameData::Messages().Get("wormhole hail"));
 		else if(planet->IsInhabited())
 		{
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
 			return true;
 		}
 		else
-			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited.",
-				Messages::Importance::Highest);
+			Messages::Add({"Unable to send hail: " + planet->Noun() + " is not inhabited.",
+				GameData::MessageCategories().Get("high")});
 	}
 	else
-		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::Highest);
+		Messages::Add(*GameData::Messages().Get("cannot hail without target"));
 
 	return false;
 }
@@ -678,7 +697,7 @@ void MainPanel::StepEvents(bool &isActive)
 			}
 			else if(event.TargetGovernment() && event.TargetGovernment()->IsPlayer())
 			{
-				string message = actor->Fine(player, event.Type(), &*event.Target());
+				string message = actor->Fine(player, event.Type(), &*event.Target()).second;
 				if(!message.empty())
 				{
 					GetUI()->Push(new Dialog(message));
@@ -686,6 +705,11 @@ void MainPanel::StepEvents(bool &isActive)
 				}
 			}
 		}
+
+		// Handle jump events from the player's flagship. This means we should check
+		// for entering missions that can be offered.
+		if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
+			player.CreateEnteringMissions();
 
 		// Remove the fully-handled event.
 		eventQueue.pop_front();

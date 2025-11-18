@@ -27,7 +27,7 @@ using namespace std;
 
 
 
-Shader::Shader(const char *vertex, const char *fragment)
+void Shader::Load(const char *vertex, const char *fragment)
 {
 	GLuint vertexShader = Compile(vertex, GL_VERTEX_SHADER);
 	GLuint fragmentShader = Compile(fragment, GL_FRAGMENT_SHADER);
@@ -116,7 +116,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 				version += c;
 			}
 		}
-		if(glsl.find("GLSL ES") != std::string::npos)
+		if(glsl.find("GLSL ES") != string::npos)
 		{
 			version += " es";
 		}

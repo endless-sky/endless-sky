@@ -166,7 +166,7 @@ test "Test Conditions"
 	description "Set a few conditions so they are displayed on errors, clarifying things up."
 	sequence
 		apply
-			# test accepted/failed. If neither it wasnt offered.
+			# test accepted/failed. If neither it wasn't offered.
 			"test: succeed test" = "succeed test"
 			"test: failed test" = "failed test"
 			# if we launched

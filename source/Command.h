@@ -40,6 +40,7 @@ public:
 	static const Command AUTOSTEER;
 	static const Command BACK;
 	static const Command MOUSE_TURNING_HOLD;
+	static const Command AIM_TURRET_HOLD;
 	static const Command PRIMARY;
 	static const Command TURRET_TRACKING;
 	static const Command SECONDARY;
@@ -63,10 +64,12 @@ public:
 	static const Command FULLSCREEN;
 	static const Command FASTFORWARD;
 	static const Command HELP;
+	static const Command PAUSE;
 	// Escort commands:
 	static const Command FIGHT;
+	static const Command HOLD_FIRE;
 	static const Command GATHER;
-	static const Command HOLD;
+	static const Command HOLD_POSITION;
 	static const Command AMMO;
 	static const Command HARVEST;
 	// This command is given in combination with JUMP or LAND and tells a ship

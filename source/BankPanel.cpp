@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BankPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Color.h"
 #include "Command.h"
 #include "Dialog.h"
@@ -26,8 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Screen.h"
 #include "text/Table.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <string>
@@ -70,7 +71,7 @@ void BankPanel::Step()
 void BankPanel::Draw()
 {
 	// Draw the "Pay All" button.
-	const Interface *bankUi = GameData::Interfaces().Get("bank");
+	const Interface *bankUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "bank (small screen)" : "bank");
 	const Rectangle box = bankUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();
@@ -315,9 +316,12 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 // Handle mouse clicks.
-bool BankPanel::Click(int x, int y, int clicks)
+bool BankPanel::Click(int x, int y, MouseButton button, int clicks)
 {
-	const Interface *bankUi = GameData::Interfaces().Get("bank");
+	if(button != MouseButton::LEFT)
+		return false;
+
+	const Interface *bankUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "bank (small screen)" : "bank");
 	const Rectangle box = bankUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();

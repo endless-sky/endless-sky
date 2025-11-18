@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-"landing message" "You cannot land on a gas giant."
+"landing message" "You cannot land on this gas giant."
 	"planet/gas0"
 	"planet/gas0-b"
 	"planet/gas1"
@@ -99,7 +99,7 @@
 	"planet/dyson2"
 	"planet/dyson3"
 
-"landing message" "You cannot land on a brown dwarf."
+"landing message" "You cannot land on this brown dwarf."
 	"planet/browndwarf-l"
 	"planet/browndwarf-l-rogue"
 	"planet/browndwarf-t"

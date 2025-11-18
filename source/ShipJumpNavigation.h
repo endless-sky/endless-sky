@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "JumpTypes.h"
+#include "JumpType.h"
 
 #include <map>
 
@@ -57,6 +57,7 @@ public:
 	bool CanJump(const System *from, const System *to) const;
 
 	// Check what jump methods this ship has.
+	bool HasAnyDrive() const;
 	bool HasHyperdrive() const;
 	bool HasScramDrive() const;
 	bool HasJumpDrive() const;

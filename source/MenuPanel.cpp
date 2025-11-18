@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LoadPanel.h"
 #include "Logger.h"
 #include "MainPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -42,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
+#include <cmath>
 #include <stdexcept>
 
 using namespace std;
@@ -89,11 +91,14 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 		gamePanels.StepAll();
 	}
 
-	if(player.GetPlanet())
-		Audio::PlayMusic(player.GetPlanet()->MusicName());
-
 	if(!scrollSpeed)
 		scrollSpeed = 1;
+
+	xSpeed = mainMenuUi->GetValue("x speed");
+	ySpeed = mainMenuUi->GetValue("y speed");
+	yAmplitude = mainMenuUi->GetValue("y amplitude");
+	returnPos = GameData::GetBackgroundPosition();
+	GameData::SetBackgroundPosition(Point());
 
 	// When the player is in the menu, pause the game sounds.
 	Audio::Pause();
@@ -104,12 +109,20 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 MenuPanel::~MenuPanel()
 {
 	Audio::Resume();
+	GameData::SetBackgroundPosition(returnPos);
 }
 
 
 
 void MenuPanel::Step()
 {
+	if(Preferences::Has("Animate main menu background"))
+	{
+		GameData::StepBackground(Point(xSpeed, yAmplitude * sin(animation * TO_RAD)));
+		animation += ySpeed;
+	}
+	else
+		GameData::StepBackground(Point());
 	if(GetUI()->IsTop(this) && !scrollingPaused)
 	{
 		scroll += scrollSpeed;
@@ -125,7 +138,7 @@ void MenuPanel::Step()
 void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())
@@ -136,7 +149,7 @@ void MenuPanel::Draw()
 		{
 			const Ship &flagship = *player.Flagship();
 			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", flagship.Name());
+			info.SetString("ship", flagship.GivenName());
 		}
 		if(player.GetSystem())
 			info.SetString("system", player.GetSystem()->DisplayName());
@@ -174,9 +187,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		gamePanels.CanSave(true);
 		GetUI()->PopThrough(this);
+		return true;
 	}
 	else if(key == 'p')
-		GetUI()->Push(new PreferencesPanel());
+		GetUI()->Push(new PreferencesPanel(player));
 	else if(key == 'l' || key == 'm')
 		GetUI()->Push(new LoadPanel(player, gamePanels));
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
@@ -187,7 +201,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
 	else if(key == 'q')
+	{
 		GetUI()->Quit();
+		return true;
+	}
 	else if(key == ' ')
 		scrollingPaused = !scrollingPaused;
 	else if(key == SDLK_DOWN)
@@ -197,13 +214,17 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else
 		return false;
 
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 
 
 
-bool MenuPanel::Click(int x, int y, int clicks)
+bool MenuPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	// Double clicking on the credits pauses/resumes the credits scroll.
 	if(clicks == 2 && mainMenuUi->GetBox("credits").Contains(Point(x, y)))
 	{

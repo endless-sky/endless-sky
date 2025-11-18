@@ -74,7 +74,7 @@ mission "Hai Legacy 1"
 	invisible
 	shipyard
 	source "Hai-home"
-	destination "Firelode"
+	destination "Darkcloak"
 	clearance
 	to offer
 		has "First Contact: Unfettered: offered"
@@ -95,7 +95,11 @@ mission "Hai Legacy 1"
 					decline
 			label first
 			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull on your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of a regular passerby, they address you again.`
-			`	"My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, and if you cross-reference it with the local maps, it appears to point towards a beach on the other side of the planet.`
+			`	"My associates and I have a lucrative business proposition for you. It will require your undivided attention, so you would do well to finish any ongoing business first. If you are interested, come find us at these coordinates."`
+			`	Just before leaving they add, "We note you operate multiple ships. However, this is a solitary affair; make sure you can park most of your ships."`
+				to display
+					"total ships" > 1
+			`	Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, and if you cross-reference it with the local maps, it appears to point towards a beach on the other side of the planet.`
 			branch continue
 				"credits" >= 10000000
 			`	However, the paper also mentions you need to have at least ten million credits in cash! You'll have to save up or take a loan and then come back another day before heading to the specified location.`
@@ -223,6 +227,7 @@ mission "Hai Legacy 1"
 		clear "unfettered: ocean dialog"
 		clear "unfettered: pilot dialog"
 		log "Accepted a somewhat shady deal for an old Hai ship called an Anomalocaris. It seems to still be in a good enough state to fly."
+		fail
 
 
 
@@ -235,12 +240,12 @@ mission "Hai Legacy 2"
 	deadline 7
 	cargo "food (aid)" 121
 	source "Hai-home"
-	destination "Firelode"
+	destination "Darkcloak"
 	to offer
 		not "Hai Legacy 1: declined"
 		has "First Contact: Unfettered: offered"
 		"reputation: Hai (Unfettered)" < 0
-		not "Unfettered Jump Drive 1: offered"
+		not "Unfettered Jump Drive 2: offered"
 		"credits" >= 10000000
 	to accept
 		has "ship model: Anomalocaris"
@@ -274,9 +279,11 @@ mission "Hai Legacy 2"
 
 mission "Hai Legacy 3"
 	landing
+	deadline 2
 	name "Ancient Claim"
-	description "Defeat the Unfettered challenger in combat. You only have one day, and becoming disabled will result in losing the fight."
-	source "Firelode"
+	description "Defeat the Unfettered challenger in combat in the system of <system>. You only have 2 days, and becoming disabled will result in losing the fight."
+	source "Darkcloak"
+	destination "Firelode"
 	to offer
 		has "Hai Legacy 2: done"
 		has "ship model: Anomalocaris"
@@ -318,7 +325,7 @@ mission "Hai Legacy 3"
 			`	He then looks at you intensely, straight in the eyes. "We sometimes bend the rules for our friends, but that is not the case with you."`
 				to display
 					"reputation: Hai (Unfettered)" < -1500
-			`	Mera starts to look a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships, but Mera pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship!"`
+			`	Mera starts to look a bit impatient. "Are you going to talk all day, or are you going to fight? Head to Ehma Ti already!" The Unfettered immediately head to their ships, but Mera pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship! Make any last minute modifications you may need, and then come fight us."`
 			`	You see the Unfettered have already begun their launching procedures, so you should prepare for takeoff in your Anomalocaris, and no other ships, as soon as you can.`
 				accept
 			label fleeing
@@ -335,7 +342,7 @@ mission "Hai Legacy 3"
 				"total ships" > 1
 			branch anomaly
 				not "flagship model: Anomalocaris"
-			`As you leave the planet's atmosphere, you see your challenger already waiting for you in the system, and they send you a hail as soon as you are in space. "Show us what you've got, monkey! Show us that you control your weapons well, as any warrior should! Prove to us that you have the strength to disable our ships, yet still have the restraint not to destroy them!"`
+			`As you leave the planet's atmosphere, you receive a short message. "We are waiting for you in Ehma Ti today. Do not disappoint us."`
 				accept
 			label fleeing
 			action
@@ -343,7 +350,21 @@ mission "Hai Legacy 3"
 			`The Unfettered don't seem too pleased to see you leaving with their prize. The challenger is already waiting for you in orbit, and hails you. "Where do you think you're going, monkey?"`
 				decline
 			label "too many ships"
-			`As you take off to join your fleet in orbit, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us True Hai!"`
+			`As you take off to join your fleet in orbit, you receive a hail from the Unfettered. "You must leave your fleet on hold here. If they help you, the duel will be forfeit!"`
+				decline
+			label anomaly
+			`You are hailed by the Unfettered as soon as you reach orbit. "You think us blind, monkey? That is not the relic! You're not even worth a launch sequence."`
+			action
+				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
+				fail
+	on enter "Ehma Ti"
+		conversation
+			branch "too many ships"
+				"total ships" > 1
+			`As you enter the system you can see your challenger is indeed waiting for you, and they promptly send you a hail. "Show us what you've got, monkey! Show us that you control your weapons well, as any warrior should! Prove to us that you have the strength to disable our ships, yet still have the restraint not to destroy them!"`
+				accept
+			label "too many ships"
+			`As you arrive with your fleet in this system, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us True Hai!"`
 				goto failed
 			label anomaly
 			`You are hailed by the Unfettered as soon as you reach orbit. "You think us blind, monkey? That is not the relic! You're not even worth a launch sequence."`
@@ -351,10 +372,10 @@ mission "Hai Legacy 3"
 			action
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 				fail
-	on enter
+	on enter "Hi Yahr" "Wah Ki" "Zuba Zub" "Bore Fah"
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		fail
-		dialog `You receive a hail from the Unfettered. "You failed to complete the duel, and as such, you will not enjoy unwarranted respect any longer! It would be in your best interest to return the ship to us should we ever find you on our worlds again!`
+		dialog `You receive a hail from the Unfettered. "You ran away and failed to complete the duel. As such, you will not enjoy unwarranted respect any longer! It would be in your best interest to return the ship to us should we ever find you on our worlds again!`
 	on disabled
 		fail
 		dialog
@@ -375,11 +396,12 @@ mission "Hai Legacy 3"
 			"old reputation: Hai (Unfettered)" >= -1500
 		personality disables heroic plunders staying target unconstrained
 		ship "Sea Scorpion (Ionic Blasters)" "Thunder Struck"
+		system "Ehma Ti"
 		on kill
 			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship can only be due to either incompetence or evil intent, and we will not tolerate either!"`
 			"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 			fail
-		dialog `You receive a message from the Unfettered ship. "We surrender. If you land now, you will receive your reward."`
+		dialog `You receive a message from the Unfettered ship. "We surrender. Land on Firelode to receive your reward."`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -389,16 +411,18 @@ mission "Hai Legacy 3"
 			"old reputation: Hai (Unfettered)" < -1500
 		personality heroic mute plunders target unconstrained
 		ship "Shield Beetle (Tripulse Ionic Turret)" "Requiem"
+		system "Ehma Ti"
 		on kill
 			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship can only be due to either incompetence or evil intent, and we will not tolerate either!"`
 			"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 			fail
-		dialog `You have managed to defeat the Unfettered challenger. Now it's time to land and claim your reward.`
+		dialog `You have managed to defeat the Unfettered challenger. Now it's time to land on Firelode and claim your reward.`
 	npc
 		government "Hai (Unfettered)"
 		to spawn
 			not "unfettered: fled with the relic"
 		ship "Lightning Bug (Unfettered Shipyards)" "Dungeon Master"
+		system "Ehma Ti"
 		personality launching pacifist staying uninterested
 		on disable
 			dialog `Mera hails you. "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`

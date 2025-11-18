@@ -42,6 +42,7 @@ using Conditions = std::map<std::string, int64_t>;
 
 
 // #region unit tests
+ConditionsStore store;
 SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 
 	OutputSink warnings(std::cerr);
@@ -55,7 +56,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 	}
 	GIVEN( "a node with no children" ) {
 		auto childlessNode = AsDataNode("childless");
-		const auto set = ConditionSet{childlessNode};
+		const auto set = ConditionSet{childlessNode, &store};
 
 		THEN( "no conditions are created" ) {
 			REQUIRE( set.IsEmpty() );
@@ -64,7 +65,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 	}
 	GIVEN( "a node with valid children" ) {
 		auto nodeWithChildren = AsDataNode("and\n\tnever");
-		const auto set = ConditionSet{nodeWithChildren};
+		const auto set = ConditionSet{nodeWithChildren, &store};
 
 		THEN( "a non-empty ConditionSet is created" ) {
 			REQUIRE_FALSE( set.IsEmpty() );
@@ -73,7 +74,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 	}
 	GIVEN( "a simple incomplete arithmetic add expression" ) {
 		auto nodeWithIncompleteAdd = AsDataNode("toplevel\n\t4 +");
-		const auto set = ConditionSet{nodeWithIncompleteAdd};
+		const auto set = ConditionSet{nodeWithIncompleteAdd, &store};
 		THEN( "the expression should be identified as invalid" ) {
 			const std::string validationWarning = "Error: expected terminal after infix operator \"+\":\n";
 			const std::string invalidNodeText = "toplevel\n";
@@ -99,7 +100,7 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 
 		THEN( "no expressions are added from empty nodes" ) {
 			const std::string validationWarning = "Error: child-nodes expected, found none:\ntoplevel\n\n";
-			set.Load(AsDataNode("toplevel"));
+			set.Load(AsDataNode("toplevel"), &store);
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
@@ -110,7 +111,7 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 			const std::string validationWarning = "Error: has keyword requires a single condition:\n";
 			const std::string invalidNodeText = "and\n\thas";
 			const std::string invalidNodeTextInWarning = "and\nL2:   has";
-			set.Load(AsDataNode(invalidNodeText));
+			set.Load(AsDataNode(invalidNodeText), &store);
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
@@ -118,7 +119,7 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 			}
 		}
 		THEN( "new expressions can be added from valid nodes" ) {
-			set.Load(AsDataNode("and\n\tnever"));
+			set.Load(AsDataNode("and\n\tnever"), &store);
 			REQUIRE_FALSE( set.IsEmpty() );
 			REQUIRE( set.IsValid() );
 			REQUIRE( warnings.Flush() == "" );
@@ -134,25 +135,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		{"otherData", 100},
 	};
 
-	GIVEN( "an empty ConditionSet" ) {
-		const auto emptySet = ConditionSet{};
-		REQUIRE( emptySet.IsEmpty() );
-		REQUIRE( emptySet.IsValid() );
-
-		AND_GIVEN( "an empty list of Conditions" ) {
-			const auto emptyStore = ConditionsStore{};
-			THEN( "the ConditionSet is satisfied" ) {
-				REQUIRE( emptySet.Test(emptyStore) );
-				REQUIRE( emptySet.IsValid() );
-			}
-		}
-		AND_GIVEN( "a non-empty list of Conditions" ) {
-			THEN( "the ConditionSet is satisfied" ) {
-				REQUIRE( emptySet.Test(storeWithData) );
-				REQUIRE( emptySet.IsValid() );
-			}
-		}
-	}
 	GIVEN( "various correct expression(s) as conditionSet" ) {
 		auto expressionAndAnswer = GENERATE(table<std::string, int64_t>({
 
@@ -238,11 +220,14 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			{"11 == 11 == 1", 1},
 
 		}));
-		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndAnswer))};
+		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndAnswer)), &storeWithData};
 		THEN( "The expression \'" + std::get<0>(expressionAndAnswer) + "\' is valid and evaluates to the correct number" ) {
 			REQUIRE_FALSE( numberSet.IsEmpty() );
 			REQUIRE( numberSet.IsValid() );
-			REQUIRE( numberSet.Evaluate(storeWithData) == std::get<1>(expressionAndAnswer) );
+			auto answer = std::get<1>(expressionAndAnswer);
+			bool boolAnswer = answer;
+			REQUIRE( numberSet.Evaluate() == answer );
+			REQUIRE( numberSet.Test() == boolAnswer );
 		}
 	}
 	GIVEN( "various incorrect expression(s) as conditionSet" ) {
@@ -262,7 +247,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			{"has someData + 5", "Error: has keyword requires a single condition:\n"},
 			{"or", "Error: child-nodes expected, found none:\n"}
 		}));
-		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndMessage))};
+		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndMessage)), &storeWithData};
 		THEN( "Expression \'" + std::get<0>(expressionAndMessage) + "\' is invalid and triggers error-message" ) {
 			REQUIRE_FALSE( numberSet.IsValid() );
 			REQUIRE( warnings.Flush().substr(0, std::get<1>(expressionAndMessage).size()) == std::get<1>(expressionAndMessage) );

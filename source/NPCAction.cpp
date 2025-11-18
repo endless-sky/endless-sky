@@ -26,14 +26,16 @@ using namespace std;
 
 
 // Construct and Load() at the same time.
-NPCAction::NPCAction(const DataNode &node)
+NPCAction::NPCAction(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node);
+	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
-void NPCAction::Load(const DataNode &node)
+void NPCAction::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
@@ -45,7 +47,7 @@ void NPCAction::Load(const DataNode &node)
 		if(key == "triggered")
 			triggered = true;
 		else
-			action.LoadSingle(child);
+			action.LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
 	}
 }
 
@@ -77,24 +79,24 @@ string NPCAction::Validate() const
 
 
 
-void NPCAction::Do(PlayerInfo &player, UI *ui, const Mission *caller)
+void NPCAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const shared_ptr<Ship> &target)
 {
 	// All actions are currently one-time-use. Actions that are used
 	// are marked as triggered, and cannot be used again.
 	if(triggered)
 		return;
 	triggered = true;
-	action.Do(player, ui, caller);
+	action.Do(player, ui, caller, nullptr, target);
 }
 
 
 
 // Convert this validated template into a populated action.
-NPCAction NPCAction::Instantiate(const ConditionsStore &store, map<string, string> &subs, const System *origin,
+NPCAction NPCAction::Instantiate(map<string, string> &subs, const System *origin,
 	int jumps, int64_t payload) const
 {
 	NPCAction result;
 	result.trigger = trigger;
-	result.action = action.Instantiate(store, subs, origin, jumps, payload);
+	result.action = action.Instantiate(subs, origin, jumps, payload);
 	return result;
 }

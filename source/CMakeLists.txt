@@ -37,13 +37,15 @@ target_sources(EndlessSkyLib PRIVATE
 	BoardingPanel.h
 	Body.cpp
 	Body.h
+	Camera.cpp
+	Camera.h
 	CaptureOdds.cpp
 	CaptureOdds.h
 	CargoHold.cpp
 	CargoHold.h
 	CategoryList.cpp
 	CategoryList.h
-	CategoryTypes.h
+	CategoryType.h
 	ClickZone.h
 	Collision.cpp
 	Collision.h
@@ -56,6 +58,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Command.h
 	ConditionAssignments.cpp
 	ConditionAssignments.h
+	ConditionEntry.cpp
+	ConditionEntry.h
 	ConditionSet.cpp
 	ConditionSet.h
 	ConditionsStore.cpp
@@ -66,6 +70,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConversationPanel.h
 	CoreStartData.cpp
 	CoreStartData.h
+	CustomEvents.cpp
+	CustomEvents.h
 	DamageDealt.h
 	DamageProfile.cpp
 	DamageProfile.h
@@ -99,8 +105,6 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.h
 	ExclusiveItem.h
 	FighterHitHelper.h
-	File.cpp
-	File.h
 	Files.cpp
 	Files.h
 	FireCommand.cpp
@@ -149,7 +153,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Interface.h
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
-	JumpTypes.h
+	JumpType.h
 	Logger.cpp
 	Logger.h
 	LoadPanel.cpp
@@ -172,10 +176,14 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
+	BookEntry.cpp
+	BookEntry.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
 	MenuPanel.h
+	Message.cpp
+	Message.h
 	MessageLogPanel.cpp
 	MessageLogPanel.h
 	Messages.cpp
@@ -183,14 +191,19 @@ target_sources(EndlessSkyLib PRIVATE
 	Minable.cpp
 	Minable.h
 	MinableDamageDealt.h
+	MiniMap.cpp
+	MiniMap.h
 	Mission.cpp
 	Mission.h
 	MissionAction.cpp
 	MissionAction.h
+	MissionTimer.cpp
+	MissionTimer.h
 	MissionPanel.cpp
 	MissionPanel.h
 	Mortgage.cpp
 	Mortgage.h
+	MouseButton.h
 	NPC.cpp
 	NPC.h
 	NPCAction.cpp
@@ -265,6 +278,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Set.h
 	Ship.cpp
 	Ship.h
+	Shop.h
 	ShipEvent.cpp
 	ShipEvent.h
 	ShipInfoDisplay.cpp
@@ -291,6 +305,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StellarObject.h
 	StringInterner.cpp
 	StringInterner.h
+	Swizzle.cpp
+	Swizzle.h
 	System.cpp
 	System.h
 	SystemEntry.h
@@ -300,6 +316,8 @@ target_sources(EndlessSkyLib PRIVATE
 	TextArea.h
 	TextReplacements.cpp
 	TextReplacements.h
+	Tooltip.cpp
+	Tooltip.h
 	Trade.cpp
 	Trade.h
 	TradingPanel.cpp
@@ -320,6 +338,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Wormhole.cpp
 	Wormhole.h
 	WormholeStrategy.h
+	ZipFile.cpp
+	ZipFile.h
 	opengl.cpp
 	opengl.h
 	pi.h
@@ -331,9 +351,33 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/Sound.cpp
 	audio/Sound.h
 	audio/SoundCategory.h
+	audio/player/AudioPlayer.cpp
+	audio/player/AudioPlayer.h
+	audio/player/MusicPlayer.cpp
+	audio/player/MusicPlayer.h
+	audio/supplier/AsyncAudioSupplier.cpp
+	audio/supplier/AsyncAudioSupplier.h
+	audio/supplier/AudioSupplier.cpp
+	audio/supplier/AudioSupplier.h
+	audio/supplier/FlacSupplier.cpp
+	audio/supplier/FlacSupplier.h
+	audio/supplier/Mp3Supplier.cpp
+	audio/supplier/Mp3Supplier.h
+	audio/supplier/WavSupplier.cpp
+	audio/supplier/WavSupplier.h
+	audio/supplier/effect/Fade.cpp
+	audio/supplier/effect/Fade.h
+	comparators/ByDisplayName.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	comparators/ByUUID.h
+	orders/OrderSet.cpp
+	orders/OrderSet.h
+	orders/OrderSingle.cpp
+	orders/OrderSingle.h
+	orders/Orders.cpp
+	orders/Orders.h
 	image/BlendingMode.h
 	image/ImageBuffer.cpp
 	image/ImageBuffer.h
@@ -381,6 +425,9 @@ target_sources(EndlessSkyLib PRIVATE
 	test/TestContext.h
 	test/TestData.cpp
 	test/TestData.h
+	text/Alignment.h
+	text/Clipboard.cpp
+	text/Clipboard.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp
@@ -389,13 +436,21 @@ target_sources(EndlessSkyLib PRIVATE
 	text/FontSet.h
 	text/Format.cpp
 	text/Format.h
+	text/Layout.h
 	text/Table.cpp
 	text/Table.h
+	text/Truncate.h
 	text/Utf8.cpp
 	text/Utf8.h
 	text/WrappedText.cpp
 	text/WrappedText.h
-	text/alignment.hpp
-	text/layout.hpp
-	text/truncate.hpp
 )
+
+if(WIN32)
+	target_sources(EndlessSkyLib PRIVATE
+		windows/TimerResolutionGuard.cpp
+		windows/TimerResolutionGuard.h
+		windows/WinVersion.cpp
+		windows/WinVersion.h
+	)
+endif()

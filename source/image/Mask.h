@@ -62,8 +62,8 @@ public:
 	const std::vector<std::vector<Point>> &Outlines() const;
 
 	// Scale all the points in the mask.
-	Mask operator*(double scale) const;
-	friend Mask operator*(double scale, const Mask &mask);
+	Mask operator*(Point scale) const;
+	friend Mask operator*(Point scale, const Mask &mask);
 
 
 private:

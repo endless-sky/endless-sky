@@ -56,12 +56,12 @@ ship "Venta"
 	engine 0 42
 		"over"
 	engine 90 42
-	gun 58.5 -76.5
-	gun 29 -76.5
-	gun 29 -76.5
-	gun -28 -76.5
-	gun -28 -76.5
-	gun -57 -76
+	gun 58.5 -76.5 "Plasma Discharger"
+	gun 29 -76.5 "Star Tail"
+	gun 29 -76.5 "Star Tail"
+	gun -28 -76.5 "Star Tail"
+	gun -28 -76.5 "Star Tail"
+	gun -57.5 -76.5 "Plasma Discharger"
 	explode "medium explosion" 50
 	explode "large explosion" 40
 	explode "huge explosion" 10

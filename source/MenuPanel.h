@@ -41,7 +41,7 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
 
 private:
@@ -53,6 +53,13 @@ private:
 	UI &gamePanels;
 
 	const Interface *mainMenuUi;
+
+	// When the menu panel is closed, return the starfield to this position.
+	Point returnPos;
+	double animation = 0.;
+	double xSpeed = 0.;
+	double ySpeed = 0.;
+	double yAmplitude = 0.;
 
 	std::vector<std::string> credits;
 	long long int scroll = 0;

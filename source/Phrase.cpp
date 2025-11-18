@@ -24,7 +24,7 @@ using namespace std;
 
 
 // Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
-std::string Phrase::ExpandPhrases(const std::string &source)
+string Phrase::ExpandPhrases(const string &source)
 {
 	string result;
 	size_t next = 0;
@@ -212,13 +212,14 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 		emplace_back();
 		auto &part = back();
 
-		if(child.Token(0) == "word")
+		const string &key = child.Token(0);
+		if(key == "word")
 			for(const DataNode &grand : child)
 				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand);
-		else if(child.Token(0) == "phrase")
+		else if(key == "phrase")
 			for(const DataNode &grand : child)
 				part.choices.emplace_back((grand.Size() >= 2) ? max<int>(1, grand.Value(1)) : 1, grand, true);
-		else if(child.Token(0) == "replace")
+		else if(key == "replace")
 			for(const DataNode &grand : child)
 				part.replacements.emplace_back(grand.Token(0), (grand.Size() >= 2) ? grand.Token(1) : string{});
 		else
