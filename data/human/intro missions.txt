@@ -323,7 +323,7 @@ conversation "mining intro"
 	`	James leads you down the side of the bar to a booth where a man with a half-eaten hamburger and a plate of fries is sitting, busily examining a star map of the local sector. He notices your arrival and stands up to greet you. "<first>, this is Captain Marshall," James says as you shake his hand. "I told him about your new ship and how it'd be a good idea for you to get a taste of asteroid mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
 		goto choice
 
-	label paradise
+	label glory
 	`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You end up finding James in one of the spaceport's gardens, and he waves you over to a table with a woman who is finishing off a steak. On the far side of the table is a map covered in annotations. As you get closer, the woman notices your arrival, wipes her mouth, and offers her hand.`
 	`	"<first>, this is Captain Hwang," James says as you shake her hand. "Rather than throwing you into the deep end of space combat, I figure you should try your hand at something a little safer. Hwang mines asteroids in this part of space and says there's a good system nearby if you're willing to give it a try."`
 
