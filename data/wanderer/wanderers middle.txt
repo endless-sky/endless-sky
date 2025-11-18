@@ -621,6 +621,25 @@ mission "Wanderers: Mereti Observation"
 				accept
 	on enter "Mesuket"
 		dialog `You enter the target system and begin recording the communications of the Kor Mereti drones. It may take a while to collect all the data that the Wanderers need, but they have set up their equipment to notify you when it is done collecting.`
+	npc
+		government "Kor Sestor"
+		system "Mesuket"
+		personality staying heroic
+		fleet
+			names "kor sestor"
+			variant
+				"Kar Ik Vot 349"
+				"Met Par Tek 53" 3
+	npc
+		government "Kor Mereti"
+		system "Mesuket"
+		personality staying heroic
+		fleet
+			names "kor mereti"
+			variant
+				"Model 64"
+				"Model 32" 2
+				"Model 16" 5
 	timer 3600 3600
 		"pause when inactive"
 		"activation requirements"
