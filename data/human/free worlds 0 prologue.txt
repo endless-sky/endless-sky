@@ -335,7 +335,7 @@ mission "FW Recon 1"
 	to fail
 		has "chosen sides"
 	on abort
-		log "Turned down reconnaissance work from the Free Worlds."
+		log "Bailed on some reconnaissance work from the Free Worlds."
 		dialog phrase "free worlds failed"
 	on decline
 		log "Turned down reconnaissance work from the Free Worlds."
