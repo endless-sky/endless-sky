@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -791,6 +790,12 @@ void PreferencesPanel::DrawSettings()
 		"Rehire extra crew when lost",
 		"Automatically unpark flagship",
 		FLAGSHIP_SPACE_PRIORITY,
+		"",
+		"Trading",
+		"'Sell Outfits' without outfitter",
+		"Confirm 'Sell Outfits' button",
+		"Confirm 'Sell Flotsam' button",
+		"Show parenthesis",
 		"\t",
 		"Map",
 		"Deadline blink by distance",
@@ -807,7 +812,6 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
-		"Show parenthesis",
 		NOTIFY_ON_DEST
 #ifdef _WIN32
 		, "",

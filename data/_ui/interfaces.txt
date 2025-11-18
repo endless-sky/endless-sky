@@ -1443,7 +1443,7 @@ interface "planet"
 	image "land"
 		center 0 -140
 	sprite "ui/planet dialog"
-		center 0 0
+		center 0 25
 	button l
 		center 0 -140
 		dimensions 720 360
@@ -1537,7 +1537,7 @@ interface "planet (small screen)"
 	image "land"
 		center -60 -140
 	sprite "ui/planet dialog"
-		center -60 0
+		center -60 25
 	button l
 		center -60 -140
 		dimensions 720 360
@@ -1985,26 +1985,31 @@ interface "trade"
 		center 0 95
 		dimensions 480 1
 	
+	sprite "ui/trading panel bottom"
+		center 159 354
+	
 	active if "can buy"
-	sprite "ui/dialog cancel"
-		center 100 355
 	button u "B_uy All"
-		center 100 355
+		center 120 355
 		dimensions 70 30
 	
-	sprite "ui/wide button"
-		center 190 355
-	
 	active if "can sell"
-	visible if "!can sell outfits"
 	button e "S_ell All"
-		center 190 355
+		center 200 355
+		dimensions 70 30
+	
+	active if "can sell flotsam"
+	sprite "ui/wide button"
+		center -85 355
+	button f "Sell _Flotsam"
+		center -85 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
-	visible if "can sell outfits"
-	button e "S_ell Outfits"
-		center 190 355
+	sprite "ui/wide button"
+		center -190 355
+	button L "Sell Outfits"
+		center -190 355
 		dimensions 90 30
 
 
@@ -2017,26 +2022,31 @@ interface "trade (small screen)"
 		center -60 95
 		dimensions 480 1
 	
+	sprite "ui/trading panel bottom"
+		center 99 354
+	
 	active if "can buy"
-	sprite "ui/dialog cancel"
-		center 40 355
 	button u "B_uy All"
-		center 40 355
+		center 60 355
 		dimensions 70 30
 	
-	sprite "ui/wide button"
-		center 130 355
-	
 	active if "can sell"
-	visible if "!can sell outfits"
 	button e "S_ell All"
-		center 130 355
+		center 140 355
+		dimensions 70 30
+	
+	active if "can sell specials"
+	sprite "ui/wide button"
+		center -145 355
+	button f "Sell _Flotsam"
+		center -145 355
 		dimensions 90 30
 	
 	active if "can sell outfits"
-	visible if "can sell outfits"
-	button e "S_ell Outfits"
-		center 130 355
+	sprite "ui/wide button"
+		center -250 355
+	button L "Sell Outfits"
+		center -250 355
 		dimensions 90 30
 
 
