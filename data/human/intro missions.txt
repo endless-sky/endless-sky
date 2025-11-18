@@ -311,19 +311,48 @@ conversation "interceptor evade end"
 
 
 
-conversation "mining intro ingot"
+conversation "mining intro"
+	branch glory
+		has "start: paradise"
 	`You find James waiting for you just outside the spaceport bar. Against the steady patter of micrometeorites against the roof he tells you, "Working here on <origin> is one of the few jobs in the galaxy more dangerous than fighting pirates. And worse, because if a big meteorite decides to strike this station, there's basically nothing the miners can do about it except hope they see it coming." He turns to you with a grin. "But nonetheless, I think you might be interested in this idea."`
+		to display
+			not "start: syndicate"
+	`Similar to Delve, <origin>'s spaceport is embedded in solid rock, but that is where the similarities end. Where Delve's spaceport was utilitarian, Ada finds space to flex its wealth by turning the industrial elements of rock and metal into elegant architecture. The nightmarish take-off and landing angles one might expect from a spaceport set in a canyon wall are missing, replaced by spacious and well-marked flight paths. The smell of oil and steel pervasive in many Syndicate ports is suppressed by crisp air supplied by the local environmental control systems.`
+		to display
+			has "start: syndicate"
 	`	James leads you down the side of the bar to a booth where a man with a half-eaten hamburger and a plate of fries is sitting, busily examining a star map of the local sector. He notices your arrival and stands up to greet you. "<first>, this is Captain Marshall," James says as you shake his hand. "I told him about your new ship and how it'd be a good idea for you to get a taste of asteroid mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
+		goto choice
+
+	label paradise
+	`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You end up finding James in one of the spaceport's gardens, and he waves you over to a table with a woman who is finishing off a steak. On the far side of the table is a map covered in annotations. As you get closer, the woman notices your arrival, wipes her mouth, and offers her hand.`
+	`	"<first>, this is Captain Hwang," James says as you shake her hand. "Rather than throwing you into the deep end of space combat, I figure you should try your hand at something a little safer. Hwang mines asteroids in this part of space and says there's a good system nearby if you're willing to give it a try."`
+
+	label choice
 	choice
 		`	"Mining sounds interesting. I'll give it a shot."`
 		`	"I think I'm ready to head out on my own."`
 			decline
-	`	"That's good to hear," Captain Marshall says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
-	`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
+	`	"That's good to hear," Captain <captain> says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
+	`	"The first challenge," <they> continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
 	`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart, or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold asteroids are more work; they're not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
 	`	"I could go on, but I think you get the picture."`
-	`	You and James chat with Marshall a while longer, and he suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there."`
+
+	branch paradise
+		has "start: paradise"
+	branch syndicate
+		has "start: syndicate"
+	`	You and James chat with <captain> a while longer, and <they> suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there. The easiest asteroids to get there are the silicon ones; you can spot them by their slightly-green tint."`
 	`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of silicon before landing on <planet> and we can call it a day."`
+		accept
+
+	label paradise
+	`	You and James chat with Hwang a while longer, and she suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there. The easiest asteroids to get there are the lead ones; you can spot them by their light gray, rounded appearance."`
+	`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of lead before landing on <planet> and we can call it a day."`
+		accept
+
+	label syndicate
+	`	You and James chat with August a while longer, and he suggests trying your hand at mining in Procyon. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there. Just watch out for getting stranded; the only landable planet in Procyon is Cassandra, which is uninhabited. Still, merchant and Navy ships should come frequently enough that you can just hail one of them for a refuel."`
+	`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of silicon in Procyon before jumping to <system> and landing on <planet>."`
 		accept
 
 
@@ -736,9 +765,12 @@ mission "Intro [2.1 Interceptor]"
 	to offer
 		has "Intro [2 Interceptor]: done"
 		not "Intro [3 Interceptor]: offered"
+	substitutions
+		<captain> "Marshall"
+		<they> "he"
 	
 	on offer
-		conversation "mining intro ingot"
+		conversation "mining intro"
 	
 	on visit
 		dialog `You've reached <destination>, but you don't have at least five tons of silicon in your cargo hold. Locate and mine silicon asteroids in this system before returning.`
@@ -1200,9 +1232,12 @@ mission "Midgard Intro [2.1 Interceptor]"
 	destination "New Sahara"
 	to offer
 		has "Midgard Intro [2 Interceptor]: done"
+	substitutions
+		<captain> "Marshall"
+		<they> "he"
 	
 	on offer
-		conversation "mining intro ingot"
+		conversation "mining intro"
 	
 	on visit
 		dialog `You've reached <destination>, but you don't have at least five tons of silicon in your cargo hold. Locate and mine silicon asteroids in this system before returning.`
@@ -1582,23 +1617,12 @@ mission "Mainsail Intro [0.1 Interceptor]"
 		not "Mainsail Intro [1 Transport]: offered"
 		not "Mainsail Intro [1 Transport Alt]: offered"
 		not "Mainsail Intro [1 Freighter]: offered"
+	substitutions
+		<captain> "Hwang"
+		<they> "she"
 	
 	on offer
-		conversation
-			`The world of <origin> is in full bloom; the fields that the spaceport overlooks are filled with flowers of every color of the rainbow, and a sweet smell rests in the air. You end up finding James in one of the spaceport's gardens, and he waves you over to a table with a woman who is finishing off a steak. On the far side of the table is a map covered in annotations. As you get closer, the woman notices your arrival, wipes her mouth, and offers her hand.`
-			`	"<first>, this is Captain Hwang," James says as you shake her hand. "Rather than throwing you into the deep end of space combat, I figure you should try your hand at something a little safer. Hwang mines asteroids in this part of space and says there's a good system nearby if you're willing to give it a try."`
-			choice
-				`	"Mining sounds interesting. I'll give it a shot."`
-				`	"Actually, I'd like to figure things out on my own."`
-					decline
-	
-			`	"That's good to hear," Captain Hwang says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
-			`	"The first challenge," she continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
-			`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart, or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold asteroids are more work; they're not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
-			`	"I could go on, but I think you get the picture."`
-			`	You and James chat with Hwang a while longer, and she suggests trying your hand at mining in <system>. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there. The easiest asteroids to get there are the lead ones; you can spot them by their light gray, rounded appearance."`
-			`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of lead before landing on <planet> and we can call it a day."`
-				accept
+		conversation "mining intro"
 	
 	on visit
 		dialog `You've reached <destination>, but you don't have at least five tons of lead in your cargo hold. Locate and mine lead asteroids in this system before returning.`
@@ -2052,25 +2076,12 @@ mission "Delve Intro [2.1 Interceptor]"
 	destination "Relic"
 	to offer
 		has "Delve Intro [2 Interceptor]: done"
+	substitutions
+		<captain> "August"
+		<they> "he"
 	
 	on offer
-		conversation
-			`Similar to Delve, <origin>'s spaceport is embedded in solid rock, but that is where the similarities end. Where Delve's spaceport was utilitarian, Ada finds space to flex its wealth by turning the industrial elements of rock and metal into elegant architecture. The nightmarish take-off and landing angles one might expect from a spaceport set in a canyon wall are missing, replaced by spacious and well-marked flight paths. The smell of oil and steel pervasive in many Syndicate ports is suppressed by crisp air supplied by the local environmental control systems.`
-			`	You find James waiting for you inside the spaceport bar. Next to him is a man with a half-eaten hamburger and a plate of fries, busily examining a star map of the local sector. He notices your arrival and stands up to greet you. "<first>, this is Captain August," James says as you shake his hand. "I told him about your new ship and how it'd be a good idea for you to get a taste of asteroid mining. He mines in this part of space and says there's a good system nearby if you're willing to give it a try."`
-			choice
-				`	"Mining sounds interesting. I'll give it a shot."`
-					goto mining
-				`	"I think I'm ready to head out on my own."`
-					decline
-			
-			label mining
-			`	"That's good to hear," Captain August says with a smile. "But be warned that mining isn't as easy as one might think. Especially without an asteroid scanner, mining can be just as much a test of your piloting skills as combat.`
-			`	"The first challenge," he continues, "will be finding which asteroids are valuable. The worthless asteroids are either brown and smooth or gray and spiky with no apparent orbit. It doesn't matter how long you shoot them, they won't be destroyed. Valuable asteroids will always orbit the star and have a range of colors and surface textures. If you're not sure which are which and you don't have an asteroid scanner to tell you, keep a look out for other miners to see what they're firing at.`
-			`	"Generally speaking, the more valuable minerals are tougher to mine, either because they're harder to break apart, or they're less common and in more dangerous regions of the galaxy. Silicon breaks up quickly; you'll fill your hold in a hurry and the stuff is everywhere. Platinum or gold asteroids are more work; they're not as common in areas where the Navy watches your back, but you make several times the number of credits for the effort.`
-			`	"I could go on, but I think you get the picture."`
-			`	You and James chat with August a while longer, and he suggests trying your hand at mining in Procyon. "It's a great place. You could throw a dart in that system and half the time you'd hit an asteroid worth at least something, and I've never been bothered by pirates while I've been there. Just watch out for getting stranded; the only landable planet in Procyon is Cassandra, which is uninhabited. Still, merchant and Navy ships should come frequently enough that you can just hail one of them for a refuel."`
-			`	"That does sound like a good place for a beginner pilot," James says. "How about we start small, <first>? Let's go mine at least five tons of silicon in Procyon before jumping to <system> and landing on <planet>."`
-				accept
+		conversation "mining intro"
 
 	mark "Procyon"
 	on enter "Procyon"
