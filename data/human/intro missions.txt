@@ -859,7 +859,7 @@ mission "Midgard Intro [2 Transport]"
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Chai, and Simon, and their son Kamon. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time.`
+			`	"Great," he says. "This is Chai, Simon, and their son Kamon. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time.`
 			`	"Make sure your jobs go to the same planet, though; there's two habitable planets in the system of <system>, and landing on <planet> won't complete any missions with Vail as a destination."`
 				accept
 	
@@ -1193,7 +1193,7 @@ mission "Midgard Intro [2 Interceptor]"
 mission "Midgard Intro [2.1 Interceptor]"
 	priority
 	name "Mine asteroids in <system>"
-	description "Go to the <system> system and mine 5 tons of Silicon, then land on <planet>."
+	description "Go to the <system> system and mine five tons of silicon, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Ingot"
@@ -1325,7 +1325,7 @@ mission "Mainsail Intro [2 Transport]"
 				`	"Sure!"`
 				`	"No thanks, I think I'll strike off on my own now."`
 					decline
-			`	"Great," he says. "This is Chiyo, and Salim, and their son Khalil. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time."`
+			`	"Great," he says. "This is Chiyo, Salim, and their son Khalil. Let's help them carry their luggage to your ship." As you begin walking back, slightly ahead of them, James whispers to you, "Tourists are always a good way to make money. They're on vacation, so they don't mind paying a bit extra. But no point in your cargo space going to waste, so take a look at the job board and see if there are any delivery missions we can run at the same time."`
 				accept
 	
 	on complete
@@ -1564,7 +1564,7 @@ mission "Mainsail Intro [3 Freighter]"
 mission "Mainsail Intro [0.1 Interceptor]"
 	priority
 	name "Mine asteroids in <system>"
-	description "Go to the <system> system and mine 5 tons of Lead, then land on <planet>."
+	description "Go to the <system> system and mine five tons of lead, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Glory"
@@ -2045,7 +2045,7 @@ mission "Delve Intro [2 Interceptor]"
 mission "Delve Intro [2.1 Interceptor]"
 	priority
 	name "Mine asteroids in <system>"
-	description "Go to the Procyon system and mine 5 tons of Silicon, then land on <planet>."
+	description "Go to the Procyon system and mine five tons of silicon, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
 	source "Ada"

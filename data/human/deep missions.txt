@@ -1271,7 +1271,7 @@ mission "Deep: Project Hawking: Prime"
 			`	You tell Pierre about your life on <starting planet>, and how you've always dreamed of becoming a starship captain, and finally got your wish when you were given a pilot's license on your eighteenth birthday.`
 				to display
 					has "start: paradise"
-			`	You tell Pierre about your life moving around the galaxy, and how you worked on a Syndicate factory world for five years before you took a loan and begain your life as a merchant captain.`
+			`	You tell Pierre about your life moving around the galaxy, and how you worked on a Syndicate factory world for five years before you took a loan and began your life as a merchant captain.`
 				to display
 					has "start: syndicate"
 			`	Making sure to not bring up <starting planet> or the Hai by name, you tell Pierre about your life, and how you did your best at a travel agency to get to the stars as soon as you could.`
