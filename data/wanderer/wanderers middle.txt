@@ -643,7 +643,7 @@ mission "Wanderers: Mereti Observation"
 	timer 3600 3600
 		"pause when inactive"
 		"activation requirements"
-			system Mesuket
+			system "Mesuket"
 		on timeup
 			dialog `The Wanderer recording device chirps at you to let you know that it has collected enough data. Time to return to <planet>.`
 	on visit
