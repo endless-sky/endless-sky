@@ -38,7 +38,7 @@ public:
 	// Convert the given number into abbreviated format with a suffix like
 	// "M" for million, "B" for billion, or "T" for trillion. Any number
 	// above 1 quadrillion is instead shown in scientific notation.
-	static std::string Credits(int64_t value);
+	static std::string AbbreviatedNumber(int64_t value);
 	// Convert the given number into abbreviated format as described in Format::Credits,
 	// then attach the ' credit' or ' credits' suffix to it.
 	static std::string CreditString(int64_t value);
@@ -65,6 +65,9 @@ public:
 	// Format the given value as a number with exactly the given number of
 	// decimal places (even if they are all 0).
 	static std::string Decimal(double value, int places);
+	// Format the given value as a percentage, with an optional additional number of
+	// decimal places. An input value of 1 will be formatted as 100%.
+	static std::string Percentage(double value, int places);
 	// Convert numbers to word forms. Capitalize the first letter if at the start of a sentence.
 	static std::string WordForm(int64_t value, bool startOfSentence = false);
 	// Conditionally convert numbers to word forms, based on the Chicago Manual of Style.
