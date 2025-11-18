@@ -221,26 +221,26 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 			aboutText += child.Token(1) + '\n';
 		else if(key == "version" && hasValue)
 			version = child.Token(1);
-		else if(key == "authors" && child.HasChildren())
+		else if(key == "authors")
 			for(const DataNode &grand : child)
 				authors.insert(grand.Token(0));
-		else if(key == "tags" && child.HasChildren())
+		else if(key == "tags")
 			for(const DataNode &grand : child)
 				tags.insert(grand.Token(0));
-		else if(key == "dependencies" && child.HasChildren())
+		else if(key == "dependencies")
 		{
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				if(grandKey == "game version")
+				if(grandKey == "game version" && hasValue)
 					dependencies.gameVersion = grand.Token(1);
-				else if(grandKey == "requires" && grand.HasChildren())
+				else if(grandKey == "requires")
 					for(const DataNode &great : grand)
 						dependencies.required.insert(great.Token(0));
-				else if(grandKey == "optional" && grand.HasChildren())
+				else if(grandKey == "optional")
 					for(const DataNode &great : grand)
 						dependencies.optional.insert(great.Token(0));
-				else if(grandKey == "conflicts" && grand.HasChildren())
+				else if(grandKey == "conflicts")
 					for(const DataNode &great : grand)
 						dependencies.conflicted.insert(great.Token(0));
 				else
