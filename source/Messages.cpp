@@ -139,7 +139,10 @@ void Messages::LoadLog(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		if(child.Size() < 2)
+		{
 			child.PrintTrace("Skipping message log entry without category:");
+			continue;
+		}
 		logged.emplace_front(child.Token(1), GameData::MessageCategories().Get(child.Token(0)));
 	}
 }
