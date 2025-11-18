@@ -124,7 +124,7 @@ void MainPanel::Step()
 
 	engine.Step(isActive);
 
-	if(isActive)
+	if(isActive && !engine.IsPaused())
 		player.StepMissionTimers(GetUI());
 
 	// Splice new events onto the eventQueue for (eventual) handling. No

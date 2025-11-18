@@ -81,12 +81,12 @@ private:
 	// The base number of frames to wait, with an optional maximum random added value.
 	int waitTime = 0;
 	int randomWaitTime = 0;
-	// If set, the timer is not a necessary objection for the completion of its mission.
+	// If set, the timer is not a necessary objective for the completion of its mission.
 	bool optional = false;
 	// If true, the timer pauses instead of resetting when deactivated.
 	bool pauses = false;
 
-	// Whether any of the activation requirements below are checked by this timer.
+	// Whether any of the activation requirements below must be checked by this timer.
 	bool hasRequirements = false;
 
 	// Whether the timer requires the player to be idle.

@@ -64,18 +64,18 @@ void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerCondi
 
 	waitTime = node.Value(1);
 	if(node.Size() > 2)
-		randomWaitTime = node.Value(2);
+		randomWaitTime = max<int>(1, node.Value(2));
 
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(key == "elapsed")
+		if(key == "elapsed" && hasValue)
 			timeElapsed = child.Value(1);
 		else if(key == "optional")
 			optional = true;
-		else if(key == "pauses")
+		else if(key == "pause when inactive")
 			pauses = true;
 		else if(key == "activation requirements" && child.HasChildren())
 		{
@@ -172,7 +172,7 @@ void MissionTimer::Save(DataWriter &out) const
 		if(optional)
 			out.Write("optional");
 		if(pauses)
-			out.Write("pauses");
+			out.Write("pause when inactive");
 		if(hasRequirements)
 		{
 			out.Write("activation requirements");
@@ -238,7 +238,7 @@ MissionTimer MissionTimer::Instantiate(map<string, string> &subs, const System *
 
 	// Calculate the random variance to the wait time.
 	result.waitTime = waitTime;
-	if(randomWaitTime > 1)
+	if(randomWaitTime)
 		result.waitTime += Random::Int(randomWaitTime);
 
 	// Validate all the actions attached to the timer, and if they're all valid, instantiate them too.
@@ -342,10 +342,10 @@ bool MissionTimer::CanActivate(const Ship *flagship, const PlayerInfo &player) c
 	if(requireIdle)
 	{
 		// The player can't be sending movement commands.
-		if(!flagship->IsThrusting() && !flagship->IsSteering() && !flagship->IsReversing())
+		if(flagship->IsThrusting() || flagship->IsSteering() || flagship->IsReversing())
 			return false;
 		// And their ship's velocity must be below the max speed threshold.
-		if(flagship->Velocity().LengthSquared() < idleMaxSpeed)
+		if(flagship->Velocity().LengthSquared() > idleMaxSpeed)
 			return false;
 	}
 
