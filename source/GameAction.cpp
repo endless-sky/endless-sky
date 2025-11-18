@@ -166,7 +166,7 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		if(child.Size() < 3 || (child.Size() == 3 && child.Token(1) == "scene"))
 			logEntries.Load(child, 1);
 		else if(child.Size() >= 3)
-			specialLogEntries[child.Token(1)][child.Token(2)].Load(child, 3);\
+			specialLogEntries[child.Token(1)][child.Token(2)].Load(child, 3);
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{

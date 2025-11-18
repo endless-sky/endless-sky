@@ -121,16 +121,10 @@ void BookEntry::LoadSingle(const DataNode &node, int startAt)
 		string text;
 		for(int i = startAt; i < node.Size(); ++i)
 		{
-			const string &value = node.Token(i);
-			// Skip empty strings.
-			if(value.empty())
-				continue;
 			if(!text.empty())
 				text += "\n\t";
-			text += value;
+			text += node.Token(i);
 		}
-
-		if(!text.empty())
-			items.emplace_back(text);
+		items.emplace_back(text);
 	}
 }
