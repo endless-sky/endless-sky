@@ -202,15 +202,26 @@ const string &Message::Name() const
 
 
 
-string Message::Text(map<string, string> subs) const
+string Message::Text() const
 {
 	if(isPhrase)
 		return GameData::Phrases().Get(text)->Get();
 
+	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs);
 	for(const auto &[key, value] : subs)
 		subs[key] = Phrase::ExpandPhrases(value);
 	Format::Expand(subs);
+	return Command::ReplaceNamesWithKeys(Format::Replace(Phrase::ExpandPhrases(text), subs));
+}
+
+
+
+string Message::Text(const map<string, string> &subs) const
+{
+	if(isPhrase)
+		return GameData::Phrases().Get(text)->Get();
+
 	return Command::ReplaceNamesWithKeys(Format::Replace(Phrase::ExpandPhrases(text), subs));
 }
 

@@ -75,7 +75,8 @@ public:
 	bool IsLoaded() const;
 
 	const std::string &Name() const;
-	std::string Text(std::map<std::string, std::string> subs = {}) const;
+	std::string Text() const;
+	std::string Text(const std::map<std::string, std::string> &subs) const;
 	const Category *GetCategory() const;
 
 
