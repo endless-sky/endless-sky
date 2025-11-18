@@ -103,7 +103,7 @@ void DataNode::AddToken(const string &token)
 
 
 // Get the token at the given index. DataFile loading guarantees index 0 always exists.
-// This returns an empty string and prints an error if the index is out of range.
+// If the index is out of range, then this returns an empty string and prints an error.
 const string &DataNode::Token(int index) const
 {
 	static const string ERROR = "";
