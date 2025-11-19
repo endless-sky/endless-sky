@@ -157,10 +157,16 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	}
 	else if(key == "log")
 	{
-		bool isSpecial = (child.Size() >= 3);
-		string &text = (isSpecial ?
-			specialLogText[child.Token(1)][child.Token(2)] : logText);
-		Dialog::ParseTextNode(child, isSpecial ? 3 : 1, text);
+		// Special log format: log <category> <heading> [<log message>|scene <sprite>]
+		// Normal log format: log [<log message>|scene <sprite>]
+		// Note: the key of `log` or `log <category> <heading>` may be on a line unto itself, with the child nodes
+		// distributed beneath it. But this must be distinguished from `log scene <image_name>`.
+		// This means that there can never be a special category named 'scene' or there will be problems with the
+		// player logbook format.
+		if(child.Size() < 3 || (child.Size() == 3 && child.Token(1) == "scene"))
+			logEntries.Load(child, 1);
+		else if(child.Size() >= 3)
+			specialLogEntries[child.Token(1)][child.Token(2)].Load(child, 3);
 	}
 	else if((key == "give" || key == "take") && child.Size() >= 3 && child.Token(1) == "ship")
 	{
@@ -241,28 +247,19 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 
 void GameAction::Save(DataWriter &out) const
 {
-	if(!logText.empty())
+	if(!logEntries.IsEmpty())
 	{
 		out.Write("log");
-		out.BeginChild();
-		{
-			// Break the text up into paragraphs.
-			for(const string &line : Format::Split(logText, "\n\t"))
-				out.Write(line);
-		}
-		out.EndChild();
+		logEntries.Save(out);
 	}
-	for(auto &&it : specialLogText)
-		for(auto &&eit : it.second)
+	for(const auto &[category, headings] : specialLogEntries)
+		for(const auto &[heading, specialLogEntry] : headings)
 		{
-			out.Write("log", it.first, eit.first);
-			out.BeginChild();
+			if(!specialLogEntry.IsEmpty())
 			{
-				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(eit.second, "\n\t"))
-					out.Write(line);
+				out.Write("log", category, heading);
+				specialLogEntry.Save(out);
 			}
-			out.EndChild();
 		}
 	for(auto &&it : specialLogClear)
 	{
@@ -363,6 +360,7 @@ string GameAction::Validate() const
 }
 
 
+
 bool GameAction::IsEmpty() const noexcept
 {
 	return isEmpty;
@@ -401,11 +399,11 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 // Perform the specified tasks.
 void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 {
-	if(!logText.empty())
-		player.AddLogEntry(logText);
-	for(auto &&it : specialLogText)
-		for(auto &&eit : it.second)
-			player.AddSpecialLog(it.first, eit.first, eit.second);
+	if(!logEntries.IsEmpty())
+		player.AddLogEntry(logEntries);
+	for(const auto &[category, nextMap] : specialLogEntries)
+		for(const auto &[heading, specialLogEntry] : nextMap)
+			player.AddSpecialLog(category, heading, specialLogEntry);
 	for(auto &&it : specialLogClear)
 	{
 		if(it.second.empty())
@@ -533,11 +531,10 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.debt = debt;
 
-	if(!logText.empty())
-		result.logText = Format::Replace(logText, subs);
-	for(auto &&it : specialLogText)
-		for(auto &&eit : it.second)
-			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
+	result.logEntries = logEntries.Instantiate(subs);
+	for(const auto &[category, headings] : specialLogEntries)
+		for(const auto &[heading, specialLogEntry] : headings)
+			result.specialLogEntries[category][heading] = specialLogEntry.Instantiate(subs);
 	result.specialLogClear = specialLogClear;
 
 	result.fail = fail;
