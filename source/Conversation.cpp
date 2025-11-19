@@ -203,7 +203,6 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 			nodes.back().canMergeOnto = false;
 			nodes.back().actions.Load(child, playerConditions);
 		}
-		// Check for common errors such as indenting a goto incorrectly:
 		else if(hasValue)
 			child.PrintTrace("Error: Conversation text should be a single token:");
 		else
