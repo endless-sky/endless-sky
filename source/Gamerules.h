@@ -57,6 +57,7 @@ public:
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
 	double FleetMultiplier() const;
+	double MinimumFlotsamScanPower() const;
 
 
 private:
@@ -73,6 +74,7 @@ private:
 	double systemDepartureMin = 0.;
 	std::optional<double> systemArrivalMin;
 	double fleetMultiplier = 1.;
+	double minimumFlotsamScanPower = 64.;
 
 	// Miscellanous rules that are only used by the gamedata and not by the engine.
 	std::map<std::string, int> miscRules;
