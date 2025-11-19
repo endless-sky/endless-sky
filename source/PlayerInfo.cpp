@@ -3054,15 +3054,17 @@ bool PlayerInfo::SelectEscorts(const Rectangle &box, bool hasShift)
 
 bool PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 {
+	if(!flagship)
+		return false;
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
 		selectedEscorts.clear();
 
 	// If shift is not held down, then locate a new target for the flagship.
 	// If the given stack only contains a single ship, then that should become the new target.
-	bool findTarget = !hasShift && flagship;
+	bool findTarget = !hasShift;
 	bool hasNewTarget = !findTarget;
-	shared_ptr<Ship> target = flagship && stack.size() > 1 ? flagship->GetTargetShip() : nullptr;
+	shared_ptr<Ship> target = stack.size() > 1 ? flagship->GetTargetShip() : nullptr;
 
 	// SelectEscort does not need to set the flagship target, as this function takes care of that.
 	bool first = false;
@@ -3094,7 +3096,7 @@ bool PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 			SelectEscort(shipPtr, &first);
 		}
 	}
-	if(flagship && findTarget)
+	if(findTarget)
 	{
 		matched = true;
 		flagship->SetTargetShip(target);
