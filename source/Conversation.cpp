@@ -183,11 +183,14 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 			}
 		}
 		else if(key == "goto") {
-			// A goto is the same as an empty condition (per issue #11946.)
 			nodes.emplace_back();
 			nodes.back().canMergeOnto = false;
 			nodes.back().elements.emplace_back("", nodes.size());
-			Goto(child.Token(1), nodes.size() - 1);
+			int index = TokenIndex(child.Token(1));
+			if(!index)
+				Goto(child.Token(1), nodes.size() - 1, 0);
+			else if(index < 0)
+				nodes.back().elements.back().next = index;
 		}
 		else if(key == "action" || key == "apply")
 		{
