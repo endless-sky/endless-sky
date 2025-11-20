@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Color.h"
 #include "ConditionSet.h"
 #include "Date.h"
 #include "DistanceCalculationSettings.h"
@@ -33,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
+class Color;
 class ConditionsStore;
 class DataNode;
 class DataWriter;
@@ -86,9 +86,9 @@ public:
 	bool IsVisible() const;
 	// The colors that should be used to display the mission name if it is shown
 	// in your mission list.
-	const Color &Unavailable() const;
-	const Color &Unselected() const;
-	const Color &Selected() const;
+	const Color *Unavailable() const;
+	const Color *Unselected() const;
+	const Color *Selected() const;
 	// Check if this mission should be quarantined due to requiring currently-
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
