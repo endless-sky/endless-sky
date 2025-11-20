@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "comparators/ByGivenOrder.h"
 #include "CategoryList.h"
 #include "CoreStartData.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -432,7 +432,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "\t" << it.second << " " << it.first << "\n";
 		}
 	}
-	GetUI()->Push(new Dialog(out.str()));
+	GetUI()->Push(new DialogPanel(out.str()));
 }
 
 
@@ -700,7 +700,7 @@ void MainPanel::StepEvents(bool &isActive)
 				string message = actor->Fine(player, event.Type(), &*event.Target()).second;
 				if(!message.empty())
 				{
-					GetUI()->Push(new Dialog(message));
+					GetUI()->Push(new DialogPanel(message));
 					isActive = false;
 				}
 			}
