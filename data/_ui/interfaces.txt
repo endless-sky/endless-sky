@@ -2405,6 +2405,12 @@ interface "message log"
 		width 130
 		color active
 		inactive medium
+	sprite "ui/dialog cancel"
+		center 654 -80 bottom left
+	active if "!empty"
+	button c "Clear"
+		center 654 -80 bottom left
+		dimensions 70 30
 
 	visible if "empty"
 	label "(The message log is empty.)"
