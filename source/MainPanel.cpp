@@ -124,6 +124,9 @@ void MainPanel::Step()
 
 	engine.Step(isActive);
 
+	if(isActive && !engine.IsPaused())
+		player.StepMissionTimers(GetUI());
+
 	// Splice new events onto the eventQueue for (eventual) handling. No
 	// other classes use Engine::Events() after Engine::Step() completes.
 	eventQueue.splice(eventQueue.end(), engine.Events());
@@ -694,7 +697,7 @@ void MainPanel::StepEvents(bool &isActive)
 			}
 			else if(event.TargetGovernment() && event.TargetGovernment()->IsPlayer())
 			{
-				string message = actor->Fine(player, event.Type(), &*event.Target());
+				string message = actor->Fine(player, event.Type(), &*event.Target()).second;
 				if(!message.empty())
 				{
 					GetUI()->Push(new Dialog(message));

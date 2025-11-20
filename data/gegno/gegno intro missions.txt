@@ -590,7 +590,7 @@ mission "First Contact: Gegno Scin"
 				accept
 				
 			label "no thoughts"
-				`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.`
+			`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.`
 			choice
 				`	(Reach for my firearm.)`
 				`	(Raise my arms.)`
@@ -660,7 +660,7 @@ mission "First Contact: Gegno Scin"
 				launch
 			
 			label "silence"
-				`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.`
+			`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.`
 			choice
 				`	(Reach for my firearm.)`
 				`	(Raise my arms.)`

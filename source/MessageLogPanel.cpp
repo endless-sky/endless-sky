@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
+#include "Dialog.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -27,9 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "shader/SpriteShader.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -130,6 +129,8 @@ bool MessageLogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	}
 	else if(key == 'i')
 		importantOnly = !importantOnly;
+	else if(key == 'c' && !messages.empty())
+		GetUI()->Push(new Dialog{&Messages::ClearLog, "Clear the message log?", Truncate::NONE, true, false});
 
 	return true;
 }
