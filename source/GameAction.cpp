@@ -322,15 +322,7 @@ void GameAction::Save(DataWriter &out) const
 			out.Write("music", music.value());
 	}
 	for(const auto &msg : messages)
-	{
-		out.Write("message");
-		out.BeginChild();
-		{
-			out.Write("text", msg->Text());
-			out.Write("category", msg->GetCategory()->Name());
-		}
-		out.EndChild();
-	}
+		msg->Save(out);
 
 	conditions.Save(out);
 }
@@ -564,7 +556,12 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.failCaller = failCaller;
 
 	for(const auto &it : messages)
-		result.messages.push_back(ExclusiveItem<Message>{{it->Text(subs), it->GetCategory()}});
+	{
+		if(it->IsPhrase())
+			result.messages.push_back(it);
+		else
+			result.messages.push_back(ExclusiveItem<Message>{{it->Text(subs), it->GetCategory()}});
+	}
 
 	result.conditions = conditions;
 
