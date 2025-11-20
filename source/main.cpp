@@ -623,6 +623,8 @@ void InitConsole()
 		return;
 
 	// Perform console redirection.
+#ifdef _MSC_VER
+	// Use the "safe" function with MSVC.
 	if(redirectStdout)
 	{
 		FILE *fstdout = nullptr;
@@ -644,5 +646,13 @@ void InitConsole()
 		if(fstdin)
 			setvbuf(stdin, nullptr, _IONBF, 0);
 	}
+#else
+	if(redirectStdout && freopen("CONOUT$", "w", stdout))
+		setvbuf(stdout, nullptr, _IOFBF, 4096);
+	if(redirectStderr && freopen("CONOUT$", "w", stderr))
+		setvbuf(stderr, nullptr, _IOLBF, 1024);
+	if(redirectStdin && freopen("CONIN$", "r", stdin))
+		setvbuf(stdin, nullptr, _IONBF, 0);
+#endif
 }
 #endif
