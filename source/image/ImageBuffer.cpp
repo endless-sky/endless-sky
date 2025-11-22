@@ -493,7 +493,7 @@ namespace {
 			{
 				uint8_t *end = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame + 1));
 				uint8_t *dest = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame + i));
-				std::copy(image.pixels, end, dest);
+				copy(image.pixels, end, dest);
 			}
 			bufferFrame += repeats[avifFrameIndex];
 

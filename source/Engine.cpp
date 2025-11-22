@@ -123,13 +123,13 @@ namespace {
 
 		// If this ship has no name, show its model name instead.
 		string tag;
-		const string &gov = ship->GetGovernment()->GetName();
-		if(!ship->Name().empty())
-			tag = gov + " " + ship->Noun() + " \"" + ship->Name() + "\": ";
+		const string &gov = ship->GetGovernment()->DisplayName();
+		if(!ship->GivenName().empty())
+			tag = gov + " " + ship->Noun() + " \"" + ship->GivenName() + "\": ";
 		else
 			tag = ship->DisplayModelName() + " (" + gov + "): ";
 
-		Messages::Add(tag + message, Messages::Importance::High);
+		Messages::Add({tag + message, GameData::MessageCategories().Get("normal")});
 	}
 
 	Point FlareCurve(double x)
@@ -375,7 +375,7 @@ void Engine::Place()
 		else if(!ship->GetSystem())
 		{
 			// Log this error.
-			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->Name() + "\" as it had no system");
+			Logger::LogError("Engine::Place: Set fallback system for the NPC \"" + ship->GivenName() + "\" as it had no system");
 			ship->SetSystem(system);
 		}
 
@@ -730,7 +730,7 @@ void Engine::Step(bool isActive)
 	}
 
 	if(flagship && flagship->IsOverheated())
-		Messages::Add("Your ship has overheated.", Messages::Importance::HighestNoRepeat);
+		Messages::Add(*GameData::Messages().Get("overheated"));
 
 	// Clear the HUD information from the previous frame.
 	info = Information();
@@ -847,12 +847,12 @@ void Engine::Step(bool isActive)
 			targetUnit = target->Facing().Unit();
 		targetSwizzle = target->GetSwizzle();
 		info.SetSprite("target sprite", target->GetSprite(), targetUnit, target->GetFrame(step), targetSwizzle);
-		info.SetString("target name", target->Name());
+		info.SetString("target name", target->GivenName());
 		info.SetString("target type", target->DisplayModelName());
 		if(!target->GetGovernment())
 			info.SetString("target government", "No Government");
 		else
-			info.SetString("target government", target->GetGovernment()->GetName());
+			info.SetString("target government", target->GetGovernment()->DisplayName());
 		info.SetString("mission target", target->GetPersonality().IsTarget() ? "(mission target)" : "");
 
 		// Only update the "active" state shown for the target if it is
@@ -1016,7 +1016,7 @@ void Engine::Step(bool isActive)
 	else
 		doClick = false;
 
-	if(doClick && !isRightClick)
+	if(doClick && mouseButton == MouseButton::LEFT)
 	{
 		if(uiClickBox.Dimensions())
 			doClick = !ammoDisplay.Click(uiClickBox);
@@ -1112,7 +1112,6 @@ void Engine::Go()
 {
 	if(!timePaused)
 		++step;
-	++uiStep;
 	currentCalcBuffer = currentCalcBuffer ? 0 : 1;
 	queue.Run([this] { CalculateStep(); });
 }
@@ -1147,6 +1146,8 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
+	++uiStep;
+
 	Point motionBlur = camera.Velocity();
 	double baseBlur = Preferences::Has("Render motion blur") ? 1. : 0.;
 
@@ -1282,7 +1283,7 @@ void Engine::Draw() const
 		}
 		float alpha = isAnimating ? isDying ? min<double>(messageAnimation(age), naturalDecay(naturalAge))
 			: messageAnimation(age) : naturalDecay(age);
-		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
+		messageLine.Draw(messagePoint, it->category->MainColor().Additive(alpha));
 	}
 
 	// Draw crosshairs around anything that is targeted.
@@ -1359,7 +1360,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	doClickNextStep = true;
 	this->hasShift = hasShift;
 	this->hasControl = hasControl;
-	isRightClick = false;
+	mouseButton = MouseButton::LEFT;
 
 	// Determine if the left-click was within the radar display.
 	const Interface *hud = GameData::Interfaces().Get("hud");
@@ -1382,13 +1383,13 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 
 
 
-void Engine::RClick(const Point &point)
+void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
 {
 	doClickNextStep = true;
 	hasShift = false;
-	isRightClick = true;
+	mouseButton = button;
 
-	// Determine if the right-click was within the radar display, and if so, rescale.
+	// Determine if the right/middle-click was within the radar display, and if so, rescale.
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
@@ -1444,9 +1445,10 @@ void Engine::EnterSystem()
 	Audio::PlayMusic(system->MusicName());
 	GameData::SetHaze(system->Haze(), false);
 
-	Messages::Add("Entering the " + system->DisplayName() + " system on "
+	Messages::Add({"Entering the " + system->DisplayName() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
-			"." : ". No inhabited planets detected."), Messages::Importance::Daily);
+		"." : ". No inhabited planets detected."),
+		GameData::MessageCategories().Get("daily")});
 
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)
@@ -1541,9 +1543,9 @@ void Engine::EnterSystem()
 				if(Random::Real() < attraction)
 				{
 					raidFleet.GetFleet()->Place(*system, newShips);
-					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
-							Messages::Importance::Highest);
+					Messages::Add({"Your fleet has attracted the interest of a "
+						+ raidFleet.GetFleet()->GetGovernment()->DisplayName() + " raiding party.",
+						GameData::MessageCategories().Get("high")});
 				}
 	}
 
@@ -1574,9 +1576,9 @@ void Engine::EnterSystem()
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= player.StartData().GetDate() + 4)
 	{
-		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
-		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
-		Messages::Add(GameData::HelpMessage("basics 3"), Messages::Importance::High);
+		Messages::Add(*GameData::Messages().Get("basics 1"));
+		Messages::Add(*GameData::Messages().Get("basics 2"));
+		Messages::Add(*GameData::Messages().Get("basics 3"));
 	}
 }
 
@@ -1886,9 +1888,11 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->UpdateCaches();
 
 	const Ship *flagship = player.Flagship();
+	bool isFlagship = ship.get() == flagship;
 
 	bool isJump = ship->IsUsingJumpDrive();
-	bool wasHere = (flagship && ship->GetSystem() == flagship->GetSystem());
+	const System *oldSystem = ship->GetSystem();
+	bool wasHere = (flagship && oldSystem == flagship->GetSystem());
 	bool wasHyperspacing = ship->IsHyperspacing();
 	bool wasDisabled = ship->IsDisabled();
 	// Give the ship the list of visuals so that it can draw explosions,
@@ -1896,6 +1900,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Move(newVisuals, newFlotsam);
 	if(ship->IsDisabled() && !wasDisabled)
 		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
+	// Track the movements of mission NPCs.
+	if(ship->IsSpecial() && !ship->IsYours() && ship->GetSystem() != oldSystem)
+		eventQueue.emplace_back(ship, ship, ShipEvent::JUMP);
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
@@ -1917,7 +1924,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 	// Check if we need to play sounds for a ship jumping in or out of
 	// the system. Make no sound if it entered via wormhole.
-	if(ship.get() != flagship && ship->Zoom() == 1.)
+	if(!isFlagship && ship->Zoom() == 1.)
 	{
 		// The position from where sounds will be played.
 		Point position = ship->Position();
@@ -1957,8 +1964,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Boarding:
 	bool autoPlunder = !ship->IsYours();
 	// The player should not become a docked passenger on some other ship, but AI ships may.
-	bool nonDocker = ship.get() == flagship;
-	shared_ptr<Ship> victim = ship->Board(autoPlunder, nonDocker);
+	shared_ptr<Ship> victim = ship->Board(autoPlunder, isFlagship);
 	if(victim)
 		eventQueue.emplace_back(ship, victim,
 			ship->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
@@ -2061,8 +2067,8 @@ void Engine::SpawnPersons()
 			for(const shared_ptr<Ship> &ship : person.Ships())
 			{
 				ship->Recharge();
-				if(ship->Name().empty())
-					ship->SetName(it.first);
+				if(ship->GivenName().empty())
+					ship->SetGivenName(it.first);
 				ship->SetGovernment(person.GetGovernment());
 				ship->SetPersonality(person.GetPersonality());
 				ship->SetHailPhrase(person.GetHail());
@@ -2240,7 +2246,7 @@ void Engine::HandleMouseClicks()
 	// flagship must not be in the process of landing or taking off.
 	bool clickedPlanet = false;
 	const System *playerSystem = player.GetSystem();
-	if(!isRightClick && flagship->Zoom() == 1.)
+	if(mouseButton == MouseButton::LEFT && flagship->Zoom() == 1.)
 		for(const StellarObject &object : playerSystem->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
@@ -2253,8 +2259,8 @@ void Engine::HandleMouseClicks()
 					if(&object == flagship->GetTargetStellar())
 					{
 						if(!planet->CanLand(*flagship))
-							Messages::Add("The authorities on " + planet->DisplayName()
-									+ " refuse to let you land.", Messages::Importance::Highest);
+							Messages::Add({"The authorities on " + planet->DisplayName()
+								+ " refuse to let you land.", GameData::MessageCategories().Get("high")});
 						else if(!flagship->IsDestroyed() && !flagship->Commands().Has(Command::LAND))
 							activeCommands |= Command::LAND;
 					}
@@ -2295,7 +2301,7 @@ void Engine::HandleMouseClicks()
 	if(clickTarget)
 	{
 		UI::PlaySound(UI::UISound::TARGET);
-		if(isRightClick)
+		if(mouseButton == MouseButton::RIGHT)
 			ai.IssueShipTarget(clickTarget);
 		else
 		{
@@ -2326,19 +2332,20 @@ void Engine::HandleMouseClicks()
 				clickedAsteroid = true;
 				clickRange = range;
 				flagship->SetTargetAsteroid(minable);
-				if(isRightClick)
+				if(mouseButton == MouseButton::RIGHT)
 					ai.IssueAsteroidTarget(minable);
 			}
 		}
 	}
-	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
+	if(!clickTarget && !clickedAsteroid
+		&& mouseButton == (isMouseTurningEnabled ? MouseButton::MIDDLE : MouseButton::RIGHT))
 	{
 		UI::PlaySound(UI::UISound::TARGET);
 		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
 	}
 
 	// Treat an "empty" click as a request to clear targets.
-	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
+	if(!clickTarget && mouseButton == MouseButton::LEFT && !clickedAsteroid && !clickedPlanet)
 		flagship->SetTargetShip(nullptr);
 }
 
@@ -2650,7 +2657,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 
 	// One of your ships picked up this flotsam. Describe who it was.
 	string name = (collectorIsFlagship ? "You" :
-			"Your " + collector->Noun() + " \"" + collector->Name() + "\"") + " picked up ";
+			"Your " + collector->Noun() + " \"" + collector->GivenName() + "\"") + " picked up ";
 	// Describe what they collected from this flotsam.
 	string commodity;
 	string message;
@@ -2692,7 +2699,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		message += ".)";
 	else
 		message += ", " + Format::MassString(total) + " in fleet.)";
-	Messages::Add(message, Messages::Importance::High);
+	Messages::Add({message, GameData::MessageCategories().Get("normal")});
 }
 
 
@@ -2843,26 +2850,30 @@ void Engine::DrawShipSprites(const Ship &ship)
 
 	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
 	{
-		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
-		{
-			Body body(
-				hardpoint.GetOutfit()->HardpointSprite(),
-				ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
-				ship.Velocity(),
-				ship.Facing() + hardpoint.GetAngle(),
-				ship.Zoom());
-			if(body.InheritsParentSwizzle())
-				body.SetSwizzle(ship.GetSwizzle());
-			drawObject(body);
-		}
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(!weapon)
+			return;
+		const Body &sprite = weapon->HardpointSprite();
+		if(!sprite.HasSprite())
+			return;
+
+		Body body(
+			sprite,
+			ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
+			ship.Velocity(),
+			ship.Facing() + hardpoint.GetAngle(),
+			ship.Zoom());
+		if(body.InheritsParentSwizzle())
+			body.SetSwizzle(ship.GetSwizzle());
+		drawObject(body);
 	};
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.IsUnder())
+		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
 			drawHardpoint(hardpoint);
 	drawObject(ship);
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(!hardpoint.IsUnder())
+		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
 			drawHardpoint(hardpoint);
 
 	DrawEngineFlares(Ship::EnginePoint::OVER);
@@ -2942,7 +2953,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message = "Please assist us in ";
 		message += (target->GetPersonality().Disables() ? "disabling " : "destroying ");
 		message += (attackerCount == 1 ? "this " : "these ");
-		message += attacker->GetName();
+		message += attacker->DisplayName();
 		message += (attackerCount == 1 ? " ship." : " ships.");
 	}
 	else
@@ -2950,7 +2961,7 @@ void Engine::DoGrudge(const shared_ptr<Ship> &target, const Government *attacker
 		message = "We are under attack by ";
 		if(attackerCount == 1)
 			message += "a ";
-		message += attacker->GetName();
+		message += attacker->DisplayName();
 		message += (attackerCount == 1 ? " ship" : " ships");
 		message += ". Please assist us!";
 	}

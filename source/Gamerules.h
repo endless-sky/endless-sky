@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <map>
+#include <optional>
 #include <string>
 
 class DataNode;
@@ -53,7 +55,7 @@ public:
 	int DepreciationMaxAge() const;
 	FighterDodgePolicy FightersHitWhenDisabled() const;
 	double SystemDepartureMin() const;
-	double SystemArrivalMin() const;
+	std::optional<double> SystemArrivalMin() const;
 	double FleetMultiplier() const;
 
 
@@ -69,6 +71,9 @@ private:
 	int depreciationMaxAge = 1000;
 	FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
 	double systemDepartureMin = 0.;
-	double systemArrivalMin = 0.;
+	std::optional<double> systemArrivalMin;
 	double fleetMultiplier = 1.;
+
+	// Miscellanous rules that are only used by the gamedata and not by the engine.
+	std::map<std::string, int> miscRules;
 };

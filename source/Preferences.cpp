@@ -89,7 +89,7 @@ namespace {
 
 		const bool IsActive() const { return state != Preferences::OverlayState::DISABLED; }
 
-		const std::string &ToString() const
+		const string &ToString() const
 		{
 			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
 		}
@@ -175,6 +175,9 @@ namespace {
 	const vector<string> FLAGSHIP_SPACE_PRIORITY_SETTINGS = {"none", "passengers", "cargo", "both"};
 	int flagshipSpacePriorityIndex = 1;
 
+	const vector<string> LARGE_GRAPHICS_REDUCTION_SETTINGS = {"off", "largest only", "all"};
+	int largeGraphicsReductionIndex = 0;
+
 	int previousSaveCount = 3;
 
 #ifdef _WIN32
@@ -220,9 +223,9 @@ void Preferences::Load()
 		const string &key = node.Token(0);
 		bool hasValue = node.Size() >= 2;
 		if(key == "window size" && node.Size() >= 3)
-			Screen::SetRaw(node.Value(1), node.Value(2));
+			Screen::SetRaw(node.Value(1), node.Value(2), true);
 		else if(key == "zoom" && hasValue)
-			Screen::SetZoom(node.Value(1));
+			Screen::SetZoom(node.Value(1), true);
 		else if(VOLUME_SETTINGS.contains(key) && hasValue)
 			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(key));
 		else if(key == "scroll speed" && hasValue)
@@ -269,6 +272,8 @@ void Preferences::Load()
 			minimapDisplayIndex = max<int>(0, min<int>(node.Value(1), MINIMAP_DISPLAY_SETTING.size() - 1));
 		else if(key == "Prioritize flagship use")
 			flagshipSpacePriorityIndex = clamp<int>(node.Value(1), 0, FLAGSHIP_SPACE_PRIORITY_SETTINGS.size() - 1);
+		else if(key == "Reduce large graphics")
+			largeGraphicsReductionIndex = clamp<int>(node.Value(1), 0, LARGE_GRAPHICS_REDUCTION_SETTINGS.size() - 1);
 		else if(key == "previous saves" && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(key == "alt-mouse turning")
@@ -348,6 +353,7 @@ void Preferences::Save()
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("Show mini-map", minimapDisplayIndex);
 	out.Write("Prioritize flagship use", flagshipSpacePriorityIndex);
+	out.Write("Reduce large graphics", largeGraphicsReductionIndex);
 	out.Write("previous saves", previousSaveCount);
 #ifdef _WIN32
 	if(WinVersion::SupportsDarkTheme())
@@ -823,7 +829,7 @@ Preferences::AlertIndicator Preferences::GetAlertIndicator()
 
 
 
-const std::string &Preferences::AlertSetting()
+const string &Preferences::AlertSetting()
 {
 	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
 }
@@ -878,7 +884,7 @@ Preferences::MinimapDisplay Preferences::GetMinimapDisplay()
 
 
 
-const std::string &Preferences::MinimapSetting()
+const string &Preferences::MinimapSetting()
 {
 	return MINIMAP_DISPLAY_SETTING[minimapDisplayIndex];
 }
@@ -903,6 +909,28 @@ Preferences::FlagshipSpacePriority Preferences::GetFlagshipSpacePriority()
 const string &Preferences::FlagshipSpacePrioritySetting()
 {
 	return FLAGSHIP_SPACE_PRIORITY_SETTINGS[flagshipSpacePriorityIndex];
+}
+
+
+
+void Preferences::ToggleLargeGraphicsReduction()
+{
+	if(++largeGraphicsReductionIndex >= static_cast<int>(LARGE_GRAPHICS_REDUCTION_SETTINGS.size()))
+		largeGraphicsReductionIndex = 0;
+}
+
+
+
+Preferences::LargeGraphicsReduction Preferences::GetLargeGraphicsReduction()
+{
+	return static_cast<LargeGraphicsReduction>(largeGraphicsReductionIndex);
+}
+
+
+
+const string &Preferences::LargeGraphicsReductionSetting()
+{
+	return LARGE_GRAPHICS_REDUCTION_SETTINGS[largeGraphicsReductionIndex];
 }
 
 

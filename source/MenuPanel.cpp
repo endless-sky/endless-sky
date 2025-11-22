@@ -149,7 +149,7 @@ void MenuPanel::Draw()
 		{
 			const Ship &flagship = *player.Flagship();
 			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", flagship.Name());
+			info.SetString("ship", flagship.GivenName());
 		}
 		if(player.GetSystem())
 			info.SetString("system", player.GetSystem()->DisplayName());

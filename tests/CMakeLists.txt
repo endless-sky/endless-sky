@@ -66,6 +66,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_job_board_missions.txt
 	integration/config/plugins/integration-tests/data/tests/tests_landing.txt
 	integration/config/plugins/integration-tests/data/tests/tests_take_ships.txt
+	integration/config/plugins/integration-tests/data/tests/tests_timers.txt
 	integration/config/plugins/integration-tests/data/tests/tests_save_load.txt
 	integration/config/plugins/integration-tests/data/tests/tests_ship_sale.txt
 	integration/config/plugins/integration-tests/data/tests/tests_shipyard_outfitter_missions.txt

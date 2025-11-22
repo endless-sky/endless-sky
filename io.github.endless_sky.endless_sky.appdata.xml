@@ -60,6 +60,22 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.16" date="2025-10-25">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>Some of the notable changes are:</p>
+        <ul>
+          <li>Reverted changes to movement AI from the previous release, fixing various issues with ship movement introduced there.</li>
+          <li>There is now a gamerule which controls if secondary weapon ammunition can be resupplied at any outfitter.</li>
+          <li>Scrollable text areas on the map and plugin panels now behave correctly when the game window is resized.</li>
+          <li>When landing, planetary security will no longer scan parked ships for illegal outfits.</li>
+          <li>Animations of features in the HUD are no longer affected by the "pause" or "fast-forward" commands.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 16 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.16/changelog</url>
+    </release>
     <release version="0.10.15" date="2025-9-27" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
