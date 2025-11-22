@@ -1013,6 +1013,8 @@ bool MapPanel::GetTravelInfo(const System *previous, const System *next, const d
 
 void MapPanel::CenterOnSystem(const System *system, bool immediate)
 {
+	if(!system)
+		return;
 	if(immediate)
 		center = -system->Position();
 	else
