@@ -1,0 +1,83 @@
+HRTF Support
+============
+
+Starting with OpenAL Soft 1.14, HRTFs can be used to enable enhanced
+spatialization for both 3D (mono) and multi-channel sources, when used with
+headphones/stereo output. This can be enabled using the 'hrtf' config option.
+
+For multi-channel sources this creates a virtual speaker effect, making it
+sound as if speakers provide a discrete position for each channel around the
+listener. For mono sources this provides much more versatility in the perceived
+placement of sounds, making it seem as though they are coming from all around,
+including above and below the listener, instead of just to the front, back, and
+sides.
+
+The default data set is based on the KEMAR HRTF data provided by MIT, which can
+be found at <http://sound.media.mit.edu/resources/KEMAR.html>.
+
+
+Custom HRTF Data Sets
+=====================
+
+OpenAL Soft also provides an option to use user-specified data sets, in
+addition to or in place of the default set. This allows users to provide data
+sets that could be better suited for their heads, or to work with stereo
+speakers instead of headphones, for example.
+
+The file format is specified below. It uses little-endian byte order.
+
+==
+ALchar   magic[8] = "MinPHR03";
+ALuint   sampleRate;
+ALubyte  channelType; /* Can be 0 (mono) or 1 (stereo). */
+ALubyte  hrirSize;    /* Can be 8 to 128 in steps of 8. */
+ALubyte  fdCount;     /* Can be 1 to 16. */
+
+struct {
+    ALushort distance;        /* Can be 50mm to 2500mm. */
+    ALubyte evCount;          /* Can be 5 to 128. */
+    ALubyte azCount[evCount]; /* Each can be 1 to 128. */
+} fields[fdCount];
+
+/* NOTE: ALbyte3 is a packed 24-bit sample type,
+ * hrirCount is the sum of all azCounts.
+ * channels can be 1 (mono) or 2 (stereo) depending on channelType.
+ */
+ALbyte3 coefficients[hrirCount][hrirSize][channels];
+ALubyte delays[hrirCount][channels]; /* Each can be 0 to 63. */
+==
+
+The data layout is as follows:
+
+The file first starts with the 8-byte marker, "MinPHR03", to identify it as an
+HRTF data set. This is followed by an unsigned 32-bit integer, specifying the
+sample rate the data set is designed for (OpenAL Soft will resample the HRIRs
+if the output device's playback rate doesn't match).
+
+Afterward, an unsigned 8-bit integer specifies the channel type, which can be 0
+(mono, single-channel) or 1 (stereo, dual-channel). After this is another 8-bit
+integer which specifies how many sample points (or finite impulse response
+filter coefficients) make up each HRIR.
+
+The following unsigned 8-bit integer specifies the number of fields used by the
+data set, which must be in descending order (farthest first, closest last).
+Then for each field an unsigned 16-bit short specifies the distance for that
+field in millimeters, followed by an 8-bit integer for the number of
+elevations.  These elevations start at the bottom (-90 degrees), and increment
+upwards.  Following this is an array of unsigned 8-bit integers, one for each
+elevation which specifies the number of azimuths (and thus HRIRs) that make up
+each elevation.  Azimuths start clockwise from the front, constructing a full
+circle.  Mono HRTFs use the same HRIRs for both ears by reversing the azimuth
+calculation (ie. left = angle, right = 360-angle).
+
+The actual coefficients follow. Each coefficient is a signed 24-bit sample.
+Stereo HRTFs interleave left/right ear coefficients.  The HRIRs must be
+minimum-phase.  This allows the use of a smaller filter length, reducing
+computation.  For reference, the default data set uses a 32-point filter while
+even the smallest data set provided by MIT used a 128-sample filter (a 4x
+reduction by applying minimum-phase reconstruction).
+
+After the coefficients is an array of unsigned 8-bit delay values as 6.2 fixed-
+point integers, one for each HRIR (with stereo HRTFs interleaving left/right
+ear delays). This is the propagation delay in samples a signal must wait before
+being convolved with the corresponding minimum-phase HRIR filter.

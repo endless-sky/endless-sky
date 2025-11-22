@@ -1,0 +1,125 @@
+language: cpp
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+    - os: linux
+      dist: trusty
+      env:
+        - BUILD_ANDROID=true
+    - os: freebsd
+      compiler: clang
+    - os: osx
+    - os: osx
+      osx_image: xcode11
+      env:
+        - BUILD_IOS=true
+sudo: required
+install:
+  - >
+    if [[ "${TRAVIS_OS_NAME}" == "linux" && -z "${BUILD_ANDROID}" ]]; then
+      # Install pulseaudio, portaudio, ALSA, JACK dependencies for
+      # corresponding backends.
+      # Install Qt5 dependency for alsoft-config.
+      sudo apt-get install -qq \
+        libpulse-dev \
+        portaudio19-dev \
+        libasound2-dev \
+        libjack-dev \
+        qtbase5-dev \
+        libdbus-1-dev
+    fi
+  - >
+    if [[ "${TRAVIS_OS_NAME}" == "linux" && "${BUILD_ANDROID}" == "true" ]]; then
+      curl -o ~/android-ndk.zip https://dl.google.com/android/repository/android-ndk-r21-linux-x86_64.zip
+      unzip -q ~/android-ndk.zip -d ~ \
+        'android-ndk-r21/build/cmake/*' \
+        'android-ndk-r21/build/core/toolchains/arm-linux-androideabi-*/*' \
+        'android-ndk-r21/platforms/android-16/arch-arm/*' \
+        'android-ndk-r21/source.properties' \
+        'android-ndk-r21/sources/android/support/include/*' \
+        'android-ndk-r21/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/*' \
+        'android-ndk-r21/sources/cxx-stl/llvm-libc++/include/*' \
+        'android-ndk-r21/sysroot/*' \
+        'android-ndk-r21/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/*' \
+        'android-ndk-r21/toolchains/llvm/prebuilt/linux-x86_64/*'
+      export OBOE_LOC=~/oboe
+      git clone --depth 1 -b 1.3-stable https://github.com/google/oboe "$OBOE_LOC"
+    fi
+  - >
+    if [[ "${TRAVIS_OS_NAME}" == "freebsd" ]]; then
+      # Install Ninja as it's used downstream.
+      # Install dependencies for all supported backends.
+      # Install Qt5 dependency for alsoft-config.
+      # Install ffmpeg for examples.
+      sudo pkg install -y \
+        alsa-lib \
+        ffmpeg \
+        jackit \
+        libmysofa \
+        ninja \
+        portaudio \
+        pulseaudio \
+        qt5-buildtools \
+        qt5-qmake \
+        qt5-widgets \
+        sdl2 \
+        sndio \
+        $NULL
+    fi
+script:
+  - cmake --version
+  - >
+    if [[ "${TRAVIS_OS_NAME}" == "linux" && -z "${BUILD_ANDROID}" ]]; then
+      cmake \
+        -DALSOFT_REQUIRE_ALSA=ON \
+        -DALSOFT_REQUIRE_OSS=ON \
+        -DALSOFT_REQUIRE_PORTAUDIO=ON \
+        -DALSOFT_REQUIRE_PULSEAUDIO=ON \
+        -DALSOFT_REQUIRE_JACK=ON \
+        -DALSOFT_EMBED_HRTF_DATA=YES \
+        .
+    fi
+  - >
+    if [[ "${TRAVIS_OS_NAME}" == "linux" && "${BUILD_ANDROID}" == "true" ]]; then
+      cmake \
+        -DANDROID_STL=c++_shared \
+        -DCMAKE_TOOLCHAIN_FILE=~/android-ndk-r21/build/cmake/android.toolchain.cmake \
+        -DOBOE_SOURCE="$OBOE_LOC" \
+        -DALSOFT_REQUIRE_OBOE=ON \
+        -DALSOFT_REQUIRE_OPENSL=ON \
+        -DALSOFT_EMBED_HRTF_DATA=YES \
+        .
+    fi
+  - >
+    if [[ "${TRAVIS_OS_NAME}" == "freebsd" ]]; then
+      cmake -GNinja \
+        -DALSOFT_REQUIRE_ALSA=ON \
+        -DALSOFT_REQUIRE_JACK=ON \
+        -DALSOFT_REQUIRE_OSS=ON \
+        -DALSOFT_REQUIRE_PORTAUDIO=ON \
+        -DALSOFT_REQUIRE_PULSEAUDIO=ON \
+        -DALSOFT_REQUIRE_SDL2=ON \
+        -DALSOFT_REQUIRE_SNDIO=ON \
+        -DALSOFT_EMBED_HRTF_DATA=YES \
+        .
+    fi
+  - >
+    if [[ "${TRAVIS_OS_NAME}" == "osx" && -z "${BUILD_IOS}" ]]; then
+      cmake \
+        -DALSOFT_REQUIRE_COREAUDIO=ON \
+        -DALSOFT_EMBED_HRTF_DATA=YES \
+        .
+    fi
+  - >
+    if [[ "${TRAVIS_OS_NAME}" == "osx" && "${BUILD_IOS}" == "true" ]]; then
+      cmake \
+        -GXcode \
+        -DCMAKE_SYSTEM_NAME=iOS \
+        -DALSOFT_OSX_FRAMEWORK=ON \
+        -DALSOFT_REQUIRE_COREAUDIO=ON \
+        -DALSOFT_EMBED_HRTF_DATA=YES \
+        "-DCMAKE_OSX_ARCHITECTURES=armv7;arm64" \
+        .
+    fi
+  - cmake --build . --clean-first

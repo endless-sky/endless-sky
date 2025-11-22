@@ -1,0 +1,83 @@
+Useful Environment Variables
+
+Below is a list of environment variables that can be set to aid with running or
+debugging apps that use OpenAL Soft. They should be set before the app is run.
+
+*** Logging ***
+
+ALSOFT_LOGLEVEL
+Specifies the amount of logging OpenAL Soft will write out:
+0 - Effectively disables all logging
+1 - Prints out errors only
+2 - Prints out warnings and errors
+3 - Prints out additional information, as well as warnings and errors
+
+ALSOFT_LOGFILE
+Specifies a filename that logged output will be written to. Note that the file
+will be first cleared when logging is initialized.
+
+*** Overrides ***
+
+ALSOFT_CONF
+Specifies an additional configuration file to load settings from. These
+settings will take precedence over the global and user configs, but not other
+environment variable settings.
+
+ALSOFT_DRIVERS
+Overrides the drivers config option. This specifies which backend drivers to
+consider or not consider for use. Please see the drivers option in
+alsoftrc.sample for a list of available drivers.
+
+ALSOFT_DEFAULT_REVERB
+Specifies the default reverb preset to apply to sources. Please see the
+default-reverb option in alsoftrc.sample for additional information and a list
+of available presets.
+
+ALSOFT_TRAP_AL_ERROR
+Set to "true" or "1" to force trapping AL errors. Like the trap-al-error config
+option, this will raise a SIGTRAP signal (or a breakpoint exception under
+Windows) when a context-level error is generated. Useful when run under a
+debugger as it will break execution right when the error occurs, making it
+easier to track the cause.
+
+ALSOFT_TRAP_ALC_ERROR
+Set to "true" or "1" to force trapping ALC errors. Like the trap-alc-error
+config option, this will raise a SIGTRAP signal (or a breakpoint exception
+under Windows) when a device-level error is generated. Useful when run under a
+debugger as it will break execution right when the error occurs, making it
+easier to track the cause.
+
+ALSOFT_TRAP_ERROR
+Set to "true" or "1" to force trapping both ALC and AL errors.
+
+*** Compatibility ***
+
+__ALSOFT_HALF_ANGLE_CONES
+Older versions of OpenAL Soft incorrectly calculated the cone angles to range
+between 0 and 180 degrees, instead of the expected range of 0 to 360 degrees.
+Setting this to "true" or "1" restores the old buggy behavior, for apps that
+were written to expect the incorrect range.
+
+__ALSOFT_REVERSE_Z
+Applications that don't natively use OpenAL's coordinate system have to convert
+to it before passing in 3D coordinates. Depending on how exactly this is done,
+it can cause correct output for stereo but incorrect Z panning for surround
+sound (i.e., sounds that are supposed to be behind you sound like they're in
+front, and vice-versa). Setting this to "true" or "1" will negate the localized
+Z coordinate to flip front/back panning for 3D sources.
+
+__ALSOFT_REVERSE_Y
+Same as for __ALSOFT_REVERSE_Z, but for Y (up/down) panning.
+
+__ALSOFT_REVERSE_X
+Same as for __ALSOFT_REVERSE_Z, but for X (left/right) panning.
+
+__ALSOFT_SUSPEND_CONTEXT
+Due to the OpenAL spec not being very clear about them, behavior of the
+alcSuspendContext and alcProcessContext methods has varied, and because of
+that, previous versions of OpenAL Soft had them no-op. Creative's hardware
+drivers and the Rapture3D driver, however, use these methods to batch changes,
+which some applications make use of to protect against partial updates. In an
+attempt to standardize on that behavior, OpenAL Soft has changed those methods
+accordingly. Setting this to "ignore" restores the previous no-op behavior for
+applications that interact poorly with the new behavior.

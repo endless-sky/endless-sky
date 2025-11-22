@@ -1,0 +1,51 @@
+# This is a makemhr HRIR definition file.  It is used to define the layout and
+# source data to be processed into an OpenAL Soft compatible HRTF.
+#
+# This definition is used to transform the SOFA packaged KEMAR HRIRs
+# originally provided by Bill Gardner <billg@media.mit.edu> and Keith Martin
+# <kdm@media.mit.edu> of MIT Media Laboratory.
+#
+# The SOFA conversion is available from:
+#
+#  http://sofacoustics.org/data/database/mit/
+#
+# The original data is available from:
+#
+#  http://sound.media.mit.edu/resources/KEMAR.html
+#
+# It is copyrighted 1994 by MIT Media Laboratory, and provided free of charge
+# with no restrictions on use so long as the authors (above) are cited.
+
+# Sampling rate of the HRIR data (in hertz).
+rate     = 44100
+
+# The SOFA file is stereo, but the original data was mono.  Channels are just
+# mirrored by azimuth; so save some memory by allowing OpenAL Soft to mirror
+# them at run time.
+type     = mono
+
+points   = 512
+
+radius   = 0.09
+
+# The MIT set has only one field with a distance of 1.4m.
+distance = 1.4
+
+# The MIT set varies the number of azimuths for each elevation to maintain
+# an average distance between them.
+azimuths = 1, 12, 24, 36, 45, 56, 60, 72, 72, 72, 72, 72, 60, 56, 45, 36, 24, 12, 1
+
+# Normally the dataset would be composed manually by listing all necessary
+# 'sofa' sources with the appropriate radius, elevation, azimuth (counter-
+# clockwise for SOFA files) and receiver arguments:
+#
+#   [  5,  0 ] = sofa (1.4, -40.0,   0.0 : 0) : "./mit_kemar_normal_pinna.sofa"
+#   [  5,  1 ] = sofa (1.4, -40.0, 353.6 : 0) : "./mit_kemar_normal_pinna.sofa"
+#   [  5,  2 ] = sofa (1.4, -40.0, 347.1 : 0) : "./mit_kemar_normal_pinna.sofa"
+#   [  5,  3 ] = sofa (1.4, -40.0, 340.7 : 0) : "./mit_kemar_normal_pinna.sofa"
+#   ...
+#
+# If HRIR composition isn't necessary, it's easier to just use the following:
+
+[ * ] = sofa : "./mit_kemar_normal_pinna.sofa" mono
+

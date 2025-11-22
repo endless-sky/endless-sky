@@ -1,0 +1,37 @@
+# Cross-compiling requires CMake 2.6 or newer. Example:
+# cmake .. -DCMAKE_TOOLCHAIN_FILE=../XCompile.txt -DHOST=i686-w64-mingw32
+# Where 'i686-w64-mingw32' is the host prefix for your cross-compiler. If you
+# already have a toolchain file setup, you may use that instead of this file.
+
+# the name of the target operating system
+SET(CMAKE_SYSTEM_NAME Windows)
+
+# which compilers to use for C and C++
+SET(CMAKE_C_COMPILER "${HOST}-gcc")
+SET(CMAKE_CXX_COMPILER "${HOST}-g++")
+SET(CMAKE_RC_COMPILER "${HOST}-windres")
+
+# here is the target environment located
+SET(CMAKE_FIND_ROOT_PATH "/usr/${HOST}")
+
+# here is where stuff gets installed to
+SET(CMAKE_INSTALL_PREFIX "${CMAKE_FIND_ROOT_PATH}" CACHE STRING "Install path prefix, prepended onto install directories." FORCE)
+
+# adjust the default behaviour of the FIND_XXX() commands:
+# search headers and libraries in the target environment, search 
+# programs in the host environment
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+# set env vars so that pkg-config will look in the appropriate directory for
+# .pc files (as there seems to be no way to force using ${HOST}-pkg-config)
+set(ENV{PKG_CONFIG_LIBDIR} "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig")
+set(ENV{PKG_CONFIG_PATH} "")
+
+# Qt4 tools
+SET(QT_QMAKE_EXECUTABLE ${HOST}-qmake)
+SET(QT_MOC_EXECUTABLE ${HOST}-moc)
+SET(QT_RCC_EXECUTABLE ${HOST}-rcc)
+SET(QT_UIC_EXECUTABLE ${HOST}-uic)
+SET(QT_LRELEASE_EXECUTABLE ${HOST}-lrelease)

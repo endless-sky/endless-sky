@@ -1,0 +1,48 @@
+# This is a makemhr HRIR definition file.  It is used to define the layout and
+# source data to be processed into an OpenAL Soft compatible HRTF.
+#
+# This definition is used to transform the near-field KEMAR HRIRs provided by
+# Bosun Xie <phbsxie@scut.edu.cn> of the South China University of
+# Technology, Guangzhou, China; and converted from SCUT to SOFA format by
+# Piotr Majdak <piotr@majdak.com> of the Acoustics Research Institute,
+# Austrian Academy of Sciences.
+#
+# A copy of the data (SCUT_KEMAR_radius_all.sofa) is available from:
+#
+#  http://sofacoustics.org/data/database/scut/SCUT_KEMAR_radius_all.sofa
+#
+# It is provided under the Creative Commons CC 3.0 BY-SA-NC license:
+#
+#  https://creativecommons.org/licenses/by-nc-sa/3.0/
+
+rate     = 44100
+
+# While the SOFA file is stereo, doubling the size of the data set will cause
+# the utility to exhaust its address space if compiled 32-bit.  Since the
+# dummy head is symmetric, the same results (ignoring variations caused by
+# measurement error) can be obtained using mono channel processing.
+type     = mono
+
+points   = 512
+
+radius   = 0.09
+
+# This data set has 10 fields ranging from 0.2m to 1m.  The layout was
+# obtained using the sofa-info utility.
+distance = 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+
+azimuths = 1, 24, 36, 72, 72, 72, 72, 72, 72, 72, 36, 24, 1;
+           1, 24, 36, 72, 72, 72, 72, 72, 72, 72, 36, 24, 1;
+           1, 24, 36, 72, 72, 72, 72, 72, 72, 72, 36, 24, 1;
+           1, 24, 36, 72, 72, 72, 72, 72, 72, 72, 36, 24, 1;
+           1, 24, 36, 72, 72, 72, 72, 72, 72, 72, 36, 24, 1;
+           1, 24, 36, 72, 72, 72, 72, 72, 72, 72, 36, 24, 1;
+           1, 24, 36, 72, 72, 72, 72, 72, 72, 72, 36, 24, 1;
+           1, 24, 36, 72, 72, 72, 72, 72, 72, 72, 36, 24, 1;
+           1, 24, 36, 72, 72, 72, 72, 72, 72, 72, 36, 24, 1;
+           1, 24, 36, 72, 72, 72, 72, 72, 72, 72, 36, 24, 1
+
+# Given the above compatible layout, we can automatically process the entire
+# data set.
+[ * ] = sofa : "./SCUT_KEMAR_radius_all.sofa" mono
+

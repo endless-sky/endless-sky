@@ -1,0 +1,42 @@
+Ambisonic decoder configuration presets are provided here for common surround
+sound speaker layouts. The presets are prepared to work with OpenAL Soft's high
+quality decoder. By default all of the speaker distances within a preset are
+set to the same value, which results in no effect from distance compensation.
+If this doesn't match your physical speaker setup, it may be worth copying the
+preset and modifying the distance values to match (note that modifying the
+azimuth and elevation values in the presets will not have any effect; the
+specified angles do not change the decoder behavior).
+
+Details of the individual presets are as follows.
+
+square.ambdec
+Specifies a basic square speaker setup for Quadraphonic output, with identical
+width and depth. Front speakers are placed at +45 and -45 degrees, and back
+speakers are placed at +135 and -135 degrees.
+
+rectangle.ambdec
+Specifies a narrower speaker setup for Quadraphonic output, with a little less
+width but a little more depth over a basic square setup. Front speakers are
+placed at +30 and -30 degrees, providing a bit more compatibility for existing
+stereo content, with back speakers at +150 and -150 degrees.
+
+itu5.1.ambdec
+Specifies a standard ITU 5.0/5.1 setup for 5.1 Surround output. The front-
+center speaker is placed directly in front at 0 degrees, with the front-left
+and front-right at +30 and -30 degrees, and the surround speakers (side or
+back) at +110 and -110 degrees.
+
+hexagon.ambdec
+Specifies a flat-front hexagonal speaker setup for 7.1 Surround output. The
+front left and right speakers are placed at +30 and -30 degrees, the side
+speakers are placed at +90 and -90 degrees, and the back speakers are placed at
++150 and -150 degrees. Although this is for 7.1 output, no front-center speaker
+is defined for the decoder, meaning that speaker will be silent for 3D sound
+(however it may still be used with AL_SOFT_direct_channels or ALC_EXT_DEDICATED
+output). A "proper" 7.1 decoder may be provided in the future, but due to the
+nature of the speaker configuration will have trade-offs.
+
+3D7.1.ambdec
+Specifies a 3D7.1 speaker setup for 7.1 Surround output. Although it's for 7.1
+output, the speakers for such a configuration need to be placed in different
+positions for proper results. Please see docs/3D7.1.txt for more information.

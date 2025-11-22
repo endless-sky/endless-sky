@@ -1,0 +1,46 @@
+# AmbDec configuration
+# Written by Ambisonic Decoder Toolbox, version 8.0
+
+# input channel order: WYXVU
+
+/description     itu50-noCenter_2h0p_allrad_5200_rE_max_1_band
+
+# Although unused in this configuration, the front-center is declared here so
+# that an appropriate distance may be set (for proper delaying or attenuating
+# of dialog and such which feed it directly). It otherwise does not contribute
+# to positional sound output.
+
+/version            3
+
+/dec/chan_mask      11b
+/dec/freq_bands     1
+/dec/speakers       5
+/dec/coeff_scale    fuma
+
+/opt/input_scale    fuma
+/opt/nfeff_comp     input
+/opt/delay_comp     on
+/opt/level_comp     on
+/opt/xover_freq     400.000000
+/opt/xover_ratio    0.000000
+
+/speakers/{
+#           id  dist         azim      elev      conn
+#-----------------------------------------------------------------------
+add_spkr    LS  1.000000   110.000000  0.000000  system:playback_3
+add_spkr    LF  1.000000    30.000000  0.000000  system:playback_1
+add_spkr    CE  1.000000     0.000000  0.000000  system:playback_5
+add_spkr    RF  1.000000   -30.000000  0.000000  system:playback_2
+add_spkr    RS  1.000000  -110.000000  0.000000  system:playback_4
+/}
+
+/matrix/{
+order_gain  1.00000000e+00 8.66025404e-01 5.00000000e-01 0.000000
+add_row  4.70934222e-01  3.78169605e-01 -4.00084750e-01 -8.22264454e-02 -4.43765986e-02
+add_row  2.66639870e-01  2.55418584e-01  3.32591390e-01  2.82949132e-01  8.16816772e-02
+add_row  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+add_row  2.66634915e-01 -2.55421639e-01  3.32586482e-01 -2.82947688e-01  8.16782588e-02
+add_row  4.70935891e-01 -3.78173080e-01 -4.00080588e-01  8.22279700e-02 -4.43716394e-02
+/}
+
+/end

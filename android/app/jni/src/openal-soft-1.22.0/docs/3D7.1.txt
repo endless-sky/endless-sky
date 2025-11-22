@@ -1,0 +1,82 @@
+Overview
+========
+
+3D7.1 is a custom speaker layout designed by Simon Goodwin at Codemasters[1].
+Typical surround sound setups, like quad, 5.1, 6.1, and 7.1, only produce audio
+on a 2D horizontal plane with no verticality, which means the envelopment of
+"surround" sound is limited to left, right, front, and back panning. Sounds
+that should come from above or below will still only play in 2D since there is
+no height difference in the speaker array.
+
+To work around this, 3D7.1 was designed so that some speakers are placed higher
+than the listener while others are lower, in a particular configuration that
+tries to provide balanced output and maintain some compatibility with existing
+audio content and software. Software that recognizes this setup, or can be
+configured for it, can then take advantage of the height difference and
+increase the perception of verticality for true 3D audio. The result is that
+sounds can be perceived as coming from left, right, front, and back, as well as
+up and down.
+
+[1] http://www.codemasters.com/research/3D_sound_for_3D_games.pdf
+
+
+Hardware Setup
+==============
+
+Setting up 3D7.1 requires an audio device capable of raw 8-channel or 7.1
+output, along with a 7.1 speaker kit. The speakers should be hooked up to the
+device in the usual way, with front-left and front-right output going to the
+front-left and front-right speakers, etc. The placement of the speakers should
+be set up according to the table below. Azimuth is the horizontal angle in
+degrees, with 0 directly in front and positive values go /left/, and elevation
+is the vertical angle in degrees, with 0 at head level and positive values go
+/up/.
+
+------------------------------------------------------------
+- Speaker label | Azimuth | Elevation |      New label     -
+------------------------------------------------------------
+- Front left    |    51   |     24    |   Upper front left -
+- Front right   |   -51   |     24    |  Upper front right -
+- Front center  |     0   |      0    |       Front center -
+- Subwoofer/LFE |   N/A   |    N/A    |      Subwoofer/LFE -
+- Side left     |   129   |    -24    |    Lower back left -
+- Side right    |  -129   |    -24    |   Lower back right -
+- Back left     |   180   |     55    |  Upper back center -
+- Back right    |     0   |    -55    | Lower front center -
+------------------------------------------------------------
+
+Note that this speaker layout *IS NOT* compatible with standard 7.1 content.
+Audio that should be played from the back will come out at the wrong location
+since the back speakers are placed in the lower front and upper back positions.
+However, this speaker layout *IS* more or less compatible with standard 5.1
+content. Though slightly tilted, to a listener sitting a bit further back from
+the center, the front and side speakers will be close enough to their intended
+locations that the output won't be too off.
+
+
+Software Setup
+==============
+
+To enable 3D7.1 on OpenAL Soft, first make sure the audio device is configured
+for 7.1 output. Then in the alsoft-config utility, under the Renderer tab,
+select the 3D7.1.ambdec preset for the 7.1 Surround decoder configuration. And
+that's it. Any applications using OpenAL Soft can take advantage of fully 3D
+audio, and multi-channel sounds will be properly remixed for the speaker
+layout.
+
+Playback can be improved by (copying and) modifying the 3D7.1.ambdec preset,
+changing the specified speaker distances to match the the real distance (in
+meters) from the center of the speaker array, then enable High Quality Mode in
+alsoft-config. That will improve the quality when the speakers are not all
+equidistant.
+
+Note that care must be taken that the audio device is not treated as a "true"
+7.1 device by non-3D7.1-capable applications. In particular, the audio server
+should not try to upmix stereo and 5.1 content to "fill out" the back speakers,
+and non-3D7.1 apps should be set to either stereo or 5.1 output.
+
+As such, if your system is capable of it, it may be useful to define a virtual
+5.1 device that maps the front, side, and LFE channels to the main device for
+output and disables upmixing, then use that virtual 5.1 device for apps that do
+normal stereo or surround sound output, and use the main device for apps that
+understand 3D7.1 output.

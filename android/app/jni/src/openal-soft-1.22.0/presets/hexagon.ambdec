@@ -1,0 +1,51 @@
+# AmbDec configuration
+# Written by Ambisonic Decoder Toolbox, version 8.0
+
+/description     Hexagon_2h0p_pinv_match_rV_max_rE_2_band
+
+/version         	3
+
+/dec/chan_mask   	11b
+/dec/freq_bands  	2
+/dec/speakers    	6
+/dec/coeff_scale 	fuma
+
+/opt/input_scale  	fuma
+/opt/nfeff_comp   	input
+/opt/delay_comp   	on
+/opt/level_comp   	on
+/opt/xover_freq   	400.000000
+/opt/xover_ratio  	0.000000
+
+/speakers/{
+#            id      dist     azim     elev     conn
+#-----------------------------------------------------------------------
+add_spkr 	LF	 1.000000	 30.000000	 0.000000
+add_spkr 	RF	 1.000000	-30.000000	 0.000000
+add_spkr 	RS	 1.000000	-90.000000	 0.000000
+add_spkr 	RB	 1.000000	-150.000000	 0.000000
+add_spkr 	LB	 1.000000	 150.000000	 0.000000
+add_spkr 	LS	 1.000000	 90.000000	 0.000000
+/}
+
+/lfmatrix/{
+order_gain	1.000000	1.000000	1.000000	0.000000
+add_row 	 0.235702	 0.166667	 0.288675	 0.288675	 0.166667
+add_row 	 0.235702	-0.166667	 0.288675	-0.288675	 0.166667
+add_row 	 0.235702	-0.333333	 0.000000	-0.000000	-0.333333
+add_row 	 0.235702	-0.166667	-0.288675	 0.288675	 0.166667
+add_row 	 0.235702	 0.166667	-0.288675	-0.288675	 0.166667
+add_row 	 0.235702	 0.333333	 0.000000	-0.000000	-0.333333
+/}
+
+/hfmatrix/{
+order_gain	1.414214	1.224745	0.707107	0.000000
+add_row 	 0.235702	 0.166667	 0.288675	 0.288675	 0.166667
+add_row 	 0.235702	-0.166667	 0.288675	-0.288675	 0.166667
+add_row 	 0.235702	-0.333333	 0.000000	-0.000000	-0.333333
+add_row 	 0.235702	-0.166667	-0.288675	 0.288675	 0.166667
+add_row 	 0.235702	 0.166667	-0.288675	-0.288675	 0.166667
+add_row 	 0.235702	 0.333333	 0.000000	-0.000000	-0.333333
+/}
+
+/end
