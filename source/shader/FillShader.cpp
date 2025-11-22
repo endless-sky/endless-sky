@@ -32,8 +32,16 @@ namespace {
 	GLint sizeI;
 	GLint colorI;
 
+	GLint vertI;
+
 	GLuint vao;
 	GLuint vbo;
+
+	void EnableAttribArrays()
+	{
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	}
 }
 
 
@@ -47,10 +55,14 @@ void FillShader::Init()
 	centerI = shader->Uniform("center");
 	sizeI = shader->Uniform("size");
 	colorI = shader->Uniform("color");
+	vertI = shader->Attrib("vert");
 
 	// Generate the vertex data for drawing sprites.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+	{
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+	}
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -63,12 +75,13 @@ void FillShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader->Attrib("vert"));
-	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	if(OpenGL::HasVaoSupport())
+		EnableAttribArrays();
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
 }
 
 
@@ -86,7 +99,13 @@ void FillShader::Fill(const Point &center, const Point &size, const Color &color
 		throw runtime_error("FillShader: Draw() called before Init().");
 
 	glUseProgram(shader->Object());
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
@@ -101,6 +120,12 @@ void FillShader::Fill(const Point &center, const Point &size, const Color &color
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
 	glUseProgram(0);
 }
