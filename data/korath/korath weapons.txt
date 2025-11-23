@@ -47,8 +47,8 @@ outfit "Grab-Strike Turret"
 			"leading"
 			"throttle control"
 		"tracking" .7
-		"shield damage" 108
-		"hull damage" 32
+		"shield damage" 118.8
+		"hull damage" 35.2
 		"hit force" -240
 	description "Korath Grab-Strike projectiles are designed to pull a target closer to the Korath ship, to keep it from escaping."
 
@@ -148,8 +148,8 @@ outfit "Banisher Grav-Turret"
 		"reload" 1
 		"firing energy" 3.3
 		"firing heat" 4.9
-		"shield damage" 2.8
-		"hull damage" .9
+		"shield damage" 3.1
+		"hull damage" 1
 		"hit force" 60
 	description "The Korath like to keep their enemies close... but not too close."
 
@@ -362,8 +362,8 @@ outfit "Thermal Repeater"
 		"cluster"
 		"firing energy" 24
 		"firing heat" 108
-		"shield damage" 26
-		"hull damage" 22
+		"shield damage" 28.6
+		"hull damage" 24.2
 		"heat damage" 33
 	description "This is the smallest and simplest Korath projectile weapon, designed mostly for use on fighters and drones. As with most Korath technology, it generates a large amount of heat, enough that the gun must pause briefly after every few shots to cool down."
 
@@ -406,8 +406,8 @@ outfit "Thermal Repeater Turret"
 		"cluster"
 		"firing energy" 24
 		"firing heat" 108
-		"shield damage" 26
-		"hull damage" 22
+		"shield damage" 28.6
+		"hull damage" 24.2
 		"heat damage" 33
 	description "Thermal Repeaters fire compact bolts of superheated plasma at their targets. For every one of these turrets installed on a ship, an auxiliary cooling system is typically required to cope with its heat output."
 
@@ -470,8 +470,8 @@ outfit "Piercer Missile Launcher"
 			"leading"
 			"throttle control"
 		"infrared tracking" .9
-		"shield damage" 290
-		"hull damage" 440
+		"shield damage" 319
+		"hull damage" 484
 		"piercing" .2
 		"hit force" 450
 		"missile strength" 73
@@ -551,9 +551,9 @@ outfit "Korath Detainer"
 		"firing energy" 756
 		"firing force" 60
 		"firing heat" 400
+		"shield damage" 352
+		"hull damage" 264
 		"hit force" 120
-		"shield damage" 320
-		"hull damage" 240
 		"slowing damage" 40
 		"blast radius" 20
 	description "Although not the most damaging weapon of its size, the Korath Detainer is feared for two reasons: its exceptionally long range, and its ability to interfere with the propulsion systems of any ship it strikes. Its reputation has earned it the honor of being named for the Korath themselves."
@@ -647,8 +647,8 @@ outfit "Cluster Mine Layer"
 			"throttle control"
 		"infrared tracking" .9
 		"missile strength" 35
-		"shield damage" -3200
-		"hull damage" -2400
+		"shield damage" -3520
+		"hull damage" -2640
 		"hit force" -225
 		"stream"
 	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced."
@@ -670,8 +670,8 @@ outfit "Korath Mine Submunition"
 		"random lifetime" 60
 		"acceleration" .00001
 		"drag" .05
-		"shield damage" 350
-		"hull damage" 280
+		"shield damage" 385
+		"hull damage" 308
 		"hit force" 300
 		"missile strength" 22
 
@@ -733,8 +733,8 @@ outfit "Shield Disruptor Turret"
 		"reload" 1
 		"firing energy" 8.0
 		"firing heat" 2.7
-		"shield damage" 3.8
-		"hull damage" .5
+		"shield damage" 4.2
+		"hull damage" .55
 		"disruption damage" .24
 	description "Shield Disruptor Turrets interfere with a ship's shields, allowing a ship's hull to be damaged even when shields are up. However, they do very little hull damage by themselves."
 
@@ -772,8 +772,8 @@ outfit "Husk-Slice"
 		"burst count" 17
 		"firing energy" 5.6
 		"firing heat" 17.8
-		"shield damage" 6.3
-		"hull damage" 16.7
+		"shield damage" 6.9
+		"hull damage" 18.4
 	description "This massive beam weapon is relatively ineffective against shields, but cuts through hull armor like it's made of paper."
 
 outfit "Husk-Slice Turret"
@@ -803,8 +803,8 @@ outfit "Husk-Slice Turret"
 		"burst count" 17
 		"firing energy" 5.6
 		"firing heat" 17.8
-		"shield damage" 6.3
-		"hull damage" 16.7
+		"shield damage" 6.9
+		"hull damage" 18.4
 	description "This turret fires a tightly focused energy beam that is particularly effective against hull armor. When paired with a disruptor turret, it is a deadly combination."
 
 effect "slicer impact"
