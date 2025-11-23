@@ -53,7 +53,7 @@ void ConditionAssignments::Load(const DataNode &node, const ConditionsStore *con
 {
 	this->conditions = conditions;
 	if(!node.HasChildren())
-		node.PrintTrace("Error: Loading empty set of assignments");
+		node.PrintTrace("Loading empty set of assignments");
 
 	// Loop through all children, and parse each line into an Assignment.
 	for(const DataNode &child : node)
@@ -207,7 +207,7 @@ void ConditionAssignments::Add(const DataNode &node, const ConditionsStore *cond
 	}
 	else
 	{
-		node.PrintTrace("Error: Incomplete assignment");
+		node.PrintTrace("Incomplete assignment.");
 		return;
 	}
 }

@@ -87,7 +87,7 @@ void Weapon::Load(const DataNode &node)
 			// compatibility.
 			if(child.Size() == 2)
 			{
-				child.PrintTrace("Warning: Deprecated use of \"homing\" followed by a value."
+				child.PrintTrace("Deprecated use of \"homing\" followed by a value."
 					" Define individual homing attributes instead:");
 				int value = child.Value(1);
 				if(value >= 3)
@@ -423,7 +423,7 @@ void Weapon::Load(const DataNode &node)
 	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
 	{
 		tracking = 1.;
-		node.PrintTrace("Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
+		node.PrintTrace("Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
 	}
 
 	// Convert the "live effect" counts from occurrences per projectile lifetime

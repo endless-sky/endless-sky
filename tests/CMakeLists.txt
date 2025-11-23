@@ -15,10 +15,12 @@ find_package(Catch2 CONFIG REQUIRED)
 target_sources(EndlessSkyTests PRIVATE
 	unit/include/datanode-factory.h
 	unit/include/es-test.hpp
+	unit/include/logger-output.h
 	unit/include/output-capture.hpp
 	unit/src/comparators/test_byGivenOrder.cpp
 	unit/src/comparators/test_byName.cpp
 	unit/src/helpers/datanode-factory.cpp
+	unit/src/helpers/logger-output.cpp
 	unit/src/test_account.cpp
 	unit/src/test_angle.cpp
 	unit/src/test_bitset.cpp

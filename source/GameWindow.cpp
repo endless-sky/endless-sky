@@ -18,21 +18,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Screen.h"
 
+#ifdef _WIN32
+#include "windows/WinWindow.h"
+#endif
+
 #include "opengl.h"
 #include <SDL2/SDL.h>
 
 #include <cstring>
 #include <sstream>
 #include <string>
-
-#ifdef _WIN32
-#include "windows/WinVersion.h"
-
-#include <windows.h>
-
-#include <dwmapi.h>
-#include <SDL2/SDL_syswm.h>
-#endif
 
 using namespace std;
 
@@ -55,7 +50,7 @@ namespace {
 		string message = SDL_GetError();
 		if(!message.empty())
 		{
-			Logger::LogError("(SDL message: \"" + message + "\")");
+			Logger::Log("(SDL message: \"" + message + "\")", Logger::Level::ERROR);
 			SDL_ClearError();
 			return true;
 		}
@@ -116,16 +111,17 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 	if(mode.refresh_rate && mode.refresh_rate < 60)
-		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
-			" The game will run more slowly.");
+		Logger::Log("Low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
+			" The game will run more slowly.", Logger::Level::WARNING);
 
 	// Make the window just slightly smaller than the monitor resolution.
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
 	if(maxWidth < minWidth || maxHeight < minHeight)
-		Logger::LogError("Monitor resolution is too small! Minimal requirement is "
+		Logger::Log("Monitor resolution is too small! Minimal requirement is "
 			+ to_string(minWidth) + 'x' + to_string(minHeight)
-			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.');
+			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.',
+			Logger::Level::WARNING);
 
 	int windowWidth = maxWidth - 100;
 	int windowHeight = maxHeight - 100;
@@ -423,7 +419,7 @@ void GameWindow::ToggleFullscreen()
 void GameWindow::ExitWithError(const string &message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
-	Logger::LogError(message);
+	Logger::Log(message, Logger::Level::ERROR);
 	checkSDLerror();
 
 	// Show the error message in a message box.
@@ -455,61 +451,13 @@ void GameWindow::ExitWithError(const string &message, bool doPopUp)
 #ifdef _WIN32
 void GameWindow::UpdateTitleBarTheme()
 {
-	if(!WinVersion::SupportsDarkTheme())
-		return;
-
-	SDL_SysWMinfo windowInfo;
-	SDL_VERSION(&windowInfo.version);
-	SDL_GetWindowWMInfo(mainWindow, &windowInfo);
-
-	BOOL value;
-	Preferences::TitleBarTheme themePreference = Preferences::GetTitleBarTheme();
-	// If the default option is selected, check the system-wide preference.
-	if(themePreference == Preferences::TitleBarTheme::DEFAULT)
-	{
-		HKEY systemPreference;
-		if(RegOpenKeyExW(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
-			0, KEY_READ, &systemPreference) == ERROR_SUCCESS)
-		{
-			DWORD size = sizeof(value);
-			if(RegQueryValueExW(systemPreference, L"AppsUseLightTheme", 0, nullptr,
-					reinterpret_cast<LPBYTE>(&value), &size) == ERROR_SUCCESS)
-				// The key says about light theme, while DWM expects information about dark theme.
-				value = !value;
-			else
-				value = 1;
-			RegCloseKey(systemPreference);
-		}
-		else
-			value = 1;
-	}
-	else
-		value = themePreference == Preferences::TitleBarTheme::DARK;
-
-	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
-	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
-		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
-	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
-	FreeLibrary(dwmapi);
+	WinWindow::UpdateTitleBarTheme(mainWindow);
 }
 
 
 
 void GameWindow::UpdateWindowRounding()
 {
-	if(!WinVersion::SupportsWindowRounding())
-		return;
-
-	SDL_SysWMinfo windowInfo;
-	SDL_VERSION(&windowInfo.version);
-	SDL_GetWindowWMInfo(mainWindow, &windowInfo);
-
-	auto value = static_cast<DWM_WINDOW_CORNER_PREFERENCE>(Preferences::GetWindowRounding());
-
-	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
-	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
-		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
-	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_WINDOW_CORNER_PREFERENCE, &value, sizeof(value));
-	FreeLibrary(dwmapi);
+	WinWindow::UpdateWindowRounding(mainWindow);
 }
 #endif
