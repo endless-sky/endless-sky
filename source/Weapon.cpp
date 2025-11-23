@@ -115,6 +115,8 @@ void Weapon::Load(const DataNode &node)
 					grand.PrintTrace("Skipping unknown homing attribute:");
 			}
 		}
+		else if(key == "triggers nuke alert")
+			triggersNukeAlert = true;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
