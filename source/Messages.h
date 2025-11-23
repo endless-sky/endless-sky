@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Color;
+class DataWriter;
 
 
 
@@ -57,6 +58,10 @@ public:
 	static const std::vector<Entry> &Get(int step, int animationDuration);
 	static const std::deque<std::pair<std::string, const Message::Category *>> &GetLog();
 
+	static void ClearLog();
 	// Reset the messages (i.e. because a new game was loaded).
 	static void Reset();
+
+	static void LoadLog(const DataNode &node);
+	static void SaveLog(DataWriter &out);
 };
