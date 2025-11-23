@@ -2930,12 +2930,15 @@ mission "Ka'het: Patir Mystery 27"
 			has "Ka'het: Patir Mystery 26B: done"
 	on offer
 		conversation
-			`One of the asteroids was in the system when you returned! Board it before the Ka'sei mine it, then return to Caelian.`
-				accept
-# add Ka'sei NPC and asteroid NPC
+			`The Remnant walk to your ship - late, as you are becoming accustomed to - with an excited stride. "One of those creatures was in the system when Patir moved back! We have recorded it as it turned inactive, floating aimlessly around the system. If you are quick enough, perhaps we can get to board it before the Ka'sei mine it. We can afford to make a stop before our return to <planet> - after all, Patir is not moving away any time soon."`
+			`	He shows you a map of the system, marking the asteroid in a color blinking red and white. Two Fetri'sei are already on the way: you push the engines at the maximum power, hoping to make it in time...`
+				launch
+# add 2 Ka'sei NPC and asteroid NPC, the former trying to kill the latter
+# take the asteroid outfits from first last in the on complete
 	on complete
 		conversation
-			`You land past the Korath fight, and you unload the outfits in the place Chilia had led you previously, and they disappear again deep inside the complex. Meet in spaceport`
+			`Before you are ready to enter the final descent, a communication from Chilia offers you new coordinates for your cargo. You pilot your ship to the new location in the middle of the desert - much alike the one you had first met him in, you discover - and land your ship in the only landing pad you can see. As if trying to maintain a great secrecy, groups of Remnant come marching out of the hangar, cover your cargo as best as they can with reflective, metallic-looking sheets, and silently take it away down an unmarked tunnel.`
+			`	As the sun sets over the mountain ranges in the distance, Dusk signs you to return to the main starport, so that they can unload their own experiments and get back to work. "As you might imagine, it is time for another project debriefing. Independently from how it goes, we will be in the closest cafeteria tomorrow morning; if you pass by, we will make sure to give you an update," he concludes slightly ominous.`
 
 mission "Ka'het: Patir Mystery 28"
 	name "Tanker fleet"
@@ -2947,11 +2950,60 @@ mission "Ka'het: Patir Mystery 28"
 		has "Ka'het: Patir Mystery 27: done"
 	on offer
 		conversation
-			`You meet up with Dusk; this mission must work independently from whether you did the PM 30 to 35 mission set or not. Meet up with Taely; introduce Swan. The Swans here are actually quite old prototypes; the objective is to test them as huge hyperspace fuel scooper from the gas giant in Postverta and the surrounding systems. Either way, it's time for the expedition, escort tankers to Ssil Vida for preparations. First long stay, first complete mission plan.`
+			`You find Dusk alone, sipping from a short, colorful glass lost in his thoughts. "<first>, the review is going to take a while still. Given the wealth of data we have gathered, and that most of the crew by necessity does not have a symbiont, we have agreed to split the analysis over a few days. A week, perhaps." He looks at his clock, then checks his communicator for any message. "Do not worry, though: I am not going to leave you without work during this wait."`
+			choice
+				`	"What in particular?"`
+					goto someone
+				`	"Are you waiting for someone?"`
+					goto someone
+				`	"Actually, I would have other commitments right now."`
+			`	He looks surprised, though he soon tries to hide it. "Oh. Is there any chance you might delay them? We have a fairly important at work here, and you have been precious during all of our past expeditions." He makes some mental calculations. "You might be free in a little over a month, going by our plans."`
+			choice
+				`	"Alright, they can wait."`
+					goto someone
+				`	"Sorry, but I cannot delay them any more."`
+			`	"Alright then," he replies disappointed. "We will be here when you have time for us again, if you do not take too long."`
+				defer
+			label someone
+			`	Your conversation is interrupted by Taely's arrival. She returns a gesture of greeting with one hand, carrying her communicator the other. "Our fleet is ready. We need some more time to carry them to the pad, but as far as we are concerned there are no blockers of any kind." She signs to follow them to the hangar, and you hurry up to keep the pace with her and Dusk.`
+			`	"You might not know that, on top of the energy required, Ssil Vida uses significant amounts of hyperspace fuel in its operations," she explains. "It is able to ramscoop a limited amount of propellant from Postverta, but we had to add more on our own in order to keep up with our needs. I have helped coordinate the fueling fleets used for your recent expeditions, and I assure you that the logistics are becoming exceedingly complex over time. At last, we have become convinced that we need a specialized vehicle for such a role."`
+			`	Three identical Remnant ships are queuing out of the the local shipyard, each towed by two rows of camels and hovering barely a meter above the ground. Trying pass through the crowds that have gathered to watch their passage, you notice that their wingspan is among the largest and thickest you ever had a chance to see. The wingtips are sometimes just a few centimeters from buildings at the sides of the road, though the convoy is moving faster than you would expect with such tight gaps. Its structure reminds you of that of a large and heavy bird, with oversized wings and a thick neck.`
+			choice
+				`	"What is their name?"`
+					goto name 
+				`	"How did you make them this quickly?"`
+					goto alive
+				`	"Are they alive?"`
+					goto alive
+				`	"They look beautiful."`
+			`	"I like them more for what they represent," she replies. "The history of the Swan is old, and fairly complicated. They were about ready to enter production over a decade ago; however, the design exercise was not able to make a reasonable use case for them, and they had to stay in a limbo for all this time, watching newer and more innovative designs come out of the lines once conceived for them. Their style is considered fairly retro by now, and these first builds are heavier than we would like to. But to me, these equate an end of an era for our shipyards." She looks at them nostalgic. "Chances are that the Swan will be the last cleans sheet design we produce not to be a liveship."`
+				goto continue
+			label alive
+			`	"Their design predates liveships. And in fact, chances are that the Swan will be the last cleans sheet design we produce not to be a one." She looks at them nostalgic. "The history of the Swan is old, and fairly complicated. They were about ready to enter production over a decade ago; however, the design exercise was not able to make a reasonable use case for them, and they had to stay in a limbo for all this time, watching newer and more innovative designs come out of the lines once conceived for them. Their style is considered fairly retro by now, and these first builds are heavier than we would like to. But to me, these equate an end of an era for our shipyards."`
+				goto continue
+			label name
+			`	"We called them Swans," she replies, "in what now feels like eons ago. They were about ready to enter production over a decade ago; however, the design exercise was not able to make a reasonable use case for them, and they had to stay in a limbo for all this time, watching newer and more innovative designs come out of the lines once conceived for them. Their style is considered fairly retro by now, and these first builds are heavier than we would like to. But to me, these equate an end of an era for our shipyards." She looks at them nostalgic. "Chances are that the Swan will be the last cleans sheet design we produce not to be a liveship."`
+			label continue
+			`	"They will be much more useful now than they would have been back then," intervenes Dusk as the convoy reaches the closest pads of the starport.`
+			`	"The role of these models will be around Postverta, going back and forth from the local gas giants to scoop deuterium for Ssil Vida. They are by a good amount the largest design we have produced for that purpose - though they cannot go as deep as a gaslining craft or a specialized vehicle - and we want to give them some stress testing before we use them for more complex missions. They are in effect massive tankers, and not just of hyperspace fuel: their wings can fill with many tons of any liquid, from the cryogenic hydrogen to the slime of a Void Sprite."`
+			choice
+				`	"Alright, I am ready."`
+				`	"What about the next expedition?"`
+			`	"I am going to stay here to help the preparations for Patir," comments Dusk. "Our next trip, if the assigned prefects authorize it, will be the both first long endurance stay and the first complete expedition: five of our crew in the laboratory analyzing the Builder settlement or their surroundings, and five in your ship exploring the space beyond Patir in-situ." You reply to his bow, and he disappears in the crowd.`
+			`	"I will take his bunk on your ship, if it is fine for you," adds Taely. "Make sure to escort them closely to <planet>: they may be armed, but this is the first true flight their crews make in those Swans."`
 				accept
-# add Remnant Swan NPCs
+# add 3 Remnant Swan NPCs, with inhibitor turrets
+# add Korath NPC at ssil vida
 	on complete
-		`Taely watches the Swans dwell into the atmosphere of the gas giant. Meet in the spaceport after she evaluates them.`
+		`As you make a hard-dock to <planet>, the three Swans go their own way toward the local gas giant. Taely explains that she will check them up from here: the inhabitants of Ssil Vida have been kind enough to set up a console for this test. "This one will be more or less a rehearsal," she informs you. "Strange and hard to explain things happen around that world when Ssil Vida gets engaged, and to avoid complications we intend to send them to scoop from the nearby systems once operational."`
+		`	She looks at them with admiration. "The work on them has been remarkably smooth, but it has spent so many years in my folders - and it took so much of my time recently - that I cannot help but have mixed feelings watching them fly away."`
+			choice
+				`	"It is natural to feel that way."`
+					goto natural
+				`	"What about the work on the Peregrine?"`
+		`	She smiles amused. "I sense a practical purpose behind your question. Unfortunately, progress has not been as fast as we hoped for: liveships are still a very new concept for us, and to get production and training to the rates we wanted is proving complex. It will be at least a few months before you find them in our shipyards, I fear. Our security needs have to take precedence, but I will make sure to notify you as soon as they are available."`
+		label natural
+		`	By the time you have accompanied Taely to her workstation, the Swans are barely another star in the sky. "It will be just a matter of hours before the Swans are on the way back here. It should not be hard to meet up in the local starport hub once I am done: after all, it is still quite small."`
 # add permanent Swan fleet to Postverta
 
 
@@ -2967,7 +3019,10 @@ mission "Ka'het: Patir Mystery 29"
 			`Swans go well, Ssil Vida is being refueled, but one of the Remnant ask you to find a Korath that got in the pocket dimension and is stranded there. Taely tells you to go, fueling operations will take a day still; however, she leaves you one of the Swans for the fight to test it. It has inhibitor turrets! Mention Human stuff to interface in Ssil Vida? You can ask her about Peregrines.`	
 # add ssil vida activates event
 # add one Remnant Swan NPC
-# add Korath NPCs; it will be three 'olofez disabled in Postverta (no crew) and one of those dredgers in another system of the cluster (half crew; the local life has killed most of them without destroying the ship!
+# add Korath NPCs; it will be three 'olofez disabled in Postverta (no crew) and one of those Palavret in another system of the cluster (half crew; the local life has killed most of them without destroying the ship!
+
+# this is where I would put my crew damage weapon...
+# IF I HAD ONE!
 
 mission "Ka'het: Patir Mystery 30"
 	name "Taely to <planet>"
@@ -2979,7 +3034,7 @@ mission "Ka'het: Patir Mystery 30"
 		has "Ka'het: Patir Mystery 29: done"
 	on offer
 		conversation
-			`You have killed the Korath, come back to pick up Taely leaving the Swans stationed there. Also, clock in Ssil Vida marking the days before Patir disappears. Person who thanks you for your effort mentions how the Postverta cluster is essentially a look into the pristine Ember Waste before it was ravaged by the Drak wars millions of years ago (don't be this descriptive).`
+			`You have killed the Korath, come back to pick up Taely leaving the Swans stationed there. Also, clock in Ssil Vida marking the days before Patir disappears. Person who thanks you for your effort mentions how the Postverta cluster is essentially a look into the pristine Ember Waste before it was ravaged by the Drak wars millions of years ago (don't be this descriptive). Mention here the human stuff: she allows you an anticipated access to the Inhibitor turrets in the outfitter to thank you for the human outfits and the help they gave in the Ssil Vida analysis.`
 				accept
 # add ssil vida turns off event
 
@@ -3041,7 +3096,150 @@ mission "Ka'het: Patir Mystery 33"
 		dialog "Dusk follows protocol and tries to communicates with the planetoid in all known languages and frequencies, then directs you to land."
 	on complete
 		conversation
-			`You know what happens.`
+			`Even from here, the glow emitted from the asteroid has started to become apparent, tinting the entire cockpit purple. With the main engines off, you stop in an orbit a few tens of kilometers away from the surface and move to the living quarters to call the rest of the crew.`
+			`	You find them all already up and working, some of them preparing the EVA equipment and others reviewing their data pads. You make a quick gesture toward Dusk, who returns the greeting. "So the time has come, finally. Excited?"`
+			choice
+				`	"Of course."`
+					goto continue
+				`	"I prefer 'Uneasy'."`
+			`	"Understandable. No matter how long you have been doing this job, some fear of the unknown is unavoidable; it helps remain focused on the risk involved, and sometimes it can save your life.`
+			label continue
+			`	"We are going to do this in steps; first a close fly-around to decide on a landing site, followed by the landing phase and finally the surface expedition. If, and only if, no showstopper comes up, we will walk over the surface in our suits." Pointing toward the asteroid, he continues. "We have discovered that the object's gravity is unusually high for its size. There must be something very dense beneath all the regolith. For all intents and purposes, walking over its surface should be akin to walking on a large moon."`
+			`	With a few instruments in his hands, Dusk follows you back to the cockpit to prepare for the flyby. With a few short burns from the secondary propulsion system you start progressively lowering your orbit: first to ten kilometers, then to one, and finally passing less than two hundred meters over the surface. Next to you, Dusk points toward one of the rings that surround the planetoid. "Try to stay away from those, <first>. I am detecting high levels of beta radiation emanating from them - survivable, but it should be avoided if possible. Based on these readings, the surface seems to be safe at least."`
+			`	While the terrain is fairly constant in height, the soil is interrupted by thin veins of a striking pink crystal that create a labyrinth reaching over the whole asteroid. Over the night side, when the pink glow becomes the only source of light, the contrast between the two is harsh enough to force you to look away more than once during the flight.`
+			`	As the second loop around the asteroid comes to an end, a tap on the shoulder diverts you from your thoughts. "I believe this should have given us enough data for our purposes. We have passed over a number of acceptable landing sites by now, and the rest of the surface does not seem to have much of interest over the land we have already seen. If you are ready, so are we."`
+			choice
+				`	"Alright then, give me the coordinates."`
+					goto landing
+				`	"I would rather fly over the whole surface before making a choice."`
+			`	Dusk signs in acceptance and returns to his console. As the hours pass, you notice a few changes in the terrain, but subtle: in the deeper parts of terrain you see that the pink crystals become of a slightly redder tint, while the tone gets closer to purple in the few peaks you encounter during the flyby. Finally, Dusk informs you that they have selected the ideal landing site based on the new data you have gathered and that they are again ready for the next phase.`
+			`	By the time you are halfway to the target coordinates, however, something catches your eye on the night side of the surface. The darkness makes it hard to distinguish anything, but something seems to be moving down there!`
+			choice
+				`	(Continue the descent.)`
+					goto landing
+				`	(Abort the landing.)`
+					goto abort
+				`	"I think I saw something below us."`
+			`	At Dusk's request, you cut the engines and shine the ship's lights toward the terrain under you. You spend a quarter an hour trying to figure it out, comparing it with the scans taken previously; and yet, nothing you find seems to be out of place. "Perhaps it was just a reflection," he gestures, somewhat apprehensively, "or perhaps it was not. Either way, I doubt we will achieve much continuing to fly in circles. If you are sure of what you saw, returning to orbit would be most reasonable. What do you say?"`
+			choice
+				`	"Let's continue."`
+					goto landing
+				`	"I am sure. Abort the descent."`
+			label abort
+			`	You begin your retreat immediately, a short burn from the thrusters pushing you toward an escape trajectory. But only a few seconds later, a large rippling wave passes through the surface in front of you, throwing dust in all directions. A second, third, and then more waves follow, growing in size and intensity. A quick evasive maneuver lets you avoid most of the debris, but the crests continue to grow faster than you can retreat. You make a final attempt to turn the ship around and fly away, but it's too late. The impact is strong enough to throw you to the floor, and now the entire ship is engulfed by the rock stream.`
+			`	As if under the control of an external force, the regolith cloud wraps around your ship and holds it firmly, exerting an extreme pressure against the hull. Based on the loud creaks coming from the whole vehicle, it will not take long for it to be crushed.`
+			choice
+				`	(Take cover.)`
+					goto cover
+				`	(Burn the engines at maximum power to try to break free.)`
+				`	(Shoot with all your weapons.)
+					goto weapons
+			`	Not without great difficulty, you eventually overcome the vibrations enough to stand up and reach the top of the console. Turning up the throttle has no result, however: within the chaos, you distinguish the words 'engines obstructed' just before another impact throws you back to the floor.`
+				goto cover
+			`	Not without great difficulty, you eventually overcome the vibrations enough to stand up and reach the top of the console. All for nothing, however: within the chaos, you distinguish the words 'weapons disabled' before another impact throws you back to the floor.`
+			label cover
+			`	You quickly move under the console, crawling on the floor as fast as you can. Just as you close your helmet shut you hear the sirens starting to play, and the ship's lights turn orange: the hull has been breached. And then, a moment later, the vibrations stop in unison.`
+			`	You try to contact the rest of the crew, but the communicator stays silent. Dusk has donned his suit and taken cover on the other side of the cockpit. Between with the orange emergency lights, you notice a different shade of red shining over the whole room from above the console. With a quick movement, you make a leap away from your cover and get up to look at the source. A cloud of tiny, incredibly bright red particles is floating in the middle of the cockpit, slowly drifting toward the two of you.`
+			choice
+				`	(Run out of the cockpit.)`
+					goto door
+				`	(Remain still.)`
+					goto still
+				`	(Try using your sidearm.)`
+			`	Without taking your eyes off the dust you reach for your weapon, but to your surprise, your hand cannot find anything in the holster. In the chaos of the attack, it has fallen somewhere below the console, far beyond your grasp. As the cloud keeps moving closer, you find yourself back against the wall, with little options left for you to try.`
+			choice
+				`	(Run out of the cockpit.)`
+				`	(Remain still.)`
+					goto still
+			label door
+			`	You rush to the cockpit door, but the handle won't turn; something on the other side must be blocking it. No matter how much force you push with, it remains completely stuck closed. As the dust gets closer and the red glow stronger behind your back, you make a last attempt at kicking down the door to force it open, to no avail. The door can't be opened.`
+				goto arrived
+			label still
+			`	Dusk rushes toward the door, but it refuses to open; something on the other side must be blocking it. The glow emitted by the dust grows in strength as it gets closer to you, eventually forcing you to look away. As Dusk starts trying to kick down the door with little result, the red light is now barely a meter away.`
+			label arrived
+			`	The cloud reaches you and Dusk at the same time, clinging to the surface of your suit and forcing you back slightly. You try to brush it off, but you soon discover that it is blocking your joints, leaving you completely locked in place. A thump slams into you below your neck as the dust tries to to break into your suit; there is nothing you can do to stop it.`
+			`	Three more thumps follow; at the fourth you feel a strong impact hitting your torso, and a shiver spreads all over your body.`
+			`	The suit breach alarm goes off, and everything goes black.`
+				accept
+
+			label landing
+			`	The chosen site isn't very far, and in a matter of minutes you are hovering around a hundred meters above the target. With the sun shining above your heads, choosing the right spot is very straightforward, though the shadows make gauging your altitude difficult. You land a flat highland, surrounded by veins of the pink material you have observed earlier. The terrain seems very stable; you turn off the repulsors, and accompany Dusk down the aisle while the dust settles down.`
+			`	"A textbook landing, Captain. Especially given the circumstances."`
+			choice
+				`	"She is a good ship."`
+				`	"I have landed in worse places than this."`
+				`	"What now?"`
+					goto plan
+			`	"I bet," he smiles. "I cannot say that I have ever been particularly interested in starships, but the mystique of piloting has always a certain appeal.`
+			label plan
+			`	"If everything goes according to the plan, this phase should be straightforward. We will deploy a surface experiment package under the <ship>, then gather a number of surface samples from this general area that seem interesting, and finally, if we do not find anything else, leave for Patir."`
+			`	Under the direction of the rest of the team, you pick up a few crates and bring them down the ramp. You place your boot on the surface, leaving a recognizable footprint below you, surely the first someone has ever left in this place. While you are busy looking down, the others swiftly walk around you, not giving it any attention. You follow them soon after.`
+			`	The experiments amount to a series of obscure surface stations of varying size - not too unlike the ones near the Remnant lab, except pointing down instead of up. Setting them up takes less than half an hour, and after a few more minutes to check the data they are transmitting you can move on to the sample gathering. The surface is made of a very fine sand, but the regolith below is solid and very compact. After picking a few pebbles scattered on the ground and filling a few vials with the dust, you try to break a piece of the terrain, to no avail. While searching for a more brittle terrain nearby, however, your eye is caught by an opening in the ground, large enough for a person to pass through. A scarlet light is coming out of it.`
+			choice
+				`	(Show it to the others.)`
+				`	(Ignore it.)`
+					goto ignore
+			`	Although it was well hidden, the entrance is at least two meters wide and the ground quite shallow; walking through it would take little effort. The team is unanimous in its decisions to try to explore its interior, and perhaps find the source of said glow.`
+			`	The floor and walls of the tunnel are scattered by small crystals growing between the rocks, all sharing the same color and shape. "These do not seem to be emitting light," one of the Remnant comments. "Perhaps they are still too young, or are made of another material." The tunnel opens into a small cave, not much wider than the passage you came from. At the opposite end, a heap of loose rocks blocks the way. As the four of you assess the barrier, one of the Remnant finally notices. "The red glow has disappeared!"`
+			`	While the group is trying to mount a sensor on the wall, you take a few steps back with Dusk to try to assess the situation. "I am not comfortable with how things are turning out, <first>. Something is changing, or moving, somewhere down here. We have plenty of consumables still; perhaps we could continue the exploration on the surface. What do you think?"`
+			choice
+				`	"I agree."`
+					goto return
+				`	"I think it might be more wise to return to the ship and depart."`
+					goto return
+				`	"We have gone this far already, we might as well get to the end of it."`
+			`	"Perhaps. But discoveries are meaningless if you do not live long enough to share them."`
+				goto block
+			label return
+			`	"Very well then. Once we have packed the samples in here we can move back to the surface."`
+			label block
+			`	As soon as you turn around, however, it's clear something is wrong. A wall of rock has manifested between you and the other Remnant, and your calls receive no reply. Aghast, Dusk rushes to his backpack to use one of his containers as a makeshift hammer against the wall. The first few hits shake it enough to move some dust, but soon after it doesn't appear to have any more effect.`
+			choice
+				`	(Run away to the surface.)`
+					goto away
+				`	(Try to help Dusk.)`
+			`	You pick up the heaviest tool in your backpack and start trying to make a hole in the wall. You hit, and hit, and hit against the rock with all your strength until it breaks apart. The wall, for its part, doesn't seem to be any different from when you started. As you desperately look for another tool to replace it, you hear Dusk's voice calling you in a distressed tone. His boot has been absorbed inside a mass of gray rock of some sort, slowly growing and moving up his suit.`
+				goto dusk
+			label away
+			`	You run toward the tunnel you came from, and start walking back as fast as you can. After not even fifty meters, however, you meet another wall blocking your way, right where you had passed earlier. You try your best to make a hole in the barricade with the tools in your backpack, and eventually with your sidearm. But nothing works. A scream of help coming from the cave leads you to abandon your efforts to return to Dusk. When you find him, his boot has been absorbed inside a mass of gray rock of some sort, slowly growing and moving up his suit.`
+			label dusk
+			`	You try with all your strength to bring him out of it, but its grip is too tight. The stone quickly reaches the torso, and then the arms. You watch helpless as his whole body gets absorbed by the newly formed wall. You have are now stuck in a hole barely larger than you are.`
+			`	It doesn't take long for the rock to start growing on you as well. You try your best to calm down and slow your oxygen consumption as your helmet, torso and legs gets covered in stone. Creaks and and vibrations start spreading along the suit; it is pushing, and you know it will not take long for it to burst.`
+			`	Minutes pass with the suit on the point of breaking, unable to do anything except to wait for the inevitable. Finally, you feel a strong impact hitting your torso, and a shiver spreads all over your body.`
+			`	The suit breach alarm goes off, and everything goes black.`
+				accept
+
+			label ignore
+			`	The sample gathering continues for more than an hour, spanning from the base of the <ship> to the deposits of crystals surrounding the landing zone. With the backpack packed full of rocks and minerals of all sizes, you join the rest of group at the top of a small cliff.`
+			`	"We have hours of life support still available, and none of the activities up to this point were very tiring. We were discussing about emptying our bags in the cargo bay and move a bit further out next with the remaining tools. What do you think?"`
+			choice
+				`	"Alright."`
+				`	"We have spent enough time in this place. We should leave."`
+				`	(Tell them about the tunnel.)`
+			`	Suddenly, the terrain starts to shake violently beneath your feet. The quake is strong enough to throw all of you to the ground, and cracks begin showing up all around you. Soon, the surface starts to crumble under your feet, and you fall into the darkness.`
+			`	You end up into an unknown cave, quite thin but at least twenty meters long. The natural light of the asteroid here is too low to see; you light up your suit's torches, and the others do the same. Around you, vast veins of tiny crystals are cover most of the cave, similar in appearance to the ones on the surface.`
+			`	"Is everyone alright?" Dusk asks, and you reply with a cautious nod. Despite the chaos, none of you seems to have been hurt much, certainly thanks to the reduced gravity. The walls around you are very steep, but perhaps bumpy enough to be climbed on.`
+			choice
+				`	"What do we do now?"`
+					goto what
+				`	(Try to climb back to the surface.)`
+			`	You can't even make it a couple meters up before the regolith crumbles under your hands, throwing you back to the ground. Before you can try to do it again, Dusk gestures you to wait. "We have a better way to handle scenarios like this."`
+				goto rope
+			label what
+			`	"We have some contingencies for scenarios like this one," he replies, unable to completely hide some apprehension in his gestures.`
+			label rope
+			`	He takes out a rope from his backpack, with a mechanical hook attached on one end. After shooting it over the edge he shows you briefly how to use it, and gestures you to follow him. The climb is very slow, careful not to damage your suit further against the walls of the cave. Suddenly, you feel a strong vibration coming from above. The hole is closing!`
+			`	The rope snaps, throwing you back to the ground and breaking your helmet's lamps. You try to stand up, but you feel something holding your leg; the complete darkness prevents you from seeing, but it feels like a rocky material. You try to call the other Remnant, but there is no reply. You aren't sure whether the radio broke as well, or if something worse happened.`
+			choice
+				`	(Try to make a breach in the rock growth.)`
+				`	(Stand still and save your oxygen.)`
+					goto oxygen
+			`	You try your best to free your leg using the tools in your backpack, with little results. Left with no other options, you even take out your sidearm and fire in the dark all the shots you can. But nothing works.`
+			label oxygen
+			`	The mass on your leg grows, wrapping more and more of your suit. You try your best to calm down and slow your oxygen consumption as your helmet, torso and legs get covered. Creaks and and vibrations start spreading along the suit; it is pushing, and you know it will not take long for it to burst.`
+			`	Minutes pass with the suit on the point of breaking, unable to do anything except to wait for the inevitable. Finally, you feel a strong impact hitting your torso, and a shiver spreads all over your body.`
+			`	The suit breach alarm goes off, and everything goes black.`
+				accept
 
 mission "Ka'het: Patir Mystery 34"
 	landing
@@ -3058,12 +3256,50 @@ mission "Ka'het: Patir Mystery 34"
 # Lathia becomes an enemy as soon as you leave it
 # add a dialog where they deploy Snipes on entry of Ghila during the return trip
 		conversation
-			`You know what happens.`
-				accept
+	on offer
+		conversation
+			`You wake up lying in the floor with an blinking light pointed in your eyes. You try to cover it with your hand, and the Remnant above you moves it away, gesturing you to stay quiet. As he helps you stand up, you realize you are inside the payload bay of your own ship. Around you is the rest of the crew, standing in a circle in their undersuit garments. You try to take a step, but you almost fall: you realize then that your spacesuit is too ruined to use, and you tiredly take it off as well.`
+			`	"We have all woken up here," Dusk signs in the complete silence. His sleeves are slightly lacerated, and atop his shoulders you notice his own symbiont peek through. "There was a meter-sized breach in the hull, but we have patched it up just now. Going by our clocks, we have been unconscious for no more than 20 minutes." He points his hand toward the open hatch that separates the cargo bay from the rest of the ship. "None of us has ventured beyond that door yet. Presuming our scanners are correct, there is still a presence inside this ship."`
+			choice
+				`	"Is the rest of the ship pressurized?"`
+					goto pressurized
+				`	"Why are we alive?"
+				`	"I am going."`
+					goto enter
+			`	"Reasonably, because it chose to keep us alive. But to be honest, I have no intention to speculate on the reasons for this, until we are back somewhere safer - and that requires getting you back to the cockpit to fly us out of here." You sign in agreement. "If you are feeling okay, we are ready."`
+				goto enter
+			label pressurized
+			`	"As far as we can tell, yes, this was the only breach. I have taken some respirators with us in case of emergency, given the state of our suits. If you are feeling okay, we are ready."`
+			label enter
+			`	Before you enter the hatch, you make sure you grab your pistol from the remains of your spacesuit. You take the lead into the empty anteroom and then inside a corridor, gesturing with the other Remnant to coordinate your movements. Room after room, everything looks the same as you left it, and eventually you clear every part of the <ship> but the cockpit. An ominous red light now shines through the gap below the door, and you hear a continuous clicking sound. With your sidearm raised, you push the door open as slowly as you can.`
+			`	A point of light of a bright red light is floating still in the middle of the room. In front of it, a whirlwind of dust is throwing itself over and over on the cockpit controls, pressing every button and flipping every switch. Dusk gestures you to wait, while the red light continues unfazed its activities.`
+			choice
+				`	(Stand still.)`
+					goto wait
+				`	(Shoot up to catch its attention.)`
+				`	(Shoot toward the red light.)`
+				`	(Run toward the controls and push the engines to maximum power.)`
+					goto run
+			`	You fire three shots and wait for a reaction, but the living dust does not change its pace.`
+			label wait
+			`	Around the console, the sand is continuously opening and closing shelves, drawers and everything that moves, as if trying to do something they do not understand. Dusk comes closer to the red light, carefully moving around the edges of the room. But for a while, neither of you does anything.`
+			`	Eventually, he stands up and carefully walks to the console. He puts his hand over the controls, and the rocks carefully move around it. He flicks three switches: the propellant flow, the engine start, and the autopilot. The engines roar to life, and the dust stops mid-air.`
+				goto leave
+			label run
+			`	You put away your sidearm and make a leap toward the console. Before the rocks can react, you have already flicked three switches: the propellant flow, the engine start, and the autopilot. The engines roar to life, and the dust stops mid-air.`
+			label leave
+			`	The rocks slowly retract into a ball in the middle of the room, surrounding the red light completely. You watch the mass grow, and the hue turns into a rose, even pink tint by the time it is done. The minuscule asteroids stands still in the middle of the room, and you cannot help but stare at it.`
+			choice
+				`	(Wait and see.)`
+				`	(Sit in the pilot's seat and fly away.)`
+				`	(Show it your hand, like in that video you saw once.)`
+			`	In an instant, the asteroid sprints out of the room. You follow it on your console as it launches out of your ship from the cargo bay, passing through the same hole it had made when coming in. With the engines sill firing, you take back control of your ship when it is almost out of the sphere of influence of the planetoid...`
+				launch
 	on complete
 # Patir returns event
 		conversation
 			`People are attaching new payloads to Terns. Lots of talks, Dusk reveals his vision, stars have moved by the time you return.`
+			`NEW: they give you a remnant spacesuit.`
 
 mission "Ka'het: Patir Mystery 35"
 	landing
