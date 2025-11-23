@@ -185,7 +185,7 @@ void BoardingPanel::Draw()
 
 	// This should always be true, but double check.
 	int crew = 0;
-	if(you)
+	if(you && canCapture)
 	{
 		crew = you->Crew();
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
