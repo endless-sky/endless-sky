@@ -1,4 +1,4 @@
-/* WinVersion.h
+/* logger-output.h
 Copyright (c) 2025 by TomGoodIdea
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -19,14 +19,4 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// A wrapper class that queries the version of Windows that is running the game,
-// and provides information on support for various features.
-class WinVersion {
-public:
-	static void Init();
-
-	static std::string ToString();
-
-	static bool SupportsDarkTheme();
-	static bool SupportsWindowRounding();
-};
+std::string IgnoreLogHeaders(std::string output);

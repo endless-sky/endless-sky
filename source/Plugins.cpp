@@ -82,8 +82,9 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
-			+ " were found in both the required dependencies list and the optional dependencies list.");
+		Logger::Log("Dependencies named " + dependencyCollisions
+			+ " were found in both the required dependencies list and the optional dependencies list.",
+			Logger::Level::WARNING);
 		dependencyCollisions.clear();
 	}
 
@@ -100,8 +101,9 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
-			+ " were found in both the conflicting dependencies list and the required dependencies list.");
+		Logger::Log("Dependencies named " + dependencyCollisions
+			+ " were found in both the conflicting dependencies list and the required dependencies list.",
+			Logger::Level::WARNING);
 		dependencyCollisions.clear();
 	}
 
@@ -118,8 +120,9 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
-			+ " were found in both the optional dependencies list and the conflicting dependencies list.");
+		Logger::Log("Dependencies named " + dependencyCollisions
+			+ " were found in both the optional dependencies list and the conflicting dependencies list.",
+			Logger::Level::WARNING);
 		dependencyCollisions.clear();
 	}
 
@@ -254,23 +257,23 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 
 	// 'name' is a required field for plugins with a plugin description file.
 	if(Files::Exists(pluginFile) && !hasName)
-		Logger::LogError("Warning: Missing required \"name\" field inside plugin.txt");
+		Logger::Log("Missing required \"name\" field inside plugin.txt.", Logger::Level::WARNING);
 
 	// Plugin names should be unique.
 	auto *plugin = plugins.Get(name);
 	if(plugin && plugin->IsValid())
 	{
-		Logger::LogError("Warning: Skipping plugin located at \"" + path.string()
-			+ "\" because another plugin with the same name has already been loaded from: \""
-			+ plugin->path.string() + "\".");
+		Logger::Log("Skipping plugin located at \"" + path.string()
+			+ "\", because another plugin with the same name has already been loaded from: \""
+			+ plugin->path.string() + "\".", Logger::Level::WARNING);
 		return nullptr;
 	}
 
 	// Skip the plugin if the dependencies aren't valid.
 	if(!dependencies.IsValid())
 	{
-		Logger::LogError("Warning: Skipping plugin located at \"" + path.string()
-			+ "\" because plugin has errors in its dependencies.");
+		Logger::Log("Skipping plugin located at \"" + path.string() + "\", because it has errors in its dependencies.",
+			Logger::Level::WARNING);
 		return nullptr;
 	}
 
