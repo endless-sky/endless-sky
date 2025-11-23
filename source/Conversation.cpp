@@ -184,15 +184,11 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 		}
 		else if(key == "goto")
 		{
-			// A goto is the same as a branch with an empty condition.
+			// Goto the label with the specified name, even if that name matches an endpoint.
 			nodes.emplace_back();
 			nodes.back().canMergeOnto = false;
 			nodes.back().elements.emplace_back("", nodes.size());
-			int index = TokenIndex(child.Token(1));
-			if(!index)
-				Goto(child.Token(1), nodes.size() - 1, 0);
-			else if(index < 0)
-				nodes.back().elements.back().next = index;
+			Goto(child.Token(1), nodes.size() - 1, 0);
 		}
 		else if(key == "action" || key == "apply")
 		{
