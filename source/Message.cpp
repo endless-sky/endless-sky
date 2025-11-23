@@ -17,10 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Command.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Phrase.h"
 #include "TextReplacements.h"
+
+#include <cassert>
 
 using namespace std;
 
@@ -148,6 +151,13 @@ Message::Message(const string &text, const Category *category)
 
 
 
+Message::Message(const DataNode &node)
+{
+	Load(node);
+}
+
+
+
 void Message::Load(const DataNode &node)
 {
 	if(node.Size() >= 2)
@@ -188,9 +198,38 @@ bool Message::IsLoaded() const
 
 
 
+void Message::Save(DataWriter &out) const
+{
+	// If this message has a name, it's defined globally, so just save a reference.
+	if(!name.empty())
+	{
+		out.Write("message", name);
+		return;
+	}
+
+	out.Write("message");
+	out.BeginChild();
+	{
+		// If we need to save a customized instance of a message, substitutions
+		// should have already been applied, so just write the text.
+		out.Write(isPhrase ? "phrase" : "text", text);
+		out.Write("category", category->Name());
+	}
+	out.EndChild();
+}
+
+
+
 const string &Message::Name() const
 {
 	return name;
+}
+
+
+
+bool Message::IsPhrase() const
+{
+	return isPhrase;
 }
 
 
@@ -205,6 +244,14 @@ string Message::Text() const
 	for(const auto &[key, value] : subs)
 		subs[key] = Phrase::ExpandPhrases(value);
 	Format::Expand(subs);
+	return Command::ReplaceNamesWithKeys(Format::Replace(Phrase::ExpandPhrases(text), subs));
+}
+
+
+
+string Message::Text(const map<string, string> &subs) const
+{
+	assert(!isPhrase && "Cannot apply custom substitutions to a global phrase");
 	return Command::ReplaceNamesWithKeys(Format::Replace(Phrase::ExpandPhrases(text), subs));
 }
 
