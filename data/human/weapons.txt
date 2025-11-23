@@ -936,6 +936,8 @@ outfit "Meteor Missile Launcher"
 		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Meteor Missile Pod"
 	category "Secondary Weapons"
@@ -979,6 +981,8 @@ outfit "Meteor Missile Pod"
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "meteor fire"
 	sprite "effect/meteor fire"
@@ -989,6 +993,7 @@ effect "meteor fire"
 
 outfitter "Meteor Missile Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Meteor Missile Launcher"
 			has "outfit: Meteor Missile Pod"
@@ -1062,6 +1067,8 @@ outfit "Sidewinder Missile Launcher"
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Sidewinder Missile Pod"
 	category "Secondary Weapons"
@@ -1107,6 +1114,8 @@ outfit "Sidewinder Missile Pod"
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 
 effect "sidewinder fire"
@@ -1118,6 +1127,7 @@ effect "sidewinder fire"
 
 outfitter "Sidewinder Missile Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Sidewinder Missile Launcher"
 			has "outfit: Sidewinder Missile Pod"
@@ -1180,6 +1190,8 @@ outfit "Javelin Pod"
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Javelin Mini Pod"
 	category "Secondary Weapons"
@@ -1214,6 +1226,8 @@ outfit "Javelin Mini Pod"
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
 	description "	Mini pods enable fighters and other light craft to carry small quantities of Javelins into battle while retaining enough space for other weapons. Large ships are better off with full-size pods."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Javelin Turret"
 	category "Secondary Weapons"
@@ -1248,9 +1262,12 @@ outfit "Javelin Turret"
 		"missile strength" 3
 	description "Mounting not one but two Javelin Pods, the Javelin Turret delivers a torrential downpour of unguided missiles that deal noticeably more damage than other turreted weapons of the same size, at the expense of using a prodigious amount of ammo due to its high fire rate. For that reason, these turrets are commonly paired with Javelin Storage Crates and weapons that don't require the use of ammunition to fall back on once all of the missiles are expended."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfitter "Javelin Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Javelin Pod"
 			has "outfit: Javelin Mini Pod"
@@ -1324,6 +1341,8 @@ outfit "Torpedo Launcher"
 		"missile strength" 30
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Torpedo Pod"
 	category "Secondary Weapons"
@@ -1367,6 +1386,8 @@ outfit "Torpedo Pod"
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge."
 	description "	Pods enable fighters and other light craft to carry small quantities of Torpedoes into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "torpedo fire"
 	sprite "effect/torpedo fire"
@@ -1376,6 +1397,7 @@ effect "torpedo fire"
 
 outfitter "Torpedo Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Torpedo Launcher"
 			has "outfit: Torpedo Pod"
@@ -1449,6 +1471,8 @@ outfit "Typhoon Launcher"
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Typhoon Pod"
 	category "Secondary Weapons"
@@ -1493,6 +1517,8 @@ outfit "Typhoon Pod"
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
 	description "	Pods enable fighters and other light craft to carry small quantities of Typhoon Torpedoes into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "typhoon fire"
 	sprite "effect/typhoon fire"
@@ -1502,6 +1528,7 @@ effect "typhoon fire"
 
 outfitter "Typhoon Torpedo Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Typhoon Launcher"
 			has "outfit: Typhoon Pod"
@@ -1569,6 +1596,8 @@ outfit "Heavy Rocket Launcher"
 		"missile strength" 16
 	description "Heavy Rockets are one of the most powerful missile weapons available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Heavy Rocket Pod"
 	category "Secondary Weapons"
@@ -1608,6 +1637,8 @@ outfit "Heavy Rocket Pod"
 	description "Heavy Rockets are one of the most powerful missile weapons available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 	description "	Pods enable fighters and other light craft to carry small quantities of rockets into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "heavy rocket hit"
 	sprite "effect/explosion/huge"
@@ -1623,6 +1654,7 @@ effect "heavy rocket hit"
 
 outfitter "Heavy Rocket Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Heavy Rocket Launcher"
 			has "outfit: Heavy Rocket Pod"
@@ -1765,6 +1797,8 @@ outfit "Gatling Gun"
 		"hit effect" "bullet impact"
 	description `When Dr. Richard J. Gatling invented the rapid-fire gun bearing his name in the 19th century, he hoped that its destructiveness would lead to the end of war itself. Over a millennium later, this modern incarnation of the Gatling Gun sees action in the stars, a testament to its fundamentally robust design - and Dr. Gatling's naivete. While capable of a high fire rate, this gun needs to cool down for twice as long as it fires, and can only sustain a maximum of three seconds of continuous fire.`
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Gatling Turret"
 	category "Secondary Weapons"
@@ -1804,6 +1838,8 @@ outfit "Gatling Turret"
 		"hit effect" "bullet impact"
 	description `In an act that would make Dr. Richard J. Gatling spin in his grave with the ferocity of the barrels of his invention, the Gatling Turret was born when a resourceful pirate thought to replace the Energy Blasters on a Blaster Turret with a pair of Gatling Guns. Ever since, the dominion of the Gatling Turret has spread across the Southern Rim, terrorizing merchants and law enforcement alike with its unparalleled ability to tear apart the hulls of ships.`
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "gbullet"
 	weapon
@@ -1829,6 +1865,7 @@ effect "bullet impact"
 
 outfitter "Gatling Gun Ammo Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Gatling Gun"
 			has "outfit: Gatling Turret"

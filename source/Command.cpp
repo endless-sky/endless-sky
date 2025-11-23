@@ -95,8 +95,12 @@ const Command Command::HOLD_POSITION(ONE << 42, "Fleet: Hold position");
 const Command Command::HARVEST(ONE << 43, "Fleet: Harvest flotsam");
 const Command Command::AMMO(ONE << 44, "Fleet: Toggle ammo usage");
 const Command Command::AUTOSTEER(ONE << 45, "Auto steer");
+
+// These commands are not in the preferences panel, and do not have keys
+// assigned to them, but may have descriptions as needed to facilitate
+// assignments in downstream ports like endless-mobile.
 const Command Command::WAIT(ONE << 46, "");
-const Command Command::STOP(ONE << 47, "");
+const Command Command::STOP(ONE << 47, "Stop your ship");
 const Command Command::SHIFT(ONE << 48, "");
 
 

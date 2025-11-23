@@ -135,14 +135,14 @@ void FormationPattern::PositionIterator::MoveToValidPosition()
 
 void FormationPattern::Load(const DataNode &node)
 {
-	if(!name.empty())
+	if(!trueName.empty())
 	{
-		node.PrintTrace("Duplicate entry for formation-pattern \"" + name + "\":");
+		node.PrintTrace("Duplicate entry for formation-pattern \"" + trueName + "\":");
 		return;
 	}
 
 	if(node.Size() >= 2)
-		name = node.Token(1);
+		trueName = node.Token(1);
 	else
 	{
 		node.PrintTrace("Skipping load of unnamed formation-pattern:");
@@ -253,16 +253,16 @@ void FormationPattern::Load(const DataNode &node)
 
 
 
-const string &FormationPattern::Name() const
+const string &FormationPattern::TrueName() const
 {
-	return name;
+	return trueName;
 }
 
 
 
-void FormationPattern::SetName(const std::string &name)
+void FormationPattern::SetTrueName(const string &name)
 {
-	this->name = name;
+	this->trueName = name;
 }
 
 
