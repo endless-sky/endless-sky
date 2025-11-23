@@ -35,7 +35,7 @@ class System;
 class News {
 public:
 	void Load(const DataNode &node, const ConditionsStore *playerConditions,
-		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets, bool dryRun);
 
 	// Check whether this news item has anything to say.
 	bool IsEmpty() const;

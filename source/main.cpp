@@ -184,13 +184,6 @@ int main(int argc, char *argv[])
 					queue.ProcessSyncTasks();
 					this_thread::yield();
 				}
-				if(GameData::IsLoaded())
-				{
-					// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
-					// e.g. due to capitalization errors or other typos.
-					SpriteSet::CheckReferences();
-					Audio::CheckReferences(true);
-				}
 			}
 
 			// Set the game's initial internal state.
@@ -199,7 +192,7 @@ int main(int argc, char *argv[])
 			// Reference check the universe, as known to the player. If no player found,
 			// then check the default state of the universe.
 			if(!player.LoadRecent())
-				GameData::CheckReferences();
+				GameData::CheckReferences(checkAssets);
 			cout << "Parse completed with " << (hasErrors ? "at least one" : "no") << " error(s)." << endl;
 			if(checkAssets)
 				Audio::Quit();

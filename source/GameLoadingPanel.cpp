@@ -28,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "shader/PointerShader.h"
 #include "Ship.h"
-#include "image/SpriteSet.h"
 #include "shader/StarField.h"
 #include "System.h"
 #include "TaskQueue.h"
@@ -55,10 +54,6 @@ void GameLoadingPanel::Step()
 	queue.ProcessSyncTasks();
 	if(GameData::IsLoaded())
 	{
-		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
-		// e.g. due to capitalization errors or other typos.
-		SpriteSet::CheckReferences();
-		Audio::CheckReferences();
 		// Set the game's initial internal state.
 		GameData::FinishLoading();
 

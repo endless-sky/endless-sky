@@ -243,7 +243,8 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		{
 			if(child.HasChildren())
 			{
-				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)));
+				// NPCs cannot be included in event changes, so we can assume the fleet load won't be a dry run.
+				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child, false)));
 				if(hasValue)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.
