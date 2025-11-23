@@ -182,7 +182,7 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 				}
 			}
 		}
-		else if(key == "goto")
+		else if(key == "goto" && hasValue)
 		{
 			// Goto the label with the specified name, even if that name matches an endpoint.
 			nodes.emplace_back();
