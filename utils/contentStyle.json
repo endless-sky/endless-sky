@@ -108,7 +108,7 @@
 					},
 					{
 						"description": "non-ASCII quotation mark",
-						"regex": "[\\u{201c}\\u{201d}]",
+						"regex": "[\\u{201C}\\u{201D}]",
 						"correction": {
 							"replaceWith": "\""
 						}
