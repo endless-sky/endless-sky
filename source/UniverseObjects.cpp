@@ -315,6 +315,12 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : swizzles)
 		if(!it.second.IsLoaded())
 			Warn("swizzle", it.first);
+	for(const auto &it : messageCategories)
+		if(!it.second.IsLoaded())
+			Warn("message category", it.first);
+	for(const auto &it : messages)
+		if(!it.second.IsLoaded())
+			Warn("message", it.first);
 	// Persons can be referred to when marking them as destroyed.
 	for(const auto &it : persons)
 		if(!it.second.IsLoaded())
@@ -492,6 +498,10 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			wormholes.Get(node.Token(1))->Load(node);
 		else if(key == "gamerules" && node.HasChildren())
 			gamerules.Load(node);
+		else if(key == "message category")
+			messageCategories.Get(node.Token(1))->Load(node);
+		else if(key == "message")
+			messages.Get(node.Token(1))->Load(node);
 		else if(key == "disable" && hasValue)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};
