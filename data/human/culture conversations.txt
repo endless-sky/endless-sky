@@ -855,7 +855,7 @@ mission "Republic 300 Year Anniversary"
 				goto end
 			label "war over"
 			`	The recent Free Worlds war seemed to threaten this long history of stability, as battles raged over the skies of dozens of planets, and the threat of an open nuclear war loomed closer as the conflict escalated. The indiscriminate disappearance of many systems close to Earth, followed by the unified human front against the Pug invaders, seems to have knit together the sentiments of many throughout the Republic - for the time being, at least.`
-			branch "zenith bombed" end
+			branch "zenith bombed"
 				has "Wanderers: Sestor: Return to Wanderers: done"
 			branch "sestor beaten at farpoint" end
 				has "Wanderers: Sestor Alt: Return to Wanderers: done"
