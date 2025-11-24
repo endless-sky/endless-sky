@@ -1306,6 +1306,53 @@ mission "Exotic Life: Albatross"
 				clear "heard weasels"
 				clear "heard polecats"
 
+mission "Exotic Life: New Greenland"
+	minor
+	source "New Greenland"
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You step down onto the landing pad and your breath makes a white halo. The spaceport is unusually foggy, and the chilling wind causes a reflexive shiver to run up the base of your neck.`
+			`	A grizzled man emerges from the fog with an easy, unhurried gait, a laser rifle slung over one shoulder. A hulking beast lumbers at his side: a horse-sized hound cloaked in heavy, wooly fur rimmed with frost. Two enormous tusks thrust from its muzzle like pale sabers. Steam billows from its flared nostrils as it turns its head almost lazily toward you. Its eyes carry a grim patience.`
+			`	The man sees you and grunts, "Don't stare at a Mammoth Mastiff."`
+			choice
+				`	"What's a Mammoth Mastiff?"`
+				`	"Don't tell me what to do!"`
+					goto ending
+				`	(Avert your gaze and get back to your ship.)`
+					decline
+			`	"A phantom from harsher times, bred on Hestia when it was still lifeless ice. Now nothing more than a tool of the trade." He pats the creature and it lets out a low rumble.`
+			label ending
+			`	The man bellows a deep laugh as the fog thickens. The creature's eyes are the last things to pierce the haze before man and mastiff alike fade away. You find yourself alone once more.`
+				decline
+
+mission "Exotic Life: Mainsail"
+	minor
+	source Mainsail
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You steady yourself on the floating city-ship as the necklace of barges, docks, and gantries creak and sway under the influence of Mainsail's endless ocean waves. Salt spray stings your face as you head out towards the ring. One barge rocks close, its deck slick with algae, while a local fearlessly walks a four-legged whale-like creature on a leash - a seal-sized mass of compact muscle under slate fur, with webbed paws that click on the planks, a long whiskered snout bristling with needlelike teeth and a broad, flattened tail that wags with anticipation.`
+			`	The local catches you gawking, flashes a salt-creased grin and calls, "Never seen a seadog before?`
+			choice
+				`	"Can't say I have!"`
+				`	"What is that thing?"`
+				`	"Of course I've seen a seadog before!"`
+					goto seen
+				`	(Avert your gaze and get back to your ship.)`
+					decline
+			action
+				set "exotic animals: mainsail seadog known"
+			`	"Ah, that, my friend, is a Mainsail Seadog, the premier water-sporting hound of the Paradise Planets. Bred some four centuries ago in the ateliers of this very planet, they marry old water-dog stock with dolphin and otter blood, with a touch of beaver for the tail, crocodile for the jaws, and barracuda for the strike," he says with a wink. "They'll nose out a school, haul in the finest fish, and lay a damp, grateful head upon your boots - a prized rarity since the Republic put a lid on the gene labs."`
+				goto ending
+			label seen
+			`	"Glad to hear that, my friend! Too few have seen the prized rarity of a Mainsail Seadog nowadays, since the Republic put a lid on the labs."`
+			label ending
+			`	With a practiced motion he hops from the barge into a sleek, unpowered skiff. The seadog slips from the barge like a ribbon, dives cleanly into the sea, and sets its broad tail to the waves. In a spray of salt the steely creature hauls them off, and the boat recedes like a chariot of Poseidon into the harbor haze.`
+				decline
+
 mission "Little Vienna in New Austria"
 	minor
 	source "New Austria"
@@ -1336,6 +1383,28 @@ mission "Little Vienna in New Austria"
 			`	You thank her kindly but explain that you're not in the mood for a concert. She nods understandingly, her eyes softening with disappointed yet gracious acceptance. You finish your exploration of the "Kleinwean Bezirk", absorbing the ambiance of the cobblestone street as the scents of coffee mingle with the sound of music.`
 			label backtoship
 			`	With the atmosphere steeped in nostalgia for a distant city on a distant world long past, you return to your ship.`
+
+mission "Struggling Author Gone Missing"
+	minor
+	landing
+	source "Zug"
+	to offer
+		random < 88
+		has "event: beyond the hyperdrive is published"
+	on offer
+		conversation
+			`As your ship settles down on landing pad A5B, two young adults approach. One speaks up, "Hello, Captain. Have you seen a woman named Anna Fangvin anywhere? She was last seen in the spaceport, and must have left in someone's spaceship."`
+			`	Around the spaceport you see a few other groups doing the same thing. Anna may have been more popular than she thought.`
+			choice
+				`	"She went to another star system a long ways from here. You won't be able to get to her."`
+				`	"No, I don't know. Sorry."`
+					goto continue
+			`	"If you ever see her again, tell her that the Coalition of Book Enjoyers appreciates her work. It wouldn't be possible for you to bring us to her location?" You respond in the negative, and the two go off to the other groups to spread the news.`
+			label continue
+			`	Posters hang on many of the spaceport's walls - here too, Anna's books must have been famous. The posters read:`
+			`	MISSING:`
+			`		Anna Fangvin, a young author whose books have been shared throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
+				decline
 
 phrase "racetrack"
 	word

@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 
+using namespace std;
+
 namespace {
 	// Additional distance the scrollbar's tab can be selected from.
 	constexpr float SCROLLBAR_MOUSE_ADDITIONAL_RANGE = 5.;
@@ -88,7 +90,7 @@ bool ScrollBar::Hover(int x, int y)
 		Point ab = b - a;
 		Point ap = p - a;
 
-		double h = std::clamp(ap.Dot(ab) / ab.LengthSquared(), 0., 1.);
+		double h = clamp(ap.Dot(ab) / ab.LengthSquared(), 0., 1.);
 		double d = (ap - ab * h).Length();
 
 		return d;
@@ -105,6 +107,8 @@ bool ScrollBar::Hover(int x, int y)
 	return false;
 }
 
+
+
 bool ScrollBar::Drag(double dx, double dy)
 {
 	if(!highlighted)
@@ -120,6 +124,8 @@ bool ScrollBar::Drag(double dx, double dy)
 	return true;
 }
 
+
+
 bool ScrollBar::Click(int x, int y, MouseButton button, int clicks)
 {
 	if(button != MouseButton::LEFT)
@@ -128,12 +134,12 @@ bool ScrollBar::Click(int x, int y, MouseButton button, int clicks)
 	Point clickPos(x, y);
 	if((clickPos - from).Length() < 10.)
 	{
-		fraction = std::clamp(fraction - displaySizeFraction * .6f, 0.f, 1.f);
+		fraction = clamp(fraction - displaySizeFraction * .6f, 0.f, 1.f);
 		return true;
 	}
 	if((clickPos - to).Length() < 10.)
 	{
-		fraction = std::clamp(fraction + displaySizeFraction * .6f, 0.f, 1.f);
+		fraction = clamp(fraction + displaySizeFraction * .6f, 0.f, 1.f);
 		return true;
 	}
 
