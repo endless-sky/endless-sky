@@ -517,7 +517,7 @@ mission "Heliarch Investigation 2 - Into White"
 				"lunarium evidence" ++
 			choice
 				`	(Take cover.)`
-				`	(Pull out your gun and help her.)`
+				`	(Pull out my gun and help her.)`
 					goto help
 			`	You rush to the nearest resort house, staying behind it and hoping you'll have enough protection from the blasts. You can still hear Iplora move around, and you occasionally peek your head over to see her shooting and taking cover behind the houses herself, narrowly avoiding incoming blasts as she tries to close in the distance with whoever or whatever is shooting. The shots stop suddenly and you see her come over, saying that it should be safe to get out now.`
 			`	"Fled, our attacker has," she claims. From the looks of it she wasn't injured. You two get back to the dug out spot, and Iplora grabs her bag. She managed to call for support in between running for cover and shooting back, and you two wait by one of the houses for a few minutes.`

@@ -625,7 +625,7 @@ mission "Sol-Bound Shuttle"
 			choice
 				`	"Where's your hyperdrive?"`
 				`	"How are you going to travel anywhere with that ship?"`
-				`	(Go back to your ship.)`
+				`	(Go back to my ship.)`
 					decline
 			`	The captain laughs. "Most pilots are the adventurous type. Not me. I make a pretty decent haul just flying people from Earth to Mars and back. Occasionally I do trips to the Moon for tourists." You notice that she uses the archaic term for Luna. Must be a local expression.`
 			choice
@@ -723,14 +723,14 @@ mission "Burthen Triathlon"
 			`Thanks to the planet's high gravity, Burthen is not a common destination, but today the spaceport seems to have a lot of visitors. Many of the usually empty landing pads are occupied, and you notice a sizable crowd at the edge of the spaceport as you step out onto its rather untarnished apron. Some members of the crowd are obviously from offworld judging by their height, and there's even a few media crews standing by, although it looks like their camera drones are struggling with Burthen's gravity.`
 			choice
 				`	(See what's going on.)`
-				`	(Avoid the commotion and tend to your own business.)`
+				`	(Avoid the commotion and tend to my own business.)`
 					decline
 			`	Each step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way, it looks like the "Burthen Triathlon" is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently only accessible to event staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
 			choice
 				`	(Walk over to the catering tent.)`
 				`	(Stay outside.)`
 					goto outside
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					decline
 
 			`	Thankfully, the walk to the catering tent is far shorter than the walk from your ship, but nevertheless you're exhausted by the time you drag your feet inside. A lot of effort has been put into this tent: the metal chairs are all sturdily-built to allow offworlders to pull themselves up, but cushioned as to not make it uncomfortable to sit in. A small firepit has been built in the middle of the tent, along with a couple fire extinguishers placed nearby, and the whole place is brightly lit in contrast to Burthen's typically chilly weather. Quite a few people, both Burthenians and offworlders, are mingling about here.`
@@ -791,7 +791,7 @@ mission "CCOR Guerrilla Standoff"
 			`	But as you make your way into the central hall, you notice that, where you'd expect the greatest activity, everything has stopped. Even the ever-roving antigrav trolleys of cargo and supplies are backed up and motionless, and everybody's attention is directed at some sort of commotion in the very center of the spaceport.`
 			choice
 				`	(Take a look.)`
-				`	(Go back to your ship.)`
+				`	(Go back to my ship.)`
 					decline
 			`	Stepping through the gaps within the established crowd you end up next to a spaceport gendarme. He appears as if he's meant to be on patrol duty but is too busy watching the distraction to do his job right now. Looking over the banisters beside him, you see first the enormous and oddly empty space in the middle of the hall, then a team of overalls-wearing men armed with drills and brushes. Surrounding them is a cordon of guerrillas in their rosy CCOR uniforms, sizing up the public and the spaceport security around them with their rifles and pistols.`
 			`	The painting guerrillas are busily finishing off the touches of what appears to be a statue of the burgundy and white emblem of the Confederated Councils, while a pile of rubble beside it suggests that a symbol of the local government once stood in its place. As they step away from the statue, a lone man in a much better-kept uniform than the others steps forward in front of their work. You can feel the air chilling as he raises his head to speak.`
@@ -855,26 +855,25 @@ mission "Republic 300 Year Anniversary"
 				goto end
 			label "war over"
 			`	The recent Free Worlds war seemed to threaten this long history of stability, as battles raged over the skies of dozens of planets, and the threat of an open nuclear war loomed closer as the conflict escalated. The indiscriminate disappearance of many systems close to Earth, followed by the unified human front against the Pug invaders, seems to have knit together the sentiments of many throughout the Republic - for the time being, at least.`
-			branch "zenith bombed"
+			branch "zenith bombed" end
 				has "Wanderers: Sestor: Return to Wanderers: done"
-			branch "sestor beaten at farpoint"
+			branch "sestor beaten at farpoint" end
 				has "Wanderers: Sestor Alt: Return to Wanderers: done"
-			label end
-			choice
-				`	(Celebrate the Republic's 300th anniversary.)`
-					goto celebrate
-				`	(Go on about your day as usual.)`
-			`	You switch your media channels off from the celebrations, and get to your ship's system checks. Once you're done, you prepare for just another day.`
-				decline
-			label celebrate
-			`	You take an hour or two to join in on the festivities, because after all, it's not everyone who can claim to have witnessed a centenary anniversary of a nation. Stepping off the <ship>, you head to the spaceport, have a couple of drinks, speak to some of the locals, and party with a few revelers. Once it's getting late, you head back to your ship and reflect on the meaning of this day throughout human space.`
-				decline
 			label "zenith bombed"
 			`	Dimming the mood of the otherwise mostly positive news titles are the comments about a mysterious armada of robotic warships invading the Far North. Having crushed the Navy forces over Farpoint, the fleet was only partially beaten after the detonation of a terrible bomb on Zenith, which wrecked much of the planet. Indeed, it was weeks still before the scattered ships were fully destroyed, and confidence in the Navy's - and, by extension, the Republic's - ability to keep humanity safe seems to have been affected significantly...`
 				goto end
 			label "sestor beaten at farpoint"
 			`	Web comments and news anchors seem to be particularly excited to comment on the recent victory of the Navy over the mysterious armada of robotic warships that invaded the Far North. Though at a great cost to the northern fleet garrisons, the invading fleets were successfully stopped at the Farpoint base, preventing the ships from causing any further harm. Veterans of the Farpoint battle seem to be hoarding the spotlight, giving emotional reports of their memory of the fight, and of the sacrifices they went through to achieve victory.`
-				goto end
+			label end
+			choice
+				`	(Join the celebration of the Republic's 300th anniversary.)`
+					goto celebrate
+				`	(Go on about my day as usual.)`
+			`	You switch your media channels off from the celebrations, and get to your ship's system checks. Once you're done, you prepare for just another day.`
+				decline
+			label celebrate
+			`	You take an hour or two to join in on the festivities, because after all, it's not everyone who can claim to have witnessed a centenary anniversary of a nation. Stepping off the <ship>, you head to the spaceport, have a couple of drinks, speak to some of the locals, and party with a few revelers. Once it's getting late, you head back to your ship and reflect on the meaning of this day throughout human space.`
+				decline
 
 mission "Exotic Life: Buccaneer Bay"
 	minor
@@ -932,7 +931,7 @@ mission "Exotic Life: Delve"
 			`The air in Delve's spaceport is crisp, carrying the mineral tang of weathered stone alongside occasional whiffs of fuel and lingering industrial cleaners. As you walk toward your ship, you notice teams of workers dressed in biohazard gear moving between the departing vessels in pairs, bulky sprayers strapped to their backs, nozzles hissing as they coat hulls in a fine mist. Each ship gets a thorough pass before takeoff, the workers checking crevices and landing gear with practiced efficiency.`
 			choice
 				`	(Ask them what they're doing.)`
-				`	(Ignore them and continue on your way.)`
+				`	(Ignore them and continue on my way.)`
 					decline
 				`	"Shipworm outbreak?"`
 					to display
@@ -968,7 +967,7 @@ mission "Exotic Life: Ada"
 			`	They are covered head to toe in protective suits, thick gloves, and respirators obscuring their faces. One carries a handheld sprayer, releasing a fine mist into the air, while the other checks a monitor strapped to their arm. Their boots crunch softly against the floor as they pass.`
 			choice
 				`	(Ask them what's going on.)`
-				`	(Ignore them and continue on your way.)`
+				`	(Ignore them and continue on my way.)`
 					decline
 				`	"Nasty little bombacles, aren't they?"`
 					to display
@@ -1167,7 +1166,7 @@ mission "Exotic Life: Bloodsea"
 			`	"That man's got the Bloodsea Bloom," she says flatly, as if mentioning the weather.`
 			choice
 				`	"What's that?"`
-				`	(Get back to your ship.)`
+				`	(Get back to my ship.)`
 					goto declined
 			`	She scoffs and leans in, her voice dropping to a rough whisper. "The red tide. Every summer, the bloody sea blooms, fills the air with nasty, toxic bits that chew up your lungs if you catch a whiff. No local goes near the beach when the bloom's ablooming."`
 			`	Then, she suddenly screams, "Only offworlders and blind fools with a death wish swim in that poison!"`
@@ -1320,7 +1319,7 @@ mission "Exotic Life: New Greenland"
 				`	"What's a Mammoth Mastiff?"`
 				`	"Don't tell me what to do!"`
 					goto ending
-				`	(Avert your gaze and get back to your ship.)`
+				`	(Avert my gaze and get back to my ship.)`
 					decline
 			`	"A phantom from harsher times, bred on Hestia when it was still lifeless ice. Now nothing more than a tool of the trade." He pats the creature and it lets out a low rumble.`
 			label ending
@@ -1341,7 +1340,7 @@ mission "Exotic Life: Mainsail"
 				`	"What is that thing?"`
 				`	"Of course I've seen a seadog before!"`
 					goto seen
-				`	(Avert your gaze and get back to your ship.)`
+				`	(Avert my gaze and get back to my ship.)`
 					decline
 			action
 				set "exotic animals: mainsail seadog known"
@@ -1611,7 +1610,7 @@ mission "A Sunracer Hovercraft Racing"
 				`	(Ask someone for an overview of hover racing.)`
 					to display
 						not "hovercraft racing: talked to fan"
-				`	(Use your ship to scan the racers.)`
+				`	(Use my ship to scan the racers.)`
 					to display
 						or
 							"flagship attribute: outfit scan power" > 0
