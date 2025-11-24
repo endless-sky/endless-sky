@@ -40,7 +40,7 @@ namespace {
 
 void FillShader::Init()
 {
-	shader = GameData::Shaders().Find("fill");
+	shader = GameData::Shaders().Get("fill");
 	if(!shader->Object())
 		throw runtime_error("Could not find fill shader!");
 	scaleI = shader->Uniform("scale");
