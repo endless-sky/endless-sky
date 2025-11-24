@@ -242,7 +242,8 @@ namespace {
 			for(Ship *ship : toDeploy)
 				ship->SetDeployOrder(true);
 			string ship = (toDeploy.size() == 1 ? "ship" : "ships");
-			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried " + ship + ".", Messages::Importance::High);
+			Messages::Add({"Deployed " + to_string(toDeploy.size()) + " carried " + ship + ".",
+				GameData::MessageCategories().Get("normal")});
 		}
 		// Otherwise, instruct the carried ships to return to their berth.
 		else if(!toRecall.empty())
@@ -250,7 +251,8 @@ namespace {
 			for(Ship *ship : toRecall)
 				ship->SetDeployOrder(false);
 			string ship = (toRecall.size() == 1 ? "ship" : "ships");
-			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried " + ship + ".", Messages::Importance::High);
+			Messages::Add({"Recalled " + to_string(toRecall.size()) + " carried " + ship + ".",
+				GameData::MessageCategories().Get("normal")});
 		}
 	}
 
@@ -405,7 +407,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	const auto &formationPatterns = GameData::Formations();
 	if(formationPatterns.empty())
 	{
-		Messages::Add("No formations available.", Messages::Importance::High);
+		Messages::Add(*GameData::Messages().Get("no formations"));
 		return;
 	}
 
@@ -456,7 +458,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	unsigned int count = targetShips.size();
 	string message = to_string(count) + (count == 1 ? " ship" : " ships") + " will ";
 	message += toSet ? ("assume \"" + toSet->TrueName() + "\" formation.") : "no longer fly in formation.";
-	Messages::Add(message, Messages::Importance::Low);
+	Messages::Add({message, GameData::MessageCategories().Get("low")});
 }
 
 
@@ -509,7 +511,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 
 	if(!autoPilot.Has(Command::STOP) && activeCommands.Has(Command::STOP)
 			&& flagship->Velocity().Length() > VELOCITY_ZERO)
-		Messages::Add("Coming to a stop.", Messages::Importance::High);
+		Messages::Add(*GameData::Messages().Get("coming to a stop"));
 
 	autoPilot |= activeCommands;
 	if(activeCommands.Has(AutopilotCancelCommands()))
@@ -519,7 +521,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
 		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
 		if(canceled)
-			Messages::Add("Disengaging autopilot.", Messages::Importance::High);
+			Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
 		autoPilot.Clear();
 	}
 
@@ -529,8 +531,8 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 			if(!it->IsParked() && it->CloakingSpeed())
 			{
 				isCloaking = !isCloaking;
-				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device."
-					, Messages::Importance::High);
+				Messages::Add(*GameData::Messages().Get(isCloaking ?
+					"engaging cloaking device" : "disengaging cloaking device"));
 				break;
 			}
 
@@ -2998,8 +3000,9 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 	const Government *government = ship->GetGovernment();
 	const string &language = government->Language();
 	if(language.empty() || player.Conditions().Get("language: " + language))
-		Messages::Add(government->DisplayName() + " " + ship->Noun() + " \"" + ship->GivenName()
-			+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
+		Messages::Add({government->DisplayName() + " " + ship->Noun() + " \"" + ship->GivenName()
+			+ "\": Please, just take my cargo and leave me alone.",
+			GameData::MessageCategories().Get("low")});
 
 }
 
@@ -4286,7 +4289,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 					return planet->DisplayName();
 				});
 			message += " in the system you are jumping to.";
-			Messages::Add(message, Messages::Importance::Info);
+			Messages::Add({message, GameData::MessageCategories().Get("info")});
 
 			if(Preferences::GetNotificationSetting() == Preferences::NotificationSetting::BOTH)
 				UI::PlaySound(UI::UISound::FAILURE);
@@ -4518,7 +4521,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		else if(!message.empty())
 			UI::PlaySound(UI::UISound::FAILURE);
 
-		Messages::Importance messageImportance = Messages::Importance::High;
+		const Message::Category *messageCategory = GameData::MessageCategories().Get("normal");
 
 		if(target && (ship.Zoom() < 1. || ship.Position().Distance(target->Position()) < target->Radius()))
 		{
@@ -4538,7 +4541,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			{
 				message = "The authorities on this " + next->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
-				messageImportance = Messages::Importance::Highest;
+				messageCategory = GameData::MessageCategories().Get("high");
 				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(next != target)
@@ -4578,15 +4581,15 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 			if(!target)
 			{
-				message = "There are no planets in this system that you can land on.";
-				messageImportance = Messages::Importance::Highest;
+				Messages::Add(*GameData::Messages().Get("no landables"));
+				message.clear();
 				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(!target->GetPlanet()->CanLand())
 			{
 				message = "The authorities on this " + target->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
-				messageImportance = Messages::Importance::Highest;
+				messageCategory = GameData::MessageCategories().Get("high");
 				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(!types.empty())
@@ -4609,7 +4612,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				message = "Landing on " + target->DisplayName() + ".";
 		}
 		if(!message.empty())
-			Messages::Add(message, messageImportance);
+			Messages::Add({message, messageCategory});
 	}
 	else if(activeCommands.Has(Command::JUMP | Command::FLEET_JUMP))
 	{
@@ -4637,8 +4640,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		else if(isWormhole)
 		{
 			// The player is guaranteed to have a travel plan for isWormhole to be true.
-			Messages::Add("Landing on a local wormhole to navigate to the "
-					+ player.TravelPlan().back()->DisplayName() + " system.", Messages::Importance::High);
+			Messages::Add({"Landing on a local wormhole to navigate to the "
+					+ player.TravelPlan().back()->DisplayName() + " system.",
+					GameData::MessageCategories().Get("normal")});
 		}
 		if(ship.GetTargetSystem() && !isWormhole)
 		{
@@ -4650,11 +4654,13 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			{
 				// Note: also has command JUMP on only the first call.
 				if(activeCommands.Has(Command::JUMP))
-					Messages::Add("Engaging fleet autopilot to jump to the " + name + " system."
-						" Your fleet will jump when ready.", Messages::Importance::High);
+					Messages::Add({"Engaging fleet autopilot to jump to the " + name + " system."
+						" Your fleet will jump when ready.",
+						GameData::MessageCategories().Get("normal")});
 			}
 			else
-				Messages::Add("Engaging autopilot to jump to the " + name + " system.", Messages::Importance::High);
+				Messages::Add({"Engaging autopilot to jump to the " + name + " system.",
+					GameData::MessageCategories().Get("normal")});
 		}
 	}
 	else if(activeCommands.Has(Command::SCAN))
@@ -4763,7 +4769,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		const Planet *planet = player.TravelDestination();
 		if(planet && planet->IsInSystem(ship.GetSystem()) && planet->IsAccessible(&ship))
 		{
-			Messages::Add("Autopilot: landing on " + planet->DisplayName() + ".", Messages::Importance::High);
+			Messages::Add({"Autopilot: landing on " + planet->DisplayName() + ".",
+				GameData::MessageCategories().Get("normal")});
 			autoPilot |= Command::LAND;
 			ship.SetTargetStellar(ship.GetSystem()->FindStellar(planet));
 		}
@@ -4800,25 +4807,25 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	{
 		if(!ship.JumpNavigation().HasHyperdrive() && !ship.JumpNavigation().HasJumpDrive())
 		{
-			Messages::Add("You do not have a hyperdrive installed.", Messages::Importance::Highest);
+			Messages::Add(*GameData::Messages().Get("no hyperdrive"));
 			autoPilot.Clear();
 			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(!ship.JumpNavigation().JumpFuel(ship.GetTargetSystem()))
 		{
-			Messages::Add("You cannot jump to the selected system.", Messages::Importance::Highest);
+			Messages::Add(*GameData::Messages().Get("cannot jump"));
 			autoPilot.Clear();
 			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
-			Messages::Add("You do not have enough fuel to make a hyperspace jump.", Messages::Importance::Highest);
+			Messages::Add(*GameData::Messages().Get("no fuel"));
 			autoPilot.Clear();
 			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(ship.IsLanding())
 		{
-			Messages::Add("You cannot jump while landing.", Messages::Importance::Highest);
+			Messages::Add(*GameData::Messages().Get("cannot jump while landing"));
 			autoPilot.Clear(Command::JUMP);
 			UI::PlaySound(UI::UISound::FAILURE);
 		}
@@ -4860,7 +4867,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 void AI::DisengageAutopilot()
 {
-	Messages::Add("Disengaging autopilot.", Messages::Importance::High);
+	Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
 	autoPilot.Clear();
 }
 
@@ -5065,8 +5072,8 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 	if(ships.empty())
 	{
 		if(destroyedCount)
-			Messages::Add(who + "destroyed and unable to execute your orders.",
-				Messages::Importance::High);
+			Messages::Add({who + "destroyed and unable to execute your orders.",
+				GameData::MessageCategories().Get("normal")});
 		return;
 	}
 
@@ -5141,13 +5148,14 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 	if(alreadyHarvesting)
 		return;
 	else if(hasMismatch)
-		Messages::Add(who + description, Messages::Importance::High);
+		Messages::Add({who + description, GameData::MessageCategories().Get("normal")});
 	else
 	{
 		if(!isValidTarget)
-			Messages::Add(who + "unable to and no longer " + description, Messages::Importance::High);
+			Messages::Add({who + "unable to and no longer " + description,
+				GameData::MessageCategories().Get("normal")});
 		else
-			Messages::Add(who + "no longer " + description, Messages::Importance::High);
+			Messages::Add({who + "no longer " + description, GameData::MessageCategories().Get("normal")});
 
 		// Clear any orders that are now empty.
 		for(const Ship *ship : ships)

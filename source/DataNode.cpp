@@ -95,7 +95,7 @@ const vector<string> &DataNode::Tokens() const noexcept
 
 
 // Add tokens to the node.
-void DataNode::AddToken(const std::string &token)
+void DataNode::AddToken(const string &token)
 {
 	tokens.emplace_back(token);
 }
