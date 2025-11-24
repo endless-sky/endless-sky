@@ -541,7 +541,7 @@ tip "piercing:"
 	`Percentage of this weapon's damage that leaks through to the hull while the target's shields are still active.`
 
 tip "piercing protection:"
-	`Protection provided against piercing weapons. Modifies how difficult a ship's shields are to pierce by the given factor.`
+	`Protection provided against piercing weapons. Increases by the given factor the amount of piercing required to make the same portion of weapon damage bypass a ship's shields.`
 
 tip "piercing resistance:"
 	`Piercing damage resisted on all incoming projectiles, preventing damage from leaking through the shields to the hull.`
