@@ -551,7 +551,6 @@ mission "Stealth Cargo Smuggling (North) [0]"
 	on fail
 		"reputation: Pirate" -= 1
 		"reputation: Republic" -= 5
-		"reputation: Deep" -= 5
 		"reputation: Navy (Oathkeeper)" -= 5
 	on visit
 		dialog phrase "generic cargo on visit"
