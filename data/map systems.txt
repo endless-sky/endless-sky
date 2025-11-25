@@ -866,7 +866,7 @@ system "3 Axis"
 		sprite planet/ice0
 		distance 1340.63
 		period 388.064
-	object
+	object "Spiraling Indigo"
 		sprite planet/gas6
 		distance 2584.92
 		period 1038.98
@@ -1078,7 +1078,7 @@ system "4 Axis"
 		sprite planet/rock17-b
 		distance 1455.02
 		period 1076.88
-	object
+	object "Midnight Diamond"
 		sprite planet/gas1
 		distance 1864.98
 		period 1562.70
@@ -1926,7 +1926,7 @@ system Ablodab
 				scale 0.5
 			distance 148.05
 			period 24
-	object
+	object Ogmur
 		sprite planet/gas5
 		distance 1376.54
 		period 990.943
@@ -11221,7 +11221,6 @@ system Current
 		multiplier 1.5
 	habitable 1250
 	belt 1923
-	"jump range" 30
 	haze _menu/haze-twilit-embers
 	link Gust
 	link Torrent
@@ -16687,6 +16686,7 @@ system Feraticus
 		sprite planet/gateway-frozen
 		distance 10000
 		period 126491
+		visibility 6000 1500
 
 system Fereti
 	pos -39 600
@@ -24544,7 +24544,7 @@ system Kugel
 	object
 		sprite star/g5
 		period 10
-	object
+	object "Sandswell"
 		sprite planet/desert0-b
 		distance 155.36
 		period 30.9833
@@ -24773,7 +24773,7 @@ system "Last Word"
 		sprite planet/rock1
 		distance 1383.46
 		period 823.322
-	object
+	object "Heavenly Halls"
 		sprite planet/gas1-b
 		distance 4922.46
 		period 5525.77
@@ -32402,7 +32402,7 @@ system Prelude
 		multiplier 1.2
 	habitable 2300
 	belt 1664
-	"jump range" 30
+	"jump range" 45
 	haze _menu/haze-twilight-thin
 	link Si-28
 	asteroids "small rock" 3 4.111
@@ -32447,10 +32447,6 @@ system Prelude
 			sprite planet/callisto-b
 			distance 177
 			period 61.628
-	object
-		sprite planet/rock14-b
-		distance 2244
-		period 886.605
 	object
 		sprite planet/ice6
 		distance 2285.91
@@ -38530,7 +38526,11 @@ system Symphony
 		period 4189.62
 		object
 			sprite planet/dust0-b
-			distance 340
+			distance 300
+			period 36
+		object
+			sprite planet/dust0
+			distance 360
 			period 48
 		object "Navigeo Yards"
 			sprite planet/station-shipyard-a1
@@ -38538,10 +38538,6 @@ system Symphony
 			distance 360
 			period 48
 			offset 180
-		object
-			sprite planet/dust0
-			distance 360
-			period 48
 	object
 		sprite planet/gas4-b
 		distance 6120.6

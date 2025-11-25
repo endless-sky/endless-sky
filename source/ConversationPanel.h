@@ -48,7 +48,7 @@ public:
 
 	virtual ~ConversationPanel() override;
 
-template <class T>
+	template<class T>
 	void SetCallback(T *t, void (T::*fun)(int));
 	void SetCallback(std::function<void(int)> fun);
 
@@ -159,7 +159,7 @@ private:
 
 
 // Allow the callback function to be a member of any class.
-template <class T>
+template<class T>
 void ConversationPanel::SetCallback(T *t, void (T::*fun)(int))
 {
 	callback = std::bind(fun, t, std::placeholders::_1);

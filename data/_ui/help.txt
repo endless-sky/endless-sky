@@ -19,15 +19,6 @@ help "bank advanced"
 	`When entering a credit value at the bank, you can put in an exact number, or use the suffixes K, M, B, and T as shorthand for thousands, millions, billions, and trillions. For example, entering a value such as "100k" would count as 100,000 credits.`
 	`Entering a number that is higher than what you or the bank have available will default to the maximum available value. For example, entering "1m" to pay off a 100,000 credit loan will completely pay off the loan without giving extra, should you have available credits.`
 
-help "basics 1"
-	`Press <View star map> to bring up your map. Select a destination, then close the map and press <Initiate hyperspace jump> to jump. Press <Land on planet / station> to land.`
-
-help "basics 2"
-	`For the main menu, press <Show main menu>. The control key bindings can be viewed and changed in the preferences.`
-
-help "basics 3"
-	`To see a help message again, press <Show help>. To see all help messages again, go to the main menu, select Preferences, then go to Settings. Navigate to page two, then select "Reactivate first-time help."`
-
 help "dead"
 	`Uh-oh! You just died. The universe can be a dangerous place for new captains!`
 	`Fortunately, your game is automatically saved every time you leave a planet. To load your most recent saved game, press <Show main menu> to return to the main menu, then click on "Manage Pilots" and "Enter Ship."`
@@ -97,10 +88,21 @@ help "map advanced danger"
 	`The galaxy can be a dangerous place! Pirates raid some systems more frequently or in greater strength than others, and a poorly defended convoy risks attracting them in many systems. To get an idea of the relative danger of different systems, click on the alert icon next to the system name.`
 
 help "multiple ships"
-	`Now that you have more than one ship, while landed on a planet you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel. Ships can also be sorted by clicking on the column headers in the player info panel. You will use the first ship in the list as your flagship. In the player info panel (accessed with <View player info>) you can also "park" a ship on a planet if you want to travel somewhere without it coming with you.`
+	`Now that you have more than one ship, you can reorder the ships in your fleet by clicking and dragging them in the shipyard, outfitter, or player info panel, as long as you are landed. You will use the first ship in the list as your flagship.`
+	`You can also "park" escorts in the player info panel.`
 
 help "shop with multiple ships"
 	`If you want to select a few similar ships from your fleet at once, double-click one of them. Other ships of the same model, with the same outfits as the one you selected will be added to your selection.`
+
+help "player info"
+	`The player info panel contains a wide variety of information about your pilot, including their net worth, combat rating, salary, and licenses.`
+	`It also contains a list of all ships you currently own. Clicking on a ship and then going to the ship info tab, or double clicking on it, will bring up more information about that ship.`
+	`Your pilot's logbook and current missions can be accessed by clicking on the buttons below the panel.`
+	`The player info panel can be brought up at any time by pressing <View player info>, including mid-flight. However, some functionalities of the panel can only be accessed while landed.`
+
+help "fleet management"
+	`You can click on the column headers to temporarily sort your fleet. To make this order permanent, press the "Save Order" button.`
+	`You can also park your ships by selecting them and pressing "Park", or by pressing "Park Local" or "Park All". Parked ships will not launch or follow you, and do not require any crew salaries. You cannot park or unpark ships mid-flight.`
 
 help "ship info"
 	`The ship info tab lets you view detailed information about ships in your fleet at any time. This includes any information you could see at a shipyard or outfitter, as well as the cargo and passengers distributed among each ship.`
@@ -193,3 +195,4 @@ help "control ship with mouse"
 	`<Reverse> is used to thrust reverse.`
 	`Right mouse click will fire primary weapons.`
 	`<Mouse turning (hold)> will toggle mouse turning while it is held.`
+	`The "go to and hold" command is remapped from the right mouse button to the middle one.`

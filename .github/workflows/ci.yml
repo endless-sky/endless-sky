@@ -9,6 +9,8 @@ on:
     paths:
     - 'source/**'
     - 'data/**'
+    - 'images/**'
+    - 'sounds/**'
     - 'tests/**'
     - '.github/workflows/**'
     - '.github/path-filters.yml'
@@ -60,14 +62,14 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
         fetch-depth: '10'
     - name: Install development dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2 libltdl-dev
+        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libminizip-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2 libltdl-dev autoconf autoconf-archive automake libtool
     - name: Disable VM sound card
       run: |
         sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
@@ -115,7 +117,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           show-progress: false
       - name: Build Endless Sky
@@ -136,7 +138,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
         fetch-depth: '10'
@@ -195,7 +197,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
         fetch-depth: '10'
@@ -240,11 +242,11 @@ jobs:
     name: MacOS
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
-    runs-on: macos-13
+    runs-on: macos-14
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
         fetch-depth: '10'
@@ -295,7 +297,7 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: "Endless Sky ARM CI Test"
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
         fetch-depth: '10'
@@ -345,7 +347,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - name: Install development dependencies
@@ -365,7 +367,7 @@ jobs:
       CONTINUOUS: EndlessSky-win64-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     # If no code changes occurred then we can download the latest continuous.

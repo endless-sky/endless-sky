@@ -70,6 +70,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConversationPanel.h
 	CoreStartData.cpp
 	CoreStartData.h
+	CustomEvents.cpp
+	CustomEvents.h
 	DamageDealt.h
 	DamageProfile.cpp
 	DamageProfile.h
@@ -174,10 +176,14 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
+	BookEntry.cpp
+	BookEntry.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
 	MenuPanel.h
+	Message.cpp
+	Message.h
 	MessageLogPanel.cpp
 	MessageLogPanel.h
 	Messages.cpp
@@ -191,10 +197,13 @@ target_sources(EndlessSkyLib PRIVATE
 	Mission.h
 	MissionAction.cpp
 	MissionAction.h
+	MissionTimer.cpp
+	MissionTimer.h
 	MissionPanel.cpp
 	MissionPanel.h
 	Mortgage.cpp
 	Mortgage.h
+	MouseButton.h
 	NPC.cpp
 	NPC.h
 	NPCAction.cpp
@@ -307,6 +316,8 @@ target_sources(EndlessSkyLib PRIVATE
 	TextArea.h
 	TextReplacements.cpp
 	TextReplacements.h
+	Tooltip.cpp
+	Tooltip.h
 	Trade.cpp
 	Trade.h
 	TradingPanel.cpp
@@ -340,9 +351,33 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/Sound.cpp
 	audio/Sound.h
 	audio/SoundCategory.h
+	audio/player/AudioPlayer.cpp
+	audio/player/AudioPlayer.h
+	audio/player/MusicPlayer.cpp
+	audio/player/MusicPlayer.h
+	audio/supplier/AsyncAudioSupplier.cpp
+	audio/supplier/AsyncAudioSupplier.h
+	audio/supplier/AudioSupplier.cpp
+	audio/supplier/AudioSupplier.h
+	audio/supplier/FlacSupplier.cpp
+	audio/supplier/FlacSupplier.h
+	audio/supplier/Mp3Supplier.cpp
+	audio/supplier/Mp3Supplier.h
+	audio/supplier/WavSupplier.cpp
+	audio/supplier/WavSupplier.h
+	audio/supplier/effect/Fade.cpp
+	audio/supplier/effect/Fade.h
+	comparators/ByDisplayName.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	comparators/ByUUID.h
+	orders/OrderSet.cpp
+	orders/OrderSet.h
+	orders/OrderSingle.cpp
+	orders/OrderSingle.h
+	orders/Orders.cpp
+	orders/Orders.h
 	image/BlendingMode.h
 	image/ImageBuffer.cpp
 	image/ImageBuffer.h
@@ -410,3 +445,12 @@ target_sources(EndlessSkyLib PRIVATE
 	text/WrappedText.cpp
 	text/WrappedText.h
 )
+
+if(WIN32)
+	target_sources(EndlessSkyLib PRIVATE
+		windows/TimerResolutionGuard.cpp
+		windows/TimerResolutionGuard.h
+		windows/WinVersion.cpp
+		windows/WinVersion.h
+	)
+endif()

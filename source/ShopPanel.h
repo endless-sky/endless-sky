@@ -21,9 +21,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "Rectangle.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
+#include "Tooltip.h"
 
 #include <map>
 #include <set>
@@ -46,6 +48,8 @@ public:
 
 	virtual void Step() override;
 	virtual void Draw() override;
+
+	virtual void UpdateTooltipActivation() override;
 
 
 protected:
@@ -99,10 +103,10 @@ protected:
 
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
-	virtual bool Release(int x, int y) override;
+	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Scroll(double dx, double dy) override;
 
 	void DoFind(const std::string &text);
@@ -110,6 +114,7 @@ protected:
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
+	void DrawButton(const std::string &name, const Rectangle &buttonShape, bool isActive, bool hovering, char keyCode);
 	void CheckSelection();
 
 
@@ -179,6 +184,7 @@ protected:
 	double previousX = 0.;
 
 	std::vector<Zone> zones;
+	std::vector<ClickZone<char>> buttonZones;
 	std::vector<ClickZone<const Ship *>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
@@ -221,7 +227,14 @@ private:
 	Point hoverPoint;
 	std::string shipName;
 	std::string warningType;
-	int hoverCount = 0;
+	Tooltip shipsTooltip;
+	Tooltip creditsTooltip;
+
+	// Define the colors used by DrawButton, implemented at the class level to avoid repeat lookups from GameData.
+	const Color &hover;
+	const Color &active;
+	const Color &inactive;
+	const Color &back;
 
 	bool checkedHelp = false;
 };

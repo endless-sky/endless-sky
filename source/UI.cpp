@@ -57,20 +57,16 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			if(event.button.button == 1)
-			{
+			if(event.button.button == SDL_BUTTON_LEFT)
 				handled = (*it)->ZoneClick(Point(x, y));
-				if(!handled)
-					handled = (*it)->DoClick(x, y, event.button.clicks);
-			}
-			else if(event.button.button == 3)
-				handled = (*it)->DoRClick(x, y);
+			if(!handled)
+				handled = (*it)->DoClick(x, y, static_cast<MouseButton>(event.button.button), event.button.clicks);
 		}
 		else if(event.type == SDL_MOUSEBUTTONUP)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			handled = (*it)->DoRelease(x, y);
+			handled = (*it)->DoRelease(x, y, static_cast<MouseButton>(event.button.button));
 		}
 		else if(event.type == SDL_MOUSEWHEEL)
 			handled = (*it)->DoScroll(event.wheel.x, event.wheel.y);
@@ -123,6 +119,13 @@ void UI::DrawAll()
 
 	for( ; it != stack.end(); ++it)
 		(*it)->DoDraw();
+}
+
+
+
+const vector<shared_ptr<Panel>> &UI::Stack() const
+{
+	return stack;
 }
 
 
@@ -256,6 +259,14 @@ bool UI::IsDone() const
 bool UI::IsEmpty() const
 {
 	return stack.empty() && toPush.empty();
+}
+
+
+
+void UI::AdjustViewport() const
+{
+	for(auto &it : stack)
+		it->DoResize();
 }
 
 

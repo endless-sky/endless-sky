@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // from the "civilian" phrase.
 class ShipNameDialog : public Dialog {
 public:
-	template <class T>
+	template<class T>
 	ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
 		const std::string &message, std::string initialValue = "");
 
@@ -37,7 +37,7 @@ public:
 
 
 protected:
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
 
 private:
@@ -46,7 +46,7 @@ private:
 
 
 
-template <class T>
+template<class T>
 ShipNameDialog::ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
 		const std::string &message, std::string initialValue)
 	: Dialog(panel, fun, message, initialValue)
