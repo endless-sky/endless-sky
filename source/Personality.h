@@ -87,7 +87,7 @@ public:
 	bool IsQuiet() const;
 
 	// Current inaccuracy in this ship's targeting:
-	const Point &Confusion() const;
+	const double &Confusion() const;
 	void UpdateConfusion(bool isFiring);
 
 	// Personality to use for ships defending a planet from domination:
