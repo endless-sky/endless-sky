@@ -21,6 +21,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#define MINIMP3_ONLY_MP3
+//#define MINIMP3_ONLY_SIMD
+//#define MINIMP3_NO_SIMD
+#define MINIMP3_NONSTANDARD_BUT_LOGICAL
+//#define MINIMP3_FLOAT_OUTPUT
+#define MINIMP3_IMPLEMENTATION
+#include "minimp3.h"
+#pragma GCC diagnostic pop
+
 using namespace std;
 
 namespace {
@@ -30,14 +42,14 @@ namespace {
 	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t frequency);
 	uint32_t Read4(const shared_ptr<iostream> &in);
 	uint16_t Read2(const shared_ptr<iostream> &in);
+
+	bool ReadMP3(const shared_ptr<iostream>& in, vector<char>& data, uint32_t frequency);
 }
 
 
 
 bool Sound::Load(const filesystem::path &path, const string &name)
 {
-	if(path.extension() != ".wav")
-		return false;
 	this->name = name;
 
 	isLooped = path.stem().string().ends_with('~');
@@ -47,16 +59,32 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 	shared_ptr<iostream> in = Files::Open(path);
 	if(!in)
 		return false;
-	uint32_t bytes = ReadHeader(in, AudioSupplier::SAMPLE_RATE);
-	if(!bytes)
+	vector<char> data;
+
+	if(path.extension() == ".wav")
 	{
-		Logger::LogError("WAV file uses an unsupported format. Only 44100Hz little-endian 16-bit PCM is supported.");
+		uint32_t bytes = ReadHeader(in, AudioSupplier::SAMPLE_RATE);
+		if(!bytes)
+		{
+			Logger::LogError("WAV file uses an unsupported format. Only 44100Hz little-endian 16-bit PCM is supported.");
+			return false;
+		}
+		data.resize(bytes);
+		if (!in->read(data.data(), bytes))
+			return false;
+	}
+	else if(path.extension() == ".mp3")
+	{
+		if(!ReadMP3(in, data, AudioSupplier::SAMPLE_RATE))
+		{
+			Logger::LogError("MP3 file uses an unsupported format. Only 44100Hz mono is supported.");
+			return false;
+		}
+	}
+	else
+	{
 		return false;
 	}
-
-	// Read 16-bit mono from the file.
-	vector<char> data(bytes);
-	in->read(data.data(), bytes);
 
 	// Store 16-bit stereo buffer.
 	buf.resize(2 * data.size() / sizeof(AudioSupplier::sample_t));
@@ -194,5 +222,40 @@ namespace {
 		for(int i = 0; i < 2; ++i)
 			result |= static_cast<uint16_t>(data[i]) << (i * 8);
 		return result;
+	}
+
+
+
+	bool ReadMP3(const shared_ptr<iostream>& in, vector<char>& data, uint32_t frequency)
+	{
+		mp3dec_t mp3d;
+		mp3dec_init(&mp3d);
+		
+		auto raw_data = Files::Read(in);
+		const uint8_t* p = reinterpret_cast<const uint8_t*>(raw_data.data());
+		const uint8_t* pend = p + raw_data.size();
+
+		size_t size = 0;
+		while(p < pend)
+		{
+			data.resize(size + MINIMP3_MAX_SAMPLES_PER_FRAME * sizeof(int16_t));
+			int16_t* next = reinterpret_cast<int16_t*>(data.data() + size);
+			mp3dec_frame_info_t info;
+			size_t sample_count = mp3dec_decode_frame(&mp3d, p, pend-p, next, &info);
+
+			if(info.frame_bytes <= 0) // insufficient data... but we gave it the
+				break;                 // whole buffer.
+			size += sample_count * 2;
+			if(frequency != static_cast<uint32_t>(info.hz))
+				return false;
+			else if(frequency != static_cast<uint32_t>(info.hz))
+				return false;          // file is not fixed frequency.
+			else if(info.channels != 1)
+				return false;          // only mono is supported
+
+			p += info.frame_bytes;
+		}
+		data.resize(size);
+		return !data.empty();
 	}
 }

@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-precision mediump float;
+precision highp float;
 
 uniform vec4 color;
 uniform float radius;

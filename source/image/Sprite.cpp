@@ -28,15 +28,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	void AddBuffer(ImageBuffer &buffer, uint32_t *target, bool noReduction)
+	void AddBuffer(ImageBuffer &buffer, uint32_t *target, bool isui = false)
 	{
-		// Check whether this sprite is large enough to require size reduction.
-		Preferences::LargeGraphicsReduction setting = Preferences::GetLargeGraphicsReduction();
-		if(!noReduction && (setting == Preferences::LargeGraphicsReduction::ALL
-				|| (setting == Preferences::LargeGraphicsReduction::LARGEST_ONLY
-				&& buffer.Width() * buffer.Height() >= 1000000)))
-			buffer.ShrinkToHalfSize();
-
+		if (!buffer.CompressedFormat())
+		{
+			// Reduce the size of the textures (and the GPU memory load) if we are in
+			// "Reduced graphics" mode.
+			if(Preferences::Has("Reduced graphics") && !isui)
+			{
+				do
+				{
+					buffer.ShrinkToHalfSize();
+				}
+				while (buffer.Width() * buffer.Height() >= 250000);
+			}
+		} // else can't edit pre-compressed data like this
+	
 		// Upload the images as a single array texture.
 		glGenTextures(1, target);
 		glBindTexture(GL_TEXTURE_2D_ARRAY, *target);
@@ -47,10 +54,20 @@ namespace {
 		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-		// Upload the image data.
-		glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
-			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+		if (!buffer.CompressedFormat())
+		{
+			// Upload the image data.
+			glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
+				buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
+				0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
+		}
+		else
+		{
+			// Upload the image data.
+			glCompressedTexImage3D(GL_TEXTURE_2D_ARRAY, 0, buffer.CompressedFormat(), // target, mipmap level, internal format,
+				buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
+				0, buffer.CompressedSize(), buffer.Pixels()); // border, input format, data type, data.
+		}
 
 		// Unbind the texture.
 		glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
@@ -77,31 +94,31 @@ const string &Sprite::Name() const
 
 
 // Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
-void Sprite::AddFrames(ImageBuffer &buffer, bool is2x, bool noReduction)
+void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 {
 	// If this is the 1x image, its dimensions determine the sprite's size.
 	if(!is2x)
 	{
-		width = buffer.Width();
-		height = buffer.Height();
+		width = buffer.DisplayWidth();
+		height = buffer.DisplayHeight();
 		frames = buffer.Frames();
 	}
 
 	// Only non-empty buffers need to be added to the sprite.
 	if(buffer.Pixels())
-		AddBuffer(buffer, &texture[is2x], noReduction);
+		AddBuffer(buffer, &texture[is2x], name.substr(0, 3) == "ui/");
 }
 
 
 
 // Upload the given frames. The given buffer will be cleared afterwards.
-void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x, bool noReduction)
+void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x)
 {
 	// Do nothing if the buffer is empty.
 	if(!buffer.Pixels())
 		return;
 
-	AddBuffer(buffer, &swizzleMask[is2x], noReduction);
+	AddBuffer(buffer, &swizzleMask[is2x]);
 }
 
 

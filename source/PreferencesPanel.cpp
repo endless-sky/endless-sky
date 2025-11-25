@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PreferencesPanel.h"
 
+#include "GamepadPanel.h"
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
@@ -46,16 +47,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "windows/WinVersion.h"
 #endif
 
+#include <SDL2/SDL.h>
+
+#ifdef __ANDROID__
+#include "AndroidFile.h"
+#endif
+
 #include "opengl.h"
 
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
 namespace {
 	// Settings that require special handling.
 	const string ZOOM_FACTOR = "Main zoom factor";
-	const int ZOOM_FACTOR_MIN = 100;
+	const int ZOOM_FACTOR_MIN = 50;
 	const int ZOOM_FACTOR_MAX = 200;
 	const int ZOOM_FACTOR_INCREMENT = 10;
 	const string VIEW_ZOOM_FACTOR = "View zoom factor";
@@ -64,7 +72,6 @@ namespace {
 	const string SCREEN_MODE_SETTING = "Screen mode";
 	const string VSYNC_SETTING = "VSync";
 	const string CAMERA_ACCELERATION = "Camera acceleration";
-	const string LARGE_GRAPHICS_REDUCTION = "Reduce large graphics";
 	const string CLOAK_OUTLINE = "Cloaked ship outlines";
 	const string STATUS_OVERLAYS_ALL = "Show status overlays";
 	const string STATUS_OVERLAYS_FLAGSHIP = "   Show flagship overlay";
@@ -76,6 +83,7 @@ namespace {
 	const string FLOTSAM_SETTING = "Flotsam collection";
 	const string TURRET_TRACKING = "Turret tracking";
 	const string FOCUS_PREFERENCE = "Turrets focus fire";
+	const string FRUGAL_ESCORTS = "Escorts use ammo frugally";
 	const string REACTIVATE_HELP = "Reactivate first-time help";
 	const string SCROLL_SPEED = "Scroll speed";
 	const string TOOLTIP_ACTIVATION = "Tooltip activation time";
@@ -98,11 +106,7 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
-#ifdef _WIN32
 	const int SETTINGS_PAGE_COUNT = 3;
-#else
-	const int SETTINGS_PAGE_COUNT = 2;
-#endif
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -118,14 +122,20 @@ namespace {
 		{"environment volume", SoundCategory::ENVIRONMENT},
 		{"alert volume", SoundCategory::ALERT}
 	};
+
+	// Control types
+	const string SHOW_KEYS = "Show Keys";
+	const string SHOW_GESTURES = "Show Gestures";
+	const string SHOW_GAMEPAD = "Show Gamepad";
 }
 
 
 
 PreferencesPanel::PreferencesPanel(PlayerInfo &player)
-	: player(player),
+	: player(player), editing(-1), selected(0), hover(-1),
 	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
+	, controlTypeDropdown{new Dropdown}
 {
 	// Select the first valid plugin.
 	for(const auto &plugin : Plugins::Get())
@@ -137,11 +147,26 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 
 	SetIsFullScreen(true);
 
+	controlTypeDropdown->SetPadding(0);
+	controlTypeDropdown->ShowDropIcon(true);
+	controlTypeDropdown->SetFontSize(14);
+	controlTypeDropdown->SetOptions({
+		SHOW_KEYS,
+		SHOW_GESTURES,
+		SHOW_GAMEPAD
+	});
+	controlTypeDropdown->SetBgColor(*GameData::Colors().Get("conversation background"));
+	AddChild(controlTypeDropdown);
+
+#ifdef __ANDROID__
+	controlTypeDropdown->SetSelected(SHOW_GESTURES);
+#endif
+
 	// Set the initial plugin list and description scroll ranges.
 	const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 
-	int pluginListHeight = 0;
+	pluginListHeight = 0;
 	for(const auto &plugin : Plugins::Get())
 		if(plugin.second.IsValid())
 			pluginListHeight += 20;
@@ -168,6 +193,10 @@ void PreferencesPanel::Draw()
 	GameData::Background().Draw(Point());
 
 	Information info;
+
+#ifdef __ANDROID__
+	info.SetCondition("plugin import");
+#endif
 
 	for(const auto &[bar, category] : volumeBars)
 	{
@@ -197,6 +226,11 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous settings");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next settings");
+#ifdef ENDLESS_SKY_VERSION
+	info.SetString("game version", ENDLESS_SKY_VERSION);
+#else
+	info.SetString("game version", "engineering build");
+#endif
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "audio");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
@@ -237,6 +271,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
 		Command::SetKey(zones[editing].Value(), key);
+		controlTypeDropdown->SetSelected(SHOW_KEYS);
 		EndEditing();
 		return true;
 	}
@@ -246,8 +281,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if(key == SDLK_UP)
 		HandleUp();
 	else if(key == SDLK_RETURN)
-		HandleConfirm();
-	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+		editing = selected;
+	else if(key == 'b' || command.Has(Command::MENU) || key == SDLK_AC_BACK || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
 	else if(key == 'c' || key == 's' || key == 'p' || key == 'a')
 	{
@@ -255,11 +290,47 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		hoverItem.clear();
 		selected = 0;
 
-		// Make sure the render buffers are initialized and are aware of the current UI scale.
+		// Reset the render buffers in case the UI scale has changed.
 		Resize();
+		controlTypeDropdown->SetVisible(page == 'c');
 	}
+#ifdef __ANDROID__
+	else if (page == 'p' && key == 'i')
+	{
+		// Import plugin
+		AndroidFile af;
+		SDL_Log("Unzipping Plugin");
+		bool success = af.GetAndUnzipPlugin("Select plugin zipfile", Files::Config() / "plugins");
+		SDL_Log("Plugin unzipped: %s", success ? "true": "false");
+		if (success)
+		{
+			GetUI()->Push(new Dialog(GetUI(), &UI::Quit, "Plugin installed. Endless Sky needs to be restarted."));
+		}
+		SDL_Log("Dialog pushed");
+		// else error has already been reported
+	}
+	else if (page == 'p' && key == 'r')
+	{
+		// remove plugin
+		auto plugin = Plugins::Get().Find(selectedPlugin);
+		if(plugin)
+		{
+			const std::string plugin_path = plugin->path;
+			SDL_Log("Removing plugin %s", plugin->path.c_str());
+			if (Files::RmDir(plugin_path))
+			{
+				GetUI()->Push(new Dialog(GetUI(), &UI::Quit, "Plugin removed. Endless Sky needs to be restarted."));
+			}
+			else
+			{
+				GetUI()->Push(new Dialog("Failed to remove plugin."));
+			}
+		}
+	}
+#else
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
+#endif
 	else if((key == 'n' || key == SDLK_PAGEUP)
 		&& ((page == 'c' && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
 		|| (page == 's' && currentSettingsPage < SETTINGS_PAGE_COUNT - 1)))
@@ -286,6 +357,10 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
 	}
+	else if(page == 'c' && key == 'g')
+	{
+		GetUI()->Push(new GamepadPanel());
+	}
 	else
 		return false;
 
@@ -298,6 +373,31 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 {
 	if(button != MouseButton::LEFT)
 		return false;
+	return FingerDown(x, y, 0) && FingerUp(x, y, 0);
+}
+
+
+
+bool PreferencesPanel::FingerDown(int x, int y, int fid)
+{
+	if(editing >= 0 && editing < static_cast<ssize_t>(zones.size()))
+	{
+		if(controlTypeDropdown->GetSelected() == SHOW_GESTURES)
+			Command::SetGesture(zones[editing].Value(), Gesture::NONE);
+		else if(controlTypeDropdown->GetSelected() == SHOW_GAMEPAD)
+		{
+			Command::SetControllerButton(zones[editing].Value(), SDL_CONTROLLER_BUTTON_INVALID);
+			Command::SetControllerTrigger(zones[editing].Value(), SDL_CONTROLLER_AXIS_INVALID, true);
+		}
+	}
+	editingGesture = editing;
+	return true;
+}
+
+
+
+bool PreferencesPanel::FingerUp(int x, int y, int fid)
+{
 	EndEditing();
 
 	Point point(x, y);
@@ -526,9 +626,62 @@ void PreferencesPanel::Resize()
 	{
 		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
-		pluginListClip = make_unique<RenderBuffer>(pluginListBox.Dimensions());
+		pluginListClip = std::make_unique<RenderBuffer>(pluginListBox.Dimensions());
 		RenderPluginDescription(selectedPlugin);
 	}
+}
+
+
+
+bool PreferencesPanel::Gesture(Gesture::GestureEnum gesture)
+{
+	if(editingGesture >= 0 && editingGesture < static_cast<ssize_t>(zones.size()))
+	{
+		Command::SetGesture(zones[editingGesture].Value(), gesture);
+		controlTypeDropdown->SetSelected(SHOW_GESTURES);
+		EndEditing();
+	}
+	return true;
+}
+
+
+
+bool PreferencesPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	if(editing >= 0 && editing < static_cast<int>(zones.size()))
+	{
+		// Reserve some axes here for flight/zoom
+		if(axis != SDL_CONTROLLER_AXIS_LEFTX &&
+			axis != SDL_CONTROLLER_AXIS_LEFTY)
+		{
+			Command::SetControllerTrigger(zones[editing].Value(), axis, positive);
+			controlTypeDropdown->SetSelected(SHOW_GAMEPAD);
+			EndEditing();
+			return true;
+		}
+	}
+	return Panel::ControllerTriggerPressed(axis, positive);
+}
+
+
+
+bool PreferencesPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(editing >= 0 && editing < static_cast<int>(zones.size()))
+	{
+		// TODO: provide a way to edit submenu buttons? Maybe just allow the user
+		//       to select multiple commands for a single button. For now, just
+		//       don't let the user set the shoulder buttons
+		if(button != SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+		{
+			Command::SetControllerButton(zones[editing].Value(), button);
+			controlTypeDropdown->SetSelected(SHOW_GAMEPAD);
+			EndEditing();
+		}
+		return true;
+	}
+	else
+		return Panel::ControllerButtonDown(button);
 }
 
 
@@ -621,6 +774,7 @@ void PreferencesPanel::DrawControls()
 		Command::CLOAK,
 		Command::MOUSE_TURNING_HOLD,
 		Command::AIM_TURRET_HOLD,
+		Command::STOP,
 		Command::NONE,
 		Command::NONE,
 		Command::MENU,
@@ -677,10 +831,10 @@ void PreferencesPanel::DrawControls()
 		{
 			int index = zones.size();
 			// Mark conflicts.
-			bool isConflicted = command.HasConflict();
+			//bool isConflicted = command.HasConflict();
 			bool isEmpty = !command.HasBinding();
 			bool isEditing = (index == editing);
-			if(isConflicted || isEditing || isEmpty)
+			if(isEditing)
 			{
 				table.SetHighlight(56, 120);
 				table.DrawHighlight(isEditing ? dim : isEmpty ? noCommand : warning);
@@ -706,9 +860,56 @@ void PreferencesPanel::DrawControls()
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
 			table.Draw(command.Description(), medium);
-			table.Draw(command.KeyName(), isEditing ? bright : medium);
+			std::string controlName = "(None)";
+			if(controlTypeDropdown->GetSelected() == SHOW_GESTURES)
+				controlName = command.GestureName();
+			else if(controlTypeDropdown->GetSelected() == SHOW_GAMEPAD)
+				controlName = command.ButtonName();
+			else
+				controlName = command.KeyName();
+			table.Draw(controlName, isEditing ? bright : medium);
 		}
 	}
+
+	Table infoTable;
+	infoTable.AddColumn(125, {150, Alignment::RIGHT});
+	infoTable.SetUnderline(0, 130);
+	infoTable.DrawAt(Point(-400, 32));
+
+	infoTable.DrawUnderline(medium);
+	infoTable.Draw("Additional info", bright);
+	infoTable.DrawGap(5);
+	infoTable.Draw("Press '_x' over controls", medium);
+	infoTable.Draw("to unbind them.", medium);
+	infoTable.Draw("Controls can share", medium);
+	infoTable.Draw("the same keybind.", medium);
+
+	// Draw gesture table for reference
+	auto* ui = GameData::Interfaces().Get("controls");
+	Rectangle gestureRect = ui->GetBox("supported gestures");
+	const string gestureLabel = "Supported Gestures";
+	const int lineWidth = FontSet::Get(14).Width(gestureLabel);
+	Table gestureTable;
+	gestureTable.AddColumn(gestureRect.Width(),   {static_cast<int>(gestureRect.Width()/2), Alignment::RIGHT});
+	gestureTable.AddColumn(gestureRect.Width() / 2 - 10, {static_cast<int>(gestureRect.Width()/2), Alignment::RIGHT});
+	gestureTable.SetUnderline(gestureRect.Width() - lineWidth, gestureRect.Width());
+	gestureTable.DrawAt(gestureRect.TopLeft());
+
+	gestureTable.DrawUnderline(medium);
+	gestureTable.Draw(gestureLabel, bright);
+	gestureTable.Draw("");
+	gestureTable.DrawGap(5);
+	for(int i = 1; ; ++i)
+	{
+		auto& description = Gesture::Description(static_cast<Gesture::GestureEnum>(i));
+		if(description.empty())
+			break;
+		gestureTable.Draw(description, medium);
+	}
+
+	// Dropdown for displayed control type
+	Rectangle controlTypeRect = ui->GetBox("control type");
+	controlTypeDropdown->SetPosition(controlTypeRect);
 }
 
 
@@ -751,7 +952,7 @@ void PreferencesPanel::DrawSettings()
 		"Performance",
 		"Show CPU / GPU load",
 		"Render motion blur",
-		LARGE_GRAPHICS_REDUCTION,
+		"Reduced graphics",
 		"Draw background haze",
 		"Draw starfield",
 		"Fixed starfield zoom",
@@ -812,14 +1013,18 @@ void PreferencesPanel::DrawSettings()
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
 		"Show parenthesis",
-		NOTIFY_ON_DEST,
-		"Save message log"
+		NOTIFY_ON_DEST
 #ifdef _WIN32
-		, "\n",
+		, "",
 		"Windows Options",
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
 #endif
+		, "\n",
+		"Touchscreen",
+		"Automatic chase",
+		"Show buttons on map",
+		"Onscreen Joystick",
 	};
 
 	bool isCategory = true;
@@ -898,11 +1103,6 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == CAMERA_ACCELERATION)
 		{
 			text = Preferences::CameraAccelerationSetting();
-			isOn = text != "off";
-		}
-		else if(setting == LARGE_GRAPHICS_REDUCTION)
-		{
-			text = Preferences::LargeGraphicsReductionSetting();
 			isOn = text != "off";
 		}
 		else if(setting == STATUS_OVERLAYS_FLAGSHIP)
@@ -1220,7 +1420,7 @@ void PreferencesPanel::DrawPlugins()
 
 
 // Render the named plugin description into the pluginDescriptionBuffer.
-void PreferencesPanel::RenderPluginDescription(const string &pluginName)
+void PreferencesPanel::RenderPluginDescription(const std::string &pluginName)
 {
 	const Plugin *plugin = Plugins::Get().Find(pluginName);
 	if(plugin)
@@ -1260,7 +1460,7 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	if(descriptionHeight < box.Height())
 		descriptionHeight = box.Height();
 	pluginDescriptionScroll.SetMaxValue(descriptionHeight);
-	pluginDescriptionBuffer = make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
+	pluginDescriptionBuffer = std::make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
 	// Redirect all drawing commands into the offscreen buffer.
 	auto target = pluginDescriptionBuffer->SetTarget();
 
@@ -1299,16 +1499,17 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
-	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
-	{
-		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
-		return;
-	}
+	// Ignore this error on android, since we hardcode the back button for this.
+	// if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+	// {
+	// 	GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+	// 	return;
+	// }
 
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	if(recacheDeadlines)
-		player.CacheMissionInformation(true);
+		player.CalculateRemainingDeadlines();
 
 	GetUI()->Pop(this);
 }
@@ -1361,8 +1562,6 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	}
 	else if(str == CAMERA_ACCELERATION)
 		Preferences::ToggleCameraAcceleration();
-	else if(str == LARGE_GRAPHICS_REDUCTION)
-		Preferences::ToggleLargeGraphicsReduction();
 	else if(str == STATUS_OVERLAYS_ALL)
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::ALL);
 	else if(str == STATUS_OVERLAYS_FLAGSHIP)

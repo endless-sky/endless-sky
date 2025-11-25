@@ -1,0 +1,61 @@
+# AmbDec configuration
+# Written by Ambisonic Decoder Toolbox, version 8.0
+
+# input channel order: W Y Z X
+
+/description     3D7-noCenter_1h1v_pinv_even_energy_rV_max_rE_2_band
+
+# Similar to the the ITU-5.1-nocenter configuration, the front-center is
+# declared here so that an appropriate distance may be set (for proper delaying
+# or attenuating of dialog and such which feed it directly). It otherwise does
+# not contribute to positional sound output due to its irregular position.
+
+/version         	3
+
+/dec/chan_mask   	f
+/dec/freq_bands  	2
+/dec/speakers    	6
+/dec/coeff_scale 	n3d
+
+/opt/input_scale  	n3d
+/opt/nfeff_comp   	input
+/opt/delay_comp   	on
+/opt/level_comp   	on
+/opt/xover_freq   	400.000000
+/opt/xover_ratio  	0.000000
+
+/speakers/{
+#        	id	 dist     	 azim     	 elev    	conn
+#-----------------------------------------------------------------------
+add_spkr 	FL	 1.828800	 51.000000	 24.000000
+add_spkr 	FR	 1.828800	-51.000000	 24.000000
+add_spkr 	FC	 1.828800	 0.000000	 0.000000
+add_spkr 	BL	 1.828800	 180.000000	 55.000000
+add_spkr 	BR	 1.828800	 0.000000	-55.000000
+add_spkr 	SL	 1.828800	 129.000000	-24.000000
+add_spkr 	SR	 1.828800	-129.000000	-24.000000
+/}
+
+/lfmatrix/{
+order_gain	1.00000000e+00	1.00000000e+00	0.000000	0.000000
+add_row 	 1.66669447e-01	 2.04127551e-01	 1.17487922e-01	 1.66927066e-01
+add_row 	 1.66669447e-01	-2.04127551e-01	 1.17487922e-01	 1.66927066e-01
+add_row 	 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+add_row 	 1.66669447e-01	 0.00000000e+00	 2.36070520e-01	-1.66153012e-01
+add_row 	 1.66669447e-01	 0.00000000e+00	-2.36070520e-01	 1.66153012e-01
+add_row 	 1.66669447e-01	 2.04127551e-01	-1.17487922e-01	-1.66927066e-01
+add_row 	 1.66669447e-01	-2.04127551e-01	-1.17487922e-01	-1.66927066e-01
+/}
+
+/hfmatrix/{
+order_gain	1.73205081e+00	1.00000000e+00	0.000000	0.000000
+add_row 	 1.66669447e-01	 2.04127551e-01	 1.17487922e-01	 1.66927066e-01
+add_row 	 1.66669447e-01	-2.04127551e-01	 1.17487922e-01	 1.66927066e-01
+add_row 	 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+add_row 	 1.66669447e-01	 0.00000000e+00	 2.36070520e-01	-1.66153012e-01
+add_row 	 1.66669447e-01	 0.00000000e+00	-2.36070520e-01	 1.66153012e-01
+add_row 	 1.66669447e-01	 2.04127551e-01	-1.17487922e-01	-1.66927066e-01
+add_row 	 1.66669447e-01	-2.04127551e-01	-1.17487922e-01	-1.66927066e-01
+/}
+
+/end

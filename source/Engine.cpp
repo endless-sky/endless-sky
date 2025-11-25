@@ -29,11 +29,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
+#include "TouchScreen.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
+#include "GamePad.h"
 #include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
@@ -76,6 +78,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/WrappedText.h"
 
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <string>
 
@@ -129,7 +132,7 @@ namespace {
 		else
 			tag = ship->DisplayModelName() + " (" + gov + "): ";
 
-		Messages::Add({tag + message, GameData::MessageCategories().Get("normal")});
+		Messages::Add(tag + message, Messages::Importance::High);
 	}
 
 	Point FlareCurve(double x)
@@ -730,7 +733,7 @@ void Engine::Step(bool isActive)
 	}
 
 	if(flagship && flagship->IsOverheated())
-		Messages::Add(*GameData::Messages().Get("overheated"));
+		Messages::Add("Your ship has overheated.", Messages::Importance::HighestNoRepeat);
 
 	// Clear the HUD information from the previous frame.
 	info = Information();
@@ -1016,13 +1019,16 @@ void Engine::Step(bool isActive)
 	else
 		doClick = false;
 
-	if(doClick && mouseButton == MouseButton::LEFT)
+	if(doClick && !isRightClick)
 	{
 		if(uiClickBox.Dimensions())
 			doClick = !ammoDisplay.Click(uiClickBox);
 		else
 			doClick = !ammoDisplay.Click(clickPoint, hasControl);
-		doClick = doClick && !player.SelectShips(clickBox, hasShift);
+		if(doClick && clickBox.Dimensions())
+		{
+			doClick = !player.SelectShips(clickBox, hasShift);
+		}
 		if(doClick)
 		{
 			const vector<const Ship *> &stack = escorts.Click(clickPoint);
@@ -1283,7 +1289,7 @@ void Engine::Draw() const
 		}
 		float alpha = isAnimating ? isDying ? min<double>(messageAnimation(age), naturalDecay(naturalAge))
 			: messageAnimation(age) : naturalDecay(age);
-		messageLine.Draw(messagePoint, it->category->MainColor().Additive(alpha));
+		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
 	}
 
 	// Draw crosshairs around anything that is targeted.
@@ -1334,13 +1340,49 @@ void Engine::Draw() const
 	// Draw the systems mini-map.
 	minimap.Draw(uiStep);
 
-	// Draw ammo status.
-	double ammoIconWidth = hud->GetValue("ammo icon width");
-	double ammoIconHeight = hud->GetValue("ammo icon height");
-	ammoDisplay.Draw(hud->GetBox("ammo"), Point(ammoIconWidth, ammoIconHeight));
+	// map buttons cover up these icons, and provide their own version anyways.
+	if (!Preferences::Has("Show buttons on map"))
+	{
+		// Draw ammo status.
+		double ammoIconWidth = hud->GetValue("ammo icon width");
+		double ammoIconHeight = hud->GetValue("ammo icon height");
+		ammoDisplay.Draw(hud->GetBox("ammo"), Point(ammoIconWidth, ammoIconHeight));
+	}
+	else
+	{
+		// If we are using map buttons check if the map buttons ui wants to
+		// display the ammo display anyways.
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
+		auto ammo_box = mapButtonUi->GetBox("ammo");
+		if (ammo_box.Dimensions())
+		{
+			double ammoIconWidth = hud->GetValue("ammo icon width");
+			double ammoIconHeight = hud->GetValue("ammo icon height");
+			ammoDisplay.Draw(ammo_box, Point(ammoIconWidth, ammoIconHeight));
+		}
+	}
 
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));
+
+	// Draw a onscreen joystick in the bottom left corner, if enabled
+	if(Preferences::Has("Onscreen Joystick"))
+	{
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
+		Rectangle bounds = mapButtonUi->GetBox("onscreen joystick");
+		const char* colorStr = "faint";
+		bool joystickMax = touchMoveVector.LengthSquared() > 1;
+		Point jsPos = joystickMax ? touchMoveVector.Unit() : touchMoveVector;
+		if(touchMoveActive)
+			colorStr = isDoubleTap ? "dim" : "dimmer";
+		const Color &color = *GameData::Colors().Get(colorStr);
+		RingShader::Draw(bounds.Center(), bounds.Width()/2, isDoubleTap ? 4.0 : 2.0, 1.0, color);
+
+		if(touchMoveActive)
+		{
+			RingShader::Draw(jsPos * bounds.Width() / 2 + bounds.Center(), 50, 0, color);
+		}
+	}
 
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -1360,7 +1402,7 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 	doClickNextStep = true;
 	this->hasShift = hasShift;
 	this->hasControl = hasControl;
-	mouseButton = MouseButton::LEFT;
+	isRightClick = false;
 
 	// Determine if the left-click was within the radar display.
 	const Interface *hud = GameData::Interfaces().Get("hud");
@@ -1383,13 +1425,13 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 
 
 
-void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
+void Engine::RClick(const Point &point)
 {
 	doClickNextStep = true;
 	hasShift = false;
-	mouseButton = button;
+	isRightClick = true;
 
-	// Determine if the right/middle-click was within the radar display, and if so, rescale.
+	// Determine if the right-click was within the radar display, and if so, rescale.
 	const Interface *hud = GameData::Interfaces().Get("hud");
 	Point radarCenter = hud->GetPoint("radar");
 	double radarRadius = hud->GetValue("radar radius");
@@ -1406,6 +1448,89 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 	groupSelect = group;
 	this->hasShift = hasShift;
 	this->hasControl = hasControl;
+}
+
+
+
+bool Engine::FingerDown(const Point &p, int fid)
+{
+	if(isFingerDown == -1)
+	{
+		isTouch = true;
+		isFingerDown = fid;
+		auto now = std::chrono::steady_clock::now();
+		if (now - last_tap_stamp < std::chrono::milliseconds(500))
+		{
+			isDoubleTap = true;
+		}
+		last_tap_stamp = now;
+		Click(p, p, false, false);
+	}
+
+	// Returning true here means don't convert this to a normal mouse click
+	return true;
+}
+
+
+
+
+bool Engine::FingerUp(const Point &p, int fid)
+{
+	if(fid == isFingerDown)
+	{
+		isTouch = true;
+		isFingerDown = -1;
+		isDoubleTap = false;
+
+		// Determine if the point was within the radar display.
+		const Interface *hud = GameData::Interfaces().Get("hud");
+		Point radarCenter = hud->GetPoint("radar");
+		double radarRadius = hud->GetValue("radar radius");
+		if(Preferences::Has("Clickable radar display") && (p - radarCenter).Length() <= radarRadius)
+			isRadarClick = true;
+		else
+			isRadarClick = false;
+
+		clickPoint = isRadarClick ? p - radarCenter : p;
+		if(isRadarClick)
+			clickBox = Rectangle::WithCorners(
+				(p - radarCenter) / RADAR_SCALE + camera.Center(),
+				(p - radarCenter) / RADAR_SCALE  + camera.Center());
+		else
+			clickBox = Rectangle::WithCorners(p / zoom + camera.Center(), p / zoom + camera.Center());
+	}
+
+	return true;
+}
+
+
+
+
+bool Engine::FingerMove(const Point &p, int fid)
+{
+	if(fid == isFingerDown)
+	{
+		isTouch = true;
+
+		// Determine if the left-click was within the radar display.
+		const Interface *hud = GameData::Interfaces().Get("hud");
+		Point radarCenter = hud->GetPoint("radar");
+		double radarRadius = hud->GetValue("radar radius");
+		if(Preferences::Has("Clickable radar display") && (p - radarCenter).Length() <= radarRadius)
+			isRadarClick = true;
+		else
+			isRadarClick = false;
+
+		clickPoint = isRadarClick ? p - radarCenter : p;
+		if(isRadarClick)
+			clickBox = Rectangle::WithCorners(
+				(p - radarCenter) / RADAR_SCALE + camera.Center(),
+				(p - radarCenter) / RADAR_SCALE  + camera.Center());
+		else
+			clickBox = Rectangle::WithCorners(p / zoom + camera.Center(), p / zoom + camera.Center());
+	}
+
+	return true;
 }
 
 
@@ -1445,10 +1570,9 @@ void Engine::EnterSystem()
 	Audio::PlayMusic(system->MusicName());
 	GameData::SetHaze(system->Haze(), false);
 
-	Messages::Add({"Entering the " + system->DisplayName() + " system on "
+	Messages::Add("Entering the " + system->DisplayName() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
-		"." : ". No inhabited planets detected."),
-		GameData::MessageCategories().Get("daily")});
+			"." : ". No inhabited planets detected."), Messages::Importance::Daily);
 
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)
@@ -1543,9 +1667,9 @@ void Engine::EnterSystem()
 				if(Random::Real() < attraction)
 				{
 					raidFleet.GetFleet()->Place(*system, newShips);
-					Messages::Add({"Your fleet has attracted the interest of a "
-						+ raidFleet.GetFleet()->GetGovernment()->DisplayName() + " raiding party.",
-						GameData::MessageCategories().Get("high")});
+					Messages::Add("Your fleet has attracted the interest of a "
+							+ raidFleet.GetFleet()->GetGovernment()->DisplayName() + " raiding party.",
+							Messages::Importance::Highest);
 				}
 	}
 
@@ -1576,9 +1700,9 @@ void Engine::EnterSystem()
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= player.StartData().GetDate() + 4)
 	{
-		Messages::Add(*GameData::Messages().Get("basics 1"));
-		Messages::Add(*GameData::Messages().Get("basics 2"));
-		Messages::Add(*GameData::Messages().Get("basics 3"));
+		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
+		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
+		Messages::Add(GameData::HelpMessage("basics 3"), Messages::Importance::High);
 	}
 }
 
@@ -1603,6 +1727,8 @@ void Engine::CalculateStep()
 
 	// Handle the mouse input of the mouse navigation
 	HandleMouseInput(activeCommands);
+	// Handle gamepad input
+	HandleGamepadInput(activeCommands);
 
 	const Ship *flagship = player.Flagship();
 	const System *playerSystem = player.GetSystem();
@@ -1835,6 +1961,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	GenerateWeather();
 	SendHails();
 	HandleMouseClicks();
+	HandleTouchEvents();
 
 	// Now, take the new objects that were generated this step and splice them
 	// on to the ends of the respective lists of objects. These new objects will
@@ -1888,11 +2015,9 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->UpdateCaches();
 
 	const Ship *flagship = player.Flagship();
-	bool isFlagship = ship.get() == flagship;
 
 	bool isJump = ship->IsUsingJumpDrive();
-	const System *oldSystem = ship->GetSystem();
-	bool wasHere = (flagship && oldSystem == flagship->GetSystem());
+	bool wasHere = (flagship && ship->GetSystem() == flagship->GetSystem());
 	bool wasHyperspacing = ship->IsHyperspacing();
 	bool wasDisabled = ship->IsDisabled();
 	// Give the ship the list of visuals so that it can draw explosions,
@@ -1900,9 +2025,6 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Move(newVisuals, newFlotsam);
 	if(ship->IsDisabled() && !wasDisabled)
 		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
-	// Track the movements of mission NPCs.
-	if(ship->IsSpecial() && !ship->IsYours() && ship->GetSystem() != oldSystem)
-		eventQueue.emplace_back(ship, ship, ShipEvent::JUMP);
 	// Bail out if the ship just died.
 	if(ship->ShouldBeRemoved())
 	{
@@ -1924,7 +2046,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 
 	// Check if we need to play sounds for a ship jumping in or out of
 	// the system. Make no sound if it entered via wormhole.
-	if(!isFlagship && ship->Zoom() == 1.)
+	if(ship.get() != flagship && ship->Zoom() == 1.)
 	{
 		// The position from where sounds will be played.
 		Point position = ship->Position();
@@ -1964,7 +2086,8 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	// Boarding:
 	bool autoPlunder = !ship->IsYours();
 	// The player should not become a docked passenger on some other ship, but AI ships may.
-	shared_ptr<Ship> victim = ship->Board(autoPlunder, isFlagship);
+	bool nonDocker = ship.get() == flagship;
+	shared_ptr<Ship> victim = ship->Board(autoPlunder, nonDocker);
 	if(victim)
 		eventQueue.emplace_back(ship, victim,
 			ship->GetGovernment()->IsEnemy(victim->GetGovernment()) ?
@@ -2246,7 +2369,7 @@ void Engine::HandleMouseClicks()
 	// flagship must not be in the process of landing or taking off.
 	bool clickedPlanet = false;
 	const System *playerSystem = player.GetSystem();
-	if(mouseButton == MouseButton::LEFT && flagship->Zoom() == 1.)
+	if(!isRightClick && flagship->Zoom() == 1.)
 		for(const StellarObject &object : playerSystem->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
@@ -2259,8 +2382,8 @@ void Engine::HandleMouseClicks()
 					if(&object == flagship->GetTargetStellar())
 					{
 						if(!planet->CanLand(*flagship))
-							Messages::Add({"The authorities on " + planet->DisplayName()
-								+ " refuse to let you land.", GameData::MessageCategories().Get("high")});
+							Messages::Add("The authorities on " + planet->DisplayName()
+									+ " refuse to let you land.", Messages::Importance::Highest);
 						else if(!flagship->IsDestroyed() && !flagship->Commands().Has(Command::LAND))
 							activeCommands |= Command::LAND;
 					}
@@ -2276,9 +2399,11 @@ void Engine::HandleMouseClicks()
 				}
 			}
 
-	// Check for clicks on ships in this system.
-	double clickRange = 50.;
+	// Try and find the closest ship to the click point within clickRange. Favor
+	// selecting enemies over allies
+	double clickRange = isRadarClick ? 2000 : 50.;
 	shared_ptr<Ship> clickTarget;
+	bool found_enemy = false;
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem && &*ship != flagship && ship->IsTargetable())
 		{
@@ -2287,13 +2412,21 @@ void Engine::HandleMouseClicks()
 			double range = mask.Range(clickPoint - position, ship->Facing());
 			if(range <= clickRange)
 			{
+				// If we are actually within a hitmask, then don't keep searching
+				if (range == 0.0)
+				{
+					clickRange = range;
+					clickTarget = ship;
+
+					break;
+				}
+				if (ship->GetGovernment()->IsEnemy())
+					found_enemy = true;
+				else if (found_enemy)
+					continue; // favor selecting enemies
+
 				clickRange = range;
 				clickTarget = ship;
-				// If we've found an enemy within the click zone, favor
-				// targeting it rather than any other ship. Otherwise, keep
-				// checking for hits because another ship might be an enemy.
-				if(!range && ship->GetGovernment()->IsEnemy())
-					break;
 			}
 		}
 
@@ -2301,13 +2434,26 @@ void Engine::HandleMouseClicks()
 	if(clickTarget)
 	{
 		UI::PlaySound(UI::UISound::TARGET);
-		if(mouseButton == MouseButton::RIGHT)
+		if(isRightClick)
 			ai.IssueShipTarget(clickTarget);
 		else
 		{
 			// Left click: has your flagship select or board the target.
 			if(clickTarget == flagship->GetTargetShip())
-				activeCommands |= Command::BOARD;
+			{
+				if(AI::CanBoard(*flagship, *clickTarget))
+					activeCommands |= Command::BOARD;
+				else
+				{
+					// if this is the only selected ship, then deselect it
+					if(player.SelectedShips().size() == 1 &&
+			   	   player.SelectedShips().front().lock() == clickTarget)
+					{
+						player.SelectShip(nullptr, false);
+						flagship->SetTargetShip(nullptr);
+					}
+				}
+			}
 			else
 			{
 				flagship->SetTargetShip(clickTarget);
@@ -2332,21 +2478,98 @@ void Engine::HandleMouseClicks()
 				clickedAsteroid = true;
 				clickRange = range;
 				flagship->SetTargetAsteroid(minable);
-				if(mouseButton == MouseButton::RIGHT)
+				if(isRightClick)
 					ai.IssueAsteroidTarget(minable);
 			}
 		}
 	}
-	if(!clickTarget && !clickedAsteroid
-		&& mouseButton == (isMouseTurningEnabled ? MouseButton::MIDDLE : MouseButton::RIGHT))
+	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
 	{
 		UI::PlaySound(UI::UISound::TARGET);
 		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
 	}
 
-	// Treat an "empty" click as a request to clear targets.
-	if(!clickTarget && mouseButton == MouseButton::LEFT && !clickedAsteroid && !clickedPlanet)
-		flagship->SetTargetShip(nullptr);
+	// Handle "Empty" clicks
+	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
+	{
+		// If this is a touch event, treat an "empty" click as a request to move
+		// the flagship in that direction.
+		if(isFingerDown != -1)
+		{
+			// if the touch is on the flagship, treat it as a request to clear the
+			// target
+			if (flagship->GetMask().Range(clickPoint, flagship->Facing()) < clickRange)
+			{
+				flagship->SetTargetShip(nullptr);
+				player.SelectShips(vector<const Ship*>{}, false);
+			}
+			else
+			{
+				touchMoveActive = true;
+			}
+		}
+		else
+		{
+			// Empty Mouse clicks should clear the target
+			flagship->SetTargetShip(nullptr);
+		}
+	}
+}
+
+
+
+void Engine::HandleTouchEvents()
+{
+	if(Preferences::Has("Onscreen Joystick"))
+	{
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
+		Rectangle bounds = mapButtonUi->GetBox("onscreen joystick");
+
+		bool touchMoveWasActive = touchMoveActive;
+		touchMoveActive = false;
+		touchMoveVector = Point();
+		auto fingers = TouchScreen::Points();
+		if(fingers.empty())
+			isDoubleTap = false;
+		for(const Point& p: fingers)
+		{
+			// We want the initial touch event to be strictly within the
+			// bounds of the joystick ring, but afterwards, allow it to
+			// go up to 2x radius outside the ring before dropping it.
+			// Don't let the point leave the bounds of the ring
+			Point jspos = p - bounds.Center();
+			double radius = bounds.Width() / 2;
+			if(jspos.LengthSquared() < (touchMoveWasActive ? radius * radius * 4 : radius * radius))
+			{
+				touchMoveVector = jspos / radius;
+				if(!touchMoveWasActive)
+				{
+					auto now = std::chrono::steady_clock::now();
+					isDoubleTap = now - last_virtual_joystick_tap_stamp < std::chrono::milliseconds(500);
+					last_virtual_joystick_tap_stamp = now;
+				}
+				touchMoveActive = true;
+				HandleJoystickMovement(touchMoveVector * 32767);
+
+				// If we are outside the ring bounds, activate the afterburner
+				if(isDoubleTap)
+					activeCommands |= Command::AFTERBURNER;
+
+				break; // only consider the first point we find
+			}
+		}
+	}
+	else if(isTouch)
+	{
+		if(isFingerDown == -1)
+			touchMoveActive = false;
+		else if(touchMoveActive)
+		{
+			if(isDoubleTap)
+				activeCommands |= Command::AFTERBURNER;
+			HandleJoystickMovement(clickPoint.Unit() * 32767);
+		}
+	}
 }
 
 
@@ -2376,6 +2599,49 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	// Activate firing command.
 	if(isMouseTurningEnabled && rightMouseButtonHeld)
 		activeCommands.Set(Command::PRIMARY);
+}
+
+
+
+void Engine::HandleGamepadInput(Command& activeCommands)
+{
+	Point p = GamePad::LeftStick();
+	HandleJoystickMovement(p);
+}
+
+
+
+// Convert a joystick movement vector into actual flagship commands
+void Engine::HandleJoystickMovement(const Point& p)
+{
+	Ship* flagship = player.Flagship();
+	if(flagship && p)
+	{
+		const Angle& angle = flagship->Facing();
+		const Angle da = angle - Angle(p);
+		double degrees = da.Degrees();
+		double driftAngle = (angle - Angle(flagship->Velocity())).Degrees();
+
+		bool triggered = p.LengthSquared() > GamePad::AxisIsButtonPressThreshold() * GamePad::AxisIsButtonPressThreshold();
+
+		if((degrees < -155.0 || degrees > 155.0) && fabs(driftAngle) < 25.0 && triggered)
+		{
+			// We are pointing backwards from our direction of motion. Send a
+			// reverse command. If we don't have reverse engines, then it will
+			// start flipping our ship around, which is what we would want
+			// anyways.
+			activeCommands.Set(Command::BACK);
+		}
+		else if(degrees < -2.0)
+			activeCommands.Set(Command::RIGHT);
+		else if(degrees > 2.0)
+			activeCommands.Set(Command::LEFT);
+
+		// If we are pointing in roughly the correct direction, go ahead and
+		// fire the engines if they are past the trigger threshold.
+		if(triggered && -25.0 < degrees && degrees < 25.0)
+			activeCommands.Set(Command::FORWARD);
+	}
 }
 
 
@@ -2699,7 +2965,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		message += ".)";
 	else
 		message += ", " + Format::MassString(total) + " in fleet.)";
-	Messages::Add({message, GameData::MessageCategories().Get("normal")});
+	Messages::Add(message, Messages::Importance::High);
 }
 
 
@@ -2850,30 +3116,26 @@ void Engine::DrawShipSprites(const Ship &ship)
 
 	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
 	{
-		const Weapon *weapon = hardpoint.GetWeapon();
-		if(!weapon)
-			return;
-		const Body &sprite = weapon->HardpointSprite();
-		if(!sprite.HasSprite())
-			return;
-
-		Body body(
-			sprite,
-			ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
-			ship.Velocity(),
-			ship.Facing() + hardpoint.GetAngle(),
-			ship.Zoom());
-		if(body.InheritsParentSwizzle())
-			body.SetSwizzle(ship.GetSwizzle());
-		drawObject(body);
+		if(hardpoint.GetOutfit() && hardpoint.GetOutfit()->HardpointSprite().HasSprite())
+		{
+			Body body(
+				hardpoint.GetOutfit()->HardpointSprite(),
+				ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
+				ship.Velocity(),
+				ship.Facing() + hardpoint.GetAngle(),
+				ship.Zoom());
+			if(body.InheritsParentSwizzle())
+				body.SetSwizzle(ship.GetSwizzle());
+			drawObject(body);
+		}
 	};
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
+		if(hardpoint.IsUnder())
 			drawHardpoint(hardpoint);
 	drawObject(ship);
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
+		if(!hardpoint.IsUnder())
 			drawHardpoint(hardpoint);
 
 	DrawEngineFlares(Ship::EnginePoint::OVER);

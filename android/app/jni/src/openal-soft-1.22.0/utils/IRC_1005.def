@@ -1,0 +1,425 @@
+# This is a makemhr HRIR definition file.  It is used to define the layout and
+# source data to be processed into an OpenAL Soft compatible HRTF.
+#
+# This definition is used to transform the left and right ear HRIRs of any
+# raw data set from the IRCAM/AKG Listen HRTF database.
+#
+# The data sets are available free of charge from:
+#
+#  http://recherche.ircam.fr/equipes/salles/listen/index.html
+#
+# Contact for the Listen HRTF Database:
+#
+#  Olivier Warusfel <olivier.warusfel@ircam.fr>,
+#  Room Acoustics Team, IRCAM
+#  1, place Igor Stravinsky
+#  75004 PARIS, France
+
+rate     = 44100
+
+# The IRCAM sets are stereo because they provide both ear HRIRs.
+type     = stereo
+
+# The raw sets have up to 8192 samples, but 2048 seems large enough.
+points   = 2048
+
+# No head radius was provided.  Just use the average radius of 9 cm.
+radius   = 0.09
+
+# The IRCAM sets are single-field (like most others) with a distance between
+# the source and the listener of 1.95 meters.
+distance = 1.95
+
+# This set isn't as dense as the MIT set.
+azimuths = 1, 6, 12, 24, 24, 24, 24, 24, 24, 24, 12, 6, 1
+
+# The IRCAM source azimuth is counter-clockwise, so it needs to be flipped.
+# Left and right ear HRIRs (from the respective WAVE channels) are used to
+# create a stereo HRTF.
+
+# Replace all occurrences of IRC_#### for the desired subject (1005 was used
+# in this demonstration).
+[  3,  0 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P315.wav" right
+[  3,  1 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P315.wav" right
+[  3,  2 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P315.wav" right
+[  3,  3 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P315.wav" right
+[  3,  4 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P315.wav" right
+[  3,  5 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P315.wav" right
+[  3,  6 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P315.wav" right
+[  3,  7 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P315.wav" right
+[  3,  8 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P315.wav" right
+[  3,  9 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P315.wav" right
+[  3, 10 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P315.wav" right
+[  3, 11 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P315.wav" right
+[  3, 12 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P315.wav" right
+[  3, 13 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P315.wav" right
+[  3, 14 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P315.wav" right
+[  3, 15 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P315.wav" right
+[  3, 16 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P315.wav" right
+[  3, 17 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P315.wav" right
+[  3, 18 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P315.wav" right
+[  3, 19 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P315.wav" right
+[  3, 20 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P315.wav" right
+[  3, 21 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P315.wav" right
+[  3, 22 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P315.wav" right
+[  3, 23 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P315.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P315.wav" right
+
+[  4,  0 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P330.wav" right
+[  4,  1 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P330.wav" right
+[  4,  2 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P330.wav" right
+[  4,  3 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P330.wav" right
+[  4,  4 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P330.wav" right
+[  4,  5 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P330.wav" right
+[  4,  6 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P330.wav" right
+[  4,  7 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P330.wav" right
+[  4,  8 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P330.wav" right
+[  4,  9 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P330.wav" right
+[  4, 10 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P330.wav" right
+[  4, 11 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P330.wav" right
+[  4, 12 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P330.wav" right
+[  4, 13 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P330.wav" right
+[  4, 14 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P330.wav" right
+[  4, 15 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P330.wav" right
+[  4, 16 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P330.wav" right
+[  4, 17 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P330.wav" right
+[  4, 18 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P330.wav" right
+[  4, 19 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P330.wav" right
+[  4, 20 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P330.wav" right
+[  4, 21 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P330.wav" right
+[  4, 22 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P330.wav" right
+[  4, 23 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P330.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P330.wav" right
+
+[  5,  0 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P345.wav" right
+[  5,  1 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P345.wav" right
+[  5,  2 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P345.wav" right
+[  5,  3 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P345.wav" right
+[  5,  4 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P345.wav" right
+[  5,  5 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P345.wav" right
+[  5,  6 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P345.wav" right
+[  5,  7 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P345.wav" right
+[  5,  8 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P345.wav" right
+[  5,  9 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P345.wav" right
+[  5, 10 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P345.wav" right
+[  5, 11 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P345.wav" right
+[  5, 12 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P345.wav" right
+[  5, 13 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P345.wav" right
+[  5, 14 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P345.wav" right
+[  5, 15 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P345.wav" right
+[  5, 16 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P345.wav" right
+[  5, 17 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P345.wav" right
+[  5, 18 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P345.wav" right
+[  5, 19 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P345.wav" right
+[  5, 20 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P345.wav" right
+[  5, 21 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P345.wav" right
+[  5, 22 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P345.wav" right
+[  5, 23 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P345.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P345.wav" right
+
+[  6,  0 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P000.wav" right
+[  6,  1 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P000.wav" right
+[  6,  2 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P000.wav" right
+[  6,  3 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P000.wav" right
+[  6,  4 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P000.wav" right
+[  6,  5 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P000.wav" right
+[  6,  6 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P000.wav" right
+[  6,  7 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P000.wav" right
+[  6,  8 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P000.wav" right
+[  6,  9 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P000.wav" right
+[  6, 10 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P000.wav" right
+[  6, 11 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P000.wav" right
+[  6, 12 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P000.wav" right
+[  6, 13 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P000.wav" right
+[  6, 14 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P000.wav" right
+[  6, 15 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P000.wav" right
+[  6, 16 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P000.wav" right
+[  6, 17 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P000.wav" right
+[  6, 18 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P000.wav" right
+[  6, 19 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P000.wav" right
+[  6, 20 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P000.wav" right
+[  6, 21 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P000.wav" right
+[  6, 22 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P000.wav" right
+[  6, 23 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P000.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P000.wav" right
+
+[  7,  0 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P015.wav" right
+[  7,  1 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P015.wav" right
+[  7,  2 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P015.wav" right
+[  7,  3 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P015.wav" right
+[  7,  4 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P015.wav" right
+[  7,  5 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P015.wav" right
+[  7,  6 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P015.wav" right
+[  7,  7 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P015.wav" right
+[  7,  8 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P015.wav" right
+[  7,  9 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P015.wav" right
+[  7, 10 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P015.wav" right
+[  7, 11 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P015.wav" right
+[  7, 12 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P015.wav" right
+[  7, 13 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P015.wav" right
+[  7, 14 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P015.wav" right
+[  7, 15 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P015.wav" right
+[  7, 16 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P015.wav" right
+[  7, 17 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P015.wav" right
+[  7, 18 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P015.wav" right
+[  7, 19 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P015.wav" right
+[  7, 20 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P015.wav" right
+[  7, 21 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P015.wav" right
+[  7, 22 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P015.wav" right
+[  7, 23 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P015.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P015.wav" right
+
+[  8,  0 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P030.wav" right
+[  8,  1 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P030.wav" right
+[  8,  2 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P030.wav" right
+[  8,  3 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P030.wav" right
+[  8,  4 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P030.wav" right
+[  8,  5 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P030.wav" right
+[  8,  6 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P030.wav" right
+[  8,  7 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P030.wav" right
+[  8,  8 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P030.wav" right
+[  8,  9 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P030.wav" right
+[  8, 10 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P030.wav" right
+[  8, 11 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P030.wav" right
+[  8, 12 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P030.wav" right
+[  8, 13 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P030.wav" right
+[  8, 14 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P030.wav" right
+[  8, 15 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P030.wav" right
+[  8, 16 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P030.wav" right
+[  8, 17 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P030.wav" right
+[  8, 18 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P030.wav" right
+[  8, 19 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P030.wav" right
+[  8, 20 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P030.wav" right
+[  8, 21 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P030.wav" right
+[  8, 22 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P030.wav" right
+[  8, 23 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P030.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P030.wav" right
+
+[  9,  0 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P045.wav" right
+[  9,  1 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T345_P045.wav" right
+[  9,  2 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P045.wav" right
+[  9,  3 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T315_P045.wav" right
+[  9,  4 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P045.wav" right
+[  9,  5 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T285_P045.wav" right
+[  9,  6 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P045.wav" right
+[  9,  7 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T255_P045.wav" right
+[  9,  8 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P045.wav" right
+[  9,  9 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T225_P045.wav" right
+[  9, 10 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P045.wav" right
+[  9, 11 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T195_P045.wav" right
+[  9, 12 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P045.wav" right
+[  9, 13 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T165_P045.wav" right
+[  9, 14 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P045.wav" right
+[  9, 15 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T135_P045.wav" right
+[  9, 16 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P045.wav" right
+[  9, 17 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T105_P045.wav" right
+[  9, 18 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P045.wav" right
+[  9, 19 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T075_P045.wav" right
+[  9, 20 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P045.wav" right
+[  9, 21 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T045_P045.wav" right
+[  9, 22 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P045.wav" right
+[  9, 23 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P045.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T015_P045.wav" right
+
+[ 10,  0 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P060.wav" right
+[ 10,  1 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T330_P060.wav" right
+[ 10,  2 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P060.wav" right
+[ 10,  3 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T270_P060.wav" right
+[ 10,  4 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P060.wav" right
+[ 10,  5 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T210_P060.wav" right
+[ 10,  6 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P060.wav" right
+[ 10,  7 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T150_P060.wav" right
+[ 10,  8 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P060.wav" right
+[ 10,  9 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T090_P060.wav" right
+[ 10, 10 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P060.wav" right
+[ 10, 11 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P060.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T030_P060.wav" right
+
+[ 11,  0 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P075.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P075.wav" right
+[ 11,  1 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P075.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T300_P075.wav" right
+[ 11,  2 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P075.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T240_P075.wav" right
+[ 11,  3 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P075.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T180_P075.wav" right
+[ 11,  4 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P075.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T120_P075.wav" right
+[ 11,  5 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P075.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T060_P075.wav" right
+
+[ 12,  0 ] = wave (0) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P090.wav" left
+           + wave (1) : "./IRC/RAW/WAV/IRC_1005_R/IRC_1005_R_R0195_T000_P090.wav" right
+

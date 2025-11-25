@@ -55,6 +55,8 @@ protected:
 	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	int GetShipIndexFromPoint(int x, int y);
+
 
 private:
 	// Draw the two subsections of this panel.
@@ -91,15 +93,14 @@ private:
 	// Column headers that sort ships when clicked.
 	std::vector<ClickZone<InfoPanelState::ShipComparator *>> menuZones;
 
-	// Keep track of which ship the mouse is hovering over.
-	int hoverIndex = -1;
-
 	// Initialize mouse point to something off-screen to not
 	// make the game think the player is hovering on something.
 	Point hoverPoint = Point(-10000, -10000);
 
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
+	Point dragPoint;
 
-	bool checkedHelp = false;
+	Point scrollPos;
+	int scrollStart = 0;
 };

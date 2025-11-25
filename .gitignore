@@ -26,6 +26,7 @@ Release/
 scons-local*
 .sconsign.dblite
 /*.d
+.clangd
 /vcpkg/
 
 # Test Reports
@@ -70,6 +71,9 @@ ipch/
 .idea/
 .idea_modules/
 compile_commands.json
+/.gitmodules
+*.swp
+*.swo
 CMakeUserPresets.json
 .gitmodules
 

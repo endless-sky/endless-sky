@@ -1,0 +1,1 @@
+* Fixed another plugin loading bug

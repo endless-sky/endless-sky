@@ -146,6 +146,9 @@ bool GameWindow::Init(bool headless)
 	else if(Preferences::Has("maximized"))
 		flags |= SDL_WINDOW_MAXIMIZED;
 
+	// TODO: how difficult would be to support portrait mode?
+	SDL_SetHint(SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight");
+
 	// The main window spawns visibly at this point.
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, headless ? 0 : flags);
@@ -241,6 +244,17 @@ bool GameWindow::Init(bool headless)
 	glDisable(GL_DEPTH_TEST);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
+#ifndef NDEBUG
+#ifndef ES_GLES
+	glEnable(GL_DEBUG_OUTPUT);
+	glDebugMessageCallback([](GLenum source, GLenum type, GLuint id, GLenum severity,
+			GLsizei length, const GLchar* message, const void* userParam)
+		{
+			Logger::LogError(std::string(message, message + length));
+		},
+		nullptr);
+#endif
+#endif
 	// Check for support of various graphical features.
 	supportsAdaptiveVSync = OpenGL::HasAdaptiveVSyncSupport();
 

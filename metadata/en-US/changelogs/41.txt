@@ -1,0 +1,1 @@
+* Fix blank pilot and snapshot lists on load screen

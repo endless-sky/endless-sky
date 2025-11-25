@@ -165,10 +165,25 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 {
 	if(words.empty())
 		return;
+	
+	scrollY.Step();
 
 	if(truncate == Truncate::NONE)
+	{
+		double maxY = visibleHeight + topLeft.Y() - font->Height();
 		for(const Word &w : words)
-			font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
+		{
+			Point pos = w.Pos() + topLeft;
+			if(visibleHeight != -1)
+			{
+				pos.Y() -= scrollY.AnimatedValue();
+				if(pos.Y() < topLeft.Y() || pos.Y() > maxY)
+					continue;
+			}
+			font->Draw(text.c_str() + w.Index(), pos, color);
+		}
+	}
+
 	else
 	{
 		// Currently, we only apply truncation to a line if it contains a single word.
@@ -183,6 +198,37 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 			h = w.y;
 		}
 	}
+}
+
+
+
+void WrappedText::SetVisibleHeight(int height)
+{
+	if(height > Height() || height < 0)
+		visibleHeight = -1;
+	else if(height < font->Height())
+		visibleHeight = font->Height();
+	else
+		visibleHeight = height;
+}
+
+
+
+int WrappedText::VisibleHeight() const
+{
+	return visibleHeight == -1 ? Height() : visibleHeight;
+}
+
+
+
+void WrappedText::SetScroll(int offsetY)
+{
+	if(offsetY < 0)
+		scrollY = 0;
+	else if(offsetY > height - visibleHeight)
+		scrollY = height - visibleHeight;
+	else
+		scrollY = offsetY;
 }
 
 

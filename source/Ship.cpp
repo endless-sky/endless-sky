@@ -4602,7 +4602,9 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 
 		if(isUsingJumpDrive)
 		{
-			position = target + Angle::Random().Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+			position = target + jumpDriveTargetAngle.Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+			// give it some jitter, so your ships aren't all stacked
+			position += Angle::Random().Unit() * 300 * Random::Real();
 			return true;
 		}
 

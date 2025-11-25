@@ -164,7 +164,10 @@ void BankPanel::Draw()
 			otherPrincipal -= mortgage.Principal();
 			otherPayment -= mortgage.Payment();
 		}
+		const Rectangle pos = table.GetTextBounds("[pay extra]");
 		table.Draw("[pay extra]");
+		AddZone(pos, [this, pos]() { Click(pos.Center().X(), pos.Center().Y(), MouseButton::LEFT, 1); });
+
 		++row;
 
 		// Bail out if this was the last row we had space to draw.
@@ -251,7 +254,9 @@ void BankPanel::Draw()
 	if(qualify)
 	{
 		table.Advance(4);
+		Rectangle pos = table.GetTextBounds("[apply]");
 		table.Draw("[apply]", selected);
+		AddZone(pos, [this, pos]() { Click(pos.Center().X(), pos.Center().Y(), MouseButton::LEFT, 1); });
 	}
 
 	Information info;

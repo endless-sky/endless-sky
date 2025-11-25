@@ -30,6 +30,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "windows/WinVersion.h"
 #endif
 
+#include "CrashState.h"
+#include <SDL2/SDL_log.h>
+
+#ifdef __linux__
+#include <sys/sysinfo.h>
+#endif
+
 #include <algorithm>
 #include <cstddef>
 #include <map>
@@ -51,7 +58,8 @@ namespace {
 	const vector<string> NOTIF_OPTIONS = {"off", "message", "both"};
 	int notifOptionsIndex = 1;
 
-	size_t zoomIndex = 4;
+	const double ZOOM_INTERVAL = 1.25;
+	double viewZoom = 1.0;
 	constexpr double VOLUME_SCALE = .25;
 
 	// Default to fullscreen.
@@ -216,6 +224,26 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 	settings["Deadline blink by distance"] = true;
+	settings["Show buttons on map"] = false;
+#ifdef __ANDROID__
+	settings["fullscreen"] = true;
+	settings["Show buttons on map"] = true;
+	autoFireIndex = 1; // "on"
+	settings["Onscreen Joystick"] = false;
+	settings["Automatic chase"] = true;
+
+	// Default to "Reduced graphics" if the device has less than 2 gig of ram
+	struct sysinfo si;
+	if (0 == sysinfo(&si))
+	{
+		SDL_Log("sysinfo: totalram: %lu mem_unit %u", si.totalram, si.mem_unit);
+		if (static_cast<uint64_t>(si.totalram) * si.mem_unit < static_cast<uint64_t>(4) * 1024*1024*1024)
+		{
+			SDL_Log("Detected low memory... defaulting Reduced graphics to true");
+			settings["Reduced graphics"] = true;
+		}
+	}
+#endif
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -237,7 +265,7 @@ void Preferences::Load()
 		else if(key == "Flotsam collection")
 			flotsamIndex = max<int>(0, min<int>(node.Value(1), FLOTSAM_SETTINGS.size() - 1));
 		else if(key == "view zoom")
-			zoomIndex = max(0., node.Value(1));
+			viewZoom = node.Value(1);
 		else if(key == "vsync")
 			vsyncIndex = max<int>(0, min<int>(node.Value(1), VSYNC_SETTINGS.size() - 1));
 		else if(key == "camera acceleration")
@@ -319,6 +347,14 @@ void Preferences::Load()
 			flotsamIndex = static_cast<int>(FlotsamCollection::ESCORT);
 		settings.erase(it);
 	}
+
+	// Check if the app crashed on startup
+	if (CrashState::HasCrashed())
+	{
+		// Force low graphics mode to on.
+		SDL_Log("Previous loading crashed... defaulting Reduced graphics to true");
+		settings["Reduced graphics"] = true;
+	}
 }
 
 
@@ -335,7 +371,7 @@ void Preferences::Save()
 	out.Write("Tooltip activation time", tooltipActivation);
 	out.Write("boarding target", boardingIndex);
 	out.Write("Flotsam collection", flotsamIndex);
-	out.Write("view zoom", zoomIndex);
+	out.Write("view zoom", viewZoom);
 	out.Write("vsync", vsyncIndex);
 	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("date format", dateFormatIndex);
@@ -379,6 +415,7 @@ bool Preferences::Has(const string &name)
 void Preferences::Set(const string &name, bool on)
 {
 	settings[name] = on;
+	Preferences::Save();
 }
 
 
@@ -406,6 +443,7 @@ void Preferences::ToggleDateFormat()
 		dateFormatIndex = 0;
 	else
 		++dateFormatIndex;
+	Preferences::Save();
 }
 
 
@@ -459,6 +497,7 @@ int Preferences::ScrollSpeed()
 void Preferences::SetScrollSpeed(int speed)
 {
 	scrollSpeed = speed;
+	Preferences::Save();
 }
 
 
@@ -480,38 +519,41 @@ void Preferences::SetTooltipActivation(int steps)
 // View zoom.
 double Preferences::ViewZoom()
 {
-	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
-	if(zoomIndex >= zooms.size())
-		return zooms.empty() ? 1. : zooms.back();
-	return zooms[zoomIndex];
+	return viewZoom;
 }
 
 
 
 bool Preferences::ZoomViewIn()
 {
-	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
-	if(zooms.empty() || zoomIndex >= zooms.size() - 1)
-		return false;
-
-	++zoomIndex;
-	return true;
+	return ZoomView(ZOOM_INTERVAL);
 }
 
 
 
 bool Preferences::ZoomViewOut()
 {
-	const auto &zooms = GameData::Interfaces().Get("main view")->GetList("zooms");
-	if(!zoomIndex || zooms.size() <= 1)
+	return ZoomView(1.0/ZOOM_INTERVAL);
+}
+
+
+
+bool Preferences::ZoomView(double amount)
+{
+	viewZoom *= amount;
+	if(viewZoom < MinViewZoom())
+	{
+		viewZoom = MinViewZoom();
+		Preferences::Save();
 		return false;
-
-	// Make sure that we're actually zooming out. This can happen if the zoom index
-	// is out of range.
-	if(zoomIndex >= zooms.size())
-		zoomIndex = zooms.size() - 1;
-
-	--zoomIndex;
+	}
+	if(viewZoom > MaxViewZoom())
+	{
+		viewZoom = MaxViewZoom();
+		Preferences::Save();
+		return false;
+	}
+	Preferences::Save();
 	return true;
 }
 
@@ -549,6 +591,7 @@ void Preferences::ToggleParallax()
 	if(targetIndex == static_cast<int>(PARALLAX_SETTINGS.size()))
 		targetIndex = 0;
 	parallaxIndex = targetIndex;
+	Preferences::Save();
 }
 
 
@@ -595,6 +638,7 @@ void Preferences::ToggleScreenMode()
 {
 	GameWindow::ToggleFullscreen();
 	screenModeIndex = GameWindow::IsFullscreen();
+	Preferences::Save();
 }
 
 
@@ -626,6 +670,7 @@ bool Preferences::ToggleVSync()
 		}
 	}
 	vsyncIndex = targetIndex;
+	Preferences::Save();
 	return true;
 }
 
@@ -679,6 +724,7 @@ void Preferences::CycleStatusOverlays(Preferences::OverlayType type)
 		statusOverlaySettings[OverlayType::ALL] = OverlayState::DISABLED;
 	else
 		statusOverlaySettings[type].Increment();
+	Preferences::Save();
 }
 
 
@@ -730,6 +776,7 @@ const string &Preferences::TurretOverlaysSetting()
 void Preferences::ToggleAutoAim()
 {
 	autoAimIndex = (autoAimIndex + 1) % AUTO_AIM_SETTINGS.size();
+	Preferences::Save();
 }
 
 
@@ -751,6 +798,7 @@ const string &Preferences::AutoAimSetting()
 void Preferences::ToggleAutoFire()
 {
 	autoFireIndex = (autoFireIndex + 1) % AUTO_FIRE_SETTINGS.size();
+	Preferences::Save();
 }
 
 
@@ -775,6 +823,7 @@ void Preferences::ToggleBoarding()
 	if(targetIndex == static_cast<int>(BOARDING_SETTINGS.size()))
 		targetIndex = 0;
 	boardingIndex = targetIndex;
+	Preferences::Save();
 }
 
 
@@ -796,6 +845,7 @@ const string &Preferences::BoardingSetting()
 void Preferences::ToggleFlotsam()
 {
 	flotsamIndex = (flotsamIndex + 1) % FLOTSAM_SETTINGS.size();
+	Preferences::Save();
 }
 
 
@@ -818,6 +868,7 @@ void Preferences::ToggleAlert()
 {
 	if(++alertIndicatorIndex >= static_cast<int>(ALERT_INDICATOR_SETTING.size()))
 		alertIndicatorIndex = 0;
+	Preferences::Save();
 }
 
 

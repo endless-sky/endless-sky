@@ -25,6 +25,9 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
 # On Linux use relative RPATH.
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
+# Export compile commands for ides that know what to do with it.
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+
 
 # Setup vcpkg.
 if(ES_USE_VCPKG)
@@ -65,6 +68,22 @@ project("Endless Sky" VERSION 0.10.17
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
+
+# Generate the version.
+# Extract the version from the credits.txt
+set(version "")
+file(STRINGS "${CMAKE_SOURCE_DIR}/credits.txt" matched)
+if(matched)
+	string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]+" version ${matched})
+endif()
+
+# Append the git tag
+execute_process(COMMAND git describe --tags
+						OUTPUT_VARIABLE mobile_version
+						OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+set(ENDLESS_SKY_VERSION "${version}-${mobile_version}")
+add_definitions(-DENDLESS_SKY_VERSION="${ENDLESS_SKY_VERSION}")
 
 # Find the needed library dependencies.
 find_package(SDL2 CONFIG REQUIRED)

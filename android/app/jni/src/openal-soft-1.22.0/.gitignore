@@ -1,0 +1,9 @@
+build*/
+winbuild
+win64build
+
+## kdevelop
+*.kdev4
+
+## qt-creator
+CMakeLists.txt.user*

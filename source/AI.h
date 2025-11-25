@@ -90,6 +90,8 @@ public:
 	// Find nearest landing location.
 	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
 
+	static bool CanBoard(const Ship &ship, const Ship &target);
+
 
 private:
 	// Check if a ship can pursue its target (i.e. beyond the "fence").

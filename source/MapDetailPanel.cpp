@@ -134,6 +134,31 @@ void MapDetailPanel::Step()
 	}
 	if(!player.GetPlanet())
 		DoHelp("map");
+
+	// If a new description is being shown, then we want to make sure the panel
+	// isn't covering the planet under consideration
+	bool descriptionShown = selectedPlanet && !selectedPlanet->Description().IsEmpty() &&
+	                        player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole();
+	if(descriptionShown && !descriptionPreviouslyShown)
+	{
+		const System* system = selectedPlanet->GetSystem();
+		if(system)
+		{
+			Point drawPosition = Zoom() * (system->Position() + center);
+			const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
+
+			if(drawPosition.Y() < Screen::Top() + panelSprite->Height() + 20)
+			{
+				// Shift the planet somewhere we can see it.
+				CenterOnSystem(system); // use this, cause we don't have RECENTER_TIME here.
+				recenterVector.X() = 0; // Don't actually change the X coordinate
+				// instead of centering in the middle of the screen, shift it down to
+				// account for the description panel height.
+				recenterVector.Y() += (Screen::Height() - panelSprite->Height())/2;
+			}
+		}
+	}
+	descriptionPreviouslyShown = descriptionShown;
 }
 
 

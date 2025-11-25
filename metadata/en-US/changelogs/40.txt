@@ -1,0 +1,5 @@
+* Update to 0.10.5
+* Make preferences directory user accessible
+* Don't recognize gestures if they are draw on top of other controls
+* Fix occasional resize glitches on startup
+* Don't autoselect missing ships in shops

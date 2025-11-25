@@ -19,7 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageFileData.h"
 #include "../Logger.h"
 
+#ifndef __ANDROID__
 #include <avif/avif.h>
+#endif
 #include <jpeglib.h>
 #include <png.h>
 
@@ -29,24 +31,40 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <vector>
 
+
+#include "Etc2RGBA.h"
+#include "../Files.h"
+#include "KtxFile.h"
+#include <cassert>
+#include <cstring>
+
 using namespace std;
 
 namespace {
 	const set<string> PNG_EXTENSIONS{".png"};
 	const set<string> JPG_EXTENSIONS{".jpg", ".jpeg", ".jpe"};
 	const set<string> AVIF_EXTENSIONS{".avif", ".avifs"};
+	const set<string> KTX_EXTENSIONS{".ktx"};
 	const set<string> IMAGE_EXTENSIONS = []()
 	{
 		set<string> extensions(PNG_EXTENSIONS);
 		extensions.insert(JPG_EXTENSIONS.begin(), JPG_EXTENSIONS.end());
 		extensions.insert(AVIF_EXTENSIONS.begin(), AVIF_EXTENSIONS.end());
+		extensions.insert(KTX_EXTENSIONS.begin(), KTX_EXTENSIONS.end());
 		return extensions;
 	}();
-	const set<string> IMAGE_SEQUENCE_EXTENSIONS = AVIF_EXTENSIONS;
+	const set<string> IMAGE_SEQUENCE_EXTENSIONS = []()
+	{
+		set<string> extensions;
+		extensions.insert(AVIF_EXTENSIONS.begin(), AVIF_EXTENSIONS.end());
+		extensions.insert(KTX_EXTENSIONS.begin(), KTX_EXTENSIONS.end());
+		return extensions;
+	}();
 
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	int ReadAVIF(const filesystem::path &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied);
+	int ReadKTX(const filesystem::path &path, ImageBuffer &buffer);
 	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode additive);
 }
 
@@ -100,8 +118,31 @@ void ImageBuffer::Allocate(int width, int height)
 		return;
 
 	pixels = new uint32_t[width * height * frames];
-	this->width = width;
-	this->height = height;
+	this->display_width = this->width = width;
+	this->display_height = this->height = height;
+}
+
+
+
+void ImageBuffer::Assign(const void* data, size_t size, int width, int height, uint32_t compressed_format)
+{
+	if(pixels || !size || !width || !height || !frames)
+		return;
+
+	pixels = new uint32_t[(size + 3) / 4 * 4];
+	memcpy(pixels, data, size);
+	this->compressed_format = compressed_format;
+	this->compressed_size = size;
+	this->display_width = this->width = width;
+	this->display_height = this->height = height;
+}
+
+
+
+void ImageBuffer::SetDisplaySize(int dw, int dh)
+{
+	display_width = dw;
+	display_height = dh;
 }
 
 
@@ -118,6 +159,19 @@ int ImageBuffer::Height() const
 	return height;
 }
 
+
+
+int ImageBuffer::DisplayWidth() const
+{
+	return display_width;
+}
+
+
+
+int ImageBuffer::DisplayHeight() const
+{
+	return display_height;
+}
 
 
 int ImageBuffer::Frames() const
@@ -143,6 +197,7 @@ uint32_t *ImageBuffer::Pixels()
 
 const uint32_t *ImageBuffer::Begin(int y, int frame) const
 {
+	assert(!compressed_format);
 	return pixels + width * (y + height * frame);
 }
 
@@ -150,13 +205,37 @@ const uint32_t *ImageBuffer::Begin(int y, int frame) const
 
 uint32_t *ImageBuffer::Begin(int y, int frame)
 {
+	assert(!compressed_format);
 	return pixels + width * (y + height * frame);
+}
+
+
+
+uint8_t ImageBuffer::GetAlpha(int frame, int x, int y) const
+{
+	if (compressed_format == 0)
+	{
+		// uncompressed RGBA
+		return *(Begin(y, frame) + x) >> 24;
+	}
+	else if (compressed_format == 0x9278    // ETC2 RGBA
+	      || compressed_format == 0x9279)   // ETC2 SRGBA
+	{
+		Etc2RGBA etc(pixels, width, height);
+		return etc.Alpha(frame, x, y);
+	}
+	else
+	{
+		// Assume compressed texture without alpha channel
+		return 255;
+	}
 }
 
 
 
 void ImageBuffer::ShrinkToHalfSize()
 {
+	assert(!compressed_format);
 	ImageBuffer result(frames);
 	result.Allocate(width / 2, height / 2);
 
@@ -188,20 +267,27 @@ int ImageBuffer::Read(const ImageFileData &data, int frame)
 	bool isPNG = PNG_EXTENSIONS.contains(data.extension);
 	bool isJPG = JPG_EXTENSIONS.contains(data.extension);
 	bool isAVIF = AVIF_EXTENSIONS.contains(data.extension);
+	bool isKTX = KTX_EXTENSIONS.contains(data.extension);
 
-	if(!isPNG && !isJPG && !isAVIF)
+	if(!isPNG && !isJPG && !isAVIF && !isKTX)
 		return false;
 
-	int loaded;
+	int loaded = 0;
 	if(isPNG)
 		loaded = ReadPNG(data.path, *this, frame);
 	else if(isJPG)
 		loaded = ReadJPG(data.path, *this, frame);
-	else
+#ifndef __ANDROID__
+	else if(isAVIF)
 		loaded = ReadAVIF(data.path, *this, frame, data.blendingMode == BlendingMode::PREMULTIPLIED_ALPHA);
+#endif
+	else if(isKTX)
+		loaded = ReadKTX(data.path, *this);
 
 	if(loaded <= 0)
 		return 0;
+	if (isKTX) // KTX files are always premultiplied
+		return true;
 
 	if(data.blendingMode != BlendingMode::PREMULTIPLIED_ALPHA)
 	{
@@ -388,6 +474,9 @@ namespace {
 	// logic that avoids duplicating the frames.
 	int ReadAVIF(const filesystem::path &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied)
 	{
+#ifdef __ANDROID__
+		return 0;
+#else
 		unique_ptr<avifDecoder, void(*)(avifDecoder *)> decoder(avifDecoderCreate(), avifDecoderDestroy);
 		if(!decoder)
 		{
@@ -504,12 +593,33 @@ namespace {
 			Logger::LogError("Skipped corrupted frames for \"" + path.generic_string() + "\"");
 
 		return bufferFrameCount;
+#endif
+	}
+
+
+
+	int ReadKTX(const filesystem::path &path, ImageBuffer &buffer)
+	{
+		std::string ktx_data = Files::Read(path);
+		if(ktx_data.empty())
+			return false;
+
+		KtxFile ktx(ktx_data);
+		if (!ktx.Valid())
+			return false;
+
+		// frames are stored in ktx file together.
+		buffer.Clear(ktx.Frames());
+		buffer.Assign(ktx.Data(), ktx.Size(), ktx.Width(), ktx.Height(), ktx.InternalFormat());
+		buffer.SetDisplaySize(ktx.OriginalWidth(), ktx.OriginalHeight());
+		return ktx.Frames();
 	}
 
 
 
 	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode blend)
 	{
+		assert(buffer.CompressedFormat() == 0); // can't do this for pre-compressed textures
 		for(int y = 0; y < buffer.Height(); ++y)
 		{
 			uint32_t *it = buffer.Begin(y, frame);

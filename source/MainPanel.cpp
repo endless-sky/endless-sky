@@ -16,10 +16,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
+#include "Command.h"
+#include "CrashState.h"
+#include "RadialSelectionPanel.h"
+#include "shader/RingShader.h"
 #include "comparators/ByGivenOrder.h"
 #include "CategoryList.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
+#include "Interface.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -47,9 +52,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
+#include <SDL2/SDL.h>
 #include <cmath>
 #include <sstream>
 #include <string>
+
+#include "image/SpriteSet.h"
 
 using namespace std;
 
@@ -91,6 +99,8 @@ void MainPanel::Step()
 		GetUI()->Push(new MessageLogPanel());
 		isActive = false;
 	}
+	else if(show.Has(Command::HAIL_PLANET)) // Mobile specific
+		isActive = !ShowHailPanel(true);
 	else if(show.Has(Command::HAIL))
 		isActive = !ShowHailPanel();
 	else if(show.Has(Command::HELP))
@@ -103,6 +113,13 @@ void MainPanel::Step()
 	{
 		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		player.Land(GetUI());
+		// Save on landing, in case the app is killed uncleanly
+		// Only auto-load on landing if the game is fully loaded. otherwise,
+		// it auto-saves every time the game starts.
+		if(CrashState::Get() == CrashState::LOADED)
+		{
+			player.Save();
+		}
 		isActive = false;
 	}
 
@@ -122,10 +139,12 @@ void MainPanel::Step()
 	if(isActive)
 		isActive = !ShowHelp(false);
 
-	engine.Step(isActive);
+	// Poll zones for any commands that should also be active.
+	Command zoneCommands = GetUI()->ZoneCommands();
+	if(!(zoneCommands == Command()))
+		Command::InjectOnceNoEvent(zoneCommands);
 
-	if(isActive && !engine.IsPaused())
-		player.StepMissionTimers(GetUI());
+	engine.Step(isActive);
 
 	// Splice new events onto the eventQueue for (eventual) handling. No
 	// other classes use Engine::Events() after Engine::Step() completes.
@@ -178,6 +197,136 @@ void MainPanel::Draw()
 			loadCount = 0;
 		}
 	}
+
+	bool isActive = (GetUI()->Top().get() == this);
+	if (isActive && Preferences::Has("Show buttons on map"))
+	{
+		Information info;
+		const Interface *mapInterface = GameData::Interfaces().Get("map");
+		const Interface *mapButtonUi = GameData::Interfaces().Get("main buttons");
+		if(player.MapZoom() >= static_cast<int>(mapInterface->GetValue("max zoom")))
+			info.SetCondition("max zoom");
+		if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
+			info.SetCondition("min zoom");
+		if(player.Flagship())
+		{
+			if (player.Flagship()->GetTargetStellar())
+			{
+				info.SetCondition("can hail");
+			}
+
+			bool hasFighters = false;
+			bool hasReservedFighters = false;
+			bool hasFleet = false;
+			for (auto &ship: player.Ships())
+			{
+				if (!ship->IsParked() && !ship->IsDestroyed())
+				{
+					if (ship != player.FlagshipPtr())
+						hasFleet = true;
+					if (ship->CanBeCarried() )
+					{
+						hasFighters = true;
+
+						if (!(ship->HasDeployOrder()))
+						{
+							hasReservedFighters = true;
+							break; // found the reserve, no need to look further
+						}
+					}
+				}
+			}
+			if (hasFighters)
+			{
+				if (hasReservedFighters)
+					info.SetCondition("can deploy");
+				else
+					info.SetCondition("can recall");
+			}
+			if (hasFleet)
+				info.SetCondition("has fleet");
+
+
+			auto target = player.Flagship()->GetTargetShip();
+			if (target)
+			{
+				info.SetCondition("can hail");
+				if (player.Flagship()->Attributes().Get("outfit scan power") ||
+				    player.Flagship()->Attributes().Get("cargo scan power"))
+					info.SetCondition("can scan");
+				if (!target->IsYours())
+					info.SetCondition("can attack");
+			}
+			else if (player.Flagship()->GetTargetAsteroid())
+			{
+				info.SetCondition("targeting asteroid");
+			}
+			if (player.Flagship()->Attributes().Get("cloak"))
+				info.SetCondition("can cloak");
+			if (player.Flagship()->Attributes().Get("asteroid scan power"))
+				info.SetCondition("can scan asteroids");
+			if (player.Flagship()->Attributes().Get("afterburner thrust"))
+				info.SetCondition("can afterburner");
+			if (player.Flagship()->Attributes().Get("reverse thrust"))
+				info.SetCondition("can reverse");
+			if (player.Flagship()->Attributes().Get("jump drive") || player.Flagship()->Attributes().Get("hyperdrive"))
+				info.SetCondition("can jump");
+
+			if (player.GetSystem())
+			{
+				for (auto& object: player.GetSystem()->Objects())
+				{
+					if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(player.Flagship()) && object.IsVisible(player.Flagship()->Position()))
+					{
+						info.SetCondition("can land");
+						break;
+					}
+				}
+			}
+
+			bool hasSecondaryWeapon = false;
+			for (auto& outfit: player.Flagship()->Outfits())
+			{
+				if (outfit.first->Icon())
+				{
+					hasSecondaryWeapon = true;
+					break;
+				}
+			}
+			if (hasSecondaryWeapon)
+			{
+				// Set the conditions for the interface to draw the fire button, and
+				// custom draw the missile icon in the provided rect.
+				info.SetCondition("has secondary");
+				Rectangle icon_box = mapButtonUi->GetBox("ammo icon");
+				if(icon_box.Center())
+				{
+					auto& selectedWeapons = player.SelectedSecondaryWeapons();
+					// The weapons selection cycle goes through three states:
+					// 1. no weapons selected
+					// 2. one weapon selected. Each selection gets the next weapon in sequence
+					// 3. All weapons selected. It will fire all secondary weapons at once.
+					if (selectedWeapons.empty())
+					{
+						SpriteShader::Draw(SpriteSet::Get("icon/none"), icon_box.Center());
+					}
+					else if (selectedWeapons.size() == 1)
+					{
+						info.SetCondition("secondary selected");
+						SpriteShader::Draw((*selectedWeapons.begin())->Icon(), icon_box.Center());
+					}
+					else
+					{
+						info.SetCondition("secondary selected");
+						SpriteShader::Draw(SpriteSet::Get("icon/all"), icon_box.Center());
+					}
+				}
+			}
+		}
+		if(Preferences::Has("Onscreen Joystick"))
+			info.SetCondition("onscreen joystick");
+		mapButtonUi->Draw(info, this);
+	}
 }
 
 
@@ -227,19 +376,20 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 	if(command.Has(Command::MAP | Command::INFO | Command::MESSAGE_LOG | Command::HAIL | Command::HELP))
 		show = command;
+	else if (command.Has(Command::HAIL_PLANET))
+		show = command;
 	else if(command.Has(Command::TURRET_TRACKING))
 	{
 		bool newValue = !Preferences::Has("Turrets focus fire");
 		Preferences::Set("Turrets focus fire", newValue);
-		Messages::Add(*GameData::Messages().Get(newValue ?
-			"turret tracking focused" : "turret tracking opportunistic"));
+		Messages::Add("Turret tracking mode set to: " + string(newValue ? "focused" : "opportunistic") + ".",
+			Messages::Importance::High);
 	}
 	else if(command.Has(Command::AMMO))
 	{
 		Preferences::ToggleAmmoUsage();
-		Messages::Add(*GameData::Messages().Get(
-			Preferences::Has("Escorts expend ammo") ? (Preferences::Has("Escorts use ammo frugally") ?
-			"expend ammo frugally" : "expend ammo always") : "expend ammo never"));
+		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".",
+			Messages::Importance::High);
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
@@ -247,6 +397,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
+	else if(key == 0 && !(command == Command()) && !(command == Command::FASTFORWARD))
+		return true; // any other command will be handled in the engine
 	else
 		return false;
 
@@ -257,21 +409,18 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 bool MainPanel::Click(int x, int y, MouseButton button, int clicks)
 {
-	switch(button)
+	if(button == MouseButton::RIGHT)
 	{
-		case MouseButton::MIDDLE:
-		case MouseButton::RIGHT:
-			engine.RightOrMiddleClick(Point(x, y), button);
-			return true;
-		case MouseButton::LEFT:
-			break;
-		default:
-			return false;
+		engine.RClick(Point(x, y));
+		return true;
 	}
+	if(button != MouseButton::LEFT)
+		return false;
 
 	// Don't respond to clicks if another panel is active.
 	if(!canClick)
 		return true;
+
 	// Only allow drags that start when clicking was possible.
 	canDrag = true;
 
@@ -330,6 +479,147 @@ bool MainPanel::Scroll(double dx, double dy)
 		return false;
 
 	return true;
+}
+
+
+
+bool MainPanel::FingerDown(int x, int y, int fid)
+{
+	// Don't respond to clicks if another panel is active.
+	if(!canClick)
+		return false;
+
+	// If the gui is active, check for input
+	bool isActive = (GetUI()->Top().get() == this);
+	if (isActive)
+	{
+		// Check for zoom events
+		if(zoomGesture.FingerDown(Point(x, y), fid))
+		{
+			return true;
+		}
+	}
+
+
+	return engine.FingerDown(Point(x, y), fid);
+}
+
+
+
+bool MainPanel::FingerMove(int x, int y, int fid)
+{
+	if (!canClick)
+		return false;
+
+	if(zoomGesture.FingerMove(Point(x, y), fid))
+	{
+		Preferences::ZoomView(zoomGesture.Zoom());
+		return true;
+	}
+
+	return engine.FingerMove(Point(x, y), fid);
+}
+
+
+
+bool MainPanel::FingerUp(int x, int y, int fid)
+{
+	if(zoomGesture.FingerUp(Point(x, y), fid))
+	{
+		return true;
+	}
+	return engine.FingerUp(Point(x, y), fid);
+}
+
+
+
+bool MainPanel::ControllerAxis(SDL_GameControllerAxis axis, int position)
+{
+	if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
+	{
+		// Swallow these events. They are handled in Engine::HandleGamepadInput()
+		return true;
+	}
+	return false;
+}
+
+
+
+bool MainPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	return false;
+}
+
+
+
+bool MainPanel::ControllerButtonDown(SDL_GameControllerButton	button)
+{
+	// TODO: make these configurable.
+	if(button == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+	{
+		bool hasFleet = false;
+		bool hasFighters = false;
+		bool hasReservedFighters = false;
+		for(auto &ship: player.Ships())
+		{
+			if(ship.get() == player.Flagship())
+				continue;
+			if(!ship->IsParked() && !ship->IsDestroyed())
+			{
+				if (ship->CanBeCarried())
+				{
+					hasFighters = true;
+
+					if (!(ship->HasDeployOrder()))
+					{
+						// This ship still needs deployed
+						hasReservedFighters = true;
+					}
+					else
+					{
+						// already deployed, flying around somewhere
+						hasFleet = true;
+					}
+				}
+				else
+				{
+					// normal ship that isn't the flagship
+					hasFleet = true;
+				}
+			}
+		}
+		bool canHail = player.Flagship()->GetTargetShip() || player.Flagship()->GetTargetStellar();
+		bool canCloak = player.Flagship()->Attributes().Get("cloak");
+
+		// Don't pop up the selection if there is nothing to display
+		if(!hasFleet && !hasFighters && !canHail && !canCloak)
+			return false;
+
+		auto selection = new RadialSelectionPanel();
+		selection->ReleaseWithButtonUp(button);
+		if(hasFleet)
+		{
+			selection->AddOption(Command::FIGHT);
+			selection->AddOption(Command::GATHER);
+			selection->AddOption(Command::HOLD_POSITION);
+			selection->AddOption(Command::HOLD_FIRE);
+			selection->AddOption(Command::HARVEST);
+		}
+		if(hasFighters)
+		{
+			if(hasReservedFighters)
+				selection->AddOption("ui/icon_deploy", "Deploy Fighters", []() { Command::InjectOnce(Command::DEPLOY, true); });
+			else
+				selection->AddOption("ui/icon_recall", "Recall Fighters", []() { Command::InjectOnce(Command::DEPLOY, true); });
+		}
+		if(canHail)
+			selection->AddOption(Command::HAIL);
+		if(canCloak)
+			selection->AddOption(Command::CLOAK);
+		GetUI()->Push(selection);
+		return true;
+	}
+	return false;
 }
 
 
@@ -437,8 +727,9 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 
 
 
-bool MainPanel::ShowHailPanel()
+bool MainPanel::ShowHailPanel(bool planet_only)
 {
+	// planet_only is for mobile, to implement TALK_PLANET command.
 	// An exploding ship cannot communicate.
 	const Ship *flagship = player.Flagship();
 	if(!flagship || flagship->IsDestroyed())
@@ -453,20 +744,20 @@ bool MainPanel::ShowHailPanel()
 		target.reset();
 
 	if(flagship->IsEnteringHyperspace())
-		Messages::Add(*GameData::Messages().Get("cannot hail while jumping"));
+		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::Highest);
 	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
-		Messages::Add(*GameData::Messages().Get("cannot hail while cloaked"));
-	else if(target)
+		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::Highest);
+	else if(target && !planet_only)
 	{
 		// If the target is out of system, always report a generic response
 		// because the player has no way of telling if it's presently jumping or
 		// not. If it's in system and jumping, report that.
 		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
 				|| target->IsCloaked())
-			Messages::Add({"Unable to hail target " + target->Noun() + ".", GameData::MessageCategories().Get("high")});
+			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::Highest);
 		else if(target->IsEnteringHyperspace())
-			Messages::Add({"Unable to send hail: " + target->Noun() + " is entering hyperspace.",
-				GameData::MessageCategories().Get("high")});
+			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace.",
+				Messages::Importance::Highest);
 		else
 		{
 			GetUI()->Push(new HailPanel(player, target,
@@ -478,20 +769,23 @@ bool MainPanel::ShowHailPanel()
 	{
 		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
 		if(!planet)
-			Messages::Add(*GameData::Messages().Get("cannot hail"));
+			Messages::Add("Unable to send hail.", Messages::Importance::Highest);
 		else if(planet->IsWormhole())
-			Messages::Add(*GameData::Messages().Get("wormhole hail"));
+		{
+			static const Phrase *wormholeHail = GameData::Phrases().Get("wormhole hail");
+			Messages::Add(wormholeHail->Get(), Messages::Importance::Highest);
+		}
 		else if(planet->IsInhabited())
 		{
 			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
 			return true;
 		}
 		else
-			Messages::Add({"Unable to send hail: " + planet->Noun() + " is not inhabited.",
-				GameData::MessageCategories().Get("high")});
+			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited.",
+				Messages::Importance::Highest);
 	}
 	else
-		Messages::Add(*GameData::Messages().Get("cannot hail without target"));
+		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::Highest);
 
 	return false;
 }
@@ -697,7 +991,7 @@ void MainPanel::StepEvents(bool &isActive)
 			}
 			else if(event.TargetGovernment() && event.TargetGovernment()->IsPlayer())
 			{
-				string message = actor->Fine(player, event.Type(), &*event.Target()).second;
+				string message = actor->Fine(player, event.Type(), &*event.Target());
 				if(!message.empty())
 				{
 					GetUI()->Push(new Dialog(message));

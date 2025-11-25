@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Plugins.h"
 
+#include "CrashState.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -44,6 +45,9 @@ namespace {
 					auto *plugin = plugins.Get(child.Token(0));
 					plugin->enabled = child.Value(1);
 					plugin->currentState = child.Value(1);
+
+					if (child.Token(0) != "compact_layout" && CrashState::HasCrashed())
+						plugin->enabled = false;
 				}
 		}
 	}
@@ -352,4 +356,5 @@ void Plugins::TogglePlugin(const string &name)
 {
 	auto *plugin = plugins.Get(name);
 	plugin->currentState = !plugin->currentState;
+	Save();
 }

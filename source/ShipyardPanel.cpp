@@ -237,7 +237,7 @@ void ShipyardPanel::Buy(bool onlyOwned)
 	if(licenseCost < 0)
 		return;
 
-	modifier = Modifier();
+	modifier = stoi(selected_quantity->GetSelected());
 	string message;
 	if(licenseCost)
 		message = "Note: you will need to pay " + Format::CreditString(licenseCost)

@@ -1,0 +1,69 @@
+def buildAsLibrary = project.hasProperty('BUILD_AS_LIBRARY');
+def buildAsApplication = !buildAsLibrary
+if (buildAsApplication) {
+    apply plugin: 'com.android.application'
+}
+else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    compileSdkVersion 26
+    ndkVersion "26.3.11579264"
+    defaultConfig {
+        if (buildAsApplication) {
+            applicationId "com.github.thewierdnut.endless_mobile"
+        }
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 55
+        versionName "0.10.16-55"
+        externalNativeBuild {
+            // ndkBuild {
+            //     arguments "APP_PLATFORM=android-18"
+            //     abiFilters 'arm64-v8a'
+            //     // abiFilters 'armeabi-v7a', 'arm64-v8a'
+            // }
+            cmake {
+                arguments "-DANDROID_APP_PLATFORM=android-18", "-DANDROID_STL=c++_static", "-DCMAKE_BUILD_TYPE=Release", "-DSDL_SHARED=0"
+                // Each abi we enable increases the apk size by 20 meg
+                // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+                abiFilters 'arm64-v8a', 'armeabi-v7a'
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    if (!project.hasProperty('EXCLUDE_NATIVE_LIBS')) {
+        sourceSets.main {
+            jniLibs.srcDir 'libs'
+        }
+        externalNativeBuild {
+            // ndkBuild {
+            //     path 'jni/Android.mk'
+            // }
+            cmake {
+                path 'jni/CMakeLists.txt'
+            }
+        }
+
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        ignoreAssetsPattern "!.svn:!.git:.*:!CVS:!thumbs.db:!picasa.ini:!*.scc:*~"
+    }
+    //packagingOptions{
+    //    doNotStrip "*/*/*.so"
+    //}
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+}

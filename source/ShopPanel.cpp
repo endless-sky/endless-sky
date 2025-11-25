@@ -15,6 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShopPanel.h"
 
+#include "GamePad.h"
+#include "GamepadCursor.h"
+#include "Rectangle.h"
 #include "text/Alignment.h"
 #include "CategoryList.h"
 #include "CategoryType.h"
@@ -74,9 +77,14 @@ namespace {
 		scrollbar.SyncInto(scroll, animate ? 5 : 0);
 		return true;
 	};
+
+	// disposition menu options
+	const string INSTALL_IN_SHIP = "Install in ship";
+	const string MOVE_TO_CARGO = "Move to cargo";
+	const string MOVE_TO_STORAGE = "Move to storage";
 }
 
-
+static const unsigned int LONG_CLICK_DURATION = 500; // milliseconds
 
 ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	: player(player), day(player.GetDate().DaysSinceEpoch()),
@@ -96,6 +104,30 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		playerShips.insert(playerShip);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
+
+	selected_quantity = std::make_shared<Dropdown>();
+	selected_quantity->SetAlign(Dropdown::LEFT);
+	selected_quantity->SetFontSize(14);
+	selected_quantity->SetPadding(0);
+	selected_quantity->SetOptions({"1", "10", "100", "1000"});
+
+	outfit_disposition = std::make_shared<Dropdown>();
+	outfit_disposition->SetVisible(isOutfitter);
+	outfit_disposition->SetAlign(Dropdown::LEFT);
+	outfit_disposition->SetFontSize(14);
+	outfit_disposition->SetPadding(0);
+	outfit_disposition->SetOptions({INSTALL_IN_SHIP, MOVE_TO_CARGO, MOVE_TO_STORAGE});
+	outfit_disposition->SetCallback([this](int, const std::string& value) { this->DispositionChanged(value); });
+
+	AddChild(selected_quantity);
+	AddChild(outfit_disposition);
+
+	// Default pane is main, which does its own higlighting, so disable the
+	// cursor. Set the default button though for when the side pane is set
+	// TODO: need a better way to find this.
+	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
+	GamepadCursor::SetPosition(buyCenter);
+	GamepadCursor::SetEnabled(false);
 }
 
 
@@ -311,7 +343,7 @@ void ShopPanel::ToggleCargo()
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	bool toStorage = planet && planet->HasOutfitter() && (key == 'r' || key == 'u');
-	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
+	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE || key == SDLK_AC_BACK
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		if(!isOutfitter)
@@ -374,11 +406,13 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 's' || toStorage)
 	{
+		if (outfit_disposition->GetSelected() == MOVE_TO_STORAGE)
+			toStorage = true;
 		if(!CanSell(toStorage))
 			FailSell(toStorage);
 		else
 		{
-			int modifier = CanSellMultiple() ? Modifier() : 1;
+			int modifier = CanSellMultiple() ? stoi(selected_quantity->GetSelected()) : 1;
 			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
 				Sell(toStorage);
 			if(isOutfitter)
@@ -489,8 +523,155 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
+bool ShopPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// treat left joystick like arrow keys, right joystick like navigation keys.
+	// Fallback to the default zone-navigation behavior on the side pane.
+	if(activePane == ShopPane::Main)
+	{
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX)
+			return KeyDown(positive ? SDLK_RIGHT : SDLK_LEFT, 0, Command(), true);
+		else if(axis == SDL_CONTROLLER_AXIS_LEFTY)
+			return KeyDown(positive ? SDLK_DOWN : SDLK_UP, 0, Command(), true);
+	}
+	else if(activePane == ShopPane::Info)
+	{
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
+		   axis == SDL_CONTROLLER_AXIS_LEFTY)
+			return true; // prevent event from doing normal button selection logic
+	}
+	else if(activePane == ShopPane::Sidebar)
+	{
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
+		   axis == SDL_CONTROLLER_AXIS_LEFTY)
+		{
+			// do not rely on default zone-based cursor handling, as this class
+			// uses its own zones (also confusingly named "Zone")
+			std::vector<Point> options = GetUI()->ZonePositions();
+			for(auto& z: shipZones)
+			{
+				// only add zones in the right side panel that are visible on the
+				// screen
+				Rectangle sidePane(Point(Screen::Right() - SIDEBAR_WIDTH/2.0, 0), Point(SIDEBAR_WIDTH, Screen::Height()));
+				if(sidePane.Contains(z.Center()))
+					options.push_back(z.Center());
+			}
+			Point oldPos = GamepadCursor::Position();
+			GamepadCursor::MoveDir(GamePad::LeftStick(), options);
+
+			if(isDraggingShip)
+			{
+				const Point& dp = GamepadCursor::Position() - oldPos;
+				Drag(dp.X(), dp.Y());
+			}
+
+			return true;
+		}
+	}
+
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
+	{
+		if(positive && activePane == ShopPane::Main)
+		{
+			activePane = ShopPane::Info;
+			GamepadCursor::SetEnabled(false);
+		}
+		else if(activePane == ShopPane::Info)
+		{
+			if(positive)
+			{
+				activePane = ShopPane::Sidebar;
+				GamepadCursor::SetEnabled(true);
+			}
+			else
+			{
+				activePane = ShopPane::Main;
+				GamepadCursor::SetEnabled(false);
+			}
+		}
+		else if(!positive && activePane == ShopPane::Sidebar)
+		{
+			activePane = ShopPane::Info;
+			GamepadCursor::SetEnabled(false);
+		}
+		return true;
+	}
+	return false;
+}
+
+
+
+bool ShopPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(button == SDL_CONTROLLER_BUTTON_GUIDE)
+		return KeyDown(SDLK_ESCAPE, 0, Command(), true);
+	if(activePane == ShopPane::Main)
+	{
+		if(button == SDL_CONTROLLER_BUTTON_A)
+		{
+			activePane = ShopPane::Sidebar;
+			// switch to the sidebar, and highlight the buy button
+			// TODO: need a better way to find this.
+			const Point buyCenter = Screen::BottomRight() - Point(210, 25);
+			GamepadCursor::SetPosition(buyCenter);
+			return true;
+		}
+	}
+	else if(activePane == ShopPane::Sidebar)
+	{
+		if(isDraggingShip)
+		{
+			// Any button ends the dragging operation
+			const Point& p = GamepadCursor::Position();
+			return Release(p.X(), p.Y(), MouseButton::LEFT);
+		}
+
+		if(button == SDL_CONTROLLER_BUTTON_A)
+		{
+			// Act like a short click
+			const Point& p = GamepadCursor::Position();
+			bool ret = Click(p.X(), p.Y(), MouseButton::LEFT, 1);
+			Release(p.X(), p.Y(), MouseButton::LEFT);
+			return ret;
+		}
+		else if(button == SDL_CONTROLLER_BUTTON_B)
+		{
+			// Act like a long click
+			const Point& p = GamepadCursor::Position();
+			bool ret = Click(p.X(), p.Y(), MouseButton::LEFT, 1);
+			lastShipClickTime = SDL_GetTicks() - LONG_CLICK_DURATION - 1;
+			Release(p.X(), p.Y(), MouseButton::LEFT);
+			return ret;
+		}
+		else if(button == SDL_CONTROLLER_BUTTON_X)
+		{
+			// Act like a double click
+			const Point& p = GamepadCursor::Position();
+			return Click(p.X(), p.Y(), MouseButton::LEFT, 2);
+		}
+		else if(button == SDL_CONTROLLER_BUTTON_Y)
+		{
+			// If we have a ship selected, act like the start of a drag and drop
+			const Point& p = GamepadCursor::Position();
+			for(const auto &zone : shipZones)
+			{
+				// floating point comparison ok here.
+				if(zone.Center().X() == p.X() && zone.Center().Y() == p.Y())
+				{
+					Click(p.X(), p.Y(), MouseButton::LEFT, 1);
+					return Drag(10, -10);
+				}
+			}
+		}
+	}
+	return false;
+}
+
+
+
 bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	dragShip = nullptr;
 	auto ScrollbarClick = [x, y, button, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
 	{
 		return ScrollbarMaybeUpdate([x, y, button, clicks](ScrollBar &scrollbar)
@@ -563,6 +744,7 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 	for(const ClickZone<const Ship *> &zone : shipZones)
 		if(zone.Contains(clickPoint))
 		{
+			lastShipClickTime = SDL_GetTicks();
 			const Ship *clickedShip = zone.Value();
 			for(const shared_ptr<Ship> &ship : player.Ships())
 				if(ship.get() == clickedShip)
@@ -660,9 +842,52 @@ bool ShopPanel::Release(int x, int y, MouseButton button)
 {
 	if(button != MouseButton::LEFT)
 		return false;
-
-	dragShip = nullptr;
-	isDraggingShip = false;
+	if (isDraggingShip)
+	{
+		dragShip = nullptr;
+		isDraggingShip = false;
+	}
+	else if (lastShipClickTime != static_cast<unsigned int>(-1))
+	{
+		// what ship did we unclick on?
+		for(auto &zone : shipZones)
+		{
+			if(zone.Contains(Point(x, y)) && zone.Value() == playerShip)
+			{
+				if (SDL_GetTicks() - lastShipClickTime < LONG_CLICK_DURATION)
+				{
+					// normal click. Remove everything but the current ship
+					if (playerShip)
+					{
+						playerShips.clear();
+						playerShips.insert(playerShip);
+						outfit_disposition->SetSelected(INSTALL_IN_SHIP);
+					}
+				}
+				else
+				{
+					// long click. if the ship was already there, remove it
+					if (shipToRemoveIfLongClick)
+					{
+						playerShips.erase(shipToRemoveIfLongClick);
+						if (shipToRemoveIfLongClick == playerShip)
+						{
+							if (!playerShips.empty())
+								playerShip = *playerShips.begin();
+							else
+							{
+								playerShip = nullptr;
+								outfit_disposition->SetSelected(MOVE_TO_CARGO);
+							}
+						}
+					}
+				}
+				break;
+			}
+		}
+	}
+	lastShipClickTime = -1;
+	shipToRemoveIfLongClick = nullptr;
 	return true;
 }
 
@@ -753,6 +978,8 @@ void ShopPanel::DrawShipsSidebar()
 	const Color &dark = *GameData::Colors().Get("dark");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &bg = *GameData::Colors().Get("panel background");
+	const Color &bgSelected = *GameData::Colors().Get("panel background selected");
 
 	sidebarScroll.Step();
 
@@ -760,7 +987,7 @@ void ShopPanel::DrawShipsSidebar()
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, 0.),
 		Point(SIDEBAR_WIDTH, Screen::Height()),
-		*GameData::Colors().Get("panel background"));
+		activePane == ShopPane::Sidebar ? bgSelected : bg);
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH, 0.),
 		Point(1, Screen::Height()),
@@ -813,7 +1040,7 @@ void ShopPanel::DrawShipsSidebar()
 			SpriteShader::Draw(background, point);
 
 		const Sprite *sprite = ship->GetSprite();
-		if(sprite)
+		if(sprite && (!isDraggingShip || dragShip != ship.get()))
 		{
 			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
 			if(Preferences::Has(SHIP_OUTLINES))
@@ -828,7 +1055,7 @@ void ShopPanel::DrawShipsSidebar()
 			}
 		}
 
-		shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
+		shipZones.emplace_back(point, Point(ICON_TILE/2.0, ICON_TILE/2.0), ship.get());
 
 		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
@@ -861,7 +1088,37 @@ void ShopPanel::DrawShipsSidebar()
 	}
 	point.Y() += ICON_TILE;
 
-	if(playerShip)
+	if(outfit_disposition->GetSelected() == MOVE_TO_STORAGE)
+	{
+		CargoHold& storage = player.Storage();
+		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
+		bool empty = true;
+		if(!storage.Outfits().empty())
+		{
+			for (auto& kv: player.Storage().Outfits())
+			{
+				if (kv.second != 0)
+				{
+					if (empty)
+					{
+						empty = false;
+						font.Draw("Outfits in planetary storage:", point, bright);
+						point.Y() += 20.;
+					}
+					font.Draw(kv.first->DisplayName() + ": ", point, medium);
+					string count = Format::Number(kv.second);
+					font.Draw({count, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
+					point.Y() += 20.;
+				}
+			}
+		}
+		if(empty)
+		{
+			font.Draw("Nothing in planetary storage", point, bright);
+			point.Y() += 20.;
+		}
+	}
+	else if(playerShip)
 	{
 		point.Y() += SHIP_SIZE / 2;
 		point.X() = (Screen::Right() - SIDEBAR_CONTENT / 2) - SIDEBAR_PADDING;
@@ -886,7 +1143,7 @@ void ShopPanel::DrawShipsSidebar()
 	if(sidebarScroll.Scrollable())
 	{
 		Point top(Screen::Right() - 3, Screen::Top() + 10);
-		Point bottom(Screen::Right() - 3, Screen::Bottom() - 80);
+		Point bottom(Screen::Right() - 3, Screen::Bottom() - BUTTON_HEIGHT - 10);
 
 		sidebarScrollbar.SyncDraw(sidebarScroll, top, bottom);
 	}
@@ -899,6 +1156,7 @@ void ShopPanel::DrawDetailsSidebar()
 	// Fill in the background.
 	const Color &line = *GameData::Colors().Get("dim");
 	const Color &back = *GameData::Colors().Get("shop info panel background");
+	const Color &backSelected = *GameData::Colors().Get("shop info panel background selected");
 
 	infobarScroll.Step();
 
@@ -909,7 +1167,7 @@ void ShopPanel::DrawDetailsSidebar()
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH / 2, 0.),
 		Point(INFOBAR_WIDTH - 1., Screen::Height()),
-		back);
+		activePane == ShopPane::Info ? backSelected : back);
 
 	Point point(
 		Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2,
@@ -934,9 +1192,12 @@ void ShopPanel::DrawDetailsSidebar()
 void ShopPanel::DrawButtons()
 {
 	// The last 70 pixels on the end of the side panel are for the buttons:
+	const Color &bg = *GameData::Colors().Get("shop side panel background");
+	const Color &bgSelected = *GameData::Colors().Get("shop side panel background selected");
+
 	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);
 	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
-		*GameData::Colors().Get("shop side panel background"));
+		activePane == ShopPane::Sidebar ? bgSelected : bg);
 	FillShader::Fill(
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
@@ -947,7 +1208,7 @@ void ShopPanel::DrawButtons()
 
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - 65);
+		Screen::Bottom() - BUTTON_HEIGHT + 5);
 	font.Draw("You have:", creditsPoint, dim);
 
 	const auto credits = Format::CreditString(player.Accounts().Credits());
@@ -967,7 +1228,8 @@ void ShopPanel::DrawButtons()
 			static_cast<bool>(CanBuy(isOwned)), hoverButton == 'b', 'b');
 
 	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	ShopPanel::DrawButton("_Sell", Rectangle(sellCenter, Point(60, 30)),
+	const string SELL = outfit_disposition->GetSelected() == MOVE_TO_STORAGE ? "Move" : "_Sell";
+	ShopPanel::DrawButton(SELL, Rectangle(sellCenter, Point(60, 30)),
 		static_cast<bool>(CanSell()), hoverButton == 's', 's');
 
 	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
@@ -985,11 +1247,23 @@ void ShopPanel::DrawButtons()
 	if(modifier > 1)
 	{
 		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
-		if(CanSellMultiple())
-			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
+		selected_quantity->SetSelected(to_string(modifier));
+		quantity_is_modifier = true;
 	}
+	else if (quantity_is_modifier)
+	{
+		// User has released modifier keys. Reset quantity dropdown to 1x
+		selected_quantity->SetSelected("1");
+		quantity_is_modifier = false;
+	}
+
+	font.Draw("Quantity:", Screen::BottomRight() - Point(240, 68), dim);
+
+	const Point sqCenter = Screen::BottomRight() - Point(150, 60);
+	selected_quantity->SetPosition(Rectangle(sqCenter, {45, 20}));
+
+	const Point odCenter = Screen::BottomRight() - Point(65, 60);
+	outfit_disposition->SetPosition(Rectangle(odCenter, {110, 20}));
 
 	// Draw the tooltip for your full number of credits.
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
@@ -1013,6 +1287,8 @@ void ShopPanel::DrawMain()
 	const Font &bigFont = FontSet::Get(18);
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color bg = *GameData::Colors().Get("shop main panel background");
+	const Color bgSelected = *GameData::Colors().Get("shop main panel background selected");
 
 	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 	const Sprite *expandedArrow = SpriteSet::Get("ui/expanded");
@@ -1028,6 +1304,9 @@ void ShopPanel::DrawMain()
 		return;
 	const int columns = mainWidth / TILE_SIZE;
 	const int columnWidth = mainWidth / columns;
+
+	Rectangle bgArea(Point(Screen::Left() + mainWidth/2.0, 0), Point(mainWidth, Screen::Height()));
+	FillShader::Fill(bgArea.Center(), bgArea.Dimensions(), activePane == ShopPane::Main ? bgSelected : bg);
 
 	const Point begin(
 		(Screen::Width() - columnWidth) / -2,
@@ -1239,13 +1518,18 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 			if(other.get() == ship || other.get() == playerShip)
 				on = !on;
 			else if(on)
+			{
 				playerShips.insert(other.get());
+				outfit_disposition->SetSelected(INSTALL_IN_SHIP);
+			}
 		}
 	}
 	else if(!control)
 	{
-		playerShips.clear();
+		// playerShips.clear(); // deferred until we know if it was a long click
 		if(clicks > 1)
+		{
+			lastShipClickTime = -1;
 			for(const shared_ptr<Ship> &it : player.Ships())
 			{
 				if(!CanShowInSidebar(*it, player.GetPlanet()))
@@ -1253,11 +1537,13 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 				if(it.get() != ship && it->Imitates(*ship))
 					playerShips.insert(it.get());
 			}
+		}
 	}
 	else
 	{
 		if(clicks > 1)
 		{
+			lastShipClickTime = -1;
 			vector<Ship *> similarShips;
 			// If the ship isn't selected now, it was selected at the beginning of the whole "double click" action,
 			// because the first click was handled normally.
@@ -1288,6 +1574,7 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 		}
 		else if(playerShips.contains(ship))
 		{
+			lastShipClickTime = -1;
 			playerShips.erase(ship);
 			if(playerShip == ship)
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
@@ -1297,8 +1584,17 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 	}
 
 	playerShip = ship;
-	playerShips.insert(playerShip);
-	CheckSelection();
+	if (playerShips.count(playerShip))
+	{
+		// Already here. remove it if this turns out to be a long click
+		shipToRemoveIfLongClick = ship;
+	}
+	else
+	{
+		playerShips.insert(playerShip);
+		CheckSelection();
+		outfit_disposition->SetSelected(INSTALL_IN_SHIP);
+	}
 }
 
 
@@ -1458,6 +1754,11 @@ void ShopPanel::DrawButton(const string &name, const Rectangle &buttonShape, boo
 
 	// Add this button to the buttonZones:
 	buttonZones.emplace_back(buttonShape, keyCode);
+
+	// Also add it to the global zone list, where it can be seen by the gamepad.
+	AddZone(buttonShape, [this, keyCode]() {
+		KeyDown(keyCode, 0, Command(), true);
+	});
 }
 
 
@@ -1595,4 +1896,26 @@ char ShopPanel::CheckButton(int x, int y)
 
 	// Returning space here ensures that hover text for the ship info panel is supressed.
 	return ' ';
+}
+
+
+
+// Called when the outfit disposition dropdown has changed value
+void ShopPanel::DispositionChanged(const std::string& value)
+{
+	// Purchasing to cargo or installing in a ship is controlled by what ships
+	// are selected.
+	if (value == INSTALL_IN_SHIP || value == MOVE_TO_STORAGE)
+	{
+		if (playerShips.empty())
+		{
+			SideSelect(0);
+		}
+	}
+	else if (value == MOVE_TO_CARGO)
+	{
+		playerShips.clear();
+		selectedShip = nullptr;
+		playerShip = nullptr;
+	}
 }

@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Engine.h"
 #include "Files.h"
+#include "CrashState.h"
+#include "GamePad.h"
 #include "text/Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -43,12 +45,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "test/Test.h"
 #include "test/TestContext.h"
 #include "UI.h"
+#include "text/FontSet.h"
 
 #ifdef _WIN32
 #include "windows/TimerResolutionGuard.h"
 #include "windows/WinVersion.h"
 #endif
 
+#include <SDL.h>
+#include <SDL_events.h>
+#include <SDL_scancode.h>
 #include <chrono>
 #include <iostream>
 #include <map>
@@ -57,6 +63,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <future>
 #include <exception>
 #include <string>
+
+#include "TouchScreen.h"
 
 #ifdef _WIN32
 #define STRICT
@@ -72,6 +80,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	const string &testToRun, bool debugMode);
 Conversation LoadConversation(const PlayerInfo &player);
 void PrintTestsTable();
+int EventFilter(void* userdata, SDL_Event* event);
 #ifdef _WIN32
 void InitConsole();
 #endif
@@ -138,12 +147,19 @@ int main(int argc, char *argv[])
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
+	Command::InitIcons(); // Mobile specific
+
+	// Config now set. It is safe to access the config now
+	CrashState::Init(!testToRunName.empty());
+	CrashState::Set(CrashState::LOADED);
+
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
 	try {
 
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
+		CrashState::Set(CrashState::DATA);
 
 		TaskQueue queue;
 
@@ -195,6 +211,7 @@ int main(int argc, char *argv[])
 
 			// Set the game's initial internal state.
 			GameData::FinishLoading();
+			CrashState::Set(CrashState::LOADED);
 
 			// Reference check the universe, as known to the player. If no player found,
 			// then check the default state of the universe.
@@ -207,13 +224,28 @@ int main(int argc, char *argv[])
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
 
+		CrashState::Set(CrashState::PREFERENCES);
+
 		Preferences::Load();
+		CrashState::Set(CrashState::OPENGL);
 
 		// Load global conditions:
 		DataFile globalConditions(Files::Config() / "global conditions.txt");
 		for(const DataNode &node : globalConditions)
 			if(node.Token(0) == "conditions")
 				GameData::GlobalConditions().Load(node);
+
+		// For android, game loop does not run on the main thread, and some of these
+		// events need handled from within the java callback context. Handle them
+		// directly rather than relying on the sdl event loop. This filter needs
+		// set before any SDL events get generated, because it drops any events
+		// that happen to be in the queue (such as window sizing events)
+		SDL_SetEventFilter(EventFilter, nullptr);
+
+		SDL_SetHint(SDL_HINT_TOUCH_MOUSE_EVENTS, "0"); // turn off mouse emulation
+		SDL_SetHint(SDL_HINT_MOUSE_TOUCH_EVENTS, "0"); // turn off mouse emulation
+		SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "0"); // this shows up as bonus joystick
+		
 
 		if(!GameWindow::Init(isTesting && !debugMode))
 			return 1;
@@ -262,14 +294,50 @@ int main(int argc, char *argv[])
 	Audio::Quit();
 	GameWindow::Quit();
 
+#ifdef __ANDROID__
+	// just returning isn't enough. If the activity resumes, main() will get
+	// called a second time, and this game is entirely dependent on static and
+	// global variables that still retain old state.
+	exit(0);
+#endif
+
 	return 0;
 }
+
+
+
+int EventFilter(void* userdata, SDL_Event* event)
+{
+	// This callback is guaranteed to be handled in the device callback, rather
+	// than the event loop.
+
+	// Pause/resume audio background thread. Otherwise repeating sounds will
+	// just keep playing while the game is in the background.
+	if (event->type == SDL_APP_DIDENTERBACKGROUND)
+	{
+		Audio::PauseProcessing();
+	}
+	else if (event->type == SDL_APP_DIDENTERFOREGROUND)
+	{
+		Audio::ResumeProcessing();
+	}
+
+	return 1;
+}
+
 
 
 
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
 		const string &testToRunName, bool debugMode)
 {
+	// SDL BUG? Calling SetEventFilter seems to drop the pending
+	// SDL_CONTROLLERDEVICEADDED event. This is why I'm calling
+	// SDL_Init(SDL_INIT_GAMECONTROLLER) *after* adding the event
+	// filter instead of as part of the SDL_INIT_VIDEO invocation
+	// in the GameWindow::Init() function.
+	SDL_Init(SDL_INIT_GAMECONTROLLER);
+
 	// gamePanels is used for the main panel where you fly your spaceship.
 	// All other game content related dialogs are placed on top of the gamePanels.
 	// If there are both menuPanels and gamePanels, then the menuPanels take
@@ -318,6 +386,56 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
 
+			// Touch debugging hooks
+#define TOUCH_DEBUGGING
+#ifdef TOUCH_DEBUGGING
+			if(event.type == SDL_MOUSEBUTTONDOWN)
+			{
+				SDL_Event fingerEvent{};
+				fingerEvent.type = SDL_FINGERDOWN;
+				fingerEvent.tfinger.fingerId = 0;
+				fingerEvent.tfinger.x = static_cast<float>(event.button.x) / Screen::RawWidth();
+				fingerEvent.tfinger.y = static_cast<float>(event.button.y) / Screen::RawHeight();
+			
+				event = fingerEvent;
+			}
+			else if(event.type == SDL_MOUSEMOTION && event.motion.state != 0)
+			{
+				SDL_Event fingerEvent{};
+				fingerEvent.type = SDL_FINGERMOTION;
+				fingerEvent.tfinger.fingerId = 0;
+				fingerEvent.tfinger.x = static_cast<float>(event.motion.x) / Screen::RawWidth();
+				fingerEvent.tfinger.y = static_cast<float>(event.motion.y) / Screen::RawHeight();
+				fingerEvent.tfinger.dx = static_cast<float>(event.motion.xrel) / Screen::RawWidth();
+				fingerEvent.tfinger.dy = static_cast<float>(event.motion.yrel) / Screen::RawHeight();
+				event = fingerEvent;
+			}
+			else if(event.type == SDL_MOUSEBUTTONUP)
+			{
+				SDL_Event fingerEvent{};
+				fingerEvent.type = SDL_FINGERUP;
+				fingerEvent.tfinger.fingerId = 0;
+				fingerEvent.tfinger.x = static_cast<float>(event.button.x) / Screen::RawWidth();
+				fingerEvent.tfinger.y = static_cast<float>(event.button.y) / Screen::RawHeight();
+			
+				event = fingerEvent;
+			}
+			else if(event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
+			{
+				event.key.keysym.sym = SDLK_AC_BACK;
+			}
+#endif
+
+			// Filter events the gamepad handler before checking if the
+			// UI needs the event. This handles state for polling, but
+			// does not generate button events, which are handled through
+			// the event system normally.
+			GamePad::Handle(event);
+
+			// Filter the events through the touch manager. It will cache
+			// the set of fingers for polling, and generate gesture events.
+			TouchScreen::Handle(event);
+
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{
 				isDebugPaused = !isDebugPaused;
@@ -327,13 +445,29 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					Audio::Resume();
 			}
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-					&& Command(event.key.keysym.sym).Has(Command::MENU)
+					&& (Command(event.key.keysym.sym).Has(Command::MENU) || event.key.keysym.sym == SDLK_AC_BACK)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
 			{
 				// User pressed the Menu key.
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
 				UI::PlaySound(UI::UISound::NORMAL);
+			}
+			else if(event.type == SDL_CONTROLLERBUTTONDOWN && menuPanels.IsEmpty()
+					&& (Command::FromButton(event.cbutton.button).Has(Command::MENU))
+					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+			{
+				// User pressed the Menu key on a game controller
+				menuPanels.Push(shared_ptr<Panel>(
+					new MenuPanel(player, gamePanels)));
+			}
+			else if(event.type == Command::EventID() && menuPanels.IsEmpty()
+					&& (Command(event).Has(Command::MENU))
+					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+			{
+				// User triggered the Menu via a command
+				menuPanels.Push(shared_ptr<Panel>(
+					new MenuPanel(player, gamePanels)));
 			}
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
@@ -362,12 +496,21 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			{
 				isFastForward = !isFastForward;
 			}
+			else if(event.type == SDL_CONTROLLERBUTTONDOWN
+					&& (Command::FromButton(event.cbutton.button).Has(Command::FASTFORWARD)))
+			{
+				isFastForward = !isFastForward;
+			}
+			else if(event.type == Command::EventID())
+			{
+				// handle injected commands
+				Command command(event);
+				if(command == Command::FASTFORWARD && reinterpret_cast<const CommandEvent&>(event).pressed == SDL_PRESSED)
+				{
+					isFastForward = !isFastForward;
+				}
+			}
 		}
-
-		// Special case: If fastforward is on capslock, update on mod state and not
-		// on keypress.
-		if(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
-			isFastForward = SDL_GetModState() & KMOD_CAPS;
 	};
 
 	// Game loop when running the game normally.

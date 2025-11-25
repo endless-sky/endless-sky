@@ -3,3 +3,4 @@
 .gitignore export-ignore
 .gitmodules export-ignore
 .github export-ignore
+.github merge=ours

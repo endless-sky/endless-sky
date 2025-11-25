@@ -1,0 +1,5 @@
+* Fix plugin loader
+* Hire all/Fire all buttons
+* Disable touch-to-move if using onscreen joystick
+* Don't auto-fire if target is too far away while holding down attack button
+* Add multiplier dropdown for trading panel

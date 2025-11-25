@@ -39,6 +39,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "UI.h"
 
+#ifdef __ANDROID__
+#include "AndroidFile.h"
+#endif
+
 #include "opengl.h"
 
 #include <algorithm>
@@ -171,6 +175,12 @@ void MenuPanel::Draw()
 		info.SetString("pilot", "No Pilot Loaded");
 	}
 
+#ifdef ENDLESS_SKY_VERSION
+	info.SetString("game version", ENDLESS_SKY_VERSION);
+#else
+	info.SetString("game version", "engineering build");
+#endif
+
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	mainMenuUi->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
@@ -183,7 +193,7 @@ void MenuPanel::Draw()
 
 bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
+	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU) || key == SDLK_AC_BACK))
 	{
 		gamePanels.CanSave(true);
 		GetUI()->PopThrough(this);
@@ -230,6 +240,24 @@ bool MenuPanel::Click(int x, int y, MouseButton button, int clicks)
 	{
 		scrollingPaused = !scrollingPaused;
 		return true;
+	}
+
+	if(GameData::Interfaces().Get("menu background")->GetBox("version box").Contains(Point(x, y)))
+	{
+		if(clicks == 1)
+		{
+#ifdef ENDLESS_SKY_VERSION
+			SDL_SetClipboardText(ENDLESS_SKY_VERSION);
+#endif
+		}
+		else if(clicks == 2)
+		{
+#ifdef __ANDROID__
+			std::string errors = Files::Read(Files::Config() / "errors.txt");
+			AndroidFile f;
+			f.SaveFile("errors.txt", errors);
+#endif
+		}
 	}
 
 	return false;

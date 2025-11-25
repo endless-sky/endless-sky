@@ -70,8 +70,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConversationPanel.h
 	CoreStartData.cpp
 	CoreStartData.h
-	CustomEvents.cpp
-	CustomEvents.h
+	CrashState.cpp
+	CrashState.h
 	DamageDealt.h
 	DamageProfile.cpp
 	DamageProfile.h
@@ -95,6 +95,8 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
+	Dropdown.cpp
+	Dropdown.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
@@ -131,10 +133,18 @@ target_sources(EndlessSkyLib PRIVATE
 	GameEvent.h
 	GameLoadingPanel.cpp
 	GameLoadingPanel.h
+	GamePad.cpp
+	GamePad.h
+	GamepadCursor.cpp
+	GamepadCursor.h
+	GamepadPanel.cpp
+	GamepadPanel.h
 	Gamerules.cpp
 	Gamerules.h
 	GameWindow.cpp
 	GameWindow.h
+	Gesture.cpp
+	Gesture.h
 	Government.cpp
 	Government.h
 	HailPanel.cpp
@@ -176,14 +186,10 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
-	BookEntry.cpp
-	BookEntry.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
 	MenuPanel.h
-	Message.cpp
-	Message.h
 	MessageLogPanel.cpp
 	MessageLogPanel.h
 	Messages.cpp
@@ -197,8 +203,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Mission.h
 	MissionAction.cpp
 	MissionAction.h
-	MissionTimer.cpp
-	MissionTimer.h
 	MissionPanel.cpp
 	MissionPanel.h
 	Mortgage.cpp
@@ -254,6 +258,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Projectile.h
 	Radar.cpp
 	Radar.h
+	RadialSelectionPanel.cpp
+	RadialSelectionPanel.h
 	RaidFleet.cpp
 	RaidFleet.h
 	Random.cpp
@@ -318,12 +324,16 @@ target_sources(EndlessSkyLib PRIVATE
 	TextReplacements.h
 	Tooltip.cpp
 	Tooltip.h
+	TouchScreen.cpp
+	TouchScreen.h
 	Trade.cpp
 	Trade.h
 	TradingPanel.cpp
 	TradingPanel.h
 	UI.cpp
 	UI.h
+	UiRectShader.cpp
+	UiRectShader.h
 	UniverseObjects.cpp
 	UniverseObjects.h
 	Variant.cpp
@@ -340,6 +350,8 @@ target_sources(EndlessSkyLib PRIVATE
 	WormholeStrategy.h
 	ZipFile.cpp
 	ZipFile.h
+	ZoomGesture.cpp
+	ZoomGesture.h
 	opengl.cpp
 	opengl.h
 	pi.h
@@ -393,6 +405,8 @@ target_sources(EndlessSkyLib PRIVATE
 	image/Sprite.h
 	image/SpriteSet.cpp
 	image/SpriteSet.h
+	image/KtxFile.cpp
+	image/KtxFile.h
 	shader/BatchDrawList.cpp
 	shader/BatchDrawList.h
 	shader/BatchShader.cpp

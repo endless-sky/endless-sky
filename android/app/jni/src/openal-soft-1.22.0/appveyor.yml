@@ -1,0 +1,21 @@
+version: 1.22.0.{build}
+
+environment:
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    GEN: "Visual Studio 15 2017"
+    matrix:
+      - ARCH: Win32
+        CFG: Release
+      - ARCH: x64
+        CFG: Release
+
+after_build:
+- 7z a ..\soft_oal.zip "%APPVEYOR_BUILD_FOLDER%\build\%CFG%\soft_oal.dll" "%APPVEYOR_BUILD_FOLDER%\README.md" "%APPVEYOR_BUILD_FOLDER%\COPYING"
+
+artifacts:
+- path: soft_oal.zip
+
+build_script:
+    - cd build
+    - cmake -G "%GEN%" -A %ARCH% -DALSOFT_BUILD_ROUTER=ON -DALSOFT_REQUIRE_WINMM=ON -DALSOFT_REQUIRE_DSOUND=ON -DALSOFT_REQUIRE_WASAPI=ON -DALSOFT_EMBED_HRTF_DATA=YES ..
+    - cmake --build . --config %CFG% --clean-first

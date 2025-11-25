@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: OpenAL
+Description: OpenAL is a cross-platform 3D audio API
+Requires: @PKG_CONFIG_REQUIRES@
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -l@LIBNAME@ @PKG_CONFIG_LIBS@
+Libs.private:@PKG_CONFIG_PRIVATE_LIBS@
+Cflags: -I${includedir} -I${includedir}/AL @PKG_CONFIG_CFLAGS@

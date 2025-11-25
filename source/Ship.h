@@ -546,6 +546,10 @@ public:
 	// Check if this ship looks the same as another, based on model display names and outfits.
 	bool Imitates(const Ship &other) const;
 
+	// use a common target angle for jump drives, so that fleets don't just
+	// scatter all around the solar system
+	void SetJumpDriveTargetAngle(const Angle& a) { jumpDriveTargetAngle = a; }
+	const Angle& GetJumpDriveTargetAngle() const { return jumpDriveTargetAngle; }
 
 private:
 	// Various steps of Ship::Move:
@@ -774,4 +778,7 @@ private:
 	std::weak_ptr<Ship> parent;
 
 	bool removeBays = false;
+
+	// Angle from target location where a ship should jump to
+	Angle jumpDriveTargetAngle;
 };

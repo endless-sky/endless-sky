@@ -15,10 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Panel.h"
 #include "Point.h"
 
 #include <memory>
 #include <vector>
+#include <map>
 
 #include <SDL2/SDL_events.h>
 
@@ -95,11 +97,19 @@ public:
 
 	static void PlaySound(UISound sound);
 
+	std::vector<Point> ZonePositions() const;
+	Command ZoneCommands() const;
 
 private:
 	// If a push or pop is queued, apply it.
 	void PushOrPop();
 
+	// Default behavior for game controller events
+	bool DefaultControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive);
+	bool DefaultControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive);
+	bool DefaultControllerButtonUp(SDL_GameControllerButton button);
+	bool DefaultControllerButtonDown(SDL_GameControllerButton button);
+	std::vector<Panel::Zone*> GetZones() const;
 
 private:
 	// Whether the player has taken actions that enable us to save the game.
@@ -110,4 +120,12 @@ private:
 	std::vector<std::shared_ptr<Panel>> stack;
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
+
+	uint32_t lastTap = 0;
+
+	// Track active axis value so that we can simulate button presses from
+	// triggers
+	SDL_GameControllerAxis activeAxis = SDL_CONTROLLER_AXIS_INVALID;
+	bool activeAxisIsPositive = false;
+	int16_t lastAxisValue = 0;
 };

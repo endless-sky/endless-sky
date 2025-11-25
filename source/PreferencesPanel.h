@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Dropdown.h"
 #include "Panel.h"
 
 #include "ClickZone.h"
@@ -23,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollVar.h"
 #include "Tooltip.h"
 
+#include <SDL2/SDL.h>
 #include <memory>
 #include <string>
 #include <vector>
@@ -36,7 +38,7 @@ struct Plugin;
 // UI panel for editing preferences, especially the key mappings.
 class PreferencesPanel : public Panel {
 public:
-	explicit PreferencesPanel(PlayerInfo &player);
+	PreferencesPanel(PlayerInfo &player);
 	virtual ~PreferencesPanel();
 
 	// Draw this panel.
@@ -52,6 +54,11 @@ protected:
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Drag(double dx, double dy) override;
+	virtual bool Gesture(Gesture::GestureEnum gesture) override;
+	virtual bool FingerDown(int x, int y, int fid) override;
+	virtual bool FingerUp(int x, int y, int fid) override;
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
 
 	virtual void Resize() override;
 
@@ -85,9 +92,10 @@ private:
 	// this panel is closed due to the deadline blink preference changing.
 	bool recacheDeadlines = false;
 
-	int editing = -1;
-	int selected = 0;
-	int hover = -1;
+	int editing;
+	int editingGesture; // Why is this separate from editing?
+	int selected;
+	int hover;
 	int oldSelected;
 	int oldHover;
 	int latest;
@@ -112,4 +120,7 @@ private:
 	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;
 	ScrollVar<double> pluginListScroll;
 	ScrollVar<double> pluginDescriptionScroll;
+	int pluginListHeight = 0;
+
+	std::shared_ptr<Dropdown> controlTypeDropdown;
 };

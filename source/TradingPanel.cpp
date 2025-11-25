@@ -61,6 +61,21 @@ TradingPanel::TradingPanel(PlayerInfo &player)
 	: player(player), system(*player.GetSystem()), COMMODITY_COUNT(GameData::Commodities().size())
 {
 	SetTrapAllEvents(false);
+
+	buyMultiplier = std::make_shared<Dropdown>();
+	buyMultiplier->SetAlign(Dropdown::LEFT);
+	buyMultiplier->SetFontSize(14);
+	buyMultiplier->SetPadding(0);
+	buyMultiplier->SetOptions({"x 1", "x 10", "x 100", "x 1000"});
+	AddChild(buyMultiplier);
+
+	sellMultiplier = std::make_shared<Dropdown>();
+	sellMultiplier->SetAlign(Dropdown::LEFT);
+	sellMultiplier->SetFontSize(14);
+	sellMultiplier->SetPadding(0);
+	sellMultiplier->SetOptions({"x 1", "x 10", "x 100", "x 1000"});
+	AddChild(sellMultiplier);
+
 }
 
 
@@ -113,10 +128,24 @@ void TradingPanel::Draw()
 	font.Draw("Commodity", Point(MIN_X + NAME_X, y), selected);
 	font.Draw("Price", Point(MIN_X + PRICE_X, y), selected);
 
-	string mod = "x " + to_string(Modifier());
-	font.Draw(mod, Point(MIN_X + BUY_X, y), unselected);
-	font.Draw(mod, Point(MIN_X + SELL_X, y), unselected);
 
+	int modifier = Modifier();
+	if (modifier != 1)
+	{
+		buyMultiplier->SetSelected("x " + std::to_string(modifier));
+		sellMultiplier->SetSelected("x " + std::to_string(modifier));
+		quantityIsModifier = true;
+	}
+	else if (quantityIsModifier)
+	{
+		quantityIsModifier = false;
+		buyMultiplier->SetSelected("x 1");
+		sellMultiplier->SetSelected("x 1");
+	}
+
+	buyMultiplier->SetPosition(Rectangle::FromCorner(Point(MIN_X + BUY_X, y), Point(58, 16)));
+	sellMultiplier->SetPosition(Rectangle::FromCorner(Point(MIN_X + SELL_X, y), Point(58, 16)));
+	
 	font.Draw("In Hold", Point(MIN_X + HOLD_X, y), selected);
 
 	y += 5;
@@ -192,6 +221,11 @@ void TradingPanel::Draw()
 
 			font.Draw("[buy]", Point(MIN_X + BUY_X, y), color);
 			font.Draw("[sell]", Point(MIN_X + SELL_X, y), color);
+
+			Rectangle buyRect = Rectangle::FromCorner(Point(MIN_X + BUY_X, y), Point(SELL_X - BUY_X, 20));
+			Rectangle sellRect = Rectangle::FromCorner(Point(MIN_X + SELL_X, y), Point(HOLD_X - SELL_X, 20));
+			AddZone(buyRect, [this, buyRect]() { Click(buyRect.Center().X(), buyRect.Center().Y(), MouseButton::LEFT, 1); });
+			AddZone(sellRect, [this, sellRect]() { Click(sellRect.Center().X(), sellRect.Center().Y(), MouseButton::LEFT, 1); });
 		}
 		else
 		{
@@ -310,13 +344,37 @@ bool TradingPanel::Click(int x, int y, MouseButton button, int clicks)
 
 
 
+bool TradingPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTY)
+	{
+		int selectedRow = player.MapColoring();
+		selectedRow += positive ? 1 : -1;
+		if(selectedRow < 0) selectedRow = 0;
+		else if(selectedRow >= COMMODITY_COUNT) selectedRow = COMMODITY_COUNT -1;
+		player.SetMapColoring(selectedRow);
+		return true;
+	}
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
+	{
+		Buy(positive ? -1 : 1);
+		return true;
+	}
+	return false;
+}
+
+
+
 void TradingPanel::Buy(int64_t amount)
 {
 	int selectedRow = player.MapColoring();
 	if(selectedRow < 0 || selectedRow >= COMMODITY_COUNT)
 		return;
 
-	amount *= Modifier();
+	if(amount > 0)
+		amount *= std::stoi(buyMultiplier->GetSelected().substr(2));
+	else
+		amount *= std::stoi(sellMultiplier->GetSelected().substr(2));
 	const string &type = GameData::Commodities()[selectedRow].name;
 	int64_t price = system.Trade(type);
 	if(!price)

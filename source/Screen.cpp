@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Screen.h"
 
-#include "CustomEvents.h"
-
 #include <algorithm>
 
 using namespace std;
@@ -26,7 +24,11 @@ namespace {
 	int RAW_HEIGHT = 0;
 	int WIDTH = 0;
 	int HEIGHT = 0;
+#ifndef __ANDROID__
 	int USER_ZOOM = 100;
+#else
+	int USER_ZOOM = 200; // for android, default to maximum zoom, instead of minimum
+#endif
 	int EFFECTIVE_ZOOM = 100;
 	bool HIGH_DPI = false;
 }
@@ -61,11 +63,11 @@ void Screen::ScreenDimensionsGuard::Deactivate()
 
 
 
-void Screen::SetRaw(int width, int height, bool noResizeEvent)
+void Screen::SetRaw(int width, int height)
 {
 	RAW_WIDTH = width;
 	RAW_HEIGHT = height;
-	SetZoom(USER_ZOOM, noResizeEvent);
+	SetZoom(USER_ZOOM);
 }
 
 
@@ -84,12 +86,9 @@ int Screen::Zoom()
 
 
 
-void Screen::SetZoom(int percent, bool noEvent)
+void Screen::SetZoom(int percent)
 {
-	if(!noEvent)
-		CustomEvents::SendResize();
-
-	USER_ZOOM = max(100, min(200, percent));
+	USER_ZOOM = max(50, min(200, percent));
 
 	// Make sure the zoom factor is not set too high for the full UI to fit.
 	static const int MIN_WIDTH = 1000; // Width of main menu
@@ -98,7 +97,7 @@ void Screen::SetZoom(int percent, bool noEvent)
 	int minZoomY = 100 * RAW_HEIGHT / MIN_HEIGHT;
 	int minZoom = min(minZoomX, minZoomY);
 	// Never go below 100% zoom, no matter how small the window is
-	minZoom = max(minZoom, 100);
+	minZoom = max(minZoom, 50);
 	// Use increments of 10, like the user setting
 	minZoom -= minZoom % 10;
 	EFFECTIVE_ZOOM = min(minZoom, UserZoom());

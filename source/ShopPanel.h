@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
 #include "Tooltip.h"
+#include "Dropdown.h"
 
 #include <map>
 #include <set>
@@ -108,6 +109,9 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
+
 
 	void DoFind(const std::string &text);
 	virtual int FindItem(const std::string &text) const = 0;
@@ -144,7 +148,7 @@ protected:
 	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
 	static constexpr int INFOBAR_WIDTH = 300;
 	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static constexpr int BUTTON_HEIGHT = 70;
+	static constexpr int BUTTON_HEIGHT = 100;
 	static constexpr int SHIP_SIZE = 250;
 	static constexpr int OUTFIT_SIZE = 183;
 
@@ -164,6 +168,9 @@ protected:
 	Point dragPoint;
 	// The group of all selected, player-owned ships.
 	std::set<Ship *> playerShips;
+	// When the last click occurred, so we can measure long clicks
+	unsigned int lastShipClickTime = -1;
+	Ship* shipToRemoveIfLongClick = nullptr; // ship to remove if it turns out to be a long click
 
 	// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;
@@ -194,6 +201,10 @@ protected:
 
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
+
+	std::shared_ptr<Dropdown> selected_quantity;
+	bool quantity_is_modifier = false;
+	std::shared_ptr<Dropdown> outfit_disposition;
 
 
 private:
@@ -237,4 +248,5 @@ private:
 	const Color &back;
 
 	bool checkedHelp = false;
+	void DispositionChanged(const std::string& value);
 };

@@ -46,8 +46,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Number of lines per page of the fleet listing.
-	const int LINES_PER_PAGE = 26;
+	int LinesPerPage()
+	{
+		auto bounds = GameData::Interfaces().Get("info panel")->GetBox("fleet");
+		return (bounds.Height() - 8 - 20 - 5) / 20;
+	}
+
 
 	// Draw a list of (string, value) pairs.
 	void DrawList(vector<pair<int64_t, string>> &list, const Table &table, const string &title,
@@ -296,7 +300,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 {
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control)
+	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_AC_BACK || (key == 'w' && control)
 			|| key == 'i' || command.Has(Command::INFO))
 	{
 		GetUI()->Pop(this);
@@ -321,7 +325,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		int direction = (key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP);
-		Scroll((LINES_PER_PAGE - 2) * direction);
+		Scroll((LinesPerPage() - 2) * direction);
 	}
 	else if(key == SDLK_HOME)
 		Scroll(-static_cast<int>(player.Ships().size()));
@@ -404,6 +408,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		int selected = panelState.SelectedIndex();
 		if(selected >= 0)
 		{
+			const int LINES_PER_PAGE = LinesPerPage();
 			if(selected < panelState.Scroll() + LINES_PER_PAGE && selected >= panelState.Scroll())
 			{
 				// If the selected ship is on screen, do not scroll.
@@ -538,47 +543,50 @@ bool PlayerInfoPanel::Click(int x, int y, MouseButton button, int clicks)
 			return true;
 		}
 
+ 	dragPoint = scrollPos = Point(x, y);
+ 	scrollStart = panelState.Scroll();
+
 	// Do nothing if the click was not on one of the ships in the fleet list.
-	if(hoverIndex < 0)
+	int selectedShip = GetShipIndexFromPoint(x, y);
+	if(selectedShip < 0)
 		return true;
 
-	bool shift = (SDL_GetModState() & KMOD_SHIFT);
-	bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
-	if(panelState.CanEdit() && (shift || control || clicks < 2))
+	if(clicks > 1)
 	{
-		// If the control+click was on an already selected ship, deselect it.
-		if(control && panelState.AllSelected().contains(hoverIndex))
-			panelState.Deselect(hoverIndex);
+		panelState.SetSelectedIndex(selectedShip);
+
+		GetUI()->Pop(this);
+		GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+	}
+	else if(panelState.CanEdit())
+	{
+		bool shift = (SDL_GetModState() & KMOD_SHIFT);
+		bool control = (SDL_GetModState() & (KMOD_CTRL | KMOD_GUI));
+
+		if(control)
+		{
+			// Control toggles the selected state of the ship
+			if(panelState.AllSelected().count(selectedShip))
+				panelState.Deselect(selectedShip);
+			else
+				panelState.SetSelectedIndex(selectedShip);
+		}
+		else if(shift)
+		{
+			// Select all the ships between the previous selection and this one.
+			int start = max(0, min(panelState.SelectedIndex(), selectedShip));
+			int end = max(panelState.SelectedIndex(), selectedShip);
+			panelState.SelectMany(start, end + 1);
+			panelState.SetSelectedIndex(selectedShip);
+		}
 		else
 		{
-			if(control)
-				panelState.SetSelectedIndex(hoverIndex);
-			else if(shift)
-			{
-				// Select all the ships between the previous selection and this one.
-				int start = max(0, min(panelState.SelectedIndex(), hoverIndex));
-				int end = max(panelState.SelectedIndex(), hoverIndex);
-				panelState.SelectMany(start, end + 1);
-				panelState.SetSelectedIndex(hoverIndex);
-			}
-			else if(panelState.AllSelected().contains(hoverIndex))
-			{
-				// If the click is on an already selected line, start dragging
-				// but do not change the selection.
-			}
-			else
-				panelState.SelectOnly(hoverIndex);
-		}
-	}
-	else
-	{
-		const bool sameIndex = panelState.SelectedIndex() == hoverIndex;
-		panelState.SelectOnly(hoverIndex);
-		// If not landed, clicking a ship name takes you straight to its info.
-		if(!panelState.CanEdit() || sameIndex)
-		{
-			GetUI()->Pop(this);
-			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+			// Select just this ship if it isn't currenntly selected already
+			if(!panelState.AllSelected().count(selectedShip))
+				panelState.SelectOnly(selectedShip);
+			
+			// Also, we might start dragging it to reorder it.
+			isDragging = true;
 		}
 	}
 
@@ -589,13 +597,25 @@ bool PlayerInfoPanel::Click(int x, int y, MouseButton button, int clicks)
 
 bool PlayerInfoPanel::Drag(double dx, double dy)
 {
-	isDragging = true;
-	return Hover(hoverPoint + Point(dx, dy));
+	dragPoint += Point(dx, dy);
+	hoverPoint = dragPoint;
+	if(isDragging)
+	{
+		
+	}
+	else
+	{
+		// scroll the ship list
+ 		// Scroll units are in rows, which are 20 px high
+ 		int dragTotalHeight = dragPoint.Y() - scrollPos.Y();
+ 		ScrollAbsolute(scrollStart - dragTotalHeight/20);
+	}
+	return true;
 }
 
 
 
-bool PlayerInfoPanel::Release(int /* x */, int /* y */, MouseButton button)
+bool PlayerInfoPanel::Release(int x, int y, MouseButton button)
 {
 	if(button != MouseButton::LEFT)
 		return false;
@@ -605,10 +625,14 @@ bool PlayerInfoPanel::Release(int /* x */, int /* y */, MouseButton button)
 
 	// Do nothing if the block of ships has not been dragged to a valid new
 	// location in the list, or if it's not possible to reorder the list.
-	if(!panelState.CanEdit() || hoverIndex < 0 || hoverIndex == panelState.SelectedIndex())
+	if(!panelState.CanEdit())
+		return true;
+	
+	int dropIndex = GetShipIndexFromPoint(x, y);
+	if(dropIndex < 0 || dropIndex == panelState.SelectedIndex())
 		return true;
 
-	panelState.ReorderShipsTo(hoverIndex);
+	panelState.ReorderShipsTo(dropIndex);
 
 	return true;
 }
@@ -758,7 +782,6 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 	// Loop through all the player's ships.
 	int index = panelState.Scroll();
-	hoverIndex = -1;
 	for(auto sit = panelState.Ships().begin() + panelState.Scroll(); sit < panelState.Ships().end(); ++sit)
 	{
 		// Bail out if we've used out the whole drawing area.
@@ -773,9 +796,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 
 		// Find out if the mouse is hovering over the ship
 		Rectangle shipZone = Rectangle(table.GetCenterPoint(), table.GetRowSize());
-		bool isHovered = (hoverIndex == -1) && shipZone.Contains(hoverPoint);
-		if(isHovered)
-			hoverIndex = index;
+		bool isHovered = shipZone.Contains(isDragging ? dragPoint : hoverPoint);
 
 		const Ship &ship = **sit;
 		bool isElsewhere = (ship.GetSystem() != player.GetSystem());
@@ -825,7 +846,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 	if(isDragging)
 	{
 		const Font &font = FontSet::Get(14);
-		Point pos(hoverPoint.X(), hoverPoint.Y());
+		Point pos(dragPoint.X(), dragPoint.Y());
 		for(int i : panelState.AllSelected())
 		{
 			const string &name = panelState.Ships()[i]->GivenName();
@@ -905,8 +926,6 @@ bool PlayerInfoPanel::Hover(int x, int y)
 bool PlayerInfoPanel::Hover(const Point &point)
 {
 	hoverPoint = point;
-	hoverIndex = -1;
-
 	return true;
 }
 
@@ -921,7 +940,7 @@ bool PlayerInfoPanel::Scroll(double /* dx */, double dy)
 
 bool PlayerInfoPanel::ScrollAbsolute(int scroll)
 {
-	int maxScroll = panelState.Ships().size() - LINES_PER_PAGE;
+	int maxScroll = panelState.Ships().size() - LinesPerPage();
 	int newScroll = max(0, min<int>(maxScroll, scroll));
 	if(panelState.Scroll() == newScroll)
 		return false;
@@ -950,4 +969,40 @@ PlayerInfoPanel::SortableColumn::SortableColumn(
 )
 	: name(name), offset(offset), endX(endX), layout(layout), shipSort(shipSort)
 {
+}
+
+
+
+int PlayerInfoPanel::GetShipIndexFromPoint(int x, int y)
+{
+	auto bounds = GameData::Interfaces().Get("info panel")->GetBox("fleet");
+
+	// Duplicate the table drawing logic. This would be much nicer if table was
+	// persistent class, instead of just a formatting aid.
+	int ypos = bounds.Top() + 8;
+	static const int rowSize = 20; // from table defaults
+	ypos += rowSize; // table header
+	ypos += 5; // five pixel gap
+
+	if(menuZones.empty())
+		return -1;
+
+	// Only allow selection from first column.
+	Rectangle columnRect = menuZones.front();
+	if(x < columnRect.Left() || x > columnRect.Right())
+		return -1;
+
+	int index = panelState.Scroll();
+	for(auto sit = panelState.Ships().begin() + panelState.Scroll(); sit < panelState.Ships().end(); ++sit, ++index)
+	{
+		// Bail out if we've used out the whole drawing area.
+		if(ypos > bounds.Bottom())
+			break;
+
+		if(y >= ypos && y < ypos + rowSize)
+			return index;
+
+		ypos += rowSize;
+	}
+	return -1;
 }

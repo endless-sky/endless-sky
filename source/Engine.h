@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "TaskQueue.h"
 
+#include <chrono>
 #include <condition_variable>
 #include <list>
 #include <map>
@@ -98,6 +99,11 @@ public:
 	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
 	void RightOrMiddleClick(const Point &point, MouseButton button);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
+
+	// Touchscreen controls
+	bool FingerDown(const Point &p, int fid);
+	bool FingerUp(const Point &p, int fid);
+	bool FingerMove(const Point &p, int fid);
 
 	// Break targeting on all projectiles between the player and the given
 	// government; gov projectiles stop targeting the player and player's
@@ -193,7 +199,9 @@ private:
 	void SendHails();
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
+	void HandleTouchEvents();
 	void HandleMouseInput(Command &activeCommands);
+	void HandleGamepadInput(Command &activeCommands);
 
 	void FillCollisionSets();
 
@@ -212,6 +220,7 @@ private:
 	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
 		Status::Type type, double cloak);
 
+	void HandleJoystickMovement(const Point& p);
 
 private:
 	PlayerInfo &player;
@@ -314,10 +323,17 @@ private:
 	bool hasControl = false;
 	MouseButton mouseButton = MouseButton::NONE;
 	bool isRadarClick = false;
+	bool isTouch = false;
+	int isFingerDown = -1;
+	bool isDoubleTap = false;
 	Point clickPoint;
 	Rectangle uiClickBox;
 	Rectangle clickBox;
 	int groupSelect = -1;
+	std::chrono::steady_clock::time_point last_tap_stamp;
+	std::chrono::steady_clock::time_point last_virtual_joystick_tap_stamp;
+	bool touchMoveActive = false;
+	Point touchMoveVector;
 
 	// Set of asteroids scanned in the current system.
 	std::set<std::string> asteroidsScanned;

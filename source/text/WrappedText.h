@@ -22,6 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include "../Animate.h"
+
 class Color;
 class Font;
 
@@ -76,6 +78,16 @@ public:
 	// Draw the text.
 	void Draw(const Point &topLeft, const Color &color) const;
 
+	// Set the amount of vertical space we can draw in at once
+	void SetVisibleHeight(int height);
+	int VisibleHeight() const;
+	// Set the vertical offset for the text to display
+	void SetScroll(int offsetY);
+	int Scroll() { return scrollY; }
+	void DoScroll(int dY) { SetScroll(scrollY + dY); }
+	bool CanScrollUp() const { return scrollY > 0; }
+	bool CanScrollDown() const { return visibleHeight != -1 && scrollY < height - visibleHeight; }
+
 
 private:
 	void SetText(const char *it, size_t length);
@@ -116,6 +128,8 @@ private:
 	std::string text;
 	std::vector<Word> words;
 	int height = 0;
-
+	int visibleHeight = -1;
+	mutable Animate<int> scrollY;
+	
 	int longestLineWidth = 0;
 };

@@ -58,7 +58,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 
 	// Figure out how much space there is for the icons.
 	int maxColumns = max(1., bounds.Width() / width);
-	MergeStacks(maxColumns * bounds.Height());
+	MergeStacks(maxColumns, bounds.Height());
 	icons.sort();
 	stacks.clear();
 	zones.clear();
@@ -74,6 +74,10 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 	const Color &hereColor = *colors.Get("escort present");
 	const Color &hostileColor = *colors.Get("escort hostile");
 
+	// using bounding rect instead of icon zone
+	//	const Point iconZoneOffset = element->GetBox("icon click zone").Center();
+	const Point iconZoneSize = { element->GetValue("width"), element->GetValue("basic height") };
+	bool isFirstIcon = true;
 	for(const Icon &escort : icons)
 	{
 		if(!escort.sprite)
@@ -83,11 +87,11 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 
 		corner.Y() -= escort.Height();
 		// Show only as many escorts as we have room for on screen.
-		if(corner.Y() <= bounds.Top())
+		if(corner.Y() <= bounds.Top() && !isFirstIcon)
 		{
 			corner.X() += width;
-			if(corner.X() + width > bounds.Right())
-				break;
+			// if(corner.X() + width > bounds.Right())
+			// 	break;
 			corner.Y() = bounds.Bottom() - escort.Height();
 		}
 
@@ -119,11 +123,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		// Figure out what scale should be applied to the ship sprite.
 		info.SetSprite("icon", escort.sprite);
 		info.SetOutlineColor(color);
-		const Point dimensions(width, escort.Height());
-		const Point center(corner + dimensions / 2.);
-		const Rectangle region(center, dimensions);
-		const Rectangle zone = region + Point(0., -5.);
-		zones.emplace_back(zone);
+		zones.emplace_back(corner, iconZoneSize);
 		stacks.push_back(escort.ships);
 		// Draw the number of ships in this stack.
 		if(escort.ships.size() > 1)
@@ -146,10 +146,14 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			info.SetBar(levels[i][1], escort.low[i]);
 		}
 
+		const Point dimensions(width, escort.Height());
+		const Point center(corner + dimensions / 2.);
+
 		info.SetRegion(Rectangle(center, dimensions));
-		info.SetRegion(region);
 
 		element->Draw(info);
+
+		isFirstIcon = false;
 	}
 }
 
@@ -227,58 +231,109 @@ void EscortDisplay::Icon::Merge(const Icon &other)
 
 
 
-void EscortDisplay::MergeStacks(int maxHeight) const
+void EscortDisplay::MergeStacks(int columns, int maxHeight) const
 {
 	if(icons.empty())
 		return;
+	// Goals:
+	// 	* Place all ships in a group, even if there is room to display them
+	// 	  separately.
+	//		* Display all ships, even if we have to group ships together that do
+	//		  not share an icon.
+	//		* If you have to collapse unrelated ships into a single icon, prefer
+	//		  ships not in the system.
 
-	set<const Sprite *> unstackable;
-	while(true)
+	int height = 0;
+	int column = 0;
+	int iconsInLastColumn = 0;
+	auto RecomputeSize = [&]()
 	{
-		Icon *cheapest = nullptr;
-
-		int height = 0;
+		// Note that when merging items, we can't incrementally decrease the
+		// size because we don't know how large the previous columns were. It may
+		// be possible to only do the full recompute only when we cross the
+		// column boundary.
+		height = 0;
+		column = 0;
+		iconsInLastColumn = 0;
 		for(Icon &icon : icons)
 		{
-			if(!unstackable.contains(icon.sprite) && (!cheapest || *cheapest < icon))
-				cheapest = &icon;
-
 			height += icon.Height();
-		}
-
-		if(height < maxHeight || !cheapest)
-			break;
-
-		// Merge together each group of escorts that have this icon and are in
-		// the same system and have the same attitude towards the player.
-		map<const bool, map<string, Icon *>> merged;
-
-		// The "cheapest" element in the list may be removed to merge it with an
-		// earlier ship of the same type, so store a copy of its sprite pointer:
-		const Sprite *sprite = cheapest->sprite;
-		list<Icon>::iterator it = icons.begin();
-		while(it != icons.end())
-		{
-			if(it->sprite != sprite)
+			if(height >= maxHeight && iconsInLastColumn > 0)
 			{
-				++it;
-				continue;
+				iconsInLastColumn = 0;
+				++column;
+				height = icon.Height();
 			}
+			++iconsInLastColumn;
+		}
+	};
 
-			// If this is the first escort we've seen so far in its system, it
-			// is the one we will merge all others in this system into.
-			auto mit = merged[it->isHostile].find(it->system);
-			if(mit == merged[it->isHostile].end())
+	auto TooBig = [&]()
+	{
+		return column > columns || (column == columns && height > 0);
+	};
+
+	// Collapse all ships into groups by icon, location, and hostility
+	for(auto it = icons.begin(); it != icons.end(); ++it)
+	{
+		auto it2 = it;
+		for(++it2; it2 != icons.end();)
+		{
+			if(it->sprite == it2->sprite &&
+			   it->isHostile == it2->isHostile &&
+			   it->isHere == it2->isHere)
 			{
-				merged[it->isHostile][it->system] = &*it;
-				++it;
+				it->Merge(*it2);
+				it2 = icons.erase(it2);
 			}
 			else
+				++it2;
+		}
+	}
+
+	RecomputeSize();
+
+	if(TooBig())
+	{
+		// There isn't enough room. Merge out-of-system ships even if they
+		// don't have matching icons.
+		for(auto it = icons.begin(); it != icons.end() && TooBig(); ++it)
+		{
+			if(!it->isHere)
 			{
-				mit->second->Merge(*it);
-				it = icons.erase(it);
+				auto it2 = it;
+				for(++it2; it2 != icons.end() && TooBig();)
+				{
+					if(!it2->isHere &&
+						it->sprite == it2->sprite &&
+						it->isHostile == it2->isHostile)
+					{
+						it->Merge(*it2);
+						it2 = icons.erase(it2);
+
+						RecomputeSize();
+					}
+					else
+						++it2;
+				}
 			}
 		}
-		unstackable.insert(sprite);
+	}
+
+	if(TooBig())
+	{
+		// Still too big. Start collapsing all icons from lowest to highest
+		// priority, regardless of status or location
+		icons.sort();
+		auto it = icons.end();
+		--it;
+		while(TooBig() && it != icons.begin())
+		{
+			--it;
+			it->Merge(icons.back());
+			icons.pop_back();
+			
+			RecomputeSize();
+		}
 	}
 }

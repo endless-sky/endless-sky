@@ -52,28 +52,12 @@ body:
       label: Link to save file
       description: You can either upload your save here, or to e.g. hastebin / GitHub Gists
       placeholder: |
-        Windows: %APPDATA%\endless-sky\saves
-        Linux: ~/.local/share/endless-sky/saves
-        macOS: ~/Library/Application Support/endless-sky/saves
+        You can export your save file from the pilot selection screen.
   - type: input
     attributes:
-      label: Operating System
-      description: What OS do you use?
-      placeholder: Windows 10 Pro, version 1803 build 17134.407
-    validations:
-      required: true
-  - type: dropdown
-    attributes:
-      label: Game Source
-      description: From where did you obtain your current game version?
-      options:
-        - Steam
-        - GOG
-        - ESLauncher2
-        - Built from source
-        - GitHub Releases
-        - Homebrew
-        - Other (please describe)
+      label: Device type
+      description: What mobile device type do you use? 
+      placeholder: Google Pixel 6a 
     validations:
       required: true
   - type: input

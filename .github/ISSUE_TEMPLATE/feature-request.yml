@@ -5,14 +5,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for filing a feature/change request! This project has been around for quite a while, so it is quite common for ideas to have come up before. To help save everyone's time, you are required to search for related issues and address any comments and concerns that arose previously.
-        Otherwise, your issue will be closed--it is not fair to ask maintainers and collaborators to do background research for *your* feature request.
-
-        Where should you search?
-        - [GitHub Issues](https://github.com/endless-sky/endless-sky/issues?q=is%3Aissue)
-        - [Steam Forum](https://steamcommunity.com/app/404410/discussions/)
-        - [Discord Community](https://discord.gg/ZeuASSx)
-        - [Reddit](https://reddit.com/r/endlesssky/)
+        Thanks for filing a feature request! This is a port of the endless-sky project, so for gameplay, art, or story updates, please check the [upstream issue reporter.](https://github.com/endless-sky/endless-sky/issues?q=is%3Aissue)
+        For bugs involving the touchscreen ui or android usability, please post here. 
   - type: textarea
     attributes:
       label: Problem Description

@@ -299,6 +299,31 @@ Rectangle Table::GetRowBounds() const
 
 
 
+Rectangle Table::GetTextBounds(const std::string& text) const
+{
+	if(font && !columns.empty())
+	{
+		const auto &layout = it->layout;
+		const int textWidth = font->Width(text);
+		Point size(textWidth, font->Height());
+		//Point pos(point.X() + it->offset, point.Y());
+		//switch(layout.align)
+		//{
+		//case Alignment::CENTER:
+		//	pos.X() += (layout.width >= 0 ? layout.width : textWidth) * .5;
+		//}
+
+		const double alignmentOffset = layout.align == Alignment::RIGHT ? -1.
+			: layout.align == Alignment::CENTER ? -0.5 : 0.;
+		
+		auto pos = point + Point(it->offset + alignmentOffset * (layout.width >= 0 ? layout.width : textWidth), 0.);
+		return Rectangle::FromCorner(pos, size);
+	}
+	return Rectangle();
+}
+
+
+
 Table::Column::Column(double offset, Layout layout) noexcept
 	: offset(offset), layout(layout)
 {

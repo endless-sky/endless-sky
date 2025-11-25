@@ -150,7 +150,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 {
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);
-	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control))
+	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_AC_BACK  || (key == 'w' && control))
 		GetUI()->Pop(this);
 	else if(command.Has(Command::HELP))
 		DoHelp("ship info", true);
@@ -524,6 +524,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	const double centerX = bounds.Center().X();
 	const double labelCenter[2] = {centerX - .5 * LABEL_WIDTH - LABEL_DX, centerX + LABEL_DX + .5 * LABEL_WIDTH};
 	const double fromX[2] = { centerX - LABEL_DX + LABEL_PAD, centerX + LABEL_DX - LABEL_PAD};
+	//const double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
+	//const double fromX[2] = {-LABEL_DX + LABEL_PAD, LABEL_DX - LABEL_PAD};
 	static const double LINE_HEIGHT = 20.;
 	static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
 	static const Point LINE_SIZE(LABEL_WIDTH, LINE_HEIGHT);

@@ -15,6 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
+#include "GamePad.h"
+#include "GamepadCursor.h"
+#include "PlayerInfoPanel.h"
 #include "text/Alignment.h"
 #include "Angle.h"
 #include "audio/Audio.h"
@@ -300,6 +303,7 @@ void MapPanel::Step()
 
 	// The mouse should be pointing to the same map position before and after zooming.
 	bool needsRecenter = !zoom.IsAnimationDone();
+	needsRecenter = needsRecenter && !zoom_is_from_pinch_gesture;
 	Point mouse, anchor;
 	if(needsRecenter)
 	{
@@ -313,6 +317,16 @@ void MapPanel::Step()
 	// anchor to be the same, so:
 	if(needsRecenter)
 		center = mouse / Zoom() - anchor;
+
+	if(controllerFocus == FOCUS_MAP)
+	{
+		Point joyDir = GamePad::LeftStick();
+		if(joyDir.LengthSquared() > GamePad::DeadZone() * GamePad::DeadZone())
+		{
+			center -= joyDir / 4000;
+			UpdateGamepadMapCursor();
+		}
+	}
 }
 
 
@@ -379,8 +393,8 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1300
-		? "map buttons (small screen)" : "map buttons");
+	// Always use small screen layout for android
+	const Interface *mapButtonUi = GameData::Interfaces().Get("map buttons (small screen)");
 	mapButtonUi->Draw(info, this);
 
 	// Draw the tooltips.
@@ -476,6 +490,8 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		for(auto &child : GetChildren())
 			RemoveChild(child.get());
 	};
+	if(key == SDLK_AC_BACK)
+		GetUI()->Pop(this);
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
@@ -508,6 +524,10 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		GetUI()->Pop(this);
 		removeChildren();
 		GetUI()->Push(new MapDetailPanel(*this, true));
+	}
+	else if(key == 'n')
+	{
+		GetUI()->Push(new PlayerInfoPanel(player));
 	}
 	else if(key == 'f')
 	{
@@ -607,6 +627,131 @@ bool MapPanel::Scroll(double dx, double dy)
 		DecrementZoom();
 
 	return true;
+}
+
+
+
+bool MapPanel::FingerDown(int x, int y, int fid)
+{
+	return zoomGesture.FingerDown(Point(x, y), fid);
+}
+
+
+
+bool MapPanel::FingerMove(int x, int y, int fid)
+{
+	if(zoomGesture.FingerMove(Point(x, y), fid))
+	{
+		zoom_is_from_pinch_gesture = true;
+		const Interface *mapInterface = GameData::Interfaces().Get("map");
+
+		center += zoomGesture.CenterDelta();
+
+		// zoom is a power of 1.5 (so zero is 100% zoom), but zoomGesture.Zoom()
+		// returns a multiplier between 0 and infinity. We need to convert
+		// between them.
+		double pow_zoom = pow(1.5, zoom) * zoomGesture.Zoom();
+		SDL_Log("Zoom %f = %f * %f", pow_zoom * zoomGesture.Zoom(), pow_zoom, zoomGesture.Zoom());
+		double target_zoom = log(pow_zoom) / log(1.5);
+		if(target_zoom >= mapInterface->GetValue("max zoom"))
+		{
+			target_zoom = mapInterface->GetValue("max zoom");
+		}
+		else if(target_zoom <= mapInterface->GetValue("min zoom"))
+		{
+			target_zoom = mapInterface->GetValue("min zoom");
+		}
+		zoom.Set(target_zoom);
+		player.SetMapZoom(target_zoom);
+		
+		return true;
+	}
+	return false;
+}
+
+
+
+bool MapPanel::FingerUp(int x, int y, int fid)
+{
+	return zoomGesture.FingerUp(Point(x, y), fid);
+}
+
+
+
+bool MapPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// Right joystick controls which area of the display has the focus
+	// left joystick controls navigation within the selected area
+	if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
+	{
+		// handle navigation within the selected panel
+		switch(controllerFocus)
+		{
+		case FOCUS_DETAIL:
+			// TODO: handle left side content (mission list, port list, ship list, etc)
+			break;
+		case FOCUS_MAP:
+			// swallow this event. Panning is handled in the Step() function.
+			return true;
+			break;
+		case FOCUS_BUTTONS:
+			// TODO: navigate through the button panel on the bottom right
+			break;
+		}
+	}
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
+	{
+		if(positive)
+		{
+			if(controllerFocus == FOCUS_DETAIL)
+			{
+				controllerFocus = FOCUS_MAP;
+				UpdateGamepadMapCursor();
+			}
+			else if(controllerFocus == FOCUS_MAP)
+			{
+				controllerFocus = FOCUS_BUTTONS;
+				GamepadCursor::MoveDir(Point(1, 0), GetUI()->ZonePositions());
+			}
+		}
+		else
+		{
+			if(controllerFocus == FOCUS_BUTTONS)
+			{
+				controllerFocus = FOCUS_MAP;
+				UpdateGamepadMapCursor();
+			}
+			else
+				controllerFocus = FOCUS_DETAIL;
+		}
+	}
+
+	return false;
+}
+
+
+
+bool MapPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	switch(controllerFocus)
+	{
+	case FOCUS_DETAIL:
+		// TODO: handle left side content (mission list, port list, ship list, etc)
+		break;
+	case FOCUS_MAP:
+		if(button == SDL_CONTROLLER_BUTTON_A && controllerSelected < nodes.size())
+		{
+			Point pos = Zoom() * (nodes[controllerSelected].position + center);
+			Click(pos.X(), pos.Y(), MouseButton::LEFT, 1);
+			return true;
+		}
+		
+		break;
+	case FOCUS_BUTTONS:
+		// navigation through buttons. handled by default zone behavior.
+		break;
+	}
+	return false;
 }
 
 
@@ -868,6 +1013,8 @@ bool MapPanel::GetTravelInfo(const System *previous, const System *next, const d
 
 void MapPanel::CenterOnSystem(const System *system, bool immediate)
 {
+	if(!system)
+		return;
 	if(immediate)
 		center = -system->Position();
 	else
@@ -1491,6 +1638,8 @@ void MapPanel::IncrementZoom()
 	double newZoom = min<double>(mapInterface->GetValue("max zoom"), player.MapZoom() + 1);
 	zoom.Set(newZoom, mapInterface->GetValue("zoom animation duration"));
 	player.SetMapZoom(newZoom);
+
+	zoom_is_from_pinch_gesture = false;
 }
 
 
@@ -1500,4 +1649,37 @@ void MapPanel::DecrementZoom()
 	double newZoom = max<double>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1);
 	zoom.Set(newZoom, mapInterface->GetValue("zoom animation duration"));
 	player.SetMapZoom(newZoom);
+
+	zoom_is_from_pinch_gesture = false;
+}
+
+
+
+void MapPanel::UpdateGamepadMapCursor()
+{
+	// Have the cursor jump to the closest system to the center of the
+	// screen, if its close enough.
+	Point best(-100000.0, -100000.0);
+	double best_distance = 1000000000000.0;
+	size_t idx = 0;
+	for(const Node &node : nodes)
+	{
+		Point pos = Zoom() * (node.position + center);
+		double distance = pos.LengthSquared();
+		if(distance < best_distance)
+		{
+			best = pos;
+			best_distance = distance;
+			controllerSelected = idx;
+		}
+		++idx;
+	}
+
+	if(best_distance < 10000) // 100^2 units
+		GamepadCursor::SetPosition(best);
+	else
+	{
+		GamepadCursor::SetPosition(Point(0, 0));
+		controllerSelected = -1;
+	}
 }

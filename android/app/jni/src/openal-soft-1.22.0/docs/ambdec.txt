@@ -1,0 +1,189 @@
+AmbDec Configuration Files
+==========================
+
+AmbDec configuration files were developed by Fons Adriaensen as part of the
+AmbDec program <http://kokkinizita.linuxaudio.org/linuxaudio/index.html>.
+
+The file works by specifying a decoder matrix or matrices which transform
+ambisonic channels into speaker feeds. Single-band decoders specify a single
+matrix that transforms all frequencies, while dual-band decoders specifies two
+matrices where one transforms low frequency sounds and the other transforms
+high frequency sounds. See docs/ambisonics.txt for more general information
+about ambisonics.
+
+Starting with OpenAL Soft 1.18, version 3 of the file format is supported as a
+means of specifying custom surround sound speaker layouts. These configuration
+files are also used to enable the high-quality ambisonic decoder.
+
+
+File Format
+===========
+
+As of this writing, there is no official documentation of the .ambdec file
+format. However, the format as OpenAL Soft sees it is as follows:
+
+The file is plain text. Comments start with a hash/pound character (#). There
+may be any amount of whitespace in between the option and parameter values.
+Strings are *not* enclosed in quotation marks.
+
+/description <desc:string>
+Specifies a text description of the configuration. Ignored by OpenAL Soft.
+
+/version <ver:int>
+Declares the format version used by the configuration file. OpenAL Soft
+currently only supports version 3.
+
+/dec/chan_mask <mask:hex>
+Specifies a hexadecimal mask value of ambisonic input channels used by this
+decoder. Counting up from the least significant bit, bit 0 maps to Ambisonic
+Channel Number (ACN) 0, bit 1 maps to ACN 1, etc. As an example, a value of 'b'
+enables bits 0, 1, and 3 (1011 in binary), which correspond to ACN 0, 1, and 3
+(first-order horizontal).
+
+/dec/freq_bands <count:int>
+Specifies the number of frequency bands used by the decoder. This must be 1 for
+single-band or 2 for dual-band.
+
+/dec/speakers <count:int>
+Specifies the number of output speakers to decode to.
+
+/dec/coeff_scale <type:string>
+Specifies the scaling used by the decoder coefficients. Currently recognized
+types are fuma, sn3d, and n3d, for Furse-Malham (FuMa), semi-normalized (SN3D),
+and fully normalized (N3D) scaling, respectively.
+
+/opt/input_scale <name:string>
+Specifies the scaling used by the ambisonic input data. As OpenAL Soft renders
+the data itself and knows the scaling, this is ignored.
+
+/opt/nfeff_comp <dir:string>
+Specifies whether near-field effect compensation is off (not applied at all),
+applied on input (faster, less accurate with varying speaker distances) or
+output (slower, more accurate with varying speaker distances). Ignored by
+OpenAL Soft.
+
+/opt/delay_comp <onoff:bool>
+Specifies whether delay compensation is applied for output. This is used to
+correct for time variations caused by different speaker distances. As OpenAL
+Soft has its own config option for this, this is ignored.
+
+/opt/level_comp <onoff:bool>
+Specifies whether gain compensation is applied for output. This is used to
+correct for volume variations caused by different speaker distances. As OpenAL
+Soft has its own config option for this, this is ignored.
+
+/opt/xover_freq <freq:float>
+Specifies the crossover frequency for dual-band decoders. Frequencies less than
+this are fed to the low-frequency matrix, and frequencies greater than this are
+fed to the high-frequency matrix. Unused for single-band decoders.
+
+/opt/xover_ratio <decibels:float>
+Specifies the volume ratio between the frequency bands. Values greater than 0
+decrease the low-frequency output by half the specified value and increase the
+high-frequency output by half the specified value, while values less than 0
+increase the low-frequency output and decrease the high-frequency output to
+similar effect. Unused for single-band decoders.
+
+/speakers/{
+Begins the output speaker definitions. A speaker is defined using the add_spkr
+command, and there must be a matching number of speaker definitions as the
+specified speaker count. The definitions are ended with a "/}".
+
+add_spkr <id:string> <dist:float> <azi:float> <elev:float> <connection:string>
+Defines an output speaker. The ID is a string identifier for the output speaker
+(see Speaker IDs below). The distance is in meters from the center-point of the
+physical speaker array. The azimuth is the horizontal angle of the speaker, in
+degrees, where 0 is directly front and positive values go left. The elevation
+is the vertical angle of the speaker, in degrees, where 0 is directly front and
+positive goes upward. The connection string is the JACK port name the speaker
+should connect to. Currently, OpenAL Soft uses the ID and distance, and ignores
+the rest.
+
+/lfmatrix/{
+Begins the low-frequency decoder matrix definition. The definition should
+include an order_gain command to specify the base gain for the ambisonic
+orders. Each matrix row is defined using the add_row command, and there must be
+a matching number of rows as the number of speakers. Additionally the row
+definitions are in the same order as the speaker definitions. The definitions
+are ended with a "/}". Only valid for dual-band decoders.
+
+/hfmatrix/{
+Begins the high-frequency decoder matrix definition. The definition should
+include an order_gain command to specify the base gain for the ambisonic
+orders. Each matrix row is defined using the add_row command, and there must be
+a matching number of rows as the number of speakers, Additionally the row
+definitions are in the same order as the speaker definitions. The definitions
+are ended with a "/}". Only valid for dual-band decoders.
+
+/matrix/{
+Begins the decoder matrix definition. The definition should include an
+order_gain command to specify the base gain for the ambisonic orders. Each
+matrix row is defined using the add_row command, and there must be a matching
+number of rows as the number of speakers. Additionally the row definitions are
+in the same order as the speaker definitions. The definitions are ended with a
+"/}". Only valid for single-band decoders.
+
+order_gain <gain:float> <gain:float> <gain:float> <gain:float>
+Specifies the base gain for the zeroth-, first-, second-, and third-order
+coefficients in the given matrix, automatically scaling the related
+coefficients. This should be specified at the beginning of the matrix
+definition.
+
+add_row <coefficient:float> ...
+Specifies a row of coefficients for the matrix. There should be one coefficient
+for each enabled bit in the channel mask, and corresponds to the matching ACN
+channel.
+
+/end
+Marks the end of the configuration file.
+
+
+Speaker IDs
+===========
+
+The AmbDec program uses the speaker ID as a label to display in its config
+dialog, but does not otherwise use it for any particular purpose. However,
+since OpenAL Soft needs to match a speaker definition to an output channel, the
+speaker ID is used to identify what output channel it correspond to. Therefore,
+OpenAL Soft requires these channel labels to be recognized:
+
+LF = Front left
+RF = Front right
+LS = Side left
+RS = Side right
+LB = Back left
+RB = Back right
+CE = Front center
+CB = Back center
+
+Additionally, configuration files for surround51 will acknowledge back speakers
+for side channels, and surround51rear will acknowledge side speakers for back
+channels, to avoid issues with a configuration expecting 5.1 to use the side
+channels when the device is configured for back, or vice-versa.
+
+Furthermore, OpenAL Soft does not require a speaker definition for each output
+channel the configuration is used with. So for example a 5.1 configuration may
+omit a front center speaker definition, in which case the front center output
+channel will not contribute to the ambisonic decode (though OpenAL Soft will
+still use it in certain scenarios, such as the AL_EFFECT_DEDICATED_DIALOGUE
+effect).
+
+
+Creating Configuration Files
+============================
+
+Configuration files can be created or modified by hand in a text editor. The
+AmbDec program also has a GUI for creating and editing them. However, these
+methods rely on you having the coefficients to fill in... they won't be
+generated for you.
+
+Another option is to use the Ambisonic Decoder Toolbox
+<https://bitbucket.org/ambidecodertoolbox/adt.git>. This is a collection of
+MATLAB and GNU Octave scripts that can generate AmbDec configuration files from
+an array of speaker definitions (labels and positions). If you're familiar with
+using MATLAB or GNU Octave, this may be a good option.
+
+There are plans for OpenAL Soft to include a utility to generate coefficients
+and make configuration files. However, calculating proper coefficients for
+anything other than regular or semi-regular speaker setups is somewhat of a
+black art, so may take some time.

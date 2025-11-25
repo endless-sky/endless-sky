@@ -218,6 +218,7 @@ void Dialog::Draw()
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
+		hasInput = true;
 		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
 
 		Point stringPos(
@@ -265,6 +266,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
+	isCloseRequest |= key == SDLK_AC_BACK;
 	if(stringFun && Clipboard::KeyDown(input, key, mod))
 	{
 		// Input handled by Clipboard.
@@ -320,11 +322,21 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			if(!isOkDisabled)
 			{
 				DoCallback();
+				if (intFun || stringFun)
+				{
+					SDL_StopTextInput();
+				}
 				GetUI()->Pop(this);
 			}
 		}
 		else
-			GetUI()->Pop(this);
+		{
+			if (hasInput)
+			{
+				SDL_StopTextInput();
+			}
+ 			GetUI()->Pop(this);
+		}
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 		GetUI()->Push(new MapDetailPanel(*player, system, true));
@@ -363,7 +375,30 @@ bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 		}
 	}
 
+	if (hasInput)
+	{
+		// Clicked on edit field. popup touchscreen keyboard if needed.
+		SDL_StartTextInput();
+	}
+
 	return true;
+}
+
+
+
+bool Dialog::FingerDown(int x, int y, int fid)
+{
+	// Consume fingerdown event, so that we process the tap on a finger up
+	// instead. This is so that we don't inadvertently leak a finger up event
+	// to a controlling panel when we close on a click event.
+	return true;
+}
+
+
+
+bool Dialog::FingerUp(int x, int y, int fid)
+{
+	return Click(x, y, MouseButton::LEFT, 1);
 }
 
 

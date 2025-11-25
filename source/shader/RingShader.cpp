@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Shader.h"
 
 #include <stdexcept>
+#include <string>
 
 using namespace std;
 

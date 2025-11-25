@@ -33,14 +33,19 @@ color "dead" .4 0. 0. 0.
 # Colors used for certain UI elements. These elements generally have a variable
 # size (e.g. they may fit to the current screen dimensions).
 color "panel background" .1 .1 .1 1.
+color "panel background selected" .13 .13 .13 1.
 color "dialog backdrop" 0. 0. 0. .7
 color "conversation background" .125 .125 .125 1.
 color "map side panel background" .125 .125 .125 1.
 color "map view range color" .1 .1 .1 .0
 color "map jump range color" .3 .3 .3 .0
+color "shop main panel background" .0 .0 .0 1.
+color "shop main panel background selected" .03 .03 .03 1.
 color "shop side panel background" .2 .2 .2 1.
+color "shop side panel background selected" .23 .23 .23 1.
 color "shop side panel footer" .3 .3 .3 1.
 color "shop info panel background" .055 .055 .055 1.
+color "shop info panel background selected" .1 .1 .1 1.
 color "tooltip background" .2 .2 .2 1.
 color "player info hardpoint gun" .5 .375 0. 1.
 color "player info hardpoint gun hover" .8 .6 0. 1.
@@ -81,6 +86,8 @@ color "flagship highlight" .5 .8 .2 0.
 color "cloak highlight" .45 0. 0. .65
 
 color "drag select" .2 1. 0. 0.
+
+color "black" 0. 0. 0. 1.
 
 # Colors used for drawing mission or job pointers on the map,
 # to indicate where the player should go.
@@ -257,6 +264,44 @@ interface "menu background"
 	sprite "_menu/title"
 		center 0 -200
 
+	anchor bottom right
+	# draw the text in black offset by one pixel in every direction,
+	# then draw the real text on top of it. This makes it so that you
+	# can read it, even with the stars in the background.
+	string "game version"
+		center -159 -14
+		dimensions 300 30
+		align right
+		color black
+		size 18
+	string "game version"
+		center -161 -14
+		dimensions 300 30
+		align right
+		color black
+		size 18
+	string "game version"
+		center -159 -16
+		dimensions 300 30
+		align right
+		color black
+		size 18
+	string "game version"
+		center -161 -16
+		dimensions 300 30
+		align right
+		color black
+		size 18
+	string "game version"
+		center -160 -15
+		dimensions 300 30
+		align right
+		color medium
+		size 18
+	# should make this a button, but want to support double-click
+	box "version box"
+		center -160 -15
+		dimensions 300 30
 
 
 interface "main menu"
@@ -464,11 +509,16 @@ interface "load menu"
 
 	sprite "ui/wide button"
 		center -435 195
-	active
-	button o "_Open Saves"
+	button x "E_xport..."
 		center -435 195
 		dimensions 120 30
-	
+	active
+	sprite "ui/wide button"
+		center -285 195
+	button i "_Import..."
+		center -285 195
+		dimensions 90 30
+
 	active if "pilot alive"
 	button a "_Add Snapshot"
 		center -60 155
@@ -492,6 +542,23 @@ interface "load menu"
 interface "controls"
 	sprite "ui/keys panel"
 		center -65 -20
+
+	# Box to hold supported gestures
+	uirect
+		center -344.5 -35
+		dimensions 161 96
+	box "supported gestures"
+		center -344.5 -30
+		dimensions 136 97
+	
+	# dropdown for displayed control type
+	uirect
+		center -344.5 170
+		dimensions 161 30
+	box "control type"
+		center -344.5 170
+		dimensions 159 28
+
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -537,6 +604,212 @@ interface "controls"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
+
+	uirect
+		center -324 209.5
+		dimensions 120 31
+	button g "_Game Controllers"
+		center -324 209.5
+		dimensions 120 31
+		color medium
+		hover bright
+
+interface "gamepad panel"
+	uirect
+		from 50 50 top left
+		to -50 -50 bottom right
+		color "panel background"
+
+	uirect
+		center -120 -25 bottom right
+		dimensions 140 30
+		color "panel background"
+	
+	button b "_Back to Preferences"
+		center -120 -25 bottom right
+		dimensions 140 30
+		color medium
+		hover bright
+	
+	visible if "has controller"
+	uirect
+		center 120 -25 bottom left
+		dimensions 140 30
+		color "panel background"
+	button r "_Remap Buttons"
+		center 120 -25 bottom left
+		dimensions 140 30
+		color medium
+		hover bright
+
+	uirect
+		center 270 -25 bottom left
+		dimensions 140 30
+		color "panel background"
+	button e "R_eset Buttons"
+		center 270 -25 bottom left
+		dimensions 140 30
+		color medium
+		hover bright
+
+	visible if "needs save"
+	uirect
+		center 270 -25 bottom left
+		dimensions 140 30
+		color "panel background"
+	button r "_Save Mapping"
+		center 270 -25 bottom left
+		dimensions 140 30
+		color medium
+		hover bright
+
+	# gamepad and button overlays
+	visible
+	anchor top left
+	sprite "ui/gamepad"
+		center 316 218.5 top left
+
+	ring "B Button"
+		center 515 215
+		dimensions 20 20
+		color shields
+		size 11
+	ring "A Button"
+		center 472 251
+		dimensions 20 20
+		color shields
+		size 11
+	ring "Y Button"
+		center 475 184
+		dimensions 20 20
+		color shields
+		size 11
+	ring "X Button"
+		center 431 217
+		dimensions 20 20
+		color shields
+		size 11
+
+	ring "Guide Button"
+		center 317 211
+		dimensions 26 26
+		color shields
+		size 14
+	ring "Start Button"
+		center 374 219
+		dimensions 14 14
+		color shields
+		size 8
+	ring "Back Button"
+		center 261 219
+		dimensions 14 14
+		color shields
+		size 8
+	visible if "Left Shoulder Button"
+	line
+		center 160 120
+		dimensions 90 26
+		color shields
+	visible if "Right Shoulder Button"
+	line
+		center 476 120
+		dimensions 90 26
+		color shields
+	visible if "Left Trigger Button"
+	line
+		center 175 84
+		dimensions 30 42
+		color shields
+	visible if "Right Trigger Button"
+	line
+		center 460 84
+		dimensions 30 42
+		color shields
+	visible
+	ring "Left Stick Button"
+		center 157 236
+		dimensions 26 26
+		color shields
+		size 14
+	ring "Right Stick Button"
+		center 391 314
+		dimensions 26 26
+		color shields
+		size 14
+	visible if "Left Dpad Button"
+	sprite "ui/left_button"
+		center 207 302
+	visible if "Right Dpad Button"
+	sprite "ui/right_button"
+		center 272 302
+	visible if "Up Dpad Button"
+	sprite "ui/up_button"
+		center 240 270
+	visible if "Down Dpad Button"
+	sprite "ui/down_button"
+		center 240 334
+
+	box "Left Joystick"
+		center 157 236
+		dimensions 96 96
+	
+	box "Right Joystick"
+		center 391 314
+		dimensions 96 96
+
+	visible if "Left Joystick Left"
+	sprite "ui/left_button"
+		center 125 236
+	visible if "Left Joystick Right"
+	sprite "ui/right_button"
+		center 189 236
+	visible if "Left Joystick Up"
+	sprite "ui/up_button"
+		center 157 204
+	visible if "Left Joystick Down"
+	sprite "ui/down_button"
+		center 157 268
+
+	visible if "Right Joystick Left"
+	sprite "ui/left_button"
+		center 359 314
+	visible if "Right Joystick Right"
+	sprite "ui/right_button"
+		center 423 314
+	visible if "Right Joystick Up"
+	sprite "ui/up_button"
+		center 391 282
+	visible if "Right Joystick Down"
+	sprite "ui/down_button"
+		center 391 346
+
+	# Begin text
+	visible
+	box "Gamepad Dropdown"
+		from -360 60 to -60 80 top right
+	box "Button List"
+		from -360 82 top right
+		to -60 -60 bottom right
+	
+	label "Joystick Dead Zone:"
+		from -550 60 to -450 80 top right
+		size 18
+		align right
+	box "Deadzone Dropdown"
+		from -445 60 to -365 80 top right
+	label "Joystick Trigger Threshold:"
+		from -550 85 to -450 105 top right
+		size 18
+		align right
+	box "Trigger Threshold Dropdown"
+		from -445 85 to -365 105 top right
+
+	string "status"
+		from 60 -60 to 80 -80 bottom left
+		size 18
+		# put the text at the bottom-left of its bounding box. it will overflow
+		# the bounding box to the right
+		align bottom left
 
 
 
@@ -601,8 +874,21 @@ interface "plugins"
 		dimensions 90 30
 		color medium
 		hover bright
-	button o "_Open Plugins"
-		center -195 210
+	visible if "plugin import"
+	# hide the "open plugin folder button" under the import/remove button
+	line
+		center -180 210
+		dimensions 20 40
+		color black
+	sprite "ui/dialog cancel"
+		center -220 210
+	button i "_Import"
+		center -220 210
+		dimensions 120 30
+	sprite "ui/dialog cancel"
+		center -140 210
+	button r "_Remove"
+		center -140 210
 		dimensions 120 30
 	visible if "show plugins changed"
 	label "Restart to apply changes"
@@ -1272,11 +1558,11 @@ interface "hud"
 	
 	# Other HUD elements:
 	box "escorts"
-		from 0 460 top left
-		to 120 0 bottom left
+		from 0 442 top left
+		to 160 0 bottom left
 	box "messages"
-		from 120 0 bottom left
-		to -110 -200 bottom right
+		from 180 0 bottom left
+		to -335 -100 bottom right
 	value "messages reversed" 0
 	value "message animation duration" 30
 	box "ammo"
@@ -1313,8 +1599,8 @@ interface "starfield"
 
 
 interface "escort element"
-	value "width" 120
-	value "basic height" 30
+	value "width" 80
+	value "basic height" 25
 	value "system label height" 15
 
 	anchor top left
@@ -1340,31 +1626,31 @@ interface "escort element"
 	visible if "!multiple"
 	bar "shields high"
 		from 35 1.5
-		dimensions 70 0
+		dimensions 50 0
 		size 1.5
 		reversed
 		color "escort shields"
 	bar "hull high"
 		from 35 5.5
-		dimensions 70 0
+		dimensions 50 0
 		size 1.5
 		reversed
 		color "escort hull"
 	bar "energy high"
 		from 40 9.5
-		dimensions 65 0
+		dimensions 45 0
 		size 1.5
 		reversed
 		color "escort energy"
 	bar "heat high"
 		from 40 13.5
-		dimensions 65 0
+		dimensions 45 0
 		size 1.5
 		reversed
 		color "escort heat"
 	bar "fuel high"
 		from 40 17.5
-		dimensions 65 0
+		dimensions 45 0
 		size 1.5
 		reversed
 		color "escort fuel"
@@ -1372,67 +1658,67 @@ interface "escort element"
 	visible if "multiple"
 	anchor top right
 	string "count"
-		from -15 3 to -55 17
+		from 5 3 to -55 17
 		align right
 		color "escort elsewhere"
 	anchor top left
 	bar "shields high"
 		from 35 1.5
-		dimensions 50 0
+		dimensions 35 0
 		size 1.5
 		reversed
 		color "escort split shields"
 	bar "shields low"
 		from 35 1.5
-		dimensions 50 0
+		dimensions 35 0
 		size 1.5
 		reversed
 		color "escort split shields"
 	bar "hull high"
 		from 35 5.5
-		dimensions 50 0
+		dimensions 35 0
 		size 1.5
 		reversed
 		color "escort split hull"
 	bar "hull low"
 		from 35 5.5
-		dimensions 50 0
+		dimensions 35 0
 		size 1.5
 		reversed
 		color "escort split hull"
 	bar "energy high"
 		from 40 9.5
-		dimensions 45 0
+		dimensions 30 0
 		size 1.5
 		reversed
 		color "escort split energy"
 	bar "energy low"
 		from 40 9.5
-		dimensions 45 0
+		dimensions 30 0
 		size 1.5
 		reversed
 		color "escort split energy"
 	bar "heat high"
 		from 40 13.5
-		dimensions 45 0
+		dimensions 30 0
 		size 1.5
 		reversed
 		color "escort split heat"
 	bar "heat low"
 		from 40 13.5
-		dimensions 45 0
+		dimensions 30 0
 		size 1.5
 		reversed
 		color "escort split heat"
 	bar "fuel high"
 		from 40 17.5
-		dimensions 45 0
+		dimensions 30 0
 		size 1.5
 		reversed
 		color "escort split fuel"
 	bar "fuel low"
 		from 40 17.5
-		dimensions 45 0
+		dimensions 30 0
 		size 1.5
 		reversed
 		color "escort split fuel"
@@ -1612,6 +1898,16 @@ interface "planet (small screen)"
 		align left
 		pad 10 0
 	
+	visible if "no trade"
+	sprite "ui/planet dialog button"
+		center -400 90
+	button "View star map" "Map"
+		center -400 90
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
 	visible if "has bank"
 	sprite "ui/planet dialog button"
 		center -400 200
@@ -1631,6 +1927,17 @@ interface "planet (small screen)"
 		size 18
 		align left
 		pad 10 0
+
+	visible if "!has port"
+	sprite "ui/planet dialog button"
+		center -400 270
+	button "View player info" "Info"
+		center -400 270
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+
 	visible
 	
 	active if "has ship"
@@ -2132,6 +2439,12 @@ interface "mission" bottom
 
 
 interface "map buttons" bottom right
+	active
+	sprite "ui/wide button"
+		from -564 -50 to -454 0
+	button n "_Info"
+		from -554 -40 to -464 -10
+
 	active if "!is shipyards"
 	sprite "ui/wide button"
 		from -544 -50 to -434 0
@@ -2187,6 +2500,12 @@ interface "map buttons" bottom right
 
 
 interface "map buttons (small screen)" bottom right
+	active
+	sprite "ui/dialog cancel"
+		from -350 -50 to -260 0
+	button n "_Info"
+		from -350 -40 to -260 -10
+
 	active if "!is shipyards"
 	sprite "ui/wide button"
 		from -270 -40 to -160 -90
@@ -2435,6 +2754,15 @@ interface "message log"
 		from 300 0 left
 		color medium
 
+	visible
+	active
+	uirect
+		center 704 -80 bottom left
+		dimensions 172 40
+	button "View message log" "Close"
+		center 704 -80 bottom left
+		dimensions 172 40
+
 
 
 interface "hail panel"
@@ -2474,3 +2802,191 @@ interface "hail panel"
 	button h "Ask For _Help"
 		center -20 115
 		dimensions 140 30
+
+
+interface "main buttons" bottom right
+	active
+	sprite "ui/round_button_bg"
+		center -40 -40
+		dimensions 60 60
+	sprite "ui/icon_map"
+		center -40 -40
+		dimensions 50 50
+	button "View star map"
+		center -40 -40
+		radius 25
+
+	active
+	sprite "ui/round_button_bg"
+		center -110 -40
+		dimensions 60 60
+	sprite "ui/icon_jump"
+		center -110 -40
+		dimensions 50 50
+	button "Initiate hyperspace jump"
+		center -110 -40
+		radius 25
+
+	visible if "can deploy"
+	sprite "ui/round_button_bg"
+		center -180 -40
+		dimensions 60 60
+	sprite "ui/icon_deploy"
+		center -180 -40
+		dimensions 50 50
+	button "Deploy / recall fighters"
+		center -180 -40
+		radius 25
+
+	visible if "can recall"
+	sprite "ui/round_button_bg"
+		center -180 -40
+		dimensions 60 60
+	sprite "ui/icon_recall"
+		center -180 -40
+		dimensions 50 50
+	button "Deploy / recall fighters"
+		center -180 -40
+		radius 25
+
+	visible if "has secondary"
+	active if "secondary selected"
+	sprite "ui/round_button_bg"
+		center -155 -110
+		dimensions 60 60
+	sprite "ui/icon_secondary"
+		center -155 -110
+		dimensions 50 50
+	button "Fire secondary weapon"
+		center -155 -110
+		radius 25
+	# The engine will draw the secondary weapons list here.
+	box "ammo"
+		from -200 -145 to -110 -300
+
+
+	visible
+	sprite "ui/round_button_bg"
+		center -75 -110
+		dimensions 80 80
+	sprite "ui/icon_fire"
+		center -75 -110
+		dimensions 64 64
+	visible if "!can attack"
+	button "Fire primary weapon"
+		center -75 -110
+		radius 40
+	visible if "can attack"
+	button "Fire primary weapon"
+		center -75 -110
+		radius 40
+		command "Fleet: Fight my target"
+
+	visible
+	sprite "ui/round_button_bg"
+		center -240 -30
+		dimensions 50 50
+	sprite "ui/icon_menu"
+		center -240 -30
+		dimensions 44 44
+	radial
+		center -240 -30
+		radius 22
+		selection_angles -1.5 1.5
+		selection_radius 185
+
+		"Show main menu"
+		"Toggle fast-forward"
+		"Pause"
+		"Stop your ship"
+		"View player info"
+		"Land on planet / station"
+		"Board selected ship"
+		"View message log"
+		visible if "can hail"
+		"Talk to selected ship"
+		"Talk to selected planet"
+		visible if "can scan asteroids"
+		"Select nearest asteroid" "asteroid/small rock/spin"
+
+
+	visible if "can scan"
+	sprite "ui/round_button_bg"
+		center -240 -86
+		dimensions 50 50
+	sprite "ui/icon_scan"
+		center -240 -86
+		dimensions 40 40
+	button "Scan selected ship"
+		center -240 -86
+		radius 22
+
+
+	visible if "can cloak"
+	sprite "ui/round_button_bg"
+		center -296 -86
+		dimensions 50 50
+	sprite "ui/icon_cloak"
+		center -296 -86
+		dimensions 40 40
+	button "Toggle cloaking device"
+		center -296 -86
+		radius 22
+
+	visible if "has fleet"
+	sprite "ui/round_button_bg"
+		center -296 -30
+		dimensions 50 50
+	sprite "ui/icon_fleet"
+		center -296 -30
+		dimensions 40 40
+	radial
+		center -296 -30
+		radius 22
+		selection_angles -1.5 1.1
+		selection_radius 150
+
+		"Fleet: Fight my target"
+		"Fleet: Gather around me"
+		"Fleet: Hold position"
+		"Fleet: Harvest flotsam"
+		"Fleet: Toggle ammo usage"
+		"Fleet: Toggle Formation"
+		"Initiate fleet jump"
+
+	# Overlayed on target display, but the hud doesn't have a panel, so to
+	# handle input, we put it here instead.
+	visible
+	active
+	anchor top left
+	button "Select next ship"
+		center 75 315
+		radius 80
+
+	# Overlayed on the navigational panel, which displays something like
+	# "Can land on: Earth"
+	visible
+	active
+	button "Land on planet / station"
+		from 200 0 to 380 60
+
+	# hidden button in top-left corner that turns on fast-forwarding
+	visible
+	active
+	anchor top left
+	button "Toggle fast-forward"
+		from 0 0 to 48 48
+
+
+	# box in bottom left corner that defines a location for the onscreen joystick
+	anchor bottom left
+	active if "onscreen joystick"
+	box "onscreen joystick"
+		center 128 -128
+		dimensions 192 192
+
+	# This button doesn't do anything. It is here to swallow any clicks on the
+	# onscreen joystick, in case some of these controls overlap
+	button ^ ""
+		center 128 -128
+		radius 96

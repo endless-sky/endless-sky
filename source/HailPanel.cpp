@@ -311,15 +311,15 @@ void HailPanel::Draw()
 
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	UI::UISound sound = UI::UISound::NORMAL;
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 
-	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_AC_BACK || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
 		if(bribeCallback && bribed)
 			bribeCallback(bribed);
 		GetUI()->Pop(this);
-		sound = UI::UISound::SOFT;
+		UI::PlaySound(UI::UISound::SOFT);
+		return true;
 	}
 	else if(key == 't' && hasLanguage && planet)
 	{
@@ -378,6 +378,8 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			else
 				SetMessage("You don't seem to be in need of repairs or fuel assistance.");
 		}
+		UI::PlaySound(UI::UISound::NORMAL);
+		return true;
 	}
 	else if((key == 'b' || key == 'o') && hasLanguage)
 	{
@@ -421,12 +423,11 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		}
 		else
 			SetMessage("I do not want your money.");
+		UI::PlaySound(UI::UISound::NORMAL);
+		return true;
 	}
-	else
-		sound = UI::UISound::NONE;
 
-	UI::PlaySound(sound);
-	return true;
+	return false;
 }
 
 

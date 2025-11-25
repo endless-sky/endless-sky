@@ -82,6 +82,10 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 	const Font &font = FontSet::Get(14);
 	ammoIconZones.clear();
 
+	// Align from bottom or top? Depends on whether this is on the bottom
+	// half of the screen or the top half.
+	bool alignBottom = ammoBox.Center().Y() > 0;
+
 	const double &ammoIconWidth = iconDim.X();
 	const double &ammoIconHeight = iconDim.Y();
 	// Pad the ammo list by the same amount on all four sides.
@@ -92,7 +96,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 	const Color &unselectedColor = *GameData::Colors().Get("dim");
 
 	// This is the bottom left corner of the ammo display.
-	auto pos = Point(ammoBox.Left() + ammoPad, ammoBox.Bottom() - ammoPad);
+	auto pos = Point(ammoBox.Left() + ammoPad, alignBottom ? ammoBox.Bottom() - ammoPad : ammoBox.Top() + ammoPad - ammoIconHeight);
 	// These offsets are relative to that corner.
 	auto boxOff = Point(ammoIconWidth - .5 * selectedSprite->Width(), .5 * ammoIconHeight);
 	auto textOff = Point(5. + ammoIconWidth - .5 * ammoIconHeight, .5 * (ammoIconHeight - font.Height()));
@@ -100,9 +104,18 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 	const double iconCenterX = (ammoBox.Right() + ammoBox.Left()) / 2.;
 	for(const auto &it : ammo)
 	{
-		pos.Y() -= ammoIconHeight;
-		if(pos.Y() < ammoBox.Top() + ammoPad)
-			break;
+		if (alignBottom)
+		{
+			pos.Y() -= ammoIconHeight;
+			if(pos.Y() < ammoBox.Top() + ammoPad)
+				break;
+		}
+		else
+		{
+			pos.Y() += ammoIconHeight;
+			if(pos.Y() > ammoBox.Bottom() - ammoPad)
+				break;
+		}
 
 		const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
 		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());

@@ -1,0 +1,6 @@
+* Update to 0.10.4
+* Fix plugin sound
+* Respect autofire setting
+* Fix save menu when there is a large number of saves
+* Fix plugin deletion
+* Fix version display

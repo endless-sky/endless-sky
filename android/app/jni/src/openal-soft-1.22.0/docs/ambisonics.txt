@@ -1,0 +1,119 @@
+OpenAL Soft's renderer has advanced quite a bit since its start with panned
+stereo output. Among these advancements is support for surround sound output,
+using psychoacoustic modeling and more accurate plane wave reconstruction. The
+concepts in use may not be immediately obvious to people just getting into 3D
+audio, or people who only have more indirect experience through the use of 3D
+audio APIs, so this document aims to introduce the ideas and purpose of
+Ambisonics as used by OpenAL Soft.
+
+
+What Is It?
+===========
+
+Originally developed in the 1970s by Michael Gerzon and a team others,
+Ambisonics was created as a means of recording and playing back 3D sound.
+Taking advantage of the way sound waves propogate, it is possible to record a
+fully 3D soundfield using as few as 4 channels (or even just 3, if you don't
+mind dropping down to 2 dimensions like many surround sound systems are). This
+representation is called B-Format. It was designed to handle audio independent
+of any specific speaker layout, so with a proper decoder the same recording can
+be played back on a variety of speaker setups, from quadraphonic and hexagonal
+to cubic and other periphonic (with height) layouts.
+
+Although it was developed decades ago, various factors held ambisonics back
+from really taking hold in the consumer market. However, given the solid
+theories backing it, as well as the potential and practical benefits on offer,
+it continued to be a topic of research over the years, with improvements being
+made over the original design. One of the improvements made is the use of
+Spherical Harmonics to increase the number of channels for greater spatial
+definition. Where the original 4-channel design is termed as "First-Order
+Ambisonics", or FOA, the increased channel count through the use of Spherical
+Harmonics is termed as "Higher-Order Ambisonics", or HOA. The details of higher
+order ambisonics are out of the scope of this document, but know that the added
+channels are still independent of any speaker layout, and aim to further
+improve the spatial detail for playback.
+
+Today, the processing power available on even low-end computers means real-time
+Ambisonics processing is possible. Not only can decoders be implemented in
+software, but so can encoders, synthesizing a soundfield using multiple panned
+sources, thus taking advantage of what ambisonics offers in a virtual audio
+environment.
+
+
+How Does It Help?
+=================
+
+Positional sound has come a long way from pan-pot stereo (aka pair-wise).
+Although useful at the time, the issues became readily apparent when trying to
+extend it for surround sound. Pan-pot doesn't work as well for depth (front-
+back) or vertical panning, it has a rather small "sweet spot" (the area the
+head needs to be in to perceive the sound in its intended direction), and it
+misses key distance-related details of sound waves.
+
+Ambisonics takes a different approach. It uses all available speakers to help
+localize a sound, and it also takes into account how the brain localizes low
+frequency sounds compared to high frequency ones -- a so-called psychoacoustic
+model. It may seem counter-intuitive (if a sound is coming from the front-left,
+surely just play it on the front-left speaker?), but to properly model a sound
+coming from where a speaker doesn't exist, more needs to be done to construct a
+proper sound wave that's perceived to come from the intended direction. Doing
+this creates a larger sweet spot, allowing the perceived sound direction to
+remain correct over a larger area around the center of the speakers.
+
+In addition, Ambisonics can encode the near-field effect of sounds, effectively
+capturing the sound distance. The near-field effect is a subtle low-frequency
+boost as a result of wave-front curvature, and properly compensating for this
+occuring with the output speakers (as well as emulating it with a synthesized
+soundfield) can create an improved sense of distance for sounds that move near
+or far.
+
+
+How Is It Used?
+===============
+
+As a 3D audio API, OpenAL is tasked with playing 3D sound as best it can with
+the speaker setup the user has. Since the OpenAL API does not explicitly handle
+the output channel configuration, it has a lot of leeway in how to deal with
+the audio before it's played back for the user to hear. Consequently, OpenAL
+Soft (or any other OpenAL implementation that wishes to) can render using
+Ambisonics and decode the ambisonic mix for a high level of accuracy over what
+simple pan-pot could provide.
+
+When given an appropriate decoder configuration for the channel layout, the
+ambisonic mix can be decoded utilizing the benefits available to ambisonic
+processing, including frequency-dependent processing and near-field effects.
+Without a decoder configuration, the ambisonic mix can still be decoded for
+good stereo or surround sound output, although without near-field effects as
+there's no speaker distance information.
+
+In addition to surround sound output, Ambisonics also has benefits with stereo
+output. 2-channel UHJ is a stereo-compatible format that encodes some surround
+sound information using a wide-band 90-degree phase shift filter. This is
+generated by taking the ambisonic mix and deriving a front-stereo mix with
+with the rear sounds filtered in with it. Although the result is not as good as
+3-channel (2D) B-Format, it has the distinct advantage of only using 2 channels
+and being compatible with stereo output. This means it will sound just fine
+when played as-is through a normal stereo device, or it may optionally be fed
+to a properly configured surround sound receiver which can extract the encoded
+information and restore some of the original surround sound signal.
+
+
+What Are Its Limitations?
+=========================
+
+As good as Ambisonics is, it's not a magic bullet that can overcome all
+problems. One of the bigger issues it has is dealing with irregular speaker
+setups, such as 5.1 surround sound. The problem mainly lies in the imbalanced
+speaker positioning -- there are three speakers within the front 60-degree area
+(meaning only 30-degree gaps in between each of the three speakers), while only
+two speakers cover the back 140-degree area, leaving 80-degree gaps on the
+sides. It should be noted that this problem is inherent to the speaker layout
+itself; there isn't much that can be done to get an optimal surround sound
+response, with ambisonics or not. It will do the best it can, but there are
+trade-offs between detail and accuracy.
+
+Another issue lies with HRTF. While it's certainly possible to play an
+ambisonic mix using HRTF and retain a sense of 3D sound, doing so with a high
+degree of spatial detail requires a fair amount of resources, in both memory
+and processing time. And even with it, mixing sounds with HRTF directly will
+still be better for positional accuracy.

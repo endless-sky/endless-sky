@@ -34,8 +34,8 @@ std::vector<DataNode> AsDataNodes(const std::string &text)
 	return std::vector<DataNode>{std::begin(file), std::end(file)};
 }
 // Convert the text to a list of nodes, and return the first node.
-const DataNode AsDataNode(std::string text)
+const DataNode AsDataNode(const std::string &text)
 {
-	auto nodes = AsDataNodes(std::move(text));
+	auto nodes = AsDataNodes(text);
 	return nodes.empty() ? DataNode{} : *nodes.begin();
 }

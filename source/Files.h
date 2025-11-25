@@ -56,6 +56,7 @@ public:
 	static bool Copy(const std::filesystem::path &from, const std::filesystem::path &to);
 	static void Move(const std::filesystem::path &from, const std::filesystem::path &to);
 	static void Delete(const std::filesystem::path &filePath);
+	static bool RmDir(const std::filesystem::path &path);
 
 	// Get the filename from a path.
 	static std::string Name(const std::filesystem::path &path);

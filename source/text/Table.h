@@ -101,6 +101,9 @@ public:
 	Point GetCenterPoint() const;
 	Point GetRowSize() const;
 	Rectangle GetRowBounds() const;
+	
+	// get the bounds of text if it were drawn here.
+	Rectangle GetTextBounds(const std::string& text) const;
 
 
 private:

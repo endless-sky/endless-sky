@@ -1,0 +1,45 @@
+# AmbDec configuration
+# Written by Ambisonic Decoder Toolbox, version 8.0
+
+/description     Rectangle_1h0p_pinv_match_rV_max_rE_2_band
+
+/version         	3
+
+/dec/chan_mask   	b
+/dec/freq_bands  	2
+/dec/speakers    	4
+/dec/coeff_scale 	fuma
+
+/opt/input_scale  	fuma
+/opt/nfeff_comp   	input
+/opt/delay_comp   	on
+/opt/level_comp   	on
+/opt/xover_freq   	400.000000
+/opt/xover_ratio  	0.000000
+
+/speakers/{
+#            id      dist     azim     elev     conn
+#-----------------------------------------------------------------------
+add_spkr 	LF	 1.000000	 30.000000	 0.000000
+add_spkr 	RF	 1.000000	-30.000000	 0.000000
+add_spkr 	RB	 1.000000	-150.000000	 0.000000
+add_spkr 	LB	 1.000000	 150.000000	 0.000000
+/}
+
+/lfmatrix/{
+order_gain	1.000000	1.000000	0.000000	0.000000
+add_row 	 0.353553	 0.500000	 0.288675
+add_row 	 0.353553	-0.500000	 0.288675
+add_row 	 0.353553	-0.500000	-0.288675
+add_row 	 0.353553	 0.500000	-0.288675
+/}
+
+/hfmatrix/{
+order_gain	1.414214	1.000000	0.000000	0.000000
+add_row 	 0.353553	 0.500000	 0.288675
+add_row 	 0.353553	-0.500000	 0.288675
+add_row 	 0.353553	-0.500000	-0.288675
+add_row 	 0.353553	 0.500000	-0.288675
+/}
+
+/end

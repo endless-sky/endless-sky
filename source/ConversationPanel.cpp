@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "UI.h"
+#include <SDL2/SDL_keyboard.h>
 
 #if defined _WIN32
 #include "Files.h"
@@ -177,8 +178,17 @@ void ConversationPanel::Draw()
 			// Handle mouse clicks in whatever field is not selected.
 			if(side != choice)
 			{
-				AddZone(Rectangle(center, fieldSize), [this, side](){ this->ClickName(side); });
+				AddZone(Rectangle(center, fieldSize), [this, side](){
+					SDL_StartTextInput(); // trigger the keyboard if needed
+					this->ClickName(side); });
 				continue;
+			}
+			else
+			{
+				// If they click in the field that *is* selected, pop up the
+				// keyboard
+				AddZone(Rectangle(center, fieldSize), [](){
+					SDL_StartTextInput(); });
 			}
 
 			// Color selected text box, or flicker if user attempts an error.
@@ -302,7 +312,11 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !name.empty())
 			name.erase(name.size() - 1);
 		else if(key == '\t' || ((key == SDLK_RETURN || key == SDLK_KP_ENTER) && otherName.empty()))
+		{
+			// One of the fields is blank. pop up the keyboard, and try again
 			choice = !choice;
+			SDL_StartTextInput();
+		}
 		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && (firstName.empty() || lastName.empty()))
 			flickerTime = 18;
 		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && !firstName.empty() && !lastName.empty())
@@ -316,6 +330,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			subs["<last>"] = player.LastName();
 
 			Goto(node + 1);
+			SDL_StopTextInput(); // Hide the keyboard, if it is still there.
 		}
 		else
 			return false;
@@ -354,6 +369,15 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		return false;
 
 	UI::PlaySound(sound);
+	return true;
+}
+
+
+
+// Allow scrolling by click and drag.
+bool ConversationPanel::Click(int x, int y, MouseButton button, int clicks)
+{
+	// Returning true here, so that drag will get called
 	return true;
 }
 

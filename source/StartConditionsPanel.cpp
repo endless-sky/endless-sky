@@ -84,6 +84,12 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	description.SetWrapWidth(descriptionBox.Width());
 
 	Select(startIt);
+
+#ifdef ENDLESS_SKY_VERSION
+	info.SetString("game version", ENDLESS_SKY_VERSION);
+#else
+	info.SetString("game version", "engineering build");
+#endif
 }
 
 
@@ -134,7 +140,7 @@ void StartConditionsPanel::Draw()
 
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
-	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+	if(key == 'b' || key == SDLK_ESCAPE || key == SDLK_AC_BACK || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{

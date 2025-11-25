@@ -1,0 +1,3 @@
+* Update to 0.10.9
+* KitKat no longer supported
+* Do not overwrite cleared controls

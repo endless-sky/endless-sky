@@ -15,13 +15,26 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <SDL2/SDL_events.h>
+
 #include <cstdint>
 #include <filesystem>
 #include <string>
+#include <atomic>
+
+#include "Gesture.h"
 
 class DataNode;
 
-
+struct CommandEvent
+{
+	uint32_t type;
+	uint32_t timestamp;
+	uint32_t windowID;
+	uint64_t state;
+	uint8_t  pressed;
+};
+static_assert(sizeof(CommandEvent) <= sizeof(SDL_Event), "The CommandEvent should be smaller");
 
 // Class mapping key presses to specific commands / actions. The player can
 // change the mappings for most of these keys in the preferences panel.
@@ -86,6 +99,10 @@ public:
 	// other commands like NEAREST, TARGET, HAIL and BOARD.
 	static const Command SHIFT;
 
+	// Mobile specific
+	static void InitIcons();
+	static const Command FLEET_FORMATION;
+	static const Command HAIL_PLANET;
 
 public:
 	// In the given text, replace any instances of command names (in angle
@@ -97,6 +114,14 @@ public:
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
 	explicit Command(int keycode);
+	// Create a command from an sdl command event
+	explicit Command(const union SDL_Event &event);
+	// Create a command representing whatever is mapped to the given gesture
+	explicit Command(Gesture::GestureEnum gesture);
+	// Create a command representing a game controller axis trigger
+	static Command FromTrigger(uint8_t axis, bool positive);
+	// Create a command representing a game controller button press
+	static Command FromButton(uint8_t button);
 
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();
@@ -105,11 +130,17 @@ public:
 	static void LoadSettings(const std::filesystem::path &path);
 	static void SaveSettings(const std::filesystem::path &path);
 	static void SetKey(Command command, int keycode);
+	static void SetGesture(Command command, Gesture::GestureEnum gesture);
+	static void SetControllerButton(Command command, uint8_t button);
+	static void SetControllerTrigger(Command command, uint8_t trigger, bool positive);
 
 	// Get the description or keycode name for this command. If this command is
 	// a combination of more than one command, an empty string is returned.
 	const std::string &Description() const;
 	const std::string &KeyName() const;
+	const std::string &GestureName() const;
+	const std::string ButtonName() const;
+	const std::string &Icon() const;
 	bool HasBinding() const;
 	bool HasConflict() const;
 
@@ -141,7 +172,20 @@ public:
 	// Get the commands that are set in either of these commands.
 	Command operator|(const Command &command) const;
 	Command &operator|=(const Command &command);
+	bool operator==(const Command &command) const { return command.state == state && command.turn == turn; }
 
+	// Allow UI's to simulate keyboard input
+	static void InjectOnce(const Command& command, bool next = false);
+	static void InjectOnceNoEvent(const Command& command);
+	static void InjectSet(const Command& command);
+	static void InjectClear();
+	static void InjectUnset(const Command& command);
+	static Command Get(const std::string& description);
+	// Register an event, and return its value. This event gets triggered
+	// whenever we call InjectSet/InjetUnset
+	static uint32_t EventID();
+
+	static void DebugDumpGestures();
 
 private:
 	explicit Command(uint64_t state);
@@ -154,4 +198,9 @@ private:
 	uint64_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
+
+	// If we want to simulate input from the ui, place it here to be read later
+	static std::atomic<uint64_t> simulated_command;
+	static std::atomic<uint64_t> simulated_command_once;
+	static bool simulated_command_skip;
 };

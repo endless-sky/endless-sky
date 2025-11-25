@@ -16,6 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Panel.h"
+#include "Dropdown.h"
+
 
 class PlayerInfo;
 class System;
@@ -39,7 +41,7 @@ protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
-
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
 
 private:
 	void Buy(int64_t amount);
@@ -57,4 +59,8 @@ private:
 	// Keep track of how much we sold and how much profit was made.
 	int tonsSold = 0;
 	int64_t profit = 0;
+
+	std::shared_ptr<Dropdown> buyMultiplier;
+	std::shared_ptr<Dropdown> sellMultiplier;
+	bool quantityIsModifier = false;
 };

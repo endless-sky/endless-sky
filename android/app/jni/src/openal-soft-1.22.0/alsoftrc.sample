@@ -1,0 +1,611 @@
+# OpenAL config file.
+#
+# Option blocks may appear multiple times, and duplicated options will take the
+# last value specified. Environment variables may be specified within option
+# values, and are automatically substituted when the config file is loaded.
+# Environment variable names may only contain alpha-numeric characters (a-z,
+# A-Z, 0-9) and underscores (_), and are prefixed with $. For example,
+# specifying "$HOME/file.ext" would typically result in something like
+# "/home/user/file.ext". To specify an actual "$" character, use "$$".
+#
+# Device-specific values may be specified by including the device name in the
+# block name, with "general" replaced by the device name. That is, general
+# options for the device "Name of Device" would be in the [Name of Device]
+# block, while ALSA options would be in the [alsa/Name of Device] block.
+# Options marked as "(global)" are not influenced by the device.
+#
+# The system-wide settings can be put in /etc/xdg/alsoft.conf (as determined by
+# the XDG_CONFIG_DIRS env var list, /etc/xdg being the default if unset) and
+# user-specific override settings in $HOME/.config/alsoft.conf (as determined
+# by the XDG_CONFIG_HOME env var).
+#
+# For Windows, these settings should go into $AppData\alsoft.ini
+#
+# An additional configuration file (alsoft.ini on Windows, alsoft.conf on other
+# OSs) can be placed alongside the process executable for app-specific config
+# settings.
+#
+# Option and block names are case-senstive. The supplied values are only hints
+# and may not be honored (though generally it'll try to get as close as
+# possible). Note: options that are left unset may default to app- or system-
+# specified values. These are the current available settings:
+
+##
+## General stuff
+##
+[general]
+
+## disable-cpu-exts: (global)
+#  Disables use of specialized methods that use specific CPU intrinsics.
+#  Certain methods may utilize CPU extensions for improved performance, and
+#  this option is useful for preventing some or all of those methods from being
+#  used. The available extensions are: sse, sse2, sse3, sse4.1, and neon.
+#  Specifying 'all' disables use of all such specialized methods.
+#disable-cpu-exts =
+
+## drivers: (global)
+#  Sets the backend driver list order, comma-seperated. Unknown backends and
+#  duplicated names are ignored. Unlisted backends won't be considered for use
+#  unless the list is ended with a comma (e.g. 'oss,' will try OSS first before
+#  other backends, while 'oss' will try OSS only). Backends prepended with -
+#  won't be considered for use (e.g. '-oss,' will try all available backends
+#  except OSS). An empty list means to try all backends.
+#drivers =
+
+## channels:
+#  Sets the output channel configuration. If left unspecified, one will try to
+#  be detected from the system, and defaulting to stereo. The available values
+#  are: mono, stereo, quad, surround51, surround61, surround71, ambi1, ambi2,
+#  ambi3. Note that the ambi* configurations provide ambisonic channels of the
+#  given order (using ACN ordering and SN3D normalization by default), which
+#  need to be decoded to play correctly on speakers.
+#channels =
+
+## sample-type:
+#  Sets the output sample type. Currently, all mixing is done with 32-bit float
+#  and converted to the output sample type as needed. Available values are:
+#  int8    - signed 8-bit int
+#  uint8   - unsigned 8-bit int
+#  int16   - signed 16-bit int
+#  uint16  - unsigned 16-bit int
+#  int32   - signed 32-bit int
+#  uint32  - unsigned 32-bit int
+#  float32 - 32-bit float
+#sample-type = float32
+
+## frequency:
+#  Sets the output frequency. If left unspecified it will try to detect a
+#  default from the system, otherwise it will default to 44100.
+#frequency =
+
+## period_size:
+#  Sets the update period size, in sample frames. This is the number of frames
+#  needed for each mixing update. Acceptable values range between 64 and 8192.
+#  If left unspecified it will default to 1/50th of the frequency (20ms, or 882
+#  for 44100, 960 for 48000, etc).
+#period_size =
+
+## periods:
+#  Sets the number of update periods. Higher values create a larger mix ahead,
+#  which helps protect against skips when the CPU is under load, but increases
+#  the delay between a sound getting mixed and being heard. Acceptable values
+#  range between 2 and 16.
+#periods = 3
+
+## stereo-mode:
+#  Specifies if stereo output is treated as being headphones or speakers. With
+#  headphones, HRTF or crossfeed filters may be used for better audio quality.
+#  Valid settings are auto, speakers, and headphones.
+#stereo-mode = auto
+
+## stereo-encoding:
+#  Specifies the encoding method for non-HRTF stereo output. 'panpot' (default)
+#  uses standard amplitude panning (aka pair-wise, stereo pair, etc) between
+#  -30 and +30 degrees, while 'uhj' creates stereo-compatible two-channel UHJ
+#  output, which encodes some surround sound information into stereo output
+#  that can be decoded with a surround sound receiver. If crossfeed filters are
+#  used, UHJ is disabled.
+#stereo-encoding = panpot
+
+## ambi-format:
+#  Specifies the channel order and normalization for the "ambi*" set of channel
+#  configurations. Valid settings are: fuma, acn+fuma, ambix (or acn+sn3d), or
+#  acn+n3d
+#ambi-format = ambix
+
+## hrtf:
+#  Controls HRTF processing. These filters provide better spatialization of
+#  sounds while using headphones, but do require a bit more CPU power. While
+#  HRTF is used, the cf_level option is ignored. Setting this to auto (default)
+#  will allow HRTF to be used when headphones are detected or the app requests
+#  it, while setting true or false will forcefully enable or disable HRTF
+#  respectively.
+#hrtf = auto
+
+## hrtf-mode:
+#  Specifies the rendering mode for HRTF processing. Setting the mode to full
+#  (default) applies a unique HRIR filter to each source given its relative
+#  location, providing the clearest directional response at the cost of the
+#  highest CPU usage. Setting the mode to ambi1, ambi2, or ambi3 will instead
+#  mix to a first-, second-, or third-order ambisonic buffer respectively, then
+#  decode that buffer with HRTF filters. Ambi1 has the lowest CPU usage,
+#  replacing the per-source HRIR filter for a simple 4-channel panning mix, but
+#  retains full 3D placement at the cost of a more diffuse response. Ambi2 and
+#  ambi3 increasingly improve the directional clarity, at the cost of more CPU
+#  usage (still less than "full", given some number of active sources).
+#hrtf-mode = full
+
+## hrtf-size:
+#  Specifies the impulse response size, in samples, for the HRTF filter. Larger
+#  values increase the filter quality, while smaller values reduce processing
+#  cost. A value of 0 (default) uses the full filter size in the dataset, and
+#  the default dataset has a filter size of 32 samples at 44.1khz.
+#hrtf-size = 0
+
+## default-hrtf:
+#  Specifies the default HRTF to use. When multiple HRTFs are available, this
+#  determines the preferred one to use if none are specifically requested. Note
+#  that this is the enumerated HRTF name, not necessarily the filename.
+#default-hrtf =
+
+## hrtf-paths:
+#  Specifies a comma-separated list of paths containing HRTF data sets. The
+#  format of the files are described in docs/hrtf.txt. The files within the
+#  directories must have the .mhr file extension to be recognized. By default,
+#  OS-dependent data paths will be used. They will also be used if the list
+#  ends with a comma. On Windows this is:
+#  $AppData\openal\hrtf
+#  And on other systems, it's (in order):
+#  $XDG_DATA_HOME/openal/hrtf  (defaults to $HOME/.local/share/openal/hrtf)
+#  $XDG_DATA_DIRS/openal/hrtf  (defaults to /usr/local/share/openal/hrtf and
+#                               /usr/share/openal/hrtf)
+#hrtf-paths =
+
+## cf_level:
+#  Sets the crossfeed level for stereo output. Valid values are:
+#  0 - No crossfeed
+#  1 - Low crossfeed
+#  2 - Middle crossfeed
+#  3 - High crossfeed (virtual speakers are closer to itself)
+#  4 - Low easy crossfeed
+#  5 - Middle easy crossfeed
+#  6 - High easy crossfeed
+#  Users of headphones may want to try various settings. Has no effect on non-
+#  stereo modes.
+#cf_level = 0
+
+## resampler: (global)
+#  Selects the default resampler used when mixing sources. Valid values are:
+#  point - nearest sample, no interpolation
+#  linear - extrapolates samples using a linear slope between samples
+#  cubic - extrapolates samples using a Catmull-Rom spline
+#  bsinc12 - extrapolates samples using a band-limited Sinc filter (varying
+#            between 12 and 24 points, with anti-aliasing)
+#  fast_bsinc12 - same as bsinc12, except without interpolation between down-
+#                 sampling scales
+#  bsinc24 - extrapolates samples using a band-limited Sinc filter (varying
+#            between 24 and 48 points, with anti-aliasing)
+#  fast_bsinc24 - same as bsinc24, except without interpolation between down-
+#                 sampling scales
+#resampler = linear
+
+## rt-prio: (global)
+#  Sets the real-time priority value for the mixing thread. Not all drivers may
+#  use this (eg. PortAudio) as those APIs already control the priority of the
+#  mixing thread. 0 and negative values will disable real-time priority. Note
+#  that this may constitute a security risk since a real-time priority thread
+#  can indefinitely block normal-priority threads if it fails to wait. Disable
+#  this if it turns out to be a problem.
+#rt-prio = 1
+
+## rt-time-limit: (global)
+#  On non-Windows systems, allows reducing the process's RLIMIT_RTTIME resource
+#  as necessary for acquiring real-time priority from RTKit.
+#rt-time-limit = true
+
+## sources:
+#  Sets the maximum number of allocatable sources. Lower values may help for
+#  systems with apps that try to play more sounds than the CPU can handle.
+#sources = 256
+
+## slots:
+#  Sets the maximum number of Auxiliary Effect Slots an app can create. A slot
+#  can use a non-negligible amount of CPU time if an effect is set on it even
+#  if no sources are feeding it, so this may help when apps use more than the
+#  system can handle.
+#slots = 64
+
+## sends:
+#  Limits the number of auxiliary sends allowed per source. Setting this higher
+#  than the default has no effect.
+#sends = 6
+
+## front-stablizer:
+#  Applies filters to "stablize" front sound imaging. A psychoacoustic method
+#  is used to generate a front-center channel signal from the front-left and
+#  front-right channels, improving the front response by reducing the combing
+#  artifacts and phase errors. Consequently, it will only work with channel
+#  configurations that include front-left, front-right, and front-center.
+#front-stablizer = false
+
+## output-limiter:
+#  Applies a gain limiter on the final mixed output. This reduces the volume
+#  when the output samples would otherwise clamp, avoiding excessive clipping
+#  noise.
+#output-limiter = true
+
+## dither:
+#  Applies dithering on the final mix, for 8- and 16-bit output by default.
+#  This replaces the distortion created by nearest-value quantization with low-
+#  level whitenoise.
+#dither = true
+
+## dither-depth:
+#  Quantization bit-depth for dithered output. A value of 0 (or less) will
+#  match the output sample depth. For int32, uint32, and float32 output, 0 will
+#  disable dithering because they're at or beyond the rendered precision. The
+#  maximum dither depth is 24.
+#dither-depth = 0
+
+## volume-adjust:
+#  A global volume adjustment for source output, expressed in decibels. The
+#  value is logarithmic, so +6 will be a scale of (approximately) 2x, +12 will
+#  be a scale of 4x, etc. Similarly, -6 will be x1/2, and -12 is about x1/4. A
+#  value of 0 means no change.
+#volume-adjust = 0
+
+## excludefx: (global)
+#  Sets which effects to exclude, preventing apps from using them. This can
+#  help for apps that try to use effects which are too CPU intensive for the
+#  system to handle. Available effects are: eaxreverb,reverb,autowah,chorus,
+#  compressor,distortion,echo,equalizer,flanger,modulator,dedicated,pshifter,
+#  fshifter,vmorpher.
+#excludefx =
+
+## default-reverb: (global)
+#  A reverb preset that applies by default to all sources on send 0
+#  (applications that set their own slots on send 0 will override this).
+#  Available presets are: None, Generic, PaddedCell, Room, Bathroom,
+#  Livingroom, Stoneroom, Auditorium, ConcertHall, Cave, Arena, Hangar,
+#  CarpetedHallway, Hallway, StoneCorridor, Alley, Forest, City, Moutains,
+#  Quarry, Plain, ParkingLot, SewerPipe, Underwater, Drugged, Dizzy, Psychotic.
+#default-reverb =
+
+## trap-alc-error: (global)
+#  Generates a SIGTRAP signal when an ALC device error is generated, on systems
+#  that support it. This helps when debugging, while trying to find the cause
+#  of a device error. On Windows, a breakpoint exception is generated.
+#trap-alc-error = false
+
+## trap-al-error: (global)
+#  Generates a SIGTRAP signal when an AL context error is generated, on systems
+#  that support it. This helps when debugging, while trying to find the cause
+#  of a context error. On Windows, a breakpoint exception is generated.
+#trap-al-error = false
+
+##
+## Ambisonic decoder stuff
+##
+[decoder]
+
+## hq-mode:
+#  Enables a high-quality ambisonic decoder. This mode is capable of frequency-
+#  dependent processing, creating a better reproduction of 3D sound rendering
+#  over surround sound speakers.
+#hq-mode = true
+
+## distance-comp:
+#  Enables compensation for the speakers' relative distances to the listener.
+#  This applies the necessary delays and attenuation to make the speakers
+#  behave as though they are all equidistant, which is important for proper
+#  playback of 3D sound rendering. Requires the proper distances to be
+#  specified in the decoder configuration file.
+#distance-comp = true
+
+## nfc:
+#  Enables near-field control filters. This simulates and compensates for low-
+#  frequency effects caused by the curvature of nearby sound-waves, which
+#  creates a more realistic perception of sound distance. Note that the effect
+#  may be stronger or weaker than intended if the application doesn't use or
+#  specify an appropriate unit scale, or if incorrect speaker distances are set
+#  in the decoder configuration file.
+#nfc = false
+
+## nfc-ref-delay
+#  Specifies the reference delay value for ambisonic output when NFC filters
+#  are enabled. If channels is set to one of the ambi* formats, this option
+#  enables NFC-HOA output with the specified Reference Delay parameter. The
+#  specified value can then be shared with an appropriate NFC-HOA decoder to
+#  reproduce correct near-field effects. Keep in mind that despite being
+#  designed for higher-order ambisonics, this also applies to first-order
+#  output. When left unset, normal output is created with no near-field
+#  simulation. Requires the nfc option to also be enabled.
+#nfc-ref-delay =
+
+## quad:
+#  Decoder configuration file for Quadraphonic channel output. See
+#  docs/ambdec.txt for a description of the file format.
+#quad =
+
+## surround51:
+#  Decoder configuration file for 5.1 Surround (Side and Rear) channel output.
+#  See docs/ambdec.txt for a description of the file format.
+#surround51 =
+
+## surround61:
+#  Decoder configuration file for 6.1 Surround channel output. See
+#  docs/ambdec.txt for a description of the file format.
+#surround61 =
+
+## surround71:
+#  Decoder configuration file for 7.1 Surround channel output. See
+#  docs/ambdec.txt for a description of the file format. Note: This can be used
+#  to enable 3D7.1 with the appropriate configuration and speaker placement,
+#  see docs/3D7.1.txt.
+#surround71 =
+
+##
+## Reverb effect stuff (includes EAX reverb)
+##
+[reverb]
+
+## boost: (global)
+#  A global amplification for reverb output, expressed in decibels. The value
+#  is logarithmic, so +6 will be a scale of (approximately) 2x, +12 will be a
+#  scale of 4x, etc. Similarly, -6 will be about half, and -12 about 1/4th. A
+#  value of 0 means no change.
+#boost = 0
+
+##
+## PipeWire backend stuff
+##
+[pipewire]
+
+## assume-audio: (global)
+#  Causes the backend to succeed initialization even if PipeWire reports no
+#  audio support. Currently, audio support is detected by the presence of audio
+#  source or sink nodes, although this can cause false negatives in cases where
+#  device availability during library initialization is spotty. Future versions
+#  of PipeWire are expected to have a more robust method to test audio support,
+#  but in the mean time this can be set to true to assume PipeWire has audio
+#  support even when no nodes may be reported at initialization time.
+#assume-audio = false
+
+##
+## PulseAudio backend stuff
+##
+[pulse]
+
+## spawn-server: (global)
+#  Attempts to autospawn a PulseAudio server whenever needed (initializing the
+#  backend, enumerating devices, etc). Setting autospawn to false in Pulse's
+#  client.conf will still prevent autospawning even if this is set to true.
+#spawn-server = true
+
+## allow-moves: (global)
+#  Allows PulseAudio to move active streams to different devices. Note that the
+#  device specifier (seen by applications) will not be updated when this
+#  occurs, and neither will the AL device configuration (sample rate, format,
+#  etc).
+#allow-moves = true
+
+## fix-rate:
+#  Specifies whether to match the playback stream's sample rate to the device's
+#  sample rate. Enabling this forces OpenAL Soft to mix sources and effects
+#  directly to the actual output rate, avoiding a second resample pass by the
+#  PulseAudio server.
+#fix-rate = false
+
+## adjust-latency:
+#  Attempts to adjust the overall latency of device playback. Note that this
+#  may have adverse effects on the resulting internal buffer sizes and mixing
+#  updates, leading to performance problems and drop-outs. However, if the
+#  PulseAudio server is creating a lot of latency, enabling this may help make
+#  it more manageable.
+#adjust-latency = false
+
+##
+## ALSA backend stuff
+##
+[alsa]
+
+## device: (global)
+#  Sets the device name for the default playback device.
+#device = default
+
+## device-prefix: (global)
+#  Sets the prefix used by the discovered (non-default) playback devices. This
+#  will be appended with "CARD=c,DEV=d", where c is the card id and d is the
+#  device index for the requested device name.
+#device-prefix = plughw:
+
+## device-prefix-*: (global)
+#  Card- and device-specific prefixes may be used to override the device-prefix
+#  option. The option may specify the card id (eg, device-prefix-NVidia), or
+#  the card id and device index (eg, device-prefix-NVidia-0). The card id is
+#  case-sensitive.
+#device-prefix- =
+
+## custom-devices: (global)
+#  Specifies a list of enumerated playback devices and the ALSA devices they
+#  refer to. The list pattern is "Display Name=ALSA device;...". The display
+#  names will be returned for device enumeration, and the ALSA device is the
+#  device name to open for each enumerated device.
+#custom-devices =
+
+## capture: (global)
+#  Sets the device name for the default capture device.
+#capture = default
+
+## capture-prefix: (global)
+#  Sets the prefix used by the discovered (non-default) capture devices. This
+#  will be appended with "CARD=c,DEV=d", where c is the card id and d is the
+#  device number for the requested device name.
+#capture-prefix = plughw:
+
+## capture-prefix-*: (global)
+#  Card- and device-specific prefixes may be used to override the
+#  capture-prefix option. The option may specify the card id (eg,
+#  capture-prefix-NVidia), or the card id and device index (eg,
+#  capture-prefix-NVidia-0). The card id is case-sensitive.
+#capture-prefix- =
+
+## custom-captures: (global)
+#  Specifies a list of enumerated capture devices and the ALSA devices they
+#  refer to. The list pattern is "Display Name=ALSA device;...". The display
+#  names will be returned for device enumeration, and the ALSA device is the
+#  device name to open for each enumerated device.
+#custom-captures =
+
+## mmap:
+#  Sets whether to try using mmap mode (helps reduce latencies and CPU
+#  consumption). If mmap isn't available, it will automatically fall back to
+#  non-mmap mode. True, yes, on, and non-0 values will attempt to use mmap. 0
+#  and anything else will force mmap off.
+#mmap = true
+
+## allow-resampler:
+#  Specifies whether to allow ALSA's built-in resampler. Enabling this will
+#  allow the playback device to be set to a different sample rate than the
+#  actual output, causing ALSA to apply its own resampling pass after OpenAL
+#  Soft resamples and mixes the sources and effects for output.
+#allow-resampler = false
+
+##
+## OSS backend stuff
+##
+[oss]
+
+## device: (global)
+#  Sets the device name for OSS output.
+#device = /dev/dsp
+
+## capture: (global)
+#  Sets the device name for OSS capture.
+#capture = /dev/dsp
+
+##
+## Solaris backend stuff
+##
+[solaris]
+
+## device: (global)
+#  Sets the device name for Solaris output.
+#device = /dev/audio
+
+##
+## QSA backend stuff
+##
+[qsa]
+
+##
+## JACK backend stuff
+##
+[jack]
+
+## spawn-server: (global)
+#  Attempts to autospawn a JACK server when initializing.
+#spawn-server = false
+
+## custom-devices: (global)
+#  Specifies a list of enumerated devices and the ports they connect to. The
+#  list pattern is "Display Name=ports regex;Display Name=ports regex;...". The
+#  display names will be returned for device enumeration, and the ports regex
+#  is the regular expression to identify the target ports on the server (as
+#  given by the jack_get_ports function) for each enumerated device.
+#custom-devices =
+
+## rt-mix:
+#  Renders samples directly in the real-time processing callback. This allows
+#  for lower latency and less overall CPU utilization, but can increase the
+#  risk of underruns when increasing the amount of work the mixer needs to do.
+#rt-mix = true
+
+## connect-ports:
+#  Attempts to automatically connect the client ports to physical server ports.
+#  Client ports that fail to connect will leave the remaining channels
+#  unconnected and silent (the device format won't change to accommodate).
+#connect-ports = true
+
+## buffer-size:
+#  Sets the update buffer size, in samples, that the backend will keep buffered
+#  to handle the server's real-time processing requests. This value must be a
+#  power of 2, or else it will be rounded up to the next power of 2. If it is
+#  less than JACK's buffer update size, it will be clamped. This option may
+#  be useful in case the server's update size is too small and doesn't give the
+#  mixer time to keep enough audio available for the processing requests.
+#  Ignored when rt-mix is true.
+#buffer-size = 0
+
+##
+## WASAPI backend stuff
+##
+[wasapi]
+
+##
+## DirectSound backend stuff
+##
+[dsound]
+
+##
+## Windows Multimedia backend stuff
+##
+[winmm]
+
+##
+## PortAudio backend stuff
+##
+[port]
+
+## device: (global)
+#  Sets the device index for output. Negative values will use the default as
+#  given by PortAudio itself.
+#device = -1
+
+## capture: (global)
+#  Sets the device index for capture. Negative values will use the default as
+#  given by PortAudio itself.
+#capture = -1
+
+##
+## Wave File Writer stuff
+##
+[wave]
+
+## file: (global)
+#  Sets the filename of the wave file to write to. An empty name prevents the
+#  backend from opening, even when explicitly requested.
+#  THIS WILL OVERWRITE EXISTING FILES WITHOUT QUESTION!
+#file =
+
+## bformat: (global)
+#  Creates AMB format files using first-order ambisonics instead of a standard
+#  single- or multi-channel .wav file.
+#bformat = false
+
+##
+## EAX extensions stuff
+##
+[eax]
+
+## enable: (global)
+#  Sets whether to enable EAX extensions or not.
+#enable = true
+
+##
+## Per-game compatibility options (these should only be set in per-game config
+## files, *NOT* system- or user-level!)
+##
+[game_compat]
+
+## reverse-x: (global)
+#  Reverses the local X (left-right) position of 3D sound sources.
+#reverse-x = false
+
+## reverse-y: (global)
+#  Reverses the local Y (up-down) position of 3D sound sources.
+#reverse-y = false
+
+## reverse-z: (global)
+#  Reverses the local Z (front-back) position of 3D sound sources.
+#reverse-z = false

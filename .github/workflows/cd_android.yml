@@ -1,0 +1,59 @@
+name: CD
+
+
+on:
+  push:
+    tags:
+      - '*'
+
+
+jobs:
+  build_android:
+    # TODO: only build if source changed. otherwise, d/l latest continuous
+    runs-on: ubuntu-latest
+    env:
+        ANDROID_SDK_ROOT: /path/to/sdk
+        ARTIFACT: endless-mobile
+        DEBUG_CERTIFICATE: ${{ secrets.ANDROID_DEBUG_KEYSTORE }}
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up our JDK environment
+      uses: actions/setup-java@v1.4.3
+      with:
+        java-version: 11
+    - name: Print toolchain versions
+      run: |
+        java -version
+    - name: Update Environment
+      run: |
+        mkdir -p ~/.android
+        echo $DEBUG_CERTIFICATE | base64 -d > ~/.android/debug.keystore
+    - name: Compile Android
+      run: |
+        cd android/app && sh ./download_build_dependencies.sh
+        cd .. && ./gradlew --no-daemon assemble
+    - name: Upload apks
+      uses: actions/upload-artifact@v4
+      with:
+        name: debug-arm64-v8a
+        path: android/app/build/outputs/apk/debug/app-debug.apk
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: ${{ github.ref_name }}
+        prerelease: true
+        body: This is an auto-generated prerelease of the latest ci build. Dont expect it to work reliably.
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: android/app/build/outputs/apk/debug/app-debug.apk
+        asset_name: endless-mobile-debug-v${{ github.ref_name }}.apk
+        asset_content_type: application/vnd.android.package-archive

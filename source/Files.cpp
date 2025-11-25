@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ZipFile.h"
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_rwops.h>
 
 #include <algorithm>
 #include <fstream>
@@ -27,6 +28,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <mutex>
 #include <sstream>
 #include <stdexcept>
+#include <memory>
+
+#ifdef __ANDROID__
+#include "AndroidAsset.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <unistd.h>
+#endif
 
 using namespace std;
 
@@ -90,6 +101,129 @@ namespace {
 
 		return {};
 	}
+
+	void CheckBug_96()
+	{
+		// Old code used `SDL_GetPrefPath("endless-sky", "saves")`, which on
+		// linux and other operating systems would return "path/endless-sky/saves".
+		// Then other code would go up a directory to create the plugin folder.
+		// This does not produce the expected result on android, and android
+		// always returns "path/files", and expects you to create your own
+		// subdirectories there.
+		//
+		// This means that for android, we need to check for the "path/files/../*.txt"
+		// files, and they exist, they all need moved into the files directory.
+		// See https://github.com/thewierdnut/endless-mobile/issues/96
+
+#ifndef __ANDROID__
+		return;
+#endif
+
+		// Does this bug need fixed?
+		char* pref_path = SDL_GetPrefPath(nullptr, "endless-sky");
+		// std::filesystem::path::parent_path() cannot handle traling slashes
+		std::filesystem::path path;
+		if (pref_path)
+		{
+			size_t pref_path_len = strlen(pref_path);
+			if (pref_path_len && pref_path[pref_path_len-1] == '/')
+			{
+				pref_path[pref_path_len-1] = 0;
+			}
+			path = std::filesystem::canonical(pref_path);
+			SDL_free(pref_path);
+		}
+		if(path.empty())
+			return;
+		SDL_Log("SDL_GetPrefPath returns %s", path.c_str());
+		SDL_Log("SDL_GetPrefPath parent is %s", path.parent_path().c_str());
+
+		if(Files::Exists(path.parent_path() / "preferences.txt"))
+		{
+			SDL_Log("Fixing bug 96 by moving config files from %s to %s", path.parent_path().c_str(), path.c_str());
+
+			// Yes, this needs fixed.
+			// files/*.txt needs moved to files/saves
+			Files::CreateFolder(path / "saves");
+			for(const auto& f: Files::List(path))
+			{
+				if(f.extension() == ".txt")
+				{
+					Files::Move(f, f.parent_path() / "/saves/" / f.filename());
+				}
+			}
+
+			// *.txt  needs moved into files/
+			for(const auto& f: Files::List(path.parent_path()))
+			{
+				if(f.extension() == ".txt")
+				{
+					Files::Move(f, path / f.filename());
+				}
+			}
+
+			// the plugin directory needs moved into files/
+			// Don't care if this fails
+			if (std::filesystem::exists(path.parent_path() / "plugins"))
+				Files::Move(path.parent_path() / "plugins", path / "plugins");
+		}
+	}
+
+#ifdef __ANDROID__
+	void CrossFileSystemMove(const std::filesystem::path &old_path, const std::filesystem::path &new_path)
+	{
+		// used in situations where rename would fail, due to crossing a
+		// filesystem boundary
+		// TODO: add error checking?
+
+		DIR *dir = opendir(old_path.c_str());
+		while(true)
+		{
+			dirent *ent = readdir(dir);
+			if(!ent)
+				break;
+			// Skip dotfiles (including "." and "..").
+			if(ent->d_name[0] == '.')
+				continue;
+
+			auto name = old_path / ent->d_name;
+			// Don't assume that this operating system's implementation of dirent
+			// includes the t_type field; in particular, on Windows it will not.
+			struct stat buf;
+			stat(name.c_str(), &buf);
+
+			if(S_ISREG(buf.st_mode))
+			{
+				Files::Copy(name, new_path / ent->d_name);
+				SDL_Log("Moving %s to %s", name.c_str(), (new_path / ent->d_name).c_str());
+				unlink(name.c_str());
+			}
+			else if(S_ISDIR(buf.st_mode))
+			{
+				const auto recursive_path = new_path / ent->d_name;
+				std::filesystem::create_directories(recursive_path);
+				CrossFileSystemMove(name, recursive_path);
+				rmdir(name.c_str());
+			}
+		}
+		closedir(dir);
+	}
+
+	void CheckBug_104(const std::filesystem::path &old_path, const std::filesystem::path &new_path)
+	{
+		// On android, we changed the default config path from internal private
+		// to external public storage. Copy any configs from the old to the new
+		// location.
+
+		if(Files::Exists(old_path / "preferences.txt"))
+		{
+			// Yes, this needs fixed.
+			SDL_Log("Fixing bug 104 by moving config files from %s to %s", old_path.c_str(), new_path.c_str());
+
+			CrossFileSystemMove(old_path, new_path);
+		}
+	}
+#endif
 }
 
 
@@ -113,13 +247,22 @@ void Files::Init(const char * const *argv)
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
 		char *basePath = SDL_GetBasePath();
-		if(!basePath)
-			throw runtime_error("Unable to get path to resource directory!");
-		resources = basePath;
-		SDL_free(basePath);
+		if(basePath)
+		{
+			resources = basePath;
+			SDL_free(basePath);
+		}
+		// This is ok on android. we will read the resources from the assets
+#if not defined __ANDROID__
+		else throw runtime_error("Unable to get path to resource directory!");
+#else
+		else resources = "endless-sky-data"; // within assets directory
+#endif
 
+#ifndef __ANDROID__
 		if(Exists(resources))
 			resources = filesystem::canonical(resources);
+#endif
 
 #if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
 		// Special case, for Linux: the resource files are not in the same place as
@@ -158,6 +301,23 @@ void Files::Init(const char * const *argv)
 			throw runtime_error("Unable to get path to config directory!");
 		config = str;
 		SDL_free(str);
+
+		CheckBug_96();
+
+#ifdef __ANDROID__
+		SDL_Log("SDL_AndroidGetExternalStorageState() == %d", SDL_AndroidGetExternalStorageState());
+		SDL_Log("SDL_AndroidGetExternalStoragePath() == %s", SDL_AndroidGetExternalStoragePath());
+
+		// Use the external path if its available
+		if ((SDL_AndroidGetExternalStorageState() & SDL_ANDROID_EXTERNAL_STORAGE_WRITE) != 0)
+		{
+			const char* path = SDL_AndroidGetExternalStoragePath();
+			std::string old_path = config;
+			config = path;
+
+			CheckBug_104(old_path, config);
+		}
+#endif
 	}
 
 	if(!Exists(config))
@@ -260,6 +420,28 @@ vector<filesystem::path> Files::List(const filesystem::path &directory)
 			list = zip->ListFiles(directory, false, false);
 			sort(list.begin(), list.end());
 		}
+#if defined __ANDROID__
+		else
+		{
+				
+			// try the asset system instead
+			AndroidAsset aa;
+			for (std::string entry: aa.DirectoryList(directory))
+			{
+				// Asset api doesn't have a stat or entry properties. the only
+				// way to tell if its a folder is to fail to open it. Depending
+				// on how slow this is, it may be worth checking for a file
+				// extension instead.
+				SDL_RWops* f = SDL_RWFromFile((directory / entry).c_str(), "rb");
+				bool is_file = f != nullptr;
+				if (f) SDL_RWclose(f);
+				if (is_file)
+				{
+					list.push_back(directory / entry);
+				}
+			}
+		}
+#endif
 		return list;
 	}
 
@@ -289,6 +471,27 @@ vector<filesystem::path> Files::ListDirectories(const filesystem::path &director
 			list = zip->ListFiles(directory, false, true);
 			sort(list.begin(), list.end());
 		}
+#if defined __ANDROID__
+		else
+		{
+			// try the asset system
+			AndroidAsset aa;
+			for (std::string entry: aa.DirectoryList(directory))
+			{
+				// Asset api doesn't have a stat or entry properties. the only
+				// way to tell if its a folder is to fail to open it. Depending
+				// on how slow this is, it may be worth checking for a file
+				// extension instead.
+				SDL_RWops* f = SDL_RWFromFile((directory / entry).c_str(), "rb");
+				bool is_file = f != nullptr;
+				if (f) SDL_RWclose(f);
+				if (!is_file)
+				{
+					list.push_back(directory / entry);
+				}
+			}
+		}
+#endif
 		return list;
 	}
 
@@ -314,6 +517,39 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 			list = zip->ListFiles(directory, true, false);
 			sort(list.begin(), list.end());
 		}
+#if defined __ANDROID__
+		else
+		{
+			// try the asset system. We don't want to instantiate more than one
+			// AndroidAsset object, so don't recurse.
+			vector<std::filesystem::path> directories;
+			directories.push_back(directory);
+			AndroidAsset aa;
+			while (!directories.empty())
+			{
+				auto path = directories.back();
+				directories.pop_back();
+				for (std::string entry: aa.DirectoryList(path))
+				{
+					// Asset api doesn't have a stat or entry properties. the only
+					// way to tell if its a folder is to fail to open it. Depending
+					// on how slow this is, it may be worth checking for a file
+					// extension instead.
+					SDL_RWops* f = SDL_RWFromFile((path / entry).c_str(), "rb");
+					bool is_file = f != nullptr;
+					if (f) SDL_RWclose(f);
+					if (is_file)
+					{
+						list.push_back(path / entry);
+					}
+					else
+					{
+						directories.push_back(path / entry);
+					}
+				}
+			}
+		}
+#endif
 		return list;
 	}
 
@@ -335,6 +571,22 @@ bool Files::Exists(const filesystem::path &filePath)
 	shared_ptr<ZipFile> zip = GetZipFile(filePath);
 	if(zip)
 		return zip->Exists(filePath);
+#ifdef __ANDROID__
+	else
+	{
+		// only works for normal files, not assets, so just try to open the
+		// file to see if it exists.
+		SDL_RWops* f = SDL_RWFromFile(filePath.c_str(), "rb");
+		bool exists = f != nullptr;
+		if (f) SDL_RWclose(f);
+		if (!exists)
+		{
+			// check and see if it is a directory
+			exists = AndroidAsset().DirectoryExists(filePath);
+		}
+		return exists;
+	}
+#endif
 	return false;
 }
 
@@ -406,6 +658,21 @@ shared_ptr<iostream> Files::Open(const filesystem::path &path, bool write)
 		shared_ptr<ZipFile> zip = GetZipFile(path);
 		if(zip)
 			return shared_ptr<iostream>(new stringstream(zip->ReadFile(path), ios::in | ios::binary));
+
+		// Attempt to use SDL_RWops, which read from assets if possible
+		SDL_RWops* ops = SDL_RWFromFile(path.c_str(), "rb");
+		if (ops)
+		{
+			std::string data;
+			char buffer[4096];
+			size_t size = 0;
+			while ((size = SDL_RWread(ops, buffer, 1, sizeof(buffer))))
+			{
+				data.append(buffer, buffer + size);
+			}
+			SDL_RWclose(ops);
+			return shared_ptr<iostream>(new stringstream(data, ios::in | ios::binary));
+		}
 		return {};
 	}
 
@@ -495,6 +762,14 @@ void Files::LogErrorToFile(const string &message)
 		}
 	}
 
+
 	Write(errorLog, message);
 	*errorLog << endl;
+}
+
+
+
+bool Files::RmDir(const std::filesystem::path &path)
+{
+	return std::filesystem::remove_all(path);
 }

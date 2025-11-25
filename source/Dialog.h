@@ -99,6 +99,8 @@ protected:
 
 	virtual void Resize() override;
 
+	virtual bool FingerDown(int x, int y, int fid) override;
+	virtual bool FingerUp(int x, int y, int fid) override;
 
 private:
 	// Common code from all three constructors:
@@ -133,6 +135,9 @@ protected:
 
 	const System *system = nullptr;
 	PlayerInfo *player = nullptr;
+
+	// Keep track of whether or not an input is drawn.
+	bool hasInput = false;
 };
 
 

@@ -40,12 +40,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Truncate.h"
 #include "UI.h"
 
+#ifdef __ANDROID__
+#include "AndroidFile.h"
+#endif
+
 #include "opengl.h"
 
 #include <algorithm>
 #include <cstdlib>
 #include <stdexcept>
 #include <utility>
+#include <sstream>
 
 using namespace std;
 
@@ -134,6 +139,12 @@ void LoadPanel::Draw()
 
 	const Interface *loadPanel = GameData::Interfaces().Get("load menu");
 
+#ifdef ENDLESS_SKY_VERSION
+	info.SetString("game version", ENDLESS_SKY_VERSION);
+#else
+	info.SetString("game version", "engineering build");
+#endif
+
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	loadPanel->Draw(info, this);
 	GameData::Interfaces().Get("menu player info")->Draw(info, this);
@@ -172,6 +183,8 @@ void LoadPanel::Draw()
 				FillShader::Fill(zone, Color(.1 * alpha, 0.));
 			const int textWidth = pilotBox.Width() - 2. * hTextPad;
 			font.Draw({it.first, {textWidth, Truncate::BACK}}, textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			if (alpha > 0)
+				AddZone(zone, [this, zone]() { Click(zone.Center().X(), zone.Center().Y(), MouseButton::LEFT, 1); });
 		}
 	}
 
@@ -222,6 +235,8 @@ void LoadPanel::Draw()
 			const string name = file.substr(pos, file.size() - 4 - pos);
 			const int textWidth = snapshotBox.Width() - 2. * hTextPad;
 			font.Draw({name, {textWidth, Truncate::BACK}}, textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			if (alpha > 0)
+				AddZone(zone, [this, zone]() { Click(zone.Center().X(), zone.Center().Y(), MouseButton::LEFT, 1); });
 		}
 	}
 
@@ -297,9 +312,61 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				"Are you sure you want to do that?"));
 		}
 	}
-	else if(key == 'o')
-		Files::OpenUserSavesFolder();
-	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
+#ifdef __ANDROID__
+	else if ((key == 'x') && !selectedPilot.empty())
+	{
+		// export the pilot
+		std::string data = Files::Read(Files::Saves() / selectedFile);
+
+		AndroidFile f;
+		f.SaveFile(selectedPilot + "_exported.txt", data);
+	}
+	else if (key == 'i')
+	{
+		// import a pilot
+		AndroidFile f;
+		std::string data = f.GetFile("Import save file");
+
+		if (!data.empty())
+		{
+			// Validate the file, and load the pilot name
+			std::stringstream data_in(data);
+			DataFile imported(data_in);
+			// DataFile won't fail, even if being fed arbitrary garbage. Validate
+			// this file by checking for some specific keys
+			std::set<std::string> expected_keys{"pilot","date","system","planet","playtime"};
+			std::string pilot_name;
+			for (auto& node: imported)
+			{
+				expected_keys.erase(node.Token(0));
+				if (node.Token(0) == "pilot")
+				{
+					pilot_name = node.Token(1) + " " + node.Token(2);
+				}
+			}
+			if (expected_keys.empty())
+			{
+				// looks good. lets write it.
+				std::filesystem::path path = Files::Saves() / (pilot_name + "~imported.txt");
+				int idx = 1;
+				while (Files::Exists(path))
+				{
+					path = Files::Saves() / (pilot_name + "~imported-" + std::to_string(idx) + ".txt");
+					++idx;
+				}
+				Files::Write(path, data);
+				UpdateLists();
+			}
+			else
+			{
+				GetUI()->Push(new Dialog(
+					"The selected file does not appear to be a valid "
+					"endless-sky save game."));
+			}
+		}
+	}
+#endif
+	else if(key == 'b' || command.Has(Command::MENU) || key == SDLK_AC_BACK || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())
 	{

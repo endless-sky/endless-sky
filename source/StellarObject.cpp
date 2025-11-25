@@ -70,6 +70,9 @@ double StellarObject::Radius() const
 	if(isStar)
 		radius = min(radius, 80.);
 
+	// Stuff like ringworlds are too hard to click on if they are too small
+	radius = max(radius, 50.0);
+
 	return radius;
 }
 

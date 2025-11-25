@@ -1,0 +1,5 @@
+* Gamepad support
+* Make auto-chase optional
+* Fix config persistence bug
+* Fix plugin disable on crash
+* Update to upstream 0.10.3

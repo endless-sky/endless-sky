@@ -1,0 +1,625 @@
+openal-soft-1.22.0:
+
+    Implemented the ALC_SOFT_reopen_device extension. This allows for moving
+    devices to different outputs without losing object state.
+
+    Implemented the ALC_SOFT_output_mode extension.
+
+    Implemented the AL_SOFT_callback_buffer extension.
+
+    Implemented the AL_SOFT_UHJ extension. This supports native UHJ buffer
+    formats and Super Stereo processing.
+
+    Implemented the legacy EAX extensions. Enabled by default only on Windows.
+
+    Improved sound positioning stability when a source is near the listener.
+
+    Improved the default 5.1 output decoder.
+
+    Improved the high frequency response for the HRTF second-order ambisonic
+    decoder.
+
+    Improved SoundIO capture behavior.
+
+    Fixed UHJ output on NEON-capable CPUs.
+
+    Fixed redundant effect updates when setting an effect property to the
+    current value.
+
+    Fixed WASAPI capture using really low sample rates, and sources with very
+    high pitch shifts when using a bsinc resampler.
+
+    Added a PipeWire backend.
+
+    Added enumeration for the JACK and CoreAudio backends.
+
+    Added optional support for RTKit to get real-time priority. Only used as a
+    backup when pthread_setschedparam fails.
+
+    Added an option for JACK playback to render directly in the real-time
+    processing callback. For lower playback latency, on by default.
+
+    Added an option for custom JACK devices.
+
+    Added utilities to encode and decode UHJ audio files. Files are decoded to
+    the .amb format, and are encoded from libsndfile-compatible formats.
+
+    Added an in-progress extension to hold sources in a playing state when a
+    device disconnects. Allows devices to be reset or reopened and have sources
+    resume from where they left off.
+
+    Lowered the priority of the JACK backend. To avoid it getting picked when
+    PipeWire is providing JACK compatibility, since the JACK backend is less
+    robust with auto-configuration.
+
+openal-soft-1.21.1:
+
+    Improved alext.h's detection of standard types.
+
+    Improved slightly the local source position when the listener and source
+    are near each other.
+
+    Improved click/pop prevention for sounds that stop prematurely.
+
+    Fixed compilation for Windows ARM targets with MSVC.
+
+    Fixed ARM NEON detection on Windows.
+
+    Fixed CoreAudio capture when the requested sample rate doesn't match the
+    system configuration.
+
+    Fixed OpenSL capture desyncing from the internal capture buffer.
+
+    Fixed sources missing a batch update when applied after quickly restarting
+    the source.
+
+    Fixed missing source stop events when stopping a paused source.
+
+    Added capture support to the experimental Oboe backend.
+
+openal-soft-1.21.0:
+
+    Updated library codebase to C++14.
+
+    Implemented the AL_SOFT_effect_target extension.
+
+    Implemented the AL_SOFT_events extension.
+
+    Implemented the ALC_SOFT_loopback_bformat extension.
+
+    Improved memory use for mixing voices.
+
+    Improved detection of NEON capabilities.
+
+    Improved handling of PulseAudio devices that lack manual start control.
+
+    Improved mixing performance with PulseAudio.
+
+    Improved high-frequency scaling quality for the HRTF B-Format decoder.
+
+    Improved makemhr's HRIR delay calculation.
+
+    Improved WASAPI capture of mono formats with multichannel input.
+
+    Reimplemented the modulation stage for reverb.
+
+    Enabled real-time mixing priority by default, for backends that use the
+    setting. It can still be disabled in the config file.
+
+    Enabled dual-band processing for the built-in quad and 7.1 output decoders.
+
+    Fixed a potential crash when deleting an effect slot immediately after the
+    last source using it stops.
+
+    Fixed building with the static runtime on MSVC.
+
+    Fixed using source stereo angles outside of -pi...+pi.
+
+    Fixed the buffer processed event count for sources that start with empty
+    buffers.
+
+    Fixed trying to open an unopenable WASAPI device causing all devices to
+    stop working.
+
+    Fixed stale devices when re-enumerating WASAPI devices.
+
+    Fixed using unicode paths with the log file on Windows.
+
+    Fixed DirectSound capture reporting bad sample counts or erroring when
+    reading samples.
+
+    Added an in-progress extension for a callback-driven buffer type.
+
+    Added an in-progress extension for higher-order B-Format buffers.
+
+    Added an in-progress extension for convolution reverb.
+
+    Added an experimental Oboe backend for Android playback. This requires the
+    Oboe sources at build time, so that it's built as a static library included
+    in libopenal.
+
+    Added an option for auto-connecting JACK ports.
+
+    Added greater-than-stereo support to the SoundIO backend.
+
+    Modified the mixer to be fully asynchronous with the external API, and
+    should now be real-time safe. Although alcRenderSamplesSOFT is not due to
+    locking to check the device handle validity.
+
+    Modified the UHJ encoder to use an all-pass FIR filter that's less harmful
+    to non-filtered signal phase.
+
+    Converted examples from SDL_sound to libsndfile. To avoid issues when
+    combining SDL2 and SDL_sound.
+
+    Worked around a 32-bit GCC/MinGW bug with TLS destructors. See:
+    https://gcc.gnu.org/bugzilla/show_bug.cgi?id=83562
+
+    Reduced the maximum number of source sends from 16 to 6.
+
+    Removed the QSA backend. It's been broken for who knows how long.
+
+    Got rid of the compile-time native-tools targets, using cmake and global
+    initialization instead. This should make cross-compiling less troublesome.
+
+openal-soft-1.20.1:
+
+    Implemented the AL_SOFT_direct_channels_remix extension. This extends
+    AL_DIRECT_CHANNELS_SOFT to optionally remix input channels that don't have
+    a matching output channel.
+
+    Implemented the AL_SOFT_bformat_ex extension. This extends B-Format buffer
+    support for N3D or SN3D scaling, or ACN channel ordering.
+
+    Fixed a potential voice leak when a source is started and stopped or
+    restarted in quick succession.
+
+    Fixed a potential device reset failure with JACK.
+
+    Improved handling of unsupported channel configurations with WASAPI. Such
+    setups will now try to output at least a stereo mix.
+
+    Improved clarity a bit for the HRTF second-order ambisonic decoder.
+
+    Improved detection of compatible layouts for SOFA files in makemhr and
+    sofa-info.
+
+    Added the ability to resample HRTFs on load. MHR files no longer need to
+    match the device sample rate to be usable.
+
+    Added an option to limit the HRTF's filter length.
+
+openal-soft-1.20.0:
+
+    Converted the library codebase to C++11. A lot of hacks and custom
+    structures have been replaced with standard or cleaner implementations.
+
+    Partially implemented the Vocal Morpher effect.
+
+    Fixed the bsinc SSE resamplers on non-GCC compilers.
+
+    Fixed OpenSL capture.
+
+    Fixed support for extended capture formats with OpenSL.
+
+    Fixed handling of WASAPI not reporting a default device.
+
+    Fixed performance problems relating to semaphores on macOS.
+
+    Modified the bsinc12 resampler's transition band to better avoid aliasing
+    noise.
+
+    Modified alcResetDeviceSOFT to attempt recovery of disconnected devices.
+
+    Modified the virtual speaker layout for HRTF B-Format decoding.
+
+    Modified the PulseAudio backend to use a custom processing loop.
+
+    Renamed the makehrtf utility to makemhr.
+
+    Improved the efficiency of the bsinc resamplers when up-sampling.
+
+    Improved the quality of the bsinc resamplers slightly.
+
+    Improved the efficiency of the HRTF filters.
+
+    Improved the HRTF B-Format decoder coefficient generation.
+
+    Improved reverb feedback fading to be more consistent with pan fading.
+
+    Improved handling of sources that end prematurely, avoiding loud clicks.
+
+    Improved the performance of some reverb processing loops.
+
+    Added fast_bsinc12 and 24 resamplers that improve efficiency at the cost of
+    some quality. Notably, down-sampling has less smooth pitch ramping.
+
+    Added support for SOFA input files with makemhr.
+
+    Added a build option to use pre-built native tools. For cross-compiling,
+    use with caution and ensure the native tools' binaries are kept up-to-date.
+
+    Added an adjust-latency config option for the PulseAudio backend.
+
+    Added basic support for multi-field HRTFs.
+
+    Added an option for mixing first- or second-order B-Format with HRTF
+    output. This can improve HRTF performance given a number of sources.
+
+    Added an RC file for proper DLL version information.
+
+    Disabled some old KDE workarounds by default. Specifically, PulseAudio
+    streams can now be moved (KDE may try to move them after opening).
+
+openal-soft-1.19.1:
+
+    Implemented capture support for the SoundIO backend.
+
+    Fixed source buffer queues potentially not playing properly when a queue
+    entry completes.
+
+    Fixed possible unexpected failures when generating auxiliary effect slots.
+
+    Fixed a crash with certain reverb or device settings.
+
+    Fixed OpenSL capture.
+
+    Improved output limiter response, better ensuring the sample amplitude is
+    clamped for output.
+
+openal-soft-1.19.0:
+
+    Implemented the ALC_SOFT_device_clock extension.
+
+    Implemented the Pitch Shifter, Frequency Shifter, and Autowah effects.
+
+    Fixed compiling on FreeBSD systems that use freebsd-lib 9.1.
+
+    Fixed compiling on NetBSD.
+
+    Fixed the reverb effect's density scale and panning parameters.
+
+    Fixed use of the WASAPI backend with certain games, which caused odd COM
+    initialization errors.
+
+    Increased the number of virtual channels for decoding Ambisonics to HRTF
+    output.
+
+    Changed 32-bit x86 builds to use SSE2 math by default for performance.
+    Build-time options are available to use just SSE1 or x87 instead.
+
+    Replaced the 4-point Sinc resampler with a more efficient cubic resampler.
+
+    Renamed the MMDevAPI backend to WASAPI.
+
+    Added support for 24-bit, dual-ear HRTF data sets. The built-in data set
+    has been updated to 24-bit.
+
+    Added a 24- to 48-point band-limited Sinc resampler.
+
+    Added an SDL2 playback backend. Disabled by default to avoid a dependency
+    on SDL2.
+
+    Improved the performance and quality of the Chorus and Flanger effects.
+
+    Improved the efficiency of the band-limited Sinc resampler.
+
+    Improved the Sinc resampler's transition band to avoid over-attenuating
+    higher frequencies.
+
+    Improved the performance of some filter operations.
+
+    Improved the efficiency of object ID lookups.
+
+    Improved the efficienty of internal voice/source synchronization.
+
+    Improved AL call error logging with contextualized messages.
+
+    Removed the reverb effect's modulation stage. Due to the lack of reference
+    for its intended behavior and strength.
+
+openal-soft-1.18.2:
+
+    Fixed resetting the FPU rounding mode after certain function calls on
+    Windows.
+
+    Fixed use of SSE intrinsics when building with Clang on Windows.
+
+    Fixed a crash with the JACK backend when using JACK1.
+
+    Fixed use of pthread_setnane_np on NetBSD.
+
+    Fixed building on FreeBSD with an older freebsd-lib.
+
+    OSS now links with libossaudio if found at build time (for NetBSD).
+
+openal-soft-1.18.1:
+
+    Fixed an issue where resuming a source might not restart playing it.
+
+    Fixed PulseAudio playback when the configured stream length is much less
+    than the requested length.
+
+    Fixed MMDevAPI capture with sample rates not matching the backing device.
+
+    Fixed int32 output for the Wave Writer.
+
+    Fixed enumeration of OSS devices that are missing device files.
+
+    Added correct retrieval of the executable's path on FreeBSD.
+
+    Added a config option to specify the dithering depth.
+
+    Added a 5.1 decoder preset that excludes front-center output.
+
+openal-soft-1.18.0:
+
+    Implemented the AL_EXT_STEREO_ANGLES and AL_EXT_SOURCE_RADIUS extensions.
+
+    Implemented the AL_SOFT_gain_clamp_ex, AL_SOFT_source_resampler,
+    AL_SOFT_source_spatialize, and ALC_SOFT_output_limiter extensions.
+
+    Implemented 3D processing for some effects. Currently implemented for
+    Reverb, Compressor, Equalizer, and Ring Modulator.
+
+    Implemented 2-channel UHJ output encoding. This needs to be enabled with a
+    config option to be used.
+
+    Implemented dual-band processing for high-quality ambisonic decoding.
+
+    Implemented distance-compensation for surround sound output.
+
+    Implemented near-field emulation and compensation with ambisonic rendering.
+    Currently only applies when using the high-quality ambisonic decoder or
+    ambisonic output, with appropriate config options.
+
+    Implemented an output limiter to reduce the amount of distortion from
+    clipping.
+
+    Implemented dithering for 8-bit and 16-bit output.
+
+    Implemented a config option to select a preferred HRTF.
+
+    Implemented a run-time check for NEON extensions using /proc/cpuinfo.
+
+    Implemented experimental capture support for the OpenSL backend.
+
+    Fixed building on compilers with NEON support but don't default to having
+    NEON enabled.
+
+    Fixed support for JACK on Windows.
+
+    Fixed starting a source while alcSuspendContext is in effect.
+
+    Fixed detection of headsets as headphones, with MMDevAPI.
+
+    Added support for AmbDec config files, for custom ambisonic decoder
+    configurations. Version 3 files only.
+
+    Added backend-specific options to alsoft-config.
+
+    Added first-, second-, and third-order ambisonic output formats. Currently
+    only works with backends that don't rely on channel labels, like JACK,
+    ALSA, and OSS.
+
+    Added a build option to embed the default HRTFs into the lib.
+
+    Added AmbDec presets to enable high-quality ambisonic decoding.
+
+    Added an AmbDec preset for 3D7.1 speaker setups.
+
+    Added documentation regarding Ambisonics, 3D7.1, AmbDec config files, and
+    the provided ambdec presets.
+
+    Added the ability for MMDevAPI to open devices given a Device ID or GUID
+    string.
+
+    Added an option to the example apps to open a specific device.
+
+    Increased the maximum auxiliary send limit to 16 (up from 4). Requires
+    requesting them with the ALC_MAX_AUXILIARY_SENDS context creation
+    attribute.
+
+    Increased the default auxiliary effect slot count to 64 (up from 4).
+
+    Reduced the default period count to 3 (down from 4).
+
+    Slightly improved automatic naming for enumerated HRTFs.
+
+    Improved B-Format decoding with HRTF output.
+
+    Improved internal property handling for better batching behavior.
+
+    Improved performance of certain filter uses.
+
+    Removed support for the AL_SOFT_buffer_samples and AL_SOFT_buffer_sub_data
+    extensions. Due to conflicts with AL_EXT_SOURCE_RADIUS.
+
+openal-soft-1.17.2:
+
+    Implemented device enumeration for OSSv4.
+
+    Fixed building on OSX.
+
+    Fixed building on non-Windows systems without POSIX-2008.
+
+    Fixed Dedicated Dialog and Dedicated LFE effect output.
+
+    Added a build option to override the share install dir.
+
+    Added a build option to static-link libgcc for MinGW.
+
+openal-soft-1.17.1:
+
+    Fixed building with JACK and without PulseAudio.
+
+    Fixed building on FreeBSD.
+
+    Fixed the ALSA backend's allow-resampler option.
+
+    Fixed handling of inexact ALSA period counts.
+
+    Altered device naming scheme on Windows backends to better match other
+    drivers.
+
+    Updated the CoreAudio backend to use the AudioComponent API. This clears up
+    deprecation warnings for OSX 10.11, although requires OSX 10.6 or newer.
+
+openal-soft-1.17.0:
+
+    Implemented a JACK playback backend.
+
+    Implemented the AL_EXT_BFORMAT and AL_EXT_MULAW_BFORMAT extensions.
+
+    Implemented the ALC_SOFT_HRTF extension.
+
+    Implemented C, SSE3, and SSE4.1 based 4- and 8-point Sinc resamplers.
+
+    Implemented a C and SSE based band-limited Sinc resampler. This does 12- to
+    24-point Sinc resampling, and performs anti-aliasing.
+
+    Implemented B-Format output support for the wave file writer. This creates
+    FuMa-style first-order Ambisonics wave files (AMB format).
+
+    Implemented a stereo-mode config option for treating stereo modes as either
+    speakers or headphones.
+
+    Implemented per-device configuration options.
+
+    Fixed handling of PulseAudio and MMDevAPI devices that have identical
+    descriptions.
+
+    Fixed a potential lockup when stopping playback of suspended PulseAudio devices.
+
+    Fixed logging of Unicode characters on Windows.
+
+    Fixed 5.1 surround sound channels. By default it will now use the side
+    channels for the surround output. A configuration using rear channels is
+    still available.
+
+    Fixed the QSA backend potentially altering the capture format.
+
+    Fixed detecting MMDevAPI's default device.
+
+    Fixed returning the default capture device name.
+
+    Fixed mixing property calculations when deferring context updates.
+
+    Altered the behavior of alcSuspendContext and alcProcessContext to better
+    match certain Windows drivers.
+
+    Altered the panning algorithm, utilizing Ambisonics for better side and
+    back positioning cues with surround sound output.
+
+    Improved support for certain older Windows apps.
+
+    Improved the alffplay example to support surround sound streams.
+
+    Improved support for building as a sub-project.
+
+    Added an HRTF playback example.
+
+    Added a tone generator output test.
+
+    Added a toolchain to help with cross-compiling to Android.
+
+openal-soft-1.16.0:
+
+    Implemented EFX Chorus, Flanger, Distortion, Equalizer, and Compressor
+    effects.
+
+    Implemented high-pass and band-pass EFX filters.
+
+    Implemented the high-pass filter for the EAXReverb effect.
+
+    Implemented SSE2 and SSE4.1 linear resamplers.
+
+    Implemented Neon-enhanced non-HRTF mixers.
+
+    Implemented a QSA backend, for QNX.
+
+    Implemented the ALC_SOFT_pause_device, AL_SOFT_deferred_updates,
+    AL_SOFT_block_alignment, AL_SOFT_MSADPCM, and AL_SOFT_source_length
+    extensions.
+
+    Fixed resetting mmdevapi backend devices.
+
+    Fixed clamping when converting 32-bit float samples to integer.
+
+    Fixed modulation range in the Modulator effect.
+
+    Several fixes for the OpenSL playback backend.
+
+    Fixed device specifier names that have Unicode characters on Windows.
+
+    Added support for filenames and paths with Unicode (UTF-8) characters on
+    Windows.
+
+    Added support for alsoft.conf config files found in XDG Base Directory
+    Specification locations (XDG_CONFIG_DIRS and XDG_CONFIG_HOME, or their
+    defaults) on non-Windows systems.
+
+    Added a GUI configuration utility (requires Qt 4.8).
+
+    Added support for environment variable expansion in config options (not
+    keys or section names).
+
+    Added an example that uses SDL2 and ffmpeg.
+
+    Modified examples to use SDL_sound.
+
+    Modified CMake config option names for better sorting.
+
+    HRTF data sets specified in the hrtf_tables config option may now be
+    relative or absolute filenames.
+
+    Made the default HRTF data set an external file, and added a data set for
+    48khz playback in addition to 44.1khz.
+
+    Added support for C11 atomic methods.
+
+    Improved support for some non-GNU build systems.
+
+openal-soft-1.15.1:
+
+    Fixed a regression with retrieving the source's AL_GAIN property.
+
+openal-soft-1.15:
+
+    Fixed device enumeration with the OSS backend.
+
+    Reorganized internal mixing logic, so unneeded steps can potentially be
+    skipped for better performance.
+
+    Removed the lookup table for calculating the mixing pans. The panning is
+    now calculated directly for better precision.
+
+    Improved the panning of stereo source channels when using stereo output.
+
+    Improved source filter quality on send paths.
+
+    Added a config option to allow PulseAudio to move streams between devices.
+
+    The PulseAudio backend will now attempt to spawn a server by default.
+
+    Added a workaround for a DirectSound bug relating to float32 output.
+
+    Added SSE-based mixers, for HRTF and non-HRTF mixing.
+
+    Added support for the new AL_SOFT_source_latency extension.
+
+    Improved ALSA capture by avoiding an extra buffer when using sizes
+    supported by the underlying device.
+
+    Improved the makehrtf utility to support new options and input formats.
+
+    Modified the CFLAGS declared in the pkg-config file so the "AL/" portion of
+    the header includes can optionally be omitted.
+
+    Added a couple example code programs to show how to apply reverb, and
+    retrieve latency.
+
+    The configuration sample is now installed into the share/openal/ directory
+    instead of /etc/openal.
+
+    The configuration sample now gets installed by default.
