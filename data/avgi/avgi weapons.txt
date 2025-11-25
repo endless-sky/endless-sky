@@ -67,6 +67,8 @@ outfit "Speckle Coilgun"
 	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed primarily for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
 	description "	Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off its mass driver rounds with relative ease."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 	
 
 outfit "Speckle Turret"
@@ -104,6 +106,8 @@ outfit "Speckle Turret"
 	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it a versatile option for mid-ranged combat."
 	description "	Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer-ranged weapons used by the Avgi, but the sheer firepower it can put out can make it deadly to close targets."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 
 outfit "Speck"
@@ -140,6 +144,7 @@ effect "speck impact"
 
 outfitter "Speck Round Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Speckle Coilgun"
 			has "outfit: Speckle Turret"
@@ -603,13 +608,15 @@ outfit "Tiny VLS"
 			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
-
+	description "This tiny vertical launch system contains nine independent launch cells, each occupying one ton of outfit space. Compatible with small-to-medium Avgi missiles, the cells' contents can be easily swapped to suit a given mission. This array's compact footprint makes it suitable for drones and fighters, though the system still requires a turret mount."
+	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Small VLS"
 	"display name" "Vertical Launch Array (18)"
 	category "Secondary Weapons"
 	series "Secondary Weapons"
-	index 07030
+	index 07031
 	licenses
 		"Twilight Guard"
 	cost 108000
@@ -645,13 +652,15 @@ outfit "Small VLS"
 			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
-
+	description "This small vertical launch system contains 18 independent launch cells in a rectangular array. Designed for flexibility, the system can employ a variety of small or medium-sized missiles. Owing to its large surface footprint, a turret mount is required for the launcher to deploy missiles safely."
+	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Medium VLS"
 	"display name" "Vertical Launch Array (36)"
 	category "Secondary Weapons"
 	series "Secondary Weapons"
-	index 07030
+	index 07032
 	licenses
 		"Twilight Guard"
 	cost 216000
@@ -687,9 +696,11 @@ outfit "Medium VLS"
 			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
-	description "This large vertical launch system is made up of 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
-	description "	Vertical launch systems such as this one are capable of rapidly launching multiple missiles in parallel, but take up quite a bit of space."
+	description "This medium vertical launch system contains 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for swift vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
+	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 
 outfit `"Nettle" KKV`
@@ -764,6 +775,7 @@ effect "fleck impact"
 
 outfitter "Nettle Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Tiny VLS"
 			has "outfit: Small VLS"

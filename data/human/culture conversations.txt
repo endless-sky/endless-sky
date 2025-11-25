@@ -876,6 +876,51 @@ mission "Republic 300 Year Anniversary"
 			`	Web comments and news anchors seem to be particularly excited to comment on the recent victory of the Navy over the mysterious armada of robotic warships that invaded the Far North. Though at a great cost to the northern fleet garrisons, the invading fleets were successfully stopped at the Farpoint base, preventing the ships from causing any further harm. Veterans of the Farpoint battle seem to be hoarding the spotlight, giving emotional reports of their memory of the fight, and of the sacrifices they went through to achieve victory.`
 				goto end
 
+mission "Exotic Life: Buccaneer Bay"
+	minor
+	source "Buccaneer Bay"
+	"offer precedence" 5
+	to offer
+		random < 10
+		credits > 379
+	on offer
+		conversation
+			`You wander the planet's sun-bleached boardwalk, passing dozens of rum-soaked bars. Eventually, you see a cramped restaurant squeezed between a closed souvenir shop and yet another bar. The building is painted coral with a battered tin awning, and a hand-written board dangles above the door with the words "Fresh Delish Dish Fish."`
+			`	A lanky waiter with a braided silver beard and cybernetic left eye aggressively waves you in and gives a practiced yell: "Best Dish Fish in town! Once-in-a-lifetime experience, plus a worlds-renowned souvenir! Try the Dish Fish - the fish that's a dish!"`
+			choice
+				`	"What?"`
+				`	"How much?"`
+					goto price
+				`	"No thanks."`
+					decline
+			`	"Dish Fish! It's a fish that's a dish. Buccaneer Bay's famous for 'em." The waiter glares at you in mild annoyance. "It's a flat fish with a big head. The skull's flat and has three horns so it stands on its own as a plate, and we cook the rest of the fish to serve on it. You can keep the skull as a plate after. Dish. Fish."`
+			label price
+			`	The waiter puts a hand on your shoulder. "Only 99 credits, what a deal! The skull alone'll cost ya 200 credits anywhere else. What'ya say, want the meal of a lifetime?"`
+			choice
+				`	"Sure."`
+				`	"No thanks."`
+					decline
+			action
+				payment -379
+			`	"Great! Service fee's included." The waiter snatches your credits, slaps a laminated menu and receipt into your hands, and shoves you into a cramped booth before hurrying away towards the kitchen. You look at the receipt to find that you've been charged 20 credits for a 'seating fee,' 30 credits for a 'convenience fee,' 50 credits for 'fish cleaning,' 80 credits for 'dish assembly,' and 100 credits for a 'service charge' - a total of 379 credits.`
+			`	Seated inside, the restaurant is even tighter than it looked from outdoors. There's a single row of tiny tables, a low ceiling, and a handful of other patrons who look like clueless tourists. The menu itself covers seafood and sea-adjacent food like Nine-Eye Pie, Hand-Mashed Helmet, Hydrozoan Lasanga, and a suspiciously named 'Captain's Catch.' The top of the menu has a headline dish written in sloppy cursive with a prominent infobox beneath taking up a full third of the menu:`
+			``
+			`		Dish Fish: Natural Wonder and Souvenir - 99 credits`
+			`		(additional fees not included)`
+			`			- The oceans of Buccaneer Bay are full of jawless, fish-like creatures commonly known as Buccaneer Bay Boneheads that have a single, bone-like plate over their head and body, an oversized skull!`
+			`			- Ecologically, they are commonly filter feeders, deposit feeders, and grazers, consuming tiny organisms or detritus from the water, sediment, or ocean floor.`
+			`			- Dish Fish differ from other Buccaneer Bay Boneheads: they have a nearly perfectly circular head-plate, three small horns to fend off predators, and no eyes because they live on deep, low-light ocean floors.`
+			`			- These traits make a Dish Fish head-plate the perfect souvenir dish: round, sealed, with a built-in tripod. Get yours today!`
+			`	The waiter returns, and the plate is distinctive. He brings out a sizable ivory disc, the bone smooth and polished, balanced by three tapering horns on the table. On the plate itself sits a single charred tail, skewered and grilled until the skin crackles. It looks both impressive and appetizing.`
+			choice
+				`	(Take a bite.)`
+				`	(Thank the waiter and leave.)`
+					goto thanks
+			`	You take a bite. The meat is... an awful attempt at food. There's a musty, sulfurous note at the beginning, like wet compost, while beneath it is an almost-rotten tang that belies the visual freshness of the fish. The closest thing to a redeeming flavor is a faint, earthy aftertaste of salty mud.`
+			label thanks
+			`	The waiter comes to flick the Dish Fish clean with a rag, thanks you for patronizing the establishment, and jerks a thumb towards the door - a punctuated close to your 'meal of a lifetime.'`
+				decline
+
 mission "Exotic Life: Delve"
 	minor
 	source Delve
@@ -1261,6 +1306,53 @@ mission "Exotic Life: Albatross"
 				clear "heard weasels"
 				clear "heard polecats"
 
+mission "Exotic Life: New Greenland"
+	minor
+	source "New Greenland"
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You step down onto the landing pad and your breath makes a white halo. The spaceport is unusually foggy, and the chilling wind causes a reflexive shiver to run up the base of your neck.`
+			`	A grizzled man emerges from the fog with an easy, unhurried gait, a laser rifle slung over one shoulder. A hulking beast lumbers at his side: a horse-sized hound cloaked in heavy, wooly fur rimmed with frost. Two enormous tusks thrust from its muzzle like pale sabers. Steam billows from its flared nostrils as it turns its head almost lazily toward you. Its eyes carry a grim patience.`
+			`	The man sees you and grunts, "Don't stare at a Mammoth Mastiff."`
+			choice
+				`	"What's a Mammoth Mastiff?"`
+				`	"Don't tell me what to do!"`
+					goto ending
+				`	(Avert your gaze and get back to your ship.)`
+					decline
+			`	"A phantom from harsher times, bred on Hestia when it was still lifeless ice. Now nothing more than a tool of the trade." He pats the creature and it lets out a low rumble.`
+			label ending
+			`	The man bellows a deep laugh as the fog thickens. The creature's eyes are the last things to pierce the haze before man and mastiff alike fade away. You find yourself alone once more.`
+				decline
+
+mission "Exotic Life: Mainsail"
+	minor
+	source Mainsail
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You steady yourself on the floating city-ship as the necklace of barges, docks, and gantries creak and sway under the influence of Mainsail's endless ocean waves. Salt spray stings your face as you head out towards the ring. One barge rocks close, its deck slick with algae, while a local fearlessly walks a four-legged whale-like creature on a leash - a seal-sized mass of compact muscle under slate fur, with webbed paws that click on the planks, a long whiskered snout bristling with needlelike teeth and a broad, flattened tail that wags with anticipation.`
+			`	The local catches you gawking, flashes a salt-creased grin and calls, "Never seen a seadog before?`
+			choice
+				`	"Can't say I have!"`
+				`	"What is that thing?"`
+				`	"Of course I've seen a seadog before!"`
+					goto seen
+				`	(Avert your gaze and get back to your ship.)`
+					decline
+			action
+				set "exotic animals: mainsail seadog known"
+			`	"Ah, that, my friend, is a Mainsail Seadog, the premier water-sporting hound of the Paradise Planets. Bred some four centuries ago in the ateliers of this very planet, they marry old water-dog stock with dolphin and otter blood, with a touch of beaver for the tail, crocodile for the jaws, and barracuda for the strike," he says with a wink. "They'll nose out a school, haul in the finest fish, and lay a damp, grateful head upon your boots - a prized rarity since the Republic put a lid on the gene labs."`
+				goto ending
+			label seen
+			`	"Glad to hear that, my friend! Too few have seen the prized rarity of a Mainsail Seadog nowadays, since the Republic put a lid on the labs."`
+			label ending
+			`	With a practiced motion he hops from the barge into a sleek, unpowered skiff. The seadog slips from the barge like a ribbon, dives cleanly into the sea, and sets its broad tail to the waves. In a spray of salt the steely creature hauls them off, and the boat recedes like a chariot of Poseidon into the harbor haze.`
+				decline
+
 mission "Little Vienna in New Austria"
 	minor
 	source "New Austria"
@@ -1291,6 +1383,28 @@ mission "Little Vienna in New Austria"
 			`	You thank her kindly but explain that you're not in the mood for a concert. She nods understandingly, her eyes softening with disappointed yet gracious acceptance. You finish your exploration of the "Kleinwean Bezirk", absorbing the ambiance of the cobblestone street as the scents of coffee mingle with the sound of music.`
 			label backtoship
 			`	With the atmosphere steeped in nostalgia for a distant city on a distant world long past, you return to your ship.`
+
+mission "Struggling Author Gone Missing"
+	minor
+	landing
+	source "Zug"
+	to offer
+		random < 88
+		has "event: beyond the hyperdrive is published"
+	on offer
+		conversation
+			`As your ship settles down on landing pad A5B, two young adults approach. One speaks up, "Hello, Captain. Have you seen a woman named Anna Fangvin anywhere? She was last seen in the spaceport, and must have left in someone's spaceship."`
+			`	Around the spaceport you see a few other groups doing the same thing. Anna may have been more popular than she thought.`
+			choice
+				`	"She went to another star system a long ways from here. You won't be able to get to her."`
+				`	"No, I don't know. Sorry."`
+					goto continue
+			`	"If you ever see her again, tell her that the Coalition of Book Enjoyers appreciates her work. It wouldn't be possible for you to bring us to her location?" You respond in the negative, and the two go off to the other groups to spread the news.`
+			label continue
+			`	Posters hang on many of the spaceport's walls - here too, Anna's books must have been famous. The posters read:`
+			`	MISSING:`
+			`		Anna Fangvin, a young author whose books have been shared throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
+				decline
 
 phrase "racetrack"
 	word

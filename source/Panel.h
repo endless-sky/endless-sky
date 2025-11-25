@@ -93,6 +93,8 @@ protected:
 	virtual bool Scroll(double dx, double dy);
 	virtual bool GamePadState(GamePad &controller);
 
+	virtual void Resize();
+
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
 	virtual void EndEditing() {}
@@ -162,6 +164,8 @@ private:
 	bool DoScroll(double dx, double dy);
 
 	void DoDraw();
+
+	void DoResize();
 
 	// Call a method on all the children in reverse order, and then on this
 	// object. Recursion stops as soon as any child returns true.

@@ -42,7 +42,7 @@ class TextArea;
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
-	virtual ~PlanetPanel() override;
+	~PlanetPanel();
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -55,6 +55,8 @@ protected:
 
 	virtual bool NextPanel() override;
 	virtual bool PrevPanel() override;
+
+	virtual void Resize() override;
 
 
 private:

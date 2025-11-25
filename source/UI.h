@@ -107,6 +107,7 @@ public:
 
 	void NextPanel(bool dir);
 
+	void AdjustViewport() const;
 
 	// Get the current mouse position.
 	static Point GetMouse();

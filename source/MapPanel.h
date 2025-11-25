@@ -44,14 +44,14 @@ class System;
 class MapPanel : public Panel {
 public:
 	// Enumeration for how the systems should be colored:
-	static const int SHOW_SHIPYARD = -1;
-	static const int SHOW_OUTFITTER = -2;
-	static const int SHOW_VISITED = -3;
-	static const int SHOW_SPECIAL = -4;
-	static const int SHOW_GOVERNMENT = -5;
-	static const int SHOW_REPUTATION = -6;
-	static const int SHOW_DANGER = -7;
-	static const int SHOW_STARS = -8;
+	static constexpr int SHOW_SHIPYARD = -1;
+	static constexpr int SHOW_OUTFITTER = -2;
+	static constexpr int SHOW_VISITED = -3;
+	static constexpr int SHOW_SPECIAL = -4;
+	static constexpr int SHOW_GOVERNMENT = -5;
+	static constexpr int SHOW_REPUTATION = -6;
+	static constexpr int SHOW_DANGER = -7;
+	static constexpr int SHOW_STARS = -8;
 
 	static const unsigned MAX_MISSION_POINTERS_DRAWN;
 	static const float OUTER;

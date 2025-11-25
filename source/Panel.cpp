@@ -345,6 +345,12 @@ bool Panel::GamePadState(GamePad &controller)
 
 
 
+void Panel::Resize()
+{
+}
+
+
+
 bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	return EventVisit(&Panel::KeyDown, key, mod, command, isNewPress);
@@ -392,6 +398,15 @@ void Panel::DoDraw()
 	Draw();
 	for(auto &child : children)
 		child->DoDraw();
+}
+
+
+
+void Panel::DoResize()
+{
+	Resize();
+	for(auto &child : children)
+		child->DoResize();
 }
 
 
@@ -528,7 +543,7 @@ void Panel::CursorToFirstZone()
 
 
 
-const std::vector<std::shared_ptr<Panel>> &Panel::GetChildren()
+const vector<shared_ptr<Panel>> &Panel::GetChildren()
 {
 	return children;
 }

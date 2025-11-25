@@ -76,7 +76,7 @@ TradingPanel::~TradingPanel()
 		else
 			message += "for a total profit of " + Format::CreditString(profit) + ".";
 
-		Messages::Add(message, Messages::Importance::High);
+		Messages::Add({message, GameData::MessageCategories().Get("normal")});
 	}
 }
 

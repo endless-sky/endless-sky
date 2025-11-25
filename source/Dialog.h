@@ -98,6 +98,8 @@ protected:
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool GamePadState(GamePad &controller) override;
 
+	virtual void Resize() override;
+
 
 private:
 	// Common code from all three constructors:
