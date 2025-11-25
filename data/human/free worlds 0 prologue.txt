@@ -202,7 +202,7 @@ mission "Pact Questioning"
 	landing
 	source
 		attributes "near earth" "paradise"
-		government "Republic" "Deep"
+		government "Republic"
 	to offer
 		not "chosen sides"
 		not "FW Katya 1B: active"
