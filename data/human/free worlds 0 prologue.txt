@@ -1372,7 +1372,7 @@ mission "FW Katya 1C"
 	invisible
 	landing
 	source
-		government "Republic" "Deep"
+		government "Republic"
 		attributes spaceport
 	to offer
 		has "FW Katya 1B: active"
