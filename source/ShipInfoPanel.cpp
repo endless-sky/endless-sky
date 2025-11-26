@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Table.h"
 #include "text/Truncate.h"
 #include "UI.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -547,7 +548,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		double &y = nextY[isRight][isTurret];
 		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
 		bool isHover = (index == hoverIndex);
-		if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.GetOutfit()->Icon())
+		if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.GetWeapon()->Icon())
 		{
 			groupNumberLayout.align = isRight ? Alignment::RIGHT : Alignment::LEFT;
 			font.Draw({'(' + to_string(hardpoint.GetGroup()) + ')', groupNumberLayout}, {x, y + TEXT_OFF}, bright);
@@ -596,7 +597,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		const Hardpoint &hardpoint = ship.Weapons()[draggingIndex];
 		const Outfit *outfit = hardpoint.GetOutfit();
 		string name = outfit ? outfit->DisplayName() : "[empty]";
-		if(outfit && !hardpoint.IsSpecial() && !outfit->Icon())
+		if(outfit && !hardpoint.IsSpecial() && !outfit->GetWeapon()->Icon())
 			name += " (" + to_string(hardpoint.GetGroup()) + ')';
 		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
