@@ -3253,6 +3253,13 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 
 		// Don't chase anything that will take more than 10 seconds to reach.
 		double bestTime = 600.;
+
+		// For backwards compatibility, default the flotsam scan power to 64, but allow explicit values to be less.
+		double scanRangeMetric = ship.Attributes().Get("flotsam scan power");
+		if(scanRangeMetric <= 0)
+			scanRangeMetric = GameData::GetGamerules().MinimumFlotsamScanPower();
+		scanRangeMetric *= 10000.;
+
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
 			if(!ship.CanPickUp(*it) || avoid.contains(it.get()))
@@ -3261,9 +3268,11 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 			// always attempt to pick up nearby flotsams when they are given a harvest order, and so ignore
 			// the facing angle check.
 			Point p = it->Position() - ship.Position();
-			double range = p.Length();
+			double rangeSquared = p.LengthSquared();
+			if(rangeSquared > scanRangeMetric)
+				continue;
 			// Player ships do not have a restricted field of view so that they target flotsam behind them.
-			if(range > 800. || (range > 100. && p.Unit().Dot(ship.Facing().Unit()) < .9 && !ship.IsYours()))
+			if(rangeSquared > 10000. && !ship.IsYours() && p.Unit().Dot(ship.Facing().Unit()) < .9)
 				continue;
 
 			// Estimate how long it would take to intercept this flotsam.

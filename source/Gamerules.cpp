@@ -77,6 +77,8 @@ void Gamerules::Load(const DataNode &node)
 		}
 		else if(key == "fleet multiplier")
 			fleetMultiplier = max<double>(0., child.Value(1));
+		else if(key == "minimum flotsam scan power")
+			minimumFlotsamScanPower = max<double>(0., child.Value(1));
 		else
 			miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -208,4 +210,11 @@ optional<double> Gamerules::SystemArrivalMin() const
 double Gamerules::FleetMultiplier() const
 {
 	return fleetMultiplier;
+}
+
+
+
+double Gamerules::MinimumFlotsamScanPower() const
+{
+	return minimumFlotsamScanPower;
 }
