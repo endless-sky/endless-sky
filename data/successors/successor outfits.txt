@@ -101,9 +101,8 @@ outfit "Shield Cortex Interface"
 	mass 3
 	"outfit space" -3
 	"shield protection" 0.33
-	"shield generation multiplier" -0.05
 	"shield connection point" -2
-	description "This compact tract of electrical fibers connects two Successor shield cortices to function as a single unit, preventing the shield-softening effect of one of the generators from unduly reducing the durability of the ship's shields at the cost of slightly reducing efficiency. The effect scales poorly past two connected generators."
+	description "This compact tract of electrical fibers connects two Successor shield cortices to function as a single unit, preventing the shield-softening effect of one of the generators from unduly reducing the durability of the ship's shields. The effect scales poorly past two connected generators."
 
 
 outfit `1-"Uurau" Betavoltaic Cell`
