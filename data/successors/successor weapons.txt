@@ -357,7 +357,7 @@ outfit `"Sjeja" Kinetic Lance`
 		"firing energy" 1900
 		"firing ion" 3.0
 		"firing heat" 4000
-		"shield damage" 1336
+		"shield damage" 1069
 		"hull damage" 1920
 		"piercing" 0.15
 		"hit force" 800
