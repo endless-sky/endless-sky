@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sound.h"
 
 #include "../Files.h"
+#include "../Logger.h"
 #include "supplier/WavSupplier.h"
 
 #include <cstdint>
@@ -26,7 +27,7 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t &frequency);
+	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t frequency);
 	uint32_t Read4(const shared_ptr<iostream> &in);
 	uint16_t Read2(const shared_ptr<iostream> &in);
 }
@@ -46,10 +47,12 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 	shared_ptr<iostream> in = Files::Open(path);
 	if(!in)
 		return false;
-	uint32_t frequency = 0;
-	uint32_t bytes = ReadHeader(in, frequency);
+	uint32_t bytes = ReadHeader(in, AudioSupplier::SAMPLE_RATE);
 	if(!bytes)
+	{
+		Logger::LogError("WAV file uses an unsupported format. Only 44100Hz little-endian 16-bit PCM is supported.");
 		return false;
+	}
 
 	// Read 16-bit mono from the file.
 	vector<char> data(bytes);
@@ -106,7 +109,7 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t &frequency)
+	uint32_t ReadHeader(shared_ptr<iostream> &in, uint32_t frequency)
 	{
 		uint32_t chunkID = Read4(in);
 		if(chunkID != 0x46464952) // "RIFF" in big endian.
@@ -132,7 +135,7 @@ namespace {
 
 				uint16_t audioFormat = Read2(in);
 				uint16_t numChannels = Read2(in);
-				frequency = Read4(in);
+				uint32_t fileFrequency = Read4(in);
 				uint32_t byteRate = Read4(in);
 				uint32_t blockAlign = Read2(in);
 				uint32_t bitsPerSample = Read2(in);
@@ -146,6 +149,8 @@ namespace {
 				if(numChannels != 1)
 					return 0;
 				if(bitsPerSample != 16)
+					return 0;
+				if(fileFrequency != frequency)
 					return 0;
 				if(byteRate != frequency * numChannels * bitsPerSample / 8)
 					return 0;

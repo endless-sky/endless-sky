@@ -180,17 +180,17 @@ color "warning conflict" .315 .27 .12 1.
 color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
-color "message importance highest" 1. .5 0. 1.
-color "message importance high" 1. 1. 1. 1.
-color "message importance info" 0. 1. .5 1.
-color "message importance daily" 1. 1. 1. 1.
-color "message importance low" 1. 1. 1. 1.
+color "message category high" 1. .5 0. 1.
+color "message category normal" 1. 1. 1. 1.
+color "message category info" 0. 1. .5 1.
+color "message category daily" 1. 1. 1. 1.
+color "message category low" 1. 1. 1. 1.
 
-color "message log importance highest" 1. .5 0. 1.
-color "message log importance high" .75 .75 .75 1.
-color "message log importance info" 0. 1. .5 1.
-color "message log importance daily" 0. .5 1. 1.
-color "message log importance low" .75 .75 .75 1.
+color "message log category high" 1. .5 0. 1.
+color "message log category normal" .75 .75 .75 1.
+color "message log category info" 0. 1. .5 1.
+color "message log category daily" 0. .5 1. 1.
+color "message log category low" .75 .75 .75 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
@@ -576,6 +576,19 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
+	
+	label "Additional info"
+		from -275 34
+		align top right
+		color bright
+	fill
+		from -400 48 to -270 49
+		color medium
+	"wrapped label" "Press '_x' over controls to unbind them. Controls can share the same keybind."
+		from -420 70 to -270 130
+		alignment right
+		color medium
+	
 	visible if "multiple controls pages"
 	sprite "ui/dialog cancel"
 		center -115 210
@@ -701,7 +714,7 @@ interface "plugins"
 		align top left
 		color bright
 	visible
-	line
+	fill
 		from -230 -222 to -10 -221
 	box "plugin list"
 		from -250 -216 to -10 184
@@ -737,7 +750,7 @@ interface "audio"
 	label "Music"
 		center -129.5 -228
 		color bright
-	line
+	fill
 		center -117.5 -208.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -767,7 +780,7 @@ interface "audio"
 	label "UI"
 		center -129.5 -168
 		color bright
-	line
+	fill
 		center -117.5 -148.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -797,7 +810,7 @@ interface "audio"
 	label "Anti-Missiles"
 		center -129.5 -108
 		color bright
-	line
+	fill
 		center -117.5 -88.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -827,7 +840,7 @@ interface "audio"
 	label "Weapons"
 		center -129.5 -48
 		color bright
-	line
+	fill
 		center -117.5 -28.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -857,7 +870,7 @@ interface "audio"
 	label "Engines"
 		center -129.5 12
 		color bright
-	line
+	fill
 		center -117.5 32.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -887,7 +900,7 @@ interface "audio"
 	label "Afterburners"
 		center -129.5 72
 		color bright
-	line
+	fill
 		center -117.5 92.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -917,7 +930,7 @@ interface "audio"
 	label "Hyperdrives"
 		center -129.5 132
 		color bright
-	line
+	fill
 		center -117.5 152.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -947,7 +960,7 @@ interface "audio"
 	label "Explosions"
 		center 129.5 -228
 		color bright
-	line
+	fill
 		center 117.5 -208.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -977,7 +990,7 @@ interface "audio"
 	label "Scans"
 		center 129.5 -168
 		color bright
-	line
+	fill
 		center 117.5 -148.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -1007,7 +1020,7 @@ interface "audio"
 	label "Environment"
 		center 129.5 -108
 		color bright
-	line
+	fill
 		center 117.5 -88.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -1037,7 +1050,7 @@ interface "audio"
 	label "Alerts"
 		center 129.5 -48
 		color bright
-	line
+	fill
 		center 117.5 -28.5
 		dimensions 210 10.5
 		color "volume bar background"
@@ -1070,7 +1083,7 @@ interface "preferences"
 		center 195 210
 		dimensions 120 30
 	value "master volume bar size" 220
-	line
+	fill
 		center 280.5 -97
 		dimensions 10.5 235
 		color "volume bar background"
@@ -1537,6 +1550,15 @@ interface "planet"
 	box "content"
 		from -240 80 to 240 320
 	
+	sprite "ui/planet dialog button"
+		center -340 310
+	button i "Player _Info"
+		center -340 310
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 340 90
@@ -1549,9 +1571,9 @@ interface "planet"
 	
 	visible if "has outfitter"
 	sprite "ui/planet dialog button"
-		center 340 150
+		center 340 145
 	button o "_Outfitter"
-		center 340 150
+		center 340 145
 		dimensions 140 40
 		size 18
 		align right
@@ -1559,18 +1581,18 @@ interface "planet"
 	
 	visible if "has job board"
 	sprite "ui/planet dialog button"
-		center -340 150
+		center -340 145
 	button j "_Job Board"
-		center -340 150
+		center -340 145
 		dimensions 140 40
 		size 18
 		align left
 		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
-		center 340 210
+		center 340 200
 	button h "_Hire Crew"
-		center 340 210
+		center 340 200
 		dimensions 140 40
 		size 18
 		align right
@@ -1588,9 +1610,9 @@ interface "planet"
 	
 	visible if "has bank"
 	sprite "ui/planet dialog button"
-		center -340 210
+		center -340 200
 	button b "_Bank"
-		center -340 210
+		center -340 200
 		dimensions 140 40
 		size 18
 		align left
@@ -1598,9 +1620,9 @@ interface "planet"
 	
 	visible if "has port"
 	sprite "ui/planet dialog button"
-		center -340 270
+		center -340 255
 	"dynamic button" p "port name"
-		center -340 270
+		center -340 255
 		dimensions 140 40
 		size 18
 		align left
@@ -1609,9 +1631,9 @@ interface "planet"
 	
 	active if "has ship"
 	sprite "ui/planet dialog button"
-		center 340 270
+		center 340 310
 	button d "_Depart"
-		center 340 270
+		center 340 310
 		dimensions 140 40
 		size 18
 		align right
@@ -1631,6 +1653,15 @@ interface "planet (small screen)"
 	box "content"
 		from -300 80 to 180 320
 	
+	sprite "ui/planet dialog button"
+		center -400 310
+	button i "Player _Info"
+		center -400 310
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 280 90
@@ -1643,9 +1674,9 @@ interface "planet (small screen)"
 	
 	visible if "has outfitter"
 	sprite "ui/planet dialog button"
-		center 280 150
+		center 280 145
 	button o "_Outfitter"
-		center 280 150
+		center 280 145
 		dimensions 140 40
 		size 18
 		align right
@@ -1653,18 +1684,18 @@ interface "planet (small screen)"
 	
 	visible if "has job board"
 	sprite "ui/planet dialog button"
-		center -400 150
+		center -400 145
 	button j "_Job Board"
-		center -400 150
+		center -400 145
 		dimensions 140 40
 		size 18
 		align left
 		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
-		center 280 210
+		center 280 200
 	button h "_Hire Crew"
-		center 280 210
+		center 280 200
 		dimensions 140 40
 		size 18
 		align right
@@ -1682,9 +1713,9 @@ interface "planet (small screen)"
 	
 	visible if "has bank"
 	sprite "ui/planet dialog button"
-		center -400 210
+		center -400 200
 	button b "_Bank"
-		center -400 210
+		center -400 200
 		dimensions 140 40
 		size 18
 		align left
@@ -1692,9 +1723,9 @@ interface "planet (small screen)"
 	
 	visible if "has port"
 	sprite "ui/planet dialog button"
-		center -400 270
+		center -400 255
 	"dynamic button" p "port name"
-		center -400 270
+		center -400 255
 		dimensions 140 40
 		size 18
 		align left
@@ -1703,9 +1734,9 @@ interface "planet (small screen)"
 	
 	active if "has ship"
 	sprite "ui/planet dialog button"
-		center 280 270
+		center 280 310
 	button d "_Depart"
-		center 280 270
+		center 280 310
 		dimensions 140 40
 		size 18
 		align right
@@ -1885,7 +1916,7 @@ interface "hiring"
 		color "bright"
 		align right
 	
-	line
+	fill
 		center 0 95
 		dimensions 480 1
 	
@@ -1982,7 +2013,7 @@ interface "hiring (small screen)"
 		color "bright"
 		align right
 	
-	line
+	fill
 		center -60 95
 		dimensions 480 1
 	
@@ -2067,7 +2098,7 @@ interface "trade"
 	box "content"
 		from -240 80 to 250 355
 	
-	line
+	fill
 		center 0 95
 		dimensions 480 1
 	
@@ -2099,7 +2130,7 @@ interface "trade (small screen)"
 	box "content"
 		from -310 80 to 190 355
 	
-	line
+	fill
 		center -60 95
 		dimensions 480 1
 	
@@ -2131,7 +2162,7 @@ interface "bank"
 	box "content"
 		from -250 78 to 250 355
 	
-	line
+	fill
 		center 0 95
 		dimensions 480 1
 	
@@ -2148,7 +2179,7 @@ interface "bank (small screen)"
 	box "content"
 		from -310 78 to 190 355
 	
-	line
+	fill
 		center -60 95
 		dimensions 480 1
 	
@@ -2491,6 +2522,12 @@ interface "message log"
 		width 130
 		color active
 		inactive medium
+	sprite "ui/dialog cancel"
+		center 654 -80 bottom left
+	active if "!empty"
+	button c "Clear"
+		center 654 -80 bottom left
+		dimensions 70 30
 
 	visible if "empty"
 	label "(The message log is empty.)"

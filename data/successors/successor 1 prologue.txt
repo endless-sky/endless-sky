@@ -257,7 +257,7 @@ mission "Successors: First Contact 2"
 			`	"Hail, captain! We appreciate thy promptness in complying 'thour request. I am Riijaaora, an honored scion of House Sioeora. I shall speak for today for my fellows and the House."`
 				goto greet
 			label tardy
-				`	"Hail, captain! Thy tardiness reflects poorly upon thee. I am Riijaaora, an honored Scion of House Sioeora. I shall speak for today for my fellows and the House."`
+			`	"Hail, captain! Thy tardiness reflects poorly upon thee. I am Riijaaora, an honored Scion of House Sioeora. I shall speak for today for my fellows and the House."`
 			label greet
 			choice
 				`	(Say nothing.)`
@@ -297,7 +297,7 @@ mission "Successors: First Contact 2"
 				`	"You want me to do your errands? I won't!"`
 					goto rejected
 			label rude
-				`	"Thine appreciation, or thy failure t'appreciate, are not the sort of things that would concern us in this hall. Thou may'st be an alien, still swaddled in thine ignorance, and yet this makes thee even more a guest upon our worlds and, hm... consumer of our grace. Thy compliance is expected; in return, our generosity."`
+			`	"Thine appreciation, or thy failure t'appreciate, are not the sort of things that would concern us in this hall. Thou may'st be an alien, still swaddled in thine ignorance, and yet this makes thee even more a guest upon our worlds and, hm... consumer of our grace. Thy compliance is expected; in return, our generosity."`
 			choice
 				`	"I apologize."`
 				`	"I have no desire to be your servant."`
@@ -308,7 +308,7 @@ mission "Successors: First Contact 2"
 			action
 				log "Met with the leaders of the Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Accepted their offer."
 			`	"Thou show'st wisdom in thy choice. Even now, thy ship is being prepared within the spaceport o'this estate. Thou should'st travel there when thine audience is finished, and there begin thy noble task with haste." The scion pauses for a moment before continuing. "But prithee note, dear Captain..." Sieasej shivers with color as the scion speaks the next sentence, "that we do not entrust our citizen to thee 'thout consideration. If harm befalls the speaker of these words whilst under thy protection, or if thou fail'st t'return them here in thirty days, we will consider thee an enemy and levy upon thee every harm that we can muster."`
-				goto end
+				decline
 			label rejected
 			action
 				log "Met with the leaders of the Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Rejected."
@@ -318,8 +318,6 @@ mission "Successors: First Contact 2"
 			`	Sieasej and the scions turn their backs to you, and a line of soldiers converge from the walls to form a line separating you from them. The lead officer who escorted you inside motions with their weapon for you to leave.`
 			`	As you exit, the door closes behind you, reforming into solid metal.`
 				flee
-			label end
-				decline
 
 mission "Successors: First Contact 3"
 	name "Capture an animal for House Sioeora"
