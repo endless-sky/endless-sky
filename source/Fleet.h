@@ -48,9 +48,9 @@ class Fleet {
 public:
 	Fleet() = default;
 	// Construct and Load() at the same time.
-	Fleet(const DataNode &node);
+	Fleet(const DataNode &node, bool dryRun);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, bool dryRun);
 
 	// Determine if this fleet template uses well-defined data.
 	bool IsValid(bool requireGovernment = true) const;

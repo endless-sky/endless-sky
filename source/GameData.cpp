@@ -268,9 +268,15 @@ void GameData::FinishLoading()
 
 
 
-void GameData::CheckReferences()
+void GameData::CheckReferences(bool audioParseOnly)
 {
+	if(!IsLoaded())
+		return;
+	// Run the check on objects first to add undefined sprites and sounds
+	// from events to the sets.
 	objects.CheckReferences();
+	SpriteSet::CheckReferences();
+	Audio::CheckReferences(audioParseOnly);
 }
 
 
