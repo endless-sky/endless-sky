@@ -45,7 +45,7 @@ phrase "cerberus hails"
 		"My price is far above what you could possibly afford. Do not even attempt to bribe me."
 		"Do you hope to corrupt me? There is no price that is high enough."
 		"I guard the gates of Hell. You will not deter me from that."
-		"You think yourself special? You will die, just like the rest of you ignorant fools!"
+		"You think yourself special? You will die, just like the rest of the ignorant fools!"
 		"There can only be death for the likes of you."
 		"The Masters are superior to you."
 		"You may manage to kill me, but you will never break me."
@@ -66,9 +66,8 @@ phrase "cerberus hails"
 
 phrase "unfettered challenger"
 	word
+		"Do not" 2
 		"The rules of the duel are clear: do not"
-		"Do not"
-		"Do not"
 		"You have asked for a time out, now do not"
 	word
 		" "
@@ -86,11 +85,9 @@ phrase "unfettered challenger"
 		"until you have changed systems or landed"
 		"until the time out is considered over"
 	word
-		", "
-	word
-		"or"
-		"else"
-		"if you do"
+		", or"
+		"; else"
+		"; if you do, "
 	word
 		" "
 	word
@@ -104,12 +101,12 @@ phrase "unfettered challenger"
 		"shall be forced to"
 		"will not hesitate to"
 	word
-		"take action"
-		"shoot"
-		"defend me"
-		"do what it takes to maintain order"
+		" "
 	word
-		"!"
+		" take action!"
+		" shoot!"
+		" defend me!"
+		" do what it takes to maintain order!"
 
 phrase "hostile unfettered challenger"
 	word
@@ -123,28 +120,24 @@ phrase "hostile unfettered challenger"
 		"hiding in fear"
 	word
 		" and come "
-		" and come try and "
+		" and come try to "
 	word
 		"defeat "
 		"fight "
 	word
 		"me."
 	word
-		" Now is the time to reveal ourselves in the glory of battle"
-		" Show me what you got"
-		" Time for a fair fight"
-	word
-		"!"
+		" Now is the time to reveal ourselves in the glory of battle!"
+		" Show me what you've got!"
+		" Time for a fair fight!"
 
 phrase "hostile unfettered challenger"
 	word
-		"Now is not the time for talk"
-		"Yes! Fight me"
-		"Our battle will be sung of in legends for years to come"
-		"Do not try to distract me with hails"
-		"Do you want to surrender already? Ha"
-	word
-		"!"
+		"Now is not the time for talk!"
+		"Yes! Fight me!"
+		"Our battle will be sung of in legends for years to come!"
+		"Do not try to distract me with hails!"
+		"Do you want to surrender already? Ha!"
 
 phrase "hostile unfettered challenger"
 	word
@@ -184,7 +177,7 @@ phrase "advantage in duel"
 	word
 		"figuring out if their engines are weak"
 		"sliding away whilst shooting them back"
-		"using your range advantage, be it in missiles, Ion Cannons or else"
+		"using your range advantage, be it in missiles, Ion Cannons or something else"
 		"getting your hands on powerful prototypes"
 		"going and acquiring alien technology. Even human tech has its uses"
 		"overheating their ship"
@@ -194,7 +187,7 @@ phrase "advantage in duel"
 phrase "hostile unfettered challenger"
 	word
 		"If you happen to know of "
-		"If you heard of "
+		"If you have heard of "
 		"When you come to know about "
 		"Next time you get your hands on "
 		`If you "find" `
@@ -209,7 +202,7 @@ phrase "hostile unfettered challenger"
 	word
 		" weapon combo"
 		" alien weapon"
-		" human junk-weapon"
+		" human armament"
 	word
 		", you should come and "
 	word
@@ -219,9 +212,7 @@ phrase "hostile unfettered challenger"
 	word
 		"."
 	word
-		" You might find some of us willing to buy it, for the proper price"
-	word
-		"!"
+		" You might find some of us willing to buy it, for the proper price!"
 
 phrase "defeated unfettered challenger"
 	word

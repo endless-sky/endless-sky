@@ -83,6 +83,8 @@ mission "First Contact: Wanderer"
 				not "Unfettered 18: Hai Language: active"
 			`	You should probably go back to the Unfettered and speak to them about the need for a diplomat, or any way to understand these aliens. He-Yi should be able to help you with this.`
 			`	Alternatively, you could go to the Hai and ask them for a translator instead, although He-Yi will probably respect you less for it.`
+			label accept
+			
 				accept
 	on visit
 		dialog `Your ship is surrounded by the birdlike aliens. When you step onto the planet, one of the aliens seems to recognize you. "Ka'hai?" they seem to ask, once again mimicking the rodent-like ears of the Hai with their feathered limbs. You shake your head, for you have returned without a Hai to act as an interpreter. Maybe it would be wise to actually go to the Hai before returning to see if one will come with you.`
