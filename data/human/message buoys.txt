@@ -1,0 +1,232 @@
+# Copyright (c) 2025 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Entering Republic space
+mission "Message Buoy: Entering Republic space from Pirates"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	to offer
+		has "chosen sides"
+		not "temporary ceasefire"
+	source
+		government "Republic"
+		neighbor government "Free Worlds"
+	on offer
+		message
+			phrase "entering republic space from pirates"
+
+phrase "entering republic space from pirates"
+	word
+		"Message Buoy: You have reentered Republic-controlled space"
+	word
+		". Prepare to be scanned."
+		". All ships flying rebellious colors are to comply with Navy personnel or will be deemed valid targets."
+		". Piracy is a crime against humanity."
+
+mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	to offer
+		has "chosen sides"
+		not "temporary ceasefire"
+	source
+		government "Republic"
+		neighbor government "Free Worlds"
+		not system "Graffias"
+	on offer
+		message
+			phrase "entering republic space from free worlds (hostile)"
+
+phrase "entering republic space from free worlds (hostile)"
+	word
+		"Message Buoy: You have reentered Republic-controlled space"
+	word
+		". Prepare to be scanned."
+		". All ships flying rebellious colors are to comply with Navy personnel or will be deemed valid targets."
+
+
+
+# Entering Syndicate space
+mission "Message Buoy: Entering Syndicate space"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		government "Syndicate"
+		neighbor government "Republic" "Pirate" "Neutral" "Independent" "Free Worlds"
+	on offer
+		message
+			phrase "entering syndicate space"
+
+phrase "entering syndicate space"
+	word
+		"Message Buoy: Welcome to Syndicate space"
+	word
+		", the galaxy's largest free trade zone."
+		", the galaxy's most economically free region."
+		", the backbone of the Republic's industrial power."
+		", where your future in the galaxy lies."
+		", where opportunities abound."
+		"."
+
+
+
+# Entering Free Worlds space
+mission "Message Buoy: Entering Free Worlds space from Republic"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		government "Free Worlds"
+		neighbor government "Republic"
+	on offer
+		message
+			phrase "entering free worlds space from republic"
+
+phrase "entering free worlds space from republic"
+	word
+		"Message Buoy: You have entered Free space"
+	word
+		". Fly safe, captain."
+		". Freedom for the Southern Rim!"
+
+
+
+# Entering Deep space
+mission "Message Buoy: Entering Deep space"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		system "Zosma"
+	to offer
+		or
+			has "previous system: Alphard"
+			has "previous system: Algieba"
+	on offer
+		message
+			text "Message Buoy: Welcome to Deep space. We bid you peace, prosperity, and progress."
+
+
+
+# Other message buoys
+mission "Message Buoy: Martini Restricted"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		system "Pollux"
+	to offer
+		"reputation: Republic" < 80
+		not "main plot completed"
+	on offer
+		message
+			text "Message Buoy: Due to the attacks of July 4, 3015, access to the Republic planet of Martini is restricted."
+
+mission "Message Buoy: Geminus Restricted"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		system "Castor"
+	to offer
+		"reputation: Republic" < 80
+		not "main plot completed"
+	on offer
+		message
+			text "Message Buoy: Due to the attacks of July 4, 3015, access to the Republic planet of Geminus is restricted."
+
+mission "Message Buoy: Graffias"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		system "Graffias"
+		government "Republic"
+	to offer
+		has "war begins"
+	on offer
+		message
+			text "Message Buoy: You are entering the Republic system of Graffias. Poisonwood is restricted to solely merchant or Republic ships."
+
+mission "Message Buoy: Capella"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		system "Capella"
+	to offer
+		"reputation: Republic" < 10
+	on offer
+		message
+			text "Message Buoy: Access to the Republic planet of Hermes is restricted without spaceport authority approval."
+
+mission "Message Buoy: Pirate Thule"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		system "Men"
+	to offer
+		not "event: Thule becomes independent"
+	on offer
+		message
+			text "Message Buoy: Ahoy spacer, yer' entering the Men system!"
+
+mission "Message Buoy: Independent Thule"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		system "Men"
+	to offer
+		has "event: Thule becomes independent"
+	on offer
+		message
+			text "Message Buoy: Ahoy spacer, yer' entering the Men system. Pirates no longer welcome."
+
+mission "Message Buoy: Megaparsec Inc."
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		system "Mirfak"
+	on offer
+		message
+			text "Message Buoy: Welcome to Mirfak, home of Megaparsec Inc."
+
+mission "Message Buoy: Tarazed Corporation"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		near "Tarazed" 0 3
+		not government "Quarg"
+	on offer
+		message
+			text "Message Buoy: Tarazed Corporation - the galaxy-leading manufacturer of sleek, modern spacecraft."
