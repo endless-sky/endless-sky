@@ -91,7 +91,7 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 
 # FLAC's config is missing find_dependency(Threads), so include it here.
 find_package(Threads REQUIRED)
-if(UNIX)
+if(UNIX AND NOT ES_USE_VCPKG)
 	find_package(FLAC CONFIG QUIET)
 	if(NOT FLAC_FOUND)
 		# Many linux distros use the autotools build of flac, which does not
