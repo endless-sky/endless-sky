@@ -17,6 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <windows.h>
 
+// Declare RtlGetVersion here so that we don't need DDK headers.
+extern "C" NTSTATUS RtlGetVersion(PRTL_OSVERSIONINFOW);
+
 namespace {
 	bool supportsDarkTheme = false;
 	bool supportsWindowRounding = false;
@@ -26,11 +29,8 @@ namespace {
 
 void WinVersion::Init()
 {
-	HMODULE ntdll = LoadLibraryW(L"ntdll.dll");
-	auto rtlGetVersion = reinterpret_cast<NTSTATUS (*)(PRTL_OSVERSIONINFOW)>(GetProcAddress(ntdll, "RtlGetVersion"));
 	RTL_OSVERSIONINFOW versionInfo = {};
-	rtlGetVersion(&versionInfo);
-	FreeLibrary(ntdll);
+	RtlGetVersion(&versionInfo);
 
 	supportsDarkTheme = versionInfo.dwBuildNumber >= 19041;
 	supportsWindowRounding = versionInfo.dwBuildNumber >= 22000;
