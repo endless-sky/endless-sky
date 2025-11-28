@@ -225,9 +225,7 @@ mission "Message Buoy: Tarazed Corporation"
 	destination "Earth"
 	invisible
 	source
-		or
-			near "Tarazed" 2
-			system "Tarazed"
+		near "Tarazed" 0 3
 		not government "Quarg"
 	on offer
 		message
