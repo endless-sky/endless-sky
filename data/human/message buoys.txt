@@ -177,7 +177,7 @@ mission "Message Buoy: Capella"
 	source
 		system "Capella"
 	to offer
-		has "reputation: Republic" < 10
+		"reputation: Republic" < 10
 	on offer
 		message
 			text "Message Buoy: Access to the Republic planet of Hermes is restricted without spaceport authority approval."
@@ -225,7 +225,9 @@ mission "Message Buoy: Tarazed Corporation"
 	destination "Earth"
 	invisible
 	source
-		near system "Tarazed" 3
+		or
+			near "Tarazed" 2
+			system "Tarazed"
 		not government "Quarg"
 	on offer
 		message
