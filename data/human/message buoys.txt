@@ -22,7 +22,7 @@ mission "Message Buoy: Entering Republic space from Pirates"
 		not "temporary ceasefire"
 	source
 		government "Republic"
-		neighbor government "Free Worlds"
+		neighbor government "Pirate"
 	on offer
 		message
 			phrase "entering republic space from pirates"
