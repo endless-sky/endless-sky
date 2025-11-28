@@ -20,6 +20,7 @@ mission "Message Buoy: Entering Republic space from Pirates"
 	to offer
 		has "chosen sides"
 		not "temporary ceasefire"
+		not "entered system by: takeoff"
 	source
 		government "Republic"
 		neighbor government "Pirate"
@@ -30,14 +31,14 @@ mission "Message Buoy: Entering Republic space from Pirates"
 
 phrase "entering republic space from pirates"
 	word
-		"Message Buoy: You have reentered Republic-controlled space"
+		"Message buoy to all ships: You have reentered Republic-controlled space"
 	word
 		". Prepare to be scanned."
 		". All ships flying rebellious colors are to comply with Navy personnel or will be deemed valid targets."
-		". A reminder that a ship flown by an unlicenced pilot is considered piracy and will be deemed a valid target under the Interstellar Piracy Act."
+		". A reminder that a ship flown by an unlicensed pilot is considered piracy and will be deemed a valid target under the Interstellar Piracy Act."
 		". Upon landing in a Republic port, please subject your ship to scanning for any invasive species or pathogens."
-		". Are you a Republic Galactic Entry-accredited citizen? Skip the queues upon Immigration upon presenting your Republic ID."
-		" from a system with a non-Republic government. Be forewarned that you may be subject to further questioning upon landing at a Republic port under the Foreign Systems (Relations) Act."
+		". Are you a Republic Galactic Entry accredited citizen? Skip the queues at Immigration upon presenting your Republic ID."
+		" from a system not under Republic jurisdiction. Be forewarned that you may be subject to further questioning upon landing at a Republic port under the Foreign Systems (Relations) Act."
 
 mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
 	entering
@@ -47,6 +48,7 @@ mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
 	to offer
 		has "chosen sides"
 		not "temporary ceasefire"
+		not "entered system by: takeoff"
 	source
 		government "Republic"
 		neighbor government "Free Worlds"
@@ -58,7 +60,7 @@ mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
 
 phrase "entering republic space from free worlds (hostile)"
 	word
-		"Message Buoy: You have reentered Republic-controlled space"
+		"Message buoy: You have reentered Republic-controlled space"
 	word
 		". Prepare to be scanned."
 		". All ships flying rebellious colors are to comply with Navy personnel or will be deemed valid targets."
@@ -74,6 +76,8 @@ mission "Message Buoy: Entering Syndicate space"
 	source
 		government "Syndicate"
 		neighbor government "Republic" "Pirate" "Neutral" "Independent" "Free Worlds"
+	to offer
+		not "entered system by: takeoff"
 	on offer
 		message
 			phrase "entering syndicate space"
@@ -81,7 +85,7 @@ mission "Message Buoy: Entering Syndicate space"
 
 phrase "entering syndicate space"
 	word
-		"Message Buoy: Welcome to Syndicate space"
+		"Message buoy to all ships: Welcome to Syndicate space"
 	word
 		", the galaxy's largest free trade zone."
 		", the galaxy's most economically free region."
@@ -101,6 +105,8 @@ mission "Message Buoy: Entering Free Worlds space from Republic"
 	source
 		government "Free Worlds"
 		neighbor government "Republic"
+	to offer
+		not "entered system by: takeoff"
 	on offer
 		message
 			phrase "entering free worlds space from republic"
@@ -108,7 +114,7 @@ mission "Message Buoy: Entering Free Worlds space from Republic"
 
 phrase "entering free worlds space from republic"
 	word
-		"Message Buoy: You have entered Free space"
+		"Message buoy to all ships: You have entered Free space"
 	word
 		". Fly safe, captain."
 		". Freedom for the Southern Rim!"
@@ -124,12 +130,13 @@ mission "Message Buoy: Entering Deep space"
 	source
 		system "Zosma"
 	to offer
+		not "entered system by: takeoff"
 		or
 			has "previous system: Alphard"
 			has "previous system: Algieba"
 	on offer
 		message
-			text "Message Buoy: Welcome to Deep space. We bid you peace, prosperity, and progress."
+			text "Message buoy to all ships: Welcome to Deep space. We bid you peace, prosperity, and progress."
 		fail
 
 
@@ -147,7 +154,7 @@ mission "Message Buoy: Martini Restricted"
 		not "main plot completed"
 	on offer
 		message
-			text "Message Buoy: Due to the attacks of July 4, 3015, access to the Republic planet of Martini is restricted."
+			text "Message buoy to Merchant ships: Due to the attacks of July 4, 3015, access to the Republic planet of Martini is restricted."
 		fail
 
 mission "Message Buoy: Geminus Restricted"
@@ -162,7 +169,7 @@ mission "Message Buoy: Geminus Restricted"
 		not "main plot completed"
 	on offer
 		message
-			text "Message Buoy: Due to the attacks of July 4, 3015, access to the Republic planet of Geminus is restricted."
+			text "Message buoy to Merchant ships: Due to the attacks of July 4, 3015, access to the Republic planet of Geminus is restricted."
 		fail
 
 mission "Message Buoy: Graffias"
@@ -174,10 +181,11 @@ mission "Message Buoy: Graffias"
 		system "Graffias"
 		government "Republic"
 	to offer
+		not "entered system by: takeoff"
 		has "war begins"
 	on offer
 		message
-			text "Message Buoy: You are entering the Republic system of Graffias. Poisonwood is restricted to solely merchant or Republic ships."
+			text "Message buoy to all ships: You are entering the Republic system of Graffias. Poisonwood is restricted to solely Merchant or Republic ships."
 		fail
 
 mission "Message Buoy: Capella"
@@ -191,7 +199,7 @@ mission "Message Buoy: Capella"
 		"reputation: Republic" < 10
 	on offer
 		message
-			text "Message Buoy: Access to the Republic planet of Hermes is restricted without spaceport authority approval."
+			text "Message buoy to Merchant ships: Access to the Republic planet of Hermes is restricted without spaceport authority approval."
 		fail
 
 mission "Message Buoy: Pirate Thule"
@@ -202,10 +210,11 @@ mission "Message Buoy: Pirate Thule"
 	source
 		system "Men"
 	to offer
+		not "entered system by: takeoff"
 		not "event: Thule becomes independent"
 	on offer
 		message
-			text "Message Buoy: Ahoy spacer, yer' entering the Men system!"
+			text "Message buoy: Ahoy spacer, yer' entering the Men system!"
 		fail
 
 mission "Message Buoy: Independent Thule"
@@ -216,10 +225,11 @@ mission "Message Buoy: Independent Thule"
 	source
 		system "Men"
 	to offer
+		not "entered system by: takeoff"
 		has "event: Thule becomes independent"
 	on offer
 		message
-			text "Message Buoy: Ahoy spacer, yer' entering the Men system. Pirates no longer welcome."
+			text "Message buoy: Ahoy spacer, yer' entering the Men system. Pirates no longer welcome."
 		fail
 
 mission "Message Buoy: Megaparsec Inc."
@@ -229,9 +239,11 @@ mission "Message Buoy: Megaparsec Inc."
 	invisible
 	source
 		system "Mirfak"
+	to offer
+		not "entered system by: takeoff"
 	on offer
 		message
-			text "Message Buoy: Welcome to Mirfak, home of Megaparsec Inc."
+			text "Message buoy to all ships: Welcome to Mirfak, home of Megaparsec Inc."
 		fail
 
 mission "Message Buoy: Tarazed Corporation"
@@ -239,10 +251,23 @@ mission "Message Buoy: Tarazed Corporation"
 	repeat
 	destination "Earth"
 	invisible
-	source
-		near "Tarazed" 0 3
-		not government "Quarg"
+	source "Tarazed"
+	to offer
+		not "entered system by: takeoff"
 	on offer
 		message
-			text "Message Buoy: Tarazed Corporation - the galaxy-leading manufacturer of sleek, modern spacecraft."
+			text "Message buoy to all ships: Tarazed Corporation - the galaxy-leading manufacturer of sleek, modern spacecraft."
+		fail
+
+mission "Message Buoy: Betelgeuse Shipyards"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source "Betelgeuse"
+	to offer
+		not "entered system by: takeoff"
+	on offer
+		message
+			text "Message buoy to all ships: Betelgeuse Shipyards - centuries of service."
 		fail
