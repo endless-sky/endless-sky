@@ -26,6 +26,7 @@ mission "Message Buoy: Entering Republic space from Pirates"
 	on offer
 		message
 			phrase "entering republic space from pirates"
+		fail
 
 phrase "entering republic space from pirates"
 	word
@@ -33,7 +34,10 @@ phrase "entering republic space from pirates"
 	word
 		". Prepare to be scanned."
 		". All ships flying rebellious colors are to comply with Navy personnel or will be deemed valid targets."
-		". Piracy is a crime against humanity."
+		". A reminder that a ship flown by an unlicenced pilot is considered piracy and will be deemed a valid target under the Interstellar Piracy Act."
+		". Upon landing in a Republic port, please subject your ship to scanning for any invasive species or pathogens."
+		". Are you a Republic Galactic Entry-accredited citizen? Skip the queues upon Immigration upon presenting your Republic ID."
+		" from a system with a non-Republic government. Be forewarned that you may be subject to further questioning upon landing at a Republic port under the Foreign Systems (Relations) Act."
 
 mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
 	entering
