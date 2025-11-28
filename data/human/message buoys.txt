@@ -50,6 +50,7 @@ mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
 	on offer
 		message
 			phrase "entering republic space from free worlds (hostile)"
+		fail
 
 phrase "entering republic space from free worlds (hostile)"
 	word
@@ -72,6 +73,7 @@ mission "Message Buoy: Entering Syndicate space"
 	on offer
 		message
 			phrase "entering syndicate space"
+		fail
 
 phrase "entering syndicate space"
 	word
@@ -98,6 +100,7 @@ mission "Message Buoy: Entering Free Worlds space from Republic"
 	on offer
 		message
 			phrase "entering free worlds space from republic"
+		fail
 
 phrase "entering free worlds space from republic"
 	word
@@ -123,6 +126,7 @@ mission "Message Buoy: Entering Deep space"
 	on offer
 		message
 			text "Message Buoy: Welcome to Deep space. We bid you peace, prosperity, and progress."
+		fail
 
 
 
@@ -140,6 +144,7 @@ mission "Message Buoy: Martini Restricted"
 	on offer
 		message
 			text "Message Buoy: Due to the attacks of July 4, 3015, access to the Republic planet of Martini is restricted."
+		fail
 
 mission "Message Buoy: Geminus Restricted"
 	entering
@@ -154,6 +159,7 @@ mission "Message Buoy: Geminus Restricted"
 	on offer
 		message
 			text "Message Buoy: Due to the attacks of July 4, 3015, access to the Republic planet of Geminus is restricted."
+		fail
 
 mission "Message Buoy: Graffias"
 	entering
@@ -168,6 +174,7 @@ mission "Message Buoy: Graffias"
 	on offer
 		message
 			text "Message Buoy: You are entering the Republic system of Graffias. Poisonwood is restricted to solely merchant or Republic ships."
+		fail
 
 mission "Message Buoy: Capella"
 	entering
@@ -181,6 +188,7 @@ mission "Message Buoy: Capella"
 	on offer
 		message
 			text "Message Buoy: Access to the Republic planet of Hermes is restricted without spaceport authority approval."
+		fail
 
 mission "Message Buoy: Pirate Thule"
 	entering
@@ -194,6 +202,7 @@ mission "Message Buoy: Pirate Thule"
 	on offer
 		message
 			text "Message Buoy: Ahoy spacer, yer' entering the Men system!"
+		fail
 
 mission "Message Buoy: Independent Thule"
 	entering
@@ -207,6 +216,7 @@ mission "Message Buoy: Independent Thule"
 	on offer
 		message
 			text "Message Buoy: Ahoy spacer, yer' entering the Men system. Pirates no longer welcome."
+		fail
 
 mission "Message Buoy: Megaparsec Inc."
 	entering
@@ -218,6 +228,7 @@ mission "Message Buoy: Megaparsec Inc."
 	on offer
 		message
 			text "Message Buoy: Welcome to Mirfak, home of Megaparsec Inc."
+		fail
 
 mission "Message Buoy: Tarazed Corporation"
 	entering
@@ -230,3 +241,4 @@ mission "Message Buoy: Tarazed Corporation"
 	on offer
 		message
 			text "Message Buoy: Tarazed Corporation - the galaxy-leading manufacturer of sleek, modern spacecraft."
+		fail
