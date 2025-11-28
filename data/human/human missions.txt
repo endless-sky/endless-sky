@@ -7482,7 +7482,7 @@ mission "Lost Dog"
 			`	The butler's frown deepens as you show Caesar to him.`
 			`	He sighs and says, "Card, please." He holds out a silver tray and awaits your calling card.`
 			choice
-				`	(Explain I don't have a calling card.)`
+				`	(Explain that I don't have a calling card.)`
 					goto "no card"
 				`	(Place my card on the tray.)`
 					to display
