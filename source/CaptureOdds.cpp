@@ -31,7 +31,46 @@ CaptureOdds::CaptureOdds(const Ship &attacker, const Ship &defender)
 {
 	powerA = Power(attacker, false);
 	powerD = Power(defender, true);
-	Calculate();
+}
+
+
+
+// Generate the lookup tables.
+void CaptureOdds::Calculate()
+{
+	if(powerD.empty() || powerA.empty() || !capture.empty())
+		return;
+
+	// The first row represents the case where the attacker has only one crew left.
+	// In that case, the defending ship can never be successfully captured.
+	capture.resize(powerD.size(), 0.);
+	casualtiesA.resize(powerD.size(), 0.);
+	casualtiesD.resize(powerD.size(), 0.);
+	unsigned up = 0;
+	for(unsigned a = 2; a <= powerA.size(); ++a)
+	{
+		double ap = powerA[a - 1];
+		// Special case: odds for defender having only one person,
+		// because 0 people is outside the end of the table.
+		double odds = ap / (ap + powerD[0]);
+		capture.push_back(odds + (1. - odds) * capture[up]);
+		casualtiesA.push_back((1. - odds) * (casualtiesA[up] + 1.));
+		casualtiesD.push_back(odds + (1. - odds) * casualtiesD[up]);
+		++up;
+
+		// Loop through each number of crew the defender might have.
+		for(unsigned d = 2; d <= powerD.size(); ++d)
+		{
+			// This is  basic 2D dynamic program, where each value is based on
+			// the odds of success and the values for one fewer crew members
+			// for the defender or the attacker depending on who wins.
+			odds = ap / (ap + powerD[d - 1]);
+			capture.push_back(odds * capture.back() + (1. - odds) * capture[up]);
+			casualtiesA.push_back(odds * casualtiesA.back() + (1. - odds) * (casualtiesA[up] + 1.));
+			casualtiesD.push_back(odds * (casualtiesD.back() + 1.) + (1. - odds) * casualtiesD[up]);
+			++up;
+		}
+	}
 }
 
 
@@ -106,46 +145,6 @@ double CaptureOdds::DefenderPower(int defendingCrew) const
 		return 0.;
 
 	return powerD[defendingCrew - 1];
-}
-
-
-
-// Generate the lookup tables.
-void CaptureOdds::Calculate()
-{
-	if(powerD.empty() || powerA.empty())
-		return;
-
-	// The first row represents the case where the attacker has only one crew left.
-	// In that case, the defending ship can never be successfully captured.
-	capture.resize(powerD.size(), 0.);
-	casualtiesA.resize(powerD.size(), 0.);
-	casualtiesD.resize(powerD.size(), 0.);
-	unsigned up = 0;
-	for(unsigned a = 2; a <= powerA.size(); ++a)
-	{
-		double ap = powerA[a - 1];
-		// Special case: odds for defender having only one person,
-		// because 0 people is outside the end of the table.
-		double odds = ap / (ap + powerD[0]);
-		capture.push_back(odds + (1. - odds) * capture[up]);
-		casualtiesA.push_back((1. - odds) * (casualtiesA[up] + 1.));
-		casualtiesD.push_back(odds + (1. - odds) * casualtiesD[up]);
-		++up;
-
-		// Loop through each number of crew the defender might have.
-		for(unsigned d = 2; d <= powerD.size(); ++d)
-		{
-			// This is  basic 2D dynamic program, where each value is based on
-			// the odds of success and the values for one fewer crew members
-			// for the defender or the attacker depending on who wins.
-			odds = ap / (ap + powerD[d - 1]);
-			capture.push_back(odds * capture.back() + (1. - odds) * capture[up]);
-			casualtiesA.push_back(odds * casualtiesA.back() + (1. - odds) * (casualtiesA[up] + 1.));
-			casualtiesD.push_back(odds * (casualtiesD.back() + 1.) + (1. - odds) * casualtiesD[up]);
-			++up;
-		}
-	}
 }
 
 
