@@ -86,6 +86,13 @@ namespace {
 		{SDLK_KP_VERTICALBAR, '|'}
 	};
 
+	const set<Uint8> CONTROLLER_BUTTONS{
+		SDL_CONTROLLER_BUTTON_B,
+		SDL_CONTROLLER_BUTTON_X,
+		SDL_CONTROLLER_BUTTON_Y,
+		SDL_CONTROLLER_BUTTON_LEFTSTICK,
+	};
+
 	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
 	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
 	constexpr double LEFT_MARGIN = 20;
@@ -364,6 +371,22 @@ bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 	}
 
 	return true;
+}
+
+
+
+bool Dialog::GamePadState(GamePad &controller)
+{
+	if(controller.Held(SDL_CONTROLLER_BUTTON_B))
+		DoKey(SDLK_RETURN);
+	else if(controller.Held(SDL_CONTROLLER_BUTTON_X))
+		DoKey('d');
+	else if(controller.Held(SDL_CONTROLLER_BUTTON_Y))
+		DoKey(SDLK_ESCAPE);
+	else if(controller.Held(SDL_CONTROLLER_BUTTON_LEFTSTICK))
+		KeyDown(SDLK_UNKNOWN, 0, Command::MAP, true);
+	controller.Clear(CONTROLLER_BUTTONS);
+	return Panel::GamePadState(controller);
 }
 
 
