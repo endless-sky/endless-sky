@@ -428,6 +428,9 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 	if(reputationMin > reputationMax)
 		reputationMin = reputationMax;
 	SetReputation(Reputation());
+
+	if(!color)
+		color = ExclusiveItem<Color>(Color{});
 }
 
 
