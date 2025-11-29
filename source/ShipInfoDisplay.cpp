@@ -187,7 +187,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		out << "cost (" << (100 * depreciated) / fullCost << "%):";
 		attributeLabels.push_back(out.str());
 	}
-	attributeValues.push_back(Format::Credits(depreciated));
+	attributeValues.push_back(Format::AbbreviatedNumber(depreciated));
 	attributesHeight += 20;
 
 	attributeLabels.push_back(string());
@@ -475,9 +475,9 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	saleValues.push_back(string());
 	saleHeight += 20;
 	saleLabels.push_back("empty hull:");
-	saleValues.push_back(Format::Credits(chassisCost));
+	saleValues.push_back(Format::AbbreviatedNumber(chassisCost));
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");
-	saleValues.push_back(Format::Credits(totalCost - chassisCost));
+	saleValues.push_back(Format::AbbreviatedNumber(totalCost - chassisCost));
 	saleHeight += 20;
 }

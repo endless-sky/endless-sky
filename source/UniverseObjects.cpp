@@ -496,8 +496,14 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			substitutions.Load(node, playerConditions);
 		else if(key == "wormhole" && hasValue)
 			wormholes.Get(node.Token(1))->Load(node);
+		else if(key == "gamerules preset" && hasValue && node.HasChildren())
+			gamerulesPresets.Get(node.Token(1))->Load(node);
 		else if(key == "gamerules" && node.HasChildren())
-			gamerules.Load(node);
+		{
+			node.PrintTrace("Warning: \"gamerules\" root node is deprecated. "
+				"Use `\"gamerules preset\" \"Default\"` instead");
+			gamerulesPresets.Get("Default")->Load(node);
+		}
 		else if(key == "message category")
 			messageCategories.Get(node.Token(1))->Load(node);
 		else if(key == "message")
