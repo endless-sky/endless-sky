@@ -20,7 +20,7 @@ mission "Liberate Kornephoros"
 	to offer
 		has "Defend Sabik: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "prepare for battle of Kornephoros"
@@ -165,7 +165,7 @@ mission "FW Prisoner Parole"
 	to offer
 		has "Liberate Kornephoros: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"reputation: Republic" = 1
@@ -210,7 +210,7 @@ mission "FW Prisoner Parole 2"
 	to offer
 		has "FW Prisoner Parole: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	npc accompany save
 		government "Free Worlds"
@@ -273,7 +273,7 @@ mission "FW Syndicate Diplomacy 1"
 	to offer
 		has "FW Prisoner Parole 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -328,7 +328,7 @@ mission "FW Syndicate Diplomacy 1B"
 	to offer
 		has "FW Syndicate Diplomacy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		set "met remington"
@@ -433,7 +433,7 @@ mission "FW Syndicate Diplomacy 1C"
 	to offer
 		has "FW Syndicate Diplomacy 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "Tarazed neutrality" 0
@@ -478,7 +478,7 @@ mission "FW Syndicate Diplomacy 1D"
 	to offer
 		has "FW Syndicate Diplomacy 1C: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Tried to convince Poisonwood, a world adjacent to Free Worlds territory, to switch sides. But, they are fiercely loyal to the Republic because the Navy freed them from being dominated by Alpha warlords decades ago."
@@ -584,7 +584,7 @@ mission "FW Hope Recon 1"
 	to offer
 		has "FW Syndicate Diplomacy 1D: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -609,7 +609,7 @@ mission "FW Hope Recon 1B"
 	to offer
 		has "FW Hope Recon 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 
 
 
@@ -752,7 +752,7 @@ mission "FW Plasma Testing 1"
 	to offer
 		has "FW Hope Recon 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 
 
 
@@ -766,7 +766,7 @@ mission "FW Plasma Testing 1B"
 	to offer
 		has "FW Plasma Testing 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "People" "Edward Tivrusky" `Barmy Edward is the Chief Offensive Engineer at Kraz Cybernetics, known for his inventive and sometimes impractical weapon designs. Supposedly, his engineers gave him the "Barmy" sobriquet after an incident where an experimental epoxy cannon he was working on exploded and glued him to the ceiling.`
@@ -902,7 +902,7 @@ mission "FW Supply Convoy 1"
 	to offer
 		has "FW Plasma Testing 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -957,7 +957,7 @@ mission "FW Pirates 1"
 	to offer
 		has "FW Supply Convoy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"salary: Free Worlds" = 2100
@@ -1008,7 +1008,7 @@ mission "FW Senate 1"
 	to offer
 		has "FW Pirates 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Free Worlds have finally elected a Senate, which will be convening for the first time soon on Bourne."
@@ -1029,7 +1029,7 @@ mission "FW Senate 1B"
 	to offer
 		has "FW Senate 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw senate timer" 8
@@ -1109,7 +1109,7 @@ mission "FW Pirates 2"
 	to offer
 		has "FW Senate 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1306,7 +1306,7 @@ mission "FW Pirates: Attack 2"
 	to offer
 		has "FW Pirates: Attack 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1455,7 +1455,7 @@ mission "FW Pirates: Attack 3"
 	to offer
 		has "FW Pirates: Attack 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1546,7 +1546,7 @@ mission "FW Pirates: Diplomacy 2"
 	to offer
 		has "FW Pirates: Diplomacy 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "battle for Thule"
@@ -1611,7 +1611,7 @@ mission "FW Pirates: Diplomacy 3"
 	to offer
 		has "FW Pirates: Diplomacy 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		"reputation: Independent" >?= 10
@@ -1652,7 +1652,7 @@ mission "FW Pirates: Diplomacy 4"
 	to offer
 		has "FW Pirates: Diplomacy 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw suppressed Greenrock"
@@ -1708,7 +1708,7 @@ mission "FW Early Warning 1"
 			has "FW Pirates: Attack 3: done"
 			has "FW Pirates: Diplomacy 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1818,7 +1818,7 @@ mission "FW Early Warning 2"
 	to offer
 		has "FW Early Warning 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	on offer
 		conversation
 			`When you return, you find Tomek and JJ speaking with captains of the eastern patrols. The rest of the Council has been moved off-world in case the Navy retakes Kornephoros.`
@@ -1871,7 +1871,7 @@ mission "FW Early Warning 3"
 	to offer
 		has "FW Early Warning 2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "People" "Ranulph Hines" "Ranulph Hines is a commander within the Republic Navy. While a competent leader, he has a reputation for disregarding many of the Navy's old traditions, instead preferring to do things his own way."
@@ -1970,7 +1970,7 @@ mission "FW Early Warning 4"
 	to offer
 		has "FW Early Warning 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "battle in Wei"
@@ -2090,7 +2090,7 @@ mission "FW Early Warning 5"
 	to offer
 		has "FW Early Warning 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 
 
 
@@ -2106,7 +2106,7 @@ mission "FW Senate Hearing"
 		has "FW Early Warning 5: done"
 		has "FW Pirates: Attack 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		clear "salary: Free Worlds"
@@ -2182,7 +2182,7 @@ mission "FW Refinery 1"
 		has "FW Early Warning 5: done"
 		has "FW Pirates: Diplomacy 4: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -2226,7 +2226,7 @@ mission "FW Refinery 1A"
 	to offer
 		has "FW Refinery 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
