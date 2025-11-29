@@ -37,7 +37,9 @@ namespace {
 	map<Command, int> keycodeForCommand;
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
-	map<int, int> keycodeCount;
+	// The booleans handle the "fire primary weapon" commands as they are intended to
+	// be able to share the same keybind.
+	map<int, tuple<int, bool, bool>> keycodeCount;
 	// Need a uint64_t 1 to generate Commands.
 	const uint64_t ONE = 1;
 }
@@ -54,43 +56,52 @@ const Command Command::RIGHT(ONE << 3, "Turn right");
 const Command Command::BACK(ONE << 4, "Reverse");
 const Command Command::MOUSE_TURNING_HOLD(ONE << 5, "Mouse turning (hold)");
 const Command Command::AIM_TURRET_HOLD(ONE << 6, "Turret aim override (hold)");
-const Command Command::PRIMARY(ONE << 7, "Fire primary weapon");
-const Command Command::TURRET_TRACKING(ONE << 8, "Toggle turret tracking");
-const Command Command::SECONDARY(ONE << 9, "Fire secondary weapon");
-const Command Command::SELECT(ONE << 10, "Select secondary weapon");
-const Command Command::LAND(ONE << 11, "Land on planet / station");
-const Command Command::BOARD(ONE << 12, "Board selected ship");
-const Command Command::HAIL(ONE << 13, "Talk to selected ship");
-const Command Command::SCAN(ONE << 14, "Scan selected ship");
-const Command Command::JUMP(ONE << 15, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(ONE << 16, "Initiate fleet jump");
-const Command Command::TARGET(ONE << 17, "Select next ship");
-const Command Command::NEAREST(ONE << 18, "Select nearest hostile ship");
-const Command Command::NEAREST_ASTEROID(ONE << 19, "Select nearest asteroid");
-const Command Command::DEPLOY(ONE << 20, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(ONE << 21, "Fire afterburner");
-const Command Command::CLOAK(ONE << 22, "Toggle cloaking device");
-const Command Command::MAP(ONE << 23, "View star map");
-const Command Command::INFO(ONE << 24, "View player info");
-const Command Command::MESSAGE_LOG(ONE << 25, "View message log");
-const Command Command::FULLSCREEN(ONE << 26, "Toggle fullscreen");
-const Command Command::FASTFORWARD(ONE << 27, "Toggle fast-forward");
-const Command Command::HELP(ONE << 28, "Show help");
-const Command Command::PAUSE(ONE << 29, "Pause");
-const Command Command::FIGHT(ONE << 30, "Fleet: Fight my target");
-const Command Command::HOLD_FIRE(ONE << 31, "Fleet: Toggle hold fire");
-const Command Command::GATHER(ONE << 32, "Fleet: Gather around me");
-const Command Command::HOLD_POSITION(ONE << 33, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 34, "Fleet: Harvest flotsam");
-const Command Command::AMMO(ONE << 35, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 36, "Auto steer");
+const Command Command::PRIMARY_0(ONE << 7, "Fire primary weapons 0");
+const Command Command::PRIMARY_1(ONE << 8, "Fire primary weapons 1");
+const Command Command::PRIMARY_2(ONE << 9, "Fire primary weapons 2");
+const Command Command::PRIMARY_3(ONE << 10, "Fire primary weapons 3");
+const Command Command::PRIMARY_4(ONE << 11, "Fire primary weapons 4");
+const Command Command::PRIMARY_5(ONE << 12, "Fire primary weapons 5");
+const Command Command::PRIMARY_6(ONE << 13, "Fire primary weapons 6");
+const Command Command::PRIMARY_7(ONE << 14, "Fire primary weapons 7");
+const Command Command::PRIMARY_8(ONE << 15, "Fire primary weapons 8");
+const Command Command::PRIMARY_9(ONE << 16, "Fire primary weapons 9");
+const Command Command::TURRET_TRACKING(ONE << 17, "Toggle turret tracking");
+const Command Command::SECONDARY(ONE << 18, "Fire secondary weapon");
+const Command Command::SELECT(ONE << 19, "Select secondary weapon");
+const Command Command::LAND(ONE << 20, "Land on planet / station");
+const Command Command::BOARD(ONE << 21, "Board selected ship");
+const Command Command::HAIL(ONE << 22, "Talk to selected ship");
+const Command Command::SCAN(ONE << 23, "Scan selected ship");
+const Command Command::JUMP(ONE << 24, "Initiate hyperspace jump");
+const Command Command::FLEET_JUMP(ONE << 25, "Initiate fleet jump");
+const Command Command::TARGET(ONE << 26, "Select next ship");
+const Command Command::NEAREST(ONE << 27, "Select nearest hostile ship");
+const Command Command::NEAREST_ASTEROID(ONE << 28, "Select nearest asteroid");
+const Command Command::DEPLOY(ONE << 29, "Deploy / recall fighters");
+const Command Command::AFTERBURNER(ONE << 30, "Fire afterburner");
+const Command Command::CLOAK(ONE << 31, "Toggle cloaking device");
+const Command Command::MAP(ONE << 32, "View star map");
+const Command Command::INFO(ONE << 33, "View player info");
+const Command Command::MESSAGE_LOG(ONE << 34, "View message log");
+const Command Command::FULLSCREEN(ONE << 35, "Toggle fullscreen");
+const Command Command::FASTFORWARD(ONE << 36, "Toggle fast-forward");
+const Command Command::HELP(ONE << 37, "Show help");
+const Command Command::PAUSE(ONE << 38, "Pause");
+const Command Command::FIGHT(ONE << 39, "Fleet: Fight my target");
+const Command Command::HOLD_FIRE(ONE << 40, "Fleet: Toggle hold fire");
+const Command Command::GATHER(ONE << 41, "Fleet: Gather around me");
+const Command Command::HOLD_POSITION(ONE << 42, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 43, "Fleet: Harvest flotsam");
+const Command Command::AMMO(ONE << 44, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 45, "Auto steer");
 
 // These commands are not in the preferences panel, and do not have keys
 // assigned to them, but may have descriptions as needed to facilitate
 // assignments in downstream ports like endless-mobile.
-const Command Command::WAIT(ONE << 37, "");
-const Command Command::STOP(ONE << 38, "Stop your ship");
-const Command Command::SHIFT(ONE << 39, "");
+const Command Command::WAIT(ONE << 46, "");
+const Command Command::STOP(ONE << 47, "Stop your ship");
+const Command Command::SHIFT(ONE << 48, "");
 
 
 
@@ -167,7 +178,22 @@ void Command::LoadSettings(const filesystem::path &path)
 	for(const auto &it : keycodeForCommand)
 	{
 		commandForKeycode[it.second] = it.first;
-		++keycodeCount[it.second];
+		auto &[count, hasPrimary, hasOther] = keycodeCount[it.second];
+		if(it.first.Has(Command::PRIMARY_0 | Command::PRIMARY_1 | Command::PRIMARY_2
+			| Command::PRIMARY_3 | Command::PRIMARY_4 | Command::PRIMARY_5 | Command::PRIMARY_6
+			| Command::PRIMARY_7 | Command::PRIMARY_8 | Command::PRIMARY_9))
+		{
+			if(!hasPrimary)
+			{
+				++count;
+				hasPrimary = true;
+			}
+		}
+		else
+		{
+			++count;
+			hasOther = true;
+		}
 	}
 }
 
@@ -202,7 +228,22 @@ void Command::SetKey(Command command, int keycode)
 	for(const auto &it : keycodeForCommand)
 	{
 		commandForKeycode[it.second] = it.first;
-		++keycodeCount[it.second];
+		auto &[count, hasPrimary, hasOther] = keycodeCount[it.second];
+		if(it.first.Has(Command::PRIMARY_0 | Command::PRIMARY_1 | Command::PRIMARY_2
+			| Command::PRIMARY_3 | Command::PRIMARY_4 | Command::PRIMARY_5 | Command::PRIMARY_6
+			| Command::PRIMARY_7 | Command::PRIMARY_8 | Command::PRIMARY_9))
+		{
+			if(!hasPrimary)
+			{
+				++count;
+				hasPrimary = true;
+			}
+		}
+		else
+		{
+			++count;
+			hasOther = true;
+		}
 	}
 }
 
@@ -253,7 +294,14 @@ bool Command::HasConflict() const
 		return false;
 
 	auto cit = keycodeCount.find(it->second);
-	return (cit != keycodeCount.end() && cit->second > 1);
+	if(cit == keycodeCount.end())
+		return false;
+
+	const auto &[count, hasPrimary, hasOther] = cit->second;
+	return Has(Command::PRIMARY_0 | Command::PRIMARY_1 | Command::PRIMARY_2
+		| Command::PRIMARY_3 | Command::PRIMARY_4 | Command::PRIMARY_5 | Command::PRIMARY_6
+		| Command::PRIMARY_7 | Command::PRIMARY_8 | Command::PRIMARY_9)
+		? hasOther : count > 1;
 }
 
 
@@ -270,7 +318,16 @@ void Command::Load(const DataNode &node)
 			{"left", Command::LEFT},
 			{"right", Command::RIGHT},
 			{"back", Command::BACK},
-			{"primary", Command::PRIMARY},
+			{"primary 0", Command::PRIMARY_0},
+			{"primary 1", Command::PRIMARY_1},
+			{"primary 2", Command::PRIMARY_2},
+			{"primary 3", Command::PRIMARY_3},
+			{"primary 4", Command::PRIMARY_4},
+			{"primary 5", Command::PRIMARY_5},
+			{"primary 6", Command::PRIMARY_6},
+			{"primary 7", Command::PRIMARY_7},
+			{"primary 8", Command::PRIMARY_8},
+			{"primary 9", Command::PRIMARY_9},
 			{"secondary", Command::SECONDARY},
 			{"select", Command::SELECT},
 			{"land", Command::LAND},
