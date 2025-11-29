@@ -3055,10 +3055,10 @@ bool PlayerInfo::SelectEscorts(const Rectangle &box, bool hasShift)
 
 
 
-bool PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
+void PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 {
 	if(!flagship)
-		return false;
+		return;
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
 		selectedEscorts.clear();
@@ -3105,7 +3105,6 @@ bool PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 	}
 	if(matched)
 		UI::PlaySound(UI::UISound::TARGET);
-	return matched;
 }
 
 
