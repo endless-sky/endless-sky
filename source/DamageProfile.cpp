@@ -50,10 +50,10 @@ DamageProfile::DamageProfile(Weather::ImpactInfo info)
 
 
 // Calculate the damage dealt to the given ship.
-DamageDealt DamageProfile::CalculateDamage(const Ship &ship, bool ignoreBlast) const
+DamageDealt DamageProfile::CalculateDamage(const Ship &ship, double damageMultiplier, bool ignoreBlast) const
 {
 	bool blast = (isBlast && !ignoreBlast);
-	DamageDealt damage(weapon, Scale(inputScaling, ship, blast));
+	DamageDealt damage(weapon, Scale(inputScaling * damageMultiplier, ship, blast));
 	PopulateDamage(damage, ship);
 
 	return damage;
