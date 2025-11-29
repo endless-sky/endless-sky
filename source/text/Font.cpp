@@ -24,14 +24,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Point.h"
 #include "../Preferences.h"
 #include "../Screen.h"
+#include "../image/Sprite.h"
+#include "../shader/SpriteShader.h"
 #include "Truncate.h"
 
 #include <algorithm>
 #include <cmath>
-#include <cstdlib>
 #include <cstring>
+#include <tuple>
 
 using namespace std;
+
+
 
 namespace {
 	bool showUnderlines = false;
@@ -73,39 +77,41 @@ void Font::Load(const filesystem::path &imagePath)
 
 
 
-void Font::Draw(const DisplayText &text, const Point &point, const Color &color) const
+void Font::Draw(DisplayText &text, const Point &point, const Color &color) const
 {
 	DrawAliased(text, round(point.X()), round(point.Y()), color);
 }
 
 
 
-void Font::DrawAliased(const DisplayText &text, double x, double y, const Color &color) const
+void Font::Draw(const DisplayText &text, const Point &point, const Color &color) const
 {
-	int width = -1;
-	const string truncText = TruncateText(text, width);
-	const auto &layout = text.GetLayout();
-	if(width >= 0)
-	{
-		if(layout.align == Alignment::CENTER)
-			x += (layout.width - width) / 2;
-		else if(layout.align == Alignment::RIGHT)
-			x += layout.width - width;
-	}
-	DrawAliased(truncText, x, y, color);
+	DisplayText copy(text.GetText(), text.GetLayout());
+	DrawAliased(copy, round(point.X()), round(point.Y()), color);
 }
 
 
 
-void Font::Draw(const string &str, const Point &point, const Color &color) const
+void Font::DrawAliased(const string &str, double x, double y, const Color &color, bool loaded) const
 {
-	DrawAliased(str, round(point.X()), round(point.Y()), color);
+	DisplayText text(str, Layout(Alignment::LEFT));
+	DrawAliased(text, x, y, color);
 }
 
 
 
-void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
+void Font::Draw(const string &str, const Point &point, const Color &color, bool loaded) const
 {
+	DisplayText text(str, Layout(Alignment::LEFT));
+	DrawAliased(text, round(point.X()), round(point.Y()), color);
+}
+
+
+
+void Font::DrawAliased(DisplayText &text, double x, double y, const Color &color) const
+{
+	text.UpdateSpriteReferences();
+
 	glUseProgram(shader->Object());
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vao);
@@ -123,6 +129,17 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	glUniform2fv(scaleI, 1, scale);
 	glUniform2f(glyphSizeI, glyphWidth, glyphHeight);
 
+	int width = -1;
+	const DisplayText truncText(TruncateText(text, width), text.GetLayout());
+	const auto &layout = text.GetLayout();
+	if(width >= 0)
+	{
+		if(layout.align == Alignment::CENTER)
+			x += (layout.width - width) / 2;
+		else if(layout.align == Alignment::RIGHT)
+			x += layout.width - width;
+	}
+
 	GLfloat textPos[2] = {
 		static_cast<float>(x - 1.),
 		static_cast<float>(y)};
@@ -131,6 +148,8 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	bool underlineChar = false;
 	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
 
+	string str = truncText.GetText();
+	int spriteNum = 0;
 	for(char c : str)
 	{
 		if(c == '_')
@@ -139,7 +158,20 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 			continue;
 		}
 
-		int glyph = Glyph(c, isAfterSpace);
+		int glyph = 0;
+		if(c == DisplayText::SPRITE_PLACEHOLDER)
+		{
+			textPos[0] += advance[previous * GLYPHS + glyph] + KERN;
+			auto spriteData = &text.inlineSprites[spriteNum++];
+			double w = std::get<0>(*spriteData)->Width();
+			// Set sprite center point.
+			std::get<2>(*spriteData) = Point(textPos[0] + .5 * w, textPos[1] + .5 * height);
+			textPos[0] += w;
+			previous = glyph;
+			continue;
+		}
+
+		glyph = Glyph(c, isAfterSpace);
 		if(c != '"' && c != '\'')
 			isAfterSpace = !glyph;
 		if(!glyph)
@@ -173,6 +205,8 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 	glBindVertexArray(0);
 	glUseProgram(0);
+
+	DrawInlineSprites(text, color);
 }
 
 
@@ -362,17 +396,37 @@ void Font::SetUpShader(float glyphW, float glyphH)
 
 int Font::WidthRawString(const char *str, char after) const noexcept
 {
+	DisplayText text(str, Alignment::LEFT);
+	return WidthRawString(text, after);
+}
+
+
+
+int Font::WidthRawString(DisplayText &text, char after) const noexcept
+{
+	text.UpdateSpriteReferences();
+
 	int width = 0;
 	int previous = 0;
+	int spriteNum = 0;
 	bool isAfterSpace = true;
 
-	for( ; *str; ++str)
+	for(char c : text.GetText())
 	{
-		if(*str == '_')
+		if(c == '_')
 			continue;
 
-		int glyph = Glyph(*str, isAfterSpace);
-		if(*str != '"' && *str != '\'')
+		if(c == DisplayText::SPRITE_PLACEHOLDER)
+		{
+			auto spriteData = text.inlineSprites[spriteNum++];
+			// width += space;
+			// width += advance[previous * GLYPHS + 97] + KERN;
+			width += std::get<0>(spriteData)->Width();
+			continue;
+		}
+
+		int glyph = Glyph(c, isAfterSpace);
+		if(c != '"' && c != '\'')
 			isAfterSpace = !glyph;
 		if(!glyph)
 			width += space;
@@ -481,4 +535,21 @@ string Font::TruncateEndsOrMiddle(const string &str, int &width,
 	}
 	width = workingWidth;
 	return getResultString(str, workingChars);
+}
+
+
+
+void Font::DrawInlineSprites(DisplayText text, const Color &color) const
+{
+	for(auto &[sprite, embossedStr, center] : text.inlineSprites)
+	{
+		// center += Point(0,20);
+		SpriteShader::Draw(sprite, center);
+		if(embossedStr != "")
+		{
+			Point textPoint = center + Point(-.5 * sprite->Width(), -.5 * height);
+			DisplayText embossedText(embossedStr, Layout(sprite->Width(), Alignment::CENTER));
+			DrawAliased(embossedText, textPoint.X(), textPoint.Y(), color);
+		}
+	}
 }
