@@ -4074,6 +4074,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!previousSystem)
 			return false;
 		return !ce.NameWithoutPrefix().compare(previousSystem->TrueName()); });
+	conditions["previous system government: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!previousSystem || !previousSystem->GetGovernment())
+			return false;
+		return !ce.NameWithoutPrefix().compare(previousSystem->GetGovernment()->TrueName());
+	});
 
 	// Conditions to determine if flagship is in a system and on a planet.
 	conditions["flagship system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
