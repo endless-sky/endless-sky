@@ -361,6 +361,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				for( ; last != objects.end() && last->parent >= index; ++last, ++removed)
 					if(last->planet)
 						planets.Get(last->planet->TrueName())->RemoveSystem(this);
+				if(removeIt->planet)
+					planets.Get(removeIt->planet->TrueName())->RemoveSystem(this);
 				last = objects.erase(removeIt, last);
 
 				// Recalculate every parent index.
