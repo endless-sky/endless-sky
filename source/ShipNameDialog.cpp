@@ -15,45 +15,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipNameDialog.h"
 
-#include "Color.h"
-#include "text/Font.h"
-#include "text/FontSet.h"
 #include "GameData.h"
 #include "Phrase.h"
-#include "image/SpriteSet.h"
-#include "shader/SpriteShader.h"
-
-#include <cmath>
 
 using namespace std;
 
 
 
-void ShipNameDialog::Draw()
+bool ShipNameDialog::RandomName(const string &)
 {
-	Dialog::Draw();
-
-	randomPos = cancelPos - Point(100., 0.);
-	SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
-
-	const Font &font = FontSet::Get(14);
-	static const string RANDOM = "Random";
-	Point labelPos = randomPos - .5 * Point(font.Width(RANDOM), font.Height());
-	font.Draw(RANDOM, labelPos, *GameData::Colors().Get("medium"));
-}
-
-
-
-bool ShipNameDialog::Click(int x, int y, MouseButton button, int clicks)
-{
-	if(button != MouseButton::LEFT)
-		return Dialog::Click(x, y, button, clicks);
-	Point off = Point(x, y) - randomPos;
-	if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)
-	{
-		// TODO: always chooses human names even for alien ships
-		input = GameData::Phrases().Get("civilian")->Get();
-		return true;
-	}
-	return Dialog::Click(x, y, button, clicks);
+	input = GameData::Phrases().Get("civilian")->Get();
+	// False means to keep the dialog box open.
+	return false;
 }
