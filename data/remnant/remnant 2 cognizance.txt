@@ -1498,6 +1498,7 @@ mission "Remnant: Cognizance 33"
 	destination "Ssil Vida"
 	cargo "refined fuel" 58
 	deadline 19
+	blocked "For the next mission in the Remnant campaign, you must have at least 58 cargo space free."
 	to offer
 		has "Remnant: Cognizance 32: done"
 	on offer
