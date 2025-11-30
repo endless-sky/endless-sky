@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Outfit.h"
 #include "../pi.h"
 #include "../Ship.h"
+#include "../Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -44,39 +45,39 @@ void ShipAICache::Calibrate(const Ship &ship)
 
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Outfit *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsSpecial())
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(!weapon || hardpoint.IsSpecial())
+			continue;
+
+		hasWeapons = true;
+		bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship.OutfitCount(weapon->Ammo()));
+		// Weapons without ammo might as well not exist, so don't even consider them
+		if(lackingAmmo)
+			continue;
+		canFight = true;
+
+		// Calculate the damage per second,
+		// ignoring any special effects. (could be improved to account for those, maybe be based on cost instead)
+		double DPS = (weapon->ShieldDamage() + weapon->HullDamage()
+			+ (weapon->RelativeShieldDamage() * ship.MaxShields())
+			+ (weapon->RelativeHullDamage() * ship.MaxHull()))
+			/ weapon->Reload();
+		totalDPS += DPS;
+
+		// Exploding weaponry that can damage this ship requires special consideration.
+		if(weapon->SafeRange())
 		{
-			hasWeapons = true;
-			bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship.OutfitCount(weapon->Ammo()));
-			// Weapons without ammo might as well not exist, so don't even consider them
-			if(lackingAmmo)
-				continue;
-			canFight = true;
+			minSafeDistance = max(weapon->SafeRange(), minSafeDistance);
+			splashDPS += DPS;
+		}
 
-			// Calculate the damage per second,
-			// ignoring any special effects. (could be improved to account for those, maybe be based on cost instead)
-			double DPS = (weapon->ShieldDamage() + weapon->HullDamage()
-				+ (weapon->RelativeShieldDamage() * ship.MaxShields())
-				+ (weapon->RelativeHullDamage() * ship.MaxHull()))
-				/ weapon->Reload();
-			totalDPS += DPS;
-
-			// Exploding weaponry that can damage this ship requires special consideration.
-			if(weapon->SafeRange())
-			{
-				minSafeDistance = max(weapon->SafeRange(), minSafeDistance);
-				splashDPS += DPS;
-			}
-
-			// The artillery AI should be applied at 1000 pixels range, or 500 if the weapon is homing.
-			double range = weapon->Range();
-			shortestRange = min(range, shortestRange);
-			if(range >= 1000. || (weapon->Homing() && range >= 500.))
-			{
-				shortestArtillery = min(range, shortestArtillery);
-				artilleryDPS += DPS;
-			}
+		// The artillery AI should be applied at 1000 pixels range, or 500 if the weapon is homing.
+		double range = weapon->Range();
+		shortestRange = min(range, shortestRange);
+		if(range >= 1000. || (weapon->Homing() && range >= 500.))
+		{
+			shortestArtillery = min(range, shortestArtillery);
+			artilleryDPS += DPS;
 		}
 	}
 
@@ -112,8 +113,10 @@ void ShipAICache::Calibrate(const Ship &ship)
 	// Get the weapon ranges for this ship, so the AI can call it.
 	for(const auto &hardpoint : ship.Weapons())
 	{
-		const Weapon *weapon = hardpoint.GetOutfit();
-		if(!weapon || hardpoint.IsSpecial() || (weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(!weapon || hardpoint.IsSpecial())
+			continue;
+		if((weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
 			continue;
 		double weaponRange = weapon->Range() + hardpoint.GetPoint().Length();
 		if(hardpoint.IsTurret())

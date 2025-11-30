@@ -144,7 +144,7 @@ void PlanetLabel::UpdateData(const vector<PlanetLabel> &labels, const System &sy
 		color = *planet.GetWormhole()->GetLinkColor();
 	else if(planet.GetGovernment())
 	{
-		string newGovernment = "(" + planet.GetGovernment()->GetName() + ")";
+		string newGovernment = "(" + planet.GetGovernment()->DisplayName() + ")";
 		if(newGovernment != government)
 			reposition = true;
 		government = newGovernment;

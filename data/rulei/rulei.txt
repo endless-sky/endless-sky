@@ -95,8 +95,6 @@ mission "Rulei: You Are (Not) Alone"
 	landing
 	to complete
 		never
-	to offer
-		has "First Contact: Rulei: offered"
 	on enter "L-118"
 		log `Discovered a region of emptiness east of the core, where systems are shrouded by a vast, eerie darkness. Other than dim stars and a few planets, nothing exists.`
 		conversation
