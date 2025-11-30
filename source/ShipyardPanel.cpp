@@ -360,6 +360,7 @@ bool ShipyardPanel::BuyShip(const string &name)
 	playerShips.clear();
 	playerShips.insert(playerShip);
 	CheckSelection();
+
 	// Close dialog
 	return true;
 }
