@@ -64,6 +64,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConditionSet.h
 	ConditionsStore.cpp
 	ConditionsStore.h
+	ControlsListDialog.cpp
+	ControlsListDialog.h
 	Conversation.cpp
 	Conversation.h
 	ConversationPanel.cpp
@@ -201,8 +203,6 @@ target_sources(EndlessSkyLib PRIVATE
 	MissionTimer.h
 	MissionPanel.cpp
 	MissionPanel.h
-	ModalListDialog.cpp
-	ModalListDialog.h
 	Mortgage.cpp
 	Mortgage.h
 	MouseButton.h

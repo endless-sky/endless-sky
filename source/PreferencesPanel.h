@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Command.h"
+#include "ControlsListDialog.h"
 #include "Point.h"
 #include "ScrollVar.h"
 #include "Tooltip.h"
@@ -27,8 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <string>
 #include <vector>
-
-#include "ModalListDialog.h"
 
 class PlayerInfo;
 class RenderBuffer;
@@ -96,7 +95,7 @@ private:
 
 private:
 	PlayerInfo &player;
-	ModalListDialog *modalDialog;
+	ControlsListDialog *modalDialog;
 
 	// Determine if the player's mission deadlines need to be recached when
 	// this panel is closed due to the deadline blink preference changing.

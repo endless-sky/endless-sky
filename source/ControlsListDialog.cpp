@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "Logger.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
 #include "Screen.h"
@@ -77,8 +76,6 @@ void ControlsListDialog::Draw()
 	const Color &faint = *GameData::Colors().Get("faint");
 
 	const Point topLeft = selectionListBox.TopLeft();
-	Logger::LogError("selectionListBox.TopLeft() = (" + to_string(topLeft.X()) + ", "+ to_string(topLeft.Y()) + "); ");
-	Logger::LogError("DRAW selectionListBox.Dimensions() = (" + to_string(selectionListBox.Dimensions().X()) + ", "+ to_string(selectionListBox.Dimensions().Y()) + "); ");
 
 	// Draw title with underline
 	font.Draw(title, {topLeft.X(), topLeft.Y() - 30}, bright);
@@ -90,10 +87,8 @@ void ControlsListDialog::Draw()
 	// Switch render target to listClip. Until target is destroyed or
 	// deactivated, all opengl commands will be drawn there instead.
 	auto target = listClip->SetTarget();
-	// Begin local coordinates.
-	Logger::LogError("listClip.Left/Top = (" + to_string(listClip->Left()) + ", "+ to_string(listClip->Top()) + "); ");
-	Logger::LogError("listClip.Width/Height = (" + to_string(listClip->Width()) + ", "+ to_string(listClip->Height()) + "); ");
 
+	// Begin local coordinates.
 	// Create a table, leave room for the scroll bar on the right.
 	Table table;
 	table.AddColumn(listClip->Left(), Layout(selectionListBox.Width() - 7, Truncate::MIDDLE));
@@ -101,7 +96,6 @@ void ControlsListDialog::Draw()
 
 	int firstY = listClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(listScroll.AnimatedValue())));
-	Logger::LogError("firstY = " + to_string(firstY));
 
 	int index = 0;
 	for(const string &display : options)
@@ -123,16 +117,6 @@ void ControlsListDialog::Draw()
 			AddZone({selectionListBox.Center() + zoneBounds.Center(), zoneBounds.Dimensions()},
 					[&]() { selectedItem = display; selectedIndex = index; });
 		table.Draw(display, isSelectedIndex ? bright : medium);
-
-		// FillShader::Fill(zoneBounds, {static_cast<float>(.1 * index), static_cast<float>((10 - index) * .1), .0, .1});
-
-		Logger::LogError("zone.Center() = (" +
-			to_string(zoneBounds.Center().X()) + ", "+ to_string(zoneBounds.Center().Y()) + "); zone.Dimension() = (" +
-			to_string(zoneBounds.Dimensions().X()) + ", "+ to_string(zoneBounds.Dimensions().Y()) + "); hoverPoint = (" +
-			to_string(hoverPoint.X()) + ", "+ to_string(hoverPoint.Y()) + "); " );
-		Logger::LogError("table.GetCenterPoint() = (" + to_string(table.GetCenterPoint().X()) + ", "+ to_string(table.GetCenterPoint().Y()) + "); ");
-		Logger::LogError("table.GetPoint() = (" + to_string(table.GetPoint().X()) + ", "+ to_string(table.GetPoint().Y()) + "); ");
-
 
 		++index;
 	}
@@ -218,21 +202,13 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 	}
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !options.empty())
 	{
-		// Logger::LogError(
-		// 	"was: selected index = " + to_string(selectedIndex) +
-		// 	"selectedItem = " + selectedItem
-		// 	);
-
-		// up/down selection within the list
 		if(key == SDLK_DOWN) {
-			Logger::LogError("key down");
 			++selectedIndex;
 			if(static_cast<unsigned>(selectedIndex) >= options.size())
 				selectedIndex = 0;
 		}
 		else
 		{
-			Logger::LogError("key up");
 			--selectedIndex;
 			if(selectedIndex < 0)
 				selectedIndex = options.size() - 1;
@@ -246,26 +222,6 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 				selectedItem = *it;
 				break;
 			}
-		//
-		// Logger::LogError(
-		// 	"now: selected index = " + to_string(selectedIndex) +
-		// 	"selectedItem = " + selectedItem
-		// 	);
-		//
-		// //
-		// index = 0;
-		// for(const string &display : options)
-		// {
-		// 	if(display == selectedItem)
-		// 		selectedIndex = index;
-		// 	++index;
-		// }
-		//
-		// Logger::LogError(
-		// 	"now2: selected index = " + to_string(selectedIndex) +
-		// 	"selectedItem = " + selectedItem
-		// 	);
-		// //
 
 		ScrollToSelection();
 	}
@@ -278,38 +234,6 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 
 
 
-// bool ControlsListDialog::Click(int x, int y, MouseButton button, int clicks)
-// {
-//
-// 	// When the user clicks, clear the hovered state.
-// 	if(button != MouseButton::LEFT)
-// 		return false;
-//
-// 	const Point clickPos(x, y);
-//
-// 	// Don't handle clicks outside of the clipped area.
-// 	if(selectionListBox.Contains(clickPos))
-// 	{
-// 		int index = 0;
-// 		for(const auto &zone : optionZones)
-// 		{
-// 			if(zone.Contains(clickPos) && selectedItem != zone.Value())
-// 			{
-// 				selectedItem = zone.Value();
-// 				selectedIndex = index;
-// 				break;
-// 			}
-// 			++index;
-// 		}
-// 	}
-// 	else
-// 		return Dialog::Click(x, y, button, clicks);
-//
-// 	return true;
-// }
-
-
-
 void ControlsListDialog::Resize()
 {
 	Dialog::Resize(height);
@@ -317,7 +241,6 @@ void ControlsListDialog::Resize()
 	selectionListBox = Rectangle::FromCorner(rect.TopLeft() + Point(0, 30), rect.Dimensions() - Point(0, 32));
 	listScroll.SetDisplaySize(selectionListBox.Height());
 	listClip = make_unique<RenderBuffer>(selectionListBox.Dimensions());
-	Logger::LogError("RESIZE selectionListBox.Dimensions() = (" + to_string(selectionListBox.Dimensions().X()) + ", "+ to_string(selectionListBox.Dimensions().Y()) + "); ");
 
 	// Move the TextArea out of the way so it doesn't steal clicks and scroll actions. We are not using it.
 	text->SetRect(Rectangle::FromCorner(Screen::BottomRight(), {0, 0}));

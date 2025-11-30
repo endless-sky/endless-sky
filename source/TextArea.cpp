@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/FontSet.h"
 #include "GameData.h"
-#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
 #include "ScrollBar.h"
@@ -127,8 +126,14 @@ int TextArea::GetLongestLineWidth()
 
 
 
-void TextArea::Draw()
+Rectangle TextArea::GetRect() const
 {
+	return Rectangle(position, size);
+}
+
+
+
+void TextArea::Draw() {
 	if(!buffer)
 		buffer = make_unique<RenderBuffer>(size);
 

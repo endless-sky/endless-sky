@@ -18,12 +18,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 
 #include "ClickZone.h"
+#include "GameData.h"
 #include "ScrollVar.h"
 #include "Tooltip.h"
 
 #include <string>
-
-#include "GameData.h"
 
 class RenderBuffer;
 

@@ -18,9 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
+#include "ControlsListDialog.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -143,7 +143,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	for(const auto &plugin : Plugins::Get())
 		if(plugin.second.IsValid())
 		{
-			selectedPlugin = plugin.first;
+			selectedPlugin = plugin.first + to_string(0);
 			break;
 		}
 
@@ -157,6 +157,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	for(const auto &plugin : Plugins::Get())
 		if(plugin.second.IsValid())
 			pluginListHeight += 20;
+	pluginListHeight *= 40;
 
 	pluginListScroll.SetDisplaySize(pluginListBox.Height());
 	pluginListScroll.SetMaxValue(pluginListHeight);
@@ -1635,12 +1636,12 @@ void PreferencesPanel::UpdateAvailableProfiles()
 void PreferencesPanel::SelectProfile()
 {
 	UpdateAvailableProfiles();
-	modalDialog = new ModalListDialog(this,
+	// modalDialog = new ModalListDialog(this,
+	modalDialog = new ControlsListDialog(this,
 		"Select a saved controls profile:",
 		availableProfiles,
 		Command::Name(),
 		Dialog::FunctionButton(this, "Load", 'l', &PreferencesPanel::LoadProfile),
-		Dialog::FunctionButton(this, "Cancel", SDLK_ESCAPE, &PreferencesPanel::CancelDialog),
 		Dialog::FunctionButton(this, "Delete", SDLK_DELETE, &PreferencesPanel::DeleteProfile),
 		&PreferencesPanel::HoverProfile);
 	GetUI()->Push(modalDialog);
@@ -1669,14 +1670,6 @@ string PreferencesPanel::HoverProfile(const string &profileName)
 		if(name == profileName)
 			return "Game resource.";
 	return "User profile.";
-}
-
-
-
-bool PreferencesPanel::CancelDialog(const string &profileName)
-{
-	// Close the dialog.
-	return true;
 }
 
 
