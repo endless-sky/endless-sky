@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
+#include "Weapon.h"
 
 using namespace std;
 
@@ -52,8 +53,11 @@ void AmmoDisplay::Update(const Ship &flagship)
 	Reset();
 	for(const auto &it : flagship.Weapons())
 	{
-		const Outfit *secWeapon = it.GetOutfit();
-		if(!secWeapon || !secWeapon->Icon() || ammo.find(secWeapon) != ammo.end())
+		const Outfit *outfit = it.GetOutfit();
+		if(!outfit)
+			continue;
+		const Weapon *secWeapon = outfit->GetWeapon().get();
+		if(!secWeapon->Icon() || ammo.find(outfit) != ammo.end())
 			continue;
 
 		double ammoCount = -1.;
@@ -67,7 +71,7 @@ void AmmoDisplay::Update(const Ship &flagship)
 			// Decide what remaining ammunition value to display.
 			ammoCount = (ammoCount == -1. ? fuelAmmoCount : min(ammoCount, fuelAmmoCount));
 		}
-		ammo[secWeapon] = ammoCount;
+		ammo[outfit] = ammoCount;
 	}
 }
 
@@ -103,7 +107,7 @@ void AmmoDisplay::Draw(const Rectangle &ammoBox, const Point &iconDim) const
 		const auto &playerSelectedWeapons = player.SelectedSecondaryWeapons();
 		bool isSelected = (playerSelectedWeapons.find(it.first) != playerSelectedWeapons.end());
 
-		SpriteShader::Draw(it.first->Icon(), pos + iconOff);
+		SpriteShader::Draw(it.first->GetWeapon()->Icon(), pos + iconOff);
 		SpriteShader::Draw(isSelected ? selectedSprite : unselectedSprite, pos + boxOff);
 
 		auto iconCenter = Point(iconCenterX, pos.Y() + ammoIconHeight / 2.);

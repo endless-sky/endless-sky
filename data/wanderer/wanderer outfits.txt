@@ -269,6 +269,8 @@ outfit "Thunderhead Launcher"
 		"missile strength" 12
 	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
@@ -319,6 +321,7 @@ outfit "Thunderhead Storage Array"
 
 outfitter "Thunderhead Missile Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Thunderhead Launcher"
 			has "outfit: Thunderhead Storage Array"

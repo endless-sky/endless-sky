@@ -868,7 +868,7 @@ mission "Avgi: Special Nuclear Material Shipment 1"
 	job
 	repeat
 	name "Special nuclear materials to <planet>"
-	description "Deliver <cargo> special nuclear material to <destination> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
+	description "Deliver <cargo> to <destination> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
 	source
 		government "Avgi (Twilight Guard)"
 	destination
@@ -904,7 +904,7 @@ mission "Avgi: Special Nuclear Material Shipment 2"
 	job
 	repeat
 	name "Special nuclear materials to <planet>"
-	description "Deliver <cargo> special nuclear material to <destination> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
+	description "Deliver <cargo> to <destination> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
 	source
 		government "Avgi (Twilight Guard)"
 	destination
@@ -940,7 +940,7 @@ mission "Avgi: Special Nuclear Material Shipment 3"
 	job
 	repeat
 	name "Special nuclear materials to <planet>"
-	description "Deliver <cargo> special nuclear material to <destination> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
+	description "Deliver <cargo> to <destination> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
 	source
 		government "Avgi (Twilight Guard)"
 	destination

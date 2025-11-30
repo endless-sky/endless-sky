@@ -60,6 +60,40 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.16" date="2025-10-25">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>Some of the notable changes are:</p>
+        <ul>
+          <li>Reverted changes to movement AI from the previous release, fixing various issues with ship movement introduced there.</li>
+          <li>There is now a gamerule which controls if secondary weapon ammunition can be resupplied at any outfitter.</li>
+          <li>Scrollable text areas on the map and plugin panels now behave correctly when the game window is resized.</li>
+          <li>When landing, planetary security will no longer scan parked ships for illegal outfits.</li>
+          <li>Animations of features in the HUD are no longer affected by the "pause" or "fast-forward" commands.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 16 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.16/changelog</url>
+    </release>
+    <release version="0.10.15" date="2025-9-27" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>Some notable additions and changes are:</p>
+        <ul>
+          <li>Re-implementation of the "Hold Fire" command for escort ships.</li>
+          <li>Improved the autopilot's ability to use reverse thrust and handle ships with insufficient crew.</li>
+          <li>Added animations to incoming in-flight messages, the mini-map transitioning between systems, and zooming in and out in the map panel.</li>
+          <li>The Heavy Gust now becomes available shortly after the Autumn Leaf.</li>
+          <li>Some new and continued mission chains, including one involving the Ka'het.</li>
+          <li>Ramscoop fuel and solar energy collection are now based the distances from each star in a system to a ship, instead of from the ship to the center of the system.</li>
+          <li>Sprites can now be loaded from AVIF files and music from FLAC files.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 20 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.15/changelog</url>
+    </release>
     <release version="0.10.14" date="2025-6-28">
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
@@ -530,15 +564,15 @@
         <p>Changes include:</p>
         <ul>
           <li>Buying and selling items at maximum depreciation now accounts for the 7-day grace period.</li>
-          <li>Missions will no longer complete if a required passenger isn’t landed with you.</li>
+          <li>Missions will no longer complete if a required passenger isn't landed with you.</li>
           <li>Several new star images have been added, as well as additional jobs for players with many bunks.</li>
           <li>Tweaks to the balance of solar panels and some Coalition outfits, and to the fleets found in Hai space.</li>
         </ul>
         <p>Plugin authors and content creators have some small engine updates to consider:</p>
         <ul>
           <li>Automatic condition variables now update daily, and not just upon landing.</li>
-          <li>The flagship’s system and planet are available as condition variables.</li>
-          <li>Heat can be added to a ship based on the system’s solar power output with the “solar heat” outfit attribute.</li>
+          <li>The flagship's system and planet are available as condition variables.</li>
+          <li>Heat can be added to a ship based on the system's solar power output with the "solar heat" outfit attribute.</li>
         </ul>
       </description>
       <url>https://github.com/endless-sky/endless-sky/blob/v0.9.12/changelog</url>
