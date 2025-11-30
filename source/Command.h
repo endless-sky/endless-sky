@@ -34,7 +34,6 @@ public:
 		WORKING
 	};
 
-
 	// Empty command:
 	static const Command NONE;
 	// Main menu:
@@ -98,6 +97,7 @@ public:
 	// brackets) with key names (in quotes).
 	static std::string ReplaceNamesWithKeys(const std::string &text);
 
+
 public:
 	Command() = default;
 	// Create a command representing whatever command is mapped to the given
@@ -156,6 +156,7 @@ public:
 	// Get the commands that are set in either of these commands.
 	Command operator|(const Command &command) const;
 	Command &operator|=(const Command &command);
+
 
 private:
 	explicit Command(uint64_t state);

@@ -450,7 +450,7 @@ void Dialog::Resize(int height)
 	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
 			(realBottomHeight) * (!isMission && (intFun || stringFun)) - BOTTOM_PADDING;
 
-	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
+	textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
 
 	if(validateFun)

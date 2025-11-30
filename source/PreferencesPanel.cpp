@@ -1562,7 +1562,6 @@ void PreferencesPanel::ScrollSelectedPlugin()
 
 
 
-
 bool PreferencesPanel::SaveControls(const std::string &profileName)
 {
 	Command::RenameProfile(profileName);
@@ -1674,6 +1673,7 @@ string PreferencesPanel::HoverProfile(const string &profileName)
 
 bool PreferencesPanel::DeleteProfile(const string &profileName)
 {
+
 	for(string name : immutableProfiles)
 		if(name == profileName)
 		{

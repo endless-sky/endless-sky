@@ -49,7 +49,6 @@ public:
 
 	int GetTextHeight(bool trailingBreak = true);
 	int GetLongestLineWidth();
-	Rectangle GetRect() const;
 
 
 protected:

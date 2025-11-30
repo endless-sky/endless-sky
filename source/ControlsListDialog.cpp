@@ -238,8 +238,7 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 void ControlsListDialog::Resize()
 {
 	Dialog::Resize(height);
-	Rectangle rect = text->GetRect();
-	selectionListBox = Rectangle::FromCorner(rect.TopLeft() + Point(0, 30), rect.Dimensions() - Point(0, 32));
+	selectionListBox = Rectangle::FromCorner(textRect.TopLeft() + Point(0, 30), textRect.Dimensions() - Point(0, 32));
 	listScroll.SetDisplaySize(selectionListBox.Height());
 	listClip = make_unique<RenderBuffer>(selectionListBox.Dimensions());
 

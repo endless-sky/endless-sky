@@ -84,7 +84,6 @@ void Interface::Load(const DataNode &node)
 	// Now, parse the elements in it.
 	string visibleIf;
 	string activeIf;
-	string hoverIf;
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -104,10 +103,10 @@ void Interface::Load(const DataNode &node)
 			for(const auto &grand : child)
 				list.emplace_back(grand.Value(0));
 		}
-		else if(key == "visible" || key == "active" || key == "hover")
+		else if(key == "visible" || key == "active")
 		{
-			// This node alters the visibility or activation or hover state of future nodes.
-			string &str = (key == "visible") ? visibleIf : (key == "active") ? activeIf : hoverIf;
+			// This node alters the visibility or activation of future nodes.
+			string &str = (key == "visible" ? visibleIf : activeIf);
 			if(child.Size() >= 3 && child.Token(1) == "if")
 				str = child.Token(2);
 			else
@@ -140,7 +139,7 @@ void Interface::Load(const DataNode &node)
 			}
 
 			// If we get here, a new element was just added.
-			elements.back()->SetConditions(visibleIf, activeIf, hoverIf);
+			elements.back()->SetConditions(visibleIf, activeIf);
 		}
 	}
 }
@@ -343,7 +342,7 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 	// Check if this element is active.
 	int state = info.HasCondition(activeIf);
 	// Check if the mouse is hovering over this element.
-	state += (state && (box.Contains(UI::GetMouse()) || (!hoverIf.empty() && info.HasCondition(hoverIf))));
+	state += (state && box.Contains(UI::GetMouse()));
 	// Place buttons even if they are inactive, in case the UI wants to show a
 	// message explaining why the button is inactive.
 	if(panel)
@@ -361,11 +360,10 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 
 // Set the conditions that control when this element is visible and active.
 // An empty string means it is always visible or active.
-void Interface::Element::SetConditions(const string &visible, const string &active, const string &hover)
+void Interface::Element::SetConditions(const string &visible, const string &active)
 {
 	visibleIf = visible;
 	activeIf = active;
-	hoverIf = hover;
 }
 
 
@@ -535,7 +533,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	isDynamic = (key.ends_with("string") || key.ends_with("dynamic button"));
 	if(key.ends_with("button") || key.ends_with("dynamic button"))
 	{
-		buttonKey = SDL_GetKeyFromName(node.Token(1).c_str());
+		buttonKey = node.Token(1).front();
 		if(node.Size() >= 3)
 			str = node.Token(2);
 	}

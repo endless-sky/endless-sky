@@ -189,14 +189,15 @@ protected:
 	std::function<void(bool)> boolFun;
 	std::function<bool(const std::string &)> validateFun;
 
+	bool canCancel;
 	int activeButton;
 	bool isMission;
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
 	bool isWide = false;
+	Rectangle textRect;
 
 	std::string input;
-	bool canCancel;
 
 	std::string okText;
 	std::string cancelText;
@@ -304,8 +305,8 @@ Dialog::Dialog(T *panel,
 	std::function<bool(const std::string &)> validate)
 	:
 	validateFun(std::move(validate)),
-	input(initialValue),
 	canCancel(true),
+	input(initialValue),
 	buttonOne(buttonOne),
 	buttonThree(buttonThree)
 {
