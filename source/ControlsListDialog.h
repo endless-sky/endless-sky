@@ -17,9 +17,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Dialog.h"
 
+#include "ClickZone.h"
+#include "ScrollVar.h"
+#include "Tooltip.h"
+
 #include <string>
 
-#include "TextArea.h"
+#include "GameData.h"
+
+class RenderBuffer;
+
 
 
 // A special version of Dialog for listing the command profiles.
@@ -36,54 +43,45 @@ public:
 		);
 
 	void UpdateList(std::vector<std::string> newOptions);
-	virtual void Draw() override;
+	virtual void Draw();
 
 
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
-
-	void Resize();
-
+	// virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+	virtual void Resize() override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
+	void ScrollToSelection();
+	void DrawTooltips();
 
 
 private:
 	bool DoCallback() const;
 
 
-// protected:
-// 	// Only override the ones you need; the default action is to return false.
-// 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-// 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
-// 	virtual bool Hover(int x, int y) override;
-// 	virtual bool Drag(double dx, double dy) override;
-// 	virtual bool Scroll(double dx, double dy) override;
-//
-//
-// private:
-// 	void Init();
-// 	bool DoCallback() const;
-
-
 private:
 	std::string title;
 	std::vector<std::string> options;
-	std::string selectedOption;
 
 	// Height will resolve to a number of extensionCount middle panels and is not exact.
 	int height = 100;
 
+	Rectangle selectionListBox;
+
+	int selectedIndex = 0;
+	std::string selectedItem;
+	std::string hoverItem;
 	std::function<std::string (const std::string &)> hoverFun;
 
-	Rectangle selectionListBox;
 	Point hoverPoint;
-	int hoverCount = 0;
-	bool hasHover = false;
-	double scrollY = 0;
+	Tooltip tooltip;
+
+	std::vector<ClickZone<std::string>> optionZones;
+	std::unique_ptr<RenderBuffer> listClip;
+	ScrollVar<double> listScroll;
 };
 
 
@@ -100,8 +98,10 @@ ControlsListDialog::ControlsListDialog(T *panel,
 	:
 	Dialog(panel, "", "", buttonOne, buttonThree, nullptr),
 	title(title),
-	selectedOption(initialSelection),
-	hoverFun(std::bind(hoverFun, panel, std::placeholders::_1))
+	selectedItem(initialSelection),
+	hoverFun(std::bind(hoverFun, panel, std::placeholders::_1)),
+	tooltip(130, Alignment::CENTER, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	isMission = false;
 	intFun = nullptr;

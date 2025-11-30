@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ControlsListDialog.h"
 
 #include "Dialog.h"
-#include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -25,115 +24,148 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "Logger.h"
 #include "Preferences.h"
+#include "RenderBuffer.h"
 #include "Screen.h"
 #include "TextArea.h"
-#include "image/SpriteSet.h"
 #include "UI.h"
-#include "image/Sprite.h"
+#include "shader/PointerShader.h"
+#include "text/Table.h"
 
 using namespace std;
 using namespace dialog;
 
-namespace {
-	// Only show tooltips if the mouse has hovered in one place for this amount of time.
-	constexpr int HOVER_TIME = 60;
-}
 
 
-
-void ControlsListDialog::UpdateList(std::vector<std::string> newOptions)
-{
+void ControlsListDialog::UpdateList(std::vector<std::string> newOptions) {
 	options.assign(newOptions.begin(), newOptions.end());
 	bool found = false;
+	int index = 0;
 	for(auto &it : options)
 	{
-		if(it == selectedOption)
+		if(it == selectedItem)
 		{
+			selectedIndex = index;
 			found = true;
 			break;
 		}
+		++index;
 	}
 	if(!found)
-		selectedOption = options.front();
+	{
+		selectedItem = options.front();
+		selectedIndex = 0;
+	}
+
+	// Set the new list scroll range.
+	listScroll.SetMaxValue(20 * options.size());
+
+	ScrollToSelection();
 }
 
 
 
 void ControlsListDialog::Draw()
 {
+	ClearZones();
+	optionZones.clear();
+
 	Dialog::Draw();
 
 	const Font &font = FontSet::Get(14);
-	const Color bright = *GameData::Colors().Get("bright");
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &faint = *GameData::Colors().Get("faint");
 
 	const Point topLeft = selectionListBox.TopLeft();
+	Logger::LogError("selectionListBox.TopLeft() = (" + to_string(topLeft.X()) + ", "+ to_string(topLeft.Y()) + "); ");
+	Logger::LogError("DRAW selectionListBox.Dimensions() = (" + to_string(selectionListBox.Dimensions().X()) + ", "+ to_string(selectionListBox.Dimensions().Y()) + "); ");
 
 	// Draw title with underline
 	font.Draw(title, {topLeft.X(), topLeft.Y() - 30}, bright);
 	FillShader().Fill(Point(0, topLeft.Y() - TOP_PADDING), {Width() - HORIZONTAL_PADDING, 1}, bright);
 
-	const double top = topLeft.Y();
-	const double bottom = selectionListBox.Bottom();
-	const double hTextPad = 5;
-	const double fadeOut = 10;
+	// Animate scrolling.
+	listScroll.Step();
 
-	// The hover count "decays" over time if not hovering over a selection.
-	if(hoverCount)
-		--hoverCount;
-	string hoverText;
+	// Switch render target to listClip. Until target is destroyed or
+	// deactivated, all opengl commands will be drawn there instead.
+	auto target = listClip->SetTarget();
+	// Begin local coordinates.
+	Logger::LogError("listClip.Left/Top = (" + to_string(listClip->Left()) + ", "+ to_string(listClip->Top()) + "); ");
+	Logger::LogError("listClip.Width/Height = (" + to_string(listClip->Width()) + ", "+ to_string(listClip->Height()) + "); ");
 
-	Point currentTopLeft = topLeft + Point(0, -scrollY);
+	// Create a table, leave room for the scroll bar on the right.
+	Table table;
+	table.AddColumn(listClip->Left(), Layout(selectionListBox.Width() - 7, Truncate::MIDDLE));
+	table.SetUnderline(listClip->Left(), listClip->Right() - 7);
 
-	// Draw the list of available selections.
+	int firstY = listClip->Top();
+	table.DrawAt(Point(0, firstY - static_cast<int>(listScroll.AnimatedValue())));
+	Logger::LogError("firstY = " + to_string(firstY));
+
+	int index = 0;
 	for(const string &display : options)
 	{
-		const Point drawPoint = currentTopLeft;
-		currentTopLeft += Point(0., 20.);
+		// Add selectionListBox.Center() for absolute coordinates.
+		optionZones.emplace_back(selectionListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), display);
 
-		if(drawPoint.Y() < top - 20)
-			continue;
-		if(drawPoint.Y() > bottom)
-			continue;
+		bool isSelectedIndex = (display == selectedItem);
+		if(isSelectedIndex || display == hoverItem)
+			table.DrawHighlight(faint);
 
-		Rectangle zone(drawPoint + Point(selectionListBox.Width() / 2., 10.), Point(selectionListBox.Width(), 20.));
-		const Point textPoint(drawPoint.X() + hTextPad, zone.Center().Y() - font.Height() / 2);
-		bool isHovering = hasHover && zone.Contains(hoverPoint);
-		bool isHighlighted = (display == selectedOption || isHovering);
-		if(isHovering)
-		{
-			hoverCount = min(HOVER_TIME, hoverCount + 2);
-			if(hoverCount == HOVER_TIME)
-				hoverText = hoverFun(display);
-		}
+		Rectangle zoneBounds = table.GetRowBounds();
 
-		double alpha = 1;
-		// double alpha = min((drawPoint.Y() - (top - fadeOut)) * .1,
-		// 		(bottom - fadeOut - drawPoint.Y()) * .1);
-		// alpha = max(alpha, 0.);
-		// alpha = min(alpha, 1.);
+		// Only include the zone as clickable if it's within the drawing area.
+		bool displayed = table.GetPoint().Y() > listClip->Top() - 20 &&
+			table.GetPoint().Y() < listClip->Bottom() - table.GetRowBounds().Height() + 20;
+		if(displayed)
+			// Add selectionListBox.Center() for absolute coordinates.
+			AddZone({selectionListBox.Center() + zoneBounds.Center(), zoneBounds.Dimensions()},
+					[&]() { selectedItem = display; selectedIndex = index; });
+		table.Draw(display, isSelectedIndex ? bright : medium);
 
-		if(display == selectedOption)
-			FillShader::Fill(zone, Color(.1 * alpha, 0.));
+		// FillShader::Fill(zoneBounds, {static_cast<float>(.1 * index), static_cast<float>((10 - index) * .1), .0, .1});
 
-		const int textWidth = selectionListBox.Width() - 2. * hTextPad;
-		font.Draw(DisplayText(display, {textWidth, Truncate::BACK}), textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
-	}
-	// Draw the top and bottom fader graphics
-	Color background = *GameData::Colors().Get("map side panel background");
-	Point drawTop = Point(0, selectionListBox.Top() - fadeOut);
-	Point drawBottom = Point(0, selectionListBox.Bottom() + fadeOut);
-	for(int i = 0; i < fadeOut; i++) {
-		double alpha = min(max((fadeOut - i) * .1, 0.), 1.);
-		FillShader().Fill(drawTop + Point(0, i), {selectionListBox.Width(), 1}, background.Transparent(alpha));
-		FillShader().Fill(drawBottom - Point(0, i), {selectionListBox.Width(), 1}, background.Transparent(alpha));
+		Logger::LogError("zone.Center() = (" +
+			to_string(zoneBounds.Center().X()) + ", "+ to_string(zoneBounds.Center().Y()) + "); zone.Dimension() = (" +
+			to_string(zoneBounds.Dimensions().X()) + ", "+ to_string(zoneBounds.Dimensions().Y()) + "); hoverPoint = (" +
+			to_string(hoverPoint.X()) + ", "+ to_string(hoverPoint.Y()) + "); " );
+		Logger::LogError("table.GetCenterPoint() = (" + to_string(table.GetCenterPoint().X()) + ", "+ to_string(table.GetCenterPoint().Y()) + "); ");
+		Logger::LogError("table.GetPoint() = (" + to_string(table.GetPoint().X()) + ", "+ to_string(table.GetPoint().Y()) + "); ");
+
+
+		++index;
 	}
 
-	if(!hoverText.empty())
+	// Switch back to normal opengl operations.
+	target.Deactivate();
+
+	listClip->SetFadePadding(
+		listScroll.IsScrollAtMin() ? 0 : 20,
+		listScroll.IsScrollAtMax() ? 0 : 20
+	);
+
+	// Draw the scrolled and clipped plugin list to the screen.
+	listClip->Draw(selectionListBox.Center());
+	const Point UP{0, -1};
+	const Point DOWN{0, 1};
+	const Point POINTER_OFFSET{0, 5};
+	if(listScroll.Scrollable())
 	{
-		const Point boxSize(font.Width(hoverText) + 20., 30.);
-		FillShader::Fill(Rectangle::FromCorner(hoverPoint, boxSize), *GameData::Colors().Get("tooltip background"));
-		font.Draw(hoverText, hoverPoint + Point(10., 10.), *GameData::Colors().Get("medium"));
+		// Draw up and down pointers, mostly to indicate when scrolling
+		// is possible, but might as well make them clickable too.
+		Rectangle topRight({selectionListBox.Right(), selectionListBox.Top() + POINTER_OFFSET.Y()}, {20.0, 20.0});
+		PointerShader::Draw(topRight.Center(), UP,
+			10.f, 10.f, 5.f, Color(listScroll.IsScrollAtMin() ? .2f : .8f, 0.f));
+		AddZone(topRight, [&]() { listScroll.Scroll(-Preferences::ScrollSpeed()); });
+
+		Rectangle bottomRight(selectionListBox.BottomRight() - POINTER_OFFSET, {20.0, 20.0});
+		PointerShader::Draw(bottomRight.Center(), DOWN,
+			10.f, 10.f, 5.f, Color(listScroll.IsScrollAtMax() ? .2f : .8f, 0.f));
+		AddZone(bottomRight, [&]() { listScroll.Scroll(Preferences::ScrollSpeed()); });
 	}
+
+	DrawTooltips();
 }
 
 
@@ -176,7 +208,7 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 	}
 	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || key == SDLK_SPACE)
 	{
-		// Now that we know what button was selected, process the button press
+		// Now that we know what button was selectedIndex, process the button press
 		if(DoCallback())
 			GetUI()->Pop(this);
 	}
@@ -186,49 +218,56 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 	}
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !options.empty())
 	{
+		// Logger::LogError(
+		// 	"was: selected index = " + to_string(selectedIndex) +
+		// 	"selectedItem = " + selectedItem
+		// 	);
+
 		// up/down selection within the list
-		auto it = options.begin();
-		int index = 0;
-		for( ; it != options.end(); ++it, ++index)
-			if(*it == selectedOption)
-				break;
-
-		int firstVisibleIndex = max(0., scrollY + 10) / 20.;
-		int lastVisibleIndex = firstVisibleIndex + (selectionListBox.Height() / 20) - 1;
-
-		if(key == SDLK_DOWN)
-		{
-			if(index >= lastVisibleIndex)
-				scrollY += 20.;
-			++it;
-			++index;
-			if(it == options.end())
-			{
-				it = options.begin();
-				scrollY = 0.;
-				index = 0;
-			}
+		if(key == SDLK_DOWN) {
+			Logger::LogError("key down");
+			++selectedIndex;
+			if(static_cast<unsigned>(selectedIndex) >= options.size())
+				selectedIndex = 0;
 		}
 		else
 		{
-			if(index <= firstVisibleIndex)
-				scrollY -= 20.;
-			if(it == options.begin())
-			{
-				it = options.end();
-				scrollY = max(0., 20. * options.size() - selectionListBox.Height());
-				index = options.size();
-			}
-			--it;
-			--index;
+			Logger::LogError("key up");
+			--selectedIndex;
+			if(selectedIndex < 0)
+				selectedIndex = options.size() - 1;
 		}
-		selectedOption = *it;
 
-		// Adjust scroll to ensure that after an up/down keyboard adjustment the active option is visible (Next update).
-		firstVisibleIndex = max(0., scrollY + 10) / 20.;
-		lastVisibleIndex = firstVisibleIndex + (selectionListBox.Height() / 20) - 1;
-		scrollY += max(0, index - lastVisibleIndex) * 20 - max(0, firstVisibleIndex - index) * 20;
-		scrollY = max(0., min(scrollY, 20 * options.size() - selectionListBox.Height()));
+		auto it = options.begin();
+		int index = 0;
+		for( ; it != options.end(); ++it, ++index)
+			if(index == selectedIndex)
+			{
+				selectedItem = *it;
+				break;
+			}
+		//
+		// Logger::LogError(
+		// 	"now: selected index = " + to_string(selectedIndex) +
+		// 	"selectedItem = " + selectedItem
+		// 	);
+		//
+		// //
+		// index = 0;
+		// for(const string &display : options)
+		// {
+		// 	if(display == selectedItem)
+		// 		selectedIndex = index;
+		// 	++index;
+		// }
+		//
+		// Logger::LogError(
+		// 	"now2: selected index = " + to_string(selectedIndex) +
+		// 	"selectedItem = " + selectedItem
+		// 	);
+		// //
+
+		ScrollToSelection();
 	}
 	else
 		return false;
@@ -239,32 +278,35 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 
 
 
-bool ControlsListDialog::Click(int x, int y, MouseButton button, int clicks)
-{
-
-	// When the user clicks, clear the hovered state.
-	hasHover = false;
-	if(button != MouseButton::LEFT)
-		return false;
-
-	const Point clickPos(x, y);
-
-	if(selectionListBox.Contains(clickPos))
-	{
-		int selected = (y + scrollY - selectionListBox.Top()) / 20;
-		int i = 0;
-		for(const auto &it : options)
-			if(i++ == selected && selectedOption != it)
-			{
-				selectedOption = it;
-				UI::PlaySound(UI::UISound::NORMAL);
-			}
-	}
-	else
-		return Dialog::Click(x, y, button, clicks);
-
-	return true;
-}
+// bool ControlsListDialog::Click(int x, int y, MouseButton button, int clicks)
+// {
+//
+// 	// When the user clicks, clear the hovered state.
+// 	if(button != MouseButton::LEFT)
+// 		return false;
+//
+// 	const Point clickPos(x, y);
+//
+// 	// Don't handle clicks outside of the clipped area.
+// 	if(selectionListBox.Contains(clickPos))
+// 	{
+// 		int index = 0;
+// 		for(const auto &zone : optionZones)
+// 		{
+// 			if(zone.Contains(clickPos) && selectedItem != zone.Value())
+// 			{
+// 				selectedItem = zone.Value();
+// 				selectedIndex = index;
+// 				break;
+// 			}
+// 			++index;
+// 		}
+// 	}
+// 	else
+// 		return Dialog::Click(x, y, button, clicks);
+//
+// 	return true;
+// }
 
 
 
@@ -273,7 +315,11 @@ void ControlsListDialog::Resize()
 	Dialog::Resize(height);
 	Rectangle rect = text->GetRect();
 	selectionListBox = Rectangle::FromCorner(rect.TopLeft() + Point(0, 30), rect.Dimensions() - Point(0, 32));
-	// Move the text area out of the way so it doesn't steal clicks and scrolling.
+	listScroll.SetDisplaySize(selectionListBox.Height());
+	listClip = make_unique<RenderBuffer>(selectionListBox.Dimensions());
+	Logger::LogError("RESIZE selectionListBox.Dimensions() = (" + to_string(selectionListBox.Dimensions().X()) + ", "+ to_string(selectionListBox.Dimensions().Y()) + "); ");
+
+	// Move the TextArea out of the way so it doesn't steal clicks and scroll actions. We are not using it.
 	text->SetRect(Rectangle::FromCorner(Screen::BottomRight(), {0, 0}));
 }
 
@@ -281,13 +327,17 @@ void ControlsListDialog::Resize()
 
 bool ControlsListDialog::Hover(int x, int y)
 {
-	hasHover = true;
 	hoverPoint = Point(x, y);
-	// Tooltips should not pop up unless the mouse stays in one place for the
-	// full hover time. Otherwise, every time the user scrubs the mouse over the
-	// list, tooltips will appear after one second.
-	if(hoverCount < HOVER_TIME)
-		hoverCount = 0;
+
+	hoverItem.clear();
+	tooltip.Clear();
+
+	for(const auto &zone : optionZones)
+		if(zone.Contains(hoverPoint))
+		{
+			hoverItem = zone.Value();
+			tooltip.SetZone(zone);
+		}
 
 	return true;
 }
@@ -296,7 +346,8 @@ bool ControlsListDialog::Hover(int x, int y)
 
 bool ControlsListDialog::Drag(double dx, double dy)
 {
-	scrollY = max(0., min(20. * options.size() - (selectionListBox.Height()), scrollY - dy));
+	// Steps is zero so that we don't animate mouse drags.
+	listScroll.Scroll(-dy, 0);
 	return true;
 }
 
@@ -304,7 +355,18 @@ bool ControlsListDialog::Drag(double dx, double dy)
 
 bool ControlsListDialog::Scroll(double dx, double dy)
 {
-	return Drag(0., dy * Preferences::ScrollSpeed());
+	listScroll.Scroll(-dy * Preferences::ScrollSpeed());
+	return true;
+}
+
+
+
+void ControlsListDialog::ScrollToSelection()
+{
+	while(selectedIndex * 20 - listScroll < 0)
+		listScroll.Scroll(-Preferences::ScrollSpeed());
+	while((selectedIndex + 1) * 20 - listScroll > listClip->Height())
+		listScroll.Scroll(Preferences::ScrollSpeed());
 }
 
 
@@ -313,10 +375,31 @@ bool ControlsListDialog::DoCallback() const
 {
 	bool closeDialog = false;
 	if(activeButton == 1)
-		closeDialog = buttonOne.buttonAction(selectedOption);
+		closeDialog = buttonOne.buttonAction(selectedItem);
 	else if(activeButton == 2)
 		closeDialog = true;
 	else if(activeButton == 3 && buttonThree.buttonAction)
-		closeDialog = buttonThree.buttonAction(selectedOption);
+		closeDialog = buttonThree.buttonAction(selectedItem);
 	return closeDialog;
+}
+
+
+
+void ControlsListDialog::DrawTooltips()
+{
+	if(hoverItem.empty())
+	{
+		tooltip.DecrementCount();
+		return;
+	}
+	tooltip.IncrementCount();
+	if(!tooltip.ShouldDraw())
+		return;
+
+	tooltip.SetText(hoverFun(hoverItem));
+
+	if(!tooltip.HasText())
+		tooltip.SetText(GameData::Tooltip(hoverItem));
+
+	tooltip.Draw();
 }
