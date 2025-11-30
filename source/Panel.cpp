@@ -142,6 +142,12 @@ bool Panel::AllowsFastForward() const noexcept
 
 
 
+void Panel::UpdateTooltipActivation()
+{
+}
+
+
+
 void Panel::AddOrRemove()
 {
 	for(auto &panel : childrenToAdd)
@@ -176,14 +182,7 @@ bool Panel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool is
 
 
 
-bool Panel::Click(int x, int y, int clicks)
-{
-	return false;
-}
-
-
-
-bool Panel::RClick(int x, int y)
+bool Panel::Click(int x, int y, MouseButton button, int clicks)
 {
 	return false;
 }
@@ -211,9 +210,15 @@ bool Panel::Scroll(double dx, double dy)
 
 
 
-bool Panel::Release(int x, int y)
+bool Panel::Release(int x, int y, MouseButton button)
 {
 	return false;
+}
+
+
+
+void Panel::Resize()
+{
 }
 
 
@@ -225,16 +230,9 @@ bool Panel::DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool 
 
 
 
-bool Panel::DoClick(int x, int y, int clicks)
+bool Panel::DoClick(int x, int y, MouseButton button, int clicks)
 {
-	return EventVisit(&Panel::Click, x, y, clicks);
-}
-
-
-
-bool Panel::DoRClick(int x, int y)
-{
-	return EventVisit(&Panel::RClick, x, y);
+	return EventVisit(&Panel::Click, x, y, button, clicks);
 }
 
 
@@ -253,9 +251,9 @@ bool Panel::DoDrag(double dx, double dy)
 
 
 
-bool Panel::DoRelease(int x, int y)
+bool Panel::DoRelease(int x, int y, MouseButton button)
 {
-	return EventVisit(&Panel::Release, x, y);
+	return EventVisit(&Panel::Release, x, y, button);
 }
 
 
@@ -272,6 +270,15 @@ void Panel::DoDraw()
 	Draw();
 	for(auto &child : children)
 		child->DoDraw();
+}
+
+
+
+void Panel::DoResize()
+{
+	Resize();
+	for(auto &child : children)
+		child->DoResize();
 }
 
 
@@ -305,7 +312,7 @@ void Panel::DrawBackdrop() const
 
 	// Darken everything but the dialog.
 	const Color &back = *GameData::Colors().Get("dialog backdrop");
-	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
+	FillShader::Fill(Point(), Screen::Dimensions(), back);
 }
 
 
@@ -374,7 +381,7 @@ void Panel::SetUI(UI *ui)
 
 
 
-const std::vector<std::shared_ptr<Panel>> &Panel::GetChildren()
+const vector<shared_ptr<Panel>> &Panel::GetChildren()
 {
 	return children;
 }

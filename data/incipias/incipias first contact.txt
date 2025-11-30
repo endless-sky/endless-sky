@@ -345,7 +345,7 @@ mission "Incipias: Help The Stranded 2"
 			`Your ship dives into the clouds of the gas giant, entering an environment on a scale you have never experienced before. Giant clouds tower like castles, sometimes opening to similarly large caverns of air. Whirlwinds brush through the atmosphere like pillars holding the sky. Though the winds are brutal, your ship glides through them as if they had no effect on it at all.`
 			`	Activating your scanners, you look for the stranded ship from before. Soon, a small blip appears on your radar, and you maneuver your ship to its location. The stranded ship appears, looking even worse off than the first time. The storms seem to have damaged some of the hull, and its shields are completely down; the shield generator could have gone offline when they ran out of fuel.`
 			`	Any attempt to hail the Incipias ship results in no answer. Carefully, you maneuver your own ship closer until you are able to dock with it.`
-			branch hasinciship
+			branch "has incipias ship"
 				or
 					has "flagship model: Nimbus"
 					has "flagship model: Nimbo Cirrus"
@@ -353,10 +353,10 @@ mission "Incipias: Help The Stranded 2"
 					has "flagship model: Venta"
 					has "flagship model: Gero"
 			`	When the airlock opens, you see five Incipias floating in front of you. They seem on guard at first, and it takes them a moment to recognize you from the previous encounter as you prepare your translation device to speak with them.`
-				goto initchoice
-			label hasinciship
+				goto "initial choice"
+			label "has incipias ship"
 			`	When the airlock opens, you see five Incipias floating in front of you. Noticing your presence, they quickly back off; they were clearly not expecting a human piloting one of their own ships. It takes them a moment to recognize you from the previous encounter as you prepare your translation device to speak with them.`
-			label initchoice
+			label "initial choice"
 			choice
 				`	"Hello, I have come to save you."`
 				`	"I have been sent by your people to get you home."`
@@ -375,9 +375,9 @@ mission "Incipias: Help The Stranded 2"
 					goto "end no time"
 			`	A green glow appears on all of them. "Thank you for taking the time-patience to speak with us. Can you tell us more about the deep space-void surrounding us?"`
 			choice
-				`	(Give them an exhaustive story of what you have seen so far.)`
+				`	(Give them an exhaustive story of what I have seen so far.)`
 					goto detail
-				`	(Give a rough overview of what you have seen.)`
+				`	(Give a rough overview of what I have seen.)`
 			`	After "seeing" your explanation, a rapid-fire sequence of colors is exchanged between the Incipias. Your translator cannot follow, so you are left watching them flash in what end up being yellow tones mixed with green and red.`
 			`	"Thank you for this insight. All we gathered until now was by observing-studying stars. To think that there is so much out there... it truly raise-strengthens a determination to explore.`
 				goto yours
@@ -392,7 +392,7 @@ mission "Incipias: Help The Stranded 2"
 				`	"Why do you call this station your capital?"`
 					goto capital
 				`	"How is life on a gas giant?"`
-					goto oddquestion
+					goto "odd question"
 				`	"I do not have any more questions."`
 					goto end
 			`	A flash of red appears for only a second. "Our origin-world is not directly ruled by us. They may approach you separately at a future-point, but be careful of their lights. They have aged-time values long left-alone by us, who are progressing fast.`
@@ -400,7 +400,7 @@ mission "Incipias: Help The Stranded 2"
 			label capital
 			`	The one pulsating now takes on a bright green color, "This station is our greatest action-pride, our star-bridge. In honor of our urge to expand we made this station our capital to demonstrate our determination."`
 				goto choice
-			label oddquestion
+			label "odd question"
 			`	"What an odd-reasonable question." It's glow turns into a swirl of purple and green. "We could ask the same in return - what is it like to live on hard rock? But we understand its reasoning-origin. So let me tell you of the cloud-halls of our home-sky. Lightning will draw the most beautiful color-sings between the pillar-clouds. Between them are our cities, the most color-lifeful places you will ever see. This is a bit of a poetic-gradient description, but I do not know what else to say."`
 			label end
 			`	"Thank you again for your time. You have given us much to process. We hope you too have benefited from this meeting-talk."`

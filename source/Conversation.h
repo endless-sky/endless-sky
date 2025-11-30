@@ -83,6 +83,8 @@ public:
 	bool HasAnyChoices(int node) const;
 	// If the given node is a choice node, check how many choices it offers.
 	int Choices(int node) const;
+	// Determine if the given choice is active. Inactive choices cannot be selected.
+	bool ChoiceIsActive(int node, int element) const;
 	// Check if the given conversation node is a conditional branch.
 	bool IsBranch(int node) const;
 	// Check if the given conversation node performs an action.
@@ -136,8 +138,9 @@ private:
 		std::string text;
 		// The next node to visit:
 		int next;
-		// Conditions for displaying the text:
-		ConditionSet conditions;
+		// Conditions for displaying or activating text:
+		ConditionSet toDisplay;
+		ConditionSet toActivate;
 	};
 
 	// The conversation is a network of "nodes" that you travel between by

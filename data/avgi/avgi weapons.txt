@@ -55,8 +55,7 @@ outfit "Speckle Coilgun"
 		ammo "Speck Round"
 		"fire effect" "speckle fire"
 		"inaccuracy" 0.9
-		"velocity" 30
-		"random velocity" 0.6
+		"velocity override" 30
 		"reload" 18
 		"burst reload" 6
 		"burst count" 3
@@ -68,6 +67,8 @@ outfit "Speckle Coilgun"
 	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed primarily for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
 	description "	Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off its mass driver rounds with relative ease."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 	
 
 outfit "Speckle Turret"
@@ -76,12 +77,12 @@ outfit "Speckle Turret"
 	index 07020
 	cost 90000
 	thumbnail "outfit/speckle turret"
-	"mass" 16.8
+	"mass" 18.6
 	"outfit space" -24
 	"weapon capacity" -24
 	"energy capacity" 180
 	"turret mounts" -1
-	"speck capacity" 2400
+	"speck capacity" 1800
 	weapon
 		"sound" "speckle"
 		ammo "Speck Round" 2
@@ -89,8 +90,7 @@ outfit "Speckle Turret"
 		"hardpoint offset" 9
 		"fire effect" "speckle fire"
 		"inaccuracy" 1.2
-		"velocity" 30
-		"random velocity" 0.6
+		"velocity override" 30
 		"reload" 18
 		"burst reload" 6
 		"burst count" 3
@@ -106,6 +106,8 @@ outfit "Speckle Turret"
 	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it a versatile option for mid-ranged combat."
 	description "	Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer-ranged weapons used by the Avgi, but the sheer firepower it can put out can make it deadly to close targets."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 
 outfit "Speck"
@@ -115,7 +117,9 @@ outfit "Speck"
 			"frame rate" 30
 			"no repeat"
 		"hit effect" "speck impact"
-		"lifetime" 30
+		"velocity" 30
+		"random velocity" 0.6
+		"lifetime" 24
 		"random lifetime" 3
 		"shield damage" 24
 		"hull damage" 48
@@ -140,6 +144,7 @@ effect "speck impact"
 
 outfitter "Speck Round Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Speckle Coilgun"
 			has "outfit: Speckle Turret"
@@ -188,10 +193,10 @@ outfit "Green Optical Laser"
 		"die effect" "green laser reflection" 30
 		"die effect" "green laser scattering"
 		"anti-missile" 2
-		"velocity" 1800
+		"velocity" 1200
 		"lifetime" 1
-		"firing energy" 6
-		"firing heat" 12
+		"firing energy" 3
+		"firing heat" 6
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret's precise optics seems designed to hold a beam on target at an extreme distance for a longer period of time, making it better suited for defending and supporting other ships from afar."
 	description "	The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support three Green Lasers."
 
@@ -228,50 +233,42 @@ outfit "Blue Optical Laser"
 		"Twilight Guard"
 	cost 120000
 	thumbnail "outfit/blue optical laser"
-	"mass" 9
-	"outfit space" -9
-	"weapon capacity" -9
+	"mass" 12
+	"outfit space" -12
+	"weapon capacity" -12
 	"turret mounts" -1
 	"lasing power" -2
 	weapon
 		"hardpoint sprite" "hardpoint/blue optical laser"
 		"hardpoint offset" 3
-		sprite "projectile/blue optical laser"
 			"frame rate" 3
 		"sound" "optical laser"
 		"fire effect" "blue laser glare"
-		"fire effect" "blue laser flicker" 60
 		"hit effect" "laser ejecta" 6
 		"hit effect" "blue laser reflection" 60
 		"hit effect" "blue laser scattering"
-		"velocity" 2400
+		"velocity" 1500
 		"lifetime" 1
 		"reload" 1
+		"inaccuracy" 0.6
 		"turret turn" 6
 		"firing energy" 6
 		"firing heat" 12
-		"shield damage" 3.6
-		"hull damage" 4.8
+		"shield damage" 4.2
+		"hull damage" 6
 		"heat damage" 6
-		"damage dropoff" 0 2400
+		"damage dropoff" 0 1500
 		"dropoff modifier" 0
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam ideal for damaging other ships. By pulsing thousands of times each second, the beam can create thermal and mechanical shocks in the target material, enhancing its ability to drill through armor. Unlike the advanced beam weapons used by some other species, this laser is subject to the effects of diffraction, causing its damage to become less intense with distance while also rendering it invisible. However, precise optics allow the beam to be targeted from an exceptional range, despite the tenuous damage at the edge of the laser's reach."
 	description "	The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support a single Blue Laser."
 
 effect "blue laser glare"
 	sprite "effect/blue optical laser glare"
+		"frame rate" 3
 		"random start frame"
 		"rewind"
 	"lifetime" 1
 	"absolute angle" 0
-
-effect "blue laser flicker"
-	sprite "effect/skylance impact"
-		"no repeat"
-		"frame rate" 20
-		"scale" 0.125
-	"random lifetime" 1
-	"random velocity" 90
 
 effect "blue laser reflection"
 	sprite "effect/skylance impact"
@@ -289,6 +286,72 @@ effect "blue laser scattering"
 	"lifetime" 3
 	"velocity scale" 0
 
+
+outfit "Ultraviolet Excimer Laser"
+	series "Avgi: Beams"
+	index 30
+	category "Turrets"
+	licenses
+		"Twilight Guard"
+	cost 120000
+	thumbnail "outfit/unknown"
+	"mass" 120
+	"outfit space" -60
+	"weapon capacity" -30
+	"engine capacity" -30
+	"thrusting heat" 24
+	"turret mounts" -1
+	"magnetic nozzle" -2
+	weapon
+		# "hardpoint sprite" "hardpoint/uv excimer laser"
+		"hardpoint offset" 3
+			"frame rate" 3
+		"sound" "optical laser"
+		"fire effect" "uv laser glare"
+		"hit effect" "laser ejecta" 6
+		"hit effect" "laser explosion"
+		"hit effect" "uv laser reflection" 60
+		"hit effect" "uv laser scattering"
+		"velocity" 2100
+		"lifetime" 1
+		"reload" 1
+		"inaccuracy" 1.8
+		"turret turn" 0.9
+		"firing energy" 24
+		"firing heat" 60
+		"firing fuel" 0.24
+		"shield damage" 24
+		"hull damage" 18
+		"heat damage" 18
+		"hit force" 3
+		"damage dropoff" 0 2100
+		"dropoff modifier" 0
+
+effect "uv laser glare"
+	sprite "effect/uv excimer laser glare"
+		"frame rate" 3
+		"random start frame"
+		"rewind"
+	"lifetime" 0
+	"absolute angle" 0
+
+effect "uv laser reflection"
+	sprite "effect/skylance impact"
+		"start frame" 2
+		"no repeat"
+		"scale" 0.25
+	"lifetime" 1
+	"random lifetime" 3
+	"random velocity" -90
+	"velocity scale" -0.0003
+
+effect "uv laser scattering"
+	sprite "effect/distancer"
+		"frame rate" 3
+		"scale" 0.5
+	"lifetime" 3
+	"velocity scale" 0
+
 effect "laser ejecta"
 	sprite "effect/static"
 		"no repeat"
@@ -299,6 +362,16 @@ effect "laser ejecta"
 	"random spin" 15
 	"random velocity" -12
 	"velocity scale" -0.003
+
+effect "laser explosion"
+	sprite "effect/pwave impact"
+		"no repeat"
+		"frame rate" 12
+	sound "explosion tiny"
+	"lifetime" 18
+	"random angle" 9
+	"random spin" 3
+	"velocity scale" -.0003
 
 
 outfit "Ultrarelativistic Electron Beam"
@@ -323,9 +396,9 @@ outfit "Ultrarelativistic Electron Beam"
 			"narrow"
 		"velocity override" 300
 		"piercing" 0.3
-		"submunition" "Electron Bunch" 180
+		"submunition" "TeV Electron Bunch" 180
 
-outfit "Electron Bunch"
+outfit "TeV Electron Bunch"
 	weapon
 		sprite "effect/mhd spark"
 			"frame rate" 15
@@ -342,6 +415,53 @@ outfit "Electron Bunch"
 		"scrambling damage" 0.006
 		"piercing" 0.3
 		"penetration count" 3
+
+
+outfit "UREB Turret"
+	category "Turrets"
+	series "Turrets"
+	index 07010
+	cost 3000000
+	thumbnail "outfit/ureb turret"
+	"mass" 60
+	"outfit space" -45
+	"weapon capacity" -60
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/ureb turret"
+		"hardpoint offset" 21
+		sound "slicer"
+		"fire effect" "electron flare"
+		"firing energy" 60
+		"firing heat" 90
+		"turret turn" 0.3
+		"reload" 6
+		"burst reload" 3
+		"burst count" 30
+		"inaccuracy" 3
+			"narrow"
+		"velocity override" 300
+		"piercing" 0.15
+		"submunition" "GeV Electron Bunch" 180
+
+outfit "GeV Electron Bunch"
+	weapon
+		sprite "effect/mhd spark"
+			"frame rate" 15
+			"no repeat"
+		"hit effect" "bremsstrahlung"
+		"hit effect" "nuclear spallation"
+		"velocity" 300
+		"random velocity" -210
+		"lifetime" 12
+		"random lifetime" 3
+		"inaccuracy" 0.6
+		"shield damage" 0.12
+		"hull damage" 0.15
+		"scrambling damage" 0.003
+		"piercing" 0.15
+		"penetration count" 3
+
 
 effect "bremsstrahlung"
 	sprite "effect/skylance impact"
@@ -442,26 +562,114 @@ outfit "External Launch Tube"
 		"homing"
 			"leading"
 			"throttle control"
-		"missile strength" 9
+		"missile strength" 18
 		"stream"
 		"submunition" "Orchid Active"
 	description "This is a large launcher capable of carrying and deploying large torch-driven missiles and torpedoes. With a standardized design, it is compatible with a wide range of Avgi torch missiles. A coilgun-based ejection system allows missiles to be deployed with considerable initial velocity."
 
 
-outfit "Medium VLS"
-	"display name" "Vertical Launch Array (36)"
+outfit "Tiny VLS"
+	"display name" "Vertical Launch Array (9)"
 	category "Secondary Weapons"
 	series "Secondary Weapons"
 	index 07030
 	licenses
 		"Twilight Guard"
-	cost 240000
+	cost 36000
+	thumbnail "outfit/tiny vls"
+	"mass" 3
+	"outfit space" -9
+	"weapon capacity" -9
+	"turret mounts" -1
+	"nettle capacity" 27
+	weapon
+		"hardpoint sprite" "hardpoint/tiny vls"
+		sprite "projectile/nettle"
+			"scale" 0.5
+		sound "bounce"
+		ammo `"Nettle" KKV`
+		icon "icon/nettle"
+		"fire effect" "sidewinder fire"
+		"inaccuracy" 360
+		"velocity" 3
+		"lifetime" 30
+		"range override" 3600
+		"reload" 60
+		"burst reload" 9
+		"burst count" 3
+		"turret turn" 0.000001
+		"firing energy" 3
+		"firing heat" 1.5
+		"drag" .024
+		"infrared tracking" 0.6
+		"optical tracking" 0.6
+		"homing"
+			"leading"
+			"throttle control"
+		"missile strength" 9
+		"submunition" "Nettle Active"
+	description "This tiny vertical launch system contains nine independent launch cells, each occupying one ton of outfit space. Compatible with small-to-medium Avgi missiles, the cells' contents can be easily swapped to suit a given mission. This array's compact footprint makes it suitable for drones and fighters, though the system still requires a turret mount."
+	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+
+outfit "Small VLS"
+	"display name" "Vertical Launch Array (18)"
+	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 07031
+	licenses
+		"Twilight Guard"
+	cost 108000
+	thumbnail "outfit/small vls"
+	"mass" 6
+	"outfit space" -18
+	"weapon capacity" -18
+	"turret mounts" -1
+	"nettle capacity" 54
+	weapon
+		"hardpoint sprite" "hardpoint/small vls"
+		sprite "projectile/nettle"
+			"scale" 0.5
+		sound "bounce"
+		ammo `"Nettle" KKV`
+		icon "icon/nettle"
+		"fire effect" "sidewinder fire"
+		"inaccuracy" 360
+		"velocity" 3
+		"lifetime" 30
+		"range override" 3600
+		"reload" 30
+		"burst reload" 9
+		"burst count" 6
+		"turret turn" 0.000001
+		"firing energy" 3
+		"firing heat" 1.5
+		"drag" .024
+		"infrared tracking" 0.6
+		"optical tracking" 0.6
+		"homing"
+			"leading"
+			"throttle control"
+		"missile strength" 9
+		"submunition" "Nettle Active"
+	description "This small vertical launch system contains 18 independent launch cells in a rectangular array. Designed for flexibility, the system can employ a variety of small or medium-sized missiles. Owing to its large surface footprint, a turret mount is required for the launcher to deploy missiles safely."
+	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+
+outfit "Medium VLS"
+	"display name" "Vertical Launch Array (36)"
+	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 07032
+	licenses
+		"Twilight Guard"
+	cost 216000
 	thumbnail "outfit/medium vls"
 	"mass" 12
-	"outfit space" -42
-	"weapon capacity" -42
+	"outfit space" -36
+	"weapon capacity" -36
 	"turret mounts" -1
-	"nettle capacity" 216
+	"nettle capacity" 108
 	weapon
 		"hardpoint sprite" "hardpoint/medium vls"
 		sprite "projectile/nettle"
@@ -472,7 +680,7 @@ outfit "Medium VLS"
 		"fire effect" "sidewinder fire"
 		"inaccuracy" 360
 		"velocity" 3
-		"lifetime" 15
+		"lifetime" 30
 		"range override" 3600
 		"reload" 15
 		"burst reload" 9
@@ -481,16 +689,18 @@ outfit "Medium VLS"
 		"firing energy" 3
 		"firing heat" 1.5
 		"drag" .024
-		"infrared tracking" 0.9
+		"infrared tracking" 0.6
 		"optical tracking" 0.6
 		"homing"
 			"leading"
 			"throttle control"
 		"missile strength" 9
 		"submunition" "Nettle Active"
-	description "This large vertical launch system is made up of 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
-	description "	Vertical launch systems such as this one are capable of rapidly launching multiple missiles in parallel, but take up quite a bit of space."
+	description "This medium vertical launch system contains 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for swift vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
+	description "	Vertical launch systems enable rapid and versatile missile deployment, but as dual launchers and magazines, no separate missile storage is available."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 
 outfit `"Nettle" KKV`
@@ -502,22 +712,7 @@ outfit `"Nettle" KKV`
 	"mass" 0.15
 	"nettle capacity" -1
 	description "The Nettle missile is a cheap, single-stage kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Little more than a payload of tungsten rods, an octaazacubane thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. While only a fraction of the payload actually impacts a target, the cloud of projectiles is difficult to completely eliminate."
-	description "	The Nettle KKV is ammunition for the Vertical Launch Array; without a Vertical Launch Array or Nettle Magazine to store them in you cannot purchase or use Nettle KKVs."
-
-
-outfit "Nettle Magazine"
-	category "Ammunition"
-	series "Ammunition"
-	index 07021
-	licenses
-		"Twilight Guard"
-	cost 60000
-	thumbnail "outfit/nettle magazine"
-	"mass" 3
-	"outfit space" -12
-	"nettle capacity" 72
-	ammo `"Nettle" KKV`
-	description "To improve the combat endurance of ships that rely on flooding the battlespace with small missiles, this magazine extends the capacity of Nettle launch cells by loading new Nettle KKVs through the bottoms of the cells."
+	description "	The Nettle KKV is ammunition for the Vertical Launch Array; without a Vertical Launch Array to store them in you cannot purchase or use Nettle KKVs."
 
 
 outfit "Nettle Active"
@@ -528,16 +723,16 @@ outfit "Nettle Active"
 		"die effect" "nettle split" 30
 		"lifetime" 300
 		"split range" 180
-		"acceleration" 0.3
-		"drag" .024
+		"acceleration" 0.27
+		"drag" .03
 		"turn" 6
 		"homing"
 			"leading"
 			"throttle control"
-		"infrared tracking" 0.9
+		"infrared tracking" 0.6
 		"optical tracking" 0.6
-		"shield damage" -108
-		"hull damage" -162
+		"shield damage" -81
+		"hull damage" -108
 		"missile strength" 12
 		"submunition" "Nettle Flecks" 18
 
@@ -555,9 +750,9 @@ outfit "Nettle Flecks"
 		"lifetime" 60
 		"random lifetime" 30
 		"random velocity" 6
-		"shield damage" 12
-		"hull damage" 18
-		"hit force" 45
+		"shield damage" 9
+		"hull damage" 12
+		"hit force" 36
 
 effect "nettle split"
 	sprite "effect/emp spark"
@@ -580,9 +775,11 @@ effect "fleck impact"
 
 outfitter "Nettle Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
+			has "outfit: Tiny VLS"
+			has "outfit: Small VLS"
 			has "outfit: Medium VLS"
-			has "outfit: Nettle Magazine"
 	location
 		attributes "outfitter"
 	stock
@@ -601,22 +798,7 @@ outfit `"Orchid" Nuclear Missile`
 	"orchid capacity" -1
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. They have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
 	description "	This particular missile carries a powerful thermonuclear warhead, a staged device with a far higher yield to weight ratio than anything humanity has developed. It seems to be the product of centuries of development of nuclear devices, as opposed to humanity's long abstention from nuclear weapons research."
-	description "	The Orchid Missile is ammunition for the External Launch Tube; without a External Launch Tube or Orchid Magazine to store them in you cannot purchase or use Orchid Missiles."
-
-
-outfit "Orchid Magazine"
-	category "Ammunition"
-	series "Ammunition"
-	index 07031
-	licenses
-		"Avgi Atomics"
-	cost 150000
-	thumbnail "outfit/orchid magazine"
-	"mass" 3
-	"outfit space" -12
-	"orchid capacity" 3
-	ammo `"Orchid" Nuclear Missile`
-	description "This large ammunition storage loads new Orchid Missiles into the launch tubes with little more than a few cables, actuators, and solenoids. Designed to be as minimalistic as possible, the sheer size of each Orchid nonetheless makes this magazine rather bulky for the number of missiles it stores."
+	description "	The Orchid Missile is ammunition for the External Launch Tube; without a External Launch Tube to store them in you cannot purchase or use Orchid Missiles."
 
 
 outfit "Orchid Active"
@@ -629,7 +811,7 @@ outfit "Orchid Active"
 		"die effect" "missile death"
 		"lifetime" 15
 		"drag" 3
-		"turn" 15
+		"turn" 3
 		"homing"
 		"radar tracking" 0.9
 		"submunition" "Orchid Boost"

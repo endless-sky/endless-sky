@@ -17,11 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Color.h"
 #include "../GameData.h"
-#include "../Point.h"
+#include "../Rectangle.h"
 #include "../Screen.h"
 #include "Shader.h"
 
 #include <stdexcept>
+
+using namespace std;
 
 namespace {
 	const Shader *shader;
@@ -38,9 +40,9 @@ namespace {
 
 void FillShader::Init()
 {
-	shader = GameData::Shaders().Find("fill");
+	shader = GameData::Shaders().Get("fill");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find fill shader!");
+		throw runtime_error("Could not find fill shader!");
 	scaleI = shader->Uniform("scale");
 	centerI = shader->Uniform("center");
 	sizeI = shader->Uniform("size");
@@ -71,10 +73,17 @@ void FillShader::Init()
 
 
 
+void FillShader::Fill(const Rectangle &area, const Color &color)
+{
+	Fill(area.Center(), area.Dimensions(), color);
+}
+
+
+
 void FillShader::Fill(const Point &center, const Point &size, const Color &color)
 {
 	if(!shader || !shader->Object())
-		throw std::runtime_error("FillShader: Draw() called before Init().");
+		throw runtime_error("FillShader: Draw() called before Init().");
 
 	glUseProgram(shader->Object());
 	glBindVertexArray(vao);

@@ -316,8 +316,11 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 // Handle mouse clicks.
-bool BankPanel::Click(int x, int y, int clicks)
+bool BankPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	const Interface *bankUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "bank (small screen)" : "bank");
 	const Rectangle box = bankUi->GetBox("content");
 	const int MIN_X = box.Left();

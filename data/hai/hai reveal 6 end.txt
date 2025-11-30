@@ -53,18 +53,18 @@ mission "Hai Reveal [C01] Cleanup"
 			choice
 				`	(Ask Xilin about it.)`
 				`	(Ignore it.)`
-					goto publicbroadcast
-			branch presaside
+					goto "public broadcast"
+			branch "president aside"
 				has patronizedthepresident
 			`	Between scheduled sessions, Xilin explains the Syndicate's absence. "The Syndicate is technically part of the Republic and awarded no special diplomatic status. Besides, Terry seems to have disappeared from Syndicate communications, though I won't hazard a guess as to their internal politics."`
-				goto publicbroadcast
-			label presaside
+				goto "public broadcast"
+			label "president aside"
 			`	At one quiet point between structured meetings, during which the peripheral conversations are more focused on the particulars of the Free Worlds' position, you manage to get a hold of Xilin to ask about it. He explains the Syndicate's absence. "The Syndicate is technically part of the Republic and awarded no special diplomatic status. Besides, Terry seems to have disappeared from Syndicate communications, though I won't hazard a guess as to their internal politics."`
 			`	Perhaps seizing on the opportunity to get a momentary reprieve from more official business, the President himself steps in to fill the gap as soon as Xilin departs. It seems that you acquire a bubble of space around you whenever anyone of note stands next to you, and the President exploits this. "You know," he says quietly, while staring out at the many people hustling about at their business, "it's not very often that someone has the gall to patronize me to my face... I usually have to pay people to do that, or at least, to do it constructively anyway."`
 			`	The pause he leaves between sentences is just slightly too short to invite a response. "If you ever decide on a career change, that might be an option for you."`
 			`	He exhales through his nose as if chuckling at something humorous. "Fly safe, Captain; a lot of people know who you are now."`
 			`	With that he steps away directly to meet an aide who had been hurrying towards you both, intent on ignoring the bubble. From across the room you catch Xilin with his eyebrows raised, giving you a curious look despite being engaged in his own conversation. Neither of them speak to you again for the remainder of the meetings.`
-			label publicbroadcast
+			label "public broadcast"
 			`	Eventually you follow the diplomats to a room called the Grand Borealis Chamber, "Where Mountains Touch The Sky," as Teeneep makes the first publicly broadcast speech from the Hai to humanity. The three heads of state announce a resolution granting safe passage to all Hai in human space, as long as they register with customs on Mountaintop before entering, and Teeneep expresses similar sentiments for humans visiting Hai space. It is announced that extensive surveillance fleets will be posted on both sides of the wormhole to ensure safety. This meeting will now turn into a multi-day summit to discuss the creation of a formal treaty.`
 			`	As you leave the summit for lunch, Xilin and Sayari intercept you.`
 			`	"Trouble. We need to talk," says Xilin. You follow them to a private meeting room.`
@@ -72,11 +72,11 @@ mission "Hai Reveal [C01] Cleanup"
 				`	"What's wrong?"`
 					goto whut
 				`	"Really? I thought we had figured everything out."`
-					goto need2talk
+					goto "need to talk"
 				`	"Hey, don't worry. Whatever it is, I'm sure we've been through worse."`
 			`	Sayari rolls her eyes and says, "Don't relax yet, Captain <last>. There is one more minor disaster to be averted."`
 				goto whut
-			label need2talk
+			label "need to talk"
 			`	Sayari says, "It would have been too easy if it was all over. We have one more minor disaster to avert first."`
 			label whut
 			`	Xilin begins. "It seems that somewhere along the way, a shipload of kidnapped Hai didn't make it to a processing area. The Hai were left on Sunracer, and the ship appears to have disappeared."`
@@ -272,8 +272,8 @@ mission "Hai Reveal [C04] Cleanup"
 			`	As you go down a short, wide alley flanked by tall buildings, you hear the creak of hinges behind you and turn around to see a great wooden gate being closed. The same happens in front of you at the other end of the alley, and the people in the alley suddenly disappear through doorways. As you're looking around, you realize nearly a dozen plasma rifles are pointing at you from windows in upper floors.`
 			choice
 				`	(Shout.)`
-				`	(Draw your weapon.)`
-				`	(Raise your hands.)`
+				`	(Draw my weapon.)`
+				`	(Raise my hands.)`
 					goto surrender
 			`	The people in the windows don't take very kindly to your decision, and very quickly make sure it's your last.`
 				die

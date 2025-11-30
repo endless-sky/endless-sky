@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "BookEntry.h"
 #include "Date.h"
 
 #include <map>
@@ -32,7 +33,7 @@ class PlayerInfo;
 // the panel closes, to report the outcome of the conversation.
 class LogbookPanel : public Panel {
 public:
-	LogbookPanel(PlayerInfo &player);
+	explicit LogbookPanel(PlayerInfo &player);
 
 	// Draw this panel.
 	virtual void Draw() override;
@@ -41,7 +42,7 @@ public:
 protected:
 	// Event handlers.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
@@ -58,8 +59,8 @@ private:
 	// Current month being displayed:
 	Date selectedDate;
 	std::string selectedName;
-	std::multimap<Date, std::string>::const_iterator begin;
-	std::multimap<Date, std::string>::const_iterator end;
+	std::map<Date, BookEntry>::const_iterator begin;
+	std::map<Date, BookEntry>::const_iterator end;
 	// Other months available for display:
 	std::vector<std::string> contents;
 	std::vector<Date> dates;

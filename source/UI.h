@@ -53,6 +53,9 @@ public:
 	// Draw all the panels.
 	void DrawAll();
 
+	// Get the current panel stack.
+	const std::vector<std::shared_ptr<Panel>> &Stack() const;
+
 	// Add the given panel to the stack. If you do not want a panel to be
 	// deleted when it is popped, save a copy of its shared pointer elsewhere.
 	void Push(Panel *panel);
@@ -84,6 +87,8 @@ public:
 	bool IsDone() const;
 	// Check if there are no panels left.
 	bool IsEmpty() const;
+
+	void AdjustViewport() const;
 
 	// Get the current mouse position.
 	static Point GetMouse();
