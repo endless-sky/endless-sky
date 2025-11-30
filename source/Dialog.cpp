@@ -393,6 +393,13 @@ bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 
 
 
+void Dialog::Resize()
+{
+	Resize(-1);
+}
+
+
+
 void Dialog::Resize(int height)
 {
 	isWide = false;

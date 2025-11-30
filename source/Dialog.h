@@ -165,8 +165,8 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
-	using Panel::Resize;
-	virtual void Resize(int height = -1);
+	virtual void Resize() override;
+	void Resize(int);
 
 	// Common code from all three constructors:
 	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
