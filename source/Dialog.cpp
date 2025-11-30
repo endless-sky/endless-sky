@@ -429,7 +429,7 @@ void Dialog::Resize(int height)
 	const int realBottomHeight = bottom->Height() - cancel->Height();
 
 	// a negative height (default) will allow dynamic sizing
-	if (height < 0)
+	if(height < 0)
 		height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
 			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
 	// Determine how many extension panels we need.

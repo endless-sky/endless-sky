@@ -1,4 +1,4 @@
-/* ShipNameDialog.h
+/* ControlsListDialog.h
 Copyright (c) 2024 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the

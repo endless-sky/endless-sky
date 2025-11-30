@@ -540,13 +540,13 @@ interface "controls"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
-	
+
 	active
 	label "Controls Profile:"
 		from 40 -277
 		align left
 		color bright
-		
+
 	# shadow, one px down from text
 	string "selected controls profile"
 		from 40 -259
@@ -569,7 +569,7 @@ interface "controls"
 		truncate back
 		color "controls text"
 	visible
-	
+
 	sprite "ui/dialog cancel"
 		center 221 -270
 	button e "Chang_e"

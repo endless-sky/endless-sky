@@ -18,8 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Phrase.h"
 
-#include "ShipyardPanel.h"
-
 using namespace std;
 
 

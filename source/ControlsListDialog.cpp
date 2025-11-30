@@ -22,13 +22,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
 #include "Screen.h"
+#include "text/Table.h"
 #include "TextArea.h"
 #include "UI.h"
-#include "shader/PointerShader.h"
-#include "text/Table.h"
 
 using namespace std;
 using namespace dialog;
@@ -167,7 +167,7 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 	}
 	else if(isCloseRequest)
 	{
-		return true;
+		GetUI()->Pop(this);
 	}
 	else if(key == buttonThree.buttonKey)
 	{
@@ -202,7 +202,8 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 	}
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !options.empty())
 	{
-		if(key == SDLK_DOWN) {
+		if(key == SDLK_DOWN)
+		{
 			++selectedIndex;
 			if(static_cast<unsigned>(selectedIndex) >= options.size())
 				selectedIndex = 0;

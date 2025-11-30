@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "ModalListDialog.h"
 #include "PlayerInfo.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
@@ -143,7 +142,7 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	for(const auto &plugin : Plugins::Get())
 		if(plugin.second.IsValid())
 		{
-			selectedPlugin = plugin.first + to_string(0);
+			selectedPlugin = plugin.first;
 			break;
 		}
 
@@ -157,7 +156,6 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	for(const auto &plugin : Plugins::Get())
 		if(plugin.second.IsValid())
 			pluginListHeight += 20;
-	pluginListHeight *= 40;
 
 	pluginListScroll.SetDisplaySize(pluginListBox.Height());
 	pluginListScroll.SetMaxValue(pluginListHeight);
@@ -1637,14 +1635,14 @@ void PreferencesPanel::SelectProfile()
 {
 	UpdateAvailableProfiles();
 	// modalDialog = new ModalListDialog(this,
-	modalDialog = new ControlsListDialog(this,
+	modalListDialog = new ControlsListDialog(this,
 		"Select a saved controls profile:",
 		availableProfiles,
 		Command::Name(),
 		Dialog::FunctionButton(this, "Load", 'l', &PreferencesPanel::LoadProfile),
 		Dialog::FunctionButton(this, "Delete", SDLK_DELETE, &PreferencesPanel::DeleteProfile),
 		&PreferencesPanel::HoverProfile);
-	GetUI()->Push(modalDialog);
+	GetUI()->Push(modalListDialog);
 }
 
 
@@ -1684,21 +1682,32 @@ bool PreferencesPanel::DeleteProfile(const string &profileName)
 			return false;
 		}
 
-	// Delete user profile:
-	auto search = profilePaths.find(profileName);
-	if(search != profilePaths.end())
-	{
-		// If the current active profile is deleted, make it a working copy so that a prompt to save is issued.
-		if(profileName == Command::Name())
-			Command::MakeWorkingCopy();
-
-		Files::Delete(search->second);
-
-		UpdateAvailableProfiles();
-		modalDialog->UpdateList(availableProfiles);
-	}
+	selectedProfile = profileName;
+	GetUI()->Push(new Dialog(this, &PreferencesPanel::ActualDeleteProfile,
+		"Are you sure you want to delete '" + selectedProfile + "'?"));
 
 	// Keep the dialog open.
 	return false;
 }
 
+
+
+void PreferencesPanel::ActualDeleteProfile() {
+	for(string name : immutableProfiles)
+		if(name == selectedProfile)
+			return;
+
+	// Delete user profile:
+	auto search = profilePaths.find(selectedProfile);
+	if(search != profilePaths.end())
+	{
+		// If the current active profile is deleted, make it a working copy so that a prompt to save is issued.
+		if(selectedProfile == Command::Name())
+			Command::MakeWorkingCopy();
+
+		Files::Delete(search->second);
+
+		UpdateAvailableProfiles();
+		modalListDialog->UpdateList(availableProfiles);
+	}
+}
