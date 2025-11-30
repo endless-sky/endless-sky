@@ -30,6 +30,44 @@ class TextArea;
 
 
 
+namespace dialog {
+	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
+	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
+	constexpr double LEFT_MARGIN = 20;
+	constexpr double RIGHT_MARGIN = 20;
+	constexpr double HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
+	// The margin on the right/left sides of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	constexpr double BUTTON_LEFT_MARGIN = 10;
+	constexpr double BUTTON_RIGHT_MARGIN = 10;
+	constexpr double BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
+	// The margin on the top/bottom sides of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	constexpr double BUTTON_TOP_MARGIN = 10;
+	constexpr double BUTTON_BOTTOM_MARGIN = 10;
+	constexpr double BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
+	// The width of the padding used on the left/right sides of each segment, in pixels.
+	constexpr double LEFT_PADDING = 10;
+	constexpr double RIGHT_PADDING = 10;
+	constexpr double HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
+	// The height of the padding used by the top/bottom segment, in pixels.
+	constexpr double TOP_PADDING = 10;
+	constexpr double BOTTOM_PADDING = 10;
+	constexpr double VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
+	// The width of the padding at the beginning/end of an input field.
+	constexpr double INPUT_LEFT_PADDING = 5;
+	constexpr double INPUT_RIGHT_PADDING = 5;
+	constexpr double INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
+	// The height of the padding at the top/bottom of an input field.
+	constexpr double INPUT_TOP_PADDING = 2;
+	constexpr double INPUT_BOTTOM_PADDING = 2;
+	constexpr double INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
+	// The height of an input field in pixels.
+	constexpr double INPUT_HEIGHT = 20;
+}
+
+
+
 // A dialog box displays a given message to the player. The box will expand to
 // fit the message, and may also include a text input field. The box may have
 // only an "ok" button, or may also have a "cancel" button. If this dialog is
@@ -37,10 +75,31 @@ class TextArea;
 // callback function can be given to receive the player's response.
 class Dialog : public Panel {
 public:
-	// An OK / Cancel dialog where Cancel can be disabled. The okIsActive lets
+	class FunctionButton
+	{
+	public:
+		FunctionButton() = default;
+
+		~FunctionButton() = default;
+
+		template<class T>
+		FunctionButton(T *panel,
+			const std::string &buttonLabel,
+			SDL_Keycode buttonKey = '\0',
+			bool (T::*buttonAction)(const std::string&) = nullptr);
+
+	public:
+		std::string buttonLabel;
+		SDL_Keycode buttonKey = '\0';
+		std::function<bool(const std::string &)> buttonAction;
+	};
+
+
+public:
+	// An OK / Cancel dialog where Cancel can be disabled. The activeButton == 1 lets
 	// you select whether "OK" (true) or "Cancel" (false) are selected as the default option.
 	Dialog(std::function<void()> okFunction, const std::string &message, Truncate truncate,
-		bool canCancel, bool okIsActive);
+		bool canCancel, int activeButton);
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
 	explicit Dialog(const std::string &text, Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
@@ -81,6 +140,15 @@ public:
 	Dialog(T *t, void (T::*fun)(bool), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
+	// Three button context, must provide actions for button 1 and button 3, button 2 is cancel.
+	template<class T>
+	Dialog(T *panel,
+		const std::string &text,
+		const std::string &initialValue,
+		Dialog::FunctionButton buttonOne,
+		Dialog::FunctionButton buttonThree,
+		std::function<bool(const std::string &)> validate);
+
 	// Draw this panel.
 	virtual void Draw() override;
 
@@ -98,14 +166,16 @@ protected:
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
 	virtual void Resize() override;
+	void Resize(int);
+
+	// Common code from all three constructors:
+	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
+	// The width of the dialog, excluding margins.
+	int Width() const;
 
 
 private:
-	// Common code from all three constructors:
-	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
 	void DoCallback(bool isOk = true) const;
-	// The width of the dialog, excluding margins.
-	int Width() const;
 
 
 protected:
@@ -120,20 +190,44 @@ protected:
 	std::function<bool(const std::string &)> validateFun;
 
 	bool canCancel;
-	bool okIsActive;
+	int activeButton;
 	bool isMission;
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
 	bool isWide = false;
+	Rectangle textRect;
 
 	std::string input;
 
+	std::string okText;
+	std::string cancelText;
+
 	Point okPos;
 	Point cancelPos;
+	Point thirdPos;
+
+	Dialog::FunctionButton buttonOne;
+	Dialog::FunctionButton buttonThree;
+
+	int numButtons;
 
 	const System *system = nullptr;
 	PlayerInfo *player = nullptr;
 };
+
+
+
+template<class T>
+Dialog::FunctionButton::FunctionButton(T *panel,
+	const std::string &buttonLabel,
+	SDL_Keycode buttonKey,
+	bool(T::*buttonAction)(const std::string &))
+	:
+	buttonLabel(buttonLabel),
+	buttonKey(buttonKey),
+	buttonAction(std::bind(buttonAction, panel, std::placeholders::_1))
+{
+}
 
 
 
@@ -198,4 +292,23 @@ Dialog::Dialog(T *t, void (T::*fun)(bool), const std::string &text, Truncate tru
 	: boolFun(std::bind(fun, t, std::placeholders::_1)), allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate);
+}
+
+
+
+template<class T>
+Dialog::Dialog(T *panel,
+	const std::string &text,
+	const std::string &initialValue,
+	Dialog::FunctionButton buttonOne,
+	Dialog::FunctionButton buttonThree,
+	std::function<bool(const std::string &)> validate)
+	:
+	validateFun(std::move(validate)),
+	canCancel(true),
+	input(initialValue),
+	buttonOne(buttonOne),
+	buttonThree(buttonThree)
+{
+	Init(text, Truncate::NONE);
 }
