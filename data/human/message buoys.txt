@@ -41,7 +41,7 @@ phrase "entering republic space from pirates"
 		". Are you a Galactic Entry accredited citizen? Skip the queues at Immigration upon presenting your planetary ID."
 		" from a system not under Republic jurisdiction. Be forewarned that you may be subject to further questioning upon landing at a Republic port under the Foreign Systems (Relations) Act."
 
-mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
+mission "Message Buoy: Entering Republic space from Free Worlds"
 	entering
 	repeat
 	destination "Earth"
@@ -256,6 +256,20 @@ mission "Message Buoy: Capella"
 	on offer
 		message
 			text "Message buoy to Merchant ships: Access to the Republic planet of Hermes is restricted without spaceport authority approval."
+		fail
+
+mission "Message Buoy: Elnath"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	source
+		system "Elnath"
+	to offer
+		"reputation: Republic" < 100
+	on offer
+		message
+			text "Message buoy to all ships: all inhabited installations in the Elnath system are restricted to employees of Lovelace Labs. Please refuel or repair in another system."
 		fail
 
 mission "Message Buoy: Pirate Thule"
