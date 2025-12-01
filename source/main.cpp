@@ -134,8 +134,7 @@ int main(int argc, char *argv[])
 	const bool isTesting = !testToRunName.empty();
 	bool isConsoleOnly = loadOnly || printTests || printData;
 
-	if(!isConsoleOnly && !isTesting)
-		static Logger::Session logSession;
+	Logger::Session logSession{isConsoleOnly || isTesting};
 
 	try {
 
