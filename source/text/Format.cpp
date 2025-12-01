@@ -270,7 +270,7 @@ namespace {
 	}
 
 	const char *DEFAULT_TIMESTAMP_FORMAT = "%F %T";
-	
+
 	// Return a string containing the setting to use for time formatting.
 	const char *TimestampFormatString()
 	{
