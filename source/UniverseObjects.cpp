@@ -136,7 +136,7 @@ void UniverseObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
+void UniverseObjects::Change(const DataNode &node, PlayerInfo &player)
 {
 	const ConditionsStore *playerConditions = &player.Conditions();
 	const set<const System *> *visitedSystems = &player.VisitedSystems();
@@ -168,6 +168,13 @@ void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
 		substitutions.Load(node, playerConditions);
 	else if(key == "wormhole" && hasValue)
 		wormholes.Get(node.Token(1))->Load(node);
+	else if(key == "event" && hasValue)
+	{
+		GameEvent eventCopy = *events.Get(node.Token(1));
+		list<DataNode> changes = eventCopy.Apply(player, true);
+		for(const DataNode &eventNode : changes)
+			Change(eventNode, player);
+	}
 	else
 		node.PrintTrace("Invalid \"event\" data:");
 }
@@ -315,6 +322,12 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : swizzles)
 		if(!it.second.IsLoaded())
 			Warn("swizzle", it.first);
+	for(const auto &it : messageCategories)
+		if(!it.second.IsLoaded())
+			Warn("message category", it.first);
+	for(const auto &it : messages)
+		if(!it.second.IsLoaded())
+			Warn("message", it.first);
 	// Persons can be referred to when marking them as destroyed.
 	for(const auto &it : persons)
 		if(!it.second.IsLoaded())
@@ -492,6 +505,10 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			wormholes.Get(node.Token(1))->Load(node);
 		else if(key == "gamerules" && node.HasChildren())
 			gamerules.Load(node);
+		else if(key == "message category")
+			messageCategories.Get(node.Token(1))->Load(node);
+		else if(key == "message")
+			messages.Get(node.Token(1))->Load(node);
 		else if(key == "disable" && hasValue)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};

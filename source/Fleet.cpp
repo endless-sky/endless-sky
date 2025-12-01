@@ -338,7 +338,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(source == target)
 				return;
 			// Otherwise, have the fleet arrive here from the target system.
-			std::swap(source, target);
+			swap(source, target);
 			planet = nullptr;
 		}
 	}
@@ -484,7 +484,7 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
-	return variants.Average(std::mem_fn(&Variant::Strength));
+	return variants.Average(mem_fn(&Variant::Strength));
 }
 
 

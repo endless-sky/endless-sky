@@ -19,6 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <windows.h>
 
+// Declare RtlGetVersion here so that we don't need DDK headers.
+extern "C" NTSTATUS RtlGetVersion(PRTL_OSVERSIONINFOW);
+
 using namespace std;
 
 namespace {
@@ -29,10 +32,7 @@ namespace {
 
 void WinVersion::Init()
 {
-	HMODULE ntdll = LoadLibraryW(L"ntdll.dll");
-	auto rtlGetVersion = reinterpret_cast<NTSTATUS (*)(PRTL_OSVERSIONINFOW)>(GetProcAddress(ntdll, "RtlGetVersion"));
-	rtlGetVersion(&versionInfo);
-	FreeLibrary(ntdll);
+	RtlGetVersion(&versionInfo);
 }
 
 
