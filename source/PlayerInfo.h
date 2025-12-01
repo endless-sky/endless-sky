@@ -20,9 +20,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionsStore.h"
 #include "CoreStartData.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "Date.h"
 #include "Depreciation.h"
 #include "EsUuid.h"
+#include "ExclusiveItem.h"
 #include "GameEvent.h"
 #include "Mission.h"
 #include "SystemEntry.h"
@@ -213,12 +215,12 @@ public:
 	void AddPlayTime(std::chrono::nanoseconds timeVal);
 
 	// Get the player's logbook.
-	const std::multimap<Date, std::string> &Logbook() const;
-	void AddLogEntry(const std::string &text);
-	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
-	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
-	void RemoveSpecialLog(const std::string &type, const std::string &name);
-	void RemoveSpecialLog(const std::string &type);
+	const std::map<Date, BookEntry> &Logbook() const;
+	void AddLogEntry(const BookEntry &logbookEntry);
+	const std::map<std::string, std::map<std::string, BookEntry>> &SpecialLogs() const;
+	void AddSpecialLog(const std::string &category, const std::string &heading, const BookEntry &logbookEntry);
+	void RemoveSpecialLog(const std::string &category, const std::string &heading);
+	void RemoveSpecialLog(const std::string &category);
 	bool HasLogs() const;
 
 	// Get mission information.
@@ -226,12 +228,15 @@ public:
 	const std::list<Mission> &AvailableJobs() const;
 	bool HasAvailableEnteringMissions() const;
 
-	// Determine how many days left the player has for each mission with a deadline, for
+	// For all active missions, cache information that can be requested often but does not change often,
+	// or needs to be calculated at least once.
+	// - Determine how many days left the player has for each mission with a deadline, for
 	// the purpose of determining how frequently the MapPanel should blink the mission
 	// marker.
-	void CalculateRemainingDeadlines();
-	// Add a mission that was just accepted to the cached remaining deadlines.
-	void CalculateRemainingDeadline(const Mission &mission, DistanceMap &here);
+	// - Determine which systems any tracked NPCs are located in.
+	void CacheMissionInformation(bool onlyDeadlines = false);
+	// Cache information for an individual mission, such as one that was just accepted.
+	void CacheMissionInformation(Mission &mission, const DistanceMap &here, bool onlyDeadlines = false);
 	// The number of days left before this mission's deadline has elapsed, or,
 	// if the "Deadline blink by distance" preference is true, before the player
 	// doesn't have enough days left to complete the mission before the deadline
@@ -369,6 +374,25 @@ public:
 	// Should help dialogs relating to carriers be displayed?
 	bool DisplayCarrierHelp() const;
 
+	// Advance any active mission timers that meet the right criteria.
+	void StepMissionTimers(UI *ui);
+
+
+private:
+	class ScheduledEvent {
+	public:
+		// For loading a future event from the save file.
+		ScheduledEvent(const DataNode &node, const ConditionsStore *playerConditions);
+		// For scheduling a new event.
+		ScheduledEvent(GameEvent event, Date date);
+
+		// Comparison operator, based on the scheduled date of the event.
+		bool operator<(const ScheduledEvent &other) const;
+
+		ExclusiveItem<GameEvent> event;
+		Date date;
+	};
+
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.
@@ -377,6 +401,9 @@ private:
 	void ValidateLoad();
 	// Helper to register derived conditions.
 	void RegisterDerivedConditions();
+
+	// Helper for triggering events.
+	void TriggerEvent(GameEvent event, std::list<DataNode> &eventChanges);
 
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
@@ -438,8 +465,8 @@ private:
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
 
-	std::multimap<Date, std::string> logbook;
-	std::map<std::string, std::map<std::string, std::string>> specialLogs;
+	std::map<Date, BookEntry> logbook;
+	std::map<std::string, std::map<std::string, BookEntry>> specialLogs;
 
 	// A list of the player's active, accepted missions.
 	std::list<Mission> missions;
@@ -458,6 +485,9 @@ private:
 	// If any mission component is not fully defined, the mission is deactivated
 	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
 	std::list<Mission> inactiveMissions;
+	// If any past event is not fully defined, the player should be warned that
+	// the universe may not be in the expected state.
+	std::set<std::string> invalidEvents;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
@@ -465,7 +495,7 @@ private:
 	// enables its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeInFlightMission = nullptr;
 	// For each active mission with a deadline, calculate how many days the player
-	// has left to compelete the mission. The number of days remaining is reduced
+	// has left to complete the mission. The number of days remaining is reduced
 	// by the number of days of travel it will take to complete the mission if the
 	// "Deadline blink by distance" preference is true.
 	std::map<const Mission *, int> remainingDeadlines;
@@ -499,7 +529,12 @@ private:
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future (sorted by date for easy chronological access):
-	std::multiset<GameEvent> gameEvents;
+	std::multiset<ScheduledEvent> scheduledEvents;
+	// The names of events that were triggered in the past. Only needed when loading the game to determine
+	// if an invalid event is referenced in the save file that the player should be warned about.
+	std::set<std::string> triggeredEvents;
+	// Whether a date note has already been added to dataChanges to mark when new changes have occurred.
+	bool markedChangesToday = false;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
 	std::pair<const System *, Point> interstellarEscortDestination;
@@ -516,5 +551,5 @@ private:
 	// Basic information about the player's starting scenario.
 	CoreStartData startData;
 
-	DataWriter *transactionSnapshot = nullptr;
+	std::unique_ptr<DataWriter> transactionSnapshot;
 };

@@ -31,3 +31,8 @@ conversation "flight check: overheating!"
 	scene "scene/engine"
 	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of the <ship> warming up, you run through a mental checklist. Computers: check. Life support: check.`
 	`	By the time you reach the end of the checklist, it has grown uncomfortably warm. The air smells like ozone and hot metal, and your cameras are showing a plume of steam or smoke escaping from the hull near the engines. If your systems are running this hot while still in the atmosphere, they're likely to overheat the moment you hit hard vacuum. You are going to have to either install cooling systems, or trade out some components for lower-heat alternatives.`
+
+conversation "flight check: no bunks!"
+	scene "outfit/bunk room"
+	`You've heard enough horror stories about the sort of accidents that happen when starship systems malfunction to be completely convinced of the necessity of a pre-flight safety check. As you listen to the complex symphony of hums, rattles, and clicks of the <ship> warming up, you run through a mental checklist. Computers: check. Life support: check.`
+	`	It is all going smoothly, but suddenly a manual confirmation prompt appears on the diagnostics screen. You hail the crew of the <ship>... and you realize, much to your embarrassment, that you do not have any bunks installed. Time to head back to the outfitter and fix that!`

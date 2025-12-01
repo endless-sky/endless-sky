@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
+using namespace std;
+
 namespace {
 	const Shader *shader;
 	GLint sizeI = -1;
@@ -43,7 +45,7 @@ void RenderBuffer::Init()
 {
 	shader = GameData::Shaders().Get("renderBuffer");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find render buffer shader!");
+		throw runtime_error("Could not find render buffer shader!");
 	sizeI = shader->Uniform("size");
 	positionI = shader->Uniform("position");
 	scaleI = shader->Uniform("scale");

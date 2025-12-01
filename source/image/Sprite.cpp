@@ -28,10 +28,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	void AddBuffer(ImageBuffer &buffer, uint32_t *target)
+	void AddBuffer(ImageBuffer &buffer, uint32_t *target, bool noReduction)
 	{
 		// Check whether this sprite is large enough to require size reduction.
-		if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Height() >= 1000000)
+		Preferences::LargeGraphicsReduction setting = Preferences::GetLargeGraphicsReduction();
+		if(!noReduction && (setting == Preferences::LargeGraphicsReduction::ALL
+				|| (setting == Preferences::LargeGraphicsReduction::LARGEST_ONLY
+				&& buffer.Width() * buffer.Height() >= 1000000)))
 			buffer.ShrinkToHalfSize();
 
 		// Upload the images as a single array texture.
@@ -74,7 +77,7 @@ const string &Sprite::Name() const
 
 
 // Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
-void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
+void Sprite::AddFrames(ImageBuffer &buffer, bool is2x, bool noReduction)
 {
 	// If this is the 1x image, its dimensions determine the sprite's size.
 	if(!is2x)
@@ -86,19 +89,19 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 
 	// Only non-empty buffers need to be added to the sprite.
 	if(buffer.Pixels())
-		AddBuffer(buffer, &texture[is2x]);
+		AddBuffer(buffer, &texture[is2x], noReduction);
 }
 
 
 
 // Upload the given frames. The given buffer will be cleared afterwards.
-void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x)
+void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x, bool noReduction)
 {
 	// Do nothing if the buffer is empty.
 	if(!buffer.Pixels())
 		return;
 
-	AddBuffer(buffer, &swizzleMask[is2x]);
+	AddBuffer(buffer, &swizzleMask[is2x], noReduction);
 }
 
 

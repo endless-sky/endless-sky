@@ -277,11 +277,11 @@ void ShipyardPanel::Sell(bool toStorage)
 	else
 		message = "Sell the hulls of the ";
 	if(count == 1)
-		message += playerShip->Name();
+		message += playerShip->GivenName();
 	else if(count <= MAX_LIST)
 	{
 		auto it = playerShips.begin();
-		message += (*it++)->Name();
+		message += (*it++)->GivenName();
 		--count;
 
 		if(count == 1)
@@ -289,17 +289,17 @@ void ShipyardPanel::Sell(bool toStorage)
 		else
 		{
 			while(count-- > 1)
-				message += ",\n" + (*it++)->Name();
+				message += ",\n" + (*it++)->GivenName();
 			message += ",\nand ";
 		}
-		message += (*it)->Name();
+		message += (*it)->GivenName();
 	}
 	else
 	{
 		auto it = playerShips.begin();
-		message += (*it++)->Name() + ",\n";
+		message += (*it++)->GivenName() + ",\n";
 		for(int i = 1; i < MAX_LIST - 1; ++i)
-			message += (*it++)->Name() + ",\n";
+			message += (*it++)->GivenName() + ",\n";
 
 		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
 	}

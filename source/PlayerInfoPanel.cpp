@@ -87,7 +87,7 @@ namespace {
 
 	bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
-		return lhs->Name() < rhs->Name();
+		return lhs->GivenName() < rhs->GivenName();
 	}
 
 	bool CompareModelName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -193,10 +193,19 @@ PlayerInfoPanel::~PlayerInfoPanel()
 
 void PlayerInfoPanel::Step()
 {
-	// If the player has acquired a second ship for the first time, explain to
-	// them how to reorder and sort the ships in their fleet.
-	if(panelState.Ships().size() > 1)
-		DoHelp("multiple ships");
+	if(GetUI()->IsTop(this) && !checkedHelp)
+	{
+		if(DoHelp("player info"))
+		{
+			// Nothing to do here, just don't want to execute the other branch.
+		}
+		// If the player has acquired a second ship for the first time, explain to
+		// them how to reorder and sort the ships in their fleet.
+		else if(panelState.Ships().size() > 1)
+			if(!DoHelp("multiple ships"))
+				DoHelp("fleet management");
+		checkedHelp = true;
+	}
 }
 
 
@@ -295,7 +304,11 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	else if(command.Has(Command::HELP))
 	{
 		if(panelState.Ships().size() > 1)
+		{
+			DoHelp("fleet management", true);
 			DoHelp("multiple ships", true);
+		}
+		DoHelp("player info", true);
 	}
 	else if(key == 's' || key == SDLK_RETURN || key == SDLK_KP_ENTER || (control && key == SDLK_TAB))
 	{
@@ -781,7 +794,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		);
 
 		// Indent the ship name if it is a fighter or drone.
-		table.Draw(ship.CanBeCarried() ? "    " + ship.Name() : ship.Name());
+		table.Draw(ship.CanBeCarried() ? "    " + ship.GivenName() : ship.GivenName());
 		table.Draw(ship.DisplayModelName());
 
 		const System *system = ship.GetSystem();
@@ -815,7 +828,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		Point pos(hoverPoint.X(), hoverPoint.Y());
 		for(int i : panelState.AllSelected())
 		{
-			const string &name = panelState.Ships()[i]->Name();
+			const string &name = panelState.Ships()[i]->GivenName();
 			font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
 			font.Draw(name, pos, bright);
 			pos.Y() += 20.;
