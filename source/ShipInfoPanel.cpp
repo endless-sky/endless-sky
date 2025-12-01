@@ -341,7 +341,7 @@ void ShipInfoPanel::UpdateInfo()
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 	{
 		player.Flagship()->SetTargetShip(*shipIt);
-		player.SelectShip(shipIt->get(), false);
+		player.SelectEscort(shipIt->get(), false);
 	}
 
 	outfits.clear();

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BookEntry.h"
 #include "ConditionAssignments.h"
+#include "Message.h"
 #include "ShipManager.h"
 
 #include <cstdint>
@@ -112,6 +113,8 @@ private:
 	std::set<std::string> fail;
 	// When this action is performed, the mission that called this action is failed.
 	bool failCaller = false;
+
+	std::vector<ExclusiveItem<Message>> messages;
 
 	ConditionAssignments conditions;
 };

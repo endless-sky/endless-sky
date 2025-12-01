@@ -232,7 +232,8 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				if(grandKey == "game version" && hasValue)
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "game version" && grandHasValue)
 					dependencies.gameVersion = grand.Token(1);
 				else if(grandKey == "requires")
 					for(const DataNode &great : grand)

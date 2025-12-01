@@ -239,6 +239,13 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		fail.insert(child.Token(1));
 	else if(key == "fail")
 		failCaller = true;
+	else if(key == "message")
+	{
+		if(hasValue)
+			messages.push_back(ExclusiveItem<Message>{GameData::Messages().Get(child.Token(1))});
+		else
+			messages.push_back(ExclusiveItem<Message>{Message{child}});
+	}
 	else
 		conditions.Add(child, playerConditions);
 }
@@ -311,6 +318,8 @@ void GameAction::Save(DataWriter &out) const
 		else
 			out.Write("music", music.value());
 	}
+	for(const auto &msg : messages)
+		msg->Save(out);
 
 	conditions.Save(out);
 }
@@ -495,6 +504,9 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 			Audio::PlayMusic(music.value());
 	}
 
+	for(const auto &msg : messages)
+		Messages::Add(*msg);
+
 	// Check if applying the conditions changes the player's reputations.
 	conditions.Apply();
 }
@@ -539,6 +551,14 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 
 	result.fail = fail;
 	result.failCaller = failCaller;
+
+	for(const auto &it : messages)
+	{
+		if(it->IsPhrase())
+			result.messages.push_back(it);
+		else
+			result.messages.push_back(ExclusiveItem<Message>{{it->Text(subs), it->GetCategory()}});
+	}
 
 	result.conditions = conditions;
 
