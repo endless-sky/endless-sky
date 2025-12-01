@@ -130,8 +130,6 @@ int main(int argc, char *argv[])
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
 
-	Preferences::Load();
-
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
 	bool isConsoleOnly = loadOnly || printTests || printData;
@@ -204,6 +202,8 @@ int main(int argc, char *argv[])
 			return hasErrors;
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
+
+		Preferences::Load();
 
 		// Load global conditions:
 		DataFile globalConditions(Files::Config() / "global conditions.txt");

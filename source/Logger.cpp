@@ -69,7 +69,7 @@ void Logger::SetLogCallback(function<void(const string &message, Level)> callbac
 void Logger::Log(const string &message, Level level)
 {
 	lock_guard<mutex> lock(logMutex);
-	string formatted = Format::TimestampString(chrono::system_clock::now())
+	string formatted = Format::TimestampString(chrono::system_clock::now(), true)
 		+ " | " + static_cast<char>(level) + " | " + message;
 	(level == Level::INFO ? cout : cerr) << formatted << endl;
 	// Perform additional logging through callback if any is registered.
