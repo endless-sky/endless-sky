@@ -27,10 +27,30 @@ mission "Message Buoy: Entering Republic space from Pirates"
 		neighbor government "Pirate"
 	on offer
 		message
-			phrase "entering republic space from pirates"
+			phrase "entering republic space from hostile space"
 		fail
 
-phrase "entering republic space from pirates"
+mission "Message Buoy: Entering Republic space from hostile space"
+	entering
+	repeat
+	destination "Earth"
+	invisible
+	to offer
+		has "chosen sides"
+		not "temporary ceasefire"
+		not "main plot completed"
+		not "entered system by: takeoff"
+		has "previous system government: Free Worlds"
+	source
+		government "Republic"
+		neighbor government "Free Worlds"
+		not system "Graffias"
+	on offer
+		message
+			phrase "entering republic space from hostile space"
+		fail
+
+phrase "entering republic space from hostile space"
 	word
 		"Message buoy to all ships: You have entered Republic-controlled space"
 	word
@@ -67,33 +87,7 @@ phrase "entering republic space from free worlds"
 		". Peace among the stars."
 		". Upon landing in a Republic port, please subject your ship to scanning for any invasive species or pathogens."
 		". Are you a Galactic Entry accredited citizen? Skip the queues at Immigration upon presenting your planetary ID."
-
-mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
-	entering
-	repeat
-	destination "Earth"
-	invisible
-	to offer
-		has "chosen sides"
-		not "temporary ceasefire"
-		not "main plot completed"
-		not "entered system by: takeoff"
-		has "previous system government: Free Worlds"
-	source
-		government "Republic"
-		neighbor government "Free Worlds"
-		not system "Graffias"
-	on offer
-		message
-			phrase "entering republic space from free worlds (hostile)"
-		fail
-
-phrase "entering republic space from free worlds (hostile)"
-	word
-		"Message buoy: You have entered Republic-controlled space"
-	word
-		". Prepare to be scanned."
-		". All ships flying rebellious colors are to comply with Navy personnel or will be deemed valid targets."
+		" from a system not under Republic jurisdiction. Be forewarned that you may be subject to further questioning upon landing at a Republic port under the Foreign Systems (Relations) Act."
 
 
 
@@ -105,9 +99,13 @@ mission "Message Buoy: Entering Syndicate space"
 	invisible
 	source
 		government "Syndicate"
-		neighbor government "Republic" "Pirate" "Neutral" "Independent" "Free Worlds"
+		neighbor government "Republic" "Neutral" "Independent"
 	to offer
 		not "entered system by: takeoff"
+		or
+			has "previous system government: Republic"
+			has "previous system government: Neutral"
+			has "previous system government: Independent"
 	on offer
 		message
 			phrase "entering syndicate space"
@@ -134,12 +132,13 @@ mission "Message Buoy: Entering Free Worlds space from Republic"
 	invisible
 	source
 		government "Free Worlds"
-		neighbor government "Republic" "Neutral"
+		neighbor government "Republic" "Neutral" "Independent"
 	to offer
 		not "entered system by: takeoff"
 		or
 			has "previous system government: Republic"
 			has "previous system government: Neutral"
+			has "previous system government: Independent"
 	on offer
 		message
 			phrase "entering free worlds space from republic"
