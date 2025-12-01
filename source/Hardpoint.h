@@ -50,7 +50,7 @@ public:
 		// An omnidirectional turret can rotate infinitely.
 		bool isOmnidirectional;
 		// Whether the hardpoint should be drawn over the ship, under it, or not at all.
-		Side side;
+		Side side = Side::OVER;
 		// Range over which the turret can turn, from leftmost position to rightmost position.
 		// (directional turret only)
 		Angle minArc;

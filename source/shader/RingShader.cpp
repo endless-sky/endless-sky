@@ -55,7 +55,7 @@ void RingShader::Init()
 {
 	shader = GameData::Shaders().Get("ring");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find ring shader!");
+		throw runtime_error("Could not find ring shader!");
 	scaleI = shader->Uniform("scale");
 	positionI = shader->Uniform("position");
 	radiusI = shader->Uniform("radius");

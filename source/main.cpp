@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
 				while(GameData::GetProgress() < 1.)
 				{
 					queue.ProcessSyncTasks();
-					std::this_thread::yield();
+					this_thread::yield();
 				}
 				if(GameData::IsLoaded())
 				{

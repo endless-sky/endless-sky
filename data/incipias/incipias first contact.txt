@@ -375,9 +375,9 @@ mission "Incipias: Help The Stranded 2"
 					goto "end no time"
 			`	A green glow appears on all of them. "Thank you for taking the time-patience to speak with us. Can you tell us more about the deep space-void surrounding us?"`
 			choice
-				`	(Give them an exhaustive story of what you have seen so far.)`
+				`	(Give them an exhaustive story of what I have seen so far.)`
 					goto detail
-				`	(Give a rough overview of what you have seen.)`
+				`	(Give a rough overview of what I have seen.)`
 			`	After "seeing" your explanation, a rapid-fire sequence of colors is exchanged between the Incipias. Your translator cannot follow, so you are left watching them flash in what end up being yellow tones mixed with green and red.`
 			`	"Thank you for this insight. All we gathered until now was by observing-studying stars. To think that there is so much out there... it truly raise-strengthens a determination to explore.`
 				goto yours

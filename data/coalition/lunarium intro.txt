@@ -647,7 +647,7 @@ mission "House Bebliss 2-FW"
 					goto human
 				`	(Ask for one of the Arach drinks.)`
 					goto arach
-				`	(Just wait for your hosts to come back.)`
+				`	(Just wait for my hosts to come back.)`
 			`	You politely decline the drinks, and the maid gives you a brief nod, silently going back to her post to stand still like the other. You go over to the table to look at the blueprints, seeing many charts drawn and symbols resembling calculations on one corner, but you can't understand what's written. You sit as best as you can on what you guess is an Arach equivalent to an armchair, looking around the room for a few minutes.`
 				goto accept
 			label human

@@ -439,7 +439,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	this->canCancel = canCancel;
 	okIsActive = true;
 
-	text = std::make_shared<TextArea>();
+	text = make_shared<TextArea>();
 	text->SetAlignment(Alignment::JUSTIFIED);
 	text->SetFont(FontSet::Get(14));
 	text->SetTruncate(truncate);

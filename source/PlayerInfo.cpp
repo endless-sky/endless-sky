@@ -154,6 +154,53 @@ namespace {
 
 
 
+PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const ConditionsStore *playerConditions)
+{
+	GameEvent nodeEvent(node, playerConditions);
+	date = nodeEvent.GetDate();
+
+	string eventName;
+	if(!nodeEvent.TrueName().empty())
+		eventName = nodeEvent.TrueName();
+	else
+	{
+		// Old save files may contain unnamed events. In that case, the event's name can be found by
+		// looking at the relevant conditions in the event's conditions assignment.
+		set<string> conditions = nodeEvent.Conditions().RelevantConditions();
+		erase_if(conditions, [](const string &name) { return name.find("event: ") == string::npos; });
+		// Unless the save file was manually altered, there should be an event condition present.
+		// If there are multiple event conditions present, then the first one should be the condition
+		// for this event, as assignments are saved and loaded in the order they're created, and
+		// the event condition is the first assignment added to each event.
+		if(!conditions.empty())
+			eventName = conditions.begin()->substr(strlen("event: "));
+	}
+	if(!eventName.empty())
+		event = ExclusiveItem<GameEvent>(GameData::Events().Get(eventName));
+	else
+	{
+		// Fall back onto saving the full definition if we somehow didn't find a name.
+		node.PrintTrace("Warning: Could not determine name of scheduled event.");
+		event = ExclusiveItem<GameEvent>(std::move(nodeEvent));
+	}
+}
+
+
+
+PlayerInfo::ScheduledEvent::ScheduledEvent(GameEvent event, Date date)
+	: event(ExclusiveItem<GameEvent>(std::move(event))), date(std::move(date))
+{
+}
+
+
+
+bool PlayerInfo::ScheduledEvent::operator<(const ScheduledEvent &other) const
+{
+	return date < other.date;
+}
+
+
+
 // Completely clear all loaded information, to prepare for loading a file or
 // creating a new pilot.
 void PlayerInfo::Clear()
@@ -259,6 +306,8 @@ void PlayerInfo::Load(const filesystem::path &path)
 		}
 		else if(key == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
+		else if(key == "marked event changes today")
+			markedChangesToday = true;
 		else if(key == "system entry method" && hasValue)
 			entry = StringToEntry(child.Token(1));
 		else if(key == "previous system" && hasValue)
@@ -391,7 +440,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
 		}
 		else if(key == "event")
-			gameEvents.emplace(GameEvent(child, &conditions));
+			scheduledEvents.emplace(child, &conditions);
 		else if(key == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -422,29 +471,20 @@ void PlayerInfo::Load(const filesystem::path &path)
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
-					string text;
 					for(const DataNode &great : grand)
-					{
-						if(!text.empty())
-							text += "\n\t";
-						text += great.Token(0);
-					}
-					logbook.emplace(date, text);
+						logbook[date].Load(great);
 				}
 				else if(grand.Size() >= 2)
 				{
-					string &text = specialLogs[grand.Token(0)][grand.Token(1)];
 					for(const DataNode &great : grand)
-					{
-						if(!text.empty())
-							text += "\n\t";
-						text += great.Token(0);
-					}
+						specialLogs[grand.Token(0)][grand.Token(1)].Load(great);
 				}
 			}
 		}
 		else if(key == "start")
 			startData.Load(child);
+		else if(key == "message log")
+			Messages::LoadLog(child);
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -598,9 +638,10 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 	for(const DataNode &change : changes)
 	{
 		const string &key = change.Token(0);
-		changedSystems |= (key == "system");
-		changedSystems |= (key == "link");
-		changedSystems |= (key == "unlink");
+		// Date nodes do not represent a change.
+		if(key == "date")
+			continue;
+		changedSystems |= (key == "system" || key == "link" || key == "unlink");
 		GameData::Change(change, *this);
 	}
 	if(changedSystems)
@@ -620,10 +661,6 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		if(instantChanges)
 			CacheMissionInformation(true);
 	}
-
-	// Only move the changes into my list if they are not already there.
-	if(&changes != &dataChanges)
-		dataChanges.splice(dataChanges.end(), changes);
 }
 
 
@@ -634,15 +671,15 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 	// Check if the event should be applied right now or scheduled for later.
 	if(date <= this->date)
 	{
-		GameEvent eventCopy = event;
-		list<DataNode> eventChanges = {eventCopy.Apply(*this)};
+		list<DataNode> eventChanges;
+		TriggerEvent(std::move(event), eventChanges);
 		if(!eventChanges.empty())
 			AddChanges(eventChanges, true);
 	}
 	else
 	{
 		event.SetDate(date);
-		gameEvents.insert(std::move(event));
+		scheduledEvents.emplace(std::move(event), date);
 	}
 }
 
@@ -771,13 +808,13 @@ void PlayerInfo::AdvanceDate(int amount)
 		++date;
 
 		// Check if any special events should happen today.
-		auto it = gameEvents.begin();
+		markedChangesToday = false;
+		auto it = scheduledEvents.begin();
 		list<DataNode> eventChanges;
-		while(it != gameEvents.end() && date >= it->GetDate())
+		while(it != scheduledEvents.end() && date >= it->date)
 		{
-			GameEvent event = *it;
-			eventChanges.splice(eventChanges.end(), event.Apply(*this));
-			it = gameEvents.erase(it);
+			TriggerEvent(*(it->event), eventChanges);
+			it = scheduledEvents.erase(it);
 		}
 		if(!eventChanges.empty())
 			AddChanges(eventChanges);
@@ -787,8 +824,8 @@ void PlayerInfo::AdvanceDate(int amount)
 		for(Mission &mission : missions)
 		{
 			if(mission.CheckDeadline(date) && mission.IsVisible())
-				Messages::Add("You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
-					Messages::Importance::Highest);
+				Messages::Add({"You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
+					GameData::MessageCategories().Get("high")});
 			if(!mission.IsFailed())
 				mission.Do(Mission::DAILY, *this);
 		}
@@ -1341,7 +1378,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 {
 	// Check if the incoming vector contains the same elements
-	if(std::is_permutation(ships.begin(), ships.end(), newOrder.begin()))
+	if(is_permutation(ships.begin(), ships.end(), newOrder.begin()))
 	{
 		Ship *oldFirstShip = ships.front().get();
 		ships = newOrder;
@@ -1604,23 +1641,42 @@ void PlayerInfo::Land(UI *ui)
 	// Create whatever missions this planet has to offer.
 	if(!freshlyLoaded)
 		CreateMissions();
-	// Upon loading the game, prompt the player about any paused missions, but if there are many
-	// do not name them all (since this would overflow the screen).
-	else if(ui && !inactiveMissions.empty())
+	// Upon loading the game, prompt the player about any paused missions or invalid events,
+	// but if there are many do not name them all (since this would overflow the screen).
+	else if(ui)
 	{
-		string message = "These active missions or jobs were deactivated due to a missing definition"
-			" - perhaps you recently removed a plugin?\n";
-		auto mit = inactiveMissions.rbegin();
-		int named = 0;
-		while(mit != inactiveMissions.rend() && (++named < 10))
+		if(!inactiveMissions.empty())
 		{
-			message += "\t\"" + mit->DisplayName() + "\"\n";
-			++mit;
+			string message = "These active missions or jobs were deactivated due to a missing definition"
+				" - perhaps you recently removed a plugin?\n";
+			auto mit = inactiveMissions.rbegin();
+			int named = 0;
+			while(mit != inactiveMissions.rend() && (++named < 10))
+			{
+				message += "\t\"" + mit->DisplayName() + "\"\n";
+				++mit;
+			}
+			if(mit != inactiveMissions.rend())
+				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
+			message += "They will be reactivated when the necessary plugin is reinstalled.";
+			ui->Push(new Dialog(message));
 		}
-		if(mit != inactiveMissions.rend())
-			message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
-		message += "They will be reactivated when the necessary plugin is reinstalled.";
-		ui->Push(new Dialog(message));
+		if(!invalidEvents.empty())
+		{
+			string message = "These scheduled or past events are undefined or contain undefined data"
+				" - perhaps you recently removed a plugin?\n";
+			auto eit = invalidEvents.rbegin();
+			int named = 0;
+			while(eit != invalidEvents.rend() && (++named < 10))
+			{
+				message += "\t\"" + *eit + "\"\n";
+				++eit;
+			}
+			if(eit != invalidEvents.rend())
+				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
+			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
+			ui->Push(new Dialog(message));
+		}
 	}
 
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
@@ -1632,9 +1688,10 @@ void PlayerInfo::Land(UI *ui)
 		if(added > 0)
 		{
 			flagship->AddCrew(added);
-			Messages::Add("You hire " + to_string(added) + (added == 1
-					? " extra crew member to fill your now-empty bunk."
-					: " extra crew members to fill your now-empty bunks."), Messages::Importance::High);
+			Messages::Add({"You hire " + to_string(added) + (added == 1
+				? " extra crew member to fill your now-empty bunk."
+				: " extra crew members to fill your now-empty bunks."),
+				GameData::MessageCategories().Get("normal")});
 		}
 	}
 
@@ -1702,10 +1759,11 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			flagship->AddCrew(-extra);
 			if(extra == 1)
-				Messages::Add("You fired a crew member to free up a bunk for a passenger.", Messages::Importance::High);
+				Messages::Add({"You fired a crew member to free up a bunk for a passenger.",
+					GameData::MessageCategories().Get("normal")});
 			else
-				Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
-						Messages::Importance::High);
+				Messages::Add({"You fired " + to_string(extra) + " crew members to free up bunks for passengers.",
+					GameData::MessageCategories().Get("normal")});
 			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 			cargo.TransferAll(flagship->Cargo());
 		}
@@ -1716,10 +1774,11 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 	{
 		flagship->AddCrew(-extra);
 		if(extra == 1)
-			Messages::Add("You fired a crew member because you have no bunk for them.", Messages::Importance::High);
+			Messages::Add({"You fired a crew member because you have no bunk for them.",
+				GameData::MessageCategories().Get("normal")});
 		else
-			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.",
-					Messages::Importance::High);
+			Messages::Add({"You fired " + to_string(extra) + " crew members because you have no bunks for them.",
+				GameData::MessageCategories().Get("normal")});
 		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 
@@ -1761,7 +1820,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		{
 			// The remaining uncarried ships are launched alongside the player.
 			string message = (uncarried > 1) ? "Some escorts were" : "One escort was";
-			Messages::Add(message + " unable to dock with a carrier.", Messages::Importance::High);
+			Messages::Add({message + " unable to dock with a carrier.", GameData::MessageCategories().Get("normal")});
 		}
 	}
 
@@ -1773,18 +1832,18 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		if(it.second)
 		{
 			if(it.first->IsVisible())
-				Messages::Add("Mission \"" + it.first->DisplayName()
-					+ "\" aborted because you do not have space for the cargo."
-						, Messages::Importance::Highest);
+				Messages::Add({"Mission \"" + it.first->DisplayName()
+					+ "\" aborted because you do not have space for the cargo.",
+					GameData::MessageCategories().Get("high")});
 			missionsToRemove.push_back(it.first);
 		}
 	for(const auto &it : cargo.PassengerList())
 		if(it.second)
 		{
 			if(it.first->IsVisible())
-				Messages::Add("Mission \"" + it.first->DisplayName()
-					+ "\" aborted because you do not have enough passenger bunks free."
-						, Messages::Importance::Highest);
+				Messages::Add({"Mission \"" + it.first->DisplayName()
+					+ "\" aborted because you do not have enough passenger bunks free.",
+					GameData::MessageCategories().Get("high")});
 			missionsToRemove.push_back(it.first);
 
 		}
@@ -1864,7 +1923,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 			out << "stored " << Format::CargoString(stored, "outfits") << " you could not carry";
 		}
 		out << ".";
-		Messages::Add(out.str(), Messages::Importance::High);
+		Messages::Add({out.str(), GameData::MessageCategories().Get("normal")});
 	}
 
 	return true;
@@ -1935,44 +1994,41 @@ void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
 
 
 // Get the player's logbook.
-const multimap<Date, string> &PlayerInfo::Logbook() const
+const map<Date, BookEntry> &PlayerInfo::Logbook() const
 {
 	return logbook;
 }
 
 
 
-void PlayerInfo::AddLogEntry(const string &text)
+void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 {
-	logbook.emplace(date, text);
+	logbook[date].Add(logbookEntry);
 }
 
 
 
-const map<string, map<string, string>> &PlayerInfo::SpecialLogs() const
+const map<string, map<string, BookEntry>> &PlayerInfo::SpecialLogs() const
 {
 	return specialLogs;
 }
 
 
 
-void PlayerInfo::AddSpecialLog(const string &type, const string &name, const string &text)
+void PlayerInfo::AddSpecialLog(const string &category, const string &heading, const BookEntry &logbookEntry)
 {
-	string &entry = specialLogs[type][name];
-	if(!entry.empty())
-		entry += "\n\t";
-	entry += text;
+	specialLogs[category][heading].Add(logbookEntry);
 }
 
 
 
-void PlayerInfo::RemoveSpecialLog(const string &type, const string &name)
+void PlayerInfo::RemoveSpecialLog(const string &category, const string &heading)
 {
-	auto it = specialLogs.find(type);
+	auto it = specialLogs.find(category);
 	if(it == specialLogs.end())
 		return;
 	auto &nameMap = it->second;
-	auto eit = nameMap.find(name);
+	auto eit = nameMap.find(heading);
 	if(eit != nameMap.end())
 		nameMap.erase(eit);
 }
@@ -3505,6 +3561,15 @@ void PlayerInfo::ValidateLoad()
 	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
+
+	// Validate past events that were applied. Invalid events are recorded to warn the
+	// player about.
+	for(const ScheduledEvent &event : scheduledEvents)
+		if(!event.event->IsValid().empty())
+			invalidEvents.insert(event.event->TrueName());
+	for(const string &event : triggeredEvents)
+		if(!GameData::Events().Get(event)->IsValid().empty())
+			invalidEvents.insert(event);
 }
 
 
@@ -4083,6 +4148,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!previousSystem)
 			return false;
 		return !ce.NameWithoutPrefix().compare(previousSystem->TrueName()); });
+	conditions["previous system government: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		if(!previousSystem || !previousSystem->GetGovernment())
+			return false;
+		return !ce.NameWithoutPrefix().compare(previousSystem->GetGovernment()->TrueName());
+	});
 
 	// Conditions to determine if flagship is in a system and on a planet.
 	conditions["flagship system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
@@ -4226,6 +4296,46 @@ void PlayerInfo::RegisterDerivedConditions()
 
 
 
+void PlayerInfo::TriggerEvent(GameEvent event, std::list<DataNode> &eventChanges)
+{
+	const string &name = event.TrueName();
+	list<DataNode> changes = event.Apply(*this);
+	// If this is the first event that has triggered today that is named or
+	// has changes that must be applied to the universe, add a note to the
+	// data changes to record today's date.
+	if((!name.empty() || !changes.empty()) && !markedChangesToday)
+	{
+		markedChangesToday = true;
+
+		DataNode todayNode;
+		todayNode.AddToken("date");
+		todayNode.AddToken(to_string(date.Day()));
+		todayNode.AddToken(to_string(date.Month()));
+		todayNode.AddToken(to_string(date.Year()));
+		dataChanges.push_back(std::move(todayNode));
+	}
+	// Unnamed events must have their changes stored in the save file.
+	// Also store event changes in the save file if SaveRawChanges is true.
+	if(!changes.empty() && (name.empty() || event.SaveRawChanges()))
+		dataChanges.insert(dataChanges.end(), changes.begin(), changes.end());
+	else
+	{
+		// Named events that don't save their raw changes get saved as just an event name.
+		DataNode eventNode;
+		eventNode.AddToken("event");
+		eventNode.AddToken(event.TrueName());
+		dataChanges.push_back(std::move(eventNode));
+	}
+	if(!name.empty())
+		triggeredEvents.insert(name);
+	if(!changes.empty())
+		eventChanges.splice(eventChanges.end(), changes);
+}
+
+
+
+
+
 // New missions are generated each time you land on a planet.
 void PlayerInfo::CreateMissions()
 {
@@ -4365,6 +4475,14 @@ void PlayerInfo::StepMissions(UI *ui)
 
 
 
+void PlayerInfo::StepMissionTimers(UI *ui)
+{
+	for(Mission &mission : missions)
+		mission.StepTimers(*this, ui);
+}
+
+
+
 void PlayerInfo::Autosave() const
 {
 	if(!CanBeSaved() || filePath.length() < 4)
@@ -4396,6 +4514,8 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Pilot information:
 	out.Write("pilot", firstName, lastName);
 	out.Write("date", date.Day(), date.Month(), date.Year());
+	if(markedChangesToday)
+		out.Write("marked event changes today");
 	out.Write("system entry method", EntryToString(entry));
 	if(previousSystem)
 		out.Write("previous system", previousSystem->TrueName());
@@ -4615,8 +4735,22 @@ void PlayerInfo::Save(DataWriter &out) const
 	}
 
 	// Save pending events, and changes that have happened due to past events.
-	for(const GameEvent &event : gameEvents)
-		event.Save(out);
+	for(const auto &it : scheduledEvents)
+	{
+		const ExclusiveItem<GameEvent> &event = it.event;
+		const Date &date = it.date;
+		if(!event->TrueName().empty())
+		{
+			out.Write("event", event->TrueName());
+			out.BeginChild();
+			{
+				out.Write("date", date.Day(), date.Month(), date.Year());
+			}
+			out.EndChild();
+		}
+		else
+			event->Save(out);
+	}
 	if(!dataChanges.empty())
 	{
 		out.Write("changes");
@@ -4683,29 +4817,19 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.Write("logbook");
 	out.BeginChild();
 	{
-		for(auto &&it : logbook)
-		{
-			out.Write(it.first.Day(), it.first.Month(), it.first.Year());
-			out.BeginChild();
+		for(const auto &[date, logbookEntry] : logbook)
+			if(!logbookEntry.IsEmpty())
 			{
-				// Break the text up into paragraphs.
-				for(const string &line : Format::Split(it.second, "\n\t"))
-					out.Write(line);
+				out.Write(date.Day(), date.Month(), date.Year());
+				logbookEntry.Save(out);
 			}
-			out.EndChild();
-		}
-		for(auto &&it : specialLogs)
-			for(auto &&eit : it.second)
-			{
-				out.Write(it.first, eit.first);
-				out.BeginChild();
+		for(const auto &[category, nextMap] : specialLogs)
+			for(const auto &[heading, logbookEntry] : nextMap)
+				if(!logbookEntry.IsEmpty())
 				{
-					// Break the text up into paragraphs.
-					for(const string &line : Format::Split(eit.second, "\n\t"))
-						out.Write(line);
+					out.Write(category, heading);
+					logbookEntry.Save(out);
 				}
-				out.EndChild();
-			}
 	}
 	out.EndChild();
 
@@ -4725,6 +4849,12 @@ void PlayerInfo::Save(DataWriter &out) const
 			out.Write(plugin.name);
 	}
 	out.EndChild();
+
+	if(Preferences::Has("Save message log"))
+	{
+		out.Write();
+		Messages::SaveLog(out);
+	}
 }
 
 
@@ -4752,29 +4882,28 @@ void PlayerInfo::Fine(UI *ui)
 	if(!gov->CanEnforce(planet))
 		return;
 
-	string message = gov->Fine(*this, 0, nullptr, planet->Security());
-	if(!message.empty())
+	pair<const Conversation *, string> message = gov->Fine(*this, 0, nullptr, planet->Security());
+	if(!message.second.empty())
 	{
-		if(message == "atrocity")
+		if(message.second == "atrocity")
 		{
-			const Conversation *conversation = gov->DeathSentence();
-			if(conversation)
-				ui->Push(new ConversationPanel(*this, *conversation));
+			if(message.first)
+				ui->Push(new ConversationPanel(*this, *message.first));
 			else
 			{
-				message = "Before you can leave your ship, the " + gov->DisplayName()
+				message.second = "Before you can leave your ship, the " + gov->DisplayName()
 					+ " authorities show up and begin scanning it. They say, \"Captain "
 					+ LastName()
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui->Push(new Dialog(message));
+				ui->Push(new Dialog(message.second));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui->Push(new Dialog(message));
+			ui->Push(new Dialog(message.second));
 	}
 }
 
@@ -4910,7 +5039,7 @@ void PlayerInfo::DoAccounting()
 			{
 				return Format::CreditString(it.second) + ' ' + it.first;
 			}) + '.';
-		Messages::Add(message, Messages::Importance::High, true);
+		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
 	}
 
@@ -4924,7 +5053,7 @@ void PlayerInfo::DoAccounting()
 	// summarizes the payments that were made.
 	string message = accounts.Step(assets, Salaries(), balance.maintenanceCosts);
 	if(!message.empty())
-		Messages::Add(message, Messages::Importance::High, true);
+		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 }
 
 

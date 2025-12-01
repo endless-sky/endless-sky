@@ -53,7 +53,7 @@ void LineShader::Init()
 {
 	shader = GameData::Shaders().Get("line");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find line shader!");
+		throw runtime_error("Could not find line shader!");
 	scaleI = shader->Uniform("scale");
 	startI = shader->Uniform("start");
 	endI = shader->Uniform("end");

@@ -3855,7 +3855,7 @@ planet "New Britain"
 
 planet "New China"
 	attributes "near earth" urban
-	landscape land/city22
+	landscape land/city3
 	description `In the very early days of hyperspace travel, most settlers chose to put down roots within a few jumps of Earth, because until more fuel depots were built, colonies farther out would seldom be visited by cargo ships. As a result, a lot of effort was put into terraforming and developing worlds that would have been passed over by most colonists today.`
 	description `	New China is one such world, and it is now overpopulated, and poor enough that maintaining the terraforming equipment and climate requires almost a third of the planetary government's tax income.`
 	spaceport `The "new port" here was built several centuries ago, when the grand but impractical spaceport built by the original settlers had deteriorated to the point where it was no longer usable. This port is much simpler by comparison: just a ring of landing pads of various sizes around a large central building with ten levels of warehouse space accessible by freight elevator.`
