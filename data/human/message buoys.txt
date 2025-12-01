@@ -173,7 +173,7 @@ phrase "entering free worlds space from pirate"
 	word
 		"Message buoy: You have entered Free space"
 	word
-		". By Free Worlds law, merchant ships must identify themselves in blue markings. Any ship displaying unauthorised markings may be shot on sight."
+		". By Free Worlds law, merchant ships must identify themselves in blue markings. Any ship displaying unauthorized markings may be shot on sight."
 
 
 
@@ -308,7 +308,7 @@ phrase "occupied greenrock message buoy"
 	word
 		"Message buoy to all ships: The system of Shaula is under Free Worlds occupation."
 	word
-		" All ships flying unauthorised colors must turn themselves over to a Militia ship or be considered valid targets."
+		" All ships flying unauthorized colors must turn themselves over to a Militia ship or be considered valid targets."
 		" We are scanning all inbound and outbound ships for contraband and fugitives."
 		" Our presence will remain until piracy on the planet of Greenrock is eliminated."
 
@@ -367,7 +367,7 @@ mission "Message Buoy: Betelgeuse Shipyards"
 	repeat
 	destination "Earth"
 	invisible
-	source 
+	source
 		system "Betelgeuse"
 	to offer
 		not "entered system by: takeoff"
