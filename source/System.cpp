@@ -48,48 +48,6 @@ const double System::DEFAULT_NEIGHBOR_DISTANCE = 100.;
 
 
 
-System::Asteroid::Asteroid(const string &name, int count, double energy)
-	: name(name), count(count), energy(energy)
-{
-}
-
-
-
-System::Asteroid::Asteroid(const Minable *type, int count, double energy)
-	: type(type), count(count), energy(energy)
-{
-}
-
-
-
-const string &System::Asteroid::Name() const
-{
-	return name;
-}
-
-
-
-const Minable *System::Asteroid::Type() const
-{
-	return type;
-}
-
-
-
-int System::Asteroid::Count() const
-{
-	return count;
-}
-
-
-
-double System::Asteroid::Energy() const
-{
-	return energy;
-}
-
-
-
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsStore *playerConditions)
 {
@@ -247,38 +205,42 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		}
 		else if(key == "asteroids")
 		{
-			if(remove)
+			if(hasValue)
 			{
-				for(auto it = asteroids.begin(); it != asteroids.end(); ++it)
-					if(it->Name() == value)
-					{
-						asteroids.erase(it);
-						break;
-					}
+				if(remove)
+				{
+					for(auto it = asteroids.begin(); it != asteroids.end(); ++it)
+						if(it->Name() == value)
+						{
+							asteroids.erase(it);
+							break;
+						}
+				}
+				else
+					asteroids.emplace_back(value, child, valueIndex, playerConditions);
 			}
-			else if(child.Size() > valueIndex + 2)
-				asteroids.emplace_back(value, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
 			else
-				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
-					+ " tokens. Found " + to_string(child.Size()) + ":");
+				child.PrintTrace("Error: Expected key to have at least one value:");
 		}
 		else if(key == "minables")
 		{
-			const Minable *type = GameData::Minables().Get(value);
-			if(remove)
+			if(hasValue)
 			{
-				for(auto it = asteroids.begin(); it != asteroids.end(); ++it)
-					if(it->Type() == type)
-					{
-						asteroids.erase(it);
-						break;
-					}
+				const Minable *type = GameData::Minables().Get(value);
+				if(remove)
+				{
+					for(auto it = asteroids.begin(); it != asteroids.end(); ++it)
+						if(it->Type() == type)
+						{
+							asteroids.erase(it);
+							break;
+						}
+				}
+				else
+					asteroids.emplace_back(type, child, valueIndex, belts.size(), playerConditions);
 			}
-			else if(child.Size() > valueIndex + 2)
-				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
 			else
-				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
-					+ " tokens. Found " + to_string(child.Size()) + ":");
+				child.PrintTrace("Error: Expected key to have at least one value:");
 		}
 		else if(key == "fleet")
 		{
@@ -318,11 +280,18 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		{
 			double radius = child.Value(valueIndex);
 			if(remove)
-				erase(belts, radius);
+			{
+				for(auto it = belts.begin(); it != belts.end(); ++it)
+					if(it->Radius() == radius)
+					{
+						belts.erase(it, it);
+						break;
+					}
+			}
 			else
 			{
 				int weight = (child.Size() >= valueIndex + 2) ? max<int>(1, child.Value(valueIndex + 1)) : 1;
-				belts.emplace_back(weight, radius);
+				belts.emplace_back(weight, radius, child);
 			}
 		}
 		else if(key == "object")
@@ -835,13 +804,13 @@ double System::HabitableZone() const
 // Get the radius of an asteroid belt.
 double System::AsteroidBeltRadius() const
 {
-	return belts.Get();
+	return belts.Get().Radius();
 }
 
 
 
 // Get the list of asteroid belts.
-const WeightedList<double> &System::AsteroidBelts() const
+const WeightedList<AsteroidBelt> &System::AsteroidBelts() const
 {
 	return belts;
 }
@@ -924,7 +893,7 @@ bool System::HasOutfitter() const
 
 
 // Get the specification of how many asteroids of each type there are.
-const vector<System::Asteroid> &System::Asteroids() const
+const vector<Asteroid> &System::Asteroids() const
 {
 	return asteroids;
 }
