@@ -180,7 +180,8 @@ bool GameWindow::Init(bool headless)
 #ifndef ES_GLES
 	if(!context)
 	{
-		Logger::LogError("OpenGL context creation failed. Retrying with experimental OpenGL 2 support.");
+		Logger::Log("OpenGL context creation failed. Retrying with experimental OpenGL 2 support.",
+			Logger::Level::WARNING);
 		SDL_ClearError();
 #ifdef _WIN32
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
@@ -245,8 +246,8 @@ bool GameWindow::Init(bool headless)
 #ifndef ES_GLES
 	else if(*glVersion == '2')
 	{
-		Logger::LogError("Experimental OpenGL 2 support has been enabled.");
 		OpenGL::DisableOpenGL3();
+		Logger::Log("Experimental OpenGL 2 support has been enabled.", Logger::Level::INFO);
 	}
 #endif
 

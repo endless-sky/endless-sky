@@ -109,7 +109,7 @@ const string &DataNode::Token(int index) const
 	static const string ERROR = "";
 	if(static_cast<size_t>(index) >= tokens.size())
 	{
-		PrintTrace("Error: Requested token index (" + to_string(index) + ") is out of bounds:");
+		PrintTrace("Requested token index (" + to_string(index) + ") is out of bounds:");
 		return ERROR;
 	}
 	return tokens[index];

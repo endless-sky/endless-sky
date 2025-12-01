@@ -180,7 +180,7 @@ PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const Condition
 	else
 	{
 		// Fall back onto saving the full definition if we somehow didn't find a name.
-		node.PrintTrace("Warning: Could not determine name of scheduled event.");
+		node.PrintTrace("Could not determine name of scheduled event.");
 		event = ExclusiveItem<GameEvent>(std::move(nodeEvent));
 	}
 }

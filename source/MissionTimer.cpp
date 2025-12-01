@@ -58,7 +58,7 @@ void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerCondi
 {
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("Error: Expected key to have a value:");
+		node.PrintTrace("Expected key to have a value:");
 		return;
 	}
 
@@ -104,7 +104,7 @@ void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerCondi
 					if(requireUncloaked)
 					{
 						requireUncloaked = false;
-						grand.PrintTrace("Warning: Disabling previously declared \"uncloaked\" requirement.");
+						grand.PrintTrace("Disabling previously declared \"uncloaked\" requirement.");
 					}
 				}
 				else if(grandKey == "uncloaked")
@@ -113,7 +113,7 @@ void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerCondi
 					if(requireCloaked)
 					{
 						requireCloaked = false;
-						grand.PrintTrace("Warning: Disabling previously declared \"cloaked\" requirement.");
+						grand.PrintTrace("Disabling previously declared \"cloaked\" requirement.");
 					}
 				}
 				else if(grandKey == "solo")
@@ -252,8 +252,8 @@ MissionTimer MissionTimer::Instantiate(map<string, string> &subs, const System *
 	}
 	if(ait != actions.end())
 	{
-		Logger::LogError("Instantiation Error: Timer action \"" + TriggerToText(ait->first)
-			+ "\" uses invalid " + std::move(reason));
+		Logger::Log("Instantiation Error: Timer action \"" + TriggerToText(ait->first)
+			+ "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
 		return result;
 	}
 	for(const auto &[trigger, action] : actions)
