@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "BankPanel.h"
 #include "Command.h"
+#include "Conversation.h"
 #include "ConversationPanel.h"
 #include "Dialog.h"
 #include "text/FontSet.h"

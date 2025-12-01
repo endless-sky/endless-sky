@@ -15,15 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Conversation.h"
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
-#include "Fleet.h"
 #include "FleetCargo.h"
 #include "LocationFilter.h"
 #include "NPCAction.h"
 #include "Personality.h"
-#include "Phrase.h"
 
 #include <list>
 #include <map>
@@ -33,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 class DataWriter;
+class Fleet;
 class Government;
 class Mission;
 class Planet;
