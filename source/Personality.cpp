@@ -130,7 +130,7 @@ namespace {
 // Default settings for player's ships.
 Personality::Personality() noexcept
 	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), period(180.),
-	minimumMultiplier(.25), gain(360), loss(360), tick(Random::Int(240)), firingPercentage(0.)
+	minimumMultiplier(.25), gain(360.), loss(360.), tick(Random::Int(240)), firingPercentage(0.)
 {
 	static_assert(LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM == PERSONALITY_COUNT,
 		"PERSONALITY_COUNT must match the length of PersonalityTraits");
