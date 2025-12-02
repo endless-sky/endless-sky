@@ -1962,7 +1962,7 @@ mission "Station Exploration 2"
 			`Your passengers' journey mainly consisted of trying to scare each other by telling ghost stories and jumping out of dimly-lit corners of your ship. Despite these annoyances, you land at the station with no issues. Your passengers practically jump off your ship after hastily paying you <payment>.`
 			`	After passing the time in your ship for a few hours, you are startled by a loudspeaker sternly pronouncing something in Hai. You then notice your passengers rushing towards your ship with a panicked look in their eyes. You imagine that they want to take advantage of that return trip you promised as soon as possible; however, disassociating yourself from them may save you some trouble with law enforcement.`
 			choice
-				`	(Wait for your passengers.)`
+				`	(Wait for my passengers.)`
 					goto wait
 				`	(Bail.)`
 			`	You take off just before your passengers are able to reach your ship. Their wailing is quickly drowned out by the sound of your engines as you maneuver out of the station.`
@@ -2157,19 +2157,19 @@ mission "Acorn Delights: Part 1"
 				`	"Three tons of cookies!?"`
 					goto tons
 					to display
-							not "acorn delights: three tons"
+						not "acorn delights: three tons"
 				`	"She's gone?"`
 					goto gone
 					to display
-							not "acorn delights: gone"
+						not "acorn delights: gone"
 				`	"Why don't you ask the authorities for help?"`
 					goto authorities
 					to display
-							not "acorn delights: authorities"
+						not "acorn delights: authorities"
 				`	"Can't your friends help you find her?"`
 					goto friends
 					to display
-							not "acorn delights: friends"
+						not "acorn delights: friends"
 				`	"Let's go find her!"`
 					goto accept
 				`	"I have other places to be."`

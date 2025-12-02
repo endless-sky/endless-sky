@@ -18,9 +18,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "ExclusiveItem.h"
 
+#include <map>
 #include <string>
 
 class DataNode;
+class DataWriter;
 
 
 
@@ -69,11 +71,18 @@ public:
 public:
 	Message() = default;
 	Message(const std::string &text, const Category *category);
+	explicit Message(const DataNode &node);
 	void Load(const DataNode &node);
 	bool IsLoaded() const;
+	void Save(DataWriter &out) const;
 
 	const std::string &Name() const;
+	bool IsPhrase() const;
+	// Choose a message from the phrase if this message has one, or resolve substitutions
+	// on the raw text to get the final message string.
 	std::string Text() const;
+	// Get the final text with custom substitutions, assuming the message is not a phrase.
+	std::string Text(const std::map<std::string, std::string> &subs) const;
 	const Category *GetCategory() const;
 
 

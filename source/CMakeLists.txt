@@ -133,6 +133,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameLoadingPanel.h
 	Gamerules.cpp
 	Gamerules.h
+	GameVersion.cpp
+	GameVersion.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
@@ -176,6 +178,8 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
+	BookEntry.cpp
+	BookEntry.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
@@ -195,6 +199,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Mission.h
 	MissionAction.cpp
 	MissionAction.h
+	MissionTimer.cpp
+	MissionTimer.h
 	MissionPanel.cpp
 	MissionPanel.h
 	Mortgage.cpp
@@ -446,7 +452,11 @@ if(WIN32)
 	target_sources(EndlessSkyLib PRIVATE
 		windows/TimerResolutionGuard.cpp
 		windows/TimerResolutionGuard.h
+		windows/WinConsole.cpp
+		windows/WinConsole.h
 		windows/WinVersion.cpp
 		windows/WinVersion.h
+		windows/WinWindow.cpp
+		windows/WinWindow.h
 	)
 endif()
