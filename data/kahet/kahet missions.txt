@@ -3542,7 +3542,7 @@ mission "Ka'het: Patir Mystery 36"
 		conversation
 			`Once again Chilia's coordinates point you toward a half-hidden outpost in middle of the desert. While the local crew unloads the machinery, you catch a glimpse of the floor below: dozens of workers wearing special suits, quickly moving what looks like one of the parts of the creatures beyond Patir.`
 			`	This time, however, nobody tries to stop you. The opposite, in fact: when they recognize you, the workers accompany you on a hour-long tour of the structure. Walking down the floors, you pass through a dozen different rooms, half of which dedicated to studying - and testing - the parts of the asteroid you have recovered. Giant, eerie machines immersed into strange fogs, with only a few meters and a strongly-vibrating layer of glass separating you from them.`
-			`	Once they have emptied your payload bay, they wave goodbye as you depart for the main starport. Based on their gestures, you guess that they don't expect this to be the last time they see you here.`
+			`	Once they have emptied your payload bay, they wave goodbye as you depart for the main starport. Based on their gestures, you reckon that they don't expect this to be the last time they see you here.`
 
 # make the safety net missions mention Taely's crystal color
 # also add jobs for Patir research
