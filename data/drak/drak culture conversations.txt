@@ -1,0 +1,142 @@
+# Copyright (c) 2025 by Arachi-Lover
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+  mission "Drak Revelations: Arachi"
+	entering
+	invisible
+	source
+		system "Flugbu"
+	destination "Earth"
+	to offer
+		has "drak revelations: arachi"
+		has "entered system by: takeoff"
+	on offer
+		clear "drak revelations: arachi"
+		conversation
+			`As the <ship> rises through the last set of clouds, you're surprised to find yourself out of your ship altogether, underground.`
+			`	Tiny holes allow only a minimal amount of light to penetrate the cramped tunnel complex, and it isn't enough to illuminate the forms of the various creatures hiding there. From what little you can see, they seem to be huddling together, shaking, cowering.`
+			`	A continuous marching is occurring overhead, rumbling the tunnels. A few of the creatures rush past you, wearing heavy plates of armor that completely covers their bodies and numerous legs. They dig up, and jump at the first pale-gold object that comes into sight, tumbling the giant.`
+			`	You never see any of them again, as more of the creatures continue to push and pour out of the hole, heading in all directions. Some take but a moment to speak with those in hiding, before moving upwards.`
+			`	During one rush, all holes end up crowded with the sheer number of them, and everything goes dark. When light returns, you see you've just finished rising from the atmosphere.`
+				decline
+
+
+  mission "Drak Revelations: Hai"
+	landing
+	minor
+	invisible
+	source "Darkwaste"
+	destination "Earth"
+	to offer
+		"flagship model" == "Anomalocaris"
+	on offer
+		conversation
+			`You step off the <ship> and begin exploring the surroundings for a bit. Near the edge of the cliff where you've landed, you find a small puddle, and look at it for a moment.`
+			`	By the time you realize you can no longer look away, small bits of soil seem to be forming in the puddle, the water seems to grow far deeper than what you would expect from a puddle, and you notice minuscule vessels making their way from one of the "islands" to another.`
+			`	The ships spread far and away, and the archipelago becomes bustling with activity. But the waves and the sunlight grow harsher, and soon the sun begins to scorch the islands and ships, and boil the seas. The waves grow taller and taller, swallowing ships and isles whole, and attempting to reach up to snuff out the sun.`
+			`	When the seas finally calm down and the sun sets, most islands lay in ruin, if they still exist at all, and very few ships are left to travel between them.`
+			`	You blink, and see the puddle is back to normal again.`
+
+
+  mission "Drak Revelations Setup: Humanity"
+	landing
+	invisible
+	source "Jupiter"
+	destination "Earth"
+	to offer
+		has "chosen sides"
+		not "main plot completed"
+	on offer
+		set "drak revelations: humanity"
+		fail
+
+  
+mission "Drak Revelations: Humanity"
+	landing
+	minor
+	invisible
+	source "Earth"
+	destination "Earth"
+	to offer
+		has "drak revelations: humanity"
+	on offer
+		clear "drak revelations: humanity"
+		conversation
+			`The <ship> touches down on <origin> at nightfall, and after overseeing the refuelling procedures and finishing the ship integrity checks, you retire to your quarters for some rest.`
+			`	As you doze off, a faint light taps at the borders of your vision, coiling around borders that you can't quite identify. All around you bars reach upwards and connect to support structures, like a cradle. The platform seems to slowly rotate in the darkness.`
+			`	Suddenly, a huge boulder is barrelling down towards you, about to smash the cradle, when the light flashes brightly. It vanishes.`
+			`	The cradle spins again. The darkness is overwhelmed by blood-red flames that eat at the cradle's edges, but just as the wood begins to crackle and creak, the light pulses once more around your sight, and the flames themselves begin to burn away.`
+			`	There is only darkness for a long time. And then there is a battle, of formless entities clashing against one another all around the cradle, disregarding it with a dangerous dismissiveness. This time, the light erupts all around you and your eyes are forced shut.`
+			`	You open them again to find yourself laying down in your bed.`
+				decline
+
+
+  mission "Drak Revelations: Korath"
+	entering
+	invisible
+	source
+		system "Mesuket"
+	destination "Earth"
+	to offer
+		has "Efreti: Distress Call 7: done"
+	on offer
+		conversation
+			`Just as your ship reaches <origin>, you blink, and are no longer in your cockpit.`
+			`	In a rocky plateau, gravel and sand make up the base for structures being built by bulky, vaguely humanoid figures made of dirt and rust. A strong light shines on from above, illuminating the area.`
+			`	As the months and years go by, the creatures build taller and grander towers, both elevating themselves and gradually blocking away the light. Eventually the entire plateau serves as the footing for a great, domed tower.`
+			`	The light creeps in faintly by cracks and gaps, but those are being swiftly patched closed by the creatures, who seem to hiss at the light in disapproval. They begin heating up and glowing, hotter and hotter, until they cast off their dirty shells, taking now their forms in a shiny, blazing bronze.`
+			`	The creatures stand proud and strong in their new forms, but their bodies continue to heat up, and so the bronze melts, and their towers begin to crumble and distort due to the intense heat, until the entire dome collapses.`
+			`	You open your eyes again, and are back at the cockpit of the <ship>.`
+				decline
+
+
+  mission "Drak Revelations: Quarg"
+	entering
+	invisible
+	source
+		system "Terra Incognita"
+	destination "Earth"
+	to offer
+		or
+			has "FW Pug 3: Quarg: done"
+			has "FWC Pug 4B: Quarg: done"
+		has "Ruin: Landing: offered"
+		not "entered system by: takeoff"
+	on offer
+		conversation
+			`The instant your ship finishes its jump, lights begin to flicker off in the cockpit, until everything goes dark.`
+			`	At first all you can see is the barren, damp soil, barely illuminated by a dim, remote light from above. A dense fog seeps upward from cracks in the ground, and in the distance you can barely make out the repeated crashing of waves.`
+			`	A gaunt giant of pale-gold cuts through the fog in a fit, smashing at the ground as it wails and attempts to slap and kick away the water from the ground, to no avail. The light flickers and quiets in tandem with its smashing and weeping.`
+			`	When it flashes just bright enough, you can make out the graves. All around you, they seem to extend endlessly toward the horizon on any end. The giant never touches or dirties the graves, and during its brief periods of respite, seems to scarcely be able of looking at them before becoming enraged once more.`
+			`	The light blinks off, and you see no more. Your ship's lights come alive again, and you find yourself in your cockpit.`
+				decline
+
+
+  mission "Drak Revelations: Saryds"
+	landing
+	minor
+	invisible
+	source "Chosen Nexus"
+	destination "Earth"
+	to offer
+		has "drak revelations: saryds"
+	on offer
+		clear "drak revelations: saryds"
+		conversation
+			`Landing on <origin>, you get up to exit the cockpit and begin the ship checks. When you open the door, you find not the <ship>'s main hallway, but a sunlit glade. Looking back, your cockpit too seems to have been replaced by a forest.`
+			`	Great stags made of steel rest in the center of the glade, rising in curiosity and alarm, as a small group of great, pale-gold giants approach them. The giants extend their arms gently, and one by one the stags shift from dull steel to a shining silver. Night falls.`
+			`	Sunlight returns faintly the next day. The stags are communing in the glade again, in what seems to be a tense contest as they dispute on what to do about the war outside. Just over the edge of the forest, you can see the giants chasing small critters, entrapping them in small cages. The sun sets again.`
+			`	Then the scene shifts to the fields just outside the forest, now lit only by the pletiful lightning bolts, brought by raging thunderstorm that has encompassed the entire scene. Stags and giants alike lay dead on the ground, brutal wounds inflicted upon both sides. A few stags remain, slowly making their way over the corpses of the giants. Downcast, they look to the shattered cages.`
+			`	The scene unravels just as it first manifested, and you're standing right outside of your cockpit door.`
+				decline
+  
