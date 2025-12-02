@@ -137,8 +137,7 @@ mission "Drak Revelations: Saryds"
 			`Landing on <origin>, you get up to exit the cockpit and begin the ship checks. When you open the door, you find not the <ship>'s main hallway, but a sunlit glade. Looking back, your cockpit too seems to have been replaced by a forest.`
 			`	Great stags made of steel rest in the center of the glade, rising in curiosity and alarm, as a small group of great, pale-gold giants approach them. The giants extend their arms gently, and one by one the stags shift from dull steel to a shining silver. Night falls.`
 			`	Sunlight returns faintly the next day. The stags are communing in the glade again, in what seems to be a tense contest as they dispute on what to do about the war outside. Just over the edge of the forest, you can see the giants chasing small critters, entrapping them in small cages. The sun sets again.`
-			`	Then the scene shifts to the fields just outside the forest, now lit only by the plentiful lightning bolts, brought by raging thunderstorm that has encompassed the entire scene. Stags and giants alike lay dead on the ground, brutal wounds inflicted upon both sides. A few stags remain, slowly making their way over the corpses of the giants. Downcast, they look to the shattered cages.`
+			`	Then the scene shifts to the fields just outside the forest, now lit only by the pletiful lightning bolts, brought by raging thunderstorm that has encompassed the entire scene. Stags and giants alike lay dead on the ground, brutal wounds inflicted upon both sides. A few stags remain, slowly making their way over the corpses of the giants. Downcast, they look to the shattered cages.`
 			`	The scene unravels just as it first manifested, and you're standing right outside of your cockpit door.`
 				decline
-
 
