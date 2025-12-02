@@ -61,7 +61,7 @@ mission "Drak Revelations Setup: Humanity"
 		set "drak revelations: humanity"
 		fail
 
-  
+
 mission "Drak Revelations: Humanity"
 	landing
 	minor
