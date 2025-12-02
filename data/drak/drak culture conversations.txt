@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-  mission "Drak Revelations: Arachi"
+mission "Drak Revelations: Arachi"
 	entering
 	invisible
 	source
@@ -31,7 +31,7 @@
 				decline
 
 
-  mission "Drak Revelations: Hai"
+mission "Drak Revelations: Hai"
 	landing
 	minor
 	invisible
@@ -48,7 +48,7 @@
 			`	You blink, and see the puddle is back to normal again.`
 
 
-  mission "Drak Revelations Setup: Humanity"
+mission "Drak Revelations Setup: Humanity"
 	landing
 	invisible
 	source "Jupiter"
@@ -81,7 +81,7 @@ mission "Drak Revelations: Humanity"
 				decline
 
 
-  mission "Drak Revelations: Korath"
+mission "Drak Revelations: Korath"
 	entering
 	invisible
 	source
@@ -100,7 +100,7 @@ mission "Drak Revelations: Humanity"
 				decline
 
 
-  mission "Drak Revelations: Quarg"
+mission "Drak Revelations: Quarg"
 	entering
 	invisible
 	source
@@ -122,7 +122,7 @@ mission "Drak Revelations: Humanity"
 				decline
 
 
-  mission "Drak Revelations: Saryds"
+mission "Drak Revelations: Saryds"
 	landing
 	minor
 	invisible
@@ -139,4 +139,5 @@ mission "Drak Revelations: Humanity"
 			`	Then the scene shifts to the fields just outside the forest, now lit only by the pletiful lightning bolts, brought by raging thunderstorm that has encompassed the entire scene. Stags and giants alike lay dead on the ground, brutal wounds inflicted upon both sides. A few stags remain, slowly making their way over the corpses of the giants. Downcast, they look to the shattered cages.`
 			`	The scene unravels just as it first manifested, and you're standing right outside of your cockpit door.`
 				decline
+
   
