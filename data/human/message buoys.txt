@@ -13,38 +13,38 @@
 
 # Entering Republic space
 mission "Message Buoy: Entering Republic space from Pirates"
+	invisible
 	entering
 	repeat
+	source
+		government "Republic"
+		neighbor government "Pirate"
 	destination "Earth"
-	invisible
 	to offer
 		has "chosen sides"
 		not "temporary ceasefire"
 		not "entered system by: takeoff"
 		has "previous system government: Pirate"
-	source
-		government "Republic"
-		neighbor government "Pirate"
 	on offer
 		message
 			phrase "entering republic space from hostile space"
 		fail
 
 mission "Message Buoy: Entering Republic space from hostile space"
+	invisible
 	entering
 	repeat
+	source
+		government "Republic"
+		neighbor government "Free Worlds"
+		not system "Graffias"
 	destination "Earth"
-	invisible
 	to offer
 		has "chosen sides"
 		not "temporary ceasefire"
 		not "main plot completed"
 		not "entered system by: takeoff"
 		has "previous system government: Free Worlds"
-	source
-		government "Republic"
-		neighbor government "Free Worlds"
-		not system "Graffias"
 	on offer
 		message
 			phrase "entering republic space from hostile space"
@@ -62,18 +62,18 @@ phrase "entering republic space from hostile space"
 		" from a system not under Republic jurisdiction. Be forewarned that you may be subject to further questioning upon landing at a Republic port under the Foreign Systems (Relations) Act."
 
 mission "Message Buoy: Entering Republic space from Free Worlds"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
-	to offer
-		has "main plot completed"
-		not "entered system by: takeoff"
-		has "previous system government: Free Worlds"
 	source
 		government "Republic"
 		neighbor government "Free Worlds"
 		not system "Graffias"
+	destination "Earth"
+	to offer
+		has "main plot completed"
+		not "entered system by: takeoff"
+		has "previous system government: Free Worlds"
 	on offer
 		message
 			phrase "entering republic space from free worlds"
@@ -93,13 +93,13 @@ phrase "entering republic space from free worlds"
 
 # Entering Syndicate space
 mission "Message Buoy: Entering Syndicate space"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		government "Syndicate"
 		neighbor government "Republic" "Neutral" "Independent"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 		or
@@ -126,13 +126,13 @@ phrase "entering syndicate space"
 
 # Entering Free Worlds space
 mission "Message Buoy: Entering Free Worlds space from Republic"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		government "Free Worlds"
 		neighbor government "Republic" "Neutral" "Independent"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 		or
@@ -153,13 +153,13 @@ phrase "entering free worlds space from republic"
 		". Stand United."
 
 mission "Message Buoy: Entering Free Worlds space from Pirate"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		government "Free Worlds"
 		neighbor government "Pirate"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 		has "previous system government: Pirate"
@@ -178,12 +178,12 @@ phrase "entering free worlds space from pirate"
 
 # Entering Deep space
 mission "Message Buoy: Entering Deep space"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Zosma"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 		or
@@ -198,12 +198,12 @@ mission "Message Buoy: Entering Deep space"
 
 # Other message buoys
 mission "Message Buoy: Martini Restricted"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Pollux"
+	destination "Earth"
 	to offer
 		"reputation: Republic" < 80
 		not "main plot completed"
@@ -213,12 +213,12 @@ mission "Message Buoy: Martini Restricted"
 		fail
 
 mission "Message Buoy: Geminus Restricted"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Castor"
+	destination "Earth"
 	to offer
 		"reputation: Republic" < 80
 		not "main plot completed"
@@ -228,13 +228,13 @@ mission "Message Buoy: Geminus Restricted"
 		fail
 
 mission "Message Buoy: Graffias"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Graffias"
 		government "Republic"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 		has "war begins"
@@ -244,12 +244,12 @@ mission "Message Buoy: Graffias"
 		fail
 
 mission "Message Buoy: Capella"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Capella"
+	destination "Earth"
 	to offer
 		"reputation: Republic" < 10
 	on offer
@@ -258,12 +258,12 @@ mission "Message Buoy: Capella"
 		fail
 
 mission "Message Buoy: Elnath"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Elnath"
+	destination "Earth"
 	to offer
 		"reputation: Republic" < 100
 	on offer
@@ -272,12 +272,12 @@ mission "Message Buoy: Elnath"
 		fail
 
 mission "Message Buoy: Pirate Thule"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Men"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 		not "event: Thule becomes independent"
@@ -287,12 +287,12 @@ mission "Message Buoy: Pirate Thule"
 		fail
 
 mission "Message Buoy: Independent Thule"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Men"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 		has "event: Thule becomes independent"
@@ -302,12 +302,12 @@ mission "Message Buoy: Independent Thule"
 		fail
 
 mission "Message Buoy: Occupied Greenrock"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Shaula"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 		has "event: fw suppressed Greenrock"
@@ -326,12 +326,12 @@ phrase "occupied greenrock message buoy"
 		" Our presence will remain until piracy on the planet of Greenrock is eliminated."
 
 mission "Message Buoy: beyond Farpoint"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Mintaka"
+	destination "Earth"
 	to offer
 		has "previous system government: Republic"
 	on offer
@@ -340,12 +340,12 @@ mission "Message Buoy: beyond Farpoint"
 		fail
 
 mission "Message Buoy: Megaparsec Inc."
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Mirfak"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 	on offer
@@ -362,12 +362,12 @@ phrase "message buoy: megaparsec inc"
 		" The Megaparsec Bounder - setting new standards in interstellar travel."
 
 mission "Message Buoy: Tarazed Corporation"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Tarazed"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 	on offer
@@ -376,12 +376,12 @@ mission "Message Buoy: Tarazed Corporation"
 		fail
 
 mission "Message Buoy: Betelgeuse Shipyards"
+	invisible
 	entering
 	repeat
-	destination "Earth"
-	invisible
 	source
 		system "Betelgeuse"
+	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
 	on offer
