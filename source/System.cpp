@@ -220,7 +220,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		}
 		else if(!hasValue && key != "object")
 		{
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 			continue;
 		}
 		// Handle the attributes which can be "removed."
@@ -237,7 +237,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		{
 			if(value == trueName)
 			{
-				child.PrintTrace("Error: systems cannot link to themselves.");
+				child.PrintTrace("Systems cannot link to themselves.");
 				continue;
 			}
 			if(remove)
@@ -259,7 +259,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			else if(child.Size() > valueIndex + 2)
 				asteroids.emplace_back(value, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
 			else
-				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
+				child.PrintTrace("Expected " + to_string(valueIndex + 3)
 					+ " tokens. Found " + to_string(child.Size()) + ":");
 		}
 		else if(key == "minables")
@@ -277,7 +277,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			else if(child.Size() > valueIndex + 2)
 				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
 			else
-				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
+				child.PrintTrace("Expected " + to_string(valueIndex + 3)
 					+ " tokens. Found " + to_string(child.Size()) + ":");
 		}
 		else if(key == "fleet")
@@ -350,7 +350,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 
 				if(removeIt == objects.end())
 				{
-					child.PrintTrace("Warning: Did not find matching object for specified operation:");
+					child.PrintTrace("Did not find matching object for specified operation:");
 					continue;
 				}
 
@@ -414,7 +414,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				else if(type == "jump" && grandHasValue)
 					extraJumpArrivalDistance = fabs(grand.Value(1));
 				else
-					grand.PrintTrace("Warning: Skipping unsupported arrival distance limitation:");
+					grand.PrintTrace("Skipping unsupported arrival distance limitation:");
 			}
 		}
 		else if(key == "departure")
@@ -433,7 +433,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				else if(type == "jump" && grandHasValue)
 					jumpDepartureDistance = fabs(grand.Value(1));
 				else
-					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
+					grand.PrintTrace("Skipping unsupported departure distance limitation:");
 			}
 		}
 		else if(key == "invisible fence" && hasValue)
@@ -487,7 +487,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 	}
 	// Print a warning if this system wasn't explicitly given a position.
 	if(!hasPosition)
-		node.PrintTrace("Warning: system will be ignored due to missing position:");
+		node.PrintTrace("System will be ignored due to missing position:");
 	// Systems without an asteroid belt defined default to a radius of 1500.
 	if(belts.empty())
 		belts.emplace_back(1, 1500.);
@@ -600,7 +600,7 @@ const string &System::TrueName() const
 
 
 
-void System::SetName(const string &name)
+void System::SetTrueName(const string &name)
 {
 	trueName = name;
 	if(displayName.empty())
@@ -732,7 +732,10 @@ System::SolarGeneration System::GetSolarGeneration(const Point &shipPosition,
 // Additional travel distance to target for ships entering through hyperspace.
 double System::ExtraHyperArrivalDistance() const
 {
-	return max(extraHyperArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
+	const optional<double> arrivalGamerule = GameData::GetGamerules().SystemArrivalMin();
+	if(arrivalGamerule.has_value())
+		return max(extraHyperArrivalDistance, *arrivalGamerule);
+	return extraHyperArrivalDistance;
 }
 
 
@@ -740,7 +743,10 @@ double System::ExtraHyperArrivalDistance() const
 // Additional travel distance to target for ships entering using a jumpdrive.
 double System::ExtraJumpArrivalDistance() const
 {
-	return max(extraJumpArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
+	const optional<double> arrivalGamerule = GameData::GetGamerules().SystemArrivalMin();
+	if(arrivalGamerule.has_value())
+		return max(extraJumpArrivalDistance, *arrivalGamerule);
+	return extraJumpArrivalDistance;
 }
 
 
