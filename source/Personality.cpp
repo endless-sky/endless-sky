@@ -18,7 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "pi.h"
+#include "Random.h"
 
+#include <cmath>
 #include <map>
 #include <vector>
 
@@ -126,7 +129,8 @@ namespace {
 
 // Default settings for player's ships.
 Personality::Personality() noexcept
-	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
+	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), period(180.),
+	minimumMultiplier(.25), gain(360), loss(360), tick(Random::Int(240)), firingPercentage(0.)
 {
 	static_assert(LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM == PERSONALITY_COUNT,
 		"PERSONALITY_COUNT must match the length of PersonalityTraits");
@@ -148,11 +152,59 @@ void Personality::Load(const DataNode &node)
 		if(child.Token(0) == "confusion")
 		{
 			if(add || remove)
-				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion value:");
-			else if(child.Size() < 2)
-				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
-			else
+				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion node:");
+			// Accept the old method of defining confusion for backwards compatibility.
+			else if(child.Size() == 2)
 				confusionMultiplier = child.Value(1);
+			else
+			{
+				for(const DataNode &grand : child)
+				{
+					if(grand.Token(0) == "maximum confusion")
+					{
+						if(grand.Size() < 2)
+							grand.PrintTrace("Skipping \"maximum confusion\" tag with no value specified:");
+						else
+							confusionMultiplier = grand.Value(1);
+					}
+					else if(grand.Token(0) == "period")
+					{
+						if(grand.Size() < 2)
+							grand.PrintTrace("Skipping \"period\" tag with no value specified:");
+						else if(grand.Value(1) == 0.)
+							grand.PrintTrace("Cannot have a period value equal to zero:");
+						else
+							period = grand.Value(1);
+					}
+					else if(grand.Token(0) == "minimum multiplier")
+					{
+						if(grand.Size() < 2)
+							grand.PrintTrace("Skipping \"minimum multiplier\" tag with no value specified:");
+						else
+							minimumMultiplier = child.Value(1);
+					}
+					else if(grand.Token(0) == "gain")
+					{
+						if(grand.Size() < 2)
+							grand.PrintTrace("Skipping \"gain\" tag with no value specified:");
+						else if(grand.Value(1) == 0.)
+							grand.PrintTrace("Cannot have a gain value equal to zero:");
+						else
+							gain = grand.Value(1);
+					}
+					else if(grand.Token(0) == "loss")
+					{
+						if(grand.Size() < 2)
+							grand.PrintTrace("Skipping \"loss\" tag with no value specified:");
+						else if(grand.Value(1) == 0.)
+							grand.PrintTrace("Cannot have a loss value equal to zero:");
+						else
+							loss = grand.Value(1);
+					}
+					else
+						grand.PrintTrace("Skipping unknown confusion attribute:");
+				}
+			}
 		}
 		else
 		{
@@ -462,26 +514,26 @@ bool Personality::IsQuiet() const
 
 const double &Personality::Confusion() const
 {
-	return confusion.X();
+	return confusion;
 }
 
 
 
 void Personality::UpdateConfusion(bool isFiring)
 {
-	// If you're firing weapons, aiming accuracy should slowly improve until it
-	// is 4 times more precise than it initially was.
-	aimMultiplier = .99 * aimMultiplier + .01 * (isFiring ? .5 : 2.);
+	tick++;
 
-	// Try to correct for any error in the aim, but constantly introduce new
-	// error and overcompensation so it oscillates around the origin. Apply
-	// damping to the position and velocity to avoid extreme outliers, though.
-	if(confusion.X() || confusion.Y())
-		confusionVelocity -= .001 * confusion.Unit();
-	confusionVelocity += .001 * Angle::Random().Unit();
-	confusionVelocity *= .999;
-	confusion += confusionVelocity * (confusionMultiplier * aimMultiplier);
-	confusion *= .9999;
+	// If you're firing weapons, aiming accuracy should slowly improve.
+	// Gain and loss are stored as the number of ticks to reach and lose the maximum aiming bonus,
+	// so use their inverse to determine the amount of accuracy to gain or lose each tick.
+	if(isFiring)
+		firingPercentage += 1. / gain;
+	else
+		firingPercentage -= 1. / loss;
+	firingPercentage = min(1., max(0., firingPercentage));
+
+	confusion = confusionMultiplier
+		* (1. - (1. - minimumMultiplier) * firingPercentage) * cos(tick * PI * 2 / period);
 }
 
 

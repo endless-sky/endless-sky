@@ -108,7 +108,11 @@ private:
 
 	std::bitset<PERSONALITY_COUNT> flags;
 	double confusionMultiplier;
-	double aimMultiplier;
-	Point confusion;
-	Point confusionVelocity;
+	double period;
+	double minimumMultiplier;
+	double gain;
+	double loss;
+	int tick;
+	double firingPercentage;
+	double confusion;
 };
