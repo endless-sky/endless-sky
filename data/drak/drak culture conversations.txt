@@ -46,6 +46,7 @@ mission "Drak Revelations: Hai"
 			`	The ships spread far and away, and the archipelago becomes bustling with activity. But the waves and the sunlight grow harsher, and soon the sun begins to scorch the islands and ships, and boil the seas. The waves grow taller and taller, swallowing ships and isles whole, and attempting to reach up to snuff out the sun.`
 			`	When the seas finally calm down and the sun sets, most islands lay in ruin, if they still exist at all, and very few ships are left to travel between them.`
 			`	You blink, and see the puddle is back to normal again.`
+				decline
 
 
 mission "Drak Revelations Setup: Humanity"
@@ -141,3 +142,4 @@ mission "Drak Revelations: Saryds"
 				decline
 
   
+
