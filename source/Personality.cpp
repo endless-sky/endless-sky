@@ -160,47 +160,19 @@ void Personality::Load(const DataNode &node)
 			{
 				for(const DataNode &grand : child)
 				{
-					if(grand.Token(0) == "maximum confusion")
-					{
-						if(grand.Size() < 2)
-							grand.PrintTrace("Skipping \"maximum confusion\" tag with no value specified:");
-						else
-							confusionMultiplier = grand.Value(1);
-					}
-					else if(grand.Token(0) == "period")
-					{
-						if(grand.Size() < 2)
-							grand.PrintTrace("Skipping \"period\" tag with no value specified:");
-						else if(grand.Value(1) == 0.)
-							grand.PrintTrace("Cannot have a period value equal to zero:");
-						else
-							period = grand.Value(1);
-					}
-					else if(grand.Token(0) == "minimum multiplier")
-					{
-						if(grand.Size() < 2)
-							grand.PrintTrace("Skipping \"minimum multiplier\" tag with no value specified:");
-						else
-							minimumMultiplier = child.Value(1);
-					}
-					else if(grand.Token(0) == "gain")
-					{
-						if(grand.Size() < 2)
-							grand.PrintTrace("Skipping \"gain\" tag with no value specified:");
-						else if(grand.Value(1) == 0.)
-							grand.PrintTrace("Cannot have a gain value equal to zero:");
-						else
-							gain = grand.Value(1);
-					}
-					else if(grand.Token(0) == "loss")
-					{
-						if(grand.Size() < 2)
-							grand.PrintTrace("Skipping \"loss\" tag with no value specified:");
-						else if(grand.Value(1) == 0.)
-							grand.PrintTrace("Cannot have a loss value equal to zero:");
-						else
-							loss = grand.Value(1);
-					}
+					const string &grandKey = grand.Token(0);
+					if(grand.Size() < 2)
+						grand.PrintTrace("Skipping attribute with no value specified:");
+					else if(grandKey == "maximum confusion")
+						confusionMultiplier = max(0., grand.Value(1));
+					else if(grandKey == "period")
+						period = max(1., grand.Value(1));
+					else if(grandKey == "minimum multiplier")
+						minimumMultiplier = max(0., grand.Value(1));
+					else if(grandKey == "gain")
+						gain = max(1., grand.Value(1));
+					else if(grandKey == "loss")
+						loss = max(1., grand.Value(1));
 					else
 						grand.PrintTrace("Skipping unknown confusion attribute:");
 				}
