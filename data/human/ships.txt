@@ -840,7 +840,7 @@ ship "Bulwark"
 		
 		"Fission Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
+		"K64W Shield Generator"
 		"Water Coolant System"
 		"Tactical Scanner"
 		"Laser Rifle" 19
@@ -1385,7 +1385,7 @@ ship "Cutthroat"
 		
 		"S3 Thermionic"
 		"LP036a Battery Pack"
-		"D41-HY Shield Generator"
+		"K36S Shield Generator"
 		"Laser Rifle" 5
 		
 		"A370 Atomic Thruster"
@@ -2989,7 +2989,7 @@ ship "Nest"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
-		"D41-HY Shield Generator" 2
+		"K64W Shield Generator"
 		"Large Radar Jammer"
 		"Laser Rifle" 2
 		
@@ -3397,7 +3397,7 @@ ship "Roost"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
-		"D41-HY Shield Generator" 4
+		"K64W Shield Generator" 2
 		"Large Radar Jammer"
 		"Tactical Scanner"
 		"Laser Rifle" 2
@@ -3667,7 +3667,7 @@ ship "Skein"
 		
 		"S3 Thermionic"
 		"LP072a Battery Pack"
-		"D67-TM Shield Generator" 4
+		"K64W Shield Generator" 2
 		"Tactical Scanner"
 		"Laser Rifle" 4
 		
