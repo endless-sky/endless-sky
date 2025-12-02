@@ -152,30 +152,30 @@ void Personality::Load(const DataNode &node)
 		if(child.Token(0) == "confusion")
 		{
 			if(add || remove)
-				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion node:");
-			// Accept the old method of defining confusion for backwards compatibility.
-			else if(child.Size() == 2)
-				confusionMultiplier = child.Value(1);
-			else
 			{
-				for(const DataNode &grand : child)
-				{
-					const string &grandKey = grand.Token(0);
-					if(grand.Size() < 2)
-						grand.PrintTrace("Skipping attribute with no value specified:");
-					else if(grandKey == "maximum confusion")
-						confusionMultiplier = max(0., grand.Value(1));
-					else if(grandKey == "period")
-						period = max(1., grand.Value(1));
-					else if(grandKey == "minimum multiplier")
-						minimumMultiplier = max(0., grand.Value(1));
-					else if(grandKey == "gain")
-						gain = max(1., grand.Value(1));
-					else if(grandKey == "loss")
-						loss = max(1., grand.Value(1));
-					else
-						grand.PrintTrace("Skipping unknown confusion attribute:");
-				}
+				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion node:");
+				continue;
+			}
+			// Accept the old method of defining confusion for backwards compatibility.
+			if(child.Size() == 2)
+				confusionMultiplier = child.Value(1);
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+				if(grand.Size() < 2)
+					grand.PrintTrace("Skipping attribute with no value specified:");
+				else if(grandKey == "max confusion")
+					confusionMultiplier = max(0., grand.Value(1));
+				else if(grandKey == "period")
+					period = max(1., grand.Value(1));
+				else if(grandKey == "minimum multiplier")
+					minimumMultiplier = max(0., grand.Value(1));
+				else if(grandKey == "gain")
+					gain = max(1., grand.Value(1));
+				else if(grandKey == "loss")
+					loss = max(1., grand.Value(1));
+				else
+					grand.PrintTrace("Skipping unknown confusion attribute:");
 			}
 		}
 		else
