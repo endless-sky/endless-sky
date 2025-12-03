@@ -494,7 +494,7 @@ const double &Personality::Confusion() const
 void Personality::UpdateConfusion(bool isFocusing)
 {
 	if(!confusionMultiplier)
-		return
+		return;
 	tick++;
 
 	// If you're focusing, aiming accuracy should slowly improve.
