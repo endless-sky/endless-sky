@@ -75,7 +75,7 @@ mission "Drak Revelations: Humanity"
 		conversation
 			`The <ship> touches down on <origin> at nightfall, and after overseeing the refuelling procedures and finishing the ship integrity checks, you retire to your quarters for some rest.`
 			`	As you doze off, a faint light taps at the borders of your vision, coiling around borders that you can't quite identify. All around you bars reach upwards and connect to support structures, like a cradle. The platform seems to slowly rotate in the darkness.`
-			`	Suddenly, a huge boulder is barrelling down towards you, about to smash the cradle, when the light flashes brightly. It vanishes.`
+			`	Suddenly, a huge boulder is barreling down towards you, about to smash the cradle, when the light flashes brightly. It vanishes.`
 			`	The cradle spins again. The darkness is overwhelmed by blood-red flames that eat at the cradle's edges, but just as the wood begins to crackle and creak, the light pulses once more around your sight, and the flames themselves begin to burn away.`
 			`	There is only darkness for a long time. And then there is a battle, of formless entities clashing against one another all around the cradle, disregarding it with a dangerous dismissiveness. This time, the light erupts all around you and your eyes are forced shut.`
 			`	You open them again to find yourself lying down in your bed.`
@@ -118,7 +118,7 @@ mission "Drak Revelations: Quarg"
 			`The instant your ship finishes its jump, lights begin to flicker off in the cockpit, until everything goes dark.`
 			`	At first all you can see is the barren, damp soil, barely illuminated by a dim, remote light from above. A dense fog seeps upward from cracks in the ground, and in the distance you can barely make out the repeated crashing of waves.`
 			`	A gaunt giant of pale-gold cuts through the fog in a fit, smashing at the ground as it wails and attempts to slap and kick away the water from the ground, to no avail. The light flickers and quiets in tandem with its smashing and weeping.`
-			`	When it flashes just bright enough, you can make out the graves. All around you, they seem to extend endlessly toward the horizon on any end. The giant never touches or dirties the graves, and during its brief periods of respite, seems to scarcely be able of looking at them before becoming enraged once more.`
+			`	When it flashes just bright enough, you can make out the graves. All around you, they seem to extend endlessly toward the horizon on any end. The giant never touches or dirties the graves, and during its brief periods of respite, seems scarcely able to look at them before becoming enraged once more.`
 			`	The light blinks off, and you see no more. Your ship's lights come alive again, and you find yourself in your cockpit.`
 				decline
 
