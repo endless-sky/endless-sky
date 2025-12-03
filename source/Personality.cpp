@@ -130,7 +130,7 @@ namespace {
 // Default settings for player's ships.
 Personality::Personality() noexcept
 	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), period(180.),
-	minimumMultiplier(.25), gain(360.), loss(360.), tick(Random::Int(240)), firingPercentage(0.)
+	focusMultiplier(.25), gainFocusTime(360.), loseFocusTime(360.), tick(Random::Int(240)), focusPercentage(0.)
 {
 	static_assert(LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM == PERSONALITY_COUNT,
 		"PERSONALITY_COUNT must match the length of PersonalityTraits");
@@ -157,7 +157,7 @@ void Personality::Load(const DataNode &node)
 				continue;
 			}
 			// Accept the old method of defining confusion for backwards compatibility.
-			if(child.Size() == 2)
+			if(child.Size() >= 2)
 				confusionMultiplier = child.Value(1);
 			for(const DataNode &grand : child)
 			{
@@ -168,12 +168,12 @@ void Personality::Load(const DataNode &node)
 					confusionMultiplier = max(0., grand.Value(1));
 				else if(grandKey == "period")
 					period = max(1., grand.Value(1));
-				else if(grandKey == "minimum multiplier")
-					minimumMultiplier = max(0., grand.Value(1));
-				else if(grandKey == "gain")
-					gain = max(1., grand.Value(1));
-				else if(grandKey == "loss")
-					loss = max(1., grand.Value(1));
+				else if(grandKey == "focus multiplier")
+					focusMultiplier = max(0., grand.Value(1));
+				else if(grandKey == "gain focus time")
+					gainFocusTime = max(1., grand.Value(1));
+				else if(grandKey == "lose focus time")
+					loseFocusTime = max(1., grand.Value(1));
 				else
 					grand.PrintTrace("Skipping unknown confusion attribute:");
 			}
@@ -491,21 +491,22 @@ const double &Personality::Confusion() const
 
 
 
-void Personality::UpdateConfusion(bool isFiring)
+void Personality::UpdateConfusion(bool isFocusing)
 {
+	if(!confusionMultiplier)
+		return
 	tick++;
 
-	// If you're firing weapons, aiming accuracy should slowly improve.
-	// Gain and loss are stored as the number of ticks to reach and lose the maximum aiming bonus,
+	// If you're focusing, aiming accuracy should slowly improve.
+	// Gain and lose focus times are stored as the number of ticks to reach and lose the maximum aiming bonus,
 	// so use their inverse to determine the amount of accuracy to gain or lose each tick.
-	if(isFiring)
-		firingPercentage += 1. / gain;
+	if(isFocusing)
+		focusPercentage += 1. / gainFocusTime;
 	else
-		firingPercentage -= 1. / loss;
-	firingPercentage = min(1., max(0., firingPercentage));
+		focusPercentage -= 1. / loseFocusTime;
+	focusPercentage = min(1., max(0., focusPercentage));
 
-	confusion = confusionMultiplier
-		* (1. - (1. - minimumMultiplier) * firingPercentage) * cos(tick * PI * 2 / period);
+	confusion = confusionMultiplier * (1. - (1. - focusMultiplier) * focusPercentage) * cos(tick * PI * 2 / period);
 }
 
 
