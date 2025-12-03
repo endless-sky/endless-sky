@@ -238,3 +238,9 @@ planet "Chanai Structure"
 	landscape "land/station60"
 	description `This alien station is as vast as it is mysterious, concealing more secrets than you could ever hope to find. Its only discernible feature is a giant barrel, but what it was built for - or what it could still do - is impossible to say.`
 	government "Magic Asteroid"
+
+planet "Magic Asteroid Planet"
+	"display name" "???"
+	landscape "land/asteroid1"
+	description `The dosimeter on your suit doesn't seem to know what to think of this place, going back and forth despite staying in the same location. Short valleys are covered with impacts of all shapes sizes, pink-colored veins resurfacing from their edges. In spite of the vacuum, you would swear you can see a purplish hue all around it.`
+	government "Magic Asteroid"

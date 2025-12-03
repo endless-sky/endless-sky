@@ -1669,6 +1669,89 @@ ship "Starling" "Starling (Thrasher)"
 
 
 
+ship "Swan"
+	sprite "ship/swan/swan"
+		"frame rate" 3
+		"rewind"
+	thumbnail "thumbnail/swan"
+	attributes
+		category "Utility"
+		licenses
+			"Remnant Capital"
+		cost 29660000
+		"shields" 30700
+		"hull" 13100
+		"required crew" 38
+		"bunks" 68
+		"cargo space" 106
+		"mass" 1813
+		"drag" 15.1
+		"heat dissipation" 0.32
+		"fuel capacity" 6400
+		"ramscoop" 6.5
+		"outfit space" 644
+		"weapon capacity" 207
+		"engine capacity" 157
+		"shield generation" 4.8
+		"shield energy" 3.9
+		"hull repair rate" 1.3
+		"hull energy" .8
+		"outfit scan power" 15
+		"outfit scan efficiency" 16
+		"tactical scan power" 32
+		"ion resistance" .15
+		"scrambling resistance" .15
+		weapon
+			"blast radius" 430
+			"shield damage" 4300
+			"hull damage" 2150
+			"hit force" 6450
+	outfits
+		"Inhibitor Cannon" 2
+		"Teciimach Bay"
+		"Inhibitor Turret" 3
+		"Point Defense Turret" 2
+		"Teciimach Canister" 9
+		
+		"Aeon Cell"
+		"Epoch Cell"
+		"Crystal Capacitor"
+		"Scram Drive"
+		"Quantum Key Stone"
+		"Thermoelectric Cooler"
+		
+		"Smelter-Class Thruster"
+		"Smelter-Class Steering"
+
+	engine 0 190 1
+	engine -27 181.5 0.7
+	engine 27 181.5 0.7
+	gun 0 -195 "Teciimach Bay"
+	gun -12 -178 "Inhibitor Cannon"
+	gun 12 -178 "Inhibitor Cannon"
+	turret 0 -27.5 "Inhibitor Turret"
+	turret 0 158.5 "Inhibitor Turret"
+	turret 0 -74.5 "Inhibitor Turret"
+	turret -116 70.5 "Point Defense Turret"
+	turret 116 70.5 "Point Defense Turret"
+	bay "Drone" -66.5 71.5 under
+		"launch effect" "remnant external"
+	bay "Drone" 66.5 71.5 under
+		"launch effect" "remnant external"
+	bay "Drone" -106.5 63.5 under
+		"launch effect" "remnant external"
+	bay "Drone" 106.5 63.5 under
+		"launch effect" "remnant external"
+	leak "remnant leak" 40 10
+	leak "remnant leak sparkle" 60 20
+	explode "small explosion" 20
+	explode "medium explosion" 50
+	explode "large explosion" 50
+	explode "huge explosion" 15
+	"final explode" "final explosion large" 1
+
+
+
 ship "Tern"
 	sprite "ship/tern"
 	thumbnail "thumbnail/tern"

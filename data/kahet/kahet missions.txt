@@ -1766,7 +1766,7 @@ mission "Ka'het: Patir Mystery 12.2C"
 	to offer
 		has "Ka'het: Patir Mystery 12.2A: done"
 	npc assist
-		government "Magic Asteroid"
+		government "Magic Asteroid (Patir 12.2)"
 		personality coward fleeing harvests pacifist uninterested waiting mute
 		fleet
 			cargo 3
@@ -2060,7 +2060,7 @@ mission "Ka'het: Patir Mystery 14"
 		has "Ka'het: Voice From The Past 1: done"
 		has "remnant: tubfalet appearance"
 	on offer
-# event to change Ssil Vida's appearance
+	event "ssil vida changes"
 		conversation
 			`Although its architecture still feels wildly alien, time has helped you become familiar with the way <planet>'s main starport is organized. By now, therefore, it's not difficult for you to notice when something changes. Some are subtler than others - it wasn't long ago that additional barriers were placed between the rows of landing pads, much to your displeasure.`
 			`	Passing the arch that conducts into the northern shipyards reveals a curious sight. A group of hangars that until now were marked as off limits are now open, and packed of crowds of construction workers are walking in and out of the area. Among the crowd, pairs of camels tow sections of Remnant spacecrafts of all kinds; you step aside to let a convoy pass with some of the longest wings you ever had a chance to see.`
@@ -2103,6 +2103,20 @@ mission "Ka'het: Patir Mystery 14"
 	on complete
 		conversation
 			`You meet with Chilia in front of the landing pad. "Thank you for the help," he chants as you hand him the data. "If you are interested in continuing the Patir research project, meet me in the starport in a few hours - I might have good news for you."`
+
+
+event "ssil vida changes"
+	system "Postverta"
+		remove object "Ssil Vida"
+			sprite planet/sheragi_postverta
+				scale 0.5
+			distance 1408
+			period 1818.85
+		add object "Ssil Vida"
+			sprite planet/sheragi_postverta_2
+				scale 0.5
+			distance 1408
+			period 1818.85
 
 
 mission "Ka'het: Patir Mystery 15"
@@ -2313,8 +2327,7 @@ mission "Ka'het: Patir Mystery 18"
 				accept
 	on enter
 		event "Patir spaceport returns and Fetri spawn"
-		dialog
-			`As soon as you give him the go, Chilia calmly sits at his console and starts fiddling with the control. The antenna atop your ship moves to track the chosen Fetri'sei, and the signal starts; but right after, instead of cargo being ejected, you detect an energy spike coming from the Ka'sei. It's activating a Jump Drive! Taken aback, Chilia signs you to try to follow it.`
+		dialog "As soon as you give him the go, Chilia calmly sits at his console and starts fiddling with the control. The antenna atop your ship moves to track the chosen Fetri'sei, and the signal starts; but right after, instead of cargo being ejected, you detect an energy spike coming from the Ka'sei. It's activating a Jump Drive! Taken aback, Chilia signs you to try to follow it.""
 	npc board
 		government "Ka'sei (Patir 18)"
 		personality coward waiting pacifist uninterested fleeing target
@@ -2406,7 +2419,7 @@ mission "Ka'het: Patir Mystery 20"
 		has "Ka'het: Patir Mystery 19: done"
 	on offer
 		conversation
-			`After asking for directions to a few locals, you meet up with Dusk again. In the background, you see a half-open Petrel suspended by some wires a few meters above the ground. "<first>, were you able to prepare the Jump-capable carrier I mentioned the last time?" Dusk asks. "Is it nearby?"`
+			`After asking for directions to a few locals, you meet up with Dusk again. In the background, you see a half-open Petrel suspended by some wires a few meters above the ground. "<first>, were you able to prepare the Jump-capable carrier I mentioned the last time?" Dusk asks. "And is it nearby?"`
 			choice
 				`	"Yes, it is."`
 					goto good
@@ -2442,29 +2455,41 @@ mission "Ka'het: Patir Mystery 20"
 			`	"The mistakes done by the Builders, for example, seem trivial from our perspective. This could mean that they made profoundly stupid decisions, or that we have not understood enough of the situation to put all the pieces together and actually comprehend their mistakes. And now we have indications of another, much older extinct species in the space that lies beyond Patir."`
 				goto skip
 			label risk
-			`	He seems dubious. "Answering this question is... more complicated than it looks. We are not certain of how the Ka'het gained keystones the first time, nor how many of them were able to do so. We know that it is a possibility, that the Ka'het as whole are likely stronger than our fleets, and that no Ka'het has moved past the Graveyard since the Exodus. The truth, <first>, is that risk posturing is a very complex subject, and, for that matter, the same can be said with our mission.`
+			`	He seems dubious. "Answering this question is... more complicated than it looks. We are not certain of how the Ka'het gained keystones the first time, nor how many of them were able to do so. We know that it is a possibility, that the Ka'het as whole are likely stronger than our fleets, and that no Ka'het has moved past the Graveyard since the Exodus. The truth, <first>, is that risk posturing is a very complex subject; for that matter, the same can be said with our mission.`
 			label danger
 			`	He passes his hand over the hull of Calm Sea Afire, thoughtful. "Only time will tell, but I stand by the decisions we have made. A standard Smew is simple to repair and to keep in storage, but not too useful outside of the Ember Wastes. A large, jump-capable starship is complicated to keep in flight-status for months at a time, not to mention the maintenance needs of a cloaking system. And worse of all, it might not even be of much use if Patir was not in the Milky Way when the emergency happens!"`
 			label skip
 			`	The buzz of Dusk's commlink draws his attention. He smiles, and his tone changes almost instantly. "Ssil Vida is ready to cut the signal. Once they do so, it will take six days for this to reach Patir; at that point, it will instantly disappear, possibly to move into the the same cluster we visited the last time. You, I, and four of our researchers must be there when this happens." He rights up and clears his throat. "Captain," he sings boastfully, "shall I give the order?"`
 			choice
 				`	"Do it."`
-			`	He types on his commlink, and a minute passes. When the commlink buzzes again, Dusk makes an uncharacteristic cheer and quickly bids farewell to the people in the hangar. While he gathers a group of people, presumably the researchers that will follow you in the expedition, one of the spaceport workers takes a small crystal out of the assembled Petrel and hands it to you. "The Calm Sea Afire is now in your hands, Captain," she signs thereafter. "Treat her well."`
+			`	He types on his commlink, and a minute passes. When the commlink buzzes again, Dusk makes an uncharacteristic cheer and quickly bids farewell to the people in the hangar. While he gathers a group of people, presumably the researchers that will follow you in the expedition, one of the spaceport workers takes a small crystal out of the now-assembled Petrel and hands it to you. "The Calm Sea Afire is in your hands, Captain," she signs thereafter. "Treat her well."`
 				accept
 	on accept
+		event "Patir moves" 6
+		event "Patir returns" 8
 		give ship "Petrel (Lifeboat)" "Calm Sea Afire"
-			id 551551
+			id 78967
 	on visit
 		dialog "You've arrived at <planet>, but either your passengers or the Calm Sea Afire are not with you!"
 	on complete
 		take ship "Petrel (Lifeboat)"  "Calm Sea Afire"
-			id 551551
+			id 78967
 			"require outfits"
 			"with outfits"
-# add patir moves event, even if you fail the deadline.
-# add deadline
 
-# add petrel lifeboat (see discord) also never disabled because of the next mission
+# never disabled because of the use in the next mission
+ship "Petrel" "Petrel (Lifeboat)"
+	"never disabled"
+	outfits
+		"Small Heat Shunt" 1
+		"Crucible-Class Steering"
+		"Bellows-Class Afterburner"
+		"Crystal Capacitor"
+		"Small Bunk Room"
+		"Fuel Processor" 2
+		"Emergency Ramscoop" 2
+		"Generator (Furnace Class)"
+
 
 mission "Ka'het: Patir Mystery 21"
 	landing
@@ -2476,6 +2501,7 @@ mission "Ka'het: Patir Mystery 21"
 	to offer
 		has "Ka'het: Patir Mystery 20: done"
 	on offer
+		event "Patir land on Pacili"
 		conversation
 			`The hectic atmosphere in the bridge, after gradually increasing during the entire trip, comes to a stop a few minutes away from the outpost. One by one, the stars in front of you dim and disappear, until the sky is black once again. And in a few seconds more, the first lights begin their strange dance, soon followed by more and more of them.`
 			choice
@@ -2509,15 +2535,22 @@ mission "Ka'het: Patir Mystery 21"
 			label lifeboat
 			`	He smiles. "We will see soon! She is more fast and nimble than she might appear on the ground, or we would have not chosen her as our lifeboat."`
 			label liftoff
-			`	"Oh, to be clear," he recalls before climbing aboard the Petrel, "once we are at the gas giant, Pacili, you will not need to go more than a few kilometers deep. You can stay up, near the very edge of the atmosphere, while we delve deep below to test our craft further; you should not need a gaslining ship for such a task." He bows, and closes the hatches separating the outpost and the lifeboat.`
+			`	"Oh, to be clear," he recalls, climbing aboard the Petrel, "once we are at the gas giant, Pacili, you will not need to go more than a few kilometers deep. You can stay up, near the very edge of the atmosphere, while we delve deep below to test our craft further; you should not need a gaslining ship for such a task." He bows, and closes the hatches separating the outpost and the lifeboat.`
 			`	You don your suit right as the emergency alarm signals the start of the simulation. The Petrel zooms up in the sky at an incredible speed, disappearing into the night, and you hurry up to prepare your ship to follow it.`
 				launch
 	npc save
 		government "Remnant"
-		personality escort staying launching
+		personality uninterested staying waiting fleeing
 		ship "Petrel (Lifeboat)" "Calm Sea Afire"
-# make it never disabled, and use on provoke to see if you hit it? set the condition 'Remnant: Patir Mystery 21 hit'
-# add event to make Pacili landable for non-gaslined ships
+		on provoke
+			set "Remnant: Patir Mystery 21 hit"
+
+event "Patir land on Pacili"
+	planet "Pacili"
+		remove attributes "requires: gaslining"
+	planet "Builder Settlement"
+		add attributes "requires: youwish"
+
 
 mission "Ka'het: Patir Mystery 22"
 	landing
@@ -2528,11 +2561,10 @@ mission "Ka'het: Patir Mystery 22"
 	to offer
 		has "Ka'het: Patir Mystery 21: done"
 	on offer
-# add patir returns event
 		conversation
 			branch hit
 				has "Remnant: Patir Mystery 21 hit"
-			`You meet up with the Calm Sea Afire just above the uppermost cloud layer of <planet>. "<first, what happened to your weapons? We did not record any of them hitting us on the way here!" questions Dusk through the radio. The chanting tone makes you unsure of whether it was a taunt or a genuine worry about your weaponry.`
+			`You meet up with the Calm Sea Afire just above the uppermost cloud layer of <planet>. "<first, what happened to your weapons? We did not record any of them hitting us on the way here," questions Dusk through the radio. The chanting tone makes you unsure of whether it was a taunt or a genuine inquiry about your weaponry.`
 			choice
 				`	"I was not prepared well."`
 					goto prepared
@@ -2572,12 +2604,20 @@ mission "Ka'het: Patir Mystery 22"
 		government "Remnant"
 		personality escort staying launching
 		ship "Petrel (Lifeboat)" "Calm Sea Afire"
-# add event to make Pacili unlandable for non-gaslined ships
 	on complete
+		event "Patir unland on Pacili"
 		conversation
 			`You precede the Petrel to the outpost, and stand next to your ship watching it make a fairly decent landing right next to the facility. Despite the imprecision, a tunnel grows out of the habitat and toward the ship's hatch, locking the two of them together. When you enter the laboratory, the three Remnant is giving a rundown of their results to the other two, and vice versa. Both groups seem satisfied, though you feel the pair who stayed in the hab is more than the other three.`
 			`	"We will be ready to leave soon," announces Dusk at last. "After a few hours of sleep, and a couple more to finish setting up the lab. I suggest you take the chance to sleep a bit as well, <first>." He hands you a small crystal, enclosed in a metallic container.`
 			`	"But first, make sure to transmit back to Ssil Vida the contents of this chip. You can think of it as a passphrase: if they do not receive it, it will be a sign that we have been stuck in the other galaxy, and they will move Patir back there as soon as possible for a few days so that we can catch the ride." You nod, and leave them to their rest in the outpost.`
+
+
+event "Patir unland on Pacili"
+	planet "Pacili"
+		add attributes "requires: gaslining"
+	planet "Builder Settlement"
+		remove attributes "requires: youwish"
+
 
 mission "Ka'het: Patir Mystery 23"
 	name "Return to <planet>"
@@ -2587,7 +2627,9 @@ mission "Ka'het: Patir Mystery 23"
 	passengers 5
 	cargo "Patir samples" 8
 	to offer
-		has "Ka'het: Patir Mystery 22: done"
+		or
+			has "Ka'het: Patir Mystery 22: done"
+			has "Ka'het: Patir Mystery Safety Net Early: done"
 	on offer
 		conversation
 			`You enter the outpost once again, only to discovery that no one is inside. A glance out of the small windows does not reveal any activity, and the Calm Sea Afire, still docked to the side of the laboratory, appears to be just as empty as the rest of the outpost. It does not take you long to decide that if the Remnant are not here and you did not see them outside, they must have entered into the Builder settlement.`
@@ -2673,6 +2715,9 @@ mission "Ka'het: Patir Mystery 24A"
 				`	"It will be here within a few days."`
 			`	He nods. "We will wait then. When you are ready, you know where to find us."`
 				decline
+	on accept
+		event "Patir moves" 6
+		event "Patir returns" 13
 
 mission "Ka'het: Patir Mystery 24B"
 	name "Beyond <system> again"
@@ -2692,7 +2737,11 @@ mission "Ka'het: Patir Mystery 24B"
 					accept
 				`	"Sorry, I need a few more days still."`
 			`	Their disappointment is clear. "We will be here when your ships come."`
-				decline
+				defer
+	on accept
+		event "Patir moves" 6
+		event "Patir returns" 13
+
 
 mission "Ka'het: Patir Mystery 25"
 	landing
@@ -2708,7 +2757,6 @@ mission "Ka'het: Patir Mystery 25"
 			has "Ka'het: Patir Mystery 24A: done"
 			has "Ka'het: Patir Mystery 24B: done"
 	on offer
-# add patir moves event
 		conversation
 			`For once, your ship's bridge is unusually quiet. The same cannot be said about the laboratory in the back of your ship: the Remnant have all moved there already, in order to activate the equipment for the mission. Each of them stands at their console setting up small computers and strange pieces of machinery, like a well oiled machine where everyone knows exactly what to do.`
 			`	In a matter of minutes, the stars will move once again. After briefly consulting with the crew, you decide to save some time by launching back to orbit straight away while they finish their preparations. After all, a new countdown has begun: in seven days, Patir will move back the Milky Way, with or without you.`
@@ -2719,14 +2767,14 @@ mission "Ka'het: Patir Mystery 25"
 mission "Ka'het: Patir Mystery 26A"
 	landing
 	name "Return the samples to <system>"
-	description "Bring the Remnant and the samples they gathered in Chanai back to <system> for examination."
+	description "Bring the Remnant and the samples they gathered in Chanai back to <system> for examination. Be there exactly on <date>."
 	deadline 3
 	source "Chanai Structure"
 	destination "Builder Settlement"
 	passengers 5
 	cargo "scientific payload and samples" 135
 	to offer
-		has "Ka'het: Patir Mystery 25: done"
+		has "Ka'het: Patir Mystery 25: offered"
 		not "Ka'het: Patir Mystery 12.1A: done"
 	on offer
 		conversation
@@ -2773,10 +2821,9 @@ mission "Ka'het: Patir Mystery 26A"
 			`	You help the Remnant lift a screen from the floor, allowing it to float away into the room. Below it, you find nothing of note: no cabling, no connectors, not even a single panel. You try again with the one next to it, and again you end up with the same result. "After this, I would say that we have explored this facility enough for today. Let's get back to <system> and gather our findings; we have more than enough to think about for the time being."`
 				accept
 	on complete
-# add patir returns event
 		conversation
 			`By the time your ship has been safed, the Remnant have unloaded many of the instruments they have used on this trip. "It would be a waste to bring them back home after all the effort to launch them here," they explain as you join them. "Once these are connected to our grid, they will use all of the available power and then some. We will have to take turns, at least until we bring some additional power stations." While they finish the setup, you take the chance to cover the machines with some regolith to help them conserve their heat in the night of the asteroid. You almost trip on one of their cables: with the recent trips, the exterior of the laboratory is quickly becoming as messy as its interior.`
-			scene "scene/lab scene 2"
+			scene "scene/lab scene2"
 			`	Sitting around the table in the outpost, and sharing a hot drink, the discussions continue. "By our calculations, Patir should be moving back to the Milky Way within the next few hours. For our part, we will be ready to depart by next morning and conclude our expedition."`
 			choice
 				`	"What did you discover about Chanai?"`
@@ -2804,14 +2851,14 @@ mission "Ka'het: Patir Mystery 26A"
 mission "Ka'het: Patir Mystery 26B"
 	landing
 	name "Return the samples to <system>"
-	description "Bring the Remnant and the samples they gathered in Chanai back to <system> for examination."
+	description "Bring the Remnant and the samples they gathered in Chanai back to <system> for examination. Be there exactly on <date>."
 	deadline 3
 	source "Chanai Structure"
 	destination "Builder Settlement"
 	passengers 5
 	cargo "scientific payload and samples" 135
 	to offer
-		has "Ka'het: Patir Mystery 25: done"
+		has "Ka'het: Patir Mystery 25: offered"
 		has "Ka'het: Patir Mystery 12.1A: done"
 	on offer
 		conversation
@@ -2889,8 +2936,7 @@ mission "Ka'het: Patir Mystery 26B"
 			`	"Very curious," Dusk comments, by now clearly more intrigued than scared. "If it was a malicious action, it was not a particularly effective one. Let us go back to <system>; we will reason on the whys and hows later."`
 				accept
 	on complete
-# add patir returns event
-# while you're at it, make the magic asteroid planet landable for the later expedition
+		event "Patir Lathia landable"
 		conversation
 			`By the time your ship has been safed, the Remnant have unloaded many of the instruments they have used on this trip. "It would be a waste to bring them back home after all the effort to launch them here," they explain as you join them. "Once these are connected to our grid, they will use all of the available power and then some. We will have to take turns, at least until we bring some additional power stations." While they finish the setup, you take the chance to cover the machines with some regolith to help them conserve their heat in the night of the asteroid. You almost trip on one of their cables: with the recent trips, the exterior of the laboratory is quickly becoming as messy as its interior.`
 			scene "scene/lab scene 2"
@@ -2918,6 +2964,18 @@ mission "Ka'het: Patir Mystery 26B"
 			label patir
 			`	The discussion goes on and on, almost in a loop, and the sun has almost set over the asteroid by the time you leave the outpost. Soon enough, the stellar dance begins once again. You reason that, in the time it will take you to walk to your ship, Patir will have jumped all the way back to the Milky Way.`
 
+event "Patir Lathia landable"
+	system "Lathia"
+		remove object
+			sprite "planet/asteroid magic"
+			distance 2723.62
+			period 1372.93
+		add object "Magic Asteroid Planet"
+			sprite "planet/asteroid magic"
+			distance 2723.62
+			period 1372.93
+
+
 mission "Ka'het: Patir Mystery 27"
 	name "Another asteroid"
 	description "Board the remains of the asteroid in <origin> before the Ka'sei get to it, then take what you find to <destination>."
@@ -2934,9 +2992,26 @@ mission "Ka'het: Patir Mystery 27"
 			`The Remnant walk to your ship - late, as you are becoming accustomed to - with an excited stride. "One of those creatures was in the system when Patir moved back! We have recorded it as it turned inactive, floating aimlessly around the system. If you are quick enough, perhaps we can get to board it before the Ka'sei mine it. We can afford to make a stop before our return to <planet> - after all, Patir is not moving away any time soon."`
 			`	He shows you a map of the system, marking the asteroid in a color blinking red and white. Two Fetri'sei are already on the way: you push the engines at the maximum power, hoping to make it in time...`
 				launch
-# add 2 Ka'sei NPC and asteroid NPC, the former trying to kill the latter
-# take the asteroid outfits from first last in the on complete
+	npc board
+		government "Magic Asteroid (Disabled)"
+		system "Patir"
+		ship "Asteroid Young 2" "???"
+		personality derelict waiting
+	npc
+		government "Ka'sei"
+		names "ka'sei"
+		personality waiting staying vindictive mining harvests
+		system "Patir"
+		fleet
+			cargo 0
+			variant
+				"Fetri'sei" 2
+	on visit
+		dialog "You've arrived at <planet>, but either your passengers, your cargo, or the outfits taken from the asteroid remains are not with you!"
 	on complete
+		outfit "Asteroid Anti-Missile 2" -1
+		outfit "Asteroid Weapon Large 2" -1
+		outfit "Asteroid Jump Drive" -1
 		conversation
 			`Before you are ready to enter the final descent, a communication from Chilia offers you new coordinates for your cargo. You pilot your ship to the new location in the middle of the desert - much alike the one you had first met him in, you discover - and land your ship in the only landing pad you can see. As if trying to maintain a great secrecy, groups of Remnant come marching out of the hangar, cover your cargo as best as they can with reflective, metallic-looking sheets, and silently take it away down an unmarked tunnel.`
 			`	As the sun sets over the mountain ranges in the distance, Dusk signs you to return to the main starport, so that they can unload their own experiments and get back to work. "As you might imagine, it is time for another project debriefing. Independently from how it goes, we will be in the closest cafeteria tomorrow morning; if you pass by, we will make sure to give you an update," he concludes slightly ominous.`
@@ -2963,7 +3038,7 @@ mission "Ka'het: Patir Mystery 28"
 			choice
 				`	"Alright, they can wait."`
 					goto someone
-				`	"Sorry, but I cannot delay them any more."`
+				`	"Sorry, but I cannot delay them any longer."`
 			`	"Alright then," he replies disappointed. "We will be here when you have time for us again, if you do not take too long."`
 				defer
 			label someone
@@ -2978,13 +3053,13 @@ mission "Ka'het: Patir Mystery 28"
 				`	"Are they alive?"`
 					goto alive
 				`	"They look beautiful."`
-			`	"I like them more for what they represent," she replies. "The history of the Swan is old, and fairly complicated. They were about ready to enter production over a decade ago; however, the design exercise was not able to make a reasonable use case for them, and they had to stay in a limbo for all this time, watching newer and more innovative designs come out of the lines once conceived for them. Their style is considered fairly retro by now, and these first builds are heavier than we would like to. But to me, these equate an end of an era for our shipyards." She looks at them nostalgic. "Chances are that the Swan will be the last cleans sheet design we produce not to be a liveship."`
+			`	"I like them more for what they represent," she replies. "The history of the Swan is old, and fairly complicated. They were about ready to enter production over a decade ago; however, the design exercise was not able to make a reasonable use case for them, and they had to stay in a limbo for all this time, watching newer and more innovative designs come out of the lines once conceived for them. Their style is considered fairly retro by now, and these first builds are heavier than we would like to. But to me, these equate an end of an era for our shipyards." She looks at them nostalgic. "Chances are that the Swan will be the last cleans sheet design we produce not to be a liveship. At least, not a complete one."`
 				goto continue
 			label alive
-			`	"Their design predates liveships. And in fact, chances are that the Swan will be the last cleans sheet design we produce not to be a one." She looks at them nostalgic. "The history of the Swan is old, and fairly complicated. They were about ready to enter production over a decade ago; however, the design exercise was not able to make a reasonable use case for them, and they had to stay in a limbo for all this time, watching newer and more innovative designs come out of the lines once conceived for them. Their style is considered fairly retro by now, and these first builds are heavier than we would like to. But to me, these equate an end of an era for our shipyards."`
+			`	"Their design predates liveships, though we have added some of their system. In fact, chances are that the Swan will be the last cleans sheet design we produce not to be a one." She looks at them nostalgic. "The history of the Swan is old, and fairly complicated. They were about ready to enter production over a decade ago; however, the design exercise was not able to make a reasonable use case for them, and they had to stay in a limbo for all this time, watching newer and more innovative designs come out of the lines once conceived for them. Their style is considered fairly retro by now, and these first builds are heavier than we would like to. But to me, these equate an end of an era for our shipyards."`
 				goto continue
 			label name
-			`	"We called them Swans," she replies, "in what now feels like eons ago. They were about ready to enter production over a decade ago; however, the design exercise was not able to make a reasonable use case for them, and they had to stay in a limbo for all this time, watching newer and more innovative designs come out of the lines once conceived for them. Their style is considered fairly retro by now, and these first builds are heavier than we would like to. But to me, these equate an end of an era for our shipyards." She looks at them nostalgic. "Chances are that the Swan will be the last cleans sheet design we produce not to be a liveship."`
+			`	"We called them Swans," she replies, "in what now feels like eons ago. They were about ready to enter production over a decade ago; however, the design exercise was not able to make a reasonable use case for them, and they had to stay in a limbo for all this time, watching newer and more innovative designs come out of the lines once conceived for them. Their style is considered fairly retro by now, and these first builds are heavier than we would like to. But to me, these equate an end of an era for our shipyards." She looks at them nostalgic. "Chances are that the Swan will be the last cleans sheet design we produce not to be a liveship. At least, not a complete one."`
 			label continue
 			`	"They will be much more useful now than they would have been back then," intervenes Dusk as the convoy reaches the closest pads of the starport.`
 			`	"The role of these models will be around Postverta, going back and forth from the local gas giants to scoop deuterium for Ssil Vida. They are by a good amount the largest design we have produced for that purpose - though they cannot go as deep as a gaslining craft or a specialized vehicle - and we want to give them some stress testing before we use them for more complex missions. They are in effect massive tankers, and not just of hyperspace fuel: their wings can fill with many tons of any liquid, from the cryogenic hydrogen to the slime of a Void Sprite."`
@@ -2995,8 +3070,27 @@ mission "Ka'het: Patir Mystery 28"
 			`	"Still, we took the chance to repay you for your expenses, and to help you prepare for the future. You should find <payment> in your account shortly." You reply to his bow, and he disappears in the crowd.`
 			`	"I will take his bunk on your ship, if it is fine for you," adds Taely. "Make sure to escort them closely to <planet>: they may be armed, but this is the first true flight their crews make in those Swans."`
 				accept
-# add 3 Remnant Swan NPCs, with inhibitor turrets
-# add Korath NPC at ssil vida
+	npc save
+		government "Remnant"
+		ship "Swan" "Sharp Song Spoken"
+		personality escort unconstrained launching
+	npc save
+		government "Remnant"
+		ship "Swan" "Dark Dream Discovering"
+		personality escort unconstrained launching
+	npc save
+		government "Remnant"
+		ship "Swan" "Ancient Anchor Ascending"
+		personality escort unconstrained launching
+	npc
+		government "Korath"
+		system "Postverta"
+		personality staying disables plunders
+		fleet
+			names "korath"
+			variant
+				"Palavret (Ember)"
+				"'olofez" 2
 	on complete
 		conversation
 			`As you make a hard-dock to <planet>, the three Swans go their own way toward the local gas giant. Taely explains that she will check them up from here: the inhabitants of Ssil Vida have been kind enough to set up a console for this test. "This one will be more or less a rehearsal," she informs you. "Strange and hard to explain things happen around that world when Ssil Vida gets engaged, and to avoid complications we intend to send them to scoop from the nearby systems once operational."`
@@ -3017,25 +3111,50 @@ mission "Ka'het: Patir Mystery 29"
 	to offer
 		has "Ka'het: Patir Mystery 28: done"
 	on offer
+		event "remnant: ssil vida activation"
+		set "remnant: tubfalet hunt"
 		conversation
 			`Taely comes looking for you shortly after the Swans have docked with Ssil Vida, with a fast step and crystal in her hand. "Captain, another task for you has just come up. I have been informed that the Korath raid we have met on the way here had been ongoing for a few days - in fact, since just before Ssil Vida activated its special systems. During the trouble of moving between the two realities, it appears that a ship in the attacking fleet was able to jump beyond Ssil Vida's range, remaining inside that universe since. It is not acceptable to leave it there any longer."`
-			`	A quiver signals you that Ssil Vida has activated again, filling Postverta with beings of all kinds. She hands you the crystal, small and sharp. "We have loaded here the information we have on it, as well as a program to record what your ship sees during the encounter. Given the location, we want to understand as much as we can about any damage they might have caused." She stops, as if preparing to leave; however, she has a change of mind.`
+			`	A quiver down your spine suggest you that Ssil Vida has activated again, filling Postverta with beings of all kinds. She hands you the crystal, small and sharp. "We have loaded here the information we have on it, as well as a program to record what your ship sees during the encounter. Given the location, we want to understand as much as we can about any damage they might have caused." She stops, as if preparing to leave; however, she has a change of mind.`
 			`	"Our Swans have not been designed for front line combat, but rather to fill a support role. Staying in Ssil Vida, however, will eventually subject them to direct attacks - Korath, or perhaps worse. What do you think about taking one with you to test its combat prowess?"`
 			choice
 				`	"I would be happy to."`
 					accept
 				`	"They are large, and unwieldy. I do not want them to get in the way."`
-			`	"Given their speed, it will not take much effort for you to overtake them to the target, if you wish to do so. I would rather let it get some combat experience, but the choice is yours."`
+			`	She looks at you with some frustration. "Given their speed, it will not take much effort for you to overtake them to the target, if you wish to do so. I would rather let it get some combat experience, but the choice is yours."`
 				accept
-# add ssil vida activates event
-# add one Remnant Swan NPC (with to spawn condition based on the one set in the conversation)
-# add Korath NPCs; it will be three 'olofez disabled in Postverta (no crew) and one of those Tubfalet in another system of the cluster (half crew; the local life has killed most of them without destroying the ship!
-# the 'olofez will be uncapturable given the damage, the Tubfalet will need new crew quarters (i.e. bunks lower than required crew)
-
-# either hide the Ssil Vida jobs during this mission or make the korath despawn upon Ssil Vida deactivation
-
+	npc save
+		government "Remnant"
+		ship "Swan" "Sharp Song Spoken"
+		personality escort unconstrained launching
+	npc
+		government "Korath"
+		system "Postverta"
+		personality derelict waiting
+		fleet
+			names "korath"
+			variant
+				"'olofez (Crew Destroyed)" 3
+		on board
+			dialog "The crew quarters lie in a disastrous state, ravaged by bite signs and bizarre slime. While the rest of the ship has held up together, there is no way to actually take control of it."
+	npc disable
+		government "Korath"
+		system "Egeria"
+		ship "Tubfalet (Crew Destroyed)" "Grak Perak"
+		personality target staying waiting disables plunders
+		on board
+			dialog "A scan reveals that a series of increasingly large holes has replaced what used to be the crew quarters. Most of the personnel seems to have died before you arrived here, and the rest of the crew has locked themselves in the few still-airtight compartments."
+		
 # this is where I would put my crew damage weapon...
 # If I had one!
+
+ship "'olofez" "'olofez (Crew Destroyed)"
+	"uncapturable"
+	add attributes
+		"bunks" -1
+ship "Tubfalet" "Tubfalet (Crew Destroyed)"
+	add attributes
+		"bunks" -120
 
 	on complete
 		payment 350000
@@ -3052,6 +3171,8 @@ mission "Ka'het: Patir Mystery 30"
 	to offer
 		has "Ka'het: Patir Mystery 29: done"
 	on offer
+		clear "remnant: tubfalet hunt"
+		event "remnant: ssil vida deactivation"
 		conversation
 			`While trying to remember the original appearance of this environment, you notice that some large-size display has been installed by the Remnant recently. As far as you can tell, they display a clock of some sort, but every number on the display is 'F'. "We have installed timers to mark the time Patir disappears, and when it returns," explains Taely, noticing your gaze. "Given the deferral between Ssil Vida's activation and the events taking place, it is easy to lose track of the current status and the actions to take. Of course, the timers have not yet started.`
 			`	"But onto our mission, I can happily report that our Swans behaved as expected. This fleet, made of pre-production models - thus heavier and slightly less capable than the actual product - will stay here in Postverta to become its tanker flotilla. And on that topic, how would you say it fared in combat?"`
@@ -3068,12 +3189,35 @@ mission "Ka'het: Patir Mystery 30"
 					goto leave
 			`	"We have had some issues understanding Ssil Vida's technology at first, at least beyond the most basic power distribution and control systems. However, some of us who worked on the Human technology projects soon noticed the similarity in technology: studying the principles behind one improved our understanding of the other, despite not being exact matches in reality. When you bought and took to us those outfits, you unknowingly saved us months or years of work; their technological level is really fairly similar."`
 			`	"But how could such a species build something like this?" you ask in response.`
-			`	"If you want to know the specific mechanism, I have no way of knowing. But I can tell you that when a civilization is nearing its end, much of the logic you and I work with no longer applies: the strangest plans are put into motion, almost always with terrible results, but occasionally with terrific ones.`
+			`	"If you want to know the specific mechanism, I have no way of knowing. But I can tell you that when a civilization is nearing its end, much of the logic you and I work with no longer applies: the strangest plans are put into motion, almost always with terrible results, but occasionally with more interesting endings.`
 			label leave
 			`	"That being said, we should get going. The Swans may stay here, but I need a ride to <planet>'s shipyards to get back to my work."`
 				accept
-# add ssil vida turns off event
-# add permanent Swan fleet to Postverta
+
+mission "Ka'het: Patir Mystery 30 - Postverta fleet"
+	invisible
+	landing
+	source "Aventine"
+	to offer
+		has "Ka'het: Patir Mystery 30: done"
+	to complete
+		never
+	npc
+		government "Remnant (Postverta)"
+		system "Postverta"
+		ship "Swan" "Sharp Song Spoken"
+		personality mining harvests plunders
+	npc
+		government "Remnant (Postverta)"
+		system "Postverta"
+		ship "Swan" "Dark Dream Discovering"
+		personality mining harvests plunders
+	npc
+		government "Remnant (Postverta)"
+		system "Postverta"
+		ship "Swan" "Ancient Anchor Ascending"
+		personality mining harvests plunders
+
 
 mission "Ka'het: Patir Mystery 31"
 	landing
@@ -3084,6 +3228,7 @@ mission "Ka'het: Patir Mystery 31"
 	to offer
 		has "Ka'het: Patir Mystery 30: done"
 	on offer
+		event "remnant: inhibitor turret available" 6
 		conversation
 			`Taely has been hard at work on your your ship during the past day, assembling a contraption with a few spare parts roughly the size of a punch. At last, she connects it with your console, and a stone atop it lights up in a bright blue color. "Given your continued involvement in the exploration of Patir, I imagined it would be useful for you to know Patir's state whenever you need. Thanks to the stations mounted in Patir and the telemetry sent by Ssil Vida - both of which your ship already receives - all I needed was to put them together: this crystal will shine blue if Patir is stable in the Milky Way, yellow if it is about to leave it, and red if it is no longer here."`
 			`	You thank her, and accompany her down the ramp. A group of people is already waiting for her arrival. "I will give you access to our Inhibitor Turrets as soon as possible. Our outfitters should have free a stash for you within days; just the time to prepare the shipment and check them out." Your communicator beeps: Dusk and his team will meet up with you for another expedition in the shipyard of <planet>.`
@@ -3106,7 +3251,6 @@ mission "Ka'het: Patir Mystery 31"
 				`	"What is the reason behind all this secrecy?"`
 			`	"Oh, do not get the wrong idea," she scrambles to clarify. "If I had asked directly, they would have certainly told me directly what they were for. The confidentiality in these messages is as much directed toward us as it is toward anyone trying to intercept them: we do not want the Korath to get too much unintended info on the programs that show the most potential." After a brief goodbye, she disappears in the crowd of her colleagues, certainly already moving onto another project.`
 				accept
-# add a delayed event for the inhibitor turrets in the Remnant outfitters
 	on complete
 		conversation
 			payment
@@ -3127,8 +3271,8 @@ mission "Ka'het: Patir Mystery 31"
 
 mission "Ka'het: Patir Mystery 32"
 	name "Logistics of a first contact"
-	description "Accompany the Remnant team to <system>. Together with them will come <cargo> tons of cargo and 6 Terns."
-# add deadline
+	description "Accompany the Remnant team to <system> exactly on <date>. Together with them will come <cargo> tons of cargo and 6 Terns."
+	deadline 6
 	source "Caelian"
 	destination "Builder Settlement"
 	passengers 10
@@ -3136,7 +3280,6 @@ mission "Ka'het: Patir Mystery 32"
 	to offer
 		has "Ka'het: Patir Mystery 31: done"
 	on offer
-# give the player the terns
 		conversation
 			`Although standing in a rather isolated part of the starport, the mission personnel alone makes for a significant crowd. You count the ten people for your crew, plus at least two dozen more workers waiting for the order to load the payloads onto your spacecrafts. "So, <first>," Dusk approaches you, hiding the apprehension in his movements. "Do you have everything I asked you to bring?"`
 			choice
@@ -3173,16 +3316,91 @@ mission "Ka'het: Patir Mystery 32"
 				`	"When it happens, you cannot help but stare at it until it is over."`
 			`	She smiles. "May the Embers bring you fortune, Captain." With the Terns now in your control, you join the rest of the crew and prepare for liftoff. You glance over the cockpit board: as Taely promised, the crystal she gave you has turned into a dim yellow, eerily shining over the controls all around it.`
 				accept
+	on accept
+		event "Patir moves" 6
+		event "Patir returns" 20
+		give ship "Tern" "Great Sky Dancing"
+			id 23032001
+		give ship "Tern" "Low Sky Dancing"
+			id 23032002
+		give ship "Tern" "Dusky Sky Dancing"
+			id 23032003
+		give ship "Tern" "Far Sky Dancing"
+			id 23032004
+		give ship "Tern" "Late Sky Dancing"
+			id 23032005
+		give ship "Tern" "Wide Sky Dancing"
+			id 23032006
 	on complete
-# take from the player the terns
-# patir moves event
-# add terns to system
+		take ship "Tern" "Great Sky Dancing"
+			id 23032001
+			"require outfits"
+			"with outfits"
+		take ship "Tern" "Low Sky Dancing"
+			id 23032002
+			"require outfits"
+			"with outfits"
+		take ship "Tern" "Dusky Sky Dancing"
+			id 23032003
+			"require outfits"
+			"with outfits"
+		take ship "Tern" "Far Sky Dancing"
+			id 23032004
+			"require outfits"
+			"with outfits"
+		take ship "Tern" "Late Sky Dancing"
+			id 23032005
+			"require outfits"
+			"with outfits"
+		take ship "Tern" "Wide Sky Dancing"
+			id 23032006
+			"require outfits"
+			"with outfits"
+
+mission "Ka'het: Patir Mystery 32 - Patir fleet"
+	invisible
+	landing
+	source "Builder Settlement"
+	to offer
+		has "Ka'het: Patir Mystery 32: done"
+	to complete
+		never
+	npc
+		government "Remnant"
+		system "Patir"
+		ship "Tern" "Great Sky Dancing"
+		personality mining harvests plunders swarming
+	npc
+		government "Remnant"
+		system "Patir"
+		ship "Tern" "Low Sky Dancing"
+		personality mining harvests plunders swarming
+	npc
+		government "Remnant"
+		system "Patir"
+		ship "Tern" "Dusky Sky Dancing"
+		personality mining harvests plunders swarming
+	npc
+		government "Remnant"
+		system "Patir"
+		ship "Tern" "Far Sky Dancing"
+		personality mining harvests plunders swarming
+	npc
+		government "Remnant"
+		system "Patir"
+		ship "Tern" "Late Sky Dancing"
+		personality mining harvests plunders swarming
+	npc
+		government "Remnant"
+		system "Patir"
+		ship "Tern" "Wide Sky Dancing"
+		personality mining harvests plunders swarming
 
 mission "Ka'het: Patir Mystery 33"
 	landing
 	name "First contact"
-	description "Conduct a first contact with the largest asteroid in <planet> by landing on its surface."
-# add deadline
+	description "Conduct a first contact with the largest asteroid in <planet> by landing on its surface exactly on <date>."
+	deadline 6
 	source "Builder Settlement"
 	destination "Magic Asteroid Planet"
 	passengers 5
@@ -3194,7 +3412,15 @@ mission "Ka'het: Patir Mystery 33"
 			`Once you have close out the landing, you hand the controls of the Terns back to the Remnant. You watch them cheerfully separate from their carrier and leap toward an unknown destination, most of which in a different direction: evidently, their mission must have already begun. The researchers immediately begin unloading the surface payloads from your ship, using the help of a couple of the Terns to carry the more massive loads.`
 			`	While the new members of the crew stand at the windows to watch the light show, you sit with Dusk at the table. "We have tested our equipment for the flight on the way here, and most of them work perfectly. A couple instruments have proven strangely unresponsive, but they are all minor; if they start working again during the trip all the better, but we do not have time for a repair, let alone replace them. That is to say," he concludes emphatically, "if you are ready to go, so are we."`
 				accept
-# add NPC for asteroids that follow you. NOTE: either make it so they can't enter Patir or remove Ka'sei spawns from there.
+	npc
+		government "Magic Asteroid"
+		system "Mitera"
+		personality swarming waiting mute
+		fleet
+			cargo 3
+			variant
+				"Asteroid Young 3"
+				"Asteroid Medium"
 	on enter Lathia
 		conversation
 			`It takes very little for the Remnant to locate the target planetoid, standing out like a sore thumb among its species in the empty system. "Alright <first>. If you feel ready to turn off your cloak, we have a procedure to follow for contacts of this kind."`
@@ -3359,18 +3585,14 @@ mission "Ka'het: Patir Mystery 33"
 mission "Ka'het: Patir Mystery 34"
 	landing
 	name "Bad contact"
-	description "Return to <system> with the Remnant team, leaving alone the asteroids on the way."
-# add deadline
+	description "Return to <system> with the Remnant team exactly on <date>, leaving alone the asteroids on the way."
+	deadline 7
 	source "Magic Asteroid Planet"
 	destination "Builder Settlement"
 	passengers 5
 	cargo "scientific payload" 105
 	to offer
 		has "Ka'het: Patir Mystery 33: done"
-	on offer
-# Lathia becomes an enemy as soon as you leave it
-# add a dialog where they deploy Snipes on entry of Ghila during the return trip
-		conversation
 	on offer
 		conversation
 			`You wake up lying in the floor with an blinking light pointed in your eyes. You try to cover it with your hand, and the Remnant above you moves it away, gesturing you to stay quiet. As he helps you stand up, you realize you are inside the payload bay of your own ship. Around you is the rest of the crew, standing in a circle in their undersuit garments. You try to take a step, but you almost fall: you realize then that your spacesuit is too ruined to use, and you tiredly take it off as well.`
@@ -3411,7 +3633,6 @@ mission "Ka'het: Patir Mystery 34"
 			`	In an instant, the asteroid sprints out of the room. You follow it on your console as it launches out of your ship from the cargo bay, passing through the same hole it had made when coming in. With the engines sill firing, you take back control of your ship when it has left the sphere of influence of the planetoid...`
 				launch
 	on complete
-# Patir returns event
 		conversation
 			`Although the days of travel gave you plenty of time to calm down, you can't help but feel some whiplash at the scene waiting for you in Patir. The Terns are cheerfully flying around the system, each carrying a slightly different instrumentation on their belly; on the surface of the asteroid, a few Remnant are busy swapping the payloads of one with another set of experiments.`
 			`	You use your ship's speakers to warn the team of the ground that your spacesuits have been damaged, and join the Remnant in the crew quarters to wait for them to bring new ones. "We want to leave some for you as well, <first>. We have plenty of spares in the outpost," reassures you Dusk.`
@@ -3483,8 +3704,20 @@ mission "Ka'het: Patir Mystery 35"
 			label living
 			`	"I am not sure if what we are harvesting is part of their own body, or rather if there is a clear separation between themselves and their 'systems'. For that matter, it is one of the things that we will try to find out when studying its technology. Right now, we cannot even say for certain that it is dead; perhaps it is simply in some sort of hibernation."`
 				goto duh
-
-# add dead asteroid NPC. If you choose NOT to board it Dusk is displeased
+	npc
+		government "Magic Asteroid (Disabled)"
+		system "Patir"
+		ship "Asteroid Medium" "???"
+		personality derelict waiting
+	npc
+		government "Ka'sei"
+		names "ka'sei"
+		personality waiting staying vindictive mining harvests
+		system "Patir"
+		fleet
+			cargo 0
+			variant
+				"Fetri'sei" 2
 	on complete
 		conversation
 			`You don't have time to say goodbye to the crew before a couple Remnant take you into another part of the starport, barely a meter below the ground. You spend the next hours recounting to your best abilities everything you have seen, pausing only for a few bathroom breaks and a quick meal. As time goes on, you notice they seem displeased with the lack of details you are able to give; when they eventually let you out, you can't help but feel they are not satisfied by your testimony.`
@@ -3498,7 +3731,6 @@ mission "Ka'het: Patir Mystery 35"
 			label bow
 			`	You copy his bow in farewell. Right as you get back in your ship, however, you find an unread message from Chilia: he asks you to pay him a visit in the starport cafeteria, so as to celebrate your 'current status'.`
 
-
 mission "Ka'het: Patir Mystery 36"
 	landing
 	name "The far site"
@@ -3509,7 +3741,6 @@ mission "Ka'het: Patir Mystery 36"
 	to offer
 		has "Ka'het: Patir Mystery 35: done"
 	on offer
-# make Caelian offer Patir expedition missions on the job board. Call them Patir 37-38 etc
 		conversation
 			`"...a seat, <first>!" In the busy cafeteria, you finally see Chilia and Torza, gesturing to recall your attention. "We are endlessly impressed by the number of times your name keeps coming up in our records," the latter states. "If it is our trust that you are trying to gain, you are doing a tremendous job at it."`
 			choice
@@ -3528,7 +3759,7 @@ mission "Ka'het: Patir Mystery 36"
 				`	"That is all?"`
 				`	"How could you get that far?"`
 					goto far
-			`	They look at each other. "There is nothing we value more than our own survival, <first>. Something that depends on our defensive forces as much as it does on our secrecy. With this gesture, we are trusting you not only not to reveal our existence, but also the location of some of our most important technology - one that we cannot properly defend, given the distance."`
+			`	"There is nothing we value more than our own survival, <first>. Something that depends on our defensive forces as much as it does on our secrecy. With this gesture, we are trusting you not only not to reveal our existence, but also the location of some of our most important technology - one that we cannot properly defend, given the distance. I hope you understand the importance of it: this is nothing short of a celebration of your progress among our ranks."`
 				goto ship
 			label far
 			`	"I do not need to tell you that with a cloak and a jump drive, the only limit is the capacity of your ramscoops," intervenes Torza.`
@@ -3544,9 +3775,172 @@ mission "Ka'het: Patir Mystery 36"
 			`	This time, however, nobody tries to stop you. The opposite, in fact: when they recognize you, the workers accompany you on a hour-long tour of the structure. Walking down the floors, you pass through a dozen different rooms, half of which dedicated to studying - and testing - the parts of the asteroid you have recovered. Giant, eerie machines immersed into strange fogs, with only a few meters and a strongly-vibrating layer of glass separating you from them.`
 			`	Once they have emptied your payload bay, they wave goodbye as you depart for the main starport. Based on their gestures, you reckon that they don't expect this to be the last time they see you here.`
 
-# make the safety net missions mention Taely's crystal color
+mission "Ka'het: Patir Mystery 37A"
+	job
+	repeat
+	deadline 6
+	name "Move Patir (Short Endurance)"
+	description "Begin a short duration expedition beyond Patir, disappearing on <date> and returning the day after."
+	source "Caelian"
+	destination "Builder Settlement"
+	to offer
+		has "Ka'het: Patir Mystery 35: done"
+	on accept
+		event "Patir moves" 6
+		event "Patir returns" 8
+	on complete
+		dialog "The crystal on your cockpit turns from yellow into a bright red. The sky turns dark, the stars move, and in a minute you're once again beyond Patir."
+
+mission "Ka'het: Patir Mystery 37B"
+	repeat
+	landing
+	deadline 2
+	name "Patir Returns"
+	description "Patir will move back to the Milky Way on <date>, with or without you."
+	source "Builder Settlement"
+	to offer
+		has "Ka'het: Patir Mystery 37A: active"
+	to complete
+		not "ka'het: beyond Patir"
+	on complete
+		dialog "The crystal on your cockpit turns from red into a tender blue. The sky turns dark, the stars move, and at last you're back in the Milky Way."
+
+mission "Ka'het: Patir Mystery 38A"
+	job
+	repeat
+	deadline 6
+	name "Move Patir (Medium Endurance)"
+	description "Begin a short duration expedition beyond Patir, disappearing on <date> and returning 7 days after"
+	source "Caelian"
+	destination "Builder Settlement"
+	to offer
+		has "Ka'het: Patir Mystery 35: done"
+	on accept
+		event "Patir moves" 6
+		event "Patir returns" 13
+	on complete
+		dialog "The crystal on your cockpit turns from yellow into a bright red. The sky turns dark, the stars move and in a minute you're once again beyond Patir."
+
+mission "Ka'het: Patir Mystery 38B"
+	repeat
+	landing
+	deadline 7
+	name "Patir Returns"
+	description "Patir will move back to the Milky Way on <date>, with or without you."
+	source "Builder Settlement"
+	to offer
+		has "Ka'het: Patir Mystery 38A: active"
+	to complete
+		not "ka'het: beyond Patir"
+	on complete
+		dialog "The crystal on your cockpit turns from red into a tender blue. The sky turns dark, the stars move, and at last you're back in the Milky Way."
+
+mission "Ka'het: Patir Mystery 39A"
+	job
+	repeat
+	deadline 6
+	name "Move Patir (Long Endurance)"
+	description "Begin a short duration expedition beyond Patir, disappearing on <date> and returning 14 days after."
+	source "Caelian"
+	destination "Builder Settlement"
+	to offer
+		has "Ka'het: Patir Mystery 35: done"
+	on accept
+		event "Patir moves" 6
+		event "Patir returns" 20
+	on complete
+		dialog "The crystal on your cockpit turns from yellow into a bright red. The sky turns dark, the stars move and in a minute you're once again beyond Patir."
+
+mission "Ka'het: Patir Mystery 39B"
+	repeat
+	landing
+	deadline 14
+	name "Patir Returns"
+	description "Patir will move back to the Milky Way on <date>, with or without you."
+	source "Builder Settlement"
+	to offer
+		has "Ka'het: Patir Mystery 39A: active"
+	to complete
+		not "ka'het: beyond Patir"
+	on complete
+		dialog "The crystal on your cockpit turns from red into a tender blue. The sky turns dark, the stars move, and at last you're back in the Milky Way."
+
+mission "Ka'het: Patir Mystery Safety Net Early"
+	repeat
+	landing
+	deadline 9
+	name "Safety Net"
+	description "Patir will move back to the Milky Way on <date>, after having appeared here 3 days earlier."
+	source 
+		"Chanai Structure"
+	destination "Builder Settlement"
+	to offer
+		has "Ka'het: Patir Mystery 21: failed"
+		not "ka'het: beyond Patir"
+		not "Ka'het: Patir Mystery Safety Net Early: active"
+		not "Ka'het: Patir Mystery 25: offered"
+	on offer
+		event "Patir moves" 6
+		event "Patir returns" 9
+		conversation
+			`The unthinkable has happened: Patir has moved back, but without you! Trying to keep your calm, you check out the flight plans. It seems that for cases like this, Ssil Vida will send Patir back here for a 3-day stay as soon as they see you are not there, eventually returning to the Milky Way on <date>. Hopefully the Remnant will not mind too much the unexpected delay.`
+	to complete
+		not "ka'het: beyond Patir"
+
+mission "Ka'het: Patir Mystery Safety Net Dusk"
+	repeat
+	landing
+	deadline 9
+	name "Safety Net"
+	description "Patir will move back to the Milky Way on <date>, after having appeared here 3 days earlier."
+	passengers 5
+	cargo "scientific payload and samples" 135
+	source 
+		"Chanai Structure"
+	destination "Builder Settlement"
+	to offer
+		has "Ka'het: Patir Mystery 25: offered"
+		not "ka'het: beyond Patir"
+		not "Ka'het: Patir Mystery 35: done"
+		not "Ka'het: Patir Mystery Safety Net Dusk: active"
+	on offer
+		event "Patir moves" 6
+		event "Patir returns" 9
+		conversation
+			`The unthinkable has happened: Patir has moved back, but without you! The Remnant crew, clearly disappointed, illustrate you the flight plan. It seems that for cases like this, Ssil Vida will send Patir back here for a 3-day stay as soon as they see you are not there, eventually returning to the Milky Way on <date>. This time, you better make it.`
+	to complete
+		not "ka'het: beyond Patir"
+
+mission "Ka'het: Patir Mystery Safety Net Permanent"
+	repeat
+	landing
+	deadline 9
+	name "Safety Net"
+	description "Patir will move back to the Milky Way on <date>, after having appeared here 3 days earlier."
+	source 
+		"Chanai Structure"
+		"Magic Asteroid Planet"
+	destination "Builder Settlement"
+	to offer
+		has "Ka'het: Patir Mystery 35: done"
+		not "ka'het: beyond Patir"
+		not "Ka'het: Patir Mystery Safety Net Permanent: active"
+	on offer
+		event "Patir moves" 6
+		event "Patir returns" 9
+		conversation
+			`The crystal on your cockpit turns from red into a tender blue. Patir has moved back, but without you! According to the flight plans, Ssil Vida will send Patir back here for a 3-day stay as soon as they see you are not there, eventually returning to the Milky Way on <date>.`
+	to complete
+		not "ka'het: beyond Patir"
+	on complete
+		dialog "The crystal on your cockpit turns from red into a tender blue. The sky turns dark, the stars move, and at last you're back in the Milky Way."
+
+
 # also add jobs for Patir research
 
+
+# add on visits
+# add logs
 
 
 # Scene with Builder spacesuit? Overbuilt because post-Hai? Also talk about how this is the first scientific outpost around Patir - the builder settlement was probably a mining outpost, as they did not know anything about it. Also about how the crew disappeared on the way here?
@@ -3604,6 +3998,7 @@ mission "Ka'het: Patir Mystery 28"
 		or
 			has "Ka'het: Patir Mystery 26A: done"
 			has "Ka'het: Patir Mystery 26B: done"
+		never
 # add Korath raid (with disable)
 
 mission "Ka'het: Patir Mystery 29"

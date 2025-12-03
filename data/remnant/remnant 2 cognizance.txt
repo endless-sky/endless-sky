@@ -1616,6 +1616,7 @@ mission "Remnant: Cognizance 36"
 	to offer
 		has "Remnant: Cognizance 35: done"
 		has "remnant: ssil vida active"
+		not "remnant: tubfalet hunt"
 	on accept
 		event "remnant: ssil vida deactivation"
 		conversation

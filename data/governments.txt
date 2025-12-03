@@ -1444,6 +1444,29 @@ government "Magic Asteroid"
 		"Uninhabited" -.01
 
 	"player reputation" 10
+	"travel restrictions"
+		system "Patir"
+
+government "Magic Asteroid (Disabled)"
+	"display name" "???"
+	swizzle 0
+	language "Magic Asteroid"
+	
+	"attitude toward"
+		"Ka'sei" -.01
+
+	"player reputation" -.01
+
+government "Magic Asteroid (Patir 12.2)"
+	"display name" "???"
+	swizzle 0
+	language "Magic Asteroid"
+	
+	"attitude toward"
+		"Ka'sei (12.2)" -.01
+		"Uninhabited" -.01
+
+	"player reputation" 10
 
 government "Marauder"
 	swizzle 6
@@ -2052,6 +2075,36 @@ government "Remnant (Research)"
 	"hostile disabled hail" "hostile disabled"
 	"travel restrictions"
 		system "Nenia"
+
+government "Remnant (Postverta)"
+	"display name" "Remnant"
+	swizzle 0
+	color "governments: Remnant"
+	"crew defense" 2.2
+	
+	"player reputation" 1
+	"bribe" 0
+	"attitude toward"
+		"Indigenous Lifeform" 0.05
+		"Korath" -.05
+		"Alpha" -.05
+		"Remnant" 1
+	"penalty for"
+		assist -0.25
+		disable 1
+		board 1
+		capture 10
+		destroy 10
+		scan 0.1
+	"foreign penalties for"
+		"Remnant"
+	"friendly hail" "remnant uncontacted"
+	"friendly disabled hail" "friendly disabled"
+	"hostile hail" "remnant uncontacted hostile"
+	"hostile disabled hail" "hostile disabled"
+	"travel restrictions"
+		system "Levana"
+		system "Caeculus"
 
 color "governments: Republic" .91 .42 .09
 
