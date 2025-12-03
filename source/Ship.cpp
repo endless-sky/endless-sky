@@ -361,6 +361,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			attributes.turnMultiplier = 0.;
 			if(key == "gun")
 				attributes.side = Hardpoint::Side::UNDER;
+			int group = 0;
 			if(child.HasChildren())
 			{
 				bool defaultBaseAngle = true;
@@ -395,6 +396,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 						attributes.side = Hardpoint::Side::INSIDE;
 					else if(grandKey == "over")
 						attributes.side = Hardpoint::Side::OVER;
+					else if(grand.Size() >= 2 && grand.Token(0) == "group")
+						group = grand.Value(1);
 					else
 						grand.PrintTrace("Child nodes of \"" + key
 							+ "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
@@ -413,9 +416,9 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				}
 			}
 			if(key == "gun")
-				armament.AddGunPort(hardpoint, attributes, outfit);
+				armament.AddGunPort(hardpoint, attributes, outfit, group);
 			else
-				armament.AddTurret(hardpoint, attributes, outfit);
+				armament.AddTurret(hardpoint, attributes, outfit, group);
 		}
 		else if(key == "never disabled")
 			neverDisabled = true;
@@ -1122,6 +1125,8 @@ void Ship::Save(DataWriter &out) const
 					out.Write("inside");
 				else
 					out.Write("under");
+				if(isYours)
+					out.Write("group", hardpoint.GetGroup());
 			}
 			out.EndChild();
 		}
@@ -3778,6 +3783,13 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	corrosion += weapon.FiringCorrosion();
 	leakage += weapon.FiringLeak();
 	burning += weapon.FiringBurn();
+}
+
+
+
+void Ship::SetHardpointGroup(unsigned index, int group)
+{
+	armament.SetHardpointGroup(index, group);
 }
 
 
