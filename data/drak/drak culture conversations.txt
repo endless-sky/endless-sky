@@ -25,7 +25,7 @@ mission "Drak Revelations: Arachi"
 		conversation
 			`As the <ship> rises through the last set of clouds, you're surprised to find yourself out of your ship altogether, underground.`
 			`	Tiny holes allow only a minimal amount of light to penetrate the cramped tunnel complex, and it isn't enough to illuminate the forms of the various creatures hiding there. From what little you can see, they seem to be huddling together, shaking, cowering.`
-			`	A continuous marching is occurring overhead, rumbling the tunnels. A few of the creatures rush past you, wearing heavy plates of armor that completely covers their bodies and numerous legs. They dig up, and jump at the first pale-gold object that comes into sight, tumbling the giant.`
+			`	A continuous marching is occurring overhead, rumbling the tunnels. A few of the less timid creatures rush past you, wearing heavy plates of armor that completely cover their bodies and numerous legs. They dig up, and jump at the first pale-gold object that comes into sight, tumbling the giant.`
 			`	You never see any of them again, as more of the creatures continue to push and pour out of the hole, heading in all directions. Some take but a moment to speak with those in hiding, before moving upwards.`
 			`	During one rush, all holes end up crowded with the sheer number of them, and everything goes dark. When light returns, you see you've just finished rising from the atmosphere.`
 				decline
@@ -41,9 +41,9 @@ mission "Drak Revelations: Hai"
 		"flagship model" == "Anomalocaris"
 	on offer
 		conversation
-			`You step off the <ship> and begin exploring the surroundings for a bit. Near the edge of the cliff where you've landed, you find a small puddle, and look at it for a moment.`
+			`You step off the <ship> and begin exploring your surroundings. Near the edge of the cliff where you've landed, you find a small puddle, and look at it for a moment.`
 			`	By the time you realize you can no longer look away, small bits of soil seem to be forming in the puddle, the water seems to grow far deeper than what you would expect from a puddle, and you notice minuscule vessels making their way from one of the "islands" to another.`
-			`	The ships spread far and away, and the archipelago becomes bustling with activity. But the waves and the sunlight grow harsher, and soon the sun begins to scorch the islands and ships, and boil the seas. The waves grow taller and taller, swallowing ships and isles whole, and attempting to reach up to snuff out the sun.`
+			`	The ships spread far and away, and the archipelago starts bustling with activity. But the waves and the sunlight grow harsher, and soon the sun begins to scorch the islands and ships, and boil the seas. The waves grow taller and taller, swallowing ships and isles whole, and attempting to reach up to snuff out the sun.`
 			`	When the seas finally calm down and the sun sets, most islands lay in ruin, if they still exist at all, and very few ships are left to travel between them.`
 			`	You blink, and see the puddle is back to normal again.`
 				decline
@@ -67,7 +67,6 @@ mission "Drak Revelations: Humanity"
 	minor
 	invisible
 	source "Earth"
-	destination "Earth"
 	to offer
 		has "drak revelations: humanity"
 	on offer
@@ -95,9 +94,9 @@ mission "Drak Revelations: Korath"
 			`Just as your ship reaches <origin>, you blink, and are no longer in your cockpit.`
 			`	In a rocky plateau, gravel and sand make up the base for structures being built by bulky, vaguely humanoid figures made of dirt and rust. A strong light shines on from above, illuminating the area.`
 			`	As the months and years go by, the creatures build taller and grander towers, both elevating themselves and gradually blocking away the light. Eventually the entire plateau serves as the footing for a great, domed tower.`
-			`	The light creeps in faintly by cracks and gaps, but those are being swiftly patched closed by the creatures, who seem to hiss at the light in disapproval. They begin heating up and glowing, hotter and hotter, until they cast off their dirty shells, taking now their forms in a shiny, blazing bronze.`
+			`	The light creeps in faintly by cracks and gaps, but those are being swiftly patched by the creatures, who seem to hiss at the light in disapproval. They begin heating up and glowing, hotter and hotter, until they cast off their dirty shells, taking now their forms in a shiny, blazing bronze.`
 			`	The creatures stand proud and strong in their new forms, but their bodies continue to heat up, and so the bronze melts, and their towers begin to crumble and distort due to the intense heat, until the entire dome collapses.`
-			`	You open your eyes again, and are back at the cockpit of the <ship>.`
+			`	You open your eyes again, and are back in the cockpit of the <ship>.`
 				decline
 
 
@@ -134,10 +133,10 @@ mission "Drak Revelations: Saryds"
 	on offer
 		clear "drak revelations: saryds"
 		conversation
-			`Landing on <origin>, you get up to exit the cockpit and begin the ship checks. When you open the door, you find not the <ship>'s main hallway, but a sunlit glade. Looking back, your cockpit too seems to have been replaced by a forest.`
+			`Landing on <origin>, you get up to exit the cockpit and begin the post-landing checks. When you open the door, you find not the <ship>'s main hallway, but a sunlit glade. Looking back, your cockpit too seems to have been replaced by a forest.`
 			`	Great stags made of steel rest in the center of the glade, rising in curiosity and alarm, as a small group of great, pale-gold giants approach them. The giants extend their arms gently, and one by one the stags shift from dull steel to a shining silver. Night falls.`
 			`	Sunlight returns faintly the next day. The stags are communing in the glade again, in what seems to be a tense contest as they dispute on what to do about the war outside. Just over the edge of the forest, you can see the giants chasing small critters, entrapping them in small cages. The sun sets again.`
-			`	Then the scene shifts to the fields just outside the forest, now lit only by the pletiful lightning bolts, brought by raging thunderstorm that has encompassed the entire scene. Stags and giants alike lay dead on the ground, brutal wounds inflicted upon both sides. A few stags remain, slowly making their way over the corpses of the giants. Downcast, they look to the shattered cages.`
+			`	Then the scene shifts to the fields just outside the forest, now lit only by the pletiful lightning bolts, brought by a raging thunderstorm that has encompassed the entire scene. Stags and giants alike lay dead on the ground, brutal wounds inflicted upon both sides. A few stags remain, slowly making their way over the corpses of the giants. Downcast, they look to the shattered cages.`
 			`	The scene unravels just as it first manifested, and you're standing right outside of your cockpit door.`
 				decline
 
