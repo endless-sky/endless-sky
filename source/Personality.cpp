@@ -121,16 +121,14 @@ namespace {
 	const map<string, vector<PersonalityTrait>> COMPOSITE_TOKEN = {
 		{"heroic", {DARING, HUNTING}}
 	};
-
-	const double DEFAULT_CONFUSION = 10.;
 }
 
 
 
 // Default settings for player's ships.
 Personality::Personality() noexcept
-	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), period(180.),
-	focusMultiplier(.25), gainFocusTime(360.), loseFocusTime(360.), tick(Random::Int(240)), focusPercentage(0.)
+	: flags(1LL << DISABLES), confusionMultiplier(2.), period(240.),
+	focusMultiplier(.2), gainFocusTime(120.), loseFocusTime(1800.), tick(Random::Int(period)), focusPercentage(0.)
 {
 	static_assert(LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM == PERSONALITY_COUNT,
 		"PERSONALITY_COUNT must match the length of PersonalityTraits");
