@@ -15,6 +15,7 @@
 mission "Message Buoy: Entering Republic space from Pirates"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		government "Republic"
@@ -39,6 +40,7 @@ phrase "entering republic space from pirates"
 mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		government "Republic"
@@ -60,12 +62,14 @@ phrase "entering republic space from free worlds (hostile)"
 	word
 		"Message buoy to Free Worlds ships: You have entered Republic-controlled space"
 	word
-		". All ships flying rebellious colors are to comply with Navy personnel or be deemed valid targets."
+		". All ships flying unauthorized markings are to comply with Navy personnel or be deemed valid targets."
+		". Under the Planetary Militias (Restructuring) Act 3014, green markings may only be flown by authorized Militia ships. All ships unlawfully flying Militia green are to comply with Navy personnel or be deemed valid targets."
 		`. All ships affiliated with the so-called "Free Worlds" are to heave to and comply with Navy personnel or be deemed valid targets.`
 
 mission "Message Buoy: Entering Republic space from Free Worlds"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		government "Republic"
@@ -97,6 +101,7 @@ phrase "entering republic space from free worlds"
 mission "Message Buoy: Entering Syndicate space"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		government "Syndicate"
@@ -130,6 +135,7 @@ phrase "entering syndicate space"
 mission "Message Buoy: Entering Free Worlds space from Republic"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		government "Free Worlds"
@@ -157,6 +163,7 @@ phrase "entering free worlds space from republic"
 mission "Message Buoy: Entering Free Worlds space from Pirate"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		government "Free Worlds"
@@ -174,7 +181,7 @@ phrase "entering free worlds space from pirate"
 	word
 		"Message buoy: You have entered Free space"
 	word
-		". By Free Worlds law, merchant ships must identify themselves in blue markings. Any ship displaying unauthorized markings may be shot on sight."
+		". By Free Worlds law, Merchant ships must identify themselves in blue markings. Any ship displaying unauthorized markings may be shot on sight."
 
 
 
@@ -182,6 +189,7 @@ phrase "entering free worlds space from pirate"
 mission "Message Buoy: Entering Deep space"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Zosma"
@@ -202,6 +210,7 @@ mission "Message Buoy: Entering Deep space"
 mission "Message Buoy: Martini Restricted"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Pollux"
@@ -217,6 +226,7 @@ mission "Message Buoy: Martini Restricted"
 mission "Message Buoy: Geminus Restricted"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Castor"
@@ -232,6 +242,7 @@ mission "Message Buoy: Geminus Restricted"
 mission "Message Buoy: Graffias"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Graffias"
@@ -248,6 +259,7 @@ mission "Message Buoy: Graffias"
 mission "Message Buoy: Capella"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Capella"
@@ -256,12 +268,13 @@ mission "Message Buoy: Capella"
 		"reputation: Republic" < 10
 	on offer
 		message
-			text "Message buoy to Merchant ships: Access to the Republic planet of Hermes is restricted without spaceport authority approval."
+			text "Message buoy to all ships: Access to the Republic planet of Hermes is restricted without spaceport authority approval."
 		fail
 
 mission "Message Buoy: Elnath"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Elnath"
@@ -273,39 +286,10 @@ mission "Message Buoy: Elnath"
 			text "Message buoy to all ships: all inhabited installations in the Elnath system are restricted to employees of Lovelace Labs. Please refuel or repair in another system."
 		fail
 
-mission "Message Buoy: Pirate Thule"
-	invisible
-	entering
-	repeat
-	source
-		system "Men"
-	destination "Earth"
-	to offer
-		not "entered system by: takeoff"
-		not "event: Thule becomes independent"
-	on offer
-		message
-			text "Message buoy: Ahoy spacer, yer' entering the Men system!"
-		fail
-
-mission "Message Buoy: Independent Thule"
-	invisible
-	entering
-	repeat
-	source
-		system "Men"
-	destination "Earth"
-	to offer
-		not "entered system by: takeoff"
-		has "event: Thule becomes independent"
-	on offer
-		message
-			text "Message buoy: Ahoy spacer, yer' entering the Men system. Pirates no longer welcome."
-		fail
-
 mission "Message Buoy: Occupied Greenrock"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Shaula"
@@ -330,6 +314,7 @@ phrase "occupied greenrock message buoy"
 mission "Message Buoy: beyond Farpoint"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Mintaka"
@@ -341,9 +326,10 @@ mission "Message Buoy: beyond Farpoint"
 			text "Message buoy to all ships: you have exited Republic-controlled space. Assistance from Navy vessels is limited beyond the system of Alnitak. It is recommended you return to Farpoint immediately."
 		fail
 
-mission "Message Buoy: Megaparsec Inc."
+mission "Message Buoy: Megaparsec"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Mirfak"
@@ -352,10 +338,10 @@ mission "Message Buoy: Megaparsec Inc."
 		not "entered system by: takeoff"
 	on offer
 		message
-			phrase "message buoy: megaparsec inc"
+			phrase "message buoy: megaparsec"
 		fail
 
-phrase "message buoy: megaparsec inc"
+phrase "message buoy: megaparsec"
 	word
 		"Message buoy to all ships:"
 	word
@@ -366,6 +352,7 @@ phrase "message buoy: megaparsec inc"
 mission "Message Buoy: Tarazed Corporation"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Tarazed"
@@ -380,6 +367,7 @@ mission "Message Buoy: Tarazed Corporation"
 mission "Message Buoy: Betelgeuse Shipyards"
 	invisible
 	entering
+	non-blocking
 	repeat
 	source
 		system "Betelgeuse"
