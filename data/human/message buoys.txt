@@ -22,15 +22,21 @@ mission "Message Buoy: Entering Republic space from Pirates"
 	destination "Earth"
 	to offer
 		has "chosen sides"
-		not "temporary ceasefire"
 		not "entered system by: takeoff"
 		has "previous system government: Pirate"
 	on offer
 		message
-			phrase "entering republic space from hostile space"
+			phrase "entering republic space from pirates"
 		fail
 
-mission "Message Buoy: Entering Republic space from hostile space"
+phrase "entering republic space from pirates"
+	word
+		"Message buoy to all ships: You have entered Republic-controlled space"
+	word
+		". Private ships not flying blue markings must heave to and comply with Navy personnel or be deemed valid targets."
+		" from a system not under Republic jurisdiction. Be forewarned that you may be subject to further questioning upon landing at a Republic port under the Foreign Systems (Relations) Act."
+
+mission "Message Buoy: Entering Republic space from Free Worlds (hostile)"
 	invisible
 	entering
 	repeat
@@ -41,25 +47,21 @@ mission "Message Buoy: Entering Republic space from hostile space"
 	destination "Earth"
 	to offer
 		has "chosen sides"
-		not "temporary ceasefire"
 		not "main plot completed"
+		"reputation: Republic" < 0
 		not "entered system by: takeoff"
 		has "previous system government: Free Worlds"
 	on offer
 		message
-			phrase "entering republic space from hostile space"
+			phrase "entering republic space from free worlds (hostile)"
 		fail
 
-phrase "entering republic space from hostile space"
+phrase "entering republic space from free worlds (hostile)"
 	word
-		"Message buoy to all ships: You have entered Republic-controlled space"
+		"Message buoy to Free Worlds ships: You have entered Republic-controlled space"
 	word
-		". Prepare to be scanned."
 		". All ships flying rebellious colors are to comply with Navy personnel or be deemed valid targets."
-		". A reminder that a ship flown by an unlicensed pilot is considered piracy and will be deemed a valid target under the Interstellar Piracy Act."
-		". Upon landing in a Republic port, please subject your ship to scanning for any invasive species or pathogens."
-		". Are you a Galactic Entry accredited citizen? Skip the queues at Immigration upon presenting your planetary ID."
-		" from a system not under Republic jurisdiction. Be forewarned that you may be subject to further questioning upon landing at a Republic port under the Foreign Systems (Relations) Act."
+		`. All ships affiliated with the so-called "Free Worlds" are to heave to and comply with Navy personnel or be deemed valid targets.`
 
 mission "Message Buoy: Entering Republic space from Free Worlds"
 	invisible
