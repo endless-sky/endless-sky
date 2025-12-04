@@ -161,7 +161,8 @@ private:
 			const std::optional<Point> &targetOverride = std::nullopt) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, FireCommand &command, FireCommand &targeting, bool secondary = true, bool isFlagship = false) const;
+	void AutoFire(const Ship &ship, FireCommand &command, FireCommand &targeting, bool secondary = true,
+		bool isFlagship = false) const;
 	void AutoFire(const Ship &ship, FireCommand &command, FireCommand &targeting, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
