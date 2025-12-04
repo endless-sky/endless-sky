@@ -98,6 +98,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 	trueName = node.Token(1);
 	isDefined = true;
 
+	// Track planets associated with removed objects. Check if remaining objects
+	// refer to any of the same planets and only unlink planets that have no
+	// remaining references here.
+	set<const Planet *> removedObjectPlanets;
+
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
 	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "link", "object", "hazard"};
@@ -360,7 +365,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				// Remove any child objects too.
 				for( ; last != objects.end() && last->parent >= index; ++last, ++removed)
 					if(last->planet)
-						planets.Get(last->planet->TrueName())->RemoveSystem(this);
+						removedObjectPlanets.insert(last->planet);
+				if(removeIt->planet)
+					removedObjectPlanets.insert(removeIt->planet);
 				last = objects.erase(removeIt, last);
 
 				// Recalculate every parent index.
@@ -442,10 +449,17 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	// Set planet messages based on what zone they are in.
+	// Set planet messages based on what zone they are in and check if any planets
+	// from removed objects are still present on other objects.
 	for(StellarObject &object : objects)
 	{
-		if(object.message || object.planet)
+		if(object.planet)
+		{
+			removedObjectPlanets.erase(object.planet);
+			continue;
+		}
+
+		if(object.message)
 			continue;
 
 		const StellarObject *root = &object;
@@ -485,6 +499,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				object.message = &UNINHABITEDPLANET;
 		}
 	}
+	// Tell any planets that were present but are no longer present in this system
+	// that they are no longer in this system.
+	for(const Planet *planet : removedObjectPlanets)
+		planets.Get(planet->TrueName())->RemoveSystem(this);
 	// Print a warning if this system wasn't explicitly given a position.
 	if(!hasPosition)
 		node.PrintTrace("System will be ignored due to missing position:");
