@@ -512,7 +512,7 @@ planet Beryl
 planet Byigii
 	attributes gegno uninhabited
 	landscape land/haze1
-	description `Although there is no evidence of a civilization on this barren, dry planet, there are many signs of haphazard mining and excavation by the Gegno, presumably for resources to construct the large station that orbits above. Among the several dig sites across the surface are also mountainous piles of scrap metals, junk and other trash heaps, quite literally forming wastelands.`
+	description `Although there is no evidence of a civilization on this barren, dry planet, there are many signs of haphazard mining and excavation by the Gegno, presumably for resources to construct the large station that orbits above. Among the several dig sites across the surface are also mountainous piles of scrap metals, junk, and other trash heaps, quite literally forming wastelands.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2141,7 +2141,7 @@ planet Ghneoe
 planet "Gi Tiures"
 	attributes gegno
 	landscape land/mountain9
-	description "Because of the closeness of this planet to its parent star, most daytime hours are characterized by intense heat and almost blindingly bright sunlight. However, a significant axis tilt results in much longer nights than days. During these nights, heat levels are acceptable, and it is these periods that are considered the populace's active hours."
+	description "Because of the closeness of this planet to its parent star, most daytime hours are characterized by intense heat and almost blindingly bright sunlight. However, a significant axial tilt results in much longer nights than days. During these nights, heat levels are acceptable, and it is these periods that are considered the populace's active hours."
 	description "	The Gegno of this planet live in a singular, expansive village cluster. At the core of it are three tall spires that appear as though they were once one, separated into thirds and pushed apart into a triangle formation."
 	spaceport "Though the Gegno living here and their civilization share a similar lack of progressiveness, their culture on this planet has noticeable differences than those at their core worlds. Many wear lengthy clothing, and often travel in tightly-packed groups. Others keep to themselves in a comparatively eerie silence."
 	"required reputation" 3
