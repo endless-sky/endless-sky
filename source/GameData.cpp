@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "shader/BatchShader.h"
-#include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
 #include "ConditionsStore.h"
@@ -275,11 +274,61 @@ void GameData::CheckReferences()
 
 
 
+void GameData::SaveSettings()
+{
+	string profileName = Command::Name();
+	filesystem::path currentProfilePath = Files::Config() / ("keys_" + profileName + ".txt");
+
+	// Save the active profile to the provided path.
+	Command::SaveSettings(currentProfilePath);
+
+	// Update the current profile:
+	Files::Write(Files::Config() / "current_profile.txt", profileName + '\n');
+}
+
+
+
 void GameData::LoadSettings()
 {
-	// Load the key settings.
-	Command::LoadSettings(Files::Resources() / "keys.txt");
-	Command::LoadSettings(Files::Config() / "keys.txt");
+	// Start with the default key settings as the foundation. This can get updated with new default keys over time.
+	Command::LoadSettings(Files::Resources() / "keys_default.txt", "Game_Default");
+	Command::ActivateWorkingCopy();
+
+	// Identify current settings profile.
+	string currentProfileName = Files::Read(Files::Config() / "current_profile.txt");
+	// Trim trailing whitespace (including newlines) from the profile name.
+	while(!currentProfileName.empty() && currentProfileName.back() <= ' ')
+		currentProfileName.pop_back();
+
+	// Load the current settings profile if it can be found.
+	filesystem::path currentProfilePath = Files::Config() / ("keys_" + currentProfileName + ".txt");
+
+	if(currentProfileName.empty() || !Files::Exists(currentProfilePath))
+	{
+		// Make a new profile, name it "Current" for lack of a better name.
+		currentProfileName = "Current";
+		Command::RenameProfile(currentProfileName);
+
+		// Consider if this is a migration from the old keys.txt or a fresh installation.
+		if(Files::Exists(Files::Config() / "keys.txt"))
+		{
+			// Migrate old settings to new.
+			currentProfileName = "Migrated";
+			Command::LoadSettings(Files::Config() / "keys.txt", currentProfileName);
+
+			Files::Delete(Files::Config() / "keys.txt");
+		}
+
+		// Save off a current profile for next time.
+		Command::ActivateWorkingCopy();
+		SaveSettings();
+	}
+	else
+	{
+		// Load current user settings.
+		Command::LoadSettings(currentProfilePath, currentProfileName);
+		Command::ActivateWorkingCopy();
+	}
 }
 
 
