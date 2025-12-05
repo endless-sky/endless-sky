@@ -1283,12 +1283,12 @@ void OutfitterPanel::DrawButtons()
 	{
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
-		for(int i = -1; i < 2; i++)
+		for(int i = -1; i < 2; ++i)
 			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0)
-			+ Point(-.5 * modWidth, 10.), dim);
-		for(int i = -1; i < 2; i++)
+				+ Point(-.5 * modWidth, 10.), dim);
+		for(int i = -1; i < 2; ++i)
 			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1)
-			+ Point(-.5 * modWidth, 10.), dim);
+				+ Point(-.5 * modWidth, 10.), dim);
 	}
 
 	// Draw tooltips for the button being hovered over:
