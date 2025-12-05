@@ -1326,54 +1326,58 @@ Test edge cases and ensure robustness.
 
 ---
 
-## Post-MVP Features
+## Post-MVP Features (IMPLEMENTED)
 
-### Time Controls (Future)
+### Time Controls ✓
 
-Modify `main.cpp` to support multiple speeds:
+**Implemented in:** `ObserverPanel.cpp`, `Panel.h/cpp`, `main.cpp`
 
-```cpp
-// In the fast-forward section (around line 421)
-int skipRatio = 3;  // Default
-if(observerFastForward == 1)
-    skipRatio = 5;   // 5x speed
-else if(observerFastForward == 2)
-    skipRatio = 10;  // 10x speed
+- Added `GetSpeedMultiplier()` virtual method to Panel class
+- ObserverPanel overrides with 5 speed levels: 1x, 2x, 3x, 5x, 10x
+- Keys: F cycles speeds, 1-5 for direct selection
+- main.cpp checks `panelSpeed` and skips frames accordingly
+- HUD shows current speed with color highlighting
 
-skipFrame = (skipFrame + 1) % skipRatio;
-```
+### System Auto-Switching ✓
 
-For slow-motion, expose the existing debug slow-mo without requiring debug mode:
-```cpp
-// Allow slow-mo in observer mode
-if(isObserverMode && wantsSlowMo)
-{
-    frameRate = max(frameRate - 5, 10);
-    timer.SetFrameRate(frameRate);
-}
-```
+**Implemented in:** `ObserverPanel.cpp/h`
 
-### System Auto-Switching (Future)
+- Tracks `systemTimer` (time in current system) and `quietTimer` (time since last activity)
+- Monitors ShipEvents for DESTROY, DISABLE, PROVOKE to detect combat activity
+- Auto-switches when:
+  - 3 minutes max in one system (MAX_SYSTEM_TIME)
+  - 45 seconds of quiet with no recent activity (QUIET_THRESHOLD)
+- Manual switch: N key
+- Resets camera to follow mode on switch
 
-In `ObserverPanel::Step()`:
-```cpp
-// Auto-switch system after quiet period or timer
-++systemTimer;
-if(systemTimer >= SYSTEM_SWITCH_INTERVAL || isQuiet)
-{
-    systemTimer = 0;
-    SwitchToRandomSystem();
-}
-```
+### Informative HUD ✓ (Redesigned)
 
-### Informative HUD (Future)
+**Implemented in:** `ObserverPanel.cpp`, `Engine.h/cpp`, `Engine.cpp`
 
-Create `interface "observer"` in `interfaces.txt` with:
-- Ship count by faction
-- Combat activity indicator
-- Destruction counter
-- Time elapsed
-- Auto change speed based on activity
+**Architecture Changes:**
+- Engine::Draw() now skips full HUD (`hud->Draw(info)`) when in observer mode (`cameraController != nullptr`)
+- Radar, minimap, and messages still draw (useful for observer)
+- Player-specific elements (status bars, credits, fuel/energy/heat) are completely hidden
+
+**Clean Observer Panel (top-right):**
+- Semi-transparent dark panel background using `FillShader::Fill()`
+- "OBSERVER" title in larger font
+- System name
+- Activity indicator (COMBAT in red, Active in green, Quiet in dim)
+- Ship count, Destroyed count, Disabled count
+- Session time (hh:mm:ss format for long sessions)
+
+**Camera Info (below radar, top-left):**
+- Camera mode name
+- Target name (when following a ship)
+- Speed indicator (only shown when > 1x, in accent color)
+
+**Controls hint (bottom):**
+- Clean, minimal hint text
+
+**Bug Fixes:**
+- Speed controls now work (checks menuPanels stack, not just gamePanels)
+- Auto-save now works (added filePath to NewObserver)
 
 ### Enhanced AI Activity (Future)
 

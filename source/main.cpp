@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "Files.h"
 #include "text/Font.h"
+#include "text/FontSet.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
@@ -400,6 +401,14 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			// Tell all the panels to step forward, then draw them.
 			((!isDebugPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 
+			// Check for panel-specific speed multiplier (e.g., observer mode)
+			// Check both panel stacks - observer mode runs on menu stack
+			int panelSpeed = 0;
+			if(!menuPanels.IsEmpty())
+				panelSpeed = menuPanels.Top()->GetSpeedMultiplier();
+			else if(!gamePanels.IsEmpty())
+				panelSpeed = gamePanels.Top()->GetSpeedMultiplier();
+
 			// Caps lock slows the frame rate in debug mode.
 			// Slowing eases in and out over a couple of frames.
 			if((mod & KMOD_CAPS) && inFlight && debugMode)
@@ -418,7 +427,15 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					timer.SetFrameRate(frameRate);
 				}
 
-				if(isFastForward && inFlight)
+				// Panel speed > 1 overrides global fast-forward
+				if(panelSpeed > 1)
+				{
+					// Skip frames based on speed multiplier (e.g., 3x = skip 2 of 3 frames)
+					skipFrame = (skipFrame + 1) % panelSpeed;
+					if(skipFrame)
+						continue;
+				}
+				else if(isFastForward && inFlight)
 				{
 					skipFrame = (skipFrame + 1) % 3;
 					if(skipFrame)
@@ -426,7 +443,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				}
 			}
 
-			Audio::Step(isFastForward);
+			Audio::Step(isFastForward || panelSpeed > 1);
 
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
@@ -435,8 +452,18 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			MainPanel *mainPanel = static_cast<MainPanel *>(gamePanels.Root().get());
 			if(mainPanel && mainPanel->GetEngine().IsPaused())
 				SpriteShader::Draw(SpriteSet::Get("ui/paused"), Screen::TopLeft() + Point(10., 10.));
-			else if(isFastForward)
+			else if(isFastForward || panelSpeed > 1)
+			{
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
+				// Show speed multiplier next to icon if panel overrides speed
+				if(panelSpeed > 1)
+				{
+					const Font &font = FontSet::Get(14);
+					const Color &color = *GameData::Colors().Get("medium");
+					string speedText = to_string(panelSpeed) + "x";
+					font.Draw(speedText, Screen::TopLeft() + Point(22., 4.), color);
+				}
+			}
 
 			GameWindow::Step();
 

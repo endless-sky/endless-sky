@@ -320,6 +320,8 @@ void PlayerInfo::Load(const filesystem::path &path)
 			hasFullClearance = true;
 		else if(key == "launching")
 			shouldLaunch = true;
+		else if(key == "observer")
+			isObserver = true;
 		else if(key == "playtime" && hasValue)
 			playTime = child.Value(1);
 		else if(key == "travel" && hasValue)
@@ -741,6 +743,14 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 bool PlayerInfo::IsDead() const
 {
 	return isDead;
+}
+
+
+
+// Check if this is an observer mode save.
+bool PlayerInfo::IsObserver() const
+{
+	return isObserver;
 }
 
 
@@ -4561,6 +4571,9 @@ void PlayerInfo::Save(DataWriter &out) const
 	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
 		out.Write("launching");
+	// This flag marks observer mode saves (no ships, screensaver mode)
+	if(isObserver)
+		out.Write("observer");
 	for(const System *system : travelPlan)
 		out.Write("travel", system->TrueName());
 	if(travelDestination)
@@ -5147,11 +5160,17 @@ void PlayerInfo::NewObserver(const System *newSystem)
 	// Give minimal credits so player can buy a ship when loading the save normally
 	accounts.AddCredits(1000000);
 
+	// Mark as observer mode save
+	isObserver = true;
+
 	// Initialize startData for saving (CoreStartData::Save requires these)
 	startData.SetObserverMode(newSystem, planet, date);
 
 	// Register derived conditions for condition system
 	RegisterDerivedConditions();
+
+	// Set file path for saving
+	filePath = (Files::Saves() / "Observer Mode.txt").string();
 
 	// No ships, no missions needed for observer
 }

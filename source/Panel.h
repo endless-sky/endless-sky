@@ -77,6 +77,10 @@ public:
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
 
+	// Get the speed multiplier for this panel (1 = normal, 2+ = fast forward, 0.5 = slow-mo).
+	// Default returns 0 meaning "use global fast-forward settings".
+	virtual int GetSpeedMultiplier() const noexcept;
+
 	virtual void UpdateTooltipActivation();
 
 

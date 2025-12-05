@@ -115,6 +115,9 @@ public:
 	// Enter the current system (used by observer mode).
 	void EnterSystem();
 
+	// Get the number of ships in the current system (for observer mode HUD).
+	size_t ShipCount() const;
+
 
 private:
 	class Outline {

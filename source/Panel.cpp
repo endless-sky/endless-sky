@@ -142,6 +142,14 @@ bool Panel::AllowsFastForward() const noexcept
 
 
 
+// Default speed multiplier - 0 means use global fast-forward settings.
+int Panel::GetSpeedMultiplier() const noexcept
+{
+	return 0;
+}
+
+
+
 void Panel::UpdateTooltipActivation()
 {
 }

@@ -754,7 +754,39 @@ void Engine::Step(bool isActive)
 
 	// Clear the HUD information from the previous frame.
 	info = Information();
-	if(flagship && flagship->Hull())
+
+	// In observer mode, populate HUD with observed ship info instead of player info
+	bool isObserver = (cameraController != nullptr);
+	shared_ptr<Ship> observedShip = isObserver ? cameraController->GetObservedShip() : nullptr;
+
+	if(isObserver && observedShip)
+	{
+		// Use observed ship for the "player sprite" position (top-right panel)
+		Point shipFacingUnit = observedShip->Facing().Unit();
+		info.SetSprite("player sprite", observedShip->GetSprite(), shipFacingUnit,
+			observedShip->GetFrame(step), observedShip->GetSwizzle());
+
+		// Show observed ship's status in the player bars
+		info.SetBar("shields", observedShip->Shields());
+		info.SetBar("hull", observedShip->Hull(), 20.);
+		info.SetBar("disabled hull", min(observedShip->Hull(), observedShip->DisabledHull()), 20.);
+
+		// Show fuel/energy/heat for observed ship
+		double fuelCap = observedShip->Attributes().Get("fuel capacity");
+		if(fuelCap > 0.)
+		{
+			if(fuelCap <= MAX_FUEL_DISPLAY)
+				info.SetBar("fuel", observedShip->Fuel(), fuelCap * .01);
+			else
+				info.SetBar("fuel", observedShip->Fuel());
+		}
+		info.SetBar("energy", observedShip->Energy());
+		double heat = observedShip->Heat();
+		info.SetBar("heat", min(1., heat));
+		if(heat > 1.)
+			info.SetBar("overheat", min(1., heat - 1.));
+	}
+	else if(flagship && flagship->Hull())
 	{
 		Point shipFacingUnit(0., -1.);
 		if(Preferences::Has("Rotate flagship in HUD"))
@@ -763,10 +795,13 @@ void Engine::Step(bool isActive)
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step),
 			flagship->GetSwizzle());
 	}
+
 	if(currentSystem)
 		info.SetString("location", currentSystem->DisplayName());
 	info.SetString("date", player.GetDate().ToString());
-	if(flagship)
+
+	// Player-specific info (skip in observer mode)
+	if(!isObserver && flagship)
 	{
 		// Have an alarm label flash up when enemy ships are in the system
 		if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
@@ -791,8 +826,10 @@ void Engine::Step(bool isActive)
 		info.SetBar("hull", flagship->Hull(), 20.);
 		info.SetBar("disabled hull", min(flagship->Hull(), flagship->DisabledHull()), 20.);
 	}
-	info.SetString("credits",
-		Format::CreditString(player.Accounts().Credits()));
+
+	// Skip credits in observer mode
+	if(!isObserver)
+		info.SetString("credits", Format::CreditString(player.Accounts().Credits()));
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
 	if(flagship && flagship->GetTargetStellar() && !isJumping)
 	{
@@ -829,7 +866,13 @@ void Engine::Step(bool isActive)
 	shared_ptr<const Ship> target;
 	shared_ptr<const Minable> targetAsteroid;
 	targetVector = Point();
-	if(flagship)
+
+	// In observer mode, use observed ship as the target for the target display
+	if(isObserver && observedShip)
+	{
+		target = observedShip;
+	}
+	else if(flagship)
 	{
 		target = flagship->GetTargetShip();
 		targetAsteroid = flagship->GetTargetAsteroid();
@@ -904,6 +947,28 @@ void Engine::Step(bool isActive)
 
 			targetVector = target->Position() - camera.Center();
 
+			// In observer mode, show full target info (like a drone feed with perfect sensors)
+			if(isObserver)
+			{
+				// Show all stats for the observed ship
+				info.SetCondition("target crew display");
+				info.SetString("target crew", to_string(target->Crew()));
+				info.SetCondition("target energy display");
+				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
+				info.SetString("target energy", to_string(energy));
+				info.SetCondition("target fuel display");
+				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
+				info.SetString("target fuel", to_string(fuel));
+				info.SetCondition("target thermal display");
+				int heat = round(100. * target->Heat());
+				info.SetString("target heat", to_string(heat) + "%");
+			}
+			else if(!flagship)
+			{
+				// No flagship and not observer - skip scan-dependent features
+			}
+			else
+			{
 			double targetRange = target->Position().Distance(flagship->Position());
 			// Finds the range of the scan collections.
 			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
@@ -998,11 +1063,12 @@ void Engine::Step(bool isActive)
 				int presentAcceleration = 3600 * target->TrueAcceleration();
 				info.SetString("target acceleration", to_string(presentAcceleration) + " ");
 			}
+			} // end else (flagship scan features)
 		}
 	}
 	if(!Preferences::Has("Ship outlines in HUD"))
 		info.SetCondition("fast hud sprites");
-	if(target && target->IsTargetable() && target->GetSystem() == currentSystem
+	if(flagship && target && target->IsTargetable() && target->GetSystem() == currentSystem
 		&& (flagship->CargoScanFraction() || flagship->OutfitScanFraction()))
 	{
 		double width = max(target->Width(), target->Height());
@@ -1325,15 +1391,9 @@ void Engine::Draw() const
 	}
 
 	// Draw the heads-up display.
+	// In observer mode, draw the HUD but ObserverPanel adds its own overlay on top
 	hud->Draw(info);
-	if(hud->HasPoint("radar"))
-	{
-		radar[currentDrawBuffer].Draw(
-			hud->GetPoint("radar"),
-			RADAR_SCALE,
-			hud->GetValue("radar radius"),
-			hud->GetValue("radar pointer radius"));
-	}
+
 	if(hud->HasPoint("target") && targetVector.Length() > 20.)
 	{
 		Point center = hud->GetPoint("target");
@@ -1354,16 +1414,30 @@ void Engine::Draw() const
 			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
 	}
 
+	// Draw radar
+	if(hud->HasPoint("radar"))
+	{
+		radar[currentDrawBuffer].Draw(
+			hud->GetPoint("radar"),
+			RADAR_SCALE,
+			hud->GetValue("radar radius"),
+			hud->GetValue("radar pointer radius"));
+	}
+
 	// Draw the systems mini-map.
 	minimap.Draw(uiStep);
 
-	// Draw ammo status.
-	double ammoIconWidth = hud->GetValue("ammo icon width");
-	double ammoIconHeight = hud->GetValue("ammo icon height");
-	ammoDisplay.Draw(hud->GetBox("ammo"), Point(ammoIconWidth, ammoIconHeight));
+	// Skip ammo and escort display in observer mode (no player ship)
+	if(!cameraController)
+	{
+		// Draw ammo status.
+		double ammoIconWidth = hud->GetValue("ammo icon width");
+		double ammoIconHeight = hud->GetValue("ammo icon height");
+		ammoDisplay.Draw(hud->GetBox("ammo"), Point(ammoIconWidth, ammoIconHeight));
 
-	// Draw escort status.
-	escorts.Draw(hud->GetBox("escorts"));
+		// Draw escort status.
+		escorts.Draw(hud->GetBox("escorts"));
+	}
 
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
@@ -1461,6 +1535,13 @@ void Engine::SetCameraController(CameraController *controller)
 bool Engine::IsObserverMode() const
 {
 	return cameraController != nullptr;
+}
+
+
+
+size_t Engine::ShipCount() const
+{
+	return ships.size();
 }
 
 

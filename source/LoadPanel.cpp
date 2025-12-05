@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "MainPanel.h"
 #include "image/MaskManager.h"
+#include "ObserverPanel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
@@ -592,11 +593,21 @@ void LoadPanel::LoadCallback()
 	GameData::GetMaskManager().ScaleMasks();
 
 	GetUI()->PopThrough(GetUI()->Root().get());
-	gamePanels.Push(new MainPanel(player));
-	// It takes one step to figure out the planet panel should be created, and
-	// another step to actually place it. So, take two steps to avoid a flicker.
-	gamePanels.StepAll();
-	gamePanels.StepAll();
+
+	// If this is an observer mode save, launch ObserverPanel instead of MainPanel
+	if(player.IsObserver())
+	{
+		// Observer mode doesn't use gamePanels, it uses the menu UI
+		GetUI()->Push(new ObserverPanel());
+	}
+	else
+	{
+		gamePanels.Push(new MainPanel(player));
+		// It takes one step to figure out the planet panel should be created, and
+		// another step to actually place it. So, take two steps to avoid a flicker.
+		gamePanels.StepAll();
+		gamePanels.StepAll();
+	}
 }
 
 

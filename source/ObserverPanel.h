@@ -39,10 +39,16 @@ public:
 	// Allow fast-forward in observer mode.
 	bool AllowsFastForward() const noexcept override { return true; }
 
+	// Get observer-mode specific speed multiplier.
+	int GetSpeedMultiplier() const noexcept override;
+
 
 private:
 	void CycleCamera();
 	void InitializeSystem();
+	void SwitchToNewSystem();
+	void CycleSpeed();
+	std::string GetSpeedText() const;
 
 
 private:
@@ -51,6 +57,27 @@ private:
 
 	std::unique_ptr<CameraController> cameraController;
 	int cameraMode = 0;  // 0=follow, 1=orbit, 2=free
+
+	// Speed control: 0=1x, 1=2x, 2=3x, 3=5x, 4=10x
+	int speedLevel = 0;
+	static constexpr int SPEED_LEVELS[] = {1, 2, 3, 5, 10};
+	static constexpr int NUM_SPEED_LEVELS = 5;
+
+	// Auto-switch system tracking
+	int systemTimer = 0;  // Frames in current system
+	int quietTimer = 0;   // Frames since last interesting activity
+	int recentActivity = 0;  // Recent activity counter (more responsive than just destroys)
+	bool autoSwitchEnabled = true;  // Toggle for auto-switching
+
+	// Auto-switch timing (in frames at 60 FPS, at 1x speed - scaled by speed multiplier)
+	static const int BASE_MAX_SYSTEM_TIME = 60 * 60 * 5;   // 5 minutes max in one system
+	static const int BASE_QUIET_THRESHOLD = 60 * 60 * 2;   // 2 minutes of quiet before switching
+	static const int ACTIVITY_DECAY_RATE = 60 * 3;         // Activity decays every 3 seconds
+
+	// Statistics for HUD
+	int totalDestroys = 0;      // Total ships destroyed during session
+	int totalDisables = 0;      // Total ships disabled during session
+	int sessionTimer = 0;       // Total frames in observer mode
 
 	// Auto-save timer
 	int saveTimer = 0;

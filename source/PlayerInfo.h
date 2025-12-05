@@ -118,6 +118,9 @@ public:
 	void Die(int response = 0, const std::shared_ptr<Ship> &capturer = nullptr);
 	bool IsDead() const;
 
+	// Check if this is an observer mode save.
+	bool IsObserver() const;
+
 	// Get or set the player's name.
 	const std::string &FirstName() const;
 	const std::string &LastName() const;
@@ -455,6 +458,7 @@ private:
 	const Planet *planet = nullptr;
 	bool shouldLaunch = false;
 	bool isDead = false;
+	bool isObserver = false;
 	bool displayCarrierHelp = false;
 
 	// The amount of in-game time played, in seconds.

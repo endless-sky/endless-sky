@@ -35,3 +35,10 @@ std::string CameraController::TargetName() const
 {
 	return "";
 }
+
+
+
+std::shared_ptr<Ship> CameraController::GetObservedShip() const
+{
+	return nullptr;
+}

@@ -40,6 +40,9 @@ public:
 	// Select a random ship.
 	void SelectRandom();
 
+	// Get the ship being followed (for HUD display).
+	std::shared_ptr<Ship> GetObservedShip() const override;
+
 
 private:
 	// Check if a ship is a valid target (in system, not jumping, targetable)

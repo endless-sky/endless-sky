@@ -53,4 +53,7 @@ public:
 
 	// Get info about current target (for HUD). Empty if no specific target.
 	virtual std::string TargetName() const;
+
+	// Get the ship being observed (if any). Used for HUD display.
+	virtual std::shared_ptr<Ship> GetObservedShip() const;
 };

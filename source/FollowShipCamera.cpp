@@ -221,3 +221,12 @@ bool FollowShipCamera::IsValidTarget(const shared_ptr<Ship> &ship) const
 		return false;
 	return true;
 }
+
+
+
+shared_ptr<Ship> FollowShipCamera::GetObservedShip() const
+{
+	if(HasValidTarget())
+		return target.lock();
+	return nullptr;
+}

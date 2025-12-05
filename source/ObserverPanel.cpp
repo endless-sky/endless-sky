@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CameraController.h"
 #include "Color.h"
+#include "shader/FillShader.h"
 #include "FollowShipCamera.h"
 #include "FreeCamera.h"
 #include "GameData.h"
@@ -24,7 +25,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "OrbitPlanetCamera.h"
 #include "Preferences.h"
 #include "Random.h"
+#include "Rectangle.h"
 #include "Screen.h"
+#include "ShipEvent.h"
 #include "System.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -117,6 +120,74 @@ void ObserverPanel::Step()
 
 	engine.Wait();
 	engine.Step(true);  // Always active
+
+	// Track activity from ship events (combat, destruction, etc.)
+	bool hadActivity = false;
+	for(const ShipEvent &event : engine.Events())
+	{
+		int type = event.Type();
+		// Combat-related events: destroy, disable, provoke, board, capture
+		if(type & (ShipEvent::DESTROY | ShipEvent::DISABLE | ShipEvent::PROVOKE |
+		           ShipEvent::BOARD | ShipEvent::CAPTURE))
+		{
+			hadActivity = true;
+			// Weight different events differently
+			if(type & ShipEvent::DESTROY)
+			{
+				recentActivity += 10;  // Big event
+				++totalDestroys;
+			}
+			if(type & ShipEvent::DISABLE)
+			{
+				recentActivity += 5;
+				++totalDisables;
+			}
+			if(type & ShipEvent::PROVOKE)
+				recentActivity += 2;  // Combat starting
+			if(type & (ShipEvent::BOARD | ShipEvent::CAPTURE))
+				recentActivity += 3;
+		}
+	}
+	engine.Events().clear();
+
+	// Update session timer
+	++sessionTimer;
+
+	// Update timers (account for speed multiplier - timers run at real-time, not game-time)
+	++systemTimer;
+	if(hadActivity)
+		quietTimer = 0;
+	else
+		++quietTimer;
+
+	// Decay activity counter periodically
+	if(systemTimer % ACTIVITY_DECAY_RATE == 0 && recentActivity > 0)
+		--recentActivity;
+
+	// Check if we should switch systems (only if auto-switch is enabled)
+	// Scale thresholds by speed multiplier so switching happens at consistent real-time intervals
+	if(autoSwitchEnabled)
+	{
+		int speedMult = SPEED_LEVELS[speedLevel];
+		int maxTime = BASE_MAX_SYSTEM_TIME * speedMult;
+		int quietThreshold = BASE_QUIET_THRESHOLD * speedMult;
+
+		bool shouldSwitch = false;
+		if(systemTimer >= maxTime)
+		{
+			// Time limit reached
+			shouldSwitch = true;
+		}
+		else if(quietTimer >= quietThreshold && recentActivity == 0)
+		{
+			// Too quiet for too long
+			shouldSwitch = true;
+		}
+
+		if(shouldSwitch)
+			SwitchToNewSystem();
+	}
+
 	engine.Go();
 
 	// Auto-save periodically
@@ -135,34 +206,111 @@ void ObserverPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	engine.Draw();
 
-	// Draw minimal observer HUD
+	// Get standard game colors for consistency
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &dim = *GameData::Colors().Get("dim");
+	const Color panelBg(0.08f, 0.08f, 0.08f, 0.85f);
+	const Color combatColor(0.9f, 0.3f, 0.2f, 1.f);
+	const Color activeColor(0.3f, 0.8f, 0.4f, 1.f);
+	const Color accentColor(0.7f, 0.55f, 0.2f, 1.f);
+
 	const Font &font = FontSet::Get(14);
-	Color dimColor(0.5f, 0.5f, 0.5f, 1.f);
-	Color brightColor(0.8f, 0.8f, 0.8f, 1.f);
+	const Font &bigFont = FontSet::Get(18);
 
-	// Camera mode in top-left
-	Point hudPos = Screen::TopLeft() + Point(20., 20.);
-	string modeText = "Mode: " + cameraController->ModeName();
-	font.Draw(modeText, hudPos, dimColor);
+	// ========== TOP-RIGHT: Status Panel ==========
+	// Panel dimensions
+	const double panelWidth = 200.;
+	const double panelPadding = 12.;
+	const double lineHeight = 18.;
 
-	// Target name below mode
-	string targetName = cameraController->TargetName();
-	if(!targetName.empty())
-	{
-		hudPos.Y() += 20.;
-		font.Draw("Target: " + targetName, hudPos, brightColor);
-	}
+	// Calculate panel height based on content
+	double panelHeight = panelPadding * 2 + lineHeight * 7;  // Title + 6 lines
+
+	// Draw semi-transparent panel background
+	Point panelCenter = Screen::TopRight() + Point(-panelWidth / 2 - 10., panelHeight / 2 + 10.);
+	FillShader::Fill(panelCenter, Point(panelWidth, panelHeight), panelBg);
+
+	// Panel content position
+	Point pos = Screen::TopRight() + Point(-panelWidth - 10. + panelPadding, 10. + panelPadding);
+
+	// Title: OBSERVER MODE
+	bigFont.Draw("OBSERVER", pos, medium);
+	pos.Y() += lineHeight + 4.;
 
 	// System name
 	if(player.GetSystem())
+		font.Draw(player.GetSystem()->DisplayName(), pos, bright);
+	pos.Y() += lineHeight + 8.;
+
+	// Activity indicator (prominent)
+	// recentActivity is weighted: destroy=10, disable=5, provoke=2, board/capture=3
+	if(recentActivity >= 5)
 	{
-		hudPos.Y() += 20.;
-		font.Draw("System: " + player.GetSystem()->DisplayName(), hudPos, dimColor);
+		font.Draw("COMBAT", pos, combatColor);
+	}
+	else if(recentActivity > 0 || quietTimer < 60 * 10)
+	{
+		font.Draw("Active", pos, activeColor);
+	}
+	else
+	{
+		font.Draw("Quiet", pos, dim);
+	}
+	pos.Y() += lineHeight + 4.;
+
+	// Stats: Ships | Destroyed | Disabled
+	font.Draw("Ships: " + to_string(engine.ShipCount()), pos, medium);
+	pos.Y() += lineHeight;
+
+	font.Draw("Destroyed: " + to_string(totalDestroys), pos, medium);
+	pos.Y() += lineHeight;
+
+	font.Draw("Disabled: " + to_string(totalDisables), pos, medium);
+	pos.Y() += lineHeight;
+
+	// Session time
+	int totalSeconds = sessionTimer / 60;
+	int hours = totalSeconds / 3600;
+	int minutes = (totalSeconds % 3600) / 60;
+	int seconds = totalSeconds % 60;
+	string timeStr;
+	if(hours > 0)
+		timeStr = to_string(hours) + ":" + (minutes < 10 ? "0" : "") + to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + to_string(seconds);
+	else
+		timeStr = to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + to_string(seconds);
+	font.Draw("Time: " + timeStr, pos, dim);
+
+	// ========== TOP-LEFT: Camera Info (below radar) ==========
+	// Position below the radar (radar is ~256px wide/tall centered at 128,128)
+	Point camPos = Screen::TopLeft() + Point(20., 270.);
+
+	// Camera mode
+	font.Draw(cameraController->ModeName(), camPos, medium);
+	camPos.Y() += lineHeight;
+
+	// Target name
+	string targetName = cameraController->TargetName();
+	if(!targetName.empty())
+	{
+		font.Draw(targetName, camPos, bright);
+		camPos.Y() += lineHeight;
 	}
 
-	// Controls hint at bottom
-	Point hintPos = Screen::BottomLeft() + Point(20., -30.);
-	font.Draw("Tab: cycle camera | Space: new target | ESC: exit", hintPos, dimColor);
+	// Speed indicator (show prominently if not 1x)
+	if(speedLevel > 0)
+	{
+		font.Draw(GetSpeedText(), camPos, accentColor);
+	}
+
+	// ========== BOTTOM-RIGHT: Controls Hint ==========
+	string hintText = "Tab: camera  |  Space: target  |  F: speed  |  N: system  |  A: auto";
+	if(!autoSwitchEnabled)
+		hintText += " (off)";
+	hintText += "  |  Esc: exit";
+	double hintWidth = font.Width(hintText);
+	Point hintPos = Screen::BottomRight() + Point(-hintWidth - 20., -25.);
+	font.Draw(hintText, hintPos, dim);
 }
 
 
@@ -211,6 +359,36 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		return true;
 	}
 
+	// Speed controls: F to cycle through speeds
+	if(key == 'f' || key == 'F')
+	{
+		CycleSpeed();
+		return true;
+	}
+
+	// Number keys 1-5 for direct speed selection
+	if(key >= '1' && key <= '5')
+	{
+		speedLevel = key - '1';
+		return true;
+	}
+
+	// N for new system (manual switch)
+	if(key == 'n' || key == 'N')
+	{
+		SwitchToNewSystem();
+		return true;
+	}
+
+	// A to toggle auto-switching
+	if(key == 'a' || key == 'A')
+	{
+		autoSwitchEnabled = !autoSwitchEnabled;
+		Messages::Add({autoSwitchEnabled ? "Auto-switching enabled." : "Auto-switching disabled.",
+			GameData::MessageCategories().Get("info")});
+		return true;
+	}
+
 	return false;
 }
 
@@ -224,6 +402,50 @@ bool ObserverPanel::Scroll(double dx, double dy)
 		Preferences::ZoomViewIn();
 
 	return true;
+}
+
+
+
+void ObserverPanel::SwitchToNewSystem()
+{
+	// Reset timers
+	systemTimer = 0;
+	quietTimer = 0;
+	recentActivity = 0;
+
+	// Find a new random system (different from current if possible)
+	const System *currentSystem = player.GetSystem();
+	vector<const System *> candidates;
+	for(const auto &it : GameData::Systems())
+	{
+		const System &system = it.second;
+		if(system.IsValid() && !system.Fleets().empty() && system.IsInhabited(nullptr))
+		{
+			// Prefer different systems, but if only one exists, allow staying
+			if(&system != currentSystem || candidates.empty())
+				candidates.push_back(&system);
+		}
+	}
+
+	if(candidates.empty())
+		return;
+
+	// Pick a random candidate
+	const System *newSystem = candidates[Random::Int(candidates.size())];
+
+	// Move to the new system
+	player.SetSystem(*newSystem);
+	engine.EnterSystem();
+
+	// Reset camera to follow mode for new system
+	cameraMode = 0;
+	cameraController = make_unique<FollowShipCamera>();
+	engine.SetCameraController(cameraController.get());
+	if(newSystem)
+		cameraController->SetStellarObjects(newSystem->Objects());
+
+	Messages::Add({"Now observing the " + newSystem->DisplayName() + " system.",
+		GameData::MessageCategories().Get("info")});
 }
 
 
@@ -258,3 +480,28 @@ void ObserverPanel::CycleCamera()
 	if(player.GetSystem())
 		cameraController->SetStellarObjects(player.GetSystem()->Objects());
 }
+
+
+
+void ObserverPanel::CycleSpeed()
+{
+	speedLevel = (speedLevel + 1) % NUM_SPEED_LEVELS;
+}
+
+
+
+string ObserverPanel::GetSpeedText() const
+{
+	return to_string(SPEED_LEVELS[speedLevel]) + "x";
+}
+
+
+
+int ObserverPanel::GetSpeedMultiplier() const noexcept
+{
+	return SPEED_LEVELS[speedLevel];
+}
+
+
+// Static member definition
+constexpr int ObserverPanel::SPEED_LEVELS[];
