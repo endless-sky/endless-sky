@@ -252,7 +252,7 @@ void ShipyardPanel::Buy(bool onlyOwned)
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
 	GetUI()->Push(new ShipNameDialog(this,
-			Dialog::FunctionButton(this, "Buy", 'b', &ShipyardPanel::BuyShip),
+			DialogPanel::FunctionButton(this, "Buy", 'b', &ShipyardPanel::BuyShip),
 			message));
 }
 

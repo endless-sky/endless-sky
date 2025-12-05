@@ -175,7 +175,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 	else if(key == 'R' || (key == 'r' && shift))
 		GetUI()->Push(new ShipNameDialog(this,
-			Dialog::FunctionButton(this, "Rename", 'r', &ShipInfoPanel::Rename),
+			DialogPanel::FunctionButton(this, "Rename", 'r', &ShipInfoPanel::Rename),
 			"Change this ship's name?", (*shipIt)->GivenName()));
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift) || key == 'k'))
 	{
