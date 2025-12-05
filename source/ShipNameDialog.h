@@ -28,9 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ShipNameDialog : public Dialog {
 public:
 	template<class T>
-	ShipNameDialog(T *panel,
-		Dialog::FunctionButton buttonOne,
-		const std::string &message,
+	ShipNameDialog(T *panel, Dialog::FunctionButton buttonOne, const std::string &message,
 		std::string initialValue = "");
 
 
@@ -41,14 +39,9 @@ private:
 
 
 template<class T>
-ShipNameDialog::ShipNameDialog(T *panel,
-	Dialog::FunctionButton buttonOne,
-	const std::string &message,
+ShipNameDialog::ShipNameDialog(T *panel, Dialog::FunctionButton buttonOne, const std::string &message,
 	std::string initialValue)
-	: Dialog(panel,
-		message,
-		initialValue,
-		buttonOne,
+	: Dialog(panel, message, initialValue, buttonOne,
 		Dialog::FunctionButton(this, "Random", 'r', &ShipNameDialog::RandomName),
 		[](const std::string &) { return true; })
 {
