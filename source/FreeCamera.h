@@ -41,7 +41,7 @@ private:
 	Point position;
 	Point velocity;
 	Point inputDirection;
-	double speed = 20.;
+	double speed = 10.;
 	double friction = 0.95;
 	static const std::string name;
 };

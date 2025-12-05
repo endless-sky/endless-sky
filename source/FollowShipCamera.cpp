@@ -34,7 +34,7 @@ FollowShipCamera::FollowShipCamera()
 Point FollowShipCamera::GetTarget() const
 {
 	auto ship = target.lock();
-	if(ship && ship->GetSystem())
+	if(ship && ship->GetSystem() && !ship->IsHyperspacing() && !ship->IsEnteringHyperspace())
 		return ship->Center();
 	return lastPosition;
 }
@@ -44,7 +44,7 @@ Point FollowShipCamera::GetTarget() const
 Point FollowShipCamera::GetVelocity() const
 {
 	auto ship = target.lock();
-	if(ship && ship->GetSystem())
+	if(ship && ship->GetSystem() && !ship->IsHyperspacing() && !ship->IsEnteringHyperspace())
 		return ship->Velocity();
 	return lastVelocity;
 }
@@ -54,14 +54,15 @@ Point FollowShipCamera::GetVelocity() const
 void FollowShipCamera::Step()
 {
 	auto ship = target.lock();
-	if(ship && ship->GetSystem())
+	// Check if ship is valid and not leaving the system (hyperspacing/jumping)
+	if(ship && ship->GetSystem() && !ship->IsHyperspacing() && !ship->IsEnteringHyperspace())
 	{
 		lastPosition = ship->Center();
 		lastVelocity = ship->Velocity();
 	}
 	else if(!ships.empty())
 	{
-		// Target lost, select a new one
+		// Target lost or jumping away, select a new one
 		SelectRandom();
 	}
 }

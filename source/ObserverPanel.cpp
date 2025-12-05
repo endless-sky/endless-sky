@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Messages.h"
 #include "OrbitPlanetCamera.h"
+#include "Preferences.h"
 #include "Random.h"
 #include "Screen.h"
 #include "System.h"
@@ -195,6 +196,18 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			if(orbit)
 				orbit->CycleTarget();
 		}
+		return true;
+	}
+
+	// Zoom controls (same as main game)
+	if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
+	{
+		Preferences::ZoomViewOut();
+		return true;
+	}
+	if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
+	{
+		Preferences::ZoomViewIn();
 		return true;
 	}
 

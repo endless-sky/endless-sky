@@ -591,7 +591,10 @@ void Engine::Step(bool isActive)
 		}
 
 		// Step the background to account for the current velocity and zoom.
-		GameData::StepBackground(timePaused ? Point() : camera.Velocity(), zoom);
+		// In observer mode, use the camera controller's velocity since camera.Velocity() is 0.
+		Point bgVelocity = timePaused ? Point() :
+			(cameraController ? cameraController->GetVelocity() : camera.Velocity());
+		GameData::StepBackground(bgVelocity, zoom);
 	}
 
 	outlines.clear();
