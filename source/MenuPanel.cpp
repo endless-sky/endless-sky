@@ -203,8 +203,9 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'o')
 	{
-		// Launch observer mode
-		GetUI()->Push(new ObserverPanel());
+		// Launch observer mode - if player is in-game, start in their current system
+		const System *startSystem = (player.IsLoaded() && !player.IsDead()) ? player.GetSystem() : nullptr;
+		GetUI()->Push(new ObserverPanel(startSystem));
 	}
 	else if(key == 'q')
 	{

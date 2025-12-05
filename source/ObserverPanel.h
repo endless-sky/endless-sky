@@ -20,15 +20,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "PlayerInfo.h"
 
+#include <deque>
 #include <memory>
+#include <string>
+#include <vector>
 
 class CameraController;
+class System;
 
 // Panel for observer/screensaver mode - watches the universe simulate itself.
 class ObserverPanel : public Panel {
 public:
-	// Create an observer panel for a random system.
-	ObserverPanel();
+	// Create an observer panel. If startSystem is provided, starts there;
+	// otherwise uses persistent state or picks a random system.
+	ObserverPanel(const System *startSystem = nullptr);
 
 	void Step() override;
 	void Draw() override;
@@ -45,10 +50,13 @@ public:
 
 private:
 	void CycleCamera();
-	void InitializeSystem();
+	void InitializeSystem(const System *startSystem);
 	void SwitchToNewSystem();
+	void SwitchToPreviousSystem();
 	void CycleSpeed();
 	std::string GetSpeedText() const;
+	void DrawGraph() const;
+	void UpdateGraphData();
 
 
 private:
@@ -82,4 +90,23 @@ private:
 	// Auto-save timer
 	int saveTimer = 0;
 	static const int SAVE_INTERVAL = 60 * 60 * 5;  // 5 minutes at 60 FPS
+
+	// System history for P key navigation (most recent at back)
+	std::deque<const System *> systemHistory;
+	static const int MAX_SYSTEM_HISTORY = 10;
+
+	// Graph data for destroyed/disabled ships over time
+	std::vector<int> destroyGraph;  // Destroyed ships per interval
+	std::vector<int> disableGraph;  // Disabled ships per interval
+	int graphTimer = 0;
+	int graphDestroys = 0;  // Destroys since last graph update
+	int graphDisables = 0;  // Disables since last graph update
+	static const int GRAPH_UPDATE_INTERVAL = 60 * 5;  // Update every 5 seconds
+	static const int GRAPH_MAX_POINTS = 60;  // Keep last 5 minutes of data
+
+	// Persistent state across observer mode sessions
+	static const System *lastSystem;
+	static int persistentDestroys;
+	static int persistentDisables;
+	static int persistentSessionTime;
 };

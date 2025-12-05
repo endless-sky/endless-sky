@@ -35,18 +35,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "opengl.h"
 
+#include <algorithm>
 #include <vector>
 
 using namespace std;
 
+// Static member definitions for persistent state
+const System *ObserverPanel::lastSystem = nullptr;
+int ObserverPanel::persistentDestroys = 0;
+int ObserverPanel::persistentDisables = 0;
+int ObserverPanel::persistentSessionTime = 0;
 
 
-ObserverPanel::ObserverPanel()
+
+ObserverPanel::ObserverPanel(const System *startSystem)
 	: player(), engine(player)
 {
 	SetIsFullScreen(true);
 
-	InitializeSystem();
+	// Restore persistent state from previous session
+	totalDestroys = persistentDestroys;
+	totalDisables = persistentDisables;
+	sessionTimer = persistentSessionTime;
+
+	InitializeSystem(startSystem);
 
 	// Start with follow ship camera
 	cameraController = make_unique<FollowShipCamera>();
@@ -55,29 +67,38 @@ ObserverPanel::ObserverPanel()
 
 
 
-void ObserverPanel::InitializeSystem()
+void ObserverPanel::InitializeSystem(const System *startSystem)
 {
-	// Pick a random inhabited system with fleets
-	vector<const System *> candidates;
-	for(const auto &it : GameData::Systems())
-	{
-		const System &system = it.second;
-		if(system.IsValid() && !system.Fleets().empty() && system.IsInhabited(nullptr))
-			candidates.push_back(&system);
-	}
-
 	const System *system = nullptr;
-	if(!candidates.empty())
-		system = candidates[Random::Int(candidates.size())];
+
+	// Priority: 1) explicit startSystem, 2) persistent lastSystem, 3) random
+	if(startSystem)
+		system = startSystem;
+	else if(lastSystem)
+		system = lastSystem;
 	else
 	{
-		// Fallback: any valid system
+		// Pick a random inhabited system with fleets
+		vector<const System *> candidates;
 		for(const auto &it : GameData::Systems())
-			if(it.second.IsValid())
-			{
-				system = &it.second;
-				break;
-			}
+		{
+			const System &sys = it.second;
+			if(sys.IsValid() && !sys.Fleets().empty() && sys.IsInhabited(nullptr))
+				candidates.push_back(&sys);
+		}
+
+		if(!candidates.empty())
+			system = candidates[Random::Int(candidates.size())];
+		else
+		{
+			// Fallback: any valid system
+			for(const auto &it : GameData::Systems())
+				if(it.second.IsValid())
+				{
+					system = &it.second;
+					break;
+				}
+		}
 	}
 
 	if(system)
@@ -85,6 +106,9 @@ void ObserverPanel::InitializeSystem()
 		// Initialize the player as an observer in this system
 		player.NewObserver(system);
 		engine.EnterSystem();
+
+		// Save as last system for persistence
+		lastSystem = system;
 
 		Messages::Add({"Observing the " + system->DisplayName() + " system.",
 			GameData::MessageCategories().Get("info")});
@@ -95,26 +119,43 @@ void ObserverPanel::InitializeSystem()
 
 void ObserverPanel::Step()
 {
-	// Handle free camera movement using SDL keyboard state
-	if(cameraMode == 2)  // Free camera
+	// Check for camera movement keys
+	const Uint8 *keyState = SDL_GetKeyboardState(nullptr);
+	double dx = 0.;
+	double dy = 0.;
+
+	if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_UP])
+		dy -= 1.;
+	if(keyState[SDL_SCANCODE_S] || keyState[SDL_SCANCODE_DOWN])
+		dy += 1.;
+	if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_LEFT])
+		dx -= 1.;
+	if(keyState[SDL_SCANCODE_D] || keyState[SDL_SCANCODE_RIGHT])
+		dx += 1.;
+
+	// Auto-switch to free camera if movement keys are pressed
+	if((dx != 0. || dy != 0.) && cameraMode != 2)
+	{
+		// Switch to free camera mode
+		Point currentPos = cameraController->GetTarget();
+		cameraMode = 2;
+		auto freeCam = make_unique<FreeCamera>();
+		freeCam->SetPosition(currentPos);
+		cameraController = std::move(freeCam);
+		engine.SetCameraController(cameraController.get());
+		if(player.GetSystem())
+			cameraController->SetStellarObjects(player.GetSystem()->Objects());
+	}
+
+	// Handle free camera movement
+	if(cameraMode == 2)
 	{
 		FreeCamera *freeCam = dynamic_cast<FreeCamera *>(cameraController.get());
 		if(freeCam)
 		{
-			const Uint8 *keyState = SDL_GetKeyboardState(nullptr);
-			double dx = 0.;
-			double dy = 0.;
-
-			if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_UP])
-				dy -= 1.;
-			if(keyState[SDL_SCANCODE_S] || keyState[SDL_SCANCODE_DOWN])
-				dy += 1.;
-			if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_LEFT])
-				dx -= 1.;
-			if(keyState[SDL_SCANCODE_D] || keyState[SDL_SCANCODE_RIGHT])
-				dx += 1.;
-
-			freeCam->SetMovement(dx, dy);
+			// Scale movement inversely with game speed so camera feels consistent
+			double speedScale = 1.0 / SPEED_LEVELS[speedLevel];
+			freeCam->SetMovement(dx * speedScale, dy * speedScale);
 		}
 	}
 
@@ -136,11 +177,13 @@ void ObserverPanel::Step()
 			{
 				recentActivity += 10;  // Big event
 				++totalDestroys;
+				++graphDestroys;
 			}
 			if(type & ShipEvent::DISABLE)
 			{
 				recentActivity += 5;
 				++totalDisables;
+				++graphDisables;
 			}
 			if(type & ShipEvent::PROVOKE)
 				recentActivity += 2;  // Combat starting
@@ -152,6 +195,9 @@ void ObserverPanel::Step()
 
 	// Update session timer
 	++sessionTimer;
+
+	// Update graph data periodically
+	UpdateGraphData();
 
 	// Update timers (account for speed multiplier - timers run at real-time, not game-time)
 	++systemTimer;
@@ -190,12 +236,42 @@ void ObserverPanel::Step()
 
 	engine.Go();
 
+	// Save persistent state
+	persistentDestroys = totalDestroys;
+	persistentDisables = totalDisables;
+	persistentSessionTime = sessionTimer;
+
 	// Auto-save periodically
 	++saveTimer;
 	if(saveTimer >= SAVE_INTERVAL)
 	{
 		saveTimer = 0;
 		player.Save();
+	}
+}
+
+
+
+void ObserverPanel::UpdateGraphData()
+{
+	++graphTimer;
+	if(graphTimer >= GRAPH_UPDATE_INTERVAL)
+	{
+		graphTimer = 0;
+
+		// Add current interval data
+		destroyGraph.push_back(graphDestroys);
+		disableGraph.push_back(graphDisables);
+
+		// Reset interval counters
+		graphDestroys = 0;
+		graphDisables = 0;
+
+		// Keep only the last N points
+		while(destroyGraph.size() > GRAPH_MAX_POINTS)
+			destroyGraph.erase(destroyGraph.begin());
+		while(disableGraph.size() > GRAPH_MAX_POINTS)
+			disableGraph.erase(disableGraph.begin());
 	}
 }
 
@@ -210,63 +286,50 @@ void ObserverPanel::Draw()
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &dim = *GameData::Colors().Get("dim");
-	const Color panelBg(0.08f, 0.08f, 0.08f, 0.85f);
+	const Color panelBg(0.05f, 0.05f, 0.05f, 0.6f);  // More transparent
 	const Color combatColor(0.9f, 0.3f, 0.2f, 1.f);
 	const Color activeColor(0.3f, 0.8f, 0.4f, 1.f);
-	const Color accentColor(0.7f, 0.55f, 0.2f, 1.f);
+	const Color graphDestroyColor(0.9f, 0.2f, 0.2f, 0.8f);
+	const Color graphDisableColor(0.9f, 0.7f, 0.2f, 0.8f);
 
 	const Font &font = FontSet::Get(14);
-	const Font &bigFont = FontSet::Get(18);
 
-	// ========== TOP-RIGHT: Status Panel ==========
-	// Panel dimensions
-	const double panelWidth = 200.;
-	const double panelPadding = 12.;
-	const double lineHeight = 18.;
+	// ========== BOTTOM-RIGHT: Status Panel ==========
+	const double panelWidth = 220.;
+	const double panelPadding = 10.;
+	const double lineHeight = 16.;
+	const double graphHeight = 40.;
 
 	// Calculate panel height based on content
-	double panelHeight = panelPadding * 2 + lineHeight * 7;  // Title + 6 lines
+	// Title + Activity + Camera + Ships + Time + Graph + Legend
+	double panelHeight = panelPadding * 2 + lineHeight * 6 + graphHeight + 10.;
 
 	// Draw semi-transparent panel background
-	Point panelCenter = Screen::TopRight() + Point(-panelWidth / 2 - 10., panelHeight / 2 + 10.);
+	Point panelCenter = Screen::BottomRight() + Point(-panelWidth / 2 - 10., -panelHeight / 2 - 50.);
 	FillShader::Fill(panelCenter, Point(panelWidth, panelHeight), panelBg);
 
-	// Panel content position
-	Point pos = Screen::TopRight() + Point(-panelWidth - 10. + panelPadding, 10. + panelPadding);
+	// Panel content position (from top of panel)
+	Point pos = Screen::BottomRight() + Point(-panelWidth - 10. + panelPadding, -panelHeight - 50. + panelPadding);
 
-	// Title: OBSERVER MODE
-	bigFont.Draw("OBSERVER", pos, medium);
-	pos.Y() += lineHeight + 4.;
+	// Title
+	font.Draw("OBSERVER", pos, bright);
+	pos.Y() += lineHeight;
 
-	// System name
-	if(player.GetSystem())
-		font.Draw(player.GetSystem()->DisplayName(), pos, bright);
-	pos.Y() += lineHeight + 8.;
-
-	// Activity indicator (prominent)
-	// recentActivity is weighted: destroy=10, disable=5, provoke=2, board/capture=3
+	// Activity indicator
 	if(recentActivity >= 5)
-	{
-		font.Draw("COMBAT", pos, combatColor);
-	}
+		font.Draw("Status: COMBAT", pos, combatColor);
 	else if(recentActivity > 0 || quietTimer < 60 * 10)
-	{
-		font.Draw("Active", pos, activeColor);
-	}
+		font.Draw("Status: Active", pos, activeColor);
 	else
-	{
-		font.Draw("Quiet", pos, dim);
-	}
-	pos.Y() += lineHeight + 4.;
+		font.Draw("Status: Quiet", pos, dim);
+	pos.Y() += lineHeight;
 
-	// Stats: Ships | Destroyed | Disabled
+	// Camera mode
+	font.Draw("Camera: " + cameraController->ModeName(), pos, medium);
+	pos.Y() += lineHeight;
+
+	// Ship count
 	font.Draw("Ships: " + to_string(engine.ShipCount()), pos, medium);
-	pos.Y() += lineHeight;
-
-	font.Draw("Destroyed: " + to_string(totalDestroys), pos, medium);
-	pos.Y() += lineHeight;
-
-	font.Draw("Disabled: " + to_string(totalDisables), pos, medium);
 	pos.Y() += lineHeight;
 
 	// Session time
@@ -279,38 +342,78 @@ void ObserverPanel::Draw()
 		timeStr = to_string(hours) + ":" + (minutes < 10 ? "0" : "") + to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + to_string(seconds);
 	else
 		timeStr = to_string(minutes) + ":" + (seconds < 10 ? "0" : "") + to_string(seconds);
-	font.Draw("Time: " + timeStr, pos, dim);
+	font.Draw("Session: " + timeStr, pos, dim);
+	pos.Y() += lineHeight + 5.;
 
-	// ========== TOP-LEFT: Camera Info (below radar) ==========
-	// Position below the radar (radar is ~256px wide/tall centered at 128,128)
-	Point camPos = Screen::TopLeft() + Point(20., 270.);
+	// Draw the activity graph
+	double graphWidth = panelWidth - panelPadding * 2;
+	double graphX = Screen::BottomRight().X() - panelWidth - 10. + panelPadding;
+	double graphY = pos.Y();
 
-	// Camera mode
-	font.Draw(cameraController->ModeName(), camPos, medium);
-	camPos.Y() += lineHeight;
-
-	// Target name
-	string targetName = cameraController->TargetName();
-	if(!targetName.empty())
+	if(!destroyGraph.empty() || !disableGraph.empty())
 	{
-		font.Draw(targetName, camPos, bright);
-		camPos.Y() += lineHeight;
+		// Find max value for scaling
+		int maxVal = 1;
+		for(int v : destroyGraph)
+			maxVal = max(maxVal, v);
+		for(int v : disableGraph)
+			maxVal = max(maxVal, v);
+
+		// Draw graph bars
+		double barWidth = graphWidth / GRAPH_MAX_POINTS;
+		size_t numPoints = max(destroyGraph.size(), disableGraph.size());
+
+		for(size_t i = 0; i < numPoints; ++i)
+		{
+			double x = graphX + i * barWidth + barWidth / 2;
+
+			// Destroyed bars (red)
+			if(i < destroyGraph.size() && destroyGraph[i] > 0)
+			{
+				double h = (graphHeight - 2) * destroyGraph[i] / maxVal;
+				Point barCenter(x, graphY + graphHeight - h / 2 - 1);
+				FillShader::Fill(barCenter, Point(barWidth - 1, h), graphDestroyColor);
+			}
+
+			// Disabled bars (yellow, offset slightly)
+			if(i < disableGraph.size() && disableGraph[i] > 0)
+			{
+				double h = (graphHeight - 2) * disableGraph[i] / maxVal;
+				Point barCenter(x + barWidth * 0.3, graphY + graphHeight - h / 2 - 1);
+				FillShader::Fill(barCenter, Point(barWidth * 0.6 - 1, h), graphDisableColor);
+			}
+		}
 	}
 
-	// Speed indicator (show prominently if not 1x)
-	if(speedLevel > 0)
-	{
-		font.Draw(GetSpeedText(), camPos, accentColor);
-	}
+	// Graph legend below the graph (with matching colors)
+	pos.Y() = graphY + graphHeight + 3.;
+	font.Draw("Destroyed: " + to_string(totalDestroys), pos, graphDestroyColor);
+	double destroyedWidth = font.Width("Destroyed: " + to_string(totalDestroys));
+	Point disabledPos = pos + Point(destroyedWidth + 15., 0.);
+	font.Draw("Disabled: " + to_string(totalDisables), disabledPos, graphDisableColor);
 
-	// ========== BOTTOM-RIGHT: Controls Hint ==========
-	string hintText = "Tab: camera  |  Space: target  |  F: speed  |  N: system  |  A: auto";
-	if(!autoSwitchEnabled)
-		hintText += " (off)";
-	hintText += "  |  Esc: exit";
-	double hintWidth = font.Width(hintText);
-	Point hintPos = Screen::BottomRight() + Point(-hintWidth - 20., -25.);
-	font.Draw(hintText, hintPos, dim);
+	// ========== BOTTOM-RIGHT: Controls Hint (below panel) ==========
+	vector<string> hints = {
+		"Tab: switch camera  |  Space: cycle target  |  WASD: free camera",
+		"N: next system  |  P: previous system  |  A: auto-switch" + string(autoSwitchEnabled ? "" : " (off)"),
+		"F or 1-5: speed (1x/2x/3x/5x/10x)  |  +/-: zoom  |  Esc: exit"
+	};
+
+	double hintY = Screen::BottomRight().Y() - 15.;
+	for(auto it = hints.rbegin(); it != hints.rend(); ++it)
+	{
+		double hintWidth = font.Width(*it);
+		Point hintPos(Screen::BottomRight().X() - hintWidth - 20., hintY);
+		font.Draw(*it, hintPos, dim);
+		hintY -= lineHeight;
+	}
+}
+
+
+
+void ObserverPanel::DrawGraph() const
+{
+	// Graph drawing is now integrated into Draw()
 }
 
 
@@ -373,10 +476,17 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		return true;
 	}
 
-	// N for new system (manual switch)
+	// N for next system (manual switch)
 	if(key == 'n' || key == 'N')
 	{
 		SwitchToNewSystem();
+		return true;
+	}
+
+	// P for previous system
+	if(key == 'p' || key == 'P')
+	{
+		SwitchToPreviousSystem();
 		return true;
 	}
 
@@ -408,13 +518,26 @@ bool ObserverPanel::Scroll(double dx, double dy)
 
 void ObserverPanel::SwitchToNewSystem()
 {
+	// Save current system to history before switching
+	const System *currentSystem = player.GetSystem();
+	if(currentSystem)
+	{
+		// Add to history if not already the most recent
+		if(systemHistory.empty() || systemHistory.back() != currentSystem)
+		{
+			systemHistory.push_back(currentSystem);
+			// Limit history size
+			while(systemHistory.size() > MAX_SYSTEM_HISTORY)
+				systemHistory.pop_front();
+		}
+	}
+
 	// Reset timers
 	systemTimer = 0;
 	quietTimer = 0;
 	recentActivity = 0;
 
 	// Find a new random system (different from current if possible)
-	const System *currentSystem = player.GetSystem();
 	vector<const System *> candidates;
 	for(const auto &it : GameData::Systems())
 	{
@@ -437,6 +560,9 @@ void ObserverPanel::SwitchToNewSystem()
 	player.SetSystem(*newSystem);
 	engine.EnterSystem();
 
+	// Save as last system for persistence
+	lastSystem = newSystem;
+
 	// Reset camera to follow mode for new system
 	cameraMode = 0;
 	cameraController = make_unique<FollowShipCamera>();
@@ -445,6 +571,44 @@ void ObserverPanel::SwitchToNewSystem()
 		cameraController->SetStellarObjects(newSystem->Objects());
 
 	Messages::Add({"Now observing the " + newSystem->DisplayName() + " system.",
+		GameData::MessageCategories().Get("info")});
+}
+
+
+
+void ObserverPanel::SwitchToPreviousSystem()
+{
+	if(systemHistory.empty())
+	{
+		Messages::Add({"No previous system in history.",
+			GameData::MessageCategories().Get("info")});
+		return;
+	}
+
+	// Get the most recent system from history
+	const System *prevSystem = systemHistory.back();
+	systemHistory.pop_back();
+
+	// Reset timers
+	systemTimer = 0;
+	quietTimer = 0;
+	recentActivity = 0;
+
+	// Move to the previous system
+	player.SetSystem(*prevSystem);
+	engine.EnterSystem();
+
+	// Save as last system for persistence
+	lastSystem = prevSystem;
+
+	// Reset camera to follow mode for new system
+	cameraMode = 0;
+	cameraController = make_unique<FollowShipCamera>();
+	engine.SetCameraController(cameraController.get());
+	if(prevSystem)
+		cameraController->SetStellarObjects(prevSystem->Objects());
+
+	Messages::Add({"Returned to the " + prevSystem->DisplayName() + " system.",
 		GameData::MessageCategories().Get("info")});
 }
 
