@@ -32,3 +32,8 @@
 "Fleet: Toggle ammo usage" 117
 "Fleet: Harvest flotsam" 122
 "Mouse turning (hold)" 1073742050
+"Observer: Cycle camera" 9
+"Observer: Cycle target" 32
+"Observer: Next system" 110
+"Observer: Previous system" 98
+"Observer: Toggle auto-switch" 111

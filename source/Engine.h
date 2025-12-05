@@ -84,6 +84,8 @@ public:
 	void Go();
 	// Whether the player has the game paused.
 	bool IsPaused() const;
+	// Toggle pause state (for observer mode which has no flagship).
+	void TogglePause();
 
 	// Give a command on behalf of the player, used for integration tests.
 	void GiveCommand(const Command &command);

@@ -91,6 +91,12 @@ const Command Command::AUTOSTEER(ONE << 36, "Auto steer");
 const Command Command::WAIT(ONE << 37, "");
 const Command Command::STOP(ONE << 38, "Stop your ship");
 const Command Command::SHIFT(ONE << 39, "");
+// Observer mode commands.
+const Command Command::OBSERVER_NEXT_SYSTEM(ONE << 40, "Observer: Next system");
+const Command Command::OBSERVER_PREV_SYSTEM(ONE << 41, "Observer: Previous system");
+const Command Command::OBSERVER_AUTO_SWITCH(ONE << 42, "Observer: Toggle auto-switch");
+const Command Command::OBSERVER_CYCLE_CAMERA(ONE << 43, "Observer: Cycle camera");
+const Command Command::OBSERVER_CYCLE_TARGET(ONE << 44, "Observer: Cycle target");
 
 
 

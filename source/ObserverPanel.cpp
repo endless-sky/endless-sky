@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CameraController.h"
 #include "Color.h"
+#include "Command.h"
 #include "shader/FillShader.h"
 #include "FollowShipCamera.h"
 #include "FreeCamera.h"
@@ -63,6 +64,15 @@ ObserverPanel::ObserverPanel(const System *startSystem)
 	// Start with follow ship camera
 	cameraController = make_unique<FollowShipCamera>();
 	engine.SetCameraController(cameraController.get());
+}
+
+
+
+ObserverPanel::~ObserverPanel()
+{
+	// Wait for the engine's background thread to finish before destroying
+	// the camera controller, to avoid use-after-free.
+	engine.Wait();
 }
 
 
@@ -119,18 +129,20 @@ void ObserverPanel::InitializeSystem(const System *startSystem)
 
 void ObserverPanel::Step()
 {
-	// Check for camera movement keys
-	const Uint8 *keyState = SDL_GetKeyboardState(nullptr);
+	// Check for camera movement using game's directional commands
+	Command command;
+	command.ReadKeyboard();
+
 	double dx = 0.;
 	double dy = 0.;
 
-	if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_UP])
+	if(command.Has(Command::FORWARD))
 		dy -= 1.;
-	if(keyState[SDL_SCANCODE_S] || keyState[SDL_SCANCODE_DOWN])
+	if(command.Has(Command::BACK))
 		dy += 1.;
-	if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_LEFT])
+	if(command.Has(Command::LEFT))
 		dx -= 1.;
-	if(keyState[SDL_SCANCODE_D] || keyState[SDL_SCANCODE_RIGHT])
+	if(command.Has(Command::RIGHT))
 		dx += 1.;
 
 	// Auto-switch to free camera if movement keys are pressed
@@ -393,10 +405,19 @@ void ObserverPanel::Draw()
 	font.Draw("Disabled: " + to_string(totalDisables), disabledPos, graphDisableColor);
 
 	// ========== BOTTOM-RIGHT: Controls Hint (below panel) ==========
+	// Build hints using configurable key names
+	string cameraKey = Command::OBSERVER_CYCLE_CAMERA.KeyName();
+	string targetKey = Command::OBSERVER_CYCLE_TARGET.KeyName();
+	string nextKey = Command::OBSERVER_NEXT_SYSTEM.KeyName();
+	string prevKey = Command::OBSERVER_PREV_SYSTEM.KeyName();
+	string autoKey = Command::OBSERVER_AUTO_SWITCH.KeyName();
+
+	string pauseKey = Command::PAUSE.KeyName();
+
 	vector<string> hints = {
-		"Tab: switch camera  |  Space: cycle target  |  WASD: free camera",
-		"N: next system  |  P: previous system  |  A: auto-switch" + string(autoSwitchEnabled ? "" : " (off)"),
-		"F or 1-5: speed (1x/2x/3x/5x/10x)  |  +/-: zoom  |  Esc: exit"
+		cameraKey + ": camera  |  " + targetKey + ": target  |  Arrows: free camera",
+		nextKey + ": next system  |  " + prevKey + ": prev system  |  " + autoKey + ": auto" + string(autoSwitchEnabled ? "" : " (off)"),
+		pauseKey + ": pause  |  1-5: speed  |  +/-: zoom  |  Esc: exit"
 	};
 
 	double hintY = Screen::BottomRight().Y() - 15.;
@@ -426,13 +447,14 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		return true;
 	}
 
-	if(key == SDLK_TAB)
+	// Observer mode specific commands (configurable in Preferences)
+	if(command.Has(Command::OBSERVER_CYCLE_CAMERA))
 	{
 		CycleCamera();
 		return true;
 	}
 
-	if(key == ' ')
+	if(command.Has(Command::OBSERVER_CYCLE_TARGET))
 	{
 		// Select new target in current mode
 		if(cameraMode == 0)
@@ -450,6 +472,34 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		return true;
 	}
 
+	if(command.Has(Command::OBSERVER_NEXT_SYSTEM))
+	{
+		SwitchToNewSystem();
+		return true;
+	}
+
+	if(command.Has(Command::OBSERVER_PREV_SYSTEM))
+	{
+		SwitchToPreviousSystem();
+		return true;
+	}
+
+	if(command.Has(Command::OBSERVER_AUTO_SWITCH))
+	{
+		autoSwitchEnabled = !autoSwitchEnabled;
+		Messages::Add({autoSwitchEnabled ? "Auto-switching enabled." : "Auto-switching disabled.",
+			GameData::MessageCategories().Get("info")});
+		return true;
+	}
+
+	// Pause key - must be handled here since Engine's HandleKeyboardInputs
+	// requires a flagship which observer mode doesn't have.
+	if(command.Has(Command::PAUSE))
+	{
+		engine.TogglePause();
+		return true;
+	}
+
 	// Zoom controls (same as main game)
 	if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
 	{
@@ -462,40 +512,10 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		return true;
 	}
 
-	// Speed controls: F to cycle through speeds
-	if(key == 'f' || key == 'F')
-	{
-		CycleSpeed();
-		return true;
-	}
-
 	// Number keys 1-5 for direct speed selection
 	if(key >= '1' && key <= '5')
 	{
 		speedLevel = key - '1';
-		return true;
-	}
-
-	// N for next system (manual switch)
-	if(key == 'n' || key == 'N')
-	{
-		SwitchToNewSystem();
-		return true;
-	}
-
-	// P for previous system
-	if(key == 'p' || key == 'P')
-	{
-		SwitchToPreviousSystem();
-		return true;
-	}
-
-	// A to toggle auto-switching
-	if(key == 'a' || key == 'A')
-	{
-		autoSwitchEnabled = !autoSwitchEnabled;
-		Messages::Add({autoSwitchEnabled ? "Auto-switching enabled." : "Auto-switching disabled.",
-			GameData::MessageCategories().Get("info")});
 		return true;
 	}
 
@@ -647,22 +667,10 @@ void ObserverPanel::CycleCamera()
 
 
 
-void ObserverPanel::CycleSpeed()
-{
-	speedLevel = (speedLevel + 1) % NUM_SPEED_LEVELS;
-}
-
-
-
-string ObserverPanel::GetSpeedText() const
-{
-	return to_string(SPEED_LEVELS[speedLevel]) + "x";
-}
-
-
-
 int ObserverPanel::GetSpeedMultiplier() const noexcept
 {
+	if(engine.IsPaused())
+		return 0;
 	return SPEED_LEVELS[speedLevel];
 }
 

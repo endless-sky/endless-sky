@@ -85,6 +85,12 @@ public:
 	// Modifier command, usually triggered by shift-key. Changes behavior of
 	// other commands like NEAREST, TARGET, HAIL and BOARD.
 	static const Command SHIFT;
+	// Observer mode commands:
+	static const Command OBSERVER_NEXT_SYSTEM;
+	static const Command OBSERVER_PREV_SYSTEM;
+	static const Command OBSERVER_AUTO_SWITCH;
+	static const Command OBSERVER_CYCLE_CAMERA;
+	static const Command OBSERVER_CYCLE_TARGET;
 
 
 public:

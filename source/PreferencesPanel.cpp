@@ -584,7 +584,9 @@ void PreferencesPanel::DrawControls()
 		"Targeting",
 		"Weapons",
 		"\n",
-		"Interface"
+		"Interface",
+		"\t",
+		"Observer Mode"
 	};
 	const string *category = CATEGORIES;
 	static const Command COMMANDS[] = {
@@ -630,7 +632,14 @@ void PreferencesPanel::DrawControls()
 		Command::FASTFORWARD,
 		Command::PAUSE,
 		Command::HELP,
-		Command::MESSAGE_LOG
+		Command::MESSAGE_LOG,
+		Command::NONE,
+		Command::NONE,
+		Command::OBSERVER_CYCLE_CAMERA,
+		Command::OBSERVER_CYCLE_TARGET,
+		Command::OBSERVER_NEXT_SYSTEM,
+		Command::OBSERVER_PREV_SYSTEM,
+		Command::OBSERVER_AUTO_SWITCH
 	};
 
 	int page = 0;

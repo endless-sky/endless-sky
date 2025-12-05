@@ -1215,6 +1215,18 @@ bool Engine::IsPaused() const
 
 
 
+// Toggle pause state (for observer mode which has no flagship).
+void Engine::TogglePause()
+{
+	timePaused = !timePaused;
+	if(timePaused)
+		Audio::Pause();
+	else
+		Audio::Resume();
+}
+
+
+
 // Give a command on behalf of the player, used for integration tests.
 void Engine::GiveCommand(const Command &command)
 {

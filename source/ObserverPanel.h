@@ -34,6 +34,7 @@ public:
 	// Create an observer panel. If startSystem is provided, starts there;
 	// otherwise uses persistent state or picks a random system.
 	ObserverPanel(const System *startSystem = nullptr);
+	~ObserverPanel();
 
 	void Step() override;
 	void Draw() override;
@@ -53,8 +54,6 @@ private:
 	void InitializeSystem(const System *startSystem);
 	void SwitchToNewSystem();
 	void SwitchToPreviousSystem();
-	void CycleSpeed();
-	std::string GetSpeedText() const;
 	void DrawGraph() const;
 	void UpdateGraphData();
 
@@ -66,7 +65,7 @@ private:
 	std::unique_ptr<CameraController> cameraController;
 	int cameraMode = 0;  // 0=follow, 1=orbit, 2=free
 
-	// Speed control: 0=1x, 1=2x, 2=3x, 3=5x, 4=10x
+	// Speed control: 1-5 keys for 1x, 2x, 3x, 5x, 10x
 	int speedLevel = 0;
 	static constexpr int SPEED_LEVELS[] = {1, 2, 3, 5, 10};
 	static constexpr int NUM_SPEED_LEVELS = 5;
