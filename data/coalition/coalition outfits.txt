@@ -484,7 +484,7 @@ outfit "Guardian Turret"
 	index 08025
 	licenses
 		Heliarch
-	cost 219000
+	cost 876000
 	thumbnail "outfit/guardian turret"
 	"mass" 1
 	"outfit space" -1
