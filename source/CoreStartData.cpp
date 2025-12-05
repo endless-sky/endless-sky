@@ -99,6 +99,16 @@ const string &CoreStartData::Identifier() const noexcept
 
 
 
+void CoreStartData::SetObserverMode(const System *newSystem, const Planet *newPlanet, const Date &newDate)
+{
+	system = newSystem;
+	planet = newPlanet;
+	date = newDate;
+	identifier = "observer";
+}
+
+
+
 bool CoreStartData::LoadChild(const DataNode &child, bool isAdd)
 {
 	const string &key = child.Token(isAdd ? 1 : 0);

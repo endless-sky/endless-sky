@@ -49,6 +49,9 @@ public:
 	// Get the internal identifier for this starting scenario.
 	const std::string &Identifier() const noexcept;
 
+	// Set up for observer mode (minimal initialization for saving)
+	void SetObserverMode(const System *system, const Planet *planet, const Date &date);
+
 
 protected:
 	// Returns true if the child node was handled by this class.

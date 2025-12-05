@@ -5100,7 +5100,7 @@ bool PlayerInfo::HasClearance() const
 
 
 
-void PlayerInfo::NewObserver(const System *system)
+void PlayerInfo::NewObserver(const System *newSystem)
 {
 	// Clear any previously loaded data - but don't modify global state
 	// We use a subset of what Clear() does.
@@ -5111,14 +5111,14 @@ void PlayerInfo::NewObserver(const System *system)
 	lastName = "Mode";
 
 	// Set location
-	this->system = system;
+	system = newSystem;
 	planet = nullptr;
 
 	// Must have a planet to save (CanBeSaved checks for planet)
 	// Pick first inhabited planet in system, or first planet
-	if(system)
+	if(newSystem)
 	{
-		for(const StellarObject &object : system->Objects())
+		for(const StellarObject &object : newSystem->Objects())
 		{
 			if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited())
 			{
@@ -5129,7 +5129,7 @@ void PlayerInfo::NewObserver(const System *system)
 		// Fallback: any planet
 		if(!planet)
 		{
-			for(const StellarObject &object : system->Objects())
+			for(const StellarObject &object : newSystem->Objects())
 			{
 				if(object.HasValidPlanet())
 				{
@@ -5146,6 +5146,9 @@ void PlayerInfo::NewObserver(const System *system)
 
 	// Give minimal credits so player can buy a ship when loading the save normally
 	accounts.AddCredits(1000000);
+
+	// Initialize startData for saving (CoreStartData::Save requires these)
+	startData.SetObserverMode(newSystem, planet, date);
 
 	// Register derived conditions for condition system
 	RegisterDerivedConditions();

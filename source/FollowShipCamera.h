@@ -42,9 +42,16 @@ public:
 
 
 private:
+	// Check if a ship is a valid target (in system, not jumping, targetable)
+	bool IsValidTarget(const std::shared_ptr<Ship> &ship) const;
+	// Check if current target is still valid to follow
+	bool HasValidTarget() const;
+
 	std::list<std::shared_ptr<Ship>> ships;
 	std::weak_ptr<Ship> target;
 	Point lastPosition;
 	Point lastVelocity;
+	// Cooldown to prevent rapid target switching
+	int switchCooldown = 0;
 	static const std::string name;
 };

@@ -216,6 +216,18 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 
 
+bool ObserverPanel::Scroll(double dx, double dy)
+{
+	if(dy < 0)
+		Preferences::ZoomViewOut();
+	else if(dy > 0)
+		Preferences::ZoomViewIn();
+
+	return true;
+}
+
+
+
 void ObserverPanel::CycleCamera()
 {
 	cameraMode = (cameraMode + 1) % 3;

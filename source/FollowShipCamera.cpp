@@ -31,11 +31,40 @@ FollowShipCamera::FollowShipCamera()
 
 
 
+// Check if the target ship is still valid to follow
+bool FollowShipCamera::HasValidTarget() const
+{
+	auto ship = target.lock();
+	if(!ship || !ship->GetSystem())
+		return false;
+	// Stop following if ship has entered hyperspace and moved too far
+	// (prevents camera from flying off into space)
+	if(ship->IsHyperspacing())
+	{
+		double distance = (ship->Center() - lastPosition).Length();
+		// If ship moved more than ~2000 pixels from last stable position, stop following
+		if(distance > 2000.)
+			return false;
+	}
+	return true;
+}
+
+
+
 Point FollowShipCamera::GetTarget() const
 {
 	auto ship = target.lock();
-	if(ship && ship->GetSystem() && !ship->IsHyperspacing() && !ship->IsEnteringHyperspace())
+	if(ship && ship->GetSystem())
+	{
+		// If ship is hyperspacing and too far away, use last stable position
+		if(ship->IsHyperspacing())
+		{
+			double distance = (ship->Center() - lastPosition).Length();
+			if(distance > 2000.)
+				return lastPosition;
+		}
 		return ship->Center();
+	}
 	return lastPosition;
 }
 
@@ -44,26 +73,51 @@ Point FollowShipCamera::GetTarget() const
 Point FollowShipCamera::GetVelocity() const
 {
 	auto ship = target.lock();
-	if(ship && ship->GetSystem() && !ship->IsHyperspacing() && !ship->IsEnteringHyperspace())
+	if(ship && ship->GetSystem())
+	{
+		// If ship is hyperspacing and too far, return zero velocity
+		if(ship->IsHyperspacing())
+		{
+			double distance = (ship->Center() - lastPosition).Length();
+			if(distance > 2000.)
+				return Point();
+		}
 		return ship->Velocity();
-	return lastVelocity;
+	}
+	// When no valid target, return zero velocity to stop camera drift
+	return Point();
 }
 
 
 
 void FollowShipCamera::Step()
 {
+	// Decrement cooldown
+	if(switchCooldown > 0)
+		--switchCooldown;
+
 	auto ship = target.lock();
-	// Check if ship is valid and not leaving the system (hyperspacing/jumping)
-	if(ship && ship->GetSystem() && !ship->IsHyperspacing() && !ship->IsEnteringHyperspace())
+
+	// Ship is still valid and in system
+	if(ship && ship->GetSystem())
 	{
-		lastPosition = ship->Center();
-		lastVelocity = ship->Velocity();
+		// Only update lastPosition when ship is not hyperspacing
+		// This keeps lastPosition as the "stable" position before jump
+		if(!ship->IsHyperspacing())
+		{
+			lastPosition = ship->Center();
+			lastVelocity = ship->Velocity();
+		}
+		return;
 	}
-	else if(!ships.empty())
+
+	// Ship is gone (jumped away or destroyed) - try to find a new one
+	// Use cooldown to prevent rapid switching when multiple ships jump at once
+	if(switchCooldown == 0)
 	{
-		// Target lost or jumping away, select a new one
 		SelectRandom();
+		// Set cooldown of ~1 second at 60fps
+		switchCooldown = 60;
 	}
 }
 
@@ -107,7 +161,7 @@ void FollowShipCamera::CycleTarget()
 
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 	{
-		if(foundCurrent && (*it)->IsTargetable())
+		if(foundCurrent && IsValidTarget(*it))
 		{
 			target = *it;
 			return;
@@ -116,10 +170,10 @@ void FollowShipCamera::CycleTarget()
 			foundCurrent = true;
 	}
 
-	// Wrap around to first targetable ship
+	// Wrap around to first valid ship
 	for(auto &ship : ships)
 	{
-		if(ship->IsTargetable())
+		if(IsValidTarget(ship))
 		{
 			target = ship;
 			return;
@@ -134,12 +188,32 @@ void FollowShipCamera::SelectRandom()
 	if(ships.empty())
 		return;
 
-	// Build list of targetable ships
-	vector<shared_ptr<Ship>> targetable;
+	// Build list of valid ships (targetable, in system, not jumping)
+	vector<shared_ptr<Ship>> candidates;
 	for(auto &ship : ships)
-		if(ship->IsTargetable())
-			targetable.push_back(ship);
+		if(IsValidTarget(ship))
+			candidates.push_back(ship);
 
-	if(!targetable.empty())
-		target = targetable[Random::Int(targetable.size())];
+	if(!candidates.empty())
+		target = candidates[Random::Int(candidates.size())];
+	// If no valid candidates, keep current target (even if invalid)
+	// to prevent rapid cycling. Camera will use lastPosition.
+}
+
+
+
+bool FollowShipCamera::IsValidTarget(const shared_ptr<Ship> &ship) const
+{
+	if(!ship)
+		return false;
+	// Must be targetable (visible, not cloaked, etc.)
+	if(!ship->IsTargetable())
+		return false;
+	// Must be in the system
+	if(!ship->GetSystem())
+		return false;
+	// Exclude ships that are entering hyperspace or already hyperspacing
+	if(ship->IsEnteringHyperspace() || ship->IsHyperspacing())
+		return false;
+	return true;
 }

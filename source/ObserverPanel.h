@@ -34,6 +34,7 @@ public:
 	void Draw() override;
 
 	bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+	bool Scroll(double dx, double dy) override;
 
 	// Allow fast-forward in observer mode.
 	bool AllowsFastForward() const noexcept override { return true; }
