@@ -469,9 +469,6 @@ void Dialog::Resize()
 
 	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
 	text->SetRect(textRect);
-
-	if(validateFun)
-		isOkDisabled = !validateFun(input);
 }
 
 
@@ -504,6 +501,9 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	text->SetText(message);
 	Resize();
 	AddChild(text);
+
+	if(validateFun)
+		isOkDisabled = !validateFun(input);
 }
 
 
