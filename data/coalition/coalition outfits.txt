@@ -480,7 +480,7 @@ outfit "Enforcer Riot Staff"
 
 outfit "Guardian Turret"
 	category "Hand to Hand"
-	series "H2H"
+	series "Fortifications"
 	index 08025
 	licenses
 		Heliarch
