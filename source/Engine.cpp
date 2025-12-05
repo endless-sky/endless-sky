@@ -766,25 +766,8 @@ void Engine::Step(bool isActive)
 		info.SetSprite("player sprite", observedShip->GetSprite(), shipFacingUnit,
 			observedShip->GetFrame(step), observedShip->GetSwizzle());
 
-		// Show observed ship's status in the player bars
-		info.SetBar("shields", observedShip->Shields());
-		info.SetBar("hull", observedShip->Hull(), 20.);
-		info.SetBar("disabled hull", min(observedShip->Hull(), observedShip->DisabledHull()), 20.);
-
-		// Show fuel/energy/heat for observed ship
-		double fuelCap = observedShip->Attributes().Get("fuel capacity");
-		if(fuelCap > 0.)
-		{
-			if(fuelCap <= MAX_FUEL_DISPLAY)
-				info.SetBar("fuel", observedShip->Fuel(), fuelCap * .01);
-			else
-				info.SetBar("fuel", observedShip->Fuel());
-		}
-		info.SetBar("energy", observedShip->Energy());
-		double heat = observedShip->Heat();
-		info.SetBar("heat", min(1., heat));
-		if(heat > 1.)
-			info.SetBar("overheat", min(1., heat - 1.));
+		// Show observed ship's status in the player bars (no overheat blink)
+		PopulateShipStatusBars(*observedShip, false);
 	}
 	else if(flagship && flagship->Hull())
 	{
@@ -794,38 +777,18 @@ void Engine::Step(bool isActive)
 
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step),
 			flagship->GetSwizzle());
+
+		// Have an alarm label flash up when enemy ships are in the system
+		if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
+			info.SetCondition("red alert");
+
+		// Show flagship's status bars (with overheat blink)
+		PopulateShipStatusBars(*flagship, true);
 	}
 
 	if(currentSystem)
 		info.SetString("location", currentSystem->DisplayName());
 	info.SetString("date", player.GetDate().ToString());
-
-	// Player-specific info (skip in observer mode)
-	if(!isObserver && flagship)
-	{
-		// Have an alarm label flash up when enemy ships are in the system
-		if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
-			info.SetCondition("red alert");
-		double fuelCap = flagship->Attributes().Get("fuel capacity");
-		// If the flagship has a large amount of fuel, display a solid bar.
-		// Otherwise, display a segment for every 100 units of fuel.
-		if(fuelCap <= MAX_FUEL_DISPLAY)
-			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
-		else
-			info.SetBar("fuel", flagship->Fuel());
-		info.SetBar("energy", flagship->Energy());
-		double heat = flagship->Heat();
-		info.SetBar("heat", min(1., heat));
-		// If heat is above 100%, draw a second overlaid bar to indicate the
-		// total heat level.
-		if(heat > 1.)
-			info.SetBar("overheat", min(1., heat - 1.));
-		if(flagship->IsOverheated() && (uiStep / 20) % 2)
-			info.SetBar("overheat blink", min(1., heat));
-		info.SetBar("shields", flagship->Shields());
-		info.SetBar("hull", flagship->Hull(), 20.);
-		info.SetBar("disabled hull", min(flagship->Hull(), flagship->DisabledHull()), 20.);
-	}
 
 	// Skip credits in observer mode
 	if(!isObserver)
@@ -947,123 +910,11 @@ void Engine::Step(bool isActive)
 
 			targetVector = target->Position() - camera.Center();
 
-			// In observer mode, show full target info (like a drone feed with perfect sensors)
+			// Populate target scan info: observer mode gets perfect sensors, flagship uses range-limited scanning
 			if(isObserver)
-			{
-				// Show all stats for the observed ship
-				info.SetCondition("target crew display");
-				info.SetString("target crew", to_string(target->Crew()));
-				info.SetCondition("target energy display");
-				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
-				info.SetString("target energy", to_string(energy));
-				info.SetCondition("target fuel display");
-				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
-				info.SetString("target fuel", to_string(fuel));
-				info.SetCondition("target thermal display");
-				int heat = round(100. * target->Heat());
-				info.SetString("target heat", to_string(heat) + "%");
-			}
-			else if(!flagship)
-			{
-				// No flagship and not observer - skip scan-dependent features
-			}
-			else
-			{
-			double targetRange = target->Position().Distance(flagship->Position());
-			// Finds the range of the scan collections.
-			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
-			double strategicRange = 100. * sqrt(flagship->Attributes().Get("strategic scan power"));
-			// Finds the range of the individual information types.
-			double crewScanRange = tacticalRange + 100. * sqrt(flagship->Attributes().Get("crew scan power"));
-			double fuelScanRange = tacticalRange + 100. * sqrt(flagship->Attributes().Get("fuel scan power"));
-			double energyScanRange = tacticalRange + 100. * sqrt(flagship->Attributes().Get("energy scan power"));
-			double thermalScanRange = tacticalRange + 100. * sqrt(flagship->Attributes().Get("thermal scan power"));
-			double maneuverScanRange = strategicRange + 100. * sqrt(flagship->Attributes().Get("maneuver scan power"));
-			double accelerationScanRange = strategicRange + 100. * sqrt(flagship->Attributes().Get("acceleration scan power"));
-			double velocityScanRange = strategicRange + 100. * sqrt(flagship->Attributes().Get("velocity scan power"));
-			double weaponScanRange = strategicRange + 100. * sqrt(flagship->Attributes().Get("weapon scan power"));
-			bool rangeFinder = flagship->Attributes().Get("range finder power") > 0.;
-
-			// Range information. If the player has any range finding,
-			// then calculate the range and store it. If they do not
-			// have strategic or weapon range info, use normal display.
-			// If they do, then use strategic range display.
-			if(tacticalRange || strategicRange || rangeFinder)
-			{
-				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
-				if(strategicRange)
-					info.SetCondition("strategic range display");
-				else
-					info.SetCondition("range display");
-			}
-			// Actual information requires a scrutable target
-			// that is within the relevant scanner range, unless the target
-			// is player owned, in which case information is available regardless
-			// of range and scrutability.
-			bool scrutable = !target->Attributes().Get("inscrutable");
-			if((targetRange <= crewScanRange && scrutable) || (crewScanRange && target->IsYours()))
-			{
-				info.SetString("target crew", to_string(target->Crew()));
-				if(accelerationScanRange || velocityScanRange)
-					info.SetCondition("mobility crew display");
-				else
-					info.SetCondition("target crew display");
-			}
-			if((targetRange <= energyScanRange && scrutable) || (energyScanRange && target->IsYours()))
-			{
-				info.SetCondition("target energy display");
-				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
-				info.SetString("target energy", to_string(energy));
-			}
-			if((targetRange <= fuelScanRange && scrutable) || (fuelScanRange && target->IsYours()))
-			{
-				info.SetCondition("target fuel display");
-				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
-				info.SetString("target fuel", to_string(fuel));
-			}
-			if((targetRange <= thermalScanRange && scrutable) || (thermalScanRange && target->IsYours()))
-			{
-				info.SetCondition("target thermal display");
-				int heat = round(100. * target->Heat());
-				info.SetString("target heat", to_string(heat) + "%");
-			}
-			if((targetRange <= weaponScanRange && scrutable) || (weaponScanRange && target->IsYours()))
-			{
-				info.SetCondition("target weapon range display");
-				int turretRange = round(target->GetAICache().TurretRange());
-				info.SetString("target turret", to_string(turretRange) + " ");
-				int gunRange = round(target->GetAICache().GunRange());
-				info.SetString("target gun", to_string(gunRange) + " ");
-			}
-			const bool mobilityScan = maneuverScanRange || velocityScanRange || accelerationScanRange;
-			if((targetRange <= crewScanRange && targetRange <= maneuverScanRange && scrutable)
-				|| (targetRange <= accelerationScanRange && scrutable)
-				|| (mobilityScan && crewScanRange && target->IsYours()))
-			{
-				info.SetCondition("turn while combined");
-				int turnRate = round(60 * target->TrueTurnRate());
-				info.SetString("target turnrate", to_string(turnRate) + " ");
-			}
-			else if((targetRange >= crewScanRange && targetRange <= maneuverScanRange && scrutable)
-				|| (maneuverScanRange && target->IsYours() && !tacticalRange && !crewScanRange))
-			{
-				info.SetCondition("turn while not combined");
-				int turnRate = round(60 * target->TrueTurnRate());
-				info.SetString("target turnrate", to_string(turnRate) + " ");
-			}
-			if((targetRange <= accelerationScanRange && scrutable) || (accelerationScanRange && target->IsYours()))
-			{
-				info.SetCondition("target velocity display");
-				int presentSpeed = round(60 * target->CurrentSpeed());
-				info.SetString("target velocity", to_string(presentSpeed) + " ");
-			}
-			if((targetRange <= velocityScanRange && scrutable) || (velocityScanRange && target->IsYours()))
-			{
-				info.SetCondition("target acceleration display");
-				int presentAcceleration = 3600 * target->TrueAcceleration();
-				info.SetString("target acceleration", to_string(presentAcceleration) + " ");
-			}
-			} // end else (flagship scan features)
+				PopulateTargetScanInfo(*target, true, nullptr);
+			else if(flagship)
+				PopulateTargetScanInfo(*target, false, flagship.get());
 		}
 	}
 	if(!Preferences::Has("Ship outlines in HUD"))
@@ -1572,6 +1423,158 @@ void Engine::SetHideInterface(bool hide)
 bool Engine::HideInterface() const
 {
 	return hideInterface;
+}
+
+
+
+void Engine::PopulateShipStatusBars(const Ship &ship, bool showOverheatBlink)
+{
+	// Status bars
+	info.SetBar("shields", ship.Shields());
+	info.SetBar("hull", ship.Hull(), 20.);
+	info.SetBar("disabled hull", min(ship.Hull(), ship.DisabledHull()), 20.);
+
+	// Fuel bar
+	double fuelCap = ship.Attributes().Get("fuel capacity");
+	if(fuelCap > 0.)
+	{
+		if(fuelCap <= MAX_FUEL_DISPLAY)
+			info.SetBar("fuel", ship.Fuel(), fuelCap * .01);
+		else
+			info.SetBar("fuel", ship.Fuel());
+	}
+
+	// Energy and heat
+	info.SetBar("energy", ship.Energy());
+	double heat = ship.Heat();
+	info.SetBar("heat", min(1., heat));
+	if(heat > 1.)
+		info.SetBar("overheat", min(1., heat - 1.));
+
+	// Overheat blink (flagship only)
+	if(showOverheatBlink && ship.IsOverheated() && (uiStep / 20) % 2)
+		info.SetBar("overheat blink", min(1., heat));
+}
+
+
+
+void Engine::PopulateTargetScanInfo(const Ship &target, bool perfectSensors, const Ship *scanner)
+{
+	if(perfectSensors)
+	{
+		// Observer mode: show everything
+		info.SetCondition("target crew display");
+		info.SetString("target crew", to_string(target.Crew()));
+		info.SetCondition("target energy display");
+		int energy = round(target.Energy() * target.Attributes().Get("energy capacity"));
+		info.SetString("target energy", to_string(energy));
+		info.SetCondition("target fuel display");
+		int fuel = round(target.Fuel() * target.Attributes().Get("fuel capacity"));
+		info.SetString("target fuel", to_string(fuel));
+		info.SetCondition("target thermal display");
+		int heat = round(100. * target.Heat());
+		info.SetString("target heat", to_string(heat) + "%");
+		return;
+	}
+
+	if(!scanner)
+		return;
+
+	// Range-limited scanning logic
+	double targetRange = target.Position().Distance(scanner->Position());
+	// Finds the range of the scan collections.
+	double tacticalRange = 100. * sqrt(scanner->Attributes().Get("tactical scan power"));
+	double strategicRange = 100. * sqrt(scanner->Attributes().Get("strategic scan power"));
+	// Finds the range of the individual information types.
+	double crewScanRange = tacticalRange + 100. * sqrt(scanner->Attributes().Get("crew scan power"));
+	double fuelScanRange = tacticalRange + 100. * sqrt(scanner->Attributes().Get("fuel scan power"));
+	double energyScanRange = tacticalRange + 100. * sqrt(scanner->Attributes().Get("energy scan power"));
+	double thermalScanRange = tacticalRange + 100. * sqrt(scanner->Attributes().Get("thermal scan power"));
+	double maneuverScanRange = strategicRange + 100. * sqrt(scanner->Attributes().Get("maneuver scan power"));
+	double accelerationScanRange = strategicRange + 100. * sqrt(scanner->Attributes().Get("acceleration scan power"));
+	double velocityScanRange = strategicRange + 100. * sqrt(scanner->Attributes().Get("velocity scan power"));
+	double weaponScanRange = strategicRange + 100. * sqrt(scanner->Attributes().Get("weapon scan power"));
+	bool rangeFinder = scanner->Attributes().Get("range finder power") > 0.;
+
+	// Range information. If the player has any range finding,
+	// then calculate the range and store it. If they do not
+	// have strategic or weapon range info, use normal display.
+	// If they do, then use strategic range display.
+	if(tacticalRange || strategicRange || rangeFinder)
+	{
+		info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
+		if(strategicRange)
+			info.SetCondition("strategic range display");
+		else
+			info.SetCondition("range display");
+	}
+	// Actual information requires a scrutable target
+	// that is within the relevant scanner range, unless the target
+	// is player owned, in which case information is available regardless
+	// of range and scrutability.
+	bool scrutable = !target.Attributes().Get("inscrutable");
+	if((targetRange <= crewScanRange && scrutable) || (crewScanRange && target.IsYours()))
+	{
+		info.SetString("target crew", to_string(target.Crew()));
+		if(accelerationScanRange || velocityScanRange)
+			info.SetCondition("mobility crew display");
+		else
+			info.SetCondition("target crew display");
+	}
+	if((targetRange <= energyScanRange && scrutable) || (energyScanRange && target.IsYours()))
+	{
+		info.SetCondition("target energy display");
+		int energy = round(target.Energy() * target.Attributes().Get("energy capacity"));
+		info.SetString("target energy", to_string(energy));
+	}
+	if((targetRange <= fuelScanRange && scrutable) || (fuelScanRange && target.IsYours()))
+	{
+		info.SetCondition("target fuel display");
+		int fuel = round(target.Fuel() * target.Attributes().Get("fuel capacity"));
+		info.SetString("target fuel", to_string(fuel));
+	}
+	if((targetRange <= thermalScanRange && scrutable) || (thermalScanRange && target.IsYours()))
+	{
+		info.SetCondition("target thermal display");
+		int heat = round(100. * target.Heat());
+		info.SetString("target heat", to_string(heat) + "%");
+	}
+	if((targetRange <= weaponScanRange && scrutable) || (weaponScanRange && target.IsYours()))
+	{
+		info.SetCondition("target weapon range display");
+		int turretRange = round(target.GetAICache().TurretRange());
+		info.SetString("target turret", to_string(turretRange) + " ");
+		int gunRange = round(target.GetAICache().GunRange());
+		info.SetString("target gun", to_string(gunRange) + " ");
+	}
+	const bool mobilityScan = maneuverScanRange || velocityScanRange || accelerationScanRange;
+	if((targetRange <= crewScanRange && targetRange <= maneuverScanRange && scrutable)
+		|| (targetRange <= accelerationScanRange && scrutable)
+		|| (mobilityScan && crewScanRange && target.IsYours()))
+	{
+		info.SetCondition("turn while combined");
+		int turnRate = round(60 * target.TrueTurnRate());
+		info.SetString("target turnrate", to_string(turnRate) + " ");
+	}
+	else if((targetRange >= crewScanRange && targetRange <= maneuverScanRange && scrutable)
+		|| (maneuverScanRange && target.IsYours() && !tacticalRange && !crewScanRange))
+	{
+		info.SetCondition("turn while not combined");
+		int turnRate = round(60 * target.TrueTurnRate());
+		info.SetString("target turnrate", to_string(turnRate) + " ");
+	}
+	if((targetRange <= accelerationScanRange && scrutable) || (accelerationScanRange && target.IsYours()))
+	{
+		info.SetCondition("target velocity display");
+		int presentSpeed = round(60 * target.CurrentSpeed());
+		info.SetString("target velocity", to_string(presentSpeed) + " ");
+	}
+	if((targetRange <= velocityScanRange && scrutable) || (velocityScanRange && target.IsYours()))
+	{
+		info.SetCondition("target acceleration display");
+		int presentAcceleration = 3600 * target.TrueAcceleration();
+		info.SetString("target acceleration", to_string(presentAcceleration) + " ");
+	}
 }
 
 

@@ -248,8 +248,8 @@ if(!isObserver && flagship)
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Code compiles: `cmake --build build`
-- [ ] Tests pass: `ctest --test-dir build`
+- [x] Code compiles: `cmake --build build`
+- [x] Tests pass: `ctest --test-dir build`
 - [ ] No new warnings with `-Wall -Wextra`
 
 #### Manual Verification:
@@ -262,7 +262,7 @@ if(!isObserver && flagship)
 
 ---
 
-## Phase 2: Unify main.cpp Speed Control
+## Phase 2: Unify main.cpp Speed Control (Already Implemented)
 
 ### Overview
 Replace the dual speed control system (legacy fast-forward + panel speed multiplier) with a single unified approach.
@@ -343,8 +343,8 @@ else if(effectiveSpeed > 1)
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Code compiles: `cmake --build build`
-- [ ] Tests pass: `ctest --test-dir build`
+- [x] Code compiles: `cmake --build build`
+- [x] Tests pass: `ctest --test-dir build`
 
 #### Manual Verification:
 - [ ] Observer mode speed controls (1-5 keys) work correctly
@@ -352,7 +352,7 @@ else if(effectiveSpeed > 1)
 - [ ] Speed indicator shows "3x" for normal fast-forward
 - [ ] Speed indicator shows correct value for observer speeds
 
-**Implementation Note**: Pause for manual verification.
+**Implementation Note**: This phase was already implemented in the existing codebase. Marking as complete.
 
 ---
 
@@ -523,8 +523,8 @@ bool ObserverPanel::Scroll(double dx, double dy)
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Code compiles: `cmake --build build`
-- [ ] Tests pass: `ctest --test-dir build`
+- [x] Code compiles: `cmake --build build`
+- [x] Tests pass: `ctest --test-dir build`
 
 #### Manual Verification:
 - [ ] Zoom keys (+/-/=) work in normal gameplay

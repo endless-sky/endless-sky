@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CameraController.h"
 #include "Color.h"
 #include "Command.h"
+#include "PanelUtils.h"
 #include "shader/FillShader.h"
 #include "FollowShipCamera.h"
 #include "FreeCamera.h"
@@ -528,16 +529,8 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 
 	// Zoom controls (same as main game)
-	if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
-	{
-		Preferences::ZoomViewOut();
+	if(PanelUtils::HandleZoomKey(key, command, false))
 		return true;
-	}
-	if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
-	{
-		Preferences::ZoomViewIn();
-		return true;
-	}
 
 	// Number keys 1-5 for direct speed selection
 	if(key >= '1' && key <= '5')
@@ -553,12 +546,7 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 bool ObserverPanel::Scroll(double dx, double dy)
 {
-	if(dy < 0)
-		Preferences::ZoomViewOut();
-	else if(dy > 0)
-		Preferences::ZoomViewIn();
-
-	return true;
+	return PanelUtils::HandleZoomScroll(dy);
 }
 
 

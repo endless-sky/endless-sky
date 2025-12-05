@@ -230,6 +230,11 @@ private:
 	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
 		Status::Type type, double cloak);
 
+	// Helper to populate HUD status bars for a ship (used for both flagship and observed ships).
+	void PopulateShipStatusBars(const Ship &ship, bool showOverheatBlink);
+	// Helper to populate target scanning info (observer gets "perfect sensors", flagship uses range-limited scanning).
+	void PopulateTargetScanInfo(const Ship &target, bool perfectSensors, const Ship *scanner);
+
 
 private:
 	PlayerInfo &player;

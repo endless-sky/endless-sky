@@ -230,6 +230,8 @@ target_sources(EndlessSkyLib PRIVATE
 	OutfitterPanel.h
 	Panel.cpp
 	Panel.h
+	PanelUtils.cpp
+	PanelUtils.h
 	Paragraphs.cpp
 	Paragraphs.h
 	Person.cpp
