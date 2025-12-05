@@ -1243,7 +1243,7 @@ void OutfitterPanel::DrawButtons()
 		Screen::Right() - SIDEBAR_WIDTH + 10,
 		Screen::Bottom() - ButtonPanelHeight() + 10);
 	font.Draw("You have:", creditsPoint, dim);
-	const string &credits = Format::CreditString(player.Accounts().Credits());
+	const string credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
 	// Draw the row for Fleet Cargo Space free.
