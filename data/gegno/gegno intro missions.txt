@@ -101,7 +101,7 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Investigate the Gegno ship.)`
 					goto investigate
-				`	(Resume your search of the surface.)`
+				`	(Resume my search of the surface.)`
 					goto resume
 			label investigate
 			`	You carefully land your ship nearby. Most of the faint radar signatures from earlier have disappeared out of range. Exiting your ship in an environment suit and your sidearm on hand, you walk towards the Gegno ship.`
@@ -592,7 +592,7 @@ mission "First Contact: Gegno Scin"
 				accept
 				
 			label "no thoughts"
-				`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.`
+			`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.`
 			choice
 				`	(Reach for my firearm.)`
 				`	(Raise my arms.)`
@@ -662,7 +662,7 @@ mission "First Contact: Gegno Scin"
 				launch
 			
 			label "silence"
-				`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.`
+			`	The Scin stares at you for an uncomfortable length of time, then sighs. They reach into their armor and pull out a small firearm, raising it at you.`
 			choice
 				`	(Reach for my firearm.)`
 				`	(Raise my arms.)`

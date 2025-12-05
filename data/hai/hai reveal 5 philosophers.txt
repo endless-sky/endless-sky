@@ -642,7 +642,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 					goto who
 				`	"This was a private conversation."`
 					goto private
-				`	(Draw your weapon.)`
+				`	(Draw my weapon.)`
 					goto die
 			label private
 			action
@@ -679,7 +679,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 				`	"The answer is no and this conversation is over."`
 				`	"Alright, let's go."`
 					accept
-				`	(Draw your weapon.)`
+				`	(Draw my weapon.)`
 					goto die
 			`	You can feel fists hit either side of your head, and you pass out. A while later, you wake up gagged with four men holding your arms and legs. They're walking, carrying you somewhere. Eventually, they reach your ship and let you down. It seems this was not an optional trip after all.`
 				accept

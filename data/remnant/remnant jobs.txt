@@ -122,6 +122,7 @@ mission "Remnant: Expanded Horizons Astral job"
 		not attributes "tangled shroud"
 		not attributes "twilight"
 		not attributes "outer limits"
+		not attributes "beyond patir"
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
 		random < 50

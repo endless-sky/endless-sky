@@ -2556,7 +2556,15 @@ mission "Remnant: Expanded Horizons Quarg 2"
 	npc "scan outfits"
 		government "Quarg"
 		personality staying uninterested target launching
-		fleet "Quarg"
+		fleet
+			names "quarg"
+			cargo 3
+			variant
+				"Quarg Lindwyrm"
+			variant
+				"Quarg Drake"
+			variant
+				"Quarg Wardragon"
 		dialog
 			`Dawn and her compatriots eagerly pore over the readouts as they come in, then ask if you could land again to compare their scans to ones taken on the ground.`
 
