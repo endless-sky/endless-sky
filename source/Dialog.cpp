@@ -90,20 +90,6 @@ namespace {
 
 
 
-// There can be up to three buttons. They will appear right-to-left.
-// Button 1 = OK / Accept
-// Button 2 = Cancel / Decline
-// Button 3 = Infrequently used, e.g.
-// [Random ] [Cancel] [ OK ]
-// [Discard] [Cancel] [ OK ]
-//
-// Dialogs can also accept text entry:
-// Text
-// [entry                         ]
-// [Button 3] [Button 2] [Button 1]
-
-
-
 Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, int activeButton)
 	: voidFun(okFunction)
 {
@@ -331,8 +317,8 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		}
 		else if(activeButton == 3)
 		{
-			// Do third button callback, if this returns true, also close the dialog.
-			if(buttonThree.buttonAction(input))
+			// Do third button callback. If this returns true, also close the dialog.
+			if(buttonThree.buttonAction && buttonThree.buttonAction(input))
 				GetUI()->Pop(this);
 		}
 		else
@@ -476,7 +462,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	this->canCancel = canCancel;
 	activeButton = 1;
 	isWide = false;
-	numButtons = canCancel ? !buttonThree.buttonLabel.empty() ? 3 : 2 : 1;
+	numButtons = canCancel ? (!buttonThree.buttonLabel.empty() ? 3 : 2) : 1;
 
 	if(buttonOne.buttonLabel.empty())
 		okText = isMission ? "Accept" : "OK";

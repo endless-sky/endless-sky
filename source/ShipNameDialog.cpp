@@ -24,6 +24,8 @@ using namespace std;
 
 bool ShipNameDialog::RandomName(const string &)
 {
+	// TODO: This always chooses human names, even for alien ships. Add a method
+	// of setting the phrase based off of ship and/or purchase location.
 	input = GameData::Phrases().Get("civilian")->Get();
 	// False means to keep the dialog box open.
 	return false;

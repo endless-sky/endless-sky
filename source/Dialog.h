@@ -73,19 +73,26 @@ namespace dialog {
 // only an "ok" button, or may also have a "cancel" button. If this dialog is
 // introducing a mission, the buttons are instead "accept" and "decline". A
 // callback function can be given to receive the player's response.
+// There can be up to three buttons. They will appear right-to-left.
+// Button 1 = OK / Accept
+// Button 2 = Cancel / Decline
+// Button 3 = Infrequently used, e.g.
+// [Random ] [Cancel] [ OK ]
+// [Discard] [Cancel] [ OK ]
+//
+// Dialogs can also accept text input:
+// Text
+// [input field                   ]
+// [Button 3] [Button 2] [Button 1]
 class Dialog : public Panel {
 public:
-	class FunctionButton
-	{
+	class FunctionButton {
 	public:
 		FunctionButton() = default;
-
 		~FunctionButton() = default;
 
 		template<class T>
-		FunctionButton(T *panel,
-			const std::string &buttonLabel,
-			SDL_Keycode buttonKey = '\0',
+		FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey = '\0',
 			bool (T::*buttonAction)(const std::string&) = nullptr);
 
 	public:
@@ -96,8 +103,8 @@ public:
 
 
 public:
-	// An OK / Cancel dialog where Cancel can be disabled. The activeButton == 1 lets
-	// you select whether "OK" (true) or "Cancel" (false) are selected as the default option.
+	// An OK / Cancel dialog where Cancel can be disabled. The activeButton lets
+	// you select whether "OK" (1) or "Cancel" (2) are selected as the default option.
 	Dialog(std::function<void()> okFunction, const std::string &message, Truncate truncate,
 		bool canCancel, int activeButton);
 	// Dialog that has no callback (information only). In this form, there is
@@ -140,13 +147,10 @@ public:
 	Dialog(T *t, void (T::*fun)(bool), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
-	// Three button context, must provide actions for button 1 and button 3, button 2 is cancel.
+	// Three button context. Must provide actions for button 1 and button 3. Button 2 is cancel.
 	template<class T>
-	Dialog(T *panel,
-		const std::string &text,
-		const std::string &initialValue,
-		Dialog::FunctionButton buttonOne,
-		Dialog::FunctionButton buttonThree,
+	Dialog(T *panel, const std::string &text, const std::string &initialValue,
+		Dialog::FunctionButton buttonOne, Dialog::FunctionButton buttonThree,
 		std::function<bool(const std::string &)> validate);
 
 	// Draw this panel.
@@ -218,13 +222,9 @@ protected:
 
 
 template<class T>
-Dialog::FunctionButton::FunctionButton(T *panel,
-	const std::string &buttonLabel,
-	SDL_Keycode buttonKey,
+Dialog::FunctionButton::FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
 	bool(T::*buttonAction)(const std::string &))
-	:
-	buttonLabel(buttonLabel),
-	buttonKey(buttonKey),
+	: buttonLabel(buttonLabel), buttonKey(buttonKey),
 	buttonAction(std::bind(buttonAction, panel, std::placeholders::_1))
 {
 }
@@ -297,18 +297,11 @@ Dialog::Dialog(T *t, void (T::*fun)(bool), const std::string &text, Truncate tru
 
 
 template<class T>
-Dialog::Dialog(T *panel,
-	const std::string &text,
-	const std::string &initialValue,
-	Dialog::FunctionButton buttonOne,
-	Dialog::FunctionButton buttonThree,
+Dialog::Dialog(T *panel, const std::string &text, const std::string &initialValue,
+	Dialog::FunctionButton buttonOne, Dialog::FunctionButton buttonThree,
 	std::function<bool(const std::string &)> validate)
-	:
-	validateFun(std::move(validate)),
-	canCancel(true),
-	input(initialValue),
-	buttonOne(buttonOne),
-	buttonThree(buttonThree)
+	: validateFun(std::move(validate)), canCancel(true), input(initialValue),
+	buttonOne(buttonOne), buttonThree(buttonThree)
 {
 	Init(text, Truncate::NONE);
 }
