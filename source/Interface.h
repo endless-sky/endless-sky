@@ -292,7 +292,7 @@ private:
 		InfoTag::Direction facing = InfoTag::Direction::SOUTH;
 		float borderWidth = 1.f;
 		float earLength = 15.f;
-		bool shrink = false;
+		bool shrink = true;
 
 		const Color *backColor = nullptr;
 		const Color *fontColor = nullptr;

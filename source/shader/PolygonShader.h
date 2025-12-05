@@ -29,4 +29,6 @@ public:
 	static void Init();
 	static void Draw(const std::vector<Point> &polygon, const Color &insideColor, const Color &borderColor,
 		double borderWidth = 1.);
+	static void Draw(const std::vector<Point> &polygon, const Color &insideColor, const Color &borderColor1,
+	    const Color &borderColor2, double borderWidth = 1.);
 };

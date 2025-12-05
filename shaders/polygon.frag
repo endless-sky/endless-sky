@@ -21,7 +21,8 @@ precision mediump int;
 uniform int numSides;
 uniform vec2[N] polygon;
 uniform vec4 insideColor;
-uniform vec4 borderColor;
+uniform vec4 borderColor1;
+uniform vec4 borderColor2;
 uniform float borderWidth;
 
 in vec2 pos;
@@ -53,6 +54,10 @@ void main()
 {
 	float d = sdPolygon(pos, polygon, numSides);
 
-	// color if outside (transparent), else inside, mixed with border
+	float A = 9.5;
+	float B = -1.5;
+	float theta = 0.3;
+	vec4 borderColor = mix(borderColor1, borderColor2, sin((A * (pos.x * cos(theta) - pos.y * sin(theta)) + B)));
+	// color if outside: (transparent), else inside, mixed with border
 	finalColor = mix(d > 0. ? vec4(0) : insideColor, borderColor, 1. - smoothstep(0., 1.3 * borderWidth, abs(d)));
 }

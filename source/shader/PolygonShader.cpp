@@ -31,7 +31,8 @@ namespace {
 	const Shader *shader;
 	GLint scaleI;
 	GLint insideColorI;
-	GLint borderColorI;
+	GLint borderColor1I;
+	GLint borderColor2I;
 	GLint borderWidthI;
 	GLint numSidesI;
 	GLint polygonI;
@@ -49,7 +50,8 @@ void PolygonShader::Init()
 		throw std::runtime_error("Could not find polygon shader!");
 
 	insideColorI = shader->Uniform("insideColor");
-	borderColorI = shader->Uniform("borderColor");
+	borderColor1I = shader->Uniform("borderColor1");
+	borderColor2I = shader->Uniform("borderColor2");
 	borderWidthI = shader->Uniform("borderWidth");
 	numSidesI = shader->Uniform("numSides");
 	polygonI = shader->Uniform("polygon");
@@ -79,8 +81,17 @@ void PolygonShader::Init()
 
 
 
-void PolygonShader::Draw(const vector<Point> &polygon, const Color &insideColor, const Color &borderColor,
-	double borderWidth)
+void PolygonShader::Draw(const vector<Point> &polygon, const Color &insideColor,
+	const Color &borderColor, double borderWidth)
+{
+	// Solid border color (for backwards compat for now)
+	Draw(polygon, insideColor, borderColor, borderColor, borderWidth);
+}
+
+
+
+void PolygonShader::Draw(const vector<Point> &polygon, const Color &insideColor,
+	const Color &borderColor1, const Color &borderColor2, double borderWidth)
 {
 	if(!shader || !shader->Object())
 		throw runtime_error("PolygonShader: Draw() called before Init().");
@@ -106,7 +117,9 @@ void PolygonShader::Draw(const vector<Point> &polygon, const Color &insideColor,
 	glUniform1f(borderWidthI, borderWidth);
 
 	glUniform4fv(insideColorI, 1, insideColor.Get());
-	glUniform4fv(borderColorI, 1, borderColor.Opaque().Get());
+
+	glUniform4fv(borderColor1I, 1, borderColor1.Opaque().Get());
+	glUniform4fv(borderColor2I, 1, borderColor2.Opaque().Get());
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

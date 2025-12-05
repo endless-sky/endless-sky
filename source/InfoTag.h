@@ -16,9 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "text/Alignment.h"
+#include "Rectangle.h"
 #include "text/WrappedText.h"
 
 #include <string>
+#include <vector>
 
 class Color;
 class Point;
@@ -46,36 +48,53 @@ public:
 
 
 public:
-	InfoTag(int width, Alignment alignment, Direction facing, Affinity affinity,
-		const Color *backColor, const Color *fontColor, const Color *borderColor,
-		double earLength = 10, double border = 1);
+	explicit InfoTag() = default;
+
+	void Init(Point anchor, std::string text, double width, Alignment alignment, Direction facing, Affinity affinity,
+	          const Color *backColor = nullptr, const Color *fontColor = nullptr, const Color *borderColor = nullptr,
+	          bool shrink = true, double earLength = 15, double border = 1);
+	// void Init(int width, Alignment alignment, Direction facing, Affinity affinity,
+	// 	const Color *backColor, const Color *fontColor, const Color *borderColor,
+	// 	double earLength = 10, double border = 1);
 
 	void SetAnchor(const Point &anchor);
-	void SetText(const std::string &newText, bool shrink = false);
-	bool HasText() const;
-	void Clear();
-
-	void SetBackgroundColor(const Color *backColor);
-	void SetFontColor(const Color *fontColor);
-
 	void Draw() const;
-	static void Draw(Point anchor, std::string text, int width, Alignment alignment,
-		Direction facing, Affinity affinity,
-		const Color *backColor = nullptr, const Color *fontColor = nullptr, const Color *borderColor = nullptr,
-		bool shrink = true, double earLength = 10, double border = 1);
 
 
 private:
-	int width;
+	void Recalculate();
+	void SetText(const std::string &newText, bool shrink);
+	void SetText(const std::string &newText);
+	bool HasText() const;
+	void Clear();
+
+	void SetBackgroundColor(const Color *backColor, const Color *backColor2 = nullptr);
+	void SetFontColor(const Color *fontColor);
+
+
+private:
+	// Original, standard, box has ears at 90 deg at corners or center.
 	Direction facing;
 	Affinity affinity;
-	double earLength;
-	double border;
+	double earLength = 15.;
+
+	// Common parameters.
+	Point anchor;
+	WrappedText wrap;
+	bool shrink;
+
+	double earWidth = 7.;
+	double borderWidth = 1.;
 
 	const Color *backColor;
+	const Color *backColor2;
 	const Color *fontColor;
 	const Color *borderColor;
+	const Color *borderColor2;
 
-	Point anchor;
-	WrappedText text;
+	Rectangle box;
+	std::vector<Point> points;
+
+	// TODO: consider adding an element (e.g. interface element) and an offset (Point(x, y))
+	// string element, Point offset
 };

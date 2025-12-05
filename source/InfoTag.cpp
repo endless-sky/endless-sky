@@ -26,13 +26,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	WrappedText wrap;
-
-	// Default border color
+	// Default border color.
 	const Color white(1.f, 1.f, 1.f, 1.f);
 
-	pair<Rectangle, vector<Point>> CreateBox(const Point &anchor, const Point &boxSize,
-		InfoTag::Direction facing, InfoTag::Affinity affinity, const double &earLength)
+	pair<Rectangle, vector<Point>> CreateBoxAndPoints(const Point &anchor, const Point &boxSize,
+		InfoTag::Direction facing, InfoTag::Affinity affinity, double earLength, double earWidth)
 	{
 		// Starting with a box that is down and to the right from the anchor.
 		Rectangle box = Rectangle::FromCorner(anchor, boxSize);
@@ -40,7 +38,6 @@ namespace {
 		// The points vector will always start at and end at the anchor, but not include the anchor for that reason.
 		vector<Point> points;
 
-		double earWidth = 7.;
 		Point ccw_offset;
 		Point cw_offset;
 		Point center_offset;
@@ -93,7 +90,7 @@ namespace {
 		else
 			box += center_offset;
 
-		// Collect the points that will be used to draw the border:
+		// Collect the points that will be used to draw the borderWidth:
 		points.emplace_back(anchor + leg1_rel);
 		if(facing == InfoTag::Direction::NORTH)
 		{
@@ -148,12 +145,12 @@ namespace {
 	// Determine where this InfoTag should be positioned. Account for whether the
 	// specified settings would generate a InfoTag that goes off-screen, and create
 	// an adjusted InfoTag position if this occurs.
-	pair<Rectangle, vector<Point>> PositionBox(const Point &anchor, const Point &boxSize,
-		InfoTag::Direction facing, InfoTag::Affinity affinity, const double &earLength)
+	pair<Rectangle, vector<Point>> PositionBoxAndPoints(const Point &anchor, const Point &boxSize,
+		InfoTag::Direction facing, InfoTag::Affinity affinity, double earLength, double earWidth)
 	{
 		// Generate a InfoTag box from the given parameters.
-		pair boxPoints = CreateBox(anchor, boxSize, facing, affinity, earLength);
-		Rectangle box = boxPoints.first;
+		pair boxAndPoints = CreateBoxAndPoints(anchor, boxSize, facing, affinity, earLength, earWidth);
+		Rectangle box = boxAndPoints.first;
 
 		// If the InfoTag goes off one of the edges of the screen, swap the draw
 		// direction to go the other way and/or swap the affinity of the ear so the
@@ -208,22 +205,39 @@ namespace {
 		// a different draw location. Don't bother checking if this second box
 		// fits on screen, because if it doesn't, that means that the screen
 		// is simply too small to fit this box.
-		return onScreen ? boxPoints : CreateBox(anchor, boxSize, facing, affinity, earLength);
+		return onScreen ? boxAndPoints : CreateBoxAndPoints(anchor, boxSize, facing, affinity, earLength, earWidth);
 	}
+
+	// vector<Point> CalculateCenteredCallout(const Rectangle &box, const Point &anchor, double earWidth = 7.)
+	// {
+	// }
 }
 
 
 
-InfoTag::InfoTag(int width, Alignment alignment, Direction facing, Affinity affinity,
-		const Color *backColor, const Color *fontColor, const Color *borderColor,
-		double earLength, double border)
-	: width(width), facing(facing), affinity(affinity), earLength(earLength), border(border),
-		backColor(backColor), fontColor(fontColor), borderColor(borderColor)
+void InfoTag::Init(Point anchor, string text, double width, Alignment alignment, Direction facing, Affinity affinity,
+                   const Color *backColor, const Color *fontColor, const Color *borderColor, bool shrink, double earLength,
+                   double borderWidth)
 {
-	text.SetFont(FontSet::Get(14));
+	this->anchor = anchor;
+	this->box = {{0, 0}, {width, 0}};
+	this->facing = facing;
+	this->affinity = affinity;
+	this->earLength = earLength;
+	this->borderWidth = borderWidth;
+	this->backColor = backColor;
+	this->backColor2 = backColor;
+	this->fontColor = fontColor;
+	this->borderColor = borderColor;
+	this->borderColor2 = borderColor;
+	this->shrink = shrink;
+
+	this->wrap.SetFont(FontSet::Get(14));
 	// 10 pixels of padding will be left on either side of the InfoTag box.
-	text.SetWrapWidth(width - 20);
-	text.SetAlignment(alignment);
+	this->wrap.SetAlignment(alignment);
+	SetText(text, shrink);
+
+	Recalculate();
 }
 
 
@@ -235,20 +249,47 @@ void InfoTag::SetAnchor(const Point &anchor)
 
 
 
+void InfoTag::Draw() const
+{
+	PolygonShader::Draw(points, *backColor, *borderColor, *borderColor2, borderWidth);
+	wrap.Draw(box.TopLeft() + Point(10., 10.), *fontColor);
+}
+
+
+
+void InfoTag::Recalculate() {
+	// Determine the InfoTag's size and location.
+	Point textSize(wrap.WrapWidth(), wrap.Height(false));
+	pair boxAndPoints = PositionBoxAndPoints(anchor, textSize + Point(20., 20.), facing, affinity, earLength, earWidth);
+	box = boxAndPoints.first;
+	points = boxAndPoints.second;
+	points.emplace_back(anchor);
+}
+
+
+
 void InfoTag::SetText(const string &newText, bool shrink)
+{
+	this->shrink = shrink;
+	SetText(newText);
+}
+
+
+
+void InfoTag::SetText(const string &newText)
 {
 	// Reset the wrap width each time we set text in case the WrappedText
 	// was previously shrunk to the size of the text.
-	text.SetWrapWidth(width - 20);
-	text.Wrap(newText);
+	wrap.SetWrapWidth(box.Width() - 20);
+	wrap.Wrap(newText);
 	if(shrink)
 	{
 		// Shrink the InfoTag width to fit the length of the text.
-		int longest = text.LongestLineWidth();
-		if(longest < text.WrapWidth())
+		int longest = wrap.LongestLineWidth();
+		if(longest < wrap.WrapWidth())
 		{
-			text.SetWrapWidth(longest);
-			text.Wrap(newText);
+			wrap.SetWrapWidth(longest);
+			wrap.Wrap(newText);
 		}
 	}
 }
@@ -257,21 +298,25 @@ void InfoTag::SetText(const string &newText, bool shrink)
 
 bool InfoTag::HasText() const
 {
-	return text.Height();
+	return wrap.Height();
 }
 
 
 
 void InfoTag::Clear()
 {
-	text.Wrap("");
+	wrap.Wrap("");
 }
 
 
 
-void InfoTag::SetBackgroundColor(const Color *backColor)
+void InfoTag::SetBackgroundColor(const Color *backColor, const Color *backColor2)
 {
 	this->backColor = backColor;
+	if(backColor2)
+		this->backColor2 = backColor2;
+	else
+		this->backColor2 = backColor;
 }
 
 
@@ -279,67 +324,4 @@ void InfoTag::SetBackgroundColor(const Color *backColor)
 void InfoTag::SetFontColor(const Color *fontColor)
 {
 	this->fontColor = fontColor;
-}
-
-
-
-void InfoTag::Draw() const
-{
-	// Determine the InfoTag's size and location.
-	Point textSize(text.WrapWidth(), text.Height(false));
-	Point boxSize = textSize + Point(20., 20.);
-
-	pair boxPoints = PositionBox(anchor, boxSize, facing, affinity, earLength);
-	Rectangle box = boxPoints.first;
-	vector<Point> points = boxPoints.second;
-
-	points.emplace_back(anchor);
-	PolygonShader::Draw(points, *backColor, *borderColor, border);
-	text.Draw(box.TopLeft() + Point(10., 10.), *fontColor);
-}
-
-
-
-void InfoTag::Draw(Point anchor, std::string text, int width, Alignment alignment, Direction facing, Affinity affinity,
-	const Color *backColor, const Color *fontColor, const Color *borderColor,
-	bool shrink, double earLength, double border)
-{
-	wrap.SetFont(FontSet::Get(14));
-	// 10 pixels of padding will be left on either side of the InfoTag box.
-	wrap.SetWrapWidth(width - 20);
-	wrap.SetAlignment(alignment);
-	wrap.Wrap(text);
-
-	// Shrink the InfoTag width to fit the length of the text.
-	if(shrink)
-	{
-		int longest = wrap.LongestLineWidth();
-		if(longest < wrap.WrapWidth())
-		{
-			wrap.SetWrapWidth(longest);
-			wrap.Wrap(text);
-		}
-	}
-
-	// Determine the InfoTag's size and location.
-	Point textSize(wrap.WrapWidth(), wrap.Height(false));
-	Point boxSize = textSize + Point(20., 20.);
-
-	pair boxPoints = PositionBox(anchor, boxSize, facing, affinity, earLength);
-	Rectangle box = boxPoints.first;
-	vector<Point> points = boxPoints.second;
-
-	// Handle default colors
-	if(!backColor)
-		backColor = GameData::Colors().Get("tooltip background");
-	if(!fontColor)
-		fontColor = GameData::Colors().Get("medium");
-	if(!borderColor)
-	{
-		borderColor = &white;
-	}
-
-	points.emplace_back(anchor);
-	PolygonShader::Draw(points, *backColor, *borderColor, border);
-	wrap.Draw(box.TopLeft() + Point(10., 10.), *fontColor);
 }
