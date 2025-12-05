@@ -1337,6 +1337,10 @@ void Engine::Draw() const
 	if(flash)
 		FillShader::Fill(Point(), Screen::Dimensions(), Color(flash, flash));
 
+	// Skip all interface elements if hidden (for clean screenshot mode)
+	if(hideInterface)
+		return;
+
 	// Draw messages. Draw the most recent messages first, as some messages
 	// may be wrapped onto multiple lines.
 	const Font &font = FontSet::Get(14);
@@ -1554,6 +1558,20 @@ bool Engine::IsObserverMode() const
 size_t Engine::ShipCount() const
 {
 	return ships.size();
+}
+
+
+
+void Engine::SetHideInterface(bool hide)
+{
+	hideInterface = hide;
+}
+
+
+
+bool Engine::HideInterface() const
+{
+	return hideInterface;
 }
 
 

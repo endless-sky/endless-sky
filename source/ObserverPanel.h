@@ -103,6 +103,9 @@ private:
 	static const int GRAPH_UPDATE_INTERVAL = 60 * 5;  // Update every 5 seconds
 	static const int GRAPH_MAX_POINTS = 60;  // Keep last 5 minutes of data
 
+	// HUD visibility toggle (H key for clean screenshots)
+	bool showHUD = true;
+
 	// Persistent state across observer mode sessions
 	static const System *lastSystem;
 	static int persistentDestroys;

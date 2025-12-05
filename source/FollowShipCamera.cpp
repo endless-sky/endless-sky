@@ -53,18 +53,9 @@ bool FollowShipCamera::HasValidTarget() const
 
 Point FollowShipCamera::GetTarget() const
 {
-	auto ship = target.lock();
-	if(ship && ship->GetSystem())
-	{
-		// If ship is hyperspacing and too far away, use last stable position
-		if(ship->IsHyperspacing())
-		{
-			double distance = (ship->Center() - lastPosition).Length();
-			if(distance > 2000.)
-				return lastPosition;
-		}
-		return ship->Center();
-	}
+	// Return the smoothed position for cinematic drift effect
+	if(hasSmoothedPosition)
+		return smoothedPosition;
 	return lastPosition;
 }
 
@@ -106,6 +97,23 @@ void FollowShipCamera::Step()
 		{
 			lastPosition = ship->Center();
 			lastVelocity = ship->Velocity();
+		}
+
+		// Apply cinematic drift: smoothly interpolate camera toward target
+		// Using a lerp factor of 0.08 gives a nice "lag" effect
+		Point targetPos = ship->IsHyperspacing() ? lastPosition : ship->Center();
+		if(!hasSmoothedPosition)
+		{
+			// First frame: snap to target
+			smoothedPosition = targetPos;
+			hasSmoothedPosition = true;
+		}
+		else
+		{
+			// Interpolate toward target position (cinematic drift)
+			// Lower values = more lag/drift, higher = snappier
+			constexpr double lerpFactor = 0.08;
+			smoothedPosition = smoothedPosition + (targetPos - smoothedPosition) * lerpFactor;
 		}
 		return;
 	}

@@ -120,6 +120,10 @@ public:
 	// Get the number of ships in the current system (for observer mode HUD).
 	size_t ShipCount() const;
 
+	// Hide/show the interface (for clean screenshot mode in observer).
+	void SetHideInterface(bool hide);
+	bool HideInterface() const;
+
 
 private:
 	class Outline {
@@ -347,4 +351,6 @@ private:
 
 	// External camera controller for observer mode. Not owned.
 	CameraController *cameraController = nullptr;
+	// Hide interface for clean screenshot mode.
+	bool hideInterface = false;
 };

@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Rectangle.h"
 #include "Screen.h"
+#include "Ship.h"
 #include "ShipEvent.h"
 #include "System.h"
 #include "text/Font.h"
@@ -190,6 +191,20 @@ void ObserverPanel::Step()
 				recentActivity += 10;  // Big event
 				++totalDestroys;
 				++graphDestroys;
+
+				// Highlight capital ship destructions with a special message
+				const shared_ptr<Ship> &ship = event.Target();
+				if(ship)
+				{
+					const string &category = ship->Attributes().Category();
+					// Check for capital ships (Heavy Warship, Heavy Freighter, etc.)
+					if(category.find("Heavy") != string::npos)
+					{
+						string name = ship->GivenName().empty() ? ship->DisplayModelName() : ship->GivenName();
+						string msg = "CAPITAL SHIP DESTROYED: " + name + " (" + ship->DisplayModelName() + ")";
+						Messages::Add({msg, GameData::MessageCategories().Get("high")});
+					}
+				}
 			}
 			if(type & ShipEvent::DISABLE)
 			{
@@ -293,6 +308,10 @@ void ObserverPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	engine.Draw();
+
+	// Skip HUD drawing if hidden (clean screenshot mode)
+	if(!showHUD)
+		return;
 
 	// Get standard game colors for consistency
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -417,7 +436,7 @@ void ObserverPanel::Draw()
 	vector<string> hints = {
 		cameraKey + ": camera  |  " + targetKey + ": target  |  Arrows: free camera",
 		nextKey + ": next system  |  " + prevKey + ": prev system  |  " + autoKey + ": auto" + string(autoSwitchEnabled ? "" : " (off)"),
-		pauseKey + ": pause  |  1-5: speed  |  +/-: zoom  |  Esc: exit"
+		pauseKey + ": pause  |  H: hide HUD  |  1-5: speed  |  Esc: exit"
 	};
 
 	double hintY = Screen::BottomRight().Y() - 15.;
@@ -489,6 +508,14 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		autoSwitchEnabled = !autoSwitchEnabled;
 		Messages::Add({autoSwitchEnabled ? "Auto-switching enabled." : "Auto-switching disabled.",
 			GameData::MessageCategories().Get("info")});
+		return true;
+	}
+
+	// H key toggles HUD visibility for clean screenshots
+	if(key == 'h' || key == 'H')
+	{
+		showHUD = !showHUD;
+		engine.SetHideInterface(!showHUD);
 		return true;
 	}
 

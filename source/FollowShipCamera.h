@@ -54,6 +54,9 @@ private:
 	std::weak_ptr<Ship> target;
 	Point lastPosition;
 	Point lastVelocity;
+	// Smoothed camera position for cinematic drift
+	Point smoothedPosition;
+	bool hasSmoothedPosition = false;
 	// Cooldown to prevent rapid target switching
 	int switchCooldown = 0;
 	static const std::string name;
