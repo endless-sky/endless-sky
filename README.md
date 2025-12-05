@@ -1,5 +1,7 @@
 # Endless Sky
 
+TODO: The Observer mode changes
+
 Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...
 
 ------
@@ -11,6 +13,50 @@ See the [player's manual](https://github.com/endless-sky/endless-sky/wiki/Player
 ## Installing the game
 
 Official releases of Endless Sky are available as direct downloads from [GitHub](https://github.com/endless-sky/endless-sky/releases/latest), on [Steam](https://store.steampowered.com/app/404410/Endless_Sky/), on [GOG](https://gog.com/game/endless_sky), and on [Flathub](https://flathub.org/apps/details/io.github.endless_sky.endless_sky). Other package managers may also include the game, though the specific version provided may not be up-to-date.
+
+## Quick Build Commands (MacOS Apple Silicon)
+
+Required Homebrew deps:
+
+```sh
+brew install sdl2 libpng jpeg-turbo libavif openal-soft flac mad minizip
+```
+
+Configure (only needed once, or after CMakeLists.txt changes)
+
+```sh
+cmake --preset macos-arm -DES_USE_VCPKG=OFF -DCMAKE_PREFIX_PATH="/opt/homebrew/opt/openal-soft"
+```
+
+Build the game in debug mode
+
+```sh
+cmake --build build/macos-arm --config Debug
+```
+
+Or release mode, for optimized builds (faster gameplay, no sanitizers)
+
+```sh
+cmake --build build/macos-arm --config Release
+```
+
+Run unit tests
+
+```sh
+ctest --preset macos-arm-test
+```
+
+Run integration tests
+
+```sh
+ctest --preset macos-arm-integration
+```
+
+Run the game
+
+```sh
+./build/macos-arm/Debug/endless-sky
+```
 
 ## System Requirements
 
