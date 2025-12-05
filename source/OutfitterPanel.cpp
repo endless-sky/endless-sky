@@ -80,21 +80,15 @@ namespace {
 		return toRefill;
 	}
 
-
-
 	bool IsLicense(const string &name)
 	{
 		return name.ends_with(LICENSE);
 	}
 
-
-
 	string LicenseRoot(const string &name)
 	{
 		return name.substr(0, name.length() - LICENSE.length());
 	}
-
-
 
 	string LocationName(OutfitterPanel::OutfitLocation location)
 	{
@@ -287,7 +281,6 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 
 
 
-
 double OutfitterPanel::DrawDetails(const Point &center)
 {
 	string selectedItem = "Nothing Selected";
@@ -453,7 +446,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 			if(canSource)
 				break;
 
-			// The outfit cannot be installed from any ship
+			// The outfit cannot be installed from any ship.
 			if(!foundOutfit)
 				return "You don't have any " + selectedOutfit->PluralName() + " to " + actionName + ".";
 
@@ -524,7 +517,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 		}
 		case OutfitLocation::Cargo:
 		{
-			// Do we have any in cargo?.
+			// Do we have any in cargo?
 			if(!player.Cargo().Get(selectedOutfit))
 				return "You don't have any " + selectedOutfit->PluralName() + " in cargo to " + actionName + ".";
 			canSource = true;
@@ -1044,7 +1037,7 @@ bool OutfitterPanel::ShipCanRemove(const Ship *ship, const Outfit *outfit)
 		return attributes.CanAdd(*outfit, -1);
 	}
 
-	// Ammo is not a factor, check whether this ship can uninstall this outfit.
+	// Ammo is not a factor, so check whether this ship can uninstall this outfit by itself.
 	return ship->Attributes().CanAdd(*outfit, -1);
 }
 
@@ -1290,12 +1283,12 @@ void OutfitterPanel::DrawButtons()
 	{
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
-		for(int i = -1; i < 2; i++)
+		for(int i = -1; i < 2; ++i)
 			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0)
-			+ Point(-.5 * modWidth, 10.), dim);
-		for(int i = -1; i < 2; i++)
+				+ Point(-.5 * modWidth, 10.), dim);
+		for(int i = -1; i < 2; ++i)
 			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1)
-			+ Point(-.5 * modWidth, 10.), dim);
+				+ Point(-.5 * modWidth, 10.), dim);
 	}
 
 	// Draw tooltips for the button being hovered over:
