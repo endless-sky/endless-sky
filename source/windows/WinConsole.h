@@ -1,5 +1,5 @@
-/* WinVersion.h
-Copyright (c) 2025 by TomGoodIdea
+/* WinConsole.h
+Copyright (c) 2019 by comnom
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,18 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <string>
 
 
-
-// A wrapper class that queries the version of Windows that is running the game,
-// and provides information on support for various features.
-class WinVersion {
+class WinConsole {
 public:
 	static void Init();
-
-	static std::string ToString();
-
-	static bool SupportsDarkTheme();
-	static bool SupportsWindowRounding();
 };

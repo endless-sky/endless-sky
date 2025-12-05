@@ -1,4 +1,4 @@
-/* WinVersion.h
+/* WinWindow.h
 Copyright (c) 2025 by TomGoodIdea
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,18 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <string>
+class SDL_Window;
 
 
 
-// A wrapper class that queries the version of Windows that is running the game,
-// and provides information on support for various features.
-class WinVersion {
+// A helper class for setting attributes of the main window according to the current preferences.
+class WinWindow {
 public:
-	static void Init();
-
-	static std::string ToString();
-
-	static bool SupportsDarkTheme();
-	static bool SupportsWindowRounding();
+	static void UpdateTitleBarTheme(SDL_Window *window);
+	static void UpdateWindowRounding(SDL_Window *window);
 };

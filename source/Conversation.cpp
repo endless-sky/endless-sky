@@ -72,7 +72,7 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 				// Check for common errors such as indenting a goto incorrectly:
 				if(grand.Size() > 1)
 				{
-					grand.PrintTrace("Error: Conversation choices should be a single token:");
+					grand.PrintTrace("Conversation choices should be a single token:");
 					foundErrors = true;
 					continue;
 				}
@@ -86,7 +86,7 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 			if(nodes.back().elements.empty())
 			{
 				if(!foundErrors)
-					child.PrintTrace("Warning: Conversation contains an empty \"choice\" node:");
+					child.PrintTrace("Conversation contains an empty \"choice\" node:");
 				nodes.pop_back();
 			}
 		}
@@ -131,14 +131,14 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 		else if(key == "action" || key == "apply")
 		{
 			if(key == "apply")
-				child.PrintTrace("Warning: `apply` is deprecated syntax. Use `action` instead to ensure future compatibility.");
+				child.PrintTrace("`apply` is deprecated syntax. Use `action` instead to ensure future compatibility.");
 			// Don't merge "action" nodes with any other nodes. Allow the legacy keyword "apply," too.
 			AddNode();
 			nodes.back().canMergeOnto = false;
 			nodes.back().actions.Load(child, playerConditions);
 		}
 		else if(hasValue)
-			child.PrintTrace("Error: Conversation text should be a single token:");
+			child.PrintTrace("Conversation text should be a single token:");
 		else
 		{
 			// This is just an ordinary text node.
@@ -162,7 +162,7 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 	// Display a warning if a label was not resolved.
 	if(!unresolved.empty())
 		for(const auto &it : unresolved)
-			node.PrintTrace("Warning: Conversation contains unrecognized label \"" + it.first + "\":");
+			node.PrintTrace("Conversation contains unrecognized label \"" + it.first + "\":");
 
 	// Check for any loops in the conversation.
 	for(const auto &it : labels)
@@ -173,7 +173,7 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 			nodeIndex = NextNodeForChoice(nodeIndex);
 			if(nodeIndex == it.second)
 			{
-				node.PrintTrace("Error: Conversation contains infinite loop beginning with label \"" + it.first + "\":");
+				node.PrintTrace("Conversation contains infinite loop beginning with label \"" + it.first + "\":");
 				nodes.clear();
 				return;
 			}
@@ -542,7 +542,7 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 		if(key == "goto" && hasValue)
 		{
 			if(hasGoto)
-				child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
+				child.PrintTrace("Ignoring extra endpoint in conversation choice:");
 			else
 			{
 				Goto(child.Token(1), nodes.size() - 1, nodes.back().elements.size() - 1);
@@ -552,7 +552,7 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 		else if(key == "to" && hasValue && child.Token(1) == "display")
 		{
 			if(hasDisplayCondition)
-				child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
+				child.PrintTrace("Ignoring extra condition in conversation choice:");
 			else
 			{
 				nodes.back().elements.back().toDisplay.Load(child, playerConditions);
@@ -562,7 +562,7 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 		else if(key == "to" && hasValue && child.Token(1) == "activate")
 		{
 			if(hasActivationCondition)
-				child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
+				child.PrintTrace("Ignoring extra condition in conversation choice:");
 			else
 			{
 				nodes.back().elements.back().toActivate.Load(child, playerConditions);
@@ -576,7 +576,7 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 			if(!hasValue && index < 0)
 			{
 				if(hasGoto)
-					child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
+					child.PrintTrace("Ignoring extra endpoint in conversation choice:");
 				else
 				{
 					nodes.back().elements.back().next = index;
@@ -584,7 +584,7 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 				}
 			}
 			else
-				child.PrintTrace("Warning: Expected goto, to display, or endpoint in conversation, found this:");
+				child.PrintTrace("Expected goto, to display, or endpoint in conversation, found this:");
 		}
 	}
 	return hasGoto || hasDisplayCondition;
@@ -608,7 +608,7 @@ void Conversation::AddLabel(const string &label, const DataNode &node)
 {
 	if(labels.contains(label))
 	{
-		node.PrintTrace("Error: Conversation: label \"" + label + "\" is used more than once:");
+		node.PrintTrace("Conversation: label \"" + label + "\" is used more than once:");
 		return;
 	}
 
