@@ -96,11 +96,10 @@ void FollowShipCamera::Step()
 	if(switchCooldown > 0)
 		--switchCooldown;
 
-	auto ship = target.lock();
-
-	// Ship is still valid and in system
-	if(ship && ship->GetSystem())
+	// Check if current target is still valid to follow
+	if(HasValidTarget())
 	{
+		auto ship = target.lock();
 		// Only update lastPosition when ship is not hyperspacing
 		// This keeps lastPosition as the "stable" position before jump
 		if(!ship->IsHyperspacing())
@@ -111,13 +110,15 @@ void FollowShipCamera::Step()
 		return;
 	}
 
-	// Ship is gone (jumped away or destroyed) - try to find a new one
-	// Use cooldown to prevent rapid switching when multiple ships jump at once
+	// Target is invalid (gone, too far, or hyperspacing beyond threshold)
+	// Try to find a new one immediately (no cooldown for first attempt)
 	if(switchCooldown == 0)
 	{
+		// Clear the old target before selecting new one
+		target.reset();
 		SelectRandom();
-		// Set cooldown of ~1 second at 60fps
-		switchCooldown = 60;
+		// Set cooldown to prevent rapid switching if selection fails
+		switchCooldown = 30;
 	}
 }
 
@@ -143,6 +144,9 @@ const string &FollowShipCamera::ModeName() const
 
 string FollowShipCamera::TargetName() const
 {
+	// Only show name if we have a valid target we're actually following
+	if(!HasValidTarget())
+		return "";
 	auto ship = target.lock();
 	if(ship)
 		return ship->GivenName();
