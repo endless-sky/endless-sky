@@ -85,6 +85,9 @@ public:
 	// Reset the player to an "empty" state, i.e. no player is loaded.
 	void Clear();
 
+	// Initialize this player as an observer (no ships) in the given system.
+	void NewObserver(const System *system);
+
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.

@@ -5097,3 +5097,58 @@ bool PlayerInfo::HasClearance() const
 			return mission.HasClearance(planet);
 		});
 }
+
+
+
+void PlayerInfo::NewObserver(const System *system)
+{
+	// Clear any previously loaded data - but don't modify global state
+	// We use a subset of what Clear() does.
+	*this = PlayerInfo();
+
+	// Set minimal identity (required for IsLoaded())
+	firstName = "Observer";
+	lastName = "Mode";
+
+	// Set location
+	this->system = system;
+	planet = nullptr;
+
+	// Must have a planet to save (CanBeSaved checks for planet)
+	// Pick first inhabited planet in system, or first planet
+	if(system)
+	{
+		for(const StellarObject &object : system->Objects())
+		{
+			if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited())
+			{
+				planet = object.GetPlanet();
+				break;
+			}
+		}
+		// Fallback: any planet
+		if(!planet)
+		{
+			for(const StellarObject &object : system->Objects())
+			{
+				if(object.HasValidPlanet())
+				{
+					planet = object.GetPlanet();
+					break;
+				}
+			}
+		}
+	}
+
+	// Use the default start date (3013-11-17)
+	date = Date(17, 11, 3013);
+	GameData::SetDate(date);
+
+	// Give minimal credits so player can buy a ship when loading the save normally
+	accounts.AddCredits(1000000);
+
+	// Register derived conditions for condition system
+	RegisterDerivedConditions();
+
+	// No ships, no missions needed for observer
+}

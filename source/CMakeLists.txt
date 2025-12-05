@@ -39,6 +39,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Body.h
 	Camera.cpp
 	Camera.h
+	CameraController.cpp
+	CameraController.h
 	CaptureOdds.cpp
 	CaptureOdds.h
 	CargoHold.cpp
@@ -115,6 +117,10 @@ target_sources(EndlessSkyLib PRIVATE
 	FleetCargo.h
 	Flotsam.cpp
 	Flotsam.h
+	FollowShipCamera.cpp
+	FollowShipCamera.h
+	FreeCamera.cpp
+	FreeCamera.h
 	FormationPattern.cpp
 	FormationPattern.h
 	FormationPositioner.cpp
@@ -212,6 +218,10 @@ target_sources(EndlessSkyLib PRIVATE
 	NPCAction.h
 	News.cpp
 	News.h
+	ObserverPanel.cpp
+	ObserverPanel.h
+	OrbitPlanetCamera.cpp
+	OrbitPlanetCamera.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp

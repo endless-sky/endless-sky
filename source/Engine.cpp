@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 
 #include "AlertLabel.h"
+#include "CameraController.h"
 #include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryType.h"
@@ -396,7 +397,11 @@ void Engine::Place()
 	// that all special ships have been repositioned.
 	ships.splice(ships.end(), newShips);
 
-	camera.SnapTo(flagship->Center());
+	if(cameraController)
+		camera.SnapTo(cameraController->GetTarget());
+	else if(flagship)
+		camera.SnapTo(flagship->Center());
+	// else: camera stays at current position
 
 	player.SetPlanet(nullptr);
 }
@@ -503,7 +508,18 @@ void Engine::Step(bool isActive)
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
-	if(object)
+	// In observer mode, use the camera controller even if landed on a planet.
+	if(cameraController)
+	{
+		if(isActive && !timePaused)
+		{
+			cameraController->Step();
+			// Use SnapTo to prevent camera lag/motion blur in observer mode.
+			// The camera controller handles its own smoothing if desired.
+			camera.SnapTo(cameraController->GetTarget());
+		}
+	}
+	else if(object)
 		camera.SnapTo(object->Position());
 	else if(flagship)
 	{
@@ -1432,12 +1448,29 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
+void Engine::SetCameraController(CameraController *controller)
+{
+	cameraController = controller;
+}
+
+
+
+bool Engine::IsObserverMode() const
+{
+	return cameraController != nullptr;
+}
+
+
+
 void Engine::EnterSystem()
 {
 	ai.Clean();
 
 	Ship *flagship = player.Flagship();
-	if(!flagship)
+	bool isObserver = (cameraController != nullptr);
+
+	// In observer mode, we don't need a flagship to enter a system
+	if(!flagship && !isObserver)
 		return;
 
 	doEnter = true;
@@ -1445,14 +1478,18 @@ void Engine::EnterSystem()
 	player.AdvanceDate();
 	const Date &today = player.GetDate();
 
-	const System *system = flagship->GetSystem();
+	const System *system = flagship ? flagship->GetSystem() : player.GetSystem();
+	if(!system)
+		return;
+
 	Audio::PlayMusic(system->MusicName());
 	GameData::SetHaze(system->Haze(), false);
 
-	Messages::Add({"Entering the " + system->DisplayName() + " system on "
-		+ today.ToString() + (system->IsInhabited(flagship) ?
-		"." : ". No inhabited planets detected."),
-		GameData::MessageCategories().Get("daily")});
+	if(!isObserver)
+		Messages::Add({"Entering the " + system->DisplayName() + " system on "
+			+ today.ToString() + (system->IsInhabited(flagship) ?
+			"." : ". No inhabited planets detected."),
+			GameData::MessageCategories().Get("daily")});
 
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)
@@ -1461,7 +1498,7 @@ void Engine::EnterSystem()
 		if(object.HasValidPlanet())
 		{
 			GameData::Preload(queue, object.GetPlanet()->Landscape());
-			if(object.GetPlanet()->IsWormhole() && !usedWormhole
+			if(flagship && object.GetPlanet()->IsWormhole() && !usedWormhole
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;
 		}
@@ -1479,7 +1516,7 @@ void Engine::EnterSystem()
 				planet->Bribe(mission.HasFullClearance());
 		}
 
-	if(usedWormhole)
+	if(flagship && usedWormhole)
 	{
 		// If ships use a wormhole, they are emitted from its center in
 		// its destination system. Player travel causes a date change,
@@ -1565,7 +1602,10 @@ void Engine::EnterSystem()
 
 	emptySoundsTimer.clear();
 
-	camera.SnapTo(flagship->Center(), true);
+	if(flagship)
+		camera.SnapTo(flagship->Center(), true);
+	else if(cameraController)
+		camera.SnapTo(cameraController->GetTarget());
 
 	// If the player entered a system by wormhole or jump drive, center the background
 	// on the player's position. This is not done when entering a system by hyperdrive
@@ -1578,7 +1618,7 @@ void Engine::EnterSystem()
 
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
-	if(today <= player.StartData().GetDate() + 4)
+	if(flagship && today <= player.StartData().GetDate() + 4)
 	{
 		Messages::Add(*GameData::Messages().Get("basics 1"));
 		Messages::Add(*GameData::Messages().Get("basics 2"));
@@ -1614,7 +1654,8 @@ void Engine::CalculateStep()
 	if(timePaused)
 	{
 		// Only process player commands and handle mouse clicks.
-		ai.MovePlayer(*player.Flagship(), activeCommands);
+		if(player.Flagship() && !cameraController)
+			ai.MovePlayer(*player.Flagship(), activeCommands);
 		activeCommands.Clear();
 		HandleMouseClicks();
 	}
@@ -1623,15 +1664,25 @@ void Engine::CalculateStep()
 
 	// Draw the objects. Start by figuring out where the view should be centered:
 	Camera newCamera = camera;
-	if(flagship && !timePaused)
+	Point drawVelocity;
+	if(cameraController && !timePaused)
+	{
+		// Use SnapTo to prevent camera lag in observer mode.
+		newCamera.SnapTo(cameraController->GetTarget());
+		// Use the camera controller's velocity for motion blur calculation.
+		// This reduces blur when following a moving target.
+		drawVelocity = cameraController->GetVelocity();
+	}
+	else if(flagship && !timePaused)
 	{
 		if(flagship->IsHyperspacing())
 			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
 		else
 			hyperspacePercentage = 0.;
 		newCamera.MoveTo(flagship->Center(), hyperspacePercentage);
+		drawVelocity = newCamera.Velocity();
 	}
-	draw[currentCalcBuffer].SetCenter(newCamera.Center(), newCamera.Velocity());
+	draw[currentCalcBuffer].SetCenter(newCamera.Center(), drawVelocity);
 	batchDraw[currentCalcBuffer].SetCenter(newCamera.Center());
 	radar[currentCalcBuffer].SetCenter(newCamera.Center());
 
@@ -1839,6 +1890,14 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	GenerateWeather();
 	SendHails();
 	HandleMouseClicks();
+
+	// Update camera controller with current ships
+	if(cameraController)
+	{
+		cameraController->SetShips(ships);
+		if(playerSystem)
+			cameraController->SetStellarObjects(playerSystem->Objects());
+	}
 
 	// Now, take the new objects that were generated this step and splice them
 	// on to the ends of the respective lists of objects. These new objects will

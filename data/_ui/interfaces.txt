@@ -296,6 +296,9 @@ interface "main menu"
 	button p "_Preferences..."
 		center -420 155
 		dimensions 120 30
+	button o "_Observe..."
+		center -355 185
+		dimensions 100 30
 
 
 

@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LoadPanel.h"
 #include "Logger.h"
 #include "MainPanel.h"
+#include "ObserverPanel.h"
 #include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -199,6 +200,11 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// Request that the player chooses a start scenario.
 		// StartConditionsPanel also handles the case where there's no scenarios.
 		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
+	}
+	else if(key == 'o')
+	{
+		// Launch observer mode
+		GetUI()->Push(new ObserverPanel());
 	}
 	else if(key == 'q')
 	{

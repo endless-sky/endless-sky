@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 #include <vector>
 
+class CameraController;
 class Flotsam;
 class Government;
 class NPC;
@@ -103,6 +104,16 @@ public:
 	// government; gov projectiles stop targeting the player and player's
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
+
+	// Set external camera controller for observer mode.
+	// Pass nullptr to return to normal flagship-following behavior.
+	void SetCameraController(CameraController *controller);
+
+	// Check if engine is in observer mode (no flagship camera tracking).
+	bool IsObserverMode() const;
+
+	// Enter the current system (used by observer mode).
+	void EnterSystem();
 
 
 private:
@@ -179,8 +190,6 @@ private:
 
 
 private:
-	void EnterSystem();
-
 	void CalculateStep();
 	// Calculate things that require the engine not to be paused.
 	void CalculateUnpaused(const Ship *flagship, const System *playerSystem);
@@ -330,4 +339,7 @@ private:
 	double load = 0.;
 	int loadCount = 0;
 	double loadSum = 0.;
+
+	// External camera controller for observer mode. Not owned.
+	CameraController *cameraController = nullptr;
 };
