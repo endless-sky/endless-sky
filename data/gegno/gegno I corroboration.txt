@@ -565,7 +565,7 @@ mission "Return to Giaru Gegno"
 		not "Gegno Intervention: offered"
 		not "Gegno Genocide Defense: offered"
 	on enter
-		dialog `As you are piloting the <flagship>, you receive an incoming message on your communications device. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
+		dialog `Upon departure from <origin>, you receive an incoming message on your communications device. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
 	on complete
 		fail "Scin Surveillance"
 		fail "Veering Vi A"

@@ -47,7 +47,7 @@ mission "First Contact: Gegno Vi"
 			`	As you fly onward, an erratic signature on the surface appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the location and exit to investigate.`
 				goto skip
 			label search
-			`	You fly onward and an erratic signature on the surface appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the location and exit to investigate, making sure to equip an environment suit and holster your sidearm.`
+			`	As you fly onward, an erratic signature on the surface appears on the edge of your radar. A large arch-like structure becomes visible in the distance, but disappears shortly after. You set your ship down close to the location and exit to investigate, making sure to equip an environment suit and holster your sidearm.`
 			label skip
 			`	Much to your surprise, there is a large humanoid figure standing where the signature originated from. Your radar showed something much less defined than a humanoid, but standing in front of you is a large, bulky being cladded in what looks like a form of metallic armor, wielding a spear-like weapon. The figure moves around attentively as if it is focused on its surroundings, but appears to take no interest in your presence. The encounter feels very odd in that there is no immediate interaction or acknowledgment of your existence.`
 			choice
@@ -310,7 +310,7 @@ mission "Giaru Gegno: Quarg Contact"
 			action
 				set "gegno: met gegno before quarg"
 
-			`The visual of a complete Quarg Ringworld is drastically different than the alien homeworld you were on before. Such a pristine, advanced structure is quite the opposite of a disorderly industrial civilization. The population of Quarg here must be at least around the trillions, many times more than the population of the alien homeworld. What's even more interesting is there aliens of the kind you met before are here on the ring too. The Quarg must have some kind of relations with them, perhaps through trade, maintenance, or other services. Despite their presence, both they and the Quarg seem to be dismissive of one another, however, a few of the aliens occasionally glance over at you in some form of curiosity.`
+			`The visual of a complete Quarg Ringworld is drastically different than the alien homeworld you were on before. Such a pristine, advanced structure is quite the opposite of a disorderly industrial civilization. The population of Quarg here must be in the trillions, many times more than the population of the alien homeworld. What's even more interesting is that there are aliens of the kind you met before are here on the ring too. The Quarg must have some kind of relations with them, perhaps through trade, maintenance, or other services. Despite their presence, both they and the Quarg seem to be dismissive of one another. However, a few of the aliens occasionally glance over at you in some form of curiosity.`
 
 			action
 				"gegno: left quarg" = "days since start"
@@ -473,8 +473,8 @@ mission "Suspicious Scin"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
-			`While you are going about your business, a faint signal starts emanating from somewhere in your ship. You aren't sure what it is, as it doesn't appear to originate from the ship itself, so you decide to take a look. After a few minutes of searching for the culprit, you come across a small device not too dissimilar from the one that was given to you by the Gegno you met on Var Oti, arbitrarily shoved into a corner of your ship's infrastructure. You don't know how or when it got there, but it doesn't appear to be dangerous like an explosive.`
-			`	Aside the strange signal it's emitting, the device appears to be doing is pointing to the location of a planet within Gegno space. The only thing left to do, aside from ignore the device, is to visit this planet and see if there are any answers this strange, sudden situation.`
+			`While you are going about your business, a faint signal starts emanating from somewhere in your ship. You aren't sure what it is, as it doesn't appear to originate from the ship itself, so you decide to take a look. After a few minutes of searching for the culprit, you come across a small device not too dissimilar from the one that was given to you by the Gegno you met on Var Oti, arbitrarily shoved into a corner of your ship's infrastructure. You don't know how or when it got there, but it doesn't appear to be dangerous.`
+			`	Aside from the strange signal it's emitting, all the device appears to be doing is pointing to the location of a planet within Gegno space. The only option, aside from ignoring the device, is to visit this planet and see if there are any answers to this strange situation.`
 				accept
 
 	npc
@@ -499,7 +499,7 @@ mission "First Contact: Gegno Scin"
 		not "Gegno Genocide Defense: offered"
 	on offer
 		conversation
-			`Lead here by the mysterious device on your ship, you descent to the surface of this world, going through several thick layers of clouds. Once you break though them and prepare to land, you notice what appear to be a few Gegno Scin ships grounded nearby, easily distinguished by their various green color patterns. Two of them look like military vessels you've seen in nearby systems, while a third one between them is a small shuttlecraft. The Scin must be responsible for the device, seemingly expecting you as one of their warships begins to lift off the ground and head in your direction.`
+			`Led here by the mysterious device on your ship, you descend to the surface of this world, going through several thick layers of clouds. Once you break though them and prepare to land, you notice what appear to be a few Gegno Scin ships grounded nearby, easily distinguished by their various green color patterns. Two of them look like military vessels you've seen in nearby systems, while a third one between them is a small shuttlecraft. The Scin must be responsible for the device, seemingly expecting you as one of their warships begins to lift off the ground and head in your direction.`
 			choice
 				`	(Leave the planet.)`
 					goto leave
@@ -522,7 +522,7 @@ mission "First Contact: Gegno Scin"
 			label "leave"
 			action
 				set "gegno: left scin"
-			`	Wary of the Scin warship, you turn around and begin to ascend back into space. The Scin ship advances towards yours, but as it comes closer, it begins to take on an escort formation with you, following you as you leave the planet's atmosphere. You're unsure of what they're doing on the planet or why you've been lead to them, but maybe it's better for you to be careful and not get involved.`
+			`	Wary of the Scin warship, you turn around and begin to ascend back into space. The Scin ship advances towards yours, but as it comes closer, it begins to take on an escort formation with you, following you as you leave the planet's atmosphere. You're unsure of what they're doing on the planet or why you've been led to them, but maybe it's better for you to be careful and not get involved.`
 				accept
 
 			label "follow"
@@ -711,11 +711,11 @@ mission "Gegno Exploration Nudge"
 			branch provocative
 				has "scin: provocative"
 			`As you leave the planet's atmosphere, the Scin ships break formation with you and fly their separate ways. While the Gegno may not be interested in associating with you overall, it seemed like the few Scin you met were interested in some capacity. There may be other opportunities to encounter the Gegno elsewhere in their space and learn more about them.`
-			`	Still, it might be best to listen to what the Quarg said before and exercise caution going forward.`
+			`	Still, it might be best to listen to what the Quarg said and exercise caution going forward.`
 				accept
 			
 			label provocative
-			`The Scin ships following you off the planet show little hesitation before firing their weapons at you, likely feel provoked by your choice of actions with them during the encounter. Still, they showed some sort of interest in you to have lead you to them, meaning that there could be other possibilities to get involved with the Gegno at other locations in their space.`
+			`The Scin ships following you off the planet show little hesitation before firing their weapons at you, likely feeling provoked by your choice of actions with them during the encounter. Still, they must have some sort of interest in you if they led you to them, meaning that there could be other possibilities to get involved with the Gegno at other locations in their space.`
 			`	Still, the Gegno already have qualms with outsiders. It might be a good idea to listen to what the Quarg said about exercising caution, especially if it leads to hostile encounters.`
 				accept
 
