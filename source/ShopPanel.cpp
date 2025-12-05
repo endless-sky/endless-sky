@@ -45,7 +45,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "text/Truncate.h"
 #include "UI.h"
-#include "text/WrappedText.h"
 
 #include "opengl.h"
 #include <SDL2/SDL.h>
@@ -86,6 +85,8 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	shipsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
 	creditsTooltip(250, Alignment::LEFT, Tooltip::Direction::UP_LEFT, Tooltip::Corner::TOP_RIGHT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	buttonsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
 	hover(*GameData::Colors().Get("hover")),
 	active(*GameData::Colors().Get("active")),
@@ -141,6 +142,14 @@ void ShopPanel::Draw()
 	DrawButtons();
 	DrawKey();
 
+	// Draw the Find button. Note: buttonZones are cleared in DrawButtons.
+	const Point findCenter = Screen::BottomRight() - Point(580, 20);
+	const Sprite *findIcon =
+		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
+	SpriteShader::Draw(findIcon, findCenter);
+	buttonZones.emplace_back(Rectangle(findCenter, {findIcon->Width(), findIcon->Height()}), 'f');
+	static const string FIND = "_Find";
+
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
 
@@ -189,6 +198,7 @@ void ShopPanel::UpdateTooltipActivation()
 {
 	shipsTooltip.UpdateActivationCount();
 	creditsTooltip.UpdateActivationCount();
+	buttonsTooltip.UpdateActivationCount();
 }
 
 
@@ -222,7 +232,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 
 
-void ShopPanel::CheckForMissions(Mission::Location location)
+void ShopPanel::CheckForMissions(Mission::Location location) const
 {
 	if(!GetUI()->IsTop(this))
 		return;
@@ -236,46 +246,6 @@ void ShopPanel::CheckForMissions(Mission::Location location)
 
 
 
-void ShopPanel::FailSell(bool toStorage) const
-{
-}
-
-
-
-bool ShopPanel::CanSellMultiple() const
-{
-	return true;
-}
-
-
-
-// Helper function for UI buttons to determine if the selected item is
-// already owned. Affects if "Install" is shown for already owned items
-// or if "Buy" is shown for items not yet owned.
-//
-// If we are buying into cargo, then items in cargo don't count as already
-// owned, but they count as "already installed" in cargo.
-bool ShopPanel::IsAlreadyOwned() const
-{
-	return (playerShip && selectedOutfit && player.Cargo().Get(selectedOutfit))
-		|| player.Storage().Get(selectedOutfit);
-}
-
-
-
-bool ShopPanel::ShouldHighlight(const Ship *ship)
-{
-	return (hoverButton == 's');
-}
-
-
-
-void ShopPanel::DrawKey()
-{
-}
-
-
-
 int ShopPanel::VisibilityCheckboxesSize() const
 {
 	return 0;
@@ -283,26 +253,9 @@ int ShopPanel::VisibilityCheckboxesSize() const
 
 
 
-void ShopPanel::ToggleForSale()
+bool ShopPanel::ShouldHighlight(const Ship *ship)
 {
-	CheckSelection();
-	delayedAutoScroll = true;
-}
-
-
-
-void ShopPanel::ToggleStorage()
-{
-	CheckSelection();
-	delayedAutoScroll = true;
-}
-
-
-
-void ShopPanel::ToggleCargo()
-{
-	CheckSelection();
-	delayedAutoScroll = true;
+	return (hoverButton == 's' || hoverButton == 'r');
 }
 
 
@@ -310,7 +263,6 @@ void ShopPanel::ToggleCargo()
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	bool toStorage = planet && planet->HasOutfitter() && (key == 'r' || key == 'u');
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
@@ -354,39 +306,6 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			GetUI()->Push(new MapOutfitterPanel(player));
 		else
 			GetUI()->Push(new MapShipyardPanel(player));
-	}
-	else if(key == 'b' || key == 'i' || key == 'c')
-	{
-		const auto result = CanBuy(key == 'i' || key == 'c');
-		if(result)
-		{
-			Buy(key == 'i' || key == 'c');
-			// Ship-based updates to cargo are handled when leaving.
-			// Ship-based selection changes are asynchronous, and handled by ShipyardPanel.
-			if(isOutfitter)
-			{
-				player.UpdateCargoCapacities();
-				CheckSelection();
-			}
-		}
-		else if(result.HasMessage())
-			GetUI()->Push(new Dialog(result.Message()));
-	}
-	else if(key == 's' || toStorage)
-	{
-		if(!CanSell(toStorage))
-			FailSell(toStorage);
-		else
-		{
-			int modifier = CanSellMultiple() ? Modifier() : 1;
-			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
-				Sell(toStorage);
-			if(isOutfitter)
-			{
-				player.UpdateCargoCapacities();
-				CheckSelection();
-			}
-		}
 	}
 	else if(key == SDLK_LEFT)
 	{
@@ -482,7 +401,19 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 'f')
 		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
 	else
-		return false;
+	{
+		TransactionResult result = HandleShortcuts(key);
+		if(result.HasMessage())
+			GetUI()->Push(new Dialog(result.Message()));
+		else if(isOutfitter)
+		{
+			// Ship-based updates to cargo are handled when leaving.
+			// Ship-based selection changes are asynchronous, and handled by ShipyardPanel.
+			player.UpdateCargoCapacities();
+		}
+	}
+
+	CheckSelection();
 
 	return true;
 }
@@ -507,6 +438,7 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 		return false;
 
 	dragShip = nullptr;
+
 	// Handle clicks on the buttons.
 	char zoneButton = CheckButton(x, y);
 	if(zoneButton)
@@ -575,7 +507,6 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 
 			return true;
 		}
-
 
 	return true;
 }
@@ -696,10 +627,12 @@ void ShopPanel::DoFind(const string &text)
 
 int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 {
+	// onlyOwned represents that `outfit` is being transferred from Cargo or Storage.
+
 	// If the player is attempting to install an outfit from cargo, storage, or that they just
 	// sold to the shop, then ignore its license requirement, if any. (Otherwise there
 	// would be no way to use or transfer license-restricted outfits between ships.)
-	bool owned = (player.Cargo().Get(outfit) && playerShip) || player.Storage().Get(outfit);
+	bool owned = player.Cargo().Get(outfit) || player.Storage().Get(outfit);
 	if((owned && onlyOwned) || player.Stock(outfit) > 0)
 		return 0;
 
@@ -830,7 +763,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 
-		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
+		if(mouse.Y() < Screen::Bottom() - ButtonPanelHeight() && shipZones.back().Contains(mouse))
 		{
 			shipName = ship->GivenName() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
 			shipsTooltip.SetZone(shipZones.back());
@@ -880,7 +813,7 @@ void ShopPanel::DrawShipsSidebar()
 		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 		point.Y() += 20.;
 	}
-	sidebarScroll.SetDisplaySize(Screen::Height() - BUTTON_HEIGHT);
+	sidebarScroll.SetDisplaySize(Screen::Height() - ButtonPanelHeight());
 	sidebarScroll.SetMaxValue(max(0., point.Y() + sidebarScroll.AnimatedValue() - Screen::Bottom() + Screen::Height()));
 
 	if(sidebarScroll.Scrollable())
@@ -926,83 +859,6 @@ void ShopPanel::DrawDetailsSidebar()
 		Point bottom{Screen::Right() - SIDEBAR_WIDTH - 7., Screen::Bottom() - 10.};
 
 		infobarScrollbar.SyncDraw(infobarScroll, top, bottom);
-	}
-}
-
-
-
-void ShopPanel::DrawButtons()
-{
-	// The last 70 pixels on the end of the side panel are for the buttons:
-	Point buttonSize(SIDEBAR_WIDTH, BUTTON_HEIGHT);
-	FillShader::Fill(Screen::BottomRight() - .5 * buttonSize, buttonSize,
-		*GameData::Colors().Get("shop side panel background"));
-	FillShader::Fill(
-		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - BUTTON_HEIGHT),
-		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
-
-	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("medium");
-
-	const Point creditsPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - 65);
-	font.Draw("You have:", creditsPoint, dim);
-
-	const auto credits = Format::CreditString(player.Accounts().Credits());
-	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
-
-	// Clear the buttonZones, they will be populated again as buttons are drawn.
-	buttonZones.clear();
-
-	const Point buyCenter = Screen::BottomRight() - Point(210, 25);
-	bool isOwned = IsAlreadyOwned();
-
-	if(isOwned)
-		ShopPanel::DrawButton(playerShip ? "_Install" : "_Cargo", Rectangle(buyCenter, Point(60, 30)),
-			static_cast<bool>(CanBuy(isOwned)), hoverButton == 'i', 'i');
-	else
-		ShopPanel::DrawButton("_Buy", Rectangle(buyCenter, Point(60, 30)),
-			static_cast<bool>(CanBuy(isOwned)), hoverButton == 'b', 'b');
-
-	const Point sellCenter = Screen::BottomRight() - Point(130, 25);
-	ShopPanel::DrawButton("_Sell", Rectangle(sellCenter, Point(60, 30)),
-		static_cast<bool>(CanSell()), hoverButton == 's', 's');
-
-	const Point leaveCenter = Screen::BottomRight() - Point(45, 25);
-	ShopPanel::DrawButton("_Leave", Rectangle(leaveCenter, Point(70, 30)),
-		true, hoverButton == 'l', 'l');
-
-	const Point findCenter = Screen::BottomRight() - Point(580, 20);
-	const Sprite *findIcon =
-		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
-	SpriteShader::Draw(findIcon, findCenter);
-	buttonZones.emplace_back(Rectangle(findCenter, {findIcon->Width(), findIcon->Height()}), 'f');
-	static const string FIND = "_Find";
-
-	int modifier = Modifier();
-	if(modifier > 1)
-	{
-		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
-		if(CanSellMultiple())
-			font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
-	}
-
-	// Draw the tooltip for your full number of credits.
-	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
-	if(creditsBox.Contains(hoverPoint))
-		creditsTooltip.IncrementCount();
-	else
-		creditsTooltip.DecrementCount();
-
-	if(creditsTooltip.ShouldDraw())
-	{
-		creditsTooltip.SetZone(creditsBox);
-		creditsTooltip.SetText(Format::Number(player.Accounts().Credits()) + " credits", true);
-		creditsTooltip.Draw();
 	}
 }
 
@@ -1099,10 +955,12 @@ void ShopPanel::DrawMain()
 	nextY -= 40 + TILE_SIZE;
 
 	// What amount would mainScroll have to equal to make nextY equal the
-	// bottom of the screen? (Also leave space for the "key" at the bottom.)
+	// bottom of the screen? (Also leave space for the "key" at the bottom,
+	// and a small (10px) amount of space between the last item and the bottom
+	// of the screen.)
 	mainScroll.SetDisplaySize(Screen::Height());
 	mainScroll.SetMaxValue(max(0., nextY + mainScroll.AnimatedValue() - Screen::Height() / 2 - TILE_SIZE / 2 +
-		VisibilityCheckboxesSize() + 40.) + Screen::Height());
+		VisibilityCheckboxesSize() + 10.) + Screen::Height());
 
 	if(mainScroll.Scrollable())
 	{
@@ -1590,9 +1448,9 @@ char ShopPanel::CheckButton(int x, int y)
 		if(zone.Contains(clickPoint))
 			return zone.Value();
 
-	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - BUTTON_HEIGHT)
+	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
 		return '\0';
 
-	// Returning space here ensures that hover text for the ship info panel is supressed.
+	// Returning space here ensures that hover text for the ship info panel is suppressed.
 	return ' ';
 }
