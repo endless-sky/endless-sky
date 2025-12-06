@@ -463,7 +463,7 @@ mission "Suspicious Scin"
 	description `A strange Gegno device suddenly appeared on your ship, displaying coordinates to a planet within Gegno space. Visiting the planet might lead to some answers, or perhaps something else.`
 	destination "Yiia Iyr"
 	to offer
-		"days since start" - "gegno: left quarg" > 5
+		"days since start" - "gegno: left quarg" > 4
 		or
 			and
 				has "gegno: met gegno before quarg"
@@ -721,7 +721,7 @@ mission "Gegno Exploration Nudge"
 			`	Still, the Gegno already have qualms with outsiders. It might be a good idea to listen to what the Quarg said about exercising caution, especially if it leads to hostile encounters.`
 				accept
 
-# Offers along with the above mission and fails it upon meeting its conditions so it doesn't float in the mission panel
+# Fails above mission once the proper conditions are met so that it doesn't float in the mission panel
 mission "Gegno Exploration Nudge Remover"
 	invisible
 	landing
