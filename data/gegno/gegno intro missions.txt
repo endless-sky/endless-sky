@@ -707,7 +707,7 @@ mission "Gegno Exploration Nudge"
 	to complete
 		never
 	to fail
-		has "Gegno Exploration Nudge Failer: done"
+		has "Gegno Exploration Nudge Remover: done"
 	on enter
 		conversation
 			branch provocative
