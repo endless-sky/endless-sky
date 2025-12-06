@@ -804,15 +804,6 @@ void ShopPanel::DrawShipsSidebar()
 		const int detailHeight = DrawPlayerShipInfo(point + offset);
 		point.Y() += detailHeight + SHIP_SIZE / 2;
 	}
-	else if(isOutfitter && player.Cargo().Size())
-	{
-		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
-		font.Draw("cargo space:", point, medium);
-
-		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
-		point.Y() += 20.;
-	}
 	sidebarScroll.SetDisplaySize(Screen::Height() - ButtonPanelHeight());
 	sidebarScroll.SetMaxValue(max(0., point.Y() + sidebarScroll.AnimatedValue() - Screen::Bottom() + Screen::Height()));
 

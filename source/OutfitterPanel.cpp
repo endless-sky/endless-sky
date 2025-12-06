@@ -1139,8 +1139,7 @@ void OutfitterPanel::Refill()
 				const int fromCargo = player.Cargo().Remove(outfit, neededAmmo);
 				neededAmmo -= fromCargo;
 				// Then, buy at reduced (or full) price.
-				int available = outfitter.Has(outfit) ? neededAmmo : min<int>(neededAmmo, max<int>(0,
-					player.Stock(outfit)));
+				int available = outfitter.Has(outfit) ? neededAmmo : min<int>(neededAmmo, max<int>(0, player.Stock(outfit)));
 				if(neededAmmo && available > 0)
 				{
 					int64_t price = player.StockDepreciation().Value(outfit, day, available);
@@ -1243,7 +1242,7 @@ void OutfitterPanel::DrawButtons()
 		Screen::Right() - SIDEBAR_WIDTH + 10,
 		Screen::Bottom() - ButtonPanelHeight() + 10);
 	font.Draw("You have:", creditsPoint, dim);
-	const string &credits = Format::CreditString(player.Accounts().Credits());
+	const string credits = Format::CreditString(player.Accounts().Credits());
 	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
 
 	// Draw the row for Fleet Cargo Space free.
@@ -1351,7 +1350,7 @@ ShopPanel::TransactionResult OutfitterPanel::HandleShortcuts(SDL_Keycode key)
 	{
 		// Either move up to <multiple> outfits into cargo from storage if any are in storage, or else buy up to
 		// <modifier> outfits into cargo.
-		// Note: If the outfit connot be moved from storage or bought into cargo, give an error based on the buy
+		// Note: If the outfit cannot be moved from storage or bought into cargo, give an error based on the buy
 		// condition.
 		if(!MoveOutfit(OutfitLocation::Storage, OutfitLocation::Cargo))
 			result = MoveOutfit(OutfitLocation::Shop, OutfitLocation::Cargo, "buy and load");
