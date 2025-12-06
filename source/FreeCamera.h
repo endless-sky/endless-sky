@@ -31,7 +31,7 @@ public:
 	const std::string &ModeName() const override;
 
 	// Set movement direction from input (-1 to 1 for each axis)
-	void SetMovement(double x, double y);
+	void SetMovement(double x, double y) override;
 
 	// Set position directly (e.g., when switching to this mode)
 	void SetPosition(const Point &pos);

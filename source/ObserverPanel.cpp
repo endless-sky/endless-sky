@@ -161,16 +161,12 @@ void ObserverPanel::Step()
 			cameraController->SetStellarObjects(player.GetSystem()->Objects());
 	}
 
-	// Handle free camera movement
+	// Handle free camera movement (uses virtual SetMovement on CameraController)
 	if(cameraMode == 2)
 	{
-		FreeCamera *freeCam = dynamic_cast<FreeCamera *>(cameraController.get());
-		if(freeCam)
-		{
-			// Scale movement inversely with game speed so camera feels consistent
-			double speedScale = 1.0 / SPEED_LEVELS[speedLevel];
-			freeCam->SetMovement(dx * speedScale, dy * speedScale);
-		}
+		// Scale movement inversely with game speed so camera feels consistent
+		double speedScale = 1.0 / SPEED_LEVELS[speedLevel];
+		cameraController->SetMovement(dx * speedScale, dy * speedScale);
 	}
 
 	engine.Wait();
@@ -476,19 +472,8 @@ bool ObserverPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 	if(command.Has(Command::OBSERVER_CYCLE_TARGET))
 	{
-		// Select new target in current mode
-		if(cameraMode == 0)
-		{
-			FollowShipCamera *follow = dynamic_cast<FollowShipCamera *>(cameraController.get());
-			if(follow)
-				follow->CycleTarget();
-		}
-		else if(cameraMode == 1)
-		{
-			OrbitPlanetCamera *orbit = dynamic_cast<OrbitPlanetCamera *>(cameraController.get());
-			if(orbit)
-				orbit->CycleTarget();
-		}
+		// Select new target in current mode (uses virtual CycleTarget)
+		cameraController->CycleTarget();
 		return true;
 	}
 

@@ -1,6 +1,32 @@
-# Endless Sky
+# Endless Sky (Observer Mode Fork)
 
-TODO: The Observer mode changes
+This fork adds **Observer Mode** - a non-interactive screensaver mode that watches AI ships battle across star systems.
+
+## Observer Mode Features
+
+- **Screensaver mode**: Watch the universe simulate itself without player interaction
+- **Multiple camera modes**: Follow ships, orbit planets, or free camera (Tab to cycle)
+- **Speed control**: 1x, 2x, 3x, 5x, 10x speed (keys 1-5)
+- **Auto system switching**: Automatically moves to new systems when activity dies down (can be disabled)
+- **Statistics tracking**: Tracks destroyed/disabled ships with activity graphs
+- **Clean screenshot mode**: Hide HUD with H key
+
+### Quick Start
+
+1. Launch the game
+2. Click "Observe" on the main menu (or press O)
+3. Use Tab to cycle camera modes
+
+### Branch Strategy
+
+- **`screensaver`** (default): Contains observer mode, kept up to date on a best effort basis
+- **`master`**: Mirrors upstream `endless-sky/endless-sky` for clean syncing
+
+To get upstream changes: sync `master` from upstream, then merge/rebase into `screensaver`.
+
+---
+
+## About Endless Sky
 
 Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...
 

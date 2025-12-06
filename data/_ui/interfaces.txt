@@ -288,7 +288,13 @@ interface "main menu"
 	button m "_Manage Pilots..."
 		center 300 155
 		dimensions 120 30
-	
+
+	sprite "ui/wide button"
+		center 300 195
+	button o "_Observe"
+		center 300 195
+		dimensions 100 30
+
 	# Left panel (credits):
 	button q "_Quit"
 		center -285 155
@@ -296,9 +302,6 @@ interface "main menu"
 	button p "_Preferences..."
 		center -420 155
 		dimensions 120 30
-	button o "_Observe..."
-		center -355 185
-		dimensions 100 30
 
 
 

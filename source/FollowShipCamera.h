@@ -36,7 +36,7 @@ public:
 	std::string TargetName() const override;
 
 	// Select the next ship in the list.
-	void CycleTarget();
+	void CycleTarget() override;
 	// Select a random ship.
 	void SelectRandom();
 

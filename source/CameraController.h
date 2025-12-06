@@ -56,4 +56,10 @@ public:
 
 	// Get the ship being observed (if any). Used for HUD display.
 	virtual std::shared_ptr<Ship> GetObservedShip() const;
+
+	// Cycle to the next target (for modes that support it).
+	virtual void CycleTarget();
+
+	// Set camera movement direction (for free camera mode).
+	virtual void SetMovement(double dx, double dy);
 };

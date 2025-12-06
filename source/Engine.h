@@ -107,20 +107,13 @@ public:
 	// projectiles stop targeting gov.
 	void BreakTargeting(const Government *gov);
 
-	// Set external camera controller for observer mode.
-	// Pass nullptr to return to normal flagship-following behavior.
+	// === Observer Mode Support ===
+	// These methods support running the engine without a flagship (screensaver mode).
+	// The camera controller provides position/velocity when no flagship exists.
 	void SetCameraController(CameraController *controller);
-
-	// Check if engine is in observer mode (no flagship camera tracking).
 	bool IsObserverMode() const;
-
-	// Enter the current system (used by observer mode).
 	void EnterSystem();
-
-	// Get the number of ships in the current system (for observer mode HUD).
 	size_t ShipCount() const;
-
-	// Hide/show the interface (for clean screenshot mode in observer).
 	void SetHideInterface(bool hide);
 	bool HideInterface() const;
 

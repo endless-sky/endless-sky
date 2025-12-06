@@ -24,6 +24,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_account.cpp
 	unit/src/test_angle.cpp
 	unit/src/test_bitset.cpp
+	unit/src/test_cameraController.cpp
 	unit/src/test_categoryList.cpp
 	unit/src/test_conditionAssignments.cpp
 	unit/src/test_conditionSet.cpp
@@ -38,6 +39,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_firecommand.cpp
 	unit/src/test_formationPattern.cpp
 	unit/src/test_main.cpp
+	unit/src/test_panelUtils.cpp
 	unit/src/test_point.cpp
 	unit/src/test_random.cpp
 	unit/src/test_scrollVar.cpp

@@ -37,7 +37,7 @@ public:
 	std::string TargetName() const override;
 
 	// Select the next stellar object.
-	void CycleTarget();
+	void CycleTarget() override;
 
 
 private:

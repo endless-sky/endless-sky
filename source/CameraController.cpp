@@ -42,3 +42,17 @@ std::shared_ptr<Ship> CameraController::GetObservedShip() const
 {
 	return nullptr;
 }
+
+
+
+void CameraController::CycleTarget()
+{
+	// Default: do nothing. Subclasses override if needed.
+}
+
+
+
+void CameraController::SetMovement(double dx, double dy)
+{
+	// Default: do nothing. Only FreeCamera uses this.
+}

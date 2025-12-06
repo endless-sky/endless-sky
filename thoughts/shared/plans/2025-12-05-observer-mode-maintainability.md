@@ -575,8 +575,8 @@ The button should:
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Game launches without errors
-- [ ] No syntax errors in interfaces.txt
+- [x] Game launches without errors
+- [x] No syntax errors in interfaces.txt
 
 #### Manual Verification:
 - [ ] Observe button appears on the right side of main menu
@@ -740,13 +740,13 @@ Add to source list:
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Tests compile: `cmake --build build --target endless-sky-tests`
-- [ ] All tests pass: `ctest --test-dir build`
-- [ ] New tests appear in test list
+- [x] Tests compile: `cmake --build build --target endless-sky-tests`
+- [x] All tests pass: `ctest --test-dir build`
+- [x] New tests appear in test list
 
 #### Manual Verification:
-- [ ] Test output shows camera controller tests running
-- [ ] Test output shows panel utils tests running
+- [x] Test output shows camera controller tests running (7 test cases)
+- [x] Test output shows panel utils tests running (3 test cases)
 
 **Implementation Note**: Tests can be run in CI/CD.
 
@@ -829,10 +829,10 @@ bool HideInterface() const;
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Full build succeeds: `cmake --build build`
-- [ ] All tests pass: `ctest --test-dir build`
-- [ ] No compiler warnings
-- [ ] `grep -r "CycleSpeed" source/` returns no results
+- [x] Full build succeeds: `cmake --build build`
+- [x] All tests pass: `ctest --test-dir build`
+- [x] No compiler warnings
+- [x] `grep -r "CycleSpeed" source/` returns no results
 
 #### Manual Verification:
 - [ ] Observer mode works end-to-end
