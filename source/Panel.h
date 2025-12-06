@@ -15,9 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "GamePad.h"
 #include "MouseButton.h"
 #include "Rectangle.h"
 
+#include <chrono>
 #include <functional>
 #include <list>
 #include <memory>
@@ -28,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 class Command;
+class GamePad;
 class Point;
 class Sprite;
 class TestContext;
@@ -88,6 +91,7 @@ protected:
 	virtual bool Drag(double dx, double dy);
 	virtual bool Release(int x, int y, MouseButton button);
 	virtual bool Scroll(double dx, double dy);
+	virtual bool GamePadState(GamePad &controller);
 
 	virtual void Resize();
 
@@ -101,6 +105,17 @@ protected:
 
 	// Dim the background of this panel.
 	void DrawBackdrop() const;
+
+	// Move cursor to the first zone of this panel
+	void CursorToFirstZone();
+
+	// Move cursor to the next/prev zone.
+	void CursorToNextZone(const Point &mouse);
+	void CursorToPrevZone(const Point &mouse);
+
+	// Go to adjacent panels.
+	virtual bool NextPanel();
+	virtual bool PrevPanel();
 
 	UI *GetUI() const noexcept;
 	void SetUI(UI *ui);
@@ -166,6 +181,11 @@ private:
 	bool isInterruptible = true;
 
 	std::list<Zone> zones;
+
+	// Fractional part of mouse cursor movement with stick.
+	Point controllerCursorRem;
+	// Has this panel handled the simulated mouse click yet.
+	std::chrono::time_point<std::chrono::steady_clock> controllerClickHandled;
 
 	std::vector<std::shared_ptr<Panel>> children;
 	std::vector<std::shared_ptr<Panel>> childrenToAdd;

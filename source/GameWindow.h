@@ -15,9 +15,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Point.h"
 #include "Preferences.h"
 
+#include <SDL2/SDL.h>
+
 #include <string>
+
+class UI;
+
+
 
 // This class is a collection of global functions for handling SDL_Windows.
 class GameWindow {
@@ -56,4 +63,9 @@ public:
 	static void UpdateTitleBarTheme();
 	static void UpdateWindowRounding();
 #endif
+
+private:
+	static SDL_Window *GetMainWindow();
+
+	friend class UI;
 };
