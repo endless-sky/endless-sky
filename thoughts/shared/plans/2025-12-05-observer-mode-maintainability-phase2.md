@@ -162,8 +162,8 @@ Replace with:
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Code compiles: `cmake --build build/macos-arm`
-- [ ] Tests pass: `ctest --test-dir build/macos-arm`
+- [x] Code compiles: `cmake --build build/macos-arm`
+- [x] Tests pass: `ctest --test-dir build/macos-arm`
 
 #### Manual Verification:
 - [ ] Observer mode HUD displays correctly
@@ -324,8 +324,8 @@ Note: Need to use `player.FlagshipPtr()` here since we need a shared_ptr and the
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Code compiles: `cmake --build build/macos-arm`
-- [ ] Tests pass: `ctest --test-dir build/macos-arm`
+- [x] Code compiles: `cmake --build build/macos-arm`
+- [x] Tests pass: `ctest --test-dir build/macos-arm`
 
 #### Manual Verification:
 - [ ] Camera follows ships correctly in observer mode
@@ -761,9 +761,9 @@ Update destructor and any place that sets the camera controller to also update t
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Code compiles: `cmake --build build/macos-arm`
-- [ ] Tests pass: `ctest --test-dir build/macos-arm`
-- [ ] New files added to build
+- [x] Code compiles: `cmake --build build/macos-arm`
+- [x] Tests pass: `ctest --test-dir build/macos-arm`
+- [x] New files added to build
 
 #### Manual Verification:
 - [ ] Observer mode works: camera follows ships, HUD displays correctly

@@ -150,6 +150,14 @@ int Panel::GetSpeedMultiplier() const noexcept
 
 
 
+// Default pause state - false for panels without their own engine.
+bool Panel::IsPaused() const noexcept
+{
+	return false;
+}
+
+
+
 void Panel::UpdateTooltipActivation()
 {
 }

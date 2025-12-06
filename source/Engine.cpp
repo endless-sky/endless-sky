@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AlertLabel.h"
 #include "CameraController.h"
+#include "CameraSource.h"
 #include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryType.h"
@@ -47,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MinableDamageDealt.h"
 #include "Mission.h"
 #include "NPC.h"
+#include "ObserverCameraSource.h"
 #include "shader/OutlineShader.h"
 #include "Person.h"
 #include "Planet.h"
@@ -397,11 +399,7 @@ void Engine::Place()
 	// that all special ships have been repositioned.
 	ships.splice(ships.end(), newShips);
 
-	if(cameraController)
-		camera.SnapTo(cameraController->GetTarget());
-	else if(flagship)
-		camera.SnapTo(flagship->Center());
-	// else: camera stays at current position
+	UpdateCameraPosition(flagship, nullptr, true);
 
 	player.SetPlanet(nullptr);
 }
@@ -508,32 +506,32 @@ void Engine::Step(bool isActive)
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();
-	// In observer mode, use the camera controller even if landed on a planet.
-	if(cameraController)
+
+	// Step camera source if in observer mode
+	if(IsObserverMode() && isActive && !timePaused)
+		cameraSource->Step();
+
+	// Update camera position
+	if(IsObserverMode())
 	{
 		if(isActive && !timePaused)
-		{
-			cameraController->Step();
-			// Use SnapTo to prevent camera lag/motion blur in observer mode.
-			// The camera controller handles its own smoothing if desired.
-			camera.SnapTo(cameraController->GetTarget());
-		}
+			UpdateCameraPosition(nullptr, nullptr, true);
 	}
 	else if(object)
 		camera.SnapTo(object->Position());
 	else if(flagship)
 	{
 		if(isActive && !timePaused)
-			camera.MoveTo(flagship->Center(), hyperspacePercentage);
+			UpdateCameraPosition(flagship, nullptr, false);
 
 		if(doEnterLabels)
 		{
 			doEnterLabels = false;
 			// Create the planet labels as soon as we entered a new system.
 			labels.clear();
-			for(const StellarObject &object : player.GetSystem()->Objects())
-				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship.get()))
-					labels.emplace_back(labels, *player.GetSystem(), object);
+			for(const StellarObject &obj : player.GetSystem()->Objects())
+				if(obj.HasSprite() && obj.HasValidPlanet() && obj.GetPlanet()->IsAccessible(flagship.get()))
+					labels.emplace_back(labels, *player.GetSystem(), obj);
 		}
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
@@ -591,10 +589,7 @@ void Engine::Step(bool isActive)
 		}
 
 		// Step the background to account for the current velocity and zoom.
-		// In observer mode, use the camera controller's velocity since camera.Velocity() is 0.
-		Point bgVelocity = timePaused ? Point() :
-			(cameraController ? cameraController->GetVelocity() : camera.Velocity());
-		GameData::StepBackground(bgVelocity, zoom);
+		GameData::StepBackground(timePaused ? Point() : camera.Velocity(), zoom);
 	}
 
 	outlines.clear();
@@ -756,8 +751,8 @@ void Engine::Step(bool isActive)
 	info = Information();
 
 	// In observer mode, populate HUD with observed ship info instead of player info
-	bool isObserver = (cameraController != nullptr);
-	shared_ptr<Ship> observedShip = isObserver ? cameraController->GetObservedShip() : nullptr;
+	bool isObserver = IsObserverMode();
+	shared_ptr<Ship> observedShip = isObserver ? cameraSource->GetShipForHUD() : nullptr;
 
 	if(isObserver && observedShip)
 	{
@@ -1294,8 +1289,8 @@ void Engine::Draw() const
 	// Draw the systems mini-map.
 	minimap.Draw(uiStep);
 
-	// Skip ammo and escort display in observer mode (no player ship)
-	if(!cameraController)
+	// Draw ammo and escort status (only in normal gameplay, not observer mode)
+	if(!IsObserverMode())
 	{
 		// Draw ammo status.
 		double ammoIconWidth = hud->GetValue("ammo icon width");
@@ -1392,16 +1387,21 @@ void Engine::BreakTargeting(const Government *gov)
 
 
 
-void Engine::SetCameraController(CameraController *controller)
+void Engine::SetCameraSource(CameraSource *source)
 {
-	cameraController = controller;
+	cameraSource = source;
 }
 
+
+CameraSource *Engine::GetCameraSource() const
+{
+	return cameraSource;
+}
 
 
 bool Engine::IsObserverMode() const
 {
-	return cameraController != nullptr;
+	return cameraSource && cameraSource->IsObserver();
 }
 
 
@@ -1579,12 +1579,38 @@ void Engine::PopulateTargetScanInfo(const Ship &target, bool perfectSensors, con
 
 
 
+void Engine::UpdateCameraPosition(const shared_ptr<Ship> &flagship, const StellarObject *landedObject, bool snap)
+{
+	if(IsObserverMode())
+	{
+		// Observer mode: use MoveTo so camera.Velocity() is calculated for background scrolling.
+		// Pass 0 for hyperspaceInfluence since observer mode doesn't hyperspace.
+		camera.MoveTo(cameraSource->GetTarget(), 0.);
+	}
+	else if(landedObject)
+	{
+		// Landed on a planet: center on the stellar object
+		camera.SnapTo(landedObject->Position());
+	}
+	else if(flagship)
+	{
+		// In flight: center on flagship
+		if(snap)
+			camera.SnapTo(flagship->Center(), true);
+		else
+			camera.MoveTo(flagship->Center(), hyperspacePercentage);
+	}
+	// else: camera stays at current position
+}
+
+
+
 void Engine::EnterSystem()
 {
 	ai.Clean();
 
 	Ship *flagship = player.Flagship();
-	bool isObserver = (cameraController != nullptr);
+	bool isObserver = IsObserverMode();
 
 	// In observer mode, we don't need a flagship to enter a system
 	if(!flagship && !isObserver)
@@ -1719,10 +1745,7 @@ void Engine::EnterSystem()
 
 	emptySoundsTimer.clear();
 
-	if(flagship)
-		camera.SnapTo(flagship->Center(), true);
-	else if(cameraController)
-		camera.SnapTo(cameraController->GetTarget());
+	UpdateCameraPosition(flagship ? player.FlagshipPtr() : nullptr, nullptr, true);
 
 	// If the player entered a system by wormhole or jump drive, center the background
 	// on the player's position. This is not done when entering a system by hyperdrive
@@ -1771,7 +1794,7 @@ void Engine::CalculateStep()
 	if(timePaused)
 	{
 		// Only process player commands and handle mouse clicks.
-		if(player.Flagship() && !cameraController)
+		if(player.Flagship() && !IsObserverMode())
 			ai.MovePlayer(*player.Flagship(), activeCommands);
 		activeCommands.Clear();
 		HandleMouseClicks();
@@ -1782,13 +1805,13 @@ void Engine::CalculateStep()
 	// Draw the objects. Start by figuring out where the view should be centered:
 	Camera newCamera = camera;
 	Point drawVelocity;
-	if(cameraController && !timePaused)
+	if(IsObserverMode() && !timePaused)
 	{
 		// Use SnapTo to prevent camera lag in observer mode.
-		newCamera.SnapTo(cameraController->GetTarget());
+		newCamera.SnapTo(cameraSource->GetTarget());
 		// Use the camera controller's velocity for motion blur calculation.
 		// This reduces blur when following a moving target.
-		drawVelocity = cameraController->GetVelocity();
+		drawVelocity = cameraSource->GetVelocity();
 	}
 	else if(flagship && !timePaused)
 	{
@@ -2008,12 +2031,18 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	SendHails();
 	HandleMouseClicks();
 
-	// Update camera controller with current ships
-	if(cameraController)
+	// Update camera source with current ships (observer mode only)
+	if(IsObserverMode())
 	{
-		cameraController->SetShips(ships);
-		if(playerSystem)
-			cameraController->SetStellarObjects(playerSystem->Objects());
+		if(auto *observer = dynamic_cast<ObserverCameraSource *>(cameraSource))
+		{
+			if(auto *controller = observer->GetController())
+			{
+				controller->SetShips(ships);
+				if(playerSystem)
+					controller->SetStellarObjects(playerSystem->Objects());
+			}
+		}
 	}
 
 	// Now, take the new objects that were generated this step and splice them

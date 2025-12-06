@@ -81,6 +81,10 @@ public:
 	// Default returns 0 meaning "use global fast-forward settings".
 	virtual int GetSpeedMultiplier() const noexcept;
 
+	// Check if this panel's game state is paused.
+	// Default returns false; panels with their own Engine can override.
+	virtual bool IsPaused() const noexcept;
+
 	virtual void UpdateTooltipActivation();
 
 

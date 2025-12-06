@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class CameraController;
+class ObserverCameraSource;
 class System;
 
 // Panel for observer/screensaver mode - watches the universe simulate itself.
@@ -48,6 +49,9 @@ public:
 	// Get observer-mode specific speed multiplier.
 	int GetSpeedMultiplier() const noexcept override;
 
+	// Check if observer mode is paused.
+	bool IsPaused() const noexcept override { return engine.IsPaused(); }
+
 
 private:
 	void CycleCamera();
@@ -63,6 +67,7 @@ private:
 	Engine engine;
 
 	std::unique_ptr<CameraController> cameraController;
+	std::unique_ptr<ObserverCameraSource> observerCameraSource;
 	int cameraMode = 0;  // 0=follow, 1=orbit, 2=free
 
 	// Speed control: 1-5 keys for 1x, 2x, 3x, 5x, 10x

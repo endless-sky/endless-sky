@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FreeCamera.h"
 #include "GameData.h"
 #include "Messages.h"
+#include "ObserverCameraSource.h"
 #include "OrbitPlanetCamera.h"
 #include "Preferences.h"
 #include "Random.h"
@@ -65,7 +66,9 @@ ObserverPanel::ObserverPanel(const System *startSystem)
 
 	// Start with follow ship camera
 	cameraController = make_unique<FollowShipCamera>();
-	engine.SetCameraController(cameraController.get());
+	// Wrap the controller in an ObserverCameraSource for the engine
+	observerCameraSource = make_unique<ObserverCameraSource>(cameraController.get());
+	engine.SetCameraSource(observerCameraSource.get());
 }
 
 
@@ -156,7 +159,9 @@ void ObserverPanel::Step()
 		auto freeCam = make_unique<FreeCamera>();
 		freeCam->SetPosition(currentPos);
 		cameraController = std::move(freeCam);
-		engine.SetCameraController(cameraController.get());
+		// Update the observer source to point to the new controller
+		observerCameraSource = make_unique<ObserverCameraSource>(cameraController.get());
+		engine.SetCameraSource(observerCameraSource.get());
 		if(player.GetSystem())
 			cameraController->SetStellarObjects(player.GetSystem()->Objects());
 	}
@@ -586,7 +591,8 @@ void ObserverPanel::SwitchToNewSystem()
 	// Reset camera to follow mode for new system
 	cameraMode = 0;
 	cameraController = make_unique<FollowShipCamera>();
-	engine.SetCameraController(cameraController.get());
+	observerCameraSource = make_unique<ObserverCameraSource>(cameraController.get());
+	engine.SetCameraSource(observerCameraSource.get());
 	if(newSystem)
 		cameraController->SetStellarObjects(newSystem->Objects());
 
@@ -624,7 +630,8 @@ void ObserverPanel::SwitchToPreviousSystem()
 	// Reset camera to follow mode for new system
 	cameraMode = 0;
 	cameraController = make_unique<FollowShipCamera>();
-	engine.SetCameraController(cameraController.get());
+	observerCameraSource = make_unique<ObserverCameraSource>(cameraController.get());
+	engine.SetCameraSource(observerCameraSource.get());
 	if(prevSystem)
 		cameraController->SetStellarObjects(prevSystem->Objects());
 
@@ -658,7 +665,9 @@ void ObserverPanel::CycleCamera()
 		break;
 	}
 
-	engine.SetCameraController(cameraController.get());
+	// Update the observer source to point to the new controller
+	observerCameraSource = make_unique<ObserverCameraSource>(cameraController.get());
+	engine.SetCameraSource(observerCameraSource.get());
 
 	// Provide current data to new controller
 	if(player.GetSystem())

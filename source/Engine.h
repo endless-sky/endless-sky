@@ -45,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class CameraController;
+class CameraSource;
 class Flotsam;
 class Government;
 class NPC;
@@ -109,8 +110,9 @@ public:
 
 	// === Observer Mode Support ===
 	// These methods support running the engine without a flagship (screensaver mode).
-	// The camera controller provides position/velocity when no flagship exists.
-	void SetCameraController(CameraController *controller);
+	// The camera source provides position/velocity/ship info in a unified way.
+	void SetCameraSource(CameraSource *source);
+	CameraSource *GetCameraSource() const;
 	bool IsObserverMode() const;
 	void EnterSystem();
 	size_t ShipCount() const;
@@ -227,6 +229,8 @@ private:
 	void PopulateShipStatusBars(const Ship &ship, bool showOverheatBlink);
 	// Helper to populate target scanning info (observer gets "perfect sensors", flagship uses range-limited scanning).
 	void PopulateTargetScanInfo(const Ship &target, bool perfectSensors, const Ship *scanner);
+	// Update camera position based on observer mode, landed state, or flagship
+	void UpdateCameraPosition(const std::shared_ptr<Ship> &flagship, const StellarObject *landedObject, bool snap);
 
 
 private:
@@ -347,8 +351,8 @@ private:
 	int loadCount = 0;
 	double loadSum = 0.;
 
-	// External camera controller for observer mode. Not owned.
-	CameraController *cameraController = nullptr;
+	// Camera source for unified camera positioning (observer or flagship). Not owned.
+	CameraSource *cameraSource = nullptr;
 	// Hide interface for clean screenshot mode.
 	bool hideInterface = false;
 };

@@ -450,7 +450,9 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
 
 			MainPanel *mainPanel = static_cast<MainPanel *>(gamePanels.Root().get());
-			if(mainPanel && mainPanel->GetEngine().IsPaused())
+			bool isPaused = (mainPanel && mainPanel->GetEngine().IsPaused())
+				|| (!menuPanels.IsEmpty() && menuPanels.Top()->IsPaused());
+			if(isPaused)
 				SpriteShader::Draw(SpriteSet::Get("ui/paused"), Screen::TopLeft() + Point(10., 10.));
 			else if(isFastForward || panelSpeed > 1)
 			{
