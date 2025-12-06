@@ -219,7 +219,7 @@ void ShipyardPanel::DrawButtons()
 	// TODO: Add button for sell but retain outfits.
 
 	DrawButton("_Leave",
-		Rectangle(Screen::BottomRight() - Point(45, 25), Point(60, 30)),
+		Rectangle(Screen::BottomRight() - Point(45, 25), Point(70, 30)),
 		true, hoverButton == 'l', 'l');
 
 	int modifier = Modifier();
