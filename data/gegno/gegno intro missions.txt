@@ -706,6 +706,8 @@ mission "Gegno Exploration Nudge"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
+	to fail
+		has "Gegno Exploration Nudge Failer: done"
 	on enter
 		conversation
 			branch provocative
@@ -718,6 +720,19 @@ mission "Gegno Exploration Nudge"
 			`The Scin ships following you off the planet show little hesitation before firing their weapons at you, likely feeling provoked by your choice of actions with them during the encounter. Still, they must have some sort of interest in you if they led you to them, meaning that there could be other possibilities to get involved with the Gegno at other locations in their space.`
 			`	Still, the Gegno already have qualms with outsiders. It might be a good idea to listen to what the Quarg said about exercising caution, especially if it leads to hostile encounters.`
 				accept
+
+# Offers along with the above mission and fails it upon meeting its conditions so it doesn't float in the mission panel
+mission "Gegno Exploration Nudge Failer"
+	invisible
+	landing
+	source "Yiia Iyr"
+	destination "Giaru Gegno"
+	to offer
+		has "Suspicious Scin: offered"
+		not "Gegno Genocide Defense: offered"
+	to complete
+		has "gegno: encounters"
+
 
 # Gegno Superheavy Missions
 
