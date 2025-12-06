@@ -722,7 +722,7 @@ mission "Gegno Exploration Nudge"
 				accept
 
 # Offers along with the above mission and fails it upon meeting its conditions so it doesn't float in the mission panel
-mission "Gegno Exploration Nudge Failer"
+mission "Gegno Exploration Nudge Remover"
 	invisible
 	landing
 	source "Yiia Iyr"
