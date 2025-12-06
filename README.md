@@ -1,32 +1,4 @@
-# Endless Sky (Observer Mode Fork)
-
-This fork adds **Observer Mode** - a non-interactive screensaver mode that watches AI ships battle across star systems.
-
-## Observer Mode Features
-
-- **Screensaver mode**: Watch the universe simulate itself without player interaction
-- **Multiple camera modes**: Follow ships, orbit planets, or free camera (Tab to cycle)
-- **Speed control**: 1x, 2x, 3x, 5x, 10x speed (keys 1-5)
-- **Auto system switching**: Automatically moves to new systems when activity dies down (can be disabled)
-- **Statistics tracking**: Tracks destroyed/disabled ships with activity graphs
-- **Clean screenshot mode**: Hide HUD with H key
-
-### Quick Start
-
-1. Launch the game
-2. Click "Observe" on the main menu (or press O)
-3. Use Tab to cycle camera modes
-
-### Branch Strategy
-
-- **`screensaver`** (default): Contains observer mode, kept up to date on a best effort basis
-- **`master`**: Mirrors upstream `endless-sky/endless-sky` for clean syncing
-
-To get upstream changes: sync `master` from upstream, then merge/rebase into `screensaver`.
-
----
-
-## About Endless Sky
+# Endless Sky
 
 Explore other star systems. Earn money by trading, carrying passengers, or completing missions. Use your earnings to buy a better ship or to upgrade the weapons and engines on your current one. Blow up pirates. Take sides in a civil war. Or leave human space behind and hope to find some friendly aliens whose culture is more civilized than your own...
 
@@ -39,50 +11,6 @@ See the [player's manual](https://github.com/endless-sky/endless-sky/wiki/Player
 ## Installing the game
 
 Official releases of Endless Sky are available as direct downloads from [GitHub](https://github.com/endless-sky/endless-sky/releases/latest), on [Steam](https://store.steampowered.com/app/404410/Endless_Sky/), on [GOG](https://gog.com/game/endless_sky), and on [Flathub](https://flathub.org/apps/details/io.github.endless_sky.endless_sky). Other package managers may also include the game, though the specific version provided may not be up-to-date.
-
-## Quick Build Commands (MacOS Apple Silicon)
-
-Required Homebrew deps:
-
-```sh
-brew install sdl2 libpng jpeg-turbo libavif openal-soft flac mad minizip
-```
-
-Configure (only needed once, or after CMakeLists.txt changes)
-
-```sh
-cmake --preset macos-arm -DES_USE_VCPKG=OFF -DCMAKE_PREFIX_PATH="/opt/homebrew/opt/openal-soft"
-```
-
-Build the game in debug mode
-
-```sh
-cmake --build build/macos-arm --config Debug
-```
-
-Or release mode, for optimized builds (faster gameplay, no sanitizers)
-
-```sh
-cmake --build build/macos-arm --config Release
-```
-
-Run unit tests
-
-```sh
-ctest --preset macos-arm-test
-```
-
-Run integration tests
-
-```sh
-ctest --preset macos-arm-integration
-```
-
-Run the game
-
-```sh
-./build/macos-arm/Debug/endless-sky
-```
 
 ## System Requirements
 
