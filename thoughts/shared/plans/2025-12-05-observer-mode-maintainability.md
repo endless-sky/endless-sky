@@ -579,11 +579,11 @@ The button should:
 - [x] No syntax errors in interfaces.txt
 
 #### Manual Verification:
-- [ ] Observe button appears on the right side of main menu
-- [ ] Button has proper visual backing (not floating text)
-- [ ] Button hover/click effects work like other buttons
-- [ ] Pressing 'O' key still works as shortcut
-- [ ] Clicking button launches observer mode
+- [x] Observe button appears on the right side of main menu
+- [x] Button has proper visual backing (using `sprite "ui/wide button"`)
+- [x] Button hover/click effects work like other buttons
+- [x] Pressing 'O' key still works as shortcut
+- [x] Clicking button launches observer mode
 
 **Implementation Note**: This requires visual verification. Launch the game and check the main menu appearance.
 
