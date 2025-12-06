@@ -269,7 +269,7 @@ namespace {
 			result.append(Format::Number(value));
 	}
 
-	const char *DEFAULT_TIMESTAMP_FORMAT = "%F %T";
+	const char *DEFAULT_TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S";
 
 	// Return a string containing the setting to use for time formatting.
 	const char *TimestampFormatString()
