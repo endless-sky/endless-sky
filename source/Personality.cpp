@@ -18,7 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "pi.h"
+#include "Random.h"
 
+#include <cmath>
 #include <map>
 #include <vector>
 
@@ -118,15 +121,14 @@ namespace {
 	const map<string, vector<PersonalityTrait>> COMPOSITE_TOKEN = {
 		{"heroic", {DARING, HUNTING}}
 	};
-
-	const double DEFAULT_CONFUSION = 10.;
 }
 
 
 
 // Default settings for player's ships.
 Personality::Personality() noexcept
-	: flags(1LL << DISABLES), confusionMultiplier(DEFAULT_CONFUSION), aimMultiplier(1.)
+	: flags(1LL << DISABLES), confusionMultiplier(2.), period(240.),
+	focusMultiplier(.2), gainFocusTime(120.), loseFocusTime(1800.), tick(Random::Int(period)), focusPercentage(0.)
 {
 	static_assert(LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM == PERSONALITY_COUNT,
 		"PERSONALITY_COUNT must match the length of PersonalityTraits");
@@ -148,11 +150,31 @@ void Personality::Load(const DataNode &node)
 		if(child.Token(0) == "confusion")
 		{
 			if(add || remove)
-				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion value:");
-			else if(child.Size() < 2)
-				child.PrintTrace("Skipping \"confusion\" tag with no value specified:");
-			else
+			{
+				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion node:");
+				continue;
+			}
+			// Accept the old method of defining confusion for backwards compatibility.
+			if(child.Size() >= 2)
 				confusionMultiplier = child.Value(1);
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+				if(grand.Size() < 2)
+					grand.PrintTrace("Skipping attribute with no value specified:");
+				else if(grandKey == "max confusion")
+					confusionMultiplier = max(0., grand.Value(1));
+				else if(grandKey == "period")
+					period = max(1., grand.Value(1));
+				else if(grandKey == "focus multiplier")
+					focusMultiplier = max(0., grand.Value(1));
+				else if(grandKey == "gain focus time")
+					gainFocusTime = max(1., grand.Value(1));
+				else if(grandKey == "lose focus time")
+					loseFocusTime = max(1., grand.Value(1));
+				else
+					grand.PrintTrace("Skipping unknown confusion attribute:");
+			}
 		}
 		else
 		{
@@ -460,28 +482,29 @@ bool Personality::IsQuiet() const
 
 
 
-const Point &Personality::Confusion() const
+const double &Personality::Confusion() const
 {
 	return confusion;
 }
 
 
 
-void Personality::UpdateConfusion(bool isFiring)
+void Personality::UpdateConfusion(bool isFocusing)
 {
-	// If you're firing weapons, aiming accuracy should slowly improve until it
-	// is 4 times more precise than it initially was.
-	aimMultiplier = .99 * aimMultiplier + .01 * (isFiring ? .5 : 2.);
+	if(!confusionMultiplier)
+		return;
+	tick++;
 
-	// Try to correct for any error in the aim, but constantly introduce new
-	// error and overcompensation so it oscillates around the origin. Apply
-	// damping to the position and velocity to avoid extreme outliers, though.
-	if(confusion.X() || confusion.Y())
-		confusionVelocity -= .001 * confusion.Unit();
-	confusionVelocity += .001 * Angle::Random().Unit();
-	confusionVelocity *= .999;
-	confusion += confusionVelocity * (confusionMultiplier * aimMultiplier);
-	confusion *= .9999;
+	// If you're focusing, aiming accuracy should slowly improve.
+	// Gain and lose focus times are stored as the number of ticks to reach and lose the maximum aiming bonus,
+	// so use their inverse to determine the amount of accuracy to gain or lose each tick.
+	if(isFocusing)
+		focusPercentage += 1. / gainFocusTime;
+	else
+		focusPercentage -= 1. / loseFocusTime;
+	focusPercentage = min(1., max(0., focusPercentage));
+
+	confusion = confusionMultiplier * (1. - (1. - focusMultiplier) * focusPercentage) * cos(tick * PI * 2 / period);
 }
 
 

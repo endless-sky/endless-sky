@@ -839,6 +839,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Allocate enough firing bits for this ship.
 	firingCommands.SetHardpoints(armament.Get().size());
+	onTarget.SetHardpoints(armament.Get().size());
 
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
@@ -1659,9 +1660,10 @@ void Ship::SetCommands(const Command &command)
 
 
 
-void Ship::SetCommands(const FireCommand &firingCommand)
+void Ship::SetCommands(const FireCommand &firingCommand, const FireCommand &targeting)
 {
 	firingCommands.UpdateWith(firingCommand);
+	onTarget.UpdateWith(targeting);
 }
 
 
@@ -1700,7 +1702,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(!isBeingDestroyed)
 		DoGeneration();
 
-	DoPassiveEffects(visuals, flotsam);
+	// Adjust the error in the pilot's targeting.
+	personality.UpdateConfusion(onTarget.IsFiring());
+
+	DoPassiveEffects(visuals);
 	DoJettison(flotsam);
 	DoCloakDecision();
 
@@ -4418,11 +4423,8 @@ void Ship::DoGeneration()
 
 
 
-void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::DoPassiveEffects(vector<Visual> &visuals)
 {
-	// Adjust the error in the pilot's targeting.
-	personality.UpdateConfusion(firingCommands.IsFiring());
-
 	// Handle ionization effects, etc.
 	if(ionization)
 		CreateSparks(visuals, "ion spark", ionization * .05);

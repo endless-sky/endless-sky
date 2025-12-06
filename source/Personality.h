@@ -87,8 +87,8 @@ public:
 	bool IsQuiet() const;
 
 	// Current inaccuracy in this ship's targeting:
-	const Point &Confusion() const;
-	void UpdateConfusion(bool isFiring);
+	const double &Confusion() const;
+	void UpdateConfusion(bool isFocusing);
 
 	// Personality to use for ships defending a planet from domination:
 	static Personality Defender();
@@ -108,7 +108,11 @@ private:
 
 	std::bitset<PERSONALITY_COUNT> flags;
 	double confusionMultiplier;
-	double aimMultiplier;
-	Point confusion;
-	Point confusionVelocity;
+	double period;
+	double focusMultiplier;
+	double gainFocusTime;
+	double loseFocusTime;
+	int tick;
+	double focusPercentage;
+	double confusion;
 };
