@@ -313,7 +313,7 @@ ship "Heavy Gust"
 	explode "medium explosion" 45
 	explode "large explosion" 22
 	"final explode" "final explosion medium"
-	description "The Heavy Gust is a further modification of the Strong Wind, adjusted even more heavily for combat purposes at the expense of much of its precursor's peacetime utility. These modifications make the Heavy Gust a fast medium warship, agile enough to keep up with foes too quick to be caught with a Tempest."
+	description "The Heavy Gust is a further modification of the Strong Wind, adjusted even more heavily for combat purposes at the expense of much of its precursor's peacetime utility. With these modifications, the Heavy Gust becomes both faster and deadlier, pushing the original civilian frame to its limits."
 
 ship "Heavy Gust" "Heavy Gust (Moonbeam)"
 	outfits
