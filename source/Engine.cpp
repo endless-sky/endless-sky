@@ -48,7 +48,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MinableDamageDealt.h"
 #include "Mission.h"
 #include "NPC.h"
-#include "ObserverCameraSource.h"
 #include "shader/OutlineShader.h"
 #include "Person.h"
 #include "Planet.h"
@@ -2029,18 +2028,8 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	HandleMouseClicks();
 
 	// Update camera source with current ships (observer mode only)
-	if(IsObserverMode())
-	{
-		if(auto *observer = dynamic_cast<ObserverCameraSource *>(cameraSource))
-		{
-			if(auto *controller = observer->GetController())
-			{
-				controller->SetShips(ships);
-				if(playerSystem)
-					controller->SetStellarObjects(playerSystem->Objects());
-			}
-		}
-	}
+	if(cameraSource)
+		cameraSource->UpdateWorldState(ships, playerSystem ? &playerSystem->Objects() : nullptr);
 
 	// Now, take the new objects that were generated this step and splice them
 	// on to the ends of the respective lists of objects. These new objects will

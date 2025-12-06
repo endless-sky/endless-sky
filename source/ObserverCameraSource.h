@@ -30,6 +30,8 @@ public:
 	void Step() override;
 	bool IsObserver() const override { return true; }
 	bool ShouldSnap() const override { return true; }
+	void UpdateWorldState(const std::list<std::shared_ptr<Ship>> &ships,
+		const std::vector<StellarObject> *stellarObjects) override;
 
 	// Access the underlying controller for observer-specific operations
 	CameraController *GetController() const { return controller; }

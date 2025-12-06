@@ -42,3 +42,14 @@ void ObserverCameraSource::Step()
 	if(controller)
 		controller->Step();
 }
+
+void ObserverCameraSource::UpdateWorldState(const std::list<std::shared_ptr<Ship>> &ships,
+	const std::vector<StellarObject> *stellarObjects)
+{
+	if(controller)
+	{
+		controller->SetShips(ships);
+		if(stellarObjects)
+			controller->SetStellarObjects(*stellarObjects);
+	}
+}

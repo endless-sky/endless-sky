@@ -17,7 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Point.h"
 
+#include <list>
 #include <memory>
+#include <vector>
 
 class Ship;
 class StellarObject;
@@ -47,4 +49,8 @@ public:
 
 	// Returns true if the camera should snap (no interpolation) vs move smoothly.
 	virtual bool ShouldSnap() const = 0;
+
+	// Update with current world state (ships, stellar objects). Default does nothing.
+	virtual void UpdateWorldState(const std::list<std::shared_ptr<Ship>> &ships,
+		const std::vector<StellarObject> *stellarObjects) {}
 };
