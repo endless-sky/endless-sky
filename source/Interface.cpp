@@ -958,9 +958,11 @@ Interface::InfoTagElement::InfoTagElement(const DataNode &node, const Point &glo
 	if(!fontColor)
 		fontColor = GameData::Colors().Get("active");
 	if(!backColor)
-		backColor = GameData::Colors().Get("tooltip background");
+		backColor = GameData::Colors().Get("infotag background default");
 	if(!borderColor)
-		borderColor = GameData::Colors().Get("hover");
+		borderColor = GameData::Colors().Get("border shimmer");
+	if(!borderColor2)
+		borderColor2 = GameData::Colors().Get("border shadow");
 }
 
 
@@ -1028,10 +1030,18 @@ bool Interface::InfoTagElement::ParseLine(const DataNode &node)
 	else if(key == "border")
 	{
 		// border <color> <width>
-		if(node.Size() >= 3)
+		if(node.Size() == 3)
 		{
 			borderColor = GameData::Colors().Get(node.Token(1));
+			borderColor2 = borderColor;
 			borderWidth = node.Value(2);
+		}
+		// border <color> <color> <width>
+		if(node.Size() == 4)
+		{
+			borderColor = GameData::Colors().Get(node.Token(1));
+			borderColor2 = GameData::Colors().Get(node.Token(2));
+			borderWidth = node.Value(3);
 		}
 		else if(node.HasChildren())
 		{
@@ -1118,6 +1128,6 @@ void Interface::InfoTagElement::Draw(const Rectangle &rect, const Information &i
 	InfoTag infoTag = InfoTag();
 
 	infoTag.Init(anchor, text2, rect.Width(), textAlignment, facing, affinity, backColor, fontColor, borderColor,
-		shrink, earLength, borderWidth);
+		borderColor2, shrink, earLength, borderWidth);
 	infoTag.Draw();
 }

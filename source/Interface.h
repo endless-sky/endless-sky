@@ -297,6 +297,7 @@ private:
 		const Color *backColor = nullptr;
 		const Color *fontColor = nullptr;
 		const Color *borderColor = nullptr;
+		const Color *borderColor2 = nullptr;
 	};
 
 

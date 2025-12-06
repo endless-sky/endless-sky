@@ -54,6 +54,10 @@ color "item selected" 0. 0. 0. .3
 color "outfitter difference highlight" 1. .5 0. 1.
 color "volume bar background" .0937 .0937 .0937 1.
 
+color "infotag background default" .125 .125 .125 1.
+color "border shimmer" 1. 1. 1. 1.
+color "border shadow" .5 .5 .5 1.
+
 # Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .85 .8
 color "hull" .70 .62 .43 .75

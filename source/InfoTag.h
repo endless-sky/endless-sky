@@ -52,7 +52,7 @@ public:
 
 	void Init(Point anchor, std::string text, double width, Alignment alignment, Direction facing, Affinity affinity,
 	          const Color *backColor = nullptr, const Color *fontColor = nullptr, const Color *borderColor = nullptr,
-	          bool shrink = true, double earLength = 15, double border = 1);
+	          const Color *borderColor2 = nullptr, bool shrink = true, double earLength = 15, double border = 1);
 	// void Init(int width, Alignment alignment, Direction facing, Affinity affinity,
 	// 	const Color *backColor, const Color *fontColor, const Color *borderColor,
 	// 	double earLength = 10, double border = 1);

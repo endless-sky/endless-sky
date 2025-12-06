@@ -50,14 +50,39 @@ float sdPolygon(in vec2 p, in vec2[N] v, in int vlen)
 	return s * sqrt(d);
 }
 
+vec4 minmax(in vec2[N] v, in int vlen)
+{
+	float minx = v[0].x;
+	float maxx = v[0].x;
+	float miny = v[0].y;
+	float maxy = v[0].y;
+	for(int i=1; i < vlen; i++)
+	{
+		minx = min(minx, v[i].x);
+		miny = min(miny, v[i].y);
+		maxx = max(maxx, v[i].x);
+		maxy = max(maxy, v[i].y);
+	}
+	return vec4(minx, miny, maxx, maxy);
+}
+
 void main()
 {
 	float d = sdPolygon(pos, polygon, numSides);
+	vec4 mm = minmax(polygon, numSides);
+	float minx, miny, maxx, maxy;
+	minx = mm.x;
+	miny = mm.y;
+	maxx = mm.z;
+	maxy = mm.w;
 
 	float A = 9.5;
 	float B = -1.5;
 	float theta = 0.3;
-	vec4 borderColor = mix(borderColor1, borderColor2, sin((A * (pos.x * cos(theta) - pos.y * sin(theta)) + B)));
+	float dx = (pos.x - minx) / (maxx - minx);
+	float dy = (pos.y - miny) / (maxy - miny);
+	float m = 0.5 * (1. + sin(A * (dx * cos(theta) - dy * sin(theta)) + B));
+	vec4 borderColor = mix(borderColor2, borderColor1, m);
 	// color if outside: (transparent), else inside, mixed with border
 	finalColor = mix(d > 0. ? vec4(0) : insideColor, borderColor, 1. - smoothstep(0., 1.3 * borderWidth, abs(d)));
 }

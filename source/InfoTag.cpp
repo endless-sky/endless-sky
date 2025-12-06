@@ -216,8 +216,8 @@ namespace {
 
 
 void InfoTag::Init(Point anchor, string text, double width, Alignment alignment, Direction facing, Affinity affinity,
-                   const Color *backColor, const Color *fontColor, const Color *borderColor, bool shrink, double earLength,
-                   double borderWidth)
+                   const Color *backColor, const Color *fontColor, const Color *borderColor, const Color *borderColor2,
+                   bool shrink, double earLength, double borderWidth)
 {
 	this->anchor = anchor;
 	this->box = {{0, 0}, {width, 0}};
@@ -229,7 +229,7 @@ void InfoTag::Init(Point anchor, string text, double width, Alignment alignment,
 	this->backColor2 = backColor;
 	this->fontColor = fontColor;
 	this->borderColor = borderColor;
-	this->borderColor2 = borderColor;
+	this->borderColor2 = borderColor2;
 	this->shrink = shrink;
 
 	this->wrap.SetFont(FontSet::Get(14));
