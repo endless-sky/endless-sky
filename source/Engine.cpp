@@ -529,9 +529,9 @@ void Engine::Step(bool isActive)
 			doEnterLabels = false;
 			// Create the planet labels as soon as we entered a new system.
 			labels.clear();
-			for(const StellarObject &obj : player.GetSystem()->Objects())
-				if(obj.HasSprite() && obj.HasValidPlanet() && obj.GetPlanet()->IsAccessible(flagship.get()))
-					labels.emplace_back(labels, *player.GetSystem(), obj);
+			for(const StellarObject &object : player.GetSystem()->Objects())
+				if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsAccessible(flagship.get()))
+					labels.emplace_back(labels, *player.GetSystem(), object);
 		}
 		if(doEnter && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
 		{
@@ -761,8 +761,23 @@ void Engine::Step(bool isActive)
 		info.SetSprite("player sprite", observedShip->GetSprite(), shipFacingUnit,
 			observedShip->GetFrame(step), observedShip->GetSwizzle());
 
-		// Show observed ship's status in the player bars (no overheat blink)
-		PopulateShipStatusBars(*observedShip, false);
+		// Show observed ship's status bars
+		info.SetBar("shields", observedShip->Shields());
+		info.SetBar("hull", observedShip->Hull(), 20.);
+		info.SetBar("disabled hull", min(observedShip->Hull(), observedShip->DisabledHull()), 20.);
+		double fuelCap = observedShip->Attributes().Get("fuel capacity");
+		if(fuelCap > 0.)
+		{
+			if(fuelCap <= MAX_FUEL_DISPLAY)
+				info.SetBar("fuel", observedShip->Fuel(), fuelCap * .01);
+			else
+				info.SetBar("fuel", observedShip->Fuel());
+		}
+		info.SetBar("energy", observedShip->Energy());
+		double heat = observedShip->Heat();
+		info.SetBar("heat", min(1., heat));
+		if(heat > 1.)
+			info.SetBar("overheat", min(1., heat - 1.));
 	}
 	else if(flagship && flagship->Hull())
 	{
@@ -776,9 +791,25 @@ void Engine::Step(bool isActive)
 		// Have an alarm label flash up when enemy ships are in the system
 		if(alarmTime && uiStep / 20 % 2 && Preferences::DisplayVisualAlert())
 			info.SetCondition("red alert");
-
-		// Show flagship's status bars (with overheat blink)
-		PopulateShipStatusBars(*flagship, true);
+		double fuelCap = flagship->Attributes().Get("fuel capacity");
+		// If the flagship has a large amount of fuel, display a solid bar.
+		// Otherwise, display a segment for every 100 units of fuel.
+		if(fuelCap <= MAX_FUEL_DISPLAY)
+			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
+		else
+			info.SetBar("fuel", flagship->Fuel());
+		info.SetBar("energy", flagship->Energy());
+		double heat = flagship->Heat();
+		info.SetBar("heat", min(1., heat));
+		// If heat is above 100%, draw a second overlaid bar to indicate the
+		// total heat level.
+		if(heat > 1.)
+			info.SetBar("overheat", min(1., heat - 1.));
+		if(flagship->IsOverheated() && (uiStep / 20) % 2)
+			info.SetBar("overheat blink", min(1., heat));
+		info.SetBar("shields", flagship->Shields());
+		info.SetBar("hull", flagship->Hull(), 20.);
+		info.SetBar("disabled hull", min(flagship->Hull(), flagship->DisabledHull()), 20.);
 	}
 
 	if(currentSystem)
@@ -1255,7 +1286,14 @@ void Engine::Draw() const
 	// Draw the heads-up display.
 	// In observer mode, draw the HUD but ObserverPanel adds its own overlay on top
 	hud->Draw(info);
-
+	if(hud->HasPoint("radar"))
+	{
+		radar[currentDrawBuffer].Draw(
+			hud->GetPoint("radar"),
+			RADAR_SCALE,
+			hud->GetValue("radar radius"),
+			hud->GetValue("radar pointer radius"));
+	}
 	if(hud->HasPoint("target") && targetVector.Length() > 20.)
 	{
 		Point center = hud->GetPoint("target");
@@ -1274,16 +1312,6 @@ void Engine::Draw() const
 		double dx[2] = {(width + mark[0]->Width() + 1) / -2, (width + mark[1]->Width() + 1) / 2};
 		for(int i = 0; i < 2; ++i)
 			SpriteShader::Draw(mark[i], center + Point(dx[i], 0.), 1., targetSwizzle);
-	}
-
-	// Draw radar
-	if(hud->HasPoint("radar"))
-	{
-		radar[currentDrawBuffer].Draw(
-			hud->GetPoint("radar"),
-			RADAR_SCALE,
-			hud->GetValue("radar radius"),
-			hud->GetValue("radar pointer radius"));
 	}
 
 	// Draw the systems mini-map.
@@ -1423,37 +1451,6 @@ void Engine::SetHideInterface(bool hide)
 bool Engine::HideInterface() const
 {
 	return hideInterface;
-}
-
-
-
-void Engine::PopulateShipStatusBars(const Ship &ship, bool showOverheatBlink)
-{
-	// Status bars
-	info.SetBar("shields", ship.Shields());
-	info.SetBar("hull", ship.Hull(), 20.);
-	info.SetBar("disabled hull", min(ship.Hull(), ship.DisabledHull()), 20.);
-
-	// Fuel bar
-	double fuelCap = ship.Attributes().Get("fuel capacity");
-	if(fuelCap > 0.)
-	{
-		if(fuelCap <= MAX_FUEL_DISPLAY)
-			info.SetBar("fuel", ship.Fuel(), fuelCap * .01);
-		else
-			info.SetBar("fuel", ship.Fuel());
-	}
-
-	// Energy and heat
-	info.SetBar("energy", ship.Energy());
-	double heat = ship.Heat();
-	info.SetBar("heat", min(1., heat));
-	if(heat > 1.)
-		info.SetBar("overheat", min(1., heat - 1.));
-
-	// Overheat blink (flagship only)
-	if(showOverheatBlink && ship.IsOverheated() && (uiStep / 20) % 2)
-		info.SetBar("overheat blink", min(1., heat));
 }
 
 

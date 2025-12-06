@@ -118,8 +118,6 @@ target_sources(EndlessSkyLib PRIVATE
 	FleetCargo.h
 	Flotsam.cpp
 	Flotsam.h
-	FlagshipCameraSource.cpp
-	FlagshipCameraSource.h
 	FollowShipCamera.cpp
 	FollowShipCamera.h
 	FreeCamera.cpp

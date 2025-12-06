@@ -99,9 +99,9 @@ rm keys.txt
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Files deleted: `! test -f source/FlagshipCameraSource.cpp && ! test -f source/FlagshipCameraSource.h && ! test -f keys.txt`
-- [ ] Build succeeds: `cmake --build build/macos-arm --config Debug 2>&1 | tail -5`
-- [ ] Diff reduced: `git diff master...HEAD --stat | grep -E "files? changed"` shows fewer files
+- [x] Files deleted: `! test -f source/FlagshipCameraSource.cpp && ! test -f source/FlagshipCameraSource.h && ! test -f keys.txt`
+- [x] Build succeeds: `cmake --build build/macos-arm --config Debug 2>&1 | tail -5`
+- [x] Diff reduced: `git diff master...HEAD --stat | grep -E "files? changed"` shows fewer files
 
 #### Manual Verification:
 - [ ] Game launches and observer mode works (press 'O' from main menu)
@@ -164,9 +164,9 @@ if(targetSwizzle && hud->HasPoint("faction markers"))
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Build succeeds: `cmake --build build/macos-arm --config Debug`
-- [ ] Variable name matches master: `git diff master...HEAD -- source/Engine.cpp | grep "StellarObject &obj"` returns nothing
-- [ ] Radar order matches master: `git show master:source/Engine.cpp | grep -n "hud->Draw" -A 5` matches current structure
+- [x] Build succeeds: `cmake --build build/macos-arm --config Debug`
+- [x] Variable name matches master: `git diff master...HEAD -- source/Engine.cpp | grep "StellarObject &obj"` returns nothing
+- [x] Radar order matches master: `git show master:source/Engine.cpp | grep -n "hud->Draw" -A 5` matches current structure
 
 #### Manual Verification:
 - [ ] Game runs, HUD displays correctly in normal gameplay
@@ -241,9 +241,9 @@ bool MainPanel::Scroll(double dx, double dy)
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Build succeeds: `cmake --build build/macos-arm --config Debug`
-- [ ] MainPanel.cpp matches master's zoom code: `git diff master...HEAD -- source/MainPanel.cpp | grep -c "PanelUtils"` returns 0
-- [ ] No PanelUtils include: `grep "PanelUtils" source/MainPanel.cpp` returns nothing
+- [x] Build succeeds: `cmake --build build/macos-arm --config Debug`
+- [x] MainPanel.cpp matches master's zoom code: `git diff master...HEAD -- source/MainPanel.cpp | grep -c "PanelUtils"` returns 0
+- [x] No PanelUtils include: `grep "PanelUtils" source/MainPanel.cpp` returns nothing
 
 #### Manual Verification:
 - [ ] Zoom in/out works with +/- keys in normal gameplay
@@ -306,7 +306,7 @@ The implementing agent should:
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Build succeeds: `cmake --build build/macos-arm --config Debug`
+- [x] Build succeeds: `cmake --build build/macos-arm --config Debug`
 - [ ] Tests pass (if any): `ctest --preset macos-arm-test`
 
 #### Manual Verification:
@@ -314,7 +314,8 @@ The implementing agent should:
 - [ ] HUD status bars display correctly in observer mode
 - [ ] Camera positioning works in all modes
 
-**Implementation Note**: This phase is optional. If it proves too risky or complex, skip it. The main value is in Phases 1-3.
+**Implementation Note**: PopulateShipStatusBars was inlined. UpdateCameraPosition kept as helper (inlining too invasive).
+**Result**: PopulateShipStatusBars inlined successfully. UpdateCameraPosition kept as-is per plan guidance.
 
 ---
 
@@ -342,9 +343,10 @@ ctest --preset macos-arm-test
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Build succeeds with no warnings related to changes
-- [ ] `git diff master...HEAD --stat` shows reduced file count and line changes
-- [ ] No references to deleted files: `grep -r "FlagshipCameraSource" source/` returns nothing
+- [x] Build succeeds with no warnings related to changes
+- [x] `git diff master...HEAD --stat` shows reduced file count and line changes (34 files, down from 36 at start - FlagshipCameraSource deleted)
+- [x] No references to deleted files: `grep -r "FlagshipCameraSource" source/` returns nothing
+- [x] Tests pass: `ctest --preset macos-arm-test` - 100% passed
 
 #### Manual Verification:
 - [ ] Normal gameplay works (start new game, fly ship, zoom, HUD displays)

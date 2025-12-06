@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MainPanel.h"
 
 #include "BoardingPanel.h"
-#include "PanelUtils.h"
 #include "comparators/ByGivenOrder.h"
 #include "CategoryList.h"
 #include "CoreStartData.h"
@@ -242,8 +241,10 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			Preferences::Has("Escorts expend ammo") ? (Preferences::Has("Escorts use ammo frugally") ?
 			"expend ammo frugally" : "expend ammo always") : "expend ammo never"));
 	}
-	else if(PanelUtils::HandleZoomKey(key, command, true))
-		;  // Handled by utility
+	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
+		Preferences::ZoomViewOut();
+	else if((key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS) && !command)
+		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
 	else
@@ -321,7 +322,14 @@ bool MainPanel::Release(int x, int y, MouseButton button)
 
 bool MainPanel::Scroll(double dx, double dy)
 {
-	return PanelUtils::HandleZoomScroll(dy);
+	if(dy < 0)
+		Preferences::ZoomViewOut();
+	else if(dy > 0)
+		Preferences::ZoomViewIn();
+	else
+		return false;
+
+	return true;
 }
 
 
