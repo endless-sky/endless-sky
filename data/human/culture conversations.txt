@@ -61,8 +61,7 @@ mission "Foiled Kidnapping Witnessed"
 mission "Gift Store Interaction"
 	minor
 	source
-		government "Republic"
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	"offer precedence" 5
 	to offer
@@ -555,7 +554,7 @@ mission "News Reporter - Paradise"
 mission "Scientists at the Pub after a Conference"
 	minor
 	source
-		government "Republic"
+		government "Republic" "Deep"
 		attributes "urban"
 		not attributes "station"
 	"offer precedence" 5
@@ -834,7 +833,7 @@ mission "Militia returning to Solace"
 mission "Republic 300 Year Anniversary"
 	landing
 	source
-		government "Republic"
+		government "Republic" "Deep" "Syndicate"
 		not attributes "uninhabited"
 	"offer precedence" 5
 	to offer
