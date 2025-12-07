@@ -4407,7 +4407,7 @@ planet "Outpost Tekis"
 planet Pacili
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa22
-	description `Although on the smaller end of the known gas giants, Pacili represents a calm, unremarkable ice giant. At its distance, no part of its atmosphere has pressures and temperatures compatible with human life; coupled with its scarcity of oxygen, this world is undoubtedly uninhabitable.`
+	description `Although on the smaller end of the known gas giants, Pacili represents a calm, unremarkable ice giant. At such a distance from its star, no part of its atmosphere has pressures and temperatures compatible with human life; coupled with its scarcity of oxygen, this world is undoubtedly uninhabitable.`
 	government Uninhabited
 	security 0
 
