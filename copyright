@@ -1721,6 +1721,7 @@ Files:
  images/planet/dyson2*
  images/planet/dyson3*
  images/planet/sheragi_postverta*
+ images/planet/sheragi_postverta_2*
  images/planet/station0*
  images/planet/station1b*
  images/planet/station2b*
@@ -1740,6 +1741,7 @@ Files:
  images/scene/remnant?station*
  images/scene/asteroid?scene*
  images/scene/lab?scene*
+ images/scene/lab?scene2*
  images/planet/debris0*
  images/planet/debris1*
  images/planet/desert11*
@@ -3482,7 +3484,9 @@ Files:
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
 
-Files: images/land/asteroid0*
+Files:
+ images/land/asteroid0*
+ images/land/asteroid1*
 Copyright: Becca Tommaso
 License: CC0
 Comment: Derived from works by ESA/Rosetta spacecraft (under the same license).
