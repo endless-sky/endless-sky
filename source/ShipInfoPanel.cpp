@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Table.h"
 #include "text/Truncate.h"
 #include "UI.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -262,6 +263,8 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				"Are you sure you want to jettison all of this ship's cargo?"));
 		}
 	}
+	else if(hoverIndex >= 0 && key >= '0' && key <= '9')
+		(*shipIt)->SetHardpointGroup(hoverIndex, key - '0');
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
@@ -525,7 +528,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	int index = 0;
 	const double centerX = bounds.Center().X();
 	const double labelCenter[2] = {centerX - .5 * LABEL_WIDTH - LABEL_DX, centerX + LABEL_DX + .5 * LABEL_WIDTH};
-	const double fromX[2] = { centerX - LABEL_DX + LABEL_PAD, centerX + LABEL_DX - LABEL_PAD};
+	const double fromX[2] = {centerX - LABEL_DX + LABEL_PAD, centerX + LABEL_DX - LABEL_PAD};
 	static const double LINE_HEIGHT = 20.;
 	static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
 	static const Point LINE_SIZE(LABEL_WIDTH, LINE_HEIGHT);
@@ -533,7 +536,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	Point topTo;
 	Color topColor;
 	bool hasTop = false;
-	auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
+	Layout layout{Truncate::BACK};
+	Layout groupNumberLayout{static_cast<int>(LABEL_WIDTH)};
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		string name = "[empty]";
@@ -546,6 +550,16 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		double &y = nextY[isRight][isTurret];
 		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
 		bool isHover = (index == hoverIndex);
+		if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.GetWeapon()->Icon())
+		{
+			groupNumberLayout.align = isRight ? Alignment::RIGHT : Alignment::LEFT;
+			font.Draw({'(' + to_string(hardpoint.GetGroup()) + ')', groupNumberLayout}, {x, y + TEXT_OFF}, bright);
+			layout.width = static_cast<int>(LABEL_WIDTH) - 20;
+			if(!isRight)
+				x += 20;
+		}
+		else
+			layout.width = static_cast<int>(LABEL_WIDTH);
 		layout.align = isRight ? Alignment::LEFT : Alignment::RIGHT;
 		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
 		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
@@ -582,8 +596,11 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	// Re-positioning weapons.
 	if(draggingIndex >= 0)
 	{
-		const Outfit *outfit = ship.Weapons()[draggingIndex].GetOutfit();
+		const Hardpoint &hardpoint = ship.Weapons()[draggingIndex];
+		const Outfit *outfit = hardpoint.GetOutfit();
 		string name = outfit ? outfit->DisplayName() : "[empty]";
+		if(outfit && !hardpoint.IsSpecial() && !outfit->GetWeapon()->Icon())
+			name += " (" + to_string(hardpoint.GetGroup()) + ')';
 		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
 		font.Draw(name, pos, bright);
