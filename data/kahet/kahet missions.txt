@@ -2210,7 +2210,7 @@ mission "Ka'het: Patir Mystery 17"
 			`	The workers signal that they are done with the installation. "I will come with you to operate it, Captain. Your previous mission will take precedence," he continues, "but as soon as they are done, I will direct you on the procedure to follow."`
 				accept
 	on visit
-		dialog "You've arrived at <planet>, but either your passengers, your cargo or the asteroid's outfits are not with you!"
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		conversation
 			`The three suited-up Remnant leave your ship toward the outpost, while Chilia stays aboard to prepare the electronic warfare system for its mission. You try your best to aid Chilia and to support the team on their EVA, but will take at least a few hours before either of them is ready for the next phase.`
@@ -2353,6 +2353,8 @@ mission "Ka'het: Patir Mystery 18"
 	on enter "Fereti"
 		dialog
 			`"There it is!" signs Chilia thrilled. "As long as it does not jump further away, this can work for us. Destroy the Maeri'het to prevent it from complicating things further; once the area is safe, you should be able to loot those outfits directly from its cargo hold."`
+	on visit
+		dialog "You've arrived at <planet>, but either your passengers, your cargo, or the outfits taken from the asteroid remains are not with you!"
 	on complete
 		require "Asteroid Jump Drive (Patir 18)"
 		require "Asteroid Weapon Small"
@@ -2383,6 +2385,8 @@ mission "Ka'het: Patir Mystery 19"
 			`	"Nicely done, Captain. With the items secured, I say we can easily classify this as mission accomplished." He accompanies you somewhere more private, and continues. "It seems that, in some way, the Ka'sei gained the ability to activate some of these outfits while digesting them. It must have been by accident, but it is still good news for us - it means that there has to be a way for us to use this technology on our own ships.`
 			`	"I caught the opportunity to transfer some of the data the Ka'sei had gathered, in case it helps our efforts. Naturally, it will take a while to decrypt and translate; better move to <destination> so that the analysis of that data, and even more so of the items, can commence."`
 				accept
+	on visit
+		dialog "You've arrived at <planet>, but either your passengers, your cargo, or the outfits taken from the asteroid remains are not with you!"
 	on complete
 		payment 500000
 		outfit "Asteroid Jump Drive (Patir 18)" -1
@@ -2689,6 +2693,8 @@ mission "Ka'het: Patir Mystery 23"
 			`	The lift returns to pick you two back up, and you follow Dusk inside the bucket. "It is customary that anyone who intends to work near Korath or Builder worlds learn the basics of the respective languages, but I used to spend some of my free time learning of more specific jargon. I had to give up some of my responsibilities at Ssil Vida recently to have some of my spare time back; perhaps I will be able to use some of it to help with the recent xenolinguistic developments."`
 			`	The discussion continues while moving the containers bit by bit, first into the outpost, and then into your ship. Much of the cargo has been loaded by the time they let you leave for some rest and to prepare your ship for liftoff, which you graciously accept.`
 				accept
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		conversation
 			`The Remnant leave the ship in joyful mood, despite the effort and the complications along the way. While a carriage leaves with the cargo you bought back from Patir, Dusk informs you that the next step will depend on the review of this test flight directly by the Prefects. "If all goes well, you will find us at a table of the nearby cafeteria as soon as we have taken some rest," he concludes with a hopeful bow.`
@@ -2725,6 +2731,8 @@ mission "Ka'het: Patir Mystery 24A"
 				`	"It will be here within a few days."`
 			`	He nods. "We will wait then. When you are ready, you know where to find us."`
 				decline
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on accept
 		event "Patir moves" 6
 		event "Patir returns" 13
@@ -2748,6 +2756,8 @@ mission "Ka'het: Patir Mystery 24B"
 				`	"Sorry, I need a few more days still."`
 			`	Their disappointment is clear. "We will be here when your ships come."`
 				defer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on accept
 		event "Patir moves" 6
 		event "Patir returns" 13
@@ -2771,6 +2781,8 @@ mission "Ka'het: Patir Mystery 25"
 			`For once, your ship's bridge is unusually quiet. The same cannot be said about the laboratory in the back of your ship: the Remnant have all moved there already, in order to activate the equipment for the mission. Each of them stands at their console setting up small computers and strange pieces of machinery, like a well oiled machine where everyone knows exactly what to do.`
 			`	By the time you reach the Builder settlement, the light show has come to an end. After briefly consulting with the crew, you decide to save some time by launching back to orbit straight away while they finish their preparations. After all, a new countdown has begun: in seven days, Patir will move back the Milky Way, with or without you.`
 				launch
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on enter
 		dialog "An airlock warning lights up on your control board: the Remnant reassure you that it's because a small satellite is being released from of the back of your payload bay, as it will in every system you pass through."
 
@@ -2830,6 +2842,8 @@ mission "Ka'het: Patir Mystery 26A"
 			label cables
 			`	You help the Remnant lift a screen from the floor, allowing it to float away into the room. Below it, you find nothing of note: no cabling, no connectors, not even a single panel. You try again with the one next to it, and again you end up with the same result. "After this, I would say that we have explored this facility enough for today. Let's get back to <system> and gather our findings; we have more than enough to think about for the time being."`
 				accept
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		conversation
 			`By the time your ship has been safed, the Remnant have unloaded many of the instruments they have used on this trip. "It would be a waste to bring them back home after all the effort to launch them here," they explain as you join them. "Once these are connected to our grid, they will use all of the available power and then some. We will have to take turns, at least until we bring some additional power stations." While they finish the setup, you take the chance to cover the machines with some regolith to help them conserve their heat in the night of the asteroid. You almost trip on one of their cables: with the recent trips, the exterior of the laboratory is quickly becoming as messy as its interior.`
@@ -2945,6 +2959,8 @@ mission "Ka'het: Patir Mystery 26B"
 			label end
 			`	"Very curious," Dusk comments, by now clearly more intrigued than scared. "If it was a malicious action, it was not a particularly effective one. Let us go back to <system>; we will reason on the whys and hows later."`
 				accept
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		event "Patir Lathia landable"
 		conversation
@@ -3101,6 +3117,8 @@ mission "Ka'het: Patir Mystery 28"
 			variant
 				"Palavret (Ember)"
 				"'olofez" 2
+	on visit
+		dialog `You land on <planet>, but realize that you left Taely on one of your escorts that hasn't entered the system. Better depart and wait for it to arrive.`
 	on complete
 		conversation
 			`As you make a hard-dock to <planet>, the three Swans go their own way toward the local gas giant. Taely explains that she will check them up from here: the inhabitants of Ssil Vida have been kind enough to set up a console for this test. "This one will be more or less a rehearsal," she informs you. "Strange and hard to explain things happen around that world when Ssil Vida gets engaged, and to avoid complications we intend to send them to scoop from the nearby systems once operational."`
@@ -3133,6 +3151,8 @@ mission "Ka'het: Patir Mystery 29"
 				`	"They are large, and unwieldy. I do not want them to get in the way."`
 			`	She looks at you with some frustration. "Given their speed, it will not take much effort for you to overtake them to the target, if you wish to do so. I would rather let it get some combat experience, but the choice is yours."`
 				accept
+	on visit
+		dialog phrase "generic bounty hunting on visit"
 	npc save
 		government "Remnant"
 		ship "Swan" "Sharp Song Spoken"
@@ -3157,6 +3177,7 @@ mission "Ka'het: Patir Mystery 29"
 		
 # this is where I would put my crew damage weapon...
 # If I had one!
+
 	on complete
 		payment 350000
 		conversation
@@ -3204,6 +3225,8 @@ mission "Ka'het: Patir Mystery 30"
 			label leave
 			`	"That being said, we should get going. The Swans may stay here, but I need a ride to <planet>'s shipyards to get back to my work."`
 				accept
+	on visit
+		dialog phrase "generic passenger on visit"
 
 mission "Ka'het: Patir Mystery 30 - Postverta fleet"
 	invisible
@@ -3342,6 +3365,8 @@ mission "Ka'het: Patir Mystery 32"
 			id 23032005
 		give ship "Tern" "Wide Sky Dancing"
 			id 23032006
+	on visit
+		dialog "You've arrived at <planet>, but either your passengers, your cargo or the six Terns are not with you!"
 	on complete
 		take ship "Tern" "Great Sky Dancing"
 			id 23032001
@@ -3445,7 +3470,8 @@ mission "Ka'het: Patir Mystery 33"
 			`	Tapping on his own console, he connects to your ship's dishes and starts transmitting. Glancing over his screen, you see that he is trying to communicate through every frequency they have available a preloaded transmission, rapidly switching from a program to the next one. The sequence comes to an end, but no reply comes out of the asteroid.`
 			`	"<first>, we have another step we can try. It might look a bit crude, but if you point me to the controls of <ship>'s lights I can show you." You lift up a panel from the wall on the back of the cockpit, and quickly locate the main switch. With his eyes locked on a clock atop his console, Dusk starts flicking on and off the lights inside and outside your ship at a precise cadence: 2 seconds, 3 seconds, 5 seconds, 7 seconds, 11 seconds...`
 			`	Over the next five minutes, he completes a sequence of every prime number up to 47 with a good accuracy. Yet still, the planetoid does not show any perceivable reaction. "Very well then, Captain. It is time to land on that asteroid."`
-
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		conversation
 			`Even from afar, the glow emitted from the asteroid has started to become apparent, tinting the entire cockpit purple. You turn off your engines in an orbit a few tens of kilometers away from the surface and move to the living quarters to call the rest of the crew.`
@@ -3644,6 +3670,8 @@ mission "Ka'het: Patir Mystery 34"
 				`	(Show it your hand, like in that video you saw once.)`
 			`	In an instant, the asteroid sprints out of the room. You follow it on your console as it launches out of your ship from the cargo bay, passing through the same hole it had made when coming in. With the engines sill firing, you take back control of your ship when it has left the sphere of influence of the planetoid...`
 				launch
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		conversation
 			`Although the days of travel gave you plenty of time to calm down, you can't help but feel some whiplash at the scene waiting for you in Patir. The Terns are cheerfully flying around the system, each carrying a slightly different instrumentation on their belly; on the surface of the asteroid, a few Remnant are busy swapping the payloads of one with another set of experiments.`
@@ -3729,7 +3757,11 @@ mission "Ka'het: Patir Mystery 35"
 			cargo 1
 			variant
 				"Fetri'sei" 2
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
 	on complete
+		log `Visited the space beyond Patir a few of times together with the Remnant. They are now going to let me go in and out of it on my own.`
+		log `It is not clear what the creatures in that space are, what their purpose is, or how intelligent they are.`
 		conversation
 			`You don't have time to say goodbye to the crew before a couple Remnant take you into another part of the starport, barely a meter below the ground. You spend the next hours recounting to your best abilities everything you have seen, pausing only for a few bathroom breaks and a quick meal. As time goes on, you notice they seem displeased with the lack of details you are able to give; when they eventually let you out, you can't help but feel they are not satisfied by your testimony.`
 			`	By the time you return the team has disappeared again. Only Dusk has stayed. "I just wanted to say goodbye, <first>. Despite the hiccups along the way - and, in a way, thank to them - we have now a safe outpost to house our crews, as well as our own instruments. Soon, all kinds of people are going to want to use it for their purposes, and they deserve to do so; from here on, my own research is going to compete with them all for time in the laboratory."`
@@ -3741,6 +3773,7 @@ mission "Ka'het: Patir Mystery 35"
 			`	"I want to get back up to date with the Builder research, at least while I see how things trend with Patir. In the meanwhile, keep your eyes open for anyone who needs a ride there - I have no doubt that as long as you keep helping our efforts, our roads will cross again. Embers bless your path, <first>!"`
 			label bow
 			`	You copy his bow in farewell. Right as you get back in your ship, however, you find an unread message from Chilia: he asks you to pay him a visit in the starport cafeteria, so as to celebrate your 'current status'.`
+
 
 mission "Ka'het: Patir Mystery 36"
 	name "The far site"
@@ -3779,6 +3812,8 @@ mission "Ka'het: Patir Mystery 36"
 				accept
 	on enter Equus
 		dialog "The analogue screen of the decryption machine points you toward the gas giant Methuselah nearby. On the screen, the neon outline of a small cloaked outpost appears in front of you: behind it, a tiny and just as invisible ship of unknown design scoops up and down the gas giant in a mesmerizing pattern. You activate the data transfer, and a progress bar fills to completion over the next few minutes."
+	on visit
+		dialog phrase "generic cargo on visit"
 	on complete
 		event "patir mystery 3 timer" 20
 		conversation
@@ -3960,7 +3995,7 @@ mission "Ka'het: Patir Mystery Crew job"
 	on offer
 		require "Research Laboratory"
 	on waypoint
-		dialog "Strange sets of instruments extend once again from your payload bay, scanning the system in an engaging rhythm. After some discussions, they decide that they are satisfied enough with this amount of data."
+		dialog "Strange sets of instruments extend once again from your payload bay, scanning the system in an engaging rhythm. You see a number of Snipes jump in and out of your own ship; after some discussions, they decide that they are satisfied enough with this amount of data."
 	on complete
 		payment 500000
 		"reputation: Remnant" ++
@@ -4035,21 +4070,15 @@ mission "Ka'het: Patir Mystery Magic Asteroid Derelict failing"
 
 
 
-mission "Ka'het: Patir Mystery Chilia message"
+mission "Ka'het: Patir Mystery Aeolus message"
 	invisible
-	landing
-	repeat
+	outfitter
 	source
-		not planet "Builder Settlement"
+		government "Remnant"
 	to offer
-		has "Ka'het: Patir Mystery Magic Asteroid Derelict: active"
-		not "ka'het: beyond Patir"
+		has "Ka'het: Patir Mystery 35: done"
 	on offer
-		fail "Ka'het: Patir Mystery Magic Asteroid Derelict"
-		fail
-
-
-# add on visits
-# add logs
-
-# add job about giving asteroid stuff to Chilia
+		require "Asteroid Jump Drive"
+		conversation 
+			`As soon as you take a step into the local outfitter, your communicator starts buzzing desperately. It is a message from Aeolus: they are aware of the precious cargo you are carrying, and, on behalf of Chilia, would be happy to take care of it as soon as you sell it to them.`
+				decline
