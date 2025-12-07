@@ -251,5 +251,5 @@ planet "Chanai Structure"
 planet "Magic Asteroid Planet"
 	"display name" "???"
 	landscape "land/asteroid1"
-	description `The dosimeter on your suit doesn't seem to know what to think of this place, going back and forth despite staying in the same location. Short valleys are covered with impacts of all shapes sizes, pink-colored veins resurfacing from their edges. In spite of the vacuum, you would swear you can see a purplish hue all around it.`
+	description `The dosimeter on your suit doesn't seem to know what to think of this place, going back and forth despite staying in the same location. Short valleys are covered with impacts of all shapes and sizes, with pink-colored veins resurfacing from their edges. In spite of the vacuum, you would swear you can see a purplish hue all around it.`
 	government "Magic Asteroid"
