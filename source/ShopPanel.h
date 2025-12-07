@@ -108,6 +108,9 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool GamePadState(GamePad &controller) override;
+
+	virtual bool PrevPanel() override;
 
 	void DoFind(const std::string &text);
 	virtual int FindItem(const std::string &text) const = 0;
@@ -222,6 +225,11 @@ private:
 
 
 private:
+	// Simulate mouse click with control held on button B.
+	bool gamepadControl = false;
+	// If held, will buy or sell to storage.
+	bool heldRightShoulder = false;
+
 	bool delayedAutoScroll = false;
 
 	Point hoverPoint;
