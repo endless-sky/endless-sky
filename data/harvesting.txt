@@ -38,7 +38,7 @@ minable "copper"
 	hull 1080
 	"random hull" 240
 	payload "Copper" 20
-		"toughness" 7200
+		"toughness" 9000
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -60,7 +60,7 @@ minable "gold"
 	hull 2520
 	"random hull" 560
 	payload "Gold" 16
-		"toughness" 43200
+		"toughness" 13650
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -82,7 +82,7 @@ minable "iron"
 	hull 1440
 	"random hull" 320
 	payload "Iron" 50
-		"toughness" 9600
+		"toughness" 12000
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -104,7 +104,7 @@ minable "lead"
 	hull 720
 	"random hull" 160
 	payload "Lead" 32
-		"toughness" 4400
+		"toughness" 7000
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -126,7 +126,7 @@ minable "neodymium"
 	hull 3240
 	"random hull" 720
 	payload "Neodymium" 40
-		"toughness" 77000
+		"toughness" 14750
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -148,7 +148,7 @@ minable "platinum"
 	hull 3600
 	"random hull" 800
 	payload "Platinum" 16
-		"toughness" 133000
+		"toughness" 13000
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -170,7 +170,7 @@ minable "silicon"
 	hull 360
 	"random hull" 80
 	payload "Silicon" 50
-		"toughness" 1900
+		"toughness" 5000
 	explode "smoke" 40
 	explode "bolide" 40
 	explode "asteroid crunch large"
@@ -192,7 +192,7 @@ minable "silver"
 	hull 1800
 	"random hull" 400
 	payload "Silver" 20
-		"toughness" 30850
+		"toughness" 9750
 	explode "smoke" 20
 	explode "bolide" 20
 	explode "asteroid crunch small"
@@ -214,7 +214,7 @@ minable "titanium"
 	hull 2160
 	"random hull" 480
 	payload "Titanium" 32
-		"toughness" 22800
+		"toughness" 14400
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -236,7 +236,7 @@ minable "tungsten"
 	hull 4320
 	"random hull" 960
 	payload "Tungsten" 24
-		"toughness" 57000
+		"toughness" 26250
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -258,7 +258,7 @@ minable "uranium"
 	hull 2880
 	"random hull" 640
 	payload "Uranium" 24
-		"toughness" 49400
+		"toughness" 15600
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
@@ -280,7 +280,7 @@ minable "yottrite"
 	hull 18000
 	"random hull" 4000
 	payload "Yottrite" 7
-		"toughness" 1377500
+		"toughness" 50000
 	explode "smoke" 30
 	explode "bolide" 30
 	explode "asteroid crunch medium"
