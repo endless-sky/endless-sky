@@ -2449,7 +2449,7 @@ mission "Ka'het: Patir Mystery 20"
 					goto risk
 				`	"I am stronger than the Ka'het."`
 			`	"I hope you are," he signs after a brief pause. He seems unenthused by your remark.`
-					goto skip
+				goto skip
 			label philosophies
 			`	"See, <first>, the extinction of an interstellar species is a relatively rare occurrence in the galaxy. Empires will shrink and grow, sometimes even ceasing to be spacefaring; but it takes incredible circumstances to completely erase such a civilization. It is only natural for other civilizations to want to find out what was able to make the unthinkable happen.`
 			`	"The mistakes done by the Builders, for example, seem trivial from our perspective. This could mean that they made profoundly stupid decisions, or that we have not understood enough of the situation to put all the pieces together and actually comprehend their mistakes. And now we have indications of another, much older extinct species in the space that lies beyond Patir."`
@@ -2459,7 +2459,7 @@ mission "Ka'het: Patir Mystery 20"
 			label danger
 			`	He passes his hand over the hull of Calm Sea Afire, thoughtful. "Only time will tell, but I stand by the decisions we have made. A standard Smew is simple to repair and to keep in storage, but not too useful outside of the Ember Wastes. A large, jump-capable starship is complicated to keep in flight-status for months at a time, not to mention the maintenance needs of a cloaking system. And worse of all, it might not even be of much use if Patir was not in the Milky Way when the emergency happens!"`
 			label skip
-			`	The buzz of Dusk's commlink draws his attention. He smiles, and his tone changes almost instantly. "Ssil Vida is ready to cut the signal. Once they do so, it will take six days for this to reach Patir; at that point, it will instantly disappear, possibly to move into the the same cluster we visited the last time. You, I, and four of our researchers must be there when this happens." He rights up and clears his throat. "Captain," he sings boastfully, "shall I give the order?"`
+			`	The buzz of Dusk's commlink draws his attention. He smiles, and his tone changes almost instantly. "Ssil Vida is ready to cut the signal. Once they do so, it will take six days for this to reach Patir; at that point, it will instantly disappear, possibly to move into the same cluster we visited the last time. You, I, and four of our researchers must be there when this happens." He rights up and clears his throat. "Captain," he sings boastfully, "shall I give the order?"`
 			choice
 				`	"Do it."`
 			`	He types on his commlink, and a minute passes. When the commlink buzzes again, Dusk makes an uncharacteristic cheer and quickly bids farewell to the people in the hangar. While he gathers a group of people, presumably the researchers that will follow you in the expedition, one of the spaceport workers takes a small crystal out of the now-assembled Petrel and hands it to you. "The Calm Sea Afire is in your hands, Captain," she signs thereafter. "Treat her well."`
@@ -2472,7 +2472,7 @@ mission "Ka'het: Patir Mystery 20"
 	on visit
 		dialog "You've arrived at <planet>, but either your passengers or the Calm Sea Afire are not with you!"
 	on complete
-		take ship "Petrel (Lifeboat)"  "Calm Sea Afire"
+		take ship "Petrel (Lifeboat)" "Calm Sea Afire"
 			id 78967
 			"require outfits"
 			"with outfits"
@@ -2828,7 +2828,7 @@ mission "Ka'het: Patir Mystery 26A"
 			`	"We have found something we hypothesize to be large terminals, but they do not give signs of life. We are prying them open right now to get a better idea."`
 				goto cables
 			label hole
-			`	"I did not say black hole - I said star, and a black hole is not one. All of these figures are very simplified, but they are very clearly representing a star there in the center of the system." He shows you and Dusk some of the graphics, and you cannot help but a agree with the conclusion. "At some point in the past, the Chanai star became a supernova, which collapsed into the black hole we see today. How long ago it was is impossible to say: black holes have the unfortunate peculiarity that none of their features allow a direct estimation of their age, and we do not know nearly enough about this place to use external clues."`
+			`	"I did not say black hole - I said star, and a black hole is not one. All of these figures are very simplified, but they are very clearly representing a star there in the center of the system." He shows you and Dusk some of the graphics, and you cannot help but agree with the conclusion. "At some point in the past, the Chanai star became a supernova, which collapsed into the black hole we see today. How long ago it was is impossible to say: black holes have the unfortunate peculiarity that none of their features allow a direct estimation of their age, and we do not know nearly enough about this place to use external clues."`
 			`	"Still, the question of its purpose," intervenes Dusk. "Perhaps this laser was used to accelerate the reactions inside the star, making it burn brighter even at the cost of dying sooner; it would not be the first species to attempt something so destructive. But surviving a supernova with no damage is almost inconceivable to me."`
 			label cables
 			`	You help the Remnant lift a screen from the floor, allowing it to float away into the room. Below it, you find nothing of note: no cabling, no connectors, not even a single panel. You try again with the one next to it, and again you end up with the same result. "After this, I would say that we have explored this facility enough for today. Let's get back to <system> and gather our findings; we have more than enough to think about for the time being."`
@@ -3061,10 +3061,10 @@ mission "Ka'het: Patir Mystery 28"
 			label someone
 			`	Your conversation is interrupted by Taely's arrival. She returns a gesture of greeting with one hand, carrying her communicator the other. "Our fleet is ready. We need some more time to carry them to the pad, but as far as we are concerned there are no blockers of any kind." She signs to follow them to the hangar, and you hurry up to keep the pace with her and Dusk.`
 			`	"You might not know that, on top of the energy required, Ssil Vida uses significant amounts of hyperspace fuel in its operations," she explains. "It is able to ramscoop a limited amount of propellant from Postverta, but we had to add more on our own in order to keep up with our needs. I have helped coordinate the fueling fleets used for your recent expeditions, and I assure you that the logistics are becoming exceedingly complex over time. At last, we have become convinced that we need a specialized vehicle for such a role."`
-			`	Three identical Remnant ships are queuing out of the the local shipyard, each towed by two rows of camels and hovering barely a meter above the ground. Trying pass through the crowds that have gathered to watch their passage, you notice that their wingspan is among the largest and thickest you ever had a chance to see. The wingtips are sometimes just a few centimeters from buildings at the sides of the road, though the convoy is moving faster than you would expect with such tight gaps. Its structure reminds you of that of a large and heavy bird, with oversized wings and a thick neck.`
+			`	Three identical Remnant ships are queuing out of the local shipyard, each towed by two rows of camels and hovering barely a meter above the ground. Trying pass through the crowds that have gathered to watch their passage, you notice that their wingspan is among the largest and thickest you ever had a chance to see. The wingtips are sometimes just a few centimeters from buildings at the sides of the road, though the convoy is moving faster than you would expect with such tight gaps. Its structure reminds you of that of a large and heavy bird, with oversized wings and a thick neck.`
 			choice
 				`	"What is their name?"`
-					goto name 
+					goto name
 				`	"How did you make them this quickly?"`
 					goto alive
 				`	"Are they alive?"`
@@ -3324,7 +3324,7 @@ mission "Ka'het: Patir Mystery 32"
 				goto choice
 			label what
 			`	"What you see here is a very-long-baseline interferometer: an antenna will be put atop our Patir outpost, and another on your ship. As you move further away their processor will compare the results of each to form an enormous, virtual telescope studying the space nearby.`
-			`	Nothing new, of course," she decides to clarify. "The main difference is the galaxy from where these observations are made. Maybe I will come with you to see it with my eyes at some point; for now, I am part of the ground crew here, managing its data once Patir is back and we have the first light."`
+			`	"Nothing new, of course," she decides to clarify. "The main difference is the galaxy from where these observations are made. Maybe I will come with you to see it with my eyes at some point; for now, I am part of the ground crew here, managing its data once Patir is back and we have the first light."`
 			label choice
 			choice
 				`	"I see."`
@@ -3527,7 +3527,7 @@ mission "Ka'het: Patir Mystery 33"
 			label still
 			`	Dusk rushes toward the door, but it refuses to open; something on the other side must be blocking it. The glow emitted by the dust grows in strength as it gets closer to you, eventually forcing you to look away. As Dusk starts trying to kick down the door with little result, the red light is now barely a meter away.`
 			label arrived
-			`	The cloud reaches you and Dusk at the same time, clinging to the surface of your suit and forcing you back slightly. You try to brush it off, but you soon discover that it is blocking your joints, leaving you completely locked in place. A thump slams into you below your neck as the dust tries to to break into your suit; there is nothing you can do to stop it.`
+			`	The cloud reaches you and Dusk at the same time, clinging to the surface of your suit and forcing you back slightly. You try to brush it off, but you soon discover that it is blocking your joints, leaving you completely locked in place. A thump slams you below your neck as the dust tries to break into your suit; there is nothing you can do to stop it.`
 			`	Three more thumps follow; at the fourth you feel a strong impact hitting your torso, and a shiver spreads all over your body.`
 			`	The suit breach alarm goes off, and everything goes black.`
 				accept
@@ -3574,7 +3574,7 @@ mission "Ka'het: Patir Mystery 33"
 			`	You run toward the tunnel you came from, and start walking back as fast as you can. After not even fifty meters, however, you meet another wall blocking your way, right where you had passed earlier. You try your best to make a hole in the barricade with the tools in your backpack, and eventually with your sidearm. But nothing works. A scream of help coming from the cave leads you to abandon your efforts to return to Dusk. When you find him, his boot has been absorbed inside a mass of gray rock of some sort, slowly growing and moving up his suit.`
 			label dusk
 			`	You try with all your strength to bring him out of it, but its grip is too tight. The stone quickly reaches the torso, and then the arms. You watch helpless as his whole body gets absorbed by the newly formed wall. You have are now stuck in a hole barely larger than you are.`
-			`	It doesn't take long for the rock to start growing on you as well. You try your best to calm down and slow your oxygen consumption as your helmet, torso and legs gets covered in stone. Creaks and and vibrations start spreading along the suit; it is pushing, and you know it will not take long for it to burst.`
+			`	It doesn't take long for the rock to start growing on you as well. You try your best to calm down and slow your oxygen consumption as your helmet, torso and legs gets covered in stone. Creaks and vibrations start spreading along the suit; it is pushing, and you know it will not take long for it to burst.`
 			`	Minutes pass with the suit on the point of breaking, unable to do anything except to wait for the inevitable. Finally, you feel a strong impact hitting your torso, and a shiver spreads all over your body.`
 			`	The suit breach alarm goes off, and everything goes black.`
 				accept
@@ -3606,7 +3606,7 @@ mission "Ka'het: Patir Mystery 33"
 					goto oxygen
 			`	You try your best to free your leg using the tools in your backpack, with little results. Left with no other options, you even take out your sidearm and fire in the dark all the shots you can. But nothing works.`
 			label oxygen
-			`	The mass on your leg grows, wrapping more and more of your suit. You try your best to calm down and slow your oxygen consumption as your helmet, torso and legs get covered. Creaks and and vibrations start spreading along the suit; it is pushing, and you know it will not take long for it to burst.`
+			`	The mass on your leg grows, wrapping more and more of your suit. You try your best to calm down and slow your oxygen consumption as your helmet, torso and legs get covered. Creaks and vibrations start spreading along the suit; it is pushing, and you know it will not take long for it to burst.`
 			`	Minutes pass with the suit on the point of breaking, unable to do anything except to wait for the inevitable. Finally, you feel a strong impact hitting your torso, and a shiver spreads all over your body.`
 			`	The suit breach alarm goes off, and everything goes black.`
 				accept
@@ -3624,7 +3624,7 @@ mission "Ka'het: Patir Mystery 34"
 		has "Ka'het: Patir Mystery 33: done"
 	on offer
 		conversation
-			`You wake up lying in the floor with an blinking light pointed in your eyes. You try to cover it with your hand, and the Remnant above you gestures to stay quiet. As he helps you stand up, you realize you are inside the payload bay of your own ship: around you is the rest of the crew, standing in a circle in their undersuit garments. You try to take a step, but you almost fall: you realize then that your spacesuit is too ruined to use, and you tiredly take it off as well.`
+			`You wake up lying in the floor with a blinking light pointed in your eyes. You try to cover it with your hand, and the Remnant above you gestures to stay quiet. As he helps you stand up, you realize you are inside the payload bay of your own ship: around you is the rest of the crew, standing in a circle in their undersuit garments. You try to take a step, but you almost fall: you realize then that your spacesuit is too ruined to use, and you tiredly take it off as well.`
 			`	"We have all woken up here," Dusk signs in the complete silence. His sleeves are slightly lacerated, and atop his shoulders you notice his own symbiont peeking through. "There was a meter-sized breach in the hull, but we have patched it up just now. Going by our clocks, we have been unconscious for no more than 20 minutes." He points his hand toward the open hatch that separates the cargo bay from the rest of the ship. "None of us has ventured beyond that door yet. Presuming our scanners are correct, there is still a presence inside this ship."`
 			choice
 				`	"Is the rest of the ship pressurized?"`
@@ -3947,7 +3947,7 @@ mission "Ka'het: Patir Mystery Safety Net Permanent"
 	deadline 9
 	name "Safety Net"
 	description "Patir will move back to the Milky Way on <date>, after having appeared here 3 days earlier."
-	source 
+	source
 		planet "Chanai Structure"
 		planet "Magic Asteroid Planet"
 	destination "Builder Settlement"
@@ -4070,7 +4070,7 @@ mission "Ka'het: Patir Mystery Aeolus message"
 		has "Ka'het: Patir Mystery 35: done"
 	on offer
 		require "Asteroid Jump Drive"
-		conversation 
+		conversation
 			`As soon as you take a step into the local outfitter, your communicator starts buzzing desperately. It is a message from Aeolus: they are aware of the precious cargo you are carrying, and, on behalf of Chilia, would be happy to take care of it as soon as you sell it to them.`
 				decline
 
