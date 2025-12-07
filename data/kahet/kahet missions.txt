@@ -3838,7 +3838,8 @@ mission "Ka'het: Patir Mystery 37B"
 	deadline 1
 	name "Patir Returns"
 	description "Patir will move back to the Milky Way on <date>, with or without you."
-	source "Patir"
+	source 
+		system "Patir"
 	to offer
 		has "Ka'het: Patir Mystery 37A: active"
 		not "Ka'het: Patir Mystery 37B: active"
@@ -3865,7 +3866,8 @@ mission "Ka'het: Patir Mystery 38B"
 	deadline 7
 	name "Patir Returns"
 	description "Patir will move back to the Milky Way on <date>, with or without you."
-	source "Patir"
+	source 
+		system "Patir"
 	to offer
 		has "Ka'het: Patir Mystery 38A: active"
 		not "Ka'het: Patir Mystery 38B: active"
@@ -3892,7 +3894,8 @@ mission "Ka'het: Patir Mystery 39B"
 	deadline 14
 	name "Patir Returns"
 	description "Patir will move back to the Milky Way on <date>, with or without you."
-	source "Patir"
+	source 
+		system "Patir"
 	to offer
 		has "Ka'het: Patir Mystery 39A: active"
 		not "Ka'het: Patir Mystery 39B: active"
