@@ -2022,6 +2022,7 @@ government "Remnant"
 		"Indigenous Lifeform" 0.05
 		"Korath" -.05
 		"Alpha" -.05
+		"Remnant (Postverta)" 1
 		"Remnant (Research)" 1
 	"penalty for"
 		assist -0.25
@@ -2031,6 +2032,7 @@ government "Remnant"
 		destroy 10
 		scan 0.1
 	"foreign penalties for"
+		"Remnant (Postverta)"
 		"Remnant (Research)"
 	"custom penalties for"
 		"Indigenous Lifeform"

@@ -1750,7 +1750,7 @@ ship "Swan"
 	explode "huge explosion" 15
 	"final explode" "final explosion large" 1
 	description "With the advent of more powerful ramscoops, the need for extensive propellant logistics networks all but disappeared. The Swan had the misfortune of being born as a tanker; as such, it had to survive as nothing more than a set of detailed drawings inside some dusty folders. Eventually, decades after its conception, the need for such a vehicle became apparent and production could finally begin."
-	description "	On top of its fuel storage capabilities, the Swan makes for an interesting fighter in its own right. Four drone bays have been added below its fuel-bearing wings, each a fair bit larger than the Terns they tend to carry. On top of this, despite not being nearly as well shielded, its weapon complement nears that of the Albatross: in essence, the largest support ship the Remnant have built."
+	description "	On top of its fuel-storage capabilities, the Swan makes for an interesting warship in its own right. Four drone bays have been added below its fuel-bearing wings, each a fair bit larger than the Terns they tend to carry. On top of this, despite not being nearly as well shielded, its weapon complement nears that of the Albatross: in essence, the largest support ship the Remnant have built."
 
 
 
