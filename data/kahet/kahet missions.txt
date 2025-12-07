@@ -3997,7 +3997,7 @@ mission "Ka'het: Patir Mystery Crew job"
 	on complete
 		payment 500000
 		"reputation: Remnant" ++
-		dialog "The arrays of instruments are soon unloaded from your ship, and researchers disembark excitedly. Before leaving, the last one hands you a chip with <payment>."
+		dialog "The arrays of instruments are soon unloaded from your ship, and the researchers disembark excitedly. Before leaving, they make sure to hand you a chip with <payment>."
 
 
 
