@@ -705,3 +705,58 @@ outfit "Multimodal Armor: Resilient"
 	"unplunderable" 1
 	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
 	description "	This configuration is designed for exploring hazardous areas, substantially increasing the armor's ability to resist engine-dampening effects and long-term degradation."
+
+outfit "Nettle Magazine"
+	category "Ammunition"
+	series "Ammunition"
+	index 07021
+	licenses
+		"Twilight Guard"
+	cost 60000
+	thumbnail "outfit/nettle magazine"
+	"mass" 3
+	"outfit space" -12
+	"nettle capacity" 72
+	ammo `"Nettle" KKV`
+	description "To improve the combat endurance of ships that rely on flooding the battlespace with small missiles, this magazine extends the capacity of Nettle launch cells by loading new Nettle KKVs through the bottoms of the cells."
+
+outfit "Orchid Magazine"
+	category "Ammunition"
+	series "Ammunition"
+	index 07031
+	licenses
+		"Avgi Atomics"
+	cost 150000
+	thumbnail "outfit/orchid magazine"
+	"mass" 3
+	"outfit space" -12
+	"orchid capacity" 3
+	ammo `"Orchid" Nuclear Missile`
+	description "This large ammunition storage loads new Orchid Missiles into the launch tubes with little more than a few cables, actuators, and solenoids. Designed to be as minimalistic as possible, the sheer size of each Orchid nonetheless makes this magazine rather bulky for the number of missiles it stores."
+
+outfit `Z-3600 "Beam" Amat Torch`
+	category "Engines"
+	series "Engines"
+	index 07080
+	"cost" 300000000
+	thumbnail "outfit/beam antimatter drive"
+	"mass" 3600
+	"outfit space" -360
+	"engine capacity" -360
+	"thrust" 600
+	"thrusting energy" 15
+	"thrusting heat" 90
+	"thrusting fuel" 0.3
+	"drag reduction" 9
+	"flare sprite" "effect/avgi flare/antimatter"
+		"frame rate" 15
+	"flare sound" "fusion torch"
+	"turn" 6000
+	"turning energy" 9
+	"turning heat" 54
+	"steering flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 15
+		"scale" 0.5
+	"steering flare sound" "remnant afterburner"
+	"magnetic nozzle" 18
+	description "The fastest Avgi starships were propelled not just by their engines, but also by immense banks of lasers and particle beams stationed in the Anax system, pushing ships to velocities in excess of 0.2c before braking with a magsail or plasma magnet. Just before the invention of the hyperdrive, however, the Avgi perfected this beam-core antimatter drive, capable of pushing a starship with sufficient antimatter fuel to 0.4c and perhaps beyond. Requiring immense quantities of antimatter, the amat farms around Anax such as Antivli Station would have been strained to their limits had this design entered mass production, but the surprise invention of the hyperdrive rendered it laughably obsolete overnight."

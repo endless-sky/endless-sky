@@ -251,7 +251,9 @@ void ShipyardPanel::Buy(bool onlyOwned)
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
-	GetUI()->Push(new ShipNameDialog(this, &ShipyardPanel::BuyShip, message));
+	GetUI()->Push(new ShipNameDialog(this,
+			Dialog::FunctionButton(this, "Buy", 'b', &ShipyardPanel::BuyShip),
+			message));
 }
 
 
@@ -277,11 +279,11 @@ void ShipyardPanel::Sell(bool toStorage)
 	else
 		message = "Sell the hulls of the ";
 	if(count == 1)
-		message += playerShip->Name();
+		message += playerShip->GivenName();
 	else if(count <= MAX_LIST)
 	{
 		auto it = playerShips.begin();
-		message += (*it++)->Name();
+		message += (*it++)->GivenName();
 		--count;
 
 		if(count == 1)
@@ -289,17 +291,17 @@ void ShipyardPanel::Sell(bool toStorage)
 		else
 		{
 			while(count-- > 1)
-				message += ",\n" + (*it++)->Name();
+				message += ",\n" + (*it++)->GivenName();
 			message += ",\nand ";
 		}
-		message += (*it)->Name();
+		message += (*it)->GivenName();
 	}
 	else
 	{
 		auto it = playerShips.begin();
-		message += (*it++)->Name() + ",\n";
+		message += (*it++)->GivenName() + ",\n";
 		for(int i = 1; i < MAX_LIST - 1; ++i)
-			message += (*it++)->Name() + ",\n";
+			message += (*it++)->GivenName() + ",\n";
 
 		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
 	}
@@ -330,7 +332,7 @@ bool ShipyardPanel::CanSellMultiple() const
 
 
 
-void ShipyardPanel::BuyShip(const string &name)
+bool ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost)
@@ -358,6 +360,9 @@ void ShipyardPanel::BuyShip(const string &name)
 	playerShips.clear();
 	playerShips.insert(playerShip);
 	CheckSelection();
+
+	// Close the dialog.
+	return true;
 }
 
 
