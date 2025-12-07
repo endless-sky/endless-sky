@@ -97,7 +97,7 @@ public:
 
 	public:
 		std::string buttonLabel;
-		SDL_Keycode buttonKey = '\0';
+		SDL_Keycode buttonKey;
 		std::function<bool(const std::string &)> buttonAction;
 	};
 

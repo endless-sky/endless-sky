@@ -3175,7 +3175,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 			choice
 				`	(Accept the deal.)`
 					goto accept
-				`	(No, you're not interested.)`
+				`	(No, I'm not interested.)`
 			`	"Regrettable that is," the Heliarch voice hailing you says with great disappointment. "If ever change your mind you do, prepared, a special job request will be, for when a spare jump drive you bring. Recommend it we do that our offer you carefully consider, Captain. Very generous in rewarding you for any and all copies you bring us, we would be."`
 				decline
 			label accept
@@ -3232,7 +3232,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 					goto "literature collectors"
 				`	"Hello? What is it?"`
 					goto "literature collectors"
-				`	(Reach for your gun.)`
+				`	(Reach for my gun.)`
 			`	The lead Kimek jumps back. "Mean you harm, we did not. Unrelated to violence, our quest is. Speak to you, may we?"`
 			choice
 				`	"What do you want?"`
@@ -3488,7 +3488,7 @@ mission "Coalition: Book Discovered 2"
 			`Sorting through messages, you recall that a Kimek named Kachachee and their group wanted a copy of Anna Fangvin's "Beyond the Hyperdrive." You now know her.`
 			choice
 				`	(Ask Anna for another copy of the book.)`
-				`	(Give Kachachee your copy of the book.)`
+				`	(Give Kachachee my copy of the book.)`
 					accept
 				`	(Forget about it.)`
 					decline

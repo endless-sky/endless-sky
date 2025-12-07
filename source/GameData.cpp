@@ -629,7 +629,7 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 
 
 // Apply the given change to the universe.
-void GameData::Change(const DataNode &node, const PlayerInfo &player)
+void GameData::Change(const DataNode &node, PlayerInfo &player)
 {
 	objects.Change(node, player);
 }

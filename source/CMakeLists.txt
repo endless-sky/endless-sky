@@ -135,6 +135,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameLoadingPanel.h
 	Gamerules.cpp
 	Gamerules.h
+	GameVersion.cpp
+	GameVersion.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
@@ -452,7 +454,11 @@ if(WIN32)
 	target_sources(EndlessSkyLib PRIVATE
 		windows/TimerResolutionGuard.cpp
 		windows/TimerResolutionGuard.h
+		windows/WinConsole.cpp
+		windows/WinConsole.h
 		windows/WinVersion.cpp
 		windows/WinVersion.h
+		windows/WinWindow.cpp
+		windows/WinWindow.h
 	)
 endif()

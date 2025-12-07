@@ -392,7 +392,7 @@ void Command::Load(const DataNode &node)
 		if(it != lookup.end())
 			Set(it->second);
 		else
-			node.PrintTrace("Warning: Skipping unrecognized command \"" + node.Token(i) + "\":");
+			node.PrintTrace("Skipping unrecognized command \"" + node.Token(i) + "\":");
 	}
 }
 

@@ -52,20 +52,21 @@ void FlacSupplier::metadata_callback(const FLAC__StreamMetadata *metadata)
 {
 	if(metadata->data.stream_info.channels != 2)
 	{
-		Logger::LogError("FLAC channel count should be two, but is "
-			+ to_string(metadata->data.stream_info.channels) + ". The audio may be corrupt.");
+		Logger::Log("FLAC channel count should be two, but is " + to_string(metadata->data.stream_info.channels)
+			+ ". The audio may be corrupt.", Logger::Level::WARNING);
 		done = true;
 	}
 	if(metadata->data.stream_info.bits_per_sample != 16)
 	{
-		Logger::LogError("FLAC should use 16-bit samples, but is "
-			+ to_string(metadata->data.stream_info.bits_per_sample) + "-bit instead. The audio may be corrupt.");
+		Logger::Log("FLAC should use 16-bit samples, but is " + to_string(metadata->data.stream_info.bits_per_sample)
+			+ "-bit instead. The audio may be corrupt.", Logger::Level::WARNING);
 		done = true;
 	}
 	if(metadata->data.stream_info.sample_rate != SAMPLE_RATE)
 	{
-		Logger::LogError("FLAC should use " + to_string(SAMPLE_RATE) + " sample rate, but is "
-			+ to_string(metadata->data.stream_info.sample_rate) + ". The audio may be corrupt.");
+		Logger::Log("FLAC should use " + to_string(SAMPLE_RATE) + " sample rate, but is "
+			+ to_string(metadata->data.stream_info.sample_rate) + ". The audio may be corrupt.",
+			Logger::Level::WARNING);
 		done = true;
 	}
 }
@@ -74,7 +75,7 @@ void FlacSupplier::metadata_callback(const FLAC__StreamMetadata *metadata)
 
 void FlacSupplier::error_callback(FLAC__StreamDecoderErrorStatus status)
 {
-	Logger::LogError("FLAC error " + string(FLAC__StreamDecoderErrorStatusString[status]));
+	Logger::Log("FLAC error " + string(FLAC__StreamDecoderErrorStatusString[status]), Logger::Level::WARNING);
 	done = true;
 	PadBuffer();
 }
