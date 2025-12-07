@@ -2227,6 +2227,7 @@ event "Ka'het spawn in Fereti and Lire"
 
 ship "Fetri'sei" "Fetri'sei (Patir 18)"
 	add attributes
+		"weapon capacity" 13
 		"fuel capacity" 150
 		"asteroid mount jd" 1
 		"fuel heat" 150
@@ -2241,6 +2242,9 @@ ship "Fetri'sei" "Fetri'sei (Patir 18)"
 		"Ka'het Reserve Accumulator"
 		"Asteroid Jump Drive (Patir 18)"
 		"Asteroid Weapon Small"
+	gun -13 -36
+	gun 13 -36
+	gun 0 -36
 
 outfit "Asteroid Jump Drive (Patir 18)"
 	"display name" "???"
@@ -2282,7 +2286,7 @@ outfit "Asteroid Jump Drive (Patir 18)"
 	description "Whatever the mechanism that hides beneath the translucent orb may be, it functions similarly to a jump drive, bridging different parts of the universe together for the cost of merely 200 units of fuel."
 
 government "Ka'sei (Patir 18)"
-	display name "Ka'sei"
+	"display name" "Ka'sei"
 	swizzle 0
 	language "Ka'het"
 	
@@ -3998,11 +4002,12 @@ mission "Ka'het: Patir Mystery Magic Asteroid Derelict"
 	invisible
 	entering
 	repeat
-	source "Patir"
+	source
+		system "Patir"
 	to offer
 		has "Ka'het: Patir Mystery 35: done"
 		has "ka'het: beyond Patir"
-		random < 20*( 5 - "ka'het: magic asteroid derelict" )
+		random < 20 * ( 5 - "ka'het: magic asteroid derelict" )
 	npc
 		government "Ka'sei"
 		personality waiting staying vindictive mining harvests
