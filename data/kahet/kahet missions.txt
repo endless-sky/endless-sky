@@ -3806,14 +3806,14 @@ mission "Ka'het: Patir Mystery 36"
 			`	Eventually, you walk back to your ship under the night sky. On it, you find a rather crude machine masked by a standard container: reading through the notes, you discover that it is a decryption machine, built to locate and communicate with the hidden outpost.`
 				accept
 	on enter Equus
-		dialog "The analog screen of the decryption machine points you toward the gas giant Methuselah nearby. On the screen, the neon outline of a small cloaked outpost appears in front of you: behind it, a tiny and just as invisible ship of unknown design scoops up and down the gas giant in a mesmerizing pattern. You activate the data transfer, and a progress bar fills to completion over the next few minutes."
+		dialog "The analog screen of the decryption machine points you toward the gas giant Methuselah nearby. On the screen, the neon outline of a small cloaked outpost appears in front of you: behind it, a tiny and just as invisible ship of unknown design swoops up and down the gas giant in a mesmerizing pattern. You activate the data transfer, and a progress bar fills to completion over the next few minutes."
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		event "patir mystery 3 timer" 20
 		conversation
-			`Once again Chilia's coordinates point you toward a half-hidden outpost in middle of the desert. While the local crew unloads the machinery, you catch a glimpse of the floor below: dozens of workers wearing special suits, quickly moving what looks like one of the parts of the creatures beyond Patir.`
-			`	This time, however, nobody tries to stop you. The opposite, in fact: when they recognize you, the workers accompany you on a hour-long tour of the structure. Walking down the floors, you pass through a dozen different rooms, half of which dedicated to studying - and testing - the parts of the asteroid you have recovered. Giant, eerie machines immersed into strange fogs, with only a few meters and a strongly-vibrating layer of glass separating you from them.`
+			`Once again Chilia's coordinates point you toward a half-hidden outpost in the middle of the desert. While the local crew unloads the machinery, you catch a glimpse of the floor below: dozens of workers wearing special suits, quickly moving what looks like one of the parts of the creatures beyond Patir.`
+			`	This time, however, nobody tries to stop you. The opposite, in fact: when they recognize you, the workers accompany you on an hour-long tour of the structure. Walking down the floors, you pass through a dozen different rooms, half of which are dedicated to studying - and testing - the parts of the asteroid that you have recovered. Giant, eerie machines immersed into strange fogs, with only a few meters and a strongly-vibrating layer of glass separating you from them.`
 			`	Once they have emptied your payload bay, they wave goodbye as you depart for the main starport. Based on their gestures, you reckon that they don't expect this to be the last time they see you here.`
 
 event "patir mystery 3 timer"
@@ -4079,7 +4079,7 @@ mission "Ka'het: Patir Mystery Aeolus message"
 	on offer
 		require "Asteroid Jump Drive"
 		conversation
-			`As soon as you take a step into the local outfitter, your communicator starts buzzing desperately. It is a message from Aeolus: they are aware of the precious cargo you are carrying, and, on behalf of Chilia, would be happy to take care of it as soon as you sell it to them.`
+			`As soon as you take a step into the local outfitter, your communicator starts buzzing desperately. It is a message from Aeolus: they are aware of the precious cargo you are carrying, and on behalf of Chilia, would be happy to take care of it as soon as you sell it to them.`
 				decline
 
 
