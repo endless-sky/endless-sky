@@ -3813,7 +3813,7 @@ mission "Ka'het: Patir Mystery 36"
 		event "patir mystery 3 timer" 20
 		conversation
 			`Once again Chilia's coordinates point you toward a half-hidden outpost in the middle of the desert. While the local crew unloads the machinery, you catch a glimpse of the floor below: dozens of workers wearing special suits, quickly moving what looks like one of the parts of the creatures beyond Patir.`
-			`	This time, however, nobody tries to stop you. The opposite, in fact: when they recognize you, the workers accompany you on an hour-long tour of the structure. Walking down the floors, you pass through a dozen different rooms, half of which are dedicated to studying - and testing - the parts of the asteroid that you have recovered. Giant, eerie machines immersed into strange fogs, with only a few meters and a strongly-vibrating layer of glass separating you from them.`
+			`	This time, however, nobody tries to stop you. The opposite, in fact: when they recognize you, the workers accompany you on an hour-long tour of the structure. Walking down the floors, you pass through a dozen different rooms, half of which are dedicated to studying - and testing - the parts of the asteroid that you have recovered. Giant, eerie machines immersed into strange fogs, with only a few meters and a strongly vibrating layer of glass separating you from them.`
 			`	Once they have emptied your payload bay, they wave goodbye as you depart for the main starport. Based on their gestures, you reckon that they don't expect this to be the last time they see you here.`
 
 event "patir mystery 3 timer"
@@ -3823,7 +3823,7 @@ mission "Ka'het: Patir Mystery 37A"
 	repeat
 	deadline 6
 	name "Move Patir (Short Endurance)"
-	description "Begin a short duration expedition beyond Patir, disappearing on <date> and returning the day after."
+	description "Begin an expedition of short duration beyond Patir, disappearing on <date> and returning the day after."
 	source "Caelian"
 	destination "Builder Settlement"
 	to offer
@@ -3851,7 +3851,7 @@ mission "Ka'het: Patir Mystery 38A"
 	repeat
 	deadline 6
 	name "Move Patir (Medium Endurance)"
-	description "Begin a short duration expedition beyond Patir, disappearing on <date> and returning 7 days after"
+	description "Begin an expedition of medium duration beyond Patir, disappearing on <date> and returning 7 days after"
 	source "Caelian"
 	destination "Builder Settlement"
 	to offer
@@ -3879,7 +3879,7 @@ mission "Ka'het: Patir Mystery 39A"
 	repeat
 	deadline 6
 	name "Move Patir (Long Endurance)"
-	description "Begin a short duration expedition beyond Patir, disappearing on <date> and returning 14 days after."
+	description "Begin an expedition of long duration beyond Patir, disappearing on <date> and returning 14 days after."
 	source "Caelian"
 	destination "Builder Settlement"
 	to offer
