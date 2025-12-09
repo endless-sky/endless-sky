@@ -388,7 +388,7 @@ minable "large space flora"
 	hull 1800
 	"random hull" 400
 	payload "Void Orchid" 16
-		"toughness" 42800
+		"toughness" 8200
 	explode "smoke" 25
 	explode "bolide" 20
 	explode "final explosion medium"
