@@ -266,6 +266,22 @@ effect "gravity well"
 	"sound category" "environment"
 
 
+hazard "Core Sheltered Heat"
+	"duration" 1
+	"strength" 0.65 0.85
+	"system-wide"
+	weapon
+		"burn damage" 0.06
+		"relative heat damage" 0.0012
+# replace 0.0006 rel. heat damage with 0.00006 rel. burn damage if/when implemented.
+
+hazard "Core Shadow Passing"
+	"duration" 10 360
+	"strength" 1 3
+	"system-wide"
+	weapon
+		"relative heat damage" -0.002
+
 
 hazard "Predecessors Base Spatial Decay"
 	"duration" 1 200
