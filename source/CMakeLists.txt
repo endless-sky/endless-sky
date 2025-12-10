@@ -99,6 +99,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Effect.h
 	Engine.cpp
 	Engine.h
+	Entity.cpp
+	Entity.h
 	EsUuid.cpp
 	EsUuid.h
 	EscortDisplay.cpp
