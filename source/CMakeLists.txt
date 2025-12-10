@@ -145,6 +145,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Hardpoint.h
 	Hazard.cpp
 	Hazard.h
+	HelpOverlay.cpp
+	HelpOverlay.h
 	HiringPanel.cpp
 	HiringPanel.h
 	InfoPanelState.cpp
