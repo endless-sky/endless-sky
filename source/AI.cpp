@@ -50,7 +50,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 #include "Wormhole.h"
 
+#include <algorithm>
+#include <cmath>
+#include <limits>
 #include <ranges>
+#include <utility>
 
 using namespace std;
 
@@ -2306,9 +2310,7 @@ void AI::SelectRoute(Ship &ship, const System *targetSystem)
 	const System *from = ship.GetSystem();
 	if(from == targetSystem || !targetSystem)
 		return;
-
-	auto route = GetRoutePlan(ship, targetSystem);
-
+	RoutePlan route = GetRoutePlan(ship, targetSystem);
 	if(ShouldRefuel(ship, route))
 	{
 		// There is at least one planet that can refuel the ship.
@@ -2319,7 +2321,6 @@ void AI::SelectRoute(Ship &ship, const System *targetSystem)
 	// The destination may be accessible by both jump and wormhole.
 	// Prefer wormhole travel in these cases, to conserve fuel.
 	if(nextSystem)
-	{
 		for(const StellarObject &object : from->Objects())
 		{
 			if(!object.HasSprite() || !object.HasValidPlanet())
@@ -2334,7 +2335,6 @@ void AI::SelectRoute(Ship &ship, const System *targetSystem)
 				return;
 			}
 		}
-	}
 	// Either there is no viable wormhole route to this system, or
 	// the target system cannot be reached.
 	ship.SetTargetSystem(nextSystem);
@@ -5182,7 +5182,7 @@ void AI::UpdateOrders(const Ship &ship)
 
 
 
-RoutePlan AI::GetRoutePlan(Ship &ship, const System *targetSystem)
+RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
 {
 	const System *from = ship.GetSystem();
 	const Government *gov = ship.GetGovernment();
@@ -5212,9 +5212,7 @@ RoutePlan AI::GetRoutePlan(Ship &ship, const System *targetSystem)
 		routeCache.emplace(key, route);
 	}
 	else
-	{
 		route = RoutePlan(it->second);
-	}
 
 	return route;
 }
@@ -5241,9 +5239,7 @@ size_t AI::RouteCacheKey::HashFunction::operator()(RouteCacheKey const &key) con
 	hash ^= std::hash<int>()(key.jumpDistance) << ++shift;
 	hash ^= std::hash<int>()(static_cast<std::size_t>(key.jumpType)) << ++shift;
 	for(string k : key.wormholeKeys)
-	{
 		hash ^= std::hash<string>()(k) << ++shift;;
-	}
 	return hash;
 }
 
@@ -5252,14 +5248,12 @@ size_t AI::RouteCacheKey::HashFunction::operator()(RouteCacheKey const &key) con
 bool AI::RouteCacheKey::operator==(const RouteCacheKey &other) const
 {
 	// Used by unordered_map to determine equivalence.
-	bool eq = true;
-	eq &= from == other.from;
-	eq &= to == other.to;
-	eq &= gov == other.gov;
-	eq &= jumpDistance == other.jumpDistance;
-	eq &= jumpType == other.jumpType;
-	eq &= wormholeKeys == other.wormholeKeys;
-	return eq;
+	return from == other.from
+		&& to == other.to
+		&& gov == other.gov
+		&& jumpDistance == other.jumpDistance
+		&& jumpType == other.jumpType
+		&& wormholeKeys == other.wormholeKeys;
 }
 
 

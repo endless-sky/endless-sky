@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RoutePlan.h"
 
 #include "DistanceMap.h"
-#include "Logger.h"
 
 using namespace std;
 

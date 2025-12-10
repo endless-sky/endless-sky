@@ -23,9 +23,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "RoutePlan.h"
 
+#include <cstdint>
 #include <list>
+#include <map>
+#include <memory>
 #include <optional>
 #include <set>
+#include <vector>
 #include <unordered_map>
 
 class Angle;
@@ -41,7 +45,6 @@ class ShipEvent;
 class StellarObject;
 class System;
 
-using namespace std;
 
 // This class is responsible for controlling all the ships in the game,
 // including the player's "flagship" - which is usually controlled via the
@@ -98,7 +101,7 @@ public:
 		// - gov: danger = f(gov), isRestrictedFrom = f(gov)
 		// - wormhole requirements that are met, see Planet::IsAccessible(const Ship *ship)
 		explicit RouteCacheKey(const System *from, const System *to, const Government *gov,
-			double jumpDistance, JumpType jumpType, const vector<string> &wormholeKeys);
+			double jumpDistance, JumpType jumpType, const std::vector<std::string> &wormholeKeys);
 
 		// To support use as a map key:
 		bool operator==(const RouteCacheKey &other) const;
@@ -116,7 +119,7 @@ public:
 		const Government *gov;
 		double jumpDistance;
 		JumpType jumpType;
-		vector<string> wormholeKeys;
+		std::vector<std::string> wormholeKeys;
 	};
 
 
@@ -221,7 +224,7 @@ private:
 	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
-	RoutePlan GetRoutePlan(Ship &ship, const System *targetSystem);
+	RoutePlan GetRoutePlan(const Ship &ship, const System *targetSystem);
 
 
 private:
@@ -289,6 +292,6 @@ private:
 	std::map<const Government *, std::vector<Ship *>> allyLists;
 
 	// Route planning cache:
-	unordered_map<RouteCacheKey, RoutePlan, RouteCacheKey::HashFunction> routeCache;
-	set<string> universeWormholeRequirements;
+	std::unordered_map<RouteCacheKey, RoutePlan, RouteCacheKey::HashFunction> routeCache;
+	std::set<std::string> universeWormholeRequirements;
 };

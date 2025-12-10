@@ -53,7 +53,7 @@ public:
 
 
 private:
-	// Initializer for new RoutePlans
+	// Initializer for new RoutePlans.
 	void Init(const DistanceMap &distance);
 
 
