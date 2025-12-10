@@ -36,6 +36,14 @@ RoutePlan::RoutePlan(const Ship &ship, const System &destination, const PlayerIn
 
 
 
+RoutePlan::RoutePlan(const RoutePlan &other)
+{
+	plan = other.plan;
+	hasRoute = other.hasRoute;
+}
+
+
+
 void RoutePlan::Init(const DistanceMap &distance)
 {
 	auto it = distance.route.find(distance.destination);
