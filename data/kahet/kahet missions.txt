@@ -2190,7 +2190,7 @@ mission "Ka'het: Patir Mystery 17"
 			label wickedsmart
 			`	"Good intuition. Not in the sense of two-way communication, but its function is based on reliably transmitting a particular signal to the Ka'het. Let me explain.`
 			label clueless
-			`	"It was not long after we started translating the Builder language that we tried to put some of that effort into hacking their system. Given their destructive potential, the Ka'het were the natural target for this Electronic Warfare operation." The technicians carefully load the payload into your ship, trying to connect it with its electrical system.`
+			`	"It was not long after we started translating the Builder language that we tried to put some of that effort into hacking their system. Given their destructive potential, the Ka'het were the natural target for this Electronic Warfare operation." The technicians carefully load the payload into your ship, trying to connect it to the <ship>'s electrical system.`
 			`	"Our understanding of their system was quite poor at the time, but despite this, we discovered a backdoor left by their designers. A unique signal that instructs the slug to dump its cargo and not retake it, perhaps to avoid damage from ingesting hazardous material. As long as it has not digested it yet, this could let us access the parts of the creature inside the Ka'sei without having to kill most of them. That is the reason I asked you for 65 tons free: 3 for this weapon, and 62 for the maximum cargo capacity of a Ka'sei."`
 			choice
 				`	"How do I use it?"`
