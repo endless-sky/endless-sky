@@ -201,6 +201,9 @@ jobs:
       with:
         show-progress: false
         fetch-depth: '10'
+    - name: Add Mingw to PATH
+      run: |
+        echo (Join-Path C: mingw32 bin) >> $env:GITHUB_PATH
     - name: Find cache keys
       run: |
         echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
