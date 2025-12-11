@@ -1286,7 +1286,7 @@ government "Ka'sei"
 		capture 0
 	"player reputation" 1
 
-# Used only by the Patir Mystery mission in question
+# Used only by the Patir Mystery missions in question
 government "Ka'sei (12.2)"
 	"display name" "Ka'sei"
 	swizzle 0
@@ -1302,6 +1302,20 @@ government "Ka'sei (12.2)"
 	"friendly disabled hail" "friendly disabled ka'het"
 	"hostile hail" "hostile ka'het"
 	"hostile disabled hail" "hostile disabled ka'het"
+
+government "Ka'sei (Patir 18)"
+	"display name" "Ka'sei"
+	swizzle 0
+	language "Ka'het"
+	
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+	"player reputation" 1
+	"attitude toward"
+		"Uninhabited" -.01
 
 government "Kor Efret"
 	swizzle 4
