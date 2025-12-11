@@ -98,6 +98,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 	trueName = node.Token(1);
 	isDefined = true;
 
+	// Track planets associated with removed objects. Check if remaining objects
+	// refer to any of the same planets and only unlink planets that have no
+	// remaining references here.
+	set<const Planet *> removedObjectPlanets;
+
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
 	set<string> shouldOverwrite = {"asteroids", "attributes", "belt", "fleet", "link", "object", "hazard"};
@@ -220,7 +225,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		}
 		else if(!hasValue && key != "object")
 		{
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 			continue;
 		}
 		// Handle the attributes which can be "removed."
@@ -237,7 +242,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		{
 			if(value == trueName)
 			{
-				child.PrintTrace("Error: systems cannot link to themselves.");
+				child.PrintTrace("Systems cannot link to themselves.");
 				continue;
 			}
 			if(remove)
@@ -259,7 +264,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			else if(child.Size() > valueIndex + 2)
 				asteroids.emplace_back(value, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
 			else
-				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
+				child.PrintTrace("Expected " + to_string(valueIndex + 3)
 					+ " tokens. Found " + to_string(child.Size()) + ":");
 		}
 		else if(key == "minables")
@@ -277,7 +282,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			else if(child.Size() > valueIndex + 2)
 				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
 			else
-				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
+				child.PrintTrace("Expected " + to_string(valueIndex + 3)
 					+ " tokens. Found " + to_string(child.Size()) + ":");
 		}
 		else if(key == "fleet")
@@ -350,7 +355,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 
 				if(removeIt == objects.end())
 				{
-					child.PrintTrace("Warning: Did not find matching object for specified operation:");
+					child.PrintTrace("Did not find matching object for specified operation:");
 					continue;
 				}
 
@@ -360,7 +365,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				// Remove any child objects too.
 				for( ; last != objects.end() && last->parent >= index; ++last, ++removed)
 					if(last->planet)
-						planets.Get(last->planet->TrueName())->RemoveSystem(this);
+						removedObjectPlanets.insert(last->planet);
+				if(removeIt->planet)
+					removedObjectPlanets.insert(removeIt->planet);
 				last = objects.erase(removeIt, last);
 
 				// Recalculate every parent index.
@@ -414,7 +421,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				else if(type == "jump" && grandHasValue)
 					extraJumpArrivalDistance = fabs(grand.Value(1));
 				else
-					grand.PrintTrace("Warning: Skipping unsupported arrival distance limitation:");
+					grand.PrintTrace("Skipping unsupported arrival distance limitation:");
 			}
 		}
 		else if(key == "departure")
@@ -433,7 +440,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				else if(type == "jump" && grandHasValue)
 					jumpDepartureDistance = fabs(grand.Value(1));
 				else
-					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
+					grand.PrintTrace("Skipping unsupported departure distance limitation:");
 			}
 		}
 		else if(key == "invisible fence" && hasValue)
@@ -442,10 +449,17 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	// Set planet messages based on what zone they are in.
+	// Set planet messages based on what zone they are in and check if any planets
+	// from removed objects are still present on other objects.
 	for(StellarObject &object : objects)
 	{
-		if(object.message || object.planet)
+		if(object.planet)
+		{
+			removedObjectPlanets.erase(object.planet);
+			continue;
+		}
+
+		if(object.message)
 			continue;
 
 		const StellarObject *root = &object;
@@ -485,9 +499,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 				object.message = &UNINHABITEDPLANET;
 		}
 	}
+	// Tell any planets that were present but are no longer present in this system
+	// that they are no longer in this system.
+	for(const Planet *planet : removedObjectPlanets)
+		planets.Get(planet->TrueName())->RemoveSystem(this);
 	// Print a warning if this system wasn't explicitly given a position.
 	if(!hasPosition)
-		node.PrintTrace("Warning: system will be ignored due to missing position:");
+		node.PrintTrace("System will be ignored due to missing position:");
 	// Systems without an asteroid belt defined default to a radius of 1500.
 	if(belts.empty())
 		belts.emplace_back(1, 1500.);
