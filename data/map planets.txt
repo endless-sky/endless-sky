@@ -2143,7 +2143,7 @@ planet "Gi Tiures"
 	landscape land/mountain9
 	description "Because of the closeness of this planet to its parent star, most daytime hours are characterized by intense heat and almost blindingly bright sunlight. However, a significant axial tilt results in much longer nights than days. During these nights, heat levels are acceptable, and it is these periods that are considered the populace's active hours."
 	description "	The Gegno of this planet live in a singular, expansive village cluster. At the core of it are three tall spires that appear as though they were once one, separated into thirds and pushed apart into a triangle formation."
-	spaceport "Though the Gegno living here and their civilization share a similar lack of progressiveness, their culture on this planet has noticeable differences than those at their core worlds. Many wear lengthy clothing, and often travel in tightly-packed groups. Others keep to themselves in a comparatively eerie silence."
+	spaceport "While the Gegno civilization on this planet is stagnant, similarly to their core worlds, their culture has significant differences. Many wear lengthy robe-like clothing, and often travel in tightly-packed groups. Others keep to themselves in a comparatively eerie silence."
 	"required reputation" 3
 	bribe 0
 	security 0
