@@ -1785,7 +1785,7 @@ mission "A Sunracer Hovercraft Racing"
 phrase "three card monte opening"
 	word
 		"You step down from your ship onto the main concourse of the spaceport, "
-		"Strolling past the smoky glow of the spaceport bar, you head along the port's main street "
+		"Strolling past the smoky glow of the spaceport bar, you head along the port's main street, "
 		"After a quiet walk around the area, you find yourself back in the heart of the spaceport, "
 		"You descend from your ship to enter the spaceport, "
 	word
@@ -1794,10 +1794,10 @@ phrase "three card monte opening"
 		"when a sharp laugh draws your attention to a small card game on a crate. "
 		"and see a tight cluster of faces leaning in around a makeshift table as quick hands shuffle three tired cards. "
 	word
-		"The dealer looks up and grins. "
-		"The dealer glances up, eyebrows arched. "
-		"The dealer's gaze lingers on you, one hand resting on the cards as though daring you to step closer. "
-		"The dealer finally notices you, and his grin widens. "
+		"The dealer looks up and grins."
+		"The dealer glances up, eyebrows arched."
+		"The dealer's gaze lingers on you, one hand resting on the cards as though daring you to step closer."
+		"The dealer finally notices you, and his grin widens."
 
 phrase "three card monte opening 2"
 	word
@@ -1812,6 +1812,13 @@ phrase "card anything but an ace"
 		"queen"
 		"jack"
 		"ten"
+		"nine"
+		"eight"
+		"seven"
+		"six"
+		"five"
+		"four"
+		"three"
 		"two"
 	word
 		" of"
@@ -1844,13 +1851,10 @@ mission "Three Card Monte"
 			action
 				"monte: not scam chance" = "reputation: Pirate" / 10 + 100
 				"monte: not scam chance" >?= 60 # There's always at least a 60% of not being scammed first round, meaning the player always comes out ahead in the first game
-			label "new game"
 			`	The dealer waits expectantly.`
 			choice
 				`	(Put down 1,000 credits to play the game.)`
 					goto "accepted game"
-					to display
-						credits > 1000
 				`	(Pat my empty pockets.)`
 					to display
 						credits < 1000
@@ -1982,9 +1986,9 @@ mission "Three Card Monte"
 			`	The dealer shrugs. "Better luck next time."`
 				goto again
 			label correct
-			`	And flips over an ace! The dealer seems bewildered, but begrudgingly hands over 2,000 credits, doubling your money.`
 			action
 				payment 2000
+			`	And flips over an ace! The dealer seems bewildered, but begrudgingly hands over 2,000 credits, doubling your money.`
 			label again
 			branch cutoff
 				"monte: games played" < 3
@@ -2053,10 +2057,10 @@ mission "Three Card Monte"
 			`	You draw and fire. The dealer's smirk vanishes - he staggers, then collapses. His men scatter, and you quickly make it back to your ship.`
 				flee
 			label "gun death"
-			`	You move for your weapon but the pirates move first. Hot pain blooms in your chest, your hands go numb as your gun clatters away. You look down and see red, then nothing at all.`
+			`	You move for your weapon but the pirates move first. Hot pain blooms in your chest and your hands go numb as your gun clatters away. You look down and see red, then nothing at all.`
 				die
 			label whistle
-			`	You whisle once. Your crew burst from the crowd, weapons blazing, and a chaotic brawl erupts.`
+			`	You whistle once. Your crew burst from the crowd, weapons blazing, and a chaotic brawl erupts.`
 			action
 				clear "monte: games played"
 				clear "monte: multiplication"
