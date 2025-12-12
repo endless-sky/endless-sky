@@ -310,7 +310,7 @@ template<class T>
 Dialog::Dialog(T *panel, const std::string &text, const std::string &initialValue,
 	Dialog::FunctionButton buttonOne, Dialog::FunctionButton buttonThree,
 	std::function<bool(const std::string &)> validate)
-	: validateStrFun(std::move(validate)), canCancel(true), input(initialValue),
+	: validateStringFun(std::move(validate)), canCancel(true), input(initialValue),
 	buttonOne(buttonOne), buttonThree(buttonThree)
 {
 	Init(text, Truncate::NONE);

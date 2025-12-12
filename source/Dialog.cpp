@@ -504,8 +504,8 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	Resize();
 	AddChild(text);
 
-	if(validateStrFun)
-		isOkDisabled = !validateStrFun(input);
+	if(validateStringFun)
+		isOkDisabled = !validateStringFun(input);
 	else if(validateIntFun)
 		isOkDisabled = !validateIntFun(input);
 	else if(validateDoubleFun)
