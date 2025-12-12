@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
 #include "GameEvent.h"
+#include "Gamerules.h"
 #include "Mission.h"
 #include "SystemEntry.h"
 
@@ -88,7 +89,7 @@ public:
 	// Check if any player's information is loaded.
 	bool IsLoaded() const;
 	// Make a new player.
-	void New(const StartConditions &start);
+	void New(const StartConditions &start, const Gamerules &gamerules);
 	// Load an existing player.
 	void Load(const std::filesystem::path &path);
 	// Load the most recently saved player. If no save could be loaded, returns false.
@@ -286,6 +287,8 @@ public:
 	// Access the "condition" flags for this player.
 	ConditionsStore &Conditions();
 	const ConditionsStore &Conditions() const;
+	// Access mutable gamerules for modification by a GamerulesPanel.
+	Gamerules &GetGamerules();
 	// Maps defined names for gifted ships to UUIDs for the ship instances.
 	const std::map<std::string, EsUuid> &GiftedShips() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
@@ -510,6 +513,7 @@ private:
 	bool sortSeparatePossible = false;
 
 	ConditionsStore conditions;
+	Gamerules gamerules;
 	std::map<std::string, EsUuid> giftedShips;
 
 	std::set<const System *> seen;
