@@ -3449,7 +3449,7 @@ mission "Ka'het: Patir Mystery 33"
 			label done
 			`	Tapping on his own console, he connects to your ship's dishes and starts transmitting. Glancing over his screen, you see that he is trying to communicate a preloaded transmission through every frequency they have available, rapidly switching from one program to the next one. The sequence comes to an end, but no reply comes out of the asteroid.`
 			`	"<first>, we have another step we can try. It might look a bit crude, but if you point me to the controls of <ship>'s lights I can show you." You lift up a panel from the wall on the back of the cockpit, and quickly locate the main switch. With his eyes locked on a clock atop his console, Dusk starts flicking on and off the lights inside and outside your ship at a precise cadence: 2 seconds, 3 seconds, 5 seconds, 7 seconds, 11 seconds...`
-			`	Over the next five minutes, he completes a sequence of every prime number up to 47 with a good accuracy. Yet still, the planetoid does not show any perceivable reaction. "Very well then, Captain. It is time to land on that asteroid."`
+			`	Over the next five minutes, he completes a sequence of every prime number up to 47 with a good accuracy. He waits a minute or so, and then begins again, this time repeating some of the Fibonacci sequence. Yet still, the planetoid does not show any perceivable reaction. "Very well then, Captain. It is time to land on that asteroid."`
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
