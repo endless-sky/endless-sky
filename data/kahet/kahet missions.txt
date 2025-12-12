@@ -2910,6 +2910,8 @@ mission "Ka'het: Patir Mystery 26B"
 				`	(Go on your own mission.)`
 					goto fly
 				`	"I bet I could shoot it away from here much quicker."`
+			action
+				set "remnant: want to fire on Chanai"
 			`	"That is really not the way to go!" he replies alarmed. "It would be just as likely to be ineffective as it would to compromise the structure of the station." Some seconds of silence pass. "If you want really to help, just shine the lights on your ship around us at low power."`
 				goto fly
 			label inside
@@ -2951,7 +2953,13 @@ mission "Ka'het: Patir Mystery 26B"
 				`	(Exit your ship to come closer to the hatch.)`
 					goto wait
 				`	(Blow it up with your ship's weapons, so as to accelerate their exit.)`
+			branch "blown up"
+				has "remnant: want to fire on Chanai"
 			`	A couple shots in quick succession are enough for the hatch to fly clear of the corridor, tumbling at random in the zero gravity of the station. The Remnant appear from behind the hatch right after: they must have been already at the exit when you fired. Still, soon enough all of them come out of the still-vibrating tunnel safely, taking leaps toward your ship. While they do not look too happy at your decision, none of them tries to complain either.`
+				accept
+
+			label "blown up"
+			`	A couple shots in quick succession are enough for the hatch to fly clear of the corridor, tumbling at random in the zero gravity of the station. The Remnant appear from behind the hatch right after: they must have been already at the exit when you fired. Still, soon enough all of them come out of the still-vibrating tunnel safely, taking leaps toward your ship. Once aboard, they make it very clear that you should not go against their orders next time.`
 				accept
 			
 			label light
@@ -3026,6 +3034,7 @@ mission "Ka'het: Patir Mystery 27"
 		system "Patir"
 		ship "Asteroid Young 2" "???"
 		personality derelict target waiting
+		dialog "You stare at the enormous rock, still emitting a low hue all around it. Doing their best with the equipment on hand, the Remnant quickly mark a number of sections inside the asteroid for you to loot. Your computer tells you that they are respectively 20, 29 and 31 tons each."
 	npc
 		government "Ka'sei"
 		personality harvests mining staying vindictive waiting
