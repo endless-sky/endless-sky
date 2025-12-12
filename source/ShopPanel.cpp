@@ -137,6 +137,7 @@ void ShopPanel::Draw()
 	categoryZones.clear();
 	DrawMain();
 	DrawShipsSidebar();
+	DrawShipDetailsSidebar();
 	DrawDetailsSidebar();
 	DrawButtons();
 	DrawKey();
@@ -390,7 +391,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_LEFT)
 	{
-		if(activePane != ShopPane::Sidebar)
+		if(activePane == ShopPane::Main || activePane == ShopPane::Info)
 			MainLeft();
 		else
 			SideSelect(-1);
@@ -398,7 +399,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_RIGHT)
 	{
-		if(activePane != ShopPane::Sidebar)
+		if(activePane == ShopPane::Main || activePane == ShopPane::Info)
 			MainRight();
 		else
 			SideSelect(1);
@@ -406,7 +407,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_UP)
 	{
-		if(activePane != ShopPane::Sidebar)
+		if(activePane == ShopPane::Main || activePane == ShopPane::Info)
 			MainUp();
 		else
 			SideSelect(-4);
@@ -414,7 +415,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_DOWN)
 	{
-		if(activePane != ShopPane::Sidebar)
+		if(activePane == ShopPane::Main || activePane == ShopPane::Info)
 			MainDown();
 		else
 			SideSelect(4);
@@ -478,7 +479,16 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		}
 	}
 	else if(key == SDLK_TAB)
-		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
+	{
+		if(activePane == ShopPane::Main)
+			activePane = ShopPane::Info;
+		else if(activePane == ShopPane::Info)
+			activePane = ShopPane::Ship;
+		else if(activePane == ShopPane::Ship)
+			activePane = ShopPane::Sidebar;
+		else // if(activePane == ShopPane::Sidebar)
+			activePane = ShopPane::Main;
+	}
 	else if(key == 'f')
 		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
 	else
@@ -605,6 +615,8 @@ bool ShopPanel::Hover(int x, int y)
 	activePane = ShopPane::Main;
 	if(x > Screen::Right() - SIDEBAR_WIDTH)
 		activePane = ShopPane::Sidebar;
+	else if(x > Screen::Right() - SIDEBAR_WIDTH - SHIPBAR_WIDTH)
+		activePane = ShopPane::Ship;
 	else if(x > Screen::Right() - SIDE_WIDTH)
 		activePane = ShopPane::Info;
 	return true;
@@ -761,10 +773,6 @@ void ShopPanel::DrawShipsSidebar()
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, 0.),
 		Point(SIDEBAR_WIDTH, Screen::Height()),
 		*GameData::Colors().Get("panel background"));
-	FillShader::Fill(
-		Point(Screen::Right() - SIDEBAR_WIDTH, 0.),
-		Point(1, Screen::Height()),
-		*GameData::Colors().Get("shop side panel background"));
 
 	// Draw this string, centered in the side panel:
 	static const string YOURS = "Your Ships:";
@@ -861,25 +869,6 @@ void ShopPanel::DrawShipsSidebar()
 	}
 	point.Y() += ICON_TILE;
 
-	if(playerShip)
-	{
-		point.Y() += SHIP_SIZE / 2;
-		point.X() = (Screen::Right() - SIDEBAR_CONTENT / 2) - SIDEBAR_PADDING;
-		DrawShip(*playerShip, point, true);
-
-		Point offset(SIDEBAR_CONTENT / -2, SHIP_SIZE / 2);
-		const int detailHeight = DrawPlayerShipInfo(point + offset);
-		point.Y() += detailHeight + SHIP_SIZE / 2;
-	}
-	else if(isOutfitter && player.Cargo().Size())
-	{
-		point.X() = Screen::Right() - SIDEBAR_WIDTH + 10;
-		font.Draw("cargo space:", point, medium);
-
-		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
-		point.Y() += 20.;
-	}
 	sidebarScroll.SetDisplaySize(Screen::Height() - BUTTON_HEIGHT);
 	sidebarScroll.SetMaxValue(max(0., point.Y() + sidebarScroll.AnimatedValue() - Screen::Bottom() + Screen::Height()));
 
@@ -889,6 +878,64 @@ void ShopPanel::DrawShipsSidebar()
 		Point bottom(Screen::Right() - 3, Screen::Bottom() - 80);
 
 		sidebarScrollbar.SyncDraw(sidebarScroll, top, bottom);
+	}
+
+}
+
+
+
+void ShopPanel::DrawShipDetailsSidebar()
+{
+	const Font &font = FontSet::Get(14);
+	const Color &line = *GameData::Colors().Get("shop side panel background");
+	const Color &back = *GameData::Colors().Get("panel background");
+	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &bright = *GameData::Colors().Get("bright");
+
+	shipbarScroll.Step();
+
+	FillShader::Fill(
+		Point(Screen::Right() - SIDEBAR_WIDTH - SHIPBAR_WIDTH, 0.),
+		Point(1., Screen::Height()),
+		line);
+	FillShader::Fill(
+		Point(Screen::Right() - SIDEBAR_WIDTH - SHIPBAR_WIDTH / 2, 0.),
+		Point(SHIPBAR_WIDTH - 1., Screen::Height()),
+		back);
+
+	Point point(
+		Screen::Right() - SIDEBAR_WIDTH - SHIPBAR_WIDTH + SHIPBAR_WIDTH / 2,
+		Screen::Top() + 10 - shipbarScroll.AnimatedValue());
+
+	if(playerShip)
+	{
+		point.Y() += SHIP_SIZE / 2;
+		point.X() = Screen::Right() - SIDEBAR_WIDTH - SHIPBAR_CONTENT / 2 - SHIPBAR_PADDING;
+		DrawShip(*playerShip, point, true);
+
+		Point offset(SHIPBAR_CONTENT / -2, SHIP_SIZE / 2);
+		const int detailHeight = DrawPlayerShipInfo(point + offset);
+		point.Y() += detailHeight + SHIP_SIZE / 2;
+	}
+	else if(isOutfitter && player.Cargo().Size())
+	{
+		point.X() = Screen::Right() - SIDEBAR_WIDTH - SHIPBAR_WIDTH + 10;
+		font.Draw("cargo space:", point, medium);
+
+		string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+		font.Draw({space, {SHIPBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
+		point.Y() += 20.;
+	}
+
+	shipbarScroll.SetDisplaySize(Screen::Height() - BUTTON_HEIGHT);
+	shipbarScroll.SetMaxValue(max(0., point.Y() + shipbarScroll.AnimatedValue() - Screen::Bottom() + Screen::Height()));
+
+	if(shipbarScroll.Scrollable())
+	{
+		Point top(Screen::Right() - SIDEBAR_WIDTH - 3, Screen::Top() + 10);
+		Point bottom(Screen::Right() - SIDEBAR_WIDTH - 3, Screen::Bottom() - 80);
+
+		shipbarScrollbar.SyncDraw(shipbarScroll, top, bottom);
 	}
 }
 
@@ -903,11 +950,11 @@ void ShopPanel::DrawDetailsSidebar()
 	infobarScroll.Step();
 
 	FillShader::Fill(
-		Point(Screen::Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH, 0.),
+		Point(Screen::Right() - SIDE_WIDTH, 0.),
 		Point(1., Screen::Height()),
 		line);
 	FillShader::Fill(
-		Point(Screen::Right() - SIDEBAR_WIDTH - INFOBAR_WIDTH / 2, 0.),
+		Point(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, 0.),
 		Point(INFOBAR_WIDTH - 1., Screen::Height()),
 		back);
 
@@ -922,8 +969,8 @@ void ShopPanel::DrawDetailsSidebar()
 
 	if(infobarScroll.Scrollable())
 	{
-		Point top{Screen::Right() - SIDEBAR_WIDTH - 7., Screen::Top() + 10.};
-		Point bottom{Screen::Right() - SIDEBAR_WIDTH - 7., Screen::Bottom() - 10.};
+		Point top{Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH - 7., Screen::Top() + 10.};
+		Point bottom{Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH - 7., Screen::Bottom() - 10.};
 
 		infobarScrollbar.SyncDraw(infobarScroll, top, bottom);
 	}
@@ -1134,6 +1181,8 @@ bool ShopPanel::DoScroll(double dy, int steps)
 		infobarScroll.Scroll(-dy, steps);
 	else if(activePane == ShopPane::Sidebar)
 		sidebarScroll.Scroll(-dy, steps);
+	else if(activePane == ShopPane::Ship)
+		shipbarScroll.Scroll(-dy, steps);
 	else
 		mainScroll.Scroll(-dy, steps);
 
@@ -1148,6 +1197,8 @@ bool ShopPanel::SetScrollToTop()
 		infobarScroll = 0.;
 	else if(activePane == ShopPane::Sidebar)
 		sidebarScroll = 0.;
+	else if(activePane == ShopPane::Ship)
+		shipbarScroll = 0.;
 	else
 		mainScroll = 0.;
 
@@ -1162,6 +1213,8 @@ bool ShopPanel::SetScrollToBottom()
 		infobarScroll = infobarScroll.MaxValue();
 	else if(activePane == ShopPane::Sidebar)
 		sidebarScroll = sidebarScroll.MaxValue();
+	else if(activePane == ShopPane::Ship)
+		shipbarScroll = shipbarScroll.MaxValue();
 	else
 		mainScroll = mainScroll.MaxValue();
 
