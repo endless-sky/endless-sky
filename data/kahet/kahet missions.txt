@@ -1981,6 +1981,7 @@ mission "Ka'het: Patir Mystery 13.2"
 		payment 1570000
 		clear "remnant: dusk busy"
 		event "patir mystery 2 timer" 45
+		event "patir flickers" 7
 		set "initial patir exploration"
 		conversation "end of Patir 2 - on complete"
 
@@ -2039,6 +2040,26 @@ conversation "end of Patir 2 - on complete"
 
 event "patir mystery 2 timer"
 
+
+event "patir flickers"
+
+
+mission "Ka'het: Patir Mystery Flicker"
+	invisible
+	landing
+	repeat 4
+	source
+		not system "Patir"
+	to offer
+		has "event: patir flickers"
+		not "event: patir mystery 2 timer"
+		not "ka'het: beyond Patir"
+		random < 50
+	on offer
+		event "Patir moves" 0
+		event "Patir returns" 5 9
+
+
 mission "Ka'het: Patir Mystery 14"
 	name "Back in action"
 	description "Now that the situation in <waypoints> is again under control, return there to gather additional data for Prefect Chilia, then return to <destination>."
@@ -2050,6 +2071,7 @@ mission "Ka'het: Patir Mystery 14"
 		random < 60
 		has "event: patir mystery 2 timer"
 		has "event: remnant: tubfalet appearance"
+		not "ka'het: beyond Patir"
 	on offer
 		event "ssil vida changes"
 		conversation
