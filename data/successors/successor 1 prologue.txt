@@ -257,7 +257,7 @@ mission "Successors: First Contact 2"
 			`	"Hail, captain! We appreciate thy promptness in complying 'thour request. I am Riijaaora, an honored scion of House Sioeora. I shall speak for today for my fellows and the House."`
 				goto greet
 			label tardy
-				`	"Hail, captain! Thy tardiness reflects poorly upon thee. I am Riijaaora, an honored Scion of House Sioeora. I shall speak for today for my fellows and the House."`
+			`	"Hail, captain! Thy tardiness reflects poorly upon thee. I am Riijaaora, an honored Scion of House Sioeora. I shall speak for today for my fellows and the House."`
 			label greet
 			choice
 				`	(Say nothing.)`
@@ -297,7 +297,7 @@ mission "Successors: First Contact 2"
 				`	"You want me to do your errands? I won't!"`
 					goto rejected
 			label rude
-				`	"Thine appreciation, or thy failure t'appreciate, are not the sort of things that would concern us in this hall. Thou may'st be an alien, still swaddled in thine ignorance, and yet this makes thee even more a guest upon our worlds and, hm... consumer of our grace. Thy compliance is expected; in return, our generosity."`
+			`	"Thine appreciation, or thy failure t'appreciate, are not the sort of things that would concern us in this hall. Thou may'st be an alien, still swaddled in thine ignorance, and yet this makes thee even more a guest upon our worlds and, hm... consumer of our grace. Thy compliance is expected; in return, our generosity."`
 			choice
 				`	"I apologize."`
 				`	"I have no desire to be your servant."`
@@ -308,7 +308,7 @@ mission "Successors: First Contact 2"
 			action
 				log "Met with the leaders of the Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Accepted their offer."
 			`	"Thou show'st wisdom in thy choice. Even now, thy ship is being prepared within the spaceport o'this estate. Thou should'st travel there when thine audience is finished, and there begin thy noble task with haste." The scion pauses for a moment before continuing. "But prithee note, dear Captain..." Sieasej shivers with color as the scion speaks the next sentence, "that we do not entrust our citizen to thee 'thout consideration. If harm befalls the speaker of these words whilst under thy protection, or if thou fail'st t'return them here in thirty days, we will consider thee an enemy and levy upon thee every harm that we can muster."`
-				goto end
+				decline
 			label rejected
 			action
 				log "Met with the leaders of the Successor High House Sioeora and was instructed to retrieve an animal from the planet Raaqa-Uur-Kaav. Was promised translation equipment as a reward. Rejected."
@@ -318,8 +318,6 @@ mission "Successors: First Contact 2"
 			`	Sieasej and the scions turn their backs to you, and a line of soldiers converge from the walls to form a line separating you from them. The lead officer who escorted you inside motions with their weapon for you to leave.`
 			`	As you exit, the door closes behind you, reforming into solid metal.`
 				flee
-			label end
-				decline
 
 mission "Successors: First Contact 3"
 	name "Capture an animal for House Sioeora"
@@ -499,7 +497,7 @@ mission "Successors: First Contact 3"
 			`	You scoop up the immobilized animal and begin to run back to your ship as the wailing behind you increases in pitch and intensity. As you and Sieasej dash through the foliage, the sunlight overhead is suddenly darkened by the shadow of something flying overhead.`
 			choice
 				`	(Keep running.)`
-				`	(Try to shoot at whatever is above you.)`
+				`	(Try to shoot at whatever is above me.)`
 					goto "shoot ambush"
 			`	Suddenly, the shadow disappears and the wailing stops. You keep running towards your ship, but can't shake the feeling that you are being watched.`
 				goto ambush
@@ -509,14 +507,14 @@ mission "Successors: First Contact 3"
 			`	When you arrive, however, you find that blocking your entry to the <ship> are two large creatures. Their glassy skin resembles that of the smaller creature you captured, but they are each several meters in size. Their feelers, rather than soft and downy, are whiplike and serrated and tipped with vicious-looking barbs that they thrust towards you and Sieasej upon noticing your presence. Their many eyes flick back and forth between you and the animal that you captured, and the two let out a loud wail in unison. Waves of red and blue run down Sieasej's body, probably an expression of fear.`
 			choice
 				`	(Run past them.)`
-				`	(Shoot them with your sidearm.)`
+				`	(Shoot them with my sidearm.)`
 					goto shoot
-				`	(Order your crew to fire a turret at them.)`
+				`	(Order my crew to fire a turret at them.)`
 					to display
 						"flagship base attribute: turret mounts" > "flagship attribute: turret mounts"
 						"flagship crew" > ( "flagship required crew" - 1 )
 					goto "ship shoot"
-				`	(Release the animal that you captured.)`
+				`	(Release the animal that I captured.)`
 					goto release
 			`	You attempt to run past the creatures, but before you can even get close, one of them swings its barbed feeler at you, lodging it deep in your chest. The last thing you see is Sieasej hurrying away as the creatures pursue them as well.`
 				die
@@ -769,7 +767,7 @@ mission "Successors: Kaatrij First Contact 1"
 					goto premature
 			`	The glow of the <ship>'s lights attract a swarm of flying insect-like creatures that vainly dive at them again and again. A gentle breeze ripples through the leaves of the flora surrounding the lake.`
 			choice
-				`	(Check your sensors.)`
+				`	(Check my sensors.)`
 				`	(Leave.)`
 					goto premature
 			`	Inside, a light on the cockpit control panel flashes as if your ship were being scanned, but there's nothing on the sensors, and the alert disappears almost immediately after it began. Soft thunderclaps from a distant storm startle the animals on the lake and they leap up into the air before gliding back down onto the water's surface some distance away.`

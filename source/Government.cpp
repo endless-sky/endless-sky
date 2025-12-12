@@ -242,7 +242,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				bool add = grand.Token(0) == "add";
 				if((add || remove) && grand.Size() < 2)
 				{
-					grand.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
+					grand.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
 					continue;
 				}
 				if(clearTrusted && !add && !remove)
@@ -325,11 +325,14 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				atrocityOutfits.clear();
 				atrocityShips.clear();
 			}
+			const Conversation *deathSentenceForBlock = nullptr;
+			if(child.Size() >= valueIndex + 2 && child.Token(valueIndex) == "death sentence")
+				deathSentenceForBlock = GameData::Conversations().Get(child.Token(valueIndex + 1));
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
 				if(grand.Size() == 1)
-					atrocityOutfits[GameData::Outfits().Get(grandKey)] = true;
+					atrocityOutfits[GameData::Outfits().Get(grandKey)] = {true, deathSentenceForBlock};
 				else if(grandKey == "remove")
 				{
 					if(grand.Token(1) == "ignore universal")
@@ -347,12 +350,12 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				else if(grandKey == "ignore")
 				{
 					if(grand.Token(1) == "ship" && grand.Size() >= 3)
-						atrocityShips[grand.Token(2)] = false;
+						atrocityShips[grand.Token(2)].isAtrocity = false;
 					else
-						atrocityOutfits[GameData::Outfits().Get(grand.Token(1))] = false;
+						atrocityOutfits[GameData::Outfits().Get(grand.Token(1))].isAtrocity = false;
 				}
 				else if(grandKey == "ship")
-					atrocityShips[grand.Token(1)] = true;
+					atrocityShips[grand.Token(1)] = {true, deathSentenceForBlock};
 			}
 		}
 		else if(key == "enforces" && child.HasChildren())
@@ -372,7 +375,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		else if(key == "send untranslated hails")
 			sendUntranslatedHails = true;
 		else if(!hasValue)
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 		else if(key == "default attitude")
 			defaultAttitude = child.Value(valueIndex);
 		else if(key == "player reputation")
@@ -386,7 +389,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		else if(key == "fine")
 			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
 		else if(add)
-			child.PrintTrace("Error: Unsupported use of add:");
+			child.PrintTrace("Unsupported use of add:");
 		else if(key == "display name")
 			displayName = child.Token(valueIndex);
 		else if(key == "swizzle")
@@ -414,7 +417,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
-			child.PrintTrace("Warning: Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");
+			child.PrintTrace("Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -661,33 +664,28 @@ void Government::Bribe() const
 
 // Check to see if the player has done anything they should be fined for.
 // Each government can only fine you once per day.
-string Government::Fine(PlayerInfo &player, int scan, const Ship *target, double security) const
+pair<const Conversation *, string> Government::Fine(PlayerInfo &player, int scan,
+	const Ship *target, double security) const
 {
 	return GameData::GetPolitics().Fine(player, this, scan, target, security);
 }
 
 
 
-bool Government::Condemns(const Outfit *outfit) const
+Government::Atrocity Government::Condemns(const Outfit *outfit) const
 {
-	const auto isAtrocity = atrocityOutfits.find(outfit);
-	bool found = isAtrocity != atrocityOutfits.cend();
-	if(found)
-		return isAtrocity->second;
-	else
-		return !IgnoresUniversalAtrocities() && outfit->Get("atrocity") > 0.;
+	const auto it = atrocityOutfits.find(outfit);
+	return it != atrocityOutfits.cend() ? it->second
+		: Atrocity{!IgnoresUniversalAtrocities() && outfit->Get("atrocity") > 0., nullptr};
 }
 
 
 
-bool Government::Condemns(const Ship *ship) const
+Government::Atrocity Government::Condemns(const Ship *ship) const
 {
-	const auto isAtrocity = atrocityShips.find(ship->TrueModelName());
-	bool found = isAtrocity != atrocityShips.cend();
-	if(found)
-		return isAtrocity->second;
-	else
-		return !IgnoresUniversalAtrocities() && ship->BaseAttributes().Get("atrocity") > 0.;
+	const auto it = atrocityShips.find(ship->TrueModelName());
+	return it != atrocityShips.cend() ? it->second
+		: Atrocity{!IgnoresUniversalAtrocities() && ship->BaseAttributes().Get("atrocity") > 0., nullptr};
 }
 
 
@@ -737,10 +735,10 @@ bool Government::IgnoresUniversalIllegals() const
 bool Government::FinesContents(const Ship *ship) const
 {
 	for(auto &it : ship->Outfits())
-		if(this->Fines(it.first) || this->Condemns(it.first))
+		if(this->Fines(it.first) || this->Condemns(it.first).isAtrocity)
 			return true;
 
-	return ship->Cargo().IllegalCargoFine(this);
+	return ship->Cargo().IllegalCargoFine(this).first;
 }
 
 
