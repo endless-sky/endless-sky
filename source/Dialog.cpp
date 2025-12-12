@@ -504,8 +504,12 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	Resize();
 	AddChild(text);
 
-	if(validateFun)
-		isOkDisabled = !validateFun(input);
+	if(validateStrFun)
+		isOkDisabled = !validateStrFun(input);
+	else if(validateIntFun)
+		isOkDisabled = !validateIntFun(input);
+	else if(validateDoubleFun)
+		isOkDisabled = !validateDoubleFun(input);
 }
 
 
@@ -566,7 +570,7 @@ int Dialog::Width() const
 
 bool Dialog::AcceptsInput() const
 {
-	return !isMission && (intFun || doubleFun || stringFun || validateFun);
+	return !isMission && (intFun || doubleFun || stringFun);
 }
 
 

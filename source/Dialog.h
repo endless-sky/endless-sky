@@ -164,14 +164,15 @@ protected:
 	// The number of extra segments in this dialog.
 	int extensionCount;
 
+	std::function<void()> voidFun;
+	std::function<void(bool)> boolFun;
 	std::function<void(int)> intFun;
 	std::function<void(double)> doubleFun;
 	std::function<void(const std::string &)> stringFun;
-	std::function<void()> voidFun;
-	std::function<void(bool)> boolFun;
-	std::function<bool(const std::string &)> validateStringFun;
+
 	std::function<bool(int)> validateIntFun;
 	std::function<bool(double)> validateDoubleFun;
+	std::function<bool(const std::string &)> validateStringFun;
 
 	bool canCancel;
 	int activeButton;
@@ -309,7 +310,7 @@ template<class T>
 Dialog::Dialog(T *panel, const std::string &text, const std::string &initialValue,
 	Dialog::FunctionButton buttonOne, Dialog::FunctionButton buttonThree,
 	std::function<bool(const std::string &)> validate)
-	: validateFun(std::move(validate)), canCancel(true), input(initialValue),
+	: validateStrFun(std::move(validate)), canCancel(true), input(initialValue),
 	buttonOne(buttonOne), buttonThree(buttonThree)
 {
 	Init(text, Truncate::NONE);
