@@ -134,6 +134,10 @@ bool GameWindow::Init(bool headless)
 		windowHeight = min(windowHeight, Screen::RawHeight());
 	}
 
+	// As of SDL 2.0.2, the screen saver is disabled by default when an SDL-created window is open.
+	// Re-enable it.
+	SDL_EnableScreenSaver();
+
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
 
