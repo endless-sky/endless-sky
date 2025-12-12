@@ -133,8 +133,10 @@ protected:
 
 	enum class ShopPane : int {
 		Main,
+		Info,
+		Ship,
 		Sidebar,
-		Info
+
 	};
 
 
@@ -142,8 +144,11 @@ protected:
 	static constexpr int SIDEBAR_PADDING = 5;
 	static constexpr int SIDEBAR_CONTENT = 250;
 	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
+	static constexpr int SHIPBAR_PADDING = 5;
+	static constexpr int SHIPBAR_CONTENT = 250;
+	static constexpr int SHIPBAR_WIDTH = SHIPBAR_CONTENT + SHIPBAR_PADDING;
 	static constexpr int INFOBAR_WIDTH = 300;
-	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
+	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + SHIPBAR_WIDTH + INFOBAR_WIDTH;
 	static constexpr int BUTTON_HEIGHT = 70;
 	static constexpr int SHIP_SIZE = 250;
 	static constexpr int OUTFIT_SIZE = 183;
@@ -174,12 +179,14 @@ protected:
 	ScrollVar<double> mainScroll;
 	ScrollVar<double> sidebarScroll;
 	ScrollVar<double> infobarScroll;
+	ScrollVar<double> shipbarScroll;
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
 
 	ScrollBar mainScrollbar;
 	ScrollBar sidebarScrollbar;
 	ScrollBar infobarScrollbar;
+	ScrollBar shipbarScrollbar;
 
 	double previousX = 0.;
 
@@ -199,6 +206,7 @@ protected:
 private:
 	void DrawShipsSidebar();
 	void DrawDetailsSidebar();
+	void DrawShipDetailsSidebar();
 	void DrawButtons();
 	void DrawMain();
 
