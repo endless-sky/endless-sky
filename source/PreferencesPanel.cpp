@@ -810,9 +810,9 @@ void PreferencesPanel::DrawSettings()
 		DATE_FORMAT,
 		"Show parenthesis",
 		NOTIFY_ON_DEST,
-		"Save message log"
-		, "\n",
-		"Game Window Options",
+		"Save message log",
+		"\n",
+		"Game Window",
 		SCREEN_SAVER_ENABLED,
 #ifdef _WIN32
 		TITLE_BAR_THEME,
