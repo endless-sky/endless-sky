@@ -234,9 +234,9 @@ Ship::LiveSpark::LiveSpark(const DataNode &node)
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(key == "frequency" && hasValue)
+		if(key == "period" && hasValue)
 		{
-			frequency = max(1., child.Value(1));
+			period = max(1., child.Value(1));
 			if(child.Size() >= 3)
 				random = max(0., child.Value(2));
 		}
@@ -267,9 +267,9 @@ void Ship::LiveSpark::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		if(random)
-			out.Write("frequency", frequency, random);
+			out.Write("period", period, random);
 		else
-			out.Write("frequency", frequency);
+			out.Write("period", period);
 		if(side == PlacementSide::OVER)
 			out.Write("over");
 		else if(side == PlacementSide::UNDER)
@@ -302,9 +302,9 @@ Ship::LiveEffect::LiveEffect(const DataNode &node)
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(key == "frequency" && hasValue)
+		if(key == "period" && hasValue)
 		{
-			frequency = max(1., child.Value(1));
+			period = max(1., child.Value(1));
 			if(child.Size() >= 3)
 				random = max(0., child.Value(2));
 		}
@@ -339,9 +339,9 @@ void Ship::LiveEffect::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		if(random)
-			out.Write("frequency", frequency, random);
+			out.Write("period", period, random);
 		else
-			out.Write("frequency", frequency);
+			out.Write("period", period);
 		if(angle.Degrees())
 			out.Write("angle", angle.Degrees());
 		if(position)
@@ -1795,9 +1795,9 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	if(!syncedEffects)
 	{
 		for(LiveSpark &spark : liveSparks)
-			spark.tick = Random::Int(spark.frequency + spark.random);
+			spark.tick = Random::Int(spark.period + spark.random);
 		for(LiveEffect &effect : liveEffects)
-			effect.tick = Random::Int(effect.frequency + effect.random);
+			effect.tick = Random::Int(effect.period + effect.random);
 		for(Decor decor : decorations)
 			if(decor.behavior != DecorBehavior::STATIC && !decor.synced)
 				decor.angle = Angle::Random();
@@ -4520,7 +4520,7 @@ void Ship::StepLiveEffects()
 	{
 		if(!spark.tick)
 		{
-			spark.tick = spark.frequency;
+			spark.tick = spark.period;
 			if(spark.random)
 				spark.tick += Random::Int(spark.random);
 		}
@@ -4531,7 +4531,7 @@ void Ship::StepLiveEffects()
 	{
 		if(!effect.tick)
 		{
-			effect.tick = effect.frequency;
+			effect.tick = effect.period;
 			if(effect.random)
 				effect.tick += Random::Int(effect.random);
 		}

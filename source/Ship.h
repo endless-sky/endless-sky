@@ -167,9 +167,9 @@ public:
 		void Save(DataWriter &out) const;
 
 		const Effect *effect = nullptr;
-		int frequency = 1;
+		int period = 1;
 		int random = 0;
-		int amount = 1;
+		double amount = 1;
 		PlacementSide side = PlacementSide::OVER;
 		int activity = PlacementActivity::NONE;
 
@@ -185,7 +185,7 @@ public:
 		const Effect *effect = nullptr;
 		Point position;
 		Angle angle;
-		int frequency = 1;
+		int period = 1;
 		int random = 0;
 		int amount = 1;
 		PlacementSide side = PlacementSide::OVER;
