@@ -113,6 +113,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Fleet.h
 	FleetCargo.cpp
 	FleetCargo.h
+	FleetPlacement.cpp
+	FleetPlacement.h
 	Flotsam.cpp
 	Flotsam.h
 	FormationPattern.cpp
