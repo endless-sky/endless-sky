@@ -3858,10 +3858,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 	{
 		if(decor.behavior != Ship::DecorBehavior::TARGETING)
 			continue;
-		// This is where this projectile fires from. Add some randomness
-		// based on how skilled the pilot is.
 		Point start = ship.Position() + ship.Facing().Rotate(decor.position);
-		start += ship.GetPersonality().Confusion();
 		// Get the turret's current facing, in absolute coordinates:
 		Angle aim = ship.Facing() + decor.angle;
 		// Loop through each body this decoration could target at. Find the
