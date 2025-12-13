@@ -142,6 +142,13 @@ const Mask &Body::GetMask(int step) const
 
 
 
+void Body::PauseAnimation()
+{
+	++pause;
+}
+
+
+
 // Position, in world coordinates (zero is the system center).
 const Point &Body::Position() const
 {
@@ -353,13 +360,6 @@ void Body::SetFrameRate(float framesPerSecond)
 void Body::AddFrameRate(float framesPerSecond)
 {
 	frameRate += framesPerSecond / 60.f;
-}
-
-
-
-void Body::PauseAnimation()
-{
-	++pause;
 }
 
 
