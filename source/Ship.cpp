@@ -2916,6 +2916,13 @@ const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
 
 
 
+const vector<Ship::Leak> &Ship::ActiveLeaks() const
+{
+	return activeLeaks;
+}
+
+
+
 const vector<Ship::LiveEffect> &Ship::LiveEffects() const
 {
 	return liveEffects;
@@ -4498,16 +4505,6 @@ void Ship::StepLeaks(std::vector<Visual> &visuals, PlacementActivity state)
 	for(auto it = activeLeaks.begin(); it != activeLeaks.end(); )
 	{
 		Leak leak = *it;
-		// Leaks always "flicker" every other frame.
-		if(Random::Int(2))
-			visuals.emplace_back(*leak.effect,
-				position + zoom * angle.Rotate(leak.location),
-				velocity,
-				leak.angle + angle,
-				Point(),
-				1.,
-				zoom);
-
 		if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
 			it = activeLeaks.erase(it);
 		else

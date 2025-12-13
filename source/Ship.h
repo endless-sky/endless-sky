@@ -145,6 +145,21 @@ public:
 		ALWAYS_ON = WHEN_ACTIVE | WHEN_DISABLED | WHEN_EXPLODING,
 	};
 
+	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
+	// when the ship is dying. Some leaks may also be for aesthetic purposes
+	// while flying.
+	class Leak {
+	public:
+		explicit Leak(const Effect *effect = nullptr) : effect(effect) {}
+
+		const Effect *effect = nullptr;
+		Point location;
+		Angle angle;
+		int openPeriod = 60;
+		int closePeriod = 60;
+		int activity = PlacementActivity::NONE;
+	};
+
 	// A live spark is an effect which periodically appears over the surface of a ship.
 	class LiveSpark {
 	public:
@@ -401,6 +416,7 @@ public:
 	const std::vector<EnginePoint> &ReverseEnginePoints() const;
 	const std::vector<EnginePoint> &SteeringEnginePoints() const;
 
+	const std::vector<Leak> &ActiveLeaks() const;
 	const std::vector<LiveEffect> &LiveEffects() const;
 	const std::vector<LiveSpark> &LiveSparks() const;
 	std::vector<Decor> &Decorations();
@@ -816,21 +832,6 @@ private:
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
 	Point hyperspaceOffset;
-
-	// The hull may spring a "leak" (venting atmosphere, flames, blood, etc.)
-	// when the ship is dying. Some leaks may also be for aesthetic purposes
-	// while flying.
-	class Leak {
-	public:
-		explicit Leak(const Effect *effect = nullptr) : effect(effect) {}
-
-		const Effect *effect = nullptr;
-		Point location;
-		Angle angle;
-		int openPeriod = 60;
-		int closePeriod = 60;
-		int activity = PlacementActivity::NONE;
-	};
 
 	std::vector<Leak> leaks;
 	std::vector<Leak> activeLeaks;

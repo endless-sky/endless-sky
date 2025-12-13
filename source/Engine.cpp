@@ -2912,6 +2912,22 @@ void Engine::DrawShipSprites(const Ship &ship)
 			body.SetSwizzle(ship.GetSwizzle());
 		drawObject(body);
 	};
+	auto drawLeaks = [&ship, this]() -> void
+	{
+		for(const Ship::Leak &leak : ship.ActiveLeaks())
+		{
+			// Leaks always "flicker" every other frame.
+			if(!Random::Int(2))
+				return;
+			visuals.emplace_back(*leak.effect,
+				ship.Position() + ship.Zoom() * ship.Facing().Rotate(leak.location),
+				ship.Velocity(),
+				ship.Facing() + leak.angle,
+				Point(),
+				1.,
+				ship.Zoom());
+		}
+	};
 
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
@@ -2929,6 +2945,7 @@ void Engine::DrawShipSprites(const Ship &ship)
 		if(decor.side == Ship::PlacementSide::UNDER)
 			drawDecor(decor);
 	drawObject(ship);
+	drawLeaks();
 	for(const Ship::Decor &decor : ship.Decorations())
 		if(decor.side == Ship::PlacementSide::OVER)
 			drawDecor(decor);
