@@ -1798,10 +1798,11 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 			spark.tick = Random::Int(spark.period + spark.random);
 		for(LiveEffect &effect : liveEffects)
 			effect.tick = Random::Int(effect.period + effect.random);
-		for(Decor decor : decorations)
-			if(decor.behavior != DecorBehavior::STATIC && !decor.synced)
-				decor.angle = Angle::Random();
 	}
+	Angle syncedAngle = syncedEffects ? Angle(0.) : Angle::Random();
+	for(Decor decor : decorations)
+		if(decor.behavior != DecorBehavior::STATIC)
+			decor.angle = decor.synced || syncedEffects ? syncedAngle : Angle::Random();
 }
 
 
