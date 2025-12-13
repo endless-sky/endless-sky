@@ -67,7 +67,7 @@ public:
 	// associated with this planet is used even if the planet was not fully
 	// defined (i.e. it belongs to an inactive plugin).
 	const std::string &TrueName() const;
-	void SetName(const std::string &name);
+	void SetTrueName(const std::string &name);
 	// Get the display name of the planet (all wormholes use the same name).
 	const std::string &DisplayName() const;
 	// Return the description text for the planet, but not the spaceport:
@@ -89,7 +89,7 @@ public:
 	const Port &GetPort() const;
 	// Check whether there are port services (such as trading, jobs, banking, and hiring)
 	// available on this planet.
-	bool HasServices() const;
+	bool HasServices(bool isPlayer = true) const;
 
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
@@ -152,6 +152,7 @@ public:
 	// Below are convenience functions which access the game state in Politics,
 	// but do so with a less convoluted syntax:
 	bool HasFuelFor(const Ship &ship) const;
+	bool CanBribe() const;
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
 	Friendliness GetFriendliness() const;
@@ -175,6 +176,11 @@ private:
 	std::string music;
 
 	std::set<std::string> attributes;
+
+	ConditionSet toKnow;
+	ConditionSet toLand;
+	ConditionSet toAccessShipyard;
+	ConditionSet toAccessOutfitter;
 
 	std::set<const Shop<Ship> *> shipSales;
 	std::set<const Shop<Outfit> *> outfitSales;

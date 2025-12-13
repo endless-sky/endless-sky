@@ -1,3 +1,164 @@
+Version 0.10.16
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@Deltaspace0)
+      * Resampled various wave files to 44.1 kHz. (@Saugia)
+      * Coalition Yottrite missions will no longer offer on uninhabited gas giants. (@Arachi-Lover)
+      * Fixed the "on visit" message of "Dangerous Games 1" to account for the possibility that the player has reached the destination with all the passengers but not visited the stopover. (@warp-core)
+      * Having a Tiny or Small VLS will now also enable resupplying Nettle missiles, in addition to the Medium VLS. (@Azure3141)
+      * The mission "Care Package to South 1" can no longer choose stations, Harmony, or Humanika as a destination, as it doesn't make sense for these places to have a militia base. (@warp-core)
+      * Bunrodea steering engines now have steering flares and sounds. (@Amazinite)
+    * Engine bugs:
+      * Fixed an issue where the fuel and heat costs of repairing shields and hull on docked fighters were applied incorrectly. (@TomGoodIdea)
+      * Messages about multiple identical player owned ships being destroyed will no longer be suppressed as duplicates. (@TomGoodIdea)
+      * Fixed an issue where planet ambient music was not being played at the correct time. (@TomGoodIdea)
+      * Fixed problems with anti-missile and tractor beam turrets installed on hardpoints with blindspots. (@TomGoodIdea)
+      * The background no longer moves inappropriately after the player is dead. (@TomGoodIdea)
+      * The message about being unable to board a ship while cloaked can no longer be duplicated. (@TomGoodIdea)
+      * Selecting escorts with commands will now also target them. (@TomGoodIdea)
+      * Fixed issues when landing on planets or wormholes with custom "landing speeds". (@TomGoodIdea)
+      * The fleet jump message will no longer be shown repeatedly. (@xobes)
+      * Planetary security will no longer scan parked ships, so the player can no longer receive fines for illegal outfits on those ships. (@Amazinite)
+      * The game will now recognize and load plugins that only modify shaders. (@TomGoodIdea)
+      * The default state of the "system arrival min" gamerule is now "unset", so negative arrival values in system definitions will now work again. (@warp-core)
+      * Fixed an issue where person ships were not being properly restored when loading a save. (@TomGoodIdea)
+      * Fixed issues where resizing would cause text to be drawn at incorrect locations and/or scales in the plugin and map panels. (@TomGoodIdea)
+  * Game content:
+    * New content:
+      * Added descriptions for the Tiny and Small VLS. (@Azure3141)
+      * Added a selection of new "food" commodity names, and moved "fertilizer" from "food" to "industrial". (@reticent-rem)
+    * Mission changes:
+      * Lowered the offer precedence of culture conversations so they never block story missions. (@reticent-rem)
+      * Added system markers to "Wanderers: Alpha Surveillance D" to indicate the next system(s) to search. (@Anarchist2)
+      * The mission "Expanding Business: shipyard complete" no longer contains a dialog. (@Amazinite)
+    * Sprites:
+      * Added a new and improved image for the Esquiline reveal scene. (@beccabunny)
+      * Renamed the duplicate "fog12" and "lava14" jpeg landscapes to "fog15" and "lava15" to avoid name collision, and added copyright entries for various previously unlisted landscapes. (@warp-core)
+    * Balance:
+      * Bunrodea ships now carry hand-to-hand outfits. (@LixiChronikouOriou)
+      * Increased the reload time of the Thorax Cannon from two seconds to four seconds. (@AvianGeneticist)
+    * Other:
+      * "Acorn Delights: Part 1" no longer allows the same conversation choices to be selected repeatedly. (@TheGiraffe3)
+  * Graphics:
+    * Animated elements on the HUD will no longer freeze when using the "pause" command, and will no longer speed up when using the "fast-forward" command. (@TomGoodIdea)
+    * On Windows 10 and 11, the window theme and corner rounding can now be customized. (@TomGoodIdea)
+  * Audio:
+    * An error is now reported when loading wave files with incorrect sample rates (anything but 44.1 kHz). (@tibetiroka)
+  * Game mechanics:
+    * New mechanics:
+      * New autocondition: "gamerule: <gamerule>" which gives the value of the given gamerule. (@Amazinite)
+    * Mechanics changes:
+      * Ship variants that inherit outfits and weapon hardpoint layouts from their bases will now also inherit the installed weapon layouts. (@warp-core)
+      * There is now a gamerule for enabling or disabling the ability to resupply most secondary weapons at all outfitters. (@Amazinite)
+      * Reverted changes to movement AI logic in the previews release aimed at improving reverse thrust use due to the introduction of various other issues. (@warp-core)
+  * User interface:
+    * The shipyard panel no longer lists cargo capacity when no player ship is selected. (@TomGoodIdea)
+    * Tooltip activation time can now be customized by a preference. (@TomGoodIdea)
+  * Under the hood:
+    * Slightly improved performance when drawing the loading ring. (@TomGoodIdea)
+    * Added a plaintext description for the stop command. (@thewierdnut)
+    * Buttons in the shop panels now use ClickZones. (@xobes)
+    * The Interface class now stores Elements via unique_ptrs, instead of raw pointers. This also fixes a small memory leak. (@warp-core)
+    * Standardized "trueName" and "displayName" convention to methods and fields in classes across the whole code base. (@Amazinite)
+  * Documentation:
+    * Updated the system requirements and listed minimum supported operating systems. (@TomGoodIdea)
+  * CI/CD and development environment:
+    * Added an alternate libflac detection method for systems where it doesn't provide a CMake configuration. (@thewierdnut)
+    * Added an vcpkg overlay port for openal-soft with a patch for v1.23.1 that fixes compilation errors on gcc 15. (@warp-core)
+
+Version 0.10.15
+  * Bug fixes:
+    * Content bugs:
+      * Typo fixes. (@Anarchist2, @LixiChronikouOriou, @warp-core, @Wedge009)
+      * Removed a duplicate definition of the "Dagger (Miner)" variant. (@Anarchist2)
+      * Corrected the height of the planet description text area. (@warp-core)
+      * Added the Aegis, Ancile, and Aspis shield generators and the Quarg Drake to atrocity lists of Quarg governments. (@LixiChronikouOriou)
+      * The mission "Remnant: Expanded Horizons Quarg 2" will now only spawn one Quarg Lindwyrm, Drake, or Wardragon, instead of sometimes spawning two Drakes. (@warp-core)
+      * "Remnant: Expanded Horizons Astral job" will no longer select Beyond Patir systems as a waypoint. (@beccabunny)
+    * Engine bugs:
+      * Ships that cannot land with the flagship will now be assigned to the correct planet. (@TomGoodIdea)
+      * The "Coming to a stop" and flagship overheating messages will no longer be sent excessively. (@TomGoodIdea)
+      * On Windows, files are now written in the text mode, not the binary mode, for the correct newline format. (@TomGoodIdea)
+      * Fixed a bug where carriers with docked ships would not be correctly despawned when landing. (@Anarchist2)
+      * The collection of persons is now reset when loading a save file, preventing undefined person names from permeating across save files. (@TomGoodIdea)
+      * The spaceport description will no longer appear in space after the player dies while in the spaceport panel. (@TomGoodIdea)
+      * Fixed an issue where a low priority message would not appear due to an invisible message with the same text at the end of its lifetime still in the list. (@TomGoodIdea)
+      * Fixed an error in depreciation calculations that allowed item values to fall slightly below 25% in some cases. (@Amazinite)
+  * Game content:
+    * New content:
+      * Added five new landable gas giants throughout the Graveyard. (@beccabunny)
+      * Added a couple of missions about the last will of a late ship captain. (@TheGiraffe3, @RisingLeaf, @bene-dictator)
+      * Added four new landable gas giants to Coalition space. (@Arachi-Lover)
+      * Added new missions to the Syndicate investment storyline. (@reticent-rem)
+      * Created a mission chain about rescuing a lost racer. (@TheGiraffe3, @Daeridanii1)
+      * Created dynamic, repeatable hovercraft racing missions on Sunracer. (@reticent-rem)
+      * Added a mission chain where the player discovers an ancient Ka'het satellite. (@beccabunny)
+    * Mission changes:
+      * The "There Might Be Riots" mission chain can now be completed without doing the Deep Archaeology missions, and feature 25 instead of 35 Combat Drones. (@Anarchist2)
+    * Sprites:
+      * Added various new gas giant landscapes. (@beccabunny)
+      * Fixed artifacts at the edges of some images. (@mbartlett21)
+      * Removed various unused landscape images with unspecified/incompatible copyrights. (@warp-core)
+      * Added thumbnail images for Aberrant ships. (@beccabunny)
+    * Sounds:
+      * Increased the bitrate of the "explosion huge.wav" sound. (@Anarchist2)
+    * Balance:
+      * The Heavy Gust becomes available shortly after the Autumn Leaf, and appears in various system and mission fleets. (@Quantumshark)
+      * Various changes to Avgi content. (@Azure3141)
+    * Other:
+      * The variants of the Aphid, Lightning Bug, and Shield Beetle sold by the Unfettered Hai are now differentiated by subtitles in the map shipyard view. (@warp-core)
+      * Gave the Firestorm Battery a velocity override so the AI no longer overestimates its range. (@Quantumshark)
+  * Graphics:
+    * In-flight messages will now slide smoothly up when a new one is added. (@TomGoodIdea)
+    * The mini-map transition between systems is now smoothly animated. (@Amazinite)
+    * Ship hardpoints can now inherit the ship's swizzle and apply it to weapon hardpoint sprites. (@TomGoodIdea)
+    * Zooming in the map is now smoothly animated. (@TomGoodIdea)
+    * On Windows, where supported, use the dark theme for the title bar in windowed mode. (@TomGoodIdea)
+    * Images and image sequences can now be loaded from AVIF files. (@tibetiroka)
+  * Audio:
+    * Music can now be played from FLAC files. (@tibetiroka)
+  * Game mechanics:
+    * New mechanics:
+      * Added a "Hold Fire" command for escort ships. (@TomGoodIdea)
+      * Added autoconditions for flagship, player and government strengths to get the strengths of ships in the player's system. (@tibetiroka)
+    * Mechanics changes:
+      * The weapon jam chance from scrambling is no longer affected by the current energy level. (@Anarchist2)
+      * The ability of a homing projectile to track targets behind it, reduce its acceleration, and lead a target can now be set independently of one another. (@Anarchist2)
+      * Ramscoop fuel and solar energy collection are now based on a ship's actual distances to the stars in a system, instead of the distance to the system center. (@TomGoodIdea)
+      * The autopilot can now account for insufficient crew. (@NobodyIII, @tibetiroka)
+      * Added a preference allowing a user to control if passengers and/or cargo are loaded into the flagship or escorts first. (@TomGoodIdea)
+      * The autopilot AI can now more readily and effectively make use of reverse thrust. (@tibetiroka)
+  * User interface:
+    * The "Show mini-map" preference now has the option to have the mini-map shown at all times. (@Amazinite)
+    * The radar no longer shows invisible projectiles, and projectiles with a blast radius will now appear larger. (@TomGoodIdea)
+    * The landing message will no longer be repeated if the player selects the planet they are already landing on. (@Amazinite)
+    * The map outfitter and shipyard panels now sort by series and index, instead of alphabetically. (@Anarchist2)
+    * The tooltip for the "Toggle turret tracking" control now directs users to the "Turret tracking" setting for more details about what it does. (@xobes)
+    * Refactored and consolidated tooltip handling into its own class and improved tooltip positioning in some cases. (@Amazinite)
+  * Under the hood:
+    * Sound loading code now uses references to shared_ptrs instead of making copies. (@TomGoodIdea)
+    * Consolidated code for listing items into the Format class. (@TomGoodIdea)
+    * Refactored ship order handling to support concurrent orders. (@TomGoodIdea)
+    * Enabled large address awareness on 32-bit Windows builds, allowing the use of more than 2 GB of memory. (@TomGoodIdea)
+    * Refactored audio loading, playback, and effects into separate classes. (@tibetiroka)
+    * Various C++ code style fixes. (@TomGoodIdea, @xobes)
+    * Cleaned up the EsUuid class, and moved the comparator to its own file. (@TomGoodIdea)
+    * Consolidated left and right click handling functions into a single click handling function. (@TomGoodIdea)
+    * Apply a uniform style for template declarations throughout the codebase. (@TomGoodIdea)
+    * Apply a uniform style to conversation labels. (@warp-core)
+    * Added an overload to "FillShader::Fill" that takes the region to fill as a "Rectangle" instead of a pair of "Point"s. (@TomGoodIdea)
+    * Removed unused icon setting code and files. (@TomGoodIdea)
+    * Various improvements and fixes to timers on Windows. (@TomGoodIdea)
+  * Documentation:
+    * Replaced the Windows metadata file description with the application name because it was used as the process name in Task Manager. (@TomGoodIdea)
+    * Specified a target link version for Windows. (@TomGoodIdea)
+  * CI/CD and development environment:
+    * Include the "cmath" header in "test_point.cpp" and use "std::abs" to fix use of the wrong function on ARM64. (@r41k0u)
+    * The CI workflow will now also run on changes in the "images" and "sounds" directories. (@warp-core)
+    * Raised the version of the "actions/checkout" GitHub Action used from v4 to v5. (@TheGiraffe3)
+    * Reduced the version of openal-soft acquired by vcpkg to 1.23.1 to include compatibility with some older versions of MacOS X and fix crashes when built for 32-bit Windows. (@TomGoodIdea)
+    * The code style checker now also catches class forward declarations that are out of alphabetical order and structured binding declarations that contain whitespace between the reference symbol and open square bracket. (@xobes)
+
 Version 0.10.14
   * Breaking changes:
     * Portrait image files have been removed. (@tibetiroka)

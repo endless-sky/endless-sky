@@ -133,7 +133,7 @@ outfit "Multispectral Scanner"
 	thumbnail "outfit/multispectral scanner"
 	"mass" 6
 	"outfit space" -12
-	"tactical scan power" 180
+	"tactical scan power" 144
 	"energy consumption" 0.45
 	"heat generation" 1.8
 	description "The Multispectral Scanner is a veritable suite of instruments, including an active scanning phased array radar, a combined infrared/optical/ultraviolet telescope, an array of semiconductor gamma detectors, and a bundle of neutron-detecting helium-3 tubes. With this plethora of instruments, distant ships can be detected, ranged, and tracked, despite any attempts to hide."
@@ -247,7 +247,7 @@ outfit "Lantern Fission Core"
 	"mass" 24
 	"outfit space" -24
 	"energy generation" 6
-	"heat generation" 54
+	"heat generation" 48
 	"overheat damage rate" 3
 	description "While most Avgi starships either use solar arrays or tap energy from their torch drives, sometimes a more consistent power source is desirable. The Lantern is a compact electrostatic gas core fission reactor, which supplies a stable, reliable flow of power to even smaller ships. With uranium plasma intermixed with hydrogen gas, an applied voltage keeps the ionized uranium fuel contained in the reactor core while the superheated hydrogen is allowed to flow through a compact magnetohydrodynamic generator. The high temperatures involved allow the reactor to achieve a surprisingly high thermodynamic efficiency for its size, at the cost of producing significant amounts of waste heat."
 	description "	Run at the very edge of its thermal limits, the Lantern does not tolerate overheating of its coolant loop, which can cause catastrophic damage if sustained."
@@ -292,13 +292,13 @@ outfit "Magnetoplasma Drive"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"thrust" 7.5
+	"thrust" 4.5
 	"thrusting energy" 1.2
 	"thrusting heat" 0.6
-	"reverse thrust" 7.5
+	"reverse thrust" 4.5
 	"reverse thrusting energy" 1.2
 	"reverse thrusting heat" 0.6
-	"turn" 240
+	"turn" 180
 	"turning energy" 1.2
 	"turning heat" 0.6
 	"drag reduction" 0.3
@@ -312,7 +312,58 @@ outfit "Magnetoplasma Drive"
 		"frame rate" 5
 	"reverse flare sound" "plasma tiny"
 	description "For bulk transportation of passengers and goods, electric propulsion has long been used by the Avgi for its versatility and low cost. This compact set of magnetoplasmadynamic thrusters can propel light ships to impressive velocities, given time to accelerate, but it is also notably energy-hungry. Being propellant agnostic, it is common to see this workhorse drive ran with common water or ammonia propellants, contributing to its renowned flexibility."
-	description "	Designed to be clustered and oriented in any direction, this design can give a ship full six-axis control, allowing it to translate and rotate in any direction with ease."
+	description "	Designed to be clustered and oriented in any direction, the thruster layout gives a ship full six-axis control, allowing it to translate and rotate in any direction with ease."
+
+
+outfit "Vapor Nuclear Rocket"
+	category "Engines"
+	series "Engines"
+	index 07010
+	"cost" 900000
+	thumbnail "outfit/vapor nuclear rocket"
+	"mass" 24
+	"outfit space" -24
+	"engine capacity" -24
+	"thrust" 24
+	"thrusting energy" 1.5
+	"thrusting heat" -6
+	"energy generation" 1.5
+	"heat generation" 9
+	"overheat damage rate" 3
+	"drag reduction" 0.6
+	"flare sprite" "effect/avgi flare/ntr"
+		"frame rate" 15
+	"flare sound" "atomic small"
+	description "While an efficient means of propulsion, fusion engines are large and cumbersome, scaling down poorly. The Avgi use gas core nuclear fission thermal rockets for smaller ships that need a better thrust-to-weight ratio than electric propulsion can provide, but are not large enough to justify a multi-hundred ton fusion torch. Impressive specific powers are achieved through performant fuels such as U-233 or Am-242m, but this also makes these engines rather expensive."
+	description "	The Vapor Gas Core Nuclear Thermal Rocket is derived from the same reactor design as the Lantern Fission Core, stripped of power conversion equipment and radiation shielding. Like the Lantern, an electrostatic field of a few volts is used to trap ionized uranium plasma in the reactor even as hot hydrogen flows freely. The engine is bimodal, producing a small trickle of power from thermionic converters, but this capability comes at the cost of constant heat generation."
+
+
+outfit `A-3600 "Beam" Amat Drive`
+	category "Engines"
+	series "Engines"
+	index 07080
+	"cost" 300000000
+	thumbnail "outfit/beam antimatter drive"
+	"mass" 3600
+	"outfit space" -360
+	"engine capacity" -360
+	"thrust" 600
+	"thrusting energy" 15
+	"thrusting heat" 90
+	"thrusting fuel" 0.3
+	"drag reduction" 9
+	"flare sprite" "effect/avgi flare/antimatter"
+		"frame rate" 15
+	"flare sound" "fusion torch"
+	"turn" 6000
+	"turning energy" 9
+	"turning heat" 54
+	"steering flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 15
+		"scale" 0.5
+	"steering flare sound" "remnant afterburner"
+	"magnetic nozzle" 18
+	description "The fastest Avgi starships were propelled not just by their engines, but also by immense banks of lasers and particle beams stationed in the Anax system, pushing ships to velocities in excess of 0.2c before braking with a magsail or plasma magnet. Just before the invention of the hyperdrive, however, the Avgi perfected this beam-core antimatter drive, capable of pushing a starship with sufficient antimatter fuel to 0.4c and perhaps beyond. Requiring immense quantities of antimatter, the amat farms around Anax such as Antivli Station would have been strained to their limits had this design entered mass production, but the surprise invention of the hyperdrive rendered it laughably obsolete overnight."
 
 
 outfit `Z-333 "Spark" Fusion Torch`
@@ -321,15 +372,15 @@ outfit `Z-333 "Spark" Fusion Torch`
 	index 07050
 	licenses
 		"Avgi Torch"
-	"cost" 1800000
+	"cost" 3600000
 	thumbnail "outfit/spark fusion torch"
 	"mass" 333
 	"outfit space" -33
 	"engine capacity" -33
 	"thrust" 120
 	"thrusting energy" 9
-	"thrusting heat" 45
-	"thrusting fuel" 0.09
+	"thrusting heat" 60
+	"thrusting fuel" 0.15
 	"drag reduction" 1
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
@@ -347,15 +398,15 @@ outfit `Z-666 "Zap" Fusion Torch`
 	index 07060
 	licenses
 		"Avgi Torch"
-	"cost" 3900000
+	"cost" 9000000
 	thumbnail "outfit/zap fusion torch"
 	"mass" 666
 	"outfit space" -66
 	"engine capacity" -66
 	"thrust" 270
 	"thrusting energy" 18
-	"thrusting heat" 90
-	"thrusting fuel" 0.18
+	"thrusting heat" 120
+	"thrusting fuel" 0.3
 	"drag reduction" 2
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
@@ -372,15 +423,15 @@ outfit `Z-999 "Arc" Fusion Torch`
 	index 07070
 	licenses
 		"Avgi Torch"
-	"cost" 6000000
+	"cost" 14400000
 	thumbnail "outfit/arc fusion torch"
 	"mass" 999
 	"outfit space" -99
 	"engine capacity" -99
 	"thrust" 450
 	"thrusting energy" 27
-	"thrusting heat" 135
-	"thrusting fuel" 0.27
+	"thrusting heat" 180
+	"thrusting fuel" 0.45
 	"drag reduction" 3
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
@@ -430,9 +481,9 @@ outfit "Remass Injector"
 	"afterburner thrust" 90
 	"afterburner energy" 3
 	"afterburner heat" -18
-	"afterburner fuel" 0.24
+	"afterburner fuel" 0.6
 	"magnetic nozzle" -1
-	description "A powerful magnetohydrodynamic turbopump forces a torrent of lithium-seeded water into the throat of a fusion torch's magnetic nozzle, dramatically increasing thrust at the cost of a significant increase in propellant consumption. The additional mass flow likewise reduces the waste heat generated by a torch drive, capturing much of it as propellant is injected around the fusion reaction."
+	description "A powerful turbopump forces a torrent of liquid hydrogen into the throat of a fusion torch's magnetic nozzle, dramatically increasing thrust at the cost of a significant increase in propellant consumption. The additional mass flow likewise reduces the waste heat absorbed by a torch drive, expelling much of it as reaction mass is injected around the fusion plasma."
 	description "	The Remass Injector is a component that can be installed into an Avgi fusion torch to give it afterburning capabilities. It requires a magnetic nozzle slot to be installed."
 
 
@@ -449,7 +500,7 @@ outfit "Inductive Extractor"
 	"engine capacity" -6
 	"energy generation" 1.5
 	"heat generation" 1.5
-	"thrust" -12
+	"thrust" -30
 	"thrusting energy" -24
 	"thrusting heat" 6
 	"magnetic nozzle" -1
@@ -536,34 +587,6 @@ outfit "R-720 RCS Thrusters"
 		"scale" 0.5
 	"reverse flare sound" "plasma small"
 	description "This large set of 'teakettle' style reaction control thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."
-
-
-outfit `Z-3600 "Beam" Amat Torch`
-	category "Engines"
-	series "Engines"
-	index 07080
-	"cost" 300000000
-	thumbnail "outfit/beam antimatter torch"
-	"mass" 3600
-	"outfit space" -360
-	"engine capacity" -360
-	"thrust" 600
-	"thrusting energy" 15
-	"thrusting heat" 90
-	"thrusting fuel" 0.3
-	"drag reduction" 9
-	"flare sprite" "effect/avgi flare/antimatter"
-		"frame rate" 15
-	"flare sound" "fusion torch"
-	"turn" 6000
-	"turning energy" 9
-	"turning heat" 54
-	"steering flare sprite" "effect/avgi flare/rcs"
-		"frame rate" 15
-		"scale" 0.5
-	"steering flare sound" "remnant afterburner"
-	"magnetic nozzle" 18
-	description "The fastest Avgi starships were propelled not just by their engines, but also by immense banks of lasers and particle beams stationed in the Anax system, pushing ships to velocities in excess of 0.2c before braking with a magsail or plasma magnet. Just before the invention of the hyperdrive, however, the Avgi perfected this beam-core antimatter drive, capable of pushing a starship with sufficient antimatter fuel to 0.4c and perhaps beyond. Requiring immense quantities of antimatter, the amat farms around Anax such as Antivli Station would have been strained to their limits had this design entered mass production, but the surprise invention of the hyperdrive rendered it laughably obsolete overnight."
 
 
 # Special:
