@@ -406,12 +406,12 @@ Ship::Decor::Decor(const DataNode &node)
 		else if(key == "moving" && hasValue)
 		{
 			behavior = DecorBehavior::MOVING;
-			rotationSpeed = child.Value(1);
+			rotationSpeed = max(0., child.Value(1));
 		}
 		else if(key == "targeting" && hasValue)
 		{
 			behavior = DecorBehavior::TARGETING;
-			rotationSpeed = child.Value(1);
+			rotationSpeed = max(0., child.Value(1));
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
