@@ -206,6 +206,17 @@ namespace {
 				thisMap.erase(it.first);
 		}
 	}
+
+	template<class T>
+	void MergeMaps(map<const T *, double> &thisMap, const map<const T *, double> &otherMap, int count)
+	{
+		for(const auto &it : otherMap)
+		{
+			thisMap[it.first] += count * it.second;
+			if(thisMap[it.first] == 0)
+				thisMap.erase(it.first);
+		}
+	}
 }
 
 
@@ -256,7 +267,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "afterburner effect" && hasValue)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
 		else if(key == "jump effect" && hasValue)
-			++jumpEffects[GameData::Effects().Get(child.Token(1))];
+			jumpEffects[GameData::Effects().Get(child.Token(1))] += child.Size() >= 2 ? child.Value(2) : 1.;
 		else if(key == "hyperdrive sound" && hasValue)
 			++hyperSounds[Audio::Get(child.Token(1))];
 		else if(key == "hyperdrive in sound" && hasValue)
@@ -663,7 +674,7 @@ const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 
 
 // Get this outfit's jump effects and sounds, if any.
-const map<const Effect *, int> &Outfit::JumpEffects() const
+const map<const Effect *, double> &Outfit::JumpEffects() const
 {
 	return jumpEffects;
 }
