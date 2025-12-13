@@ -445,7 +445,7 @@ minable "small water droplet"
 	hull 180
 	"random hull" 180
 	payload "Voidfish" 3
-		"toughness" 540
+		"toughness" 1260
 	explode "droplet burst" 3
 
 minable "medium water droplet"
@@ -459,7 +459,7 @@ minable "medium water droplet"
 	hull 600
 	"random hull" 600
 	payload "Voidfish" 15
-		"toughness" 1800
+		"toughness" 4200
 	explode "droplet burst" 6
 
 minable "large water droplet"
@@ -473,7 +473,7 @@ minable "large water droplet"
 	hull 1800
 	"random hull" 1800
 	payload "Voidfish" 45
-		"toughness" 4500
+		"toughness" 12600
 	explode "droplet burst" 12
 
 minable "huge water droplet"
@@ -487,7 +487,7 @@ minable "huge water droplet"
 	hull 3600
 	"random hull" 3600
 	payload "Voidfish" 120
-		"toughness" 10800
+		"toughness" 25200
 	explode "droplet burst" 36
 
 outfit "Voidfish"
