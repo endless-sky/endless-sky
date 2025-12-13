@@ -57,7 +57,7 @@ body:
         macOS: ~/Library/Application Support/endless-sky/saves
   - type: textarea
     attributes:
-      label: Link to error log
+      label: Error Log
       description: You can either upload your log here, or to e.g. hastebin / GitHub Gists
       placeholder: |
         Windows: %APPDATA%\endless-sky\errors.txt
