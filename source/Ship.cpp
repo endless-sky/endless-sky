@@ -223,6 +223,250 @@ namespace {
 
 
 
+Ship::LiveSpark::LiveSpark(const DataNode &node)
+{
+	effect = GameData::Effects().Get(node.Token(1));
+	if(node.Size() >= 3)
+		amount = node.Value(2);
+
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(key == "frequency" && hasValue)
+		{
+			frequency = max(1., child.Value(1));
+			if(child.Size() >= 3)
+				random = max(0., child.Value(2));
+		}
+		else if(key == "over")
+			side = PlacementSide::OVER;
+		else if(key == "under")
+			side = PlacementSide::UNDER;
+		else if(key == "always on")
+			activity |= PlacementActivity::ALWAYS_ON;
+		else if(key == "active")
+			activity |= PlacementActivity::WHEN_ACTIVE;
+		else if(key == "disabled")
+			activity |= PlacementActivity::WHEN_DISABLED;
+		else if(key == "exploding")
+			activity |= PlacementActivity::WHEN_EXPLODING;
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	if(!activity)
+		activity |= PlacementActivity::WHEN_ACTIVE;
+}
+
+
+
+void Ship::LiveSpark::Save(DataWriter &out) const
+{
+	out.Write("live spark", effect->TrueName(), amount);
+	out.BeginChild();
+	{
+		if(random)
+			out.Write("frequency", frequency, random);
+		else
+			out.Write("frequency", frequency);
+		if(side == PlacementSide::OVER)
+			out.Write("over");
+		else if(side == PlacementSide::UNDER)
+			out.Write("under");
+		if(activity == PlacementActivity::ALWAYS_ON)
+			out.Write("always on");
+		else
+		{
+			if(activity & PlacementActivity::WHEN_ACTIVE)
+				out.Write("active");
+			if(activity & PlacementActivity::WHEN_DISABLED)
+				out.Write("disabled");
+			if(activity & PlacementActivity::WHEN_EXPLODING)
+				out.Write("exploding");
+		}
+	}
+	out.EndChild();
+}
+
+
+
+Ship::LiveEffect::LiveEffect(const DataNode &node)
+{
+	effect = GameData::Effects().Get(node.Token(1));
+	if(node.Size() >= 3)
+		amount = node.Value(2);
+
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(key == "frequency" && hasValue)
+		{
+			frequency = max(1., child.Value(1));
+			if(child.Size() >= 3)
+				random = max(0., child.Value(2));
+		}
+		else if(key == "position" && child.Size() >= 3)
+			position = Point(child.Value(1), child.Value(2));
+		else if(key == "angle" && hasValue)
+			angle = Angle(child.Value(1));
+		else if(key == "over")
+			side = PlacementSide::OVER;
+		else if(key == "under")
+			side = PlacementSide::UNDER;
+		else if(key == "always on")
+			activity |= PlacementActivity::ALWAYS_ON;
+		else if(key == "active")
+			activity |= PlacementActivity::WHEN_ACTIVE;
+		else if(key == "disabled")
+			activity |= PlacementActivity::WHEN_DISABLED;
+		else if(key == "exploding")
+			activity |= PlacementActivity::WHEN_EXPLODING;
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	if(!activity)
+		activity |= PlacementActivity::WHEN_ACTIVE;
+}
+
+
+
+void Ship::LiveEffect::Save(DataWriter &out) const
+{
+	out.Write("live effect", effect->TrueName());
+	out.BeginChild();
+	{
+		if(random)
+			out.Write("frequency", frequency, random);
+		else
+			out.Write("frequency", frequency);
+		if(angle.Degrees())
+			out.Write("angle", angle.Degrees());
+		if(position)
+			out.Write("position", position.X(), position.Y());
+		if(side == PlacementSide::OVER)
+			out.Write("over");
+		else if(side == PlacementSide::UNDER)
+			out.Write("under");
+		if(activity == PlacementActivity::ALWAYS_ON)
+			out.Write("always on");
+		else
+		{
+			if(activity & PlacementActivity::WHEN_ACTIVE)
+				out.Write("active");
+			if(activity & PlacementActivity::WHEN_DISABLED)
+				out.Write("disabled");
+			if(activity & PlacementActivity::WHEN_EXPLODING)
+				out.Write("exploding");
+		}
+	}
+	out.EndChild();
+}
+
+
+
+Ship::Decor::Decor(const DataNode &node)
+{
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(key == "sprite" && hasValue)
+			sprite.LoadSprite(child);
+		else if(key == "position" && child.Size() >= 3)
+			position = Point(child.Value(1), child.Value(2));
+		else if(key == "over")
+			side = PlacementSide::OVER;
+		else if(key == "under")
+			side = PlacementSide::UNDER;
+		else if(key == "always on")
+			activity |= PlacementActivity::ALWAYS_ON;
+		else if(key == "active")
+			activity |= PlacementActivity::WHEN_ACTIVE;
+		else if(key == "disabled")
+			activity |= PlacementActivity::WHEN_DISABLED;
+		else if(key == "exploding")
+			activity |= PlacementActivity::WHEN_EXPLODING;
+		else if(key == "synced")
+			synced = true;
+		else if(key == "static")
+		{
+			behavior = DecorBehavior::STATIC;
+			if(hasValue)
+				angle = Angle(child.Value(1));
+		}
+		else if(key == "rotating" && hasValue)
+		{
+			behavior = DecorBehavior::ROTATING;
+			rotationSpeed = child.Value(1);
+		}
+		else if(key == "moving" && hasValue)
+		{
+			behavior = DecorBehavior::MOVING;
+			rotationSpeed = child.Value(1);
+		}
+		else if(key == "targeting" && hasValue)
+		{
+			behavior = DecorBehavior::TARGETING;
+			rotationSpeed = child.Value(1);
+		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	if(!activity)
+		activity |= PlacementActivity::WHEN_ACTIVE;
+}
+
+
+
+void Ship::Decor::Save(DataWriter &out) const
+{
+	out.Write("decor");
+	out.BeginChild();
+	{
+		if(sprite.HasSprite())
+			sprite.SaveSprite(out);
+		if(position)
+			out.Write("position", position.X(), position.Y());
+		if(side == PlacementSide::OVER)
+			out.Write("over");
+		else if(side == PlacementSide::UNDER)
+			out.Write("under");
+		if(activity == PlacementActivity::ALWAYS_ON)
+			out.Write("always on");
+		else
+		{
+			if(activity & PlacementActivity::WHEN_ACTIVE)
+				out.Write("active");
+			if(activity & PlacementActivity::WHEN_DISABLED)
+				out.Write("disabled");
+			if(activity & PlacementActivity::WHEN_EXPLODING)
+				out.Write("exploding");
+		}
+		if(synced)
+			out.Write(synced);
+		if(behavior == DecorBehavior::STATIC)
+		{
+			if(angle.Degrees())
+				out.Write("static", angle.Degrees());
+			else
+				out.Write("static");
+		}
+		else if(behavior == DecorBehavior::ROTATING)
+			out.Write("rotating", rotationSpeed);
+		else if(behavior == DecorBehavior::MOVING)
+			out.Write("moving", rotationSpeed);
+		else if(behavior == DecorBehavior::TARGETING)
+			out.Write("targeting", rotationSpeed);
+	}
+	out.EndChild();
+}
+
+
+
 // Construct and Load() at the same time.
 Ship::Ship(const DataNode &node, const ConditionsStore *playerConditions)
 {
@@ -254,6 +498,9 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	bool hasFinalExplode = false;
 	bool hasOutfits = false;
 	bool hasDescription = false;
+	bool hasLiveSparks = false;
+	bool hasLiveEffects = false;
+	bool hasDecor = false;
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -498,7 +745,52 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				leak.openPeriod = child.Value(2);
 			if(child.Size() >= 4)
 				leak.closePeriod = child.Value(3);
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "always on")
+					leak.activity |= PlacementActivity::ALWAYS_ON;
+				else if(grandKey == "active")
+					leak.activity |= PlacementActivity::WHEN_ACTIVE;
+				else if(grandKey == "disabled")
+					leak.activity |= PlacementActivity::WHEN_DISABLED;
+				else if(grandKey == "exploding")
+					leak.activity |= PlacementActivity::WHEN_EXPLODING;
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+			if(!leak.activity)
+				leak.activity |= PlacementActivity::WHEN_EXPLODING;
 			leaks.push_back(leak);
+		}
+		else if(key == "synced effects")
+			syncedEffects = true;
+		else if(key == "live spark" && hasValue)
+		{
+			if(!hasLiveSparks)
+			{
+				liveSparks.clear();
+				hasLiveSparks = true;
+			}
+			liveSparks.emplace_back(child);
+		}
+		else if(key == "live effect" && hasValue)
+		{
+			if(!hasLiveEffects)
+			{
+				liveEffects.clear();
+				hasLiveEffects = true;
+			}
+			liveEffects.emplace_back(child);
+		}
+		else if(key == "decor" && child.HasChildren())
+		{
+			if(!hasDecor)
+			{
+				decorations.clear();
+				hasDecor = true;
+			}
+			decorations.emplace_back(child);
 		}
 		else if(key == "explode" && hasValue)
 		{
@@ -838,7 +1130,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		weaponRadius = max(weaponRadius, hardpoint.GetPoint().Length());
 
 	// Allocate enough firing bits for this ship.
-	firingCommands.SetHardpoints(armament.Get().size());
+	firingCommands.SetHardpoints(armament.Get().size(), decorations.size());
 
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
@@ -1147,7 +1439,32 @@ void Ship::Save(DataWriter &out) const
 			}
 		}
 		for(const Leak &leak : leaks)
+		{
 			out.Write("leak", leak.effect->TrueName(), leak.openPeriod, leak.closePeriod);
+			out.BeginChild();
+			{
+				if(leak.activity == PlacementActivity::ALWAYS_ON)
+					out.Write("always on");
+				else
+				{
+					if(leak.activity & PlacementActivity::WHEN_ACTIVE)
+						out.Write("active");
+					if(leak.activity & PlacementActivity::WHEN_DISABLED)
+						out.Write("disabled");
+					if(leak.activity & PlacementActivity::WHEN_EXPLODING)
+						out.Write("exploding");
+				}
+			}
+			out.EndChild();
+		}
+		if(syncedEffects)
+			out.Write("synced effects");
+		for(const LiveSpark &spark : liveSparks)
+			spark.Save(out);
+		for(const LiveEffect &effect : liveEffects)
+			effect.Save(out);
+		for(const Decor &decor : decorations)
+			decor.Save(out);
 
 		using EffectElement = pair<const Effect *const, int>;
 		auto effectSort = [](const EffectElement *lhs, const EffectElement *rhs)
@@ -1473,6 +1790,18 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 				bay.ship->SetSwizzle(bay.ship->customSwizzle ? bay.ship->customSwizzle : swizzle);
 		}
 	}
+
+	// Randomize the timing and angle of live sparks, effects, and non-static, non-synced decorations.
+	if(!syncedEffects)
+	{
+		for(LiveSpark &spark : liveSparks)
+			spark.tick = Random::Int(spark.frequency + spark.random);
+		for(LiveEffect &effect : liveEffects)
+			effect.tick = Random::Int(effect.frequency + effect.random);
+		for(Decor decor : decorations)
+			if(decor.behavior != DecorBehavior::STATIC && !decor.synced)
+				decor.angle = Angle::Random();
+	}
 }
 
 
@@ -1699,6 +2028,16 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Generate energy, heat, etc. if we're not being destroyed.
 	if(!isBeingDestroyed)
 		DoGeneration();
+
+
+	PlacementActivity currentState = PlacementActivity::WHEN_ACTIVE;
+	if(isBeingDestroyed)
+		currentState = PlacementActivity::WHEN_EXPLODING;
+	else if(IsDisabled())
+		currentState = PlacementActivity::WHEN_DISABLED;
+	StepLeaks(visuals, currentState);
+	StepLiveEffects();
+	StepDecorations(currentState);
 
 	DoPassiveEffects(visuals, flotsam);
 	DoJettison(flotsam);
@@ -2573,6 +2912,60 @@ const vector<Ship::EnginePoint> &Ship::ReverseEnginePoints() const
 const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
 {
 	return steeringEnginePoints;
+}
+
+
+
+const vector<Ship::LiveEffect> &Ship::LiveEffects() const
+{
+	return liveEffects;
+}
+
+
+
+const vector<Ship::LiveSpark> &Ship::LiveSparks() const
+{
+	return liveSparks;
+}
+
+
+
+vector<Ship::Decor> &Ship::Decorations()
+{
+	return decorations;
+}
+
+
+
+const vector<Ship::Decor> &Ship::Decorations() const
+{
+	return decorations;
+}
+
+
+
+void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount) const
+{
+	if(forget || amount <= 0.)
+		return;
+
+	// Limit the number of sparks, depending on the size of the sprite.
+	// The limit needs to be the first argument in case amount is NaN.
+	amount = min(Width() * Height() * .0006, amount);
+	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
+	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
+
+	while(true)
+	{
+		amount -= Random::Real();
+		if(amount <= 0.)
+			break;
+
+		Point point((Random::Real() - .5) * Width(),
+			(Random::Real() - .5) * Height());
+		if(GetMask().Contains(point, Angle()))
+			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
+	}
 }
 
 
@@ -4078,32 +4471,97 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 		CreateExplosion(visuals);
 
 	// Handle hull "leaks."
-	for(const Leak &leak : leaks)
-		if(GetMask().IsLoaded() && leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
-		{
-			activeLeaks.push_back(leak);
-			const auto &outlines = GetMask().Outlines();
-			const vector<Point> &outline = outlines[Random::Int(outlines.size())];
-			int i = Random::Int(outline.size() - 1);
-
-			// Position the leak along the outline of the ship, facing "outward."
-			activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
-			activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
-		}
-	for(Leak &leak : activeLeaks)
-		if(leak.effect)
-		{
-			// Leaks always "flicker" every other frame.
-			if(Random::Int(2))
-				visuals.emplace_back(*leak.effect,
-					angle.Rotate(leak.location) + position,
-					velocity,
-					leak.angle + angle);
-
-			if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
-				leak.effect = nullptr;
-		}
 	return -1;
+}
+
+
+
+void Ship::StepLeaks(std::vector<Visual> &visuals, PlacementActivity state)
+{
+	if(!GetMask().IsLoaded())
+		return;
+	const auto &outlines = GetMask().Outlines();
+
+	for(const Leak &leak : leaks)
+	{
+		if(!(leak.activity & state) || (leak.openPeriod > 0 && Random::Int(leak.openPeriod)))
+			continue;
+		activeLeaks.push_back(leak);
+		const vector<Point> &outline = outlines[Random::Int(outlines.size())];
+		int i = Random::Int(outline.size() - 1);
+
+		// Position the leak along the outline of the ship, facing "outward."
+		activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
+		activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
+	}
+
+	for(auto it = activeLeaks.begin(); it != activeLeaks.end(); )
+	{
+		Leak leak = *it;
+		// Leaks always "flicker" every other frame.
+		if(Random::Int(2))
+			visuals.emplace_back(*leak.effect,
+				position + zoom * angle.Rotate(leak.location),
+				velocity,
+				leak.angle + angle,
+				Point(),
+				1.,
+				zoom);
+
+		if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
+			it = activeLeaks.erase(it);
+		else
+			++it;
+	}
+}
+
+
+
+void Ship::StepLiveEffects()
+{
+	for(LiveSpark &spark : liveSparks)
+	{
+		if(!spark.tick)
+		{
+			spark.tick = spark.frequency;
+			if(spark.random)
+				spark.tick += Random::Int(spark.random);
+		}
+		else
+			--spark.tick;
+	}
+	for(LiveEffect &effect : liveEffects)
+	{
+		if(!effect.tick)
+		{
+			effect.tick = effect.frequency;
+			if(effect.random)
+				effect.tick += Random::Int(effect.random);
+		}
+		else
+			--effect.tick;
+	}
+}
+
+
+
+void Ship::StepDecorations(PlacementActivity state)
+{
+	for(unsigned i = 0; i < decorations.size(); ++i)
+	{
+		Decor &decor = decorations[i];
+		if(!decor.sprite.HasSprite() || decor.behavior == DecorBehavior::STATIC)
+			continue;
+		if(!(decor.activity & state))
+		{
+			decor.sprite.PauseAnimation();
+			continue;
+		}
+		if(decor.behavior == DecorBehavior::ROTATING)
+			decor.angle += decor.rotationSpeed;
+		else if(decor.behavior == DecorBehavior::MOVING || decor.behavior == DecorBehavior::TARGETING)
+			decor.angle += decor.rotationSpeed * firingCommands.AimDecor(i);
+	}
 }
 
 
@@ -5192,35 +5650,9 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 
 
 // Place a "spark" effect, like ionization or disruption.
-void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amount)
+void Ship::CreateSparks(vector<Visual> &visuals, const string &name, double amount) const
 {
 	CreateSparks(visuals, GameData::Effects().Get(name), amount);
-}
-
-
-
-void Ship::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount)
-{
-	if(forget || amount <= 0.)
-		return;
-
-	// Limit the number of sparks, depending on the size of the sprite.
-	// The limit needs to be the first argument in case amount is NaN.
-	amount = min(Width() * Height() * .0006, amount);
-	// Preallocate capacity, in case we're adding a non-trivial number of sparks.
-	visuals.reserve(visuals.size() + static_cast<size_t>(amount));
-
-	while(true)
-	{
-		amount -= Random::Real();
-		if(amount <= 0.)
-			break;
-
-		Point point((Random::Real() - .5) * Width(),
-			(Random::Real() - .5) * Height());
-		if(GetMask().Contains(point, Angle()))
-			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
-	}
 }
 
 
