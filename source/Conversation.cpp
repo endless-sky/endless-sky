@@ -17,75 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Endpoint.h"
 #include "text/Format.h"
 #include "Phrase.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 
 using namespace std;
-
-namespace {
-	// Lookup table for matching special tokens to enumeration values.
-	map<string, int> TOKEN_INDEX = {
-		{"accept", Conversation::ACCEPT},
-		{"decline", Conversation::DECLINE},
-		{"defer", Conversation::DEFER},
-		{"launch", Conversation::LAUNCH},
-		{"flee", Conversation::FLEE},
-		{"depart", Conversation::DEPART},
-		{"die", Conversation::DIE},
-		{"explode", Conversation::EXPLODE}
-	};
-
-	// Get the index of the given special string. 0 means it is "goto", a number
-	// less than 0 means it is an outcome, and 1 means no match.
-	int TokenIndex(const string &token)
-	{
-		auto it = TOKEN_INDEX.find(token);
-		return (it == TOKEN_INDEX.end() ? 0 : it->second);
-	}
-
-	// Map an index back to a string, for saving the conversation to a file.
-	string TokenName(int index)
-	{
-		for(const auto &it : TOKEN_INDEX)
-			if(it.second == index)
-				return it.first;
-
-		return to_string(index);
-	}
-
-	// Write a "goto" or endpoint.
-	void WriteToken(int index, DataWriter &out)
-	{
-		out.BeginChild();
-		{
-			if(index >= 0)
-				out.Write("goto", index);
-			else
-				out.Write(TokenName(index));
-		}
-		out.EndChild();
-	}
-}
-
-// The possible outcomes of a conversation:
-const int Conversation::ACCEPT;
-const int Conversation::DECLINE;
-const int Conversation::DEFER;
-const int Conversation::LAUNCH;
-const int Conversation::FLEE;
-const int Conversation::DEPART;
-const int Conversation::DIE;
-const int Conversation::EXPLODE;
-
-
-
-// Check if this conversation outcome requires the player to leave immediately.
-bool Conversation::RequiresLaunch(int outcome)
-{
-	return outcome == LAUNCH || outcome == FLEE || outcome == DEPART;
-}
 
 
 
@@ -174,7 +112,7 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 				nodes.back().elements.emplace_back("", nodes.size());
 				if(child.Size() > i)
 				{
-					int index = TokenIndex(child.Token(i));
+					int index = Endpoint::TokenIndex(child.Token(i));
 					if(!index)
 						Goto(child.Token(i), nodes.size() - 1, i - 1);
 					else if(index < 0)
@@ -266,7 +204,7 @@ void Conversation::Save(DataWriter &out) const
 				out.Write("scene", node.scene->Name());
 			if(IsBranch(i))
 			{
-				out.Write("branch", TokenName(node.elements[0].next), TokenName(node.elements[1].next));
+				out.Write("branch", Endpoint::TokenName(node.elements[0].next), Endpoint::TokenName(node.elements[1].next));
 				// Write the condition set as a child of this node.
 				out.BeginChild();
 				{
@@ -330,10 +268,10 @@ void Conversation::Save(DataWriter &out) const
 				// Check what node the conversation goes to after this.
 				int index = it.next;
 				if(index > 0 && !NodeIsValid(index))
-					index = Conversation::DECLINE;
+					index = Endpoint::DECLINE;
 
 				// Write the node that we go to next after this.
-				WriteToken(index, out);
+				Endpoint::WriteToken(index, out);
 			}
 			if(node.isChoice)
 				out.EndChild();
@@ -529,7 +467,7 @@ const Sprite *Conversation::Scene(int node) const
 int Conversation::NextNodeForChoice(int node, int element) const
 {
 	if(!NodeIsValid(node) || !ElementIsValid(node, element))
-		return DECLINE;
+		return Endpoint::DECLINE;
 
 	return nodes[node].elements[element].next;
 }
@@ -542,7 +480,7 @@ int Conversation::StepToNextNode(int node) const
 	int next_node = node+1;
 
 	if(!NodeIsValid(next_node))
-		return DECLINE;
+		return Endpoint::DECLINE;
 
 	return next_node;
 }
@@ -634,7 +572,7 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 		else
 		{
 			// Check if this is a recognized endpoint name.
-			int index = TokenIndex(key);
+			int index = Endpoint::TokenIndex(key);
 			if(!hasValue && index < 0)
 			{
 				if(hasGoto)
