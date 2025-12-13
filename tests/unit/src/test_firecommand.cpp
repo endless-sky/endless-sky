@@ -42,10 +42,11 @@ SCENARIO( "Creating a FireCommand instance", "[firecommand]") {
 SCENARIO( "A FireCommand instance is being copied", "[firecommand]" ) {
 	FireCommand command;
 	GIVEN( "a specific bitset" ) {
-		command.SetHardpoints(5);
+		command.SetHardpoints(5, 5);
 		command.SetFire(0);
 		command.SetFire(3);
 		command.SetAim(2, 1.);
+		command.SetAimDecor(2, 1.);
 
 		WHEN( "the copy is made" ) {
 			auto copy = command;
@@ -61,11 +62,20 @@ SCENARIO( "A FireCommand instance is being copied", "[firecommand]" ) {
 				CHECK_THAT( copy.Aim(2), Catch::Matchers::WithinAbs(command.Aim(2), 0.0001) );
 				CHECK_THAT( copy.Aim(3), Catch::Matchers::WithinAbs(command.Aim(3), 0.0001) );
 				CHECK_THAT( copy.Aim(4), Catch::Matchers::WithinAbs(command.Aim(4), 0.0001) );
+				CHECK_THAT( copy.AimDecor(0), Catch::Matchers::WithinAbs(command.Aim(0), 0.0001) );
+				CHECK_THAT( copy.AimDecor(1), Catch::Matchers::WithinAbs(command.Aim(1), 0.0001) );
+				CHECK_THAT( copy.AimDecor(2), Catch::Matchers::WithinAbs(command.Aim(2), 0.0001) );
+				CHECK_THAT( copy.AimDecor(3), Catch::Matchers::WithinAbs(command.Aim(3), 0.0001) );
+				CHECK_THAT( copy.AimDecor(4), Catch::Matchers::WithinAbs(command.Aim(4), 0.0001) );
 			}
 			THEN( "the two bitsets are independent" ) {
 				command.SetAim(1, -1.);
 				CHECK_THAT( command.Aim(1), Catch::Matchers::WithinAbs(-1, 0.0001) );
 				CHECK_FALSE( copy.Aim(1) );
+
+				command.SetAimDecor(1, -1.);
+				CHECK_THAT( command.AimDecor(1), Catch::Matchers::WithinAbs(-1, 0.0001) );
+				CHECK_FALSE( copy.AimDecor(1) );
 
 				copy.SetFire(4);
 				CHECK_FALSE( command.HasFire(4) );
@@ -79,7 +89,7 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 	GIVEN( "an empty FireCommand" ) {
 		FireCommand command;
 		THEN( "resizing it works" ) {
-			command.SetHardpoints(20);
+			command.SetHardpoints(20, 20);
 			command.SetFire(0);
 			command.SetFire(18);
 			CHECK( command.HasFire(0) );
@@ -88,7 +98,7 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 	}
 	GIVEN( "a FireCommand of a specific size" ) {
 		FireCommand command;
-		command.SetHardpoints(10);
+		command.SetHardpoints(10, 10);
 
 		AND_GIVEN( "an index is firing" ) {
 			command.SetFire(0);
@@ -127,13 +137,13 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 	}
 	GIVEN( "two non-empty FireCommands" ) {
 		FireCommand one;
-		one.SetHardpoints(4);
+		one.SetHardpoints(4, 4);
 		one.SetFire(3);
 		one.SetFire(2);
 		CHECK( one.IsFiring() );
 
 		FireCommand two;
-		two.SetHardpoints(3);
+		two.SetHardpoints(3, 3);
 		two.SetFire(1);
 		CHECK( two.IsFiring() );
 
