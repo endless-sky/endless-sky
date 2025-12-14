@@ -465,7 +465,7 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 				ship->Recharge();
 			// Ships that skipped recharging due to being placed that way
 			// can still recharge on subsequent placements.
-			ship->SetSkipRecharging(false);	
+			ship->SetSkipRecharging(false);
 
 			if(ship->CanBeCarried())
 			{
