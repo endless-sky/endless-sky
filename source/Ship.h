@@ -207,6 +207,10 @@ public:
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
+	void SetIsPlaced(bool placed = true);
+	bool IsPlaced() const;
+	void SetSkipRecharging(bool skipRecharging = true);
+	bool IsSkipRecharging() const;
 
 	// If a ship belongs to the player, the player can give it commands.
 	void SetIsYours(bool yours = true);
@@ -627,6 +631,12 @@ private:
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
 	bool isSpecial = false;
+	// NPC, Fleet, and Engine can all update the placement of a ship when it is spawned.
+	// By setting this to true, Engine won't overwrite the placements made by NPC or Fleet.
+	bool isPlaced = false;
+	// Engine will recharge ships when they are placed, but NPC or another class may have dealt
+	// damage to the ship that should remain there. If this is true, Engine won't recharge the ship.
+	bool isSkipRecharging = false;
 	bool isYours = false;
 	bool isParked = false;
 	bool shouldDeploy = false;

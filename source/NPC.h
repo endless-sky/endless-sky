@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ExclusiveItem.h"
 #include "Fleet.h"
 #include "FleetCargo.h"
+#include "FleetPlacement.h"
 #include "LocationFilter.h"
 #include "NPCAction.h"
 #include "Personality.h"
@@ -140,6 +141,9 @@ private:
 	bool isAtDestination = false;
 	// Start out landed on this planet.
 	const Planet *planet = nullptr;
+
+	// Controls where in the system the NPC is and how damaged it is when placed.
+	FleetPlacement placement;
 
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	std::string dialogText;
