@@ -60,6 +60,11 @@ void FleetPlacement::Load(const DataNode &node)
 			setPosition = true;
 			position = Point(child.Value(1), child.Value(2));
 		}
+		else if(key == "velocity" && child.Size() >= 3)
+		{
+			setVelocity = true;
+			velocity = child.Value(1) * Angle(child.Value(2)).Unit();
+		}
 		else if(key == "spread")
 			spread = max(0., child.Value(1));
 		else
@@ -105,6 +110,12 @@ void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, bool i
 			// Set the velocity of placed ships to 0, as otherwise they can get flung out of formation quicker than
 			// the player can realize they were even intentionally placed.
 			ship->SetVelocity(Point());
+		}
+		// Set the velocity of these ships.
+		if(setVelocity)
+		{
+			ship->SetVelocity(velocity);
+			ship->SetFacing(Angle(velocity));
 		}
 	}
 }

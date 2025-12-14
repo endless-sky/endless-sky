@@ -43,6 +43,9 @@ private:
 	// If this NPC spawns already present in the system, place it at this exact position in the system.
 	bool setPosition = false;
 	Point position;
+	// Place ships with this velocity and facing angle.
+	bool setVelocity = false;
+	Point velocity;
 	// If this NPC contains multiple ships, this is the distance for how far spread out the ships should be from
 	// one another relative to the placement location.
 	double spread = 500.;

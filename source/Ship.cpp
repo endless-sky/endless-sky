@@ -1427,6 +1427,14 @@ void Ship::SetVelocity(Point velocity)
 
 
 
+void Ship::SetFacing(Angle angle)
+{
+	this->angle = Angle();
+	Turn(angle);
+}
+
+
+
 // Instantiate a newly-created ship in-flight.
 void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {

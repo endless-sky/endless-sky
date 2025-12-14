@@ -200,6 +200,7 @@ public:
 
 	void SetPosition(Point position);
 	void SetVelocity(Point velocity);
+	void SetFacing(Angle angle);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetSystem(const System *system);
