@@ -80,16 +80,13 @@ void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, bool i
 		return;
 	Point center = setPosition ? position : (setDistance ? Angle::Random().Unit() * distance : Point());
 	DamageProfile damage = DamageProfile(weapon);
-	// Weapons loaded by FleetPlacement don't support creating visuals, but we still need a dummy vector to pass
-	// to Ship::TakeDamage.
-	vector<Visual> visuals;
 	bool first = true;
 	for(auto &ship : ships)
 	{
 		// Deal damage to these ships if a weapon was loaded.
 		if(weapon.IsLoaded())
 		{
-			ship->TakeDamage(visuals, damage.CalculateDamage(*ship), nullptr);
+			ship->TakeDamage(damage.CalculateDamage(*ship), nullptr);
 			ship->SetSkipRecharging();
 		}
 		// Place these ships at a particular location in the system.

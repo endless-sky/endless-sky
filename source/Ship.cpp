@@ -3298,6 +3298,17 @@ double Ship::CurrentSpeed() const
 // Create any target effects as sparks.
 int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment)
 {
+	// Create target effect visuals, if there are any.
+	for(const auto &effect : damage.GetWeapon().TargetEffects())
+		CreateSparks(visuals, effect.first, effect.second * damage.Scaling());
+
+	return TakeDamage(damage, sourceGovernment);
+}
+
+
+
+int Ship::TakeDamage(const DamageDealt &damage, const Government *sourceGovernment)
+{
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
 	bool wasDisabled = IsDisabled();
@@ -3383,10 +3394,6 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 				|| (damage.Slowing() && slowness > 10.)
 				|| (damage.Disruption() && disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
-
-	// Create target effect visuals, if there are any.
-	for(const auto &effect : damage.GetWeapon().TargetEffects())
-		CreateSparks(visuals, effect.first, effect.second * damage.Scaling());
 
 	return type;
 }
