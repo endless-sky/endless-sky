@@ -252,7 +252,6 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 	// A location can be specified as:
 	// center (+ dimensions):
 	bool hasCenter = false;
-	Point dimensions;
 
 	// from (+ dimensions):
 	Point fromPoint;
@@ -318,6 +317,8 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 			// Add this much padding when aligning the object within its bounding box.
 			padding = Point(child.Value(1), child.Value(2));
 		}
+		else if(key == "pad" && child.Size() == 2)
+			padding = Point(child.Value(1), child.Value(1));
 		else if(!ParseLine(child))
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -953,16 +954,6 @@ Interface::InfoTagElement::InfoTagElement(const DataNode &node, const Point &glo
 {
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
-
-	// Fill in a default color if none is specified.
-	if(fontColor == nullptr)
-		fontColor = GameData::Colors().Get("hover"); // white
-	if(fillColor == nullptr)
-		fillColor = GameData::Colors().Get("infotag background default");
-	if(borderColor == nullptr)
-		borderColor = GameData::Colors().Get("border shimmer");
-	if(borderColor2 == nullptr)
-		borderColor2 = GameData::Colors().Get("border shadow");
 }
 
 
@@ -1025,16 +1016,8 @@ bool Interface::InfoTagElement::ParseLine(const DataNode &node)
 	const string &key = node.Token(0);
 	bool hasValue = node.Size() >= 2;
 
-	// `width` is handled by generic
-
-	if(key == "anchor" && node.Size() == 3)
-	{
-		// TODO: just use from/to
-		anchor = Point(node.Value(1), node.Value(2));
-	}
-
 	// earlength <earLength>
-	else if(key == "ear" && node.HasChildren())
+	if(key == "ear" && node.HasChildren())
 	{
 		if(!ParseEar(node))
 			return false;
@@ -1128,32 +1111,40 @@ bool Interface::InfoTagElement::ParseLine(const DataNode &node)
 void Interface::InfoTagElement::Draw(const Rectangle &rect, const Information &info, int state) const
 {
 	// Avoid crashes for malformed interface elements that are not fully loaded.
-	if(text.empty() || !rect.Width() || !fillColor || !fontColor || !borderColor)
+	if(text.empty() || !fillColor || !fontColor || !borderColor)
 		return;
+
+	int width = max(rect.Width(), dimensions.Length());
+	if(width == 0)
+	{
+		width = 1000;
+	}
 
 	// string text2 = Command::ReplaceNamesWithKeys(text);
 
 	InfoTag infoTag = InfoTag();
 
-	// infoTag.InitShapeAndPlacement(
-	// 	anchor,
-	// 	facing,
-	// 	affinity,
-	// 	text,
-	// 	textAlignment,
-	// 	rect.Width(),
-	// 	shrink,
-	// 	earLength
-	// 	);
-	infoTag.InitShapeAndPlacement(
-		from.Get(),
-		to.Get(),
-		text,
-		textAlignment,
-		rect.Width(),
-		shrink,
-		earWidth
-		);
+	if(affinity != InfoTag::Affinity::NONE && facing != InfoTag::Direction::NONE)
+		infoTag.InitShapeAndPlacement(
+			to.Get(),
+			facing,
+			affinity,
+			text,
+			textAlignment,
+			width,
+			shrink,
+			earLength
+			);
+	else
+		infoTag.InitShapeAndPlacement(
+			from.Get(),
+			to.Get(),
+			text,
+			textAlignment,
+			width,
+			shrink,
+			earWidth
+			);
 	infoTag.InitBorderAndFill(
 		fillColor,
 		fontColor,

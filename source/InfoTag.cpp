@@ -155,7 +155,7 @@ namespace {
 	// an adjusted InfoTag position if this occurs.
 
 	pair<Rectangle, vector<Point>> PositionBoxAndPoints(const Point &anchor, const Point &boxSize,
-	                                                    InfoTag::Direction facing, InfoTag::Affinity affinity, double earLength, double earWidth)
+		InfoTag::Direction facing, InfoTag::Affinity affinity, double earLength, double earWidth)
 	{
 		// Generate a InfoTag box from the given parameters.
 		pair boxAndPoints = CreateBoxAndPoints(anchor, boxSize, facing, affinity, earLength, earWidth);
@@ -271,10 +271,10 @@ namespace {
 		// intersecting. However, in the case that there is less than <halfEarWidth> remaining to the left or right of
 		// the centerline, then one point will be located on the next or previous side of the box.
 		//
-		//    +---x-----o--------
-		//    |    \            /
-		//    o     \           \
-		//    |_/\/\/\/\/\/\/\/\/
+		//    +---x-----o------->
+		//    |    \            >
+		//    o     \           >
+		//    |_/\/\/\/\/\/\/\/\>
 		//
 		// However, when intersection is too close to the corner, we must keep the distance between the two points where
 		// the ear touches the box <earWidth> apart on the diagonal.
@@ -385,17 +385,10 @@ void InfoTag::InitShapeAndPlacement(std::string element, Point offset, Direction
 
 
 
-#include <SDL2/SDL_events.h> // TODO: delete, DEBUG only
 void InfoTag::InitShapeAndPlacement(Point center, Point anchor, std::string text, Alignment alignment, double width,
 	bool shrink, double earWidth)
 {
-	// TODO: added mouse x/y here for debug	int mousePosX, mousePosY;
-	int mousePosX, mousePosY;
-	SDL_GetMouseState(&mousePosX, &mousePosY);
-	Point mouse = Point(mousePosX, mousePosY) - Point(Screen::RawWidth(), Screen::RawHeight()) / 2;
-	this->anchor = mouse;
-
-	// this->anchor = anchor;
+	this->anchor = anchor;
 	this->box = {center, {width, 0}};
 	this->facing = Direction::NONE;
 	this->affinity = Affinity::NONE;
@@ -403,10 +396,8 @@ void InfoTag::InitShapeAndPlacement(Point center, Point anchor, std::string text
 	this->shrink = shrink;
 
 	this->wrap.SetFont(FontSet::Get(14));
-	// 10 pixels of padding will be left on either side of the InfoTag box.
 	this->wrap.SetAlignment(alignment);
-	SetText(text + "\nmousex = " + to_string(mousePosX) + ", mousey = " + to_string(mousePosY), shrink);
-	// SetText(text, shrink);
+	SetText(text, shrink);
 
 	Recalculate();
 }
@@ -471,6 +462,7 @@ void InfoTag::Recalculate()
 	Point boxSize(wrap.WrapWidth() + 2 * padding, wrap.Height(false) + 2 * padding);
 
 	// In some cases the anchor will be calculated (element and offset provided).
+	// TODO: do this!
 
 	// In some cases the box must be calculated.
 	if(affinity != Affinity::NONE && facing != Direction::NONE)

@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Color.h"
+#include "GameData.h"
 #include "InfoTag.h"
 #include "Point.h"
 #include "Rectangle.h"
@@ -114,6 +115,7 @@ private:
 		virtual void Place(const Rectangle &bounds, Panel *panel) const;
 
 	protected:
+		Point dimensions;
 		AnchoredPoint from;
 		AnchoredPoint to;
 		Point alignment;
@@ -287,7 +289,6 @@ private:
 
 	private:
 		std::string text;
-		Point anchor;
 
 		Alignment textAlignment = Alignment::LEFT;
 		InfoTag::Affinity affinity = InfoTag::Affinity::NONE;
@@ -298,10 +299,10 @@ private:
 		float textWidth = 1000.f;
 		bool shrink = false;
 
-		const Color *fillColor = nullptr;  // GameData::Colors().Get("infotag background default");
-		const Color *fontColor = nullptr;  // GameData::Colors().Get("hover"); // white
-		const Color *borderColor = nullptr;  // GameData::Colors().Get("border shimmer");
-		const Color *borderColor2 = nullptr;  // GameData::Colors().Get("border shadow");
+		const Color *fillColor = GameData::Colors().Get("infotag background default");
+		const Color *fontColor = GameData::Colors().Get("hover"); // white
+		const Color *borderColor = GameData::Colors().Get("border shimmer");
+		const Color *borderColor2 = GameData::Colors().Get("border shadow");
 	};
 
 

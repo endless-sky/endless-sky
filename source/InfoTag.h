@@ -53,18 +53,8 @@ public:
 	explicit InfoTag() = default;
 
 	// Auto-place the box based on the pointer definition.
-	void InitShapeAndPlacement(
-		Point anchor,
-		Direction facing,
-		Affinity affinity,
-
-		std::string text,
-		Alignment alignment,
-
-		double width = 1000,
-		bool shrink = true,
-		double earLength = 15
-		);
+	void InitShapeAndPlacement(Point anchor, Direction facing, Affinity affinity, std::string text, Alignment alignment,
+		double width = 1000, bool shrink = true, double earLength = 15);
 
 	// Auto-place the box based on the pointer definition and relative to an interface element by an offset.
 	void InitShapeAndPlacement(
@@ -82,17 +72,8 @@ public:
 	);
 
 	// Box and anchor absolute placement.
-	void InitShapeAndPlacement(
-		Point center,
-		Point anchor,
-
-		std::string text,
-		Alignment alignment,
-
-		double width = 1000,
-		bool shrink = true,
-		double earWidth = 15
-		);
+	void InitShapeAndPlacement(Point center, Point anchor, std::string text, Alignment alignment, double width = 1000,
+		bool shrink = true, double earWidth = 15);
 
 	// Box placed absolute, pointer placed relative to interface element by an offset.
 	void InitShapeAndPlacement(
