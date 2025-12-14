@@ -92,7 +92,7 @@ void Font::Draw(const DisplayText &text, const Point &point, const Color &color)
 
 
 
-void Font::DrawAliased(const string &str, double x, double y, const Color &color, bool loaded) const
+void Font::DrawAliased(const string &str, double x, double y, const Color &color) const
 {
 	DisplayText text(str, Layout(Alignment::LEFT));
 	DrawAliased(text, x, y, color);
@@ -100,7 +100,7 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 
 
 
-void Font::Draw(const string &str, const Point &point, const Color &color, bool loaded) const
+void Font::Draw(const string &str, const Point &point, const Color &color) const
 {
 	DisplayText text(str, Layout(Alignment::LEFT));
 	DrawAliased(text, round(point.X()), round(point.Y()), color);

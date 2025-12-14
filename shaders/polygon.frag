@@ -13,13 +13,15 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-const int N = 7;
+const int N = 10;
 
 precision mediump float;
 precision mediump int;
 
 uniform int numSides;
 uniform vec2[N] polygon;
+uniform vec2 shadingCorner1;
+uniform vec2 shadingCorner2;
 uniform vec4 insideColor;
 uniform vec4 borderColor1;
 uniform vec4 borderColor2;
@@ -50,39 +52,19 @@ float sdPolygon(in vec2 p, in vec2[N] v, in int vlen)
 	return s * sqrt(d);
 }
 
-vec4 minmax(in vec2[N] v, in int vlen)
-{
-	float minx = v[0].x;
-	float maxx = v[0].x;
-	float miny = v[0].y;
-	float maxy = v[0].y;
-	for(int i=1; i < vlen; i++)
-	{
-		minx = min(minx, v[i].x);
-		miny = min(miny, v[i].y);
-		maxx = max(maxx, v[i].x);
-		maxy = max(maxy, v[i].y);
-	}
-	return vec4(minx, miny, maxx, maxy);
-}
-
 void main()
 {
 	float d = sdPolygon(pos, polygon, numSides);
-	vec4 mm = minmax(polygon, numSides);
-	float minx, miny, maxx, maxy;
-	minx = mm.x;
-	miny = mm.y;
-	maxx = mm.z;
-	maxy = mm.w;
 
 	float A = 9.5;
 	float B = -1.5;
 	float theta = 0.3;
-	float dx = (pos.x - minx) / (maxx - minx);
-	float dy = (pos.y - miny) / (maxy - miny);
+	float dx = (pos.x - shadingCorner1.x) / (shadingCorner2.x - shadingCorner1.x);
+	float dy = (pos.y - shadingCorner1.y) / (shadingCorner2.y - shadingCorner1.y);
 	float m = 0.5 * (1. + sin(A * (dx * cos(theta) - dy * sin(theta)) + B));
 	vec4 borderColor = mix(borderColor2, borderColor1, m);
-	// color if outside: (transparent), else inside, mixed with border
-	finalColor = mix(d > 0. ? vec4(0) : insideColor, borderColor, 1. - smoothstep(0., 1.3 * borderWidth, abs(d)));
+
+	// Color: if outside: (transparent), else inside, mixed with border.
+	borderColor = mix(d > 0. ? vec4(0) : insideColor, borderColor, 1 - min(1, max(0, abs(int(borderWidth / 2 - d)))));
+	finalColor = borderColor;
 }

@@ -276,10 +276,12 @@ private:
 	public:
 		InfoTagElement(const DataNode &node, const Point &globalAnchor);
 
+
 	protected:
 		// Parse the given data line: one that is not recognized by Element
 		// itself. This returns false if it does not recognize the line, either.
 		virtual bool ParseLine(const DataNode &node) override;
+		bool ParseEar(const DataNode &node);
 		// Draw this element in the given rectangle.
 		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
 
@@ -288,16 +290,18 @@ private:
 		Point anchor;
 
 		Alignment textAlignment = Alignment::LEFT;
-		InfoTag::Affinity affinity = InfoTag::Affinity::CENTER;
-		InfoTag::Direction facing = InfoTag::Direction::SOUTH;
+		InfoTag::Affinity affinity = InfoTag::Affinity::NONE;
+		InfoTag::Direction facing = InfoTag::Direction::NONE;
 		float borderWidth = 1.f;
 		float earLength = 15.f;
-		bool shrink = true;
+		float earWidth = 15.f;
+		float textWidth = 1000.f;
+		bool shrink = false;
 
-		const Color *backColor = nullptr;
-		const Color *fontColor = nullptr;
-		const Color *borderColor = nullptr;
-		const Color *borderColor2 = nullptr;
+		const Color *fillColor = nullptr;  // GameData::Colors().Get("infotag background default");
+		const Color *fontColor = nullptr;  // GameData::Colors().Get("hover"); // white
+		const Color *borderColor = nullptr;  // GameData::Colors().Get("border shimmer");
+		const Color *borderColor2 = nullptr;  // GameData::Colors().Get("border shadow");
 	};
 
 

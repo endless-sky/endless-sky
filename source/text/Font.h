@@ -44,9 +44,9 @@ public:
 	// Draw a text string, subject to the given layout and truncation strategy.
 	void Draw(DisplayText &text, const Point &point, const Color &color) const;
 	void Draw(const DisplayText &text, const Point &point, const Color &color) const;
-	void DrawAliased(const std::string &str, double x, double y, const Color &color, bool loaded = false) const;
+	void DrawAliased(const std::string &str, double x, double y, const Color &color) const;
 	// Draw the given text string, e.g. post-formatting (or without regard to formatting).
-	void Draw(const std::string &str, const Point &point, const Color &color, bool loaded = false) const;
+	void Draw(const std::string &str, const Point &point, const Color &color) const;
 	void DrawAliased(DisplayText &text, double x, double y, const Color &color) const;
 
 	// Determine the string's width, without considering formatting.

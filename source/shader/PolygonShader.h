@@ -21,14 +21,11 @@ class Color;
 class Point;
 
 
-
 // Class to be used for drawing lines. The sides of a line are anti-aliased, but
 // the start and end of the line are not.
 class PolygonShader {
 public:
 	static void Init();
-	static void Draw(const std::vector<Point> &polygon, const Color &insideColor, const Color &borderColor,
-		double borderWidth = 1.);
 	static void Draw(const std::vector<Point> &polygon, const Color &insideColor, const Color &borderColor1,
-	    const Color &borderColor2, double borderWidth = 1.);
+		const Color &borderColor2, Point shadingCorner1, Point shadingCorner2, double borderWidth);
 };

@@ -955,14 +955,65 @@ Interface::InfoTagElement::InfoTagElement(const DataNode &node, const Point &glo
 	Load(node, globalAnchor);
 
 	// Fill in a default color if none is specified.
-	if(!fontColor)
-		fontColor = GameData::Colors().Get("active");
-	if(!backColor)
-		backColor = GameData::Colors().Get("infotag background default");
-	if(!borderColor)
+	if(fontColor == nullptr)
+		fontColor = GameData::Colors().Get("hover"); // white
+	if(fillColor == nullptr)
+		fillColor = GameData::Colors().Get("infotag background default");
+	if(borderColor == nullptr)
 		borderColor = GameData::Colors().Get("border shimmer");
-	if(!borderColor2)
+	if(borderColor2 == nullptr)
 		borderColor2 = GameData::Colors().Get("border shadow");
+}
+
+
+
+bool Interface::InfoTagElement::ParseEar(const DataNode &node)
+{
+	// border, with width and/or color underneath it as child nodes
+	for(const DataNode &child : node)
+	{
+		const string &key2 = child.Token(0);
+		bool hasValue2 = child.Size() >= 2;
+
+		// length <length>
+		if(key2 == "length" && hasValue2)
+			earLength = child.Value(1);
+
+		// width <width>
+		else if(key2 == "width" && hasValue2)
+			earWidth = child.Value(1);
+
+		// facing <facing>
+		else if(key2 == "facing" && hasValue2)
+		{
+			if(child.Token(1) == "north")
+				facing = InfoTag::Direction::NORTH;
+			else if(child.Token(1) == "south")
+				facing = InfoTag::Direction::SOUTH;
+			else if(child.Token(1) == "east")
+				facing = InfoTag::Direction::EAST;
+			else if(child.Token(1) == "west")
+				facing = InfoTag::Direction::WEST;
+			else
+				return false;
+		}
+
+		// affinity <affinity>
+		else if(key2 == "affinity" && hasValue2)
+		{
+			if(child.Token(1) == "ccw")
+				affinity = InfoTag::Affinity::CCW;
+			else if(child.Token(1) == "center")
+				affinity = InfoTag::Affinity::CENTER;
+			else if(child.Token(1) == "cw")
+				affinity = InfoTag::Affinity::CW;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+	return true;
 }
 
 
@@ -978,52 +1029,15 @@ bool Interface::InfoTagElement::ParseLine(const DataNode &node)
 
 	if(key == "anchor" && node.Size() == 3)
 	{
+		// TODO: just use from/to
 		anchor = Point(node.Value(1), node.Value(2));
 	}
 
 	// earlength <earLength>
 	else if(key == "ear" && node.HasChildren())
 	{
-		// border, with width and/or color underneath it as child nodes
-		for(const DataNode &child : node)
-		{
-			const string &key2 = child.Token(0);
-			bool hasValue2 = child.Size() >= 2;
-
-			// length <length>
-			if(key2 == "length" && hasValue2)
-				earLength = child.Value(1);
-
-			// facing <facing>
-			else if(key2 == "facing" && hasValue2)
-			{
-				if(child.Token(1) == "north")
-					facing = InfoTag::Direction::NORTH;
-				else if(child.Token(1) == "south")
-					facing = InfoTag::Direction::SOUTH;
-				else if(child.Token(1) == "east")
-					facing = InfoTag::Direction::EAST;
-				else if(child.Token(1) == "west")
-					facing = InfoTag::Direction::WEST;
-				else
-					return false;
-			}
-
-			// affinity <affinity>
-			else if(key2 == "affinity" && hasValue2)
-			{
-				if(child.Token(1) == "ccw")
-					affinity = InfoTag::Affinity::CCW;
-				else if(child.Token(1) == "center")
-					affinity = InfoTag::Affinity::CENTER;
-				else if(child.Token(1) == "cw")
-					affinity = InfoTag::Affinity::CW;
-				else
-					return false;
-			}
-			else
-				return false;
-		}
+		if(!ParseEar(node))
+			return false;
 	}
 
 	// border <border color> <width>
@@ -1043,33 +1057,41 @@ bool Interface::InfoTagElement::ParseLine(const DataNode &node)
 			borderColor2 = GameData::Colors().Get(node.Token(2));
 			borderWidth = node.Value(3);
 		}
-		else if(node.HasChildren())
-		{
-			// border, with width and/or color underneath it as child nodes
-			for(const DataNode &child : node)
-			{
-				const string &key2 = child.Token(0);
-				bool hasValue2 = child.Size() >= 2;
-				if(key2 == "color" && hasValue2)
-					borderColor = GameData::Colors().Get(child.Token(1));
-				else if(key2 == "width")
-					borderWidth = child.Value(1);
-				else
-					return false;
-			}
-		}
 	}
 
-	// background <background color>
-	else if(key == "background" && hasValue)
+	// fill <fill color>
+	else if(key == "fill" && hasValue)
 	{
-		backColor = GameData::Colors().Get(node.Token(1));
+		fillColor = GameData::Colors().Get(node.Token(1));
+	}
+
+	// text <text strings>
+	else if(key == "text")
+	{
+		text.clear();
+		for(const DataNode &child : node)
+		{
+			if(!text.empty())
+			{
+				text += '\n';
+				if(child.Token(0)[0] != '\t')
+					text += '\t';
+			}
+			text += child.Token(0);
+		}
 	}
 
 	// color <text color>
 	else if(key == "color" && hasValue)
 	{
 		fontColor = GameData::Colors().Get(node.Token(1));
+	}
+
+
+	// color <text color>
+	else if(key == "textwidth" && hasValue)
+	{
+		textWidth = node.Value(1);
 	}
 
 	// shrink, default is no shrink, if flag is present, then shrink
@@ -1093,21 +1115,7 @@ bool Interface::InfoTagElement::ParseLine(const DataNode &node)
 			return false;
 	}
 
-	// text <text strings>
-	else if(key == "text")
-	{
-		text.clear();
-		for(const DataNode &child : node)
-		{
-			if(!text.empty())
-			{
-				text += '\n';
-				if(child.Token(0)[0] != '\t')
-					text += '\t';
-			}
-			text += child.Token(0);
-		}
-	}
+
 	else
 		return false;
 
@@ -1120,14 +1128,38 @@ bool Interface::InfoTagElement::ParseLine(const DataNode &node)
 void Interface::InfoTagElement::Draw(const Rectangle &rect, const Information &info, int state) const
 {
 	// Avoid crashes for malformed interface elements that are not fully loaded.
-	if(text.empty() || !rect.Width() || !backColor || !fontColor || !borderColor)
+	if(text.empty() || !rect.Width() || !fillColor || !fontColor || !borderColor)
 		return;
 
-	string text2 = Command::ReplaceNamesWithKeys(text);
+	// string text2 = Command::ReplaceNamesWithKeys(text);
 
 	InfoTag infoTag = InfoTag();
 
-	infoTag.Init(anchor, text2, rect.Width(), textAlignment, facing, affinity, backColor, fontColor, borderColor,
-		borderColor2, shrink, earLength, borderWidth);
+	// infoTag.InitShapeAndPlacement(
+	// 	anchor,
+	// 	facing,
+	// 	affinity,
+	// 	text,
+	// 	textAlignment,
+	// 	rect.Width(),
+	// 	shrink,
+	// 	earLength
+	// 	);
+	infoTag.InitShapeAndPlacement(
+		from.Get(),
+		to.Get(),
+		text,
+		textAlignment,
+		rect.Width(),
+		shrink,
+		earWidth
+		);
+	infoTag.InitBorderAndFill(
+		fillColor,
+		fontColor,
+		borderColor,
+		borderColor2,
+		borderWidth
+		);
 	infoTag.Draw();
 }

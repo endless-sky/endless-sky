@@ -11,6 +11,8 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+color clear 0 0 0 0
+
 help "bank"
 	`This is the bank. Here, you can apply for new mortgages, if your income and credit history allows it. The bank is also a good place to get an overview of your daily expenses: mortgage payments, crew salaries, etc.`
 	`Paying off a mortgage early means you pay less interest to the bank, but it is sometimes wiser to instead use your money to buy a bigger ship which can earn you more income.`
@@ -186,8 +188,6 @@ interface "help overlay: planet"
 	visible if "has shipyard"
 	infotag
 		anchor 410 90
-		width 300
-		shrink
 		ear
 			facing west
 			affinity center
@@ -195,12 +195,11 @@ interface "help overlay: planet"
 		text
 			`<S>`
 		alignment center
+		shrink
 	
 	visible if "has outfitter"
 	infotag
 		anchor 410 150
-		width 300
-		shrink
 		ear
 			facing west
 			affinity center
@@ -208,12 +207,11 @@ interface "help overlay: planet"
 		text
 			`<O>`
 		alignment center
+		shrink
 		
 	visible if "can hire crew"
 	infotag
 		anchor 410 210
-		width 300
-		shrink
 		ear
 			facing west
 			affinity center
@@ -221,11 +219,10 @@ interface "help overlay: planet"
 		text
 			`<H>`
 		alignment center
+		shrink
 		
 	infotag
 		anchor 410 270
-		width 300
-		shrink
 		ear
 			facing west
 			affinity center
@@ -233,12 +230,11 @@ interface "help overlay: planet"
 		text
 			`<D>`
 		alignment center
+		shrink
 	
 	visible if "has trade"
 	infotag
 		anchor -410 90
-		width 300
-		shrink
 		ear
 			facing east
 			affinity center
@@ -246,12 +242,11 @@ interface "help overlay: planet"
 		text
 			`<T>`
 		alignment center
+		shrink
 		
 	visible if "has job board"
 	infotag
 		anchor -410 150
-		width 300
-		shrink
 		ear
 			facing east
 			affinity center
@@ -259,12 +254,11 @@ interface "help overlay: planet"
 		text
 			`<J>`
 		alignment center
+		shrink
 	
 	visible if "has bank"
 	infotag
 		anchor -410 210
-		width 300
-		shrink
 		ear
 			facing east
 			affinity center
@@ -272,12 +266,11 @@ interface "help overlay: planet"
 		text
 			`<B>`
 		alignment center
+		shrink
 	
 	visible if "has port"
 	infotag
 		anchor -410 270
-		width 300
-		shrink
 		ear
 			facing east
 			affinity center
@@ -285,79 +278,92 @@ interface "help overlay: planet"
 		text
 			`<P>`
 		alignment center
+		shrink
 		
 interface "help overlay: trading"
-	include "help overlay: planet"
-	
+#	include "help overlay: planet"
+#	
+#	infotag
+#		anchor 0 0
+#		ear
+#			facing south
+#			affinity center
+#			length 0
+#		text
+#			`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press <+> or <-> (or <Enter> and <Delete>).`
+#			`You can buy 5 tons at once by holding down <Shift>, 20 by holding down <Control>, 500 by holding down <Alt>, or larger amounts at a time by holding down two keys at once, or even all three.`
+#		alignment justified
+#		width 600
+#	
+#	infotag
+#		anchor 100 370
+#		ear
+#			facing north
+#			affinity cw
+#			length 15
+#		text
+#			`<U> or <Shift>+<B>`
+#		alignment center
+#		shrink
+#	
+#	infotag
+#		anchor 190 370
+#		ear
+#			facing north
+#			affinity ccw
+#			length 15
+#		text
+#			`<E> or <Shift>+<S>`
+#		alignment center
+#		shrink
+#	
+#	infotag
+#		anchor 140 80
+#		ear
+#			facing south
+#			affinity cw
+#			length 15
+#		text
+#			`<-> or <Delete>`
+#		alignment center
+#		shrink
+#	
+#	infotag
+#		anchor 80 80
+#		ear
+#			facing south
+#			affinity ccw
+#			length 15
+#		text
+#			`<+> or <Enter>`
+#		alignment center
+#		shrink
+#	
+#	infotag
+#		anchor -200 80
+#		ear
+#			facing south
+#			affinity center
+#			length 15
+#		text
+#			`<Up> or <Dn> to change selection`
+#		alignment center
+#		shrink
+#	
 	infotag
-		anchor 0 0
-		width 600
+		to -100 -100
+		from 200 100
 		ear
-			facing south
-			affinity center
-			length 0
+			width 50
 		text
-			`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press <+> or <-> (or <Enter> and <Delete>).`
-			`You can buy 5 tons at once by holding down <Shift>, 20 by holding down <Control>, 500 by holding down <Alt>, or larger amounts at a time by holding down two keys at once, or even all three.`
-		alignment justified
-
-	infotag
-		anchor 100 370
-		width 350
-		shrink
-		ear
-			facing north
-			affinity cw
-			length 15
-		shrink
-		text
-			`<U> or <Shift>+<B>`
-		alignment center
-
-	infotag
-		anchor 190 370
-		width 350
-		shrink
-		ear
-			facing north
-			affinity ccw
-			length 15
-		text
-			`<E> or <Shift>+<S>`
-		alignment center
-
-	infotag
-		anchor 140 80
-		width 350
-		shrink
-		ear
-			facing south
-			affinity cw
-			length 15
-		text
-			`<-> or <Delete>`
-		alignment center
-		
-	infotag
-		anchor 80 80
-		width 350
-		shrink
-		ear
-			facing south
-			affinity ccw
-			length 15
-		text
-			`<+> or <Enter>`
-		alignment center
-		
-	infotag
-		anchor -200 80
-		width 350
-		shrink
-		ear
-			facing south
-			affinity center
-			length 15
-		text
-			`<Up> or <Dn> to change selection`
-		alignment center
+			`infotag`
+			` to -100 -100`
+			` from 200 100`
+			` ear`
+			`  width 50`
+			` text`
+			`  "Testing..."`
+			` alignment left`
+			` width 400`
+		alignment left
+		width 400

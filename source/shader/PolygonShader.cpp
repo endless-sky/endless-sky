@@ -21,18 +21,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Screen.h"
 #include "Shader.h"
 
+#include <cmath>
 #include <stdexcept>
 
 using namespace std;
 
 namespace {
-	const int N = 7;
+	const int N = 10;
 
 	const Shader *shader;
 	GLint scaleI;
 	GLint insideColorI;
 	GLint borderColor1I;
 	GLint borderColor2I;
+	GLint shadingCorner1I;
+	GLint shadingCorner2I;
 	GLint borderWidthI;
 	GLint numSidesI;
 	GLint polygonI;
@@ -52,6 +55,8 @@ void PolygonShader::Init()
 	insideColorI = shader->Uniform("insideColor");
 	borderColor1I = shader->Uniform("borderColor1");
 	borderColor2I = shader->Uniform("borderColor2");
+	shadingCorner1I = shader->Uniform("shadingCorner1");
+	shadingCorner2I = shader->Uniform("shadingCorner2");
 	borderWidthI = shader->Uniform("borderWidth");
 	numSidesI = shader->Uniform("numSides");
 	polygonI = shader->Uniform("polygon");
@@ -82,16 +87,8 @@ void PolygonShader::Init()
 
 
 void PolygonShader::Draw(const vector<Point> &polygon, const Color &insideColor,
-	const Color &borderColor, double borderWidth)
-{
-	// Solid border color (for backwards compat for now)
-	Draw(polygon, insideColor, borderColor, borderColor, borderWidth);
-}
-
-
-
-void PolygonShader::Draw(const vector<Point> &polygon, const Color &insideColor,
-	const Color &borderColor1, const Color &borderColor2, double borderWidth)
+	const Color &borderColor1, const Color &borderColor2, Point shadingCorner1, Point shadingCorner2,
+	double borderWidth)
 {
 	if(!shader || !shader->Object())
 		throw runtime_error("PolygonShader: Draw() called before Init().");
@@ -106,8 +103,8 @@ void PolygonShader::Draw(const vector<Point> &polygon, const Color &insideColor,
 	int i = 0;
 	for(auto point : polygon)
 	{
-		positions[i][0] = static_cast<GLfloat>(point.X());
-		positions[i][1] = static_cast<GLfloat>(point.Y());
+		positions[i][0] = static_cast<GLfloat>(round(point.X()));
+		positions[i][1] = static_cast<GLfloat>(round(point.Y()));
 		i++;
 	}
 
@@ -115,6 +112,13 @@ void PolygonShader::Draw(const vector<Point> &polygon, const Color &insideColor,
 	glUniform1i(numSidesI, i);
 
 	glUniform1f(borderWidthI, borderWidth);
+
+	GLfloat shadingCorners[2][2] = {
+		{static_cast<GLfloat>(shadingCorner1.X()), static_cast<GLfloat>(shadingCorner1.Y())},
+		{static_cast<GLfloat>(shadingCorner2.X()), static_cast<GLfloat>(shadingCorner2.Y())}
+	};
+	glUniform2fv(shadingCorner1I, 1, shadingCorners[0]);
+	glUniform2fv(shadingCorner2I, 1, shadingCorners[1]);
 
 	glUniform4fv(insideColorI, 1, insideColor.Get());
 

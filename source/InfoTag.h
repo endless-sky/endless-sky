@@ -36,6 +36,7 @@ public:
 		EAST,
 		SOUTH,
 		WEST,
+		NONE
 	};
 
 	// The position of the ear on the side that it is attached to, observed facing the direction the ear is pointing.
@@ -44,18 +45,76 @@ public:
 		CCW,
 		CENTER,
 		CW,
+		NONE
 	};
 
 
 public:
 	explicit InfoTag() = default;
 
-	void Init(Point anchor, std::string text, double width, Alignment alignment, Direction facing, Affinity affinity,
-	          const Color *backColor = nullptr, const Color *fontColor = nullptr, const Color *borderColor = nullptr,
-	          const Color *borderColor2 = nullptr, bool shrink = true, double earLength = 15, double border = 1);
-	// void Init(int width, Alignment alignment, Direction facing, Affinity affinity,
-	// 	const Color *backColor, const Color *fontColor, const Color *borderColor,
-	// 	double earLength = 10, double border = 1);
+	// Auto-place the box based on the pointer definition.
+	void InitShapeAndPlacement(
+		Point anchor,
+		Direction facing,
+		Affinity affinity,
+
+		std::string text,
+		Alignment alignment,
+
+		double width = 1000,
+		bool shrink = true,
+		double earLength = 15
+		);
+
+	// Auto-place the box based on the pointer definition and relative to an interface element by an offset.
+	void InitShapeAndPlacement(
+		std::string element,
+		Point offset,
+		Direction facing,
+		Affinity affinity,
+
+		std::string text,
+		Alignment alignment,
+
+		double width = 1000,
+		bool shrink = true,
+		double earLength = 15
+	);
+
+	// Box and anchor absolute placement.
+	void InitShapeAndPlacement(
+		Point center,
+		Point anchor,
+
+		std::string text,
+		Alignment alignment,
+
+		double width = 1000,
+		bool shrink = true,
+		double earWidth = 15
+		);
+
+	// Box placed absolute, pointer placed relative to interface element by an offset.
+	void InitShapeAndPlacement(
+		Point center,
+		std::string element,
+		Point offset,
+
+		std::string text,
+		Alignment alignment,
+
+		double width = 1000,
+		bool shrink = true,
+		double earWidth = 15
+		);
+
+	void InitBorderAndFill(
+		const Color *backColor,
+		const Color *fontColor,
+		const Color *borderColor,
+		const Color *borderColor2 = nullptr,
+		double borderWidth = 1
+	);
 
 	void SetAnchor(const Point &anchor);
 	void Draw() const;
@@ -73,17 +132,16 @@ private:
 
 
 private:
-	// Original, standard, box has ears at 90 deg at corners or center.
+	// When both of these are defined, the box will be dynamically placed.
 	Direction facing;
 	Affinity affinity;
-	double earLength = 15.;
 
-	// Common parameters.
 	Point anchor;
 	WrappedText wrap;
 	bool shrink;
 
-	double earWidth = 7.;
+	double earLength = 15.;
+	double earWidth = 15.;
 	double borderWidth = 1.;
 
 	const Color *backColor;
@@ -92,9 +150,10 @@ private:
 	const Color *borderColor;
 	const Color *borderColor2;
 
+	int padding = 10;
 	Rectangle box;
 	std::vector<Point> points;
 
-	// TODO: consider adding an element (e.g. interface element) and an offset (Point(x, y))
-	// string element, Point offset
+	std::string element;
+	Point offset;
 };
