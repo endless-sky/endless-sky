@@ -347,6 +347,13 @@ void Engine::Place()
 	// (While carried by a parent, ships will not be present in `Engine::ships`.)
 	for(const shared_ptr<Ship> &ship : ships)
 	{
+		// Skip over ships that have already been placed by NPC or Fleet.
+		if(ship->IsPlaced())
+		{
+			// Unmark this ship as placed, as subsequent placements should still be randomized.
+			ship->SetIsPlaced(false);
+			continue;
+		}
 		Point pos;
 		Angle angle = Angle::Random();
 		// Any ships in the same system as the player should be either
@@ -380,15 +387,23 @@ void Engine::Place()
 			ship->SetSystem(system);
 		}
 
-		// TODO: Don't move ships that were already placed by a `placement` node in an NPC.
-		// TODO: Don't move disabled or immobile ships, unless they're very far from the system center.
 		// If the position is still (0, 0), the special ship is in a different
 		// system, disabled, or otherwise unable to land on viable planets in
 		// the player's system: place it "in flight".
 		if(!pos)
 		{
 			ship->SetPlanet(nullptr);
-			Fleet::Place(*ship->GetSystem(), *ship);
+			// If a ship is disabled, then it was already placed previously and shouldn't have moved.
+			if(ship->IsDisabled())
+			{
+				// If the ship got kicked far away from the system center while disabled, then pull it closer to the
+				// center. This is an anti-frustration measure for finding small fighters that often get kicked away
+				// from the center of the system by explosion.
+				if(ship->Position().LengthSquared() > 5000. * 5000.)
+					ship->Place(ship->Position().Unit() * (4000. + Random::Real() * 1000.), Point(), ship->Facing());
+			}
+			else
+				Fleet::Place(*ship->GetSystem(), *ship);
 		}
 		// This ship is taking off from a planet.
 		else
@@ -446,8 +461,7 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 			// Avoid the exploit where the player can wear down an NPC's
 			// crew by attrition over the course of many days.
 			ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
-			// TODO: Don't recharge ships that were damaged by a `placement` node in an NPC.
-			if(!ship->IsDisabled())
+			if(!ship->IsDisabled() && !ship->IsSkipRecharging())
 				ship->Recharge();
 
 			if(ship->CanBeCarried())

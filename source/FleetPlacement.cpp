@@ -83,12 +83,16 @@ void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, bool i
 	{
 		// Deal damage to these ships if a weapon was loaded.
 		if(weapon.IsLoaded())
+		{
 			ship->TakeDamage(visuals, damage.CalculateDamage(*ship), nullptr);
+			ship->SetSkipRecharging();
+		}
 		// Place these ships at a particular location in the system.
 		// Skip over ships that are landed or that don't have a system.
 		// Also skip NPCs with the "entering" personality, as these ships are jumping into the system.
 		if(!isEntering && (setPosition || setDistance) && !ship->GetPlanet() && ship->GetSystem())
 		{
+			ship->SetIsPlaced();
 			// The first ship gets placed exactly at the center of the placement location.
 			// All other ships are randomly spread around that point.
 			if(first)
@@ -98,6 +102,9 @@ void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, bool i
 			}
 			else
 				ship->SetPosition(center + Angle::Random().Unit() * spread);
+			// Set the velocity of placed ships to 0, as otherwise they can get flung out of formation quicker than
+			// the player can realize they were even intentionally placed.
+			ship->SetVelocity(Point());
 		}
 	}
 }
