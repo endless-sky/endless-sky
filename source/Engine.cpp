@@ -463,6 +463,9 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 			ship->AddCrew(max(0, ship->RequiredCrew() - ship->Crew()));
 			if(!ship->IsDisabled() && !ship->IsSkipRecharging())
 				ship->Recharge();
+			// Ships that skipped recharging due to being placed that way
+			// can still recharge on subsequent placements.
+			ship->SetSkipRecharging(false);	
 
 			if(ship->CanBeCarried())
 			{
