@@ -15,13 +15,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Orbit.h"
 #include "Point.h"
 #include "Weapon.h"
 
 #include <list>
 #include <memory>
+#include <optional>
+
 
 class DataNode;
+class Date;
 class Ship;
 
 
@@ -32,23 +36,25 @@ public:
 	FleetPlacement() = default;
 	void Load(const DataNode &node);
 
-	void Place(const std::list<std::shared_ptr<Ship>> &ships, bool isEntering) const;
+	void Place(const std::list<std::shared_ptr<Ship>> &ships, const Date &date, bool isEntering) const;
 
 
 private:
 	bool loaded = false;
-	// If this NPC spawns already present in the system, place it this far from the system center at a random angle.
-	bool setDistance = false;
-	double distance = 0.;
-	// If this NPC spawns already present in the system, place it at this exact position in the system.
-	bool setPosition = false;
-	Point position;
-	// Place ships with this velocity and facing angle.
-	bool setVelocity = false;
-	Point velocity;
+	// The distance from the system center to place the NPCs. The angle will be randomized if not set.
+	std::optional<double> distance;
+	std::optional<Angle> angle;
+	// The orbit to place the NPCs on. The position in the orbit will match the position
+	// of a SetllarObject with the same orbit.
+	std::optional<Orbit> orbit;
+	// The exact position to place the NPCs.
+	std::optional<Point> position;
+	// The velocity and facing angle to place the NPCs with.
+	std::optional<Point> velocity;
 	// If this NPC contains multiple ships, this is the distance for how far spread out the ships should be from
-	// one another relative to the placement location.
+	// one another relative to the placement location. The first ship will be placed in the center, with all subsequent
+	// ships choosing a random angle and a random distance away from the center up to this value.
 	double spread = 500.;
-	// A weapon whose damage is to be applied to ships when placed.
+	// A weapon whose damage is applied to ships when placed.
 	Weapon weapon;
 };

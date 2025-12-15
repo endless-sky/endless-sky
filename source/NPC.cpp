@@ -731,7 +731,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		else
 			Fleet::Place(*result.system, *ship);
 	}
-	placement.Place(result.ships, personality.IsEntering());
+	placement.Place(result.ships, player.GetDate(), personality.IsEntering());
 
 	// Set the cargo for each ship in the NPC if the NPC itself has cargo settings.
 	if(overrideFleetCargo)

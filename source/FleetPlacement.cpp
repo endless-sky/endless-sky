@@ -18,8 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DamageDealt.h"
 #include "DamageProfile.h"
 #include "DataNode.h"
+#include "Date.h"
+#include "Random.h"
 #include "Ship.h"
-#include "Visual.h"
 
 #include <algorithm>
 
@@ -40,31 +41,41 @@ void FleetPlacement::Load(const DataNode &node)
 			child.PrintTrace("Expected key to have a value:");
 		else if(key == "distance")
 		{
-			if(setPosition)
+			if(position.has_value() || orbit.has_value())
 			{
-				setPosition = false;
-				child.PrintTrace("\"placement\" nodes cannot have both a distance and a position. "
-					"Using the distance.");
+				position.reset();
+				orbit.reset();
+				child.PrintTrace("distance, orbit, and position nodes are mutually exclusive. Using the distance.");
 			}
-			setDistance = true;
 			distance = max(0., child.Value(1));
+			if(child.Size() >= 3)
+				angle = Angle(child.Value(2));
+		}
+		else if(key == "orbit" && child.Size() >= 3)
+		{
+			if(position.has_value() || distance.has_value())
+			{
+				position.reset();
+				distance.reset();
+				angle.reset();
+				child.PrintTrace("distance, orbit, and position nodes are mutually exclusive. Using the orbit.");
+			}
+			orbit = Orbit(max(0., child.Value(1)), max(0., child.Value(2)),
+				child.Size() >= 4 ? child.Value(3) : 0.);
 		}
 		else if(key == "position" && child.Size() >= 3)
 		{
-			if(setDistance)
+			if(distance.has_value() || orbit.has_value())
 			{
-				setDistance = false;
-				child.PrintTrace("\"placement\" nodes cannot have both a distance and a position. "
-					"Using the position.");
+				distance.reset();
+				angle.reset();
+				orbit.reset();
+				child.PrintTrace("distance, orbit, and position nodes are mutually exclusive. Using the position.");
 			}
-			setPosition = true;
 			position = Point(child.Value(1), child.Value(2));
 		}
 		else if(key == "velocity" && child.Size() >= 3)
-		{
-			setVelocity = true;
 			velocity = child.Value(1) * Angle(child.Value(2)).Unit();
-		}
 		else if(key == "spread")
 			spread = max(0., child.Value(1));
 		else
@@ -74,13 +85,20 @@ void FleetPlacement::Load(const DataNode &node)
 
 
 
-void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, bool isEntering) const
+void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, const Date &date, bool isEntering) const
 {
 	if(!loaded)
 		return;
-	Point center = setPosition ? position : (setDistance ? Angle::Random().Unit() * distance : Point());
-	DamageProfile damage = DamageProfile(weapon);
+	optional<Point> center;
+	if(position.has_value())
+		center = *position;
+	else if(distance.has_value())
+		center = *distance * angle.value_or(Angle::Random()).Unit();
+	else if(orbit.has_value())
+		center = orbit->Position(date.DaysSinceEpoch()).first;
+
 	bool first = true;
+	DamageProfile damage = DamageProfile(weapon);
 	for(auto &ship : ships)
 	{
 		// Deal damage to these ships if a weapon was loaded.
@@ -89,30 +107,33 @@ void FleetPlacement::Place(const std::list<std::shared_ptr<Ship>> &ships, bool i
 			ship->TakeDamage(damage.CalculateDamage(*ship), nullptr);
 			ship->SetSkipRecharging();
 		}
-		// Place these ships at a particular location in the system.
 		// Skip over ships that are landed or that don't have a system.
-		// Also skip NPCs with the "entering" personality, as these ships are jumping into the system.
-		if(!isEntering && (setPosition || setDistance) && !ship->GetPlanet() && ship->GetSystem())
+		// Skip NPCs with the "entering" personality, as these ships are jumping into the system.
+		if(ship->GetPlanet() || !ship->GetSystem() || isEntering)
+			continue;
+		// Place these ships at a particular location in the system.
+		if(center.has_value())
 		{
 			ship->SetIsPlaced();
 			// The first ship gets placed exactly at the center of the placement location.
 			// All other ships are randomly spread around that point.
 			if(first)
 			{
-				ship->SetPosition(center);
+				ship->SetPosition(*center);
 				first = false;
 			}
 			else
-				ship->SetPosition(center + Angle::Random().Unit() * spread);
+				ship->SetPosition(*center + Angle::Random().Unit() * Random::Real() * spread);
 			// Set the velocity of placed ships to 0, as otherwise they can get flung out of formation quicker than
 			// the player can realize they were even intentionally placed.
 			ship->SetVelocity(Point());
 		}
 		// Set the velocity of these ships.
-		if(setVelocity)
+		if(velocity.has_value())
 		{
-			ship->SetVelocity(velocity);
-			ship->SetFacing(Angle(velocity));
+			ship->SetIsPlaced();
+			ship->SetVelocity(*velocity);
+			ship->SetFacing(Angle(*velocity));
 		}
 	}
 }
