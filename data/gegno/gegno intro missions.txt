@@ -441,6 +441,7 @@ mission "Giaru Gegno: Revisit"
 mission "Nosy Scin"
 	invisible
 	landing
+	non-blocking
 	source "Giaru Gegno"
 	to offer
 		has "Visit Quarg in Gegno Space: offered"
@@ -458,8 +459,8 @@ mission "Nosy Scin"
 		ship "Mica" "Eichpys"
 
 mission "Suspicious Scin"
-	name `Strange Device`
 	entering
+	name `Strange Device`
 	description `A strange Gegno device suddenly appeared on your ship, displaying coordinates to a planet within Gegno space. Visiting the planet might lead to some answers, or perhaps something else.`
 	destination "Yiia Iyr"
 	to offer
@@ -697,9 +698,9 @@ mission "First Contact: Gegno Scin"
 
 
 mission "Gegno Exploration Nudge"
+	landing
 	name `Find ways to interact with the Gegno`
 	description `Although the Gegno seem disinterested in you as a whole, there might be other chances to encounter them in their space to learn more about them.`
-	landing
 	source "Yiia Iyr"
 	to offer
 		has "Suspicious Scin: offered"
@@ -725,6 +726,7 @@ mission "Gegno Exploration Nudge"
 mission "Gegno Exploration Nudge Remover"
 	invisible
 	landing
+	non-blocking
 	source "Yiia Iyr"
 	destination "Giaru Gegno"
 	to offer

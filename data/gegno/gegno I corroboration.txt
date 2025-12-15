@@ -555,7 +555,7 @@ mission "Return to Giaru Gegno"
 	entering
 	description `The Quarg known as Adrauni has summoned you back to <destination>.`
 	source
-		not planet "Giaru Gegno"
+		not system "Aleit"
 	destination "Giaru Gegno"
 	to offer
 		or
@@ -564,7 +564,7 @@ mission "Return to Giaru Gegno"
 		not "Gegno Intervention: offered"
 		not "Gegno Genocide Defense: offered"
 	on enter
-		dialog `Upon departure from <origin>, you receive an incoming message on your communications device. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
+		dialog `There is an incoming message on your communications device. "Greetings, human <first> <last>. This message is from the Quarg that is named Adrauni. Return to <planet> at the first opportunity given to you."`
 	on complete
 		fail "Scin Surveillance"
 		fail "Veering Vi A"
