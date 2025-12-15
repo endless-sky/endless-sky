@@ -142,13 +142,13 @@ protected:
 
 protected:
 	static constexpr int FLEET_PADDING = 5;
-	static constexpr int FLEET_CONTENT = 250;
-	static constexpr int FLEET_WIDTH = FLEET_CONTENT + FLEET_PADDING;
+	// static constexpr int FLEET_CONTENT = 250;
+	// static constexpr int FLEET_WIDTH = FLEET_CONTENT + FLEET_PADDING;
 	static constexpr int SHIP_PADDING = 5;
 	static constexpr int SHIP_CONTENT = 250;
 	static constexpr int SHIP_WIDTH = SHIP_CONTENT + SHIP_PADDING;
 	static constexpr int INFO_WIDTH = 300;
-	static constexpr int SIDE_WIDTH = FLEET_WIDTH + SHIP_WIDTH + INFO_WIDTH;
+	// static constexpr int SIDE_WIDTH = FLEET_WIDTH + SHIP_WIDTH + INFO_WIDTH;
 	static constexpr int BUTTON_HEIGHT = 70;
 	static constexpr int SHIP_SIZE = 250;
 	static constexpr int OUTFIT_SIZE = 183;
@@ -205,6 +205,12 @@ protected:
 
 
 private:
+	size_t ShipsHere = 0;
+	int FleetColumns() const;
+	int FleetContent() const;
+	int FleetWidth() const;
+	int SideWidth() const;
+
 	void DrawFleetPane();
 	void DrawInfoPane();
 	void DrawShipInfoPane();
