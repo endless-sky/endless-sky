@@ -7030,7 +7030,7 @@ mission "Moving House 3"
 mission "Stranded In Paradise 1"
 	minor
 	name "Transport Burnbecks to <planet>"
-	description "The Burnbeck family was stranded by the bombings, and needs <bunks> free for transport back home to <destination>. Payment is <payment>."
+	description "The Burnbeck family was stranded by the bombings, and needs <bunks> bunks free for transport back home to <destination>. Payment is <payment>."
 	source
 		attributes "paradise"
 	destination
