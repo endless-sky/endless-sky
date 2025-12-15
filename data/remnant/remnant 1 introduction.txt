@@ -1940,7 +1940,6 @@ mission "Remnant: S-970 Regenerator"
 		conversation
 			`You recall that Taely was interested in seeing instances of new human technology, and the S-970 Regenerator is definitely a recent development. Would you like to show her?`
 			choice
-					to display
 						not "event: syndicate tech available"
 				`	(Not now.)`
 					defer
