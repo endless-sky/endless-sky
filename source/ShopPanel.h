@@ -41,7 +41,7 @@ class Ship;
 
 
 // Class representing the common elements of both the shipyard panel and the
-// outfitter panel (e.g. the sidebar with the ships you own).
+// outfitter panel (e.g. the pane with the ships you own).
 class ShopPanel : public Panel {
 public:
 	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
@@ -135,20 +135,20 @@ protected:
 		Main,
 		Info,
 		Ship,
-		Sidebar,
+		Fleet,
 
 	};
 
 
 protected:
-	static constexpr int SIDEBAR_PADDING = 5;
-	static constexpr int SIDEBAR_CONTENT = 250;
-	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
-	static constexpr int SHIPBAR_PADDING = 5;
-	static constexpr int SHIPBAR_CONTENT = 250;
-	static constexpr int SHIPBAR_WIDTH = SHIPBAR_CONTENT + SHIPBAR_PADDING;
-	static constexpr int INFOBAR_WIDTH = 300;
-	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + SHIPBAR_WIDTH + INFOBAR_WIDTH;
+	static constexpr int FLEET_PADDING = 5;
+	static constexpr int FLEET_CONTENT = 250;
+	static constexpr int FLEET_WIDTH = FLEET_CONTENT + FLEET_PADDING;
+	static constexpr int SHIP_PADDING = 5;
+	static constexpr int SHIP_CONTENT = 250;
+	static constexpr int SHIP_WIDTH = SHIP_CONTENT + SHIP_PADDING;
+	static constexpr int INFO_WIDTH = 300;
+	static constexpr int SIDE_WIDTH = FLEET_WIDTH + SHIP_WIDTH + INFO_WIDTH;
 	static constexpr int BUTTON_HEIGHT = 70;
 	static constexpr int SHIP_SIZE = 250;
 	static constexpr int OUTFIT_SIZE = 183;
@@ -161,7 +161,7 @@ protected:
 	const Planet *planet = nullptr;
 	const bool isOutfitter;
 
-	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
+	// The player-owned ship that was first selected in the fleet pane (or most recently purchased).
 	Ship *playerShip = nullptr;
 	// The player-owned ship being reordered.
 	Ship *dragShip = nullptr;
@@ -177,16 +177,17 @@ protected:
 	// (It may be worth moving the above pointers into the derived classes in the future.)
 
 	ScrollVar<double> mainScroll;
-	ScrollVar<double> sidebarScroll;
-	ScrollVar<double> infobarScroll;
-	ScrollVar<double> shipbarScroll;
+	ScrollVar<double> infoScroll;
+	ScrollVar<double> shipScroll;
+	ScrollVar<double> fleetScroll;
+
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
 
 	ScrollBar mainScrollbar;
-	ScrollBar sidebarScrollbar;
-	ScrollBar infobarScrollbar;
-	ScrollBar shipbarScrollbar;
+	ScrollBar infoScrollbar;
+	ScrollBar shipScrollbar;
+	ScrollBar fleetScrollbar;
 
 	double previousX = 0.;
 
@@ -204,9 +205,9 @@ protected:
 
 
 private:
-	void DrawShipsSidebar();
-	void DrawDetailsSidebar();
-	void DrawShipDetailsSidebar();
+	void DrawFleetPane();
+	void DrawInfoPane();
+	void DrawShipInfoPane();
 	void DrawButtons();
 	void DrawMain();
 
