@@ -1942,6 +1942,8 @@ mission "Remnant: S-970 Regenerator"
 			choice
 				`	(Never.)`
 					decline
+					to display 
+						not "event: syndicate tech available"
 				`	(Not now.)`
 					defer
 				`	(Yes.)`
