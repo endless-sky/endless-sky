@@ -37,7 +37,7 @@ conversation "intro mission"
 		goto captain
 	
 	label deep
-	`With some trepidation, you hand one of the salespeople your money, and they give you the passcode to your starship, along with the number of the docking bay your ship is being transported to. By the time you arrive, your <model> is already there, beckoning you aboard. You spend a minute admiring your ship until a man walks up to you. You recognize him as the old man who rode the train with you and wave.`
+	`With some trepidation, you hand one of the salespeople your money, and they give you the passcode to your starship, along with the number of the docking bay your ship is being transported to. By the time you arrive, your <model> is already there, beckoning you aboard. You spend a minute admiring your ship until a man walks up to you. You recognize him as the old man who rode the train with you, and you wave.`
 	`	He waves back, turns to look at your ship and says, "Nothing quite like buying your first starship, is there?"`
 	choice
 		`	"Yeah, it's a real beauty."`
@@ -143,7 +143,7 @@ conversation "freighter 1 end"
 	`	"Some. That's why you can't just go traipsing around the galaxy in a fleet of unarmed star barges; every pirate within a week's travel will hear you're coming through and come after you. In the long term, having a few heavy freighters with good defenses is more cost-effective than losing a star barge or two to the pirates on every journey."`
 		goto port
 	label quick
-	`	"There's no quick road to riches, kid. The more something pays, the riskier it is. If you need to make lots of money in a hurry, bounty hunting is the way to go, but nine out of ten pilots who give bounty hunting a try end up dead. And, no one's going to give you those sorts of missions until you've proved yourself in combat, anyway."`
+	`	"There's no quick road to riches, kid. The more something pays, the riskier it is. If you need to make lots of money in a hurry, bounty hunting is the way to go, but nine out of ten pilots who give bounty hunting a try end up dead. And no one's going to give you those sorts of missions until you've proved yourself in combat, anyway."`
 	label port
 	`	He picks up his suitcase. "If you want to run another mission with me, look for me in the spaceport. I'll see if I can find you something with a higher profit margin this time."`
 	``
@@ -1002,7 +1002,7 @@ mission "Midgard Intro [2 Transport Alt]"
 	on complete
 		payment 22000
 		conversation
-			`As you make the final landing descent to the surface of Earth, Van looks down on Earth's cluttered surface and begins listing off places he recognizes. James joins in by bringing up the history of the cities you fly over, and the two of them begin making jokes about the worst places to live on <planet>.`
+			`As you make the final landing descent to the surface of Earth, Van looks down on its cluttered surface and begins listing off places he recognizes. James joins in by bringing up the history of the cities you fly over, and the two of them begin making jokes about the worst places to live on <planet>.`
 			`	As he steps off, Van hands you <payment>. "Thanks for the fun times, but I'd best be going. I've got work first thing in the morning."`
 			`	After he leaves, James says, "I haven't met too many people from Earth during my time. Even today, billions of people grow up and die on this planet without taking a single step on another world." Then, he picks up his luggage and adds, "Same deal as before. If you want to keep traveling together, meet me in the spaceport."`
 
@@ -1661,7 +1661,7 @@ mission "Mainsail Intro [1 Interceptor]"
 	
 	on offer
 		conversation
-			`<origin>'s spaceport is located on the least biodiverse island on the planet; a necessity, given that contaminants introduced by outsiders pose the greatest threat to <origin>'s wildlife sanctuaries. That has not stopped the port's architects from making it as extravagant as possible. Walking over the bridge between the landing peninsula and the main port, you are greeted by a verdant plaza, filled with some more-resilient species of exotic life. Directly ahead, in the center of the spaceport, is a giant holographic globe showing the origins of the flora and fauna on each island.`
+			`<origin>'s spaceport is located on the least biodiverse island on the planet; a necessity, given that contaminants introduced by outsiders pose the greatest threat to <origin>'s wildlife sanctuaries. That has not stopped the port's architects from making it as extravagant as possible. Walking over the bridge between the landing peninsula and the main port, you are greeted by a verdant plaza, filled with some of the more resilient species of exotic life present on <origin>. Directly ahead, in the center of the spaceport, is a giant holographic globe showing the origins of the flora and fauna on each island.`
 			`	Before you can get closer, you are knocked aside by several classes of students pouring out of a Star Queen. They seem to be in primary school, excitedly marching behind their teachers while clutching plushies depicting the animals on this planet.`
 			`	You find James standing on a landing pad underneath a large freighter, chatting with a person you assume is the captain. "There you are!" he says. "Captain Donald here says his two ships have always had troubles with pirates when venturing outside of the Deep, and he's looking for an escort to get them safely to <planet>. Are you interested?"`
 			choice
@@ -1886,7 +1886,7 @@ mission "Delve Intro [3 Transport]"
 	
 	on complete
 		payment 10000
-		log "Dropped James off on Hestia after running a few missions with him. Met a few spoiled tourists and revisited Earth along the way."
+		log "Dropped James off on Hestia after running a few missions with him. Met a few tourists and revisited Earth along the way."
 		log "Minor People" "James" `He currently resides on Hestia, having retired from life as a merchant captain.`
 		conversation "end of intro missions"
 
