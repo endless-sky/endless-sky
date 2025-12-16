@@ -43,7 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/WrappedText.h"
 
 #ifdef _WIN32
-#include "windows/WinVersion.h"
+#include "../windows/WinVersion.h"
 #endif
 
 #include "../shader/opengl.h"

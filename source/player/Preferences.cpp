@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ui/Screen.h"
 
 #ifdef _WIN32
-#include "windows/WinVersion.h"
+#include "../windows/WinVersion.h"
 #endif
 
 #include <algorithm>

@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../GameVersion.h"
 
 #ifdef _WIN32
-#include "windows/WinVersion.h"
+#include "../windows/WinVersion.h"
 #else
 #include <sys/utsname.h>
 #endif
