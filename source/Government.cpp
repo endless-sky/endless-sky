@@ -37,7 +37,10 @@ namespace {
 		auto loadPenalty = [&penalties](const DataNode &child, int eventType) -> void
 		{
 			double amount = child.Value(1);
-			Government::SpecialPenalty specialPenalty = Government::SpecialPenalty::NONE;
+			// Reverse compatibility: transfer the provoke and atrocity events to special penalties.
+			Government::SpecialPenalty specialPenalty = eventType == ShipEvent::PROVOKE ?
+					Government::SpecialPenalty::PROVOKE : eventType == ShipEvent::ATROCITY ?
+					Government::SpecialPenalty::ATROCITY : Government::SpecialPenalty::NONE;
 			if(child.Size() >= 3)
 			{
 				const string &effect = child.Token(2);
@@ -45,14 +48,20 @@ namespace {
 					specialPenalty = Government::SpecialPenalty::NONE;
 				else if(effect == "provoke")
 					specialPenalty = Government::SpecialPenalty::PROVOKE;
+					if(amount <= 0.)
+					{
+						child.PrintTrace("Warning: the \"provoke\" effect will not work"
+							" without a positive, non-zero penalty to reputation, defaulting to 0.01:");
+						amount = .01;
+					}
 				else if(effect == "atrocity")
 				{
 					specialPenalty = Government::SpecialPenalty::ATROCITY;
-					if(amount <= 0.)
+					if(amount <= .05)
 					{
 						child.PrintTrace("Warning: the \"atrocity\" effect will not work"
-							" without a positive, non-zero penalty to reputation, defaulting to 0.1:");
-						amount = .1;
+							" without a penalty to reputation higher or equal to 0.05, defaulting to 0.05:");
+						amount = .05;
 					}
 				}
 				else
