@@ -47,6 +47,7 @@ namespace {
 				if(effect == "none")
 					specialPenalty = Government::SpecialPenalty::NONE;
 				else if(effect == "provoke")
+				{
 					specialPenalty = Government::SpecialPenalty::PROVOKE;
 					if(amount <= 0.)
 					{
@@ -54,6 +55,7 @@ namespace {
 							" without a positive, non-zero penalty to reputation, defaulting to 0.01:");
 						amount = .01;
 					}
+				}
 				else if(effect == "atrocity")
 				{
 					specialPenalty = Government::SpecialPenalty::ATROCITY;
