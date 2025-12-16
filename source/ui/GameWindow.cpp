@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 
 #ifdef _WIN32
-#include "windows/WinWindow.h"
+#include "../windows/WinWindow.h"
 #endif
 
 #include "../shader/opengl.h"
