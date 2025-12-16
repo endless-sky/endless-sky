@@ -49,7 +49,7 @@ body:
         (If you are reporting a visual bug, a screenshot is effectively required!)
   - type: textarea
     attributes:
-      label: Link to save file
+      label: Save File
       description: You can either upload your save here, or to e.g. hastebin / GitHub Gists
       placeholder: |
         Windows: %APPDATA%\endless-sky\saves
