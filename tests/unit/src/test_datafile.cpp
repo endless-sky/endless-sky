@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../source/DataFile.h"
+#include "../../../source/files/DataFile.h"
 
 // Include a helper functions.
 #include "datanode-factory.h"

@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../source/ConditionSet.h"
+#include "../../../source/conditions/ConditionSet.h"
 
 // Include a helper for creating well-formed DataNodes (to enable creating non-empty ConditionSets).
 #include "datanode-factory.h"
@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "output-capture.hpp"
 
 // Include ConditionStore, to enable usage of them for testing ConditionSets.
-#include "../../../source/ConditionsStore.h"
+#include "../../../source/conditions/ConditionsStore.h"
 
 // ... and any system includes needed for the test file.
 #include <cstdint>
