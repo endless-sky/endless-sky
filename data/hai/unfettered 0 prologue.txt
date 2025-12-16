@@ -442,7 +442,7 @@ mission "Unfettered Jump Drive Trading"
 				`	"I'll settle for the tripulse, then."`
 					to display
 						has "choice: tripulse"
-					goto buytripulse
+					goto "buy tripulse"
 				`	"Can you tell me more about that small ionic weapon?"`
 					to display
 						not "choice: blaster"
@@ -456,13 +456,13 @@ mission "Unfettered Jump Drive Trading"
 				set "choice: blaster"
 			scene "outfit/hai ionic blaster"
 			`	"Ah, the Blaster. It is favored by many Shield Beetle captains, because it can easily help them turn the tide of battle without needing to dedicate too much weapon space to it. Especially considering its other effects, its damage potential is serviceable. While it is true that it does not do enough ion damage to properly disable a ship on its own, it is able to jam their weapons and will give you the upper hand in a long fight. This is a more recent innovation, however, and some say it lacks the... finesse of others.`
-				goto backtochoose
+				goto "back to choose"
 			label turret
 			action
 				set "choice: turret"
 			scene "outfit/hai ionic turret"
 			`	"That is my preferred weapon out of all of them, by far. Unlike the Ion Cannon that is a hybrid weapon meant to damage the enemy from long range whilst applying a good deal of ionization, this one's role is mostly to disable enemy ships. Even a ship with many batteries will cower before this weapon! And due to its high range and fast turn-rate, small ships and even fighters will never bother you again!`
-			label backtochoose
+			label "back to choose"
 			`	"However, we only have these weapons in very limited quantities, and as such we cannot afford to give these to you yet. So, about my offer, have you made up your mind?"`
 				goto weapons
 
@@ -484,7 +484,7 @@ mission "Unfettered Jump Drive Trading"
 			scene "outfit/tripulse shredder"
 			`	"The Tripulse Shredder may seem crude, but it packs a punch! Its specialty is how it combines a lot of firepower in one gun slot, and, due to its burst nature, it's perfect for pilots who already use hit and run tactics. Some captains even say that a Sea Scorpion can get the upper hand against a Shield Beetle when it uses four of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
 				goto weapons
-			label buytripulse
+			label "buy tripulse"
 			action
 				outfit "Tripulse Shredder" 2
 			`	They order their crew to do the transfer and come to address you before leaving. "Do note that if you ever want more weapons, we will always be willing to trade them for jump drives in the job board. However, we can always offer money instead if that is of higher value to you. Of course, we can only do this exchange here on <origin>, given it is where these advanced weapons are produced and stocked."`

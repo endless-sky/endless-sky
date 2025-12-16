@@ -17,8 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Dialog.h"
 
-#include "Point.h"
-
 #include <string>
 
 
@@ -29,26 +27,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // from the "civilian" phrase.
 class ShipNameDialog : public Dialog {
 public:
-	template <class T>
-	ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
-		const std::string &message, std::string initialValue = "");
-
-	virtual void Draw() override;
-
-
-protected:
-	virtual bool Click(int x, int y, int clicks) override;
+	template<class T>
+	ShipNameDialog(T *panel, Dialog::FunctionButton buttonOne, const std::string &message,
+		std::string initialValue = "");
 
 
 private:
-	Point randomPos;
+	bool RandomName(const std::string &);
 };
 
 
 
-template <class T>
-ShipNameDialog::ShipNameDialog(T *panel, void (T::*fun)(const std::string &),
-		const std::string &message, std::string initialValue)
-	: Dialog(panel, fun, message, initialValue)
+template<class T>
+ShipNameDialog::ShipNameDialog(T *panel, Dialog::FunctionButton buttonOne, const std::string &message,
+	std::string initialValue)
+	: Dialog(panel, message, initialValue, buttonOne,
+		Dialog::FunctionButton(this, "Random", 'r', &ShipNameDialog::RandomName),
+		[](const std::string &) { return true; })
 {
 }

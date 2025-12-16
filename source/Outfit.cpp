@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "GameData.h"
 #include "image/SpriteSet.h"
+#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>
@@ -195,7 +196,7 @@ namespace {
 
 	// Used to add the contents of one outfit's map to another, while also
 	// erasing any key with a value of zero.
-	template <class T>
+	template<class T>
 	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
 	{
 		for(const auto &it : otherMap)
@@ -277,14 +278,15 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
 		else if(key == "weapon")
-			LoadWeapon(child);
-		else if(key == "ammo" && hasValue)
 		{
-			// Non-weapon outfits can have ammo so that storage outfits
-			// properly remove excess ammo when the storage is sold, instead
-			// of blocking the sale of the outfit until the ammo is sold first.
-			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
+			if(!weapon)
+				weapon = make_shared<Weapon>();
+			Weapon newWeapon = *weapon;
+			newWeapon.Load(child);
+			weapon = make_shared<Weapon>(std::move(newWeapon));
 		}
+		else if(key == "ammo" && hasValue)
+			ammoStored = GameData::Outfits().Get(child.Token(1));
 		else if(key == "description" && hasValue)
 			description.Load(child, playerConditions);
 		else if(key == "cost" && hasValue)
@@ -327,7 +329,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	{
 		pluralName = displayName + 's';
 		if((displayName.back() == 's' || displayName.back() == 'z') && node.Token(0) == "outfit")
-			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
+			node.PrintTrace("Explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralName + "\".");
 	}
 
@@ -356,12 +358,15 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		GameData::AddJumpRange(attributes.Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
-	if(IsWeapon() && attributes.Get("turret mounts") && !TurretTurn()
-		&& !AntiMissile() && !TractorBeam())
+	if(weapon && attributes.Get("turret mounts") && !weapon->TurretTurn()
+		&& !weapon->AntiMissile() && !weapon->TractorBeam())
 	{
-		SetTurretTurn(4.);
-		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
+		Weapon newWeapon = *weapon;
+		newWeapon.turretTurn = 4.;
+		weapon = make_shared<Weapon>(std::move(newWeapon));
+		node.PrintTrace("Deprecated use of a turret without specified \"turret turn\":");
 	}
+
 	// Convert any legacy cargo / outfit scan definitions into power & speed,
 	// so no runtime code has to check for both.
 	auto convertScan = [&](string &&kind) -> void
@@ -371,7 +376,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		if(initial)
 		{
 			attributes[label] = 0.;
-			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ label + " power\" and \"" + label + " speed\":");
 
 			// A scan value of 300 is equivalent to a scan power of 9.
@@ -388,7 +393,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		if(initial)
 		{
 			attributes[label] = 0.;
-			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ kind + " scan efficiency\":");
 			// A reasonable update is 15x the previous value, as the base scan time
 			// is 10x what it was before scan efficiency was introduced, along with
@@ -419,16 +424,16 @@ const string &Outfit::TrueName() const
 
 
 
-const string &Outfit::DisplayName() const
+void Outfit::SetTrueName(const string &name)
 {
-	return displayName;
+	this->trueName = name;
 }
 
 
 
-void Outfit::SetName(const string &name)
+const string &Outfit::DisplayName() const
 {
-	this->trueName = name;
+	return displayName;
 }
 
 
@@ -588,6 +593,20 @@ void Outfit::AddLicenses(const Outfit &other)
 void Outfit::Set(const char *attribute, double value)
 {
 	attributes[attribute] = value;
+}
+
+
+
+const Outfit *Outfit::AmmoStored() const
+{
+	return ammoStored;
+}
+
+
+
+const Outfit *Outfit::AmmoStoredOrUsed() const
+{
+	return weapon ? weapon->Ammo() : ammoStored;
 }
 
 

@@ -50,8 +50,8 @@ MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool 
 	hasSpaceport = planet->HasServices();
 	hasShipyard = planet->HasShipyard();
 	hasOutfitter = planet->HasOutfitter();
-	governmentName = planet->GetGovernment()->GetName();
-	string systemGovernmentName = planet->GetSystem()->GetGovernment()->GetName();
+	governmentName = planet->GetGovernment()->DisplayName();
+	string systemGovernmentName = planet->GetSystem()->GetGovernment()->DisplayName();
 	if(governmentName != "Uninhabited" && governmentName != systemGovernmentName)
 		hasGovernments = true;
 
@@ -287,8 +287,8 @@ void MapPlanetCard::Highlight(double availableSpace) const
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double width = planetCardInterface->GetValue("width");
 
-	FillShader::Fill(Point(Screen::Left() + width / 2., yCoordinate + availableSpace / 2.),
-		Point(width, availableSpace), *GameData::Colors().Get("item selected"));
+	Rectangle highlightRegion = Rectangle::FromCorner(Point(Screen::Left(), yCoordinate), Point(width, availableSpace));
+	FillShader::Fill(highlightRegion, *GameData::Colors().Get("item selected"));
 }
 
 

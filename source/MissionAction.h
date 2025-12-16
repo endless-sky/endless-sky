@@ -86,8 +86,8 @@ public:
 private:
 	class MissionDialog {
 	public:
-		MissionDialog(const ExclusiveItem<Phrase> &);
-		MissionDialog(const std::string &);
+		explicit MissionDialog(const ExclusiveItem<Phrase> &);
+		explicit MissionDialog(const std::string &);
 		MissionDialog(const DataNode &, const ConditionsStore *);
 
 

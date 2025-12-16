@@ -42,7 +42,7 @@ class TextArea;
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
-	virtual ~PlanetPanel() override;
+	~PlanetPanel();
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -51,6 +51,8 @@ public:
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
+
+	virtual void Resize() override;
 
 
 private:

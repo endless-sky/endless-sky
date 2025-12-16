@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Screen.h"
 
+#include "CustomEvents.h"
+
 #include <algorithm>
 
 using namespace std;
@@ -59,11 +61,11 @@ void Screen::ScreenDimensionsGuard::Deactivate()
 
 
 
-void Screen::SetRaw(int width, int height)
+void Screen::SetRaw(int width, int height, bool noResizeEvent)
 {
 	RAW_WIDTH = width;
 	RAW_HEIGHT = height;
-	SetZoom(USER_ZOOM);
+	SetZoom(USER_ZOOM, noResizeEvent);
 }
 
 
@@ -82,8 +84,11 @@ int Screen::Zoom()
 
 
 
-void Screen::SetZoom(int percent)
+void Screen::SetZoom(int percent, bool noEvent)
 {
+	if(!noEvent)
+		CustomEvents::SendResize();
+
 	USER_ZOOM = max(100, min(200, percent));
 
 	// Make sure the zoom factor is not set too high for the full UI to fit.

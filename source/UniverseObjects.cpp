@@ -125,7 +125,7 @@ void UniverseObjects::FinishLoading()
 			for(const string &name : category.second)
 				persons.Get(name)->NeverSpawn();
 		else
-			Logger::LogError("Unhandled \"disable\" keyword of type \"" + category.first + "\"");
+			Logger::Log("Unhandled \"disable\" keyword of type \"" + category.first + "\".", Logger::Level::WARNING);
 	}
 
 	// Sort all category lists.
@@ -136,7 +136,7 @@ void UniverseObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
+void UniverseObjects::Change(const DataNode &node, PlayerInfo &player)
 {
 	const ConditionsStore *playerConditions = &player.Conditions();
 	const set<const System *> *visitedSystems = &player.VisitedSystems();
@@ -168,8 +168,15 @@ void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
 		substitutions.Load(node, playerConditions);
 	else if(key == "wormhole" && hasValue)
 		wormholes.Get(node.Token(1))->Load(node);
+	else if(key == "event" && hasValue)
+	{
+		GameEvent eventCopy = *events.Get(node.Token(1));
+		list<DataNode> changes = eventCopy.Apply(player, true);
+		for(const DataNode &eventNode : changes)
+			Change(eventNode, player);
+	}
 	else
-		node.PrintTrace("Error: Invalid \"event\" data:");
+		node.PrintTrace("Invalid \"event\" data:");
 }
 
 
@@ -203,13 +210,13 @@ void UniverseObjects::CheckReferences()
 	// Log a warning for an "undefined" class object that was never loaded from disk.
 	auto Warn = [](const string &noun, const string &name)
 	{
-		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
+		Logger::Log(noun + " \"" + name + "\" is referred to, but not fully defined.", Logger::Level::WARNING);
 	};
 	// Class objects with a deferred definition should still get named when content is loaded.
 	auto NameIfDeferred = [](const set<string> &deferred, auto &it)
 	{
 		if(deferred.contains(it.first))
-			it.second.SetName(it.first);
+			it.second.SetTrueName(it.first);
 		else
 			return false;
 
@@ -218,7 +225,7 @@ void UniverseObjects::CheckReferences()
 	// Set the name of an "undefined" class object, so that it can be written to the player's save.
 	auto NameAndWarn = [=](const string &noun, auto &it)
 	{
-		it.second.SetName(it.first);
+		it.second.SetTrueName(it.first);
 		Warn(noun, it.first);
 	};
 	// Parse all GameEvents for object definitions.
@@ -226,7 +233,7 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : events)
 	{
 		// Stock GameEvents are serialized in MissionActions by name.
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("event", it);
 		else
 		{
@@ -243,10 +250,10 @@ void UniverseObjects::CheckReferences()
 			Warn("conversation", it.first);
 	// The "default intro" conversation must invoke the prompt to set the player's name.
 	if(!conversations.Get("default intro")->IsValidIntro())
-		Logger::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
+		Logger::Log("The \"default intro\" conversation must contain a \"name\" node.", Logger::Level::WARNING);
 	// Effects are serialized as a part of ships.
 	for(auto &&it : effects)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("effect", it);
 	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
 	for(auto &&it : fleets)
@@ -259,7 +266,7 @@ void UniverseObjects::CheckReferences()
 	}
 	// Government names are used in mission NPC blocks and LocationFilters.
 	for(auto &&it : governments)
-		if(it.second.GetTrueName().empty() && !NameIfDeferred(deferred["government"], it))
+		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["government"], it))
 			NameAndWarn("government", it);
 	// Minables are not serialized.
 	for(const auto &it : minables)
@@ -268,7 +275,7 @@ void UniverseObjects::CheckReferences()
 	// Stock missions are never serialized, and an accepted mission is
 	// always fully defined (though possibly not "valid").
 	for(const auto &it : missions)
-		if(it.second.Name().empty())
+		if(it.second.DisplayName().empty())
 			Warn("mission", it.first);
 
 	// News are never serialized or named, except by events (which would then define them).
@@ -306,7 +313,7 @@ void UniverseObjects::CheckReferences()
 			Warn("wormhole", it.first);
 	// Formation patterns are not serialized, but their usage is.
 	for(auto &&it : formations)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("formation", it);
 	// Any stock colors should have been loaded from game data files.
 	for(const auto &it : colors)
@@ -315,6 +322,16 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : swizzles)
 		if(!it.second.IsLoaded())
 			Warn("swizzle", it.first);
+	for(const auto &it : messageCategories)
+		if(!it.second.IsLoaded())
+			Warn("message category", it.first);
+	for(const auto &it : messages)
+		if(!it.second.IsLoaded())
+			Warn("message", it.first);
+	// Persons can be referred to when marking them as destroyed.
+	for(const auto &it : persons)
+		if(!it.second.IsLoaded())
+			Warn("person", it.first);
 }
 
 
@@ -328,7 +345,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 
 	DataFile data(path);
 	if(debugMode)
-		Logger::LogError("Parsing: " + path.string());
+		Logger::Log("Parsing: " + path.string(), Logger::Level::INFO);
 
 	const ConditionsStore *playerConditions = &player.Conditions();
 	const set<const System *> *visitedSystems = &player.VisitedSystems();
@@ -341,7 +358,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		{
 			Color *color = colors.Get(node.Token(1));
 			color->Load(node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
-			color->SetName(node.Token(1));
+			color->SetTrueName(node.Token(1));
 		}
 		else if(key == "swizzle" && hasValue)
 			swizzles.Get(node.Token(1))->Load(node);
@@ -488,6 +505,10 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			wormholes.Get(node.Token(1))->Load(node);
 		else if(key == "gamerules" && node.HasChildren())
 			gamerules.Load(node);
+		else if(key == "message category")
+			messageCategories.Get(node.Token(1))->Load(node);
+		else if(key == "message")
+			messages.Get(node.Token(1))->Load(node);
 		else if(key == "disable" && hasValue)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};
