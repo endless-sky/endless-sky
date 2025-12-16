@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/DataWriter.h"
 #include "../files/GameData.h"
 #include "Gamerules.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../ship/Ship.h"
 
 #include <algorithm>

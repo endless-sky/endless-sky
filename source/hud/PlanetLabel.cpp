@@ -15,20 +15,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PlanetLabel.h"
 
-#include "../Angle.h"
+#include "../util/Angle.h"
 #include "../text/Font.h"
 #include "../text/FontSet.h"
 #include "../government/Government.h"
 #include "../shader/LineShader.h"
 #include "../util/pi.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../shader/PointerShader.h"
 #include "../player/Preferences.h"
 #include "../util/Rectangle.h"
 #include "../shader/RingShader.h"
-#include "../StellarObject.h"
-#include "../system/System.h"
-#include "../system/Wormhole.h"
+#include "../map/StellarObject.h"
+#include "../map/System.h"
+#include "../map/Wormhole.h"
 
 #include <algorithm>
 #include <cmath>

@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
 #include "../files/GameData.h"
-#include "../system/Planet.h"
-#include "../system/System.h"
+#include "../map/Planet.h"
+#include "../map/System.h"
 
 using namespace std;
 

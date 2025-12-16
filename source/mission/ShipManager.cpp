@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/GameData.h"
 #include "../hud/Messages.h"
 #include "../player/PlayerInfo.h"
-#include "Ship.h"
+#include "../ship/Ship.h"
 
 #include <cstdlib>
 

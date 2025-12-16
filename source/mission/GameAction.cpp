@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../GameAction.h"
+#include "GameAction.h"
 
 #include "../audio/Audio.h"
 #include "../files/DataNode.h"
@@ -21,14 +21,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ui/Dialog.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"
-#include "../GameEvent.h"
+#include "GameEvent.h"
 #include "../hud/Messages.h"
-#include "../outfit/Outfit.h"
-#include "../system/Planet.h"
+#include "../ship/Outfit.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Random.h"
 #include "../ship/Ship.h"
-#include "../system/System.h"
+#include "../map/System.h"
 #include "../ui/UI.h"
 
 #include <cstdlib>

@@ -18,9 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ui/CategoryType.h"
 #include "../hud/Message.h"
 #include "../util/Set.h"
-#include "../system/Shop.h"
+#include "../map/Shop.h"
 #include "../util/Swizzle.h"
-#include "../system/Trade.h"
+#include "../map/Trade.h"
 
 #include <filesystem>
 #include <future>

@@ -13,15 +13,15 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../ship/DamageProfile.h"
+#include "DamageProfile.h"
 
-#include "../DamageDealt.h"
+#include "DamageDealt.h"
 #include "../image/Mask.h"
-#include "../system/Minable.h"
+#include "../map/Minable.h"
 #include "MinableDamageDealt.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../ship/Ship.h"
-#include "../outfit/Weapon.h"
+#include "Weapon.h"
 
 using namespace std;
 

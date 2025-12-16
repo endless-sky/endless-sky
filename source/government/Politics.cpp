@@ -17,8 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../text/Format.h"
 #include "../files/GameData.h"
-#include "../Government.h"
-#include "../system/Planet.h"
+#include "Government.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Random.h"
 #include "../ship/Ship.h"

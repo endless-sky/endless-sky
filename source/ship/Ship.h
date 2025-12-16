@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Body.h"
+#include "../util/Body.h"
 
 #include "../util/Angle.h"
 #include "Armament.h"
@@ -23,11 +23,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ai/Command.h"
 #include "../util/EsUuid.h"
 #include "../ai/FireCommand.h"
-#include "../outfit/Outfit.h"
+#include "Outfit.h"
 #include "../text/Paragraphs.h"
 #include "../fleet/Personality.h"
 #include "../util/Point.h"
-#include "../system/Port.h"
+#include "../map/Port.h"
 #include "../ai/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 

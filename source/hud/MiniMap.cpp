@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../MiniMap.h"
+#include "MiniMap.h"
 
 #include "../util/Color.h"
 #include "../ai/Command.h"
@@ -25,13 +25,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../shader/LineShader.h"
 #include "../ui/MapPanel.h"
 #include "../mission/Mission.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../player/Preferences.h"
 #include "../shader/RingShader.h"
 #include "../util/Set.h"
 #include "../ship/Ship.h"
-#include "../system/System.h"
+#include "../map/System.h"
 
 #include <set>
 #include <vector>

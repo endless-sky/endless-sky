@@ -13,21 +13,21 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../LocationFilter.h"
+#include "LocationFilter.h"
 
 #include "../ui/CategoryList.h"
-#include "CategoryType.h"
+#include "../ui/CategoryType.h"
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
 #include "../pathfinding/DistanceMap.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
-#include "../system/Planet.h"
-#include "../system/Port.h"
+#include "../map/Planet.h"
+#include "../map/Port.h"
 #include "../util/Random.h"
 #include "../ship/Ship.h"
-#include "../system/StellarObject.h"
-#include "../system/System.h"
+#include "../map/StellarObject.h"
+#include "../map/System.h"
 
 #include <algorithm>
 #include <mutex>

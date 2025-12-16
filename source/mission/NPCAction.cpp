@@ -13,12 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../NPCAction.h"
+#include "NPCAction.h"
 
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
 #include "../player/PlayerInfo.h"
-#include "../system/System.h"
+#include "../map/System.h"
 #include "../ui/UI.h"
 
 using namespace std;

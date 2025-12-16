@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/Point.h"
 #include "../util/Rectangle.h"
 #include "ScrollBar.h"
-#include "../ScrollVar.h"
+#include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
 #include "Tooltip.h"
 

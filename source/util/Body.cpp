@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/GameData.h"
 #include "../image/Mask.h"
 #include "../image/MaskManager.h"
-#include "../util/pi.h"
-#include "../util/Random.h"
+#include "pi.h"
+#include "Random.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
 

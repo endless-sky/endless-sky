@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../util/Angle.h"
-#include "../ship/Body.h"
+#include "../util/Body.h"
 #include "../collision/CollisionSet.h"
 #include "../util/Point.h"
 #include "../util/WeightedList.h"

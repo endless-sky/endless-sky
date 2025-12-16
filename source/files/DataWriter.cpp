@@ -13,10 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../DataWriter.h"
+#include "DataWriter.h"
 
 #include "DataNode.h"
-#include "../Files.h"
+#include "Files.h"
 
 using namespace std;
 

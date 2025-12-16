@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../util/Color.h"
 #include "Panel.h"
-#include "../ScrollVar.h"
+#include "ScrollVar.h"
 
 
 

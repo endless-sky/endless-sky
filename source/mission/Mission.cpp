@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../Mission.h"
+#include "Mission.h"
 
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
@@ -25,12 +25,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/Logger.h"
 #include "../hud/Messages.h"
 #include "../text/Phrase.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Random.h"
 #include "../ship/Ship.h"
 #include "../ship/ShipEvent.h"
-#include "../system/System.h"
+#include "../map/System.h"
 #include "../ui/UI.h"
 
 #include <cmath>

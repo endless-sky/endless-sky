@@ -17,19 +17,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../Port.h"
+#include "Port.h"
 
 #include "../files/DataNode.h"
-#include "../text/Format.h"
-#include "../files/GameData.h"
-#include "../Government.h"
+#include "../government/Government.h"
 #include "../player/PlayerInfo.h"
-#include "../government/Politics.h"
-#include "../util/Random.h"
 #include "../ship/Ship.h"
-#include "../ship/ShipEvent.h"
-#include "../image/SpriteSet.h"
-#include "System.h"
 
 #include <algorithm>
 

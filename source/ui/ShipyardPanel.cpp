@@ -13,13 +13,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../ShipyardPanel.h"
+#include "ShipyardPanel.h"
 
 #include "../text/Alignment.h"
 #include "../comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
 #include "../util/Color.h"
-#include "../Dialog.h"
+#include "Dialog.h"
 #include "../text/DisplayText.h"
 #include "../text/Font.h"
 #include "../text/FontSet.h"
@@ -28,17 +28,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../government/Government.h"
 #include "../mission/Mission.h"
 #include "../text/Phrase.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Point.h"
 #include "Screen.h"
 #include "../ship/Ship.h"
-#include "../ShipNameDialog.h"
+#include "ShipNameDialog.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
 #include "../shader/SpriteShader.h"
 #include "../text/Truncate.h"
-#include "../UI.h"
+#include "UI.h"
 
 #include <algorithm>
 

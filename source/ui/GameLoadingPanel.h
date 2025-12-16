@@ -17,9 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include <string>
-#include <vector>
-
 class Conversation;
 class PlayerInfo;
 class TaskQueue;

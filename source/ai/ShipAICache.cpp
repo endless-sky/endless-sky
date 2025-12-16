@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipAICache.h"
 
 #include "../ship/Armament.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../util/pi.h"
 #include "../ship/Ship.h"
-#include "../outfit/Weapon.h"
+#include "../collision/Weapon.h"
 
 #include <algorithm>
 #include <cmath>

@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StarField.h"
 
-#include "../Angle.h"
-#include "../ship/Body.h"
+#include "../util/Angle.h"
+#include "../util/Body.h"
 #include "DrawList.h"
 #include "../files/GameData.h"
 #include "../ui/Interface.h"
@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ui/Screen.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
-#include "../system/System.h"
+#include "../map/System.h"
 
 #include <algorithm>
 #include <cmath>

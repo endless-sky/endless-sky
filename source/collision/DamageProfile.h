@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../util/Point.h"
-#include "../outfit/Projectile.h"
-#include "../system/Weather.h"
+#include "Projectile.h"
+#include "../map/Weather.h"
 
 class DamageDealt;
 class Minable;

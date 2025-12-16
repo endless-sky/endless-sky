@@ -13,19 +13,19 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../Hardpoint.h"
+#include "Hardpoint.h"
 
 #include "../audio/Audio.h"
-#include "Body.h"
-#include "../Effect.h"
+#include "../util/Body.h"
+#include "../hud/Effect.h"
 #include "../hud/Flotsam.h"
-#include "../outfit/Outfit.h"
+#include "Outfit.h"
 #include "../util/pi.h"
-#include "../Projectile.h"
+#include "../collision/Projectile.h"
 #include "../util/Random.h"
 #include "Ship.h"
 #include "../hud/Visual.h"
-#include "../outfit/Weapon.h"
+#include "../collision/Weapon.h"
 
 #include <algorithm>
 #include <cmath>

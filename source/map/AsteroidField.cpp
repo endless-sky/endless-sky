@@ -13,14 +13,14 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../AsteroidField.h"
+#include "AsteroidField.h"
 
 #include "../collision/Collision.h"
-#include "../ship/CollisionType.h"
+#include "../collision/CollisionType.h"
 #include "../shader/DrawList.h"
 #include "../image/Mask.h"
 #include "Minable.h"
-#include "../outfit/Projectile.h"
+#include "../collision/Projectile.h"
 #include "../util/Random.h"
 #include "../ui/Screen.h"
 #include "../image/SpriteSet.h"

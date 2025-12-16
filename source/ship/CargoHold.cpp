@@ -21,8 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "../mission/Mission.h"
-#include "../outfit/Outfit.h"
-#include "../system/System.h"
+#include "Outfit.h"
+#include "../map/System.h"
 
 #include <algorithm>
 #include <cmath>

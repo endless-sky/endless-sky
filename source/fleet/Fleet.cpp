@@ -13,20 +13,20 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../Fleet.h"
+#include "Fleet.h"
 
 #include "../files/DataNode.h"
-#include "../ship/FormationPattern.h"
+#include "../ai/FormationPattern.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "../files/Logger.h"
 #include "../text/Phrase.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../util/Random.h"
 #include "../ship/Ship.h"
 #include "../ship/ShipJumpNavigation.h"
-#include "../system/StellarObject.h"
-#include "../system/System.h"
+#include "../map/StellarObject.h"
+#include "../map/System.h"
 
 #include <algorithm>
 #include <cmath>

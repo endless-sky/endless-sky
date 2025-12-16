@@ -13,15 +13,15 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../CollisionSet.h"
+#include "CollisionSet.h"
 
-#include "../ship/Body.h"
-#include "../ship/Collision.h"
+#include "../util/Body.h"
+#include "Collision.h"
 #include "../government/Government.h"
 #include "../files/Logger.h"
 #include "../image/Mask.h"
 #include "../util/Point.h"
-#include "../outfit/Projectile.h"
+#include "Projectile.h"
 #include "../ship/Ship.h"
 
 #include <algorithm>

@@ -13,10 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../CaptureOdds.h"
+#include "CaptureOdds.h"
 
 #include "../government/Government.h"
-#include "../outfit/Outfit.h"
+#include "Outfit.h"
 #include "Ship.h"
 
 #include <algorithm>

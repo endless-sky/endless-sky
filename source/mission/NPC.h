@@ -17,9 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Conversation.h"
 #include "../util/EsUuid.h"
-#include "ExclusiveItem.h"
+#include "../util/ExclusiveItem.h"
 #include "../fleet/Fleet.h"
-#include "FleetCargo.h"
+#include "../fleet/FleetCargo.h"
 #include "LocationFilter.h"
 #include "NPCAction.h"
 #include "../fleet/Personality.h"

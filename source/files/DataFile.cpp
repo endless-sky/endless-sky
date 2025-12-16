@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataFile.h"
 
-#include "../Files.h"
+#include "Files.h"
 #include "../text/Utf8.h"
 
 using namespace std;

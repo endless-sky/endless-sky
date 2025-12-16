@@ -16,11 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 
 #include "../files/DataNode.h"
-#include "../ship/FormationPattern.h"
+#include "../ai/FormationPattern.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "../ship/Ship.h"
-#include "../system/System.h"
+#include "../map/System.h"
 
 using namespace std;
 

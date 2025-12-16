@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/Rectangle.h"
 #include "../ship/Ship.h"
 #include "../image/Sprite.h"
-#include "../system/System.h"
+#include "../map/System.h"
 
 #include <algorithm>
 #include <set>

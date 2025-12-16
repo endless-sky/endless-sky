@@ -20,15 +20,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "GameData.h"
 #include "../mission/GameEvent.h"
-#include "LocationFilter.h"
-#include "../outfit/Outfit.h"
-#include "../system/Planet.h"
+#include "../mission/LocationFilter.h"
+#include "../ship/Outfit.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
-#include "Port.h"
+#include "../map/Port.h"
 #include "../ship/Ship.h"
-#include "../system/Shop.h"
-#include "../system/System.h"
-#include "../outfit/Weapon.h"
+#include "../map/Shop.h"
+#include "../map/System.h"
+#include "../ship/Weapon.h"
 
 #include <iostream>
 #include <map>

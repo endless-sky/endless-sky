@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ClickZone.h"
 #include "InfoPanelState.h"
 #include "../util/Point.h"
-#include "../ShipInfoDisplay.h"
+#include "ShipInfoDisplay.h"
 
 #include <map>
 #include <memory>

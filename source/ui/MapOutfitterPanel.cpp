@@ -13,21 +13,21 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../MapOutfitterPanel.h"
+#include "MapOutfitterPanel.h"
 
 #include "../comparators/BySeriesAndIndex.h"
 #include "CategoryList.h"
 #include "../player/CoreStartData.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"
-#include "../outfit/Outfit.h"
-#include "../system/Planet.h"
+#include "../ship/Outfit.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Point.h"
 #include "Screen.h"
 #include "../image/Sprite.h"
-#include "../StellarObject.h"
-#include "../system/System.h"
+#include "../map/StellarObject.h"
+#include "../map/System.h"
 #include "UI.h"
 
 #include <algorithm>

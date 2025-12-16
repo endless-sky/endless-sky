@@ -13,24 +13,22 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../GameLoadingPanel.h"
+#include "GameLoadingPanel.h"
 
 #include "../util/Angle.h"
 #include "../audio/Audio.h"
 #include "../util/Color.h"
 #include "../mission/Conversation.h"
-#include "../ConversationPanel.h"
+#include "ConversationPanel.h"
 #include "../files/GameData.h"
 #include "../image/MaskManager.h"
-#include "../MenuAnimationPanel.h"
-#include "../MenuPanel.h"
+#include "MenuAnimationPanel.h"
+#include "MenuPanel.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Point.h"
 #include "../shader/PointerShader.h"
-#include "../ship/Ship.h"
 #include "../image/SpriteSet.h"
 #include "../shader/StarField.h"
-#include "../system/System.h"
 #include "../files/TaskQueue.h"
 #include "UI.h"
 

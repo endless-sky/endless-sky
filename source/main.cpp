@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "hud/Engine.h"
 #include "files/Files.h"
 #include "text/Font.h"
-#include "hud/FrameTimer.h"
+#include "ui/FrameTimer.h"
 #include "files/GameData.h"
 #include "ui/GameLoadingPanel.h"
 #include "GameVersion.h"

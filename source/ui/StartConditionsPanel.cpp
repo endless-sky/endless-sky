@@ -14,7 +14,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../StartConditionsPanel.h"
+#include "StartConditionsPanel.h"
 
 #include "../ai/Command.h"
 #include "ConversationPanel.h"
@@ -26,18 +26,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "MainPanel.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../player/Preferences.h"
 #include "../util/Rectangle.h"
 #include "../ship/Ship.h"
 #include "ShipyardPanel.h"
-#include "../system/Shop.h"
+#include "../map/Shop.h"
 #include "../shader/StarField.h"
 #include "../player/StartConditions.h"
-#include "../system/System.h"
+#include "../map/System.h"
 #include "../text/Truncate.h"
-#include "../UI.h"
+#include "UI.h"
 
 #include <algorithm>
 

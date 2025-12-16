@@ -13,13 +13,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../ShopPanel.h"
+#include "ShopPanel.h"
 
 #include "../text/Alignment.h"
 #include "CategoryList.h"
-#include "../CategoryType.h"
+#include "CategoryType.h"
 #include "../util/Color.h"
-#include "../Dialog.h"
+#include "Dialog.h"
 #include "../text/DisplayText.h"
 #include "../shader/FillShader.h"
 #include "../text/Font.h"
@@ -31,21 +31,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 #include "../mission/Mission.h"
 #include "../shader/OutlineShader.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../shader/PointerShader.h"
 #include "../player/Preferences.h"
-#include "../system/Sale.h"
+#include "../map/Sale.h"
 #include "Screen.h"
 #include "ScrollBar.h"
-#include "../ScrollVar.h"
+#include "ScrollVar.h"
 #include "../ship/Ship.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
 #include "../shader/SpriteShader.h"
 #include "../text/Truncate.h"
-#include "../UI.h"
-#include "../text/WrappedText.h"
+#include "UI.h"
 
 #include "../shader/opengl.h"
 #include <SDL2/SDL.h>

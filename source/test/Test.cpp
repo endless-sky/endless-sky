@@ -19,10 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Format.h"
 #include "../files/GameData.h"
 #include "../files/Logger.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../ship/Ship.h"
-#include "../system/System.h"
+#include "../map/System.h"
 #include "TestContext.h"
 #include "TestData.h"
 

@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Paragraphs.h"
 #include "Port.h"
 #include "Sale.h"
-#include "../Shop.h"
+#include "Shop.h"
 
 #include <list>
 #include <memory>

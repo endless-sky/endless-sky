@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ai/Command.h"
 #include "ConversationPanel.h"
 #include "../files/DataFile.h"
-#include "../Dialog.h"
+#include "Dialog.h"
 #include "../text/DisplayText.h"
 #include "../files/Files.h"
 #include "../shader/FillShader.h"

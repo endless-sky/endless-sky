@@ -13,11 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../MapSalesPanel.h"
+#include "MapSalesPanel.h"
 
 #include "../audio/Audio.h"
 #include "CategoryList.h"
-#include "../CategoryType.h"
+#include "CategoryType.h"
 #include "../ai/Command.h"
 #include "Dialog.h"
 #include "../text/DisplayText.h"
@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../image/SpriteSet.h"
 #include "../shader/SpriteShader.h"
 #include "../util/Swizzle.h"
-#include "../system/System.h"
+#include "../map/System.h"
 #include "../text/Truncate.h"
 #include "UI.h"
 

@@ -13,20 +13,20 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../SpaceportPanel.h"
+#include "SpaceportPanel.h"
 
 #include "../text/Alignment.h"
 #include "../text/FontSet.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"
 #include "Interface.h"
-#include "../mission/News.h"
-#include "../system/Planet.h"
+#include "../map/News.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Random.h"
 #include "Screen.h"
 #include "TextArea.h"
-#include "../UI.h"
+#include "UI.h"
 
 using namespace std;
 

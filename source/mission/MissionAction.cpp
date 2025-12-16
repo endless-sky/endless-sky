@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../MissionAction.h"
+#include "MissionAction.h"
 
 #include "../ship/CargoHold.h"
 #include "../ui/ConversationPanel.h"
@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Format.h"
 #include "../files/GameData.h"
 #include "GameEvent.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../player/PlayerInfo.h"
 #include "../ship/Ship.h"
 #include "../text/TextReplacements.h"

@@ -17,17 +17,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../text/Alignment.h"
 #include "CategoryList.h"
-#include "../CategoryType.h"
+#include "CategoryType.h"
 #include "../util/Color.h"
 #include "../player/Depreciation.h"
 #include "../shader/FillShader.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../player/PlayerInfo.h"
 #include "../ship/Ship.h"
 #include "../text/Table.h"
-#include "../outfit/Weapon.h"
+#include "../collision/Weapon.h"
 
 #include <algorithm>
 #include <map>

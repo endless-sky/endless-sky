@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../util/Angle.h"
-#include "../ship/Body.h"
+#include "../util/Body.h"
 #include "../util/Distribution.h"
 #include "../util/Point.h"
 

@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../opengl.h"
+#include "opengl.h"
 
 #if !defined(__APPLE__) && !defined(ES_GLES)
 #ifdef _WIN32

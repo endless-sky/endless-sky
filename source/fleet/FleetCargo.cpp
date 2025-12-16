@@ -13,16 +13,16 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../FleetCargo.h"
+#include "FleetCargo.h"
 
 #include "../files/DataNode.h"
 #include "../files/GameData.h"
-#include "../outfit/Outfit.h"
-#include "../system/Planet.h"
+#include "../ship/Outfit.h"
+#include "../map/Planet.h"
 #include "../ship/Ship.h"
-#include "../system/StellarObject.h"
-#include "../system/System.h"
-#include "../system/Trade.h"
+#include "../map/StellarObject.h"
+#include "../map/System.h"
+#include "../map/Trade.h"
 
 #include <algorithm>
 #include <cmath>

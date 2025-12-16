@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DrawList.h"
 
-#include "../ship/Body.h"
+#include "../util/Body.h"
 #include "../player/Preferences.h"
 #include "../ui/Screen.h"
 #include "../image/Sprite.h"

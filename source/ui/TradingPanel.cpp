@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../TradingPanel.h"
+#include "TradingPanel.h"
 
 #include "../util/Color.h"
 #include "../ai/Command.h"
@@ -26,11 +26,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "MapDetailPanel.h"
 #include "../hud/Messages.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../player/PlayerInfo.h"
 #include "Screen.h"
-#include "../system/System.h"
-#include "../UI.h"
+#include "../map/System.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <string>

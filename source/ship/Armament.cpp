@@ -13,13 +13,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../Armament.h"
+#include "Armament.h"
 
-#include "../FireCommand.h"
+#include "../ai/FireCommand.h"
 #include "../files/Logger.h"
-#include "../outfit/Outfit.h"
+#include "Outfit.h"
 #include "Ship.h"
-#include "../outfit/Weapon.h"
+#include "../collision/Weapon.h"
 
 #include <algorithm>
 #include <cmath>

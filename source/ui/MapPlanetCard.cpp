@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../MapPlanetCard.h"
+#include "MapPlanetCard.h"
 
 #include "../util/Color.h"
 #include "../text/DisplayText.h"
@@ -24,15 +24,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../government/Government.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../util/Point.h"
 #include "../shader/PointerShader.h"
 #include "Screen.h"
 #include "../image/Sprite.h"
 #include "../shader/SpriteShader.h"
-#include "../StellarObject.h"
-#include "../system/System.h"
-#include "../text/WrappedText.h"
+#include "../map/StellarObject.h"
+#include "../map/System.h"
 
 using namespace std;
 

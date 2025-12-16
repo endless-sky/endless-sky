@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../Panel.h"
+#include "Panel.h"
 
 #include "../util/Point.h"
 #include "../util/Rectangle.h"

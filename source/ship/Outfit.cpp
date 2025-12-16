@@ -16,12 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 
 #include "../audio/Audio.h"
-#include "../ship/Body.h"
+#include "../util/Body.h"
 #include "../files/DataNode.h"
 #include "../hud/Effect.h"
 #include "../files/GameData.h"
 #include "../image/SpriteSet.h"
-#include "Weapon.h"
+#include "../collision/Weapon.h"
 
 #include <algorithm>
 #include <cmath>

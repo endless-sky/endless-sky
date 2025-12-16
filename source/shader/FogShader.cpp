@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/Point.h"
 #include "../ui/Screen.h"
 #include "Shader.h"
-#include "../system/System.h"
+#include "../map/System.h"
 
 #include "opengl.h"
 

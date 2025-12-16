@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../conditions/ConditionSet.h"
-#include "LocationFilter.h"
+#include "../mission/LocationFilter.h"
 #include "../text/Phrase.h"
 
 #include <string>

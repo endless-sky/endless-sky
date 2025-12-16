@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 
 #include "pi.h"
-#include "../Random.h"
+#include "Random.h"
 
 #include <algorithm>
 #include <cmath>

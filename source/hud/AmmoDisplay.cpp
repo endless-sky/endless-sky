@@ -13,14 +13,14 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../AmmoDisplay.h"
+#include "AmmoDisplay.h"
 
 #include "../util/Color.h"
 #include "../text/Font.h"
 #include "../text/FontSet.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Point.h"
 #include "../util/Rectangle.h"

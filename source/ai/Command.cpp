@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Command.h"
 
-#include "../DataFile.h"
+#include "../files/DataFile.h"
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
 #include "../text/Format.h"

@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/GameData.h"
 #include "../player/Gamerules.h"
 #include "../government/Government.h"
-#include "../Hazard.h"
+#include "Hazard.h"
 #include "Minable.h"
 #include "Planet.h"
 #include "../util/Random.h"

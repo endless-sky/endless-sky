@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../PlayerInfo.h"
+#include "PlayerInfo.h"
 
 #include "../ai/AI.h"
 #include "../audio/Audio.h"
@@ -29,9 +29,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Government.h"
 #include "../files/Logger.h"
 #include "../hud/Messages.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../fleet/Person.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../files/Plugins.h"
 #include "../government/Politics.h"
 #include "../Port.h"
@@ -43,7 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ship/ShipEvent.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
-#include "../system/System.h"
+#include "../map/System.h"
 #include "../ui/UI.h"
 #include "../outfit/Weapon.h"
 

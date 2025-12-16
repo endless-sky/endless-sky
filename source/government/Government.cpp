@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/DataNode.h"
 #include "../fleet/Fleet.h"
 #include "../files/GameData.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../text/Phrase.h"
 #include "Politics.h"
 #include "../ship/Ship.h"

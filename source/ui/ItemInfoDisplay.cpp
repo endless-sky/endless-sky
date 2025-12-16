@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../text/Alignment.h"
 #include "../util/Color.h"
-#include "../shader/FillShader.h"
 #include "../text/FontSet.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"

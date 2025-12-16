@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../Ship.h"
+#include "Ship.h"
 
 #include "../audio/Audio.h"
 #include "../ui/CategoryList.h"
@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Effect.h"
 #include "../hud/Flotsam.h"
 #include "../text/Format.h"
-#include "FormationPattern.h"
+#include "../ai/FormationPattern.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "JumpType.h"
@@ -32,7 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../image/Mask.h"
 #include "../hud/Messages.h"
 #include "../text/Phrase.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../player/Preferences.h"
 #include "../Projectile.h"
@@ -43,10 +43,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../image/SpriteSet.h"
 #include "StellarObject.h"
 #include "../util/Swizzle.h"
-#include "../system/System.h"
+#include "../map/System.h"
 #include "../hud/Visual.h"
-#include "../outfit/Weapon.h"
-#include "../system/Wormhole.h"
+#include "../collision/Weapon.h"
+#include "../map/Wormhole.h"
 
 #include <algorithm>
 #include <cassert>

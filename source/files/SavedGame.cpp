@@ -20,9 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../player/Date.h"
 #include "../text/Format.h"
 #include "GameData.h"
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../image/SpriteSet.h"
-#include "../system/System.h"
+#include "../map/System.h"
 
 using namespace std;
 

@@ -16,13 +16,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 
 #include "../util/Angle.h"
-#include "../Effect.h"
+#include "Effect.h"
 #include "../files/GameData.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../util/Random.h"
 #include "../ship/Ship.h"
 #include "../image/SpriteSet.h"
-#include "../Visual.h"
+#include "Visual.h"
 
 #include <cmath>
 

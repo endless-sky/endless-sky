@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "../system/Sale.h"
+#include "../map/Sale.h"
 
 #include <functional>
 #include <map>

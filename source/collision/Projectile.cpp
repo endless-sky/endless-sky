@@ -16,11 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 
 #include "../hud/Effect.h"
-#include "../collision/FighterHitHelper.h"
+#include "FighterHitHelper.h"
 #include "../util/pi.h"
 #include "../util/Random.h"
 #include "../ship/Ship.h"
-#include "../Visual.h"
+#include "../hud/Visual.h"
 #include "Weapon.h"
 
 #include <algorithm>

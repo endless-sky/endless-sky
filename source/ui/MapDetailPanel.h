@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPlanetCard.h"
 #include "../util/Point.h"
 #include "ScrollBar.h"
-#include "../ScrollVar.h"
+#include "ScrollVar.h"
 
 #include <map>
 #include <vector>

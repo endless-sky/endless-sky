@@ -13,11 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../ConversationPanel.h"
+#include "ConversationPanel.h"
 
 #include "../text/Alignment.h"
 #include "../audio/Audio.h"
-#include "../BoardingPanel.h"
+#include "BoardingPanel.h"
 #include "../text/Clipboard.h"
 #include "../util/Color.h"
 #include "../ai/Command.h"
@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../text/Format.h"
 #include "../files/GameData.h"
 #include "../government/Government.h"
-#include "../MapDetailPanel.h"
+#include "MapDetailPanel.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Point.h"
 #include "../player/Preferences.h"

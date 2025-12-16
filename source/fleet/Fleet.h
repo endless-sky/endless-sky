@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../FleetCargo.h"
+#include "FleetCargo.h"
 #include "Personality.h"
 #include "Variant.h"
 #include "../util/WeightedList.h"

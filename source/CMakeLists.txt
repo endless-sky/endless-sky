@@ -27,16 +27,16 @@ target_sources(EndlessSkyLib PRIVATE
 		ui/Animate.h
 		ship/Armament.cpp
 		ship/Armament.h
-		system/AsteroidField.cpp
-		system/AsteroidField.h
+		map/AsteroidField.cpp
+		map/AsteroidField.h
         ui/BankPanel.cpp
         ui/BankPanel.h
 		util/Bitset.cpp
 		util/Bitset.h
         ui/BoardingPanel.cpp
         ui/BoardingPanel.h
-		ship/Body.cpp
-		ship/Body.h
+		util/Body.cpp
+		util/Body.h
 		hud/Camera.cpp
 		hud/Camera.h
 		ship/CaptureOdds.cpp
@@ -115,14 +115,14 @@ target_sources(EndlessSkyLib PRIVATE
 		fleet/FleetCargo.h
 		hud/Flotsam.cpp
 		hud/Flotsam.h
-		ship/FormationPattern.cpp
-		ship/FormationPattern.h
-		ship/FormationPositioner.cpp
-		ship/FormationPositioner.h
-		hud/FrameTimer.cpp
-		hud/FrameTimer.h
-		system/Galaxy.cpp
-		system/Galaxy.h
+		ai/FormationPattern.cpp
+		ai/FormationPattern.h
+		ai/FormationPositioner.cpp
+		ai/FormationPositioner.h
+		ui/FrameTimer.cpp
+		ui/FrameTimer.h
+		map/Galaxy.cpp
+		map/Galaxy.h
 		mission/GameAction.cpp
 		mission/GameAction.h
 		files/GameData.cpp
@@ -143,8 +143,8 @@ target_sources(EndlessSkyLib PRIVATE
         ui/HailPanel.h
 		ship/Hardpoint.cpp
 		ship/Hardpoint.h
-		system/Hazard.cpp
-		system/Hazard.h
+		map/Hazard.cpp
+		map/Hazard.h
         ui/HiringPanel.cpp
         ui/HiringPanel.h
         ui/InfoPanelState.cpp
@@ -190,8 +190,8 @@ target_sources(EndlessSkyLib PRIVATE
         ui/MessageLogPanel.h
 		hud/Messages.cpp
 		hud/Messages.h
-		system/Minable.cpp
-		system/Minable.h
+		map/Minable.cpp
+		map/Minable.h
 		collision/MinableDamageDealt.h
 		hud/MiniMap.cpp
 		hud/MiniMap.h
@@ -210,10 +210,10 @@ target_sources(EndlessSkyLib PRIVATE
 		mission/NPC.h
 		mission/NPCAction.cpp
 		mission/NPCAction.h
-		mission/News.cpp
-		mission/News.h
-		outfit/Outfit.cpp
-		outfit/Outfit.h
+		map/News.cpp
+		map/News.h
+		ship/Outfit.cpp
+		ship/Outfit.h
 		ui/OutfitInfoDisplay.cpp
 		ui/OutfitInfoDisplay.h
         ui/OutfitterPanel.cpp
@@ -228,8 +228,8 @@ target_sources(EndlessSkyLib PRIVATE
 		fleet/Personality.h
 		text/Phrase.cpp
 		text/Phrase.h
-		system/Planet.cpp
-		system/Planet.h
+		map/Planet.cpp
+		map/Planet.h
 		hud/PlanetLabel.cpp
 		hud/PlanetLabel.h
         ui/PlanetPanel.cpp
@@ -244,16 +244,16 @@ target_sources(EndlessSkyLib PRIVATE
 		util/Point.h
 		government/Politics.cpp
 		government/Politics.h
-		system/Port.cpp
-		system/Port.h
+		map/Port.cpp
+		map/Port.h
 		player/Preferences.cpp
 		player/Preferences.h
         ui/PreferencesPanel.cpp
         ui/PreferencesPanel.h
 		files/PrintData.cpp
 		files/PrintData.h
-		outfit/Projectile.cpp
-		outfit/Projectile.h
+		collision/Projectile.cpp
+		collision/Projectile.h
 		hud/Radar.cpp
 		hud/Radar.h
 		fleet/RaidFleet.cpp
@@ -269,7 +269,7 @@ target_sources(EndlessSkyLib PRIVATE
 		pathfinding/RouteEdge.h
 		pathfinding/RoutePlan.cpp
 		pathfinding/RoutePlan.h
-		system/Sale.h
+		map/Sale.h
 		files/SavedGame.cpp
 		files/SavedGame.h
 		ui/Screen.cpp
@@ -280,7 +280,7 @@ target_sources(EndlessSkyLib PRIVATE
 		util/Set.h
 		ship/Ship.cpp
 		ship/Ship.h
-		system/Shop.h
+		map/Shop.h
 		ship/ShipEvent.cpp
 		ship/ShipEvent.h
         ui/ShipInfoDisplay.cpp
@@ -289,8 +289,8 @@ target_sources(EndlessSkyLib PRIVATE
         ui/ShipInfoPanel.h
 		ship/ShipJumpNavigation.cpp
 		ship/ShipJumpNavigation.h
-		ship/ShipManager.cpp
-		ship/ShipManager.h
+		mission/ShipManager.cpp
+		mission/ShipManager.h
 		ui/ShipNameDialog.cpp
 		ui/ShipNameDialog.h
 		ui/ShipyardPanel.cpp
@@ -303,14 +303,14 @@ target_sources(EndlessSkyLib PRIVATE
 		player/StartConditions.h
 		ui/StartConditionsPanel.cpp
 		ui/StartConditionsPanel.h
-		system/StellarObject.cpp
-		system/StellarObject.h
+		map/StellarObject.cpp
+		map/StellarObject.h
 		util/StringInterner.cpp
 		util/StringInterner.h
 		util/Swizzle.cpp
 		util/Swizzle.h
-		system/System.cpp
-		system/System.h
+		map/System.cpp
+		map/System.h
 		player/SystemEntry.h
 		files/TaskQueue.cpp
 		files/TaskQueue.h
@@ -320,8 +320,8 @@ target_sources(EndlessSkyLib PRIVATE
 		text/TextReplacements.h
 		ui/Tooltip.cpp
 		ui/Tooltip.h
-		system/Trade.cpp
-		system/Trade.h
+		map/Trade.cpp
+		map/Trade.h
 		ui/TradingPanel.cpp
 		ui/TradingPanel.h
 		ui/UI.cpp
@@ -332,13 +332,13 @@ target_sources(EndlessSkyLib PRIVATE
 		fleet/Variant.h
 		hud/Visual.cpp
 		hud/Visual.h
-		outfit/Weapon.cpp
-		outfit/Weapon.h
-		system/Weather.cpp
-		system/Weather.h
+		collision/Weapon.cpp
+		collision/Weapon.h
+		map/Weather.cpp
+		map/Weather.h
 		util/WeightedList.h
-		system/Wormhole.cpp
-		system/Wormhole.h
+		map/Wormhole.cpp
+		map/Wormhole.h
 		pathfinding/WormholeStrategy.h
 		files/ZipFile.cpp
 		files/ZipFile.h
@@ -374,12 +374,12 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
 	comparators/ByUUID.h
-	orders/OrderSet.cpp
-	orders/OrderSet.h
-	orders/OrderSingle.cpp
-	orders/OrderSingle.h
-	orders/Orders.cpp
-	orders/Orders.h
+		ai/orders/OrderSet.cpp
+		ai/orders/OrderSet.h
+		ai/orders/OrderSingle.cpp
+		ai/orders/OrderSingle.h
+		ai/orders/Orders.cpp
+		ai/orders/Orders.h
 	image/BlendingMode.h
 	image/ImageBuffer.cpp
 	image/ImageBuffer.h

@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../audio/SoundCategory.h"
 
 #include "../util/Angle.h"
-#include "../ship/Body.h"
+#include "../util/Body.h"
 
 #include <string>
 

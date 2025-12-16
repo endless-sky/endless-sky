@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../util/Angle.h"
-#include "../util/Point.h"
-#include "../util/Swizzle.h"
+#include "Angle.h"
+#include "Point.h"
+#include "Swizzle.h"
 
 #include <string>
 

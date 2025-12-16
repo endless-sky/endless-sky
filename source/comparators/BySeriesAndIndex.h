@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../ui/CategoryList.h"
-#include "../CategoryType.h"
+#include "../ui/CategoryType.h"
 #include "../files/GameData.h"
-#include "../outfit/Outfit.h"
+#include "../ship/Outfit.h"
 #include "../ship/Ship.h"
 
 namespace {

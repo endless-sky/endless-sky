@@ -13,9 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../ConditionSet.h"
+#include "ConditionSet.h"
 
-#include "../ConditionsStore.h"
+#include "ConditionsStore.h"
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
 #include "../files/Logger.h"

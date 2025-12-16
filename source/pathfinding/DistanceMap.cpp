@@ -13,15 +13,15 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../DistanceMap.h"
+#include "DistanceMap.h"
 
-#include "../system/Planet.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../ship/Ship.h"
 #include "../ship/ShipJumpNavigation.h"
-#include "../system/StellarObject.h"
-#include "../system/System.h"
-#include "../system/Wormhole.h"
+#include "../map/StellarObject.h"
+#include "../map/System.h"
+#include "../map/Wormhole.h"
 
 using namespace std;
 

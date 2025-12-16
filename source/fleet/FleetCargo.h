@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../system/Shop.h"
+#include "../map/Shop.h"
 
 class DataNode;
 class Outfit;

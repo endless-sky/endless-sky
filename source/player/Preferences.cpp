@@ -13,15 +13,15 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../Preferences.h"
+#include "Preferences.h"
 
 #include "../audio/Audio.h"
-#include "DataFile.h"
+#include "../files/DataFile.h"
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
-#include "Files.h"
+#include "../files/Files.h"
 #include "../files/GameData.h"
-#include "GameWindow.h"
+#include "../ui/GameWindow.h"
 #include "../ui/Interface.h"
 #include "../files/Logger.h"
 #include "../ui/Screen.h"

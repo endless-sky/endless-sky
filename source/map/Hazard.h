@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../outfit/Weapon.h"
+#include "../collision/Weapon.h"
 
 
 // Hazards are environmental effects created within systems. They are able to create

@@ -18,10 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/Angle.h"
 #include "../files/GameData.h"
 #include "../shader/PointerShader.h"
-#include "../Projectile.h"
+#include "../collision/Projectile.h"
 #include "../shader/RingShader.h"
 #include "../ship/Ship.h"
-#include "../outfit/Weapon.h"
+#include "../collision/Weapon.h"
 
 #include <algorithm>
 

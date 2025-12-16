@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../MissionTimer.h"
+#include "MissionTimer.h"
 
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../player/PlayerInfo.h"
 #include "../util/Random.h"
 #include "../ship/Ship.h"
-#include "../system/System.h"
+#include "../map/System.h"
 
 #include <cmath>
 

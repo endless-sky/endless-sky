@@ -26,8 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/GameData.h"
 #include "../ship/Hardpoint.h"
 #include "../mission/Mission.h"
-#include "../outfit/Outfit.h"
-#include "../system/Planet.h"
+#include "../ship/Outfit.h"
+#include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../util/Point.h"
 #include "Screen.h"
@@ -37,11 +37,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../shader/SpriteShader.h"
 #include "../text/Truncate.h"
 #include "UI.h"
-#include "../outfit/Weapon.h"
+#include "../collision/Weapon.h"
 
 #include <algorithm>
 #include <limits>
+#include <map>
 #include <memory>
+#include <set>
 
 using namespace std;
 
