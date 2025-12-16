@@ -704,7 +704,7 @@ phrase "hai bribe rejection hail"
 	word
 		"."
 		"!"
-	replacements
+	replace
 		"evil evildoers" "evildoers"
 
 phrase "friendly disabled unfettered"
