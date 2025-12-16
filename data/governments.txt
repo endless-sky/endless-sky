@@ -783,6 +783,8 @@ government "Hai Merchant"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
+	"bribe acceptance hail" "hai bribe acceptance hail"
+	"bribe rejection hail" "hai bribe rejection hail"
 
 government "Hai Merchant (Sympathizers)"
 	"display name" "Hai"
@@ -806,6 +808,8 @@ government "Hai Merchant (Sympathizers)"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
+	"bribe acceptance hail" "hai bribe acceptance hail"
+	"bribe rejection hail" "hai bribe rejection hail"
 
 government "Hai Merchant (Human)"
 	"display name" "Hai"
@@ -829,6 +833,8 @@ government "Hai Merchant (Human)"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile civilian"
 	"hostile disabled hail" "hostile disabled"
+	"bribe acceptance hail" "hai bribe acceptance hail"
+	"bribe rejection hail" "bribe rejection hail"
 
 color "governments: Hai (Unfettered)" .55 .27 .76
 

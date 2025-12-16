@@ -622,70 +622,90 @@ phrase "hai bribe acceptance hail"
 	word
 		"I"
 		"We"
-		"The Hai"
+		"We all"
 	word
-		" "
-	word
-		"feel"
-		"think that it is"
-	word
-		" "
+		" feel "
+		" think that it is "
 	word
 		"shameful"
 		"vile"
 	word
-		" "
+		" to work with you"
 	word
-		"to work with you"
-	word
-		";"
+		","
 	word
 		" "
 	word
 		"but "
 		"though "
 	word
-		"we will make an exception for this."
+		"we will make an exception for this payment."
 		"we will accept your bribe."
-		"we hope your intentions go away after this."
+		"we hope you intend go away after this."
 		"we hope you will leave us alone after this."
 
+phrase "hai bribe acceptance hail"
+	word
+		"I "
+		"We "
+	word
+		"will "
+	word
+		"accept "
+		"receive "
+		"take "
+	word
+		"your "
+	word
+		"donation "
+		"money "
+		"payment "
+	word
+		"this time."
+	word
+		"" 4
+		" Next time, you may not be so lucky."
 
 phrase "hai bribe rejection hail"
 	word
-		"The Hai"
-		"We"
-		"I"
-		"Haikind"
+		"Haikind "
+		"I "
+		"The Hai "
+		"We "
 	word
-		" "
+		"cannot "
+		"do not want to "
+		"shall not "
+		"will never "
+		"will not "
 	word
-		"will never"
-		"cannot"
-		"do not want to"
-	word
-		" "
-	word
-		"accept"
+		"accept "
+		"receive "
 		"take"
-		"swindle"
 	word
-		" "
+		"bribes "
+		"payment "
 	word
-		"bribes"
+		"from "
 	word
-		" "
+		"" 15
+		"conquering "
+		"domineering "
+		"evil "
+		"hopeless "
+		"impolite "
+		"useless "
 	word
-		"from"
-	word
-		" "
-	word
+		"evildoers"
 		"oppressors"
+		"pirates"
 		"tyrants"
 		"warmongerers"
 	word
 		"."
 		"!"
+	replacements
+		"evil evildoers" "evildoers"
 
 phrase "friendly disabled unfettered"
 	word

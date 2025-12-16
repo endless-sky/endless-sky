@@ -21,6 +21,34 @@ phrase "bribe rejection hail"
 		"we value honor over greed."
 		"we will not be swayed so easily."
 
+phrase "bribe rejection hail"
+	word
+		"We're "
+	word
+		"fighting a "
+		"in a "
+		"in the middle of a "
+		"trying to win a "
+		"winning a "
+	word
+		"battle"
+		"combat"
+		"conflict"
+		"engagement"
+		"war"
+	word
+		" here!"
+		" right now!"
+	word
+		" We don't have time for this!"
+
+phrase "bribe rejection hail"
+	word
+		"Stop being a distraction!"
+		"I can't stand chatty enemies!"
+		"Do you think I understand that?"
+		"I can't do math in the middle of a fight!"
+
 phrase "band"
 	word
 		"There Might Be Riots"
