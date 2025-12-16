@@ -2389,6 +2389,8 @@ mission "Ka'het: Voice From The Past 6"
 				`	"The location you gave me did not seem to have been inhabited."`
 			`	You give her a brief summary of your mission, and of your findings. "I am afraid the people you were supposed to deliver this data to have left together with the satellite," she replies, perplexed. "It has been busy for all of us recently, and some steps were skipped to accelerate the process.`
 			`	"If you leave the datapad here, I promise I will make sure it gets into the right hands. I am sure they will contact you themselves after things have calmed down a bit." You hand her the tablet with the info you recorded, hopeful it will reach its destination.`
+			``
+			`[This is the end of Ember Waste content currently in the game. Stay tuned for more in a future update!]`
 
 event "ka'het: quarantine site"
 

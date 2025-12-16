@@ -1267,3 +1267,5 @@ mission "Gegno Asteroid Mining Prologue"
 		conversation
 			`You dock with the station at the facility's port, rather than on the other side of it. Waiting for you is a large group of Gegno workers, all in rusted or damaged gear. After a few moments of staring and discussion among one another, they unload the minerals from your ship, then go about their business as if nothing happened. Another approaches you, and to your surprise, pays you a sum of <payment> for your work. It seems that the Gegno value and reward effort no matter who does it, even a member of another species.`
 			`	For the time being, the station remains accessible to you, as well as these small odd jobs for mining. Hopefully someday the Gegno will recognize that you're worth more than whatever they've labeled you for.`
+			``
+			`[This is the end of Gegno content currently in the game. Stay tuned for more in a future update!]`

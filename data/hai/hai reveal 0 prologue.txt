@@ -768,5 +768,7 @@ mission "Hai Reveal: Meet the Team: Sayari 2"
 			`	Sayari smiles. "How humble. Although I suppose you're wondering what do to next.`
 			label more
 			`	"For now, there are no immediate tasks for you. The others will continue working on the plan to manage the situation, and we will call upon you once you are needed. I suggest you explore our systems while you wait and gain a better understanding of the Hai people. It will do us well for you to have this knowledge."`
+			``
+			`[This is the end of Hai content currently in the game. Stay tuned for more in a future update!]`
 
 event "hr: exploration period"

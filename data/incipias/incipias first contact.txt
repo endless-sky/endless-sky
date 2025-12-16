@@ -408,3 +408,5 @@ mission "Incipias: Help The Stranded 2"
 				decline
 			label "end no time"
 			`	"We are understanding-sad. Safe travels, captain." You notice a slight blue tone in the representative's communication as one of the Incipias guides you back to your ship.`
+			``
+			`[This is the end of Incipias content currently in the game. Stay tuned for more in a future update!]`
