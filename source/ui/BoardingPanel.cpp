@@ -34,7 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/Random.h"
 #include "../ship/Ship.h"
 #include "../ship/ShipEvent.h"
-#include "../ShipInfoPanel.h"
+#include "ShipInfoPanel.h"
 #include "../map/System.h"
 #include "UI.h"
 

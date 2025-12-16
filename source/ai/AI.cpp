@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../hud/Flotsam.h"
 #include "../text/Format.h"
 #include "FormationPattern.h"
-#include "../ship/FormationPositioner.h"
+#include "FormationPositioner.h"
 #include "../files/GameData.h"
 #include "../player/Gamerules.h"
 #include "../government/Government.h"

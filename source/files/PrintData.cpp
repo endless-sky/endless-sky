@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../ship/Ship.h"
 #include "../map/Shop.h"
 #include "../map/System.h"
-#include "../ship/Weapon.h"
+#include "../collision/Weapon.h"
 
 #include <iostream>
 #include <map>

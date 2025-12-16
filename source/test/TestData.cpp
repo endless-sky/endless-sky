@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "TestData.h"
 
-#include "../DataFile.h"
+#include "../files/DataFile.h"
 #include "../files/DataNode.h"
 #include "../files/DataWriter.h"
-#include "../Files.h"
+#include "../files/Files.h"
 #include "../files/GameData.h"
 #include "../mission/Mission.h"
 #include "../files/UniverseObjects.h"
