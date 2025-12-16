@@ -49,6 +49,19 @@ phrase "bribe rejection hail"
 		"Do you think I understand that?"
 		"I can't do math in the middle of a fight!"
 
+phrase "bribe rejeciton hail"
+	word
+		"You want "
+	word
+		"a truce"
+		"peace"
+		"to stop fighting"
+	word
+		"? "
+	word
+		"" 9
+		"Shoulda thought of that before you attacked us!"
+
 phrase "band"
 	word
 		"There Might Be Riots"
