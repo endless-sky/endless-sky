@@ -2117,6 +2117,7 @@ government "Republic Intelligence"
 		"Pirate (Devil-Run Gang)" -.3
 	"friendly disabled hail" "friendly disabled"
 	"hostile disabled hail" "hostile disabled"
+	"bribe rejection hail" "bribe rejection hail"
 
 government "Republic that won't enter wormhole"
 	"display name" Republic
@@ -2142,6 +2143,7 @@ government "Republic that won't enter wormhole"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
 	"hostile disabled hail" "hostile disabled"
+	"bribe rejection hail" "bribe rejection hail"
 	raid "pirate raid"
 
 government "Rulei"
