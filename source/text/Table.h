@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../Color.h"
+#include "../util/Color.h"
 #include "Layout.h"
-#include "../Point.h"
+#include "../util/Point.h"
 
 #include <string>
 #include <vector>

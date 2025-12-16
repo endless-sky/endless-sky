@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteShader.h"
 
-#include "../GameData.h"
-#include "../Screen.h"
+#include "../files/GameData.h"
+#include "../ui/Screen.h"
 #include "Shader.h"
 #include "../image/Sprite.h"
-#include "../Swizzle.h"
+#include "../util/Swizzle.h"
 
 using namespace std;
 

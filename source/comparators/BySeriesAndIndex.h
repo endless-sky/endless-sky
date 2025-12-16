@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../CategoryList.h"
+#include "../ui/CategoryList.h"
 #include "../CategoryType.h"
-#include "../GameData.h"
-#include "../Outfit.h"
-#include "../Ship.h"
+#include "../files/GameData.h"
+#include "../outfit/Outfit.h"
+#include "../ship/Ship.h"
 
 namespace {
 	bool Helper(const Outfit &a, const Outfit &b, const std::string &nameA, const std::string &nameB)

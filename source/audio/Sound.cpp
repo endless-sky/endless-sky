@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Sound.h"
 
-#include "../Files.h"
-#include "../Logger.h"
+#include "../files/Files.h"
+#include "../files/Logger.h"
 #include "supplier/WavSupplier.h"
 
 #include <cstdint>

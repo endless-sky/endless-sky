@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../Point.h"
+#include "../util/Point.h"
 #include "Shader.h"
 
-#include "../opengl.h"
+#include "opengl.h"
 
 #include <vector>
 

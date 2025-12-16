@@ -16,14 +16,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Font.h"
 
 #include "Alignment.h"
-#include "../Color.h"
+#include "../util/Color.h"
 #include "DisplayText.h"
-#include "../GameData.h"
+#include "../files/GameData.h"
 #include "../image/ImageBuffer.h"
 #include "../image/ImageFileData.h"
-#include "../Point.h"
-#include "../Preferences.h"
-#include "../Screen.h"
+#include "../util/Point.h"
+#include "../player/Preferences.h"
+#include "../ui/Screen.h"
 #include "Truncate.h"
 
 #include <algorithm>

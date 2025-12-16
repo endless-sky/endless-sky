@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../Point.h"
-#include "../Swizzle.h"
+#include "../util/Point.h"
+#include "../util/Swizzle.h"
 
 #include <cstdint>
 

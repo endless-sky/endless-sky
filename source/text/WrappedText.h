@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Alignment.h"
-#include "../Point.h"
+#include "../util/Point.h"
 #include "Truncate.h"
 
 #include <string>
