@@ -42,7 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #if defined _WIN32
-#include "Files.h"
+#include "../files/Files.h"
 #endif
 
 #include <array>
