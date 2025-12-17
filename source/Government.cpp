@@ -51,7 +51,7 @@ namespace {
 					specialPenalty = Government::SpecialPenalty::PROVOKE;
 					if(amount <= 0.)
 					{
-						child.PrintTrace("Warning: the \"provoke\" effect will not work"
+						child.PrintTrace("The \"provoke\" effect will not work"
 							" without a positive, non-zero penalty to reputation, defaulting to 0.01:");
 						amount = .01;
 					}
@@ -61,7 +61,7 @@ namespace {
 					specialPenalty = Government::SpecialPenalty::ATROCITY;
 					if(amount <= .05)
 					{
-						child.PrintTrace("Warning: the \"atrocity\" effect will not work"
+						child.PrintTrace("The \"atrocity\" effect will not work"
 							" without a penalty to reputation higher or equal to 0.05, defaulting to 0.05:");
 						amount = .05;
 					}
