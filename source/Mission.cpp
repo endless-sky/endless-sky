@@ -1669,13 +1669,15 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
 	string reason;
-	for(auto &&n : npcs)
-		reason = n.Validate(true);
-	if(!reason.empty())
+	for(const NPC &npc : npcs)
 	{
-		Logger::Log("Instantiation Error: NPC template in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
-		return result;
+		reason = npc.Validate(true);
+		if(!reason.empty())
+		{
+			Logger::Log("Instantiation Error: NPC template in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
@@ -1687,56 +1689,53 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
-	auto ait = actions.begin();
-	for( ; ait != actions.end(); ++ait)
+	for(const auto &[trigger, action] : actions)
 	{
-		reason = ait->second.Validate();
+		reason = action.Validate();
 		if(!reason.empty())
-			break;
+		{
+			Logger::Log("Instantiation Error: Action \"" + TriggerToText(trigger) + "\" in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
-	if(ait != actions.end())
-	{
-		Logger::Log("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
-		return result;
-	}
-	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
+	for(const auto &[trigger, action] : actions)
+		result.actions[trigger] = action.Instantiate(subs, sourceSystem, jumps, payload);
 
-	auto oit = onEnter.begin();
-	for( ; oit != onEnter.end(); ++oit)
+	for(const auto &[system, action] : onEnter)
 	{
-		reason = oit->first->IsValid() ? oit->second.Validate() : "trigger system";
+		reason = system->IsValid() ? action.Validate() : "trigger system";
 		if(!reason.empty())
-			break;
+		{
+			Logger::Log("Instantiation Error: Action \"on enter `" + system->TrueName() + "`\" in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
-	if(oit != onEnter.end())
-	{
-		Logger::Log("Instantiation Error: Action \"on enter '" + oit->first->TrueName() + "'\" in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
-		return result;
-	}
-	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
+	for(const auto &[system, action] : onEnter)
+		result.onEnter[system] = action.Instantiate(subs, sourceSystem, jumps, payload);
 	for(const auto &[planet, action] : onLand)
 	{
 		reason = planet->IsValid() ? action.Validate() : "trigger planet";
+		if(!reason.empty())
+		{
+			Logger::Log("Instantiation Error: Action \"on land `" + planet->TrueName() + "`\" in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
 	for(const auto &[planet, action] : onLand)
 		result.onLand[planet] = action.Instantiate(subs, sourceSystem, jumps, payload);
 
-	auto eit = genericOnEnter.begin();
-	for( ; eit != genericOnEnter.end(); ++eit)
+	for(const MissionAction &action : genericOnEnter)
 	{
-		reason = eit->Validate();
+		reason = action.Validate();
 		if(!reason.empty())
-			break;
-	}
-	if(eit != genericOnEnter.end())
-	{
-		Logger::Log("Instantiation Error: Generic \"on enter\" action in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
-		return result;
+		{
+			Logger::Log("Instantiation Error: Generic \"on enter\" action in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
+			return result;
+		}
 	}
 	for(const MissionAction &action : genericOnEnter)
 		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
@@ -1745,8 +1744,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		reason = action.Validate();
 		if(!reason.empty())
 		{
-			Logger::LogError("Instantiation Error: Generic \"on land\" action in mission \""
-				+ TrueName() + "\" uses invalid " + reason);
+			Logger::Log("Instantiation Error: Generic \"on land\" action in mission \""
+				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
 			return result;
 		}
 	}
