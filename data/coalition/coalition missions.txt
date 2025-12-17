@@ -603,7 +603,7 @@ mission "Kimek Student 1"
 			`	"Lacking proper funds, I currently am," he says, speaking much slower than before. "Once paid by this new job I am, however, pay you I will. I promise."`
 			choice
 				`	"Ok, I'll take you there."`
-				`	I prefer not having to wait to get paid, sorry.`
+				`	"I prefer not having to wait to get paid, sorry."`
 					decline
 			label accept2
 			`	He thanks you and says to wait for him by your ship before you depart. You leave the restaurant shortly after, and head to your ship.`
