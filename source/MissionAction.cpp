@@ -57,63 +57,6 @@ namespace {
 
 
 
-MissionAction::MissionDialog::MissionDialog(const ExclusiveItem<Phrase> &phrase):
-	dialogPhrase(phrase)
-{
-}
-
-
-
-MissionAction::MissionDialog::MissionDialog(const string &text):
-	dialogText(text)
-{
-}
-
-
-
-MissionAction::MissionDialog::MissionDialog(const DataNode &node, const ConditionsStore *playerConditions)
-{
-	const string &key = node.Token(0);
-	// Handle anonymous phrases
-	//    phrase
-	//       ...
-	if(node.Size() == 1 && key == "phrase")
-	{
-		dialogPhrase = ExclusiveItem<Phrase>(Phrase(node));
-		// Anonymous phrases do not support "to display"
-		return;
-	}
-
-	// Handle named phrases
-	//    phrase "A Phrase Name"
-	if(node.Size() == 2 && key == "phrase")
-		dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
-
-	// Handle regular dialog text
-	//    "Some thrilling dialog that truly moves the player."
-	else
-	{
-		if(node.Size() > 1)
-			node.PrintTrace("Ignoring extra tokens.");
-		dialogText = key;
-
-		// Prevent a corner case that breaks assumptions. Dialog text cannot be empty (that indicates a phrase).
-		if(dialogText.empty())
-			dialogText = '\t';
-	}
-
-	// Search for "to display" lines.
-	for(auto &child : node)
-	{
-		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
-			node.PrintTrace("Ignoring unrecognized dialog token");
-		else
-			condition.Load(child, playerConditions);
-	}
-}
-
-
-
 // Construct and Load() at the same time.
 MissionAction::MissionAction(const DataNode &node, const ConditionsStore *playerConditions,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
@@ -170,12 +113,12 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 		if(count >= 0)
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		else
-			child.PrintTrace("Error: Skipping invalid \"require\" count:");
+			child.PrintTrace("Skipping invalid \"require\" count:");
 	}
 	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 	{
-		child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+		child.PrintTrace("Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
 		requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 	}
 	else if(key == "system")
@@ -183,7 +126,7 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 		if(location.empty() && child.HasChildren())
 			systemFilter.Load(child, visitedSystems, visitedPlanets);
 		else
-			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
+			child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
 	}
 	else if(key == "planet")
 	{
@@ -463,6 +406,63 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 int64_t MissionAction::Payment() const noexcept
 {
 	return action.Payment();
+}
+
+
+
+MissionAction::MissionDialog::MissionDialog(const ExclusiveItem<Phrase> &phrase):
+	dialogPhrase(phrase)
+{
+}
+
+
+
+MissionAction::MissionDialog::MissionDialog(const string &text):
+	dialogText(text)
+{
+}
+
+
+
+MissionAction::MissionDialog::MissionDialog(const DataNode &node, const ConditionsStore *playerConditions)
+{
+	const string &key = node.Token(0);
+	// Handle anonymous phrases
+	//    phrase
+	//       ...
+	if(node.Size() == 1 && key == "phrase")
+	{
+		dialogPhrase = ExclusiveItem<Phrase>(Phrase(node));
+		// Anonymous phrases do not support "to display"
+		return;
+	}
+
+	// Handle named phrases
+	//    phrase "A Phrase Name"
+	if(node.Size() == 2 && key == "phrase")
+		dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
+
+	// Handle regular dialog text
+	//    "Some thrilling dialog that truly moves the player."
+	else
+	{
+		if(node.Size() > 1)
+			node.PrintTrace("Ignoring extra tokens.");
+		dialogText = key;
+
+		// Prevent a corner case that breaks assumptions. Dialog text cannot be empty (that indicates a phrase).
+		if(dialogText.empty())
+			dialogText = '\t';
+	}
+
+	// Search for "to display" lines.
+	for(auto &child : node)
+	{
+		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
+			node.PrintTrace("Ignoring unrecognized dialog token");
+		else
+			condition.Load(child, playerConditions);
+	}
 }
 
 

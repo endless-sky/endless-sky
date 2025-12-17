@@ -76,14 +76,14 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
-	Audio::Pause();
+	Audio::BlockPausing();
 }
 
 
 
 PlanetPanel::~PlanetPanel()
 {
-	Audio::Resume();
+	Audio::UnblockPausing();
 }
 
 
@@ -94,6 +94,8 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
+		if(callback)
+			callback();
 		if(selectedPanel)
 			GetUI()->Pop(selectedPanel);
 		GetUI()->Pop(this);
@@ -202,7 +204,24 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 
 	UI::UISound sound = UI::UISound::NORMAL;
 	bool hasAccess = planet.CanUseServices();
-	if(key == 'd' && flagship && flagship->CanBeFlagship())
+	if(command.Has(Command::MAP))
+	{
+		GetUI()->Push(new MapDetailPanel(player));
+		return true;
+	}
+	else if(command.Has(Command::MESSAGE_LOG))
+	{
+		UI::PlaySound(UI::UISound::NORMAL);
+		GetUI()->Push(new MessageLogPanel());
+		return true;
+	}
+	else if(command.Has(Command::INFO) || key == 'i')
+	{
+		UI::PlaySound(UI::UISound::NORMAL);
+		GetUI()->Push(new PlayerInfoPanel(player));
+		return true;
+	}
+	else if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
 		requestedLaunch = true;
 		return true;
@@ -251,23 +270,6 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
-	}
-	else if(command.Has(Command::MAP))
-	{
-		GetUI()->Push(new MapDetailPanel(player));
-		return true;
-	}
-	else if(command.Has(Command::INFO))
-	{
-		UI::PlaySound(UI::UISound::NORMAL);
-		GetUI()->Push(new PlayerInfoPanel(player));
-		return true;
-	}
-	else if(command.Has(Command::MESSAGE_LOG))
-	{
-		UI::PlaySound(UI::UISound::NORMAL);
-		GetUI()->Push(new MessageLogPanel());
-		return true;
 	}
 	else
 		return false;

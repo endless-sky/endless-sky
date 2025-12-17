@@ -1,0 +1,170 @@
+# Copyright (c) 2025 by TomGoodIdea
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+
+# Categories:
+
+# The category used for most important system messages.
+"message category" "high"
+	"main color" "message category high"
+	"log color" "message log category high"
+	important
+
+# The default category used for most engine messages, including hails.
+"message category" "normal"
+	"main color" "message category normal"
+	"log color" "message log category normal"
+
+# The category used for messages that generate a lot of spam
+# (for example, ones that are sent continuously every frame).
+"message category" "low"
+	"main color" "message category low"
+	"log color" "message log category low"
+	"main duplicates" "keep old"
+
+# The category used for system messages that require more attention.
+"message category" "info"
+	"main color" "message category info"
+	"log color" "message log category info"
+	important
+
+# The special category used to mark the day beginning for easier navigation in the log.
+"message category" "daily"
+	"main color" "message category daily"
+	"log color" "message log category daily"
+	important
+
+# Same as the default one, but always adds the message to the log.
+"message category" "force log"
+	"main color" "message category normal"
+	"log color" "message log category normal"
+	"log duplicates" "keep both"
+
+# Same as the default one, but does not add the message to the main panel's list.
+"message category" "log only"
+	"log color" "message log category normal"
+	"log only"
+
+# A category combining features of the "high" and "low" categories.
+"message category" "high no repeat"
+	"main color" "message category high"
+	"log color" "message log category high"
+	important
+	"main duplicates" "keep old"
+
+# A high importance category that allows duplicates everywhere.
+"message category" "high duplicating"
+	"main color" "message category high"
+	"log color" "message log category high"
+	important
+	"main duplicates" "keep both"
+	"log duplicates" "keep both"
+
+
+
+# Engine messages:
+
+message "no formations available"
+	text "No formations available."
+
+message "disengaging autopilot"
+	text "Disengaging autopilot."
+
+message "coming to a stop"
+	text "Coming to a stop."
+
+message "engaging cloaking device"
+	text "Engaging cloaking device."
+
+message "disengaging cloaking device"
+	text "Disengaging cloaking device."
+
+message "no landables"
+	text "There are no planets in this system that you can land on."
+	category "high"
+
+message "no hyperdrive"
+	text "You do not have a hyperdrive installed."
+	category "high"
+
+message "cannot jump"
+	text "You cannot jump to the selected system."
+	category "high"
+
+message "no fuel"
+	text "You do not have enough fuel to make a hyperspace jump."
+	category "high"
+
+message "cannot jump while landing"
+	text "You cannot jump while landing."
+	category "high"
+
+message "undercrewed flagship"
+	text "Your ship is moving erratically because you do not have enough crew to pilot it."
+	category "low"
+
+message "cannot board while cloaked"
+	text "You cannot board a ship while cloaked."
+	category "high no repeat"
+
+message "overheated"
+	text "Your ship has overheated."
+	category "high no repeat"
+
+message "basics 1"
+	text `Press <View star map> to bring up your map. Select a destination, then close the map and press <Initiate hyperspace jump> to jump. Press <Land on planet / station> to land.`
+
+message "basics 2"
+	text `For the main menu, press <Show main menu>. The control key bindings can be viewed and changed in the preferences.`
+
+message "basics 3"
+	text `To see a help message again, press <Show help>. To see all help messages again, go to the main menu, select Preferences, then go to Settings. Navigate to page two, then select "Reactivate first-time help."`
+
+message "map received"
+	text "You received a map of nearby systems."
+
+message "turret tracking focused"
+	text "Turret tracking mode set to: focused."
+
+message "turret tracking opportunistic"
+	text "Turret tracking mode set to: opportunistic."
+
+message "expend ammo frugally"
+	text "Your escorts will now expend ammo: frugally."
+
+message "expend ammo always"
+	text "Your escorts will now expend ammo: always."
+
+message "expend ammo never"
+	text "Your escorts will now expend ammo: never."
+
+message "cannot hail while jumping"
+	text "Unable to send hail: your flagship is entering hyperspace."
+	category "high"
+
+message "cannot hail while cloaked"
+	text "Unable to send hail: your flagship is cloaked."
+	category "high"
+
+message "cannot hail"
+	text "Unable to send hail."
+	category "high"
+
+message "wormhole hail"
+	phrase "wormhole hail"
+	category "high"
+
+message "cannot hail without target"
+	text "Unable to send hail: no target selected."
+	category "high"

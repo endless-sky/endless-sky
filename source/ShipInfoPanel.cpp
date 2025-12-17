@@ -174,7 +174,9 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
-		GetUI()->Push(new ShipNameDialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->GivenName()));
+		GetUI()->Push(new ShipNameDialog(this,
+			Dialog::FunctionButton(this, "Rename", 'r', &ShipInfoPanel::Rename),
+			"Change this ship's name?", (*shipIt)->GivenName()));
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift) || key == 'k'))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
@@ -185,7 +187,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(shipIt->get() != player.Flagship())
 		{
 			map<const Outfit*, int> uniqueOutfits;
-			auto AddToUniques = [&uniqueOutfits] (const std::map<const Outfit *, int> &outfits)
+			auto AddToUniques = [&uniqueOutfits] (const map<const Outfit *, int> &outfits)
 			{
 				for(const auto &it : outfits)
 					if(it.first->Attributes().Get("unique"))
@@ -341,7 +343,7 @@ void ShipInfoPanel::UpdateInfo()
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
 	{
 		player.Flagship()->SetTargetShip(*shipIt);
-		player.SelectShip(shipIt->get(), false);
+		player.SelectEscort(shipIt->get(), false);
 	}
 
 	outfits.clear();
@@ -416,7 +418,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		if(it == outfits.end())
 			continue;
 
-		auto validOutfits = std::ranges::filter_view(it->second,
+		auto validOutfits = ranges::filter_view(it->second,
 			[](const Outfit *outfit){ return outfit->IsDefined() && !outfit->DisplayName().empty(); });
 
 		if(validOutfits.empty())
@@ -726,13 +728,15 @@ bool ShipInfoPanel::Hover(const Point &point)
 
 
 
-void ShipInfoPanel::Rename(const string &name)
+bool ShipInfoPanel::Rename(const string &name)
 {
 	if(shipIt != panelState.Ships().end() && !name.empty())
 	{
 		player.RenameShip(shipIt->get(), name);
 		UpdateInfo();
 	}
+	// Close dialog
+	return true;
 }
 
 
@@ -793,8 +797,8 @@ void ShipInfoPanel::Dump()
 
 	info.Update(**shipIt, player);
 	if(loss)
-		Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
-			, Messages::Importance::High);
+		Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
+			GameData::MessageCategories().Get("normal")});
 }
 
 
@@ -810,8 +814,8 @@ void ShipInfoPanel::DumpPlunder(int count)
 		info.Update(**shipIt, player);
 
 		if(loss)
-			Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
-				, Messages::Importance::High);
+			Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
+				GameData::MessageCategories().Get("normal")});
 	}
 }
 
@@ -830,8 +834,8 @@ void ShipInfoPanel::DumpCommodities(int count)
 		info.Update(**shipIt, player);
 
 		if(loss)
-			Messages::Add("You jettisoned " + Format::CreditString(loss) + " worth of cargo."
-				, Messages::Importance::High);
+			Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
+				GameData::MessageCategories().Get("normal")});
 	}
 }
 
