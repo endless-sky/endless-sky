@@ -381,7 +381,7 @@ outfit "High-Velocity Spike Rack"
 	category "Ammunition"
 	series "Ammunition"
 	index 11020
-	cost 350000
+	cost 50000
 	licenses
 		"High Houses"
 	thumbnail "outfit/hv spike rack"
@@ -389,6 +389,7 @@ outfit "High-Velocity Spike Rack"
 	"outfit space" -12
 	"energy capacity" 800
 	"spike capacity" 16
+	ammo "High-Velocity Spike"
 	description `Though the built-in ammunition reserves of the Sjeja Kinetic Lance are sufficient for all but the most protracted engagements, the High Houses do manufacture this additional storage unit for use on their largest warships. The rack includes a small set of batteries to help support the high power costs of the Sjeja.`
 
 outfitter "Kinetic Lance Restock"

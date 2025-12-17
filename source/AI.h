@@ -106,7 +106,7 @@ private:
 
 	bool FollowOrders(Ship &ship, Command &command);
 	void MoveInFormation(Ship &ship, Command &command);
-	void MoveIndependent(Ship &ship, Command &command) const;
+	void MoveIndependent(Ship &ship, Command &command);
 	void MoveWithParent(Ship &ship, Command &command, const Ship &parent);
 	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
@@ -125,8 +125,7 @@ private:
 	static double TurnToward(const Ship &ship, const Point &vector, const double precision = 0.9999);
 	static bool MoveToPlanet(const Ship &ship, Command &command, double cruiseSpeed = 0.);
 	static bool MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
-		const Point &targetVelocity, double radius, double slow, double cruiseSpeed = 0.,
-		const Point &finalDirection = Point());
+		const Point &targetVelocity, double radius, double slow, double cruiseSpeed = 0.);
 	static bool Stop(const Ship &ship, Command &command, double maxSpeed = 0., const Point &direction = Point());
 	static void PrepareForHyperspace(const Ship &ship, Command &command);
 	static void CircleAround(const Ship &ship, Command &command, const Body &target);
@@ -141,7 +140,7 @@ private:
 	// Special personality behaviors.
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
-	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
+	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(const Ship &ship, Command &command) const;
@@ -246,6 +245,7 @@ private:
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasementThreshold;
+	std::map<const Ship *, const Ship *> boarders;
 
 	// Records for formations flying around leadships and other objects.
 	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;

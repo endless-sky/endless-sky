@@ -214,7 +214,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
-	const string &name = ship.Name().empty() ? ship.DisplayModelName() : ship.Name();
+	const string &name = ship.GivenName().empty() ? ship.DisplayModelName() : ship.GivenName();
 	Point offset(-SIDEBAR_CONTENT / 2, -.5f * SHIP_SIZE + 10.f);
 	font.Draw({name, {SIDEBAR_CONTENT, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
@@ -441,12 +441,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		int group = key - '0';
 		if(mod & (KMOD_CTRL | KMOD_GUI))
-			player.SetGroup(group, &playerShips);
+			player.SetEscortGroup(group, &playerShips);
 		else if(mod & KMOD_SHIFT)
 		{
 			// If every single ship in this group is already selected, shift
 			// plus the group number means to deselect all those ships.
-			set<Ship *> added = player.GetGroup(group);
+			set<Ship *> added = player.GetEscortGroup(group);
 			bool allWereSelected = true;
 			for(Ship *ship : added)
 				allWereSelected &= playerShips.erase(ship);
@@ -466,7 +466,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			// Change the selection to the desired ships, if they are landed here.
 			playerShips.clear();
-			set<Ship *> wanted = player.GetGroup(group);
+			set<Ship *> wanted = player.GetEscortGroup(group);
 
 			const Planet *here = player.GetPlanet();
 			for(Ship *ship : wanted)
@@ -680,7 +680,7 @@ void ShopPanel::DoFind(const string &text)
 	int index = FindItem(text);
 	if(index >= 0 && index < static_cast<int>(zones.size()))
 	{
-		auto best = std::next(zones.begin(), index);
+		auto best = next(zones.begin(), index);
 		if(best->GetShip())
 			selectedShip = best->GetShip();
 		else
@@ -832,7 +832,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
-			shipName = ship->Name() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
+			shipName = ship->GivenName() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
 			shipsTooltip.SetZone(shipZones.back());
 		}
 

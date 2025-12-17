@@ -88,6 +88,8 @@ public:
 	// Check if there are no panels left.
 	bool IsEmpty() const;
 
+	void AdjustViewport() const;
+
 	// Get the current mouse position.
 	static Point GetMouse();
 

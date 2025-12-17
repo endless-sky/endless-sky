@@ -89,7 +89,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs[it.first].swap(it.second);
 	if(ship)
 	{
-		subs["<ship>"] = ship->Name();
+		subs["<ship>"] = ship->GivenName();
 		subs["<model>"] = ship->DisplayModelName();
 	}
 
@@ -229,10 +229,11 @@ void ConversationPanel::Draw()
 			if(index == choice)
 				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
 			AddZone(zone, [this, index](){ this->ClickChoice(index); });
-			++index;
 
 			font.Draw(label, point + Point(-15, 0), dim);
-			point = paragraph.Draw(point, bright);
+			point = paragraph.Draw(point, conversation.ChoiceIsActive(node, MapChoice(index)) ? bright : dim);
+
+			++index;
 		}
 	}
 	// Store the total height of the text.
@@ -329,11 +330,26 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	else if(key == SDLK_DOWN && choice + 1 < static_cast<int>(choices.size()))
 		++choice;
 	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < static_cast<int>(choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(choice)))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(key - '1')))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(key - SDLK_KP_1)))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else
 		return false;
 
@@ -375,7 +391,7 @@ bool ConversationPanel::Hover(int x, int y)
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
 	const ConditionsStore &conditions = player.Conditions();
-	Format::ConditionGetter getter = [&conditions](const std::string &str, size_t start, size_t length) -> int64_t
+	Format::ConditionGetter getter = [&conditions](const string &str, size_t start, size_t length) -> int64_t
 	{
 		return conditions.Get(str.substr(start, length));
 	};
@@ -502,7 +518,10 @@ void ConversationPanel::ClickName(int side)
 // The player just clicked on a conversation choice.
 void ConversationPanel::ClickChoice(int index)
 {
-	Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
+	if(conversation.ChoiceIsActive(node, MapChoice(index)))
+		Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
+	else
+		UI::PlaySound(UI::UISound::FAILURE);
 }
 
 
