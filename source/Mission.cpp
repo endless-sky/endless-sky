@@ -1197,7 +1197,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	if(trigger == STOPOVER)
 	{
 		// If this is not one of this mission's stopover planets, or if it is
-		// not the very last one that must be visited, do nothing.
+		// not the very last one that must be visited, see if a landing action can trigger instead.
 		auto it = stopovers.find(player.GetPlanet());
 		if(it == stopovers.end())
 			return Land(player.GetPlanet(), player, ui);
