@@ -79,3 +79,4 @@ CMakeUserPresets.json
 # Test binaries
 test_enet
 test_packet_serialization
+test_protocol
