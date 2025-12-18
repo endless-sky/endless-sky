@@ -4514,6 +4514,22 @@ void PlayerInfo::StepMissionTimers(UI *ui)
 
 
 
+bool PlayerInfo::RecacheJumpRoutes()
+{
+	bool recache = recacheJumpRoutes;
+	recacheJumpRoutes = false;
+	return recache;
+}
+
+
+
+void PlayerInfo::SetRecacheJumpRoutes()
+{
+	recacheJumpRoutes = true;
+}
+
+
+
 void PlayerInfo::Autosave() const
 {
 	if(!CanBeSaved() || filePath.length() < 4)

@@ -144,6 +144,11 @@ void UniverseObjects::Change(const DataNode &node, PlayerInfo &player)
 	const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
 
 	const string &key = node.Token(0);
+
+	// For these updates, the jump routes cache should be cleared:
+	if(key == "system" || key == "link" || key == "unlink" || key == "planet" || key == "wormhole")
+		player.SetRecacheJumpRoutes();
+
 	bool hasValue = node.Size() >= 2;
 	if(key == "fleet" && hasValue)
 		fleets.Get(node.Token(1))->Load(node);

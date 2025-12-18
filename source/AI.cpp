@@ -5176,6 +5176,10 @@ void AI::UpdateOrders(const Ship &ship)
 // Look for an existing distance map for this combination of inputs before calculating a new one.
 RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
 {
+	// Note: RecacheJumpRoutes will check and reset the value for us.
+	if(player.RecacheJumpRoutes())
+		ClearRouteCache();
+
 	const System *from = ship.GetSystem();
 	const Government *gov = ship.GetGovernment();
 	const JumpType driveCapability = ship.JumpNavigation().HasJumpDrive() ? JumpType::JUMP_DRIVE : JumpType::HYPERDRIVE;
