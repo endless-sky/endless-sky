@@ -653,17 +653,17 @@ phrase "bribe acceptance hai"
 	word
 		" will "
 	word
-		"accept "
-		"receive "
-		"take "
+		"accept"
+		"receive"
+		"take"
 	word
-		"your "
+		" your "
 	word
-		"donation "
-		"money "
-		"payment "
+		"donation"
+		"money"
+		"payment"
 	word
-		"this time."
+		" this time."
 	word
 		"" 4
 		" Next time, you may not be so lucky."
