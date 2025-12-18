@@ -654,6 +654,7 @@ void AI::Clean()
 	miningTime.clear();
 	appeasementThreshold.clear();
 	boarders.clear();
+	ClearRouteCache();
 	// Records for formations flying around lead ships and other objects.
 	formations.clear();
 	// Records that affect the combat behavior of various governments.
@@ -674,6 +675,13 @@ void AI::ClearOrders()
 
 
 
+void AI::ClearRouteCache()
+{
+	routeCache.clear();
+}
+
+
+
 void AI::Step(Command &activeCommands)
 {
 	// First, figure out the comparative strengths of the present governments.
@@ -681,24 +689,6 @@ void AI::Step(Command &activeCommands)
 	map<const Government *, int64_t> strength;
 	UpdateStrengths(strength, playerSystem);
 	CacheShipLists();
-
-	// At each step, reconsider all routes as new.
-	routeCache.clear();
-	// Create a complete list of the attributes which may be required for a ship to use wormholes within
-	// the universe. This will be a complete set of all attributes that affect any wormhole in the universe.
-	universeWormholeRequirements.clear();
-	for(const auto &wormhole : std::views::values(GameData::Wormholes()))
-	{
-		if(!wormhole.IsValid())
-			continue;
-
-		const Planet &p = *wormhole.GetPlanet();
-		if(!p.IsValid())
-			continue;
-
-		for(const auto &req : p.RequiredAttributes())
-			universeWormholeRequirements.emplace(req);
-	}
 
 	// Update the counts of how long ships have been outside the "invisible fence."
 	// If a ship ceases to exist, this also ensures that it will be removed from
@@ -5183,13 +5173,11 @@ void AI::UpdateOrders(const Ship &ship)
 
 
 
+// Look for an existing distance map for this combination of inputs before calculating a new one.
 RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
 {
 	const System *from = ship.GetSystem();
 	const Government *gov = ship.GetGovernment();
-
-	// Look for an existing distance map for this combination of inputs before calculating a new one
-	// Make the key for the cache
 	const JumpType driveCapability = ship.JumpNavigation().HasJumpDrive() ? JumpType::JUMP_DRIVE : JumpType::HYPERDRIVE;
 
 	// A cached route that could be used for this ship could depend on the wormholes which this ship can
@@ -5197,13 +5185,12 @@ RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
 	// which this ship satisfies.
 	vector<string> wormholeKeys;
 	const auto &shipAttributes = ship.Attributes();
-	for(auto requirement : universeWormholeRequirements)
-		if(shipAttributes.Get(requirement))
+	for(const auto &requirement : GameData::UniverseWormholeRequirements())
+		if(shipAttributes.Get(requirement) > 0)
 			wormholeKeys.emplace_back(requirement);
 
-	// Search for a cached solution for this route.
-	auto key = RouteCacheKey(from, targetSystem, gov, ship.JumpNavigation().JumpRange(),
-		driveCapability, wormholeKeys);
+	auto key = RouteCacheKey(from, targetSystem, gov, ship.JumpNavigation().JumpRange(), driveCapability,
+		wormholeKeys);
 
 	RoutePlan route;
 	auto it = routeCache.find(key);
@@ -5223,8 +5210,7 @@ RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
 AI::RouteCacheKey::RouteCacheKey(
 	const System *from, const System *to, const Government *gov, double jumpDistance,
 	JumpType jumpType, const vector<string> &wormholeKeys)
-		: from(from), to(to), gov(gov), jumpDistance(jumpDistance),
-			jumpType(jumpType), wormholeKeys(wormholeKeys)
+		: from(from), to(to), gov(gov), jumpDistance(jumpDistance), jumpType(jumpType), wormholeKeys(wormholeKeys)
 {
 }
 
@@ -5239,7 +5225,7 @@ size_t AI::RouteCacheKey::HashFunction::operator()(RouteCacheKey const &key) con
 	hash ^= std::hash<string>()(key.gov->TrueName()) << ++shift;
 	hash ^= std::hash<int>()(key.jumpDistance) << ++shift;
 	hash ^= std::hash<int>()(static_cast<std::size_t>(key.jumpType)) << ++shift;
-	for(string k : key.wormholeKeys)
+	for(const string &k : key.wormholeKeys)
 		hash ^= std::hash<string>()(k) << ++shift;;
 	return hash;
 }

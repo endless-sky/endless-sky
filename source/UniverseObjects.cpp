@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <iterator>
 #include <map>
+#include <ranges>
 #include <set>
 #include <utility>
 #include <vector>
@@ -198,6 +199,9 @@ void UniverseObjects::UpdateSystems()
 			if(object.GetPlanet())
 				planets.Get(object.GetPlanet()->TrueName())->FinishLoading(wormholes);
 	}
+
+	// If the systems change, the overall set of possible wormhole requirements may have changed and must be recomputed.
+	RecomputeWormholeRequirements();
 }
 
 
@@ -536,4 +540,16 @@ void UniverseObjects::DrawMenuBackground(Panel *panel) const
 {
 	lock_guard<mutex> lock(menuBackgroundMutex);
 	menuBackgroundCache.Draw(Information(), panel);
+}
+
+
+
+void UniverseObjects::RecomputeWormholeRequirements()
+{
+	// Create a complete set of all attributes that affect any wormhole in the universe.
+	universeWormholeRequirements.clear();
+	for(const auto &wormhole : std::views::values(wormholes))
+		if(wormhole.IsValid() && wormhole.GetPlanet()->IsValid())
+			for(const auto &req : wormhole.GetPlanet()->RequiredAttributes())
+				universeWormholeRequirements.emplace(req);
 }

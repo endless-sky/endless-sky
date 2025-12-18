@@ -825,6 +825,13 @@ const Set<Wormhole> &GameData::Wormholes()
 
 
 
+const std::set<std::string> &GameData::UniverseWormholeRequirements()
+{
+	return objects.universeWormholeRequirements;
+}
+
+
+
 const Government *GameData::PlayerGovernment()
 {
 	return playerGovernment;

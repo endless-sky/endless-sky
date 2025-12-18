@@ -76,6 +76,7 @@ public:
 	// Clear ship orders. This should be done when the player lands on a planet,
 	// but not when they jump from one system to another.
 	void ClearOrders();
+	void ClearRouteCache();
 	// Issue AI commands to all ships for one game step.
 	void Step(Command &activeCommands);
 	// Process commands for the player only, called by Step in non-paused mode.
@@ -293,5 +294,4 @@ private:
 
 	// Route planning cache:
 	std::unordered_map<RouteCacheKey, RoutePlan, RouteCacheKey::HashFunction> routeCache;
-	std::set<std::string> universeWormholeRequirements;
 };

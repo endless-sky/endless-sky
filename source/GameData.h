@@ -150,6 +150,8 @@ public:
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
+	static const std::set<std::string> &UniverseWormholeRequirements();
+
 
 	static ConditionsStore &GlobalConditions();
 
