@@ -121,3 +121,6 @@ if(MINGW AND WIN32)
 			COMMAND_EXPAND_LISTS VERBATIM)
 	endforeach()
 endif()
+
+# Network tests (ENet integration tests)
+add_subdirectory(network)

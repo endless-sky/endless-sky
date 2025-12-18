@@ -19,6 +19,7 @@
 					"name": "glew",
 					"platform": "!osx"
 				},
+				"enet",
 				"libavif",
 				"libpng",
 				"libjpeg-turbo",
