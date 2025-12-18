@@ -618,38 +618,40 @@ phrase "friendly unfettered"
 	word
 		" Hai."
 
-phrase "hai bribe acceptance hail"
+phrase "bribe acceptance hai"
 	word
 		"I"
 		"We"
 		"We all"
 	word
-		" feel "
-		" think that it is "
+		" "
+	word
+		"feel"
+		"think that it is"
+	word
+		" "
 	word
 		"shameful"
 		"vile"
 	word
-		" to work with you"
+		" to work with you, "
 	word
-		","
+		"but"
+		"though"
 	word
 		" "
-	word
-		"but "
-		"though "
 	word
 		"we will make an exception for this payment."
 		"we will accept your bribe."
 		"we hope you intend go away after this."
 		"we hope you will leave us alone after this."
 
-phrase "hai bribe acceptance hail"
+phrase "bribe acceptance hai"
 	word
-		"I "
-		"We "
+		"I"
+		"We"
 	word
-		"will "
+		" will "
 	word
 		"accept "
 		"receive "
@@ -666,27 +668,33 @@ phrase "hai bribe acceptance hail"
 		"" 4
 		" Next time, you may not be so lucky."
 
-phrase "hai bribe rejection hail"
+phrase "bribe rejection hai"
 	word
-		"Haikind "
-		"I "
-		"The Hai "
-		"We "
+		"Haikind"
+		"I"
+		"The Hai"
+		"We"
 	word
-		"cannot "
-		"do not want to "
-		"shall not "
-		"will never "
-		"will not "
+		" "
 	word
-		"accept "
-		"receive "
+		"cannot"
+		"do not want to"
+		"shall not"
+		"will never"
+		"will not"
+	word
+		" "
+	word
+		"accept"
+		"receive"
 		"take"
 	word
-		"bribes "
-		"payment "
+		" "
 	word
-		"from "
+		"bribes"
+		"payment"
+	word
+		" from "
 	word
 		"" 15
 		"conquering "
