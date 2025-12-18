@@ -215,6 +215,12 @@ target_sources(EndlessSkyLib PRIVATE
 	network/NetworkManager.h
 	network/NetworkServer.cpp
 	network/NetworkServer.h
+	network/Packet.h
+	network/PacketReader.cpp
+	network/PacketReader.h
+	network/PacketStructs.h
+	network/PacketWriter.cpp
+	network/PacketWriter.h
 	NPC.cpp
 	NPC.h
 	NPCAction.cpp
