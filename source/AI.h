@@ -29,8 +29,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <optional>
 #include <set>
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 class Angle;
 class AsteroidField;
