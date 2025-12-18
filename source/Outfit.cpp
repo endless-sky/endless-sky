@@ -196,19 +196,8 @@ namespace {
 
 	// Used to add the contents of one outfit's map to another, while also
 	// erasing any key with a value of zero.
-	template<class T>
-	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
-	{
-		for(const auto &it : otherMap)
-		{
-			thisMap[it.first] += count * it.second;
-			if(thisMap[it.first] == 0)
-				thisMap.erase(it.first);
-		}
-	}
-
-	template<class T>
-	void MergeMaps(map<const T *, double> &thisMap, const map<const T *, double> &otherMap, int count)
+	template<class T, class N>
+	void MergeMaps(map<const T *, N> &thisMap, const map<const T *, N> &otherMap, int count)
 	{
 		for(const auto &it : otherMap)
 		{
