@@ -32,6 +32,27 @@ else()
 	target_link_libraries(test_packet_serialization PRIVATE uuid)
 endif()
 
+# Protocol Handler and Validation test (Phase 1.4)
+add_executable(test_protocol
+	test_protocol.cpp
+	../../source/network/PacketHandler.cpp
+	../../source/network/PacketValidator.cpp
+	../../source/network/PacketWriter.cpp
+	../../source/network/PacketReader.cpp
+	../../source/Point.cpp
+	../../source/Angle.cpp
+	../../source/EsUuid.cpp
+)
+target_include_directories(test_protocol PRIVATE ../../source)
+target_compile_features(test_protocol PRIVATE cxx_std_20)
+
+# Platform-specific UUID libraries for test_protocol
+if(WIN32)
+	target_link_libraries(test_protocol PRIVATE rpcrt4)
+else()
+	target_link_libraries(test_protocol PRIVATE uuid)
+endif()
+
 # Add tests
 enable_testing()
 add_test(NAME ENetConnection COMMAND test_enet_connection)
@@ -43,4 +64,7 @@ set_tests_properties(NetworkAbstraction PROPERTIES TIMEOUT 10 LABELS "network;ph
 add_test(NAME PacketSerialization COMMAND test_packet_serialization)
 set_tests_properties(PacketSerialization PROPERTIES TIMEOUT 10 LABELS "network;phase1.3")
 
-message(STATUS "Network tests configured (Phase 1.1 + 1.2 + 1.3)")
+add_test(NAME ProtocolHandler COMMAND test_protocol)
+set_tests_properties(ProtocolHandler PROPERTIES TIMEOUT 10 LABELS "network;phase1.4")
+
+message(STATUS "Network tests configured (Phase 1.1 + 1.2 + 1.3 + 1.4)")

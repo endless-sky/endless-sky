@@ -216,9 +216,13 @@ target_sources(EndlessSkyLib PRIVATE
 	network/NetworkServer.cpp
 	network/NetworkServer.h
 	network/Packet.h
+	network/PacketHandler.cpp
+	network/PacketHandler.h
 	network/PacketReader.cpp
 	network/PacketReader.h
 	network/PacketStructs.h
+	network/PacketValidator.cpp
+	network/PacketValidator.h
 	network/PacketWriter.cpp
 	network/PacketWriter.h
 	NPC.cpp
