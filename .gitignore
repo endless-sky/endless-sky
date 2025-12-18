@@ -75,3 +75,7 @@ CMakeUserPresets.json
 
 # static code analysis
 /.scannerwork
+
+# Test binaries
+test_enet
+test_packet_serialization
