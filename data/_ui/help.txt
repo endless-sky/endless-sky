@@ -185,7 +185,7 @@ help "control ship with mouse"
 interface "help overlay: planet"
 	visible if "has shipyard"
 	infotag
-		to 410 90
+		to 415 90
 		ear
 			facing west
 			affinity center
@@ -197,7 +197,7 @@ interface "help overlay: planet"
 	
 	visible if "has outfitter"
 	infotag
-		to 410 150
+		to 415 150
 		ear
 			facing west
 			affinity center
@@ -209,7 +209,7 @@ interface "help overlay: planet"
 		
 	visible if "can hire crew"
 	infotag
-		to 410 210
+		to 415 210
 		ear
 			facing west
 			affinity center
@@ -220,7 +220,7 @@ interface "help overlay: planet"
 		shrink
 		
 	infotag
-		to 410 270
+		to 415 270
 		ear
 			facing west
 			affinity center
@@ -232,7 +232,7 @@ interface "help overlay: planet"
 	
 	visible if "has trade"
 	infotag
-		to -410 90
+		to -415 90
 		ear
 			facing east
 			affinity center
@@ -244,7 +244,7 @@ interface "help overlay: planet"
 		
 	visible if "has job board"
 	infotag
-		to -410 150
+		to -415 150
 		ear
 			facing east
 			affinity center
@@ -256,7 +256,7 @@ interface "help overlay: planet"
 	
 	visible if "has bank"
 	infotag
-		to -410 210
+		to -415 210
 		ear
 			facing east
 			affinity center
@@ -268,7 +268,7 @@ interface "help overlay: planet"
 	
 	visible if "has port"
 	infotag
-		to -410 270
+		to -415 270
 		ear
 			facing east
 			affinity center
@@ -283,37 +283,37 @@ interface "help overlay: trading"
 	
 	infotag
 		# anchor center of bottom to 0, 0
-		to 0 0
+		to 0 -250
 		ear
-			facing south
+			facing north
 			affinity center
 			length 0
 		text
 			`This is the trading panel. Earn money by buying commodities at a low price in one system, and selling at a higher price elsewhere. To view your map of commodity prices in other systems, press <View star map>. To buy or sell, click on [buy] or [sell], or select a line with the up and down arrows and press <+> or <-> (or <Enter> and <Delete>).`
 			`You can buy 5 tons at once by holding down <Shift>, 20 by holding down <Control>, 500 by holding down <Alt>, or larger amounts at a time by holding down two keys at once, or even all three.`
 		alignment justified
-		width 600
+		textwidth 600
 	
 	infotag
-		to 100 370
+		to 100 375
 		ear
 			facing north
 			affinity cw
 			length 15
 		text
 			`<U> or <Shift>+<B>`
-		alignment center
+		alignment right
 		shrink
 	
 	infotag
-		to 190 370
+		to 190 375
 		ear
 			facing north
 			affinity ccw
 			length 15
 		text
 			`<E> or <Shift>+<S>`
-		alignment center
+		alignment left
 		shrink
 	
 	infotag
@@ -346,25 +346,25 @@ interface "help overlay: trading"
 			length 15
 		text
 			`<Up> or <Dn> to change selection`
-		alignment center
+		alignment left
 		shrink
 	
-	infotag
-		to -100 -100
-		from 200 100
-		ear
-			width 15
-		text
-			`infotag`
-			` to -100 -100`
-			` from 200 100`
-			` ear`
-			`  width 15`
-			` text`
-			`  "Testing..."`
-			` alignment left`
-			` width 400`
-			` shrink`
-		alignment left
-		width 400
-		shrink
+#	infotag
+#		to -100 -100
+#		from 200 100
+#		ear
+#			width 15
+#		text
+#			`infotag`
+#			` to -100 -100`
+#			` from 200 100`
+#			` ear`
+#			`  width 15`
+#			` text`
+#			`  "Testing..."`
+#			` alignment left`
+#			` textwidth 400`
+#			` shrink`
+#		alignment left
+#		textwidth 400
+#		shrink

@@ -1114,7 +1114,7 @@ void Interface::InfoTagElement::Draw(const Rectangle &rect, const Information &i
 	if(text.empty() || !fillColor || !fontColor || !borderColor)
 		return;
 
-	int width = max(rect.Width(), dimensions.Length());
+	int width = max(textWidth, static_cast<int>(max(rect.Width(), dimensions.Length())));
 	if(width == 0)
 	{
 		width = 1000;

@@ -346,29 +346,9 @@ namespace {
 
 
 void InfoTag::InitShapeAndPlacement(Point anchor, Direction facing, Affinity affinity, std::string text,
-	Alignment alignment, double width, bool shrink, double earLength) {
-	this->anchor = anchor;
-	this->box = {{0, 0}, {width, 0}};
-	this->facing = facing;
-	this->affinity = affinity;
-	this->earLength = earLength;
-	this->shrink = shrink;
-
-	this->wrap.SetFont(FontSet::Get(14));
-	// 10 pixels of padding will be left on either side of the InfoTag box.
-	this->wrap.SetAlignment(alignment);
-	SetText(text, shrink);
-
-	Recalculate();
-}
-
-
-
-void InfoTag::InitShapeAndPlacement(std::string element, Point offset, Direction facing, Affinity affinity,
-	std::string text, Alignment alignment, double width, bool shrink, double earLength)
+	Alignment alignment, double width, bool shrink, double earLength)
 {
-	this->element = element;
-	this->offset = offset;
+	this->anchor = anchor;
 	this->box = {{0, 0}, {width, 0}};
 	this->facing = facing;
 	this->affinity = affinity;
@@ -404,27 +384,6 @@ void InfoTag::InitShapeAndPlacement(Point center, Point anchor, std::string text
 
 
 
-void InfoTag::InitShapeAndPlacement(Point center, std::string element, Point offset, std::string text,
-	Alignment alignment, double width, bool shrink, double earWidth)
-{
-	this->element = element;
-	this->offset = offset;
-	this->box = {center, {width, 0}};
-	this->facing = Direction::NONE;
-	this->affinity = Affinity::NONE;
-	this->earWidth = earWidth;
-	this->shrink = shrink;
-
-	this->wrap.SetFont(FontSet::Get(14));
-	// 10 pixels of padding will be left on either side of the InfoTag box.
-	this->wrap.SetAlignment(alignment);
-	SetText(text, shrink);
-
-	Recalculate();
-}
-
-
-
 void InfoTag::InitBorderAndFill(const Color *backColor, const Color *fontColor, const Color *borderColor,
 	const Color *borderColor2, double borderWidth)
 {
@@ -449,7 +408,12 @@ void InfoTag::SetAnchor(const Point &anchor)
 
 void InfoTag::Draw() const
 {
-	PolygonShader::Draw(points, *backColor, *borderColor, *borderColor2, box.TopLeft(), box.BottomRight(), borderWidth);
+	Point shading1 = box.TopLeft();
+	Point shading2 = box.BottomRight();
+	if(box.Width() < 200)
+		shading2 = box.BottomRight() + Point(2 * box.Width(), 0);
+
+	PolygonShader::Draw(points, *backColor, *borderColor, *borderColor2, shading1, shading2, borderWidth);
 	wrap.Draw(box.TopLeft() + Point(padding, padding), *fontColor);
 }
 
@@ -460,9 +424,6 @@ void InfoTag::Recalculate()
 {
 	// First, determine the size of the text in the InfoBox.
 	Point boxSize(wrap.WrapWidth() + 2 * padding, wrap.Height(false) + 2 * padding);
-
-	// In some cases the anchor will be calculated (element and offset provided).
-	// TODO: do this!
 
 	// In some cases the box must be calculated.
 	if(affinity != Affinity::NONE && facing != Direction::NONE)

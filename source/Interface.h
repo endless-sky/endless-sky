@@ -296,7 +296,7 @@ private:
 		float borderWidth = 1.f;
 		float earLength = 15.f;
 		float earWidth = 15.f;
-		float textWidth = 1000.f;
+		int textWidth = 1000;
 		bool shrink = false;
 
 		const Color *fillColor = GameData::Colors().Get("infotag background default");
