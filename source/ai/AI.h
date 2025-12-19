@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
-#include "JumpType.h"
+#include "../ship/JumpType.h"
 #include "orders/OrderSet.h"
 #include "../util/Point.h"
 #include "../pathfinding/RoutePlan.h"
