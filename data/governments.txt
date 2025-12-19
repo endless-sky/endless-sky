@@ -2083,7 +2083,7 @@ government "Republic"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
 	"hostile disabled hail" "hostile disabled"
-	"bribe rejection hail" "bribe rejection hail navy"
+	"bribe rejection hail" "bribe rejection navy"
 	raid "pirate raid"
 
 government "Republic (Friendly)"
@@ -2106,7 +2106,7 @@ government "Republic (Friendly)"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
 	"hostile disabled hail" "hostile disabled"
-	"bribe rejection hail" "bribe rejection hail"
+	"bribe rejection hail" "bribe rejection navy"
 
 government "Republic Intelligence"
 	swizzle 0
@@ -2117,7 +2117,7 @@ government "Republic Intelligence"
 		"Pirate (Devil-Run Gang)" -.3
 	"friendly disabled hail" "friendly disabled"
 	"hostile disabled hail" "hostile disabled"
-	"bribe rejection hail" "bribe rejection hail"
+	"bribe rejection hail" "bribe rejection navy"
 
 government "Republic that won't enter wormhole"
 	"display name" Republic
@@ -2143,7 +2143,7 @@ government "Republic that won't enter wormhole"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
 	"hostile disabled hail" "hostile disabled"
-	"bribe rejection hail" "bribe rejection hail"
+	"bribe rejection hail" "bribe rejection navy"
 	raid "pirate raid"
 
 government "Rulei"
