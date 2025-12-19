@@ -497,7 +497,7 @@ mission "Successors: First Contact 3"
 			`	You scoop up the immobilized animal and begin to run back to your ship as the wailing behind you increases in pitch and intensity. As you and Sieasej dash through the foliage, the sunlight overhead is suddenly darkened by the shadow of something flying overhead.`
 			choice
 				`	(Keep running.)`
-				`	(Try to shoot at whatever is above you.)`
+				`	(Try to shoot at whatever is above me.)`
 					goto "shoot ambush"
 			`	Suddenly, the shadow disappears and the wailing stops. You keep running towards your ship, but can't shake the feeling that you are being watched.`
 				goto ambush
@@ -507,14 +507,14 @@ mission "Successors: First Contact 3"
 			`	When you arrive, however, you find that blocking your entry to the <ship> are two large creatures. Their glassy skin resembles that of the smaller creature you captured, but they are each several meters in size. Their feelers, rather than soft and downy, are whiplike and serrated and tipped with vicious-looking barbs that they thrust towards you and Sieasej upon noticing your presence. Their many eyes flick back and forth between you and the animal that you captured, and the two let out a loud wail in unison. Waves of red and blue run down Sieasej's body, probably an expression of fear.`
 			choice
 				`	(Run past them.)`
-				`	(Shoot them with your sidearm.)`
+				`	(Shoot them with my sidearm.)`
 					goto shoot
-				`	(Order your crew to fire a turret at them.)`
+				`	(Order my crew to fire a turret at them.)`
 					to display
 						"flagship base attribute: turret mounts" > "flagship attribute: turret mounts"
 						"flagship crew" > ( "flagship required crew" - 1 )
 					goto "ship shoot"
-				`	(Release the animal that you captured.)`
+				`	(Release the animal that I captured.)`
 					goto release
 			`	You attempt to run past the creatures, but before you can even get close, one of them swings its barbed feeler at you, lodging it deep in your chest. The last thing you see is Sieasej hurrying away as the creatures pursue them as well.`
 				die
@@ -767,7 +767,7 @@ mission "Successors: Kaatrij First Contact 1"
 					goto premature
 			`	The glow of the <ship>'s lights attract a swarm of flying insect-like creatures that vainly dive at them again and again. A gentle breeze ripples through the leaves of the flora surrounding the lake.`
 			choice
-				`	(Check your sensors.)`
+				`	(Check my sensors.)`
 				`	(Leave.)`
 					goto premature
 			`	Inside, a light on the cockpit control panel flashes as if your ship were being scanned, but there's nothing on the sensors, and the alert disappears almost immediately after it began. Soft thunderclaps from a distant storm startle the animals on the lake and they leap up into the air before gliding back down onto the water's surface some distance away.`
