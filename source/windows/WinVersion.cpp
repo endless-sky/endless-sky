@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <windows.h>
 
 // Declare RtlGetVersion here so that we don't need DDK headers.
-extern "C" NTSTATUS RtlGetVersion(PRTL_OSVERSIONINFOW);
+extern "C" NTSTATUS NTAPI RtlGetVersion(PRTL_OSVERSIONINFOW);
 
 using namespace std;
 
