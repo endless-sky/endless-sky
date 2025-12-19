@@ -78,7 +78,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	}
 	else if(showCreditsWarning)
 	{
-		Logger::LogError("Warning: interface \"main menu\" does not contain a box for \"credits\"");
+		Logger::Log("Interface \"main menu\" does not contain a box for \"credits\".", Logger::Level::WARNING);
 		showCreditsWarning = false;
 	}
 
@@ -149,7 +149,7 @@ void MenuPanel::Draw()
 		{
 			const Ship &flagship = *player.Flagship();
 			info.SetSprite("ship sprite", flagship.GetSprite());
-			info.SetString("ship", flagship.Name());
+			info.SetString("ship", flagship.GivenName());
 		}
 		if(player.GetSystem())
 			info.SetString("system", player.GetSystem()->DisplayName());

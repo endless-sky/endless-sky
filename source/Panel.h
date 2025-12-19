@@ -77,6 +77,8 @@ public:
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
 
+	virtual void UpdateTooltipActivation();
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -86,6 +88,9 @@ protected:
 	virtual bool Drag(double dx, double dy);
 	virtual bool Release(int x, int y, MouseButton button);
 	virtual bool Scroll(double dx, double dy);
+
+	virtual void Resize();
+
 	// If a clickable zone is clicked while editing is happening, the panel may
 	// need to know to exit editing mode before handling the click.
 	virtual void EndEditing() {}
@@ -144,6 +149,8 @@ private:
 	bool DoScroll(double dx, double dy);
 
 	void DoDraw();
+
+	void DoResize();
 
 	// Call a method on all the children in reverse order, and then on this
 	// object. Recursion stops as soon as any child returns true.

@@ -76,7 +76,7 @@ void Fleet::Load(const DataNode &node)
 		bool hasValue = child.Size() >= 2;
 		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
 		{
-			child.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
+			child.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
 			continue;
 		}
 
@@ -128,15 +128,15 @@ void Fleet::Load(const DataNode &node)
 			Variant toRemove(child);
 			int count = erase(variants, toRemove);
 			if(!count)
-				child.PrintTrace("Warning: Did not find matching variant for specified operation:");
+				child.PrintTrace("Did not find matching variant for specified operation:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
 	if(variants.empty())
-		node.PrintTrace("Warning: " + (fleetName.empty()
-			? "unnamed fleet" : "Fleet \"" + fleetName + "\"") + " contains no variants:");
+		node.PrintTrace((fleetName.empty() ? "Unnamed fleet" : "Fleet \"" + fleetName + "\"")
+			+ " contains no variants:");
 }
 
 
@@ -170,9 +170,10 @@ void Fleet::RemoveInvalidVariants()
 	if(!count)
 		return;
 
-	Logger::LogError("Warning: " + (fleetName.empty() ? "unnamed fleet" : "fleet \"" + fleetName + "\"")
+	Logger::Log((fleetName.empty() ? "Unnamed fleet" : "Fleet \"" + fleetName + "\"")
 		+ ": Removing " + to_string(count) + " invalid " + (count > 1 ? "variants" : "variant")
-		+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight)");
+		+ " (" + to_string(total - variants.TotalWeight()) + " of " + to_string(total) + " weight).",
+		Logger::Level::WARNING);
 }
 
 
@@ -313,8 +314,9 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(stellarObjects.empty())
 			{
 				// Log this error.
-				Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
-					+ planet->TrueName() + "\" in system \"" + system.TrueName() + "\"");
+				Logger::Log("Fleet::Enter: Unable to find valid stellar object for planet \""
+					+ planet->TrueName() + "\" in system \"" + system.TrueName() + "\".",
+					Logger::Level::WARNING);
 				return;
 			}
 
@@ -336,7 +338,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(source == target)
 				return;
 			// Otherwise, have the fleet arrive here from the target system.
-			std::swap(source, target);
+			swap(source, target);
 			planet = nullptr;
 		}
 	}
@@ -482,7 +484,7 @@ void Fleet::Place(const System &system, Ship &ship)
 
 int64_t Fleet::Strength() const
 {
-	return variants.Average(std::mem_fn(&Variant::Strength));
+	return variants.Average(mem_fn(&Variant::Strength));
 }
 
 
@@ -511,8 +513,8 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Logger::LogError("Warning: Skipping invalid ship model \"" + model->TrueModelName()
-				+ "\" in fleet \"" + fleetName + "\".");
+			Logger::Log("Skipping invalid ship model \"" + model->TrueModelName()
+				+ "\" in fleet \"" + fleetName + "\".", Logger::Level::WARNING);
 			continue;
 		}
 
@@ -522,7 +524,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		bool canBeCarried = ship->CanBeCarried();
 		const Phrase *phrase = ((canBeCarried && fighterNames) ? fighterNames : names);
 		if(phrase)
-			ship->SetName(phrase->Get());
+			ship->SetGivenName(phrase->Get());
 		ship->SetGovernment(government);
 		if(canBeCarried && fighterPersonality.IsDefined())
 			ship->SetPersonality(fighterPersonality);

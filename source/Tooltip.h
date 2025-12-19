@@ -68,6 +68,8 @@ public:
 	// the tooltip should be drawn.
 	void Draw(bool forceDraw = false) const;
 
+	void UpdateActivationCount();
+
 
 private:
 	int width;
@@ -81,4 +83,6 @@ private:
 	WrappedText text;
 
 	int hoverCount = 0;
+	// The hover value needed to activate the tooltip.
+	int activationHover;
 };
