@@ -67,7 +67,6 @@ namespace
 	constexpr uint64_t FUNCTION_OPERATOR = ONE << 2; ///< Operator parsed and written as a function.
 	constexpr uint64_t TERMINAL = ONE << 3; ///< Operator indicating a terminal node (number or condition variable).
 
-
 	/// Map string tokens internal operators.
 	const auto CS_TOKEN_CONVERSION = map<const string, pair<ConditionSet::ExpressionOp, uint64_t>>{
 		// Infix arithmetic multiply, divide and modulo have a higher precedence than add and subtract.

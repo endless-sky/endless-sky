@@ -135,7 +135,7 @@ private:
 	/// @param lineTokens Tokens to use (and pop from) for parsing.
 	bool ParseGreedy(const DataNode &node, int &tokenNr);
 
-	/// Parse a function (after a max or min keyword)
+	/// Parse a function (after a max or min keyword).
 	///
 	/// @param node The node to report parse-errors on, if any occur.
 	/// @param lineTokens Tokens to use (and pop from) for parsing.
