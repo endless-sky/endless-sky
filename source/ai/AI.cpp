@@ -52,7 +52,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <limits>
-#include <set>
+#include <ranges>
 #include <utility>
 
 using namespace std;
@@ -390,7 +390,7 @@ namespace {
 
 
 AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
-	: player(player), ships(ships), minables(minables), flotsam(flotsam)
+	: player(player), ships(ships), minables(minables), flotsam(flotsam), routeCache()
 {
 	// Allocate a starting amount of hardpoints for ships.
 	firingCommands.SetHardpoints(12);
@@ -653,6 +653,7 @@ void AI::Clean()
 	miningTime.clear();
 	appeasementThreshold.clear();
 	boarders.clear();
+	routeCache.clear();
 	// Records for formations flying around lead ships and other objects.
 	formations.clear();
 	// Records that affect the combat behavior of various governments.
@@ -1283,6 +1284,52 @@ const StellarObject *AI::FindLandingLocation(const Ship &ship, const bool refuel
 		}
 	}
 	return target;
+}
+
+
+
+AI::RouteCacheKey::RouteCacheKey(
+	const System *from, const System *to, const Government *gov, double jumpDistance,
+	JumpType jumpType, const vector<string> &wormholeKeys)
+		: from(from), to(to), gov(gov), jumpDistance(jumpDistance), jumpType(jumpType), wormholeKeys(wormholeKeys)
+{
+}
+
+
+
+size_t AI::RouteCacheKey::HashFunction::operator()(RouteCacheKey const &key) const
+{
+	// Used by unordered_map to determine equivalence.
+	int shift = 0;
+	size_t hash = std::hash<string>()(key.from->TrueName());
+	hash ^= std::hash<string>()(key.to->TrueName()) << ++shift;
+	hash ^= std::hash<string>()(key.gov->TrueName()) << ++shift;
+	hash ^= std::hash<int>()(key.jumpDistance) << ++shift;
+	hash ^= std::hash<int>()(static_cast<std::size_t>(key.jumpType)) << ++shift;
+	for(const string &k : key.wormholeKeys)
+		hash ^= std::hash<string>()(k) << ++shift;;
+	return hash;
+}
+
+
+
+bool AI::RouteCacheKey::operator==(const RouteCacheKey &other) const
+{
+	// Used by unordered_map to determine equivalence.
+	return from == other.from
+		&& to == other.to
+		&& gov == other.gov
+		&& jumpDistance == other.jumpDistance
+		&& jumpType == other.jumpType
+		&& wormholeKeys == other.wormholeKeys;
+}
+
+
+
+bool AI::RouteCacheKey::operator!=(const RouteCacheKey &other) const
+{
+	// Used by unordered_map to determine equivalence.
+	return !(*this == other);
 }
 
 
@@ -2286,12 +2333,12 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 // Set the ship's target system or planet in order to reach the
 // next desired system. Will target a landable planet to refuel.
 // If the ship is an escort it will only use routes known to the player.
-void AI::SelectRoute(Ship &ship, const System *targetSystem) const
+void AI::SelectRoute(Ship &ship, const System *targetSystem)
 {
 	const System *from = ship.GetSystem();
 	if(from == targetSystem || !targetSystem)
 		return;
-	RoutePlan route(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
+	RoutePlan route = GetRoutePlan(ship, targetSystem);
 	if(ShouldRefuel(ship, route))
 	{
 		// There is at least one planet that can refuel the ship.
@@ -5160,4 +5207,42 @@ void AI::UpdateOrders(const Ship &ship)
 		return;
 
 	it->second.Update(ship);
+}
+
+
+
+// Look for an existing distance map for this combination of inputs before calculating a new one.
+RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
+{
+	// Note: RecacheJumpRoutes will check and reset the value for us.
+	if(player.RecacheJumpRoutes())
+		routeCache.clear();
+
+	const System *from = ship.GetSystem();
+	const Government *gov = ship.GetGovernment();
+	const JumpType driveCapability = ship.JumpNavigation().HasJumpDrive() ? JumpType::JUMP_DRIVE : JumpType::HYPERDRIVE;
+
+	// A cached route that could be used for this ship could depend on the wormholes which this ship can
+	// travel through. Find the intersection of all known wormhole required attributes and the attributes
+	// which this ship satisfies.
+	vector<string> wormholeKeys;
+	const auto &shipAttributes = ship.Attributes();
+	for(const auto &requirement : GameData::UniverseWormholeRequirements())
+		if(shipAttributes.Get(requirement) > 0)
+			wormholeKeys.emplace_back(requirement);
+
+	auto key = RouteCacheKey(from, targetSystem, gov, ship.JumpNavigation().JumpRange(), driveCapability,
+		wormholeKeys);
+
+	RoutePlan route;
+	auto it = routeCache.find(key);
+	if(it == routeCache.end())
+	{
+		route = RoutePlan(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
+		routeCache.emplace(key, route);
+	}
+	else
+		route = RoutePlan(it->second);
+
+	return route;
 }

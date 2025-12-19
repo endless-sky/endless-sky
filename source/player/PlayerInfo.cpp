@@ -634,6 +634,7 @@ void PlayerInfo::FinishTransaction()
 // Apply the given set of changes to the game data.
 void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 {
+	bool changedPlanets = false;
 	bool changedSystems = false;
 	for(const DataNode &change : changes)
 	{
@@ -641,9 +642,12 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		// Date nodes do not represent a change.
 		if(key == "date")
 			continue;
+		changedPlanets |= (key == "planet" || key == "wormhole");
 		changedSystems |= (key == "system" || key == "link" || key == "unlink");
 		GameData::Change(change, *this);
 	}
+	if(changedPlanets)
+		GameData::RecomputeWormholeRequirements();
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
@@ -661,6 +665,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		if(instantChanges)
 			CacheMissionInformation(true);
 	}
+	recacheJumpRoutes = instantChanges && (changedPlanets || changedSystems);
 }
 
 
@@ -4510,6 +4515,15 @@ void PlayerInfo::StepMissionTimers(UI *ui)
 {
 	for(Mission &mission : missions)
 		mission.StepTimers(*this, ui);
+}
+
+
+
+bool PlayerInfo::RecacheJumpRoutes()
+{
+	bool recache = recacheJumpRoutes;
+	recacheJumpRoutes = false;
+	return recache;
 }
 
 
