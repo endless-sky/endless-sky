@@ -63,7 +63,7 @@ public:
 	bool HasJumpDrive() const;
 
 	// Create a hash of the capabilities of this ship, for use in caching pathfinding.
-	size_t Hash() const;
+	std::size_t Hash() const;
 
 
 private:
