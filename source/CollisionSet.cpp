@@ -204,7 +204,8 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 		// Cap projectile velocity to prevent integer overflows.
 		if(!warned)
 		{
-			Logger::LogError("Warning: maximum projectile velocity is " + to_string(MAX_VELOCITY));
+			Logger::Log("A projectile exceeded the maximum allowed velocity (" + to_string(MAX_VELOCITY) + ").",
+				Logger::Level::WARNING);
 			warned = true;
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
