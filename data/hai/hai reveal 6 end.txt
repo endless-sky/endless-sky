@@ -272,8 +272,8 @@ mission "Hai Reveal [C04] Cleanup"
 			`	As you go down a short, wide alley flanked by tall buildings, you hear the creak of hinges behind you and turn around to see a great wooden gate being closed. The same happens in front of you at the other end of the alley, and the people in the alley suddenly disappear through doorways. As you're looking around, you realize nearly a dozen plasma rifles are pointing at you from windows in upper floors.`
 			choice
 				`	(Shout.)`
-				`	(Draw your weapon.)`
-				`	(Raise your hands.)`
+				`	(Draw my weapon.)`
+				`	(Raise my hands.)`
 					goto surrender
 			`	The people in the windows don't take very kindly to your decision, and very quickly make sure it's your last.`
 				die
