@@ -37,10 +37,13 @@ namespace {
 		auto loadPenalty = [&penalties](const DataNode &child, int eventType) -> void
 		{
 			double amount = child.Value(1);
-			// Reverse compatibility: transfer the provoke and atrocity events to special penalties.
-			Government::SpecialPenalty specialPenalty = eventType == ShipEvent::PROVOKE ?
-					Government::SpecialPenalty::PROVOKE : eventType == ShipEvent::ATROCITY ?
-					Government::SpecialPenalty::ATROCITY : Government::SpecialPenalty::NONE;
+			Government::SpecialPenalty specialPenalty = Government::SpecialPenalty::NONE;
+			// Reverse compatibility: transfer the provoke and atrocity events to their respective
+			// special penalties if one is not explicitly given to them.
+			if(eventType == ShipEvent::PROVOKE)
+				specialPenalty = Government::SpecialPenalty::PROVOKE;
+			else if(eventType == ShipEvent::ATROCITY)
+				specialPenalty = Government::SpecialPenalty::ATROCITY;
 			if(child.Size() >= 3)
 			{
 				const string &effect = child.Token(2);
@@ -52,8 +55,8 @@ namespace {
 					if(amount <= 0.)
 					{
 						child.PrintTrace("The \"provoke\" effect will not work"
-							" without a positive, non-zero penalty to reputation, defaulting to 0.01:");
-						amount = .01;
+							" without a positive, non-zero penalty to reputation. Defaulting to 0:");
+						amount = 0.;
 					}
 				}
 				else if(effect == "atrocity")
@@ -62,7 +65,7 @@ namespace {
 					if(amount <= .05)
 					{
 						child.PrintTrace("The \"atrocity\" effect will not work"
-							" without a penalty to reputation higher or equal to 0.05, defaulting to 0.05:");
+							" without a penalty to reputation higher or equal to 0.05. Defaulting to 0.05:");
 						amount = .05;
 					}
 				}
@@ -129,8 +132,8 @@ Government::Government()
 	penaltyFor[ShipEvent::BOARD] = PenaltyEffect(.3);
 	penaltyFor[ShipEvent::CAPTURE] = PenaltyEffect(1.);
 	penaltyFor[ShipEvent::DESTROY] = PenaltyEffect(1.);
-	penaltyFor[ShipEvent::SCAN_OUTFITS] = PenaltyEffect();
-	penaltyFor[ShipEvent::SCAN_CARGO] = PenaltyEffect();
+	penaltyFor[ShipEvent::SCAN_OUTFITS] = PenaltyEffect(0.);
+	penaltyFor[ShipEvent::SCAN_CARGO] = PenaltyEffect(0.);
 	penaltyFor[ShipEvent::PROVOKE] = PenaltyEffect(0., SpecialPenalty::PROVOKE);
 	penaltyFor[ShipEvent::ATROCITY] = PenaltyEffect(10., SpecialPenalty::ATROCITY);
 
