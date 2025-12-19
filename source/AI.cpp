@@ -654,7 +654,7 @@ void AI::Clean()
 	miningTime.clear();
 	appeasementThreshold.clear();
 	boarders.clear();
-	ClearRouteCache();
+	routeCache.clear();
 	// Records for formations flying around lead ships and other objects.
 	formations.clear();
 	// Records that affect the combat behavior of various governments.
@@ -671,13 +671,6 @@ void AI::ClearOrders()
 {
 	helperList.clear();
 	orders.clear();
-}
-
-
-
-void AI::ClearRouteCache()
-{
-	routeCache.clear();
 }
 
 
@@ -1292,6 +1285,52 @@ const StellarObject *AI::FindLandingLocation(const Ship &ship, const bool refuel
 		}
 	}
 	return target;
+}
+
+
+
+AI::RouteCacheKey::RouteCacheKey(
+	const System *from, const System *to, const Government *gov, double jumpDistance,
+	JumpType jumpType, const vector<string> &wormholeKeys)
+		: from(from), to(to), gov(gov), jumpDistance(jumpDistance), jumpType(jumpType), wormholeKeys(wormholeKeys)
+{
+}
+
+
+
+size_t AI::RouteCacheKey::HashFunction::operator()(RouteCacheKey const &key) const
+{
+	// Used by unordered_map to determine equivalence.
+	int shift = 0;
+	size_t hash = std::hash<string>()(key.from->TrueName());
+	hash ^= std::hash<string>()(key.to->TrueName()) << ++shift;
+	hash ^= std::hash<string>()(key.gov->TrueName()) << ++shift;
+	hash ^= std::hash<int>()(key.jumpDistance) << ++shift;
+	hash ^= std::hash<int>()(static_cast<std::size_t>(key.jumpType)) << ++shift;
+	for(const string &k : key.wormholeKeys)
+		hash ^= std::hash<string>()(k) << ++shift;;
+	return hash;
+}
+
+
+
+bool AI::RouteCacheKey::operator==(const RouteCacheKey &other) const
+{
+	// Used by unordered_map to determine equivalence.
+	return from == other.from
+		&& to == other.to
+		&& gov == other.gov
+		&& jumpDistance == other.jumpDistance
+		&& jumpType == other.jumpType
+		&& wormholeKeys == other.wormholeKeys;
+}
+
+
+
+bool AI::RouteCacheKey::operator!=(const RouteCacheKey &other) const
+{
+	// Used by unordered_map to determine equivalence.
+	return !(*this == other);
 }
 
 
@@ -5178,7 +5217,7 @@ RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
 {
 	// Note: RecacheJumpRoutes will check and reset the value for us.
 	if(player.RecacheJumpRoutes())
-		ClearRouteCache();
+		routeCache.clear();
 
 	const System *from = ship.GetSystem();
 	const Government *gov = ship.GetGovernment();
@@ -5207,50 +5246,4 @@ RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
 		route = RoutePlan(it->second);
 
 	return route;
-}
-
-
-
-AI::RouteCacheKey::RouteCacheKey(
-	const System *from, const System *to, const Government *gov, double jumpDistance,
-	JumpType jumpType, const vector<string> &wormholeKeys)
-		: from(from), to(to), gov(gov), jumpDistance(jumpDistance), jumpType(jumpType), wormholeKeys(wormholeKeys)
-{
-}
-
-
-
-size_t AI::RouteCacheKey::HashFunction::operator()(RouteCacheKey const &key) const
-{
-	// Used by unordered_map to determine equivalence.
-	int shift = 0;
-	size_t hash = std::hash<string>()(key.from->TrueName());
-	hash ^= std::hash<string>()(key.to->TrueName()) << ++shift;
-	hash ^= std::hash<string>()(key.gov->TrueName()) << ++shift;
-	hash ^= std::hash<int>()(key.jumpDistance) << ++shift;
-	hash ^= std::hash<int>()(static_cast<std::size_t>(key.jumpType)) << ++shift;
-	for(const string &k : key.wormholeKeys)
-		hash ^= std::hash<string>()(k) << ++shift;;
-	return hash;
-}
-
-
-
-bool AI::RouteCacheKey::operator==(const RouteCacheKey &other) const
-{
-	// Used by unordered_map to determine equivalence.
-	return from == other.from
-		&& to == other.to
-		&& gov == other.gov
-		&& jumpDistance == other.jumpDistance
-		&& jumpType == other.jumpType
-		&& wormholeKeys == other.wormholeKeys;
-}
-
-
-
-bool AI::RouteCacheKey::operator!=(const RouteCacheKey &other) const
-{
-	// Used by unordered_map to determine equivalence.
-	return !(*this == other);
 }

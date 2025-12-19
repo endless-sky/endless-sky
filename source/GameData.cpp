@@ -596,6 +596,13 @@ void GameData::UpdateSystems()
 
 
 
+void GameData::RecomputeWormholeRequirements()
+{
+	objects.RecomputeWormholeRequirements();
+}
+
+
+
 void GameData::AddJumpRange(double neighborDistance)
 {
 	objects.neighborDistances.insert(neighborDistance);

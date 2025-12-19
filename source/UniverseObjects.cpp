@@ -144,11 +144,6 @@ void UniverseObjects::Change(const DataNode &node, PlayerInfo &player)
 	const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
 
 	const string &key = node.Token(0);
-
-	// For these updates, the jump routes cache should be cleared:
-	if(key == "system" || key == "link" || key == "unlink" || key == "planet" || key == "wormhole")
-		player.SetRecacheJumpRoutes();
-
 	bool hasValue = node.Size() >= 2;
 	if(key == "fleet" && hasValue)
 		fleets.Get(node.Token(1))->Load(node);
@@ -204,9 +199,18 @@ void UniverseObjects::UpdateSystems()
 			if(object.GetPlanet())
 				planets.Get(object.GetPlanet()->TrueName())->FinishLoading(wormholes);
 	}
+}
 
-	// If the systems change, the overall set of possible wormhole requirements may have changed and must be recomputed.
-	RecomputeWormholeRequirements();
+
+
+void UniverseObjects::RecomputeWormholeRequirements()
+{
+	// Create a complete set of all attributes that affect any wormhole in the universe.
+	universeWormholeRequirements.clear();
+	for(const auto &wormhole : std::views::values(wormholes))
+		if(wormhole.IsValid() && wormhole.GetPlanet()->IsValid())
+			for(const auto &req : wormhole.GetPlanet()->RequiredAttributes())
+				universeWormholeRequirements.emplace(req);
 }
 
 
@@ -341,6 +345,14 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : persons)
 		if(!it.second.IsLoaded())
 			Warn("person", it.first);
+}
+
+
+
+void UniverseObjects::DrawMenuBackground(Panel *panel) const
+{
+	lock_guard<mutex> lock(menuBackgroundMutex);
+	menuBackgroundCache.Draw(Information(), panel);
 }
 
 
@@ -537,24 +549,4 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}
-}
-
-
-
-void UniverseObjects::DrawMenuBackground(Panel *panel) const
-{
-	lock_guard<mutex> lock(menuBackgroundMutex);
-	menuBackgroundCache.Draw(Information(), panel);
-}
-
-
-
-void UniverseObjects::RecomputeWormholeRequirements()
-{
-	// Create a complete set of all attributes that affect any wormhole in the universe.
-	universeWormholeRequirements.clear();
-	for(const auto &wormhole : std::views::values(wormholes))
-		if(wormhole.IsValid() && wormhole.GetPlanet()->IsValid())
-			for(const auto &req : wormhole.GetPlanet()->RequiredAttributes())
-				universeWormholeRequirements.emplace(req);
 }

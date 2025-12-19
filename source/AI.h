@@ -46,6 +46,7 @@ class StellarObject;
 class System;
 
 
+
 // This class is responsible for controlling all the ships in the game,
 // including the player's "flagship" - which is usually controlled via the
 // keyboard but can also make use of the AI's autopilot for landing, aiming,
@@ -76,7 +77,6 @@ public:
 	// Clear ship orders. This should be done when the player lands on a planet,
 	// but not when they jump from one system to another.
 	void ClearOrders();
-	void ClearRouteCache();
 	// Issue AI commands to all ships for one game step.
 	void Step(Command &activeCommands);
 	// Process commands for the player only, called by Step in non-paused mode.
@@ -94,7 +94,7 @@ public:
 	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
 
 
-public:
+private:
 	class RouteCacheKey {
 	public:
 		// Note: keep this updated as the variables driving the routing change:
@@ -220,8 +220,6 @@ private:
 	/// but that shouldn't really matter.
 	void RegisterDerivedConditions(ConditionsStore &conditions);
 
-
-private:
 	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);

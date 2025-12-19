@@ -87,6 +87,8 @@ public:
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
 	void UpdateSystems();
+	// Determine which attributes may be required in order to use a wormhole.
+	void RecomputeWormholeRequirements();
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
@@ -94,7 +96,7 @@ public:
 	// Draws the current menu background. Unlike accessing the menu background
 	// through GameData, this function is thread-safe.
 	void DrawMenuBackground(Panel *panel) const;
-	void RecomputeWormholeRequirements();
+
 
 private:
 	void LoadFile(const std::filesystem::path &path, const PlayerInfo &player,
@@ -135,6 +137,9 @@ private:
 	Set<Shop<Ship>> shipSales;
 	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
+
+	// This is used for speeding up the route calculations.
+	std::set<std::string> universeWormholeRequirements;
 	std::set<double> neighborDistances;
 
 	Gamerules gamerules;
@@ -151,9 +156,6 @@ private:
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;
 	std::map<std::string, std::set<std::string>> disabled;
-
-	// This is used for speeding up the route calculations.
-	std::set<std::string> universeWormholeRequirements;
 
 	// A local cache of the menu background interface for thread-safe access.
 	mutable std::mutex menuBackgroundMutex;

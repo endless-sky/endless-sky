@@ -380,9 +380,8 @@ public:
 
 	// Advance any active mission timers that meet the right criteria.
 	void StepMissionTimers(UI *ui);
-	// Checks and resets recacheJumpRoutes, returns the value that was present upon entry.
+	// Checks and resets recacheJumpRoutes. Returns the value that was present upon entry.
 	bool RecacheJumpRoutes();
-	void SetRecacheJumpRoutes();
 
 
 private:
