@@ -293,8 +293,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 
 void PlanetPanel::Resize()
 {
-	const Interface &planetInterface = *GameData::Interfaces().Get(
-		Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	const Interface &planetInterface = *GameData::Interfaces().Get("planet");
 	description->SetRect(planetInterface.GetBox("content"));
 }
 
