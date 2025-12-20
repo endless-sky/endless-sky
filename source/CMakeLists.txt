@@ -378,6 +378,7 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
 	comparators/ByUUID.h
+	gamepad/DelaunayTriangulation.h
 	gamepad/GamePad.cpp
 	gamepad/GamePad.h
 	gamepad/GamepadCursor.cpp
