@@ -406,7 +406,7 @@ void GamePad::Handle(const SDL_Event &event)
 	case SDL_CONTROLLERBUTTONUP:
 		g_held[event.cbutton.button] = false;
 		break;
-	
+
 	// Cache joypad events if we are doing remapping.
 	case SDL_JOYAXISMOTION:
 		// AddEventDebugString("Axis " + std::to_string(static_cast<int>(event.jaxis.axis)) +
