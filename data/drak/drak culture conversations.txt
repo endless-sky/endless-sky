@@ -36,14 +36,13 @@ mission "Drak Revelations: Hai"
 	minor
 	invisible
 	source "Darkwaste"
-	destination "Earth"
 	to offer
 		"flagship model" == "Anomalocaris"
 	on offer
 		conversation
 			`You step off the <ship> and begin exploring your surroundings. Near the edge of the cliff where you've landed, you find a small puddle, and look at it for a moment.`
 			`	By the time you realize you can no longer look away, small bits of soil seem to be forming in the puddle, and it seems to grow far deeper. You notice minuscule vessels making their way from one of the "islands" to another.`
-			`	The ships spread far and away, and the archipelago starts bustling with activity. But the waves and the sunlight grow harsher, and soon the intense heat begins to scorch the islands and ships, and boil the seas. The waves grow taller and taller, swallowing ships and isles whole, and attempting to reach up to snuff out the sun.`
+			`	The ships spread far and away, and the archipelago starts bustling with activity. But the waves and the sunlight grow harsher, and soon the intense heat begins to scorch the islands and ships, and boil the seas. The waves grow taller and taller, swallowing ships and isles whole and attempting to reach up to snuff out the sun.`
 			`	When the seas finally calm down and the sun sets, all the islands lie in ruin, if they still exist at all, and very few ships are left to travel between them.`
 			`	You blink, and see the puddle is back to normal.`
 				decline
@@ -52,8 +51,8 @@ mission "Drak Revelations: Hai"
 mission "Drak Revelations Setup: Humanity"
 	landing
 	invisible
+	non-blocking
 	source "Jupiter"
-	destination "Earth"
 	to offer
 		has "chosen sides"
 		not "main plot completed"
@@ -93,7 +92,7 @@ mission "Drak Revelations: Korath"
 		conversation
 			`Just as your ship reaches <origin>, you blink, and are no longer in your cockpit.`
 			`	In a rocky plateau, gravel and sand make up the base for structures being built by bulky, vaguely humanoid figures made of dirt and rust. A strong light shines down from above, illuminating the area.`
-			`	As the months and years go by, the creatures build taller and grander towers, both elevating themselves and gradually blocking away the light. Eventually the entire plateau serves as the footing for a great, domed tower.`
+			`	You feel as though time is rapidly progressing. As the months and years go by, the creatures build taller and grander towers, both elevating themselves and gradually blocking away the light. Eventually the entire plateau serves as the footing for a great domed tower.`
 			`	The light creeps in faintly by cracks and gaps, but those are being swiftly patched by the creatures, who seem to hiss at the light in disapproval. They begin heating up and glowing, hotter and hotter, until they cast off their dirty shells, now taking their forms in a shiny, blazing bronze.`
 			`	The creatures stand proud and strong in their new forms, but their bodies continue to heat up, and so the bronze melts, and their towers begin to crumble and distort due to the intense heat, until the entire dome collapses.`
 			`	You open your eyes again, and are back in the cockpit of the <ship>.`
@@ -115,7 +114,7 @@ mission "Drak Revelations: Quarg"
 	on offer
 		conversation
 			`The instant your ship finishes its jump, lights begin to flicker off in the cockpit, until everything goes dark.`
-			`	At first all you can see is the barren, damp soil, barely illuminated by a dim, remote light from above. A dense fog seeps upward from cracks in the ground, and in the distance you can barely make out the repeated crashing of waves.`
+			`	At first all you can see is barren, damp soil, barely illuminated by a dim, remote light from above. A dense fog seeps upward from cracks in the ground, and in the distance you can barely make out the repeated crashing of waves.`
 			`	A gaunt giant of pale-gold cuts through the fog in a fit, smashing at the ground as it wails and attempts to slap and kick away the water from the ground, to no avail. The light flickers and quiets in tandem with its smashing and weeping.`
 			`	When it flashes just bright enough, you can make out the graves. All around you, they seem to extend endlessly toward the horizon in all directions. The giant never touches or dirties the graves, and during its brief periods of respite, seems scarcely able to look at them before becoming enraged once more.`
 			`	The light blinks off, and you see no more. Your ship's lights come alive again, and you find yourself in your cockpit.`
@@ -127,7 +126,6 @@ mission "Drak Revelations: Saryds"
 	minor
 	invisible
 	source "Chosen Nexus"
-	destination "Earth"
 	to offer
 		has "drak revelations: saryds"
 	on offer
