@@ -691,7 +691,10 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	}
 	for(const auto &it : npcActions)
 	{
-		result.npcActions[it.first].push_back(action.Instantiate(subs, origin, jumps, payload));
+		for(const auto &action : it.second)
+		{
+			result.npcActions[it.first].push_back(action.Instantiate(subs, origin,jumps, payload));
+		}
 	}
 
 	// Pick the system for this NPC to start out in.
