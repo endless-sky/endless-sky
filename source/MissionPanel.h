@@ -49,6 +49,8 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
 
 	virtual void Resize() override;
 
@@ -109,4 +111,6 @@ private:
 
 	std::shared_ptr<TextArea> description;
 	bool descriptionVisible = false;
+
+	bool returnGamepadCursorToAvailableMissions = false;
 };

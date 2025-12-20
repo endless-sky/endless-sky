@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 
 #include "Angle.h"
+#include "Command.h"
 #include "DataNode.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
@@ -28,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/OutlineShader.h"
 #include "Panel.h"
 #include "shader/PointerShader.h"
+#include "RadialSelectionPanel.h"
 #include "Rectangle.h"
 #include "shader/RingShader.h"
 #include "Screen.h"
@@ -35,6 +37,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "UI.h"
+#include "shader/UiRectShader.h"
+
 
 #include <algorithm>
 #include <cmath>
@@ -118,10 +122,28 @@ void Interface::Load(const DataNode &node)
 			if(key == "sprite" || key == "image" || key == "outline")
 				elements.push_back(make_unique<ImageElement>(child, anchor));
 			else if(key == "label" || key == "string" || key == "button" || key == "dynamic button")
-				elements.push_back(make_unique<BasicTextElement>(child, anchor));
+			{
+				auto p = make_unique<BasicTextElement>(child, anchor);
+				BasicTextElement* te = p.get();
+				elements.emplace_back(std::move(p));
+				// If we already have a value of the same name, let it take
+				// precedence.
+				auto it = points.find(te->Text());
+				if(it == points.end())
+					points[te->Text()].SetBounds(*te);
+			}
 			else if(key == "wrapped label" || key == "wrapped string"
 					|| key == "wrapped button" || key == "wrapped dynamic button")
-				elements.push_back(make_unique<WrappedTextElement>(child, anchor));
+			{
+				auto p = make_unique<WrappedTextElement>(child, anchor);
+				WrappedTextElement *te = p.get();
+				elements.emplace_back(std::move(p));
+				// If we already have a value of the same name, let it take
+				// precedence.
+				auto it = points.find(te->Text());
+				if(it == points.end())
+					points[te->Text()].SetBounds(*te);
+			}
 			else if(key == "bar" || key == "ring")
 				elements.push_back(make_unique<BarElement>(child, anchor));
 			else if(key == "pointer")
@@ -132,6 +154,10 @@ void Interface::Load(const DataNode &node)
 					child.PrintTrace("\"line\" is deprecated, use \"fill\" instead:");
 				elements.push_back(make_unique<FillElement>(child, anchor));
 			}
+			else if(key == "uirect")
+				elements.emplace_back(new UiRectElement(child, anchor));
+			else if(key == "radial")
+				elements.emplace_back(new RadialSelectionElement(child, anchor));
 			else
 			{
 				child.PrintTrace("Skipping unrecognized element:");
@@ -260,6 +286,11 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 			alignment = ParseAlignment(child);
 		else if(key == "dimensions" && child.Size() >= 3)
 			dimensions = Point(child.Value(1), child.Value(2));
+		else if(key == "radius" && hasValue)
+		{
+			dimensions = Point(child.Value(1) * 2, child.Value(1) * 2);
+			radius = child.Value(1);
+		}
 		else if(key == "width" && hasValue)
 			dimensions.X() = child.Value(1);
 		else if(key == "height" && hasValue)
@@ -346,7 +377,7 @@ void Interface::Element::Draw(const Information &info, Panel *panel) const
 	// Place buttons even if they are inactive, in case the UI wants to show a
 	// message explaining why the button is inactive.
 	if(panel)
-		Place(box, panel);
+		Place(box, panel, info);
 
 	// Figure out how the element should be aligned within its bounding box.
 	Point nativeDimensions = NativeDimensions(info, state);
@@ -409,7 +440,7 @@ void Interface::Element::Draw(const Rectangle &rect, const Information &info, in
 
 // Add any click handlers needed for this element. This will only be
 // called if the element is visible and active.
-void Interface::Element::Place(const Rectangle &bounds, Panel *panel) const
+void Interface::Element::Place(const Rectangle &bounds, Panel *panel, const Information &info) const
 {
 }
 
@@ -533,7 +564,17 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	isDynamic = (key.ends_with("string") || key.ends_with("dynamic button"));
 	if(key.ends_with("button") || key.ends_with("dynamic button"))
 	{
-		buttonKey = node.Token(1).front();
+		const std::string& token = node.Token(1);
+		if(token.size() == 1)
+		{
+			buttonKey = token.front();
+		}
+		else
+		{
+			command = Command::Get(token);
+			if(command == Command::NONE)
+				node.PrintTrace("\"" + token + "\" is not a valid command");
+		}
 		if(node.Size() >= 3)
 			str = node.Token(2);
 	}
@@ -570,20 +611,20 @@ bool Interface::TextElement::ParseLine(const DataNode &node)
 		else
 			return false;
 	}
+	else if(node.Token(0) == "command" && node.Size() >= 2)
+	{
+		Command parsedCommand = Command::Get(node.Token(1));
+		if(parsedCommand == Command::NONE)
+		{
+			node.PrintTrace("\"" + node.Token(1) + "\" is not a valid command");
+			return false;
+		}
+		command.Set(parsedCommand);
+	}
 	else
 		return false;
 
 	return true;
-}
-
-
-
-// Add any click handlers needed for this element. This will only be
-// called if the element is visible and active.
-void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
-{
-	if(buttonKey && panel)
-		panel->AddZone(bounds, buttonKey);
 }
 
 
@@ -593,7 +634,7 @@ void Interface::TextElement::FinishLoadingColors()
 {
 	// By default, labels are "medium", strings
 	// are "bright", and button brightness depends on its activation state.
-	if(!color[Element::ACTIVE] && !buttonKey)
+	if(!color[Element::ACTIVE] && !buttonKey && command == Command::NONE)
 		color[Element::ACTIVE] = GameData::Colors().Get(isDynamic ? "bright" : "medium");
 
 	if(!color[Element::ACTIVE])
@@ -658,6 +699,30 @@ void Interface::BasicTextElement::Draw(const Rectangle &rect, const Information 
 
 	const auto layout = Layout(static_cast<int>(rect.Width()), truncate);
 	FontSet::Get(fontSize).Draw({GetString(info), layout}, rect.TopLeft(), *color[state]);
+}
+
+
+
+// Add any click handlers needed for this element. This will only be
+// called if the element is visible and active.
+void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel, const Information &info) const
+{
+	if(!panel)
+		return;
+	if(radius)
+	{
+		if(buttonKey)
+			panel->AddZone(bounds.Center(), radius, buttonKey);
+		else if(!(command == Command::NONE))
+			panel->AddZone(bounds.Center(), radius, command);
+	}
+	else
+	{
+		if(buttonKey)
+			panel->AddZone(bounds, buttonKey);
+		else if(!(command == Command::NONE))
+			panel->AddZone(bounds, command);
+	}
 }
 
 
@@ -930,4 +995,150 @@ void Interface::FillElement::Draw(const Rectangle &rect, const Information &info
 	if(!from.Get() && !to.Get())
 		return;
 	FillShader::Fill(rect, *color);
+}
+
+
+
+// Members of the UiRect class:
+
+// Constructor.
+Interface::UiRectElement::UiRectElement(const DataNode &node, const Point &globalAnchor)
+{
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+
+	// Fill in a default color if none is specified.
+	if(!color)
+		color = GameData::Colors().Get("conversation background");
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::UiRectElement::ParseLine(const DataNode &node)
+{
+	if(node.Token(0) == "color" && node.Size() >= 2)
+		color = GameData::Colors().Get(node.Token(1));
+	else
+		return false;
+
+	return true;
+}
+
+
+
+// Draw this element in the given rectangle.
+void Interface::UiRectElement::Draw(const Rectangle &rect, const Information &info, int state) const
+{
+	// Avoid crashes for malformed interface elements that are not fully loaded.
+	if(!from.Get() && !to.Get())
+		return;
+	UiRectShader::Fill(rect.Center(), rect.Dimensions(), *color);
+}
+
+
+
+Interface::RadialSelectionElement::RadialSelectionElement(const DataNode &node, const Point &globalAnchor)
+{
+	// This function will call ParseLine() for any line it does not recognize.
+	Load(node, globalAnchor);
+}
+
+
+
+Interface::RadialSelectionElement::~RadialSelectionElement()
+{
+	// Stub, so that the shared_ptr destructor is here.
+}
+
+
+
+// Parse the given data line: one that is not recognized by Element
+// itself. This returns false if it does not recognize the line, either.
+bool Interface::RadialSelectionElement::ParseLine(const DataNode &node)
+{
+	if(node.Token(0) == "selection_angles" && node.Size() >= 3)
+	{
+		start_angle = node.Value(1);
+		stop_angle = node.Value(2);
+	}
+	else if(node.Token(0) == "selection_radius" && node.Size() >= 2)
+	{
+		selection_radius = node.Value(1);
+	}
+	else if(node.Token(0) == "visible")
+	{
+		if(node.Size() >= 3 && node.Token(1) == "if")
+			visible_if = node.Token(2);
+		else
+			visible_if.clear();
+	}
+	else
+	{
+		Option o{};
+		o.cmd = Command::Get(node.Token(0));
+		if(o.cmd == Command::NONE)
+			return false;
+
+		o.description = o.cmd.Description();
+		o.icon = o.cmd.Icon();
+		o.visible_if = visible_if;
+
+		// Optional second argument, override the icon.
+		if(node.Size() >= 2)
+		{
+			o.icon = node.Token(1);
+			// Optional third argument. Description.
+			if(node.Size() >= 3)
+				o.description = node.Token(2);
+		}
+		options.push_back(o);
+	}
+
+	return true;
+}
+
+
+
+void Interface::RadialSelectionElement::Place(const Rectangle &bounds, Panel *panel, const Information &info) const
+{
+	if(!panel)
+		return;
+
+	auto OnTrigger = [this, panel, bounds, info](const Panel::Event& e) {
+		RadialSelectionPanel *radial_selection = new RadialSelectionPanel;
+		radial_selection->SetPosition(bounds.Center());
+		radial_selection->SetStartAngle(start_angle);
+		radial_selection->SetStopAngle(stop_angle);
+		radial_selection->SetRadius(selection_radius);
+		for(auto &o : options)
+		{
+			if(o.visible_if.empty() || info.HasCondition(o.visible_if))
+			{
+				Command cmd = o.cmd;
+				radial_selection->AddOption(o.icon, o.description, [cmd]() {
+					Command::InjectOnce(cmd, true);
+				});
+			}
+		}
+
+		switch(e.type)
+		{
+		case Panel::Event::MOUSE:
+			radial_selection->ReleaseWithMouseUp(e.pos, static_cast<MouseButton>(e.id));
+			break;
+		case Panel::Event::BUTTON:
+			radial_selection->ReleaseWithButtonUp(static_cast<SDL_GameControllerButton>(e.id));
+			break;
+		case Panel::Event::AXIS:
+			radial_selection->ReleaseWithAxisZero(static_cast<SDL_GameControllerAxis>(e.id));
+			break;
+		}
+		panel->GetUI()->Push(radial_selection);
+	};
+	if(radius)
+		panel->AddZone(bounds.Center(), radius, OnTrigger);
+	else
+		panel->AddZone(bounds, OnTrigger);
 }
