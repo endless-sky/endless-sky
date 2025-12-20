@@ -33,8 +33,8 @@ public:
 	static constexpr uint8_t BUTTON_INVALID = -1;
 	static constexpr uint8_t AXIS_MAX = 6;
 	static constexpr uint8_t AXIS_INVALID = -1;
-   typedef bool Buttons[BUTTON_MAX];
-   typedef int16_t Axes[AXIS_MAX];
+	typedef bool Buttons[BUTTON_MAX];
+	typedef int16_t Axes[AXIS_MAX];
 
 	static void Init();
 	static void SaveMapping();
@@ -46,8 +46,8 @@ public:
 	static int AxisIsButtonPressThreshold();
 	static void SetAxisIsButtonPressThreshold(int t);
 
-   static const Buttons &Held();
-   static const Axes &Positions();
+	static const Buttons &Held();
+	static const Axes &Positions();
 
 	// Axis state
 	static Point LeftStick();

@@ -759,9 +759,7 @@ void MissionPanel::ResizeTextArea() const
 bool MissionPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
 {
 	// We only care about controller events if the user has selected the detail panels
-	if(controllerFocus == FOCUS_DETAIL &&
-	   (axis == SDL_CONTROLLER_AXIS_LEFTX ||
-	    axis == SDL_CONTROLLER_AXIS_LEFTY))
+	if(controllerFocus == FOCUS_DETAIL && (axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY))
 	{
 		if(axis == SDL_CONTROLLER_AXIS_LEFTX)
 		{
@@ -1061,9 +1059,7 @@ Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const 
 				rectCenter,
 				Point(SIDE_WIDTH - 10., 20.),
 				highlight);
-			if(controllerFocus == FOCUS_DETAIL &&
-			   (GamepadCursor::Position().X() != rectCenter.X() ||
-			    GamepadCursor::Position().Y() != rectCenter.Y()))
+			if(controllerFocus == FOCUS_DETAIL && GamepadCursor::Position() != rectCenter)
 				GamepadCursor::SetPosition(rectCenter);
 		}
 

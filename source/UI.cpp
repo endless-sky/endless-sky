@@ -88,8 +88,7 @@ bool UI::Handle(const SDL_Event &event)
 			if(reinterpret_cast<const CommandEvent&>(event).pressed == SDL_PRESSED)
 				handled = (*it)->DoKeyDown(0, 0, command, true);
 		}
-		else if(event.type == SDL_CONTROLLERDEVICEADDED ||
-		        event.type == SDL_CONTROLLERDEVICEREMOVED)
+		else if(event.type == SDL_CONTROLLERDEVICEADDED || event.type == SDL_CONTROLLERDEVICEREMOVED)
 		{
 			handled = (*it)->ControllersChanged();
 		}

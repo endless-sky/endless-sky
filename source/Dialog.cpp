@@ -205,7 +205,7 @@ void Dialog::Draw()
 		okPos.Y() - .5 * font.Height());
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (activeButton == 1 ? bright : dim));
 	Rectangle okRect(okPos, {cancel->Width(), cancel->Height()});
-	AddZone(okRect, [this, okRect](){
+	AddZone(okRect, [this, okRect]() {
 		Click(okRect.Center().X(), okRect.Center().Y(), MouseButton::LEFT, 1);
 	});
 	if(canCancel)

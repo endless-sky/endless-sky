@@ -55,7 +55,7 @@ namespace {
 	std::string g_joystickLastInput;
 	bool g_captureNextButton = false;
 	bool g_captureAxisRange = false;
-	
+
 	// Store extra mappings here.
 	const char EXTRA_MAPPINGS_FILE[] = "gamepad_mappings.txt";
 	const char CONFIG_FILE[] = "gamepad_config.txt";
@@ -186,9 +186,9 @@ namespace {
 		for(const auto &kv : g_mapping)
 		{
 			if(kv.first == "+rightx" || kv.first == "-rightx" ||
-			   kv.first == "+righty" || kv.first == "-righty" ||
-			   kv.first == "+leftx" || kv.first == "-leftx" ||
-			   kv.first == "+lefty" || kv.first == "-lefty") // don't worry about triggers
+				kv.first == "+righty" || kv.first == "-righty" ||
+				kv.first == "+leftx" || kv.first == "-leftx" ||
+				kv.first == "+lefty" || kv.first == "-lefty") // don't worry about triggers
 			{
 				std::string o = opposite(kv.first);
 				auto it = axisMap.find(o);
@@ -233,7 +233,7 @@ void GamePad::Init()
 	// the identifier, and allowing for user configuration as a fallback.
 
 	// Read any mappings the user has created.
-	SDL_RWops *in = SDL_RWFromFile((Files::Config() / EXTRA_MAPPINGS_FILE).c_str(), "rb");
+	SDL_RWops *in = SDL_RWFromFile((Files::Config() / EXTRA_MAPPINGS_FILE).string().c_str(), "rb");
 
 	if(in)
 	{
@@ -242,7 +242,7 @@ void GamePad::Init()
 	}
 
 	// Read any additional config options.
-	in = SDL_RWFromFile((Files::Config() / CONFIG_FILE).c_str(), "rb");
+	in = SDL_RWFromFile((Files::Config() / CONFIG_FILE).string().c_str(), "rb");
 
 	if(in)
 	{
@@ -282,7 +282,7 @@ void GamePad::SaveMapping()
 {
 	if(g_gc)
 	{
-		const std::string MAPPING_FILE_PATH = Files::Config() / EXTRA_MAPPINGS_FILE;
+		const std::string MAPPING_FILE_PATH = (Files::Config() / EXTRA_MAPPINGS_FILE).string();
 		char guidstr[64];
 		SDL_JoystickGetGUIDString(g_guid, guidstr, sizeof(guidstr));
 
@@ -337,7 +337,7 @@ void GamePad::SaveMapping()
 
 void GamePad::SaveConfig()
 {
-	const std::string CONFIG_FILE_PATH = Files::Config() / CONFIG_FILE;
+	const std::string CONFIG_FILE_PATH = (Files::Config() / CONFIG_FILE).string();
 	std::shared_ptr<SDL_RWops> out(
 		SDL_RWFromFile(CONFIG_FILE_PATH.c_str(), "wb"),
 		[](SDL_RWops *p) {
@@ -456,8 +456,8 @@ void GamePad::Handle(const SDL_Event &event)
 				g_lastAxis = event.jaxis.axis;
 			}
 			else if(event.jaxis.value < -g_AxisIsButtonThreshold &&
-			        event.jaxis.axis < g_joyAxisInfo.size() &&    // only look at negative joysticks
-			        g_joyAxisInfo[event.jaxis.axis].zero == 0)    // not negative trigger values
+						event.jaxis.axis < g_joyAxisInfo.size() &&    // only look at negative joysticks
+						g_joyAxisInfo[event.jaxis.axis].zero == 0)    // not negative trigger values
 			{
 				// AddEventDebugString("...Triggered");
 				g_joystickLastInput = "-a" + std::to_string(event.jaxis.axis);
@@ -495,8 +495,7 @@ void GamePad::Handle(const SDL_Event &event)
 				//       It probably doesn't matter, since most controller hats are
 				//       actually dpad directional buttons, and the user will only
 				//       press one at a time during mapping operations.
-				g_joystickLastInput = "h" + std::to_string(event.jhat.hat)
-				                      + "." + std::to_string(event.jhat.value);
+				g_joystickLastInput = "h" + std::to_string(event.jhat.hat) + "." + std::to_string(event.jhat.value);
 				g_captureNextButton = false;
 			}
 		}
@@ -715,12 +714,6 @@ void GamePad::SetControllerButtonMapping(const std::string &controllerButton, co
 {
 	if(controllerButton.empty() || joystickButton.empty())
 		return;
-
-	// TODO: should we be merging/splitting axes?
-	// 1. If a +joyaxis and -joyaxis are assigned to the +controlleraxis and -controlleraxis, then merge them
-	// 2. if a -joyaxis and +joyaxis are assigend to +controlleraxis and -controlleraxis, then merge them,
-	//    and mark them as backwards
-	// 3. If a +joyaxis is added and joyaxis already exists, then we need to split them.
 
 	g_mapping.emplace_back(controllerButton, joystickButton);
 	ConsolidateMappingAxes();

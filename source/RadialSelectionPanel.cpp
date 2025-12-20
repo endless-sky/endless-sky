@@ -234,14 +234,12 @@ bool RadialSelectionPanel::ControllerAxis(SDL_GameControllerAxis axis, int posit
 			return true;
 		}
 	}
-	else if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
-	        axis == SDL_CONTROLLER_AXIS_LEFTY)
+	else if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
 	{
 		MoveCursor(m_position + GamePad::LeftStick() * m_radius / 32767);
 		return true;
 	}
-	else if(axis == SDL_CONTROLLER_AXIS_RIGHTX ||
-	        axis == SDL_CONTROLLER_AXIS_RIGHTY)
+	else if(axis == SDL_CONTROLLER_AXIS_RIGHTX || axis == SDL_CONTROLLER_AXIS_RIGHTY)
 	{
 		MoveCursor(m_position + GamePad::RightStick() * m_radius / 32767);
 		return true;
