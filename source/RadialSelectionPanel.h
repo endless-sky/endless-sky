@@ -89,7 +89,7 @@ private:
 	// release.
 	SDL_GameControllerAxis m_triggered_axis = SDL_CONTROLLER_AXIS_INVALID;
 	SDL_GameControllerButton m_triggered_button = SDL_CONTROLLER_BUTTON_INVALID;
-	SDL_Keycode m_triggered_key = SDLK_UNKNOWN;
+	// SDL_Keycode m_triggered_key = SDLK_UNKNOWN; // TODO?
 	int m_triggered_mouse_button = -1;
 	Point m_mouse_pos;
 	Point m_cursor_pos;

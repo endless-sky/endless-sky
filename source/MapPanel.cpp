@@ -716,7 +716,6 @@ bool MapPanel::ControllerButtonDown(SDL_GameControllerButton button)
 			Click(pos.X(), pos.Y(), MouseButton::LEFT, 1);
 			return true;
 		}
-		
 		break;
 	case FOCUS_BUTTONS:
 		// navigation through buttons. handled by default zone behavior.

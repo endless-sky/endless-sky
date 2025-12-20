@@ -124,7 +124,7 @@ void Interface::Load(const DataNode &node)
 			else if(key == "label" || key == "string" || key == "button" || key == "dynamic button")
 			{
 				auto p = make_unique<BasicTextElement>(child, anchor);
-				BasicTextElement* te = p.get();
+				BasicTextElement *te = p.get();
 				elements.emplace_back(std::move(p));
 				// If we already have a value of the same name, let it take
 				// precedence.

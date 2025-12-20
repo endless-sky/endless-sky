@@ -208,7 +208,7 @@ void GamepadPanel::Draw()
 	// Dim everything behind this panel.
 	const Color &back = *GameData::Colors().Get("dialog backdrop");
 	FillShader::Fill(Point(), Point(Screen::Width(), Screen::Height()), back);
-	
+
 	const GamePad::Buttons &buttons = GamePad::Held();
 	const GamePad::Axes &axes = GamePad::Positions();
 
@@ -250,7 +250,7 @@ void GamepadPanel::Draw()
 			info.SetCondition("Up Dpad Button");
 		if(buttons[SDL_CONTROLLER_BUTTON_DPAD_DOWN])
 			info.SetCondition("Down Dpad Button");
-		
+
 		if(axes[SDL_CONTROLLER_AXIS_LEFTX] < -16000)
 			info.SetCondition("Left Joystick Left");
 		if(axes[SDL_CONTROLLER_AXIS_LEFTX] > 16000)
@@ -354,7 +354,7 @@ void GamepadPanel::Draw()
 	}
 
 	auto buttonListRect = ui->GetBox("Button List");
-	
+
 	Table t;
 	t.SetHighlight(0, buttonListRect.Width());
 	t.AddColumn(0, {0, Alignment::LEFT});
@@ -366,7 +366,7 @@ void GamepadPanel::Draw()
 		auto axis = SDL_GameControllerGetAxisFromString(s.first.c_str());
 		auto button = SDL_GameControllerGetButtonFromString(s.first.c_str());
 		if((button != SDL_CONTROLLER_BUTTON_INVALID && buttons[button]) ||
-		   (axis != SDL_CONTROLLER_AXIS_INVALID && (axes[axis] > 16000 || axes[axis] < -16000)))
+			(axis != SDL_CONTROLLER_AXIS_INVALID && (axes[axis] > 16000 || axes[axis] < -16000)))
 		{
 			t.DrawHighlight(*color);
 		}
