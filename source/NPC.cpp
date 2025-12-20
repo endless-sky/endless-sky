@@ -208,7 +208,11 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				npcActions[it->second].Load(child, playerConditions, visitedSystems, visitedPlanets);
+			{
+				auto action = NPCAction();
+				action.Load(child, playerConditions, visitedSystems, visitedPlanets);
+				npcActions[it->second].emplace_back(action);
+			}
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -328,7 +332,12 @@ void NPC::Save(DataWriter &out) const
 		}
 
 		for(auto &it : npcActions)
-			it.second.Save(out);
+		{
+			for(auto &action : it.second)
+			{
+				action.Save(out);
+			}
+		}
 
 		if(government)
 			out.Write("government", government->TrueName());
@@ -667,9 +676,12 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	auto ait = npcActions.begin();
 	for( ; ait != npcActions.end(); ++ait)
 	{
-		reason = ait->second.Validate();
-		if(!reason.empty())
-			break;
+		for(const auto &action: ait->second)
+		{
+			reason = action.Validate();
+			if(!reason.empty())
+				break;
+		}
 	}
 	if(ait != npcActions.end())
 	{
@@ -678,7 +690,9 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		return result;
 	}
 	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
+	{
+		result.npcActions[it.first].push_back(action.Instantiate(subs, origin, jumps, payload));
+	}
 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
@@ -824,7 +838,10 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 					return it != shipEvents.end() && (it->second & requiredEvents) && !(it->second & excludedEvents);
 				}))
 		{
-			it->second.Do(player, ui, caller, event.Target());
+			for(auto &action : it->second)
+			{
+				action.Do(player, ui, caller, event.Target());
+			}
 		}
 	}
 }
