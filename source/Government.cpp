@@ -622,6 +622,20 @@ string Government::GetBribeRejectionHail() const
 
 
 
+string Government::GetPlanetBribeAcceptanceHail() const
+{
+	return planetBribeAcceptanceHail ? planetBribeAcceptanceHail->Get() : "It's a pleasure doing business with you.";
+}
+
+
+
+string Government::GetPlanetBribeRejectionHail() const
+{
+	return planetBribeRejectionHail ? planetBribeRejectionHail->Get() : "I do not want your money.";
+}
+
+
+
 // Find out if this government speaks a different language.
 const string &Government::Language() const
 {
