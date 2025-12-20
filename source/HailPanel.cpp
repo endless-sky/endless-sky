@@ -396,7 +396,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			if(!ship || requestedToBribeShip)
 			{
 				player.Accounts().AddCredits(-bribe);
-				SetMessage(gov->GetBribeAcceptanceHail());
+				if(planet)
+					SetMessage(gov->GetPlanetBribeAcceptanceHail());
+				else
+					SetMessage(gov->GetBribeAcceptanceHail());
 			}
 			if(ship)
 			{
@@ -423,6 +426,8 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 					GameData::MessageCategories().Get("normal")});
 			}
 		}
+		else if(planet)
+			SetMessage(gov->GetPlanetBribeRejectionHail());
 		else
 			SetMessage(gov->GetBribeRejectionHail());
 	}

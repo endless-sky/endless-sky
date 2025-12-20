@@ -170,6 +170,10 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				bribeAcceptanceHail = nullptr;
 			else if(key == "bribe rejection hail")
 				bribeRejectionHail = nullptr;
+			else if(key == "planet bribe acceptance hail")
+				planetBribeAcceptanceHail = nullptr;
+			else if(key == "planet bribe rejection hail")
+				planetBribeRejectionHail = nullptr;
 			else if(key == "language")
 				language.clear();
 			else if(key == "send untranslated hails")
@@ -420,6 +424,10 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			bribeAcceptanceHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "bribe rejection hail")
 			bribeRejectionHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "planet bribe acceptance hail")
+			planetBribeAcceptanceHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "planet bribe rejection hail")
+			planetBribeRejectionHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
 		else if(key == "enforces" && child.Token(valueIndex) == "all")

@@ -103,6 +103,10 @@ public:
 	std::string GetBribeAcceptanceHail() const;
 	// Get a hail message that the government responds with if it rejects a bribe.
 	std::string GetBribeRejectionHail() const;
+	// Get a hail message that the planetary government responds with if it accepts a bribe.
+	std::string GetPlanetBribeAcceptanceHail() const;
+	// Get a hail message that the planetary government responds with if it rejects a bribe.
+	std::string GetPlanetBribeRejectionHail() const;
 
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
@@ -196,6 +200,8 @@ private:
 	const Phrase *hostileDisabledHail = nullptr;
 	const Phrase *bribeAcceptanceHail = nullptr;
 	const Phrase *bribeRejectionHail = nullptr;
+	const Phrase *planetBribeAcceptanceHail = nullptr;
+	const Phrase *planetBribeRejectionHail = nullptr;
 	std::string language;
 	bool sendUntranslatedHails = false;
 	std::vector<RaidFleet> raidFleets;

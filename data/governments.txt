@@ -1526,6 +1526,7 @@ government "Navy (Oathkeeper)"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
 	"hostile disabled hail" "hostile disabled"
+	"bribe rejection hail" "bribe rejection navy"
 
 color "governments: Neutral" .84 .61 .37
 
