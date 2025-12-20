@@ -63,6 +63,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TaskQueue.h"
 #include "test/Test.h"
 #include "test/TestData.h"
+#include "shader/UiRectShader.h"
 #include "UniverseObjects.h"
 
 #include <algorithm>
@@ -277,9 +278,42 @@ void GameData::CheckReferences()
 
 void GameData::LoadSettings()
 {
+	// Prefer user-defined controller settings, resource-defined settings, then
+	// built-in defualts, in that order.
+	if(Files::Exists(Files::Config() / "controller.txt"))
+	{
+		Command::LoadGamepadSettings(Files::Config() / "controller.txt");
+	}
+	else if(Files::Exists(Files::Resources() / "controller.txt"))
+	{
+		Command::LoadGamepadSettings(Files::Resources() / "controller.txt");
+	}
+	else
+	{
+		Command::SetControllerButton(Command::LAND, SDL_CONTROLLER_BUTTON_A);
+		Command::SetControllerButton(Command::HAIL, SDL_CONTROLLER_BUTTON_B);
+		Command::SetControllerButton(Command::SCAN, SDL_CONTROLLER_BUTTON_X);
+		Command::SetControllerButton(Command::JUMP, SDL_CONTROLLER_BUTTON_Y);
+		Command::SetControllerButton(Command::INFO, SDL_CONTROLLER_BUTTON_BACK);
+		Command::SetControllerButton(Command::MENU, SDL_CONTROLLER_BUTTON_GUIDE);
+		Command::SetControllerButton(Command::MAP, SDL_CONTROLLER_BUTTON_START);
+		Command::SetControllerButton(Command::STOP, SDL_CONTROLLER_BUTTON_LEFTSTICK);
+		Command::SetControllerButton(Command::NEAREST_ASTEROID, SDL_CONTROLLER_BUTTON_RIGHTSTICK);
+		Command::SetControllerButton(Command::SELECT, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
+		Command::SetControllerButton(Command::DEPLOY, SDL_CONTROLLER_BUTTON_DPAD_UP);
+		Command::SetControllerButton(Command::BOARD, SDL_CONTROLLER_BUTTON_DPAD_DOWN);
+		Command::SetControllerButton(Command::CLOAK, SDL_CONTROLLER_BUTTON_DPAD_LEFT);
+		Command::SetControllerButton(Command::FASTFORWARD, SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
+
+		Command::SetControllerTrigger(Command::TARGET, SDL_CONTROLLER_AXIS_RIGHTX, false);
+		Command::SetControllerTrigger(Command::NEAREST, SDL_CONTROLLER_AXIS_RIGHTX, true);
+		Command::SetControllerTrigger(Command::PRIMARY, SDL_CONTROLLER_AXIS_TRIGGERLEFT, true);
+		Command::SetControllerTrigger(Command::SECONDARY, SDL_CONTROLLER_AXIS_TRIGGERRIGHT, true);
+	}
+
 	// Load the key settings.
-	Command::LoadSettings(Files::Resources() / "keys.txt");
-	Command::LoadSettings(Files::Config() / "keys.txt");
+	Command::LoadKeyboardSettings(Files::Resources() / "keys.txt");
+	Command::LoadKeyboardSettings(Files::Config() / "keys.txt");
 }
 
 
@@ -328,6 +362,7 @@ void GameData::LoadShaders()
 	SpriteShader::Init();
 	BatchShader::Init();
 	RenderBuffer::Init();
+	UiRectShader::Init();
 
 	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
 	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);

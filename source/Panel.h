@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Command.h"
 #include "MouseButton.h"
 #include "Rectangle.h"
 
@@ -47,6 +48,13 @@ public:
 
 
 public:
+	struct Event
+	{
+		Point pos;
+		int id;
+		enum {MOUSE, BUTTON, AXIS} type;
+	};
+
 	// Make the destructor virtual just in case any derived class needs it.
 	virtual ~Panel() = default;
 
@@ -69,16 +77,24 @@ public:
 	void ClearZones();
 	// Add a clickable zone to the panel.
 	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
+	void AddZone(const Rectangle &rect, const std::function<void(const Event &)> &fun);
 	void AddZone(const Rectangle &rect, SDL_Keycode key);
+	void AddZone(const Rectangle &rect, Command command);
+	void AddZone(const Point &pos, float radius, const std::function<void()> &fun);
+	void AddZone(const Point &pos, float radius, const std::function<void(const Event &)> &fun);
+	void AddZone(const Point &pos, float radius, SDL_Keycode key);
+	void AddZone(const Point &pos, float radius, Command command);
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, apply that zone's action and return true.
-	bool ZoneClick(const Point &point);
+	bool ZoneMouseDown(const Point &point, int id);
+	bool HasZone(const Point &point);
 
 	// Is fast-forward allowed to be on when this panel is on top of the GUI stack?
 	virtual bool AllowsFastForward() const noexcept;
 
 	virtual void UpdateTooltipActivation();
 
+	UI *GetUI() const noexcept;
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -88,6 +104,12 @@ protected:
 	virtual bool Drag(double dx, double dy);
 	virtual bool Release(int x, int y, MouseButton button);
 	virtual bool Scroll(double dx, double dy);
+	virtual bool ControllersChanged();
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button);
+	virtual bool ControllerButtonUp(SDL_GameControllerButton button);
+	virtual bool ControllerAxis(SDL_GameControllerAxis axis, int position);
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive);
+	virtual bool ControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive);
 
 	virtual void Resize();
 
@@ -102,7 +124,6 @@ protected:
 	// Dim the background of this panel.
 	void DrawBackdrop() const;
 
-	UI *GetUI() const noexcept;
 	void SetUI(UI *ui);
 
 	// This is not for overriding, but for calling KeyDown with only one or two
@@ -122,19 +143,94 @@ protected:
 	// Add a child. Deferred until next frame.
 	void AddChild(const std::shared_ptr<Panel> &panel);
 	// Remove a child. Deferred until next frame.
-	void RemoveChild(const Panel *panel);
+	void RemoveChild(Panel *panel);
 	// Handle deferred add/remove child operations.
 	void AddOrRemove();
 
 private:
 	class Zone : public Rectangle {
 	public:
-		Zone(const Rectangle &rect, const std::function<void()> &fun) : Rectangle(rect), fun(fun) {}
+		Zone(const Rectangle &rect, const std::function<void()> &fun_down) :
+			Rectangle(rect),
+			fun_down(fun_down),
+			radius(0)
+		{}
+		Zone(const Point &pos, float radius, const std::function<void()> &fun_down) :
+			Rectangle(pos, Point()),
+			fun_down(fun_down),
+			radius(radius)
+		{}
+		Zone(const Rectangle &rect, const std::function<void(const Event&)> &fun) :
+			Rectangle(rect),
+			fun_down_event(fun),
+			radius(0)
+		{}
+		Zone(const Point &pos, float radius, const std::function<void(const Event&)> &fun) :
+			Rectangle(pos, Point()),
+			fun_down_event(fun),
+			radius(radius)
+		{}
+		Zone(const Rectangle &rect, Command command) :
+			Rectangle(rect),
+			command(command),
+			radius(0)
+		{
+			fun_down = [command]() { Command::InjectOnce(command); };
+		}
+		Zone(const Point &pos, float radius, Command command) :
+			Rectangle(pos, Point()),
+			command(command),
+			radius(radius)
+		{
+			fun_down = [command]() { Command::InjectOnce(command); };
+		}
 
-		void Click() const { fun(); }
+		void MouseDown(const Point &pos, int id) const
+		{
+			if(fun_down_event)
+			{
+				Event e{pos, id, Event::MOUSE};
+				fun_down_event(e);
+			}
+			else
+				fun_down();
+		}
+		void ButtonDown(int id) const
+		{
+			if(fun_down_event)
+			{
+				Event e{Center(), id, Event::BUTTON};
+				fun_down_event(e);
+			}
+			else
+				fun_down();
+		}
+		void AxisDown(int id) const
+		{
+			if(fun_down_event)
+			{
+				Event e{Center(), id, Event::AXIS};
+				fun_down_event(e);
+			}
+			else
+				fun_down();
+		}
+
+		bool Contains(const Point &p) const
+		{
+			if(radius)
+				return Center().DistanceSquared(p) < radius * radius;
+			else
+				return Rectangle::Contains(p);
+		}
+
+		const Command &ZoneCommand() const { return command; }
 
 	private:
-		std::function<void()> fun;
+		std::function<void()> fun_down;
+		std::function<void(const Event&)> fun_down_event;
+		Command command;
+		float radius = 0;
 	};
 
 	// The UI class will not directly call the virtual methods, but will call
@@ -147,6 +243,12 @@ private:
 	bool DoDrag(double dx, double dy);
 	bool DoRelease(int x, int y, MouseButton button);
 	bool DoScroll(double dx, double dy);
+	bool DoControllersChanged();
+	bool DoControllerButtonDown(SDL_GameControllerButton button);
+	bool DoControllerButtonUp(SDL_GameControllerButton button);
+	bool DoControllerAxis(SDL_GameControllerAxis axis, int position);
+	bool DoControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive);
+	bool DoControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive);
 
 	void DoDraw();
 
@@ -170,6 +272,7 @@ private:
 	std::vector<std::shared_ptr<Panel>> children;
 	std::vector<std::shared_ptr<Panel>> childrenToAdd;
 	std::vector<const Panel *> childrenToRemove;
+	Panel *parent = nullptr;
 
 	friend class UI;
 };

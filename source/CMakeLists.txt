@@ -95,6 +95,8 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
+	Dropdown.cpp
+	Dropdown.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
@@ -256,6 +258,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Projectile.h
 	Radar.cpp
 	Radar.h
+	RadialSelectionPanel.cpp
+	RadialSelectionPanel.h
 	RaidFleet.cpp
 	RaidFleet.h
 	Random.cpp
@@ -374,6 +378,12 @@ target_sources(EndlessSkyLib PRIVATE
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
 	comparators/ByUUID.h
+	gamepad/GamePad.cpp
+	gamepad/GamePad.h
+	gamepad/GamepadCursor.cpp
+	gamepad/GamepadCursor.h
+	gamepad/GamepadPanel.cpp
+	gamepad/GamepadPanel.h
 	orders/OrderSet.cpp
 	orders/OrderSet.h
 	orders/OrderSingle.cpp
@@ -419,6 +429,8 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/SpriteShader.h
 	shader/StarField.cpp
 	shader/StarField.h
+	shader/UiRectShader.cpp
+	shader/UiRectShader.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	test/Test.cpp

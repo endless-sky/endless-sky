@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "gamepad/GamepadCursor.h"
 #include "Information.h"
 #include "Interface.h"
 #include "shader/LineShader.h"
@@ -116,6 +117,73 @@ namespace {
 				sideScroll = min(maximumScroll, sideScroll + (desiredScroll - bottomOfPage));
 			}
 		}
+	}
+
+
+
+	bool PrevMission(const list<Mission> &missionList, list<Mission>::const_iterator &it)
+	{
+		// Find the first visible mission
+		list<Mission>::const_iterator itFirst;
+		for(itFirst = missionList.begin(); itFirst != missionList.end(); ++itFirst)
+		{
+			if(itFirst->IsVisible())
+				break;
+		}
+		// cover edge cases
+		if(itFirst == missionList.end())
+			return false;
+		if(itFirst == it)
+			return true;
+		if(it == missionList.begin() || it == missionList.end() || !it->IsVisible())
+		{
+			it = itFirst;
+			return true;
+		}
+		// work our way backwards until we find the next visible mission
+		do {
+			--it;
+			if(it->IsVisible())
+				return true;
+		} while(it != missionList.begin());
+
+		// We should never reach here.
+		it = itFirst;
+		return true;
+	}
+
+
+
+	bool NextMission(const list<Mission> &missionList, list<Mission>::const_iterator &it)
+	{
+		// Find the last visible mission
+		list<Mission>::const_iterator itLast = missionList.end();
+		for(auto it2 = missionList.begin(); it2 != missionList.end(); ++it2)
+		{
+			if(it2->IsVisible())
+				itLast = it2;
+		}
+		// cover edge cases
+		if(itLast == missionList.end())
+			return false;
+		if(itLast == it)
+			return true;
+		if(it == itLast || it == missionList.end() || !it->IsVisible())
+		{
+			it = itLast;
+			return true;
+		}
+		// work our way forwards until we find the next visible mission
+		for(; it != missionList.end(); ++it)
+		{
+			++it;
+			if(it->IsVisible())
+				return true;
+		}
+
+		// We should never reach here.
+		it = itLast;
+		return false;
 	}
 }
 
@@ -688,6 +756,92 @@ void MissionPanel::ResizeTextArea() const
 
 
 
+bool MissionPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// We only care about controller events if the user has selected the detail panels
+	if(controllerFocus == FOCUS_DETAIL &&
+	   (axis == SDL_CONTROLLER_AXIS_LEFTX ||
+	    axis == SDL_CONTROLLER_AXIS_LEFTY))
+	{
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX)
+		{
+			if(positive && availableIt != available.end())
+			{
+				if(NextMission(accepted, acceptedIt))
+					availableIt = available.end();
+			}
+			else if(!positive && acceptedIt != accepted.end())
+			{
+				if(NextMission(available, availableIt))
+					acceptedIt = accepted.end();
+			}
+		}
+		else if(axis == SDL_CONTROLLER_AXIS_LEFTY)
+		{
+			if(acceptedIt != accepted.end())
+			{
+				if(positive)
+					NextMission(accepted, acceptedIt);
+				else
+					PrevMission(accepted, acceptedIt);
+			}
+			else if(availableIt != available.end())
+			{
+				if(positive)
+					NextMission(available, availableIt);
+				else
+					PrevMission(available, availableIt);
+			}
+			// else nothing available? change controller focus?
+		}
+
+		return true;
+	}
+	else
+	{
+		// let the parent class decide what to do
+		auto oldFocus = controllerFocus;
+		bool ret = MapPanel::ControllerTriggerPressed(axis, positive);
+		if(oldFocus != FOCUS_DETAIL && controllerFocus == FOCUS_DETAIL)
+		{
+			// We are newly selected.
+			if(availableIt != available.end() || acceptedIt != accepted.end() || SelectAnyMission())
+			{
+				// We move the cursor in the draw step
+			}
+			else
+			{
+				// No missions avaialble. Go back to where we just were.
+				controllerFocus = oldFocus;
+			}
+		}
+		return ret;
+	}
+	return false;
+}
+
+
+
+bool MissionPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(controllerFocus == FOCUS_DETAIL)
+	{
+		if(button == SDL_CONTROLLER_BUTTON_A)
+		{
+			// Switch to the buttons, defaulting to the Accept button.
+			controllerFocus = FOCUS_BUTTONS;
+			auto ui = GameData::Interfaces().Get("mission");
+			GamepadCursor::SetPosition(ui->GetBox("_Accept Mission").Center());
+			// we want to come back here after the mission is accepted/canceled
+			returnGamepadCursorToAvailableMissions = true;
+		}
+		return true;
+	}
+	return MapPanel::ControllerButtonDown(button);
+}
+
+
+
 void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 {
 	// Auto select the destination system for the current mission.
@@ -901,10 +1055,17 @@ Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const 
 
 		bool isSelected = it == selectIt;
 		if(isSelected)
+		{
+			Point rectCenter = pos + Point(.5 * SIDE_WIDTH - 5., 8.);
 			FillShader::Fill(
-				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
+				rectCenter,
 				Point(SIDE_WIDTH - 10., 20.),
 				highlight);
+			if(controllerFocus == FOCUS_DETAIL &&
+			   (GamepadCursor::Position().X() != rectCenter.X() ||
+			    GamepadCursor::Position().Y() != rectCenter.Y()))
+				GamepadCursor::SetPosition(rectCenter);
+		}
 
 		if(it->Deadline())
 			SpriteShader::Draw(fast, pos + Point(-4., 8.));

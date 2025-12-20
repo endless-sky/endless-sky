@@ -526,6 +526,15 @@ interface "load menu"
 interface "controls"
 	sprite "ui/keys panel"
 		center -65 -20
+
+	# dropdown for displayed control type
+	uirect
+		center -344.5 170
+		dimensions 161 30
+	box "control type"
+		center -344.5 170
+		dimensions 159 28
+
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -571,6 +580,215 @@ interface "controls"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
+
+	active
+	uirect
+		center -324 209.5
+		dimensions 120 31
+	button g "_Game Controllers"
+		center -324 209.5
+		dimensions 120 31
+		color medium
+		hover bright
+
+
+
+interface "gamepad panel"
+	uirect
+		from 50 50 top left
+		to -50 -50 bottom right
+		color "panel background"
+
+	uirect
+		center -120 -25 bottom right
+		dimensions 140 30
+		color "panel background"
+
+	button b "_Back to Preferences"
+		center -120 -25 bottom right
+		dimensions 140 30
+		color medium
+		hover bright
+
+	visible if "has controller"
+	uirect
+		center 120 -25 bottom left
+		dimensions 140 30
+		color "panel background"
+	button r "_Remap Buttons"
+		center 120 -25 bottom left
+		dimensions 140 30
+		color medium
+		hover bright
+
+	uirect
+		center 270 -25 bottom left
+		dimensions 140 30
+		color "panel background"
+	button e "R_eset Buttons"
+		center 270 -25 bottom left
+		dimensions 140 30
+		color medium
+		hover bright
+
+	visible if "needs save"
+	uirect
+		center 270 -25 bottom left
+		dimensions 140 30
+		color "panel background"
+	button r "_Save Mapping"
+		center 270 -25 bottom left
+		dimensions 140 30
+		color medium
+		hover bright
+
+	# gamepad and button overlays
+	visible
+	anchor top left
+	sprite "ui/gamepad"
+		center 316 218.5 top left
+
+	ring "B Button"
+		center 515 215
+		dimensions 20 20
+		color shields
+		size 11
+	ring "A Button"
+		center 472 251
+		dimensions 20 20
+		color shields
+		size 11
+	ring "Y Button"
+		center 475 184
+		dimensions 20 20
+		color shields
+		size 11
+	ring "X Button"
+		center 431 217
+		dimensions 20 20
+		color shields
+		size 11
+
+	ring "Guide Button"
+		center 317 211
+		dimensions 26 26
+		color shields
+		size 14
+	ring "Start Button"
+		center 374 219
+		dimensions 14 14
+		color shields
+		size 8
+	ring "Back Button"
+		center 261 219
+		dimensions 14 14
+		color shields
+		size 8
+	visible if "Left Shoulder Button"
+	fill
+		center 160 120
+		dimensions 90 26
+		color shields
+	visible if "Right Shoulder Button"
+	fill
+		center 476 120
+		dimensions 90 26
+		color shields
+	visible if "Left Trigger Button"
+	fill
+		center 175 84
+		dimensions 30 42
+		color shields
+	visible if "Right Trigger Button"
+	fill
+		center 460 84
+		dimensions 30 42
+		color shields
+	visible
+	ring "Left Stick Button"
+		center 157 236
+		dimensions 26 26
+		color shields
+		size 14
+	ring "Right Stick Button"
+		center 391 314
+		dimensions 26 26
+		color shields
+		size 14
+	visible if "Left Dpad Button"
+	sprite "ui/left_button"
+		center 207 302
+	visible if "Right Dpad Button"
+	sprite "ui/right_button"
+		center 272 302
+	visible if "Up Dpad Button"
+	sprite "ui/up_button"
+		center 240 270
+	visible if "Down Dpad Button"
+	sprite "ui/down_button"
+		center 240 334
+
+	box "Left Joystick"
+		center 157 236
+		dimensions 96 96
+
+	box "Right Joystick"
+		center 391 314
+		dimensions 96 96
+
+	visible if "Left Joystick Left"
+	sprite "ui/left_button"
+		center 125 236
+	visible if "Left Joystick Right"
+	sprite "ui/right_button"
+		center 189 236
+	visible if "Left Joystick Up"
+	sprite "ui/up_button"
+		center 157 204
+	visible if "Left Joystick Down"
+	sprite "ui/down_button"
+		center 157 268
+
+	visible if "Right Joystick Left"
+	sprite "ui/left_button"
+		center 359 314
+	visible if "Right Joystick Right"
+	sprite "ui/right_button"
+		center 423 314
+	visible if "Right Joystick Up"
+	sprite "ui/up_button"
+		center 391 282
+	visible if "Right Joystick Down"
+	sprite "ui/down_button"
+		center 391 346
+
+	# Begin text
+	visible
+	box "Gamepad Dropdown"
+		from -360 60 to -60 80 top right
+	box "Button List"
+		from -360 82 top right
+		to -60 -60 bottom right
+
+	label "Joystick Dead Zone:"
+		from -550 60 to -450 80 top right
+		size 18
+		align right
+	box "Deadzone Dropdown"
+		from -445 60 to -365 80 top right
+	label "Joystick Trigger Threshold:"
+		from -550 85 to -450 105 top right
+		size 18
+		align right
+	box "Trigger Threshold Dropdown"
+		from -445 85 to -365 105 top right
+
+	string "status"
+		from 60 -60 to 80 -80 bottom left
+		size 18
+		# put the text at the bottom-left of its bounding box. it will overflow
+		# the bounding box to the right
+		align bottom left
 
 
 

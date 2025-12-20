@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "gamepad/GamepadPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
@@ -119,6 +120,10 @@ namespace {
 		{"environment volume", SoundCategory::ENVIRONMENT},
 		{"alert volume", SoundCategory::ALERT}
 	};
+
+	// Control types
+	const string SHOW_KEYS = "Show Keys";
+	const string SHOW_GAMEPAD = "Show Gamepad";
 }
 
 
@@ -126,7 +131,8 @@ namespace {
 PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	: player(player),
 	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
-		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	controlTypeDropdown{new Dropdown}
 {
 	// Select the first valid plugin.
 	for(const auto &plugin : Plugins::Get())
@@ -137,6 +143,16 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 		}
 
 	SetIsFullScreen(true);
+
+	controlTypeDropdown->SetPadding(0);
+	controlTypeDropdown->ShowDropIcon(true);
+	controlTypeDropdown->SetFontSize(14);
+	controlTypeDropdown->SetOptions({
+		SHOW_KEYS,
+		SHOW_GAMEPAD
+	});
+	controlTypeDropdown->SetBgColor(*GameData::Colors().Get("conversation background"));
+	AddChild(controlTypeDropdown);
 
 	// Set the initial plugin list and description scroll ranges.
 	const Interface *pluginUi = GameData::Interfaces().Get("plugins");
@@ -238,6 +254,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
 		Command::SetKey(zones[editing].Value(), key);
+		controlTypeDropdown->SetSelected(SHOW_KEYS);
 		EndEditing();
 		return true;
 	}
@@ -258,6 +275,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 
 		// Make sure the render buffers are initialized and are aware of the current UI scale.
 		Resize();
+		controlTypeDropdown->SetVisible(page == 'c');
 	}
 	else if(key == 'o' && page == 'p')
 		Files::OpenUserPluginFolder();
@@ -286,6 +304,10 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	{
 		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
+	}
+	else if(page == 'c' && key == 'g')
+	{
+		GetUI()->Push(new GamepadPanel());
 	}
 	else
 		return false;
@@ -521,6 +543,46 @@ bool PreferencesPanel::Drag(double dx, double dy)
 
 
 
+bool PreferencesPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	if(editing >= 0 && editing < static_cast<int>(zones.size()))
+	{
+		// Reserve some axes here for flight/zoom
+		if(axis != SDL_CONTROLLER_AXIS_LEFTX &&
+			axis != SDL_CONTROLLER_AXIS_LEFTY)
+		{
+			Command::SetControllerTrigger(zones[editing].Value(), axis, positive);
+			controlTypeDropdown->SetSelected(SHOW_GAMEPAD);
+			EndEditing();
+			return true;
+		}
+	}
+	return Panel::ControllerTriggerPressed(axis, positive);
+}
+
+
+
+bool PreferencesPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(editing >= 0 && editing < static_cast<int>(zones.size()))
+	{
+		// TODO: provide a way to edit submenu buttons? Maybe just allow the user
+		//       to select multiple commands for a single button. For now, just
+		//       don't let the user set the shoulder buttons
+		if(button != SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+		{
+			Command::SetControllerButton(zones[editing].Value(), button);
+			controlTypeDropdown->SetSelected(SHOW_GAMEPAD);
+			EndEditing();
+		}
+		return true;
+	}
+	else
+		return Panel::ControllerButtonDown(button);
+}
+
+
+
 void PreferencesPanel::Resize()
 {
 	if(page == 'p')
@@ -622,6 +684,7 @@ void PreferencesPanel::DrawControls()
 		Command::CLOAK,
 		Command::MOUSE_TURNING_HOLD,
 		Command::AIM_TURRET_HOLD,
+		Command::STOP,
 		Command::NONE,
 		Command::NONE,
 		Command::MENU,
@@ -708,9 +771,18 @@ void PreferencesPanel::DrawControls()
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
 
 			table.Draw(command.Description(), medium);
-			table.Draw(command.KeyName(), isEditing ? bright : medium);
+			std::string controlName = "(None)";
+			if(controlTypeDropdown->GetSelected() == SHOW_GAMEPAD)
+				controlName = command.ButtonName();
+			else
+				controlName = command.KeyName();
+			table.Draw(controlName, isEditing ? bright : medium);
 		}
 	}
+
+	// Dropdown for displayed control type
+	Rectangle controlTypeRect = GameData::Interfaces().Get("controls")->GetBox("control type");
+	controlTypeDropdown->SetPosition(controlTypeRect);
 }
 
 
@@ -1310,7 +1382,8 @@ void PreferencesPanel::Exit()
 		return;
 	}
 
-	Command::SaveSettings(Files::Config() / "keys.txt");
+	Command::SaveKeyboardSettings(Files::Config() / "keys.txt");
+	Command::SaveGamepadSettings(Files::Config() / "controller.txt");
 
 	if(recacheDeadlines)
 		player.CacheMissionInformation(true);

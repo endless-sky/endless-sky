@@ -101,6 +101,16 @@ void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
 
 
 
+// Add a clickable zone to the panel that needs event details.
+void Panel::AddZone(const Rectangle &rect, const function<void(const Event&)> &fun)
+{
+	// The most recently added zone will typically correspond to what was drawn
+	// most recently, so it should be on top.
+	zones.emplace_front(rect, fun);
+}
+
+
+
 void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 {
 	AddZone(rect, [this, key](){ this->KeyDown(key, 0, Command(), true); });
@@ -108,13 +118,54 @@ void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 
 
 
+void Panel::AddZone(const Rectangle &rect, Command command)
+{
+	zones.emplace_front(rect, command);
+}
+
+
+
+// Add a clickable zone to the panel.
+void Panel::AddZone(const Point &center, float radius, const function<void()> &fun)
+{
+	// The most recently added zone will typically correspond to what was drawn
+	// most recently, so it should be on top.
+	zones.emplace_front(center, radius, fun);
+}
+
+
+
+// Add a clickable zone to the panel.
+void Panel::AddZone(const Point &center, float radius, const function<void(const Event &)> &fun)
+{
+	// The most recently added zone will typically correspond to what was drawn
+	// most recently, so it should be on top.
+	zones.emplace_front(center, radius, fun);
+}
+
+
+
+void Panel::AddZone(const Point &center, float radius, SDL_Keycode key)
+{
+	AddZone(center, radius, [this, key](){ this->KeyDown(key, 0, Command(), true); });
+}
+
+
+
+void Panel::AddZone(const Point &center, float radius, Command command)
+{
+	zones.emplace_front(center, radius, command);
+}
+
+
+
 // Check if a click at the given coordinates triggers a clickable zone. If
 // so, apply that zone's action and return true.
-bool Panel::ZoneClick(const Point &point)
+bool Panel::ZoneMouseDown(const Point &point, int id)
 {
 	for(auto it = children.rbegin(); it != children.rend(); ++it)
 	{
-		if((*it)->ZoneClick(point))
+		if((*it)->ZoneMouseDown(point, id))
 			return true;
 	}
 
@@ -125,9 +176,22 @@ bool Panel::ZoneClick(const Point &point)
 			// click has broken it out of that mode, so it doesn't interpret a
 			// button press and a text character entered.
 			EndEditing();
-			zone.Click();
+			zone.MouseDown(point, id);
 			return true;
 		}
+	return false;
+}
+
+
+
+// Check if a click at the given coordinates are on a zone.
+bool Panel::HasZone(const Point &point)
+{
+	for(const Zone &zone : zones)
+	{
+		if(zone.Contains(point))
+			return true;
+	}
 	return false;
 }
 
@@ -265,6 +329,48 @@ bool Panel::DoScroll(double dx, double dy)
 
 
 
+bool Panel::DoControllersChanged()
+{
+	return EventVisit(&Panel::ControllersChanged);
+}
+
+
+
+bool Panel::DoControllerButtonDown(SDL_GameControllerButton button)
+{
+	return EventVisit(&Panel::ControllerButtonDown, button);
+}
+
+
+
+bool Panel::DoControllerButtonUp(SDL_GameControllerButton button)
+{
+	return EventVisit(&Panel::ControllerButtonUp, button);
+}
+
+
+
+bool Panel::DoControllerAxis(SDL_GameControllerAxis axis, int position)
+{
+	return EventVisit(&Panel::ControllerAxis, axis, position);
+}
+
+
+
+bool Panel::DoControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	return EventVisit(&Panel::ControllerTriggerPressed, axis, positive);
+}
+
+
+
+bool Panel::DoControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive)
+{
+	return EventVisit(&Panel::ControllerTriggerReleased, axis, positive);
+}
+
+
+
 void Panel::DoDraw()
 {
 	Draw();
@@ -279,6 +385,48 @@ void Panel::DoResize()
 	Resize();
 	for(auto &child : children)
 		child->DoResize();
+}
+
+
+
+bool Panel::ControllersChanged()
+{
+	return false;
+}
+
+
+
+bool Panel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	return false;
+}
+
+
+
+bool Panel::ControllerButtonUp(SDL_GameControllerButton button)
+{
+	return false;
+}
+
+
+
+bool Panel::ControllerAxis(SDL_GameControllerAxis axis, int position)
+{
+	return false;
+}
+
+
+
+bool Panel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	return false;
+}
+
+
+
+bool Panel::ControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive)
+{
+	return false;
 }
 
 
@@ -319,7 +467,7 @@ void Panel::DrawBackdrop() const
 
 UI *Panel::GetUI() const noexcept
 {
-	return ui;
+	return parent ? parent->GetUI() : ui;
 }
 
 
@@ -390,12 +538,14 @@ const vector<shared_ptr<Panel>> &Panel::GetChildren()
 
 void Panel::AddChild(const shared_ptr<Panel> &panel)
 {
+	panel->parent = this;
 	childrenToAdd.push_back(panel);
 }
 
 
 
-void Panel::RemoveChild(const Panel *panel)
+void Panel::RemoveChild(Panel *panel)
 {
+	panel->parent = nullptr;
 	childrenToRemove.push_back(panel);
 }

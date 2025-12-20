@@ -29,6 +29,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "Galaxy.h"
 #include "GameData.h"
+#include "gamepad/GamePad.h"
+#include "gamepad/GamepadCursor.h"
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
@@ -298,13 +300,24 @@ void MapPanel::Step()
 		--recentering;
 	}
 
-	// The mouse should be pointing to the same map position before and after zooming.
+	// The mouse or gamepad cursor should be pointing to the same map position
+	// before and after zooming.
 	bool needsRecenter = !zoom.IsAnimationDone();
-	Point mouse, anchor;
+	Point cursor, anchor;
 	if(needsRecenter)
 	{
-		mouse = UI::GetMouse();
-		anchor = mouse / Zoom() - center;
+		if(controllerTriggeredZoom)
+		{
+			// If the cursor has snapped to a node, zoom on on that. Otherwise,
+			// zoom in on the cursor position.
+			if(controllerSelected != static_cast<size_t>(-1))
+				cursor = Zoom() * (nodes[controllerSelected].position + center);
+			else
+				cursor = GamepadCursor::Position();
+		}
+		else
+			cursor = UI::GetMouse();
+		anchor = cursor / Zoom() - center;
 	}
 
 	zoom.Step();
@@ -312,7 +325,17 @@ void MapPanel::Step()
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
 	if(needsRecenter)
-		center = mouse / Zoom() - anchor;
+		center = cursor / Zoom() - anchor;
+
+	if(controllerFocus == FOCUS_MAP)
+	{
+		Point joyDir = GamePad::LeftStick();
+		if(joyDir.LengthSquared() > GamePad::DeadZone() * GamePad::DeadZone())
+		{
+			center -= joyDir / 4000;
+			UpdateGamepadMapCursor();
+		}
+	}
 }
 
 
@@ -601,12 +624,105 @@ bool MapPanel::Drag(double dx, double dy)
 
 bool MapPanel::Scroll(double dx, double dy)
 {
+	controllerTriggeredZoom = false;
 	if(dy > 0.)
 		IncrementZoom();
 	else if(dy < 0.)
 		DecrementZoom();
 
 	return true;
+}
+
+
+
+bool MapPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// Right joystick controls which area of the display has the focus
+	// left joystick controls navigation within the selected area
+	if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
+	{
+		// handle navigation within the selected panel
+		switch(controllerFocus)
+		{
+		case FOCUS_DETAIL:
+			// TODO: handle left side content (mission list, port list, ship list, etc)
+			break;
+		case FOCUS_MAP:
+			// swallow this event. Panning is handled in the Step() function.
+			return true;
+			break;
+		case FOCUS_BUTTONS:
+			// TODO: navigate through the button panel on the bottom right
+			break;
+		}
+	}
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTX)
+	{
+		if(positive)
+		{
+			if(controllerFocus == FOCUS_DETAIL)
+			{
+				controllerFocus = FOCUS_MAP;
+				UpdateGamepadMapCursor();
+			}
+			else if(controllerFocus == FOCUS_MAP)
+			{
+				controllerFocus = FOCUS_BUTTONS;
+				GamepadCursor::MoveDir(Point(1, 0), GetUI()->ZonePositions());
+			}
+		}
+		else
+		{
+			if(controllerFocus == FOCUS_BUTTONS)
+			{
+				controllerFocus = FOCUS_MAP;
+				UpdateGamepadMapCursor();
+			}
+			else
+				controllerFocus = FOCUS_DETAIL;
+		}
+	}
+	if(axis == SDL_CONTROLLER_AXIS_RIGHTY)
+	{
+		if(controllerFocus == FOCUS_MAP)
+		{
+			// Manually handling zoom here so that it zooms on the gamepad cursor,
+			// and not on the mouse cursor.
+			controllerTriggeredZoom = true;
+			if(positive)
+				IncrementZoom();
+			else
+				DecrementZoom();
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+
+bool MapPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	switch(controllerFocus)
+	{
+	case FOCUS_DETAIL:
+		// TODO: handle left side content (mission list, port list, ship list, etc)
+		break;
+	case FOCUS_MAP:
+		if(button == SDL_CONTROLLER_BUTTON_A && controllerSelected < nodes.size())
+		{
+			Point pos = Zoom() * (nodes[controllerSelected].position + center);
+			Click(pos.X(), pos.Y(), MouseButton::LEFT, 1);
+			return true;
+		}
+		
+		break;
+	case FOCUS_BUTTONS:
+		// navigation through buttons. handled by default zone behavior.
+		break;
+	}
+	return false;
 }
 
 
@@ -1500,4 +1616,35 @@ void MapPanel::DecrementZoom()
 	double newZoom = max<double>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1);
 	zoom.Set(newZoom, mapInterface->GetValue("zoom animation duration"));
 	player.SetMapZoom(newZoom);
+}
+
+
+
+void MapPanel::UpdateGamepadMapCursor()
+{
+	// Have the cursor jump to the closest system to the center of the
+	// screen, if its close enough.
+	Point best(-100000.0, -100000.0);
+	double best_distance = 1000000000000.0;
+	size_t idx = 0;
+	for(const Node &node : nodes)
+	{
+		Point pos = Zoom() * (node.position + center);
+		double distance = pos.LengthSquared();
+		if(distance < best_distance)
+		{
+			best = pos;
+			best_distance = distance;
+			controllerSelected = idx;
+		}
+		++idx;
+	}
+
+	if(best_distance < 10000) // 100^2 units
+		GamepadCursor::SetPosition(best);
+	else
+	{
+		GamepadCursor::SetPosition(Point(0, 0));
+		controllerSelected = -1;
+	}
 }

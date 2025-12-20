@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Preferences.h"
+#include "RadialSelectionPanel.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "StellarObject.h"
@@ -310,6 +311,97 @@ bool MainPanel::Scroll(double dx, double dy)
 		return false;
 
 	return true;
+}
+
+
+
+bool MainPanel::ControllerAxis(SDL_GameControllerAxis axis, int position)
+{
+	if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
+	{
+		// Swallow these events. They are handled in Engine::HandleGamepadInput()
+		return true;
+	}
+	return false;
+}
+
+
+
+bool MainPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	return false;
+}
+
+
+
+bool MainPanel::ControllerButtonDown(SDL_GameControllerButton button)
+{
+	// TODO: Make this configurable.
+	if(button == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)
+	{
+		bool hasFleet = false;
+		bool hasFighters = false;
+		bool hasReservedFighters = false;
+		for(auto &ship : player.Ships())
+		{
+			if(ship.get() == player.Flagship())
+				continue;
+			if(!ship->IsParked() && !ship->IsDestroyed())
+			{
+				if(ship->CanBeCarried())
+				{
+					hasFighters = true;
+
+					if(!(ship->HasDeployOrder()))
+					{
+						// This ship still needs deployed
+						hasReservedFighters = true;
+					}
+					else
+					{
+						// already deployed, flying around somewhere
+						hasFleet = true;
+					}
+				}
+				else
+				{
+					// normal ship that isn't the flagship
+					hasFleet = true;
+				}
+			}
+		}
+		bool canHail = player.Flagship()->GetTargetShip() || player.Flagship()->GetTargetStellar();
+		bool canCloak = player.Flagship()->Attributes().Get("cloak");
+
+		// Don't pop up the selection if there is nothing to display
+		if(!hasFleet && !hasFighters && !canHail && !canCloak)
+			return false;
+
+		auto selection = new RadialSelectionPanel();
+		selection->ReleaseWithButtonUp(button);
+		if(hasFleet)
+		{
+			selection->AddOption(Command::FIGHT);
+			selection->AddOption(Command::GATHER);
+			selection->AddOption(Command::HOLD_POSITION);
+			selection->AddOption(Command::HOLD_FIRE);
+			selection->AddOption(Command::HARVEST);
+		}
+		if(hasFighters)
+		{
+			if(hasReservedFighters)
+				selection->AddOption("ui/icon_deploy", "Deploy Fighters", []() { Command::InjectOnce(Command::DEPLOY, true); });
+			else
+				selection->AddOption("ui/icon_recall", "Recall Fighters", []() { Command::InjectOnce(Command::DEPLOY, true); });
+		}
+		if(canHail)
+			selection->AddOption(Command::HAIL);
+		if(canCloak)
+			selection->AddOption(Command::CLOAK);
+		GetUI()->Push(selection);
+		return true;
+	}
+	return false;
 }
 
 

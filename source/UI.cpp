@@ -17,6 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "Command.h"
+#include "gamepad/DelaunayTriangulation.h"
+#include "gamepad/GamePad.h"
+#include "gamepad/GamepadCursor.h"
 #include "Panel.h"
 #include "Screen.h"
 
@@ -33,6 +36,8 @@ using namespace std;
 bool UI::Handle(const SDL_Event &event)
 {
 	bool handled = false;
+	SDL_GameControllerAxis axisTriggered = SDL_CONTROLLER_AXIS_INVALID;
+	SDL_GameControllerAxis axisUnTriggered = SDL_CONTROLLER_AXIS_INVALID;
 
 	vector<shared_ptr<Panel>>::iterator it = stack.end();
 	while(it != stack.begin() && !handled)
@@ -58,7 +63,7 @@ bool UI::Handle(const SDL_Event &event)
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
 			if(event.button.button == SDL_BUTTON_LEFT)
-				handled = (*it)->ZoneClick(Point(x, y));
+				handled = (*it)->ZoneMouseDown(Point(x, y), event.button.which);
 			if(!handled)
 				handled = (*it)->DoClick(x, y, static_cast<MouseButton>(event.button.button), event.button.clicks);
 		}
@@ -66,7 +71,9 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			handled = (*it)->DoRelease(x, y, static_cast<MouseButton>(event.button.button));
+			handled = (*it)->HasZone(Point(x, y));
+			if(!handled)
+				handled = (*it)->DoRelease(x, y, static_cast<MouseButton>(event.button.button));
 		}
 		else if(event.type == SDL_MOUSEWHEEL)
 			handled = (*it)->DoScroll(event.wheel.x, event.wheel.y);
@@ -75,11 +82,94 @@ bool UI::Handle(const SDL_Event &event)
 			Command command(event.key.keysym.sym);
 			handled = (*it)->DoKeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
 		}
+		else if(event.type == Command::EventID())
+		{
+			Command command(event);
+			if(reinterpret_cast<const CommandEvent&>(event).pressed == SDL_PRESSED)
+				handled = (*it)->DoKeyDown(0, 0, command, true);
+		}
+		else if(event.type == SDL_CONTROLLERDEVICEADDED ||
+		        event.type == SDL_CONTROLLERDEVICEREMOVED)
+		{
+			handled = (*it)->ControllersChanged();
+		}
+		else if(event.type == SDL_CONTROLLERAXISMOTION)
+		{
+			// Try a raw axis event first. If nobody handles it, then convert it
+			// to an axis trigger event, and try again.
+			if(!(handled = (*it)->ControllerAxis(static_cast<SDL_GameControllerAxis>(event.caxis.axis), event.caxis.value)))
+			{
+				// Not handled. Convert it to a trigger event
+				if(activeAxis == SDL_CONTROLLER_AXIS_INVALID)
+				{
+					if(SDL_abs(event.caxis.value) > GamePad::AxisIsButtonPressThreshold())
+					{
+						// Trigger/axis has moved far enough that we are certain the
+						// user meant to press it.
+						activeAxisIsPositive = event.caxis.value > 0;
+						activeAxis = static_cast<SDL_GameControllerAxis>(event.caxis.axis);
+						handled = (*it)->ControllerTriggerPressed(activeAxis, activeAxisIsPositive);
+						if(!handled)
+						{
+							Command command = Command::FromTrigger(event.caxis.axis, activeAxisIsPositive);
+							if(!(command == Command()))
+								handled = (*it)->DoKeyDown(0, 0, command, true);
+							if(!handled)
+							{
+								// By default, convert the right joystick into a scroll event.
+								// for mouse wheel, positive is up, so flip the direction
+								if(activeAxis == SDL_CONTROLLER_AXIS_RIGHTY)
+									handled = (*it)->Scroll(0, activeAxisIsPositive ? -1 : 1);
+								else if(activeAxis == SDL_CONTROLLER_AXIS_RIGHTX)
+									handled = (*it)->Scroll(activeAxisIsPositive ? -1 : 1, 0);
+							}
+						}
+						axisTriggered = activeAxis;
+					}
+				}
+				else if(activeAxis == event.caxis.axis && SDL_abs(event.caxis.value) < GamePad::DeadZone())
+				{
+					// Trigger returned to zero-ish position.
+					handled = (*it)->ControllerTriggerReleased(activeAxis, activeAxisIsPositive);
+					axisUnTriggered = activeAxis;
+					activeAxis = SDL_CONTROLLER_AXIS_INVALID;
+				}
+			}
+		}
+		else if(event.type == SDL_CONTROLLERBUTTONDOWN)
+		{
+			handled = (*it)->ControllerButtonDown(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+			if(!handled)
+			{
+				Command command = Command::FromButton(event.cbutton.button);
+				handled = (*it)->DoKeyDown(0, 0, command, true);
+			}
+		}
+		else if(event.type == SDL_CONTROLLERBUTTONUP)
+		{
+			handled = (*it)->DoControllerButtonUp(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+		}
 
 		// If this panel does not want anything below it to receive events, do
 		// not let this event trickle further down the stack.
 		if((*it)->TrapAllEvents())
 			break;
+	}
+
+	// If game controller events are not explicitly handled by the panels, then
+	// handle them here. We do this outside of the panel loop, because in order
+	// to pick and choose buttons to navigate to, we need to consider all of the
+	// panels, not just the top one.
+	if(!handled)
+	{
+		if(axisTriggered != SDL_CONTROLLER_AXIS_INVALID)
+			handled = DefaultControllerTriggerPressed(axisTriggered, activeAxisIsPositive);
+		else if(axisUnTriggered != SDL_CONTROLLER_AXIS_INVALID)
+			handled = DefaultControllerTriggerReleased(axisTriggered, activeAxisIsPositive);
+		else if(event.type == SDL_CONTROLLERBUTTONDOWN)
+			handled = DefaultControllerButtonDown(static_cast<SDL_GameControllerButton>(event.cbutton.button));
+		else if(event.type == SDL_CONTROLLERBUTTONUP)
+			handled = DefaultControllerButtonUp(static_cast<SDL_GameControllerButton>(event.cbutton.button));
 	}
 
 	// Handle any queued push or pop commands.
@@ -119,6 +209,10 @@ void UI::DrawAll()
 
 	for( ; it != stack.end(); ++it)
 		(*it)->DoDraw();
+
+	// If the panel has a valid ui element selected, draw a rotating indicator
+	// around it
+	GamepadCursor::Draw();
 }
 
 
@@ -310,9 +404,24 @@ void UI::PlaySound(UISound sound)
 
 
 
+// Return the positions of every active zone. Used for joystick navigation.
+std::vector<Point> UI::ZonePositions() const
+{
+	std::vector<Point> options;
+	for(const Panel::Zone *zone : GetZones())
+		options.push_back(zone->Center());
+	return options;
+}
+
+
+
 // If a push or pop is queued, apply it.
 void UI::PushOrPop()
 {
+	// If panel state is changing, reset the controller cursor state
+	if(!toPush.empty() || !toPop.empty())
+		GamepadCursor::SetEnabled(false);
+
 	// Handle any panels that should be added.
 	for(shared_ptr<Panel> &panel : toPush)
 		if(panel)
@@ -335,4 +444,108 @@ void UI::PushOrPop()
 	// Each panel potentially has its own children, which could be modified.
 	for(auto &panel : stack)
 		panel->AddOrRemove();
+}
+
+
+
+// Handle panel button navigation. This is done in the UI class instead of the
+// panel class because we need to know where all the buttons on all the panels
+// are in order to correctly handle navigation.
+bool UI::DefaultControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive)
+{
+	// By default, treat the left joystick like a zone selector.
+	if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
+	{
+		std::vector<Point> options;
+		for(const Panel::Zone * zone : GetZones())
+			options.push_back(zone->Center());
+		if(!options.empty())
+		{
+			if(!GamepadCursor::Enabled())
+				GamepadCursor::SetPosition(options.front());
+			else
+				GamepadCursor::MoveDir(GamePad::LeftStick(), options);
+			return true;
+		}
+	}
+	return false;
+}
+
+
+
+// Handle panel button navigation. This is done in the UI class instead of the
+// panel class because we need to know where all the buttons on all the panels
+// are in order to correctly handle navigation.
+bool UI::DefaultControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive)
+{
+	return false;
+}
+
+
+
+// Handle panel button navigation. This is done in the UI class instead of the
+// panel class because the button press might apply to a different panel than
+// the top one.
+bool UI::DefaultControllerButtonUp(SDL_GameControllerButton button)
+{
+	if(button == SDL_CONTROLLER_BUTTON_A && GamepadCursor::Enabled())
+	{
+		for(Panel::Zone* zone: GetZones())
+		{
+			// floating point equality comparision is safe here, since we haven't
+			// done math on these, just assignments.
+			if(zone->Center().X() == GamepadCursor::Position().X() &&
+				zone->Center().Y() == GamepadCursor::Position().Y())
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+
+
+// Handle panel button navigation. This is done in the UI class instead of the
+// panel class because the button press might apply to a different panel than
+// the top one.
+bool UI::DefaultControllerButtonDown(SDL_GameControllerButton button)
+{
+	if(button == SDL_CONTROLLER_BUTTON_A && GamepadCursor::Enabled())
+	{
+		for(Panel::Zone* zone: GetZones())
+		{
+			// floating point equality comparision is safe here, since we haven't
+			// done math on these, just assignments.
+			if(zone->Center().X() == GamepadCursor::Position().X() &&
+				zone->Center().Y() == GamepadCursor::Position().Y())
+			{
+				zone->ButtonDown(static_cast<int>(button));
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+
+
+// Get all the zones from currently active panels
+std::vector<Panel::Zone*> UI::GetZones() const
+{
+	std::vector<Panel::Zone*> zones;
+	for(auto it = stack.rbegin(); it != stack.rend(); ++it)
+	{
+		// Don't handle panels destined for death.
+		if(count(toPop.begin(), toPop.end(), it->get()))
+			continue;
+
+		for(Panel::Zone& zone: (*it)->zones)
+			zones.push_back(&zone);
+
+		// Don't consider anything beneath a modal panel
+		if((*it)->TrapAllEvents())
+			break;
+	}
+	return zones;
 }

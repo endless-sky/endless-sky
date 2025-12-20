@@ -15,11 +15,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <SDL2/SDL_events.h>
+
+#include <atomic>
 #include <cstdint>
 #include <filesystem>
 #include <string>
 
 class DataNode;
+
+struct CommandEvent
+{
+	uint32_t type;
+	uint32_t timestamp;
+	uint32_t windowID;
+	uint64_t state;
+	uint8_t pressed;
+};
+static_assert(sizeof(CommandEvent) <= sizeof(SDL_Event), "The CommandEvent should be smaller");
 
 
 
@@ -73,6 +86,7 @@ public:
 	static const Command HOLD_POSITION;
 	static const Command AMMO;
 	static const Command HARVEST;
+	static const Command FLEET_FORMATION;
 	// This command is given in combination with JUMP or LAND and tells a ship
 	// not to jump or land yet even if it is in position to do so. It can be
 	// given from the AI when a ship is waiting for its parent. It can also be
@@ -98,19 +112,32 @@ public:
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
 	explicit Command(int keycode);
+	// Create a command from an sdl command event
+	explicit Command(const union SDL_Event &event);
+	// Create a command representing a game controller axis trigger
+	static Command FromTrigger(uint8_t axis, bool positive);
+	// Create a command representing a game controller button press
+	static Command FromButton(uint8_t button);
 
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();
 
 	// Load or save the keyboard preferences.
-	static void LoadSettings(const std::filesystem::path &path);
-	static void SaveSettings(const std::filesystem::path &path);
+	static void LoadKeyboardSettings(const std::filesystem::path &path);
+	static void LoadGamepadSettings(const std::filesystem::path &path);
+	static void SaveKeyboardSettings(const std::filesystem::path &path);
+	static void SaveGamepadSettings(const std::filesystem::path &path);
 	static void SetKey(Command command, int keycode);
+	static void InitIcons();
+	static void SetControllerButton(Command command, uint8_t button);
+	static void SetControllerTrigger(Command command, uint8_t trigger, bool positive);
 
 	// Get the description or keycode name for this command. If this command is
 	// a combination of more than one command, an empty string is returned.
 	const std::string &Description() const;
 	const std::string &KeyName() const;
+	const std::string ButtonName() const;
+	const std::string &Icon() const;
 	bool HasBinding() const;
 	bool HasConflict() const;
 
@@ -142,7 +169,18 @@ public:
 	// Get the commands that are set in either of these commands.
 	Command operator|(const Command &command) const;
 	Command &operator|=(const Command &command);
+	bool operator==(const Command &command) const;
 
+	// Allow UI's to simulate keyboard input
+	static void InjectOnce(const Command &command, bool next = false);
+	static void InjectOnceNoEvent(const Command &command);
+	static void InjectSet(const Command &command);
+	static void InjectClear();
+	static void InjectUnset(const Command &command);
+	static Command Get(const std::string &description);
+	// Register an event, and return its value. This event gets triggered
+	// whenever we call InjectSet/InjetUnset
+	static uint32_t EventID();
 
 private:
 	explicit Command(uint64_t state);
@@ -155,4 +193,9 @@ private:
 	uint64_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
+
+	// If we want to simulate input from the ui, place it here to be read later
+	static std::atomic<uint64_t> simulated_command;
+	static std::atomic<uint64_t> simulated_command_once;
+	static bool simulated_command_skip;
 };
