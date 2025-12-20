@@ -246,7 +246,7 @@ void GamePad::Init()
 
 	if(in)
 	{
-		ssize_t pos = SDL_RWseek(in, 0, RW_SEEK_END);
+		auto pos = SDL_RWseek(in, 0, RW_SEEK_END);
 		if(pos > 0)
 		{
 			std::vector<char> buffer(pos);
