@@ -63,6 +63,6 @@ private:
 
 	// Tasks this NPC action performs, such as modifying accounts, inventory, or conditions.
 	MissionAction action;
-	//Conditions that must be met in order for this to action to occur.
+	// Conditions that must be met in order for this to action to occur.
 	ConditionSet toTrigger;
 };

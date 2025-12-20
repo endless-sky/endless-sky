@@ -676,7 +676,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	auto ait = npcActions.begin();
 	for( ; ait != npcActions.end(); ++ait)
 	{
-		for(const auto &action: ait->second)
+		for(const auto &action : ait->second)
 		{
 			reason = action.Validate();
 			if(!reason.empty())
@@ -693,7 +693,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	{
 		for(const auto &action : it.second)
 		{
-			result.npcActions[it.first].push_back(action.Instantiate(subs, origin,jumps, payload));
+			result.npcActions[it.first].push_back(action.Instantiate(subs, origin, jumps, payload));
 		}
 	}
 
