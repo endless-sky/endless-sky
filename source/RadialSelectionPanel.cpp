@@ -288,7 +288,6 @@ void RadialSelectionPanel::MoveCursor(const Point& p)
 		for(m_selected_idx = 0; m_selected_idx < static_cast<int>(m_options.size()); ++m_selected_idx)
 		{
 			float nextAngle = AngleClamp(testAngle + m_angleDelta);
-			SDL_Log("pointAngle: %f  testAngle: %f, nextAngle: %f", pointAngle, testAngle, nextAngle);
 			if(AngleWithin(pointAngle, testAngle, nextAngle))
 			{
 				break;
