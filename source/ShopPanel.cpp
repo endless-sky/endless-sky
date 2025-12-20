@@ -441,14 +441,12 @@ bool ShopPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool posit
 	}
 	else if(activePane == ShopPane::Info)
 	{
-		if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
-		   axis == SDL_CONTROLLER_AXIS_LEFTY)
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
 			return true; // prevent event from doing normal button selection logic
 	}
 	else if(activePane == ShopPane::Sidebar)
 	{
-		if(axis == SDL_CONTROLLER_AXIS_LEFTX ||
-		   axis == SDL_CONTROLLER_AXIS_LEFTY)
+		if(axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY)
 		{
 			// do not rely on default zone-based cursor handling, as this class
 			// uses its own zones (also confusingly named "Zone")
