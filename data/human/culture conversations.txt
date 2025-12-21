@@ -1836,7 +1836,6 @@ mission "Three Card Monte"
 	to offer
 		random < 5 + 15 / "Three Card Monte: offered"
 		random < 2 + 5 * "flagship planet attribute: tourism" + 5 * "flagship planet attribute: urban" + 10 * "flagship planet attribute: pirate" - "Three Card Monte: declined" + "monte: accepted game"
-		credits > 1000
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Pirate"
 		not attributes "deep" "station"
@@ -1853,6 +1852,8 @@ mission "Three Card Monte"
 			`	The dealer waits expectantly.`
 			choice
 				`	(Put down 1,000 credits to play the game.)`
+					to display
+						credits < 1000
 					goto "accepted game"
 				`	(Pat my empty pockets.)`
 					to display
