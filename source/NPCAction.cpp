@@ -47,16 +47,7 @@ void NPCAction::Load(const DataNode &node, const ConditionsStore *playerConditio
 		if(key == "triggered")
 			triggered = true;
 		else
-		{
-			if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "trigger")
-			{
-				toTrigger.Load(child, playerConditions);
-			}
-			else
-			{
-				action.LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
-			}
-		}
+			action.LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
 	}
 }
 
@@ -71,16 +62,6 @@ void NPCAction::Save(DataWriter &out) const
 	{
 		if(triggered)
 			out.Write("triggered");
-
-		if(!toTrigger.IsEmpty())
-		{
-			out.Write("to", "trigger");
-			out.BeginChild();
-			{
-				toTrigger.Save(out);
-			}
-			out.EndChild();
-		}
 
 		action.SaveBody(out);
 	}
@@ -104,8 +85,6 @@ void NPCAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const shar
 	// are marked as triggered, and cannot be used again.
 	if(triggered)
 		return;
-	if(!toTrigger.IsEmpty() && !toTrigger.Test())
-		return;
 	triggered = true;
 	action.Do(player, ui, caller, nullptr, target);
 }
@@ -118,7 +97,6 @@ NPCAction NPCAction::Instantiate(map<string, string> &subs, const System *origin
 {
 	NPCAction result;
 	result.trigger = trigger;
-	result.toTrigger = toTrigger;
 	result.action = action.Instantiate(subs, origin, jumps, payload);
 	return result;
 }

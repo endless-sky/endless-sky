@@ -122,4 +122,6 @@ private:
 
 	// Tasks this mission action performs, such as modifying accounts, inventory, or conditions.
 	GameAction action;
+	// Conditions that must be met in order for this to action to occur.
+	ConditionSet toTrigger;
 };
