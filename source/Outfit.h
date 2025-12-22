@@ -49,6 +49,10 @@ public:
 	static constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
 	static constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
 
+	// Attributes are stored as integers but used as doubles. This is the factor by which to convert
+	// attribute values from doubles to integers and back.
+	static constexpr int ATTRIBUTE_PRECISION = 10000;
+
 
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
@@ -62,7 +66,7 @@ public:
 	const std::string &PluralName() const;
 	const std::string &Category() const;
 	const std::string &Series() const;
-	const int Index() const;
+	int Index() const;
 	std::string Description() const;
 	int64_t Cost() const;
 	double Mass() const;
@@ -73,7 +77,7 @@ public:
 
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
-	const Dictionary &Attributes() const;
+	const Dictionary<double> &Attributes() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -83,7 +87,7 @@ public:
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);
 	// Add the licenses required by the given outfit to this outfit.
-	void AddLicenses(const Outfit &outfit);
+	void AddLicenses(const Outfit &other);
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
@@ -121,6 +125,8 @@ public:
 private:
 	// Add the license with the given name to the licenses required by this outfit, if it is not already present.
 	void AddLicense(const std::string &name);
+	// Update the cache of double-precision attributes after the integer attributes ahve been changed,
+	void RecacheAttributes();
 
 
 private:
@@ -140,7 +146,8 @@ private:
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 
-	Dictionary attributes;
+	Dictionary<int64_t> rawAttributes;
+	Dictionary<double> cachedAttributes;
 
 	std::shared_ptr<const Weapon> weapon;
 	// Non-weapon outfits can have ammo so that storage outfits
