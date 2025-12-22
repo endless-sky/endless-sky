@@ -320,13 +320,13 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
+bool MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	// Verify that the required conditions are present.
 	// Since CanBeDone is not called by NPCAction, this is the earliest that toTrigger can be tested.
 	if(!toTrigger.IsEmpty() && !toTrigger.Test())
-		return;
+		return false;
 
 	bool isOffer = (trigger == "offer");
 	if(!conversation->IsEmpty() && ui)
@@ -363,6 +363,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		player.MissionCallback(Conversation::ACCEPT);
 
 	action.Do(player, ui, caller);
+	return true;
 }
 
 

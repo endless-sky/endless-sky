@@ -85,8 +85,9 @@ void NPCAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const shar
 	// are marked as triggered, and cannot be used again.
 	if(triggered)
 		return;
-	triggered = true;
-	action.Do(player, ui, caller, nullptr, target);
+	// In rare situations, the action may exit early. If that happens, don't count it as triggered.
+	if(action.Do(player, ui, caller, nullptr, target))
+		triggered = true;
 }
 
 
