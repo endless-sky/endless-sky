@@ -87,6 +87,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Depreciation.h
 	Dialog.cpp
 	Dialog.h
+	Dictionary.cpp
 	Dictionary.h
 	DistanceCalculationSettings.h
 	DistanceCalculationSettings.cpp

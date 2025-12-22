@@ -30,6 +30,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Attributes are stored as integers but used as doubles. This is the factor by which to convert
+	// attribute values from doubles to integers and back.
+	constexpr int ATTRIBUTE_PRECISION = 10000;
+
 	// A mapping of attribute names to specifically-allowed minimum values. Based on the
 	// specific usage of the attribute, the allowed minimum value is chosen to avoid
 	// disallowed or undesirable behaviors (such as dividing by zero).
@@ -402,7 +406,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	};
 	convertScan("outfit");
 	convertScan("cargo");
-	RecacheAttributes();
+	UpdateAttributeCache();
 }
 
 
@@ -552,7 +556,7 @@ void Outfit::Add(const Outfit &other, int count)
 	mass += other.mass * count;
 	for(const auto &[name, otherValue] : other.rawAttributes)
 		rawAttributes[name] += otherValue * count;
-	RecacheAttributes();
+	UpdateAttributeCache();
 
 	for(const auto &it : other.flareSprites)
 		AddFlareSprites(flareSprites, it, count);
@@ -588,7 +592,7 @@ void Outfit::AddLicenses(const Outfit &other)
 // Modify this outfit's attributes.
 void Outfit::Set(const char *attribute, double value)
 {
-	rawAttributes[attribute] = value;
+	rawAttributes[attribute] = value * ATTRIBUTE_PRECISION;
 }
 
 
@@ -740,7 +744,7 @@ void Outfit::AddLicense(const string &name)
 
 
 
-void Outfit::RecacheAttributes()
+void Outfit::UpdateAttributeCache()
 {
 	cachedAttributes.Clear();
 	for(const auto &[name, value] : rawAttributes)

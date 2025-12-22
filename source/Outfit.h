@@ -49,10 +49,6 @@ public:
 	static constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
 	static constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
 
-	// Attributes are stored as integers but used as doubles. This is the factor by which to convert
-	// attribute values from doubles to integers and back.
-	static constexpr int ATTRIBUTE_PRECISION = 10000;
-
 
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
@@ -125,8 +121,8 @@ public:
 private:
 	// Add the license with the given name to the licenses required by this outfit, if it is not already present.
 	void AddLicense(const std::string &name);
-	// Update the cache of double-precision attributes after the integer attributes ahve been changed,
-	void RecacheAttributes();
+	/// Update the cache of double-precision attributes after the integer attributes have been changed.
+	void UpdateAttributeCache();
 
 
 private:
