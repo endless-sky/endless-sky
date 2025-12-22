@@ -91,7 +91,7 @@ void TradingPanel::Step()
 
 void TradingPanel::Draw()
 {
-	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
+	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	const Rectangle box = tradeUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();
@@ -288,7 +288,7 @@ bool TradingPanel::Click(int x, int y, MouseButton button, int clicks)
 	if(button != MouseButton::LEFT)
 		return false;
 
-	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
+	const Interface *tradeUi = GameData::Interfaces().Get("trade");
 	const Rectangle box = tradeUi->GetBox("content");
 	const int MIN_X = box.Left();
 	const int FIRST_Y = box.Top();
