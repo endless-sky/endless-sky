@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StringInterner.h"
 
+#include <cstdint>
 #include <cstring>
 
 using namespace std;
