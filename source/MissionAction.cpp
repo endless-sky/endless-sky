@@ -130,6 +130,8 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 	}
 	else if(key == "can trigger after failure")
 		runsWhenFailed = true;
+	else if(key == "to" && hasValue && child.Token(1) == "trigger")
+		toTrigger.Load(child, playerConditions);
 	else
 		action.LoadSingle(child, playerConditions);
 }
@@ -155,6 +157,15 @@ void MissionAction::Save(DataWriter &out) const
 
 void MissionAction::SaveBody(DataWriter &out) const
 {
+	if(!toTrigger.IsEmpty())
+	{
+		out.Write("to", "trigger");
+		out.BeginChild();
+		{
+			toTrigger.Save(out);
+		}
+		out.EndChild();
+	}
 	if(!systemFilter.IsEmpty())
 	{
 		out.Write("system");
@@ -309,9 +320,14 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
+bool MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
+	// Verify that the required conditions are present.
+	// Since CanBeDone is not called by NPCAction, this is the earliest that toTrigger can be tested.
+	if(!toTrigger.IsEmpty() && !toTrigger.Test())
+		return false;
+
 	bool isOffer = (trigger == "offer");
 	if(!conversation->IsEmpty() && ui)
 	{
@@ -347,6 +363,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		player.MissionCallback(Conversation::ACCEPT);
 
 	action.Do(player, ui, caller);
+	return true;
 }
 
 
@@ -362,6 +379,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.systemFilter = systemFilter.SetOrigin(origin);
 
 	result.requiredOutfits = requiredOutfits;
+	result.toTrigger = toTrigger;
 
 	string previousPayment = subs["<payment>"];
 	string previousFine = subs["<fine>"];
