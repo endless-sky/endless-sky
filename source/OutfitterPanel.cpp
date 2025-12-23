@@ -277,7 +277,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 			? max(thumbnail->Height(), static_cast<float>(TileSize()))
 			: static_cast<float>(TileSize());
 		const Point thumbnailCenter(center.X(), center.Y() + 20 + static_cast<int>(tileSize / 2));
-		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
+		const Point startPoint(center.X() - INFO_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
 		const Sprite *background = SpriteSet::Get("ui/outfitter unselected");
 		SpriteShader::Draw(background, thumbnailCenter);
@@ -304,7 +304,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 			}
 
 			// Calculate the ClickZone for the description and add it.
-			const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+			const Point descriptionDimensions(INFO_WIDTH, descriptionOffset);
 			const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
 			ClickZone<string> collapseDescription = ClickZone<string>(
 				descriptionCenter, descriptionDimensions, DESCRIPTION);
@@ -321,8 +321,8 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 	// Draw this string representing the selected item (if any), centered in the details side panel
 	const Color &bright = *GameData::Colors().Get("bright");
-	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw({selectedItem, {INFOBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
+	Point selectedPoint(center.X() - INFO_WIDTH / 2, center.Y());
+	font.Draw({selectedItem, {INFO_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
 	return heightOffset;

@@ -129,14 +129,14 @@ double ShipyardPanel::DrawDetails(const Point &center)
 		selectedItem = selectedShip->DisplayModelName();
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
-		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
+		const Point startPoint(center.X() - INFO_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
 		SpriteShader::Draw(background, spriteCenter);
 
 		const Sprite *shipSprite = selectedShip->GetSprite();
 		if(shipSprite)
 		{
-			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
+			const float spriteScale = min(1.f, (INFO_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
 			const Swizzle *swizzle = selectedShip->CustomSwizzle()
 				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
@@ -162,7 +162,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 			}
 
 			// Calculate the ClickZone for the description and add it.
-			const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+			const Point descriptionDimensions(INFO_WIDTH, descriptionOffset);
 			const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
 			const ClickZone<string> collapseDescription = ClickZone<string>(
 				descriptionCenter, descriptionDimensions, DESCRIPTION);
@@ -179,8 +179,8 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 	// Draw this string representing the selected ship (if any), centered in the details side panel
 	const Color &bright = *GameData::Colors().Get("bright");
-	const Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw({selectedItem, {INFOBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
+	const Point selectedPoint(center.X() - INFO_WIDTH / 2, center.Y());
+	font.Draw({selectedItem, {INFO_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
 	return heightOffset;
