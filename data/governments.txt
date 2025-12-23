@@ -753,8 +753,7 @@ government "Hai"
 	"friendly disabled hail" "friendly disabled hai"
 	"hostile hail" "hostile hai"
 	"hostile disabled hail" "hostile disabled hai"
-	"ship bribe acceptance hail" "ship
-bribe acceptance hai"
+	"ship bribe acceptance hail" "ship bribe acceptance hai"
 	"ship bribe rejection hail" "ship bribe rejection hai"
 
 government "Hai Merchant"
