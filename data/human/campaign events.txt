@@ -2538,7 +2538,6 @@ event "pug flee"
 		add object "Pug Wormhole"
 			sprite planet/wormhole
 			distance 2320.29
-			period 1788.27
 	planet "Pugglemug"
 		attributes uninhabited
 	planet "Pugglequat"
