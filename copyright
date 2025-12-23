@@ -2442,6 +2442,7 @@ Files:
  images/thumbnail/heliarch?stalker*
  images/outfit/finisher?storage*
  images/outfit/fuel?module*
+ images/outfit/guardian?turret*
  images/outfit/large?cogeneration?module*
  images/outfit/small?cogeneration?module*
  images/scene/councilofahr1*
@@ -2481,6 +2482,11 @@ Copyright: Michael Zahniser
 License: CC-BY-SA-4.0
 Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
 
+
+Files:
+ images/outfit/beyond?the?hyperdrive*
+Copyright: Arachi-Lover (https://github.com/Arachi-Lover)
+License: CC-BY-SA-4.0
 
 Files:
  images/outfit/outskirts?gauger*

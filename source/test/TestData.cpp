@@ -40,12 +40,12 @@ void TestData::Load(UniverseObjects &universe, const DataNode &node, const files
 	sourceDataFile = sourceDataFilePath;
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("Error: Unnamed test data:");
+		node.PrintTrace("Unnamed test data:");
 		return;
 	}
 	if(node.Token(0) != "test-data")
 	{
-		node.PrintTrace("Error: Unsupported root node:");
+		node.PrintTrace("Unsupported root node:");
 		return;
 	}
 	dataSetName = node.Token(1);

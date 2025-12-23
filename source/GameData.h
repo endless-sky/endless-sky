@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "CategoryType.h"
+#include "Message.h"
 #include "Set.h"
 #include "Shop.h"
 #include "Swizzle.h"
@@ -109,10 +110,11 @@ public:
 	static void StepEconomy();
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
-	static void Change(const DataNode &node, const PlayerInfo &player);
+	static void Change(const DataNode &node, PlayerInfo &player);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();
+	static void RecomputeWormholeRequirements();
 	static void AddJumpRange(double neighborDistance);
 
 	// Re-activate any special persons that were created previously but that are
@@ -132,6 +134,8 @@ public:
 	static const Set<Government> &Governments();
 	static const Set<Hazard> &Hazards();
 	static const Set<Interface> &Interfaces();
+	static const Set<Message::Category> &MessageCategories();
+	static const Set<Message> &Messages();
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
 	static const Set<News> &SpaceportNews();
@@ -147,6 +151,8 @@ public:
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
+
+	static const std::set<std::string> &UniverseWormholeRequirements();
 
 	static ConditionsStore &GlobalConditions();
 
