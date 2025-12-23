@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../mission/Conversation.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "../hud/Effect.h"
+#include "../engine/Effect.h"
 #include "Files.h"
 #include "../shader/FillShader.h"
 #include "../fleet/Fleet.h"

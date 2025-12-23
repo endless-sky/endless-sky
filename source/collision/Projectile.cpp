@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Projectile.h"
 
-#include "../hud/Effect.h"
+#include "../engine/Effect.h"
 #include "FighterHitHelper.h"
 #include "../util/pi.h"
 #include "../util/Random.h"
 #include "../ship/Ship.h"
-#include "../hud/Visual.h"
+#include "../engine/Visual.h"
 #include "Weapon.h"
 
 #include <algorithm>

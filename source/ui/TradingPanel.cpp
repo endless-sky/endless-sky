@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
-#include "../hud/Messages.h"
+#include "../engine/Messages.h"
 #include "../ship/Outfit.h"
 #include "../player/PlayerInfo.h"
 #include "Screen.h"

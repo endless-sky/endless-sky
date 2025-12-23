@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../files/GameData.h"
 #include "../government/Government.h"
 #include "../files/Logger.h"
-#include "../hud/Messages.h"
+#include "../engine/Messages.h"
 #include "../text/Phrase.h"
 #include "../map/Planet.h"
 #include "../player/PlayerInfo.h"

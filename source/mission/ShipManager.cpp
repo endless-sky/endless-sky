@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../util/EsUuid.h"
 #include "../text/Format.h"
 #include "../files/GameData.h"
-#include "../hud/Messages.h"
+#include "../engine/Messages.h"
 #include "../player/PlayerInfo.h"
 #include "../ship/Ship.h"
 

@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "../ai/Command.h"
-#include "../hud/Engine.h"
+#include "../engine/Engine.h"
 
 #include <list>
 

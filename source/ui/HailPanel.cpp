@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../government/Government.h"
 #include "Information.h"
 #include "Interface.h"
-#include "../hud/Messages.h"
+#include "../engine/Messages.h"
 #include "../map/Planet.h"
 #include "../player/PlayerInfo.h"
 #include "../government/Politics.h"

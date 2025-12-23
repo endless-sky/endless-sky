@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "../hud/Messages.h"
+#include "../engine/Messages.h"
 
 
 

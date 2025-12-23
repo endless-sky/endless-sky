@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../shader/LineShader.h"
 #include "MapDetailPanel.h"
 #include "MessageLogPanel.h"
-#include "../hud/Messages.h"
+#include "../engine/Messages.h"
 #include "../mission/Mission.h"
 #include "../map/Planet.h"
 #include "PlanetPanel.h"

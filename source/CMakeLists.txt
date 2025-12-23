@@ -84,6 +84,32 @@ target_sources(EndlessSkyLib PRIVATE
 	conditions/ConditionSet.h
 	conditions/ConditionsStore.cpp
 	conditions/ConditionsStore.h
+	engine/AlertLabel.cpp
+	engine/AlertLabel.h
+	engine/AmmoDisplay.cpp
+	engine/AmmoDisplay.h
+	engine/Camera.cpp
+	engine/Camera.h
+	engine/Effect.cpp
+	engine/Effect.h
+	engine/Engine.cpp
+	engine/Engine.h
+	engine/EscortDisplay.cpp
+	engine/EscortDisplay.h
+	engine/Flotsam.cpp
+	engine/Flotsam.h
+	engine/Message.cpp
+	engine/Message.h
+	engine/Messages.cpp
+	engine/Messages.h
+	engine/MiniMap.cpp
+	engine/MiniMap.h
+	engine/PlanetLabel.cpp
+	engine/PlanetLabel.h
+	engine/Radar.cpp
+	engine/Radar.h
+	engine/Visual.cpp
+	engine/Visual.h
 	files/DataFile.cpp
 	files/DataFile.h
 	files/DataNode.cpp
@@ -124,32 +150,6 @@ target_sources(EndlessSkyLib PRIVATE
 	government/Government.h
 	government/Politics.cpp
 	government/Politics.h
-	hud/AlertLabel.cpp
-	hud/AlertLabel.h
-	hud/AmmoDisplay.cpp
-	hud/AmmoDisplay.h
-	hud/Camera.cpp
-	hud/Camera.h
-	hud/Effect.cpp
-	hud/Effect.h
-	hud/Engine.cpp
-	hud/Engine.h
-	hud/EscortDisplay.cpp
-	hud/EscortDisplay.h
-	hud/Flotsam.cpp
-	hud/Flotsam.h
-	hud/Message.cpp
-	hud/Message.h
-	hud/Messages.cpp
-	hud/Messages.h
-	hud/MiniMap.cpp
-	hud/MiniMap.h
-	hud/PlanetLabel.cpp
-	hud/PlanetLabel.h
-	hud/Radar.cpp
-	hud/Radar.h
-	hud/Visual.cpp
-	hud/Visual.h
 	image/BlendingMode.h
 	image/ImageBuffer.cpp
 	image/ImageBuffer.h

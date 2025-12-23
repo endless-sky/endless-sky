@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../audio/Audio.h"
 #include "../util/Body.h"
 #include "../files/DataNode.h"
-#include "../hud/Effect.h"
+#include "../engine/Effect.h"
 #include "../files/GameData.h"
 #include "../image/SpriteSet.h"
 #include "../collision/Weapon.h"

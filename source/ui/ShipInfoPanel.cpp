@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "../shader/LineShader.h"
 #include "LogbookPanel.h"
-#include "../hud/Messages.h"
+#include "../engine/Messages.h"
 #include "MissionPanel.h"
 #include "../shader/OutlineShader.h"
 #include "../player/PlayerInfo.h"

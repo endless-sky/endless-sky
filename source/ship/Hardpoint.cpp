@@ -17,14 +17,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../audio/Audio.h"
 #include "../util/Body.h"
-#include "../hud/Effect.h"
-#include "../hud/Flotsam.h"
+#include "../engine/Effect.h"
+#include "../engine/Flotsam.h"
 #include "Outfit.h"
 #include "../util/pi.h"
 #include "../collision/Projectile.h"
 #include "../util/Random.h"
 #include "Ship.h"
-#include "../hud/Visual.h"
+#include "../engine/Visual.h"
 #include "../collision/Weapon.h"
 
 #include <algorithm>

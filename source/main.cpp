@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "util/CustomEvents.h"
 #include "files/DataFile.h"
 #include "files/DataNode.h"
-#include "hud/Engine.h"
+#include "engine/Engine.h"
 #include "files/Files.h"
 #include "text/Font.h"
 #include "ui/FrameTimer.h"

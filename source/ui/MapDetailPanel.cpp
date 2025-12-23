@@ -36,7 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../player/PlayerInfo.h"
 #include "../shader/PointerShader.h"
 #include "../player/Preferences.h"
-#include "../hud/Radar.h"
+#include "../engine/Radar.h"
 #include "../util/Rectangle.h"
 #include "../shader/RingShader.h"
 #include "Screen.h"

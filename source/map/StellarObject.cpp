@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../government/Government.h"
 #include "Planet.h"
 #include "../government/Politics.h"
-#include "../hud/Radar.h"
+#include "../engine/Radar.h"
 
 #include <algorithm>
 
