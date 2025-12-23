@@ -130,6 +130,7 @@ protected:
 	// button is highlighted and the enter key to select it.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+	virtual bool GamePadState(GamePad &controller) override;
 
 	virtual void Resize() override;
 

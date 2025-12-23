@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Point.h"
+
 #include <cstdint>
 #include <filesystem>
 #include <string>
@@ -132,7 +134,19 @@ public:
 	void SetTurn(double amount);
 	double Turn() const;
 
-	// Check if any bits are set in this command (including a nonzero turn).
+	// Get or set turn target point.
+	void SetTurnPoint(const Point &point);
+	const Point &TurnPoint() const;
+
+	// Get or set the thrust amount. Like turn. Used if no explicit FORWARD or
+	// BACKWARD is issued.
+	void SetThrustGradient(double amount);
+	double ThrustGradient() const;
+
+	// Returns true if thrust or turn commands are set.
+	bool HasMovement() const;
+
+	// Check if any bits are set in this command (including a nonzero turn or thrust or turn target).
 	explicit operator bool() const;
 	bool operator!() const;
 	// This operator is just provided to allow commands to be used in a map.
@@ -154,4 +168,6 @@ private:
 	uint64_t state = 0;
 	// Turning amount is stored as a separate double to allow fractional values.
 	double turn = 0.;
+	Point turnTarget;
+	double thrust = 0.;
 };
