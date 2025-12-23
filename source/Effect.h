@@ -42,14 +42,14 @@ public:
 	// Point Unit() const;
 	// double Zoom() const;
 
-	const std::string &Name() const;
-	void SetName(const std::string &name);
+	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
 
 	void Load(const DataNode &node);
 
 
 private:
-	std::string name;
+	std::string trueName;
 
 	const Sound *sound = nullptr;
 	SoundCategory soundCategory = SoundCategory::EXPLOSION;

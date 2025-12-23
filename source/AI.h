@@ -18,8 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
+#include "JumpType.h"
 #include "orders/OrderSet.h"
 #include "Point.h"
+#include "RoutePlan.h"
 
 #include <cstdint>
 #include <list>
@@ -27,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <optional>
 #include <set>
+#include <unordered_map>
 #include <vector>
 
 class Angle;
@@ -56,8 +59,7 @@ public:
 	template<class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(PlayerInfo &player, const List<Ship> &ships,
-			const List<Minable> &minables, const List<Flotsam> &flotsam);
+	AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
 	void IssueFormationChange(PlayerInfo &player);
@@ -93,6 +95,36 @@ public:
 
 
 private:
+	class RouteCacheKey {
+	public:
+		// Note: keep this updated as the variables driving the routing change:
+		// - from, to, jumpRange, driveType
+		// - gov: danger = f(gov), isRestrictedFrom = f(gov)
+		// - wormhole requirements that are met, see Planet::IsAccessible(const Ship *ship)
+		explicit RouteCacheKey(const System *from, const System *to, const Government *gov,
+			double jumpDistance, JumpType jumpType, const std::vector<std::string> &wormholeKeys);
+
+		// To support use as a map key:
+		bool operator==(const RouteCacheKey &other) const;
+		bool operator!=(const RouteCacheKey &other) const;
+
+		class HashFunction {
+		public:
+			size_t operator()(const RouteCacheKey &key) const;
+		};
+
+
+	public:
+		const System *from;
+		const System *to;
+		const Government *gov;
+		double jumpDistance;
+		JumpType jumpType;
+		std::vector<std::string> wormholeKeys;
+	};
+
+
+private:
 	// Check if a ship can pursue its target (i.e. beyond the "fence").
 	bool CanPursue(const Ship &ship, const Ship &target) const;
 	// Disabled or stranded ships coordinate with other ships to get assistance.
@@ -107,7 +139,7 @@ private:
 
 	bool FollowOrders(Ship &ship, Command &command);
 	void MoveInFormation(Ship &ship, Command &command);
-	void MoveIndependent(Ship &ship, Command &command) const;
+	void MoveIndependent(Ship &ship, Command &command);
 	void MoveWithParent(Ship &ship, Command &command, const Ship &parent);
 	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
@@ -115,7 +147,7 @@ private:
 	// Set the ship's target system or planet in order to reach the
 	// next desired system. Will target a landable planet to refuel.
 	// If the ship is an escort it will only use routes known to the player.
-	void SelectRoute(Ship &ship, const System *targetSystem) const;
+	void SelectRoute(Ship &ship, const System *targetSystem);
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 
 	// Methods of moving from the current position to a desired position / orientation.
@@ -141,7 +173,7 @@ private:
 	// Special personality behaviors.
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
-	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
+	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(const Ship &ship, Command &command) const;
@@ -188,16 +220,15 @@ private:
 	/// but that shouldn't really matter.
 	void RegisterDerivedConditions(ConditionsStore &conditions);
 
-
-private:
 	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
+	RoutePlan GetRoutePlan(const Ship &ship, const System *targetSystem);
 
 
 private:
 	// TODO: Figure out a way to remove the player dependency.
-	const PlayerInfo &player;
+	PlayerInfo &player;
 	// Data from the game engine.
 	const List<Ship> &ships;
 	const List<Minable> &minables;
@@ -246,6 +277,7 @@ private:
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasementThreshold;
+	std::map<const Ship *, const Ship *> boarders;
 
 	// Records for formations flying around leadships and other objects.
 	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
@@ -257,4 +289,7 @@ private:
 	std::map<const Government *, std::vector<Ship *>> governmentRosters;
 	std::map<const Government *, std::vector<Ship *>> enemyLists;
 	std::map<const Government *, std::vector<Ship *>> allyLists;
+
+	// Route planning cache:
+	std::unordered_map<RouteCacheKey, RoutePlan, RouteCacheKey::HashFunction> routeCache;
 };

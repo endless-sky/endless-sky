@@ -71,7 +71,9 @@ segment_include = {re.compile(regex): description for regex, description in {
 	# Matches any tabulator characters.
 	"\t": "tabulators should only be used for indentation",
 	# Matches any commas that are not followed by whitespace characters.
-	",\\S": "commas should be followed by whitespaces"
+	",\\S": "commas should be followed by whitespaces",
+	# Matches incorrect structured bindings
+	"&\\s+\\[": "structured bindings should not contain whitespace after the ampersand",
 }.items()}
 # Dict of patterns for selecting potential formatting issues in a single word.
 # Also contains the error description for the patterns.
@@ -412,6 +414,7 @@ def check_global_format(sanitized_lines, original_lines, file):
 	issues = ([], [])
 	if file not in exclude_include_check:
 		join(issues, check_include(sanitized_lines, original_lines, file))
+	join(issues, check_class_forward_declarations(sanitized_lines, original_lines, file))
 	return issues
 
 
@@ -564,6 +567,25 @@ def check_include(sanitized_lines, original_lines, file):
 		for i in range(len(group) - 1):
 			if group_lines[i].lower() > group_lines[i + 1].lower():
 				errors.append(Error(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
+	return errors, warnings
+
+
+# Checks the class forward declarations within the specified file. Parameters:
+# sanitized_lines: the lines of the file, without the line separators and the contents of strings and comments
+# original_lines: the lines of the file, without the terminating line separators
+# file: the path to the file
+# Returns a tuple of errors and warnings.
+def check_class_forward_declarations(sanitized_lines, original_lines, file):
+	errors = []
+	warnings = []
+
+	class_lines = [(index, line) for index, line in enumerate(sanitized_lines) if line.startswith("class ") and line.endswith(';')]
+	for i in range(len(class_lines) - 1):
+		_, prev_line = class_lines[i]
+		line_num, next_line = class_lines[i + 1]
+		if prev_line.lower() > next_line.lower():
+			errors.append(Error(prev_line, line_num, "class forward declarations are not in alphabetical order"))
+
 	return errors, warnings
 
 
