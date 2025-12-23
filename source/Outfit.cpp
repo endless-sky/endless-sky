@@ -593,6 +593,7 @@ void Outfit::AddLicenses(const Outfit &other)
 void Outfit::Set(const char *attribute, double value)
 {
 	rawAttributes[attribute] = value * ATTRIBUTE_PRECISION;
+	cachedAttributes[attribute] = value;
 }
 
 
