@@ -54,9 +54,9 @@ namespace {
 	const int PRICE_X = 140;
 	const int LEVEL_X = 180;
 	const int PROFIT_X = 260;
-	const int BUY_X = 310;
-	const int SELL_X = 370;
-	const int HOLD_X = 430;
+	const int HOLD_X = 310;
+	const int SELL_X = 380;
+	const int BUY_X = 435;
 	constexpr size_t SELL_OUTFITS_DISPLAY_LIMIT = 15;
 }
 
@@ -126,7 +126,7 @@ void TradingPanel::Draw()
 
 	y += 5;
 	int lastY = y + 20 * COMMODITY_COUNT + 25;
-	font.Draw("free:", Point(MIN_X + SELL_X + 5, lastY), selected);
+	font.Draw("free:", Point(MIN_X + HOLD_X - 50, lastY), selected);
 	font.Draw(to_string(player.Cargo().Free()), Point(MIN_X + HOLD_X, lastY), selected);
 
 	int missionCargo = player.Cargo().MissionCargoSize();
