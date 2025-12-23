@@ -89,7 +89,7 @@ namespace {
 
 		const bool IsActive() const { return state != Preferences::OverlayState::DISABLED; }
 
-		const std::string &ToString() const
+		const string &ToString() const
 		{
 			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
 		}
@@ -623,7 +623,7 @@ bool Preferences::ToggleVSync()
 		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 		{
 			// Restore original saved setting.
-			Logger::LogError("Unable to change VSync state");
+			Logger::Log("Unable to change VSync state.", Logger::Level::WARNING);
 			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
 			return false;
 		}
@@ -832,7 +832,7 @@ Preferences::AlertIndicator Preferences::GetAlertIndicator()
 
 
 
-const std::string &Preferences::AlertSetting()
+const string &Preferences::AlertSetting()
 {
 	return ALERT_INDICATOR_SETTING[alertIndicatorIndex];
 }
@@ -887,7 +887,7 @@ Preferences::MinimapDisplay Preferences::GetMinimapDisplay()
 
 
 
-const std::string &Preferences::MinimapSetting()
+const string &Preferences::MinimapSetting()
 {
 	return MINIMAP_DISPLAY_SETTING[minimapDisplayIndex];
 }

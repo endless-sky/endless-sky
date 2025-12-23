@@ -97,7 +97,11 @@ namespace {
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
+#ifdef _WIN32
+	const int SETTINGS_PAGE_COUNT = 3;
+#else
 	const int SETTINGS_PAGE_COUNT = 2;
+#endif
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -812,9 +816,10 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		TOOLTIP_ACTIVATION,
 		DATE_FORMAT,
-		NOTIFY_ON_DEST
+		NOTIFY_ON_DEST,
+		"Save message log"
 #ifdef _WIN32
-		, "",
+		, "\n",
 		"Windows Options",
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING

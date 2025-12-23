@@ -407,7 +407,7 @@ mission "Pookie, Part 3"
 					goto shoo
 			`	You crouch down and rub the soggy tufts of hair on Puny's head. As you continue, a smile creeps onto her face, beaming in spite of the soaking rain. You think about what to do with her.`
 			choice
-				`	(Bring Puny aboard your ship.)`
+				`	(Bring Puny aboard my ship.)`
 				`	(Shoo Puny off.)`
 					goto shoo
 			branch remember
@@ -4602,7 +4602,7 @@ mission "Laborer"
 			`	She turns and walks away briskly, and the man slumps down into a chair.`
 			choice
 				`	"What was that all about?"`
-				`	(Leave before he notices you.)`
+				`	(Leave before he notices me.)`
 					decline
 			`	He gives you a once-over, and you see a spark of hope in his eyes. "You're a captain? Please, I need to get to <destination>. Work has dried up here, and I need a fresh start."`
 			choice
@@ -5371,7 +5371,7 @@ mission "Riley"
 		conversation
 			`Entering the spaceport, you notice a young woman moving from captain to captain, probably looking to hire one.`
 			choice
-				`	(Ask the young woman if you can help her.)`
+				`	(Ask the young woman if I can help her.)`
 				`	(Ignore her.)`
 					decline
 			`	You approach the woman and ask her if she is looking to hire a pilot.`
@@ -5469,12 +5469,12 @@ mission "Riley"
 					goto death
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
-				`	(Draw your gun and destroy the Core.)`
+				`	(Draw my gun and destroy the Core.)`
 			label destroy
 			`	You pull out your gun and aim at the computer Church is in. Before you can fire, Riley runs out in front of the barrel, spreads her arms, and shouts, "No! Please, <first>, you have to understand! He's all I have left!"`
 			`	Behind her, Church says, "Riley, there is no need to be so loud. My microphones can hear you fine, and I do not want the nurse to become suspicious."`
 			choice
-				`	(Put your gun away.)`
+				`	(Put my gun away.)`
 					goto away
 				`	(Shoot.)`
 			action
@@ -5488,7 +5488,7 @@ mission "Riley"
 			choice
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
-				`	(Go back to your ship.)`
+				`	(Go back to my ship.)`
 			`	Deciding to leave this planet behind you, you start up your ship and make your way back to the stars.`
 				decline
 			label suggest
@@ -5502,7 +5502,7 @@ mission "Riley"
 				`	(Say goodbye.)`
 				`	(Turn the Core in for a bounty.)`
 					goto bounty
-				`	(Draw your gun and destroy the Core.)`
+				`	(Draw my gun and destroy the Core.)`
 					goto destroy
 			`	Respecting Riley's request to stay with her father, you make your farewells and head for the door.`
 			`	Despite her previous happiness, you notice that her disposition has become more muted after what you said. You wonder if she has begun to doubt whether her attachment to the AI is healthy.`
@@ -6001,7 +6001,7 @@ mission "Argosy Hijacking"
 			`	"Hey, what's going on here?" the officer tries to shout over the noise of the sirens and the repulsors, but the rogue <npc model> veers rapidly and uncertainly towards you and the officer.`
 			choice
 				`	(Jump for cover.)`
-				`	(Take a shot at the <npc model> with your sidearm.)`
+				`	(Take a shot at the <npc model> with my sidearm.)`
 					goto shoot
 			`	Both of you barely jump down for cover before the ship clips a stack of cargo crates, sending them flying into the refueling platform. The Quad Blaster Turret mounted on the top of the <npc model> swivels around aimlessly, then fires without warning, its energy bolts scattering some of the startled onlookers nearby and sending up debris where they hit the ground. It comes dangerously close to colliding with the <ship> before it veers off to the side and sends its repulsors into full thrust, fleeing away into the sky.`
 				goto dazed
@@ -7030,7 +7030,7 @@ mission "Moving House 3"
 mission "Stranded In Paradise 1"
 	minor
 	name "Transport Burnbecks to <planet>"
-	description "The Burnbeck family was stranded by the bombings, and needs <bunks> free for transport back home to <destination>. Payment is <payment>."
+	description "The Burnbeck family was stranded by the bombings, and needs <bunks> bunks free for transport back home to <destination>. Payment is <payment>."
 	source
 		attributes "paradise"
 	destination
@@ -7418,7 +7418,7 @@ mission "Lost Dog"
 			choice
 				`	(Go to the park.)`
 					goto park
-				`	(Head back to your ship.)`
+				`	(Head back to my ship.)`
 
 			`	You have more important things to do than wander around an expensive terraformed garden.`
 				decline
@@ -7482,9 +7482,9 @@ mission "Lost Dog"
 			`	The butler's frown deepens as you show Caesar to him.`
 			`	He sighs and says, "Card, please." He holds out a silver tray and awaits your calling card.`
 			choice
-				`	(Explain you don't have a calling card.)`
+				`	(Explain that I don't have a calling card.)`
 					goto "no card"
-				`	(Place your card on the tray.)`
+				`	(Place my card on the tray.)`
 					to display
 						"net worth" > 20000000
 
@@ -8275,7 +8275,7 @@ mission "Syndicate Business 3"
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 			choice
-				`	(Message him back that you're on the way.)`
+				`	(Message him back that I'm on the way.)`
 				`	(Send a message congratulating him on the promotion.)`
 				`	(Ignore and delete the message.)`
 					decline
@@ -8719,7 +8719,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			`		"Nothing major to flag, just routine updates. Steady progress and business as usual. Just like I predicted, we're seeing some solid returns that aren't making headlines. And the higher ups like the consistency - keeps me in their good graces.`
 				goto "howard bye"
 			label "good choice"
-			`		"Returns are about what we projected, a little slow, but here's the kicker: we're saving a chunk of provisions for expected environmental lawsuits and employee morale at the expansion is through the roof. Looks like we're building more than just profits. My bosses are thrilled - they think I'm working magic here.`
+			`		"Returns are about what we projected, a little slow, but here's the kicker: we're saving a chunk in provisions for expected environmental lawsuits and employee morale at the expansion is through the roof. Looks like we're building more than just profits. My bosses are thrilled - they think I'm working magic here.`
 				goto "howard bye"
 			label "evil choice"
 			`		"There was a... noteworthy incident involving some employees, so it might draw more attention than we'd like. Nothing that'll derail the returns, though, just some bad press to manage. Everything's still on track, and either way, no one can argue with the numbers.`
@@ -8790,7 +8790,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			`	You've finally gotten through the report's opening statements. That's more than enough of the main report to go through.`
 			choice
 				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
-				`	(Close the report now that you've gone through the main overview.)`
+				`	(Close the report now that I've gone through the main overview.)`
 					decline
 			label "section marked"
 			`	You open the attached report to the area indicated by Howard:`
@@ -8834,7 +8834,7 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			`	The structure looms in front of you - sleek, modular, and distinctly industrial. The station is built for efficient refueling, with segmented docking areas for various freighter sizes, fuel lines tangled overhead like mechanical vines snaking down to heavy looking hoses attached to repulsors, and a series of elevated walkways crisscrossing the area.`
 			choice
 				`	(Get out of the bulky vehicle.)`
-				`	(Turn around and go back to your ship.)`
+				`	(Turn around and go back to my ship.)`
 					decline
 			`	While still outside the main area, you exit the vehicle and hear the fueling systems hum, punctuated by the occasional clicks of the fuel pumps. There's a faint sulfuric tang in the air intermixed with the radioactive metallic dust. Large screens display fuel prices and tank levels, while cargo repulsors zip around, transporting supplies to waiting ships. You begin to make your way through narrow steps and low guardrails leading up to a platform overlooking the main fueling bay.`
 			branch "good choice"
@@ -8892,7 +8892,7 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			label "hello there 2"
 			choice
 				`	(Continue on towards the platform.)`
-				`	(Return to your <model> to leave.)`
+				`	(Return to my <model> to leave.)`
 					decline
 			label "facility tour"
 			`	You continue on through the narrow steps leading to get to the platform overlooking the main fueling bay, and go through the doors at the top of the steps to enter the main facility.`
@@ -8964,7 +8964,7 @@ mission "Syndicate Business 6"
 			`		Investor Relations Manager, Megaparsec Incorporated`
 			label openingchoice
 			choice
-				`	(Message him back that you're on the way.)`
+				`	(Message him back that I'm on the way.)`
 				`	(Save the message to look at later.)`
 					defer
 				`	(Ignore and delete the message.)`
@@ -9818,7 +9818,7 @@ mission "Timothy Radrickson 3a: Rescue the Convoy"
 			`	He takes a sip and says, "We've just launched our largest freighter fleet to date." He sits back in his desk, relaxed, and gets a dreamy look in his eyes. "When it returns from Wayfarer, the government of Rand will finally have enough credits to make some real changes around here. Give something back to the working man."`
 			choice
 				`	"Congratulations Timothy. You're really outdone yourself."`
-				`	(Take a sip from your glass.)`
+				`	(Take a sip from my glass.)`
 				`	"Don't forget your humble beginnings, Timothy. The workers here seem to be suffering, while the rich thrive."`
 				`	"You're proof that hard work is all it takes to succeed. I don't know how you can stand living on a world filled with lazy workers all demanding hand outs."`
 
@@ -10169,14 +10169,14 @@ mission "Timothy Radrickson 3d: Return to Rand"
 			`	You realize that it has been almost a decade since you heard from him last.`
 			choice
 				`	"Thanks for inviting me. I've had a great time."`
-				`	(Go back to your ship.)`
+				`	(Go back to my ship.)`
 					goto ship
 
 			label thanks
 			`	"Oh, it's nothing compared to what you did for me. What you saved me from, and what you did to bring me here. And then how you bailed me and Rand out again." Timothy glances away from you, as if embarrassed all he did tonight wasn't enough.`
 			choice
 				`	(Keep talking with Timothy.)`
-				`	(Excuse yourself and go back to your ship.)`
+				`	(Excuse myself and go back to my ship.)`
 					goto ship
 
 			`	You talk with him for hours. About his life on Rand, the hardships of the mines, how he clawed his way out of it. But also about you, the challenges of running a ship, the battles, the close calls, and the joys of triumph.`
@@ -10307,7 +10307,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`The Norwen mines are on no current map, and your initial searches for it come up empty. Eventually you're able to find an old news article about a company mining town by the name of Norwen that attempted to unionize, and how the authorities heroically and humanely put down the uprising. The article briefly mentions that the mine was closed down shortly afterward for unrelated reasons. You're able to use the information from the article and the shakily scrawn partial address that Timothy wrote down to get a good idea where to find the mine.`
 			`	As your ship approaches the mine you can't help but notice the burnt out remains of a gutted and abandoned town. A few minutes later your ship rattles down outside the mine's entrance.`
 			choice
-				`	(Leave your ship.)`
+				`	(Leave my ship.)`
 			`	It's dark and dusty outside. The planet's low gravity makes you feel languid, and the air uncomfortably light in your lungs. The entrance to the mine looms large before you and seems suddenly quite menacing. Perhaps this wasn't the best idea...`
 			`	"Don't move, or we will end you!" comes a shout from within the darkness of the mine. "Identify yourself, now!"`
 			choice
@@ -10322,7 +10322,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	"I'm just a merchant! My name's Captain <last>!"`
 					goto "tims bud"
 				`	"Mind your own business, I answer to no one!"`
-				`	(Run back to your ship.)`
+				`	(Run back to my ship.)`
 					goto "to the ship"
 
 			`	Your response is followed by a short moment of stunned silence, a snicker, and then the click of a trigger.`
@@ -10342,7 +10342,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	The remaining guard hears something on the radio and then says, "No loose ends. Got it."`
 			choice
 				`	(Run after them into the cave.)`
-				`	(Run back to your ship.)`
+				`	(Run back to my ship.)`
 					goto "to the ship"
 			`	You run straight for the cave, hand on pistol and heart racing. Unfortunately for you, instead of the cave you run right into a bullet. The last thing you see is the guard's dirtied face looking over your body before he finishes the job.`
 				die
@@ -10374,7 +10374,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			choice
 				`	(Tell her about Timothy.)`
 					goto Timmy
-				`	(Tell her you just wanted to say hi.)`
+				`	(Tell her I just wanted to say hi.)`
 				`	(Tell her it is none of her business.)`
 
 			`	She frowns and aims her gun squarely at your chest. "It's been too long since I've last seen you. And though you were once Governor Radrickson's friend, things have changed quite a bit since then."`
@@ -10388,7 +10388,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				die
 
 			label "say so"
-				`	She shakes her head. "Well, why didn't you just say so? What does our Governor ask of us?" She holsters her sidearm.`
+			`	She shakes her head. "Well, why didn't you just say so? What does our Governor ask of us?" She holsters her sidearm.`
 
 			label Timmy
 			`	Union-Colonel Wynnafrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinizes it.`
@@ -10451,7 +10451,7 @@ mission "Timothy Radrickson 5b: New Britain"
 					to display
 						has "suit1"
 						not "suit2"
-				`	(Find someone that can procure a fake ID for you.)`
+				`	(Find someone that can procure a fake ID for me.)`
 					goto id1
 					to display
 						"timothy radrickson id" == 0
@@ -10593,9 +10593,9 @@ mission "Timothy Radrickson 5b: New Britain"
 			`	The teenagers, two of them boys and one a girl, grin at you like fresh meat as you near them.`
 			`	The guy in the middle says, "What'dya need, boss? Wanna get high? Wanna get low? Wanna get out?" Apparently this group is used to working with frustrated castouts from the overly legal spaceport emporium.`
 			choice
-				`	(Ask them about where you could get a fake ID.)`
+				`	(Ask them about where I could get a fake ID.)`
 					goto "hook me up"
-				`	(Politely decline and head back to your ship.)`
+				`	(Politely decline and head back to my ship.)`
 					goto options
 				`	(Threaten to call the police.)`
 
@@ -10706,7 +10706,7 @@ mission "Timothy Radrickson 5c: Dancer"
 					to display
 						"timothy radrickson id" <= 1
 						not "id1"
-				`	(Go back to where you found the ID.)`
+				`	(Go back to where I found the ID.)`
 					goto id2
 					to display
 						has "id1"
@@ -10865,7 +10865,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 			`	Finally you reach the center of the emporium and discover a crudely drawn map of the spaceport. It's not much, but at least it tells you where you can find what you're looking for.`
 			label "green options"
 			choice
-				`	(Find someone that can produce a fake ID for you.)`
+				`	(Find someone that can produce a fake ID for me.)`
 					goto id1
 					to display
 						not "id1"
@@ -11250,9 +11250,9 @@ mission "Timothy Radrickson 7: Monk"
 			choice
 				`	(Tell him about what Wynnafrith said, and how he is the real Hero of Rand.)`
 					goto offer2
-				`	(Tell him you don't need the money, but he does.)`
+				`	(Tell him I don't need the money, but he does.)`
 					goto offer2
-				`	(Agree with him and rescind your offer.)`
+				`	(Agree with him and rescind my offer.)`
 					goto goodbyes
 			
 			label offer2
@@ -11350,9 +11350,9 @@ mission "Timothy Radrickson 7: Hospice"
 			choice
 				`	(Tell him about what Wynnafrith said, and how he is the real Hero of Rand.)`
 					goto offer2
-				`	(Tell him you don't need the money, but he does.)`
+				`	(Tell him I don't need the money, but he does.)`
 					goto offer2
-				`	(Agree with him and rescind your offer.)`
+				`	(Agree with him and rescind my offer.)`
 					goto goodbyes
 			
 			label offer2
@@ -11385,7 +11385,7 @@ mission "Timothy Radrickson 7: Grave"
 			choice
 				`	(Head to the graveyard.)`
 					goto graveyard
-				`	(Head back to your ship.)`
+				`	(Head back to my ship.)`
 
 			`	You see no point in wasting your time at this place's graveyard, so you head back to your ship.`
 				decline
@@ -11659,7 +11659,7 @@ conversation "Ice Queen"
 	choice
 		`	(Search for the Snaiwaz Family-Cairn.)`
 			goto "cairn search"
-		`	(Toss the stone out your hatch and leave this world.)`
+		`	(Toss the stone out of the hatch and leave this world.)`
 
 	action
 		set "chucked tosti's stone"
@@ -11692,7 +11692,7 @@ conversation "Ice Queen"
 	choice
 		`	(Enter the building.)`
 			goto "lit building"
-		`	(Keep heading toward your ship.)`
+		`	(Keep heading toward my ship.)`
 
 	`	Whatever is going on in that building, it has nothing to do with you, and so you ignore it and return to your waiting ship.`
 		decline
@@ -11711,10 +11711,10 @@ conversation "Ice Queen"
 	`	Slowly, awkwardly, she pulls herself to her feet, keeping one hand on the counter for balance. She rests her other hand over her knife.`
 	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravado there is a deep wariness behind her words. "Now tell me, who are you, and what are you doing here?" she asks, through gritted teeth.`
 	choice
-		`	(Tell her who you are, and how you were just delivering a stone.)`
+		`	(Tell her who I am, and how I was just delivering a stone.)`
 			to display
 				has "Stone to Hope: done"
-		`	(Tell her who you are, and how you were just out exploring.)`
+		`	(Tell her who I am, and how I was just out exploring.)`
 		`	(Tell her it's none of her business.)`
 
 	`	The woman nods slowly, and then painfully, slides back down to the ground.`
@@ -11841,7 +11841,7 @@ mission "Ice Queen 3"
 			`	You begin to wonder how it was less bureaucratically stressful to purchase your first ship than it is to schedule an encounter with a campus professor here. When the form prompts you for your address, you scramble out of the room to research what spaceship captains should fill out in such cases. After many contradicting forums and blatantly outdated government websites, you return and put in the best answer you can think of. Then the form specifically requires you to input the institution you studied at, here on <origin>. Again you set to look for answers on how to respond when you are not even from the planet this form is from. After a few more questions, you start to zone out and just automatically input whatever seems least likely to get the form rejected, based on online tips and nebulous descriptions from government pages.`
 			`	The receptionist brings a few of the earlier forms you filled out and helpfully points out a few mistakes for you to fix.`
 			choice
-				`	(Fix the forms you already filled out.)`
+				`	(Fix the forms I already filled out.)`
 			`	As it turns out, your bank account is not compatible with the due process the forms here are a part of. You download an application to open your very own account on one of the local banks, after checking with the receptionist that this one is compatible. After a few more minutes (and a great many attempts at fitting your face in a camera shot for a mandatory facial recognition step) your new bank details are ready and filled in the forms, which you turn over with haste. Surely it must be ending soon.`
 			choice
 				`	(Fill out the final set of forms.)`
@@ -12107,7 +12107,7 @@ mission "Ice Queen 8"
 				`	"I am looking for Ildy."`
 				`	"Ildy asked me to come here."`
 				`	"Ildy, help!"`
-				`	(Grab your sidearm and shoot your way out.)`
+				`	(Grab my sidearm and shoot my way out.)`
 					goto why?
 
 			`	The band of cut-throats looks at you, confused, and then most of them lower their weapons.`

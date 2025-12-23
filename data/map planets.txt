@@ -509,6 +509,14 @@ planet Beryl
 	bribe 0
 	security 0
 
+planet Byigii
+	attributes gegno uninhabited
+	landscape land/haze1
+	description `Although there is no evidence of a civilization on this barren, dry planet, there are many signs of haphazard mining and excavation by the Gegno, presumably for resources to construct the large station that orbits above. Among the several dig sites across the surface are also mountainous piles of scrap metals, junk, and other trash heaps, quite literally forming wastelands.`
+	government Uninhabited
+	bribe 0
+	security 0
+
 planet "Big Sky"
 	attributes "dirt belt" farming forest frontier
 	landscape land/mountain12-sfiera
@@ -1343,7 +1351,7 @@ planet "Dueyu Eitch"
 	shipyard "Gegno Intermediate"
 	outfitter "Gegno Basic"
 	outfitter "Gegno Intermediate"
-	"required reputation" 3
+	"required reputation" 5
 	bribe 0
 	security 0
 
@@ -1426,16 +1434,13 @@ planet "Eeu Mnai"
 	government Uninhabited
 
 planet "Ef Aourtdye"
-	attributes gegno
-	landscape land/lava10
+	attributes gegno mining factory
+	landscape land/desert18
 	description `Ef Aourtdye is primarily a factory world where a large portion of mined materials are refined, processed, and re-distributed across parts of Gegno space. Large factory and refinery structures can be seen engraved into the mountainous surfaces of the planet, with some cities found in less crowded valleys. Once home to a much larger population, a major portion of the cities are now desolate as efforts have been pushed to either more distant planets, or pulled back to the ever-growing homeworld of the Gegno.`
 	description `	A majority of the mining, cargo, and refinery vessel shipyards in Gegno space are also found here, newly constructed out of the freshly processed materials and quickly prepared to be put into service.`
-	spaceport `The Gegno here are much too busy to pay any attention to you as it seems this spaceport is part of a larger refinery site. The largest Gegno heave around big metallic containers of either processed materials or various structural parts, while the Gegno closer to your own height are working with machinery. At the far end of the spaceport you can see large rugged vehicles leaving or entering the site on paths that branch out to several more factories in the distance.`
-	shipyard "Gegno Intermediate"
-	shipyard "Gegno Advanced"
-	outfitter "Gegno Basic"
-	outfitter "Gegno Intermediate"
+	spaceport `The Gegno here are much too busy to pay any attention to you, as this spaceport is part of a larger refinery site. The largest Gegno heave around big metallic containers of either processed materials or various structural parts, while the Gegno closer to your own height are working with machinery. At the far end of the spaceport you can see rugged vehicles of varying sizes leaving or entering the site along paths that branch out to several more factories in the distance.`
 	"required reputation" 2
+	shipyard "Gegno Intermediate"
 	bribe 0
 	security 0
 
@@ -1692,7 +1697,7 @@ planet Essime
 planet Esstch
 	attributes gegno uninhabited
 	landscape land/badlands2
-	description `This hot desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno. However, due to the proximity of the system's star, it is too hot to be colonized.`
+	description `This desert world is the first world the Gegno left their imprint on outside of their home. Littered about with various recording instruments of times past, Esstch represents a historical stepping stone for the Gegno. However, due to the proximity of the system's star, it is too hot to be colonized.`
 	government Uninhabited
 	bribe 0
 	security 0
@@ -2132,6 +2137,16 @@ planet Ghneoe
 	landscape land/hills10
 	description `Ghneoe's orbital period is dominated by a very long dry season due to the binary stars at the system's center. However, during a short portion of the year, Ghneoe experiences an intense water cycle that results in a boom of greenery and wildlife activity, developing a short-lived but flourishing ecosystem. Much of the flora and fauna have adapted to such drastic shifts in climate, and return to a dormant state once the intense heat cycle returns.`
 	description `	Unlike its moon, Ghneoe has yet to see any sort of colonization efforts by the nearby Gegno Scin, perhaps due to the abnormal weather cycles, system warfare, or a combination of both.`
+
+planet "Gi Tiures"
+	attributes gegno
+	landscape land/mountain9
+	description "Because of the closeness of this planet to its parent star, most daytime hours are characterized by intense heat and almost blindingly bright sunlight. However, a significant axial tilt results in much longer nights than days. During these nights, heat levels are acceptable, and it is these periods that are considered the populace's active hours."
+	description "	The Gegno of this planet live in a singular, expansive village cluster. At the core of it are three tall spires that appear as though they were once one, separated into thirds and pushed apart into a triangle formation."
+	spaceport "While the Gegno civilization on this planet is stagnant, similarly to their core worlds, their culture has significant differences. Many wear lengthy robe-like clothing, and often travel in tightly-packed groups. Others keep to themselves in a comparatively eerie silence."
+	"required reputation" 3
+	bribe 0
+	security 0
 
 planet "Giaru Gegno"
 	attributes "gegno quarg" quarg ringworld station
@@ -2680,7 +2695,7 @@ planet "Iemn Eitch"
 	landscape land/desert2
 	description `Although too cold for a proper civilization, Iemn Eitch has been extensively used in the past as an outpost for the growing Gegno space race. As one of their first few explored worlds, antique-looking architecture is scattered about the surface and looks significantly different to structures found on Dueyu Eitch, perhaps due to the nature of construction in an unfamiliar environment. A few large shipyard-esque platforms continue to service a small number of still active Gegno generation vessels from times past, presumably at a much slower pace than during the earliest days of their space colonization.`
 	spaceport `	Rather than a traditional spaceport, a large and extensive shipyard engulfs a portion of the moon's surface, cluttered with numerous structures from an early colonial period. Several immense hangars, mostly reduced to their bare metal frames, house various archaic spacecraft of times past, with a few of them still servicing the remaining active vessels.`
-	"required reputation" 2
+	"required reputation" 3
 	bribe 0
 	security 0
 
@@ -3855,7 +3870,7 @@ planet "New Britain"
 
 planet "New China"
 	attributes "near earth" urban
-	landscape land/city22
+	landscape land/city3
 	description `In the very early days of hyperspace travel, most settlers chose to put down roots within a few jumps of Earth, because until more fuel depots were built, colonies farther out would seldom be visited by cargo ships. As a result, a lot of effort was put into terraforming and developing worlds that would have been passed over by most colonists today.`
 	description `	New China is one such world, and it is now overpopulated, and poor enough that maintaining the terraforming equipment and climate requires almost a third of the planetary government's tax income.`
 	spaceport `The "new port" here was built several centuries ago, when the grand but impractical spaceport built by the original settlers had deteriorated to the point where it was no longer usable. This port is much simpler by comparison: just a ring of landing pads of various sizes around a large central building with ten levels of warehouse space accessible by freight elevator.`
@@ -5963,7 +5978,7 @@ planet Truklar
 	security 0.9
 
 planet Tschyss
-	attributes gegno station
+	attributes gegno mining station
 	landscape land/sivael6
 	music ambient/machinery
 	description `This massive station is the only orbital structure that can be found in Gegno space, and is still under heavy construction. Although a majority of the exterior seems complete, the interior is noticeably lacking in comparison, and it seems that the progress has slowed down significantly in recent times. A large portion of the station is filled with crew quarters and living sections, all more expansive than those in human space, and the outside is enveloped in many docking bays of various sizes.`
