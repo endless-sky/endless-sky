@@ -699,6 +699,10 @@ bool Planet::HasFuelFor(const Ship &ship) const
 
 bool Planet::CanBribe() const
 {
+	// If this planet has a minimum reputation for accepting bribes and your
+	// reputation is below this value, you can't bribe.
+	if(bribeThreshold && GameData::GetPolitics().Reputation(government) < bribeThreshold)
+		return false;
 	// If you can't land then you can't bribe.
 	return toLand.Test();
 }
