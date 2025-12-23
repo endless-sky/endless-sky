@@ -54,9 +54,9 @@ namespace {
 	const int PRICE_X = 140;
 	const int LEVEL_X = 180;
 	const int PROFIT_X = 260;
-	const int HOLD_X = 310;
-	const int SELL_X = 380;
-	const int BUY_X = 435;
+	const int SELL_X = 310;
+	const int BUY_X = 370;
+	const int HOLD_X = 430;
 	constexpr size_t SELL_OUTFITS_DISPLAY_LIMIT = 15;
 }
 
