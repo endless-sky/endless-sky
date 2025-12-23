@@ -73,7 +73,13 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		// They either show bribing messages,
 		// or standard hostile messages, if disabled.
 		if(!ship->IsDisabled())
-			SetBribe(gov->GetBribeFraction());
+		{
+			// If this government has a non-zero bribe threshold, it can only be bribed
+			// if the player's reputation with them is not less than the threshold value.
+			const double bribeThreshold = gov->GetBribeThreshold();
+			if(bribeThreshold && GameData::GetPolitics().Reputation(gov) >= bribeThreshold)
+				SetBribe(gov->GetBribeFraction());
+		}
 	}
 	else if(ship->IsDisabled())
 	{
