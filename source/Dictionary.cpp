@@ -54,17 +54,17 @@ namespace {
 template<class Type>
 Type &Dictionary<Type>::operator[](const char *key)
 {
-	std::pair<size_t, bool> pos = Search(key, *this);
+	pair<size_t, bool> pos = Search(key, *this);
 	if(pos.second)
 		return this->data()[pos.first].second;
 
-	return this->insert(begin() + pos.first, std::make_pair(StringInterner::Intern(key), 0.))->second;
+	return this->insert(begin() + pos.first, make_pair(StringInterner::Intern(key), 0.))->second;
 }
 
 
 
 template<class Type>
-Type &Dictionary<Type>::operator[](const std::string &key)
+Type &Dictionary<Type>::operator[](const string &key)
 {
 	return (*this)[key.c_str()];
 }
@@ -74,14 +74,14 @@ Type &Dictionary<Type>::operator[](const std::string &key)
 template<class Type>
 Type Dictionary<Type>::Get(const char *key) const
 {
-	std::pair<size_t, bool> pos = Search(key, *this);
+	pair<size_t, bool> pos = Search(key, *this);
 	return (pos.second ? this->data()[pos.first].second : 0.);
 }
 
 
 
 template<class Type>
-Type Dictionary<Type>::Get(const std::string &key) const
+Type Dictionary<Type>::Get(const string &key) const
 {
 	return Get(key.c_str());
 }
