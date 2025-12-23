@@ -32,11 +32,13 @@ phrase "ship bribe rejection"
 	word
 		"We're "
 	word
-		"fighting a "
-		"in a "
-		"in the middle of a "
-		"trying to win a "
-		"winning a "
+		"fighting a"
+		"in a"
+		"in the middle of a"
+		"trying to win a"
+		"winning a"
+	word
+		" "
 	word
 		"battle"
 		"conflict"
