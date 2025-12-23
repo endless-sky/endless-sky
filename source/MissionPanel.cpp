@@ -138,11 +138,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
-	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
-	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetRect(missionInterface->GetBox("description"));
+	InitTextArea();
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -182,11 +178,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
-	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
-	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetRect(missionInterface->GetBox("description"));
+	InitTextArea();
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -671,6 +663,31 @@ bool MissionPanel::Scroll(double dx, double dy)
 
 
 
+void MissionPanel::Resize()
+{
+	ResizeTextArea();
+}
+
+
+
+void MissionPanel::InitTextArea()
+{
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetColor(*GameData::Colors().Get("bright"));
+	ResizeTextArea();
+}
+
+
+
+void MissionPanel::ResizeTextArea() const
+{
+	description->SetRect(missionInterface->GetBox("description"));
+}
+
+
+
 void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 {
 	// Auto select the destination system for the current mission.
@@ -747,6 +764,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 {
 	auto toVisit = set<const System *>{mission.Waypoints()};
 	toVisit.insert(mission.MarkedSystems().begin(), mission.MarkedSystems().end());
+	toVisit.insert(mission.TrackedSystems().begin(), mission.TrackedSystems().end());
 	for(const Planet *planet : mission.Stopovers())
 		toVisit.insert(planet->GetSystem());
 	auto hasVisited = set<const System *>{mission.VisitedWaypoints()};
@@ -856,7 +874,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 
 
-Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
+Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const list<Mission>::const_iterator &selectIt,
 	bool separateDeadlineOrPossible) const
 {
 	const Font &font = FontSet::Get(14);
@@ -867,7 +885,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 	bool separated = false;
 
-	for(auto it = list.begin(); it != list.end(); ++it)
+	for(auto it = missionList.begin(); it != missionList.end(); ++it)
 	{
 		if(!it->IsVisible())
 			continue;
@@ -892,7 +910,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 			SpriteShader::Draw(fast, pos + Point(-4., 8.));
 
 		const Color *color = nullptr;
-		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
+		bool canAccept = (&missionList == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		if(!canAccept)
 		{
 			if(it->Unavailable().IsLoaded())
@@ -1219,6 +1237,13 @@ void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 		}
 
 	for(const System *mark : mission.MarkedSystems())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(mark);
+			return;
+		}
+
+	for(const System *mark : mission.TrackedSystems())
 		if(++index == cycleInvolvedIndex)
 		{
 			CenterOnSystem(mark);

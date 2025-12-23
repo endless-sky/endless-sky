@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
+#include "MissionTimer.h"
 #include "NPC.h"
 #include "TextReplacements.h"
 
@@ -116,8 +117,10 @@ public:
 	const std::set<const Planet *> &VisitedStopovers() const;
 	const std::set<const System *> &MarkedSystems() const;
 	const std::set<const System *> &UnmarkedSystems() const;
-	void Mark(const System *system) const;
-	void Unmark(const System *system) const;
+	const std::set<const System *> &TrackedSystems() const;
+	void RecalculateTrackedSystems();
+	void Mark(const std::set<const System *> &systems) const;
+	void Unmark(const std::set<const System *> &system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int Fine() const;
@@ -180,6 +183,8 @@ public:
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
+	// Iterate through the timers and progress them if applicable.
+	void StepTimers(PlayerInfo &player, UI *ui);
 	// Update which NPCs are active based on their spawn and despawn conditions.
 	void UpdateNPCs(const PlayerInfo &player);
 	// Checks if the given ship belongs to one of the mission's NPCs.
@@ -281,12 +286,17 @@ private:
 	// wants to highlight for the player.
 	mutable std::set<const System *> markedSystems;
 	mutable std::set<const System *> unmarkedSystems;
+	// Systems that are marked because a "tracked" mission NPC is in them.
+	bool hasTrackedNpcs = false;
+	std::set<const System *> trackedSystems;
 
 	// User-defined text replacements unique to this mission:
 	TextReplacements substitutions;
 
 	// NPCs:
 	std::list<NPC> npcs;
+	// Timers:
+	std::list<MissionTimer> timers;
 
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;

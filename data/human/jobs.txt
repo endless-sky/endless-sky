@@ -4656,6 +4656,7 @@ mission "Rich student transport"
 	repeat
 	name "Transport wealthy student to <planet>"
 	description "This rich student needs transport to <destination> by <date> to study at one of <planet>'s high-end universities. They will pay you <payment>."
+	deadline
 	passengers 1
 	to offer
 		random < 10
