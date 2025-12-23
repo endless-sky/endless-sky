@@ -399,7 +399,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(planet)
 					SetMessage(gov->GetPlanetBribeAcceptanceHail());
 				else
-					SetMessage(gov->GetBribeAcceptanceHail());
+					SetMessage(gov->GetShipBribeAcceptanceHail());
 			}
 			if(ship)
 			{
@@ -429,7 +429,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		else if(planet)
 			SetMessage(gov->GetPlanetBribeRejectionHail());
 		else
-			SetMessage(gov->GetBribeRejectionHail());
+			SetMessage(gov->GetShipBribeRejectionHail());
 	}
 	else
 		sound = UI::UISound::NONE;

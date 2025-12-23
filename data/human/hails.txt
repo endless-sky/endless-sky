@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-phrase "bribe rejection navy"
+phrase "ship bribe rejection navy"
 	word
 		"It is too late: "
 		"Your attempt is futile; "
@@ -21,14 +21,14 @@ phrase "bribe rejection navy"
 		"we value honor over greed."
 		"we will not be swayed so easily."
 
-phrase "bribe rejection navy"
+phrase "ship bribe rejection navy"
 	word
 		"I do not want your money."
 		"United, humanity stands. I cannot take your money."
 		"We want you, not your money, to join the Navy."
 		"Peace among the stars, except for enemies of the Republic."
 
-phrase "bribe rejection"
+phrase "ship bribe rejection"
 	word
 		"We're "
 	word
@@ -52,14 +52,14 @@ phrase "bribe rejection"
 	replace
 		"a e" "an e"
 
-phrase "bribe rejection"
+phrase "ship bribe rejection"
 	word
 		"Stop being a distraction!"
 		"I can't stand chatty enemies!"
 		"Do you think I understand that?"
 		"I can't do math in the middle of a fight!"
 
-phrase "bribe rejection"
+phrase "ship bribe rejection"
 	word
 		"You want "
 	word
@@ -4642,7 +4642,7 @@ phrase "friendly free worlds"
 		"friendly free worlds 9"
 		"friendly free worlds 10"
 
-phrase "bribe acceptance pirate"
+phrase "ship bribe acceptance pirate"
 	word
 		"Something is strange - now I don't feel like killing you!"
 		"Thanks for the patronage!"

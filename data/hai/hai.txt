@@ -618,7 +618,7 @@ phrase "friendly unfettered"
 	word
 		" Hai."
 
-phrase "bribe acceptance hai"
+phrase "ship bribe acceptance hai"
 	word
 		"I"
 		"We"
@@ -646,7 +646,7 @@ phrase "bribe acceptance hai"
 		"we hope you intend go away after this."
 		"we hope you will leave us alone after this."
 
-phrase "bribe acceptance hai"
+phrase "ship bribe acceptance hai"
 	word
 		"I"
 		"We"
@@ -668,7 +668,7 @@ phrase "bribe acceptance hai"
 		"" 4
 		" Next time, you may not be so lucky."
 
-phrase "bribe rejection hai"
+phrase "ship bribe rejection hai"
 	word
 		"Haikind"
 		"I"
