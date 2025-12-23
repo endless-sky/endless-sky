@@ -195,6 +195,7 @@ private:
 	const Government *government = nullptr;
 	double requiredReputation = 0.;
 	double bribe = 0.01;
+	double bribeThreshold = 1.;
 	double security = .25;
 	bool inhabited = false;
 	bool customSecurity = false;

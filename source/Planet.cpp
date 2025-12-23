@@ -125,6 +125,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				requiredReputation = 0.;
 			else if(key == "bribe")
 				bribe = 0.;
+			else if(key == "bribe threshold")
+				bribeThreshold = 0.;
 			else if(key == "security")
 				security = 0.;
 			else if(key == "tribute")
@@ -215,6 +217,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			requiredReputation = child.Value(valueIndex);
 		else if(key == "bribe")
 			bribe = child.Value(valueIndex);
+		else if(key == "bribe threshold")
+			bribeThreshold = child.Value(valueIndex);
 		else if(key == "security")
 		{
 			customSecurity = true;
