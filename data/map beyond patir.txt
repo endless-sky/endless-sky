@@ -36,7 +36,6 @@ system Athiri
 	object
 		sprite planet/wisp
 		distance 1510.2286
-		offset 35
 
 system Balnii
 	pos 10268.3 -359.3
