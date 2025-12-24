@@ -73,7 +73,7 @@ public:
 
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
-	const Dictionary<double> &Attributes() const;
+	const std::vector<std::string> &AttributeNames() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
@@ -87,6 +87,7 @@ public:
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
+	void Set(const std::string &attribute, double value);
 
 	const std::shared_ptr<const Weapon> &GetWeapon() const;
 	// Get the ammo if this is an ammo storage outfit.
@@ -121,8 +122,6 @@ public:
 private:
 	// Add the license with the given name to the licenses required by this outfit, if it is not already present.
 	void AddLicense(const std::string &name);
-	/// Update the cache of double-precision attributes after the integer attributes have been changed.
-	void UpdateAttributeCache();
 
 
 private:
@@ -142,8 +141,7 @@ private:
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
 
-	Dictionary<int64_t> rawAttributes;
-	Dictionary<double> cachedAttributes;
+	Dictionary<int64_t> attributes;
 
 	std::shared_ptr<const Weapon> weapon;
 	// Non-weapon outfits can have ammo so that storage outfits

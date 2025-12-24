@@ -310,10 +310,10 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "jump range" && hasValue)
 		{
 			// Jump range must be positive.
-			rawAttributes[key] = max<int64_t>(0, child.Value(1) * ATTRIBUTE_PRECISION);
+			Set(key, max(0., child.Value(1)));
 		}
 		else if(hasValue)
-			rawAttributes[key] = child.Value(1) * ATTRIBUTE_PRECISION;
+			Set(key, child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -336,32 +336,35 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	}
 
 	// Set the default jump fuel if not defined.
-	bool isHyperdrive = rawAttributes.Get("hyperdrive");
-	bool isScramDrive = rawAttributes.Get("scram drive");
-	bool isJumpDrive = rawAttributes.Get("jump drive");
-	int64_t jumpFuel = rawAttributes.Get("jump fuel");
-	if((isHyperdrive || isScramDrive) && rawAttributes.Get("hyperdrive fuel") <= 0)
+	bool isHyperdrive = attributes.Get("hyperdrive");
+	bool isScramDrive = attributes.Get("scram drive");
+	bool isJumpDrive = attributes.Get("jump drive");
+	int64_t jumpFuel = attributes.Get("jump fuel");
+	if((isHyperdrive || isScramDrive) && attributes.Get("hyperdrive fuel") <= 0)
 	{
 		if(jumpFuel > 0)
-			rawAttributes["hyperdrive fuel"] = jumpFuel;
-		else if(isScramDrive)
-			rawAttributes["hyperdrive fuel"] = DEFAULT_SCRAM_DRIVE_COST * ATTRIBUTE_PRECISION;
+			attributes["hyperdrive fuel"] = jumpFuel;
 		else
-			rawAttributes["hyperdrive fuel"] = DEFAULT_HYPERDRIVE_COST * ATTRIBUTE_PRECISION;
+			Set("hyperdrive fuel", isScramDrive ? DEFAULT_SCRAM_DRIVE_COST : DEFAULT_HYPERDRIVE_COST);
 	}
-	if(isJumpDrive && rawAttributes.Get("jump drive fuel") <= 0)
-		rawAttributes["jump drive fuel"] = (jumpFuel > 0 ? jumpFuel : DEFAULT_JUMP_DRIVE_COST * ATTRIBUTE_PRECISION);
+	if(isJumpDrive && attributes.Get("jump drive fuel") <= 0)
+	{
+		if(jumpFuel > 0)
+			attributes["jump drive fuel"] = jumpFuel;
+		else
+			Set("jump drive fuel", DEFAULT_JUMP_DRIVE_COST);
+	}
 	if(jumpFuel)
-		rawAttributes.Erase("jump fuel");
+		attributes.Erase("jump fuel");
 
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
-	if(isJumpDrive && rawAttributes.Get("jump range"))
-		GameData::AddJumpRange(static_cast<double>(rawAttributes.Get("jump range")) / ATTRIBUTE_PRECISION);
+	if(isJumpDrive && attributes.Get("jump range"))
+		GameData::AddJumpRange(Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
-	if(weapon && rawAttributes.Get("turret mounts") && !weapon->TurretTurn()
+	if(weapon && attributes.Get("turret mounts") && !weapon->TurretTurn()
 		&& !weapon->AntiMissile() && !weapon->TractorBeam())
 	{
 		Weapon newWeapon = *weapon;
@@ -375,38 +378,37 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	auto convertScan = [&](string &&kind) -> void
 	{
 		string label = kind + " scan";
-		double initial = static_cast<double>(rawAttributes.Get(label)) / ATTRIBUTE_PRECISION;
+		int64_t initial = attributes.Get(label);
 		if(initial)
 		{
-			rawAttributes[label] = 0;
+			attributes.Erase(label.c_str());
 			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ label + " power\" and \"" + label + " speed\":");
 
 			// A scan value of 300 is equivalent to a scan power of 9.
-			rawAttributes[label + " power"] += initial * initial * .0001 * ATTRIBUTE_PRECISION;
+			attributes[label + " power"] += initial * initial / 10000;
 			// The default scan speed of 1 is unrelated to the magnitude of the scan value.
 			// It may have been already specified, and if so, should not be increased.
-			if(!rawAttributes.Get(label + " efficiency"))
-				rawAttributes[label + " efficiency"] = 15. * ATTRIBUTE_PRECISION;
+			if(!attributes.Get(label + " efficiency"))
+				Set(label + " efficiency", 15.);
 		}
 
 		// Similar check for scan speed which is replaced with scan efficiency.
 		label += " speed";
-		initial = static_cast<double>(rawAttributes.Get(label)) / ATTRIBUTE_PRECISION;
+		initial = attributes.Get(label);
 		if(initial)
 		{
-			rawAttributes[label] = 0;
+			attributes.Erase(label.c_str());
 			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ kind + " scan efficiency\":");
 			// A reasonable update is 15x the previous value, as the base scan time
 			// is 10x what it was before scan efficiency was introduced, along with
 			// ships which are larger or further away also increasing the scan time.
-			rawAttributes[kind + " scan efficiency"] += initial * 15. * ATTRIBUTE_PRECISION;
+			attributes[kind + " scan efficiency"] += initial * 15;
 		}
 	};
 	convertScan("outfit");
 	convertScan("cargo");
-	UpdateAttributeCache();
 }
 
 
@@ -495,7 +497,7 @@ const Sprite *Outfit::Thumbnail() const
 
 double Outfit::Get(const char *attribute) const
 {
-	return cachedAttributes.Get(attribute);
+	return static_cast<double>(attributes.Get(attribute)) / ATTRIBUTE_PRECISION;
 }
 
 
@@ -507,9 +509,13 @@ double Outfit::Get(const string &attribute) const
 
 
 
-const Dictionary<double> &Outfit::Attributes() const
+const vector<string> &Outfit::AttributeNames() const
 {
-	return cachedAttributes;
+	static vector<string> NAMES;
+	NAMES.clear();
+	for(const auto &it : attributes)
+		NAMES.push_back(it.first);
+	return NAMES;
 }
 
 
@@ -519,7 +525,7 @@ const Dictionary<double> &Outfit::Attributes() const
 // not, return the maximum number that can be added.
 int Outfit::CanAdd(const Outfit &other, int count) const
 {
-	for(const auto &[name, otherValue] : other.rawAttributes)
+	for(const auto &[name, otherValue] : other.attributes)
 	{
 		// The minimum allowed value of most attributes is 0. Some attributes
 		// have special functionality when negative, though, and are therefore
@@ -536,9 +542,9 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 
 		// Only automatons may have a "required crew" of 0.
 		if(!strcmp(name, "required crew"))
-			minimum = !(rawAttributes.Get("automaton") || other.rawAttributes.Get("automaton"));
+			minimum = !(attributes.Get("automaton") || other.attributes.Get("automaton"));
 
-		int64_t value = rawAttributes.Get(name);
+		int64_t value = attributes.Get(name);
 		if(value + otherValue * count < minimum)
 			count = (value - minimum) / -otherValue;
 	}
@@ -554,9 +560,8 @@ void Outfit::Add(const Outfit &other, int count)
 {
 	cost += other.cost * count;
 	mass += other.mass * count;
-	for(const auto &[name, otherValue] : other.rawAttributes)
-		rawAttributes[name] += otherValue * count;
-	UpdateAttributeCache();
+	for(const auto &[name, otherValue] : other.attributes)
+		attributes[name] += otherValue * count;
 
 	for(const auto &it : other.flareSprites)
 		AddFlareSprites(flareSprites, it, count);
@@ -592,8 +597,14 @@ void Outfit::AddLicenses(const Outfit &other)
 // Modify this outfit's attributes.
 void Outfit::Set(const char *attribute, double value)
 {
-	rawAttributes[attribute] = value * ATTRIBUTE_PRECISION;
-	cachedAttributes[attribute] = value;
+	attributes[attribute] = value * ATTRIBUTE_PRECISION;
+}
+
+
+
+void Outfit::Set(const string &attribute, double value)
+{
+	Set(attribute.c_str(), value);
 }
 
 
@@ -741,13 +752,4 @@ void Outfit::AddLicense(const string &name)
 	const auto it = find(licenses.begin(), licenses.end(), name);
 	if(it == licenses.end())
 		licenses.push_back(name);
-}
-
-
-
-void Outfit::UpdateAttributeCache()
-{
-	cachedAttributes.Clear();
-	for(const auto &[name, value] : rawAttributes)
-		cachedAttributes[name] = static_cast<double>(value) / ATTRIBUTE_PRECISION;
 }
