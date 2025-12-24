@@ -605,6 +605,13 @@ void GameData::UpdateSystems()
 
 
 
+void GameData::RecomputeWormholeRequirements()
+{
+	objects.RecomputeWormholeRequirements();
+}
+
+
+
 void GameData::AddJumpRange(double neighborDistance)
 {
 	objects.neighborDistances.insert(neighborDistance);
@@ -837,6 +844,13 @@ const Set<Wormhole> &GameData::Wormholes()
 const Set<Gamerules> &GameData::GamerulesPresets()
 {
 	return objects.gamerulesPresets;
+}
+
+
+
+const std::set<std::string> &GameData::UniverseWormholeRequirements()
+{
+	return objects.universeWormholeRequirements;
 }
 
 

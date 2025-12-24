@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <iterator>
 #include <map>
+#include <ranges>
 #include <set>
 #include <utility>
 #include <vector>
@@ -202,6 +203,18 @@ void UniverseObjects::UpdateSystems()
 
 
 
+void UniverseObjects::RecomputeWormholeRequirements()
+{
+	// Create a complete set of all attributes that affect any wormhole in the universe.
+	universeWormholeRequirements.clear();
+	for(const auto &wormhole : std::views::values(wormholes))
+		if(wormhole.IsValid() && wormhole.GetPlanet()->IsValid())
+			for(const auto &req : wormhole.GetPlanet()->RequiredAttributes())
+				universeWormholeRequirements.emplace(req);
+}
+
+
+
 // Check for objects that are referred to but never defined. Some elements, like
 // fleets, don't need to be given a name if undefined. Others (like outfits and
 // planets) are written to the player's save and need a name to prevent data loss.
@@ -332,6 +345,14 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : persons)
 		if(!it.second.IsLoaded())
 			Warn("person", it.first);
+}
+
+
+
+void UniverseObjects::DrawMenuBackground(Panel *panel) const
+{
+	lock_guard<mutex> lock(menuBackgroundMutex);
+	menuBackgroundCache.Draw(Information(), panel);
 }
 
 
@@ -534,12 +555,4 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 	}
-}
-
-
-
-void UniverseObjects::DrawMenuBackground(Panel *panel) const
-{
-	lock_guard<mutex> lock(menuBackgroundMutex);
-	menuBackgroundCache.Draw(Information(), panel);
 }

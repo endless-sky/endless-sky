@@ -383,6 +383,8 @@ public:
 
 	// Advance any active mission timers that meet the right criteria.
 	void StepMissionTimers(UI *ui);
+	// Checks and resets recacheJumpRoutes. Returns the value that was present upon entry.
+	bool RecacheJumpRoutes();
 
 
 private:
@@ -560,4 +562,6 @@ private:
 	CoreStartData startData;
 
 	std::unique_ptr<DataWriter> transactionSnapshot;
+
+	bool recacheJumpRoutes = false;
 };

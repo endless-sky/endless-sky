@@ -87,6 +87,8 @@ public:
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
 	void UpdateSystems();
+	// Determine which attributes may be required in order to use a wormhole.
+	void RecomputeWormholeRequirements();
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
@@ -136,6 +138,9 @@ private:
 	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
 	Set<Gamerules> gamerulesPresets;
+
+	// This is used for speeding up the route calculations.
+	std::set<std::string> universeWormholeRequirements;
 	std::set<double> neighborDistances;
 
 	TextReplacements substitutions;
