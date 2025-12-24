@@ -178,7 +178,7 @@ namespace {
 	const vector<string> LARGE_GRAPHICS_REDUCTION_SETTINGS = {"off", "largest only", "all"};
 	int largeGraphicsReductionIndex = 0;
 
-	const string SCREEN_SAVER_ENABLED = "Screen saver enabled";
+	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 
 	int previousSaveCount = 3;
 
@@ -218,7 +218,6 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 	settings["Deadline blink by distance"] = true;
-	settings[SCREEN_SAVER_ENABLED] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -938,10 +937,10 @@ const string &Preferences::LargeGraphicsReductionSetting()
 
 
 
-void Preferences::ToggleScreenSaverEnabled()
+void Preferences::ToggleBlockScreenSaver()
 {
-	GameWindow::ToggleScreenSaverEnabled();
-	Set(SCREEN_SAVER_ENABLED, !Has(SCREEN_SAVER_ENABLED));
+	GameWindow::ToggleBlockScreenSaver();
+	Set(BLOCK_SCREEN_SAVER, !Has(BLOCK_SCREEN_SAVER));
 }
 
 

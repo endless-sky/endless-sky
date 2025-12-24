@@ -257,7 +257,7 @@ public:
 	static LargeGraphicsReduction GetLargeGraphicsReduction();
 	static const std::string &LargeGraphicsReductionSetting();
 
-	static void ToggleScreenSaverEnabled();
+	static void ToggleBlockScreenSaver();
 
 	static int GetPreviousSaveCount();
 

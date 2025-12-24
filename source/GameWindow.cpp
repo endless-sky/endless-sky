@@ -134,7 +134,7 @@ bool GameWindow::Init(bool headless)
 		windowHeight = min(windowHeight, Screen::RawHeight());
 	}
 
-	if(Preferences::Has("Screen saver enabled"))
+	if(!Preferences::Has("Block screen saver"))
 		SDL_EnableScreenSaver();
 
 	// Settings that must be declared before the window creation.
@@ -439,7 +439,7 @@ void GameWindow::ToggleFullscreen()
 
 
 
-void GameWindow::ToggleScreenSaverEnabled()
+void GameWindow::ToggleBlockScreenSaver()
 {
 	if(SDL_IsScreenSaverEnabled())
 		SDL_DisableScreenSaver();

@@ -91,7 +91,7 @@ namespace {
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
-	const string SCREEN_SAVER_ENABLED = "Screen saver enabled";
+	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
@@ -813,7 +813,7 @@ void PreferencesPanel::DrawSettings()
 		"Save message log",
 		"\n",
 		"Game Window",
-		SCREEN_SAVER_ENABLED,
+		BLOCK_SCREEN_SAVER,
 #ifdef _WIN32
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
@@ -1415,8 +1415,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleAlert();
 	else if(str == MINIMAP_DISPLAY)
 		Preferences::ToggleMinimapDisplay();
-	else if(str == SCREEN_SAVER_ENABLED)
-		Preferences::ToggleScreenSaverEnabled();
+	else if(str == BLOCK_SCREEN_SAVER)
+		Preferences::ToggleBlockScreenSaver();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();
