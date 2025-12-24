@@ -1616,7 +1616,7 @@ system Aaura-Kaska
 		sprite star/g0
 		distance 21.316
 	object
-		sprite star/m4
+		sprite star/m3
 		distance 98.684
 		offset 180
 	object
