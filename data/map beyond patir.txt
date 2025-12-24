@@ -137,6 +137,7 @@ system Maithi
 		sprite "star/black hole 5"
 	object "Beyond Patir North Exit"
 		sprite "planet/wormhole-blue"
+		distance 4316.1251
 
 system Mitera
 	pos 9957.5 -92.5
