@@ -1210,8 +1210,14 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.distance = node.Value(1);
 	else if(key == "period" && hasValue)
 	{
+		double period = node.Value(1);
+		if(!period)
+		{
+			node.PrintTrace("An object's period may not be equal to zero.");
+			return;
+		}
 		object.explicitPeriodSet = true;
-		object.speed = 360. / node.Value(1);
+		object.speed = 360. / period;
 	}
 	else if(key == "offset" && hasValue)
 		object.offset = node.Value(1);
