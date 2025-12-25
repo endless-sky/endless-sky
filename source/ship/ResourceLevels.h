@@ -44,11 +44,4 @@ public:
 	double leakage = 0.;
 	// Accrued "burn damage" that will affect this ship's heat over time.
 	double burning = 0.;
-
-	// A wildcard level whose purpose may change depending on how this
-	// object is being used. For example, where ResourceLevels represents the
-	// cost of resisting a DoT effect, the wildcard would contain the amount
-	// of resistance while all other fields contain the cost for resisting
-	// the DoT.
-	double wildcard = 0.;
 };

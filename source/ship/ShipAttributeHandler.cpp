@@ -115,12 +115,12 @@ void ShipAttributeHandler::DoStatusEffects(bool disabled) const
 	shipLevels->fuel -= shipLevels->leakage;
 
 	// TODO: Mothership gives status resistance to carried ships?
-	auto DoResistance = [this, &disabled](double &stat, const ResourceLevels &cost)
+	auto DoResistance = [this, &disabled](double &stat, double resistance, const ResourceLevels &cost)
 	{
 		if(!stat)
 			return;
 
-		if(disabled || cost.wildcard <= 0.)
+		if(disabled || resistance <= 0.)
 		{
 			stat = max(0., .99 * stat);
 			return;
@@ -128,7 +128,7 @@ void ShipAttributeHandler::DoStatusEffects(bool disabled) const
 
 		// Calculate how much resistance can be used assuming no
 		// resource cost.
-		double resistance = .99 * stat - max(0., .99 * stat - cost.wildcard);
+		resistance = .99 * stat - max(0., .99 * stat - resistance);
 
 		// Limit the resistance by the available resources.
 		if(cost.energy > 0.)
@@ -149,14 +149,14 @@ void ShipAttributeHandler::DoStatusEffects(bool disabled) const
 			stat = max(0., .99 * stat);
 	};
 
-	DoResistance(shipLevels->corrosion, corrosionResistCost);
-	DoResistance(shipLevels->discharge, dischargeResistCost);
-	DoResistance(shipLevels->ionization, ionizationResistCost);
-	DoResistance(shipLevels->scrambling, scramblingResistCost);
-	DoResistance(shipLevels->burning, burnResistCost);
-	DoResistance(shipLevels->leakage, leakageResistCost);
-	DoResistance(shipLevels->disruption, disruptionResistCost);
-	DoResistance(shipLevels->slowness, slownessResistCost);
+	DoResistance(shipLevels->corrosion, corrosionResistance, corrosionResistCost);
+	DoResistance(shipLevels->discharge, dischargeResistance, dischargeResistCost);
+	DoResistance(shipLevels->ionization, ionizationResistance, ionizationResistCost);
+	DoResistance(shipLevels->scrambling, scramblingResistance, scramblingResistCost);
+	DoResistance(shipLevels->burning, burnResistance, burnResistCost);
+	DoResistance(shipLevels->leakage, leakResistance, leakageResistCost);
+	DoResistance(shipLevels->disruption, disruptionResistance, disruptionResistCost);
+	DoResistance(shipLevels->slowness, slowingResistance, slownessResistCost);
 }
 
 
@@ -221,12 +221,11 @@ double ShipAttributeHandler::FractionalUsage(const ResourceLevels &cost) const
 ResourceLevels ShipAttributeHandler::FiringCost(const Weapon &weapon) const
 {
 	ResourceLevels cost;
-	double maxHeat = weapon.RelativeFiringHeat() ? ship->MaximumHeat() : 0.;
 
 	cost.hull = weapon.FiringHull() + weapon.RelativeFiringHull() * capacity.hull;
 	cost.shields = weapon.FiringShields() + weapon.RelativeFiringShields() * capacity.shields;
 	cost.energy = weapon.FiringEnergy() + weapon.RelativeFiringEnergy() * capacity.energy;
-	cost.heat = weapon.FiringHeat() + weapon.RelativeFiringHeat() * maxHeat;
+	cost.heat = weapon.FiringHeat() + weapon.RelativeFiringHeat() * ship->MaximumHeat();
 	cost.fuel = weapon.FiringFuel() + weapon.RelativeFiringFuel() * capacity.fuel;
 
 	cost.corrosion = weapon.FiringCorrosion();
@@ -252,7 +251,7 @@ ShipAttributeHandler::CanFireResult ShipAttributeHandler::CanFire(const Weapon &
 	ResourceLevels cost = FiringCost(weapon);
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(shipLevels->hull - capacity.wildcard < cost.hull)
+	if(shipLevels->hull - minimumHull < cost.hull)
 		return CanFireResult::NO_HULL;
 	if(shipLevels->energy < cost.energy)
 		return CanFireResult::NO_ENERGY;
@@ -313,17 +312,15 @@ void ShipAttributeHandler::Capacity()
 
 	// DoT counters do not have capacities.
 
-	// Cache a ship's minimum hull in the capacity wildcard.
 	double absoluteThreshold = attributes->Get("absolute threshold");
 	if(absoluteThreshold > 0.)
-		capacity.wildcard = absoluteThreshold;
+		minimumHull = absoluteThreshold;
 	else
 	{
 		double thresholdPercent = attributes->Get("threshold percentage");
 		double transition = 1 / (1 + 0.0005 * capacity.hull);
-		double minimumHull = capacity.hull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
-
-		capacity.wildcard = max(0., floor(minimumHull + attributes->Get("hull threshold")));
+		minimumHull = capacity.hull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
+		minimumHull = max(0., floor(minimumHull + attributes->Get("hull threshold")));
 	}
 }
 
@@ -331,133 +328,133 @@ void ShipAttributeHandler::Capacity()
 
 void ShipAttributeHandler::HullRepair()
 {
-	hullRepairCost.wildcard = attributes->Get("hull repair rate") * (1. + attributes->Get("hull repair multiplier"));
-	hullRepairCost.energy = attributes->Get("hull energy") * (1. + attributes->Get("hull energy multiplier"));
-	hullRepairCost.heat = attributes->Get("hull heat") * (1. + attributes->Get("hull heat multiplier"));
-	hullRepairCost.fuel = attributes->Get("hull fuel") * (1. + attributes->Get("hull fuel multiplier"));
-
-	hullRepairNoDelayCost.wildcard = (attributes->Get("hull repair rate") + attributes->Get("delayed hull repair rate"))
+	hullRepairRate = (attributes->Get("hull repair rate") + attributes->Get("delayed hull repair rate"))
 		* (1. + attributes->Get("hull repair multiplier"));
-	hullRepairNoDelayCost.energy = (attributes->Get("hull energy") + attributes->Get("delayed hull energy"))
+	hullRepairCost.energy = (attributes->Get("hull energy") + attributes->Get("delayed hull energy"))
 		* (1. + attributes->Get("hull energy multiplier"));
-	hullRepairNoDelayCost.heat = (attributes->Get("hull heat") + attributes->Get("delayed hull heat"))
+	hullRepairCost.heat = (attributes->Get("hull heat") + attributes->Get("delayed hull heat"))
 		* (1. + attributes->Get("hull heat multiplier"));
-	hullRepairNoDelayCost.fuel = (attributes->Get("hull fuel") + attributes->Get("delayed hull fuel"))
+	hullRepairCost.fuel = (attributes->Get("hull fuel") + attributes->Get("delayed hull fuel"))
 		* (1. + attributes->Get("hull fuel multiplier"));
+
+	hullRepairRateWithDelay = attributes->Get("hull repair rate") * (1. + attributes->Get("hull repair multiplier"));
+	hullRepairWithDelayCost.energy = attributes->Get("hull energy") * (1. + attributes->Get("hull energy multiplier"));
+	hullRepairWithDelayCost.heat = attributes->Get("hull heat") * (1. + attributes->Get("hull heat multiplier"));
+	hullRepairWithDelayCost.fuel = attributes->Get("hull fuel") * (1. + attributes->Get("hull fuel multiplier"));
 }
 
 
 
 void ShipAttributeHandler::ShieldRegen()
 {
-	shieldRegenCost.wildcard = attributes->Get("shield generation") * (1. + attributes->Get("shield generation multiplier"));
-	shieldRegenCost.energy = attributes->Get("shield energy") * (1. + attributes->Get("shield energy multiplier"));
-	shieldRegenCost.heat = attributes->Get("shield heat") * (1. + attributes->Get("shield heat multiplier"));
-	shieldRegenCost.fuel = attributes->Get("shield fuel") * (1. + attributes->Get("shield fuel multiplier"));
-
-	shieldRegenNoDelayCost.wildcard = (attributes->Get("shield generation") + attributes->Get("delayed shield generation"))
+	shieldRegenRate = (attributes->Get("shield generation") + attributes->Get("delayed shield generation"))
 		* (1. + attributes->Get("shield generation multiplier"));
-	shieldRegenNoDelayCost.energy = (attributes->Get("shield energy") + attributes->Get("delayed shield energy"))
+	shieldRegenCost.energy = (attributes->Get("shield energy") + attributes->Get("delayed shield energy"))
 		* (1. + attributes->Get("shield energy multiplier"));
-	shieldRegenNoDelayCost.heat = (attributes->Get("shield heat") + attributes->Get("delayed shield heat"))
+	shieldRegenCost.heat = (attributes->Get("shield heat") + attributes->Get("delayed shield heat"))
 		* (1. + attributes->Get("shield heat multiplier"));
-	shieldRegenNoDelayCost.fuel = (attributes->Get("shield fuel") + attributes->Get("delayed shield fuel"))
+	shieldRegenCost.fuel = (attributes->Get("shield fuel") + attributes->Get("delayed shield fuel"))
 		* (1. + attributes->Get("shield fuel multiplier"));
+
+	shieldRegenRateWithDelay = attributes->Get("shield generation") * (1. + attributes->Get("shield generation multiplier"));
+	shieldRegenWithDelayCost.energy = attributes->Get("shield energy") * (1. + attributes->Get("shield energy multiplier"));
+	shieldRegenWithDelayCost.heat = attributes->Get("shield heat") * (1. + attributes->Get("shield heat multiplier"));
+	shieldRegenWithDelayCost.fuel = attributes->Get("shield fuel") * (1. + attributes->Get("shield fuel multiplier"));
 }
 
 
 
 void ShipAttributeHandler::CorrosionResist()
 {
-	corrosionResistCost.wildcard = attributes->Get("corrosion resistance");
+	corrosionResistance = attributes->Get("corrosion resistance");
 	// Save resistance costs as per unit of resistance.
-	corrosionResistCost.energy = attributes->Get("corrosion resistance energy") / corrosionResistCost.wildcard;
-	corrosionResistCost.heat = attributes->Get("corrosion resistance heat") / corrosionResistCost.wildcard;
-	corrosionResistCost.fuel = attributes->Get("corrosion resistance fuel") / corrosionResistCost.wildcard;
+	corrosionResistCost.energy = attributes->Get("corrosion resistance energy") / corrosionResistance;
+	corrosionResistCost.heat = attributes->Get("corrosion resistance heat") / corrosionResistance;
+	corrosionResistCost.fuel = attributes->Get("corrosion resistance fuel") / corrosionResistance;
 }
 
 
 
 void ShipAttributeHandler::DischargeResist()
 {
-	dischargeResistCost.wildcard = attributes->Get("discharge resistance");
+	dischargeResistance = attributes->Get("discharge resistance");
 	// Save resistance costs as per unit of resistance.
-	dischargeResistCost.energy = attributes->Get("discharge resistance energy") / dischargeResistCost.wildcard;
-	dischargeResistCost.heat = attributes->Get("discharge resistance heat") / dischargeResistCost.wildcard;
-	dischargeResistCost.fuel = attributes->Get("discharge resistance fuel") / dischargeResistCost.wildcard;
+	dischargeResistCost.energy = attributes->Get("discharge resistance energy") / dischargeResistance;
+	dischargeResistCost.heat = attributes->Get("discharge resistance heat") / dischargeResistance;
+	dischargeResistCost.fuel = attributes->Get("discharge resistance fuel") / dischargeResistance;
 }
 
 
 
 void ShipAttributeHandler::IonizationResist()
 {
-	ionizationResistCost.wildcard = attributes->Get("ion resistance");
+	ionizationResistance = attributes->Get("ion resistance");
 	// Save resistance costs as per unit of resistance.
-	ionizationResistCost.energy = attributes->Get("ion resistance energy") / ionizationResistCost.wildcard;
-	ionizationResistCost.heat = attributes->Get("ion resistance heat") / ionizationResistCost.wildcard;
-	ionizationResistCost.fuel = attributes->Get("ion resistance fuel") / ionizationResistCost.wildcard;
+	ionizationResistCost.energy = attributes->Get("ion resistance energy") / dischargeResistance;
+	ionizationResistCost.heat = attributes->Get("ion resistance heat") / dischargeResistance;
+	ionizationResistCost.fuel = attributes->Get("ion resistance fuel") / dischargeResistance;
 }
 
 
 
 void ShipAttributeHandler::ScramblingResist()
 {
-	scramblingResistCost.wildcard = attributes->Get("scramble resistance");
+	scramblingResistance = attributes->Get("scramble resistance");
 	// Save resistance costs as per unit of resistance.
-	scramblingResistCost.energy = attributes->Get("scramble resistance energy") / scramblingResistCost.wildcard;
-	scramblingResistCost.heat = attributes->Get("scramble resistance heat") / scramblingResistCost.wildcard;
-	scramblingResistCost.fuel = attributes->Get("scramble resistance fuel") / scramblingResistCost.wildcard;
+	scramblingResistCost.energy = attributes->Get("scramble resistance energy") / scramblingResistance;
+	scramblingResistCost.heat = attributes->Get("scramble resistance heat") / scramblingResistance;
+	scramblingResistCost.fuel = attributes->Get("scramble resistance fuel") / scramblingResistance;
 }
 
 
 
 void ShipAttributeHandler::BurnResist()
 {
-	burnResistCost.wildcard = attributes->Get("burn resistance");
+	burnResistance = attributes->Get("burn resistance");
 	// Save resistance costs as per unit of resistance.
-	burnResistCost.energy = attributes->Get("burn resistance energy") / burnResistCost.wildcard;
-	burnResistCost.heat = attributes->Get("burn resistance heat") / burnResistCost.wildcard;
-	burnResistCost.fuel = attributes->Get("burn resistance fuel") / burnResistCost.wildcard;
+	burnResistCost.energy = attributes->Get("burn resistance energy") / burnResistance;
+	burnResistCost.heat = attributes->Get("burn resistance heat") / burnResistance;
+	burnResistCost.fuel = attributes->Get("burn resistance fuel") / burnResistance;
 }
 
 
 
 void ShipAttributeHandler::LeakageResist()
 {
-	leakageResistCost.wildcard = attributes->Get("leak resistance");
+	leakResistance = attributes->Get("leak resistance");
 	// Save resistance costs as per unit of resistance.
-	leakageResistCost.energy = attributes->Get("leak resistance energy") / leakageResistCost.wildcard;
-	leakageResistCost.heat = attributes->Get("leak resistance heat") / leakageResistCost.wildcard;
-	leakageResistCost.fuel = attributes->Get("leak resistance fuel") / leakageResistCost.wildcard;
+	leakageResistCost.energy = attributes->Get("leak resistance energy") / leakResistance;
+	leakageResistCost.heat = attributes->Get("leak resistance heat") / leakResistance;
+	leakageResistCost.fuel = attributes->Get("leak resistance fuel") / leakResistance;
 }
 
 
 
 void ShipAttributeHandler::DisruptionResist()
 {
-	disruptionResistCost.wildcard = attributes->Get("disruption resistance");
+	disruptionResistance = attributes->Get("disruption resistance");
 	// Save resistance costs as per unit of resistance.
-	disruptionResistCost.energy = attributes->Get("disruption resistance energy") / disruptionResistCost.wildcard;
-	disruptionResistCost.heat = attributes->Get("disruption resistance heat") / disruptionResistCost.wildcard;
-	disruptionResistCost.fuel = attributes->Get("disruption resistance fuel") / disruptionResistCost.wildcard;
+	disruptionResistCost.energy = attributes->Get("disruption resistance energy") / disruptionResistance;
+	disruptionResistCost.heat = attributes->Get("disruption resistance heat") / disruptionResistance;
+	disruptionResistCost.fuel = attributes->Get("disruption resistance fuel") / disruptionResistance;
 }
 
 
 
 void ShipAttributeHandler::SlownessResist()
 {
-	slownessResistCost.wildcard = attributes->Get("slowing resistance");
+	slowingResistance = attributes->Get("slowing resistance");
 	// Save resistance costs as per unit of resistance.
-	slownessResistCost.energy = attributes->Get("slowing resistance energy") / slownessResistCost.wildcard;
-	slownessResistCost.heat = attributes->Get("slowing resistance heat") / slownessResistCost.wildcard;
-	slownessResistCost.fuel = attributes->Get("slowing resistance fuel") / slownessResistCost.wildcard;
+	slownessResistCost.energy = attributes->Get("slowing resistance energy") / slowingResistance;
+	slownessResistCost.heat = attributes->Get("slowing resistance heat") / slowingResistance;
+	slownessResistCost.fuel = attributes->Get("slowing resistance fuel") / slowingResistance;
 }
 
 
 
 void ShipAttributeHandler::Thrust()
 {
-	thrustCost.wildcard = attributes->Get("thrust");
+	thrust = attributes->Get("thrust");
 
 	thrustCost.hull = attributes->Get("thrusting hull");
 	thrustCost.shields = attributes->Get("thrusting shields");
@@ -479,7 +476,7 @@ void ShipAttributeHandler::Thrust()
 
 void ShipAttributeHandler::Turn()
 {
-	turnCost.wildcard = attributes->Get("turn");
+	turn = attributes->Get("turn");
 
 	turnCost.hull = attributes->Get("turning hull");
 	turnCost.shields = attributes->Get("turning shields");
@@ -501,7 +498,7 @@ void ShipAttributeHandler::Turn()
 
 void ShipAttributeHandler::ReverseThrust()
 {
-	reverseThrustCost.wildcard = attributes->Get("reverse thrust");
+	reverseThrust = attributes->Get("reverse thrust");
 
 	reverseThrustCost.hull = attributes->Get("reverse thrusting hull");
 	reverseThrustCost.shields = attributes->Get("reverse thrusting shields");
@@ -523,7 +520,7 @@ void ShipAttributeHandler::ReverseThrust()
 
 void ShipAttributeHandler::AfterburnerThrust()
 {
-	afterburnerThrustCost.wildcard = attributes->Get("afterburner thrust");
+	afterburnerThrust = attributes->Get("afterburner thrust");
 
 	afterburnerThrustCost.hull = attributes->Get("afterburner hull");
 	afterburnerThrustCost.shields = attributes->Get("afterburner shields");

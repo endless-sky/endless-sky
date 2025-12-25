@@ -121,23 +121,40 @@ private:
 	ResourceLevels *shipLevels = nullptr;
 
 	ResourceLevels capacity;
+	double minimumHull;
 
+	double hullRepairRate;
 	ResourceLevels hullRepairCost;
-	ResourceLevels hullRepairNoDelayCost;
+	double hullRepairRateWithDelay;
+	ResourceLevels hullRepairWithDelayCost;
+	double shieldRegenRate;
 	ResourceLevels shieldRegenCost;
-	ResourceLevels shieldRegenNoDelayCost;
+	double shieldRegenRateWithDelay;
+	ResourceLevels shieldRegenWithDelayCost;
 
+	double corrosionResistance;
 	ResourceLevels corrosionResistCost;
+	double dischargeResistance;
 	ResourceLevels dischargeResistCost;
+	double ionizationResistance;
 	ResourceLevels ionizationResistCost;
+	double scramblingResistance;
 	ResourceLevels scramblingResistCost;
+	double burnResistance;
 	ResourceLevels burnResistCost;
+	double leakResistance;
 	ResourceLevels leakageResistCost;
+	double disruptionResistance;
 	ResourceLevels disruptionResistCost;
+	double slowingResistance;
 	ResourceLevels slownessResistCost;
 
+	double thrust;
 	ResourceLevels thrustCost;
+	double turn;
 	ResourceLevels turnCost;
+	double reverseThrust;
 	ResourceLevels reverseThrustCost;
+	double afterburnerThrust;
 	ResourceLevels afterburnerThrustCost;
 };

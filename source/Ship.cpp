@@ -745,7 +745,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 		Logger::Log(message, Logger::Level::WARNING);
 	}
-	// Setup the attribute handler with a pointer to this ship and its levels,
+	// Setup the attribute handler with a pointer to this ship and its resource levels,
 	// and calibrate the handler's caches.
 	attrHandler.Setup(this, &levels);
 	attrHandler.Calibrate();
@@ -3094,7 +3094,7 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
-	return attrHandler.turnCost.wildcard / InertialMass()
+	return attrHandler.turn / InertialMass()
 		* (1. + attributes.Get("turn multiplier"));
 }
 
@@ -3117,8 +3117,8 @@ double Ship::CrewTurnRate() const
 
 double Ship::Acceleration() const
 {
-	double thrust = attrHandler.thrustCost.wildcard;
-	return (thrust ? thrust : attrHandler.afterburnerThrustCost.wildcard) / InertialMass()
+	double thrust = attrHandler.thrust;
+	return (thrust ? thrust : attrHandler.afterburnerThrust) / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
 }
 
@@ -3144,8 +3144,8 @@ double Ship::MaxVelocity(bool withAfterburner) const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	double thrust = attrHandler.thrustCost.wildcard;
-	double afterburnerThrust = attrHandler.afterburnerThrustCost.wildcard;
+	double thrust = attrHandler.thrust;
+	double afterburnerThrust = attrHandler.afterburnerThrust;
 	return (thrust ? thrust + afterburnerThrust * withAfterburner : afterburnerThrust) / Drag();
 }
 
@@ -3153,7 +3153,7 @@ double Ship::MaxVelocity(bool withAfterburner) const
 
 double Ship::ReverseAcceleration() const
 {
-	return attrHandler.reverseThrustCost.wildcard / InertialMass()
+	return attrHandler.reverseThrust / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
 }
 
@@ -3161,7 +3161,7 @@ double Ship::ReverseAcceleration() const
 
 double Ship::MaxReverseVelocity() const
 {
-	return attrHandler.reverseThrustCost.wildcard / Drag();
+	return attrHandler.reverseThrust / Drag();
 }
 
 
@@ -3539,6 +3539,13 @@ const Outfit &Ship::Attributes() const
 const Outfit &Ship::BaseAttributes() const
 {
 	return baseAttributes;
+}
+
+
+
+const ShipAttributeHandler &Ship::AttributeHelper() const
+{
+	return attrHandler;
 }
 
 
@@ -4012,19 +4019,19 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		ResourceLevels repairLevels = hullDelay ? attrHandler.hullRepairCost : attrHandler.hullRepairNoDelayCost;
-		double hullRemaining = attrHandler.hullRepairCost.wildcard
-			* (1. + attributes.Get("cloaked repair multiplier") * Cloaking());;
+		ResourceLevels repairLevels = hullDelay ? attrHandler.hullRepairWithDelayCost : attrHandler.hullRepairCost;
+		double hullRemaining = (hullDelay ? attrHandler.hullRepairRateWithDelay : attrHandler.hullRepairRate)
+			* (1. + attributes.Get("cloaked repair multiplier") * Cloaking());
 		// Save hull repair costs as per unit of hull repaired.
 		repairLevels.energy /= hullRemaining;
 		repairLevels.fuel /= hullRemaining;
 		repairLevels.hull /= hullRemaining;
 		attrHandler.DoRepair(levels.hull, hullRemaining, MaxHull(), repairLevels);
 
-		ResourceLevels regenLevels = shieldDelay ? attrHandler.shieldRegenCost : attrHandler.shieldRegenNoDelayCost;
-		double shieldsRemaining = attrHandler.shieldRegenCost.wildcard
+		ResourceLevels regenLevels = shieldDelay ? attrHandler.shieldRegenWithDelayCost : attrHandler.shieldRegenCost;
+		double shieldsRemaining = (shieldDelay ? attrHandler.shieldRegenRateWithDelay : attrHandler.shieldRegenRate)
 			* (1. + attributes.Get("cloaked regen multiplier") * Cloaking());
-		// Save shield regen costs as per unit of shield regen.
+		// Save shield regen costs as per unit of shield regenerated.
 		regenLevels.energy /= shieldsRemaining;
 		regenLevels.fuel /= shieldsRemaining;
 		regenLevels.hull /= shieldsRemaining;
@@ -4622,8 +4629,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
 				isThrusting = (thrustCommand > 0.);
-				isReversing = !isThrusting && thrustCost.wildcard;
-				thrust = thrustCost.wildcard;
+				isReversing = !isThrusting && thrust;
+				thrust = thrust;
 				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
 				if(thrust)
 				{
@@ -4637,7 +4644,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		if(applyAfterburner)
 		{
 			const ResourceLevels &afterburnerCost = attrHandler.afterburnerThrustCost;
-			thrust = afterburnerCost.wildcard;
+			thrust = attrHandler.afterburnerThrust;
 			if(thrust && attrHandler.CanExpend(afterburnerCost))
 			{
 				attrHandler.Damage(afterburnerCost);
@@ -4818,7 +4825,7 @@ double Ship::MinimumHull() const
 	if(neverDisabled)
 		return 0.;
 
-	return attrHandler.capacity.wildcard;
+	return attrHandler.minimumHull;
 }
 
 
