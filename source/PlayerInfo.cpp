@@ -5104,9 +5104,9 @@ void PlayerInfo::DoAccounting()
 			if(!governments.empty())
 			{
 				message = "You have lost reputation with "
-					+ Format::List(governments, [](const Government *gov){ return "the " + gov->GetName(); })
+					+ Format::List(governments, [](const Government *gov){ return "the " + gov->DisplayName(); })
 					+ " due to active tributes.";
-				Messages::Add(message, Messages::Importance::High);
+				Messages::Add({message, GameData::MessageCategories().Get("normal")});
 			}
 		}
 	}
