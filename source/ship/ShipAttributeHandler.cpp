@@ -320,6 +320,13 @@ double ShipAttributeHandler::FuelCapacity() const
 
 
 
+double ShipAttributeHandler::EnergyCapacity() const
+{
+	return capacity.energy;
+}
+
+
+
 double ShipAttributeHandler::CargoScanPower() const
 {
 	return cargoScanPower;
@@ -344,6 +351,13 @@ double ShipAttributeHandler::AsteroidScanPower() const
 double ShipAttributeHandler::AtmosphereScan() const
 {
 	return atmosphereScan;
+}
+
+
+
+bool ShipAttributeHandler::Inscrutable() const
+{
+	return inscrutable;
 }
 
 
@@ -386,6 +400,13 @@ bool ShipAttributeHandler::ShouldUseAfterburner() const
 		return true;
 
 	return false;
+}
+
+
+
+bool ShipAttributeHandler::SilentJumps() const
+{
+	return silentJumps;
 }
 
 
@@ -811,7 +832,6 @@ void ShipAttributeHandler::Misc()
 	overheatDamageThreshold = 1. + attributes->Get("overheat damage threshold");
 	overheatDamageRate = attributes->Get("overheat damage rate");
 
-	landingSpeed = attributes->Get("landing speed");
 
 	drag = attributes->Get("drag");
 	dragReduction = 1. + attributes->Get("drag reduction");
@@ -819,5 +839,7 @@ void ShipAttributeHandler::Misc()
 	inertiaReduction = 1. + attributes->Get("inertia reduction");
 	turnMult = 1. + attributes->Get("turn multiplier");
 
+	landingSpeed = attributes->Get("landing speed");
+	silentJumps = attributes->Get("silent jumps");
 	selfDestruct = attributes->Get("self destruct");
 }

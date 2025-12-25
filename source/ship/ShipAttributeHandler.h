@@ -84,15 +84,19 @@ public:
 	// Functions for classes outside of Ship to get the cached values
 	// and determine what this ship is capable of.
 	double FuelCapacity() const;
+	double EnergyCapacity() const;
 
 	double CargoScanPower() const;
 	double OutfitScanPower() const;
 	double AsteroidScanPower() const;
 	double AtmosphereScan() const;
+	bool Inscrutable() const;
 
 	double ReverseThrust() const;
 	double AfterburnerThrust() const;
 	bool ShouldUseAfterburner() const;
+
+	bool SilentJumps() const;
 
 	double CloakFuelCost() const;
 	bool HasFuelForCloak() const;
@@ -245,13 +249,13 @@ private:
 	double overheatDamageThreshold = 1.;
 	double overheatDamageRate = 0.;
 
-	float landingSpeed = 0.f;
-
 	double drag = 1.;
 	double dragReduction = 1.;
 	double accelerationMult = 1.;
 	double inertiaReduction = 1.;
 	double turnMult = 1.;
 
+	float landingSpeed = 0.f;
+	bool silentJumps = false;
 	double selfDestruct = 0.;
 };
