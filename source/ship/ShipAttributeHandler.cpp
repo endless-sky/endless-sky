@@ -313,6 +313,142 @@ void ShipAttributeHandler::Damage(const ResourceLevels &damage, double scale) co
 
 
 
+double ShipAttributeHandler::FuelCapacity() const
+{
+	return capacity.fuel;
+}
+
+
+
+double ShipAttributeHandler::CargoScanPower() const
+{
+	return cargoScanPower;
+}
+
+
+
+double ShipAttributeHandler::OutfitScanPower() const
+{
+	return outfitScanPower;
+}
+
+
+
+double ShipAttributeHandler::AsteroidScanPower() const
+{
+	return asteroidScanPower;
+}
+
+
+
+double ShipAttributeHandler::AtmosphereScan() const
+{
+	return atmosphereScan;
+}
+
+
+
+double ShipAttributeHandler::ReverseThrust() const
+{
+	return reverseThrust;
+}
+
+
+
+double ShipAttributeHandler::AfterburnerThrust() const
+{
+	return afterburnerThrust;
+}
+
+
+
+bool ShipAttributeHandler::ShouldUseAfterburner() const
+{
+	double remainingFuel = shipLevels->fuel;
+	double neededFuel = afterburnerThrustCost.fuel;
+	double remainingEnergy = shipLevels->energy;
+	double neededEnergy = afterburnerThrustCost.energy;
+	// If there is no battery energy to use, consider how much energy might be produced this frame.
+	// This is a lower-bound calculation that assumes that this ship is far from the system
+	// center and is not gaining energy from anything aside from basic energy generation and
+	// solar collection. (i.e. sources of energy like fuel consumption are ignored.)
+	if(remainingEnergy == 0.)
+		remainingEnergy = energyGeneration + 0.2 * solarCollection - energyConsumption;
+	double outputHeat = afterburnerThrustCost.heat / (100. * ship->Mass());
+	// Don't use an afterburner if it uses up more fuel than is needed to jump,
+	// uses up more than 25% of our current energy reserves,
+	// or pushes us over 90% of the way to being overheated.
+	// TODO: Is this meant to prevent use if energy is below 25% of capacity?
+	// Preventing use if the energy needed takes up more than 25% of the remaining energy is a bit odd.
+	if((!neededFuel || remainingFuel - neededFuel > ship->JumpNavigation().JumpFuel())
+			&& (!neededEnergy || neededEnergy / remainingEnergy < 0.25)
+			&& (!outputHeat || ship->Heat() + outputHeat < .9))
+		return true;
+
+	return false;
+}
+
+
+
+double ShipAttributeHandler::CloakFuelCost() const
+{
+	// The fuel cost of cloaking is not only the cost of the cloak itself,
+	// but also the natural fuel gain or lost due to fuel consumption and generation.
+	// If fuel generation outpaces fuel lost due to cloaking or fuel consumption, then consider
+	// the fuel cost to be 0.
+	return min(0., cloakCost.fuel + fuelConsumption - fuelGeneration);
+}
+
+
+
+bool ShipAttributeHandler::HasFuelForCloak() const
+{
+	double fuelCost = CloakFuelCost();
+	// Don't cloak if it would result in you becoming stranded.
+	// If the ship has a ramscoop, assume that it won't be stranded due to cloak usage.
+	if(fuelCost && !ramscoop)
+	{
+		double fuel = shipLevels->fuel;
+		int steps = ceil((1. - ship->Cloaking()) / ship->CloakingSpeed());
+		// Only cloak if you will be able to fully cloak and also maintain it
+		// for as long as it will take you to reach full cloak.
+		fuel -= CloakFuelCost() * (1 + 2 * steps);
+		if(fuel < ship->JumpNavigation().JumpFuel())
+			return false;
+	}
+	return true;
+}
+
+
+
+bool ShipAttributeHandler::CanRecoverHullWhileCloaked() const
+{
+	if(cloakedRepairMult > -1.)
+	{
+		if(hullRepairRate > 0.)
+			return true;
+		if(cloakingHullDelay < 1. && hullRepairRateWithDelay > 0.)
+			return true;
+	}
+	return false;
+}
+
+
+
+bool ShipAttributeHandler::CanRecoverShieldsWhileCloaked() const
+{
+	if(cloakedRegenMult > -1.)
+	{
+		if(shieldRegenRate > 0.)
+			return true;
+		if(cloakingShieldDelay < 1. && shieldRegenRateWithDelay > 0.)
+			return true;
+	}
+	return false;
+}
+
+
+
 void ShipAttributeHandler::Capacity()
 {
 	capacity.hull = attributes->Get("hull") * (1 + attributes->Get("hull multiplier"));
@@ -662,6 +798,8 @@ void ShipAttributeHandler::Scanning()
 	outfitScanSpeed = attributes->Get("outfit scan efficiency");
 	cargoScanOpacity = attributes->Get("cargo scan opacity");
 	outfitScanOpacity = attributes->Get("outfit scan opacity");
+	asteroidScanPower = attributes->Get("asteroid scan power");
+	atmosphereScan = attributes->Get("atmosphere scan");
 	silentScans = attributes->Get("silent scans");
 	inscrutable = attributes->Get("inscrutable");
 }

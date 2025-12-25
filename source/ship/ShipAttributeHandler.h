@@ -81,6 +81,24 @@ public:
 	// are subtracted from the resources while all other levels are added.
 	void Damage(const ResourceLevels &damage, double scale = 1.) const;
 
+	// Functions for classes outside of Ship to get the cached values
+	// and determine what this ship is capable of.
+	double FuelCapacity() const;
+
+	double CargoScanPower() const;
+	double OutfitScanPower() const;
+	double AsteroidScanPower() const;
+	double AtmosphereScan() const;
+
+	double ReverseThrust() const;
+	double AfterburnerThrust() const;
+	bool ShouldUseAfterburner() const;
+
+	double CloakFuelCost() const;
+	bool HasFuelForCloak() const;
+	bool CanRecoverHullWhileCloaked() const;
+	bool CanRecoverShieldsWhileCloaked() const;
+
 
 private:
 	// Update the stored capacity for various ResourceLevels on a ship.
@@ -116,13 +134,6 @@ private:
 	// A ship can freely access the ResourceLevels of its own handler.
 	friend class Ship;
 
-	// TODO: Preferably, these would be references provided when this class is constructed
-	// instead of pointers provided by the Setup function. Unfortunately, we can't populate
-	// references at construction time since the Ship class represents both templates and instances
-	// of a ship. If ever we have separate classes for Ship templates and Ship instances, then these
-	// could be changed to be populated at construction when a Ship instance is constructed.
-	// For now, the Setup function is called in Ship::FinishLoading, where we know that the Ship is
-	// now an instance whose pointer we can trust.
 	const Ship *ship = nullptr;
 	const Outfit *attributes = nullptr;
 	ResourceLevels *shipLevels = nullptr;
@@ -226,6 +237,8 @@ private:
 	double outfitScanSpeed = 0.;
 	double cargoScanOpacity = 0.;
 	double outfitScanOpacity = 0.;
+	double asteroidScanPower = 0.;
+	double atmosphereScan = 0.;
 	bool silentScans = false;
 	bool inscrutable = false;
 

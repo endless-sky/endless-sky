@@ -3539,7 +3539,7 @@ const Outfit &Ship::BaseAttributes() const
 
 
 
-const ShipAttributeHandler &Ship::AttributeHelper() const
+const ShipAttributeHandler &Ship::AttributeHandler() const
 {
 	return attrHandler;
 }
