@@ -673,13 +673,9 @@ void OutfitterPanel::Sell(bool toStorage)
 			{
 				// Determine how many of this ammo I must sell to also sell the launcher.
 				int mustSell = 0;
-				const Outfit &attributes = ship->Attributes();
-				for(const string &name : attributes.AttributeNames())
-				{
-					double value = attributes.Get(name);
+				for(const auto &[name, value] : ship->Attributes())
 					if(value < 0.)
 						mustSell = max<int>(mustSell, value / ammo->Get(name));
-				}
 
 				if(mustSell)
 				{
@@ -733,8 +729,8 @@ void OutfitterPanel::FailSell(bool toStorage) const
 		else
 		{
 			for(const Ship *ship : playerShips)
-				for(const string &name : selectedOutfit->AttributeNames())
-					if(ship->Attributes().Get(name) < selectedOutfit->Get(name))
+				for(const auto &[name, value] : *selectedOutfit)
+					if(ship->Attributes().Get(name) < value)
 					{
 						for(const auto &sit : ship->Outfits())
 							if(sit.first->Get(name) < 0.)

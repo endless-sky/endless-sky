@@ -42,4 +42,6 @@ public:
 	using std::vector<std::pair<const char *, Type>>::empty;
 	using std::vector<std::pair<const char *, Type>>::begin;
 	using std::vector<std::pair<const char *, Type>>::end;
+	using typename std::vector<std::pair<const char *, Type>>::iterator;
+	using typename std::vector<std::pair<const char *, Type>>::const_iterator;
 };
