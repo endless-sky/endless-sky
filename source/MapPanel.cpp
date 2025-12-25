@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CargoHold.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "shader/FillShader.h"
 #include "shader/FogShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -38,7 +37,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "MissionPanel.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
@@ -48,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RoutePlan.h"
 #include "Screen.h"
 #include "Ship.h"
+#include "ship/ShipAttributeHandler.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
@@ -1099,7 +1098,7 @@ void MapPanel::DrawTravelPlan()
 				continue;
 			}
 
-			fuel[it.get()] = it->Fuel() * it->Attributes().Get("fuel capacity");
+			fuel[it.get()] = it->Fuel() * it->AttributeHandler().FuelCapacity();
 			hasEscort |= (it.get() != flagship);
 		}
 	stranded |= !hasEscort;

@@ -362,6 +362,13 @@ bool ShipAttributeHandler::Inscrutable() const
 
 
 
+bool ShipAttributeHandler::CanCommunicateWhileCloaked() const
+{
+	return canCommunicateWhileCloaked;
+}
+
+
+
 double ShipAttributeHandler::ReverseThrust() const
 {
 	return reverseThrust;
@@ -466,6 +473,90 @@ bool ShipAttributeHandler::CanRecoverShieldsWhileCloaked() const
 			return true;
 	}
 	return false;
+}
+
+
+
+double ShipAttributeHandler::OpticalJamming() const
+{
+	return opticalJamming;
+}
+
+
+
+double ShipAttributeHandler::RadarJamming() const
+{
+	return radarJamming;
+}
+
+
+
+double ShipAttributeHandler::TurretTurnMultiplier() const
+{
+	return turretTurnMult;
+}
+
+
+
+const ResourceLevels &ShipAttributeHandler::DamageProtection() const
+{
+	return damageProtection;
+}
+
+
+
+double ShipAttributeHandler::PiercingProtection() const
+{
+	return piercingProtection;
+}
+
+
+
+double ShipAttributeHandler::PiercingResistance() const
+{
+	return piercingResistance;
+}
+
+
+
+double ShipAttributeHandler::HighShieldPermeability() const
+{
+	return highShieldPermeability;
+}
+
+
+
+double ShipAttributeHandler::LowShieldPermeability() const
+{
+	return lowShieldPermeability;
+}
+
+
+
+double ShipAttributeHandler::CloakedShieldPermeability() const
+{
+	return cloakedShieldPermeability;
+}
+
+
+
+double ShipAttributeHandler::CloakedHullProtection() const
+{
+	return cloakedHullProtection;
+}
+
+
+
+double ShipAttributeHandler::CloakedShieldProtection() const
+{
+	return cloakedShieldProtection;
+}
+
+
+
+double ShipAttributeHandler::ForceProtection() const
+{
+	return forceProtection;
 }
 
 
@@ -832,7 +923,6 @@ void ShipAttributeHandler::Misc()
 	overheatDamageThreshold = 1. + attributes->Get("overheat damage threshold");
 	overheatDamageRate = attributes->Get("overheat damage rate");
 
-
 	drag = attributes->Get("drag");
 	dragReduction = 1. + attributes->Get("drag reduction");
 	accelerationMult = 1. + attributes->Get("acceleration multiplier");
@@ -842,4 +932,31 @@ void ShipAttributeHandler::Misc()
 	landingSpeed = attributes->Get("landing speed");
 	silentJumps = attributes->Get("silent jumps");
 	selfDestruct = attributes->Get("self destruct");
+
+	opticalJamming = attributes->Get("optical jamming");
+	radarJamming = attributes->Get("radar jamming");
+
+	turretTurnMult = 1. + attributes->Get("turret turn multiplier");
+
+	piercingProtection = attributes->Get("piercing protection");
+	piercingResistance = attributes->Get("piercing resistance");
+	highShieldPermeability = attributes->Get("high shield permeability");
+	lowShieldPermeability = attributes->Get("low shield permeability");
+	cloakedShieldPermeability = attributes->Get("cloaked shield permeability");
+	cloakedHullProtection = attributes->Get("cloak hull protection");
+	cloakedShieldProtection = attributes->Get("cloak shield protection");
+	damageProtection.shields = attributes->Get("shield protection");
+	damageProtection.hull = attributes->Get("hull protection");
+	damageProtection.energy = attributes->Get("energy protection");
+	damageProtection.fuel = attributes->Get("fuel protection");
+	damageProtection.heat = attributes->Get("heat protection");
+	damageProtection.discharge = attributes->Get("discharge protection");
+	damageProtection.corrosion = attributes->Get("corrosion protection");
+	damageProtection.ionization = attributes->Get("ion protection");
+	damageProtection.burning = attributes->Get("burn protection");
+	damageProtection.leakage = attributes->Get("leak protection");
+	damageProtection.slowness = attributes->Get("slowing protection");
+	damageProtection.scrambling = attributes->Get("scramble protection");
+	damageProtection.disruption = attributes->Get("disruption protection");
+	forceProtection = attributes->Get("force protection");
 }

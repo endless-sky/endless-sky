@@ -91,6 +91,7 @@ public:
 	double AsteroidScanPower() const;
 	double AtmosphereScan() const;
 	bool Inscrutable() const;
+	bool CanCommunicateWhileCloaked() const;
 
 	double ReverseThrust() const;
 	double AfterburnerThrust() const;
@@ -102,6 +103,21 @@ public:
 	bool HasFuelForCloak() const;
 	bool CanRecoverHullWhileCloaked() const;
 	bool CanRecoverShieldsWhileCloaked() const;
+
+	double OpticalJamming() const;
+	double RadarJamming() const;
+
+	double TurretTurnMultiplier() const;
+
+	const ResourceLevels &DamageProtection() const;
+	double PiercingProtection() const;
+	double PiercingResistance() const;
+	double HighShieldPermeability() const;
+	double LowShieldPermeability() const;
+	double CloakedShieldPermeability() const;
+	double CloakedHullProtection() const;
+	double CloakedShieldProtection() const;
+	double ForceProtection() const;
 
 
 private:
@@ -258,4 +274,18 @@ private:
 	float landingSpeed = 0.f;
 	bool silentJumps = false;
 	double selfDestruct = 0.;
+
+	double opticalJamming = 0.;
+	double radarJamming = 0.;
+
+	double turretTurnMult = 1.;
+	ResourceLevels damageProtection;
+	double piercingProtection = 0.;
+	double piercingResistance = 0.;
+	double highShieldPermeability = 0.;
+	double lowShieldPermeability = 0.;
+	double cloakedShieldPermeability = 0.;
+	double cloakedHullProtection = 0.;
+	double cloakedShieldProtection = 0.;
+	double forceProtection = 0.;
 };

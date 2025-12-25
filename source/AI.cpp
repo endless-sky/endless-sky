@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RoutePlan.h"
 #include "Ship.h"
 #include "ship/ShipAICache.h"
+#include "ship/ShipAttributeHandler.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "StellarObject.h"
