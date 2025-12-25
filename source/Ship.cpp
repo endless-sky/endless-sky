@@ -696,30 +696,30 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Add the attributes of all your outfits to the ship's base attributes.
 	attributes = baseAttributes;
 	vector<string> undefinedOutfits;
-	for(const auto &it : outfits)
+	for(const auto &[outfit, count] : outfits)
 	{
-		if(!it.first->IsDefined())
+		if(!outfit->IsDefined())
 		{
-			undefinedOutfits.emplace_back("\"" + it.first->TrueName() + "\"");
+			undefinedOutfits.emplace_back("\"" + outfit->TrueName() + "\"");
 			continue;
 		}
-		attributes.Add(*it.first, it.second);
+		attributes.Add(*outfit, count);
 		// Some ship variant definitions do not specify which weapons
 		// are placed in which hardpoint. Add any weapons that are not
 		// yet installed to the ship's armament.
-		if(it.first->GetWeapon())
+		if(outfit->GetWeapon())
 		{
-			int count = it.second;
-			auto eit = equipped.find(it.first);
+			int remaining = count;
+			auto eit = equipped.find(outfit);
 			if(eit != equipped.end())
-				count -= eit->second;
+				remaining -= eit->second;
 
-			if(count)
+			if(remaining)
 			{
-				count -= armament.Add(it.first, count);
-				if(count)
+				remaining -= armament.Add(outfit, remaining);
+				if(remaining)
 					LogWarning(VariantName(), GivenName(),
-						"weapon \"" + it.first->TrueName() + "\" installed, but insufficient slots to use it.");
+						"weapon \"" + outfit->TrueName() + "\" installed, but insufficient slots to use it.");
 			}
 		}
 	}
