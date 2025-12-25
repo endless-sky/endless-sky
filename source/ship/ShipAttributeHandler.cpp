@@ -1,4 +1,4 @@
-/* ShipResourceHandler.cpp
+/* ShipAttributeHandler.cpp
 Copyright (c) 2025 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -579,7 +579,8 @@ void ShipAttributeHandler::Capacity()
 	{
 		double thresholdPercent = attributes->Get("threshold percentage");
 		double transition = 1 / (1 + 0.0005 * capacity.hull);
-		minimumHull = capacity.hull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
+		minimumHull = capacity.hull * (thresholdPercent > 0.
+			? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
 		minimumHull = max(0., floor(minimumHull + attributes->Get("hull threshold")));
 	}
 
@@ -620,7 +621,7 @@ void ShipAttributeHandler::HeatAndCooling()
 	heatDissipation = .001 * attributes->Get("heat dissipation");
 	heatCapacity = attributes->Get("heat capacity");
 
-	cooling = attributes->Get("cooling");;
+	cooling = attributes->Get("cooling");
 	activeCooling = attributes->Get("active cooling");
 	coolingEnergy = attributes->Get("cooling energy");
 	// This is an S-curve where the efficiency is 100% if you have no outfits
@@ -667,8 +668,10 @@ void ShipAttributeHandler::ShieldRegen()
 	shieldRegenCost.fuel = (attributes->Get("shield fuel") + attributes->Get("delayed shield fuel"))
 		* (1. + attributes->Get("shield fuel multiplier"));
 
-	shieldRegenRateWithDelay = attributes->Get("shield generation") * (1. + attributes->Get("shield generation multiplier"));
-	shieldRegenWithDelayCost.energy = attributes->Get("shield energy") * (1. + attributes->Get("shield energy multiplier"));
+	shieldRegenRateWithDelay = attributes->Get("shield generation")
+		* (1. + attributes->Get("shield generation multiplier"));
+	shieldRegenWithDelayCost.energy = attributes->Get("shield energy")
+		* (1. + attributes->Get("shield energy multiplier"));
 	shieldRegenWithDelayCost.heat = attributes->Get("shield heat") * (1. + attributes->Get("shield heat multiplier"));
 	shieldRegenWithDelayCost.fuel = attributes->Get("shield fuel") * (1. + attributes->Get("shield fuel multiplier"));
 }
@@ -678,7 +681,7 @@ void ShipAttributeHandler::ShieldRegen()
 void ShipAttributeHandler::Recovery()
 {
 	recoveryTime = attributes->Get("disabled recovery time");
-	
+
 	recoveryCost.energy = attributes->Get("disabled recovery energy");
 	recoveryCost.fuel = attributes->Get("disabled recovery fuel");
 	recoveryCost.heat = attributes->Get("disabled recovery heat");

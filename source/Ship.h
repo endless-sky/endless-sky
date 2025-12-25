@@ -30,8 +30,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "ship/ResourceLevels.h"
 #include "ship/ShipAICache.h"
-#include "ShipJumpNavigation.h"
 #include "ship/ShipAttributeHandler.h"
+#include "ShipJumpNavigation.h"
 
 #include <array>
 #include <list>

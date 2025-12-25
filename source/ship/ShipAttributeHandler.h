@@ -1,4 +1,4 @@
-/* ShipResourceHandler.h
+/* ShipAttributeHandler.h
 Copyright (c) 2025 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
