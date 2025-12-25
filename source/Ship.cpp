@@ -723,7 +723,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			}
 		}
 	}
-	attrHandler.Update(attributes);
 	if(!undefinedOutfits.empty())
 	{
 		bool plural = undefinedOutfits.size() > 1;
@@ -746,6 +745,10 @@ void Ship::FinishLoading(bool isNewInstance)
 
 		Logger::Log(message, Logger::Level::WARNING);
 	}
+	// Setup the attribute handler with a pointer to this ship and its levels,
+	// and calibrate the handler's caches.
+	attrHandler.Setup(this, &levels);
+	attrHandler.Calibrate();
 	// Inspect the ship's armament to ensure that guns are in gun ports and
 	// turrets are in turret mounts. This can only happen when the armament
 	// is configured incorrectly in a ship or variant definition. Do not
@@ -1362,6 +1365,13 @@ void Ship::SetVelocity(Point velocity)
 // Instantiate a newly-created ship in-flight.
 void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
+	// If this is a ship from a randomly spawned fleet, then FinishLoading was called
+	// on it prior to it being made a Ship instance. Re-call the attribute handler's
+	// setup function so that it has a pointer to the correct ship. We don't need to
+	// recalibrate, as the outfits for this ship will be the same as when
+	// Ship::FinishLoading was called in UniverseObjects::FinishLoading.
+	if(!isYours && !isSpecial)
+		attrHandler.Setup(this, &levels);
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = Angle();
@@ -1378,7 +1388,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 		zoom = 1.;
 	// Make sure various special status values are reset.
 	levels.heat = IdleHeat();
-	attrHandler.ClearDoT(levels);
+	attrHandler.ClearDoT();
 	shieldDelay = 0;
 	hullDelay = 0;
 	disabledRecoveryCounter = 0;
@@ -2222,9 +2232,9 @@ bool Ship::IsIonized() const
 		return false;
 
 	// A ship can only be fully ionized if its engines or weapons require energy.
-	bool usesEnergy = attrHandler.thrust.energy > 0
-		|| attrHandler.reverseThrust.energy > 0
-		|| attrHandler.turn.energy > 0
+	bool usesEnergy = attrHandler.thrustCost.energy > 0
+		|| attrHandler.reverseThrustCost.energy > 0
+		|| attrHandler.turnCost.energy > 0
 		|| any_of(outfits.begin(), outfits.end(), [](const auto &it) -> bool {
 			const Weapon *weapon = it.first->GetWeapon().get();
 			return weapon && weapon->FiringEnergy() > 0;
@@ -2588,7 +2598,7 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 		levels.fuel = attrHandler.capacity.fuel;
 
 	levels.heat = IdleHeat();
-	attrHandler.ClearDoT(levels);
+	attrHandler.ClearDoT();
 	shieldDelay = 0;
 	hullDelay = 0;
 	disabledRecoveryCounter = 0;
@@ -3084,7 +3094,7 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
-	return attrHandler.turn.wildcard / InertialMass()
+	return attrHandler.turnCost.wildcard / InertialMass()
 		* (1. + attributes.Get("turn multiplier"));
 }
 
@@ -3107,8 +3117,8 @@ double Ship::CrewTurnRate() const
 
 double Ship::Acceleration() const
 {
-	double thrust = attrHandler.thrust.wildcard;
-	return (thrust ? thrust : attrHandler.afterburnerThrust.wildcard) / InertialMass()
+	double thrust = attrHandler.thrustCost.wildcard;
+	return (thrust ? thrust : attrHandler.afterburnerThrustCost.wildcard) / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
 }
 
@@ -3134,8 +3144,8 @@ double Ship::MaxVelocity(bool withAfterburner) const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	double thrust = attrHandler.thrust.wildcard;
-	double afterburnerThrust = attrHandler.afterburnerThrust.wildcard;
+	double thrust = attrHandler.thrustCost.wildcard;
+	double afterburnerThrust = attrHandler.afterburnerThrustCost.wildcard;
 	return (thrust ? thrust + afterburnerThrust * withAfterburner : afterburnerThrust) / Drag();
 }
 
@@ -3143,7 +3153,7 @@ double Ship::MaxVelocity(bool withAfterburner) const
 
 double Ship::ReverseAcceleration() const
 {
-	return attrHandler.reverseThrust.wildcard / InertialMass()
+	return attrHandler.reverseThrustCost.wildcard / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
 }
 
@@ -3151,7 +3161,7 @@ double Ship::ReverseAcceleration() const
 
 double Ship::MaxReverseVelocity() const
 {
-	return attrHandler.reverseThrust.wildcard / Drag();
+	return attrHandler.reverseThrustCost.wildcard / Drag();
 }
 
 
@@ -3189,7 +3199,7 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
-	attrHandler.Damage(levels, damage.Levels());
+	attrHandler.Damage(damage.Levels());
 	if(damage.Levels().shields && !isDisabled)
 	{
 		int disabledDelay = attributes.Get("depleted shield delay");
@@ -3566,7 +3576,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		}
 		int after = outfits.count(outfit);
 		attributes.Add(*outfit, count);
-		attrHandler.Update(attributes);
+		attrHandler.Calibrate();
 		if(outfit->GetWeapon())
 		{
 			armament.Add(outfit, count);
@@ -3630,7 +3640,7 @@ ShipAttributeHandler::CanFireResult Ship::CanFire(const Weapon *weapon) const
 			return ShipAttributeHandler::CanFireResult::NO_AMMO;
 	}
 
-	return attrHandler.CanFire(levels, attrHandler.FiringCost(*weapon, *this));
+	return attrHandler.CanFire(*weapon);
 }
 
 
@@ -3642,7 +3652,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 {
 	// Compute this ship's initial capacities, in case the consumption of the ammunition outfit(s)
 	// modifies them, so that relative costs are calculated based on the pre-firing state of the ship.
-	ResourceLevels firingCost = attrHandler.FiringCost(weapon, *this);
+	ResourceLevels firingCost = attrHandler.FiringCost(weapon);
 
 	if(const Outfit *ammo = weapon.Ammo())
 	{
@@ -3656,7 +3666,7 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 	}
 
 	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
-	attrHandler.Damage(levels, firingCost);
+	attrHandler.Damage(firingCost);
 }
 
 
@@ -3940,7 +3950,7 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 				if(bay.ship)
 					bay.ship->Destroy();
 		}
-		attrHandler.Kill(levels);
+		attrHandler.Kill();
 		velocity = Point();
 		MarkForRemoval();
 		return 1;
@@ -4002,23 +4012,23 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		ResourceLevels repairLevels = hullDelay ? attrHandler.hullRepair : attrHandler.hullRepairNoDelay;
-		double hullRemaining = attrHandler.hullRepair.wildcard
+		ResourceLevels repairLevels = hullDelay ? attrHandler.hullRepairCost : attrHandler.hullRepairNoDelayCost;
+		double hullRemaining = attrHandler.hullRepairCost.wildcard
 			* (1. + attributes.Get("cloaked repair multiplier") * Cloaking());;
 		// Save hull repair costs as per unit of hull repaired.
 		repairLevels.energy /= hullRemaining;
 		repairLevels.fuel /= hullRemaining;
 		repairLevels.hull /= hullRemaining;
-		attrHandler.DoRepair(levels.hull, hullRemaining, MaxHull(), levels, repairLevels);
+		attrHandler.DoRepair(levels.hull, hullRemaining, MaxHull(), repairLevels);
 
-		ResourceLevels regenLevels = shieldDelay ? attrHandler.shieldRegen : attrHandler.shieldRegenNoDelay;
-		double shieldsRemaining = attrHandler.shieldRegen.wildcard
+		ResourceLevels regenLevels = shieldDelay ? attrHandler.shieldRegenCost : attrHandler.shieldRegenNoDelayCost;
+		double shieldsRemaining = attrHandler.shieldRegenCost.wildcard
 			* (1. + attributes.Get("cloaked regen multiplier") * Cloaking());
 		// Save shield regen costs as per unit of shield regen.
 		regenLevels.energy /= shieldsRemaining;
 		regenLevels.fuel /= shieldsRemaining;
 		regenLevels.hull /= shieldsRemaining;
-		attrHandler.DoRepair(levels.shields, shieldsRemaining, MaxShields(), levels, regenLevels);
+		attrHandler.DoRepair(levels.shields, shieldsRemaining, MaxShields(), regenLevels);
 
 		if(!bays.empty())
 		{
@@ -4042,11 +4052,9 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(!hullDelay)
-					attrHandler.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(),
-						levels, repairLevels);
+					attrHandler.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(), repairLevels);
 				if(!shieldDelay)
-					attrHandler.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(),
-						levels, regenLevels);
+					attrHandler.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(), regenLevels);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
@@ -4107,7 +4115,7 @@ void Ship::DoGeneration()
 
 	}
 
-	attrHandler.DoStatusEffects(levels, isDisabled);
+	attrHandler.DoStatusEffects(isDisabled);
 
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
@@ -4588,8 +4596,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		if(commands.Turn())
 		{
 			// Check if we are able to turn.
-			const ResourceLevels &turnCost = attrHandler.turn;
-			commands.SetTurn(commands.Turn() * attrHandler.FractionalUsage(levels, turnCost));
+			const ResourceLevels &turnCost = attrHandler.turnCost;
+			commands.SetTurn(commands.Turn() * attrHandler.FractionalUsage(turnCost));
 			if(commands.Turn())
 			{
 				isSteering = true;
@@ -4598,7 +4606,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
-				attrHandler.Damage(levels, turnCost, fabs(commands.Turn()));
+				attrHandler.Damage(turnCost, fabs(commands.Turn()));
 				Turn(commands.Turn() * TurnRate() * slowMultiplier);
 			}
 		}
@@ -4607,8 +4615,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
-			const ResourceLevels &thrustCost = (thrustCommand > 0.) ? attrHandler.thrust : attrHandler.reverseThrust;
-			thrustCommand *= attrHandler.FractionalUsage(levels, thrustCost);
+			const ResourceLevels &thrustCost = (thrustCommand > 0.) ? attrHandler.thrustCost : attrHandler.reverseThrustCost;
+			thrustCommand *= attrHandler.FractionalUsage(thrustCost);
 			if(thrustCommand)
 			{
 				// If a reverse thrust is commanded and the capability does not
@@ -4619,7 +4627,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
 				if(thrust)
 				{
-					attrHandler.Damage(levels, thrustCost, fabs(thrustCommand));
+					attrHandler.Damage(thrustCost, fabs(thrustCommand));
 					acceleration += angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
 				}
 			}
@@ -4628,11 +4636,11 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				&& !CannotAct(Ship::ActionType::AFTERBURNER);
 		if(applyAfterburner)
 		{
-			const ResourceLevels &afterburnerCost = attrHandler.afterburnerThrust;
+			const ResourceLevels &afterburnerCost = attrHandler.afterburnerThrustCost;
 			thrust = afterburnerCost.wildcard;
-			if(thrust && attrHandler.CanExpend(levels, afterburnerCost))
+			if(thrust && attrHandler.CanExpend(afterburnerCost))
 			{
-				attrHandler.Damage(levels, afterburnerCost);
+				attrHandler.Damage(afterburnerCost);
 				acceleration += angle.Unit() * (1. + attributes.Get("acceleration multiplier")) * thrust / mass;
 
 				// Only create the afterburner effects if the ship is in the player's system.

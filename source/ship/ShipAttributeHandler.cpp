@@ -22,112 +22,100 @@ using namespace std;
 
 
 
-// Update the stored ResourceLevels for various actions a
-// ship can take (e.g. regenerating shields, thrusting).
-void ShipAttributeHandler::Update(const Outfit &attributes)
+void ShipAttributeHandler::Setup(const Ship *parent, ResourceLevels *levels)
 {
-	Capacity(attributes);
-
-	HullRepair(attributes);
-	ShieldRegen(attributes);
-
-	CorrosionResist(attributes);
-	DischargeResist(attributes);
-	IonizationResist(attributes);
-	ScramblingResist(attributes);
-	BurnResist(attributes);
-	LeakageResist(attributes);
-	DisruptionResist(attributes);
-	SlownessResist(attributes);
-
-	Thrust(attributes);
-	Turn(attributes);
-	ReverseThrust(attributes);
-	AfterburnerThrust(attributes);
-
-	Cloak(attributes);
+	ship = parent;
+	attributes = &parent->Attributes();
+	shipLevels = levels;
 }
 
 
 
-void ShipAttributeHandler::Clamp(ResourceLevels &input) const
+void ShipAttributeHandler::Calibrate()
 {
-	input.hull = min(input.hull, capacity.hull);
-	input.shields = max(0., min(input.shields, capacity.shields));
-	input.energy = max(0., input.energy);
-	input.fuel = max(0., input.fuel);
-	input.heat = max(0., input.heat);
+	Capacity();
+
+	HullRepair();
+	ShieldRegen();
+
+	CorrosionResist();
+	DischargeResist();
+	IonizationResist();
+	ScramblingResist();
+	BurnResist();
+	LeakageResist();
+	DisruptionResist();
+	SlownessResist();
+
+	Thrust();
+	Turn();
+	ReverseThrust();
+	AfterburnerThrust();
 }
 
 
 
-// Clear all levels of input and set hull to -1.
-void ShipAttributeHandler::Kill(ResourceLevels &input) const
+void ShipAttributeHandler::Kill() const
 {
-	input.hull = -1.;
-	input.shields = 0.;
-	input.energy = 0.;
-	input.heat = 0.;
-	input.fuel = 0.;
-	ClearDoT(input);
+	shipLevels->hull = -1.;
+	shipLevels->shields = 0.;
+	shipLevels->energy = 0.;
+	shipLevels->heat = 0.;
+	shipLevels->fuel = 0.;
+	ClearDoT();
 }
 
 
 
-// Clear the damage over time levels of the input.
-void ShipAttributeHandler::ClearDoT(ResourceLevels &input) const
+void ShipAttributeHandler::ClearDoT() const
 {
-	input.discharge = 0.;
-	input.corrosion = 0.;
-	input.scrambling = 0.;
-	input.ionization = 0.;
-	input.leakage = 0.;
-	input.burning = 0.;
-	input.disruption = 0.;
-	input.slowness = 0.;
+	shipLevels->discharge = 0.;
+	shipLevels->corrosion = 0.;
+	shipLevels->scrambling = 0.;
+	shipLevels->ionization = 0.;
+	shipLevels->leakage = 0.;
+	shipLevels->burning = 0.;
+	shipLevels->disruption = 0.;
+	shipLevels->slowness = 0.;
 }
 
 
 
-// Repair the given stat up to the maximum given the energy input and cost.
-// Updates the available variable with the remaining amount of repairs that
-// can be done.
-void ShipAttributeHandler::DoRepair(double &stat, double &available, double maximum, ResourceLevels &input, const ResourceLevels &cost) const
+void ShipAttributeHandler::DoRepair(double &stat, double &available, double maximum, const ResourceLevels &cost) const
 {
 	if(available <= 0. || stat >= maximum)
 		return;
 
 	if(cost.energy > 0.)
-		available = min(available, input.energy / cost.energy);
+		available = min(available, shipLevels->energy / cost.energy);
 	if(cost.heat < 0.)
-		available = min(available, input.heat / -cost.heat);
+		available = min(available, shipLevels->heat / -cost.heat);
 	if(cost.fuel > 0.)
-		available = min(available, input.fuel / cost.fuel);
+		available = min(available, shipLevels->fuel / cost.fuel);
 
 	double transfer = min(available, maximum - stat);
 	if(transfer > 0.)
 	{
 		stat += transfer;
 		available -= transfer;
-		input.energy -= transfer * cost.energy;
-		input.heat += transfer * cost.heat;
-		input.fuel -= transfer * cost.fuel;
+		shipLevels->energy -= transfer * cost.energy;
+		shipLevels->heat += transfer * cost.heat;
+		shipLevels->fuel -= transfer * cost.fuel;
 	}
 }
 
 
 
-// Apply status effects and DoT resistances to the input.
-void ShipAttributeHandler::DoStatusEffects(ResourceLevels &input, bool disabled) const
+void ShipAttributeHandler::DoStatusEffects(bool disabled) const
 {
-	input.hull -= input.corrosion;
-	input.shields -= input.discharge;
-	input.energy -= input.ionization;
-	input.heat += input.burning;
-	input.fuel -= input.leakage;
+	shipLevels->hull -= shipLevels->corrosion;
+	shipLevels->shields -= shipLevels->discharge;
+	shipLevels->energy -= shipLevels->ionization;
+	shipLevels->heat += shipLevels->burning;
+	shipLevels->fuel -= shipLevels->leakage;
 
 	// TODO: Mothership gives status resistance to carried ships?
-	auto DoResistance = [&input, &disabled](double &stat, const ResourceLevels &cost)
+	auto DoResistance = [this, &disabled](double &stat, const ResourceLevels &cost)
 	{
 		if(!stat)
 			return;
@@ -144,118 +132,67 @@ void ShipAttributeHandler::DoStatusEffects(ResourceLevels &input, bool disabled)
 
 		// Limit the resistance by the available resources.
 		if(cost.energy > 0.)
-			resistance = min(resistance, input.energy / cost.energy);
+			resistance = min(resistance, shipLevels->energy / cost.energy);
 		if(cost.heat < 0.)
-			resistance = min(resistance, input.heat / -cost.heat);
+			resistance = min(resistance, shipLevels->heat / -cost.heat);
 		if(cost.fuel > 0.)
-			resistance = min(resistance, input.fuel / cost.fuel);
+			resistance = min(resistance, shipLevels->fuel / cost.fuel);
 
 		if(resistance > 0.)
 		{
 			stat = max(0., .99 * stat - resistance);
-			input.energy -= resistance * cost.energy;
-			input.heat += resistance * cost.heat;
-			input.fuel -= resistance * cost.fuel;
+			shipLevels->energy -= resistance * cost.energy;
+			shipLevels->heat += resistance * cost.heat;
+			shipLevels->fuel -= resistance * cost.fuel;
 		}
 		else
 			stat = max(0., .99 * stat);
 	};
 
-	DoResistance(input.corrosion, corrosionResist);
-	DoResistance(input.discharge, dischargeResist);
-	DoResistance(input.ionization, ionizationResist);
-	DoResistance(input.scrambling, scramblingResist);
-	DoResistance(input.burning, burnResist);
-	DoResistance(input.leakage, leakageResist);
-	DoResistance(input.disruption, disruptionResist);
-	DoResistance(input.slowness, slownessResist);
+	DoResistance(shipLevels->corrosion, corrosionResistCost);
+	DoResistance(shipLevels->discharge, dischargeResistCost);
+	DoResistance(shipLevels->ionization, ionizationResistCost);
+	DoResistance(shipLevels->scrambling, scramblingResistCost);
+	DoResistance(shipLevels->burning, burnResistCost);
+	DoResistance(shipLevels->leakage, leakageResistCost);
+	DoResistance(shipLevels->disruption, disruptionResistCost);
+	DoResistance(shipLevels->slowness, slownessResistCost);
 }
 
 
 
-// Return true if the given input has the energy to expend on the cost. Does
-// not check DoT levels.
-bool ShipAttributeHandler::CanExpendBasic(const ResourceLevels &input, const ResourceLevels &cost) const
+bool ShipAttributeHandler::CanExpend(const ResourceLevels &cost) const
 {
-	if(input.hull < cost.hull)
+	if(shipLevels->hull < cost.hull)
 		return false;
-	if(input.shields < cost.shields)
+	if(shipLevels->shields < cost.shields)
 		return false;
-	if(input.energy < cost.energy)
+	if(shipLevels->energy < cost.energy)
 		return false;
-	if(input.heat < -cost.heat)
+	if(shipLevels->heat < -cost.heat)
 		return false;
-	if(input.fuel < cost.fuel)
+	if(shipLevels->fuel < cost.fuel)
+		return false;
+	if(shipLevels->corrosion < -cost.corrosion)
+		return false;
+	if(shipLevels->discharge < -cost.discharge)
+		return false;
+	if(shipLevels->ionization < -cost.ionization)
+		return false;
+	if(shipLevels->burning < -cost.burning)
+		return false;
+	if(shipLevels->leakage < -cost.leakage)
+		return false;
+	if(shipLevels->disruption < -cost.disruption)
+		return false;
+	if(shipLevels->slowness < -cost.slowness)
 		return false;
 	return true;
 }
 
 
 
-// Return true if the given input has the energy to expend on the entire cost.
-bool ShipAttributeHandler::CanExpend(const ResourceLevels &input, const ResourceLevels &cost) const
-{
-	if(!CanExpendBasic(input, cost))
-		return false;
-	if(input.corrosion < -cost.corrosion)
-		return false;
-	if(input.discharge < -cost.discharge)
-		return false;
-	if(input.ionization < -cost.ionization)
-		return false;
-	if(input.burning < -cost.burning)
-		return false;
-	if(input.leakage < -cost.leakage)
-		return false;
-	if(input.disruption < -cost.disruption)
-		return false;
-	if(input.slowness < -cost.slowness)
-		return false;
-	return true;
-}
-
-
-
-// Return true if the given input has the energy to expend on the firing cost.
-// This ignores any shield costs, allowing ships to fire a weapon even with
-// no shields. This also prevents a ship from disabling itself as a result
-// of any firing hull cost.
-ShipAttributeHandler::CanFireResult ShipAttributeHandler::CanFire(const ResourceLevels &input, const ResourceLevels &cost) const
-{
-	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
-	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(input.hull - capacity.wildcard < cost.hull)
-		return CanFireResult::NO_HULL;
-	if(input.energy < cost.energy)
-		return CanFireResult::NO_ENERGY;
-	// If a weapon requires heat to fire, (rather than generating heat), we must
-	// have enough heat to spare.
-	if(input.heat < -cost.heat)
-		return CanFireResult::NO_HEAT;
-	// Repeat this for various effects which shouldn't drop below 0.
-	if(input.fuel < cost.fuel)
-		return CanFireResult::NO_FUEL;
-	if(input.corrosion < -cost.corrosion)
-		return CanFireResult::NO_CORROSION;
-	if(input.discharge < -cost.discharge)
-		return CanFireResult::NO_DISCHARGE;
-	if(input.ionization < -cost.ionization)
-		return CanFireResult::NO_ION;
-	if(input.burning < -cost.burning)
-		return CanFireResult::NO_BURNING;
-	if(input.leakage < -cost.leakage)
-		return CanFireResult::NO_LEAKAGE;
-	if(input.disruption < -cost.disruption)
-		return CanFireResult::NO_DISRUPTION;
-	if(input.slowness < -cost.slowness)
-		return CanFireResult::NO_SLOWING;
-	return CanFireResult::CAN_FIRE;
-}
-
-
-
-// Return the fraction of 100% output that the input can manage given the cost.
-double ShipAttributeHandler::FractionalUsage(const ResourceLevels &input, const ResourceLevels &cost) const
+double ShipAttributeHandler::FractionalUsage(const ResourceLevels &cost) const
 {
 	double scale = 1.;
 	auto ScaleOutput = [&scale](double input, double cost)
@@ -263,61 +200,28 @@ double ShipAttributeHandler::FractionalUsage(const ResourceLevels &input, const 
 		if(input < cost * scale)
 			scale = input / cost;
 	};
-	ScaleOutput(input.hull, cost.hull);
-	ScaleOutput(input.shields, cost.shields);
-	ScaleOutput(input.energy, cost.energy);
-	ScaleOutput(input.heat, -cost.heat);
-	ScaleOutput(input.fuel, cost.fuel);
-	ScaleOutput(input.corrosion, -cost.corrosion);
-	ScaleOutput(input.discharge, -cost.discharge);
-	ScaleOutput(input.ionization, -cost.ionization);
-	ScaleOutput(input.burning, -cost.burning);
-	ScaleOutput(input.leakage, -cost.leakage);
-	ScaleOutput(input.disruption, -cost.disruption);
-	ScaleOutput(input.slowness, -cost.slowness);
+	ScaleOutput(shipLevels->hull, cost.hull);
+	ScaleOutput(shipLevels->shields, cost.shields);
+	ScaleOutput(shipLevels->energy, cost.energy);
+	ScaleOutput(shipLevels->heat, -cost.heat);
+	ScaleOutput(shipLevels->fuel, cost.fuel);
+	ScaleOutput(shipLevels->corrosion, -cost.corrosion);
+	ScaleOutput(shipLevels->discharge, -cost.discharge);
+	ScaleOutput(shipLevels->ionization, -cost.ionization);
+	ScaleOutput(shipLevels->burning, -cost.burning);
+	ScaleOutput(shipLevels->leakage, -cost.leakage);
+	ScaleOutput(shipLevels->disruption, -cost.disruption);
+	ScaleOutput(shipLevels->slowness, -cost.slowness);
 
 	return scale;
 }
 
 
 
-// Apply damage * scale to the input. Hull, shields, energy, and fuel
-// are subtracted from input while all other levels are added to input.
-// Does not apply damage to DoT levels.
-void ShipAttributeHandler::DamageBasic(ResourceLevels &input, const ResourceLevels &damage, double scale) const
-{
-	input.hull -= scale * damage.hull;
-	input.shields -= scale * damage.shields;
-	input.energy -= scale * damage.energy;
-	input.heat += scale * damage.heat;
-	input.fuel -= scale * damage.fuel;
-}
-
-
-
-// Applies damage to all levels.
-void ShipAttributeHandler::Damage(ResourceLevels &input, const ResourceLevels &damage, double scale) const
-{
-	DamageBasic(input, damage, scale);
-
-	input.corrosion += scale * damage.corrosion;
-	input.discharge += scale * damage.discharge;
-	input.ionization += scale * damage.ionization;
-	input.scrambling = scale * damage.scrambling;
-	input.burning += scale * damage.burning;
-	input.leakage += scale * damage.leakage;
-	input.disruption += scale * damage.disruption;
-	input.slowness += scale * damage.slowness;
-}
-
-
-
-// Construct an ResourceLevels object for the firing cost of the given weapon
-// when fired from the given ship.
-ResourceLevels ShipAttributeHandler::FiringCost(const Weapon &weapon, const Ship &ship) const
+ResourceLevels ShipAttributeHandler::FiringCost(const Weapon &weapon) const
 {
 	ResourceLevels cost;
-	double maxHeat = weapon.RelativeFiringHeat() ? ship.MaximumHeat() : 0.;
+	double maxHeat = weapon.RelativeFiringHeat() ? ship->MaximumHeat() : 0.;
 
 	cost.hull = weapon.FiringHull() + weapon.RelativeFiringHull() * capacity.hull;
 	cost.shields = weapon.FiringShields() + weapon.RelativeFiringShields() * capacity.shields;
@@ -336,261 +240,303 @@ ResourceLevels ShipAttributeHandler::FiringCost(const Weapon &weapon, const Ship
 
 	// Ships aren't allowed to have negative shields, so clamp the firing shield
 	// cost to the ship's shield level.
-	cost.shields = min(cost.shields, ship.ShieldLevel());
+	cost.shields = min(cost.shields, shipLevels->shields);
 
 	return cost;
 }
 
 
 
-// Update the stored capacity for various ResourceLevels on a ship.
-void ShipAttributeHandler::Capacity(const Outfit &attributes)
+ShipAttributeHandler::CanFireResult ShipAttributeHandler::CanFire(const Weapon &weapon) const
 {
-	capacity.hull = attributes.Get("hull") * (1 + attributes.Get("hull multiplier"));
-	capacity.shields = attributes.Get("shields") * (1 + attributes.Get("shield multiplier"));
-	capacity.energy = attributes.Get("energy capacity");
+	ResourceLevels cost = FiringCost(weapon);
+	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
+	// Ships should not disable themselves, so we check if we stay above minimumHull.
+	if(shipLevels->hull - capacity.wildcard < cost.hull)
+		return CanFireResult::NO_HULL;
+	if(shipLevels->energy < cost.energy)
+		return CanFireResult::NO_ENERGY;
+	// If a weapon requires heat to fire, (rather than generating heat), we must
+	// have enough heat to spare.
+	if(shipLevels->heat < -cost.heat)
+		return CanFireResult::NO_HEAT;
+	// Repeat this for various effects which shouldn't drop below 0.
+	if(shipLevels->fuel < cost.fuel)
+		return CanFireResult::NO_FUEL;
+	if(shipLevels->corrosion < -cost.corrosion)
+		return CanFireResult::NO_CORROSION;
+	if(shipLevels->discharge < -cost.discharge)
+		return CanFireResult::NO_DISCHARGE;
+	if(shipLevels->ionization < -cost.ionization)
+		return CanFireResult::NO_ION;
+	if(shipLevels->burning < -cost.burning)
+		return CanFireResult::NO_BURNING;
+	if(shipLevels->leakage < -cost.leakage)
+		return CanFireResult::NO_LEAKAGE;
+	if(shipLevels->disruption < -cost.disruption)
+		return CanFireResult::NO_DISRUPTION;
+	if(shipLevels->slowness < -cost.slowness)
+		return CanFireResult::NO_SLOWING;
+	return CanFireResult::CAN_FIRE;
+}
+
+
+
+void ShipAttributeHandler::Damage(const ResourceLevels &damage, double scale) const
+{
+	shipLevels->hull -= scale * damage.hull;
+	shipLevels->shields -= scale * damage.shields;
+	shipLevels->energy -= scale * damage.energy;
+	shipLevels->heat += scale * damage.heat;
+	shipLevels->fuel -= scale * damage.fuel;
+
+	shipLevels->corrosion += scale * damage.corrosion;
+	shipLevels->discharge += scale * damage.discharge;
+	shipLevels->ionization += scale * damage.ionization;
+	shipLevels->scrambling = scale * damage.scrambling;
+	shipLevels->burning += scale * damage.burning;
+	shipLevels->leakage += scale * damage.leakage;
+	shipLevels->disruption += scale * damage.disruption;
+	shipLevels->slowness += scale * damage.slowness;
+}
+
+
+
+void ShipAttributeHandler::Capacity()
+{
+	capacity.hull = attributes->Get("hull") * (1 + attributes->Get("hull multiplier"));
+	capacity.shields = attributes->Get("shields") * (1 + attributes->Get("shield multiplier"));
+	capacity.energy = attributes->Get("energy capacity");
 	// Heat capacity is dictated by factors other than attributes
 	// and therefore isn't saved here.
-	capacity.fuel = attributes.Get("fuel capacity");
+	capacity.fuel = attributes->Get("fuel capacity");
 
 	// DoT counters do not have capacities.
 
 	// Cache a ship's minimum hull in the capacity wildcard.
-	double absoluteThreshold = attributes.Get("absolute threshold");
+	double absoluteThreshold = attributes->Get("absolute threshold");
 	if(absoluteThreshold > 0.)
 		capacity.wildcard = absoluteThreshold;
 	else
 	{
-		double thresholdPercent = attributes.Get("threshold percentage");
+		double thresholdPercent = attributes->Get("threshold percentage");
 		double transition = 1 / (1 + 0.0005 * capacity.hull);
 		double minimumHull = capacity.hull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
 
-		capacity.wildcard = max(0., floor(minimumHull + attributes.Get("hull threshold")));
+		capacity.wildcard = max(0., floor(minimumHull + attributes->Get("hull threshold")));
 	}
 }
 
 
 
-// Update the stored ResourceLevels for each action a ship can take.
-void ShipAttributeHandler::HullRepair(const Outfit &attributes)
+void ShipAttributeHandler::HullRepair()
 {
-	hullRepair.wildcard = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
-	hullRepair.energy = attributes.Get("hull energy") * (1. + attributes.Get("hull energy multiplier"));
-	hullRepair.heat = attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier"));
-	hullRepair.fuel = attributes.Get("hull fuel") * (1. + attributes.Get("hull fuel multiplier"));
+	hullRepairCost.wildcard = attributes->Get("hull repair rate") * (1. + attributes->Get("hull repair multiplier"));
+	hullRepairCost.energy = attributes->Get("hull energy") * (1. + attributes->Get("hull energy multiplier"));
+	hullRepairCost.heat = attributes->Get("hull heat") * (1. + attributes->Get("hull heat multiplier"));
+	hullRepairCost.fuel = attributes->Get("hull fuel") * (1. + attributes->Get("hull fuel multiplier"));
 
-	hullRepairNoDelay.wildcard = (attributes.Get("hull repair rate") + attributes.Get("delayed hull repair rate"))
-		* (1. + attributes.Get("hull repair multiplier"));
-	hullRepairNoDelay.energy = (attributes.Get("hull energy") + attributes.Get("delayed hull energy"))
-		* (1. + attributes.Get("hull energy multiplier"));
-	hullRepairNoDelay.heat = (attributes.Get("hull heat") + attributes.Get("delayed hull heat"))
-		* (1. + attributes.Get("hull heat multiplier"));
-	hullRepairNoDelay.fuel = (attributes.Get("hull fuel") + attributes.Get("delayed hull fuel"))
-		* (1. + attributes.Get("hull fuel multiplier"));
+	hullRepairNoDelayCost.wildcard = (attributes->Get("hull repair rate") + attributes->Get("delayed hull repair rate"))
+		* (1. + attributes->Get("hull repair multiplier"));
+	hullRepairNoDelayCost.energy = (attributes->Get("hull energy") + attributes->Get("delayed hull energy"))
+		* (1. + attributes->Get("hull energy multiplier"));
+	hullRepairNoDelayCost.heat = (attributes->Get("hull heat") + attributes->Get("delayed hull heat"))
+		* (1. + attributes->Get("hull heat multiplier"));
+	hullRepairNoDelayCost.fuel = (attributes->Get("hull fuel") + attributes->Get("delayed hull fuel"))
+		* (1. + attributes->Get("hull fuel multiplier"));
 }
 
 
 
-void ShipAttributeHandler::ShieldRegen(const Outfit &attributes)
+void ShipAttributeHandler::ShieldRegen()
 {
-	shieldRegen.wildcard = attributes.Get("shield generation") * (1. + attributes.Get("shield generation multiplier"));
-	shieldRegen.energy = attributes.Get("shield energy") * (1. + attributes.Get("shield energy multiplier"));
-	shieldRegen.heat = attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier"));
-	shieldRegen.fuel = attributes.Get("shield fuel") * (1. + attributes.Get("shield fuel multiplier"));
+	shieldRegenCost.wildcard = attributes->Get("shield generation") * (1. + attributes->Get("shield generation multiplier"));
+	shieldRegenCost.energy = attributes->Get("shield energy") * (1. + attributes->Get("shield energy multiplier"));
+	shieldRegenCost.heat = attributes->Get("shield heat") * (1. + attributes->Get("shield heat multiplier"));
+	shieldRegenCost.fuel = attributes->Get("shield fuel") * (1. + attributes->Get("shield fuel multiplier"));
 
-	shieldRegenNoDelay.wildcard = (attributes.Get("shield generation") + attributes.Get("delayed shield generation"))
-		* (1. + attributes.Get("shield generation multiplier"));
-	shieldRegenNoDelay.energy = (attributes.Get("shield energy") + attributes.Get("delayed shield energy"))
-		* (1. + attributes.Get("shield energy multiplier"));
-	shieldRegenNoDelay.heat = (attributes.Get("shield heat") + attributes.Get("delayed shield heat"))
-		* (1. + attributes.Get("shield heat multiplier"));
-	shieldRegenNoDelay.fuel = (attributes.Get("shield fuel") + attributes.Get("delayed shield fuel"))
-		* (1. + attributes.Get("shield fuel multiplier"));
+	shieldRegenNoDelayCost.wildcard = (attributes->Get("shield generation") + attributes->Get("delayed shield generation"))
+		* (1. + attributes->Get("shield generation multiplier"));
+	shieldRegenNoDelayCost.energy = (attributes->Get("shield energy") + attributes->Get("delayed shield energy"))
+		* (1. + attributes->Get("shield energy multiplier"));
+	shieldRegenNoDelayCost.heat = (attributes->Get("shield heat") + attributes->Get("delayed shield heat"))
+		* (1. + attributes->Get("shield heat multiplier"));
+	shieldRegenNoDelayCost.fuel = (attributes->Get("shield fuel") + attributes->Get("delayed shield fuel"))
+		* (1. + attributes->Get("shield fuel multiplier"));
 }
 
 
 
-void ShipAttributeHandler::CorrosionResist(const Outfit &attributes)
+void ShipAttributeHandler::CorrosionResist()
 {
-	corrosionResist.wildcard = attributes.Get("corrosion resistance");
+	corrosionResistCost.wildcard = attributes->Get("corrosion resistance");
 	// Save resistance costs as per unit of resistance.
-	corrosionResist.energy = attributes.Get("corrosion resistance energy") / corrosionResist.wildcard;
-	corrosionResist.heat = attributes.Get("corrosion resistance heat") / corrosionResist.wildcard;
-	corrosionResist.fuel = attributes.Get("corrosion resistance fuel") / corrosionResist.wildcard;
+	corrosionResistCost.energy = attributes->Get("corrosion resistance energy") / corrosionResistCost.wildcard;
+	corrosionResistCost.heat = attributes->Get("corrosion resistance heat") / corrosionResistCost.wildcard;
+	corrosionResistCost.fuel = attributes->Get("corrosion resistance fuel") / corrosionResistCost.wildcard;
 }
 
 
 
-void ShipAttributeHandler::DischargeResist(const Outfit &attributes)
+void ShipAttributeHandler::DischargeResist()
 {
-	dischargeResist.wildcard = attributes.Get("discharge resistance");
+	dischargeResistCost.wildcard = attributes->Get("discharge resistance");
 	// Save resistance costs as per unit of resistance.
-	dischargeResist.energy = attributes.Get("discharge resistance energy") / dischargeResist.wildcard;
-	dischargeResist.heat = attributes.Get("discharge resistance heat") / dischargeResist.wildcard;
-	dischargeResist.fuel = attributes.Get("discharge resistance fuel") / dischargeResist.wildcard;
+	dischargeResistCost.energy = attributes->Get("discharge resistance energy") / dischargeResistCost.wildcard;
+	dischargeResistCost.heat = attributes->Get("discharge resistance heat") / dischargeResistCost.wildcard;
+	dischargeResistCost.fuel = attributes->Get("discharge resistance fuel") / dischargeResistCost.wildcard;
 }
 
 
 
-void ShipAttributeHandler::IonizationResist(const Outfit &attributes)
+void ShipAttributeHandler::IonizationResist()
 {
-	ionizationResist.wildcard = attributes.Get("ion resistance");
+	ionizationResistCost.wildcard = attributes->Get("ion resistance");
 	// Save resistance costs as per unit of resistance.
-	ionizationResist.energy = attributes.Get("ion resistance energy") / ionizationResist.wildcard;
-	ionizationResist.heat = attributes.Get("ion resistance heat") / ionizationResist.wildcard;
-	ionizationResist.fuel = attributes.Get("ion resistance fuel") / ionizationResist.wildcard;
+	ionizationResistCost.energy = attributes->Get("ion resistance energy") / ionizationResistCost.wildcard;
+	ionizationResistCost.heat = attributes->Get("ion resistance heat") / ionizationResistCost.wildcard;
+	ionizationResistCost.fuel = attributes->Get("ion resistance fuel") / ionizationResistCost.wildcard;
 }
 
 
 
-void ShipAttributeHandler::ScramblingResist(const Outfit &attributes)
+void ShipAttributeHandler::ScramblingResist()
 {
-	scramblingResist.wildcard = attributes.Get("scramble resistance");
+	scramblingResistCost.wildcard = attributes->Get("scramble resistance");
 	// Save resistance costs as per unit of resistance.
-	scramblingResist.energy = attributes.Get("scramble resistance energy") / scramblingResist.wildcard;
-	scramblingResist.heat = attributes.Get("scramble resistance heat") / scramblingResist.wildcard;
-	scramblingResist.fuel = attributes.Get("scramble resistance fuel") / scramblingResist.wildcard;
+	scramblingResistCost.energy = attributes->Get("scramble resistance energy") / scramblingResistCost.wildcard;
+	scramblingResistCost.heat = attributes->Get("scramble resistance heat") / scramblingResistCost.wildcard;
+	scramblingResistCost.fuel = attributes->Get("scramble resistance fuel") / scramblingResistCost.wildcard;
 }
 
 
 
-void ShipAttributeHandler::BurnResist(const Outfit &attributes)
+void ShipAttributeHandler::BurnResist()
 {
-	burnResist.wildcard = attributes.Get("burn resistance");
+	burnResistCost.wildcard = attributes->Get("burn resistance");
 	// Save resistance costs as per unit of resistance.
-	burnResist.energy = attributes.Get("burn resistance energy") / burnResist.wildcard;
-	burnResist.heat = attributes.Get("burn resistance heat") / burnResist.wildcard;
-	burnResist.fuel = attributes.Get("burn resistance fuel") / burnResist.wildcard;
+	burnResistCost.energy = attributes->Get("burn resistance energy") / burnResistCost.wildcard;
+	burnResistCost.heat = attributes->Get("burn resistance heat") / burnResistCost.wildcard;
+	burnResistCost.fuel = attributes->Get("burn resistance fuel") / burnResistCost.wildcard;
 }
 
 
 
-void ShipAttributeHandler::LeakageResist(const Outfit &attributes)
+void ShipAttributeHandler::LeakageResist()
 {
-	leakageResist.wildcard = attributes.Get("leak resistance");
+	leakageResistCost.wildcard = attributes->Get("leak resistance");
 	// Save resistance costs as per unit of resistance.
-	leakageResist.energy = attributes.Get("leak resistance energy") / leakageResist.wildcard;
-	leakageResist.heat = attributes.Get("leak resistance heat") / leakageResist.wildcard;
-	leakageResist.fuel = attributes.Get("leak resistance fuel") / leakageResist.wildcard;
+	leakageResistCost.energy = attributes->Get("leak resistance energy") / leakageResistCost.wildcard;
+	leakageResistCost.heat = attributes->Get("leak resistance heat") / leakageResistCost.wildcard;
+	leakageResistCost.fuel = attributes->Get("leak resistance fuel") / leakageResistCost.wildcard;
 }
 
 
 
-void ShipAttributeHandler::DisruptionResist(const Outfit &attributes)
+void ShipAttributeHandler::DisruptionResist()
 {
-	disruptionResist.wildcard = attributes.Get("disruption resistance");
+	disruptionResistCost.wildcard = attributes->Get("disruption resistance");
 	// Save resistance costs as per unit of resistance.
-	disruptionResist.energy = attributes.Get("disruption resistance energy") / disruptionResist.wildcard;
-	disruptionResist.heat = attributes.Get("disruption resistance heat") / disruptionResist.wildcard;
-	disruptionResist.fuel = attributes.Get("disruption resistance fuel") / disruptionResist.wildcard;
+	disruptionResistCost.energy = attributes->Get("disruption resistance energy") / disruptionResistCost.wildcard;
+	disruptionResistCost.heat = attributes->Get("disruption resistance heat") / disruptionResistCost.wildcard;
+	disruptionResistCost.fuel = attributes->Get("disruption resistance fuel") / disruptionResistCost.wildcard;
 }
 
 
 
-void ShipAttributeHandler::SlownessResist(const Outfit &attributes)
+void ShipAttributeHandler::SlownessResist()
 {
-	slownessResist.wildcard = attributes.Get("slowing resistance");
+	slownessResistCost.wildcard = attributes->Get("slowing resistance");
 	// Save resistance costs as per unit of resistance.
-	slownessResist.energy = attributes.Get("slowing resistance energy") / slownessResist.wildcard;
-	slownessResist.heat = attributes.Get("slowing resistance heat") / slownessResist.wildcard;
-	slownessResist.fuel = attributes.Get("slowing resistance fuel") / slownessResist.wildcard;
+	slownessResistCost.energy = attributes->Get("slowing resistance energy") / slownessResistCost.wildcard;
+	slownessResistCost.heat = attributes->Get("slowing resistance heat") / slownessResistCost.wildcard;
+	slownessResistCost.fuel = attributes->Get("slowing resistance fuel") / slownessResistCost.wildcard;
 }
 
 
 
-void ShipAttributeHandler::Thrust(const Outfit &attributes)
+void ShipAttributeHandler::Thrust()
 {
-	thrust.wildcard = attributes.Get("thrust");
+	thrustCost.wildcard = attributes->Get("thrust");
 
-	thrust.hull = attributes.Get("thrusting hull");
-	thrust.shields = attributes.Get("thrusting shields");
-	thrust.energy = attributes.Get("thrusting energy");
-	thrust.heat = attributes.Get("thrusting heat");
-	thrust.fuel = attributes.Get("thrusting fuel");
+	thrustCost.hull = attributes->Get("thrusting hull");
+	thrustCost.shields = attributes->Get("thrusting shields");
+	thrustCost.energy = attributes->Get("thrusting energy");
+	thrustCost.heat = attributes->Get("thrusting heat");
+	thrustCost.fuel = attributes->Get("thrusting fuel");
 
-	thrust.corrosion = attributes.Get("thrusting corrosion");
-	thrust.discharge = attributes.Get("thrusting discharge");
-	thrust.ionization = attributes.Get("thrusting ion");
-	thrust.scrambling = attributes.Get("thrusting scramble");
-	thrust.burning = attributes.Get("thrusting burn");
-	thrust.leakage = attributes.Get("thrusting leakage");
-	thrust.disruption = attributes.Get("thrusting disruption");
-	thrust.slowness = attributes.Get("thrusting slowing");
+	thrustCost.corrosion = attributes->Get("thrusting corrosion");
+	thrustCost.discharge = attributes->Get("thrusting discharge");
+	thrustCost.ionization = attributes->Get("thrusting ion");
+	thrustCost.scrambling = attributes->Get("thrusting scramble");
+	thrustCost.burning = attributes->Get("thrusting burn");
+	thrustCost.leakage = attributes->Get("thrusting leakage");
+	thrustCost.disruption = attributes->Get("thrusting disruption");
+	thrustCost.slowness = attributes->Get("thrusting slowing");
 }
 
 
 
-void ShipAttributeHandler::Turn(const Outfit &attributes)
+void ShipAttributeHandler::Turn()
 {
-	turn.wildcard = attributes.Get("turn");
+	turnCost.wildcard = attributes->Get("turn");
 
-	turn.hull = attributes.Get("turning hull");
-	turn.shields = attributes.Get("turning shields");
-	turn.energy = attributes.Get("turning energy");
-	turn.heat = attributes.Get("turning heat");
-	turn.fuel = attributes.Get("turning fuel");
+	turnCost.hull = attributes->Get("turning hull");
+	turnCost.shields = attributes->Get("turning shields");
+	turnCost.energy = attributes->Get("turning energy");
+	turnCost.heat = attributes->Get("turning heat");
+	turnCost.fuel = attributes->Get("turning fuel");
 
-	turn.corrosion = attributes.Get("turning corrosion");
-	turn.discharge = attributes.Get("turning discharge");
-	turn.ionization = attributes.Get("turning ion");
-	turn.scrambling = attributes.Get("turn scramble");
-	turn.burning = attributes.Get("turning burn");
-	turn.leakage = attributes.Get("turning leakage");
-	turn.disruption = attributes.Get("turning disruption");
-	turn.slowness = attributes.Get("turning slowing");
+	turnCost.corrosion = attributes->Get("turning corrosion");
+	turnCost.discharge = attributes->Get("turning discharge");
+	turnCost.ionization = attributes->Get("turning ion");
+	turnCost.scrambling = attributes->Get("turn scramble");
+	turnCost.burning = attributes->Get("turning burn");
+	turnCost.leakage = attributes->Get("turning leakage");
+	turnCost.disruption = attributes->Get("turning disruption");
+	turnCost.slowness = attributes->Get("turning slowing");
 }
 
 
 
-void ShipAttributeHandler::ReverseThrust(const Outfit &attributes)
+void ShipAttributeHandler::ReverseThrust()
 {
-	reverseThrust.wildcard = attributes.Get("reverse thrust");
+	reverseThrustCost.wildcard = attributes->Get("reverse thrust");
 
-	reverseThrust.hull = attributes.Get("reverse thrusting hull");
-	reverseThrust.shields = attributes.Get("reverse thrusting shields");
-	reverseThrust.energy = attributes.Get("reverse thrusting energy");
-	reverseThrust.heat = attributes.Get("reverse thrusting heat");
-	reverseThrust.fuel = attributes.Get("reverse thrusting fuel");
+	reverseThrustCost.hull = attributes->Get("reverse thrusting hull");
+	reverseThrustCost.shields = attributes->Get("reverse thrusting shields");
+	reverseThrustCost.energy = attributes->Get("reverse thrusting energy");
+	reverseThrustCost.heat = attributes->Get("reverse thrusting heat");
+	reverseThrustCost.fuel = attributes->Get("reverse thrusting fuel");
 
-	reverseThrust.corrosion = attributes.Get("reverse thrusting corrosion");
-	reverseThrust.discharge = attributes.Get("reverse thrusting discharge");
-	reverseThrust.ionization = attributes.Get("reverse thrusting ion");
-	reverseThrust.scrambling = attributes.Get("reverse thrusting scramble");
-	reverseThrust.burning = attributes.Get("reverse thrusting burn");
-	reverseThrust.leakage = attributes.Get("reverse thrusting leakage");
-	reverseThrust.disruption = attributes.Get("reverse thrusting disruption");
-	reverseThrust.slowness = attributes.Get("reverse thrusting slowing");
+	reverseThrustCost.corrosion = attributes->Get("reverse thrusting corrosion");
+	reverseThrustCost.discharge = attributes->Get("reverse thrusting discharge");
+	reverseThrustCost.ionization = attributes->Get("reverse thrusting ion");
+	reverseThrustCost.scrambling = attributes->Get("reverse thrusting scramble");
+	reverseThrustCost.burning = attributes->Get("reverse thrusting burn");
+	reverseThrustCost.leakage = attributes->Get("reverse thrusting leakage");
+	reverseThrustCost.disruption = attributes->Get("reverse thrusting disruption");
+	reverseThrustCost.slowness = attributes->Get("reverse thrusting slowing");
 }
 
 
 
-void ShipAttributeHandler::AfterburnerThrust(const Outfit &attributes)
+void ShipAttributeHandler::AfterburnerThrust()
 {
-	afterburnerThrust.wildcard = attributes.Get("afterburner thrust");
+	afterburnerThrustCost.wildcard = attributes->Get("afterburner thrust");
 
-	afterburnerThrust.hull = attributes.Get("afterburner hull");
-	afterburnerThrust.shields = attributes.Get("afterburner shields");
-	afterburnerThrust.energy = attributes.Get("afterburner energy");
-	afterburnerThrust.heat = attributes.Get("afterburner heat");
-	afterburnerThrust.fuel = attributes.Get("afterburner fuel");
+	afterburnerThrustCost.hull = attributes->Get("afterburner hull");
+	afterburnerThrustCost.shields = attributes->Get("afterburner shields");
+	afterburnerThrustCost.energy = attributes->Get("afterburner energy");
+	afterburnerThrustCost.heat = attributes->Get("afterburner heat");
+	afterburnerThrustCost.fuel = attributes->Get("afterburner fuel");
 
-	afterburnerThrust.corrosion = attributes.Get("afterburner corrosion");
-	afterburnerThrust.discharge = attributes.Get("afterburner discharge");
-	afterburnerThrust.ionization = attributes.Get("afterburner ion");
-	afterburnerThrust.scrambling = attributes.Get("afterburner scramble");
-	afterburnerThrust.burning = attributes.Get("afterburner burn");
-	afterburnerThrust.leakage = attributes.Get("afterburner leakage");
-	afterburnerThrust.disruption = attributes.Get("afterburner disruption");
-	afterburnerThrust.slowness = attributes.Get("afterburner slowing");
-}
-
-
-
-void ShipAttributeHandler::Cloak(const Outfit &attributes)
-{
-	cloak.wildcard = attributes.Get("cloak");
-
-	cloak.energy = attributes.Get("cloaking energy");
-	cloak.heat = attributes.Get("cloaking heat");
-	cloak.fuel = attributes.Get("cloaking fuel");
+	afterburnerThrustCost.corrosion = attributes->Get("afterburner corrosion");
+	afterburnerThrustCost.discharge = attributes->Get("afterburner discharge");
+	afterburnerThrustCost.ionization = attributes->Get("afterburner ion");
+	afterburnerThrustCost.scrambling = attributes->Get("afterburner scramble");
+	afterburnerThrustCost.burning = attributes->Get("afterburner burn");
+	afterburnerThrustCost.leakage = attributes->Get("afterburner leakage");
+	afterburnerThrustCost.disruption = attributes->Get("afterburner disruption");
+	afterburnerThrustCost.slowness = attributes->Get("afterburner slowing");
 }

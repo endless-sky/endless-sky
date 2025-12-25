@@ -184,7 +184,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	damage.levels.energy = (weapon.EnergyDamage()
 		+ weapon.RelativeEnergyDamage() * attributes.Get("energy capacity"))
 		* ScaleType(.5, 0., attributes.Get("energy protection"));
-	damage.levels.hull = (weapon.HeatDamage()
+	damage.levels.heat = (weapon.HeatDamage()
 		+ weapon.RelativeHeatDamage() * ship.MaximumHeat())
 		* ScaleType(.5, 0., attributes.Get("heat protection"));
 	damage.levels.fuel = (weapon.FuelDamage()
