@@ -5094,11 +5094,13 @@ void PlayerInfo::DoAccounting()
 			set<const Government *> governments;
 			for(const auto &it : tributeReceived)
 			{
-				if(it.first->DailyTributePenalty())
+				double penalty = it.first->DailyTributePenalty();
+				if(penalty)
 				{
 					const Government *gov = it.first->GetGovernment();
-					gov->AddReputation(-it.first->DailyTributePenalty());
-					governments.insert(gov);
+					gov->AddReputation(-penalty);
+					if(penalty > 0.)
+						governments.insert(gov);
 				}
 			}
 			if(!governments.empty())
