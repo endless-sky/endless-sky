@@ -33,8 +33,11 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 	mass = ship.Mass();
 
 	const Outfit &attributes = ship.Attributes();
+	jumpSpeed = attributes.Get("jump speed");
+	scramThreshold = attributes.Get("scram drive");
+
 	hasHyperdrive = attributes.Get("hyperdrive");
-	hasScramDrive = attributes.Get("scram drive");
+	hasScramDrive = scramThreshold;
 	hasJumpDrive = attributes.Get("jump drive");
 	hasJumpMassCost = attributes.Get("jump mass cost");
 
@@ -58,6 +61,16 @@ void ShipJumpNavigation::Recalibrate(const Ship &ship)
 	// that would be affected by that change.
 	if(hasJumpMassCost && mass != ship.Mass())
 		Calibrate(ship);
+}
+
+
+
+void ShipJumpNavigation::RecalibrateJumpSpeed(const Ship &ship)
+{
+	const Outfit &attributes = ship.Attributes();
+	jumpSpeed = attributes.Get("jump speed");
+	scramThreshold = attributes.Get("scram drive");
+	hasScramDrive = scramThreshold;
 }
 
 
@@ -194,6 +207,27 @@ bool ShipJumpNavigation::HasScramDrive() const
 bool ShipJumpNavigation::HasJumpDrive() const
 {
 	return hasJumpDrive;
+}
+
+
+
+bool ShipJumpNavigation::HasJumpMassCost() const
+{
+	return hasJumpMassCost;
+}
+
+
+
+double ShipJumpNavigation::JumpSpeed() const
+{
+	return jumpSpeed;
+}
+
+
+
+double ShipJumpNavigation::ScramThreshold() const
+{
+	return scramThreshold;
 }
 
 

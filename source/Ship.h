@@ -562,7 +562,7 @@ private:
 	void StepPilot();
 	void DoMovement(bool &isUsingAfterburner);
 	void StepTargeting();
-	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
+	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner) const;
 
 
 	// Add or remove a ship from this ship's list of escorts.

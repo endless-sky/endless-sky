@@ -33,11 +33,17 @@ void ShipAttributeHandler::Setup(const Ship *parent, ResourceLevels *levels)
 
 void ShipAttributeHandler::Calibrate()
 {
+	// Basic behaviors:
 	Capacity();
+	EnergyAndFuelGeneration();
+	HeatAndCooling();
 
+	// Repairs:
 	HullRepair();
 	ShieldRegen();
+	Recovery();
 
+	// DoT resistances:
 	CorrosionResist();
 	DischargeResist();
 	IonizationResist();
@@ -47,10 +53,16 @@ void ShipAttributeHandler::Calibrate()
 	DisruptionResist();
 	SlownessResist();
 
+	// Movement:
 	Thrust();
 	Turn();
 	ReverseThrust();
 	AfterburnerThrust();
+
+	// Miscellaneous actions and attributes:
+	Cloaking();
+	Scanning();
+	Misc();
 }
 
 
@@ -322,12 +334,60 @@ void ShipAttributeHandler::Capacity()
 		minimumHull = capacity.hull * (thresholdPercent > 0. ? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
 		minimumHull = max(0., floor(minimumHull + attributes->Get("hull threshold")));
 	}
+
+	outfitCapacity = ship->BaseAttributes().Get("outfit space");
+	weaponCapacity = ship->BaseAttributes().Get("weapon capacity");
+	engineCapacity = ship->BaseAttributes().Get("engine capacity");
+
+	cargoSpace = attributes->Get("cargo space");
+	automaton = attributes->Get("automaton");
+	requiredCrew = attributes->Get("required crew");
+	bunks = attributes->Get("bunks");
+	crewEquiv = attributes->Get("crew equivalent");
+	onlyUseCreqEquiv = attributes->Get("use crew equivalent as crew");
+}
+
+
+
+void ShipAttributeHandler::EnergyAndFuelGeneration()
+{
+	energyGeneration = attributes->Get("energy generation");
+	energyConsumption = attributes->Get("energy consumption");
+
+	fuelGeneration = attributes->Get("fuel generation");
+	fuelConsumption = attributes->Get("fuel consumption");
+	fuelEnergy = attributes->Get("fuel energy");
+	fuelHeat = attributes->Get("fuel heat");
+
+	ramscoop = attributes->Get("ramscoop");
+	solarCollection = attributes->Get("solar collection");
+	solarHeat = attributes->Get("solar heat");
+}
+
+
+
+void ShipAttributeHandler::HeatAndCooling()
+{
+	heatGeneration = attributes->Get("heat generation");
+	heatDissipation = .001 * attributes->Get("heat dissipation");
+	heatCapacity = attributes->Get("heat capacity");
+
+	cooling = attributes->Get("cooling");;
+	activeCooling = attributes->Get("active cooling");
+	coolingEnergy = attributes->Get("cooling energy");
+	// This is an S-curve where the efficiency is 100% if you have no outfits
+	// that create "cooling inefficiency", and as that value increases the
+	// efficiency stays high for a while, then drops off, then approaches 0.
+	double x = attributes->Get("cooling inefficiency");
+	coolingInefficiency = x ? 2. + 2. / (1. + exp(x / -2.)) - 4. / (1. + exp(x / -4.)) : 1.;
 }
 
 
 
 void ShipAttributeHandler::HullRepair()
 {
+	repairDelay = attributes->Get("repair delay");
+
 	hullRepairRate = (attributes->Get("hull repair rate") + attributes->Get("delayed hull repair rate"))
 		* (1. + attributes->Get("hull repair multiplier"));
 	hullRepairCost.energy = (attributes->Get("hull energy") + attributes->Get("delayed hull energy"))
@@ -347,6 +407,9 @@ void ShipAttributeHandler::HullRepair()
 
 void ShipAttributeHandler::ShieldRegen()
 {
+	depletedShieldDelay = attributes->Get("depleted shield delay");
+	shieldDelay = attributes->Get("shield delay");
+
 	shieldRegenRate = (attributes->Get("shield generation") + attributes->Get("delayed shield generation"))
 		* (1. + attributes->Get("shield generation multiplier"));
 	shieldRegenCost.energy = (attributes->Get("shield energy") + attributes->Get("delayed shield energy"))
@@ -360,6 +423,25 @@ void ShipAttributeHandler::ShieldRegen()
 	shieldRegenWithDelayCost.energy = attributes->Get("shield energy") * (1. + attributes->Get("shield energy multiplier"));
 	shieldRegenWithDelayCost.heat = attributes->Get("shield heat") * (1. + attributes->Get("shield heat multiplier"));
 	shieldRegenWithDelayCost.fuel = attributes->Get("shield fuel") * (1. + attributes->Get("shield fuel multiplier"));
+}
+
+
+
+void ShipAttributeHandler::Recovery()
+{
+	recoveryTime = attributes->Get("disabled recovery time");
+	
+	recoveryCost.energy = attributes->Get("disabled recovery energy");
+	recoveryCost.fuel = attributes->Get("disabled recovery fuel");
+	recoveryCost.heat = attributes->Get("disabled recovery heat");
+	recoveryCost.ionization = attributes->Get("disabled recovery ionization");
+	recoveryCost.scrambling = attributes->Get("disabled recovery scrambling");
+	recoveryCost.disruption = attributes->Get("disabled recovery disruption");
+	recoveryCost.slowness = attributes->Get("disabled recovery slowing");
+	recoveryCost.discharge = attributes->Get("disabled recovery discharge");
+	recoveryCost.corrosion = attributes->Get("disabled recovery corrosion");
+	recoveryCost.leakage = attributes->Get("disabled recovery leak");
+	recoveryCost.burning = attributes->Get("disabled recovery burning");
 }
 
 
@@ -536,4 +618,68 @@ void ShipAttributeHandler::AfterburnerThrust()
 	afterburnerThrustCost.leakage = attributes->Get("afterburner leakage");
 	afterburnerThrustCost.disruption = attributes->Get("afterburner disruption");
 	afterburnerThrustCost.slowness = attributes->Get("afterburner slowing");
+}
+
+
+
+void ShipAttributeHandler::Cloaking()
+{
+	cloakCost.shields = attributes->Get("cloaking shields");
+	cloakCost.hull = attributes->Get("cloaking hull");
+	cloakCost.energy = attributes->Get("cloaking energy");
+	cloakCost.fuel = attributes->Get("cloaking fuel");
+	cloakCost.heat += attributes->Get("cloaking heat");
+
+	cloak = attributes->Get("cloak");
+	cloakByMass = attributes->Get("cloak by mass");
+	cloakHullThreshold = attributes->Get("cloak hull threshold");
+	cloakingShieldDelay = attributes->Get("cloaking shield delay");
+	cloakingHullDelay = attributes->Get("cloaking repair delay");
+	cloakPhasing = attributes->Get("cloak phasing");
+
+	// Unlike other multipliers, these attributes are not added to 1 since the multiplier is
+	// only active if the ship is cloaking.
+	cloakedRepairMult = attributes->Get("cloaked repair multiplier");
+	cloakedRegenMult = attributes->Get("cloaked regen multiplier");
+
+	cloakedFiring = attributes->Get("cloaked firing");
+	canAfterburnerWhileCloaked = attributes->Get("cloaked afterburner");
+	canBoardWhileCloaked = attributes->Get("cloaked boarding");
+	canCommunicateWhileCloaked = attributes->Get("cloaked communication");
+	canFireWhileCloaked = cloakedFiring;
+	canPickupWhileCloaked = attributes->Get("cloaked pickup");
+	canScanWhileCloaked = attributes->Get("cloaked scanning");
+	canDeployWhileCloaked = attributes->Get("cloaked deployment");
+}
+
+
+
+void ShipAttributeHandler::Scanning()
+{
+	cargoScanPower = attributes->Get("cargo scan power");
+	outfitScanPower = attributes->Get("outfit scan power");
+	cargoScanSpeed = attributes->Get("cargo scan efficiency");
+	outfitScanSpeed = attributes->Get("outfit scan efficiency");
+	cargoScanOpacity = attributes->Get("cargo scan opacity");
+	outfitScanOpacity = attributes->Get("outfit scan opacity");
+	silentScans = attributes->Get("silent scans");
+	inscrutable = attributes->Get("inscrutable");
+}
+
+
+
+void ShipAttributeHandler::Misc()
+{
+	overheatDamageThreshold = 1. + attributes->Get("overheat damage threshold");
+	overheatDamageRate = attributes->Get("overheat damage rate");
+
+	landingSpeed = attributes->Get("landing speed");
+
+	drag = attributes->Get("drag");
+	dragReduction = 1. + attributes->Get("drag reduction");
+	accelerationMult = 1. + attributes->Get("acceleration multiplier");
+	inertiaReduction = 1. + attributes->Get("inertia reduction");
+	turnMult = 1. + attributes->Get("turn multiplier");
+
+	selfDestruct = attributes->Get("self destruct");
 }
