@@ -1367,13 +1367,12 @@ void Ship::SetVelocity(Point velocity)
 // Instantiate a newly-created ship in-flight.
 void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
-	// If this is a ship from a randomly spawned fleet, then FinishLoading was called
-	// on it prior to it being made a Ship instance. Re-call the attribute handler's
-	// setup function so that it has a pointer to the correct ship. We don't need to
-	// recalibrate, as the outfits for this ship will be the same as when
+	// Re-call the Setup function of the ShipAttributeHandler so that it has a pointer to the correct ship,
+	// as randomly spawned fleets and newly purchased ships will have their attribute handler still pointed to the
+	// template Ship.
+	// We don't need to recalibrate, as the outfits for this ship will be the same as when
 	// Ship::FinishLoading was called in UniverseObjects::FinishLoading.
-	if(!isYours && !isSpecial)
-		attrHandler.Setup(this, &levels);
+	attrHandler.Setup(this, &levels);
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = Angle();
