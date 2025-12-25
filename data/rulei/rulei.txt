@@ -15,6 +15,7 @@
 # Previous iterations of first two missions are failed on offer to ensure save compatibility.
 mission "Relic of Pasts"
 	invisible
+	non-blocking
 	landing
 	to complete
 		never
@@ -28,6 +29,7 @@ mission "Relic of Pasts"
 
 mission "First Contact: Rulei"
 	invisible
+	non-blocking
 	landing
 	to complete
 		never
@@ -92,6 +94,7 @@ mission "Rulei Planet"
 
 mission "Rulei: You Are (Not) Alone"
 	invisible
+	non-blocking
 	landing
 	to complete
 		never
@@ -113,6 +116,7 @@ mission "Rulei: You Are (Not) Alone"
 
 mission "Rulei: Umbral Reach"
 	invisible
+	non-blocking
 	landing
 	to complete
 		never
