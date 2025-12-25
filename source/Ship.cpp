@@ -4021,20 +4021,26 @@ void Ship::DoGeneration()
 		ResourceLevels repairLevels = hullDelay ? attrHandler.hullRepairWithDelayCost : attrHandler.hullRepairCost;
 		double hullRemaining = (hullDelay ? attrHandler.hullRepairRateWithDelay : attrHandler.hullRepairRate)
 			* (1. + attrHandler.cloakedRepairMult * Cloaking());
-		// Save hull repair costs as per unit of hull repaired.
-		repairLevels.energy /= hullRemaining;
-		repairLevels.fuel /= hullRemaining;
-		repairLevels.hull /= hullRemaining;
-		attrHandler.DoRepair(levels.hull, hullRemaining, MaxHull(), repairLevels);
+		if(hullRemaining)
+		{
+			// Save hull repair costs as per unit of hull repaired.
+			repairLevels.energy /= hullRemaining;
+			repairLevels.fuel /= hullRemaining;
+			repairLevels.hull /= hullRemaining;
+			attrHandler.DoRepair(levels.hull, hullRemaining, MaxHull(), repairLevels);
+		}
 
 		ResourceLevels regenLevels = shieldDelay ? attrHandler.shieldRegenWithDelayCost : attrHandler.shieldRegenCost;
 		double shieldsRemaining = (shieldDelay ? attrHandler.shieldRegenRateWithDelay : attrHandler.shieldRegenRate)
 			* (1. + attrHandler.cloakedRegenMult * Cloaking());
-		// Save shield regen costs as per unit of shield regenerated.
-		regenLevels.energy /= shieldsRemaining;
-		regenLevels.fuel /= shieldsRemaining;
-		regenLevels.hull /= shieldsRemaining;
-		attrHandler.DoRepair(levels.shields, shieldsRemaining, MaxShields(), regenLevels);
+		if(shieldsRemaining)
+		{
+			// Save shield regen costs as per unit of shield regenerated.
+			regenLevels.energy /= shieldsRemaining;
+			regenLevels.fuel /= shieldsRemaining;
+			regenLevels.hull /= shieldsRemaining;
+			attrHandler.DoRepair(levels.shields, shieldsRemaining, MaxShields(), regenLevels);
+		}
 
 		if(!bays.empty())
 		{
@@ -4057,9 +4063,9 @@ void Ship::DoGeneration()
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
-				if(!hullDelay)
+				if(!hullDelay && hullRemaining)
 					attrHandler.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(), repairLevels);
-				if(!shieldDelay)
+				if(!shieldDelay && shieldsRemaining)
 					attrHandler.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(), regenLevels);
 			}
 

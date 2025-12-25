@@ -704,9 +704,12 @@ void ShipAttributeHandler::CorrosionResist()
 {
 	corrosionResistance = attributes->Get("corrosion resistance");
 	// Save resistance costs as per unit of resistance.
-	corrosionResistCost.energy = attributes->Get("corrosion resistance energy") / corrosionResistance;
-	corrosionResistCost.heat = attributes->Get("corrosion resistance heat") / corrosionResistance;
-	corrosionResistCost.fuel = attributes->Get("corrosion resistance fuel") / corrosionResistance;
+	if(corrosionResistance)
+	{
+		corrosionResistCost.energy = attributes->Get("corrosion resistance energy") / corrosionResistance;
+		corrosionResistCost.heat = attributes->Get("corrosion resistance heat") / corrosionResistance;
+		corrosionResistCost.fuel = attributes->Get("corrosion resistance fuel") / corrosionResistance;
+	}
 }
 
 
@@ -715,9 +718,12 @@ void ShipAttributeHandler::DischargeResist()
 {
 	dischargeResistance = attributes->Get("discharge resistance");
 	// Save resistance costs as per unit of resistance.
-	dischargeResistCost.energy = attributes->Get("discharge resistance energy") / dischargeResistance;
-	dischargeResistCost.heat = attributes->Get("discharge resistance heat") / dischargeResistance;
-	dischargeResistCost.fuel = attributes->Get("discharge resistance fuel") / dischargeResistance;
+	if(dischargeResistance)
+	{
+		dischargeResistCost.energy = attributes->Get("discharge resistance energy") / dischargeResistance;
+		dischargeResistCost.heat = attributes->Get("discharge resistance heat") / dischargeResistance;
+		dischargeResistCost.fuel = attributes->Get("discharge resistance fuel") / dischargeResistance;
+	}
 }
 
 
@@ -726,9 +732,12 @@ void ShipAttributeHandler::IonizationResist()
 {
 	ionizationResistance = attributes->Get("ion resistance");
 	// Save resistance costs as per unit of resistance.
-	ionizationResistCost.energy = attributes->Get("ion resistance energy") / dischargeResistance;
-	ionizationResistCost.heat = attributes->Get("ion resistance heat") / dischargeResistance;
-	ionizationResistCost.fuel = attributes->Get("ion resistance fuel") / dischargeResistance;
+	if(ionizationResistance)
+	{
+		ionizationResistCost.energy = attributes->Get("ion resistance energy") / ionizationResistance;
+		ionizationResistCost.heat = attributes->Get("ion resistance heat") / ionizationResistance;
+		ionizationResistCost.fuel = attributes->Get("ion resistance fuel") / ionizationResistance;
+	}
 }
 
 
@@ -737,9 +746,12 @@ void ShipAttributeHandler::ScramblingResist()
 {
 	scramblingResistance = attributes->Get("scramble resistance");
 	// Save resistance costs as per unit of resistance.
-	scramblingResistCost.energy = attributes->Get("scramble resistance energy") / scramblingResistance;
-	scramblingResistCost.heat = attributes->Get("scramble resistance heat") / scramblingResistance;
-	scramblingResistCost.fuel = attributes->Get("scramble resistance fuel") / scramblingResistance;
+	if(scramblingResistance)
+	{
+		scramblingResistCost.energy = attributes->Get("scramble resistance energy") / scramblingResistance;
+		scramblingResistCost.heat = attributes->Get("scramble resistance heat") / scramblingResistance;
+		scramblingResistCost.fuel = attributes->Get("scramble resistance fuel") / scramblingResistance;
+	}
 }
 
 
@@ -748,9 +760,12 @@ void ShipAttributeHandler::BurnResist()
 {
 	burnResistance = attributes->Get("burn resistance");
 	// Save resistance costs as per unit of resistance.
-	burnResistCost.energy = attributes->Get("burn resistance energy") / burnResistance;
-	burnResistCost.heat = attributes->Get("burn resistance heat") / burnResistance;
-	burnResistCost.fuel = attributes->Get("burn resistance fuel") / burnResistance;
+	if(burnResistance)
+	{
+		burnResistCost.energy = attributes->Get("burn resistance energy") / burnResistance;
+		burnResistCost.heat = attributes->Get("burn resistance heat") / burnResistance;
+		burnResistCost.fuel = attributes->Get("burn resistance fuel") / burnResistance;
+	}
 }
 
 
@@ -759,9 +774,12 @@ void ShipAttributeHandler::LeakageResist()
 {
 	leakResistance = attributes->Get("leak resistance");
 	// Save resistance costs as per unit of resistance.
-	leakageResistCost.energy = attributes->Get("leak resistance energy") / leakResistance;
-	leakageResistCost.heat = attributes->Get("leak resistance heat") / leakResistance;
-	leakageResistCost.fuel = attributes->Get("leak resistance fuel") / leakResistance;
+	if(leakResistance)
+	{
+		leakageResistCost.energy = attributes->Get("leak resistance energy") / leakResistance;
+		leakageResistCost.heat = attributes->Get("leak resistance heat") / leakResistance;
+		leakageResistCost.fuel = attributes->Get("leak resistance fuel") / leakResistance;
+	}
 }
 
 
@@ -770,9 +788,12 @@ void ShipAttributeHandler::DisruptionResist()
 {
 	disruptionResistance = attributes->Get("disruption resistance");
 	// Save resistance costs as per unit of resistance.
-	disruptionResistCost.energy = attributes->Get("disruption resistance energy") / disruptionResistance;
-	disruptionResistCost.heat = attributes->Get("disruption resistance heat") / disruptionResistance;
-	disruptionResistCost.fuel = attributes->Get("disruption resistance fuel") / disruptionResistance;
+	if(dischargeResistance)
+	{
+		disruptionResistCost.energy = attributes->Get("disruption resistance energy") / disruptionResistance;
+		disruptionResistCost.heat = attributes->Get("disruption resistance heat") / disruptionResistance;
+		disruptionResistCost.fuel = attributes->Get("disruption resistance fuel") / disruptionResistance;
+	}
 }
 
 
@@ -781,9 +802,12 @@ void ShipAttributeHandler::SlownessResist()
 {
 	slowingResistance = attributes->Get("slowing resistance");
 	// Save resistance costs as per unit of resistance.
-	slownessResistCost.energy = attributes->Get("slowing resistance energy") / slowingResistance;
-	slownessResistCost.heat = attributes->Get("slowing resistance heat") / slowingResistance;
-	slownessResistCost.fuel = attributes->Get("slowing resistance fuel") / slowingResistance;
+	if(slowingResistance)
+	{
+		slownessResistCost.energy = attributes->Get("slowing resistance energy") / slowingResistance;
+		slownessResistCost.heat = attributes->Get("slowing resistance heat") / slowingResistance;
+		slownessResistCost.fuel = attributes->Get("slowing resistance fuel") / slowingResistance;
+	}
 }
 
 
