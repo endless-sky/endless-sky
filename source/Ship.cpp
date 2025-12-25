@@ -99,75 +99,11 @@ namespace {
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
-	void DoRepair(double &stat, double &available, double maximum)
+	void Transfer(double &stat, double &available, double maximum)
 	{
 		double transfer = max(0., min(available, maximum - stat));
 		stat += transfer;
 		available -= transfer;
-	}
-
-	// Helper function to repair a given stat up to its maximum, limited by
-	// how much repair is available and how much energy, fuel, and heat are available.
-	// Updates the stat, the available amount, and the energy, fuel, and heat amounts.
-	void DoRepair(double &stat, double &available, double maximum, double &energy, double energyCost,
-		double &fuel, double fuelCost, double &heat, double heatCost)
-	{
-		if(available <= 0. || stat >= maximum)
-			return;
-
-		// Energy, heat, and fuel costs are the energy, fuel, or heat required per unit repaired.
-		if(energyCost > 0.)
-			available = min(available, energy / energyCost);
-		if(fuelCost > 0.)
-			available = min(available, fuel / fuelCost);
-		if(heatCost < 0.)
-			available = min(available, heat / -heatCost);
-
-		double transfer = min(available, maximum - stat);
-		if(transfer > 0.)
-		{
-			stat += transfer;
-			available -= transfer;
-			energy -= transfer * energyCost;
-			fuel -= transfer * fuelCost;
-			heat += transfer * heatCost;
-		}
-	}
-
-	// Helper function to reduce a given status effect according
-	// to its resistance, limited by how much energy, fuel, and heat are available.
-	// Updates the stat and the energy, fuel, and heat amounts.
-	void DoStatusEffect(bool isDeactivated, double &stat, double resistance, double &energy, double energyCost,
-		double &fuel, double fuelCost, double &heat, double heatCost)
-	{
-		if(isDeactivated || resistance <= 0.)
-		{
-			stat = max(0., .99 * stat);
-			return;
-		}
-
-		// Calculate how much resistance can be used assuming no
-		// energy or fuel cost.
-		resistance = .99 * stat - max(0., .99 * stat - resistance);
-
-		// Limit the resistance by the available energy, heat, and fuel.
-		if(energyCost > 0.)
-			resistance = min(resistance, energy / energyCost);
-		if(fuelCost > 0.)
-			resistance = min(resistance, fuel / fuelCost);
-		if(heatCost < 0.)
-			resistance = min(resistance, heat / -heatCost);
-
-		// Update the stat, energy, heat, and fuel given how much resistance is being used.
-		if(resistance > 0.)
-		{
-			stat = max(0., .99 * stat - resistance);
-			energy -= resistance * energyCost;
-			fuel -= resistance * fuelCost;
-			heat += resistance * heatCost;
-		}
-		else
-			stat = max(0., .99 * stat);
 	}
 
 	// Get an overview of how many weapon-outfits are equipped.
@@ -556,11 +492,11 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "crew" && hasValue)
 			crew = static_cast<int>(child.Value(1));
 		else if(key == "fuel" && hasValue)
-			fuel = child.Value(1);
+			levels.fuel = child.Value(1);
 		else if(key == "shields" && hasValue)
-			shields = child.Value(1);
+			levels.shields = child.Value(1);
 		else if(key == "hull" && hasValue)
-			hull = child.Value(1);
+			levels.hull = child.Value(1);
 		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
 		else if(key == "system" && hasValue)
@@ -787,6 +723,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			}
 		}
 	}
+	attrHandler.Update(attributes);
 	if(!undefinedOutfits.empty())
 	{
 		bool plural = undefinedOutfits.size() > 1;
@@ -1058,9 +995,9 @@ void Ship::Save(DataWriter &out) const
 
 		cargo.Save(out);
 		out.Write("crew", crew);
-		out.Write("fuel", fuel);
-		out.Write("shields", shields);
-		out.Write("hull", hull);
+		out.Write("fuel", levels.fuel);
+		out.Write("shields", levels.shields);
+		out.Write("hull", levels.hull);
 		out.Write("position", position.X(), position.Y());
 
 		for(const EnginePoint &point : enginePoints)
@@ -1440,15 +1377,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	else
 		zoom = 1.;
 	// Make sure various special status values are reset.
-	heat = IdleHeat();
-	ionization = 0.;
-	scrambling = 0.;
-	disruption = 0.;
-	slowness = 0.;
-	discharge = 0.;
-	corrosion = 0.;
-	leakage = 0.;
-	burning = 0.;
+	levels.heat = IdleHeat();
+	attrHandler.ClearDoT(levels);
 	shieldDelay = 0;
 	hullDelay = 0;
 	disabledRecoveryCounter = 0;
@@ -1789,17 +1719,17 @@ void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 
 				// This ship will refuel naturally based on the carrier's fuel
 				// collection, but the carrier may have some reserves to spare.
-				double maxFuel = bay.ship->attributes.Get("fuel capacity");
+				double maxFuel = bay.ship->attrHandler.capacity.fuel;
 				if(maxFuel)
 				{
-					double spareFuel = fuel - navigation.JumpFuel();
+					double spareFuel = levels.fuel - navigation.JumpFuel();
 					if(spareFuel > 0.)
 						TransferFuel(spareFuel, bay.ship.get());
 					// If still low or out-of-fuel, re-stock the carrier and don't
 					// launch, except if some ammo was taken (since we can fight).
-					if(!tookAmmo && bay.ship->fuel < .25 * maxFuel)
+					if(!tookAmmo && bay.ship->levels.fuel < .25 * maxFuel)
 					{
-						TransferFuel(bay.ship->fuel, this);
+						TransferFuel(bay.ship->levels.fuel, this);
 						continue;
 					}
 				}
@@ -1857,7 +1787,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		SetShipToAssist(shared_ptr<Ship>());
 		SetTargetShip(shared_ptr<Ship>());
 		bool helped = victim->isDisabled;
-		victim->hull = min(max(victim->hull, victim->MinimumHull() * 1.5), victim->MaxHull());
+		victim->levels.hull = min(max(victim->levels.hull, victim->MinimumHull() * 1.5), victim->MaxHull());
 		victim->isDisabled = false;
 		// Transfer some fuel if needed.
 		if(victim->NeedsFuel() && CanRefuel(*victim))
@@ -1866,10 +1796,11 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
 		}
 		// Transfer some energy, if needed.
-		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200.)
+		if(victim->attrHandler.capacity.energy > 0 && victim->levels.energy < 200.)
 		{
 			helped = true;
-			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
+			double toGive = max(attrHandler.capacity.energy * 0.1, victim->attrHandler.capacity.energy
+				* 0.2);
 			TransferEnergy(max(200., toGive), victim.get());
 		}
 		if(helped)
@@ -1884,8 +1815,8 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 	// If the boarding ship is the player, they will choose what to plunder.
 	// Always take fuel and energy if you can.
-	victim->TransferFuel(victim->fuel, this);
-	victim->TransferEnergy(victim->energy, this);
+	victim->TransferFuel(victim->levels.fuel, this);
+	victim->TransferEnergy(victim->levels.energy, this);
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
@@ -2107,7 +2038,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 	tractorBeamRange = 0.;
 	tractorFlotsam.clear();
 
-	double jamChance = CalculateJamChance(scrambling);
+	double jamChance = CalculateJamChance(levels.scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2115,8 +2046,8 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(!weapon)
 			continue;
-		CanFireResult canFire = CanFire(weapon);
-		if(canFire == CanFireResult::CAN_FIRE)
+		ShipAttributeHandler::CanFireResult canFire = CanFire(weapon);
+		if(canFire == ShipAttributeHandler::CanFireResult::CAN_FIRE)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
@@ -2135,7 +2066,8 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 			}
 		}
 		else if(emptySoundsTimer && !(*emptySoundsTimer)[i]
-			&& (canFire == CanFireResult::NO_AMMO || canFire == CanFireResult::NO_FUEL)
+			&& (canFire == ShipAttributeHandler::CanFireResult::NO_AMMO
+				|| canFire == ShipAttributeHandler::CanFireResult::NO_FUEL)
 			&& firingCommands.HasFire(i) && hardpoints[i].IsReady())
 		{
 			Audio::Play(weapon->EmptySound(), SoundCategory::WEAPON);
@@ -2170,7 +2102,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	if(CannotAct(Ship::ActionType::FIRE))
 		return false;
 
-	double jamChance = CalculateJamChance(scrambling);
+	double jamChance = CalculateJamChance(levels.scrambling);
 
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
@@ -2178,7 +2110,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(!weapon)
 			continue;
-		if(CanFire(weapon) == CanFireResult::CAN_FIRE)
+		if(CanFire(weapon) == ShipAttributeHandler::CanFireResult::CAN_FIRE)
 			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
@@ -2211,7 +2143,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 			return pullVector;
 	}
 
-	double jamChance = CalculateJamChance(scrambling);
+	double jamChance = CalculateJamChance(levels.scrambling);
 
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	const vector<Hardpoint> &hardpoints = armament.Get();
@@ -2220,7 +2152,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 		const Weapon *weapon = hardpoints[i].GetWeapon();
 		if(!weapon)
 			continue;
-		if(CanFire(weapon) == CanFireResult::CAN_FIRE)
+		if(CanFire(weapon) == ShipAttributeHandler::CanFireResult::CAN_FIRE)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
@@ -2272,7 +2204,7 @@ bool Ship::IsCapturable() const
 bool Ship::IsTargetable() const
 {
 	return (zoom == 1.f && !explosionRate && !forget && !isInvisible && !IsCloaked()
-		&& hull >= 0. && hyperspaceCount < 70);
+		&& levels.hull >= 0. && hyperspaceCount < 70);
 }
 
 
@@ -2286,19 +2218,19 @@ bool Ship::IsOverheated() const
 
 bool Ship::IsIonized() const
 {
-	if(!ionization)
+	if(!levels.ionization)
 		return false;
 
 	// A ship can only be fully ionized if its engines or weapons require energy.
-	bool usesEnergy = attributes.Get("thrusting energy") > 0
-		|| attributes.Get("reverse thrusting energy") > 0
-		|| attributes.Get("turning energy") > 0
+	bool usesEnergy = attrHandler.thrust.energy > 0
+		|| attrHandler.reverseThrust.energy > 0
+		|| attrHandler.turn.energy > 0
 		|| any_of(outfits.begin(), outfits.end(), [](const auto &it) -> bool {
 			const Weapon *weapon = it.first->GetWeapon().get();
 			return weapon && weapon->FiringEnergy() > 0;
 		});
 
-	return usesEnergy ? ionization > energy : false;
+	return usesEnergy ? levels.ionization > levels.energy : false;
 }
 
 
@@ -2310,7 +2242,7 @@ bool Ship::IsDisabled() const
 
 	double minimumHull = MinimumHull();
 	bool needsCrew = RequiredCrew() != 0;
-	return (hull < minimumHull || (!crew && needsCrew));
+	return (levels.hull < minimumHull || (!crew && needsCrew));
 }
 
 
@@ -2471,7 +2403,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 	// Check if the target system is valid and there is enough fuel to jump.
 	pair<JumpType, double> jumpUsed = navigation.GetCheapestJumpType(targetSystem);
 	double fuelCost = jumpUsed.second;
-	if(!fuelCost || fuel < fuelCost)
+	if(!fuelCost || levels.fuel < fuelCost)
 		return false;
 
 	Point direction = targetSystem->Position() - currentSystem->Position();
@@ -2584,8 +2516,8 @@ const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
 // created as a derelict.
 void Ship::Disable()
 {
-	shields = 0.;
-	hull = min(hull, .5 * MinimumHull());
+	levels.shields = 0.;
+	levels.hull = min(levels.hull, .5 * MinimumHull());
 	isDisabled = true;
 }
 
@@ -2594,7 +2526,7 @@ void Ship::Disable()
 // Mark a ship as destroyed.
 void Ship::Destroy()
 {
-	hull = -1.;
+	levels.hull = -1.;
 }
 
 
@@ -2610,7 +2542,7 @@ void Ship::SelfDestruct()
 
 void Ship::Restore()
 {
-	hull = 0.;
+	levels.hull = 0.;
 	explosionCount = 0;
 	explosionRate = 0;
 	UnmarkForRemoval();
@@ -2630,7 +2562,7 @@ bool Ship::IsDamaged() const
 // Check if this ship has been destroyed.
 bool Ship::IsDestroyed() const
 {
-	return (hull < 0.);
+	return (levels.hull < 0.);
 }
 
 
@@ -2647,23 +2579,16 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 	pilotOkay = 0;
 
 	if((rechargeType & Port::RechargeType::Shields) || attributes.Get("shield generation"))
-		shields = MaxShields();
+		levels.shields = MaxShields();
 	if((rechargeType & Port::RechargeType::Hull) || attributes.Get("hull repair rate"))
-		hull = MaxHull();
+		levels.hull = MaxHull();
 	if((rechargeType & Port::RechargeType::Energy) || attributes.Get("energy generation"))
-		energy = attributes.Get("energy capacity");
+		levels.energy = attrHandler.capacity.energy;
 	if((rechargeType & Port::RechargeType::Fuel) || attributes.Get("fuel generation"))
-		fuel = attributes.Get("fuel capacity");
+		levels.fuel = attrHandler.capacity.fuel;
 
-	heat = IdleHeat();
-	ionization = 0.;
-	scrambling = 0.;
-	disruption = 0.;
-	slowness = 0.;
-	discharge = 0.;
-	corrosion = 0.;
-	leakage = 0.;
-	burning = 0.;
+	levels.heat = IdleHeat();
+	attrHandler.ClearDoT(levels);
 	shieldDelay = 0;
 	hullDelay = 0;
 	disabledRecoveryCounter = 0;
@@ -2673,28 +2598,29 @@ void Ship::Recharge(int rechargeType, bool hireCrew)
 
 bool Ship::CanRefuel(const Ship &other) const
 {
-	return (fuel - navigation.JumpFuel(targetSystem) >= other.JumpFuelMissing());
+	return (levels.fuel - navigation.JumpFuel(targetSystem) >= other.JumpFuelMissing());
 }
 
 
 
 bool Ship::CanGiveEnergy(const Ship &other) const
 {
-	double toGive = min(other.attributes.Get("energy capacity"), max(200., other.attributes.Get("energy capacity") * 0.2));
-	return energy >= 2 * toGive;
+	double energyCap = other.attrHandler.capacity.energy;
+	double toGive = min(energyCap, max(200., energyCap * 0.2));
+	return levels.energy >= 2 * toGive;
 }
 
 
 
 double Ship::TransferFuel(double amount, Ship *to)
 {
-	amount = max(fuel - attributes.Get("fuel capacity"), amount);
+	amount = max(levels.fuel - attrHandler.capacity.fuel, amount);
 	if(to)
 	{
-		amount = min(to->attributes.Get("fuel capacity") - to->fuel, amount);
-		to->fuel += amount;
+		amount = min(to->attrHandler.capacity.fuel - to->levels.fuel, amount);
+		to->levels.fuel += amount;
 	}
-	fuel -= amount;
+	levels.fuel -= amount;
 	return amount;
 }
 
@@ -2702,13 +2628,13 @@ double Ship::TransferFuel(double amount, Ship *to)
 
 double Ship::TransferEnergy(double amount, Ship *to)
 {
-	amount = max(energy - attributes.Get("energy capacity"), amount);
+	amount = max(levels.energy - attrHandler.capacity.energy, amount);
 	if(to)
 	{
-		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
-		to->energy += amount;
+		amount = min(to->attrHandler.capacity.energy - to->levels.energy, amount);
+		to->levels.energy += amount;
 	}
-	energy -= amount;
+	levels.energy -= amount;
 	return amount;
 }
 
@@ -2720,7 +2646,7 @@ double Ship::TransferEnergy(double amount, Ship *to)
 int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 {
 	// Repair up to the point where this ship is just barely not disabled.
-	hull = min(max(hull, MinimumHull() * 1.5), MaxHull());
+	levels.hull = min(max(levels.hull, MinimumHull() * 1.5), MaxHull());
 	isDisabled = false;
 
 	// Set the new government.
@@ -2789,7 +2715,7 @@ void Ship::ClearTargetsAndOrders()
 double Ship::Shields() const
 {
 	double maximum = MaxShields();
-	return maximum ? min(1., shields / maximum) : 0.;
+	return maximum ? min(1., levels.shields / maximum) : 0.;
 }
 
 
@@ -2797,23 +2723,23 @@ double Ship::Shields() const
 double Ship::Hull() const
 {
 	double maximum = MaxHull();
-	return maximum ? min(1., hull / maximum) : 1.;
+	return maximum ? min(1., levels.hull / maximum) : 1.;
 }
 
 
 
 double Ship::Fuel() const
 {
-	double maximum = attributes.Get("fuel capacity");
-	return maximum ? min(1., fuel / maximum) : 0.;
+	double maximum = attrHandler.capacity.fuel;
+	return maximum ? min(1., levels.fuel / maximum) : 0.;
 }
 
 
 
 double Ship::Energy() const
 {
-	double maximum = attributes.Get("energy capacity");
-	return maximum ? min(1., energy / maximum) : (hull > 0.) ? 1. : 0.;
+	double maximum = attrHandler.capacity.energy;
+	return maximum ? min(1., levels.energy / maximum) : (levels.hull > 0.) ? 1. : 0.;
 }
 
 
@@ -2823,7 +2749,7 @@ double Ship::Energy() const
 double Ship::Heat() const
 {
 	double maximum = MaximumHeat();
-	return maximum ? heat / maximum : 1.;
+	return maximum ? levels.heat / maximum : 1.;
 }
 
 
@@ -2838,9 +2764,9 @@ double Ship::Health() const
 	if(divisor <= 0. || hullDivisor <= 0.)
 		return 0.;
 
-	double spareHull = hull - minimumHull;
+	double spareHull = levels.hull - minimumHull;
 	// Consider hull-only and pooled health, compensating for any reductions by disruption damage.
-	return min(spareHull / hullDivisor, (spareHull + shields / (1. + disruption * .01)) / divisor);
+	return min(spareHull / hullDivisor, (spareHull + levels.shields / (1. + levels.disruption * .01)) / divisor);
 }
 
 
@@ -2859,13 +2785,14 @@ double Ship::DisabledHull() const
 // Get the maximum shield and hull values of the ship, accounting for multipliers.
 double Ship::MaxShields() const
 {
-	return attributes.Get("shields") * (1 + attributes.Get("shield multiplier"));
+	return attrHandler.capacity.shields;
 }
+
 
 
 double Ship::MaxHull() const
 {
-	return attributes.Get("hull") * (1 + attributes.Get("hull multiplier"));
+	return attrHandler.capacity.hull;
 }
 
 
@@ -2873,7 +2800,7 @@ double Ship::MaxHull() const
 // Get the absolute shield level of the ship.
 double Ship::ShieldLevel() const
 {
-	return shields;
+	return levels.shields;
 }
 
 
@@ -2881,7 +2808,7 @@ double Ship::ShieldLevel() const
 // Get the absolute hull level of the ship.
 double Ship::HullLevel() const
 {
-	return hull;
+	return levels.hull;
 }
 
 
@@ -2889,7 +2816,7 @@ double Ship::HullLevel() const
 // Get the absolute fuel level of the ship.
 double Ship::FuelLevel() const
 {
-	return fuel;
+	return levels.fuel;
 }
 
 
@@ -2897,7 +2824,7 @@ double Ship::FuelLevel() const
 // Get how disrupted this ship's shields are.
 double Ship::DisruptionLevel() const
 {
-	return disruption;
+	return levels.disruption;
 }
 
 
@@ -2910,7 +2837,7 @@ double Ship::HullUntilDisabled() const
 	// Ships become disabled when they surpass their minimum hull threshold,
 	// not when they are directly on it, so account for this by adding a small amount
 	// of hull above the current hull level.
-	return max(0., hull + 0.25 - MinimumHull());
+	return max(0., levels.hull + 0.25 - MinimumHull());
 }
 
 
@@ -2945,7 +2872,7 @@ int Ship::JumpsRemaining(bool followParent) const
 	}
 	if(!jumpFuel)
 		jumpFuel = navigation.JumpFuel(targetSystem);
-	return jumpFuel ? fuel / jumpFuel : 0.;
+	return jumpFuel ? levels.fuel / jumpFuel : 0.;
 }
 
 
@@ -2963,14 +2890,14 @@ bool Ship::NeedsFuel(bool followParent) const
 	}
 	if(!jumpFuel)
 		jumpFuel = navigation.JumpFuel(targetSystem);
-	return (fuel < jumpFuel) && (attributes.Get("fuel capacity") >= jumpFuel);
+	return (levels.fuel < jumpFuel) && (attrHandler.capacity.fuel >= jumpFuel);
 }
 
 
 
 bool Ship::NeedsEnergy() const
 {
-	return attributes.Get("energy capacity") && !energy && !attributes.Get("energy generation")
+	return attrHandler.capacity.energy && !levels.energy && !attributes.Get("energy generation")
 			&& !attributes.Get("fuel energy") && !attributes.Get("solar collection");
 }
 
@@ -2981,10 +2908,10 @@ double Ship::JumpFuelMissing() const
 	// Used for smart refueling: transfer only as much as really needed
 	// includes checking if fuel cap is high enough at all
 	double jumpFuel = navigation.JumpFuel(targetSystem);
-	if(!jumpFuel || fuel > jumpFuel || jumpFuel > attributes.Get("fuel capacity"))
+	if(!jumpFuel || levels.fuel > jumpFuel || jumpFuel > attrHandler.capacity.fuel)
 		return 0.;
 
-	return jumpFuel - fuel;
+	return jumpFuel - levels.fuel;
 }
 
 
@@ -3071,7 +2998,7 @@ double Ship::CoolingEfficiency() const
 	// that create "cooling inefficiency", and as that value increases the
 	// efficiency stays high for a while, then drops off, then approaches 0.
 	double x = attributes.Get("cooling inefficiency");
-	return 2. + 2. / (1. + exp(x / -2.)) - 4. / (1. + exp(x / -4.));
+	return x ? 2. + 2. / (1. + exp(x / -2.)) - 4. / (1. + exp(x / -4.)) : 1;
 }
 
 
@@ -3157,7 +3084,7 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
-	return attributes.Get("turn") / InertialMass()
+	return attrHandler.turn.wildcard / InertialMass()
 		* (1. + attributes.Get("turn multiplier"));
 }
 
@@ -3165,7 +3092,7 @@ double Ship::TurnRate() const
 
 double Ship::TrueTurnRate() const
 {
-	return TurnRate() * 1. / (1. + slowness * .05);
+	return TurnRate() * 1. / (1. + levels.slowness * .05);
 }
 
 
@@ -3180,8 +3107,8 @@ double Ship::CrewTurnRate() const
 
 double Ship::Acceleration() const
 {
-	double thrust = attributes.Get("thrust");
-	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
+	double thrust = attrHandler.thrust.wildcard;
+	return (thrust ? thrust : attrHandler.afterburnerThrust.wildcard) / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
 }
 
@@ -3189,7 +3116,7 @@ double Ship::Acceleration() const
 
 double Ship::TrueAcceleration() const
 {
-	return Acceleration() * 1. / (1. + slowness * .05);
+	return Acceleration() * 1. / (1. + levels.slowness * .05);
 }
 
 
@@ -3207,8 +3134,8 @@ double Ship::MaxVelocity(bool withAfterburner) const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	double thrust = attributes.Get("thrust");
-	double afterburnerThrust = attributes.Get("afterburner thrust");
+	double thrust = attrHandler.thrust.wildcard;
+	double afterburnerThrust = attrHandler.afterburnerThrust.wildcard;
 	return (thrust ? thrust + afterburnerThrust * withAfterburner : afterburnerThrust) / Drag();
 }
 
@@ -3216,7 +3143,7 @@ double Ship::MaxVelocity(bool withAfterburner) const
 
 double Ship::ReverseAcceleration() const
 {
-	return attributes.Get("reverse thrust") / InertialMass()
+	return attrHandler.reverseThrust.wildcard / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
 }
 
@@ -3224,7 +3151,7 @@ double Ship::ReverseAcceleration() const
 
 double Ship::MaxReverseVelocity() const
 {
-	return attributes.Get("reverse thrust") / Drag();
+	return attrHandler.reverseThrust.wildcard / Drag();
 }
 
 
@@ -3262,42 +3189,27 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
 
-	shields -= damage.Shield();
-	if(damage.Shield() && !isDisabled)
+	attrHandler.Damage(levels, damage.Levels());
+	if(damage.Levels().shields && !isDisabled)
 	{
 		int disabledDelay = attributes.Get("depleted shield delay");
-		shieldDelay = max<int>(shieldDelay, (shields <= 0. && disabledDelay)
+		shieldDelay = max<int>(shieldDelay, (levels.shields <= 0. && disabledDelay)
 			? disabledDelay : attributes.Get("shield delay"));
 	}
-	hull -= damage.Hull();
-	if(damage.Hull() && !isDisabled)
+	if(damage.Levels().hull && !isDisabled)
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("repair delay")));
-
-	energy -= damage.Energy();
-	heat += damage.Heat();
-	fuel -= damage.Fuel();
-
-	discharge += damage.Discharge();
-	corrosion += damage.Corrosion();
-	ionization += damage.Ion();
-	scrambling += damage.Scrambling();
-	burning += damage.Burn();
-	leakage += damage.Leak();
-
-	disruption += damage.Disruption();
-	slowness += damage.Slowing();
 
 	if(damage.HitForce())
 		ApplyForce(damage.HitForce(), damage.GetWeapon().IsGravitational());
 
 	// Prevent various stats from reaching unallowable values.
-	hull = min(hull, MaxHull());
-	shields = min(shields, MaxShields());
+	levels.hull = min(levels.hull, MaxHull());
+	levels.shields = min(levels.shields, MaxShields());
 	// Weapons are allowed to overcharge a ship's energy or fuel, but code in Ship::DoGeneration()
 	// will clamp it to a maximum value at the beginning of the next frame.
-	energy = max(0., energy);
-	fuel = max(0., fuel);
-	heat = max(0., heat);
+	levels.energy = max(0., levels.energy);
+	levels.fuel = max(0., levels.fuel);
+	levels.heat = max(0., levels.heat);
 
 	// Recalculate the disabled ship check.
 	isDisabled = true;
@@ -3321,26 +3233,26 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
-	if(heat > MaximumHeat())
+	if(levels.heat > MaximumHeat())
 	{
 		isOverheated = true;
 		isDisabled = true;
 	}
-	else if(heat < .9 * MaximumHeat())
+	else if(levels.heat < .9 * MaximumHeat())
 		isOverheated = false;
 
 	// If this ship did not consider itself an enemy of the ship that hit it,
 	// it is now "provoked" against that government.
 	if(sourceGovernment && !sourceGovernment->IsEnemy(government)
 			&& !personality.IsPacifist() && (!personality.IsForbearing()
-				|| ((damage.Shield() || damage.Discharge()) && Shields() < .9)
-				|| ((damage.Hull() || damage.Corrosion()) && Hull() < .9)
-				|| ((damage.Heat() || damage.Burn()) && isOverheated)
-				|| ((damage.Energy() || damage.Ion()) && Energy() < 0.5)
-				|| ((damage.Fuel() || damage.Leak()) && fuel < navigation.JumpFuel() * 2.)
-				|| (damage.Scrambling() && CalculateJamChance(scrambling) > 0.1)
-				|| (damage.Slowing() && slowness > 10.)
-				|| (damage.Disruption() && disruption > 100.)))
+				|| ((damage.Levels().shields || damage.Levels().discharge) && Shields() < .9)
+				|| ((damage.Levels().hull || damage.Levels().corrosion) && Hull() < .9)
+				|| ((damage.Levels().heat || damage.Levels().burning) && isOverheated)
+				|| ((damage.Levels().energy || damage.Levels().ionization) && Energy() < 0.5)
+				|| ((damage.Levels().fuel || damage.Levels().leakage) && levels.fuel < navigation.JumpFuel() * 2.)
+				|| (damage.Levels().scrambling && CalculateJamChance(levels.scrambling) > 0.1)
+				|| (damage.Levels().slowness && levels.slowness > 10.)
+				|| (damage.Levels().disruption && levels.disruption > 100.)))
 		type |= ShipEvent::PROVOKE;
 
 	// Create target effect visuals, if there are any.
@@ -3474,7 +3386,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 
 			// Return unused fuel and ammunition to the carrier, so they may
 			// be used by the carrier or other fighters.
-			ship->TransferFuel(ship->fuel, this);
+			ship->TransferFuel(ship->levels.fuel, this);
 
 			// Determine the ammunition the fighter can supply.
 			auto restockable = ship->GetArmament().RestockableAmmo();
@@ -3564,7 +3476,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
-	heat -= tons * MAXIMUM_TEMPERATURE * Heat();
+	levels.heat -= tons * MAXIMUM_TEMPERATURE * Heat();
 
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
@@ -3591,7 +3503,7 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
 	double mass = outfit->Mass();
-	heat -= count * mass * MAXIMUM_TEMPERATURE * Heat();
+	levels.heat -= count * mass * MAXIMUM_TEMPERATURE * Heat();
 
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
@@ -3654,6 +3566,7 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		}
 		int after = outfits.count(outfit);
 		attributes.Add(*outfit, count);
+		attrHandler.Update(attributes);
 		if(outfit->GetWeapon())
 		{
 			armament.Add(outfit, count);
@@ -3669,8 +3582,12 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 			if(isYours)
 				attraction = CalculateAttraction();
 		}
+		// Outfits that change hull capacity also change the current hull strength,
+		// as the change in strength presumably comes from the outfit itself.
+		// Outfits that change shield, energy, or fuel capacity don't come with free shields, energy, or fuel,
+		// and must instead be recharged.
 		if(outfit->Get("hull"))
-			hull += outfit->Get("hull") * count;
+			levels.hull += outfit->Get("hull") * count;
 		// If the added or removed outfit is a hyperdrive or jump drive, recalculate this
 		// ship's jump navigation. Hyperdrives and jump drives of the same type don't stack,
 		// so only do this if the outfit is either completely new or has been completely removed.
@@ -3704,40 +3621,16 @@ const vector<Hardpoint> &Ship::Weapons() const
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
 // Assume the weapon is valid.
-Ship::CanFireResult Ship::CanFire(const Weapon *weapon) const
+ShipAttributeHandler::CanFireResult Ship::CanFire(const Weapon *weapon) const
 {
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
 		if(it == outfits.end() || it->second < weapon->AmmoUsage())
-			return CanFireResult::NO_AMMO;
+			return ShipAttributeHandler::CanFireResult::NO_AMMO;
 	}
 
-	if(weapon->ConsumesEnergy()
-			&& energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
-		return CanFireResult::NO_ENERGY;
-	if(weapon->ConsumesFuel()
-			&& fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
-		return CanFireResult::NO_FUEL;
-	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
-	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(weapon->ConsumesHull() && hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
-		return CanFireResult::NO_HULL;
-
-	// If a weapon requires heat to fire, (rather than generating heat), we must
-	// have enough heat to spare.
-	if(weapon->ConsumesHeat() && heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
-			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
-		return CanFireResult::NO_HEAT;
-	// Repeat this for various effects which shouldn't drop below 0.
-	if(weapon->ConsumesIonization() && ionization < -weapon->FiringIon())
-		return CanFireResult::NO_ION;
-	if(weapon->ConsumesDisruption() && disruption < -weapon->FiringDisruption())
-		return CanFireResult::NO_DISRUPTION;
-	if(weapon->ConsumesSlowing() && slowness < -weapon->FiringSlowing())
-		return CanFireResult::NO_SLOWING;
-
-	return CanFireResult::CAN_FIRE;
+	return attrHandler.CanFire(levels, attrHandler.FiringCost(*weapon, *this));
 }
 
 
@@ -3749,38 +3642,21 @@ void Ship::ExpendAmmo(const Weapon &weapon)
 {
 	// Compute this ship's initial capacities, in case the consumption of the ammunition outfit(s)
 	// modifies them, so that relative costs are calculated based on the pre-firing state of the ship.
-	const double relativeEnergyChange = weapon.RelativeFiringEnergy() * attributes.Get("energy capacity");
-	const double relativeFuelChange = weapon.RelativeFiringFuel() * attributes.Get("fuel capacity");
-	const double relativeHeatChange = !weapon.RelativeFiringHeat() ? 0. : weapon.RelativeFiringHeat() * MaximumHeat();
-	const double relativeHullChange = weapon.RelativeFiringHull() * MaxHull();
-	const double relativeShieldChange = weapon.RelativeFiringShields() * MaxShields();
+	ResourceLevels firingCost = attrHandler.FiringCost(weapon, *this);
 
 	if(const Outfit *ammo = weapon.Ammo())
 	{
 		// Some amount of the ammunition mass to be removed from the ship carries thermal energy.
 		// A realistic fraction applicable to all cases cannot be computed, so assume 50%.
-		heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
+		levels.heat -= weapon.AmmoUsage() * .5 * ammo->Mass() * MAXIMUM_TEMPERATURE * Heat();
 		AddOutfit(ammo, -weapon.AmmoUsage());
 		// Recalculate the AI to account for the loss of this weapon.
 		if(!OutfitCount(ammo) && ammo->GetWeapon() && ammo->GetWeapon()->AmmoUsage())
 			aiCache.Calibrate(*this);
 	}
 
-	energy -= weapon.FiringEnergy() + relativeEnergyChange;
-	fuel -= weapon.FiringFuel() + relativeFuelChange;
-	heat += weapon.FiringHeat() + relativeHeatChange;
-	shields -= weapon.FiringShields() + relativeShieldChange;
-
 	// Since weapons fire from within the shields, hull and "status" damages are dealt in full.
-	hull -= weapon.FiringHull() + relativeHullChange;
-	ionization += weapon.FiringIon();
-	scrambling += weapon.FiringScramble();
-	disruption += weapon.FiringDisruption();
-	slowness += weapon.FiringSlowing();
-	discharge += weapon.FiringDischarge();
-	corrosion += weapon.FiringCorrosion();
-	leakage += weapon.FiringLeak();
-	burning += weapon.FiringBurn();
+	attrHandler.Damage(levels, firingCost);
 }
 
 
@@ -3986,7 +3862,7 @@ bool Ship::StepFlags()
 		return true;
 	}
 	isInSystem = false;
-	if(!fuel || !(navigation.HasHyperdrive() || navigation.HasJumpDrive()))
+	if(!levels.fuel || !(navigation.HasHyperdrive() || navigation.HasJumpDrive()))
 		hyperspaceSystem = nullptr;
 	return false;
 }
@@ -4001,7 +3877,7 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 		return 0;
 
 	// Make sure the shields are zero, as well as the hull.
-	shields = 0.;
+	levels.shields = 0.;
 
 	// Once we've created enough little explosions, die.
 	if(explosionCount == explosionTotal || forget)
@@ -4064,11 +3940,7 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 				if(bay.ship)
 					bay.ship->Destroy();
 		}
-		energy = 0.;
-		heat = 0.;
-		ionization = 0.;
-		scrambling = 0.;
-		fuel = 0.;
+		attrHandler.Kill(levels);
 		velocity = Point();
 		MarkForRemoval();
 		return 1;
@@ -4130,39 +4002,23 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		const double hullAvailable = (attributes.Get("hull repair rate")
-			+ (hullDelay ? 0 : attributes.Get("delayed hull repair rate")))
-			* (1. + attributes.Get("hull repair multiplier"))
-			* (1. + attributes.Get("cloaked repair multiplier") * Cloaking());
-		const double hullEnergy = (attributes.Get("hull energy")
-			+ (hullDelay ? 0 : attributes.Get("delayed hull energy")))
-			* (1. + attributes.Get("hull energy multiplier")) / hullAvailable;
-		const double hullFuel = (attributes.Get("hull fuel")
-			+ (hullDelay ? 0 : attributes.Get("delayed hull fuel")))
-			* (1. + attributes.Get("hull fuel multiplier")) / hullAvailable;
-		const double hullHeat = (attributes.Get("hull heat")
-			+ (hullDelay ? 0 : attributes.Get("delayed hull heat")))
-			* (1. + attributes.Get("hull heat multiplier")) / hullAvailable;
-		double hullRemaining = hullAvailable;
-		DoRepair(hull, hullRemaining, MaxHull(),
-			energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+		ResourceLevels repairLevels = hullDelay ? attrHandler.hullRepair : attrHandler.hullRepairNoDelay;
+		double hullRemaining = attrHandler.hullRepair.wildcard
+			* (1. + attributes.Get("cloaked repair multiplier") * Cloaking());;
+		// Save hull repair costs as per unit of hull repaired.
+		repairLevels.energy /= hullRemaining;
+		repairLevels.fuel /= hullRemaining;
+		repairLevels.hull /= hullRemaining;
+		attrHandler.DoRepair(levels.hull, hullRemaining, MaxHull(), levels, repairLevels);
 
-		const double shieldsAvailable = (attributes.Get("shield generation")
-			+ (shieldDelay ? 0 : attributes.Get("delayed shield generation")))
-			* (1. + attributes.Get("shield generation multiplier"))
+		ResourceLevels regenLevels = shieldDelay ? attrHandler.shieldRegen : attrHandler.shieldRegenNoDelay;
+		double shieldsRemaining = attrHandler.shieldRegen.wildcard
 			* (1. + attributes.Get("cloaked regen multiplier") * Cloaking());
-		const double shieldsEnergy = (attributes.Get("shield energy")
-			+ (shieldDelay ? 0 : attributes.Get("delayed shield energy")))
-			* (1. + attributes.Get("shield energy multiplier")) / shieldsAvailable;
-		const double shieldsFuel = (attributes.Get("shield fuel")
-			+ (shieldDelay ? 0 : attributes.Get("delayed shield fuel")))
-			* (1. + attributes.Get("shield fuel multiplier")) / shieldsAvailable;
-		const double shieldsHeat = (attributes.Get("shield heat")
-			+ (shieldDelay ? 0 : attributes.Get("delayed shield heat")))
-			* (1. + attributes.Get("shield heat multiplier")) / shieldsAvailable;
-		double shieldsRemaining = shieldsAvailable;
-		DoRepair(shields, shieldsRemaining, MaxShields(),
-			energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
+		// Save shield regen costs as per unit of shield regen.
+		regenLevels.energy /= shieldsRemaining;
+		regenLevels.fuel /= shieldsRemaining;
+		regenLevels.hull /= shieldsRemaining;
+		attrHandler.DoRepair(levels.shields, shieldsRemaining, MaxShields(), levels, regenLevels);
 
 		if(!bays.empty())
 		{
@@ -4186,24 +4042,24 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(!hullDelay)
-					DoRepair(ship.hull, hullRemaining, ship.MaxHull(),
-						energy, hullEnergy, fuel, hullFuel, heat, hullHeat);
+					attrHandler.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(),
+						levels, repairLevels);
 				if(!shieldDelay)
-					DoRepair(ship.shields, shieldsRemaining, ship.MaxShields(),
-						energy, shieldsEnergy, fuel, shieldsFuel, heat, shieldsHeat);
+					attrHandler.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(),
+						levels, regenLevels);
 			}
 
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
-			double energyRemaining = energy - attributes.Get("energy capacity");
-			double fuelRemaining = fuel - attributes.Get("fuel capacity");
+			double energyRemaining = levels.energy - attrHandler.capacity.energy;
+			double fuelRemaining = levels.fuel - attrHandler.capacity.fuel;
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
 				if(energyRemaining > 0.)
-					DoRepair(ship.energy, energyRemaining, ship.attributes.Get("energy capacity"));
+					Transfer(ship.levels.energy, energyRemaining, ship.attrHandler.capacity.energy);
 				if(fuelRemaining > 0.)
-					DoRepair(ship.fuel, fuelRemaining, ship.attributes.Get("fuel capacity"));
+					Transfer(ship.levels.fuel, fuelRemaining, ship.attrHandler.capacity.fuel);
 			}
 
 			// Carried ships can recharge energy from their parent's batteries,
@@ -4212,7 +4068,7 @@ void Ship::DoGeneration()
 			{
 				Ship &ship = *it.second;
 				if(ship.HasDeployOrder())
-					DoRepair(ship.energy, energy, ship.attributes.Get("energy capacity"));
+					Transfer(ship.levels.energy, levels.energy, ship.attrHandler.capacity.energy);
 			}
 		}
 		// Decrease the shield and hull delays by 1 now that shield generation
@@ -4229,139 +4085,54 @@ void Ship::DoGeneration()
 
 		// Repair only if the counter has reached the limit and if the ship can meet the energy and fuel costs.
 		if(disabledRecoveryCounter >= attributes.Get("disabled recovery time")
-			&& energy >= disabledRepairEnergy && fuel >= disabledRepairFuel)
+			&& levels.energy >= disabledRepairEnergy && levels.fuel >= disabledRepairFuel)
 		{
-			energy -= disabledRepairEnergy;
-			fuel -= disabledRepairFuel;
+			levels.energy -= disabledRepairEnergy;
+			levels.fuel -= disabledRepairFuel;
 
-			heat += attributes.Get("disabled recovery heat");
-			ionization += attributes.Get("disabled recovery ionization");
-			scrambling += attributes.Get("disabled recovery scrambling");
-			disruption += attributes.Get("disabled recovery disruption");
-			slowness += attributes.Get("disabled recovery slowing");
-			discharge += attributes.Get("disabled recovery discharge");
-			corrosion += attributes.Get("disabled recovery corrosion");
-			leakage += attributes.Get("disabled recovery leak");
-			burning += attributes.Get("disabled recovery burning");
+			levels.heat += attributes.Get("disabled recovery heat");
+			levels.ionization += attributes.Get("disabled recovery ionization");
+			levels.scrambling += attributes.Get("disabled recovery scrambling");
+			levels.disruption += attributes.Get("disabled recovery disruption");
+			levels.slowness += attributes.Get("disabled recovery slowing");
+			levels.discharge += attributes.Get("disabled recovery discharge");
+			levels.corrosion += attributes.Get("disabled recovery corrosion");
+			levels.leakage += attributes.Get("disabled recovery leak");
+			levels.burning += attributes.Get("disabled recovery burning");
 
 			disabledRecoveryCounter = 0;
-			hull = min(max(hull, MinimumHull() * 1.5), MaxHull());
+			levels.hull = min(max(levels.hull, MinimumHull() * 1.5), MaxHull());
 			isDisabled = false;
 		}
 
 	}
 
-	// Handle ionization effects, etc.
-	shields -= discharge;
-	hull -= corrosion;
-	energy -= ionization;
-	fuel -= leakage;
-	heat += burning;
-	// TODO: Mothership gives status resistance to carried ships?
-	if(ionization)
-	{
-		double ionResistance = attributes.Get("ion resistance");
-		double ionEnergy = attributes.Get("ion resistance energy") / ionResistance;
-		double ionFuel = attributes.Get("ion resistance fuel") / ionResistance;
-		double ionHeat = attributes.Get("ion resistance heat") / ionResistance;
-		DoStatusEffect(isDisabled, ionization, ionResistance,
-			energy, ionEnergy, fuel, ionFuel, heat, ionHeat);
-	}
-
-	if(scrambling)
-	{
-		double scramblingResistance = attributes.Get("scramble resistance");
-		double scramblingEnergy = attributes.Get("scramble resistance energy") / scramblingResistance;
-		double scramblingFuel = attributes.Get("scramble resistance fuel") / scramblingResistance;
-		double scramblingHeat = attributes.Get("scramble resistance heat") / scramblingResistance;
-		DoStatusEffect(isDisabled, scrambling, scramblingResistance,
-			energy, scramblingEnergy, fuel, scramblingFuel, heat, scramblingHeat);
-	}
-
-	if(disruption)
-	{
-		double disruptionResistance = attributes.Get("disruption resistance");
-		double disruptionEnergy = attributes.Get("disruption resistance energy") / disruptionResistance;
-		double disruptionFuel = attributes.Get("disruption resistance fuel") / disruptionResistance;
-		double disruptionHeat = attributes.Get("disruption resistance heat") / disruptionResistance;
-		DoStatusEffect(isDisabled, disruption, disruptionResistance,
-			energy, disruptionEnergy, fuel, disruptionFuel, heat, disruptionHeat);
-	}
-
-	if(slowness)
-	{
-		double slowingResistance = attributes.Get("slowing resistance");
-		double slowingEnergy = attributes.Get("slowing resistance energy") / slowingResistance;
-		double slowingFuel = attributes.Get("slowing resistance fuel") / slowingResistance;
-		double slowingHeat = attributes.Get("slowing resistance heat") / slowingResistance;
-		DoStatusEffect(isDisabled, slowness, slowingResistance,
-			energy, slowingEnergy, fuel, slowingFuel, heat, slowingHeat);
-	}
-
-	if(discharge)
-	{
-		double dischargeResistance = attributes.Get("discharge resistance");
-		double dischargeEnergy = attributes.Get("discharge resistance energy") / dischargeResistance;
-		double dischargeFuel = attributes.Get("discharge resistance fuel") / dischargeResistance;
-		double dischargeHeat = attributes.Get("discharge resistance heat") / dischargeResistance;
-		DoStatusEffect(isDisabled, discharge, dischargeResistance,
-			energy, dischargeEnergy, fuel, dischargeFuel, heat, dischargeHeat);
-	}
-
-	if(corrosion)
-	{
-		double corrosionResistance = attributes.Get("corrosion resistance");
-		double corrosionEnergy = attributes.Get("corrosion resistance energy") / corrosionResistance;
-		double corrosionFuel = attributes.Get("corrosion resistance fuel") / corrosionResistance;
-		double corrosionHeat = attributes.Get("corrosion resistance heat") / corrosionResistance;
-		DoStatusEffect(isDisabled, corrosion, corrosionResistance,
-			energy, corrosionEnergy, fuel, corrosionFuel, heat, corrosionHeat);
-	}
-
-	if(leakage)
-	{
-		double leakResistance = attributes.Get("leak resistance");
-		double leakEnergy = attributes.Get("leak resistance energy") / leakResistance;
-		double leakFuel = attributes.Get("leak resistance fuel") / leakResistance;
-		double leakHeat = attributes.Get("leak resistance heat") / leakResistance;
-		DoStatusEffect(isDisabled, leakage, leakResistance,
-			energy, leakEnergy, fuel, leakFuel, heat, leakHeat);
-	}
-
-	if(burning)
-	{
-		double burnResistance = attributes.Get("burn resistance");
-		double burnEnergy = attributes.Get("burn resistance energy") / burnResistance;
-		double burnFuel = attributes.Get("burn resistance fuel") / burnResistance;
-		double burnHeat = attributes.Get("burn resistance heat") / burnResistance;
-		DoStatusEffect(isDisabled, burning, burnResistance,
-			energy, burnEnergy, fuel, burnFuel, heat, burnHeat);
-	}
+	attrHandler.DoStatusEffects(levels, isDisabled);
 
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
 	// maximum here before they gain more. This is so that, for example, a ship
 	// with no batteries but a good generator can still move.
-	energy = min(energy, attributes.Get("energy capacity"));
-	fuel = min(fuel, attributes.Get("fuel capacity"));
+	levels.energy = min(levels.energy, attrHandler.capacity.energy);
+	levels.fuel = min(levels.fuel, attrHandler.capacity.fuel);
 
-	heat -= heat * HeatDissipation();
-	if(heat > MaximumHeat())
+	levels.heat -= levels.heat * HeatDissipation();
+	if(levels.heat > MaximumHeat())
 	{
 		isOverheated = true;
 		double heatRatio = Heat() / (1. + attributes.Get("overheat damage threshold"));
 		if(heatRatio > 1.)
-			hull -= attributes.Get("overheat damage rate") * heatRatio;
+			levels.hull -= attributes.Get("overheat damage rate") * heatRatio;
 	}
-	else if(heat < .9 * MaximumHeat())
+	else if(levels.heat < .9 * MaximumHeat())
 		isOverheated = false;
 
 	double maxShields = MaxShields();
-	shields = min(shields, maxShields);
+	levels.shields = min(levels.shields, maxShields);
 	double maxHull = MaxHull();
-	hull = min(hull, maxHull);
+	levels.hull = min(levels.hull, maxHull);
 
-	isDisabled = isOverheated || hull < MinimumHull() || (!crew && RequiredCrew());
+	isDisabled = isOverheated || levels.hull < MinimumHull() || (!crew && RequiredCrew());
 
 	// Update ship supply levels.
 	if(isDisabled)
@@ -4374,49 +4145,48 @@ void Ship::DoGeneration()
 		{
 			System::SolarGeneration generation = currentSystem->GetSolarGeneration(position,
 				attributes.Get("ramscoop"), attributes.Get("solar collection"), attributes.Get("solar heat"));
-			fuel += generation.fuel;
-			energy += generation.energy;
-			heat += generation.heat;
+			levels.fuel += generation.fuel;
+			levels.energy += generation.energy;
+			levels.heat += generation.heat;
 		}
 
 		double coolingEfficiency = CoolingEfficiency();
-		energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
-		fuel += attributes.Get("fuel generation");
-		heat += attributes.Get("heat generation");
-		heat -= coolingEfficiency * attributes.Get("cooling");
+		levels.energy += attributes.Get("energy generation") - attributes.Get("energy consumption");
+		levels.fuel += attributes.Get("fuel generation");
+		levels.heat += attributes.Get("heat generation") - coolingEfficiency * attributes.Get("cooling");
 
 		// Convert fuel into energy and heat only when the required amount of fuel is available.
-		if(attributes.Get("fuel consumption") <= fuel)
+		if(attributes.Get("fuel consumption") <= levels.fuel)
 		{
-			fuel -= attributes.Get("fuel consumption");
-			energy += attributes.Get("fuel energy");
-			heat += attributes.Get("fuel heat");
+			levels.fuel -= attributes.Get("fuel consumption");
+			levels.energy += attributes.Get("fuel energy");
+			levels.heat += attributes.Get("fuel heat");
 		}
 
 		// Apply active cooling. The fraction of full cooling to apply equals
 		// your ship's current fraction of its maximum temperature.
 		double activeCooling = coolingEfficiency * attributes.Get("active cooling");
-		if(activeCooling > 0. && heat > 0. && energy >= 0.)
+		if(activeCooling > 0. && levels.heat > 0. && levels.energy >= 0.)
 		{
 			// Handle the case where "active cooling"
 			// does not require any energy.
 			double coolingEnergy = attributes.Get("cooling energy");
 			if(coolingEnergy)
 			{
-				double spentEnergy = min(energy, coolingEnergy * min(1., Heat()));
-				heat -= activeCooling * spentEnergy / coolingEnergy;
-				energy -= spentEnergy;
+				double spentEnergy = min(levels.energy, coolingEnergy * min(1., Heat()));
+				levels.heat -= activeCooling * spentEnergy / coolingEnergy;
+				levels.energy -= spentEnergy;
 			}
 			else
-				heat -= activeCooling * min(1., Heat());
+				levels.heat -= activeCooling * min(1., Heat());
 		}
 	}
 
 	// Don't allow any levels to drop below zero.
-	shields = max(0., shields);
-	energy = max(0., energy);
-	fuel = max(0., fuel);
-	heat = max(0., heat);
+	levels.shields = max(0., levels.shields);
+	levels.energy = max(0., levels.energy);
+	levels.fuel = max(0., levels.fuel);
+	levels.heat = max(0., levels.heat);
 }
 
 
@@ -4427,22 +4197,22 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 	personality.UpdateConfusion(firingCommands.IsFiring());
 
 	// Handle ionization effects, etc.
-	if(ionization)
-		CreateSparks(visuals, "ion spark", ionization * .05);
-	if(scrambling)
-		CreateSparks(visuals, "scramble spark", scrambling * .05);
-	if(disruption)
-		CreateSparks(visuals, "disruption spark", disruption * .1);
-	if(slowness)
-		CreateSparks(visuals, "slowing spark", slowness * .1);
-	if(discharge)
-		CreateSparks(visuals, "discharge spark", discharge * .1);
-	if(corrosion)
-		CreateSparks(visuals, "corrosion spark", corrosion * .1);
-	if(leakage)
-		CreateSparks(visuals, "leakage spark", leakage * .1);
-	if(burning)
-		CreateSparks(visuals, "burning spark", burning * .1);
+	if(levels.ionization)
+		CreateSparks(visuals, "ion spark", levels.ionization * .05);
+	if(levels.scrambling)
+		CreateSparks(visuals, "scramble spark", levels.scrambling * .05);
+	if(levels.disruption)
+		CreateSparks(visuals, "disruption spark", levels.disruption * .1);
+	if(levels.slowness)
+		CreateSparks(visuals, "slowing spark", levels.slowness * .1);
+	if(levels.discharge)
+		CreateSparks(visuals, "discharge spark", levels.discharge * .1);
+	if(levels.corrosion)
+		CreateSparks(visuals, "corrosion spark", levels.corrosion * .1);
+	if(levels.leakage)
+		CreateSparks(visuals, "leakage spark", levels.leakage * .1);
+	if(levels.burning)
+		CreateSparks(visuals, "burning spark", levels.burning * .1);
 }
 
 
@@ -4481,7 +4251,7 @@ void Ship::DoCloakDecision()
 	// Attempting to cloak when the cloaking device can no longer operate (because of hull damage)
 	// will result in it being uncloaked.
 	const double minimalHullForCloak = attributes.Get("cloak hull threshold");
-	if(minimalHullForCloak && (hull / attributes.Get("hull") < minimalHullForCloak))
+	if(minimalHullForCloak && (levels.hull / attrHandler.capacity.hull < minimalHullForCloak))
 		cloakDisruption = 1.;
 
 	const double cloakingSpeed = CloakingSpeed();
@@ -4490,16 +4260,16 @@ void Ship::DoCloakDecision()
 	const double cloakingHull = attributes.Get("cloaking hull");
 	const double cloakingShield = attributes.Get("cloaking shields");
 	bool canCloak = (!isDisabled && cloakingSpeed > 0. && !cloakDisruption
-		&& fuel >= cloakingFuel && energy >= cloakingEnergy
-		&& MinimumHull() < hull - cloakingHull && shields >= cloakingShield);
+		&& levels.fuel >= cloakingFuel && levels.energy >= cloakingEnergy
+		&& MinimumHull() < levels.hull - cloakingHull && levels.shields >= cloakingShield);
 	if(commands.Has(Command::CLOAK) && canCloak)
 	{
 		cloak = min(1., max(0., cloak + cloakingSpeed));
-		fuel -= cloakingFuel;
-		energy -= cloakingEnergy;
-		shields -= cloakingShield;
-		hull -= cloakingHull;
-		heat += attributes.Get("cloaking heat");
+		levels.fuel -= cloakingFuel;
+		levels.energy -= cloakingEnergy;
+		levels.shields -= cloakingShield;
+		levels.hull -= cloakingHull;
+		levels.heat += attributes.Get("cloaking heat");
 		double cloakingShieldDelay = attributes.Get("cloaking shield delay");
 		double cloakingHullDelay = attributes.Get("cloaking repair delay");
 		cloakingShieldDelay = (cloakingShieldDelay < 1.) ?
@@ -4541,7 +4311,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 	static const double HYPER_A = 2.;
 	static const double HYPER_D = 1000.;
 	if(hyperspaceSystem)
-		fuel -= hyperspaceFuelCost / HYPER_C;
+		levels.fuel -= hyperspaceFuelCost / HYPER_C;
 
 	// Create the particle effects for the jump drive. This may create 100
 	// or more particles per ship per turn at the peak of the jump.
@@ -4731,7 +4501,7 @@ bool Ship::DoLandingLogic()
 		}
 	}
 	// Only refuel if this planet has a spaceport.
-	else if(fuel >= attributes.Get("fuel capacity")
+	else if(levels.fuel >= attrHandler.capacity.fuel
 			|| !landingPlanet
 			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel, isYours))
 	{
@@ -4740,7 +4510,7 @@ bool Ship::DoLandingLogic()
 		landingPlanet = nullptr;
 	}
 	else
-		fuel = min(fuel + 1., attributes.Get("fuel capacity"));
+		levels.fuel = min(levels.fuel + 1., attrHandler.capacity.fuel);
 
 	// Move the ship at the velocity it had when it began landing, but
 	// scaled based on how small it is now.
@@ -4809,7 +4579,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 
 	double mass = InertialMass();
 	double dragForce = DragForce();
-	double slowMultiplier = 1. / (1. + slowness * .05);
+	double slowMultiplier = 1. / (1. + levels.slowness * .05);
 
 	if(isDisabled)
 		velocity *= 1. - dragForce;
@@ -4818,26 +4588,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		if(commands.Turn())
 		{
 			// Check if we are able to turn.
-			double cost = attributes.Get("turning energy");
-			if(cost > 0. && energy < cost * fabs(commands.Turn()))
-				commands.SetTurn(copysign(energy / cost, commands.Turn()));
-
-			cost = attributes.Get("turning shields");
-			if(cost > 0. && shields < cost * fabs(commands.Turn()))
-				commands.SetTurn(copysign(shields / cost, commands.Turn()));
-
-			cost = attributes.Get("turning hull");
-			if(cost > 0. && hull < cost * fabs(commands.Turn()))
-				commands.SetTurn(copysign(hull / cost, commands.Turn()));
-
-			cost = attributes.Get("turning fuel");
-			if(cost > 0. && fuel < cost * fabs(commands.Turn()))
-				commands.SetTurn(copysign(fuel / cost, commands.Turn()));
-
-			cost = -attributes.Get("turning heat");
-			if(cost > 0. && heat < cost * fabs(commands.Turn()))
-				commands.SetTurn(copysign(heat / cost, commands.Turn()));
-
+			const ResourceLevels &turnCost = attrHandler.turn;
+			commands.SetTurn(commands.Turn() * attrHandler.FractionalUsage(levels, turnCost));
 			if(commands.Turn())
 			{
 				isSteering = true;
@@ -4846,22 +4598,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
-				double scale = fabs(commands.Turn());
-
-				shields -= scale * attributes.Get("turning shields");
-				hull -= scale * attributes.Get("turning hull");
-				energy -= scale * attributes.Get("turning energy");
-				fuel -= scale * attributes.Get("turning fuel");
-				heat += scale * attributes.Get("turning heat");
-				discharge += scale * attributes.Get("turning discharge");
-				corrosion += scale * attributes.Get("turning corrosion");
-				ionization += scale * attributes.Get("turning ion");
-				scrambling += scale * attributes.Get("turning scramble");
-				leakage += scale * attributes.Get("turning leakage");
-				burning += scale * attributes.Get("turning burn");
-				slowness += scale * attributes.Get("turning slowing");
-				disruption += scale * attributes.Get("turning disruption");
-
+				attrHandler.Damage(levels, turnCost, fabs(commands.Turn()));
 				Turn(commands.Turn() * TurnRate() * slowMultiplier);
 			}
 		}
@@ -4870,58 +4607,19 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		if(thrustCommand)
 		{
 			// Check if we are able to apply this thrust.
-			double cost = attributes.Get((thrustCommand > 0.) ?
-				"thrusting energy" : "reverse thrusting energy");
-			if(cost > 0. && energy < cost * fabs(thrustCommand))
-				thrustCommand = copysign(energy / cost, thrustCommand);
-
-			cost = attributes.Get((thrustCommand > 0.) ?
-				"thrusting shields" : "reverse thrusting shields");
-			if(cost > 0. && shields < cost * fabs(thrustCommand))
-				thrustCommand = copysign(shields / cost, thrustCommand);
-
-			cost = attributes.Get((thrustCommand > 0.) ?
-				"thrusting hull" : "reverse thrusting hull");
-			if(cost > 0. && hull < cost * fabs(thrustCommand))
-				thrustCommand = copysign(hull / cost, thrustCommand);
-
-			cost = attributes.Get((thrustCommand > 0.) ?
-				"thrusting fuel" : "reverse thrusting fuel");
-			if(cost > 0. && fuel < cost * fabs(thrustCommand))
-				thrustCommand = copysign(fuel / cost, thrustCommand);
-
-			cost = -attributes.Get((thrustCommand > 0.) ?
-				"thrusting heat" : "reverse thrusting heat");
-			if(cost > 0. && heat < cost * fabs(thrustCommand))
-				thrustCommand = copysign(heat / cost, thrustCommand);
-
+			const ResourceLevels &thrustCost = (thrustCommand > 0.) ? attrHandler.thrust : attrHandler.reverseThrust;
+			thrustCommand *= attrHandler.FractionalUsage(levels, thrustCost);
 			if(thrustCommand)
 			{
 				// If a reverse thrust is commanded and the capability does not
 				// exist, ignore it (do not even slow under drag).
 				isThrusting = (thrustCommand > 0.);
-				isReversing = !isThrusting && attributes.Get("reverse thrust");
-				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
+				isReversing = !isThrusting && thrustCost.wildcard;
+				thrust = thrustCost.wildcard;
 				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
 				if(thrust)
 				{
-					double scale = fabs(thrustCommand);
-
-					shields -= scale * attributes.Get(isThrusting ? "thrusting shields" : "reverse thrusting shields");
-					hull -= scale * attributes.Get(isThrusting ? "thrusting hull" : "reverse thrusting hull");
-					energy -= scale * attributes.Get(isThrusting ? "thrusting energy" : "reverse thrusting energy");
-					fuel -= scale * attributes.Get(isThrusting ? "thrusting fuel" : "reverse thrusting fuel");
-					heat += scale * attributes.Get(isThrusting ? "thrusting heat" : "reverse thrusting heat");
-					discharge += scale * attributes.Get(isThrusting ? "thrusting discharge" : "reverse thrusting discharge");
-					corrosion += scale * attributes.Get(isThrusting ? "thrusting corrosion" : "reverse thrusting corrosion");
-					ionization += scale * attributes.Get(isThrusting ? "thrusting ion" : "reverse thrusting ion");
-					scrambling += scale * attributes.Get(isThrusting ? "thrusting scramble" :
-						"reverse thrusting scramble");
-					burning += scale * attributes.Get(isThrusting ? "thrusting burn" : "reverse thrusting burn");
-					leakage += scale * attributes.Get(isThrusting ? "thrusting leakage" : "reverse thrusting leakage");
-					slowness += scale * attributes.Get(isThrusting ? "thrusting slowing" : "reverse thrusting slowing");
-					disruption += scale * attributes.Get(isThrusting ? "thrusting disruption" : "reverse thrusting disruption");
-
+					attrHandler.Damage(levels, thrustCost, fabs(thrustCommand));
 					acceleration += angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
 				}
 			}
@@ -4930,42 +4628,11 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				&& !CannotAct(Ship::ActionType::AFTERBURNER);
 		if(applyAfterburner)
 		{
-			thrust = attributes.Get("afterburner thrust");
-			double shieldCost = attributes.Get("afterburner shields");
-			double hullCost = attributes.Get("afterburner hull");
-			double energyCost = attributes.Get("afterburner energy");
-			double fuelCost = attributes.Get("afterburner fuel");
-			double heatCost = -attributes.Get("afterburner heat");
-
-			double dischargeCost = attributes.Get("afterburner discharge");
-			double corrosionCost = attributes.Get("afterburner corrosion");
-			double ionCost = attributes.Get("afterburner ion");
-			double scramblingCost = attributes.Get("afterburner scramble");
-			double leakageCost = attributes.Get("afterburner leakage");
-			double burningCost = attributes.Get("afterburner burn");
-
-			double slownessCost = attributes.Get("afterburner slowing");
-			double disruptionCost = attributes.Get("afterburner disruption");
-
-			if(thrust && shields >= shieldCost && hull >= hullCost
-				&& energy >= energyCost && fuel >= fuelCost && heat >= heatCost)
+			const ResourceLevels &afterburnerCost = attrHandler.afterburnerThrust;
+			thrust = afterburnerCost.wildcard;
+			if(thrust && attrHandler.CanExpend(levels, afterburnerCost))
 			{
-				shields -= shieldCost;
-				hull -= hullCost;
-				energy -= energyCost;
-				fuel -= fuelCost;
-				heat -= heatCost;
-
-				discharge += dischargeCost;
-				corrosion += corrosionCost;
-				ionization += ionCost;
-				scrambling += scramblingCost;
-				leakage += leakageCost;
-				burning += burningCost;
-
-				slowness += slownessCost;
-				disruption += disruptionCost;
-
+				attrHandler.Damage(levels, afterburnerCost);
 				acceleration += angle.Unit() * (1. + attributes.Get("acceleration multiplier")) * thrust / mass;
 
 				// Only create the afterburner effects if the ship is in the player's system.
@@ -5143,17 +4810,7 @@ double Ship::MinimumHull() const
 	if(neverDisabled)
 		return 0.;
 
-	double maximumHull = MaxHull();
-	double absoluteThreshold = attributes.Get("absolute threshold");
-	if(absoluteThreshold > 0.)
-		return absoluteThreshold;
-
-	double thresholdPercent = attributes.Get("threshold percentage");
-	double transition = 1 / (1 + 0.0005 * maximumHull);
-	double minimumHull = maximumHull * (thresholdPercent > 0.
-		? min(thresholdPercent, 1.) : 0.1 * (1. - transition) + 0.5 * transition);
-
-	return max(0., floor(minimumHull + attributes.Get("hull threshold")));
+	return attrHandler.capacity.wildcard;
 }
 
 
@@ -5264,13 +4921,13 @@ double Ship::CalculateDeterrence() const
 			// Other damage types don't outright destroy ships, so they aren't considered
 			// as heavily in the strength of a weapon.
 			double energyFactor = weapon->EnergyDamage()
-					+ weapon->RelativeEnergyDamage() * attributes.Get("energy capacity")
+					+ weapon->RelativeEnergyDamage() * attrHandler.capacity.energy
 					+ weapon->IonDamage() * 100.;
 			double heatFactor = weapon->HeatDamage()
 					+ weapon->RelativeHeatDamage() * MaximumHeat()
 					+ weapon->BurnDamage() * 100.;
 			double fuelFactor = weapon->FuelDamage()
-					+ weapon->RelativeFuelDamage() * attributes.Get("fuel capacity")
+					+ weapon->RelativeFuelDamage() * attrHandler.capacity.fuel
 					+ weapon->LeakDamage() * 100.;
 			double scramblingFactor = weapon->ScramblingDamage() * 100.;
 			double slowingFactor = weapon->SlowingDamage() * 100.;

@@ -28,8 +28,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Personality.h"
 #include "Point.h"
 #include "Port.h"
+#include "ship/ResourceLevels.h"
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
+#include "ship/ShipAttributeHandler.h"
 
 #include <array>
 #include <list>
@@ -117,18 +119,6 @@ public:
 		RIGHT = 1,
 		FORWARD = 2,
 		REVERSE = 3,
-	};
-
-	enum class CanFireResult {
-		NO_AMMO,
-		NO_ENERGY,
-		NO_FUEL,
-		NO_HULL,
-		NO_HEAT,
-		NO_ION,
-		NO_DISRUPTION,
-		NO_SLOWING,
-		CAN_FIRE
 	};
 
 
@@ -495,7 +485,7 @@ public:
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
 	// Assume the weapon is valid.
-	CanFireResult CanFire(const Weapon *weapon) const;
+	ShipAttributeHandler::CanFireResult CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates). Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);
@@ -686,28 +676,8 @@ private:
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
 
-	// Various energy levels:
-	double shields = 0.;
-	double hull = 0.;
-	double fuel = 0.;
-	double energy = 0.;
-	double heat = 0.;
-	// Accrued "ion damage" that will affect this ship's energy over time.
-	double ionization = 0.;
-	// Accrued "scrambling damage" that will affect this ship's weaponry over time.
-	double scrambling = 0.;
-	// Accrued "disruption damage" that will affect this ship's shield effectiveness over time.
-	double disruption = 0.;
-	// Accrued "slowing damage" that will affect this ship's movement over time.
-	double slowness = 0.;
-	// Accrued "discharge damage" that will affect this ship's shields over time.
-	double discharge = 0.;
-	// Accrued "corrosion damage" that will affect this ship's hull over time.
-	double corrosion = 0.;
-	// Accrued "leak damage" that will affect this ship's fuel over time.
-	double leakage = 0.;
-	// Accrued "burn damage" that will affect this ship's heat over time.
-	double burning = 0.;
+	ShipAttributeHandler attrHandler;
+	ResourceLevels levels;
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;

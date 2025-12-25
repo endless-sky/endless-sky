@@ -419,8 +419,11 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/SpriteShader.h
 	shader/StarField.cpp
 	shader/StarField.h
+	ship/ResourceLevels.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
+	ship/ShipAttributeHandler.cpp
+	ship/ShipAttributeHandler.h
 	test/Test.cpp
 	test/Test.h
 	test/TestContext.cpp
