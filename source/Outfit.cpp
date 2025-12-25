@@ -212,6 +212,57 @@ namespace {
 
 
 
+Outfit::AttributeIterator::AttributeIterator(const Outfit &outfit, Dictionary<int64_t>::const_iterator start)
+	: outfit(outfit), it(start)
+{
+}
+
+
+
+pair<string, double> Outfit::AttributeIterator::operator*() const
+{
+	return make_pair(it->first, outfit.Get(it->first));
+}
+
+
+
+Outfit::AttributeIterator &Outfit::AttributeIterator::operator++()
+{
+	if(it != outfit.attributes.end())
+		it = next(it);
+	return *this;
+}
+
+
+
+bool Outfit::AttributeIterator::operator==(const AttributeIterator &other) const
+{
+	return this->it == other.it;
+}
+
+
+
+bool Outfit::AttributeIterator::operator!=(const AttributeIterator &other) const
+{
+	return !(*this == other);
+}
+
+
+
+bool Outfit::AttributeIterator::operator<(const AttributeIterator &other) const
+{
+	return this->it < other.it;
+}
+
+
+
+bool Outfit::AttributeIterator::operator>(const AttributeIterator &other) const
+{
+	return this->it > other.it;
+}
+
+
+
 void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
@@ -300,7 +351,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			// Add any new licenses that were specified "inline".
 			if(hasValue)
 			{
-				for(auto it = ++begin(child.Tokens()); it != end(child.Tokens()); ++it)
+				for(auto it = ++std::begin(child.Tokens()); it != std::end(child.Tokens()); ++it)
 					AddLicense(*it);
 			}
 			// Add any new licenses that were specified as an indented list.
@@ -495,9 +546,19 @@ const Sprite *Outfit::Thumbnail() const
 
 
 
+bool Outfit::Empty() const
+{
+	return attributes.empty();
+}
+
+
+
 double Outfit::Get(const char *attribute) const
 {
-	return static_cast<double>(attributes.Get(attribute)) / ATTRIBUTE_PRECISION;
+	int64_t value = attributes.Get(attribute);
+	if(!value)
+		return 0.;
+	return static_cast<double>(value) / ATTRIBUTE_PRECISION;
 }
 
 
@@ -509,13 +570,16 @@ double Outfit::Get(const string &attribute) const
 
 
 
-const vector<string> &Outfit::AttributeNames() const
+Outfit::AttributeIterator Outfit::begin() const
 {
-	static vector<string> NAMES;
-	NAMES.clear();
-	for(const auto &it : attributes)
-		NAMES.push_back(it.first);
-	return NAMES;
+	return AttributeIterator(*this, attributes.begin());
+}
+
+
+
+Outfit::AttributeIterator Outfit::end() const
+{
+	return AttributeIterator(*this, attributes.end());
 }
 
 

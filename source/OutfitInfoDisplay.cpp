@@ -367,9 +367,9 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 10;
 	}
 
-	for(const string &name : outfit.AttributeNames())
+	for(const auto &[name, value] : outfit)
 		if(!count(BEFORE.begin(), BEFORE.end(), name))
-			AddRequirementAttribute(name, outfit.Get(name));
+			AddRequirementAttribute(name, value);
 }
 
 
@@ -435,11 +435,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
-	for(const string &name : outfit.AttributeNames())
+	for(const auto &[name, value] : outfit)
 	{
 		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), name))
 			continue;
-		double value = outfit.Get(name);
 
 		// Only show positive values here, with some exceptions.
 		// Negative values are usually handled as a "requirement"

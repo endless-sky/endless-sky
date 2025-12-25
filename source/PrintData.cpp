@@ -516,7 +516,7 @@ namespace {
 			for(auto &it : GameData::Outfits())
 			{
 				const Outfit &outfit = it.second;
-				for(const string &name : outfit.AttributeNames())
+				for(const auto &[name, value] : outfit)
 					attributes.insert(name);
 			}
 

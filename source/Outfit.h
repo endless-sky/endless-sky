@@ -51,6 +51,32 @@ public:
 
 
 public:
+	class AttributeIterator {
+	public:
+		explicit AttributeIterator(const Outfit &outfit, Dictionary<int64_t>::const_iterator start);
+		AttributeIterator() = delete;
+
+		// Iterator traits
+		using iterator_category = std::input_iterator_tag;
+		using value_type = std::pair<std::string, double>;
+		using difference_type = void;
+		using pointer = const std::pair<std::string, double> *;
+		using reference = std::pair<std::string, double> &;
+
+		std::pair<std::string, double> operator*() const;
+		AttributeIterator &operator++();
+		bool operator==(const AttributeIterator &) const;
+		bool operator!=(const AttributeIterator &) const;
+		bool operator<(const AttributeIterator &) const;
+		bool operator>(const AttributeIterator &) const;
+
+	private:
+		const Outfit &outfit;
+		Dictionary<int64_t>::const_iterator it;
+	};
+
+
+public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
 	// "attributes" node.
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
@@ -71,9 +97,14 @@ public:
 	// Get the image to display in the outfitter when buying this item.
 	const Sprite *Thumbnail() const;
 
+	// Return true if this Outfit's attributes Dictionary is empty. Does not determine
+	// whether this Outfit contains any sprites, effects, sounds.
+	bool Empty() const;
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
-	const std::vector<std::string> &AttributeNames() const;
+	// Get an iterator over this Outfit's attribute names and values.
+	AttributeIterator begin() const;
+	AttributeIterator end() const;
 
 	// Determine whether the given number of instances of the given outfit can
 	// be added to a ship with the attributes represented by this instance. If
