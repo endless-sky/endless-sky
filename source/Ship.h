@@ -236,7 +236,7 @@ public:
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
-	void SetCommands(const FireCommand &firingCommand);
+	void SetCommands(const FireCommand &firingCommand, const FireCommand &targeting);
 	const Command &Commands() const;
 	const FireCommand &FiringCommands() const noexcept;
 	// Move this ship. A ship may create effects as it moves, in particular if
@@ -559,7 +559,7 @@ private:
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoGeneration();
-	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoPassiveEffects(std::vector<Visual> &visuals);
 	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoCloakDecision();
 	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
@@ -662,6 +662,7 @@ private:
 
 	Command commands;
 	FireCommand firingCommands;
+	FireCommand onTarget;
 
 	Personality personality;
 	const Phrase *hail = nullptr;
