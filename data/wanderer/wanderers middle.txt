@@ -621,15 +621,6 @@ mission "Wanderers: Mereti Observation"
 				accept
 	on enter "Mesuket"
 		dialog `You enter the target system and begin recording the communications of the Kor Mereti drones. It may take a while to collect all the data that the Wanderers need, but they have set up their equipment to notify you when it is done collecting.`
-	npc disable
-		government "Kor Sestor"
-		system "Mesuket"
-		personality staying heroic
-		fleet
-			names "kor sestor"
-			variant
-				"Met Par Tek 53"
-		dialog `The Wanderer recording device chirps at you to let you know that it has collected enough data. Time to return to <planet>.`
 	npc
 		government "Kor Sestor"
 		system "Mesuket"
@@ -638,7 +629,7 @@ mission "Wanderers: Mereti Observation"
 			names "kor sestor"
 			variant
 				"Kar Ik Vot 349"
-				"Met Par Tek 53" 2
+				"Met Par Tek 53" 3
 	npc
 		government "Kor Mereti"
 		system "Mesuket"
@@ -649,6 +640,12 @@ mission "Wanderers: Mereti Observation"
 				"Model 64"
 				"Model 32" 2
 				"Model 16" 5
+	timer 3600 3600
+		"pause when inactive"
+		"activation requirements"
+			system "Mesuket"
+		on timeup
+			dialog `The Wanderer recording device chirps at you to let you know that it has collected enough data. Time to return to <planet>.`
 	on visit
 		dialog `You've returned to <planet>, but you don't have enough data for the Wanderers. Return to Mesuket and wait until the device notifies you that it has enough data.`
 

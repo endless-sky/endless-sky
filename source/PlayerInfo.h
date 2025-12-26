@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Date.h"
 #include "Depreciation.h"
 #include "EsUuid.h"
+#include "ExclusiveItem.h"
 #include "GameEvent.h"
 #include "Mission.h"
 #include "SystemEntry.h"
@@ -214,12 +215,12 @@ public:
 	void AddPlayTime(std::chrono::nanoseconds timeVal);
 
 	// Get the player's logbook.
-	const std::multimap<Date, std::string> &Logbook() const;
-	void AddLogEntry(const std::string &text);
-	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
-	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
-	void RemoveSpecialLog(const std::string &type, const std::string &name);
-	void RemoveSpecialLog(const std::string &type);
+	const std::map<Date, BookEntry> &Logbook() const;
+	void AddLogEntry(const BookEntry &logbookEntry);
+	const std::map<std::string, std::map<std::string, BookEntry>> &SpecialLogs() const;
+	void AddSpecialLog(const std::string &category, const std::string &heading, const BookEntry &logbookEntry);
+	void RemoveSpecialLog(const std::string &category, const std::string &heading);
+	void RemoveSpecialLog(const std::string &category);
 	bool HasLogs() const;
 
 	// Get mission information.
@@ -333,16 +334,20 @@ public:
 	void ToggleAnySecondary(const Outfit *outfit);
 
 	// Escorts currently selected for giving orders.
-	const std::vector<std::weak_ptr<Ship>> &SelectedShips() const;
-	// Select any player ships in the given box or list. Return true if any were
-	// selected.
-	bool SelectShips(const Rectangle &box, bool hasShift);
-	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
-	void SelectShip(const Ship *ship, bool hasShift);
-	void DeselectShip(const Ship *ship);
-	void SelectGroup(int group, bool hasShift);
-	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
-	std::set<Ship *> GetGroup(int group);
+	const std::vector<std::weak_ptr<Ship>> &SelectedEscorts() const;
+	// Select any of the ships that the player owns that are located within the given box
+	// on screen. Return true if any were selected.
+	bool SelectEscorts(const Rectangle &box, bool hasShift);
+	// Select ships in the given stack, provided by the EscortDisplay. All ships in the stack should share the same
+	// sprite. If the player clicks on the same escort icon multiple times, the ship targeted by the player's flagship
+	// will cycle through the stack. Only escorts that the player owns will be selected for the giving of orders.
+	void SelectShips(const std::vector<std::weak_ptr<Ship>> &stack, bool hasShift);
+	// Select one of the ships that the player owns.
+	void SelectEscort(const Ship *ship, bool hasShift);
+	void DeselectEscort(const Ship *ship);
+	void SelectEscortGroup(int group, bool hasShift);
+	void SetEscortGroup(int group, const std::set<Ship *> *newShips = nullptr);
+	std::set<Ship *> GetEscortGroup(int group);
 
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
@@ -373,6 +378,27 @@ public:
 	// Should help dialogs relating to carriers be displayed?
 	bool DisplayCarrierHelp() const;
 
+	// Advance any active mission timers that meet the right criteria.
+	void StepMissionTimers(UI *ui);
+	// Checks and resets recacheJumpRoutes. Returns the value that was present upon entry.
+	bool RecacheJumpRoutes();
+
+
+private:
+	class ScheduledEvent {
+	public:
+		// For loading a future event from the save file.
+		ScheduledEvent(const DataNode &node, const ConditionsStore *playerConditions);
+		// For scheduling a new event.
+		ScheduledEvent(GameEvent event, Date date);
+
+		// Comparison operator, based on the scheduled date of the event.
+		bool operator<(const ScheduledEvent &other) const;
+
+		ExclusiveItem<GameEvent> event;
+		Date date;
+	};
+
 
 private:
 	// Apply any "changes" saved in this player info to the global game state.
@@ -381,6 +407,9 @@ private:
 	void ValidateLoad();
 	// Helper to register derived conditions.
 	void RegisterDerivedConditions();
+
+	// Helper for triggering events.
+	void TriggerEvent(GameEvent event, std::list<DataNode> &eventChanges);
 
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
@@ -398,7 +427,7 @@ private:
 	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip);
 
 	// Helper function to update the ship selection.
-	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
+	void SelectEscort(const std::shared_ptr<Ship> &ship, bool *first);
 
 	// Instantiate the given model and add it to the player's fleet.
 	void AddStockShip(const Ship *model, const std::string &name);
@@ -436,14 +465,14 @@ private:
 
 	std::shared_ptr<Ship> flagship;
 	std::vector<std::shared_ptr<Ship>> ships;
-	std::vector<std::weak_ptr<Ship>> selectedShips;
+	std::vector<std::weak_ptr<Ship>> selectedEscorts;
 	std::map<const Ship *, int> groups;
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
 
-	std::multimap<Date, std::string> logbook;
-	std::map<std::string, std::map<std::string, std::string>> specialLogs;
+	std::map<Date, BookEntry> logbook;
+	std::map<std::string, std::map<std::string, BookEntry>> specialLogs;
 
 	// A list of the player's active, accepted missions.
 	std::list<Mission> missions;
@@ -462,6 +491,9 @@ private:
 	// If any mission component is not fully defined, the mission is deactivated
 	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
 	std::list<Mission> inactiveMissions;
+	// If any past event is not fully defined, the player should be warned that
+	// the universe may not be in the expected state.
+	std::set<std::string> invalidEvents;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
@@ -503,7 +535,12 @@ private:
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future (sorted by date for easy chronological access):
-	std::multiset<GameEvent> gameEvents;
+	std::multiset<ScheduledEvent> scheduledEvents;
+	// The names of events that were triggered in the past. Only needed when loading the game to determine
+	// if an invalid event is referenced in the save file that the player should be warned about.
+	std::set<std::string> triggeredEvents;
+	// Whether a date note has already been added to dataChanges to mark when new changes have occurred.
+	bool markedChangesToday = false;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
 	std::pair<const System *, Point> interstellarEscortDestination;
@@ -521,4 +558,6 @@ private:
 	CoreStartData startData;
 
 	std::unique_ptr<DataWriter> transactionSnapshot;
+
+	bool recacheJumpRoutes = false;
 };

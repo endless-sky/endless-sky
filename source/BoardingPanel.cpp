@@ -100,9 +100,19 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
+	else
+	{
+		attackOdds.Calculate();
+		defenseOdds.Calculate();
+	}
 
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
+
+	// The list is 240 pixels tall, and there are 10 pixels padding on the top
+	// and the bottom, so:
+	scroll.SetDisplaySize(220.);
+	scroll.SetMaxValue(max(0., 20. * plunder.size()));
 }
 
 
@@ -110,6 +120,13 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 BoardingPanel::~BoardingPanel()
 {
 	Audio::Resume();
+}
+
+
+
+void BoardingPanel::Step()
+{
+	scroll.Step();
 }
 
 
@@ -126,10 +143,11 @@ void BoardingPanel::Draw()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	FillShader::Fill(Point(-155., -60.), Point(360., 250.), opaque);
+	const Rectangle plunderList{{-155., -60.}, {360., 250.}};
+	FillShader::Fill(plunderList, opaque);
 
-	int index = (scroll - 10) / 20;
-	int y = -170 - scroll + 20 * index;
+	int index = (scroll.AnimatedValue() - 10) / 20;
+	int y = -170 - scroll.AnimatedValue() + 20 * index;
 	int endY = 60;
 
 	const Font &font = FontSet::Get(14);
@@ -167,7 +185,7 @@ void BoardingPanel::Draw()
 
 	// This should always be true, but double check.
 	int crew = 0;
-	if(you)
+	if(you && canCapture)
 	{
 		crew = you->Crew();
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
@@ -206,6 +224,10 @@ void BoardingPanel::Draw()
 
 	const Interface *boarding = GameData::Interfaces().Get("boarding");
 	boarding->Draw(info, this);
+
+	if(scroll.Scrollable())
+		scrollBar.SyncDraw(scroll,
+			plunderList.TopRight() + Point{0., 10.}, plunderList.BottomRight() - Point{0., 10.});
 
 	// Draw the status messages from hand to hand combat.
 	Point messagePos(50., 55.);
@@ -285,6 +307,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			plunder.erase(plunder.begin() + selected);
 			if(plunder.size() && selected == static_cast<int>(plunder.size()))
 				--selected;
+			scroll.SetMaxValue(max(0., 20. * plunder.size()));
 		}
 		else
 			plunder[selected].Take(count);
@@ -469,13 +492,16 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 // Handle mouse clicks.
 bool BoardingPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(scroll.Scrollable() && scrollBar.SyncClick(scroll, x, y, button, clicks))
+		return true;
+
 	if(button != MouseButton::LEFT)
 		return false;
 
 	// Was the click inside the plunder list?
 	if(x >= -330 && x < 20 && y >= -180 && y < 60)
 	{
-		int index = (scroll + y - -170) / 20;
+		int index = (scroll.AnimatedValue() + y - -170) / 20;
 		if(static_cast<unsigned>(index) < plunder.size())
 			selected = index;
 		return true;
@@ -486,14 +512,21 @@ bool BoardingPanel::Click(int x, int y, MouseButton button, int clicks)
 
 
 
+bool BoardingPanel::Hover(int x, int y)
+{
+	scrollBar.Hover(x, y);
+	return true;
+}
+
+
+
 // Allow dragging of the plunder list.
 bool BoardingPanel::Drag(double dx, double dy)
 {
-	// The list is 240 pixels tall, and there are 10 pixels padding on the top
-	// and the bottom, so:
-	double maximumScroll = max(0., 20. * plunder.size() - 220.);
-	scroll = max(0., min(maximumScroll, scroll - dy));
+	if(scroll.Scrollable() && scrollBar.SyncDrag(scroll, dx, dy))
+		return true;
 
+	scroll.Set(scroll - dy);
 	return true;
 }
 
@@ -714,5 +747,5 @@ void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
 	// Scroll down at least far enough to view the current item.
 	double minimumScroll = max(0., 20. * selected - 200.);
 	double maximumScroll = 20. * selected;
-	scroll = max(minimumScroll, min(maximumScroll, scroll));
+	scroll.Set(clamp<double>(scroll, minimumScroll, maximumScroll));
 }

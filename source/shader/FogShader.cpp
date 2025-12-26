@@ -49,6 +49,7 @@ namespace {
 	GLuint vao;
 	GLuint vbo;
 	GLuint texture = 0;
+	GLint vertI;
 
 	// Keep track of the previous frame's view so that if it is unchanged we can
 	// skip regenerating the mask.
@@ -58,6 +59,12 @@ namespace {
 	int previousColumns = 0;
 	int previousRows = 0;
 	Point previousCenter;
+
+	void EnableAttribArrays()
+	{
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	}
 }
 
 
@@ -67,17 +74,21 @@ void FogShader::Init()
 	// Compile the shader and store indices to its variables.
 	shader = GameData::Shaders().Get("fog");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find fog shader!");
+		throw runtime_error("Could not find fog shader!");
 	cornerI = shader->Uniform("corner");
 	dimensionsI = shader->Uniform("dimensions");
+	vertI = shader->Attrib("vert");
 
 	glUseProgram(shader->Object());
 	glUniform1i(shader->Uniform("tex"), 0);
 	glUseProgram(0);
 
 	// Generate the vertex data for drawing sprites.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+	{
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+	}
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -91,13 +102,13 @@ void FogShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	GLuint vertI = shader->Attrib("vert");
-	glEnableVertexAttribArray(vertI);
-	glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	if(OpenGL::HasVaoSupport())
+		EnableAttribArrays();
 
 	// Unbind the VBO and VAO.
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
 }
 
 
@@ -206,7 +217,13 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 
 	// Set up to draw the image.
 	glUseProgram(shader->Object());
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	GLfloat corner[2] = {
 		static_cast<float>(left - .5 * GRID * zoom) / (.5f * Screen::Width()),
@@ -221,7 +238,13 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 	// Clean up.
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
 	glUseProgram(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

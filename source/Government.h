@@ -48,6 +48,30 @@ class System;
 // bribe than others.
 class Government {
 public:
+	struct Atrocity {
+		// False if a global atrocity is ignored by this government.
+		bool isAtrocity = true;
+		const Conversation *customDeathSentence = nullptr;
+	};
+
+	enum class SpecialPenalty : int {
+		NONE = 0,
+		PROVOKE,
+		ATROCITY
+	};
+
+	class PenaltyEffect {
+	public:
+		PenaltyEffect(double reputationChange = 0., SpecialPenalty specialPenalty = SpecialPenalty::NONE)
+			: reputationChange(reputationChange), specialPenalty(specialPenalty)
+		{}
+
+		double reputationChange;
+		SpecialPenalty specialPenalty;
+	};
+
+
+public:
 	// Default constructor.
 	Government();
 
@@ -72,7 +96,7 @@ public:
 	// Get the amount that your reputation changes for the given offense against the given government.
 	// The given value should be a combination of one or more ShipEvent values.
 	// Returns 0 if the Government is null.
-	double PenaltyFor(int eventType, const Government *other) const;
+	PenaltyEffect PenaltyFor(int eventType, const Government *other) const;
 	// In order to successfully bribe this government you must pay them this
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
@@ -120,10 +144,11 @@ public:
 	void Bribe() const;
 	// Check to see if the player has done anything they should be fined for.
 	// Each government can only fine you once per day.
-	std::string Fine(PlayerInfo &player, int scan = 0, const Ship *target = nullptr, double security = 1.) const;
+	std::pair<const Conversation *, std::string> Fine(PlayerInfo &player, int scan = 0,
+		const Ship *target = nullptr, double security = 1.) const;
 	// Check to see if the items are condemnable (atrocities) or warrant a fine.
-	bool Condemns(const Outfit *outfit) const;
-	bool Condemns(const Ship *ship) const;
+	Atrocity Condemns(const Outfit *outfit) const;
+	Atrocity Condemns(const Ship *ship) const;
 	bool IgnoresUniversalAtrocities() const;
 	// Returns the fine for given item for this government.
 	int Fines(const Outfit *outfit) const;
@@ -160,16 +185,16 @@ private:
 	std::vector<double> attitudeToward;
 	double defaultAttitude = 0.;
 	std::set<const Government *> trusted;
-	std::map<unsigned, std::map<int, double>> customPenalties;
+	std::map<unsigned, std::map<int, PenaltyEffect>> customPenalties;
 	double initialPlayerReputation = 0.;
 	double reputationMax = std::numeric_limits<double>::max();
 	double reputationMin = std::numeric_limits<double>::lowest();
-	std::map<int, double> penaltyFor;
-	std::map<const Outfit*, int> illegalOutfits;
+	std::map<int, PenaltyEffect> penaltyFor;
+	std::map<const Outfit *, int> illegalOutfits;
 	std::map<std::string, int> illegalShips;
 	bool ignoreUniversalIllegals = false;
-	std::map<const Outfit*, bool> atrocityOutfits;
-	std::map<std::string, bool> atrocityShips;
+	std::map<const Outfit *, Atrocity> atrocityOutfits;
+	std::map<std::string, Atrocity> atrocityShips;
 	bool ignoreUniversalAtrocities = false;
 	double bribe = 0.;
 	double fine = 1.;

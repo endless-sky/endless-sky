@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
+#include "Message.h"
 #include "Minable.h"
 #include "Mission.h"
 #include "News.h"
@@ -82,10 +83,12 @@ public:
 	void FinishLoading();
 
 	// Apply the given change to the universe.
-	void Change(const DataNode &node, const PlayerInfo &player);
+	void Change(const DataNode &node, PlayerInfo &player);
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
 	void UpdateSystems();
+	// Determine which attributes may be required in order to use a wormhole.
+	void RecomputeWormholeRequirements();
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
@@ -117,6 +120,8 @@ private:
 	Set<Government> governments;
 	Set<Hazard> hazards;
 	Set<Interface> interfaces;
+	Set<Message::Category> messageCategories;
+	Set<Message> messages;
 	Set<Minable> minables;
 	Set<Mission> missions;
 	Set<News> news;
@@ -132,6 +137,9 @@ private:
 	Set<Shop<Ship>> shipSales;
 	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
+
+	// This is used for speeding up the route calculations.
+	std::set<std::string> universeWormholeRequirements;
 	std::set<double> neighborDistances;
 
 	Gamerules gamerules;
