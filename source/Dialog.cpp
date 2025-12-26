@@ -123,11 +123,11 @@ namespace {
 
 
 
-Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
+Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, int activeButton)
 	: voidFun(okFunction)
 {
 	Init(message, truncate, canCancel, false);
-	this->okIsActive = okIsActive;
+	this->activeButton = activeButton;
 }
 
 
@@ -169,6 +169,7 @@ void Dialog::Draw()
 	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
 	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
 	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
+	const Sprite *thirdButtonSprite = SpriteSet::Get("ui/wide button");
 
 	// Get the position of the top of this dialog, and of the input.
 	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5);
@@ -198,25 +199,35 @@ void Dialog::Draw()
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &inactive = *GameData::Colors().Get("inactive");
-	const string okText = isMission ? "Accept" : "OK";
 	okPos = pos + Point((top->Width() - RIGHT_MARGIN - cancel->Width()) * .5, 0.);
 	Point labelPos(
 		okPos.X() - .5 * font.Width(okText),
 		okPos.Y() - .5 * font.Height());
-	font.Draw(okText, labelPos, isOkDisabled ? inactive : (okIsActive ? bright : dim));
+	font.Draw(okText, labelPos, isOkDisabled ? inactive : (activeButton == 1 ? bright : dim));
 	if(canCancel)
 	{
-		string cancelText = isMission ? "Decline" : "Cancel";
 		cancelPos = pos + Point(okPos.X() - cancel->Width() + BUTTON_RIGHT_MARGIN, 0.);
 		SpriteShader::Draw(cancel, cancelPos);
 		labelPos = {
 				cancelPos.X() - .5 * font.Width(cancelText),
 				cancelPos.Y() - .5 * font.Height()};
-		font.Draw(cancelText, labelPos, !okIsActive ? bright : dim);
+		font.Draw(cancelText, labelPos, activeButton == 2 ? bright : dim);
+
+		if(numButtons == 3)
+		{
+			// Third button, always the left-most button:
+			thirdPos = pos + Point(
+				cancelPos.X() - (thirdButtonSprite->Width() + cancel->Width()) / 2 + BUTTON_RIGHT_MARGIN, 0.);
+			SpriteShader::Draw(thirdButtonSprite, thirdPos);
+			labelPos = {
+				thirdPos.X() - .5 * font.Width(buttonThree.buttonLabel),
+				thirdPos.Y() - .5 * font.Height()};
+			font.Draw(buttonThree.buttonLabel, labelPos, activeButton == 3 ? bright : dim);
+		}
 	}
 
 	// Draw the input, if any.
-	if(!isMission && (intFun || stringFun))
+	if(!isMission && (intFun || stringFun || validateFun))
 	{
 		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
 
@@ -294,26 +305,40 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		if(validateFun)
 			isOkDisabled = !validateFun(input);
 	}
-	else if(key == SDLK_TAB && canCancel)
-		okIsActive = !okIsActive;
+	else if(key == SDLK_TAB)
+		// Round-robin to the right, 3->2->1->3
+		activeButton = activeButton == 1 ? numButtons : activeButton - 1;
 	else if(key == SDLK_LEFT)
-		okIsActive = !canCancel;
-	else if(key == SDLK_RIGHT)
-		okIsActive = true;
-	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || isCloseRequest
-			|| (isMission && (key == 'a' || key == 'd')))
 	{
-		// Shortcuts for "accept" and "decline."
+		// To the left, 1->2->3->3
+		if(activeButton < numButtons)
+			activeButton++;
+	}
+	else if(key == SDLK_RIGHT)
+	{
+		// To the right, 3->2->1->1
+		if(activeButton > 1)
+			activeButton--;
+	}
+	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || key == SDLK_SPACE || isCloseRequest
+			|| (isMission && (key == 'a' || key == 'd'))
+			|| (numButtons == 3 && key == buttonThree.buttonKey))
+	{
+		// Note: The key shortcuts only work when there is no stringFun defined, else they are being typed out.
 		if(key == 'a' || (!canCancel && isCloseRequest))
-			okIsActive = true;
+			activeButton = 1;
 		if(key == 'd' || (canCancel && isCloseRequest))
-			okIsActive = false;
+			activeButton = 2;
+		if(key == buttonThree.buttonKey && numButtons == 3)
+			activeButton = 3;
+
+		// Now that we know what button was selected, process the button press
 		if(boolFun)
 		{
-			DoCallback(okIsActive);
+			DoCallback(activeButton == 1);
 			GetUI()->Pop(this);
 		}
-		else if(okIsActive || isMission)
+		else if(activeButton == 1 || isMission)
 		{
 			// If the OK button is disabled (because the input failed the validation),
 			// don't execute the callback.
@@ -322,6 +347,12 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 				DoCallback();
 				GetUI()->Pop(this);
 			}
+		}
+		else if(activeButton == 3)
+		{
+			// Do third button callback. If this returns true, also close the dialog.
+			if(buttonThree.buttonAction && buttonThree.buttonAction(input))
+				GetUI()->Pop(this);
 		}
 		else
 			GetUI()->Pop(this);
@@ -343,13 +374,13 @@ bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 	Point clickPos(x, y);
 
 	const Sprite *sprite = SpriteSet::Get("ui/dialog cancel");
-	const double toleranceX = (sprite->Width() - BUTTON_HORIZONTAL_MARGIN) / 2.;
-	const double toleranceY = (sprite->Height() - BUTTON_VERTICAL_MARGIN) / 2.;
+	double toleranceX = (sprite->Width() - BUTTON_HORIZONTAL_MARGIN) / 2.;
+	double toleranceY = (sprite->Height() - BUTTON_VERTICAL_MARGIN) / 2.;
 
 	Point ok = clickPos - okPos;
 	if(fabs(ok.X()) < toleranceX && fabs(ok.Y()) < toleranceY)
 	{
-		okIsActive = true;
+		activeButton = 1;
 		return DoKey(SDLK_RETURN);
 	}
 
@@ -358,7 +389,20 @@ bool Dialog::Click(int x, int y, MouseButton button, int clicks)
 		Point cancel = clickPos - cancelPos;
 		if(fabs(cancel.X()) < toleranceX && fabs(cancel.Y()) < toleranceY)
 		{
-			okIsActive = false;
+			activeButton = 2;
+			return DoKey(SDLK_RETURN);
+		}
+	}
+
+	if(numButtons == 3)
+	{
+		Point cancel = clickPos - thirdPos;
+		const Sprite *sprite3 = SpriteSet::Get("ui/wide button");
+		toleranceX = (sprite3->Width() - BUTTON_HORIZONTAL_MARGIN) / 2.;
+		toleranceY = (sprite3->Height() - BUTTON_VERTICAL_MARGIN) / 2.;
+		if(fabs(cancel.X()) < toleranceX && fabs(cancel.Y()) < toleranceY)
+		{
+			activeButton = 3;
 			return DoKey(SDLK_RETURN);
 		}
 	}
@@ -437,15 +481,29 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 
 	this->isMission = isMission;
 	this->canCancel = canCancel;
-	okIsActive = true;
+	activeButton = 1;
+	isWide = false;
+	numButtons = canCancel ? (!buttonThree.buttonLabel.empty() ? 3 : 2) : 1;
 
-	text = std::make_shared<TextArea>();
+	if(buttonOne.buttonLabel.empty())
+		okText = isMission ? "Accept" : "OK";
+	else
+	{
+		okText = buttonOne.buttonLabel;
+		stringFun = buttonOne.buttonAction;
+	}
+	cancelText = isMission ? "Decline" : "Cancel";
+
+	text = make_shared<TextArea>();
 	text->SetAlignment(Alignment::JUSTIFIED);
 	text->SetFont(FontSet::Get(14));
 	text->SetTruncate(truncate);
 	text->SetText(message);
 	Resize();
 	AddChild(text);
+
+	if(validateFun)
+		isOkDisabled = !validateFun(input);
 }
 
 
@@ -455,7 +513,7 @@ void Dialog::DoCallback(const bool isOk) const
 	if(isMission)
 	{
 		if(intFun)
-			intFun(okIsActive ? Conversation::ACCEPT : Conversation::DECLINE);
+			intFun(activeButton == 1 ? Conversation::ACCEPT : Conversation::DECLINE);
 
 		return;
 	}
