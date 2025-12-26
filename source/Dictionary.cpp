@@ -17,8 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StringInterner.h"
 
-#include <cstdint>
 #include <cstring>
+#include <mutex>
+#include <set>
+#include <string>
 
 using namespace std;
 
@@ -26,8 +28,7 @@ namespace {
 	// Perform a binary search on a sorted vector. Return the key's location (or
 	// proper insertion spot) in the first element of the pair, and "true" in
 	// the second element if the key is already in the vector.
-	template<class Type>
-	pair<size_t, bool> Search(const char *key, const vector<pair<const char *, Type>> &v)
+	pair<size_t, bool> Search(const char *key, const vector<pair<const char *, double>> &v)
 	{
 		// At each step of the search, we know the key is in [low, high).
 		size_t low = 0;
@@ -51,61 +52,42 @@ namespace {
 
 
 
-template<class Type>
-Type &Dictionary<Type>::operator[](const char *key)
+double &Dictionary::operator[](const char *key)
 {
 	pair<size_t, bool> pos = Search(key, *this);
 	if(pos.second)
-		return this->data()[pos.first].second;
+		return data()[pos.first].second;
 
-	return this->insert(begin() + pos.first, make_pair(StringInterner::Intern(key), 0.))->second;
+	return insert(begin() + pos.first, make_pair(StringInterner::Intern(key), 0.))->second;
 }
 
 
 
-template<class Type>
-Type &Dictionary<Type>::operator[](const string &key)
+double &Dictionary::operator[](const string &key)
 {
 	return (*this)[key.c_str()];
 }
 
 
 
-template<class Type>
-Type Dictionary<Type>::Get(const char *key) const
+double Dictionary::Get(const char *key) const
 {
 	pair<size_t, bool> pos = Search(key, *this);
-	return (pos.second ? this->data()[pos.first].second : 0.);
+	return (pos.second ? data()[pos.first].second : 0.);
 }
 
 
 
-template<class Type>
-Type Dictionary<Type>::Get(const string &key) const
+double Dictionary::Get(const string &key) const
 {
 	return Get(key.c_str());
 }
 
 
 
-template<class Type>
-void Dictionary<Type>::Erase(const char *key)
+void Dictionary::Erase(const char *key)
 {
 	auto [pos, exists] = Search(key, *this);
 	if(exists)
-		this->erase(next(this->begin(), pos));
+		erase(next(this->begin(), pos));
 }
-
-
-
-template<class Type>
-void Dictionary<Type>::Clear()
-{
-	this->clear();
-}
-
-
-
-template class Dictionary<int>;
-template class Dictionary<int64_t>;
-template class Dictionary<double>;

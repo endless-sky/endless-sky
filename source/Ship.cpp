@@ -582,7 +582,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			reinterpret_cast<Body &>(*this) = *base;
 		if(customSwizzleName.empty())
 			customSwizzleName = base->CustomSwizzleName();
-		if(baseAttributes.Empty())
+		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty() && !removeBays)
 			bays = base->bays;
@@ -972,9 +972,9 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.OutfitScanSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("outfit scan sound", it.first->Name());
-			for(const auto &[name, value] : baseAttributes)
-				if(value)
-					out.Write(name, value);
+			for(const auto &it : baseAttributes.Attributes())
+				if(it.second)
+					out.Write(it.first, it.second);
 		}
 		out.EndChild();
 

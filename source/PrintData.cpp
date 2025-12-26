@@ -516,8 +516,8 @@ namespace {
 			for(auto &it : GameData::Outfits())
 			{
 				const Outfit &outfit = it.second;
-				for(const auto &[name, value] : outfit)
-					attributes.insert(name);
+				for(const auto &attribute : outfit.Attributes())
+					attributes.insert(attribute.first);
 			}
 
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
@@ -533,7 +533,7 @@ namespace {
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass();
 				for(const auto &attribute : attributes)
-					cout << ',' << outfit.Get(attribute);
+					cout << ',' << outfit.Attributes().Get(attribute);
 				cout << '\n';
 			}
 		};
