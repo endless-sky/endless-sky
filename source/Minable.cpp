@@ -61,7 +61,7 @@ Minable::Payload::Payload(const DataNode &node)
 
 
 // Load a definition of a minable object.
-void Minable::Load(const DataNode &node)
+void Minable::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// Set the name of this minable, so we know it has been loaded.
 	if(node.Size() >= 2)
@@ -98,6 +98,8 @@ void Minable::Load(const DataNode &node)
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
 			explosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
+		else if(key == "attributes")
+			attributes.Load(child, playerConditions);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -283,6 +285,20 @@ double Minable::Hull() const
 double Minable::MaxHull() const
 {
 	return maxHull;
+}
+
+
+
+double Minable::Mass() const
+{
+	return attributes.Mass();
+}
+
+
+
+double Minable::MaximumHeat() const
+{
+	return MAXIMUM_TEMPERATURE * (attributes.Mass() + attributes.Get("heat capacity"));
 }
 
 
