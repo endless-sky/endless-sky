@@ -76,7 +76,7 @@ namespace {
 
 		string result = (status == RPC_S_OK) ? Utf8::ToUTF8(buf) : string{};
 		if(result.empty())
-			Logger::LogError("Failed to serialize UUID!");
+			Logger::Log("Failed to serialize UUID!", Logger::Level::WARNING);
 		else
 			RpcStringFreeW(reinterpret_cast<RPC_WSTR *>(&buf));
 
@@ -114,7 +114,7 @@ EsUuid::UuidType EsUuid::MakeUuid()
 #ifdef _WIN32
 	RPC_STATUS status = UuidCreate(&value.id);
 	if(status == RPC_S_UUID_LOCAL_ONLY)
-		Logger::LogError("Created locally unique UUID only");
+		Logger::Log("Created locally unique UUID only", Logger::Level::WARNING);
 	else if(status == RPC_S_UUID_NO_ADDRESS)
 		throw runtime_error("Failed to create UUID");
 #else
@@ -177,7 +177,7 @@ EsUuid::EsUuid(const string &input)
 	}
 	catch(const invalid_argument &err)
 	{
-		Logger::LogError(err.what());
+		Logger::Log(err.what(), Logger::Level::WARNING);
 	}
 }
 
