@@ -91,6 +91,7 @@ namespace {
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string MINIMAP_DISPLAY = "Show mini-map";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
+	const string BLOCK_SCREEN_SAVER = "Block screen saver";
 #ifdef _WIN32
 	const string TITLE_BAR_THEME = "Title bar theme";
 	const string WINDOW_ROUNDING = "Window rounding";
@@ -775,13 +776,12 @@ void PreferencesPanel::DrawSettings()
 		ZOOM_FACTOR,
 		VIEW_ZOOM_FACTOR,
 		SCREEN_MODE_SETTING,
+		BLOCK_SCREEN_SAVER,
 		VSYNC_SETTING,
-		CAMERA_ACCELERATION,
 		"",
-		"Performance",
-		"Show CPU / GPU load",
+		"Graphics",
+		CAMERA_ACCELERATION,
 		"Render motion blur",
-		LARGE_GRAPHICS_REDUCTION,
 		"Draw background haze",
 		"Draw starfield",
 		"Fixed starfield zoom",
@@ -789,10 +789,30 @@ void PreferencesPanel::DrawSettings()
 		"Animate main menu background",
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
-		SHIP_OUTLINES,
-		HUD_SHIP_OUTLINES,
 		CLOAK_OUTLINE,
 		"\t",
+		"Performance",
+		"Show CPU / GPU load",
+		LARGE_GRAPHICS_REDUCTION,
+		SHIP_OUTLINES,
+		HUD_SHIP_OUTLINES,
+		"",
+		"Gameplay",
+		"Control ship with mouse",
+		"Aim turrets with mouse",
+		AUTO_AIM_SETTING,
+		AUTO_FIRE_SETTING,
+		TURRET_TRACKING,
+		TARGET_ASTEROIDS_BASED_ON,
+		BOARDING_PRIORITY,
+		EXPEND_AMMO,
+		FLOTSAM_SETTING,
+		FIGHTER_REPAIR,
+		"Fighters transfer cargo",
+		"Rehire extra crew when lost",
+		"Automatically unpark flagship",
+		FLAGSHIP_SPACE_PRIORITY,
+		"\n",
 		"HUD",
 		STATUS_OVERLAYS_ALL,
 		STATUS_OVERLAYS_FLAGSHIP,
@@ -809,22 +829,6 @@ void PreferencesPanel::DrawSettings()
 		"Clickable radar display",
 		ALERT_INDICATOR,
 		"Extra fleet status messages",
-		"\n",
-		"Gameplay",
-		"Control ship with mouse",
-		"Aim turrets with mouse",
-		AUTO_AIM_SETTING,
-		AUTO_FIRE_SETTING,
-		TURRET_TRACKING,
-		TARGET_ASTEROIDS_BASED_ON,
-		BOARDING_PRIORITY,
-		EXPEND_AMMO,
-		FLOTSAM_SETTING,
-		FIGHTER_REPAIR,
-		"Fighters transfer cargo",
-		"Rehire extra crew when lost",
-		"Automatically unpark flagship",
-		FLAGSHIP_SPACE_PRIORITY,
 		"\t",
 		"Map",
 		"Deadline blink by distance",
@@ -843,9 +847,9 @@ void PreferencesPanel::DrawSettings()
 		DATE_FORMAT,
 		"Show parenthesis",
 		NOTIFY_ON_DEST,
-		"Save message log"
+		"Save message log",
 #ifdef _WIN32
-		, "\n",
+		"\n",
 		"Windows Options",
 		TITLE_BAR_THEME,
 		WINDOW_ROUNDING
@@ -1467,6 +1471,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleAlert();
 	else if(str == MINIMAP_DISPLAY)
 		Preferences::ToggleMinimapDisplay();
+	else if(str == BLOCK_SCREEN_SAVER)
+		Preferences::ToggleBlockScreenSaver();
 #ifdef _WIN32
 	else if(str == TITLE_BAR_THEME)
 		Preferences::ToggleTitleBarTheme();
