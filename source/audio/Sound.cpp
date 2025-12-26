@@ -50,7 +50,8 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 	uint32_t bytes = ReadHeader(in, AudioSupplier::SAMPLE_RATE);
 	if(!bytes)
 	{
-		Logger::LogError("WAV file uses an unsupported format. Only 44100Hz little-endian 16-bit PCM is supported.");
+		Logger::Log("WAV file uses an unsupported format. Only 44100Hz little-endian 16-bit PCM is supported.",
+			Logger::Level::WARNING);
 		return false;
 	}
 
