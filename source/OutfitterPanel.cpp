@@ -1314,8 +1314,7 @@ void OutfitterPanel::DrawButtons()
 	if(creditsTooltip.ShouldDraw())
 	{
 		creditsTooltip.SetZone(creditsBox);
-		int64_t credits = player.Accounts().Credits();
-		creditsTooltip.SetText(Format::CreditString(credits) + "\n" +
+		creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false) + "\n" +
 			Format::MassString(player.Cargo().Free()) + " free out of " +
 			Format::MassString(player.Cargo().Size()) + " total capacity", true);
 		creditsTooltip.Draw();

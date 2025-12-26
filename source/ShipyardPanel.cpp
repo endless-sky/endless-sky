@@ -254,8 +254,7 @@ void ShipyardPanel::DrawButtons()
 	if(creditsTooltip.ShouldDraw())
 	{
 		creditsTooltip.SetZone(creditsBox);
-		int64_t credits = player.Accounts().Credits();
-		creditsTooltip.SetText(Format::CreditString(credits), true);
+		creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false), true);
 		creditsTooltip.Draw();
 	}
 }
