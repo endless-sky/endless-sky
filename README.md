@@ -1,8 +1,8 @@
-# Endless Sky
+﻿# Endless Sky
 
 Endless Sky is an open-source space exploration and combat game inspired by classics like Escape Velocity. This repository hosts the source code and data that power the game, as well as ongoing development by the community. If you are here to contribute to the project, whether through coding, artwork, balancing, documentation, or testing, this document will help you get started and understand how our development process works.
 
-If you’re instead looking to learn about the game itself (installation, gameplay basics, or system requirements), please see the [game README](docs/GAME.md)
+If you're instead looking to learn about the game itself (installation, gameplay basics, or system requirements), please see the [game README](docs/GAME.md)
 
 ## Table of Contents
 - [Community and Membership](#community-and-membership)
