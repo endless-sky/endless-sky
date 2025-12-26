@@ -188,9 +188,9 @@ void ShipyardPanel::DrawButtons()
 	//  [    Buy    ] [    Sell    ] [ Sell Hull ]
 	//                               [   Leave   ]
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - 1.5 * rowOffsetY - BUTTON_ROW_START_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2 - 1.;
 	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
 
 	// Draw the button panel (shop side panel footer).
@@ -444,7 +444,7 @@ void ShipyardPanel::Sell(bool storeOutfits)
 
 
 
-void ShipyardPanel::BuyShip(const string &name)
+bool ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost)

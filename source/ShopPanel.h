@@ -139,12 +139,11 @@ protected:
 	static constexpr int SHIP_SIZE = 250;
 	static constexpr int OUTFIT_SIZE = 183;
 	// Button size/placement info:
-	static constexpr double BUTTON_ROW_START_PAD = 10.;
-	static constexpr double BUTTON_ROW_PAD = 5.;
-	static constexpr double BUTTON_COL_PAD = 5.;
+	static constexpr double BUTTON_ROW_START_PAD = 10;
+	static constexpr double BUTTON_ROW_PAD = 9.;
+	static constexpr double BUTTON_COL_PAD = 9.;
 	static constexpr double BUTTON_HEIGHT = 30.;
-	static constexpr double BUTTON_WIDTH = 75.;
-
+	static constexpr double BUTTON_WIDTH = 73.;
 
 protected:
 	PlayerInfo &player;
