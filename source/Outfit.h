@@ -98,7 +98,7 @@ public:
 	const Sprite *Thumbnail() const;
 
 	// Return true if this Outfit's attributes Dictionary is empty. Does not determine
-	// whether this Outfit contains any sprites, effects, sounds.
+	// whether this Outfit contains any sprites, effects, sounds, or a weapon.
 	bool Empty() const;
 	double Get(const char *attribute) const;
 	double Get(const std::string &attribute) const;
