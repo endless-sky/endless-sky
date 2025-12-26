@@ -71,7 +71,7 @@ private:
 	// Helper functions.
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;
 	bool Hover(const Point &point);
-	void Rename(const std::string &name);
+	bool Rename(const std::string &name);
 	bool CanDump() const;
 	void Dump();
 	void DumpPlunder(int count);

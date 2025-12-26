@@ -383,7 +383,7 @@ void Panel::SetUI(UI *ui)
 
 
 
-const std::vector<std::shared_ptr<Panel>> &Panel::GetChildren()
+const vector<shared_ptr<Panel>> &Panel::GetChildren()
 {
 	return children;
 }
