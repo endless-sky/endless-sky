@@ -41,7 +41,8 @@ public:
 	static std::string Credits(int64_t value);
 	// Convert the given number into abbreviated format as described in Format::Credits,
 	// then attach the ' credit' or ' credits' suffix to it.
-	static std::string CreditString(int64_t value);
+	// If abbreviated is false, then the full numeric value is outputted.
+	static std::string CreditString(int64_t value, bool abbreviated = true);
 	// Writes the given number into a string,
 	// then attach the ' ton' or ' tons' suffix to it.
 	static std::string MassString(double amount);
