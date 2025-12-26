@@ -1641,7 +1641,7 @@ mission "Remnant: Deep Surveillance"
 			`	"No," you respond. "The lead scientist was unwilling to give me a copy of his research except on the understanding that I would keep it to myself. When I told him I wanted to be able to share it, he sent me away."`
 			`	Torza raises an eyebrow. "And you couldn't simply have lied to him?"`
 			`	"Would you want me to make a habit of lying to the people I'm working with?" you ask.`
-			`	He says nothing for a moment, then sighs. "I suppose that is fair enough."
+			`	He says nothing for a moment, then sighs. "I suppose that is fair enough."`
 				goto disappointing
 			
 			label nothing
