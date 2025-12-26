@@ -472,7 +472,7 @@ public:
 	const Outfit &Attributes() const;
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
-	// Get the attribute helper, which caches commonly-requested attributes and calculations.
+	// Get the attribute handler, which caches commonly-requested attributes and calculations.
 	const ShipAttributeHandler &AttributeHandler() const;
 	// Get the list of all outfits installed in this ship.
 	const std::map<const Outfit *, int> &Outfits() const;
