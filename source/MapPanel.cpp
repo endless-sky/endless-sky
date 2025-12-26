@@ -69,8 +69,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const std::string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
-	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
+	const string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
+	const string SHOW_STORED_OUTFITS = "Show stored outfits on map";
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
 	const int MAX_STARS = 5;
 
@@ -140,7 +140,7 @@ namespace {
 	}
 
 	// Log how many stored outfits are in a given system.
-	void TallyOutfits(const std::map<const Planet *, CargoHold> &outfits,
+	void TallyOutfits(const map<const Planet *, CargoHold> &outfits,
 		map<const System *, MapPanel::SystemTooltipData> &locations)
 	{
 		for(const auto &hold : outfits)

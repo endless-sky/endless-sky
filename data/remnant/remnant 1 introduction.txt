@@ -1943,6 +1943,10 @@ mission "Remnant: S-970 Regenerator"
 				`	(Not now.)`
 					defer
 				`	(Yes.)`
+				`	(Never.)`
+					to display
+						not "event: syndicate tech available"
+					decline
 			branch familiar
 				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely adjusting something on the hull that you can't quite see. "Greetings, <first>. What brings you here today?" She taps something, then hangs her tools on her belt and drops to the ground on a tether. "Did you bring us something?"`

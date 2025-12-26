@@ -15,7 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "BookEntry.h"
 #include "ConditionAssignments.h"
+#include "Message.h"
 #include "ShipManager.h"
 
 #include <cstdint>
@@ -87,8 +89,8 @@ private:
 
 private:
 	bool isEmpty = true;
-	std::string logText;
-	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	BookEntry logEntries;
+	std::map<std::string, std::map<std::string, BookEntry>> specialLogEntries;
 	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
@@ -111,6 +113,8 @@ private:
 	std::set<std::string> fail;
 	// When this action is performed, the mission that called this action is failed.
 	bool failCaller = false;
+
+	std::vector<ExclusiveItem<Message>> messages;
 
 	ConditionAssignments conditions;
 };

@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <string>
+
 
 
 // A wrapper class that queries the version of Windows that is running the game,
@@ -22,6 +24,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class WinVersion {
 public:
 	static void Init();
+
+	static std::string ToString();
 
 	static bool SupportsDarkTheme();
 	static bool SupportsWindowRounding();
