@@ -189,6 +189,58 @@ jobs:
         path: ./build/ci/*.dll
 
 
+  build_windows_32:
+    name: Windows (32-bit)
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+    runs-on: windows-2025
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v5
+      with:
+        show-progress: false
+        fetch-depth: '10'
+    - name: Add Mingw to PATH
+      run: |
+        echo (Join-Path C: mingw32 bin) >> $env:GITHUB_PATH
+    - name: Find cache keys
+      run: |
+        echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
+        git log --pretty=format:'${{ runner.os }}32-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+        echo -e '\nEOF' >> restore_keys.txt
+        cat restore_keys.txt >> "$GITHUB_ENV"
+        echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
+      shell: bash
+    - name: Setup ccache
+      uses: hendrikmuhs/ccache-action@v1
+      with:
+        key: ${{ runner.os }}32-ci-${{ env.CACHE_HASH }}
+        restore-keys: ${{ env.RESTORE_KEYS }}
+        evict-old-files: '2d'
+        append-timestamp: 'false'
+    - name: Adjust version strings
+      run: ./utils/cd_update_versions.sh
+    - name: Setup vcpkg cache
+      uses: TAServers/vcpkg-cache@v3
+      id: vcpkg-cache
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
+    - name: Run CMake
+      run: |
+        cmake --preset mingw32-ci
+        cmake --build build --preset mingw32-ci
+        ctest --preset mingw32-ci
+      env:
+        VCPKG_BINARY_SOURCES: "clear;files,${{ steps.vcpkg-cache.outputs.path }},readwrite"
+    - name: Run Benchmarks
+      run: ctest --preset mingw32-ci-benchmark
+
+
   build_windows_clang:
     name: Windows Clang
     needs: changed
