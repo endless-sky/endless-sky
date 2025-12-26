@@ -441,12 +441,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		int group = key - '0';
 		if(mod & (KMOD_CTRL | KMOD_GUI))
-			player.SetGroup(group, &playerShips);
+			player.SetEscortGroup(group, &playerShips);
 		else if(mod & KMOD_SHIFT)
 		{
 			// If every single ship in this group is already selected, shift
 			// plus the group number means to deselect all those ships.
-			set<Ship *> added = player.GetGroup(group);
+			set<Ship *> added = player.GetEscortGroup(group);
 			bool allWereSelected = true;
 			for(Ship *ship : added)
 				allWereSelected &= playerShips.erase(ship);
@@ -466,7 +466,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			// Change the selection to the desired ships, if they are landed here.
 			playerShips.clear();
-			set<Ship *> wanted = player.GetGroup(group);
+			set<Ship *> wanted = player.GetEscortGroup(group);
 
 			const Planet *here = player.GetPlanet();
 			for(Ship *ship : wanted)
