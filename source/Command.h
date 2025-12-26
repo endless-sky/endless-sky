@@ -29,6 +29,11 @@ class DataNode;
 // everything the AI wants a ship to do, or all keys the player is holding down.
 class Command {
 public:
+	enum class ProfileType : int {
+		ACTIVE,
+		WORKING
+	};
+
 	// Empty command:
 	static const Command NONE;
 	// Main menu:
@@ -92,6 +97,7 @@ public:
 	// brackets) with key names (in quotes).
 	static std::string ReplaceNamesWithKeys(const std::string &text);
 
+
 public:
 	Command() = default;
 	// Create a command representing whatever command is mapped to the given
@@ -102,9 +108,18 @@ public:
 	void ReadKeyboard();
 
 	// Load or save the keyboard preferences.
-	static void LoadSettings(const std::filesystem::path &path);
+	static void LoadSettings(const std::filesystem::path &path, const std::string &name);
 	static void SaveSettings(const std::filesystem::path &path);
 	static void SetKey(Command command, int keycode);
+	static void DiscardWorkingCopy();
+	static void MakeWorkingCopy();
+	static void ActivateWorkingCopy();
+	static void CopyProfile(ProfileType, ProfileType);
+
+	// Get/set information about the current inUse profile.
+	static std::string GetProfileType();
+	static std::string Name();
+	static void RenameProfile(const std::string &name);
 
 	// Get the description or keycode name for this command. If this command is
 	// a combination of more than one command, an empty string is returned.
