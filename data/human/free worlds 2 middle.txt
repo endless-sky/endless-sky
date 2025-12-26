@@ -419,6 +419,7 @@ mission "FW Southern Battle 1B"
 
 event "battle for Rastaban"
 	"reputation: Republic" = -1000
+	"reputation: Deep" = -1000
 	system Rastaban
 		fleet "Small Free Worlds" 10000
 	system Lesath
@@ -1919,6 +1920,7 @@ mission "FW Albatross 2B"
 
 event "battle for zeta aquilae"
 	"reputation: Republic" = -1000
+	"reputation: Deep" = -1000
 	system "Zeta Aquilae"
 		fleet "Small Southern Merchants" 5000
 
@@ -2221,6 +2223,7 @@ mission "FW Defend New Tibet"
 		dialog `You've landed on <planet>, but there are still Syndicate ships circling overhead. You should take off and help finish them off.`
 	on complete
 		"reputation: Republic" = 1
+		"reputation: Deep" = 1
 		event "fw armistice"
 		event "fw tarazed republic"
 		event "end battle of alioth"
