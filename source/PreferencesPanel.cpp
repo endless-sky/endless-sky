@@ -258,7 +258,7 @@ void PreferencesPanel::Draw()
 	{
 		// The entire audio panel is defined in interfaces, so this is a dummy.
 	}
-	else if(page == 'i')
+	else if(page == 'l')
 		DrawPluginInstalls();
 }
 
@@ -1762,12 +1762,14 @@ void PreferencesPanel::ProcessPluginIndex()
 				"The plugin index failed to download. Would you like to try again?"));
 			return;
 		}
+		Logger::Log(Files::Config() / "plugins.json", Logger::Level::INFO);
 		ifstream pluginlistFile(Files::Config() / "plugins.json");
 		nlohmann::json pluginInstallList = nlohmann::json::parse(pluginlistFile);
 		pluginInstallPages = ceil(static_cast<float>(pluginInstallList.size())
 			/ static_cast<float>(MAX_PLUGIN_INSTALLS_PER_PAGE));
 		for(const auto &pluginInstall : pluginInstallList)
 		{
+			Logger::Log(pluginInstall["name"], Logger::Level::INFO);
 			const Plugin *installedVersion = Plugins::Get().Find(pluginInstall["name"]);
 			bool isInstalled = installedVersion && !installedVersion->removed;
 			string pluginName = pluginInstall["name"];
@@ -1782,7 +1784,7 @@ void PreferencesPanel::ProcessPluginIndex()
 			);
 
 			Files::CreateFolder(Files::Config() / "icons/");
-			string iconPath = Files::Config() / "icons/" / pluginName / ".png";
+			string iconPath = Files::Config() / "icons/" / (pluginName + ".png");
 			if(!Files::Exists(iconPath) && pluginInstall.contains("iconUrl"))
 				Plugins::Download(pluginInstall["iconUrl"], iconPath);
 			if(Files::Exists(iconPath))

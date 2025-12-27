@@ -422,7 +422,7 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 			if(installData->name.find("..") != string::npos)
 				return;
 
-			string zipLocation = Files::PluginsCache() / installData->name / ".zip";
+			string zipLocation = Files::PluginsCache() / (installData->name + ".zip");
 			bool success = Download(installData->url, zipLocation);
 			if(success)
 			{
@@ -522,7 +522,10 @@ bool Plugins::Download(const std::string &url, const std::string &location)
 	FILE *out = fopen(location.c_str(), "wb");
 #endif
 	if(!out)
+	{
+		Logger::Log("Unable to write to " + location, Logger::Level::ERROR);
 		return false;
+	}
 
 	// Set the url that gets downloaded.
 	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());

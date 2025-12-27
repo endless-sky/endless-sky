@@ -503,18 +503,18 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
-	button p "_Plugins"
+	button a "_Audio"
 		center -300 -150
 		dimensions 90 30
 		color medium
 		hover bright
-	button l "_Library"
+	button p "_Plugins"
 		center -300 -110
 		dimensions 90 30
 		color medium
 		hover bright
-	button a "_Audio"
-		center -300 -110
+	button l "_Library"
+		center -300 -70
 		dimensions 90 30
 		color medium
 		hover bright
@@ -533,10 +533,10 @@ interface "controls"
 	
 	visible if "multiple controls pages"
 	sprite "ui/dialog cancel"
-		center -115 210
+		center -120 210
 	active if "show next controls"
 	button n "_Next"
-		center -115 210
+		center -120 210
 		dimensions 70 30
 	sprite "ui/wide button"
 		center -210 210
@@ -559,27 +559,27 @@ interface "settings"
 		center -300 -190
 		dimensions 90 30
 		color bright
-	button p "_Plugins"
+	button a "_Audio"
 		center -300 -150
 		dimensions 90 30
 		color medium
 		hover bright
-	button a "_Audio"
+	button p "_Plugins"
 		center -300 -110
 		dimensions 90 30
 		color medium
 		hover bright
 	button l "_Library"
-		center -300 -110
+		center -300 -70
 		dimensions 90 30
 		color medium
 		hover bright
 	visible if "multiple settings pages"
 	sprite "ui/dialog cancel"
-		center -115 210
+		center -120 210
 	active if "show next settings"
 	button n "_Next"
-		center -115 210
+		center -120 210
 		dimensions 70 30
 	sprite "ui/wide button"
 		center -210 210
@@ -603,25 +603,27 @@ interface "plugins"
 		dimensions 90 30
 		color medium
 		hover bright
-	button p "_Plugins"
-		center -300 -150
-		dimensions 90 30
-		color bright
 	button a "_Audio"
-		center -300 -110
+		center -300 -150
 		dimensions 90 30
 		color medium
 		hover bright
-	button l "_Library"
+	button p "_Plugins"
 		center -300 -110
+		dimensions 90 30
+		color bright
+	button l "_Library"
+		center -300 -70
 		dimensions 90 30
 		color medium
 		hover bright
 	button o "_Open Plugins"
 		center -195 210
 		dimensions 120 30
+	sprite "ui/wide button"
+		center -80 210
 	button u "_Uninstall"
-		center -65 210
+		center -80 210
 		dimensions 120 30
 	visible if "show plugins changed"
 	label "Restart to apply changes"
@@ -656,15 +658,20 @@ interface "audio"
 		dimensions 90 30
 		color medium
 		hover bright
-	button p "_Plugins"
+	button a "_Audio"
 		center -300 -150
+		dimensions 90 30
+		color bright
+	button p "_Plugins"
+		center -300 -110
 		dimensions 90 30
 		color medium
 		hover bright
-	button a "_Audio"
-		center -300 -110
+	button l "_Library"
+		center -300 -70
 		dimensions 90 30
-		color bright
+		color medium
+		hover bright
 	value "volume bar size" 195
 
 	label "Music"
@@ -999,7 +1006,7 @@ interface "audio"
 
 
 interface "install plugins"
-	sprite "ui/install plugins panel"
+	sprite "ui/plugins panel"
 		center -20 -20
 	button c "_Controls"
 		center -300 -230
@@ -1011,16 +1018,21 @@ interface "install plugins"
 		dimensions 90 30
 		color medium
 		hover bright
-	button p "_Plugins"
+	button a "_Audio"
 		center -300 -150
 		dimensions 90 30
 		color medium
 		hover bright
-	button l "_Library"
+	button p "_Plugins"
 		center -300 -110
 		dimensions 90 30
+		color medium
+		hover bright
+	button l "_Library"
+		center -300 -70
+		dimensions 90 30
 		color bright
-
+	
 	active if "next install plugin"
 	button e "N_ext"
 		center -30 170
