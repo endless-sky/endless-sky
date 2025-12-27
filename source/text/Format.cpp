@@ -580,6 +580,15 @@ string Format::Number(double value)
 
 
 
+string Format::Number(int64_t value)
+{
+	string result;
+	FormatInteger(value, value < 0, result);
+	return result;
+}
+
+
+
 // Format the given value as a number with exactly the given number of
 // decimal places (even if they are all 0).
 string Format::Decimal(double value, int places)

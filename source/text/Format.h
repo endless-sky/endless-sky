@@ -64,6 +64,7 @@ public:
 	// Convert the given number to a string, with at most one decimal place.
 	// This is primarily for displaying ship and outfit attributes.
 	static std::string Number(double value);
+	static std::string Number(int64_t value);
 	// Format the given value as a number with exactly the given number of
 	// decimal places (even if they are all 0).
 	static std::string Decimal(double value, int places);
