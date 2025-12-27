@@ -4463,9 +4463,15 @@ void PlayerInfo::StepMissions(UI *ui)
 			// from the same destination.
 			if(visitText.empty())
 			{
-				const auto &text = mission.GetAction(Mission::VISIT).DialogText();
-				if(!text.empty())
-					visitText = Format::Replace(text, substitutions);
+				for(const auto &action : mission.GetAction(Mission::VISIT))
+				{
+					const auto &text = action.DialogText();
+					if(!text.empty())
+					{
+						visitText = Format::Replace(text, substitutions);
+						break;
+					}
+				}
 			}
 			++missionVisits;
 		}
