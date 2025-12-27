@@ -872,7 +872,7 @@ tip "outfitter: r"
 	`Move the outfit from cargo or the currently selected ship(s) into planetary storage, in that order.`
 
 tip "shipyard: b"
-	`Buy <multiplier> of this ship.`
+	`Buy this ship. Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts. `
 
 tip "shipyard: s"
 	`Sell the selected ships and their outfits.`
