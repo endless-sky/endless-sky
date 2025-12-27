@@ -254,7 +254,7 @@ int ShopPanel::VisibilityCheckboxesSize() const
 
 bool ShopPanel::ShouldHighlight(const Ship *ship)
 {
-	return (hoverButton == 's');
+	return (hoverButton == 's' || hoverButton == 'r');
 }
 
 
