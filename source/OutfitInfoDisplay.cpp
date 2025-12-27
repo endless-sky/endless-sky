@@ -630,7 +630,10 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(isContinuous)
 		attributeValues.emplace_back("continuous");
 	else if(isContinuousBurst)
-		attributeValues.emplace_back("continuous (" + Format::Number(lround(weapon->BurstReload() * 100. / reload)) + "%)");
+	{
+		int value = static_cast<int>(lround(weapon->BurstReload() * 100. / reload));
+		attributeValues.emplace_back("continuous (" + Format::Number(value) + "%)");
+	}
 	else
 		attributeValues.emplace_back(Format::Number(60. / reload));
 	attributesHeight += 20;
