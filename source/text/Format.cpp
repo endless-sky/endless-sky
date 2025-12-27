@@ -582,6 +582,8 @@ string Format::Number(double value)
 
 string Format::Number(unsigned value)
 {
+	if(!value)
+		return "0";
 	string result;
 	FormatInteger(value, false, result);
 	return result;
@@ -591,6 +593,8 @@ string Format::Number(unsigned value)
 
 string Format::Number(int value)
 {
+	if(!value)
+		return "0";
 	string result;
 	FormatInteger(value, value < 0, result);
 	return result;
@@ -600,6 +604,8 @@ string Format::Number(int value)
 
 string Format::Number(int64_t value)
 {
+	if(!value)
+		return "0";
 	string result;
 	FormatInteger(value, value < 0, result);
 	return result;
