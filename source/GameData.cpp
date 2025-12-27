@@ -59,6 +59,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
 #include "StartConditions.h"
+#include "StellarObjectSpriteData.h"
 #include "System.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
@@ -874,45 +875,11 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 
 
 
-// Custom messages to be shown when trying to land on certain stellar objects.
-bool GameData::HasLandingMessage(const Sprite *sprite)
+const StellarObjectSpriteData &GameData::ObjectSpriteData(const Sprite *sprite)
 {
-	return objects.landingMessages.contains(sprite);
-}
-
-
-
-const string &GameData::LandingMessage(const Sprite *sprite)
-{
-	static const string EMPTY;
-	auto it = objects.landingMessages.find(sprite);
-	return (it == objects.landingMessages.end() ? EMPTY : it->second);
-}
-
-
-
-// Get the solar power and wind output of the given stellar object sprite.
-double GameData::SolarPower(const Sprite *sprite)
-{
-	auto it = objects.solarPower.find(sprite);
-	return (it == objects.solarPower.end() ? 0. : it->second);
-}
-
-
-
-double GameData::SolarWind(const Sprite *sprite)
-{
-	auto it = objects.solarWind.find(sprite);
-	return (it == objects.solarWind.end() ? 0. : it->second);
-}
-
-
-
-// Get the map icon of the given stellar object sprite.
-const Sprite *GameData::StarIcon(const Sprite *sprite)
-{
-	const auto it = objects.starIcons.find(sprite);
-	return (it == objects.starIcons.end() ? nullptr : it->second);
+	static const StellarObjectSpriteData EMPTY;
+	auto it = objects.objectSpriteData.find(sprite);
+	return (it == objects.objectSpriteData.end() ? EMPTY : it->second);
 }
 
 
