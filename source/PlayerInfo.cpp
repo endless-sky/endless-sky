@@ -635,6 +635,7 @@ void PlayerInfo::FinishTransaction()
 // Apply the given set of changes to the game data.
 void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 {
+	bool changedPlanets = false;
 	bool changedSystems = false;
 	for(const DataNode &change : changes)
 	{
@@ -642,9 +643,12 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		// Date nodes do not represent a change.
 		if(key == "date")
 			continue;
+		changedPlanets |= (key == "planet" || key == "wormhole");
 		changedSystems |= (key == "system" || key == "link" || key == "unlink");
 		GameData::Change(change, *this);
 	}
+	if(changedPlanets)
+		GameData::RecomputeWormholeRequirements();
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
@@ -662,6 +666,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		if(instantChanges)
 			CacheMissionInformation(true);
 	}
+	recacheJumpRoutes = instantChanges && (changedPlanets || changedSystems);
 }
 
 
@@ -4515,6 +4520,15 @@ void PlayerInfo::StepMissionTimers(UI *ui)
 
 
 
+bool PlayerInfo::RecacheJumpRoutes()
+{
+	bool recache = recacheJumpRoutes;
+	recacheJumpRoutes = false;
+	return recache;
+}
+
+
+
 void PlayerInfo::Autosave() const
 {
 	if(!CanBeSaved() || filePath.length() < 4)
@@ -5074,6 +5088,30 @@ void PlayerInfo::DoAccounting()
 			}) + '.';
 		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
+
+		if(tributeIncome)
+		{
+			// Apply reputation penalties for dominated planets.
+			set<const Government *> governments;
+			for(const auto &it : tributeReceived)
+			{
+				double penalty = it.first->DailyTributePenalty();
+				if(penalty)
+				{
+					const Government *gov = it.first->GetGovernment();
+					gov->AddReputation(-penalty);
+					if(penalty > 0.)
+						governments.insert(gov);
+				}
+			}
+			if(!governments.empty())
+			{
+				message = "You have lost reputation with "
+					+ Format::List(governments, [](const Government *gov){ return "the " + gov->DisplayName(); })
+					+ " due to active tributes.";
+				Messages::Add({message, GameData::MessageCategories().Get("normal")});
+			}
+		}
 	}
 
 	// For accounting, keep track of the player's net worth. This is for
