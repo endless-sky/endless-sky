@@ -596,7 +596,7 @@ string Format::Number(int value)
 	if(!value)
 		return "0";
 	string result;
-	FormatInteger(value, value < 0, result);
+	FormatInteger(abs(value), value < 0, result);
 	return result;
 }
 
@@ -607,7 +607,7 @@ string Format::Number(int64_t value)
 	if(!value)
 		return "0";
 	string result;
-	FormatInteger(value, value < 0, result);
+	FormatInteger(abs(value), value < 0, result);
 	return result;
 }
 
