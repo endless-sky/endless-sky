@@ -178,6 +178,8 @@ namespace {
 	const vector<string> LARGE_GRAPHICS_REDUCTION_SETTINGS = {"off", "largest only", "all"};
 	int largeGraphicsReductionIndex = 0;
 
+	const string BLOCK_SCREEN_SAVER = "Block screen saver";
+
 	int previousSaveCount = 3;
 
 #ifdef _WIN32
@@ -620,7 +622,7 @@ bool Preferences::ToggleVSync()
 		if(!GameWindow::SetVSync(static_cast<VSync>(targetIndex)))
 		{
 			// Restore original saved setting.
-			Logger::LogError("Unable to change VSync state");
+			Logger::Log("Unable to change VSync state.", Logger::Level::WARNING);
 			GameWindow::SetVSync(static_cast<VSync>(vsyncIndex));
 			return false;
 		}
@@ -931,6 +933,14 @@ Preferences::LargeGraphicsReduction Preferences::GetLargeGraphicsReduction()
 const string &Preferences::LargeGraphicsReductionSetting()
 {
 	return LARGE_GRAPHICS_REDUCTION_SETTINGS[largeGraphicsReductionIndex];
+}
+
+
+
+void Preferences::ToggleBlockScreenSaver()
+{
+	GameWindow::ToggleBlockScreenSaver();
+	Set(BLOCK_SCREEN_SAVER, !Has(BLOCK_SCREEN_SAVER));
 }
 
 

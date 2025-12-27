@@ -180,7 +180,7 @@ PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const Condition
 	else
 	{
 		// Fall back onto saving the full definition if we somehow didn't find a name.
-		node.PrintTrace("Warning: Could not determine name of scheduled event.");
+		node.PrintTrace("Could not determine name of scheduled event.");
 		event = ExclusiveItem<GameEvent>(std::move(nodeEvent));
 	}
 }
@@ -634,6 +634,7 @@ void PlayerInfo::FinishTransaction()
 // Apply the given set of changes to the game data.
 void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 {
+	bool changedPlanets = false;
 	bool changedSystems = false;
 	for(const DataNode &change : changes)
 	{
@@ -641,9 +642,12 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		// Date nodes do not represent a change.
 		if(key == "date")
 			continue;
+		changedPlanets |= (key == "planet" || key == "wormhole");
 		changedSystems |= (key == "system" || key == "link" || key == "unlink");
 		GameData::Change(change, *this);
 	}
+	if(changedPlanets)
+		GameData::RecomputeWormholeRequirements();
 	if(changedSystems)
 	{
 		// Recalculate what systems have been seen.
@@ -661,6 +665,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		if(instantChanges)
 			CacheMissionInformation(true);
 	}
+	recacheJumpRoutes = instantChanges && (changedPlanets || changedSystems);
 }
 
 
@@ -1138,7 +1143,8 @@ map<const shared_ptr<Ship>, vector<string>> PlayerInfo::FlightCheck() const
 				// The bays should always be empty. But if not, count that ship too.
 				if(bay.ship)
 				{
-					Logger::LogError("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->GivenName());
+					Logger::Log("Expected bay to be empty for " + ship->TrueModelName() + ": " + ship->GivenName(),
+						Logger::Level::WARNING);
 					categoryCount[bay.ship->Attributes().Category()].emplace_back(bay.ship);
 				}
 			}
@@ -3091,20 +3097,18 @@ void PlayerInfo::ToggleAnySecondary(const Outfit *outfit)
 
 
 // Escorts currently selected for giving orders.
-const vector<weak_ptr<Ship>> &PlayerInfo::SelectedShips() const
+const vector<weak_ptr<Ship>> &PlayerInfo::SelectedEscorts() const
 {
-	return selectedShips;
+	return selectedEscorts;
 }
 
 
 
-// Select any player ships in the given box or list. Return true if any were
-// selected, so we know not to search further for a match.
-bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
+bool PlayerInfo::SelectEscorts(const Rectangle &box, bool hasShift)
 {
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
-		selectedShips.clear();
+		selectedEscorts.clear();
 	// If shift is not held, the first ship in the box will also become the
 	// player's flagship's target.
 	bool first = !hasShift;
@@ -3115,68 +3119,94 @@ bool PlayerInfo::SelectShips(const Rectangle &box, bool hasShift)
 				&& box.Contains(ship->Position()))
 		{
 			matched = true;
-			SelectShip(ship, &first);
+			SelectEscort(ship, &first);
 		}
 	return matched;
 }
 
 
 
-bool PlayerInfo::SelectShips(const vector<const Ship *> &stack, bool hasShift)
+void PlayerInfo::SelectShips(const vector<weak_ptr<Ship>> &stack, bool hasShift)
 {
+	if(!flagship)
+		return;
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
-		selectedShips.clear();
-	// If shift is not held, the first ship in the stack will also become the
-	// player's flagship's target.
-	bool first = !hasShift;
+		selectedEscorts.clear();
 
-	// Loop through all the player's ships and check which of them are in the
-	// given stack.
+	// If shift is not held down, then locate a new target for the flagship.
+	// If the given stack only contains a single ship, then that should become the new target.
+	bool hasNewTarget = hasShift;
+	shared_ptr<Ship> target = stack.size() > 1 ? flagship->GetTargetShip() : nullptr;
+
+	// SelectEscort does not need to set the flagship target, as this function takes care of that.
+	bool first = false;
 	bool matched = false;
-	for(const shared_ptr<Ship> &ship : ships)
+	for(const weak_ptr<Ship> &ship : stack)
 	{
-		auto it = find(stack.begin(), stack.end(), ship.get());
-		if(it != stack.end())
+		const shared_ptr<Ship> shipPtr = ship.lock();
+		if(!shipPtr)
+			continue;
+		if(!hasNewTarget)
+		{
+			// If the current target is null or its sprite doesn't match the sprite of the ships in the given stack,
+			// then the next available ship becomes the new target for the flagship.
+			if(!target || target->GetSprite() != shipPtr->GetSprite())
+			{
+				target = shipPtr;
+				hasNewTarget = true;
+			}
+			// If the current target is in the stack, then set the current target to null so that the next ship in
+			// the stack becomes the new target. If this is the last ship in the stack, this will cause the flagship
+			// to have no target.
+			else if(target == shipPtr)
+				target = nullptr;
+		}
+		// If this ship is one of your owned escorts, then select it so that orders can be given to it.
+		if(shipPtr->IsYours())
 		{
 			matched = true;
-			SelectShip(ship, &first);
+			SelectEscort(shipPtr, &first);
 		}
+	}
+	if(!hasShift)
+	{
+		matched = true;
+		flagship->SetTargetShip(target);
 	}
 	if(matched)
 		UI::PlaySound(UI::UISound::TARGET);
-	return matched;
 }
 
 
 
-void PlayerInfo::SelectShip(const Ship *ship, bool hasShift)
+void PlayerInfo::SelectEscort(const Ship *ship, bool hasShift)
 {
 	// If shift is not held down, replace the current selection.
 	if(!hasShift)
-		selectedShips.clear();
+		selectedEscorts.clear();
 
 	bool first = !hasShift;
 	for(const shared_ptr<Ship> &it : ships)
 		if(it.get() == ship)
-			SelectShip(it, &first);
+			SelectEscort(it, &first);
 }
 
 
 
-void PlayerInfo::DeselectShip(const Ship *ship)
+void PlayerInfo::DeselectEscort(const Ship *ship)
 {
-	for(auto it = selectedShips.begin(); it != selectedShips.end(); ++it)
+	for(auto it = selectedEscorts.begin(); it != selectedEscorts.end(); ++it)
 		if(it->lock().get() == ship)
 		{
-			selectedShips.erase(it);
+			selectedEscorts.erase(it);
 			return;
 		}
 }
 
 
 
-void PlayerInfo::SelectGroup(int group, bool hasShift)
+void PlayerInfo::SelectEscortGroup(int group, bool hasShift)
 {
 	int bit = (1 << group);
 	// If the shift key is held down and all the ships in the given group are
@@ -3195,12 +3225,12 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 		for(const shared_ptr<Ship> &ship : ships)
 			if(groups[ship.get()] & bit)
 			{
-				auto it = selectedShips.begin();
-				for( ; it != selectedShips.end(); ++it)
+				auto it = selectedEscorts.begin();
+				for( ; it != selectedEscorts.end(); ++it)
 					if(it->lock() == ship)
 						break;
-				if(it != selectedShips.end())
-					selectedShips.erase(it);
+				if(it != selectedEscorts.end())
+					selectedEscorts.erase(it);
 				else
 					allWereSelected = false;
 			}
@@ -3208,14 +3238,14 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 			return;
 	}
 	else
-		selectedShips.clear();
+		selectedEscorts.clear();
 
 	// Now, go through and add any ships in the group to the selection. Even if
 	// shift is held they won't be added twice, because we removed them above.
 	for(const shared_ptr<Ship> &ship : ships)
 		if(groups[ship.get()] & bit)
 		{
-			selectedShips.push_back(ship);
+			selectedEscorts.push_back(ship);
 			if(ship.get() == oldTarget)
 				Flagship()->SetTargetShip(ship);
 		}
@@ -3223,7 +3253,7 @@ void PlayerInfo::SelectGroup(int group, bool hasShift)
 
 
 
-void PlayerInfo::SetGroup(int group, const set<Ship *> *newShips)
+void PlayerInfo::SetEscortGroup(int group, const set<Ship *> *newShips)
 {
 	int bit = (1 << group);
 	int mask = ~bit;
@@ -3238,7 +3268,7 @@ void PlayerInfo::SetGroup(int group, const set<Ship *> *newShips)
 	}
 	else
 	{
-		for(const weak_ptr<Ship> &ptr : selectedShips)
+		for(const weak_ptr<Ship> &ptr : selectedEscorts)
 		{
 			shared_ptr<Ship> ship = ptr.lock();
 			if(ship)
@@ -3249,7 +3279,7 @@ void PlayerInfo::SetGroup(int group, const set<Ship *> *newShips)
 
 
 
-set<Ship *> PlayerInfo::GetGroup(int group)
+set<Ship *> PlayerInfo::GetEscortGroup(int group)
 {
 	int bit = (1 << group);
 	set<Ship *> result;
@@ -3468,7 +3498,7 @@ void PlayerInfo::ValidateLoad()
 	// If a system was not specified in the player data, use the flagship's system.
 	if(!planet && !ships.empty())
 	{
-		string warning = "Warning: no planet specified for player";
+		string warning = "No planet specified for player";
 		auto it = find_if(ships.begin(), ships.end(), [](const shared_ptr<Ship> &ship) noexcept -> bool
 			{ return ship->GetPlanet() && ship->GetPlanet()->IsValid() && !ship->IsParked() && ship->CanBeFlagship(); });
 		if(it != ships.end())
@@ -3480,7 +3510,7 @@ void PlayerInfo::ValidateLoad()
 		else
 			warning += " (no ships could supply a valid player location).";
 
-		Logger::LogError(warning);
+		Logger::Log(warning, Logger::Level::WARNING);
 	}
 
 	// As a result of external game data changes (e.g. unloading a mod) it's possible the player ended up
@@ -3488,13 +3518,15 @@ void PlayerInfo::ValidateLoad()
 	if(planet && !system)
 	{
 		system = planet->GetSystem();
-		Logger::LogError("Warning: player system was not specified. Defaulting to the specified planet's system.");
+		Logger::Log("Player system was not specified. Defaulting to the specified planet's system.",
+			Logger::Level::WARNING);
 	}
 	if(!planet || !planet->IsValid() || !system || !system->IsValid())
 	{
 		system = &startData.GetSystem();
 		planet = &startData.GetPlanet();
-		Logger::LogError("Warning: player system and/or planet was not valid. Defaulting to the starting location.");
+		Logger::Log("Player system and/or planet was not valid. Defaulting to the starting location.",
+			Logger::Level::WARNING);
 	}
 
 	// Every ship ought to have specified a valid location, but if not,
@@ -3504,16 +3536,18 @@ void PlayerInfo::ValidateLoad()
 		if(!ship->GetSystem() || !ship->GetSystem()->IsValid())
 		{
 			ship->SetSystem(system);
-			Logger::LogError("Warning: player ship \"" + ship->GivenName()
-				+ "\" did not specify a valid system. Defaulting to the player's system.");
+			Logger::Log("Player ship \"" + ship->GivenName()
+				+ "\" did not specify a valid system. Defaulting to the player's system.",
+				Logger::Level::WARNING);
 		}
 		// In-system ships that aren't on a valid planet should get moved to the player's planet
 		// (but e.g. disabled ships or those that didn't have a planet should remain in space).
 		if(ship->GetSystem() == system && ship->GetPlanet() && !ship->GetPlanet()->IsValid())
 		{
 			ship->SetPlanet(planet);
-			Logger::LogError("Warning: in-system player ship \"" + ship->GivenName()
-				+ "\" specified an invalid planet. Defaulting to the player's planet.");
+			Logger::Log("In-system player ship \"" + ship->GivenName()
+				+ "\" specified an invalid planet. Defaulting to the player's planet.",
+				Logger::Level::WARNING);
 		}
 		// Owned ships that are not in the player's system always start in flight.
 	}
@@ -3521,7 +3555,8 @@ void PlayerInfo::ValidateLoad()
 	// Validate the travel plan.
 	if(travelDestination && !travelDestination->IsValid())
 	{
-		Logger::LogError("Warning: removed invalid travel plan destination \"" + travelDestination->TrueName() + ".\"");
+		Logger::Log("Removed invalid travel plan destination \"" + travelDestination->TrueName() + "\".",
+			Logger::Level::WARNING);
 		travelDestination = nullptr;
 	}
 	if(!travelPlan.empty() && any_of(travelPlan.begin(), travelPlan.end(),
@@ -3529,7 +3564,7 @@ void PlayerInfo::ValidateLoad()
 	{
 		travelPlan.clear();
 		travelDestination = nullptr;
-		Logger::LogError("Warning: reset the travel plan due to use of invalid system(s).");
+		Logger::Log("Reset the travel plan due to use of invalid system(s).", Logger::Level::WARNING);
 	}
 
 	// For old saves, default to the first start condition (the default "Endless Sky" start).
@@ -3704,8 +3739,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship)
 			return 0;
 		if(GetPlanet())
-			Logger::LogError("Warning: Use of \"flagship bays free: <category>\""
-				" condition while landed is unstable behavior.");
+			Logger::Log("Use of \"flagship bays free: <category>\" condition while landed is unstable behavior.",
+				Logger::Level::WARNING);
 		return flagship->BaysFree(ce.NameWithoutPrefix()); });
 	conditions["flagship bays"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		if(!flagship)
@@ -3717,7 +3752,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship)
 			return 0;
 		if(GetPlanet())
-			Logger::LogError("Warning: Use of \"flagship bays free\" condition while landed is unstable behavior.");
+			Logger::Log("Use of \"flagship bays free\" condition while landed is unstable behavior.",
+				Logger::Level::WARNING);
 		const vector<Ship::Bay> &bays = flagship->Bays();
 		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; }); });
 
@@ -4206,8 +4242,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		const System *system = GameData::Systems().Find(ce.NameWithoutPrefix());
 		if(!system)
 		{
-			Logger::LogError("Warning: System \"" + ce.NameWithoutPrefix()
-					+ "\" referred to in condition is not valid.");
+			Logger::Log("System \"" + ce.NameWithoutPrefix() + "\" referred to in condition is not valid.",
+				Logger::Level::WARNING);
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);
@@ -4217,15 +4253,15 @@ void PlayerInfo::RegisterDerivedConditions()
 		const Planet *planet = GameData::Planets().Find(ce.NameWithoutPrefix());
 		if(!planet)
 		{
-			Logger::LogError("Warning: Planet \"" + ce.NameWithoutPrefix()
-					+ "\" referred to in condition is not valid.");
+			Logger::Log("Planet \"" + ce.NameWithoutPrefix() + "\" referred to in condition is not valid.",
+				Logger::Level::WARNING);
 			return -1;
 		}
 		const System *system = planet->GetSystem();
 		if(!system)
 		{
-			Logger::LogError("Warning: Planet \"" + ce.NameWithoutPrefix()
-					+ "\" referred to in condition is not in any system.");
+			Logger::Log("Planet \"" + ce.NameWithoutPrefix() + "\" referred to in condition is not in any system.",
+				Logger::Level::WARNING);
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);
@@ -4479,6 +4515,15 @@ void PlayerInfo::StepMissionTimers(UI *ui)
 {
 	for(Mission &mission : missions)
 		mission.StepTimers(*this, ui);
+}
+
+
+
+bool PlayerInfo::RecacheJumpRoutes()
+{
+	bool recache = recacheJumpRoutes;
+	recacheJumpRoutes = false;
+	return recache;
 }
 
 
@@ -4930,11 +4975,11 @@ void PlayerInfo::SetFlagship(Ship &other)
 	MoveFlagshipBegin(ships, flagship);
 
 	// Make sure your flagship is not included in the escort selection.
-	for(auto it = selectedShips.begin(); it != selectedShips.end(); )
+	for(auto it = selectedEscorts.begin(); it != selectedEscorts.end(); )
 	{
 		shared_ptr<Ship> ship = it->lock();
 		if(!ship || ship == flagship)
-			it = selectedShips.erase(it);
+			it = selectedEscorts.erase(it);
 		else
 			++it;
 	}
@@ -4956,17 +5001,18 @@ void PlayerInfo::HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip)
 
 
 // Helper function to update the ship selection.
-void PlayerInfo::SelectShip(const shared_ptr<Ship> &ship, bool *first)
+void PlayerInfo::SelectEscort(const shared_ptr<Ship> &ship, bool *first)
 {
+	assert(ship->IsYours() && "Attempted to select a ship that is not an owned escort.");
 	// Make sure this ship is not already selected.
-	auto it = selectedShips.begin();
-	for( ; it != selectedShips.end(); ++it)
+	auto it = selectedEscorts.begin();
+	for( ; it != selectedEscorts.end(); ++it)
 		if(it->lock() == ship)
 			break;
-	if(it == selectedShips.end())
+	if(it == selectedEscorts.end())
 	{
 		// This ship is not yet selected.
-		selectedShips.push_back(ship);
+		selectedEscorts.push_back(ship);
 		Ship *flagship = Flagship();
 		if(*first && flagship && ship.get() != flagship)
 		{
@@ -5041,6 +5087,30 @@ void PlayerInfo::DoAccounting()
 			}) + '.';
 		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
+
+		if(tributeIncome)
+		{
+			// Apply reputation penalties for dominated planets.
+			set<const Government *> governments;
+			for(const auto &it : tributeReceived)
+			{
+				double penalty = it.first->DailyTributePenalty();
+				if(penalty)
+				{
+					const Government *gov = it.first->GetGovernment();
+					gov->AddReputation(-penalty);
+					if(penalty > 0.)
+						governments.insert(gov);
+				}
+			}
+			if(!governments.empty())
+			{
+				message = "You have lost reputation with "
+					+ Format::List(governments, [](const Government *gov){ return "the " + gov->DisplayName(); })
+					+ " due to active tributes.";
+				Messages::Add({message, GameData::MessageCategories().Get("normal")});
+			}
+		}
 	}
 
 	// For accounting, keep track of the player's net worth. This is for

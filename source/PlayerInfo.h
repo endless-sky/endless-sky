@@ -334,16 +334,20 @@ public:
 	void ToggleAnySecondary(const Outfit *outfit);
 
 	// Escorts currently selected for giving orders.
-	const std::vector<std::weak_ptr<Ship>> &SelectedShips() const;
-	// Select any player ships in the given box or list. Return true if any were
-	// selected.
-	bool SelectShips(const Rectangle &box, bool hasShift);
-	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
-	void SelectShip(const Ship *ship, bool hasShift);
-	void DeselectShip(const Ship *ship);
-	void SelectGroup(int group, bool hasShift);
-	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
-	std::set<Ship *> GetGroup(int group);
+	const std::vector<std::weak_ptr<Ship>> &SelectedEscorts() const;
+	// Select any of the ships that the player owns that are located within the given box
+	// on screen. Return true if any were selected.
+	bool SelectEscorts(const Rectangle &box, bool hasShift);
+	// Select ships in the given stack, provided by the EscortDisplay. All ships in the stack should share the same
+	// sprite. If the player clicks on the same escort icon multiple times, the ship targeted by the player's flagship
+	// will cycle through the stack. Only escorts that the player owns will be selected for the giving of orders.
+	void SelectShips(const std::vector<std::weak_ptr<Ship>> &stack, bool hasShift);
+	// Select one of the ships that the player owns.
+	void SelectEscort(const Ship *ship, bool hasShift);
+	void DeselectEscort(const Ship *ship);
+	void SelectEscortGroup(int group, bool hasShift);
+	void SetEscortGroup(int group, const std::set<Ship *> *newShips = nullptr);
+	std::set<Ship *> GetEscortGroup(int group);
 
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
@@ -376,6 +380,8 @@ public:
 
 	// Advance any active mission timers that meet the right criteria.
 	void StepMissionTimers(UI *ui);
+	// Checks and resets recacheJumpRoutes. Returns the value that was present upon entry.
+	bool RecacheJumpRoutes();
 
 
 private:
@@ -421,7 +427,7 @@ private:
 	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip);
 
 	// Helper function to update the ship selection.
-	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
+	void SelectEscort(const std::shared_ptr<Ship> &ship, bool *first);
 
 	// Instantiate the given model and add it to the player's fleet.
 	void AddStockShip(const Ship *model, const std::string &name);
@@ -459,7 +465,7 @@ private:
 
 	std::shared_ptr<Ship> flagship;
 	std::vector<std::shared_ptr<Ship>> ships;
-	std::vector<std::weak_ptr<Ship>> selectedShips;
+	std::vector<std::weak_ptr<Ship>> selectedEscorts;
 	std::map<const Ship *, int> groups;
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
@@ -552,4 +558,6 @@ private:
 	CoreStartData startData;
 
 	std::unique_ptr<DataWriter> transactionSnapshot;
+
+	bool recacheJumpRoutes = false;
 };

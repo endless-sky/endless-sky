@@ -5960,7 +5960,7 @@ mission "Quicksilver Mixup 3"
 		dialog `You have reached <planet>, but your escort carrying the misposted mail has not arrived. Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 100000
-		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future."`
+		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future.`
 
 
 
@@ -7030,7 +7030,7 @@ mission "Moving House 3"
 mission "Stranded In Paradise 1"
 	minor
 	name "Transport Burnbecks to <planet>"
-	description "The Burnbeck family was stranded by the bombings, and needs <bunks> free for transport back home to <destination>. Payment is <payment>."
+	description "The Burnbeck family was stranded by the bombings, and needs <bunks> bunks free for transport back home to <destination>. Payment is <payment>."
 	source
 		attributes "paradise"
 	destination

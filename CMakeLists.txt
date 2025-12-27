@@ -211,7 +211,12 @@ else()
 		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
 	else()
 		# GLEW is only needed on Linux and Windows.
-		target_link_libraries(ExternalLibraries INTERFACE GLEW::glew)
+		if(TARGET GLEW::GLEW)
+			set(GLEW_TARGET_NAME GLEW::GLEW)
+		else()
+			set(GLEW_TARGET_NAME GLEW::glew)
+		endif()
+		target_link_libraries(ExternalLibraries INTERFACE ${GLEW_TARGET_NAME})
 	endif()
 endif()
 

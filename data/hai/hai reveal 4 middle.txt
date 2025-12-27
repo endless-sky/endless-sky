@@ -60,6 +60,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 	description "Fly to <destination> and ask Alondo if he can help in some way."
 	source Darkwaste
 	destination Hai-home
+	clearance
 	to offer
 		has "Hai Reveal [A01] Visit Darkwaste: done"
 	on offer
@@ -749,6 +750,7 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 	description `Take Teeneep to Hai-home so she can investigate the Elders arming pirates with Hai weapons.`
 	source Darkwaste
 	destination Hai-home
+	clearance
 	passengers 1
 	blocked `It's probably not advisable to bring so many unnecessary people to a secret location on Darkwaste. You should return when your spare bunks are unoccupied.`
 	to offer
@@ -1034,6 +1036,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 	description "Return to <destination> with Batu Cegeen and your new information."
 	source Earth
 	destination Hai-home
+	clearance
 	passengers 1
 	to offer
 		has "Hai Reveal [A07] Deliver the Relays: done"
@@ -1353,6 +1356,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 	description "Fly to <destination> and deliver Teeneep and her ultimatum to the Elders."
 	source "Darkcloak"
 	destination "Hai-home"
+	clearance
 	passengers 1
 	to offer
 		has "Hai Reveal [A09] History of Appeasement: done"
@@ -1699,6 +1703,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 	description "Travel back to <planet> and ensure the diplomats are safe."
 	source "Mountaintop"
 	destination "Hai-home"
+	clearance
 	to offer
 		has "Hai Reveal [A11] Sound the Alarm: done"
 	on offer
