@@ -426,16 +426,16 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
 					// <verb>'d. Make a list of ship to errors to assemble into a string afterward.
 					// TODO: when there are multiples of the same better verbiage could be used rather than restating.
-					for(const pair<const char *, double> &it : selectedOutfit->Attributes())
-						if(attributes.Get(it.first) < it.second)
+					for(const auto &[name, value] : *selectedOutfit)
+						if(attributes.Get(name) < value)
 						{
 							for(const auto &sit : ship->Outfits())
-								if(sit.first->Get(it.first) < 0.)
+								if(sit.first->Get(name) < 0.)
 									errorDetails.emplace_back(string("the \"") + sit.first->DisplayName() + "\" "
 										"depends on this outfit and must be uninstalled first");
 							if(errorDetails.empty())
 								errorDetails.emplace_back(
-									string("\"") + it.first + "\" value would be reduced to less than zero");
+									string("\"") + name + "\" value would be reduced to less than zero");
 						}
 
 					if(!errorDetails.empty())
@@ -605,15 +605,15 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 				// Handle other attributes more generically, if none of the above are the problem.
 				if(errors.empty())
-					for(const pair<const char *, double> &it : selectedOutfit->Attributes())
+					for(const auto &[name, value] : *selectedOutfit)
 					{
 						// If playerShip has fewer of this attribute available than required by the selectedOutfit, add
 						// this attribute to the list of deficiencies.
-						double shipAvailable = playerShip->Attributes().Get(it.first);
-						double outfitRequires = -it.second;
+						double shipAvailable = playerShip->Attributes().Get(name);
+						double outfitRequires = -value;
 						if(shipAvailable < outfitRequires)
 							errors.push_back("You cannot install this outfit, because it requires "
-								+ Format::SimplePluralization(outfitRequires, '\'' + string(it.first) + '\'')
+								+ Format::SimplePluralization(outfitRequires, '\'' + string(name) + '\'')
 								+ ", and this ship has " + Format::Number(shipAvailable) + " free.");
 					}
 
@@ -819,9 +819,9 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 				{
 					// Determine how many of this ammo we must uninstall to also uninstall the launcher.
 					int mustUninstall = 0;
-					for(const pair<const char *, double> &it : ship->Attributes().Attributes())
-						if(it.second < 0.)
-							mustUninstall = max<int>(mustUninstall, ceil(it.second / ammo->Get(it.first)));
+					for(const auto &[name, value] : ship->Attributes())
+						if(value < 0.)
+							mustUninstall = max<int>(mustUninstall, ceil(value / ammo->Get(name)));
 
 					if(mustUninstall)
 					{
