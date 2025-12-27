@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameLoadingPanel.h"
 #include "GameVersion.h"
 #include "GameWindow.h"
+#include "Interface.h"
 #include "Logger.h"
 #include "MainPanel.h"
 #include "MenuPanel.h"
@@ -390,7 +391,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 		string cpuLoadString{};
 		chrono::steady_clock::duration gpuLoadSum{};
 		string gpuLoadString{};
-		string ramString;
+		string memoryString;
 		int step = 0;
 		int drawStep = 0;
 
@@ -474,11 +475,12 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			if(Preferences::Has("Show CPU / GPU load"))
 			{
-				static const Font &font = FontSet::Get(14);
-				static const Color &medium = *GameData::Colors().Get("medium");
-				font.Draw(cpuLoadString, Point(-40., Screen::Height() * -.5 + 5.), medium);
-				font.Draw(gpuLoadString, Point(-40., Screen::Height() * -.5 + 19.), medium);
-				font.Draw(ramString, Point(-40., Screen::Height() * -.5 + 33.), medium);
+				static Information performanceInfo;
+				performanceInfo.SetString("cpu", cpuLoadString);
+				performanceInfo.SetString("gpu", gpuLoadString);
+				performanceInfo.SetString("mem", memoryString);
+				static const Interface &performanceDisplay = *GameData::Interfaces().Get("performance info");
+				performanceDisplay.Draw(performanceInfo);
 				if(!drawStep)
 				{
 					// The load sums are in nanoseconds, accumulated throughout the last second, so divide
@@ -510,7 +512,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					getline(statm, statmStr, ' ');
 					virtualMemoryUse = stoul(statmStr) * getpagesize();
 #endif
-					ramString = "MEM: " + Format::Decimal(virtualMemoryUse / 1048576., 2) + " MB";
+					memoryString = "MEM: " + Format::Decimal(virtualMemoryUse / 1048576., 2) + " MB";
 				}
 			}
 
