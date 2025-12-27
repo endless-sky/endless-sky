@@ -852,6 +852,27 @@ tip "scan concealment:"
 
 
 
+# Shop Tips:
+tip "outfitter: b"
+	`Buy from the outfitter and install onto the currently selected ship(s).`
+
+tip "outfitter: s"
+	`Sell from cargo, storage, or the currently selected ship(s), in that order.`
+
+tip "outfitter: i"
+	`Install on the currently selected ship(s) from cargo or storage, in that order.`
+
+tip "outfitter: u"
+	`Uninstall or move outfits from the currently selected ship(s) or cargo to storage, in that order.`
+
+tip "outfitter: c"
+	`Transfer the outfit from planetary storage to cargo if possible. Otherwise, buy it from the outfitter.`
+
+tip "outfitter: r"
+	`Move the outfit from cargo or the currently selected ship(s) into planetary storage, in that order.`
+
+
+
 # Sale labels:
 tip "empty hull:"
 	`Price the ship itself would sell for without any outfits installed.`
@@ -1582,6 +1603,9 @@ tip "Notify on destination"
 
 tip "Save message log"
 	`Include message logs in pilot files so they are not lost when closing the game or reloading the save file. This will increase save file sizes and may increase load times. The stored log history can be cleared from the message log panel.`
+
+tip "Block screen saver"
+	`Whether your monitor should be able to dim and turn off or change to the screen saver while the game is open.`
 
 tip "Title bar theme"
 	`Choose the theme of the title bar, or leave "system default" to use system settings. (Available on Windows 10 or newer; on Windows 10, the game window must be resized or restarted in order for the change to take effect.)`
