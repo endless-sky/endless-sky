@@ -219,6 +219,25 @@ color "plugin reload required" .75 .1 .1 0.
 
 
 
+interface "performance info"
+	fill
+		from -80 5 to 80 55 top
+		color "panel background"
+	string "cpu"
+		from -70 16 top
+		color "medium"
+		align left
+	string "gpu"
+		from -70 30 top
+		color "medium"
+		align left
+	string "mem"
+		from -70 44 top
+		color "medium"
+		align left
+
+
+
 interface "map detail panel"
 	value "min planet panel height" 195
 	value "max planet panel height" 2022
