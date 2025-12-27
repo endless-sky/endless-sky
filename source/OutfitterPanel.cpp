@@ -464,7 +464,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 							+ shipName + "\", because:\n";
 					}
 					for(const string &error : errors)
-						errorMessage += "- " + error + "\n";
+						errorMessage += "- " + error + '\n';
 				}
 				return errorMessage;
 			}
@@ -626,7 +626,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				{
 					string errorMessage = "There are several reasons why you cannot " + actionName + " this outfit:\n";
 					for(const string &error : errors)
-						errorMessage += "- " + error + "\n";
+						errorMessage += "- " + error + '\n';
 					return errorMessage;
 				}
 			}
@@ -1314,8 +1314,7 @@ void OutfitterPanel::DrawButtons()
 	if(creditsTooltip.ShouldDraw())
 	{
 		creditsTooltip.SetZone(creditsBox);
-		int64_t credits = player.Accounts().Credits();
-		creditsTooltip.SetText(to_string(credits) + (credits == 1 ? " credit" : " credits") + "\n" +
+		creditsTooltip.SetText(Format::CreditString(player.Accounts().Credits(), false) + '\n' +
 			Format::MassString(player.Cargo().Free()) + " free out of " +
 			Format::MassString(player.Cargo().Size()) + " total capacity", true);
 		creditsTooltip.Draw();

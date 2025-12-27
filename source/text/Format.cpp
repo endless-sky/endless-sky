@@ -349,12 +349,12 @@ string Format::Credits(int64_t value)
 
 // Convert the given number into abbreviated format as described in Format::Credits,
 // then attach the ' credit' or ' credits' suffix to it.
-string Format::CreditString(int64_t value)
+string Format::CreditString(int64_t value, bool abbreviated)
 {
 	if(value == 1)
 		return "1 credit";
-	else
-		return Credits(value) + " credits";
+
+	return (abbreviated ? Credits(value) : Number(value)) + " credits";
 }
 
 
@@ -575,6 +575,15 @@ string Format::Number(double value)
 
 	// Convert the number to a string, adding commas if needed.
 	FormatInteger(value, isNegative, result);
+	return result;
+}
+
+
+
+string Format::Number(int64_t value)
+{
+	string result;
+	FormatInteger(value, value < 0, result);
 	return result;
 }
 

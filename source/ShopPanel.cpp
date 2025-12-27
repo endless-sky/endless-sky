@@ -144,8 +144,7 @@ void ShopPanel::Draw()
 
 	// Draw the Find button. Note: buttonZones are cleared in DrawButtons.
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
-	const Sprite *findIcon =
-		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
+	const Sprite *findIcon = SpriteSet::Get(hoverButton == 'f' ? "ui/find selected" : "ui/find unselected");
 	SpriteShader::Draw(findIcon, findCenter);
 	buttonZones.emplace_back(Rectangle(findCenter, {findIcon->Width(), findIcon->Height()}), 'f');
 	static const string FIND = "_Find";
