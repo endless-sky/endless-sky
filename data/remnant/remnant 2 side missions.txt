@@ -405,6 +405,7 @@ mission "Remnant: Teciimach Deployment"
 
 mission "Remnant: Shattered Light 1"
 	invisible
+	non-blocking
 	landing
 	source
 		government "Remnant"

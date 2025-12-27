@@ -14,6 +14,7 @@
 mission "Successors: Entering the Scar"
 	invisible
 	landing
+	non-blocking
 	to complete
 		never
 	to fail
@@ -28,6 +29,7 @@ mission "Successors: Entering the Scar"
 mission "Successors: Safe at Last"
 	invisible
 	landing
+	non-blocking
 	to complete
 		never
 	to fail
