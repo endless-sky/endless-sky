@@ -100,6 +100,10 @@ public:
 	// In order to successfully bribe this government you must pay them this
 	// fraction of your fleet's value. (Zero means they cannot be bribed.)
 	double GetBribeFraction() const;
+	// This government will never accept a bribe if the player's reputation
+	// with them is below this value, if it is negative. If the value is 0,
+	// bribes are accepted regardless of reputation.
+	double GetBribeThreshold() const;
 	// This government will fine you the given fraction of the maximum fine for
 	// carrying illegal cargo or outfits. Zero means they will not fine you.
 	double GetFineFraction() const;
@@ -203,6 +207,7 @@ private:
 	std::map<std::string, Atrocity> atrocityShips;
 	bool ignoreUniversalAtrocities = false;
 	double bribe = 0.;
+	double bribeThreshold = 0.;
 	double fine = 1.;
 	std::vector<LocationFilter> enforcementZones;
 	LocationFilter travelRestrictions;
