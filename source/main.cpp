@@ -381,12 +381,15 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// Game loop when running the game normally.
 	if(!testContext.CurrentTest())
 	{
+		// How much time in total was spent on calculations and drawing since the last
+		// load cache update (every 60 drawing frames; usually 1 second).
 		chrono::steady_clock::duration cpuLoadSum{};
 		string cpuLoadString{};
 		chrono::steady_clock::duration gpuLoadSum{};
 		string gpuLoadString{};
 		string ramString;
 		int step = 0;
+		int drawStep = 0;
 
 		while(!menuPanels.IsDone())
 		{
@@ -450,6 +453,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			Audio::Step(isFastForward);
 
 			cpuLoadSum += chrono::steady_clock::now() - start;
+			if(++drawStep == 60)
+				drawStep = 0;
 			chrono::steady_clock::time_point drawStart = chrono::steady_clock::now();
 
 			// Events in this frame may have cleared out the menu, in which case
@@ -471,14 +476,21 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				font.Draw(cpuLoadString, Point(-40., Screen::Height() * -.5 + 5.), medium);
 				font.Draw(gpuLoadString, Point(-40., Screen::Height() * -.5 + 19.), medium);
 				font.Draw(ramString, Point(-40., Screen::Height() * -.5 + 33.), medium);
-				if(!step)
+				if(!drawStep)
 				{
-					cpuLoadString = "CPU: " + Format::Decimal(
-						chrono::duration_cast<chrono::nanoseconds>(cpuLoadSum).count() / 6e6, 2) + " ms";
+					// The load sums are in nanoseconds, accumulated throughout the last second, so divide
+					// by 10^6 to get milliseconds, then by 60 (or 180 with fast-forward for the CPU load)
+					// to get the average milliseconds per step.
+					// In case of percentage, 100% is exactly one second, so divide by 10^7.
+					auto cpuNano = chrono::duration_cast<chrono::nanoseconds>(cpuLoadSum).count();
+					cpuLoadString = "CPU: " + Format::Decimal(cpuNano / (isFastForward && inFlight ? 1.8e8 : 6e7), 2)
+						+ " ms (" + to_string(static_cast<int>(round(cpuNano / 1e7))) + "%)";
 					cpuLoadSum = {};
-					gpuLoadString = "GPU: " + Format::Decimal(
-						chrono::duration_cast<chrono::nanoseconds>(gpuLoadSum).count() / 6e6, 2) + " ms";
+					auto gpuNano = chrono::duration_cast<chrono::nanoseconds>(gpuLoadSum).count();
+					gpuLoadString = "GPU: " + Format::Decimal(gpuNano / 6e7, 2)
+						+ " ms (" + to_string(static_cast<int>(round(gpuNano / 1e7))) + "%)";
 					gpuLoadSum = {};
+					// Get how much memory we have (in bytes).
 					static size_t virtualMemoryUse;
 #ifdef _WIN32
 					static PROCESS_MEMORY_COUNTERS info;
