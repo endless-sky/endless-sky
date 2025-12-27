@@ -40,7 +40,6 @@ namespace {
 	filesystem::path savePath;
 	filesystem::path userPluginPath;
 	filesystem::path globalPluginPath;
-	filesystem::path pluginsCachePath;
 	filesystem::path testPath;
 
 	shared_ptr<iostream> errorLog;
@@ -237,14 +236,6 @@ const filesystem::path &Files::UserPlugins()
 const filesystem::path &Files::GlobalPlugins()
 {
 	return globalPluginPath;
-}
-
-
-
-
-const filesystem::path &Files::PluginsCache()
-{
-	return pluginsCachePath;
 }
 
 

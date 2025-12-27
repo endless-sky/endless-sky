@@ -422,53 +422,28 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 			if(installData->name.find("..") != string::npos)
 				return;
 
-			string zipLocation = Files::PluginsCache() / (installData->name + ".zip");
+			string zipLocation = Files::UserPlugins() / (installData->name + ".zip");
 			bool success = Download(installData->url, zipLocation);
 			if(success)
 			{
-				// TODO: copy it over to the proper place.
+				// Create a new entry for the plugin.
+				Plugin *newPlugin;
+				{
+					lock_guard<mutex> guard(pluginsMutex);
+					newPlugin = plugins.Get(installData->name);
+				}
+				newPlugin->name = installData->name;
+				newPlugin->aboutText = installData->aboutText;
+				newPlugin->path = Files::UserPlugins() / installData->name;
+				newPlugin->version = installData->version;
+				newPlugin->enabled = false;
+				newPlugin->currentState = true;
 
-				// // We need to change our working directory for the extraction to be able
-				// // to check for symlinks or absolute paths without disallowing these things
-				// // for the directory itself.
-				// auto oldPath = std::filesystem::current_path();
-				// std::filesystem::current_path(Files::PluginsCache());
-				//
-				// success = ExtractZIP(zipLocation, "./", installData->name + "/");
-				// std::filesystem::current_path(oldPath);
-				//
-				// if(success)
-				// {
-
-					// Remove old version.
-					if(update)
-						filesystem::remove_all(Files::PluginsCache() / installData->name);
-
-					// Create a new entry for the plugin.
-					Plugin *newPlugin;
-					{
-						lock_guard<mutex> guard(pluginsMutex);
-						newPlugin = plugins.Get(installData->name);
-					}
-					newPlugin->name = installData->name;
-					newPlugin->aboutText = installData->aboutText;
-					newPlugin->path = Files::PluginsCache() / installData->name;
-					newPlugin->version = installData->version;
-					newPlugin->enabled = false;
-					newPlugin->currentState = true;
-
-					installData->installed = true;
-					installData->outdated = false;
-
-				// }
-				// else
-				// 	filesystem::remove_all(Files::PluginsCache() / installData->name);
+				installData->installed = true;
+				installData->outdated = false;
 			}
-			Files::Delete(zipLocation);
-			{
-				lock_guard<mutex> guard(activePluginsMutex);
-				activePlugins.erase(installData->name);
-			}
+			else
+				Logger::Log("Could not download and install/update plugin.", Logger::Level::ERROR);
 		});
 }
 
@@ -497,15 +472,16 @@ void Plugins::DeletePlugin(const std::string &pluginName)
 	{
 		lock_guard<mutex> guard(activePluginsMutex);
 		if(activePlugins.count(pluginName))
+		{
+			Logger::Log("Cannot delete active plugins.", Logger::Level::WARNING);
 			return;
+		}
 	}
-
 	{
 		lock_guard<mutex> guard(pluginsMutex);
 		plugins.Get(pluginName)->removed = true;
 	}
-
-	filesystem::remove_all(Files::PluginsCache() / pluginName);
+	Files::Delete(Files::UserPlugins() / pluginName);
 }
 
 
