@@ -852,6 +852,36 @@ tip "scan concealment:"
 
 
 
+# Shop Tips:
+tip "outfitter: b"
+	`Buy from the outfitter and install onto the currently selected ship(s). Hold Shift, Control, or Alt to buy 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: s"
+	`Sell from cargo, storage, or the currently selected ship(s), in that order. Hold Shift, Control, or Alt to sell 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: i"
+	`Install on the currently selected ship(s) from cargo or storage, in that order. Hold Shift, Control, or Alt to install 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: u"
+	`Uninstall or move outfits from the currently selected ship(s) or cargo to storage, in that order. Hold Shift, Control, or Alt to uninstall 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: c"
+	`Transfer the outfit from planetary storage to cargo if possible. Otherwise, buy it from the outfitter. Hold Shift, Control, or Alt to buy or move 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "outfitter: r"
+	`Move the outfit from cargo or the currently selected ship(s) into planetary storage, in that order. Hold Shift, Control, or Alt to store 5, 20, or 500 at once. Hold a combination of these keys for larger amounts.`
+
+tip "shipyard: b"
+	`Buy this ship. Hold Shift, Control, or Alt to buy 5, 20, or 500 ships at once. Hold a combination of these keys for larger amounts.`
+
+tip "shipyard: s"
+	`Sell the selected ships and their outfits.`
+
+tip "shipyard: r"
+	`Sell the hulls of the selected ships, but retain the outfits in storage.`
+
+
+
 # Sale labels:
 tip "empty hull:"
 	`Price the ship itself would sell for without any outfits installed.`
