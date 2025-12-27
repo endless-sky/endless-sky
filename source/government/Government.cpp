@@ -210,6 +210,14 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				hostileHail = nullptr;
 			else if(key == "hostile disabled hail")
 				hostileDisabledHail = nullptr;
+			else if(key == "ship bribe acceptance hail")
+				shipBribeAcceptanceHail = nullptr;
+			else if(key == "ship bribe rejection hail")
+				shipBribeRejectionHail = nullptr;
+			else if(key == "planet bribe acceptance hail")
+				planetBribeAcceptanceHail = nullptr;
+			else if(key == "planet bribe rejection hail")
+				planetBribeRejectionHail = nullptr;
 			else if(key == "language")
 				language.clear();
 			else if(key == "send untranslated hails")
@@ -456,6 +464,14 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			hostileHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "hostile disabled hail")
 			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "ship bribe acceptance hail")
+			shipBribeAcceptanceHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "ship bribe rejection hail")
+			shipBribeRejectionHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "planet bribe acceptance hail")
+			planetBribeAcceptanceHail = GameData::Phrases().Get(child.Token(valueIndex));
+		else if(key == "planet bribe rejection hail")
+			planetBribeRejectionHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
@@ -632,6 +648,34 @@ string Government::GetHail(bool isDisabled) const
 		phrase = isDisabled ? friendlyDisabledHail : friendlyHail;
 
 	return phrase ? phrase->Get() : "";
+}
+
+
+
+string Government::GetShipBribeAcceptanceHail() const
+{
+	return shipBribeAcceptanceHail ? shipBribeAcceptanceHail->Get() : "It's a pleasure doing business with you.";
+}
+
+
+
+string Government::GetShipBribeRejectionHail() const
+{
+	return shipBribeRejectionHail ? shipBribeRejectionHail->Get() : "I do not want your money.";
+}
+
+
+
+string Government::GetPlanetBribeAcceptanceHail() const
+{
+	return planetBribeAcceptanceHail ? planetBribeAcceptanceHail->Get() : "It's a pleasure doing business with you.";
+}
+
+
+
+string Government::GetPlanetBribeRejectionHail() const
+{
+	return planetBribeRejectionHail ? planetBribeRejectionHail->Get() : "I do not want your money.";
 }
 
 

@@ -167,6 +167,9 @@ public:
 	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;
 	void ResetDefense() const;
 	bool IsDefending() const;
+	// The amount of reputation with this planet's government that is lost
+	// daily if the player has dominated this planet.
+	double DailyTributePenalty() const;
 
 
 private:
@@ -205,6 +208,9 @@ private:
 	int tribute = 0;
 	// The minimum combat rating needed to dominate this planet.
 	int defenseThreshold = 4000;
+	// The amount of reputation with this planet's government that is lost
+	// daily if the player has dominated this planet.
+	double dailyTributePenalty = 0.;
 	mutable bool isDefending = false;
 	// The defense fleets that should be spawned (in order of specification).
 	std::vector<const Fleet *> defenseFleets;
