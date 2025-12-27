@@ -1250,7 +1250,7 @@ void OutfitterPanel::DrawButtons()
 		Screen::Right() - SIDEBAR_WIDTH + 10,
 		Screen::Bottom() - ButtonPanelHeight() + 30);
 	font.Draw("Cargo Free:", cargoPoint, dim);
-	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
+	string space = Format::Integer(player.Cargo().Free()) + " / " + Format::Integer(player.Cargo().Size());
 	font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, cargoPoint, bright);
 
 	// Clear the buttonZones, they will be populated again as buttons are drawn.
