@@ -63,7 +63,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 #ifdef _WIN32
-#include <windef.h>
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
+#define NOGDI
+#include <windows.h>
 
 #define PSAPI_VERSION 1
 #include <processthreadsapi.h>
