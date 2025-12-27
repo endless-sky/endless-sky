@@ -402,8 +402,10 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if(key == "conversation" && hasValue)
 		{
-			// Conversation nodes always clear previous values within their Load function.
-			conversations.Get(node.Token(1))->Load(node, playerConditions);
+			Conversation *conversation = conversations.Get(node.Token(1));
+			if(overwrite)
+				*conversation = Conversation();
+			conversation->Load(node, playerConditions);
 		}
 		else if(key == "effect" && hasValue)
 		{
@@ -456,12 +458,18 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if(key == "interface" && hasValue)
 		{
-			// Interface nodes always clear previous values within their Load function.
-			interfaces.Get(node.Token(1))->Load(node);
+			Interface *interface = interfaces.Get(node.Token(1));
+			if(overwrite)
+				*interface = Interface();
+			interface->Load(node);
 
+			// If we modified the "menu background" interface, then
+			// we also update our cache of it.
 			if(node.Token(1) == "menu background")
 			{
 				lock_guard<mutex> lock(menuBackgroundMutex);
+				if(overwrite)
+					menuBackgroundCache = Interface();
 				menuBackgroundCache.Load(node);
 			}
 		}
