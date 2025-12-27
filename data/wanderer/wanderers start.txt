@@ -34,9 +34,9 @@ mission "First Contact: Wanderer (Before Hai)"
 
 
 mission "First Contact: Wanderer"
+	landing
 	name "Hai Interpreter?"
 	description "The aliens north of Hai space seem to speak the Hai language. If you can find one of the Hai who is willing to interpret, perhaps you can communicate with them."
-	landing
 	source
 		attributes "wanderer"
 	to offer
@@ -147,8 +147,9 @@ mission "Wanderers: Unfettered Diplomat"
 
 
 mission "Wanderers: Hai Diplomat"
-	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
 	landing
+	name "Hai Diplomat"
+	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
 	source
 		not planet "Hai-home"
 		attributes "hai"
@@ -182,8 +183,9 @@ mission "Wanderers: Hai Diplomat"
 
 
 mission "Wanderers: Diplomacy"
-	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
 	landing
+	name "Wanderer Diplomacy"
+	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
 	source "Hai-home"
 	destination "Vara K'chrai"
 	clearance
@@ -193,9 +195,17 @@ mission "Wanderers: Diplomacy"
 	on offer
 		log "People" "Sayari" `Ambassador Sayari, a Hai, served as their envoy to the human government a century ago (although no public records of this exist in human space). She has now been assigned by the Hai to be their diplomat to the Wanderers, and to serve as a translator as well.`
 		conversation
-			`As you are approaching Hai-home, you contact the Hai government and ask if they would be willing to provide an ambassador to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a private government hangar, where a diplomat meets you. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago." To the best of your knowledge, the Republic has never mentioned the Hai or publicly acknowledged receiving an envoy from them.`
+			`As you are approaching Hai-home, you contact the Hai government and ask if they would be willing to provide an ambassador to help you communicate with the aliens to the north, who seem to speak the Hai language. They immediately direct you to a private government hangar, where a diplomat meets you. She holds out a paw to greet you, and says, "My name is Sayari. I was the envoy to the human government, a century ago."`
+			`	To the best of your knowledge, the Republic has never mentioned the Hai or publicly acknowledged receiving an envoy from them.`
+				to display
+					not "hai space start"
 			choice
 				`	"Wait, the human Republic knows that the Hai exist? I had heard nothing but vague rumors of your existence before I found the wormhole."`
+					to display
+						not "hai space start"
+				`	"Wait, the human Republic knows that the Hai exist?"`
+					to display
+						has "hai space start"
 				`	"I'm pleased to meet you. Are you willing to travel with me?"`
 					goto travel
 			
@@ -218,8 +228,9 @@ mission "Wanderers: Diplomacy"
 
 
 mission "Wanderers: Translation Machine"
-	description "Sayari, the Hai ambassador, suggested that you visit <destination>, where Hai technologists are working on translation machines."
 	landing
+	name "Translation Machine"
+	description "Sayari, the Hai ambassador, suggested that you visit <destination>, where Hai technologists are working on translation machines."
 	source "Vara K'chrai"
 	destination "Greenwater"
 	to offer
@@ -314,8 +325,8 @@ conversation "eruk cultural data"
 
 
 mission "Human Cultural Archives"
-	description "Eruk, the Hai technologist on <origin>, has agreed to give you a translation machine if you can somehow get him a copy of the human cultural data from <destination>."
 	landing
+	description "Eruk, the Hai technologist on <origin>, has agreed to give you a translation machine if you can somehow get him a copy of the human cultural data from <destination>."
 	source "Greenwater"
 	destination "Alexandria"
 	to offer
@@ -334,8 +345,8 @@ mission "Human Cultural Archives"
 
 
 mission "Cultural Data to Greenwater"
-	description "Bring a copy of the human cultural archives to <destination> in exchange for a translation machine."
 	landing
+	description "Bring a copy of the human cultural archives to <destination> in exchange for a translation machine."
 	source "Alexandria"
 	destination "Greenwater"
 	to offer
@@ -348,8 +359,8 @@ mission "Cultural Data to Greenwater"
 
 
 mission "Visit Wanderers Again"
-	description "Return to the Wanderer homeworld of <destination> with a device that will allow you to converse with them more freely."
 	landing
+	description "Return to the Wanderer homeworld of <destination> with a device that will allow you to converse with them more freely."
 	source "Greenwater"
 	destination "Vara K'chrai"
 	to offer
@@ -407,6 +418,7 @@ mission "Wanderers Conversation"
 		log "Factions" "Wanderers" `The Wanderers believe that their purpose in the universe is to "repair" planets whose biospheres have been ravaged by other species either through mismanagement or as a result of war. They came to their current territory through a wormhole that they call "the Eye," and they say that once their work here is done the Eye will open and lead them to a new territory and new worlds for them to care for.`
 			`It is possible that the worlds they currently inhabit were formerly part of Hai territory. That might explain why the Unfettered believe they have a right to take that territory back.`
 		log "People" "Iktat Rek" `Rek is a Wanderer ambassador, a new and unusual profession among a species that until recently has had no contact with aliens except for the occasional Unfettered Hai raid. His job is to help the Wanderers develop a deeper relationship with humans.`
+		event "wanderers: vara k'chrai facilities"
 		conversation
 			`With the help of your new translation device, you are able to contact the Wanderer government. They welcome you back and tell you that a Wanderer named "Iktat Rek" has been appointed as the official envoy to deal with human visitors, and he should be arriving at your landing pad shortly.`
 			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves dealing with two at once." He is speaking the Hai language, and the translation device does its best to render his words in your own language.`
@@ -449,6 +461,28 @@ mission "Wanderers Conversation"
 			`	"Those are questions that we do not ask," he says. "It is a [taboo? religion? mystery?] for us."`
 			`	You ask a few other questions, but do not gain much more information. He does mention that the other Wanderer worlds have agreed to sell you some of their technology, and that you will be allowed to "[view, admire, envy]" their ships, but not to purchase them. You thank him for his time and his willingness to trust a member of an entirely unknown species, and return to your ship.`
 				decline
+
+
+
+event "wanderers: vara k'chrai facilities"
+	planet "Vara K'chrai"
+		add port
+			recharges all
+			services all
+		add shipyard "Wanderer Advanced"
+		add outfitter "Wanderer Advanced"
+
+
+
+# Compatibility patch for pilots that did the above missions before 0.10.13.
+mission "Wanderers: Vara K'Chrai Facilities Patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers Conversation: offered"
+	on offer
+		event "wanderers: vara k'chrai facilities"
+		fail
 
 
 
@@ -555,8 +589,9 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 
 
 mission "Wanderers: Defend Vara Ke'sok"
-	description "Defend <planet> from an Unfettered attack by driving off or destroying the Hai ships."
 	landing
+	name "Defend <planet>"
+	description "Defend <planet> from an Unfettered attack by driving off or destroying the Hai ships."
 	source "Vara Ke'sok"
 	to offer
 		has "Wanderers Conversation: offered"
@@ -579,7 +614,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 				`	"I will help drive the Unfettered away."`
 					goto yes
 				`	"Why do I need to help? I only accepted a transport mission."`
-			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failure] if you do not help. Will you aid us now?"`
+			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failures] if you do not help. Will you aid us now?"`
 			label choice
 			choice
 				`	"Yes, I will help drive the Unfettered away."`
@@ -731,6 +766,9 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
+		"cargo settings"
+			cargo 4
+			commodities "Food"
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 
@@ -1164,6 +1202,11 @@ mission "Wanderers: Alpha Surveillance C (Pug)"
 
 
 ship "Carrier" "Carrier (Alpha)"
+	"display name" "Modified Carrier"
+	sprite "ship/modified carrier"
+	thumbnail "thumbnail/modified carrier"
+	add attributes
+		"weapon capacity" 120
 	outfits
 		"Ion Cannon" 2
 		"Hai Tracker Pod" 4
@@ -1183,18 +1226,36 @@ ship "Carrier" "Carrier (Alpha)"
 		"Steering (Stellar Class)"
 		"Jump Drive"
 	
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun
-	gun
-	turret "Shield Disruptor Turret"
-	turret "Husk-Slice Turret"
-	turret "Shield Disruptor Turret"
-	turret "Husk-Slice Turret"
+	gun -17 -179 "Ion Cannon"
+	gun 17 -179 "Ion Cannon"
+	gun -25 -168 "Hai Tracker Pod"
+	gun 25 -168 "Hai Tracker Pod"
+	gun -32.5 -163.5 "Hai Tracker Pod"
+	gun 32.5 -163.5 "Hai Tracker Pod"
+	turret 0 -49 "Shield Disruptor Turret"
+	turret 0 14 "Husk-Slice Turret"
+	turret -22 22 "Shield Disruptor Turret"
+	turret 22 22 "Husk-Slice Turret"
+	bay "Fighter" -38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" -50 40.5
+		"launch effect" "human internal"
+	bay "Fighter" 50 40.5
+		"launch effect" "human internal"
+	bay "Drone" -71.5 -49.5
+		"launch effect" "human internal"
+	bay "Drone" 71.5 -49.5
+		"launch effect" "human internal"
+	bay "Drone" -115 55
+		"launch effect" "human internal"
+	bay "Drone" 115 55
+		"launch effect" "human internal"
+	bay "Drone" -85 55
+		"launch effect" "human internal"
+	bay "Drone" 85 55
+		"launch effect" "human internal"
 
 mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"
@@ -1226,16 +1287,28 @@ mission "Wanderers: Alpha Surveillance D"
 			`	You thank the Quarg for being willing to help you, and you and Elias return to your ship.`
 				accept
 	
+	mark "Hi Yahr"
 	on enter "Hi Yahr"
 		dialog `As you enter the system, Elias checks his tracker device. "Yup, I'm picking up signs of a jump-enabled Carrier," he says. "The path goes east, beyond the edge of Hai space."`
+		unmark "Hi Yahr"
+		mark "Celeborim"
 	on enter "Celeborim"
 		dialog `Elias checks the tracker again. "Southeast, from here," he says. Meanwhile, your ship's warning sirens begin going off; there are alien ships here, and they don't seem friendly.`
+		unmark "Celeborim"
+		mark "Asikafarnut"
 	on enter "Asikafarnut"
 		dialog `Elias checks the tracker. "Still due southeast," he says. "And I hope those Korath ships aren't on the same side as the Alphas."`
+		unmark "Asikafarnut"
+		mark "Sobarati"
+		mark "Ferukistek"
 	on enter "Sobarati"
 		dialog `Elias fiddles with his tracking device for a while, and then gives up. "Sorry, I'm not reading any signals here. Maybe they jumped right over this system?"`
+		unmark "Sobarati"
 	on enter "Ferukistek"
 		dialog `Elias says, "Found their trail. They've turned and headed east again, and maybe a little bit north."`
+		unmark "Ferukistek"
+		unmark "Sobarati"
+		mark "Host"
 	on enter "Makferuti"
 		dialog `Elias frowns as he looks at the tracker's readout. "I think we've taken a wrong turn. No sign of jump drives being used in this system," he says.`
 	on enter "Host"
@@ -1256,7 +1329,9 @@ mission "Wanderers: Alpha Surveillance D"
 		system "Host"
 		personality heroic nemesis staying vindictive target
 		ship "Carrier (Alpha)" "Giftbringer"
-		dialog "The Alpha Carrier has been destroyed. You can now return to the Quarg ringworld and plan your next steps."
+		on kill
+			unmark "Host"
+			dialog "The Alpha Carrier has been destroyed. You can now return to the Quarg ringworld and plan your next steps."
 	npc
 		government "Alpha"
 		system "Host"
@@ -1433,6 +1508,7 @@ mission "Wanderers: Alpha Surveillance H"
 	description "Meet Admiral Danforth in the spaceport on <origin>, and talk about what to do next about the Alphas."
 	landing
 	source "Farpoint"
+	"offer precedence" 100
 	to offer
 		has "Wanderers: Alpha Surveillance G: done"
 	
@@ -1556,6 +1632,7 @@ mission "Wanderers: Alpha Surveillance J"
 	
 	on complete
 		"reputation: Wanderer" >?= 30
+		event "wanderers: heavy gust mass production" 30
 		event "wanderers: unfettered invasion starts" 64
 		log "Reported to the Wanderers that the Alphas who had been selling jump drives to the Unfettered have been weakened and driven into hiding. The Wanderers are ramping up production of military ships to try to face the continuing Unfettered onslaught."
 		conversation
@@ -1578,7 +1655,16 @@ mission "Wanderers: Unfettered Invasion Patch"
 		event "wanderers: unfettered invasion starts"
 		fail
 
-
+# Giving Heavy Gust to old saves:
+mission "Wanderers: Heavy Gust Patch"
+	landing
+	invisible
+	to offer
+		has "event: wanderers: unfettered invasion starts"
+		not "event: wanderers: heavy gust mass production"
+	on offer
+		event "wanderers: heavy gust mass production"
+		fail
 
 mission "Wanderers Invaded 0"
 	landing
@@ -1744,7 +1830,7 @@ mission "Wanderers Invaded 2"
 		fleet
 			names "wanderer"
 			variant
-				"Strong Wind" 1
+				"Heavy Gust" 1
 				"Autumn Leaf" 2
 				"Summer Leaf" 3
 	npc
@@ -2013,12 +2099,35 @@ mission "Wanderers Hai Assistance Fleet"
 	invisible
 	to offer
 		has "Wanderers Hai Assistance 1: done"
+	on offer
+		event "hai blockade"
 	npc kill
 		government "Hai"
 		personality heroic staying uninterested frugal
 		system "Wah Ki"
 		fleet "Large Hai" 6
 
+# Unfettered raids no longer happen beyond Wah Ki.
+event "hai blockade"
+	system "Bore Fah"
+		remove raid
+	system "Bote Asu"
+		remove raid
+	system "Imo Dep"
+		remove raid
+	system "Zuba Zub"
+		remove raid
+
+# Compatibility mission for players who finished "Wanderers Hai Assistance Fleet" prior to 0.10.13.
+mission "Wanderers Hai Assistance Fleet patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers Hai Assistance Fleet: offered"
+		not "event: hai blockade"
+	on offer
+		event "hai blockade"
+		fail
 
 
 mission "Wanderers Hai Assistance 3"
@@ -2088,6 +2197,7 @@ mission "Wanderers Solifuge Recon 2"
 	description "Unfettered ships of an unknown design have been spotted in the Prakacha'a system. Destroy them, then return to <destination>."
 	autosave
 	source "Vara Ke'sok"
+	mark "Prakacha'a"
 	to offer
 		not "Wanderers Pond Strider Recon 2: offered"
 		or
@@ -2102,7 +2212,6 @@ mission "Wanderers Solifuge Recon 2"
 			`	"The other news is even better!" he says. "We have [saved, set aside] a fight for you. Unfettered ships of unknown design have been [spotted, discovered] in the Prakacha'a system. I ask you to destroy all these ships, then report to me what their [capabilities, strengths] are. I will discuss the [situation? troubles?] of the Unfettered with Sayari while you are gone."`
 			`	You tell him that you will do your best. Now that you are able to purchase Wanderer warships, you should be able to match anything the Unfettered throw at you.`
 				accept
-	waypoint "Prakacha'a"
 	npc kill
 		personality staying heroic target
 		government "Hai (Unfettered)"
@@ -2114,7 +2223,9 @@ mission "Wanderers Solifuge Recon 2"
 				"Solifuge (Tracker)"
 				"Violin Spider" 6
 				"Violin Spider (Pulse)" 6
-		dialog "That was the last of the new Unfettered ships. You can now report back to Tele'ek on <planet>."
+		on kill
+			unmark "Prakacha'a"
+			dialog "That was the last of the new Unfettered ships. You can now report back to Tele'ek on <planet>."
 	on visit
 		dialog `Tele'ek approaches you when you land. "I have [reports, word] that the Unfettered ships are still [present, alive] within Prakacha'a. Please destroy them all before returning."`
 
@@ -2153,11 +2264,11 @@ mission "Wanderers Solifuge Recon 4"
 		conversation "solifuge conversation"
 
 conversation "solifuge conversation"
-	branch altStart
+	branch "alt start"
 		has "Strider Alt Start: done"
 	`You give the message from Sayari to the spaceport authorities so that they can deliver it to the council of elders. After the message has been delivered, the council requests that you meet with them.`
 		goto start
-	label altStart
+	label "alt start"
 	`	When you arrive on <planet>, you are quickly escorted from the spaceport to the council chambers.`
 	label start
 	`	"Greetings again, <first> <last>," one of the elders says to you. "It is our understanding that our Unfettered brothers and sisters have created a carrier ship. How difficult was it for you to combat it?"`
@@ -2183,7 +2294,7 @@ conversation "solifuge conversation"
 	`	The elders once again mumble among themselves. They continue to ask Osen a number of questions about this new carrier. How difficult is one to produce? How much does it cost? What are the capabilities of the drones? How useful would it be without being able to repair the hull of its drones?`
 	`	After having all their questions answered, the elders seem to be interested in the idea of Osen's new ship. "This hull repair technology indeed sounds necessary," an elder says. "We will provide what funding we can to help fast track its development."`
 	`	Osen's father turns to you. "You have traveled many systems, <first> <last>. Perhaps you might be able to help. If you know of any peoples who have such technology from elsewhere in the galaxy, should it exist, then perhaps we could meet with them."`
-	branch altEnd
+	branch "alt end"
 		has "Strider Alt Start: done"
 	choice
 		`	"I'm sorry, but I can't help right now. I need to return to the Wanderers."`
@@ -2197,7 +2308,7 @@ conversation "solifuge conversation"
 	`	"This is understandable," Osen's father responds. "Return to where you are needed, but when you are able to help, we will gladly accept it." The elders all thank you for bringing Sayari's message and bid you safe travels back to <planet>.`
 		accept
 	
-	label altEnd
+	label "alt end"
 	choice
 		`	"I'd be glad to help. I'm sure I could find someone with hull repair technology that could help."`
 			goto glad
@@ -2412,8 +2523,7 @@ mission "Wanderers Defend Sich'ka'ara"
 			names "wanderer"
 			variant
 				"Tempest (Heavy)"
-				"Tempest"
-				"Strong Wind" 1
+				"Heavy Gust" 2
 				"Autumn Leaf" 2
 				"Summer Leaf" 3
 	on complete
@@ -2453,6 +2563,21 @@ event "battle for sich'ka'ara ends"
 	planet "Kort Vek'kri"
 		attributes "unfettered"
 		spaceport `The Unfettered clearly do not know quite what to make of the Wanderer research station here that they have recently captured. Animals that were once part of various experiments are now wandering loose, and the Unfettered are making only sporadic efforts to keep them well-fed. Every once in a while one of them, driven by sheer hunger, tries to smash its way into one of the crates of military rations that the Unfettered have stacked up in the shade near the main landing pad.`
+		remove tribute
+
+# Patch mission for players who got these missions before 0.10.11 and didn't get tribute from Kort Vek'kri cleared.
+mission "Wanderers: Kort Vek'kri Tribute Patch"
+	landing
+	invisible
+	to offer
+		has "event: battle for sich'ka'ara ends"
+	on offer
+		event "kort vek'kri tribute clear"
+		fail
+
+event "kort vek'kri tribute clear"
+	planet "Kort Vek'kri"
+		remove tribute
 	
 event "solifuge deployment"
 	shipyard "Mon Ki o'Uden Advanced"
@@ -2839,7 +2964,7 @@ mission "Wanderers Ap'arak 2"
 			variant
 				"Derecho (Turret)"
 				"Derecho"
-				"Strong Wind" 2
+				"Heavy Gust" 2
 				"Autumn Leaf" 4
 				"Summer Leaf" 3
 	npc

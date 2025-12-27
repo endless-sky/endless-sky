@@ -21,9 +21,10 @@ mission "FW Diplomacy 1"
 	to offer
 		has "event: navy occupying the south"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
+		event "catalytic ramscoop available"
 		event "joined the free worlds"
 		event "fw abandoned Greenrock" 60
 		event "Greenrock recovered" 420
@@ -42,7 +43,6 @@ mission "FW Diplomacy 1"
 			`			Sincerely,`
 			`				Jean-Jacques and Freya`
 				accept
-		event "catalytic ramscoop available"
 	
 	on complete
 		dialog `As you are landing, Alondo contacts you and asks you to meet him in the spaceport as soon as you have a bunk prepared for him.`
@@ -61,7 +61,7 @@ mission "FW Diplomacy 1B"
 	passengers 1
 	blocked "You do not have a bunk free for Alondo. Return here when you do."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -114,10 +114,10 @@ mission "FW Diplomacy 1C"
 		has "FW Diplomacy 1B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
-		log "Stopped on Earth with Alondo to talk to Parliament and try to head off another bloody battle. But, they were not willing to negotiate."
+		log "Stopped on Earth with Alondo to talk to Parliament and try to head off another bloody battle. Unfortunately, they were not willing to negotiate."
 		conversation
 			`You drop off Alondo and wish him luck. Hours pass, and you begin to worry that he has been taken prisoner or killed. But finally he returns, looking very discouraged. "It makes no sense," he says. "The tax revenue they get from those four worlds doesn't come close to covering the cost of defending them. They should be glad to let them go."`
 			choice
@@ -154,7 +154,7 @@ mission "FW Diplomacy 1D"
 		has "FW Diplomacy 1C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -184,7 +184,7 @@ mission "FW Southern Recon 1"
 	to offer
 		has "FW Diplomacy 1D: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "fw safe passage ends"
@@ -204,12 +204,13 @@ mission "FW Southern Recon 1B"
 	autosave
 	source "Trinket"
 	destination "Trinket"
+	mark "Alnasl"
+	mark "Wei"
 	to offer
 		has "FW Southern Recon 1: done"
 	
 	on offer
 		log "It looks like the Navy has begun using some more powerful beam weapons and torpedoes. Tasked with plundering one of the electron beam weapons so Freya can get a closer look at it."
-		event "gunboats in Alnasl"
 		conversation
 			`Freya thanks you for performing the scouting mission, and you give her a copy of your ship's logs to analyze. As she looks through them, almost immediately something catches her eye. "Looks like the Navy is fielding some new weapons," she says. "Some higher-yield torpedoes, and a beam weapon even more powerful than Heavy Lasers. Those beam weapons in particular worry me."`
 			choice
@@ -222,8 +223,35 @@ mission "FW Southern Recon 1B"
 			`	"We're going to have to fight them eventually, but first we need as much information as we can get on their new weapon systems. I'd like you to find one of their Gunboats that has the new electron beams installed, steal one of them, and bring it back here. I imagine one of them can't be much bigger than twenty or thirty tons, so you ought to be able to find space for it. Think you can do that?"`
 			choice
 				`	"How can I find a Gunboat that's all by itself? They're usually a part of a bigger fleet."`
+				`	"I already plundered one of these new guns previously. I can give it to you now."`
+					goto gun
+					to display
+						has "outfit: Electron Beam"
+				`	"I already plundered one of these new turrets previously. I can give it to you now."`
+					goto turret
+					to display
+						has "outfit: Electron Turret"
+			
 			`	She thinks about that for a moment, then says, "The Navy has shifted most of their capital ships to the defecting systems in the south. That means that some of the systems up north will have lighter defenses. You might try Wei or Alnasl. Good luck, Captain."`
 				accept
+			
+			label gun
+			action
+				outfit "Electron Beam" -1
+				set "FW Southern Recon 1B: done"
+			branch end
+			
+			label turret
+			action
+				outfit "Electron Turret" -1
+				set "FW Southern Recon 1B (Turret): done"
+			
+			label end
+			`	"Oh! That's great to hear. I'll get my team to take it off your hands right away."`
+			`	You hand off the weapon to Freya's science team once they arrive. Freya tells you that she'll be waiting for you in a cafe in the spaceport after she's had a chance to look at it more closely.`
+				decline
+	on accept
+		event "gunboats in Alnasl"
 	npc
 		government "Republic"
 		system "Alnasl"
@@ -232,6 +260,10 @@ mission "FW Southern Recon 1B"
 			names "republic small"
 			variant
 				"Gunboat (Mark II)"
+	on enter "Alnasl"
+		unmark "Alnasl"
+	on enter "Wei"
+		unmark "Wei"
 	to complete
 		not "FW Southern Recon 1B (Turret): done"
 	to fail
@@ -241,6 +273,7 @@ mission "FW Southern Recon 1B"
 	on complete
 		fail "FW Southern Recon 1B (Turret)"
 		outfit "Electron Beam" -1
+		event "normal in Alnasl"
 		dialog `You hand off the Electron Beam to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
 
 
@@ -259,6 +292,7 @@ mission "FW Southern Recon 1B (Turret)"
 	on complete
 		fail "FW Southern Recon 1B"
 		outfit "Electron Turret" -1
+		event "normal in Alnasl"
 		dialog `You hand off the Electron Turret to Freya's science team. They tell you that she's waiting for you in a cafe in the spaceport.`
 
 
@@ -274,7 +308,7 @@ mission "FW Southern Recon 1B: Alnasl Hint 1"
 		conversation
 			`While refueling on <planet>, a Free Worlds captain approaches you. "Captain <last>, I hear you're on the search for one of those new lasers the Navy is using."`
 			choice
-				`	"Yes I am."`
+				`	"Yes, I am."`
 				`	"Do you have any information on them?"`
 					goto information
 			`	"Good, because we have some information that could help you.`
@@ -304,14 +338,15 @@ mission "FW Southern Battle 1"
 	source Trinket
 	destination Zug
 	to offer
+		has "FW Southern Recon 1: done"
+	to accept
 		or
 			has "FW Southern Recon 1B: done"
 			has "FW Southern Recon 1B (Turret): done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
-		event "normal in Alnasl"
 		conversation
 			`Because this world is a tourist destination, there are innumerable fancy cafes in the spaceport. You meet up with Freya in one of the smaller ones. "Thank you for acquiring that weapon sample for us," she says. "It's typical Republic weaponry: far more efficient than anything we're able to make, and very well designed. My engineers were kind of in awe as they disassembled it."`
 			choice
@@ -324,7 +359,6 @@ mission "FW Southern Battle 1"
 				goto battle
 			label reverse
 			`	"Maybe, although we haven't even mastered the art of building Heavy Lasers yet," she says. "We certainly won't have time before the upcoming battle."`
-				goto battle
 			label battle
 			`	"So we're definitely going to attack the Navy?" you ask.`
 			`	"We have no choice," she says. "We tried diplomacy. If we don't show a willingness to support new worlds that want to join us, or if we don't seem to have enough strength to defend them, some of those that have joined us already may start to return to the Republic."`
@@ -346,7 +380,7 @@ mission "FW Southern Battle 1B"
 	to offer
 		has "FW Southern Battle 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "flamethrower available" 10
@@ -408,7 +442,7 @@ mission "FW Southern Battle 2"
 		has "FW Southern Battle 1B: done"
 	deadline 3
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Preparing for another major battle with the Navy, this time in the Rastaban system, which just recently expressed an interest in joining the Free Worlds but has not been able to do so due to the Navy presence. The Free Worlds will be using a new model of warship, the Dreadnought, in this battle."
@@ -478,13 +512,13 @@ mission "FW Southern Battle 2"
 		system Rastaban
 		personality heroic uninterested staying
 		government "Republic"
-		fleet 2
+		fleet
 			names "republic capital"
 			fighters
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 3
 			names "republic capital"
@@ -525,7 +559,7 @@ mission "FW Southern Battle 3"
 	waypoint Albaldah
 	waypoint "Delta Sagittarii"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Navy has been driven out of the Rastaban system. That will allow the people on Harmony, Dancer, New Portland, and New India to join the Free Worlds."
@@ -652,7 +686,7 @@ mission "FW Southern Prisoners - Released"
 	to offer
 		has "FW Southern Prisoners - Release: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -695,7 +729,7 @@ mission "FW Southern Prisoners - Kept"
 	to offer
 		has "FW Southern Prisoners - Keep: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -772,7 +806,7 @@ mission "FW Northern 1"
 	passengers 1
 	blocked `You receive a message from Freya: "Captain, please meet up with us as soon as you have a bunk free for Alondo." You have no bunks free, so you should return here once you have made one available.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Three more planets have decided to defect to the Free Worlds: Clark, New Tibet, and New Holland."
@@ -819,11 +853,11 @@ mission "FW Northern 2"
 	to offer
 		has "FW Northern 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
-			`You wait in the spaceport bar for a while. Your Free Worlds uniform has drawn a good deal of attention from the locals: a few of them waved to you when you came in, or gave other subtle signs of approval, but no one is sitting with you. They probably want to avoid getting into trouble with the Republic if the Free Worlds is not able to hold this planet.`
+			`You wait in the spaceport bar for a while. Your Free Worlds uniform has drawn a good deal of attention from the locals: a few of them waved to you when you came in, or gave other subtle signs of approval, but no one is sitting with you. They probably want to avoid getting into trouble with the Republic if the Free Worlds are not able to hold this planet.`
 			`	Finally Alondo arrives. "Come on," he says. "Let's talk outside." He seems tired, but not frightened.`
 			choice
 				`	"Is everything okay?"`
@@ -852,7 +886,7 @@ mission "FW Northern 2A"
 	passengers 1
 	blocked "To continue this mission, you need a bunk free for Freya. Return here when you have made one available."
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -873,7 +907,7 @@ mission "FW Northern 2B"
 		has "FW Northern 2A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -895,7 +929,7 @@ mission "FW Northern 2C"
 		has "FW Northern 2B: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -928,7 +962,7 @@ mission "FW Northern 2D"
 		has "FW Northern 2C: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -949,7 +983,7 @@ mission "FW Northern 3"
 		has "FW Northern 2D: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The shipyard on Zug is still trying to ramp up Dreadnought production. So far only a few ships have been built, but Freya will be helping to speed up the process."
@@ -1001,7 +1035,7 @@ mission "FW Northern 3B"
 	to offer
 		has "FW Northern 3: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1054,7 +1088,7 @@ mission "FW Northern 4"
 		has "FW Northern 3B: done"
 	clearance
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1076,7 +1110,7 @@ mission "FW Northern 4.1A"
 		karma >= 2
 		"reputation: Navy (Oathkeeper)" >= 0
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1117,7 +1151,7 @@ mission "FW Northern 4.2A"
 			karma < 2
 			"reputation: Navy (Oathkeeper)" < 0
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1154,7 +1188,7 @@ mission "FW Alphas 1.1"
 	to offer
 		has "FW Northern 4.1A: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Republic world of Poisonwood in the South has apparently been taken over by Alpha warlords. It is such a dire threat that despite the war, the Navy Oathkeepers have agreed to fight alongside the Free Worlds to liberate the planet."
@@ -1255,7 +1289,7 @@ mission "FW Alphas 1.2"
 	to offer
 		has "FW Northern 4.2A: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Republic world of Poisonwood in the South has apparently been taken over by Alpha warlords. Hopefully the Free Worlds will be able to liberate the planet and capture or kill the Alpha leaders."
@@ -1311,7 +1345,7 @@ mission "FW Alphas 1.1A"
 	to offer
 		has "FW Alphas 1.1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	npc accompany save
 		government "Navy (Oathkeeper)"
@@ -1381,7 +1415,7 @@ mission "FW Alphas 1.2A"
 	to offer
 		has "FW Alphas 1.2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Liberated Poisonwood from the Alpha invaders. Had to bombard them from orbit, and many civilians were killed in the process, but at least the planet is free again."
@@ -1410,7 +1444,7 @@ mission "FW Bloodsea 1"
 	passengers 1
 	blocked `Alondo contacts you and asks, "Do you have a bunk ready for me?" You do not, so you will need to free one up to continue this mission.`
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1427,7 +1461,7 @@ mission "FW Bloodsea 1"
 				`	"Okay, sounds like fun!"`
 					accept
 				`	"Wait, didn't things go south rather quickly the last time we attempted this?"`
-			`	Alondo grins. "Yes, but the Free Worlds is in a much stronger position now, and the pirate worlds know it's only a matter of time before they are forced to become civilized. And, the incident on Poisonwood proved that we can't afford to fight a war on two fronts. We need to eliminate the pirate threat, and a diplomatic solution with them is the only sort that will last. So, let's get going!"`
+			`	Alondo grins. "Yes, but the Free Worlds are in a much stronger position now, and the pirate worlds know it's only a matter of time before they are forced to become civilized. And, the incident on Poisonwood proved that we can't afford to fight a war on two fronts. We need to eliminate the pirate threat, and a diplomatic solution with them is the only sort that will last. So, let's get going!"`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1491,7 +1525,7 @@ mission "FW Bloodsea 1.1A"
 		has "FW Bloodsea 1.1: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1523,7 +1557,7 @@ mission "FW Bloodsea 1.1B"
 		has "FW Bloodsea 1.1A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1604,7 +1638,7 @@ mission "FW Bloodsea 1.2A"
 	to offer
 		has "FW Bloodsea 1.2: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		event "battle for bloodsea"
@@ -1658,25 +1692,26 @@ mission "FW Bloodsea 1.2A"
 
 
 
-mission "Pirate Use Jousting Cutthroat"
+mission "Pirates Use Cutthroats"
 	landing
 	invisible
 	to offer
 		has "fw bloodsea done"
 	on offer
-		event "pirate use jousting cutthroat"
+		event "pirates use cutthroat"
 		fail
 
-event "pirate use jousting cutthroat"
-	fleet "Large Southern Pirate"
+event "pirates use cutthroat"
+	fleet "Large Southern Pirates"
 		add variant 2
-			"Cutthroat" 2
-			"Cutthroat (Jousting)"
+			"Cutthroat" 3
 		add variant 1
 			"Modified Argosy (Blaster)"
 			"Fury (Gatling)"
-			"Cutthroat (Jousting)"
+			"Cutthroat"
 
+# For save files which have the "Pirate Use Jousting Cutthroat" mission active prior to its removal in v0.10.14.
+event "pirate use jousting cutthroat"
 
 
 
@@ -1689,7 +1724,7 @@ mission "FW Dreadnoughts Ready"
 	to offer
 		has "fw bloodsea done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	on offer
 		log "Freya has announced that Dreadnoughts are now for sale on Zug. Finally the Free Worlds have a warship that can stand up to Navy capital ships."
 
@@ -1706,7 +1741,7 @@ mission "FW Albatross 1"
 		has "FW Dreadnoughts Ready: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1732,12 +1767,12 @@ mission "FW Albatross 1"
 				`	"Okay, I feel silly for even asking. Let's go meet up with JJ!"`
 					accept
 				`	"Actually, I'm gay too."`
-					goto metoo
+					goto "me too"
 				`	"Ah. That certainly explains some things."`
 				`	"It seems crazy that anyone would be bothered by that in this day and age."`
 			`	"Yes," she says. "Yes, it does. Now, let's go meet up with JJ."`
 				accept
-			label metoo
+			label "me too"
 			action
 				set "gay"
 			`	Freya raises an eyebrow. "I hadn't heard. We don't have time to find someone else for this mission, so you'll need to be the one to transport JJ. Stay safe."`
@@ -1758,7 +1793,7 @@ mission "FW Albatross 2"
 		has "FW Albatross 1: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1788,7 +1823,7 @@ mission "FW Albatross 2A"
 		has "FW Albatross 2: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		conversation
@@ -1826,17 +1861,33 @@ mission "FW Albatross 2A"
 		dialog `You land on <planet>, but realize that you either haven't destroyed Ryk Bartlett's ship, the Dread, or your escort carrying JJ hasn't entered the system yet. Better depart and make sure that you've done everything you need to do to complete this mission.`
 	
 	npc kill
-		personality staying plunders disables heroic nemesis target
-		system Orvala
-		government Pirate
-		ship "Bastion (Heavy)" "Dread"
+		personality staying plunders disables heroic marked target
+		system "Orvala"
+		government "Pirate"
+		ship "Bulwark (Heavy)" "Dread"
 		dialog "You have destroyed Ryk Bartlett's ship. Hopefully now the elders on Albatross will be more inclined to bargain with the Free Worlds."
 	
 	npc
-		personality staying plunders disables
-		system Orvala
-		government Pirate
-		fleet "Small Southern Pirates" 3
+		personality staying plunders disables marked
+		system "Orvala"
+		government "Pirate"
+		fleet
+			names "pirate"
+			variant
+				"Modified Argosy (Gatling)"
+				"Hawk (Plasma)"
+				"Hawk"
+				"Sparrow" 3
+	npc
+		personality timid staying plunders coward disables marked
+		system "Orvala"
+		government "Pirate"
+		"cargo settings"
+			commodities "Heavy Metals"
+		fleet
+			names "pirate"
+			variant
+				"Argosy (Proton)"
 
 
 
@@ -1852,7 +1903,7 @@ mission "FW Albatross 2B"
 		has "FW Albatross 2A: done"
 	passengers 1
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The people of Albatross, another anarchist world, have agreed to join the Free Worlds in gratitude for having been liberated from Ryk Bartlett, a warlord who was extorting them for protection money."
@@ -1884,7 +1935,7 @@ mission "FW Rand 1"
 	to offer
 		has "FW Albatross 2B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "Another two planets, Rand and Oblivion, have expressed an interest in joining the Free Worlds. They are rather far from the rest of Free Worlds territory, however, so JJ is worried that it would create an indefensible tactical position."
@@ -1909,6 +1960,7 @@ mission "FW Rand 1"
 	npc
 		government "Free Worlds"
 		personality heroic disables escort
+		ship "Dreadnought" "F.S. Jean Bart"
 		ship "Dreadnought" "F.S. Elder"
 		ship "Falcon (Plasma)" "F.S. Reliant"
 		ship "Falcon (Heavy)" "F.S. Bismark"
@@ -1937,7 +1989,7 @@ mission "FW Rand 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)"
 	
@@ -1959,7 +2011,7 @@ mission "FW Rand 1B"
 	to offer
 		has "FW Rand 1: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "The Navy has invaded Rastaban and Delta Sagittarii, effectively slicing through Free Worlds territory and splitting up the Free Worlds fleet."
@@ -2072,7 +2124,7 @@ mission "FW Defend New Tibet"
 	to offer
 		has "FW Rand 1B: done"
 	on fail
-		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+		dialog phrase "free worlds failed"
 	
 	on offer
 		log "As a member of the Council, must make the deciding vote on a difficult decision. A defector from the Syndicate is claiming to have proof that the Syndicate was behind the bombings of Martini and Geminus. If that is true, the Republic may agree to make peace with the Free Worlds. But, refusing to return the defector to the Syndicate would certainly earn their enmity."
@@ -2087,7 +2139,7 @@ mission "FW Defend New Tibet"
 			choice
 				`	(Continue watching the communication.)`
 			`	The video of the monk continues, "He was unable to show us this evidence, but he made claims of having plans for a nuclear device. After arriving he hid his ship in a cave, just before a Syndicate fleet appeared in orbit. They do not know where the defector landed, so they have begun searching settlement to settlement under the assumption that one is harboring him. They are currently here, wrecking the monastery in their hunt."`
-			`	After a moment, JJ says, "If these allegations are true, if we can prove that the Free Worlds was innocent of any involvement in those attacks, the Republic might make peace with us, or at least agree to a ceasefire. I vote that we try to shelter this defector and hear his story."`
+			`	After a moment, JJ says, "If these allegations are true, if we can prove that the Free Worlds were innocent of any involvement in those attacks, the Republic might make peace with us, or at least agree to a ceasefire. I vote that we try to shelter this defector and hear his story."`
 			`	"And if it's a lie," says Freya, "and we refuse the Syndicate's request, we lose our only ally. Many more civilians will be killed if we continue to fight without their backing, and we don't even know what this supposed evidence actually is. I care about justice, but trading a definite ally for a slim possibility of peace: that is an unwise investment. I vote that we hand this man over to the Syndicate."`
 			choice
 				`	(Continue watching the communication.)`
@@ -2307,9 +2359,9 @@ mission "FW Liberate Delta Sagittarii"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
-				"Gunboat (Mark II)" 4
+				"Gunboat (Mark II)" 3
 		fleet
 			names "republic capital"
 			fighters
@@ -2317,7 +2369,7 @@ mission "FW Liberate Delta Sagittarii"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
-				"Rainmaker (Mark II)" 4
+				"Rainmaker (Mark II)" 2
 	
 	npc
 		personality staying derelict

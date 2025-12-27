@@ -54,11 +54,11 @@ namespace {
 
 
 // Load a planet's description from a file.
-void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
+void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 		return;
-	name = node.Token(1);
+	trueName = node.Token(1);
 	// The planet's name is needed to save references to this object, so a
 	// flag is used to test whether Load() was called at least once for it.
 	isDefined = true;
@@ -97,7 +97,9 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		if(removeAll || overwriteAll)
 		{
 			// Clear the data of the given type.
-			if(key == "music")
+			if(key == "display name")
+				displayName.clear();
+			else if(key == "music")
 				music.clear();
 			else if(key == "attributes")
 				attributes.clear();
@@ -126,9 +128,29 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			else if(key == "security")
 				security = 0.;
 			else if(key == "tribute")
+			{
 				tribute = 0;
+				defenseThreshold = 4000;
+				defenseFleets.clear();
+				ResetDefense();
+			}
 			else if(key == "wormhole")
 				wormhole = nullptr;
+			else if(key == "to")
+			{
+				if(value == "know")
+					toKnow = ConditionSet();
+				else if(value == "land")
+					toLand = ConditionSet();
+				else if(value == "access" && child.Size() > valueIndex + 1)
+				{
+					const string &shop = child.Token(valueIndex + 1);
+					if(shop == "shipyard")
+						toAccessShipyard = ConditionSet();
+					else if(shop == "outfitter")
+						toAccessOutfitter = ConditionSet();
+				}
+			}
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -138,11 +160,11 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		}
 
 		if(key == "port")
-			port.Load(child);
+			port.Load(child, playerConditions);
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
-			child.PrintTrace("Error: Expected key to have a value:");
+			child.PrintTrace("Expected key to have a value:");
 			continue;
 		}
 		else if(key == "attributes")
@@ -171,19 +193,21 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
 		{
-			child.PrintTrace("Error: Cannot \"remove\" a specific value from the given key:");
+			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 			continue;
 		}
+		else if(key == "display name")
+			displayName = value;
 		else if(key == "landscape")
 			landscape = SpriteSet::Get(value);
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
-			description.Load(child);
+			description.Load(child, playerConditions);
 		else if(key == "spaceport")
 		{
 			port.LoadDefaultSpaceport();
-			port.LoadDescription(child);
+			port.LoadDescription(child, playerConditions);
 		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
@@ -202,11 +226,13 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			bool resetFleets = !defenseFleets.empty();
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "threshold" && grand.Size() >= 2)
+				const string &grandKey = grand.Token(0);
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "threshold" && grandHasValue)
 					defenseThreshold = grand.Value(1);
-				else if(grand.Token(0) == "fleet")
+				else if(grandKey == "fleet")
 				{
-					if(grand.Size() >= 2 && !grand.HasChildren())
+					if(grandHasValue && !grand.HasChildren())
 					{
 						// Allow only one "tribute" node to define the tribute fleets.
 						if(resetFleets)
@@ -231,6 +257,25 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			wormhole = wormholes.Get(value);
 			wormhole->SetPlanet(*this);
 		}
+		else if(key == "to")
+		{
+			if(value == "know")
+				toKnow.Load(child, playerConditions);
+			else if(value == "land")
+				toLand.Load(child, playerConditions);
+			else if(value == "access" && child.Size() > valueIndex + 1)
+			{
+				const string &shop = child.Token(valueIndex + 1);
+				if(shop == "shipyard")
+					toAccessShipyard.Load(child, playerConditions);
+				else if(shop == "outfitter")
+					toAccessOutfitter.Load(child, playerConditions);
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
+			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -238,8 +283,13 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 	// For reverse compatibility, if this planet has a spaceport but it was not custom loaded,
 	// and the planet has the "uninhabited" attribute, replace the spaceport with a special-case
 	// uninhabited spaceport.
-	if(attributes.contains("uninhabited") && HasNamedPort() && !port.CustomLoaded())
-		port.LoadUninhabitedSpaceport();
+	if(HasNamedPort() && !port.CustomLoaded())
+	{
+		if(attributes.contains("uninhabited"))
+			port.LoadUninhabitedSpaceport();
+		else
+			port.LoadDefaultSpaceport();
+	}
 
 	// Apply any auto-attributes to this planet depending on what it has.
 	static const vector<string> AUTO_ATTRIBUTES = {
@@ -259,20 +309,20 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		"spaceport news",
 	};
 	bool autoValues[14] = {
-		port.HasService(Port::ServicesType::All) && port.CanRecharge(Port::RechargeType::All)
+		port.HasService(Port::ServicesType::All, false) && port.CanRecharge(Port::RechargeType::All, false)
 				&& port.HasNews() && HasNamedPort(),
 		HasNamedPort(),
 		!shipSales.empty(),
 		!outfitSales.empty(),
-		port.HasService(Port::ServicesType::Trading),
-		port.HasService(Port::ServicesType::JobBoard),
-		port.HasService(Port::ServicesType::Bank),
-		port.HasService(Port::ServicesType::HireCrew),
-		port.HasService(Port::ServicesType::OffersMissions),
-		port.CanRecharge(Port::RechargeType::Shields),
-		port.CanRecharge(Port::RechargeType::Hull),
-		port.CanRecharge(Port::RechargeType::Energy),
-		port.CanRecharge(Port::RechargeType::Fuel),
+		port.HasService(Port::ServicesType::Trading, false),
+		port.HasService(Port::ServicesType::JobBoard, false),
+		port.HasService(Port::ServicesType::Bank, false),
+		port.HasService(Port::ServicesType::HireCrew, false),
+		port.HasService(Port::ServicesType::OffersMissions, false),
+		port.CanRecharge(Port::RechargeType::Shields, false),
+		port.CanRecharge(Port::RechargeType::Hull, false),
+		port.CanRecharge(Port::RechargeType::Energy, false),
+		port.CanRecharge(Port::RechargeType::Fuel, false),
 		port.HasNews(),
 	};
 	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
@@ -284,7 +334,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 	}
 
 	// Precalculate commonly used values that can only change due to Load().
-	inhabited = (HasServices() || requiredReputation || !defenseFleets.empty()) && !attributes.contains("uninhabited");
+	inhabited = (HasServices(false) || requiredReputation || !defenseFleets.empty())
+			&& !attributes.contains("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
 }
 
@@ -299,12 +350,16 @@ void Planet::FinishLoading(Set<Wormhole> &wormholes)
 	{
 		wormhole = wormholes.Get(TrueName());
 		wormhole->LoadFromPlanet(*this);
-		Logger::LogError("Warning: deprecated automatic generation of wormhole \"" + name + "\" from a multi-system planet.");
+		Logger::Log("Deprecated automatic generation of wormhole \"" + trueName + "\" from a multi-system planet.",
+			Logger::Level::WARNING);
 	}
 	// If the wormhole was autogenerated we need to update it to
 	// match the planet's state.
 	else if(wormhole && wormhole->IsAutogenerated())
 		wormhole->LoadFromPlanet(*this);
+	// If this planet is not a wormhole, make sure it has a display name.
+	else if(!wormhole && displayName.empty())
+		displayName = trueName;
 }
 
 
@@ -319,25 +374,27 @@ bool Planet::IsValid() const
 
 
 
-// Get the name of the planet.
-const string &Planet::Name() const
-{
-	return IsWormhole() ? wormhole->Name() : name;
-}
-
-
-
-void Planet::SetName(const string &name)
-{
-	this->name = name;
-}
-
-
-
 // Get the name used for this planet in the data files.
 const string &Planet::TrueName() const
 {
-	return name;
+	return trueName;
+}
+
+
+
+void Planet::SetTrueName(const string &name)
+{
+	trueName = name;
+	if(displayName.empty())
+		displayName = trueName;
+}
+
+
+
+// Get the display name of the planet.
+const string &Planet::DisplayName() const
+{
+	return IsWormhole() ? wormhole->DisplayName() : displayName;
 }
 
 
@@ -374,6 +431,14 @@ const set<string> &Planet::Attributes() const
 
 
 
+// Get the list of "attributes" of the planet.
+const set<string> &Planet::RequiredAttributes() const
+{
+	return requiredAttributes;
+}
+
+
+
 // Get planet's noun descriptor from attributes
 const string &Planet::Noun() const
 {
@@ -392,7 +457,7 @@ const string &Planet::Noun() const
 // Check whether this planet's port is named.
 bool Planet::HasNamedPort() const
 {
-	return !port.Name().empty();
+	return !port.DisplayName().empty();
 }
 
 
@@ -407,9 +472,9 @@ const Port &Planet::GetPort() const
 
 // Check whether there are port services (such as trading, jobs, banking, and hiring)
 // available on this planet.
-bool Planet::HasServices() const
+bool Planet::HasServices(bool isPlayer) const
 {
-	return port.HasServices();
+	return port.HasServices(isPlayer);
 }
 
 
@@ -423,42 +488,68 @@ bool Planet::IsInhabited() const
 
 
 
-// Check if this planet has a shipyard.
+// Check if this planet has a permanent shipyard.
 bool Planet::HasShipyard() const
 {
-	return !Shipyard().empty();
+	return !shipSales.empty() && toAccessShipyard.Test();
 }
 
 
 
-// Get the list of ships in the shipyard.
-const Sale<Ship> &Planet::Shipyard() const
+// Get the list of ships in the permanent shipyard.
+const Sale<Ship> &Planet::ShipyardStock() const
 {
 	shipyard.clear();
-	for(const Sale<Ship> *sale : shipSales)
-		shipyard.Add(*sale);
+	for(const Shop<Ship> *sale : shipSales)
+		shipyard.Add(sale->Stock());
 
 	return shipyard;
 }
 
 
 
-// Check if this planet has an outfitter.
-bool Planet::HasOutfitter() const
+// Get the list of shipyards currently available on this planet.
+// This will include conditionally available shops.
+set<const Shop<Ship> *> Planet::Shipyards() const
 {
-	return !Outfitter().empty();
+	set<const Shop<Ship> *> shops = shipSales;
+	for(const auto &shop : GameData::Shipyards())
+		if(shop.second.CanStock(this))
+			shops.insert(&shop.second);
+	return shops;
 }
 
 
 
-// Get the list of outfits available from the outfitter.
-const Sale<Outfit> &Planet::Outfitter() const
+// Check if this planet has a permanent outfitter.
+bool Planet::HasOutfitter() const
+{
+	return !outfitSales.empty() && toAccessOutfitter.Test();
+}
+
+
+
+// Get the list of outfits available from the permanent outfitter.
+const Sale<Outfit> &Planet::OutfitterStock() const
 {
 	outfitter.clear();
-	for(const Sale<Outfit> *sale : outfitSales)
-		outfitter.Add(*sale);
+	for(const Shop<Outfit> *sale : outfitSales)
+		outfitter.Add(sale->Stock());
 
 	return outfitter;
+}
+
+
+
+// Get the list of outitters available on this planet.
+// This will include conditionally available shops.
+set<const Shop<Outfit> *> Planet::Outfitters() const
+{
+	set<const Shop<Outfit> *> shops = outfitSales;
+	for(const auto &shop : GameData::Outfitters())
+		if(shop.second.CanStock(this))
+			shops.insert(&shop.second);
+	return shops;
 }
 
 
@@ -568,6 +659,10 @@ bool Planet::IsAccessible(const Ship *ship) const
 	// If this is a wormhole that leads to an inaccessible system, no ship can land here.
 	if(wormhole && ship && ship->GetSystem() && wormhole->WormholeDestination(*ship->GetSystem()).Inaccessible())
 		return false;
+	// If this ship is yours, but you lack the conditions to know that it's a landable object,
+	// then the ship can't land.
+	if(ship && ship->IsYours() && !toKnow.Test())
+		return false;
 	// If there are no required attributes, then any ship may land here.
 	if(IsUnrestricted())
 		return true;
@@ -593,21 +688,36 @@ bool Planet::IsUnrestricted() const
 // but do so with a less convoluted syntax:
 bool Planet::HasFuelFor(const Ship &ship) const
 {
-	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel) && CanLand(ship);
+	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel, ship.IsYours()) && CanLand(ship);
+}
+
+
+
+bool Planet::CanBribe() const
+{
+	// If you can't land then you can't bribe.
+	return toLand.Test();
 }
 
 
 
 bool Planet::CanLand(const Ship &ship) const
 {
-	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
+	if(!ship.IsYours())
+		return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
+
+	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this)
+		&& (!port.RequiresBribe() || GameData::GetPolitics().HasClearance(this))
+		&& toLand.Test();
 }
 
 
 
 bool Planet::CanLand() const
 {
-	return GameData::GetPolitics().CanLand(this);
+	return GameData::GetPolitics().CanLand(this)
+		&& (!port.RequiresBribe() || GameData::GetPolitics().HasClearance(this))
+		&& toLand.Test();
 }
 
 
@@ -628,7 +738,7 @@ Planet::Friendliness Planet::GetFriendliness() const
 
 bool Planet::CanUseServices() const
 {
-	return GameData::GetPolitics().CanUseServices(this);
+	return GameData::GetPolitics().CanUseServices(this) && port.CanAccess();
 }
 
 
@@ -698,7 +808,7 @@ void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 	if(defenseFleets[defenseDeployed]->IsValid())
 		defenseFleets[defenseDeployed]->Enter(*GetSystem(), defenders, this);
 	else
-		Logger::LogError("Warning: skipped an incomplete defense fleet of planet \"" + name + "\".");
+		Logger::Log("Skipped an incomplete defense fleet of planet \"" + trueName + "\".", Logger::Level::WARNING);
 	ships.insert(ships.begin(), defenders.begin(), end);
 
 	// All defenders use a special personality.

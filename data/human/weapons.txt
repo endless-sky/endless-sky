@@ -13,6 +13,8 @@
 
 outfit "Energy Blaster"
 	category "Guns"
+	series "Guns"
+	index 01010
 	cost 16000
 	thumbnail "outfit/blaster"
 	"mass" 5
@@ -35,6 +37,8 @@ outfit "Energy Blaster"
 
 outfit "Twin Blaster"
 	category "Guns"
+	series "Guns"
+	index 01030
 	cost 40000
 	thumbnail "outfit/twin blaster"
 	"mass" 12
@@ -70,6 +74,8 @@ outfit "Blaster Submunition"
 
 outfit "Blaster Turret"
 	category "Turrets"
+	series "Turrets"
+	index 01010
 	cost 100000
 	thumbnail "outfit/blaster turret"
 	"mass" 15
@@ -84,7 +90,7 @@ outfit "Blaster Turret"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"turret turn" 3.7
+		"turret turn" 3.6
 		"velocity" 10.625
 		"lifetime" 48
 		"reload" 6
@@ -96,6 +102,8 @@ outfit "Blaster Turret"
 
 outfit "Quad Blaster Turret"
 	category "Turrets"
+	series "Turrets"
+	index 01030
 	cost 230000
 	thumbnail "outfit/quad blaster turret"
 	"mass" 25
@@ -110,7 +118,7 @@ outfit "Quad Blaster Turret"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"turret turn" 3.2
+		"turret turn" 2.6
 		"velocity" 10.625
 		"lifetime" 48
 		"reload" 3
@@ -131,6 +139,8 @@ effect "blaster impact"
 
 outfit "Modified Blaster"
 	category "Guns"
+	series "Guns"
+	index 01020
 	cost 35000
 	thumbnail "outfit/mod blaster"
 	"mass" 6
@@ -153,6 +163,8 @@ outfit "Modified Blaster"
 
 outfit "Twin Modified Blaster"
 	category "Guns"
+	series "Guns"
+	index 01040
 	cost 84000
 	thumbnail "outfit/twin mod blaster"
 	"mass" 14
@@ -188,6 +200,8 @@ outfit "Modified Blaster Submunition"
 
 outfit "Modified Blaster Turret"
 	category "Turrets"
+	series "Turrets"
+	index 01020
 	cost 170000
 	thumbnail "outfit/mod blaster turret"
 	"mass" 18
@@ -202,7 +216,7 @@ outfit "Modified Blaster Turret"
 		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
-		"turret turn" 3.5
+		"turret turn" 3.6
 		"velocity" 10
 		"lifetime" 48
 		"reload" 6
@@ -212,9 +226,35 @@ outfit "Modified Blaster Turret"
 		"hull damage" 8.8
 	description "This is a turreted version of the Modified Blaster, which is an Energy Blaster modified for greater power at the cost of higher energy consumption and heat. These turrets are popular with pirates and others who are trying to cram as much firepower into their ships as possible."
 
+outfit "Heavy Blaster"
+	category "Guns"
+	series "Guns"
+	index 01050
+	cost 125000
+	thumbnail "outfit/heavy blaster"
+	"mass" 19
+	"outfit space" -19
+	"weapon capacity" -19
+	"gun ports" -1
+	weapon
+		sprite "projectile/heavy blaster"
+		sound "heavy blaster"
+		"hit effect" "blaster impact"
+		"inaccuracy" 5
+		"velocity" 9
+		"lifetime" 65
+		"reload" 30
+		"firing energy" 49
+		"firing heat" 150
+		"shield damage" 90
+		"hull damage" 54
+	description "The Heavy Blaster is a scaled-up variant of the ever-so-popular Energy Blaster design. These saw extensive use on several warships earlier in history, most notably as the main armament of the Firebird when it was first produced. Over time, the development of more advanced weapons such as the Particle Cannon and Plasma Cannon has supplanted the Heavy Blaster on newer craft, but it still performs consistently enough to be found on older serviceable ships."
+
 
 outfit "Beam Laser"
 	category "Guns"
+	series "Guns"
+	index 01050
 	cost 29000
 	thumbnail "outfit/laser"
 	"mass" 8
@@ -238,6 +278,8 @@ outfit "Beam Laser"
 
 outfit "Laser Turret"
 	category "Turrets"
+	series "Turrets"
+	index 01040
 	cost 140000
 	thumbnail "outfit/laser turret"
 	"mass" 22
@@ -253,7 +295,7 @@ outfit "Laser Turret"
 		sound "laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
-		"turret turn" 4.0
+		"turret turn" 4
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
@@ -275,6 +317,8 @@ effect "beam laser impact"
 
 outfit "Heavy Laser"
 	category "Guns"
+	series "Guns"
+	index 01060
 	cost 60000
 	thumbnail "outfit/heavy laser"
 	"mass" 15
@@ -298,6 +342,8 @@ outfit "Heavy Laser"
 
 outfit "Heavy Laser Turret"
 	category "Turrets"
+	series "Turrets"
+	index 01050
 	cost 320000
 	thumbnail "outfit/heavy laser turret"
 	"mass" 40
@@ -335,6 +381,8 @@ effect "heavy laser impact"
 
 outfit "Mining Laser"
 	category "Guns"
+	series "Guns"
+	index 01070
 	cost 38000
 	thumbnail "outfit/mining laser"
 	"mass" 12
@@ -362,6 +410,8 @@ outfit "Mining Laser"
 
 outfit "Mining Laser Turret"
 	category "Turrets"
+	series "Turrets"
+	index 01060
 	cost 66000
 	thumbnail "outfit/mining laser turret"
 	"mass" 18
@@ -377,7 +427,7 @@ outfit "Mining Laser Turret"
 		sound "mining laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .35
-		"turret turn" 3.8
+		"turret turn" 4.4
 		"velocity" 200
 		"lifetime" 1
 		"reload" 1
@@ -393,6 +443,8 @@ outfit "Mining Laser Turret"
 
 outfit "Tractor Beam"
 	category "Turrets"
+	series "Tractor Beams"
+	index 10
 	cost 75000
 	thumbnail "outfit/tractor beam"
 	"mass" 22
@@ -410,7 +462,7 @@ outfit "Tractor Beam"
 		"reload" 1
 		"firing energy" 2.1
 		"firing heat" .8
-	description "The anti-gravity properties of repulsor engines started a revolution in human spaceflight during the 24th century, and it was not long before this technology was put to use elsewhere. Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid, or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
+	description "The anti-gravity properties of repulsor engines started a revolution in human spaceflight during the 24th century, but it was only relatively recently that engineers began experimenting with gravitational attraction. Tractor beams utilize rudimentary attractor technology to allow ships to attract space debris, be that the ores from a recently mined asteroid, or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
 
 effect "tractor beam"
 	sprite "effect/tractor beam"
@@ -420,6 +472,8 @@ effect "tractor beam"
 
 outfit "Electron Beam"
 	category "Guns"
+	series "Guns"
+	index 01080
 	cost 170000
 	thumbnail "outfit/electron beam"
 	"mass" 21
@@ -443,6 +497,8 @@ outfit "Electron Beam"
 
 outfit "Electron Turret"
 	category "Turrets"
+	series "Turrets"
+	index 01070
 	cost 720000
 	thumbnail "outfit/electron turret"
 	"mass" 54
@@ -458,7 +514,7 @@ outfit "Electron Turret"
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
-		"turret turn" 1.4
+		"turret turn" 1.2
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
@@ -480,6 +536,8 @@ effect "electron impact"
 
 outfit "Anti-Missile Turret"
 	category "Turrets"
+	series "Anti-Missile"
+	index 01010
 	cost 60000
 	thumbnail "outfit/anti-missile"
 	"mass" 16
@@ -503,12 +561,15 @@ effect "small anti-missile"
 		"no repeat"
 		"frame rate" 3
 	sound "anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 21
 	"velocity scale" 1
 
 
 outfit "Heavy Anti-Missile Turret"
 	category "Turrets"
+	series "Anti-Missile"
+	index 01020
 	cost 150000
 	thumbnail "outfit/heavy anti-missile"
 	"mass" 30
@@ -532,12 +593,15 @@ effect "large anti-missile"
 		"no repeat"
 		"frame rate" 2
 	sound "heavy anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 31
 	"velocity scale" 1
 
 
 outfit "Particle Cannon"
 	category "Guns"
+	series "Guns"
+	index 01090
 	cost 220000
 	thumbnail "outfit/particle cannon"
 	"mass" 30
@@ -573,6 +637,8 @@ effect "particle impact"
 
 outfit "Proton Gun"
 	category "Guns"
+	series "Guns"
+	index 01100
 	cost 150000
 	thumbnail "outfit/proton gun"
 	"mass" 28
@@ -616,6 +682,8 @@ effect "proton impact"
 
 outfit "Proton Turret"
 	category "Turrets"
+	series "Turrets"
+	index 01080
 	cost 260000
 	thumbnail "outfit/proton turret"
 	"mass" 34
@@ -630,7 +698,7 @@ outfit "Proton Turret"
 		sound "proton"
 		"hit effect" "proton impact" 3
 		"inaccuracy" 4
-		"turret turn" 2.0
+		"turret turn" 2.4
 		"submunition" "Proton Fragment" 3
 		"velocity" 24
 		"lifetime" 2
@@ -643,6 +711,8 @@ outfit "Proton Turret"
 
 outfit "Plasma Cannon"
 	category "Guns"
+	series "Guns"
+	index 01110
 	cost 190000
 	thumbnail "outfit/plasma cannon"
 	"mass" 25
@@ -668,6 +738,8 @@ outfit "Plasma Cannon"
 
 outfit "Plasma Turret"
 	category "Turrets"
+	series "Turrets"
+	index 01090
 	cost 520000
 	thumbnail "outfit/plasma turret"
 	"mass" 60
@@ -683,7 +755,7 @@ outfit "Plasma Turret"
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
-		"turret turn" 1.2
+		"turret turn" 1.6
 		"velocity" 12
 		"lifetime" 40
 		"reload" 9
@@ -697,6 +769,8 @@ outfit "Plasma Turret"
 
 outfit "Plasma Repeater"
 	category "Guns"
+	series "Guns"
+	index 01120
 	cost 274000
 	thumbnail "outfit/plasma repeater"
 	"mass" 32
@@ -735,6 +809,8 @@ effect "plasma explosion"
 
 outfit "Flamethrower"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01160
 	cost 190000
 	thumbnail "outfit/flamethrower"
 	"mass" 9
@@ -800,6 +876,8 @@ effect "flamethrower hit"
 
 outfit "Meteor Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 01020
 	cost 500
 	thumbnail "outfit/meteor"
 	"mass" .2
@@ -808,6 +886,8 @@ outfit "Meteor Missile"
 
 outfit "Meteor Missile Box"
 	plural "Meteor Missile Boxes"
+	series "Ammunition"
+	index 01021
 	category "Ammunition"
 	cost 9000
 	thumbnail "outfit/meteor storage"
@@ -819,6 +899,8 @@ outfit "Meteor Missile Box"
 
 outfit "Meteor Missile Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01050
 	cost 15000
 	thumbnail "outfit/meteor launcher"
 	"mass" 8
@@ -845,16 +927,22 @@ outfit "Meteor Missile Launcher"
 		"acceleration" 1
 		"drag" .1
 		"turn" 1.8
-		"homing" 1
+		"homing"
+			"blindspot"
 		"infrared tracking" .65
 		"shield damage" 360
 		"hull damage" 220
 		"hit force" 330
 		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Meteor Missile Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01040
 	cost 5000
 	thumbnail "outfit/meteor pod"
 	"mass" 1
@@ -883,7 +971,8 @@ outfit "Meteor Missile Pod"
 		"acceleration" 1
 		"drag" .1
 		"turn" 1.8
-		"homing" 1
+		"homing"
+			"blindspot"
 		"infrared tracking" .65
 		"shield damage" 360
 		"hull damage" 220
@@ -891,6 +980,9 @@ outfit "Meteor Missile Pod"
 		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "meteor fire"
 	sprite "effect/meteor fire"
@@ -899,9 +991,23 @@ effect "meteor fire"
 	"lifetime" 12
 	"random velocity" 10
 
+outfitter "Meteor Missile Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: Meteor Missile Launcher"
+			has "outfit: Meteor Missile Pod"
+			has "outfit: Meteor Missile Box"
+	location
+		attributes "outfitter"
+	stock
+		"Meteor Missile"
+
 
 outfit "Sidewinder Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 01030
 	cost 900
 	thumbnail "outfit/sidewinder"
 	"mass" .2
@@ -910,6 +1016,8 @@ outfit "Sidewinder Missile"
 
 outfit "Sidewinder Missile Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 01031
 	cost 20000
 	thumbnail "outfit/sidewinder storage"
 	"mass" 2.4
@@ -920,6 +1028,8 @@ outfit "Sidewinder Missile Rack"
 
 outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01070
 	cost 60000
 	thumbnail "outfit/sidewinder launcher"
 	"mass" 11
@@ -946,7 +1056,9 @@ outfit "Sidewinder Missile Launcher"
 		"acceleration" 1.2
 		"drag" .1
 		"turn" 4
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"radar tracking" .9
 		"shield damage" 260
 		"hull damage" 180
@@ -954,9 +1066,14 @@ outfit "Sidewinder Missile Launcher"
 		"missile strength" 18
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Sidewinder Missile Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01060
 	cost 20000
 	thumbnail "outfit/sidewinder pod"
 	"mass" 2
@@ -985,7 +1102,9 @@ outfit "Sidewinder Missile Pod"
 		"acceleration" 1.2
 		"drag" .1
 		"turn" 4
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"radar tracking" .9
 		"shield damage" 260
 		"hull damage" 180
@@ -994,6 +1113,9 @@ outfit "Sidewinder Missile Pod"
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 
 effect "sidewinder fire"
@@ -1003,9 +1125,23 @@ effect "sidewinder fire"
 	"lifetime" 9
 	"random velocity" 2
 
+outfitter "Sidewinder Missile Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: Sidewinder Missile Launcher"
+			has "outfit: Sidewinder Missile Pod"
+			has "outfit: Sidewinder Missile Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Sidewinder Missile"
+
 
 outfit "Javelin"
 	category "Ammunition"
+	series "Ammunition"
+	index 01010
 	cost 50
 	thumbnail "outfit/javelin"
 	"mass" .04
@@ -1014,6 +1150,8 @@ outfit "Javelin"
 
 outfit "Javelin Storage Crate"
 	category "Ammunition"
+	series "Ammunition"
+	index 01011
 	cost 5000
 	thumbnail "outfit/javelin storage"
 	"mass" 2
@@ -1024,6 +1162,8 @@ outfit "Javelin Storage Crate"
 
 outfit "Javelin Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01020
 	cost 20000
 	thumbnail "outfit/javelin pod"
 	"mass" 4
@@ -1049,9 +1189,14 @@ outfit "Javelin Pod"
 		"missile strength" 3
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Javelin Mini Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01010
 	cost 5000
 	thumbnail "outfit/javelin mini pod"
 	"mass" 1
@@ -1080,9 +1225,14 @@ outfit "Javelin Mini Pod"
 	description "The Javelin Pod fires a rapid stream of unguided missiles. A Javelin Pod does far more damage than any gun of a comparable size, and has a longer range as well, but once a ship has expended all of its ammunition it must leave combat and find a planet where it can buy more, which makes Javelins less useful in protracted battles."
 	description "	The weapon's high rate of fire also makes it useful for saturating well-protected ships' anti-missile defenses so that more dangerous projectiles fired by allied ships can sneak through."
 	description "	Mini pods enable fighters and other light craft to carry small quantities of Javelins into battle while retaining enough space for other weapons. Large ships are better off with full-size pods."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Javelin Turret"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01030
 	cost 110000
 	thumbnail "outfit/javelin turret"
 	"mass" 15
@@ -1100,7 +1250,7 @@ outfit "Javelin Turret"
 		icon "icon/javelin turret"
 		"hit effect" "tiny explosion"
 		"inaccuracy" 4
-		"turret turn" 2
+		"turret turn" 2.6
 		"velocity" 10
 		"lifetime" 60
 		"reload" 7.5
@@ -1111,10 +1261,28 @@ outfit "Javelin Turret"
 		"hit force" 75
 		"missile strength" 3
 	description "Mounting not one but two Javelin Pods, the Javelin Turret delivers a torrential downpour of unguided missiles that deal noticeably more damage than other turreted weapons of the same size, at the expense of using a prodigious amount of ammo due to its high fire rate. For that reason, these turrets are commonly paired with Javelin Storage Crates and weapons that don't require the use of ammunition to fall back on once all of the missiles are expended."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
+
+outfitter "Javelin Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: Javelin Pod"
+			has "outfit: Javelin Mini Pod"
+			has "outfit: Javelin Turret"
+			has "outfit: Javelin Storage Crate"
+	location
+		attributes "outfitter"
+	stock
+		"Javelin"
 
 
 outfit "Torpedo"
 	plural "Torpedoes"
+	series "Ammunition"
+	index 01050
 	category "Ammunition"
 	cost 1400
 	thumbnail "outfit/torpedo"
@@ -1124,6 +1292,8 @@ outfit "Torpedo"
 
 outfit "Torpedo Storage Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 01051
 	cost 21000
 	thumbnail "outfit/torpedo storage"
 	"mass" 3
@@ -1134,6 +1304,8 @@ outfit "Torpedo Storage Rack"
 
 outfit "Torpedo Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01110
 	cost 80000
 	thumbnail "outfit/torpedo launcher"
 	"mass" 18
@@ -1160,16 +1332,22 @@ outfit "Torpedo Launcher"
 		"acceleration" .15
 		"drag" .025
 		"turn" 1.5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
 		"hit force" 450
 		"missile strength" 30
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Torpedo Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01100
 	cost 30000
 	thumbnail "outfit/torpedopod"
 	"mass" 5
@@ -1198,7 +1376,8 @@ outfit "Torpedo Pod"
 		"acceleration" .15
 		"drag" .025
 		"turn" 1.5
-		"homing" 3
+		"homing"
+			"throttle control"
 		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
@@ -1206,6 +1385,9 @@ outfit "Torpedo Pod"
 		"missile strength" 30
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge."
 	description "	Pods enable fighters and other light craft to carry small quantities of Torpedoes into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "torpedo fire"
 	sprite "effect/torpedo fire"
@@ -1213,9 +1395,23 @@ effect "torpedo fire"
 		"frame rate" 10
 	"lifetime" 15
 
+outfitter "Torpedo Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: Torpedo Launcher"
+			has "outfit: Torpedo Pod"
+			has "outfit: Torpedo Storage Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Torpedo"
+
 
 outfit "Typhoon Torpedo"
 	plural "Typhoon Torpedoes"
+	series "Ammunition"
+	index 01060
 	category "Ammunition"
 	cost 2700
 	thumbnail "outfit/typhoon"
@@ -1225,6 +1421,8 @@ outfit "Typhoon Torpedo"
 
 outfit "Typhoon Storage Tube"
 	category "Ammunition"
+	series "Ammunition"
+	index 01061
 	cost 40500
 	thumbnail "outfit/typhoon storage"
 	"mass" 2.5
@@ -1235,6 +1433,8 @@ outfit "Typhoon Storage Tube"
 
 outfit "Typhoon Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01130
 	cost 260000
 	thumbnail "outfit/typhoon launcher"
 	"mass" 25
@@ -1261,16 +1461,23 @@ outfit "Typhoon Launcher"
 		"acceleration" .1
 		"drag" .02
 		"turn" 1.5
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"optical tracking" .9
 		"shield damage" 1050
 		"hull damage" 1050
 		"hit force" 675
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Typhoon Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01120
 	cost 100000
 	thumbnail "outfit/typhoonpod"
 	"mass" 6
@@ -1299,7 +1506,9 @@ outfit "Typhoon Pod"
 		"acceleration" .1
 		"drag" .02
 		"turn" 1.5
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"optical tracking" .9
 		"shield damage" 1050
 		"hull damage" 1050
@@ -1307,6 +1516,9 @@ outfit "Typhoon Pod"
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
 	description "	Pods enable fighters and other light craft to carry small quantities of Typhoon Torpedoes into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "typhoon fire"
 	sprite "effect/typhoon fire"
@@ -1314,9 +1526,23 @@ effect "typhoon fire"
 		"frame rate" 10
 	"lifetime" 15
 
+outfitter "Typhoon Torpedo Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: Typhoon Launcher"
+			has "outfit: Typhoon Pod"
+			has "outfit: Typhoon Storage Tube"
+	location
+		attributes "outfitter"
+	stock
+		"Typhoon Torpedo"
+
 
 outfit "Heavy Rocket"
 	category "Ammunition"
+	series "Ammunition"
+	index 01040
 	cost 2000
 	thumbnail "outfit/rocket"
 	"mass" .5
@@ -1325,6 +1551,8 @@ outfit "Heavy Rocket"
 
 outfit "Heavy Rocket Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 01041
 	cost 20000
 	thumbnail "outfit/rocket storage"
 	"mass" 2
@@ -1335,6 +1563,8 @@ outfit "Heavy Rocket Rack"
 
 outfit "Heavy Rocket Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01090
 	cost 40000
 	thumbnail "outfit/rocket launcher"
 	"mass" 15
@@ -1365,9 +1595,14 @@ outfit "Heavy Rocket Launcher"
 		"hit force" 900
 		"missile strength" 16
 	description "Heavy Rockets are one of the most powerful missile weapons available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Heavy Rocket Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01080
 	cost 15000
 	thumbnail "outfit/rocket pod"
 	"mass" 3
@@ -1401,6 +1636,9 @@ outfit "Heavy Rocket Pod"
 		"missile strength" 16
 	description "Heavy Rockets are one of the most powerful missile weapons available, but at a price: instead of having a homing system, they simply fire straight forward and rely on a proximity trigger to set them off. Once triggered, however, they damage all ships within their blast radius, making them highly effective against clusters of fighters."
 	description "	Pods enable fighters and other light craft to carry small quantities of rockets into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "heavy rocket hit"
 	sprite "effect/explosion/huge"
@@ -1414,9 +1652,23 @@ effect "heavy rocket hit"
 	"random velocity" 1
 	"velocity scale" .4
 
+outfitter "Heavy Rocket Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: Heavy Rocket Launcher"
+			has "outfit: Heavy Rocket Pod"
+			has "outfit: Heavy Rocket Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Heavy Rocket"
+
 
 outfit "Nuclear Missile"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01170
 	cost 1000000
 	thumbnail "outfit/nuke"
 	"mass" 10
@@ -1445,7 +1697,9 @@ outfit "Nuclear Missile"
 		"acceleration" .8
 		"drag" .1
 		"turn" 4
-		"homing" 4
+		"homing"
+			"leading"
+			"throttle control"
 		"radar tracking" .5
 		"optical tracking" 1
 		"trigger radius" 30
@@ -1492,6 +1746,8 @@ effect "nuke residue slow"
 outfit "Gatling Gun Ammo"
 	plural "Gatling Gun Ammo"
 	category "Ammunition"
+	series "Ammunition"
+	index 01070
 	cost 4
 	thumbnail "outfit/bullet"
 	"mass" .002
@@ -1501,6 +1757,8 @@ outfit "Gatling Gun Ammo"
 outfit "Bullet Boxes"
 	plural "Bullet Boxes"
 	category "Ammunition"
+	series "Ammunition"
+	index 01071
 	cost 3000
 	thumbnail "outfit/bullet storage"
 	"mass" 2
@@ -1511,6 +1769,8 @@ outfit "Bullet Boxes"
 
 outfit "Gatling Gun"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01140
 	cost 20000
 	thumbnail "outfit/gat"
 	"mass" 2
@@ -1536,9 +1796,14 @@ outfit "Gatling Gun"
 		"cluster"
 		"hit effect" "bullet impact"
 	description `When Dr. Richard J. Gatling invented the rapid-fire gun bearing his name in the 19th century, he hoped that its destructiveness would lead to the end of war itself. Over a millennium later, this modern incarnation of the Gatling Gun sees action in the stars, a testament to its fundamentally robust design - and Dr. Gatling's naivete. While capable of a high fire rate, this gun needs to cool down for twice as long as it fires, and can only sustain a maximum of three seconds of continuous fire.`
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Gatling Turret"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 01150
 	cost 120000
 	thumbnail "outfit/gat turret"
 	"mass" 11
@@ -1561,7 +1826,7 @@ outfit "Gatling Turret"
 		ammo "Gatling Gun Ammo" 2
 		icon "icon/gat turret"
 		"inaccuracy" 2
-		"turret turn" 3.4
+		"turret turn" 3.6
 		"velocity" 16
 		"lifetime" 1
 		"reload" 3
@@ -1572,6 +1837,9 @@ outfit "Gatling Turret"
 		"cluster"
 		"hit effect" "bullet impact"
 	description `In an act that would make Dr. Richard J. Gatling spin in his grave with the ferocity of the barrels of his invention, the Gatling Turret was born when a resourceful pirate thought to replace the Energy Blasters on a Blaster Turret with a pair of Gatling Guns. Ever since, the dominion of the Gatling Turret has spread across the Southern Rim, terrorizing merchants and law enforcement alike with its unparalleled ability to tear apart the hulls of ships.`
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "gbullet"
 	weapon
@@ -1594,3 +1862,15 @@ effect "bullet impact"
 	"lifetime" 8
 	"random angle" 40
 	"velocity scale" -.05
+
+outfitter "Gatling Gun Ammo Restock"
+	to sell
+		has "gamerule: universal ammo restocking"
+		or
+			has "outfit: Gatling Gun"
+			has "outfit: Gatling Turret"
+			has "outfit: Bullet Boxes"
+	location
+		attributes "outfitter"
+	stock
+		"Gatling Gun Ammo"

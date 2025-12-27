@@ -210,7 +210,7 @@ fleet "Korath Raid"
 		names "korath"
 	cargo 1
 	personality
-		disables plunders opportunistic harvests
+		disables plunders opportunistic frugal harvests
 	variant 4
 		"Palavret"
 		"'olofez" 2
@@ -370,7 +370,7 @@ fleet "Korath Large Raid"
 		names "korath"
 	cargo 1
 	personality
-		disables plunders opportunistic harvests
+		disables plunders opportunistic frugal harvests
 	variant 5
 		"Palavret" 2
 		"'olofez" 4

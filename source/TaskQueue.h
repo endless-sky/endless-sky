@@ -82,7 +82,7 @@ public:
 private:
 	std::list<std::shared_future<void>> futures;
 
-	// Tasks from ths queue that need to be executed on the main thread.
+	// Tasks from this queue that need to be executed on the main thread.
 	std::queue<std::function<void()>> syncTasks;
 	mutable std::mutex syncMutex;
 };

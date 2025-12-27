@@ -13,6 +13,8 @@
 
 outfit "Supercapacitor"
 	category "Power"
+	series "Batteries"
+	index 01010
 	cost 1500
 	thumbnail "outfit/supercapacitor"
 	"mass" 2
@@ -22,6 +24,8 @@ outfit "Supercapacitor"
 
 outfit "LP036a Battery Pack"
 	category "Power"
+	series "Batteries"
+	index 01020
 	cost 6000
 	thumbnail "outfit/tiny battery"
 	"mass" 10
@@ -31,6 +35,8 @@ outfit "LP036a Battery Pack"
 
 outfit "LP072a Battery Pack"
 	category "Power"
+	series "Batteries"
+	index 01030
 	cost 14000
 	thumbnail "outfit/small battery"
 	"mass" 20
@@ -40,6 +46,8 @@ outfit "LP072a Battery Pack"
 
 outfit "LP144a Battery Pack"
 	category "Power"
+	series "Batteries"
+	index 01040
 	cost 32000
 	thumbnail "outfit/medium battery"
 	"mass" 40
@@ -49,6 +57,8 @@ outfit "LP144a Battery Pack"
 
 outfit "LP288a Battery Pack"
 	category "Power"
+	series "Batteries"
+	index 01050
 	cost 54000
 	thumbnail "outfit/large battery"
 	"mass" 60
@@ -58,6 +68,8 @@ outfit "LP288a Battery Pack"
 
 outfit "LP576a Battery Pack"
 	category "Power"
+	series "Batteries"
+	index 01060
 	cost 80000
 	thumbnail "outfit/huge battery"
 	"mass" 80
@@ -68,6 +80,8 @@ outfit "LP576a Battery Pack"
 
 outfit "KP-6 Photovoltaic Panel"
 	category "Power"
+	series "Solar"
+	index 01010
 	cost 7000
 	thumbnail "outfit/tiny photovoltaic"
 	"mass" 3
@@ -77,6 +91,8 @@ outfit "KP-6 Photovoltaic Panel"
 
 outfit "KP-6 Photovoltaic Array"
 	category "Power"
+	series "Solar"
+	index 01020
 	cost 60000
 	thumbnail "outfit/small photovoltaic"
 	"mass" 24
@@ -87,6 +103,8 @@ outfit "KP-6 Photovoltaic Array"
 
 outfit "nGVF-AA Fuel Cell"
 	category "Power"
+	series "Generators"
+	index 01010
 	cost 35000
 	thumbnail "outfit/tiny fuel cell"
 	"mass" 20
@@ -97,6 +115,8 @@ outfit "nGVF-AA Fuel Cell"
 
 outfit "nGVF-BB Fuel Cell"
 	category "Power"
+	series "Generators"
+	index 01020
 	cost 47000
 	thumbnail "outfit/small fuel cell"
 	"mass" 30
@@ -107,6 +127,8 @@ outfit "nGVF-BB Fuel Cell"
 
 outfit "nGVF-CC Fuel Cell"
 	category "Power"
+	series "Generators"
+	index 01030
 	cost 72000
 	thumbnail "outfit/medium fuel cell"
 	"mass" 40
@@ -117,6 +139,8 @@ outfit "nGVF-CC Fuel Cell"
 
 outfit "nGVF-DD Fuel Cell"
 	category "Power"
+	series "Generators"
+	index 01040
 	cost 118000
 	thumbnail "outfit/large fuel cell"
 	"mass" 60
@@ -127,6 +151,8 @@ outfit "nGVF-DD Fuel Cell"
 
 outfit "nGVF-EE Fuel Cell"
 	category "Power"
+	series "Generators"
+	index 01050
 	cost 177000
 	thumbnail "outfit/huge fuel cell"
 	"mass" 80
@@ -138,6 +164,8 @@ outfit "nGVF-EE Fuel Cell"
 
 outfit "RT-I Radiothermal"
 	category "Power"
+	series "Generators"
+	index 01060
 	cost 300000
 	thumbnail "outfit/small radiothermal"
 	"mass" 45
@@ -148,6 +176,8 @@ outfit "RT-I Radiothermal"
 
 outfit "S3 Thermionic"
 	category "Power"
+	series "Generators"
+	index 01070
 	cost 360000
 	thumbnail "outfit/small thermionic"
 	"mass" 55
@@ -158,6 +188,8 @@ outfit "S3 Thermionic"
 
 outfit "NT-200 Nucleovoltaic"
 	category "Power"
+	series "Generators"
+	index 01080
 	cost 570000
 	thumbnail "outfit/small nucleovoltaic"
 	"mass" 65
@@ -169,6 +201,8 @@ outfit "NT-200 Nucleovoltaic"
 
 outfit "Dwarf Core"
 	category "Power"
+	series "Generators"
+	index 01090
 	cost 800000
 	thumbnail "outfit/dwarf core"
 	"mass" 36
@@ -179,6 +213,8 @@ outfit "Dwarf Core"
 
 outfit "Fission Reactor"
 	category "Power"
+	series "Generators"
+	index 01100
 	cost 1500000
 	thumbnail "outfit/fission"
 	"mass" 65
@@ -189,6 +225,8 @@ outfit "Fission Reactor"
 
 outfit "Breeder Reactor"
 	category "Power"
+	series "Generators"
+	index 01110
 	cost 2500000
 	thumbnail "outfit/breeder"
 	"mass" 80
@@ -199,6 +237,8 @@ outfit "Breeder Reactor"
 
 outfit "Fusion Reactor"
 	category "Power"
+	series "Generators"
+	index 01120
 	cost 5000000
 	thumbnail "outfit/fusion"
 	"mass" 100
@@ -209,6 +249,8 @@ outfit "Fusion Reactor"
 
 outfit "Armageddon Core"
 	category "Power"
+	series "Generators"
+	index 01130
 	cost 9000000
 	thumbnail "outfit/core"
 	"mass" 130
@@ -219,6 +261,8 @@ outfit "Armageddon Core"
 
 outfit "Stack Core"
 	category "Power"
+	series "Generators"
+	index 01140
 	cost 4500000
 	thumbnail "outfit/stack core"
 	"mass" 140

@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Collision.h"
 #include "CollisionType.h"
-#include "DrawList.h"
+#include "shader/DrawList.h"
 #include "image/Mask.h"
 #include "Minable.h"
 #include "Projectile.h"
@@ -158,6 +158,14 @@ void AsteroidField::CollideAsteroids(const Projectile &projectile, vector<Collis
 void AsteroidField::CollideMinables(const Projectile &projectile, vector<Collision> &result) const
 {
 	minableCollisions.Line(projectile, result);
+}
+
+
+
+// Get a list of minables affected by an explosion with blast radius.
+void AsteroidField::MinablesCollisionsCircle(const Point &center, double radius, vector<Body *> &result) const
+{
+	minableCollisions.Circle(center, radius, result);
 }
 
 

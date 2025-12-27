@@ -17,6 +17,7 @@ mission "Sad Gamblers - Republic"
 		government "Republic"
 		attributes "near earth"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -30,6 +31,7 @@ mission "Sad Gamblers - Syndicate"
 	source
 		government "Syndicate"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -45,6 +47,7 @@ mission "Foiled Kidnapping Witnessed"
 	source
 		government "Syndicate"
 		not attributes "station" "frontier" "urban"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -61,6 +64,7 @@ mission "Gift Store Interaction"
 		government "Republic"
 		attributes "deep"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -93,8 +97,9 @@ mission "Gift Store Interaction"
 mission "New China Mourners"
 	minor
 	source "New China"
+	"offer precedence" 5
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`The skies pour down onto the world below, weeping together with the crowds as a plain but stately coffin is carried slowly from a void deck. Rhythmic wailing blends with the susurrant rain, filling the air as the coffin is followed closely by procession of mourners that look to be an extensive gathering of family. Even as it is placed into the van they do not leave the departed, a number of their hands placed on it as if pushing the person toward their final resting place. The two foremost mourners, a woman and a young man, climb in and take their seats next to it. Somewhere nearby, music begins to play as the vehicle slowly moves off.`
@@ -106,8 +111,9 @@ mission "New China Mourners"
 mission "New Holland Foibles"
 	minor
 	source "New Holland"
+	"offer precedence" 5
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`The smell of burning metal fills the air as you walk down the uncrowded streets of the factory town near the spaceport, keeping away from the arterial supply route directly feeding the port and its hangars.`
@@ -138,6 +144,7 @@ mission "Trash Fire Crops"
 		attributes "dirt belt"
 		attributes "farming"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -162,6 +169,7 @@ mission "Worker's Occasion"
 		government "Republic"
 		attributes "dirt belt"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -191,6 +199,7 @@ mission "Paradise Cleaner Incident"
 		government "Republic"
 		attributes "paradise"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -208,6 +217,7 @@ mission "Curious Waiter"
 		government "Syndicate"
 		attributes "factory"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -235,6 +245,7 @@ mission "Syndicated Security Troops"
 		government "Syndicate"
 		attributes "urban"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -250,6 +261,7 @@ mission "Class Trip to Port"
 	source
 		attributes "south"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -264,6 +276,7 @@ mission "Old Defense Turrets"
 	source
 		attributes "south"
 		not attributes "station" "frontier"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -281,6 +294,7 @@ mission "Blind Landing"
 		government "Free Worlds"
 		attributes "farming"
 		not attributes "station" "frontier"
+	"offer precedence" 5
 	to offer
 		"year" > "bumper crop year" + 2
 		random < 1
@@ -308,6 +322,7 @@ mission "Forest Fire"
 		government "Free Worlds"
 		attributes "frontier"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -340,6 +355,7 @@ mission "Local Politics"
 		attributes "frontier"
 		attributes "south"
 		not attributes "station" "urban" "ex-pirate"
+	"offer precedence" 5
 	to offer
 		or
 			and
@@ -365,6 +381,7 @@ mission "Military Response Test"
 	source
 		government "Free Worlds"
 		not attributes "station" "urban" "frontier"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -381,6 +398,7 @@ mission "Missed Mugging"
 	source
 		government "Free Worlds"
 		not attributes "station" "frontier"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -397,6 +415,7 @@ mission "Sojourn Sunday Sales"
 		government "Free Worlds"
 		attributes "urban"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -410,8 +429,9 @@ mission "Tarazed Ship Christening"
 	minor
 	source "Wayfarer"
 	to offer
-		random < 1
+		random < 10
 		has "main plot completed"
+	"offer precedence" 5
 	on offer
 		conversation
 			`As you walk past a number of ships and crew going about their work in the spaceport, a small gathering in front of a Shuttle catches your attention. A young woman wearing a rather cheesy pilot uniform is in the midst of a little group of people all celebrating together. As you pass by them, a man standing on the top of a ladder breaks a bottle of Champagne on the (clearly not new) ship's hull. A loud cheer erupts from the group, earning an embarrassed blush from the young woman.`
@@ -419,11 +439,11 @@ mission "Tarazed Ship Christening"
 				`	(Take a closer look.)`
 					goto investigate
 				`	(Shout well wishes as I pass by.)`
-					goto passby
+					goto "pass by"
 				`	(Ignore them, I have more important things to do.)`
 			`	You hurry past the rowdy group, annoyed by the disturbance.`
 				decline
-			label passby
+			label "pass by"
 			`	You hurry past the group as they quiet down. Taking advantage of the momentary lull, you shout "Good luck! You've got this!" toward them. They let out another cheer in response, with the exception of the young woman who buries her face in her hands.`
 				decline
 			label investigate
@@ -441,10 +461,10 @@ mission "Tarazed Ship Christening"
 			choice
 				`	(Try to salvage the awkward situation.)`
 				`	(Get out while I can.)`
-					goto getout
+					goto "get out"
 			`	"I'm just messing with you, my psychiatrist doesn't think it's very funny when I do it to him either."`
 			`	"Oh," the woman says quietly, "that's... nice, I guess."`
-			label getout
+			label "get out"
 			`	You realize that you have made this random young lady quite uncomfortable by barging in with your input.`
 			`	"Well, good luck!" you say with a wave as you hurry away. You barely hear the quiet "thank you" over the burning in your ears.`
 				decline
@@ -466,6 +486,7 @@ mission "Masquerade Hanging"
 	source
 		government "Pirate"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -480,6 +501,7 @@ mission "News Reporter - Paradise"
 		government "Republic"
 		attributes "paradise"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 8
 		has "event: war begins"
@@ -536,6 +558,7 @@ mission "Scientists at the Pub after a Conference"
 		government "Republic"
 		attributes "urban"
 		not attributes "station"
+	"offer precedence" 5
 	to offer
 		random < 1
 	on offer
@@ -593,15 +616,16 @@ mission "Sol-Bound Shuttle"
 	minor
 	source
 		system "Sol"
+	"offer precedence" 5
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`	Upon entering the sprawling spaceport, you notice that a group of factory workers are talking to a captain. As you get closer, you see that the captain's flagship, a Shuttle that has seen better days, lacks a hyperdrive.`
 			choice
 				`	"Where's your hyperdrive?"`
 				`	"How are you going to travel anywhere with that ship?"`
-				`	(Go back to your ship.)`
+				`	(Go back to my ship.)`
 					decline
 			`	The captain laughs. "Most pilots are the adventurous type. Not me. I make a pretty decent haul just flying people from Earth to Mars and back. Occasionally I do trips to the Moon for tourists." You notice that she uses the archaic term for Luna. Must be a local expression.`
 			choice
@@ -628,9 +652,10 @@ mission "Earth Day Blackout"
 	minor
 	landing
 	source "Earth"
+	"offer precedence" 5
 	to offer
 		day == 22
-		month == 5
+		month == 4
 	on offer
 		conversation
 			`As you follow the tracking beacons towards Earth's central spaceport, you realize there's something very off. What was the bustling spaceport city is now completely still, and even though it is near midnight, the supertall buildings and skyscrapers are curiously dark; not a light is on for kilometers.`
@@ -690,25 +715,26 @@ mission "Burthen Triathlon"
 	minor
 	source
 		planet "Burthen"
+	"offer precedence" 5
 	to offer
-		random < 1
+		random < 10
 	on offer
 		conversation
 			`Thanks to the planet's high gravity, Burthen is not a common destination, but today the spaceport seems to have a lot of visitors. Many of the usually empty landing pads are occupied, and you notice a sizable crowd at the edge of the spaceport as you step out onto its rather untarnished apron. Some members of the crowd are obviously from offworld judging by their height, and there's even a few media crews standing by, although it looks like their camera drones are struggling with Burthen's gravity.`
 			choice
 				`	(See what's going on.)`
-				`	(Avoid the commotion and tend to your own business.)`
+				`	(Avoid the commotion and tend to my own business.)`
 					decline
 			`	Each step takes significantly more effort than you're used to, but you eventually reach the crowd. From the signs that have been put up on the way, it looks like the "Burthen Triathlon" is taking place today, and the spaceport has been designated the finishing point. A couple of especially sturdy-looking marquees have been set up; the smaller one appears to be the administration tent, currently only accessible to event staff, while the other one is far larger and is catering food and drinks for the crowd nearby.`
 			choice
 				`	(Walk over to the catering tent.)`
 				`	(Stay outside.)`
 					goto outside
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					decline
 
 			`	Thankfully, the walk to the catering tent is far shorter than the walk from your ship, but nevertheless you're exhausted by the time you drag your feet inside. A lot of effort has been put into this tent: the metal chairs are all sturdily-built to allow offworlders to pull themselves up, but cushioned as to not make it uncomfortable to sit in. A small firepit has been built in the middle of the tent, along with a couple fire extinguishers placed nearby, and the whole place is brightly lit in contrast to Burthen's typically chilly weather. Quite a few people, both Burthenians and offworlders, are mingling about here.`
-			`	There's a counter in the corner with two levels, apparently so that the Burthenian attending it can serve both offwolders and locals. Alongside the typical drinks you've seen in spaceport bars and some local to the southern Core, the counter also offers a local drink called the "Antigrav" that claims to "ease visitors from Burthen's natural pull," and comes in a specially made glass, all for 30 credits.`
+			`	There's a counter in the corner with two levels, apparently so that the Burthenian attending it can serve both offworlders and locals. Alongside the typical drinks you've seen in spaceport bars and some local to the southern Core, the counter also offers a local drink called the "Antigrav" that claims to "ease visitors from Burthen's natural pull," and comes in a specially made glass, all for 30 credits.`
 			branch "no credits"
 				credits < 2
 			choice
@@ -752,3 +778,1004 @@ mission "Burthen Triathlon"
 			label "end"
 			`	Abernathy doesn't slow down until he's within an arm's length of the finishing line; as he crosses it he seizes the tape, making a yelp of simultaneous joy and relief. He holds the tape up before everybody in the crowd and at the cameras pointed at him, taking in the attention (and catching his breath) before accepting a bottle of water from someone on the sidelines.`
 				decline
+
+mission "CCOR Guerrilla Standoff"
+	minor
+	source "Gagarin"
+	"offer precedence" 5
+	to offer
+		random < 10
+	on offer
+		conversation
+			`Every map of human space places Gagarin in the list of seedy, go-at-your-own-risk pirate ports which would bring to mind the likes of Greenrock's fighting pits and Freedom's gear bazaars. Still, it appears much like any other old, slightly run-down Southern spaceport, only at a much grander scale. Being the center of the planet's extensive transportation system, it seems as if you are wading through thousands of Gagarians and offworlders in every atrium and hallway of this spaceport, as they do the same to make their connections on- and off-world.`
+			`	But as you make your way into the central hall, you notice that, where you'd expect the greatest activity, everything has stopped. Even the ever-roving antigrav trolleys of cargo and supplies are backed up and motionless, and everybody's attention is directed at some sort of commotion in the very center of the spaceport.`
+			choice
+				`	(Take a look.)`
+				`	(Go back to my ship.)`
+					decline
+			`	Stepping through the gaps within the established crowd you end up next to a spaceport gendarme. He appears as if he's meant to be on patrol duty but is too busy watching the distraction to do his job right now. Looking over the banisters beside him, you see first the enormous and oddly empty space in the middle of the hall, then a team of overalls-wearing men armed with drills and brushes. Surrounding them is a cordon of guerrillas in their rosy CCOR uniforms, sizing up the public and the spaceport security around them with their rifles and pistols.`
+			`	The painting guerrillas are busily finishing off the touches of what appears to be a statue of the burgundy and white emblem of the Confederated Councils, while a pile of rubble beside it suggests that a symbol of the local government once stood in its place. As they step away from the statue, a lone man in a much better-kept uniform than the others steps forward in front of their work. You can feel the air chilling as he raises his head to speak.`
+			choice
+				`	(Listen in.)`
+				`	(Step away before he makes his speech.)`
+					decline
+			`	You don't see any amplification equipment, yet his voice fills the room without effort.`
+			`	"Gagarians and offworlders. Captains and travellers. Servicemen and farmers.`
+			`	"The worlds of the Outer Rim, and indeed, those of the Republic and the entirety of humanity, have and continue to be despoiled and devastated by ruthless profiteering.`
+			`	"The executives of the Syndicate and the landed gentry of the Paradise Worlds steal the efforts of tens of billions of men, women, and children, from Prime to Foundry; from Valhalla to Earth; from Bourne to Hestia, and beyond. And for near a century they have colluded to impose their designs on our worlds! The corporate insurrection in Novo Minho and the gang wars in the northern Outer Rim are an obvious extension of the arm of people like Alastair Korban, only leading to further suffering and bitter destruction in our region!`
+			`	"But there is still hope. We can bring about the independence of Gagarin and unify this world that has been lost to the Syndicate-sponsored oligarchs and their cronies and puppet officials. We can reunite the Outer Rim and restore the prosperity stolen from us. We can form a new Confederated Councils and once again shine the light of Belenos across the entire galaxy!"`
+			`	The gendarmes look around and consider the response of the crowd around them as the man finishes his speech to scattered applause. The speaker steps down and orders his guerrillas into formation before marching them out of the still crowd and into the back of a dusty, burgundy army van you hadn't noticed before, leaving the remains of the old statue scattered around the empty space.`
+			`	You turn around and see the gendarme you ended up next to. He meets your eyes and recognizes your off-world air.`
+			`	"Just an everyday interruption, Captain," he says. "Only nostalgists for the old cause. We get a dozen of these incidents a month." He seems to be interrupted by a buzz from the radio receiver at his hip and strides off into the crowd, leaving you on the ledge.`
+			`	Slowly but surely, the spaceport snaps out of its shock and picks up its previous momentum, although as you turn around you pass two government-branded trucks mounted with cranes, almost certainly there to carry off the newly installed statue and to clean up the mess left behind by the guerrillas.`
+
+mission "Raider returning to Mordente-Bridi"
+	source "Mordente-Bridi"
+	"offer precedence" 5
+	to offer
+		random < 10
+	on offer
+		conversation
+			`Watching the microgravity section of the spaceport from one of the bars in Mordente Cylinder, you observe a Bastion in pirate markings coming nearly too fast for safe approach to the station, its hull covered in gashes and burns from what looks to be Plasma Cannon shots.`
+			`	As it comes to a stop in a maintenance bay, the spaceport's engineering shuttles appear from all over and begin buzzing around the Bastion, assessing the damage and beginning the work on repairs. Meanwhile, its crew disperse from the ship and immediately begin unloading a multitude of busted-up crates and containers from the hold, probably raided from a civilian transport. It looks like their haul was worth the damage.`
+			`	Within the hour the work shuttles scatter from the ship as they finish patching up its battered hull, and the Bastion maneuvers out of the bay almost as haphazardly as it did when it entered.`
+
+mission "Militia returning to Solace"
+	source "Solace"
+	"offer precedence" 5
+	to offer
+		random < 10
+	on offer
+		conversation
+			`Wandering around the main spaceport on Solace, you notice several rows of shiny new landing pads next to the Delta V company offices. A large banner announces that you are witnessing the grand opening of Delta V's new private spaceport, and a crowd of interested spectators has gathered near the perimeter of the fence.`
+			`	Suddenly an Argosy comes streaking out of the sky, almost crashing into several smaller ships in the main spaceport before swerving out of sight behind a hangar in the direction of the new landing pads. There are shouts from the throng of onlookers, who all seem to think this was a stunt. Your more practiced eye, however, tells you that there are bullet marks on the Argosy's hull from a Gatling Gun. It was probably a miscalculation by the pilot's computer that almost caused the collision.`
+			`	Soon afterwards, an announcement is made from a large speaker, telling bystanders that nothing bad happened and that they can go home now. After staying for a while out of curiosity, the crowd finally disperses. However, you stick around and notice the Argosy flying back into view to land in the main spaceport.`
+
+mission "Republic 300 Year Anniversary"
+	landing
+	source
+		government "Republic"
+		not attributes "uninhabited"
+	"offer precedence" 5
+	to offer
+		year == 3030
+	on offer
+		conversation
+			`News headlines bombard your comms as you land on <origin>: today is the three hundredth anniversary of the Republic. A crowd has gathered in the local spaceport in something of a celebration as they tune in to the main news stations, websites, and blogs throughout human space that are commenting on this momentous day. However, you notice many passersby moving about with an air of disdain for the festivities, simply trying to get their business here over quickly, and being frustrated at the inevitable slowness of the local facilities today.`
+			`	Originally formed by Earth and planets close to it, the Rim, and a few Dirt Belt worlds, the Republic went on to gradually expand and incorporate the Syndicate, Paradise Worlds, and the Deep. For three hundred years now, most of humanity has existed under its flag, and through protests and the space renaissance, waves of colonization, expansion, and battles against remnants of the Alphas, that flag remains flying over most human worlds today.`
+			branch "war over"
+				has "main plot completed"
+			branch "war ongoing"
+				has "chosen sides"
+				not "main plot completed"
+			`	Not all is well, of course, as the bombing of Geminus and Martini appears to have set the Republic on the precipice of war with the Free Worlds, in the southern portion of human space. You can't help but feel that much of the cheerfulness about this date has more to do with the national holiday than with a deep-rooted appreciation for the Republic's history and what it stands for.`
+				goto end
+			label "war ongoing"
+			`	The ongoing war with the Free Worlds has greatly diminished what the Republic Department of Arts and Culture no doubt hoped to turn into the public event of the year. Local workers and merchant captains alike whisper among themselves, Navy personnel march to and from warships that come and go at an alarming rate, seemingly unfazed by the historical date, and some bar fights break out between likely inebriated local patriots and those reckless enough to voice their support for the Free Worlds here.`
+				goto end
+			label "war over"
+			`	The recent Free Worlds war seemed to threaten this long history of stability, as battles raged over the skies of dozens of planets, and the threat of an open nuclear war loomed closer as the conflict escalated. The indiscriminate disappearance of many systems close to Earth, followed by the unified human front against the Pug invaders, seems to have knit together the sentiments of many throughout the Republic - for the time being, at least.`
+			branch "zenith bombed"
+				has "Wanderers: Sestor: Return to Wanderers: done"
+			branch "sestor beaten at farpoint" end
+				has "Wanderers: Sestor Alt: Return to Wanderers: done"
+			label "zenith bombed"
+			`	Dimming the mood of the otherwise mostly positive news titles are the comments about a mysterious armada of robotic warships invading the Far North. Having crushed the Navy forces over Farpoint, the fleet was only partially beaten after the detonation of a terrible bomb on Zenith, which wrecked much of the planet. Indeed, it was weeks still before the scattered ships were fully destroyed, and confidence in the Navy's - and, by extension, the Republic's - ability to keep humanity safe seems to have been affected significantly...`
+				goto end
+			label "sestor beaten at farpoint"
+			`	Web comments and news anchors seem to be particularly excited to comment on the recent victory of the Navy over the mysterious armada of robotic warships that invaded the Far North. Though at a great cost to the northern fleet garrisons, the invading fleets were successfully stopped at the Farpoint base, preventing the ships from causing any further harm. Veterans of the Farpoint battle seem to be hoarding the spotlight, giving emotional reports of their memory of the fight, and of the sacrifices they went through to achieve victory.`
+			label end
+			choice
+				`	(Join the celebration of the Republic's 300th anniversary.)`
+					goto celebrate
+				`	(Go on about my day as usual.)`
+			`	You switch your media channels off from the celebrations, and get to your ship's system checks. Once you're done, you prepare for just another day.`
+				decline
+			label celebrate
+			`	You take an hour or two to join in on the festivities, because after all, it's not everyone who can claim to have witnessed a centenary anniversary of a nation. Stepping off the <ship>, you head to the spaceport, have a couple of drinks, speak to some of the locals, and party with a few revelers. Once it's getting late, you head back to your ship and reflect on the meaning of this day throughout human space.`
+				decline
+
+mission "Exotic Life: Buccaneer Bay"
+	minor
+	source "Buccaneer Bay"
+	"offer precedence" 5
+	to offer
+		random < 10
+		credits > 379
+	on offer
+		conversation
+			`You wander the planet's sun-bleached boardwalk, passing dozens of rum-soaked bars. Eventually, you see a cramped restaurant squeezed between a closed souvenir shop and yet another bar. The building is painted coral with a battered tin awning, and a hand-written board dangles above the door with the words "Fresh Delish Dish Fish."`
+			`	A lanky waiter with a braided silver beard and cybernetic left eye aggressively waves you in and gives a practiced yell: "Best Dish Fish in town! Once-in-a-lifetime experience, plus a worlds-renowned souvenir! Try the Dish Fish - the fish that's a dish!"`
+			choice
+				`	"What?"`
+				`	"How much?"`
+					goto price
+				`	"No thanks."`
+					decline
+			`	"Dish Fish! It's a fish that's a dish. Buccaneer Bay's famous for 'em." The waiter glares at you in mild annoyance. "It's a flat fish with a big head. The skull's flat and has three horns so it stands on its own as a plate, and we cook the rest of the fish to serve on it. You can keep the skull as a plate after. Dish. Fish."`
+			label price
+			`	The waiter puts a hand on your shoulder. "Only 99 credits, what a deal! The skull alone'll cost ya 200 credits anywhere else. What'ya say, want the meal of a lifetime?"`
+			choice
+				`	"Sure."`
+				`	"No thanks."`
+					decline
+			action
+				payment -379
+			`	"Great! Service fee's included." The waiter snatches your credits, slaps a laminated menu and receipt into your hands, and shoves you into a cramped booth before hurrying away towards the kitchen. You look at the receipt to find that you've been charged 20 credits for a 'seating fee,' 30 credits for a 'convenience fee,' 50 credits for 'fish cleaning,' 80 credits for 'dish assembly,' and 100 credits for a 'service charge' - a total of 379 credits.`
+			`	Seated inside, the restaurant is even tighter than it looked from outdoors. There's a single row of tiny tables, a low ceiling, and a handful of other patrons who look like clueless tourists. The menu itself covers seafood and sea-adjacent food like Nine-Eye Pie, Hand-Mashed Helmet, Hydrozoan Lasanga, and a suspiciously named 'Captain's Catch.' The top of the menu has a headline dish written in sloppy cursive with a prominent infobox beneath taking up a full third of the menu:`
+			``
+			`		Dish Fish: Natural Wonder and Souvenir - 99 credits`
+			`		(additional fees not included)`
+			`			- The oceans of Buccaneer Bay are full of jawless, fish-like creatures commonly known as Buccaneer Bay Boneheads that have a single, bone-like plate over their head and body, an oversized skull!`
+			`			- Ecologically, they are commonly filter feeders, deposit feeders, and grazers, consuming tiny organisms or detritus from the water, sediment, or ocean floor.`
+			`			- Dish Fish differ from other Buccaneer Bay Boneheads: they have a nearly perfectly circular head-plate, three small horns to fend off predators, and no eyes because they live on deep, low-light ocean floors.`
+			`			- These traits make a Dish Fish head-plate the perfect souvenir dish: round, sealed, with a built-in tripod. Get yours today!`
+			`	The waiter returns, and the plate is distinctive. He brings out a sizable ivory disc, the bone smooth and polished, balanced by three tapering horns on the table. On the plate itself sits a single charred tail, skewered and grilled until the skin crackles. It looks both impressive and appetizing.`
+			choice
+				`	(Take a bite.)`
+				`	(Thank the waiter and leave.)`
+					goto thanks
+			`	You take a bite. The meat is... an awful attempt at food. There's a musty, sulfurous note at the beginning, like wet compost, while beneath it is an almost-rotten tang that belies the visual freshness of the fish. The closest thing to a redeeming flavor is a faint, earthy aftertaste of salty mud.`
+			label thanks
+			`	The waiter comes to flick the Dish Fish clean with a rag, thanks you for patronizing the establishment, and jerks a thumb towards the door - a punctuated close to your 'meal of a lifetime.'`
+				decline
+
+mission "Exotic Life: Delve"
+	minor
+	source Delve
+	"offer precedence" 5
+	to offer
+		random < 20
+	on offer
+		conversation
+			`The air in Delve's spaceport is crisp, carrying the mineral tang of weathered stone alongside occasional whiffs of fuel and lingering industrial cleaners. As you walk toward your ship, you notice teams of workers dressed in biohazard gear moving between the departing vessels in pairs, bulky sprayers strapped to their backs, nozzles hissing as they coat hulls in a fine mist. Each ship gets a thorough pass before takeoff, the workers checking crevices and landing gear with practiced efficiency.`
+			choice
+				`	(Ask them what they're doing.)`
+				`	(Ignore them and continue on my way.)`
+					decline
+				`	"Shipworm outbreak?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+			`	You approach a pair of workers as they finish spraying down a Bulk Freighter and ask what they're doing. One of them, a grizzled veteran with deep lines around his eyes, barely glances at you. "Shipworms," he mutters, already moving to the next ship.`
+			`	The other, a younger worker practically bouncing in his boots, grins behind his respirator. "Yeah! Little metal-chewing pests. They're native to Delve, infest the mines, the shipyards - anywhere there's metal to sink their teeth into. If we didn't spray every ship before takeoff, they'd be all over the galaxy by now." The veteran sighs. "They already are all over the galaxy. Because people aren't careful enough."`
+			`	The rookie ignores him. "They start as tiny worms, barely bigger than your pinky, but once they find metal, they melt into it, make a cocoon that looks just like part of the ship! Bombacle, we call 'em. Then BAM! A few months later, the casing bursts open like a bomb! Bombacle!"`
+			`	The veteran shakes his head. "What he means is, they're an invasive hazard if they get off-world. That's why we spray. No shipworms, no problems."`
+			`	The rookie gives his sprayer an enthusiastic shake. "And I get to torch every last one I find. You ever see one pop under a high-heat blast? Satisfying as hell." The veteran just mutters, "You'd think the novelty would wear off."`
+			action
+				set "exotic animals: delvan shipworm known"
+			`	With another look at the freshly sprayed Bulk Freighter, you make a mental note to give your own ship a once-over before takeoff.`
+				goto ending
+			label known
+			`	One of them, a seasoned veteran with weary eyes, lets out a long-suffering sigh. "Great. At least this one actually knows what they are." In contrast, the other - a fresh-faced worker brimming with energy - practically lights up. "They're like space barnacles - until they hatch into wormy bombs! I was just telling him how fun it is to fry 'em!"`
+			`	The veteran gestures around at the cavernous spaceport. "We don't get outbreaks here. This is Delve. They're Delvan shipworms. They're native. Always have been. They infest the mines, the shipyards, anywhere with exposed metal. That's why every ship gets fumigated before takeoff - to keep 'em from spreading even more than they already have."`
+			`	The rookie eagerly jumps back in. "You ever see one break out of a cocoon in real time? Casing splits and it blasts out like a grenade - it's wild!" The veteran just rubs his face.`
+			`	With nothing more to add, you make a mental note to give your ship a once-over before takeoff as the workers continue their routine.`
+			label ending
+			`	You give the fumigation teams a final glance and make your way back to your ship. The metallic surfaces around you now hint at unseen creatures lurking.`
+				decline
+
+mission "Exotic Life: Ada"
+	minor
+	source Ada
+	"offer precedence" 5
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You make your way through a dimly lit section of the spaceport to a near-empty hangar, where the usual hum of activity is dampened by an eerie stillness. The back of the hangar has a reinforced glass cargo door cracked open, perhaps by mistake. You peer inside to see large, sealed tarps stretched across the area, some draped over cargo crates, others covering entire sections. One enormous tarp appears big enough to be covering a whole ship. Each one bears the same stark warning in bold lettering: "DELVAN SHIPWORM FUMIGATION." The air has a faint chemical tang to it, and ahead, two figures move methodically between the tarps towards the door.`
+			`	They are covered head to toe in protective suits, thick gloves, and respirators obscuring their faces. One carries a handheld sprayer, releasing a fine mist into the air, while the other checks a monitor strapped to their arm. Their boots crunch softly against the floor as they pass.`
+			choice
+				`	(Ask them what's going on.)`
+				`	(Ignore them and continue on my way.)`
+					decline
+				`	"Nasty little bombacles, aren't they?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+			`	Curiosity gets the better of you, and you ask what this is all about, gesturing at the tarps. One of them pauses, their voice muffled by the respirator. "Delvan shipworm outbreak. Nasty infestation. We're exterminating them before they spread to other ships or the city." You can see small scorch marks on the floor nearby - signs of something being burned away.`
+			choice
+				`	"What's a Delvan shipworm?"`
+				`	"Nasty bombacles, aren't they?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+				`	"Well, good luck with that. I should get going."`
+					decline
+			`	The worker with the monitor barely hesitates before responding. "Delvan shipworms are an invasive species from Delve. They start as larvae, tiny worms-"`
+			`	"Bombacles!" the one with the sprayer interjects, voice distorted through the respirator. "They latch on ships, grow into barnacles, then they're bombs!"`
+			`	The first worker exhales, shaking their head. "They're more than that. The larvae attach to metal - usually ship hulls, but it can be mining equipment, or anything, really - and secrete an enzyme that corrodes the surface, breaking it down so they can form a cocoon around themselves. This builds up a high-pressure gas, so the outer shell hardens to compensate, blending in with the surrounding metal."`
+			`	"Yeah, until - BOOM! Three months later, it blasts open like a grenade and out come a dozen disgusting worms!"`
+			`	"You make it sound like a horror movie."`
+			`	"It is a horror movie if you're next to one when it hatches." The sprayer-wielding worker turns back to you. "Writhing wrigglers that leave a hole the size of your palm in whatever they break out of. Plenty of ships have lost pressure 'cause of them."`
+			`	The first worker sighs. "That's why we're dealing with it now. We don't let them spread, we don't get people vented into space."`
+			action
+				set "exotic animals: delvan shipworm known"
+			`	Your gaze drifts back to the tarps, imagining what might be skittering beneath them. You nod in thanks and step away, making a mental note to double-check your ship's hull before takeoff.`
+				goto ending
+			label known
+			`	The worker with the sprayer perks up. "Finally, someone who gets it!" they say, shaking their sprayer for emphasis.`
+			`	The other groans. "They are not barnacles and they are not bombs. They are a highly adaptive invasive species with a complex-"`
+			`	"Yeah, yeah, they're still bombacles," the sprayer worker cuts in. "Point is, we kill 'em before they kill ships. And cities. And people."`
+			`	The monitor worker exhales but gives you a nod. "At least you understand how important this is. Most folks just walk by without a second thought." The sprayer worker waves you along. "Anyway, let us work before one of these things chews through something vital."`
+			`	Satisfied, you leave them to their job, making a mental note to check your own hull before takeoff.`
+			label ending
+			`	With one last glance at the fumigation tarps, you head back to your ship, suddenly aware of how fragile a metal hull can be in the wrong circumstances.`
+
+mission "Exotic Life: Glaze"
+	repeat
+	minor
+	source Glaze
+	"offer precedence" 5
+	to offer
+		random < 10
+		or
+			not "chosen sides"
+			has "main plot completed"
+		not "exotic life: seen glaze apes"
+	on offer
+		conversation
+			`You step to the edge of the mesa from the spaceport, the wind blowing as you take in the view. The canyons stretch out before you, a maze of red and gold stone, their depths lost in shadow. Far in the distance, something moves - small figures, barely more than specks, making their way through one of the ravines. You squint, but the details remain elusive.`
+			`	Nearby, a weathered set of credit-operated binoculars stands bolted to the ground, a faded sign above them reading: 1 credit per use.`
+			choice
+				`	(Take a closer look for 1 credit.)`
+					to display
+						credits >= 1
+				`	(Ignore the specks and return to my ship.)`
+					to display
+						credits >= 1
+					decline
+				`	(Pat my empty pockets and return to my ship as I can't even afford the 1 credit fee.)`
+					to display
+						credits < 1
+					decline
+			action
+				payment -1
+			branch "no rare apes"
+				random < 20
+			`	The binoculars hum as you focus in on the figures, expecting hikers, but what you see is something else entirely. A small group of shaggy, long-limbed creatures move carefully through the canyon. Their fur is the same hue as the sandstone, blending almost perfectly with the terrain. They walk on two legs, but with a hunched, cautious gait, pausing often to glance around before continuing.`
+			`	One of them stops near a boulder, kneeling to scoop up a handful of dust and let it run through its fingers, as if testing the wind. Another lingers behind the rest, turning its head slightly, perhaps listening for something. There are no signs of tools or fire - certainly nothing to suggest the "canyon people" of local legend - but there's an undeniable sense of awareness in the way they move and seem to belong to the landscape itself.`
+			action
+				set "exotic life: seen glaze apes"
+			`	After a long moment, they disappear behind a ridge, their camouflage making it hard to tell if they were ever there at all. You step back from the binoculars, the last glimpse of them lingering in your mind.`
+				decline
+			label "no rare apes"
+			`	Curiosity gets the better of you, and you pay a credit to the machine. The binoculars whir softly as they adjust, bringing the distant canyon into focus. A group of brightly dressed tourists walk along a winding trail, pointing at rock formations and stopping to take photos. One of them waves excitedly at something - maybe an unseen guide explaining the landscape.`
+			`	Just another tour group exploring the canyons. You step back from the binoculars with a small chuckle.`
+				decline
+
+mission "Exotic Life: Bluestone"
+	minor
+	source Bluestone
+	"offer precedence" 5
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You step off your ship and wander around Bluestone's quiet yet functional spaceport. The buildings, made mostly of durable plastic resin, form a quaint but near-uniform red-brown landscape, in sharp contrast to the small yellow pub in the center. The spaceport is quiet, but the low hum of activity from a nearby oil drill gives it some life. As you are entering the pub, you spot an announcement on a bulletin board:`
+			`	"Guided Tour: Hybrid Crop Research Village - an exceptional hub of field-based research led by the Cornucopia College of Agriculture, nestled within captivating landscapes!"`
+			`	The bulletin catches your eye. It's a rare chance to see something other than refinery equipment and plastics, and the mention of hybrid crops entails something different. There's a signup sheet, and only a few spots remain.`
+			choice
+				`	(Sign up.)`
+				`	(Skip the tour.)`
+					decline
+			`	After signing up for the next tour, you are directed to hop onto a beat-up old bus that rattles along to the research village. You notice Bluestone's rusty industrial sprawl transition into the rocky fields of deep, desaturated blue grasses that the planet is known for. The village itself appears a small yet dynamic community, centered around a sleek, glass-paneled laboratory and greenhouse emanating reddish-yellow light. Dotted around are modest plastic resin apartment buildings. The entire community is surrounded by an expansive field containing rows and rows of crops.`
+			`	You get off the bus and are immediately ushered into the laboratory by a young-looking tour guide, along with half a dozen other tourists. She has a small nametag that reads:`
+			`		Zea S.`
+			`		Community Tour Guide`
+			`		MS in Agronomy`
+			`		Cornucopia College of Agriculture`
+			`	"Welcome to our guided tour of Bluestone's Hybrid Crop Research Village! Here, our dedicated scientists harness the secrets of native flora. The grasses and lichens you see around you have evolved unique photosynthetic pigments to thrive in our planet's dim, reddish light. Before we continue, can anyone name the most famous photosynthetic pigment found on Earth?"`
+			choice
+				`	"Tea leaves."`
+					goto "once wrong"
+				`	"Green."`
+					goto "once wrong"
+				`	"Chlorophyll."`
+					goto "once right"
+				`	"Purple paint."`
+				`	(Remain silent.)`
+					goto awkward
+			`	"That's what I use to paint my dragon minis!" a tourist blurts out, his excitement briefly overtaking him before he immediately clears his throat to regain his composure.`
+			label "once wrong"
+			`	Zea shifts uneasily. "Umm, not exactly. The answer I was looking for was chlorophyll.`
+				goto chlorophyll
+			label "once right"
+			`	Zea beams broadly. "Exactly right! Chlorophyll is fundamental to life on Earth.`
+				goto chlorophyll
+			label awkward
+			`	There is an awkward pause as Zea scans the group. After another moment the tour guide sighs lightly, "Well, it's chlorophyll." Visibly trying to downplay the moment, she adds, "No worries - let's move on.`
+			label chlorophyll
+			`	"These pigments on our native plants are distinct from Earth's chlorophyll. Green chlorophyll actually captures red light fairly well, but not as well as a cyan pigment. Our planet's reddish hue can also be deceiving - near-infrared light, an invisible light just beyond what humans can see, is what our native plants truly thrive on. The vegetation can capture those wavelengths of light with remarkable efficiency. By deciphering their genetic blueprints, we've identified key adaptations that can be hybridized into crops found on Earth or other worlds to enhance their resilience in the low-light environments of cooler stars."`
+			`	You are then led outside to a small garden of native grasses and lichens next to the laboratory. "And now, take a closer look at our fascinating native species. Notice their muted blue and near-black colors - this isn't just a quirk of nature, but a vital adaptation that enhances absorption of red and near-infrared light on our dim planet. Their extensive root systems delve deep into the sparse soil, allowing them to efficiently access as much nutrients and water as possible under low-light conditions. Now, the leaves on these grasses are much larger and flatter than what you'd see on similar grasses on planets with brighter sunlight. Can anyone tell me why our plants might have larger and flatter leaves than somewhere like Earth?"`
+			choice
+				`	"Larger leaves maximize surface area to capture more light."`
+					goto "twice right"
+				`	"They look nicer in the breeze."`
+					goto "twice wrong"
+				`	"It helps herbivores leaf them alone."`
+				`	(Say nothing.)`
+					goto "twice shy"
+			`	A collective groan ripples through the tour group, punctuated by a couple of reluctant chuckles. Zea remains completely oblivious as she continues with the tour.`
+			label "twice wrong"
+			`	"Ummm, actually, that's not quite right. The main focus of these larger leaves is to maximize surface area for better light absorption."`
+				goto "native plants"
+			label "twice right"
+			`	"Exactly right! They maximize surface area for better light absorption, which is crucial on our dim planet. Great answer!"`
+				goto "native plants"
+			label "twice shy"
+			`	The guide makes eye contact with most of the group for an uncomfortable beat as she awaits a response. When none come, the tour guide says, "Well, it's because larger, thinner leaves maximize the surface area for light absorption... ummm, let's look at some grasses now."`
+			label "native plants"
+			`	She walks up to one of the grasses and gesture at its leaves. "The large, thin leaves of our native plants are designed to maximize surface area to better collect infrared rays, ensuring they capture every photon they can. These features collectively enable our plants to thrive where Earth plants would struggle."`
+			`	The tour continues as you enter a state-of-the-art greenhouse. Inside, hybrid crops flourish under controlled lighting that varies from yellow to red, as you feel warm from the heat lamps above. Zea points at a deep pot filled with a muted blue-black wheatgrass that has huge, delicate leaves. "Here, traditional Earth crops like wheat have been endowed with traits inspired by our native species. Observe the broader, darker leaves that boost photosynthetic efficiency in low-light conditions. These modifications not only help the plants harness energy from our reddish sunlight, but can be used across the galaxy to grow food where it was impossible before!"`
+			`	You feel the tour drawing to a close as the tour guide gathers the group for a final discussion.`
+			`	"Thank you for joining us on this exploration of the cutting edge of hybrid crops. I hope you leave here today with a renewed appreciation and curiosity for the foods you eat and the remarkable plants that surround us."`
+			choice
+				`	(Clap.)`
+				`	(Do nothing.)`
+					goto silence
+			`	You begin clapping and the room fills with applause as the other tourists join in. Zea smiles warmly, "Thank you all again, and have a wonderful day!"`
+				goto ending
+			label silence
+			`	The silence lingers a little too long. Zea waits another moment, then nods to herself a few times before quietly walking off.`
+			label ending
+			`	With the tour's ending, you board the same beat-up old bus that brought you here. As the bus lurches back towards the copper-colored resin of the spaceport, you have time to take in the rolling fields of blue-black grasses swaying under the dim, reddish suns of Bluestone.`
+				decline
+
+mission "Exotic Life: Geyser"
+	minor
+	source Geyser
+	"offer precedence" 5
+	to offer
+		random < 10
+	on offer
+		conversation
+			`As you wander through a row of half-demolished hangars, you spot clusters of spiny cacti with flat, rounded pads and bright red fruit growing in the rubble. A local, noticing your curiosity, strides over with a wry grin.`
+			`	"That plant over there? That's a prickly pear cactus. They're from right here on Geyser. Hardy things, too - they're so aggressive they've even taken root all over Earth."`
+			choice
+				`	"That doesn't sound right. They're native to Earth, not Geyser."`
+					goto argue
+				`	"Huh. Okay then."`
+			`	The local nods, satisfied. "Glad you can appreciate the local plants. Have a good one." They head off towards the food court.`
+				decline
+			label argue
+			`	"You tourists think you know everything. What are you, a plant scientist?"`
+			choice
+				`	"A botanist?"`
+				`	"Oh no, I'm no scientist."`
+			`	"Bah!" With a dismissive wave, they storm off, cursing tourists under their breath.`
+				decline
+
+mission "Exotic Life: Bloodsea"
+	minor
+	source Bloodsea
+	"offer precedence" 5
+	to offer
+		random < 10
+	on offer
+		conversation
+			branch "former pirates"
+				or
+					has "event: bloodsea independent"
+					has "event: bloodsea joins free worlds"
+			`You step into one of the raucous open-air marketplaces of Bloodsea, where armed vendors and hulking guards barter over stolen cargo amid piles of weathered crates. As you weave through the maze of noise and color, you catch sight of a man huddled behind one of the crates - he's coughing violently, blood staining his lips, the crate, and the ground beside him. Before you can react, a lean, scarred woman fixes her steely gaze on you, her face hidden beneath a pair of stained bandanas - one concealing her mouth and nose, the other wrapped around her head.`
+				goto "rest of hello"
+			label "former pirates"
+			`You step into one of the raucous open-air marketplaces of Bloodsea, where wary-looking vendors and armed guards barter over allegedly legal cargo amid piles of weathered crates. As you weave through the maze of noise and color, you catch sight of a man huddled behind one of the crates - he's coughing violently, blood staining his lips, the crate, and the ground beside him. Before you can react, a lean, scarred woman fixes her steely gaze on you, her face hidden beneath a pair of stained bandanas - one concealing her mouth and nose, the other wrapped around her head.`
+			label "rest of hello"
+			`	"That man's got the Bloodsea Bloom," she says flatly, as if mentioning the weather.`
+			choice
+				`	"What's that?"`
+				`	(Get back to my ship.)`
+					goto declined
+			`	She scoffs and leans in, her voice dropping to a rough whisper. "The red tide. Every summer, the bloody sea blooms, fills the air with nasty, toxic bits that chew up your lungs if you catch a whiff. No local goes near the beach when the bloom's ablooming."`
+			`	Then, she suddenly screams, "Only offworlders and blind fools with a death wish swim in that poison!"`
+			`	A wry grin floods her face, and she adds in a conversational tone, almost as an afterthought, "Now, I'll flay you alive and turn you into chum if you don't buy some fish bait. Eight racks." She slams a scarred hand into a rancid barrel beside her.`
+			choice
+				`	(Give her 80,000 credits for the barrel of rotten fish bait.)`
+					to display
+						credits > 80000
+				`	(Give her 8,000 credits for the barrel of rotten fish bait.)`
+					to display
+						credits > 8000
+					goto thousand
+				`	(Give her 800 credits for the barrel of rotten fish bait.)`
+					to display
+						credits > 800
+					goto hundred
+				`	(Run for it.)`
+					goto declined
+			action
+				payment -80000
+				"reputation: Pirate" += 1
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. She suppresses an amused glint in her eye and, with surprising care, gently pushes the putrid barrel towards you, her calloused fingers brushing the rim in a brief, elegant flourish. You bow your head in gratitude, roll it away, and once she's out of sight, ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this unruly port.`
+				decline
+			label thousand
+			action
+				payment -8000
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this unruly port.`
+				decline
+			label hundred
+			action
+				payment -800
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. Her nostrils flare, and she snatches to credits with a snarl. "Not even one rack," she spits, eyes blazing. Without warning, she hauls the barrel off the ground to slam it directly against your shin. You yelp and stagger backwards. She rakes a jagged knife through the air, roaring, "I'll carve you like a cod and string your entrails for the gulls!" You flee her and the barrel to dart back to the <ship>, her furious curses echoing behind you.`
+				decline
+			label declined
+			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, the woman's bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
+				decline
+
+mission "Exotic Life: Albatross"
+	minor
+	source Albatross
+	"offer precedence" 5
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You trudge through the biting wind to a weathered spaceport bar, its exterior marked by signs proclaiming "No Gods, No Masters," and "No Cybernetic Implants. No Badgers, Weasels, Or Polecats." Inside, the air is heavy with shadow and smoke - worn wood panels, dim, flickering lights, and cluttered signs declaring even more peculiar prohibitions. Slouched in a corner by the heavy door, an old man sits silently, his half-lidded eyes watching the drunken banter and clinking glasses. You could approach him, and perhaps press for answers about the bar's odd proclamations.`
+			label "next question"
+			choice
+				`	"Why no 'Cybernetic Implants'?"`
+					goto implants
+					to display
+						not "heard implants"
+				`	"What's the deal with 'Badgers'?"`
+					goto badgers
+					to display
+						not "heard badgers"
+				`	"Turnips?"`
+					to display
+						has "heard badgers"
+						not "heard turnips"
+					goto turnips
+				`	"The sign says 'No ${plural nouns}'?"`
+					goto "mad lib"
+					to display
+						or
+							has "heard implants"
+							has "heard turnips"
+							has "heard weasels"
+						not "heard madlib"
+				`	"What's wrong with 'Weasels'?"`
+					goto weasels
+					to display
+						not "heard weasels"
+				`	"What about 'Polecats'?"`
+					goto polecats
+					to display
+						has "heard weasels"
+						not "heard polecats"
+				`	"Albatross?"`
+					goto albatross
+					to display
+						has "heard polecats"
+				`	(Thank him for the answers and leave.)`
+					goto ending
+					to display
+						or
+							has "heard implants"
+							has "heard badgers"
+							has "heard weasels"
+				`	(Turn around and leave.)`
+					goto ending
+					to display
+						not "heard implants"
+						not "heard badgers"
+						not "heard weasels"
+			label implants
+			action
+				set "heard implants"
+			`	The old man grunts, leaning forward so that his voice drops to a rough whisper. "Cybernetic implants ain't allowed 'round here - always cheat at cards. Can't trust a rigged hand when fate's supposed to be fair!"`
+				goto "next question"
+			label badgers
+			action
+				set "heard badgers"
+			`	He pauses, then mutters simply, "Turnips."`
+				goto "next question"
+			label turnips
+			action
+				set "heard turnips"
+			`	He explodes. "Badgers! They'll dig up every last turnip I grow, ruining my patch faster than a cyborg cleans house. Nothing but trouble!"`
+				goto "next question"
+			label "mad lib"
+			action
+				set "heard madlib"
+			`	His lips curl into a bitter snarl as he spills a flood of exasperation, "They cause ${pirate adjectives that work as titles}, ${pirate adjectives that work as titles}, ${pirate adjectives that work as titles} ${bad outcomes}!"`
+			`	It's unclear how he expects you to respond.`
+				goto "next question"
+			label weasels
+			action
+				set "heard weasels"
+			`	He snorts dismissively. "Weasels, now, they're just tiny polecats scampering about like mischief incarnate - ain't worth their salt, and worse, troublemakers by nature!"`
+				goto "next question"
+			label polecats
+			action
+				set "heard polecats"
+			`	His face darkens, and his voice grows weighty and ominous. "Polecats, they attract... the Albatross." For a suspended moment, the chatter ceases; the clamor of glasses and low murmurs fall silent as every patron registers the weight of that word. Then, as if on cue, the noise resumes, and the hubbub goes on as usual.`
+				goto "next question"
+			label albatross
+			`	That single word slices through the renewed din, and in a heartbeat, the atmosphere shatters. Several patrons rise from their stools, their expressions hardening into threatening scowls. The old man, eyes distant and vacant, seems lost in thought while it becomes clear that you have crossed a forbidden line.`
+			`	Rough hands grip your shoulders, and before you can protest, you're dragged toward the door. Outside, in the biting wind, the echo of their shouted threats follows you. Perhaps some stones are best left unturned.`
+			label ending
+			action
+				clear "heard implants"
+				clear "heard badgers"
+				clear "heard turnips"
+				clear "heard madlib"
+				clear "heard weasels"
+				clear "heard polecats"
+
+mission "Exotic Life: New Greenland"
+	minor
+	source "New Greenland"
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You step down onto the landing pad and your breath makes a white halo. The spaceport is unusually foggy, and the chilling wind causes a reflexive shiver to run up the base of your neck.`
+			`	A grizzled man emerges from the fog with an easy, unhurried gait, a laser rifle slung over one shoulder. A hulking beast lumbers at his side: a horse-sized hound cloaked in heavy, wooly fur rimmed with frost. Two enormous tusks thrust from its muzzle like pale sabers. Steam billows from its flared nostrils as it turns its head almost lazily toward you. Its eyes carry a grim patience.`
+			`	The man sees you and grunts, "Don't stare at a Mammoth Mastiff."`
+			choice
+				`	"What's a Mammoth Mastiff?"`
+				`	"Don't tell me what to do!"`
+					goto ending
+				`	(Avert my gaze and get back to my ship.)`
+					decline
+			`	"A phantom from harsher times, bred on Hestia when it was still lifeless ice. Now nothing more than a tool of the trade." He pats the creature and it lets out a low rumble.`
+			label ending
+			`	The man bellows a deep laugh as the fog thickens. The creature's eyes are the last things to pierce the haze before man and mastiff alike fade away. You find yourself alone once more.`
+				decline
+
+mission "Exotic Life: Mainsail"
+	minor
+	source Mainsail
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You steady yourself on the floating city-ship as the necklace of barges, docks, and gantries creak and sway under the influence of Mainsail's endless ocean waves. Salt spray stings your face as you head out towards the ring. One barge rocks close, its deck slick with algae, while a local fearlessly walks a four-legged whale-like creature on a leash - a seal-sized mass of compact muscle under slate fur, with webbed paws that click on the planks, a long whiskered snout bristling with needlelike teeth and a broad, flattened tail that wags with anticipation.`
+			`	The local catches you gawking, flashes a salt-creased grin and calls, "Never seen a seadog before?`
+			choice
+				`	"Can't say I have!"`
+				`	"What is that thing?"`
+				`	"Of course I've seen a seadog before!"`
+					goto seen
+				`	(Avert my gaze and get back to my ship.)`
+					decline
+			action
+				set "exotic animals: mainsail seadog known"
+			`	"Ah, that, my friend, is a Mainsail Seadog, the premier water-sporting hound of the Paradise Planets. Bred some four centuries ago in the ateliers of this very planet, they marry old water-dog stock with dolphin and otter blood, with a touch of beaver for the tail, crocodile for the jaws, and barracuda for the strike," he says with a wink. "They'll nose out a school, haul in the finest fish, and lay a damp, grateful head upon your boots - a prized rarity since the Republic put a lid on the gene labs."`
+				goto ending
+			label seen
+			`	"Glad to hear that, my friend! Too few have seen the prized rarity of a Mainsail Seadog nowadays, since the Republic put a lid on the labs."`
+			label ending
+			`	With a practiced motion he hops from the barge into a sleek, unpowered skiff. The seadog slips from the barge like a ribbon, dives cleanly into the sea, and sets its broad tail to the waves. In a spray of salt the steely creature hauls them off, and the boat recedes like a chariot of Poseidon into the harbor haze.`
+				decline
+
+mission "Little Vienna in New Austria"
+	minor
+	source "New Austria"
+	"offer precedence" 5
+	to offer
+		random < 10
+	on offer
+		conversation
+			`As you walk from the spaceport's landing pads towards the center of the village, your attention is caught by a worn-down sign pointing you to the "Kleinwean Bezirk."`
+			choice
+				`	(Follow the sign.)`
+				`	(Ignore the sign and keep walking.)`
+					decline
+			`	Curious, you decide to investigate, turning into a narrow street that feels like an echo of Old Vienna. A handful of historic-looking buildings line the cobblestone path, their facades adorned with dramatic stonework and flowery tilework. A small concert hall, labeled "Bach Collegium Konzertsaal", hums with the faint sound of string instruments tuning. Nearby, the aroma of rich, chocolatey coffee drifts from a small coffeehouse.`
+			`	Outside the coffeehouse, a man at a marble table sips his coffee while reading a local newspaper. You can see the front page with the headline: "Mitreibender Mozart mit dem Bach Collegium Konzertsaal", featuring a photograph of a smiling conductor at the center of a small orchestra. On the reader's plate rests a bright pink sponge cake, its color fitting right in with the rich tones of the street.`
+			`	As you linger, a well-dressed older woman approaches. Her voice, imbued with a musical rhythm, greets you with a hearty "Gruess Gott!`
+			`	"Not many offworld visit Kleinwean, which is a shame, as you can see it's quite the New Austrian 'gem'," she remarks with a wink. "I was on my way to the concert - my husband is sick - and I would hate for his ticket to go to waste. Would you do me the honor of taking it?"`
+			choice
+				`	(Accept the ticket.)`
+				`	(Politely decline.)`
+					goto declined
+			`	You graciously accept the invitation and follow her to the intimate concert hall. Despite its modest size, the hall houses a full orchestra. Once you're comfortably seated, the conductor steps forward, clears his throat, and in a measured tone declares:`
+			`	"Willkommen im ehrwuerdigen Bach Collegium Konzertsaal! Wir sind Lichtjahre von Mozarts Heimat entfernt, aber auch im Zentrum von Kleinwean! Geniessen Sie das Konzert!"`
+			`	The words hang in the air as you notice the conductor's smile, strikingly familiar from the newspaper photograph. With his invitation to lose yourself in the performance still echoing, the orchestra begins a stirring rendition of Mozart. The notes dance through the air with crystalline clarity, and you even recognize one or two of the melodies, each serving as a bridge to the Old Vienna of Earth.`
+			`	Even after the performance, you feel the sound of music resonate in your bones as you glance back one more time at New Austria's hidden cultural enclave.`
+				goto backtoship
+			label declined
+			`	You thank her kindly but explain that you're not in the mood for a concert. She nods understandingly, her eyes softening with disappointed yet gracious acceptance. You finish your exploration of the "Kleinwean Bezirk", absorbing the ambiance of the cobblestone street as the scents of coffee mingle with the sound of music.`
+			label backtoship
+			`	With the atmosphere steeped in nostalgia for a distant city on a distant world long past, you return to your ship.`
+
+mission "Struggling Author Gone Missing"
+	minor
+	landing
+	source "Zug"
+	to offer
+		random < 88
+		has "event: beyond the hyperdrive is published"
+	on offer
+		conversation
+			`As your ship settles down on landing pad A5B, two young adults approach. One speaks up, "Hello, Captain. Have you seen a woman named Anna Fangvin anywhere? She was last seen in the spaceport, and must have left in someone's spaceship."`
+			`	Around the spaceport you see a few other groups doing the same thing. Anna may have been more popular than she thought.`
+			choice
+				`	"She went to another star system a long ways from here. You won't be able to get to her."`
+				`	"No, I don't know. Sorry."`
+					goto continue
+			`	"If you ever see her again, tell her that the Coalition of Book Enjoyers appreciates her work. It wouldn't be possible for you to bring us to her location?" You respond in the negative, and the two go off to the other groups to spread the news.`
+			label continue
+			`	Posters hang on many of the spaceport's walls - here too, Anna's books must have been famous. The posters read:`
+			`	MISSING:`
+			`		Anna Fangvin, a young author whose books have been shared throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
+				decline
+
+phrase "racetrack"
+	word
+		"Racetrack"
+		"Speedway"
+		"Arena"
+		"Course"
+		"Circuit"
+		"Glideway"
+		"Hover Circuit"
+		"Velocity Course"
+		"Hoverloop"
+
+phrase "sunracer opening"
+	word
+		"As you walk through the din of Sunracer's bustling spaceport"
+		"As you wade through the clang and clatter of Sunracer's ever-churning shipyards"
+		"Amidst the city's persisting glitz"
+		"Lost in a maze of hangars and half-built hulls"
+		"While navigating through the organized chaos of Megaparsec shipyards"
+
+phrase "sunracer hovercraft adhook"
+	word
+		"dazzling holographic display"
+		"radiant, floating billboard"
+		"vivid holographic advertisement"
+	word
+		" seizes your attention"
+		" catches your eye"
+		" appears overhead"
+
+phrase "sunracer hovercraft adcloser"
+	word
+		"The ad flashes sleek"
+		"Photo-realistic images show agile"
+		"The visuals display streamlined"
+	word
+		" hovercraft "
+		" vehicles "
+	word
+		"slicing a twisting course through untamed terrain. "
+		"racing along a rugged, serpentine track. "
+		"dashing along wild, winding roads. "
+	word
+		"The ad copy% "
+		"The display's text% "
+		"The words below "
+	word
+		"promise high-speed thrills for the audience."
+		"provide a teaser of the breakneck action to come."
+		"offer heart-pounding, high-octane excitement."
+		"beckon wealthy corporate sponsors to back the adrenaline-fueled event."
+		"offer the perk of free parking."
+		`simply state "Sponsored by Megaparsec."`
+	replace
+		"% promise" " promises"
+		"% provide" " provides"
+		"% offer" " offers"
+		"% beckon" " beckons"
+		"% simply state" " simply states"
+		"%" ""
+		
+phrase "sunracer city to wilderness description"
+	word
+		"the bustle of Sunracer's shipyards"
+		"the vibrant Megaparsec metropolis"
+		"the clamor of Sunracer's industrial hub"
+	word
+		" fades into "
+		" gives way to "
+		" transitions to "
+	word
+		"shimmering lakes dotted with sailboats and fishing vessels"
+		"picturesque rolling hills of sprawling farmlands"
+		"a serene stretch of raw, unspoiled nature"
+
+phrase "sunracer fan tshirt"
+	word
+		"clad in Megaparsec Racing Technologies gear, with a large Quicksilver emblazoned across the front of the shirt"
+		"wearing Megaparsec Racing Technologies apparel - the shirt covered with hundreds of tiny Splinter, Manta, and Quicksilver silhouettes"
+		`dressed in a Megaparsec Racing Technologies sweater that has the words "Mighty fast, impossibly light - Megaparsec" at its center`
+		`dressed in a Syndicate Performance Racing shirt with the centered words "Smart racers know race pace is key. Smart racers race for Syndicate Performance Racing"`
+		`wearing a Deep Sky Dynamics hat with the words "Peace, Prosperity, Progress... Podium"`
+		`dressed in a Delta V Grand Prix sweater on which the words "The Wild Pace of Plasma" are surrounded by various images of tiny chipmunks, greyhounds, capybaras, and impalas running across the shirt, leaving tiny footprints`
+	word
+		". Though obviously not a racer, "
+	word
+		"he clearly is very familiar with hovercraft racing. You ask him for an overview and he responds"
+		"she clearly is very familiar with hovercraft racing. You ask her for an overview and she responds"
+		"they clearly are very familiar with hovercraft racing. You ask them for an overview and they respond"
+		
+
+phrase "sunracer hovercraft race description"
+	word
+		"You push through the buzzing entrance, "
+		"The entrance bursts with energy as you weave through enthusiastic crowds, "
+		"Amid a cascade of bright lights and raucous cheers, you enter the racetrack, "
+		"The crowd briefly disperses, leaving you ample space to go through the entrance, "
+	word
+		"navigate a series of well-lit steps, and settle into your seat. Now you are ready for the race."
+		"each step drawing you closer to the exciting race view from the stands."
+		"then follow well-marked signs that lead you into the heart of the action in the stands."
+		"where banners and cheers guide you to the stands for you to sit during the race."
+	word
+		" "
+	word
+		"It is a clear, brisk sky overhead, "
+		"The day's air is crisp and electric with anticipation, "
+		"A partly cloudy day blankets most of the track, "
+		"Scattered showers mist the air, "
+	word
+		"while a gentle wind stirs the dust on the track."
+		"with the sun's beams lending a warm glow to the cool sky."
+		"with sunlight and swirling mist setting an unpredictable stage."
+		"while a shifting haze fails to hide the crowd's raw anticipation."
+	word
+		" "
+	word
+		"A pulsing neon light flashes "
+		"The starting gun goes off "
+		`A booming voice announces, "It's repulsors on and away we go!" `
+		"In an instant, there's a thunderous explosion "
+	word
+		"at the starting line"
+		"in front of the starting grid"
+	word
+		" and the hovercraft launch forward in a burst of speed."
+		", then engines ignite in a frenzy to send the sleek machines darting into the first lap."
+		" as the racers enter into a chaotic scramble for the lead."
+		" - hovercraft fighting for position as one leaps ahead of the rest."
+	word
+		" "
+	word
+		"An hour in, the racers continue to weave through the course's twisting tracks, "
+		"Midway, the competition transforms into a dynamic dance, "
+		"As the race unfolds, a few hovercraft nearly crash before recovering, "
+	word
+		"each maneuver a blend of precision and raw power."
+		"with daring overtakes and strategic maneuvers."
+		"each moment getting closer to the crescendo of the race's final hour."
+		"as competitors push their vehicles to the limit at every turn."
+
+phrase "sunracer hovercraft victory description"
+	word
+		" is today's victor."
+		" seizes the day with a victory."
+		" wins this race."
+
+phrase "sunracer hovercraft victory exit"
+	word
+		"With the race finished, the crowd gradually disperses, and you wander back to your <model> amid the soft buzz of post-race chatter."
+		"As the stands empty, you slip away through clusters of lingering fans back to the <ship>."
+		"Despite the race being over, the crowd still roars with adrenaline, and you still feel the crowd's excitement as you return to your ship."
+		"The venue quiets as spectators scatter, leaving you to drift back to your <model> in the calm that's followed the thrill of the race."
+
+mission "A Sunracer Hovercraft Racing"
+	minor
+	repeat
+	invisible
+	"offer precedence" 10
+	to offer
+		random < 40
+	source "Sunracer"
+	substitutions
+		"<racename>" "${adjectives} ${racetrack}"
+		"<megaparsec name>" "${civilian}"
+		"<syndicate name>" "${syndicate fighter}"
+		"<delta name>" "${free worlds fighter}"
+		"<deep name>" "${deep fighter}"
+	on offer
+		conversation
+			`${sunracer opening}, a ${sunracer hovercraft adhook}: there's a hovercraft race at the <racename>, just a few hours away by hover rail, or much faster aboard a <model>. ${sunracer hovercraft adcloser}`
+			choice
+				`	(Check it out.)`
+				`	(Skip the race.)`
+					decline
+			action
+				"race length" = 3 + "roll: 2"
+				"syndicate boost" = 2 + "roll: 2"
+				"delta boost" = 4 + "roll: 8"
+				"deep boost" = 6 + "roll: 12"
+				# The ( ( 10 - x + "race length" ) / 10 ) flips to 1 when race length is x or greater, 0 if it's less than x. Only used to roll for the length of the track.
+				"megaparsec speed" = "roll: 12" + "roll: 12" + "roll: 12" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 12" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 12"
+				"syndicate speed" = "roll: 10" + "roll: 10" + "roll: 10" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 10" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 10"
+				"delta speed" = "roll: 8" + "roll: 8" + "roll: 8" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 8" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 8"
+				"deep speed" = "roll: 6" + "roll: 6" + "roll: 6" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 6" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 6"
+				"syndicate laps" = "syndicate speed" + "syndicate boost"
+				"delta laps" = "delta speed" + "delta boost"
+				"deep laps" = "deep speed" + "deep boost"
+			`	You board <ship> for the quick trip to the <racename>. Out the window, ${sunracer city to wilderness description}. Eventually, you park your ship outside the <racename>, and walk up to the racetrack's entrance.`
+			label decisioning
+			`	The screen above flashes race details:`
+			`		<racename>: &[race length] Hour Race`
+			``
+			`		Today's Racers:`
+			`		Megaparsec Racing Technologies: <megaparsec name>`
+			`		Syndicate Performance Racing: <syndicate name>`
+			`		Delta V Grand Prix: <delta name>`
+			`		Deep Sky Dynamics: <deep name>`
+			``
+			choice
+				`	(Watch the race.)`
+					goto race
+				`	(Ask someone for an overview of hover racing.)`
+					to display
+						not "hovercraft racing: talked to fan"
+				`	(Use my ship to scan the racers.)`
+					to display
+						or
+							"flagship attribute: outfit scan power" > 0
+							"flagship attribute: tactical scan power" > 0
+					goto scanner
+			action
+				set "hovercraft racing: talked to fan"
+			`	Near the <racename>'s entrance, you spot a friendly figure ${sunracer fan tshirt}:`
+			`	"Hovercraft racing pits four ships against the clock - each trying to log as many laps as possible. The race is between three and five hours long and is split into two phases: an initial afterburn for a burst of speed, followed by laps completed in the remaining time.`
+			`	"Each racer has a roughly equal chance of victory, though Megaparsec Racing Technologies tends to win a bit more often overall. Megaparsec also excels in longer races thanks to their efficient ion engines that can do up to twelve laps an hour, but completely lack any initial speed burst. Deep racers shine on shorter stints by using high-powered atomics for a powerful start that can push them to complete up to eighteen laps in the first hour, but they tend to perform much worse in longer races due to their lack of efficiency. The other two teams fall somewhere in between.`
+			`	"Even though each team is roughly equal, in a given race, a savvy watcher can better predict a winner by knowing which teams perform better on shorter or longer race lengths, or a less sporting one with a powerful scanner might even be able to tell a hovercraft's exact level of afterburner fuel before the race even begins.`
+			`	"One last tip to remember - they say the surest way to make a small fortune in hovercraft racing is to start with a big one!" The fan's speech ends with a hearty laugh, whose sound mixes with the roar of engines inside the <racename>.`
+			``
+				goto decisioning
+			label scanner
+			`	Your ship is close enough to the <racename>'s track to be able to scan exactly how many laps each hovercraft's afterburner can take them. Your ship relays the following afterburner data:`
+			``
+			`		Megaparsec Racing Technologies: No afterburner fuel`
+			`		Syndicate Performance Racing: &[syndicate boost] laps worth of afterburner fuel`
+			`		Delta V Grand Prix: &[delta boost] laps worth of afterburner fuel`
+			`		Deep Sky Dynamics: &[deep boost] laps worth of afterburner fuel`
+			``
+				goto decisioning
+			label race
+			action
+				clear "sunracer race winner"
+			`	${sunracer hovercraft race description}`
+			branch megawon
+				and
+					"megaparsec speed" >= "syndicate laps"
+					"megaparsec speed" >= "delta laps"
+					"megaparsec speed" >= "deep laps"
+			branch syndwon
+				and
+					"syndicate laps" >= "delta laps"
+					"syndicate laps" >= "deep laps"
+			branch deltwon
+				"delta laps" >= "deep laps"
+			action
+				"sunracer race winner" = 4
+				# maximum of other laps
+				"second place" = "megaparsec speed"
+				"second place" >?= "syndicate laps"
+				"second place" >?= "delta laps"
+				# minimum of other laps
+				"last place" = "megaparsec speed"
+				"last place" <?= "syndicate laps"
+				"last place" <?= "delta laps"
+				"second place margin" = "deep laps" - "second place"
+			`	Deep Sky Dynamics <deep name> ${sunracer hovercraft victory description}`
+				goto ending
+			label deltwon
+			action
+				"sunracer race winner" = 3
+				# maximum of other laps
+				"second place" = "megaparsec speed"
+				"second place" >?= "syndicate laps"
+				"second place" >?= "deep laps"
+				# minimum of other laps
+				"last place" = "megaparsec speed"
+				"last place" <?= "syndicate laps"
+				"last place" <?= "deep laps"
+				"second place margin" = "delta laps" - "second place"
+			`	Delta V Grand Prix <delta name> ${sunracer hovercraft victory description}`
+				goto ending
+			label syndwon
+			action
+				"sunracer race winner" = 2
+				# maximum of other laps
+				"second place" = "megaparsec speed"
+				"second place" >?= "deep laps"
+				"second place" >?= "delta laps"
+				# minimum of other laps
+				"last place" = "megaparsec speed"
+				"last place" <?= "deep laps"
+				"last place" <?= "delta laps"
+				"second place margin" = "syndicate laps" - "second place"
+			`	Syndicate Performance Racing <syndicate name> ${sunracer hovercraft victory description}`
+				goto ending
+			label megawon
+			action
+				"sunracer race winner" = 1
+				# maximum of other laps
+				"second place" = "deep laps"
+				"second place" >?= "syndicate laps"
+				"second place" >?= "delta laps"
+				# minimum of other laps
+				"last place" = "deep laps"
+				"last place" <?= "syndicate laps"
+				"last place" <?= "delta laps"
+				"second place margin" = "megaparsec speed" - "second place"
+			`	Megaparsec Racing Technologies <megaparsec name> ${sunracer hovercraft victory description}`
+			label ending
+			action
+				"last place margin" = "second place" - "last place"
+			branch secondplaceten
+				"second place margin" >= 10
+			branch secondplacefour
+				"second place margin" >= 4
+			branch secondplacetwo
+				"second place margin" >= 2
+			branch secondplaceone
+				"second place margin" >= 1
+			# 2nd place margin of 0:happens in ~9% of races, 1:~16%, 2-3:~24%,4-9:~38%,10+:~12%
+			`	They edge out the competition in a photo-finish, securing the win by a razor-thin margin.`
+				goto endingmiddle
+			label secondplaceone
+			`	They clinch victory in a breathtaking display, only a single lap ahead of the field.`
+				goto endingmiddle
+			label secondplacetwo
+			`	They rocket to an unrivaled lead in the race's last few minutes, ending the race with a clear, commanding advantage.`
+				goto endingmiddle
+			label secondplacefour
+			`	They surge ahead, their craft a blur of power and precision, leaving rivals in their wake by multiple laps to finish the race in a clear victory.`
+				goto endingmiddle
+			label secondplaceten
+			`	They dominate the competition with an astonishing double-digit lap lead to cross the finish line in an overwhelming triumph.`
+			label endingmiddle
+			branch lastplacefourteen
+				"last place margin" >= 14
+			branch lastplacenine
+				"last place margin" >= 9
+			branch lastplacesix
+				"last place margin" >= 6
+			branch lastplacethree
+				"last place margin" >= 3
+			# last place margin of 0-2:happens in ~8% of races, 3-5:~27%, 6-8:~28%,9-14:~29%,14+:~8%
+			`	The other three teams bundle together, never separated by more than two laps in the last-minute sprint for second place.`
+				goto trueending
+			label lastplacethree
+			`	The rest cluster together fairly tightly for an eventful end to the race.`
+				goto trueending
+			label lastplacesix
+			`	The mid-field hovercraft finish the race in a loose grouping over half a dozen laps apart.`
+				goto trueending
+			label lastplacenine
+			`	The remaining racers finish uneventfully spread out, the order stretched across close to a dozen laps.`
+				goto trueending
+			label lastplacefourteen
+			`	Only three racers finish today: one crashed off the track, the driver lucky to escape unharmed.`
+			label trueending
+			`	${sunracer hovercraft victory exit}`
+			`	Final results:`
+			``
+			`		Megaparsec Racing Technologies: <megaparsec name>, &[megaparsec speed] laps completed`
+			`		Syndicate Performance Racing: <syndicate name>, &[syndicate laps] laps completed`
+			`		Delta V Grand Prix: <delta name>, &[delta laps] laps completed`
+			`		Deep Sky Dynamics: <deep name>, &[deep laps] laps completed`
+			# The next line can be used when testing changes to the mission, but should remain commented out on the master branch.
+			# `	2nd place: &[second place], margin: &[second place margin]; last place: &[last place], margin: &[last place margin]`
+			``
+			action
+				clear "race length"
+				clear "syndicate boost"
+				clear "delta boost"
+				clear "deep boost"
+				clear "megaparsec speed"
+				clear "syndicate speed"
+				clear "delta speed"
+				clear "deep speed"
+				clear "syndicate laps"
+				clear "delta laps"
+				clear "deep laps"
+				clear "second place"
+				clear "last place"
+				clear "second place margin"
+				clear "last place margin"
+				clear "hovercraft racing: talked to fan"

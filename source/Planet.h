@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Paragraphs.h"
 #include "Port.h"
 #include "Sale.h"
+#include "Shop.h"
 
 #include <list>
 #include <memory>
@@ -25,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class Fleet;
 class Government;
@@ -53,21 +55,21 @@ public:
 
 public:
 	// Load a planet's description from a file.
-	void Load(const DataNode &node, Set<Wormhole> &wormholes);
+	void Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions);
 	// Legacy wormhole do not have an associated Wormhole object so
 	// we must auto generate one if we detect such legacy wormhole.
 	void FinishLoading(Set<Wormhole> &wormholes);
 	// Check if both this planet and its containing system(s) have been defined.
 	bool IsValid() const;
 
-	// Get the name of the planet (all wormholes use the same name).
-	// When saving missions or writing the player's save, the reference name
+	// Get the name used for this planet in the data files.
+	// When saving missions or writing the player's save, the true name
 	// associated with this planet is used even if the planet was not fully
 	// defined (i.e. it belongs to an inactive plugin).
-	const std::string &Name() const;
-	void SetName(const std::string &name);
-	// Get the name used for this planet in the data files.
 	const std::string &TrueName() const;
+	void SetTrueName(const std::string &name);
+	// Get the display name of the planet (all wormholes use the same name).
+	const std::string &DisplayName() const;
 	// Return the description text for the planet, but not the spaceport:
 	const Paragraphs &Description() const;
 	// Get the landscape sprite.
@@ -78,6 +80,9 @@ public:
 	// Get the list of "attributes" of the planet.
 	const std::set<std::string> &Attributes() const;
 
+	// Get the list of "required attributes" of the planet.
+	const std::set<std::string> &RequiredAttributes() const;
+
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 
@@ -87,7 +92,7 @@ public:
 	const Port &GetPort() const;
 	// Check whether there are port services (such as trading, jobs, banking, and hiring)
 	// available on this planet.
-	bool HasServices() const;
+	bool HasServices(bool isPlayer = true) const;
 
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
@@ -97,14 +102,21 @@ public:
 	// that we can check if an uninhabited world should fine the player.
 	bool HasCustomSecurity() const;
 
-	// Check if this planet has a shipyard.
+	// Check if this planet has a permanent shipyard.
 	bool HasShipyard() const;
-	// Get the list of ships in the shipyard.
-	const Sale<Ship> &Shipyard() const;
-	// Check if this planet has an outfitter.
+	// Get the list of ships in the permanent shipyard.
+	const Sale<Ship> &ShipyardStock() const;
+	// Get the list of shipyards currently available on this planet.
+	// This will include conditionally available shops.
+	std::set<const Shop<Ship> *> Shipyards() const;
+
+	// Check if this planet has a permanent outfitter.
 	bool HasOutfitter() const;
-	// Get the list of outfits available from the outfitter.
-	const Sale<Outfit> &Outfitter() const;
+	// Get the list of outfits available from the permanent outfitter.
+	const Sale<Outfit> &OutfitterStock() const;
+	// Get the list of outitters available on this planet.
+	// This will include conditionally available shops.
+	std::set<const Shop<Outfit> *> Outfitters() const;
 
 	// Get this planet's government. If not set, returns the system's government.
 	const Government *GetGovernment() const;
@@ -143,6 +155,7 @@ public:
 	// Below are convenience functions which access the game state in Politics,
 	// but do so with a less convoluted syntax:
 	bool HasFuelFor(const Ship &ship) const;
+	bool CanBribe() const;
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
 	Friendliness GetFriendliness() const;
@@ -158,7 +171,8 @@ public:
 
 private:
 	bool isDefined = false;
-	std::string name;
+	std::string trueName;
+	std::string displayName;
 	Paragraphs description;
 	Port port;
 	const Sprite *landscape = nullptr;
@@ -166,8 +180,13 @@ private:
 
 	std::set<std::string> attributes;
 
-	std::set<const Sale<Ship> *> shipSales;
-	std::set<const Sale<Outfit> *> outfitSales;
+	ConditionSet toKnow;
+	ConditionSet toLand;
+	ConditionSet toAccessShipyard;
+	ConditionSet toAccessOutfitter;
+
+	std::set<const Shop<Ship> *> shipSales;
+	std::set<const Shop<Outfit> *> outfitSales;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
 	mutable Sale<Ship> shipyard;

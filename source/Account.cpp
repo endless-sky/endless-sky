@@ -48,9 +48,12 @@ void Account::Load(const DataNode &node, bool clearFirst)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "credits" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "credits" && hasValue)
 			credits = child.Value(1);
-		else if(child.Token(0) == "salaries income")
+		else if(key == "salaries income")
+		{
 			for(const DataNode &grand : child)
 			{
 				if(grand.Size() < 2)
@@ -58,15 +61,16 @@ void Account::Load(const DataNode &node, bool clearFirst)
 				else
 					salariesIncome[grand.Token(0)] = grand.Value(1);
 			}
-		else if(child.Token(0) == "salaries" && child.Size() >= 2)
+		}
+		else if(key == "salaries" && hasValue)
 			crewSalariesOwed = child.Value(1);
-		else if(child.Token(0) == "maintenance" && child.Size() >= 2)
+		else if(key == "maintenance" && hasValue)
 			maintenanceDue = child.Value(1);
-		else if(child.Token(0) == "score" && child.Size() >= 2)
+		else if(key == "score" && hasValue)
 			creditScore = child.Value(1);
-		else if(child.Token(0) == "mortgage")
+		else if(key == "mortgage")
 			mortgages.emplace_back(child);
-		else if(child.Token(0) == "history")
+		else if(key == "history")
 			for(const DataNode &grand : child)
 				history.push_back(grand.Value(0));
 		else
@@ -271,35 +275,12 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	if(debtPaid)
 		typesPaid["debt"] = debtPaid;
 
-	// If you made payments of three or more types, the punctuation needs to
-	// include commas, so just handle that separately here.
-	if(typesPaid.size() >= 3)
-	{
-		auto it = typesPaid.begin();
-		for(unsigned int i = 0; i < typesPaid.size() - 1; ++i)
+	out << Format::List<map, string, int64_t>(typesPaid,
+		[](const pair<string, int64_t> &it)
 		{
-			out << Format::CreditString(it->second) << " in " << it->first << ", ";
-			++it;
-		}
-		out << "and " << Format::CreditString(it->second) << " in " << it->first + ".";
-	}
-	else
-	{
-		if(salariesPaid)
-			out << Format::CreditString(salariesPaid) << " in crew salaries"
-				<< ((mortgagesPaid || finesPaid || debtPaid || maintenancePaid) ? " and " : ".");
-		if(maintenancePaid)
-			out << Format::CreditString(maintenancePaid) << "  in maintenance"
-				<< ((mortgagesPaid || finesPaid || debtPaid) ? " and " : ".");
-		if(mortgagesPaid)
-			out << Format::CreditString(mortgagesPaid) << " in mortgages"
-				<< ((finesPaid || debtPaid) ? " and " : ".");
-		if(finesPaid)
-			out << Format::CreditString(finesPaid) << " in fines"
-				<< (debtPaid ? " and " : ".");
-		if(debtPaid)
-			out << Format::CreditString(debtPaid) << " in debt.";
-	}
+			return Format::CreditString(it.second) + " in " + it.first;
+		});
+	out << '.';
 	return out.str();
 }
 
@@ -318,7 +299,7 @@ int64_t Account::SalariesIncomeTotal() const
 		salariesIncome.begin(),
 		salariesIncome.end(),
 		0,
-		[](int64_t value, const std::map<string, int64_t>::value_type &salary)
+		[](int64_t value, const map<string, int64_t>::value_type &salary)
 		{
 			return value + salary.second;
 		}

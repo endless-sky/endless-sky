@@ -282,7 +282,7 @@ ship "Modified Dromedary"
 		"hull" 9600
 		"required crew" 95
 		"bunks" 300
-		"mass" 4732
+		"mass" 2366
 		"drag" 28.7
 		"heat dissipation" .22
 		"fuel capacity" 900
@@ -500,8 +500,10 @@ ship "Gull"
 		"hull repair rate" 0.7
 		"hull energy" 0.5
 		"cloak" .02
+		"cloaked shield permeability" 1
 		"cloaking energy" 5
 		"cloaking fuel" .1
+		"cloaked communication" 1
 		"outfit scan power" 12
 		"outfit scan efficiency" 20
 		"tactical scan power" 26
@@ -660,8 +662,10 @@ ship "Heron"
 		"hull repair rate" 15
 		"hull energy" 0.75
 		"cloak" .05
+		"cloaked shield permeability" 1
 		"cloaking energy" 3
 		"cloaking fuel" .05
+		"cloaked communication" 1
 		"gaslining" 1
 		"atmosphere scan" 100
 		"outfit scan power" 175
@@ -912,8 +916,10 @@ ship "Merganser"
 		"hull repair rate" 0.9
 		"hull energy" 0.6
 		"cloak" .03
+		"cloaked shield permeability" 1
 		"cloaking energy" 4
 		"cloaking fuel" .075
+		"cloaked communication" 1
 		"atmosphere scan" 100
 		"outfit scan power" 12
 		"outfit scan efficiency" 12
@@ -1102,8 +1108,11 @@ ship "Penguin"
 		"hull energy" 1.0
 		"gaslining" 1
 		"cloak" .03
+		"cloaked shield permeability" 1
 		"cloaking energy" 3
 		"cloaking fuel" .05
+		"cloaked communication" 1
+		"cloaked scanning" 1
 		"outfit scan power" 50
 		"outfit scan efficiency" 36
 		"tactical scan power" 50
@@ -1214,8 +1223,10 @@ ship "Peregrine"
 		"hull repair rate" 1.5
 		"hull energy" 0.90
 		"cloak" .03
+		"cloaked shield permeability" 1
 		"cloaking energy" 4
 		"cloaking fuel" .075
+		"cloaked communication" 1
 		"gaslining" 1
 		"outfit scan power" 18
 		"outfit scan efficiency" 22
@@ -1524,8 +1535,10 @@ ship "Starling"
 		"hull repair rate" 0.8
 		"hull energy" 0.6
 		"cloak" .02
+		"cloaked shield permeability" 1
 		"cloaking energy" 5
 		"cloaking fuel" .1
+		"cloaked communication" 1
 		"outfit scan power" 12
 		"outfit scan efficiency" 20
 		"tactical scan power" 26

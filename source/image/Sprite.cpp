@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Screen.h"
 
 #include "../opengl.h"
+
 #include <SDL2/SDL.h>
 
 #include <algorithm>
@@ -27,29 +28,35 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	void AddBuffer(ImageBuffer &buffer, uint32_t *target)
+	void AddBuffer(ImageBuffer &buffer, uint32_t *target, bool noReduction)
 	{
 		// Check whether this sprite is large enough to require size reduction.
-		if(Preferences::Has("Reduce large graphics") && buffer.Width() * buffer.Height() >= 1000000)
+		Preferences::LargeGraphicsReduction setting = Preferences::GetLargeGraphicsReduction();
+		if(!noReduction && (setting == Preferences::LargeGraphicsReduction::ALL
+				|| (setting == Preferences::LargeGraphicsReduction::LARGEST_ONLY
+				&& buffer.Width() * buffer.Height() >= 1000000)))
 			buffer.ShrinkToHalfSize();
 
 		// Upload the images as a single array texture.
+		int type = OpenGL::HasTexture2DArraySupport() ? GL_TEXTURE_2D_ARRAY : GL_TEXTURE_3D;
 		glGenTextures(1, target);
-		glBindTexture(GL_TEXTURE_2D_ARRAY, *target);
+		glBindTexture(type, *target);
 
 		// Use linear interpolation and no wrapping.
-		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		if(type == GL_TEXTURE_3D)
+			glTexParameteri(type, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
 		// Upload the image data.
-		glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGBA8, // target, mipmap level, internal format,
+		glTexImage3D(type, 0, GL_RGBA8, // target, mipmap level, internal format,
 			buffer.Width(), buffer.Height(), buffer.Frames(), // width, height, depth,
 			0, GL_RGBA, GL_UNSIGNED_BYTE, buffer.Pixels()); // border, input format, data type, data.
 
 		// Unbind the texture.
-		glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
+		glBindTexture(type, 0);
 
 		// Free the ImageBuffer memory.
 		buffer.Clear();
@@ -73,7 +80,7 @@ const string &Sprite::Name() const
 
 
 // Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
-void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
+void Sprite::AddFrames(ImageBuffer &buffer, bool is2x, bool noReduction)
 {
 	// If this is the 1x image, its dimensions determine the sprite's size.
 	if(!is2x)
@@ -85,19 +92,19 @@ void Sprite::AddFrames(ImageBuffer &buffer, bool is2x)
 
 	// Only non-empty buffers need to be added to the sprite.
 	if(buffer.Pixels())
-		AddBuffer(buffer, &texture[is2x]);
+		AddBuffer(buffer, &texture[is2x], noReduction);
 }
 
 
 
 // Upload the given frames. The given buffer will be cleared afterwards.
-void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x)
+void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x, bool noReduction)
 {
 	// Do nothing if the buffer is empty.
 	if(!buffer.Pixels())
 		return;
 
-	AddBuffer(buffer, &swizzleMask[is2x]);
+	AddBuffer(buffer, &swizzleMask[is2x], noReduction);
 }
 
 

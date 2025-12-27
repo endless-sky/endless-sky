@@ -34,7 +34,7 @@ class Ship;
 // a government that is particularly repressive of independent pilots.)
 class ShipyardPanel : public ShopPanel {
 public:
-	explicit ShipyardPanel(PlayerInfo &player);
+	explicit ShipyardPanel(PlayerInfo &player, Sale<Ship> stock);
 
 	virtual void Step() override;
 
@@ -55,7 +55,7 @@ protected:
 
 
 private:
-	void BuyShip(const std::string &name);
+	bool BuyShip(const std::string &name);
 	void SellShipAndOutfits();
 	void SellShipChassis();
 	void SellShip(bool toStorage);

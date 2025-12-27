@@ -1,0 +1,138 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+shipyard "Successor Basics"
+	"Kvelqde (Naive)"
+
+shipyard "Successor Civilian"
+	"Kvelqde (Naive)"
+	
+	"Stolsaqra (Naive)"
+	"Myaede (Naive)"
+	"Ejniisde"
+
+shipyard "Successor Heavy"
+	"Kvelqde (Naive)"
+	"Stolsaqra (Naive)"
+	"Myaede (Naive)"
+	"Ejniisde"
+
+	"Ojde (Naive)"
+	"Nnesaarau (Naive)"
+	"Nnaatej"
+
+shipyard "Waterlining"
+	"Nnaatej"
+
+shipyard "New Houses Light"
+	"Vujlet (Naive)"
+
+shipyard "High Houses Light"
+	"Seiitej"
+	"Veusade (Naive)"
+
+shipyard "High Houses Heavy"
+	"Seiitej"
+	"Veusade (Naive)"
+
+	"Aaulqra (Naive)"
+	"Kaskhorade"
+
+shipyard "People's Houses"
+	"Kvelqde-Khora"
+
+outfitter "Successor Basics"
+	`"Aqra" Inductive Reverser`
+	`"Aqra" Inductive Steering`
+	`"Aqra" Inductive Thruster`
+	`1-"Uurau" Betavoltaic Cell`
+	"Auxiliary Power Reserve"
+	`"Byiaa" Shield Cortex`
+	"Hyperdrive"
+	"Local Map"
+
+outfitter "Successor Weapons Basics"
+	"Successor Pulse Laser"
+
+outfitter "Successor Weapons Heavy"
+	"Successor Pulse Laser"
+	"Pulse Laser Turret"
+
+outfitter "Successor Civilian"
+	`"Aqra" Inductive Reverser`
+	`"Aqra" Inductive Steering`
+	`"Aqra" Inductive Thruster`
+	`1-"Uurau" Betavoltaic Cell`
+	"Auxiliary Power Reserve"
+	`"Byiaa" Shield Cortex`
+	"Shield Cortex Interface"
+	"Hyperdrive"
+	"Local Map"
+
+	`"Chyyra" Inductive Reverser`
+	`"Chyyra" Inductive Steering`
+	`"Chyyra" Inductive Thruster`
+
+	`3-"Kaska" Betavoltaic Cell`
+	`"Ej" Shield Cortex`
+	"Primary Power Reserve"
+	"Bunk Room"
+	"Small Bunk Room"
+	"Successor Fuel Sail"
+	"Fuel Pod"
+	"Cargo Expansion"
+	"Outfits Expansion"
+	"Successor Cooling"
+
+outfitter "Successor Heavy"
+	`6-"Ruuv" Betavoltaic Cell`
+	`"Tuur" Scanning Suite`
+	`"Veusa" Inductive Reverser`
+	`"Veusa" Inductive Steering`
+	`"Veusa" Inductive Thruster`
+
+outfitter "Successor High Tech"
+	`OC-"Mavra" Betavoltaic Cell`
+	`"Tuur" Scanning Suite`
+	`"Niis" Inductive Engines`
+
+outfitter "High Houses Light"
+	"Auxiliary Power Reserve"
+	`"Nnesa" Fusion Core`
+	`"Ojet" Bimodal Coilgun`
+	"Drag Cannon"
+	"High-Velocity Spike"
+	"High-Velocity Spike Rack"
+	`"Jaase" Shield Cortex`
+	"Shield Cortex Interface"
+	"Kinetic Rail Rifle"
+	`"Veldt" Combat Scanner`
+
+outfitter "High Houses Heavy"
+	"Primary Power Reserve"
+	`"Ryuit" Fusion Core`
+	`"Uoret" Fusion Core`
+	"High-Velocity Spike"
+	"High-Velocity Spike Rack"
+	`"Sjeja" Kinetic Lance`
+	"Bimodal Coilgun Turret"
+	"Multimodal Armor: Heavy"
+	"Multimodal Armor: Light"
+	"Multimodal Armor: Keystone"
+	"Multimodal Armor: Regen"
+	`"Jorv" Shield Cortex`
+
+outfitter "People's Houses"
+	"Overcharged Pulse Laser"
+	"Overcharged Laser Turret"
+	`OC-"Mavra" Betavoltaic Cell`

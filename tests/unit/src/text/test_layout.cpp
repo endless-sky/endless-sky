@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "es-test.hpp"
 
 // Include only the tested class's header.
-#include "../../../../source/text/layout.hpp"
+#include "../../../../source/text/Layout.h"
 
 // ... and any system includes needed for the test file.
 #include <type_traits>

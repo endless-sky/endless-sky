@@ -33,6 +33,8 @@ public:
 	// Get the value of a key, or 0 if it does not exist:
 	double Get(const char *key) const;
 	double Get(const std::string &key) const;
+	// Erase the given element.
+	void Erase(const char *key);
 
 	// Expose certain functions from the underlying vector:
 	using std::vector<std::pair<const char *, double>>::empty;

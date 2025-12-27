@@ -17,11 +17,10 @@ mission "Heliarch Investigation 1"
 	description "Bring <bunks> Heliarch agents to <destination>."
 	passengers 3
 	source
-		near "Quaru" 4 10
+		near "Quaru" 2 10
 	destination "Ring of Friendship"
 	to offer
 		random < 65
-		"coalition jobs" >= 70
 		has "license: Coalition"
 		not "joined the lunarium"
 		not "assisting lunarium"
@@ -119,18 +118,18 @@ mission "Heliarch Investigation 2"
 				"lunarium evidence" == 2
 			branch evidence3
 				"lunarium evidence" == 3
-			label finalthanks
+			label "final thanks"
 			`	Iekie thanks you for your efforts in the operation, and goes to analyze the findings with her team. Iplora, Kirrie and Tugroob remain there with them, and you're escorted back to your ships by the guards.`
 				accept
 			label evidence1
 			`	The agents then get closer to her, and Kirrie whispers something to the consul, handing her another report. Iekie turns to you once more, saying, "Quite a find, this is. Done well, you have, Captain."`
-				goto finalthanks
+				goto "final thanks"
 			label evidence2
 			`	The agents then get closer to her, and Kirrie whispers something to the consul, handing her two more reports. Iekie turns to you once more, saying, "Most useful to our investigation, these findings will prove. Excellent work, Captain."`
-				goto finalthanks
+				goto "final thanks"
 			label evidence3
 			`	The agents then get closer to her, and Kirrie whispers something to the consul, handing her three more reports. Iekie turns to you once more, saying, "Enviable, your prowess at investigation is, <last>. Outstanding work, Captain."`
-				goto finalthanks
+				goto "final thanks"
 
 mission "Heliarch Investigation 2 - Bonus 1"
 	landing
@@ -187,6 +186,8 @@ mission "Heliarch Investigation 2 - Mebla's Portion"
 	destination "Mebla's Portion"
 	to offer
 		has "Heliarch Investigation 1: done"
+		not "joined the lunarium"
+		not "assisting lunarium"
 	to fail
 		or
 			has "Heliarch Investigation 2: declined"
@@ -242,7 +243,7 @@ mission "Heliarch Investigation 2 - Mebla's Portion"
 				`	(Dig out the bushes.)`
 				`	(Head back to the warehouses and look around there.)`
 					goto back
-			label bushending
+			label "bush ending"
 			`	You help him unearth the bushes and dig a bit more to see if there's anything under them, but you never find anything. You find some other suspicious sets of bushes, but none have anything underneath. The rain and wind become too intense to stay outside, so you head inside a warehouse and take shelter there.`
 			`	Once the weather settles near nightfall, Iplora notifies him that she and Tugroob are already back at the ship, so you two decide to return as well.`
 			`	It seems Tugroob found some evidence of some smuggled weapons passing through here, but nothing major. They get back in their bunks, allowing you to depart.`
@@ -262,7 +263,7 @@ mission "Heliarch Investigation 2 - Mebla's Portion"
 			`	While passing by another set of bushes, Kirrie notices that some of them are awkwardly tilted. Upon further inspection, he tells you that they appear to have been removed and then hastily replanted, noting the odd wavy patterns of the small rocks around the roots. The rain has gotten heavier.`
 			choice
 				`	(Dig out the bushes.)`
-					goto bushending
+					goto "bush ending"
 				`	(Head back to the open warehouses and take shelter there.)`
 			`	Though you can barely hear each other in the rain, Kirrie insists on staying there and digging through the ground for a while to see if he can find anything.`
 			`	You walk back to the empty streets, taking care to not slip on the damp soil. You enter one of the warehouses Kirrie had previously opened and are soon joined by him. He informs you that he dug out the suspicious bushes but couldn't find anything under them.`
@@ -280,6 +281,8 @@ mission "Heliarch Investigation 2 - Stronghold of Flugbu"
 	destination "Stronghold of Flugbu"
 	to offer
 		has "Heliarch Investigation 1: done"
+		not "joined the lunarium"
+		not "assisting lunarium"
 	to fail
 		or
 			has "Heliarch Investigation 2: declined"
@@ -297,6 +300,8 @@ mission "Heliarch Investigation 2 - Shifting Sand"
 	destination "Shifting Sand"
 	to offer
 		has "Heliarch Investigation 1: done"
+		not "joined the lunarium"
+		not "assisting lunarium"
 	to fail
 		or
 			has "Heliarch Investigation 2: declined"
@@ -390,6 +395,8 @@ mission "Heliarch Investigation 2 - Fourth Shadow"
 	destination "Fourth Shadow"
 	to offer
 		has "Heliarch Investigation 1: done"
+		not "joined the lunarium"
+		not "assisting lunarium"
 	to fail
 		or
 			has "Heliarch Investigation 2: declined"
@@ -409,6 +416,8 @@ mission "Heliarch Investigation 2 - Into White"
 	destination "Into White"
 	to offer
 		has "Heliarch Investigation 1: done"
+		not "joined the lunarium"
+		not "assisting lunarium"
 	to fail
 		or
 			has "Heliarch Investigation 2: declined"
@@ -439,7 +448,7 @@ mission "Heliarch Investigation 2 - Into White"
 			`	"Check the caverns, we must. More relentless, the storm will soon become," she says.`
 			choice
 				`	"Lead the way."`
-					goto bumpyroad
+					goto "bumpy road"
 				`	"You go ahead. I'll see if I can find anything in the houses."`
 			`	She nods and tells you that the place is shut down, so you can force your way into the houses if needed. As she starts making her way uphill, you head to the closest house and blast the lock after a few failed attempts at opening it normally. You crouch past the entrance of the abandoned home, clearly not intended for any non-Kimek, and begin searching the interior. The furniture is still in surprisingly good shape, if a bit dusty, but you find nothing inside any of the containers, below any of the beds, or hidden under the flooring.`
 			`	You move on to the next house, and speed up the process as you go along and get used to the standard layout of the resort homes. After you're done with the fifth one, you leave to find the snowfall growing stronger. It might be best to try and look for Iplora and see if she's found anything, before the blizzard sets in fully.`
@@ -454,12 +463,12 @@ mission "Heliarch Investigation 2 - Into White"
 				`	(Go back to the ship.)`
 					goto back
 				`	(Keep digging.)`
-					goto keepdig
+					goto "keep dig"
 			label shelter
 			`	You rush inside the nearest cave, turning on your flashlight as you carefully explore its interior. After a while, you notice another light coming from further inside the cave, and Iplora emerges soon after. "Found anything?" she asks, and you shake your head. Aside from some small campsites, she didn't either. You wait inside a bit more, and when the weather clears and night approaches, you follow her back to the ship.`
 			`	Once you're there, you leave to pick up Kirrie and Tugroob, who also come back empty handed. The agents head to their bunks, and you prepare to take off.`
 				accept
-			label bumpyroad
+			label "bumpy road"
 			`	Following her up the hills proves difficult at first, what with your legs sinking into the snow, but the ground below becomes more and more solid - if a bit bumpy - the further into the resort you go. You try to watch your step around the boulders scattered about, but after stepping on a patch with deeper snow than usual, you trip over one of the mounds. She helps you up, and the two of you eventually arrive at the entrance of one of the caverns.`
 			choice
 				`	(Go inside with Iplora.)`
@@ -477,30 +486,30 @@ mission "Heliarch Investigation 2 - Into White"
 			`	You search through the boxes as she examines the room looking for some other hidden area, but neither of you find anything. She checks the campfire and concludes that nobody has been here for a few months. You continue exploring the cave and eventually loop back outside, leaving via another cave entrance that, according to Iplora, is this time much further from the forest. Given the blizzard is now strong enough that you've lost sight of the forest from earlier, you wonder how she's even managing to tell where you are, and for how much longer she'll be able to do so.`
 			choice
 				`	(Suggest returning to the ship.)`
-					goto bumpyblizzard
+					goto "bumpy blizzard"
 				`	(Continue looking around the caves.)`
 			`	You head back inside and continue exploring the cave system. You two find a few more of the hidden campsites, but all are as abandoned as the first one. You're alerted by the wind, snow, and ice whenever you're close to another exit.`
 			`	After a few hours, the storm finally subsides, and you both return to your ship. You leave to pick up Kirrie and Tugroob, who also come back empty-handed.`
 				accept
-			label bumpyblizzard
+			label "bumpy blizzard"
 			`	Iplora hesitates for a bit, then explains that you could get sick going through the storm now. She suggests instead that you wait in the caves until it is safe for human passage.`
 			`	You insist, and she reluctantly gives in, telling you to stick close to her. She moves slowly so you have no problem keeping up, but time and again you keep falling over, tripping on the mounds the rocks have created. Another fall, and Iplora reaches her hand out to help you up once again.`
 			choice
 				`	(Take her hand.)`
 				`	(Try and dig through the snow to find something.)`
-					goto snowdig
+					goto "snow dig"
 			label back
 			`	She helps you up, and you continue on your way down the hills. You get back to the forest, and she starts finding the trail back to the ship. Halfway through, the storm gets progressively weaker.`
 			`	When you two return to your ship, you leave to pick up Kirrie and Tugroob, who also come back empty handed.`
 				accept
-			label snowdig
+			label "snow dig"
 			`	You start clawing your way down the snow as Iplora asks you to stop and continue moving toward the ship. You continue, your hands getting colder as the snow steals the heat even through your gloves. You hit a hard surface and start clearing from there, only to see it was, in fact, just a boulder.`
 			`	"Satisfied? Return, we must. Come now," You turn to see her offering her hand once again.`
 			choice
 				`	(Take her hand.)`
 					goto back
 				`	(Head to another mound and try digging there.)`
-			label keepdig
+			label "keep dig"
 			`	You stand up and run to another spot where you fell over. Iplora follows you, and even with the snow muffling the sounds around you, you can hear her exasperated sigh. She tries to pull you away, but you hit a hard surface yet again, this time creating a faint metallic echo. She takes her hands off of you and lays down, now helping you dig out whatever is there. Once the object is visible, she stands up. Though much of it is still buried, you can tell it's a very large metal container of sorts - the part that's out of the snow looks almost like the larger end of a coffin.`
 			`	After clearing out what snow you could from over the rest of the object, you see it's many times larger than either of you. You try to look for some way to open it while she starts going over her bag, looking for something, but the cold, frost-plagued metal doesn't budge to your efforts. She finally seems to find what she was looking for - some sort of comms device - but before she has a chance to activate it, an energy blast from the far side of the resort rattles the ground nearby. It misses her by only a meter or so, and melts much of the snow it hit to nothing.`
 			`	She yells for you to get down, pulling out a Heliarch blaster weapon from the bag and firing back in the direction the shot came from.`
@@ -508,16 +517,16 @@ mission "Heliarch Investigation 2 - Into White"
 				"lunarium evidence" ++
 			choice
 				`	(Take cover.)`
-				`	(Pull out your gun and help her.)`
+				`	(Pull out my gun and help her.)`
 					goto help
 			`	You rush to the nearest resort house, staying behind it and hoping you'll have enough protection from the blasts. You can still hear Iplora move around, and you occasionally peek your head over to see her shooting and taking cover behind the houses herself, narrowly avoiding incoming blasts as she tries to close in the distance with whoever or whatever is shooting. The shots stop suddenly and you see her come over, saying that it should be safe to get out now.`
 			`	"Fled, our attacker has," she claims. From the looks of it she wasn't injured. You two get back to the dug out spot, and Iplora grabs her bag. She managed to call for support in between running for cover and shooting back, and you two wait by one of the houses for a few minutes.`
-				goto opencrate
+				goto "open crate"
 			label help
 			`	You two start shooting back as you move for cover behind the resort houses. Iplora signals for you to head out to another house, while she takes a different path. Rushing to the next house for cover while shooting in the direction of your attacker, you narrowly avoid the shots that come your way. You lose sight of Iplora herself, now only making out the bright blasts from her weapon as she moves quickly through the resort.`
 			`	Trying to keep up, you notice the shots grow less frequent as they alternate between you and Iplora. The blizzard is bad enough that you can't even see the attacker despite getting closer and closer, but it seems that goes both ways, as you and Iplora manage to avoid getting hit without too much trouble.`
 			`	You've barely gotten past half of the resort when the shots stop altogether. Iplora still takes aim for a bit, firing some shots as she continues on past some houses, but ultimately lowers her weapon and comes toward you. "Fled, our attacker has," she claims. You two head back to the dug out spot, and Iplora grabs her bag. She managed to call for support in between running for cover and shooting back, so you two wait by one of the houses for a few minutes.`
-			label opencrate
+			label "open crate"
 			`	Several Heliarch Neutralizers arrive just before the blizzard subsides, and you're directed to one of them to dry your clothes and make sure you're not frostbitten. Nearly all of the Heliarch agents making the rounds over the resort are Saryds, and are quick to locate more of the coffin-like containers buried in the snow. They pull them out with equipment they've brought in the ships and carefully melt down the ice and snow layers covering them, finally managing to force their lids open once they've dried out.`
 			`	Each one houses a Heliarch Finisher Torpedo inside, to the agents' surprise. As they open them up and reveal dozens of the torpedoes, Iplora heads out with a group of agents so that she can show them signs of the shootout with the attacker. She gives her thoughts on where they could be fleeing to, and informs another group on the layout of the local caverns before they head underground. When she's back with you, one of the captains of the Neutralizers tell you that they will handle everything from here, and has one of the ships take you two to where your own ship is parked. He leaves as you prepare to take off.`
 			`	You head back to pick up Kirrie and Tugroob, who are excited to hear about what happened. They themselves didn't find anything, but they're content with listening to Iplora as she tells the story.`
@@ -530,6 +539,8 @@ mission "Heliarch Investigation 2 - Remote Blue"
 	destination "Remote Blue"
 	to offer
 		has "Heliarch Investigation 1: done"
+		not "joined the lunarium"
+		not "assisting lunarium"
 	to fail
 		or
 			has "Heliarch Investigation 2: declined"
@@ -557,8 +568,7 @@ mission "Heliarch Recon 1"
 	destination "Ring of Wisdom"
 	to offer
 		"reputation: Quarg" >= 0
-		"coalition jobs" >= 55
-		has "outfit: Jump Drive"
+		has "ship attribute: jump drive"
 		has "visited planet: Lagrange"
 		has "visited planet: Alta Hai"
 		has "visited planet: Kuwaru Efreti"
@@ -730,7 +740,7 @@ mission "Heliarch Recon 2-B"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Skylark"
+				"Quarg Lindwyrm"
 				"Quarg Wardragon"
 	on accept
 		"assisting heliarchy" ++
@@ -809,7 +819,6 @@ mission "Heliarch Recon 3-A"
 		has "event: rim archaeology results"
 		not "joined the lunarium"
 		not "assisting lunarium"
-		"coalition jobs" >= 65
 	on offer
 		conversation
 			`Upon landing, you're contacted by the Heliarch agents who have had you scan Quarg worlds and ships. "Hello again, Captain <last>!" the Kimek greets you. "Thank you again, we must, for your latest service. Much more detailed than what we had, your scans are."`
@@ -1286,15 +1295,14 @@ mission "Heliarch Containment 1"
 	cargo "military supplies" 25
 	deadline
 	source
-		near "3 Spring Rising" 2 5
+		near "3 Spring Rising" 1 5
 	destination "Fourth Shadow"
 	to offer
 		has "license: Coalition"
 		has "main plot completed"
 		not "joined the lunarium"
 		not "assisting lunarium"
-		"coalition jobs" >= 60
-		random > 25
+		random < 75
 	on offer
 		conversation
 			`The spaceport on <origin> is in quite a lot of turmoil, as dozens of Heliarch agents march around at an accelerated pace. Some prepare to board their own ships, and others speak with some of the captains here. It's no different with you, as a Kimek agent approaches you after noticing you watching.`
@@ -1344,7 +1352,7 @@ mission "Heliarch Containment 2"
 	name "Pick Up Injured Soldiers"
 	description "Land on <stopovers>, to pick up the <bunks> Heliarch soldiers in need of medical attention, and transport them to <destination> by <date>."
 	source
-		near "Bloptab" 1 3
+		near "Bloptab" 1 4
 	stopover "Delve of Bloptab"
 	destination "Ahr"
 	passengers 21
@@ -1353,7 +1361,7 @@ mission "Heliarch Containment 2"
 		has "Heliarch Containment 1: done"
 		not "joined the lunarium"
 		not "assisting lunarium"
-		random > 35
+		random < 65
 	on offer
 		conversation
 			`You're stopped by a group of Heliarch agents as you enter the spaceport, most of them Arachi.`
@@ -1620,7 +1628,7 @@ mission "Heliarch Drills 1"
 		has "license: Coalition"
 		not "joined the lunarium"
 		not "assisting lunarium"
-		random < 11
+		random < 30
 		"combat rating" >= 8104
 	on offer
 		conversation
@@ -2062,10 +2070,10 @@ mission "Heliarch License 1"
 		or
 			"assisted heliarch" >= 5
 			and
-				"coalition jobs" >= 90
+				"coalition jobs" >= 70
 				"assisted heliarch" == 4
 			and
-				"coalition jobs" >= 120
+				"coalition jobs" >= 100
 				"assisted heliarch" == 3
 		not "joined the lunarium"
 		not "assisting heliarchy"

@@ -20,13 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Files.h"
 #include "Logger.h"
+#include "Set.h"
 
-#ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN
-#endif
-
-#include <archive.h>
-#include <archive_entry.h>
 #include <curl/curl.h>
 
 #include <algorithm>
@@ -57,7 +52,7 @@ namespace {
 	mutex pluginsMutex;
 	Set<Plugin> plugins;
 
-	void LoadSettingsFromFile(const string &path)
+	void LoadSettingsFromFile(const filesystem::path &path)
 	{
 		DataFile prefs(path);
 		for(const DataNode &node : prefs)
@@ -84,123 +79,6 @@ namespace {
 
 	// The maximum size of a plugin in bytes, this will be 1 GB.
 	const size_t MAX_DOWNLOAD_SIZE = 1000000000;
-
-	// Copy an entry from one archive to the other.
-	bool CopyData(struct archive *inputArchive, struct archive *outputArchive)
-	{
-		int retVal;
-		const void *buff;
-		size_t size;
-		int64_t offset;
-
-		while(true)
-		{
-			retVal = archive_read_data_block(inputArchive, &buff, &size, &offset);
-			if(retVal == ARCHIVE_EOF)
-				return true;
-			if(retVal != ARCHIVE_OK)
-				return false;
-			if(archive_write_data_block(outputArchive, buff, size, offset) != ARCHIVE_OK)
-				return false;
-		}
-		return true;
-	}
-
-	bool ExtractZIP(string &filename, const string &destination, const string &expectedName)
-	{
-		int flags = ARCHIVE_EXTRACT_TIME;
-		flags |= ARCHIVE_EXTRACT_PERM;
-		flags |= ARCHIVE_EXTRACT_ACL;
-		flags |= ARCHIVE_EXTRACT_FFLAGS;
-		// Safety first, no malicious links or paths.
-		flags |= ARCHIVE_EXTRACT_SECURE_NOABSOLUTEPATHS;
-		flags |= ARCHIVE_EXTRACT_SECURE_NODOTDOT;
-		flags |= ARCHIVE_EXTRACT_SECURE_SYMLINKS;
-
-		// Create the handles for reading/writing.
-		archive *read = archive_read_new();
-		archive *ext = archive_write_disk_new();
-		archive_write_disk_set_options(ext, flags);
-		archive_read_support_format_all(read);
-		if(!filename.empty() && filename.front() == '-')
-			filename.clear();
-		if(archive_read_open_filename(read, filename.c_str(), 10240))
-			return false;
-
-		// Check if this plugin has the right head folder name.
-		archive_entry *entry;
-		archive_read_next_header(read, &entry);
-		string firstEntry = archive_entry_pathname(entry);
-		firstEntry = firstEntry.substr(0, firstEntry.find("/")) + "/";
-		bool fitsExpected = firstEntry == expectedName;
-		archive_read_data_skip(read);
-
-		// Check if this plugin has a head folder, if not, create one in the destination.
-		archive_read_next_header(read, &entry);
-		string secondEntry = archive_entry_pathname(entry);
-		bool hasHeadFolder = secondEntry.find(firstEntry) != std::string::npos;
-		if(!hasHeadFolder)
-			Files::CreateFolder(destination + expectedName);
-
-		// Close the archive so we can start again from the beginning.
-		archive_read_close(read);
-		archive_read_free(read);
-
-		// Read another time, this time for writing.
-		read = archive_read_new();
-		archive_read_support_format_all(read);
-		archive_read_open_filename(read, filename.c_str(), 10240);
-
-		size_t size = 0;
-		while (true)
-		{
-			int retVal = archive_read_next_header(read, &entry);
-			if(retVal == ARCHIVE_EOF)
-				break;
-			if(retVal != ARCHIVE_OK)
-				return false;
-
-			size += archive_entry_size(entry);
-			// The extracted size may be 4 times the maximum download size.
-			if(size > MAX_DOWNLOAD_SIZE * 4)
-				return false;
-
-			// Adjust root folder name if neccessary.
-			if(!fitsExpected && hasHeadFolder)
-			{
-				string thisEntryName = archive_entry_pathname(entry);
-				size_t start_pos = thisEntryName.find(firstEntry);
-				if(start_pos != std::string::npos)
-					thisEntryName.replace(start_pos, firstEntry.length(), expectedName);
-
-				// Check for malicous path.
-				if(thisEntryName.find("..") != string::npos)
-					return false;
-
-				archive_entry_set_pathname(entry, thisEntryName.c_str());
-			}
-
-			// Add root folder to path if neccessary.
-			string dest_file = (destination + (hasHeadFolder ? "" : expectedName)) + archive_entry_pathname(entry);
-			archive_entry_set_pathname(entry, dest_file.c_str());
-
-			// Write files.
-			if(archive_write_header(ext, entry) == ARCHIVE_OK)
-			{
-				if(!CopyData(read, ext))
-					return false;
-				if(archive_write_finish_entry(ext) != ARCHIVE_OK)
-					return false;
-			}
-		}
-
-		// Free all data.
-		archive_read_close(read);
-		archive_read_free(read);
-		archive_write_close(ext);
-		archive_write_free(ext);
-		return true;
-	}
 }
 
 
@@ -236,8 +114,9 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
-			+ " were found in both the required dependencies list and the optional dependencies list.");
+		Logger::Log("Dependencies named " + dependencyCollisions
+			+ " were found in both the required dependencies list and the optional dependencies list.",
+			Logger::Level::WARNING);
 		dependencyCollisions.clear();
 	}
 
@@ -254,8 +133,9 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
-			+ " were found in both the conflicting dependencies list and the required dependencies list.");
+		Logger::Log("Dependencies named " + dependencyCollisions
+			+ " were found in both the conflicting dependencies list and the required dependencies list.",
+			Logger::Level::WARNING);
 		dependencyCollisions.clear();
 	}
 
@@ -272,8 +152,9 @@ bool Plugin::PluginDependencies::IsValid() const
 	{
 		dependencyCollisions.pop_back();
 		dependencyCollisions.pop_back();
-		Logger::LogError("Warning: Dependencies named " + dependencyCollisions
-			+ " were found in both the optional dependencies list and the conflicting dependencies list.");
+		Logger::Log("Dependencies named " + dependencyCollisions
+			+ " were found in both the optional dependencies list and the conflicting dependencies list.",
+			Logger::Level::WARNING);
 		dependencyCollisions.clear();
 	}
 
@@ -348,13 +229,12 @@ bool Plugin::IsValid() const
 
 
 // Attempt to load a plugin at the given path.
-const Plugin *Plugins::Load(const string &path)
+const Plugin *Plugins::Load(const filesystem::path &path)
 {
 	// Get the name of the folder containing the plugin.
-	size_t pos = path.rfind('/', path.length() - 2) + 1;
-	string name = path.substr(pos, path.length() - 1 - pos);
+	string name = path.filename().string();
 
-	string pluginFile = path + "plugin.txt";
+	filesystem::path pluginFile = path / "plugin.txt";
 	string aboutText;
 	string version;
 	set<string> authors;
@@ -365,34 +245,38 @@ const Plugin *Plugins::Load(const string &path)
 	bool hasName = false;
 	for(const DataNode &child : DataFile(pluginFile))
 	{
-		if(child.Token(0) == "name" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "name" && hasValue)
 		{
 			name = child.Token(1);
 			hasName = true;
 		}
-		else if(child.Token(0) == "about" && child.Size() >= 2)
+		else if(key == "about" && hasValue)
 			aboutText += child.Token(1) + '\n';
-		else if(child.Token(0) == "version" && child.Size() >= 2)
+		else if(key == "version" && hasValue)
 			version = child.Token(1);
-		else if(child.Token(0) == "authors" && child.HasChildren())
+		else if(key == "authors")
 			for(const DataNode &grand : child)
 				authors.insert(grand.Token(0));
-		else if(child.Token(0) == "tags" && child.HasChildren())
+		else if(key == "tags")
 			for(const DataNode &grand : child)
 				tags.insert(grand.Token(0));
-		else if(child.Token(0) == "dependencies" && child.HasChildren())
+		else if(key == "dependencies")
 		{
 			for(const DataNode &grand : child)
 			{
-				if(grand.Token(0) == "game version")
+				const string &grandKey = grand.Token(0);
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "game version" && grandHasValue)
 					dependencies.gameVersion = grand.Token(1);
-				else if(grand.Token(0) == "requires" && grand.HasChildren())
+				else if(grandKey == "requires")
 					for(const DataNode &great : grand)
 						dependencies.required.insert(great.Token(0));
-				else if(grand.Token(0) == "optional" && grand.HasChildren())
+				else if(grandKey == "optional")
 					for(const DataNode &great : grand)
 						dependencies.optional.insert(great.Token(0));
-				else if(grand.Token(0) == "conflicts" && grand.HasChildren())
+				else if(grandKey == "conflicts")
 					for(const DataNode &great : grand)
 						dependencies.conflicted.insert(great.Token(0));
 				else
@@ -405,7 +289,7 @@ const Plugin *Plugins::Load(const string &path)
 
 	// 'name' is a required field for plugins with a plugin description file.
 	if(Files::Exists(pluginFile) && !hasName)
-		Logger::LogError("Warning: Missing required \"name\" field inside plugin.txt");
+		Logger::Log("Missing required \"name\" field inside plugin.txt.", Logger::Level::WARNING);
 
 	// Plugin names should be unique.
 	Plugin *plugin;
@@ -415,24 +299,24 @@ const Plugin *Plugins::Load(const string &path)
 	}
 	if(plugin && plugin->IsValid())
 	{
-		Logger::LogError("Warning: Skipping plugin located at \"" + path
-			+ "\" because another plugin with the same name has already been loaded from: \""
-			+ plugin->path + "\".");
+		Logger::Log("Skipping plugin located at \"" + path.string()
+			+ "\", because another plugin with the same name has already been loaded from: \""
+			+ plugin->path.string() + "\".", Logger::Level::WARNING);
 		return nullptr;
 	}
 
 	// Skip the plugin if the dependencies aren't valid.
 	if(!dependencies.IsValid())
 	{
-		Logger::LogError("Warning: Skipping plugin located at \"" + path
-			+ "\" because plugin has errors in its dependencies.");
+		Logger::Log("Skipping plugin located at \"" + path.string() + "\", because it has errors in its dependencies.",
+			Logger::Level::WARNING);
 		return nullptr;
 	}
 
 	plugin->name = std::move(name);
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified.
-	plugin->aboutText = aboutText.empty() ? Files::Read(path + "about.txt") : std::move(aboutText);
+	plugin->aboutText = aboutText.empty() ? Files::Read(path / "about.txt") : std::move(aboutText);
 	plugin->version = std::move(version);
 	plugin->authors = std::move(authors);
 	plugin->tags = std::move(tags);
@@ -446,9 +330,9 @@ const Plugin *Plugins::Load(const string &path)
 void Plugins::LoadSettings()
 {
 	// Global plugin settings
-	LoadSettingsFromFile(Files::Resources() + "plugins.txt");
+	LoadSettingsFromFile(Files::Resources() / "plugins.txt");
 	// Local plugin settings
-	LoadSettingsFromFile(Files::Config() + "plugins.txt");
+	LoadSettingsFromFile(Files::Config() / "plugins.txt");
 }
 
 
@@ -458,8 +342,7 @@ void Plugins::Save()
 	lock_guard<mutex> guard(pluginsMutex);
 	if(plugins.empty())
 		return;
-
-	DataWriter out(Files::Config() + "plugins.txt");
+	DataWriter out(Files::Config() / "plugins.txt");
 
 	out.Write("state");
 	out.BeginChild();
@@ -474,11 +357,12 @@ void Plugins::Save()
 
 
 // Whether the path points to a valid plugin.
-bool Plugins::IsPlugin(const string &path)
+bool Plugins::IsPlugin(const filesystem::path &path)
 {
 	// A folder is a valid plugin if it contains one (or more) of the assets folders.
 	// (They can be empty too).
-	return Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds");
+	return Files::Exists(path / "data") || Files::Exists(path / "images")
+		|| Files::Exists(path / "shaders") || Files::Exists(path / "sounds");
 }
 
 
@@ -534,31 +418,31 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 
 	return async(launch::async, [installData, update]() noexcept -> void
 		{
-			// Check for malicous path.
+			// Check for malicous paths and bail out if there is one.
 			if(installData->name.find("..") != string::npos)
 				return;
 
-			string zipLocation = Files::Plugins() + installData->name + ".zip";
+			string zipLocation = Files::PluginsCache() / installData->name / ".zip";
 			bool success = Download(installData->url, zipLocation);
 			if(success)
 			{
-				// We need to change pur working directory for the extraction to be able
-				// to check for symlinks or absolute paths without disallowing these things
-				// for the directory itself.
-				auto oldPath = std::filesystem::current_path();
-				std::filesystem::current_path(Files::Plugins());
+				// TODO: copy it over to the proper place.
 
-				success = ExtractZIP(
-					zipLocation,
-					"./", installData->name + "/");
+				// // We need to change our working directory for the extraction to be able
+				// // to check for symlinks or absolute paths without disallowing these things
+				// // for the directory itself.
+				// auto oldPath = std::filesystem::current_path();
+				// std::filesystem::current_path(Files::PluginsCache());
+				//
+				// success = ExtractZIP(zipLocation, "./", installData->name + "/");
+				// std::filesystem::current_path(oldPath);
+				//
+				// if(success)
+				// {
 
-				std::filesystem::current_path(oldPath);
-
-				if(success)
-				{
 					// Remove old version.
 					if(update)
-						filesystem::remove_all(Files::Plugins() + installData->name);
+						filesystem::remove_all(Files::PluginsCache() / installData->name);
 
 					// Create a new entry for the plugin.
 					Plugin *newPlugin;
@@ -568,16 +452,17 @@ future<void> Plugins::Install(InstallData *installData, bool update)
 					}
 					newPlugin->name = installData->name;
 					newPlugin->aboutText = installData->aboutText;
-					newPlugin->path = Files::Plugins() + installData->name + "/";
+					newPlugin->path = Files::PluginsCache() / installData->name;
 					newPlugin->version = installData->version;
 					newPlugin->enabled = false;
 					newPlugin->currentState = true;
 
 					installData->installed = true;
 					installData->outdated = false;
-				}
-				else
-					filesystem::remove_all(Files::Plugins() + installData->name);
+
+				// }
+				// else
+				// 	filesystem::remove_all(Files::PluginsCache() / installData->name);
 			}
 			Files::Delete(zipLocation);
 			{
@@ -620,7 +505,7 @@ void Plugins::DeletePlugin(const std::string &pluginName)
 		plugins.Get(pluginName)->removed = true;
 	}
 
-	filesystem::remove_all(Files::Plugins() + pluginName);
+	filesystem::remove_all(Files::PluginsCache() / pluginName);
 }
 
 
@@ -643,7 +528,7 @@ bool Plugins::Download(const std::string &url, const std::string &location)
 	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 	// Follow redirects.
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
-	// How long we will wait.
+	// How long certificates are cached.
 	curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
 	// What is the maximum filesize in bytes.
 	curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, MAX_DOWNLOAD_SIZE);
@@ -653,7 +538,8 @@ bool Plugins::Download(const std::string &url, const std::string &location)
 
 	CURLcode result = curl_easy_perform(curl);
 	if(result != CURLE_OK)
-		fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(result));
+		Logger::Log(string("curl_easy_perform() failed: ") + curl_easy_strerror(result),
+			Logger::Level::ERROR);
 
 	curl_easy_cleanup(curl);
 	fclose(out);

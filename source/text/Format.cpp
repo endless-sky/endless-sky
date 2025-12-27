@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Format.h"
 
+#include "../Preferences.h"
+
 #include <algorithm>
 #include <array>
 #include <cctype>
@@ -266,6 +268,31 @@ namespace {
 			// "number" or unsupported format
 			result.append(Format::Number(value));
 	}
+
+	const char *DEFAULT_TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S";
+
+	// Return a string containing the setting to use for time formatting.
+	const char *TimestampFormatString()
+	{
+		switch(Preferences::GetDateFormat())
+		{
+			case Preferences::DateFormat::YMD:
+				return DEFAULT_TIMESTAMP_FORMAT;
+			case Preferences::DateFormat::MDY:
+#ifdef _WIN32
+				return "%#I:%M:%S %p on %b %#d, %Y";
+#else
+				return "%-I:%M:%S %p on %b %-d, %Y";
+#endif
+			case Preferences::DateFormat::DMY:
+			default:
+#ifdef _WIN32
+				return "%#I:%M:%S %p on %#d %b %Y";
+#else
+				return "%-I:%M:%S %p on %-d %b %Y";
+#endif
+		}
+	}
 }
 
 
@@ -293,20 +320,23 @@ string Format::Credits(int64_t value)
 	int64_t absolute = abs(value);
 
 	// Handle numbers bigger than a million.
-	static const vector<char> SUFFIX = {'T', 'B', 'M'};
-	static const vector<int64_t> THRESHOLD = {1000000000000ll, 1000000000ll, 1000000ll};
-	for(size_t i = 0; i < SUFFIX.size(); ++i)
-		if(absolute > THRESHOLD[i])
+	static constexpr array<pair<int64_t, char>, 3> THRESHOLD_SUFFIX = {{
+		{1000000000000ll, 'T'},
+		{1000000000ll, 'B'},
+		{1000000ll, 'M'}
+	}};
+	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
+		if(absolute > threshold)
 		{
-			result += SUFFIX[i];
-			int decimals = (absolute / (THRESHOLD[i] / 1000)) % 1000;
+			result += suffix;
+			int decimals = (absolute / (threshold / 1000)) % 1000;
 			for(int d = 0; d < 3; ++d)
 			{
 				result += static_cast<char>('0' + decimals % 10);
 				decimals /= 10;
 			}
 			result += '.';
-			absolute /= THRESHOLD[i];
+			absolute /= threshold;
 			break;
 		}
 
@@ -348,6 +378,24 @@ string Format::CargoString(double amount, const string &cargo)
 
 
 
+// Converts the integer to string, and adds the noun, pluralized if needed.
+string Format::SimplePluralization(int amount, const string &noun)
+{
+	string result = to_string(amount) + ' ' + noun;
+	if(amount != 1 && amount != -1)
+		result += 's';
+	return result;
+}
+
+
+
+string Format::StepsToSeconds(size_t steps)
+{
+	return Number(steps / 60.) + " s";
+}
+
+
+
 // Convert a time in seconds to years/days/hours/minutes/seconds
 string Format::PlayTime(double timeVal)
 {
@@ -372,6 +420,101 @@ string Format::PlayTime(double timeVal)
 	} while (timeValFormat && i < SUFFIX.size());
 
 	reverse(result.begin(), result.end());
+	return result;
+}
+
+
+
+string Format::TimestampString(chrono::time_point<chrono::system_clock> time, bool ignorePreferences)
+{
+	// TODO: Replace with chrono formatting when it is properly supported.
+	time_t timestamp = chrono::system_clock::to_time_t(time);
+
+	const char *format = ignorePreferences ? DEFAULT_TIMESTAMP_FORMAT : TimestampFormatString();
+	static const size_t BUF_SIZE = 28;
+	char str[BUF_SIZE];
+
+#ifdef _MSC_VER
+	// Use the "safe" function with MSVC.
+	tm date;
+	localtime_s(&date, &timestamp);
+	return string(str, std::strftime(str, BUF_SIZE, format, &date));
+#else
+	const tm *date = localtime(&timestamp);
+	return string(str, std::strftime(str, BUF_SIZE, format, date));
+#endif
+}
+
+
+
+string Format::TimestampString(filesystem::file_time_type time)
+{
+	auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
+		+ chrono::system_clock::now());
+	return TimestampString(sctp);
+}
+
+
+
+// Convert an ammo count into a short string for use in the ammo display.
+// Only the absolute value of a negative number is considered.
+string Format::AmmoCount(int64_t value)
+{
+	if(fabs(value) >= SCIENTIFIC_THRESHOLD)
+	{
+		if(abs(value) == SCIENTIFIC_THRESHOLD)
+			return "1e+15";
+		ostringstream out;
+		out.precision(1);
+		out << static_cast<double>(value);
+		return out.str();
+	}
+
+	int64_t absolute = abs(value);
+
+	if(absolute < 10000)
+		return to_string(value);
+
+	string result;
+	result.reserve(5);
+
+	// Handle numbers bigger than a thousand.
+	static constexpr array<pair<int64_t, char>, 4> THRESHOLD_SUFFIX = {{
+		{1000000000000ll, 'T'},
+		{1000000000ll, 'B'},
+		{1000000ll, 'M'},
+		{1000ll, 'k'}
+	}};
+	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
+		if(absolute >= threshold)
+		{
+			int head = absolute / threshold;
+			int64_t tail = absolute % threshold;
+			do {
+				result += '0' + head % 10;
+				head /= 10;
+			} while(head > 0);
+			reverse(result.begin(), result.end());
+			switch(result.length())
+			{
+				case 1:
+					tail /= threshold / 100;
+					result += '.';
+					result += '0' + tail / 10;
+					result += '0' + tail % 10;
+					break;
+				case 2:
+					tail /= threshold / 10;
+					result += '.';
+					result += '0' + tail;
+					break;
+				default:
+					break;
+			}
+			result += suffix;
+			break;
+		}
+
 	return result;
 }
 

@@ -1,0 +1,464 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Successors: Predecessor Research 1"
+	minor
+	landing
+	name "Assist Predecessor Research"
+	description "Transport these <bunks> scholars researching the Predecessors to <planet stopovers> and back home to <destination> by <date>."
+	clearance
+	passengers 7
+	deadline 30
+	to offer
+		has "trusted by the successors"
+		"flagship attribute: quantum keystone" > 0
+		random < 40
+	to fail
+		has "Successors: Unified Defense: offered"
+	source "Staja-Kella-Oa"
+	stopover "Myiara-Aret-Iir"
+	on offer
+		conversation
+			branch "has deferred"
+				has "Successors: Predecessor Research 1: deferred"
+			`As you land on the spaceport pad, you see a familiar face approaching; it is Sieasej, the Successor scholar who translated for you during your first contact with the Successors and assisted you during your mission for House Sioeora. They are moving towards you with a small group of similarly-dressed individuals, whom you assume are also scholars of some sort.`
+			`	"Captain! I delight to see thy return; I came here with haste as soon as I saw that thou was to arrive!"`
+			`	You greet Sieasej, and they explain that the scholars with them are researchers of the Predecessors seeking transport on a wormhole-traveling vessel.`
+			`	"The ship modifications necessary are woefully expensive," one of the researchers continues. "Were we to petition Sioeora and the Academy to offer us a properly-equipped vessel, we might be forced to wait for years, a pace that's far too slow for our research. If thou were't to transport us instead, even for a short time, it would advance our study greatly."`
+			choice
+				`	"Sure, I would be happy to."`
+					goto accept
+				`	"Can I come back another time?"`
+					goto deferred
+				`	"Sorry, but you'll have to find someone else to take you."`
+					decline
+			label deferred
+			action
+				set "Successors: Predecessor Research 1: deferred"
+			`	"Hm, probably. We've been patient enough for this long, though I encourage thee to seek us out again with haste."`
+				defer
+			label accept
+			`	"Our deepest thanks!" Several of the members of the research team smile conspiratorially, clearly excited to be skipping the queue. Sieasej also offers their thanks and makes clear that they'll "keep an eye out for any more interesting opportunities."`
+				accept
+			label "has deferred"
+			`	You realize that the Predecessor research team from House Sioeora is probably still waiting to see if you can transport them to <planet stopovers>. Would you like to contact them?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+				`	(Never.)`
+					decline
+			`	You manage to get in contact with the head of the research group, who is quite excited to hear that you finally have the opportunity to transport them and their team. After about an hour of waiting in the spaceport, the researchers arrive to meet you, and you eventually manage to get them loaded onto your ship and ready for departure.`
+				accept
+	on stopover
+		conversation
+			`While relatively calm and subdued during the journey here, the researchers bolt out of the airlock almost the instant your ship's landing gear touch the ground, their arms loaded down with an innumerable array of booklets, catalogs, and strange devices that they waste no time in thrusting into the air or towards the rocks and soil.`
+			`	As night begins to fall on the planet, the researchers reluctantly return to your ship, dusty and tired but abuzz with excitement at their discoveries.`
+			`	As you are making preparations to leave, you realize this would be a good moment to learn about the Predecessors from the experts, especially considering you're liable to be listening to them talk about their new data all the way back.`
+			choice
+				`	"What can you tell me about the Predecessors?"`
+					goto who
+				`	(Don't ask them anything.)`
+					launch
+			label questions
+			choice
+				`	"Who were the Predecessors?"`
+					to display
+						not "Successors: who"
+				`	"Actually, I didn't have any questions after all."`
+					to display
+						not "Successors: who"
+					goto end
+				`	"What caused the collapse?"`
+					to display
+						has "Successors: who"
+						not "Successors: collapse"
+					goto collapse
+				`	"How large was their empire?"`
+					to display
+						has "Successors: who"
+						not "Successors: empire"
+					goto empire
+				`	"What was their technology like?"`
+					to display
+						has "Successors: who"
+						not "Successors: tech"
+					goto tech
+				`	"I have no more questions."`
+					to display
+						has "Successors: who"
+					goto end
+			label who
+			action
+				set "Successors: who"
+			`	"Our Predecessors were our now-gone ancestors. Until the time of fifteen hundred years ago, they ruled this space and much beyond as part of their own empire. Many perished along with their bloodlines as much of the empire fell to ruin, but some made passage through the wormhole to the cluster that we, as their Successors, now call our home."`
+				goto questions
+			label collapse
+			action
+				set "Successors: collapse"
+			`	The researcher sighs. "We do not know; or better put, the fullness of the truth yet remains obscured. The flesh of space itself was rent, distorted; the effects of this remain today: the holes embedded in the skies, the dying-out of light and even of the hyperlanes. It was a warring time; the Houses turned upon each other or they fled, and space itself was set alight with the blinks of shots and drives..."`
+			`	The researcher stops for a moment, composing themself.`
+			`	"I digress and do apologize. 'Tis challenging to separate the truth from fiction in this regard. Our Predecessors wielded power far beyond our modern imitations, the sort that sows the seeds of peace or chaos deep within the fabric of the world, the sort of things that poke and prod at places that must remain untouched. 'What caused the collapse?' you ask? Hubris, methinks."`
+				goto questions
+			label empire
+			action
+				set "Successors: empire"
+			`	"The translation device thou wears upon thy person speaks volumes to its scale. Sieasej tells me that at the empire's peak, our scholars had even laid eyes upon thine own world, so far to the north! These dead systems that remain where once the core of their empire stood are but a small fraction of what was there. Some, it's sure, now belong to other races, and others, it would seem, have been obscured. We know not how nor why, only that the starcharts of our Predecessors do not mirror those we see today."`
+				goto questions
+			label tech
+			action
+				set "Successors: tech"
+			`	"Glorious and beautiful, it was; as much a sort of art as of engineering. Our Predecessors' works were envied even by the Quarg, whose mastery of art and science only few may equal. T'were exotic in their natures and unique in applications; living metal grown in stars, subtle points to pierce space itself. We have descriptions, enough to make rudimentary imitations of their processes, but even if we had a perfect understanding of wha'twas, the space of our new systems seems unsuitable to manifest that mastery. We fail even to replicate the heirlooms kept by the High Houses; the materials and techniques they use are always out of reach."`
+				goto questions
+			label end
+			`	You leave the researchers to study their findings.`
+			action
+				clear "Successors: who"
+				clear "Successors: collapse"
+				clear "Successors: empire"
+				clear "Successors: tech"
+	on complete
+		"successor jobs" += 2
+		"old houses jobs" += 2
+		payment 250000
+		conversation
+			`As expected, the scholars remained highly conversational on the way back, remarking on unusual radiation measurements and fawning over several small metal fragments collected by one particularly lucky member of the team.`
+			`	They almost forget to give you your payment when you return them to <destination>, but the head researcher places a chip for <payment> into your hands and thanks you before departing into the spaceport.`
+
+mission "Successors: Biology Research 1"
+	minor
+	name "Assist Predecessor Biologist"
+	description "Transport a Successor biologist to <stopovers> and then home to <destination> by <date>."
+	passengers 1
+	deadline 20
+	to offer
+		has "known to the successors"
+		random < 30
+	to fail
+		has "Successors: Unified Defense: offered"
+	source
+		attributes "successor"
+		attributes "education"
+	stopover "Naph-Naap-Kella"
+	on offer
+		conversation
+			`While you are sitting in the spaceport, you are approached by a Successor wearing a curious green outfit and carrying several pieces of seemingly high-tech equipment, enough that it appears close to falling out of their arms. They explain that they are a Successor biologist who had chartered a flight to go and examine the primordial life on <planet stopovers>, a young and still-developing planet, but that their pilot had been detained, leaving them stranded here.`
+			`	"If thou coulds't provide travel to that planet, I may still be able to gather my data before my period of research leave expires."`
+			choice
+				`	"Sure, I would be happy to."`
+					goto accept
+				`	"Sorry, but you'll have to find someone else to take you."`
+					decline
+			label accept
+			`	"Thou has my deep and certain thanks. Tell none, but the High Houses are beastly to us academics." The biologist, who introduces themselves as "Kaatiora," loads their collection of equipment into your ship - though not without almost dropping one particularly fragile-looking item - and is eventually ready to leave.`
+				accept
+	on stopover
+		conversation
+			`On the way here, Kaatiora has been impressively inquisitive, continually asking you questions about human biology with a level of verve and excitement you had previously thought impossible. Once they exhausted your knowledge of every detail of human biology, they moved on without hesitation to every other Earth-related species they knew of from Predecessor records, from cattle to frogs to far more exotic ones that you've never heard of in your life but apparently are all the rage among the circles of Successor xenobiology.`
+			`	It is somewhat relieving when you finally arrive at the planet and Kaatiora momentarily departs, once again carrying their more-than-armful of equipment and excitedly but carefully scanning the volcanic hot-water pools and small lakes around your landing site, occasionally exclaiming with excitement.`
+			`	Eventually they return to your ship, satisfied with the amount of data they have collected, but still obviously energized by the experience.`
+			`	Before leaving, you realize this would be a good time to learn more about the Successors from an expert. Besides, since you spent the majority of the time on the way here answering Kaatiora's questions, you are probably entitled to ask a few of your own.`
+			choice
+				`	(Ask about Successor biology.)`
+				`	(Don't ask anything.)`
+					goto end
+			`	As expected, Kaatiora is more than happy to share their biological knowledge, and asks if there is anything in particular you'd like to know about.`
+			label questions
+			choice
+				`	"What can you tell me about the Successors?"`
+					to display
+						not "Successors: successor"
+					goto successor
+				`	"Were the Predecessors any different from the present Successors, biologically speaking?"`
+					to display
+						not "Successors: predecessor"
+					goto predecessor
+				`	"What is the life in this star cluster like?"`
+					to display
+						not "Successors: cluster"
+					goto cluster
+				`	"I have no more questions."`
+					goto end
+			label successor
+			action
+				set "Successors: successor"
+			`	"Much of our evolutionary history, we spent beneath the waves of our home planet, and while now you clearly see we breathe the same air as you, we still retain our cold and water-loving tendencies. Our respiration works just as well submerged as on dry land, though we must retain some degree of moisture on our skin.`
+			`	"Apart from that, we are a hermaphroditic species, like most from our home planet, and as we took to the stars, we learned that this is uncommon but not rare, and so there is some curiosity as to why our planet had such a diversity of such species while most do not. Perhaps, since we grew up under a harsh sun, the redundancy provided by our divorce from biological sex was beneficial to our evolution.`
+			`	"And of course, thou hast surely noticed by now the natural camouflage of our skin. While today its use is for communication, it was long ago a useful tool for evading predators who hunted by sight, until, of course, we gained the wisdom to outsmart our predators rather than hide from them."`
+				goto questions
+			label predecessor
+			action
+				set "Successors: predecessor"
+			`	"As brevity is the soul of wit, then no, our Predecessors did not differ greatly from us in their core biology. A scion of the High Houses from the time of the collapse would not stand out from the average one of us in the present day. That being said, their understanding of it was much superior: their medical science was much more advanced than our own, and much of their technology was genetically coded to function only for specific families."`
+				goto questions
+			label cluster
+			action
+				set "Successors: cluster"
+			`	"Thou asks at a fortuitous time! This planet, and the life that lives upon it, may provide to us a better answer to that question. Many of the stars here are hot and young and therefore harsh to nascent life, and yet thou hast surely seen the verdant worlds that orbit them! While some of this results from early settlement during the old empire, much of it does not and therefore remains a vexing point. How could life develop here? If we can track the path taken by the life of this planet, we may find the answer both you and I seek."`
+				goto questions
+			label end
+			`	You leave Katiiora to their business and make your preparations to take off when ready.`
+			action
+				clear "Successors: successor"
+				clear "Successors: predecessor"
+				clear "Successors: cluster"
+	on complete
+		"successor jobs" += 2
+		payment 200000
+		conversation
+			`	Kaatiora remains excited and talkative on the way back, though marginally less so now that they have exhausted the totality of your knowledge of the biological sciences and have the analysis of their recently-gathered data to occupy them.`
+			`	Upon landing at <destination>, they disembark from your ship, once again carrying their excess of equipment, but not before giving you your payment of <payment> and once again offering their thanks for transporting them.`
+
+mission "Successors: Stargazing 1"
+	minor
+	name "Transport Successor stargazers"
+	description "Transport a pair of Successor stargazers to <planet stopovers> and return them home to <destination> by <date>."
+	source
+		attributes "successor"
+		not attributes "crime" "tourism" "uninhabited"
+	stopover "Khosa-Kella-Oa"
+	to offer
+		has "known to the successors"
+		random < 40
+	to fail
+		has "Successors: Unified Defense: offered"
+	passengers 2
+	cargo "Vacuum Tents" 1
+	deadline 20
+	on offer
+		conversation
+			`While in the spaceport on <origin>, you notice a pair of tired-looking Successors lugging around a cart of a curious folded material, taking turns dragging their apparently heavy luggage over the floor. Both perk up substantially when they see you and your ship, however, and pull their equipment towards you with renewed vigor, finally getting close enough to speak.`
+			`	The larger of the two begins, "Oh! Thour't that recent alien, no? 'Tis a gorgeous ship thou commands-"`
+			`	"What we meant to say is-"`
+			`	"Sorry, 'tis just that-" `
+			`	"Do you take passenger missions?"`
+			choice
+				`	"I do."`
+					goto immediate
+				`	"It depends for what purpose."`
+			`	One of the Successors looks what you might call embarrassed, flushing a dull green. The other replies.`
+			`	"Stargazing. There is a world at the edge of the galaxy, the farthest edge; it has the most beautiful view-"`
+			`	"We've brought our own equipment."`
+			`	"The sky there's divided into star-studded night and utter void. Could thou take us there?"`
+			`	"And back, of course. And our cargo," the other one says, gesturing towards the cart of folded fabric.`
+			`	"And back. And our cargo. We can give thee modest pay."`
+			choice
+				`	"Sure, I can take you."`
+					goto yes
+				`	"You'll have to find a different pilot."`
+					decline
+			label immediate
+			`	"Oh! 'Tis perfect! We were looking for a private transport. We're stargazers-"`
+			`	"There's a planet at the edge of the galaxy with the perfect view-"`
+			`	"The sky there's divided into star-studded night and utter void. Could thou take us there?"`
+			`	"And back, of course. And our cargo too," the other one says, gesturing towards the cart of folded fabric.`
+			`	"And back. And our cargo. We can give thee modest pay."`
+			choice
+				`	"Sure, I can take you."`
+					goto yes
+				`	"I'm sorry, but you'll have to find a different pilot."`
+					decline
+			label yes
+			`	The two seem thrilled, the larger one turning a dull pink. "Oh! Thour't truly honorable, noble alien. I am Nnesa."`
+			`	"Jaasora. Thank you, Captain. Most pilots here've no appetite to travel to the uninhabited systems."`
+			`	"Yes, you must tell us about all the places you've been-"`
+			choice
+				`	"How about we get you onboard first."`
+			`	Nnesa flashes with embarrassment once again, but Jaasora offers a supportive arm, wrapping it around their body. The two enlist your help in loading their cart of equipment, which is much heavier than it looks, but together the three of you eventually manage to maneuver their luggage into the <ship>'s cargo bay and are ready for departure.`
+				accept
+	on stopover
+		conversation
+			`Nnesa and Jaasora have been simply enthralled on the journey here; the inseparable pair has spent seemingly every waking moment peering out the <ship>'s windows to watch the stars stream past. Upon arrival in the Maspa-Mavra system, however, their excitement dwindled to what you would call a subdued awe at the sight of the entire galaxy splayed out in the sky.`
+			`	Khosa-Kella-Oa itself is cold, dark and rocky: for all purposes functionally identical to any of the other innumerable uninhabited airless worlds in the galaxy. Your passengers seem pleased with it, though; Nnesa remarks that the local star "is so dim that there's hardly any glare!" and Jaasora energetically agrees. They activate their cart of folded equipment within the <ship>'s cargo bay, which slowly inflates and unfolds into something halfway between a tent and a repulsor lift. It skids over the floor like melting ice, gently bumping the inside walls a couple times before Jaasora manages to quiet its movement.`
+			`	"Our thanks again, captain, for transporting us," says Jaasora as they load a bundle of telescopes inside.`
+			`	"Oh! The planet's perfect; no air to muddy the view nor other ships to cloud the skies-"`
+			`	"We should be back in a couple hours. Please wait for us."`
+			`	The pair depart in their gliding tent, which manifests several transparent spots on its surface as it exits and as a bevy of telescopes are prodded around inside.`
+			choice
+				`	(Wait.)`
+			`	Nnesa and Jaasora return after a couple of hours as promised, their strange tent gliding back into the <ship>'s cargo bay as smoothly as it exited. The pair unload several notebooks of photos and drawings and chatter excitedly about the various constellations and stellar phenomena that they observed. Nnesa is particularly excited, hurriedly extracting from the interleaved mess of papers a surprisingly accurate and well-constructed star map, which they press up in your face with pride. You cannot help but notice that several of the drawings in the stack are of Jaasora rather than of any stellar phenomena.`
+			`	"From where on the map dost thou hail, captain?" Nnesa roughly gestures to an area of their map that you recognize as human space.`
+			choice
+				`	(Indicate Rutilicus.)`
+					to display
+						has "human space start"
+					goto rutilicus
+				`	(Indicate Sol.)`
+					to display
+						has "human space start"
+					goto sol
+				`	(Indicate Fah Soom.)`
+					to display
+						has "hai space start"
+					goto "fah soom"
+				`	(Gesture broadly to the expanse of space depicted on the map.)`
+			`	"Oh!" says Nnesa, "Thou art a scion of the constellations, first and foremost to the stars? 'Tis fair. Thou hast a galaxy to wander, a nearly endless sky. The things that there must be to see-"`
+				goto interrupt
+			label rutilicus
+			`	"Oh!" says Nnesa, "I am not sure I know the name for that one, captain. What dost thou call thy home?"`
+			choice
+				`	"Rutilicus."`
+					goto "novel name"
+			label sol
+			`	"Oh!" says Nnesa, "Sol." They quietly sound their way through the word a couple times, trying to get it right. "Our name for it is Saaqa-Viirja. 'Twas one of the northernmost extents of our Predecessors' voyages. Ah. But thou know'st this already, for sure."`
+				goto interrupt
+			label "fah soom"
+			`	"Oh!" says Nnesa. "That far to the north? Thy kind must have spread far for thee to have such a place as thy home. What dost thou call it?"`
+			choice
+				`	"Fah Soom."`
+			label "novel name"
+			`	Nnesa asks you to repeat the word a second time, slowly working their way through your pronunciation and transcribing a short sequence of flowing letters on their map. "'Tis a pleasant name," they say.`
+			label interrupt
+			`	The two of you are interrupted by Jaasora, who needs Nnesa's help to pack the now-deflating tent back in its cart, and once that is done they indicate that they are ready to return home.`
+	on complete
+		"successor jobs" += 2
+		payment 78000
+		conversation
+			`Nnesa and Jaasora have continued to marvel at the stars on the way back home, in addition to spending a substantial amount of time poring over their mutual collection of photos, drawings, and maps from Maspa-Mavra. "Our deepest thanks, captain," Jaasora says to you once you have landed in the spaceport as Nnesa wrestles with the tent and cart. "'Twas a true and joyful voyage." Nnesa calls them over; the tent clearly requires at least two to handle. Jaasora presents you with your payment of <payment> and goes to help, and the two of them maneuver their equipment out of your cargo bay before shouting a hasty but good-humored farewell.`
+
+mission "Successors: People's Houses: First Contact"
+	landing
+	source "Kasii-Tuur-Saqru"
+	to offer
+		has "known to the successors"
+	to fail
+		has "Successors: Unified Defense: offered"
+	on offer
+		conversation
+			`Compared to most of the spaceports you have been to in Successor space, this one is dingy, crowded, and uncomfortable. Most of the Successors you see look equally dirty and unhappy, and the majority of the few ships you've noticed landing are painted in a different, darker shade of red.`
+			`	Would you like to ask someone here about this place?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+				`	(Never.)`
+					decline
+			`	You approach one of the crew members disembarking from one of the red-painted ships, which, as you draw closer, you see bears several large burns and scars.`
+			`	"Excuse me, I was wondering if you could tell me about this place. It seems different to the rest of Successor space I've been through."`
+			`	The Successor looks over at the spaceport for a moment before grunting quietly and deciding to reply. Their voice is lower and darker than that of most Successors you have heard, and their skin changes color and texture rapidly, almost with every word.`
+			branch kaatrij
+				has "successors kaatrij patron"
+			`	"Thou art the alien vis'tor brought by the Old Houses, art thou not? Their 'noble guest' whom they parade around with such delight?"`
+				goto affirm
+			label kaatrij
+			`	"Thou art the alien vis'tor paraded 'round between the Houses, art thou not? Their 'noble guest' or 'flighty knave' that depends on t'which thee speaks?`
+			label affirm
+			choice
+				`	"Yes."`
+				`	"You could say so."`
+			`	Despite the accusation of being "paraded around," the Successor grunts again at your response; with approval or disgust you cannot tell. They lean against one of the cargo containers on the spaceport floor and continue.`
+			`	"So then thou art another indolent fool, no doubt deceived by their fine promises, of wealth and power so long as you toe the line? Well, look around and see the value of their noble word! The Houses care but naught for you or I or any of them." The Successor gestures to the crowd in a broad sweeping motion.`
+			choice
+				`	"Who are they?"`
+					goto who
+				`	"I don't think of myself as a fool."`
+			`	"Then thou art doubly so, because thy time within this space is new and short and so the thoughts contained within thy brain are like those of a child, still blind to the world. But keep thy friends if they appear so kind; and take the time to recollect what I have said when in thy back their dagger nests."`
+			`	With that, the Successor leaves, rising from the cargo containers and heading silently towards the spaceport.`
+				decline
+			label who
+			`	"They are the outcasts of the Houses New, who, like the rest, were forced here when the old empire crumbled into ash. But while the rest of the New Houses had ample wealth to move and grow into their new domains, not all of us were able to escape this intermediary place they shoved us into while we waited. A thousand years and still they paint us with their scorn and demonize our yearning to be free."`
+			choice
+				`	"Free?"`
+					goto free
+				`	"Thank you. I have no more questions."`
+			`	"Thou would be wise, if thou possesses that rare art, to keep and guard thy back against thy new and treacherous 'friends.'`
+			`	"Or don't. Another buried fool makes little difference."`
+			`	With that, the Successor leaves, rising from the cargo containers and heading silently towards the spaceport.`
+				decline
+			label free
+			`	"Free, or freer than Old and New permit. The People's Houses stand not for the rich and those of noble blood, but for the true and honest heirs of that which was."`
+			`	The Successor looks over to the spaceport, before returning their attention to you for the last time.`
+			`	"Thou would be wise, if thou possesses that rare art, to keep and guard thy back against thy new and treacherous 'friends.'`
+			`	"Or don't. Another buried fool makes little difference."`
+			`	With that, the Successor leaves, rising from the cargo containers and heading silently towards the spaceport.`
+				decline
+
+mission "Successors: Unified Defense"
+	invisible
+	landing
+	infiltrating
+	source
+		attributes "successor"
+	to offer
+		has "Successors: First Contact 1: offered"
+		or
+			"reputation: Successor" < 0
+			"reputation: New Houses" < 0
+			"reputation: Old Houses" < 0
+	to complete
+		never
+	on offer
+		"reputation: Successor" <?= -999
+		"reputation: Old Houses" <?= -999
+		"reputation: House Chydiyi" <?= -999
+		"reputation: House Myurej" <?= -999
+		"reputation: House Sioeora" <?= -999
+		"reputation: New Houses" <?= -999
+		"reputation: House Aqrabe" <?= -999
+		"reputation: House Kaatrij" <?= -999
+		"reputation: House Seineq" <?= -999
+		"reputation: People's Houses" <?= -999
+		event "successors: unified defense"
+		conversation
+			branch uninhabited
+				has "flagship planet attribute: uninhabited"
+			branch "populated language"
+				has "language: Successor"
+			`You notice after landing here that the spaceport crew is making no effort to refuel or repair your ship, and that a large contingent of Successor military officers is gathering around your landing pad, their weapons trained on your vessel. As several interceptors begin to hover over your ship as well with their weapons ready, you are forced to take off.`
+				flee
+			label "populated language"
+			`You notice after landing here that the spaceport crew is making no effort to refuel or repair your ship, and that a large contingent of Successor military officers is gathering around your landing pad.`
+			`	You soon receive a transmission routed through the local spaceport. "Thy recent actions against our people make it very clear that we were unwise to permit thee access to our space. The Houses have decreed in council that thou art an enemy, and thou shalt be treated accordingly hereforth."`
+			choice
+				`	"It was an accident!"`
+					goto accident
+				`	"I apologize for the transgression. I won't do it again."`
+					goto "never again"
+				`	"They deserved it."`
+					goto "deserved it"
+			label uninhabited
+			branch "uninhabited language"
+				has "language: Successor"
+			`Shortly after landing here, you receive a long-range transmission from the Successors. Though you can't make sense of any of the words, you get the distinct impression that they are angry at you.`
+				goto end
+			label "uninhabited language"
+			`Shortly after landing here, you receive a long-range transmission from the Successors. "Thy recent actions against our people make it very clear that we were unwise to permit thee access to our space. The Houses have decreed in council that thou art an enemy, and thou shalt be treated accordingly hereforth."`
+			choice
+				`	"It was an accident!"`
+					goto accident
+				`	"I apologize for the transgression. I won't do it again."`
+					goto "never again"
+				`	"They deserved it."`
+					goto "deserved it"
+			label accident
+			`	Spots of flaming orange appear over the Successor's skin. "Any creature prone to such 'accidents' has no place among our worlds." They end the transmission there.`
+				goto end
+			label "never again"
+			`	The Successor flashes a dark red. "Our fleets will make sure of it." They end the transmission there.`
+				goto end
+			label "deserved it"
+			`	A wave of bristling black runs over the Successor's body before they end the transmission.`
+			label end
+			branch decline
+				has "flagship planet attribute: uninhabited"
+			`	Your landing permission is revoked and the contingent of officers train their weapons on your ship. As several interceptors begin to hover over your landing pad, weapons ready, you are forced to take off.`
+				flee
+		
+	npc
+		government "New Houses"
+		personality heroic staying vindictive
+		system Kella-Uoasa
+		ship "Aaulqra" "Kijria-Sol"
+		ship "Aaulqra" "Aret-I"
+		ship "Veusade" "Nosola-o-Kasja"
+		ship "Veusade" "Saqra-Vasa"

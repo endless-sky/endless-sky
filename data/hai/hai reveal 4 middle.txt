@@ -60,6 +60,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 	description "Fly to <destination> and ask Alondo if he can help in some way."
 	source Darkwaste
 	destination Hai-home
+	clearance
 	to offer
 		has "Hai Reveal [A01] Visit Darkwaste: done"
 	on offer
@@ -80,9 +81,9 @@ mission "Hai Reveal [A02] Symbol Identification"
 				`	"Before we discuss that, can you tell me if the Hai government is arming pirates?"`
 					goto direct
 				`	"It sounds like something I can help with, but there's something I need from you first."`
-					goto infotrade
+					goto "info trade"
 				# TODO: Allow the player to NOT provide information here, and investigate some other way in the future.
-			label infotrade
+			label "info trade"
 			`	She seems quite familiar with the practice of trading information, as she simply says, "What do you need?"`
 				goto tribute
 			label direct
@@ -185,17 +186,17 @@ mission "Hai Reveal [A02] Symbol Identification"
 			`	She hands you a data card. "This has as many images of the symbol as we have, and information on where we've found it so far. Perhaps you might find it useful. Think about who you might be able to ask, and follow any leads. If you can find out where this symbol comes from or who uses it, return here, and we will pay you 2,000,000 credits."`
 			choice
 				`	"I'll start right away."`
-					goto questaccept
+					goto "quest accept"
 				`	"No, I don't know if I'm willing to do that."`
 			`	Her eyes narrow at you. "Are you sure? Are you absolutely sure you won't help us?"`
 			`	You've had a lot of information to absorb in the last few minutes but with a moment of thought you realize that the entire crisis may depend upon you helping to find the source of this.`
 			choice
 				`	"Yes, sorry, I'll start right away."`
-					goto questaccept
+					goto "quest accept"
 				`	"No, that's definitely in too deep for me."`
 			`	Teeneep's expression goes blank. Behind you, you hear the sound of a Pulse Rifle firing before everything goes dark.`
 				die
-			label questaccept
+			label "quest accept"
 			# This will need to be a different branch for each campaign where you just start by asking the one you know the best.
 			`	As you return to your ship you can't help but think you have no idea where you would find this information, but you are pretty sure you can ask Alondo for an idea of where to start.`
 				accept
@@ -749,6 +750,7 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 	description `Take Teeneep to Hai-home so she can investigate the Elders arming pirates with Hai weapons.`
 	source Darkwaste
 	destination Hai-home
+	clearance
 	passengers 1
 	blocked `It's probably not advisable to bring so many unnecessary people to a secret location on Darkwaste. You should return when your spare bunks are unoccupied.`
 	to offer
@@ -870,7 +872,7 @@ mission "Hai Reveal [A06a] The Calm"
 			`	You almost expect the silence to be broken by a cough, but instead you hear the sound of a datapad being firmly set to one side. "Anyway, Captain <last> will be here momentarily. Why don't you see if they're on their way?"`
 			`	You hear someone, presumably Remington, stand up and you quickly backpedal a few steps before resuming a nonchalant walk towards the office just as Remington steps out to look for you.`
 			choice
-				`	(Make your appearance.)`
+				`	(Make my appearance.)`
 					goto meeting
 			label doorway
 			`	You wander off for a few minutes, giving Alondo his privacy. Upon your return, you are face to face with Remington who has stood up to greet you.`
@@ -883,12 +885,12 @@ mission "Hai Reveal [A06a] The Calm"
 				`	"And you want me to place some new relays?"`
 					goto relays
 				`	"Can't you just change the priorities of the Lovelace Labs relays?"`
-					goto lovenot
+					goto "love not"
 				`	"What if you distribute the traffic over multiple routes?"`
 					goto multiple
 				`	"So why haven't you placed more relays?"`
 					goto more
-			label lovenot
+			label "love not"
 			`	Remington says, "They're privately-owned relays, so we have no say over them. Lovelace Labs reserves priority status on that bandwidth for their internal purposes. We pay a stiff sum to get the highest priority they are willing to part with, but often they don't leave much for anyone else."`
 			choice
 				`	"And you want me to place some more relays?"`
@@ -1034,6 +1036,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 	description "Return to <destination> with Batu Cegeen and your new information."
 	source Earth
 	destination Hai-home
+	clearance
 	passengers 1
 	to offer
 		has "Hai Reveal [A07] Deliver the Relays: done"
@@ -1102,10 +1105,10 @@ mission "Hai Reveal [A08] Symbol Identification"
 					goto rude
 				`	"Was there anything else?"`
 			`	"Yes. That was over a century ago, but only a few decades back the same symbol came up again in conjunction with a smuggling ring that was kidnapping gifted children. It seems that a minor error resulted in a crate being misplaced by the smugglers, complete with a child inside and the symbol surreptitiously stamped on the corner plate. The ship the crate was meant to be on self-destructed when it was caught, and any potential affiliates went to ground. A handful of ships and individuals were identified retrospectively to have been involved, but none of them were ever seen again. The kidnappings stopped."`
-				goto newpictures
+				goto "new pictures"
 			label rude
 			`	She frowns at you. "No. Somewhat more recently, only a few decades back in fact, the same symbol came up again in conjunction with a smuggling ring that was kidnapping gifted children. It seems that a minor error resulted in a crate being misplaced by the smugglers, complete with a child inside and the symbol surreptitiously stamped on the corner plate. The ship the crate was meant to be on self-destructed when it was caught, and any potential affiliates went to ground. A handful of ships and individuals were identified retrospectively to have been involved, but none of them were ever seen again. The kidnappings stopped."`
-			label newpictures
+			label "new pictures"
 			`	She waves a hand dismissively at her screen. "Of course, I only received the one image to refer to, and the older records are not necessarily very good quality or captured with future research librarians in mind. So, please, show me what else you have."`
 			choice
 				`	"I have some pictures to show you."`
@@ -1280,9 +1283,9 @@ mission "Hai Reveal [A09] History of Appeasement"
 			choice
 				`	"What does that mean?"`
 				`	"Thank you, Sayari."`
-					goto actualmeeting
+					goto "actual meeting"
 			`	"Our governmental structure is directed towards stability, but sometimes there's a problem that merits rapid action. When needed, the Council will nominate a group of Elders, or even just one, to take actions the full Council would otherwise spend weeks deliberating upon. Their power is limited, and is defined when they're nominated, but their dictate is immediate. If necessity pushes beyond their preset limits, they can make a recommendation with a fast track to a full Council discussion. In trying times like these, they may get a meeting by tomorrow."`
-			label actualmeeting
+			label "actual meeting"
 			`	The three Hai Elders are sat behind a table, and the Elder in the center gestures for all of you to sit down in those strange Hai chairs. After a small, calm exchange in Hai between Sayari and the central Elder, he motions for you to speak.`
 			`	Instead, Teeneep begins. "Respected Elders, I have extensive evidence of a sustained kidnapping campaign in Hai space, facilitated by pirates you've been arm-"`
 			`	"Enough," says an Elder, raising his hand. "We know about your views, the 'five thousand missing Hai,' and your organization's media connections. You're already risking larger issues with your current actions. We are here to speak to your witness. Captain <last>," he says, turning to you, "tell us your views on these matters."`
@@ -1353,6 +1356,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 	description "Fly to <destination> and deliver Teeneep and her ultimatum to the Elders."
 	source "Darkcloak"
 	destination "Hai-home"
+	clearance
 	passengers 1
 	to offer
 		has "Hai Reveal [A09] History of Appeasement: done"
@@ -1425,7 +1429,7 @@ mission "Hai Reveal [A11] Sound the Alarm"
 		conversation
 			`Upon your return, Teeneep lodges a formal demand for another audience with the Elders, including the context that she has acquired support from the Unfettered with appropriate proof. Once sent, Sayari steps out for a while to talk to someone and ensure that the demand is being processed with appropriate speed, leaving you and Teeneep alone in her office.`
 			`	Teeneep spends a few moments more doing some other things at her terminal before finally sitting back with an expression of quiet determination. In the quiet she turns to you from her seat and says, "Well, all the pieces are set, now I suppose all that remains is to play out the moves."`
-			label teeneepquestions
+			label "teeneep questions"
 			choice
 				`	"What will happen now then?"`
 					to display
@@ -1452,17 +1456,17 @@ mission "Hai Reveal [A11] Sound the Alarm"
 			action
 				set "Hai Reveal: what will happen now?"
 			`	She shrugs. "It is honestly quite hard to say. I struggle to believe that the Elders could be so unwilling to act that they would risk escalating the standoff with the Unfettered into a real war. Our brethren are no longer merely a disaffected rabble of veterans, camping on the one world that supported radical change. They are a truly empowered movement with consolidated support at home and sympathizers amongst the Hai at large."`
-				goto teeneepquestions
+				goto "teeneep questions"
 			label listen
 			action
 				set "Hai Reveal: will the elders listen?"
 			`	She sighs. "I wish to believe so, but part of me I can no longer ignore does not think it actually likely. Still, it is essential that I try with everything I have to make them do so. Otherwise there will be change, and we can be an unpredictable people in the face of that."`
-				goto teeneepquestions
+				goto "teeneep questions"
 			label war
 			action
 				set "Hai Reveal: will there be war?"
 			`	She frowns and gently shakes her head. "No, or at least not yet. The willingness of the Unfettered to threaten war is essential to all of the possible paths from here. Even if the Elders refuse to take action, there are more steps between this meeting and that outcome. The options are not yet exhausted, though they are rapidly dwindling. With luck, though, Aimet's influence might tip the situation in our favor."`
-				goto teeneepquestions
+				goto "teeneep questions"
 			label options
 			`	"Ah, well those are difficult to explain, since the options worth using will depend on exactly what happens in the meeting. One thing Sayari was very right to remind me of before is that there are normal channels and processes to follow, and those must be followed. We're an old people, Captain <last>, and not always a very patient people. We've forged a system of government with systems and processes to allow almost any internal situation to be handled without resorting to base hysteria, and to actively punish and isolate those who try and subvert those processes. It is a difficult pill to swallow sometimes, but it works, and it has ensured stability since before humans learned to bash rocks together."`
 			`	Her mouth quirks in a sly little smile. "Aimet has always been the master navigator of those systems. He's responsible for improving one of them for the first time in two thousand years." She frowns. "It's actually very odd that he wasn't chosen for the Triad last time we were here."`
@@ -1656,21 +1660,21 @@ mission "Hai Reveal [A11-C] Outgoing Election Update 1"
 				`	(Get some food.)`
 				`	(Ask around for an update.)`
 					goto ask
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					goto leave
 			`	The stalls have a range of tasty Hai and Hai-human fusion cuisines in disposable takeaway trays. At first glance they appear to be some sort of cardboard equivalent, but a Hai near you finishes their meal and then begins nibbling on the tray afterwards.`
 			`	The election coverage is in Hai, naturally, but there's a strong sense that people are still scrambling to have relevant commentary on such short notice and with no prior opinion polling in lead-up. It certainly seems like things are heated. Different charts being presented for the same areas seem to suggest that there's a great deal of controversy and some very strong opinions being thrown around. A number of the Hai nearby make some sounds of concern occasionally, but they do not stay around to comment. Unfortunately, nothing comes up in your language by the time you've finished your food.`
 			choice
 				`	(Eat the tray.)`
 					goto tray
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					goto leave
 			label tray
 			`	The tray is hard and difficult to break. It does have a remarkably intriguing combination of nutty and herby flavors that would probably be quite enjoyable, but you don't quite have the teeth for it.`
 			choice
 				`	(Ask around for an update.)`
 					goto ask
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					goto leave
 			label ask
 			`	When you ask around, a lot of Hai don't seem to be very interested in talking to you. One, in particular, looks like they recognized you and actively avoided you. After approaching a half dozen Hai unsuccessfully, one takes pity and comes to you. He appears to be of middling years and extends a paw to shake your hand in a friendly manner.`
@@ -1699,6 +1703,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 	description "Travel back to <planet> and ensure the diplomats are safe."
 	source "Mountaintop"
 	destination "Hai-home"
+	clearance
 	to offer
 		has "Hai Reveal [A11] Sound the Alarm: done"
 	on offer
@@ -1796,12 +1801,12 @@ mission "Hai Reveal [A13] A New Elder"
 			`	Alondo and Remington both groan, neither having pulled up particularly well this morning. Xilin has a great deal more composure but looks like he's not had a break from stress in well over a month... which is probably accurate. "Why don't you pick, <last>?" he says.`
 			choice
 				`	"Good news."`
-					goto goodnews
+					goto "good news"
 				`	"Bad news."`
 			`	"Well, the bad news is that I'm afraid you're all going somewhere. You have an hour to collect your things and be ready to go. We are going to rendezvous with a fleet."`
 			`	That seems to make people sit up a bit straighter and Alondo seems to unconsciously stabilize himself against Remington's shoulder. "The good news is that we're probably not going to be getting into a fight. The new Elder council has somewhat more, uh, flexibility than the previous one."`
 				goto summary
-			label goodnews
+			label "good news"
 			`	"Well, the good news is that we're probably not going to be getting into a fight with the Republic. Peaceful voices for change triumphed over more radical instigators. The new Elder council has somewhat more, uh, flexibility than the previous one."`
 			`	Xilin actively seems to draw strength from this news, and Remington claps Alondo on the shoulder with a quiet, "told ya." Sayari continues. "The bad news is that I'm afraid you're all going somewhere. You have an hour to collect your things and be ready to go. We have a fleet to meet and there's more work ahead of us."`
 			label summary
@@ -1810,10 +1815,10 @@ mission "Hai Reveal [A13] A New Elder"
 			`	As the meeting disperses, Sayari motions for you. She leads you away to have a private discussion.`
 			choice
 				`	"What has Teeneep done, Sayari?"`
-					goto hasdone
+					goto "has done"
 				`	"I take it you need another ride?"`
 			`	She puts her paw over her face and breathes a long sigh. "Yes, Captain <last>, I do need another ride." She smiles sadly and looks away for a moment.`
-			label hasdone
+			label "has done"
 			`	Her tone is very serious as she explains, "Things might be tense now, but I promise, things aren't as bad as they look. I know Teeneep, and she has the influential backing of another long-time advocate for sensible change, who was also just elected. They are remaining here to reinforce her position. Teeneep displaced that Elder who threatened her in the chambers. It's upset all the long-term power dynamics in the Council, but it's a much better Council overall now.`
 			`	"Events are in motion though, we're to go directly to <stopovers> and then to <planet> - and you're to come with us too. I don't think it's something they view as optional, and I'm told I'm required to travel with you... as insurance."`
 			`She hesitates, seeming oddly nervous for the one who theoretically has all the power in the room. "<last>, this will sound silly, but I'm a bit of a traditionalist sometimes. There's a superstition about space travel, and under the circumstances... I'm too old for this stress. Could you please do me a favor and make sure you have a Quantum Keystone on your ship? It's meant to be good luck, and well, I think we need it."`
@@ -1960,7 +1965,7 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			label formality
 			`	Teeneep explains, "I speak as the voice of the Hai and with the full authority of the Elder Council. Thousands of our people have been kidnapped over the past few decades, and they still largely reside under the servitude of various pirate factions that the Republic allows to continue. Even worse, your authorities have allowed numerous Hai to be slipped past on slaver ships, without attempting rescue because of the no boarding policy your forces employ, even on disabled and potentially doomed ships. We demand the return of our people and an immediate end to the policy of letting slaves die or escape without attempting boarding and rescue."`
 			`	The President is the first to respond. "The problem of piracy in human space is a difficult one and cannot be solved overnight. The pirates are well-entrenched in their planets, and fighting them is a long and brutal struggle. With our navies distracted fighting one another, our recent war has left them stronger than ever."`
-			`	The Chancellor states, "However, the Free Worlds has made great strides reducing piracy by befriending the peoples of the anarchist worlds. We are discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
+			`	The Chancellor states, "However, the Free Worlds have made great strides reducing piracy by befriending the peoples of the anarchist worlds. We are discussing similar approaches with the Republic. Perhaps in another few years, piracy will be entirely eliminated."`
 			`	Xilin whispers to you again, "The problem is of immediate concern, and the Hai will not view this as an acceptable proposal. They need to respond."`
 			choice
 				`	"Is this an acceptable proposal, Teeneep?"`
@@ -1972,12 +1977,12 @@ mission "Hai Reveal [A14] A Time of Trouble"
 			`	Xilin whispers to you, "Ask politely for a counter-proposal."`
 			choice
 				`	"Are there any counter-proposals?"`
-					goto happypres
+					goto "happy president"
 				`	"Surely a group of enlightened human leaders can propose an alternative?"`
 			action
 				set patronizedthepresident
 			`	The President presents a stony mask at being patronized, but the Chancellor smirks. You get a furry little smile from Teeneep.`
-			label happypres
+			label "happy president"
 			`	"We have a counter-proposal," the President says. "We cannot afford to change our policy in totality, it would cost too many lives. However, we propose the following: the Free Worlds and Republic will establish a customs service on Mountaintop. Hai visiting human space will check in with us there. Our intelligence agencies will then track their movements in order to see to their safety as best we can. They'll also be given contacts on every human planet that they can go to for help. In the meantime, we will place extensive surveillance fleets at Ultima Thule to detect any unapproved Hai travel. We will do our best to disable and capture ships with kidnapped Hai, no matter the risk to Navy lives."`
 			`	"The Free Worlds will also extend our protection, of course," the Chancellor adds.`
 			`	Teeneep looks relieved by this suggestion.`

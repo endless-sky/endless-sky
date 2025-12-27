@@ -19,7 +19,7 @@ ship "vyu-Ir"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		"cost" 77777777
 		"shields" 68000
 		"shield generation" 13

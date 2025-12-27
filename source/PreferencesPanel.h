@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "ScrollVar.h"
 #include "TaskQueue.h"
+#include "Tooltip.h"
 #include "text/WrappedText.h"
 
 #include <future>
@@ -32,30 +33,35 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Command;
+class PlayerInfo;
+class RenderBuffer;
 struct Plugin;
 class Sprite;
-class RenderBuffer;
 
 
 
 // UI panel for editing preferences, especially the key mappings.
 class PreferencesPanel : public Panel {
 public:
-	PreferencesPanel();
+	explicit PreferencesPanel(PlayerInfo &player);
 	virtual ~PreferencesPanel();
 
 	// Draw this panel.
 	virtual void Draw() override;
 	virtual void Step() override;
 
+	virtual void UpdateTooltipActivation() override;
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 	virtual bool Drag(double dx, double dy) override;
+
+	virtual void Resize() override;
 
 	virtual void EndEditing() override;
 
@@ -86,9 +92,14 @@ private:
 	void DeletePlugin();
 
 private:
-	int editing;
-	int selected;
-	int hover;
+	PlayerInfo &player;
+	// Determine if the player's mission deadlines need to be recached when
+	// this panel is closed due to the deadline blink preference changing.
+	bool recacheDeadlines = false;
+
+	int editing = -1;
+	int selected = 0;
+	int hover = -1;
 	int oldSelected;
 	int oldHover;
 	int latest;
@@ -96,11 +107,9 @@ private:
 	char page = 'c';
 
 	Point hoverPoint;
-	int hoverCount = 0;
+	Tooltip tooltip;
 	std::string selectedItem;
 	std::string hoverItem;
-	std::string tooltip;
-	WrappedText hoverText;
 
 	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
@@ -139,5 +148,4 @@ private:
 	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;
 	ScrollVar<double> pluginListScroll;
 	ScrollVar<double> pluginDescriptionScroll;
-	int pluginListHeight = 0;
 };
