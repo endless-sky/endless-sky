@@ -5128,6 +5128,30 @@ void PlayerInfo::DoAccounting()
 			}) + '.';
 		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
+
+		if(tributeIncome)
+		{
+			// Apply reputation penalties for dominated planets.
+			set<const Government *> governments;
+			for(const auto &it : tributeReceived)
+			{
+				double penalty = it.first->DailyTributePenalty();
+				if(penalty)
+				{
+					const Government *gov = it.first->GetGovernment();
+					gov->AddReputation(-penalty);
+					if(penalty > 0.)
+						governments.insert(gov);
+				}
+			}
+			if(!governments.empty())
+			{
+				message = "You have lost reputation with "
+					+ Format::List(governments, [](const Government *gov){ return "the " + gov->DisplayName(); })
+					+ " due to active tributes.";
+				Messages::Add({message, GameData::MessageCategories().Get("normal")});
+			}
+		}
 	}
 
 	// For accounting, keep track of the player's net worth. This is for
