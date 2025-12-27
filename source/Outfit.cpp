@@ -196,8 +196,8 @@ namespace {
 
 	// Used to add the contents of one outfit's map to another, while also
 	// erasing any key with a value of zero.
-	template<class T>
-	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
+	template<class T, class N>
+	void MergeMaps(map<const T *, N> &thisMap, const map<const T *, N> &otherMap, int count)
 	{
 		for(const auto &it : otherMap)
 		{
@@ -256,7 +256,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "afterburner effect" && hasValue)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
 		else if(key == "jump effect" && hasValue)
-			++jumpEffects[GameData::Effects().Get(child.Token(1))];
+			jumpEffects[GameData::Effects().Get(child.Token(1))] += child.Size() >= 3 ? child.Value(2) : 1.;
 		else if(key == "hyperdrive sound" && hasValue)
 			++hyperSounds[Audio::Get(child.Token(1))];
 		else if(key == "hyperdrive in sound" && hasValue)
@@ -663,7 +663,7 @@ const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 
 
 // Get this outfit's jump effects and sounds, if any.
-const map<const Effect *, int> &Outfit::JumpEffects() const
+const map<const Effect *, double> &Outfit::JumpEffects() const
 {
 	return jumpEffects;
 }
