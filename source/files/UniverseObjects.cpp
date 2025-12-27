@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../player/PlayerInfo.h"
 #include "../image/Sprite.h"
 #include "../image/SpriteSet.h"
-#include "TaskQueue.h"
+#include "../util/TaskQueue.h"
 
 #include <algorithm>
 #include <iterator>

@@ -60,7 +60,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../shader/StarField.h"
 #include "../player/StartConditions.h"
 #include "../map/System.h"
-#include "TaskQueue.h"
+#include "../util/TaskQueue.h"
 #include "../test/Test.h"
 #include "../test/TestData.h"
 #include "UniverseObjects.h"

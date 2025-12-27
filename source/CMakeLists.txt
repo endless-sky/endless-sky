@@ -128,8 +128,6 @@ target_sources(EndlessSkyLib PRIVATE
 	files/PrintData.h
 	files/SavedGame.cpp
 	files/SavedGame.h
-	files/TaskQueue.cpp
-	files/TaskQueue.h
 	files/UniverseObjects.cpp
 	files/UniverseObjects.h
 	files/ZipFile.cpp
@@ -445,6 +443,8 @@ target_sources(EndlessSkyLib PRIVATE
 	util/StringInterner.h
 	util/Swizzle.cpp
 	util/Swizzle.h
+	util/TaskQueue.cpp
+	util/TaskQueue.h
 	util/WeightedList.h
 )
 

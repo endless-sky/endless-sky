@@ -40,7 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ui/Screen.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
-#include "files/TaskQueue.h"
+#include "util/TaskQueue.h"
 #include "test/Test.h"
 #include "test/TestContext.h"
 #include "ui/UI.h"

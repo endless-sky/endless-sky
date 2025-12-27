@@ -42,7 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../map/Shop.h"
 #include "SpaceportPanel.h"
 #include "../map/System.h"
-#include "../files/TaskQueue.h"
+#include "../util/TaskQueue.h"
 #include "TextArea.h"
 #include "TradingPanel.h"
 #include "UI.h"

@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../shader/PointerShader.h"
 #include "../image/SpriteSet.h"
 #include "../shader/StarField.h"
-#include "../files/TaskQueue.h"
+#include "../util/TaskQueue.h"
 #include "UI.h"
 
 #include "../shader/opengl.h"

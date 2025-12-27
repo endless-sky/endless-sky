@@ -35,7 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../collision/Projectile.h"
 #include "Radar.h"
 #include "../util/Rectangle.h"
-#include "../files/TaskQueue.h"
+#include "../util/TaskQueue.h"
 
 #include <condition_variable>
 #include <list>
