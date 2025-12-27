@@ -364,6 +364,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				toggleTimeout = 30;
 				Preferences::ToggleScreenMode();
 			}
+			else if(event.type == SDL_KEYDOWN && Command(event.key.keysym.sym).Has(Command::PERFORMANCE_DISPLAY))
+				Preferences::Set("Show CPU / GPU load", !Preferences::Has("Show CPU / GPU load"));
 			else if(activeUI.Handle(event))
 			{
 				// The UI handled the event.
@@ -514,6 +516,16 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 #endif
 					memoryString = "MEM: " + Format::Decimal(virtualMemoryUse / 1048576., 2) + " MB";
 				}
+			}
+			else
+			{
+				// Clear the values to avoid reading old data when the player re-enables the display.
+				drawStep = 0;
+				cpuLoadSum = {};
+				gpuLoadSum = {};
+				cpuLoadString = {};
+				gpuLoadString = {};
+				memoryString = {};
 			}
 
 			GameWindow::Step();

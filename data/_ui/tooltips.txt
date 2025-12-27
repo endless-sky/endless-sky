@@ -1402,6 +1402,9 @@ tip "Show help"
 tip "View message log"
 	`Open the log panel containing status messages and hails from other ships received since the current pilot was loaded.`
 
+tip "Toggle performance info"
+	`Toggle the "Show CPU / GPU load" setting.`
+
 tip "Deploy / recall fighters"
 	`Deploy or recall carried ships (e.g. fighters, drones) in your fleet. Requires carriers with space to hold the carried ships.`
 
