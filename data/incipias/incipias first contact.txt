@@ -14,6 +14,7 @@
 mission "Incipias: Warning of the Guardian"
 	invisible
 	landing
+	non-blocking
 	to complete
 		never
 	on enter Il'le
@@ -62,6 +63,7 @@ mission "Incipias: Warning of the Guardian"
 
 mission "Incipias: Presence of the Guardian"
 	invisible
+	non-blocking
 	landing
 	to complete
 		never
@@ -91,6 +93,7 @@ event "label incipias space"
 
 mission "Incipias: First Contact"
 	invisible
+	non-blocking
 	landing
 	to complete
 		never
@@ -151,6 +154,7 @@ ship "Nimbus" "Nimbus FTL"
 mission "Incipias: The Derelict"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Visit Quarg in Incipias Space: offered"
 	npc assist
@@ -305,6 +309,7 @@ mission "Incipias: Help The Stranded 1"
 mission "Incipias: Fix Saves Missing Language"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "Incipias: Help The Stranded 1: offered"
 		not "Incipias: Help The Stranded 1: declined"
