@@ -105,7 +105,8 @@ void ShipyardPanel::DrawItem(const string &name, const Point &point)
 
 double ShipyardPanel::ButtonPanelHeight() const
 {
-	return BUTTON_HEIGHT + 40;
+	// The 50 = (3 x 10 (pad) + 20 x 1 (text)) for the credit information line.
+	return 50 + BUTTON_HEIGHT * 2 + BUTTON_ROW_PAD * 1;
 }
 
 
@@ -184,7 +185,14 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 void ShipyardPanel::DrawButtons()
 {
-	// The last 70 pixels on the end of the side panel are for the buttons:
+	// There will be two rows of buttons:
+	//  [    Buy    ] [    Sell    ] [ Sell Hull ]
+	//                               [   Leave   ]
+	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
+	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2 - 1.;
+	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
 
 	// Draw the button panel (shop side panel footer).
 	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
@@ -194,13 +202,15 @@ void ShipyardPanel::DrawButtons()
 		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
 		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
 
+	// Set up font size and colors for the credits.
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
 
+	// Draw the row for credits display.
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - 65);
+		Screen::Bottom() - ButtonPanelHeight() + 10);
 	font.Draw("You have:", creditsPoint, dim);
 
 	const string credits = Format::CreditString(player.Accounts().Credits());
@@ -209,26 +219,30 @@ void ShipyardPanel::DrawButtons()
 	// Clear the buttonZones, they will be populated again as buttons are drawn.
 	buttonZones.clear();
 
-	const Point buyCenter(Screen::BottomRight() - Point(210, 25));
+	// Row 1
 	DrawButton("_Buy",
-		Rectangle(buyCenter, Point(60, 30)),
+		Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize),
 		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
 	DrawButton("_Sell",
-		Rectangle(Screen::BottomRight() - Point(130, 25), Point(60, 30)),
-		!playerShips.empty(), hoverButton == 's', 's');
-
-	// TODO: Add button for sell but retain outfits.
-
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
+		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
+	DrawButton("Sell H_ull",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
+		static_cast<bool>(playerShips.size()), hoverButton == 'r', 'r');
+	// Row 2
 	DrawButton("_Leave",
-		Rectangle(Screen::BottomRight() - Point(45, 25), Point(70, 30)),
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
 		true, hoverButton == 'l', 'l');
 
+	// Draw the Modifier hover text that appears below the buttons when a modifier
+	// is being applied.
 	int modifier = Modifier();
 	if(modifier > 1)
 	{
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
-		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
+		font.Draw(mod, Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0)
+		+ Point(-.5 * modWidth, 10.), dim);
 	}
 
 	// Draw tooltips for the button being hovered over:
