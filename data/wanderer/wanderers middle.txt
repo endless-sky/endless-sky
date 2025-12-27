@@ -2239,6 +2239,7 @@ mission "Wanderers: Sestor: Bomb Zenith 1"
 mission "Wanderers: Sestor: Farpoint Attack 2"
 	landing
 	invisible
+	non-blocking
 	source "Farpoint"
 	to offer
 		has "Wanderers: Sestor: Quarg Help 2: done"
