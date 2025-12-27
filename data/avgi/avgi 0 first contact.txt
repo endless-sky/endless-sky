@@ -1094,5 +1094,7 @@ mission "Avgi: Twilight Escape 3"
 			`	She bursts out laughing. "I wouldn't believe it if anyone else had told me. I mean, men come up with all sorts of excuses for coming home late, but this is something else!" Her tone suddenly turns serious. "It'll be a headache, working all this out with the government. They gave me the money for this place as recompense for your supposed 'death,' no matter how much I insisted you were still alive."`
 			`	"We'll work it out. They owe me backpay anyway," jokes Darius, still in Katrina's arms.`
 			`	As the pair move to the door, you say your goodbyes, and Darius promises he will keep in touch with you about the Avgi. Neither of you have forgotten the aliens fighting to survive at the edge of the galaxy, and now that you know of a safe way in and out of their space, you can go back without fear of becoming trapped.`
+			``
+			`[This is the end of Avgi content currently in the game. Stay tuned for more in a future update!]`
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Darius hasn't entered the system yet. Better depart and wait for it to arrive.`

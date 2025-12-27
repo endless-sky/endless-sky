@@ -2138,6 +2138,8 @@ mission "Heliarch License 2"
 			`	When you're done, the two Heliarchs explain some more. "As of a lower rank you are, permit you access to everything and everywhere, your circlet will not. Not yet, at least. But, as mentioned, come to some of the restricted sections, you now many. On many of our worlds, find you will Heliarch outfitters, where now available some of our equipment will be. Permit you to take on some jobs we put up for Heliarch agents here in the restricted sections, the circlet also will."`
 			`	They commend you for having joined up, and bid you farewell, having the guards now bring you back to your ship. The three Heliarch consuls who greeted you are waiting for you when you arrive, and hand you a small box which you soon realize is a translation device. "One of us you now are, Captain," the Saryd says. "Trust you we do to uphold the Coalition's values and laws."`
 			`	The trio congratulates you once again and wishes you safe travels.`
+			``
+			`[This is the end of Coalition content currently in the game. Stay tuned for more in a future update!]`
 				decline
 
 event "first heliarch unlock"

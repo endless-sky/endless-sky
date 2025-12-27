@@ -217,4 +217,6 @@ mission "First Contact: Bunrodea (Hostile)"
 			
 			label end
 			`	You're escorted out of the throne room and told by the small creature to leave as soon as you reach your ship. You exit the palace, and realize that you must once again face the stairs. You take a deep breath, and prepare yourself for the long journey down.`
+			``
+			`[This is the end of Bunrodea content currently in the game. Stay tuned for more in a future update!]`
 				launch

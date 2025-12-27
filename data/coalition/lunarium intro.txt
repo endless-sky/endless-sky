@@ -2057,6 +2057,8 @@ mission "Lunarium: Join"
 			`	You say your goodbyes, and you're escorted out of the complex and back to your ship. The Kimek who brought you there enter the ship with you briefly, and inform you that they've sent word across their major bases in the Coalition about your joining up. You're told that you'll find some new outfits available in their secretive outfitters. "In separate portions of the cities, sometimes in other cities entirely, our shops are, but safe from Heliarch patrols, they so far have proven." They give you a short list of the planets where you'll find their outfitters, and coordinates and instructions as to how to get to and access each of them.`
 			`	When they leave, you start tinkering with the translation device, figuring out how to configure it to translate each of the languages. After testing it using local transmissions and broadcasts for half an hour or so, you're decently fast with it, to the point where you can change what language it translates to or from a few times in a second.`
 			`	It may be a long time still before the Lunarium is ready to take up arms against the Heliarchs, so for now you figure you could help by looking into what minor jobs they may have for you.`
+			``
+			`[This is the end of Coalition content currently in the game. Stay tuned for more in a future update!]`
 	on fail
 		"assisting lunarium" --
 

@@ -1026,3 +1026,5 @@ mission "Successors: Trusted"
 				clear "Successors: explain"
 				clear "Successors: sioeora"
 			`	With your meeting resolved here, you head back to the monorail station and catch the next train back to the spaceport.`
+			``
+			`[This is the end of Successors content currently in the game. Stay tuned for more in a future update!]`
