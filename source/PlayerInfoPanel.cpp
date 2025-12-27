@@ -656,7 +656,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 			to_string(combatLevel) + " - " + combatRating,
 			dim, Truncate::MIDDLE, false);
 		table.DrawTruncatedPair("experience:", dim,
-			Format::Integer(combatExperience), dim, Truncate::MIDDLE, false);
+			Format::Number(combatExperience), dim, Truncate::MIDDLE, false);
 		bool maxRank = (combatRating == GameData::Rating("combat", combatLevel + 1));
 		table.DrawTruncatedPair("    for next rank:", dim,
 				maxRank ? "MAX" : Format::Number(ceil(exp(combatLevel + 1))),

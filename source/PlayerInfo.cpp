@@ -4473,7 +4473,7 @@ void PlayerInfo::StepMissions(UI *ui)
 	if(!visitText.empty())
 	{
 		if(missionVisits > 1)
-			visitText += "\n\t(You have " + Format::Integer(missionVisits - 1) + " other unfinished "
+			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
 		ui->Push(new Dialog(visitText));
 	}

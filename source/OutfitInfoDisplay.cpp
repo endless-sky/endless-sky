@@ -494,7 +494,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		if(weapon->AmmoUsage() != 1)
 		{
 			attributeLabels.emplace_back("ammo usage:");
-			attributeValues.emplace_back(Format::Integer(weapon->AmmoUsage()));
+			attributeValues.emplace_back(Format::Number(weapon->AmmoUsage()));
 			attributesHeight += 20;
 		}
 	}
@@ -630,7 +630,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(isContinuous)
 		attributeValues.emplace_back("continuous");
 	else if(isContinuousBurst)
-		attributeValues.emplace_back("continuous (" + Format::Integer(lround(weapon->BurstReload() * 100. / reload)) + "%)");
+		attributeValues.emplace_back("continuous (" + Format::Number(lround(weapon->BurstReload() * 100. / reload)) + "%)");
 	else
 		attributeValues.emplace_back(Format::Number(60. / reload));
 	attributesHeight += 20;
@@ -674,7 +674,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		{
 			int percent = lround(100. * percentValues[i]);
 			attributeLabels.push_back(PERCENT_NAMES[i]);
-			attributeValues.push_back(Format::Integer(percent) + "%");
+			attributeValues.push_back(Format::Number(percent) + "%");
 			attributesHeight += 20;
 		}
 	if(weapon->ThrottleControl())

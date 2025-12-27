@@ -452,7 +452,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				int crewTransferred = victim->WasCaptured(you);
 				if(crewTransferred > 0)
 				{
-					string transferMessage = Format::Integer(crewTransferred) + " crew member";
+					string transferMessage = Format::Number(crewTransferred) + " crew member";
 					if(crewTransferred == 1)
 						transferMessage += " has";
 					else

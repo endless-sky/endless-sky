@@ -241,7 +241,7 @@ namespace {
 		};
 
 		if(formatStart == string::npos || formatSize == string::npos)
-			result.append(Format::Integer(value));
+			result.append(Format::Number(value));
 		else if(IsFormat("raw"))
 			result.append(to_string(value));
 		else if(IsFormat("credits"))
@@ -266,7 +266,7 @@ namespace {
 			result.append(Format::WordForm(value, true)); // Thirty-three or One hundred one
 		else
 			// "number" or unsupported format
-			result.append(Format::Integer(value));
+			result.append(Format::Number(value));
 	}
 
 	const char *DEFAULT_TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S";
@@ -354,7 +354,7 @@ string Format::CreditString(int64_t value, bool abbreviated)
 	if(value == 1)
 		return "1 credit";
 
-	return (abbreviated ? Credits(value) : Integer(value)) + " credits";
+	return (abbreviated ? Credits(value) : Number(value)) + " credits";
 }
 
 
@@ -580,7 +580,25 @@ string Format::Number(double value)
 
 
 
-string Format::Integer(int64_t value)
+string Format::Number(unsigned value)
+{
+	string result;
+	FormatInteger(value, false, result);
+	return result;
+}
+
+
+
+string Format::Number(int value)
+{
+	string result;
+	FormatInteger(value, value < 0, result);
+	return result;
+}
+
+
+
+string Format::Number(int64_t value)
 {
 	string result;
 	FormatInteger(value, value < 0, result);
@@ -640,7 +658,7 @@ string Format::ChicagoForm(int64_t value, bool startOfSentence)
 		below = above % 1000;
 		above /= 1000;
 	}
-	return Format::Integer(value);
+	return Format::Number(value);
 }
 
 
@@ -670,7 +688,7 @@ string Format::MLAForm(int64_t value, bool startOfSentence)
 		below = above % 1000;
 		above /= 1000;
 	}
-	return Format::Integer(value);
+	return Format::Number(value);
 }
 
 
