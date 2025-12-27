@@ -1418,9 +1418,9 @@ mission "Remnant: Deep Surveillance"
 				`	"Understood."`
 					goto branches
 				`	"Actually, I was hoping to show it to someone else who's interested."`
-			`	Ivan stares at you for a moment. "I... see. Thanks for your honesty, but I can't give you a copy. That research is classified."`
 			action
 				set "remnant: honest about deep research"
+			`	Ivan stares at you for a moment. "I... see. Thanks for your honesty, but I can't give you a copy. That research is classified."`
 				goto leave
 			
 			label again2
