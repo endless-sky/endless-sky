@@ -23,7 +23,7 @@ mission "Drak Revelations: Arachi"
 	on offer
 		clear "drak revelations: arachi"
 		conversation
-			`As the <ship> rises through the last set of clouds, you're surprised to find yourself out of your ship altogether, underground.`
+			`As the <ship> rises through the last layer of clouds, you're surprised to find yourself out of your ship altogether, underground.`
 			`	Tiny holes allow only a minimal amount of light to penetrate the cramped tunnel complex, and it isn't enough to illuminate the forms of the various creatures hiding there. From what little you can see, they seem to be huddling together, shaking, cowering.`
 			`	A continuous marching is occurring overhead, rumbling the tunnels. A few of the less timid creatures rush past you, wearing heavy plates of armor that completely cover their bodies and numerous legs. They dig up, and jump at the first pale-gold object that comes into sight, tumbling the giant.`
 			`	You never see any of them again, as more of the creatures continue to push and pour out of the hole, heading in all directions. Some take but a moment to speak with those in hiding, before moving upwards.`
