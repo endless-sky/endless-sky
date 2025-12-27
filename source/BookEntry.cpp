@@ -120,15 +120,11 @@ void BookEntry::LoadSingle(const DataNode &node, int startAt)
 	{
 		string text;
 		for(int i = startAt; i < node.Size(); ++i)
-			// Skip empty strings.
-			if(!node.Token(i).empty())
-			{
-				if(!text.empty())
-					text += "\n\t";
-				text += node.Token(i);
-			}
-
-		if(!text.empty())
-			items.emplace_back(text);
+		{
+			if(!text.empty())
+				text += "\n\t";
+			text += node.Token(i);
+		}
+		items.emplace_back(text);
 	}
 }
