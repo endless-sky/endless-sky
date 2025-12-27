@@ -458,10 +458,10 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if(key == "interface" && hasValue)
 		{
-			Interface *interface = interfaces.Get(node.Token(1));
+			Interface *interfaceData = interfaces.Get(node.Token(1));
 			if(overwrite)
-				*interface = Interface();
-			interface->Load(node);
+				*interfaceData = Interface();
+			interfaceData->Load(node);
 
 			// If we modified the "menu background" interface, then
 			// we also update our cache of it.
