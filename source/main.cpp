@@ -390,10 +390,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 		// How much time in total was spent on calculations and drawing since the last
 		// load cache update (every 60 drawing frames; usually 1 second).
 		chrono::steady_clock::duration cpuLoadSum{};
-		string cpuLoadString{};
+		string cpuLoadString;
 		chrono::steady_clock::duration gpuLoadSum{};
-		string gpuLoadString{};
+		string gpuLoadString;
 		string memoryString;
+		bool isPerformanceDisplayReady = false;
 		int step = 0;
 		int drawStep = 0;
 
@@ -476,10 +477,12 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			if(Preferences::Has("Show CPU / GPU load"))
 			{
-				static Information performanceInfo;
+				Information performanceInfo;
 				performanceInfo.SetString("cpu", cpuLoadString);
 				performanceInfo.SetString("gpu", gpuLoadString);
 				performanceInfo.SetString("mem", memoryString);
+				if(isPerformanceDisplayReady)
+					performanceInfo.SetCondition("ready");
 				static const Interface &performanceDisplay = *GameData::Interfaces().Get("performance info");
 				performanceDisplay.Draw(performanceInfo);
 				if(drawStep == 60)
@@ -516,6 +519,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 #endif
 					// bytes / (1024 * 1024) = megabytes
 					memoryString = "MEM: " + Format::Decimal(virtualMemoryUse / 1048576., 2) + " MB";
+					isPerformanceDisplayReady = true;
 				}
 			}
 			else
@@ -524,9 +528,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				drawStep = 0;
 				cpuLoadSum = {};
 				gpuLoadSum = {};
-				cpuLoadString = {};
-				gpuLoadString = {};
-				memoryString = {};
+				isPerformanceDisplayReady = false;
 			}
 
 			GameWindow::Step();

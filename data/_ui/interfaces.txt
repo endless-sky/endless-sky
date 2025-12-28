@@ -224,6 +224,7 @@ interface "performance info"
 	fill
 		from 400 5 to 560 55
 		color "panel background"
+	visible if "ready"
 	string "cpu"
 		from 410 16
 		color "medium"
@@ -233,6 +234,19 @@ interface "performance info"
 		color "medium"
 		align left
 	string "mem"
+		from 410 44
+		color "medium"
+		align left
+	visible if "!ready"
+	label "CPU: calculating..."
+		from 410 16
+		color "medium"
+		align left
+	label "GPU: calculating..."
+		from 410 30
+		color "medium"
+		align left
+	label "MEM: calculating..."
 		from 410 44
 		color "medium"
 		align left
