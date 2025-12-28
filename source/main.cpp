@@ -459,8 +459,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			Audio::Step(isFastForward);
 
 			cpuLoadSum += chrono::steady_clock::now() - start;
-			if(++drawStep == 60)
-				drawStep = 0;
+			++drawStep;
 			chrono::steady_clock::time_point drawStart = chrono::steady_clock::now();
 
 			// Events in this frame may have cleared out the menu, in which case
@@ -483,8 +482,9 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				performanceInfo.SetString("mem", memoryString);
 				static const Interface &performanceDisplay = *GameData::Interfaces().Get("performance info");
 				performanceDisplay.Draw(performanceInfo);
-				if(!drawStep)
+				if(drawStep == 60)
 				{
+					drawStep = 0;
 					// The load sums are in nanoseconds, accumulated throughout the last second, so divide
 					// by 10^6 to get milliseconds, then by 60 (or 180 with fast-forward for the CPU load)
 					// to get the average milliseconds per step.
