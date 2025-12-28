@@ -220,19 +220,20 @@ color "plugin reload required" .75 .1 .1 0.
 
 
 interface "performance info"
+	anchor top left
 	fill
-		from -80 5 to 80 55 top
+		from 400 5 to 560 55
 		color "panel background"
 	string "cpu"
-		from -70 16 top
+		from 410 16
 		color "medium"
 		align left
 	string "gpu"
-		from -70 30 top
+		from 410 30
 		color "medium"
 		align left
 	string "mem"
-		from -70 44 top
+		from 410 44
 		color "medium"
 		align left
 

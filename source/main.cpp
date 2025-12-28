@@ -514,6 +514,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					getline(statm, statmStr, ' ');
 					virtualMemoryUse = stoul(statmStr) * getpagesize();
 #endif
+					// bytes / (1024 * 1024) = megabytes
 					memoryString = "MEM: " + Format::Decimal(virtualMemoryUse / 1048576., 2) + " MB";
 				}
 			}
