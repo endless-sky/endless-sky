@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "GameLoadingPanel.h"
+#include "gamepad/GamePad.h"
 #include "GameVersion.h"
 #include "GameWindow.h"
 #include "Logger.h"
@@ -129,6 +130,8 @@ int main(int argc, char *argv[])
 	}
 	printData = PrintData::IsPrintDataArgument(argv);
 	Files::Init(argv);
+
+	Command::InitIcons();
 
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
@@ -313,6 +316,12 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
 
+			// Filter events the gamepad handler before checking if the
+			// UI needs the event. This handles state for polling, but
+			// does not generate button events, which are handled through
+			// the event system normally.
+			GamePad::Handle(event);
+
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{
 				isDebugPaused = !isDebugPaused;
@@ -329,6 +338,22 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				menuPanels.Push(shared_ptr<Panel>(
 					new MenuPanel(player, gamePanels)));
 				UI::PlaySound(UI::UISound::NORMAL);
+			}
+			else if(event.type == SDL_CONTROLLERBUTTONDOWN && menuPanels.IsEmpty()
+					&& (Command::FromButton(event.cbutton.button).Has(Command::MENU))
+					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+			{
+				// User pressed the Menu key on a game controller
+				menuPanels.Push(shared_ptr<Panel>(
+					new MenuPanel(player, gamePanels)));
+			}
+			else if(event.type == Command::EventID() && menuPanels.IsEmpty()
+					&& (Command(event).Has(Command::MENU))
+					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+			{
+				// User triggered the Menu via a command
+				menuPanels.Push(shared_ptr<Panel>(
+					new MenuPanel(player, gamePanels)));
 			}
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
@@ -356,6 +381,21 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					&& !Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
 			{
 				isFastForward = !isFastForward;
+			}
+
+			else if(event.type == SDL_CONTROLLERBUTTONDOWN
+					&& (Command::FromButton(event.cbutton.button).Has(Command::FASTFORWARD)))
+			{
+				isFastForward = !isFastForward;
+			}
+			else if(event.type == Command::EventID())
+			{
+				// handle injected commands
+				Command command(event);
+				if(command == Command::FASTFORWARD && reinterpret_cast<const CommandEvent&>(event).pressed == SDL_PRESSED)
+				{
+					isFastForward = !isFastForward;
+				}
 			}
 		}
 

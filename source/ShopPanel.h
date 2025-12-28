@@ -100,6 +100,8 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positive) override;
+	virtual bool ControllerButtonDown(SDL_GameControllerButton button) override;
 
 	void DoFind(const std::string &text);
 	virtual int FindItem(const std::string &text) const = 0;
@@ -234,4 +236,5 @@ private:
 	const Color &back;
 
 	bool checkedHelp = false;
+	bool shiftMod = false;
 };
