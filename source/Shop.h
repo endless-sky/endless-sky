@@ -99,12 +99,12 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 		if(key == "to" && hasValue && child.Token(valueIndex) == "sell")
 		{
 			if(add && !toSell.IsEmpty())
-				child.PrintTrace("Error: Cannot \"add\" to an existing condition set:");
+				child.PrintTrace("Cannot \"add\" to an existing condition set:");
 			else if(remove)
 			{
 				toSell = ConditionSet{};
 				if(child.HasChildren())
-					child.PrintTrace("Warning: Removing all conditions; removal of condition subsets is not supported:");
+					child.PrintTrace("Removing all conditions; removal of condition subsets is not supported:");
 			}
 			else
 				toSell.Load(child, playerConditions);
@@ -112,12 +112,12 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 		else if(key == "location")
 		{
 			if(add && !location.IsEmpty())
-				child.PrintTrace("Error: Cannot \"add\" to an existing location filter:");
+				child.PrintTrace("Cannot \"add\" to an existing location filter:");
 			else if(remove)
 			{
 				location = LocationFilter{};
 				if(child.HasChildren())
-					child.PrintTrace("Warning: Removing full location filter; partial removal is not supported:");
+					child.PrintTrace("Removing full location filter; partial removal is not supported:");
 			}
 			else
 				location.Load(child, visitedSystems, visitedPlanets);

@@ -60,6 +60,7 @@ mission "Hai Reveal [A02] Symbol Identification"
 	description "Fly to <destination> and ask Alondo if he can help in some way."
 	source Darkwaste
 	destination Hai-home
+	clearance
 	to offer
 		has "Hai Reveal [A01] Visit Darkwaste: done"
 	on offer
@@ -749,6 +750,7 @@ mission "Hai Reveal [A05] Take Teeneep to Hai-home"
 	description `Take Teeneep to Hai-home so she can investigate the Elders arming pirates with Hai weapons.`
 	source Darkwaste
 	destination Hai-home
+	clearance
 	passengers 1
 	blocked `It's probably not advisable to bring so many unnecessary people to a secret location on Darkwaste. You should return when your spare bunks are unoccupied.`
 	to offer
@@ -870,7 +872,7 @@ mission "Hai Reveal [A06a] The Calm"
 			`	You almost expect the silence to be broken by a cough, but instead you hear the sound of a datapad being firmly set to one side. "Anyway, Captain <last> will be here momentarily. Why don't you see if they're on their way?"`
 			`	You hear someone, presumably Remington, stand up and you quickly backpedal a few steps before resuming a nonchalant walk towards the office just as Remington steps out to look for you.`
 			choice
-				`	(Make your appearance.)`
+				`	(Make my appearance.)`
 					goto meeting
 			label doorway
 			`	You wander off for a few minutes, giving Alondo his privacy. Upon your return, you are face to face with Remington who has stood up to greet you.`
@@ -1034,6 +1036,7 @@ mission "Hai Reveal [A08] Symbol Identification"
 	description "Return to <destination> with Batu Cegeen and your new information."
 	source Earth
 	destination Hai-home
+	clearance
 	passengers 1
 	to offer
 		has "Hai Reveal [A07] Deliver the Relays: done"
@@ -1353,6 +1356,7 @@ mission "Hai Reveal [A10] Demanding Satisfaction"
 	description "Fly to <destination> and deliver Teeneep and her ultimatum to the Elders."
 	source "Darkcloak"
 	destination "Hai-home"
+	clearance
 	passengers 1
 	to offer
 		has "Hai Reveal [A09] History of Appeasement: done"
@@ -1656,21 +1660,21 @@ mission "Hai Reveal [A11-C] Outgoing Election Update 1"
 				`	(Get some food.)`
 				`	(Ask around for an update.)`
 					goto ask
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					goto leave
 			`	The stalls have a range of tasty Hai and Hai-human fusion cuisines in disposable takeaway trays. At first glance they appear to be some sort of cardboard equivalent, but a Hai near you finishes their meal and then begins nibbling on the tray afterwards.`
 			`	The election coverage is in Hai, naturally, but there's a strong sense that people are still scrambling to have relevant commentary on such short notice and with no prior opinion polling in lead-up. It certainly seems like things are heated. Different charts being presented for the same areas seem to suggest that there's a great deal of controversy and some very strong opinions being thrown around. A number of the Hai nearby make some sounds of concern occasionally, but they do not stay around to comment. Unfortunately, nothing comes up in your language by the time you've finished your food.`
 			choice
 				`	(Eat the tray.)`
 					goto tray
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					goto leave
 			label tray
 			`	The tray is hard and difficult to break. It does have a remarkably intriguing combination of nutty and herby flavors that would probably be quite enjoyable, but you don't quite have the teeth for it.`
 			choice
 				`	(Ask around for an update.)`
 					goto ask
-				`	(Return to your ship.)`
+				`	(Return to my ship.)`
 					goto leave
 			label ask
 			`	When you ask around, a lot of Hai don't seem to be very interested in talking to you. One, in particular, looks like they recognized you and actively avoided you. After approaching a half dozen Hai unsuccessfully, one takes pity and comes to you. He appears to be of middling years and extends a paw to shake your hand in a friendly manner.`
@@ -1699,6 +1703,7 @@ mission "Hai Reveal [A12] Into the Lion's Den"
 	description "Travel back to <planet> and ensure the diplomats are safe."
 	source "Mountaintop"
 	destination "Hai-home"
+	clearance
 	to offer
 		has "Hai Reveal [A11] Sound the Alarm: done"
 	on offer
