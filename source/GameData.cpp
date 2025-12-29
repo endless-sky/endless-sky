@@ -156,11 +156,11 @@ namespace {
 		if(!plugin)
 			return;
 
-		if(plugin->enabled)
+		if(plugin->InUse())
 			sources.push_back(path);
 
 		// Load the icon for the plugin, if any.
-		auto icon = make_shared<ImageSet>(plugin->name);
+		auto icon = make_shared<ImageSet>(plugin->GetIconName());
 
 		// Try adding all the possible icon variants.
 		for(const string &extension : ImageBuffer::ImageExtensions())

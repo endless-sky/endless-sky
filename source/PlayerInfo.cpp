@@ -4220,7 +4220,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	conditions["installed plugin: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
 		const Plugin *plugin = Plugins::Get().Find(ce.NameWithoutPrefix());
-		return plugin ? plugin->IsValid() && plugin->enabled : false; });
+		return plugin ? plugin->IsValid() && plugin->InUse() : false; });
 
 	conditions["person destroyed: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
 		const Person *person = GameData::Persons().Find(ce.NameWithoutPrefix());
@@ -4890,8 +4890,8 @@ void PlayerInfo::Save(DataWriter &out) const
 	for(const auto &it : Plugins::Get())
 	{
 		const auto &plugin = it.second;
-		if(plugin.IsValid() && plugin.enabled)
-			out.Write(plugin.name);
+		if(plugin.IsValid() && plugin.InUse())
+			out.Write(plugin.Name());
 	}
 	out.EndChild();
 

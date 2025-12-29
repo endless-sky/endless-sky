@@ -72,7 +72,8 @@ private:
 	void DrawPlugins();
 	void DrawPluginInstalls();
 	void RenderPluginDescription(const std::string &pluginName);
-	void RenderPluginDescription(const Sprite *sprite, const std::string &description);
+	void RenderPluginDescription(const Plugin *plugin);
+	void RenderPluginDescription(const Plugin &plugin);
 
 	void DrawTooltips();
 
@@ -115,34 +116,18 @@ private:
 	int currentSettingsPage = 0;
 
 	std::string selectedPlugin;
-	std::string pluginMarkedForDelete;
 
-
-	// Pointers to keep track of what plugin is selected/clicked/hovered over.
-	Plugins::InstallData *latestPlugin = nullptr;
-
-	Plugins::InstallData *selectedPluginInstall = nullptr;
-	Plugins::InstallData *oldSelectedPluginInstall = nullptr;
-	Plugins::InstallData *clickedPluginInstall = nullptr;
-	Plugins::InstallData *oldClickedPluginInstall = nullptr;
-	Plugins::InstallData *hoverPluginInstall = nullptr;
-
-	size_t pluginInstallPages = 1;
-	size_t currentPluginInstallPage = 0;
 	// If the plugin index was already downloaded.
-	bool downloadedInfo = false;
+	bool downloadedPluginIndex = false;
 	// Vector to store the feedback of the async tasks from installing/updating/deleting.
-	std::vector<std::future<void>> installFeedbacks;
-	// A list of plugins that can be installed.
-	std::vector<Plugins::InstallData> pluginInstallData;
+	std::vector<std::future<std::string>> installFeedbacks;
 	// Queue to load icons for installable plugins and a list of those.
 	TaskQueue queue;
-	Set<Sprite> icons;
+	int step = 0;
 
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
-	std::vector<ClickZone<Plugins::InstallData *>> pluginInstallZones;
 
 	std::unique_ptr<RenderBuffer> pluginListClip;
 	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;

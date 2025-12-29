@@ -215,9 +215,10 @@ color "wormholes: Ember Waste" .7 .1 .3
 color "wormholes: beyond Patir" .19 .27 .69
 
 # Colors used in the plugin panel
-color "plugin reload required" .75 .1 .1 0.
-color "plugin outdated" .75 .75 0. 0.
-color "plugin removed" .7 .1 .0 0.
+color "plugin reload required" .75 .1 .1
+color "plugin downloading" .75 .75 .75
+color "plugin outdated" .75 .75 0.
+color "plugin removed" .25 .25 .25
 
 
 
@@ -1033,15 +1034,6 @@ interface "install plugins"
 		dimensions 90 30
 		color bright
 	
-	active if "next install plugin"
-	button e "N_ext"
-		center -30 170
-		dimensions 120 30
-	active if "previous install plugin"
-	button r "P_revious"
-		center -215 170
-		dimensions 120 30
-
 	visible if "!can update"
 	active if "can install"
 	button i "_Install"
@@ -1064,6 +1056,9 @@ interface "install plugins"
 		from -225 -236
 		align top left
 		color bright
+	visible
+	fill
+		from -230 -222 to -10 -221
 
 
 
