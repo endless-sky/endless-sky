@@ -1997,8 +1997,8 @@ void AI::MoveIndependent(Ship &ship, Command &command)
 					MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
 				if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
 					command |= Command::SCAN;
-				return;
 			}
+			return;
 		}
 	}
 
