@@ -3,6 +3,14 @@
 		{
 			"name": "openal-soft",
 			"platform": "osx"
+		},
+		{
+			"name": "libflac",
+			"platform": "osx"
+		},
+		{
+			"name": "minizip",
+			"platform": "osx"
 		}
 	],
 	"overrides": [
