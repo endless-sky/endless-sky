@@ -130,6 +130,8 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 	}
 	else if(key == "can trigger after failure")
 		runsWhenFailed = true;
+	else if(key == "non-blocking")
+		blocking = false;
 	else if(key == "to" && hasValue && child.Token(1) == "trigger")
 		toTrigger.Load(child, playerConditions);
 	else
@@ -174,6 +176,8 @@ void MissionAction::SaveBody(DataWriter &out) const
 	}
 	if(runsWhenFailed)
 		out.Write("can trigger after failure");
+	if(!blocking)
+		out.Write("non-blocking");
 	if(!dialogText.empty())
 	{
 		out.Write("dialog");
@@ -363,7 +367,7 @@ bool MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		player.MissionCallback(Conversation::ACCEPT);
 
 	action.Do(player, ui, caller);
-	return true;
+	return blocking;
 }
 
 
@@ -380,6 +384,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 
 	result.requiredOutfits = requiredOutfits;
 	result.toTrigger = toTrigger;
+	result.blocking = blocking;
 
 	string previousPayment = subs["<payment>"];
 	string previousFine = subs["<fine>"];

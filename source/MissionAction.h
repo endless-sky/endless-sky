@@ -105,6 +105,8 @@ private:
 private:
 	// Whether this action can be triggered after the mission has failed.
 	bool runsWhenFailed = false;
+	// Whether this action blocks other actions on the same trigger;
+	bool blocking = true;
 
 	std::string trigger;
 	std::string system;
