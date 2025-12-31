@@ -122,6 +122,14 @@ namespace {
 		queue.Run([image] { image->Load(); },
 			[image] { image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload); });
 	}
+	void UnloadSprite(TaskQueue &queue, const Sprite *sprite)
+	{
+		// Don't unload sprites if they were never uploaded to begin with.
+		if(preventSpriteUpload)
+			return;
+		// Unloading needs to be queued on the main thread.
+		queue.Run({}, [name = sprite->Name()] { SpriteSet::Modify(name)->Unload(); });
+	}
 
 	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image);
 	// Loads a sprite from the image queue, recursively.
@@ -393,8 +401,7 @@ void GameData::PreloadLandscape(TaskQueue &queue, const Sprite *sprite)
 		++pit->second;
 		if(pit->second >= 20)
 		{
-			// Unloading needs to be queued on the main thread.
-			queue.Run({}, [name = pit->first->Name()] { SpriteSet::Modify(name)->Unload(); });
+			UnloadSprite(queue, pit->first);
 			pit = preloadedLandscapes.erase(pit);
 		}
 		else
@@ -426,7 +433,7 @@ void GameData::LoadThumbnail(TaskQueue &queue, const Sprite *sprite)
 void GameData::UnloadThumbnails(TaskQueue &queue)
 {
 	for(const Sprite *sprite : loadedThumbnails)
-		queue.Run({}, [name = sprite->Name()] { SpriteSet::Modify(name)->Unload(); });
+		UnloadSprite(queue, sprite);
 	loadedThumbnails.clear();
 }
 
@@ -450,7 +457,7 @@ void GameData::LoadScene(TaskQueue &queue, const Sprite *sprite)
 void GameData::UnloadScenes(TaskQueue &queue)
 {
 	for(const Sprite *sprite : loadedScenes)
-		queue.Run({}, [name = sprite->Name()] { SpriteSet::Modify(name)->Unload(); });
+		UnloadSprite(queue, sprite);
 	loadedScenes.clear();
 }
 
