@@ -82,13 +82,14 @@ const string &Sprite::Name() const
 // Add the given frames, optionally uploading them. The given buffers will be cleared afterwards.
 void Sprite::AddFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noReduction)
 {
-	// Do nothing if the buffer is empty.
-	if(!buffer1x.Pixels())
-		return;
 	// The 1x image determines the dimensions of the sprite's size.
 	width = buffer1x.Width();
 	height = buffer1x.Height();
 	frames = buffer1x.Frames();
+	// Do nothing else if the buffer is empty.
+	// (The buffer can be empty yet still have a width and height if uploading is disabled.)
+	if(!buffer1x.Pixels())
+		return;
 
 	if(buffer2x.Pixels())
 	{
