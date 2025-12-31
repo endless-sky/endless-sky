@@ -94,7 +94,9 @@ namespace {
 
 	vector<filesystem::path> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
-	map<const Sprite *, int> preloaded;
+	map<const Sprite *, int> preloadedLandscapes;
+	set<const Sprite *> loadedThumbnails;
+	set<const Sprite *> loadedScenes;
 
 	MaskManager maskManager;
 
@@ -209,21 +211,21 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 			map<string, shared_ptr<ImageSet>> images = FindImages();
 
 			// From the name, strip out any frame number, plus the extension.
-			for(auto &it : images)
+			for(auto &[name, imageSet] : images)
 			{
 				// This should never happen, but just in case:
-				if(!it.second)
+				if(!imageSet)
 					continue;
 
 				// Reduce the set of images to those that are valid.
-				it.second->ValidateFrames();
-				// For landscapes, remember all the source files but don't load them yet.
-				if(ImageSet::IsDeferred(it.first))
-					deferred[SpriteSet::Get(it.first)] = std::move(it.second);
+				imageSet->ValidateFrames();
+				// For deferred images, remember all the source files but don't load them yet.
+				if(ImageSet::IsDeferred(name))
+					deferred[SpriteSet::Get(name)] = std::move(imageSet);
 				else
 				{
 					lock_guard lock(imageQueueMutex);
-					imageQueue.push(std::move(std::move(it.second)));
+					imageQueue.push(std::move(std::move(imageSet)));
 					++totalSprites;
 				}
 			}
@@ -361,7 +363,7 @@ bool GameData::IsLoaded()
 
 // Begin loading a sprite that was previously deferred. Currently this is
 // done with all landscapes to speed up the program's startup.
-void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
+void GameData::PreloadLandscape(TaskQueue &queue, const Sprite *sprite)
 {
 	// Make sure this sprite actually is one that uses deferred loading.
 	auto dit = deferred.find(sprite);
@@ -371,10 +373,10 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 	// If this sprite is one of the currently loaded ones, there is no need to
 	// load it again. But, make note of the fact that it is the most recently
 	// asked-for sprite.
-	map<const Sprite *, int>::iterator pit = preloaded.find(sprite);
-	if(pit != preloaded.end())
+	map<const Sprite *, int>::iterator pit = preloadedLandscapes.find(sprite);
+	if(pit != preloadedLandscapes.end())
 	{
-		for(pair<const Sprite * const, int> &it : preloaded)
+		for(pair<const Sprite * const, int> &it : preloadedLandscapes)
 			if(it.second < pit->second)
 				++it.second;
 
@@ -385,23 +387,71 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 	// This sprite is not currently preloaded. Check to see whether we already
 	// have the maximum number of sprites loaded, in which case the oldest one
 	// must be unloaded to make room for this one.
-	pit = preloaded.begin();
-	while(pit != preloaded.end())
+	pit = preloadedLandscapes.begin();
+	while(pit != preloadedLandscapes.end())
 	{
 		++pit->second;
 		if(pit->second >= 20)
 		{
 			// Unloading needs to be queued on the main thread.
 			queue.Run({}, [name = pit->first->Name()] { SpriteSet::Modify(name)->Unload(); });
-			pit = preloaded.erase(pit);
+			pit = preloadedLandscapes.erase(pit);
 		}
 		else
 			++pit;
 	}
 
 	// Now, load all the files for this sprite.
-	preloaded[sprite] = 0;
+	preloadedLandscapes[sprite] = 0;
 	LoadSprite(queue, dit->second);
+}
+
+
+
+void GameData::LoadThumbnail(TaskQueue &queue, const Sprite *sprite)
+{
+	// Make sure this sprite actually is one that uses deferred loading.
+	auto dit = deferred.find(sprite);
+	if(!sprite || dit == deferred.end())
+		return;
+
+	if(!loadedThumbnails.insert(sprite).second)
+		return;
+
+	LoadSprite(queue, dit->second);
+}
+
+
+
+void GameData::UnloadThumbnails(TaskQueue &queue)
+{
+	for(const Sprite *sprite : loadedThumbnails)
+		queue.Run({}, [name = sprite->Name()] { SpriteSet::Modify(name)->Unload(); });
+	loadedThumbnails.clear();
+}
+
+
+
+void GameData::LoadScene(TaskQueue &queue, const Sprite *sprite)
+{
+	// Make sure this sprite actually is one that uses deferred loading.
+	auto dit = deferred.find(sprite);
+	if(!sprite || dit == deferred.end())
+		return;
+
+	if(!loadedScenes.insert(sprite).second)
+		return;
+
+	LoadSprite(queue, dit->second);
+}
+
+
+
+void GameData::UnloadScenes(TaskQueue &queue)
+{
+	for(const Sprite *sprite : loadedScenes)
+		queue.Run({}, [name = sprite->Name()] { SpriteSet::Modify(name)->Unload(); });
+	loadedScenes.clear();
 }
 
 

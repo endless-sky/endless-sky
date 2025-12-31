@@ -260,7 +260,7 @@ Engine::Engine(PlayerInfo &player)
 	// Preload any landscapes for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
-			GameData::Preload(queue, object.GetPlanet()->Landscape());
+			GameData::PreloadLandscape(queue, object.GetPlanet()->Landscape());
 	queue.Wait();
 
 	// Figure out what planet the player is landed on, if any.
@@ -1451,7 +1451,7 @@ void Engine::EnterSystem()
 	for(const StellarObject &object : system->Objects())
 		if(object.HasValidPlanet())
 		{
-			GameData::Preload(queue, object.GetPlanet()->Landscape());
+			GameData::PreloadLandscape(queue, object.GetPlanet()->Landscape());
 			if(object.GetPlanet()->IsWormhole() && !usedWormhole
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;

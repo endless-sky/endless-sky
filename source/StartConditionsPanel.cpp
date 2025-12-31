@@ -88,6 +88,25 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 
 
 
+StartConditionsPanel::~StartConditionsPanel()
+{
+	GameData::UnloadScenes(GetUI()->Queue());
+}
+
+
+
+void StartConditionsPanel::Step()
+{
+	if(!hasLoadedScenes)
+	{
+		hasLoadedScenes = true;
+		for(const StartConditions &scenario : scenarios)
+			GameData::LoadScene(GetUI()->Queue(), scenario.GetThumbnail());
+	}
+}
+
+
+
 void StartConditionsPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);

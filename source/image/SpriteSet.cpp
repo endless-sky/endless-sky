@@ -15,11 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteSet.h"
 
+#include <algorithm>
+
 #include "../Logger.h"
 #include "Sprite.h"
 
 #include <map>
 #include <mutex>
+
+#include "ImageSet.h"
 
 using namespace std;
 
@@ -40,13 +44,15 @@ const Sprite *SpriteSet::Get(const string &name)
 
 void SpriteSet::CheckReferences()
 {
-	for(const auto &pair : sprites)
+	for(const auto &[name, sprite] : sprites)
 	{
-		const Sprite &sprite = pair.second;
 		if(sprite.Height() == 0 && sprite.Width() == 0)
-			// Landscapes are allowed to still be empty.
-			if(!pair.first.starts_with("land/"))
-				Logger::Log("Image \"" + pair.first + "\" is referred to, but has no pixels.", Logger::Level::WARNING);
+		{
+			// Deferred images are allowed to still be empty.
+			if(ranges::none_of(ImageSet::DEFERRED_FOLDERS, [&name](const string &start) -> bool
+					{ return name.starts_with(start + "/"); }))
+				Logger::Log("Image \"" + name + "\" is referred to, but has no pixels.", Logger::Level::WARNING);
+		}
 	}
 }
 

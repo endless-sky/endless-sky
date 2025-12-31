@@ -56,6 +56,15 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 
 
 
+void MapShipyardPanel::LoadCatalogThumbnails() const
+{
+	for(const auto &category : catalog)
+		for(const string &entry : category.second)
+			GameData::LoadThumbnail(GetUI()->Queue(), GameData::Ships().Get(entry)->Thumbnail());
+}
+
+
+
 const Sprite *MapShipyardPanel::SelectedSprite() const
 {
 	return selected ? selected->Thumbnail() ? selected->Thumbnail() : selected->GetSprite() : nullptr;

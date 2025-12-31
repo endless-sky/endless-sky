@@ -107,6 +107,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 ConversationPanel::~ConversationPanel()
 {
 	Audio::Resume();
+	GameData::UnloadScenes(GetUI()->Queue());
 }
 
 
@@ -114,6 +115,18 @@ ConversationPanel::~ConversationPanel()
 void ConversationPanel::SetCallback(function<void(int)> fun)
 {
 	callback = std::move(fun);
+}
+
+
+
+void ConversationPanel::Step()
+{
+	if(!hasLoadedScenes)
+	{
+		hasLoadedScenes = true;
+		for(const Sprite *scene : conversation.Scenes())
+			GameData::LoadScene(GetUI()->Queue(), scene);
+	}
 }
 
 

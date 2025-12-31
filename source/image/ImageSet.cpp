@@ -77,6 +77,8 @@ namespace {
 	}
 }
 
+const set<string> ImageSet::DEFERRED_FOLDERS{"land", "thumbnail", "outfit", "scene"};
+
 
 
 // Check if the given path is to an image of a valid file type.
@@ -94,7 +96,8 @@ bool ImageSet::IsDeferred(const filesystem::path &path)
 {
 	if(path.empty())
 		return false;
-	return *path.begin() == "land";
+	filesystem::path pathStart = *path.begin();
+	return DEFERRED_FOLDERS.contains(pathStart.string());
 }
 
 

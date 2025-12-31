@@ -38,6 +38,8 @@ public:
 
 
 protected:
+	virtual void LoadCatalogThumbnails() const override;
+
 	virtual const Sprite *SelectedSprite() const override;
 	virtual const Sprite *CompareSprite() const override;
 	virtual const Swizzle *SelectedSpriteSwizzle() const override;

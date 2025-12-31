@@ -47,32 +47,34 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TradingPanel.h"
 #include "UI.h"
 
+#include <memory>
 #include <sstream>
+#include <utility>
 
 using namespace std;
 
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(callback),
+	: player(player), callback(std::move(callback)),
 	planet(*player.GetPlanet()), system(*player.GetSystem())
 {
-	trading.reset(new TradingPanel(player));
-	bank.reset(new BankPanel(player));
-	spaceport.reset(new SpaceportPanel(player));
-	hiring.reset(new HiringPanel(player));
+	trading = std::make_shared<TradingPanel>(player);
+	bank = std::make_shared<BankPanel>(player);
+	spaceport = std::make_shared<SpaceportPanel>(player);
+	hiring = std::make_shared<HiringPanel>(player);
 
 	description = make_shared<TextArea>();
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
-	Resize();
+	PlanetPanel::Resize();
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	TaskQueue queue;
-	GameData::Preload(queue, planet.Landscape());
+	GameData::PreloadLandscape(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
@@ -84,6 +86,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 PlanetPanel::~PlanetPanel()
 {
 	Audio::UnblockPausing();
+	GameData::UnloadThumbnails(GetUI()->Queue());
 }
 
 
@@ -128,6 +131,31 @@ void PlanetPanel::Step()
 		{
 			hasOutfitter = true;
 			outfitterStock.Add(shop->Stock());
+		}
+		TaskQueue &queue = GetUI()->Queue();
+		// Load the thumbnails for any ships and outfits sold in the shop.
+		for(const Ship *ship : shipyardStock)
+			GameData::LoadThumbnail(queue, ship->Thumbnail());
+		for(const Outfit *outfit : outfitterStock)
+			GameData::LoadThumbnail(queue, outfit->Thumbnail());
+		// Also load the thumbnails of anything in storage on this planet or from the player's fleet.
+		for(const auto &ship : player.Ships())
+		{
+			if(!ship || ship->GetPlanet() != &planet)
+				continue;
+			GameData::LoadThumbnail(queue, ship->Thumbnail());
+			for(const auto &outfit : ship->Outfits())
+				GameData::LoadThumbnail(queue, outfit.first->Thumbnail());
+		}
+		for(const auto &outfit : player.Storage().Outfits())
+			GameData::LoadThumbnail(queue, outfit.first->Thumbnail());
+		for(const auto &outfit : player.Cargo().Outfits())
+			GameData::LoadThumbnail(queue, outfit.first->Thumbnail());
+		for(const auto &license : player.Licenses())
+		{
+			const Outfit *outfit = GameData::Outfits().Find(license + " License");
+			if(outfit)
+				GameData::LoadThumbnail(queue, outfit->Thumbnail());
 		}
 	}
 

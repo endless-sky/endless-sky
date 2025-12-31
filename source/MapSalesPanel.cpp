@@ -75,6 +75,17 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 
 
 
+void MapSalesPanel::Step()
+{
+	if(!hasLoadedThumbnails)
+	{
+		hasLoadedThumbnails = true;
+		LoadCatalogThumbnails();
+	}
+}
+
+
+
 void MapSalesPanel::Draw()
 {
 	MapPanel::Draw();

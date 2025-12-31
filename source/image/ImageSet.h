@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <filesystem>
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -33,6 +34,10 @@ class Sprite;
 // loaded for a given sprite, including 1x and 2x resolution variants. It also
 // stores masks for any sprite for which they should be calculated.
 class ImageSet {
+public:
+	static const std::set<std::string> DEFERRED_FOLDERS;
+
+
 public:
 	// Check if the given path is to an image of a valid file type.
 	static bool IsImage(const std::filesystem::path &path);

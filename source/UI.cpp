@@ -99,6 +99,10 @@ void UI::StepAll()
 	// Step all the panels.
 	for(shared_ptr<Panel> &panel : stack)
 		panel->Step();
+
+	// Process any tasks queued up by the panels.
+	queue.Wait();
+	queue.ProcessSyncTasks();
 }
 
 
@@ -119,6 +123,13 @@ void UI::DrawAll()
 
 	for( ; it != stack.end(); ++it)
 		(*it)->DoDraw();
+}
+
+
+
+TaskQueue &UI::Queue()
+{
+	return queue;
 }
 
 

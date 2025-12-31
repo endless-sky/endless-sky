@@ -57,6 +57,15 @@ MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 
 
 
+void MapOutfitterPanel::LoadCatalogThumbnails() const
+{
+	for(const auto &category : catalog)
+		for(const string &entry : category.second)
+			GameData::LoadThumbnail(GetUI()->Queue(), GameData::Outfits().Get(entry)->Thumbnail());
+}
+
+
+
 const Sprite *MapOutfitterPanel::SelectedSprite() const
 {
 	return selected ? selected->Thumbnail() : nullptr;

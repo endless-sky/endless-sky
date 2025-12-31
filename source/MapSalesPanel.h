@@ -38,10 +38,13 @@ public:
 	MapSalesPanel(PlayerInfo &player, bool isOutfitters);
 	MapSalesPanel(const MapPanel &panel, bool isOutfitters);
 
+	virtual void Step() override;
 	virtual void Draw() override;
 
 
 protected:
+	virtual void LoadCatalogThumbnails() const = 0;
+
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Hover(int x, int y) override;
@@ -92,6 +95,8 @@ protected:
 	const CategoryList &categories;
 	bool onlyShowSoldHere = false;
 	bool onlyShowStorageHere = false;
+	// Whether this panel has preloaded the thumbnails from the catalog yet.
+	bool hasLoadedThumbnails = false;
 
 
 private:

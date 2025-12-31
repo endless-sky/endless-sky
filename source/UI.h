@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Point.h"
+#include "TaskQueue.h"
 
 #include <memory>
 #include <vector>
@@ -52,6 +53,8 @@ public:
 	void StepAll();
 	// Draw all the panels.
 	void DrawAll();
+
+	TaskQueue &Queue();
 
 	// Get the current panel stack.
 	const std::vector<std::shared_ptr<Panel>> &Stack() const;
@@ -110,4 +113,7 @@ private:
 	std::vector<std::shared_ptr<Panel>> stack;
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
+
+	// A shared task queue that all panels can use.
+	TaskQueue queue;
 };

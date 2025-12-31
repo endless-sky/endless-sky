@@ -37,7 +37,9 @@ class StartConditionsPanel : public Panel {
 	using StartConditionsList = std::vector<StartConditions>;
 public:
 	StartConditionsPanel(PlayerInfo &player, UI &gamePanels, const StartConditionsList &allScenarios, const Panel *parent);
+	~StartConditionsPanel() override;
 
+	virtual void Step() override final;
 	virtual void Draw() override final;
 
 
@@ -65,6 +67,8 @@ private:
 	StartConditionsList scenarios;
 	// The currently selected starting scenario.
 	StartConditionsList::iterator startIt;
+	// Whether the scenes from each start scenario have been loaded yet.
+	bool hasLoadedScenes = false;
 	// Colors with which to draw text.
 	const Color &bright;
 	const Color &medium;

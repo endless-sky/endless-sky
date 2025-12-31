@@ -67,6 +67,19 @@ LogbookPanel::LogbookPanel(PlayerInfo &player)
 
 
 
+void LogbookPanel::Step()
+{
+	if(!hasLoadedScenes)
+	{
+		hasLoadedScenes = true;
+		for(const auto &entry : player.Logbook())
+			for(const Sprite *scene : entry.second.GetScenes())
+				GameData::LoadScene(GetUI()->Queue(), scene);
+	}
+}
+
+
+
 // Draw this panel.
 void LogbookPanel::Draw()
 {
