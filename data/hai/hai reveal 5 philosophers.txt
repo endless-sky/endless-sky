@@ -1052,6 +1052,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		event "elenchus can be dominated"
 	on fail
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
+		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 	on decline
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
 	on visit
@@ -1070,8 +1071,6 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 				launch
 	on complete
 		event "liberated elenchus"
-	on fail
-		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 
 	# IMPORTANT: For story reasons, all non-Unfettered ships must have "save" to ensure
 	# the Unfettered get their jump drives back.
