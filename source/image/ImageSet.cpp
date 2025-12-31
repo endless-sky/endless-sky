@@ -244,7 +244,6 @@ void ImageSet::Load() noexcept(false)
 	FillSwizzleMasks(paths[2], paths[0].size());
 	FillSwizzleMasks(paths[3], paths[0].size());
 
-
 	auto LoadSprites = [&](const vector<filesystem::path> &toLoad, ImageBuffer &buffer, const string &specifier)
 	{
 		for(size_t i = 0; i < frames && i < toLoad.size(); ++i)
@@ -282,10 +281,8 @@ void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 			it.Clear();
 
 	// Load the frames (this will clear the buffers).
-	sprite->AddFrames(buffer[0], false, noReduction);
-	sprite->AddFrames(buffer[1], true, noReduction);
-	sprite->AddSwizzleMaskFrames(buffer[2], false, noReduction);
-	sprite->AddSwizzleMaskFrames(buffer[3], true, noReduction);
+	sprite->AddFrames(buffer[0], buffer[1], noReduction);
+	sprite->AddSwizzleMaskFrames(buffer[2], buffer[3], noReduction);
 
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();

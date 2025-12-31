@@ -119,7 +119,7 @@ void BatchShader::Add(const Sprite *sprite, bool isHighDPI, const vector<float> 
 		return;
 
 	// First, bind the proper texture.
-	glBindTexture(OpenGL::HasTexture2DArraySupport() ? GL_TEXTURE_2D_ARRAY : GL_TEXTURE_3D, sprite->Texture(isHighDPI));
+	glBindTexture(OpenGL::HasTexture2DArraySupport() ? GL_TEXTURE_2D_ARRAY : GL_TEXTURE_3D, sprite->Texture());
 	// The shader also needs to know how many frames the texture has.
 	glUniform1f(frameCountI, sprite->Frames());
 

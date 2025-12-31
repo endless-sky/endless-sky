@@ -134,8 +134,8 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, const
 {
 	SpriteShader::Item item;
 
-	item.texture = body.GetSprite()->Texture(isHighDPI);
-	item.swizzleMask = body.GetSprite()->SwizzleMask(isHighDPI);
+	item.texture = body.GetSprite()->Texture();
+	item.swizzleMask = body.GetSprite()->SwizzleMask();
 	item.frame = body.GetFrame(step);
 	item.frameCount = body.GetSprite()->Frames();
 
