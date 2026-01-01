@@ -642,15 +642,20 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 		// Date nodes do not represent a change.
 		if(key == "date")
 			continue;
-		changedPlanets |= (key == "planet" || key == "wormhole");
-		changedSystems |= (key == "system" || key == "link" || key == "unlink");
 		if(key == "event")
+		{
 			for(const DataNode &child : change)
 			{
 				const string &childKey = child.Token(0);
 				changedPlanets |= (childKey == "planet" || childKey == "wormhole");
 				changedSystems |= (childKey == "system" || childKey == "link" || childKey == "unlink");
 			}
+		}
+		else
+		{
+			changedPlanets |= (key == "planet" || key == "wormhole");
+			changedSystems |= (key == "system" || key == "link" || key == "unlink");
+		}
 		GameData::Change(change, *this);
 	}
 	if(changedPlanets)
