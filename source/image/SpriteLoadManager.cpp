@@ -96,7 +96,7 @@ namespace {
 		Sprite *sprite = SpriteSet::Modify(image->Name());
 		if(deferred.contains(sprite))
 		{
-			queue.Run([image, sprite] { image->MinimalLoad(sprite); },
+			queue.Run([image, sprite] { image->LoadDimensions(sprite); },
 				[&queue]
 				{
 					++spritesLoaded;

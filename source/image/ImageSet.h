@@ -56,8 +56,10 @@ public:
 	// Load all the frames. This should be called in one of the image-loading
 	// worker threads. This also generates collision masks if needed.
 	void Load() noexcept(false);
-	// Minimally load a sprite. This involves only loading the first frame of the sprite to record its dimensions.
-	void MinimalLoad(Sprite *sprite) noexcept(false);
+	// Load only the dimensions of the sprite. This loads the first frame of the 1x resolution sprite and
+	// records the dimensions. Load() + Upload() also records the dimensions, so this should only be used
+	// on sprites with deferred loading.
+	void LoadDimensions(Sprite *sprite) noexcept(false);
 	// Create the sprite and optionally upload the image data to the GPU. After this is
 	// called, the internal image buffers and mask vector will be cleared, but
 	// the paths are saved in case the sprite needs to be loaded again.

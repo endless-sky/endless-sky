@@ -79,7 +79,7 @@ const string &Sprite::Name() const
 
 
 
-void Sprite::MinimalLoad(const ImageBuffer &buffer)
+void Sprite::LoadDimensions(const ImageBuffer &buffer)
 {
 	width = buffer.Width();
 	height = buffer.Height();
