@@ -43,7 +43,8 @@ namespace {
 
 MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited,
 		const MapDetailPanel *parent)
-	: parent(parent), number(number), hasVisited(hasVisited), planetName(object.DisplayName())
+	: parent(parent), number(number), hasVisited(hasVisited), loadingCircle(30.f, 30, 2.),
+		planetName(object.DisplayName())
 {
 	planet = object.GetPlanet();
 	hasSpaceport = planet->HasServices();
@@ -133,6 +134,7 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 
 bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 {
+	loadingCircle.Step();
 	// Need to update this before checking if the element fits.
 	yCoordinate = uiPoint.Y();
 	isShown = IsShown();
@@ -164,10 +166,10 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 
 		// Wait until the sprite is loaded fully before attempting to draw it.
+		Point iconPos = Point(Screen::Left() + iconMaxSize / 2., uiPoint.Y() + height / 2.);
 		if(sprite->IsLoaded())
 		{
-			auto spriteItem = SpriteShader::Prepare(sprite, Point(Screen::Left() + iconMaxSize / 2.,
-				uiPoint.Y() + height / 2.), spriteScale);
+			auto spriteItem = SpriteShader::Prepare(sprite, iconPos, spriteScale);
 
 			float clip = 1.f;
 			// Lowest point of the planet sprite.
@@ -187,6 +189,8 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 			SpriteShader::Add(spriteItem);
 			SpriteShader::Unbind();
 		}
+		else
+			loadingCircle.Draw(iconPos);
 
 		// Check if drawing a category would not go out of the panel.
 		const auto FitsCategory = [availableBottomSpace, categorySize, height]

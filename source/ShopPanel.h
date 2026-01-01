@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "ClickZone.h"
+#include "shader/LoadingCircle.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
@@ -234,4 +235,5 @@ private:
 	const Color &back;
 
 	bool checkedHelp = false;
+	LoadingCircle loadingCircle;
 };

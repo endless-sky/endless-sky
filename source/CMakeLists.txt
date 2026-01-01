@@ -409,6 +409,8 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/FogShader.h
 	shader/LineShader.cpp
 	shader/LineShader.h
+	shader/LoadingCircle.cpp
+	shader/LoadingCircle.h
 	shader/OutlineShader.cpp
 	shader/OutlineShader.h
 	shader/PointerShader.cpp
