@@ -281,7 +281,13 @@ void ImageSet::MinimalLoad(Sprite *sprite) noexcept(false)
 	// Load only the first frame of the 1x resolution image in order to determine the dimensions of the sprite.
 	size_t frames = paths[0].size();
 	buffer[0].Clear(frames);
-	buffer[0].Read(paths[0][0], 0);
+	int loadedFrames = buffer[0].Read(paths[0][0], 0);
+	const string fileName = "\"" + name + "\" frame #0";
+	if(!loadedFrames)
+	{
+		Logger::Log("Failed to read image data for \"" + fileName, Logger::Level::WARNING);
+		return;
+	}
 	sprite->MinimalLoad(buffer[0]);
 	// Clear the buffer since no image data was actually uploaded.
 	buffer[0].Clear();
