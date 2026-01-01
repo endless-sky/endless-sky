@@ -82,6 +82,7 @@ const string &Sprite::Name() const
 // Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
 void Sprite::AddFrames(ImageBuffer &buffer, bool is2x, bool noReduction)
 {
+	isLoaded = true;
 	// If this is the 1x image, its dimensions determine the sprite's size.
 	if(!is2x)
 	{
@@ -111,8 +112,7 @@ void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x, bool noReducti
 
 bool Sprite::IsLoaded() const
 {
-	// We know this sprite has been loaded if it has at least one frame.
-	return frames;
+	return isLoaded;
 }
 
 
@@ -131,6 +131,7 @@ void Sprite::Unload()
 		glDeleteTextures(2, swizzleMask);
 		swizzleMask[0] = swizzleMask[1] = 0;
 	}
+	isLoaded = false;
 
 	width = 0.f;
 	height = 0.f;

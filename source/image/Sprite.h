@@ -66,6 +66,7 @@ private:
 
 	uint32_t texture[2] = {0, 0};
 	uint32_t swizzleMask[2] = {0, 0};
+	bool isLoaded = false;
 
 	float width = 0.f;
 	float height = 0.f;
