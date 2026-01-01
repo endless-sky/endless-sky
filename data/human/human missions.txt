@@ -835,7 +835,6 @@ mission "Transport Workers B"
 					goto "towns syndicate"
 				`	"Do you really think she's going to wait around for you?"`
 					goto wait
-			label towns
 			`	"Me too," he says, "but it's a lifetime of steady work, and you know how hard that is to come by in this part of the galaxy. Can you help me out?"`
 				goto choice
 			label "towns syndicate"
@@ -2914,7 +2913,7 @@ mission "Paradise Fortune 2"
 			choice
 				`	"Yes, I fought against the Republic, and I almost died several times because of that. I don't want to put you in danger."`
 					goto danger
-				`	"That's because I was fighting a war of independence. What you're doing is a random, poorly-planned robbery."`
+				`	"That's because I was fighting a war of independence. What you're doing is a random, poorly planned robbery."`
 					goto robbery
 				`	"I was only ever in the Free Worlds for the fame and glory. I'm not about to have that ruined by helping some wannabe Robin Hood."`
 			
