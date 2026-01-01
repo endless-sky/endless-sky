@@ -86,7 +86,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 PlanetPanel::~PlanetPanel()
 {
 	Audio::UnblockPausing();
-	GameData::UnloadThumbnails(GetUI()->Queue());
+	GameData::UnloadThumbnails(GetUI()->AsyncQueue());
 }
 
 
@@ -132,7 +132,7 @@ void PlanetPanel::Step()
 			hasOutfitter = true;
 			outfitterStock.Add(shop->Stock());
 		}
-		TaskQueue &queue = GetUI()->Queue();
+		TaskQueue &queue = GetUI()->AsyncQueue();
 		// Load the thumbnails for any ships and outfits sold in the shop.
 		for(const Ship *ship : shipyardStock)
 			GameData::LoadThumbnail(queue, ship->Thumbnail());

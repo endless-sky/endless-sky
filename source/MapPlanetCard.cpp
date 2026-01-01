@@ -159,30 +159,34 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		// The top part goes out of the screen so we can draw there. The bottom would go out of this panel.
 		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 
-		// Scale the sprite to fix the planet card. This is done now instead of in the constructor, since the sprite's
-		// width and height might not have been loaded yet.
-		if(!spriteScale.has_value())
-			spriteScale = min<float>(.5f, min(iconMaxSize / sprite->Width(), iconMaxSize / sprite->Height()));
-		auto spriteItem = SpriteShader::Prepare(sprite, Point(Screen::Left() + iconMaxSize / 2.,
-			uiPoint.Y() + height / 2.), *spriteScale);
+		// Wait until the sprite is loaded fully before drawing it.
+		if(sprite->IsLoaded())
+		{
+			// Scale the sprite to fix the planet card. This is done now instead of in the constructor,
+			// since the sprite's width and height might not have been loaded yet.
+			if(!spriteScale.has_value())
+				spriteScale = min<float>(.5f, min(iconMaxSize / sprite->Width(), iconMaxSize / sprite->Height()));
+			auto spriteItem = SpriteShader::Prepare(sprite, Point(Screen::Left() + iconMaxSize / 2.,
+				uiPoint.Y() + height / 2.), *spriteScale);
 
-		float clip = 1.f;
-		// Lowest point of the planet sprite.
-		double planetBottomY = height / 2. + *spriteScale * sprite->Height() / 2.;
-		// Calculate the correct clip on the bottom of the sprite if necessary.
-		// It is done by looking at how much space is available,
-		// and the difference between that and the lowest point of the sprite.
-		// Of course, the clipping needs to be done relative to the size of the sprite.
-		if(availableBottomSpace <= planetBottomY)
-			clip = 1.f + (availableBottomSpace - planetBottomY) / (*spriteScale * sprite->Height());
+			float clip = 1.f;
+			// Lowest point of the planet sprite.
+			double planetBottomY = height / 2. + *spriteScale * sprite->Height() / 2.;
+			// Calculate the correct clip on the bottom of the sprite if necessary.
+			// It is done by looking at how much space is available,
+			// and the difference between that and the lowest point of the sprite.
+			// Of course, the clipping needs to be done relative to the size of the sprite.
+			if(availableBottomSpace <= planetBottomY)
+				clip = 1.f + (availableBottomSpace - planetBottomY) / (*spriteScale * sprite->Height());
 
-		spriteItem.clip = clip;
-		spriteItem.position[1] -= (sprite->Height() * ((1.f - clip) * .5f)) * *spriteScale;
-		spriteItem.transform[3] *= clip;
+			spriteItem.clip = clip;
+			spriteItem.position[1] -= (sprite->Height() * ((1.f - clip) * .5f)) * *spriteScale;
+			spriteItem.transform[3] *= clip;
 
-		SpriteShader::Bind();
-		SpriteShader::Add(spriteItem);
-		SpriteShader::Unbind();
+			SpriteShader::Bind();
+			SpriteShader::Add(spriteItem);
+			SpriteShader::Unbind();
+		}
 
 		// Check if drawing a category would not go out of the panel.
 		const auto FitsCategory = [availableBottomSpace, categorySize, height]

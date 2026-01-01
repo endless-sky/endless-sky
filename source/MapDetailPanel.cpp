@@ -538,7 +538,15 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 	unsigned number = 0;
 	MapPlanetCard::ResetSize();
 	for(const StellarObject &object : system.Objects())
-		if(object.HasSprite() && object.HasValidPlanet())
+	{
+		if(!object.HasSprite())
+			continue;
+		// Load the sprite for this object, but don't cull old sprites, as otherwise we might end
+		// up culling a sprite that's being used by the system that the player is currently in after
+		// they leave the map. This needs done for all sprites in the system, as they are used for
+		// both the planet cards and for drawing orbits.
+		GameData::LoadStellarObject(GetUI()->AsyncQueue(), object.GetSprite(), true);
+		if(object.HasValidPlanet())
 		{
 			// The same "planet" may appear multiple times in one system,
 			// providing multiple landing and departure points (e.g. ringworlds).
@@ -546,14 +554,11 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 			if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.contains(planet))
 				continue;
 
-			// Load the planet sprite for this card, but don't cull old sprites, as otherwise we might end
-			// up culling a sprite that's being used by the system that the player is currently in after
-			// they leave the map.
-			GameData::LoadStellarObject(GetUI()->Queue(), object.GetSprite(), true);
 			planetCards.emplace_back(object, number, player.HasVisited(*planet), this);
 			shown.insert(planet);
 			++number;
 		}
+	}
 	shownSystem = &system;
 }
 

@@ -484,7 +484,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		// This is only done if the map was opened in flight, as otherwise this would unload
 		// images currently in use by the shipyard and outfitter.
 		if(!player.GetPlanet())
-			GameData::UnloadThumbnails(GetUI()->Queue());
+			GameData::UnloadThumbnails(GetUI()->AsyncQueue());
 	}
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{

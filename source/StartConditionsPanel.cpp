@@ -90,7 +90,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 
 StartConditionsPanel::~StartConditionsPanel()
 {
-	GameData::UnloadScenes(GetUI()->Queue());
+	GameData::UnloadScenes(GetUI()->AsyncQueue());
 }
 
 
@@ -101,7 +101,7 @@ void StartConditionsPanel::Step()
 	{
 		hasLoadedScenes = true;
 		for(const StartConditions &scenario : scenarios)
-			GameData::LoadScene(GetUI()->Queue(), scenario.GetThumbnail());
+			GameData::LoadScene(GetUI()->AsyncQueue(), scenario.GetThumbnail());
 	}
 }
 

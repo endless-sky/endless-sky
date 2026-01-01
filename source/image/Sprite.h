@@ -37,6 +37,8 @@ public:
 	// Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
 	void AddFrames(ImageBuffer &buffer, bool is2x, bool noReduction);
 	void AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x, bool noReduction);
+	// Whether the textures for this sprite have been uploaded yet.
+	bool IsLoaded() const;
 	// Free up all textures loaded for this sprite.
 	void Unload();
 

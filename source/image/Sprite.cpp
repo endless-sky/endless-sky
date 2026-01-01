@@ -109,6 +109,14 @@ void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x, bool noReducti
 
 
 
+bool Sprite::IsLoaded() const
+{
+	// We know this sprite has been loaded if it has at least one frame.
+	return frames;
+}
+
+
+
 // Free up all textures loaded for this sprite.
 void Sprite::Unload()
 {

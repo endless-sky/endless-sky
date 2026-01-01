@@ -54,7 +54,8 @@ public:
 	// Draw all the panels.
 	void DrawAll();
 
-	TaskQueue &Queue();
+	TaskQueue &SyncQueue();
+	TaskQueue &AsyncQueue();
 
 	// Get the current panel stack.
 	const std::vector<std::shared_ptr<Panel>> &Stack() const;
@@ -115,5 +116,6 @@ private:
 	std::vector<const Panel *> toPop;
 
 	// A shared task queue that all panels can use.
-	TaskQueue queue;
+	TaskQueue syncQueue;
+	TaskQueue asyncQueue;
 };

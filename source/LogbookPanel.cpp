@@ -74,7 +74,7 @@ void LogbookPanel::Step()
 		hasLoadedScenes = true;
 		for(const auto &entry : player.Logbook())
 			for(const Sprite *scene : entry.second.GetScenes())
-				GameData::LoadScene(GetUI()->Queue(), scene);
+				GameData::LoadScene(GetUI()->AsyncQueue(), scene);
 	}
 }
 

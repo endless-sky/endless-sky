@@ -61,7 +61,7 @@ void MapOutfitterPanel::LoadCatalogThumbnails() const
 {
 	for(const auto &category : catalog)
 		for(const string &entry : category.second)
-			GameData::LoadThumbnail(GetUI()->Queue(), GameData::Outfits().Get(entry)->Thumbnail());
+			GameData::LoadThumbnail(GetUI()->AsyncQueue(), GameData::Outfits().Get(entry)->Thumbnail());
 }
 
 

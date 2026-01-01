@@ -100,11 +100,10 @@ void UI::StepAll()
 	for(shared_ptr<Panel> &panel : stack)
 		panel->Step();
 
-	// Process any sync tasks queued up by the panels.
-	// Don't wait for the async tasks to complete, as panel tasks typically involve loading sprites,
-	// and we don't want to hold up the panel from being interactable.
-	// If a panel needs to wait for its tasks to be completed, it should use its own task queue.
-	queue.ProcessSyncTasks();
+	// Process any tasks queued up by the panels.
+	syncQueue.Wait();
+	syncQueue.ProcessSyncTasks();
+	asyncQueue.ProcessSyncTasks();
 }
 
 
@@ -129,9 +128,16 @@ void UI::DrawAll()
 
 
 
-TaskQueue &UI::Queue()
+TaskQueue &UI::SyncQueue()
 {
-	return queue;
+	return syncQueue;
+}
+
+
+
+TaskQueue &UI::AsyncQueue()
+{
+	return asyncQueue;
 }
 
 
