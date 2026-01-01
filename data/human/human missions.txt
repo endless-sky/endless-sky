@@ -505,6 +505,7 @@ mission "Pookie, Part 5"
 				`	"I would never in a million years, ma'am."`
 					to display
 						has "start: paradise"
+					goto paradise
 				`	"What do you mean?"`
 					goto explain
 				`	"I'm sorry?"`
