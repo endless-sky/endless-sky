@@ -547,10 +547,8 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 			if(planet->IsWormhole() || !planet->IsAccessible(player.Flagship()) || shown.contains(planet))
 				continue;
 
-			// Load the sprite for this object, but don't cull old sprites, as otherwise we might end
-			// up culling a sprite that's being used by the system that the player is currently in after
-			// they leave the map.
-			SpriteLoadManager::LoadStellarObject(GetUI()->AsyncQueue(), object.GetSprite(), true);
+			// Make sure that the sprite for this planet is loaded.
+			SpriteLoadManager::LoadStellarObject(GetUI()->AsyncQueue(), object.GetSprite());
 			planetCards.emplace_back(object, number, player.HasVisited(*planet), this);
 			shown.insert(planet);
 			++number;

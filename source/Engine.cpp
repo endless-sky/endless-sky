@@ -258,15 +258,17 @@ Engine::Engine(PlayerInfo &player)
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
 
-	// Preload any landscapes for this system.
+	// Preload any landscapes and objects for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
 	{
 		if(!object.HasSprite())
 			continue;
-		SpriteLoadManager::LoadStellarObject(asyncQueue, object.GetSprite());
+		SpriteLoadManager::LoadStellarObject(queue, object.GetSprite());
 		if(object.HasValidPlanet())
-			SpriteLoadManager::PreloadLandscape(asyncQueue, object.GetPlanet()->Landscape());
+			SpriteLoadManager::PreloadLandscape(queue, object.GetPlanet()->Landscape());
 	}
+	queue.Wait();
+	queue.ProcessSyncTasks();
 
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
@@ -1466,6 +1468,8 @@ void Engine::EnterSystem()
 				usedWormhole = &object;
 		}
 	}
+	// Cull images that haven't been seen in a while.
+	SpriteLoadManager::CullOldImages(asyncQueue);
 
 	// Advance the positions of every StellarObject and update politics.
 	// Remove expired bribes, clearance, and grace periods from past fines.

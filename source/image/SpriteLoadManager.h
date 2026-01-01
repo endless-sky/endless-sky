@@ -44,12 +44,12 @@ public:
 	// Preload a landscape image. If 20 landscape images have already been preloaded
 	// previously, unload the least recently seen image.
 	static void PreloadLandscape(TaskQueue &queue, const Sprite *sprite);
-	// Load a stellar object. If 100 stellar object sprites have already been loaded previously,
-	// unload the least recently seen image, unless skipCulling is true.
-	static void LoadStellarObject(TaskQueue &queue, const Sprite *sprite, bool skipCulling = false);
-	// Load a ship or outfit thumbnail, or unload all previously loaded thumbnails.
+	// Load a stellar object.
+	static void LoadStellarObject(TaskQueue &queue, const Sprite *sprite);
+	// Load a ship or outfit thumbnail.
 	static void LoadThumbnail(TaskQueue &queue, const Sprite *sprite);
-	static void UnloadThumbnails(TaskQueue &queue);
+	// Cull old stellar objects and thumbnails that haven't been seen in a while.
+	static void CullOldImages(TaskQueue &queue);
 	// Load a starting scenario, conversation, or logbook scene, or unload all scenes.
 	static void LoadScene(TaskQueue &queue, const Sprite *sprite);
 	static void UnloadScenes(TaskQueue &queue);

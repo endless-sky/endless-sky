@@ -477,14 +477,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	};
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-	{
 		GetUI()->Pop(this);
-		// Unload any thumbnails that may have been loaded by the map sales panels.
-		// This is only done if the map was opened in flight, as otherwise this would unload
-		// images currently in use by the shipyard and outfitter.
-		if(!player.GetPlanet())
-			SpriteLoadManager::UnloadThumbnails(GetUI()->AsyncQueue());
-	}
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
 		GetUI()->Pop(this);

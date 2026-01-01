@@ -87,7 +87,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 PlanetPanel::~PlanetPanel()
 {
 	Audio::UnblockPausing();
-	SpriteLoadManager::UnloadThumbnails(GetUI()->AsyncQueue());
 }
 
 

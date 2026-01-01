@@ -42,15 +42,18 @@ namespace {
 
 	// The root folders (starting from the images folder) that use deferred loading.
 	set<string> deferredFolders;
+	// The sprites that use deferred loading.
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
-	map<const Sprite *, int> preloadedLandscapes;
-	map<const Sprite *, int> loadedStellarObjects;
-	set<const Sprite *> loadedThumbnails;
-	set<const Sprite *> loadedScenes;
-	// The maximum number of sprites of varying types that
-	// can be loaded at once before old sprites start being unloaded.
+	// Up to 20 landscape images will be preloaded at a time, with the oldest being culled to make room for new ones.
 	const int LANDSCAPE_LIMIT = 20;
-	const int STELLAR_OBJECT_LIMIT = 100;
+	map<const Sprite *, int> preloadedLandscapes;
+	// Stellar objects and thumbnails remain loaded for up to 100 in-game days before they're culled. This prevents
+	// us from repeatedly reloading sprites that the player is frequently encountering.
+	const int DAY_LIMIT = 100;
+	map<const Sprite *, int> loadedStellarObjects;
+	map<const Sprite *, int> loadedThumbnails;
+	// Scenes are culled the moment the panel that uses them is destroyed.
+	set<const Sprite *> loadedScenes;
 
 	// Determine whether the given path or name is for a sprite whose loading
 	// should be deferred until needed.
@@ -243,50 +246,16 @@ void SpriteLoadManager::PreloadLandscape(TaskQueue &queue, const Sprite *sprite)
 
 
 
-void SpriteLoadManager::LoadStellarObject(TaskQueue &queue, const Sprite *sprite, bool skipCulling)
+void SpriteLoadManager::LoadStellarObject(TaskQueue &queue, const Sprite *sprite)
 {
 	// Make sure this sprite actually is one that uses deferred loading.
 	auto dit = deferred.find(sprite);
 	if(!sprite || dit == deferred.end())
 		return;
 
-	// If this sprite is one of the currently loaded ones, there is no need to
-	// load it again. But, make note of the fact that it is the most recently
-	// asked-for sprite, unless culling is being skipped.
-	map<const Sprite *, int>::iterator pit = loadedStellarObjects.find(sprite);
-	if(pit != loadedStellarObjects.end())
-	{
-		if(skipCulling)
-			return;
-		for(pair<const Sprite * const, int> &it : loadedStellarObjects)
-			if(it.second < pit->second)
-				++it.second;
-
-		pit->second = 0;
-		return;
-	}
-
-	// This sprite is not currently loaded. Check to see whether we already
-	// have the maximum number of sprites loaded, in which case the oldest one
-	// must be unloaded to make room for this one.
-	pit = loadedStellarObjects.begin();
-	while(pit != loadedStellarObjects.end() && !skipCulling)
-	{
-		++pit->second;
-		if(pit->second >= STELLAR_OBJECT_LIMIT)
-		{
-			UnloadSprite(queue, pit->first);
-			pit = loadedStellarObjects.erase(pit);
-		}
-		else
-			++pit;
-	}
-
-	// Now, load all the files for this sprite. If this sprite is being loaded from a panel
-	// that skips culling, then set the sprite to be culled as soon as culling isn't being
-	// skipped anymore.
-	loadedStellarObjects[sprite] = skipCulling ? STELLAR_OBJECT_LIMIT : 0;
-	LoadSprite(queue, dit->second);
+	loadedStellarObjects[sprite] = 0;
+	if(!sprite->IsLoaded())
+		LoadSprite(queue, dit->second);
 }
 
 
@@ -298,19 +267,31 @@ void SpriteLoadManager::LoadThumbnail(TaskQueue &queue, const Sprite *sprite)
 	if(!sprite || dit == deferred.end())
 		return;
 
-	if(!loadedThumbnails.insert(sprite).second)
-		return;
-
-	LoadSprite(queue, dit->second);
+	loadedThumbnails[sprite] = 0;
+	if(!sprite->IsLoaded())
+		LoadSprite(queue, dit->second);
 }
 
 
 
-void SpriteLoadManager::UnloadThumbnails(TaskQueue &queue)
+void SpriteLoadManager::CullOldImages(TaskQueue &queue)
 {
-	for(const Sprite *sprite : loadedThumbnails)
-		UnloadSprite(queue, sprite);
-	loadedThumbnails.clear();
+	auto Cull = [&queue](map<const Sprite *, int> loadedSprites) -> void {
+		for(auto it = loadedSprites.begin() ; it != loadedSprites.end() ; )
+		{
+			++it->second;
+			if(it->second >= DAY_LIMIT)
+			{
+				UnloadSprite(queue, it->first);
+				it = loadedSprites.erase(it);
+			}
+			else
+				++it;
+		}
+	};
+
+	Cull(loadedStellarObjects);
+	Cull(loadedThumbnails);
 }
 
 
