@@ -132,6 +132,14 @@ void PlanetPanel::Step()
 			hasOutfitter = true;
 			outfitterStock.Add(shop->Stock());
 		}
+	}
+	// Load the thumbnails of all outfits and ships that the player could see while landed here
+	// if they haven't been loaded before or a mission action has just completed and we should
+	// re-check what's available in case the mission added something to the planet or player's
+	// inventory.
+	if(!hasLoadedThumbnails || player.ShouldReloadThumbnails())
+	{
+		hasLoadedThumbnails = true;
 		TaskQueue &queue = GetUI()->AsyncQueue();
 		// Load the thumbnails for any ships and outfits sold in the shop.
 		for(const Ship *ship : shipyardStock)

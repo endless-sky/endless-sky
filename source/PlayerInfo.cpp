@@ -947,6 +947,15 @@ bool PlayerInfo::ShouldLaunch() const
 
 
 
+bool PlayerInfo::ShouldReloadThumbnails()
+{
+	bool ret = shouldReloadThumbnails;
+	shouldReloadThumbnails = false;
+	return ret;
+}
+
+
+
 // Access the player's account information.
 const Account &PlayerInfo::Accounts() const
 {
@@ -2554,6 +2563,8 @@ void PlayerInfo::MissionCallback(int response)
 
 	// If landed, this conversation may require the player to immediately depart.
 	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
+	if(planet && !shouldLaunch)
+		shouldReloadThumbnails = true;
 	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();

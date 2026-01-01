@@ -144,6 +144,10 @@ public:
 	// Check whether a mission conversation has raised a flag that the player
 	// must leave the planet immediately (without time to do anything else).
 	bool ShouldLaunch() const;
+	// Check whether the PlanetPanel should check for new thumbnails to load
+	// for the shops as a result of a mission action. Calling this sets the
+	// value to false for the next call.
+	bool ShouldReloadThumbnails();
 
 	// Access the player's accounting information.
 	const Account &Accounts() const;
@@ -455,6 +459,10 @@ private:
 	bool shouldLaunch = false;
 	bool isDead = false;
 	bool displayCarrierHelp = false;
+	// If the player is landed and was offered or completed a mission, then the PlanetPanel should attempt to load all
+	// the thumbnails that the player could see again, as the mission may have updated the stock of the planet given
+	// the player a new outfit or ship whose thumbnail isn't yet loaded in.
+	bool shouldReloadThumbnails = false;
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;
