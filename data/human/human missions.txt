@@ -10394,7 +10394,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	Union-Colonel Wynnafrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinizes it.`
 			`	"Ya know, to us he's still the Governor. Don't believe what the company-bosses and their paid politicians tell you. He was a good man." She wipes her eyes for a moment. "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
 			`	Her free hand tightens into a ball. "The big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
-			`	"Sure, he made some mistakes. No one becomes governor here without getting a little dirt on their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
+			`	"Sure, he made some mistakes. No one becomes governor here without getting a little dirt on their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafrith looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
 			`	"And when he wouldn't budge they finally got him on trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuilding phase."`
 			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Governor then we're in.`
 			`	"We have a few left over explosives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
@@ -11117,7 +11117,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 				`	"Of course I did."`
 				`	"Yep, but you owe me big."`
 
-			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafirth's gun and bomb, and how highly she still thinks of him.`
+			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafrith's gun and bomb, and how highly she still thinks of him.`
 			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			branch unprepared
 				"timothy radrickson zpreparedness" < 6
