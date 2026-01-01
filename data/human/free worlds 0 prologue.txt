@@ -1811,7 +1811,7 @@ mission "FW Katya 4"
 			branch paradise
 				not "start: paradise"
 			
-			`	You talk to Eyes about your own upbringing on Mainsail, how you always dreamed of taking to the stars instead of your family's business, and how your father gave you a pilot's license for your eighteenth birthday.`
+			`	You talk to Eyes about your own upbringing on Mainsail, how you always dreamed of taking to the stars instead of your family's business, and how your father bought you a pilot's license for your eighteenth birthday.`
 			`	"It sounds like you've come a long way from the Paradise Worlds too," says Eyes. "If you don't mind me asking, what do you think your father would think about you helping the Free Worlds?"`
 			choice
 				`	"I'm sure he'd be happy with the path I've chosen."`

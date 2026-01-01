@@ -2848,7 +2848,7 @@ mission "Paradise Fortune 2"
 		conversation
 			`"You need to explain what is going on here," you say just after setting your ship down.`
 			`	"Alright, alright, I'll explain." You notice that the girl has a strange mix between a posh Paradise World accent and a Dirt Belt or possibly even Rim accent. "My name is Diana Howl. My father is the CEO of a large marketing firm. And this," Diana opens her backpack, revealing its full contents of thousands of credit chips, "this is part of my family fortune, about half a billion credits of it. Don't worry, my father should be able to make this back in a few months' time."`
-			`	You faintly recall the name 'Howl' as belonging to the owners of a large island on Mainsail.`
+			`	You faintly recall the name "Howl" as belonging to the owners of a large island on Mainsail.`
 				to display
 					has "start: paradise"
 			choice

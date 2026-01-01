@@ -960,15 +960,15 @@ mission "Remnant: Deep Surveillance"
 				not "Deep: Remnant 0: done"
 			has "Deep: Remnant Research: offered"
 	substitutions
-		<compared> "The complex looks pristine by <region> standards, but when compared"
-		<compared> "Compared"
+		"<compared>" "The complex looks pristine by <region> standards, but when compared"
+		"<compared>" "Compared"
 			or
 				has "start: deep"
 				has "start: paradise"
 				has "start: hai"
-		<region> "Dirt Belt"
+		"<region>" "Dirt Belt"
 			has "start: default"
-		<region> "Earth, and even Syndicate"
+		"<region>" "Earth, and even Syndicate"
 			has "start: syndicate"
 	on offer
 		conversation
