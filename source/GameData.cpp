@@ -157,13 +157,13 @@ namespace {
 		if(deferred.contains(sprite))
 		{
 			queue.Run([image, sprite] { image->MinimalLoad(sprite); },
-			   [&queue]
-			   {
+				[&queue]
+				{
 					++spritesLoaded;
 					// Start loading the next image in the queue, if any.
 					lock_guard lock(imageQueueMutex);
 					LoadSpriteQueued(queue);
-			   });
+				});
 		}
 		else
 		{

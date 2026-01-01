@@ -141,7 +141,9 @@ void PlanetPanel::Step()
 		// Also load the thumbnails of anything in storage on this planet or from the player's fleet.
 		for(const auto &ship : player.Ships())
 		{
-			if(!ship || ship->GetPlanet() != &planet)
+			// Ships in the same system but on a different planet can still appear in the shops,
+			// so only skip over ships in a different system.
+			if(!ship || !ship->GetPlanet() || ship->GetSystem() != &system)
 				continue;
 			GameData::LoadThumbnail(queue, ship->Thumbnail());
 			for(const auto &outfit : ship->Outfits())
