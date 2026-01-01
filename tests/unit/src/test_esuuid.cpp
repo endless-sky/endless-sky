@@ -19,9 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Include only the tested classes' headers.
 #include "../../../source/comparators/ByUUID.h"
-#include "../../../source/EsUuid.h"
+#include "../../../source/util/EsUuid.h"
 
-#include "../../../source/Random.h"
+#include "../../../source/util/Random.h"
 
 // ... and any system includes needed for the test file.
 #include <algorithm>

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AudioPlayer.h"
 
-#include "../../Random.h"
+#include "../../util/Random.h"
 
 #include <algorithm>
 #include <vector>

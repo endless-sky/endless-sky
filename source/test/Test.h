@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../Command.h"
-#include "../ConditionAssignments.h"
-#include "../ConditionSet.h"
+#include "../ai/Command.h"
+#include "../conditions/ConditionAssignments.h"
+#include "../conditions/ConditionSet.h"
 
 #include <SDL2/SDL.h>
 

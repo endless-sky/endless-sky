@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Font.h"
 #include "FontSet.h"
 #include "Format.h"
-#include "../Rectangle.h"
+#include "../util/Rectangle.h"
 
 #include <algorithm>
 

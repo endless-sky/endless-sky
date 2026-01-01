@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageSet.h"
 
 #include "../text/Format.h"
-#include "../GameData.h"
+#include "../files/GameData.h"
 #include "ImageBuffer.h"
-#include "../Logger.h"
+#include "../files/Logger.h"
 #include "Mask.h"
 #include "MaskManager.h"
 #include "Sprite.h"

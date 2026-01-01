@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 
-#include "../Files.h"
+#include "../files/Files.h"
 #include "ImageFileData.h"
-#include "../Logger.h"
+#include "../files/Logger.h"
 
 #include <avif/avif.h>
 #include <jpeglib.h>

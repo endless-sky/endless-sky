@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Format.h"
 
-#include "../Preferences.h"
+#include "../player/Preferences.h"
 
 #include <algorithm>
 #include <array>

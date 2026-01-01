@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define CATCH_CONFIG_RUNNER
 #include "es-test.hpp"
 
-#include "../../../source/Random.h"
+#include "../../../source/util/Random.h"
 
 #include <ctime>
 
