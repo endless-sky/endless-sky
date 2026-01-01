@@ -1,4 +1,4 @@
-/* SpriteLoadManager.h
+/* SpriteLoadManager.cpp
 Copyright (c) 2026 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
