@@ -105,7 +105,11 @@ void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x, bool noReducti
 		return;
 
 	if(!swizzleMaskFrames)
+	{
 		swizzleMaskFrames = buffer.Frames();
+		if(swizzleMaskFrames > 1 && swizzleMaskFrames < frames)
+			swizzleMaskFrames = 1;
+	}
 
 	AddBuffer(buffer, &swizzleMask[is2x], noReduction);
 }
