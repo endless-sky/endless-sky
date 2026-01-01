@@ -471,8 +471,8 @@ mission "Intro [0]"
 	to offer
 		has "start: default"
 	substitutions
-		<trade> "stock up on medical goods"
-		<while> "While they don't sell much here compared to on the big manufacturing worlds"
+		"<trade>" "stock up on medical goods"
+		"<while>" "While they don't sell much here compared to on the big manufacturing worlds"
 	
 	on offer
 		conversation "intro mission"
@@ -703,8 +703,8 @@ mission "Intro [1 Interceptor]"
 		ship "Freighter" "Horn of Plenty"
 		ship "Freighter" "Morning Light"
 	substitutions
-		<their> "his"
-		<they're> "he's"
+		"<their>" "his"
+		"<they're>" "he's"
 		"<they are>" "he is"
 	
 	on offer
@@ -741,9 +741,9 @@ mission "Intro [2 Interceptor]"
 		personality entering plunders
 		ship "Bastion" "Hammer of Thor"
 	substitutions
-		<person> "she"
-		<enemy> "Hammer"
-		<magnitude> "ten"
+		"<person>" "she"
+		"<enemy>" "Hammer"
+		"<magnitude>" "ten"
 	
 	on offer
 		conversation "interceptor evade intro"
@@ -766,8 +766,8 @@ mission "Intro [2.1 Interceptor]"
 		has "Intro [2 Interceptor]: done"
 		not "Intro [3 Interceptor]: offered"
 	substitutions
-		<captain> "Marshall"
-		<they> "he"
+		"<captain>" "Marshall"
+		"<they>" "he"
 	
 	on offer
 		conversation "mining intro"
@@ -815,8 +815,8 @@ mission "Midgard Intro [0]"
 	to offer
 		has "start: deep"
 	substitutions
-		<trade> "load some bundles of clothing onto your ship"
-		<while> "While most of the outfits will be far outside your price range"
+		"<trade>" "load some bundles of clothing onto your ship"
+		"<while>" "While most of the outfits will be far outside your price range"
 	
 	on offer
 		conversation "intro mission"
@@ -1151,9 +1151,9 @@ mission "Midgard Intro [1 Interceptor]"
 		personality entering nemesis plunders
 		ship "Leviathan" "Arm of Odin"
 	substitutions
-		<person> "she"
-		<enemy> "Arm"
-		<magnitude> "a hundred"
+		"<person>" "she"
+		"<enemy>" "Arm"
+		"<magnitude>" "a hundred"
 	
 	on offer
 		conversation "interceptor evade intro"
@@ -1198,8 +1198,8 @@ mission "Midgard Intro [2 Interceptor]"
 		ship "Freighter" "Conagher's Porter"
 		ship "Freighter" "Solemn Vow"
 	substitutions
-		<their> "their"
-		<they're> "they're"
+		"<their>" "their"
+		"<they're>" "they're"
 		"<they are>" "they are"
 	
 	on offer
@@ -1211,7 +1211,7 @@ mission "Midgard Intro [2 Interceptor]"
 				`	"No, sounds a bit too risky for me."`
 					decline
 			`	"Great," he says. "Whenever we're ready to leave the planet, they'll take off behind us and follow us to <planet>." As you begin walking away together, he adds in a quieter voice, "While the Deep is well guarded against pirates, most of human space is clamoring with bandits and other ruffians. Normally a fresh pilot like you with no combat reputation would never be offered a mission like this, so try not to mess things up. Remember that we don't have to kill the pirates, all we have to do is make sure the convoy isn't destroyed. But freighters are slow, so you can't just go skipping through hyperspace as fast as you want; you need to stick around and make sure they're behind you.`
-			`	"Also, make sure to refuel your ship before jumping into Algieba; if you run out of fuel there, you'll be a sitting duck unless you can get another ship to help you."`
+			`	"Also, make sure to refuel your ship in Zosma before jumping into Algieba; if you run out of fuel there, you'll be a sitting duck unless you can get another ship to help you."`
 				accept
 	
 	on visit
@@ -1233,8 +1233,8 @@ mission "Midgard Intro [2.1 Interceptor]"
 	to offer
 		has "Midgard Intro [2 Interceptor]: done"
 	substitutions
-		<captain> "Marshall"
-		<they> "he"
+		"<captain>" "Marshall"
+		"<they>" "he"
 	
 	on offer
 		conversation "mining intro"
@@ -1282,8 +1282,8 @@ mission "Mainsail Intro [0]"
 	to offer
 		has "start: paradise"
 	substitutions
-		<trade> "load some electronic goods onto your ship"
-		<while> "While they don't sell much here compared to on the big manufacturing worlds"
+		"<trade>" "load some electronic goods onto your ship"
+		"<while>" "While they don't sell much here compared to on the big manufacturing worlds"
 	
 	on offer
 		conversation "intro mission"
@@ -1618,8 +1618,8 @@ mission "Mainsail Intro [0.1 Interceptor]"
 		not "Mainsail Intro [1 Transport Alt]: offered"
 		not "Mainsail Intro [1 Freighter]: offered"
 	substitutions
-		<captain> "Hwang"
-		<they> "she"
+		"<captain>" "Hwang"
+		"<they>" "she"
 	
 	on offer
 		conversation "mining intro"
@@ -1655,8 +1655,8 @@ mission "Mainsail Intro [1 Interceptor]"
 		ship "Freighter" "Paradise Doll"
 		ship "Freighter" "Strange Dream"
 	substitutions
-		<their> "his"
-		<they're> "he's"
+		"<their>" "his"
+		"<they're>" "he's"
 		"<they are>" "he is"
 	
 	on offer
@@ -1693,9 +1693,9 @@ mission "Mainsail Intro [2 Interceptor]"
 		personality entering plunders nemesis
 		ship "Corvette (Speedy)" "Eye of Loki"
 	substitutions
-		<person> "he"
-		<enemy> "Eye"
-		<magnitude> "ten"
+		"<person>" "he"
+		"<enemy>" "Eye"
+		"<magnitude>" "ten"
 	
 	on offer
 		conversation "interceptor evade intro"
@@ -1764,8 +1764,8 @@ mission "Delve Intro [0]"
 	to offer
 		has "start: syndicate"
 	substitutions
-		<trade> "stock up on medical goods"
-		<while> "While most of the outfits will be far outside your price range"
+		"<trade>" "stock up on medical goods"
+		"<while>" "While most of the outfits will be far outside your price range"
 	
 	on offer
 		conversation "intro mission"
@@ -2016,8 +2016,8 @@ mission "Delve Intro [1 Interceptor]"
 		ship "Freighter" "Spring Coming"
 		ship "Freighter" "Paparazzi Party"
 	substitutions
-		<their> "her"
-		<they're> "she's"
+		"<their>" "her"
+		"<they're>" "she's"
 		"<they are>" "she is"
 	
 	on offer
@@ -2054,9 +2054,9 @@ mission "Delve Intro [2 Interceptor]"
 		personality entering plunders
 		ship "Splinter" "Spear of Heimdall"
 	substitutions
-		<person> "he"
-		<enemy> "Spear"
-		<magnitude> "ten"
+		"<person>" "he"
+		"<enemy>" "Spear"
+		"<magnitude>" "ten"
 	
 	on offer
 		conversation "interceptor evade intro"
@@ -2073,18 +2073,18 @@ mission "Delve Intro [2.1 Interceptor]"
 	description "Go to the Procyon system and mine five tons of silicon, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
+	mark "Procyon"
 	source "Ada"
 	destination "Relic"
 	to offer
 		has "Delve Intro [2 Interceptor]: done"
 	substitutions
-		<captain> "August"
-		<they> "he"
+		"<captain>" "August"
+		"<they>" "he"
 	
 	on offer
 		conversation "mining intro"
 
-	mark "Procyon"
 	on enter "Procyon"
 		unmark "Procyon"
 	

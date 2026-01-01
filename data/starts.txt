@@ -40,6 +40,7 @@ start "default"
 mission "Start: Default Patch"
 	invisible
 	landing
+	non-blocking
 	to offer
 		has "Intro [0]: offered"
 		not "start: default"
@@ -114,7 +115,7 @@ conversation "deep intro"
 start "paradise"
 	name "Birthday Surprise"
 	description `You grew up on Mainsail, an oceanic Paradise World terraformed to perfection. Only the richest live on such worlds; luckily, your father is a wealthy financier. But you've always found your pampered life boring, and are more interested in living a life among the stars. As your eighteenth birthday party winds down, your father takes you aside to talk...`
-	description `	This start has has no mortgage, leaving you free to explore the galaxy at your own pace.`
+	description `	This start has no mortgage, leaving you free to explore the galaxy at your own pace.`
 	thumbnail "scene/mainsail"
 	date 16 11 3013
 	system "Alhena"
@@ -181,7 +182,7 @@ conversation "syndicate intro"
 	`	You hand the last of your credits to the captain that brought you here. Before she leaves, she gives you some advice. "Just a heads up: if you don't feel like dying early, head north after launching. South of here is nothing but uninhabited systems and pirates. You wouldn't last long in any ship you could afford." You thank her for the ride and advice before parting ways.`
 	`	You stop by the shipyard first to see what they have. You're noticed by a salesman who scoffs as you approach, perhaps due to the shabbiness of your clothes compared to those around you. You ask him what it would take to purchase a ship here. He mentions the necessity of a pilot's license before beginning his spiel about all the cheapest models, but you cut him short and say that's all you needed.`
 	`	Luckily, the bank isn't very busy at the moment. One of the tellers sizes you up as you enter. "What can we help you with?" he asks with unrestrained glee. You say you're in need of a loan to buy a starship; 600,000 credits should be enough to cover the license and the ship. After you hand over your Syndicated Systems Account information and scan your fingerprint, the teller returns with a piece of paper.`
-	`	"Lucky for you, rates are great right now!" You glance at the paper: the daily interest rate is 0.5%, meaning the daily payments are 3,580 credits for a whole year. If you don't pay off any of your loan early, you'll have paid a 706,571 credits in interest, more than the 600,000 loan itself. "Just sign here." The teller grins.`
+	`	"Lucky for you, rates are great right now!" You glance at the paper: the daily interest rate is 0.5%, meaning the daily payments are 3,580 credits for a whole year. If you don't pay off any of your loan early, you'll have paid 706,571 credits in interest, more than the 600,000 loan itself. "Just sign here." The teller grins.`
 	`	The interest is terrible, but there's nothing you can do about it. You sign your name:`
 	name
 	`	After leaving the bank, you spend an hour waiting in line to apply for a pilot's license. The process is oddly simple, and by the time it's done, you're left with 480,000 credits. You can't shake the feeling that the Syndicate is playing you again.`
@@ -239,6 +240,7 @@ start "hai space"
 mission "Start: Hai Patch"
 	invisible
 	landing
+	non-blocking
 	to offer
 		has "hai space start"
 		not "start: hai"
