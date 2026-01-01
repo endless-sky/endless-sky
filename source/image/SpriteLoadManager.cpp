@@ -253,9 +253,14 @@ void SpriteLoadManager::LoadStellarObject(TaskQueue &queue, const Sprite *sprite
 	if(!sprite || dit == deferred.end())
 		return;
 
+	map<const Sprite *, int>::iterator it = loadedStellarObjects.find(sprite);
+	if(it != loadedStellarObjects.end())
+	{
+		it->second = 0;
+		return;
+	}
 	loadedStellarObjects[sprite] = 0;
-	if(!sprite->IsLoaded())
-		LoadSprite(queue, dit->second);
+	LoadSprite(queue, dit->second);
 }
 
 
@@ -267,9 +272,14 @@ void SpriteLoadManager::LoadThumbnail(TaskQueue &queue, const Sprite *sprite)
 	if(!sprite || dit == deferred.end())
 		return;
 
+	map<const Sprite *, int>::iterator it = loadedThumbnails.find(sprite);
+	if(it != loadedThumbnails.end())
+	{
+		it->second = 0;
+		return;
+	}
 	loadedThumbnails[sprite] = 0;
-	if(!sprite->IsLoaded())
-		LoadSprite(queue, dit->second);
+	LoadSprite(queue, dit->second);
 }
 
 

@@ -268,7 +268,6 @@ Engine::Engine(PlayerInfo &player)
 			SpriteLoadManager::PreloadLandscape(queue, object.GetPlanet()->Landscape());
 	}
 	queue.Wait();
-	queue.ProcessSyncTasks();
 
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();

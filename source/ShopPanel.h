@@ -198,6 +198,7 @@ protected:
 	Tooltip shipsTooltip;
 	Tooltip creditsTooltip;
 	Tooltip buttonsTooltip;
+	LoadingCircle loadingCircle;
 
 
 private:
@@ -235,5 +236,4 @@ private:
 	const Color &back;
 
 	bool checkedHelp = false;
-	LoadingCircle loadingCircle;
 };

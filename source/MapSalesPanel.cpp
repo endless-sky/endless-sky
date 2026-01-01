@@ -57,7 +57,7 @@ MapSalesPanel::MapSalesPanel(PlayerInfo &player, bool isOutfitters)
 	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map")),
-	loadingCircle(30.f, 30, 2.)
+	loadingCircle(30.f, 10, 2.)
 {
 }
 
@@ -68,7 +68,7 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	categories(GameData::GetCategory(isOutfitters ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map")),
-	loadingCircle(30.f, 30, 2.)
+	loadingCircle(30.f, 10, 2.)
 {
 	Audio::Pause();
 

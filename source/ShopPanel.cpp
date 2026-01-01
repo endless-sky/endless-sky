@@ -88,11 +88,11 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
 	buttonsTooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium")),
+	loadingCircle(30.f, 10, 2.),
 	hover(*GameData::Colors().Get("hover")),
 	active(*GameData::Colors().Get("active")),
 	inactive(*GameData::Colors().Get("inactive")),
-	back(*GameData::Colors().Get("panel background")),
-	loadingCircle(30.f, 30, 2.)
+	back(*GameData::Colors().Get("panel background"))
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
