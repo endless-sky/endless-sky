@@ -63,7 +63,7 @@ conversation "intro mission"
 		goto captain
 	
 	label syndicate
-	`With a strange sense of relief, you give the salesman your money and jump into your new ship. The flight from the shipyard to the landing bays has you navigate through tunnels with only centimeters of clearance in all directions. After reaching the safety of the bay and landing, you disembark, where an old man in grease-stained coveralls is waiting.`
+	`With a strange sense of relief, you give the salesman your money and jump into your new ship. The flight from the shipyard to the landing bays has you navigate through tunnels with only centimeters of clearance in all directions. After setting your ship down and disembarking, an old man in grease-stained coveralls approaches you.`
 	`	"Nothing quite like buying your first starship," he says.`
 	choice
 		`	"I'm just glad to be free from working for someone else."`
@@ -429,7 +429,7 @@ conversation "mining intro new sahara"
 		`	"Sure."`
 		`	"No thanks."`
 			goto end
-	`	He buys you a beer. It tastes a little stale, but it's not the worst beer you've ever had. You can't help but feel sorry for the people who work here, so isolated and cut off from even the basic amenities you took for granted on <starting planet>.`
+	`	He buys you a beer. It tastes a little stale, but it's not the worst beer you've ever had. You can't help but feel sorry for the people who work here, so isolated and cut off from even the basic amenities you took for granted on <home planet>.`
 	label end
 	`	"Anyway," says James, "would you be willing to take me on one more journey? It's time for me to head for that retirement home."`
 	choice
@@ -1875,8 +1875,9 @@ mission "Delve Intro [3 Transport]"
 	on offer
 		conversation
 			`<origin> is the same as it's always been. Homeless men wrapped in old army blankets beg money from well-dressed businessmen. Soldiers in Navy uniforms walk by in groups of ten or twenty, driving the beggars to hide behind trashcans or do their best impressions of respectable citizens until they pass. Starship captains haggle with merchants, speaking of sums greater than the income of some neighborhoods. Flashes of light come from various landing bays as poorly-protected welders risk their health to repair ships destined for places they can only dream of.`
-			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "I've seen all manner of reactions to experiencing <origin> in person for the first time. Awe. Surprise. Respect. Disgust. Their second reactions are just as varied. Some take it as a reminder of humanity's ever-present base nature; others see it as an inexcusable failure of the Republic and its predecessors." He smirks. "Only ever seen one kind of reaction from an Earth native. Maybe you folk know something the rest of us don't."`
-			`	After taking one last glance out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
+			`	When you find James, he's standing by a window, looking out at the city, watching the starships taking off and landing in a continuous stream. "You're from Earth, aren't you?" You nod.`
+			`	"Thought so," James replies. "I've seen all manner of reactions to experiencing <origin> in person for the first time. Awe. Surprise. Respect. Disgust. Their second reactions are just as varied. Some take it as a reminder of humanity's ever-present base nature; others see it as an inexcusable failure of the Republic and its predecessors." He smirks. "Only ever seen one kind of reaction from an Earth native. Maybe you folk know something the rest of us don't."`
+			`	After taking one last look out the window, he says, "Anyway, we're nearing my destination. Are you willing to take me on one last trip? I need to get to <destination>, and of course I'll pay you quite well to take me there."`
 			choice
 				`	"Of course."`
 				`	"Sorry, but I was planning on heading out in a different direction from here."`

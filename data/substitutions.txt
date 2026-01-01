@@ -13,14 +13,14 @@
 
 substitutions
 	# Substitutions for homeworlds. Defaults to New Boston.
-	"<starting planet>" "New Boston"
-	"<starting planet>" "Midgard"
+	"<home planet>" "New Boston"
+	"<home planet>" "Midgard"
 		has "start: deep"
-	"<starting planet>" "Mainsail"
+	"<home planet>" "Mainsail"
 		has "start: paradise"
-	"<starting planet>" "Earth"
+	"<home planet>" "Earth"
 		has "start: syndicate"
-	"<starting planet>" "Greenwater"
+	"<home planet>" "Greenwater"
 		has "start: hai"
 	# Substitutions for home systems. Defaults to Rutilicus.
 	"<home system>" "Rutilicus"

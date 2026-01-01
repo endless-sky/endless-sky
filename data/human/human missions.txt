@@ -5132,7 +5132,7 @@ mission "Dangerous Games 2"
 				`	"Sorry, mate. You'll have to find another pilot."`
 					decline
 			`	Karengo laughs. "If they can handle space, I think they can handle some water. I've got a group of lads and ladies here rarin' to see some quoijuu in heat, right up close'n'personal. They've all got their own subpods, so how's about we load up and head out in the next few hours. Good? Good."`
-			`	You spot someone behind Karengo working on one of the subpods; your time on the aquatic world of <starting planet> lets you identify the sub's manufacturer as one more well known for scandal than reliability.`
+			`	You spot someone behind Karengo working on one of the subpods; your time on the aquatic world of <home planet> lets you identify the sub's manufacturer as one more well known for scandal than reliability.`
 				to display
 					has "start: paradise"
 			`	"Oh, nearly forgot. We're headed to <destination>, and you'll get <payment> for taking us there. Ain't sure if those in charge are gonna like what I'm doing, so we might need to grease some palms. Best to keep your eyes open and your shields up. We leave at noon!"`

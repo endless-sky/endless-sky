@@ -1718,10 +1718,17 @@ mission "FW Katya 4"
 			`	"It sounds like you've come a long way from the Paradise Worlds too," says Eyes. "If you don't mind me asking, what do you think your father would think about you helping the Free Worlds?"`
 			choice
 				`	"I'm sure he'd be happy with the path I've chosen."`
+					goto quiet
 				`	"I don't think he would like it."`
 				`	"I'm not sure myself, to be honest."`
 				`	"I'd rather not say."`
-			`	Eyes nods.`
+					goto quiet
+			`	Eyes raises an eyebrow, but keeps his mouth sealed as he nods.`
+				goto paradise
+
+			label quiet
+			`	Eyes looks at you and nods.`
+				goto paradise
 			
 			label paradise
 			`	"I'd hate to be rich," says Katya. "So much to fear."`
