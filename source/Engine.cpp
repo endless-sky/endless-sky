@@ -1772,6 +1772,10 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		else
 			for(const auto &sound : jumpSounds)
 				Audio::Play(sound.first, SoundCategory::JUMP);
+		// Begin loading the sprites in the next system.
+		for(const StellarObject &object : flagship->GetTargetSystem()->Objects())
+			if(object.HasSprite())
+				GameData::LoadStellarObject(queue, object.GetSprite());
 	}
 	// Check if the flagship just entered a new system.
 	if(flagship && playerSystem != flagship->GetSystem())
