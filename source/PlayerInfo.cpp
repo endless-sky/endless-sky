@@ -644,6 +644,13 @@ void PlayerInfo::AddChanges(list<DataNode> &changes, bool instantChanges)
 			continue;
 		changedPlanets |= (key == "planet" || key == "wormhole");
 		changedSystems |= (key == "system" || key == "link" || key == "unlink");
+		if(key == "event")
+			for(const DataNode &child : change)
+			{
+				const string &childKey = child.Token(0);
+				changedPlanets |= (childKey == "planet" || childKey == "wormhole");
+				changedSystems |= (childKey == "system" || childKey == "link" || childKey == "unlink");
+			}
 		GameData::Change(change, *this);
 	}
 	if(changedPlanets)
