@@ -383,7 +383,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const 
 
 void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale,
 		bool isSelected, const string &name, const string &variantName,
-		const string &price, const string &info, const std::string &storage)
+		const string &price, const string &info, const string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("item selected");

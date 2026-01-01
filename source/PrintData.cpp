@@ -662,7 +662,7 @@ namespace {
 			PrintObjectList(GameData::Systems(), "system");
 	}
 
-	void LocationFilterMatches(const char *const *argv, const PlayerInfo &player)
+	void LocationFilterMatches(const char *const *argv, PlayerInfo &player)
 	{
 		StellarObject::UsingMatchesCommand();
 		DataFile file(cin);
@@ -734,7 +734,7 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 
 
 
-void PrintData::Print(const char *const *argv, const PlayerInfo &player)
+void PrintData::Print(const char *const *argv, PlayerInfo &player)
 {
 	for(const char *const *it = argv + 1; *it; ++it)
 	{

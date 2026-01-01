@@ -91,7 +91,7 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 
 # FLAC's config is missing find_dependency(Threads), so include it here.
 find_package(Threads REQUIRED)
-if(UNIX AND NOT APPLE AND NOT ES_USE_VCPKG)
+if(UNIX AND NOT ES_USE_VCPKG)
 	find_package(FLAC CONFIG QUIET)
 	if(NOT FLAC_FOUND)
 		# Many linux distros use the autotools build of flac, which does not
@@ -169,7 +169,7 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
-	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 winmm ntdll psapi)
 elseif(ES_LINK_LIBATOMIC)
 	target_link_libraries(ExternalLibraries INTERFACE pthread atomic)
 else()
@@ -211,7 +211,12 @@ else()
 		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
 	else()
 		# GLEW is only needed on Linux and Windows.
-		target_link_libraries(ExternalLibraries INTERFACE GLEW::glew)
+		if(TARGET GLEW::GLEW)
+			set(GLEW_TARGET_NAME GLEW::GLEW)
+		else()
+			set(GLEW_TARGET_NAME GLEW::glew)
+		endif()
+		target_link_libraries(ExternalLibraries INTERFACE ${GLEW_TARGET_NAME})
 	endif()
 endif()
 

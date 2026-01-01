@@ -183,7 +183,7 @@ namespace {
 	void LogWarning(const string &trueModelName, const string &name, string &&warning)
 	{
 		string shipID = trueModelName + (name.empty() ? ": " : " \"" + name + "\": ");
-		Logger::LogError(shipID + std::move(warning));
+		Logger::Log(shipID + std::move(warning), Logger::Level::WARNING);
 	}
 
 	// Transfer as many of the given outfits from the source ship to the target
@@ -383,7 +383,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 						attributes.maxArc = Angle(grand.Value(2));
 						needToCheckAngles = true;
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
-							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
+							grand.PrintTrace("Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
 					else if(grandKey == "blindspot" && grand.Size() >= 3)
 						attributes.blindspots.emplace_back(grand.Value(1), grand.Value(2));
@@ -396,7 +396,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					else if(grandKey == "over")
 						attributes.side = Hardpoint::Side::OVER;
 					else
-						grand.PrintTrace("Warning: Child nodes of \"" + key
+						grand.PrintTrace("Child nodes of \"" + key
 							+ "\" tokens can only be \"angle\", \"parallel\", or \"arc\":");
 
 					if(needToCheckAngles && !defaultBaseAngle && !attributes.isOmnidirectional)
@@ -608,7 +608,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		{
 			pluralModelName = displayModelName + 's';
 			if(displayModelName.back() == 's' || displayModelName.back() == 'z')
-				node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
+				node.PrintTrace("Explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralModelName + "\".");
 		}
 	}
@@ -807,7 +807,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
 		}
 
-		Logger::LogError(message);
+		Logger::Log(message, Logger::Level::WARNING);
 	}
 	// Inspect the ship's armament to ensure that guns are in gun ports and
 	// turrets are in turret mounts. This can only happen when the armament
@@ -826,7 +826,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
 			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
 			warning += " \"" + outfit->TrueName() + "\"";
-			Logger::LogError(warning);
+			Logger::Log(warning, Logger::Level::WARNING);
 		}
 	}
 	cargo.SetSize(attributes.Get("cargo space"));
@@ -894,7 +894,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		outfitNames << "has outfits:\n";
 		for(const auto &it : outfits)
 			outfitNames << '\t' << it.second << " " + it.first->TrueName() << endl;
-		Logger::LogError(message + warning + outfitNames.str());
+		Logger::Log(message + warning + outfitNames.str(), Logger::Level::WARNING);
 	}
 
 	// Ships read from a save file may have non-default shields or hull.
@@ -911,17 +911,18 @@ void Ship::FinishLoading(bool isNewInstance)
 	// account for systems accessible via wormholes, but also does not need to as AI will route the ship properly.
 	if(!isNewInstance && targetSystem)
 	{
-		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ")
+		string message = (isYours ? "Player-owned " : "NPC ")
 			+ trueModelName + " \"" + givenName + "\": Cannot reach target system \"" + targetSystem->TrueName();
 		if(!currentSystem)
 		{
-			Logger::LogError(message + "\" (no current system).");
+			Logger::Log(message + "\" (no current system).", Logger::Level::WARNING);
 			targetSystem = nullptr;
 		}
 		else if(!currentSystem->Links().contains(targetSystem)
 			&& (!navigation.JumpRange() || !currentSystem->JumpNeighbors(navigation.JumpRange()).contains(targetSystem)))
 		{
-			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->TrueName() + ".\"");
+			Logger::Log(message + "\" by hyperlink or jump from system \"" + currentSystem->TrueName() + "\".",
+				Logger::Level::WARNING);
 			targetSystem = nullptr;
 		}
 	}
@@ -930,8 +931,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		customSwizzle = GameData::Swizzles().Get(customSwizzleName);
 		if(!customSwizzle->IsLoaded())
-			Logger::LogError("Warning: ship \"" + GivenName() + "\" refers to nonexistent swizzle \""
-				+ customSwizzleName + "\".");
+			Logger::Log("Ship \"" + GivenName() + "\" refers to nonexistent swizzle \"" + customSwizzleName + "\".",
+				Logger::Level::WARNING);
 	}
 }
 
@@ -2019,11 +2020,11 @@ int Ship::Scan(const PlayerInfo &player)
 	if(startedScanning && isYours)
 	{
 		if(!target->GivenName().empty())
-			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->GivenName() + "\"."
-				, Messages::Importance::Low);
+			Messages::Add({"Attempting to scan the " + target->Noun() + " \"" + target->GivenName() + "\".",
+				GameData::MessageCategories().Get("low")});
 		else
-			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
-				, Messages::Importance::Low);
+			Messages::Add({"Attempting to scan the selected " + target->Noun() + ".",
+				GameData::MessageCategories().Get("low")});
 
 		if(target->GetGovernment()->IsProvokedOnScan() && target->CanSendHail(player))
 		{
@@ -2034,26 +2035,26 @@ int Ship::Scan(const PlayerInfo &player)
 				tag = gov + " " + target->Noun() + " \"" + target->GivenName() + "\": ";
 			else
 				tag = target->DisplayModelName() + " (" + gov + "): ";
-			Messages::Add(tag + "Please refrain from scanning us or we will be forced to take action.",
-				Messages::Importance::Highest);
+			Messages::Add({tag + "Please refrain from scanning us or we will be forced to take action.",
+				GameData::MessageCategories().Get("high")});
 		}
 	}
 	else if(startedScanning && target->isYours && isImportant)
-		Messages::Add("The " + government->DisplayName() + " " + Noun() + " \""
-				+ GivenName() + "\" is attempting to scan your ship \"" + target->GivenName() + "\".",
-				Messages::Importance::Low);
+		Messages::Add({"The " + government->DisplayName() + " " + Noun() + " \""
+			+ GivenName() + "\" is attempting to scan your ship \"" + target->GivenName() + "\".",
+			GameData::MessageCategories().Get("low")});
 
 	if(target->isYours && !isYours && isImportant)
 	{
 		if(result & ShipEvent::SCAN_CARGO)
-			Messages::Add("The " + government->DisplayName() + " " + Noun() + " \""
-					+ GivenName() + "\" completed its cargo scan of your ship \"" + target->GivenName() + "\".",
-					Messages::Importance::High);
+			Messages::Add({"The " + government->DisplayName() + " " + Noun() + " \""
+				+ GivenName() + "\" completed its cargo scan of your ship \"" + target->GivenName() + "\".",
+				GameData::MessageCategories().Get("normal")});
 		if(result & ShipEvent::SCAN_OUTFITS)
-			Messages::Add("The " + government->DisplayName() + " " + Noun() + " \""
-					+ GivenName() + "\" completed its outfit scan of your ship \"" + target->GivenName()
-					+ (target->Attributes().Get("inscrutable") > 0. ? "\" with no useful results." : "\"."),
-					Messages::Importance::High);
+			Messages::Add({"The " + government->DisplayName() + " " + Noun() + " \""
+				+ GivenName() + "\" completed its outfit scan of your ship \"" + target->GivenName()
+				+ (target->Attributes().Get("inscrutable") > 0. ? "\" with no useful results." : "\"."),
+				GameData::MessageCategories().Get("normal")});
 	}
 
 	// Some governments are provoked when a scan is completed on one of their ships.
@@ -3311,8 +3312,9 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		type |= ShipEvent::DESTROY;
 
 		if(IsYours())
-			Messages::Add("Your " + DisplayModelName() +
-				" \"" + GivenName() + "\" has been destroyed.", Messages::Importance::HighestDuplicating);
+			Messages::Add({"Your " + DisplayModelName()
+				+ " \"" + GivenName() + "\" has been destroyed.",
+				GameData::MessageCategories().Get("high duplicating")});
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -4784,11 +4786,10 @@ void Ship::StepPilot()
 		if(isYours || personality.IsEscort())
 		{
 			if(!parent.lock())
-				Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
-					, Messages::Importance::Low);
+				Messages::Add(*GameData::Messages().Get("undercrewed flagship"));
 			else if(Preferences::Has("Extra fleet status messages"))
-				Messages::Add("The " + givenName + " is moving erratically because there are not enough crew to pilot it."
-					, Messages::Importance::Low);
+				Messages::Add({"The " + givenName + " is moving erratically because there are not enough crew to pilot it.",
+					GameData::MessageCategories().Get("low")});
 		}
 	}
 	else
@@ -5054,7 +5055,7 @@ void Ship::StepTargeting()
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::HighestNoRepeat);
+						Messages::Add(*GameData::Messages().Get("cannot board while cloaked"));
 				}
 				else
 				{
@@ -5062,8 +5063,9 @@ void Ship::StepTargeting()
 					bool isEnemy = government->IsEnemy(target->government);
 					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 					{
-						Messages::Add("The " + target->DisplayModelName() + " \"" + target->GivenName()
-							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
+						Messages::Add({"The " + target->DisplayModelName() + " \"" + target->GivenName()
+							+ "\" has activated its self-destruct mechanism.",
+							GameData::MessageCategories().Get("high")});
 						GetTargetShip()->SelfDestruct();
 					}
 					else

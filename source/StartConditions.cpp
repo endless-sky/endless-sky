@@ -198,9 +198,9 @@ void StartConditions::FinishLoading()
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
-		Logger::LogError("Warning: The start scenario \"" + Identifier() + "\" (named \""
+		Logger::Log("The start scenario \"" + Identifier() + "\" (named \""
 			+ unlocked.displayName + "\") has an invalid starting conversation."
-			+ (reason.empty() ? "" : "\n\t" + std::move(reason)));
+			+ (reason.empty() ? "" : "\n\t" + std::move(reason)), Logger::Level::WARNING);
 }
 
 

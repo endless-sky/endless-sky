@@ -618,6 +618,103 @@ phrase "friendly unfettered"
 	word
 		" Hai."
 
+phrase "ship bribe acceptance hai"
+	word
+		"I"
+		"We"
+		"We all"
+	word
+		" "
+	word
+		"feel"
+		"think that it is"
+	word
+		" "
+	word
+		"shameful"
+		"vile"
+	word
+		" to work with you, "
+	word
+		"but"
+		"though"
+	word
+		" "
+	word
+		"we will make an exception for this payment."
+		"we will accept your bribe."
+		"we hope you intend go away after this."
+		"we hope you will leave us alone after this."
+
+phrase "ship bribe acceptance hai"
+	word
+		"I"
+		"We"
+	word
+		" will "
+	word
+		"accept"
+		"receive"
+		"take"
+	word
+		" your "
+	word
+		"donation"
+		"money"
+		"payment"
+	word
+		" this time."
+	word
+		"" 4
+		" Next time, you may not be so lucky."
+
+phrase "ship bribe rejection hai"
+	word
+		"Haikind"
+		"I"
+		"The Hai"
+		"We"
+	word
+		" "
+	word
+		"cannot"
+		"do not want to"
+		"shall not"
+		"will never"
+		"will not"
+	word
+		" "
+	word
+		"accept"
+		"receive"
+		"take"
+	word
+		" "
+	word
+		"bribes"
+		"payment"
+	word
+		" from "
+	word
+		"" 15
+		"conquering "
+		"domineering "
+		"evil "
+		"hopeless "
+		"impolite "
+		"useless "
+	word
+		"evildoers"
+		"oppressors"
+		"pirates"
+		"tyrants"
+		"warmongerers"
+	word
+		"."
+		"!"
+	replace
+		"evil evildoers" "evildoers"
+
 phrase "friendly disabled unfettered"
 	word
 		"Strong"

@@ -448,21 +448,8 @@ conversation "remnant key stones"
 			decline
 	
 	`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-	`	"We look forward to receiving this shipment," he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
-	choice
-		`	"I can purchase outfits into my cargo bay?"`
-		`	"Why would you even need to specify that?"`
-			goto "why mention"
-		`	"Okay."`
-			accept
-	`	"Of course. There are several different methods available for doing so." He switches to a chant as he begins listing methods.`
-	`	"Firstly, our outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
-	`	"Secondly, if you do not have any ships selected in the outfitter control panel when you make a purchase, our logistics system will assign it for delivery to your cargo hold instead of scheduling an installation.`
-	`	"Lastly, if you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold."`
+	`	"We look forward to receiving this shipment," he sings. "Just instruct the dockworkers to load them into your cargo bay."`
 	`	He glances at his commlink and starts tapping at something. "We look forward to your return," he trills, before striding away still looking at his display.`
-		accept
-	label "why mention"
-	`	"What seems straightforward to you and I is not always so simple for others. I have met more than a few pilots who thought that outfits could only be transported installed on their hull." He smiles briefly at the thought before turning and heading away.`
 		accept
 
 
@@ -1438,7 +1425,14 @@ mission "Remnant: Deep Surveillance"
 			
 			`	"A copy?" Ivan looks off into space for a moment. "Well, I suppose since you helped me so much, I could make an exception for you. I typically don't share findings with those not on my research team until they're finalized. I've been burned one too many times because of that."`
 			`	Ivan leans over to his desk. "This will be for your eyes only."`
-				goto branches
+			choice
+				`	"Understood."`
+					goto branches
+				`	"Actually, I was hoping to show it to someone else who's interested."`
+			action
+				set "remnant: honest about deep research"
+			`	Ivan stares at you for a moment. "I... see. Thanks for your honesty, but I can't give you a copy. That research is classified."`
+				goto leave
 			
 			label again2
 			`	"Again?" Ivan asks. He leans over to his desk. "I like that you're so interested in my research. I suppose it only makes sense with you helping me, but typically merchant captains aren't this interested in following up on odd jobs they do."`
@@ -1610,6 +1604,9 @@ mission "Remnant: Deep Surveillance"
 			branch nothing
 				has "remnant: got no deep research"
 			
+			branch refused
+				has "remnant: honest about deep research"
+			
 			label terminus
 			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "Interesting research they have done," he says. "So they understand that it is a wormhole, but still have no means of passing through to the other side." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information. For the time being we have little to fear, but I ask that you inform us if they make any further progress. May the Embers burn bright for you."`
 				decline
@@ -1636,6 +1633,13 @@ mission "Remnant: Deep Surveillance"
 			label tricked
 			`	Torza turns the terminal to face you. You read through it and see that all the data is on the wormhole in Terminus, but it says that they are still looking for a way to pass through it. "This isn't what I asked for," you say. "He must have purposefully given me the wrong information."`
 			`	"Then he understands why you asked for it," Torza responds as he turns the terminal back and pockets the data chip.`
+				goto disappointing
+			
+			label refused
+			`	"No," you respond. "The lead scientist was unwilling to give me a copy of his research except on the understanding that I would keep it to myself. When I told him I wanted to be able to share it, he sent me away."`
+			`	Torza raises an eyebrow. "And you couldn't simply have lied to him?"`
+			`	"Would you want me to make a habit of lying to the people I'm working with?" you ask.`
+			`	He says nothing for a moment, then sighs. "I suppose that is fair enough."`
 				goto disappointing
 			
 			label nothing
@@ -1954,6 +1958,10 @@ mission "Remnant: S-970 Regenerator"
 				`	(Not now.)`
 					defer
 				`	(Yes.)`
+				`	(Never.)`
+					to display
+						not "event: syndicate tech available"
+					decline
 			branch familiar
 				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely adjusting something on the hull that you can't quite see. "Greetings, <first>. What brings you here today?" She taps something, then hangs her tools on her belt and drops to the ground on a tether. "Did you bring us something?"`

@@ -313,6 +313,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 {
 	UI::UISound sound = UI::UISound::NORMAL;
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
+	const Government *gov = ship ? ship->GetGovernment() : planet ? planet->GetGovernment() : nullptr;
 
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
@@ -381,6 +382,9 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if((key == 'b' || key == 'o') && hasLanguage)
 	{
+		if(!gov)
+			return true;
+
 		// Make sure it actually makes sense to bribe this ship.
 		if((ship && !shipIsEnemy) || (planet && planet->CanLand()))
 			return true;
@@ -392,7 +396,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			if(!ship || requestedToBribeShip)
 			{
 				player.Accounts().AddCredits(-bribe);
-				SetMessage("It's a pleasure doing business with you.");
+				if(planet)
+					SetMessage(gov->GetPlanetBribeAcceptanceHail());
+				else
+					SetMessage(gov->GetShipBribeAcceptanceHail());
 			}
 			if(ship)
 			{
@@ -406,21 +413,23 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				{
 					bribed = ship->GetGovernment();
 					bribed->Bribe();
-					Messages::Add("You bribed a " + bribed->DisplayName() + " ship "
-						+ Format::CreditString(bribe) + " to refrain from attacking you today."
-							, Messages::Importance::High);
+					Messages::Add({"You bribed a " + bribed->DisplayName() + " ship "
+						+ Format::CreditString(bribe) + " to refrain from attacking you today.",
+						GameData::MessageCategories().Get("normal")});
 				}
 			}
 			else
 			{
 				planet->Bribe();
-				Messages::Add("You bribed the authorities on " + planet->DisplayName() + " "
-					+ Format::CreditString(bribe) + " to permit you to land."
-						, Messages::Importance::High);
+				Messages::Add({"You bribed the authorities on " + planet->DisplayName() + " "
+					+ Format::CreditString(bribe) + " to permit you to land.",
+					GameData::MessageCategories().Get("normal")});
 			}
 		}
+		else if(planet)
+			SetMessage(gov->GetPlanetBribeRejectionHail());
 		else
-			SetMessage("I do not want your money.");
+			SetMessage(gov->GetShipBribeRejectionHail());
 	}
 	else
 		sound = UI::UISound::NONE;
@@ -450,6 +459,6 @@ void HailPanel::SetMessage(const string &text)
 {
 	message = text;
 	if(!message.empty())
-		Messages::AddLog("(Response to your hail) " + header + " " + message,
-			Messages::Importance::High);
+		Messages::Add({"(Response to your hail) " + header + " " + message,
+			GameData::MessageCategories().Get("log only")});
 }

@@ -73,9 +73,9 @@ namespace {
 	void ParseMixedSpecificity(const DataNode &node, string &&kind, int expected)
 	{
 		if(node.Size() >= expected + 1)
-			node.PrintTrace("Warning: use a location filter to choose from multiple " + kind + "s:");
+			node.PrintTrace("Use a location filter to choose from multiple " + kind + "s:");
 		if(node.HasChildren())
-			node.PrintTrace("Warning: location filter ignored due to use of explicit " + kind + ":");
+			node.PrintTrace("Location filter ignored due to use of explicit " + kind + ":");
 	}
 
 	string TriggerToText(Mission::Trigger trigger)
@@ -130,7 +130,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 	// All missions need a name.
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("Error: No name specified for mission:");
+		node.PrintTrace("No name specified for mission:");
 		return;
 	}
 	// If a mission object is "loaded" twice, that is most likely an error (e.g.
@@ -139,12 +139,12 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 	// overriding of mission data from two different definitions.
 	if(!trueName.empty())
 	{
-		node.PrintTrace("Error: Duplicate definition of mission:");
+		node.PrintTrace("Duplicate definition of mission:");
 		return;
 	}
 	trueName = node.Token(1);
 	if(!DataNode::IsConditionName(trueName))
-		node.PrintTrace("Error: Invalid mission name");
+		node.PrintTrace("Invalid mission name:");
 
 	for(const DataNode &child : node)
 	{
@@ -187,7 +187,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 				if(!ParseContraband(grand))
 					grand.PrintTrace("Skipping unrecognized attribute:");
 				else
-					grand.PrintTrace("Warning: Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\"."
+					grand.PrintTrace("Deprecated use of \"stealth\" and \"illegal\" as a child of \"cargo\"."
 						" They are now mission-level properties:");
 			}
 		}
@@ -289,7 +289,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			{
 				LocationFilter loaded(child, visitedSystems, visitedPlanets);
 				if(loaded.IsEmpty())
-					child.PrintTrace("Error: The \"complete at\" filter must not be empty. Ignoring this filter.");
+					child.PrintTrace("The \"complete at\" filter must not be empty. Ignoring this filter.");
 				else
 					completionFilter = loaded;
 			}
@@ -324,6 +324,8 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			substitutions.Load(child, playerConditions);
 		else if(key == "npc")
 			npcs.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
+		else if(key == "timer" && hasValue)
+			timers.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "on" && hasValue && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -538,6 +540,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 		for(const NPC &npc : npcs)
 			npc.Save(out);
+		for(const MissionTimer &timer : timers)
+			timer.Save(out);
 
 		// Save all the actions, because this might be an "available mission" that
 		// has not been received yet but must still be included in the saved game.
@@ -1070,6 +1074,10 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 	for(const NPC &npc : npcs)
 		if(!npc.HasSucceeded(player.GetSystem()))
 			return false;
+	// All non-optional timers must be complete.
+	for(const MissionTimer &timer : timers)
+		if(!timer.IsOptional() && !timer.IsComplete())
+			return false;
 
 	// If any of the cargo for this mission is being carried by a ship that is
 	// not in this system, the mission cannot be completed right now.
@@ -1341,6 +1349,15 @@ void Mission::UpdateNPCs(const PlayerInfo &player)
 
 
 
+// Iterate through the timers and progress them if applicable.
+void Mission::StepTimers(PlayerInfo &player, UI *ui)
+{
+	for(MissionTimer &timer : timers)
+		timer.Step(player, ui, *this);
+}
+
+
+
 // Checks if the given ship belongs to one of the mission's NPCs.
 bool Mission::HasShip(const shared_ptr<Ship> &ship) const
 {
@@ -1385,7 +1402,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		{
 			hasFailed = true;
 			if(isVisible)
-				Messages::Add(message + "Mission failed: \"" + displayName + "\".", Messages::Importance::Highest);
+				Messages::Add({message + "Mission failed: \"" + displayName + "\".",
+					GameData::MessageCategories().Get("high")});
 		}
 	}
 
@@ -1631,13 +1649,17 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		reason = n.Validate(true);
 	if(!reason.empty())
 	{
-		Logger::LogError("Instantiation Error: NPC template in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason));
+		Logger::Log("Instantiation Error: NPC template in mission \""
+			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
 		return result;
 	}
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
 	result.hasTrackedNpcs = hasTrackedNpcs;
+
+	// Instantiate the timers.
+	for(const MissionTimer &timer : timers)
+		result.timers.push_back(timer.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1650,8 +1672,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(ait != actions.end())
 	{
-		Logger::LogError("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason));
+		Logger::Log("Instantiation Error: Action \"" + TriggerToText(ait->first) + "\" in mission \""
+			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
 		return result;
 	}
 	for(const auto &it : actions)
@@ -1666,8 +1688,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(oit != onEnter.end())
 	{
-		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->TrueName() + "'\" in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason));
+		Logger::Log("Instantiation Error: Action \"on enter '" + oit->first->TrueName() + "'\" in mission \""
+			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
 		return result;
 	}
 	for(const auto &it : onEnter)
@@ -1682,8 +1704,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(eit != genericOnEnter.end())
 	{
-		Logger::LogError("Instantiation Error: Generic \"on enter\" action in mission \""
-			+ TrueName() + "\" uses invalid " + std::move(reason));
+		Logger::Log("Instantiation Error: Generic \"on enter\" action in mission \""
+			+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)
