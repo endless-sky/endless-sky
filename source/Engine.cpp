@@ -259,8 +259,13 @@ Engine::Engine(PlayerInfo &player)
 
 	// Preload any landscapes for this system.
 	for(const StellarObject &object : player.GetSystem()->Objects())
-		if(object.HasSprite() && object.HasValidPlanet())
+	{
+		if(!object.HasSprite())
+			continue;
+		GameData::LoadStellarObject(queue, object.GetSprite());
+		if(object.HasValidPlanet())
 			GameData::PreloadLandscape(queue, object.GetPlanet()->Landscape());
+	}
 	queue.Wait();
 
 	// Figure out what planet the player is landed on, if any.
@@ -1449,6 +1454,9 @@ void Engine::EnterSystem()
 	// (It is allowed for a wormhole's exit point to have no sprite.)
 	const StellarObject *usedWormhole = nullptr;
 	for(const StellarObject &object : system->Objects())
+	{
+		if(object.HasSprite())
+			GameData::LoadStellarObject(queue, object.GetSprite());
 		if(object.HasValidPlanet())
 		{
 			GameData::PreloadLandscape(queue, object.GetPlanet()->Landscape());
@@ -1456,6 +1464,7 @@ void Engine::EnterSystem()
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;
 		}
+	}
 
 	// Advance the positions of every StellarObject and update politics.
 	// Remove expired bribes, clearance, and grace periods from past fines.

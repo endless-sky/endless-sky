@@ -77,7 +77,7 @@ namespace {
 	}
 }
 
-const set<string> ImageSet::DEFERRED_FOLDERS{"land", "thumbnail", "outfit", "scene"};
+const set<string> ImageSet::DEFERRED_FOLDERS{"land", "thumbnail", "outfit", "scene", "star", "planet"};
 
 
 

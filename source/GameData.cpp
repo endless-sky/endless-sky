@@ -95,8 +95,13 @@ namespace {
 	vector<filesystem::path> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloadedLandscapes;
+	map<const Sprite *, int> loadedStellarObjects;
 	set<const Sprite *> loadedThumbnails;
 	set<const Sprite *> loadedScenes;
+	// The maximum number of sprites of varying types that
+	// can be loaded at once before old sprites start being unloaded.
+	const int LANDSCAPE_LIMIT = 20;
+	const int STELLAR_OBJECT_LIMIT = 100;
 
 	MaskManager maskManager;
 
@@ -369,6 +374,13 @@ bool GameData::IsLoaded()
 
 
 
+bool GameData::IsDeferred(const Sprite *sprite)
+{
+	return deferred.contains(sprite);
+}
+
+
+
 // Begin loading a sprite that was previously deferred. Currently this is
 // done with all landscapes to speed up the program's startup.
 void GameData::PreloadLandscape(TaskQueue &queue, const Sprite *sprite)
@@ -399,7 +411,7 @@ void GameData::PreloadLandscape(TaskQueue &queue, const Sprite *sprite)
 	while(pit != preloadedLandscapes.end())
 	{
 		++pit->second;
-		if(pit->second >= 20)
+		if(pit->second >= LANDSCAPE_LIMIT)
 		{
 			UnloadSprite(queue, pit->first);
 			pit = preloadedLandscapes.erase(pit);
@@ -410,6 +422,54 @@ void GameData::PreloadLandscape(TaskQueue &queue, const Sprite *sprite)
 
 	// Now, load all the files for this sprite.
 	preloadedLandscapes[sprite] = 0;
+	LoadSprite(queue, dit->second);
+}
+
+
+
+void GameData::LoadStellarObject(TaskQueue &queue, const Sprite *sprite, bool skipCulling)
+{
+	// Make sure this sprite actually is one that uses deferred loading.
+	auto dit = deferred.find(sprite);
+	if(!sprite || dit == deferred.end())
+		return;
+
+	// If this sprite is one of the currently loaded ones, there is no need to
+	// load it again. But, make note of the fact that it is the most recently
+	// asked-for sprite, unless culling is being skipped.
+	map<const Sprite *, int>::iterator pit = loadedStellarObjects.find(sprite);
+	if(pit != loadedStellarObjects.end())
+	{
+		if(skipCulling)
+			return;
+		for(pair<const Sprite * const, int> &it : loadedStellarObjects)
+			if(it.second < pit->second)
+				++it.second;
+
+		pit->second = 0;
+		return;
+	}
+
+	// This sprite is not currently loaded. Check to see whether we already
+	// have the maximum number of sprites loaded, in which case the oldest one
+	// must be unloaded to make room for this one.
+	pit = loadedStellarObjects.begin();
+	while(pit != loadedStellarObjects.end() && !skipCulling)
+	{
+		++pit->second;
+		if(pit->second >= STELLAR_OBJECT_LIMIT)
+		{
+			UnloadSprite(queue, pit->first);
+			pit = loadedStellarObjects.erase(pit);
+		}
+		else
+			++pit;
+	}
+
+	// Now, load all the files for this sprite. If this sprite is being loaded from a panel
+	// that skips culling, then set the sprite to be culled as soon as culling isn't being
+	// skipped anymore.
+	loadedStellarObjects[sprite] = skipCulling ? STELLAR_OBJECT_LIMIT : 0;
 	LoadSprite(queue, dit->second);
 }
 

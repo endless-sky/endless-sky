@@ -55,10 +55,10 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 
 
 
-// Check that this Body has a sprite and that the sprite has at least one frame.
+// Check that this Body has a sprite and that the sprite has at least one frame or uses deferred loading.
 bool Body::HasSprite() const
 {
-	return (sprite && sprite->Frames());
+	return (sprite && (sprite->Frames() || GameData::IsDeferred(sprite)));
 }
 
 

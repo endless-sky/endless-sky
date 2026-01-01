@@ -91,11 +91,16 @@ public:
 	static double GetProgress();
 	// Whether initial game loading is complete (data, sprites and audio are loaded).
 	static bool IsLoaded();
+	// Determine whether the given sprite uses deferred loading.
+	static bool IsDeferred(const Sprite *sprite);
 	// Begin loading a sprite that was previously deferred. This is done for various images to speed up
 	// the program's startup and reduce VRAM usage.
 	// Preload a landscape image. If 20 landscape images have already been preloaded
 	// previously, unload the least recently seen image.
 	static void PreloadLandscape(TaskQueue &queue, const Sprite *sprite);
+	// Load a stellar object. If 100 stellar object sprites have already been loaded previously,
+	// unload the least recently seen image, unless skipCulling is true.
+	static void LoadStellarObject(TaskQueue &queue, const Sprite *sprite, bool skipCulling = false);
 	// Load a ship or outfit thumbnail, or unload all previously loaded thumbnails.
 	static void LoadThumbnail(TaskQueue &queue, const Sprite *sprite);
 	static void UnloadThumbnails(TaskQueue &queue);
