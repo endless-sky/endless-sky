@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Random.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 
 #include <algorithm>
@@ -58,7 +59,7 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 // Check that this Body has a sprite and that the sprite has at least one frame or uses deferred loading.
 bool Body::HasSprite() const
 {
-	return (sprite && (sprite->IsLoaded() || GameData::IsDeferred(sprite)));
+	return (sprite && (sprite->IsLoaded() || SpriteLoadManager::IsDeferred(sprite)));
 }
 
 

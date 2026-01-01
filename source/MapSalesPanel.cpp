@@ -378,7 +378,7 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 
 void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle *swizzle) const
 {
-	if(sprite)
+	if(sprite && sprite->IsLoaded())
 	{
 		Point iconOffset(.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
 		double scale = min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));

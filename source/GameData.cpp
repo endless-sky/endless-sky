@@ -55,7 +55,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/RingShader.h"
 #include "Ship.h"
 #include "image/Sprite.h"
-#include "image/SpriteSet.h"
+#include "image/SpriteLoadManager.h"
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
 #include "StartConditions.h"
@@ -66,7 +66,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UniverseObjects.h"
 
 #include <algorithm>
-#include <atomic>
 #include <filesystem>
 #include <iostream>
 #include <queue>
@@ -93,15 +92,6 @@ namespace {
 	StarField background;
 
 	vector<filesystem::path> sources;
-	map<const Sprite *, shared_ptr<ImageSet>> deferred;
-	map<const Sprite *, int> preloadedLandscapes;
-	map<const Sprite *, int> loadedStellarObjects;
-	set<const Sprite *> loadedThumbnails;
-	set<const Sprite *> loadedScenes;
-	// The maximum number of sprites of varying types that
-	// can be loaded at once before old sprites start being unloaded.
-	const int LANDSCAPE_LIMIT = 20;
-	const int STELLAR_OBJECT_LIMIT = 100;
 
 	MaskManager maskManager;
 
@@ -109,76 +99,6 @@ namespace {
 	map<const System *, map<string, int>> purchases;
 
 	ConditionsStore globalConditions;
-
-	bool preventSpriteUpload = false;
-
-	// Tracks the progress of loading the sprites when the game starts.
-	std::atomic<bool> queuedAllImages = false;
-	std::atomic<int> spritesLoaded = 0;
-	std::atomic<int> totalSprites = 0;
-
-	// List of image sets that are waiting to be uploaded to the GPU.
-	mutex imageQueueMutex;
-	queue<shared_ptr<ImageSet>> imageQueue;
-
-	// Loads a sprite and queues it for upload to the GPU.
-	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)
-	{
-		queue.Run([image] { image->Load(); },
-			[image] { image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload); });
-	}
-	void UnloadSprite(TaskQueue &queue, const Sprite *sprite)
-	{
-		// Don't unload sprites if they were never uploaded to begin with.
-		if(preventSpriteUpload)
-			return;
-		// Unloading needs to be queued on the main thread.
-		queue.Run({}, [name = sprite->Name()] { SpriteSet::Modify(name)->Unload(); });
-	}
-
-	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image);
-	// Loads a sprite from the image queue, recursively.
-	void LoadSpriteQueued(TaskQueue &queue)
-	{
-		if(imageQueue.empty())
-			return;
-
-		// Start loading the next image in the list.
-		// This is done to save memory on startup.
-		LoadSpriteQueued(queue, imageQueue.front());
-		imageQueue.pop();
-	}
-
-	// Loads a sprite from the given image, with progress tracking.
-	// Recursively loads the next image in the queue, if any.
-	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image)
-	{
-		Sprite *sprite = SpriteSet::Modify(image->Name());
-		if(deferred.contains(sprite))
-		{
-			queue.Run([image, sprite] { image->MinimalLoad(sprite); },
-				[&queue]
-				{
-					++spritesLoaded;
-					// Start loading the next image in the queue, if any.
-					lock_guard lock(imageQueueMutex);
-					LoadSpriteQueued(queue);
-				});
-		}
-		else
-		{
-			queue.Run([image] { image->Load(); },
-				[image, sprite, &queue]
-				{
-					image->Upload(sprite, !preventSpriteUpload);
-					++spritesLoaded;
-
-					// Start loading the next image in the queue, if any.
-					lock_guard lock(imageQueueMutex);
-					LoadSpriteQueued(queue);
-				});
-		}
-	}
 
 	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
@@ -215,7 +135,7 @@ namespace {
 		if(!icon->IsEmpty())
 		{
 			icon->ValidateFrames();
-			LoadSprite(queue, icon);
+			SpriteLoadManager::LoadSprite(queue, icon);
 		}
 	}
 }
@@ -225,7 +145,8 @@ namespace {
 shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &player,
 		bool onlyLoadData, bool debugMode, bool preventUpload)
 {
-	preventSpriteUpload = preventUpload;
+	if(preventUpload)
+		SpriteLoadManager::PreventSpriteUpload();
 
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources(queue);
@@ -233,44 +154,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 	if(!onlyLoadData)
 	{
 		queue.Run([&queue] {
-			// Now, read all the images in all the path directories. For each unique
-			// name, only remember one instance, letting things on the higher priority
-			// paths override the default images.
-			map<string, shared_ptr<ImageSet>> images = FindImages();
-
-			// From the name, strip out any frame number, plus the extension.
-			for(auto &[name, imageSet] : images)
-			{
-				// This should never happen, but just in case:
-				if(!imageSet)
-					continue;
-
-				// Reduce the set of images to those that are valid.
-				imageSet->ValidateFrames();
-				// For deferred images, remember all the source files but don't fully load them yet.
-				if(ImageSet::IsDeferred(name))
-				{
-					lock_guard lock(imageQueueMutex);
-					imageQueue.push(imageSet);
-					deferred[SpriteSet::Get(name)] = std::move(imageSet);
-				}
-				else
-				{
-					lock_guard lock(imageQueueMutex);
-					imageQueue.push(std::move(std::move(imageSet)));
-				}
-				++totalSprites;
-			}
-			queuedAllImages = true;
-
-			// Launch the tasks to actually load the images, making sure not to exceed the amount
-			// of tasks the main thread can handle in a single frame to limit peak memory usage.
-			{
-				lock_guard lock(imageQueueMutex);
-				for(int i = 0; i < TaskQueue::MAX_SYNC_TASKS; ++i)
-					LoadSpriteQueued(queue);
-			}
-
+			SpriteLoadManager::Init(queue, FindImages());
 			// Generate a catalog of music files.
 			Music::Init(sources);
 		});
@@ -373,15 +257,7 @@ void GameData::LoadShaders()
 
 double GameData::GetProgress()
 {
-	double spriteProgress = 0.;
-	if(queuedAllImages)
-	{
-		if(!totalSprites)
-			spriteProgress = 1.;
-		else
-			spriteProgress = static_cast<double>(spritesLoaded) / totalSprites;
-	}
-	return min({spriteProgress, Audio::GetProgress(), objects.GetProgress()});
+	return min({SpriteLoadManager::Progress(), Audio::GetProgress(), objects.GetProgress()});
 }
 
 
@@ -389,155 +265,6 @@ double GameData::GetProgress()
 bool GameData::IsLoaded()
 {
 	return GetProgress() == 1.;
-}
-
-
-
-bool GameData::IsDeferred(const Sprite *sprite)
-{
-	return deferred.contains(sprite);
-}
-
-
-
-// Begin loading a sprite that was previously deferred. Currently this is
-// done with all landscapes to speed up the program's startup.
-void GameData::PreloadLandscape(TaskQueue &queue, const Sprite *sprite)
-{
-	// Make sure this sprite actually is one that uses deferred loading.
-	auto dit = deferred.find(sprite);
-	if(!sprite || dit == deferred.end())
-		return;
-
-	// If this sprite is one of the currently loaded ones, there is no need to
-	// load it again. But, make note of the fact that it is the most recently
-	// asked-for sprite.
-	map<const Sprite *, int>::iterator pit = preloadedLandscapes.find(sprite);
-	if(pit != preloadedLandscapes.end())
-	{
-		for(pair<const Sprite * const, int> &it : preloadedLandscapes)
-			if(it.second < pit->second)
-				++it.second;
-
-		pit->second = 0;
-		return;
-	}
-
-	// This sprite is not currently preloaded. Check to see whether we already
-	// have the maximum number of sprites loaded, in which case the oldest one
-	// must be unloaded to make room for this one.
-	pit = preloadedLandscapes.begin();
-	while(pit != preloadedLandscapes.end())
-	{
-		++pit->second;
-		if(pit->second >= LANDSCAPE_LIMIT)
-		{
-			UnloadSprite(queue, pit->first);
-			pit = preloadedLandscapes.erase(pit);
-		}
-		else
-			++pit;
-	}
-
-	// Now, load all the files for this sprite.
-	preloadedLandscapes[sprite] = 0;
-	LoadSprite(queue, dit->second);
-}
-
-
-
-void GameData::LoadStellarObject(TaskQueue &queue, const Sprite *sprite, bool skipCulling)
-{
-	// Make sure this sprite actually is one that uses deferred loading.
-	auto dit = deferred.find(sprite);
-	if(!sprite || dit == deferred.end())
-		return;
-
-	// If this sprite is one of the currently loaded ones, there is no need to
-	// load it again. But, make note of the fact that it is the most recently
-	// asked-for sprite, unless culling is being skipped.
-	map<const Sprite *, int>::iterator pit = loadedStellarObjects.find(sprite);
-	if(pit != loadedStellarObjects.end())
-	{
-		if(skipCulling)
-			return;
-		for(pair<const Sprite * const, int> &it : loadedStellarObjects)
-			if(it.second < pit->second)
-				++it.second;
-
-		pit->second = 0;
-		return;
-	}
-
-	// This sprite is not currently loaded. Check to see whether we already
-	// have the maximum number of sprites loaded, in which case the oldest one
-	// must be unloaded to make room for this one.
-	pit = loadedStellarObjects.begin();
-	while(pit != loadedStellarObjects.end() && !skipCulling)
-	{
-		++pit->second;
-		if(pit->second >= STELLAR_OBJECT_LIMIT)
-		{
-			UnloadSprite(queue, pit->first);
-			pit = loadedStellarObjects.erase(pit);
-		}
-		else
-			++pit;
-	}
-
-	// Now, load all the files for this sprite. If this sprite is being loaded from a panel
-	// that skips culling, then set the sprite to be culled as soon as culling isn't being
-	// skipped anymore.
-	loadedStellarObjects[sprite] = skipCulling ? STELLAR_OBJECT_LIMIT : 0;
-	LoadSprite(queue, dit->second);
-}
-
-
-
-void GameData::LoadThumbnail(TaskQueue &queue, const Sprite *sprite)
-{
-	// Make sure this sprite actually is one that uses deferred loading.
-	auto dit = deferred.find(sprite);
-	if(!sprite || dit == deferred.end())
-		return;
-
-	if(!loadedThumbnails.insert(sprite).second)
-		return;
-
-	LoadSprite(queue, dit->second);
-}
-
-
-
-void GameData::UnloadThumbnails(TaskQueue &queue)
-{
-	for(const Sprite *sprite : loadedThumbnails)
-		UnloadSprite(queue, sprite);
-	loadedThumbnails.clear();
-}
-
-
-
-void GameData::LoadScene(TaskQueue &queue, const Sprite *sprite)
-{
-	// Make sure this sprite actually is one that uses deferred loading.
-	auto dit = deferred.find(sprite);
-	if(!sprite || dit == deferred.end())
-		return;
-
-	if(!loadedScenes.insert(sprite).second)
-		return;
-
-	LoadSprite(queue, dit->second);
-}
-
-
-
-void GameData::UnloadScenes(TaskQueue &queue)
-{
-	for(const Sprite *sprite : loadedScenes)
-		UnloadSprite(queue, sprite);
-	loadedScenes.clear();
 }
 
 

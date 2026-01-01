@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 #include "Shop.h"
 #include "SpaceportPanel.h"
+#include "image/SpriteLoadManager.h"
 #include "System.h"
 #include "TaskQueue.h"
 #include "TextArea.h"
@@ -74,7 +75,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
 	TaskQueue queue;
-	GameData::PreloadLandscape(queue, planet.Landscape());
+	SpriteLoadManager::PreloadLandscape(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
@@ -86,7 +87,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 PlanetPanel::~PlanetPanel()
 {
 	Audio::UnblockPausing();
-	GameData::UnloadThumbnails(GetUI()->AsyncQueue());
+	SpriteLoadManager::UnloadThumbnails(GetUI()->AsyncQueue());
 }
 
 
@@ -143,9 +144,9 @@ void PlanetPanel::Step()
 		TaskQueue &queue = GetUI()->AsyncQueue();
 		// Load the thumbnails for any ships and outfits sold in the shop.
 		for(const Ship *ship : shipyardStock)
-			GameData::LoadThumbnail(queue, ship->Thumbnail());
+			SpriteLoadManager::LoadThumbnail(queue, ship->Thumbnail());
 		for(const Outfit *outfit : outfitterStock)
-			GameData::LoadThumbnail(queue, outfit->Thumbnail());
+			SpriteLoadManager::LoadThumbnail(queue, outfit->Thumbnail());
 		// Also load the thumbnails of anything in storage on this planet or from the player's fleet.
 		for(const auto &ship : player.Ships())
 		{
@@ -153,19 +154,19 @@ void PlanetPanel::Step()
 			// so only skip over ships in a different system.
 			if(!ship || !ship->GetPlanet() || ship->GetSystem() != &system)
 				continue;
-			GameData::LoadThumbnail(queue, ship->Thumbnail());
+			SpriteLoadManager::LoadThumbnail(queue, ship->Thumbnail());
 			for(const auto &outfit : ship->Outfits())
-				GameData::LoadThumbnail(queue, outfit.first->Thumbnail());
+				SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
 		}
 		for(const auto &outfit : player.Storage().Outfits())
-			GameData::LoadThumbnail(queue, outfit.first->Thumbnail());
+			SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
 		for(const auto &outfit : player.Cargo().Outfits())
-			GameData::LoadThumbnail(queue, outfit.first->Thumbnail());
+			SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
 		for(const auto &license : player.Licenses())
 		{
 			const Outfit *outfit = GameData::Outfits().Find(license + " License");
 			if(outfit)
-				GameData::LoadThumbnail(queue, outfit->Thumbnail());
+				SpriteLoadManager::LoadThumbnail(queue, outfit->Thumbnail());
 		}
 	}
 

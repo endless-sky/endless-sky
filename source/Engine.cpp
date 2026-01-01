@@ -61,6 +61,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
@@ -262,11 +263,10 @@ Engine::Engine(PlayerInfo &player)
 	{
 		if(!object.HasSprite())
 			continue;
-		GameData::LoadStellarObject(asyncQueue, object.GetSprite());
+		SpriteLoadManager::LoadStellarObject(asyncQueue, object.GetSprite());
 		if(object.HasValidPlanet())
-			GameData::PreloadLandscape(asyncQueue, object.GetPlanet()->Landscape());
+			SpriteLoadManager::PreloadLandscape(asyncQueue, object.GetPlanet()->Landscape());
 	}
-	queue.Wait();
 
 	// Figure out what planet the player is landed on, if any.
 	const StellarObject *object = player.GetStellarObject();
@@ -1457,10 +1457,10 @@ void Engine::EnterSystem()
 	for(const StellarObject &object : system->Objects())
 	{
 		if(object.HasSprite())
-			GameData::LoadStellarObject(asyncQueue, object.GetSprite());
+			SpriteLoadManager::LoadStellarObject(asyncQueue, object.GetSprite());
 		if(object.HasValidPlanet())
 		{
-			GameData::PreloadLandscape(asyncQueue, object.GetPlanet()->Landscape());
+			SpriteLoadManager::PreloadLandscape(asyncQueue, object.GetPlanet()->Landscape());
 			if(object.GetPlanet()->IsWormhole() && !usedWormhole
 					&& flagship->Position().Distance(object.Position()) < 1.)
 				usedWormhole = &object;
@@ -1776,7 +1776,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		// Begin loading the sprites in the next system.
 		for(const StellarObject &object : flagship->GetTargetSystem()->Objects())
 			if(object.HasSprite())
-				GameData::LoadStellarObject(asyncQueue, object.GetSprite());
+				SpriteLoadManager::LoadStellarObject(asyncQueue, object.GetSprite());
 	}
 	// Check if the flagship just entered a new system.
 	if(flagship && playerSystem != flagship->GetSystem())

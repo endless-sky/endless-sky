@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -61,7 +62,7 @@ void MapOutfitterPanel::LoadCatalogThumbnails() const
 {
 	for(const auto &category : catalog)
 		for(const string &entry : category.second)
-			GameData::LoadThumbnail(GetUI()->AsyncQueue(), GameData::Outfits().Get(entry)->Thumbnail());
+			SpriteLoadManager::LoadThumbnail(GetUI()->AsyncQueue(), GameData::Outfits().Get(entry)->Thumbnail());
 }
 
 

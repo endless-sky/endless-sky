@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Shop.h"
+#include "image/SpriteLoadManager.h"
 #include "shader/StarField.h"
 #include "StartConditions.h"
 #include "System.h"
@@ -90,7 +91,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 
 StartConditionsPanel::~StartConditionsPanel()
 {
-	GameData::UnloadScenes(GetUI()->AsyncQueue());
+	SpriteLoadManager::UnloadScenes(GetUI()->AsyncQueue());
 }
 
 
@@ -101,7 +102,7 @@ void StartConditionsPanel::Step()
 	{
 		hasLoadedScenes = true;
 		for(const StartConditions &scenario : scenarios)
-			GameData::LoadScene(GetUI()->AsyncQueue(), scenario.GetThumbnail());
+			SpriteLoadManager::LoadScene(GetUI()->AsyncQueue(), scenario.GetThumbnail());
 	}
 }
 

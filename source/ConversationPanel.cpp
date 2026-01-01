@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shift.h"
 #include "Ship.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "UI.h"
@@ -107,7 +108,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 ConversationPanel::~ConversationPanel()
 {
 	Audio::Resume();
-	GameData::UnloadScenes(GetUI()->AsyncQueue());
+	SpriteLoadManager::UnloadScenes(GetUI()->AsyncQueue());
 }
 
 
@@ -125,7 +126,7 @@ void ConversationPanel::Step()
 	{
 		hasLoadedScenes = true;
 		for(const Sprite *scene : conversation.Scenes())
-			GameData::LoadScene(GetUI()->AsyncQueue(), scene);
+			SpriteLoadManager::LoadScene(GetUI()->AsyncQueue(), scene);
 	}
 }
 

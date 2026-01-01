@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CargoHold.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "shader/FillShader.h"
 #include "shader/FogShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -38,7 +37,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "MissionPanel.h"
-#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
@@ -50,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
@@ -484,7 +483,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		// This is only done if the map was opened in flight, as otherwise this would unload
 		// images currently in use by the shipyard and outfitter.
 		if(!player.GetPlanet())
-			GameData::UnloadThumbnails(GetUI()->AsyncQueue());
+			SpriteLoadManager::UnloadThumbnails(GetUI()->AsyncQueue());
 	}
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{

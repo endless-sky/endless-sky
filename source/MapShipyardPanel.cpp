@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -60,7 +61,7 @@ void MapShipyardPanel::LoadCatalogThumbnails() const
 {
 	for(const auto &category : catalog)
 		for(const string &entry : category.second)
-			GameData::LoadThumbnail(GetUI()->AsyncQueue(), GameData::Ships().Get(entry)->Thumbnail());
+			SpriteLoadManager::LoadThumbnail(GetUI()->AsyncQueue(), GameData::Ships().Get(entry)->Thumbnail());
 }
 
 

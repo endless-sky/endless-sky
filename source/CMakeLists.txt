@@ -393,6 +393,8 @@ target_sources(EndlessSkyLib PRIVATE
 	image/MaskManager.h
 	image/Sprite.cpp
 	image/Sprite.h
+	image/SpriteLoadManager.cpp
+	image/SpriteLoadManager.h
 	image/SpriteSet.cpp
 	image/SpriteSet.h
 	shader/BatchDrawList.cpp

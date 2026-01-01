@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
@@ -549,7 +550,7 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 			// Load the sprite for this object, but don't cull old sprites, as otherwise we might end
 			// up culling a sprite that's being used by the system that the player is currently in after
 			// they leave the map.
-			GameData::LoadStellarObject(GetUI()->AsyncQueue(), object.GetSprite(), true);
+			SpriteLoadManager::LoadStellarObject(GetUI()->AsyncQueue(), object.GetSprite(), true);
 			planetCards.emplace_back(object, number, player.HasVisited(*planet), this);
 			shown.insert(planet);
 			++number;

@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "UI.h"
 #include "text/WrappedText.h"
@@ -67,6 +68,13 @@ LogbookPanel::LogbookPanel(PlayerInfo &player)
 
 
 
+LogbookPanel::~LogbookPanel()
+{
+	SpriteLoadManager::UnloadScenes(GetUI()->AsyncQueue());
+}
+
+
+
 void LogbookPanel::Step()
 {
 	if(!hasLoadedScenes)
@@ -74,7 +82,7 @@ void LogbookPanel::Step()
 		hasLoadedScenes = true;
 		for(const auto &entry : player.Logbook())
 			for(const Sprite *scene : entry.second.GetScenes())
-				GameData::LoadScene(GetUI()->AsyncQueue(), scene);
+				SpriteLoadManager::LoadScene(GetUI()->AsyncQueue(), scene);
 	}
 }
 
