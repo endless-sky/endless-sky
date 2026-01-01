@@ -46,14 +46,8 @@ const Sprite *SpriteSet::Get(const string &name)
 void SpriteSet::CheckReferences()
 {
 	for(const auto &[name, sprite] : sprites)
-	{
 		if(sprite.Height() == 0 && sprite.Width() == 0)
-		{
-			// Deferred images are allowed to still be empty.
-			if(!SpriteLoadManager::IsDeferred(&sprite))
-				Logger::Log("Image \"" + name + "\" is referred to, but has no pixels.", Logger::Level::WARNING);
-		}
-	}
+			Logger::Log("Image \"" + name + "\" is referred to, but has no pixels.", Logger::Level::WARNING);
 }
 
 
