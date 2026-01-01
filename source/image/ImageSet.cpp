@@ -77,8 +77,6 @@ namespace {
 	}
 }
 
-const set<string> ImageSet::DEFERRED_FOLDERS{"land", "thumbnail", "outfit", "scene", "star", "planet"};
-
 
 
 // Check if the given path is to an image of a valid file type.
@@ -86,18 +84,6 @@ bool ImageSet::IsImage(const filesystem::path &path)
 {
 	filesystem::path ext = path.extension();
 	return ImageBuffer::ImageExtensions().contains(Format::LowerCase(ext.string()));
-}
-
-
-
-// Determine whether the given path or name is for a sprite whose loading
-// should be deferred until needed.
-bool ImageSet::IsDeferred(const filesystem::path &path)
-{
-	if(path.empty())
-		return false;
-	filesystem::path pathStart = *path.begin();
-	return DEFERRED_FOLDERS.contains(pathStart.string());
 }
 
 

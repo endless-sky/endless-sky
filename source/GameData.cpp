@@ -147,6 +147,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 {
 	if(preventUpload)
 		SpriteLoadManager::PreventSpriteUpload();
+	SpriteLoadManager::FindDeferredFolders();
 
 	// Initialize the list of "source" folders based on any active plugins.
 	LoadSources(queue);

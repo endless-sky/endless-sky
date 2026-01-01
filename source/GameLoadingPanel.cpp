@@ -27,10 +27,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "shader/PointerShader.h"
-#include "Ship.h"
 #include "image/SpriteSet.h"
 #include "shader/StarField.h"
-#include "System.h"
 #include "TaskQueue.h"
 #include "UI.h"
 

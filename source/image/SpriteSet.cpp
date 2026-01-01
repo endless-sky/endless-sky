@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <mutex>
 
 #include "ImageSet.h"
+#include "SpriteLoadManager.h"
 
 using namespace std;
 
@@ -49,8 +50,7 @@ void SpriteSet::CheckReferences()
 		if(sprite.Height() == 0 && sprite.Width() == 0)
 		{
 			// Deferred images are allowed to still be empty.
-			if(ranges::none_of(ImageSet::DEFERRED_FOLDERS, [&name](const string &start) -> bool
-					{ return name.starts_with(start + "/"); }))
+			if(!SpriteLoadManager::IsDeferred(&sprite))
 				Logger::Log("Image \"" + name + "\" is referred to, but has no pixels.", Logger::Level::WARNING);
 		}
 	}

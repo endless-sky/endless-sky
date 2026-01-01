@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SpriteLoadManager.h"
 
 #include "ImageSet.h"
+#include "../Preferences.h"
 #include "Sprite.h"
 #include "SpriteSet.h"
 #include "../TaskQueue.h"
@@ -39,6 +40,8 @@ namespace {
 	mutex imageQueueMutex;
 	queue<shared_ptr<ImageSet>> imageQueue;
 
+	// The root folders (starting from the images folder) that use deferred loading.
+	set<string> deferredFolders;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloadedLandscapes;
 	map<const Sprite *, int> loadedStellarObjects;
@@ -48,6 +51,16 @@ namespace {
 	// can be loaded at once before old sprites start being unloaded.
 	const int LANDSCAPE_LIMIT = 20;
 	const int STELLAR_OBJECT_LIMIT = 100;
+
+	// Determine whether the given path or name is for a sprite whose loading
+	// should be deferred until needed.
+	bool IsDeferredFolder(const filesystem::path &path)
+	{
+		if(path.empty())
+			return false;
+		filesystem::path pathStart = *path.begin();
+		return deferredFolders.contains(pathStart.string());
+	}
 
 	// Loads a sprite and queues it for upload to the GPU.
 	void UnloadSprite(TaskQueue &queue, const Sprite *sprite)
@@ -76,7 +89,7 @@ namespace {
 	// Recursively loads the next image in the queue, if any.
 	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image)
 	{
-		// Deferred images are only minimally loaded.
+		// Deferred images are only minimally loaded so that their dimensions are known.
 		Sprite *sprite = SpriteSet::Modify(image->Name());
 		if(deferred.contains(sprite))
 		{
@@ -119,7 +132,7 @@ void SpriteLoadManager::Init(TaskQueue &queue, map<string, shared_ptr<ImageSet>>
 		// Reduce the set of images to those that are valid.
 		imageSet->ValidateFrames();
 		// Keep track of which images should use deferred loading.
-		if(ImageSet::IsDeferred(name))
+		if(IsDeferredFolder(name))
 			deferred[SpriteSet::Get(name)] = imageSet;
 		lock_guard lock(imageQueueMutex);
 		imageQueue.push(std::move(std::move(imageSet)));
@@ -141,6 +154,17 @@ void SpriteLoadManager::Init(TaskQueue &queue, map<string, shared_ptr<ImageSet>>
 void SpriteLoadManager::PreventSpriteUpload()
 {
 	preventSpriteUpload = true;
+}
+
+
+
+void SpriteLoadManager::FindDeferredFolders()
+{
+	// Landscape images are always deferred.
+	if(Preferences::Has("Defer loading images"))
+		deferredFolders = {"land", "thumbnail", "outfit", "scene", "star", "planet"};
+	else
+		deferredFolders = {"land"};
 }
 
 

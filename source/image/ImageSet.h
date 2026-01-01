@@ -35,15 +35,8 @@ class Sprite;
 // stores masks for any sprite for which they should be calculated.
 class ImageSet {
 public:
-	static const std::set<std::string> DEFERRED_FOLDERS;
-
-
-public:
 	// Check if the given path is to an image of a valid file type.
 	static bool IsImage(const std::filesystem::path &path);
-	// Determine whether the given path or name is for a sprite whose loading
-	// should be deferred until needed.
-	static bool IsDeferred(const std::filesystem::path &path);
 
 
 public:
