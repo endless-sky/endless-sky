@@ -274,6 +274,21 @@ void ImageSet::Load() noexcept(false)
 
 
 
+void ImageSet::MinimalLoad(Sprite *sprite) noexcept(false)
+{
+	assert(framePaths[0].empty() && "should call ValidateFrames before calling MinimalLoad");
+
+	// Load only the first frame of the 1x resolution image in order to determine the dimensions of the sprite.
+	size_t frames = paths[0].size();
+	buffer[0].Clear(frames);
+	buffer[0].Read(paths[0][0], 0);
+	sprite->MinimalLoad(buffer[0]);
+	// Clear the buffer since no image data was actually uploaded.
+	buffer[0].Clear();
+}
+
+
+
 // Create the sprite and optionally upload the image data to the GPU. After this is
 // called, the internal image buffers and mask vector will be cleared, but
 // the paths are saved in case the sprite needs to be loaded again.

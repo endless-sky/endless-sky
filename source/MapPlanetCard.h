@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
-#include <optional>
 #include <string>
 
 class MapDetailPanel;
@@ -90,7 +89,7 @@ private:
 	bool isShown = false;
 
 	const Sprite *sprite;
-	std::optional<float> spriteScale;
+	float spriteScale;
 
 	std::string governmentName;
 	std::string reputationLabel;

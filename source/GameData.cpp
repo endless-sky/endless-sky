@@ -153,16 +153,31 @@ namespace {
 	// Recursively loads the next image in the queue, if any.
 	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image)
 	{
-		queue.Run([image] { image->Load(); },
-			[image, &queue]
-			{
-				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
-				++spritesLoaded;
+		Sprite *sprite = SpriteSet::Modify(image->Name());
+		if(deferred.contains(sprite))
+		{
+			queue.Run([image, sprite] { image->MinimalLoad(sprite); },
+			   [&queue]
+			   {
+					++spritesLoaded;
+					// Start loading the next image in the queue, if any.
+					lock_guard lock(imageQueueMutex);
+					LoadSpriteQueued(queue);
+			   });
+		}
+		else
+		{
+			queue.Run([image] { image->Load(); },
+				[image, sprite, &queue]
+				{
+					image->Upload(sprite, !preventSpriteUpload);
+					++spritesLoaded;
 
-				// Start loading the next image in the queue, if any.
-				lock_guard lock(imageQueueMutex);
-				LoadSpriteQueued(queue);
-			});
+					// Start loading the next image in the queue, if any.
+					lock_guard lock(imageQueueMutex);
+					LoadSpriteQueued(queue);
+				});
+		}
 	}
 
 	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
@@ -232,15 +247,19 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 
 				// Reduce the set of images to those that are valid.
 				imageSet->ValidateFrames();
-				// For deferred images, remember all the source files but don't load them yet.
+				// For deferred images, remember all the source files but don't fully load them yet.
 				if(ImageSet::IsDeferred(name))
+				{
+					lock_guard lock(imageQueueMutex);
+					imageQueue.push(imageSet);
 					deferred[SpriteSet::Get(name)] = std::move(imageSet);
+				}
 				else
 				{
 					lock_guard lock(imageQueueMutex);
 					imageQueue.push(std::move(std::move(imageSet)));
-					++totalSprites;
 				}
+				++totalSprites;
 			}
 			queuedAllImages = true;
 

@@ -34,6 +34,12 @@ public:
 
 	const std::string &Name() const;
 
+	// Record the height and width from the buffer, but don't upload the buffer into memory.
+	// Used for sprites that use deferred loading to allow them to at least know their
+	// size for certain panels that rely on knowing a sprite's size without needing the sprite
+	// to be fully loaded.
+	void MinimalLoad(const ImageBuffer &buffer);
+
 	// Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
 	void AddFrames(ImageBuffer &buffer, bool is2x, bool noReduction);
 	void AddSwizzleMaskFrames(ImageBuffer &buffer, bool is2x, bool noReduction);
