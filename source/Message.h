@@ -77,6 +77,7 @@ public:
 	void Save(DataWriter &out) const;
 
 	const std::string &Name() const;
+	void SetTrueName(const std::string &name);
 	bool IsPhrase() const;
 	// Choose a message from the phrase if this message has one, or resolve substitutions
 	// on the raw text to get the final message string.

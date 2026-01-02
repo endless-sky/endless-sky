@@ -234,6 +234,13 @@ const string &Message::Name() const
 
 
 
+void Message::SetTrueName(const std::string &name)
+{
+	this->name = name;
+}
+
+
+
 bool Message::IsPhrase() const
 {
 	return isPhrase;
