@@ -56,10 +56,11 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 
 
 
-// Check that this Body has a sprite and that the sprite has at least one frame or uses deferred loading.
+// Check that this Body has a sprite and that the sprite has dimensions to it.
+// The sprite may be unloaded, though.
 bool Body::HasSprite() const
 {
-	return (sprite && (sprite->IsLoaded() || SpriteLoadManager::IsDeferred(sprite)));
+	return (sprite && sprite->HasDimensions());
 }
 
 

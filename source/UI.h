@@ -115,7 +115,9 @@ private:
 	std::vector<std::shared_ptr<Panel>> toPush;
 	std::vector<const Panel *> toPop;
 
-	// A shared task queue that all panels can use.
+	// Shared task queues that all panels can use.
+	// The sync queue will wait at the end of the step for all
+	// tasks to be completed, while the async queue does not.
 	TaskQueue syncQueue;
 	TaskQueue asyncQueue;
 };

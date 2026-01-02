@@ -264,7 +264,8 @@ void ImageSet::LoadDimensions(Sprite *sprite) noexcept(false)
 {
 	assert(framePaths[0].empty() && "should call ValidateFrames before calling LoadDimensions");
 
-	// Load only the first frame of the 1x resolution image in order to determine the dimensions of the sprite.
+	// Read only the first frame of the 1x resolution image in order to determine the dimensions of the sprite.
+	// (All frames are expected to have the same dimensions.)
 	size_t frames = paths[0].size();
 	buffer[0].Clear(frames);
 	int loadedFrames = buffer[0].Read(paths[0][0], 0, true);

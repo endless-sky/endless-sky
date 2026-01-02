@@ -137,7 +137,7 @@ void PlanetPanel::Step()
 	// if they haven't been loaded before or a mission action has just completed and we should
 	// re-check what's available in case the mission added something to the planet or player's
 	// inventory.
-	if(!hasLoadedThumbnails || player.ShouldReloadThumbnails())
+	if(!hasLoadedThumbnails || SpriteLoadManager::RecheckThumbnails())
 	{
 		hasLoadedThumbnails = true;
 		TaskQueue &queue = GetUI()->AsyncQueue();
@@ -147,25 +147,32 @@ void PlanetPanel::Step()
 		for(const Outfit *outfit : outfitterStock)
 			SpriteLoadManager::LoadThumbnail(queue, outfit->Thumbnail());
 		// Also load the thumbnails of anything in storage on this planet or from the player's fleet.
-		for(const auto &ship : player.Ships())
+		if(hasShipyard)
 		{
-			// Ships in the same system but on a different planet can still appear in the shops,
-			// so only skip over ships in a different system.
-			if(!ship || !ship->GetPlanet() || ship->GetSystem() != &system)
-				continue;
-			SpriteLoadManager::LoadThumbnail(queue, ship->Thumbnail());
-			for(const auto &outfit : ship->Outfits())
-				SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
+			for(const auto &ship : player.Ships())
+			{
+				// Ships in the same system but on a different planet can still appear in the shops,
+				// so only skip over ships in a different system.
+				if(!ship || !ship->GetPlanet() || ship->GetSystem() != &system)
+					continue;
+				SpriteLoadManager::LoadThumbnail(queue, ship->Thumbnail());
+				if(hasOutfitter)
+					for(const auto &outfit : ship->Outfits())
+						SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
+			}
 		}
-		for(const auto &outfit : player.Storage().Outfits())
-			SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
-		for(const auto &outfit : player.Cargo().Outfits())
-			SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
-		for(const auto &license : player.Licenses())
+		if(hasOutfitter)
 		{
-			const Outfit *outfit = GameData::Outfits().Find(license + " License");
-			if(outfit)
-				SpriteLoadManager::LoadThumbnail(queue, outfit->Thumbnail());
+			for(const auto &outfit : player.Storage().Outfits())
+				SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
+			for(const auto &outfit : player.Cargo().Outfits())
+				SpriteLoadManager::LoadThumbnail(queue, outfit.first->Thumbnail());
+			for(const auto &license : player.Licenses())
+			{
+				const Outfit *outfit = GameData::Outfits().Find(license + " License");
+				if(outfit)
+					SpriteLoadManager::LoadThumbnail(queue, outfit->Thumbnail());
+			}
 		}
 	}
 

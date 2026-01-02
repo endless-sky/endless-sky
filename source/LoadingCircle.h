@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Angle.h"
+
 class Point;
 
 
@@ -22,8 +24,9 @@ class Point;
 // A class for drawing loading circles.
 class LoadingCircle {
 public:
-	LoadingCircle(float size, int ticks, double rotationSpeed);
+	LoadingCircle(float size, int ticks, double rotationSpeed = 0.);
 
+	// Rotate the initial tick mark position, if this loading circle has a rotation speed.
 	void Step();
 	// Provide the position of the center of the circle and the progress percentage.
 	void Draw(const Point &position, double progress = 1.) const;
@@ -35,7 +38,7 @@ private:
 	// The number of tick marks that should be displayed.
 	int ticks;
 	// The number of degrees that each tick is offset from the previous one.
-	double angleOffset;
+	Angle angleOffset;
 	// The amount of rotation to apply to the position of the starting tick in the circle every step.
 	double rotationSpeed;
 	// The current amount of rotation applied to the starting tick.

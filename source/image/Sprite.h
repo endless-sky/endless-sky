@@ -39,6 +39,8 @@ public:
 	// size for certain panels that rely on knowing a sprite's size without needing the sprite
 	// to be fully loaded.
 	void LoadDimensions(const ImageBuffer &buffer);
+	// Whether this sprite has any dimensions, guaranteeing that it exists if it needs loaded.
+	bool HasDimensions() const;
 
 	// Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
 	void AddFrames(ImageBuffer &buffer, bool is2x, bool noReduction);

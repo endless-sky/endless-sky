@@ -88,6 +88,13 @@ void Sprite::LoadDimensions(const ImageBuffer &buffer)
 
 
 
+bool Sprite::HasDimensions() const
+{
+	return width != 0 && height != 0 && frames != 0;
+}
+
+
+
 // Add the given frames, optionally uploading them. The given buffer will be cleared afterwards.
 void Sprite::AddFrames(ImageBuffer &buffer, bool is2x, bool noReduction)
 {

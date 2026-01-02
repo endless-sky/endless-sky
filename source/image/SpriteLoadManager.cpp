@@ -29,14 +29,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// If true, sprites will be loaded but not uploaded. Used when the game doesn't
+	// need to create a game window (e.g. during testing or when in console-only mode)
 	bool preventSpriteUpload = false;
 
 	// Tracks the progress of loading the sprites when the game starts.
 	std::atomic<bool> queuedAllImages = false;
 	std::atomic<int> spritesLoaded = 0;
 	std::atomic<int> totalSprites = 0;
-
-	// List of image sets that are waiting to be uploaded to the GPU or minimally loaded.
+	// List of image sets that are waiting to be loaded at game start.
 	mutex imageQueueMutex;
 	queue<shared_ptr<ImageSet>> imageQueue;
 
@@ -54,6 +55,12 @@ namespace {
 	map<const Sprite *, int> loadedThumbnails;
 	// Scenes are culled the moment the panel that uses them is destroyed.
 	set<const Sprite *> loadedScenes;
+	// Missions and events can add new sprites to the player's current area that may need loaded.
+	// The code that makes these changes may not have access to the TaskQueue in UI, so they
+	// instead send a message to the SpriteLoadManager to tell the current Panel to recheck which
+	// sprites should be loaded.
+	bool recheckThumbnails = false;
+	bool recheckStellarObjects = false;
 
 	// Determine whether the given path or name is for a sprite whose loading
 	// should be deferred until needed.
@@ -75,6 +82,7 @@ namespace {
 		queue.Run({}, [name = sprite->Name()] { SpriteSet::Modify(name)->Unload(); });
 	}
 
+	// Functions for queueing the loading of sprites at game start.
 	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image);
 	// Loads a sprite from the image queue, recursively.
 	void LoadSpriteQueued(TaskQueue &queue)
@@ -326,4 +334,37 @@ void SpriteLoadManager::UnloadScenes(TaskQueue &queue)
 	for(const Sprite *sprite : loadedScenes)
 		UnloadSprite(queue, sprite);
 	loadedScenes.clear();
+}
+
+
+
+void SpriteLoadManager::SetRecheckThumbnails()
+{
+	recheckThumbnails = true;
+}
+
+
+
+bool SpriteLoadManager::RecheckThumbnails()
+{
+
+	bool ret = recheckThumbnails;
+	recheckThumbnails = false;
+	return ret;
+}
+
+
+
+void SpriteLoadManager::SetRecheckStellarObjects()
+{
+	recheckStellarObjects = true;
+}
+
+
+
+bool SpriteLoadManager::RecheckStellarObjects()
+{
+	bool ret = recheckStellarObjects;
+	recheckStellarObjects = false;
+	return ret;
 }

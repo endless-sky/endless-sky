@@ -26,7 +26,8 @@ class System;
 class TaskQueue;
 
 
-// A class for controlling the loading and unloading of sprites that defer their loading.
+// The class responsible for loading sprites at the start of the game, and
+// for managing the loading and unloading of sprites that use deferred loading.
 class SpriteLoadManager {
 public:
 	static void Init(TaskQueue &queue, std::map<std::string, std::shared_ptr<ImageSet>> images);
@@ -53,4 +54,9 @@ public:
 	// Load a starting scenario, conversation, or logbook scene, or unload all scenes.
 	static void LoadScene(TaskQueue &queue, const Sprite *sprite);
 	static void UnloadScenes(TaskQueue &queue);
+
+	static void SetRecheckThumbnails();
+	static bool RecheckThumbnails();
+	static void SetRecheckStellarObjects();
+	static bool RecheckStellarObjects();
 };

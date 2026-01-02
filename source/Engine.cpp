@@ -506,6 +506,13 @@ void Engine::Step(bool isActive)
 	queue.ProcessSyncTasks();
 	asyncQueue.ProcessSyncTasks();
 
+	// A recently triggered event may have caused new objects to appear in the current system.
+	// Ensure that they are loaded.
+	if(SpriteLoadManager::RecheckStellarObjects())
+		for(const StellarObject &object : player.GetSystem()->Objects())
+			if(object.HasSprite())
+				SpriteLoadManager::LoadStellarObject(asyncQueue, object.GetSprite());
+
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
 	const StellarObject *object = player.GetStellarObject();

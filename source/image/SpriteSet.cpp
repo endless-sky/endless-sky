@@ -15,16 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteSet.h"
 
-#include <algorithm>
-
 #include "../Logger.h"
 #include "Sprite.h"
 
 #include <map>
 #include <mutex>
-
-#include "ImageSet.h"
-#include "SpriteLoadManager.h"
 
 using namespace std;
 
@@ -46,7 +41,7 @@ const Sprite *SpriteSet::Get(const string &name)
 void SpriteSet::CheckReferences()
 {
 	for(const auto &[name, sprite] : sprites)
-		if(sprite.Height() == 0 && sprite.Width() == 0)
+		if(!sprite.HasDimensions())
 			Logger::Log("Image \"" + name + "\" is referred to, but has no pixels.", Logger::Level::WARNING);
 }
 
