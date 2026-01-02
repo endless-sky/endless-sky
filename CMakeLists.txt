@@ -91,10 +91,10 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 
 # FLAC's config is missing find_dependency(Threads), so include it here.
 find_package(Threads REQUIRED)
-if((UNIX AND NOT ES_USE_VCPKG) OR (APPLE AND (NOT ES_USE_VCPKG OR ES_USE_SYSTEM_LIBRARIES)))
+if((UNIX AND NOT ES_USE_VCPKG) OR (APPLE AND ES_USE_SYSTEM_LIBRARIES))
 	find_package(FLAC CONFIG QUIET)
 	if(NOT FLAC_FOUND)
-		# Many linux distros and Homebrew's FLAC use the autotools build of flac,
+		# Many linux distros and Homebrew on MacOS use the autotools build of flac,
 		# which does not package the flac-config.cmake. Use PkgConfig instead.
 		find_package(PkgConfig REQUIRED)
 		pkg_check_modules(flac++ REQUIRED IMPORTED_TARGET flac++)
