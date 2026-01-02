@@ -172,6 +172,9 @@ void LoadPanel::Draw()
 				FillShader::Fill(zone, Color(.1 * alpha, 0.));
 			const int textWidth = pilotBox.Width() - 2. * hTextPad;
 			font.Draw({it.first, {textWidth, Truncate::BACK}}, textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			AddZone(zone, [this, zone]() {
+				Click(zone.Center().X(), zone.Center().Y(), MouseButton::LEFT, 1);
+			});
 		}
 	}
 
@@ -222,6 +225,9 @@ void LoadPanel::Draw()
 			const string name = file.substr(pos, file.size() - 4 - pos);
 			const int textWidth = snapshotBox.Width() - 2. * hTextPad;
 			font.Draw({name, {textWidth, Truncate::BACK}}, textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			AddZone(zone, [this, zone]() {
+				Click(zone.Center().X(), zone.Center().Y(), MouseButton::LEFT, 1);
+			});
 		}
 	}
 
