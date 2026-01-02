@@ -107,15 +107,14 @@ endif()
 # Find the zip-reading component of zlib.
 find_package(ZLIB REQUIRED)
 
-# Minizip has a different target name in vcpkg.
-if((UNIX AND NOT ES_USE_VCPKG) OR (APPLE AND (NOT ES_USE_VCPKG OR ES_USE_SYSTEM_LIBRARIES)))
-	# Use pkg-config for system-installed minizip (Homebrew on macOS, system packages on Linux)
+if(APPLE AND ES_USE_SYSTEM_LIBRARIES)
+	# Use pkg-config for minizip from Homebrew on macOS because it doesn't provide CMake configuration files.
 	find_package(PkgConfig REQUIRED)
 	pkg_check_modules(minizip REQUIRED IMPORTED_TARGET minizip)
 	add_library(Minizip::Minizip ALIAS PkgConfig::minizip)
 	set(MINIZIP_LIBRARIES "Minizip::Minizip")
 elseif(ES_USE_VCPKG)
-	# Use vcpkg's unofficial-minizip
+	# Minizip has a different target name in vcpkg.
 	find_package(unofficial-minizip CONFIG REQUIRED)
 	set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
 else()
