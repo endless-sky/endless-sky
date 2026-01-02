@@ -1057,8 +1057,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
 	on visit
 		conversation
-			`To finish this mission, you must destroy all defending pirate vessels, and land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
-				launch
+			`To complete this mission, you must land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
 	on enter
 		dialog `Right after the fleet takes off, Danforth hails you. "We have just received additional fighters and drones from the Syndicate, please wait for them before jumping."`
 	on enter "Devil-Hide"
