@@ -1309,7 +1309,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI &ui, const shared_ptr<S
 
 bool Mission::DoNoUi(Trigger trigger, PlayerInfo &player)
 {
-	// Only certain triggers are expected to be falled with no UI.
+	// Only certain triggers are expected to be called with no UI.
 	// - OFFER if it is for a job that was just accepted. (This call will be immediately followed up with an ACCEPT
 	// action that does have the UI.)
 	// - ACCEPT, DECLINE, and DEFER if it is from PlayerInfo::MissionCallback and the mission was accepted, declined,
