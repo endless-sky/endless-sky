@@ -114,10 +114,18 @@ if((UNIX AND NOT ES_USE_VCPKG) OR (APPLE AND (NOT ES_USE_VCPKG OR ES_USE_SYSTEM_
 	pkg_check_modules(minizip REQUIRED IMPORTED_TARGET minizip)
 	add_library(Minizip::Minizip ALIAS PkgConfig::minizip)
 	set(MINIZIP_LIBRARIES "Minizip::Minizip")
-else()
+elseif(ES_USE_VCPKG)
 	# Use vcpkg's unofficial-minizip
 	find_package(unofficial-minizip CONFIG REQUIRED)
 	set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
+else()
+	if(CMAKE_VERSION VERSION_LESS 3.31)
+		find_package(PkgConfig REQUIRED PkgConfig PkgConf)
+		pkg_check_modules(MINIZIP REQUIRED minizip)
+	else()
+		cmake_pkg_config(EXTRACT minizip REQUIRED)
+		set(MINIZIP_LIBRARIES "minizip")
+	endif()
 endif()
 
 # Find the MinGW runtime DLLs.
