@@ -391,9 +391,9 @@ void Panel::DoResize()
 
 void Panel::GetZonesRecursive(std::vector<Zone*> &zones)
 {
-	for(auto& z: this->zones)
+	for(auto &z : this->zones)
 		zones.emplace_back(&z);
-	for(auto& c: children)
+	for(auto &c : children)
 		c->GetZonesRecursive(zones);
 }
 

@@ -1220,7 +1220,7 @@ void PreferencesPanel::DrawPlugins()
 		AddZone(Rectangle(table.GetCenterPoint(), table.GetRowSize()), [this, p]() {
 			Click(p.X(), p.Y(), MouseButton::LEFT, 1);
 		});
-		
+
 		bool isSelected = (plugin.name == selectedPlugin);
 		if(isSelected || plugin.name == hoverItem)
 			table.DrawHighlight(back);
