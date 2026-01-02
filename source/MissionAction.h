@@ -73,7 +73,7 @@ public:
 	// will be highlighted in the map if you bring it up.
 	void Do(PlayerInfo &player, UI *ui, const Mission *caller,
 		const System *destination = nullptr, const std::shared_ptr<Ship> &ship = nullptr,
-		bool isUnique = true) const;
+		const bool isUnique = true) const;
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
