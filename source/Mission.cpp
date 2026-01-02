@@ -1211,9 +1211,8 @@ bool Mission::IsUnique() const
 // When the state of this mission changes, it may make changes to the player
 // information or show new UI panels. PlayerInfo::MissionCallback() will be
 // used as the callback for any UI panel that returns a value.
-bool Mission::Do(Trigger trigger, PlayerInfo &player, UI &ui, const shared_ptr<Ship> &boardingShip)
+bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<Ship> &boardingShip)
 {
-	assert(!(trigger == OFFER && location == JOB) && "Mission::Do shouldn't be called on a JOB with an OFFER trigger.");
 	if(trigger == STOPOVER)
 	{
 		// If this is not one of this mission's stopover planets, or if it is
@@ -1225,7 +1224,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI &ui, const shared_ptr<S
 		for(const NPC &npc : npcs)
 			if(npc.IsLeftBehind(player.GetSystem()))
 			{
-				ui.Push(new Dialog("This is a stop for one of your missions, but you have left a ship behind."));
+				ui->Push(new Dialog("This is a stop for one of your missions, but you have left a ship behind."));
 				return false;
 			}
 
@@ -1288,6 +1287,14 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI &ui, const shared_ptr<S
 		++player.Conditions()[trueName + ": done"];
 	}
 
+	// "Jobs" should never show dialogs when offered, nor should they call the
+	// player's mission callback.
+	if(trigger == OFFER && location == JOB)
+		ui = nullptr;
+
+	// If this trigger has actions tied to it, perform them. Otherwise, check
+	// if this is a non-job mission that just got offered and if so,
+	// automatically accept it.
 	// If this trigger has actions tied to it, perform them.
 	// Otherwise, if this trigger is OFFER then automatically accept it.
 	// Actions that are performed only receive the mission destination
@@ -1299,51 +1306,8 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI &ui, const shared_ptr<S
 	if(it != actions.end())
 		it->second.Do(player, ui, this, (destination && isVisible) ? destination->GetSystem() : nullptr,
 			boardingShip, IsUnique());
-	else if(trigger == OFFER)
+	else if(trigger == OFFER && location != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
-
-	return true;
-}
-
-
-
-bool Mission::DoNoUi(Trigger trigger, PlayerInfo &player)
-{
-	// Only certain triggers are expected to be called with no UI.
-	// - OFFER if it is for a job that was just accepted. (This call will be immediately followed up with an ACCEPT
-	// action that does have the UI.)
-	// - ACCEPT, DECLINE, and DEFER if it is from PlayerInfo::MissionCallback and the mission was accepted, declined,
-	// or deferred from an on offer conversation or dialog.
-	// - DAILY is called in PlayerInfo::AdvanceDate and never has access to the UI.
-	assert((trigger == OFFER || trigger == ACCEPT || trigger == DECLINE || trigger == DEFER || trigger == DAILY)
-		&& ("Mission::DoNoUi called with an unexpected trigger: " + TriggerToText(trigger)));
-
-	// Don't update any further conditions if this action exists and can't be completed.
-	auto it = actions.find(trigger);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed()))
-		return false;
-
-	if(trigger == ACCEPT)
-	{
-		++player.Conditions()[trueName + ": offered"];
-		++player.Conditions()[trueName + ": active"];
-		// Any potential on offer conversation has been finished, so update
-		// the active NPCs for the first time and cache any necessary information.
-		UpdateNPCs(player);
-		DistanceMap here(player);
-		player.CacheMissionInformation(*this, here);
-	}
-	else if(trigger == DECLINE)
-	{
-		++player.Conditions()[trueName + ": offered"];
-		++player.Conditions()[trueName + ": declined"];
-	}
-
-	// If this trigger has actions tied to it, perform them.
-	if(it != actions.end())
-		it->second.DoNoUi(player, this);
-	// PlayerInfo::MissionCallback is not called when the UI is not available
-	// (as we probably got here because of PlayerInfo::MissionCallback).
 
 	return true;
 }
