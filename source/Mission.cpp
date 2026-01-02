@@ -1298,7 +1298,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI &ui, const shared_ptr<S
 	// marker.
 	if(it != actions.end())
 		it->second.Do(player, ui, this, (destination && isVisible) ? destination->GetSystem() : nullptr,
-		   boardingShip, IsUnique());
+			boardingShip, IsUnique());
 	else if(trigger == OFFER)
 		player.MissionCallback(Conversation::ACCEPT);
 
