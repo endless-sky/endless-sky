@@ -152,7 +152,7 @@ Message::Message()
 
 
 Message::Message(const string &text, const Category *category)
-	: text{text}, category{category}
+	: isLoaded{true}, text{text}, category{category}
 {
 }
 
