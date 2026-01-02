@@ -309,11 +309,11 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 
 
 
-void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
+void MissionAction::Do(PlayerInfo &player, UI &ui, const Mission *caller, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	bool isOffer = (trigger == "offer");
-	if(!conversation->IsEmpty() && ui)
+	if(!conversation->IsEmpty())
 	{
 		// Conversations offered while boarding or assisting reference a ship,
 		// which may be destroyed depending on the player's choices.
@@ -324,9 +324,9 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		// conversations.
 		else
 			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
-		ui->Push(panel);
+		ui.Push(panel);
 	}
-	else if(!dialogText.empty() && ui)
+	else if(!dialogText.empty())
 	{
 		map<string, string> subs;
 		GameData::GetTextReplacements().Substitutions(subs);
@@ -339,14 +339,21 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 		// missions active with the same destination (e.g. in the case of
 		// stacking bounty jobs).
 		if(isOffer)
-			ui->Push(new Dialog(text, player, destination));
+			ui.Push(new Dialog(text, player, destination));
 		else if(isUnique || trigger != "visit")
-			ui->Push(new Dialog(text));
+			ui.Push(new Dialog(text));
 	}
-	else if(isOffer && ui)
+	else if(isOffer)
 		player.MissionCallback(Conversation::ACCEPT);
 
-	action.Do(player, ui, caller);
+	action.Do(player, &ui, caller);
+}
+
+
+
+void MissionAction::DoNoUi(PlayerInfo &player, const Mission *caller) const
+{
+	action.Do(player, nullptr, caller);
 }
 
 

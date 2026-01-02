@@ -325,7 +325,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		if(bribeCallback && bribed)
 			bribeCallback(bribed);
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		sound = UI::UISound::SOFT;
 	}
 	else if(key == 't' && hasLanguage && planet)
@@ -338,7 +338,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			SetMessage("Thank you for granting us our freedom!");
 		}
 		else if(!planet->IsDefending())
-			GetUI()->Push(new Dialog([this]() { SetMessage(planet->DemandTribute(player)); },
+			GetUI().Push(new Dialog([this]() { SetMessage(planet->DemandTribute(player)); },
 				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
 				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
 				"This act may hurt your reputation severely. Do you want to proceed?",

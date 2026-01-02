@@ -278,7 +278,7 @@ bool MissionTimer::IsComplete() const
 
 
 
-void MissionTimer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
+void MissionTimer::Step(PlayerInfo &player, UI &ui, const Mission &mission)
 {
 	if(isComplete)
 		return;
@@ -371,7 +371,7 @@ bool MissionTimer::CanActivate(const Ship *flagship, const PlayerInfo &player) c
 
 
 
-void MissionTimer::Deactivate(PlayerInfo &player, UI *ui, const Mission &mission)
+void MissionTimer::Deactivate(PlayerInfo &player, UI &ui, const Mission &mission)
 {
 	// If the timer wasn't active the frame before, don't do anything.
 	if(!isActive)

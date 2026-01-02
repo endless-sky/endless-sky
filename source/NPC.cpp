@@ -466,7 +466,7 @@ const list<shared_ptr<Ship>> NPC::Ships() const
 
 
 // Handle the given ShipEvent. Return true if the event target is within this NPC.
-bool NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *caller, bool isVisible)
+bool NPC::Do(const ShipEvent &event, PlayerInfo &player, UI &ui, const Mission *caller, bool isVisible)
 {
 	// First, check if this ship is part of this NPC. If not, do nothing. If it
 	// is an NPC and it just got captured, replace it with a destroyed copy of
@@ -528,14 +528,14 @@ bool NPC::Do(const ShipEvent &event, PlayerInfo &player, UI *ui, const Mission *
 	if(isVisible && !alreadyFailed && HasFailed())
 		Messages::Add({"Mission failed" + (caller ? ": \"" + caller->DisplayName() + "\"" : "") + ".",
 			GameData::MessageCategories().Get("high")});
-	else if(ui && !alreadySucceeded && HasSucceeded(player.GetSystem(), false))
+	else if(!alreadySucceeded && HasSucceeded(player.GetSystem(), false))
 	{
 		// If "completing" this NPC displays a conversation, reference
 		// it, to allow the completing event's target to be destroyed.
 		if(!conversation->IsEmpty())
-			ui->Push(new ConversationPanel(player, *conversation, caller, nullptr, ship));
+			ui.Push(new ConversationPanel(player, *conversation, caller, nullptr, ship));
 		if(!dialogText.empty())
-			ui->Push(new Dialog(dialogText));
+			ui.Push(new Dialog(dialogText));
 	}
 
 	return true;
@@ -755,7 +755,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 
 
 // Handle any NPC mission actions that may have been triggered by a ShipEvent.
-void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui, const Mission *caller)
+void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI &ui, const Mission *caller)
 {
 	// Map the ShipEvent that was received to the Triggers it could flip.
 	static const map<int, vector<Trigger>> eventTriggers = {

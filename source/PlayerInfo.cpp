@@ -832,7 +832,7 @@ void PlayerInfo::AdvanceDate(int amount)
 				Messages::Add({"You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
 					GameData::MessageCategories().Get("high")});
 			if(!mission.IsFailed())
-				mission.Do(Mission::DAILY, *this);
+				mission.DoNoUi(Mission::DAILY, *this);
 		}
 
 		DoAccounting();
@@ -1541,7 +1541,7 @@ void PlayerInfo::UpdateCargoCapacities()
 
 // Switch cargo from being stored in ships to being stored here. Also recharge
 // ships, check for mission completion, and apply fines for contraband.
-void PlayerInfo::Land(UI *ui)
+void PlayerInfo::Land(UI &ui)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -1649,7 +1649,7 @@ void PlayerInfo::Land(UI *ui)
 		CreateMissions();
 	// Upon loading the game, prompt the player about any paused missions or invalid events,
 	// but if there are many do not name them all (since this would overflow the screen).
-	else if(ui)
+	else
 	{
 		if(!inactiveMissions.empty())
 		{
@@ -1665,7 +1665,7 @@ void PlayerInfo::Land(UI *ui)
 			if(mit != inactiveMissions.rend())
 				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
-			ui->Push(new Dialog(message));
+			ui.Push(new Dialog(message));
 		}
 		if(!invalidEvents.empty())
 		{
@@ -1681,7 +1681,7 @@ void PlayerInfo::Land(UI *ui)
 			if(eit != invalidEvents.rend())
 				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
 			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
-			ui->Push(new Dialog(message));
+			ui.Push(new Dialog(message));
 		}
 	}
 
@@ -1709,7 +1709,7 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
+bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -2349,7 +2349,7 @@ void PlayerInfo::UpdateMissionNPCs()
 
 
 // Accept the given job.
-void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
+void PlayerInfo::AcceptJob(const Mission &mission, UI &ui)
 {
 	for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
 		if(&*it == &mission)
@@ -2357,7 +2357,7 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			cargo.AddMissionCargo(&mission);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
-			it->Do(Mission::OFFER, *this);
+			it->DoNoUi(Mission::OFFER, *this);
 			it->Do(Mission::ACCEPT, *this, ui);
 			if(it->IsFailed())
 				RemoveMission(Mission::Trigger::FAIL, *it, ui);
@@ -2494,7 +2494,7 @@ void PlayerInfo::ClearActiveInFlightMission()
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
 // show that message.
-void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
+void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI &ui)
 {
 	list<Mission> &missionList = availableMissions.empty() ? availableBoardingMissions : availableMissions;
 	if(ships.empty() || missionList.empty())
@@ -2506,7 +2506,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 			string message = it.BlockedMessage(*this);
 			if(!message.empty())
 			{
-				ui->Push(new Dialog(message));
+				ui.Push(new Dialog(message));
 				return;
 			}
 		}
@@ -2514,7 +2514,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 
 
 
-void PlayerInfo::HandleBlockedEnteringMissions(UI *ui)
+void PlayerInfo::HandleBlockedEnteringMissions(UI &ui)
 {
 	if(!flagship || availableEnteringMissions.empty())
 		return;
@@ -2529,7 +2529,7 @@ void PlayerInfo::HandleBlockedEnteringMissions(UI *ui)
 			it = availableEnteringMissions.erase(it);
 			if(!message.empty())
 			{
-				ui->Push(new Dialog(message));
+				ui.Push(new Dialog(message));
 				return;
 			}
 		}
@@ -2572,7 +2572,7 @@ void PlayerInfo::MissionCallback(int response)
 		// to the front, so they appear at the top of the list if viewed.
 		auto spliceIt = mission.IsUnique() ? missions.begin() : missions.end();
 		missions.splice(spliceIt, missionList, missionList.begin());
-		mission.Do(Mission::ACCEPT, *this);
+		mission.DoNoUi(Mission::ACCEPT, *this);
 		if(shouldAutosave)
 			Autosave();
 		// If this is a mission offered in-flight, expose a pointer to it
@@ -2584,12 +2584,12 @@ void PlayerInfo::MissionCallback(int response)
 	}
 	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
 	{
-		mission.Do(Mission::DECLINE, *this);
+		mission.DoNoUi(Mission::DECLINE, *this);
 		missionList.pop_front();
 	}
 	else if(response == Conversation::DEFER || response == Conversation::DEPART)
 	{
-		mission.Do(Mission::DEFER, *this);
+		mission.DoNoUi(Mission::DEFER, *this);
 		missionList.pop_front();
 	}
 }
@@ -2608,7 +2608,7 @@ void PlayerInfo::BasicCallback(int response)
 
 // Mark a mission for removal, either because it was completed, or it failed,
 // or because the player aborted it.
-void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui)
+void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission, UI &ui)
 {
 	for(auto it = missions.begin(); it != missions.end(); ++it)
 		if(&*it == &mission)
@@ -2643,7 +2643,7 @@ void PlayerInfo::FailMission(const Mission &mission)
 
 
 // Update mission status based on an event.
-void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
+void PlayerInfo::HandleEvent(const ShipEvent &event, UI &ui)
 {
 	// Combat rating increases when you disable an enemy ship.
 	if(event.ActorGovernment() && event.ActorGovernment()->IsPlayer())
@@ -4414,7 +4414,7 @@ void PlayerInfo::CreateMissions()
 
 // Updates each mission upon landing, to perform landing actions (Stopover,
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
-void PlayerInfo::StepMissions(UI *ui)
+void PlayerInfo::StepMissions(UI &ui)
 {
 	// Check for NPCs that have been destroyed without their destruction
 	// being registered, e.g. by self-destruct:
@@ -4476,7 +4476,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		if(missionVisits > 1)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
-		ui->Push(new Dialog(visitText));
+		ui.Push(new Dialog(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
@@ -4512,7 +4512,7 @@ void PlayerInfo::StepMissions(UI *ui)
 
 
 
-void PlayerInfo::StepMissionTimers(UI *ui)
+void PlayerInfo::StepMissionTimers(UI &ui)
 {
 	for(Mission &mission : missions)
 		mission.StepTimers(*this, ui);
@@ -4908,7 +4908,7 @@ void PlayerInfo::Save(DataWriter &out) const
 // Check (and perform) any fines incurred by planetary security. If the player
 // has dominated the planet, or was given clearance to this planet by a mission,
 // planetary security is avoided. Infiltrating implies evasion of security.
-void PlayerInfo::Fine(UI *ui)
+void PlayerInfo::Fine(UI &ui)
 {
 	const Planet *planet = GetPlanet();
 	// Dominated planets should never fine you.
@@ -4934,7 +4934,7 @@ void PlayerInfo::Fine(UI *ui)
 		if(message.second == "atrocity")
 		{
 			if(message.first)
-				ui->Push(new ConversationPanel(*this, *message.first));
+				ui.Push(new ConversationPanel(*this, *message.first));
 			else
 			{
 				message.second = "Before you can leave your ship, the " + gov->DisplayName()
@@ -4943,13 +4943,13 @@ void PlayerInfo::Fine(UI *ui)
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui->Push(new Dialog(message.second));
+				ui.Push(new Dialog(message.second));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui->Push(new Dialog(message.second));
+			ui.Push(new Dialog(message.second));
 	}
 }
 

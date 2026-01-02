@@ -103,7 +103,7 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
-	if(!checkedHelp && GetUI()->IsTop(this) && player.Ships().size() > 1)
+	if(!checkedHelp && GetUI().IsTop(this) && player.Ships().size() > 1)
 	{
 		if(DoHelp("multiple ships"))
 		{
@@ -233,7 +233,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 void ShopPanel::CheckForMissions(Mission::Location location) const
 {
-	if(!GetUI()->IsTop(this))
+	if(!GetUI().IsTop(this))
 		return;
 
 	Mission *mission = player.MissionToOffer(location);
@@ -267,7 +267,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		if(!isOutfitter)
 			player.UpdateCargoCapacities();
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		UI::PlaySound(UI::UISound::NORMAL);
 	}
 	else if(command.Has(Command::HELP))
@@ -302,9 +302,9 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(command.Has(Command::MAP))
 	{
 		if(isOutfitter)
-			GetUI()->Push(new MapOutfitterPanel(player));
+			GetUI().Push(new MapOutfitterPanel(player));
 		else
-			GetUI()->Push(new MapShipyardPanel(player));
+			GetUI().Push(new MapShipyardPanel(player));
 	}
 	else if(key == SDLK_LEFT)
 	{
@@ -398,12 +398,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
 	else if(key == 'f')
-		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
+		GetUI().Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
 	else
 	{
 		TransactionResult result = HandleShortcuts(key);
 		if(result.HasMessage())
-			GetUI()->Push(new Dialog(result.Message()));
+			GetUI().Push(new Dialog(result.Message()));
 		else if(isOutfitter)
 		{
 			// Ship-based updates to cargo are handled when leaving.

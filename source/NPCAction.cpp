@@ -79,7 +79,7 @@ string NPCAction::Validate() const
 
 
 
-void NPCAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const shared_ptr<Ship> &target)
+void NPCAction::Do(PlayerInfo &player, UI &ui, const Mission *caller, const shared_ptr<Ship> &target)
 {
 	// All actions are currently one-time-use. Actions that are used
 	// are marked as triggered, and cannot be used again.

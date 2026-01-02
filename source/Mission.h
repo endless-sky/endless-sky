@@ -178,20 +178,21 @@ public:
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
 	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED};
-	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
+	bool Do(Trigger trigger, PlayerInfo &player, UI &ui, const std::shared_ptr<Ship> &boardingShip = nullptr);
+	bool DoNoUi(Trigger trigger, PlayerInfo &player);
 
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
 	// Iterate through the timers and progress them if applicable.
-	void StepTimers(PlayerInfo &player, UI *ui);
+	void StepTimers(PlayerInfo &player, UI &ui);
 	// Update which NPCs are active based on their spawn and despawn conditions.
 	void UpdateNPCs(const PlayerInfo &player);
 	// Checks if the given ship belongs to one of the mission's NPCs.
 	bool HasShip(const std::shared_ptr<Ship> &ship) const;
 	// If any event occurs between two ships, check to see if this mission cares
 	// about it. This may affect the mission status or display a message.
-	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
+	void Do(const ShipEvent &event, PlayerInfo &player, UI &ui);
 	bool RequiresGiftedShip(const std::string &shipId) const;
 
 	// Get a specific mission action from this mission.
@@ -205,7 +206,7 @@ public:
 
 
 private:
-	bool Enter(const System *system, PlayerInfo &player, UI *ui);
+	bool Enter(const System *system, PlayerInfo &player, UI &ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
