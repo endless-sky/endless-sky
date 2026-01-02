@@ -144,6 +144,13 @@ bool Message::Category::LogOnly() const
 
 
 
+Message::Message()
+{
+	category = GameData::MessageCategories().Get("normal");
+}
+
+
+
 Message::Message(const string &text, const Category *category)
 	: text{text}, category{category}
 {

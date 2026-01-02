@@ -69,7 +69,7 @@ public:
 
 
 public:
-	Message() = default;
+	Message();
 	Message(const std::string &text, const Category *category);
 	explicit Message(const DataNode &node);
 	void Load(const DataNode &node);
