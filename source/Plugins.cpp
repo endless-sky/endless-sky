@@ -58,6 +58,7 @@ namespace {
 	Set<Plugin> plugins;
 
 	// A list of plugins that can be installed from the online library.
+	mutex availablePluginsMutex;
 	Set<Plugin> availablePlugins;
 
 	void LoadSettingsFromFile(const filesystem::path &path)
@@ -71,8 +72,8 @@ namespace {
 			for(const DataNode &child : node)
 				if(child.Size() >= 2)
 				{
-					lock_guard<mutex> guard(pluginsMutex);
-					auto *plugin = plugins.Get(child.Token(0));
+					auto iPlugins = Plugins::GetPluginsLocked();
+					auto *plugin = iPlugins->Get(child.Token(0));
 					plugin->SetInUse(child.Value(1));
 					plugin->SetDesiredState(child.Value(1));
 					plugin->SetVersion(child.Size() > 2 ? child.Token(2) : "???");
@@ -183,6 +184,8 @@ string Plugin::CreateDescription() const
 	static const string EMPTY = "(No description given.)";
 	if(!version.empty())
 		text += "Version: " + version + '\n';
+	if(installedVersion != version)
+		text += "Installed Version: " + installedVersion + '\n';
 	if(!authors.empty())
 	{
 		text += "Authors: ";
@@ -276,11 +279,16 @@ bool Plugin::IsDownloading() const
 
 
 
+bool Plugin::HasChanged() const
+{
+	return inUse != desiredState;
+}
+
+
+
 void Plugin::SetInUse(bool inUse)
 {
 	this->inUse = inUse;
-	if(inUse)
-		this->installed = true;
 }
 
 
@@ -288,8 +296,6 @@ void Plugin::SetInUse(bool inUse)
 void Plugin::SetDesiredState(bool desiredState)
 {
 	this->desiredState = desiredState;
-	if(desiredState)
-		this->installed = true;
 }
 
 
@@ -311,6 +317,8 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 	name = path.stem().string();
 
 	// TODO: make sure the same name is used on load as on install (on load we use folder/filename directly)
+	// TODO: if outdated, re-get the icon
+	// TODO: add find button
 	filesystem::path pluginFile = path / "plugin.txt";
 	string description;
 	string version;
@@ -374,10 +382,8 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 
 	// Plugin names should be unique.
 	Plugin *plugin;
-	{
-		lock_guard<mutex> guard(pluginsMutex);
-		plugin = plugins.Get(name);
-	}
+	auto iPlugins = GetPluginsLocked();
+	plugin = iPlugins->Get(name);
 	if(plugin && plugin->IsValid())
 	{
 		Logger::Log("Skipping plugin located at \"" + path.string()
@@ -398,7 +404,9 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified in plugin.txt.
 	plugin->description = description.empty() ? Files::Read(path / "about.txt") : std::move(description);
-	plugin->version = std::move(version);
+	// We will use the version that we have in our plugin management `plugins.txt` file if no version is specified.
+	if(!version.empty())
+		plugin->version = std::move(version);
 	plugin->authors = std::move(authors);
 	plugin->tags = std::move(tags);
 	plugin->dependencies = std::move(dependencies);
@@ -415,17 +423,17 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path
 	for(const auto &pluginInstall : pluginInstallList)
 	{
 		string pluginName = pluginInstall["name"];
-		const Plugin *installedPlugin = plugins.Find(pluginName);
+		auto iPlugins = GetPluginsLocked();
+		auto *installedPlugin = iPlugins->Find(pluginName);
 		bool isInstalled = installedPlugin && !installedPlugin->removed;
-		bool isInUse = isInstalled && !installedPlugin->InUse();
 		string pluginVersion = pluginInstall["version"];
-		bool isOutdated = isInstalled && installedPlugin->version != pluginVersion;
 		vector<string> authors;
 		for(const auto &author : pluginInstall["authors"])
 			authors.emplace_back(author);
 		// TODO: test the json structure key that doesn't exist... e.g. what if no homepage?
 		// TODO: Un/Related homepage in particular could be clickable, and doesn't wrap.
-		Plugin *plugin = availablePlugins.Get(pluginName);
+		auto aPlugins = GetAvailablePluginsLocked();
+		Plugin *plugin = aPlugins->Get(pluginName);
 		plugin->name = pluginName;
 		plugin->url = pluginInstall["url"];
 		plugin->version = pluginVersion;
@@ -433,9 +441,9 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path
 		plugin->authors = authors;
 		plugin->homepage = pluginInstall["homepage"];
 		plugin->license = pluginInstall["license"];
-		plugin->installed = isInstalled;
-		plugin->inUse = isInUse;
+		bool isOutdated = isInstalled && installedPlugin->version != pluginVersion;
 		plugin->outdated = isOutdated;
+		plugin->installedVersion = installedPlugin ? installedPlugin->version : "";
 
 		Files::CreateFolder(Files::Config() / "icons/");
 		string iconPath = Files::Config() / "icons/" / (pluginName + ".png");
@@ -460,15 +468,16 @@ void Plugins::LoadSettings()
 
 void Plugins::Save()
 {
-	lock_guard<mutex> guard(pluginsMutex);
-	if(plugins.empty())
+	Logger::Log("-Save()----------------------------------", Logger::Level::ERROR);
+	auto iPlugins = GetPluginsLocked();
+	if(iPlugins->empty())
 		return;
 	DataWriter out(Files::Config() / "plugins.txt");
 
 	out.Write("state");
 	out.BeginChild();
 	{
-		for(const auto &it : plugins)
+		for(const auto &it : *iPlugins)
 			if(it.second.IsValid() && !it.second.removed)
 			{
 				Logger::Log(it.first + ' ' + to_string(it.second.desiredState) + ' ' + it.second.version, Logger::Level::INFO);
@@ -476,6 +485,7 @@ void Plugins::Save()
 			}
 	}
 	out.EndChild();
+	Logger::Log("-Save()'ed-------------------------- ;-P", Logger::Level::ERROR);
 }
 
 
@@ -491,14 +501,13 @@ bool Plugins::IsPlugin(const filesystem::path &path)
 
 
 
-// Returns true if any plugin enabled or disabled setting has changed since
-// launched via user preferences.
+// Returns true if the next start-up will have different plugins inUse than this one.
 bool Plugins::HasChanged()
 {
 	// This compares current state [the set of all installed plugins] to [the set which are .inUse].
-	lock_guard<mutex> guard(pluginsMutex);
-	for(const auto &it : plugins)
-		if(it.second.removed || it.second.fresh)
+	auto iPlugins = GetPluginsLocked();
+	for(const auto &it : *iPlugins)
+		if(it.second.HasChanged())
 			return true;
 	return false;
 }
@@ -513,18 +522,16 @@ bool Plugins::DownloadingInBackground()
 
 
 
-// Returns the list of plugins that have been identified in the online plugin library.
-Set<Plugin> &Plugins::GetAvailablePlugins()
+LockedSet<Plugin> Plugins::GetAvailablePluginsLocked()
 {
-	return availablePlugins;
+	return {availablePluginsMutex, availablePlugins};
 }
 
 
 
-// Returns the list of plugins that have been identified by the game.
-Set<Plugin> &Plugins::Get()
+LockedSet<Plugin> Plugins::GetPluginsLocked()
 {
-	return plugins;
+	return {pluginsMutex, plugins};
 }
 
 
@@ -532,93 +539,141 @@ Set<Plugin> &Plugins::Get()
 // Toggles enabling or disabling a plugin for the next game restart.
 void Plugins::TogglePlugin(const string &name)
 {
-	lock_guard<mutex> guard(pluginsMutex);
-	auto *plugin = plugins.Get(name);
-	plugin->desiredState = !plugin->desiredState;
+	bool changed = false;
+	{
+		auto iPlugins = GetPluginsLocked();
+		auto *plugin = iPlugins->Get(name);
+		if(!plugin->removed)
+		{
+			plugin->desiredState = !plugin->desiredState;
+			changed = true;
+		}
+		else
+			plugin->desiredState = false;
+	}
+	// And write the current state to disk so that it's in effect on the next start. Crashes be damned.
+	if(changed)
+		Save();
 }
 
 
 future<string> Plugins::InstallOrUpdate(const std::string &name)
 {
-	// Avoid creating data by name if it doesn't exist and still get a mutable copy Find (immutable) then Get (mutable).
-	if(!availablePlugins.Find(name))
 	{
-		Logger::Log("Plugin was selected, but then not found.", Logger::Level::ERROR);
-		return FutureString("");
+		auto aPlugins = GetAvailablePluginsLocked();
+		// Avoid creating data by name if it doesn't exist and still get a mutable copy Find (immutable) then Get (mutable).
+		if(!aPlugins->Find(name))
+		{
+			Logger::Log("Plugin was selected, but then not found.", Logger::Level::ERROR);
+			return FutureString("");
+		}
 	}
 
-	Plugin *installData = availablePlugins.Get(name);
-	if(installData && installData->IsValid())
+	return async(launch::async, [name]() noexcept -> string
 	{
 		{
 			lock_guard<mutex> guard(busyPluginsMutex);
 			if(!busyPlugins.insert(name).second)
-				return FutureString("Download already in progress for " + name);
+				return "Download already in progress for " + name;
 		}
-
-		return async(launch::async, [installData]() noexcept -> string
+		string url;
 		{
+			auto aPlugins = GetAvailablePluginsLocked();
+			const Plugin *installData = aPlugins->Find(name);
+			if(!installData)
+			{
+				string message = "Plugin was selected, but then not found.";
+				Logger::Log(message, Logger::Level::ERROR);
+				return message;
+			}
+
+			if(!(installData && installData->IsValid()))
+				return "";
+
 			// Check for malicous paths and bail out if there is one.
 			if(installData->name.find("..") != string::npos || installData->name.find("/") != string::npos ||
 					installData->name.find("\\") != string::npos)
 				return "This plugin cannot be installed because the name contains unsafe path characters.";
+			url = installData->url;
+		}
 
-			string zipLocation = Files::UserPlugins() / (installData->name + ".zip");
-			bool success = Download(installData->url, zipLocation);
-			string message = "";
-			if(success)
-			{
-				// Create a new entry for the plugin.
-				Plugin *newPlugin;
-				{
-					lock_guard<mutex> guard(pluginsMutex);
-					newPlugin = plugins.Get(installData->name);
-				}
-				newPlugin->name = installData->name;
-				newPlugin->authors = installData->authors;
-				newPlugin->homepage = installData->homepage;
-				newPlugin->license = installData->license;
-				newPlugin->description = installData->description;
-				newPlugin->path = zipLocation;
-				newPlugin->version = installData->version;
-				// Even if this is an update, this new version is not yet in use:
-				newPlugin->inUse = false;
-				newPlugin->desiredState = true;
-				newPlugin->fresh = true;
-				installData->installed = true;
-				installData->outdated = false;
-				installData->fresh = true;
-			}
-			else
-				message = "Could not download and install/update '" + installData->name + "' plugin.";
+		string zipLocation = Files::UserPlugins() / (name + ".zip");
+		// Don't hold the lock during the download.
+		bool success = Download(url, zipLocation);
+		string message;
+		if(success)
+		{
+			auto aPlugins = GetAvailablePluginsLocked();
+			Plugin *installData = aPlugins->Get(name);
+			// Create a new entry for the plugin.
+			Plugin *newPlugin;
+			auto iPlugins = GetPluginsLocked();
+			newPlugin = iPlugins->Get(installData->name);
+			newPlugin->name = installData->name;
+			newPlugin->authors = installData->authors;
+			newPlugin->homepage = installData->homepage;
+			newPlugin->license = installData->license;
+			newPlugin->description = installData->description;
+			newPlugin->path = zipLocation;
+			newPlugin->version = installData->version;
+			// Even if this is an update, this new version is not yet in use:
+			// TODO: there is a case where the installed plugins list already has this plugin installed
+			//  the fact there are changes to the plugin needs to be reflected in the restart required logic
+			//  need to rethink and how many and which booleans we need and where they should change.
+			newPlugin->inUse = false;
+			newPlugin->desiredState = true;
+			// Delete and install need to clearly reset the information in the list of available plugins appropriately.
+			installData->outdated = false;
+			installData->installedVersion = installData->version;
+		}
+		else
+			message = "Could not download and install/update '" + name + "' plugin.";
 
-			{
-				lock_guard<mutex> guard(busyPluginsMutex);
-				busyPlugins.erase(installData->name);
-			}
-			return message;
-		});
-	}
-	return FutureString("");
+		{
+			lock_guard<mutex> guard(busyPluginsMutex);
+			busyPlugins.erase(name);
+		}
+		return message;
+	});
 }
 
 
 
-std::string Plugins::DeletePlugin(const std::string &name)
+string Plugins::DeletePlugin(const std::string &name)
 {
-	Plugin *plugin = GetAvailablePlugins().Get(name);
-	if(plugin && plugin->IsValid())
+	string path;
 	{
+		auto iPlugins = GetPluginsLocked();
+		Plugin *plugin = iPlugins->Get(name);
+		if(plugin && plugin->IsValid())
 		{
-			lock_guard<mutex> guard(busyPluginsMutex);
+			lock_guard<mutex> guardB(busyPluginsMutex);
 			if(busyPlugins.contains(name))
-			{
 				return "Cannot delete " + name + "' while there related and ongoing downloads.";
-			}
+			path = plugin->path;
 		}
-		plugin->removed = true;
-		Files::Delete(Files::UserPlugins() / plugin->name);
+		else
+			Logger::Log("Somehow the plugin that was selected isn't there any more.", Logger::Level::ERROR);
 	}
+
+	if(!path.empty())
+	{
+		Files::Delete(path);
+
+		auto iPlugins = GetPluginsLocked();
+		Plugin *plugin = iPlugins->Get(name);
+		// Note, we will set the desired state to false as this makes HasChanged indicate restart required if inUse.
+		plugin->desiredState = false;
+		plugin->removed = true;
+
+		if(Files::Exists(path))
+			return "Could not delete the '" + name + "' plugin.";
+
+		// There is no need to keep around plugins that are not in use, their deletion does not require a restart.
+		if(!plugin->InUse())
+			iPlugins->erase(name);
+	}
+
 	return "";
 }
 

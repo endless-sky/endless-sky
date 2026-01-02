@@ -216,11 +216,7 @@ color "wormholes: beyond Patir" .19 .27 .69
 
 # Colors used in the plugin panel
 color "plugin reload required" .75 .1 .1
-color "plugin downloading" .75 .75 .75
-color "plugin outdated" .75 .75 0.
-color "plugin removed" .25 .25 .25
-
-
+color "plugin outdated" .75 .75 .5
 
 interface "map detail panel"
 	value "min planet panel height" 195
@@ -493,32 +489,8 @@ interface "load menu"
 
 
 interface "controls"
-	sprite "ui/keys panel"
-		center -65 -20
-	button c "_Controls"
-		center -300 -230
-		dimensions 90 30
-		color bright
-	button s "_Settings"
-		center -300 -190
-		dimensions 90 30
-		color medium
-		hover bright
-	button a "_Audio"
-		center -300 -150
-		dimensions 90 30
-		color medium
-		hover bright
-	button p "_Plugins"
-		center -300 -110
-		dimensions 90 30
-		color medium
-		hover bright
-	button l "_Library"
-		center -300 -70
-		dimensions 90 30
-		color medium
-		hover bright
+	sprite "ui/keys panel sidebox"
+		center -350 102
 	
 	label "Additional info"
 		from -275 34
@@ -549,32 +521,6 @@ interface "controls"
 
 
 interface "settings"
-	sprite "ui/settings panel"
-		center -20 -20
-	button c "_Controls"
-		center -300 -230
-		dimensions 90 30
-		color medium
-		hover bright
-	button s "_Settings"
-		center -300 -190
-		dimensions 90 30
-		color bright
-	button a "_Audio"
-		center -300 -150
-		dimensions 90 30
-		color medium
-		hover bright
-	button p "_Plugins"
-		center -300 -110
-		dimensions 90 30
-		color medium
-		hover bright
-	button l "_Library"
-		center -300 -70
-		dimensions 90 30
-		color medium
-		hover bright
 	visible if "multiple settings pages"
 	sprite "ui/dialog cancel"
 		center -120 210
@@ -592,40 +538,17 @@ interface "settings"
 
 
 interface "plugins"
-	sprite "ui/plugins panel"
-		center -20 -20
-	button c "_Controls"
-		center -300 -230
-		dimensions 90 30
-		color medium
-		hover bright
-	button s "_Settings"
-		center -300 -190
-		dimensions 90 30
-		color medium
-		hover bright
-	button a "_Audio"
-		center -300 -150
-		dimensions 90 30
-		color medium
-		hover bright
-	button p "_Plugins"
-		center -300 -110
-		dimensions 90 30
-		color bright
-	button l "_Library"
-		center -300 -70
-		dimensions 90 30
-		color medium
-		hover bright
+	sprite "ui/wider button wshadow"
+		center -195 210
 	button o "_Open Plugins"
 		center -195 210
-		dimensions 120 30
+		dimensions 90 30
 	sprite "ui/wide button"
 		center -80 210
+	active if "plugin installed"
 	button u "_Uninstall"
 		center -80 210
-		dimensions 120 30
+		dimensions 90 30
 	visible if "show plugins changed"
 	label "Restart to apply changes"
 		from -225 -236
@@ -647,32 +570,6 @@ interface "plugins"
 
 
 interface "audio"
-	sprite "ui/settings panel"
-		center -20 -20
-	button c "_Controls"
-		center -300 -230
-		dimensions 90 30
-		color medium
-		hover bright
-	button s "_Settings"
-		center -300 -190
-		dimensions 90 30
-		color medium
-		hover bright
-	button a "_Audio"
-		center -300 -150
-		dimensions 90 30
-		color bright
-	button p "_Plugins"
-		center -300 -110
-		dimensions 90 30
-		color medium
-		hover bright
-	button l "_Library"
-		center -300 -70
-		dimensions 90 30
-		color medium
-		hover bright
 	value "volume bar size" 195
 
 	label "Music"
@@ -1007,43 +904,17 @@ interface "audio"
 
 
 interface "install plugins"
-	sprite "ui/plugins panel"
-		center -20 -20
-	button c "_Controls"
-		center -300 -230
-		dimensions 90 30
-		color medium
-		hover bright
-	button s "_Settings"
-		center -300 -190
-		dimensions 90 30
-		color medium
-		hover bright
-	button a "_Audio"
-		center -300 -150
-		dimensions 90 30
-		color medium
-		hover bright
-	button p "_Plugins"
-		center -300 -110
-		dimensions 90 30
-		color medium
-		hover bright
-	button l "_Library"
-		center -300 -70
-		dimensions 90 30
-		color bright
-	
+	sprite "ui/wide button"
+		center -210 210
 	visible if "!can update"
 	active if "can install"
 	button i "_Install"
-		center -195 210
+		center -210 210
 		dimensions 120 30
-
 	visible if "can update"
 	active if "can update"
 	button u "_Update"
-		center -195 210
+		center -210 210
 		dimensions 120 30
 
 	visible if "show plugins changed"
@@ -1063,6 +934,66 @@ interface "install plugins"
 
 
 interface "preferences"
+	sprite "ui/preferences panel"
+		center -65 -20
+	
+	visible if "!page: controls"
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	visible if "page: controls"
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color bright
+	visible if "!page: settings"
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	visible if "page: settings"
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color bright
+	visible if "!page: audio"
+	button a "_Audio"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+	visible if "page: audio"
+	button a "_Audio"
+		center -300 -150
+		dimensions 90 30
+		color bright
+	visible if "!page: plugins"
+	button p "_Plugins"
+		center -300 -110
+		dimensions 90 30
+		color medium
+		hover bright
+	visible if "page: plugins"
+	button p "_Plugins"
+		center -300 -110
+		dimensions 90 30
+		color bright
+	visible if "!page: install plugins"
+	button l "_Library"
+		center -300 -70
+		dimensions 90 30
+		color medium
+		hover bright
+	visible if "page: install plugins"
+	button l "_Library"
+		center -300 -70
+		dimensions 90 30
+		color bright
+	visible
+	
 	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30

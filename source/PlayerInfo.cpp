@@ -4219,7 +4219,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		return (planet && flagship) ? planet->CanLand(*flagship) : false; });
 
 	conditions["installed plugin: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
-		const Plugin *plugin = Plugins::Get().Find(ce.NameWithoutPrefix());
+		auto iPlugins = Plugins::GetPluginsLocked();
+		const Plugin *plugin = iPlugins->Find(ce.NameWithoutPrefix());
 		return plugin ? plugin->IsValid() && plugin->InUse() : false; });
 
 	conditions["person destroyed: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
@@ -4887,7 +4888,8 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.WriteComment("Installed plugins:");
 	out.Write("plugins");
 	out.BeginChild();
-	for(const auto &it : Plugins::Get())
+	auto iPlugins = Plugins::GetPluginsLocked();
+	for(const auto &it : *iPlugins)
 	{
 		const auto &plugin = it.second;
 		if(plugin.IsValid() && plugin.InUse())

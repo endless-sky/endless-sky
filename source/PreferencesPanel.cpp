@@ -21,17 +21,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "image/ImageBuffer.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "text/Layout.h"
-#include "Logger.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
@@ -55,9 +52,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <chrono>
 #include <cstdio>
-#include <fstream>
-#include <thread>
 #include <utility>
+
+#include "Logger.h"
 
 
 using namespace std;
@@ -207,19 +204,28 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous settings");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next settings");
-	if(const Plugin *plugin = Plugins::GetAvailablePlugins().Find(selectedPlugin))
 	{
-		if(plugin->installed && plugin->outdated)
-			info.SetCondition("can update");
-		else
-			info.SetCondition("can install");
+		auto iPlugins = Plugins::GetPluginsLocked();
+		auto *iPlugin = iPlugins->Find(selectedPlugin);
+		if(iPlugin && !iPlugin->removed)
+			info.SetCondition("plugin installed");
+		auto aPlugins = Plugins::GetAvailablePluginsLocked();
+		auto *aPlugin = aPlugins->Find(selectedPlugin);
+		if(aPlugin)
+		{
+			if(iPlugin && !iPlugin->removed && aPlugin->outdated)
+				info.SetCondition("can update");
+			else if(!iPlugin || iPlugin->removed)
+				info.SetCondition("can install");
+		}
 	}
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == CONTROLS ? "controls" : page == SETTINGS ? "settings" : page == AUDIO ? "audio" :
 			page == PLUGINS ? "plugins" : "install plugins");
-	GameData::Interfaces().Get(pageName)->Draw(info, this);
+	info.SetCondition("page: " + pageName);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
+	GameData::Interfaces().Get(pageName)->Draw(info, this);
 
 	if(Plugins::DownloadingInBackground())
 		SpriteShader::Draw(SpriteSet::Get("ui/downloading"), Screen::TopLeft() + Point(30., 30.));
@@ -266,6 +272,8 @@ void PreferencesPanel::Step()
 			std::string error = it->get();
 			if(!error.empty())
 				GetUI()->Push(new Dialog(error));
+			else
+				Plugins::Save();
 			it = installFeedbacks.erase(it);
 		}
 		else
@@ -295,7 +303,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		HandleDown();
 	else if(key == SDLK_UP)
 		HandleUp();
-	else if(key == SDLK_RETURN)
+	else if(key == SDLK_RETURN || ((key == 'i' || key == 'u') && page == LIBRARY))
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
@@ -310,7 +318,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'o' && page == PLUGINS)
 		Files::OpenUserPluginFolder();
-	else if(key == 'u' && page == PLUGINS) // MARK
+	else if((key == 'u' || key == SDLK_DELETE) && page == PLUGINS) // MARK
 	{
 		GetUI()->Push(new Dialog(this, &PreferencesPanel::DeletePlugin,
 				"Do you really want to delete this plugin?"));
@@ -348,17 +356,14 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		selected = 0;
 
 		if(page == LIBRARY && !downloadedPluginIndex)
-		{
 			ProcessPluginIndex();
-		}
+
+		// Draw has not been called yet, so we cannot use the pluginZones to determine what is at index 0.
+		// Also, we might just now have downloaded the index for the available plugins.
+		selectedPlugin = GetPluginNameByIndex(selected);
 
 		// Make sure the render buffers are initialized and are aware of the current UI scale.
 		Resize();
-	}
-	// Install or update selected plugin.
-	else if((key == 'i' || key == 'u') && page == LIBRARY)
-	{
-		HandleConfirm();
 	}
 	else
 		return false;
@@ -427,7 +432,7 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 				{
 					selectedPlugin = zone.Value();
 					selected = index;
-					RenderPluginDescription(selectedPlugin);
+					RenderPluginDescription();
 					break;
 				}
 				index++;
@@ -605,7 +610,8 @@ void PreferencesPanel::Resize()
 		const Interface *pluginUi = GameData::Interfaces().Get("plugins");
 		Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 		pluginListClip = make_unique<RenderBuffer>(pluginListBox.Dimensions());
-		RenderPluginDescription(selectedPlugin);
+		Draw();
+		RenderPluginDescription();
 	}
 }
 
@@ -1181,10 +1187,9 @@ void PreferencesPanel::DrawPlugins()
 {
 	// TODO: allow for controlling relative load order.
 	const Color &back = *GameData::Colors().Get("faint");
-	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &removed = *GameData::Colors().Get("plugin removed");
+	const Color &restart = *GameData::Colors().Get("plugin reload required");
 	const Interface *pluginUI = GameData::Interfaces().Get("plugins");
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
@@ -1199,16 +1204,17 @@ void PreferencesPanel::DrawPlugins()
 
 	Table table;
 	table.AddColumn(
-		pluginListClip->Left() + box[0]->Width(),
-		Layout(pluginListBox.Width() - box[0]->Width(), Truncate::MIDDLE)
+		pluginListClip->Left() + 20,
+		Layout(pluginListBox.Width() - 20, Truncate::MIDDLE)
 	);
-	table.SetUnderline(pluginListClip->Left() + box[0]->Width(), pluginListClip->Right());
+	table.SetUnderline(pluginListClip->Left() + 20, pluginListClip->Right());
 
 	int firstY = pluginListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
-	int pluginListHeight = 0;
-	for(const auto &it : Plugins::Get())
+	auto iPlugins = Plugins::GetPluginsLocked();
+	pluginListScroll.SetMaxValue(iPlugins->size() * 20);
+	for(const auto &it : *iPlugins)
 	{
 		const auto &plugin = it.second;
 		if(!plugin.IsValid())
@@ -1220,35 +1226,35 @@ void PreferencesPanel::DrawPlugins()
 		if(isSelected || plugin.name == hoverItem)
 			table.DrawHighlight(back);
 
-		const Sprite *sprite = box[plugin.desiredState];
-		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
-		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
+		const Sprite *sprite = plugin.removed ? (plugin.inUse ? SpriteSet::Get("ui/error") : box[0]) :
+			box[plugin.desiredState];
+		// Draw the sprite. Not all these sprites are 20x20, but we will center them all as if they were.
+		const Point topLeft = table.GetRowBounds().TopLeft() - Point(20., 0.);
+		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(20., 20.));
 		SpriteShader::Draw(sprite, spriteBounds.Center());
-
-		Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
 
 		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
-		if(!displayed)
-			continue;
+		if(displayed)
+		{
+			Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
+			AddZone(zoneBounds, [&](){ Plugins::TogglePlugin(plugin.name); });
+		}
 
-		AddZone(zoneBounds, [&](){ Plugins::TogglePlugin(plugin.name); });
-
-		if(plugin.removed)
-			table.Draw(plugin.name, removed);
-		else if(isSelected)
-			table.Draw(plugin.name, bright);
+		if(plugin.HasChanged())
+		{
+			table.Draw(plugin.name, isSelected ? Color::Multiply(1.2, restart) : restart);
+			// Plugins that are inUse and have been removed will stay in the list because a restart is required.
+			if(plugin.removed)
+				table.DrawStrikethrough(isSelected ? Color::Multiply(1.2, restart) : restart);
+		}
 		else
-			table.Draw(plugin.name, plugin.InUse() ? medium : dim);
-
-		pluginListHeight += 20;
+			table.Draw(plugin.name, isSelected ? bright : medium);
 	}
 
 	// Switch back to normal opengl operations.
 	target.Deactivate();
-
-	pluginListScroll.SetMaxValue(pluginListHeight);
 
 	pluginListClip->SetFadePadding(
 		pluginListScroll.IsScrollAtMin() ? 0 : 20,
@@ -1322,14 +1328,13 @@ void PreferencesPanel::DrawPluginInstalls()
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &outdated = *GameData::Colors().Get("plugin outdated");
 	const Color &restart = *GameData::Colors().Get("plugin reload required");
-	const Color &removed = *GameData::Colors().Get("plugin removed");
 	const Interface *pluginUI = GameData::Interfaces().Get("plugins");
 
 	// Animate scrolling.
 	pluginListScroll.Step();
 
 	// Switch render target to pluginListClip. Until target is destroyed or
-	// deactivanted, all opengl commands will be drawn there instead.
+	// deactivated, all opengl commands will be drawn there instead.
 	auto target = pluginListClip->SetTarget();
 	Rectangle pluginListBox = pluginUI->GetBox("plugin list");
 
@@ -1343,19 +1348,14 @@ void PreferencesPanel::DrawPluginInstalls()
 	int firstY = pluginListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
-	int pluginListHeight = 0;
-	for(const auto &it : Plugins::GetAvailablePlugins())
+	auto iPlugins = Plugins::GetPluginsLocked();
+	auto aPlugins = Plugins::GetAvailablePluginsLocked();
+	pluginListScroll.SetMaxValue(aPlugins->size() * 20);
+	for(const auto &it : *aPlugins)
 	{
 		const auto &plugin = it.second;
 		if(!plugin.IsValid())
 			continue;
-
-		const Plugin *installedPlugin = Plugins::Get().Find(plugin.name);
-		// TODO: installed = bright, uninstalled this session = strikethrough?; outdated = dim?
-		//  Update these per frame as they could have been changed.
-		bool isRemoved = installedPlugin && installedPlugin->IsValid() && installedPlugin->removed;
-		bool isInstalled = installedPlugin && installedPlugin->IsValid() && !installedPlugin->removed;
-		bool isOutdated = isInstalled && installedPlugin->version != plugin.version;
 
 		pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
 
@@ -1363,58 +1363,45 @@ void PreferencesPanel::DrawPluginInstalls()
 		if(isSelected || plugin.name == hoverItem)
 			table.DrawHighlight(back);
 
+		auto *installedPlugin = iPlugins->Find(plugin.name);
+
 		// When selected, we typically increase the brightness of the text, however we are using text color
 		// to represent various states results in a need to do things a little differently here.
-		Color color = medium;
+		Color color;
 
-		// TODO: Need icons for: [ ] not installed, [ ] downloading, [ ] installed, [ ]  deleted
+		// TODO: Need icons for: [ ] not installed, [ ] downloading, [ ] installed, [ ] restart required
 		const Sprite *sprite;
 		if(plugin.IsDownloading())
 		{
-			color = Color::Multiply((step / 50. + .5), *GameData::Colors().Get("plugin downloading"));
-			sprite = SpriteSet::Get("ui/error");
+			color = Color::Multiply(step / 50. + .5, bright);
+			sprite = SpriteSet::Get("ui/expanded");
 		}
-		else if(isOutdated)
+		else if(plugin.outdated)
 		{
 			color = isSelected ? Color::Multiply(1.2, outdated) : outdated;
-			sprite = SpriteSet::Get("ui/warning");
+			sprite = SpriteSet::Get("ui/tactical/turn");
 		}
-		else if(isInstalled)
+		else if(installedPlugin && !installedPlugin->removed)
 		{
-			color = (!plugin.inUse && isInstalled) ? restart : bright;
-			sprite = SpriteSet::Get("ui/checked");
+			color = installedPlugin->HasChanged() ? restart : bright;
+			sprite = SpriteSet::Get(installedPlugin->HasChanged() ? "ui/error" : "ui/checked");
 		}
 		else
 		{
-			color = isSelected ? bright : (isRemoved ? removed : medium);
+			color = isSelected ? bright : medium;
 			sprite = SpriteSet::Get("ui/unchecked");
 		}
 
-		// Draw the sprite.
-		const Point topLeft = table.GetRowBounds().TopLeft() - Point(sprite->Width(), 0.);
-		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(sprite->Width(), sprite->Height()));
+		// Draw the sprite. Not all these sprites are 20x20, but we will center them all as if they were.
+		const Point topLeft = table.GetRowBounds().TopLeft() - Point(20., 0.);
+		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(20., 20.));
 		SpriteShader::Draw(sprite, spriteBounds.Center());
 
-		// Only include the zone as clickable if it's within the drawing area.
-		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
-			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
-		if(displayed)
-		{
-			Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
-			AddZone(zoneBounds, [&](){ Plugins::TogglePlugin(plugin.name); });
-		}
-
 		table.Draw(plugin.name, color);
-		if(isRemoved)
-			table.DrawStrikethrough(color);
-
-		pluginListHeight += 20;
 	}
 
 	// Switch back to normal opengl operations.
 	target.Deactivate();
-
-	pluginListScroll.SetMaxValue(pluginListHeight);
 
 	pluginListClip->SetFadePadding(
 		pluginListScroll.IsScrollAtMin() ? 0 : 20,
@@ -1479,20 +1466,11 @@ void PreferencesPanel::DrawPluginInstalls()
 
 
 // Render the plugin description into the pluginDescriptionBuffer.
-void PreferencesPanel::RenderPluginDescription(const string &pluginName)
+void PreferencesPanel::RenderPluginDescription()
 {
-	if(page == PLUGINS)
-		RenderPluginDescription(Plugins::Get().Find(selectedPlugin));
-	else
-		RenderPluginDescription(Plugins::GetAvailablePlugins().Find(selectedPlugin));
-}
-
-
-
-// Render the plugin description into the pluginDescriptionBuffer.
-void PreferencesPanel::RenderPluginDescription(const Plugin *plugin)
-{
-	if(plugin)
+	Logger::Log("selected = " + to_string(selected) + ", selectedPlugin = " + selectedPlugin, Logger::Level::INFO);
+	auto plugins = (page == PLUGINS) ? Plugins::GetPluginsLocked() : Plugins::GetAvailablePluginsLocked();
+	if(auto *plugin = plugins->Find(selectedPlugin))
 		RenderPluginDescription(*plugin);
 	else
 		pluginDescriptionBuffer.reset();
@@ -1723,7 +1701,7 @@ void PreferencesPanel::HandleUp()
 	case PLUGINS:
 	case LIBRARY:
 		selectedPlugin = pluginZones.at(selected).Value();
-		RenderPluginDescription(selectedPlugin);
+		RenderPluginDescription();
 		ScrollSelectedPlugin();
 		break;
 	default:
@@ -1749,7 +1727,7 @@ void PreferencesPanel::HandleDown()
 	case LIBRARY:
 		selected = min(selected + 1, static_cast<int>(pluginZones.size() - 1));
 		selectedPlugin = pluginZones.at(selected).Value();
-		RenderPluginDescription(selectedPlugin);
+		RenderPluginDescription();
 		ScrollSelectedPlugin();
 		break;
 	default:
@@ -1806,20 +1784,39 @@ void PreferencesPanel::ProcessPluginIndex()
 
 void PreferencesPanel::ScrollSelectedPlugin()
 {
+	// Note: selected is zero-based, but the math is 1's based.
 	while(selected * 20 - pluginListScroll < 0)
 		pluginListScroll.Scroll(-Preferences::ScrollSpeed());
-	while(selected * 20 - pluginListScroll > pluginListClip->Height())
+	while((selected + 1) * 20 - pluginListScroll > pluginListClip->Height())
 		pluginListScroll.Scroll(Preferences::ScrollSpeed());
+}
+
+
+
+string PreferencesPanel::GetPluginNameByIndex(int findIndex) const
+{
+	int index = 0;
+	auto plugins = (page == PLUGINS) ? Plugins::GetPluginsLocked() : Plugins::GetAvailablePluginsLocked();
+	for(const auto &it : *plugins)
+	{
+		if(index == findIndex)
+			return it.first;
+		++index;
+	}
+	return "";
 }
 
 
 
 void PreferencesPanel::DeletePlugin()
 {
-	string message;
 	if(!selectedPlugin.empty())
-		message = Plugins::DeletePlugin(selectedPlugin);
-	if(!message.empty())
-		GetUI()->Push(new Dialog(message));
-	selectedPlugin.clear();
+	{
+		string message = Plugins::DeletePlugin(selectedPlugin);
+		if(message.empty())
+			Plugins::Save();
+		else
+			GetUI()->Push(new Dialog(message));
+		selectedPlugin = GetPluginNameByIndex(selected);
+	}
 }

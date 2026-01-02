@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollVar.h"
 #include "TaskQueue.h"
 #include "Tooltip.h"
-#include "text/WrappedText.h"
 
 #include <future>
 #include <nlohmann/json.hpp>
@@ -35,7 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Command;
 class PlayerInfo;
 class RenderBuffer;
-struct Plugin;
+class Plugin;
 class Sprite;
 
 
@@ -71,8 +70,7 @@ private:
 	void DrawSettings();
 	void DrawPlugins();
 	void DrawPluginInstalls();
-	void RenderPluginDescription(const std::string &pluginName);
-	void RenderPluginDescription(const Plugin *plugin);
+	void RenderPluginDescription();
 	void RenderPluginDescription(const Plugin &plugin);
 
 	void DrawTooltips();
@@ -88,7 +86,9 @@ private:
 	void ProcessPluginIndex();
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
-
+	int GetPluginIndexByName(const std::string &name) const;
+	std::string GetPluginNameByIndex(int findIndex) const;
+	int CountPlugins() const;
 	// Delete a plugin that has been marked to be removed.
 	void DeletePlugin();
 
@@ -101,9 +101,9 @@ private:
 	int editing = -1;
 	int selected = 0;
 	int hover = -1;
-	int oldSelected;
-	int oldHover;
-	int latest;
+	int oldSelected = 0;
+	int oldHover = 0;
+	int latest = 0;
 	// Which page of the preferences we're on.
 	char page = 'c';
 
