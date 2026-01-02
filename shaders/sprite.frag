@@ -68,7 +68,7 @@ void main() {
 		swizzleColor = color * swizzleMatrix;
 		if(useSwizzleMask > 0)
 		{
-			float swizzleMaskFrame = 0;
+			float swizzleMaskFrame = 0.f;
 			if(uniqueSwizzleMaskFrames > 0)
 			{
 				swizzleMaskFrame = first;
