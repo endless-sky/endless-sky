@@ -121,4 +121,5 @@ private:
 	// triggers
 	SDL_GameControllerAxis activeAxis = SDL_CONTROLLER_AXIS_INVALID;
 	bool activeAxisIsPositive = false;
+	bool gamepadCursorIsMoving = false;
 };

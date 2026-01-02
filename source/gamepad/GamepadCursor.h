@@ -30,6 +30,7 @@ public:
 	static void SetEnabled(bool enabled);
 	static const Point &Position() { return s_position; }
 	static bool Enabled() { return s_enabled; }
+	static bool Moving() { return !s_position.IsAnimationDone(); }
 
 	static void Draw();
 

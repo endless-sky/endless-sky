@@ -48,7 +48,7 @@ void GamepadCursor::SetPosition(const Point &pos, bool enable)
 		if(s_position.Value().DistanceSquared(pos) > 300 * 300)
 			s_position.Set(pos, 15);
 		else
-			s_position.Set(pos, 7);
+			s_position.Set(pos, 10);
 	}
 
 }

@@ -164,7 +164,7 @@ bool UI::Handle(const SDL_Event &event)
 		if(axisTriggered != SDL_CONTROLLER_AXIS_INVALID)
 			handled = DefaultControllerTriggerPressed(axisTriggered, activeAxisIsPositive);
 		else if(axisUnTriggered != SDL_CONTROLLER_AXIS_INVALID)
-			handled = DefaultControllerTriggerReleased(axisTriggered, activeAxisIsPositive);
+			handled = DefaultControllerTriggerReleased(axisUnTriggered, activeAxisIsPositive);
 		else if(event.type == SDL_CONTROLLERBUTTONDOWN)
 			handled = DefaultControllerButtonDown(static_cast<SDL_GameControllerButton>(event.cbutton.button));
 		else if(event.type == SDL_CONTROLLERBUTTONUP)
@@ -188,6 +188,16 @@ void UI::StepAll()
 	// Step all the panels.
 	for(shared_ptr<Panel> &panel : stack)
 		panel->Step();
+
+	if(gamepadCursorIsMoving)
+	{
+		if(!GamepadCursor::Moving())
+		{
+			// The gamepad cursor is not moving, but we haven't released the
+			// trigger yet. Trigger an additional move.
+			DefaultControllerTriggerPressed(SDL_CONTROLLER_AXIS_LEFTX, true);
+		}
+	}
 }
 
 
@@ -463,7 +473,10 @@ bool UI::DefaultControllerTriggerPressed(SDL_GameControllerAxis axis, bool posit
 			if(!GamepadCursor::Enabled())
 				GamepadCursor::SetPosition(options.front());
 			else
+			{
 				GamepadCursor::MoveDir(GamePad::LeftStick(), options);
+				gamepadCursorIsMoving = true;
+			}
 			return true;
 		}
 	}
@@ -477,6 +490,8 @@ bool UI::DefaultControllerTriggerPressed(SDL_GameControllerAxis axis, bool posit
 // are in order to correctly handle navigation.
 bool UI::DefaultControllerTriggerReleased(SDL_GameControllerAxis axis, bool positive)
 {
+	if(gamepadCursorIsMoving == true && (axis == SDL_CONTROLLER_AXIS_LEFTX || axis == SDL_CONTROLLER_AXIS_LEFTY))
+		gamepadCursorIsMoving = false;
 	return false;
 }
 
