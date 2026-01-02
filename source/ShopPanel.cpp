@@ -238,7 +238,7 @@ void ShopPanel::CheckForMissions(Mission::Location location) const
 
 	Mission *mission = player.MissionToOffer(location);
 	if(mission)
-		mission->Do(Mission::OFFER, player, GetUI());
+		mission->Do(Mission::OFFER, player, &GetUI());
 	else
 		player.HandleBlockedMissions(location, GetUI());
 }

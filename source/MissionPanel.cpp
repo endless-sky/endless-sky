@@ -224,7 +224,7 @@ void MissionPanel::Step()
 			specialSystem = mission->IsVisible() ? mission->Destination()->GetSystem() : nullptr;
 			CenterOnSystem(specialSystem ? specialSystem : player.GetSystem());
 
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		}
 		else
 		{

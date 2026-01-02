@@ -1408,7 +1408,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI &ui)
 	}
 
 	if((event.Type() & ShipEvent::DISABLE) && event.Target() == player.FlagshipPtr())
-		Do(DISABLED, player, ui);
+		Do(DISABLED, player, &ui);
 
 	const Ship *flagship = player.Flagship();
 	if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
@@ -1418,7 +1418,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI &ui)
 		if(waypoints.erase(system))
 		{
 			visitedWaypoints.insert(system);
-			Do(WAYPOINT, player, ui);
+			Do(WAYPOINT, player, &ui);
 		}
 
 		// Perform an "on enter" action for this system, if possible, and if
@@ -1783,7 +1783,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 	const auto originalSize = didEnter.size();
 	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed()))
 	{
-		eit->second.Do(player, ui, this);
+		eit->second.Do(player, &ui, this);
 		didEnter.insert(&eit->second);
 	}
 	// If no specific `on enter` was performed, try matching to a generic "on enter,"
@@ -1792,7 +1792,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 		for(MissionAction &action : genericOnEnter)
 			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed()))
 			{
-				action.Do(player, ui, this);
+				action.Do(player, &ui, this);
 				didEnter.insert(&action);
 				break;
 			}

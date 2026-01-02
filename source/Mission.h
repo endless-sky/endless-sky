@@ -177,6 +177,13 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
+	// The UI is passed by pointer since certain actions aren't allowed to generate new panels,
+	// and will therefore receive nullptr for the UI. These cases include:
+	// - OFFER if it is for a job that was just accepted. (This call will be immediately followed up with an ACCEPT
+	// action that does pass the UI pointer.)
+	// - ACCEPT, DECLINE, and DEFER if it is from PlayerInfo::MissionCallback(), as in this case the mission already
+	// used the UI to create a conversation or dialog that triggered the callback.
+	// - DAILY is called in PlayerInfo::AdvanceDate and never has access to the UI.
 	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 

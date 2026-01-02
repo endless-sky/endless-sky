@@ -86,7 +86,7 @@ void NPCAction::Do(PlayerInfo &player, UI &ui, const Mission *caller, const shar
 	if(triggered)
 		return;
 	triggered = true;
-	action.Do(player, ui, caller, nullptr, target);
+	action.Do(player, &ui, caller, nullptr, target);
 }
 
 
