@@ -91,48 +91,33 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 
 # FLAC's config is missing find_dependency(Threads), so include it here.
 find_package(Threads REQUIRED)
-if(UNIX AND NOT ES_USE_VCPKG)
+if((UNIX AND NOT ES_USE_VCPKG) OR (APPLE AND (NOT ES_USE_VCPKG OR ES_USE_SYSTEM_LIBRARIES)))
 	find_package(FLAC CONFIG QUIET)
 	if(NOT FLAC_FOUND)
-		# Many linux distros use the autotools build of flac, which does not
-		# package the flac-config.cmake. Use PkgConfig instead.
+		# Many linux distros and Homebrew's FLAC use the autotools build of flac,
+		# which does not package the flac-config.cmake. Use PkgConfig instead.
 		find_package(PkgConfig REQUIRED)
 		pkg_check_modules(flac++ REQUIRED IMPORTED_TARGET flac++)
 		add_library(FLAC::FLAC++ ALIAS PkgConfig::flac++)
 	endif()
 else()
-	find_package(FLAC CONFIG QUIET)
-	if(NOT FLAC_FOUND AND APPLE)
-		# Homebrew's FLAC doesn't provide CMake config files, use PkgConfig instead.
-		find_package(PkgConfig REQUIRED)
-		pkg_check_modules(flac++ REQUIRED IMPORTED_TARGET flac++)
-		add_library(FLAC::FLAC++ ALIAS PkgConfig::flac++)
-	elseif(NOT FLAC_FOUND)
-		find_package(FLAC CONFIG REQUIRED)
-	endif()
+	find_package(FLAC CONFIG REQUIRED)
 endif()
 
 # Find the zip-reading component of zlib.
 find_package(ZLIB REQUIRED)
 
 # Minizip has a different target name in vcpkg.
-if(ES_USE_VCPKG)
-	find_package(unofficial-minizip CONFIG QUIET)
-	if(NOT unofficial-minizip_FOUND AND APPLE)
-		# Homebrew's minizip doesn't provide CMake config files, use PkgConfig instead.
-		find_package(PkgConfig REQUIRED)
-		pkg_check_modules(MINIZIP REQUIRED IMPORTED_TARGET minizip)
-		add_library(Minizip::Minizip ALIAS PkgConfig::MINIZIP)
-		set(MINIZIP_LIBRARIES "Minizip::Minizip")
-	else()
-		find_package(unofficial-minizip CONFIG REQUIRED)
-		set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
-	endif()
-else()
+if((UNIX AND NOT ES_USE_VCPKG) OR (APPLE AND (NOT ES_USE_VCPKG OR ES_USE_SYSTEM_LIBRARIES)))
+	# Use pkg-config for system-installed minizip (Homebrew on macOS, system packages on Linux)
 	find_package(PkgConfig REQUIRED)
-	pkg_check_modules(MINIZIP REQUIRED IMPORTED_TARGET minizip)
-	add_library(Minizip::Minizip ALIAS PkgConfig::MINIZIP)
+	pkg_check_modules(minizip REQUIRED IMPORTED_TARGET minizip)
+	add_library(Minizip::Minizip ALIAS PkgConfig::minizip)
 	set(MINIZIP_LIBRARIES "Minizip::Minizip")
+else()
+	# Use vcpkg's unofficial-minizip
+	find_package(unofficial-minizip CONFIG REQUIRED)
+	set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
 endif()
 
 # Find the MinGW runtime DLLs.
