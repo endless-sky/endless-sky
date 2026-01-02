@@ -832,7 +832,7 @@ void PlayerInfo::AdvanceDate(int amount)
 				Messages::Add({"You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
 					GameData::MessageCategories().Get("high")});
 			if(!mission.IsFailed())
-				mission.DoNoUi(Mission::DAILY, *this);
+				mission.Do(Mission::DAILY, *this);
 		}
 
 		DoAccounting();
@@ -2357,8 +2357,8 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI &ui)
 			cargo.AddMissionCargo(&mission);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
-			it->DoNoUi(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this, ui);
+			it->Do(Mission::OFFER, *this);
+			it->Do(Mission::ACCEPT, *this, &ui);
 			if(it->IsFailed())
 				RemoveMission(Mission::Trigger::FAIL, *it, ui);
 			// Might not have cargo anymore, so some jobs can be sorted to end.
@@ -2572,7 +2572,7 @@ void PlayerInfo::MissionCallback(int response)
 		// to the front, so they appear at the top of the list if viewed.
 		auto spliceIt = mission.IsUnique() ? missions.begin() : missions.end();
 		missions.splice(spliceIt, missionList, missionList.begin());
-		mission.DoNoUi(Mission::ACCEPT, *this);
+		mission.Do(Mission::ACCEPT, *this);
 		if(shouldAutosave)
 			Autosave();
 		// If this is a mission offered in-flight, expose a pointer to it
@@ -2584,12 +2584,12 @@ void PlayerInfo::MissionCallback(int response)
 	}
 	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
 	{
-		mission.DoNoUi(Mission::DECLINE, *this);
+		mission.Do(Mission::DECLINE, *this);
 		missionList.pop_front();
 	}
 	else if(response == Conversation::DEFER || response == Conversation::DEPART)
 	{
-		mission.DoNoUi(Mission::DEFER, *this);
+		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
 	}
 }
@@ -2619,7 +2619,7 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 			// mission's "on fail" fails the mission itself.
 			doneMissions.splice(doneMissions.end(), missions, it);
 
-			it->Do(trigger, *this, ui);
+			it->Do(trigger, *this, &ui);
 			cargo.RemoveMissionCargo(&mission);
 			for(shared_ptr<Ship> &ship : ships)
 				ship->Cargo().RemoveMissionCargo(&mission);
@@ -4447,7 +4447,7 @@ void PlayerInfo::StepMissions(UI &ui)
 		++mit;
 
 		// If this is a stopover for the mission, perform the stopover action.
-		mission.Do(Mission::STOPOVER, *this, ui);
+		mission.Do(Mission::STOPOVER, *this, &ui);
 
 		if(mission.IsFailed())
 			RemoveMission(Mission::FAIL, mission, ui);
@@ -4455,7 +4455,7 @@ void PlayerInfo::StepMissions(UI &ui)
 			RemoveMission(Mission::COMPLETE, mission, ui);
 		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 		{
-			mission.Do(Mission::VISIT, *this, ui);
+			mission.Do(Mission::VISIT, *this, &ui);
 			if(mission.IsUnique() || !mission.IsVisible())
 				continue;
 

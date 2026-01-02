@@ -33,7 +33,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "UI.h"
 
-#include <cassert>
 #include <cmath>
 #include <limits>
 #include <sstream>
@@ -1295,8 +1294,6 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// If this trigger has actions tied to it, perform them. Otherwise, check
 	// if this is a non-job mission that just got offered and if so,
 	// automatically accept it.
-	// If this trigger has actions tied to it, perform them.
-	// Otherwise, if this trigger is OFFER then automatically accept it.
 	// Actions that are performed only receive the mission destination
 	// system if the mission is visible. This is because the purpose of
 	// a MissionAction being given the destination system is for drawing
