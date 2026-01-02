@@ -196,7 +196,7 @@ void ImageSet::Load() noexcept(false)
 	if(swizzleMaskFrames > 1 && swizzleMaskFrames < frames)
 	{
 		Logger::Log("Discarding " + to_string(swizzleMaskFrames - 1) + " frames of swizzle mask because there"
-			" are more frames of animation. Only the first swizzle  mask frame will be used.", Logger::Level::WARNING);
+			" are more frames of animation. Only the first swizzle mask frame will be used.", Logger::Level::WARNING);
 		swizzleMaskFrames = 1;
 	}
 
