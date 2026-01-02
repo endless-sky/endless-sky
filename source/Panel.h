@@ -259,6 +259,7 @@ private:
 	template<typename...FARGS, typename...ARGS>
 	bool EventVisit(bool(Panel::*f)(FARGS ...args), ARGS ...args);
 
+	void GetZonesRecursive(std::vector<Zone*> &zones);
 
 private:
 	UI *ui = nullptr;

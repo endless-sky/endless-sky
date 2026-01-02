@@ -122,6 +122,7 @@ Point AlignText(Dropdown::ALIGN alignment, const Font &font, const Rectangle &po
 
 void Dropdown::Draw()
 {
+	ClearZones();
 	if(!visible)
 		return;
 

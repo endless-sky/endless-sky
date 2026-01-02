@@ -539,8 +539,7 @@ std::vector<Panel::Zone*> UI::GetZones() const
 		if(count(toPop.begin(), toPop.end(), it->get()))
 			continue;
 
-		for(Panel::Zone& zone: (*it)->zones)
-			zones.push_back(&zone);
+		(*it)->GetZonesRecursive(zones);
 
 		// Don't consider anything beneath a modal panel
 		if((*it)->TrapAllEvents())

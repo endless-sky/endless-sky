@@ -588,7 +588,6 @@ interface "controls"
 	button g "_Game Controllers"
 		center -324 209.5
 		dimensions 120 31
-		color medium
 		hover bright
 
 

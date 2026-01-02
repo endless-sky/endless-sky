@@ -769,6 +769,10 @@ void PreferencesPanel::DrawControls()
 			}
 
 			zones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), command);
+			Point p = table.GetCenterPoint();
+			AddZone(Rectangle(table.GetCenterPoint(), table.GetRowSize()), [this, p]() {
+				Click(p.X(), p.Y(), MouseButton::LEFT, 1);
+			});
 
 			table.Draw(command.Description(), medium);
 			std::string controlName = "(None)";
@@ -942,6 +946,10 @@ void PreferencesPanel::DrawSettings()
 		// Temporarily reset the row's size so the clickzone can cover the entire preference.
 		table.SetHighlight(-120, 120);
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
+		Point p = table.GetCenterPoint();
+		AddZone(Rectangle(table.GetCenterPoint(), table.GetRowSize()), [this, p]() {
+			Click(p.X(), p.Y(), MouseButton::LEFT, 1);
+		});
 
 		// Get the "on / off" text for this setting. Setting "isOn"
 		// draws the setting "bright" (i.e. the setting is active).
@@ -1208,7 +1216,11 @@ void PreferencesPanel::DrawPlugins()
 			continue;
 
 		pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
-
+		Point p = table.GetCenterPoint();
+		AddZone(Rectangle(table.GetCenterPoint(), table.GetRowSize()), [this, p]() {
+			Click(p.X(), p.Y(), MouseButton::LEFT, 1);
+		});
+		
 		bool isSelected = (plugin.name == selectedPlugin);
 		if(isSelected || plugin.name == hoverItem)
 			table.DrawHighlight(back);
