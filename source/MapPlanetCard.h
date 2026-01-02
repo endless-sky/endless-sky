@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "shader/LoadingCircle.h"
+#include "LoadingCircle.h"
 #include "MapPanel.h"
 
 #include <string>

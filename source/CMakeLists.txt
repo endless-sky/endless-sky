@@ -158,6 +158,8 @@ target_sources(EndlessSkyLib PRIVATE
 	JumpType.h
 	Logger.cpp
 	Logger.h
+	LoadingCircle.cpp
+	LoadingCircle.h
 	LoadPanel.cpp
 	LoadPanel.h
 	LocationFilter.cpp
@@ -409,8 +411,6 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/FogShader.h
 	shader/LineShader.cpp
 	shader/LineShader.h
-	shader/LoadingCircle.cpp
-	shader/LoadingCircle.h
 	shader/OutlineShader.cpp
 	shader/OutlineShader.h
 	shader/PointerShader.cpp

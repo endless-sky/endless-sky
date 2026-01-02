@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "shader/LoadingCircle.h"
+#include "LoadingCircle.h"
 
 class Conversation;
 class PlayerInfo;

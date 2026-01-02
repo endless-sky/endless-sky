@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPanel.h"
 
 #include "ClickZone.h"
-#include "shader/LoadingCircle.h"
+#include "LoadingCircle.h"
 
 #include <set>
 #include <string>
