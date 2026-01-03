@@ -540,6 +540,14 @@ void PlayerInfo::Load(const filesystem::path &path)
 
 
 
+// Reload from the same file from which the current pilot was loaded.
+void PlayerInfo::Reload()
+{
+	Load(filePath);
+}
+
+
+
 // Load the most recently saved player (if any). Returns false when no save was loaded.
 bool PlayerInfo::LoadRecent()
 {
