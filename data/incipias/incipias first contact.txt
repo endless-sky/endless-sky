@@ -12,11 +12,12 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Incipias: Warning of the Guardian"
+	entering
 	invisible
-	landing
-	to complete
-		never
-	on enter Il'le
+	source
+		system "Il'le"
+	destination "Earth"
+	on offer
 		conversation
 			`A voice begins to speak from somewhere. "Your path brings you to a dead end, traveler. Nothing for you lies further."`
 			`	Alarmed, you look around but nobody is there. You check your scanners but there is nothing present in this system except a few indigenous lifeforms. However, your navigation system displays hyperspace routes that lead beyond it.`
