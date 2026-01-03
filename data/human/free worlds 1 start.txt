@@ -1048,6 +1048,8 @@ mission "FW Senate 1B"
 				`	"They both require someone skilled and decisive to be in command?"`
 				`	"They can both get you in trouble if you're not careful who you mouth off to."`
 					goto threat
+				`	"Depends. Do politicians abandon rude passengers on uninhabited planets?"`
+					goto gaping
 			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now."`
 			label drive
 			branch jd
@@ -1086,6 +1088,9 @@ mission "FW Senate 1B"
 			`	She looks unimpressed for a moment, until you continue, "After all, I'm pretty clueless. I probably wouldn't know a threat if I tripped over one. Hopefully we don't encounter any pirates along the way, or I might make clueless decisions that could get passengers killed."`
 			`	Senator Huygens doesn't quite seem to know how to respond to that, eventually going with, "Hopefully not. If you need me, Captain, I'll be in my bunk. I hope to be on Bourne a week from now."`
 				goto drive
+			label gaping
+			`	Arianna glares at you, and opens her mouth as if to retort, but no sound comes out. You leave her to her (mercifully) silent fury, and begin preparations for your trip to Bourne.`
+				accept
 	
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Senator Huygens hasn't entered the system yet. Better depart and wait for it to arrive.`
