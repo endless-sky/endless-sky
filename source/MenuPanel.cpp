@@ -161,7 +161,7 @@ void MenuPanel::Draw()
 	}
 	else if(player.IsLoaded())
 	{
-		info.SetCondition("no pilot loaded");
+		info.SetCondition("pilot dead");
 		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		info.SetString("ship", "You have died.");
 	}
