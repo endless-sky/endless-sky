@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "text/Format.h"
-#include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
