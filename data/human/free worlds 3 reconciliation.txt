@@ -29,7 +29,7 @@ mission "FW Reconciliation 1"
 		ship "Gunboat (Mark II)" "Eye of Horus"
 	
 	on visit
-		dialog "You have reached <planet>, but you left Raven's ship behind! Better depart and wait for them to arrive in this star system."
+		dialog `You land on <planet>, but realize that Katya, Sawyer, and Raven have not all arrived. Better depart and wait for the ships they are aboard.`
 	
 	on offer
 		log "Decided to rescue the Syndicate defector rather than turning him over to the Syndicate. A Questioner who works with Navy Intelligence has confirmed that he is telling the truth, and a ceasefire has been declared. Also, the Navy has agreed to release Katya now that there is evidence proving her innocence."
@@ -90,8 +90,6 @@ mission "FW Reconciliation 1"
 			`	You tell her that the last you heard, Ijs was helping to found a new university on <planet>. She says, "We should bring him with us. Raven, will you be traveling with us too?"`
 			`	"Yes," she says. "I'll tell my ship and crew to get ready."`
 				accept
-	on visit
-		dialog `You land on <planet>, but realize that your escort carrying Katya and Sawyer hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 
 
