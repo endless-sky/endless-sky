@@ -132,11 +132,12 @@ event "label hai space"
 		sprite "label/hai"
 
 mission "Discovered Wormhole Alpha"
-	landing
+	entering
 	invisible
-	to complete
-		never
-	on enter "Ultima Thule"
+	source
+		system "Ultima Thule"
+	destination "Earth"
+	on offer
 		set "wormhole alpha found"
 		fail
 
