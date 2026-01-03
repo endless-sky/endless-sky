@@ -862,9 +862,12 @@ mission "Wanderers: Truce Timer"
 		has "Wanderers: Unfettered Diplomacy 1C: done"
 	on offer
 		event "wanderers: truce timer" 40
+		event "unfettered bribes reset"
 		fail
 
 event "wanderers: truce timer"
+
+event "unfettered bribes reset"
 	government "Hai (Unfettered)"
 		"bribe" 0.02
 
