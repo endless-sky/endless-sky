@@ -56,8 +56,10 @@ event "avgi: siege respite timer"
 
 mission "Avgi: Initial Wandering Fleet"
 	invisible
-	landing
+	entering
 	repeat
+	source
+		near "Ne-20" 100
 	to offer
 		not "Avgi: Initial Wandering Fleet: active"
 		not "avgi: wandering fleet refit 1"
