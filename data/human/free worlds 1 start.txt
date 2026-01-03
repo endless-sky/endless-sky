@@ -1089,7 +1089,7 @@ mission "FW Senate 1B"
 			`	Senator Huygens doesn't quite seem to know how to respond to that, eventually going with, "Hopefully not. If you need me, Captain, I'll be in my bunk. I hope to be on Bourne a week from now."`
 				goto drive
 			label gaping
-			`	Arianna glares at you, and opens her mouth as if to retort, but no sound comes out. You leave her to her (mercifully) silent fury, and begin preparations for your trip to Bourne.`
+			`	The senator glares at you, and opens her mouth as if to retort, but no sound comes out. You leave her to her (mercifully) silent fury, and begin preparations for your trip to Bourne.`
 				accept
 	
 	on visit
