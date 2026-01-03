@@ -1081,7 +1081,7 @@ mission "FW Senate 1B"
 			`	She stares at you for a moment. "What? Are you serious?"`
 			choice
 				`	"Serious as space sickness. You know where the ramp is."`
-					fail
+					decline
 				`	"No. For the sake of the Free Worlds, I'll take you. But keep in mind that not everyone you ever meet will be as lenient."`
 					goto drive
 			label sinister
