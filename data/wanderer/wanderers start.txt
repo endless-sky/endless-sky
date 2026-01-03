@@ -666,6 +666,8 @@ mission "Wanderers: Defend Vara Ke'sok"
 				"Summer Leaf" 4
 
 event "Sich'ka'ara empty"
+	government "Hai (Unfettered)"
+		"bribe" 0.04
 	system "Sich'ka'ara"
 		fleet "Wanderer Drones" 3000
 
@@ -863,6 +865,8 @@ mission "Wanderers: Truce Timer"
 		fail
 
 event "wanderers: truce timer"
+	government "Hai (Unfettered)"
+		"bribe" 0.02
 
 mission "Wanderers: Truce Check"
 	landing
