@@ -162,6 +162,18 @@ public:
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
 
+	// NPCs used to save the full definition of their ships, but now save a condensed version of the ship.
+	// NPC ships created before this change can't be condensed, as they don't know their variant name.
+	void SetCannotCondense();
+	bool CannotCondense() const;
+	// Setters used to populate a ship from its condensed information.
+	// Should be called prior to FinishLoading.
+	void SetOutfits(const std::map<const Outfit *, int> &outfits);
+	void SetCrew(int crew);
+	void SetShields(double shields);
+	void SetHull(double hull);
+	void SetFuel(double fuel);
+
 	const EsUuid &UUID() const noexcept;
 	// Explicitly set this ship's ID.
 	void SetUUID(const EsUuid &id);
@@ -617,6 +629,8 @@ private:
 	std::string noun;
 	Paragraphs description;
 	const Sprite *thumbnail = nullptr;
+	// Whether this ship can be condensed in NPC::Save.
+	bool cannotCondense = false;
 	// Characteristics of this particular ship:
 	EsUuid uuid;
 	std::string givenName;

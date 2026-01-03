@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Dialog.h"
 #include "text/Format.h"
+#include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
@@ -222,6 +223,10 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						shipEvents[ships.back().get()] = grand.Value(1);
+				// This ship is from before the condensed NPC ship syntax was created.
+				// Condensing it may result in loss of information, so mark it as
+				// being unable to be condensed when this NPC is saved.
+				ships.back()->SetCannotCondense();
 			}
 			else if(hasValue)
 			{
@@ -260,6 +265,17 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 				else
 					fleets.push_back(fleet);
 			}
+		}
+		else if(key == "condensed ship" && child.HasChildren() && child.Size() == 2)
+		{
+			// Condensed ships can be immediately instantiated as they should only be
+			// present within a player's save file.
+			// This means that the base models of the ships referenced by the condensed
+			// ship are already loaded, unless the base definition no longer exists,
+			// in which case this NPC will fail validation.
+			CondensedShip ship{child};
+			ships.emplace_back(ship.Instantiate());
+			shipEvents[ships.back().get()] = ship.actions;
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -350,7 +366,10 @@ void NPC::Save(DataWriter &out) const
 
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			ship->Save(out);
+			if(ship->CannotCondense())
+				ship->Save(out);
+			else
+				CondensedShip(ship).Save(out);
 			auto it = shipEvents.find(ship.get());
 			if(it != shipEvents.end() && it->second)
 			{
@@ -709,6 +728,8 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
+	// An NPC template shouldn't have anything in its savedShips list, so skip over it.
+
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{
@@ -750,6 +771,149 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
 	return result;
+}
+
+
+
+NPC::CondensedShip::CondensedShip(const DataNode &node)
+{
+	baseShip = GameData::Ships().Get(node.Token(1));
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+
+		if(key == "outfits")
+		{
+			for(const DataNode &grand : child)
+			{
+				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
+				if(count > 0)
+					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+				else
+					grand.PrintTrace("Skipping invalid outfit count:");
+			}
+		}
+		else if(key == "cargo")
+			cargo.Load(child);
+		else if(child.Size() < 2)
+			child.PrintTrace("Expected key to have a value:");
+		else if(key == "name")
+			givenName = child.Token(1);
+		else if(key == "uuid")
+			uuid = EsUuid::FromString(child.Token(1));
+		else if(key == "crew")
+			crew = static_cast<int>(child.Value(1));
+		else if(key == "fuel")
+			fuel = child.Value(1);
+		else if(key == "shields")
+			shields = child.Value(1);
+		else if(key == "hull")
+			hull = child.Value(1);
+		else if(key == "position" && child.Size() >= 3)
+			position = Point(child.Value(1), child.Value(2));
+		else if(key == "system")
+			system = GameData::Systems().Get(child.Token(1));
+		else if(key == "planet")
+			planet = GameData::Planets().Get(child.Token(1));
+		else if(key == "destination system")
+			targetSystem = GameData::Systems().Get(child.Token(1));
+		else if(key == "formation")
+			formation = GameData::Formations().Get(child.Token(1));
+		else if(key == "actions")
+			actions = child.Value(1);
+		else
+			child.PrintTrace("Skipping unrecognized attribute.");
+	}
+}
+
+
+
+NPC::CondensedShip::CondensedShip(const std::shared_ptr<Ship> &ship)
+{
+	baseShip = ship.get();
+	givenName = ship->GivenName();
+	uuid = ship->UUID();
+	outfits = ship->Outfits();
+	cargo = ship->Cargo();
+	crew = ship->Crew();
+	shields = ship->ShieldLevel();
+	hull = ship->HullLevel();
+	fuel = ship->FuelLevel();
+	position = ship->Position();
+	system = ship->GetSystem();
+	if(!system)
+	{
+		shared_ptr<const Ship> parent = ship->GetParent();
+		if(parent && parent->GetSystem())
+			system = parent->GetSystem();
+	}
+	planet = ship->GetPlanet();
+	// Saving actions is handled by NPC.
+	actions = 0;
+}
+
+
+
+shared_ptr<Ship> NPC::CondensedShip::Instantiate()
+{
+	shared_ptr<Ship> ship = make_shared<Ship>(*baseShip);
+	ship->SetGivenName(givenName);
+	ship->SetUUID(uuid);
+	ship->SetOutfits(outfits);
+	cargo.TransferAll(ship->Cargo());
+	ship->SetCrew(crew);
+	ship->SetShields(shields);
+	ship->SetHull(hull);
+	ship->SetFuel(fuel);
+	ship->SetPosition(position);
+	ship->SetSystem(system);
+	ship->SetPlanet(planet);
+	ship->SetTargetSystem(targetSystem);
+	ship->SetFormationPattern(formation);
+	return ship;
+}
+
+
+
+void NPC::CondensedShip::Save(DataWriter &out) const
+{
+	out.Write("condensed ship", baseShip->VariantName());
+	out.BeginChild();
+	{
+		out.Write("name", givenName);
+		out.Write("uuid", uuid.ToString());
+		out.Write("outfits");
+		out.BeginChild();
+		{
+			using OutfitElement = pair<const Outfit *const, int>;
+			WriteSorted(outfits,
+				[](const OutfitElement *lhs, const OutfitElement *rhs)
+					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
+				[&out](const OutfitElement &it)
+				{
+					if(it.second == 1)
+						out.Write(it.first->TrueName());
+					else
+						out.Write(it.first->TrueName(), it.second);
+				});
+		}
+		out.EndChild();
+		cargo.Save(out);
+		out.Write("crew", crew);
+		out.Write("fuel", fuel);
+		out.Write("shields", shields);
+		out.Write("hull", hull);
+		out.Write("position", position.X(), position.Y());
+		if(formation)
+			out.Write("formation", formation->TrueName());
+		if(system)
+			out.Write("system", system->TrueName());
+		if(planet)
+			out.Write("planet", planet->TrueName());
+		if(targetSystem)
+			out.Write("destination system", targetSystem->TrueName());
+	}
+	out.EndChild();
 }
 
 

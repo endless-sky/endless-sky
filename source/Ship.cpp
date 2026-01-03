@@ -541,10 +541,10 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			// Verify we have at least as many installed outfits as were identified as "equipped."
 			// If not (e.g. a variant definition), ensure FinishLoading equips into a blank slate.
 			if(!hasArmament)
-				for(const auto &pair : GetEquipped(Weapons()))
+				for(const auto &[weapon, count] : GetEquipped(Weapons()))
 				{
-					auto it = outfits.find(pair.first);
-					if(it == outfits.end() || it->second < pair.second)
+					auto it = outfits.find(weapon);
+					if(it == outfits.end() || it->second < count)
 					{
 						armament.UninstallAll();
 						break;
@@ -1181,6 +1181,75 @@ void Ship::Save(DataWriter &out) const
 			out.Write("parked");
 	}
 	out.EndChild();
+}
+
+
+
+void Ship::SetCannotCondense()
+{
+	cannotCondense = true;
+}
+
+
+
+bool Ship::CannotCondense() const
+{
+	return cannotCondense;
+}
+
+
+
+void Ship::SetOutfits(const std::map<const Outfit *, int> &outfits)
+{
+	// This function should only be called prior to FinishLoading,
+	// so that function will handle updating the attributes.
+	this->outfits.clear();
+	for(const auto &[outfit, count] : outfits)
+		this->outfits[outfit] += count;
+
+	// Unless the base definition of this ship changed to have different weapons
+	// than those being given to it now, or the player plundered weapons from
+	// this NPC ship, then the armament should match. Otherwise, we need to uninstall
+	// all the weapons from the armament here, and FinishLoading will find new
+	// positions for the remaining weapons. These may be different than the
+	// original definition, but no one will notice, right?
+	for(const auto &[weapon, count] : GetEquipped(Weapons()))
+	{
+		auto it = outfits.find(weapon);
+		if(it == outfits.end() || it->second < count)
+		{
+			armament.UninstallAll();
+			break;
+		}
+	}
+}
+
+
+
+void Ship::SetCrew(int crew)
+{
+	this->crew = crew;
+}
+
+
+
+void Ship::SetShields(double shields)
+{
+	this->shields = shields;
+}
+
+
+
+void Ship::SetHull(double hull)
+{
+	this->hull = hull;
+}
+
+
+
+void Ship::SetFuel(double fuel)
+{
+	this->fuel = fuel;
 }
 
 

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "CargoHold.h"
 #include "Conversation.h"
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
@@ -33,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 class DataWriter;
+class FormationPattern;
 class Government;
 class Mission;
 class Planet;
@@ -119,6 +121,39 @@ public:
 
 
 private:
+	// A CondensedShip is a way of storing information about a particular NPC ship
+	// that excludes information that can be retreived from the ship's model.
+	class CondensedShip {
+	public:
+		// Create a CondensedShip object from a node in the save file.
+		explicit CondensedShip(const DataNode &node);
+		// Create a CondensedShip object from an instantiated ship in the NPC. Used for saving.
+		explicit CondensedShip(const std::shared_ptr<Ship> &ship);
+
+		// Instantiate this ship into the fleet.
+		std::shared_ptr<Ship> Instantiate();
+		// Save this ship to the save file.
+		void Save(DataWriter &out) const;
+
+		const Ship *baseShip;
+		std::string givenName;
+		EsUuid uuid;
+		std::map<const Outfit *, int> outfits;
+		CargoHold cargo;
+		int crew;
+		double shields;
+		double hull;
+		double fuel;
+		Point position;
+		const System *system = nullptr;
+		const Planet *planet = nullptr;
+		const System *targetSystem = nullptr;
+		const FormationPattern *formation = nullptr;
+		int actions;
+	};
+
+
+private:
 	// Handle any NPC mission actions that may have been triggered by a ShipEvent.
 	void DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui, const Mission *caller);
 
@@ -163,6 +198,7 @@ private:
 	// be customized or just refer to stock objects:
 	std::list<std::shared_ptr<Ship>> ships;
 	std::list<const Ship *> stockShips;
+	std::list<CondensedShip> condensedShips;
 	std::list<std::string> shipNames;
 	std::list<ExclusiveItem<Fleet>> fleets;
 
