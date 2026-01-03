@@ -1046,14 +1046,46 @@ mission "FW Senate 1B"
 				`	"I have no idea."`
 				`	"Ummm... they both involve momentous decisions that have serious consequences?"`
 				`	"They both require someone skilled and decisive to be in command?"`
+				`	"They can both get you in trouble if you're not careful who you mouth off to."`
+					goto threat
+			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now."`
+			label drive
 			branch jd
 				has "outfit (flagship installed): Jump Drive"
-			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now." You consider explaining to her that it's impossible to get there that fast, but decide against it.`
+			`	You consider explaining to her that it's impossible to get from <planet> to Bourne in a week, but decide against it.`
 				accept
 			label jd
-			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now." You consider explaining to her that it's impossible to get there that fast using a hyperdrive, but decide against it.`
+			`	You consider explaining to her that it's impossible to get from <planet> to Bourne in a week using a hyperdrive, but decide against it.`
 			`	It's a good thing you have a jump drive.`
 				accept
+			label threat
+			`	The senator freezes in place. "Is that a threat, Captain <last>?"`
+			choice
+				`	"Of course not. We're just having a friendly conversation."`
+					goto nothreat
+				`	"Not if you apologize."`
+					goto apologize
+				`	"I'm sure I don't know what you mean."`
+					goto sinister
+			label nothreat
+			`	She looks at you for a moment longer, then apparently drops the conversation. "Hurry up and launch, I hope to be on Bourne a week from now."`
+				goto drive
+			label apologize
+			`	She scoffs. "Perhaps you should consider your own advice about whose toes you tread on, Captain. Now, hurry up, I hope to be on Bourne a week from now."`
+			choice
+				`	"You'd better look for a less 'clueless' captain to take you, then."`
+				`	"I see."`
+					goto drive
+			`	She stares at you for a moment. "What? Are you serious?"`
+			choice
+				`	"Serious as space sickness. You know where the ramp is."`
+					fail
+				`	"No. For the sake of the Free Worlds, I'll take you. But keep in mind that not everyone you ever meet will be as lenient."`
+					goto drive
+			label sinister
+			`	She looks unimpressed for a moment, until you continue, "After all, I'm pretty clueless. I probably wouldn't know a threat if I tripped over one. Hopefully we don't encounter any pirates along the way, or I might make clueless decisions that could get passengers killed."`
+			`	Senator Huygens doesn't quite seem to know how to respond to that, eventually going with, "Hopefully not. If you need me, Captain, I'll be in my bunk. I hope to be on Bourne a week from now."`
+				goto drive
 	
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Senator Huygens hasn't entered the system yet. Better depart and wait for it to arrive.`
