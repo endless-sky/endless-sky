@@ -845,4 +845,7 @@ void PrintData::Help()
 	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in STDIN."
 			<< endl;
 	cerr << "        The first node of the location filter should be `location`." << endl;
+	cerr << "    --changes: prints a list of changes from the \"recent\" save file." << endl;
+	cerr << "        Includes data changes from events referred to only by name as children of the \"event\" node."
+			<< endl;
 }
