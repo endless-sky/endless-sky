@@ -226,7 +226,8 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 						shipEvents[ships.back().get()] = grand.Value(1);
 						break;
 					}
-				// This ship is from before the condensed NPC ship syntax was created.
+				// This ship is either a unique definitions or is from before the
+				// condensed NPC ship syntax was created.
 				// Condensing it may result in loss of information, so mark it as
 				// being unable to be condensed when this NPC is saved.
 				ships.back()->SetCannotCondense();
@@ -277,7 +278,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			for(const DataNode &grand : child)
 				if(grand.Token(0) == "actions" && grand.Size() >= 2)
 				{
-					shipEvents[ships.back().get()] = grand.Value(1);
+					shipEvents[ship.get()] = grand.Value(1);
 					break;
 				}
 		}
@@ -732,8 +733,6 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
-	// An NPC template shouldn't have anything in its savedShips list, so skip over it.
-
 	// Ships should either "enter" the system or start out there.
 	for(const shared_ptr<Ship> &ship : result.ships)
 	{

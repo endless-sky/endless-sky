@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "CargoHold.h"
 #include "Conversation.h"
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
@@ -34,7 +33,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 class DataWriter;
-class FormationPattern;
 class Government;
 class Mission;
 class Planet;

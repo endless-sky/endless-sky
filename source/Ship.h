@@ -564,6 +564,8 @@ private:
 	void LoadInstanceInfo(const std::string &key, const DataNode &child);
 	void SaveInstanceInfo(DataWriter &out) const;
 
+	// Various steps of Ship::Move:
+
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
 	// system set because they just entered a fighter bay. Clear the hyperspace
@@ -585,7 +587,6 @@ private:
 	void DoMovement(bool &isUsingAfterburner);
 	void StepTargeting();
 	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner);
-
 
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
