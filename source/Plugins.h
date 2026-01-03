@@ -127,6 +127,8 @@ protected:
 	// These affect whether the UI is telling the user that the game must be restarted.
 	// If this plugin has been deleted.
 	bool removed = false;
+	// If this plugin has been updated (version on start-up no longer matches the files on disk)
+	bool updated = false;
 
 	friend class Plugins;
 	friend class PreferencesPanel;
@@ -136,8 +138,7 @@ protected:
 
 // Tracks enabled and disabled plugins for loading plugin data or skipping it.
 // This object is updated by toggling plugins in the Preferences UI.
-// TODO:
-//  - Plugins load in a particular order, to ensure loading/overloading of dependencies as desired
+// TODO: Plugins load in a particular order, to ensure loading/overloading of dependencies as desired
 class Plugins {
 public:
 	// Attempt to load a plugin at the given path.

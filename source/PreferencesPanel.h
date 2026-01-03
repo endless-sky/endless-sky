@@ -34,7 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Command;
 class PlayerInfo;
 class RenderBuffer;
-class Plugin;
 class Sprite;
 
 

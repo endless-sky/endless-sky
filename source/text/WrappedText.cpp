@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstring>
 
+#include "../Logger.h"
+
 using namespace std;
 
 
@@ -69,6 +71,7 @@ void WrappedText::SetFont(const Font &font)
 	this->font = &font;
 
 	space = font.Space();
+	hyphen = font.Width("-");
 	SetTabWidth(4 * space);
 	SetLineHeight(font.Height() * 120 / 100);
 	SetParagraphBreak(font.Height() * 40 / 100);
@@ -168,7 +171,7 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 
 	if(truncate == Truncate::NONE)
 		for(const Word &w : words)
-			font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
+			font->Draw(w.Value(text), w.Pos() + topLeft, color);
 	else
 	{
 		// Currently, we only apply truncation to a line if it contains a single word.
@@ -177,9 +180,9 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 		{
 			const Word &w = words[i];
 			if(h == w.y && (i != words.size() - 1 && w.y == words[i + 1].y))
-				font->Draw(text.c_str() + w.Index(), w.Pos() + topLeft, color);
+				font->Draw(w.Value(text), w.Pos() + topLeft, color);
 			else
-				font->Draw({text.c_str() + w.Index(), {wrapWidth, truncate}}, w.Pos() + topLeft, color);
+				font->Draw({w.Value(text), {wrapWidth, truncate}}, w.Pos() + topLeft, color);
 			h = w.y;
 		}
 	}
@@ -187,9 +190,9 @@ void WrappedText::Draw(const Point &topLeft, const Color &color) const
 
 
 
-size_t WrappedText::Word::Index() const
+string WrappedText::Word::Value(const string &text) const
 {
-	return index;
+	return text.substr(index, length) + suffix;
 }
 
 
@@ -238,6 +241,7 @@ void WrappedText::Wrap()
 	// would require a different format for the buffer, though, because it means
 	// inserting '\0' characters even where there is no whitespace.
 
+
 	for(string::iterator it = text.begin(); it != text.end(); ++it)
 	{
 		const char c = *it;
@@ -247,23 +251,97 @@ void WrappedText::Wrap()
 		{
 			traversingWord = false;
 			// Break the string at this point, and measure the word's width.
-			*it = '\0';
-			const int width = font->Width(text.c_str() + word.index);
-			if(word.x + width > wrapWidth)
+			// It may take more than one attempt to break extremely long words.
+			bool breakingWord = true;
+			while(breakingWord)
 			{
+				word.length = (it - text.begin()) - word.index;
+				int width = font->Width(word.Value(text));
 				// If adding this word would overflow the length of the line,
 				// this word will be the first on the next line.
-				word.y += lineHeight;
-				word.x = 0;
+				// However, if this word itself is too long to fit on it's own
+				// line: we have no choice but to break the word.
+				if(width > wrapWidth)
+				{
+					// How much space is left on the current line?
+					int chunkWidth = wrapWidth - lineWidth - hyphen;
+					// When we break the word, we may be able to do so in such a
+					// way that a part of it will fit on this line afterall, and
+					// the remainder on the next line.
+					// Start at extraSpace minus hyphen and walk back to nice
+					// break. The first chunk will be kept to a reasonable
+					// length, and we will try to break at special characters.
+					if(chunkWidth > 0)
+					{
+						// There is room for some amount of text on this line along
+						// with what is already there.
+						int numChars = BreakWord(word, chunkWidth);
+						if(numChars)
+						{
+							// First portion will fit on this line, with a hyphen.
+							word.length = numChars;
+							word.suffix = '-';
+							words.push_back(word);
+							word.suffix.clear();
+							word.index += word.length;
+							word.length = (it - text.begin()) - word.index;
+							word.x += chunkWidth;
+							// Keep track of how wide this line is now that this word is added.
+							lineWidth = word.x + hyphen;
 
-				// Adjust the spacing of words in the now-complete line.
-				AdjustLine(lineBegin, lineWidth, false);
+							// Then we need to place the remainder of the word on the next line.
+							word.y += lineHeight;
+							word.x = 0;
+
+							// Adjust the spacing of words in the now-complete line.
+							AdjustLine(lineBegin, lineWidth, false);
+						}
+						else
+						{
+							// There is not enough room to reasonably put any part of the
+							// word on the existing line, move the problem to the next line.
+							word.y += lineHeight;
+							word.x = 0;
+
+							// Adjust the spacing of words in the now-complete line.
+							AdjustLine(lineBegin, lineWidth, false);
+						}
+					}
+					else
+						Logger::Log("breakpoint", Logger::Level::ERROR);
+					// // Then we need to place the remainder of the word on the next line.
+					// word.y += lineHeight;
+					// word.x = 0;
+					//
+					// // Adjust the spacing of words in the now-complete line.
+					// AdjustLine(lineBegin, lineWidth, false);
+				}
+				else if(word.x + width > wrapWidth)
+				{
+					// Then we need to place the word on the next line.
+					word.y += lineHeight;
+					word.x = 0;
+
+					// Adjust the spacing of words in the now-complete line.
+					AdjustLine(lineBegin, lineWidth, false);
+
+					// Store this word, then advance the x position to the end of it.
+					words.push_back(word);
+					word.x += width;
+					// Keep track of how wide this line is now that this word is added.
+					lineWidth = word.x;
+				}
+				else
+				{
+
+					breakingWord = false;
+					// Store this word, then advance the x position to the end of it.
+					words.push_back(word);
+					word.x += width;
+					// Keep track of how wide this line is now that this word is added.
+					lineWidth = word.x;
+				}
 			}
-			// Store this word, then advance the x position to the end of it.
-			words.push_back(word);
-			word.x += width;
-			// Keep track of how wide this line is now that this word is added.
-			lineWidth = word.x;
 		}
 
 		// If that whitespace was a newline, we must handle that, too.
@@ -349,6 +427,26 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 
 	lineBegin = words.size();
 	lineWidth = 0;
+}
+
+
+
+
+// Given `chunkWidth` pixels, determine where to split `word`, if possible.
+int WrappedText::BreakWord(const WrappedText::Word &word, int &chunkWidth)
+{
+	Word temp;
+	temp.index = word.index;
+	temp.length = word.length;
+	int width = font->Width(temp.Value(text));
+	while(width > chunkWidth && temp.length > 0)
+	{
+		--temp.length;
+		width = font->Width(temp.Value(text));
+	}
+	chunkWidth = width;
+	// Note: there should be a minimum enforced wrap width. Here we expect at lesat two char with a hyphen to fit.
+	return temp.length > 2 ? temp.length : 0;
 }
 
 

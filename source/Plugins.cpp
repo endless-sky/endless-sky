@@ -281,7 +281,7 @@ bool Plugin::IsDownloading() const
 
 bool Plugin::HasChanged() const
 {
-	return inUse != desiredState;
+	return inUse != desiredState || removed || updated;
 }
 
 
@@ -316,8 +316,6 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 	string name = path.filename().string();
 	name = path.stem().string();
 
-	// TODO: make sure the same name is used on load as on install (on load we use folder/filename directly)
-	// TODO: if outdated, re-get the icon
 	// TODO: add find button
 	filesystem::path pluginFile = path / "plugin.txt";
 	string description;
@@ -381,10 +379,9 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 			"file name stem (" + name + ").", Logger::Level::WARNING);
 
 	// Plugin names should be unique.
-	Plugin *plugin;
 	auto iPlugins = GetPluginsLocked();
-	plugin = iPlugins->Get(name);
-	if(plugin && plugin->IsValid())
+	auto *plugin = iPlugins->Get(name);
+	if(plugin->IsValid())
 	{
 		Logger::Log("Skipping plugin located at \"" + path.string()
 			+ "\", because another plugin with the same name has already been loaded from: \""
@@ -430,8 +427,8 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path
 		vector<string> authors;
 		for(const auto &author : pluginInstall["authors"])
 			authors.emplace_back(author);
-		// TODO: test the json structure key that doesn't exist... e.g. what if no homepage?
 		// TODO: Un/Related homepage in particular could be clickable, and doesn't wrap.
+		// TODO: we don't do anything about a zip that won't load -- no notification to the user in the plugins panel.
 		auto aPlugins = GetAvailablePluginsLocked();
 		Plugin *plugin = aPlugins->Get(pluginName);
 		plugin->name = pluginName;
@@ -440,14 +437,16 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path
 		plugin->description = pluginInstall["description"];
 		plugin->authors = authors;
 		plugin->homepage = pluginInstall["homepage"];
-		plugin->license = pluginInstall["license"];
+		// TODO: test the json structure key that doesn't exist... e.g. what if no homepage?
+		plugin->license = pluginInstall["licensdddddddde"];
 		bool isOutdated = isInstalled && installedPlugin->version != pluginVersion;
 		plugin->outdated = isOutdated;
 		plugin->installedVersion = installedPlugin ? installedPlugin->version : "";
 
 		Files::CreateFolder(Files::Config() / "icons/");
 		string iconPath = Files::Config() / "icons/" / (pluginName + ".png");
-		if(!Files::Exists(iconPath) && pluginInstall.contains("iconUrl"))
+
+		if((!Files::Exists(iconPath) || isOutdated) && pluginInstall.contains("iconUrl"))
 			Download(pluginInstall["iconUrl"], iconPath);
 		if(Files::Exists(iconPath))
 			GameData::RequestSpriteLoad(queue, iconPath, plugin->GetIconName());
@@ -616,11 +615,8 @@ future<string> Plugins::InstallOrUpdate(const std::string &name)
 			newPlugin->description = installData->description;
 			newPlugin->path = zipLocation;
 			newPlugin->version = installData->version;
-			// Even if this is an update, this new version is not yet in use:
-			// TODO: there is a case where the installed plugins list already has this plugin installed
-			//  the fact there are changes to the plugin needs to be reflected in the restart required logic
-			//  need to rethink and how many and which booleans we need and where they should change.
-			newPlugin->inUse = false;
+			// Even if this is an update, this new version is not yet in use, as will be indicated by `updated`:
+			newPlugin->updated = true;
 			newPlugin->desiredState = true;
 			// Delete and install need to clearly reset the information in the list of available plugins appropriately.
 			installData->outdated = false;
@@ -649,7 +645,7 @@ string Plugins::DeletePlugin(const std::string &name)
 		{
 			lock_guard<mutex> guardB(busyPluginsMutex);
 			if(busyPlugins.contains(name))
-				return "Cannot delete " + name + "' while there related and ongoing downloads.";
+				return "Cannot delete '" + name + "' while there are related and ongoing downloads.";
 			path = plugin->path;
 		}
 		else

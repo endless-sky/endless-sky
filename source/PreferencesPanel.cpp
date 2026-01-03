@@ -1369,7 +1369,6 @@ void PreferencesPanel::DrawPluginInstalls()
 		// to represent various states results in a need to do things a little differently here.
 		Color color;
 
-		// TODO: Need icons for: [ ] not installed, [ ] downloading, [ ] installed, [ ] restart required
 		const Sprite *sprite;
 		if(plugin.IsDownloading())
 		{
@@ -1784,7 +1783,6 @@ void PreferencesPanel::ProcessPluginIndex()
 
 void PreferencesPanel::ScrollSelectedPlugin()
 {
-	// Note: selected is zero-based, but the math is 1's based.
 	while(selected * 20 - pluginListScroll < 0)
 		pluginListScroll.Scroll(-Preferences::ScrollSpeed());
 	while((selected + 1) * 20 - pluginListScroll > pluginListClip->Height())
