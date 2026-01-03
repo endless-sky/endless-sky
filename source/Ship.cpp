@@ -269,8 +269,6 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			LoadSprite(child);
 		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
-		else if(key == "name" && hasValue)
-			givenName = child.Token(1);
 		else if(key == "display name" && hasValue)
 			displayModelName = child.Token(1);
 		else if(key == "plural" && hasValue)
@@ -281,8 +279,6 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			noun = child.Token(1);
 		else if(key == "swizzle" && hasValue)
 			customSwizzleName = child.Token(1);
-		else if(key == "uuid" && hasValue)
-			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "attributes" || add)
 		{
 			if(!add)
@@ -551,29 +547,6 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					}
 				}
 		}
-		else if(key == "cargo")
-			cargo.Load(child);
-		else if(key == "crew" && hasValue)
-			crew = static_cast<int>(child.Value(1));
-		else if(key == "fuel" && hasValue)
-			fuel = child.Value(1);
-		else if(key == "shields" && hasValue)
-			shields = child.Value(1);
-		else if(key == "hull" && hasValue)
-			hull = child.Value(1);
-		else if(key == "position" && child.Size() >= 3)
-			position = Point(child.Value(1), child.Value(2));
-		else if(key == "system" && hasValue)
-			currentSystem = GameData::Systems().Get(child.Token(1));
-		else if(key == "planet" && hasValue)
-		{
-			zoom = 0.;
-			landingPlanet = GameData::Planets().Get(child.Token(1));
-		}
-		else if(key == "destination system" && hasValue)
-			targetSystem = GameData::Systems().Get(child.Token(1));
-		else if(key == "parked")
-			isParked = true;
 		else if(key == "description" && hasValue)
 		{
 			if(!hasDescription)
@@ -583,8 +556,6 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			}
 			description.Load(child, playerConditions);
 		}
-		else if(key == "formation" && hasValue)
-			formationPattern = GameData::Formations().Get(child.Token(1));
 		else if(key == "remove" && hasValue)
 		{
 			if(child.Token(1) == "bays")
@@ -592,8 +563,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			else
 				child.PrintTrace("Skipping unsupported \"remove\":");
 		}
-		else if(key != "actions")
-			child.PrintTrace("Skipping unrecognized attribute:");
+		else
+			LoadInstanceInfo(key, child);
 	}
 
 	// Variants will import their display and plural names from the base model in FinishLoading.
@@ -611,6 +582,46 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				node.PrintTrace("Explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralModelName + "\".");
 		}
+	}
+}
+
+
+
+void Ship::LoadCondensed(const DataNode &node)
+{
+	// Make this ship a copy of the base definition.
+	*this = *GameData::Ships().Get(node.Token(1));
+
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+
+		if(key == "outfit difference")
+		{
+			for(const DataNode &grand : child)
+			{
+				const Outfit * outfit = GameData::Outfits().Get(grand.Token(0));
+				outfits[outfit] += (grand.Size() >= 2) ? grand.Value(1) : 1;
+				if(outfits[outfit] < 0)
+					outfits[outfit] = 0;
+			}
+
+			// If this ship lost weapons relative to its base, then the armament won't match.
+			// Uninstall all the weapons from the armament here, and FinishLoading will find new
+			// positions for the remaining weapons. These may be different than the
+			// original positions, but no one will notice, right?
+			for(const auto &[weapon, count] : GetEquipped(Weapons()))
+			{
+				auto it = outfits.find(weapon);
+				if(it == outfits.end() || it->second < count)
+				{
+					armament.UninstallAll();
+					break;
+				}
+			}
+		}
+		else
+			LoadInstanceInfo(key, child);
 	}
 }
 
@@ -956,7 +967,6 @@ void Ship::Save(DataWriter &out) const
 	out.Write("ship", trueModelName);
 	out.BeginChild();
 	{
-		out.Write("name", givenName);
 		if(displayModelName != trueModelName)
 			out.Write("display name", displayModelName);
 		if(pluralModelName != displayModelName + 's')
@@ -973,8 +983,6 @@ void Ship::Save(DataWriter &out) const
 			out.Write("uncapturable");
 		if(customSwizzle && customSwizzle->IsLoaded())
 			out.Write("swizzle", customSwizzle->Name());
-
-		out.Write("uuid", uuid.ToString());
 
 		out.Write("attributes");
 		out.BeginChild();
@@ -1052,13 +1060,6 @@ void Ship::Save(DataWriter &out) const
 				});
 		}
 		out.EndChild();
-
-		cargo.Save(out);
-		out.Write("crew", crew);
-		out.Write("fuel", fuel);
-		out.Write("shields", shields);
-		out.Write("hull", hull);
-		out.Write("position", position.X(), position.Y());
 
 		for(const EnginePoint &point : enginePoints)
 		{
@@ -1162,23 +1163,58 @@ void Ship::Save(DataWriter &out) const
 			if(it.second)
 				out.Write("final explode", it.first->TrueName(), it.second);
 		});
-		if(formationPattern)
-			out.Write("formation", formationPattern->TrueName());
-		if(currentSystem)
-			out.Write("system", currentSystem->TrueName());
-		else
+		SaveInstanceInfo(out);
+	}
+	out.EndChild();
+}
+
+
+
+void Ship::SaveCondensed(DataWriter &out) const
+{
+	map<const Outfit *, int> outfitDiff;
+	const map<const Outfit *, int> &baseOutfits = GameData::Ships().Get(VariantName())->Outfits();
+	// For every outfit from the base model, if this ship lacks that outfit or has a different number,
+	// record the difference.
+	for(const auto &[outfit, count] : baseOutfits)
+	{
+		auto it = outfits.find(outfit);
+		if(it == outfits.end())
+			outfitDiff[outfit] = -count;
+		else if(it->second != count)
+			outfitDiff[outfit] = it->second - count;
+	}
+	// For every outfit from this ship, if it somehow isn't on the base model, then record that as well.
+	for(const auto &[outfit, count] : outfits)
+	{
+		auto it = baseOutfits.find(outfit);
+		if(it == outfits.end())
+			outfitDiff[outfit] = count;
+	}
+
+	out.Write("condensed ship", VariantName());
+	out.BeginChild();
+	{
+		if(!outfitDiff.empty())
 		{
-			// A carried ship is saved in its carrier's system.
-			shared_ptr<const Ship> parent = GetParent();
-			if(parent && parent->currentSystem)
-				out.Write("system", parent->currentSystem->TrueName());
+			out.Write("outfit difference");
+			out.BeginChild();
+			{
+				using OutfitElement = pair<const Outfit *const, int>;
+				WriteSorted(outfitDiff,
+					[](const OutfitElement *lhs, const OutfitElement *rhs)
+						{ return lhs->first->TrueName() < rhs->first->TrueName(); },
+					[&out](const OutfitElement &it)
+					{
+						if(it.second == 1)
+							out.Write(it.first->TrueName());
+						else
+							out.Write(it.first->TrueName(), it.second);
+					});
+			}
+			out.EndChild();
 		}
-		if(landingPlanet)
-			out.Write("planet", landingPlanet->TrueName());
-		if(targetSystem)
-			out.Write("destination system", targetSystem->TrueName());
-		if(isParked)
-			out.Write("parked");
+		SaveInstanceInfo(out);
 	}
 	out.EndChild();
 }
@@ -1195,64 +1231,6 @@ void Ship::SetCannotCondense()
 bool Ship::CannotCondense() const
 {
 	return cannotCondense;
-}
-
-
-
-void Ship::UpdateOutfits(const std::map<const Outfit *, int> &outfitDiff)
-{
-	if(outfitDiff.empty())
-		return;
-	// This function should only be called prior to FinishLoading,
-	// so that function will handle updating the attributes.
-	for(const auto &[outfit, count] : outfitDiff)
-	{
-		outfits[outfit] += count;
-		if(outfits[outfit] < 0)
-			outfits[outfit] = 0;
-	}
-
-	// If this ship lost weapons relative to its basem then the armament won't match.
-	// Uninstall all the weapons from the armament here, and FinishLoading will find new
-	// positions for the remaining weapons. These may be different than the
-	// original positions, but no one will notice, right?
-	for(const auto &[weapon, count] : GetEquipped(Weapons()))
-	{
-		auto it = outfits.find(weapon);
-		if(it == outfits.end() || it->second < count)
-		{
-			armament.UninstallAll();
-			break;
-		}
-	}
-}
-
-
-
-void Ship::SetCrew(int crew)
-{
-	this->crew = crew;
-}
-
-
-
-void Ship::SetShields(double shields)
-{
-	this->shields = shields;
-}
-
-
-
-void Ship::SetHull(double hull)
-{
-	this->hull = hull;
-}
-
-
-
-void Ship::SetFuel(double fuel)
-{
-	this->fuel = fuel;
 }
 
 
@@ -4034,6 +4012,76 @@ void Ship::Linger()
 bool Ship::Imitates(const Ship &other) const
 {
 	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
+}
+
+
+
+void Ship::LoadInstanceInfo(const string &key, const DataNode &child)
+{
+	if(key == "parked")
+		isParked = true;
+	else if(key == "cargo")
+		cargo.Load(child);
+	else if(child.Size() < 2)
+		child.PrintTrace("Expected key to have a value:");
+	else if(key == "position" && child.Size() >= 3)
+		position = Point(child.Value(1), child.Value(2));
+	else if(key == "name")
+		givenName = child.Token(1);
+	else if(key == "uuid")
+		uuid = EsUuid::FromString(child.Token(1));
+	else if(key == "crew")
+		crew = static_cast<int>(child.Value(1));
+	else if(key == "fuel")
+		fuel = child.Value(1);
+	else if(key == "shields")
+		shields = child.Value(1);
+	else if(key == "hull")
+		hull = child.Value(1);
+	else if(key == "system")
+		currentSystem = GameData::Systems().Get(child.Token(1));
+	else if(key == "planet")
+	{
+		zoom = 0.;
+		landingPlanet = GameData::Planets().Get(child.Token(1));
+	}
+	else if(key == "destination system")
+		targetSystem = GameData::Systems().Get(child.Token(1));
+	else if(key == "formation")
+		formationPattern = GameData::Formations().Get(child.Token(1));
+	else if(key != "actions")
+		child.PrintTrace("Skipping unrecognized attribute.");
+}
+
+
+
+void Ship::SaveInstanceInfo(DataWriter &out) const
+{
+	cargo.Save(out);
+	out.Write("name", givenName);
+	out.Write("uuid", uuid.ToString());
+	out.Write("crew", crew);
+	out.Write("fuel", fuel);
+	out.Write("shields", shields);
+	out.Write("hull", hull);
+	out.Write("position", position.X(), position.Y());
+	if(formationPattern)
+		out.Write("formation", formationPattern->TrueName());
+	if(currentSystem)
+		out.Write("system", currentSystem->TrueName());
+	else
+	{
+		// A carried ship is saved in its carrier's system.
+		shared_ptr<const Ship> parentPtr = GetParent();
+		if(parentPtr && parentPtr->currentSystem)
+			out.Write("system", parentPtr->currentSystem->TrueName());
+	}
+	if(landingPlanet)
+		out.Write("planet", landingPlanet->TrueName());
+	if(targetSystem)
+		out.Write("destination system", targetSystem->TrueName());
+	if(isParked)
+		out.Write("parked");
 }
 
 

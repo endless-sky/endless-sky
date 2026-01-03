@@ -154,6 +154,10 @@ public:
 
 	// Load data for a type of ship:
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	// Load the data from a condensed version of this ship that must look up the
+	// base definition in order to fill out the rest of the data. This should only
+	// be called after all ship definitions have finished loading.
+	void LoadCondensed(const DataNode &node);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);
@@ -161,18 +165,13 @@ public:
 	bool IsValid() const;
 	// Save a full description of this ship, as currently configured.
 	void Save(DataWriter &out) const;
+	// Save a condensed form of the data of this ship.
+	void SaveCondensed(DataWriter &out) const;
 
 	// NPCs used to save the full definition of their ships, but now save a condensed version of the ship.
 	// NPC ships created before this change can't be condensed, as they don't know their variant name.
 	void SetCannotCondense();
 	bool CannotCondense() const;
-	// Setters used to populate a ship from its condensed information.
-	// Should be called prior to FinishLoading.
-	void UpdateOutfits(const std::map<const Outfit *, int> &outfitDiff);
-	void SetCrew(int crew);
-	void SetShields(double shields);
-	void SetHull(double hull);
-	void SetFuel(double fuel);
 
 	const EsUuid &UUID() const noexcept;
 	// Explicitly set this ship's ID.
@@ -560,7 +559,10 @@ public:
 
 
 private:
-	// Various steps of Ship::Move:
+	// Load or save information that is particular to an instance of a ship and
+	// can't be determined from its base definition.
+	void LoadInstanceInfo(const std::string &key, const DataNode &child);
+	void SaveInstanceInfo(DataWriter &out) const;
 
 	// Check if this ship has been in a different system from the player for so
 	// long that it should be "forgotten." Also eliminate ships that have no
