@@ -748,6 +748,8 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 		}
 		else if(toLocation == OutfitLocation::Cargo)
 		{
+			if(!outfitter.Has(selectedOutfit))
+				howManyPer = min(howManyPer, player.Stock(selectedOutfit));
 			// Buy up to <modifier> of the selected outfit and place them in fleet cargo.
 			double mass = selectedOutfit->Mass();
 			if(mass)
