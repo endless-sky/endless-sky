@@ -4935,6 +4935,7 @@ mission "Dangerous Games 1"
 	source
 		attributes "frontier" "pirate"
 		near "Hadar" 1 100
+	clearance "Karengo grabs the intercom and gives the traffic controllers a piece of his mind. They grovel in apology, claiming not to know he was aboard, and grant you landing clearance."
 	stopover "Skymoot"
 	to offer
 		random < 15
