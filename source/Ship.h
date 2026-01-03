@@ -168,7 +168,7 @@ public:
 	bool CannotCondense() const;
 	// Setters used to populate a ship from its condensed information.
 	// Should be called prior to FinishLoading.
-	void SetOutfits(const std::map<const Outfit *, int> &outfits);
+	void UpdateOutfits(const std::map<const Outfit *, int> &outfitDiff);
 	void SetCrew(int crew);
 	void SetShields(double shields);
 	void SetHull(double hull);

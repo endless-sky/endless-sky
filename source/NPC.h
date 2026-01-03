@@ -138,7 +138,7 @@ private:
 		const Ship *baseShip;
 		std::string givenName;
 		EsUuid uuid;
-		std::map<const Outfit *, int> outfits;
+		std::map<const Outfit *, int> outfitDiff;
 		CargoHold cargo;
 		int crew;
 		double shields;

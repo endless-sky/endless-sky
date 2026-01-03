@@ -782,15 +782,12 @@ NPC::CondensedShip::CondensedShip(const DataNode &node)
 	{
 		const string &key = child.Token(0);
 
-		if(key == "outfits")
+		if(key == "outfit difference")
 		{
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				if(count > 0)
-					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
-				else
-					grand.PrintTrace("Skipping invalid outfit count:");
+				outfitDiff[GameData::Outfits().Get(grand.Token(0))] += count;
 			}
 		}
 		else if(key == "cargo")
@@ -833,7 +830,25 @@ NPC::CondensedShip::CondensedShip(const std::shared_ptr<Ship> &ship)
 	baseShip = ship.get();
 	givenName = ship->GivenName();
 	uuid = ship->UUID();
-	outfits = ship->Outfits();
+	const map<const Outfit *, int> &outfits = ship->Outfits();
+	const map<const Outfit *, int> &baseOutfits = GameData::Ships().Get(ship->VariantName())->Outfits();
+	// For every outfit from the base model, if this ship lacks that outfit or has a different number,
+	// record the difference.
+	for(const auto &[outfit, count] : baseOutfits)
+	{
+		auto it = outfits.find(outfit);
+		if(it == outfits.end())
+			outfitDiff[outfit] = -count;
+		else if(it->second != count)
+			outfitDiff[outfit] = it->second - count;
+	}
+	// For every outfit from this ship, if it somehow isn't on the base model, then record that as well.
+	for(const auto &[outfit, count] : outfits)
+	{
+		auto it = baseOutfits.find(outfit);
+		if(it == outfits.end())
+			outfitDiff[outfit] = count;
+	}
 	cargo = ship->Cargo();
 	crew = ship->Crew();
 	shields = ship->ShieldLevel();
@@ -859,7 +874,7 @@ shared_ptr<Ship> NPC::CondensedShip::Instantiate()
 	shared_ptr<Ship> ship = make_shared<Ship>(*baseShip);
 	ship->SetGivenName(givenName);
 	ship->SetUUID(uuid);
-	ship->SetOutfits(outfits);
+	ship->UpdateOutfits(outfitDiff);
 	cargo.TransferAll(ship->Cargo());
 	ship->SetCrew(crew);
 	ship->SetShields(shields);
@@ -882,22 +897,25 @@ void NPC::CondensedShip::Save(DataWriter &out) const
 	{
 		out.Write("name", givenName);
 		out.Write("uuid", uuid.ToString());
-		out.Write("outfits");
-		out.BeginChild();
+		if(!outfitDiff.empty())
 		{
-			using OutfitElement = pair<const Outfit *const, int>;
-			WriteSorted(outfits,
-				[](const OutfitElement *lhs, const OutfitElement *rhs)
-					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
-				[&out](const OutfitElement &it)
-				{
-					if(it.second == 1)
-						out.Write(it.first->TrueName());
-					else
-						out.Write(it.first->TrueName(), it.second);
-				});
+			out.Write("outfit difference");
+			out.BeginChild();
+			{
+				using OutfitElement = pair<const Outfit *const, int>;
+				WriteSorted(outfitDiff,
+					[](const OutfitElement *lhs, const OutfitElement *rhs)
+						{ return lhs->first->TrueName() < rhs->first->TrueName(); },
+					[&out](const OutfitElement &it)
+					{
+						if(it.second == 1)
+							out.Write(it.first->TrueName());
+						else
+							out.Write(it.first->TrueName(), it.second);
+					});
+			}
+			out.EndChild();
 		}
-		out.EndChild();
 		cargo.Save(out);
 		out.Write("crew", crew);
 		out.Write("fuel", fuel);

@@ -1199,20 +1199,23 @@ bool Ship::CannotCondense() const
 
 
 
-void Ship::SetOutfits(const std::map<const Outfit *, int> &outfits)
+void Ship::UpdateOutfits(const std::map<const Outfit *, int> &outfitDiff)
 {
+	if(outfitDiff.empty())
+		return;
 	// This function should only be called prior to FinishLoading,
 	// so that function will handle updating the attributes.
-	this->outfits.clear();
-	for(const auto &[outfit, count] : outfits)
-		this->outfits[outfit] += count;
+	for(const auto &[outfit, count] : outfitDiff)
+	{
+		outfits[outfit] += count;
+		if(outfits[outfit] < 0)
+			outfits[outfit] = 0;
+	}
 
-	// Unless the base definition of this ship changed to have different weapons
-	// than those being given to it now, or the player plundered weapons from
-	// this NPC ship, then the armament should match. Otherwise, we need to uninstall
-	// all the weapons from the armament here, and FinishLoading will find new
+	// If this ship lost weapons relative to its basem then the armament won't match.
+	// Uninstall all the weapons from the armament here, and FinishLoading will find new
 	// positions for the remaining weapons. These may be different than the
-	// original definition, but no one will notice, right?
+	// original positions, but no one will notice, right?
 	for(const auto &[weapon, count] : GetEquipped(Weapons()))
 	{
 		auto it = outfits.find(weapon);
