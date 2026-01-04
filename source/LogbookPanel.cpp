@@ -70,7 +70,7 @@ LogbookPanel::LogbookPanel(PlayerInfo &player)
 
 LogbookPanel::~LogbookPanel()
 {
-	SpriteLoadManager::UnloadScenes(GetUI()->AsyncQueue());
+	SpriteLoadManager::UnloadScenes(GetUI().AsyncQueue());
 }
 
 
@@ -82,7 +82,7 @@ void LogbookPanel::Step()
 		hasLoadedScenes = true;
 		for(const auto &entry : player.Logbook())
 			for(const Sprite *scene : entry.second.GetScenes())
-				SpriteLoadManager::LoadScene(GetUI()->AsyncQueue(), scene);
+				SpriteLoadManager::LoadScene(GetUI().AsyncQueue(), scene);
 	}
 }
 

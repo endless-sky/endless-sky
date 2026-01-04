@@ -109,7 +109,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 ConversationPanel::~ConversationPanel()
 {
 	Audio::Resume();
-	SpriteLoadManager::UnloadScenes(GetUI()->AsyncQueue());
+	SpriteLoadManager::UnloadScenes(GetUI().AsyncQueue());
 }
 
 
@@ -127,7 +127,7 @@ void ConversationPanel::Step()
 	{
 		hasLoadedScenes = true;
 		for(const Sprite *scene : conversation.Scenes())
-			SpriteLoadManager::LoadScene(GetUI()->AsyncQueue(), scene);
+			SpriteLoadManager::LoadScene(GetUI().AsyncQueue(), scene);
 	}
 }
 

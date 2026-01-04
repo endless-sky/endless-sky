@@ -140,7 +140,7 @@ void PlanetPanel::Step()
 	if(!hasLoadedThumbnails || SpriteLoadManager::RecheckThumbnails())
 	{
 		hasLoadedThumbnails = true;
-		TaskQueue &queue = GetUI()->AsyncQueue();
+		TaskQueue &queue = GetUI().AsyncQueue();
 		// Load the thumbnails for any ships and outfits sold in the shop.
 		for(const Ship *ship : shipyardStock)
 			SpriteLoadManager::LoadThumbnail(queue, ship->Thumbnail());
