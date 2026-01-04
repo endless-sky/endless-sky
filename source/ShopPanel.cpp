@@ -890,7 +890,7 @@ void ShopPanel::DrawShipsSidebar()
 	if(sidebarScroll.Scrollable())
 	{
 		Point top(Screen::Right() - 3, Screen::Top() + 10);
-		Point bottom(Screen::Right() - 3, Screen::Bottom() - 80);
+		Point bottom(Screen::Right() - 3, Screen::Bottom() - ButtonPanelHeight() - 10);
 
 		sidebarScrollbar.SyncDraw(sidebarScroll, top, bottom);
 	}

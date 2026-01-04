@@ -86,7 +86,7 @@ protected:
 	virtual int VisibilityCheckboxesSize() const;
 	virtual bool HasItem(const std::string &name) const = 0;
 	virtual void DrawItem(const std::string &name, const Point &point) = 0;
-	virtual double ButtonPanelHeight() const = 0;
+	virtual double ButtonPanelHeight() = 0;
 	virtual double DrawDetails(const Point &center) = 0;
 	virtual void DrawButtons() = 0;
 	virtual TransactionResult HandleShortcuts(SDL_Keycode key) = 0;
@@ -110,7 +110,6 @@ protected:
 	void DrawButton(const std::string &name, const Rectangle &buttonShape, bool isActive, bool hovering, char keyCode);
 	void CheckSelection();
 
-	bool EscortSelected();
 	bool CanPark();
 	bool CanUnpark();
 
@@ -142,12 +141,6 @@ protected:
 	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
 	static constexpr int SHIP_SIZE = 250;
 	static constexpr int OUTFIT_SIZE = 183;
-	// Button size/placement info:
-	static constexpr double BUTTON_ROW_START_PAD = 10;
-	static constexpr double BUTTON_ROW_PAD = 9.;
-	static constexpr double BUTTON_COL_PAD = 9.;
-	static constexpr double BUTTON_HEIGHT = 30.;
-	static constexpr double BUTTON_WIDTH = 73.;
 
 protected:
 	PlayerInfo &player;
@@ -225,6 +218,7 @@ private:
 	// Check if the given point is within the button zone, and if so return the
 	// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
+	bool EscortSelected();
 
 
 private:
