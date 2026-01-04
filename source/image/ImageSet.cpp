@@ -279,10 +279,8 @@ void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 			it.Clear();
 
 	// Load the frames (this will clear the buffers).
-	sprite->AddFrames(buffer[0], false, noReduction);
-	sprite->AddFrames(buffer[1], true, noReduction);
-	sprite->AddSwizzleMaskFrames(buffer[2], false, noReduction);
-	sprite->AddSwizzleMaskFrames(buffer[3], true, noReduction);
+	sprite->AddFrames(buffer[0], buffer[1], noReduction);
+	sprite->AddSwizzleMaskFrames(buffer[2], buffer[3], noReduction);
 
 	GameData::GetMaskManager().SetMasks(sprite, std::move(masks));
 	masks.clear();

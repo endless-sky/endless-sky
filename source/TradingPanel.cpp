@@ -272,7 +272,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			SellOutfitsOrFlotsam(false);
 	}
 	else if(command.Has(Command::MAP))
-		GetUI()->Push(new MapDetailPanel(player));
+		GetUI().Push(new MapDetailPanel(player));
 	else
 		return false;
 
