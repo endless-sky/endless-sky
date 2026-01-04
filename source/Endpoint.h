@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataWriter;
 
 
+
 // Actions that a Conversation or Dialog can end with.
 class Endpoint {
 public:
