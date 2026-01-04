@@ -540,6 +540,14 @@ void PlayerInfo::Load(const filesystem::path &path)
 
 
 
+// Reload from the same file from which the current pilot was loaded.
+void PlayerInfo::Reload()
+{
+	Load(filePath);
+}
+
+
+
 // Load the most recently saved player (if any). Returns false when no save was loaded.
 bool PlayerInfo::LoadRecent()
 {
@@ -3449,6 +3457,7 @@ void PlayerInfo::ApplyChanges()
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
 	AddChanges(dataChanges);
+	GameData::UpdateSystems();
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 
@@ -5087,6 +5096,30 @@ void PlayerInfo::DoAccounting()
 			}) + '.';
 		Messages::Add({message, GameData::MessageCategories().Get("force log")});
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
+
+		if(tributeIncome)
+		{
+			// Apply reputation penalties for dominated planets.
+			set<const Government *> governments;
+			for(const auto &it : tributeReceived)
+			{
+				double penalty = it.first->DailyTributePenalty();
+				if(penalty)
+				{
+					const Government *gov = it.first->GetGovernment();
+					gov->AddReputation(-penalty);
+					if(penalty > 0.)
+						governments.insert(gov);
+				}
+			}
+			if(!governments.empty())
+			{
+				message = "You have lost reputation with "
+					+ Format::List(governments, [](const Government *gov){ return "the " + gov->DisplayName(); })
+					+ " due to active tributes.";
+				Messages::Add({message, GameData::MessageCategories().Get("normal")});
+			}
+		}
 	}
 
 	// For accounting, keep track of the player's net worth. This is for

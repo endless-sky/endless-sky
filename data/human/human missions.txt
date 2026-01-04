@@ -4935,6 +4935,7 @@ mission "Dangerous Games 1"
 	source
 		attributes "frontier" "pirate"
 		near "Hadar" 1 100
+	clearance "Karengo grabs the intercom and gives the traffic controllers a piece of his mind. They grovel in apology, claiming not to know he was aboard, and grant you landing clearance."
 	stopover "Skymoot"
 	to offer
 		random < 15
@@ -5960,7 +5961,7 @@ mission "Quicksilver Mixup 3"
 		dialog `You have reached <planet>, but your escort carrying the misposted mail has not arrived. Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		payment 100000
-		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future."`
+		dialog `The same manager from before is waiting with the unloading crew, and thanks you for covering for the other pilot before handing you the credit chip for payment. It's nice to know that captains who get hired to deliver such wrongly-posted packages, like you once did, won't have to finish those deliveries themselves in the future.`
 
 
 
@@ -6751,18 +6752,26 @@ mission "Lost Racer 3"
 				`	"I'll leave the questions to your father."`
 					goto noquestions
 			label crash
+			action
+				set "asked artemis about crash"
 			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox's hyperdrive malfunctioned, knocking me out. When I woke up, I was in the wrong system and the Flivver was hurtling away from the star. Luckily, the engines hadn't been harmed too much, so I was able to turn around and thrust in the direction of <origin>, but then the batteries gave out and the generator stopped working. So I ended up stranded on a planet with no way of calling for help - the flares had triggered when I crashed, being unable to slow down without thrusters. Well, now you know. Is there anything else?"`
 			`	August asks, "Do you think someone could have sabotaged the hyperdrive? Any suspicious Syndicate employees hanging around? Any anything out of the ordinary?"`
 			`	"Not that I remember," replies Artemis. "This rarely happens in spaceship racing, but it's still happened. A one-in-a-million chance, perhaps. I wouldn't worry about it too much."`
 			choice
 				`	"That was a beautiful ship you had there. I've never seen a Flivver quite like that."`
+					to display
+						not "asked artemis about flivver"
 				`	"Alright."`
 					goto noquestions
 			label beautiful
+			action
+				set "asked artemis about flivver"
 			`	"You have good taste, Captain. It's modified for racing: lighter hull plating, no weapon mounts, ample engines, of course. We've got a dozen for all the different races, but that one was a personal favorite."`
 			choice
 				`	"Why did you crash?`
 					goto crash
+					to display
+						not "asked artemis about crash"
 				`	"I have no more questions."`
 			label noquestions
 			`	Artemis nods. "Well, could we head back to <planet> now? It'll be nice to get home after all this commotion and discomfort."`
@@ -10394,7 +10403,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	Union-Colonel Wynnafrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinizes it.`
 			`	"Ya know, to us he's still the Governor. Don't believe what the company-bosses and their paid politicians tell you. He was a good man." She wipes her eyes for a moment. "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
 			`	Her free hand tightens into a ball. "The big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
-			`	"Sure, he made some mistakes. No one becomes governor here without getting a little dirt on their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
+			`	"Sure, he made some mistakes. No one becomes governor here without getting a little dirt on their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafrith looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
 			`	"And when he wouldn't budge they finally got him on trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuilding phase."`
 			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Governor then we're in.`
 			`	"We have a few left over explosives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
@@ -11117,7 +11126,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 				`	"Of course I did."`
 				`	"Yep, but you owe me big."`
 
-			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafirth's gun and bomb, and how highly she still thinks of him.`
+			`	He nearly drops to his knees and starts sorting through the gear. He takes heart when you tell him about Wynnafrith's gun and bomb, and how highly she still thinks of him.`
 			`	"Good secretary. Better friend." He wheezes as he checks out the rest of your gear.`
 			branch unprepared
 				"timothy radrickson zpreparedness" < 6
