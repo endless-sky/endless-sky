@@ -248,7 +248,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
 			player.Die();
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	}
 	else if(playerDied)
 		return false;
@@ -267,7 +267,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else
 				message = "You cannot plunder now.";
 
-			GetUI()->Push(new DialogPanel{message});
+			GetUI().Push(new DialogPanel{message});
 			return true;
 		}
 
@@ -324,8 +324,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(Random::Real() < victim->Attributes().Get("self destruct"))
 		{
 			victim->SelfDestruct();
-			GetUI()->Pop(this);
-			GetUI()->Push(new DialogPanel("The moment you blast through the airlock, a series of explosions rocks the "
+			GetUI().Pop(this);
+			GetUI().Push(new DialogPanel("The moment you blast through the airlock, a series of explosions rocks the "
 				"enemy ship. They appear to have set off their self-destruct sequence..."));
 			return true;
 		}
@@ -478,7 +478,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 	}
 	else if(command.Has(Command::INFO))
-		GetUI()->Push(new ShipInfoPanel(player));
+		GetUI().Push(new ShipInfoPanel(player));
 
 	// Trim the list of status messages.
 	while(messages.size() > 5)

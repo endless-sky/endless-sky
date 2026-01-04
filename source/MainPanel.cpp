@@ -65,7 +65,7 @@ void MainPanel::Step()
 
 	// Depending on what UI element is on top, the game is "paused." This
 	// checks only already-drawn panels.
-	bool isActive = GetUI()->IsTop(this);
+	bool isActive = GetUI().IsTop(this);
 
 	// If the player is dead, don't show anything.
 	if(player.IsDead())
@@ -74,17 +74,17 @@ void MainPanel::Step()
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
 	{
-		GetUI()->Push(new MapDetailPanel(player));
+		GetUI().Push(new MapDetailPanel(player));
 		isActive = false;
 	}
 	else if(show.Has(Command::INFO))
 	{
-		GetUI()->Push(new PlayerInfoPanel(player));
+		GetUI().Push(new PlayerInfoPanel(player));
 		isActive = false;
 	}
 	else if(show.Has(Command::MESSAGE_LOG))
 	{
-		GetUI()->Push(new MessageLogPanel());
+		GetUI().Push(new MessageLogPanel());
 		isActive = false;
 	}
 	else if(show.Has(Command::HAIL))
@@ -97,7 +97,7 @@ void MainPanel::Step()
 	// will call this object's OnCallback() function;
 	if(isActive && player.GetPlanet() && !player.GetPlanet()->IsWormhole())
 	{
-		GetUI()->Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
+		GetUI().Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		player.Land(GetUI());
 		isActive = false;
 	}
@@ -111,7 +111,7 @@ void MainPanel::Step()
 		else
 			player.HandleBlockedEnteringMissions(GetUI());
 		// Determine if a Dialog or ConversationPanel is being drawn next frame.
-		isActive = (GetUI()->Top().get() == this);
+		isActive = (GetUI().Top().get() == this);
 	}
 
 	// Display any relevant help/tutorial messages.
@@ -412,7 +412,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 					out << "\t" << it.second << " " << it.first << "\n";
 		}
 	}
-	GetUI()->Push(new DialogPanel(out.str()));
+	GetUI().Push(new DialogPanel(out.str()));
 }
 
 
@@ -449,7 +449,7 @@ bool MainPanel::ShowHailPanel()
 				GameData::MessageCategories().Get("high")});
 		else
 		{
-			GetUI()->Push(new HailPanel(player, target,
+			GetUI().Push(new HailPanel(player, target,
 				[&](const Government *bribed) { MainPanel::OnBribeCallback(bribed); }));
 			return true;
 		}
@@ -463,7 +463,7 @@ bool MainPanel::ShowHailPanel()
 			Messages::Add(*GameData::Messages().Get("wormhole hail"));
 		else if(planet->IsInhabited())
 		{
-			GetUI()->Push(new HailPanel(player, flagship->GetTargetStellar()));
+			GetUI().Push(new HailPanel(player, flagship->GetTargetStellar()));
 			return true;
 		}
 		else
@@ -616,7 +616,7 @@ void MainPanel::StepEvents(bool &isActive)
 		if(!handledFront)
 			player.HandleEvent(event, GetUI());
 		handledFront = true;
-		isActive = (GetUI()->Top().get() == this);
+		isActive = (GetUI().Top().get() == this);
 
 		// If we can't safely display a new UI element (i.e. an active
 		// mission created a UI element), then stop processing events
@@ -648,7 +648,7 @@ void MainPanel::StepEvents(bool &isActive)
 				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
 						? Mission::BOARDING : Mission::ASSISTING, GetUI());
 			// Determine if a Dialog or ConversationPanel is being drawn next frame.
-			isActive = (GetUI()->Top().get() == this);
+			isActive = (GetUI().Top().get() == this);
 
 			// Confirm that this event's target is not destroyed and still an
 			// enemy before showing the BoardingPanel (as a mission NPC's
@@ -662,7 +662,7 @@ void MainPanel::StepEvents(bool &isActive)
 					&& boardedShip->GetGovernment()->IsEnemy())
 			{
 				// Either no mission activated, or the one that did was "silent."
-				GetUI()->Push(new BoardingPanel(player, boardedShip));
+				GetUI().Push(new BoardingPanel(player, boardedShip));
 				isActive = false;
 			}
 		}
@@ -680,7 +680,7 @@ void MainPanel::StepEvents(bool &isActive)
 				string message = actor->Fine(player, event.Type(), &*event.Target()).second;
 				if(!message.empty())
 				{
-					GetUI()->Push(new DialogPanel(message));
+					GetUI().Push(new DialogPanel(message));
 					isActive = false;
 				}
 			}

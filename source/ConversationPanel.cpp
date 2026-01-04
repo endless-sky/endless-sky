@@ -256,7 +256,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
 	{
 		sound = UI::UISound::NONE;
-		GetUI()->Push(new MapDetailPanel(player, system, true));
+		GetUI().Push(new MapDetailPanel(player, system, true));
 	}
 	if(node < 0)
 	{
@@ -481,7 +481,7 @@ void ConversationPanel::Exit()
 	if(useTransactions)
 		player.FinishTransaction();
 
-	GetUI()->Pop(this);
+	GetUI().Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC
 	// block (e.g. scanning or boarding or killing all required targets).
@@ -498,7 +498,7 @@ void ConversationPanel::Exit()
 		else if((node != Endpoint::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
 				&& !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
-			GetUI()->Push(new BoardingPanel(player, ship));
+			GetUI().Push(new BoardingPanel(player, ship));
 	}
 	// Call the exit response handler to manage the conversation's effect
 	// on the player's missions, or force takeoff from a planet.

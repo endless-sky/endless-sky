@@ -69,7 +69,7 @@ void ShipyardPanel::Step()
 {
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
-	if(GetUI()->IsTop(this))
+	if(GetUI().IsTop(this))
 		DoHelp("shipyard");
 }
 
@@ -366,7 +366,7 @@ void ShipyardPanel::DoBuyButton()
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
-	GetUI()->Push(new ShipNameDialog(this,
+	GetUI().Push(new ShipNameDialog(this,
 			DialogPanel::FunctionButton(this, "Buy", 'b', &ShipyardPanel::BuyShip),
 			message));
 }
@@ -435,10 +435,10 @@ void ShipyardPanel::Sell(bool storeOutfits)
 	if(storeOutfits)
 	{
 		message += " Any outfits will be placed in storage.";
-		GetUI()->Push(new DialogPanel(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
+		GetUI().Push(new DialogPanel(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
 	}
 	else
-		GetUI()->Push(new DialogPanel(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
+		GetUI().Push(new DialogPanel(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
 }
 
 

@@ -204,13 +204,13 @@ void MissionPanel::Step()
 	// If a job or mission that launches the player triggers,
 	// immediately close the map.
 	if(player.ShouldLaunch())
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	if(GetUI().IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced");
 	DoHelp("jobs");
 
-	if(GetUI()->IsTop(this) && !fromMission)
+	if(GetUI().IsTop(this) && !fromMission)
 	{
 		Mission *mission = player.MissionToOffer(Mission::JOB_BOARD);
 		if(mission)
@@ -340,7 +340,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
-			GetUI()->Push(new DialogPanel(this, &MissionPanel::AbortMission,
+			GetUI().Push(new DialogPanel(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->DisplayName() + "\"?"));
 		return true;
 	}
@@ -1068,7 +1068,7 @@ void MissionPanel::Accept(bool force)
 		else
 			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
 				<< " to make room for this mission. Continue?";
-		GetUI()->Push(new DialogPanel(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
+		GetUI().Push(new DialogPanel(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}
 
