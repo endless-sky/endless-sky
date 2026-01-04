@@ -666,7 +666,6 @@ mission "Wanderers: Defend Vara Ke'sok"
 				"Summer Leaf" 4
 
 event "Sich'ka'ara empty"
-	government "Hai (Unfettered)"
 	system "Sich'ka'ara"
 		fleet "Wanderer Drones" 3000
 
