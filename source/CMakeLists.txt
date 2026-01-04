@@ -295,8 +295,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
-		ShipNameDialogPanel.cpp
-		ShipNameDialogPanel.h
+	ShipNameDialogPanel.cpp
+	ShipNameDialogPanel.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp

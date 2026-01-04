@@ -1,4 +1,4 @@
-/* ShipNameDialog.cpp
+/* ShipNameDialogPanel.cpp
 Copyright (c) 2024 by Endless Sky contributors
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
