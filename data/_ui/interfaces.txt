@@ -2212,26 +2212,26 @@ interface "shipyard buttons"
 interface "outfitter buttons"
 	anchor bottom right
 	value "fleet bar width" 256
-	value "button box height" 178
+	value "button box height" 184
 
 	fill
-		from -256 -178 to 0 0
+		from -256 -184 to 0 0
 		color "shop side panel footer"
 
 	label "You have:"
 		align left
-		from -246 -159
+		from -246 -165
 		color "medium"
 	string "credits"
-		from -10 -159
+		from -10 -165
 		align right
 
 	label "Cargo space:"
 		align left
-		from -246 -139
+		from -246 -145
 		color "medium"
 	string "cargo"
-		from -10 -139
+		from -10 -145
 		align right
 
 	fill
