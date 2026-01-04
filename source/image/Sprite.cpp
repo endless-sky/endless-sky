@@ -108,6 +108,14 @@ void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, 
 	// Do nothing if the buffer is empty.
 	if(!buffer1x.Pixels())
 		return;
+
+	if(!swizzleMaskFrames)
+	{
+		swizzleMaskFrames = buffer1x.Frames();
+		if(swizzleMaskFrames > 1 && swizzleMaskFrames < frames)
+			swizzleMaskFrames = 1;
+	}
+
 	if(buffer2x.Pixels())
 	{
 		AddBuffer(buffer2x, &swizzleMask, noReduction);
@@ -137,6 +145,7 @@ void Sprite::Unload()
 	width = 0.f;
 	height = 0.f;
 	frames = 0;
+	swizzleMaskFrames = 0;
 }
 
 
@@ -161,6 +170,13 @@ float Sprite::Height() const
 int Sprite::Frames() const
 {
 	return frames;
+}
+
+
+
+int Sprite::SwizzleMaskFrames() const
+{
+	return swizzleMaskFrames;
 }
 
 

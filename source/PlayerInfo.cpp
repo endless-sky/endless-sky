@@ -20,8 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "DistanceMap.h"
+#include "Endpoint.h"
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -540,6 +541,14 @@ void PlayerInfo::Load(const filesystem::path &path)
 
 
 
+// Reload from the same file from which the current pilot was loaded.
+void PlayerInfo::Reload()
+{
+	Load(filePath);
+}
+
+
+
 // Load the most recently saved player (if any). Returns false when no save was loaded.
 bool PlayerInfo::LoadRecent()
 {
@@ -706,7 +715,7 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 	// conversation, it should still appear in the player's ship list (but
 	// will be red, because it is dead). The player's escorts will scatter
 	// automatically, as they have a now-dead parent.
-	else if(response == Conversation::EXPLODE)
+	else if(response == Endpoint::EXPLODE)
 		flagship->Destroy();
 	// If it died in open combat, it is already marked destroyed.
 	else if(!flagship->IsDestroyed())
@@ -1541,7 +1550,7 @@ void PlayerInfo::UpdateCargoCapacities()
 
 // Switch cargo from being stored in ships to being stored here. Also recharge
 // ships, check for mission completion, and apply fines for contraband.
-void PlayerInfo::Land(UI *ui)
+void PlayerInfo::Land(UI &ui)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -1649,7 +1658,7 @@ void PlayerInfo::Land(UI *ui)
 		CreateMissions();
 	// Upon loading the game, prompt the player about any paused missions or invalid events,
 	// but if there are many do not name them all (since this would overflow the screen).
-	else if(ui)
+	else
 	{
 		if(!inactiveMissions.empty())
 		{
@@ -1665,7 +1674,7 @@ void PlayerInfo::Land(UI *ui)
 			if(mit != inactiveMissions.rend())
 				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
-			ui->Push(new Dialog(message));
+			ui.Push(new DialogPanel(message));
 		}
 		if(!invalidEvents.empty())
 		{
@@ -1681,7 +1690,7 @@ void PlayerInfo::Land(UI *ui)
 			if(eit != invalidEvents.rend())
 				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
 			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
-			ui->Push(new Dialog(message));
+			ui.Push(new DialogPanel(message));
 		}
 	}
 
@@ -1709,7 +1718,7 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
+bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -2349,7 +2358,7 @@ void PlayerInfo::UpdateMissionNPCs()
 
 
 // Accept the given job.
-void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
+void PlayerInfo::AcceptJob(const Mission &mission, UI &ui)
 {
 	for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
 		if(&*it == &mission)
@@ -2358,7 +2367,7 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
 			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this, ui);
+			it->Do(Mission::ACCEPT, *this, &ui);
 			if(it->IsFailed())
 				RemoveMission(Mission::Trigger::FAIL, *it, ui);
 			// Might not have cargo anymore, so some jobs can be sorted to end.
@@ -2494,7 +2503,7 @@ void PlayerInfo::ClearActiveInFlightMission()
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
 // show that message.
-void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
+void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI &ui)
 {
 	list<Mission> &missionList = availableMissions.empty() ? availableBoardingMissions : availableMissions;
 	if(ships.empty() || missionList.empty())
@@ -2506,7 +2515,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 			string message = it.BlockedMessage(*this);
 			if(!message.empty())
 			{
-				ui->Push(new Dialog(message));
+				ui.Push(new DialogPanel(message));
 				return;
 			}
 		}
@@ -2514,7 +2523,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 
 
 
-void PlayerInfo::HandleBlockedEnteringMissions(UI *ui)
+void PlayerInfo::HandleBlockedEnteringMissions(UI &ui)
 {
 	if(!flagship || availableEnteringMissions.empty())
 		return;
@@ -2529,7 +2538,7 @@ void PlayerInfo::HandleBlockedEnteringMissions(UI *ui)
 			it = availableEnteringMissions.erase(it);
 			if(!message.empty())
 			{
-				ui->Push(new Dialog(message));
+				ui.Push(new DialogPanel(message));
 				return;
 			}
 		}
@@ -2553,8 +2562,8 @@ void PlayerInfo::MissionCallback(int response)
 	Mission &mission = missionList.front();
 
 	// If landed, this conversation may require the player to immediately depart.
-	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
-	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
+	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
+	if(response == Endpoint::ACCEPT || response == Endpoint::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
 		if(planet)
@@ -2582,12 +2591,12 @@ void PlayerInfo::MissionCallback(int response)
 				|| mission.IsAtLocation(Mission::ENTERING))
 			activeInFlightMission = &*--spliceIt;
 	}
-	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
+	else if(response == Endpoint::DECLINE || response == Endpoint::FLEE)
 	{
 		mission.Do(Mission::DECLINE, *this);
 		missionList.pop_front();
 	}
-	else if(response == Conversation::DEFER || response == Conversation::DEPART)
+	else if(response == Endpoint::DEFER || response == Endpoint::DEPART)
 	{
 		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
@@ -2601,14 +2610,14 @@ void PlayerInfo::MissionCallback(int response)
 void PlayerInfo::BasicCallback(int response)
 {
 	// If landed, this conversation may require the player to immediately depart.
-	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
+	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
 }
 
 
 
 // Mark a mission for removal, either because it was completed, or it failed,
 // or because the player aborted it.
-void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission, UI *ui)
+void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission, UI &ui)
 {
 	for(auto it = missions.begin(); it != missions.end(); ++it)
 		if(&*it == &mission)
@@ -2619,7 +2628,7 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 			// mission's "on fail" fails the mission itself.
 			doneMissions.splice(doneMissions.end(), missions, it);
 
-			it->Do(trigger, *this, ui);
+			it->Do(trigger, *this, &ui);
 			cargo.RemoveMissionCargo(&mission);
 			for(shared_ptr<Ship> &ship : ships)
 				ship->Cargo().RemoveMissionCargo(&mission);
@@ -2643,7 +2652,7 @@ void PlayerInfo::FailMission(const Mission &mission)
 
 
 // Update mission status based on an event.
-void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
+void PlayerInfo::HandleEvent(const ShipEvent &event, UI &ui)
 {
 	// Combat rating increases when you disable an enemy ship.
 	if(event.ActorGovernment() && event.ActorGovernment()->IsPlayer())
@@ -3449,6 +3458,7 @@ void PlayerInfo::ApplyChanges()
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
 	AddChanges(dataChanges);
+	GameData::UpdateSystems();
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 
@@ -4413,7 +4423,7 @@ void PlayerInfo::CreateMissions()
 
 // Updates each mission upon landing, to perform landing actions (Stopover,
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
-void PlayerInfo::StepMissions(UI *ui)
+void PlayerInfo::StepMissions(UI &ui)
 {
 	// Check for NPCs that have been destroyed without their destruction
 	// being registered, e.g. by self-destruct:
@@ -4446,7 +4456,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		++mit;
 
 		// If this is a stopover for the mission, perform the stopover action.
-		mission.Do(Mission::STOPOVER, *this, ui);
+		mission.Do(Mission::STOPOVER, *this, &ui);
 
 		if(mission.IsFailed())
 			RemoveMission(Mission::FAIL, mission, ui);
@@ -4454,7 +4464,7 @@ void PlayerInfo::StepMissions(UI *ui)
 			RemoveMission(Mission::COMPLETE, mission, ui);
 		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
 		{
-			mission.Do(Mission::VISIT, *this, ui);
+			mission.Do(Mission::VISIT, *this, &ui);
 			if(mission.IsUnique() || !mission.IsVisible())
 				continue;
 
@@ -4475,7 +4485,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		if(missionVisits > 1)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
-		ui->Push(new Dialog(visitText));
+		ui.Push(new DialogPanel(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
@@ -4511,7 +4521,7 @@ void PlayerInfo::StepMissions(UI *ui)
 
 
 
-void PlayerInfo::StepMissionTimers(UI *ui)
+void PlayerInfo::StepMissionTimers(UI &ui)
 {
 	for(Mission &mission : missions)
 		mission.StepTimers(*this, ui);
@@ -4907,7 +4917,7 @@ void PlayerInfo::Save(DataWriter &out) const
 // Check (and perform) any fines incurred by planetary security. If the player
 // has dominated the planet, or was given clearance to this planet by a mission,
 // planetary security is avoided. Infiltrating implies evasion of security.
-void PlayerInfo::Fine(UI *ui)
+void PlayerInfo::Fine(UI &ui)
 {
 	const Planet *planet = GetPlanet();
 	// Dominated planets should never fine you.
@@ -4933,7 +4943,7 @@ void PlayerInfo::Fine(UI *ui)
 		if(message.second == "atrocity")
 		{
 			if(message.first)
-				ui->Push(new ConversationPanel(*this, *message.first));
+				ui.Push(new ConversationPanel(*this, *message.first));
 			else
 			{
 				message.second = "Before you can leave your ship, the " + gov->DisplayName()
@@ -4942,13 +4952,13 @@ void PlayerInfo::Fine(UI *ui)
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui->Push(new Dialog(message.second));
+				ui.Push(new DialogPanel(message.second));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui->Push(new Dialog(message.second));
+			ui.Push(new DialogPanel(message.second));
 	}
 }
 

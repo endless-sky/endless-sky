@@ -240,6 +240,8 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				atrocityOutfits.clear();
 				atrocityShips.clear();
 			}
+			else if(key == "bribe threshold")
+				bribeThreshold = 0.;
 			else
 				child.PrintTrace("Cannot \"remove\" the given key:");
 
@@ -437,9 +439,11 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		else if(key == "crew defense")
 			crewDefense = max(0., add ? child.Value(valueIndex) + crewDefense : child.Value(valueIndex));
 		else if(key == "bribe")
-			bribe = add ? bribe + child.Value(valueIndex) : child.Value(valueIndex);
+			bribe = child.Value(valueIndex) + (add ? bribe : 0.);
+		else if(key == "bribe threshold")
+			bribeThreshold = child.Value(valueIndex) + (add ? bribeThreshold : 0.);
 		else if(key == "fine")
-			fine = add ? fine + child.Value(valueIndex) : child.Value(valueIndex);
+			fine = child.Value(valueIndex) + (add ? fine : 0.);
 		else if(add)
 			child.PrintTrace("Unsupported use of add:");
 		else if(key == "display name")
@@ -587,6 +591,16 @@ Government::PenaltyEffect Government::PenaltyFor(int eventType, const Government
 double Government::GetBribeFraction() const
 {
 	return bribe;
+}
+
+
+
+// This government will never accept a bribe if the player's reputation
+// with them is below this value, if it is negative. If the value is 0,
+// bribes are accepted regardless of reputation.
+double Government::GetBribeThreshold() const
+{
+	return bribeThreshold;
 }
 
 

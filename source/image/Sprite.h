@@ -47,6 +47,8 @@ public:
 	// Number of frames in the animation. If high DPI frames exist, the code has
 	// ensured that they have the same number of frames.
 	int Frames() const;
+	// This will either be 0, 1, or the same as the number of normal frames.
+	int SwizzleMaskFrames() const;
 
 	// Get the offset of the center from the top left corner; this is for easy
 	// shifting of corner to center coordinates.
@@ -66,4 +68,5 @@ private:
 	float width = 0.f;
 	float height = 0.f;
 	int frames = 0;
+	int swizzleMaskFrames = 0;
 };
