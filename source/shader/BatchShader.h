@@ -29,6 +29,6 @@ public:
 	static void Init();
 
 	static void Bind();
-	static void Add(const Sprite *sprite, bool isHighDPI, const std::vector<float> &data);
+	static void Add(const Sprite *sprite, const std::vector<float> &data);
 	static void Unbind();
 };

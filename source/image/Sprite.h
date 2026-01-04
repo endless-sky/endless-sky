@@ -35,7 +35,7 @@ public:
 	const std::string &Name() const;
 
 	// Add the given frames, optionally uploading them. The given buffers will be cleared afterwards.
-	// Received both the 1x and 2x buffers. If the 2x buffer is not empty, then it will be used.
+	// Receive both the 1x and 2x buffers. If the 2x buffer is not empty, then it will be used.
 	void AddFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noReduction);
 	void AddSwizzleMaskFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noReduction);
 	// Free up all textures loaded for this sprite.

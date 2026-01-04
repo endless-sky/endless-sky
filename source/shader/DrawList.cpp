@@ -33,7 +33,6 @@ void DrawList::Clear(int step, double zoom)
 	items.clear();
 	this->step = step;
 	this->zoom = zoom;
-	isHighDPI = (Screen::IsHighResolution() ? zoom > .5 : zoom > 1.);
 }
 
 
