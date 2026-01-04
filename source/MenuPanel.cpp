@@ -193,7 +193,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		player.Reload();
 
-		GetUI()->PopThrough(GetUI()->Root().get());
+		GetUI().PopThrough(GetUI().Root().get());
 		gamePanels.Push(new MainPanel(player));
 		// It takes one step to figure out the planet panel should be created, and
 		// another step to actually place it. So, take two steps to avoid a flicker.
