@@ -161,7 +161,7 @@ void MenuPanel::Draw()
 	}
 	else if(player.IsLoaded())
 	{
-		info.SetCondition("no pilot loaded");
+		info.SetCondition("pilot dead");
 		info.SetString("pilot", player.FirstName() + " " + player.LastName());
 		info.SetString("ship", "You have died.");
 	}
@@ -189,11 +189,22 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI().PopThrough(this);
 		return true;
 	}
+	else if(key == 'r' && player.IsLoaded() && player.IsDead())
+	{
+		player.Reload();
+
+		GetUI()->PopThrough(GetUI()->Root().get());
+		gamePanels.Push(new MainPanel(player));
+		// It takes one step to figure out the planet panel should be created, and
+		// another step to actually place it. So, take two steps to avoid a flicker.
+		gamePanels.StepAll();
+		gamePanels.StepAll();
+	}
 	else if(key == 'p')
 		GetUI().Push(new PreferencesPanel(player));
 	else if(key == 'l' || key == 'm')
 		GetUI().Push(new LoadPanel(player, gamePanels));
-	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
+	else if(key == 'n' && !player.IsLoaded())
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		// Request that the player chooses a start scenario.

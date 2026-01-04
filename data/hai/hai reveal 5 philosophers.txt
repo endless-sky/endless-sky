@@ -1052,6 +1052,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		event "elenchus can be dominated"
 	on fail
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
+		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 	on decline
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
 	on visit
@@ -1064,14 +1065,8 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. The general's ship is the Emperor Beetle, Kratos. The baffling won't work forever, so get to it.`
 			`	(NOTE: You need to dominate this planet to finish the battle. To do that, talk to the planet and demand tribute. The planet will send multiple waves of defense fleets. Demand tribute after defeating the final wave, and they'll agree. Then land to finish the mission.)`
 			`	(WARNING: The allies you are escorting will not help you fight the defense fleets sent in response to your tribute demands, but they will fight any other pirate ships in the system.)`
-	on visit
-		conversation
-			`To finish this mission, you must destroy all defending pirate vessels, and land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
-				launch
 	on complete
 		event "liberated elenchus"
-	on fail
-		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 
 	# IMPORTANT: For story reasons, all non-Unfettered ships must have "save" to ensure
 	# the Unfettered get their jump drives back.

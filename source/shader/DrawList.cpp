@@ -138,6 +138,7 @@ void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, const
 	item.swizzleMask = body.GetSprite()->SwizzleMask(isHighDPI);
 	item.frame = body.GetFrame(step);
 	item.frameCount = body.GetSprite()->Frames();
+	item.uniqueSwizzleMaskFrames = body.GetSprite()->SwizzleMaskFrames() > 1;
 
 	item.position[0] = static_cast<float>(pos.X() * zoom);
 	item.position[1] = static_cast<float>(pos.Y() * zoom);
