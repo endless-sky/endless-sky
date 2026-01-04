@@ -20,8 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "DistanceMap.h"
+#include "Endpoint.h"
 #include "Files.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -714,7 +715,7 @@ void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 	// conversation, it should still appear in the player's ship list (but
 	// will be red, because it is dead). The player's escorts will scatter
 	// automatically, as they have a now-dead parent.
-	else if(response == Conversation::EXPLODE)
+	else if(response == Endpoint::EXPLODE)
 		flagship->Destroy();
 	// If it died in open combat, it is already marked destroyed.
 	else if(!flagship->IsDestroyed())
@@ -1673,7 +1674,7 @@ void PlayerInfo::Land(UI &ui)
 			if(mit != inactiveMissions.rend())
 				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
 			message += "They will be reactivated when the necessary plugin is reinstalled.";
-			ui.Push(new Dialog(message));
+			ui.Push(new DialogPanel(message));
 		}
 		if(!invalidEvents.empty())
 		{
@@ -1689,7 +1690,7 @@ void PlayerInfo::Land(UI &ui)
 			if(eit != invalidEvents.rend())
 				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
 			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
-			ui.Push(new Dialog(message));
+			ui.Push(new DialogPanel(message));
 		}
 	}
 
@@ -2514,7 +2515,7 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI &ui)
 			string message = it.BlockedMessage(*this);
 			if(!message.empty())
 			{
-				ui.Push(new Dialog(message));
+				ui.Push(new DialogPanel(message));
 				return;
 			}
 		}
@@ -2537,7 +2538,7 @@ void PlayerInfo::HandleBlockedEnteringMissions(UI &ui)
 			it = availableEnteringMissions.erase(it);
 			if(!message.empty())
 			{
-				ui.Push(new Dialog(message));
+				ui.Push(new DialogPanel(message));
 				return;
 			}
 		}
@@ -2561,8 +2562,8 @@ void PlayerInfo::MissionCallback(int response)
 	Mission &mission = missionList.front();
 
 	// If landed, this conversation may require the player to immediately depart.
-	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
-	if(response == Conversation::ACCEPT || response == Conversation::LAUNCH)
+	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
+	if(response == Endpoint::ACCEPT || response == Endpoint::LAUNCH)
 	{
 		bool shouldAutosave = mission.RecommendsAutosave();
 		if(planet)
@@ -2590,12 +2591,12 @@ void PlayerInfo::MissionCallback(int response)
 				|| mission.IsAtLocation(Mission::ENTERING))
 			activeInFlightMission = &*--spliceIt;
 	}
-	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
+	else if(response == Endpoint::DECLINE || response == Endpoint::FLEE)
 	{
 		mission.Do(Mission::DECLINE, *this);
 		missionList.pop_front();
 	}
-	else if(response == Conversation::DEFER || response == Conversation::DEPART)
+	else if(response == Endpoint::DEFER || response == Endpoint::DEPART)
 	{
 		mission.Do(Mission::DEFER, *this);
 		missionList.pop_front();
@@ -2609,7 +2610,7 @@ void PlayerInfo::MissionCallback(int response)
 void PlayerInfo::BasicCallback(int response)
 {
 	// If landed, this conversation may require the player to immediately depart.
-	shouldLaunch |= (GetPlanet() && Conversation::RequiresLaunch(response));
+	shouldLaunch |= (GetPlanet() && Endpoint::RequiresLaunch(response));
 }
 
 
@@ -4484,7 +4485,7 @@ void PlayerInfo::StepMissions(UI &ui)
 		if(missionVisits > 1)
 			visitText += "\n\t(You have " + Format::Number(missionVisits - 1) + " other unfinished "
 				+ ((missionVisits > 2) ? "missions" : "mission") + " at this location.)";
-		ui.Push(new Dialog(visitText));
+		ui.Push(new DialogPanel(visitText));
 	}
 	// One mission's actions may influence another mission, so loop through one
 	// more time to see if any mission is now completed or failed due to a change
@@ -4951,13 +4952,13 @@ void PlayerInfo::Fine(UI &ui)
 					+ ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
-				ui.Push(new Dialog(message.second));
+				ui.Push(new DialogPanel(message.second));
 			}
 			// All ships belonging to the player should be removed.
 			Die();
 		}
 		else
-			ui.Push(new Dialog(message.second));
+			ui.Push(new DialogPanel(message.second));
 	}
 }
 

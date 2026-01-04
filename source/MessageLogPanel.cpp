@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -130,7 +130,7 @@ bool MessageLogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	else if(key == 'i')
 		importantOnly = !importantOnly;
 	else if(key == 'c' && !messages.empty())
-		GetUI().Push(new Dialog{&Messages::ClearLog, "Clear the message log?", Truncate::NONE, true, false});
+		GetUI().Push(new DialogPanel{&Messages::ClearLog, "Clear the message log?", Truncate::NONE, true, false});
 
 	return true;
 }
