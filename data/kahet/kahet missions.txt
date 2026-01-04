@@ -350,7 +350,7 @@ mission "Ka'het: Death in the Graveyard 1"
 				accept
 			label blow
 			`	The Ka'het crumbles under the strength of your firepower, collapsing onto itself within seconds. Some parts of its body are blown away from the carcass, still mostly intact, while the machinery takes more effort to destroy; by the time you're done, nothing is left of it but a puddle of organic material and some scrap metal. After searching through the debris, you eventually find some materials precious enough to sell raw.`
-				decline
+				defer
 	on decline
 		outfit "Neodymium"
 		outfit "Iron" 7
