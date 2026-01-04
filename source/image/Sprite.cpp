@@ -91,6 +91,7 @@ void Sprite::AddFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noRedu
 	if(!buffer1x.Pixels())
 		return;
 
+	// Only use the 2x resolution image if it is provided.
 	if(buffer2x.Pixels())
 	{
 		AddBuffer(buffer2x, &texture, noReduction);
@@ -105,10 +106,6 @@ void Sprite::AddFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noRedu
 // Upload the given frames. The given buffers will be cleared afterwards.
 void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noReduction)
 {
-	// Do nothing if the buffer is empty.
-	if(!buffer1x.Pixels())
-		return;
-
 	if(!swizzleMaskFrames)
 	{
 		swizzleMaskFrames = buffer1x.Frames();
@@ -116,6 +113,11 @@ void Sprite::AddSwizzleMaskFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, 
 			swizzleMaskFrames = 1;
 	}
 
+	// Do nothing if the buffer is empty.
+	if(!buffer1x.Pixels())
+		return;
+
+	// Only use the 2x resolution image if it is provided.
 	if(buffer2x.Pixels())
 	{
 		AddBuffer(buffer2x, &swizzleMask, noReduction);
