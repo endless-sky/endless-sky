@@ -365,7 +365,7 @@ mission "Ka'het: Death in the Graveyard 1"
 		personality timid launching escort
 		ship "Gull (Support)" "Late Season Dancing"
 	on enter Pantica
-		dialog `A quick check of the the ship identifiers reveals that Plume's ship is currently landing at Pantica. You seize the chance to hail them and bring them up to date with your findings.`
+		dialog `A quick check of the ship identifiers reveals that Plume's ship is currently landing at Pantica. You seize the chance to hail them and bring them up to date with your findings.`
 
 
 mission "Ka'het: Death in the Graveyard 2"
@@ -449,7 +449,7 @@ mission "Ka'het: Death in the Graveyard 4A"
 	on offer
 		conversation
 			`The face of the Maeri'het has been pried open, showing a complex grid of wires running all over the flesh of the slug. Machinery of all kinds surround the ship, from sets of cylinders making a faint, purplish glow to spherical containers covered in a blue liquid of some kind.`
-			`	The largest components have been moved atop some sort of anti-gravity plating, lifting them above the terrain but otherwise requiring a human to push them somewhere. You give the Remnant a hand transporting a few pieces out of the carcass; despite the help of the plating, their sheer inertia makes the activity exhausting. Once inside their Gull, the Remnant couple the Ka'het machinery with the adapters onboard and power them with their instrumentation.`
+			`	The largest components have been moved atop some sort of anti-gravity plating, lifting them above the terrain but otherwise requiring a human to push them somewhere. You give the Remnant a hand transporting a few pieces out of the carcass; despite the help of the plating, their sheer inertia makes the activity exhausting. Once inside their Gull, the Remnant attach the Ka'het machinery to the adapters onboard and power them with their instrumentation.`
 			`	"According to the transponder, its name was Nona-caci'het," reveals Plume. "It had lived for just over 500 years, almost as long as we Remnant have existed. It fought thousands of battles, the last of which," he reads stoically from a datapad, "was with another Maeri'het just over two months ago. Since then, the only other lifeform it has seen was when it descended into a planetary atmosphere to shell a few specimens of an amphibian animal it classified as foe."`
 			choice
 				`	"Why did it die?"`
@@ -474,7 +474,7 @@ mission "Ka'het: Death in the Graveyard 4A"
 					has "event: remnant: penguin"
 			`	"We have not quite gotten to the point of true live ships," he replies with a quick glance at his Gull, "but we should be close, from what I have seen.`
 			label living
-			`	"As far as I am concerned, the key difference lies in the role left to the being in question. Our paradigm is not to take an organism, inhibit it when we don't need it, and build around it the true spaceship. No, our whole ship is built in the same manner as a biological organism, to the point where it would be impossible to split it into a mechanical and biological portion. The relationship between the crew and the ship will never go beyond what is between a Remnant and their symbiont: both capable of going their own way, but mutually benefiting from their relationship."`
+			`	"As far as I am concerned, the key difference lies in the role left to the being in question. Our paradigm is not to take an organism, inhibit it when we don't need it, and build around it the true spaceship. No, our whole ship is built in the same manner as a biological organism, to the point where their similarity to living beings is an emergent property arising from mechanical components. The relationship between the crew and the ship will never go beyond what is between a Remnant and their symbiont: both capable of going their own way, but mutually benefiting from their relationship."`
 				goto outfit
 			label skip
 			`	He seems amused. "I had a feeling you would wonder about that. No need to worry, <first>, we have left something for you as well."`
