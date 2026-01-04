@@ -18,8 +18,10 @@ color "active" .75 .75 .75 0.
 color "inactive" .25 .25 .25 0.
 
 # Colors generally used for drawing text or lines.
+color "white" 1. 1. 1. 0.
 color "bright" .75 .75 .75 0.
 color "medium" .5 .5 .5 0.
+color "med-dim" .375 .375 .375 0.
 color "dim" .25 .25 .25 0.
 color "dimmer" .18 .18 .18 0.
 color "faint" .1 .1 .1 0.
@@ -872,6 +874,55 @@ interface "audio"
 
 
 interface "plugins"
+	sprite "ui/keys panel sidebox"
+		center -350 102
+	label "Key"
+		from -285 34
+	 	align top left
+		color bright
+	fill
+		from -420 41 to -270 42
+		color medium
+
+	sprite "ui/checked"
+		center -410 54 
+	label "Enabled"
+		from -400 46
+		align top left
+		color "bright"
+
+	sprite "ui/unchecked"
+		center -410 73 
+	label "Disabled"
+		from -400 65
+		align top left
+		color "medium"
+
+	sprite "ui/checked"
+		center -410 92 
+	label "Enabled on restart"
+		from -400 84
+		align top left
+		color "plugin reload required"
+
+	sprite "ui/unchecked"
+		center -410 111
+	label "Disabled on restart"
+		from -400 103
+		align top left
+		color "plugin reload required"
+
+	sprite "ui/error"
+		center -410 130 
+	label "In use but deleted"
+		from -400 122
+		align top left
+		color "plugin reload required"
+	fill
+		from -400 130 to -280 131
+		color medium
+		color "plugin reload required"
+
 	visible if "hover find"
 	sprite "ui/find selected"
 		center -280 210
@@ -894,7 +945,7 @@ interface "plugins"
 	sprite "ui/wide button"
 		center -80 210
 	active if "plugin installed"
-	button u "_Uninstall"
+	button d "_Delete"
 		center -80 210
 		dimensions 90 30
 	visible if "show plugins changed"
@@ -918,6 +969,71 @@ interface "plugins"
 
 
 interface "install plugins"
+	sprite "ui/keys panel sidebox"
+		center -350 102
+	label "Key"
+		from -285 34
+	 	align top left
+		color bright
+	fill
+		from -420 41 to -270 42
+		color medium
+	
+	sprite "ui/checked"
+		center -410 54 
+	label "Installed"
+		from -400 46
+		align top left
+		color "bright"
+
+	sprite "ui/tactical/turn"
+		center -410 73
+	label "Update available"
+		from -400 65
+		align top left
+		color "plugin outdated"
+		
+	sprite "ui/expanded"
+		center -410 92
+	label "Downloading"
+		from -400 84
+		align top left
+		color "dim"
+	label "wn"
+		from -382 84
+		align top left
+		color "med-dim"
+	label "lo"
+		from -363 84
+		align top left
+		color "medium"
+	label "adi"
+		from -351 84
+		align top left
+		color "bright"
+	label "ng"
+		from -333 84
+		align top left
+		color "white"
+	label "ng"
+		from -332 84
+		align top left
+		color "white"
+	
+	sprite "ui/unchecked"
+		center -410 111 
+	label "Not Installed"
+		from -400 103
+		align top left
+		color "medium"
+	
+	sprite "ui/checked"
+		center -410 130
+	label "Restart required"
+		from -400 122
+		align top left
+		color "plugin reload required"
+		
 	visible if "hover find"
 	sprite "ui/find selected"
 		center -280 210
@@ -938,12 +1054,19 @@ interface "install plugins"
 	active if "can install"
 	button i "_Install"
 		center -210 210
-		dimensions 120 30
+		dimensions 90 30
 	visible if "can update"
 	active if "can update"
 	button u "_Update"
 		center -210 210
-		dimensions 120 30
+		dimensions 90 30
+	visible
+	sprite "ui/wide button"
+		center -110 210
+	active if "plugin installed"
+	button d "_Delete"
+		center -110 210
+		dimensions 90 30
 
 	visible if "show plugins changed"
 	label "Restart to apply changes"

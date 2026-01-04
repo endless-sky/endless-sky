@@ -679,17 +679,20 @@ string Plugins::DeletePlugin(const std::string &name)
 {
 	string path;
 	{
+		auto aPlugins = GetPluginsLocked();
+		auto *plugin = aPlugins->Find(name);
+		if(plugin && plugin->IsDownloading())
+			return "Cannot delete '" + name + "' while it is still downloading.";
+	}
+	{
 		auto iPlugins = GetPluginsLocked();
-		Plugin *plugin = iPlugins->Get(name);
+		auto *plugin = iPlugins->Find(name);
 		if(plugin && plugin->IsValid())
 		{
-			lock_guard<mutex> guardB(busyPluginsMutex);
-			if(busyPlugins.contains(name))
-				return "Cannot delete '" + name + "' while there are related and ongoing downloads.";
 			path = plugin->path;
 		}
 		else
-			Logger::Log("Somehow the plugin that was selected isn't there any more.", Logger::Level::ERROR);
+			return "Cannot delete a plugin which has not finished installing.";
 	}
 
 	if(!path.empty())
@@ -711,6 +714,14 @@ string Plugins::DeletePlugin(const std::string &name)
 			// There is no need to keep around plugins that are not in use, their deletion does not require a restart.
 			if(!plugin->InUse())
 				iPlugins->erase(name);
+
+			// Clean up the state of the available plugins list, too.
+			auto aPlugins = GetAvailablePluginsLocked();
+			if(aPlugins->Find(name))
+			{
+				auto *aPlugin = aPlugins->Get(name);
+				aPlugin->outdated = false;
+			}
 		}
 	}
 

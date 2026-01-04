@@ -274,7 +274,18 @@ void PreferencesPanel::Step()
 			if(!error.empty())
 				GetUI()->Push(new Dialog(error));
 			else
-				Plugins::Save();
+			{
+				if(page == PLUGINS)
+					Plugins::Save();
+				else if(page == LIBRARY)
+				{
+					// Draw has not been called yet, so we cannot use the pluginZones to determine what to select.
+					// Also, we might just now have downloaded the index for the available plugins.
+					selectedPlugin = GetPluginNameByIndex(selected);
+					// Do the same draw stuff as with a Resize event.
+					Resize();
+				}
+			}
 			it = installFeedbacks.erase(it);
 		}
 		else
@@ -319,7 +330,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(key == 'o' && page == PLUGINS)
 		Files::OpenUserPluginFolder();
-	else if((key == 'u' || key == SDLK_DELETE) && page == PLUGINS) // MARK
+	else if((key == 'd' || key == SDLK_DELETE) && (page == PLUGINS || page == LIBRARY))
 	{
 		GetUI()->Push(new Dialog(this, &PreferencesPanel::DeletePlugin,
 			"Do you really want to delete this plugin?"));
@@ -350,6 +361,21 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
 	}
+	else if(key == SDLK_PAGEUP && (page == PLUGINS || page == LIBRARY))
+	{
+		selected = max(0, selected - 20);
+		selectedPlugin = GetPluginNameByIndex(selected);
+		Resize();
+	}
+	else if(key == SDLK_PAGEDOWN && (page == PLUGINS || page == LIBRARY))
+	{
+		{
+			auto plugins = (page == PLUGINS) ? Plugins::GetPluginsLocked() : Plugins::GetAvailablePluginsLocked();
+			selected = min(plugins->size() - 1, selected + 20);
+		}
+		selectedPlugin = GetPluginNameByIndex(selected);
+		Resize();
+	}
 	else if(key == 'f' && (page == PLUGINS || page == LIBRARY))
 		GetUI()->Push(new Dialog(this, &PreferencesPanel::DoSearch, "Search for:", searchFor, Truncate::NONE, true));
 	else if(key == LIBRARY || key == PLUGINS)
@@ -357,13 +383,13 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		page = key;
 		hoverItem.clear();
 		selected = 0;
-
-		if(page == LIBRARY && !downloadedPluginIndex)
-			ProcessPluginIndex();
-
 		// Draw has not been called yet, so we cannot use the pluginZones to determine what is at index 0.
 		// Also, we might just now have downloaded the index for the available plugins.
 		selectedPlugin = GetPluginNameByIndex(selected);
+
+		if(page == LIBRARY && !downloadedPluginIndex)
+			// Reminder: this is async.
+			ProcessPluginIndex();
 
 		// Make sure the render buffers are initialized and are aware of the current UI scale.
 		Resize();
@@ -625,6 +651,7 @@ void PreferencesPanel::Resize()
 		pluginListClip = make_unique<RenderBuffer>(pluginListBox.Dimensions());
 		Draw();
 		RenderPluginDescription();
+		ScrollSelectedPlugin();
 	}
 }
 
@@ -1198,8 +1225,7 @@ void PreferencesPanel::DrawSettings()
 
 void PreferencesPanel::DrawPlugins()
 {
-	// TODO: add a key to show what the colors/icons mean
-	// TODO: allow for controlling relative load order.
+	// TODO: allow for controlling relative load order. (big ticket, essential)
 	// TODO: we don't do anything about a zip that won't load -- no notification to the user in the plugins panel.
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &medium = *GameData::Colors().Get("medium");
@@ -1506,6 +1532,14 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	// Compute the height before drawing, so that we know the scroll bounds.
 	const Sprite *sprite = SpriteSet::Get(plugin.GetIconName());
 	int descriptionHeight = 0;
+
+	// Title.
+	WrappedText wrap1(font);
+	wrap1.SetWrapWidth(box.Width());
+	wrap1.Wrap(plugin.name);
+	descriptionHeight += wrap1.Height();
+
+	// Image.
 	float zoom = 1.f;
 	if(sprite)
 	{
@@ -1514,10 +1548,11 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 		descriptionHeight += sprite->Height() * zoom + 10;
 	}
 
+	// Details.
 	WrappedText wrap(font);
 	wrap.SetWrapWidth(box.Width());
+	// TODO: Make the plugin homepage link clickable for easier bug reporting and feedback.
 	wrap.Wrap(plugin.CreateDescription());
-
 	descriptionHeight += wrap.Height();
 
 	// Now that we know the size of the rendered description, resize the buffer
@@ -1790,6 +1825,7 @@ void PreferencesPanel::ProcessPluginIndex()
 
 		downloadedPluginIndex = true;
 		GetUI()->Pop(GetUI()->Top().get());
+
 		return "";
 	}));
 }
@@ -1798,10 +1834,14 @@ void PreferencesPanel::ProcessPluginIndex()
 
 void PreferencesPanel::ScrollSelectedPlugin()
 {
-	while(selected * 20 - pluginListScroll < 0)
-		pluginListScroll.Scroll(-Preferences::ScrollSpeed());
-	while((selected + 1) * 20 - pluginListScroll > pluginListClip->Height())
-		pluginListScroll.Scroll(Preferences::ScrollSpeed());
+	// Note: rather than add a mutex to selected, just work with the current value:
+	int scrollTo = selected;
+	int dy = scrollTo * 20 - static_cast<int>(pluginListScroll.Value()) - 10;
+	if(dy < 0)
+		pluginListScroll.Scroll(dy, 5);
+	dy = scrollTo * 20 - static_cast<int>(pluginListClip->Height() - 30) - static_cast<int>(pluginListScroll.Value());
+	if(dy > 0)
+		pluginListScroll.Scroll(dy, 5);
 }
 
 
@@ -1834,7 +1874,6 @@ void PreferencesPanel::DoSearch(const string &search)
 			}
 			++index;
 		}
-		// TODO: wrap around didn't work
 		if(searchIndex != selected)
 		{
 			// Loop around to the start.
@@ -1843,22 +1882,22 @@ void PreferencesPanel::DoSearch(const string &search)
 			{
 				if(it.second.Search(search))
 				{
-					selected = index;
+					selected = searchIndex;
 					selectedPlugin = it.first;
 					break;
 				}
 				++searchIndex;
 
 				// If we looped all the way around, we did not find it.
-				if(searchIndex != selected)
+				if(searchIndex == selected)
 					break;
 			}
 		}
 	}
 
-	Draw();
-	ScrollSelectedPlugin();
 	RenderPluginDescription();
+	ScrollSelectedPlugin();
+	Draw();
 }
 
 
