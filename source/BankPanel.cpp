@@ -280,7 +280,7 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		++selectedRow;
 	else if(key == SDLK_RETURN && selectedRow < mortgageRows)
 	{
-		GetUI(),Push(new DialogPanel(this, &BankPanel::PayExtra,
+		GetUI().Push(new DialogPanel(this, &BankPanel::PayExtra,
 			"Paying off part of this debt will reduce your daily payments and the "
 			"interest that it costs you. How many extra credits will you pay?"));
 		DoHelp("bank advanced");

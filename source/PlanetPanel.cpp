@@ -140,7 +140,7 @@ void PlanetPanel::Step()
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		else
 			player.HandleBlockedMissions(Mission::LANDING, GetUI());
 	}
@@ -317,7 +317,7 @@ void PlanetPanel::TakeOffIfReady()
 	Mission *mission = player.MissionToOffer(Mission::LANDING);
 	if(mission)
 	{
-		mission->Do(Mission::OFFER, player, GetUI());
+		mission->Do(Mission::OFFER, player, &GetUI());
 		return;
 	}
 

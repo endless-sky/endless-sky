@@ -29,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MessageLogPanel.h"
 #include "Messages.h"
 #include "Mission.h"
-#include "Phrase.h"
 #include "Planet.h"
 #include "PlanetPanel.h"
 #include "PlayerInfo.h"
@@ -107,7 +106,7 @@ void MainPanel::Step()
 	{
 		Mission *mission = player.EnteringMission();
 		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		else
 			player.HandleBlockedEnteringMissions(GetUI());
 		// Determine if a Dialog or ConversationPanel is being drawn next frame.
@@ -643,10 +642,10 @@ void MainPanel::StepEvents(bool &isActive)
 			auto boardedShip = event.Target();
 			Mission *mission = player.BoardingMission(boardedShip);
 			if(mission && mission->HasSpace(*flagship))
-				mission->Do(Mission::OFFER, player, GetUI(), boardedShip);
+				mission->Do(Mission::OFFER, player, &GetUI(), boardedShip);
 			else if(mission)
-				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD)
-						? Mission::BOARDING : Mission::ASSISTING, GetUI());
+				player.HandleBlockedMissions((event.Type() & ShipEvent::BOARD) ? Mission::BOARDING : Mission::ASSISTING,
+					GetUI());
 			// Determine if a Dialog or ConversationPanel is being drawn next frame.
 			isActive = (GetUI().Top().get() == this);
 
