@@ -193,9 +193,9 @@ void ShipyardPanel::DrawButtons()
 	info.SetString("multiplier", modifier != 1 ? "x " + to_string(modifier) : "");
 	info.SetString("selection", playerShips.size() > 1 ? to_string(playerShips.size()) + " ships selected" : "");
 	info.SetString("credits", Format::CreditString(player.Accounts().Credits(), true));
-	if(CanBuy())
+	if(static_cast<bool>(CanDoBuyButton()))
 		info.SetCondition("can buy");
-	if(CanSell())
+	if(static_cast<bool>(playerShips.size()))
 		info.SetCondition("can sell");
 	if(CanPark())
 		info.SetCondition("can park");
@@ -440,20 +440,6 @@ bool ShipyardPanel::BuyShip(const string &name)
 
 	// Close the dialog.
 	return true;
-}
-
-
-
-bool ShipyardPanel::CanBuy()
-{
-	return true; // has money and licenses?
-}
-
-
-
-bool ShipyardPanel::CanSell()
-{
-	return true; // own ship (except flagship) is selected?
 }
 
 

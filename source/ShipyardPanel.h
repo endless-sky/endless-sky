@@ -54,8 +54,6 @@ protected:
 
 
 private:
-	bool CanBuy();
-	bool CanSell();
 	bool BuyShip(const std::string &name);
 	void SellShipAndOutfits();
 	void SellShipChassis();
