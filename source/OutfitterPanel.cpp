@@ -1225,7 +1225,8 @@ void OutfitterPanel::DrawButtons()
 	info.SetString("multiplier", modifier != 1 ? "x " + to_string(modifier) : "");
 	info.SetString("selection", playerShips.size() > 1 ? to_string(playerShips.size()) + " ships selected" : "");
 	info.SetString("credits", Format::CreditString(player.Accounts().Credits(), true));
-	info.SetString("cargo", Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size()) + " tons");
+	info.SetString("cargo",
+		Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size()) + " tons");
 	const bool isOwned = true; // IsAlreadyOwned();
 	info.SetCondition(isOwned ? (playerShip ? "use install" : "use cargo") : "use buy");
 	if(ButtonActive('b'))
