@@ -56,7 +56,7 @@ If you are posting a pull request, please:
 * Check if your pull request solves an existing issue. Note that just because an issue is open does not guarantee that it is something we will accept, as the number of issues we receive means that not all of them have been thoroughly discussed, and there may be open issues for features that we decide we do not want.
 * Do not combine multiple unrelated changes.
 * Check the diff and make sure the pull request does not contain unintended changes.
-* If changing the C++ code, follow the [coding standard](https://endless-sky.github.io/styleguide/styleguide.xml).
+* If changing the C++ code, follow the [coding standard](https://github.com/endless-sky/endless-sky/wiki/C++-Style-Guide).
 * Fill out the pull request template to the best of your ability. GitHub's pull request template features are not as thorough as issue templates. You are able to delete the entire pull request template and put in whatever you want; please do not do this. The purpose of the pull request template is to help facilitate the review, approval, and merging of pull requests.
 * If adding new content to the game (e.g. new ships, outfits, artwork, storylines, etc.) please take a look at the [Style Goals](https://github.com/endless-sky/endless-sky/wiki/StyleGoals) and [Quality Checklist](https://github.com/endless-sky/endless-sky/wiki/QualityChecklist) sections of our wiki to make sure that your content fits with Endless Sky's writing and art style.
 
