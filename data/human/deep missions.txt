@@ -1262,19 +1262,19 @@ mission "Deep: Project Hawking: Prime"
 			`	"I was born on Windblain in the Regor system. It's a small, quiet world of little galactic importance, but you should give it a visit sometime. My family wasn't the most well off, so I needed to work hard in my studies, which paid off immensely. Thanks to my exceptional grades in university, I was offered a government job even before graduation. I've been working directly for the Deep for the past 35 years and counting, and I've loved every minute of it! My younger sister though... well, let's just say she wasn't so focused on being successful in school and ended up on the wrong side of the law.`
 			`	"How about you?"`
 
-			`	You tell Pierre about your life on <starting planet>, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
+			`	You tell Pierre about your life on <home planet>, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars.`
 				to display
 					has "start: default"
-			`	You tell Pierre about your life on <starting planet>, and how you graduated with high enough grades to apply for the Deep's starship loan program.`
+			`	You tell Pierre about your life on <home planet>, and how you graduated with high enough grades to apply for the Deep's starship loan program.`
 				to display
 					has "start: deep"
-			`	You tell Pierre about your life on <starting planet>, and how you've always dreamed of becoming a starship captain, and finally got your wish when you were given a pilot's license on your eighteenth birthday.`
+			`	You tell Pierre about your life on <home planet>, and how you've always dreamed of becoming a starship captain, and finally got your wish when you were given a pilot's license on your eighteenth birthday.`
 				to display
 					has "start: paradise"
 			`	You tell Pierre about your life moving around the galaxy, and how you worked on a Syndicate factory world for five years before you took a loan and began your life as a merchant captain.`
 				to display
 					has "start: syndicate"
-			`	Making sure to not bring up <starting planet> or the Hai by name, you tell Pierre about your life, and how you did your best at a travel agency to get to the stars as soon as you could.`
+			`	Making sure to not bring up <home planet> or the Hai by name, you tell Pierre about your life, and how you did your best at a travel agency to get to the stars as soon as you could.`
 				to display
 					has "start: hai"
 
