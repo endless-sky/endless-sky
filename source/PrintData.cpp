@@ -723,9 +723,7 @@ namespace {
 			{
 				const string &key = change.Token(0);
 				bool hasValue = change.Size() > 1;
-				if(key == "date" && change.Size() == 4)
-					out.Write(change);
-				else if(key == "event" && hasValue)
+				if(key == "event" && hasValue)
 				{
 					const GameEvent *event = GameData::Events().Get(change.Token(1));
 					out.Write("event", change.Token(1));
