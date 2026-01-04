@@ -325,7 +325,7 @@ mission "Ka'het: Death in the Graveyard 1"
 					to display
 						"armament deterrence" > 0
 					goto attack
-				`	(Come closer, carefully.)`
+				`	(Move closer, carefully.)`
 				`	(Keep your distance.)`
 				`	(Turn around and leave.)`
 					depart
@@ -334,7 +334,7 @@ mission "Ka'het: Death in the Graveyard 1"
 			label attack
 			`	You hurriedly warm up your weapons and set the targeting computer on the enemy. With the press of a button you unleash all your wrath on the Ka'het - so much that the first shot seems to encounter no shield, penetrating deep beneath the skin of the slug. The Maeri'het lists to starboard and starts falling rapidly; a few metallic panels detach from its shell right before it reaches the ground, and balloons rapidly inflate out of the resulting holes.`
 			label dead
-			`	The Ka'het at last emits an uncomfortably loud whistle, reducing in intensity over the next few minutes before disappearing completely. It sits motionless at the bottom of what looks like a dry riverbed, surrounded by nothing but you and the calm night sky.`
+			`	The Ka'het at last emits an uncomfortably loud whistle, reducing in intensity before disappearing completely. It sits motionless at the bottom of what looks like a dry riverbed, surrounded by nothing but you and the calm night sky.`
 			choice
 				`	(Report it to the Remnant.)`
 					goto report
