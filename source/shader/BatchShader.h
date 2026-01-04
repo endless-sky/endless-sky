@@ -22,7 +22,7 @@ class Sprite;
 
 
 // Class for drawing sprites in a batch. The input to each draw command is a
-// sprite, whether it should be drawn high DPI, and the vertex data.
+// sprite and the vertex data.
 class BatchShader {
 public:
 	// Initialize the shaders.

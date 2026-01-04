@@ -330,7 +330,6 @@ void GameWindow::AdjustViewport(bool noResizeEvent)
 	// Find out the drawable dimensions. If this is a high-DPI display, this
 	// may be larger than the window.
 	SDL_GL_GetDrawableSize(mainWindow, &drawWidth, &drawHeight);
-	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);
 
 	// Set the viewport to go off the edge of the window, if necessary, to get
 	// everything pixel-aligned.
