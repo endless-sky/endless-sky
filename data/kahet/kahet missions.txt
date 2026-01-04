@@ -343,7 +343,7 @@ mission "Ka'het: Death in the Graveyard 1"
 						"armament deterrence" > 0
 					goto blow
 				`	(Land next to it and don your EVA suit.)`
-			`	You instinctively check your sidearm while walking down the stairway, knowing how futile it would be in this situation. Despite being the smallest type of Ka'het you have seen, the Maeri'het is still intimidatingly large. No longer cloaked, you notice a fluid coming down from its sides that originates from the slug itself. It covers the entire landing zone, and some of it has almost reached your ship.`
+			`	You instinctively check your sidearm while walking down the stairway, despite knowing how futile it would be. Despite being the smallest type of Ka'het you have seen, the Maeri'het is still intimidatingly large. No longer cloaked, you notice a fluid coming down from its sides that originates from the slug itself. It covers the entire landing zone, and some of it has almost reached your ship.`
 			`	For an instant, you entertain the thought of looting its outfits. But as if it was reading your mind, the Maeri'het hits you with another cloud of warm, pale vapor, triggering your suit's overheat warning. Defeated, you turn around and climb back to your cockpit.`
 			label report
 			`	Once the engines are back running you take a second to reason over the best course of action. The choice falls on a trip to Aventine: if there's anyone who will want to hear about this, it has to be Plume's laboratory.`
