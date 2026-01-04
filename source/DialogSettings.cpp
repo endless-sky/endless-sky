@@ -15,73 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DialogSettings.h"
 
-#include <utility>
-
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
 #include "GameData.h"
 
 using namespace std;
-
-
-
-DialogSettings::DialogLine::DialogLine(std::string text)
-	: text(std::move(text))
-{
-}
-
-
-
-DialogSettings::DialogLine::DialogLine(const ExclusiveItem<Phrase> &phrase)
-	: phrase(phrase)
-{
-}
-
-
-
-DialogSettings::DialogLine::DialogLine(const DataNode &node, const ConditionsStore *playerConditions)
-{
-	const string &key = node.Token(0);
-	bool hasValue = node.Size() >= 2;
-	if(key == "phrase")
-	{
-		// Handle named phrases
-		//    phrase "A Phrase Name"
-		if(hasValue)
-			phrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
-		else
-		{
-			// Handle anonymous phrases
-			//    phrase
-			//       ...
-			phrase = ExclusiveItem<Phrase>(Phrase(node));
-			// Anonymous phrases do not support "to display"
-			return;
-		}
-	}
-	// Handle regular dialog text
-	//    "Some thrilling dialog that truly moves the player."
-	else
-	{
-		if(hasValue)
-			node.PrintTrace("Ignoring extra tokens.");
-		text = key;
-
-		// Prevent a corner case that breaks assumptions. Dialog text cannot be empty (that indicates a phrase).
-		if(text.empty())
-			text = '\t';
-	}
-
-	// Search for "to display" lines.
-	for(const DataNode &child : node)
-	{
-		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
-			child.PrintTrace("Ignoring unrecognized dialog token");
-		else
-			condition.Load(child, playerConditions);
-	}
-}
 
 
 
@@ -149,20 +88,26 @@ bool DialogSettings::IsEmpty() const
 
 
 
-void DialogSettings::Collapse()
+DialogSettings DialogSettings::Instantiate(const map<string, string> &subs) const
 {
-	if(!text.empty())
-		return;
-
 	string resultText;
 	for(const DialogLine &line : lines)
 	{
-		// When checking for a pure-text dialog, reject a dialog with conditions or phrases.
-		if(!line.condition.IsEmpty() || line.text.empty())
-			return;
+		// Skip text that is disabled.
+		if(!line.condition.IsEmpty() && !line.condition.Test())
+			continue;
+
+		// Evaluate the phrase if we have one, otherwise copy the prepared text.
+		string content;
+		if(!line.text.empty())
+			content = line.text;
+		else
+			content = line.phrase->Get();
+
+		// Expand any ${phrases} and <substitutions>.
+		content = Format::Replace(Phrase::ExpandPhrases(content), subs);
 
 		// Concatenated lines should start with a tab and be preceded by end-of-line.
-		const string &content = line.text;
 		if(!resultText.empty())
 		{
 			resultText += '\n';
@@ -171,47 +116,67 @@ void DialogSettings::Collapse()
 		}
 		resultText += content;
 	}
-	text = resultText;
+
+	DialogSettings result;
+	result.text = resultText;
+	return result;
 }
 
 
 
-DialogSettings DialogSettings::Instantiate(const map<string, string> &subs) const
+DialogSettings::DialogLine::DialogLine(std::string text)
+	: text(std::move(text))
 {
-	DialogSettings result;
-	// Result is already cached for dialogs that are pure text at Load() time.
-	if(!text.empty())
-		result.text = Format::Replace(Phrase::ExpandPhrases(text), subs);
+}
+
+
+
+DialogSettings::DialogLine::DialogLine(const ExclusiveItem<Phrase> &phrase)
+	: phrase(phrase)
+{
+}
+
+
+
+DialogSettings::DialogLine::DialogLine(const DataNode &node, const ConditionsStore *playerConditions)
+{
+	const string &key = node.Token(0);
+	bool hasValue = node.Size() >= 2;
+	if(key == "phrase")
+	{
+		// Handle named phrases
+		//    phrase "A Phrase Name"
+		if(hasValue)
+			phrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
+		else
+		{
+			// Handle anonymous phrases
+			//    phrase
+			//       ...
+			phrase = ExclusiveItem<Phrase>(Phrase(node));
+			// Anonymous phrases do not support "to display"
+			return;
+		}
+	}
+	// Handle regular dialog text
+	//    "Some thrilling dialog that truly moves the player."
 	else
 	{
-		string resultText;
-		for(const DialogLine &line : lines)
-		{
-			// Skip text that is disabled.
-			if(!line.condition.IsEmpty() && !line.condition.Test())
-				continue;
+		if(hasValue)
+			node.PrintTrace("Ignoring extra tokens.");
+		text = key;
 
-			// Evaluate the phrase if we have one, otherwise copy the prepared text.
-			string content;
-			if(!line.text.empty())
-				content = line.text;
-			else
-				content = line.phrase->Get();
-
-			// Expand any ${phrases} and <substitutions>
-			content = Format::Replace(Phrase::ExpandPhrases(content), subs);
-
-			// Concatenated lines should start with a tab and be preceded by end-of-line.
-			if(!resultText.empty())
-			{
-				resultText += '\n';
-				if(!content.empty() && content[0] != '\t')
-					resultText += '\t';
-			}
-			resultText += content;
-		}
-		result.text = resultText;
+		// Prevent a corner case that breaks assumptions. Dialog text cannot be empty (that indicates a phrase).
+		if(text.empty())
+			text = '\t';
 	}
 
-	return result;
+	// Search for "to display" lines.
+	for(const DataNode &child : node)
+	{
+		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
+			child.PrintTrace("Ignoring unrecognized dialog token");
+		else
+			condition.Load(child, playerConditions);
+	}
 }

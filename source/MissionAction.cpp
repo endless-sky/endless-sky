@@ -77,10 +77,6 @@ void MissionAction::Load(const DataNode &node, const ConditionsStore *playerCond
 
 	for(const DataNode &child : node)
 		LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
-
-	// Collapse pure-text dialog (no phrases). This is necessary to handle saved missions.
-	// It is also an optimization for the most common case in game data files.
-	dialog.Collapse();
 }
 
 

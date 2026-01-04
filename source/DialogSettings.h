@@ -43,14 +43,12 @@ public:
 
 	bool Validate() const;
 
-	const std::string &Text() const;
-	bool IsEmpty() const;
-
-	// If this Dialog has lines that do not need evaluated at instantiation time, then
-	// collapse everything into the "text" variable.
-	void Collapse();
 	// Apply any replacements, evaluate any condition sets, and generate from any phrases.
 	DialogSettings Instantiate(const std::map<std::string, std::string> &subs) const;
+
+	// Get the text of this dialog (after it has been instantiated and converted into a single block of text).
+	const std::string &Text() const;
+	bool IsEmpty() const;
 
 
 private:
@@ -68,6 +66,8 @@ private:
 
 
 private:
-	std::string text;
+	// Lines of text under the `dialog` node that haven't yet been instantiated into a single paragraph.
 	std::vector<DialogLine> lines;
+	// The instantiated string from the dialog lines, with all text substitions applied and phrases expanded.
+	std::string text;
 };

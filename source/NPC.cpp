@@ -245,8 +245,6 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	dialog.Collapse();
-
 	// Empty spawning conditions imply that an instantiated NPC has spawned (or
 	// if this is an NPC template, that any NPCs created from this will spawn).
 	passedSpawnConditions = toSpawn.IsEmpty();
