@@ -666,7 +666,7 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				outfit "Maeri Engine Nacelles"
 				outfit "Ka'het Sustainer Nacelles"
 				outfit "Hyperdrive"
-			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all of the outfits carried aboard the downed Maeri'het!`
+			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all of the outfits carried aboard the downed Maeri'het.`
 				decline
 			label all_telis
 			action
@@ -682,7 +682,7 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				outfit "Telis Engine Nacelles"
 				outfit "Ka'het Sustainer Nacelles"
 				outfit "Hyperdrive"
-			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all the outfits carried aboard of the downed Telis'het!`
+			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all the outfits carried aboard of the downed Telis'het.`
 				decline
 			label all_vareti
 			action
@@ -701,7 +701,7 @@ mission "Ka'het: Another Death in the Graveyard 1B"
 				
 				outfit "Vareti Engine Block"
 				outfit "Hyperdrive"
-			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all of the outfits carried aboard the downed Vareti'het!`
+			`	Despite the apparent damage, the structure holds up surprisingly well to your careful looting. It takes a while, but you successfully extract all of the outfits carried aboard the downed Vareti'het.`
 				decline
 
 			label energy
