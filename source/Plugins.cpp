@@ -42,6 +42,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include "text/Format.h"
+
 #ifdef _WIN32
 #include "text/Utf8.h"
 
@@ -281,7 +283,43 @@ bool Plugin::IsDownloading() const
 
 bool Plugin::HasChanged() const
 {
-	return inUse != desiredState || inUse && (removed || updated);
+	return inUse != desiredState || (inUse && (removed || updated));
+}
+
+
+
+bool Plugin::Search(const std::string &search) const
+{
+	for(auto &it: tags)
+		if(Format::Search(it, search) > 0)
+			return true;
+	for(auto &it: authors)
+		if(Format::Search(it, search) > 0)
+			return true;
+	if(Format::Search(description, search) > 0)
+		return true;
+	if(Format::Search(name, search) > 0)
+		return true;
+	if(Format::Search(version, search) > 0)
+		return true;
+	if(Format::Search(homepage, search) > 0)
+		return true;
+	if(Format::Search(license, search) > 0)
+		return true;
+
+	if(Format::Search(dependencies.gameVersion, search) > 0)
+		return true;
+	for(auto &it: dependencies.conflicted)
+		if(Format::Search(it, search) > 0)
+			return true;
+	for(auto &it: dependencies.optional)
+		if(Format::Search(it, search) > 0)
+			return true;
+	for(auto &it: dependencies.required)
+		if(Format::Search(it, search) > 0)
+			return true;
+
+	return false;
 }
 
 
@@ -316,7 +354,6 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 	string name = path.filename().string();
 	name = path.stem().string();
 
-	// TODO: add find button
 	filesystem::path pluginFile = path / "plugin.txt";
 	string description;
 	string version;
@@ -455,6 +492,7 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path
 
 void Plugins::LoadSettings()
 {
+	// TODO: Plugins should load in a particular order, to ensure loading/overloading of dependencies as desired
 	// Global plugin settings
 	LoadSettingsFromFile(Files::Resources() / "plugins.txt");
 	// Local plugin settings

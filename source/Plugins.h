@@ -80,14 +80,15 @@ public:
 			homepage(pluginHomepage), license(pluginLicense), url(pluginUrl) {}
 
 	// Constructs a description of the plugin from its name, tags, dependencies, etc.
-	std::string CreateDescription() const;
-	std::string GetIconName() const;
-	bool InUse() const;
-	std::string Name() const;
+	[[nodiscard]] std::string CreateDescription() const;
+	[[nodiscard]] std::string GetIconName() const;
+	[[nodiscard]] bool InUse() const;
+	[[nodiscard]] std::string Name() const;
 	// Checks whether this plugin is valid, i.e. whether it exists.
-	bool IsValid() const;
-	bool IsDownloading() const;
-	bool HasChanged() const;
+	[[nodiscard]] bool IsValid() const;
+	[[nodiscard]] bool IsDownloading() const;
+	[[nodiscard]] bool HasChanged() const;
+	[[nodiscard]] bool Search(const std::string &search) const;
 
 	void SetInUse(bool inUse);
 	void SetDesiredState(bool desiredState);
@@ -139,7 +140,6 @@ protected:
 
 // Tracks enabled and disabled plugins for loading plugin data or skipping it.
 // This object is updated by toggling plugins in the Preferences UI.
-// TODO: Plugins should load in a particular order, to ensure loading/overloading of dependencies as desired
 class Plugins {
 public:
 	// Attempt to load a plugin at the given path.

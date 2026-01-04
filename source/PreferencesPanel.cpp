@@ -55,6 +55,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 
 #include "Logger.h"
+#include "ShopPanel.h"
 
 
 using namespace std;
@@ -121,6 +122,7 @@ namespace {
 #endif
 
 	// The url to the plugins-list.
+	// TODO: read this from a file.
 	const string PLUGIN_LIST_URL =
 		"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json";
 
@@ -204,6 +206,8 @@ void PreferencesPanel::Draw()
 		info.SetCondition("show previous settings");
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next settings");
+	if(hoverFind)
+		info.SetCondition("hover find");
 	{
 		auto iPlugins = Plugins::GetPluginsLocked();
 		auto *iPlugin = iPlugins->Find(selectedPlugin);
@@ -222,13 +226,10 @@ void PreferencesPanel::Draw()
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	string pageName = (page == CONTROLS ? "controls" : page == SETTINGS ? "settings" : page == AUDIO ? "audio" :
-			page == PLUGINS ? "plugins" : "install plugins");
+		page == PLUGINS ? "plugins" : "install plugins");
 	info.SetCondition("page: " + pageName);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
-
-	if(Plugins::DownloadingInBackground())
-		SpriteShader::Draw(SpriteSet::Get("ui/downloading"), Screen::TopLeft() + Point(30., 30.));
 
 	zones.clear();
 	prefZones.clear();
@@ -349,6 +350,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
 	}
+	else if(key == 'f' && (page == PLUGINS || page == LIBRARY))
+		GetUI()->Push(new Dialog(this, &PreferencesPanel::DoSearch, "Search for:", searchFor, Truncate::NONE, true));
 	else if(key == LIBRARY || key == PLUGINS)
 	{
 		page = key;
@@ -495,6 +498,16 @@ bool PreferencesPanel::Hover(int x, int y)
 			hoverItem = zone.Value();
 			tooltip.SetZone(zone);
 		}
+
+	if(page == PLUGINS || page == LIBRARY)
+	{
+		const Interface *preferencesUI = GameData::Interfaces().Get("install plugins");
+		Rectangle findIcon = preferencesUI->GetBox("find button");
+		if(findIcon.Contains(hoverPoint))
+			hoverFind = true;
+		else
+			hoverFind = false;
+	}
 
 	return true;
 }
@@ -1185,7 +1198,7 @@ void PreferencesPanel::DrawSettings()
 
 void PreferencesPanel::DrawPlugins()
 {
-	// TODO: add tooltips or a key...
+	// TODO: add a key to show what the colors/icons mean
 	// TODO: allow for controlling relative load order.
 	// TODO: we don't do anything about a zip that won't load -- no notification to the user in the plugins panel.
 	const Color &back = *GameData::Colors().Get("faint");
@@ -1789,6 +1802,63 @@ void PreferencesPanel::ScrollSelectedPlugin()
 		pluginListScroll.Scroll(-Preferences::ScrollSpeed());
 	while((selected + 1) * 20 - pluginListScroll > pluginListClip->Height())
 		pluginListScroll.Scroll(Preferences::ScrollSpeed());
+}
+
+
+
+void PreferencesPanel::DoSearch(const string &search)
+{
+	// Keep our last search for repeat searching.
+	searchFor = search;
+	{
+		auto plugins = (page == PLUGINS) ? Plugins::GetPluginsLocked() : Plugins::GetAvailablePluginsLocked();
+
+		// Handle case of no plugins in list.
+		if(plugins->empty())
+			return;
+
+		// Start with currently selected plugin plus one, and looping at the end.
+		int searchIndex = selected + 1;
+		int index = 0;
+		for(const auto &it : *plugins)
+		{
+			if(index == searchIndex)
+			{
+				if(it.second.Search(search))
+				{
+					selected = index;
+					selectedPlugin = it.first;
+					break;
+				}
+				++searchIndex;
+			}
+			++index;
+		}
+		// TODO: wrap around didn't work
+		if(searchIndex != selected)
+		{
+			// Loop around to the start.
+			searchIndex = 0;
+			for(const auto &it : *plugins)
+			{
+				if(it.second.Search(search))
+				{
+					selected = index;
+					selectedPlugin = it.first;
+					break;
+				}
+				++searchIndex;
+
+				// If we looped all the way around, we did not find it.
+				if(searchIndex != selected)
+					break;
+			}
+		}
+	}
+
+	Draw();
+	ScrollSelectedPlugin();
+	RenderPluginDescription();
 }
 
 

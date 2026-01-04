@@ -85,9 +85,8 @@ private:
 	void ProcessPluginIndex();
 	// Scroll the plugin list until the selected plugin is visible.
 	void ScrollSelectedPlugin();
-	int GetPluginIndexByName(const std::string &name) const;
+	void DoSearch(const std::string &text);
 	std::string GetPluginNameByIndex(int findIndex) const;
-	int CountPlugins() const;
 	// Delete a plugin that has been marked to be removed.
 	void DeletePlugin();
 
@@ -110,6 +109,8 @@ private:
 	Tooltip tooltip;
 	std::string selectedItem;
 	std::string hoverItem;
+	bool hoverFind = false;
+	std::string searchFor;
 
 	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
