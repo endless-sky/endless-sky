@@ -710,6 +710,56 @@ const Outfit *ShopPanel::Zone::GetOutfit() const
 
 
 
+bool ShopPanel::EscortSelected()
+{
+	if(playerShips.empty())
+		return false;
+
+	if(playerShips.size() == 1)
+	{
+		const Ship *flagship = player.Flagship();
+		auto it = playerShips.begin();
+		if(*it == flagship)
+			return false;
+	}
+
+	return true;
+}
+
+
+
+bool ShopPanel::CanPark()
+{
+	if(!EscortSelected())
+		return false;
+
+	return !CanUnpark();
+}
+
+
+
+bool ShopPanel::CanUnpark()
+{
+	if(!EscortSelected())
+		return false;
+
+	bool allParked = true;
+	const Ship *flagship = player.Flagship();
+	for(Ship *ship : playerShips)
+	{
+		if(ship == flagship)
+			return false;
+		if(ship->IsDisabled())
+			continue;
+
+		allParked &= ship->IsParked();
+	}
+
+	return allParked;
+}
+
+
+
 void ShopPanel::DrawShipsSidebar()
 {
 	const Font &font = FontSet::Get(14);

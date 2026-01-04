@@ -310,7 +310,7 @@ void Interface::Element::Load(const DataNode &node, const Point &globalAnchor)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	// The "standard" way to specify a region is from + to. If it was specified
+	// The canonical way to specify a region is from + to. If it was specified
 	// in a different way, convert it to that format:
 	if(hasCenter)
 	{

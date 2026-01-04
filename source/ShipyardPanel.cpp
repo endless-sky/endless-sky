@@ -26,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Information.h"
+#include "Interface.h"
 #include "Mission.h"
 #include "Phrase.h"
 #include "Planet.h"
@@ -105,8 +107,8 @@ void ShipyardPanel::DrawItem(const string &name, const Point &point)
 
 double ShipyardPanel::ButtonPanelHeight() const
 {
-	// The 50 = (3 x 10 (pad) + 20 x 1 (text)) for the credit information line.
-	return 50 + BUTTON_HEIGHT * 2 + BUTTON_ROW_PAD * 1;
+	// return GameData::Interfaces().Get("shipyard buttons")->GetValue("button box height");
+	return 119;
 }
 
 
@@ -185,68 +187,29 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 void ShipyardPanel::DrawButtons()
 {
-	// There will be two rows of buttons:
-	//  [    Buy    ] [    Sell    ] [ Sell Hull ]
-	//                               [   Leave   ]
-	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
-	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2 - 1.;
-	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
+	const Interface *ui = GameData::Interfaces().Get("shipyard buttons");
 
-	// Draw the button panel (shop side panel footer).
-	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
-	const Rectangle buttonsFooter(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize);
-	FillShader::Fill(buttonsFooter, *GameData::Colors().Get("shop side panel background"));
-	FillShader::Fill(
-		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
-		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
-
-	// Set up font size and colors for the credits.
-	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("medium");
-
-	// Draw the row for credits display.
-	const Point creditsPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - ButtonPanelHeight() + 10);
-	font.Draw("You have:", creditsPoint, dim);
-
-	const string credits = Format::CreditString(player.Accounts().Credits());
-	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
-
-	// Clear the buttonZones, they will be populated again as buttons are drawn.
-	buttonZones.clear();
-
-	// Row 1
-	DrawButton("_Buy",
-		Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize),
-		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
-	DrawButton("_Sell",
-		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
-		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
-	DrawButton("Sell H_ull",
-		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
-		static_cast<bool>(playerShips.size()), hoverButton == 'r', 'r');
-	// Row 2
-	DrawButton("_Leave",
-		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
-		true, hoverButton == 'l', 'l');
-
-	// Draw the Modifier hover text that appears below the buttons when a modifier
-	// is being applied.
-	int modifier = Modifier();
-	if(modifier > 1)
-	{
-		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		font.Draw(mod, Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0)
-		+ Point(-.5 * modWidth, 10.), dim);
-	}
+	Information info;
+	const int modifier = Modifier();
+	info.SetString("multiplier", modifier != 1 ? "x " + to_string(modifier) : "");
+	info.SetString("selection", playerShips.size() > 1 ? to_string(playerShips.size()) + " ships selected" : "");
+	info.SetString("credits", Format::CreditString(player.Accounts().Credits(), true));
+	if(CanBuy())
+		info.SetCondition("can buy");
+	if(CanSell())
+		info.SetCondition("can sell");
+	if(CanPark())
+		info.SetCondition("can park");
+	else if(CanUnpark())
+		info.SetCondition("can unpark");
+	ui->Draw(info, this);
 
 	// Draw tooltips for the button being hovered over:
-	string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
+	const double sidebarWidth = ui->GetValue("fleet bar width");
+	const double buttonBoxHeight = ui->GetValue("button box height");
+	const Point buttonBoxSize(sidebarWidth, buttonBoxHeight);
+	const Rectangle buttonsFooter(Screen::BottomRight() - .5 * buttonBoxSize, buttonBoxSize);
+	const string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
 	if(!tooltip.empty())
 		buttonsTooltip.IncrementCount();
 	else
@@ -260,6 +223,9 @@ void ShipyardPanel::DrawButtons()
 	}
 
 	// Draw the tooltip for your full number of credits.
+	const Point creditsPoint(
+		Screen::Right() - sidebarWidth + 10,
+		Screen::Bottom() - buttonBoxHeight + 10);
 	const Rectangle creditsBox = Rectangle::FromCorner(creditsPoint, Point(SIDEBAR_WIDTH - 20, 15));
 	if(creditsBox.Contains(hoverPoint))
 		creditsTooltip.IncrementCount();
@@ -475,6 +441,20 @@ bool ShipyardPanel::BuyShip(const string &name)
 
 	// Close the dialog.
 	return true;
+}
+
+
+
+bool ShipyardPanel::CanBuy()
+{
+	return true; // has money and licenses?
+}
+
+
+
+bool ShipyardPanel::CanSell()
+{
+	return true; // own ship (except flagship) is selected?
 }
 
 
