@@ -121,6 +121,7 @@ protected:
 
 	// Whether this plugin is in use, i.e. if it was loaded by the game on this start-up.
 	bool inUse = true;
+	// TODO: if a plugin zip is corrupted and doesn't load, we should indicate as such.
 	// The desired state of the plugin on the next game start, true = enabled.
 	bool desiredState = true;
 
@@ -138,7 +139,7 @@ protected:
 
 // Tracks enabled and disabled plugins for loading plugin data or skipping it.
 // This object is updated by toggling plugins in the Preferences UI.
-// TODO: Plugins load in a particular order, to ensure loading/overloading of dependencies as desired
+// TODO: Plugins should load in a particular order, to ensure loading/overloading of dependencies as desired
 class Plugins {
 public:
 	// Attempt to load a plugin at the given path.

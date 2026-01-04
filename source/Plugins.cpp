@@ -281,7 +281,7 @@ bool Plugin::IsDownloading() const
 
 bool Plugin::HasChanged() const
 {
-	return inUse != desiredState || removed || updated;
+	return inUse != desiredState || inUse && (removed || updated);
 }
 
 
@@ -419,26 +419,24 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path
 	nlohmann::json pluginInstallList = nlohmann::json::parse(pluginlistFile);
 	for(const auto &pluginInstall : pluginInstallList)
 	{
-		string pluginName = pluginInstall["name"];
+		string pluginName = pluginInstall.value("name", "");
 		auto iPlugins = GetPluginsLocked();
 		auto *installedPlugin = iPlugins->Find(pluginName);
 		bool isInstalled = installedPlugin && !installedPlugin->removed;
-		string pluginVersion = pluginInstall["version"];
+		string pluginVersion = pluginInstall.value("version", "");
 		vector<string> authors;
-		for(const auto &author : pluginInstall["authors"])
-			authors.emplace_back(author);
-		// TODO: Un/Related homepage in particular could be clickable, and doesn't wrap.
-		// TODO: we don't do anything about a zip that won't load -- no notification to the user in the plugins panel.
+		if(pluginInstall.contains("authors"))
+			for(const auto &author : pluginInstall["authors"])
+				authors.emplace_back(author);
 		auto aPlugins = GetAvailablePluginsLocked();
 		Plugin *plugin = aPlugins->Get(pluginName);
 		plugin->name = pluginName;
-		plugin->url = pluginInstall["url"];
+		plugin->url = pluginInstall.value("url", "");
 		plugin->version = pluginVersion;
-		plugin->description = pluginInstall["description"];
+		plugin->description = pluginInstall.value("description", "");
 		plugin->authors = authors;
-		plugin->homepage = pluginInstall["homepage"];
-		// TODO: test the json structure key that doesn't exist... e.g. what if no homepage?
-		plugin->license = pluginInstall["licensdddddddde"];
+		plugin->homepage = pluginInstall.value("homepage", "");
+		plugin->license = pluginInstall.value("license", "");
 		bool isOutdated = isInstalled && installedPlugin->version != pluginVersion;
 		plugin->outdated = isOutdated;
 		plugin->installedVersion = installedPlugin ? installedPlugin->version : "";
@@ -447,7 +445,7 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path
 		string iconPath = Files::Config() / "icons/" / (pluginName + ".png");
 
 		if((!Files::Exists(iconPath) || isOutdated) && pluginInstall.contains("iconUrl"))
-			Download(pluginInstall["iconUrl"], iconPath);
+			Download(pluginInstall.value("iconUrl", ""), iconPath);
 		if(Files::Exists(iconPath))
 			GameData::RequestSpriteLoad(queue, iconPath, plugin->GetIconName());
 	}
@@ -607,6 +605,9 @@ future<string> Plugins::InstallOrUpdate(const std::string &name)
 			// Create a new entry for the plugin.
 			Plugin *newPlugin;
 			auto iPlugins = GetPluginsLocked();
+			bool alreadyInstalled = false;
+			if(iPlugins->Find(installData->name))
+				alreadyInstalled = true;
 			newPlugin = iPlugins->Get(installData->name);
 			newPlugin->name = installData->name;
 			newPlugin->authors = installData->authors;
@@ -616,6 +617,7 @@ future<string> Plugins::InstallOrUpdate(const std::string &name)
 			newPlugin->path = zipLocation;
 			newPlugin->version = installData->version;
 			// Even if this is an update, this new version is not yet in use, as will be indicated by `updated`:
+			newPlugin->inUse = alreadyInstalled;
 			newPlugin->updated = true;
 			newPlugin->desiredState = true;
 			// Delete and install need to clearly reset the information in the list of available plugins appropriately.
@@ -657,17 +659,21 @@ string Plugins::DeletePlugin(const std::string &name)
 		Files::Delete(path);
 
 		auto iPlugins = GetPluginsLocked();
-		Plugin *plugin = iPlugins->Get(name);
-		// Note, we will set the desired state to false as this makes HasChanged indicate restart required if inUse.
-		plugin->desiredState = false;
-		plugin->removed = true;
+		// Find is immutable, need to Get, but Get will create if not present.
+		if(iPlugins->Find(name))
+		{
+			Plugin *plugin = iPlugins->Get(name);
+			// Note, we will set the desired state to false as this makes HasChanged indicate restart required if inUse.
+			plugin->desiredState = false;
+			plugin->removed = true;
 
-		if(Files::Exists(path))
-			return "Could not delete the '" + name + "' plugin.";
+			if(Files::Exists(path))
+				return "Could not delete the '" + name + "' plugin.";
 
-		// There is no need to keep around plugins that are not in use, their deletion does not require a restart.
-		if(!plugin->InUse())
-			iPlugins->erase(name);
+			// There is no need to keep around plugins that are not in use, their deletion does not require a restart.
+			if(!plugin->InUse())
+				iPlugins->erase(name);
+		}
 	}
 
 	return "";

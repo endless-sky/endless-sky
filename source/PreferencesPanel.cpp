@@ -321,7 +321,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else if((key == 'u' || key == SDLK_DELETE) && page == PLUGINS) // MARK
 	{
 		GetUI()->Push(new Dialog(this, &PreferencesPanel::DeletePlugin,
-				"Do you really want to delete this plugin?"));
+			"Do you really want to delete this plugin?"));
 	}
 	else if((key == 'n' || key == SDLK_PAGEUP)
 		&& ((page == CONTROLS && currentControlsPage < CONTROLS_PAGE_COUNT - 1)
@@ -1185,7 +1185,9 @@ void PreferencesPanel::DrawSettings()
 
 void PreferencesPanel::DrawPlugins()
 {
+	// TODO: add tooltips or a key...
 	// TODO: allow for controlling relative load order.
+	// TODO: we don't do anything about a zip that won't load -- no notification to the user in the plugins panel.
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -1383,7 +1385,7 @@ void PreferencesPanel::DrawPluginInstalls()
 		else if(installedPlugin && !installedPlugin->removed)
 		{
 			color = installedPlugin->HasChanged() ? restart : bright;
-			sprite = SpriteSet::Get(installedPlugin->HasChanged() ? "ui/error" : "ui/checked");
+			sprite = SpriteSet::Get("ui/checked");
 		}
 		else
 		{

@@ -227,7 +227,6 @@ void WrappedText::Wrap()
 	// Do this as a finite state machine.
 	Word word;
 	bool traversingWord = false;
-	bool currentLineHasWords = false;
 
 	// Keep track of how wide the current line is. This is just so we know how
 	// much extra space must be allotted by the alignment code.
@@ -235,16 +234,23 @@ void WrappedText::Wrap()
 	// This is the index in the "words" vector of the first word on this line.
 	size_t lineBegin = 0;
 
-	// TODO: handle single words that are longer than the wrap width. Right now
-	// they are simply drawn un-broken, and thus extend beyond the margin.
-	// TODO: break words at hyphens, or even do automatic hyphenation. This
-	// would require a different format for the buffer, though, because it means
-	// inserting '\0' characters even where there is no whitespace.
+	// TODO: break words at hyphens, or even do automatic hyphenation.
 
-
-	for(string::iterator it = text.begin(); it != text.end(); ++it)
+	bool done = false;
+	string::iterator it = text.begin();
+	while(!done)
 	{
-		const char c = *it;
+		char c;
+		char cLast;
+		if(it == text.end())
+		{
+			c = '\n';
+			if(cLast == '\n')
+				word.y -= lineHeight + paragraphBreak;
+			done = true;
+		}
+		else
+			c = *it;
 
 		// Whitespace signals a word end - mark it and wrap the text if needed.
 		if(c <= ' ' && traversingWord)
@@ -267,64 +273,50 @@ void WrappedText::Wrap()
 					int chunkWidth = wrapWidth - lineWidth - hyphen;
 					// When we break the word, we may be able to do so in such a
 					// way that a part of it will fit on this line afterall, and
-					// the remainder on the next line.
-					// Start at extraSpace minus hyphen and walk back to nice
-					// break. The first chunk will be kept to a reasonable
-					// length, and we will try to break at special characters.
-					if(chunkWidth > 0)
+					// the remainder on the next line or lines.
+					int numChars = BreakWord(word, chunkWidth);
+					if(numChars)
 					{
-						// There is room for some amount of text on this line along
-						// with what is already there.
-						int numChars = BreakWord(word, chunkWidth);
-						if(numChars)
-						{
-							// First portion will fit on this line, with a hyphen.
-							word.length = numChars;
-							word.suffix = '-';
-							words.push_back(word);
-							word.suffix.clear();
-							word.index += word.length;
-							word.length = (it - text.begin()) - word.index;
-							word.x += chunkWidth;
-							// Keep track of how wide this line is now that this word is added.
-							lineWidth = word.x + hyphen;
+						// First portion will fit on this line, with a hyphen.
+						word.length = numChars;
+						word.suffix = '-';
+						words.push_back(word);
+						word.suffix.clear();
+						word.index += word.length;
+						word.length = (it - text.begin()) - word.index;
+						word.x += chunkWidth;
+						// Keep track of how wide this line is now that this word is added.
+						lineWidth = word.x + hyphen;
 
-							// Then we need to place the remainder of the word on the next line.
-							word.y += lineHeight;
-							word.x = 0;
+						// Then we need to place the remainder of the word on the next line.
+						word.y += lineHeight;
+						word.x = 0;
 
-							// Adjust the spacing of words in the now-complete line.
-							AdjustLine(lineBegin, lineWidth, false);
-						}
-						else
-						{
-							// There is not enough room to reasonably put any part of the
-							// word on the existing line, move the problem to the next line.
-							word.y += lineHeight;
-							word.x = 0;
-
-							// Adjust the spacing of words in the now-complete line.
-							AdjustLine(lineBegin, lineWidth, false);
-						}
+						// Adjust the spacing of words in the now-complete line.
+						AdjustLine(lineBegin, lineWidth, false);
 					}
 					else
-						Logger::Log("breakpoint", Logger::Level::ERROR);
-					// // Then we need to place the remainder of the word on the next line.
-					// word.y += lineHeight;
-					// word.x = 0;
-					//
-					// // Adjust the spacing of words in the now-complete line.
-					// AdjustLine(lineBegin, lineWidth, false);
+					{
+						// There is not enough room to reasonably put any part of the
+						// word on the existing line, move the problem to the next line.
+						word.y += lineHeight;
+						word.x = 0;
+
+						// Adjust the spacing of words in the now-complete line.
+						AdjustLine(lineBegin, lineWidth, false);
+					}
 				}
 				else if(word.x + width > wrapWidth)
 				{
-					// Then we need to place the word on the next line.
+					// If adding this word would overflow the length of the line,
+					// this word will be the first on the next line.
 					word.y += lineHeight;
 					word.x = 0;
 
 					// Adjust the spacing of words in the now-complete line.
 					AdjustLine(lineBegin, lineWidth, false);
 
+					breakingWord = false;
 					// Store this word, then advance the x position to the end of it.
 					words.push_back(word);
 					word.x += width;
@@ -333,7 +325,6 @@ void WrappedText::Wrap()
 				}
 				else
 				{
-
 					breakingWord = false;
 					// Store this word, then advance the x position to the end of it.
 					words.push_back(word);
@@ -353,7 +344,6 @@ void WrappedText::Wrap()
 
 			// Adjust the word spacings on the now-completed line.
 			AdjustLine(lineBegin, lineWidth, true);
-			currentLineHasWords = false;
 		}
 		// Otherwise, whitespace just adds to the x position.
 		else if(c <= ' ')
@@ -362,40 +352,11 @@ void WrappedText::Wrap()
 		else if(!traversingWord)
 		{
 			traversingWord = true;
-			currentLineHasWords = true;
 			word.index = it - text.begin();
 		}
+		cLast = c;
+		++it;
 	}
-
-	// Handle the final word.
-	if(traversingWord)
-	{
-		const int width = font->Width(text.c_str() + word.index);
-		if(word.x + width > wrapWidth)
-		{
-			// If adding this word would overflow the length of the line,
-			// this final word will be the first (and only) on the next line.
-			word.y += lineHeight;
-			word.x = 0;
-
-			// Adjust the spacing of words in the now-complete line.
-			AdjustLine(lineBegin, lineWidth, false);
-		}
-		// Store this word, then advance the x position to the end of it.
-		words.push_back(word);
-		word.x += width;
-		// Keep track of how wide this line is now that this word is added.
-		lineWidth = word.x;
-	}
-	// Advance line if we need to.
-	if(currentLineHasWords)
-		word.y += lineHeight + paragraphBreak;
-
-	// Adjust the spacing of words in the final line of text.
-	AdjustLine(lineBegin, lineWidth, true);
-
-	// We have over-calculated the actual height by an extra paragraph break,
-	// so subtract that.
 	height = max(0, word.y - paragraphBreak);
 }
 
@@ -428,7 +389,6 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 	lineBegin = words.size();
 	lineWidth = 0;
 }
-
 
 
 
