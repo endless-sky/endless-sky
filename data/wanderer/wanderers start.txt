@@ -667,7 +667,6 @@ mission "Wanderers: Defend Vara Ke'sok"
 
 event "Sich'ka'ara empty"
 	government "Hai (Unfettered)"
-		"bribe" 0.04
 	system "Sich'ka'ara"
 		fleet "Wanderer Drones" 3000
 
@@ -862,14 +861,10 @@ mission "Wanderers: Truce Timer"
 		has "Wanderers: Unfettered Diplomacy 1C: done"
 	on offer
 		event "wanderers: truce timer" 40
-		event "wanderers: unfettered bribes reset"
 		fail
 
 event "wanderers: truce timer"
 
-event "wanderers: unfettered bribes reset"
-	government "Hai (Unfettered)"
-		"bribe" 0.02
 
 mission "Wanderers: Truce Check"
 	landing
