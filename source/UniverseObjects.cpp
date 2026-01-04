@@ -644,7 +644,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			{
 				CategoryList &list = categories[it->second];
 				if(overwrite)
-					list = CategoryList();
+					list.Clear();
 				list.Load(node);
 			}
 		}
