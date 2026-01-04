@@ -822,6 +822,8 @@ phrase "bribe rejection unfettered"
 		"We"
 		"The Hai"
 	word
+		" "
+	word
 		"will not fall victim to"
 		"have no interest in"
 		"shall not accept"
