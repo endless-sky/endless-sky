@@ -454,7 +454,7 @@ mission "Ka'het: Death in the Graveyard 4A"
 					goto foe
 				`	"Are its outfits intact?"`
 					goto skip
-			`	"Ah, hard to say. They suffer so much battle damage over their lifetime that their entire bodies get covered with patches and scars. Still, we have run some scans so that the laboratory back on <planet> can determine more."`
+			`	"Ah, hard to say. They suffer so much battle damage over their lifetimes that their entire bodies get covered with patches and scars. Still, we have run some scans so that the laboratory back on <planet> can determine more."`
 				goto honest
 			label foe
 			`	"Oh, not only do they, but the vast majority of Ka'het attack victims are surface-dwelling animals. Countless species have been driven to extinction over the past tens of thousands of years by their hunting. For the foreseeable future, the Graveyard will continue to live up to its name."`
