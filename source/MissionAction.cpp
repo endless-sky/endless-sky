@@ -312,39 +312,42 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
-	bool isOffer = (trigger == "offer");
-	if(!conversation->IsEmpty() && ui)
+	if(ui)
 	{
-		// Conversations offered while boarding or assisting reference a ship,
-		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, *conversation, caller, destination, ship, isOffer);
-		if(isOffer)
-			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
-		// Use a basic callback to handle forced departure outside of `on offer`
-		// conversations.
-		else
-			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
-		ui->Push(panel);
-	}
-	else if(!dialogText.empty() && ui)
-	{
-		map<string, string> subs;
-		GameData::GetTextReplacements().Substitutions(subs);
-		player.AddPlayerSubstitutions(subs);
-		string text = Format::Replace(dialogText, subs);
+		bool isOffer = (trigger == "offer");
+		if(!conversation->IsEmpty())
+		{
+			// Conversations offered while boarding or assisting reference a ship,
+			// which may be destroyed depending on the player's choices.
+			ConversationPanel *panel = new ConversationPanel(player, *conversation, caller, destination, ship, isOffer);
+			if(isOffer)
+				panel->SetCallback(&player, &PlayerInfo::MissionCallback);
+			// Use a basic callback to handle forced departure outside of `on offer`
+			// conversations.
+			else
+				panel->SetCallback(&player, &PlayerInfo::BasicCallback);
+			ui->Push(panel);
+		}
+		else if(!dialogText.empty())
+		{
+			map<string, string> subs;
+			GameData::GetTextReplacements().Substitutions(subs);
+			player.AddPlayerSubstitutions(subs);
+			string text = Format::Replace(dialogText, subs);
 
-		// Don't push the dialog text if this is a visit action on a nonunique
-		// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
-		// avoid the player being spammed by dialogs if they have multiple
-		// missions active with the same destination (e.g. in the case of
-		// stacking bounty jobs).
-		if(isOffer)
-			ui->Push(new Dialog(text, player, destination));
-		else if(isUnique || trigger != "visit")
-			ui->Push(new Dialog(text));
+			// Don't push the dialog text if this is a visit action on a nonunique
+			// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
+			// avoid the player being spammed by dialogs if they have multiple
+			// missions active with the same destination (e.g. in the case of
+			// stacking bounty jobs).
+			if(isOffer)
+				ui->Push(new Dialog(text, player, destination));
+			else if(isUnique || trigger != "visit")
+				ui->Push(new Dialog(text));
+		}
+		else if(isOffer)
+			player.MissionCallback(Conversation::ACCEPT);
 	}
-	else if(isOffer && ui)
-		player.MissionCallback(Conversation::ACCEPT);
 
 	action.Do(player, ui, caller);
 }

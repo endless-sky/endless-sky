@@ -336,7 +336,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		if(boolFun)
 		{
 			DoCallback(activeButton == 1);
-			GetUI()->Pop(this);
+			GetUI().Pop(this);
 		}
 		else if(activeButton == 1 || isMission)
 		{
@@ -345,20 +345,20 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			if(!isOkDisabled)
 			{
 				DoCallback();
-				GetUI()->Pop(this);
+				GetUI().Pop(this);
 			}
 		}
 		else if(activeButton == 3)
 		{
 			// Do third button callback. If this returns true, also close the dialog.
 			if(buttonThree.buttonAction && buttonThree.buttonAction(input))
-				GetUI()->Pop(this);
+				GetUI().Pop(this);
 		}
 		else
-			GetUI()->Pop(this);
+			GetUI().Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
-		GetUI()->Push(new MapDetailPanel(*player, system, true));
+		GetUI().Push(new MapDetailPanel(*player, system, true));
 	else
 		return false;
 
