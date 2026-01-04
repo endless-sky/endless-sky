@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -258,7 +258,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'f' && player.Cargo().MinablesSizePrecise())
 	{
 		if(Preferences::Has("Confirm 'Sell Flotsam' button"))
-			GetUI()->Push(new Dialog([this]() { SellOutfitsOrFlotsam(true); },
+			GetUI().Push(new DialogPanel([this]() { SellOutfitsOrFlotsam(true); },
 				OutfitSalesMessage(true), Truncate::NONE, true, false));
 		else
 			SellOutfitsOrFlotsam(true);
@@ -266,7 +266,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if((key == 'L' || (key == 'l' && (mod & KMOD_SHIFT))) && canSellOutfits)
 	{
 		if(Preferences::Has("Confirm 'Sell Outfits' button"))
-			GetUI()->Push(new Dialog([this]() { SellOutfitsOrFlotsam(false); },
+			GetUI().Push(new DialogPanel([this]() { SellOutfitsOrFlotsam(false); },
 				OutfitSalesMessage(false), Truncate::NONE, true, false));
 		else
 			SellOutfitsOrFlotsam(false);
