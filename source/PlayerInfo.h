@@ -91,6 +91,8 @@ public:
 	void New(const StartConditions &start);
 	// Load an existing player.
 	void Load(const std::filesystem::path &path);
+	// Reload from the same file from which the current pilot was loaded.
+	void Reload();
 	// Load the most recently saved player. If no save could be loaded, returns false.
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).

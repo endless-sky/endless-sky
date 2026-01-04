@@ -169,7 +169,7 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
-	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 winmm ntdll)
+	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 winmm ntdll psapi)
 elseif(ES_LINK_LIBATOMIC)
 	target_link_libraries(ExternalLibraries INTERFACE pthread atomic)
 else()
@@ -211,7 +211,12 @@ else()
 		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
 	else()
 		# GLEW is only needed on Linux and Windows.
-		target_link_libraries(ExternalLibraries INTERFACE GLEW::glew)
+		if(TARGET GLEW::GLEW)
+			set(GLEW_TARGET_NAME GLEW::GLEW)
+		else()
+			set(GLEW_TARGET_NAME GLEW::glew)
+		endif()
+		target_link_libraries(ExternalLibraries INTERFACE ${GLEW_TARGET_NAME})
 	endif()
 endif()
 
