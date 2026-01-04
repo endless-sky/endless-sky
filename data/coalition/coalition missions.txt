@@ -2789,7 +2789,7 @@ mission "Coalition: Expeditions Past 8"
 mission "Coalition: Expeditions Past 9"
 	landing
 	name "Escape Route"
-	description "Travel southwest of <system>, on a route to the Ablub system, so that Sedlitaris may look for a signal frequency of the expedition."
+	description "Explore the systems southwest of <system>, on possible routes to the Ablub system, so that Sedlitaris may look for a signal frequency of the expedition."
 	passengers 1
 	to offer
 		has "Coalition: Expeditions Past 8: active"
@@ -2804,8 +2804,8 @@ mission "Coalition: Expeditions Past 9"
 				`	"Are you alright?"`
 				`	"He said they were going back immediately, but they never made it. You think that was the last pylon?"`
 				`	(Stay quiet.)`
-			`	She goes without a word for a while still. "Set a route for Ablub, could you, Captain? If follow the same route they used, we do, and if any more to find, there is, pick up the signals, I will."`
-			`	You agree, and look to set a route straight to Ablub.`
+			`	She goes without a word for a while still. "Visit the systems between here and Ablub, could you, Captain? If follow the same route they used, we do, and if any more to find, there is, pick up the signals, I will."`
+			`	You agree, and look to set a route southwest, in the direction of Ablub.`
 				accept
 	on enter "Girtab"
 		dialog `While Sedlitaris remained in her bunk since you left for Ablub, you can hear her shouting from her bunk as you enter the system. She comes running to you, bringing along the pylon. "Picked up a signal, it has!" She says, pointing at the machine's panel, where some message is repeatedly beeping in and out. "Land on that planet we must, Captain!" You tell her you'll land soon, and she remains with you to figure out the pylon's location on Harmony once you've landed.`
