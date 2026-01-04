@@ -865,7 +865,6 @@ mission "Wanderers: Truce Timer"
 
 event "wanderers: truce timer"
 
-
 mission "Wanderers: Truce Check"
 	landing
 	name "Check with Iktat Rek?"
