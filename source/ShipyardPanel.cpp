@@ -105,7 +105,7 @@ void ShipyardPanel::DrawItem(const string &name, const Point &point)
 
 
 
-double ShipyardPanel::ButtonPanelHeight()
+double ShipyardPanel::ButtonPanelHeight() const
 {
 	return GameData::Interfaces().Get("shipyard buttons")->GetValue("button box height");
 }

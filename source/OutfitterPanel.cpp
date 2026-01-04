@@ -1209,7 +1209,7 @@ int OutfitterPanel::FindItem(const string &text) const
 
 
 
-double OutfitterPanel::ButtonPanelHeight()
+double OutfitterPanel::ButtonPanelHeight() const
 {
 	return GameData::Interfaces().Get("outfitter buttons")->GetValue("button box height");
 }
