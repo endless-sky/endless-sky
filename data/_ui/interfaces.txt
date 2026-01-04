@@ -2209,6 +2209,131 @@ interface "shipyard buttons"
 
 
 
+interface "outfitter buttons"
+	anchor bottom right
+	value "fleet bar width" 256
+	value "button box height" 178
+
+	fill
+		from -256 -178 to 0 0
+		color "shop side panel footer"
+
+	label "You have:"
+		align left
+		from -246 -159
+		color "medium"
+	string "credits"
+		from -10 -159
+		align right
+
+	label "Cargo space:"
+		align left
+		from -246 -139
+		color "medium"
+	string "cargo"
+		from -10 -139
+		align right
+
+	fill
+		center -50 -25
+		dimensions 80 30
+		color "panel background"
+	button l "_Leave"
+		center -50 -25
+		dimensions 80 30
+		size 18
+
+	fill
+		center -211 -109
+		dimensions 70 30
+		color "panel background"
+	active if "can buy"
+	button b "_Buy"
+		center -211 -109
+		dimensions 70 30
+		size 18
+	string "multiplier"
+		center -211 -88
+
+	fill
+		center -211 -67
+		dimensions 70 30
+		color "panel background"
+	active if "can sell"
+	button s "_Sell"
+		center -211 -67
+		dimensions 70 30
+		size 18
+	string "multiplier"
+		center -211 -46
+
+	fill
+		center -133 -109
+		dimensions 70 30
+		color "panel background"
+	active if "can load into cargo"
+	button c "_Cargo"
+		center -133 -109
+		dimensions 70 30
+		size 18
+	string "multiplier"
+		center -133 -88
+
+	fill
+		center -133 -67
+		dimensions 70 30
+		color "panel background"
+	active if "can store at outfitter"
+	button r "Sto_rage"
+		center -133 -67
+		dimensions 70 30
+		size 18
+	string "multiplier"
+		center -133 -46
+
+	fill
+		center -50 -109
+		dimensions 80 30
+		color "panel background"
+	active if "can install"
+	button i "_Install"
+		center -50 -109
+		dimensions 80 30
+		size 18
+	string "multiplier"
+		center -50 -88
+
+	fill
+		center -50 -67
+		dimensions 80 30
+		color "panel background"
+	active if "can uninstall"
+	button u "_Uninstall"
+		center -50 -67
+		dimensions 80 30
+		size 18
+	string "multiplier"
+		center -50 -46
+
+	fill
+		center -211 -25
+		dimensions 70 30
+		color "panel background"
+	visible if "!can unpark"
+	active if "can park"
+	button k "Par_k"
+		center -211 -25
+		dimensions 70 30
+		size 18
+	visible if "can unpark"
+	active if "can unpark"
+	button k "Unpar_k"
+		center -211 -25
+		dimensions 70 30
+		size 18
+
+
+
 interface "mission" bottom
 	box "description"
 		from -190 -214 to 190 -118

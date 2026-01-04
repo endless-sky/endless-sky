@@ -26,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Hardpoint.h"
+#include "Information.h"
+#include "Interface.h"
 #include "Mission.h"
 #include "Outfit.h"
 #include "Planet.h"
@@ -1209,89 +1211,47 @@ int OutfitterPanel::FindItem(const string &text) const
 
 double OutfitterPanel::ButtonPanelHeight() const
 {
-	// The 70 = (3 x 10 (pad) + 20 x 2 (text)) for the credit and cargo space information lines.
-	return 70. + BUTTON_HEIGHT * 3 + BUTTON_ROW_PAD * 2;
+	// return GameData::Interfaces().Get("outfitter buttons")->GetValue("button box height");
+	return 178;
 }
 
 
 
 void OutfitterPanel::DrawButtons()
 {
-	// There will be two rows of buttons:
-	//  [ Buy  ] [  Install  ] [  Cargo  ]
-	//  [ Sell ] [ Uninstall ] [ Storage ]
-	//                         [  Leave  ]
-	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - 2 * rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
-	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2 - 1.;
-	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
+	const Interface *ui = GameData::Interfaces().Get("outfitter buttons");
 
-	// Draw the button panel (shop side panel footer).
+	Information info;
+	const int modifier = Modifier();
+	info.SetString("multiplier", modifier != 1 ? "x " + to_string(modifier) : "");
+	info.SetString("selection", playerShips.size() > 1 ? to_string(playerShips.size()) + " ships selected" : "");
+	info.SetString("credits", Format::CreditString(player.Accounts().Credits(), true));
+	info.SetString("cargo", Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size()) + " tons");
+	const bool isOwned = true; // IsAlreadyOwned();
+	info.SetCondition(isOwned ? (playerShip ? "use install" : "use cargo") : "use buy");
+	if(ButtonActive('b'))
+		info.SetCondition("can buy");
+	if(ButtonActive('s'))
+		info.SetCondition("can sell");
+	if(ButtonActive('i'))
+		info.SetCondition("can install");
+	if(ButtonActive('u'))
+		info.SetCondition("can uninstall");
+	if(ButtonActive('r'))
+		info.SetCondition("can store at outfitter");
+	if(ButtonActive('c'))
+		info.SetCondition("can load into cargo");
+	if(CanPark())
+		info.SetCondition("can park");
+	else if(CanUnpark())
+		info.SetCondition("can unpark");
+	ui->Draw(info, this);
+
 	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
 	const Rectangle buttonsFooter(Screen::BottomRight() - .5 * buttonPanelSize, buttonPanelSize);
-	FillShader::Fill(buttonsFooter, *GameData::Colors().Get("shop side panel background"));
-	FillShader::Fill(
-		Point(Screen::Right() - SIDEBAR_WIDTH / 2, Screen::Bottom() - ButtonPanelHeight()),
-		Point(SIDEBAR_WIDTH, 1), *GameData::Colors().Get("shop side panel footer"));
-
-	// Set up font size and colors for the credits.
-	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("medium");
-
-	// Draw the row for credits display.
 	const Point creditsPoint(
 		Screen::Right() - SIDEBAR_WIDTH + 10,
 		Screen::Bottom() - ButtonPanelHeight() + 10);
-	font.Draw("You have:", creditsPoint, dim);
-	const string credits = Format::CreditString(player.Accounts().Credits());
-	font.Draw({credits, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, creditsPoint, bright);
-
-	// Draw the row for Fleet Cargo Space free.
-	const Point cargoPoint(
-		Screen::Right() - SIDEBAR_WIDTH + 10,
-		Screen::Bottom() - ButtonPanelHeight() + 30);
-	font.Draw("Cargo Free:", cargoPoint, dim);
-	string space = Format::Number(player.Cargo().Free()) + " / " + Format::Number(player.Cargo().Size());
-	font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, cargoPoint, bright);
-
-	// Clear the buttonZones, they will be populated again as buttons are drawn.
-	buttonZones.clear();
-
-	// Row 1.
-	DrawButton("_Buy", Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize),
-		ButtonActive('b'), hoverButton == 'b', 'b');
-	DrawButton("_Install", Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
-		ButtonActive('i'), hoverButton == 'i', 'i');
-	DrawButton("_Cargo", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
-		ButtonActive('c'), hoverButton == 'c', 'c');
-	// Row 2.
-	DrawButton("_Sell", Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 1), buttonSize),
-		ButtonActive('s'), hoverButton == 's', 's');
-	DrawButton(!CanMoveOutfit(OutfitLocation::Ship, OutfitLocation::Storage) &&
-		CanMoveOutfit(OutfitLocation::Cargo, OutfitLocation::Storage) ? "_Unload" : "_Uninstall",
-		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1), buttonSize),
-		ButtonActive('u'), hoverButton == 'u', 'u');
-	DrawButton("Sto_re", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
-		ButtonActive('r'), hoverButton == 'r', 'r');
-	// Row 3.
-	DrawButton("_Leave", Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2), buttonSize),
-		true, hoverButton == 'l', 'l');
-
-	// Draw the Modifier hover text that appears below the buttons when a modifier is being applied.
-	int modifier = Modifier();
-	if(modifier > 1)
-	{
-		string mod = "x " + to_string(modifier);
-		int modWidth = font.Width(mod);
-		for(int i = -1; i < 2; ++i)
-			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0)
-				+ Point(-.5 * modWidth, 10.), dim);
-		for(int i = -1; i < 2; ++i)
-			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1)
-				+ Point(-.5 * modWidth, 10.), dim);
-	}
 
 	// Draw tooltips for the button being hovered over:
 	string tooltip = GameData::Tooltip(string("outfitter: ") + hoverButton);
