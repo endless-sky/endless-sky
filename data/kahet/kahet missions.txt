@@ -364,6 +364,9 @@ mission "Ka'het: Death in the Graveyard 1"
 		government "Remnant"
 		personality timid launching escort
 		ship "Gull (Support)" "Late Season Dancing"
+	on enter Pantica
+		dialog `A quick check of the the ship identifiers reveals that Plume's ship is currently landing at Pantica. You seize the chance to hail them and bring them up to date with your findings.`
+
 
 mission "Ka'het: Death in the Graveyard 2"
 	invisible
@@ -374,7 +377,7 @@ mission "Ka'het: Death in the Graveyard 2"
 	on offer
 		conversation
 			`It must be winter here on <planet>: the chilly valleys that normally surround the starport are covered by a thick layer of snow, and you can see your ship's anti-icing fluids being sprayed automatically over the cockpit window. You find Plume waiting for you right on the landing pad he indicated to you on your way down, not far from a group of Pelicans and a lone Gull.`
-			`	"No better time to skip the pleasantries," he begins, rubbing his arms in the cold. He seems severely under-dressed for the weather. You invite him to come aboard, but he stops at the airlock's door. "I am sorry. This time I already have my ride for the mission. We have prepared the Gull based on your instructions - the machinery we intend to recover will need an appropriately large cargo hold."`
+			`	"No better time to skip the pleasantries," he begins, rubbing his arms in the cold. He seems severely under-dressed for the weather. You invite him to come aboard, but he stops at the airlock's door. "I am sorry. This time I already have my ride for the mission. We have prepared the Gull based on your instructions - the machinery we intend to recover from the slug will need an appropriately large cargo hold."`
 			choice
 				`	"What happened with that Maeri'het?"`
 					goto what
@@ -388,7 +391,7 @@ mission "Ka'het: Death in the Graveyard 2"
 			label what
 			`	"The Ka'het, as you know, are part mechanical and part biological. What may be news to you, however, is their biological self is suppressed most of the time: we have been able to determine that their stellar navigation and system management is completely left to their programming," he signs, with an unusual look of aversion in his eyes.`
 			`	"Still, like most biological beings, after their nominal lifetime of hundreds of years, they can start dying of old age. When this happens, they enter a hibernation state, calling for a Builder in the hope of being rescued. Of course, no help is coming.`
-			`	"We have observed," he continues while reading from a datapad, "other Ka'het try to patch them up as best as they can after some time, presumably following their own programming to do so. It is very unusual to find the corpse of one just laying there alone. We are interested in more or less anything that cannot be extracted from the carcass of one of their kind. Memory banks, logic terminals, and in general, all parts of their mechanical brain that usually will not survive critical battle damage."`
+			`	"We have observed," he continues while reading from a datapad, "other Ka'het try to patch them up as best as they can after some time, presumably following their own programming to do so. It is very unusual to find the corpse of one just laying around alone. We are interested in anything that usually will not survive critical battle damage. Memory banks, logic terminals, and in general, all parts of their mechanical brain."`
 			`	Despite the sign language, you notice that he seems strikingly halfhearted compared to the previous times you have encountered him. He heads toward his Gull, the Late Season Dancing.`
 				decline
 
@@ -400,7 +403,7 @@ mission "Ka'het: Death in the Graveyard 3"
 		has "Ka'het: Death in the Graveyard 1: done"
 	on offer
 		conversation
-			`It's daytime now. Flying in formation with the Late Season Dancing, you spot the Maeri'het on the ground easily: it has spread a pair of enormous solar wings, at least thrice as long as the body of the Ka'het itself. A look at your radar reveals more, however. There is a second Ka'het standing above the downed one, classified by your IFF as a Telis.`
+			`The sun is high overhead as you descend through the air toward the place you were last time. Flying in formation with the Late Season Dancing, you spot the Maeri'het on the ground easily: it has spread a pair of enormous solar wings, at least thrice as long as the body of the Ka'het itself. A look at your radar reveals more, however - there is a second Ka'het hovering above the downed one, classified by your IFF as a Telis.`
 			`	"It is trying to reanimate the Maeri'het," Plume chants over the intercom, "but I do not think it can do so. It has been too long since you found it for repairs to have any effect." Among the smoke clouds, you make out pairs of tiny arms protruding from the bottom of the Telis'het, pressing against the corpse beneath it. Your ship records electric shocks moving between them, but the Maeri'het does not react.`
 			choice
 				`	"Let's wait for it to leave then."`
