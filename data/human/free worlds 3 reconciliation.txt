@@ -1375,50 +1375,43 @@ mission "FW Pug 2C: Side"
 			`You open your ship's hatch and allow him to come on board. "You came from outside, didn't you?" he says. "Outside of occupied space, I mean." You nod.`
 			`	"What's going on here?" asks Alondo. "Who are these aliens?"`
 			`	"I'm a planet-dweller," he says, "so the first I heard of it was when these ships unlike anything I'd ever seen before came down out of the sky, and hovered over the spaceport. Then they began transmitting radio messages on all frequencies, saying that this world is now a part of the Pug Protectorate, and that we must refrain from violence and give them a portion of the goods our world produces."`
+			label "planet dweller questions"
+			branch end
+				has "asked planet dweller about resisting pug"
+				has "asked planet dweller about pug intentions"
+				has "asked planet dweller about pug strategy"
 			choice
 				`	"Did anyone try to resist them?"`
+					to display
+						not "asked planet dweller about resisting pug"
 					goto resist
 				`	"What do you think their intentions are?"`
+					to display
+						not "asked planet dweller about pug intentions"
 					goto intentions
 				`	"Did they explain why they cut you off from the rest of the galaxy?"`
+					to display
+						not "asked planet dweller about pug strategy"
 					goto cut
 		
 			label resist
+			action
+				set "asked planet dweller about resisting pug"
 			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
-			choice
-				`	"What do you think their intentions are?"`
-					goto intentions2
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut2
-		
+			goto "planet dweller questions"
+
 			label intentions
+			action
+				set "asked planet dweller about pug intentions"
 			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist2
-				`	"Did they explain why they cut you off from the rest of the galaxy?"`
-					goto cut2
+			goto "planet dweller questions"
 		
 			label cut
+			action
+				set "asked planet dweller about pug strategy"
 			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
-			choice
-				`	"Did anyone try to resist them?"`
-					goto resist2
-				`	"What do you think their intentions are?"`
-					goto intentions2
-		
-			label resist2
-			`	"A few. Their ships aren't invulnerable; a merchant in an Argosy managed to take out one of their smaller ships when it was landed with its shields down, before they blew his ship out of the air in retaliation. And those staffs they're carrying shoot some kind of stun ray, but if you cut them, they bleed, same as any other creature." He pauses, then taps the knife that is holstered at his belt and says, "Except, they bleed blue. Pale milky blue."`
-				goto end
-		
-			label intentions2
-			`	"Well, they want our resources, of course. And, they say they have come to bring a new era of peace and an end to all violence and conflict. I don't buy it, though; they saw that humanity was too divided to resist them, and they seized the opportunity to invade and plunder us. It's that simple."`
-				goto end
-		
-			label cut2
-			`	"I'd think that would be obvious. With the hyperspace links cut, there's no way for anyone from outside to assist us. And they struck at a part of human space without much in the way of militias or bounty hunters or Navy protection. And the few half-decent warships that happened to be in system when they attacked have already been destroyed trying to fight them."`
-				goto end
-		
+			goto "planet dweller questions"
+
 			label end
 			`	"Where did they come from originally?" asks Alondo.`
 			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
