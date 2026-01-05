@@ -1075,11 +1075,12 @@ mission "FW Senate 1B"
 				`	"A hundred thousand."`
 					goto "refuse jd charge"
 				`	"Done."`
-			set "accepted jd charge"
+			action
+				set "accepted jd charge"
 			accept
 
 			label "refuse jd charge"
-			`	"Oh, don't be ridiculous." She scowls at you. "Just get us there as fast as this rust-bucket can manage."
+			`	"Oh, don't be ridiculous." She scowls at you. "Just get us there as fast as this rust-bucket can manage."`
 			accept
 
 			label threat
@@ -1128,7 +1129,7 @@ mission "FW Senate 1B"
 				not "accepted jd charge"
 			action
 				payment 10000
-				`You receive a ping informing you that <payment> has been deposited into your account.`
+			`You receive a ping informing you that <payment> has been deposited into your account.`
 			goto waiting
 
 			label slow
