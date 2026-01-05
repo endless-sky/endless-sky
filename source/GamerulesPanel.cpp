@@ -158,7 +158,7 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	else if(key == SDLK_RETURN)
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else if(key == 'g' || key == 'p')
 	{
 		page = key;
@@ -697,7 +697,7 @@ void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 
 void GamerulesPanel::DrawTooltips()
 {
-	if(!GetUI()->IsTop(this))
+	if(!GetUI().IsTop(this))
 		return;
 	if(hoverItem.empty())
 	{
