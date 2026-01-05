@@ -1350,6 +1350,7 @@ mission "FW Pug Jump Drive Check"
 	on offer
 		conversation
 			`Somehow, you've misplaced or lost the jump drive needed to continue the Free Worlds story! If you are unable to find your jump drive, you should revert to the autosave or another earlier snapshot of the game.`
+			`Alternatively, you could try to track down the Korath raiders that the Syndicate mentioned, and steal another jump drive from them, but it sounds like the Korath can put up quite a fight...`
 				decline
 
 
