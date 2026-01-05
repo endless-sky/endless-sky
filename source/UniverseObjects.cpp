@@ -602,7 +602,12 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 					objectSpriteData[SpriteSet::Get(child.Token(0))].SetMass(value);
 		}
 		else if(key == "star" && hasValue)
-			objectSpriteData[SpriteSet::Get(node.Token(1))].Load(node);
+		{
+			const Sprite *sprite = SpriteSet::Get(node.Token(1));
+			if(overwrite)
+				objectSpriteData.erase(sprite);
+			objectSpriteData[sprite].Load(node);
+		}
 		else if(key == "news" && hasValue)
 		{
 			News *item = news.Get(node.Token(1));
