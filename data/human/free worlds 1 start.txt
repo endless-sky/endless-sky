@@ -1123,7 +1123,9 @@ mission "FW Senate 1B"
 		log "People" "Ijs Springborn" `Ijs is now working to found the Conservatory, a publicly funded Free Worlds university that will have a particular focus on terraforming technology. Their goal is to make terraforming methods efficient enough that even Dirt Belt worlds will be able to afford them.`
 		conversation
 			branch slow
-				has "event: fw senate timer"
+				or
+					has "event: fw senate timer"
+					has "senator huygens annoyed"
 			`You drop off Senator Huygens, who appears uncharacteristically pleased. "Good work Captain <last>, I see we made good time. It seems you're far more reliable than most captains I work with," she says before walking off.`
 			branch waiting
 				not "accepted jd charge"
