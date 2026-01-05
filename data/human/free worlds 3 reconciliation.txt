@@ -992,11 +992,9 @@ mission "FW Pug 1"
 	on waypoint
 		set "fw pug 1: visited waypoints"
 
-	# If the player actually manages to visit the isolated systems at this point, then they have a jump drive
 	on enter "Zeta Aquilae"
 		dialog
-			`Upon jumping to the Zeta Aquilae system, you can see that the hyperspace links that should exist to Cebalrai and Ascella are no longer present. Instead, there is a new link going north, toward a star that never had any links before...`
-		# At this point the player knows all the hyperlanes to Rand are gone; job done
+			`Upon jumping to the Zeta Aquilae system, you can see that the hyperspace link that should exist to Ascella is no longer present. Instead, there is a new link going north, toward a star that never had any links before...`
 		set "fw pug 1: visited waypoints"
 
 
@@ -1426,7 +1424,6 @@ mission "FW Pug 2C: Side"
 			`	"From a star system that was always a neighbor of ours, but wasn't linked to us or to any other part of human space. We always just assumed it was an uninhabited system, but it turns out they were there all along, biding their time, waiting for a good opportunity to attack us."`
 			`	"Well," says Alondo, "they didn't attack us when we jumped into this system. Perhaps we should go to their home system and see what they have to say for themselves."`
 				decline
-
 
 
 mission "FW Pug 2C: Pugglequat"
