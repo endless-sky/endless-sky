@@ -66,7 +66,7 @@ public:
 	// Get whether the timer has completed.
 	bool IsComplete() const;
 	// Progress the timer within the main loop.
-	void Step(PlayerInfo &player, UI *ui, const Mission &mission);
+	void Step(PlayerInfo &player, UI &ui, const Mission &mission);
 
 
 private:
@@ -74,7 +74,7 @@ private:
 	bool CanActivate(const Ship *flagship, const PlayerInfo &player) const;
 	// The player does not meet the criteria for this timer to be active.
 	// Deactivate the timer and determine if it should be reset.
-	void Deactivate(PlayerInfo &player, UI *ui, const Mission &mission);
+	void Deactivate(PlayerInfo &player, UI &ui, const Mission &mission);
 
 
 private:

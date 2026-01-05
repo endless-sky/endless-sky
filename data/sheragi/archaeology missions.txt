@@ -1266,7 +1266,7 @@ mission "Sheragi Archaeology: The Box 8"
 			`	"We want to meet the human archaeologist who uncovered the ruins in the Rim. Can you take us there? We will start examining the cube along the way. I think by the time we get there, we'll have something to work with."`
 				accept
 	
-	on offer
+	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		event "cube decoded" 40 50

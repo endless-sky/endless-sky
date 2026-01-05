@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Files.h"
 #include "GameData.h"
 #include "GameEvent.h"
 #include "LocationFilter.h"
@@ -767,6 +768,48 @@ namespace {
 	}
 
 
+	void Changes()
+	{
+		string recentPath = Files::Read(Files::Config() / "recent.txt");
+		// Trim trailing whitespace (including newlines) from the path.
+		while(!recentPath.empty() && recentPath.back() <= ' ')
+			recentPath.pop_back();
+
+		if(recentPath.empty() || !Files::Exists(recentPath))
+			return;
+
+		DataFile file(recentPath);
+
+		DataWriter out;
+		out.Write("changes");
+		out.BeginChild();
+		for(const DataNode &node : file)
+		{
+			if(node.Token(0) != "changes")
+				continue;
+			for(const DataNode &change : node)
+			{
+				const string &key = change.Token(0);
+				bool hasValue = change.Size() > 1;
+				if(key == "event" && hasValue)
+				{
+					const GameEvent *event = GameData::Events().Get(change.Token(1));
+					out.Write("event", change.Token(1));
+					out.BeginChild();
+					for(const DataNode &eventChange : event->Changes())
+						out.Write(eventChange);
+					out.EndChild();
+				}
+				else
+					out.Write(change);
+			}
+		}
+		out.EndChild();
+
+		cout << out.SaveToString() << '\n';
+	}
+
+
 	const set<string> OUTFIT_ARGS = {
 		"-w",
 		"--weapons",
@@ -785,6 +828,7 @@ namespace {
 		"--planets",
 		"--systems",
 		"--matches",
+		"--changes",
 	};
 }
 
@@ -834,6 +878,8 @@ void PrintData::Print(const char *const *argv, PlayerInfo &player)
 			Systems(argv);
 		else if(arg == "--matches")
 			LocationFilterMatches(argv, player);
+		else if(arg == "--changes")
+			Changes();
 	}
 	cout.flush();
 }
@@ -873,4 +919,7 @@ void PrintData::Help()
 	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in STDIN."
 			<< endl;
 	cerr << "        The first node of the location filter should be `location`." << endl;
+	cerr << "    --changes: prints a list of changes from the \"recent\" save file." << endl;
+	cerr << "        Includes data changes from events referred to only by name as children of the \"event\" node."
+			<< endl;
 }
