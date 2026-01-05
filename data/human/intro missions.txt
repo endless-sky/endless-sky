@@ -85,7 +85,7 @@ conversation "intro mission"
 		`	"Look, I'm having a really bad day today. Bother someone else."`
 			decline
 	`	"Well, there's no point crying over jettisoned cargo. Mind if I give you a hand?"`
-	`	With the old man's help, you manage to reduce the Jackal to little more than its frame before nightfall. "Haven't had to clean out a ship like this in a long time. Still, it's nice to have a blank slate when you're outfitting your fleet."`
+	`	With the old man's help, you manage to clear out the Jackal before nightfall. "Haven't had to do this to a ship in a long time. Still, it's nice to have a blank slate when you're outfitting your fleet."`
 	
 	label captain
 	`	"You're a captain?" you ask.`
