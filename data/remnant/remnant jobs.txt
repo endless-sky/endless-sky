@@ -221,7 +221,6 @@ mission "Remnant: Bounty 5"
 			attributes "ember waste"
 			not attributes "graveyard"
 			not attributes "twilight"
-			visited
 		fleet
 			names "korath"
 			cargo 3
@@ -366,7 +365,6 @@ mission "Remnant: Rescue"
 			not near "Arculus" 3
 			near "Arculus" 30
 				"all wormholes"
-			visited
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -436,7 +434,6 @@ mission "Remnant: Rescue 1B"
 			not near "Arculus" 3
 			near "Arculus" 30
 				"all wormholes"
-			visited
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -475,7 +472,6 @@ mission "Remnant: Rescue 2"
 			not near "Arculus" 3
 			near "Arculus" 30
 				"all wormholes"
-			visited
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -516,7 +512,6 @@ mission "Remnant: Rescue 2B"
 			not near "Arculus" 3
 			near "Arculus" 30
 				"all wormholes"
-			visited
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -555,7 +550,6 @@ mission "Remnant: Rescue 3"
 			not near "Arculus" 3
 			near "Arculus" 30
 				"all wormholes"
-			visited
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -594,7 +588,6 @@ mission "Remnant: Rescue 3B"
 			not near "Arculus" 3
 			near "Arculus" 30
 				"all wormholes"
-			visited
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
