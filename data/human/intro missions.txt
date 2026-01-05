@@ -531,8 +531,8 @@ mission "Intro [0 Jackal]"
 	on offer
 		conversation
 			`For reasons known only to yourself, you have spent your mortgage on three Mining Drones that are completely useless to you. As you bask in the economic genius of your decision, you hear a merchant haggling with a ship reseller.`
-			`	"Look, you'd have to looking real close to tell that she's a pre-loved ship. Plus, she isn't 'outdated,' she's an antique! Ship collectors will be throwing their wallets at you just to get a photo of the ship."`
-			`	The reseller is unamused by the merchant's arguments and takes his leave when it becomes clear netiher side is willing to compromise. Exhausted, the merchant slumps onto a nearby bench.`
+			`	"Look, you'd have to be looking real close to tell that she's a pre-loved ship. Plus, she isn't 'outdated,' she's an antique! Ship collectors will be throwing their wallets at you just to get a photo of the ship."`
+			`	The reseller is unamused by the merchant's arguments and takes his leave when it becomes clear neither side is willing to compromise. Exhausted, the merchant slumps onto a nearby bench.`
 			choice
 				`	(Approach the merchant.)`
 				`	(Ignore the merchant so I can appreciate my Mining Drones more.)`
@@ -558,7 +558,7 @@ mission "Intro [0 Jackal]"
 				give ship "Jackal (Empty)" "Triskelion"
 				take ship "Mining Drone"
 					count 2
-			`	You shake hands with the merchant. "Thanks for deal, partner." He hands you the license to the Jackal and walk off towards the loading bays to claim his new Mining Drones.`
+			`	You shake hands with the merchant. "Thanks for the deal, partner." He hands you the license to the Jackal and walks off towards the loading bays to claim his new Mining Drones.`
 				decline
 
 
