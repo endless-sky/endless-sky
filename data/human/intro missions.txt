@@ -505,7 +505,7 @@ mission "Intro [0 Drone]"
 	to offer
 		not "First Day Check: offered"
 	to accept
-		has "ships: Drone" >= "total ships"
+		"ships: Drone" >= "total ships"
 	on offer
 		conversation
 			`You prepare to board your new ship and take it for a test flight, only to find it is an automated drone that lacks a crew compartment entirely! Unless you want to try strapping yourself on the outside of the hull, you'll need to sell off your drone and buy a proper spacefaring vessel.`
