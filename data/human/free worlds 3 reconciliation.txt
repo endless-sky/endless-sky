@@ -1120,6 +1120,12 @@ mission "FW Pug 2A"
 				`	"If this is what it takes to keep human space from being torn into fragments, I will risk my ship to go meet with the Syndicate."`
 					goto yes
 				`	"This sounds like a job for the Navy, not for me. I can't risk being trapped in hostile Syndicate space forever."`
+					to display
+						not "outfit (flagship installed): Jump Drive"
+					goto no
+				`	"This sounds like a job for the Navy, not for me. I don't want to face the entire hostile Syndicate."`
+					to display
+						has "outfit (flagship installed): Jump Drive"
 					goto no
 				`	"Did the Syndicate communicate anything to you before the links were cut that might help us guess at their intentions?"`
 			
