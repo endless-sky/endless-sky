@@ -83,32 +83,32 @@ namespace {
 	{
 		switch(trigger)
 		{
-		case Mission::Trigger::ABORT:
-			return "on abort";
-		case Mission::Trigger::ACCEPT:
-			return "on accept";
-		case Mission::Trigger::COMPLETE:
-			return "on complete";
-		case Mission::Trigger::DECLINE:
-			return "on decline";
-		case Mission::Trigger::DEFER:
-			return "on defer";
-		case Mission::Trigger::FAIL:
-			return "on fail";
-		case Mission::Trigger::OFFER:
-			return "on offer";
-		case Mission::Trigger::STOPOVER:
-			return "on stopover";
-		case Mission::Trigger::VISIT:
-			return "on visit";
-		case Mission::Trigger::WAYPOINT:
-			return "on waypoint";
-		case Mission::Trigger::DAILY:
-			return "on daily";
-		case Mission::Trigger::DISABLED:
-			return "on disabled";
-		default:
-			return "unknown trigger";
+			case Mission::Trigger::ABORT:
+				return "on abort";
+			case Mission::Trigger::ACCEPT:
+				return "on accept";
+			case Mission::Trigger::COMPLETE:
+				return "on complete";
+			case Mission::Trigger::DECLINE:
+				return "on decline";
+			case Mission::Trigger::DEFER:
+				return "on defer";
+			case Mission::Trigger::FAIL:
+				return "on fail";
+			case Mission::Trigger::OFFER:
+				return "on offer";
+			case Mission::Trigger::STOPOVER:
+				return "on stopover";
+			case Mission::Trigger::VISIT:
+				return "on visit";
+			case Mission::Trigger::WAYPOINT:
+				return "on waypoint";
+			case Mission::Trigger::DAILY:
+				return "on daily";
+			case Mission::Trigger::DISABLED:
+				return "on disabled";
+			default:
+				return "unknown trigger";
 		}
 	}
 }
@@ -374,7 +374,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 					color = ExclusiveItem<Color>(Color(child.Value(2), child.Value(3), child.Value(4)));
 				else
 					color = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(2)));
-				};
+			};
 			const string &value = child.Token(1);
 			if(value == "unavailable")
 				setColor(unavailable);
@@ -433,7 +433,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 				const float *rgba = color->Get();
 				out.Write("color", tokenName, rgba[0], rgba[1], rgba[2]);
 			}
-			};
+		};
 		saveColor(unavailable, "unavailable");
 		saveColor(unselected, "unselected");
 		saveColor(selected, "selected");
@@ -1123,7 +1123,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 	{
 		// Skip in-system ships, and carried ships whose parent is in-system.
 		if(ship->GetSystem() == player.GetSystem() || (!ship->GetSystem() && ship->CanBeCarried()
-			&& ship->GetParent() && ship->GetParent()->GetSystem() == player.GetSystem()))
+				&& ship->GetParent() && ship->GetParent()->GetSystem() == player.GetSystem()))
 			continue;
 
 		if(ship->Cargo().GetPassengers(this))
@@ -1445,7 +1445,7 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI &ui)
 				failed |= (it.first == this);
 			if(failed)
 				message = "Your " + event.Target()->DisplayModelName() +
-				" \"" + event.Target()->GivenName() + "\" has been plundered. ";
+					" \"" + event.Target()->GivenName() + "\" has been plundered. ";
 		}
 
 		if(failed)
@@ -1670,9 +1670,9 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		subs["<payment>"] = Format::CreditString(abs(result.paymentApparent));
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
 	auto getDisplayName = [](const auto *const &item)
-		{
-			return item->DisplayName();
-		};
+	{
+		return item->DisplayName();
+	};
 	if(!result.stopovers.empty())
 	{
 		subs["<stopovers>"] = Format::List<set, const Planet *>(result.stopovers,
@@ -1714,7 +1714,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
 	auto ait = actions.begin();
-	for(; ait != actions.end(); ++ait)
+	for( ; ait != actions.end(); ++ait)
 	{
 		for(const auto &action : ait->second)
 		{
@@ -1735,7 +1735,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			result.actions[it.first].push_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	auto oit = onEnter.begin();
-	for(; oit != onEnter.end(); ++oit)
+	for( ; oit != onEnter.end(); ++oit)
 	{
 		for(const auto &action : oit->second)
 		{
@@ -1801,8 +1801,8 @@ int Mission::CalculateJumps(const System *sourceSystem)
 	{
 		// Find the closest destination to this location.
 		DistanceMap distance(sourceSystem,
-			distanceCalcSettings.WormholeStrat(),
-			distanceCalcSettings.AssumesJumpDrive());
+				distanceCalcSettings.WormholeStrat(),
+				distanceCalcSettings.AssumesJumpDrive());
 		auto it = destinations.begin();
 		auto bestIt = it;
 		int bestDays = distance.Days(**bestIt);
@@ -1824,8 +1824,8 @@ int Mission::CalculateJumps(const System *sourceSystem)
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(sourceSystem,
-		distanceCalcSettings.WormholeStrat(),
-		distanceCalcSettings.AssumesJumpDrive());
+			distanceCalcSettings.WormholeStrat(),
+			distanceCalcSettings.AssumesJumpDrive());
 	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
 	expectedJumps += distance.Days(*destination->GetSystem());
 
