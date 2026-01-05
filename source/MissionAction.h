@@ -17,14 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 #include "Conversation.h"
+#include "DialogSettings.h"
 #include "ExclusiveItem.h"
 #include "GameAction.h"
 #include "LocationFilter.h"
-#include "Phrase.h"
 
 #include <map>
 #include <string>
-#include <vector>
 
 class ConditionsStore;
 class DataNode;
@@ -84,24 +83,6 @@ public:
 
 
 private:
-	class MissionDialog {
-	public:
-		explicit MissionDialog(const ExclusiveItem<Phrase> &);
-		explicit MissionDialog(const std::string &);
-		MissionDialog(const DataNode &, const ConditionsStore *);
-
-
-		std::string dialogText;
-		ExclusiveItem<Phrase> dialogPhrase;
-		ConditionSet condition;
-	};
-
-
-private:
-	std::string CollapseDialog(const std::map<std::string, std::string> *subs) const;
-
-
-private:
 	// Whether this action can be triggered after the mission has failed.
 	bool runsWhenFailed = false;
 
@@ -109,12 +90,7 @@ private:
 	std::string system;
 	LocationFilter systemFilter;
 
-	// Dialog text of instantiated missions, or missions with pure-text dialog (no conditions or phrase blocks)
-	std::string dialogText;
-
-	// Logic for creating dialog text. Only valid for missions read in from game data files.
-	std::vector<MissionDialog> dialog;
-
+	DialogSettings dialog;
 	ExclusiveItem<Conversation> conversation;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.

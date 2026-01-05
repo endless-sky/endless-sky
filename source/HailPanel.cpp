@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "audio/Audio.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "shader/DrawList.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -73,7 +73,13 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 		// They either show bribing messages,
 		// or standard hostile messages, if disabled.
 		if(!ship->IsDisabled())
-			SetBribe(gov->GetBribeFraction());
+		{
+			// If this government has a non-zero bribe threshold, it can only be bribed
+			// if the player's reputation with them is not less than the threshold value.
+			const double bribeThreshold = gov->GetBribeThreshold();
+			if(!bribeThreshold || GameData::GetPolitics().Reputation(gov) >= bribeThreshold)
+				SetBribe(gov->GetBribeFraction());
+		}
 	}
 	else if(ship->IsDisabled())
 	{
@@ -319,7 +325,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		if(bribeCallback && bribed)
 			bribeCallback(bribed);
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		sound = UI::UISound::SOFT;
 	}
 	else if(key == 't' && hasLanguage && planet)
@@ -332,7 +338,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			SetMessage("Thank you for granting us our freedom!");
 		}
 		else if(!planet->IsDefending())
-			GetUI()->Push(new Dialog([this]() { SetMessage(planet->DemandTribute(player)); },
+			GetUI().Push(new DialogPanel([this]() { SetMessage(planet->DemandTribute(player)); },
 				"Demanding tribute may cause this planet to launch defense fleets to fight you. "
 				"After battling the fleets, you can demand tribute again for the planet to relent.\n"
 				"This act may hurt your reputation severely. Do you want to proceed?",
