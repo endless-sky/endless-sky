@@ -1102,7 +1102,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 	// Determine if any fines or outfits that must be transferred, can.
 	auto it = actions.find(COMPLETE);
-	if(it!= actions.end())
+	if(it != actions.end())
 		for(const auto &action : it->second)
 			if(it != actions.end() && !action.CanBeDone(player, IsFailed()))
 				return false;

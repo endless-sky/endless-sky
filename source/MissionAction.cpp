@@ -168,7 +168,7 @@ void MissionAction::SaveBody(DataWriter &out) const
 	}
 	if(runsWhenFailed)
 		out.Write("can trigger after failure");
-  	if(!blocking)
+	if(!blocking)
 		out.Write("non-blocking");
 	if(!dialog.IsEmpty())
 		dialog.Save(out);
@@ -313,7 +313,7 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 bool MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
-  	// Verify that the required conditions are present.
+	// Verify that the required conditions are present.
 	// Since CanBeDone is not called by NPCAction, this is the earliest that toTrigger can be tested.
 	if(!toTrigger.IsEmpty() && !toTrigger.Test())
 		return false;
