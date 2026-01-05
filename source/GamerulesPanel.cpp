@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -722,56 +722,56 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	{
 		string message = "Set the minimum deprecation value. This should be a number between 0 and 1.";
 		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetDepreciationMin, message,
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetDepreciationMin, message,
 			validate, Format::Decimal(gamerules.DepreciationMin(), 4)));
 	}
 	else if(str == DEPRECIATION_GRACE_PERIOD)
 	{
 		string message = "Set the depreciation grace period. This should be an integer greater than or equal to 0.";
 		auto validate = [](int value) -> bool { return value >= 0; };
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetDepreciationGracePeriod, message,
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetDepreciationGracePeriod, message,
 			validate, to_string(gamerules.DepreciationGracePeriod())));
 	}
 	else if(str == DEPRECIATION_MAX_AGE)
 	{
 		string message = "Set the depreciation maximum age. This should be an integer greater than or equal to 0.";
 		auto validate = [](int value) -> bool { return value >= 0; };
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetDepreciationMaxAge, message,
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetDepreciationMaxAge, message,
 			validate, to_string(gamerules.DepreciationMaxAge())));
 	}
 	else if(str == DEPRECIATION_DAILY)
 	{
 		string message = "Set the daily deprecation value. This should be a number between 0 and 1.";
 		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetDepreciationDaily, message,
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetDepreciationDaily, message,
 			validate, Format::Decimal(gamerules.DepreciationDaily(), 4)));
 	}
 	else if(str == PERSON_SPAWN_PERIOD)
 	{
 		string message = "Set the person ship spawn attempt period. This should be an integer greater than or equal to 1.";
 		auto validate = [](int value) -> bool { return value >= 1; };
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetPersonSpawnPeriod, message,
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetPersonSpawnPeriod, message,
 			validate, to_string(gamerules.PersonSpawnPeriod())));
 	}
 	else if(str == NO_PERSON_SPAWN_WEIGHT)
 	{
 		string message = "Set the no person ship spawn weight. This should be an integer greater than or equal to 0.";
 		auto validate = [](int value) -> bool { return value >= 0; };
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetNoPersonSpawnWeight, message,
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetNoPersonSpawnWeight, message,
 			validate, to_string(gamerules.NoPersonSpawnWeight())));
 	}
 	else if(str == NPC_MAX_MINING_TIME)
 	{
 		string message = "Set the NPC max mining time. This should be an integer greater than or equal to 0.";
 		auto validate = [](int value) -> bool { return value >= 0; };
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetNPCMaxMiningTime, message,
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetNPCMaxMiningTime, message,
 			validate, to_string(gamerules.NPCMaxMiningTime())));
 	}
 	else if(str == UNIVERSAL_FRUGAL_THRESHOLD)
 	{
 		string message = "Set the universal frugal threshold. This should be a number between 0 and 1.";
 		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetUniversalFrugalThreshold, message,
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetUniversalFrugalThreshold, message,
 			validate, Format::Decimal(gamerules.UniversalFrugalThreshold(), 4)));
 	}
 	else if(str == UNIVERSAL_RAMSCOOP)
@@ -780,7 +780,7 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 	{
 		string message = "Set the minimum system departure distance. This should be any number.";
 		auto validate = [](double value) -> bool { return true; };
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetSystemDepartureMin, message,
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetSystemDepartureMin, message,
 			validate, Format::Decimal(gamerules.SystemDepartureMin(), 1)));
 	}
 	else if(str == SYSTEM_ARRIVAL_MIN)
@@ -789,13 +789,13 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 		auto validate = [](double value) -> bool { return value >= 0.0; };
 		optional<double> value = gamerules.SystemArrivalMin();
 		string initial = value.has_value() ? Format::Decimal(*value, 1) : "";
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetSystemArrivalMin, message, validate, initial));
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetSystemArrivalMin, message, validate, initial));
 	}
 	else if(str == FLEET_MULTIPLIER)
 	{
 		string message = "Set the fleet spawn multiplier. This should be a number greater than 0.";
 		auto validate = [](double value) -> bool { return value >= 0.0; };
-		GetUI()->Push(new Dialog(&gamerules, &Gamerules::SetFleetMultiplier, message,
+		GetUI().Push(new DialogPanel(&gamerules, &Gamerules::SetFleetMultiplier, message,
 			validate, Format::Decimal(gamerules.FleetMultiplier(), 4)));
 	}
 	else if(str == LOCK_GAMERULES)
