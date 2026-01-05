@@ -544,14 +544,14 @@ int DialogPanel::Width() const
 
 
 
-bool Dialog::AcceptsInput() const
+bool DialogPanel::AcceptsInput() const
 {
 	return !isMission && (intFun || doubleFun || stringFun);
 }
 
 
 
-bool Dialog::ValidateInput() const
+bool DialogPanel::ValidateInput() const
 {
 	if(validateStringFun)
 		return validateStringFun(input);

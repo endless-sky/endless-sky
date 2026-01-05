@@ -99,13 +99,13 @@ public:
 			Truncate truncate = Truncate::NONE,
 			bool allowsFastForward = false);
 	template<class T>
-	Dialog(T *t, void (T::*fun)(int), const std::string &text,
+	DialogPanel(T *t, void (T::*fun)(int), const std::string &text,
 			std::function<bool(int)> validate,
 			std::string initialValue,
 			Truncate truncate = Truncate::NONE,
 			bool allowsFastForward = false);
 	template<class T>
-	Dialog(T *t, void (T::*fun)(double), const std::string &text,
+	DialogPanel(T *t, void (T::*fun)(double), const std::string &text,
 			std::function<bool(double)> validate,
 			std::string initialValue,
 			Truncate truncate = Truncate::NONE,
