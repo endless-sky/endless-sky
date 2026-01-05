@@ -992,6 +992,12 @@ mission "FW Pug 1"
 	on waypoint
 		set "fw pug 1: visited waypoints"
 
+	# If the player actually manages to visit the isolated systems at this point, then they have a jump drive
+	on enter "Zeta Aquilae"
+		dialog
+			`Upon jumping to the Zeta Aquilae system, you can see that the hyperspace links that should exist to Cebalrai and Ascella are no longer present. Instead, there is a new link going north, toward a star that never had any hyperlanes before...`
+		# At this point the player knows all the hyperlanes to Rand are gone; job done
+		set "fw pug 1: visited waypoints"
 
 
 mission "FW Pug 1 Tundra"
@@ -1008,7 +1014,6 @@ mission "FW Pug 1 Tundra"
 				decline
 
 
-
 mission "FW Pug 1 Arabia"
 	landing
 	source Arabia
@@ -1021,7 +1026,6 @@ mission "FW Pug 1 Arabia"
 			`You land on Arabia and try to find someone who knows what is going on, but everyone seems just as confused as you are. The spaceport authorities say that their sensors picked up a massive graviton surge when the hyperlinks collapsed, but they are not sure whether the surge caused the collapse, or was a result of it.`
 			`	One merchant captain claims that he was in orbit at the time, and he saw a ship unlike anything he'd ever seen before, that appeared and then disappeared in a flash "just like those Quarg ships do." You aren't sure whether or not to believe him.`
 				decline
-
 
 
 mission "FW Pug 1 Return"
