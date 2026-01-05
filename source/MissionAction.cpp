@@ -131,7 +131,13 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 	else if(key == "can trigger after failure")
 		runsWhenFailed = true;
 	else if(key == "non-blocking")
-		blocking = false;
+	{
+		// Accepting the same mission instance multiple times yields undefined behavior
+		if(trigger == "offer")
+			child.PrintTrace("Unsupported use of \"non-blocking\" in \"on offer\":");
+		else
+			blocking = false;
+	}
 	else if(key == "to" && hasValue && child.Token(1) == "trigger")
 		toTrigger.Load(child, playerConditions);
 	else
