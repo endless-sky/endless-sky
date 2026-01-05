@@ -386,6 +386,12 @@ namespace {
 
 	// If a ship's velocity is below this value, the ship is considered stopped.
 	constexpr double VELOCITY_ZERO = .001;
+
+	// If two ships are within sqrt(SCATTER_TOO_CLOSE) units of one another, they should scatter apart.
+	// If they are within sqrt(SCATTER_TRACK) units of one another, they should keep track of one
+	// another in case they become too close.
+	constexpr double SCATTER_TOO_CLOSE = 20. * 20.;
+	constexpr double SCATTER_TRACK = 250. * 250.;
 }
 
 
@@ -654,6 +660,7 @@ void AI::Clean()
 	miningTime.clear();
 	appeasementThreshold.clear();
 	boarders.clear();
+	closeBy.clear();
 	routeCache.clear();
 	// Records for formations flying around lead ships and other objects.
 	formations.clear();
@@ -713,6 +720,7 @@ void AI::Step(Command &activeCommands)
 	const Ship *flagship = player.Flagship();
 	step = (step + 1) & 31;
 	int targetTurn = 0;
+	int scatterTurn = 0;
 	int minerCount = 0;
 	const int maxMinerCount = minables.empty() ? 0 : 9;
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
@@ -1225,8 +1233,11 @@ void AI::Step(Command &activeCommands)
 		else
 			MoveEscort(*it, command);
 
-		// Force ships that are overlapping each other to "scatter":
-		DoScatter(*it, command);
+		// Force ships that are overlapping each other to "scatter".
+		// Twice per second they check which ships they are close to and might need to scatter away from,
+		// as ships that were close to each other recently are likely to still be close to each other now.
+		scatterTurn = (scatterTurn + 1) & 31;
+		DoScatter(*it, command, scatterTurn == step);
 
 		it->SetCommands(command);
 		it->SetCommands(firingCommands);
@@ -3511,36 +3522,72 @@ void AI::DoPatrol(Ship &ship, Command &command) const
 
 
 
-void AI::DoScatter(const Ship &ship, Command &command) const
+void AI::DoScatter(const Ship &ship, Command &command, bool recheckCloseShips)
 {
 	if(!command.Has(Command::FORWARD) && !command.Has(Command::BACK))
 		return;
 
-	double flip = command.Has(Command::BACK) ? -1 : 1;
+	set<const Ship *> close = closeBy[&ship];
+	if(recheckCloseShips)
+	{
+		close.clear();
+		for(const shared_ptr<Ship> &other : ships)
+		{
+			// Do not scatter away from yourself, or ships in other systems.
+			if(other.get() == &ship || other->GetSystem() != ship.GetSystem())
+				continue;
+			// Look for ships that are nearby to this one. Check a larger distance
+			// than is required to scatter from this ship, as ships that are nearby
+			// now might become too close in a few frames.
+			Point offset = other->Position() - ship.Position();
+			if(offset.LengthSquared() > SCATTER_TRACK)
+				continue;
+			close.insert(other.get());
+		}
+	}
+
 	double turnRate = ship.TurnRate();
 	double acceleration = ship.Acceleration();
-	// TODO: If there are many ships, use CollisionSet::Circle or another
-	// suitable method to limit which ships are checked.
-	for(const shared_ptr<Ship> &other : ships)
+	double flip = command.Has(Command::BACK) ? -1 : 1;
+	for(auto it = close.begin(); it != close.end(); )
 	{
-		// Do not scatter away from yourself, or ships in other systems.
-		if(other.get() == &ship || other->GetSystem() != ship.GetSystem())
+		const Ship *other = *it;
+		// Ensure that this ship is still valid and in the same system.
+		if(!other || other->GetSystem() != ship.GetSystem())
+		{
+			it = close.erase(it);
 			continue;
-
-		// Check for any ships that have nearly the same movement profile as
-		// this ship and are in nearly the same location.
+		}
+		// Check for any ships that are in nearly the same location.
 		Point offset = other->Position() - ship.Position();
-		if(offset.LengthSquared() > 400.)
-			continue;
-		if(fabs(other->TurnRate() / turnRate - 1.) > .05)
-			continue;
-		if(fabs(other->Acceleration() / acceleration - 1.) > .05)
-			continue;
-
+		double distanceSquared = offset.LengthSquared();
+		// This ship isn't close enough to scatter from.
+		if(distanceSquared > SCATTER_TOO_CLOSE)
+			++it;
+		// This ships is very far away. Stop tracking it.
+		else if(distanceSquared > SCATTER_TRACK)
+			it = close.erase(it);
+		// Only scatter if the ship has a similar movement profile to you,
+		// as ships with a similar movement profile are the ones that would
+		// get "stuck" together if not for scattering.
+		else if(fabs(other->TurnRate() / turnRate - 1.) > .05
+			|| fabs(other->Acceleration() / acceleration - 1.) > .05)
+		{
+			// For ships that don't have a similar movement profile, don't check them next frame.
+			// Testing showed it more performant to run this check later instead of checking
+			// if the ship has a similar movement profile when calculating the close ships.
+			it = close.erase(it);
+		}
 		// We are too close to this ship. Turn away from it if we aren't already facing away.
-		if(fabs(other->Facing().Unit().Dot(ship.Facing().Unit())) > 0.99) // 0.99 => 8 degrees
+		else if(fabs(other->Facing().Unit().Dot(ship.Facing().Unit())) > 0.96) // 0.96 => 16 degrees
+		{
 			command.SetTurn(flip * offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
-		return;
+			// The other ship should also know to turn away from this one.
+			closeBy[other].insert(&ship);
+			return;
+		}
+		else
+			++it;
 	}
 }
 

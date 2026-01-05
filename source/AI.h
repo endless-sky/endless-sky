@@ -179,7 +179,7 @@ private:
 	bool DoCloak(const Ship &ship, Command &command) const;
 	void DoPatrol(Ship &ship, Command &command) const;
 	// Prevent ships from stacking on each other when many are moving in sync.
-	void DoScatter(const Ship &ship, Command &command) const;
+	void DoScatter(const Ship &ship, Command &command, bool recheckCloseShips);
 	bool DoSecretive(Ship &ship, Command &command) const;
 
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
@@ -278,6 +278,7 @@ private:
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasementThreshold;
 	std::map<const Ship *, const Ship *> boarders;
+	std::map<const Ship *, std::set<const Ship *>> closeBy;
 
 	// Records for formations flying around leadships and other objects.
 	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
