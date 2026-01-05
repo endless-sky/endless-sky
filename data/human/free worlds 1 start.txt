@@ -1049,49 +1049,73 @@ mission "FW Senate 1B"
 				`	"They can both get you in trouble if you're not careful who you mouth off to."`
 					goto threat
 				`	"Depends. Do politicians abandon rude passengers on uninhabited planets?"`
-					goto gaping
+					goto snark
 			`	"The correct answer," she says, "was, 'nothing whatsoever; they are entirely different disciplines.' Now, hurry up, I hope to be on Bourne a week from now."`
+
 			label drive
-			branch jd
-				has "outfit (flagship installed): Jump Drive"
-			`	You consider explaining to her that it's impossible to get from <planet> to Bourne in a week, but decide against it.`
-				accept
-			label jd
-			`	You consider explaining to her that it's impossible to get from <planet> to Bourne in a week using a hyperdrive, but decide against it.`
-			`	It's a good thing you have a jump drive.`
-				accept
-			label threat
-			`	The senator freezes in place. "Is that a threat, Captain <last>?"`
 			choice
-				`	"Of course not. We're just having a friendly conversation."`
+				`	"Sorry, ma'am, but that won't be possible. Bourne is at least 8 days away."`
+				`	"If wishes were horses, beggars would ride."`
+				`	"You're in luck. The <ship> is probably the only ship in human space that can get to Bourne that fast."`
+					to display
+						has "outfit (flagship installed): Jump Drive"
+				`	"You're asking a lot. That will cost you."`
+					to display
+						has "outfit (flagship installed): Jump Drive"
+					goto "jd charge"
+			accept
+
+			label "jd charge"
+			branch "refuse jd charge"
+				has "senator huygens annoyed"
+			`	The senator seems puzzled. "Excuse me? You are already being paid a salary that many would envy, and you have been assigned to transport me. Are you refusing the Senate's orders?"`
+			`	"No," you explain, "I'll take you to Bourne. But a regular hyperdrive won't get you there in a week. If you want me to take special measures to make that happen, then you can pay accordingly."`
+			`	She looks at you for a long moment. "Fine. If you can get us there on time, I'll pay you ten thousand credits."`
+			choice
+				`	"A hundred thousand."`
+					goto "refuse jd charge"
+				`	"Done."`
+			set "accepted jd charge"
+			accept
+
+			label "refuse jd charge"
+			`	"Oh, don't be ridiculous." She scowls at you. "Just get us there as fast as this rust-bucket can manage."
+			accept
+
+			label threat
+			`	The senator freezes in place. "Is that a threat, Captain <last>? Perhaps you should consider taking your own advice about whose toes you tread on."`
+			choice
+				`	"Of course it's not a threat, ma'am. We're just having a friendly conversation."`
 					goto nothreat
-				`	"Not if you apologize."`
-					goto apologize
+				`	"Perhaps you should look for a less 'clueless' captain to take you, then."`
+					goto rejection
 				`	"I'm sure I don't know what you mean."`
 					goto sinister
 			label nothreat
 			`	She looks at you for a moment longer, then apparently drops the conversation. "Hurry up and launch, I hope to be on Bourne a week from now."`
 				goto drive
-			label apologize
-			`	She scoffs. "Perhaps you should consider your own advice about whose toes you tread on, Captain. Now, hurry up, I hope to be on Bourne a week from now."`
-			choice
-				`	"You'd better look for a less 'clueless' captain to take you, then."`
-				`	"I see."`
-					goto drive
-			`	She stares at you for a moment. "What? Are you serious?"`
+			label rejection
+			`	She stares at you for a moment. "What? Are you seriously refusing an assignment from the Free Worlds Senate?"`
 			choice
 				`	"Serious as space sickness. You know where the ramp is."`
 					decline
 				`	"No. For the sake of the Free Worlds, I'll take you. But keep in mind that not everyone you ever meet will be as lenient."`
-					goto drive
+			action
+				set "senator huygens annoyed"
+			`	The senator scoffs at you. "Grow up, Captain - and hurry up with the launch, I hope to be on Bourne a week from now."`
+			goto drive
+
 			label sinister
 			`	She looks unimpressed for a moment, until you continue, "After all, I'm pretty clueless. I probably wouldn't know a threat if I tripped over one. Hopefully we don't encounter any pirates along the way, or I might make clueless decisions that could get passengers killed."`
 			`	Senator Huygens doesn't quite seem to know how to respond to that, eventually going with, "Hopefully not. If you need me, Captain, I'll be in my bunk. I hope to be on Bourne a week from now."`
-				goto drive
-			label gaping
-			`	The senator glares at you, and opens her mouth as if to retort, but no sound comes out. You leave her to her (mercifully) silent fury, and begin preparations for your trip to Bourne.`
-				accept
-	
+			goto drive
+
+			label snark
+			action
+				set "senator huygens annoyed"
+			`	The senator glares at you. "Childish as well as naive, I see. Hopefully you're better at flying than talking, Captain. I hope to be on Bourne a week from now."`
+			goto drive
+
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Senator Huygens hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
@@ -1100,7 +1124,13 @@ mission "FW Senate 1B"
 			branch slow
 				has "event: fw senate timer"
 			`You drop off Senator Huygens, who appears uncharacteristically pleased. "Good work Captain <last>, I see we made good time. It seems you're far more reliable than most captains I work with," she says before walking off.`
-				goto waiting
+			branch waiting
+				not "accepted jd charge"
+			action
+				payment 10000
+				`You receive a ping informing you that <payment> has been deposited into your account.`
+			goto waiting
+
 			label slow
 			`You drop off Senator Huygens, who says nothing by way of acknowledging your help except, "It's about time we got here." She hurries off.`
 			label waiting
