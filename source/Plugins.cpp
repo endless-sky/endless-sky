@@ -28,14 +28,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <nlohmann/json.hpp>
 
 #include <algorithm>
-#include <atomic>
 #include <cassert>
 #include <cstdio>
 #include <cstring>
 #include <filesystem>
 #include <fstream>
 #include <future>
-#include <map>
 #include <mutex>
 #include <set>
 #include <sys/stat.h>
@@ -202,7 +200,7 @@ string Plugin::CreateDescription() const
 	if(!description.empty())
 		text += description + '\n';
 	if(!homepage.empty())
-		// TODO: make url clickable; or copy to buffer; and forcefully wrap the text
+		// TODO: make url clickable
 		text += "Homepage: " + homepage + '\n';
 	if(!tags.empty())
 	{
@@ -411,7 +409,7 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 	// 'name' is a required field for plugins with a plugin description file.
 	if(Files::Exists(pluginFile) && !hasName)
 		Logger::Log("Missing required \"name\" field inside plugin.txt.", Logger::Level::WARNING);
-	else if(name != advertisedName)
+	else if(name != advertisedName && !advertisedName.empty())
 		Logger::Log("Plugin \"name\" (" + advertisedName + ") field inside plugin.txt does not match plugin folder/zip "
 			"file name stem (" + name + ").", Logger::Level::WARNING);
 

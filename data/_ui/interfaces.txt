@@ -885,21 +885,21 @@ interface "plugins"
 		color medium
 
 	sprite "ui/checked"
-		center -410 54 
+		center -410 54
 	label "Enabled"
 		from -400 46
 		align top left
 		color "bright"
 
 	sprite "ui/unchecked"
-		center -410 73 
+		center -410 73
 	label "Disabled"
 		from -400 65
 		align top left
 		color "medium"
 
 	sprite "ui/checked"
-		center -410 92 
+		center -410 92
 	label "Enabled on restart"
 		from -400 84
 		align top left
@@ -913,7 +913,7 @@ interface "plugins"
 		color "plugin reload required"
 
 	sprite "ui/error"
-		center -410 130 
+		center -410 130
 	label "In use but deleted"
 		from -400 122
 		align top left
@@ -980,7 +980,7 @@ interface "install plugins"
 		color medium
 	
 	sprite "ui/checked"
-		center -410 54 
+		center -410 54
 	label "Installed"
 		from -400 46
 		align top left
@@ -1021,7 +1021,7 @@ interface "install plugins"
 		color "white"
 	
 	sprite "ui/unchecked"
-		center -410 111 
+		center -410 111
 	label "Not Installed"
 		from -400 103
 		align top left

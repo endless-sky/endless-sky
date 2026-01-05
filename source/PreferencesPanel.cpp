@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
+#include "DataFile.h"
 #include "Dialog.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -55,8 +56,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 
 #include "Logger.h"
-#include "ShopPanel.h"
-
 
 using namespace std;
 
@@ -120,12 +119,6 @@ namespace {
 #else
 	const int SETTINGS_PAGE_COUNT = 2;
 #endif
-
-	// The url to the plugins-list.
-	// TODO: read this from a file.
-	const string PLUGIN_LIST_URL =
-		"https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json";
-
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
 		{"music volume", SoundCategory::MUSIC},
@@ -1508,7 +1501,6 @@ void PreferencesPanel::DrawPluginInstalls()
 // Render the plugin description into the pluginDescriptionBuffer.
 void PreferencesPanel::RenderPluginDescription()
 {
-	Logger::Log("selected = " + to_string(selected) + ", selectedPlugin = " + selectedPlugin, Logger::Level::INFO);
 	auto plugins = (page == PLUGINS) ? Plugins::GetPluginsLocked() : Plugins::GetAvailablePluginsLocked();
 	if(auto *plugin = plugins->Find(selectedPlugin))
 		RenderPluginDescription(*plugin);
@@ -1811,9 +1803,22 @@ void PreferencesPanel::HandleConfirm()
 
 void PreferencesPanel::ProcessPluginIndex()
 {
+	filesystem::path path = Files::Data() / "plugins.txt";
+	Logger::Log("Parsing: " + path.string(), Logger::Level::INFO);
+	DataFile data(path);
+	for(const DataNode &node : data)
+	{
+		const string &key = node.Token(0);
+		if(key == "plugin_list_url" && node.Size() > 1)
+		{
+			// Get the URL from the second token
+			plugin_list_url = node.Token(1);
+		}
+	}
+
 	installFeedbacks.emplace_back(async(launch::async, [&]() noexcept -> std::string {
 		GetUI()->Push(new Dialog("Downloading plugin index, please wait."));
-		if(!Plugins::Download(PLUGIN_LIST_URL, Files::Config() / "plugins.json"))
+		if(!Plugins::Download(plugin_list_url, Files::Config() / "plugins.json"))
 		{
 			GetUI()->Pop(GetUI()->Top().get());
 			GetUI()->Push(new Dialog(this, &PreferencesPanel::ProcessPluginIndex,

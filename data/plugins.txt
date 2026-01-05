@@ -1,0 +1,1 @@
+plugin_list_url "https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json"

@@ -116,6 +116,7 @@ private:
 	int currentSettingsPage = 0;
 
 	std::string selectedPlugin;
+	std::string plugin_list_url;
 
 	// If the plugin index was already downloaded.
 	bool downloadedPluginIndex = false;
