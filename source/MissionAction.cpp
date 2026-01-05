@@ -219,6 +219,8 @@ const string &MissionAction::DialogText() const
 	return EMPTY;
 }
 
+
+
 // Check if this action can be completed right now. It cannot be completed
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const shared_ptr<Ship> &boardingShip) const
@@ -241,7 +243,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const sha
 		// by checking the cargo holds of ships that would contribute to player.Cargo if landed.
 		int available = flagship ? flagship->OutfitCount(it.first) : 0;
 		available += boardingShip ? flagship->Cargo().Get(it.first)
-			: CountInCargo(it.first, player);
+				: CountInCargo(it.first, player);
 
 		if(available < -it.second)
 			return false;
@@ -284,7 +286,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const sha
 			// in the cargo holds of able ships at the player's location.
 			int available = flagship ? flagship->OutfitCount(it.first) : 0;
 			available += boardingShip ? flagship->Cargo().Get(it.first)
-				: CountInCargo(it.first, player);
+					: CountInCargo(it.first, player);
 
 			if(available < it.second)
 				return false;
