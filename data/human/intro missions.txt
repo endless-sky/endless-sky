@@ -491,7 +491,7 @@ mission "Intro [0 Fighter]"
 	to offer
 		not "First Day Check: offered"
 	to accept
-		"ships: Fighter" >= "total ships"
+		"ships: Fighter" == "total ships"
 	on offer
 		conversation
 			`As you check over the specs of your brand new <flagship model> one last time, you realize it lacks the hyperdrive necessary for interstellar travel! Unless you're happy to spend the rest of your life flying past the same few planets, you'll need to sell the <flagship model> and buy a proper spacefaring vessel.`
@@ -505,7 +505,7 @@ mission "Intro [0 Drone]"
 	to offer
 		not "First Day Check: offered"
 	to accept
-		"ships: Drone" >= "total ships"
+		"ships: Drone" == "total ships"
 	on offer
 		conversation
 			`You prepare to board your new ship and take it for a test flight, only to find it is an automated drone that lacks a crew compartment entirely! Unless you want to try strapping yourself on the outside of the hull, you'll need to sell off your drone and buy a proper spacefaring vessel.`
