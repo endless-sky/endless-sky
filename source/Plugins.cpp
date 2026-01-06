@@ -53,13 +53,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	// Maintain the order which plugins are loaded in.
+	vector<string> pluginOrder;
+
 	// These are the installed and available plugins, not all of which will be enabled for use.
 	mutex pluginsMutex;
-	Set<Plugin> plugins;
+	OrderedSet<Plugin> plugins;
 
 	// A list of plugins that can be installed from the online library.
 	mutex availablePluginsMutex;
-	Set<Plugin> availablePlugins;
+	OrderedSet<Plugin> availablePlugins;
 
 	void LoadSettingsFromFile(const filesystem::path &path)
 	{
@@ -288,10 +291,10 @@ bool Plugin::HasChanged() const
 
 bool Plugin::Search(const std::string &search) const
 {
-	for(auto &it: tags)
+	for(auto &it : tags)
 		if(Format::Search(it, search) > 0)
 			return true;
-	for(auto &it: authors)
+	for(auto &it : authors)
 		if(Format::Search(it, search) > 0)
 			return true;
 	if(Format::Search(description, search) > 0)
@@ -307,13 +310,13 @@ bool Plugin::Search(const std::string &search) const
 
 	if(Format::Search(dependencies.gameVersion, search) > 0)
 		return true;
-	for(auto &it: dependencies.conflicted)
+	for(auto &it : dependencies.conflicted)
 		if(Format::Search(it, search) > 0)
 			return true;
-	for(auto &it: dependencies.optional)
+	for(auto &it : dependencies.optional)
 		if(Format::Search(it, search) > 0)
 			return true;
-	for(auto &it: dependencies.required)
+	for(auto &it : dependencies.required)
 		if(Format::Search(it, search) > 0)
 			return true;
 
@@ -484,6 +487,11 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path
 		if(Files::Exists(iconPath))
 			GameData::RequestSpriteLoad(queue, iconPath, plugin->GetIconName());
 	}
+	// And finally, because we are using the same (sorted) OrderedSet to better share common code, we must sort.
+	{
+		auto aPlugins = GetAvailablePluginsLocked();
+		aPlugins->Sort();
+	}
 }
 
 
@@ -555,14 +563,14 @@ bool Plugins::DownloadingInBackground()
 
 
 
-LockedSet<Plugin> Plugins::GetAvailablePluginsLocked()
+LockedSet<OrderedSet, Plugin> Plugins::GetAvailablePluginsLocked()
 {
 	return {availablePluginsMutex, availablePlugins};
 }
 
 
 
-LockedSet<Plugin> Plugins::GetPluginsLocked()
+LockedSet<OrderedSet, Plugin> Plugins::GetPluginsLocked()
 {
 	return {pluginsMutex, plugins};
 }
@@ -711,7 +719,7 @@ string Plugins::DeletePlugin(const std::string &name)
 
 			// There is no need to keep around plugins that are not in use, their deletion does not require a restart.
 			if(!plugin->InUse())
-				iPlugins->erase(name);
+				iPlugins->Remove(name);
 
 			// Clean up the state of the available plugins list, too.
 			auto aPlugins = GetAvailablePluginsLocked();

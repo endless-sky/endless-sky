@@ -13,6 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+// TODO: fix the .Find then .Get by using .Has
+// TODO: the download in progress dialog, if closed, closes prefs -- off by one layer
+
 #include "PreferencesPanel.h"
 
 #include "text/Alignment.h"
@@ -28,8 +31,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "PlayerInfo.h"
 #include "text/Layout.h"
+#include "Logger.h"
+#include "PlayerInfo.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
@@ -54,8 +58,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <chrono>
 #include <cstdio>
 #include <utility>
-
-#include "Logger.h"
 
 using namespace std;
 
@@ -1273,7 +1275,7 @@ void PreferencesPanel::DrawPlugins()
 		if(displayed)
 		{
 			Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
-			AddZone(zoneBounds, [&](){ Plugins::TogglePlugin(plugin.name); });
+			AddZone(zoneBounds, [name = plugin.name](){ Plugins::TogglePlugin(name); });
 		}
 
 		if(plugin.HasChanged())
@@ -1406,7 +1408,7 @@ void PreferencesPanel::DrawPluginInstalls()
 		const Sprite *sprite;
 		if(plugin.IsDownloading())
 		{
-			color = Color::Multiply(step / 50. + .5, bright);
+			color = Color::Multiply(step / 50. + .25, bright);
 			sprite = SpriteSet::Get("ui/expanded");
 		}
 		else if(plugin.outdated)
@@ -1526,10 +1528,10 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	int descriptionHeight = 0;
 
 	// Title.
-	WrappedText wrap1(font);
-	wrap1.SetWrapWidth(box.Width());
-	wrap1.Wrap(plugin.name);
-	descriptionHeight += wrap1.Height();
+	WrappedText wrapTitle(font);
+	wrapTitle.SetWrapWidth(box.Width());
+	wrapTitle.Wrap(plugin.name);
+	descriptionHeight += wrapTitle.Height() + 5;
 
 	// Image.
 	float zoom = 1.f;
@@ -1555,8 +1557,11 @@ void PreferencesPanel::RenderPluginDescription(const Plugin &plugin)
 	pluginDescriptionBuffer = make_unique<RenderBuffer>(Point(box.Width(), descriptionHeight));
 	// Redirect all drawing commands into the offscreen buffer.
 	auto target = pluginDescriptionBuffer->SetTarget();
-
 	Point top(pluginDescriptionBuffer->Left(), pluginDescriptionBuffer->Top());
+
+	wrapTitle.Draw(top, medium);
+	top.Y() += wrapTitle.Height() + 5;
+
 	if(sprite)
 	{
 		Point center(0., top.Y() + .5 * sprite->Height());

@@ -41,7 +41,7 @@ public:
 	typename std::map<std::string, Type>::const_iterator find(const std::string &key) const { return data.find(key); }
 	typename std::map<std::string, Type>::iterator end() { return data.end(); }
 	typename std::map<std::string, Type>::const_iterator end() const { return data.end(); }
-	void erase(const std::string &key) { data.extract(key); }
+	void Remove(const std::string &key) { data.extract(key); }
 
 	int size() const { return data.size(); }
 	bool empty() const { return data.empty(); }

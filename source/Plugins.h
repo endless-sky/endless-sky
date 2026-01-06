@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Set.h"
+#include "OrderedSet.h"
 #include "TaskQueue.h"
 
 #include <filesystem>
@@ -30,16 +30,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Usage:
 // auto iPlugins = Plugins::GetPluginsLocked();
 // iPlugins->Get(...) or iPlugins->Find(...)
-template<typename T>
+// C can be either Set or OrderedSet
+template<template<class> class C, typename T>
 class LockedSet {
-	std::lock_guard<std::mutex> guard;
-	Set<T>& data;
 public:
-	LockedSet(std::mutex& guard, Set<T>& data) : guard(guard), data(data) {}
-	Set<T>* operator->() { return &data; }
-	Set<T>& operator*() { return data; }
-};
+	LockedSet(std::mutex &guard, C<T> &data) : guard(guard), data(data) {}
+	C<T> *operator->() { return &data; }
+	C<T> &operator*() { return data; }
 
+private:
+	std::lock_guard<std::mutex> guard;
+	C<T> &data;
+};
 
 
 // Plugin class represents information about a single plugin.
@@ -144,7 +146,6 @@ class Plugins {
 public:
 	// Attempt to load a plugin at the given path.
 	static const Plugin *Load(const std::filesystem::path &path);
-
 	static void LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path &pluginsJsonPath);
 	static void LoadSettings();
 	static void Save();
@@ -158,9 +159,12 @@ public:
 	static bool DownloadingInBackground();
 
 	// Returns the list of plugins that have been identified in the online plugin library.
-	static LockedSet<Plugin> GetAvailablePluginsLocked();
+	static LockedSet<OrderedSet, Plugin> GetAvailablePluginsLocked();
 	// Returns the list of plugins that have been identified by the game.
-	static LockedSet<Plugin> GetPluginsLocked();
+	static LockedSet<OrderedSet, Plugin> GetPluginsLocked();
+
+	// Maintain plugin load order.
+	static void GetPluginsLoadOrder(); // TODO: needed? should be in get plugins locked.
 
 	// Toggles enabling or disabling a plugin for the next game restart.
 	static void TogglePlugin(const std::string &name);
@@ -170,4 +174,8 @@ public:
 	static std::string DeletePlugin(const std::string &name);
 
 	static bool Download(const std::string &url, const std::string &location);
+
+private:
+	// Maintain the order which plugins are loaded in.
+	std::vector<std::string> pluginLoadOrder;
 };
