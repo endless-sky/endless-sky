@@ -114,20 +114,18 @@ void ShopPanel::Step()
 	playerShips = stillValid;
 	if(playerShip && !playerShips.contains(playerShip))
 	{
+		playerShip = nullptr;
 		if(!playerShips.empty())
 			playerShip = *playerShips.begin();
 		else
 		{
-			for(auto it = shipPtrs.begin() ; it != shipPtrs.end() ; ++it)
-			{
-				Ship *ship = *it;
+			for(const shared_ptr<Ship> &ship : player.Ships())
 				if(CanShowInSidebar(*ship, player.GetPlanet()))
 				{
-					playerShip = ship;
+					playerShip = ship.get();
 					playerShips.insert(playerShip);
 					break;
 				}
-			}
 		}
 	}
 
