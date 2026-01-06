@@ -397,7 +397,7 @@ bool MainPanel::ControllerButtonDown(SDL_GameControllerButton button)
 			selection->AddOption(Command::HAIL);
 		if(canCloak)
 			selection->AddOption(Command::CLOAK);
-		GetUI()->Push(selection);
+		GetUI().Push(selection);
 		return true;
 	}
 	return false;

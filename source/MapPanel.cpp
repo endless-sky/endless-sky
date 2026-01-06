@@ -668,7 +668,7 @@ bool MapPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool positi
 			else if(controllerFocus == FOCUS_MAP)
 			{
 				controllerFocus = FOCUS_BUTTONS;
-				GamepadCursor::MoveDir(Point(1, 0), GetUI()->ZonePositions());
+				GamepadCursor::MoveDir(Point(1, 0), GetUI().ZonePositions());
 			}
 		}
 		else

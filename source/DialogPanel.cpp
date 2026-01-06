@@ -232,7 +232,7 @@ void DialogPanel::Draw()
 				thirdPos.X() - .5 * font.Width(buttonThree.buttonLabel),
 				thirdPos.Y() - .5 * font.Height()};
 			font.Draw(buttonThree.buttonLabel, labelPos, activeButton == 3 ? bright : dim);
-			Rectangle buttonThreeRect(labelPos, {cancel->Width(), cancel->Height()});
+			Rectangle buttonThreeRect(thirdPos, {thirdButtonSprite->Width(), thirdButtonSprite->Height()});
 			AddZone(buttonThreeRect, [this, buttonThreeRect]() {
 				Click(buttonThreeRect.Center().X(), buttonThreeRect.Center().Y(), MouseButton::LEFT, 1);
 			});

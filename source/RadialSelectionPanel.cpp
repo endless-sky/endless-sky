@@ -299,7 +299,7 @@ void RadialSelectionPanel::MoveCursor(const Point& p)
 
 void RadialSelectionPanel::ActivateOption()
 {
-	GetUI()->Pop(this); 	// quit the dialog
+	GetUI().Pop(this); 	// quit the dialog
 	if(m_selected_idx >= 0 && m_selected_idx < static_cast<int>(m_options.size()))
 	{
 		m_options[m_selected_idx].callback();

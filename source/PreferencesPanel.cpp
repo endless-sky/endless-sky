@@ -307,7 +307,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if(page == 'c' && key == 'g')
 	{
-		GetUI()->Push(new GamepadPanel());
+		GetUI().Push(new GamepadPanel());
 	}
 	else
 		return false;

@@ -1135,7 +1135,7 @@ void Interface::RadialSelectionElement::Place(const Rectangle &bounds, Panel *pa
 			radial_selection->ReleaseWithAxisZero(static_cast<SDL_GameControllerAxis>(e.id));
 			break;
 		}
-		panel->GetUI()->Push(radial_selection);
+		panel->GetUI().Push(radial_selection);
 	};
 	if(radius)
 		panel->AddZone(bounds.Center(), radius, OnTrigger);

@@ -450,7 +450,7 @@ bool ShopPanel::ControllerTriggerPressed(SDL_GameControllerAxis axis, bool posit
 		{
 			// do not rely on default zone-based cursor handling, as this class
 			// uses its own zones (also confusingly named "Zone")
-			std::vector<Point> options = GetUI()->ZonePositions();
+			std::vector<Point> options = GetUI().ZonePositions();
 			for(auto &z : shipZones)
 			{
 				// only add zones in the right side panel that are visible on the
