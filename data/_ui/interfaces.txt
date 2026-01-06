@@ -313,8 +313,12 @@ interface "main menu"
 	button e "_Enter Ship"
 		center 435 155
 		dimensions 90 30
-	visible if "!pilot loaded"
+	visible if "no pilot loaded"
 	button n "_New Pilot"
+		center 435 155
+		dimensions 90 30
+	visible if "pilot dead"
+	button r "_Reload Pilot"
 		center 435 155
 		dimensions 90 30
 	

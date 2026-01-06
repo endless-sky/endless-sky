@@ -94,7 +94,7 @@ public:
 
 	virtual void UpdateTooltipActivation();
 
-	UI *GetUI() const noexcept;
+	UI &GetUI() const noexcept;
 
 protected:
 	// Only override the ones you need; the default action is to return false.
