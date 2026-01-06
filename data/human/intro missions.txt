@@ -552,7 +552,7 @@ mission "Intro [0 Jackal]"
 					goto jackal
 				`	"No deal."`
 			label refuse
-			`	"Darn. Well, at least you've given me an idea; there's got to be a captain out there willing to hand me a Mining Drone for my Jackal!" The merchant hops up from the bench and jauntily walks away.`
+			`	"Darn. Well, at least you've given me an idea; there's got to be a captain out there willing to hand me a couple of Mining Drones for my Jackal!" The merchant hops up from the bench and jauntily walks away.`
 				decline
 			label jackal
 			action
