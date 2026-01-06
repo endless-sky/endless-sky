@@ -479,7 +479,7 @@ void Panel::DrawBackdrop() const
 
 UI &Panel::GetUI() const noexcept
 {
-	UI* ret = (parent ? &parent->GetUI() : ui);
+	UI *ret = (parent ? &parent->GetUI() : ui);
 	assert(ret && "Panel::GetUI cannot be called until after the Panel has been pushed onto the UI stack.");
 	return *ret;
 }
