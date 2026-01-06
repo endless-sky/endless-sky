@@ -476,20 +476,13 @@ conversation "intro relic"
 
 # Missions when the player attempts to use an invalid starting ship.
 
-mission "First Day Check"
-	non-blocking
-	invisible
-	landing
-	on offer
-		fail
-
 
 mission "Intro [0 Fighter]"
 	non-blocking
 	invisible
 	shipyard
 	to offer
-		not "First Day Check: offered"
+		"days since start" == 0
 	to accept
 		"ships: Fighter" == "total ships"
 	on offer
@@ -503,7 +496,7 @@ mission "Intro [0 Drone]"
 	invisible
 	shipyard
 	to offer
-		not "First Day Check: offered"
+		"days since start" == 0
 	to accept
 		"ships: Drone" == "total ships"
 	on offer
@@ -518,7 +511,7 @@ mission "Intro [0 Jackal]"
 	invisible
 	shipyard
 	to offer
-		not "First Day Check: offered"
+		"days since start" == 0
 	to accept
 		"ship model: Mining Drone" >= 3
 		"outfit: Mining Laser" >= 3
@@ -550,8 +543,16 @@ mission "Intro [0 Jackal]"
 			choice
 				`	"Sounds good."`
 					goto jackal
+				`	"What about just one drone?"`
 				`	"I can't take that deal."`
-			`	"Darn. Well, you have given me an idea, though; there's got to be a captain out there willing to hand me a Mining Drone for my Jackal!" The merchant hops up from the bench and jauntily walks away.`
+					goto refuse
+			`	He shakes his head. "It's got to be two drones, or no drones."`
+			choice
+				`	"Alright, you'll have your drones."`
+					goto jackal
+				`	"No deal."`
+			label refuse
+			`	"Darn. Well, at least you've given me an idea; there's got to be a captain out there willing to hand me a Mining Drone for my Jackal!" The merchant hops up from the bench and jauntily walks away.`
 				decline
 			label jackal
 			action
