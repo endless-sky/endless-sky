@@ -2227,7 +2227,7 @@ event "pug invasion 2"
 	unlink "Vega" "Menkent"
 	unlink "Vega" "Sol"
 	unlink "Altair" "Sol"
-	unlink "Fomalhaut" "Markab"
+	unlink "Fomalhaut" "Titawin"
 	link "Deneb" "Vega"
 	link "Deneb" "Altair"
 	unvisit "Vega"
@@ -2235,6 +2235,7 @@ event "pug invasion 2"
 	unvisit "Nocte"
 	unvisit "Fomalhaut"
 	unvisit "Markab"
+	unvisit "Titawin"
 	"tribute: Silver" /= 700
 	"tribute: Shiver" /= 300
 	"tribute: Millrace" /= 1400
@@ -2331,11 +2332,14 @@ event "pug invasion 4"
 	unlink "Caph" "Sol"
 	unlink "Caph" "Eteron"
 	unlink "Diphda" "Acamar"
-	unlink "Diphda" "Ankaa"
+	unlink "Diphda" "Jabbah"
 	link "Fomalhaut" "Caph"
 	unvisit "Caph"
 	unvisit "Diphda"
-	unvisit "Ankaa"
+	unvisit "Jabbah"
+	unvisit "Gamma Ceti"
+	unvisit "Syrma"
+	unvisit "Marfik"
 	"tribute: Reunion" /= 2900
 	"tribute: Kraken Station" /= 500
 	"tribute: Tinker" /= 1100
@@ -2653,8 +2657,8 @@ event "pug link restoration 2"
 
 
 event "pug link restoration 3"
-	link "Diphda" "Ankaa"
-	link "Fomalhaut" "Markab"
+	link "Diphda" "Jabbah"
+	link "Fomalhaut" "Titawan"
 	link "Rasalhague" "Ascella"
 
 
@@ -3362,3 +3366,20 @@ mission "Martini Recovers"
 	on offer
 		event "martini recovers" 45
 		fail
+
+mission "Core Patch Links"
+	landing
+	invisible
+	to offer
+		has "main plot completed"
+		not "core links correct"
+	on offer
+		event "core fix links patch"
+		fail
+
+event "core fix links patch"
+	unlink "Diphda" "Ankaa"
+	link "Diphda" "Jabbah"
+	unlink "Fomalhaut" "Markab"
+	link "Fomalhaut" "Caph"
+
