@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Command.h"
 #include "DataFile.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -266,7 +266,7 @@ void PreferencesPanel::Step()
 		{
 			std::string error = it->get();
 			if(!error.empty())
-				GetUI()->Push(new Dialog(error));
+				GetUI().Push(new DialogPanel(error));
 			else
 			{
 				if(page == PLUGINS)
@@ -324,7 +324,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		Files::OpenUserPluginFolder();
 	else if((key == 'd' || key == SDLK_DELETE) && (page == PLUGINS || page == LIBRARY))
 	{
-		GetUI()->Push(new Dialog(this, &PreferencesPanel::DeletePlugin,
+		GetUI().Push(new DialogPanel(this, &PreferencesPanel::DeletePlugin,
 			"Do you really want to delete this plugin?"));
 	}
 	else if((key == 'n' || key == SDLK_PAGEUP)
@@ -369,7 +369,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		Resize();
 	}
 	else if(key == 'f' && (page == PLUGINS || page == LIBRARY))
-		GetUI()->Push(new Dialog(this, &PreferencesPanel::DoSearch, "Search for:", searchFor, Truncate::NONE, true));
+		GetUI().Push(new DialogPanel(this, &PreferencesPanel::DoSearch, "Search for:", searchFor, Truncate::NONE, true));
 	else if(key == LIBRARY || key == PLUGINS)
 	{
 		page = key;
@@ -419,7 +419,7 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 			if(zones[index].Contains(point))
 			{
 				if(zones[index].Value().Has(Command::MENU))
-					GetUI()->Push(new Dialog([this, index]()
+					GetUI().Push(new DialogPanel([this, index]()
 						{
 							this->editing = this->selected = index;
 						},
@@ -581,7 +581,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			else
 				steps = min(120, steps + 20);
 			Preferences::SetTooltipActivation(steps);
-			for(auto &panel : GetUI()->Stack())
+			for(auto &panel : GetUI().Stack())
 				panel->UpdateTooltipActivation();
 		}
 		return true;
@@ -746,7 +746,8 @@ void PreferencesPanel::DrawControls()
 		Command::FASTFORWARD,
 		Command::PAUSE,
 		Command::HELP,
-		Command::MESSAGE_LOG
+		Command::MESSAGE_LOG,
+		Command::PERFORMANCE_DISPLAY
 	};
 
 	int page = 0;
@@ -1618,7 +1619,7 @@ void PreferencesPanel::Exit()
 {
 	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
 	{
-		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+		GetUI().Push(new DialogPanel("Menu keybind is not bound or has conflicts."));
 		return;
 	}
 
@@ -1627,7 +1628,7 @@ void PreferencesPanel::Exit()
 	if(recacheDeadlines)
 		player.CacheMissionInformation(true);
 
-	GetUI()->Pop(this);
+	GetUI().Pop(this);
 }
 
 
@@ -1646,7 +1647,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			// Only show this if it's not possible to zoom the view at all, as
 			// otherwise the dialog will show every time, which is annoying.
 			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-				GetUI()->Push(new Dialog(
+				GetUI().Push(new DialogPanel(
 					"Your screen resolution is too low to support a zoom level above 100%."));
 			Screen::SetZoom(ZOOM_FACTOR_MIN);
 		}
@@ -1673,7 +1674,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == VSYNC_SETTING)
 	{
 		if(!Preferences::ToggleVSync())
-			GetUI()->Push(new Dialog(
+			GetUI().Push(new DialogPanel(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
 	else if(str == CAMERA_ACCELERATION)
@@ -1721,7 +1722,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		if(steps > 120)
 			steps = 0;
 		Preferences::SetTooltipActivation(steps);
-		for(auto &panel : GetUI()->Stack())
+		for(auto &panel : GetUI().Stack())
 			panel->UpdateTooltipActivation();
 	}
 	else if(str == FLAGSHIP_SPACE_PRIORITY)
@@ -1851,12 +1852,12 @@ void PreferencesPanel::ProcessPluginIndex()
 
 	// TODO: The first dialog will be closed automatically, and if closed early, we will pop too soon.
 	installFeedbacks.emplace_back(async(launch::async, [&]() noexcept -> std::string {
-		auto downloadInProgressDialog = new Dialog("Downloading plugin index, please wait.");
-		GetUI()->Push(downloadInProgressDialog);
+		auto downloadInProgressDialog = new DialogPanel("Downloading plugin index, please wait.");
+		GetUI().Push(downloadInProgressDialog);
 		if(!Plugins::Download(plugin_list_url, Files::Config() / "plugins.json"))
 		{
-			GetUI()->Pop(GetUI()->Top().get());
-			GetUI()->Push(new Dialog(this, &PreferencesPanel::ProcessPluginIndex,
+			GetUI().Pop(GetUI().Top().get());
+			GetUI().Push(new DialogPanel(this, &PreferencesPanel::ProcessPluginIndex,
 				"The plugin index failed to download. Would you like to try again?"));
 			return "";
 		}
@@ -1864,8 +1865,8 @@ void PreferencesPanel::ProcessPluginIndex()
 		Plugins::LoadAvailablePlugins(queue, Files::Config() / "plugins.json");
 
 		downloadedPluginIndex = true;
-		if(GetUI()->Top().get() == downloadInProgressDialog)
-			GetUI()->Pop(downloadInProgressDialog);
+		if(GetUI().Top().get() == downloadInProgressDialog)
+			GetUI().Pop(downloadInProgressDialog);
 
 		return "";
 	}));
@@ -1966,7 +1967,7 @@ void PreferencesPanel::DeletePlugin()
 		if(message.empty())
 			Plugins::Save();
 		else
-			GetUI()->Push(new Dialog(message));
+			GetUI().Push(new DialogPanel(message));
 		selectedPlugin = GetPluginNameByIndex(selected);
 	}
 }

@@ -220,6 +220,40 @@ color "wormholes: beyond Patir" .19 .27 .69
 color "plugin reload required" .75 .1 .1
 color "plugin outdated" .75 .75 .5
 
+interface "performance info"
+	anchor top left
+	fill
+		from 400 5 to 560 55
+		color "panel background"
+	visible if "ready"
+	string "cpu"
+		from 410 16
+		color "medium"
+		align left
+	string "gpu"
+		from 410 30
+		color "medium"
+		align left
+	string "mem"
+		from 410 44
+		color "medium"
+		align left
+	visible if "!ready"
+	label "CPU: calculating..."
+		from 410 16
+		color "medium"
+		align left
+	label "GPU: calculating..."
+		from 410 30
+		color "medium"
+		align left
+	label "MEM: calculating..."
+		from 410 44
+		color "medium"
+		align left
+
+
+
 interface "map detail panel"
 	value "min planet panel height" 195
 	value "max planet panel height" 2022
@@ -280,8 +314,12 @@ interface "main menu"
 	button e "_Enter Ship"
 		center 435 155
 		dimensions 90 30
-	visible if "!pilot loaded"
+	visible if "no pilot loaded"
 	button n "_New Pilot"
+		center 435 155
+		dimensions 90 30
+	visible if "pilot dead"
+	button r "_Reload Pilot"
 		center 435 155
 		dimensions 90 30
 	

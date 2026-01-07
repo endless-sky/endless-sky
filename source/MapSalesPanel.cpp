@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryList.h"
 #include "CategoryType.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -123,7 +123,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		ScrollTo(selected);
 	}
 	else if(key == 'f')
-		GetUI()->Push(new Dialog(
+		GetUI().Push(new DialogPanel(
 			this, &MapSalesPanel::DoFind, "Search for:"));
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);

@@ -11,6 +11,69 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+phrase "ship bribe rejection navy"
+	word
+		"It is too late: "
+		"Your attempt is futile; "
+	word
+		"we are too honorable to accept this from an enemy."
+		"we value honor over greed."
+		"we will not be swayed so easily."
+
+phrase "ship bribe rejection navy"
+	word
+		"I do not want your money."
+		"United, humanity stands. I cannot take your money."
+		"We want you, not your money, to join the Navy."
+		"Peace among the stars, except for enemies of the Republic."
+
+phrase "ship bribe rejection"
+	word
+		"We're "
+	word
+		"fighting a"
+		"in a"
+		"in the middle of a"
+		"trying to win a"
+		"winning a"
+	word
+		" "
+	word
+		"battle"
+		"conflict"
+		"engagement"
+		"war"
+	word
+		" "
+	word
+		"here!"
+		"right now!"
+	word
+		" We don't have time for this!"
+	replace
+		"a e" "an e"
+
+phrase "ship bribe rejection"
+	word
+		"Stop being a distraction!"
+		"I can't stand chatty enemies!"
+		"Do you think I understand that?"
+		"I can't do math in the middle of a fight!"
+
+phrase "ship bribe rejection"
+	word
+		"You want "
+	word
+		"a truce"
+		"peace"
+		"to stop fighting"
+	word
+		"?"
+	word
+		"" 9
+		" Shoulda thought of that before you attacked us!"
+
 phrase "band"
 	word
 		"There Might Be Riots"
@@ -4580,6 +4643,14 @@ phrase "friendly free worlds"
 		"friendly free worlds 8"
 		"friendly free worlds 9"
 		"friendly free worlds 10"
+
+phrase "ship bribe acceptance pirate"
+	word
+		"Something is strange - now I don't feel like killing you!"
+		"Thanks for the patronage!"
+		"Can I keep blowing up your ships? Alright, nevermind."
+		"Glad I got what's due to me."
+		"Another step towards anarchy!"
 
 phrase "friendly pirate"
 	word
