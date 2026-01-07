@@ -54,8 +54,7 @@ void NPCAction::Load(const DataNode &node, const ConditionsStore *playerConditio
 		}
 		else if(key == "triggered")
 		{
-			child.PrintTrace(std::format("Deprecated use of \"triggered\". Use \"result {}\" instead.",
-					(ActionResult::TRIGGERED | ActionResult::BLOCKING)));
+			child.PrintTrace("Deprecated use of \"triggered\".");
 			result = ActionResult::TRIGGERED | ActionResult::BLOCKING;
 		}
 		else
