@@ -527,15 +527,24 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			if(!hasOutfits)
 			{
 				outfits.clear();
+				spawnOutfits.clear();
 				hasOutfits = true;
 			}
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				if(count > 0)
-					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
-				else
+				int spawnedCount = (grand.Size() >= 3) ? grand.Value(2) : count;
+				if(count != spawnedCount)
+					hasSpawnOutfits = true;
+				if(count < 0 || spawnedCount < 0)
 					grand.PrintTrace("Skipping invalid outfit count:");
+				else
+				{
+					if(count > 0)
+						outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+					if(spawnedCount > 0)
+						spawnOutfits[GameData::Outfits().Get(grand.Token(0))] += spawnedCount;
+				}
 			}
 
 			// Verify we have at least as many installed outfits as were identified as "equipped."
@@ -665,7 +674,10 @@ void Ship::FinishLoading(bool isNewInstance)
 			finalExplosions = base->finalExplosions;
 		const bool inheritsOutfits = outfits.empty();
 		if(inheritsOutfits)
+		{
 			outfits = base->outfits;
+			spawnOutfits = base->spawnOutfits;
+		}
 		if(description.IsEmpty())
 			description = base->description;
 
@@ -3622,6 +3634,17 @@ const Outfit &Ship::BaseAttributes() const
 const map<const Outfit *, int> &Ship::Outfits() const
 {
 	return outfits;
+}
+
+
+
+void Ship::UseSpawnOutfits()
+{
+	if(hasSpawnOutfits)
+	{
+		outfits = spawnOutfits;
+		FinishLoading(true);
+	}
 }
 
 

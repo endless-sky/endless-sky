@@ -3733,6 +3733,7 @@ ship "Sparrow"
 			"hit force" 240
 	outfits
 		"Beam Laser" 2
+		"Energy Blaster" 0 5
 		
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"

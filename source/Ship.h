@@ -484,6 +484,8 @@ public:
 	const Outfit &BaseAttributes() const;
 	// Get the list of all outfits installed in this ship.
 	const std::map<const Outfit *, int> &Outfits() const;
+	// Make this ship use its spawned outfit list instead of its regular one.
+	void UseSpawnOutfits();
 	// Find out how many outfits of the given type this ship contains.
 	int OutfitCount(const Outfit *outfit) const;
 	// Add or remove outfits. (To remove, pass a negative number.)
@@ -673,6 +675,8 @@ private:
 	bool addAttributes = false;
 	const Weapon *explosionWeapon = nullptr;
 	std::map<const Outfit *, int> outfits;
+	std::map<const Outfit *, int> spawnOutfits;
+	bool hasSpawnOutfits = false;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
 	std::list<std::pair<std::shared_ptr<Flotsam>, size_t>> jettisonedFromBay;
