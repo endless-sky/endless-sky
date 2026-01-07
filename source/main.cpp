@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "Files.h"
 #include "text/Font.h"
-#include "text/FontSet.h"
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -66,10 +65,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 #ifdef _WIN32
-#define STRICT
 #define WIN32_LEAN_AND_MEAN
 #define NOGDI
 #include <windows.h>
+#undef ERROR
 
 #define PSAPI_VERSION 1
 #include <processthreadsapi.h>
