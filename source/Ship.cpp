@@ -737,7 +737,7 @@ void Ship::FinishLoading(bool isNewInstance, bool checkSpawnOutfits)
 		baseAttributes.Set("automaton", 1.);
 
 	const auto &bayCategories = GameData::GetCategory(CategoryType::BAY);
-	canBeCarried = bayCategories.Contains(attributes.Category());
+	canBeCarried = bayCategories.Contains(baseAttributes.Category());
 
 	baseAttributes.Set("gun ports", armament.GunCount());
 	baseAttributes.Set("turret mounts", armament.TurretCount());
@@ -833,7 +833,7 @@ void Ship::FinishLoading(bool isNewInstance, bool checkSpawnOutfits)
 			{
 				message = variantName.empty() ? "Stock ship \"" + trueModelName + "\": "
 					: trueModelName + " variant \"" + variantName;
-				message += onSpawn +  + "\": ";
+				message += onSpawn + "\": ";
 				message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
 			}
 
