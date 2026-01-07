@@ -120,7 +120,7 @@ protected:
 	// This class is also used for plugins which are not yet installed and or can be updated.
 	bool installed = true;
 	bool outdated = false;
-	std::string installedVersion = "???";
+	std::string installedVersion; // Not set by default; Only used in available plugin data
 
 	// Whether this plugin is in use, i.e. if it was loaded by the game on this start-up.
 	bool inUse = true;

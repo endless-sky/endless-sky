@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-// TODO: fix the .Find then .Get by using .Has
-// TODO: the download in progress dialog, if closed, closes prefs -- off by one layer
+// TODO: we don't do anything about a zip that won't load -- no notification to the user in the plugins panel.
 
 #include "PreferencesPanel.h"
 
@@ -1218,8 +1217,6 @@ void PreferencesPanel::DrawSettings()
 
 void PreferencesPanel::DrawPlugins()
 {
-	// TODO: allow for controlling relative load order. (big ticket, essential)
-	// TODO: we don't do anything about a zip that won't load -- no notification to the user in the plugins panel.
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -1852,8 +1849,10 @@ void PreferencesPanel::ProcessPluginIndex()
 		}
 	}
 
+	// TODO: The first dialog will be closed automatically, and if closed early, we will pop too soon.
 	installFeedbacks.emplace_back(async(launch::async, [&]() noexcept -> std::string {
-		GetUI()->Push(new Dialog("Downloading plugin index, please wait."));
+		auto downloadInProgressDialog = new Dialog("Downloading plugin index, please wait.");
+		GetUI()->Push(downloadInProgressDialog);
 		if(!Plugins::Download(plugin_list_url, Files::Config() / "plugins.json"))
 		{
 			GetUI()->Pop(GetUI()->Top().get());
@@ -1865,7 +1864,8 @@ void PreferencesPanel::ProcessPluginIndex()
 		Plugins::LoadAvailablePlugins(queue, Files::Config() / "plugins.json");
 
 		downloadedPluginIndex = true;
-		GetUI()->Pop(GetUI()->Top().get());
+		if(GetUI()->Top().get() == downloadInProgressDialog)
+			GetUI()->Pop(downloadInProgressDialog);
 
 		return "";
 	}));
