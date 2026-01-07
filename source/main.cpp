@@ -69,6 +69,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #define NOGDI
 #include <windows.h>
 #undef ERROR
+#undef NORMAL
+#undef PlaySound
 
 #define PSAPI_VERSION 1
 #include <processthreadsapi.h>

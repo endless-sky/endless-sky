@@ -778,8 +778,6 @@ bool Plugins::Download(const std::string &url, const std::string &location)
 	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 	// Follow redirects.
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1l);
-	// How long certificates are cached.
-	curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
 	// What is the maximum filesize in bytes.
 	curl_easy_setopt(curl, CURLOPT_MAXFILESIZE, MAX_DOWNLOAD_SIZE);
 	// Set the write function and the output file used in the write function.
