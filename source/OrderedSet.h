@@ -65,15 +65,21 @@ public:
 		std::vector<std::string>::iterator orderIter;
 	};
 
+
+
 	OrderedSetIterator begin()
 	{
 		return OrderedSetIterator(this, order.begin());
 	}
 
+
+
 	OrderedSetIterator end()
 	{
 		return OrderedSetIterator(this, order.end());
 	}
+
+
 
 	Type *Get(const std::string &name)
 	{
@@ -86,10 +92,14 @@ public:
 		return retVal;
 	}
 
+
+
 	const Type *Get(const std::string &name) const
 	{
 		return Set<Type>::Get(name);
 	}
+
+
 
 	void Remove(const std::string &name)
 	{
@@ -99,12 +109,22 @@ public:
 			order.erase(it);
 	}
 
+
+
 	void Sort()
 	{
 		std::sort(order.begin(), order.end());
 	}
 
-	// TODO: provide mechanisms for moving elements of the vector around
+
+
+	// Same as std::swap except with bounds clamping.
+	void Swap(int index, int otherIndex)
+	{
+		index = std::clamp(index, 0, static_cast<int>(order.size()) - 1);
+		otherIndex = std::clamp(otherIndex, 0, static_cast<int>(order.size()) - 1);
+		std::swap(order[index], order[otherIndex]);
+	}
 
 
 

@@ -163,8 +163,8 @@ public:
 	// Returns the list of plugins that have been identified by the game.
 	static LockedSet<OrderedSet, Plugin> GetPluginsLocked();
 
-	// Maintain plugin load order.
-	static void GetPluginsLoadOrder(); // TODO: needed? should be in get plugins locked.
+	// Re-order the installed plugins list by moving the Plugin at index `index` by `offset` (positive toward back).
+	static int Move(int index, int offset);
 
 	// Toggles enabling or disabling a plugin for the next game restart.
 	static void TogglePlugin(const std::string &name);

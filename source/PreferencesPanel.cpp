@@ -274,10 +274,8 @@ void PreferencesPanel::Step()
 					Plugins::Save();
 				else if(page == LIBRARY)
 				{
-					// Draw has not been called yet, so we cannot use the pluginZones to determine what to select.
-					// Also, we might just now have downloaded the index for the available plugins.
+					// After downloading the list, we will need to update the name of the selectedPlugin and redraw.
 					selectedPlugin = GetPluginNameByIndex(selected);
-					// Do the same draw stuff as with a Resize event.
 					Resize();
 				}
 			}
@@ -307,9 +305,9 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 
 	if(key == SDLK_DOWN)
-		HandleDown();
+		HandleDown(mod);
 	else if(key == SDLK_UP)
-		HandleUp();
+		HandleUp(mod);
 	else if(key == SDLK_RETURN || ((key == 'i' || key == 'u') && page == LIBRARY))
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
@@ -1229,6 +1227,8 @@ void PreferencesPanel::DrawPlugins()
 	const Interface *pluginUI = GameData::Interfaces().Get("plugins");
 
 	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
+	const Sprite *spriteDown = SpriteSet::Get("ui/sort descending");
+	const Sprite *spriteUp = SpriteSet::Get("ui/sort ascending");
 
 	// Animate scrolling.
 	pluginListScroll.Step();
@@ -1241,7 +1241,7 @@ void PreferencesPanel::DrawPlugins()
 	Table table;
 	table.AddColumn(
 		pluginListClip->Left() + 20,
-		Layout(pluginListBox.Width() - 20, Truncate::MIDDLE)
+		Layout(pluginListBox.Width() - 60, Truncate::MIDDLE)
 	);
 	table.SetUnderline(pluginListClip->Left() + 20, pluginListClip->Right());
 
@@ -1250,6 +1250,7 @@ void PreferencesPanel::DrawPlugins()
 
 	auto iPlugins = Plugins::GetPluginsLocked();
 	pluginListScroll.SetMaxValue(iPlugins->size() * 20);
+	int i = 0;
 	for(const auto &it : *iPlugins)
 	{
 		const auto &plugin = it.second;
@@ -1258,25 +1259,34 @@ void PreferencesPanel::DrawPlugins()
 
 		pluginZones.emplace_back(pluginListBox.Center() + table.GetCenterPoint(), table.GetRowSize(), plugin.name);
 
+		Point corner;
+		Rectangle boundsUp;
+		Rectangle boundsDown;
 		bool isSelected = (plugin.name == selectedPlugin);
 		if(isSelected || plugin.name == hoverItem)
+		{
 			table.DrawHighlight(back);
+
+			// For the selected Plugin, draw the sprites for the Up/Down buttons for re-ordering the Plugin load order.
+			corner = table.GetRowBounds().TopRight() - Point(40., 0.);
+			boundsUp = Rectangle::FromCorner(corner, Point(20., 20.));
+			SpriteShader::Draw(spriteUp, boundsUp.Center());
+
+			corner = table.GetRowBounds().TopRight() - Point(20., 0.);
+			boundsDown = Rectangle::FromCorner(corner, Point(20., 20.));
+			SpriteShader::Draw(spriteDown, boundsDown.Center());
+		}
 
 		const Sprite *sprite = plugin.removed ? (plugin.inUse ? SpriteSet::Get("ui/error") : box[0]) :
 			box[plugin.desiredState];
 		// Draw the sprite. Not all these sprites are 20x20, but we will center them all as if they were.
-		const Point topLeft = table.GetRowBounds().TopLeft() - Point(20., 0.);
-		Rectangle spriteBounds = Rectangle::FromCorner(topLeft, Point(20., 20.));
+		corner = table.GetRowBounds().TopLeft() - Point(20., 0.);
+		Rectangle spriteBounds = Rectangle::FromCorner(corner, Point(20., 20.));
 		SpriteShader::Draw(sprite, spriteBounds.Center());
 
 		// Only include the zone as clickable if it's within the drawing area.
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
-		if(displayed)
-		{
-			Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
-			AddZone(zoneBounds, [name = plugin.name](){ Plugins::TogglePlugin(name); });
-		}
 
 		if(plugin.HasChanged())
 		{
@@ -1287,6 +1297,19 @@ void PreferencesPanel::DrawPlugins()
 		}
 		else
 			table.Draw(plugin.name, isSelected ? bright : medium);
+
+		if(displayed)
+		{
+			Rectangle zoneBounds = spriteBounds + pluginListBox.Center();
+			AddZone(zoneBounds, [name = plugin.name](){ Plugins::TogglePlugin(name); });
+			if(isSelected || plugin.name == hoverItem)
+			{
+				AddZone(boundsUp + pluginListBox.Center(), [this, i] { selected = Plugins::Move(i, -1); });
+				AddZone(boundsDown + pluginListBox.Center(), [this, i] { selected = Plugins::Move(i, 1); });
+			}
+		}
+
+		++i;
 	}
 
 	// Switch back to normal opengl operations.
@@ -1736,28 +1759,33 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 
 
 
-void PreferencesPanel::HandleUp()
+void PreferencesPanel::HandleUp(Uint16 mod)
 {
-	selected = max(0, selected - 1);
 	switch(page)
 	{
 	case SETTINGS:
+		selected = max(0, selected - 1);
 		selectedItem = prefZones.at(selected).Value();
 		break;
 	case PLUGINS:
 	case LIBRARY:
-		selectedPlugin = pluginZones.at(selected).Value();
+		if(mod & KMOD_SHIFT)
+			selected = Plugins::Move(selected, -1);
+		else
+			selected = max(0, selected - 1);
+		selectedPlugin = GetPluginNameByIndex(selected);
 		RenderPluginDescription();
 		ScrollSelectedPlugin();
 		break;
 	default:
+		selected = max(0, selected - 1);
 		break;
 	}
 }
 
 
 
-void PreferencesPanel::HandleDown()
+void PreferencesPanel::HandleDown(Uint16 mod)
 {
 	switch(page)
 	{
@@ -1771,8 +1799,11 @@ void PreferencesPanel::HandleDown()
 		break;
 	case PLUGINS:
 	case LIBRARY:
-		selected = min(selected + 1, static_cast<int>(pluginZones.size() - 1));
-		selectedPlugin = pluginZones.at(selected).Value();
+		if(mod & KMOD_SHIFT)
+			selected = Plugins::Move(selected, 1);
+		else
+			selected = min(selected + 1, static_cast<int>(pluginZones.size() - 1));
+		selectedPlugin = GetPluginNameByIndex(selected);
 		RenderPluginDescription();
 		ScrollSelectedPlugin();
 		break;

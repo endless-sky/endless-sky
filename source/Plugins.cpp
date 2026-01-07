@@ -577,6 +577,18 @@ LockedSet<OrderedSet, Plugin> Plugins::GetPluginsLocked()
 
 
 
+// Negative to move toward list start, positive toward end, returns new index;
+int Plugins::Move(int index, int offset)
+{
+	auto iPlugins = GetPluginsLocked();
+	int otherIndex = std::clamp(index + offset, 0, iPlugins->size() - 1);
+	iPlugins->Swap(index, otherIndex);
+	Logger::Log("index now = " + to_string(index) + ", otherIndex = " + to_string(otherIndex), Logger::Level::INFO);
+	return otherIndex;
+}
+
+
+
 // Toggles enabling or disabling a plugin for the next game restart.
 void Plugins::TogglePlugin(const string &name)
 {

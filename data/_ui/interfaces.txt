@@ -877,8 +877,8 @@ interface "plugins"
 	sprite "ui/keys panel sidebox"
 		center -350 102
 	label "Key"
-		from -285 34
-	 	align top left
+		from -285 40
+		align bottom center
 		color bright
 	fill
 		from -420 41 to -270 42
@@ -972,8 +972,8 @@ interface "install plugins"
 	sprite "ui/keys panel sidebox"
 		center -350 102
 	label "Key"
-		from -285 34
-	 	align top left
+		from -285 40
+		align bottom center
 		color bright
 	fill
 		from -420 41 to -270 42

@@ -78,8 +78,8 @@ private:
 
 	void HandleSettingsString(const std::string &str, Point cursorPosition);
 
-	void HandleUp();
-	void HandleDown();
+	void HandleUp(Uint16 mod);
+	void HandleDown(Uint16 mod);
 	void HandleConfirm();
 
 	void ProcessPluginIndex();
