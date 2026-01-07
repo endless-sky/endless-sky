@@ -85,13 +85,13 @@ const Command Command::HOLD_POSITION(ONE << 34, "Fleet: Hold position");
 const Command Command::HARVEST(ONE << 35, "Fleet: Harvest flotsam");
 const Command Command::AMMO(ONE << 36, "Fleet: Toggle ammo usage");
 const Command Command::AUTOSTEER(ONE << 37, "Auto steer");
+const Command Command::SHIFT(ONE << 38, "Secondary action");
 
 // These commands are not in the preferences panel, and do not have keys
 // assigned to them, but may have descriptions as needed to facilitate
 // assignments in downstream ports like endless-mobile.
-const Command Command::WAIT(ONE << 38, "");
-const Command Command::STOP(ONE << 39, "Stop your ship");
-const Command Command::SHIFT(ONE << 40, "");
+const Command Command::WAIT(ONE << 39, "");
+const Command Command::STOP(ONE << 40, "Stop your ship");
 
 
 
@@ -130,10 +130,6 @@ void Command::ReadKeyboard()
 	for(const auto &it : keycodeForCommand)
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
 			*this |= it.first;
-
-	// Check whether the `Shift` modifier key was pressed for this step.
-	if(SDL_GetModState() & KMOD_SHIFT)
-		*this |= SHIFT;
 }
 
 
