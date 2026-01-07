@@ -51,7 +51,7 @@ public:
 	// Perform this action.
 	int Do(PlayerInfo &player, UI &ui, const Mission *caller, const std::shared_ptr<Ship> &target);
 
-	// Sets the action result to Blocked if it is not currently set. 
+	// Sets the action result to Blocked if it is not currently set.
 	void TryBlock();
 
 	// "Instantiate" this action by filling in the wildcard text for the actual

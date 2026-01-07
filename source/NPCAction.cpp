@@ -54,7 +54,8 @@ void NPCAction::Load(const DataNode &node, const ConditionsStore *playerConditio
 		}
 		else if(key == "triggered")
 		{
-			child.PrintTrace(std::format("Deprecated use of \"triggered\". Use \"result {}\" instead.", (ActionResult::TRIGGERED | ActionResult::BLOCKING)));
+			child.PrintTrace(std::format("Deprecated use of \"triggered\". Use \"result {}\" instead.",
+					(ActionResult::TRIGGERED | ActionResult::BLOCKING)));
 			result = ActionResult::TRIGGERED | ActionResult::BLOCKING;
 		}
 		else
@@ -96,7 +97,6 @@ int NPCAction::Do(PlayerInfo &player, UI &ui, const Mission *caller, const share
 	// will replay that result so that other actions can react correctly.
 	if(result == ActionResult::NONE)
 		result = action.Do(player, &ui, caller, nullptr, target);
-	
 	return result;
 }
 
