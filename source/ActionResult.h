@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 /// <summary>
-/// Record of the state of an action after use 
+/// Record of the state of an action after use
 /// (such as whether it was triggered and whether it will block other actions.)
 /// </summary>
 class ActionResult {
