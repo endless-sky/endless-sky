@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
+#include "Endpoint.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -255,7 +256,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
 	{
 		sound = UI::UISound::NONE;
-		GetUI()->Push(new MapDetailPanel(player, system, true));
+		GetUI().Push(new MapDetailPanel(player, system, true));
 	}
 	if(node < 0)
 	{
@@ -466,7 +467,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	// This is a safeguard in case of logic errors, to ensure we don't set the player name.
 	if(choices.empty() && conversation.Choices(node) != 0)
 	{
-		node = Conversation::DECLINE;
+		node = Endpoint::DECLINE;
 	}
 	this->choice = 0;
 }
@@ -480,24 +481,24 @@ void ConversationPanel::Exit()
 	if(useTransactions)
 		player.FinishTransaction();
 
-	GetUI()->Pop(this);
+	GetUI().Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC
 	// block (e.g. scanning or boarding or killing all required targets).
-	if(node == Conversation::DIE || node == Conversation::EXPLODE)
+	if(node == Endpoint::DIE || node == Endpoint::EXPLODE)
 		player.Die(node, ship);
 	else if(ship)
 	{
 		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
-		if(Conversation::RequiresLaunch(node))
+		if(Endpoint::RequiresLaunch(node))
 			ship->Destroy();
 		// Only show the BoardingPanel for a hostile NPC that is being boarded.
 		// (NPC completion conversations can result from non-boarding events.)
 		// TODO: Is there a better / more robust boarding check than relative position?
-		else if((node != Conversation::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
+		else if((node != Endpoint::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
 				&& !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
-			GetUI()->Push(new BoardingPanel(player, ship));
+			GetUI().Push(new BoardingPanel(player, ship));
 	}
 	// Call the exit response handler to manage the conversation's effect
 	// on the player's missions, or force takeoff from a planet.
