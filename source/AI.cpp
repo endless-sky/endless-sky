@@ -391,7 +391,7 @@ namespace {
 	// If they are within sqrt(SCATTER_TRACK) units of one another, they should keep track of one
 	// another in case they become too close.
 	constexpr double SCATTER_TOO_CLOSE = 20. * 20.;
-	constexpr double SCATTER_TRACK = 250. * 250.;
+	constexpr double SCATTER_TRACK = 100. * 100.;
 }
 
 
@@ -718,8 +718,12 @@ void AI::Step(Command &activeCommands)
 			positionerIt.second.Step();
 
 	const Ship *flagship = player.Flagship();
-	step = (step + 1) & 31;
+	// Step increments from 0 to 59.
+	step = (step + 1) % 60;
+	// Targeting occurs twice per second, so it must compare against 0 to 29.
+	int targetStep = step % 30;
 	int targetTurn = 0;
+	// Scatter recalculations occur once per second, so it can compare against the full step counter.
 	int scatterTurn = 0;
 	int minerCount = 0;
 	const int maxMinerCount = minables.empty() ? 0 : 9;
@@ -842,8 +846,8 @@ void AI::Step(Command &activeCommands)
 		{
 			// Each ship only switches targets twice a second, so that it can
 			// focus on damaging one particular ship.
-			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == step || !target || target->IsDestroyed() || (target->IsDisabled() &&
+			targetTurn = (targetTurn + 1) % 30;
+			if(targetTurn == targetStep || !target || target->IsDestroyed() || (target->IsDisabled() &&
 					(personality.Disables() || (!FighterHitHelper::IsValidTarget(target.get()) && !personality.IsVindictive())))
 					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
@@ -1234,9 +1238,9 @@ void AI::Step(Command &activeCommands)
 			MoveEscort(*it, command);
 
 		// Force ships that are overlapping each other to "scatter".
-		// Twice per second they check which ships they are close to and might need to scatter away from,
+		// Once per second they check which ships they are close to and might need to scatter away from,
 		// as ships that were close to each other recently are likely to still be close to each other now.
-		scatterTurn = (scatterTurn + 1) & 31;
+		scatterTurn = (scatterTurn + 1) % 60;
 		DoScatter(*it, command, scatterTurn == step);
 
 		it->SetCommands(command);
@@ -3527,7 +3531,7 @@ void AI::DoScatter(const Ship &ship, Command &command, bool recheckCloseShips)
 	if(!command.Has(Command::FORWARD) && !command.Has(Command::BACK))
 		return;
 
-	set<const Ship *> close = closeBy[&ship];
+	auto &close = closeBy[&ship];
 	if(recheckCloseShips)
 	{
 		close.clear();
@@ -3542,16 +3546,16 @@ void AI::DoScatter(const Ship &ship, Command &command, bool recheckCloseShips)
 			Point offset = other->Position() - ship.Position();
 			if(offset.LengthSquared() > SCATTER_TRACK)
 				continue;
-			close.insert(other.get());
+			close.insert(other);
 		}
 	}
 
+	double flip = command.Has(Command::BACK) ? -1 : 1;
 	double turnRate = ship.TurnRate();
 	double acceleration = ship.Acceleration();
-	double flip = command.Has(Command::BACK) ? -1 : 1;
 	for(auto it = close.begin(); it != close.end(); )
 	{
-		const Ship *other = *it;
+		shared_ptr<const Ship> other = it->lock();
 		// Ensure that this ship is still valid and in the same system.
 		if(!other || other->GetSystem() != ship.GetSystem())
 		{
@@ -3579,11 +3583,11 @@ void AI::DoScatter(const Ship &ship, Command &command, bool recheckCloseShips)
 			it = close.erase(it);
 		}
 		// We are too close to this ship. Turn away from it if we aren't already facing away.
-		else if(fabs(other->Facing().Unit().Dot(ship.Facing().Unit())) > 0.96) // 0.96 => 16 degrees
+		else if(fabs(other->Facing().Unit().Dot(ship.Facing().Unit())) > 0.99) // 0.99 => 8 degrees
 		{
 			command.SetTurn(flip * offset.Cross(ship.Facing().Unit()) > 0. ? 1. : -1.);
 			// The other ship should also know to turn away from this one.
-			closeBy[other].insert(&ship);
+			closeBy[other.get()].insert(ship.shared_from_this());
 			return;
 		}
 		else
