@@ -156,7 +156,7 @@ public:
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
-	void FinishLoading(bool isNewInstance);
+	void FinishLoading(bool isNewInstance, bool checkSpawnOutfits = false);
 	// Check that this ship model and all its outfits have been loaded.
 	bool IsValid() const;
 	// Save a full description of this ship, as currently configured.
@@ -689,6 +689,7 @@ private:
 	std::vector<EnginePoint> reverseEnginePoints;
 	std::vector<EnginePoint> steeringEnginePoints;
 	Armament armament;
+	Armament spawnArmament;
 
 	// Various energy levels:
 	double shields = 0.;
