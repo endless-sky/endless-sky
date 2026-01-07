@@ -757,20 +757,20 @@ string Plugins::DeletePlugin(const std::string &name)
 
 
 
-bool Plugins::Download(const std::string &url, const std::string &location)
+bool Plugins::Download(const std::string &url, const std::filesystem::path &location)
 {
 	CURL *curl = curl_easy_init();
 	if(!curl)
 		return false;
 #if defined _WIN32
 	FILE *out = nullptr;
-	_wfopen_s(&out, Utf8::ToUTF16(location).c_str(), L"wb");
+	_wfopen_s(&out, Utf8::ToUTF16(location.string()).c_str(), L"wb");
 #else
 	FILE *out = fopen(location.c_str(), "wb");
 #endif
 	if(!out)
 	{
-		Logger::Log("Unable to write to " + location, Logger::Level::ERROR);
+		Logger::Log("Unable to write to " + location.string(), Logger::Level::ERROR);
 		return false;
 	}
 

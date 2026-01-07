@@ -173,7 +173,7 @@ public:
 	static std::future<std::string> InstallOrUpdate(const std::string &name);
 	static std::string DeletePlugin(const std::string &name);
 
-	static bool Download(const std::string &url, const std::string &location);
+	static bool Download(const std::string &url, const std::filesystem::path &location);
 
 private:
 	// Maintain the order which plugins are loaded in.

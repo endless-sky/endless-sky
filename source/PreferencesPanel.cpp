@@ -1837,7 +1837,7 @@ void PreferencesPanel::HandleConfirm()
 
 void PreferencesPanel::ProcessPluginIndex()
 {
-	filesystem::path path = Files::Data() / "plugins.txt";
+	filesystem::path path = Files::Data() / "plugins_library.txt";
 	Logger::Log("Parsing: " + path.string(), Logger::Level::INFO);
 	DataFile data(path);
 	for(const DataNode &node : data)
