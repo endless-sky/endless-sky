@@ -2297,6 +2297,69 @@ interface "map"
 
 
 
+interface "map: mission view: key"
+	anchor bottom left
+	sprite "ui/mission key"
+		align bottom left
+		from 0 0
+	pointer
+		align left
+		center 15 -90
+		dimensions 10 18
+		"orientation angle" 135
+		color "available job"
+	label "Available job; can accept"
+		align bottom left
+		from 18 -87
+		color dim
+		color bright if available
+	pointer
+		align left
+		center 15 -70
+		dimensions 10 18
+		"orientation angle" 135
+		color "unavailable job"
+	label "Too little space to accept"
+		align bottom left
+		from 18 -67
+		color dim
+		color bright if unavailable
+	pointer
+		align left
+		center 15 -50
+		dimensions 10 18
+		"orientation angle" 135
+		color "active mission"
+	label "Active job; go here to complete"
+		align bottom left
+		from 18 -47
+		color dim
+		color bright if active
+	pointer
+		align left
+		center 15 -30
+		dimensions 10 18
+		"orientation angle" 135
+		color "blocked mission"
+	label "Has unfinished requirements"
+		align bottom left
+		from 18 -27
+		color dim
+		color bright if blocked
+	pointer
+		align left
+		center 15 -10
+		dimensions 10 18
+		"orientation angle" 135
+		color "waypoint"
+	label "System of importance"
+		align bottom left
+		from 18 -7
+		color dim
+		color bright if waypoint
+
+
+
 interface "info panel"
 	sprite "ui/info panel"
 		center 0 -5
