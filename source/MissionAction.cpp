@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MissionAction.h"
 
+#include "ActionResult.h"
 #include "CargoHold.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
@@ -312,13 +313,13 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 
 
 
-bool MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
+int MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
 	// Verify that the required conditions are present.
 	// Since CanBeDone is not called by NPCAction, this is the earliest that toTrigger can be tested.
 	if(!toTrigger.IsEmpty() && !toTrigger.Test())
-		return false;
+		return ActionResult::NONE;
 	if(ui)
 	{
 		bool isOffer = (trigger == "offer");
@@ -357,7 +358,7 @@ bool MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	}
 
 	action.Do(player, ui, caller);
-	return blocking;
+	return ActionResult::TRIGGERED | (blocking ? ActionResult::BLOCKING : 0);
 }
 
 

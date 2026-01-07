@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "NPC.h"
 
+#include "ActionResult.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -811,7 +812,10 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		{
 			for(auto &action : it->second)
 			{
-				action.Do(player, ui, caller, event.Target());
+				const auto result = action.Do(player, ui, caller, event.Target());
+				if(result & ActionResult::BLOCKING)
+					for(auto &other : it->second)
+						other.TryBlock();
 			}
 		}
 	}

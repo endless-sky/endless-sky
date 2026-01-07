@@ -49,7 +49,10 @@ public:
 	std::string Validate() const;
 
 	// Perform this action.
-	void Do(PlayerInfo &player, UI &ui, const Mission *caller, const std::shared_ptr<Ship> &target);
+	int Do(PlayerInfo &player, UI &ui, const Mission *caller, const std::shared_ptr<Ship> &target);
+
+	// Sets the action result to Blocked if it is not currently set. 
+	void TryBlock();
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
@@ -59,7 +62,7 @@ public:
 
 private:
 	std::string trigger;
-	bool triggered = false;
+	int result = 0;
 
 	// Tasks this NPC action performs, such as modifying accounts, inventory, or conditions.
 	MissionAction action;

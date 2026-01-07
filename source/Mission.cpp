@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Mission.h"
 
+#include "ActionResult.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "DialogPanel.h"
@@ -1344,8 +1345,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	{
 		for(const auto &action : it->second)
 		{
-			if(action.Do(player, ui, this, (destination && isVisible) ? destination->GetSystem() : nullptr,
-				boardingShip, IsUnique()))
+			const auto result = action.Do(player, ui, this, (destination && isVisible) ? destination->GetSystem() : nullptr,
+				boardingShip, IsUnique());
+			if((result & ActionResult::BLOCKING))
 			{
 				break;
 			}
@@ -1840,30 +1842,39 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 {
 	const auto eit = onEnter.find(system);
 	const auto originalSize = didEnter.size();
-	auto anyMatchingEnter = false;
+	auto blocked = false;
 	if(eit != onEnter.end())
 	{
 		for(const auto &action : eit->second)
 		{
 			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed()))
 			{
-				if(action.Do(player, &ui, this))
+				const auto result = action.Do(player, &ui, this);
+				if(result & ActionResult::TRIGGERED)
 				{
-					anyMatchingEnter = true;
 					didEnter.insert(&action);
+					if(result & ActionResult::BLOCKING)
+					{
+						blocked = true;
+						break;
+					}
 				}
 			}
 		}
 	}
 	// If no specific `on enter` was performed, try matching to a generic "on enter,"
 	// which may use a LocationFilter to govern which systems it can be performed in.
-	if(!anyMatchingEnter)
+	if(!blocked)
 		for(MissionAction &action : genericOnEnter)
 			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed()))
 			{
-				action.Do(player, &ui, this);
-				didEnter.insert(&action);
-				break;
+				const auto result = action.Do(player, &ui, this);
+				if(result & ActionResult::TRIGGERED)
+				{
+					didEnter.insert(&action);
+					if(result & ActionResult::BLOCKING)
+						break;
+				}
 			}
 
 	return didEnter.size() > originalSize;
