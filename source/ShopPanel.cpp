@@ -103,32 +103,6 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
-	// Verify that the player's selection is still valid.
-	// A mission action may have taken a ship away from the player,
-	// therefore invalidating its pointer.
-	set<Ship *> shipPtrs;
-	for(const shared_ptr<Ship> &ship : player.Ships())
-		shipPtrs.insert(ship.get());
-	set<Ship *> stillValid;
-	ranges::set_intersection(shipPtrs, playerShips, inserter(stillValid, stillValid.begin()));
-	playerShips = stillValid;
-	if(playerShip && !playerShips.contains(playerShip))
-	{
-		playerShip = nullptr;
-		if(!playerShips.empty())
-			playerShip = *playerShips.begin();
-		else
-		{
-			for(const shared_ptr<Ship> &ship : player.Ships())
-				if(CanShowInSidebar(*ship, player.GetPlanet()))
-				{
-					playerShip = ship.get();
-					playerShips.insert(playerShip);
-					break;
-				}
-		}
-	}
-
 	if(!checkedHelp && GetUI().IsTop(this) && player.Ships().size() > 1)
 	{
 		if(DoHelp("multiple ships"))
@@ -267,6 +241,37 @@ void ShopPanel::CheckForMissions(Mission::Location location) const
 		mission->Do(Mission::OFFER, player, &GetUI());
 	else
 		player.HandleBlockedMissions(location, GetUI());
+}
+
+
+
+void ShopPanel::ValidateSelectedShips()
+{
+	// Verify that the player's selection is still valid.
+	// A mission action may have taken a ship away from the player,
+	// therefore invalidating its pointer.
+	set<Ship *> shipPtrs;
+	for(const shared_ptr<Ship> &ship : player.Ships())
+		shipPtrs.insert(ship.get());
+	set<Ship *> stillValid;
+	ranges::set_intersection(shipPtrs, playerShips, inserter(stillValid, stillValid.begin()));
+	playerShips = stillValid;
+	if(playerShip && !playerShips.contains(playerShip))
+	{
+		playerShip = nullptr;
+		if(!playerShips.empty())
+			playerShip = *playerShips.begin();
+		else
+		{
+			for(const shared_ptr<Ship> &ship : player.Ships())
+				if(CanShowInSidebar(*ship, player.GetPlanet()))
+				{
+					playerShip = ship.get();
+					playerShips.insert(playerShip);
+					break;
+				}
+		}
+	}
 }
 
 
