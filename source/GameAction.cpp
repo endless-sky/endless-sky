@@ -367,7 +367,7 @@ string GameAction::Validate() const
 
 	for(const auto &message : messages)
 		if(!message->IsLoaded())
-			return "message \"" + message->Name() + "\"";
+			return "message \"" + message->TrueName() + "\"";
 
 	return "";
 }

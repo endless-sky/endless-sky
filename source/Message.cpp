@@ -95,7 +95,7 @@ bool Message::Category::IsLoaded() const
 
 
 
-const string &Message::Category::Name() const
+const string &Message::Category::TrueName() const
 {
 	return name;
 }
@@ -220,14 +220,14 @@ void Message::Save(DataWriter &out) const
 		// If we need to save a customized instance of a message, substitutions
 		// should have already been applied, so just write the text.
 		out.Write(isPhrase ? "phrase" : "text", text);
-		out.Write("category", category->Name());
+		out.Write("category", category->TrueName());
 	}
 	out.EndChild();
 }
 
 
 
-const string &Message::Name() const
+const string &Message::TrueName() const
 {
 	return name;
 }
