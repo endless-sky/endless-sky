@@ -241,7 +241,7 @@ void WrappedText::Wrap()
 	while(!done)
 	{
 		char c;
-		char cLast;
+		char cLast = '\0';
 		if(it == text.end())
 		{
 			c = '\n';
