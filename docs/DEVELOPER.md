@@ -51,7 +51,7 @@ Endless Sky requires precompiled libraries to compile and play: [Download link](
 Install [Homebrew](https://brew.sh). Once it is installed, use it to install the tools and libraries you will need:
 
 ```bash
-$ brew install cmake ninja mad libpng jpeg-turbo sdl2 minizip
+$ brew install cmake ninja mad libpng jpeg-turbo sdl2 minizip libavif catch2 flac
 ```
 
 **Note**: If you are on Apple Silicon (and want to compile for ARM), make sure that you are using ARM Homebrew!
