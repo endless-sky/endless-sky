@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
-#include "DataFile.h"
 #include "DialogPanel.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -1837,36 +1836,34 @@ void PreferencesPanel::HandleConfirm()
 
 void PreferencesPanel::ProcessPluginIndex()
 {
-	filesystem::path path = Files::Data() / "plugins_library.txt";
-	Logger::Log("Parsing: " + path.string(), Logger::Level::INFO);
-	DataFile data(path);
-	for(const DataNode &node : data)
-	{
-		const string &key = node.Token(0);
-		if(key == "plugin_list_url" && node.Size() > 1)
-		{
-			// Get the URL from the second token
-			plugin_list_url = node.Token(1);
-		}
-	}
-
-	// TODO: The first dialog will be closed automatically, and if closed early, we will pop too soon.
 	installFeedbacks.emplace_back(async(launch::async, [&]() noexcept -> std::string {
-		auto downloadInProgressDialog = new DialogPanel("Downloading plugin index, please wait.");
-		GetUI().Push(downloadInProgressDialog);
-		if(!Plugins::Download(plugin_list_url, Files::Config() / "plugins.json"))
+		for(auto it: Plugins::GetPluginLibraryUrls())
 		{
-			GetUI().Pop(GetUI().Top().get());
-			GetUI().Push(new DialogPanel(this, &PreferencesPanel::ProcessPluginIndex,
-				"The plugin index failed to download. Would you like to try again?"));
-			return "";
+			if(!it.second)
+			{
+				string url = it.first;
+				auto path = Files::Config() / "plugins.json";
+				auto downloadInProgressDialog = new DialogPanel("Downloading plugin index:\n" + url +
+					"\nPlease wait.");
+				GetUI().Push(downloadInProgressDialog);
+				if(!Plugins::Download(url, path))
+				{
+					if(GetUI().Top().get() == downloadInProgressDialog)
+						GetUI().Pop(downloadInProgressDialog);
+					GetUI().Push(new DialogPanel(this, &PreferencesPanel::ProcessPluginIndex,
+						"The plugin index at failed to download. Would you like to try again?"));
+					return "";
+				}
+				it.second = true;
+				// If any of the (usually one) urls are downloaded, then we have a library to show.
+				downloadedPluginIndex = true;
+
+				Plugins::LoadAvailablePlugins(queue, path);
+
+				if(GetUI().Top().get() == downloadInProgressDialog)
+					GetUI().Pop(downloadInProgressDialog);
+			}
 		}
-
-		Plugins::LoadAvailablePlugins(queue, Files::Config() / "plugins.json");
-
-		downloadedPluginIndex = true;
-		if(GetUI().Top().get() == downloadInProgressDialog)
-			GetUI().Pop(downloadInProgressDialog);
 
 		return "";
 	}));
