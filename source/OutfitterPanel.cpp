@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "comparators/BySeriesAndIndex.h"
 #include "Color.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -131,7 +131,7 @@ void OutfitterPanel::Step()
 	CheckRefill();
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::OUTFITTER);
-	if(GetUI()->IsTop(this) && !checkedHelp)
+	if(GetUI().IsTop(this) && !checkedHelp)
 		// Use short-circuiting to only display one of them at a time.
 		// (The first valid condition encountered will make us skip the others.)
 		if(DoHelp("outfitter") || DoHelp("cargo management") || DoHelp("uninstalling and storage")
@@ -1114,7 +1114,7 @@ void OutfitterPanel::CheckRefill()
 		message += (count == 1) ? "?" : "s?";
 		if(cost)
 			message += " It will cost " + Format::CreditString(cost) + ".";
-		GetUI()->Push(new Dialog(this, &OutfitterPanel::Refill, message));
+		GetUI().Push(new DialogPanel(this, &OutfitterPanel::Refill, message));
 	}
 }
 
