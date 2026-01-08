@@ -496,8 +496,8 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path
 		plugin->outdated = isOutdated;
 		plugin->installedVersion = installedPlugin ? installedPlugin->version : "";
 
-		Files::CreateFolder(Files::Config() / "icons/");
-		string iconPath = Files::Config() / "icons/" / (pluginName + ".png");
+		Files::CreateFolder(Files::Config() / "icons");
+		string iconPath = Files::Config() / "icons" / (pluginName + ".png");
 
 		if((!Files::Exists(iconPath) || isOutdated) && pluginInstall.contains("iconUrl"))
 			Download(pluginInstall.value("iconUrl", ""), iconPath);
