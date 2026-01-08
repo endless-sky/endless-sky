@@ -167,15 +167,12 @@ private:
 		void FinishLoadingColors();
 		// Get text contents of this element.
 		std::string GetString(const Information &info) const;
-		const Color &GetColor(const Information &info, int state) const;
 
 	protected:
 		// The string may either be a name of a dynamic string, or static text.
 		std::string str;
 		// Color for inactive, active, and hover states.
 		const Color *color[3] = {nullptr, nullptr, nullptr};
-		// These override the above if the condition is true
-		std::map<std::string, Color> conditionalColors;
 		int fontSize = 14;
 		char buttonKey = '\0';
 		bool isDynamic = false;

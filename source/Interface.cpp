@@ -551,12 +551,6 @@ bool Interface::TextElement::ParseLine(const DataNode &node)
 	bool hasValue = node.Size() >= 2;
 	if(key == "size" && hasValue)
 		fontSize = node.Value(1);
-	else if(key == "color" && node.Size() >= 4 && node.Token(2) == "if")
-	{
-		string condition = node.Token(3);
-		if(!condition.empty())
-			conditionalColors[condition] = *GameData::Colors().Get(node.Token(1));
-	}
 	else if(key == "color" && hasValue)
 		color[Element::ACTIVE] = GameData::Colors().Get(node.Token(1));
 	else if(key == "inactive" && hasValue)
@@ -631,19 +625,6 @@ string Interface::TextElement::GetString(const Information &info) const
 
 
 
-// Get the color of this element.
-const Color &Interface::TextElement::GetColor(const Information &info, int state) const
-{
-	for(const auto &it : conditionalColors)
-	{
-		if(info.HasCondition(it.first))
-			return it.second;
-	}
-	return *color[state];
-}
-
-
-
 // Members of the BasicTextElement class:
 
 // Constructor.
@@ -676,7 +657,7 @@ void Interface::BasicTextElement::Draw(const Rectangle &rect, const Information 
 		return;
 
 	const auto layout = Layout(static_cast<int>(rect.Width()), truncate);
-	FontSet::Get(fontSize).Draw({GetString(info), layout}, rect.TopLeft(), GetColor(info, state));
+	FontSet::Get(fontSize).Draw({GetString(info), layout}, rect.TopLeft(), *color[state]);
 }
 
 
