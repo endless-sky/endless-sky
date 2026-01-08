@@ -14,6 +14,7 @@
 mission "Hai Reveal: Secret Leaks"
 	landing
 	invisible
+	non-blocking
 	to offer
 		has "main plot completed date"
 		"days since start" - "main plot completed date" > 230
