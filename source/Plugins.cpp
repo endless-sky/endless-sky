@@ -46,6 +46,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Utf8.h"
 
 #include <windows.h>
+#undef ERROR
+#undef NORMAL
+#undef PlaySound
 #else
 #include <unistd.h>
 #endif
@@ -497,7 +500,7 @@ void Plugins::LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path
 		plugin->installedVersion = installedPlugin ? installedPlugin->version : "";
 
 		Files::CreateFolder(Files::Config() / "icons");
-		string iconPath = Files::Config() / "icons" / (pluginName + ".png");
+		string iconPath = (Files::Config() / "icons" / (pluginName + ".png")).string();
 
 		if((!Files::Exists(iconPath) || isOutdated) && pluginInstall.contains("iconUrl"))
 			Download(pluginInstall.value("iconUrl", ""), iconPath);

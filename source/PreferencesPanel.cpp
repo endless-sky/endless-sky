@@ -1837,7 +1837,7 @@ void PreferencesPanel::HandleConfirm()
 void PreferencesPanel::ProcessPluginIndex()
 {
 	installFeedbacks.emplace_back(async(launch::async, [&]() noexcept -> std::string {
-		for(auto it: Plugins::GetPluginLibraryUrls())
+		for(auto it : Plugins::GetPluginLibraryUrls())
 		{
 			if(!it.second)
 			{
