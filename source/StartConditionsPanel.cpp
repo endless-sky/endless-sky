@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/StarField.h"
 #include "StartConditions.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "text/Truncate.h"
 #include "UI.h"
 
@@ -85,25 +86,12 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	description.SetWrapWidth(descriptionBox.Width());
 
 	Select(startIt);
-}
 
-
-
-StartConditionsPanel::~StartConditionsPanel()
-{
-	SpriteLoadManager::UnloadScenes(GetUI().AsyncQueue());
-}
-
-
-
-void StartConditionsPanel::Step()
-{
-	if(!hasLoadedScenes)
-	{
-		hasLoadedScenes = true;
-		for(const StartConditions &scenario : scenarios)
-			SpriteLoadManager::LoadScene(GetUI().AsyncQueue(), scenario.GetThumbnail());
-	}
+	TaskQueue queue;
+	for(const StartConditions &scenario : scenarios)
+		SpriteLoadManager::LoadScene(queue, scenario.GetThumbnail());
+	queue.Wait();
+	queue.ProcessSyncTasks();
 }
 
 

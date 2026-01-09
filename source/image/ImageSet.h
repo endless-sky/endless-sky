@@ -17,14 +17,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 
-#include "ImageFileData.h"
-
 #include <filesystem>
 #include <map>
-#include <set>
 #include <string>
 #include <vector>
 
+class ImageFileData;
 class Mask;
 class Sprite;
 

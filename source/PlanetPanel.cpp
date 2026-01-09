@@ -147,7 +147,7 @@ void PlanetPanel::Step()
 		for(const Outfit *outfit : outfitterStock)
 			SpriteLoadManager::LoadThumbnail(queue, outfit->Thumbnail());
 		// Also load the thumbnails of anything in storage on this planet or from the player's fleet.
-		if(hasShipyard)
+		if(hasShipyard || hasOutfitter)
 		{
 			for(const auto &ship : player.Ships())
 			{
@@ -155,6 +155,8 @@ void PlanetPanel::Step()
 				// so only skip over ships in a different system.
 				if(!ship || !ship->GetPlanet() || ship->GetSystem() != &system)
 					continue;
+				// Ship thumbnails are visible in both the outfitter and the shipyard, but outfit
+				// thumbnails are only visible in the outfitter.
 				SpriteLoadManager::LoadThumbnail(queue, ship->Thumbnail());
 				if(hasOutfitter)
 					for(const auto &outfit : ship->Outfits())

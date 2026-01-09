@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Random.h"
 #include "image/Sprite.h"
-#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 
 #include <algorithm>
