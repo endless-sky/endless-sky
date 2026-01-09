@@ -1270,21 +1270,6 @@ planet "Desi Seledrak"
 	description `Plumes of soot and ash rise from a cluster of several dozen volcanoes on this planet's main continent, shrouding the planet in a thick layer of clouds and choking out the sunlight. The ruins of several Korath cities and the geometric grids of cleared land surrounding them show that this was once a farming world, but now few plants are able to survive and kilometer-high glaciers have begun creeping down from the poles. It may be centuries before the skies clear and this world begins to thaw.`
 	security 0
 
-planet Devil-Eye
-	attributes "whispering void"
-	landscape land/badlands6
-	description `There are a few sturdy mesas on which to land, but most of this planet is rough rock and dirt. Despite the lack of sunlight, the surface is warm. There must be internal processes in the planet generating heat. The scanners on your computer show a network of caves reaching deep below ground. There's high radiation in the caves, too much to support human life. Crystalline formations that coat the cave walls block detailed scans. Advanced geological scanners might enlighten you further.`
-	description `	There are automated deuterium refineries on this planet, siphoning deuterium from cave walls. The refinery equipment looks Hai in origin. Some mesas have fuel pumps, filling containers with fuel for later transport to the planet's moon.`
-
-planet "Devil-Run Wormhole"
-	spaceport ``
-	wormhole "Devil-Run Wormhole"
-
-wormhole "Devil-Run Wormhole"
-	mappable
-	link "Deep Space 7C" Devil-Run
-	link Devil-Run "Deep Space 7C"
-
 planet "Devru Kaska"
 	attributes korath sestor station
 	landscape land/station27
@@ -1502,13 +1487,6 @@ planet "Elek Kartanu"
 	landscape land/lava2
 	description `You have no idea what has happened to this planet, and you are not sure you want to know. The atmosphere is unusually hot and wet for a planet this distance from its sun, and the ocean levels seem to have dropped significantly in the recent past, leaving barnacles and bleached coral exposed to the air all around the shorelines. The wind is frenzied and full of wild energy, and the fog moves like a living creature.`
 	security 0
-
-planet Elenchus
-	attributes "whispering void"
-	landscape land/space2
-	description `Beneath the surface of this small moon, there is a network of corridors and large rooms. The architecture looks mostly human, but with a hint of Hai. Most are blocked off by sturdy doors with keycard access and plentiful security cameras. Frequently, you see a symbol similar to the Syndicate logo. Everywhere you walk, a security camera turns to track your movement. You get the feeling that you're not welcome here.`
-	"required reputation" 10
-	bribe 0
 
 planet Elthe
 	attributes avgi frontier mining moon shipping

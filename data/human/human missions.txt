@@ -1036,11 +1036,6 @@ mission "There Might Be Riots part 2"
 				`	"What do you mean, 'beyond' human space?"`
 				`	"Well, I'll look forward to the next time we meet."`
 					accept
-			branch "not public"
-				not "event: hai-human resolution announced"
-			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Of course, these days that story isn't half as interesting as it once was."`
-				goto revealed
-			label "not public"
 			`	Ulrich launches into a story. "Years ago when the band was young and we had a month off in between gigs, we found an old gray merchant captain with a glass eye and asked him to transport us to one of the Paradise worlds for an extended 'drug vacation,' if you know what I mean. He said, 'Boys, why don't you leave the drugs behind, and I'll take you on a real mind-altering trip,' and a few days later we were playing a concert on this world where the people were giant squirrels. They loved our music, too. Never did find anyone who could take us back there, though."`
 			branch known
 				has "First Contact: Hai: offered"
@@ -1050,12 +1045,6 @@ mission "There Might Be Riots part 2"
 			action
 				set "met hai before TMBR"
 			`	"It sounds like you were visiting Hai space," you say, and you describe the aliens who live beyond the wormhole. "Yeah, that would be them," says Ulrich. "I'd love to go back there some time, but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
-				accept
-			label revealed
-			action
-				set "met hai before TMBR"
-			`	"Well, now that they're not hiding away anymore, seems like you might have a new market you could go back to," you say.`
-			`	"I'd love to go back there some time," says Ulrich, "but for now we have commitments closer to home." You help them to unload their stuff, and say goodbye for now.`
 				accept
 
 
@@ -1111,14 +1100,6 @@ mission "There Might Be Riots part 3A"
 			`	"Yes," you say, "they're called the Hai. They live in a whole big region to the north."`
 				goto end
 			label known
-			branch "not public"
-				not "event: hai-human resolution announced"
-			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down."`
-			`	"Didn't you say the Hai really liked you before?" you ask. "I think now might be the perfect opportunity to go back to the Hai."`
-			`	"Aww yeah!" he exclaims, "those squirrel people were rad cool. We go thumb our noses at the military industrial complex, then you take us to stay with the peaceful squirrel people where the government won't bother us."`
-			`	Once more, they begin loading their stuff onto your ship, while you chart a course to <destination>.`
-				accept
-			label "not public"
 			`	"Great," he says. "Now, the only question is where we'll go afterwards until the fuss dies down. I was thinking it'd be a great chance for our band to reconnect with the squirrel people - what did you call them?"`
 			`	"The Hai," you say.`
 			label end
@@ -2808,9 +2789,6 @@ mission "Paradise Fortune 1"
 	to offer
 		random < 50
 		has "main plot completed"
-		or
-			not "hr: secret leaks"
-			has "event: hai-human resolution announced"
 	
 	on offer
 		conversation
@@ -3964,7 +3942,6 @@ mission "Human to Hai Space - No Contact"
 	to offer
 		random < 2
 		not "First Contact: Hai: offered"
-		not "event: hai-human resolution announced"
 	on offer
 		conversation
 			`	A young man carrying luggage approaches you. "You look like a knowledgeable captain," he says. "In all your travels, have you ever heard tell of any... intelligent rodents?"`
@@ -3991,9 +3968,7 @@ mission "Human to Hai Space"
 	destination "Greenwater"
 	to offer
 		random < 10
-		or
-			has "First Contact: Hai: offered"
-			has "event: hai-human resolution announced"
+		has "First Contact: Hai: offered"
 		not "Human to Hai Space - No Contact: offered"
 	on offer
 		conversation
@@ -4008,8 +3983,6 @@ mission "Human to Hai Space"
 				`	"Ah, I think I know of some large squirrels to the north of here."`
 					goto hai
 				`	"What are you talking about?"`
-					to display
-						not "event: hai-human resolution announced"
 			`	"Oh, never mind then," he says, with a note of disappointment in his voice. You feel good knowing that you are helping to keep the Hai's existence a secret in human space. Better safe than sorry.`
 				decline
 			
@@ -4762,7 +4735,6 @@ mission "Hai Wormhole Warning"
 			has "First Contact: Unfettered: offered"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
-		not "hr: meet the team"
 		not "start: hai"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."

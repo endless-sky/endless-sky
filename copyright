@@ -399,17 +399,6 @@ Copyright: Office of War Information
 License: public-domain
  Taken from Wikimedia Commons. Cropped and edited.
 
-Files:
- images/*/pincer*
-Copyright: None; CC0 (Public Domain)
-License: CC0
-Comment: Public domain textures by https://texture.ninja
-
-Files:
- images/planet/rogue-radiating*
-Copyright: None; CC0 (Public Domain)
-License: CC0
-
 Files: images/outfit/railslug?rack*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
@@ -1325,12 +1314,6 @@ Files: sounds/*
 Copyright: Various
 License: public-domain
  Based on public domain sounds taken from freesound.org.
-
-Files:
- sounds/pincer*
-Copyright: Michael Zahniser
-License: GPL-2
-Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
 
 Files: sounds/heavy?rocket?hit.wav
 Copyright: Copyright Mike Koenig
@@ -2333,22 +2316,9 @@ Comment: Derived from works by Michael Zahniser (under the same license)
 Files:
  images/ship/hai?ladybug*
  images/thumbnail/hai?ladybug*
- images/planet/station?hai?eight?geocoris*
 Copyright: None (CC0: Public Domain)
 License: CC0
 Comment: Public domain textures from texture.ninja.
-
-Files:
- images/planet/wormhole-syndicate-ad*
-Copyright: Michael Zahniser
-License: CC-BY-SA-4.0
-Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
-
-Files:
- images/planet/station?hai?geocoris*
-Copyright: Michael Zahniser
-License: CC-BY-SA-4.0
-Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
 
 Files:
  images/effect/firestorm?ring*
