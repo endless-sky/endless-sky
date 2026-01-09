@@ -739,10 +739,11 @@ mission "Gegno Exploration Nudge Remover"
 # Gegno Superheavy Missions
 
 mission "Vi Augen"
+	entering
 	invisible
-	landing
-	on offer
-		fail "Stationed Augen"
+	source
+		system "Kiluit"
+	destination "Earth"
 	npc save
 		on kill
 			set "dead augen"
