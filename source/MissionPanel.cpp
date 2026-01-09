@@ -728,7 +728,8 @@ void MissionPanel::DrawKey() const
 		selected = 2 + !IsSatisfied(*acceptedIt);
 
 	Information info;
-	info.SetCondition(CONDITIONS[selected]);
+	if(selected >= 0)
+		info.SetCondition(CONDITIONS[selected]);
 	GameData::Interfaces().Get("map: mission view: key")->Draw(info);
 }
 
