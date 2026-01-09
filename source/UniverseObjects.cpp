@@ -588,31 +588,25 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if(key == "landing message" && hasValue)
 		{
+			const string &value = node.Token(1);
 			for(const DataNode &child : node)
-				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+				objectSpriteData[SpriteSet::Get(child.Token(0))].SetLandingMessage(value);
+		}
+		else if(key == "planet mass" && hasValue)
+		{
+			double value = max(0., node.Value(1));
+			if(!value)
+				node.PrintTrace("A star or stellar object's mass must be greater than 0.");
+			else
+				for(const DataNode &child : node)
+					objectSpriteData[SpriteSet::Get(child.Token(0))].SetMass(value);
 		}
 		else if(key == "star" && hasValue)
 		{
 			const Sprite *sprite = SpriteSet::Get(node.Token(1));
 			if(overwrite)
-			{
-				solarPower.erase(sprite);
-				solarWind.erase(sprite);
-				starIcons.erase(sprite);
-			}
-			for(const DataNode &child : node)
-			{
-				const string &childKey = child.Token(0);
-				bool childHasValue = child.Size() >= 2;
-				if(childKey == "power" && childHasValue)
-					solarPower[sprite] = child.Value(1);
-				else if(childKey == "wind" && childHasValue)
-					solarWind[sprite] = child.Value(1);
-				else if(childKey == "icon" && childHasValue)
-					starIcons[sprite] = SpriteSet::Get(child.Token(1));
-				else
-					child.PrintTrace("Skipping unrecognized attribute:");
-			}
+				objectSpriteData.erase(sprite);
+			objectSpriteData[sprite].Load(node);
 		}
 		else if(key == "news" && hasValue)
 		{
