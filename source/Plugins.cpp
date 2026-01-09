@@ -667,7 +667,7 @@ future<string> Plugins::InstallOrUpdate(const std::string &name)
 			url = installData->url;
 		}
 
-		string zipLocation = Files::UserPlugins() / (name + ".zip");
+		string zipLocation = (Files::UserPlugins() / (name + ".zip")).string();
 		// Don't hold the lock during the download.
 		bool success = Download(url, zipLocation);
 		string message;
