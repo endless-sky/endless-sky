@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hazard.h"
 #include "image/ImageSet.h"
+#include "image/ImageFileData.h"
 #include "Interface.h"
 #include "shader/LineShader.h"
 #include "image/MaskManager.h"
