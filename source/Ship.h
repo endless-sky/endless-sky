@@ -200,6 +200,7 @@ public:
 
 	void SetPosition(Point position);
 	void SetVelocity(Point velocity);
+	void SetFacing(Angle angle);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetSystem(const System *system);
@@ -207,6 +208,10 @@ public:
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
+	void SetIsPlaced(bool placed = true);
+	bool IsPlaced() const;
+	void SetSkipRecharging(bool skipRecharging = true);
+	bool IsSkipRecharging() const;
 
 	// If a ship belongs to the player, the player can give it commands.
 	void SetIsYours(bool yours = true);
@@ -443,6 +448,9 @@ public:
 	// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
 	// Create any target effects as sparks.
 	int TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *sourceGovernment);
+	// The same as the TakeDamage function above, except without the
+	// ability to generate visuals from target effects.
+	int TakeDamage(const DamageDealt &damage, const Government *sourceGovernment);
 	// Apply a force to this ship, accelerating it. This might be from a weapon
 	// impact, or from firing a weapon, for example.
 	void ApplyForce(const Point &force, bool gravitational = false);
@@ -627,6 +635,12 @@ private:
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
 	bool isSpecial = false;
+	// NPC, Fleet, and Engine can all update the placement of a ship when it is spawned.
+	// By setting this to true, Engine won't overwrite the placements made by NPC or Fleet.
+	bool isPlaced = false;
+	// Engine will recharge ships when they are placed, but NPC or another class may have dealt
+	// damage to the ship that should remain there. If this is true, Engine won't recharge the ship.
+	bool isSkipRecharging = false;
 	bool isYours = false;
 	bool isParked = false;
 	bool shouldDeploy = false;

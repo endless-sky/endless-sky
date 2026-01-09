@@ -241,6 +241,8 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 					fleets.push_back(fleet);
 			}
 		}
+		else if(key == "placement" && child.HasChildren())
+			placement.Load(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -700,6 +702,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		else
 			Fleet::Place(*result.system, *ship);
 	}
+	placement.Place(result.ships, player.GetDate(), personality.IsEntering());
 
 	// Set the cargo for each ship in the NPC if the NPC itself has cargo settings.
 	if(overrideFleetCargo)
