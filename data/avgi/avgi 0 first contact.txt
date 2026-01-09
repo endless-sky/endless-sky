@@ -15,6 +15,7 @@
 mission "Avgi: Lost in Twilight"
 	landing
 	invisible
+	non-blocking
 	to complete
 		never
 	on enter

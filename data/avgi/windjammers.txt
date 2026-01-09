@@ -27,6 +27,7 @@ phrase empty
 
 mission "Avgi: Gossamer Sailors"
 	invisible
+	non-blocking
 	landing
 	repeat
 	to offer
