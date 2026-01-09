@@ -69,6 +69,7 @@ void ShipyardPanel::Step()
 {
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
+	ShopPanel::ValidateSelectedShips();
 	if(GetUI().IsTop(this))
 		DoHelp("shipyard");
 }
