@@ -723,7 +723,7 @@ string Plugins::DeletePlugin(const std::string &name)
 		auto iPlugins = GetPluginsLocked();
 		auto *plugin = iPlugins->Find(name);
 		if(plugin && plugin->IsValid())
-			path = plugin->path;
+			path = plugin->path.string();
 	}
 
 	if(path.empty())
