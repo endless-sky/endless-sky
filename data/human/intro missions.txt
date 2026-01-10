@@ -322,10 +322,10 @@ conversation "interceptor evade end"
 		`	"Well, maybe I should've bought a freighter instead."`
 	`	"Better start saving up then," he says. "I know a number of old Sparrow pilots who made their first million credits mining asteroids before they could afford a more combat-worthy ship. They had to look around for a while before finding a system with any asteroids worth mining, but it was worth it. Anyway, let's go get your payment." You walk out of the ship and sign the papers to hand off the <commodity> to the dock workers on <planet>. They hand you a credit chip worth <payment>.`
 	`	"I've got an idea for something you might want to try," says James. "Meet me in the spaceport bar in a little while."`
-		to show
+		to display
 			not "flagship model: Jackal"
 	`	"I've got an idea for something you might want to try," says James. "Meet me in the spaceport bar in a little while. And make sure you have a weapon installed; you should be able to buy one in <planet>'s outfitter."`
-		to show
+		to display
 			has "flagship model: Jackal"
 
 
