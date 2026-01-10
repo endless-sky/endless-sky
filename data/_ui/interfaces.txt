@@ -397,7 +397,7 @@ interface "menu player info"
 interface "menu start info"
 	visible if "chosen start"
 	image "thumbnail"
-		center 360 -100
+		center 360 -105
 		dimensions 220 240
 	label "name:"
 		from 250 -35
