@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "Command.h"
-#include "ControlsListDialog.h"
+#include "ControlsListDialogPanel.h"
 #include "Point.h"
 #include "ScrollVar.h"
 #include "Tooltip.h"
@@ -116,7 +116,7 @@ private:
 	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
 
-	ControlsListDialog *modalListDialog;
+	ControlsListDialogPanel *modalListDialog;
 	SDL_Keycode postDialogAction;
 	std::string selectedProfile;
 	std::vector<std::string> availableProfiles;

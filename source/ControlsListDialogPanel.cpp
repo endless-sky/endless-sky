@@ -1,4 +1,4 @@
-/* ControlsListDialog.cpp
+/* ControlsListDialogPanel.cpp
 Copyright (c) 2024 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,9 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "ControlsListDialog.h"
+#include "ControlsListDialogPanel.h"
 
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -35,7 +35,7 @@ using namespace dialog;
 
 
 
-void ControlsListDialog::UpdateList(std::vector<std::string> newOptions) {
+void ControlsListDialogPanel::UpdateList(std::vector<std::string> newOptions) {
 	options.assign(newOptions.begin(), newOptions.end());
 	bool found = false;
 	int index = 0;
@@ -63,12 +63,12 @@ void ControlsListDialog::UpdateList(std::vector<std::string> newOptions) {
 
 
 
-void ControlsListDialog::Draw()
+void ControlsListDialogPanel::Draw()
 {
 	ClearZones();
 	optionZones.clear();
 
-	Dialog::Draw();
+	DialogPanel::Draw();
 
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -79,7 +79,7 @@ void ControlsListDialog::Draw()
 
 	// Draw title with underline
 	font.Draw(title, {topLeft.X(), topLeft.Y() - 30}, bright);
-	FillShader().Fill(Point(0, topLeft.Y() - TOP_PADDING), {Width() - HORIZONTAL_PADDING, 1}, bright);
+	FillShader::Fill(Point(0, topLeft.Y() - TOP_PADDING), {Width() - HORIZONTAL_PADDING, 1}, bright);
 
 	// Animate scrolling.
 	listScroll.Step();
@@ -154,7 +154,7 @@ void ControlsListDialog::Draw()
 
 
 
-bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+bool ControlsListDialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	UI::UISound sound = UI::UISound::NORMAL;
 
@@ -166,9 +166,7 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 		key = SDLK_RETURN;
 	}
 	else if(isCloseRequest)
-	{
-		GetUI()->Pop(this);
-	}
+		GetUI().Pop(this);
 	else if(key == buttonThree.buttonKey)
 	{
 		activeButton = 3;
@@ -194,12 +192,10 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 	{
 		// Now that we know what button was selectedIndex, process the button press
 		if(DoCallback())
-			GetUI()->Pop(this);
+			GetUI().Pop(this);
 	}
 	else if(key == isCloseRequest)
-	{
-		GetUI()->Pop(this);
-	}
+		GetUI().Pop(this);
 	else if((key == SDLK_DOWN || key == SDLK_UP) && !options.empty())
 	{
 		if(key == SDLK_DOWN)
@@ -235,9 +231,9 @@ bool ControlsListDialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &com
 
 
 
-void ControlsListDialog::Resize()
+void ControlsListDialogPanel::Resize()
 {
-	Dialog::Resize(height);
+	DialogPanel::Resize(height);
 	selectionListBox = Rectangle::FromCorner(textRect.TopLeft() + Point(0, 30), textRect.Dimensions() - Point(0, 32));
 	listScroll.SetDisplaySize(selectionListBox.Height());
 	listClip = make_unique<RenderBuffer>(selectionListBox.Dimensions());
@@ -248,7 +244,7 @@ void ControlsListDialog::Resize()
 
 
 
-bool ControlsListDialog::Hover(int x, int y)
+bool ControlsListDialogPanel::Hover(int x, int y)
 {
 	hoverPoint = Point(x, y);
 
@@ -267,7 +263,7 @@ bool ControlsListDialog::Hover(int x, int y)
 
 
 
-bool ControlsListDialog::Drag(double dx, double dy)
+bool ControlsListDialogPanel::Drag(double dx, double dy)
 {
 	// Steps is zero so that we don't animate mouse drags.
 	listScroll.Scroll(-dy, 0);
@@ -276,7 +272,7 @@ bool ControlsListDialog::Drag(double dx, double dy)
 
 
 
-bool ControlsListDialog::Scroll(double dx, double dy)
+bool ControlsListDialogPanel::Scroll(double dx, double dy)
 {
 	listScroll.Scroll(-dy * Preferences::ScrollSpeed());
 	return true;
@@ -284,7 +280,7 @@ bool ControlsListDialog::Scroll(double dx, double dy)
 
 
 
-void ControlsListDialog::ScrollToSelection()
+void ControlsListDialogPanel::ScrollToSelection()
 {
 	while(selectedIndex * 20 - listScroll < 0)
 		listScroll.Scroll(-Preferences::ScrollSpeed());
@@ -294,7 +290,7 @@ void ControlsListDialog::ScrollToSelection()
 
 
 
-bool ControlsListDialog::DoCallback() const
+bool ControlsListDialogPanel::DoCallback() const
 {
 	bool closeDialog = false;
 	if(activeButton == 1)
@@ -308,7 +304,7 @@ bool ControlsListDialog::DoCallback() const
 
 
 
-void ControlsListDialog::DrawTooltips()
+void ControlsListDialogPanel::DrawTooltips()
 {
 	if(hoverItem.empty())
 	{

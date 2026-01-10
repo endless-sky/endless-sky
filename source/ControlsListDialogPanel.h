@@ -1,4 +1,4 @@
-/* ControlsListDialog.h
+/* ControlsListDialogPanel.h
 Copyright (c) 2024 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -29,10 +29,10 @@ class RenderBuffer;
 
 
 // A special version of Dialog for listing the command profiles.
-class ControlsListDialog : public DialogPanel {
+class ControlsListDialogPanel : public DialogPanel {
 public:
 	template<class T>
-	ControlsListDialog(T *panel,
+	ControlsListDialogPanel(T *panel,
 		const std::string &title,
 		const std::vector<std::string> &options,
 		const std::string &initialSelection,
@@ -86,7 +86,7 @@ private:
 
 
 template<class T>
-ControlsListDialog::ControlsListDialog(T *panel,
+ControlsListDialogPanel::ControlsListDialogPanel(T *panel,
 	const std::string &title,
 	const std::vector<std::string> &options,
 	const std::string &initialSelection,
@@ -106,6 +106,6 @@ ControlsListDialog::ControlsListDialog(T *panel,
 	intFun = nullptr;
 	stringFun = nullptr;
 	validateFun = nullptr;
-	ControlsListDialog::Resize();
+	ControlsListDialogPanel::Resize();
 	UpdateList(options);
 }
