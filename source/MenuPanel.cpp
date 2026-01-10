@@ -123,7 +123,7 @@ void MenuPanel::Step()
 	}
 	else
 		GameData::StepBackground(Point());
-	if(GetUI()->IsTop(this) && !scrollingPaused)
+	if(GetUI().IsTop(this) && !scrollingPaused)
 	{
 		scroll += scrollSpeed;
 		if(scroll < 0)
@@ -186,14 +186,14 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	if(player.IsLoaded() && (key == 'e' || command.Has(Command::MENU)))
 	{
 		gamePanels.CanSave(true);
-		GetUI()->PopThrough(this);
+		GetUI().PopThrough(this);
 		return true;
 	}
 	else if(key == 'r' && player.IsLoaded() && player.IsDead())
 	{
 		player.Reload();
 
-		GetUI()->PopThrough(GetUI()->Root().get());
+		GetUI().PopThrough(GetUI().Root().get());
 		gamePanels.Push(new MainPanel(player));
 		// It takes one step to figure out the planet panel should be created, and
 		// another step to actually place it. So, take two steps to avoid a flicker.
@@ -201,19 +201,19 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		gamePanels.StepAll();
 	}
 	else if(key == 'p')
-		GetUI()->Push(new PreferencesPanel(player));
+		GetUI().Push(new PreferencesPanel(player));
 	else if(key == 'l' || key == 'm')
-		GetUI()->Push(new LoadPanel(player, gamePanels));
+		GetUI().Push(new LoadPanel(player, gamePanels));
 	else if(key == 'n' && !player.IsLoaded())
 	{
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		// Request that the player chooses a start scenario.
 		// StartConditionsPanel also handles the case where there's no scenarios.
-		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
+		GetUI().Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
 	else if(key == 'q')
 	{
-		GetUI()->Quit();
+		GetUI().Quit();
 		return true;
 	}
 	else if(key == ' ')

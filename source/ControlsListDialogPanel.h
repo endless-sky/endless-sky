@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Dialog.h"
+#include "DialogPanel.h"
 
 #include "ClickZone.h"
 #include "GameData.h"
@@ -29,15 +29,15 @@ class RenderBuffer;
 
 
 // A special version of Dialog for listing the command profiles.
-class ControlsListDialog : public Dialog {
+class ControlsListDialog : public DialogPanel {
 public:
 	template<class T>
 	ControlsListDialog(T *panel,
 		const std::string &title,
 		const std::vector<std::string> &options,
 		const std::string &initialSelection,
-		Dialog::FunctionButton buttonOne,
-		Dialog::FunctionButton buttonThree,
+		DialogPanel::FunctionButton buttonOne,
+		DialogPanel::FunctionButton buttonThree,
 		std::string (T::*hoverFun)(const std::string &) = nullptr
 		);
 
@@ -90,12 +90,12 @@ ControlsListDialog::ControlsListDialog(T *panel,
 	const std::string &title,
 	const std::vector<std::string> &options,
 	const std::string &initialSelection,
-	const Dialog::FunctionButton buttonOne,
-	const Dialog::FunctionButton buttonThree,
+	const DialogPanel::FunctionButton buttonOne,
+	const DialogPanel::FunctionButton buttonThree,
 	std::string(T::*hoverFun)(const std::string &)
 	)
 	:
-	Dialog(panel, "", "", buttonOne, buttonThree, nullptr),
+	DialogPanel(panel, "", "", buttonOne, buttonThree, nullptr),
 	title(title),
 	selectedItem(initialSelection),
 	hoverFun(std::bind(hoverFun, panel, std::placeholders::_1)),
