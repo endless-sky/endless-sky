@@ -1481,7 +1481,7 @@ interface "planet"
 	image "land"
 		center 0 -140
 	sprite "ui/planet dialog"
-		center 0 25
+		center -1 25
 	button l
 		center 0 -140
 		dimensions 720 360
@@ -1584,7 +1584,7 @@ interface "planet (small screen)"
 	image "land"
 		center -60 -140
 	sprite "ui/planet dialog"
-		center -60 25
+		center -61 25
 	button l
 		center -60 -140
 		dimensions 720 360
