@@ -90,12 +90,24 @@ public:
 	DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "",
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
-	// This callback requests text input but with validation. The "ok" button is disabled
+	// These callbacks request input but with validation. The "ok" button is disabled
 	// if the validation callback returns false.
 	template<class T>
 	DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text,
 			std::function<bool(const std::string &)> validate,
 			std::string initialValue = "",
+			Truncate truncate = Truncate::NONE,
+			bool allowsFastForward = false);
+	template<class T>
+	DialogPanel(T *t, void (T::*fun)(int), const std::string &text,
+			std::function<bool(int)> validate,
+			std::string initialValue,
+			Truncate truncate = Truncate::NONE,
+			bool allowsFastForward = false);
+	template<class T>
+	DialogPanel(T *t, void (T::*fun)(double), const std::string &text,
+			std::function<bool(double)> validate,
+			std::string initialValue,
 			Truncate truncate = Truncate::NONE,
 			bool allowsFastForward = false);
 
@@ -137,6 +149,11 @@ private:
 	void DoCallback(bool isOk = true) const;
 	// The width of the dialog, excluding margins.
 	int Width() const;
+	// Whether this dialog accepts typed input from the player.
+	bool AcceptsInput() const;
+	// Return true if the validation function passes when given the current input,
+	// or if there is no validation function.
+	bool ValidateInput() const;
 
 
 protected:
@@ -144,11 +161,15 @@ protected:
 	// The number of extra segments in this dialog.
 	int extensionCount;
 
-	std::function<void(int)> intFun;
-	std::function<void(const std::string &)> stringFun;
 	std::function<void()> voidFun;
 	std::function<void(bool)> boolFun;
-	std::function<bool(const std::string &)> validateFun;
+	std::function<void(int)> intFun;
+	std::function<void(double)> doubleFun;
+	std::function<void(const std::string &)> stringFun;
+
+	std::function<bool(int)> validateIntFun;
+	std::function<bool(double)> validateDoubleFun;
+	std::function<bool(const std::string &)> validateStringFun;
 
 	bool canCancel;
 	int activeButton;
@@ -200,6 +221,7 @@ template<class T>
 DialogPanel::DialogPanel(T *t, void (T::*fun)(int), const std::string &text,
 	int initialValue, Truncate truncate, bool allowsFastForward)
 	: intFun(std::bind(fun, t, std::placeholders::_1)),
+	validateIntFun([](int value) -> bool { return value > 0; }),
 	allowsFastForward(allowsFastForward),
 	input(std::to_string(initialValue))
 {
@@ -224,10 +246,39 @@ template<class T>
 DialogPanel::DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text,
 	std::function<bool(const std::string &)> validate, std::string initialValue, Truncate truncate, bool allowsFastForward)
 	: stringFun(std::bind(fun, t, std::placeholders::_1)),
-	validateFun(std::move(validate)),
-	isOkDisabled(true),
+	validateStringFun(std::move(validate)),
+	isOkDisabled(initialValue.empty()),
 	allowsFastForward(allowsFastForward),
 	input(initialValue)
+{
+	Init(text, truncate);
+}
+
+
+
+template<class T>
+DialogPanel::DialogPanel(T *t, void (T::*fun)(int), const std::string &text,
+	std::function<bool(int)> validate, std::string initialValue, Truncate truncate, bool allowsFastForward)
+		: intFun(std::bind(fun, t, std::placeholders::_1)),
+		validateIntFun(std::move(validate)),
+		isOkDisabled(initialValue.empty()),
+		allowsFastForward(allowsFastForward),
+		input(initialValue)
+{
+	Init(text, truncate);
+}
+
+
+
+template<class T>
+DialogPanel::DialogPanel(T *t, void (T::*fun)(double), const std::string &text,
+	std::function<bool(double)> validate, std::string initialValue, Truncate truncate,
+	bool allowsFastForward)
+		: doubleFun(std::bind(fun, t, std::placeholders::_1)),
+		validateDoubleFun(std::move(validate)),
+		isOkDisabled(initialValue.empty()),
+		allowsFastForward(allowsFastForward),
+		input(initialValue)
 {
 	Init(text, truncate);
 }
@@ -256,7 +307,7 @@ template<class T>
 DialogPanel::DialogPanel(T *panel, const std::string &text, const std::string &initialValue,
 	DialogPanel::FunctionButton buttonOne, DialogPanel::FunctionButton buttonThree,
 	std::function<bool(const std::string &)> validate)
-	: validateFun(std::move(validate)), canCancel(true), input(initialValue),
+	: validateStringFun(std::move(validate)), canCancel(true), input(initialValue),
 	buttonOne(buttonOne), buttonThree(buttonThree)
 {
 	Init(text, Truncate::NONE);
