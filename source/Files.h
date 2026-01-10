@@ -41,7 +41,6 @@ public:
 	static const std::filesystem::path &Saves();
 	static const std::filesystem::path &UserPlugins();
 	static const std::filesystem::path &GlobalPlugins();
-	static const std::filesystem::path &PluginsCache();
 	static const std::filesystem::path &Tests();
 
 	// Get a list of all regular files in the given directory.
