@@ -169,8 +169,8 @@
 			"cacheVariables": {
 				"CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
-				"VCPKG_HOST_TRIPLET": "x64-mingw-dynamic",
-				"VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
+				"VCPKG_HOST_TRIPLET": "win64",
+				"VCPKG_TARGET_TRIPLET": "win64"
 			},
 			"condition": {
 				"type": "equals",
@@ -190,8 +190,8 @@
 			"cacheVariables": {
 				"CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
-				"VCPKG_HOST_TRIPLET": "x86-mingw-dynamic",
-				"VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic",
+				"VCPKG_HOST_TRIPLET": "win32",
+				"VCPKG_TARGET_TRIPLET": "win32",
 				"ES_LARGE_ADDRESS_AWARE": true
 			},
 			"condition": {
