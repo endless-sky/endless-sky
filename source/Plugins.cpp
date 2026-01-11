@@ -779,9 +779,9 @@ bool Plugins::Download(const string &url, const filesystem::path &location)
 		return false;
 #ifdef _MSC_VER
 	FILE *out = nullptr;
-	fopen_s(&out, location.c_str(), "wb");
+	fopen_s(&out, location.string().c_str(), "wb");
 #else
-	FILE *out = fopen(location.c_str(), "wb");
+	FILE *out = fopen(location.string().c_str(), "wb");
 #endif
 	if(!out)
 	{
