@@ -1243,7 +1243,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		// not the very last one that must be visited, see if a landing action can trigger instead.
 		auto it = stopovers.find(player.GetPlanet());
 		if(it == stopovers.end())
-			return Land(player.GetPlanet(), player, ui);
+			return Land(player.GetPlanet(), player, *ui);
 
 		for(const NPC &npc : npcs)
 			if(npc.IsLeftBehind(player.GetSystem()))
@@ -1844,20 +1844,20 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 
 
 
-bool Mission::Land(const Planet *planet, PlayerInfo &player, UI *ui)
+bool Mission::Land(const Planet *planet, PlayerInfo &player, UI &ui)
 {
 	const auto lit = onLand.find(planet);
 	const auto originalSize = didLand.size();
 	if(lit != onLand.end() && !didLand.contains(&lit->second) && lit->second.CanBeDone(player, IsFailed()))
 	{
-		lit->second.Do(player, ui, this);
+		lit->second.Do(player, &ui, this);
 		didLand.insert(&lit->second);
 	}
 	else
 		for(MissionAction &action : genericOnLand)
 			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
 			{
-				action.Do(player, ui, this);
+				action.Do(player, &ui, this);
 				didLand.insert(&action);
 				break;
 			}
