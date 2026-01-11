@@ -2173,6 +2173,7 @@ interface "shipyard buttons"
 		size 18
 	string "multiplier"
 		center -211 -46
+		color medium
 
 	fill
 		center -133 -67
@@ -2262,6 +2263,7 @@ interface "outfitter buttons"
 		size 18
 	string "multiplier"
 		center -211 -88
+		color medium
 
 	fill
 		center -211 -67
@@ -2274,6 +2276,7 @@ interface "outfitter buttons"
 		size 18
 	string "multiplier"
 		center -211 -46
+		color medium
 
 	fill
 		center -133 -109
@@ -2286,6 +2289,7 @@ interface "outfitter buttons"
 		size 18
 	string "multiplier"
 		center -133 -88
+		color medium
 
 	fill
 		center -133 -67
@@ -2298,6 +2302,7 @@ interface "outfitter buttons"
 		size 18
 	string "multiplier"
 		center -133 -46
+		color medium
 
 	fill
 		center -50 -109
@@ -2310,6 +2315,7 @@ interface "outfitter buttons"
 		size 18
 	string "multiplier"
 		center -50 -88
+		color medium
 
 	fill
 		center -50 -67
@@ -2322,6 +2328,7 @@ interface "outfitter buttons"
 		size 18
 	string "multiplier"
 		center -50 -46
+		color medium
 
 	fill
 		center -211 -25
