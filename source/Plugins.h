@@ -26,24 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// For consistent handling of mutex locks on the sets of plugins (installed/available) between contexts.
-// Usage:
-// auto iPlugins = Plugins::GetPluginsLocked();
-// iPlugins->Get(...) or iPlugins->Find(...)
-// C can be either Set or OrderedSet
-template<template<class> class C, typename T>
-class LockedSet {
-public:
-	LockedSet(std::mutex &guard, C<T> &data) : guard(guard), data(data) {}
-	C<T> *operator->() { return &data; }
-	C<T> &operator*() { return data; }
-
-private:
-	std::lock_guard<std::mutex> guard;
-	C<T> &data;
-};
-
-
 // Plugin class represents information about a single plugin.
 // Concepts:
 //  - Plugins are consumed by the game on start-up, this translates to `inUse = true`.
@@ -145,7 +127,7 @@ protected:
 class Plugins {
 public:
 	// Attempt to load a plugin at the given path.
-	static const Plugin *Load(const std::filesystem::path &path);
+	static std::string Load(const std::filesystem::path &path);
 	static void LoadAvailablePlugins(TaskQueue &queue, const std::filesystem::path &pluginsJsonPath);
 	static void LoadSettings();
 	static void Save();
@@ -161,10 +143,14 @@ public:
 	// Returns true if there is active install/update activity.
 	static bool DownloadingInBackground();
 
+	// For consistent handling of mutex locks on the sets of plugins (installed/available) between contexts.
+	// Usage:
+	//     auto iPlugins = Plugins::GetPluginsLocked();
+	//     iPlugins->Get(...) or iPlugins->Find(...)
 	// Returns the list of plugins that have been identified in the online plugin library.
-	static LockedSet<OrderedSet, Plugin> GetAvailablePluginsLocked();
+	static LockedOrderedSet<Plugin> GetAvailablePluginsLocked();
 	// Returns the list of plugins that have been identified by the game.
-	static LockedSet<OrderedSet, Plugin> GetPluginsLocked();
+	static LockedOrderedSet<Plugin> GetPluginsLocked();
 
 	// Re-order the installed plugins list by moving the Plugin at index `index` by `offset` (positive toward back).
 	static int Move(int index, int offset);

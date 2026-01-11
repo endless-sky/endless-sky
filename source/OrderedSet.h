@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Set.h"
 
 #include <algorithm>
+#include <mutex>
 #include <string>
 #include <vector>
 
@@ -46,6 +47,7 @@ public:
 
 		std::pair<const std::string, Type> operator*() const
 		{
+			// TODO: ?? assert(dataset, "Trying to deference invalidated iterator!");
 			return make_pair(*orderIter, *dataset->Get(*orderIter));
 		}
 
@@ -101,9 +103,9 @@ public:
 
 
 
-	void Remove(const std::string &name)
+	void erase(const std::string &name)
 	{
-		Set<Type>::Remove(name);
+		Set<Type>::erase(name);
 		const auto it = std::find(order.begin(), order.end(), name);
 		if(it != order.end())
 			order.erase(it);
@@ -111,23 +113,25 @@ public:
 
 
 
-	void Sort()
-	{
-		std::sort(order.begin(), order.end());
-	}
-
-
-
-	// Same as std::swap except with bounds clamping.
-	void Swap(int index, int otherIndex)
-	{
-		index = std::clamp(index, 0, static_cast<int>(order.size()) - 1);
-		otherIndex = std::clamp(otherIndex, 0, static_cast<int>(order.size()) - 1);
-		std::swap(order[index], order[otherIndex]);
-	}
+	void Sort() { std::sort(order.begin(), order.end()); }
+	void swap(size_t index, size_t otherIndex) { std::swap(order[index], order[otherIndex]); }
 
 
 
 private:
-	mutable std::vector<std::string> order;
+	std::vector<std::string> order;
+};
+
+
+
+template<typename T>
+class LockedOrderedSet {
+public:
+	LockedOrderedSet(std::mutex &guard, OrderedSet<T> &data) : guard(guard), data(data) {}
+	OrderedSet<T> *operator->() { return &data; }
+	OrderedSet<T> &operator*() { return data; }
+
+private:
+	std::lock_guard<std::mutex> guard;
+	OrderedSet<T> &data;
 };

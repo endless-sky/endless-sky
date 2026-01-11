@@ -151,7 +151,9 @@ namespace {
 
 	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
-		const auto *plugin = Plugins::Load(path);
+		string pluginName = Plugins::Load(path);
+		auto plugins = Plugins::GetPluginsLocked();
+		auto *plugin = plugins->Find(pluginName);
 		if(!plugin)
 			return;
 
@@ -1075,7 +1077,7 @@ void GameData::LoadSources(TaskQueue &queue)
 		for(const auto &it : *plugins)
 		{
 			loadOrder.emplace_back(*foundPlugins.Get(it.first));
-			foundPlugins.Remove(it.first);
+			foundPlugins.erase(it.first);
 		}
 		// Any other plugins are loaded last.
 		for(const auto &it : foundPlugins)

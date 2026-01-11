@@ -12,3 +12,4 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 plugin_list_url "https://raw.githubusercontent.com/endless-sky/endless-sky-plugins/master/generated/plugins.json"
+plugin_list_url "https://xobes.com/endless-sky/plugins.json"

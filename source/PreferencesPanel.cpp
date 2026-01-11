@@ -30,7 +30,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "text/Layout.h"
-#include "Logger.h"
 #include "PlayerInfo.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
@@ -1301,8 +1300,14 @@ void PreferencesPanel::DrawPlugins()
 			AddZone(zoneBounds, [name = plugin.name](){ Plugins::TogglePlugin(name); });
 			if(isSelected || plugin.name == hoverItem)
 			{
-				AddZone(boundsUp + pluginListBox.Center(), [this, i] { selected = Plugins::Move(i, -1); });
-				AddZone(boundsDown + pluginListBox.Center(), [this, i] { selected = Plugins::Move(i, 1); });
+				AddZone(boundsUp + pluginListBox.Center(), [this, i]
+				{
+					selected = Plugins::Move(i, -1);
+				});
+				AddZone(boundsDown + pluginListBox.Center(), [this, i]
+				{
+					selected = Plugins::Move(i, 1);
+				});
 			}
 		}
 

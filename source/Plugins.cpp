@@ -347,7 +347,7 @@ void Plugin::SetVersion(const string &newVersion)
 
 
 // Attempt to load a plugin at the given path.
-const Plugin *Plugins::Load(const filesystem::path &path)
+string Plugins::Load(const filesystem::path &path)
 {
 	// For consistency between the plugin library and the installed plugins,
 	// we will strip the zip extension off any zip files, or else the folder name.
@@ -449,7 +449,7 @@ const Plugin *Plugins::Load(const filesystem::path &path)
 	plugin->tags = std::move(tags);
 	plugin->dependencies = std::move(dependencies);
 
-	return plugin;
+	return name;
 }
 
 
@@ -574,14 +574,14 @@ bool Plugins::DownloadingInBackground()
 
 
 
-LockedSet<OrderedSet, Plugin> Plugins::GetAvailablePluginsLocked()
+LockedOrderedSet<Plugin> Plugins::GetAvailablePluginsLocked()
 {
 	return {availablePluginsMutex, availablePlugins};
 }
 
 
 
-LockedSet<OrderedSet, Plugin> Plugins::GetPluginsLocked()
+LockedOrderedSet<Plugin> Plugins::GetPluginsLocked()
 {
 	return {pluginsMutex, plugins};
 }
@@ -595,7 +595,7 @@ int Plugins::Move(int index, int offset)
 	{
 		auto iPlugins = GetPluginsLocked();
 		otherIndex = std::clamp(index + offset, 0, iPlugins->size() - 1);
-		iPlugins->Swap(index, otherIndex);
+		iPlugins->swap(index, otherIndex);
 	}
 	Save();
 	return otherIndex;
@@ -735,7 +735,7 @@ string Plugins::DeletePlugin(const string &name)
 	auto iPlugins = GetPluginsLocked();
 	if(iPlugins->Has(name))
 	{
-		Plugin *plugin = iPlugins->Get(name);
+		auto *plugin = iPlugins->Get(name);
 		// Note, we will set the desired state to false as this makes HasChanged indicate restart required if inUse.
 		plugin->desiredState = false;
 
@@ -748,7 +748,7 @@ string Plugins::DeletePlugin(const string &name)
 
 		// There is no need to keep around plugins that are not in use, their deletion does not require a restart.
 		if(!plugin->InUse())
-			iPlugins->Remove(name);
+			iPlugins->erase(name);
 		else
 			// Otherwise mark them as removed so that we notify that a restart is required.
 			plugin->removed = true;
