@@ -603,7 +603,7 @@ mission "Kimek Student 1"
 			`	"Lacking proper funds, I currently am," he says, speaking much slower than before. "Once paid by this new job I am, however, pay you I will. I promise."`
 			choice
 				`	"Ok, I'll take you there."`
-				`	I prefer not having to wait to get paid, sorry.`
+				`	"I prefer not having to wait to get paid, sorry."`
 					decline
 			label accept2
 			`	He thanks you and says to wait for him by your ship before you depart. You leave the restaurant shortly after, and head to your ship.`
@@ -1953,6 +1953,8 @@ mission "Coalition: Pilgrimage 5"
 			`	Long after the sun has set, the Kimek returns, rushing to their ship while trying to shake off the cold. You ask them about Vellorae, and they tell you she headed for the spaceport to "clear her head."`
 				accept
 			label shrine
+			action
+				set "drak revelations: saryds"
 			`	She takes a long, deep breath. "Thank you, Captain. Far outside the village, the site is. Come, show you the way there, I will." You leave your ship, follow her to the railway hub, and board one of trains that appears to be one of the oldest and most simple. It lacks seats for non-Saryds, so you are forced to hold tight to what handrails you can reach.`
 			`	You remain on the train until the very last stop, when the sun is already starting to set. As you depart, you see a rural village with just a few dozen buildings and a simple dirt road, where a couple workers battle the snow and ice to keep it clear and easy to traverse. You follow Vellorae down the road, and once you reach a rocky pillar with a hole carved through it, she turns to the forest, heading out on a thin, straight trail. Looking behind you, you see the setting sun fitting inside the pillar's opening.`
 			`	As you follow Vellorae down the trail, you see the trees gradually show more and more signs of a forest fire, with darker, damaged barks, increasingly ashy soil, and many fallen, decomposing portions of the forest. The trail ends abruptly at a large scar scorched through the forest. The piles of ash still present below your feet almost resemble the rest of the planet's otherwise snowy ground, but somehow are kept from mixing with the snow. Whether deliberately cleared by more workers or some other force, you cannot tell. Near the center of the scar you see a small mound with an opening in the side, almost like a "shack" made out of the charred tree trunks and rocks. A faint light comes from within it.`
@@ -2787,7 +2789,7 @@ mission "Coalition: Expeditions Past 8"
 mission "Coalition: Expeditions Past 9"
 	landing
 	name "Escape Route"
-	description "Travel southwest of <system>, on a route to the Ablub system, so that Sedlitaris may look for a signal frequency of the expedition."
+	description "Explore the systems southwest of <system>, on possible routes to the Ablub system, so that Sedlitaris may look for a signal frequency of the expedition."
 	passengers 1
 	to offer
 		has "Coalition: Expeditions Past 8: active"
@@ -2802,8 +2804,8 @@ mission "Coalition: Expeditions Past 9"
 				`	"Are you alright?"`
 				`	"He said they were going back immediately, but they never made it. You think that was the last pylon?"`
 				`	(Stay quiet.)`
-			`	She goes without a word for a while still. "Set a route for Ablub, could you, Captain? If follow the same route they used, we do, and if any more to find, there is, pick up the signals, I will."`
-			`	You agree, and look to set a route straight to Ablub.`
+			`	She goes without a word for a while still. "Visit the systems between here and Ablub, could you, Captain? If follow the same route they used, we do, and if any more to find, there is, pick up the signals, I will."`
+			`	You agree, and look to set a route southwest, in the direction of Ablub.`
 				accept
 	on enter "Girtab"
 		dialog `While Sedlitaris remained in her bunk since you left for Ablub, you can hear her shouting from her bunk as you enter the system. She comes running to you, bringing along the pylon. "Picked up a signal, it has!" She says, pointing at the machine's panel, where some message is repeatedly beeping in and out. "Land on that planet we must, Captain!" You tell her you'll land soon, and she remains with you to figure out the pylon's location on Harmony once you've landed.`
