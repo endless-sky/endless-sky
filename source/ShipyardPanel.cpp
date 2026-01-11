@@ -204,11 +204,11 @@ void ShipyardPanel::DrawButtons()
 	ui->Draw(info, this);
 
 	// Draw tooltips for the button being hovered over:
-	const double sidebarWidth = ui->GetValue("fleet bar width");
-	const double buttonBoxHeight = ui->GetValue("button box height");
-	const Point buttonBoxSize(sidebarWidth, buttonBoxHeight);
-	const Rectangle buttonsFooter(Screen::BottomRight() - .5 * buttonBoxSize, buttonBoxSize);
-	const string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
+	double sidebarWidth = ui->GetValue("fleet bar width");
+	double buttonBoxHeight = ui->GetValue("button box height");
+	Point buttonBoxSize(sidebarWidth, buttonBoxHeight);
+	Rectangle buttonsFooter(Screen::BottomRight() - .5 * buttonBoxSize, buttonBoxSize);
+	string tooltip = GameData::Tooltip(string("shipyard: ") + hoverButton);
 	if(!tooltip.empty())
 		buttonsTooltip.IncrementCount();
 	else
