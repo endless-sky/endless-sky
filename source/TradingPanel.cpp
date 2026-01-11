@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -54,8 +54,8 @@ namespace {
 	const int PRICE_X = 140;
 	const int LEVEL_X = 180;
 	const int PROFIT_X = 260;
-	const int SELL_X = 310;
-	const int BUY_X = 370;
+	const int SELL_X = 370;
+	const int BUY_X = 310;
 	const int HOLD_X = 430;
 	constexpr size_t SELL_OUTFITS_DISPLAY_LIMIT = 15;
 }
@@ -258,7 +258,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'f' && player.Cargo().MinablesSizePrecise())
 	{
 		if(Preferences::Has("Confirm 'Sell Flotsam' button"))
-			GetUI()->Push(new Dialog([this]() { SellOutfitsOrFlotsam(true); },
+			GetUI().Push(new DialogPanel([this]() { SellOutfitsOrFlotsam(true); },
 				OutfitSalesMessage(true), Truncate::NONE, true, false));
 		else
 			SellOutfitsOrFlotsam(true);
@@ -266,13 +266,13 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if((key == 'L' || (key == 'l' && (mod & KMOD_SHIFT))) && canSellOutfits)
 	{
 		if(Preferences::Has("Confirm 'Sell Outfits' button"))
-			GetUI()->Push(new Dialog([this]() { SellOutfitsOrFlotsam(false); },
+			GetUI().Push(new DialogPanel([this]() { SellOutfitsOrFlotsam(false); },
 				OutfitSalesMessage(false), Truncate::NONE, true, false));
 		else
 			SellOutfitsOrFlotsam(false);
 	}
 	else if(command.Has(Command::MAP))
-		GetUI()->Push(new MapDetailPanel(player));
+		GetUI().Push(new MapDetailPanel(player));
 	else
 		return false;
 

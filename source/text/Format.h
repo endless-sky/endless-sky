@@ -41,7 +41,8 @@ public:
 	static std::string Credits(int64_t value);
 	// Convert the given number into abbreviated format as described in Format::Credits,
 	// then attach the ' credit' or ' credits' suffix to it.
-	static std::string CreditString(int64_t value);
+	// If abbreviated is false, then the full numeric value is outputted.
+	static std::string CreditString(int64_t value, bool abbreviated = true);
 	// Writes the given number into a string,
 	// then attach the ' ton' or ' tons' suffix to it.
 	static std::string MassString(double amount);
@@ -63,6 +64,9 @@ public:
 	// Convert the given number to a string, with at most one decimal place.
 	// This is primarily for displaying ship and outfit attributes.
 	static std::string Number(double value);
+	static std::string Number(unsigned value);
+	static std::string Number(int value);
+	static std::string Number(int64_t value);
 	// Format the given value as a number with exactly the given number of
 	// decimal places (even if they are all 0).
 	static std::string Decimal(double value, int places);
