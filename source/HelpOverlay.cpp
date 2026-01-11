@@ -87,7 +87,7 @@ bool HelpOverlay::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		sound = UI::UISound::SOFT;
 	}
 	// TODO: F1 pops next help page in series

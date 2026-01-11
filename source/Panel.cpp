@@ -370,7 +370,7 @@ bool Panel::DoHelp(const string &name, bool force, PlayerInfo *player) const
 	if(message.empty())
 		ui->Push(new HelpOverlay(player, "help overlay: " + name));
 	else
-		ui->Push(new Dialog(Format::Capitalize(name) + ":\n\n" + message));
+		ui->Push(new DialogPanel(Format::Capitalize(name) + ":\n\n" + message));
 
 	Preferences::Set(preference);
 
