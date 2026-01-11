@@ -38,7 +38,8 @@ AsyncAudioSupplier::~AsyncAudioSupplier()
 		done = true;
 	}
 	bufferCondition.notify_all();
-	audioThread.join();
+	if(audioThread.joinable())
+		audioThread.join();
 }
 
 
