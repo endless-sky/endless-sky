@@ -2354,7 +2354,7 @@ mission "Ka'het: Voice From The Past 6"
 		fleet "Small Remnant"
 	on stopover
 		conversation
-			`Unlike many of the moons you have visited in the Ember Waste, nothing about Alix stands out as particularly unique. It is a small, rocky moon orbiting close above the Pathera gas giant, nearly atmosphereless and showing an appropriately low gravity. Its surface is punctuated by millions of small meteoroid impacts, certainly attracted by Pathera's deep gravity well. Even <starting planet> had a couple of gas giants with moons in every way similar to this one.`
+			`Unlike many of the moons you have visited in the Ember Waste, nothing about Alix stands out as particularly unique. It is a small, rocky moon orbiting close above the Pathera gas giant, nearly atmosphereless and showing an appropriately low gravity. Its surface is punctuated by millions of small meteoroid impacts, certainly attracted by Pathera's deep gravity well. Even <home planet> had a couple of gas giants with moons in every way similar to this one.`
 			`	The Builders seem to have found some interesting uses for it, however. Among the destroyed settlements all around Alix, vast mining facilities not only survived the attacks, but still see a constant stream of Ka'mar vehicles coming to gather their mineral cargo and deliver it to the imposing Ka'het station orbiting the same star.`
 			`	Strangely enough, this moon does not show any sign of strip mining, or in fact any digging at all. After operating mining facilities for a hundred thousand years, the surface should show clearly visible signs of such an intensive operation, but there seem to be none.`
 			choice
