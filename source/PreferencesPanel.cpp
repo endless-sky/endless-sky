@@ -1413,6 +1413,7 @@ void PreferencesPanel::DrawPluginInstalls()
 	int firstY = pluginListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
+	int i = 0;
 	auto iPlugins = Plugins::GetPluginsLocked();
 	auto aPlugins = Plugins::GetAvailablePluginsLocked();
 	pluginListScroll.SetMaxValue(aPlugins->size() * 20);
@@ -1462,6 +1463,34 @@ void PreferencesPanel::DrawPluginInstalls()
 		SpriteShader::Draw(sprite, spriteBounds.Center());
 
 		table.Draw(plugin.name, color);
+
+		// Only include the zone as clickable if it's within the drawing area.
+		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
+			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
+		if(displayed && !plugin.IsDownloading())
+		{
+			if(plugin.outdated || !installedPlugin)
+			{
+				// Can install - clicking the the icon will do so.
+				AddZone(spriteBounds + pluginListBox.Center(), [this, i]()
+				{
+					selected = i;
+					selectedPlugin = GetPluginNameByIndex(selected);
+					RenderPluginDescription();
+					HandleConfirm();
+				});
+			}
+			else
+			{
+				AddZone(spriteBounds + pluginListBox.Center(), [this, i]()
+				{
+					selected = i;
+					selectedPlugin = GetPluginNameByIndex(selected);
+					RenderPluginDescription();
+				});
+			}
+		}
+		++i;
 	}
 
 	// Switch back to normal opengl operations.
