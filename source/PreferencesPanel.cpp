@@ -1951,7 +1951,7 @@ string PreferencesPanel::GetPluginNameByIndex(int findIndex) const
 			return it.first;
 		++index;
 	}
-	return "";
+	return {};
 }
 
 
