@@ -2134,11 +2134,15 @@ interface "bank (small screen)"
 
 interface "shipyard buttons"
 	anchor bottom right
-	value "fleet bar width" 256
+	value "fleet bar width" 255
 	value "button box height" 119
 
 	fill
-		from -256 -119 to 0 0
+		from -255 -119 to 0 0
+		color "shop side panel background"
+
+	fill
+		from -254.5 -119 to 0 -118
 		color "shop side panel footer"
 
 	label "You have:"
@@ -2211,11 +2215,15 @@ interface "shipyard buttons"
 
 interface "outfitter buttons"
 	anchor bottom right
-	value "fleet bar width" 256
+	value "fleet bar width" 255
 	value "button box height" 184
 
 	fill
-		from -256 -184 to 0 0
+		from -255 -184 to 0 0
+		color "shop side panel background"
+
+	fill
+		from -254.5 -184 to 0 -183
 		color "shop side panel footer"
 
 	label "You have:"
