@@ -1244,3 +1244,9 @@ event "remnant: tubfalet appearance"
 		add variant 3
 			"Tubfalet" 2
 			"'olofez" 6
+
+event "remnant: inhibitor turret available"
+	outfitter "Remnant"
+		add "Inhibitor Turret"
+	outfitter "Remnant Core"
+		add "Inhibitor Turret"
