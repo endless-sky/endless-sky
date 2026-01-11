@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "shader/BatchDrawList.h"
 #include "CargoHold.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "shader/FogShader.h"
@@ -478,40 +478,40 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	};
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapShipyardPanel(*this));
+		GetUI().Push(new MapShipyardPanel(*this));
 	}
 	else if(key == 'o' && buttonCondition != "is outfitters")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapOutfitterPanel(*this));
+		GetUI().Push(new MapOutfitterPanel(*this));
 	}
 	else if(key == 'i' && buttonCondition != "is missions")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MissionPanel(*this));
+		GetUI().Push(new MissionPanel(*this));
 	}
 	else if(key == 'p' && buttonCondition != "is ports")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapDetailPanel(*this, false));
+		GetUI().Push(new MapDetailPanel(*this, false));
 	}
 	else if(key == 't' && buttonCondition != "is stars")
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 		removeChildren();
-		GetUI()->Push(new MapDetailPanel(*this, true));
+		GetUI().Push(new MapDetailPanel(*this, true));
 	}
 	else if(key == 'f')
 	{
-		GetUI()->Push(new Dialog(
+		GetUI().Push(new DialogPanel(
 			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
