@@ -193,7 +193,7 @@ PlayerInfoPanel::~PlayerInfoPanel()
 
 void PlayerInfoPanel::Step()
 {
-	if(GetUI()->IsTop(this) && !checkedHelp)
+	if(GetUI().IsTop(this) && !checkedHelp)
 	{
 		if(DoHelp("player info"))
 		{
@@ -299,7 +299,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control)
 			|| key == 'i' || command.Has(Command::INFO))
 	{
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	}
 	else if(command.Has(Command::HELP))
 	{
@@ -314,8 +314,8 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	{
 		if(!panelState.Ships().empty())
 		{
-			GetUI()->Pop(this);
-			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+			GetUI().Pop(this);
+			GetUI().Push(new ShipInfoPanel(player, std::move(panelState)));
 		}
 	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
@@ -471,9 +471,9 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		panelState.SetCurrentSort(nullptr);
 	}
 	else if(command.Has(Command::MAP) || key == 'm')
-		GetUI()->Push(new MissionPanel(player));
+		GetUI().Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
-		GetUI()->Push(new LogbookPanel(player));
+		GetUI().Push(new LogbookPanel(player));
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
@@ -577,8 +577,8 @@ bool PlayerInfoPanel::Click(int x, int y, MouseButton button, int clicks)
 		// If not landed, clicking a ship name takes you straight to its info.
 		if(!panelState.CanEdit() || sameIndex)
 		{
-			GetUI()->Pop(this);
-			GetUI()->Push(new ShipInfoPanel(player, std::move(panelState)));
+			GetUI().Pop(this);
+			GetUI().Push(new ShipInfoPanel(player, std::move(panelState)));
 		}
 	}
 
