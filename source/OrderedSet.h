@@ -104,7 +104,7 @@ public:
 	void Remove(const std::string &name)
 	{
 		Set<Type>::Remove(name);
-		auto it = std::find(order.begin(), order.end(), name);
+		const auto it = std::find(order.begin(), order.end(), name);
 		if(it != order.end())
 			order.erase(it);
 	}

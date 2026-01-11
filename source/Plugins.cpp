@@ -43,8 +43,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 
 #ifdef _WIN32
-#include "text/Utf8.h"
-
 #include <windows.h>
 #undef ERROR
 #undef NORMAL
@@ -91,9 +89,9 @@ namespace {
 	set<string> busyPlugins;
 
 	// Shorthand method for returning future<string> values.
-	std::future<std::string> FutureString(std::string value)
+	future<string> FutureString(string value)
 	{
-		std::promise<std::string> p;
+		promise<string> p;
 		p.set_value(std::move(value));
 		return p.get_future();
 	}
@@ -188,7 +186,6 @@ bool Plugin::PluginDependencies::IsValid() const
 string Plugin::CreateDescription() const
 {
 	string text;
-	static const string EMPTY = "(No description given.)";
 	if(!version.empty())
 		text += "Version: " + version + '\n';
 	if(!installedVersion.empty() && installedVersion != version)
@@ -250,7 +247,7 @@ string Plugin::CreateDescription() const
 
 string Plugin::GetIconName() const
 {
-	return string(name) + "-libicon";
+	return name + "-libicon";
 }
 
 
@@ -262,7 +259,7 @@ bool Plugin::InUse() const
 
 
 
-string Plugin::Name() const
+const string &Plugin::Name() const
 {
 	return name;
 }
@@ -328,23 +325,23 @@ bool Plugin::Search(const std::string &search) const
 
 
 
-void Plugin::SetInUse(bool inUse)
+void Plugin::SetInUse(const bool useState)
 {
-	this->inUse = inUse;
+	inUse = useState;
 }
 
 
 
-void Plugin::SetDesiredState(bool desiredState)
+void Plugin::SetDesiredState(const bool newDesiredState)
 {
-	this->desiredState = desiredState;
+	desiredState = newDesiredState;
 }
 
 
 
-void Plugin::SetVersion(string version)
+void Plugin::SetVersion(const string &newVersion)
 {
-	this->version = version;
+	version = newVersion;
 }
 
 
@@ -627,7 +624,7 @@ void Plugins::TogglePlugin(const string &name)
 }
 
 
-future<string> Plugins::InstallOrUpdate(const std::string &name)
+future<string> Plugins::InstallOrUpdate(const string &name)
 {
 	{
 		auto aPlugins = GetAvailablePluginsLocked();
@@ -710,7 +707,7 @@ future<string> Plugins::InstallOrUpdate(const std::string &name)
 
 
 
-string Plugins::DeletePlugin(const std::string &name)
+string Plugins::DeletePlugin(const string &name)
 {
 	{
 		lock_guard<mutex> guard(busyPluginsMutex);
@@ -770,19 +767,19 @@ string Plugins::DeletePlugin(const std::string &name)
 		busyPlugins.erase(name);
 	}
 
-	return "";
+	return {};
 }
 
 
 
-bool Plugins::Download(const std::string &url, const std::filesystem::path &location)
+bool Plugins::Download(const string &url, const filesystem::path &location)
 {
 	CURL *curl = curl_easy_init();
 	if(!curl)
 		return false;
-#if defined _WIN32
+#ifdef _MSC_VER
 	FILE *out = nullptr;
-	_wfopen_s(&out, Utf8::ToUTF16(location.string()).c_str(), L"wb");
+	fopen_s(&out, location.c_str(), "wb");
 #else
 	FILE *out = fopen(location.c_str(), "wb");
 #endif

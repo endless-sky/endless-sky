@@ -20,8 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstring>
 
-#include "../Logger.h"
-
 using namespace std;
 
 

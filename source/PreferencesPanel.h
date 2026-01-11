@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Tooltip.h"
 
 #include <future>
-#include <nlohmann/json.hpp>
 
 #include <memory>
 #include <string>

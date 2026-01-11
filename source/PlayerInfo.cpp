@@ -4231,7 +4231,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["installed plugin: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
 		auto iPlugins = Plugins::GetPluginsLocked();
 		const Plugin *plugin = iPlugins->Find(ce.NameWithoutPrefix());
-		return plugin ? plugin->IsValid() && plugin->InUse() : false; });
+		return plugin && plugin->IsValid() && plugin->InUse(); });
 
 	conditions["person destroyed: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
 		const Person *person = GameData::Persons().Find(ce.NameWithoutPrefix());

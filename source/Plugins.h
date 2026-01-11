@@ -85,16 +85,16 @@ public:
 	[[nodiscard]] std::string CreateDescription() const;
 	[[nodiscard]] std::string GetIconName() const;
 	[[nodiscard]] bool InUse() const;
-	[[nodiscard]] std::string Name() const;
+	[[nodiscard]] const std::string &Name() const;
 	// Checks whether this plugin is valid, i.e. whether it exists.
 	[[nodiscard]] bool IsValid() const;
 	[[nodiscard]] bool IsDownloading() const;
 	[[nodiscard]] bool HasChanged() const;
 	[[nodiscard]] bool Search(const std::string &search) const;
 
-	void SetInUse(bool inUse);
-	void SetDesiredState(bool desiredState);
-	void SetVersion(std::string version);
+	void SetInUse(bool useState);
+	void SetDesiredState(bool newDesiredState);
+	void SetVersion(const std::string &newVersion);
 
 protected:
 	// The name that identifies this plugin.

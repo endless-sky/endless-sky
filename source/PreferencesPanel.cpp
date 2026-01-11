@@ -1836,7 +1836,7 @@ void PreferencesPanel::HandleConfirm()
 
 void PreferencesPanel::ProcessPluginIndex()
 {
-	installFeedbacks.emplace_back(async(launch::async, [&]() noexcept -> std::string {
+	installFeedbacks.emplace_back(async(launch::async, [&]() noexcept -> string {
 		for(auto it : Plugins::GetPluginLibraryUrls())
 		{
 			if(!it.second)
@@ -1852,7 +1852,7 @@ void PreferencesPanel::ProcessPluginIndex()
 						GetUI().Pop(downloadInProgressDialog);
 					GetUI().Push(new DialogPanel(this, &PreferencesPanel::ProcessPluginIndex,
 						"The plugin index at failed to download. Would you like to try again?"));
-					return "";
+					return {};
 				}
 				it.second = true;
 				// If any of the (usually one) urls are downloaded, then we have a library to show.
@@ -1865,7 +1865,7 @@ void PreferencesPanel::ProcessPluginIndex()
 			}
 		}
 
-		return "";
+		return {};
 	}));
 }
 
