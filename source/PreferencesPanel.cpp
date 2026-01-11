@@ -1303,10 +1303,14 @@ void PreferencesPanel::DrawPlugins()
 				AddZone(boundsUp + pluginListBox.Center(), [this, i]
 				{
 					selected = Plugins::Move(i, -1);
+					selectedPlugin = GetPluginNameByIndex(selected);
+					RenderPluginDescription();
 				});
 				AddZone(boundsDown + pluginListBox.Center(), [this, i]
 				{
 					selected = Plugins::Move(i, 1);
+					selectedPlugin = GetPluginNameByIndex(selected);
+					RenderPluginDescription();
 				});
 			}
 		}

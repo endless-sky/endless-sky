@@ -44,83 +44,93 @@ public:
 	public:
 		OrderedSetIterator(OrderedSet<Type> *dataset, std::vector<std::string>::iterator iter)
 			: dataset(dataset), orderIter(iter) {}
-
-		std::pair<const std::string, Type> operator*() const
-		{
-			// TODO: ?? assert(dataset, "Trying to deference invalidated iterator!");
-			return make_pair(*orderIter, *dataset->Get(*orderIter));
-		}
-
-		OrderedSetIterator &operator++()
-		{
-			++orderIter;
-			return *this;
-		}
-
-		bool operator!=(const OrderedSetIterator &other) const
-		{
-			return orderIter != other.orderIter;
-		}
+		std::pair<const std::string, Type> operator*() const;
+		OrderedSetIterator &operator++();
+		bool operator!=(const OrderedSetIterator &other) const { return orderIter != other.orderIter; }
 
 	private:
 		OrderedSet<Type> *dataset;
 		std::vector<std::string>::iterator orderIter;
 	};
-
-
-
-	OrderedSetIterator begin()
-	{
-		return OrderedSetIterator(this, order.begin());
-	}
-
-
-
-	OrderedSetIterator end()
-	{
-		return OrderedSetIterator(this, order.end());
-	}
-
-
-
-	Type *Get(const std::string &name)
-	{
-		// Since Set::Get will create new instances of <Type> when `name` cannot be found,
-		// this will tack them onto the end of the vector we are tracking items with.
-		// The order can be changed afterward as needed.
-		Type *retVal = Set<Type>::Get(name);
-		if(std::find(order.begin(), order.end(), name) == order.end())
-			order.push_back(name);
-		return retVal;
-	}
-
-
-
-	const Type *Get(const std::string &name) const
-	{
-		return Set<Type>::Get(name);
-	}
-
-
-
-	void erase(const std::string &name)
-	{
-		Set<Type>::erase(name);
-		const auto it = std::find(order.begin(), order.end(), name);
-		if(it != order.end())
-			order.erase(it);
-	}
-
-
-
+	OrderedSetIterator begin();
+	OrderedSetIterator end();
+	Type *Get(const std::string &name);
+	const Type *Get(const std::string &name) const;
+	void erase(const std::string &name);
 	void Sort() { std::sort(order.begin(), order.end()); }
 	void swap(size_t index, size_t otherIndex) { std::swap(order[index], order[otherIndex]); }
-
 
 
 private:
 	std::vector<std::string> order;
 };
+
+
+
+template<class Type>
+std::pair<const std::string, Type> OrderedSet<Type>::OrderedSetIterator::operator*() const
+{
+	// TODO: ?? assert(dataset, "Trying to deference invalidated iterator!");
+	return make_pair(*orderIter, *dataset->Get(*orderIter));
+}
+
+
+
+template<class Type>
+typename OrderedSet<Type>::OrderedSetIterator & OrderedSet<Type>::OrderedSetIterator::operator++()
+{
+	++orderIter;
+	return *this;
+}
+
+
+
+template<class Type>
+typename OrderedSet<Type>::OrderedSetIterator OrderedSet<Type>::begin()
+{
+	return OrderedSet::OrderedSetIterator(this, order.begin());
+}
+
+
+
+template<class Type>
+typename OrderedSet<Type>::OrderedSetIterator OrderedSet<Type>::end()
+{
+	return OrderedSetIterator(this, order.end());
+}
+
+
+
+template<class Type>
+Type *OrderedSet<Type>::Get(const std::string &name)
+{
+	// Since Set::Get will create new instances of <Type> when `name` cannot be found,
+	// this will tack them onto the end of the vector we are tracking items with.
+	// The order can be changed afterward as needed.
+	Type *retVal = Set<Type>::Get(name);
+	if(std::find(order.begin(), order.end(), name) == order.end())
+		order.push_back(name);
+	return retVal;
+}
+
+
+
+template<class Type>
+const Type *OrderedSet<Type>::Get(const std::string &name) const
+{
+	return Set<Type>::Get(name);
+}
+
+
+
+template<class Type>
+void OrderedSet<Type>::erase(const std::string &name)
+{
+	Set<Type>::erase(name);
+	const auto it = std::find(order.begin(), order.end(), name);
+	if(it != order.end())
+		order.erase(it);
+}
 
 
 
