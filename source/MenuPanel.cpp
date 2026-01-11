@@ -191,6 +191,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'r' && player.IsLoaded() && player.IsDead())
 	{
+		// First, make sure the previous MainPanel has been deleted.
+		gamePanels.Reset();
+		gamePanels.CanSave(true);
+
 		player.Reload();
 
 		GetUI().PopThrough(GetUI().Root().get());
