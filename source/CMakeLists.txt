@@ -64,8 +64,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConditionSet.h
 	ConditionsStore.cpp
 	ConditionsStore.h
-	ControlsListDialog.cpp
-	ControlsListDialog.h
+	ControlsListDialogPanel.cpp
+	ControlsListDialogPanel.h
 	Conversation.cpp
 	Conversation.h
 	ConversationPanel.cpp
@@ -87,8 +87,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Date.h
 	Depreciation.cpp
 	Depreciation.h
-	Dialog.cpp
-	Dialog.h
+	DialogPanel.cpp
+	DialogPanel.h
+	DialogSettings.cpp
+	DialogSettings.h
 	Dictionary.cpp
 	Dictionary.h
 	DistanceCalculationSettings.h
@@ -97,6 +99,8 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
+	Endpoint.cpp
+	Endpoint.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
@@ -293,8 +297,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
-	ShipNameDialog.cpp
-	ShipNameDialog.h
+	ShipNameDialogPanel.cpp
+	ShipNameDialogPanel.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp

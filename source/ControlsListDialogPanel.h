@@ -1,4 +1,4 @@
-/* ControlsListDialog.h
+/* ControlsListDialogPanel.h
 Copyright (c) 2024 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Dialog.h"
+#include "DialogPanel.h"
 
 #include "ClickZone.h"
 #include "GameData.h"
@@ -29,15 +29,15 @@ class RenderBuffer;
 
 
 // A special version of Dialog for listing the command profiles.
-class ControlsListDialog : public Dialog {
+class ControlsListDialogPanel : public DialogPanel {
 public:
 	template<class T>
-	ControlsListDialog(T *panel,
+	ControlsListDialogPanel(T *panel,
 		const std::string &title,
 		const std::vector<std::string> &options,
 		const std::string &initialSelection,
-		Dialog::FunctionButton buttonOne,
-		Dialog::FunctionButton buttonThree,
+		DialogPanel::FunctionButton buttonOne,
+		DialogPanel::FunctionButton buttonThree,
 		std::string (T::*hoverFun)(const std::string &) = nullptr
 		);
 
@@ -86,16 +86,16 @@ private:
 
 
 template<class T>
-ControlsListDialog::ControlsListDialog(T *panel,
+ControlsListDialogPanel::ControlsListDialogPanel(T *panel,
 	const std::string &title,
 	const std::vector<std::string> &options,
 	const std::string &initialSelection,
-	const Dialog::FunctionButton buttonOne,
-	const Dialog::FunctionButton buttonThree,
+	const DialogPanel::FunctionButton buttonOne,
+	const DialogPanel::FunctionButton buttonThree,
 	std::string(T::*hoverFun)(const std::string &)
 	)
 	:
-	Dialog(panel, "", "", buttonOne, buttonThree, nullptr),
+	DialogPanel(panel, "", "", buttonOne, buttonThree, nullptr),
 	title(title),
 	selectedItem(initialSelection),
 	hoverFun(std::bind(hoverFun, panel, std::placeholders::_1)),
@@ -106,6 +106,6 @@ ControlsListDialog::ControlsListDialog(T *panel,
 	intFun = nullptr;
 	stringFun = nullptr;
 	validateFun = nullptr;
-	ControlsListDialog::Resize();
+	ControlsListDialogPanel::Resize();
 	UpdateList(options);
 }

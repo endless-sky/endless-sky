@@ -18,8 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
-#include "ControlsListDialog.h"
-#include "Dialog.h"
+#include "ControlsListDialogPanel.h"
+#include "DialogPanel.h"
 #include "Files.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -348,7 +348,7 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 		if(zones[index].Contains(point))
 		{
 			if(zones[index].Value().Has(Command::MENU))
-				GetUI()->Push(new Dialog([this, index]()
+				GetUI().Push(new DialogPanel([this, index]()
 					{
 						this->editing = this->selected = index;
 					},
@@ -498,7 +498,7 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 			else
 				steps = min(120, steps + 20);
 			Preferences::SetTooltipActivation(steps);
-			for(auto &panel : GetUI()->Stack())
+			for(auto &panel : GetUI().Stack())
 				panel->UpdateTooltipActivation();
 		}
 		return true;
@@ -661,7 +661,8 @@ void PreferencesPanel::DrawControls()
 		Command::FASTFORWARD,
 		Command::PAUSE,
 		Command::HELP,
-		Command::MESSAGE_LOG
+		Command::MESSAGE_LOG,
+		Command::PERFORMANCE_DISPLAY
 	};
 
 	int page = 0;
@@ -1336,7 +1337,7 @@ void PreferencesPanel::Exit()
 	if(recacheDeadlines)
 		player.CacheMissionInformation(true);
 
-	GetUI()->Pop(this);
+	GetUI().Pop(this);
 }
 
 
@@ -1352,13 +1353,13 @@ bool PreferencesPanel::CheckExit(SDL_Keycode nextAction)
 		else
 			message = "Select 'Save' to activate this controls profile and save it.\n";
 
-		GetUI()->Push(new Dialog(this,
+		GetUI().Push(new DialogPanel(this,
 			message +
 			"'Discard' will revert to the previous active control profile.\n" +
 			"'Cancel' to go back and make further changes.",
 			Command::Name(),
-			Dialog::FunctionButton(this, "Save", 's', &PreferencesPanel::SaveControls),
-			Dialog::FunctionButton(this, "Discard", 'd', &PreferencesPanel::DiscardControlChanges),
+			DialogPanel::FunctionButton(this, "Save", 's', &PreferencesPanel::SaveControls),
+			DialogPanel::FunctionButton(this, "Discard", 'd', &PreferencesPanel::DiscardControlChanges),
 			[](const string &profileName) { return CanChange(profileName); }));
 
 		// Note: While this dialog is modal, this code is non-blocking, need to prime the next action.
@@ -1383,7 +1384,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 			// Only show this if it's not possible to zoom the view at all, as
 			// otherwise the dialog will show every time, which is annoying.
 			if(newZoom == ZOOM_FACTOR_MIN + ZOOM_FACTOR_INCREMENT)
-				GetUI()->Push(new Dialog(
+				GetUI().Push(new DialogPanel(
 					"Your screen resolution is too low to support a zoom level above 100%."));
 			Screen::SetZoom(ZOOM_FACTOR_MIN);
 		}
@@ -1410,7 +1411,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	else if(str == VSYNC_SETTING)
 	{
 		if(!Preferences::ToggleVSync())
-			GetUI()->Push(new Dialog(
+			GetUI().Push(new DialogPanel(
 				"Unable to change VSync state. (Your system's graphics settings may be controlling it instead.)"));
 	}
 	else if(str == CAMERA_ACCELERATION)
@@ -1458,7 +1459,7 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		if(steps > 120)
 			steps = 0;
 		Preferences::SetTooltipActivation(steps);
-		for(auto &panel : GetUI()->Stack())
+		for(auto &panel : GetUI().Stack())
 			panel->UpdateTooltipActivation();
 	}
 	else if(str == FLAGSHIP_SPACE_PRIORITY)
@@ -1639,15 +1640,14 @@ void PreferencesPanel::UpdateAvailableProfiles()
 void PreferencesPanel::SelectProfile()
 {
 	UpdateAvailableProfiles();
-	// modalDialog = new ModalListDialog(this,
-	modalListDialog = new ControlsListDialog(this,
+	modalListDialog = new ControlsListDialogPanel(this,
 		"Select a saved controls profile:",
 		availableProfiles,
 		Command::Name(),
-		Dialog::FunctionButton(this, "Load", 'l', &PreferencesPanel::LoadProfile),
-		Dialog::FunctionButton(this, "Delete", SDLK_DELETE, &PreferencesPanel::DeleteProfile),
+		DialogPanel::FunctionButton(this, "Load", 'l', &PreferencesPanel::LoadProfile),
+		DialogPanel::FunctionButton(this, "Delete", SDLK_DELETE, &PreferencesPanel::DeleteProfile),
 		&PreferencesPanel::HoverProfile);
-	GetUI()->Push(modalListDialog);
+	GetUI().Push(modalListDialog);
 }
 
 
@@ -1679,7 +1679,6 @@ string PreferencesPanel::HoverProfile(const string &profileName)
 
 bool PreferencesPanel::DeleteProfile(const string &profileName)
 {
-
 	for(string name : immutableProfiles)
 		if(name == profileName)
 		{
@@ -1689,7 +1688,7 @@ bool PreferencesPanel::DeleteProfile(const string &profileName)
 		}
 
 	selectedProfile = profileName;
-	GetUI()->Push(new Dialog(this, &PreferencesPanel::ActualDeleteProfile,
+	GetUI().Push(new DialogPanel(this, &PreferencesPanel::ActualDeleteProfile,
 		"Are you sure you want to delete '" + selectedProfile + "'?"));
 
 	// Keep the dialog open.
