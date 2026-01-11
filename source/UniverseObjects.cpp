@@ -340,9 +340,9 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : messageCategories)
 		if(!it.second.IsLoaded())
 			Warn("message category", it.first);
-	for(const auto &it : messages)
+	for(auto &it : messages)
 		if(!it.second.IsLoaded())
-			Warn("message", it.first);
+			NameAndWarn("message", it);
 	// Persons can be referred to when marking them as destroyed.
 	for(const auto &it : persons)
 		if(!it.second.IsLoaded())
