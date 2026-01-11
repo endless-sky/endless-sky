@@ -96,8 +96,8 @@ namespace {
 		return p.get_future();
 	}
 
-	// The maximum size of a plugin in bytes, this will be 1 GB.
-	const size_t MAX_DOWNLOAD_SIZE = 1000000000;
+	// The maximum size of a plugin in bytes, this will be 1 Gigabyte.
+	const size_t MAX_DOWNLOAD_SIZE = 1073741824;
 }
 
 
