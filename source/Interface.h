@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Color.h"
+#include "GameData.h"
+#include "InfoTag.h"
 #include "Point.h"
 #include "Rectangle.h"
 #include "text/Truncate.h"
@@ -113,6 +115,7 @@ private:
 		virtual void Place(const Rectangle &bounds, Panel *panel) const;
 
 	protected:
+		Point dimensions;
 		AnchoredPoint from;
 		AnchoredPoint to;
 		Point alignment;
@@ -270,7 +273,41 @@ private:
 	};
 
 
+	// This class handles "infotag" elements.
+	class InfoTagElement : public Element {
+	public:
+		InfoTagElement(const DataNode &node, const Point &globalAnchor);
+
+
+	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
+		bool ParseEar(const DataNode &node);
+		// Draw this element in the given rectangle.
+		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
+
+	private:
+		std::string text;
+
+		Alignment textAlignment = Alignment::LEFT;
+		InfoTag::Affinity affinity = InfoTag::Affinity::NONE;
+		InfoTag::Direction facing = InfoTag::Direction::NONE;
+		float borderWidth = 1.f;
+		float earLength = 15.f;
+		float earWidth = 15.f;
+		int textWidth = 1000;
+		bool shrink = false;
+
+		const Color *fillColor = GameData::Colors().Get("infotag background default");
+		const Color *fontColor = GameData::Colors().Get("hover"); // white
+		const Color *borderColor = GameData::Colors().Get("border shimmer");
+		const Color *borderColor2 = GameData::Colors().Get("border shadow");
+	};
+
+
 private:
+	std::vector<const Interface *> includes;
 	std::vector<std::unique_ptr<Element>> elements;
 	std::map<std::string, Element> points;
 	std::map<std::string, double> values;
