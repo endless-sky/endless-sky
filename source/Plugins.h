@@ -164,7 +164,4 @@ public:
 
 	static bool Download(const std::string &url, const std::filesystem::path &location);
 
-private:
-	// Maintain the order which plugins are loaded in.
-	std::vector<std::string> pluginLoadOrder;
 };
