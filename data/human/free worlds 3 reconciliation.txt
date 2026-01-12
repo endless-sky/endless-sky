@@ -333,7 +333,7 @@ mission "FW Reconciliation 2A"
 			label tarazed
 			`	The rest of the evening is a more casual time for conversation, with plenty of good food and wine. Alondo sends you a message to inform you that Tarazed has decided to officially join the Free Worlds after having received word of the Parliament hearing, news that brings joy to Katya and Ijs.`
 			label end
-			`	At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, please feel free to visit the outfitter here and install a ramscoop on your ship; you will need one for your next mission. And also, take this." He hands you a data card. "It's a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
+			`	At one point, Edrick pulls you aside and says, "I've requested that you be granted access to some of the new technology that was developed here during the course of the war. In particular, feel free to visit the outfitter here and install a ramscoop; you will need one for your next mission. And also, take this." He hands you a data card. "It's a copy of Sawyer's evidence, in case something happens here. Keep it very, very safe."`
 				accept
 	
 	npc accompany save
