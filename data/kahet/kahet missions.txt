@@ -297,7 +297,7 @@ mission "Ringworld Debris: Quarg"
 mission "Ka'het: Death in the Graveyard 1"
 	landing
 	name "Odd Ka'het"
-	description "Find a Remnant who can help you with the downed Ka'het in <destination>."
+	description "Find a Remnant who can help you with the downed Ka'het and accompany them to <destination>."
 	source
 		planet "Celeatis" "Eavine" "Palarei" "Siteria" "Alix" "Retilie" "Osaeli"
 	stopover "Aventine"
