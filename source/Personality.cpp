@@ -154,7 +154,7 @@ void Personality::Load(const DataNode &node)
 				confusion = ExclusiveItem<Confusion>(Confusion(child));
 			else if(child.Size() >= 2)
 				confusion = ExclusiveItem<Confusion>(GameData::Confusions().Get(child.Token(1)));
-		}	
+		}
 		else
 		{
 			for(int i = 0; i < child.Size(); ++i)
