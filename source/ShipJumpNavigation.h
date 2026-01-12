@@ -35,6 +35,8 @@ public:
 	void Calibrate(const Ship &ship);
 	// Recalibrate jump costs for this ship, but only if necessary.
 	void Recalibrate(const Ship &ship);
+	// Recalibrate only the jump speed and scram threshold.
+	void RecalibrateJumpSpeed(const Ship &ship);
 
 	// Pass the current system that the ship is in to the navigation.
 	void SetSystem(const System *system);
@@ -61,6 +63,10 @@ public:
 	bool HasHyperdrive() const;
 	bool HasScramDrive() const;
 	bool HasJumpDrive() const;
+	bool HasJumpMassCost() const;
+
+	double JumpSpeed() const;
+	double ScramThreshold() const;
 
 
 private:
@@ -89,4 +95,8 @@ private:
 	bool hasScramDrive = false;
 	bool hasJumpDrive = false;
 	bool hasJumpMassCost = false;
+
+	// The speed that this ship can jump at.
+	double jumpSpeed = 0.;
+	double scramThreshold = 0.;
 };
