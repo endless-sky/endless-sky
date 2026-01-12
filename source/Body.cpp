@@ -55,10 +55,11 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 
 
 
-// Check that this Body has a sprite and that the sprite has at least one frame.
+// Check that this Body has a sprite and that the sprite has dimensions to it.
+// The sprite may be unloaded, though.
 bool Body::HasSprite() const
 {
-	return (sprite && sprite->Frames());
+	return (sprite && sprite->HasDimensions());
 }
 
 
@@ -423,7 +424,7 @@ void Body::SetStep(int step) const
 	// If the step is negative or there is no sprite, do nothing. This updates
 	// and caches the mask and the frame so that if further queries are made at
 	// this same time step, we don't need to redo the calculations.
-	if(step == currentStep || step < 0 || !sprite || !sprite->Frames())
+	if(step == currentStep || step < 0 || !sprite || !sprite->IsLoaded())
 		return;
 	currentStep = step;
 

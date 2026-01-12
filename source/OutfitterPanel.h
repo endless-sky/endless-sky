@@ -83,7 +83,7 @@ protected:
 private:
 	static bool ShipCanAdd(const Ship *ship, const Outfit *outfit);
 	static bool ShipCanRemove(const Ship *ship, const Outfit *outfit);
-	static void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned);
+	void DrawOutfit(const Outfit &outfit, const Point &center, bool isSelected, bool isOwned) const;
 	bool HasLicense(const std::string &name) const;
 	void CheckRefill();
 	void Refill();

@@ -32,7 +32,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
-#include "text/WrappedText.h"
 
 using namespace std;
 
@@ -44,7 +43,8 @@ namespace {
 
 MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited,
 		const MapDetailPanel *parent)
-	: parent(parent), number(number), hasVisited(hasVisited), planetName(object.DisplayName())
+	: parent(parent), number(number), hasVisited(hasVisited), loadingCircle(30.f, 10, 2.),
+		planetName(object.DisplayName())
 {
 	planet = object.GetPlanet();
 	hasSpaceport = planet->HasServices();
@@ -134,6 +134,7 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 
 bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 {
+	loadingCircle.Step();
 	// Need to update this before checking if the element fits.
 	yCoordinate = uiPoint.Y();
 	isShown = IsShown();
@@ -146,8 +147,8 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 
 		const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 		// The maximum possible size for the sprite of the planet.
-		const double planetIconMaxSize = planetCardInterface->GetValue("planet icon max size");
-		const auto alignLeft = Layout(planetCardInterface->GetValue("width") - planetIconMaxSize, Truncate::BACK);
+		const double iconMaxSize = planetCardInterface->GetValue("planet icon max size");
+		const auto alignLeft = Layout(planetCardInterface->GetValue("width") - iconMaxSize, Truncate::BACK);
 
 		// Height of one MapPlanetCard element.
 		const double height = Height();
@@ -164,26 +165,32 @@ bool MapPlanetCard::DrawIfFits(const Point &uiPoint)
 		// The top part goes out of the screen so we can draw there. The bottom would go out of this panel.
 		const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
 
-		auto spriteItem = SpriteShader::Prepare(sprite, Point(Screen::Left() + planetIconMaxSize / 2.,
-			uiPoint.Y() + height / 2.), spriteScale);
+		// Wait until the sprite is loaded fully before attempting to draw it.
+		Point iconPos = Point(Screen::Left() + iconMaxSize / 2., uiPoint.Y() + height / 2.);
+		if(sprite->IsLoaded())
+		{
+			auto spriteItem = SpriteShader::Prepare(sprite, iconPos, spriteScale);
 
-		float clip = 1.f;
-		// Lowest point of the planet sprite.
-		double planetBottomY = height / 2. + spriteScale * sprite->Height() / 2.;
-		// Calculate the correct clip on the bottom of the sprite if necessary.
-		// It is done by looking at how much space is available,
-		// and the difference between that and the lowest point of the sprite.
-		// Of course, the clipping needs to be done relative to the size of the sprite.
-		if(availableBottomSpace <= planetBottomY)
-			clip = 1.f + (availableBottomSpace - planetBottomY) / (spriteScale * sprite->Height());
+			float clip = 1.f;
+			// Lowest point of the planet sprite.
+			double planetBottomY = height / 2. + spriteScale * sprite->Height() / 2.;
+			// Calculate the correct clip on the bottom of the sprite if necessary.
+			// It is done by looking at how much space is available,
+			// and the difference between that and the lowest point of the sprite.
+			// Of course, the clipping needs to be done relative to the size of the sprite.
+			if(availableBottomSpace <= planetBottomY)
+				clip = 1.f + (availableBottomSpace - planetBottomY) / (spriteScale * sprite->Height());
 
-		spriteItem.clip = clip;
-		spriteItem.position[1] -= (sprite->Height() * ((1.f - clip) * .5f)) * spriteScale;
-		spriteItem.transform[3] *= clip;
+			spriteItem.clip = clip;
+			spriteItem.position[1] -= (sprite->Height() * ((1.f - clip) * .5f)) * spriteScale;
+			spriteItem.transform[3] *= clip;
 
-		SpriteShader::Bind();
-		SpriteShader::Add(spriteItem);
-		SpriteShader::Unbind();
+			SpriteShader::Bind();
+			SpriteShader::Add(spriteItem);
+			SpriteShader::Unbind();
+		}
+		else
+			loadingCircle.Draw(iconPos);
 
 		// Check if drawing a category would not go out of the panel.
 		const auto FitsCategory = [availableBottomSpace, categorySize, height]
