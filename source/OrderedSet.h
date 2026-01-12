@@ -69,7 +69,7 @@ private:
 template<class Type>
 std::pair<const std::string, Type> OrderedSet<Type>::OrderedSetIterator::operator*() const
 {
-	// TODO: ?? assert(dataset, "Trying to deference invalidated iterator!");
+	assert(dataset && "Trying to deference invalidated iterator!");
 	return make_pair(*orderIter, *dataset->Get(*orderIter));
 }
 
