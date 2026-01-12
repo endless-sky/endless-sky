@@ -1734,6 +1734,9 @@ interface "news (small screen)"
 
 interface "boarding"
 	sprite "ui/boarding dialog"
+	box "plunder list"
+		center -155 -60
+		dimensions 360 250
 	
 	label "item"
 		from -320 -189

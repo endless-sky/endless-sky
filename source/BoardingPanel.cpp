@@ -138,16 +138,17 @@ void BoardingPanel::Draw()
 	DrawBackdrop();
 
 	// Draw the list of plunder.
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
 	const Color &opaque = *GameData::Colors().Get("panel background");
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	const Rectangle plunderList{{-155., -60.}, {360., 250.}};
+	const Rectangle plunderList = boarding->GetBox("plunder list");
 	FillShader::Fill(plunderList, opaque);
 
 	int index = (scroll.AnimatedValue() - 10) / 20;
-	int y = -170 - scroll.AnimatedValue() + 20 * index;
+	int y = plunderList.Top() + 15. - scroll.AnimatedValue() + 20 * index;
 	int endY = 60;
 
 	const Font &font = FontSet::Get(14);
@@ -160,11 +161,11 @@ void BoardingPanel::Draw()
 		// Check if this is the selected row.
 		bool isSelected = (index == selected);
 		if(isSelected)
-			FillShader::Fill(Point(-155., y + 10.), Point(360., 20.), back);
+			FillShader::Fill(Point(plunderList.Center().X(), y + 10.), Point(plunderList.Width(), 20.), back);
 
 		// Color the item based on whether you have space for it.
 		const Color &color = item.CanTake(*you) ? isSelected ? bright : medium : dim;
-		Point pos(-320., y + fontOff);
+		Point pos(plunderList.Left() + 15., y + fontOff);
 		font.Draw(item.Name(), pos, color);
 		font.Draw({item.Value(), {260, Alignment::RIGHT}}, pos, color);
 		font.Draw({item.Size(), {330, Alignment::RIGHT}}, pos, color);
@@ -222,7 +223,6 @@ void BoardingPanel::Draw()
 			Format::Decimal(defenseOdds.DefenderCasualties(vCrew, crew), 1));
 	}
 
-	const Interface *boarding = GameData::Interfaces().Get("boarding");
 	boarding->Draw(info, this);
 
 	if(scroll.Scrollable())
