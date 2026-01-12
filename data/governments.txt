@@ -899,18 +899,19 @@ government "Hai (Unfettered)"
 	raid "Large Plundering Unfettered" 8
 
 government "Hai (Unfettered Challenger)"
-	"display name" "Hai (Unfettered)"
 	swizzle 5
+	"display name" "Unfettered Heshi"
 	"crew attack" 1.4
 	"crew defense" 2.2
 
 	"player reputation" -1000
-	"bribe" .02
 	"fine" 0
-	"friendly hail" "friendly unfettered"
+	"travel restrictions"
+		system "Wah Ki"
+	"friendly hail" "unfettered challenger"
 	"friendly disabled hail" "friendly disabled unfettered"
-	"hostile hail" "hostile unfettered"
-	"hostile disabled hail" "hostile disabled unfettered"
+	"hostile hail" "hostile unfettered challenger"
+	"hostile disabled hail" "defeated unfettered challenger"
 
 government "Hai (Unfettered Civilians)"
 	swizzle 4
@@ -1462,6 +1463,18 @@ government "Marauder"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled"
+
+government "Cerberus"
+	swizzle 1
+	"crew attack" 2.5
+	"crew defense" 1
+
+	"player reputation" -1000
+	"display name" "Pirate"
+	bribe 0
+	fine 0
+	"hostile hail" "cerberus hails"
+	"hostile disabled hail" "cerberus hails"
 
 government "Merchant"
 	swizzle 5
