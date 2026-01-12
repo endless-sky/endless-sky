@@ -21,7 +21,7 @@ mission "Frontier delivery [0]"
 	to offer
 		random < 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
 		not government "Pirate"
@@ -53,7 +53,7 @@ mission "Frontier delivery [1]"
 	to offer
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
 		not government "Pirate"
@@ -85,7 +85,7 @@ mission "Frontier delivery [2]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
 		not government "Pirate"
@@ -121,7 +121,7 @@ mission "Frontier Emigration [0]"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -142,7 +142,7 @@ mission "Frontier Emigration [1]"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -163,7 +163,7 @@ mission "Frontier Emigration [2]"
 		not planet "Shangri-La"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	on complete
 		payment 3000 140
@@ -180,7 +180,7 @@ mission "Disaster Relief"
 	to offer
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
 		not government "Pirate"
@@ -200,7 +200,7 @@ mission "Instruct Novice Pilot"
 		random < 5
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Neutral" "Independent"
 		attributes "frontier" "dirt belt" "rim" "north" "south" "mining" "farming"
 	stopover
 		not government "Pirate"
