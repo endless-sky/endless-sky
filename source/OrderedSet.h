@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Set.h"
 
 #include <algorithm>
-#include <mutex>
 #include <string>
 #include <vector>
 
@@ -131,17 +130,3 @@ void OrderedSet<Type>::erase(const std::string &name)
 	if(it != order.end())
 		order.erase(it);
 }
-
-
-
-template<typename T>
-class LockedOrderedSet {
-public:
-	LockedOrderedSet(std::mutex &guard, OrderedSet<T> &data) : guard(guard), data(data) {}
-	OrderedSet<T> *operator->() { return &data; }
-	OrderedSet<T> &operator*() { return data; }
-
-private:
-	std::lock_guard<std::mutex> guard;
-	OrderedSet<T> &data;
-};

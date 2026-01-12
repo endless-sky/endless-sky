@@ -166,6 +166,7 @@ target_sources(EndlessSkyLib PRIVATE
 	LoadPanel.h
 	LocationFilter.cpp
 	LocationFilter.h
+	LockedOrderedSet.h
 	LogbookPanel.cpp
 	LogbookPanel.h
 	MainPanel.cpp
