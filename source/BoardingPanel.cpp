@@ -109,9 +109,13 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
 
-	// The list is 240 pixels tall, and there are 10 pixels padding on the top
-	// and the bottom, so:
-	scroll.SetDisplaySize(220.);
+	// Compute the height of the visible scroll area.
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	Point outerPadding = boarding->GetPoint("plunder list outer padding");
+	Point innerPadding = boarding->GetPoint("plunder list inner padding");
+	Rectangle plunderList = boarding->GetBox("plunder list");
+	Rectangle plunderInset(plunderList.Center(), plunderList.Dimensions() - 2 * (outerPadding + innerPadding));
+	scroll.SetDisplaySize(plunderInset.Height());
 	scroll.SetMaxValue(max(0., 20. * plunder.size()));
 }
 
@@ -499,12 +503,16 @@ bool BoardingPanel::Click(int x, int y, MouseButton button, int clicks)
 		return false;
 
 	// Was the click inside the plunder list?
-	if(x >= -330 && x < 20 && y >= -180 && y < 60)
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	Point outerPadding = boarding->GetPoint("plunder list outer padding");
+	Point innerPadding = boarding->GetPoint("plunder list inner padding");
+	Rectangle plunderList = boarding->GetBox("plunder list");
+	Rectangle plunderInset(plunderList.Center(), plunderList.Dimensions() - 2 * outerPadding);
+	if(plunderInset.Contains(Point(x, y)))
 	{
-		int index = (scroll.AnimatedValue() + y - -170) / 20;
-		if(static_cast<unsigned>(index) < plunder.size())
+		int index = (scroll.AnimatedValue() + y - plunderInset.Top() - innerPadding.Y()) / 20;
+		if(index >= 0 && static_cast<unsigned>(index) < plunder.size())
 			selected = index;
-		return true;
 	}
 
 	return true;

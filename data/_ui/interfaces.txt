@@ -1737,7 +1737,14 @@ interface "boarding"
 	box "plunder list"
 		center -155 -60
 		dimensions 360 250
-	
+		# from -335 -185 to 25 65
+	point "plunder list outer padding"
+		center 5 5
+		# from -330 -180 to 20 60
+	point "plunder list inner padding"
+		center 0 10
+		# from -330 -170 to 20 50
+
 	label "item"
 		from -320 -189
 		align left
