@@ -1004,9 +1004,8 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("afterburner effect", it.first->TrueName());
-			for(const auto &it : baseAttributes.JumpEffects())
-				for(int i = 0; i < it.second; ++i)
-					out.Write("jump effect", it.first->TrueName());
+			for(const auto &[effect, amount] : baseAttributes.JumpEffects())
+				out.Write("jump effect", effect->TrueName(), amount);
 			for(const auto &it : baseAttributes.JumpSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("jump sound", it.first->Name());
@@ -4570,15 +4569,15 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 	if(isUsingJumpDrive && !forget)
 	{
 		double sparkAmount = hyperspaceCount * Width() * Height() * .000006;
-		const map<const Effect *, int> &jumpEffects = attributes.JumpEffects();
+		const map<const Effect *, double> &jumpEffects = attributes.JumpEffects();
 		if(jumpEffects.empty())
 			CreateSparks(visuals, "jump drive", sparkAmount);
 		else
 		{
 			// Spread the amount of particle effects created among all jump effects.
 			sparkAmount /= jumpEffects.size();
-			for(const auto &effect : jumpEffects)
-				CreateSparks(visuals, effect.first, sparkAmount);
+			for(const auto &[effect, amount] : jumpEffects)
+				CreateSparks(visuals, effect, sparkAmount * min(amount, 1.));
 		}
 	}
 

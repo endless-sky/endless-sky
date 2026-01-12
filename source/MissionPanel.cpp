@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Command.h"
 #include "CoreStartData.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -204,13 +204,13 @@ void MissionPanel::Step()
 	// If a job or mission that launches the player triggers,
 	// immediately close the map.
 	if(player.ShouldLaunch())
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	if(GetUI().IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced");
 	DoHelp("jobs");
 
-	if(GetUI()->IsTop(this) && !fromMission)
+	if(GetUI().IsTop(this) && !fromMission)
 	{
 		Mission *mission = player.MissionToOffer(Mission::JOB_BOARD);
 		if(mission)
@@ -224,7 +224,7 @@ void MissionPanel::Step()
 			specialSystem = mission->IsVisible() ? mission->Destination()->GetSystem() : nullptr;
 			CenterOnSystem(specialSystem ? specialSystem : player.GetSystem());
 
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		}
 		else
 		{
@@ -340,7 +340,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
-			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
+			GetUI().Push(new DialogPanel(this, &MissionPanel::AbortMission,
 				"Abort mission \"" + acceptedIt->DisplayName() + "\"?"));
 		return true;
 	}
@@ -714,33 +714,12 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 
 void MissionPanel::DrawKey() const
 {
-	const Sprite *back = SpriteSet::Get("ui/mission key");
-	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
-
-	const Font &font = FontSet::Get(14);
-	Point angle = Point(1., 1.).Unit();
-
-	const int ROWS = 5;
-	Point pos(Screen::Left() + 10., Screen::Bottom() - ROWS * 20. + 5.);
-	Point pointerOff(5., 5.);
-	Point textOff(8., -.5 * font.Height());
-
-	const Set<Color> &colors = GameData::Colors();
-	const Color &bright = *colors.Get("bright");
-	const Color &dim = *colors.Get("dim");
-	const Color COLOR[ROWS] = {
-		*colors.Get("available job"),
-		*colors.Get("unavailable job"),
-		*colors.Get("active mission"),
-		*colors.Get("blocked mission"),
-		*colors.Get("waypoint")
-	};
-	static const string LABEL[ROWS] = {
-		"Available job; can accept",
-		"Too little space to accept",
-		"Active job; go here to complete",
-		"Has unfinished requirements",
-		"System of importance"
+	static const string CONDITIONS[] = {
+		"available",
+		"unavailable",
+		"active",
+		"blocked",
+		"waypoint"
 	};
 	int selected = -1;
 	if(availableIt != available.end())
@@ -748,12 +727,10 @@ void MissionPanel::DrawKey() const
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 		selected = 2 + !IsSatisfied(*acceptedIt);
 
-	for(int i = 0; i < ROWS; ++i)
-	{
-		PointerShader::Draw(pos + pointerOff, angle, 10.f, 18.f, 0.f, COLOR[i]);
-		font.Draw(LABEL[i], pos + textOff, i == selected ? bright : dim);
-		pos.Y() += 20.;
-	}
+	Information info;
+	if(selected >= 0)
+		info.SetCondition(CONDITIONS[selected]);
+	GameData::Interfaces().Get("map: mission view: key")->Draw(info);
 }
 
 
@@ -1068,7 +1045,7 @@ void MissionPanel::Accept(bool force)
 		else
 			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
 				<< " to make room for this mission. Continue?";
-		GetUI()->Push(new Dialog(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
+		GetUI().Push(new DialogPanel(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}
 
