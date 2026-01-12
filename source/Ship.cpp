@@ -1457,6 +1457,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
+	ResetConfusion();
 	if(isDeparting)
 		lingerSteps = 0;
 
@@ -1570,6 +1571,27 @@ const Personality &Ship::GetPersonality() const
 void Ship::SetPersonality(const Personality &other)
 {
 	personality = other;
+}
+
+
+
+const Confusion &Ship::GetConfusion() const
+{
+	return confusion;
+}
+
+
+
+// If this ship changes governments, its confusion also needs to be updated.
+// Confusion from personality takes precendence over confusion from government.
+void Ship::ResetConfusion()
+{
+	if(personality.GetConfusion().IsDefined())
+		confusion = personality.GetConfusion();
+	else if(government && government->GetConfusion().IsDefined())
+		confusion = government->GetConfusion();
+
+	confusion.RandomizePeriod();
 }
 
 
@@ -1703,7 +1725,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 		DoGeneration();
 
 	// Adjust the error in the pilot's targeting.
-	personality.UpdateConfusion(onTarget.IsFiring());
+	confusion.UpdateConfusion(onTarget.IsFiring());
 
 	DoPassiveEffects(visuals);
 	DoJettison(flotsam);
@@ -2727,6 +2749,7 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 
 	// Set the new government.
 	government = capturer->GetGovernment();
+	ResetConfusion();
 
 	// Transfer some crew over. Only transfer the bare minimum unless even that
 	// is not possible, in which case, share evenly.

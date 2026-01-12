@@ -3623,7 +3623,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 			continue;
 
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
-		Angle confusion = ship.GetPersonality().Confusion() * -1.;
+		Angle confusion = ship.GetConfusion().CurrentConfusion() * -1.;
 		Point p = confusion.Rotate(target.Position() - start);
 		Point v = target.Velocity() - ship.Velocity();
 		double steps = RendezvousTime(p, v, weapon->WeightedVelocity() + .5 * weapon->RandomVelocity());
@@ -3740,7 +3740,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			// Get the turret's current facing, in absolute coordinates. Add
 			// some randomness based on how skilled the pilot is.
 			Angle aim = ship.Facing() + hardpoint.GetAngle()
-				+ ship.GetPersonality().Confusion();
+				+ ship.GetConfusion().CurrentConfusion();
 			// Get this projectile's average velocity.
 			const Weapon *weapon = hardpoint.GetWeapon();
 			double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
@@ -4033,7 +4033,8 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, FireCommand &targeting
 
 			// Get the vector the weapon will travel along. Add some randomness
 			// depending on how accurate this ship's pilot is.
-			v = (ship.Facing() + hardpoint.GetAngle() + person.Confusion()).Unit() * vp - v;
+			v = (ship.Facing() + hardpoint.GetAngle() + ship.GetConfusion().CurrentConfusion()).Unit()
+				* vp - v;
 			// Extrapolate over the lifetime of the projectile.
 			v *= lifetime;
 
@@ -4098,7 +4099,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, FireCommand &targeting
 		// Get the vector the weapon will travel along. Add some randomness
 		// depending on how accurate this ship's pilot is.
 		v = (ship.Facing() + hardpoint.GetAngle()
-			+ ship.GetPersonality().Confusion()).Unit() * vp - v;
+			+ ship.GetConfusion().CurrentConfusion()).Unit() * vp - v;
 		// Extrapolate over the lifetime of the projectile.
 		v *= lifetime;
 

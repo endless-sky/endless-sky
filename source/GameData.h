@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class CategoryList;
 class Color;
 class ConditionsStore;
+class Confusion;
 class Conversation;
 class DataNode;
 class DataWriter;
@@ -124,6 +125,7 @@ public:
 
 	static const Set<Color> &Colors();
 	static const Set<Swizzle> &Swizzles();
+	static const Set<Confusion> &Confusions();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();

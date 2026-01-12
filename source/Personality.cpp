@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "GameData.h"
 #include "pi.h"
 #include "Random.h"
 
@@ -127,8 +128,7 @@ namespace {
 
 // Default settings for player's ships.
 Personality::Personality() noexcept
-	: flags(1LL << DISABLES), confusionMultiplier(2.), period(240.),
-	focusMultiplier(.2), gainFocusTime(120.), loseFocusTime(1800.), tick(Random::Int(period)), focusPercentage(0.)
+	: flags(1LL << DISABLES)
 {
 	static_assert(LAST_ITEM_IN_PERSONALITY_TRAIT_ENUM == PERSONALITY_COUNT,
 		"PERSONALITY_COUNT must match the length of PersonalityTraits");
@@ -149,33 +149,12 @@ void Personality::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "confusion")
 		{
-			if(add || remove)
-			{
-				child.PrintTrace("Cannot \"" + node.Token(0) + "\" a confusion node:");
-				continue;
-			}
-			// Accept the old method of defining confusion for backwards compatibility.
-			if(child.Size() >= 2)
-				confusionMultiplier = child.Value(1);
-			for(const DataNode &grand : child)
-			{
-				const string &grandKey = grand.Token(0);
-				if(grand.Size() < 2)
-					grand.PrintTrace("Skipping attribute with no value specified:");
-				else if(grandKey == "max confusion")
-					confusionMultiplier = max(0., grand.Value(1));
-				else if(grandKey == "period")
-					period = max(1., grand.Value(1));
-				else if(grandKey == "focus multiplier")
-					focusMultiplier = max(0., grand.Value(1));
-				else if(grandKey == "gain focus time")
-					gainFocusTime = max(1., grand.Value(1));
-				else if(grandKey == "lose focus time")
-					loseFocusTime = max(1., grand.Value(1));
-				else
-					grand.PrintTrace("Skipping unknown confusion attribute:");
-			}
-		}
+			// Accept the old method of defining confusion with a single value.
+			if(child.HasChildren() || (child.Size() >= 2 && child.IsNumber(1)))
+				confusion = ExclusiveItem<Confusion>(Confusion(child));
+			else if(child.Size() >= 2)
+				confusion = ExclusiveItem<Confusion>(GameData::Confusions().Get(child.Token(1)));
+		}	
 		else
 		{
 			for(int i = 0; i < child.Size(); ++i)
@@ -192,7 +171,8 @@ void Personality::Save(DataWriter &out) const
 	out.Write("personality");
 	out.BeginChild();
 	{
-		out.Write("confusion", confusionMultiplier);
+		if(confusion->IsDefined())
+			confusion->Save(out);
 		for(const auto &it : TOKEN)
 			if(flags.test(it.second))
 				out.Write(it.first);
@@ -482,29 +462,9 @@ bool Personality::IsQuiet() const
 
 
 
-const double &Personality::Confusion() const
+const Confusion &Personality::GetConfusion() const
 {
-	return confusion;
-}
-
-
-
-void Personality::UpdateConfusion(bool isFocusing)
-{
-	if(!confusionMultiplier)
-		return;
-	tick++;
-
-	// If you're focusing, aiming accuracy should slowly improve.
-	// Gain and lose focus times are stored as the number of ticks to reach and lose the maximum aiming bonus,
-	// so use their inverse to determine the amount of accuracy to gain or lose each tick.
-	if(isFocusing)
-		focusPercentage += 1. / gainFocusTime;
-	else
-		focusPercentage -= 1. / loseFocusTime;
-	focusPercentage = min(1., max(0., focusPercentage));
-
-	confusion = confusionMultiplier * (1. - (1. - focusMultiplier) * focusPercentage) * cos(tick * PI * 2 / period);
+	return *confusion;
 }
 
 

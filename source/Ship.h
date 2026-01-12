@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "Confusion.h"
 #include "EsUuid.h"
 #include "FireCommand.h"
 #include "Outfit.h"
@@ -221,6 +222,9 @@ public:
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
+	// Access the ship's confusion.
+	const Confusion &GetConfusion() const;
+	void ResetConfusion();
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	const Phrase *GetHailPhrase() const;
@@ -665,6 +669,7 @@ private:
 	FireCommand onTarget;
 
 	Personality personality;
+	Confusion confusion;
 	const Phrase *hail = nullptr;
 	ShipAICache aiCache;
 
