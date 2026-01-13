@@ -401,7 +401,7 @@ void DialogPanel::Resize(int height)
 	// The height of the bottom sprite without the included button's height.
 	const int realBottomHeight = bottom->Height() - cancel->Height();
 
-	// a negative height (default) will allow dynamic sizing
+	// A negative height (default) will allow dynamic sizing.
 	if(height < 0)
 		height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
 			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));

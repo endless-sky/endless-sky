@@ -38,8 +38,7 @@ public:
 		const std::string &initialSelection,
 		DialogPanel::FunctionButton buttonOne,
 		DialogPanel::FunctionButton buttonThree,
-		std::string (T::*hoverFun)(const std::string &) = nullptr
-		);
+		std::string (T::*hoverFun)(const std::string &) = nullptr);
 
 	void UpdateList(std::vector<std::string> newOptions);
 	virtual void Draw() override;
@@ -92,10 +91,8 @@ ControlsListDialogPanel::ControlsListDialogPanel(T *panel,
 	const std::string &initialSelection,
 	const DialogPanel::FunctionButton buttonOne,
 	const DialogPanel::FunctionButton buttonThree,
-	std::string(T::*hoverFun)(const std::string &)
-	)
-	:
-	DialogPanel(panel, "", "", buttonOne, buttonThree, nullptr),
+	std::string(T::*hoverFun)(const std::string &))
+	: DialogPanel(panel, "", "", buttonOne, buttonThree, nullptr),
 	title(title),
 	selectedItem(initialSelection),
 	hoverFun(std::bind(hoverFun, panel, std::placeholders::_1)),

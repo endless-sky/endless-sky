@@ -129,9 +129,9 @@ protected:
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 
 	virtual void Resize() override;
-	void Resize(int);
+	void Resize(int height);
 
-	// Common code from all three constructors:
+	// Common code from all constructors:
 	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
 	// The width of the dialog, excluding margins.
 	int Width() const;
