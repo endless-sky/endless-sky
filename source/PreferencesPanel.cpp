@@ -312,11 +312,8 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
 	}
-	else if(page == 'c')
-	{
-		if(key == 'e')
-			SelectProfile();
-	}
+	else if(key == 'e' && page == 'c')
+		SelectProfile();
 	else
 		return false;
 
@@ -1351,12 +1348,12 @@ bool PreferencesPanel::CheckExit(SDL_Keycode nextAction)
 		if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
 			message = "Menu keybind is not bound or has conflicts.\n";
 		else
-			message = "Select 'Save' to activate this controls profile and save it.\n";
+			message = "Select \"Save\" to activate this controls profile and save it.\n";
 
 		GetUI().Push(new DialogPanel(this,
 			message +
-			"'Discard' will revert to the previous active control profile.\n" +
-			"'Cancel' to go back and make further changes.",
+			"\"Discard\" will revert to the previous active control profile.\n" +
+			"\"Cancel\" to go back and make further changes.",
 			Command::Name(),
 			DialogPanel::FunctionButton(this, "Save", 's', &PreferencesPanel::SaveControls),
 			DialogPanel::FunctionButton(this, "Discard", 'd', &PreferencesPanel::DiscardControlChanges),
@@ -1368,6 +1365,7 @@ bool PreferencesPanel::CheckExit(SDL_Keycode nextAction)
 	}
 	return true;
 }
+
 
 
 void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosition)

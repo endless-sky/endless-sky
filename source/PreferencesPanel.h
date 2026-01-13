@@ -92,6 +92,7 @@ private:
 	bool DeleteProfile(const std::string &profileName);
 	void ActualDeleteProfile();
 
+
 private:
 	PlayerInfo &player;
 
