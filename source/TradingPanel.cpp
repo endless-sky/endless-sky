@@ -140,11 +140,11 @@ void TradingPanel::Draw()
 		else if(outfitCargo && missionCargo)
 			str += "outfits and mission cargo.";
 		else if(outfitCargo && minableCargo)
-			str += "outfits and flotsam.";
+			str += "outfits and minables.";
 		else if(outfitCargo)
 			str += "outfits.";
 		else if(minableCargo)
-			str += "flotsam.";
+			str += "minables.";
 		else
 			str += "mission cargo.";
 		font.Draw(str, Point(MIN_X + NAME_X, lastY), unselected);
@@ -210,7 +210,7 @@ void TradingPanel::Draw()
 	if(canSellOutfits)
 		info.SetCondition("can sell outfits");
 	if(minableCargo)
-		info.SetCondition("can sell flotsam");
+		info.SetCondition("can sell minables");
 	if(canSell)
 		info.SetCondition("can sell");
 	if(player.Cargo().Free() > 0 && canBuy)
@@ -255,21 +255,21 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Cargo().Remove(commodity, amount);
 		}
 	}
-	else if(key == 'f' && player.Cargo().MinablesSizePrecise())
+	else if(key == 'm' && player.Cargo().MinablesSizePrecise())
 	{
-		if(Preferences::Has("Confirm 'Sell Flotsam' button"))
-			GetUI().Push(new DialogPanel([this]() { SellOutfitsOrFlotsam(true); },
+		if(Preferences::Has("Confirm 'Sell Minables' button"))
+			GetUI().Push(new DialogPanel([this]() { SellOutfitsOrMinables(true); },
 				OutfitSalesMessage(true), Truncate::NONE, true, false));
 		else
-			SellOutfitsOrFlotsam(true);
+			SellOutfitsOrMinables(true);
 	}
-	else if((key == 'L' || (key == 'l' && (mod & KMOD_SHIFT))) && canSellOutfits)
+	else if(key == 'f' && canSellOutfits)
 	{
 		if(Preferences::Has("Confirm 'Sell Outfits' button"))
-			GetUI().Push(new DialogPanel([this]() { SellOutfitsOrFlotsam(false); },
+			GetUI().Push(new DialogPanel([this]() { SellOutfitsOrMinables(false); },
 				OutfitSalesMessage(false), Truncate::NONE, true, false));
 		else
-			SellOutfitsOrFlotsam(false);
+			SellOutfitsOrMinables(false);
 	}
 	else if(command.Has(Command::MAP))
 		GetUI().Push(new MapDetailPanel(player));
@@ -342,12 +342,12 @@ void TradingPanel::Buy(int64_t amount)
 
 
 
-void TradingPanel::SellOutfitsOrFlotsam(bool sellFlotsam)
+void TradingPanel::SellOutfitsOrMinables(bool sellMinables)
 {
 	int day = player.GetDate().DaysSinceEpoch();
 	for(const auto &it : player.Cargo().Outfits())
 	{
-		if(sellFlotsam != static_cast<bool>(it.first->Get("minable")))
+		if(sellMinables != static_cast<bool>(it.first->Get("minable")))
 			continue;
 		if(!it.second)
 			continue;
@@ -363,7 +363,7 @@ void TradingPanel::SellOutfitsOrFlotsam(bool sellFlotsam)
 
 
 
-string TradingPanel::OutfitSalesMessage(bool sellFlotsam) const
+string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 {
 	struct OutfitInfo {
 		string name;
@@ -375,7 +375,7 @@ string TradingPanel::OutfitSalesMessage(bool sellFlotsam) const
 	int day = player.GetDate().DaysSinceEpoch();
 	for(auto &[outfit, count] : player.Cargo().Outfits())
 	{
-		if(sellFlotsam != static_cast<bool>(outfit->Get("minable")))
+		if(sellMinables != static_cast<bool>(outfit->Get("minable")))
 			continue;
 		if(!count)
 			continue;
@@ -384,9 +384,9 @@ string TradingPanel::OutfitSalesMessage(bool sellFlotsam) const
 		tonsSold += static_cast<int>(count * outfit->Mass());
 		// Store a description of the count & item, followed by its value.
 		outfitValue.push_back({{}, count, value});
-		if(sellFlotsam && count == 1)
+		if(sellMinables && count == 1)
 			outfitValue.back().name = Format::CargoString(count, outfit->DisplayName());
-		if(sellFlotsam)
+		if(sellMinables)
 			outfitValue.back().name = Format::CargoString(count, outfit->PluralName());
 		else if(count == 1)
 			outfitValue.back().name = outfit->DisplayName();
@@ -397,7 +397,7 @@ string TradingPanel::OutfitSalesMessage(bool sellFlotsam) const
 		return "Sell " + outfitValue[0].name + " for " + Format::CreditString(profit) + "?";
 	std::ostringstream out;
 	out << "Sell ";
-	out << Format::CargoString(tonsSold, sellFlotsam ? "of special commodities" : "of outfits");
+	out << Format::CargoString(tonsSold, sellMinables ? "of special commodities" : "of outfits");
 	out << " for " << Format::CreditString(profit) << '?' << endl;
 
 	// Sort by decreasing value.
@@ -413,7 +413,7 @@ string TradingPanel::OutfitSalesMessage(bool sellFlotsam) const
 		int64_t count = 0;
 		for(size_t i = SELL_OUTFITS_DISPLAY_LIMIT; i < outfitValue.size(); ++i)
 			count += outfitValue[i].count;
-		if(sellFlotsam)
+		if(sellMinables)
 			out << "and " << Format::MassString(count) << " more.";
 		else
 			out << "and " << Format::Number(count) << " more.";

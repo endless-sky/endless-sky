@@ -43,8 +43,8 @@ protected:
 
 private:
 	void Buy(int64_t amount);
-	void SellOutfitsOrFlotsam(bool sellFlotsam);
-	std::string OutfitSalesMessage(bool sellFlotsam) const;
+	void SellOutfitsOrMinables(bool sellMinables);
+	std::string OutfitSalesMessage(bool sellMinables) const;
 
 
 private:

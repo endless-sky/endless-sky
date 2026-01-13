@@ -1482,7 +1482,7 @@ interface "planet"
 	image "land"
 		center 0 -140
 	sprite "ui/planet dialog"
-		center -1 25
+		center 0 25
 	button l
 		center 0 -140
 		dimensions 720 360
@@ -1585,7 +1585,7 @@ interface "planet (small screen)"
 	image "land"
 		center -60 -140
 	sprite "ui/planet dialog"
-		center -61 25
+		center -60 25
 	button l
 		center -60 -140
 		dimensions 720 360
@@ -2056,18 +2056,17 @@ interface "trade"
 		center 200 355
 		dimensions 70 30
 
-	active if "can sell flotsam"
+	active if "can sell minables"
 	sprite "ui/wide button"
 		center -90 355
-    # TODO: revisit buttons and associated code and variables to replace `flotsam` with `minables`
-	button f "Sell Minables"
+	button m "Sell _Minables"
 		center -90 355
 		dimensions 90 30
 
 	active if "can sell outfits"
 	sprite "ui/wide button"
 		center -190 355
-	button L "Sell Outfits"
+	button f "Sell Out_fits"
 		center -190 355
 		dimensions 90 30
 
@@ -2095,17 +2094,17 @@ interface "trade (small screen)"
 		center 140 355
 		dimensions 70 30
 
-	active if "can sell flotsam"
+	active if "can sell minables"
 	sprite "ui/wide button"
 		center -150 355
-	button f "Sell _Flotsam"
+	button m "Sell _Minables"
 		center -150 355
 		dimensions 90 30
 
 	active if "can sell outfits"
 	sprite "ui/wide button"
 		center -250 355
-	button L "Sell Outfits"
+	button f "Sell Out_fits"
 		center -250 355
 		dimensions 90 30
 

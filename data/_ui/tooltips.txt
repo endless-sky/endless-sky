@@ -1601,7 +1601,7 @@ tip "'Sell Outfits' without outfitter"
 tip "Confirm 'Sell Outfits' button"
 	`In the Trading panel, controls whether or not to confirm sales of all outfits in cargo.`
 
-tip "Confirm 'Sell Flotsam' button"
+tip "Confirm 'Sell Minables' button"
 	`In the Trading panel, controls whether or not to confirm sales of mineables, specials and other flotsam that may have been picked up.`
 
 tip "Landing zoom"

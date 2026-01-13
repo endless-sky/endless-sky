@@ -799,7 +799,7 @@ void PreferencesPanel::DrawSettings()
 		"Trading",
 		"'Sell Outfits' without outfitter",
 		"Confirm 'Sell Outfits' button",
-		"Confirm 'Sell Flotsam' button",
+		"Confirm 'Sell MInables' button",
 		"Show parenthesis",
 		"",
 		"Map",
