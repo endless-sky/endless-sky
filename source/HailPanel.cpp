@@ -438,7 +438,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			SetMessage(gov->GetShipBribeRejectionHail());
 	}
 	else
-		sound = UI::UISound::NONE;
+		return false; // Pass the event on to the next panel or gamepad.
 
 	UI::PlaySound(sound);
 	return true;

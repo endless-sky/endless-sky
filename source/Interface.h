@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Color.h"
+#include "Command.h"
+#include "pi.h"
 #include "Point.h"
 #include "Rectangle.h"
 #include "text/Truncate.h"
@@ -30,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class Information;
 class Panel;
+class RadialSelectionPanel;
 class Sprite;
 
 
@@ -100,6 +103,17 @@ private:
 		// Get the bounding rectangle, treating the Region within the Information as the screen area.
 		Rectangle Bounds(const Information &info) const;
 
+		// copy position and alignment from another element
+		void SetBounds(const Element &o)
+		{
+			from = o.from;
+			to = o.to;
+			alignment = o.alignment;
+			padding = o.padding;
+			visibleIf = o.visibleIf;
+			activeIf = o.activeIf;
+		}
+
 	protected:
 		// Parse the given data line: one that is not recognized by Element
 		// itself. This returns false if it does not recognize the line, either.
@@ -110,7 +124,7 @@ private:
 		virtual void Draw(const Rectangle &rect, const Information &info, int state) const;
 		// Add any click handlers needed for this element. This will only be
 		// called if the element is visible and active.
-		virtual void Place(const Rectangle &bounds, Panel *panel) const;
+		virtual void Place(const Rectangle &bounds, Panel *panel, const Information &info) const;
 
 	protected:
 		AnchoredPoint from;
@@ -119,6 +133,7 @@ private:
 		Point padding;
 		std::string visibleIf;
 		std::string activeIf;
+		float radius = 0;
 	};
 
 	// This class handles "sprite", "image", and "outline" elements.
@@ -154,6 +169,7 @@ private:
 	class TextElement : public Element {
 	public:
 		TextElement(const DataNode &node, const Point &globalAnchor);
+		const std::string& Text() const { return str; }
 
 	protected:
 		// Parse the given data line: one that is not recognized by Element
@@ -161,7 +177,7 @@ private:
 		virtual bool ParseLine(const DataNode &node) override;
 		// Add any click handlers needed for this element. This will only be
 		// called if the element is visible and active.
-		virtual void Place(const Rectangle &bounds, Panel *panel) const override;
+		virtual void Place(const Rectangle &bounds, Panel *panel, const Information &info) const override;
 
 		// Fill in any undefined state colors.
 		void FinishLoadingColors();
@@ -177,6 +193,8 @@ private:
 		char buttonKey = '\0';
 		bool isDynamic = false;
 		Truncate truncate = Truncate::NONE;
+
+		Command command = Command::NONE;
 	};
 
 	// This class handles "label", "string", "button", and "dynamic button" elements.
@@ -269,6 +287,50 @@ private:
 		const Color *color = nullptr;
 	};
 
+	// This class handles "uirect" elements.
+	class UiRectElement : public Element {
+	public:
+		UiRectElement(const DataNode &node, const Point &globalAnchor);
+
+	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
+		// Draw this element in the given rectangle.
+		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
+
+	private:
+		const Color *color = nullptr;
+	};
+
+	// This class handles "radial" elements
+	class RadialSelectionElement : public Element {
+	public:
+		RadialSelectionElement(const DataNode &node, const Point &globalAnchor);
+		~RadialSelectionElement();
+
+	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
+		// Add any click handlers needed for this element. This will only be
+		// called if the element is visible and active.
+		virtual void Place(const Rectangle &bounds, Panel *panel, const Information &info) const override;
+
+	private:
+		double start_angle = 0;
+		double stop_angle = 3.14159;
+		double selection_radius = 150;
+		std::string visible_if;
+
+		struct Option {
+			std::string visible_if;
+			Command cmd;
+			std::string icon;
+			std::string description;
+		};
+		std::vector<Option> options;
+	};
 
 private:
 	std::vector<std::unique_ptr<Element>> elements;

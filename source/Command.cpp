@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
+#include "gamepad/GamePad.h"
 
 #include <SDL2/SDL.h>
 
@@ -33,7 +34,10 @@ namespace {
 	// the name of the key it is mapped to, or the SDL keycode it is mapped to.
 	map<Command, string> description;
 	map<Command, string> keyName;
+	map<Command, string> iconName;
 	map<int, Command> commandForKeycode;
+	map<uint8_t, Command> commandForControllerButton;
+	map<std::pair<uint8_t, bool>, Command> commandForControllerTrigger;
 	map<Command, int> keycodeForCommand;
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
@@ -92,6 +96,39 @@ const Command Command::AUTOSTEER(ONE << 37, "Auto steer");
 const Command Command::WAIT(ONE << 38, "");
 const Command Command::STOP(ONE << 39, "Stop your ship");
 const Command Command::SHIFT(ONE << 40, "");
+const Command Command::FLEET_FORMATION(ONE << 41, "Fleet: Toggle Formation");
+
+std::atomic<uint64_t> Command::simulated_command{};
+std::atomic<uint64_t> Command::simulated_command_once{};
+bool Command::simulated_command_skip = false;
+
+
+
+void Command::InitIcons()
+{
+	iconName[Command::MENU] = "ui/icon_exit";
+	iconName[Command::PRIMARY] = "ui/icon_fire";
+	iconName[Command::SECONDARY] = "ui/icon_secondary";
+	iconName[Command::LAND] = "ui/icon_land";
+	iconName[Command::BOARD] = "ui/icon_board";
+	iconName[Command::HAIL] = "ui/icon_talk";
+	iconName[Command::SCAN] = "ui/icon_scan";
+	iconName[Command::JUMP] = "ui/icon_jump";
+	iconName[Command::FLEET_JUMP] = "ui/icon_fleet_jump";
+	iconName[Command::DEPLOY] = "ui/icon_deploy";
+	iconName[Command::CLOAK] = "ui/icon_cloak";
+	iconName[Command::MAP] = "ui/icon_map";
+	iconName[Command::INFO] = "ui/icon_info";
+	iconName[Command::FASTFORWARD] = "ui/icon_fast_forward";
+	iconName[Command::FIGHT] = "ui/icon_fleet_fight";
+	iconName[Command::GATHER] = "ui/icon_fleet_gather";
+	iconName[Command::HOLD_POSITION] = "ui/icon_fleet_stop";
+	iconName[Command::HARVEST] = "ui/icon_fleet_harvest";
+	iconName[Command::AMMO] = "ui/icon_ammo_usage";
+	iconName[Command::STOP] = "ui/icon_fleet_stop";
+	iconName[Command::PAUSE] = "ui/icon_pause";
+	iconName[Command::FLEET_FORMATION] = "ui/icon_fleet_formation";
+}
 
 
 
@@ -118,10 +155,54 @@ Command::Command(int keycode)
 
 
 
+// Create a command representing whatever is mapped to the given key code.
+Command::Command(const SDL_Event &event)
+{
+	if(event.type == EventID())
+	{
+		state = reinterpret_cast<const CommandEvent&>(event).state;
+	}
+}
+
+
+
+// Create a command representing the given axis trigger
+Command Command::FromTrigger(uint8_t axis, bool positive)
+{
+	auto it = commandForControllerTrigger.find(std::make_pair(axis, positive));
+	if(it != commandForControllerTrigger.end())
+		return it->second;
+	return Command();
+}
+
+
+// Create a command representing the given controller button
+Command Command::FromButton(uint8_t button)
+{
+	auto it = commandForControllerButton.find(button);
+	if(it != commandForControllerButton.end())
+		return it->second;
+	return Command();
+}
+
+
+
 // Read the current keyboard state.
 void Command::ReadKeyboard()
 {
 	Clear();
+
+	// inject simulated commands
+	state = simulated_command.load(std::memory_order_relaxed);
+	// inject simulated once commands
+	if(simulated_command_skip)
+	{
+		// we want to skip the first Read, and inject on the next one
+		simulated_command_skip = false;
+	}
+	else
+		state |= simulated_command_once.exchange(0);
+
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
 
 	// Each command can only have one keycode, but misconfigured settings can
@@ -134,12 +215,32 @@ void Command::ReadKeyboard()
 	// Check whether the `Shift` modifier key was pressed for this step.
 	if(SDL_GetModState() & KMOD_SHIFT)
 		*this |= SHIFT;
+
+	// Read commands from the game controller
+	const GamePad::Buttons& gamepadButtons = GamePad::Held();
+	for(auto &kv : commandForControllerButton)
+	{
+		if(static_cast<size_t>(kv.first) < sizeof(gamepadButtons) / sizeof(*gamepadButtons))
+		{
+			if(gamepadButtons[kv.first])
+				*this |= kv.second;
+		}
+	}
+	// Read Trigger values (this may include joystick axes as well)
+	for(auto &kv : commandForControllerTrigger)
+	{
+		if(kv.first.first < SDL_CONTROLLER_AXIS_MAX)
+		{
+			if(GamePad::Trigger(kv.first.first, kv.first.second))
+				*this |= kv.second;
+		}
+	}
 }
 
 
 
 // Load the keyboard preferences.
-void Command::LoadSettings(const filesystem::path &path)
+void Command::LoadKeyboardSettings(const filesystem::path &path)
 {
 	DataFile file(path);
 
@@ -175,7 +276,7 @@ void Command::LoadSettings(const filesystem::path &path)
 
 
 // Save the keyboard preferences.
-void Command::SaveSettings(const filesystem::path &path)
+void Command::SaveKeyboardSettings(const filesystem::path &path)
 {
 	DataWriter out(path);
 
@@ -184,6 +285,70 @@ void Command::SaveSettings(const filesystem::path &path)
 		auto dit = description.find(it.first);
 		if(dit != description.end())
 			out.Write(dit->second, it.second);
+	}
+}
+
+
+
+// Load the keyboard preferences.
+void Command::LoadGamepadSettings(const filesystem::path &path)
+{
+	DataFile file(path);
+
+	// Create a map of command names to Command objects in the enumeration above.
+	map<string, Command> commands;
+	for(const auto &it : description)
+		commands[it.second] = it.first;
+
+	commandForControllerButton.clear();
+	commandForControllerTrigger.clear();
+
+	// Each command can only have one keycode, one keycode can be assigned
+	// to multiple commands.
+	for(const DataNode &node : file)
+	{
+		auto it = commands.find(node.Token(0));
+		if(it != commands.end() && node.Size() >= 2)
+		{
+			Command command = it->second;
+			if(node.Token(1) == "controller_button" && node.Size() >= 3)
+			{
+				auto button = static_cast<SDL_GameControllerButton>(node.Value(2));
+				if(button >= 0 && button < SDL_CONTROLLER_BUTTON_MAX)
+				{
+					commandForControllerButton[button] = command;
+				}
+			}
+			else if(node.Token(1) == "controller_trigger" && node.Size() >= 4)
+			{
+				auto axis = static_cast<SDL_GameControllerAxis>(node.Value(2));
+				bool positive = node.BoolValue(3);
+				if(axis >= 0 && axis < SDL_CONTROLLER_AXIS_MAX)
+				{
+					commandForControllerTrigger[std::make_pair(axis, positive)] = command;
+				}
+			}
+		}
+	}
+}
+
+
+
+// Save the keyboard preferences.
+void Command::SaveGamepadSettings(const filesystem::path &path)
+{
+	DataWriter out(path);
+	for(const auto &kv : commandForControllerButton)
+	{
+		auto dit = description.find(kv.second);
+		if(dit != description.end())
+			out.Write(dit->second, "controller_button", static_cast<int>(kv.first));
+	}
+	for(const auto &kv : commandForControllerTrigger)
+	{
+		auto dit = description.find(kv.second);
+		if(dit != description.end())
+			out.Write(dit->second, "controller_trigger", static_cast<int>(kv.first.first), kv.first.second ? "1": "0");
 	}
 }
 
@@ -209,6 +374,76 @@ void Command::SetKey(Command command, int keycode)
 
 
 
+// Set the gesture that is mapped to the given command
+void Command::SetControllerButton(Command command, uint8_t button)
+{
+	// Erase any buttons or triggers for this command
+	for(auto it = commandForControllerButton.begin(); it != commandForControllerButton.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerButton.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+	for(auto it = commandForControllerTrigger.begin(); it != commandForControllerTrigger.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerTrigger.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	if(button < GamePad::BUTTON_MAX && button != GamePad::BUTTON_INVALID)
+	{
+		commandForControllerButton[button] = command;
+	}
+}
+
+
+
+// Set the gesture that is mapped to the given command
+void Command::SetControllerTrigger(Command command, uint8_t axis, bool positive)
+{
+	// Erase any buttons or triggers for this command
+	for(auto it = commandForControllerButton.begin(); it != commandForControllerButton.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerButton.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+	for(auto it = commandForControllerTrigger.begin(); it != commandForControllerTrigger.end();)
+	{
+		if(it->second == command)
+		{
+			it = commandForControllerTrigger.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	if(axis < GamePad::AXIS_MAX && axis != GamePad::AXIS_INVALID)
+	{
+		commandForControllerTrigger[std::make_pair(axis, positive)] = command;
+	}
+}
+
+
+
 // Get the description of this command. If this command is a combination of more
 // than one command, an empty string is returned.
 const string &Command::Description() const
@@ -228,6 +463,43 @@ const string &Command::KeyName() const
 	auto it = keyName.find(*this);
 
 	return (!HasBinding() ? empty : it->second);
+}
+
+
+
+const std::string Command::ButtonName() const
+{
+	// Only one button or trigger should be set
+	for(auto &kv : commandForControllerButton)
+	{
+		if(kv.second == *this)
+		{
+			const char *description = GamePad::ButtonDescription(kv.first);
+			return description ? description : "(unknown)";
+
+		}
+	}
+
+	for(auto &kv : commandForControllerTrigger)
+	{
+		if(kv.second == *this)
+		{
+			const char *description = GamePad::ButtonDescription(kv.first.first);
+			if(description)
+				return std::string(description ? description : "(unknown)") + (kv.first.second ? " +" : " -");
+		}
+	}
+	return "(Not Set)";
+}
+
+
+
+// Retrieve the icon associated with this command (if any)
+const std::string& Command::Icon() const
+{
+	static string EMPTY;
+	auto it = iconName.find(*this);
+	return it == iconName.end() ? EMPTY : it->second;
 }
 
 
@@ -422,6 +694,14 @@ Command &Command::operator|=(const Command &command)
 
 
 
+// Equality operator
+bool Command::operator==(const Command &command) const
+{
+	return command.state == state && command.turn == turn;
+}
+
+
+
 // Private constructor.
 Command::Command(uint64_t state)
 	: state(state)
@@ -437,4 +717,93 @@ Command::Command(uint64_t state, const string &text)
 {
 	if(!text.empty())
 		description[*this] = text;
+}
+
+
+
+// Retrieve a command based on its description.
+Command Command::Get(const std::string& command_description)
+{
+	for(auto &command : description)
+	{
+		if(command_description == command.second)
+		{
+			return command.first;
+		}
+	}
+	return Command::NONE;
+}
+
+
+
+// Simulate a keyboard press for commands
+void Command::InjectSet(const Command& command)
+{
+	simulated_command.fetch_or(command.state, std::memory_order_relaxed);
+	SDL_Event event{};
+	auto& cevent = reinterpret_cast<CommandEvent&>(event);
+	cevent.type = EventID();
+	cevent.state = command.state;
+	cevent.pressed = SDL_PRESSED;
+	SDL_PushEvent(&event);
+}
+
+
+
+// Simulate a keyboard press for commands
+void Command::InjectOnce(const Command& command, bool next)
+{
+	simulated_command_once.fetch_or(command.state, std::memory_order_relaxed);
+	simulated_command_skip = next;
+	SDL_Event event{};
+	auto& cevent = reinterpret_cast<CommandEvent&>(event);
+	cevent.type = EventID();
+	// command.state is 64 bits, but WindowID is 32 bits.
+	cevent.state = command.state;
+	cevent.pressed = SDL_PRESSED;
+	SDL_PushEvent(&event);
+	cevent.pressed = SDL_RELEASED;
+	SDL_PushEvent(&event);
+}
+
+
+
+// Simulate key held, without pushing the associated event
+void Command::InjectOnceNoEvent(const Command& command)
+{
+	simulated_command_once.fetch_or(command.state, std::memory_order_relaxed);
+}
+
+
+
+// Clear any set commands
+void Command::InjectClear()
+{
+	SDL_Event event{};
+	auto& cevent = reinterpret_cast<CommandEvent&>(event);
+	cevent.type = EventID();
+	cevent.state = simulated_command.exchange(0);
+	cevent.pressed = SDL_RELEASED;
+	SDL_PushEvent(&event);
+}
+
+
+// Simulate a keyboard release for commands
+void Command::InjectUnset(const Command& command)
+{
+	simulated_command.fetch_and(~command.state, std::memory_order_relaxed);
+	SDL_Event event{};
+	event.type = EventID();
+	event.key.windowID = command.state;
+	event.key.state = SDL_RELEASED;
+	SDL_PushEvent(&event);
+}
+
+
+
+// Register a set of events with SDL's event loop
+uint32_t Command::EventID()
+{
+	static uint32_t command_event = SDL_RegisterEvents(1);
+	return command_event;
 }
