@@ -591,21 +591,21 @@ interface "controls"
 		from 40 -259
 		align left
 		width 140
-		truncate back
+		truncate middle
 		color "controls text shadow"
 	visible if "show controls changed"
 	string "selected controls profile"
 		from 40 -260
 		align left
 		width 140
-		truncate back
+		truncate middle
 		color "controls warning text"
 	visible if "!show controls changed"
 	string "selected controls profile"
 		from 40 -260
 		align left
 		width 140
-		truncate back
+		truncate middle
 		color "controls text"
 	visible
 

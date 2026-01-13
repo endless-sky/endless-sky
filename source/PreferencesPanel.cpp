@@ -1687,32 +1687,26 @@ bool PreferencesPanel::DeleteProfile(const string &profileName)
 			return false;
 		}
 
-	selectedProfile = profileName;
-	GetUI().Push(new DialogPanel(this, &PreferencesPanel::ActualDeleteProfile,
-		"Are you sure you want to delete '" + selectedProfile + "'?"));
+	GetUI().Push(new DialogPanel([this, profileName]()
+		{
+			// Delete user profile:
+			auto search = profilePaths.find(profileName);
+			if(search != profilePaths.end())
+			{
+				// If the current active profile is deleted, make it a working copy
+				// so that a prompt to save is issued.
+				if(profileName == Command::Name())
+					Command::MakeWorkingCopy();
+
+				Files::Delete(search->second);
+
+				UpdateAvailableProfiles();
+				modalListDialog->UpdateList(availableProfiles);
+			}
+		}, "Are you sure you want to delete '" + profileName + "'?",
+		Truncate::NONE, true, 1));
 
 	// Keep the dialog open.
 	return false;
-}
 
-
-
-void PreferencesPanel::ActualDeleteProfile() {
-	for(string name : immutableProfiles)
-		if(name == selectedProfile)
-			return;
-
-	// Delete user profile:
-	auto search = profilePaths.find(selectedProfile);
-	if(search != profilePaths.end())
-	{
-		// If the current active profile is deleted, make it a working copy so that a prompt to save is issued.
-		if(selectedProfile == Command::Name())
-			Command::MakeWorkingCopy();
-
-		Files::Delete(search->second);
-
-		UpdateAvailableProfiles();
-		modalListDialog->UpdateList(availableProfiles);
-	}
 }

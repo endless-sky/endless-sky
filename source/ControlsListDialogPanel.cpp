@@ -35,6 +35,7 @@ using namespace std;
 
 
 void ControlsListDialogPanel::UpdateList(std::vector<std::string> newOptions) {
+	options.clear();
 	options.assign(newOptions.begin(), newOptions.end());
 	bool found = false;
 	int index = 0;

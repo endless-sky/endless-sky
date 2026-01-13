@@ -90,7 +90,7 @@ private:
 	bool LoadProfile(const std::string &profileName);
 	std::string HoverProfile(const std::string &profileName);
 	bool DeleteProfile(const std::string &profileName);
-	void ActualDeleteProfile();
+
 
 private:
 	PlayerInfo &player;
@@ -118,7 +118,8 @@ private:
 
 	ControlsListDialogPanel *modalListDialog;
 	SDL_Keycode postDialogAction;
-	std::string selectedProfile;
+
+	// These should probably be `set` not `vector`
 	std::vector<std::string> availableProfiles;
 	std::vector<std::string> immutableProfiles;
 	std::map<std::string, std::filesystem::path> profilePaths;
