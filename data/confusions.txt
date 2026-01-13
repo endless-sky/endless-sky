@@ -95,7 +95,7 @@ confusion "ka'het"
 
 
 
-confusion "abberant"
+confusion "aberrant"
 	"max confusion" 20.
 	"period" 300.
 	"focus multiplier" .4
