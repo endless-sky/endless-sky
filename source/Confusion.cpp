@@ -126,11 +126,16 @@ void Confusion::UpdateConfusion(bool isFocusing)
 	// If you're focusing, aiming accuracy should slowly improve.
 	// Gain and lose focus times are stored as the number of ticks to reach and lose the maximum aiming bonus,
 	// so use their inverse to determine the amount of accuracy to gain or lose each tick.
-	if(isFocusing)
-		focusPercentage += 1. / gainFocusTime;
-	else
-		focusPercentage -= 1. / loseFocusTime;
-	focusPercentage = min(1., max(0., focusPercentage));
+	double focus = 1.;
+	if(focusMultiplier != 1.)
+	{
+		if(isFocusing)
+			focusPercentage += 1. / gainFocusTime;
+		else
+			focusPercentage -= 1. / loseFocusTime;
+		focusPercentage = min(1., max(0., focusPercentage));
+		focus = 1. - (1. - focusMultiplier) * focusPercentage;
+	}
 
-	confusion = confusionMultiplier * (1. - (1. - focusMultiplier) * focusPercentage) * cos(tick * PI * 2 / period);
+	confusion = confusionMultiplier * focus * cos(tick * PI * 2 / period);
 }
