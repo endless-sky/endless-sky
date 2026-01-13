@@ -117,6 +117,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Fleet.h
 	FleetCargo.cpp
 	FleetCargo.h
+	FleetPlacement.cpp
+	FleetPlacement.h
 	Flotsam.cpp
 	Flotsam.h
 	FormationPattern.cpp
@@ -216,6 +218,8 @@ target_sources(EndlessSkyLib PRIVATE
 	NPCAction.h
 	News.cpp
 	News.h
+	Orbit.cpp
+	Orbit.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
