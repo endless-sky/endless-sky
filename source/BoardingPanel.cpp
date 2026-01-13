@@ -29,12 +29,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
+#include "OutfitInfoDisplay.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Random.h"
+#include "RenderBuffer.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 #include "ShipInfoPanel.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "System.h"
 #include "UI.h"
 
@@ -44,11 +49,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
-
+namespace {
+	// Label for the description field of the detail pane.
+	const string DESCRIPTION = "description";
+}
 
 // Constructor.
 BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.FlagshipPtr()), victim(victim),
+	collapsed(player.Collapsed("boarding")),
 	attackOdds(*you, *victim), defenseOdds(*victim, *you)
 {
 	Audio::Pause();
@@ -141,6 +150,8 @@ void BoardingPanel::Draw()
 	// Draw a translucent black scrim over everything beneath this panel.
 	DrawBackdrop();
 
+	zones.clear();
+
 	// Draw the list of plunder.
 	const Interface *boarding = GameData::Interfaces().Get("boarding");
 	const Color &opaque = *GameData::Colors().Get("panel background");
@@ -227,19 +238,120 @@ void BoardingPanel::Draw()
 			Format::Decimal(defenseOdds.DefenderCasualties(vCrew, crew), 1));
 	}
 
+	if(selected >= 0 && static_cast<unsigned>(selected) < plunder.size())
+		info.SetCondition("has selection");
+
 	boarding->Draw(info, this);
+
+	DrawOutfitInfo();
 
 	if(scroll.Scrollable())
 		scrollBar.SyncDraw(scroll,
 			plunderList.TopRight() + Point{0., 10.}, plunderList.BottomRight() - Point{0., 10.});
 
 	// Draw the status messages from hand to hand combat.
-	Point messagePos(50., 55.);
+	Point messagePos = plunderList.TopRight() + Point{25., 235.};
 	for(const string &message : messages)
 	{
 		font.Draw(message, messagePos, bright);
 		messagePos.Y() += 20.;
 	}
+}
+
+
+
+// A modified version of OutfitterPanel::DrawDetails()
+void BoardingPanel::DrawOutfitInfo()
+{
+	if(static_cast<unsigned>(selected) >= plunder.size())
+		return;
+	const BoardingPanel::Plunder &item = plunder[selected];
+	const Outfit *selectedOutfit = item.GetOutfit();
+	if(!selectedOutfit)
+		return;
+
+	OutfitInfoDisplay outfitInfo;
+	outfitInfo.Update(*selectedOutfit, player, false, collapsed.contains(DESCRIPTION));
+
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	const Rectangle outfitPane = boarding->GetBox("outfit description pane");
+
+	bool hasDescription = outfitInfo.DescriptionHeight();
+	double descriptionOffset = hasDescription ? 40. : 0.;
+	if(hasDescription && !collapsed.contains(DESCRIPTION))
+		descriptionOffset = outfitInfo.DescriptionHeight();
+
+	const Sprite *thumbnail = selectedOutfit->Thumbnail();
+	const float tileSize = thumbnail
+		? max(thumbnail->Height(), static_cast<float>(OUTFIT_SIZE))
+		: static_cast<float>(OUTFIT_SIZE);
+	double bufferHeight = tileSize +
+		descriptionOffset +
+		outfitInfo.RequirementsHeight() +
+		outfitInfo.AttributesHeight();
+
+	// Add a blank area at the bottom if the pane is scrollable.
+	bufferHeight += bufferHeight > outfitPane.Height() ? 30. : 0.;
+
+	if(!outfitInfoBuffer)
+		outfitInfoBuffer = make_unique<RenderBuffer>(Point{outfitPane.Width(), bufferHeight});
+	auto target = outfitInfoBuffer->SetTarget();
+
+	const Point thumbnailCenter(0., outfitInfoBuffer->Top() + static_cast<int>(tileSize / 2));
+	const Point startPoint(outfitInfoBuffer->Left() + 5., outfitInfoBuffer->Top() + tileSize);
+
+	const Sprite *background = SpriteSet::Get("ui/outfitter unselected");
+	SpriteShader::Draw(background, thumbnailCenter);
+	if(thumbnail)
+		SpriteShader::Draw(thumbnail, thumbnailCenter);
+
+	if(hasDescription)
+	{
+		if(collapsed.contains(DESCRIPTION))
+		{
+			const Font &font = FontSet::Get(14);
+			const Color &dim = *GameData::Colors().Get("medium");
+			font.Draw(DESCRIPTION, startPoint + Point(35., 12.), dim);
+			const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+		}
+		else
+		{
+			outfitInfo.DrawDescription(startPoint);
+		}
+
+		// Calculate the click Zone for the description and add it.
+		const Point descriptionDimensions(outfitPane.Width() - 2., descriptionOffset);
+		const Point descriptionCenter(3., outfitInfoBuffer->Top() + descriptionOffset/2 + bufferHeight/2 - outfitScrollOffset + 10.);
+		Rectangle clickBounds(outfitPane.Center() + descriptionCenter, descriptionDimensions);
+		if(clickBounds.Overlaps(outfitPane))
+		{
+			Zone clickZone = Zone(
+				Rectangle::WithCorners(
+					Point{clickBounds.Left(), max(clickBounds.Top(), outfitPane.Top())},
+					Point{clickBounds.Right(), min(clickBounds.Bottom(), outfitPane.Bottom())}
+				),
+				[this]() {
+					outfitInfoBuffer.reset();
+					outfitScrollOffset = 0.;
+					if(collapsed.contains(DESCRIPTION))
+						collapsed.erase(DESCRIPTION);
+					else
+						collapsed.insert(DESCRIPTION);
+				}
+			);
+			zones.emplace_back(clickZone);
+		}
+	}
+
+	const Point requirementsPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+	const Point attributesPoint(startPoint.X(), requirementsPoint.Y() + outfitInfo.RequirementsHeight());
+	outfitInfo.DrawRequirements(requirementsPoint);
+	outfitInfo.DrawAttributes(attributesPoint);
+
+	target.Deactivate();
+	outfitInfoBuffer->SetFadePadding(15.f, 15.f);
+	outfitInfoBuffer->Draw(outfitPane.Center(), outfitPane.Dimensions(), Point{0., outfitScrollOffset});
 }
 
 
@@ -309,8 +421,11 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(count == plunder[selected].Count())
 		{
 			plunder.erase(plunder.begin() + selected);
-			if(plunder.size() && selected == static_cast<int>(plunder.size()))
+			if(plunder.size() && selected == static_cast<int>(plunder.size())) {
 				--selected;
+				outfitInfoBuffer.reset();
+				outfitScrollOffset = 0.;
+			}
 			scroll.SetMaxValue(max(0., 20. * plunder.size()));
 		}
 		else
@@ -496,6 +611,14 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 // Handle mouse clicks.
 bool BoardingPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	const Point clickPoint(x, y);
+	for(const Zone &zone : zones)
+		if(zone.Contains(clickPoint))
+		{
+			zone.Click();
+			return true;
+		}
+
 	if(scroll.Scrollable() && scrollBar.SyncClick(scroll, x, y, button, clicks))
 		return true;
 
@@ -508,11 +631,14 @@ bool BoardingPanel::Click(int x, int y, MouseButton button, int clicks)
 	Point innerPadding = boarding->GetPoint("plunder list inner padding");
 	Rectangle plunderList = boarding->GetBox("plunder list");
 	Rectangle plunderInset(plunderList.Center(), plunderList.Dimensions() - 2 * outerPadding);
-	if(plunderInset.Contains(Point(x, y)))
+	if(plunderInset.Contains(clickPoint))
 	{
 		int index = (scroll.AnimatedValue() + y - plunderInset.Top() - innerPadding.Y()) / 20;
-		if(index >= 0 && static_cast<unsigned>(index) < plunder.size())
+		if(index >= 0 && static_cast<unsigned>(index) < plunder.size() && selected != index) {
 			selected = index;
+			outfitInfoBuffer.reset();
+			outfitScrollOffset = 0.;
+		}
 	}
 
 	return true;
@@ -528,12 +654,26 @@ bool BoardingPanel::Hover(int x, int y)
 
 
 
-// Allow dragging of the plunder list.
+// Allow scrolling by dragging a scrollable area.
 bool BoardingPanel::Drag(double dx, double dy)
 {
+	// Outfit info panel.
+	const Interface *boarding = GameData::Interfaces().Get("boarding");
+	const Rectangle outfitPane = boarding->GetBox("outfit description pane");
+	int mousePosX, mousePosY;
+	SDL_GetMouseState(&mousePosX, &mousePosY);
+	if(outfitPane.Contains(Screen::TopLeft() + Point(mousePosX, mousePosY)))
+	{
+		double maxOffset = outfitInfoBuffer ? outfitInfoBuffer->Height() - outfitPane.Height() : 0.;
+		outfitScrollOffset = std::clamp(outfitScrollOffset - dy, 0., maxOffset);
+		return true;
+	}
+
+	// Plunder list scroll bar.
 	if(scroll.Scrollable() && scrollBar.SyncDrag(scroll, dx, dy))
 		return true;
 
+	// Plunder list can be drag-scrolled from anywhere else in the panel.
 	scroll.Set(scroll - dy);
 	return true;
 }
@@ -735,6 +875,7 @@ bool BoardingPanel::CanAttack() const
 // Handle the keyboard scrolling and selection in the panel list.
 void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
 {
+	int original = selected;
 	// Scrolling the list of plunder.
 	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 		// Keep one of the previous items onscreen while paging through.
@@ -751,6 +892,11 @@ void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
 			++selected;
 	}
 	selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
+	if(selected != original)
+	{
+		outfitInfoBuffer.reset();
+		outfitScrollOffset = 0.;
+	}
 
 	// Scroll down at least far enough to view the current item.
 	double minimumScroll = max(0., 20. * selected - 200.);
