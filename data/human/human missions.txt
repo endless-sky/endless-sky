@@ -3751,7 +3751,7 @@ mission "Pirate Duel"
 		personality heroic vindictive unconstrained launching
 			confusion
 				"max confusion" 15.
-				"period" 180.
+				period 180.
 				"focus multiplier" .6
 				"gain focus time" 600
 				"lose focus time" 30
@@ -6119,7 +6119,7 @@ mission "Argosy Hijacking"
 		personality launching daring uninterested target
 			confusion
 				"max confusion" 20.
-				"period" 180.
+				period 180.
 				"focus multiplier" .6
 				"gain focus time" 600
 				"lose focus time" 30
