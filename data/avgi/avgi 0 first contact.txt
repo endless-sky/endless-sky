@@ -166,7 +166,12 @@ mission "Avgi: First Contact"
 	npc
 		government "Aberrant"
 		personality
-			confusion 90
+			confusion
+				"max confusion" 25.
+				"period" 300.
+				"focus multiplier" .7
+				"gain focus time" 420
+				"lose focus time" 60
 			coward secretive uninterested vindictive
 		system "Quintessence"
 		fleet
@@ -177,7 +182,12 @@ mission "Avgi: First Contact"
 	npc
 		government "Aberrant"
 		personality
-			confusion 90
+			confusion
+				"max confusion" 25.
+				"period" 300.
+				"focus multiplier" .7
+				"gain focus time" 420
+				"lose focus time" 60
 			coward secretive uninterested vindictive
 		system "Ballad"
 		fleet
@@ -188,7 +198,12 @@ mission "Avgi: First Contact"
 	npc
 		government "Aberrant"
 		personality
-			confusion 90
+			confusion
+				"max confusion" 25.
+				"period" 300.
+				"focus multiplier" .7
+				"gain focus time" 420
+				"lose focus time" 60
 			coward secretive uninterested vindictive
 		system "H-1"
 		fleet
@@ -581,7 +596,6 @@ mission "Avgi: Defend Ensemble 2"
 	npc evade
 		government "Aberrant"
 		personality
-			confusion 40
 			coward hunting secretive staying vindictive target
 		system "Ensemble"
 		fleet
@@ -793,7 +807,6 @@ mission "Avgi: Frontline Combat"
 	npc kill
 		government "Aberrant"
 		personality
-			confusion 40
 			coward secretive staying target uninterested vindictive
 		system "Corporeal"
 		fleet
@@ -804,7 +817,6 @@ mission "Avgi: Frontline Combat"
 	npc kill
 		government "Aberrant"
 		personality
-			confusion 40
 			coward secretive staying target uninterested vindictive
 		system "Empyrean"
 		fleet
@@ -815,7 +827,6 @@ mission "Avgi: Frontline Combat"
 	npc kill
 		government "Aberrant"
 		personality
-			confusion 40
 			coward secretive staying target uninterested vindictive
 		system "Firmament"
 		fleet
@@ -825,7 +836,6 @@ mission "Avgi: Frontline Combat"
 	npc kill
 		government "Aberrant"
 		personality
-			confusion 40
 			coward secretive staying target uninterested vindictive
 		system "Lumine"
 		fleet

@@ -41,7 +41,6 @@ void Confusion::Load(const DataNode &node)
 		if(node.IsNumber(1))
 		{
 			confusionMultiplier = max(0., node.Value(1));
-			focusMultiplier = 1.;
 			isDefined = true;
 			return;
 		}

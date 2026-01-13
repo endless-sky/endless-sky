@@ -19,7 +19,6 @@ fleet "Light Successor Freight"
 	outfitters "Successor Basics"
 	personality
 		appeasing timid
-		confusion 30
 	variant 10
 		"Kvelqde"
 	variant 5
@@ -41,7 +40,6 @@ fleet "Medium Successor Freight"
 	outfitters "Successor Civilian"
 	personality
 		appeasing timid
-		confusion 30
 	variant 10
 		"Ojde"
 	variant 6
@@ -63,7 +61,6 @@ fleet "Small Successor Transport"
 	cargo 3
 	personality
 		timid
-		confusion 30
 	variant 10
 		"Kvelqde"
 	variant 6
@@ -89,7 +86,6 @@ fleet "Successor Miners"
 	cargo 0
 	personality
 		appeasing frugal harvests mining staying
-		confusion 30
 	variant 10
 		"Kvelqde (Mining)"
 	variant 4
@@ -108,7 +104,6 @@ fleet "Successor Miners (Well-Defended)"
 	cargo 0
 	personality
 		appeasing frugal harvests mining staying
-		confusion 30
 	variant 10
 		"Myaede (Mining, Defensive)"
 	variant 6
@@ -129,7 +124,6 @@ fleet "People's Houses"
 	outfitters "Successor Basics"
 	personality
 		disables harvests mining plunders
-		confusion 20
 	variant 10
 		"Kvelqde-Khora"
 	variant 8
@@ -160,7 +154,6 @@ fleet "People's Houses Raiders"
 	cargo 0
 	personality
 		disables harvests plunders
-		confusion 20
 	variant 10
 		"Kvelqde-Khora"
 	variant 6

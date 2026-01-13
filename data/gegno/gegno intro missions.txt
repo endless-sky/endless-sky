@@ -242,6 +242,7 @@ mission "Visit Quarg in Gegno Space"
 				"Gneiss" 2
 	npc
 		government "Gegno Scin (Neutral)"
+			confusion "militia"
 		personality entering staying
 		system "Heutesl"
 		fleet
@@ -258,6 +259,7 @@ mission "Visit Quarg in Gegno Space"
 		fleet "Vi Warfleet"
 	npc
 		government "Gegno Scin (Neutral)"
+			confusion "militia"
 		personality staying
 		system "Heutesl"
 		fleet "Scin Warfleet"
@@ -679,6 +681,7 @@ mission "First Contact: Gegno Scin"
 			not "scin: provocative"
 		government "Gegno Scin"
 		personality launching uninterested
+			confusion "militia"
 		system "Ilirco"
 		fleet
 			names "gegno scin"
