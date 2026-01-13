@@ -1733,11 +1733,7 @@ interface "news (small screen)"
 
 
 interface "boarding"
-	visible if "has selection"
 	sprite "ui/boarding dialog wide"
-	visible if "!has selection"
-	sprite "ui/boarding dialog unselected"
-	visible
 
 	box "plunder list"
 		center -15 -60

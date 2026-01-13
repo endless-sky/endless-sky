@@ -322,7 +322,8 @@ void BoardingPanel::DrawOutfitInfo()
 
 		// Calculate the click Zone for the description and add it.
 		const Point descriptionDimensions(outfitPane.Width() - 2., descriptionOffset);
-		const Point descriptionCenter(3., outfitInfoBuffer->Top() + descriptionOffset/2 + bufferHeight/2 - outfitScrollOffset + 10.);
+		const Point descriptionCenter(3., outfitInfoBuffer->Top() + descriptionOffset/2 + bufferHeight/2 -
+			outfitScrollOffset + 10.);
 		Rectangle clickBounds(outfitPane.Center() + descriptionCenter, descriptionDimensions);
 		if(clickBounds.Overlaps(outfitPane))
 		{
