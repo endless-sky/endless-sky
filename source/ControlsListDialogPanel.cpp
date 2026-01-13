@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 using namespace std;
-using namespace dialog;
 
 
 

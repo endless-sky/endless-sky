@@ -40,7 +40,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <utility>
 
 using namespace std;
-using namespace dialog;
 
 namespace {
 	// Map any conceivable numeric keypad keys to their ASCII values. Most of
