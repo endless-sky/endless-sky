@@ -2059,7 +2059,8 @@ interface "trade"
 	active if "can sell flotsam"
 	sprite "ui/wide button"
 		center -90 355
-	button f "Sell _Flotsam"
+    # TODO: revisit buttons and associated code and variables to replace `flotsam` with `minables`
+	button f "Sell Minables"
 		center -90 355
 		dimensions 90 30
 
