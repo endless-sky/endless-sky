@@ -187,7 +187,7 @@ mission "Incipias: The Derelict"
 		personality
 			confusion
 				"max confusion" 20.
-				"period" 270.
+				period 270.
 				"focus multiplier" .5
 				"gain focus time" 600
 				"lose focus time" 120

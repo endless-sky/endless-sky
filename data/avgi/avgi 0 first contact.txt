@@ -168,7 +168,7 @@ mission "Avgi: First Contact"
 		personality
 			confusion
 				"max confusion" 25.
-				"period" 300.
+				period 300.
 				"focus multiplier" .7
 				"gain focus time" 420
 				"lose focus time" 60
@@ -184,7 +184,7 @@ mission "Avgi: First Contact"
 		personality
 			confusion
 				"max confusion" 25.
-				"period" 300.
+				period 300.
 				"focus multiplier" .7
 				"gain focus time" 420
 				"lose focus time" 60
@@ -200,7 +200,7 @@ mission "Avgi: First Contact"
 		personality
 			confusion
 				"max confusion" 25.
-				"period" 300.
+				period 300.
 				"focus multiplier" .7
 				"gain focus time" 420
 				"lose focus time" 60

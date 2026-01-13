@@ -13,7 +13,7 @@
 
 confusion "player"
 	"max confusion" 2.
-	"period" 210
+	period 210
 	"focus multiplier" .2
 	"gain focus time" 120
 	"lose focus time" 600
@@ -22,42 +22,42 @@ confusion "player"
 
 confusion "civilian"
 	"max confusion" 20.
-	"period" 210.
+	period 210.
 	"focus multiplier" .2
 	"gain focus time" 600
 	"lose focus time" 120
 
 confusion "militia"
 	"max confusion" 14.
-	"period" 210.
+	period 210.
 	"focus multiplier" .1
 	"gain focus time" 600
 	"lose focus time" 120
 
 confusion "military"
 	"max confusion" 10.
-	"period" 240.
+	period 240.
 	"focus multiplier" .1
 	"gain focus time" 600
 	"lose focus time" 120
 
 confusion "elite"
 	"max confusion" 5.
-	"period" 270.
+	period 270.
 	"focus multiplier" .1
 	"gain focus time" 360
 	"lose focus time" 180
 
 confusion "pirate"
 	"max confusion" 15.
-	"period" 180.
+	period 180.
 	"focus multiplier" .4
 	"gain focus time" 600
 	"lose focus time" 90
 
 confusion "miner"
 	"max confusion" 15.
-	"period" 210.
+	period 210.
 	"focus multiplier" .2
 	"gain focus time" 540
 	"lose focus time" 240
@@ -66,29 +66,29 @@ confusion "miner"
 
 confusion "basic automata"
 	"max confusion" 10.
-	"period" 270.
+	period 270.
 	"focus multiplier" 1.
 
 confusion "advanced automata"
 	"max confusion" 5.
-	"period" 270.
+	period 270.
 	"focus multiplier" 1.
 
 confusion "kor mereti"
 	"max confusion" 4.
-	"period" 210.
+	period 210.
 	"focus multiplier" .5
 	"gain focus time" 240
 	"lose focus time" 120
 
 confusion "kor sestor"
 	"max confusion" 2.5
-	"period" 270.
+	period 270.
 	"focus multiplier" 1.
 
 confusion "ka'het"
 	"max confusion" 10.
-	"period" 240.
+	period 240.
 	"focus multiplier" .3
 	"gain focus time" 600
 	"lose focus time" 300
@@ -97,21 +97,21 @@ confusion "ka'het"
 
 confusion "aberrant"
 	"max confusion" 20.
-	"period" 300.
+	period 300.
 	"focus multiplier" .4
 	"gain focus time" 360
 	"lose focus time" 60
 
 confusion "wild"
 	"max confusion" 15.
-	"period" 300.
+	period 300.
 	"focus multiplier" .5
 	"gain focus time" 600
 	"lose focus time" 150
 
 confusion "pug"
 	"max confusion" 1.
-	"period" 210.
+	period 210.
 	"focus multiplier" 15.
 	"gain focus time" 420
 	"lose focus time" 900
