@@ -819,9 +819,13 @@ void ShopPanel::DrawShipsSidebar()
 			}
 		}
 
-		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
-			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
-				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
+		if(ship->OutfitCount(selectedOutfit))
+		{
+			const Color &vbright = Color(.9f, .9f, .9f, .2f);
+			const Color &dim = *GameData::Colors().Get("dim");
+			PointerShader::Draw(Point{point.X() - static_cast<int>(ICON_TILE / 3), point.Y()},
+				Point{1., 0.}, 14.f, 12.f, 0., isSelected ? vbright : dim);
+		}
 
 		point.X() += ICON_TILE;
 	}
