@@ -165,7 +165,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		if(key == "port")
 			port.Load(child, playerConditions);
 		else if(key == "landscapes")
-			landscapes.Load(child, playerConditions, [](std::string key) { return SpriteSet::Get(key); });
+			landscapes.Load(child, playerConditions, SpriteSet::Get);
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
