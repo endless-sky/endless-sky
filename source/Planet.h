@@ -178,7 +178,7 @@ private:
 	std::string displayName;
 	Paragraphs description;
 	Port port;
-	mutable Sprite *landscape = nullptr;
+	mutable const Sprite *landscape = nullptr;
 	std::set<const Sprite *> landscapes;
 	std::string music;
 
