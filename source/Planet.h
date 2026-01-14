@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Sale.h"
 #include "Shop.h"
+#include "WeightedList.h"
 
 #include <list>
 #include <memory>
@@ -179,7 +180,7 @@ private:
 	Paragraphs description;
 	Port port;
 	mutable const Sprite *landscape = nullptr;
-	std::set<const Sprite *> landscapes;
+	WeightedList<const Sprite *> landscapes;
 	std::string music;
 
 	std::set<std::string> attributes;

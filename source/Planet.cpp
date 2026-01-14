@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "image/SpriteSet.h"
 #include "System.h"
+#include "WeightedList.h"
 #include "Wormhole.h"
 
 #include <algorithm>
@@ -163,6 +164,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 
 		if(key == "port")
 			port.Load(child, playerConditions);
+		else if(key == "landscapes")
+			landscapes.Load(child, playerConditions, [](std::string key) { return SpriteSet::Get(key); });
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -201,8 +204,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		else if(key == "display name")
 			displayName = value;
 		else if(key == "landscape")
-			for(int i = valueIndex; i < child.Size(); ++i)
-				landscapes.insert(SpriteSet::Get(child.Token(i)));
+			landscape = SpriteSet::Get(value);
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
@@ -417,8 +419,8 @@ const Paragraphs &Planet::Description() const
 // Get the landscape sprite.
 const Sprite *Planet::Landscape(bool refresh) const
 {
-	if(!landscape || refresh)
-		landscape = const_cast<Sprite *>(*std::next(landscapes.begin(), rand() % landscapes.size()));
+	if((!landscape || refresh) && !landscapes.empty())
+		landscape = landscapes.Get();
 	return landscape;
 }
 

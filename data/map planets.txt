@@ -1422,7 +1422,17 @@ planet "Dwelling of Speloog"
 
 planet Earth
 	attributes education factory "near earth" research tourism urban
-	landscape land/city0 land/city4 land/city6 land/city10 land/city19 land/city20 land/city23 land/city25
+	landscapes
+		land/city0 2
+		land/city1
+		land/city2
+		land/city4
+		land/city6
+		land/city10
+		land/city19
+		land/city20 3
+		land/city23
+		land/city25
 	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
 		to display
 			not "start: syndicate"
