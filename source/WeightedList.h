@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "ConditionsStore.h"
-#include "DataNode.h"
 #include "Random.h"
 
 #include <cstddef>
@@ -38,9 +36,6 @@ class WeightedList {
 	using iterator = typename std::vector<Type>::iterator;
 	using const_iterator = typename std::vector<Type>::const_iterator;
 public:
-	void Load(const DataNode &node, const ConditionsStore *playerConditions,
-		const std::function<Type(const std::string &key)> fun);
-
 	template<class T>
 	friend std::size_t erase(WeightedList<T> &list, const T &item);
 	template<class T, class UnaryPredicate>
@@ -205,19 +200,4 @@ template<class Type>
 void WeightedList<Type>::RecalculateWeight()
 {
 	total = std::accumulate(weights.begin(), weights.end(), 0);
-}
-
-
-
-template<class Type>
-void WeightedList<Type>::Load(const DataNode &node, const ConditionsStore *playerConditions,
-	const std::function<Type(const std::string &key)> fun)
-{
-	for(const DataNode &child : node)
-	{
-		int n = 1;
-		if(child.Size() >= 2 && child.Value(1) >= 1.)
-			n = child.Value(1);
-		emplace_back(n, fun(child.Token(0)));
-	}
 }

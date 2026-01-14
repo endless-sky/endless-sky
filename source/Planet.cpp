@@ -50,6 +50,23 @@ namespace {
 			required.emplace_hint(required.cend(), attribute.substr(PREFIX.length()));
 		});
 	}
+
+
+
+	// template<class T>
+	// void LoadWeightedList(WeightedList<T> &list, const DataNode &node, const ConditionsStore *playerConditions,
+	// 	const std::function<T(const std::string &key)> fun)
+	void LoadWeightedList(WeightedList<const Sprite *> &list, const DataNode &node,
+		const ConditionsStore *playerConditions, const std::function<const Sprite *(const std::string &key)> fun)
+	{
+		for(const DataNode &child : node)
+		{
+			int n = 1;
+			if(child.Size() >= 2 && child.Value(1) >= 1.)
+				n = child.Value(1);
+			list.emplace_back(n, fun(child.Token(0)));
+		}
+	}
 }
 
 
@@ -165,7 +182,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		if(key == "port")
 			port.Load(child, playerConditions);
 		else if(key == "landscapes")
-			landscapes.Load(child, playerConditions, SpriteSet::Get);
+			LoadWeightedList(landscapes, child, playerConditions, SpriteSet::Get);
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
