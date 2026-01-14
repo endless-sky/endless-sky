@@ -38,7 +38,8 @@ class WeightedList {
 	using iterator = typename std::vector<Type>::iterator;
 	using const_iterator = typename std::vector<Type>::const_iterator;
 public:
-	void Load(const DataNode &node, const ConditionsStore *playerConditions, const std::function<Type(std::string key)> fun);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::function<Type(std::string key)> fun);
 
 	template<class T>
 	friend std::size_t erase(WeightedList<T> &list, const T &item);
@@ -209,7 +210,8 @@ void WeightedList<Type>::RecalculateWeight()
 
 
 template<class Type>
-void WeightedList<Type>::Load(const DataNode &node, const ConditionsStore *playerConditions, const std::function<Type(std::string key)> fun)
+void WeightedList<Type>::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const std::function<Type(std::string key)> fun)
 {
 	for(const DataNode &child : node)
 	{
