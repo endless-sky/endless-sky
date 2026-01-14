@@ -402,6 +402,7 @@ outfitter "Heliarch Basics"
 	"Scanning Module"
 	"Enforcer Confrontation Gear"
 	"Enforcer Riot Staff"
+	"Guardian Turret"
 	"Local Map"
 
 outfitter "Lunarium Basics"

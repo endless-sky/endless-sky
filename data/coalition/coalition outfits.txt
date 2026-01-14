@@ -478,6 +478,22 @@ outfit "Enforcer Riot Staff"
 	"unplunderable" 1
 	description "Made to deal with the occasional dissidents that pop up around Coalition space in a non-lethal manner, these weapons see minimal use in shipbound combat, but are carried anyway in the event a dissident gets aboard."
 
+outfit "Guardian Turret"
+	category "Hand to Hand"
+	series "Fortifications"
+	index 08025
+	licenses
+		Heliarch
+	cost 876000
+	thumbnail "outfit/guardian turret"
+	"mass" 1
+	"outfit space" -1
+	"capture defense" 19
+	"unplunderable" 1
+	description "Useful for protecting both buildings and ships, these compact automated turrets were designed and built by the Heliarchs based on the Quarg's own anti-boarder equipment. Active, razor-thin beams of light connect the turret and its target, however many times necessary for execution to be confirmed."
+	description "	Each turret also comes with a compact emitter, designed to provide shielding in a small area around the turret's base. While tricky to develop at first, this technology has not only preserved most turrets from sniping attacks, but also ensured the survival of many Heliarchs who would otherwise have met grievously painful ends."
+	description "	The only downside is the relatively tedious process of registering every member of the crew with the turrets' systems, so that it can recognize and avoid firing at allies during boarding encounters."
+
 outfit "Anti-Materiel Gun"
 	category "Hand to Hand"
 	series "H2H"
@@ -503,3 +519,12 @@ outfit "Heliarch License"
 	index 08020
 	thumbnail "outfit/heliarch license"
 	description "An ornate circlet of gold and platinum, it serves as both a symbol of rank and as a license to access exclusive Heliarch facilities. Custom-made to fit a human's head, it's surprisingly light and comfortable."
+
+outfit "Beyond the Hyperdrive"
+	category "Unique"
+	series "Non-Functional Unique"
+	index 11
+	thumbnail "outfit/beyond the hyperdrive"
+	"unique" 1
+	description "A book gifted to you by Anna Fangvin, a struggling author who found success in Coalition space. It is a signed copy."
+	description "	The story follows a human captain who steals a jump drive from the Quarg and travels beyond the hyperlanes, learning new things about the aliens of the galaxy."

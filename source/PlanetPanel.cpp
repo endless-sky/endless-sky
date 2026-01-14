@@ -22,7 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -66,6 +66,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
+	Resize();
 	AddChild(description);
 
 	// Since the loading of landscape images is deferred, make sure that the
@@ -75,14 +76,14 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	queue.Wait();
 	queue.ProcessSyncTasks();
 
-	Audio::Pause();
+	Audio::BlockPausing();
 }
 
 
 
 PlanetPanel::~PlanetPanel()
 {
-	Audio::Resume();
+	Audio::UnblockPausing();
 }
 
 
@@ -93,7 +94,11 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
-		GetUI()->Pop(this);
+		if(callback)
+			callback();
+		if(selectedPanel)
+			GetUI().Pop(selectedPanel);
+		GetUI().Pop(this);
 		return;
 	}
 
@@ -131,11 +136,11 @@ void PlanetPanel::Step()
 	// handle the intro mission in the event the player moves away
 	// from the landing before buying a ship.
 	const Panel *activePanel = selectedPanel ? selectedPanel : this;
-	if(activePanel != spaceport.get() && GetUI()->IsTop(activePanel))
+	if(activePanel != spaceport.get() && GetUI().IsTop(activePanel))
 	{
 		Mission *mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		else
 			player.HandleBlockedMissions(Mission::LANDING, GetUI());
 	}
@@ -167,7 +172,7 @@ void PlanetPanel::Draw()
 		if(planet.HasNamedPort())
 		{
 			info.SetCondition("has port");
-			info.SetString("port name", port.Name());
+			info.SetString("port name", port.DisplayName());
 		}
 
 		if(hasShipyard)
@@ -183,10 +188,7 @@ void PlanetPanel::Draw()
 	// The description text needs to be updated because player conditions can be changed
 	// after the panel's creation, such as the player accepting a mission on the Job Board.
 	if(!selectedPanel)
-	{
-		description->SetRect(ui->GetBox("content"));
 		description->SetText(planet.Description().ToString());
-	}
 }
 
 
@@ -202,7 +204,24 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 
 	UI::UISound sound = UI::UISound::NORMAL;
 	bool hasAccess = planet.CanUseServices();
-	if(key == 'd' && flagship && flagship->CanBeFlagship())
+	if(command.Has(Command::MAP))
+	{
+		GetUI().Push(new MapDetailPanel(player));
+		return true;
+	}
+	else if(command.Has(Command::MESSAGE_LOG))
+	{
+		UI::PlaySound(UI::UISound::NORMAL);
+		GetUI().Push(new MessageLogPanel());
+		return true;
+	}
+	else if(command.Has(Command::INFO) || key == 'i')
+	{
+		UI::PlaySound(UI::UISound::NORMAL);
+		GetUI().Push(new PlayerInfoPanel(player));
+		return true;
+	}
+	else if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
 		requestedLaunch = true;
 		return true;
@@ -216,58 +235,41 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
 		selectedPanel = trading.get();
-		GetUI()->Push(trading);
+		GetUI().Push(trading);
 	}
 	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
 	{
 		selectedPanel = bank.get();
-		GetUI()->Push(bank);
+		GetUI().Push(bank);
 	}
 	else if(key == 'p' && hasAccess && planet.HasNamedPort())
 	{
 		selectedPanel = spaceport.get();
 		if(isNewPress)
 			spaceport->UpdateNews();
-		GetUI()->Push(spaceport);
+		GetUI().Push(spaceport);
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
 		UI::PlaySound(UI::UISound::NORMAL);
-		GetUI()->Push(new ShipyardPanel(player, shipyardStock));
+		GetUI().Push(new ShipyardPanel(player, shipyardStock));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && hasOutfitter)
 	{
 		UI::PlaySound(UI::UISound::NORMAL);
-		GetUI()->Push(new OutfitterPanel(player, outfitterStock));
+		GetUI().Push(new OutfitterPanel(player, outfitterStock));
 		return true;
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
 	{
-		GetUI()->Push(new MissionPanel(player));
+		GetUI().Push(new MissionPanel(player));
 		return true;
 	}
 	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
 	{
 		selectedPanel = hiring.get();
-		GetUI()->Push(hiring);
-	}
-	else if(command.Has(Command::MAP))
-	{
-		GetUI()->Push(new MapDetailPanel(player));
-		return true;
-	}
-	else if(command.Has(Command::INFO))
-	{
-		UI::PlaySound(UI::UISound::NORMAL);
-		GetUI()->Push(new PlayerInfoPanel(player));
-		return true;
-	}
-	else if(command.Has(Command::MESSAGE_LOG))
-	{
-		UI::PlaySound(UI::UISound::NORMAL);
-		GetUI()->Push(new MessageLogPanel());
-		return true;
+		GetUI().Push(hiring);
 	}
 	else
 		return false;
@@ -275,7 +277,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	// If we are here, it is because something happened to change the selected
 	// planet UI panel. So, we need to pop the old selected panel:
 	if(oldPanel)
-		GetUI()->Pop(oldPanel);
+		GetUI().Pop(oldPanel);
 
 	UI::PlaySound(sound);
 
@@ -289,11 +291,20 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 
 
 
+void PlanetPanel::Resize()
+{
+	const Interface &planetInterface = *GameData::Interfaces().Get(
+		Screen::Width() < 1280 ? "planet (small screen)" : "planet");
+	description->SetRect(planetInterface.GetBox("content"));
+}
+
+
+
 void PlanetPanel::TakeOffIfReady()
 {
 	// If we're currently showing a conversation or dialog, wait for it to close.
-	if(!GetUI()->IsTop(this) && !GetUI()->IsTop(trading.get()) && !GetUI()->IsTop(bank.get())
-			&& !GetUI()->IsTop(spaceport.get()) && !GetUI()->IsTop(hiring.get()))
+	if(!GetUI().IsTop(this) && !GetUI().IsTop(trading.get()) && !GetUI().IsTop(bank.get())
+			&& !GetUI().IsTop(spaceport.get()) && !GetUI().IsTop(hiring.get()))
 		return;
 
 	// If something happens here that cancels the order to take off, don't try
@@ -306,7 +317,7 @@ void PlanetPanel::TakeOffIfReady()
 	Mission *mission = player.MissionToOffer(Mission::LANDING);
 	if(mission)
 	{
-		mission->Do(Mission::OFFER, player, GetUI());
+		mission->Do(Mission::OFFER, player, &GetUI());
 		return;
 	}
 
@@ -335,12 +346,12 @@ void PlanetPanel::TakeOffIfReady()
 				// record and report all absent ships later.
 				if(result.first->GetSystem() != &system)
 				{
-					out << result.first->Name() << ", ";
+					out << result.first->GivenName() << ", ";
 					absentCannotFly.push_back(result.first);
 				}
 				else
 				{
-					GetUI()->Push(new ConversationPanel(player,
+					GetUI().Push(new ConversationPanel(player,
 						*GameData::Conversations().Get("flight check: " + check), nullptr, nullptr, result.first));
 					return;
 				}
@@ -352,7 +363,7 @@ void PlanetPanel::TakeOffIfReady()
 			// Pop back the last ", " in the string.
 			shipNames.pop_back();
 			shipNames.pop_back();
-			GetUI()->Push(new Dialog(this, &PlanetPanel::CheckWarningsAndTakeOff,
+			GetUI().Push(new DialogPanel(this, &PlanetPanel::CheckWarningsAndTakeOff,
 				"Some of your ships in other systems are not able to fly:\n" + shipNames +
 				"\nDo you want to park those ships and depart?", Truncate::MIDDLE));
 			return;
@@ -491,7 +502,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		// Pool cargo together, so that the cargo number on the trading panel
 		// is still accurate while the popup is active.
 		player.PoolCargo();
-		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
+		GetUI().Push(new DialogPanel(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
 
@@ -519,7 +530,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 		if(callback)
 			callback();
 		if(selectedPanel)
-			GetUI()->Pop(selectedPanel);
-		GetUI()->Pop(this);
+			GetUI().Pop(selectedPanel);
+		GetUI().Pop(this);
 	}
 }

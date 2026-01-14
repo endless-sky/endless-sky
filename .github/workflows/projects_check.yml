@@ -23,7 +23,7 @@ jobs:
     if: ${{ needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - name: Validate CMake project files
@@ -36,7 +36,7 @@ jobs:
     if: ${{ needs.changed.outputs.copyright == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - uses: actions/setup-python@v5
@@ -61,7 +61,7 @@ jobs:
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' || needs.changed.outputs.changelog == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - uses: codespell-project/actions-codespell@master
@@ -78,7 +78,7 @@ jobs:
     if: ${{ needs.changed.outputs.editorconfig_files == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - uses: editorconfig-checker/action-editorconfig-checker@main
@@ -91,7 +91,7 @@ jobs:
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.code_style_check == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - uses: actions/setup-python@v5
@@ -109,7 +109,7 @@ jobs:
     if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.content_style_check == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.content_style_script == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - uses: actions/setup-python@v5
@@ -127,7 +127,7 @@ jobs:
     if: ${{ needs.changed.outputs.shaders == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         show-progress: false
     - run: sudo apt-get install -y --no-install-recommends glslang-tools

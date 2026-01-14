@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapShipyardPanel.h"
 
+#include "comparators/BySeriesAndIndex.h"
 #include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
@@ -193,7 +194,7 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 void MapShipyardPanel::DrawItems()
 {
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	if(GetUI().IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
@@ -208,8 +209,9 @@ void MapShipyardPanel::DrawItems()
 		if(DrawHeader(corner, category))
 			continue;
 
-		for(const Ship *ship : it->second)
+		for(const string &name : it->second)
 		{
+			const Ship *ship = GameData::Ships().Get(name);
 			string price = Format::CreditString(ship->Cost());
 
 			string info = Format::Number(ship->MaxShields()) + " shields / ";
@@ -270,7 +272,7 @@ void MapShipyardPanel::Init()
 			for(const Ship *ship : it.second.ShipyardStock())
 				if(!seen.contains(ship))
 				{
-					catalog[ship->Attributes().Category()].push_back(ship);
+					catalog[ship->Attributes().Category()].push_back(ship->VariantName());
 					seen.insert(ship);
 				}
 
@@ -282,12 +284,11 @@ void MapShipyardPanel::Init()
 			++parkedShips[it->GetSystem()][model];
 			if(!seen.contains(model))
 			{
-				catalog[model->Attributes().Category()].push_back(model);
+				catalog[model->Attributes().Category()].push_back(model->TrueModelName());
 				seen.insert(model);
 			}
 		}
 
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(),
-			[](const Ship *a, const Ship *b) { return a->DisplayModelName() < b->DisplayModelName(); });
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
 }

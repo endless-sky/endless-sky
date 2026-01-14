@@ -1211,6 +1211,7 @@ Comment:
 
 Files:
  images/land/water13*
+ images/scene/mainsail*
 Copyright: JuniperPhoton
 License: public-domain
  Taken from https://archive.is/mvzhX. This image was uploaded
@@ -1595,6 +1596,7 @@ Files:
  images/ship/selii'mar*
  images/ship/vareti'het*
  images/ship/fetri'sei*
+ images/ship/builder?satellite*
  images/ship/ember?waste?node/*
  images/ship/void?sprite/*
  images/ship/ararebo*
@@ -1817,6 +1819,19 @@ Files:
  images/ship/aberrant?trip*
  images/ship/aberrant?triplet*
  images/ship/aberrant?whiskers*
+ images/thumbnail/aberrant?chomper*
+ images/thumbnail/aberrant?dancer*
+ images/thumbnail/aberrant?hugger*
+ images/thumbnail/aberrant?junior*
+ images/thumbnail/aberrant?latte*
+ images/thumbnail/aberrant?longfellow*
+ images/thumbnail/aberrant?mole*
+ images/thumbnail/aberrant?pike*
+ images/thumbnail/aberrant?pileup*
+ images/thumbnail/aberrant?traincar*
+ images/thumbnail/aberrant?trip*
+ images/thumbnail/aberrant?triplet*
+ images/thumbnail/aberrant?whiskers*
  images/ship/bluejacket*
  images/ship/pollen*
  images/ship/windjammer*
@@ -2035,12 +2050,15 @@ Files:
  images/asteroid/water?droplet/*
  images/effect/avgi?flare/antimatter*
  images/effect/avgi?flare/fusion*
+ images/effect/avgi?flare/ntr*
  images/effect/avgi?flare/remass*
  images/effect/avgi?flare/rcs*
  images/effect/blue?optical?laser?glare*
  images/effect/green?optical?laser?glare*
+ images/effect/uv?excimer?laser?glare*
  images/effect/flotsam?integral?wood*
  images/effect/flotsam?voidfish*
+ images/hardpoint/ureb?turret*
  images/icon/nettle*
  images/icon/orchid*
  images/label/outer?limits*
@@ -2059,6 +2077,7 @@ Files:
  images/outfit/orchid?missile*
  images/outfit/remass?injector*
  images/outfit/trefoil?board*
+ images/outfit/ureb?turret*
  images/outfit/voidfish*
  images/planet/aviskir*
  images/planet/nebula1*
@@ -2081,13 +2100,15 @@ Files:
  images/hardpoint/green?optical?laser*
  images/hardpoint/plasmadyne?scoop*
  images/hardpoint/speckle?turret*
+ images/hardpoint/tiny?vls*
+ images/hardpoint/small?vls*
  images/hardpoint/medium?vls*
  images/outfit/anomalous?shield?restorer*
  images/outfit/antimatter?power?cell*
  images/outfit/arc?fusion?torch*
  images/outfit/blue?optical?laser*
  images/outfit/green?optical?laser*
- images/outfit/beam?antimatter?torch*
+ images/outfit/beam?antimatter?drive*
  images/outfit/concealment?lamina*
  images/outfit/deuterium?slush?tank*
  images/outfit/diffuse?deflector*
@@ -2096,6 +2117,7 @@ Files:
  images/outfit/heatsink?partition*
  images/outfit/inductive?extractor*
  images/outfit/lantern?fission?core*
+ images/outfit/vapor?nuclear?rocket*
  images/outfit/magnetic?scoop*
  images/outfit/magnetoplasma?drive*
  images/outfit/multispectral?scanner*
@@ -2117,6 +2139,8 @@ Files:
  images/outfit/telescopic?antimissile*
  images/outfit/ultracapacitor?bank*
  images/outfit/ultracapacitor?cell*
+ images/outfit/tiny?vls*
+ images/outfit/small?vls*
  images/outfit/medium?vls*
  images/outfit/zap?fusion?torch*
  images/effect/flotsam?telescopic?antimissile*
@@ -2419,6 +2443,7 @@ Files:
  images/thumbnail/heliarch?stalker*
  images/outfit/finisher?storage*
  images/outfit/fuel?module*
+ images/outfit/guardian?turret*
  images/outfit/large?cogeneration?module*
  images/outfit/small?cogeneration?module*
  images/scene/councilofahr1*
@@ -2458,6 +2483,11 @@ Copyright: Michael Zahniser
 License: CC-BY-SA-4.0
 Comment: Created by a past contributor derived from works by Michael Zahniser (under the same license). Rights relinquished to Michael Zahniser.
 
+
+Files:
+ images/outfit/beyond?the?hyperdrive*
+Copyright: Arachi-Lover (https://github.com/Arachi-Lover)
+License: CC-BY-SA-4.0
 
 Files:
  images/outfit/outskirts?gauger*
@@ -2926,6 +2956,7 @@ Files:
  images/outfit/plasma?discharger*
  images/outfit/stagnation?beamx*
  images/outfit/star?tail?*
+ images/outfit/sword*
  images/planet/aera*
  images/planet/gliese*
  images/planet/redias*
@@ -3536,6 +3567,14 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso and Michael Zahniser (under the same license).
 
 Files:
+ images/ship/racing?flivver*
+ images/thumbnail/racing?flivver*
+ images/scene/flivver?crash*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Gefüllte Taubenbrust (under the same license).
+
+Files:
  images/land/badlands13*
 Copyright: Jeff Hollett
 License: CC0
@@ -3558,6 +3597,7 @@ Comment:
 
 Files:
  images/land/city20*
+ images/scene/earth*
 Copyright: Andrew Guan
 License: CC0
 Comment:
@@ -3899,6 +3939,73 @@ Files:
  images/ui/paused*
 Copyright: David Stark (zarkonnen@gmail.com)
 License: CC-BY-SA-4.0
+
+Files:
+ images/scene/icy?opening*
+Copyright: Magmacathie
+License: CC-BY-SA-4.0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Cave_in_Winter.jpg and cropped.
+
+Files:
+ images/scene/reception*
+Copyright: Anarchist2
+License: CC-BY-SA-4.0
+ Derived from the works of Jean-Etienne Minh-Duy Poirrier from
+ https://commons.wikimedia.org/wiki/File:Reception_desk_@_CHU_Li%C3%A8ge.jpg,
+ originally licensed under CC-BY-SA-2.0.
+
+Files:
+ images/scene/train*
+Copyright: Max Bender
+License: CC0
+Comment: Taken from https://stocksnap.io/photo/architecture-building-Z7GFI7P264 and edited.
+
+Files:
+ images/land/beach18*
+ images/land/canyon16*
+ images/land/clouds11*
+ images/land/clouds14*
+ images/land/clouds15*
+ images/land/desert19*
+ images/land/fog15*
+ images/land/forest13*
+ images/land/forest14*
+ images/land/forest15*
+ images/land/hills13*
+ images/land/lava15*
+ images/land/mountain33*
+ images/land/mountain38*
+ images/land/mountain41*
+ images/land/mountain45*
+ images/land/peripheria*
+ images/land/sky14*
+ images/land/snow26*
+ images/land/snow27*
+ images/land/snow28*
+ images/land/snow29*
+ images/land/snow30*
+ images/land/snow33*
+ images/land/snow36*
+ images/land/snow37*
+ images/land/snow38*
+ images/land/snow39*
+ images/land/station53*
+ images/land/station54*
+ images/land/station55*
+ images/land/station56*
+ images/land/station57*
+ images/land/water28*
+ images/land/water30*
+ images/land/water31*
+ images/land/water32*
+Copyright: Various
+License: Unsplash
+Comment:
+ From unsplash.com. These images were most likely uploaded to
+ unsplash.com after June 2017, so are subject to the
+ Unsplash License. They were also most likely uploaded after
+ February 2018, so they are subject to an additional restriction
+ limiting the sale of unaltered copies.
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
@@ -5288,3 +5395,11 @@ License: CC0
  Affirmer offers the Work as-is and makes no representations or warranties of any kind concerning the Work, express, implied, statutory or otherwise, including without limitation warranties of title, merchantability, fitness for a particular purpose, non infringement, or the absence of latent or other defects, accuracy, or the present or absence of errors, whether or not discoverable, all to the greatest extent permissible under applicable law.
  Affirmer disclaims responsibility for clearing rights of other persons that may apply to the Work or any use thereof, including without limitation any person's Copyright and Related Rights in the Work. Further, Affirmer disclaims responsibility for obtaining any necessary consents, permissions or other rights required for any use of the Work.
  Affirmer understands and acknowledges that Creative Commons is not a party to this document and has no duty or obligation with respect to this CC0 or use of the Work.
+
+License: Unsplash
+ Unsplash grants you an irrevocable, nonexclusive, worldwide copyright
+ license to download, copy, modify, distribute, perform, and use photos
+ from Unsplash for free, including for commercial purposes, without
+ permission from or attributing the photographer or Unsplash. This
+ license does not include the right to compile photos from Unsplash to
+ replicate a similar or competing service.

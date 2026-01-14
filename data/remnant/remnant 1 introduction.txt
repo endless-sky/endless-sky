@@ -187,12 +187,12 @@ mission "Remnant: Lost in Ember Waste"
 					goto know
 			
 			`	"There are red wormholes scattered around this region of space. You can only access them if you have a Key Stone on your ship, though. Don't ask me how it works, but that's how it is."`
-				goto keystone
+				goto "key stone"
 			
 			label know
 			`	"Lost your Key Stone?" she asks with another chuckle. "Or maybe your jump drive, and now you're stuck here? No problem."`
 			
-			label keystone
+			label "key stone"
 			`	The woman reaches into a bag that she has with her and hands you a Quantum Key Stone. "Just put this on your ship and you can be on your way out of here."`
 			choice
 				`	"You're just giving this to me?"`
@@ -448,21 +448,8 @@ conversation "remnant key stones"
 			decline
 	
 	`	After a bit of haggling, he agrees to pay you six million credits in exchange for a cargo of fifty Hai "keystones." Given how cheap they are to purchase in Hai space, you will be earning a very tidy profit on the deal.`
-	`	"We look forward to receiving this shipment," he sings. "Just so we are clear, however: you do not need to install them on your ship - delivering them in your cargo hold will work just fine."`
-	choice
-		`	"I can purchase outfits into my cargo bay?"`
-		`	"Why would you even need to specify that?"`
-			goto whymention
-		`	"Okay."`
-			accept
-	`	"Of course. There are several different methods available for doing so." He switches to a chant as he begins listing methods.`
-	`	"Firstly, our outfitter interface has a small toggle labeled 'in-cargo' that - when checked - will instruct the dockworkers to load any outfits you purchase into your cargo bay instead of installing it.`
-	`	"Secondly, if you do not have any ships selected in the outfitter control panel when you make a purchase, our logistics system will assign it for delivery to your cargo hold instead of scheduling an installation.`
-	`	"Lastly, if you have an outfit installed, just tap the 'U' key on the outfitter to request that the selected outfit be uninstalled. After removal they will be left in your cargo hold."`
+	`	"We look forward to receiving this shipment," he sings. "Just instruct the dockworkers to load them into your cargo bay."`
 	`	He glances at his commlink and starts tapping at something. "We look forward to your return," he trills, before striding away still looking at his display.`
-		accept
-	label whymention
-	`	"What seems straightforward to you and I is not always so simple for others. I have met more than a few pilots who thought that outfits could only be transported installed on their hull." He smiles briefly at the thought before turning and heading away.`
 		accept
 
 
@@ -836,7 +823,7 @@ mission "Remnant: Technology Available"
 				`	"That sounds thorough."`
 					goto thorough
 				`	"So why have I not been shot down yet?"`
-					goto shotdown
+					goto "shot down"
 				`	"What is an 'IFF' system?"`
 			`	"You aren't familiar with IFF?" he asks, looking slightly incredulous. "IFF stands for 'Identify Friend or Foe,' and is the general name for the system that identifies your ship to those around it. It is what determines which ships should be highlighted red or orange on your system map, and provides limited movement detail to allied ships so that targeting systems can fire past you. I do not know about their current practices, but historically the Navy and most other organizations had complex methods of verifying the identify of other ships, so it is not simply a case of having your IFF state that you are a friendly."`
 			choice
@@ -845,7 +832,7 @@ mission "Remnant: Technology Available"
 				`	"That sounds thorough."`
 					goto thorough
 				`	"So why have I not been shot down yet?"`
-			label shotdown
+			label "shot down"
 			`	"Because every system has potential failures and vulnerabilities, we ensure that people are always involved in the decision making process. Our initial scans showed that you were not likely an Alpha, and we were curious as to who you were and what opportunities might come of it. Since then the various monitors of the system have had to manually designate you as 'friendly' every time you made an approach. It worked, for a time. But now it is time to make your acceptance official. While our monitors are effective, it still wastes time to force them to track you and cancel the alerts every time you approach. Since you are trustworthy, better to give you the means to identify yourself so our defenses can focus on real threats.`
 				goto continue
 			label thorough
@@ -972,6 +959,17 @@ mission "Remnant: Deep Surveillance"
 				has "Terminus exploration: done"
 				not "Deep: Remnant 0: done"
 			has "Deep: Remnant Research: offered"
+	substitutions
+		"<compared>" "The complex looks pristine by <region> standards, but when compared"
+		"<compared>" "Compared"
+			or
+				has "start: deep"
+				has "start: paradise"
+				has "start: hai"
+		"<region>" "Dirt Belt"
+			has "start: default"
+		"<region>" "Earth, and even Syndicate"
+			has "start: syndicate"
 	on offer
 		conversation
 			branch "told before"
@@ -1257,7 +1255,7 @@ mission "Remnant: Deep Surveillance"
 			branch "retrieved before"
 				"retrieved information" == 2
 			
-			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus and find that it is in a building just outside the spaceport - just one room among many in a massive office complex. The complex looks pristine by Dirt Belt standards, but when compared to architecture you've seen elsewhere in the Deep, it is rather brutalistic.`
+			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus and find that it is in a building just outside the spaceport, just one room among many in a massive office complex. <compared> to architecture you've seen elsewhere in the Deep, it's rather brutalistic.`
 			branch gone
 				has "Deep: Remnant Research: offered"
 			
@@ -1427,7 +1425,14 @@ mission "Remnant: Deep Surveillance"
 			
 			`	"A copy?" Ivan looks off into space for a moment. "Well, I suppose since you helped me so much, I could make an exception for you. I typically don't share findings with those not on my research team until they're finalized. I've been burned one too many times because of that."`
 			`	Ivan leans over to his desk. "This will be for your eyes only."`
-				goto branches
+			choice
+				`	"Understood."`
+					goto branches
+				`	"Actually, I was hoping to show it to someone else who's interested."`
+			action
+				set "remnant: honest about deep research"
+			`	Ivan stares at you for a moment. "I... see. Thanks for your honesty, but I can't give you a copy. That research is classified."`
+				goto leave
 			
 			label again2
 			`	"Again?" Ivan asks. He leans over to his desk. "I like that you're so interested in my research. I suppose it only makes sense with you helping me, but typically merchant captains aren't this interested in following up on odd jobs they do."`
@@ -1599,6 +1604,9 @@ mission "Remnant: Deep Surveillance"
 			branch nothing
 				has "remnant: got no deep research"
 			
+			branch refused
+				has "remnant: honest about deep research"
+			
 			label terminus
 			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "Interesting research they have done," he says. "So they understand that it is a wormhole, but still have no means of passing through to the other side." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information. For the time being we have little to fear, but I ask that you inform us if they make any further progress. May the Embers burn bright for you."`
 				decline
@@ -1627,6 +1635,13 @@ mission "Remnant: Deep Surveillance"
 			`	"Then he understands why you asked for it," Torza responds as he turns the terminal back and pockets the data chip.`
 				goto disappointing
 			
+			label refused
+			`	"No," you respond. "The lead scientist was unwilling to give me a copy of his research except on the understanding that I would keep it to myself. When I told him I wanted to be able to share it, he sent me away."`
+			`	Torza raises an eyebrow. "And you couldn't simply have lied to him?"`
+			`	"Would you want me to make a habit of lying to the people I'm working with?" you ask.`
+			`	He says nothing for a moment, then sighs. "I suppose that is fair enough."`
+				goto disappointing
+			
 			label nothing
 			`	"No," you respond. "The lead scientist guessed correctly that I was asking for his research to give to you."`
 			
@@ -1649,9 +1664,9 @@ mission "Remnant: Tech Retrieval"
 			branch familiar
 				has "remnant met taely"
 			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to be staying out of her way as if she were someone important.`
-			`	In contrast, she reminds you of the mechanics who maintained the textile factories back on <starting planet>. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+			`	In contrast, she reminds you of the mechanics who maintained the textile factories back on <home planet>. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
 				to display
-					has "human space start"
+					has "start: default"
 			`	Before you can decide if you want to avoid this person or not, she is standing in front of you, clearing her throat. "You are captain <first> <last> of the <ship>?" She asks in a lyrical chant.`
 			choice
 				`	"That's me."`
@@ -1676,16 +1691,16 @@ mission "Remnant: Tech Retrieval"
 					goto find
 				`	"Could you elaborate on 'how fast they can travel in deep space'?"`
 				`	"No, I don't want to get involved in this."`
-					goto nothelp
+					goto "not help"
 			`	She considers her thoughts briefly, then chants, "How fast a ship can move through an area of deep space basically depends on how fast they can collect fuel. Ramscoops were common at the time of the exodus, and if humanity has developed better ramscoops or other means of generating fuel, these would significantly improve their speed at exploring or crossing large volumes of space."`
 			choice
 				`	"Okay, I will see what I can find."`
 				`	"No, I don't want to get involved in this."`
-					goto nothelp
+					goto "not help"
 			label find
 			`	Taely nods "I will look forward to seeing what you find. In the meantime, I should get back to work." With that, she swings over the railing and climbs quickly down the wall in the direction of the shipyard, seemingly unconcerned about the height.`
 				accept
-			label nothelp
+			label "not help"
 			`	Taely looks at you with a blank expression, then chants in a monotone voice. "If that is your choice, you are unlikely to find much of interest to do among us." With that, she vaults over the edge of the railing and drops from view. As you quickly peer over the railing, you discover that she must have caught a handhold somehow, as she is rapidly moving down the wall in a controlled fashion with ease of a spider.`
 				decline
 	to complete
@@ -1943,6 +1958,10 @@ mission "Remnant: S-970 Regenerator"
 				`	(Not now.)`
 					defer
 				`	(Yes.)`
+				`	(Never.)`
+					to display
+						not "event: syndicate tech available"
+					decline
 			branch familiar
 				has "Remnant: Tech Retrieval: done"
 			`	After asking a few people, you finally get directed to a bay in the shipyard where you find Taely adjusting something on the hull that you can't quite see. "Greetings, <first>. What brings you here today?" She taps something, then hangs her tools on her belt and drops to the ground on a tether. "Did you bring us something?"`
@@ -2556,7 +2575,15 @@ mission "Remnant: Expanded Horizons Quarg 2"
 	npc "scan outfits"
 		government "Quarg"
 		personality staying uninterested target launching
-		fleet "Quarg"
+		fleet
+			names "quarg"
+			cargo 3
+			variant
+				"Quarg Lindwyrm"
+			variant
+				"Quarg Drake"
+			variant
+				"Quarg Wardragon"
 		dialog
 			`Dawn and her compatriots eagerly pore over the readouts as they come in, then ask if you could land again to compare their scans to ones taken on the ground.`
 
@@ -2881,13 +2908,13 @@ mission "Remnant: Face to Maw 1"
 			choice
 				`	(Activate the shields.)`
 				`	(Do not activate the shields.)`
-					goto holdground
+					goto "hold ground"
 			action
 				set "remnant: face to maw: raised shields"
 			`	You push against the paralysis and trigger the shields in a rush. The millisecond that follows feels like an eternity. The void sprite is just a few meters away, one tendril reaches out and touches you just as the shield slams into place. The tendril becomes caught on both sides of the shield, cleaving it in two. In the same instant, the pressure on your mind vanishes as if it was simply a dream. You momentarily stare at the immobile void sprite, frozen in shock over what just happened. Then time reasserts itself and the sprite spasms away from the ship with an unearthly crescendo of dissonant tones. It plunges down into the clouds, leaving you standing on your hull with the floating severed piece of tendril.`
 			`	You carefully scoop up the tendril in a container and seal it. While the attack spoiled the beautiful moment, at least you have a sample and some recordings that might be of interest to Plume.`
 				launch
-			label holdground
+			label "hold ground"
 			action
 				set "remnant: face to maw: did not raise shields"
 			`	The feeling of paralysis leaves your body as the void sprite is only a few meters away, but you resolve yourself to face down the creature without triggering your shields. Time seems to slow down as the sprite rushes up to you and its leading tentacle reaches out to touch you. As you brace for an impact you realize that the sprite has managed to bring itself to a complete stop and the tentacle has telescoped in on itself slightly. You can see that it is touching you, but you didn't even feel the impact. You and the void sprite stand frozen for a moment, and the force trying to paralyze you snaps off, replaced by a feeling of weightlessness. Moments later the void sprite pulls back and pulses skyward with an unearthly fountain of sounds, spiraling around the <ship> before disappearing into the swirling clouds.`
@@ -3032,35 +3059,35 @@ mission "Remnant: Keystone Research 1"
 			choice
 				`	"How is the outfit business going?"`
 				`	"That last job paid rather well. Do you have any more like it?"`
-					goto crystaljobs
+					goto "crystal jobs"
 			`	"Well, fairly well. Stocks are up, there are quite a few new outfits in the current, and some recent supply line disruptions have been resolved," he gestures appreciatively. "I am told that we have you to thank for some of that.`
 			`	"Those 'quantum keystones' you brought back have been quite interesting. The process of dismantling them for analysis yielded some intriguing results." He notices your expression. "Oh, you were expecting me to sell them, weren't you?"`
 			choice
 				`	(Nod affirmatively.)`
-					goto notforsale
+					goto "not for sale"
 				`	(Shrug noncommittally.)`
-					goto notforsale
+					goto "not for sale"
 				`	"No, I suspected they would be studied instead."`
-					goto notreally
+					goto "not really"
 				`	"What does 'outfits in the current' mean?"`
 			`	"Oh, that's just an expression. 'Current' refers to a current of air or water as a metaphor for the development process. It means that there are outfits that are progressing in the development process." He taps at his commlink for a moment. "Back before the Exodus, there was a saying: 'products in the pipeline.' I think that has a comparable meaning to us having 'something in the current.' I am curious, though. Were you expecting me to sell them?"`
 			choice
 				`	(Nod affirmatively.)`
-					goto notforsale
+					goto "not for sale"
 				`	(Shrug noncommittally.)`
-					goto notforsale
+					goto "not for sale"
 				`	"No, I suspected they would be studied instead."`
-			label notreally
+			label "not really"
 			`	Aeolus looks pleased at that. "You are correct. Finding something that does what the Quantum Key Stone does without being identical to it is clearly much more valuable as a subject of research than as a miscellaneous commodity. Add the security implications of slapping an alien device on a ship without thoroughly dismantling it, and the fact that we are not actually concerned with profit in the classical sense, and it is clear that they should not be simply dumped into the outfitting inventory."`
 				goto clarification
-			label notforsale
+			label "not for sale"
 			`	He looks slightly embarrassed. "Sorry to disappoint you, but none of those outfits were ever going to be used in the form they came in, for several different reasons." He ticks them off on his fingers as he lists them. "First, security: slapping an alien device on every ship without having thoroughly dismantled them would be an invitation to getting tracked. Second, research: something that does what the Quantum Key Stone does without being identical to it? Definitely interesting to our researchers. And third, purpose."`
 			`	He pauses to take a drink. "Unlike what you are probably used to from the outfitters you dealt with back in the ancestral worlds, my purpose is not to make money. Instead, I ensure that Remnant captains have the resources they need. What you see listed as the 'price,' Remnant captains see listed instead as a 'logistics adjustment' that indicates the amount of resources needed to supply that component. Every ship has a resource budget allocated to it, determining how much it can utilize for repairs, restocking, and improvements."`
 			label clarification
 			choice
 				`	"Wait, you didn't sell any of that?"`
 				`	"Okay, so that shipment you had me get...?"`
-			label crystaljobs
+			label "crystal jobs"
 			`	"I have to apologize for that. We knew from our histories that anyone from the ancestral worlds would be attracted by the opportunity to earn a profit, and we needed to give you both a reason to stay, and a way to gauge your willingness to help. Your shipment was definitely useful, but we had to ensure we framed your job in a way that made sense without revealing what we were actually doing.`
 			`	"So no, I don't have any jobs 'just like the last one,' but I know our researchers would like another shipment. Are you interested?"`
 			choice
@@ -3070,42 +3097,42 @@ mission "Remnant: Keystone Research 1"
 					goto greed
 				`	(Decline.)`
 					decline
-			label crystaldecision
+			label "crystal decision"
 			`	"Great. They would like you to pick up another 19 keystones. Two differences this time: first, we would like you to pick them up from several different planets. And second, by the time you reach Hai space, we will have made arrangements so the shipments will be already paid for and waiting for you. Pick up the first stones on Greenwater, then the next set on Allhome. I will have a list sent to you by the time you reach Allhome."`
 			`	"That being said, if you happen to pick up any additional keystones, you can turn them in to the logistics office. They will handle the distribution and compensate you accordingly."`
 			choice
 				`	"Wait, how will you get this all set up?"`
 				`	"Sounds good."`
 					accept
-			branch remnantuntrusted
+			branch "remnant untrusted"
 				has "remnant untrusted"
 			`	Aeolus looks faintly amused. "While you are certainly adventurous, you are not the only one to have traveled widely. We mapped the Hai systems long ago with cloaked ships, but never landed or contacted any of them. So we never knew anything more than what we could observe from orbit or from scanning ships. But you are known to them, and have a fairly public reputation. By using your transponder codes, we can place and pay for orders through hyperspace relays. All we need is a ship in position to feed the signal into the network."`
 				accept
-			label remnantuntrusted
+			label "remnant untrusted"
 			`	Aeolus smiles mysteriously at you. "Let's just say that you are not the only resourceful person among the Remnant. We will share more with you once you have demonstrated your loyalty."`
 				accept
 			label greed
 			`	"While we don't know what is happening on the surface of planets in Ancestral space, we do pick up a fair number of transmissions. Between those and our historical records, it is clear to us that 'making money' is the main motivation for why those in ancestral space do anything. Whether it is ferrying cargo, building a structure, or protecting someone; everything we see says that humanity in ancestral space requires credits for everything it does. And then beyond that, the larger the amount of credits, the more enthusiastic they are to do it." Aeolus shakes his head, looking visibly perturbed. "This is what we see. Tell me, are we wrong? A quote we have seen more than a few times says 'Money makes the world go round,' and everything we have seen supports that attitude."`
 			choice
 				`	"No, you aren't wrong. Money is the reason people work."`
-					goto greedconfirmation
+					goto "greed confirmation"
 				`	"Yes and no. Most people work for money, but it isn't their only motivation."`
-					goto greedpartial
+					goto "greed partial"
 				`	"You are wrong about that. Some people are all about money, but not everyone."`
 				`	"This isn't about everyone, this is about me. I'm not here for the money."`
 			`	"I am glad that some are willing to act for what is right, necessary or even just curiosity; and not just what they are paid for. It gives me hope for ancestral humanity." His look brightens a bit. "So, are you interested in another job to help us?"`
-			label greedchoice
+			label "greed choice"
 			choice
 				`	"Yes."`
-					goto crystaldecision
+					goto "crystal decision"
 				`	"No."`
 					decline
-			label greedconfirmation
+			label "greed confirmation"
 			`	Aeolus nods sadly. "We appreciate the confirmation, and hope to learn more about those who remained in ancestral lands. It is depressing, however, to think that humanity is so self-centered to put financial wealth as such a high priority. Nonetheless, we do have another job for you. Are you interested?"`
-				goto greedchoice
-			label greedpartial
+				goto "greed choice"
+			label "greed partial"
 			`	Aeolus nods. "So financial wealth is a priority of necessity, but not necessarily what they would prefer to focus on. Interesting. That gives me a bit of hope." He pauses to consider this, then continues. "The economic beliefs of humanity aside, are you interested in helping us out?"`
-				goto greedchoice
+				goto "greed choice"
 	on complete
 		dialog
 			`It takes a few minutes to contact the yardmaster, but once you do, a mixed crew of Hai and human dockworkers have the crates moved promptly from the warehouse to your cargo bay. Hai and humans seem accustomed to working together here.`
@@ -3376,21 +3403,21 @@ mission "Remnant: Keystone Research 7"
 			choice
 				`	"The Remnant sure like to eat."`
 				`	"Why do the Remnant eat so much?"`
-					goto foodvolume
+					goto "food volume"
 					to display
 						not "remnant symbionts info"
 				`	"Maybe I should import some spices."`
 					goto spices
 				`	"What is our next step?"`
-					goto deliverdata
+					goto "deliver data"
 			`	Aeolus chuckles and makes an amused gesture. "An army lives and dies by its food! A poorly fed soldier is but a short step away from being a deserter, or even a traitor. While we have had lean years in the past, these days we ensure everyone is well fed."`
-				goto deliverdata
-			label foodvolume
-			branch capitallicense
+				goto "deliver data"
+			label "food volume"
+			branch "capital license"
 				has "license: Remnant Capital"
 			`	He looks at you appraisingly. "There are some things you cannot learn yet. Ask us again when you have earned more of our trust."`
-				goto deliverdata
-			label capitallicense
+				goto "deliver data"
+			label "capital license"
 			action
 				"remnant symbionts info" += 1
 			`	He leans forward and holds up his hands, poking at the leather fingerless gloves he is wearing, and you realize that they extend up under his sleeves. You note that the leather does not actually look like any leather you have seen - it has fine scales and rough ridges on it. What stands out the most, however, is that it appears to pulse faintly.`
@@ -3399,20 +3426,20 @@ mission "Remnant: Keystone Research 7"
 				`	"That is quite the revelation."`
 				`	"Thanks for the explanation."`
 				`	"Is that why some of the food tastes terrible?"`
-					goto terribleflavor
+					goto "terrible flavor"
 				`	"Sounds creepy."`
 					goto creepy
 			`	Aeolus nods. "From what I have heard, the ancestral worlds do not seem to have much in the way of exoskeletons or cybernetics. The living organisms we wear would certainly seem to be the realm of science-fiction." He contemplates his symbiont for a few seconds as he absent-mindedly eats more of his meal. "But education aside, there is work to do."`
-				goto deliverdata
+				goto "deliver data"
 			label spices
 			`	He shakes his head. "I will not discourage you doing so - and I am sure some might appreciate them - but most of us like our food the way it is." He chuckles, then continues. "But there is still work to do."`
-				goto deliverdata
-			label terribleflavor
+				goto "deliver data"
+			label "terrible flavor"
 			`	"I suppose it might. Our symbionts have different dietary requirements, and such unusual compounds in our food inevitably change the flavor. We are all long since used to it, but it would definitely be different for an outsider." He seems amused by this. "But enough of food - there is work to do!"`
-				goto deliverdata
+				goto "deliver data"
 			label creepy
 			`	"Creepy? I do not understand how something so useful and beneficial could be 'creepy,' but I suppose some might equate our symbionts with leeches. To each their own, I suppose." He shrugs, then continues. "But enough. We still have work to do."`
-			label deliverdata
+			label "deliver data"
 			`	He pulls out a small metal briefcase and sets it on the table. "Another delivery mission for you, Captain. A short one, at that. We need you to take this case of data crystals with our preliminary data to some researchers on <destination>. This will allow them to combine the data we have collected with their most recent findings, and perhaps help us take a step forward towards understanding the nature of both these stones and the wormholes. Will you do it?"`
 			choice
 				`	"Okay."`
@@ -3468,10 +3495,10 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Can I help with something?"`
 					goto help
 				`	"What is the quantum condensate fabric density project?"`
-					goto quantumcondensate
+					goto "quantum condensate"
 			`	"I did. The senior researcher told me that most of the team feels something is not quite right here. They say there are some potential theories, but nothing definitive, so they want me to investigate on my own without contaminating my thoughts with their ideas for now."`
 				goto help
-			label quantumcondensate
+			label "quantum condensate"
 			`	"It is basically a project examining the density of Bose-Einstein condensates as correlated to the revised relativity paradigm's conceptualization of the fabric of space-time. It has a lot of potential implications, particularly for ramscoop, scanner, and weapons technology. At least, that is the hope. For now, though, I am trying to figure out what is off about this data."`
 			choice
 				`	"Have you asked someone with more experience for advice?"`
@@ -3489,50 +3516,50 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"I don't know where that is."`
 					goto center
 				`	"Isn't that the center of the galaxy?"`
-					goto centeralt
+					goto "center alt"
 				`	"I have been there."`
 			`	"Really?" She looks surprised. "I have seen sensor logs and recordings from previous visits, but not many people have actually been there." She pauses to take a bite from her neglected meal. "Being able to take part in these fieldwork expeditions is something I have been looking forward to for ages, so of course Sagittarius A* is the first place on my list."`
 				goto center
-			label centeralt
+			label "center alt"
 			`	"Yes, that is correct." She signs firmly.`
 			label center
 			`	Her signs take on a rhythmic pace as if reciting something. "Sagittarius A* is a strong astronomical radio source and a supermassive black hole that is located at the center of the Milky Way. According to our best measurements, it has a mass of 3F6290 solar masses and is surrounded by a ring of gas and dust that can range from 63 to 24D2 degrees Kelvin."`
 			`	She returns to a conversational cadence. "Would you be interested in taking part in this expedition?"`
 			choice
 				`	"Sure, what do you need?"`
-					goto scienceequipment
+					goto "science equipment"
 				`	"You want me to take you to a black hole?!"`
 				`	"Sorry, I'm not interested in visiting a black hole."`
 					decline
 			`	She looks momentarily surprised by your reaction. "Yes, exactly that. Current gravitational repulsor engines can nullify most of the gravitational pull, and an extra Thermoelectric Cooler or two should be sufficient to manage the heat. As such, the risks are manageable so long as you do not try to approach the event horizon.`
-			label scienceequipment
+			label "science equipment"
 			`	"For this particular mission, we will need some additional scientific equipment that is actually hardwired into your ship, not just carried along with us. When we arrive on <planet>, they will have the equipment ready to install. Just be aware that it will require six tons of outfit space and a scientist to run it, so you will need a free bunk for them, too.`
 			`	"Once the laboratory module is installed, it will simply be a matter of traveling to Sagittarius A*. After our measurements, recordings, and observations are complete, we will return and report on our findings."`
 			`	She glances down at her half-finished meal. "I am already packed and ready to go. I will meet you onboard the <ship> as soon as I am done eating."`
-			branch dawnsymbiont
+			branch "dawn symbiont"
 				has "remnant symbionts info"
 			choice
 				`	"Okay, I will meet you onboard the ship."`
 					accept
 				`	"Developed quite the appetite, haven't you?"`
-			branch dawnlicense
+			branch "dawn license"
 				has "license: Remnant Capital"
 			`	She shrugs. "I burn a lot of calories, and healthy eating is important. Besides, I don't know how good food will be on your ship." She resumes eating with vigor and does not seem inclined to continue the conversation.`
 				accept
-			label dawnlicense
+			label "dawn license"
 			`	"I am not yet used to the nutrient intake required to maintain my symbiont, so I have to consciously make sure that I eat enough to sustain it."`
 			choice
 				`	"Symbiont? What is that?"`
-					goto whatis
+					goto "what is"
 				`	"What? You're joking, right?"`
 			`	"Suit yourself. I will meet you onboard once I'm done." She shrugs, and returns to eating.`
 				accept
-			label whatis
+			label "what is"
 			action
 				"remnant symbionts info" += 1
 			`	"Oh, no one has told you about them? I thought once you'd demonstrated your trustworthiness and earned your capital ship license you would have found out." She pauses to take another bite, then continues.`
-				goto dawndetails
-			label dawnsymbiont
+				goto "dawn details"
+			label "dawn symbiont"
 			choice
 				`	"Okay, I will meet you onboard the ship."`
 					accept
@@ -3542,7 +3569,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Interesting. I will see you onboard the <ship>."`
 					accept
 				`	"Could you tell me more about them?"`
-			label dawndetails
+			label "dawn details"
 			action
 				"remnant symbionts info" += 1
 			`	"In short, we domesticated some of the creatures found here ages ago and discovered that they could be attached to us to form a symbiotic relationship." She pauses again to eat. "I only recently received mine, so I am not fully adjusted to it yet."`
@@ -3555,14 +3582,14 @@ mission "Remnant: Expanded Horizons Astral 1"
 				`	"Thanks for the description. I should go prep the <ship> now."`
 					accept
 				`	"Where is your symbiont? Yours does not seem to be obvious."`
-					goto dawnwhere
+					goto "dawn where"
 				`	"Could I see your symbiont?"`
 			`	Dawn looks at you with an amused expression. "We do not know each other nearly well enough for that. Better to focus on the expedition. I will catch up to you on the ship."`
 				accept
 			label onwards
 			`	She nods. "Well, I will finish my meal and meet you on the <ship> shortly." With that, she returns to her meal.`
 				accept
-			label dawnwhere
+			label "dawn where"
 			`	Dawn looks at you with an amused expression. "Just as every human is a unique individual, so every symbiont is also unique. As such, they attach to different areas of the body. We do not know each other well enough for me to tell you more than that.`
 			`	"We should probably be focusing on the expedition, though. You go get the <ship> ready for launch, and I will be there shortly."`
 				accept
@@ -3575,20 +3602,20 @@ mission "Remnant: Expanded Horizons Astral 1"
 			`	"We have loaded the Research Laboratory onboard. The team will install it if they can find the space, but if they do not, it will be secured in the cargo bay," The Remnant scientist explains. "Before you depart, please verify that the laboratory is installed in the correct location. You know your ship better than we do, after all." She turns back to Dawn and makes a gesture of respect. "Embers guide your path, Seeker." With that, she strides away into the hive of activity that is the outfitting bays.`
 			choice
 				`	"So, what is our next step?"`
-					goto labnext
+					goto "lab next"
 				`	"Seeker?"`
 			`	Dawn looks a little embarrassed. "Seeker is a title of respect for deep space explorers. It is unofficial - just a token of respect - but it is a title that I both aspire to earn and do not feel I deserve yet."`
 			choice
 				`	"I thought all Remnant were spacefarers?"`
 				`	"Okay. So what next?"`
-					goto labnext
+					goto "lab next"
 			`	"Oh, we are. Every Remnant has had some experience in space. But there is a big difference between a few weeks of duty in a spacefaring post and spending months or years drifting in the void surrounding distant systems."`
 			choice
 				`	"Years drifting in the void?"`
 				`	"Okay, let's get on with this."`
-					goto labnext
+					goto "lab next"
 			`	"If you want good data, you need to spend time to get it. And especially when we are tracking stellar phenomena, you need periods of long observation. Snapshots of the sky are good - that is what we will be collecting on this trip. But for watching the galaxy at large, other civilizations, and things of that ilk... Nothing is better than long-term observation." She looks lost in thought for a moment. "That is neither here nor there, however.`
-			label labnext
+			label "lab next"
 			`	"Now that you have the Research Laboratory, you will need to locate a jump drive in order to reach Sagittarius A*." She pauses and checks her commlink. "If you do not already have one, you can salvage one from a Korath raider. Our early warning system indicates that there are several incoming Korath fleets that should be here within the next day or two. Any one of them should have a jump drive you can take. Meet me in the starport once you have a jump drive."`
 
 
@@ -3612,11 +3639,11 @@ mission "Remnant: Expanded Horizons Astral 2"
 			`Dawn is just finishing her meal when you enter the spaceport cafeteria. She stands up as you approach and deposits the tray in a receptacle next to her table. "Well, ready to go?"`
 			choice
 				`	"Yes."`
-					goto astralonwards
+					goto "astral onwards"
 				`	"I should double check everything."`
 					defer
 			`	She nods. "I am ready, so I will come with you and wait onboard the <ship> while you do your checks."`
-			label astralonwards
+			label "astral onwards"
 			`	She gestures towards the exit closest to your ship and heads off at a quick pace. Outside, she moves calmly through the hustle and bustle of the starport, stepping around quick-moving freight movers and camel wagons alike. Arriving at the <ship>, she turns and waits for you to catch up.`
 			`	Just as you arrive and reach for the console to open the airlock, you sense a change in your surroundings. Looking around, you see that a group of Remnant gathered around the two of you, focused on Dawn. A young Remnant - scarcely more than a child - steps forward. "Thank you for your patience," he says, then steps back. An elderly Remnant steps forward. "Thank you for your curiosity," she says, then steps back. A middle-aged Remnant steps forward. "Go with our blessing, Seeker, and know that wherever you go, the Remnant go with you." She says it simply, but you feel the weight of tradition behind them. She turns to you. "And you, stranger who walks the stars... May the Embers guide your steps as you walk among us." She nods respectfully, then steps back.`
 			`	As soon as the third steps back there is a flurry of movement as each of the Remnant present quickly step forward, give her a quick hug, and then scurry off into the starport. Before you process what is going on, all the Remnant gathered around you have vanished. You look at Dawn, and her expression is a mixture of awe and humility.`
@@ -3624,15 +3651,15 @@ mission "Remnant: Expanded Horizons Astral 2"
 				`	"They know you are coming back, right?"`
 				`	"What was that about?"`
 				`	"Alright, let's get going."`
-					goto astralmoving
+					goto "astral moving"
 			`	"Well, what we are doing is dangerous. We will be crossing Korath territory, a wide expanse of uninhabited space, and then scanning a black hole. I have confidence that we will return, but nonetheless there is still a chance that we will die in the process.`
 			`	"Long ago we, as a people, decided that we must face the fear of separation, unknown, and danger. One of the ways we do that is by holding these informal ceremonies. When one of us is going to depart on their first long-distance voyage into hostile territory, a group of Remnant gather to bid them farewell. It is a way to strengthen ourselves and remind each other of our connections."`
 			choice
 				`	"Thanks for the explanation."`
-					goto astralmoving
+					goto "astral moving"
 				`	"Kind of like a funeral, with friends and family gathering to see you off?"`
 			`	"Oh, no. I said my farewells to my friends and relatives before we left. Those who gathered to see me off today were more of a representation of Remnant society. I only recognized a few of them, but they took the time to come down to the <ship> to meet me before I left. They came to see me and wish me well, so that no matter what challenges I face, I will know that the Remnant remember me and appreciate what I am doing." Her gestures fade into contemplative stillness for a moment, then resume motion.`
-			label astralmoving
+			label "astral moving"
 			`	She gestures towards the airlock door. "Lead the way, Captain."`
 				accept
 	on enter "Sagittarius A*"
@@ -3643,34 +3670,34 @@ mission "Remnant: Expanded Horizons Astral 2"
 			choice
 				`	"Good work. What kind of data are you recording?"`
 				`	"Sounds good. Just let me know when you are ready to leave."`
-					goto astraldone
+					goto "astral done"
 			`	She smiles, and replies. "It might be easier to ask what we are leaving out. The data we are collecting broadly falls into three sets: data on Sagittarius A* itself, data on its environment, and observations of the surrounding galaxy from here. Obviously, we cannot go take samples of Sagittarius A* itself, nor can we take direct measurements of most of its properties, but we can get data from increasingly minute distances from the event horizon. We can then add this data to that gathered by previous expeditions, note the differences, and use it in our modeling."`
 			choice
 				`	"So this is not the first expedition here?"`
 				`	"Anything unusual in the data?"`
-					goto astraldata
+					goto "astral data"
 				`	"How much longer does the equipment need?"`
-					goto astralfinish
+					goto "astral finish"
 			`	"No, this is the forty-third such expedition. Sagittarius A* was one of the first places our explorers sought to visit after we acquired jump drives, and we have been coming back regularly ever since. I know some of our reconnaissance pilots consider visiting here a pilgrimage of sorts. It is humbling to be here myself after reviewing so many data sets of past expeditions." She looks thoughtful, staring out the window at the hub of the galaxy, as if her thoughts are jumping from idea to idea.`
 			choice
 				`	"Anything unusual in the data?"`
 				`	"How much longer does the equipment need?"`
-					goto astralfinish
-			label astraldata
+					goto "astral finish"
+			label "astral data"
 			`	"There are many oddities about this place. Every visit helps revise our physics models a little closer. But they also reveal problems." She frowns, her gestures taking on a curious tone. "For instance, you will note that your ramscoops are not picking up anything. According to standard astronomical theory, this system should be a veritable river of suitable material, and yet there is nothing. Not even the normal background trace amounts we find in deep space. We have visited other black holes, and they conform to the standard models in this respect. But not Sagittarius A*." She pauses, thinking about it for a moment.`
 			choice
 				`	"Is the equipment finished?"`
 				`	"How much longer does the equipment need?"`
-			label astralfinish
+			label "astral finish"
 			`	"The equipment will be finished shortly, Captain <first>. I just need to make a few observations, and then we will be able to depart. In the meantime, I would recommend against maintaining an active cloak or engaging any systems that consume fuel. For whatever reason, Sagittarius A* continues to be the one place that the stellar wind is utterly devoid of anything to collect as fuel."`
 			`	"I will be going outside for a few minutes," Dawn declares. "I shall just be on the hull."`
 			choice
 				`	"Let me know when you are done."`
-					goto astraldone
+					goto "astral done"
 				`	"Would you mind if I came too?"`
 			`	"Not at all, Captain. The view should be remarkable, and so long as we stay inside the shields, the radiation will not pose a problem." You quickly don your spacesuit and join Dawn outside on the hull. As promised, the view is indeed magnificent. Dawn signs occasionally, pointing out various features, and you appreciate that out here, sound would just be incongruous with the natural splendor.`
 			scene "scene/sagittarius a"
-			label astraldone
+			label "astral done"
 			`	After what feels like hours, the equipment notifies you that it has finished taking its readings, and Dawn packs up the data in carefully shielded data crystals. Everything is ready to return to <destination>.`
 	on complete
 		payment 500000
@@ -3732,9 +3759,9 @@ mission "Remnant: Expanded Horizons Storms 1"
 			choice
 				`	"Are there any special adjustments needed?"`
 				`	"The <ship> is ready to go."`
-					goto readyforstorms
+					goto "ready for storms"
 			`	"Well, I expect you are already set up to handle the normal Ember Waste heat, correct?" She continues without waiting for you to reply. "The Ember Waste storms are primarily a danger to electrical systems - typically by draining your power. So you can compensate by ensuring that you have some excess available for use. I know some captains carry extra generators to ensure they always have extra power, but others instead carry extra Crystal Capacitors so they can outlast the storm. In theory, you could just accept that your ship will be shut down during the height of the storm, and simply reboot everything afterwards. So long as no threats are present, it is safe but somewhat nerve-wracking. Which strategy fits the <ship> is up to you."`
-			label readyforstorms
+			label "ready for storms"
 			`	"I will settle into a bunk to do some pre-calculations. Please let me know when we arrive in Aescolanus."`
 				accept
 	on waypoint
@@ -3752,7 +3779,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 			choice
 				`	"I am always happy to help. What are you working on now, anyway?"`
 				`	"I am always happy to help. See you around!"`
-					goto stormend
+					goto "storm end"
 			`	"How familiar are you with the nature of space?"`
 			choice
 				`	"Not very, to be honest."`
@@ -3768,38 +3795,38 @@ mission "Remnant: Expanded Horizons Storms 1"
 			choice
 				`	"Interesting! Is that what causes the red glow?"`
 				`	"Wait a second. Why are there letters in your numbers?"`
-					goto numericsystem
+					goto "numeric system"
 				`	"Thanks! I think that is all the details I can handle right now."`
-					goto stormend
-			label stormresume
+					goto "storm end"
+			label "storm resume"
 			`	"Not really, although it does contribute to it. Most of the red glow seems to be the result of clouds of hydrogen gases at approximately 2710 degrees, rather like the process documented by early Earth astronomers investigating nebulae. Except for most of these clouds, there is no obvious source of energy to keep the hydrogen excited. Obviously there is still energy being added to the system, but..." She trails off and gestures deprecatingly. "One more mystery to keep us alert and attentive."`
 			`	She smiles thoughtfully, and the display changes with the red haze vanishing and a silvery haze replacing it. "But that is where today's research comes in. We have been measuring these storms since we arrived in the Ember Waste. The human eye can only pick out a few of them on the display, but our algorithms have identified a significant number of ripples of energy." She appears thoughtful.`
 			`	"It is almost like watching the surface of a pond during a rainstorm: The surface appears to be chaotic, but with detailed enough instrumentation, one can pick out individual ripples and trace their paths backwards... except we have yet to find an actual source for any of them. We can trace every ripple on a pond in a storm and find its origin, but we have yet to learn the dance that we have lived in for half a millennia."`
 			choice
 				`	"What do the storms have to do with the heat?"`
 				`	"What units do you use for temperature?"`
-					goto tempunits
+					goto "temperature units"
 				`	"I think that is all the technical detail I can take."`
-					goto stormend
+					goto "storm end"
 			`	She looks mischievous. "I cannot tell you where or how we got it, but look at this." Her display shifts again with the hazes vanishing, and shows the galaxy map with one key difference. "Yes, the Ember Wastes are violet. Actually, they are off the visual spectrum into the ultraviolets, but this downshifts it so we can see it. This is what the Ember Wastes looked like a very long time ago."`
 			`	She takes on a serious tone. "This data suggests there is enough energy in the area to maintain the hydrogen at somewhere in excess of 61A8 degrees. It does not tell us the source of that energy, but based on patterns and some other data we have collected, the two appear to be intertwined. At the very least, the ion storms are one of the means by which energy is being transferred into the clouds." Her display vanishes, and she slings her backpack over her shoulder.`
-				goto stormend
-			label numericsystem
+				goto "storm end"
+			label "numeric system"
 			`	She looks confused for a moment before responding. "It is called hexadecimal. It is a base 16 numeric system." She pauses to look at you. "Based on your reaction, I assume that base 10 is still the standard in human space?"`
 			choice
 				`	"Yes."`
-					goto stormcontinue
+					goto "storm continue"
 				`	"How does that work?"`
 			`	"Quite simply: We have added some extra characters. When counting, instead of a single digit position restarting at 0 every 10, they cycle every 16. So when we count, we start at 1, but when we reach 9, the next number will be A. Then B, C, D, E and F. Then, it is at that point that we add an extra digit and restart at 0 with 10. So in hexadecimal F would be equal to 15 in base 10. One of the advantages of using a numeric system with a higher base is that we can handle larger numbers with fewer digits. For example, with two digits we can communicate any integer up to what would be 255 in base 10. Or with three digits we can reach 4095. Saving an extra digit here or there is fairly meaningless in written formats, nor is it much of a difference in oral communication. However, when one communicates by gestures, it is helpful to shorten the numbers where we can."`
-			label stormcontinue
+			label "storm continue"
 			`	"Now that you understand our numbers a bit better, you will be able to recognize that there is a lot of unexplained energy being transferred out there."`
 			choice
 				`	"Right. Is that what causes the red glow?"`
-					goto stormresume
+					goto "storm resume"
 				`	"Thanks! I think that is all the details I can handle right now."`
-					goto stormend
+					goto "storm end"
 			
-			label tempunits
+			label "temperature units"
 			`	She looks at you curiously. "Corrected degrees Kelvin, of course. Why?"`
 			choice
 				`	"What are 'Corrected degrees Kelvin'?"`
@@ -3808,13 +3835,13 @@ mission "Remnant: Expanded Horizons Storms 1"
 				`	"Just clarifying. I prefer to use degrees Fahrenheit."`
 					goto fahrenheit
 			`	"Corrected degrees Kelvin are basically the standard Kelvin scale developed millennia ago, but with a slight correction factor to account for the adjustments determined by the conjunction of 2730. It is a rather minuscule change to the scale that is mostly only applicable to experiments or industrial applications that require micro-degree temperature precision, but can be significant at the larger scales." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
-				goto stormend
+				goto "storm end"
 			label centigrade
 			`	"People still use that? We learned about it in our studies, mostly in case we came across references to it our library. I have seen it a few times, but it is rarely used among us." The display and its field of stars vanishes as she slings her backpack over her shoulder.`
-				goto stormend
+				goto "storm end"
 			label fahrenheit
 			`	She looks at you quizzically for a moment, and then her display shifts to a mass of symbols. She skims briefly. "I have never even heard of such a unit. Apparently it is a very old one, though. Our records say that it had largely stopped being used by early in the 21st century. Well, I learned something new today." The display and its field of symbols vanishes as she slings her backpack over her shoulder.`
-			label stormend
+			label "storm end"
 			`	"Thanks for the ride, Captain. I have to get working on this data, but if you are interested in helping some more, I hope to have more research expeditions planned soon."`
 
 
@@ -3837,14 +3864,14 @@ mission "Remnant: Logistics 1"
 			`	Her hands make a short series of shakes and a moment later she remembers to laugh for you. The delayed response makes her laugh again, spontaneously this time, and you both join in. When she recovers herself, she sings, "Logistics have requested that we find someone who can carry <tons> of cargo to <planet>. Is the <ship> available immediately?"`
 			choice
 				`	"Certainly!"`
-					goto willdo
+					goto "will do"
 				`	"Sorry, it is not."`
-					goto notinterested
-			label willdo
+					goto "not interested"
+			label "will do"
 			`	"Excellent," she responds in a full alto, "I will let the project manager know the cargo will arrive promptly." She signs what you think is a farewell and turns to address someone else who has stepped up.`
 			`	You manage to chant and point your way through the cafeteria line, and you are aware of the flurry of signs around you. There doesn't seem to be a way to pay, so you find a table and sit alone until your commlink chimes to let you know that the <ship> has been refueled and the mystery cargo loaded.`
 				accept
-			label notinterested
+			label "not interested"
 			`	"That is unfortunate," she sings as she makes a notation on her terminal. "But there will be others who are willing to help."`
 				decline
 	on complete

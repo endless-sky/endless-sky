@@ -478,6 +478,8 @@ outfit "Piercer Missile Launcher"
 		"stream"
 	description "Korath Piercer Missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "piercer fire"
 	sprite "effect/piercer fire"
@@ -512,6 +514,7 @@ effect "piercer explosion"
 
 outfitter "Piercer Missile Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Piercer Missile Launcher"
 			has "outfit: Piercer Missile Rack"
@@ -650,6 +653,8 @@ outfit "Cluster Mine Layer"
 		"stream"
 	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 outfit "Korath Mine Submunition"
 	weapon
@@ -693,6 +698,7 @@ effect "minelayer split"
 
 outfitter "Cluster Mine Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Cluster Mine Layer"
 			has "outfit: Cluster Mine Rack"
@@ -917,7 +923,7 @@ outfit "Langrage Hyper-Heaver"
 		"hit force" 5400
 		submunition "Heaver Shard" 20
 	description `Langrage Hyper-Heavers raise the use of improvised ammunition to a fine art. This turret converts scrap metal, nearby asteroids, compressed garbage, or other debris into a high speed debris field. The exact mechanism is unclear, but the internal workings bear some similarities to hyperdrives and Banishers.`
-	description `	At close range, the heaved langrage merely forces the enemy back. As the launch field collapses and the langrage returns fully to normal space, however, it is rent into a rapidly-expanding cloud of deadly projectiles as it returns to normal space.`
+	description `	At close range, the heaved langrage merely forces the enemy back. However, as the launch field collapses and the langrage returns fully to normal space, it is rent into a rapidly-expanding cloud of deadly projectiles.`
 
 effect "heaver hyperspace hit"
 	sprite "effect/heaver hyperspace hit"
@@ -1040,6 +1046,8 @@ outfit "Firelight Missile Bank"
 	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
 	description "	Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 
 outfit "Firelight Turning"
@@ -1099,6 +1107,7 @@ effect "firelight ring"
 
 outfitter "Firelight Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Firelight Missile Bank"
 			has "outfit: Firelight Storage Rack"
@@ -1197,6 +1206,7 @@ outfit "Firestorm Battery"
 		"inaccuracy" 3
 		"lifetime" 1900
 		"velocity" 6.6
+		"velocity override" 5
 		"acceleration" .6
 		"drag" .12
 		"turn" 1.6
@@ -1215,6 +1225,8 @@ outfit "Firestorm Battery"
 		"missile strength" 115
 	description "Though not as refined as the newer Firelight version, this torpedo contains an augmented Korath Plasma Core reactor element completely stripped of its protective casing and safety interlocks. When activated, it generates a tremendous explosion of heat and force that pushes ships away and will even melt their hulls."
 	description "	Ammunition for this weapon can be restocked at any outfitter."
+		to display
+			has "gamerule: universal ammo restocking"
 
 effect "firestorm ring"
 	sprite "effect/firestorm ring"
@@ -1228,6 +1240,7 @@ effect "firestorm ring"
 
 outfitter "Firestorm Torpedo Restock"
 	to sell
+		has "gamerule: universal ammo restocking"
 		or
 			has "outfit: Firestorm Battery"
 			has "outfit: Firestorm Torpedo Rack"

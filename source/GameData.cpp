@@ -85,6 +85,7 @@ namespace {
 	Set<Shop<Ship>> defaultShipSales;
 	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
+	Set<Person> defaultPersons;
 	TextReplacements defaultSubstitutions;
 
 	Politics politics;
@@ -258,6 +259,7 @@ void GameData::FinishLoading()
 	defaultOutfitSales = objects.outfitSales;
 	defaultSubstitutions = objects.substitutions;
 	defaultWormholes = objects.wormholes;
+	defaultPersons = objects.persons;
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
@@ -432,6 +434,7 @@ void GameData::Revert()
 	objects.outfitSales.Revert(defaultOutfitSales);
 	objects.substitutions.Revert(defaultSubstitutions);
 	objects.wormholes.Revert(defaultWormholes);
+	objects.persons.Revert(defaultPersons);
 	for(auto &it : objects.persons)
 		it.second.Restore();
 
@@ -577,7 +580,7 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 
 
 // Apply the given change to the universe.
-void GameData::Change(const DataNode &node, const PlayerInfo &player)
+void GameData::Change(const DataNode &node, PlayerInfo &player)
 {
 	objects.Change(node, player);
 }
@@ -589,6 +592,13 @@ void GameData::Change(const DataNode &node, const PlayerInfo &player)
 void GameData::UpdateSystems()
 {
 	objects.UpdateSystems();
+}
+
+
+
+void GameData::RecomputeWormholeRequirements()
+{
+	objects.RecomputeWormholeRequirements();
 }
 
 
@@ -692,6 +702,20 @@ const Set<Hazard> &GameData::Hazards()
 const Set<Interface> &GameData::Interfaces()
 {
 	return objects.interfaces;
+}
+
+
+
+const Set<Message::Category> &GameData::MessageCategories()
+{
+	return objects.messageCategories;
+}
+
+
+
+const Set<Message> &GameData::Messages()
+{
+	return objects.messages;
 }
 
 
@@ -804,6 +828,13 @@ const Set<System> &GameData::Systems()
 const Set<Wormhole> &GameData::Wormholes()
 {
 	return objects.wormholes;
+}
+
+
+
+const std::set<std::string> &GameData::UniverseWormholeRequirements()
+{
+	return objects.universeWormholeRequirements;
 }
 
 

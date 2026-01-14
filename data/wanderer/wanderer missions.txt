@@ -102,10 +102,10 @@ mission "Wanderers: Mereti: The Plant 4"
 			`This time, Va'ika guides you down into an equatorial lowland - a dry, grassy plain over which a cool wind blows. You can feel its similarity to the steppe you visited on Solima Skarati, but this time you can breathe freely, without the air stinging your eyes and mouth. Va'ika takes some soil and places it in a small device, looking at it for a moment before turning to you. "Here. It will [grow, prosper] here."`
 			choice
 				`	"Is there anything else I can do to help?"`
-					goto nextsteps
+					goto "next steps"
 				`	"How can you be so sure?"`
 			`	"We have already collected significant data on the climate of this world. The only question I needed to answer in person was whether the [composition, nature] of the soil was suitable."`
-			label nextsteps
+			label "next steps"
 			`	"Let us return to Vara Kehi'ki. We will send a small detachment of [healers, gardeners] to <planet>, to ensure that these plants become established. In the long term, we will return them to <origin> when it is healed."`
 				accept
 	on complete

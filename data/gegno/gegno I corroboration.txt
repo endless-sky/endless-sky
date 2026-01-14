@@ -25,13 +25,13 @@ mission "Passive-Aggressive Observations"
 	on complete
 		"gegno: encounters" ++
 		conversation
-			`While navigating the skies of this desert world, you notice readings similar to the planet where you previously encountered a member of the Gegno Vi. It's likely this world is also home to the same or a similar species of large, worm-like creatures you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior encounter, the ship isn't sunken into the desert - it has likely landed here recently. A group of Vi warriors are marching out and nearby the vessel, and while they do, your radar picks up two more ships descending from above.`
+			`While navigating the skies of this desert world, you notice subsurface readings similar to the planet where you previously encountered a member of the Gegno Vi. It's likely this world is also home to the same or a similar species of large, serpent-like creatures you confronted back then. Eventually, you come across a large Gegno Vi vessel stationed on the surface, though unlike in your prior encounter, the ship isn't sunken into the desert - it has likely landed here recently. A group of Vi warriors are marching out and nearby the vessel, and while they do, two more Gegno ships appear above you.`
 			choice
 				`	(Leave.)`
 					goto leave
 				`	(Continue to observe.)`
-			`	The approaching ships continue their descent, paying you no attention. They appear to be ones that were in orbit when you first entered the system. One of them is the same model as the one on the ground, likely some type of transport. The other, however, isn't one you've seen before. It looks like some sort of interceptor vessel, though it is definitely larger than something like a Sparrow from human space, maybe even the size of a Headhunter. Perhaps that ship belongs to someone of importance.`
-			`	In any case, considering that the planet is home to more of those monsters from before, and the Vi are here in numbers, it might be best you take your leave now before the situation gets out of control again.`
+			`	The approaching ships descend towards the surface, paying you no attention. One of them is the same model as the one on the ground, likely some type of transport. The other, however, appears to be some sort of interceptor vessel, though it is definitely larger than something like a Sparrow from human space, maybe even the size of a Headhunter.`
+			`	Considering that the planet is home to more of those monsters from before, and the Vi are here in numbers, it might be best you take your leave now before the situation gets out of control again.`
 			choice
 				`	(Leave.)`
 					goto leave
@@ -125,7 +125,9 @@ mission "Foreign Spectator I"
 		not "Gegno Genocide Defense: offered"
 	to complete
 		never
-	on enter "Eogho"
+	to fail
+		has "Battle over Zydee: offered"
+	on enter "Oihaug"
 		fail
 		"gegno: encounters" ++
 		conversation
@@ -136,39 +138,38 @@ mission "Foreign Spectator I"
 			set "interrupted arena"
 		government "Gegno Vi"
 		personality heroic vindictive ramming staying uninterested
-		system "Eogho"
+		system "Oihaug"
 		ship "Eclogite" "Tschelgi Dueyu"
 	npc
 		on provoke
 			set "interrupted arena"
 		government "Gegno Scin"
 		personality heroic vindictive staying uninterested
-		system "Eogho"
+		system "Oihaug"
 		ship "Felsic" "Tschelgi Dueich"
 	npc
 		on provoke
 			set "interrupted arena"
 		government "Gegno Vi (Neutral)"
 		personality heroic vindictive staying uninterested swarming
-		system "Eogho"
+		system "Oihaug"
 		fleet
 			names "gegno vi"
 			variant
-				"Hornfel" 2
-				"Eclogite"
-				"Slate"
+				"Hornfel"
+				"Slate" 2
 	npc
 		on provoke
 			set "interrupted arena"
 		government "Gegno Scin (Neutral)"
 		personality heroic vindictive staying uninterested swarming
-		system "Eogho"
+		system "Oihaug"
 		fleet
 			names "gegno scin"
 			variant
 				"Coesite" 2
 				"Tridymite"
-				"Mica" 2
+				"Mica"
 
 
 mission "Brief Bystander"
@@ -455,7 +456,7 @@ mission "Under the Nose"
 	npc
 		on kill
 			set "yvx killed"
-		government "Gegno Vi"
+		government "Gegno Vi (Neutral)"
 		personality heroic vindictive ramming entering fleeing uninterested
 		system "Aleit"
 		ship "Rhyolite" "Imtydei"
@@ -551,10 +552,10 @@ mission "Full Vi Backlash"
 
 
 mission "Return to Giaru Gegno"
-	landing
+	entering
 	description `The Quarg known as Adrauni has summoned you back to <destination>.`
 	source
-		not planet "Giaru Gegno"
+		not system "Aleit"
 	destination "Giaru Gegno"
 	to offer
 		or
@@ -563,7 +564,7 @@ mission "Return to Giaru Gegno"
 		not "Gegno Intervention: offered"
 		not "Gegno Genocide Defense: offered"
 	on enter
-		dialog `Upon departure from <origin>, you receive an incoming message. "Greetings, human <first> <last>. This message is from Adrauni. Return to <planet> at the first opportunity given to you."`
+		dialog `There is an incoming message on your communications device. "Greetings, human <first> <last>. This message is from the Quarg that is named Adrauni. Return to <planet> at the first opportunity given to you."`
 	on complete
 		fail "Scin Surveillance"
 		fail "Veering Vi A"
@@ -1032,8 +1033,8 @@ mission "Acquiescence"
 			`	Once you pass through several layers of smog, you're once again flying around the towering castle-like cities of the Gegno homeworld. Eventually, you are led away from the busyness of the cities to a more remote area with a massive structure shrouded by the smog, possibly the one you visited the first time you were here. The activity around it, however, seems much smaller compared to anything else thus far.`
 			`	Rather than one of the docking ports alongside the tower, the Gegno ships instead direct you to the base of the structure, obscured by another dark cloud of smog. When you reach the surface, the Gegno ships hold their position above while you park your ship on the ground. The area seems devoid of any other Gegno, almost hauntingly so.`
 			choice
-				`	(Stay in your ship.)`
-				`	(Exit your ship.)`
+				`	(Stay in my ship.)`
+				`	(Exit my ship.)`
 					goto exit
 			
 			`	You decide to remain in the safety of your ship. The Gegno hovering above you aren't helping anymore - they are simply watching you. Other than them, there are no other vehicles in the area, let alone any sort of ship. Before too long, you notice a shadowed figure in the smoke ahead, carrying a long staff of some sort. A lone Gegno exits the smoke cloud, takes a few more heavy steps, then stands their ground several meters away from your ship.`
@@ -1069,7 +1070,7 @@ mission "Acquiescence"
 			choice
 				`	(Go to the Gegno.)`
 					goto meeting
-				`	(Stay where you are.)`
+				`	(Stay where I am.)`
 
 			`	It's not long before a pair of Gegno soldiers walk over and essentially "pressure" you into joining the others. You might as well play by their rules, given the situation.`
 
@@ -1080,7 +1081,7 @@ mission "Acquiescence"
 			choice
 				`	(Approach the trio.)`
 					goto trio
-				`	(Remain where you stand.)`
+				`	(Remain where I stand.)`
 
 			`	You choose not to do anything else, remaining where you stand. Anything you do would likely be held against you. Another few moments go by and the Gegno trio return to the table, beginning to discuss amongst themselves using the assorted objects on the table grid. Images and words are cycled through on the monitor, but you're too far away to see any of them. Several more minutes pass, and you feel like they've all but forgotten you as you start to tune out their discussion. Eventually, you're pulled back to reality; everything has gone silent yet again and one member of the Gegno trio calls to you to get your attention on the display.`
 				goto "what does home mean"
@@ -1134,9 +1135,9 @@ mission "Acquiescence"
 			`	After having gone through all of the cases which involved you, the trio addresses the gathering once more with a big speech. Their voices echo through the outside air, and all of the Gegno respond with concurrent bellows or chants, followed by more silence. Oddly enough, you feel as if you are standing among them as part of the gathering, rather than as some foreign alien. You aren't restricted at all, even with a weapon on you.`
 			`	One of the smaller Gegno in the trio gestures back to you and speaks once more. You still don't understand a word they are saying, but it must have been important, as all of the other Gegno except your guide back away several steps. The trio member invites you with both arms to use the objects and the table, while all three of them back up themselves, leaving you alone in the open.`
 			choice
-				`	(Approach the table and try to explain the incidents you were involved in.)`
+				`	(Approach the table and try to explain the incidents I was involved in.)`
 					goto explain
-				`	(Stay where you are and do nothing.)`
+				`	(Stay where I am and do nothing.)`
 
 			action
 				set "gegno: no proclamation"
@@ -1154,7 +1155,7 @@ mission "Acquiescence"
 			choice
 				`	(Do nothing.)`
 					goto home
-				`	(Place your hand on your holster.)`
+				`	(Place my hand on my holster.)`
 			`	If the Gegno have an image of Earth, who knows what they know about you, or humanity in general? Slowly moving your hand to your holstered weapon, you prepare yourself for any possible aggression. Even though you do so, the Gegno doesn't hesitate or stop heading in your direction, although some in the crowd seem slightly concerned.`
 
 			label "home"
@@ -1229,7 +1230,7 @@ mission "Gegno Asteroid Mining Prologue"
 			choice
 				`	(Go to the display.)`
 					goto board
-				`	(Try to communicate with the other Gegno around you.)`
+				`	(Try to communicate with the other Gegno around me.)`
 			
 			`	You attempt to get the attention of some of the other Gegno present in the facility, but most of them give you strange glares or outright ignore you, until one seemingly annoyed Gegno gestures to the large cracked display.`
 
@@ -1242,7 +1243,7 @@ mission "Gegno Asteroid Mining Prologue"
 			
 			label "accept"
 			`	You fiddle with the screen, trying to decipher how to use it. Some of the Gegno gaze at you for doing so. While they silently judge, you manage to figure out that it's a touch-sensitive interface, though it takes a lot of force for you to get it to work.`
-			`	The first time you get the device to work, you see an image of a hematite asteroid, rich in iron, with five strange-looking tally marks next to it. Mining for them wasn't exactly the first thing you were expecting to do for the Gegno, but it is a start.`
+			`	The first time you get the device to work, you see an image of a hematite asteroid, rich in iron, with five strange-looking tally marks next to it. Mining for them may not be the best way to learn more about the Gegno, but working for them is a start.`
 				accept
 
 			label "nothing"

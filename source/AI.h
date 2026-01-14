@@ -18,7 +18,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "FireCommand.h"
 #include "FormationPositioner.h"
+#include "JumpType.h"
+#include "orders/OrderSet.h"
 #include "Point.h"
+#include "RoutePlan.h"
 
 #include <cstdint>
 #include <list>
@@ -26,11 +29,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <optional>
 #include <set>
+#include <unordered_map>
 #include <vector>
 
 class Angle;
 class AsteroidField;
 class Body;
+class ConditionsStore;
 class Flotsam;
 class Government;
 class Minable;
@@ -51,11 +56,10 @@ class System;
 class AI {
 public:
 	// Any object that can be a ship's target is in a list of this type:
-template <class Type>
+	template<class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(const PlayerInfo &player, const List<Ship> &ships,
-			const List<Minable> &minables, const List<Flotsam> &flotsam);
+	AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
 
 	// Fleet commands from the player.
 	void IssueFormationChange(PlayerInfo &player);
@@ -91,6 +95,36 @@ template <class Type>
 
 
 private:
+	class RouteCacheKey {
+	public:
+		// Note: keep this updated as the variables driving the routing change:
+		// - from, to, jumpRange, driveType
+		// - gov: danger = f(gov), isRestrictedFrom = f(gov)
+		// - wormhole requirements that are met, see Planet::IsAccessible(const Ship *ship)
+		explicit RouteCacheKey(const System *from, const System *to, const Government *gov,
+			double jumpDistance, JumpType jumpType, const std::vector<std::string> &wormholeKeys);
+
+		// To support use as a map key:
+		bool operator==(const RouteCacheKey &other) const;
+		bool operator!=(const RouteCacheKey &other) const;
+
+		class HashFunction {
+		public:
+			size_t operator()(const RouteCacheKey &key) const;
+		};
+
+
+	public:
+		const System *from;
+		const System *to;
+		const Government *gov;
+		double jumpDistance;
+		JumpType jumpType;
+		std::vector<std::string> wormholeKeys;
+	};
+
+
+private:
 	// Check if a ship can pursue its target (i.e. beyond the "fence").
 	bool CanPursue(const Ship &ship, const Ship &target) const;
 	// Disabled or stranded ships coordinate with other ships to get assistance.
@@ -105,7 +139,7 @@ private:
 
 	bool FollowOrders(Ship &ship, Command &command);
 	void MoveInFormation(Ship &ship, Command &command);
-	void MoveIndependent(Ship &ship, Command &command) const;
+	void MoveIndependent(Ship &ship, Command &command);
 	void MoveWithParent(Ship &ship, Command &command, const Ship &parent);
 	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
@@ -113,7 +147,7 @@ private:
 	// Set the ship's target system or planet in order to reach the
 	// next desired system. Will target a landable planet to refuel.
 	// If the ship is an escort it will only use routes known to the player.
-	void SelectRoute(Ship &ship, const System *targetSystem) const;
+	void SelectRoute(Ship &ship, const System *targetSystem);
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 
 	// Methods of moving from the current position to a desired position / orientation.
@@ -139,7 +173,7 @@ private:
 	// Special personality behaviors.
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
-	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
+	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(const Ship &ship, Command &command) const;
@@ -181,46 +215,20 @@ private:
 	void UpdateStrengths(std::map<const Government *, int64_t> &strength, const System *playerSystem);
 	void CacheShipLists();
 
+	/// Register autoconditions that use the current AI state (ships in the system, strengths, etc.)
+	/// These conditions may be a frame behind, depending on where the conditions are queried from,
+	/// but that shouldn't really matter.
+	void RegisterDerivedConditions(ConditionsStore &conditions);
 
-private:
-	class Orders {
-	public:
-		static const int HOLD_POSITION = 0x000;
-		// Hold active is the same command as hold position, but it is given when a ship
-		// actively needs to move back to the position it was holding.
-		static const int HOLD_ACTIVE = 0x001;
-		static const int MOVE_TO = 0x002;
-		// HARVEST is related to MINE and is for picking up flotsam after
-		// ATTACK.
-		static const int HARVEST = 0x003;
-		static const int KEEP_STATION = 0x100;
-		static const int GATHER = 0x101;
-		static const int ATTACK = 0x102;
-		static const int FINISH_OFF = 0x103;
-		// MINE is for fleet targeting the asteroid for mining. ATTACK is used
-		// to chase and attack the asteroid.
-		static const int MINE = 0x104;
-		// Bit mask to figure out which orders are canceled if their target
-		// ceases to be targetable or present.
-		static const int REQUIRES_TARGET = 0x100;
-
-		int type = 0;
-		std::weak_ptr<Ship> target;
-		std::weak_ptr<Minable> targetAsteroid;
-		Point point;
-		const System *targetSystem = nullptr;
-	};
-
-
-private:
-	void IssueOrders(const Orders &newOrders, const std::string &description);
+	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
+	RoutePlan GetRoutePlan(const Ship &ship, const System *targetSystem);
 
 
 private:
 	// TODO: Figure out a way to remove the player dependency.
-	const PlayerInfo &player;
+	PlayerInfo &player;
 	// Data from the game engine.
 	const List<Ship> &ships;
 	const List<Minable> &minables;
@@ -250,7 +258,7 @@ private:
 	// Current orders for the player's ships. Because this map only applies to
 	// player ships, which are never deleted except when landed, it can use
 	// ordinary pointers instead of weak pointers.
-	std::map<const Ship *, Orders> orders;
+	std::map<const Ship *, OrderSet> orders;
 
 	// Records of what various AI ships and factions have done.
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
@@ -269,6 +277,7 @@ private:
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasementThreshold;
+	std::map<const Ship *, const Ship *> boarders;
 
 	// Records for formations flying around leadships and other objects.
 	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
@@ -280,4 +289,7 @@ private:
 	std::map<const Government *, std::vector<Ship *>> governmentRosters;
 	std::map<const Government *, std::vector<Ship *>> enemyLists;
 	std::map<const Government *, std::vector<Ship *>> allyLists;
+
+	// Route planning cache:
+	std::unordered_map<RouteCacheKey, RoutePlan, RouteCacheKey::HashFunction> routeCache;
 };

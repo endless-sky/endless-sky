@@ -120,7 +120,7 @@ void StartConditionsPanel::Draw()
 
 		bool isHighlighted = it == startIt || (hasHover && zone.Contains(hoverPoint));
 		if(it == startIt)
-			FillShader::Fill(zone.Center(), zone.Dimensions(), selectedBackground.Additive(opacity));
+			FillShader::Fill(zone, selectedBackground.Additive(opacity));
 
 		const auto name = DisplayText(it->GetDisplayName(), Truncate::BACK);
 		font.Draw(name, pos + entryTextPadding, (isHighlighted ? bright : medium).Transparent(opacity));
@@ -135,7 +135,7 @@ void StartConditionsPanel::Draw()
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
 		// Move up / down an entry, or a page. If at the bottom / top, wrap around.
@@ -165,7 +165,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 		ConversationPanel *panel = new ConversationPanel(
 			player, startIt->GetConversation());
-		GetUI()->Push(panel);
+		GetUI().Push(panel);
 		panel->SetCallback(this, &StartConditionsPanel::OnConversationEnd);
 		return true;
 	}
@@ -178,10 +178,13 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 
 
-bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
+bool StartConditionsPanel::Click(int x, int y, MouseButton button, int /* clicks */)
 {
 	// When the user clicks, clear the hovered state.
 	hasHover = false;
+
+	if(button != MouseButton::LEFT)
+		return false;
 
 	// Only clicks within the list of scenarios should have an effect.
 	if(!entriesContainer.Contains(Point(x, y)))
@@ -256,10 +259,10 @@ void StartConditionsPanel::OnConversationEnd(int)
 		gamePanels.StepAll();
 	}
 	if(parent)
-		GetUI()->Pop(parent);
+		GetUI().Pop(parent);
 
-	GetUI()->Pop(GetUI()->Root().get());
-	GetUI()->Pop(this);
+	GetUI().Pop(GetUI().Root().get());
+	GetUI().Pop(this);
 }
 
 

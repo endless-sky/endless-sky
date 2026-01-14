@@ -95,11 +95,11 @@ mission "Hai Rescue: Yeertle Family"
 		"Hai Rescue: Yeertle Family (defer count)" ++
 	on offer
 		conversation
-			branch nohint
+			branch "no hint"
 				not "Hai Rescue: Yeertle Hint: offered"
 			`Wandering around after dark you find yourself down an alley near the spaceport, huddled in an alcove against the drizzle while you keep an eye out for anything suspicious, apparently last rumored to be around here. After a while, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
 				goto start
-			label nohint
+			label "no hint"
 			`Wandering around after dark you find yourself down an alley near the spaceport. The ongoing drizzle increases in intensity and you pause for a moment to huddle in an alcove for a while until it settles down. After a few moments, a few dozen meters ahead, you see a short man with a strange necklace. As he walks past a power transfer unit, the man shimmers and you see faintly-visible, squirrel-like features. It seems the necklace is a projector of a human hologram concealing a Hai. He is sticking to the shadows, trying to avoid being seen.`
 			label start
 			`	Do you want to talk to him?`
@@ -230,17 +230,17 @@ mission "Hai Rescue: Ooonem"
 		conversation
 			branch transmitter
 				has "Ooonem Transmitter"
-			branch nohint
+			branch "no hint"
 				and
 					not "Hai Rescue: Ooonem Hint: offered"
 					not "Hai Rescue: Ooonem (defer count)"
 			`Following reports of the last time the "angel of death" was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. They might be a Hai. Do you want to talk to them?`
 				goto start
-			label nohint
+			label "no hint"
 			`As you come in you are informed that all the ships are being searched before departure. No sooner do you disembark your ship than you notice that there's a lot of paranoid goons with weapons hot. Like a lot. There seems to be some kind of manhunt going on for a short, hooded, "angel of death" who has been loitering in dark alleyways. So far, no one is explicitly claiming to know what's going on though, and even for a place like this the effort seems... ungoverned. Even to the extent that some groups seem to be actively pretending to be involved while surreptitiously not joining in with groups that leave on the hunt.`
 			`	It's all very odd, but one thing you do glean from the constant conversation and the small selection of individuals loudly demanding cooperation is that the "angel of death," as they're calling it, is unusually short and fast, and capable of things which give you reason to suspect they might possibly be a Hai.`
 			choice
-				`	(Investigate for yourself.)`
+				`	(Investigate for myself.)`
 				`	(Come back later.)`
 					defer
 			`	Following reports of the last time the "angel of death" was sighted, you end up loitering in a twisting street parallel to a main thoroughfare. The few people using it hurry by quickly, and rarely seem to travel any great distance down this street. One very surly looking individual gives you a sour glare on his way past, a collection of weapons on full display. He looks a lot like you'd expect a bounty hunter to look, and as he moves out of sight you observe a shadow, previously motionless, detach from a spot on a wall and head back your direction, laser rifle pointed in the direction of the departing individual. As the shadow approaches, you see there's a lot of hair sticking out from their hood. It seems you may have indeed found a Hai. Do you want to talk to them?`
@@ -471,11 +471,11 @@ mission "Hai Rescue: Meroot and Lucy"
 					decline
 			label hiding
 			`	Her expression immediately takes on a shade of panic and you hear what sounds like something heavy being picked up in the background. "Please don't tell anyone! We were both kidnapped, but we managed to escape. Now we're hiding here, hoping those people don't find us again."`
-				goto trustcheck
+				goto "trust check"
 
 			label help
 			`	"Yes! Some men kidnapped my friend and I, but she got us out and we managed to escape. We've been hiding here, hoping they don't find us again."`
-			label trustcheck
+			label "trust check"
 			`	In the background you hear someone hiss, "Lucy! What are you doing, we can't trust them!"`
 			choice
 				`	"Uh, luf e ow, vai, luf e eh?"`

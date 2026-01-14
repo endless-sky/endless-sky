@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "Command.h"
+#include "ConditionsStore.h"
 #include "DistanceMap.h"
 #include "FighterHitHelper.h"
 #include "Flotsam.h"
@@ -52,7 +53,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cmath>
 #include <limits>
-#include <set>
+#include <ranges>
 #include <utility>
 
 using namespace std;
@@ -158,10 +159,11 @@ namespace {
 	{
 		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
-			const Weapon *weapon = hardpoint.GetOutfit();
+			const Weapon *weapon = hardpoint.GetWeapon();
 			if(weapon && !hardpoint.IsSpecial())
 			{
-				if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
+				const Outfit *ammo = weapon->Ammo();
+				if(ammo && !ship.OutfitCount(ammo))
 					continue;
 				return true;
 			}
@@ -182,7 +184,7 @@ namespace {
 	{
 		// Figure out what ships we are giving orders to.
 		vector<Ship *> targetShips;
-		auto &selectedShips = player.SelectedShips();
+		auto &selectedShips = player.SelectedEscorts();
 		// If selectedShips is empty, this applies to the whole fleet.
 		if(selectedShips.empty())
 		{
@@ -226,10 +228,10 @@ namespace {
 		}
 
 		// First, check if the player selected any carried ships.
-		for(const weak_ptr<Ship> &it : player.SelectedShips())
+		for(const weak_ptr<Ship> &it : player.SelectedEscorts())
 		{
 			shared_ptr<Ship> ship = it.lock();
-			if(ship && ship->IsYours() && isCandidate(ship))
+			if(ship && isCandidate(ship))
 				(ship->HasDeployOrder() ? toRecall : toDeploy).emplace_back(ship.get());
 		}
 		// If needed, check the player's fleet for deployable ships.
@@ -244,7 +246,8 @@ namespace {
 			for(Ship *ship : toDeploy)
 				ship->SetDeployOrder(true);
 			string ship = (toDeploy.size() == 1 ? "ship" : "ships");
-			Messages::Add("Deployed " + to_string(toDeploy.size()) + " carried " + ship + ".", Messages::Importance::High);
+			Messages::Add({"Deployed " + to_string(toDeploy.size()) + " carried " + ship + ".",
+				GameData::MessageCategories().Get("normal")});
 		}
 		// Otherwise, instruct the carried ships to return to their berth.
 		else if(!toRecall.empty())
@@ -252,7 +255,8 @@ namespace {
 			for(Ship *ship : toRecall)
 				ship->SetDeployOrder(false);
 			string ship = (toRecall.size() == 1 ? "ship" : "ships");
-			Messages::Add("Recalled " + to_string(toRecall.size()) + " carried " + ship + ".", Messages::Importance::High);
+			Messages::Add({"Recalled " + to_string(toRecall.size()) + " carried " + ship + ".",
+				GameData::MessageCategories().Get("normal")});
 		}
 	}
 
@@ -386,12 +390,12 @@ namespace {
 
 
 
-AI::AI(const PlayerInfo &player, const List<Ship> &ships,
-		const List<Minable> &minables, const List<Flotsam> &flotsam)
-	: player(player), ships(ships), minables(minables), flotsam(flotsam)
+AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
+	: player(player), ships(ships), minables(minables), flotsam(flotsam), routeCache()
 {
 	// Allocate a starting amount of hardpoints for ships.
 	firingCommands.SetHardpoints(12);
+	RegisterDerivedConditions(player.Conditions());
 }
 
 
@@ -407,7 +411,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	const auto &formationPatterns = GameData::Formations();
 	if(formationPatterns.empty())
 	{
-		Messages::Add("No formations available.", Messages::Importance::High);
+		Messages::Add(*GameData::Messages().Get("no formations"));
 		return;
 	}
 
@@ -439,7 +443,7 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	else if(!multiplePatternsSet)
 	{
 		// If only one pattern was found, then select the next pattern (or clear the pattern if there is no next).
-		auto it = formationPatterns.find(toSet->Name());
+		auto it = formationPatterns.find(toSet->TrueName());
 		if(it != formationPatterns.end())
 			++it;
 		toSet = (it == formationPatterns.end() ? nullptr : &(it->second));
@@ -451,51 +455,50 @@ void AI::IssueFormationChange(PlayerInfo &player)
 	for(Ship *ship : targetShips)
 	{
 		ship->SetFormationPattern(toSet);
-		orders[ship].type = Orders::GATHER;
-		orders[ship].target = player.FlagshipPtr();
+		orders[ship].Add(OrderSingle{Orders::Types::GATHER});
+		orders[ship].SetTargetShip(player.FlagshipPtr());
 	}
 
 	unsigned int count = targetShips.size();
 	string message = to_string(count) + (count == 1 ? " ship" : " ships") + " will ";
-	message += toSet ? ("assume \"" + toSet->Name() + "\" formation.") : "no longer fly in formation.";
-	Messages::Add(message, Messages::Importance::Low);
+	message += toSet ? ("assume \"" + toSet->TrueName() + "\" formation.") : "no longer fly in formation.";
+	Messages::Add({message, GameData::MessageCategories().Get("low")});
 }
 
 
 
 void AI::IssueShipTarget(const shared_ptr<Ship> &target)
 {
-	Orders newOrders;
 	bool isEnemy = target->GetGovernment()->IsEnemy();
-	newOrders.type = (!isEnemy ? Orders::KEEP_STATION
-		: target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK);
-	newOrders.target = target;
-	string description = (isEnemy ? "focusing fire on" : "following") + (" \"" + target->Name() + "\".");
-	IssueOrders(newOrders, description);
+	// TODO: There's an error in the code style checker that flags using {} instead of () below.
+	OrderSingle newOrder(isEnemy ?
+		target->IsDisabled() ? Orders::Types::FINISH_OFF : Orders::Types::ATTACK
+		: Orders::Types::KEEP_STATION);
+	newOrder.SetTargetShip(target);
+	IssueOrder(newOrder,
+		(isEnemy ? "focusing fire on" : "following") + (" \"" + target->GivenName() + "\"."));
 }
 
 
 
 void AI::IssueAsteroidTarget(const shared_ptr<Minable> &targetAsteroid)
 {
-	Orders newOrders;
-	newOrders.type = Orders::MINE;
-	newOrders.targetAsteroid = targetAsteroid;
-	IssueOrders(newOrders,
-			"focusing fire on " + targetAsteroid->DisplayName() + " " + targetAsteroid->Noun() + ".");
+	OrderSingle newOrder{Orders::Types::MINE};
+	newOrder.SetTargetAsteroid(targetAsteroid);
+	IssueOrder(newOrder,
+		"focusing fire on " + targetAsteroid->DisplayName() + " " + targetAsteroid->Noun() + ".");
 }
 
 
 
 void AI::IssueMoveTarget(const Point &target, const System *moveToSystem)
 {
-	Orders newOrders;
-	newOrders.type = Orders::MOVE_TO;
-	newOrders.point = target;
-	newOrders.targetSystem = moveToSystem;
+	OrderSingle newOrder{Orders::Types::MOVE_TO};
+	newOrder.SetTargetPoint(target);
+	newOrder.SetTargetSystem(moveToSystem);
 	string description = "moving to the given location";
 	description += player.GetSystem() == moveToSystem ? "." : (" in the " + moveToSystem->DisplayName() + " system.");
-	IssueOrders(newOrders, description);
+	IssueOrder(newOrder, description);
 }
 
 
@@ -512,17 +515,17 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 
 	if(!autoPilot.Has(Command::STOP) && activeCommands.Has(Command::STOP)
 			&& flagship->Velocity().Length() > VELOCITY_ZERO)
-		Messages::Add("Coming to a stop.", Messages::Importance::High);
+		Messages::Add(*GameData::Messages().Get("coming to a stop"));
 
 	autoPilot |= activeCommands;
 	if(activeCommands.Has(AutopilotCancelCommands()))
 	{
-		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP));
+		bool canceled = (autoPilot.Has(Command::JUMP) && !activeCommands.Has(Command::JUMP | Command::FLEET_JUMP));
 		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
 		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
 		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
 		if(canceled)
-			Messages::Add("Disengaging autopilot.", Messages::Importance::High);
+			Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
 		autoPilot.Clear();
 	}
 
@@ -532,8 +535,8 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 			if(!it->IsParked() && it->CloakingSpeed())
 			{
 				isCloaking = !isCloaking;
-				Messages::Add(isCloaking ? "Engaging cloaking device." : "Disengaging cloaking device."
-					, Messages::Importance::High);
+				Messages::Add(*GameData::Messages().Get(isCloaking ?
+					"engaging cloaking device" : "disengaging cloaking device"));
 				break;
 			}
 
@@ -556,53 +559,39 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 
 	shared_ptr<Ship> target = flagship->GetTargetShip();
 	shared_ptr<Minable> targetAsteroid = flagship->GetTargetAsteroid();
-	Orders newOrders;
 	if(activeCommands.Has(Command::FIGHT) && target && !target->IsYours() && !shift)
 	{
-		newOrders.type = target->IsDisabled() ? Orders::FINISH_OFF : Orders::ATTACK;
-		newOrders.target = target;
-		IssueOrders(newOrders, "focusing fire on \"" + target->Name() + "\".");
+		OrderSingle newOrder{target->IsDisabled() ? Orders::Types::FINISH_OFF : Orders::Types::ATTACK};
+		newOrder.SetTargetShip(target);
+		IssueOrder(newOrder, "focusing fire on \"" + target->GivenName() + "\".");
 	}
 	else if(activeCommands.Has(Command::FIGHT) && !shift && targetAsteroid)
 		IssueAsteroidTarget(targetAsteroid);
-	if(activeCommands.Has(Command::HOLD) && !shift)
+	if(activeCommands.Has(Command::HOLD_FIRE) && !shift)
 	{
-		newOrders.type = Orders::HOLD_POSITION;
-		IssueOrders(newOrders, "holding position.");
+		OrderSingle newOrder{Orders::Types::HOLD_FIRE};
+		IssueOrder(newOrder, "holding fire.");
+	}
+	if(activeCommands.Has(Command::HOLD_POSITION) && !shift)
+	{
+		OrderSingle newOrder{Orders::Types::HOLD_POSITION};
+		IssueOrder(newOrder, "holding position.");
 	}
 	if(activeCommands.Has(Command::GATHER) && !shift)
 	{
-		newOrders.type = Orders::GATHER;
-		newOrders.target = player.FlagshipPtr();
-		IssueOrders(newOrders, "gathering around your flagship.");
+		OrderSingle newOrder{Orders::Types::GATHER};
+		newOrder.SetTargetShip(player.FlagshipPtr());
+		IssueOrder(newOrder, "gathering around your flagship.");
 	}
 
 	// Get rid of any invalid orders. Carried ships will retain orders in case they are deployed.
 	for(auto it = orders.begin(); it != orders.end(); )
 	{
-		if(it->second.type == Orders::MINE && it->first->Cargo().Free() && it->second.targetAsteroid.expired())
-			it->second.type = Orders::HARVEST;
-		else if(it->second.type & Orders::REQUIRES_TARGET)
+		it->second.Validate(it->first, flagship->GetSystem());
+		if(it->second.Empty())
 		{
-			shared_ptr<Ship> ship = it->second.target.lock();
-			shared_ptr<Minable> asteroid = it->second.targetAsteroid.lock();
-			// Check if the target ship itself is targetable, or if it is one of your ship that you targeted.
-			bool invalidTarget = !ship || (!ship->IsTargetable() && it->first->GetGovernment() != ship->GetGovernment()) ||
-				(ship->IsDisabled() && it->second.type == Orders::ATTACK);
-			// Alternately, if an asteroid is targeted, then not an invalid target.
-			invalidTarget &= !asteroid;
-			// Check if the target ship is in a system where we can target.
-			// This check only checks for undocked ships (that have a current system).
-			bool targetOutOfReach = !ship || (it->first->GetSystem() && ship->GetSystem() != it->first->GetSystem()
-					&& ship->GetSystem() != flagship->GetSystem());
-			// Asteroids are never out of reach since they're in the same system as flagship.
-			targetOutOfReach &= !asteroid;
-
-			if(invalidTarget || targetOutOfReach)
-			{
-				it = orders.erase(it);
-				continue;
-			}
+			it = orders.erase(it);
+			continue;
 		}
 		++it;
 	}
@@ -664,6 +653,8 @@ void AI::Clean()
 	miningRadius.clear();
 	miningTime.clear();
 	appeasementThreshold.clear();
+	boarders.clear();
+	routeCache.clear();
 	// Records for formations flying around lead ships and other objects.
 	formations.clear();
 	// Records that affect the combat behavior of various governments.
@@ -1298,6 +1289,52 @@ const StellarObject *AI::FindLandingLocation(const Ship &ship, const bool refuel
 
 
 
+AI::RouteCacheKey::RouteCacheKey(
+	const System *from, const System *to, const Government *gov, double jumpDistance,
+	JumpType jumpType, const vector<string> &wormholeKeys)
+		: from(from), to(to), gov(gov), jumpDistance(jumpDistance), jumpType(jumpType), wormholeKeys(wormholeKeys)
+{
+}
+
+
+
+size_t AI::RouteCacheKey::HashFunction::operator()(RouteCacheKey const &key) const
+{
+	// Used by unordered_map to determine equivalence.
+	int shift = 0;
+	size_t hash = std::hash<string>()(key.from->TrueName());
+	hash ^= std::hash<string>()(key.to->TrueName()) << ++shift;
+	hash ^= std::hash<string>()(key.gov->TrueName()) << ++shift;
+	hash ^= std::hash<int>()(key.jumpDistance) << ++shift;
+	hash ^= std::hash<int>()(static_cast<std::size_t>(key.jumpType)) << ++shift;
+	for(const string &k : key.wormholeKeys)
+		hash ^= std::hash<string>()(k) << ++shift;;
+	return hash;
+}
+
+
+
+bool AI::RouteCacheKey::operator==(const RouteCacheKey &other) const
+{
+	// Used by unordered_map to determine equivalence.
+	return from == other.from
+		&& to == other.to
+		&& gov == other.gov
+		&& jumpDistance == other.jumpDistance
+		&& jumpType == other.jumpType
+		&& wormholeKeys == other.wormholeKeys;
+}
+
+
+
+bool AI::RouteCacheKey::operator!=(const RouteCacheKey &other) const
+{
+	// Used by unordered_map to determine equivalence.
+	return !(*this == other);
+}
+
+
+
 // Check if the given target can be pursued by this ship.
 bool AI::CanPursue(const Ship &ship, const Ship &target) const
 {
@@ -1365,11 +1402,12 @@ void AI::AskForHelp(Ship &ship, bool &isStranded, const Ship *flagship)
 			auto foundOrders = orders.find(helper.get());
 			if(foundOrders != orders.end())
 			{
-				int helperOrders = foundOrders->second.type;
+				const OrderSet &helperOrders = foundOrders->second;
 				// If your own escorts become disabled, then your mining fleet
 				// should prioritize repairing escorts instead of mining or
 				// harvesting flotsam.
-				if(helper->IsYours() && ship.IsYours() && helperOrders != Orders::MINE && helperOrders != Orders::HARVEST)
+				if(helper->IsYours() && ship.IsYours()
+						&& !(helperOrders.Has(Orders::Types::MINE) || helperOrders.Has(Orders::Types::HARVEST)))
 					continue;
 			}
 
@@ -1459,21 +1497,30 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(isYours)
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && (it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF))
-			return it->second.target.lock();
+		if(it != orders.end())
+		{
+			if(it->second.Has(Orders::Types::ATTACK) || it->second.Has(Orders::Types::FINISH_OFF))
+				return it->second.GetTargetShip();
+			if(it->second.Has(Orders::Types::HOLD_FIRE))
+				return target;
+		}
 	}
 
 	// If this ship is not armed, do not make it fight.
 	double minRange = numeric_limits<double>::infinity();
 	double maxRange = 0.;
-	for(const Hardpoint &weapon : ship.Weapons())
-		if(weapon.GetOutfit() && !weapon.IsSpecial())
+	for(const Hardpoint &hardpoint : ship.Weapons())
+	{
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon && !hardpoint.IsSpecial())
 		{
-			minRange = min(minRange, weapon.GetOutfit()->Range());
-			maxRange = max(maxRange, weapon.GetOutfit()->Range());
+			double range = weapon->Range();
+			minRange = min(minRange, range);
+			maxRange = max(maxRange, range);
 		}
+	}
 	if(!maxRange)
-		return FindNonHostileTarget(ship);
+		return isYours ? target : FindNonHostileTarget(ship);
 
 	const Personality &person = ship.GetPersonality();
 	shared_ptr<Ship> oldTarget = ship.GetTargetShip();
@@ -1551,7 +1598,12 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 			range += 5000. * foe->IsDisabled();
 		// While those that do, do so only if no "live" enemies are nearby.
 		else
+		{
+			if(any_of(boarders.begin(), boarders.end(), [&ship, &foe](auto &it)
+					{ return it.first != &ship && it.second == foe; }))
+				continue;
 			range += 2000. * (2 * foe->IsDisabled() - !Has(ship, foe->shared_from_this(), ShipEvent::BOARD));
+		}
 
 		// Prefer to go after armed targets, especially if you're not a pirate.
 		range += 1000. * (!IsArmed(*foe) * (1 + !person.Plunders()));
@@ -1712,7 +1764,7 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 	if(it == orders.end())
 		return false;
 
-	int type = it->second.type;
+	const OrderSet &shipOrders = it->second;
 
 	// Ships without an (alive) parent don't follow orders.
 	shared_ptr<Ship> parent = ship.GetParent();
@@ -1720,7 +1772,8 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		return false;
 	// If your parent is jumping or absent, that overrides your orders unless
 	// your orders are to hold position.
-	if(parent && type != Orders::HOLD_POSITION && type != Orders::HOLD_ACTIVE && type != Orders::MOVE_TO)
+	if(parent && !(shipOrders.Has(Orders::Types::HOLD_POSITION)
+		|| shipOrders.Has(Orders::Types::HOLD_ACTIVE) || shipOrders.Has(Orders::Types::MOVE_TO)))
 	{
 		if(parent->GetSystem() != ship.GetSystem())
 			return false;
@@ -1728,20 +1781,23 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 			return false;
 	}
 	// Do not keep chasing flotsam because another order was given.
-	if(ship.GetTargetFlotsam() && (type != Orders::HARVEST || (ship.CanBeCarried() && !ship.HasDeployOrder())))
+	if(ship.GetTargetFlotsam()
+		&& (!shipOrders.Has(Orders::Types::HARVEST) || (ship.CanBeCarried() && !ship.HasDeployOrder())))
 	{
 		ship.SetTargetFlotsam(nullptr);
 		return false;
 	}
 
-	shared_ptr<Ship> target = it->second.target.lock();
-	shared_ptr<Minable> targetAsteroid = it->second.targetAsteroid.lock();
-	if(type == Orders::MOVE_TO && it->second.targetSystem && ship.GetSystem() != it->second.targetSystem)
+	shared_ptr<Ship> target = shipOrders.GetTargetShip();
+	shared_ptr<Minable> targetAsteroid = shipOrders.GetTargetAsteroid();
+	const System *targetSystem = shipOrders.GetTargetSystem();
+	const Point &targetPoint = shipOrders.GetTargetPoint();
+	if(shipOrders.Has(Orders::Types::MOVE_TO) && targetSystem && ship.GetSystem() != targetSystem)
 	{
 		// The desired position is in a different system. Find the best
 		// way to reach that system (via wormhole or jumping). This may
 		// result in the ship landing to refuel.
-		SelectRoute(ship, it->second.targetSystem);
+		SelectRoute(ship, targetSystem);
 
 		// Travel there even if your parent is not planning to travel.
 		if((ship.GetTargetSystem() && ship.JumpsRemaining()) || ship.GetTargetStellar())
@@ -1749,9 +1805,11 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		else
 			return false;
 	}
-	else if((type == Orders::MOVE_TO || type == Orders::HOLD_ACTIVE) && ship.Position().Distance(it->second.point) > 20.)
-		MoveTo(ship, command, it->second.point, Point(), 10., .1);
-	else if(type == Orders::HOLD_POSITION || type == Orders::HOLD_ACTIVE || type == Orders::MOVE_TO)
+	else if((shipOrders.Has(Orders::Types::MOVE_TO) || shipOrders.Has(Orders::Types::HOLD_ACTIVE))
+			&& ship.Position().Distance(targetPoint) > 20.)
+		MoveTo(ship, command, targetPoint, Point(), 10., .1);
+	else if(shipOrders.Has(Orders::Types::HOLD_POSITION) || shipOrders.Has(Orders::Types::HOLD_ACTIVE)
+		|| shipOrders.Has(Orders::Types::MOVE_TO))
 	{
 		if(ship.Velocity().Length() > VELOCITY_ZERO || !ship.GetTargetShip())
 			Stop(ship, command);
@@ -1761,13 +1819,13 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 			ship.SetVelocity({0., 0.});
 		}
 	}
-	else if(type == Orders::MINE && targetAsteroid)
+	else if(shipOrders.Has(Orders::Types::MINE) && targetAsteroid)
 	{
 		ship.SetTargetAsteroid(targetAsteroid);
 		// Escorts should chase the player-targeted asteroid.
 		MoveToAttack(ship, command, *targetAsteroid);
 	}
-	else if(type == Orders::HARVEST)
+	else if(shipOrders.Has(Orders::Types::HARVEST))
 	{
 		if(DoHarvesting(ship, command))
 		{
@@ -1783,9 +1841,9 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 		// has a target, the target is in-system and targetable. But, to be sure:
 		return false;
 	}
-	else if(type == Orders::KEEP_STATION)
+	else if(shipOrders.Has(Orders::Types::KEEP_STATION))
 		KeepStation(ship, command, *target);
-	else if(type == Orders::GATHER)
+	else if(shipOrders.Has(Orders::Types::GATHER))
 	{
 		if(ship.GetFormationPattern())
 			MoveInFormation(ship, command);
@@ -1844,7 +1902,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 
 
 
-void AI::MoveIndependent(Ship &ship, Command &command) const
+void AI::MoveIndependent(Ship &ship, Command &command)
 {
 	double invisibleFenceRadius = ship.GetSystem()->InvisibleFenceRadius();
 
@@ -1879,10 +1937,10 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		auto it = orders.find(&ship);
 		if(it != orders.end())
 		{
-			if(it->second.type == Orders::MOVE_TO)
+			if(it->second.Has(Orders::Types::MOVE_TO))
 				ignoreTargetShip = (ship.GetTargetSystem() && ship.JumpsRemaining()) || ship.GetTargetStellar();
-			else if(it->second.type == Orders::ATTACK || it->second.type == Orders::FINISH_OFF)
-				friendlyOverride = it->second.target.lock() == target;
+			else if(it->second.Has(Orders::Types::ATTACK) || it->second.Has(Orders::Types::FINISH_OFF))
+				friendlyOverride = it->second.GetTargetShip() == target;
 		}
 	}
 	const Government *gov = ship.GetGovernment();
@@ -1900,38 +1958,46 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 				return;
 			MoveTo(ship, command, target->Position(), target->Velocity(), 40., .8);
 			command |= Command::BOARD;
+			boarders[&ship] = target.get();
 		}
 		else
+		{
 			Attack(ship, command, *target);
+			boarders.erase(&ship);
+		}
 		return;
 	}
-	else if(target)
+	else
 	{
-		// An AI ship that is targeting a non-hostile ship should scan it, or move on.
-		bool cargoScan = ship.Attributes().Get("cargo scan power");
-		bool outfitScan = ship.Attributes().Get("outfit scan power");
-		// De-target if the target left my system.
-		if(ship.GetSystem() != target->GetSystem())
+		boarders.erase(&ship);
+		if(target)
 		{
-			target.reset();
-			ship.SetTargetShip(nullptr);
-		}
-		// Detarget if I cannot scan, or if I already scanned the ship.
-		else if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
-				&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
-		{
-			target.reset();
-			ship.SetTargetShip(nullptr);
-		}
-		// Move to (or near) the ship and scan it.
-		else
-		{
-			if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
-				CircleAround(ship, command, *target);
+			// An AI ship that is targeting a non-hostile ship should scan it, or move on.
+			bool cargoScan = ship.Attributes().Get("cargo scan power");
+			bool outfitScan = ship.Attributes().Get("outfit scan power");
+			// De-target if the target left my system.
+			if(ship.GetSystem() != target->GetSystem())
+			{
+				target.reset();
+				ship.SetTargetShip(nullptr);
+			}
+			// Detarget if I cannot scan, or if I already scanned the ship.
+			else if((!cargoScan || Has(gov, target, ShipEvent::SCAN_CARGO))
+					&& (!outfitScan || Has(gov, target, ShipEvent::SCAN_OUTFITS)))
+			{
+				target.reset();
+				ship.SetTargetShip(nullptr);
+			}
+			// Move to (or near) the ship and scan it.
 			else
-				MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
-			if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
-				command |= Command::SCAN;
+			{
+				if(target->Velocity().Length() > ship.MaxVelocity() * 0.9)
+					CircleAround(ship, command, *target);
+				else
+					MoveTo(ship, command, target->Position(), target->Velocity(), 1., 1.);
+				if(!ship.IsYours() && (ship.IsSpecial() || scanPermissions.at(gov)))
+					command |= Command::SCAN;
+			}
 			return;
 		}
 	}
@@ -1979,7 +2045,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		// not land anywhere without a port.
 		vector<const StellarObject *> planets;
 		for(const StellarObject &object : origin->Objects())
-			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasServices()
+			if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->HasServices(ship.IsYours())
 					&& object.GetPlanet()->CanLand(ship))
 			{
 				planets.push_back(&object);
@@ -2268,12 +2334,12 @@ bool AI::CanRefuel(const Ship &ship, const StellarObject *target)
 // Set the ship's target system or planet in order to reach the
 // next desired system. Will target a landable planet to refuel.
 // If the ship is an escort it will only use routes known to the player.
-void AI::SelectRoute(Ship &ship, const System *targetSystem) const
+void AI::SelectRoute(Ship &ship, const System *targetSystem)
 {
 	const System *from = ship.GetSystem();
 	if(from == targetSystem || !targetSystem)
 		return;
-	RoutePlan route(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
+	RoutePlan route = GetRoutePlan(ship, targetSystem);
 	if(ShouldRefuel(ship, route))
 	{
 		// There is at least one planet that can refuel the ship.
@@ -2336,7 +2402,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	auto requiredAmmo = set<const Outfit *>{};
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Weapon *weapon = hardpoint.GetOutfit();
+		const Weapon *weapon = hardpoint.GetWeapon();
 		if(weapon && !hardpoint.IsSpecial())
 		{
 			const Outfit *ammo = weapon->Ammo();
@@ -2963,8 +3029,9 @@ void AI::DoAppeasing(const shared_ptr<Ship> &ship, double *threshold) const
 	const Government *government = ship->GetGovernment();
 	const string &language = government->Language();
 	if(language.empty() || player.Conditions().Get("language: " + language))
-		Messages::Add(government->GetName() + " " + ship->Noun() + " \"" + ship->Name()
-			+ "\": Please, just take my cargo and leave me alone.", Messages::Importance::Low);
+		Messages::Add({government->DisplayName() + " " + ship->Noun() + " \"" + ship->GivenName()
+			+ "\": Please, just take my cargo and leave me alone.",
+			GameData::MessageCategories().Get("low")});
 
 }
 
@@ -3018,7 +3085,7 @@ void AI::DoSwarming(Ship &ship, Command &command, shared_ptr<Ship> &target)
 
 
 
-void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target) const
+void AI::DoSurveillance(Ship &ship, Command &command, shared_ptr<Ship> &target)
 {
 	const bool isStaying = ship.GetPersonality().IsStaying();
 	// Since DoSurveillance is called after target-seeking and firing, if this
@@ -3525,8 +3592,8 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	Point position = ship.Position();
 	Point velocity = ship.Velocity() - targetVelocity;
 	Angle angle = ship.Facing();
-	double acceleration = ship.Acceleration();
-	double turnRate = ship.TurnRate();
+	double acceleration = ship.CrewAcceleration();
+	double turnRate = ship.CrewTurnRate();
 	shouldReverse = false;
 
 	// If I were to turn around and stop now the relative movement, where would that put me?
@@ -3596,7 +3663,7 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 	Point result;
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
-		const Weapon *weapon = hardpoint.GetOutfit();
+		const Weapon *weapon = hardpoint.GetWeapon();
 		if(!weapon || hardpoint.IsHoming() || hardpoint.IsTurret())
 			continue;
 
@@ -3634,9 +3701,9 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 		{
 			// Find the maximum range of any of this ship's turrets.
 			double maxRange = 0.;
-			for(const Hardpoint &weapon : ship.Weapons())
-				if(weapon.CanAim(ship))
-					maxRange = max(maxRange, weapon.GetOutfit()->Range());
+			for(const Hardpoint &hardpoint : ship.Weapons())
+				if(hardpoint.CanAim(ship))
+					maxRange = max(maxRange, hardpoint.GetWeapon()->Range());
 			// If this ship has no turrets, bail out.
 			if(!maxRange)
 				return;
@@ -3719,7 +3786,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			// Get the turret's current facing, in absolute coordinates:
 			Angle aim = ship.Facing() + hardpoint.GetAngle();
 			// Get this projectile's average velocity.
-			const Weapon *weapon = hardpoint.GetOutfit();
+			const Weapon *weapon = hardpoint.GetWeapon();
 			double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 			// Loop through each body this hardpoint could shoot at. Find the
 			// one that is the "best" in terms of how many frames it will take
@@ -3842,10 +3909,15 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	if(ship.IsYours())
 	{
 		auto it = orders.find(&ship);
-		if(it != orders.end() && it->second.target.lock() == currentTarget)
+		if(it != orders.end())
 		{
-			disabledOverride = (it->second.type == Orders::FINISH_OFF);
-			friendlyOverride = disabledOverride | (it->second.type == Orders::ATTACK);
+			if(it->second.Has(Orders::Types::HOLD_FIRE))
+				return;
+			if(it->second.GetTargetShip() == currentTarget)
+			{
+				disabledOverride = it->second.Has(Orders::Types::FINISH_OFF);
+				friendlyOverride = disabledOverride || it->second.Has(Orders::Types::ATTACK);
+			}
 		}
 	}
 	bool currentIsEnemy = currentTarget
@@ -3864,13 +3936,16 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	// Find the longest range of any of your non-homing weapons. Homing weapons
 	// that don't consume ammo may also fire in non-homing mode.
 	double maxRange = 0.;
-	for(const Hardpoint &weapon : ship.Weapons())
-		if(weapon.IsReady()
-				&& !(!currentTarget && weapon.IsHoming() && weapon.GetOutfit()->Ammo())
-				&& !(!secondary && weapon.GetOutfit()->Icon())
-				&& !(beFrugal && weapon.GetOutfit()->Ammo())
-				&& !(isWaitingToJump && weapon.GetOutfit()->FiringForce()))
-			maxRange = max(maxRange, weapon.GetOutfit()->Range());
+	for(const Hardpoint &hardpoint : ship.Weapons())
+		if(hardpoint.IsReady())
+		{
+			const Weapon *weapon = hardpoint.GetWeapon();
+			if(!(!currentTarget && hardpoint.IsHoming() && weapon->Ammo())
+					&& !(!secondary && weapon->Icon())
+					&& !(beFrugal && weapon->Ammo())
+					&& !(isWaitingToJump && weapon->FiringForce()))
+				maxRange = max(maxRange, weapon->Range());
+		}
 	// Extend the weapon range slightly to account for velocity differences.
 	maxRange *= 1.5;
 
@@ -3900,7 +3975,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				continue;
 		}
 
-		const Weapon *weapon = hardpoint.GetOutfit();
+		const Weapon *weapon = hardpoint.GetWeapon();
 		// Don't expend ammo for homing weapons that have no target selected.
 		if(!currentTarget && weapon->Homing() && weapon->Ammo())
 			continue;
@@ -4022,7 +4097,10 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, const Body &target) co
 	{
 		++index;
 		// Only auto-fire primary weapons that take no ammunition.
-		if(!hardpoint.IsReady() || hardpoint.GetOutfit()->Icon() || hardpoint.GetOutfit()->Ammo())
+		if(!hardpoint.IsReady())
+			continue;
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon->Icon() || weapon->Ammo())
 			continue;
 
 		// Figure out where this weapon will fire from, but add some randomness
@@ -4030,7 +4108,6 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, const Body &target) co
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 		start += ship.GetPersonality().Confusion();
 
-		const Weapon *weapon = hardpoint.GetOutfit();
 		double vp = weapon->WeightedVelocity() + .5 * weapon->RandomVelocity();
 		double lifetime = weapon->TotalLifetime();
 
@@ -4241,7 +4318,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 					return planet->DisplayName();
 				});
 			message += " in the system you are jumping to.";
-			Messages::Add(message, Messages::Importance::Info);
+			Messages::Add({message, GameData::MessageCategories().Get("info")});
 
 			if(Preferences::GetNotificationSetting() == Preferences::NotificationSetting::BOTH)
 				UI::PlaySound(UI::UISound::FAILURE);
@@ -4308,12 +4385,17 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			else if(selectNext && isPlayer == shift && other->IsTargetable())
 			{
 				ship.SetTargetShip(other);
+				if(isPlayer)
+					player.SelectEscort(other.get(), false);
 				selectNext = false;
 				break;
 			}
 		}
 		if(selectNext)
+		{
 			ship.SetTargetShip(shared_ptr<Ship>());
+			player.SelectEscort(nullptr, false);
+		}
 		else
 			UI::PlaySound(UI::UISound::TARGET);
 	}
@@ -4468,7 +4550,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		else if(!message.empty())
 			UI::PlaySound(UI::UISound::FAILURE);
 
-		Messages::Importance messageImportance = Messages::Importance::High;
+		const Message::Category *messageCategory = GameData::MessageCategories().Get("normal");
 
 		if(target && (ship.Zoom() < 1. || ship.Position().Distance(target->Position()) < target->Radius()))
 		{
@@ -4488,7 +4570,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			{
 				message = "The authorities on this " + next->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
-				messageImportance = Messages::Importance::Highest;
+				messageCategory = GameData::MessageCategories().Get("high");
 				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(next != target)
@@ -4511,7 +4593,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 						double distance = ship.Position().Distance(object->Position());
 						const Planet *planet = object->GetPlanet();
 						types.insert(planet->Noun());
-						if((!planet->CanLand() || !planet->GetPort().CanRecharge(Port::RechargeType::Fuel))
+						if((!planet->CanLand()
+								|| !planet->GetPort().CanRecharge(Port::RechargeType::Fuel, ship.IsYours()))
 								&& !planet->IsWormhole())
 							distance += 10000.;
 
@@ -4527,15 +4610,15 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 			if(!target)
 			{
-				message = "There are no planets in this system that you can land on.";
-				messageImportance = Messages::Importance::Highest;
+				Messages::Add(*GameData::Messages().Get("no landables"));
+				message.clear();
 				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(!target->GetPlanet()->CanLand())
 			{
 				message = "The authorities on this " + target->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
-				messageImportance = Messages::Importance::Highest;
+				messageCategory = GameData::MessageCategories().Get("high");
 				UI::PlaySound(UI::UISound::FAILURE);
 			}
 			else if(!types.empty())
@@ -4558,7 +4641,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				message = "Landing on " + target->DisplayName() + ".";
 		}
 		if(!message.empty())
-			Messages::Add(message, messageImportance);
+			Messages::Add({message, messageCategory});
 	}
 	else if(activeCommands.Has(Command::JUMP | Command::FLEET_JUMP))
 	{
@@ -4586,8 +4669,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		else if(isWormhole)
 		{
 			// The player is guaranteed to have a travel plan for isWormhole to be true.
-			Messages::Add("Landing on a local wormhole to navigate to the "
-					+ player.TravelPlan().back()->DisplayName() + " system.", Messages::Importance::High);
+			Messages::Add({"Landing on a local wormhole to navigate to the "
+					+ player.TravelPlan().back()->DisplayName() + " system.",
+					GameData::MessageCategories().Get("normal")});
 		}
 		if(ship.GetTargetSystem() && !isWormhole)
 		{
@@ -4596,19 +4680,24 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				name = ship.GetTargetSystem()->DisplayName();
 
 			if(activeCommands.Has(Command::FLEET_JUMP))
-				Messages::Add("Engaging fleet autopilot to jump to the " + name + " system."
-					" Your fleet will jump when ready.", Messages::Importance::High);
+			{
+				// Note: also has command JUMP on only the first call.
+				if(activeCommands.Has(Command::JUMP))
+					Messages::Add({"Engaging fleet autopilot to jump to the " + name + " system."
+						" Your fleet will jump when ready.",
+						GameData::MessageCategories().Get("normal")});
+			}
 			else
-				Messages::Add("Engaging autopilot to jump to the " + name + " system.", Messages::Importance::High);
+				Messages::Add({"Engaging autopilot to jump to the " + name + " system.",
+					GameData::MessageCategories().Get("normal")});
 		}
 	}
 	else if(activeCommands.Has(Command::SCAN))
 		command |= Command::SCAN;
 	else if(activeCommands.Has(Command::HARVEST))
 	{
-		Orders newOrders;
-		newOrders.type = Orders::HARVEST;
-		IssueOrders(newOrders, "preparing to harvest.");
+		OrderSingle newOrder{Orders::Types::HARVEST};
+		IssueOrder(newOrder, "preparing to harvest.");
 	}
 	else if(activeCommands.Has(Command::NEAREST_ASTEROID))
 	{
@@ -4647,7 +4736,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			int index = 0;
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
-				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
+				if(hardpoint.IsReady() && !hardpoint.GetWeapon()->Icon())
 					firingCommands.SetFire(index);
 				++index;
 			}
@@ -4709,7 +4798,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		const Planet *planet = player.TravelDestination();
 		if(planet && planet->IsInSystem(ship.GetSystem()) && planet->IsAccessible(&ship))
 		{
-			Messages::Add("Autopilot: landing on " + planet->DisplayName() + ".", Messages::Importance::High);
+			Messages::Add({"Autopilot: landing on " + planet->DisplayName() + ".",
+				GameData::MessageCategories().Get("normal")});
 			autoPilot |= Command::LAND;
 			ship.SetTargetStellar(ship.GetSystem()->FindStellar(planet));
 		}
@@ -4746,25 +4836,25 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	{
 		if(!ship.JumpNavigation().HasHyperdrive() && !ship.JumpNavigation().HasJumpDrive())
 		{
-			Messages::Add("You do not have a hyperdrive installed.", Messages::Importance::Highest);
+			Messages::Add(*GameData::Messages().Get("no hyperdrive"));
 			autoPilot.Clear();
 			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(!ship.JumpNavigation().JumpFuel(ship.GetTargetSystem()))
 		{
-			Messages::Add("You cannot jump to the selected system.", Messages::Importance::Highest);
+			Messages::Add(*GameData::Messages().Get("cannot jump"));
 			autoPilot.Clear();
 			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
-			Messages::Add("You do not have enough fuel to make a hyperspace jump.", Messages::Importance::Highest);
+			Messages::Add(*GameData::Messages().Get("no fuel"));
 			autoPilot.Clear();
 			UI::PlaySound(UI::UISound::FAILURE);
 		}
 		else if(ship.IsLanding())
 		{
-			Messages::Add("You cannot jump while landing.", Messages::Importance::Highest);
+			Messages::Add(*GameData::Messages().Get("cannot jump while landing"));
 			autoPilot.Clear(Command::JUMP);
 			UI::PlaySound(UI::UISound::FAILURE);
 		}
@@ -4806,7 +4896,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 void AI::DisengageAutopilot()
 {
-	Messages::Add("Disengaging autopilot.", Messages::Importance::High);
+	Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
 	autoPilot.Clear();
 }
 
@@ -4867,7 +4957,7 @@ void AI::UpdateStrengths(map<const Government *, int64_t> &strength, const Syste
 		if(it->GetGovernment() && it->GetSystem() == playerSystem)
 		{
 			governmentRosters[it->GetGovernment()].emplace_back(it.get());
-			if(!it->IsDisabled())
+			if(!it->IsDisabled() && !it->IsOverheated() && !it->IsIonized())
 				strength[it->GetGovernment()] += it->Strength();
 		}
 
@@ -4942,21 +5032,49 @@ void AI::CacheShipLists()
 
 
 
-void AI::IssueOrders(const Orders &newOrders, const string &description)
+void AI::RegisterDerivedConditions(ConditionsStore &conditions)
 {
-	string who;
+	// Special conditions about system hostility.
+	conditions["government strength: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Government *gov = GameData::Governments().Get(ce.NameWithoutPrefix());
+		int64_t strength = 0;
+		for(const Ship *ship : governmentRosters[gov])
+			if(ship)
+				strength += ship->Strength();
+		return strength;
+	});
+	conditions["ally strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return allyStrength[GameData::PlayerGovernment()];
+	});
+	conditions["enemy strength"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return enemyStrength[GameData::PlayerGovernment()];
+	});
+	conditions["ally strength: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Government *gov = GameData::Governments().Get(ce.NameWithoutPrefix());
+		return gov ? allyStrength[gov] : 0.;
+	});
+	conditions["enemy strength: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Government *gov = GameData::Governments().Get(ce.NameWithoutPrefix());
+		return gov ? enemyStrength[gov] : 0.;
+	});
+}
 
-	// Find out what the target of these orders is.
-	const Ship *targetShip = newOrders.target.lock().get();
-	const Minable *targetAsteroid = newOrders.targetAsteroid.lock().get();
 
+
+void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
+{
 	// Figure out what ships we are giving orders to.
+	string who;
 	vector<const Ship *> ships;
 	size_t destroyedCount = 0;
-	if(player.SelectedShips().empty())
+	// A "hold fire" order can be used on the flagship to temporarily block autofire.
+	// Other orders can be issued only to escorts.
+	bool includeFlagship = newOrder.type == Orders::Types::HOLD_FIRE;
+	const vector<weak_ptr<Ship>> &selected = player.SelectedEscorts();
+	if(selected.empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
-			if(it.get() != player.Flagship() && !it->IsParked())
+			if((includeFlagship || it.get() != player.Flagship()) && !it->IsParked())
 			{
 				if(it->IsDestroyed())
 					++destroyedCount;
@@ -4964,11 +5082,11 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 					ships.push_back(it.get());
 			}
 		who = (ships.empty() ? destroyedCount : ships.size()) > 1
-			? "Your fleet is " : "Your escort is ";
+			? "Your fleet is " : includeFlagship ? "Your flagship is " : "Your escort is ";
 	}
 	else
 	{
-		for(const weak_ptr<Ship> &it : player.SelectedShips())
+		for(const weak_ptr<Ship> &it : selected)
 		{
 			shared_ptr<Ship> ship = it.lock();
 			if(!ship)
@@ -4984,13 +5102,13 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 	if(ships.empty())
 	{
 		if(destroyedCount)
-			Messages::Add(who + "destroyed and unable to execute your orders.",
-				Messages::Importance::High);
+			Messages::Add({who + "destroyed and unable to execute your orders.",
+				GameData::MessageCategories().Get("normal")});
 		return;
 	}
 
 	Point centerOfGravity;
-	bool isMoveOrder = (newOrders.type == Orders::MOVE_TO);
+	bool isMoveOrder = newOrder.type == Orders::Types::MOVE_TO;
 	int squadCount = 0;
 	if(isMoveOrder)
 	{
@@ -5007,14 +5125,16 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 	// enough that each ship takes up no more than about 30,000 square pixels.
 	double maxSquadOffset = sqrt(10000. * squadCount);
 
+	const Ship *flagship = player.Flagship();
+	const Ship *newTargetShip = newOrder.GetTargetShip().get();
 	// A target is valid if we have no target, or when the target is in the
 	// same system as the flagship.
-	bool isValidTarget = !targetShip || targetAsteroid
-		|| (targetShip && player.Flagship() && targetShip->GetSystem() == player.Flagship()->GetSystem());
+	bool isValidTarget = !newTargetShip || newOrder.GetTargetAsteroid()
+		|| (flagship && newTargetShip->GetSystem() == flagship->GetSystem());
 
-	// Now, go through all the given ships and set their orders to the new
-	// orders. But, if it turns out that they already had the given orders,
-	// their orders will be cleared instead. The only command that does not
+	// Now, go through all the given ships and add the new order to their sets.
+	// But, if it turns out that they already had the given order,
+	// this order will be cleared instead. The only command that does not
 	// toggle is a move command; it always counts as a new command.
 	bool hasMismatch = isMoveOrder;
 	bool gaveOrder = false;
@@ -5024,27 +5144,14 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 		for(const Ship *ship : ships)
 		{
 			// Never issue orders to a ship to target itself.
-			if(ship == targetShip)
+			if(ship == newTargetShip)
 				continue;
 
 			gaveOrder = true;
 			hasMismatch |= !orders.contains(ship);
 
-			Orders &existing = orders[ship];
-			// HOLD_ACTIVE cannot be given as manual order, but we make sure here
-			// that any HOLD_ACTIVE order also matches when an HOLD_POSITION
-			// command is given.
-			if(existing.type == Orders::HOLD_ACTIVE)
-				existing.type = Orders::HOLD_POSITION;
-
-			hasMismatch |= (existing.type != newOrders.type);
-			hasMismatch |= (existing.target.lock().get() != targetShip);
-			hasMismatch |= (existing.targetAsteroid.lock().get() != targetAsteroid);
-			// Skip giving any new orders if the fleet is already in harvest mode and the player has selected a new
-			// asteroid.
-			if(hasMismatch && targetAsteroid)
-				alreadyHarvesting = (existing.type == newOrders.type) && (newOrders.type == Orders::HARVEST);
-			existing = newOrders;
+			OrderSet &existing = orders[ship];
+			existing.Add(newOrder, &hasMismatch, &alreadyHarvesting);
 
 			if(isMoveOrder)
 			{
@@ -5054,14 +5161,14 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 				Point offset = ship->Position() - centerOfGravity;
 				if(offset.Length() > maxSquadOffset)
 					offset = offset.Unit() * maxSquadOffset;
-				existing.point += offset;
+				existing.SetTargetPoint(existing.GetTargetPoint() + offset);
 			}
-			else if(existing.type == Orders::HOLD_POSITION)
+			else if(existing.Has(Orders::Types::HOLD_POSITION))
 			{
 				bool shouldReverse = false;
 				// Set the point this ship will "guard," so it can return
 				// to it if knocked away by projectiles / explosions.
-				existing.point = StoppingPoint(*ship, Point(), shouldReverse);
+				existing.SetTargetPoint(StoppingPoint(*ship, Point(), shouldReverse));
 			}
 		}
 		if(!gaveOrder)
@@ -5071,17 +5178,22 @@ void AI::IssueOrders(const Orders &newOrders, const string &description)
 	if(alreadyHarvesting)
 		return;
 	else if(hasMismatch)
-		Messages::Add(who + description, Messages::Importance::High);
+		Messages::Add({who + description, GameData::MessageCategories().Get("normal")});
 	else
 	{
-		// Clear all the orders for these ships.
 		if(!isValidTarget)
-			Messages::Add(who + "unable to and no longer " + description, Messages::Importance::High);
+			Messages::Add({who + "unable to and no longer " + description,
+				GameData::MessageCategories().Get("normal")});
 		else
-			Messages::Add(who + "no longer " + description, Messages::Importance::High);
+			Messages::Add({who + "no longer " + description, GameData::MessageCategories().Get("normal")});
 
+		// Clear any orders that are now empty.
 		for(const Ship *ship : ships)
-			orders.erase(ship);
+		{
+			auto it = orders.find(ship);
+			if(it != orders.end() && it->second.Empty())
+				orders.erase(it);
+		}
 	}
 }
 
@@ -5095,18 +5207,43 @@ void AI::UpdateOrders(const Ship &ship)
 	if(it == orders.end())
 		return;
 
-	Orders &order = it->second;
-	if((order.type == Orders::MOVE_TO || order.type == Orders::HOLD_ACTIVE) && ship.GetSystem() == order.targetSystem)
+	it->second.Update(ship);
+}
+
+
+
+// Look for an existing distance map for this combination of inputs before calculating a new one.
+RoutePlan AI::GetRoutePlan(const Ship &ship, const System *targetSystem)
+{
+	// Note: RecacheJumpRoutes will check and reset the value for us.
+	if(player.RecacheJumpRoutes())
+		routeCache.clear();
+
+	const System *from = ship.GetSystem();
+	const Government *gov = ship.GetGovernment();
+	const JumpType driveCapability = ship.JumpNavigation().HasJumpDrive() ? JumpType::JUMP_DRIVE : JumpType::HYPERDRIVE;
+
+	// A cached route that could be used for this ship could depend on the wormholes which this ship can
+	// travel through. Find the intersection of all known wormhole required attributes and the attributes
+	// which this ship satisfies.
+	vector<string> wormholeKeys;
+	const auto &shipAttributes = ship.Attributes();
+	for(const auto &requirement : GameData::UniverseWormholeRequirements())
+		if(shipAttributes.Get(requirement) > 0)
+			wormholeKeys.emplace_back(requirement);
+
+	auto key = RouteCacheKey(from, targetSystem, gov, ship.JumpNavigation().JumpRange(), driveCapability,
+		wormholeKeys);
+
+	RoutePlan route;
+	auto it = routeCache.find(key);
+	if(it == routeCache.end())
 	{
-		// If nearly stopped on the desired point, switch to a HOLD_POSITION order.
-		if(ship.Position().Distance(order.point) < 20. && ship.Velocity().Length() < VELOCITY_ZERO)
-			order.type = Orders::HOLD_POSITION;
+		route = RoutePlan(ship, *targetSystem, ship.IsYours() ? &player : nullptr);
+		routeCache.emplace(key, route);
 	}
-	else if(order.type == Orders::HOLD_POSITION && ship.Position().Distance(order.point) > 20.)
-	{
-		// If far from the defined target point, return via a HOLD_ACTIVE order.
-		order.type = Orders::HOLD_ACTIVE;
-		// Ensure the system reference is maintained.
-		order.targetSystem = ship.GetSystem();
-	}
+	else
+		route = RoutePlan(it->second);
+
+	return route;
 }

@@ -19,7 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
+#include "Endpoint.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "GameEvent.h"
@@ -57,63 +58,6 @@ namespace {
 
 
 
-MissionAction::MissionDialog::MissionDialog(const ExclusiveItem<Phrase> &phrase):
-	dialogPhrase(phrase)
-{
-}
-
-
-
-MissionAction::MissionDialog::MissionDialog(const string &text):
-	dialogText(text)
-{
-}
-
-
-
-MissionAction::MissionDialog::MissionDialog(const DataNode &node, const ConditionsStore *playerConditions)
-{
-	const string &key = node.Token(0);
-	// Handle anonymous phrases
-	//    phrase
-	//       ...
-	if(node.Size() == 1 && key == "phrase")
-	{
-		dialogPhrase = ExclusiveItem<Phrase>(Phrase(node));
-		// Anonymous phrases do not support "to display"
-		return;
-	}
-
-	// Handle named phrases
-	//    phrase "A Phrase Name"
-	if(node.Size() == 2 && key == "phrase")
-		dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
-
-	// Handle regular dialog text
-	//    "Some thrilling dialog that truly moves the player."
-	else
-	{
-		if(node.Size() > 1)
-			node.PrintTrace("Ignoring extra tokens.");
-		dialogText = key;
-
-		// Prevent a corner case that breaks assumptions. Dialog text cannot be empty (that indicates a phrase).
-		if(dialogText.empty())
-			dialogText = '\t';
-	}
-
-	// Search for "to display" lines.
-	for(auto &child : node)
-	{
-		if(child.Size() != 2 || child.Token(0) != "to" || child.Token(1) != "display" || !child.HasChildren())
-			node.PrintTrace("Ignoring unrecognized dialog token");
-		else
-			condition.Load(child, playerConditions);
-	}
-}
-
-
-
 // Construct and Load() at the same time.
 MissionAction::MissionAction(const DataNode &node, const ConditionsStore *playerConditions,
 	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
@@ -133,12 +77,6 @@ void MissionAction::Load(const DataNode &node, const ConditionsStore *playerCond
 
 	for(const DataNode &child : node)
 		LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
-
-	// Collapse pure-text dialog (no phrases). This is necessary to handle saved missions.
-	// It is also an optimization for the most common case in game data files.
-	dialogText = CollapseDialog(nullptr);
-	if(!dialogText.empty())
-		dialog.clear();
 }
 
 
@@ -150,16 +88,7 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 	bool hasValue = child.Size() >= 2;
 
 	if(key == "dialog")
-	{
-		// Parse the "dialog phrase whatever" and "dialog whatever" lines:
-		if(child.Size() == 3 && child.Token(1) == "phrase")
-			dialog.emplace_back(ExclusiveItem<Phrase>(GameData::Phrases().Get(child.Token(2))));
-		else if(hasValue)
-			dialog.emplace_back(child.Token(1));
-		// Parse embedded child dialog
-		for(const auto &grand : child)
-			dialog.emplace_back(grand, playerConditions);
-	}
+		dialog.Load(child, playerConditions);
 	else if(key == "conversation" && child.HasChildren())
 		conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
 	else if(key == "conversation" && hasValue)
@@ -170,12 +99,12 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 		if(count >= 0)
 			requiredOutfits[GameData::Outfits().Get(child.Token(1))] = count;
 		else
-			child.PrintTrace("Error: Skipping invalid \"require\" count:");
+			child.PrintTrace("Skipping invalid \"require\" count:");
 	}
 	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 	{
-		child.PrintTrace("Warning: Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+		child.PrintTrace("Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
 		requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 	}
 	else if(key == "system")
@@ -183,7 +112,7 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 		if(system.empty() && child.HasChildren())
 			systemFilter.Load(child, visitedSystems, visitedPlanets);
 		else
-			child.PrintTrace("Error: Unsupported use of \"system\" LocationFilter:");
+			child.PrintTrace("Unsupported use of \"system\" LocationFilter:");
 	}
 	else if(key == "can trigger after failure")
 		runsWhenFailed = true;
@@ -220,17 +149,8 @@ void MissionAction::SaveBody(DataWriter &out) const
 	}
 	if(runsWhenFailed)
 		out.Write("can trigger after failure");
-	if(!dialogText.empty())
-	{
-		out.Write("dialog");
-		out.BeginChild();
-		{
-			// Break the text up into paragraphs.
-			for(const string &line : Format::Split(dialogText, "\n\t"))
-				out.Write(line);
-		}
-		out.EndChild();
-	}
+	if(!dialog.IsEmpty())
+		dialog.Save(out);
 	if(!conversation->IsEmpty())
 		conversation->Save(out);
 	for(const auto &it : requiredOutfits)
@@ -249,6 +169,9 @@ string MissionAction::Validate() const
 	if(!systemFilter.IsValid())
 		return "system location filter";
 
+	// Dialogs must contain valid phrases.
+	if(!dialog.Validate())
+		return "stock phrase in dialog";
 	// Stock conversations must be defined.
 	if(conversation.IsStock() && conversation->IsEmpty())
 		return "stock conversation";
@@ -270,7 +193,7 @@ string MissionAction::Validate() const
 
 const string &MissionAction::DialogText() const
 {
-	return dialogText;
+	return dialog.Text();
 }
 
 
@@ -369,39 +292,42 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
 	const shared_ptr<Ship> &ship, const bool isUnique) const
 {
-	bool isOffer = (trigger == "offer");
-	if(!conversation->IsEmpty() && ui)
+	if(ui)
 	{
-		// Conversations offered while boarding or assisting reference a ship,
-		// which may be destroyed depending on the player's choices.
-		ConversationPanel *panel = new ConversationPanel(player, *conversation, caller, destination, ship, isOffer);
-		if(isOffer)
-			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
-		// Use a basic callback to handle forced departure outside of `on offer`
-		// conversations.
-		else
-			panel->SetCallback(&player, &PlayerInfo::BasicCallback);
-		ui->Push(panel);
-	}
-	else if(!dialogText.empty() && ui)
-	{
-		map<string, string> subs;
-		GameData::GetTextReplacements().Substitutions(subs);
-		player.AddPlayerSubstitutions(subs);
-		string text = Format::Replace(dialogText, subs);
+		bool isOffer = (trigger == "offer");
+		if(!conversation->IsEmpty())
+		{
+			// Conversations offered while boarding or assisting reference a ship,
+			// which may be destroyed depending on the player's choices.
+			ConversationPanel *panel = new ConversationPanel(player, *conversation, caller, destination, ship, isOffer);
+			if(isOffer)
+				panel->SetCallback(&player, &PlayerInfo::MissionCallback);
+			// Use a basic callback to handle forced departure outside of `on offer`
+			// conversations.
+			else
+				panel->SetCallback(&player, &PlayerInfo::BasicCallback);
+			ui->Push(panel);
+		}
+		else if(!dialog.IsEmpty())
+		{
+			map<string, string> subs;
+			GameData::GetTextReplacements().Substitutions(subs);
+			player.AddPlayerSubstitutions(subs);
+			string text = Format::Replace(dialog.Text(), subs);
 
-		// Don't push the dialog text if this is a visit action on a nonunique
-		// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
-		// avoid the player being spammed by dialogs if they have multiple
-		// missions active with the same destination (e.g. in the case of
-		// stacking bounty jobs).
-		if(isOffer)
-			ui->Push(new Dialog(text, player, destination));
-		else if(isUnique || trigger != "visit")
-			ui->Push(new Dialog(text));
+			// Don't push the dialog text if this is a visit action on a nonunique
+			// mission; on visit, nonunique dialogs are handled by PlayerInfo as to
+			// avoid the player being spammed by dialogs if they have multiple
+			// missions active with the same destination (e.g. in the case of
+			// stacking bounty jobs).
+			if(isOffer)
+				ui->Push(new DialogPanel(text, player, destination));
+			else if(isUnique || trigger != "visit")
+				ui->Push(new DialogPanel(text));
+		}
+		else if(isOffer)
+			player.MissionCallback(Endpoint::ACCEPT);
 	}
-	else if(isOffer && ui)
-		player.MissionCallback(Conversation::ACCEPT);
 
 	action.Do(player, ui, caller);
 }
@@ -425,7 +351,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 	result.action = action.Instantiate(subs, jumps, payload);
 
 	// Create any associated dialog text from phrases, or use the directly specified text.
-	result.dialogText = CollapseDialog(&subs);
+	result.dialog = dialog.Instantiate(subs);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs, jumps, payload));
@@ -445,57 +371,4 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, const System
 int64_t MissionAction::Payment() const noexcept
 {
 	return action.Payment();
-}
-
-
-
-string MissionAction::CollapseDialog(const map<string, string> *subs) const
-{
-	// No subs means we're determining whether the dialog is pure text.
-	// This is done at load time.
-
-	// Result is already cached for dialogs that are pure text at Load() time.
-	if(!dialogText.empty())
-	{
-		if(!subs)
-			return dialogText;
-		else
-			return Format::Replace(Phrase::ExpandPhrases(dialogText), *subs);
-	}
-
-	string resultText;
-	for(auto &item : dialog)
-	{
-		// When checking for a pure-text dialog, reject a dialog with conditions or phrases,
-		// An empty string return value tells the caller that this dialog isn't pure text.
-		if(!subs && (!item.condition.IsEmpty() || item.dialogText.empty()))
-			return string();
-
-		// Skip text that is disabled.
-		if(!item.condition.IsEmpty() && !item.condition.Test())
-			continue;
-
-		// Evaluate the phrase if we have one, otherwise copy the prepared text.
-		string content;
-		if(!item.dialogText.empty())
-			content = item.dialogText;
-		else if(item.dialogPhrase.IsStock() && item.dialogPhrase->IsEmpty())
-			content = "stock phrase";
-		else
-			content = item.dialogPhrase->Get();
-
-		// Expand any ${phrases} and <substitutions>
-		if(subs)
-			content = Format::Replace(Phrase::ExpandPhrases(content), *subs);
-
-		// Concatenated lines should start with a tab and be preceded by end-of-line.
-		if(!resultText.empty())
-		{
-			resultText += '\n';
-			if(!content.empty() && content[0] != '\t')
-				resultText += '\t';
-		}
-		resultText += content;
-	}
-	return resultText;
 }

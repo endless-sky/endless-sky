@@ -39,17 +39,23 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	virtual void UpdateTooltipActivation() override;
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
-	virtual bool Click(int x, int y, int clicks) override;
+	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	virtual void Resize() override;
+
 
 private:
+	void InitTextArea();
+	void ResizeTextArea() const;
 	// Use availableIt/acceptedIt to set MapPanel::selectedSystem, call DoScroll/CenterOnSystem.
 	// CenterOnSystem will either pan to the system or immediately jump to it.
 	void SetSelectedScrollAndCenter(bool immediate = false);
@@ -60,7 +66,7 @@ private:
 	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
 	Point DrawPanel(Point pos, const std::string &label, int entries, bool sorter = false) const;
 	// Draw the display names of the given missions, using the reference point.
-	Point DrawList(const std::list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
+	Point DrawList(const std::list<Mission> &missionList, Point pos, const std::list<Mission>::const_iterator &selectIt,
 		bool separateDeadlineOrPossible = false) const;
 	void DrawMissionInfo();
 	void DrawTooltips();
@@ -81,6 +87,7 @@ private:
 	// Centers on the next involved system for the clicked mission from the mission list
 	void CycleInvolvedSystems(const Mission &mission);
 
+
 private:
 	const Interface *missionInterface;
 
@@ -95,8 +102,11 @@ private:
 	bool canDrag = true;
 
 	int dragSide = 0;
-	int hoverSortCount = 0;
-	int hoverSort = -1; // 0 to 3 for each UI element
+
+	// 0 to 3 for each UI element
+	int hoverSort = -1;
+	mutable Tooltip tooltip;
+
 	std::shared_ptr<TextArea> description;
 	bool descriptionVisible = false;
 };

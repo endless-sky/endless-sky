@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -280,14 +280,14 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		++selectedRow;
 	else if(key == SDLK_RETURN && selectedRow < mortgageRows)
 	{
-		GetUI()->Push(new Dialog(this, &BankPanel::PayExtra,
+		GetUI().Push(new DialogPanel(this, &BankPanel::PayExtra,
 			"Paying off part of this debt will reduce your daily payments and the "
 			"interest that it costs you. How many extra credits will you pay?"));
 		DoHelp("bank advanced");
 	}
 	else if(key == SDLK_RETURN && qualify)
 	{
-		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
+		GetUI().Push(new DialogPanel(this, &BankPanel::NewMortgage,
 			"Borrow how many credits?"));
 		DoHelp("bank advanced");
 	}
@@ -316,8 +316,11 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 // Handle mouse clicks.
-bool BankPanel::Click(int x, int y, int clicks)
+bool BankPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return false;
+
 	const Interface *bankUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "bank (small screen)" : "bank");
 	const Rectangle box = bankUi->GetBox("content");
 	const int MIN_X = box.Left();

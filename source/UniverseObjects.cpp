@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <iterator>
 #include <map>
+#include <ranges>
 #include <set>
 #include <utility>
 #include <vector>
@@ -125,7 +126,7 @@ void UniverseObjects::FinishLoading()
 			for(const string &name : category.second)
 				persons.Get(name)->NeverSpawn();
 		else
-			Logger::LogError("Unhandled \"disable\" keyword of type \"" + category.first + "\"");
+			Logger::Log("Unhandled \"disable\" keyword of type \"" + category.first + "\".", Logger::Level::WARNING);
 	}
 
 	// Sort all category lists.
@@ -136,7 +137,7 @@ void UniverseObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
+void UniverseObjects::Change(const DataNode &node, PlayerInfo &player)
 {
 	const ConditionsStore *playerConditions = &player.Conditions();
 	const set<const System *> *visitedSystems = &player.VisitedSystems();
@@ -168,8 +169,15 @@ void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
 		substitutions.Load(node, playerConditions);
 	else if(key == "wormhole" && hasValue)
 		wormholes.Get(node.Token(1))->Load(node);
+	else if(key == "event" && hasValue)
+	{
+		GameEvent eventCopy = *events.Get(node.Token(1));
+		list<DataNode> changes = eventCopy.Apply(player, true);
+		for(const DataNode &eventNode : changes)
+			Change(eventNode, player);
+	}
 	else
-		node.PrintTrace("Error: Invalid \"event\" data:");
+		node.PrintTrace("Invalid \"event\" data:");
 }
 
 
@@ -195,6 +203,18 @@ void UniverseObjects::UpdateSystems()
 
 
 
+void UniverseObjects::RecomputeWormholeRequirements()
+{
+	// Create a complete set of all attributes that affect any wormhole in the universe.
+	universeWormholeRequirements.clear();
+	for(const auto &wormhole : std::views::values(wormholes))
+		if(wormhole.IsValid() && wormhole.GetPlanet()->IsValid())
+			for(const auto &req : wormhole.GetPlanet()->RequiredAttributes())
+				universeWormholeRequirements.emplace(req);
+}
+
+
+
 // Check for objects that are referred to but never defined. Some elements, like
 // fleets, don't need to be given a name if undefined. Others (like outfits and
 // planets) are written to the player's save and need a name to prevent data loss.
@@ -203,13 +223,13 @@ void UniverseObjects::CheckReferences()
 	// Log a warning for an "undefined" class object that was never loaded from disk.
 	auto Warn = [](const string &noun, const string &name)
 	{
-		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
+		Logger::Log(noun + " \"" + name + "\" is referred to, but not fully defined.", Logger::Level::WARNING);
 	};
 	// Class objects with a deferred definition should still get named when content is loaded.
 	auto NameIfDeferred = [](const set<string> &deferred, auto &it)
 	{
 		if(deferred.contains(it.first))
-			it.second.SetName(it.first);
+			it.second.SetTrueName(it.first);
 		else
 			return false;
 
@@ -218,7 +238,7 @@ void UniverseObjects::CheckReferences()
 	// Set the name of an "undefined" class object, so that it can be written to the player's save.
 	auto NameAndWarn = [=](const string &noun, auto &it)
 	{
-		it.second.SetName(it.first);
+		it.second.SetTrueName(it.first);
 		Warn(noun, it.first);
 	};
 	// Parse all GameEvents for object definitions.
@@ -226,7 +246,7 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : events)
 	{
 		// Stock GameEvents are serialized in MissionActions by name.
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("event", it);
 		else
 		{
@@ -243,10 +263,10 @@ void UniverseObjects::CheckReferences()
 			Warn("conversation", it.first);
 	// The "default intro" conversation must invoke the prompt to set the player's name.
 	if(!conversations.Get("default intro")->IsValidIntro())
-		Logger::LogError("Error: the \"default intro\" conversation must contain a \"name\" node.");
+		Logger::Log("The \"default intro\" conversation must contain a \"name\" node.", Logger::Level::WARNING);
 	// Effects are serialized as a part of ships.
 	for(auto &&it : effects)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("effect", it);
 	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
 	for(auto &&it : fleets)
@@ -259,7 +279,7 @@ void UniverseObjects::CheckReferences()
 	}
 	// Government names are used in mission NPC blocks and LocationFilters.
 	for(auto &&it : governments)
-		if(it.second.GetTrueName().empty() && !NameIfDeferred(deferred["government"], it))
+		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["government"], it))
 			NameAndWarn("government", it);
 	// Minables are not serialized.
 	for(const auto &it : minables)
@@ -268,7 +288,7 @@ void UniverseObjects::CheckReferences()
 	// Stock missions are never serialized, and an accepted mission is
 	// always fully defined (though possibly not "valid").
 	for(const auto &it : missions)
-		if(it.second.Name().empty())
+		if(it.second.DisplayName().empty())
 			Warn("mission", it.first);
 
 	// News are never serialized or named, except by events (which would then define them).
@@ -306,7 +326,7 @@ void UniverseObjects::CheckReferences()
 			Warn("wormhole", it.first);
 	// Formation patterns are not serialized, but their usage is.
 	for(auto &&it : formations)
-		if(it.second.Name().empty())
+		if(it.second.TrueName().empty())
 			NameAndWarn("formation", it);
 	// Any stock colors should have been loaded from game data files.
 	for(const auto &it : colors)
@@ -315,6 +335,24 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : swizzles)
 		if(!it.second.IsLoaded())
 			Warn("swizzle", it.first);
+	for(const auto &it : messageCategories)
+		if(!it.second.IsLoaded())
+			Warn("message category", it.first);
+	for(auto &it : messages)
+		if(!it.second.IsLoaded())
+			NameAndWarn("message", it);
+	// Persons can be referred to when marking them as destroyed.
+	for(const auto &it : persons)
+		if(!it.second.IsLoaded())
+			Warn("person", it.first);
+}
+
+
+
+void UniverseObjects::DrawMenuBackground(Panel *panel) const
+{
+	lock_guard<mutex> lock(menuBackgroundMutex);
+	menuBackgroundCache.Draw(Information(), panel);
 }
 
 
@@ -328,73 +366,178 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 
 	DataFile data(path);
 	if(debugMode)
-		Logger::LogError("Parsing: " + path.string());
+		Logger::Log("Parsing: " + path.string(), Logger::Level::INFO);
 
 	const ConditionsStore *playerConditions = &player.Conditions();
 	const set<const System *> *visitedSystems = &player.VisitedSystems();
 	const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
+	// If at any point an "overwrite" node is encountered, that means that the next
+	// loaded node must have its previous definition cleared before loading the new values.
+	// For some root nodes, this doesn't require any special handling, as a duplicate
+	// definition will already fully overwrite any previous one.
+	bool overwrite = false;
 	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
 		bool hasValue = node.Size() >= 2;
+		if(key == "overwrite")
+		{
+			// Set overwrite mode for the next encountered node.
+			overwrite = true;
+			continue;
+		}
+
 		if(key == "color" && node.Size() >= 5)
 		{
 			Color *color = colors.Get(node.Token(1));
 			color->Load(node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
-			color->SetName(node.Token(1));
+			color->SetTrueName(node.Token(1));
 		}
 		else if(key == "swizzle" && hasValue)
-			swizzles.Get(node.Token(1))->Load(node);
+		{
+			Swizzle *swizzle = swizzles.Get(node.Token(1));
+			if(overwrite)
+				*swizzle = Swizzle();
+			swizzle->Load(node);
+		}
 		else if(key == "conversation" && hasValue)
-			conversations.Get(node.Token(1))->Load(node, playerConditions);
+		{
+			Conversation *conversation = conversations.Get(node.Token(1));
+			if(overwrite)
+				*conversation = Conversation();
+			conversation->Load(node, playerConditions);
+		}
 		else if(key == "effect" && hasValue)
-			effects.Get(node.Token(1))->Load(node);
+		{
+			Effect *effect = effects.Get(node.Token(1));
+			if(overwrite)
+				*effect = Effect();
+			effect->Load(node);
+		}
 		else if(key == "event" && hasValue)
-			events.Get(node.Token(1))->Load(node, playerConditions);
+		{
+			GameEvent *event = events.Get(node.Token(1));
+			if(overwrite)
+				*event = GameEvent();
+			event->Load(node, playerConditions);
+		}
 		else if(key == "fleet" && hasValue)
-			fleets.Get(node.Token(1))->Load(node);
+		{
+			Fleet *fleet = fleets.Get(node.Token(1));
+			if(overwrite)
+				*fleet = Fleet();
+			fleet->Load(node);
+		}
 		else if(key == "formation" && hasValue)
-			formations.Get(node.Token(1))->Load(node);
+		{
+			FormationPattern *formation = formations.Get(node.Token(1));
+			if(overwrite)
+				*formation = FormationPattern();
+			formation->Load(node);
+		}
 		else if(key == "galaxy" && hasValue)
-			galaxies.Get(node.Token(1))->Load(node);
+		{
+			Galaxy *galaxy = galaxies.Get(node.Token(1));
+			if(overwrite)
+				*galaxy = Galaxy();
+			galaxy->Load(node);
+		}
 		else if(key == "government" && hasValue)
-			governments.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets);
+		{
+			Government *government = governments.Get(node.Token(1));
+			if(overwrite)
+				*government = Government();
+			government->Load(node, visitedSystems, visitedPlanets);
+		}
 		else if(key == "hazard" && hasValue)
-			hazards.Get(node.Token(1))->Load(node);
+		{
+			Hazard *hazard = hazards.Get(node.Token(1));
+			if(overwrite)
+				*hazard = Hazard();
+			hazard->Load(node);
+		}
 		else if(key == "interface" && hasValue)
 		{
-			interfaces.Get(node.Token(1))->Load(node);
+			Interface *interfaceData = interfaces.Get(node.Token(1));
+			if(overwrite)
+				*interfaceData = Interface();
+			interfaceData->Load(node);
 
 			// If we modified the "menu background" interface, then
 			// we also update our cache of it.
 			if(node.Token(1) == "menu background")
 			{
 				lock_guard<mutex> lock(menuBackgroundMutex);
+				if(overwrite)
+					menuBackgroundCache = Interface();
 				menuBackgroundCache.Load(node);
 			}
 		}
 		else if(key == "minable" && hasValue)
-			minables.Get(node.Token(1))->Load(node);
+		{
+			Minable *minable = minables.Get(node.Token(1));
+			if(overwrite)
+				*minable = Minable();
+			minable->Load(node);
+		}
 		else if(key == "mission" && hasValue)
-			missions.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
+		{
+			Mission *mission = missions.Get(node.Token(1));
+			if(overwrite)
+				*mission = Mission();
+			mission->Load(node, playerConditions, visitedSystems, visitedPlanets);
+		}
 		else if(key == "outfit" && hasValue)
-			outfits.Get(node.Token(1))->Load(node, playerConditions);
+		{
+			Outfit *outfit = outfits.Get(node.Token(1));
+			if(overwrite)
+				*outfit = Outfit();
+			outfit->Load(node, playerConditions);
+		}
 		else if(key == "outfitter" && hasValue)
-			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets);
+		{
+			Shop<Outfit> *outfitter = outfitSales.Get(node.Token(1));
+			if(overwrite)
+				*outfitter = Shop<Outfit>();
+			outfitter->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets);
+		}
 		else if(key == "person" && hasValue)
-			persons.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
+		{
+			Person *person = persons.Get(node.Token(1));
+			if(overwrite)
+				*person = Person();
+			person->Load(node, playerConditions, visitedSystems, visitedPlanets);
+		}
 		else if(key == "phrase" && hasValue)
-			phrases.Get(node.Token(1))->Load(node);
+		{
+			Phrase *phrase = phrases.Get(node.Token(1));
+			if(overwrite)
+				*phrase = Phrase();
+			phrase->Load(node);
+		}
 		else if(key == "planet" && hasValue)
-			planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
+		{
+			Planet *planet = planets.Get(node.Token(1));
+			if(overwrite)
+				*planet = Planet();
+			planet->Load(node, wormholes, playerConditions);
+		}
 		else if(key == "ship" && hasValue)
 		{
 			// Allow multiple named variants of the same ship model.
 			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
-			ships.Get(name)->Load(node, playerConditions);
+			Ship *ship = ships.Get(name);
+			if(overwrite)
+				*ship = Ship();
+			ship->Load(node, playerConditions);
 		}
 		else if(key == "shipyard" && hasValue)
-			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets);
+		{
+			Shop<Ship> *shipyard = shipSales.Get(node.Token(1));
+			if(overwrite)
+				*shipyard = Shop<Ship>();
+			shipyard->Load(node, ships, playerConditions, visitedSystems, visitedPlanets);
+		}
 		else if(key == "start" && node.HasChildren())
 		{
 			// This node may either declare an immutable starting scenario, or one that is open to extension
@@ -407,19 +550,42 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
 					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
 				if(existingStart != startConditions.end())
+				{
+					if(overwrite)
+						*existingStart = StartConditions();
 					existingStart->Load(node, globalConditions, playerConditions);
+				}
 				else
 					startConditions.emplace_back(node, globalConditions, playerConditions);
 			}
 		}
 		else if(key == "system" && hasValue)
-			systems.Get(node.Token(1))->Load(node, planets, playerConditions);
+		{
+			System *system = systems.Get(node.Token(1));
+			if(overwrite)
+				*system = System();
+			system->Load(node, planets, playerConditions);
+		}
 		else if(key == "test" && hasValue)
-			tests.Get(node.Token(1))->Load(node, playerConditions);
+		{
+			Test *test = tests.Get(node.Token(1));
+			if(overwrite)
+				*test = Test();
+			test->Load(node, playerConditions);
+		}
 		else if(key == "test-data" && hasValue)
-			testDataSets.Get(node.Token(1))->Load(node, path);
+		{
+			TestData *testData = testDataSets.Get(node.Token(1));
+			if(overwrite)
+				*testData = TestData();
+			testData->Load(node, path);
+		}
 		else if(key == "trade")
+		{
+			if(overwrite)
+				trade = Trade();
 			trade.Load(node);
+		}
 		else if(key == "landing message" && hasValue)
 		{
 			for(const DataNode &child : node)
@@ -428,6 +594,12 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "star" && hasValue)
 		{
 			const Sprite *sprite = SpriteSet::Get(node.Token(1));
+			if(overwrite)
+			{
+				solarPower.erase(sprite);
+				solarWind.erase(sprite);
+				starIcons.erase(sprite);
+			}
 			for(const DataNode &child : node)
 			{
 				const string &childKey = child.Token(0);
@@ -443,10 +615,16 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 		}
 		else if(key == "news" && hasValue)
-			news.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
+		{
+			News *item = news.Get(node.Token(1));
+			if(overwrite)
+				*item = News();
+			item->Load(node, playerConditions, visitedSystems, visitedPlanets);
+		}
 		else if(key == "rating" && hasValue)
 		{
 			vector<string> &list = ratings[node.Token(1)];
+			// Ratings nodes always clear previous values.
 			list.clear();
 			for(const DataNode &child : node)
 				list.push_back(child.Token(0));
@@ -461,15 +639,19 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			};
 			auto it = category.find(node.Token(1));
 			if(it == category.end())
-			{
 				node.PrintTrace("Skipping unrecognized category type:");
-				continue;
+			else
+			{
+				CategoryList &list = categories[it->second];
+				if(overwrite)
+					list.Clear();
+				list.Load(node);
 			}
-			categories[it->second].Load(node);
 		}
 		else if((key == "tip" || key == "help") && hasValue)
 		{
 			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
+			// Tip and help nodes always clear previous values.
 			text.clear();
 			for(const DataNode &child : node)
 			{
@@ -483,17 +665,46 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 		}
 		else if(key == "substitutions" && node.HasChildren())
+		{
+			if(overwrite)
+				substitutions = TextReplacements();
 			substitutions.Load(node, playerConditions);
+		}
 		else if(key == "wormhole" && hasValue)
-			wormholes.Get(node.Token(1))->Load(node);
+		{
+			Wormhole *wormhole = wormholes.Get(node.Token(1));
+			if(overwrite)
+				*wormhole = Wormhole();
+			wormhole->Load(node);
+		}
 		else if(key == "gamerules" && node.HasChildren())
+		{
+			if(overwrite)
+				gamerules = Gamerules();
 			gamerules.Load(node);
+		}
+		else if(key == "message category")
+		{
+			Message::Category *category = messageCategories.Get(node.Token(1));
+			if(overwrite)
+				*category = Message::Category();
+			category->Load(node);
+		}
+		else if(key == "message")
+		{
+			Message *message = messages.Get(node.Token(1));
+			if(overwrite)
+				*message = Message();
+			message->Load(node);
+		}
 		else if(key == "disable" && hasValue)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};
 			const string &category = node.Token(1);
 			if(canDisable.contains(category))
 			{
+				if(overwrite)
+					disabled[category].clear();
 				if(node.HasChildren())
 					for(const DataNode &child : node)
 						disabled[category].emplace(child.Token(0));
@@ -506,13 +717,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
+		// Overwrite mode is only good for one node at a time.
+		overwrite = false;
 	}
-}
-
-
-
-void UniverseObjects::DrawMenuBackground(Panel *panel) const
-{
-	lock_guard<mutex> lock(menuBackgroundMutex);
-	menuBackgroundCache.Draw(Information(), panel);
 }

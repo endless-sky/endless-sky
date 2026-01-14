@@ -41,6 +41,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("bright"));
 	description->SetAlignment(Alignment::JUSTIFIED);
+	Resize();
 	AddChild(description);
 
 	newsMessage.SetFont(FontSet::Get(14));
@@ -67,7 +68,7 @@ void SpaceportPanel::UpdateNews()
 	// Cache the randomly picked results until the next update is requested.
 	hasPortrait = portrait;
 	newsInfo.SetSprite("portrait", portrait);
-	newsInfo.SetString("name", news->Name() + ':');
+	newsInfo.SetString("name", news->SpeakerName() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs);
@@ -79,7 +80,7 @@ void SpaceportPanel::UpdateNews()
 
 void SpaceportPanel::Step()
 {
-	if(GetUI()->IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
+	if(GetUI().IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
 	{
 		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
 		// Special case: if the player somehow got to the spaceport before all
@@ -87,7 +88,7 @@ void SpaceportPanel::Step()
 		if(!mission)
 			mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		else
 			player.HandleBlockedMissions(Mission::SPACEPORT, GetUI());
 	}
@@ -100,9 +101,6 @@ void SpaceportPanel::Draw()
 	if(player.IsDead())
 		return;
 
-	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ?
-		"spaceport (small screen)" : "spaceport");
-	description->SetRect(ui->GetBox("content"));
 	// The description text needs to be updated, because player conditions can be changed
 	// in the meantime, for example if the player accepts a mission on the Job Board.
 	description->SetText(port.Description().ToString());
@@ -117,6 +115,15 @@ void SpaceportPanel::Draw()
 		newsMessage.Draw(newsUi->GetBox(hasPortrait ? "message portrait" : "message").TopLeft(),
 			*GameData::Colors().Get("medium"));
 	}
+}
+
+
+
+void SpaceportPanel::Resize()
+{
+	const Interface *ui = GameData::Interfaces().Get(Screen::Width() < 1280 ?
+		"spaceport (small screen)" : "spaceport");
+	description->SetRect(ui->GetBox("content"));
 }
 
 

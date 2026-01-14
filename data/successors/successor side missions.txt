@@ -29,7 +29,7 @@ mission "Successors: Predecessor Research 1"
 	stopover "Myiara-Aret-Iir"
 	on offer
 		conversation
-			branch has-deferred
+			branch "has deferred"
 				has "Successors: Predecessor Research 1: deferred"
 			`As you land on the spaceport pad, you see a familiar face approaching; it is Sieasej, the Successor scholar who translated for you during your first contact with the Successors and assisted you during your mission for House Sioeora. They are moving towards you with a small group of similarly-dressed individuals, whom you assume are also scholars of some sort.`
 			`	"Captain! I delight to see thy return; I came here with haste as soon as I saw that thou was to arrive!"`
@@ -50,7 +50,7 @@ mission "Successors: Predecessor Research 1"
 			label accept
 			`	"Our deepest thanks!" Several of the members of the research team smile conspiratorially, clearly excited to be skipping the queue. Sieasej also offers their thanks and makes clear that they'll "keep an eye out for any more interesting opportunities."`
 				accept
-			label has-deferred
+			label "has deferred"
 			`	You realize that the Predecessor research team from House Sioeora is probably still waiting to see if you can transport them to <planet stopovers>. Would you like to contact them?`
 			choice
 				`	(Yes.)`
@@ -289,15 +289,15 @@ mission "Successors: Stargazing 1"
 			`	Nnesa and Jaasora return after a couple of hours as promised, their strange tent gliding back into the <ship>'s cargo bay as smoothly as it exited. The pair unload several notebooks of photos and drawings and chatter excitedly about the various constellations and stellar phenomena that they observed. Nnesa is particularly excited, hurriedly extracting from the interleaved mess of papers a surprisingly accurate and well-constructed star map, which they press up in your face with pride. You cannot help but notice that several of the drawings in the stack are of Jaasora rather than of any stellar phenomena.`
 			`	"From where on the map dost thou hail, captain?" Nnesa roughly gestures to an area of their map that you recognize as human space.`
 			choice
-				`	(Indicate Rutilicus.)`
+				`	(Indicate <home system>.)`
 					to display
 						has "human space start"
 					goto rutilicus
 				`	(Indicate Sol.)`
 					to display
-						has "human space start"
+						has "species: human"
 					goto sol
-				`	(Indicate Fah Soom.)`
+				`	(Indicate <home system>.)`
 					to display
 						has "hai space start"
 					goto "fah soom"
@@ -306,16 +306,14 @@ mission "Successors: Stargazing 1"
 				goto interrupt
 			label rutilicus
 			`	"Oh!" says Nnesa, "I am not sure I know the name for that one, captain. What dost thou call thy home?"`
-			choice
-				`	"Rutilicus."`
-					goto "novel name"
+			`	"<home system>," you reply.`
+				goto "novel name"
 			label sol
 			`	"Oh!" says Nnesa, "Sol." They quietly sound their way through the word a couple times, trying to get it right. "Our name for it is Saaqa-Viirja. 'Twas one of the northernmost extents of our Predecessors' voyages. Ah. But thou know'st this already, for sure."`
 				goto interrupt
 			label "fah soom"
 			`	"Oh!" says Nnesa. "That far to the north? Thy kind must have spread far for thee to have such a place as thy home. What dost thou call it?"`
-			choice
-				`	"Fah Soom."`
+			`	"<home system>," you reply.`
 			label "novel name"
 			`	Nnesa asks you to repeat the word a second time, slowly working their way through your pronunciation and transcribing a short sequence of flowing letters on their map. "'Tis a pleasant name," they say.`
 			label interrupt
@@ -449,12 +447,10 @@ mission "Successors: Unified Defense"
 			label "deserved it"
 			`	A wave of bristling black runs over the Successor's body before they end the transmission.`
 			label end
-			branch "uninhabited end"
+			branch decline
 				has "flagship planet attribute: uninhabited"
 			`	Your landing permission is revoked and the contingent of officers train their weapons on your ship. As several interceptors begin to hover over your landing pad, weapons ready, you are forced to take off.`
 				flee
-			label "uninhabited end"
-				decline
 		
 	npc
 		government "New Houses"

@@ -107,7 +107,7 @@ mission "Hai Reveal [D02] Escort to Cardax"
 	destination "Mooncreek"
 	clearance
 	on visit
-		dialog `You have arrived without the ship you are escorting. You must take off and wait for it to continue.`
+		dialog "You have arrived, but either the Geocoris has not arrived, or the pirates are still threatening the construction site."
 	to offer
 		or
 			has "Hai Reveal [D01A] Summoned to Mountaintop: done"
@@ -146,8 +146,6 @@ mission "Hai Reveal [D02] Escort to Cardax"
 				`	"I suppose..."`
 			`	"The Geocoris and security force are ready whenever you are. Be safe out there <last>, and remember: we can't have any pirates observing the construction."`
 				accept
-	on visit
-		dialog "You have arrived, but either the Geocoris has not arrived, or the pirates are still threatening the construction site."
 	npc accompany save
 		personality escort timid
 		government "Hai (Wormhole Access)"
@@ -682,16 +680,6 @@ event "hai-human treaty signed"
 ship "Boxwing" "Boxwing (Miner)"
 	outfits
 		"KP-6 Photovoltaic Array"
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
-
-
-ship "Dagger" "Dagger (Miner)"
-	outfits
-		"Beam Laser" 2
-		"Small Radar Jammer"
-		"nGVF-BB Fuel Cell"
-		"Supercapacitor"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 

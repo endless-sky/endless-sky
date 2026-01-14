@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapOutfitterPanel.h"
 
-#include "comparators/ByName.h"
+#include "comparators/BySeriesAndIndex.h"
 #include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
@@ -184,7 +184,7 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 void MapOutfitterPanel::DrawItems()
 {
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	if(GetUI().IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
@@ -199,8 +199,9 @@ void MapOutfitterPanel::DrawItems()
 		if(DrawHeader(corner, category))
 			continue;
 
-		for(const Outfit *outfit : it->second)
+		for(const string &name : it->second)
 		{
+			const Outfit *outfit = GameData::Outfits().Get(name);
 			string price = Format::CreditString(outfit->Cost());
 
 			string info;
@@ -281,7 +282,7 @@ void MapOutfitterPanel::Init()
 			for(const Outfit *outfit : it.second.OutfitterStock())
 				if(!seen.contains(outfit))
 				{
-					catalog[outfit->Category()].push_back(outfit);
+					catalog[outfit->Category()].push_back(outfit->TrueName());
 					seen.insert(outfit);
 				}
 
@@ -291,7 +292,7 @@ void MapOutfitterPanel::Init()
 			for(const auto &oit : it.second.Outfits())
 				if(!seen.contains(oit.first))
 				{
-					catalog[oit.first->Category()].push_back(oit.first);
+					catalog[oit.first->Category()].push_back(oit.first->TrueName());
 					seen.insert(oit.first);
 				}
 
@@ -299,11 +300,11 @@ void MapOutfitterPanel::Init()
 	for(const auto &it : player.Harvested())
 		if(!seen.contains(it.second))
 		{
-			catalog[it.second->Category()].push_back(it.second);
+			catalog[it.second->Category()].push_back(it.second->TrueName());
 			seen.insert(it.second);
 		}
 
 	// Sort the vectors.
 	for(auto &it : catalog)
-		sort(it.second.begin(), it.second.end(), ByDisplayName<Outfit>());
+		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
 }

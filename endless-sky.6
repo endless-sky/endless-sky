@@ -1,4 +1,4 @@
-.TH endless\-sky 6 "28 Jun 2025" "ver. 0.10.15-alpha" "Endless Sky"
+.TH endless\-sky 6 "25 Oct 2025" "ver. 0.10.17-alpha" "Endless Sky"
 
 .SH NAME
 endless\-sky \- a space exploration and combat game.
@@ -116,6 +116,9 @@ prints (to STDOUT) a list of all system attributes and which systems have them.
 
 .IP \fB\-\-matches
 reads a data file from STDIN and looks for a "location" node at the root level (i.e. not indentated). If it finds one, prints a list of all systems and planets which match the location filter in that node.
+
+.IP \fB\-\-changes
+prints a list of changes from the "recent" save file. Includes data changes from events referred to only by name as children of the "event" node.
 
 .SH AUTHOR
 Michael Zahniser (mzahniser@gmail.com)

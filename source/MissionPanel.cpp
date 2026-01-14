@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Command.h"
 #include "CoreStartData.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -55,9 +55,6 @@ using namespace std;
 
 namespace {
 	constexpr int SIDE_WIDTH = 280;
-
-	// Hovering over sort buttons for this many frames activates the tooltip.
-	const int HOVER_TIME = 60;
 
 	// Check if the mission involves the given system,
 	bool Involves(const Mission &mission, const System *system)
@@ -131,7 +128,9 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	available(player.AvailableJobs()),
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
-	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end())
+	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
+	tooltip(150, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Re-do job sorting since something could have changed
 	player.SortAvailable();
@@ -139,11 +138,7 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
-	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
-	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetRect(missionInterface->GetBox("description"));
+	InitTextArea();
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -168,7 +163,9 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
-	availableScroll(0), acceptedScroll(0), dragSide(0)
+	availableScroll(0), acceptedScroll(0), dragSide(0),
+	tooltip(150, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_LEFT,
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	Audio::Pause();
 
@@ -181,11 +178,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
 		++acceptedIt;
 
-	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
-	description->SetAlignment(Alignment::JUSTIFIED);
-	description->SetColor(*GameData::Colors().Get("bright"));
-	description->SetRect(missionInterface->GetBox("description"));
+	InitTextArea();
 
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
@@ -211,13 +204,13 @@ void MissionPanel::Step()
 	// If a job or mission that launches the player triggers,
 	// immediately close the map.
 	if(player.ShouldLaunch())
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	if(GetUI().IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced");
 	DoHelp("jobs");
 
-	if(GetUI()->IsTop(this) && !fromMission)
+	if(GetUI().IsTop(this) && !fromMission)
 	{
 		Mission *mission = player.MissionToOffer(Mission::JOB_BOARD);
 		if(mission)
@@ -231,7 +224,7 @@ void MissionPanel::Step()
 			specialSystem = mission->IsVisible() ? mission->Destination()->GetSystem() : nullptr;
 			CenterOnSystem(specialSystem ? specialSystem : player.GetSystem());
 
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		}
 		else
 		{
@@ -248,8 +241,11 @@ void MissionPanel::Draw()
 {
 	MapPanel::Draw();
 
-	// Update the tooltip timer [0-60].
-	hoverSortCount += hoverSort >= 0 ? (hoverSortCount < HOVER_TIME) : (hoverSortCount ? -1 : 0);
+	// Update the tooltip timer.
+	if(hoverSort >= 0)
+		tooltip.IncrementCount();
+	else
+		tooltip.DecrementCount();
 
 	const Set<Color> &colors = GameData::Colors();
 
@@ -318,6 +314,14 @@ void MissionPanel::Draw()
 
 
 
+void MissionPanel::UpdateTooltipActivation()
+{
+	MapPanel::UpdateTooltipActivation();
+	tooltip.UpdateActivationCount();
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
@@ -336,8 +340,8 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
-			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
-				"Abort mission \"" + acceptedIt->Name() + "\"?"));
+			GetUI().Push(new DialogPanel(this, &MissionPanel::AbortMission,
+				"Abort mission \"" + acceptedIt->DisplayName() + "\"?"));
 		return true;
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
@@ -409,8 +413,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 
 
 
-bool MissionPanel::Click(int x, int y, int clicks)
+bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return MapPanel::Click(x, y, button, clicks);
+
 	dragSide = 0;
 
 	if(x > Screen::Right() - 80 && y > Screen::Bottom() - 50)
@@ -437,7 +444,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				else if(hoverSort == 2)
 				{
 					player.NextAvailableSortType();
-					tooltip.clear();
+					tooltip.Clear();
 				}
 				else if(hoverSort == 3)
 					player.ToggleSortAscending();
@@ -639,7 +646,7 @@ bool MissionPanel::Hover(int x, int y)
 	}
 
 	if(oldSort != hoverSort)
-		tooltip.clear();
+		tooltip.Clear();
 
 	return dragSide || MapPanel::Hover(x, y);
 }
@@ -652,6 +659,31 @@ bool MissionPanel::Scroll(double dx, double dy)
 		return Drag(0., dy * Preferences::ScrollSpeed());
 
 	return MapPanel::Scroll(dx, dy);
+}
+
+
+
+void MissionPanel::Resize()
+{
+	ResizeTextArea();
+}
+
+
+
+void MissionPanel::InitTextArea()
+{
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetColor(*GameData::Colors().Get("bright"));
+	ResizeTextArea();
+}
+
+
+
+void MissionPanel::ResizeTextArea() const
+{
+	description->SetRect(missionInterface->GetBox("description"));
 }
 
 
@@ -682,33 +714,12 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 
 void MissionPanel::DrawKey() const
 {
-	const Sprite *back = SpriteSet::Get("ui/mission key");
-	SpriteShader::Draw(back, Screen::BottomLeft() + .5 * Point(back->Width(), -back->Height()));
-
-	const Font &font = FontSet::Get(14);
-	Point angle = Point(1., 1.).Unit();
-
-	const int ROWS = 5;
-	Point pos(Screen::Left() + 10., Screen::Bottom() - ROWS * 20. + 5.);
-	Point pointerOff(5., 5.);
-	Point textOff(8., -.5 * font.Height());
-
-	const Set<Color> &colors = GameData::Colors();
-	const Color &bright = *colors.Get("bright");
-	const Color &dim = *colors.Get("dim");
-	const Color COLOR[ROWS] = {
-		*colors.Get("available job"),
-		*colors.Get("unavailable job"),
-		*colors.Get("active mission"),
-		*colors.Get("blocked mission"),
-		*colors.Get("waypoint")
-	};
-	static const string LABEL[ROWS] = {
-		"Available job; can accept",
-		"Too little space to accept",
-		"Active job; go here to complete",
-		"Has unfinished requirements",
-		"System of importance"
+	static const string CONDITIONS[] = {
+		"available",
+		"unavailable",
+		"active",
+		"blocked",
+		"waypoint"
 	};
 	int selected = -1;
 	if(availableIt != available.end())
@@ -716,12 +727,10 @@ void MissionPanel::DrawKey() const
 	if(acceptedIt != accepted.end() && acceptedIt->Destination())
 		selected = 2 + !IsSatisfied(*acceptedIt);
 
-	for(int i = 0; i < ROWS; ++i)
-	{
-		PointerShader::Draw(pos + pointerOff, angle, 10.f, 18.f, 0.f, COLOR[i]);
-		font.Draw(LABEL[i], pos + textOff, i == selected ? bright : dim);
-		pos.Y() += 20.;
-	}
+	Information info;
+	if(selected >= 0)
+		info.SetCondition(CONDITIONS[selected]);
+	GameData::Interfaces().Get("map: mission view: key")->Draw(info);
 }
 
 
@@ -732,6 +741,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 {
 	auto toVisit = set<const System *>{mission.Waypoints()};
 	toVisit.insert(mission.MarkedSystems().begin(), mission.MarkedSystems().end());
+	toVisit.insert(mission.TrackedSystems().begin(), mission.TrackedSystems().end());
 	for(const Planet *planet : mission.Stopovers())
 		toVisit.insert(planet->GetSystem());
 	auto hasVisited = set<const System *>{mission.VisitedWaypoints()};
@@ -773,7 +783,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 	// Draw the panel.
 	Point size(SIDE_WIDTH, 20 * entries + 40);
-	FillShader::Fill(pos + .5 * size, size, back);
+	FillShader::Fill(Rectangle::FromCorner(pos, size), back);
 
 	// Edges:
 	const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
@@ -820,7 +830,11 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 		SpriteShader::Draw(rush[player.ShouldSortSeparateDeadline()], pos + Point(SIDE_WIDTH - 105., 7.5));
 
 		if(hoverSort >= 0)
-			FillShader::Fill(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.), highlight);
+		{
+			Rectangle zone = Rectangle(pos + Point(SIDE_WIDTH - 105. + 30 * hoverSort, 7.5), Point(22., 16.));
+			tooltip.SetZone(zone);
+			FillShader::Fill(zone, highlight);
+		}
 	}
 
 	// Panel title
@@ -837,7 +851,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 
 
-Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
+Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const list<Mission>::const_iterator &selectIt,
 	bool separateDeadlineOrPossible) const
 {
 	const Font &font = FontSet::Get(14);
@@ -848,7 +862,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 	bool separated = false;
 
-	for(auto it = list.begin(); it != list.end(); ++it)
+	for(auto it = missionList.begin(); it != missionList.end(); ++it)
 	{
 		if(!it->IsVisible())
 			continue;
@@ -873,7 +887,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 			SpriteShader::Draw(fast, pos + Point(-4., 8.));
 
 		const Color *color = nullptr;
-		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
+		bool canAccept = (&missionList == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		if(!canAccept)
 		{
 			if(it->Unavailable().IsLoaded())
@@ -896,7 +910,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 				color = &unselected;
 		}
 
-		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
+		font.Draw({it->DisplayName(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
 	}
 
 	return pos;
@@ -955,50 +969,42 @@ void MissionPanel::DrawMissionInfo()
 
 void MissionPanel::DrawTooltips()
 {
-	if(hoverSort < 0 || hoverSortCount < HOVER_TIME)
+	if(hoverSort < 0 || !tooltip.ShouldDraw())
 		return;
 
 	// Create the tooltip text.
-	if(tooltip.empty())
+	if(!tooltip.HasText())
 	{
+		string text;
 		if(hoverSort == 0)
-			tooltip = "Filter out missions with a deadline";
+			text = "Filter out missions with a deadline";
 		else if(hoverSort == 1)
-			tooltip = "Filter out missions that you can't accept";
+			text = "Filter out missions that you can't accept";
 		else if(hoverSort == 2)
 		{
 			switch(player.GetAvailableSortType())
 			{
 				case 0:
-					tooltip = "Sort alphabetically";
+					text = "Sort alphabetically";
 					break;
 				case 1:
-					tooltip = "Sort by payment";
+					text = "Sort by payment";
 					break;
 				case 2:
-					tooltip = "Sort by distance";
+					text = "Sort by distance";
 					break;
 				case 3:
-					tooltip = "Sort by convenience: "
+					text = "Sort by convenience: "
 							"Prioritize missions going to a planet or system that is already a destination of one of your missions";
 					break;
 			}
 		}
 		else if(hoverSort == 3)
-			tooltip = "Sort direction";
+			text = "Sort direction";
+		tooltip.SetText(text);
+	}
 
-		hoverText.Wrap(tooltip);
-	}
-	if(!tooltip.empty())
-	{
-		// Add 10px margin to all sides of the text.
-		Point size(hoverText.WrapWidth(), hoverText.Height() - hoverText.ParagraphBreak());
-		size += Point(20., 20.);
-		Point topLeft = Point(Screen::Left() + SIDE_WIDTH - 120. + 30 * hoverSort, Screen::Top() + 30.);
-		// Draw the background fill and the tooltip text.
-		FillShader::Fill(topLeft + .5 * size, size, *GameData::Colors().Get("tooltip background"));
-		hoverText.Draw(topLeft + Point(10., 10.), *GameData::Colors().Get("medium"));
-	}
+	tooltip.Draw();
 }
 
 
@@ -1039,7 +1045,7 @@ void MissionPanel::Accept(bool force)
 		else
 			out << "You must sell " << Format::CargoString(cargoToSell, "ordinary commodities")
 				<< " to make room for this mission. Continue?";
-		GetUI()->Push(new Dialog(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
+		GetUI().Push(new DialogPanel(this, &MissionPanel::MakeSpaceAndAccept, out.str()));
 		return;
 	}
 
@@ -1208,6 +1214,13 @@ void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 		}
 
 	for(const System *mark : mission.MarkedSystems())
+		if(++index == cycleInvolvedIndex)
+		{
+			CenterOnSystem(mark);
+			return;
+		}
+
+	for(const System *mark : mission.TrackedSystems())
 		if(++index == cycleInvolvedIndex)
 		{
 			CenterOnSystem(mark);

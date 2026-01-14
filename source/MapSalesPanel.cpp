@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryList.h"
 #include "CategoryType.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -123,7 +123,7 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		ScrollTo(selected);
 	}
 	else if(key == 'f')
-		GetUI()->Push(new Dialog(
+		GetUI().Push(new DialogPanel(
 			this, &MapSalesPanel::DoFind, "Search for:"));
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
@@ -134,8 +134,11 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 
 
-bool MapSalesPanel::Click(int x, int y, int clicks)
+bool MapSalesPanel::Click(int x, int y, MouseButton button, int clicks)
 {
+	if(button != MouseButton::LEFT)
+		return MapPanel::Click(x, y, button, clicks);
+
 	if(x < Screen::Left() + WIDTH)
 	{
 		const Point point(x, y);
@@ -183,7 +186,7 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		}
 	}
 	else
-		return MapPanel::Click(x, y, clicks);
+		return MapPanel::Click(x, y, button, clicks);
 
 	return true;
 }
@@ -308,7 +311,7 @@ void MapSalesPanel::DrawInfo() const
 		const Color &back = *GameData::Colors().Get("map side panel background");
 		Point size(width, height);
 		Point topLeft(Screen::Right() - size.X(), Screen::Top());
-		FillShader::Fill(topLeft + .5 * size, size, back);
+		FillShader::Fill(Rectangle::FromCorner(topLeft, size), back);
 
 		Point leftPos = topLeft + Point(
 			-.5 * left->Width(),
@@ -380,7 +383,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const 
 
 void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale,
 		bool isSelected, const string &name, const string &variantName,
-		const string &price, const string &info, const std::string &storage)
+		const string &price, const string &info, const string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("item selected");
@@ -404,7 +407,7 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swi
 	if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
 	{
 		if(isSelected)
-			FillShader::Fill(corner + .5 * blockSize, blockSize, selectionColor);
+			FillShader::Fill(Rectangle::FromCorner(corner, blockSize), selectionColor);
 
 		DrawSprite(corner, sprite, swizzle);
 

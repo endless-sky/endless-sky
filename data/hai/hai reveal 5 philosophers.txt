@@ -642,7 +642,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 					goto who
 				`	"This was a private conversation."`
 					goto private
-				`	(Draw your weapon.)`
+				`	(Draw my weapon.)`
 					goto die
 			label private
 			action
@@ -679,7 +679,7 @@ mission "Hai Reveal [B08] Syndicate Internal Affairs"
 				`	"The answer is no and this conversation is over."`
 				`	"Alright, let's go."`
 					accept
-				`	(Draw your weapon.)`
+				`	(Draw my weapon.)`
 					goto die
 			`	You can feel fists hit either side of your head, and you pass out. A while later, you wake up gagged with four men holding your arms and legs. They're walking, carrying you somewhere. Eventually, they reach your ship and let you down. It seems this was not an optional trip after all.`
 				accept
@@ -994,7 +994,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 				`	"We only need to maintain the ruse a little longer."`
 					goto maintain
 				`	"You don't know that we've given up on that?"`
-					goto giveup
+					goto "give up"
 				`	"Is it still working at all?"`
 					goto working
 					to display
@@ -1004,7 +1004,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 				set "Hai Reveal [B12] Devil-Hide Battle: working"
 			`	"Our ruse is getting preposterous. The captains at Ultima Thule already know about the Hai, but we had to tell the crews that we were dealing with a major pirate threat. We hired a few pirate gangs to fly through the area to back our story. The Shield Beetles you've just flown here have been explained away as experimental ship designs from the movie production being tested out. Still though, our cover stories have passed the point of plausibility into the realm of barefaced lying. I hope you can finish this without too many more public displays, otherwise we won't be able to hide the Hai anymore."`
 				goto kopkow
-			label giveup
+			label "give up"
 			`	He blinks at you, "Wait, what?"`
 				goto explain
 			label maintain
@@ -1052,6 +1052,7 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 		event "elenchus can be dominated"
 	on fail
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
+		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 	on decline
 		fail "Hai Reveal [B12-A] Devil-Hide Fleet"
 	on visit
@@ -1064,14 +1065,8 @@ mission "Hai Reveal [B12] Devil-Hide Battle"
 			`Teeneep sends out a message to the fleet informing you that she is engaging the electronic warfare baffling and reminds you that everyone needs to get onto the ground intact if this is to go well. The general's ship is the Emperor Beetle, Kratos. The baffling won't work forever, so get to it.`
 			`	(NOTE: You need to dominate this planet to finish the battle. To do that, talk to the planet and demand tribute. The planet will send multiple waves of defense fleets. Demand tribute after defeating the final wave, and they'll agree. Then land to finish the mission.)`
 			`	(WARNING: The allies you are escorting will not help you fight the defense fleets sent in response to your tribute demands, but they will fight any other pirate ships in the system.)`
-	on visit
-		conversation
-			`To finish this mission, you must destroy all defending pirate vessels, and land with Choot'k, Teeneep, Danforth and Wallace's ships all present in the system and intact...`
-				launch
 	on complete
 		event "liberated elenchus"
-	on fail
-		dialog `You have failed an essential mission. To complete this story line, revert to the autosave or another earlier snapshot of the game.`
 
 	# IMPORTANT: For story reasons, all non-Unfettered ships must have "save" to ensure
 	# the Unfettered get their jump drives back.
@@ -1215,12 +1210,12 @@ mission "Hai Reveal [B13] Freedom"
 			`	You could be forgiven for hesitating to follow them, but General Choot'k appears beside you and places one strong paw on your shoulder. "Come, now. We will discover if our task is finished or impossible. It is time for bravery." He guides you in after the operatives, along with his own troops.`
 			choice
 				`	"Lead on."`
-					goto leadon
+					goto "lead on"
 				`	"Treating me like a coward? That's grounds for a duel."`
 			`	"Heh heh," he laughs in a low voice. "Maybe soon."`
 			action
 				set "Hai Reveal [B13] Freedom: challenged Choot'k"
-			label leadon
+			label "lead on"
 			`	It's pitch black when you enter, but scanners show the room is a vast cavern, some sort of public space suitable for ten thousand people or more. As the last of the troops file in, a second blast door closes behind you. High roof lights snap on making the room as bright as day in the blink of an eye.`
 			`	You see before you scores of pirates, corralled and held captive by an equally large crowd of heavily-armed civilians - all of which are hesitantly pointing guns at the operatives. It seems the citizens arranged a violent rebellion to coincide with the Republic's attack. Three unarmed civilians wearing distinctive hooded robes walk towards the operatives: one Hai, one human, and to your surprise one lizard-like Korath. The leader of the Syndicate operatives exits her suit and approaches them.`
 			`	The Hai speaks. "We are the leaders of the civilian government of Elenchus. Although we are grateful for your assistance in defeating our violent rulers, we will not accept your dominion either. We have heard of your civil war. Elenchus is an independent nation, and we intend to stay so unless you intend to force otherwise. I can, however, promise that unlike our overlords, we have no interest in anything other than peace. We will send no military ships through the wormhole."`
@@ -1332,21 +1327,21 @@ mission "Hai Reveal [B13] Freedom"
 			label reason
 			choice
 				`	"I do not, but I must, out of duty."`
-					goto knowduty
+					goto "know duty"
 				`	"I wish to know, for the Hai."`
-					goto knowhai
+					goto "know hai"
 				`	"I wish to know, for the Syndicate."`
-					goto knowsyndi
+					goto "know syndicate"
 				`	"I wish to know, for the people."`
 			`	They regard you thoughtfully. "You are well suited to the neutral ground. It is little wonder you are here as an agent of no single faction. That is appropriate then.`
 				goto finished
-			label knowhai
+			label "know hai"
 			`	They incline their head respectfully. "The Hai are perhaps the greatest valuers of truth among us. If they have set you to this, then they will be honored by your diligence.`
 				goto finished
-			label knowsyndi
+			label "know syndicate"
 			`	They focus on you closely. "The Syndicate is perhaps the most impressive machine ever wrought by man. It is worthy of both respect and fear, and will do to people as any machine does to the product of its design. Treat it as such and it will always do precisely what you expect it to; both good and bad.`
 				goto finished
-			label knowduty
+			label "know duty"
 			`	They lift their head and smile. "A promise made is a promise kept. If your word is your bond then it would not do for me to stand in its way.`
 				goto finished
 			label finished

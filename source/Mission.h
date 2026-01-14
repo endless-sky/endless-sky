@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
+#include "MissionTimer.h"
 #include "NPC.h"
 #include "TextReplacements.h"
 
@@ -74,7 +75,11 @@ public:
 
 	// Basic mission information.
 	const EsUuid &UUID() const noexcept;
-	const std::string &Name() const;
+	// Get the internal name used for this mission. This name is unique and is
+	// never modified by string substitution, so it can be used in condition
+	// variables, etc.
+	const std::string &TrueName() const;
+	const std::string &DisplayName() const;
 	const std::string &Description() const;
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
@@ -112,8 +117,10 @@ public:
 	const std::set<const Planet *> &VisitedStopovers() const;
 	const std::set<const System *> &MarkedSystems() const;
 	const std::set<const System *> &UnmarkedSystems() const;
-	void Mark(const System *system) const;
-	void Unmark(const System *system) const;
+	const std::set<const System *> &TrackedSystems() const;
+	void RecalculateTrackedSystems();
+	void Mark(const std::set<const System *> &systems) const;
+	void Unmark(const std::set<const System *> &system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int Fine() const;
@@ -170,25 +177,30 @@ public:
 	// information or show new UI panels. PlayerInfo::MissionCallback() will be
 	// used as the callback for an `on offer` conversation, to handle its response.
 	// If it is not possible for this change to happen, this function returns false.
+	// The UI is passed by pointer since certain actions aren't allowed to generate new panels,
+	// and will therefore receive nullptr for the UI. These cases include:
+	// - OFFER if it is for a job that was just accepted. (This call will be immediately followed up with an ACCEPT
+	// action that does pass the UI pointer.)
+	// - ACCEPT, DECLINE, and DEFER if it is from PlayerInfo::MissionCallback(), as in this case the mission already
+	// used the UI to create a conversation or dialog that triggered the callback.
+	// - DAILY is called in PlayerInfo::AdvanceDate and never has access to the UI.
 	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 
 	// Get a list of NPCs associated with this mission. Every time the player
 	// takes off from a planet, they should be added to the active ships.
 	const std::list<NPC> &NPCs() const;
+	// Iterate through the timers and progress them if applicable.
+	void StepTimers(PlayerInfo &player, UI &ui);
 	// Update which NPCs are active based on their spawn and despawn conditions.
 	void UpdateNPCs(const PlayerInfo &player);
 	// Checks if the given ship belongs to one of the mission's NPCs.
 	bool HasShip(const std::shared_ptr<Ship> &ship) const;
 	// If any event occurs between two ships, check to see if this mission cares
 	// about it. This may affect the mission status or display a message.
-	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui);
+	void Do(const ShipEvent &event, PlayerInfo &player, UI &ui);
 	bool RequiresGiftedShip(const std::string &shipId) const;
 
-	// Get the internal name used for this mission. This name is unique and is
-	// never modified by string substitution, so it can be used in condition
-	// variables, etc.
-	const std::string &Identifier() const;
 	// Get a specific mission action from this mission.
 	// If the mission action is not found for the given trigger, returns an empty
 	// mission action.
@@ -200,14 +212,14 @@ public:
 
 
 private:
-	bool Enter(const System *system, PlayerInfo &player, UI *ui);
+	bool Enter(const System *system, PlayerInfo &player, UI &ui);
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
 
 
 private:
-	std::string name;
+	std::string trueName;
 	std::string displayName;
 	std::string description;
 	std::string blocked;
@@ -281,12 +293,17 @@ private:
 	// wants to highlight for the player.
 	mutable std::set<const System *> markedSystems;
 	mutable std::set<const System *> unmarkedSystems;
+	// Systems that are marked because a "tracked" mission NPC is in them.
+	bool hasTrackedNpcs = false;
+	std::set<const System *> trackedSystems;
 
 	// User-defined text replacements unique to this mission:
 	TextReplacements substitutions;
 
 	// NPCs:
 	std::list<NPC> npcs;
+	// Timers:
+	std::list<MissionTimer> timers;
 
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;

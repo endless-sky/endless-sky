@@ -15,11 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameWindow.h"
 
-#include "Files.h"
-#include "image/ImageBuffer.h"
-#include "image/ImageFileData.h"
 #include "Logger.h"
 #include "Screen.h"
+
+#ifdef _WIN32
+#include "windows/WinWindow.h"
+#endif
 
 #include "opengl.h"
 #include <SDL2/SDL.h>
@@ -49,7 +50,7 @@ namespace {
 		string message = SDL_GetError();
 		if(!message.empty())
 		{
-			Logger::LogError("(SDL message: \"" + message + "\")");
+			Logger::Log("(SDL message: \"" + message + "\")", Logger::Level::ERROR);
 			SDL_ClearError();
 			return true;
 		}
@@ -110,16 +111,17 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 	if(mode.refresh_rate && mode.refresh_rate < 60)
-		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
-			" The game will run more slowly.");
+		Logger::Log("Low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
+			" The game will run more slowly.", Logger::Level::WARNING);
 
 	// Make the window just slightly smaller than the monitor resolution.
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
 	if(maxWidth < minWidth || maxHeight < minHeight)
-		Logger::LogError("Monitor resolution is too small! Minimal requirement is "
+		Logger::Log("Monitor resolution is too small! Minimal requirement is "
 			+ to_string(minWidth) + 'x' + to_string(minHeight)
-			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.');
+			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.',
+			Logger::Level::WARNING);
 
 	int windowWidth = maxWidth - 100;
 	int windowHeight = maxHeight - 100;
@@ -131,6 +133,9 @@ bool GameWindow::Init(bool headless)
 		windowWidth = min(windowWidth, Screen::RawWidth());
 		windowHeight = min(windowHeight, Screen::RawHeight());
 	}
+
+	if(!Preferences::Has("Block screen saver"))
+		SDL_EnableScreenSaver();
 
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
@@ -155,7 +160,7 @@ bool GameWindow::Init(bool headless)
 	{
 		width = windowWidth;
 		height = windowHeight;
-		Screen::SetRaw(width, height);
+		Screen::SetRaw(width, height, true);
 		return true;
 	}
 
@@ -175,6 +180,19 @@ bool GameWindow::Init(bool headless)
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 
 	context = SDL_GL_CreateContext(mainWindow);
+#ifndef ES_GLES
+	if(!context)
+	{
+		Logger::Log("OpenGL context creation failed. Retrying with experimental OpenGL 2 support.",
+			Logger::Level::WARNING);
+		SDL_ClearError();
+#ifdef _WIN32
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+#endif
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, 0);
+		context = SDL_GL_CreateContext(mainWindow);
+	}
+#endif
 	if(!context)
 	{
 		ExitWithError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.");
@@ -219,15 +237,22 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 
-	if(*glVersion < '3')
+	if(*glVersion < '2')
 	{
 		ostringstream out;
-		out << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
+		out << "Endless Sky requires OpenGL version 2.0 or higher, and 3.0 is recommended." << endl;
 		out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
 		out << "Please update your graphics drivers.";
 		ExitWithError(out.str());
 		return false;
 	}
+#ifndef ES_GLES
+	else if(*glVersion == '2')
+	{
+		OpenGL::DisableOpenGL3();
+		Logger::Log("Experimental OpenGL 2 support has been enabled.", Logger::Level::INFO);
+	}
+#endif
 
 	// OpenGL settings
 	glClearColor(0.f, 0.f, 0.0f, 1.f);
@@ -244,13 +269,11 @@ bool GameWindow::Init(bool headless)
 		Preferences::ToggleVSync();
 
 	// Make sure the screen size and view-port are set correctly.
-	AdjustViewport();
+	AdjustViewport(true);
 
-#ifndef __APPLE__
-	// On OS X, setting the window icon will cause that same icon to be used
-	// in the dock and the application switcher. That's not something we
-	// want, because the ".icns" icon that is used automatically is prettier.
-	SetIcon();
+#ifdef _WIN32
+	UpdateTitleBarTheme();
+	UpdateWindowRounding();
 #endif
 
 	return true;
@@ -282,31 +305,7 @@ void GameWindow::Step()
 
 
 
-void GameWindow::SetIcon()
-{
-	if(!mainWindow)
-		return;
-
-	// Load the icon file.
-	ImageBuffer buffer;
-	if(!buffer.Read(ImageFileData(Files::Resources() / "icon.png")))
-		return;
-	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
-		return;
-
-	// Convert the icon to an SDL surface.
-	SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(buffer.Pixels(), buffer.Width(), buffer.Height(),
-		32, 4 * buffer.Width(), 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-	if(surface)
-	{
-		SDL_SetWindowIcon(mainWindow, surface);
-		SDL_FreeSurface(surface);
-	}
-}
-
-
-
-void GameWindow::AdjustViewport()
+void GameWindow::AdjustViewport(bool noResizeEvent)
 {
 	if(!mainWindow)
 		return;
@@ -326,12 +325,11 @@ void GameWindow::AdjustViewport()
 	// means one pixel of the display will be clipped.
 	int roundWidth = (windowWidth + 1) & ~1;
 	int roundHeight = (windowHeight + 1) & ~1;
-	Screen::SetRaw(roundWidth, roundHeight);
+	Screen::SetRaw(roundWidth, roundHeight, noResizeEvent);
 
-	// Find out the drawable dimensions. If this is a high- DPI display, this
+	// Find out the drawable dimensions. If this is a high-DPI display, this
 	// may be larger than the window.
 	SDL_GL_GetDrawableSize(mainWindow, &drawWidth, &drawHeight);
-	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);
 
 	// Set the viewport to go off the edge of the window, if necessary, to get
 	// everything pixel-aligned.
@@ -440,10 +438,20 @@ void GameWindow::ToggleFullscreen()
 
 
 
+void GameWindow::ToggleBlockScreenSaver()
+{
+	if(SDL_IsScreenSaverEnabled())
+		SDL_DisableScreenSaver();
+	else
+		SDL_EnableScreenSaver();
+}
+
+
+
 void GameWindow::ExitWithError(const string &message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
-	Logger::LogError(message);
+	Logger::Log(message, Logger::Level::ERROR);
 	checkSDLerror();
 
 	// Show the error message in a message box.
@@ -469,3 +477,19 @@ void GameWindow::ExitWithError(const string &message, bool doPopUp)
 
 	GameWindow::Quit();
 }
+
+
+
+#ifdef _WIN32
+void GameWindow::UpdateTitleBarTheme()
+{
+	WinWindow::UpdateTitleBarTheme(mainWindow);
+}
+
+
+
+void GameWindow::UpdateWindowRounding()
+{
+	WinWindow::UpdateWindowRounding(mainWindow);
+}
+#endif
