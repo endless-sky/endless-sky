@@ -799,26 +799,28 @@ void ShopPanel::DrawShipsSidebar()
 			shipsTooltip.SetZone(shipZones.back());
 		}
 
-		const auto checkIt = flightChecks.find(ship);
-		if(checkIt != flightChecks.end())
-		{
-			const string &check = (*checkIt).second.front();
-			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
-			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
-			if(shipZones.back().Contains(mouse))
-				warningType = check;
-		}
-
-		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
-			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
-				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
-
 		if(ship->IsParked())
 		{
 			static const Point CORNER = .35 * Point(ICON_TILE, ICON_TILE);
 			FillShader::Fill(point + CORNER, Point(6., 6.), dark);
 			FillShader::Fill(point + CORNER, Point(4., 4.), isSelected ? bright : medium);
 		}
+		else
+		{
+			const auto checkIt = flightChecks.find(ship);
+			if(checkIt != flightChecks.end())
+			{
+				const string &check = (*checkIt).second.front();
+				const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
+				SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
+				if(shipZones.back().Contains(mouse))
+					warningType = check;
+			}
+		}
+
+		if(isSelected && playerShips.size() > 1 && ship->OutfitCount(selectedOutfit))
+			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
+				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
 
 		point.X() += ICON_TILE;
 	}
