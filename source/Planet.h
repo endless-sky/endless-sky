@@ -73,7 +73,7 @@ public:
 	// Return the description text for the planet, but not the spaceport:
 	const Paragraphs &Description() const;
 	// Get the landscape sprite.
-	const Sprite *Landscape() const;
+	const Sprite *Landscape(bool refresh = false) const;
 	// Get the name of the ambient audio to play on this planet.
 	const std::string &MusicName() const;
 
@@ -178,7 +178,8 @@ private:
 	std::string displayName;
 	Paragraphs description;
 	Port port;
-	const Sprite *landscape = nullptr;
+	mutable Sprite *landscape = nullptr;
+	std::set<const Sprite *> landscapes;
 	std::string music;
 
 	std::set<std::string> attributes;

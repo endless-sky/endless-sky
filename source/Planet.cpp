@@ -201,7 +201,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		else if(key == "display name")
 			displayName = value;
 		else if(key == "landscape")
-			landscape = SpriteSet::Get(value);
+			for(int i = valueIndex; i < child.Size(); ++i)
+				landscapes.insert(SpriteSet::Get(child.Token(i)));
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
@@ -414,8 +415,10 @@ const Paragraphs &Planet::Description() const
 
 
 // Get the landscape sprite.
-const Sprite *Planet::Landscape() const
+const Sprite *Planet::Landscape(bool refresh) const
 {
+	if(!landscape || refresh)
+		landscape = const_cast<Sprite *>(*std::next(landscapes.begin(), rand() % landscapes.size()));
 	return landscape;
 }
 
