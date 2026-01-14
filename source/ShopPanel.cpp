@@ -795,7 +795,8 @@ void ShopPanel::DrawShipsSidebar()
 
 		if(mouse.Y() < Screen::Bottom() - ButtonPanelHeight() && shipZones.back().Contains(mouse))
 		{
-			shipName = ship->GivenName() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
+			shipName = ship->GivenName() + "\n" + ship->DisplayModelName() + (ship->IsParked() ? "\n" +
+				GameData::Tooltip("parked") : "");
 			shipsTooltip.SetZone(shipZones.back());
 		}
 
