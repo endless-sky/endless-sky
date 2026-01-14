@@ -297,7 +297,7 @@ void BoardingPanel::DrawOutfitInfo()
 		outfitInfoBuffer = make_unique<RenderBuffer>(Point{outfitPane.Width(), bufferHeight});
 	auto target = outfitInfoBuffer->SetTarget();
 
-	const Point thumbnailCenter(0., outfitInfoBuffer->Top() + static_cast<int>(tileSize / 2));
+	const Point thumbnailCenter(3.5, outfitInfoBuffer->Top() + static_cast<int>(tileSize / 2));
 	const Point startPoint(outfitInfoBuffer->Left() + 5., outfitInfoBuffer->Top() + tileSize);
 
 	const Sprite *background = SpriteSet::Get("ui/outfitter unselected");
