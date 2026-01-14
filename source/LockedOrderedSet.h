@@ -1,4 +1,4 @@
-/* OrderedSet.h
+/* LockedOrderedSet.h
 Copyright (c) 2026 by xobes
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
