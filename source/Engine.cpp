@@ -772,8 +772,7 @@ void Engine::Step(bool isActive)
 		Format::CreditString(player.Accounts().Credits()));
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
 
-	// If already landed display where we are; See logic in PlayerInfo related to `alreadyLanded`.
-	if(flagship && object && object->GetPlanet() == flagship->GetPlanet())
+	if(object)
 	{
 		info.SetString("navigation mode", "Landed on:");
 		info.SetString("destination", object->DisplayName());
