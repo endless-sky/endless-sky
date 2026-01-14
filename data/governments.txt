@@ -1950,6 +1950,7 @@ government "Republic"
 		"Alpha" -.3
 		"Merchant" .25
 		"Militia" .1
+		"Pirate" -.3
 		"Navy Intelligence" 1
 		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1
