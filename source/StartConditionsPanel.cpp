@@ -135,7 +135,7 @@ void StartConditionsPanel::Draw()
 bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
 	if(key == 'b' || key == SDLK_ESCAPE || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	else if(!scenarios.empty() && (key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN))
 	{
 		// Move up / down an entry, or a page. If at the bottom / top, wrap around.
@@ -165,7 +165,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 
 		ConversationPanel *panel = new ConversationPanel(
 			player, startIt->GetConversation());
-		GetUI()->Push(panel);
+		GetUI().Push(panel);
 		panel->SetCallback(this, &StartConditionsPanel::OnConversationEnd);
 		return true;
 	}
@@ -259,10 +259,10 @@ void StartConditionsPanel::OnConversationEnd(int)
 		gamePanels.StepAll();
 	}
 	if(parent)
-		GetUI()->Pop(parent);
+		GetUI().Pop(parent);
 
-	GetUI()->Pop(GetUI()->Root().get());
-	GetUI()->Pop(this);
+	GetUI().Pop(GetUI().Root().get());
+	GetUI().Pop(this);
 }
 
 

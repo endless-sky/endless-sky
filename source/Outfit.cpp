@@ -196,8 +196,8 @@ namespace {
 
 	// Used to add the contents of one outfit's map to another, while also
 	// erasing any key with a value of zero.
-	template<class T>
-	void MergeMaps(map<const T *, int> &thisMap, const map<const T *, int> &otherMap, int count)
+	template<class T, class N>
+	void MergeMaps(map<const T *, N> &thisMap, const map<const T *, N> &otherMap, int count)
 	{
 		for(const auto &it : otherMap)
 		{
@@ -256,7 +256,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "afterburner effect" && hasValue)
 			++afterburnerEffects[GameData::Effects().Get(child.Token(1))];
 		else if(key == "jump effect" && hasValue)
-			++jumpEffects[GameData::Effects().Get(child.Token(1))];
+			jumpEffects[GameData::Effects().Get(child.Token(1))] += child.Size() >= 3 ? child.Value(2) : 1.;
 		else if(key == "hyperdrive sound" && hasValue)
 			++hyperSounds[Audio::Get(child.Token(1))];
 		else if(key == "hyperdrive in sound" && hasValue)
@@ -329,7 +329,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	{
 		pluralName = displayName + 's';
 		if((displayName.back() == 's' || displayName.back() == 'z') && node.Token(0) == "outfit")
-			node.PrintTrace("Warning: explicit plural name definition required, but none is provided. Defaulting to \""
+			node.PrintTrace("Explicit plural name definition required, but none is provided. Defaulting to \""
 					+ pluralName + "\".");
 	}
 
@@ -364,7 +364,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		Weapon newWeapon = *weapon;
 		newWeapon.turretTurn = 4.;
 		weapon = make_shared<Weapon>(std::move(newWeapon));
-		node.PrintTrace("Warning: Deprecated use of a turret without specified \"turret turn\":");
+		node.PrintTrace("Deprecated use of a turret without specified \"turret turn\":");
 	}
 
 	// Convert any legacy cargo / outfit scan definitions into power & speed,
@@ -376,7 +376,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		if(initial)
 		{
 			attributes[label] = 0.;
-			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ label + " power\" and \"" + label + " speed\":");
 
 			// A scan value of 300 is equivalent to a scan power of 9.
@@ -393,7 +393,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		if(initial)
 		{
 			attributes[label] = 0.;
-			node.PrintTrace("Warning: Deprecated use of \"" + label + "\" instead of \""
+			node.PrintTrace("Deprecated use of \"" + label + "\" instead of \""
 					+ kind + " scan efficiency\":");
 			// A reasonable update is 15x the previous value, as the base scan time
 			// is 10x what it was before scan efficiency was introduced, along with
@@ -663,7 +663,7 @@ const map<const Effect *, int> &Outfit::AfterburnerEffects() const
 
 
 // Get this outfit's jump effects and sounds, if any.
-const map<const Effect *, int> &Outfit::JumpEffects() const
+const map<const Effect *, double> &Outfit::JumpEffects() const
 {
 	return jumpEffects;
 }

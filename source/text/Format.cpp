@@ -269,13 +269,15 @@ namespace {
 			result.append(Format::Number(value));
 	}
 
+	const char *DEFAULT_TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S";
+
 	// Return a string containing the setting to use for time formatting.
 	const char *TimestampFormatString()
 	{
 		switch(Preferences::GetDateFormat())
 		{
 			case Preferences::DateFormat::YMD:
-				return "%F %T";
+				return DEFAULT_TIMESTAMP_FORMAT;
 			case Preferences::DateFormat::MDY:
 #ifdef _WIN32
 				return "%#I:%M:%S %p on %b %#d, %Y";
@@ -347,12 +349,12 @@ string Format::Credits(int64_t value)
 
 // Convert the given number into abbreviated format as described in Format::Credits,
 // then attach the ' credit' or ' credits' suffix to it.
-string Format::CreditString(int64_t value)
+string Format::CreditString(int64_t value, bool abbreviated)
 {
 	if(value == 1)
 		return "1 credit";
-	else
-		return Credits(value) + " credits";
+
+	return (abbreviated ? Credits(value) : Number(value)) + " credits";
 }
 
 
@@ -423,12 +425,12 @@ string Format::PlayTime(double timeVal)
 
 
 
-string Format::TimestampString(chrono::time_point<chrono::system_clock> time)
+string Format::TimestampString(chrono::time_point<chrono::system_clock> time, bool ignorePreferences)
 {
 	// TODO: Replace with chrono formatting when it is properly supported.
 	time_t timestamp = chrono::system_clock::to_time_t(time);
 
-	const char *format = TimestampFormatString();
+	const char *format = ignorePreferences ? DEFAULT_TIMESTAMP_FORMAT : TimestampFormatString();
 	static const size_t BUF_SIZE = 28;
 	char str[BUF_SIZE];
 
@@ -573,6 +575,39 @@ string Format::Number(double value)
 
 	// Convert the number to a string, adding commas if needed.
 	FormatInteger(value, isNegative, result);
+	return result;
+}
+
+
+
+string Format::Number(unsigned value)
+{
+	if(!value)
+		return "0";
+	string result;
+	FormatInteger(value, false, result);
+	return result;
+}
+
+
+
+string Format::Number(int value)
+{
+	if(!value)
+		return "0";
+	string result;
+	FormatInteger(abs(value), value < 0, result);
+	return result;
+}
+
+
+
+string Format::Number(int64_t value)
+{
+	if(!value)
+		return "0";
+	string result;
+	FormatInteger(abs(value), value < 0, result);
 	return result;
 }
 

@@ -339,7 +339,7 @@ bool Hardpoint::FireAntiMissile(Ship &ship, const Projectile &projectile, vector
 
 
 // Fire a tractor beam. Returns true if the flotsam was hit.
-bool Hardpoint::FireTractorBeam(Ship &ship, const Flotsam &flotsam, std::vector<Visual> &visuals)
+bool Hardpoint::FireTractorBeam(Ship &ship, const Flotsam &flotsam, vector<Visual> &visuals)
 {
 	// Make sure this hardpoint really is a tractor beam.
 	double strength = outfit->GetWeapon()->TractorBeam();
@@ -438,7 +438,7 @@ const Hardpoint::BaseAttributes &Hardpoint::GetBaseAttributes() const
 
 // Check whether a projectile or flotsam is within the range of the anti-missile
 // or tractor beam system and create visuals if it is.
-bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, std::vector<Visual> &visuals)
+bool Hardpoint::FireSpecialSystem(Ship &ship, const Body &body, vector<Visual> &visuals)
 {
 	const Weapon *weapon = outfit->GetWeapon().get();
 

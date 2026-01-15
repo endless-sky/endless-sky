@@ -18,21 +18,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Screen.h"
 
+#ifdef _WIN32
+#include "windows/WinWindow.h"
+#endif
+
 #include "opengl.h"
 #include <SDL2/SDL.h>
 
 #include <cstring>
 #include <sstream>
 #include <string>
-
-#ifdef _WIN32
-#include "windows/WinVersion.h"
-
-#include <windows.h>
-
-#include <dwmapi.h>
-#include <SDL2/SDL_syswm.h>
-#endif
 
 using namespace std;
 
@@ -55,7 +50,7 @@ namespace {
 		string message = SDL_GetError();
 		if(!message.empty())
 		{
-			Logger::LogError("(SDL message: \"" + message + "\")");
+			Logger::Log("(SDL message: \"" + message + "\")", Logger::Level::ERROR);
 			SDL_ClearError();
 			return true;
 		}
@@ -116,16 +111,17 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 	if(mode.refresh_rate && mode.refresh_rate < 60)
-		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
-			" The game will run more slowly.");
+		Logger::Log("Low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
+			" The game will run more slowly.", Logger::Level::WARNING);
 
 	// Make the window just slightly smaller than the monitor resolution.
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
 	if(maxWidth < minWidth || maxHeight < minHeight)
-		Logger::LogError("Monitor resolution is too small! Minimal requirement is "
+		Logger::Log("Monitor resolution is too small! Minimal requirement is "
 			+ to_string(minWidth) + 'x' + to_string(minHeight)
-			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.');
+			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.',
+			Logger::Level::WARNING);
 
 	int windowWidth = maxWidth - 100;
 	int windowHeight = maxHeight - 100;
@@ -137,6 +133,9 @@ bool GameWindow::Init(bool headless)
 		windowWidth = min(windowWidth, Screen::RawWidth());
 		windowHeight = min(windowHeight, Screen::RawHeight());
 	}
+
+	if(!Preferences::Has("Block screen saver"))
+		SDL_EnableScreenSaver();
 
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
@@ -181,6 +180,19 @@ bool GameWindow::Init(bool headless)
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 
 	context = SDL_GL_CreateContext(mainWindow);
+#ifndef ES_GLES
+	if(!context)
+	{
+		Logger::Log("OpenGL context creation failed. Retrying with experimental OpenGL 2 support.",
+			Logger::Level::WARNING);
+		SDL_ClearError();
+#ifdef _WIN32
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+#endif
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, 0);
+		context = SDL_GL_CreateContext(mainWindow);
+	}
+#endif
 	if(!context)
 	{
 		ExitWithError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.");
@@ -225,15 +237,22 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 
-	if(*glVersion < '3')
+	if(*glVersion < '2')
 	{
 		ostringstream out;
-		out << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
+		out << "Endless Sky requires OpenGL version 2.0 or higher, and 3.0 is recommended." << endl;
 		out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
 		out << "Please update your graphics drivers.";
 		ExitWithError(out.str());
 		return false;
 	}
+#ifndef ES_GLES
+	else if(*glVersion == '2')
+	{
+		OpenGL::DisableOpenGL3();
+		Logger::Log("Experimental OpenGL 2 support has been enabled.", Logger::Level::INFO);
+	}
+#endif
 
 	// OpenGL settings
 	glClearColor(0.f, 0.f, 0.0f, 1.f);
@@ -308,10 +327,9 @@ void GameWindow::AdjustViewport(bool noResizeEvent)
 	int roundHeight = (windowHeight + 1) & ~1;
 	Screen::SetRaw(roundWidth, roundHeight, noResizeEvent);
 
-	// Find out the drawable dimensions. If this is a high- DPI display, this
+	// Find out the drawable dimensions. If this is a high-DPI display, this
 	// may be larger than the window.
 	SDL_GL_GetDrawableSize(mainWindow, &drawWidth, &drawHeight);
-	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);
 
 	// Set the viewport to go off the edge of the window, if necessary, to get
 	// everything pixel-aligned.
@@ -420,10 +438,20 @@ void GameWindow::ToggleFullscreen()
 
 
 
+void GameWindow::ToggleBlockScreenSaver()
+{
+	if(SDL_IsScreenSaverEnabled())
+		SDL_DisableScreenSaver();
+	else
+		SDL_EnableScreenSaver();
+}
+
+
+
 void GameWindow::ExitWithError(const string &message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
-	Logger::LogError(message);
+	Logger::Log(message, Logger::Level::ERROR);
 	checkSDLerror();
 
 	// Show the error message in a message box.
@@ -455,61 +483,13 @@ void GameWindow::ExitWithError(const string &message, bool doPopUp)
 #ifdef _WIN32
 void GameWindow::UpdateTitleBarTheme()
 {
-	if(!WinVersion::SupportsDarkTheme())
-		return;
-
-	SDL_SysWMinfo windowInfo;
-	SDL_VERSION(&windowInfo.version);
-	SDL_GetWindowWMInfo(mainWindow, &windowInfo);
-
-	BOOL value;
-	Preferences::TitleBarTheme themePreference = Preferences::GetTitleBarTheme();
-	// If the default option is selected, check the system-wide preference.
-	if(themePreference == Preferences::TitleBarTheme::DEFAULT)
-	{
-		HKEY systemPreference;
-		if(RegOpenKeyExW(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
-			0, KEY_READ, &systemPreference) == ERROR_SUCCESS)
-		{
-			DWORD size = sizeof(value);
-			if(RegQueryValueExW(systemPreference, L"AppsUseLightTheme", 0, nullptr,
-					reinterpret_cast<LPBYTE>(&value), &size) == ERROR_SUCCESS)
-				// The key says about light theme, while DWM expects information about dark theme.
-				value = !value;
-			else
-				value = 1;
-			RegCloseKey(systemPreference);
-		}
-		else
-			value = 1;
-	}
-	else
-		value = themePreference == Preferences::TitleBarTheme::DARK;
-
-	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
-	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
-		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
-	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
-	FreeLibrary(dwmapi);
+	WinWindow::UpdateTitleBarTheme(mainWindow);
 }
 
 
 
 void GameWindow::UpdateWindowRounding()
 {
-	if(!WinVersion::SupportsWindowRounding())
-		return;
-
-	SDL_SysWMinfo windowInfo;
-	SDL_VERSION(&windowInfo.version);
-	SDL_GetWindowWMInfo(mainWindow, &windowInfo);
-
-	auto value = static_cast<DWM_WINDOW_CORNER_PREFERENCE>(Preferences::GetWindowRounding());
-
-	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
-	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
-		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
-	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_WINDOW_CORNER_PREFERENCE, &value, sizeof(value));
-	FreeLibrary(dwmapi);
+	WinWindow::UpdateWindowRounding(mainWindow);
 }
 #endif

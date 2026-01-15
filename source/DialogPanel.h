@@ -1,4 +1,4 @@
-/* Dialog.h
+/* DialogPanel.h
 Copyright (c) 2014-2020 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <string>
 
-class DataNode;
 class PlayerInfo;
 class System;
 class TextArea;
@@ -35,57 +34,89 @@ class TextArea;
 // only an "ok" button, or may also have a "cancel" button. If this dialog is
 // introducing a mission, the buttons are instead "accept" and "decline". A
 // callback function can be given to receive the player's response.
-class Dialog : public Panel {
+// There can be up to three buttons. They will appear right-to-left.
+// Button 1 = OK / Accept
+// Button 2 = Cancel / Decline
+// Button 3 = Infrequently used, e.g.
+// [Random ] [Cancel] [ OK ]
+// [Discard] [Cancel] [ OK ]
+//
+// Dialogs can also accept text input:
+// Text
+// [input field                   ]
+// [Button 3] [Button 2] [Button 1]
+class DialogPanel : public Panel {
 public:
-	// An OK / Cancel dialog where Cancel can be disabled. The okIsActive lets
-	// you select whether "OK" (true) or "Cancel" (false) are selected as the default option.
-	Dialog(std::function<void()> okFunction, const std::string &message, Truncate truncate,
-		bool canCancel, bool okIsActive);
+	class FunctionButton {
+	public:
+		FunctionButton() = default;
+		~FunctionButton() = default;
+
+		template<class T>
+		FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey = '\0',
+			bool (T::*buttonAction)(const std::string&) = nullptr);
+
+	public:
+		std::string buttonLabel;
+		SDL_Keycode buttonKey;
+		std::function<bool(const std::string &)> buttonAction;
+	};
+
+
+public:
+	// An OK / Cancel dialog where Cancel can be disabled. The activeButton lets
+	// you select whether "OK" (1) or "Cancel" (2) are selected as the default option.
+	DialogPanel(std::function<void()> okFunction, const std::string &message, Truncate truncate,
+		bool canCancel, int activeButton);
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
-	explicit Dialog(const std::string &text, Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
+	explicit DialogPanel(const std::string &text, Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 	// Mission accept / decline dialog.
-	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr,
+	DialogPanel(const std::string &text, PlayerInfo &player, const System *system = nullptr,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
-	virtual ~Dialog() override;
+	virtual ~DialogPanel() override;
 
 	// Three different kinds of dialogs can be constructed: requesting numerical
 	// input, requesting text input, or not requesting any input at all. In any
 	// case, the callback is called only if the user selects "ok", not "cancel."
 	template<class T>
-	Dialog(T *t, void (T::*fun)(int), const std::string &text,
+	DialogPanel(T *t, void (T::*fun)(int), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 	template<class T>
-	Dialog(T *t, void (T::*fun)(int), const std::string &text, int initialValue,
+	DialogPanel(T *t, void (T::*fun)(int), const std::string &text, int initialValue,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
 	template<class T>
-	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "",
+	DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "",
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
 	// This callback requests text input but with validation. The "ok" button is disabled
 	// if the validation callback returns false.
 	template<class T>
-	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
+	DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text,
 			std::function<bool(const std::string &)> validate,
 			std::string initialValue = "",
 			Truncate truncate = Truncate::NONE,
 			bool allowsFastForward = false);
 
+	// Callback is always called with no parameters.
 	template<class T>
-	Dialog(T *t, void (T::*fun)(), const std::string &text,
+	DialogPanel(T *t, void (T::*fun)(), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
 	// Callback is always called with value user input to dialog (ok == true, cancel == false).
 	template<class T>
-	Dialog(T *t, void (T::*fun)(bool), const std::string &text,
+	DialogPanel(T *t, void (T::*fun)(bool), const std::string &text,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
+
+	// Three button context. Must provide actions for button 1 and button 3. Button 2 is cancel.
+	template<class T>
+	DialogPanel(T *panel, const std::string &text, const std::string &initialValue,
+		DialogPanel::FunctionButton buttonOne, DialogPanel::FunctionButton buttonThree,
+		std::function<bool(const std::string &)> validate);
 
 	// Draw this panel.
 	virtual void Draw() override;
-
-	// Static method used to convert a DataNode into formatted Dialog text.
-	static void ParseTextNode(const DataNode &node, size_t startingIndex, std::string &text);
 
 	// Some dialogs allow fast-forward to stay active.
 	bool AllowsFastForward() const noexcept final;
@@ -120,7 +151,7 @@ protected:
 	std::function<bool(const std::string &)> validateFun;
 
 	bool canCancel;
-	bool okIsActive;
+	int activeButton;
 	bool isMission;
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
@@ -128,8 +159,17 @@ protected:
 
 	std::string input;
 
+	std::string okText;
+	std::string cancelText;
+
 	Point okPos;
 	Point cancelPos;
+	Point thirdPos;
+
+	DialogPanel::FunctionButton buttonOne;
+	DialogPanel::FunctionButton buttonThree;
+
+	int numButtons;
 
 	const System *system = nullptr;
 	PlayerInfo *player = nullptr;
@@ -138,7 +178,17 @@ protected:
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, Truncate truncate, bool allowsFastForward)
+DialogPanel::FunctionButton::FunctionButton(T *panel, const std::string &buttonLabel, SDL_Keycode buttonKey,
+	bool(T::*buttonAction)(const std::string &))
+	: buttonLabel(buttonLabel), buttonKey(buttonKey),
+	buttonAction(std::bind(buttonAction, panel, std::placeholders::_1))
+{
+}
+
+
+
+template<class T>
+DialogPanel::DialogPanel(T *t, void (T::*fun)(int), const std::string &text, Truncate truncate, bool allowsFastForward)
 	: intFun(std::bind(fun, t, std::placeholders::_1)), allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate);
@@ -147,7 +197,7 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text, Truncate trun
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text,
+DialogPanel::DialogPanel(T *t, void (T::*fun)(int), const std::string &text,
 	int initialValue, Truncate truncate, bool allowsFastForward)
 	: intFun(std::bind(fun, t, std::placeholders::_1)),
 	allowsFastForward(allowsFastForward),
@@ -159,7 +209,7 @@ Dialog::Dialog(T *t, void (T::*fun)(int), const std::string &text,
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
+DialogPanel::DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text,
 	std::string initialValue, Truncate truncate, bool allowsFastForward)
 	: stringFun(std::bind(fun, t, std::placeholders::_1)),
 	allowsFastForward(allowsFastForward),
@@ -171,7 +221,7 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text,
+DialogPanel::DialogPanel(T *t, void (T::*fun)(const std::string &), const std::string &text,
 	std::function<bool(const std::string &)> validate, std::string initialValue, Truncate truncate, bool allowsFastForward)
 	: stringFun(std::bind(fun, t, std::placeholders::_1)),
 	validateFun(std::move(validate)),
@@ -185,7 +235,7 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(), const std::string &text, Truncate truncate, bool allowsFastForward)
+DialogPanel::DialogPanel(T *t, void (T::*fun)(), const std::string &text, Truncate truncate, bool allowsFastForward)
 	: voidFun(std::bind(fun, t)), allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate);
@@ -194,8 +244,20 @@ Dialog::Dialog(T *t, void (T::*fun)(), const std::string &text, Truncate truncat
 
 
 template<class T>
-Dialog::Dialog(T *t, void (T::*fun)(bool), const std::string &text, Truncate truncate, bool allowsFastForward)
+DialogPanel::DialogPanel(T *t, void (T::*fun)(bool), const std::string &text, Truncate truncate, bool allowsFastForward)
 	: boolFun(std::bind(fun, t, std::placeholders::_1)), allowsFastForward(allowsFastForward)
 {
 	Init(text, truncate);
+}
+
+
+
+template<class T>
+DialogPanel::DialogPanel(T *panel, const std::string &text, const std::string &initialValue,
+	DialogPanel::FunctionButton buttonOne, DialogPanel::FunctionButton buttonThree,
+	std::function<bool(const std::string &)> validate)
+	: validateFun(std::move(validate)), canCancel(true), input(initialValue),
+	buttonOne(buttonOne), buttonThree(buttonThree)
+{
+	Init(text, Truncate::NONE);
 }

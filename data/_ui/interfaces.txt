@@ -33,6 +33,7 @@ color "dead" .4 0. 0. 0.
 # Colors used for certain UI elements. These elements generally have a variable
 # size (e.g. they may fit to the current screen dimensions).
 color "panel background" .1 .1 .1 1.
+color "performance info background" .1 .1 .1 .7
 color "dialog backdrop" 0. 0. 0. .7
 color "conversation background" .125 .125 .125 1.
 color "map side panel background" .125 .125 .125 1.
@@ -180,17 +181,17 @@ color "warning conflict" .315 .27 .12 1.
 color "warning no command" 0.16 0.16 0.13 1.
 
 # Colors used for messages
-color "message importance highest" 1. .5 0. 1.
-color "message importance high" 1. 1. 1. 1.
-color "message importance info" 0. 1. .5 1.
-color "message importance daily" 1. 1. 1. 1.
-color "message importance low" 1. 1. 1. 1.
+color "message category high" 1. .5 0. 1.
+color "message category normal" 1. 1. 1. 1.
+color "message category info" 0. 1. .5 1.
+color "message category daily" 1. 1. 1. 1.
+color "message category low" 1. 1. 1. 1.
 
-color "message log importance highest" 1. .5 0. 1.
-color "message log importance high" .75 .75 .75 1.
-color "message log importance info" 0. 1. .5 1.
-color "message log importance daily" 0. .5 1. 1.
-color "message log importance low" .75 .75 .75 1.
+color "message log category high" 1. .5 0. 1.
+color "message log category normal" .75 .75 .75 1.
+color "message log category info" 0. 1. .5 1.
+color "message log category daily" 0. .5 1. 1.
+color "message log category low" .75 .75 .75 1.
 
 # Colors used when drawing the map (system names, links, and the player's desired route).
 # (The color of the ring that represents a given system is context-sensitive.)
@@ -216,6 +217,40 @@ color "wormholes: beyond Patir" .19 .27 .69
 
 # Color of warning message when users enable or disable plugins via in-game UI.
 color "plugin reload required" .75 .1 .1 0.
+
+
+
+interface "performance info"
+	anchor top left
+	fill
+		from 560 5 to 720 55
+		color "performance info background"
+	visible if "ready"
+	string "cpu"
+		from 570 16
+		color "medium"
+		align left
+	string "gpu"
+		from 570 30
+		color "medium"
+		align left
+	string "mem"
+		from 570 44
+		color "medium"
+		align left
+	visible if "!ready"
+	label "CPU: calculating..."
+		from 570 16
+		color "medium"
+		align left
+	label "GPU: calculating..."
+		from 570 30
+		color "medium"
+		align left
+	label "MEM: calculating..."
+		from 570 44
+		color "medium"
+		align left
 
 
 
@@ -279,8 +314,12 @@ interface "main menu"
 	button e "_Enter Ship"
 		center 435 155
 		dimensions 90 30
-	visible if "!pilot loaded"
+	visible if "no pilot loaded"
 	button n "_New Pilot"
+		center 435 155
+		dimensions 90 30
+	visible if "pilot dead"
+	button r "_Reload Pilot"
 		center 435 155
 		dimensions 90 30
 	
@@ -359,7 +398,7 @@ interface "menu player info"
 interface "menu start info"
 	visible if "chosen start"
 	image "thumbnail"
-		center 360 -100
+		center 360 -105
 		dimensions 220 240
 	label "name:"
 		from 250 -35
@@ -1451,6 +1490,15 @@ interface "planet"
 	box "content"
 		from -240 80 to 240 320
 	
+	sprite "ui/planet dialog button"
+		center -340 310
+	button i "Player _Info"
+		center -340 310
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 340 90
@@ -1463,9 +1511,9 @@ interface "planet"
 	
 	visible if "has outfitter"
 	sprite "ui/planet dialog button"
-		center 340 150
+		center 340 145
 	button o "_Outfitter"
-		center 340 150
+		center 340 145
 		dimensions 140 40
 		size 18
 		align right
@@ -1473,18 +1521,18 @@ interface "planet"
 	
 	visible if "has job board"
 	sprite "ui/planet dialog button"
-		center -340 150
+		center -340 145
 	button j "_Job Board"
-		center -340 150
+		center -340 145
 		dimensions 140 40
 		size 18
 		align left
 		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
-		center 340 210
+		center 340 200
 	button h "_Hire Crew"
-		center 340 210
+		center 340 200
 		dimensions 140 40
 		size 18
 		align right
@@ -1502,9 +1550,9 @@ interface "planet"
 	
 	visible if "has bank"
 	sprite "ui/planet dialog button"
-		center -340 210
+		center -340 200
 	button b "_Bank"
-		center -340 210
+		center -340 200
 		dimensions 140 40
 		size 18
 		align left
@@ -1512,9 +1560,9 @@ interface "planet"
 	
 	visible if "has port"
 	sprite "ui/planet dialog button"
-		center -340 270
+		center -340 255
 	"dynamic button" p "port name"
-		center -340 270
+		center -340 255
 		dimensions 140 40
 		size 18
 		align left
@@ -1523,9 +1571,9 @@ interface "planet"
 	
 	active if "has ship"
 	sprite "ui/planet dialog button"
-		center 340 270
+		center 340 310
 	button d "_Depart"
-		center 340 270
+		center 340 310
 		dimensions 140 40
 		size 18
 		align right
@@ -1545,6 +1593,15 @@ interface "planet (small screen)"
 	box "content"
 		from -300 80 to 180 320
 	
+	sprite "ui/planet dialog button"
+		center -400 310
+	button i "Player _Info"
+		center -400 310
+		dimensions 140 40
+		size 18
+		align left
+		pad 10 0
+	
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
 		center 280 90
@@ -1557,9 +1614,9 @@ interface "planet (small screen)"
 	
 	visible if "has outfitter"
 	sprite "ui/planet dialog button"
-		center 280 150
+		center 280 145
 	button o "_Outfitter"
-		center 280 150
+		center 280 145
 		dimensions 140 40
 		size 18
 		align right
@@ -1567,18 +1624,18 @@ interface "planet (small screen)"
 	
 	visible if "has job board"
 	sprite "ui/planet dialog button"
-		center -400 150
+		center -400 145
 	button j "_Job Board"
-		center -400 150
+		center -400 145
 		dimensions 140 40
 		size 18
 		align left
 		pad 10 0
 	visible if "can hire crew"
 	sprite "ui/planet dialog button"
-		center 280 210
+		center 280 200
 	button h "_Hire Crew"
-		center 280 210
+		center 280 200
 		dimensions 140 40
 		size 18
 		align right
@@ -1596,9 +1653,9 @@ interface "planet (small screen)"
 	
 	visible if "has bank"
 	sprite "ui/planet dialog button"
-		center -400 210
+		center -400 200
 	button b "_Bank"
-		center -400 210
+		center -400 200
 		dimensions 140 40
 		size 18
 		align left
@@ -1606,9 +1663,9 @@ interface "planet (small screen)"
 	
 	visible if "has port"
 	sprite "ui/planet dialog button"
-		center -400 270
+		center -400 255
 	"dynamic button" p "port name"
-		center -400 270
+		center -400 255
 		dimensions 140 40
 		size 18
 		align left
@@ -1617,9 +1674,9 @@ interface "planet (small screen)"
 	
 	active if "has ship"
 	sprite "ui/planet dialog button"
-		center 280 270
+		center 280 310
 	button d "_Depart"
-		center 280 270
+		center 280 310
 		dimensions 140 40
 		size 18
 		align right
@@ -2241,6 +2298,94 @@ interface "map"
 
 
 
+interface "map: mission view: key"
+	anchor bottom left
+	sprite "ui/mission key"
+		align bottom left
+		from 0 0
+	pointer
+		align left
+		center 15 -90
+		dimensions 10 18
+		"orientation angle" 135
+		color "available job"
+	pointer
+		align left
+		center 15 -70
+		dimensions 10 18
+		"orientation angle" 135
+		color "unavailable job"
+	pointer
+		align left
+		center 15 -50
+		dimensions 10 18
+		"orientation angle" 135
+		color "active mission"
+	pointer
+		align left
+		center 15 -30
+		dimensions 10 18
+		"orientation angle" 135
+		color "blocked mission"
+	pointer
+		align left
+		center 15 -10
+		dimensions 10 18
+		"orientation angle" 135
+		color "waypoint"
+	visible if "available"
+	label "Available job; can accept"
+		align bottom left
+		from 18 -87
+		color bright
+	visible if "!available"
+	label "Available job; can accept"
+		align bottom left
+		from 18 -87
+		color dim
+	visible if "unavailable"
+	label "Too little space to accept"
+		align bottom left
+		from 18 -67
+		color bright
+	visible if "!unavailable"
+	label "Too little space to accept"
+		align bottom left
+		from 18 -67
+		color dim
+	visible if "active"
+	label "Active job; go here to complete"
+		align bottom left
+		from 18 -47
+		color bright
+	visible if "!active"
+	label "Active job; go here to complete"
+		align bottom left
+		from 18 -47
+		color dim
+	visible if "blocked"
+	label "Has unfinished requirements"
+		align bottom left
+		from 18 -27
+		color bright
+	visible if "!blocked"
+	label "Has unfinished requirements"
+		align bottom left
+		from 18 -27
+		color dim
+	visible if "waypoint"
+	label "System of importance"
+		align bottom left
+		from 18 -7
+		color bright
+	visible if "!waypoint"
+	label "System of importance"
+		align bottom left
+		from 18 -7
+		color dim
+
+
+
 interface "info panel"
 	sprite "ui/info panel"
 		center 0 -5
@@ -2405,6 +2550,12 @@ interface "message log"
 		width 130
 		color active
 		inactive medium
+	sprite "ui/dialog cancel"
+		center 654 -80 bottom left
+	active if "!empty"
+	button c "Clear"
+		center 654 -80 bottom left
+		dimensions 70 30
 
 	visible if "empty"
 	label "(The message log is empty.)"

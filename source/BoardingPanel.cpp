@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "CargoHold.h"
 #include "Depreciation.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -100,6 +100,11 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	// Some "ships" do not represent something the player could actually pilot.
 	if(!canCapture)
 		messages.emplace_back("This is not a ship that you can capture.");
+	else
+	{
+		attackOdds.Calculate();
+		defenseOdds.Calculate();
+	}
 
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
@@ -180,7 +185,7 @@ void BoardingPanel::Draw()
 
 	// This should always be true, but double check.
 	int crew = 0;
-	if(you)
+	if(you && canCapture)
 	{
 		crew = you->Crew();
 		info.SetString("cargo space", to_string(you->Cargo().Free()));
@@ -243,7 +248,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
 			player.Die();
-		GetUI()->Pop(this);
+		GetUI().Pop(this);
 	}
 	else if(playerDied)
 		return false;
@@ -262,7 +267,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			else
 				message = "You cannot plunder now.";
 
-			GetUI()->Push(new Dialog{message});
+			GetUI().Push(new DialogPanel{message});
 			return true;
 		}
 
@@ -319,9 +324,9 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(Random::Real() < victim->Attributes().Get("self destruct"))
 		{
 			victim->SelfDestruct();
-			GetUI()->Pop(this);
-			GetUI()->Push(new Dialog("The moment you blast through the airlock, a series of explosions rocks the enemy ship."
-				" They appear to have set off their self-destruct sequence..."));
+			GetUI().Pop(this);
+			GetUI().Push(new DialogPanel("The moment you blast through the airlock, a series of explosions rocks the "
+				"enemy ship. They appear to have set off their self-destruct sequence..."));
 			return true;
 		}
 		isCapturing = true;
@@ -473,7 +478,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 	}
 	else if(command.Has(Command::INFO))
-		GetUI()->Push(new ShipInfoPanel(player));
+		GetUI().Push(new ShipInfoPanel(player));
 
 	// Trim the list of status messages.
 	while(messages.size() > 5)
