@@ -35,6 +35,8 @@ public:
 private:
 	// The number of different items this object can assign to ships.
 	int cargo = 3;
+	int minAmount = 0;
+	int maxAmount = std::numeric_limits<int>::max();
 	std::vector<std::string> commodities;
 	std::set<const Shop<Outfit> *> outfitters;
 };
