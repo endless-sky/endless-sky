@@ -224,7 +224,7 @@ conversation "interceptor escort end"
 				has "start: default"
 				has "start: paradise"
 				has "start: syndicate"
-	`	(As before, click the "Spaceport" button to continue this mission. The next mission will involve carrying cargo, so it will only show up if you have all 15 tons of space free.)`
+	`	(As before, click the "Spaceport" button to continue this mission. The next mission will involve carrying cargo, so it will only show up if you have 10 tons of space free.)`
 		to display
 			or
 				has "start: default"
@@ -322,6 +322,11 @@ conversation "interceptor evade end"
 		`	"Well, maybe I should've bought a freighter instead."`
 	`	"Better start saving up then," he says. "I know a number of old Sparrow pilots who made their first million credits mining asteroids before they could afford a more combat-worthy ship. They had to look around for a while before finding a system with any asteroids worth mining, but it was worth it. Anyway, let's go get your payment." You walk out of the ship and sign the papers to hand off the <commodity> to the dock workers on <planet>. They hand you a credit chip worth <payment>.`
 	`	"I've got an idea for something you might want to try," says James. "Meet me in the spaceport bar in a little while."`
+		to display
+			not "flagship model: Jackal"
+	`	"I've got an idea for something you might want to try," says James. "Meet me in the spaceport bar in a little while. And make sure you have a weapon installed; you should be able to buy one in <planet>'s outfitter."`
+		to display
+			has "flagship model: Jackal"
 
 
 
@@ -556,7 +561,7 @@ mission "Intro [0 Jackal]"
 				decline
 			label jackal
 			action
-				give ship "Jackal (Empty)" "Triskelion"
+				give ship "Jackal (Empty)" "Exemplar"
 				take ship "Mining Drone"
 					count 2
 			`	You shake hands with the merchant. "Thanks for the deal, partner." He hands you the license to the Jackal and walks off towards the loading bays to claim his new Mining Drones.`
@@ -2187,7 +2192,7 @@ mission "Delve Intro [2 Interceptor]"
 
 mission "Delve Intro [2.1 Interceptor]"
 	priority
-	name "Mine asteroids in <system>"
+	name "Mine asteroids in Procyon"
 	description "Go to the Procyon system and mine five tons of silicon, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	passengers 1
