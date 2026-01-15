@@ -102,6 +102,9 @@ protected:
 	virtual bool Release(int x, int y, MouseButton button) override;
 	virtual bool Scroll(double dx, double dy) override;
 
+	std::set<int> GetSelectedIndices() const;
+	bool ReorderShipsTo(int toIndex);
+
 	void DoFind(const std::string &text);
 	virtual int FindItem(const std::string &text) const = 0;
 
@@ -161,6 +164,8 @@ protected:
 	Point dragPoint;
 	// The group of all selected, player-owned ships.
 	std::set<Ship *> playerShips;
+	// The ships as shown in the fleet pane.
+	std::vector<std::vector<std::shared_ptr<Ship>>> shipStacks;
 
 	// The currently selected Ship, for the ShipyardPanel.
 	const Ship *selectedShip = nullptr;
@@ -182,7 +187,7 @@ protected:
 
 	std::vector<Zone> zones;
 	std::vector<ClickZone<char>> buttonZones;
-	std::vector<ClickZone<const Ship *>> shipZones;
+	std::vector<ClickZone<std::vector<std::shared_ptr<Ship>>>> shipZones;
 	std::vector<ClickZone<std::string>> categoryZones;
 
 	std::map<std::string, std::vector<std::string>> catalog;
@@ -211,7 +216,7 @@ private:
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
 	void SideSelect(int count);
-	void SideSelect(Ship *ship, int clicks = 1);
+	void SideSelect(const std::vector<std::shared_ptr<Ship>> shipStack, int clicks = 1);
 	void MainAutoScroll(const std::vector<Zone>::const_iterator &selected);
 	void MainLeft();
 	void MainRight();
@@ -235,4 +240,5 @@ private:
 	const Color &back;
 
 	bool checkedHelp = false;
+	bool stackSimilarShips = false;
 };
