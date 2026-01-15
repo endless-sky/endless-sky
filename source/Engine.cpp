@@ -771,7 +771,6 @@ void Engine::Step(bool isActive)
 	info.SetString("credits",
 		Format::CreditString(player.Accounts().Credits()));
 	bool isJumping = flagship && (flagship->Commands().Has(Command::JUMP) || flagship->IsEnteringHyperspace());
-
 	if(object)
 	{
 		info.SetString("navigation mode", "Landed on:");
