@@ -162,6 +162,7 @@ protected:
 	Ship *dragShip = nullptr;
 	bool isDraggingShip = false;
 	Point dragPoint;
+	std::vector<std::pair<Ship *, Point>> dragOffsets;
 	// The group of all selected, player-owned ships.
 	std::set<Ship *> playerShips;
 	// The ships as shown in the fleet pane.

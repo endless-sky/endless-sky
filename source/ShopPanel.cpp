@@ -163,21 +163,26 @@ void ShopPanel::Draw()
 		shipsTooltip.Draw(true);
 	}
 
-	if(dragShip && isDraggingShip && dragShip->GetSprite())
+	if(isDraggingShip)
 	{
-		const Sprite *sprite = dragShip->GetSprite();
-		float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
-		if(Preferences::Has(SHIP_OUTLINES))
+		for(const auto &[ship, offset] : dragOffsets)
 		{
-			static const Color selected(.8f, 1.f);
-			Point size(sprite->Width() * scale, sprite->Height() * scale);
-			OutlineShader::Draw(sprite, dragPoint, size, selected);
-		}
-		else
-		{
-			const Swizzle *swizzle = dragShip->CustomSwizzle()
-				? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
+			const Sprite *sprite = ship->GetSprite();
+			if(!sprite) continue;
+			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height());
+			Point drawPoint = dragPoint + offset;
+			if(Preferences::Has(SHIP_OUTLINES))
+			{
+				static const Color selected(.8f, 1.f);
+				Point size(sprite->Width() * scale, sprite->Height() * scale);
+				OutlineShader::Draw(sprite, drawPoint, size, selected);
+			}
+			else
+			{
+				const Swizzle *swizzle = ship->CustomSwizzle()
+					? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+				SpriteShader::Draw(sprite, drawPoint, scale, swizzle);
+			}
 		}
 	}
 
@@ -534,7 +539,8 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 				{
 					dragShip = ship.get();
 					dragPoint.Set(x, y);
-					SideSelect(clickedShipStack, clicks);
+					if (clicks > 1 || !playerShips.contains(ship.get()))
+						SideSelect(clickedShipStack, clicks);
 					break;
 				}
 
@@ -585,7 +591,8 @@ bool ShopPanel::Drag(double dx, double dy)
 	}
 	else
 	{
-		auto scrollbarInterceptSpec = [dx, dy](ScrollBar &scrollbar, ScrollVar<double> &scroll) {
+		auto scrollbarInterceptSpec = [dx, dy](ScrollBar &scrollbar, ScrollVar<double> &scroll)
+		{
 			scrollbar.SyncFrom(scroll, scrollbar.from, scrollbar.to, false);
 			return ScrollbarMaybeUpdate([dx, dy](ScrollBar &scrollbar)
 				{
@@ -653,6 +660,7 @@ bool ShopPanel::Release(int x, int y, MouseButton button)
 
 	dragShip = nullptr;
 	isDraggingShip = false;
+	dragOffsets.clear();
 	return true;
 }
 
@@ -940,6 +948,17 @@ void ShopPanel::DrawShipsSidebar()
 		point.X() += ICON_TILE;
 	}
 	point.Y() += ICON_TILE;
+
+	if(isDraggingShip && dragOffsets.empty())
+	{
+		for(const auto &zone : shipZones)
+		{
+			const auto &stack = zone.Value();
+			for(const auto &ship : stack)
+				if(playerShips.contains(ship.get()))
+					dragOffsets.emplace_back(ship.get(), zone.Center() - dragPoint);
+		}
+	}
 
 	if(playerShip)
 	{
