@@ -404,9 +404,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				added.clear();
 
 			const Planet *here = player.GetPlanet();
-			for(Ship *ship : added)
-				if(CanShowInSidebar(*ship, here))
-					playerShips.insert(ship);
+			copy_if(added.begin(), added.end(), inserter(playerShips, playerShips.end()),
+				[here](Ship *ship) { return CanShowInSidebar(*ship, here); });
 
 			if(!playerShips.contains(playerShip))
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
@@ -418,9 +417,8 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			set<Ship *> wanted = player.GetEscortGroup(group);
 
 			const Planet *here = player.GetPlanet();
-			for(Ship *ship : wanted)
-				if(CanShowInSidebar(*ship, here))
-					playerShips.insert(ship);
+			copy_if(wanted.begin(), wanted.end(), inserter(playerShips, playerShips.end()),
+				[here](Ship *ship) { return CanShowInSidebar(*ship, here); });
 
 			if(!playerShips.contains(playerShip))
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
@@ -620,26 +618,19 @@ bool ShopPanel::Release(int x, int y, MouseButton button)
 				if(!stack.empty())
 				{
 					// Check if the stack contains any selected ships
-					bool containsSelected = false;
-					for(const auto &ship : stack)
-						if(playerShips.contains(ship.get()))
-						{
-							containsSelected = true;
-							break;
-						}
+					bool containsSelected = any_of(stack.begin(), stack.end(),
+						[&](const auto &s) { return playerShips.contains(s.get()); });
 					if(containsSelected)
 						break;  // Don't reorder if dropping on own stack
 
 					// Find the indices of the first and last ships in the stack
-					size_t firstIndex = 0;
-					size_t lastIndex = 0;
-					for(size_t i = 0; i < player.Ships().size(); ++i)
-					{
-						if(player.Ships()[i].get() == stack[0].get())
-							firstIndex = i;
-						if(player.Ships()[i].get() == stack.back().get())
-							lastIndex = i;
-					}
+					auto ships = player.Ships();
+					auto firstIt = find_if(ships.begin(), ships.end(),
+						[&](const auto &s) { return s.get() == stack[0].get(); });
+					size_t firstIndex = distance(ships.begin(), firstIt);
+					auto lastIt = find_if(ships.begin(), ships.end(),
+						[&](const auto &s) { return s.get() == stack.back().get(); });
+					size_t lastIndex = distance(ships.begin(), lastIt);
 					// Get the min selected index
 					auto selected = GetSelectedIndices();
 					int minSelected = selected.empty() ? -1 : *selected.begin();
@@ -856,8 +847,8 @@ void ShopPanel::DrawShipsSidebar()
 			shipStacks.emplace_back(similarShips);
 		}
 
-	static const Color selected(.8f, 1.f);
-	static const Color unselected(.4f, 1.f);
+	static const Color selected{.8f, 1.f};
+	static const Color unselected{.4f, 1.f};
 	for(auto shipStack : shipStacks)
 	{
 		auto ship = shipStack[0];
@@ -872,42 +863,47 @@ void ShopPanel::DrawShipsSidebar()
 			point.Y() += ICON_TILE;
 		}
 
-		bool isSelected = playerShips.contains(ship.get());
+		static Point stackAdjust{5., 5.};
+		static float stackZoom = (ICON_TILE - 10.f) / ICON_TILE;
+		bool isMultiShipStack = shipStack.size() > 1;
+		bool isSelected = all_of(shipStack.begin(), shipStack.end(),
+			[&](const auto &s) { return playerShips.contains(s.get()); });
 		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
-		if(shipStack.size() > 1)
+		if(isMultiShipStack)
 		{
-			SpriteShader::Draw(background, point - Point{5, 5}, .8f);
-			SpriteShader::Draw(background, point, .8f);
-			SpriteShader::Draw(background, point + Point{5, 5}, .8f);
+			SpriteShader::Draw(background, point - stackAdjust, stackZoom);
+			SpriteShader::Draw(background, point, stackZoom);
+			SpriteShader::Draw(background, point + stackAdjust, stackZoom);
 		}
 		else
 			SpriteShader::Draw(background, point);
 		// If this is one of the selected ships, check if the currently hovered
 		// button (if any) applies to it. If so, brighten the background.
 		if(isSelected && ShouldHighlight(ship.get()))
-			SpriteShader::Draw(background, point);
+			SpriteShader::Draw(background, isMultiShipStack ? point - stackAdjust : point, isMultiShipStack ? .8f : 1.f);
 
 		const Sprite *sprite = ship->GetSprite();
 		if(sprite)
 		{
-			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height()) * (shipStack.size() > 1 ? .8f : 1.f);
+			float scale = ICON_SIZE / max(sprite->Width(), sprite->Height()) * (isMultiShipStack ? .8f : 1.f);
 			if(Preferences::Has(SHIP_OUTLINES))
 			{
 				Point size(sprite->Width() * scale, sprite->Height() * scale);
-				OutlineShader::Draw(sprite, shipStack.size() > 1 ? point - Point{5, 5} : point, size, isSelected ? selected : unselected);
+				OutlineShader::Draw(sprite, isMultiShipStack ? point - stackAdjust : point, size, isSelected ? selected : unselected);
 			}
 			else
 			{
 				const Swizzle *swizzle = ship->CustomSwizzle() ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-				SpriteShader::Draw(sprite, shipStack.size() > 1 ? point - Point{5, 5} : point, scale, swizzle);
+				SpriteShader::Draw(sprite, isMultiShipStack ? point - stackAdjust : point, scale, swizzle);
 			}
 		}
 
-		shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), shipStack);
+		static Point clickTile{ICON_TILE, ICON_TILE};
+		shipZones.emplace_back(point, clickTile, shipStack);
 
 		if(mouse.Y() < Screen::Bottom() - ButtonPanelHeight() && shipZones.back().Contains(mouse))
 		{
-			shipName = shipStack.size() == 1
+			shipName = !isMultiShipStack
 				? ship->GivenName() + "\n" + ship->DisplayModelName() + (ship->IsParked() ? "\n" +
 					GameData::Tooltip("parked") : "")
 				: to_string(shipStack.size()) + " " + ship->PluralModelName();
@@ -916,9 +912,9 @@ void ShopPanel::DrawShipsSidebar()
 
 		if(ship->IsParked())
 		{
-			static const Point CORNER = .35 * Point(ICON_TILE, ICON_TILE);
-			FillShader::Fill(point + CORNER, Point(6., 6.), dark);
-			FillShader::Fill(point + CORNER, Point(4., 4.), isSelected ? bright : medium);
+			static const Point CORNER = .35 * clickTile;
+			FillShader::Fill(point + CORNER, Point{6., 6.}, dark);
+			FillShader::Fill(point + CORNER, Point{4., 4.}, isSelected ? bright : medium);
 		}
 		else
 		{
@@ -935,10 +931,10 @@ void ShopPanel::DrawShipsSidebar()
 
 		if(ship->OutfitCount(selectedOutfit))
 		{
-			static const Color &vbright = Color(.9f, .9f, .9f, .2f);
+			static const Color &vbright = Color{.9f, .9f, .9f, .2f};
 			static const Color &dim = *GameData::Colors().Get("dim");
-			PointerShader::Draw(Point{point.X() - static_cast<int>(ICON_TILE / 3), point.Y()},
-				Point{1., 0.}, 14.f, 12.f, 0., isSelected ? vbright : dim);
+			PointerShader::Draw(Point{point.X() - static_cast<int>(ICON_TILE / 3), point.Y() - (isMultiShipStack ? 5. : 0.)},
+				Point{1., 0.}, 14.f * stackZoom, 12.f * stackZoom, 0.f, isSelected ? vbright : dim);
 		}
 
 		point.X() += ICON_TILE;
