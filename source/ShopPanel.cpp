@@ -91,7 +91,8 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 	hover(*GameData::Colors().Get("hover")),
 	active(*GameData::Colors().Get("active")),
 	inactive(*GameData::Colors().Get("inactive")),
-	back(*GameData::Colors().Get("panel background"))
+	back(*GameData::Colors().Get("panel background")),
+	stackSimilarShips(collapsed.contains("fleet"))
 {
 	if(playerShip)
 		playerShips.insert(playerShip);
@@ -436,6 +437,10 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == 't')
 	{
 		stackSimilarShips = !stackSimilarShips;
+		if(stackSimilarShips)
+			collapsed.insert("fleet");
+		else
+			collapsed.erase("fleet");
 		shipStacks.clear();
 	}
 	else
