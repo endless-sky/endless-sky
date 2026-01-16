@@ -158,8 +158,8 @@ protected:
 
 	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;
-	// The player-owned ship being reordered.
-	Ship *dragShip = nullptr;
+	// Record that we clicked on a ship, before a drag starts.
+	bool didClickOnShip = false;
 	bool isDraggingShip = false;
 	Point dragPoint;
 	std::vector<std::pair<Ship *, Point>> dragOffsets;

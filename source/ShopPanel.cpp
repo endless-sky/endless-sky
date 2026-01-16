@@ -480,7 +480,7 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 	if(button != MouseButton::LEFT)
 		return false;
 
-	dragShip = nullptr;
+	didClickOnShip = false;
 
 	// Handle clicks on the buttons.
 	char zoneButton = CheckButton(x, y);
@@ -538,17 +538,9 @@ bool ShopPanel::Click(int x, int y, MouseButton button, int clicks)
 	for(const auto &zone : shipZones)
 		if(zone.Contains(clickPoint))
 		{
-			const auto clickedShipStack = zone.Value();
-			for(const shared_ptr<Ship> &ship : player.Ships())
-				if(!clickedShipStack.empty() && clickedShipStack[0] == ship)
-				{
-					dragShip = ship.get();
-					dragPoint.Set(x, y);
-					if (clicks > 1 || !playerShips.contains(ship.get()))
-						SideSelect(clickedShipStack, clicks);
-					break;
-				}
-
+			didClickOnShip = true;
+			dragPoint.Set(x, y);
+			SideSelect(zone.Value(), clicks);
 			return true;
 		}
 
@@ -589,7 +581,7 @@ bool ShopPanel::Hover(int x, int y)
 
 bool ShopPanel::Drag(double dx, double dy)
 {
-	if(dragShip)
+	if(didClickOnShip)
 	{
 		isDraggingShip = true;
 		dragPoint += Point{dx, dy};
@@ -663,7 +655,7 @@ bool ShopPanel::Release(int x, int y, MouseButton button)
 		}
 	}
 
-	dragShip = nullptr;
+	didClickOnShip = false;
 	isDraggingShip = false;
 	dragOffsets.clear();
 	return true;
@@ -902,11 +894,13 @@ void ShopPanel::DrawShipsSidebar()
 			if(Preferences::Has(SHIP_OUTLINES))
 			{
 				Point size(sprite->Width() * scale, sprite->Height() * scale);
-				OutlineShader::Draw(sprite, isMultiShipStack ? point - stackAdjust : point, size, isSelected ? selected : unselected);
+				OutlineShader::Draw(sprite, isMultiShipStack ? point - stackAdjust : point, size,
+					isSelected ? selected : unselected);
 			}
 			else
 			{
-				const Swizzle *swizzle = ship->CustomSwizzle() ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+				const Swizzle *swizzle = ship->CustomSwizzle() ? ship->CustomSwizzle() :
+					GameData::PlayerGovernment()->GetSwizzle();
 				SpriteShader::Draw(sprite, isMultiShipStack ? point - stackAdjust : point, scale, swizzle);
 			}
 		}
@@ -1013,7 +1007,8 @@ void ShopPanel::DrawDetailsSidebar()
 	double heightOffset = DrawDetails(point);
 
 	infobarScroll.SetDisplaySize(Screen::Height());
-	infobarScroll.SetMaxValue(max(0., heightOffset + infobarScroll.AnimatedValue() - Screen::Bottom()) + Screen::Height());
+	infobarScroll.SetMaxValue(max(0., heightOffset + infobarScroll.AnimatedValue() - Screen::Bottom()) +
+		Screen::Height());
 
 	if(infobarScroll.Scrollable())
 	{
@@ -1245,50 +1240,71 @@ void ShopPanel::SideSelect(const vector<shared_ptr<Ship>> shipStack, int clicks)
 				playerShips.insert(other.get());
 		}
 	}
-	else if(control)
+	else if(control && clicks == 1)
 	{
-		if(clicks > 1)
+		bool allSelected = all_of(shipStack.begin(), shipStack.end(),
+			[&](const auto &s) { return playerShips.contains(s.get()); });
+
+		if(allSelected)
 		{
-			vector<Ship *> similarShips;
-			// If the ship isn't selected now, it was selected at the beginning of the whole "double click" action,
-			// because the first click was handled normally.
-			bool unselect = !playerShips.contains(ship);
-			for(const shared_ptr<Ship> &it : player.Ships())
-			{
-				if(!CanShowInSidebar(*it, player.GetPlanet()))
-					continue;
-				if(it.get() != ship && it->Imitates(*ship))
+			for(const auto &it : shipStack)
+				playerShips.erase(it.get());
+			bool isPlayerShipInStack = false;
+			for(const auto &it : shipStack)
+				if(it.get() == playerShip)
 				{
-					similarShips.push_back(it.get());
-					unselect &= playerShips.contains(it.get());
+					isPlayerShipInStack = true;
+					break;
 				}
-			}
-			for(Ship *it : similarShips)
-			{
-				if(unselect)
-					playerShips.erase(it);
-				else
-					playerShips.insert(it);
-			}
-			if(unselect && find(similarShips.begin(), similarShips.end(), playerShip) != similarShips.end())
-			{
+			if(isPlayerShipInStack)
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
-				CheckSelection();
-				return;
+		}
+		else
+		{
+			for(const auto &it : shipStack)
+				playerShips.insert(it.get());
+			playerShip = ship;
+		}
+		CheckSelection();
+		shipStacks.clear();
+		return;
+	}
+	else if(control && clicks > 1)
+	{
+		vector<Ship *> similarShips;
+		// If the ship isn't selected now, it was selected at the beginning of the whole "double click" action,
+		// because the first click was handled normally.
+		bool unselect = !playerShips.contains(ship);
+		for(const shared_ptr<Ship> &it : player.Ships())
+		{
+			if(!CanShowInSidebar(*it, player.GetPlanet()))
+				continue;
+			if(it.get() != ship && it->Imitates(*ship))
+			{
+				similarShips.push_back(it.get());
+				unselect &= playerShips.contains(it.get());
 			}
 		}
-		else if(playerShips.contains(ship))
+		for(Ship *it : similarShips)
 		{
-			playerShips.erase(ship);
-			if(playerShip == ship)
-				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+			if(unselect)
+				playerShips.erase(it);
+			else
+				playerShips.insert(it);
+		}
+		if(unselect && find(similarShips.begin(), similarShips.end(), playerShip) != similarShips.end())
+		{
+			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 			CheckSelection();
 			return;
 		}
 	}
 	else
 	{
-		playerShips.clear();
+		bool clickContainsSelection = any_of(shipStack.begin(), shipStack.end(),
+			[&](const auto &s){ return playerShips.contains(s.get()); });
+		if(!clickContainsSelection)
+			playerShips.clear();
 		if(clicks > 1)
 			for(const shared_ptr<Ship> &it : player.Ships())
 			{
