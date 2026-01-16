@@ -377,7 +377,7 @@ mission "Ask Quarg About Coalition Late"
 				`	"Hello, I'm <first> <last>. What can you tell me about the Coalition?"`
 				`	"Hello. Is it true that the Heliarchs defeated you and stole your ringworlds?"`
 			`	It continues to stare at you for a while, without as much as blinking. It looks over to a bench in one of the quieter areas of the spaceport, and gestures for you to follow. As you two sit down, you notice it pauses mid-breath. After a few seconds of adjusting itself in the seat, the Quarg finally speaks up.`
-			`	"Those three species arose in relative rapid succession, all in close proximity, compared to how other species tend to be separated by long periods of time, and longer still their distances." Its voice, while still sharing the buzzing, deep hums you've grown to expect from the Quarg, is broken up every other word by something like a crack - or a creak - as if certain vocal cords have grown sore, with an uncomfortable sound akin to an out of tune cello mixing its way into the Quarg's words. "So large are the gaps, that one might never learn of those that came before. But, that was not the case for the three. The first of them, the Saryds, were in many ways much like us Quarg in our younger days, and we perhaps were much too lenient because of that..." It stops, and brings one hand over its head, and then the other, closing its eye as if in a sudden headache. Your eyes almost instinctively go to its scales, expecting them to change like other Quarg you've seen. But, their colors remain unaltered, the same pale gray and silver shades. A few seconds pass, and it brings down its hands back to its lap, opening its eye as it continues. "The Kimek, traumatized by the billions fallen in their famines, sought help to make sure they would never face such a crisis again, and were eager to establish friendly relations with the Saryds. The Arachi, in a way, parallel humanity's development, though they were less keen on letting their inner conflicts be made public. They were the last of the three, and upon meeting their two seniors, invested heavily in research to catch up."`
+			`	"Those three species arose in relative rapid succession, all in close proximity, compared to how other species tend to be separated by long periods of time, and longer still their distances." Its voice, while still sharing the buzzing, deep hums you've grown to expect from the Quarg, is broken up every other word by something like a crack - or a creak - as if certain vocal cords have grown sore, with an uncomfortable sound akin to an out-of-tune cello mixing its way into the Quarg's words. "So large are the gaps, that one might never learn of those that came before. But, that was not the case for the three. The first of them, the Saryds, were in many ways much like us Quarg in our younger days, and we perhaps were much too lenient because of that..." It stops, and brings one hand over its head, and then the other, closing its eye as if in a sudden headache. Your eyes almost instinctively go to its scales, expecting them to change like other Quarg you've seen. But, their colors remain unaltered, the same pale gray and silver shades. A few seconds pass, and it brings down its hands back to its lap, opening its eye as it continues. "The Kimek, traumatized by the billions fallen in their famines, sought help to make sure they would never face such a crisis again, and were eager to establish friendly relations with the Saryds. The Arachi, in a way, parallel humanity's development, though they were less keen on letting their inner conflicts be made public. They were the last of the three, and upon meeting their two seniors, invested heavily in research to catch up."`
 			`	It pauses again, taking a look around the spaceport. It fixates on you for a bit, then on the ships landing and departing here. "In the intersecting point of their territories, we built our ringworlds. Seven thousand Earth years ago, the three species of the Coalition sought to take over those rings. After centuries... no, a millennium of fighting, we left that part of the galaxy."`
 			choice
 				`	"Why did they decide to start attacking you and your rings?"`
@@ -462,21 +462,28 @@ mission "Ask Quarg About Coalition Late"
 				clear "ask quarg coalition late: aid"
 			`	You get up and are just about to leave when it says, "<first> <last>." The Quarg's gaze pierces you, its eye on the same level as your own. "Where is your home?"`
 			choice
-				`	"I come from New Boston, in the Dirt Belt."`
+				`	"I come from <home planet>, in the Dirt Belt."`
 					to display
 						has "start: default"
-				`	"I come from Midgard, in the Deep."`
+				`	"I come from <home planet>, in the Deep."`
 					to display
 						has "start: deep"
-				`	"I come from Mainsail of the Paradise Worlds."`
+				`	"I come from <home planet> of the Paradise Worlds."`
 					to display
 						has "start: paradise"
-				`	"I come from Greenwater, in Hai space."`
+				`	"I come from <home planet>, in Hai space."`
 					to display
 						has "start: hai"
-				`	"I was born on Earth."`
+				`	"I was born on <home planet>."`
 					to display
 						has "start: syndicate"
+				`	"I come from <start planet>, in the <start system> system."`
+					to display
+						not "start: default"
+						not "start: deep"
+						not "start: paradise"
+						not "start: hai"
+						not "start: syndicate"
 					goto homeworld
 				`	"My ship is my home."`
 					goto ship
@@ -500,5 +507,5 @@ mission "Ask Quarg About Coalition Late"
 				log "People" "Gohl" `Full name Gohl Salyi Memt-Wrik Laz. It is an old, odd Quarg that is more open than its species tends to be in answering questions about rather sensitive topics.`
 			`	"I am called Gohl Salyi Memt-Wrik Laz. An old Quarg. Too old for my own good."`
 			`	You thank it for its time, and see it get up to leave. As soon as it steps away from the bench, you notice a dozen heavily armored Quarg begin to follow it, some coming from the sides of the bench, others seemingly having materalized from the very walls and flooring. They follow Gohl in a machine-like formation, and never so much as acknowledge you.`
-			`	When you last glance back at it before entering your ship again, you see the distinct reflection of Gohl's eye glancing at you from a distance, before being followed by the armorclad Quarg deeper into the station.`
+			`	When you last glance back at it before entering your ship again, you see the distinct reflection of Gohl's eye glancing at you from a distance, before being followed by the armor-clad Quarg deeper into the station.`
 				decline
