@@ -1226,18 +1226,21 @@ void ShopPanel::SideSelect(const vector<shared_ptr<Ship>> shipStack, int clicks)
 
 	if(shift && clicks == 1)
 	{
-		bool on = false;
-		const Planet *here = player.GetPlanet();
-		for(const shared_ptr<Ship> &other : player.Ships())
+		if(ship != playerShip)
 		{
-			// Skip any ships that are "absent" for whatever reason.
-			if(!CanShowInSidebar(*other, here))
-				continue;
+			bool on = false;
+			const Planet *here = player.GetPlanet();
+			for(const shared_ptr<Ship> &other : player.Ships())
+			{
+				// Skip any ships that are "absent" for whatever reason.
+				if(!CanShowInSidebar(*other, here))
+					continue;
 
-			if(other.get() == ship || other.get() == playerShip)
-				on = !on;
-			else if(on)
-				playerShips.insert(other.get());
+				if(other.get() == ship || other.get() == playerShip)
+					on = !on;
+				else if(on)
+					playerShips.insert(other.get());
+			}
 		}
 	}
 	else if(control && clicks == 1)
