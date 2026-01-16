@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Shop.h"
 
+#include <limits>
+
 class DataNode;
 class Outfit;
 class Ship;
