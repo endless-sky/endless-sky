@@ -384,7 +384,7 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 
 	if(button == MouseButton::RIGHT)
 	{
-		if(!Preferences::Has("System map sends move orders"))
+		if(!Preferences::Has("System map sends move orders") || (commodity == SHOW_STARS && !player.CanView(*selectedSystem)))
 			return true;
 		// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
 		// positions aren't hard-coded.
@@ -967,6 +967,9 @@ void MapDetailPanel::DrawInfo()
 // Draw the planet orbits in the currently selected system, on the current day.
 void MapDetailPanel::DrawOrbits()
 {
+	if(commodity == SHOW_STARS && !player.CanView(*selectedSystem))
+		return;
+
 	planets.clear();
 	const Sprite *orbitSprite = SpriteSet::Get("ui/orbits and key");
 	SpriteShader::Draw(orbitSprite, Screen::TopRight() + .5 * Point(-orbitSprite->Width(), orbitSprite->Height()));
