@@ -132,7 +132,30 @@ mission "FW Reconciliation 1B"
 				`	"Won't they have destroyed any evidence long before we get there?"`
 			`	"Probably," she says, "but if they did any testing there, we should be able to pick up the residue. Or at least, my people will be able to, because they've got military grade Navy equipment."`
 			`	"So do we," says Ijs, sheepishly.`
+			`	Raven rolls her dark, tattooed eyes in a dramatic manner, then says, "I'm not surprised, given that someone here, *ahem*, is flying around in a Navy <flagship model> bearing the Free Worlds livery! I do hope no Navy crew were hurt when you got your hands on that hardware." she adds, pointedly. "But never mind," she continues, "that discussion can wait for another time. Let's get moving."`
+				to display
+					or
+						has "flagship model: Carrier"
+						has "flagship model: Cruiser"
+						has "flagship model: Auxiliary"
+						has "flagship model: Frigate"
+						has "flagship model: Gunboat"
+						has "flagship model: Rainmaker"
+						has "flagship model: Dropship"
+						has "flagship model: Combat Drone"
+						has "flagship model: Surveillance Drone"
 			`	Raven looks surprised for a moment, then says, "Never mind, I'm sure there's a good story of how you got your hands on that equipment, but it can wait for another time. Let's get moving."`
+				to display
+					and
+						not "flagship model: Carrier"
+						not "flagship model: Cruiser"
+						not "flagship model: Auxiliary"
+						not "flagship model: Frigate"
+						not "flagship model: Gunboat"
+						not "flagship model: Rainmaker"
+						not "flagship model: Dropship"
+						not "flagship model: Combat Drone"
+						not "flagship model: Surveillance Drone"
 				accept
 	
 	npc accompany save
