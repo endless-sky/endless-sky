@@ -1689,6 +1689,7 @@ interface "spaceport"
 		from -240 80 to 240 320
 	image "port"
 		center 0 -140
+		dimensions 720 360
 
 
 
@@ -1697,6 +1698,7 @@ interface "spaceport (small screen)"
 		from -300 80 to 180 320
 	image "port"
 		center -60 -140
+		dimensions 720 360
 
 
 
