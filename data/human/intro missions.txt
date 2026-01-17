@@ -561,7 +561,7 @@ mission "Intro [0 Jackal]"
 				decline
 			label jackal
 			action
-				give ship "Jackal (Empty)" "Triskelion"
+				give ship "Jackal (Empty)" "Exemplar"
 				take ship "Mining Drone"
 					count 2
 			`	You shake hands with the merchant. "Thanks for the deal, partner." He hands you the license to the Jackal and walks off towards the loading bays to claim his new Mining Drones.`
