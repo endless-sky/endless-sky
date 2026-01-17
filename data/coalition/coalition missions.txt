@@ -1610,7 +1610,6 @@ mission "Saryd University Lecture"
 					goto hai
 					to display
 						has "First Contact: Hai: offered"
-						not "event: hai-human resolution announced"
 				`	"Humans have official contact with the Quarg, but the Quarg don't trade technology with humanity."`
 				`	"Humans have official contact with the Quarg, but humans and Quarg don't really intermix."`
 				`	"Humans know about the Quarg, but most people know little about them."`

@@ -981,15 +981,3 @@ outfit "Shield Beetle Pendant"
 	"unique" 1
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
 	description "	It comes with a finely crafted lit shadowbox so it can be installed and displayed with pride. A trio of mounting brackets - miniatures of those used on Quantum Keystones - provide a secure anchor to keep the pendant safe."
-
-
-outfit "Failed Control System"
-	category "Systems"
-	series "Special Systems"
-	index 02010
-	cost 0
-	thumbnail "outfit/control transceiver"
-	"mass" 1
-	"unplunderable" 1
-	"integrated control systems" 1
-	description "This was meant to control some sort of experimental system, but it appears to have failed. Unfortunately it doesn't appear to be safely removable."

@@ -3505,29 +3505,3 @@ fleet "Hired Guns"
 	variant 1
 		"Vanguard (Particle)"
 		"Splinter (Proton)"
-
-# The Navy forces which blockade the wormhole during the Hai crisis.
-fleet "Human Wormhole Guards"
-	government "Republic that won't enter wormhole"
-	names "republic capital"
-	fighters
-		names "republic fighter"
-	cargo 0
-	personality
-		heroic opportunistic
-	variant 2
-		"Carrier (Mark II)"
-		"Combat Drone" 6
-		"Lance (Gatling)" 8
-	variant 1
-		"Auxiliary (Transport Mark II)"
-	variant 2
-		"Cruiser (Plasma Anti-Missile)"
-		"Combat Drone" 4
-	variant 2
-		"Cruiser (Mark II)"
-		"Combat Drone" 4
-	variant 8
-		"Frigate (Mark II)"
-	variant 5
-		"Rainmaker (Mark II Old Weapons)"
