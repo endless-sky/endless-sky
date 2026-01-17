@@ -131,6 +131,7 @@ void OutfitterPanel::Step()
 	CheckRefill();
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::OUTFITTER);
+	ShopPanel::ValidateSelectedShips();
 	if(GetUI().IsTop(this) && !checkedHelp)
 		// Use short-circuiting to only display one of them at a time.
 		// (The first valid condition encountered will make us skip the others.)

@@ -815,3 +815,29 @@ phrase "hostile disabled unfettered"
 	word
 		"!"
 		"."
+
+phrase "bribe rejection unfettered"
+	word
+		"The True Hai"
+		"We"
+		"The Hai"
+	word
+		" "
+	word
+		"will not fall victim to"
+		"have no interest in"
+		"shall not accept"
+		"do not want"
+	word
+		" "
+	word
+		"bribery"
+		"credits"
+	word
+		" from "
+	word
+		"weaklings!"
+		"cowards!"
+		"evildoers!"
+		"spies!"
+		"enemies!"

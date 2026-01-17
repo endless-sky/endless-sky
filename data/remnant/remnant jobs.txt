@@ -118,11 +118,11 @@ mission "Remnant: Expanded Horizons Astral job"
 		government "Remnant"
 	waypoint
 		not attributes "pleiades"
-		not attributes "inaccessible"
 		not attributes "tangled shroud"
 		not attributes "twilight"
 		not attributes "outer limits"
 		not attributes "beyond patir"
+		visited
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
 		random < 50
@@ -220,7 +220,6 @@ mission "Remnant: Bounty 5"
 		system
 			attributes "ember waste"
 			not attributes "graveyard"
-			not attributes "inaccessible"
 			not attributes "twilight"
 		fleet
 			names "korath"
@@ -361,7 +360,6 @@ mission "Remnant: Rescue"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
@@ -431,7 +429,6 @@ mission "Remnant: Rescue 1B"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
@@ -470,7 +467,6 @@ mission "Remnant: Rescue 2"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
@@ -511,7 +507,6 @@ mission "Remnant: Rescue 2B"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
@@ -550,7 +545,6 @@ mission "Remnant: Rescue 3"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
@@ -589,7 +583,6 @@ mission "Remnant: Rescue 3B"
 		system
 			attributes "ember waste"
 			not attributes "ka'het"
-			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
