@@ -111,11 +111,8 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 	// Compute the height of the visible scroll area.
 	const Interface *boarding = GameData::Interfaces().Get("boarding");
-	Point outerPadding = boarding->GetPoint("plunder list outer padding");
-	Point innerPadding = boarding->GetPoint("plunder list inner padding");
-	Rectangle plunderList = boarding->GetBox("plunder list");
-	Rectangle plunderInset(plunderList.Center(), plunderList.Dimensions() - 2 * (outerPadding + innerPadding));
-	scroll.SetDisplaySize(plunderInset.Height());
+	Rectangle plunderTableInner = boarding->GetBox("plunder table: inner");
+	scroll.SetDisplaySize(plunderTableInner.Height());
 	scroll.SetMaxValue(max(0., 20. * plunder.size()));
 }
 
@@ -148,16 +145,18 @@ void BoardingPanel::Draw()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
-	const Rectangle plunderList = boarding->GetBox("plunder list");
-	FillShader::Fill(plunderList, opaque);
+	const Rectangle plunderTableFrame = boarding->GetBox("plunder table: frame");
+	const Rectangle plunderTableInner = boarding->GetBox("plunder table: inner");
+	FillShader::Fill(plunderTableFrame, opaque);
 
 	int index = (scroll.AnimatedValue() - 10) / 20;
-	int y = plunderList.Top() + 15. - scroll.AnimatedValue() + 20 * index;
+	int y = plunderTableInner.Top() - scroll.AnimatedValue() + 20 * index;
 	int endY = 60;
 
 	const Font &font = FontSet::Get(14);
 	// Y offset to center the text in a 20-pixel high row.
 	double fontOff = .5 * (20 - font.Height());
+	double sizeColWidth = boarding->GetValue("plunder table: size column: width");
 	for( ; y < endY && static_cast<unsigned>(index) < plunder.size(); y += 20, ++index)
 	{
 		const Plunder &item = plunder[index];
@@ -165,14 +164,14 @@ void BoardingPanel::Draw()
 		// Check if this is the selected row.
 		bool isSelected = (index == selected);
 		if(isSelected)
-			FillShader::Fill(Point(plunderList.Center().X(), y + 10.), Point(plunderList.Width(), 20.), back);
+			FillShader::Fill(Point{plunderTableFrame.Center().X(), y + 10.}, Point{plunderTableFrame.Width(), 20.}, back);
 
 		// Color the item based on whether you have space for it.
 		const Color &color = item.CanTake(*you) ? isSelected ? bright : medium : dim;
-		Point pos(plunderList.Left() + 15., y + fontOff);
+		Point pos(plunderTableInner.Left(), y + fontOff);
 		font.Draw(item.Name(), pos, color);
-		font.Draw({item.Value(), {static_cast<int>(plunderList.Width() - 100.), Alignment::RIGHT}}, pos, color);
-		font.Draw({item.Size(), {static_cast<int>(plunderList.Width() - 30.), Alignment::RIGHT}}, pos, color);
+		font.Draw({item.Value(), {static_cast<int>(plunderTableInner.Width() - sizeColWidth), Alignment::RIGHT}}, pos, color);
+		font.Draw({item.Size(), {static_cast<int>(plunderTableInner.Width()), Alignment::RIGHT}}, pos, color);
 	}
 
 	// Set which buttons are active.
@@ -229,12 +228,12 @@ void BoardingPanel::Draw()
 
 	boarding->Draw(info, this);
 
+	const Rectangle plunderListScrollbar = boarding->GetBox("plunder table: scrollbar");
 	if(scroll.Scrollable())
-		scrollBar.SyncDraw(scroll,
-			plunderList.TopRight() + Point{0., 10.}, plunderList.BottomRight() - Point{0., 10.});
+		scrollBar.SyncDraw(scroll, plunderListScrollbar.TopRight(), plunderListScrollbar.BottomRight());
 
 	// Draw the status messages from hand to hand combat.
-	Point messagePos(50., 55.);
+	Point messagePos{50., 55.};
 	for(const string &message : messages)
 	{
 		font.Draw(message, messagePos, bright);
@@ -504,15 +503,15 @@ bool BoardingPanel::Click(int x, int y, MouseButton button, int clicks)
 
 	// Was the click inside the plunder list?
 	const Interface *boarding = GameData::Interfaces().Get("boarding");
-	Point outerPadding = boarding->GetPoint("plunder list outer padding");
-	Point innerPadding = boarding->GetPoint("plunder list inner padding");
-	Rectangle plunderList = boarding->GetBox("plunder list");
-	Rectangle plunderInset(plunderList.Center(), plunderList.Dimensions() - 2 * outerPadding);
-	if(plunderInset.Contains(Point(x, y)))
+	Rectangle plunderTableFrame = boarding->GetBox("plunder table: frame");
+	Rectangle plunderTableInner = boarding->GetBox("plunder table: inner");
+	if(plunderTableFrame.Contains(Point(x, y)))
 	{
-		int index = (scroll.AnimatedValue() + y - plunderInset.Top() - innerPadding.Y()) / 20;
-		if(index >= 0 && static_cast<unsigned>(index) < plunder.size())
-			selected = index;
+		// These numerical gymnastics are to make sure the scrollable
+		// area above the first item is not also clickable.
+		unsigned index = (y + scroll.AnimatedValue() - plunderTableInner.Top() + 20) / 20;
+		if(index > 0 && index <= plunder.size())
+			selected = index - 1;
 	}
 
 	return true;
