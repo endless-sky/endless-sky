@@ -201,7 +201,15 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 				ships.emplace_back(make_shared<Ship>(child, playerConditions));
 				for(const DataNode &grand : child)
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
+					{
 						shipEvents[ships.back().get()] = grand.Value(1);
+						break;
+					}
+				// This ship is either a unique definitions or is from before the
+				// condensed NPC ship syntax was created.
+				// Condensing it may result in loss of information, so mark it as
+				// being unable to be condensed when this NPC is saved.
+				ships.back()->SetCannotCondense();
 			}
 			else if(hasValue)
 			{
@@ -240,6 +248,18 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 				else
 					fleets.push_back(fleet);
 			}
+		}
+		else if(key == "condensed ship" && child.HasChildren() && child.Size() == 2)
+		{
+			shared_ptr<Ship> ship = make_shared<Ship>();
+			ship->LoadCondensed(child);
+			ships.emplace_back(ship);
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "actions" && grand.Size() >= 2)
+				{
+					shipEvents[ship.get()] = grand.Value(1);
+					break;
+				}
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -321,7 +341,10 @@ void NPC::Save(DataWriter &out) const
 
 		for(const shared_ptr<Ship> &ship : ships)
 		{
-			ship->Save(out);
+			if(ship->CannotCondense())
+				ship->Save(out);
+			else
+				ship->SaveCondensed(out);
 			auto it = shipEvents.find(ship.get());
 			if(it != shipEvents.end() && it->second)
 			{
