@@ -384,7 +384,7 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 
 	if(button == MouseButton::RIGHT)
 	{
-		if(!Preferences::Has("System map sends move orders"))
+		if(!Preferences::Has("System map sends move orders") || commodity == SHOW_STARS)
 			return true;
 		// TODO: rewrite the map panels to be driven from interfaces.txt so these XY
 		// positions aren't hard-coded.
