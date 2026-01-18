@@ -33,6 +33,7 @@ color "dead" .4 0. 0. 0.
 # Colors used for certain UI elements. These elements generally have a variable
 # size (e.g. they may fit to the current screen dimensions).
 color "panel background" .1 .1 .1 1.
+color "performance info background" .1 .1 .1 .7
 color "dialog backdrop" 0. 0. 0. .7
 color "conversation background" .125 .125 .125 1.
 color "map side panel background" .125 .125 .125 1.
@@ -219,6 +220,40 @@ color "plugin reload required" .75 .1 .1 0.
 
 
 
+interface "performance info"
+	anchor top left
+	fill
+		from 560 5 to 720 55
+		color "performance info background"
+	visible if "ready"
+	string "cpu"
+		from 570 16
+		color "medium"
+		align left
+	string "gpu"
+		from 570 30
+		color "medium"
+		align left
+	string "mem"
+		from 570 44
+		color "medium"
+		align left
+	visible if "!ready"
+	label "CPU: calculating..."
+		from 570 16
+		color "medium"
+		align left
+	label "GPU: calculating..."
+		from 570 30
+		color "medium"
+		align left
+	label "MEM: calculating..."
+		from 570 44
+		color "medium"
+		align left
+
+
+
 interface "map detail panel"
 	value "min planet panel height" 195
 	value "max planet panel height" 2022
@@ -279,8 +314,12 @@ interface "main menu"
 	button e "_Enter Ship"
 		center 435 155
 		dimensions 90 30
-	visible if "!pilot loaded"
+	visible if "no pilot loaded"
 	button n "_New Pilot"
+		center 435 155
+		dimensions 90 30
+	visible if "pilot dead"
+	button r "_Reload Pilot"
 		center 435 155
 		dimensions 90 30
 	
@@ -359,7 +398,7 @@ interface "menu player info"
 interface "menu start info"
 	visible if "chosen start"
 	image "thumbnail"
-		center 360 -100
+		center 360 -105
 		dimensions 220 240
 	label "name:"
 		from 250 -35
@@ -2256,6 +2295,94 @@ interface "map"
 		center 0 58
 		size 18
 		color "map route error text"
+
+
+
+interface "map: mission view: key"
+	anchor bottom left
+	sprite "ui/mission key"
+		align bottom left
+		from 0 0
+	pointer
+		align left
+		center 15 -90
+		dimensions 10 18
+		"orientation angle" 135
+		color "available job"
+	pointer
+		align left
+		center 15 -70
+		dimensions 10 18
+		"orientation angle" 135
+		color "unavailable job"
+	pointer
+		align left
+		center 15 -50
+		dimensions 10 18
+		"orientation angle" 135
+		color "active mission"
+	pointer
+		align left
+		center 15 -30
+		dimensions 10 18
+		"orientation angle" 135
+		color "blocked mission"
+	pointer
+		align left
+		center 15 -10
+		dimensions 10 18
+		"orientation angle" 135
+		color "waypoint"
+	visible if "available"
+	label "Available job; can accept"
+		align bottom left
+		from 18 -87
+		color bright
+	visible if "!available"
+	label "Available job; can accept"
+		align bottom left
+		from 18 -87
+		color dim
+	visible if "unavailable"
+	label "Too little space to accept"
+		align bottom left
+		from 18 -67
+		color bright
+	visible if "!unavailable"
+	label "Too little space to accept"
+		align bottom left
+		from 18 -67
+		color dim
+	visible if "active"
+	label "Active job; go here to complete"
+		align bottom left
+		from 18 -47
+		color bright
+	visible if "!active"
+	label "Active job; go here to complete"
+		align bottom left
+		from 18 -47
+		color dim
+	visible if "blocked"
+	label "Has unfinished requirements"
+		align bottom left
+		from 18 -27
+		color bright
+	visible if "!blocked"
+	label "Has unfinished requirements"
+		align bottom left
+		from 18 -27
+		color dim
+	visible if "waypoint"
+	label "System of importance"
+		align bottom left
+		from 18 -7
+		color bright
+	visible if "!waypoint"
+	label "System of importance"
+		align bottom left
+		from 18 -7
+		color dim
 
 
 
