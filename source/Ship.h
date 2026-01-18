@@ -516,8 +516,8 @@ public:
 	// Get a list of ships targeting this one.
 	const std::vector<Ship *> &GetShipsTargetingThis() const;
 	// Get and update the total ship strength targeting this ship.
-	const double GetTargeterStrength() const;
-	double UpdateTargeterStrength();
+	double GetTargeterStrength() const;
+	void UpdateTargeterStrength();
 
 	// Mark this ship as fleeing.
 	void SetFleeing(bool fleeing = true);

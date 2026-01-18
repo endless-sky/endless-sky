@@ -52,7 +52,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 #include <limits>
-#include <list>
 #include <sstream>
 
 using namespace std;
@@ -2572,9 +2571,6 @@ void Ship::Disable()
 // Mark a ship as destroyed.
 void Ship::Destroy()
 {
-	// If this ship had a target, remove it from the target's list of targeting ships.
-	if(GetTargetShip())
-		erase(targetingList, this);
 	hull = -1.;
 }
 
@@ -3835,7 +3831,6 @@ void Ship::SetFleeing(bool fleeing)
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
 	const shared_ptr<Ship> oldTarget = GetTargetShip();
-
 	if(ship != oldTarget)
 	{
 		// Remove this ship from the list of ships targeting the previous target.
@@ -3921,22 +3916,28 @@ const vector<Ship *> &Ship::GetShipsTargetingThis() const
 
 
 
-const double Ship::GetTargeterStrength() const
+double Ship::GetTargeterStrength() const
 {
 	return targeterStrength;
 }
 
 
 
-double Ship::UpdateTargeterStrength()
+void Ship::UpdateTargeterStrength()
 {
+	// Steady state is achieved by adding the strength of ships targeting this one and then decaying it.
 	targeterStrength = targeterStrength < 1. ? 0 : targeterStrength / 1.05;
-
-	for(Ship *targeter : targetingList)
-		if(targeter != nullptr)
-			targeterStrength += targeter->Strength();
-
-	return targeterStrength;
+	for(auto it = targetingList.begin(); it != targetingList.end(); )
+	{
+		const Ship *targeter = *it;
+		if(targeter == nullptr || targeter->IsDestroyed())
+		{
+			it = targetingList.erase(it);
+			continue;
+		}
+		targeterStrength += targeter->Strength();
+		++it;
+	}
 }
 
 

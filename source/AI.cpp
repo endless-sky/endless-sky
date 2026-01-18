@@ -713,7 +713,6 @@ void AI::Step(Command &activeCommands)
 	const int maxMinerCount = minables.empty() ? 0 : 9;
 	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
 	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
-
 	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
 	for(const auto &it : ships)
 	{
@@ -1509,7 +1508,6 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		maxStrength = 2 * strengthIt->second;
 
 	// Get a list of all targetable, hostile ships in this system.
-	// DO STUFF HERE
 	const auto enemies = GetShipsList(ship, true);
 	for(const auto &foe : enemies)
 	{
@@ -1527,7 +1525,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		double range = (foe->Position() + 60. * foe->Velocity()).Distance(
 			ship.Position() + 60. * ship.Velocity());
 		// Prefer the previous target, or the parent's target, if they are nearby.
-		bool preferredTarget = foe == oldTarget.get() || foe == parentTarget.get();
+		bool preferredTarget = (foe == oldTarget.get() || foe == parentTarget.get());
 		if(preferredTarget)
 			range -= 500.;
 
@@ -1554,13 +1552,15 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 
 		// The next two checks only apply if more than two ships are attacking the foe, as well as
 		// if it has not already been selected as a target recently.
-		// Deprioritize this if more than a quarter of your allies' strength is already attacking.
-		if(targeterStrength >= 0.25 * alliedStrength && targeterCount > 2 && !preferredTarget)
-			range += 500;
-
-		// Deprioritize this if it is being targeted by more than twice its strength.
-		if(targeterStrength >= 2. * foe->Strength() && targeterCount > 2 && !preferredTarget)
-			range += 500;
+		if(!preferredTarget && targeterCount > 2)
+		{
+			// Deprioritize this if more than a quarter of your allies' strength is already attacking.
+			if(targeterStrength >= 0.25 * alliedStrength)
+				range += 500;
+			// Deprioritize this if it is being targeted by more than twice its strength.
+			if(targeterStrength >= 2. * foe->Strength())
+				range += 500;
+		}
 
 		// Ships that don't (or can't) plunder strongly prefer active targets.
 		if(!canPlunder)
