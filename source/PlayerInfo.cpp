@@ -3892,6 +3892,14 @@ void PlayerInfo::RegisterDerivedConditions()
 		return !ce.NameWithoutPrefix().compare(firstName); });
 	conditions["last name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		return !ce.NameWithoutPrefix().compare(lastName); });
+	conditions["gender: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		string value = ce.NameWithoutPrefix();
+		if(value == "male" && gender == Gender::MALE)
+			return true;
+		if(value == "female" && gender == Gender::MALE)
+			return true;
+		return false;
+	});
 
 	// Conditions for your fleet's attractiveness to pirates.
 	conditions["cargo attractiveness"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
