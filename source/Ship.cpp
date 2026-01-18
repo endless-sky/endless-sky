@@ -3850,9 +3850,19 @@ void Ship::SetFleeing(bool fleeing)
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
-	if(ship != GetTargetShip())
+	const shared_ptr<Ship> oldTarget = GetTargetShip();
+	if(ship != oldTarget)
 	{
+		// Remove this ship from the list of ships targeting the previous target.
+		if(oldTarget)
+			erase(oldTarget->targetingList, this);
+
 		targetShip = ship;
+
+		// Add this ship to the list of ships targeting the target if it is an enemy.
+		if(ship && government->IsEnemy(ship->government))
+			ship->targetingList.push_back(this);
+
 		// When you change targets, clear your scanning records.
 		cargoScan = 0.;
 		outfitScan = 0.;
@@ -3915,6 +3925,39 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 void Ship::SetFormationPattern(const FormationPattern *formationToSet)
 {
 	formationPattern = formationToSet;
+}
+
+
+
+const vector<Ship *> &Ship::GetShipsTargetingThis() const
+{
+	return targetingList;
+}
+
+
+
+double Ship::GetTargeterStrength() const
+{
+	return targeterStrength;
+}
+
+
+
+void Ship::UpdateTargeterStrength()
+{
+	// Steady state is achieved by adding the strength of ships targeting this one and then decaying it.
+	targeterStrength = targeterStrength < 1. ? 0 : targeterStrength / 1.05;
+	for(auto it = targetingList.begin(); it != targetingList.end(); )
+	{
+		const Ship *targeter = *it;
+		if(targeter == nullptr || targeter->IsDestroyed())
+		{
+			it = targetingList.erase(it);
+			continue;
+		}
+		targeterStrength += targeter->Strength();
+		++it;
+	}
 }
 
 
