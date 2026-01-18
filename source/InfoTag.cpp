@@ -225,7 +225,7 @@ namespace {
 		double ray1CrossRay2 = ray1.Cross(ray2);
 
 		// Check for parallel lines, no solution.
-		if (abs(ray1CrossRay2) < EPSILON)
+		if(abs(ray1CrossRay2) < EPSILON)
 			return NO_SOLUTION;
 
 		Point ray3 = line2.first - line1.first;
@@ -298,7 +298,8 @@ namespace {
 		int moreCorners = 4;
 
 		if(distNext < halfEarWidth)
-		{if((anchor - line.second).Dot(direction) > 0)
+		{
+			if((anchor - line.second).Dot(direction) > 0)
 			{
 				double normal = sqrt(earWidth * earWidth - (distNext + halfEarWidth) * (distNext + halfEarWidth));
 				two = line.second + normal * directionNext;

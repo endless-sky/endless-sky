@@ -1,4 +1,4 @@
-/* ShipNameDialog.cpp
+/* ShipNameDialogPanel.cpp
 Copyright (c) 2024 by Endless Sky contributors
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "ShipNameDialog.h"
+#include "ShipNameDialogPanel.h"
 
 #include "GameData.h"
 #include "Phrase.h"
@@ -22,7 +22,7 @@ using namespace std;
 
 
 
-bool ShipNameDialog::RandomName(const string &)
+bool ShipNameDialogPanel::RandomName(const string &)
 {
 	// TODO: This always chooses human names, even for alien ships. Add a method
 	// of setting the phrase based off of ship and/or purchase location.
