@@ -316,6 +316,10 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			subs["<first>"] = player.FirstName();
 			subs["<last>"] = player.LastName();
 
+			// Guess the player's gender for now, in lieu of presenting the player with a choice.
+			bool hasFemaleName = GameData::Phrases().Find("female names")->Has(firstName);
+			player.SetGender(hasFemaleName ? PlayerInfo::Gender::FEMALE : PlayerInfo::Gender::MALE);
+
 			Goto(node + 1);
 		}
 		else

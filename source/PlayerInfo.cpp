@@ -304,6 +304,15 @@ void PlayerInfo::Load(const filesystem::path &path)
 		{
 			firstName = child.Token(1);
 			lastName = child.Token(2);
+
+			for(const DataNode &grand : child)
+			{
+				const DataNode &child = grand;
+				const string &key = child.Token(0);
+				if(key == "gender" && child.Size() >= 2)
+					if(child.Token(1) == "m" || child.Token(1) == "f")
+						gender = static_cast<PlayerInfo::Gender>(child.Token(1)[0]);
+			}
 		}
 		else if(key == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
@@ -486,6 +495,12 @@ void PlayerInfo::Load(const filesystem::path &path)
 			startData.Load(child);
 		else if(key == "message log")
 			Messages::LoadLog(child);
+	}
+	// Back-fill any missing values to support older saved games
+	if(gender == Gender::UNKNOWN)
+	{
+		bool hasFemaleName = GameData::Phrases().Find("female names")->Has(firstName);
+		gender = hasFemaleName ? Gender::FEMALE : Gender::MALE;
 	}
 	// Modify the game data with any changes that were loaded from this file.
 	ApplyChanges();
@@ -800,6 +815,20 @@ void PlayerInfo::SetName(const string &first, const string &last)
 			break;
 		}
 	}
+}
+
+
+
+PlayerInfo::Gender PlayerInfo::GetGender() const
+{
+	return gender;
+}
+
+
+
+void PlayerInfo::SetGender(Gender g)
+{
+	gender = g;
 }
 
 
@@ -4568,6 +4597,11 @@ void PlayerInfo::Save(DataWriter &out) const
 
 	// Pilot information:
 	out.Write("pilot", firstName, lastName);
+	out.BeginChild();
+	{
+		out.Write("gender", string(1, static_cast<char>(gender)));
+	}
+	out.EndChild();
 	out.Write("date", date.Day(), date.Month(), date.Year());
 	if(markedChangesToday)
 		out.Write("marked event changes today");

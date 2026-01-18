@@ -123,6 +123,19 @@ string Phrase::Get() const
 
 
 
+bool Phrase::Has(const string &value) const
+{
+	for(const auto &sentence : sentences)
+		for(const auto &part : sentence)
+			for(const auto &choice : part.choices)
+				for(const auto &pair : choice)
+					if(pair.first == value)
+						return true;
+
+	return false;
+}
+
+
 // Inspect this phrase and all its subphrases to determine if a cyclic
 // reference exists between this phrase and the other.
 bool Phrase::ReferencesPhrase(const Phrase *other) const

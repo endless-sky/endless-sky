@@ -71,6 +71,12 @@ public:
 		SPEED,
 		CONVENIENT
 	};
+	enum class Gender : char {
+		UNKNOWN = '\0',
+		FEMALE = 'f',
+		MALE = 'm'
+	};
+
 
 
 public:
@@ -121,6 +127,9 @@ public:
 	const std::string &FirstName() const;
 	const std::string &LastName() const;
 	void SetName(const std::string &first, const std::string &last);
+
+	Gender GetGender() const;
+	void SetGender(Gender g);
 
 	// Get or change the current date.
 	const Date &GetDate() const;
@@ -448,6 +457,7 @@ private:
 	std::string firstName;
 	std::string lastName;
 	std::string filePath;
+	Gender gender = Gender::UNKNOWN;
 
 	Date date;
 	SystemEntry entry = SystemEntry::TAKE_OFF;

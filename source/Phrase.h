@@ -45,6 +45,7 @@ public:
 
 	const std::string &Name() const;
 	std::string Get() const;
+	bool Has(const std::string &value) const;
 
 
 private:
