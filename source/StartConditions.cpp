@@ -193,8 +193,8 @@ void StartConditions::FinishLoading()
 	unlocked.planet = GetPlanet().DisplayName();
 	unlocked.system = GetSystem().DisplayName();
 	unlocked.date = GetDate();
-	unlocked.credits = Format::Credits(GetAccounts().Credits());
-	unlocked.debt = Format::Credits(GetAccounts().TotalDebt());
+	unlocked.credits = Format::AbbreviatedNumber(GetAccounts().Credits());
+	unlocked.debt = Format::AbbreviatedNumber(GetAccounts().TotalDebt());
 
 	string reason = GetConversation().Validate();
 	if(!GetConversation().IsValidIntro() || !reason.empty())
@@ -395,12 +395,12 @@ bool StartConditions::LoadStateChild(const DataNode &child, StartInfo &info, boo
 	// Format credits and debt where applicable.
 	else if(key == "credits" && hasValue)
 		if(child.IsNumber(value))
-			info.credits = Format::Credits(child.Value(value));
+			info.credits = Format::AbbreviatedNumber(child.Value(value));
 		else
 			info.credits = value;
 	else if(key == "debt" && hasValue)
 		if(child.IsNumber(value))
-			info.debt = Format::Credits(child.Value(value));
+			info.debt = Format::AbbreviatedNumber(child.Value(value));
 		else
 			info.debt = value;
 	else
