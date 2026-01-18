@@ -80,7 +80,7 @@ void SpaceportPanel::UpdateNews()
 
 void SpaceportPanel::Step()
 {
-	if(GetUI()->IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
+	if(GetUI().IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
 	{
 		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
 		// Special case: if the player somehow got to the spaceport before all
@@ -88,7 +88,7 @@ void SpaceportPanel::Step()
 		if(!mission)
 			mission = player.MissionToOffer(Mission::LANDING);
 		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
+			mission->Do(Mission::OFFER, player, &GetUI());
 		else
 			player.HandleBlockedMissions(Mission::SPACEPORT, GetUI());
 	}
