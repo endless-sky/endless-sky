@@ -1033,7 +1033,6 @@ mission "Sheragi Archaeology: The Box 5"
 	npc disable
 		government "Bounty Hunter"
 		personality unconstrained launching nemesis heroic plunders harvests target marked
-			confusion 20
 		system "Algieba"
 		fleet "Marauder fleet X"
 		dialog `You managed to defeat the entire mercenary fleet. You should have no problem landing in their camp now and recovering the cube.`

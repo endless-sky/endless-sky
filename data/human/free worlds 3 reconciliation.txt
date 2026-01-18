@@ -1649,6 +1649,7 @@ mission "FW Pug 3B"
 	npc accompany save
 		government "Free Worlds"
 		personality escort disables
+			confusion "elite"
 		ship "Dreadnought" "F.S. Independence"
 		ship "Dreadnought" "F.S. Freedom"
 	
@@ -1697,10 +1698,12 @@ mission "FW Pug 3C"
 	npc accompany save
 		government "Free Worlds"
 		personality escort
+			confusion "elite"
 		ship "Dreadnought" "F.S. Independence"
 		ship "Dreadnought" "F.S. Freedom"
 	npc accompany save
 		personality escort
+			confusion "elite"
 		government "Republic"
 		ship "Cruiser (Mark II)" "R.N.S. Everest"
 		ship "Cruiser (Mark II)" "R.N.S. Denali"
@@ -1733,10 +1736,12 @@ mission "FW Pug 3C (Extra)"
 	npc accompany save
 		government "Free Worlds"
 		personality escort
+			confusion "elite"
 		ship "Dreadnought" "F.S. Independence"
 		ship "Dreadnought" "F.S. Freedom"
 	npc accompany save
 		personality escort
+			confusion "elite"
 		government "Republic"
 		ship "Cruiser (Mark II)" "R.N.S. Everest"
 		ship "Cruiser (Mark II)" "R.N.S. Denali"
@@ -1763,10 +1768,12 @@ mission "FW Pug 4: Escorts"
 	npc kill
 		government "Free Worlds"
 		personality escort heroic disables
+			confusion "elite"
 		ship "Dreadnought (Jump)" "F.S. Independence"
 		ship "Dreadnought (Jump)" "F.S. Freedom"
 	npc kill
 		personality escort heroic disables
+			confusion "elite"
 		government "Republic"
 		ship "Cruiser (Jump)" "R.N.S. Everest"
 		ship "Cruiser (Jump)" "R.N.S. Denali"
@@ -1820,6 +1827,7 @@ mission "FW Pug 4: Escorts (Extra)"
 		has "FW Pug 6: done"
 	npc kill
 		personality escort heroic disables
+			confusion "elite"
 		government "Republic"
 		ship "Cruiser (Jump)" "R.N.S. Matterhorn"
 		ship "Combat Drone" "Green One"

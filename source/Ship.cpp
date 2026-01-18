@@ -839,6 +839,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Allocate enough firing bits for this ship.
 	firingCommands.SetHardpoints(armament.Get().size());
+	onTarget.SetHardpoints(armament.Get().size());
 
 	// If this ship is being instantiated for the first time, make sure its
 	// crew, fuel, etc. are all refilled.
@@ -1455,6 +1456,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
+	ResetConfusion();
 	if(isDeparting)
 		lingerSteps = 0;
 
@@ -1572,6 +1574,27 @@ void Ship::SetPersonality(const Personality &other)
 
 
 
+const Confusion &Ship::GetConfusion() const
+{
+	return confusion;
+}
+
+
+
+// If this ship changes governments, its confusion also needs to be updated.
+// Confusion from personality takes precendence over confusion from government.
+void Ship::ResetConfusion()
+{
+	if(personality.GetConfusion().IsDefined())
+		confusion = personality.GetConfusion();
+	else if(government && government->GetConfusion().IsDefined())
+		confusion = government->GetConfusion();
+
+	confusion.RandomizePeriod();
+}
+
+
+
 const Phrase *Ship::GetHailPhrase() const
 {
 	return hail;
@@ -1658,9 +1681,10 @@ void Ship::SetCommands(const Command &command)
 
 
 
-void Ship::SetCommands(const FireCommand &firingCommand)
+void Ship::SetCommands(const FireCommand &firingCommand, const FireCommand &targeting)
 {
 	firingCommands.UpdateWith(firingCommand);
+	onTarget.UpdateWith(targeting);
 }
 
 
@@ -1699,7 +1723,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(!isBeingDestroyed)
 		DoGeneration();
 
-	DoPassiveEffects(visuals, flotsam);
+	// Adjust the error in the pilot's targeting.
+	confusion.UpdateConfusion(onTarget.IsFiring());
+
+	DoPassiveEffects(visuals);
 	DoJettison(flotsam);
 	DoCloakDecision();
 
@@ -2721,6 +2748,7 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 
 	// Set the new government.
 	government = capturer->GetGovernment();
+	ResetConfusion();
 
 	// Transfer some crew over. Only transfer the bare minimum unless even that
 	// is not possible, in which case, share evenly.
@@ -4417,11 +4445,8 @@ void Ship::DoGeneration()
 
 
 
-void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
+void Ship::DoPassiveEffects(vector<Visual> &visuals)
 {
-	// Adjust the error in the pilot's targeting.
-	personality.UpdateConfusion(firingCommands.IsFiring());
-
 	// Handle ionization effects, etc.
 	if(ionization)
 		CreateSparks(visuals, "ion spark", ionization * .05);

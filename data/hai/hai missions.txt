@@ -1070,6 +1070,7 @@ mission "Nanachi 1"
 				accept
 	npc accompany save
 		personality escort timid
+			confusion "civilian"
 		government "Hai"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
@@ -1106,6 +1107,7 @@ mission "Nanachi 2"
 				accept
 	npc accompany save
 		personality escort timid
+			confusion "civilian"
 		government "Hai"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
@@ -1191,6 +1193,7 @@ mission "Nanachi 3"
 			`A spaceport worker contacted Nanachi shortly before you two landed and made sure the spices were ready to be loaded in her ship. You help the workers and Nanachi make sure everything is in order, and prepare for your trip to Allhome.`
 	npc accompany save
 		personality escort timid
+			confusion "civilian"
 		government "Hai"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit
@@ -1261,6 +1264,7 @@ mission "Nanachi 4"
 		ship "Marauder Bounder (Hai)" "Rodent Hunter"
 	npc accompany save
 		personality escort timid
+			confusion "civilian"
 		government "Hai (Wormhole Access)"
 		ship "Heavy Shuttle" "Acorn Chaser"
 	on visit

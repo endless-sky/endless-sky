@@ -2051,6 +2051,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic
+			confusion "civilian"
 		fleet
 			names "republic capital"
 			fighters
@@ -2076,6 +2077,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic staying
+			confusion "civilian"
 		fleet
 			names "republic capital"
 			fighters
@@ -2248,6 +2250,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic staying
+			confusion "civilian"
 		fleet
 			names "republic capital"
 			fighters

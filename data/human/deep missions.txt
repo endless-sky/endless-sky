@@ -2120,7 +2120,6 @@ mission "Deep: Scientist Rescue 0: Haven Pirates Backup"
 	npc evade
 		government "Pirate"
 		personality staying harvests plunders
-			confusion 20
 		system "Arneb"
 		fleet "Large Northern Pirates" 2
 		fleet "Small Northern Pirates"

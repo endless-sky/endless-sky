@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Armament.h"
 #include "CargoHold.h"
 #include "Command.h"
+#include "Confusion.h"
 #include "EsUuid.h"
 #include "FireCommand.h"
 #include "Outfit.h"
@@ -221,6 +222,9 @@ public:
 	// Access the ship's personality, which affects how the AI behaves.
 	const Personality &GetPersonality() const;
 	void SetPersonality(const Personality &other);
+	// Access the ship's confusion.
+	const Confusion &GetConfusion() const;
+	void ResetConfusion();
 	// Get a random hail message, or set the object used to generate them. If no
 	// object is given the government's default will be used.
 	const Phrase *GetHailPhrase() const;
@@ -236,7 +240,7 @@ public:
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
-	void SetCommands(const FireCommand &firingCommand);
+	void SetCommands(const FireCommand &firingCommand, const FireCommand &targeting);
 	const Command &Commands() const;
 	const FireCommand &FiringCommands() const noexcept;
 	// Move this ship. A ship may create effects as it moves, in particular if
@@ -559,7 +563,7 @@ private:
 	// destroyed, or 0 otherwise.
 	int StepDestroyed(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoGeneration();
-	void DoPassiveEffects(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
+	void DoPassiveEffects(std::vector<Visual> &visuals);
 	void DoJettison(std::list<std::shared_ptr<Flotsam>> &flotsam);
 	void DoCloakDecision();
 	// Step hyperspace enter/exit logic. Returns true if ship is hyperspacing in or out.
@@ -662,8 +666,10 @@ private:
 
 	Command commands;
 	FireCommand firingCommands;
+	FireCommand onTarget;
 
 	Personality personality;
+	Confusion confusion;
 	const Phrase *hail = nullptr;
 	ShipAICache aiCache;
 

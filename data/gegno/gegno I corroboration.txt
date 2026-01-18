@@ -145,6 +145,7 @@ mission "Foreign Spectator I"
 			set "interrupted arena"
 		government "Gegno Scin"
 		personality heroic vindictive staying uninterested
+			confusion "militia"
 		system "Oihaug"
 		ship "Felsic" "Tschelgi Dueich"
 	npc
@@ -295,6 +296,7 @@ mission "Battle over Zydee"
 		on provoke
 			set "zydee interference"
 		government "Gegno Scin"
+			confusion "militia"
 		personality heroic staying
 		system "Kneirc"
 		fleet
@@ -305,6 +307,7 @@ mission "Battle over Zydee"
 		on provoke
 			set "zydee interference"
 		government "Gegno Scin"
+			confusion "militia"
 		personality heroic entering
 		system "Kneirc"
 		fleet
@@ -480,6 +483,7 @@ mission "Scin Surveillance"
 	npc save
 		government "Gegno Scin"
 		personality surveillance
+			confusion "militia"
 		system
 			government "Gegno Scin"
 		fleet
@@ -889,6 +893,7 @@ mission "Gegno Anticipation"
 			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
 		government "Gegno Scin (Neutral)"
 		personality heroic vindictive staying
+			confusion "militia"
 		system "Heutesl"
 		fleet "Scin Warfleet" 3
 
@@ -998,6 +1003,7 @@ mission "Gegno Intervention"
 			dialog `After deciding to fire upon the Gegno fleet surveying your visit to their homeworld, you are met with aggressive opposition along with what sound like countless angry hails. Whatever chance you had left of associating with the Gegno is gone now.`
 		government "Gegno Scin (Neutral)"
 		personality heroic vindictive staying
+			confusion "militia"
 		system "Heutesl"
 		fleet "Scin Warfleet" 3
 

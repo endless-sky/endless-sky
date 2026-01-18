@@ -283,25 +283,21 @@ mission "Food Convoy [0]"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis entering harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates" 2
 	

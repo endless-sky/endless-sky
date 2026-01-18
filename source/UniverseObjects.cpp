@@ -257,6 +257,10 @@ void UniverseObjects::CheckReferences()
 		}
 	}
 
+	// Confusions are never serialized.
+	for(const auto &it : confusions)
+		if(it.second.Name().empty())
+			Warn("confusion", it.first);
 	// Stock conversations are never serialized.
 	for(const auto &it : conversations)
 		if(it.second.IsEmpty())
@@ -399,6 +403,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			if(overwrite)
 				*swizzle = Swizzle();
 			swizzle->Load(node);
+		}
+		else if(key == "confusion" && hasValue)
+		{
+			Confusion *confusion = confusions.Get(node.Token(1));
+			if(overwrite)
+				*confusion = Confusion();
+			confusion->Load(node);
 		}
 		else if(key == "conversation" && hasValue)
 		{
