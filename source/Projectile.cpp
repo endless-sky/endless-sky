@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Random.h"
 #include "Ship.h"
+#include "ship/ShipAttributeHandler.h"
 #include "Visual.h"
 #include "Weapon.h"
 
@@ -411,7 +412,7 @@ void Projectile::CheckLock(const Ship &target)
 	// but can be affected by jamming.
 	if(weapon->OpticalTracking())
 	{
-		double opticalJamming = target.IsDisabled() ? 0. : target.Attributes().Get("optical jamming");
+		double opticalJamming = target.IsDisabled() ? 0. : target.AttributeHandler().OpticalJamming();
 		if(opticalJamming)
 		{
 			double distance = position.Distance(target.Position());
@@ -449,7 +450,7 @@ void Projectile::CheckLock(const Ship &target)
 	// time. Jamming of 10 will increase that to about 60%.
 	if(weapon->RadarTracking())
 	{
-		double radarJamming = target.IsDisabled() ? 0. : target.Attributes().Get("radar jamming");
+		double radarJamming = target.IsDisabled() ? 0. : target.AttributeHandler().RadarJamming();
 		if(radarJamming)
 		{
 			double distance = position.Distance(target.Position());
@@ -497,7 +498,7 @@ void Projectile::CheckConfused(const Ship &target)
 	if(weapon->OpticalTracking())
 	{
 		double opticalTracking = weapon->OpticalTracking();
-		double opticalJamming = target.Attributes().Get("optical jamming");
+		double opticalJamming = target.AttributeHandler().OpticalJamming();
 		opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(),
 			opticalJamming, distance);
 	}
@@ -505,7 +506,7 @@ void Projectile::CheckConfused(const Ship &target)
 	if(weapon->RadarTracking())
 	{
 		double radarTracking = weapon->RadarTracking();
-		double radarJamming = target.Attributes().Get("radar jamming");
+		double radarJamming = target.AttributeHandler().RadarJamming();
 		radarConfused = ConfusedTracking(radarTracking, weapon->Range(),
 			radarJamming, distance);
 	}

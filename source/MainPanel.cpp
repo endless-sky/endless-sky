@@ -35,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 #include "Preferences.h"
 #include "Ship.h"
+#include "ship/ShipAttributeHandler.h"
 #include "ShipEvent.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -349,7 +350,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		if(first)
 			out << "This " + target->Noun() + " is not carrying any cargo.\n";
 	}
-	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Attributes().Get("inscrutable"))
+	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->AttributeHandler().Inscrutable())
 		out << "Your scanners cannot make any sense of this " + target->Noun() + "'s interior.";
 	else if(event.Type() & ShipEvent::SCAN_OUTFITS)
 	{
@@ -433,7 +434,7 @@ bool MainPanel::ShowHailPanel()
 
 	if(flagship->IsEnteringHyperspace())
 		Messages::Add(*GameData::Messages().Get("cannot hail while jumping"));
-	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
+	else if(flagship->IsCloaked() && !flagship->AttributeHandler().CanCommunicateWhileCloaked())
 		Messages::Add(*GameData::Messages().Get("cannot hail while cloaked"));
 	else if(target)
 	{
@@ -544,7 +545,7 @@ bool MainPanel::ShowHelp(bool force)
 			return true;
 	}
 	if(flagship->IsTargetable() &&
-			flagship->Attributes().Get("asteroid scan power") &&
+			flagship->AttributeHandler().AsteroidScanPower() &&
 			player.Ships().size() > 1)
 	{
 		// Different order of these messages is intentional,
