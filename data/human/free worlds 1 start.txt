@@ -1658,6 +1658,11 @@ mission "FW Pirates: Diplomacy 4"
 		event "fw suppressed Greenrock"
 		conversation
 			`You arrive back on Longjump to a hero's welcome. People have heard of the battle you fought on Thule and the deal that was forged with the locals there. JJ and Freya greet you too, and congratulate you. But then Freya says, "We need to talk in private."`
+				to display
+					not "gender: female"
+			`You arrive back on Longjump to a heroine's welcome. People have heard of the battle you fought on Thule and the deal that was forged with the locals there. JJ and Freya greet you too, and congratulate you. But then Freya says, "We need to talk in private."`
+				to display
+					has "gender: female"
 			`	You lead them into your ship, where Freya explains, "Soon after you left for Thule, Tomek took off on his own and raised a fleet for an attack on Greenrock. He thought the Senate's plan of making a deal with the pirate worlds was too cowardly, and that we needed a show of strength instead. Surprisingly, his stunt succeeded; Greenrock is now nominally under Free Worlds control."`
 			`	"This puts us in a rather difficult position," says JJ. "Much of Tomek's fleet didn't survive the assault, and those ships didn't come out of thin air; they were intended for defensive purposes in case the Navy attacks again. Word of this has spread quickly. Thule is already second guessing their deal with us, and if Thule has heard of this then there's no doubt in my mind that the Republic has as well."`
 			`	"And regardless of his success, an invasion of Greenrock was not approved by the Senate," says Freya. "Tomek was detained on Greenrock by some of our officers on order of the Senate, and he's currently being transported to Bourne for a hearing."`

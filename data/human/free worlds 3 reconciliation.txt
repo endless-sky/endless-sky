@@ -2622,6 +2622,11 @@ mission "FW Syndicate Extremists 1C"
 		set "free worlds reconciliation"
 		conversation
 			`On Earth, you return to something of a hero's welcome, far different from the first time you were here on a diplomatic mission. A crowd of locals gathers in the spaceport to watch your ship land. With the Free Worlds having been instrumental in defeating the aliens, and absolved of any guilt in the terrorist attacks, it seems that most people here are ready to see you as a hero rather than a criminal.`
+				to display
+					not "gender: female"
+			`On Earth, you return to something of a heroine's welcome, far different from the first time you were here on a diplomatic mission. A crowd of locals gathers in the spaceport to watch your ship land. With the Free Worlds having been instrumental in defeating the aliens, and absolved of any guilt in the terrorist attacks, it seems that most people here are ready to see you as a heroine rather than a criminal.`
+				to display
+					has "gender: female"
 			`	Your meeting with Parliament is long and grueling, as they press you and Freya for every detail you can give them about the enigmatic Pug and their apparent motivation in invading human space. The questions about the Syndicate are equally hard to answer. But at the end of the session, one of the members of Parliament informs you that they have authorized an official commendation for you, along with a reward of five million credits "to cover any of your expenses from fighting the aliens."`
 			`	As you walk out, you find Alondo, JJ, and Katya sitting in the courtyard of Parliament. When they spot you walking towards them, JJ waves and says, "<first> and Freya! Am I glad to see the two of you still in one piece! What brings you to Earth?"`
 			choice
