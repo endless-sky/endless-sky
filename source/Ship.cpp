@@ -131,7 +131,7 @@ namespace {
 		auto transferred = map<const Outfit *, int>{};
 		for(const auto &[outfit, count] : stockpile)
 		{
-			assert(item.second > 0 && "stockpile count must be positive");
+			assert(count > 0 && "stockpile count must be positive");
 			int unloadable = abs(from.Attributes().CanAdd(*outfit, -count));
 			int loadable = to.Attributes().CanAdd(*outfit, unloadable);
 			if(loadable > 0)
