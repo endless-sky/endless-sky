@@ -190,7 +190,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			auto AddToUniques = [&uniqueOutfits] (const map<const Outfit *, int> &outfits)
 			{
 				for(const auto &it : outfits)
-					if(it.first->Attributes().Get("unique"))
+					if(it.first->Get("unique"))
 						uniqueOutfits[it.first] += it.second;
 			};
 			AddToUniques(shipIt->get()->Outfits());
